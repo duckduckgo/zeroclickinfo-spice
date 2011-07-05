@@ -13,4 +13,4 @@ We organize this repository in projects. Some of those projects are in use on th
 
 For the spice we only use JavaScript which is called on the browser. Every project needs a file:
 
-* project/parse.js
+* project/spice.js
