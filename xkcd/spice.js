@@ -16,7 +16,7 @@ function nrxk(xk) {
 
     // Source name and url for the More at X link.
 	items[0]['s'] = 'XKCD';
-	items[0]['u'] = 'http://xkcd.com/';
+	items[0]['u'] = 'http://xkcd.com/' + xk['num'] + '/';
 
 	// Force no compression.
 	items[0]['f'] = 1;
