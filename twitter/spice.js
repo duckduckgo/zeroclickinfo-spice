@@ -1,4 +1,4 @@
-function twitter(tweets) {
+function nrtw(tweets) {
   if(tweets.length) {
     var content = "";
     var heading = "@" + tweets[0].user.screen_name;
@@ -12,8 +12,6 @@ function twitter(tweets) {
     });
     content += '<p class="twitter_latest_tweet"><b>Latest Tweet:</b> ' + status + ' <span class="twitter_date">published <a href="http://twitter.com/' + tweets[0].user.screen_name + '/status/' + tweets[0].id_str + '">' + relative_time(tweets[0].created_at) + '</a></span></p>';
     
-    content += '<span class="clearfix"></span>';
-    
     items = [[]];
     items[0]['a'] = content;
     items[0]['h'] = heading;
@@ -23,6 +21,21 @@ function twitter(tweets) {
 
     nra(items);
   }
+}
+
+var month_names = {
+  "Jan": "January",
+  "Feb": "February",
+  "Mar": "March",
+  "Apr": "April",
+  "May": "May",
+  "Jun": "June",
+  "Jul": "July",
+  "Aug": "August",
+  "Sep": "September",
+  "Oct": "October",
+  "Nov": "November",
+  "Dec": "December"
 }
 
 function relative_time(time_value) {
@@ -52,6 +65,6 @@ function relative_time(time_value) {
     return 'one day ago';
   }
   else {
-    return values[2] + ' ' + month_names[values[1]] + ' ' + values[5];
+    return month_names[values[1]] + ' ' + values[2] + ', ' + values[5];
   }
 }
