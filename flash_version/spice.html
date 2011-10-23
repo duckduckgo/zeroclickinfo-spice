@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Flash detection test</title>
+  <script type="text/javascript">
+    function nra(items) {
+      document.getElementById('a').innerHTML = items[0]['a'];
+    }
+  </script>
+</head>
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/yui/2.8.2/build/yuiloader/yuiloader-min.js"></script>
+  <script src="http://www.featureblend.com/flash_detect_1-0-4/yahoo_flash_detect_min.js"></script>
+  <script src="spice.js"></script>
+  <div id="a"></div>
+  <script type="text/javascript">
+    get_flash_version();
+  </script>
+</body>
+</html>
