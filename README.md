@@ -46,6 +46,21 @@ project/spice.js
 # Calls the js file and is used for testing. 
 # Look at example/example.html for extensive workflow comments.
 project/spice.html
+
+# The js functions and files get segemented by a short namespace prefix.
+# This is usually two or three letters, e.g. xk for xkcd.
+# Just make something up you think makes sense.
+project/spice.namespace
+
+# Nginx conf to call the relevant external API.
+# To prevent search leakage (and for caching), we run
+# all calls through nginx.
+# Start with the xkcd conf and try modifying it appropriately.
+project/spice.conf
+
+# Perl block to determine when to call the spice project.
+# See xkcd project for a good example to start with.
+project/spice.pl
 ```
 
 
