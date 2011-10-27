@@ -61,6 +61,9 @@ project/spice.conf
 # Perl block to determine when to call the spice project.
 # See xkcd project for a good example to start with.
 project/spice.pl
+
+# Example JSON object (returned from third-party API).
+project/spice.json
 ```
 
 
@@ -90,7 +93,9 @@ items[0]['a'] = snippet;
 // Optional header. If there is a relevant (and relatively short) title, then set it here.
 items[0]['h'] = title;
 
-// Required source name and url. These are used to make the More at X link in all 0-click boxes.
+// Required source name and url. 
+// These are used to make the More at X link in all 0-click boxes.
+// 's' should be the main name.
 items[0]['s'] = 'XKCD';
 items[0]['u'] = url
 
@@ -114,7 +119,13 @@ items[0]['i'] = image_url
 3) If you make html, e.g. by createElement, note d is a global shortcut for document, i.e. d.createElement.
 
 
-4) Don't use jQuery. We use [YUI2](http://developer.yahoo.com/yui/2/) internally. To set styles you can do:
+4) Any functions should exist in your namespace. For example, for twitter the namespace is tr, so the main callback would named nrtr and a helper function would be nrtr_helper_function.
+
+
+5) The image is automatically right-floated by default. To avoid looking bad, use <span> and <div> (if you need line breaks) instead of <p>. Also it is good to end with a <span> so the More at X line is on the same line. See the twitter project for an example.
+
+
+6) Don't use jQuery. We use [YUI2](http://developer.yahoo.com/yui/2/) internally. To set styles you can do:
 
 ```js
 YAHOO.util.Dom.setStyle(obj,'margin-top','5px');
