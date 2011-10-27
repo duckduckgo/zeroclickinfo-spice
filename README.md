@@ -50,7 +50,7 @@ project/spice.html
 # The js functions and files get segemented by a short namespace prefix.
 # This is usually two or three letters, e.g. xk for xkcd.
 # Just make something up you think makes sense.
-spice.namespace
+project/spice.namespace
 
 # Nginx conf to call the relevant external API.
 # To prevent search leakage (and for caching), we run
