@@ -9,7 +9,7 @@ function nrfl()
     zc_data[0]['a'] = "Flash version: " + YAHOO.util.FlashDetect.major + "." + YAHOO.util.FlashDetect.minor + "." + YAHOO.util.FlashDetect.revision;
   }
   else {
-    zc_data[0]['a'] = "Flash is no installed";
+    zc_data[0]['a'] = "Flash is not installed";
   }
 
   nra(zc_data);
