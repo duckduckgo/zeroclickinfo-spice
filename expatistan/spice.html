@@ -1,0 +1,33 @@
+<html>
+<head>
+
+<!--
+This is the function you define -- see its details in the repository.
+//-->
+<script type="text/javascript" src="/spice/expatistan/spice.js"></script>
+
+<!-- 
+This is a stub function that takes what you pass it 
+and creates the Zero-click Info that gets shoved
+into the body of the page in the div marked "a".
+//-->
+<script type="text/javascript">
+function nra(items) {
+  document.getElementById('a').innerHTML = items[0]['a'];
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- 
+This is a placeholder div for the Zero-click Info that nra() populates
+//-->
+<div id="a"></div>
+
+<script type="text/javascript" src="http://www.expatistan.com/api/spice?q=cost+of+living+in+london&api_key=wideopen"></script>
+<script type="text/javascript" src="http://www.expatistan.com/api/spice?q=cost+of+living+london+vs+melbourne&api_key=wideopen"></script>
+
+</body>
+</html>
