@@ -34,26 +34,14 @@ Here is the flow (as laid out in the ../example.html file
 
 function nrexp(ir) {
     var snippet = '';
-
-    // For debugging.
-//    console.log(ir);
-
-    // Validity check.
     if (ir['status'] == 'OK') {
-
-        // Snippet that gets shown in the 0-click box.
-	snippet = ir['abstract'];
-
-	items = new Array();
-	items[0] = new Array();
-	items[0]['a'] = snippet;
-
-	items[0]['h'] = '';
-
-        // Source name and url for the More at X link.
-	items[0]['s'] = 'Expatistan';
-	items[0]['u'] = ir['source_url'];
-
-	nra(items);
+			snippet = ir['abstract'];
+			items = new Array();
+			items[0] = new Array();
+			items[0]['a'] = snippet;
+			items[0]['h'] = '';
+			items[0]['s'] = 'Expatistan';
+			items[0]['u'] = ir['source_url'];
+			nra(items);
     }
 }
