@@ -1,4 +1,4 @@
-function get_flash_version() 
+function nrfl() 
 {
   var zc_data = []
 	zc_data[0] = []
@@ -14,3 +14,5 @@ function get_flash_version()
 
   nra(zc_data);
 }
+
+nrfl();
