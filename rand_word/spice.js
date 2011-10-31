@@ -1,4 +1,4 @@
-function nwrd(iwrd) {
+function nrwrd(iwrd) {
     var snippet = '';
 
     // Validity check.
@@ -9,7 +9,7 @@ function nwrd(iwrd) {
 
 	items = new Array();
 	items[0] = new Array();
-	items[0]['a'] = '<a href="http://wordnik.com/words/' + snippet + '">' + snippet + '</a>';
+	items[0]['a'] = '<a href="http://wordnik.com/words/' + snippet + '">' + snippet + '</a> (random)';
 
 	items[0]['h'] = '';
 
