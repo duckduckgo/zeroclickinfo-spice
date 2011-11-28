@@ -1,7 +1,6 @@
 ### Spice Requests/Ideas
 
  * [TMDb](http://api.themoviedb.org/2.1) - so we can show better movie info, like trailers.
- * [alternativeTo](http://alternativeto.net/api) - so we can display cool related topics for software
  * Like [XKCD](http://duckduckgo.com/?q=xkcd) but for sinfest and SMBC (Saturday Morning Breakfast Cereal) and the doghouse diaries.
  * Qype: http://www.qype.co.uk/developers/api - like our Yelp stuff: http://duckduckgo.com/?q=black+lab+bistro but for UK & Europe.
  * Part numbers and datasheets for electronics parts, possibly via [the Octopart API](http://octopart.com/api/overview)
@@ -22,6 +21,7 @@ Feel free to edit this page and add to the above list if you have other source i
  * BEING WORKED ON by @dhruvbird: Khan academy https://sites.google.com/a/khanacademy.org/forge/for-developers/technical/api
  * BEING WORKED ON: pronunciation, possibly via [Forvo](http://www.forvo.com/)
  * BEING WORKED ON: Bitcoin conversion, possibly via http://bitcoincharts.com/about/markets-api/ or https://mtgox.com/code/data/ticker.php
+ * [alternativeTo](http://alternativeto.net/api) - so we can display cool related topics for software
 
 ### LIVE
  * [LIVE](http://duckduckgo.com/?q=xkcd) ([sdball](https://github.com/sdball)): Latest XKCD comic ([code](https://github.com/duckduckgo/zeroclickinfo-spice/tree/master/xkcd))
