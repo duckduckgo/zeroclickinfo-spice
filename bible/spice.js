@@ -7,8 +7,7 @@ function nrbi(bi) {
     if (bi[0]['bookname']) {
       
       // Link to be removed.
-      var rmlink = '<a style=\"\" target=\"_blank\" href=\"http:\/\/bible.\
-      org\/page.php?page_id=3537\">&copy;NET<\/a>'
+      var rmlink = '<a style=\"\" target=\"_blank\" href=\"http:\/\/bible.org\/page.php?page_id=3537\">&copy;NET<\/a>'
       
       // Their ToS require this link be at the end of the quote.
       var rpllink = '<a href=\" http://netbible.org\">&copy; NETBible.org<\/a>'
