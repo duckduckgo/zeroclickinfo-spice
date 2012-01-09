@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <script type='text/javascript' src='bible/spice.js'></script>
+        <script type='text/javascript'>
+            function nra(items) {
+                document.getElementById('a').innerHTML = items[0]['a'];
+            }
+        </script>
+    </head>
+    <body>
+    <div id='a'></div>
+    <!-- Passage needs to be changed here -->    
+    <script type='text/javascript' src='http://labs.bible.org/api/?type=json&callback=nrbi&formatting=plain&passage=Genesis 1:2'></script>
+
+</body>
+</html>
