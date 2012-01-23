@@ -1,14 +1,11 @@
-DuckDuckGo ZeroClickInfo Spice
+Spice Zero-click Info Plugins
 =================================
-
-About
------
 
 See [the contribution wiki](https://github.com/duckduckgo/duckduckgo/wiki) for a general overview on contributing to DuckDuckGo.
 
-This repository is for contributing dynamic, external API based content to 0-click, e.g. getting the current bitcoin currency conversions. That is, each spice project will generally involve at least one HTTP request to a third-party API, though in some cases could be completely stand-alone.
+This repository is for contributing JavaScript-based Zero-click Info plugins. Each spice project will generally involve at least one HTTP(S) request to a third-party API, though in some cases could be completely stand-alone.
 
-We also maintain a list of [requested spice projects](https://github.com/duckduckgo/duckduckgo/wiki/Spice), but whatever you want to attempt is welcome.
+We maintain a list of requested spice projects, which are colored purple on [the Trello board](https://trello.com/board/duckduckgo-open-source-plugins/4f08e96d947729b526070890), but whatever you want to attempt is welcome!
 
 
 Contributing
@@ -19,15 +16,13 @@ First off, thank you!
 
 ### Process
 
-1) Make sure you're in the right place. This repo is for JavaScript blocks that generally grab information based on a query from a third-paty API and then format that info for display in a 0-click box. For Perl stand-alone goodies you probably want the [goodies repo](https://github.com/duckduckgo/zeroclickinfo-goodies).
+1) Develop your plugin using the Structure below in either a fork or a branch (if a collaborator).
 
-2) Develop project using the Structure below in either a fork or a branch (if a collaborator).
+2) Test your plugin via the Testing procedure below.
 
-3) Test goodie via Testing procedure below.
+3) Submit a pull request.
 
-4) Submit a pull request.
-
-Feel free to ask questions!
+Feel free to [ask questions](http://webchat.freenode.net/?channels=duckduckgo)!
 
 
 
