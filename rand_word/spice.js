@@ -9,7 +9,7 @@ function nrwrd(iwrd) {
 
 	items = new Array();
 	items[0] = new Array();
-	items[0]['a'] = '<a href="http://wordnik.com/words/' + snippet + '">' + snippet + '</a> (random)';
+	items[0]['a'] = '<a onclick="fl=1" href="http://wordnik.com/words/' + snippet + '">' + snippet + '</a> (random)';
 
 	items[0]['h'] = '';
 
