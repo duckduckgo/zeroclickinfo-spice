@@ -3,13 +3,25 @@
     <script type="text/javascript" src="spice.js"></script>
     <script type="text/javascript">
     function nra(items) {
+      document.getElementById('h').innerHTML = items[0]['h'];
       document.getElementById('a').innerHTML = items[0]['a'];
+      document.getElementById('s').innerHTML = items[0]['s'];
+      document.getElementById('u').innerHTML = items[0]['u'];
     }
     </script>
+    <style type="text/css">
+      .box { border:1px solid #aaa; padding: 10px 20px; width: 600px; }
+      .box div { margin-bottom:10px; }
+    </style>
   </head>
 
   <body>
-    <div id="a"></div>
-    <script type="text/javascript" src="http://www.lyricsnmusic.com/songs?q=mika%20love%20today&field=all&per_page=1&callback=nrlnm"></script>
+    <div class="box">
+      <h3 id="h"></h3>
+      <div id="a"></div>
+      <div id="s"></div>
+      <div id="u"></div>
+    </div>
+    <script type="text/javascript" src="http://api.lyricsnmusic.com/v1/songs.json?q=coldplay%20clocks&field=all&per_page=1&callback=nrlnm"></script>
   </body>
 </html>
