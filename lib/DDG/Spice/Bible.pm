@@ -9,7 +9,7 @@ handle query_lc => sub {
 	if ($1) {
 	    return qq(/ibi/$1);
 	}
-	$is_kill_pre_results = 1;
+#	$is_kill_pre_results = 1;
     }
     return;
 };
