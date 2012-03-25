@@ -2,11 +2,11 @@ package DDG::Spice::Bible;
 
 use DDG::Spice;
 
-triggers start => "bible";
+triggers any => "bible", ":";
 
 handle query_lc => sub {
 
-    if ($_ =~ /^bible\s+([a-z]+\s*?[0-9]+:[0-9]+)$/) {
+    if ($_ =~ /^(bible\s)?(\d*)(\s*)(\D+)(\s+)(\d+)(:+)(\d+)$/) {
 	if ($1) {
 	    return qq(/ibi/$1);
 	}
