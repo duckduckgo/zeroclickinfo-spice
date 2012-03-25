@@ -1,11 +1,16 @@
-if ($q_check_lc =~ /^random word(?: ([0-9]+\-[0-9]+)|)$/) {
+package DDG::Spice::RandWord;
+use DDG::Spice;
 
-    $call_extf = qq(/js/nrwrd.js);
-    if ($1) {
-	$call_ext = qq(/iwrd/$1);
-    } else {
-	$call_ext = qq(/iwrd/);
+triggers any => "random", "word";
+spice is_memcached => 0;
+handle query_lc => sub {
+    if ($_ =~ /^random word(?: ([0-9]+\-[0-9]+)|)$/) {
+	if ($1) {
+	    return qq(/iwrd/$1);
+	} else {
+	    return qq(/iwrd/);
+	}
+#	$is_kill_pre_results = 1;
     }
-    $is_kill_pre_results = 1;
-    $is_memcached = 0;
-}
+};
+1;

@@ -1,6 +1,15 @@
-if ($q_check_lc =~ /cost of living/) {
-    $call_extf = qq(/js/nrexp.js);
-    if ($1) {
-	$call_ext = qq(/iexp/$1);
+package DDG::Spice::Expatistan;
+
+use DDG::Spice;
+
+triggers any => "cost", "living";
+
+handle query_lc => sub {
+    if ($_ =~ /cost of living/) {
+	if ($1) {
+	    $return qq(/iexp/$1);
+	}
     }
-}
+    return;
+};
+1;
