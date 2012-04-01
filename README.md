@@ -5,7 +5,7 @@ See [the contribution wiki](https://github.com/duckduckgo/duckduckgo/wiki) for a
 
 This repository is for contributing JavaScript-based Zero-click Info plugins. Each spice plugin will generally involve at least one HTTP(S) request to a third-party API, though in some cases could be completely stand-alone.
 
-We maintain a list of requested spice plugins, which are colored purple on [the Trello board](https://trello.com/board/duckduckgo-open-source-plugins/4f08e96d947729b526070890), but whatever you want to attempt is welcome!
+We maintain a list of requested spice plugins,  which are under the "spice" tag on [Uservoice](https://duckduckgo.uservoice.com/forums/5168-plugins/category/41838-spice), but whatever you want to attempt is welcome!
 
 
 Contributing
