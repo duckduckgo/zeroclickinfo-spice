@@ -1,11 +1,11 @@
-Spice Zero-click Info Plugins
+DuckDuckGO Spice Plugins
 =================================
 
-See [the contribution wiki](https://github.com/duckduckgo/duckduckgo/wiki) for a general overview on contributing to DuckDuckGo.
+See [DuckDuckHack](http://duckduckhack.com/) for an overview of the DuckDuckGo plugin system.
 
-This repository is for contributing JavaScript-based Zero-click Info plugins. Each spice plugin will generally involve at least one HTTP(S) request to a third-party API, though in some cases could be completely stand-alone.
+This repository is for contributing spice plugins. Each spice plugin will generally involve at least one HTTP(S) request to a third-party JavaScript API, though in some cases could be completely stand-alone. These API calls will return JSON objects to callback functions that you will specify.
 
-We maintain a list of requested spice plugins,  which are under the "spice" tag on [Uservoice](https://duckduckgo.uservoice.com/forums/5168-plugins/category/41838-spice), but whatever you want to attempt is welcome!
+Spice plugins are in beta and both the interface and testing procedure will improve over time. However, you can work away without worrying about what any changes might do to your plugins -- we'll take care of all that.
 
 
 Contributing
@@ -16,59 +16,48 @@ First off, thank you!
 
 ### Process
 
-1) Develop your plugin using the Structure below in either a fork or a branch (if a collaborator).
+1) Pick [a spice project](https://duckduckgo.uservoice.com/forums/5168-plugins/category/41838-spice) (or add one) and comment that you're working on it.
 
-2) Test your plugin via the Testing procedure below.
+2) Develop your plugin using the Structure below [in a fork](http://help.github.com/fork-a-repo/).
 
-3) Submit a pull request.
+3) Test your plugin via Testing procedure below.
 
-Feel free to [ask questions](http://webchat.freenode.net/?channels=duckduckgo)!
+4) Submit a [pull request](http://help.github.com/send-pull-requests/).
+
+Feel free to [ask questions](http://duckduckhack.com/#faq)!
 
 
 
 ### Structure
 
-Each spice plugin has its own directory. Some of the directories are in use on the live system, and some are still in development.
+Each spice plugin currently produces three files. The first file is described in the [DuckDuckHack plugin tutorial](http://duckduckhack.com/#plugin-tutorial) and you should start there.
+
+When finished you will have made your plugin triggers file within the [lib/DDG/Spice](https://github.com/duckduckgo/zeroclickinfo-spice/tree/master/lib/DDG/Spice) directory.
+
+The other two files should be placed in a project directory within [share/spice](https://github.com/duckduckgo/zeroclickinfo-spice/tree/master/share/spice).
 
 Each directory has a structure like this:
 
 ```txt
-
 # Main file, which gets called by the client at the appropriate time. 
-# To understand the flow, look at example/spice.js 
+# This file defines the callback function and any helper functions you need
+# to process data that gets returned from the JSONP APIs.
 plugin/spice.js
-
-# Calls the js file and is used for testing. 
-# Look at example/example.html for extensive workflow comments.
-plugin/spice.html
-
-# The js functions and files get segemented by a short namespace prefix.
-# This is usually two or three letters, e.g. xk for xkcd.
-# Just make something up you think makes sense.
-plugin/spice.namespace
 
 # Nginx conf to call the relevant external API.
 # To prevent search leakage (and for caching), we run
 # all calls through nginx.
 # Start with the xkcd conf and try modifying it appropriately.
-plugin/spice.conf
-
-# Perl block to determine when to call the spice plugin.
-# See xkcd plugin for a good example to start with.
-plugin/spice.pl
-
-# Example JSON object (returned from third-party API).
-plugin/spice.json
+# In a future iteration this will be produced automatically.
+plugin/nginx.conf
 ```
 
 
 ### Testing
 
-You should be able to test your spice plugin via the spice.html file in your plugin directory. That is, it should be able to run in your Web browser and display the information you want it to display in a stand-alone fashion.
+In a future iteration we'll give you a Web server testing facility that you an query.
 
-In the same token, you should be able to run the example.html to test that you have the repository set up right. If it works, you should get a line about weather at the top.
-
-You do not need a Web server to test, though it is of course fine if you do. That is, you should just be able to open the files locally, i.e. drag or open the appropriate HTML in your browser. 
+For now, however, you should be able to test your spice plugin in your browser locally. To do so make an HTML file with a script tag that calls the external JSONP api. Then put your callback function in the same file. The API will return the JSON object to your callback function.
 
 
 ### spice.js flow
@@ -79,7 +68,7 @@ The overall flow is as follows:
 
 2) That callback function is defined by you, and takes the JSON object from the external API and parses out the information needed for display.
 
-3) Your callback function calls the nra function with the appropriate variables. That is the internal function we use to display the Zero-click Info box for spice plugins. You pass nra a object that takes the following parameters.
+3) Your callback function calls the nra function with the appropriate variables. That is the internal function we use to display the Zero-click Info box for spice plugins. You pass nra a object that takes the following parameters. We are in the process of cleaning up this interface to be way more intuitive :)
 
 ```js
 // Requried snippet (abstract). It can be pure HTML in which case it is set via innerHTML, but better is it is an object, in which case onclick and other event handlers won't be destroyed.
@@ -105,19 +94,19 @@ items[0]['i'] = image_url
 
 ### Notes
 
-1) Look at the xkcd/spice.js file for a working live example. 
+1) Look at [existing plugins](https://github.com/duckduckgo/zeroclickinfo-spice/tree/master/share/spice) for some examples. 
 
 
 2) If you use internal variables you should put a var statement at the top of the function so they don't leak scope.
 
 
-3) If you make html, e.g. by createElement, note d is a global shortcut for document, i.e. d.createElement.
+3) If you make html, e.g. by createElement, note d is a global shortcut for document, i.e. d.createElement. (In future versions of the interface we will be backing off from creating display elements directly.)
 
 
 4) Any functions should exist in your namespace. For example, for twitter the namespace is tr, so the main callback would named nrtr and a helper function would be nrtr_helper_function.
 
 
-5) The image is automatically right-floated by default. To avoid looking bad, use <span> and <div> (if you need line breaks) instead of <p>. Also it is good to end with a <span> so the More at X line is on the same line. See the twitter plugin for an example.
+5) The image is automatically right-floated by default. To avoid looking bad, use <span> and <div> (if you need line breaks) instead of <p>. Also it is good to end with a <span> so the More at X line is on the same line. See the [twitter plugin](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/share/spice/twitter/spice.js) for an example.
 
 
 6) Don't use jQuery. We use [YUI2](http://developer.yahoo.com/yui/2/) internally. To set styles you can do:
@@ -129,5 +118,5 @@ YAHOO.util.Dom.setStyle(obj,'margin-top','5px');
 If the whole Zero-click Info is an image (like in the XKCD case) you can use this class on the img:
 
 ```js
-YAHOO.util.Dom.addClass(img,'cizb');
+YAHOO.util.Dom.addClass(img,'img_zero_click_big');
 ```
