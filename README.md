@@ -16,7 +16,7 @@ First off, thank you!
 
 ### Process
 
-1) Pick [a spice project](https://duckduckgo.uservoice.com/forums/5168-plugins/category/41838-spice) (or add one) and comment that you're working on it.
+1) Pick [a spice project](https://duckduckhack.uservoice.com/forums/5168-instant-answer-plugin-ideas-for-duckduckgo/category/41838-spice) (or add one) and comment that you're working on it.
 
 2) Develop your plugin using the Structure below [in a fork](http://help.github.com/fork-a-repo/).
 
