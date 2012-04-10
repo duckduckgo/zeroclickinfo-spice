@@ -1,0 +1,56 @@
+<html>
+<head><title>DDG Zero-info Spice Plugin Test Page</title>
+<!-- Potentially replace the stylesheet link below to a more recent version -->
+<link rel="stylesheet" href="http://duckduckgo.com/s422.css" type="text/css">
+<script type="text/javascript" src="./spice.js"></script>
+</head>
+<body>
+<h1>DDG Zero-info Spice Plugin Test Page</h1>
+
+
+<br><br>
+Zero-info box hidden below this line...
+<div id="zero_click_wrapper" style="display:none;visibility:hidden;">
+    <div id="zero_click">
+        <div id="zero_click_wrapper2">
+            <div id="zero_click_plus_wrapper">
+                <a href="javascript:;" onClick="" id="zero_click_plus">&nbsp;</a>
+            </div>
+            <div id="zero_click_header" style="display:none;"></div>
+            <div id="zero_click_image" style="display:none;"></div>
+            <div id="zero_click_abstract" style="display:none;"></div>
+            <div class="clear">&nbsp;</div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  function nra(items) {
+    console.log(items);
+    if(items) {
+        item = items[0];
+        document.getElementById('zero_click_wrapper').style.cssText = "";
+        if(item['h']) {
+            document.getElementById('zero_click_header').style.cssText = "";
+            document.getElementById('zero_click_header').innerHTML = item['h'];
+        };
+        if(item['i']) {
+            document.getElementById('zero_click_image').style.cssText = "";
+            document.getElementById('zero_click_image').innerHTML = "<img src=\"" + item['i'] + "\"></img>";
+        };
+        document.getElementById('zero_click_abstract').style.cssText = "";
+        if(item['a']) {
+            document.getElementById('zero_click_abstract').innerHTML += item['a'];
+        };
+        if(item['s'] && item['u']) {
+            document.getElementById('zero_click_abstract').innerHTML += "<br><a href=\"" + item['u'] + "\">More from " + item['s'] + "</a>";
+        };
+
+    };
+  };
+</script>
+<!-- Replace the URL below with a direct query to the remote API -->
+<script type="text/javascript" src="http://octopart.com/api/v2/parts/search?callback=nroctopart&limit=3&optimize.hide_offers=1&optimize.hide_specs=1&q=max232"></script>
+
+</body>
+</html>
