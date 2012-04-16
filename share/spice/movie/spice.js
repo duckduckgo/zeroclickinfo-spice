@@ -84,22 +84,22 @@ function nrmovie(movie) {
 
         document.body.appendChild(snippet);
         
-        // // Call nra function as per Spice Plugin Guidelines
-        // items = [[]];
-        // items[0]['a'] = snippet;
-        // items[0]['h'] = result.title;
+        // Call nra function as per Spice Plugin Guidelines
+        items = [[]];
+        items[0]['a'] = snippet;
+        items[0]['h'] = result.title;
 
-        // // Source name and url for the More at X link.
-        // items[0]['s'] = 'Rotten Tomatoes';
-        // items[0]['u'] = result.links.alternate;
+        // Source name and url for the More at X link.
+        items[0]['s'] = 'Rotten Tomatoes';
+        items[0]['u'] = result.links.alternate;
 
-        // // Force no compression.
-        // items[0]['f'] = 1;
+        // Force no compression.
+        items[0]['f'] = 1;
 
-        // // Thumbnail url
-        // //items[0]['i'] = 'https://icons.duckduckgo.com/i/www.rottentomatoes.com.ico';    
+        // Thumbnail url
+        //items[0]['i'] = 'https://icons.duckduckgo.com/i/www.rottentomatoes.com.ico';    
 
-        // // The rendering function is nra.
-        // nra(items);
+        // The rendering function is nra.
+        nra(items);
      }
     }
