@@ -5,8 +5,8 @@ use DDG::Spice;
 triggers start => "free","opensource","commercial";
 triggers any => "alternative","alternatives";
 
-zci from => '([^/]+)/(?:([^/]+)/(?:([^/]+)|)|)';
-zci to => 'http://api.alternativeto.net/software/$1/?$2&$3&count=6&callback={{callback}}';
+spice from => '([^/]+)/(?:([^/]+)/(?:([^/]+)|)|)';
+spice to => 'http://api.alternativeto.net/software/$1/?$2&$3&count=6&callback={{callback}}';
 
 handle query_lc => sub {
     if ($_ =~ /^(?:(free|opensource|commercial))?\s*(?:alternatives?\s*to\s*)?([\w\-]+)(?:\sfor\s(.*))?$/i) {
