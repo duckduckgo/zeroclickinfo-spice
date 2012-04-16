@@ -1,4 +1,4 @@
-function nrat(alts) 
+function ddg_spice_alternative_to(alts) 
 {
     var out, tmp, div, div2, link, img, item;
     out = '';

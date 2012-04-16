@@ -1,4 +1,4 @@
-function nrbi(bi) {
+function ddg_spice_bible(bi) {
     
     // console.log(bi[0]['text']);
     var snippet = '';
