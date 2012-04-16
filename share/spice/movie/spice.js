@@ -81,8 +81,6 @@ function nrmovie(movie) {
         snippet.appendChild(imgWrap);
         snippet.appendChild(topInfo);
         snippet.appendChild(bottomInfo);
-
-        document.body.appendChild(snippet);
         
         // Call nra function as per Spice Plugin Guidelines
         items = [[]];
