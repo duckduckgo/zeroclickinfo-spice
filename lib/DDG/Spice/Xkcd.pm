@@ -3,7 +3,18 @@ package DDG::Spice::Xkcd;
 use DDG::Spice;
 
 triggers startend => "xkcd";
-spice to => 'http://dynamic.xkcd.com/api-0/jsonp/comic/$1?callback={{callback}}';
+
+sub nginx_conf {
+    location ^~ /js/spice/xkcd/ {
+	echo_before_body 'ddg_spice_xkcd('
+	rewrite ^/js/spice/xkcd/(.*) /api-0/jsonp/comic/$1 break;
+	proxy_pass http://dynamic.xkcd.com/;
+	echo_after_body ');';
+    }
+
+__END_OF_CONF__
+}
+
 
 handle query_lc => sub {
     if ($_ eq 'xkcd' || $_ =~ /^xkcd (\d+)$/) {

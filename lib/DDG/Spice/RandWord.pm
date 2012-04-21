@@ -1,6 +1,8 @@
 package DDG::Spice::RandWord;
 use DDG::Spice;
 
+spice is_memcached => 0;
+
 sub nginx_conf {
     my $api_key = $ENV{DDG_SPICE_RANDWORD_APIKEY}; 
     return unless defined $api_key;
@@ -15,7 +17,6 @@ __END_OF_CONF__
 }
 
 triggers any => "random", "word";
-#spice is_memcached => 0;
 handle query_lc => sub {
     if ($_ =~ /^random word(?: ([0-9]+\-[0-9]+)|)$/) {
 	if ($1) {
