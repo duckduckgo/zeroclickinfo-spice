@@ -1,7 +1,7 @@
 package DDG::Spice::RandWord;
 use DDG::Spice;
 
-spice is_memcached => 0;
+spice is_cached => 0;
 
 sub nginx_conf {
     my $api_key = $ENV{DDG_SPICE_RANDWORD_APIKEY}; 
