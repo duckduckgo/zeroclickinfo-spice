@@ -1,7 +1,7 @@
 /*
   nr is the prefix for this function space.
 */
-function nrxk(xk) {
+function ddg_spice_xkcd(xk) {
   // console.log(xk);
 
     var img,snippet,link,div;
