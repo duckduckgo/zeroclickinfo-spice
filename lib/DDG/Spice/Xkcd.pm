@@ -5,6 +5,7 @@ use DDG::Spice;
 triggers startend => "xkcd";
 
 sub nginx_conf {
+    $nginx_conf = <<"__END_OF_CONF__";    
     location ^~ /js/spice/xkcd/ {
 	echo_before_body 'ddg_spice_xkcd('
 	rewrite ^/js/spice/xkcd/(.*) /api-0/jsonp/comic/$1 break;
