@@ -9,7 +9,7 @@ sub nginx_conf {
     $nginx_conf = <<"__END_OF_CONF__";
 
 location ^~ /js/spice/rand_word/ {
-    rewrite ^/js/spice/rand_word/(?:([0-9]+)\-([0-9]+)|) /v4/words.json/randomWord?minLength=$1&maxLength=$2&api_key=$api_key&callback=ddg_spice_rand_word break;
+    rewrite ^/js/spice/rand_word/(?:([0-9]+)\-([0-9]+)|) /v4/words.json/randomWord?minLength=\$1&maxLength=\$2&api_key=$api_key&callback=ddg_spice_rand_word break;
     proxy_pass http://api.wordnik.com/;
 }
 
