@@ -4,13 +4,11 @@ use DDG::Spice;
 
 spice to => 'http://twitter.com/status/user_timeline/$1.json?callback={{callback}}';
 
-triggers start => "@";
-handle query_lc => sub {
-    if ($_ =~ /^@([^\s]+)$/i) {
-	if ($1) {
-	    return qq(/itr/$1);
-	}
+triggers query_lc => qr/^@([^\s]+)$/;
+handle matches => sub {
+    my ($uname) = @_ || '';
+    return $uname if $uname;
+    return;
 #	$is_kill_pre_results = 1;
-    }
 };
 1;
