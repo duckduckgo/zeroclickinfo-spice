@@ -8,8 +8,21 @@ triggers any => "alternative","alternatives";
 spice from => '([^/]+)/(?:([^/]+)/(?:([^/]+)|)|)';
 spice to => 'http://api.alternativeto.net/software/$1/?$2&$3&count=6&callback={{callback}}';
 
+my %alternatives = (
+    'google' => 'googlecom',
+    'photoshop' => 'adobe-photoshop',
+    'yahoo' => 'yahoo-search',
+    'bing' => 'bingcom',
+);
+
 handle query_lc => sub {
-    if ($_ =~ /^(?:(free|opensource|commercial))?\s*(?:alternatives?\s*to\s*)?([\w\-]+)(?:\sfor\s(.*))?$/i) {
+    if ($_ =~ /^(?:(free|opensource|commercial))?\s*(?:alternative(?:s|)?\s*?(?:to|for)\s*?)(\b(?!for\b).*?\b)(?:\s*?for\s(.*))?$/) {
+
+	$2 =~ s/\s+$//g;
+	$2 =~ s/^\s+//g;
+	$2 =~ s/\s+/-/g;
+	$2 = $alternatives{$2} if exists $alternatives{$2};
+
         if ($1 and $3) {
             # license and platform specified - queries like:
             # -> free alternative to firefox for mac
