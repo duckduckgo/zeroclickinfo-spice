@@ -1,4 +1,4 @@
-function nrtr(tweets) {
+function ddg_spice_twitter(tweets) {
   if(tweets.length) {
     var content = "";
     var heading = "@" + tweets[0].user.screen_name;

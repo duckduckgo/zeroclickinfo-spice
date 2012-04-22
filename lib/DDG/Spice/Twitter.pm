@@ -2,6 +2,8 @@ package DDG::Spice::Twitter;
 
 use DDG::Spice;
 
+spice to => 'http://twitter.com/status/user_timeline/$1.json?callback={{callback}}';
+
 triggers start => "@";
 handle query_lc => sub {
     if ($_ =~ /^@([^\s]+)$/i) {
