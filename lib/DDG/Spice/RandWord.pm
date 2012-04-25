@@ -23,7 +23,7 @@ handle query_lc => sub {
 	if ($1) {
 	    return $1;
 	} else {
-	    return "";
+	    return call;
 	}
 #	$is_kill_pre_results = 1;
     }
