@@ -1,12 +1,13 @@
 package DDG::Spice::FlashVersion;
 
 use DDG::Spice;
+
 triggers startend => "flash";
 
+spice call_type => 'self';
+
 handle query_lc => sub {
-    if ($_ eq 'flash version') {
-	return call_self;
-    }
+    return call if ($_ eq 'flash version');
 };
-#	$is_kill_pre_results = 1;
+
 1;

@@ -14,5 +14,3 @@ function ddg_spice_flash_version()
 
   nra(zc_data);
 }
-
-nrfl();
