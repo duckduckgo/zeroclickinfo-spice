@@ -12,6 +12,5 @@ handle query_lc => sub {
     }
     return;
 };
-#	$is_kill_pre_results = 1;
 
 1;

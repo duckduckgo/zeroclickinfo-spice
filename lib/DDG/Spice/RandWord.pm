@@ -18,14 +18,16 @@ __END_OF_CONF__
 }
 
 triggers any => "random", "word";
+
 handle query_lc => sub {
     if ($_ =~ /^random word(?: ([0-9]+\-[0-9]+)|)$/) {
-	if ($1) {
-	    return $1;
-	} else {
-	    return call;
-	}
+    	if ($1) {
+    	    return $1;
+    	} else {
+    	    return call;
+    	}
     }
     return;
 };
+
 1;
