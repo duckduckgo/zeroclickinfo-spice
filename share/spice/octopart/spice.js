@@ -1,4 +1,4 @@
-function nroctopart(resp) {
+function ddg_spice_octopart(resp) {
     
     //console.log(resp);
     var heading = "";
