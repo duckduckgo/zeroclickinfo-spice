@@ -2,7 +2,7 @@ package DDG::Spice::Bible;
 
 use DDG::Spice;
 
-triggers any => "bible", ":";
+triggers query_lc => qr/\bbible\b|:/;
 
 spice to => 'http://labs.bible.org/api/?type=json&callback={{callback}}&formatting=plain&passage=$1';
 
