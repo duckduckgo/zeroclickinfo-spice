@@ -37,12 +37,12 @@ function ddg_spice_zanran(zanran_results) {
 
     link2.href = results[i].url;
     link2.title = results[i].title;
-
-	  title.appendChild(d.createTextNode(results[i].short_title));
-    YAHOO.util.Dom.setAttribute(title, 'style', 'max-width: 140px; background: #e7fdc7; border: 1px solid black; margin: 2px; padding: 2px;');
     
     img.src = results[i].preview;
-    YAHOO.util.Dom.setAttribute(img, 'style', 'max-width: 140px; max-height: 200px; display: inline; font-size: 80%; color: black;');
+    YAHOO.util.Dom.setAttribute(img, 'style', 'max-width: 137px; max-height: 200px; display: inline; ');
+
+	  title.appendChild(d.createTextNode(results[i].short_title));
+    YAHOO.util.Dom.setAttribute(title, 'style', 'width: 137px; background: #e7fdc7; border: 1px solid black; margin: 2px; padding: 2px; font-size: 80%;');
 
 	  row1.appendChild(cell1);
 	  cell1.appendChild(link1);
