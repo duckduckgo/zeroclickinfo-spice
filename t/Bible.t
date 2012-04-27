@@ -16,7 +16,7 @@ ddg_spice_test(
     DDG::Spice::Bible
   )],
   'bible hebrews 8:2' => test_spice('/js/spice/bible/hebrews%208%3A2'),
-  # 'exodus 5:10' => test_spice('/js/spice/bible/exodus%205%3A10'),
+  'exodus 5:10' => test_spice('/js/spice/bible/exodus%205%3A10'),
 );
 
 done_testing;
