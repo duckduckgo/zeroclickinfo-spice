@@ -1,77 +1,112 @@
+function ddg_spice_octopart(response) {
+    var parts = response.results[0].items;
 
-function ddg_spice_octopart(resp) {
-    
-    //console.log(resp);
-    var heading = "";
-    var content = "";
-    var items = new Array();
-    
-    // validity check
-    if(resp['results'].length > 0) {
-        // may have multiple results; limit parameter set in nginx.conf
-        for(var i=0; i<resp['results'].length; i++) {
-            var part = resp['results'][i]['item'] 
-            items[i] = new Array();
-            heading = ""
-            content = ""
+    // no results
+    if (parts.length == 0)
+        return;
 
-            // header is manufacturer name followed by MPN
-            heading = "<b>" + part['manufacturer']['displayname'] + ' ' + part['mpn'] + "</b>";
-            
-            // Plain English sentence lead in [removed, use header instead]
-            //content += "The " + part['mpn'] + " is produced by " + part['manufacturer']['displayname'] + ". ";
-
-            // abstract is octopart-generated short description (up to ~160
-            // characters)
-            if(part['short_description']) {
-                content += " Specs: <i>" + part['short_description'] + "</i>. ";
-            }
-
-            // show market price and availability status [andres: edit this]
-            if(part['avg_price'].length > 0) {
-                if(part['avg_price'][0] < 0.01) {
-                    content += "Price below $0.01/each; ";
-                } else {
-                    content += "Price around $" + part['avg_price'][0].toFixed(2) + "/each; ";
-                }
-            } else {
-                content += "Price unknown; ";
-            }
-            content += part['market_status'].split(/:\ /)[1] + " ";
-
-            // add top datasheet link if available
-            if(part['datasheets'].length > 0) {
-                // replace this PDF favicon with a DDG-local one?
-                content += "[<a href=\"" + part['datasheets'][0]['url'] + "\"><img src=\"http://n1.octostatic.com/o3/partsearch/partsearch/images/content/pdf_small.jpg\" style=\"display: inline; margin-right: 3px; height: 12px;\"></img>Datasheet</a>] ";
-            } else {
-                content += "[No Datasheet] ";
-            }
-
-            // if we have a direct manufacturer URL use that, or else a link to
-            // their homepage, or else nothing
-            if(part['hyperlinks']['manufacturer']) {
-                content += "[<a href=\"" + part['hyperlinks']['manufacturer'] + "\">Manufacturer</a>] ";
-            } else if(part['manufacturer']['homepage_url']) {
-                content += "[<a href=\"" + part['manufacturer']['homepage_url'] + "\">Manufacturer</a>] ";
-            }
-
-            // attach info
-            items[i]['h'] = heading;
-            items[i]['a'] = content;
-
-            // use the 55px thumbail PNG image if we have one
-            if(part['images'].length > 0) {
-                items[i]['i'] = part['images'][0]['url_55px'];
-            } else {
-                items[i]['i'] = '';
-            }
-
-            // Source name and url for the More at X link.
-            items[i]['s'] = "Octopart";
-            items[i]['u'] = part['detail_url'];
-        }
-        nra(items);
-    } else {
-        //console.log("No Octopart response...");
+    /**************************
+     * Helper methods
+     **************************/
+    function html_escape(s) {
+        return s.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g,"&gt;");
     }
+    
+    /**************************
+     * Render output
+     **************************/
+    var out = [];
+
+    for (var i=0; i < parts.length; i++) {
+        var part = parts[i];
+
+        // filter out stubs
+        if (/^BAD: RFQ Only/.test(part.market_status) && part.images.length == 0)
+            continue;
+
+        var heading = '';
+        var snippets = [];
+        var links = [];
+
+        // heading
+        heading = '<b>' + html_escape(part.manufacturer.displayname)
+            + ' ' + html_escape(part.mpn) + '</b>';
+
+        // snippets (description)
+        if (part.short_description) {
+            var s = "Specs: <i>"
+                + html_escape(part.short_description.replace(/[,;]$/, ''))
+                + '</i>';
+            snippets.push(s);
+        }
+
+        // snippets (price)
+        if (part.avg_price && part.avg_price[0] != null) {
+            var s = 'Avg Price: ';
+            if (part.avg_price < 0.01)
+                s += 'below $0.01/each';
+            else
+                s += '$' + part.avg_price[0].toFixed(2) + '/each';
+            snippets.push(s);
+        }
+
+        // snippets (market status)
+        if (part.num_authsuppliers == 0)
+            snippets.push(part.market_status.replace(/^BAD:/, ''));
+        
+        // links (datasheet)
+        if (part.datasheets.length) {
+            var s = '<a href="' + part.datasheets[0].url + '" '
+                + 'style="white-space:nowrap;">'
+                + '<img src="http://n1.octostatic.com/o3/partsearch/'
+                + 'partsearch/images/content/pdf_small.jpg" style="'
+                + 'display:inline;margin-right:3px;height:12px;"/>'
+                + 'Datasheet</a>';
+        } else {
+            var s = 'No Datasheet';
+        }
+        links.push(s);
+        
+        // links (manufacturer)
+        var murl = part.hyperlinks.manufacturer ||
+            part.manufacturer.homepage_url;
+        if (murl)
+            links.push('<a href="' + murl + '">Manufacturer</a>');
+
+        // links (number of distributors)
+        if (/^GOOD|WARNING:/.test(part.market_status)) {
+            var s = '<a href="' + part.detail_url + '#compare_suppliers'
+                + '" style="white-space:nowrap;">from ';
+            if (part.num_authsuppliers == 0) {
+                s += "secondary sources";
+            } else {
+                s += part.num_authsuppliers;
+                if (part.num_suppliers > part.num_authsuppliers)
+                    s += "+";
+                s += " suppliers";
+            }
+            s += "</a>";
+            links.push(s);
+        }
+
+        // build content
+        var content = '';
+        if (snippets.length)
+            content += snippets.join('; ') + ' ';
+        if (links.length)
+            content += '[' + links.join('] [') + '] ';
+        
+        // set ddg display variables
+        out.push({
+            h: heading,
+            a: content,
+            i: part.images.length ? part.images[0].url_55px : '',
+            s: 'Octopart',
+            u: part.detail_url
+        });
+    }
+
+    nra(out);
 }
