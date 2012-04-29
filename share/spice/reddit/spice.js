@@ -31,9 +31,7 @@ function ddg_spice_reddit(re) {
         items[0]["h"] = url;
         items[0]["s"] = "Reddit";
         items[0]["u"] = "http://www.reddit.com" + url;
-        items[0]['f'] = 1;
-        items[0]["i"] = re["data"]["header_img"];
-
+        
         //console.log(content);
     }
         
