@@ -17,7 +17,7 @@ function ddg_spice_is_it_up(res)
                 responses[Math.floor(res['response_code'] / 100)] + 
                 "'>" + res['response_code'] + "</a>";
 
-        out += " response form " + res['response_ip'];
+        out += " response from " + res['response_ip'];
     } else {
         out = "<a href='http://" + res['domain'] +"'>" + res['domain'] + "</a> seems to be down.";
     } 
