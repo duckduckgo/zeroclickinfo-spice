@@ -46,7 +46,7 @@ function link_parse(li) {
     if (li['data']['children'][0].data) {
         //console.log(root["title"]);
         var root = li['data']['children'][0].data;
-        var title, url, permalink, score, author, date;
+        var content, title, url, permalink, score, author, date;
         title = root['title'];
         url = root['url'];
         permalink = root['permalink'];
@@ -54,11 +54,11 @@ function link_parse(li) {
         author = root['author'];
         date = root['date'];
 
-        if (root['over_18'] == true) {
+        if (root['over_18'] === true) {
             title += " (NSFW)";
         }
 
-        var content = "<div class='subreddit_link'><i>Popular Link:</i> ";
+        content = "<div class='subreddit_link'><i>Popular Link:</i> ";
         content += "<a href='"+url+"'>"+title+"</a>"+" by <a href='http://www.reddit.com/user/"+author+"'>\
 "+author+"</a> with "+score+" karma. ";
         content += "(<a href='http://www.reddit.com"+permalink+"'>Discuss</a>)</div>";
