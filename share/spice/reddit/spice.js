@@ -31,7 +31,8 @@ function ddg_spice_reddit(re) {
         items[0]["h"] = url;
         items[0]["s"] = "Reddit";
         items[0]["u"] = "http://www.reddit.com" + url;
-        
+        items[0]['i'] = "https://icons.duckduckgo.com/i/www.reddit.com.ico";
+
         //console.log(content);
     }
         
