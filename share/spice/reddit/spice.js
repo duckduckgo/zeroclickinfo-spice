@@ -43,7 +43,7 @@ function link_parse(li) {
     if (typeof items == 'undefined') {
         return; // The subreddit is NSFW.
     }
-    if (li['data']['children'][0].data) {
+    if (li['data']['children'][0]) {
         //console.log(root["title"]);
         var root = li['data']['children'][0].data;
         var content, title, url, permalink, score, author, date;
@@ -64,8 +64,9 @@ function link_parse(li) {
         content += "(<a href='http://www.reddit.com"+permalink+"'>Discuss</a>)</div>";
 
         items[0]["a"] += content;
-        nra(items);
 
     }
+
+    nra(items);
 
 };
