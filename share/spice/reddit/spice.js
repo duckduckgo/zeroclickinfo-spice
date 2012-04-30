@@ -1,5 +1,4 @@
-function ddg_spice_reddit(re) {
-    
+function ddg_spice_reddit(re) {    
     //console.log(re["data"]["url"]);
     // validity check
     if (re["data"]["display_name"]) {
@@ -23,7 +22,7 @@ function ddg_spice_reddit(re) {
         content = "<div class='subreddit_title'><i>Title: </i> " + title  + "</div>";
         content += "<div class='subreddit_description'><i>Description</i>: " + description + "</div>";
         content += "<div class='subreddit_subscribers'><i>Subscribers</i>: " + subscribers + "</div>";
-        content += "<div class='subreddit_created'><i>Created</i>: " + created + "</div>";
+        content += "<div class='subreddit_created'><i>Created</i>: " + created.toDateString() + "</div>";
         
         items = new Array();
         items[0] = new Array();
@@ -45,21 +44,24 @@ function link_parse(li) {
     if (li['data']['children'][0]) {
         //console.log(root["title"]);
         var root = li['data']['children'][0].data;
-        var content, title, url, permalink, score, author, date;
+        var content, title, url, permalink, score, author, created, date;
+        var one_day = 1000*60*60*24; // One day in ms.
+        var today = new Date();
         title = root['title'];
         url = root['url'];
         permalink = root['permalink'];
         score = root['score'];
         author = root['author'];
-        date = root['date'];
-
+        created = new Date(root['created_utc']*1000);
+        date = Math.floor((today.getTime()-created.getTime())/(one_day));
+        date = (date === 0) ? Math.floor((today.getTime()-created.getTime())/(one_day/24)) + " hours ago" : date + " days ago";
         if (root['over_18'] === true) {
             title += " (NSFW)";
         }
 
         content = "<div class='subreddit_link'><i>Popular Link:</i> ";
         content += "<a href='"+url+"'>"+title+"</a>"+" by <a href='http://www.reddit.com/user/"+author+"'>\
-"+author+"</a> with "+score+" karma. ";
+"+author+"</a> posted "+date+" with "+score+" karma. ";
         content += "(<a href='http://www.reddit.com"+permalink+"'>Discuss</a>)</div>";
 
         items[0]["a"] += content;
