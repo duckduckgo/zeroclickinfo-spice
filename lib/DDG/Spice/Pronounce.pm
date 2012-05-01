@@ -15,11 +15,11 @@ triggers start => 'say';
 handle remainder => sub {
 
     # Can only accept a word
-    if ($_ ~= /^([A-Za-z])$/) {
+    if ($_ =~ /^([A-Za-z]+)$/) {
         return $1;
     }
 
     return;
-}
+};
 
 1;
