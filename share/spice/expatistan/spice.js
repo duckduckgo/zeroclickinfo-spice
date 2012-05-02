@@ -32,7 +32,7 @@ Here is the flow (as laid out in the ../example.html file
    which displays it on the page.
 */
 
-function nrexp(ir) {
+function ddg_spice_expatistan(ir) {
     var snippet = '';
     if (ir['status'] == 'OK') {
 			snippet = ir['abstract'];

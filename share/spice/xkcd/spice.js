@@ -1,7 +1,7 @@
 /*
   nr is the prefix for this function space.
 */
-function nrxk(xk) {
+function ddg_spice_xkcd(xk) {
   // console.log(xk);
 
     var img,snippet,link,div;
@@ -14,7 +14,7 @@ function nrxk(xk) {
 
        if (nur) img = nur('',xk['alt'],xk['img']);
        if (img) {
-	   YAHOO.util.Dom.addClass(img,'cizb');
+	   YAHOO.util.Dom.addClass(img,'img_zero_click_big');
 	   div = d.createElement('div');
 	   div.appendChild(img);
 	   snippet.appendChild(div);

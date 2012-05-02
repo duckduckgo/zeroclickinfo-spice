@@ -1,4 +1,4 @@
-function nrfl() 
+function ddg_spice_flash_version() 
 {
   var zc_data = []
 	zc_data[0] = []
@@ -14,5 +14,3 @@ function nrfl()
 
   nra(zc_data);
 }
-
-nrfl();

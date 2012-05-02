@@ -1,4 +1,4 @@
-function nrwrd(iwrd) {
+function ddg_spice_rand_word(iwrd) {
     var snippet = '';
 
     // Validity check.
