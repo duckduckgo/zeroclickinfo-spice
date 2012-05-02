@@ -4,7 +4,7 @@ function ddg_spice_drinks(drink) {
     var snippet = '';
     
     // validity check
-    if (drink['name']) {
+    if (drink[0]['name']) {
       
               
       snippet = '<b>' + drink[0]['name'] + "<\b>";
