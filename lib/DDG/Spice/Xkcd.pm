@@ -5,7 +5,7 @@ use DDG::Spice;
 triggers startend => "xkcd";
 
 sub nginx_conf {
-    $nginx_conf = <<"__END_OF_CONF__";
+    return <<"__END_OF_CONF__";
 
 location ^~ /js/spice/xkcd/ {
     echo_before_body 'ddg_spice_xkcd(';
