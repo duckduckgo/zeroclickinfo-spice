@@ -1,4 +1,4 @@
-function nrmovie(movie) {
+function ddg_spice_movie(movie) {
       // console.log(xk);
 
       var result,img,snippet,link,div;
@@ -83,7 +83,8 @@ function nrmovie(movie) {
         snippet.appendChild(bottomInfo);
         
         // Call nra function as per Spice Plugin Guidelines
-        items = [[]];
+        items = new Array();
+        items[0] = new Array();
         items[0]['a'] = snippet;
         items[0]['h'] = result.title;
 
