@@ -7,13 +7,13 @@ function ddg_spice_drinks(drink) {
     if (drink['name']) {
       
               
-      snippet = '<b>' + drink['name'] + "<\b>";
+      snippet = '<b>' + drink[0]['name'] + "<\b>";
        
-      for(num in drink['ingredients'])
-      	snippet += drink['ingredients'][num] + "<br />";
+      for(num in drink[0]['ingredients'])
+      	snippet += drink[0]['ingredients'][num] + "<br />";
       	
-      if (drink['procedure'])
-      	snippet += drink['procedure'];
+      if (drink[0]['procedure'])
+      	snippet += drink[0]['procedure'];
 
       items = new Array();
       items[0] = new Array();

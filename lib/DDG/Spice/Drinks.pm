@@ -4,7 +4,7 @@ use DDG::Spice;
 
 triggers start => "drink", "drink mix", "drink recipe", "mixed drink";
 
-spice to => 'http://www.drinkproject.com/api/?type=json&name=$1&callback={{callback}}';
+spice to => 'http://www.drinkproject.com/api/?type=json&name=$1&callback=ddg_spice_drinks';
 
 handle query_lc => sub {
     if ($_ =~ /^drink\s+([0-9a-z #]+)$/i) {
