@@ -28,5 +28,5 @@ function ddg_spice_is_it_up(res)
 	items[0]['h'] = '';
 	items[0]['s'] = 'IsItUp';
 	items[0]['u'] = 'http://isitup.org/' + res['domain'];
-	nra(items,1,1);
+	nra(items);
 }
