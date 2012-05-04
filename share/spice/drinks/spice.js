@@ -11,7 +11,7 @@ function ddg_spice_drinks(drink) {
       	ing += "<li>" + drink[0]['ingredients'][num] + "</li>";
       
       if (ing.length > 0)
-      	snippet += "<ol>" + ing + "</ol>";
+      	snippet += "<ul>" + ing + "</ul>";
       
       	
       if (drink[0]['procedure'])
