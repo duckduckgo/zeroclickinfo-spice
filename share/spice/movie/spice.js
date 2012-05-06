@@ -27,7 +27,7 @@ function ddg_spice_movie(movie) {
           names.push(pre+'<a href="'+url+'">'+name+'</a>');
         }
         var cast = '';
-        if (cast.length > 1) cast = ', starring '+names.join(', ');
+        if (names.length > 1) cast = ', starring '+names.join(', ');
 
         // check for default poster
         var poster = result.posters.thumbnail;
