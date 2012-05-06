@@ -10,16 +10,17 @@ function ddg_spice_is_it_up(res)
     responses[5] = "5xx_Server_Error";
 
     if (res['status_code'] === 1) {
-        out = "<a href='http://" + res['domain'] +"'>" + res['domain'] + "</a> is up. <br />";
-        out += "It took " + res['response_time'] + " seconds to get ";
+        out = "<a href='http://" + res['domain'] +"'>" + res['domain'] + "</a> seems <b>up</b>. ";
+        out += "It took us " + res['response_time'] + " seconds to get ";
 
-        out += "<a href='http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#" +
-                responses[Math.floor(res['response_code'] / 100)] + 
-                "'>" + res['response_code'] + "</a>";
+        out += "<a href='/?q=http+" +
+	    //                responses[Math.floor(res['response_code'] / 100)] + 
+	    res['response_code'] + 
+	    "'>" + res['response_code'] + "</a>";
 
-        out += " response from " + res['response_ip'];
+        out += " response from <a href='/?q=" + res['response_ip'] + "'>" + res['response_ip'];
     } else {
-        out = "<a href='http://" + res['domain'] +"'>" + res['domain'] + "</a> seems to be down.";
+        out = "<a href='http://" + res['domain'] +"'>" + res['domain'] + "</a> seems <b>down</b>. We did not get a response from it.";
     } 
 	
 	items = new Array();
