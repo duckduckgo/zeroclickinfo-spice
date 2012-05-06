@@ -21,7 +21,10 @@ function ddg_spice_movie(movie) {
         for (var i=0; i < result.abridged_cast.length; i++){
           var pre = '';
           if ( i == result.abridged_cast.length - 1 && result.abridged_cast.length != 1 ) pre = 'and ';
-          names.push(pre+result.abridged_cast[i].name);
+          var name = result.abridged_cast[i].name;
+          var url = 'http://www.rottentomatoes.com/celebrity/' + name.toLowerCase().replace(/\s+/g, '_').replace(/\./g, '') + '/';
+
+          names.push(pre+'<a href="'+url+'">'+name+'</a>');
         }
 
         // Make title for header
