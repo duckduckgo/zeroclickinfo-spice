@@ -26,6 +26,12 @@ function ddg_spice_movie(movie) {
 
           names.push(pre+'<a href="'+url+'">'+name+'</a>');
         }
+        var cast = '';
+        if (cast.length > 1) cast = ', starring '+names.join(', ');
+
+        // check for default poster
+        var poster = result.posters.thumbnail;
+        if (poster === 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif') poster = '';
 
         // Make title for header
         var header = result.title.substring(0,49);
@@ -34,7 +40,7 @@ function ddg_spice_movie(movie) {
         // Call nra function as per Spice Plugin Guidelines
         items = new Array();
         items[0] = new Array();
-        items[0]['a'] = '"'+result.title+'" is a '+result.mpaa_rating+' movie ('+result.year+'), starring '+names.join(', ')+'. '+synopsis;
+        items[0]['a'] = '"'+result.title+'" is a '+result.mpaa_rating+' movie ('+result.year+')'+ cast + '. ' + synopsis;
         items[0]['h'] = header;
 
         // Source name and url for the More at X link.
@@ -45,7 +51,7 @@ function ddg_spice_movie(movie) {
         items[0]['f'] = 1;
 
         // Thumbnail url
-        items[0]['i'] = result.posters.thumbnail; 
+        items[0]['i'] = poster; 
 
         // The rendering function is nra.
         nra(items);
