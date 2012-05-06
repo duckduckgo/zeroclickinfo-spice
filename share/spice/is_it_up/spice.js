@@ -11,7 +11,7 @@ function ddg_spice_is_it_up(res)
 
     if (res['status_code'] === 1) {
         out = "<a href='http://" + res['domain'] +"'>" + res['domain'] + "</a> seems <b>up</b>. ";
-        out += "It took us " + res['response_time'] + " seconds to get ";
+        out += "It took us " + res['response_time'] + " seconds to get a ";
 
         out += "<a href='/?q=http+" +
 	    //                responses[Math.floor(res['response_code'] / 100)] + 
