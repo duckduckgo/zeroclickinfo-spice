@@ -22,7 +22,7 @@ function ddg_spice_movie(movie) {
           var pre = '';
           if ( i == result.abridged_cast.length - 1 && result.abridged_cast.length != 1 ) pre = 'and ';
           var name = result.abridged_cast[i].name;
-          var url = 'http://www.rottentomatoes.com/celebrity/' + name.toLowerCase().replace(/\s+/g, '_').replace(/\./g, '') + '/';
+          var url = 'http://www.rottentomatoes.com/celebrity/' + result.abridged_cast[i].id + '/';
 
           names.push(pre+'<a href="'+url+'">'+name+'</a>');
         }
