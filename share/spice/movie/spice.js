@@ -31,8 +31,8 @@ function ddg_spice_movie(movie) {
         // Call nra function as per Spice Plugin Guidelines
         items = new Array();
         items[0] = new Array();
-        items[0]['a'] = '"'+result.title+'" is a '+result.mpaa_rating+' movie ('+result.year+'), starring '+names.join(', ')+'. '+synopsis+'<br/>';
-        //items[0]['h'] = header;
+        items[0]['a'] = '"'+result.title+'" is a '+result.mpaa_rating+' movie ('+result.year+'), starring '+names.join(', ')+'. '+synopsis;
+        items[0]['h'] = header;
 
         // Source name and url for the More at X link.
         items[0]['s'] = 'Rotten Tomatoes';
