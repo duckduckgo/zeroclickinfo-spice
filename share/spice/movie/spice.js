@@ -37,10 +37,19 @@ function ddg_spice_movie(movie) {
         var header = result.title.substring(0,49);
         if (result.title.length > 50) header += '...';
 
+        //Movie Score
+        var score = 'with an audience score of'+result.audience_score+'%'
+
         // Call nra function as per Spice Plugin Guidelines
         items = new Array();
         items[0] = new Array();
-        items[0]['a'] = '"'+result.title+'" is a '+result.mpaa_rating+' movie ('+result.year+')'+ cast + '. ' + synopsis;
+        items[0]['a'] = result.title + ' is a '+result.year+ ' movie (' 
+                        +result.mpaa_rating+ ','
+                        +result.audience_score+ '%, '
+                        +result.critic_score+ '% critic approved)'
+                        +result.cast + '. ' 
+                        +synopsis;
+                        
         items[0]['h'] = header;
 
         // Source name and url for the More at X link.
