@@ -4,20 +4,19 @@ use DDG::Spice;
 
 spice is_cached => 0;
 
-triggers query_lc => qr/^((?:is\s|))([0-9a-z\-]+)(?:(\.[a-z]{2,4})|)\s(?:up|down|working)/;
+triggers query_lc => qr/^((?:is\s|))([0-9a-z\-]+(\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:up|down|working)/;
 
 spice to => 'http://isitup.org/$1.json?callback={{callback}}';
 
 handle matches => sub {
-    # could also be done in 1 line with: return $1 ? ($3 ? $2.$3 : $2.'.com') : ($3 ? $2.$3 : $2);
 
-    if ($3) {
-	# return the domain and the root url
-	return $2.$3;
+    if ($4) {
+	# return the domain and it's tld
+    	return $2.$4;
     }
     else {
-	# append .com only if "is" is in the query and there's no other domain given
-	if ($1) {
+	# append .com only if "is" is in the query and domain is not a subdomain/ip and no tld was given
+	if ($1 and not $3) {
 	    return $2 . '.com';
 	}
 	# otherwise just return without '.com' -- stops false positives from showing zci
