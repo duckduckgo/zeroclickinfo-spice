@@ -44,10 +44,10 @@ function ddg_spice_movie(movie) {
         items = new Array();
         items[0] = new Array();
         items[0]['a'] = result.title + ' is a '+result.year+ ' movie (' 
-                        +result.mpaa_rating+ ','
-                        +result.audience_score+ '%, '
-                        +result.critic_score+ '% critic approved)'
-                        +result.cast + '. ' 
+                        +result.mpaa_rating+ ', '
+                        +result.ratings.audience_score+ '%, '
+                        +result.ratings.critics_score+ '% critic approved)'
+                        +cast+ '. ' 
                         +synopsis;
                         
         items[0]['h'] = header;
