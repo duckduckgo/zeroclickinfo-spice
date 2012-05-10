@@ -56,7 +56,7 @@ function submission (res, i)
     //first line (title, domain)
     out += '<a href="' + res["results"][i]["item"]["url"] + '">' + 
               res["results"][i]["item"]["title"] + '</a>' + 
-              ' ( ' + res["results"][i]["item"]["domain"] + ' ) <br />';
+              ' <small>(' + res["results"][i]["item"]["domain"] +  ')</small><br />';
 
     //second line (points, who, time, comments)
     out += res["results"][i]["item"]["points"] + ' points by ' +
