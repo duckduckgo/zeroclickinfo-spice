@@ -8,14 +8,15 @@ function ddg_spice_zanran(zanran_results) {
   if(YAHOO.env.ua.ie && YAHOO.env.ua.ie < 7) {
     return;
   }
-  
-  var content = d.createElement('div');
-  
+  if(!zanran_results || !zanran_results.results || !zanran_results.results.length) {
+    return;
+  }
+
   var results = zanran_results.results;
   
+  var content = d.createElement('div');
   var table = d.createElement('table');
   var tbody = d.createElement('tbody');
-
   var row1 = d.createElement('tr');
   var row2 = d.createElement('tr');
 
