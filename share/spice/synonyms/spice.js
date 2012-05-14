@@ -19,19 +19,6 @@ function ddg_spice_synonyms(synonyms) {
 
     var heading = "Synonyms";// of " + word;
 
-    /* There was no way to include an extra parameter in the callback
-     * function -- so I can't display the search term. BigHugeAPI does
-     * not currently return search request. 
-     * STANDS4 API -- only returns xml, less than ideal
-     * Wiktionary/Wikimedia -- would have taken 2 requests or could have
-     * been a fathead (but this plugin was listed as spice by ddg admin)
-     * thesaurus.altervista.org -- didnt return request info either, also
-     * seemed slow
-     * dictionary.com -- would have taken up to 30 days to get an api key
-     * and very little ifnromation about requests/day and cost
-     * 
-     */
-
     items = [[]];
     items[0]['a'] = content;
     items[0]['h'] = heading;
