@@ -1,31 +1,31 @@
 #!/usr/bin/env perl
 
-# I tried making something based on App::DuckPAN::Cmd::Query
-# but there doesn't seem to be any API returning javascript includes
-
-use strict;
-use warnings;
+use HTTP::Daemon;
+use HTTP::Status;
+use URI;
+use URI::QueryParam;
 use URI::Escape;
 
-my $query = "oil price statistics";
-my $query_esc = uri_escape($query);
-my $callback_js = "";
+sub handle_search {
+  my $r = shift;
+  my $query = $r->url->query_param("q");
+  my $query_esc = uri_escape($query);
+  my $callback_js = "";
 
-my @spice = ("zanran");
-my @callback_urls = (
-  'http://www.zanran.com/search/simple_json?callback=ddg_spice_zanran&q=' . $query_esc,
-  'http://duckduckgo.com/d.js?q=' . $query_esc . '&l=wt-wt&s=0&a=i',
-  'http://duckduckgo.com/s.js?q=' . $query_esc,
-);
-my $spice_includes = "";
-for(@callback_urls){
-  $callback_js .= "nrj('$_');\n";
-}
-for(@spice){
-  $spice_includes .= '<script type="text/JavaScript" src="../share/spice/'.$_.'/spice.js"></script>';
-}
-
-my $html = <<EOF;
+  my @spice = ("zanran");
+  my @callback_urls = (
+    'http://www.zanran.com/search/simple_json?callback=ddg_spice_zanran&q=' . $query_esc,
+    'http://duckduckgo.com/d.js?q=' . $query_esc . '&l=wt-wt&s=0&a=i',
+    'http://duckduckgo.com/s.js?q=' . $query_esc,
+  );
+  my $spice_includes = "";
+  for(@callback_urls){
+    $callback_js .= "nrj('$_');\n";
+  }
+  for(@spice){
+    $spice_includes .= '<script type="text/JavaScript" src="/share/spice/'.$_.'/spice.js"></script>';
+  }
+  my $html = <<EOF;
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
@@ -84,11 +84,34 @@ $callback_js;
     nrji();
   }
   </script>
-  
+
   <div id="z2"> </div>
   <script type="text/JavaScript">if (ip) setTimeout('nuo(1)',500);</script>
   <div id="z"> </div></body>
 </html>
 EOF
 
-print $html;
+  my $h = HTTP::Headers->new;
+  $h->header('Content-Type' => 'text/html');
+  my $res = HTTP::Response->new("200", "OK", $h, $html);
+  return $res;
+}
+
+my $d = new HTTP::Daemon;
+print "Please contact me at: <URL:", $d->url, ">\n";
+while (my $c = $d->accept) {
+  while (my $r = $c->get_request) {
+    print "URL: ". $r->url . "\n";
+    if ($r->method eq 'GET' and $r->url->path =~ /^\/(share\/spice\/[a-z]+\/spice\.js)$/) {
+      $c->send_file_response($1);
+    } elsif ($r->url->path eq "/") {
+      my $res = handle_search($r);
+      $c->send_response($res);
+    } else {
+      $c->send_error(RC_FORBIDDEN)
+    }
+    last;
+  }
+  $c->close;
+  undef($c);
+}
