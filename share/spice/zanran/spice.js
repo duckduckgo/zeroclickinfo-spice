@@ -4,6 +4,11 @@
   There's probably a way to do it in YUI that's not so awful, but I only know jQuery...
 */
 function ddg_spice_zanran(zanran_results) {
+  /* IE6 cannot be supported due to lack of max-width / min-width without rewriting everything */
+  if(YAHOO.env.ua.ie && YAHOO.env.ua.ie < 7) {
+    return;
+  }
+  
   var content = d.createElement('div');
   
   var results = zanran_results.results;
