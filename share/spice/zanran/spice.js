@@ -30,19 +30,18 @@ function ddg_spice_zanran(zanran_results) {
 
     YAHOO.util.Dom.setAttribute(cell1, 'style', 'vertical-align: bottom; text-align: center;');
 
-    YAHOO.util.Dom.setAttribute(cell2, 'style', 'vertical-align: top;');
+    YAHOO.util.Dom.setAttribute(cell2, 'style', 'vertical-align: top; width: 137px; background: #e7fdc7; border: 1px solid black; margin: 2px; padding: 2px; font-size: 80%;');
     
-    link1.href = results[i].url;
+    link1.href = results[i].preview_url;
     link1.title = results[i].title;
 
-    link2.href = results[i].url;
+    link2.href = results[i].preview_url;
     link2.title = results[i].title;
     
-    img.src = results[i].preview;
+    img.src = results[i].preview_image;
     YAHOO.util.Dom.setAttribute(img, 'style', 'max-width: 137px; max-height: 200px; display: inline; ');
 
 	  title.appendChild(d.createTextNode(results[i].short_title));
-    YAHOO.util.Dom.setAttribute(title, 'style', 'width: 137px; background: #e7fdc7; border: 1px solid black; margin: 2px; padding: 2px; font-size: 80%;');
 
 	  row1.appendChild(cell1);
 	  cell1.appendChild(link1);
