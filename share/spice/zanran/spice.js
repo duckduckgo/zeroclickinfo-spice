@@ -4,20 +4,20 @@
   There's probably a way to do it in YUI that's not so awful, but I only know jQuery...
 */
 function ddg_spice_zanran(zanran_results) {
-  console.log(zanran_results);
-
   var content = d.createElement('div');
   
   var results = zanran_results.results;
   
   var table = d.createElement('table');
+  var tbody = d.createElement('tbody');
 
   var row1 = d.createElement('tr');
   var row2 = d.createElement('tr');
 
   content.appendChild(table);
-  table.appendChild(row1);
-  table.appendChild(row2);
+  table.appendChild(tbody);
+  tbody.appendChild(row1);
+  tbody.appendChild(row2);
 
   for(var i=0; i<results.length; i++) {
     var cell1 = d.createElement('td');
@@ -28,9 +28,16 @@ function ddg_spice_zanran(zanran_results) {
     var img  = d.createElement('img');
     var title = d.createElement('div');
 
-    YAHOO.util.Dom.setAttribute(cell1, 'style', 'vertical-align: bottom; text-align: center;');
+    YAHOO.util.Dom.setStyle(cell1, 'text-align', 'center');
+    YAHOO.util.Dom.setStyle(cell1, 'vertical-align', 'bottom');
 
-    YAHOO.util.Dom.setAttribute(cell2, 'style', 'vertical-align: top; width: 137px; background: #e7fdc7; border: 1px solid black; margin: 2px; padding: 2px; font-size: 80%;');
+    YAHOO.util.Dom.setStyle(cell2, 'vertical-align', 'top');
+    YAHOO.util.Dom.setStyle(cell2, 'width', '137px');
+    YAHOO.util.Dom.setStyle(cell2, 'background', '#e7fdc7');
+    YAHOO.util.Dom.setStyle(cell2, 'border', '1px solid black');
+    YAHOO.util.Dom.setStyle(cell2, 'margin', '2px');
+    YAHOO.util.Dom.setStyle(cell2, 'padding', '2px');
+    YAHOO.util.Dom.setStyle(cell2, 'font-size', '80%');
     
     link1.href = results[i].preview_url;
     link1.title = results[i].title;
@@ -39,7 +46,9 @@ function ddg_spice_zanran(zanran_results) {
     link2.title = results[i].title;
     
     img.src = results[i].preview_image;
-    YAHOO.util.Dom.setAttribute(img, 'style', 'max-width: 137px; max-height: 200px; display: inline; ');
+    YAHOO.util.Dom.setStyle(img, 'display', 'inline');
+    YAHOO.util.Dom.setStyle(img, 'max-width', '137px');
+    YAHOO.util.Dom.setStyle(img, 'max-height', '200px');
 
 	  title.appendChild(d.createTextNode(results[i].short_title));
 
@@ -61,4 +70,4 @@ function ddg_spice_zanran(zanran_results) {
   // items[0]['i'] = 'http://zanran.com/favicon.ico';
 
   nra(items);
-}
+};
