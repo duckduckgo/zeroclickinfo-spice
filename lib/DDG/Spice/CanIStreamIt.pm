@@ -1,12 +1,13 @@
-package DDG::Spice::CanIStreamIt;
+package DDG::Spice::Canistreamit;
 
 use DDG::Spice;
 
-spice to => 'http://staging.canistream.it/ddg/query/$1?callback={{callback}}';
+spice to => 'http://www.canistream.it/ddg/query/$1?callback={{callback}}';
 
-triggers startend => "stream";
+triggers any => "stream", "watch", "streaming";
 
 handle remainder => sub {
+    sub: s/^can i//;
     return $_;
 };
 
