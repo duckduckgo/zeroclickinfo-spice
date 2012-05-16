@@ -8,7 +8,7 @@ triggers any => "stream", "watch", "streaming";
 
 handle remainder => sub {
     return unless /^(?:can\s*i?|how\s*to|where\s*(?:to|can\s+i))\s*(.+)\??$/i;
-    return $_;
+    return $1;
 };
 
 1;
