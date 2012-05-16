@@ -1,8 +1,9 @@
-var result,user_url,item_url;
+var result, user_url, item_url;
 
 function ddg_spice_hacker_news(res) {
 
   var snippet = new Array();
+
   user_url = '<a href="http://news.ycombinator.com/user?id='
   item_url = '<a href="http://news.ycombinator.com/item?id='
 
@@ -11,12 +12,12 @@ function ddg_spice_hacker_news(res) {
     
     //Display first result
     result = res["results"][0]["item"];
-    snippet[0] = (result["type"] === "comment") ? discussion(res, 0) : submission(res, 0);
+    snippet[0] = (result["type"] === "comment") ? 'Comment: </br>' +  discussion(res, 0) : 'Discussion: </br>' + submission(res, 0);
 
     //Search for 1 Comment and 1 Story to display
     if (res["hits"] > 1) {
       for (var i = 1; i < 10; i++) {       
-	result = res["results"][i]["item"];
+	      result = res["results"][i]["item"];
         
         if (!snippet[1] && result["type"] === "submission") {
           snippet[1] = submission(res, i);
@@ -28,40 +29,37 @@ function ddg_spice_hacker_news(res) {
            
         if (snippet[1] && snippet[2]) break;
       }
-    }
+    } 
 
     items = new Array();
     
-    items[0] = new Array();
-    items[0]['a'] = snippet[0];
-    items[0]['h'] = 'Hacker News';
-    items[0]['s'] = 'HNSearch';
-    items[0]['u'] = 'http://www.hnsearch.com/search#request/all&q=' + res["request"]['q'];
-    items[0]['f'] = 1;
-    
-    var t = 1;
-    
-    //Check if any extra stories were found
-    if (snippet[1]) {
-      items[t] = new Array();
-      items[t]['a'] = '</br>' + snippet[1];
-      items[t]['t'] = 'Related Hacker News Stories';
-      items[t]['s'] = 'HNSearch';
-      items[t]['u'] = 'http://www.hnsearch.com/search#request/submissions&q=' + res["request"]['q'];
-      items[t]['f'] = 1;
-      t += 1;
+    for (var i = 0; i < 3; i++) {
+      if (snippet[i]) {
+        items[i] = new Array();
+                
+        switch(i){
+          case 0: 
+                items[i]['a'] = snippet[i];
+                items[i]['u'] = 'http://www.hnsearch.com/search#request/all&q=' + encodeURIComponent(res["request"]["q"]);
+                break;
+          case 1:
+                items[i]['a'] = '</br>' + snippet[i];
+                items[i]['u'] = 'http://www.hnsearch.com/search#request/submissions&q=' + encodeURIComponent(res["request"]["q"]);
+                items[i]['t'] = '<i>Other Stories</i>';
+                break;
+          case 2:
+                items[i]['a'] = '</br>' + snippet[i];
+                items[i]['u'] = 'http://www.hnsearch.com/search#request/comments&q=' + encodeURIComponent(res["request"]["q"]);
+                items[i]['t'] = '<i>Other Comments</i>';
+                break;
+        }
+
+        items[i]['h'] = 'Hacker News';
+        items[i]['s'] = 'HNSearch';
+        items[i]['f'] = 1;
+      }
     }
-    
-    //Check if any extra comments were found
-    if (snippet[2]) {
-      items[t] = new Array();
-      items[t]['a'] = '</br>' + snippet[2];
-      items[t]['t'] = 'Related Hacker News Comments';
-      items[t]['s'] = 'HNSearch';
-      items[t]['u'] = 'http://www.hnsearch.com/search#request/comments&q=' + res["request"]['q'];
-      items[t]['f'] = 1;
-    }
-    
+        
     nra(items);
   }
 }
@@ -71,21 +69,21 @@ function discussion (res, i) {
   var points = (result["points"] === 1) ? " point" : " points";
 
   //first line (points, who, link, parent, discussion)
-  var out = result["points"] + points +' by '
-          + user_url + result["username"]  + '">'+ result["username"] +'</a> | '
-          + item_url + result["id"]        + '">link</a> | '
-          + item_url + result["parent_id"] + '">parent</a> | '
-          + item_url + result["discussion"]["id"] + '">on: '+ result["discussion"]["title"] +'</a>'
+  var out = '<small><i>"' + result["text"] + '"</small></i>'
           + '<br />'
-  //second line (text)
-          +'<i><small>' + result["text"] + '</small></i>'
+	  //+ result["points"] + points +' by '
+          + item_url + result["discussion"]["id"] + '">' + result["discussion"]["title"] + '</a>'
+          + ' <small>[' + item_url + result["parent_id"] + '">parent</a>]'
+          + ' [comment by ' + user_url + result["username"]  + '">'+ result["username"] + '</a>]</small>'
           + '<br />';
+          //+ item_url + result["id"]        + '">link</a> | '
   return out;
 }
 
 function submission (res, i) {
   
   var domain, url;
+
   var points = (result["points"] === 1) ? " point" : " points"
 
   //Check for no external link (ie. Ask HN:)
@@ -97,14 +95,21 @@ function submission (res, i) {
     url = result["url"];
   } 
  
-  //first line (title, domain)
-  var out = '<a href="' + url + '">' + result["title"] +' </a>'
-          +'<small>(' + domain + ')</small>'
-          +'<br />'
-  //second line (points, who, time, comments)
-          + result["points"] +' points by '
-          + user_url + result["username"] +'"> ' + result["username"] +'</a> | '
-          + item_url + result["id"]       +'"> ' + result["num_comments"] +' comments </a>'
+  var title = shorten(result["title"]);
+
+  //first line (title, domain, points, comments)
+  var out = '<a href="' + url + '">' + title + ' </a>'
+          + '<small>(' + domain + ', ' + result["points"] + ' points) '
+	        + '[' + item_url + result["id"] +'">' + result["num_comments"] +' comments</a>]</small>'
+          //+ user_url + result["username"] +'"> ' + result["username"] +'</a> | '
           +'<br />';
   return out;
+}
+
+function shorten (string) {
+  if (string.length > 50){
+    return string.slice(0,50) + '...';
+  } else {
+    return string;
+  }
 }
