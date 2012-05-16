@@ -7,7 +7,7 @@ spice to => 'http://www.canistream.it/ddg/query/$1?callback={{callback}}';
 triggers any => "stream", "watch", "streaming";
 
 handle remainder => sub {
-    sub: s/^can i//;
+    s/^can i//i;
     return $_;
 };
 
