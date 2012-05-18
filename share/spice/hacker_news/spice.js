@@ -73,7 +73,7 @@ function ddg_spice_hacker_news(res) {
                 
         switch(i){
           case 0: 
-                items[i]['a'] = 'Top Stories' + snippet[0];
+                items[i]['a'] = snippet[0];
                 items[i]['u'] = 'http://www.hnsearch.com/search#request/all&q=' + encodeURIComponent(res["request"]["q"]);
                 break;
           case 1:
