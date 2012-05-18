@@ -73,18 +73,18 @@ function ddg_spice_hacker_news(res) {
                 
         switch(i){
           case 0: 
-                items[i]['a'] = '<b>Top Stories</b></br>' + snippet[0];
+                items[i]['a'] = 'Top Stories' + snippet[0];
                 items[i]['u'] = 'http://www.hnsearch.com/search#request/all&q=' + encodeURIComponent(res["request"]["q"]);
                 break;
           case 1:
                 items[i]['a'] = '</br>' + snippet[1];
                 items[i]['u'] = 'http://www.hnsearch.com/search#request/comments&q=' + encodeURIComponent(res["request"]["q"]);
-                items[i]['t'] = '<b>Top Comments</b>';
+                items[i]['t'] = 'Top Comments';
                 break;
           case 2:
                 items[i]['a'] = '</br>' + snippet[2];
                 items[i]['u'] = 'http://www.hnsearch.com/search#request/submissions&q=' + encodeURIComponent(res["request"]["q"]);
-                items[i]['t'] = '<b>Other Stories</b>';
+                items[i]['t'] = 'Other Stories';
                 break;
         }
 
