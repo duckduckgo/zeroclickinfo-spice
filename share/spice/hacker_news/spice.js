@@ -1,8 +1,10 @@
 //Global Vars
 var HN_Global = {};
-HN_Global.result   = '';
-HN_Global.user_url = '<a href="http://news.ycombinator.com/user?id=';
-HN_Global.item_url = '<a href="http://news.ycombinator.com/item?id=';
+HN_Global.result        = '';
+HN_Global.discussions      = [];
+HN_Global.submissions   = [];
+HN_Global.user_url      = '<a href="http://news.ycombinator.com/user?id=';
+HN_Global.item_url      = '<a href="http://news.ycombinator.com/item?id=';
 
 function ddg_spice_hacker_news(res) {
 
@@ -13,6 +15,9 @@ function ddg_spice_hacker_news(res) {
   //At least 1 result
   if (res["hits"] > 0) {
         
+    HN_Global.discussions = getDiscussions(res,limit);
+    HN_Global.submissions = getSubmissions(res,limit);
+
     //Display first 3 stories results
     //and search for Top Comments and 3 more stories to display
     snippet[0] = '';
@@ -24,30 +29,36 @@ function ddg_spice_hacker_news(res) {
     var i  = 0;
 
 
-    while (i < limit) {
-
-      HN_Global.result = res["results"][i]["item"];
+    //Get top stories
+    while (i < HN_Global.submissions.length) {
       
-      if (HN_Global.result["type"] === "submission" && (c0 < 3 || c2 < 3)){
-        if (c0 < 3) {
-          snippet[0] += submission(res, i);
-          c0++;
-        }
+      HN_Global.result = HN_Global.submissions[i];
 
-        if (c0 === 3 && c2 < 3 && i > 3) {
-          snippet[2] += submission(res, i);
-          c2++;
-        }
-
+      if (c0 < 3) {
+        snippet[0] += submission(HN_Global.submissions, i);
+        c0++;
       }
 
-      if (HN_Global.result["type"] === "comment" && c1 < 3) {
-        snippet[1] += discussion(res, i); 
+      if (c0 === 3 && c2 < 3 && i > 2) {
+        snippet[2] += submission(HN_Global.submissions, i);
+        c2++;
+      }
+
+      if (c0 === 3 && c2 === 3) break;
+
+      i++;
+    }
+    
+    while (i < HN_Global.discussions.length) {
+
+      HN_Global.result = HN_Global.discussions[i];
+
+      if (c1 < 3) {
+        snippet[1] += discussion(HN_Global.submissions, i); 
         c1++;
       }
 
-      if (c0 === 3 && c1 === 3 && c2 === 3 ) break;
-      
+      if (c1 === 3) break;
       i++;
     }
     
@@ -73,18 +84,18 @@ function ddg_spice_hacker_news(res) {
                 
         switch(i){
           case 0: 
-                items[i]['a'] = 'Top Stories' + snippet[0];
+                items[i]['a'] = '<b>Top Stories</b></br>' + snippet[0];
                 items[i]['u'] = 'http://www.hnsearch.com/search#request/all&q=' + encodeURIComponent(res["request"]["q"]);
                 break;
           case 1:
                 items[i]['a'] = '</br>' + snippet[1];
                 items[i]['u'] = 'http://www.hnsearch.com/search#request/comments&q=' + encodeURIComponent(res["request"]["q"]);
-                items[i]['t'] = 'Top Comments';
+                items[i]['t'] = '<b>Top Comments</b>';
                 break;
           case 2:
                 items[i]['a'] = '</br>' + snippet[2];
                 items[i]['u'] = 'http://www.hnsearch.com/search#request/submissions&q=' + encodeURIComponent(res["request"]["q"]);
-                items[i]['t'] = 'Other Stories';
+                items[i]['t'] = '<b>Other Stories</b>';
                 break;
         }
 
@@ -169,4 +180,29 @@ function shorten (string, length) {
   } else {
     return string;
   }
+}
+
+function getDiscussions (res, limit) {
+  var i = 0;
+  temp = [];
+
+  while (i < limit){
+    HN_Global.result = res["results"][i]["item"];
+    if (HN_Global.result["type"] === 'comment') temp.push(HN_Global.result);
+    i++;
+  }
+  return temp;
+}
+
+function getSubmissions(res,limit) {
+
+  var i = 0;
+  temp = [];
+
+  while (i < limit){
+    HN_Global.result = res["results"][i]["item"];
+    if (HN_Global.result["type"] === 'submission') temp.push(HN_Global.result);
+    i++;
+  }
+  return temp;
 }
