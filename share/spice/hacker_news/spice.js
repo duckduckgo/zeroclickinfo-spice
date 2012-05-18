@@ -1,7 +1,7 @@
 //Global Vars
 var HN_Global = {};
 HN_Global.result        = '';
-HN_Global.discussions      = [];
+HN_Global.discussions   = [];
 HN_Global.submissions   = [];
 HN_Global.user_url      = '<a href="http://news.ycombinator.com/user?id=';
 HN_Global.item_url      = '<a href="http://news.ycombinator.com/item?id=';
@@ -90,12 +90,12 @@ function ddg_spice_hacker_news(res) {
           case 1:
                 items[i]['a'] = '</br>' + snippet[1];
                 items[i]['u'] = 'http://www.hnsearch.com/search#request/comments&q=' + encodeURIComponent(res["request"]["q"]);
-                items[i]['t'] = '<b>Top Comments</b>';
+                items[i]['t'] = 'Top Comments';
                 break;
           case 2:
                 items[i]['a'] = '</br>' + snippet[2];
                 items[i]['u'] = 'http://www.hnsearch.com/search#request/submissions&q=' + encodeURIComponent(res["request"]["q"]);
-                items[i]['t'] = '<b>Other Stories</b>';
+                items[i]['t'] = 'Other Stories';
                 break;
         }
 
