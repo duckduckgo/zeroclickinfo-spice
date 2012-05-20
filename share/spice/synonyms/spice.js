@@ -1,7 +1,7 @@
 function ddg_spice_synonyms(synonyms) {
   if(synonyms) {
 
-    if(synonyms.noun.syn.length > 0) {
+    if(synonyms.noun) {
       var content = "<strong>Nouns</strong>: ";
       for(var i=0;i < synonyms.noun.syn.length; i++) {
         content += synonyms.noun.syn[i] + ", ";
@@ -9,7 +9,7 @@ function ddg_spice_synonyms(synonyms) {
       content = content.substr(0, content.length - 2);
     }
 
-    if(synonyms.verb.syn.length > 0) {
+    if(synonyms.verb) {
       content += "<br /><strong>Verbs</strong>: ";
       for(var i=0;i< synonyms.verb.syn.length; i++) {
         content += synonyms.verb.syn[i] + ", ";
