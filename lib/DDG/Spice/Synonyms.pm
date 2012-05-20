@@ -6,13 +6,10 @@ use DDG::Spice;
 my $api_key = $ENV{"BHUGE_KEY"};
 spice to => 'http://words.bighugelabs.com/api/2/${api_key}/$1/json?callback=ddg_spice_synonyms';
 
-triggers startend => "synonyms";
+triggers startend => "synonyms", "synonym";
 
-handle query_lc => sub {
-  if ($_ =~ /^synonyms (\w+)$/) {
-    my $res = $1 || '';
-    return $res if $res;
-  }
-};
+handle remainder => sub {
+    return $_;
+}
 
 1;
