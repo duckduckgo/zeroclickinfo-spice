@@ -1,7 +1,7 @@
 DuckDuckGO Spice Plugins
 =================================
 
-See [DuckDuckHack](http://duckduckhack.com/) for an overview of the DuckDuckGo plugin system.
+IMPORTANT: start at [DuckDuckHack](http://duckduckhack.com/), which contains a tutorial for the DuckDuckGo plugin system that references this Readme at the appropriate time.
 
 This repository is for contributing spice plugins. Each spice plugin will generally involve at least one HTTP(S) request to a third-party JavaScript API, though in some cases could be completely stand-alone. These API calls will return JSON objects to callback functions that you will specify.
 
@@ -18,7 +18,7 @@ First off, thank you!
 
 1) Pick [a spice project](https://duckduckhack.uservoice.com/forums/5168-instant-answer-plugin-ideas-for-duckduckgo/category/41838-spice) (or add one) and comment that you're working on it.
 
-2) Develop your plugin using the Structure below [in a fork](http://help.github.com/fork-a-repo/).
+2) Develop your plugin according to the [DuckDuckHack](http://duckduckhack.com/) tutorial.
 
 3) Test your plugin via Testing procedure below.
 
@@ -30,34 +30,21 @@ Feel free to [ask questions](http://duckduckhack.com/#faq)!
 
 ### Structure
 
-Each spice plugin currently produces three files. The first file is described in the [DuckDuckHack plugin tutorial](http://duckduckhack.com/#plugin-tutorial) and you should start there.
+Each spice plugin currently produces two files. The first file is described in the [DuckDuckHack plugin tutorial](http://duckduckhack.com/#plugin-tutorial) and you should start there.
 
-When finished you will have made your plugin triggers file within the [lib/DDG/Spice](https://github.com/duckduckgo/zeroclickinfo-spice/tree/master/lib/DDG/Spice) directory.
+When finished with the tutorial you will have made your plugin triggers file within the [lib/DDG/Spice](https://github.com/duckduckgo/zeroclickinfo-spice/tree/master/lib/DDG/Spice) directory.
 
-The other two files should be placed in a project directory within [share/spice](https://github.com/duckduckgo/zeroclickinfo-spice/tree/master/share/spice).
+The other file should be placed in a project directory within [share/spice](https://github.com/duckduckgo/zeroclickinfo-spice/tree/master/share/spice). It contains the JavaScript function that formats the data coming back from the external JSONP api.
 
-Each directory has a structure like this:
-
-```txt
-# Main file, which gets called by the client at the appropriate time. 
-# This file defines the callback function and any helper functions you need
-# to process data that gets returned from the JSONP APIs.
-plugin/spice.js
-
-# Nginx conf to call the relevant external API.
-# To prevent search leakage (and for caching), we run
-# all calls through nginx.
-# Start with the xkcd conf and try modifying it appropriately.
-# In a future iteration this will be produced automatically.
-plugin/nginx.conf
-```
 
 
 ### Testing
 
-In a future iteration we'll give you a Web server testing facility that you an query.
+1) Go to the root of the forked repository.
 
-For now, however, you should be able to test your spice plugin in your browser locally. To do so make an HTML file with a script tag that calls the external JSONP api. Then put your callback function in the same file. The API will return the JSON object to your callback function.
+2) Type duckpan server.
+
+3) If successful, a local Web server will spin up on port 5000. You can then go to it and see your project live.
 
 
 ### spice.js flow
