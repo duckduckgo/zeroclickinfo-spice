@@ -11,7 +11,7 @@ spice to => 'http://www.canistream.it/ddg/query/$1?callback={{callback}}';
 triggers any => "stream", "watch", "streaming";
 
 handle remainder => sub {
-    return unless /^(?:can\s*i?|how\s*to|where\s*(?:to|can\s+i))\s*(.+)\??$/i;
+    return unless /^(?:can\s*i?|how\s*to|where\s*(?:to|can\s+i))?\s*(?:find\s+a)?\s*(.+)\??$/i;
     return $1;
 };
 

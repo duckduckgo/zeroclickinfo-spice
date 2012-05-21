@@ -15,6 +15,7 @@ function ddg_spice_canistreamit(movies) {
           var item = new Array();
           var content = "<div><i>"+result.actors+"</i></div>";
           content += "<div><b>Streaming On:</b> ";
+          var count = 0;
           for(var subtype in result.affiliates)
           {
               var service = result.affiliates[subtype];
@@ -24,7 +25,11 @@ function ddg_spice_canistreamit(movies) {
               content += " ($"+service.price+")";
 
               content += "</a>, "
+              count++;
           }
+          if(count > 0)
+            content = content.substring(0,content.length-2);
+
           content += "</div>"
 
           item['a'] = content;
