@@ -15,7 +15,7 @@ handle query_lc => sub {
     	if ($1) {
     	    return $1;
     	} else {
-    	    return call;
+    	    return '';
     	}
     }
     return;
