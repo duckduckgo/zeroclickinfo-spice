@@ -6,6 +6,8 @@ triggers start => "actionscript", "ada", "asp", "asp.net", "assembly", "awk", "b
 
 spice to => 'http://searchco.de/api/jsonp_codesearch_I/?q=$1&callback={{callback}}';
 
-handle query => sub {
+handle query_lc => sub {
     return "lang:" . $_;
 };
+
+1;
