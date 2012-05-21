@@ -1,5 +1,4 @@
-
-function ddg_spice_searchcode(data) {
+function ddg_spice_search_code(data) {
 
 	var snippet = []; // To store the results
 	var searchterm;
