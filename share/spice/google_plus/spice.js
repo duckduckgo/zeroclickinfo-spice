@@ -1,7 +1,7 @@
 function ddg_spice_google_plus(google) {
 	console.log(google);
 	var out, tmp, div, div2, link, img, item;
-    out = '';
+	out = '';
 	if(google['items'].length > 0) {
 		for (var i = 0;i < google['items'].length;i++) {
 		    item = google.items[i];
@@ -14,7 +14,7 @@ function ddg_spice_google_plus(google) {
 		    
 		    if (item.displayName.length >= 10) {
 				item.displayName = item.displayName.substring(0,8) + "...";
-	    	}
+			}
 
 		    img = d.createElement('img');
 		    img.src = item.image.url;
