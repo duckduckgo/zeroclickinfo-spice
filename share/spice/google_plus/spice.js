@@ -3,6 +3,12 @@ function ddg_spice_google_plus(google) {
 	var out, tmp, div, div2, link, img, item;
 	out = '';
 	if(google['items'].length > 0) {
+		//Sometimes, the API returns a lot of results even if we
+		//asked for only five. (e.g. coke)
+		if(google['items'].length > 5) {
+			google['items'].length = 5;
+		}
+
 		for (var i = 0;i < google['items'].length;i++) {
 		    item = google.items[i];
 
@@ -37,6 +43,7 @@ function ddg_spice_google_plus(google) {
 		    YAHOO.util.Dom.setStyle(div, "max-width", "80px");
 
 		    div2.appendChild(div);
+
 		    out += div2.innerHTML;
 		}
 

@@ -3,7 +3,7 @@ package DDG::Spice::GooglePlus;
 
 use DDG::Spice;
 
-spice to => 'https://www.googleapis.com/plus/v1/people?query=$1&maxResults=6&key={{ENV{DDG_SPICE_RANDWORD_APIKEY}}}&callback={{callback}}';
+spice to => 'https://www.googleapis.com/plus/v1/people?query=$1&maxResults=5&key={{ENV{DDG_SPICE_RANDWORD_APIKEY}}}&callback={{callback}}';
 
 triggers startend => 'google+';
 
