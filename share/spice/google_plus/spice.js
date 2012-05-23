@@ -47,14 +47,14 @@ function ddg_spice_google_plus(google) {
 		    out += div2.innerHTML;
 		}
 
-		if(out) {
-			items = new Array();
-			items[0] = new Array();
-			items[0]['a'] = out;
-			items[0]['h'] = '';
-			items[0]['s'] = 'Google+';
-			items[0]['u'] = 'http://plus.google.com';
-			nra(items,1,1);
-		}
+		items = new Array();
+		items[0] = new Array();
+		items[0]['a'] = out;
+		items[0]['h'] = '';
+		items[0]['s'] = 'Google+';
+		items[0]['u'] = 'http://plus.google.com';
+		items[0]['f'] = 1;
+		//items[0]['i'] = 'http://upload.wikimedia.org/wikipedia/commons/9/95/Google%2B_logo.png';
+		nra(items);
 	}
 }
