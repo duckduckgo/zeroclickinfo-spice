@@ -17,7 +17,8 @@ function ddg_spice_abstract(json, mode, heading) {
   eval(code);
 }
 function get_content(json, heading) {
-  var content = "<strong>" + heading + "</strong>: ";
+  //var content = "<strong style='font-weight:bold;'>" + heading + "</strong>: ";
+  var content = "<b>" + heading + "</b>: ";
   for(var i=0;i<json.length;i++) {
     content += json[i] + ", ";
   }
@@ -28,7 +29,7 @@ function get_content(json, heading) {
 
 function build_items(a, h) {
   items = [[]];
-  items[0]['a'] = a;
+  items[0]['a'] = (a + '<br />');
   items[0]['h'] = h;
   items[0]['s'] = 'Big Huge Thesaurus';
   items[0]['u'] = 'http://words.bighugelabs.com/';
