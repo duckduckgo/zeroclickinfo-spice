@@ -3,13 +3,23 @@ package DDG::Spice::Synonyms;
 
 use DDG::Spice;
 
-my $api_key = $ENV{"BHUGE_KEY"};
-spice to => 'http://words.bighugelabs.com/api/2/${api_key}/$1/json?callback=ddg_spice_synonyms';
+spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
+spice to => 'http://words.bighugelabs.com/api/2/{{ENV{BHUGE_KEY}}}/$1/json?callback=ddg_spice_$2';
 
 triggers startend => "synonyms", "synonym", "antonyms", "antonym", "related", "similar";
 
-handle remainder => sub {
-  return $_;
-}
+handle query_lc => sub {
+  if (/^(synonyms|antonyms|synonym|antonym|related|similar)\s*(\w+)/) {
+    my ($callback) = ($1);
+    use feature 'switch';
+    given($1) {
+      when('synonyms') { $callback = 'synonym'; }
+      when('antonyms') { $callback = 'antonym'; }
+      default { $callback; }
+    }
+    return $2, $callback;
+  }
+  return;
+};
 
 1;
