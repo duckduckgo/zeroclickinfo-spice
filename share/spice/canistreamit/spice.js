@@ -8,13 +8,14 @@ function ddg_spice_canistreamit(movies) {
           result = movies[i];
 
           // Make title for header
-          var header = result.title + " ("+result.year+")";
+          var header = 'Watch ' + result.title + " ("+result.year+")";
 
           // Call nra function as per Spice Plugin Guidelines
 
           var item = new Array();
-          var content = "<div><i>"+result.actors+"</i></div>";
-          content += "<div><b>Streaming On:</b> ";
+          var content = "<div><i>Starring:</i> "+result.actors+".</div>";
+          content += "<div><i>Streaming:</i> ";
+          var count = 0;
           for(var subtype in result.affiliates)
           {
               var service = result.affiliates[subtype];
@@ -24,8 +25,12 @@ function ddg_spice_canistreamit(movies) {
               content += " ($"+service.price+")";
 
               content += "</a>, "
+              count++;
           }
-          content += "</div>"
+          if(count > 0)
+            content = content.substring(0,content.length-2);
+
+          content += ".</div>"
 
           item['a'] = content;
 
