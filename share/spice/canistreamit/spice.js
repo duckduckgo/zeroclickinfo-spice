@@ -13,8 +13,8 @@ function ddg_spice_canistreamit(movies) {
           // Call nra function as per Spice Plugin Guidelines
 
           var item = new Array();
-          var content = "<div><i>"+result.actors+"</i></div>";
-          content += "<div><b>Streaming On:</b> ";
+          var content = "<div><i>Starring:</i> "+result.actors+".</div>";
+          content += "<div><i>Streaming:</i> ";
           var count = 0;
           for(var subtype in result.affiliates)
           {
@@ -30,7 +30,7 @@ function ddg_spice_canistreamit(movies) {
           if(count > 0)
             content = content.substring(0,content.length-2);
 
-          content += "</div>"
+          content += ".</div>"
 
           item['a'] = content;
 
