@@ -8,7 +8,7 @@ function ddg_spice_canistreamit(movies) {
           result = movies[i];
 
           // Make title for header
-          var header = result.title + " ("+result.year+")";
+          var header = 'Watch ' + result.title + " ("+result.year+")";
 
           // Call nra function as per Spice Plugin Guidelines
 
