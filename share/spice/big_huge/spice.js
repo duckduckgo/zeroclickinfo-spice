@@ -45,13 +45,13 @@ function get_content(terms, heading) {
 }
 
 function build_items(a, h) {
-  var word = decodeURI(rq).split(' ');
+  var word = decodeURI(rq);
 
   items = [[]];
   items[0]['a'] = (a + '<br />');
-  items[0]['h'] = (h + word[1]);
+  items[0]['h'] = (h + word);
   items[0]['s'] = 'Big Huge Thesaurus';
-  items[0]['u'] = 'http://words.bighugelabs.com/' + word[1];
+  items[0]['u'] = 'http://words.bighugelabs.com/' + word;
 
   nra(items);
 }

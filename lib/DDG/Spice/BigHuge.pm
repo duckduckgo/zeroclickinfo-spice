@@ -1,5 +1,5 @@
-package DDG::Spice::Synonyms;
-# ABSTRACT: Give the synonyms of the query.
+package DDG::Spice::BigHuge;
+# ABSTRACT: Give the synonym, antonym, similar and related words of the query.
 
 use DDG::Spice;
 
