@@ -1,17 +1,17 @@
-function ddg_spice_antonym(antonyms) {
-  ddg_spice_varinym(antonyms, 'ant', 'Antonyms of ');
+function ddg_spice_bighuge_antonym(antonyms) {
+  ddg_spice_bighuge_varinym(antonyms, 'ant', 'Antonyms of ');
 }
-function ddg_spice_related(related) {
-  ddg_spice_varinym(related, 'rel', 'Related to ');
+function ddg_spice_bighuge_related(related) {
+  ddg_spice_bighuge_varinym(related, 'rel', 'Related to ');
 }
-function ddg_spice_similar(similar) {
-  ddg_spice_varinym(similar, 'sim', 'Similar to ');
+function ddg_spice_bighuge_similar(similar) {
+  ddg_spice_bighuge_varinym(similar, 'sim', 'Similar to ');
 }
-function ddg_spice_synonym(synonyms) {
-  ddg_spice_varinym(synonyms, 'syn', 'Synonyms of ');
+function ddg_spice_bighuge_synonym(synonyms) {
+  ddg_spice_bighuge_varinym(synonyms, 'syn', 'Synonyms of ');
 }
 
-function ddg_spice_varinym(json, mode, heading) {
+function ddg_spice_bighuge_varinym(json, mode, heading) {
   if (json) {
     var content = '';
     var forms = {};
