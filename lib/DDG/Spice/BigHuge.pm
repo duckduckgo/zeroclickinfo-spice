@@ -4,7 +4,7 @@ package DDG::Spice::BigHuge;
 use DDG::Spice;
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
-spice to => 'http://words.bighugelabs.com/api/2/{{ENV{BHUGE_KEY}}}/$1/json?callback=ddg_spice_$2';
+spice to => 'http://words.bighugelabs.com/api/2/{{ENV{BHUGE_KEY}}}/$1/json?callback=ddg_spice_bighuge_$2';
 
 triggers startend => "synonyms", "synonym", "antonyms", "antonym", "related", "similar";
 
