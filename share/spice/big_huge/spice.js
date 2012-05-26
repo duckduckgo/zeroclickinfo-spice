@@ -26,9 +26,10 @@ function ddg_spice_bighuge_varinym(json, mode, heading) {
   if (json) {
     var content = '';
     var forms = {};
-
-    forms['noun'] = 'Nouns';
-    forms['verb'] = 'Verbs';
+    
+    forms['noun']      = 'Nouns';
+    forms['verb']      = 'Verbs';
+    forms['adverb']    = 'Adverbs';
     forms['adjective'] = 'Adjectives';
 
     for(form in forms) {
@@ -59,8 +60,8 @@ function get_content(terms, heading) {
 }
 
 function build_items(a, h) {
-  var word = decodeURI(rq);
-  var word = word.replace(/(synonyms?|antonyms?|similar|related)\s*(terms?|words?)?\s*/, "");
+  var word = decodeURIComponent(rq);//CHANGE THIS TO DDG.get_query;
+  var word = word.replace(/(synonyms?|antonyms?|similar|related)\s*(terms?|words?)?\s*(to|for)?\s*/, "");
 
   items = [[]];
   items[0]['a'] = (a);
