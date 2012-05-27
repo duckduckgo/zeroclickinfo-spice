@@ -26,9 +26,10 @@ function ddg_spice_big_huge_varinym(json, mode, heading) {
   if (json) {
     var content = '';
     var forms = {};
-
-    forms['noun'] = 'Nouns';
-    forms['verb'] = 'Verbs';
+    
+    forms['noun']      = 'Nouns';
+    forms['verb']      = 'Verbs';
+    forms['adverb']    = 'Adverbs';
     forms['adjective'] = 'Adjectives';
 
     for(form in forms) {
