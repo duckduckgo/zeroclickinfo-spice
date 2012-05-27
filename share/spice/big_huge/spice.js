@@ -1,6 +1,7 @@
 function ddg_spice_big_huge_antonym(antonyms) {
   ddg_spice_big_huge_varinym(antonyms, 'ant', 'Antonyms of ');
 }
+
 function ddg_spice_big_huge_related(related) {
   if(ddg_spice_bighuge_varinym(related, 'rel', 'Related to ')){
     ddg_spice_bighuge_varinym(related, 'rel', 'Related to ');
@@ -8,6 +9,7 @@ function ddg_spice_big_huge_related(related) {
     ddg_spice_bighuge_varinym(related, 'syn', 'Synonyms for ');
   }
 }
+
 function ddg_spice_big_huge_similar(similar) {
   if(ddg_spice_bighuge_varinym(similar, 'sim', 'Similar to ')){
     ddg_spice_bighuge_varinym(similar, 'sim', 'Similar to ');
@@ -15,6 +17,7 @@ function ddg_spice_big_huge_similar(similar) {
     ddg_spice_bighuge_varinym(similar, 'syn', 'Synonyms for ');
   }
 }
+
 function ddg_spice_big_huge_synonym(synonyms) {
   ddg_spice_big_huge_varinym(synonyms, 'syn', 'Synonyms of ');
 }
@@ -35,14 +38,15 @@ function ddg_spice_big_huge_varinym(json, mode, heading) {
     }
 
     if (content.length > 0) {
-        build_items(content, heading);
-        return true;
+      build_items(content, heading);
+      return true;
     }
   }
   return false;
 }
+
 function get_content(terms, heading) {
-  var content = "<b>" + heading + "</b>: ";
+  var content = "<i>" + heading + "</i>: ";
 
   for(term in terms) {
     content += terms[term] + ", ";
@@ -66,5 +70,3 @@ function build_items(a, h) {
 
   nra(items);
 }
-
-
