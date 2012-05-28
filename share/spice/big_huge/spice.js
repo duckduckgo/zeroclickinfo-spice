@@ -64,7 +64,7 @@ function build_items(a, h) {
   var word = word.replace(/(synonyms?|antonyms?|similar|related)\s*(terms?|words?)?\s*(to|for)?\s*/, "");
 
   items = [[]];
-  items[0]['a'] = (a + '<br />');
+  items[0]['a'] = (a);
   items[0]['h'] = (h + word);
   items[0]['s'] = 'Big Huge Thesaurus';
   items[0]['u'] = 'http://words.bighugelabs.com/' + word;
