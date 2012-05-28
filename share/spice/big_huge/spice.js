@@ -3,18 +3,18 @@ function ddg_spice_big_huge_antonym(antonyms) {
 }
 
 function ddg_spice_big_huge_related(related) {
-  if(ddg_spice_bighuge_varinym(related, 'rel', 'Related to ')){
-    ddg_spice_bighuge_varinym(related, 'rel', 'Related to ');
+  if(ddg_spice_big_huge_varinym(related, 'rel', 'Related to ')){
+    ddg_spice_big_huge_varinym(related, 'rel', 'Related to ');
   }else{
-    ddg_spice_bighuge_varinym(related, 'syn', 'Synonyms for ');
+    ddg_spice_big_huge_varinym(related, 'syn', 'Synonyms for ');
   }
 }
 
 function ddg_spice_big_huge_similar(similar) {
-  if(ddg_spice_bighuge_varinym(similar, 'sim', 'Similar to ')){
-    ddg_spice_bighuge_varinym(similar, 'sim', 'Similar to ');
+  if(ddg_spice_big_huge_varinym(similar, 'sim', 'Similar to ')){
+    ddg_spice_big_huge_varinym(similar, 'sim', 'Similar to ');
   }else{
-    ddg_spice_bighuge_varinym(similar, 'syn', 'Synonyms for ');
+    ddg_spice_big_huge_varinym(similar, 'syn', 'Synonyms for ');
   }
 }
 
