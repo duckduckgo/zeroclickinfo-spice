@@ -7,7 +7,7 @@ function ddg_spice_hayoo(res) {
     var item = new Array();
 
     // the individual function's json
-    var info = res['functions'][0];
+    var info = sort_functions(res['functions'])[0];
 
     // build some nice output
     var snippet = document.createElement('span');
@@ -37,5 +37,52 @@ function ddg_spice_hayoo(res) {
   } else {
     // no hits, no zero-click info
   }
+}
+
+// sort the results to favor exact matches and standard library functions
+// this should be done server-side, and will be when the maintainer of Hayoo replies back
+function sort_functions(funcs) {
+  var query = DDG.get_query();
+  query = query.replace(/^hayoo\s+/i, '');
+
+  // XXX BUG - when testing this with 'duckpan server', query is erroneously populated with the value 'duckduckhack-template-for-spice' - this string appears in many places in the generated js for a search
+  // alert(query);
+
+  for (var i in funcs) {
+    var fun = funcs[i];
+    var priority = 0;
+
+    // favor exact matches, stuff that comes with any compiler, and a shortlist of good packages in the Haskell Platform
+    if (fun['name'] == query) priority += 4;
+    if (fun['package'] == 'base') priority += 2;
+    if (fun['module'] == 'Prelude') priority += 1; // on top of the bonus of being in base
+    if (fun['package'] == 'mtl') priority += 2;
+    if (fun['package'] == 'transformers') priority += 1;
+    if (fun['package'] == 'parallel') priority += 1;
+    if (fun['package'] == 'array') priority += 1;
+    if (fun['package'] == 'bytestring') priority += 1;
+    if (fun['package'] == 'containers') priority += 1;
+    if (fun['package'] == 'text') priority += 1;
+    if (fun['package'] == 'time') priority += 1;
+    if (fun['package'] == 'network') priority += 1;
+    if (fun['package'] == 'old-locale') priority += 1;
+    if (fun['package'] == 'random') priority += 1;
+    if (fun['package'] == 'parsec') priority += 1;
+
+    // don't favor GHC-specific stuff, because internals are scary
+    // don't favor acme results, for obvious reasons
+    // don't favor unix, because it's OS-specific
+    // don't favor unsafe results
+    if (fun['package'].match(/ghc/i)) priority -= 1;
+    if (fun['package'].match(/acme/i)) priority -= 1;
+    if (fun['package'].match(/unix/i)) priority -= 1;
+    if (fun['name'].match(/unsafe/i)) priority -= 2;
+
+    fun['priority'] = priority;
+  }
+
+  funcs = funcs.sort(function(a,b) {return b['priority'] - a['priority'];});
+
+  return funcs;
 }
 
