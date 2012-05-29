@@ -1,28 +1,28 @@
-function ddg_spice_bighuge_antonym(antonyms) {
-  ddg_spice_bighuge_varinym(antonyms, 'ant', 'Antonyms for ');
+function ddg_spice_big_huge_antonym(antonyms) {
+  ddg_spice_big_huge_varinym(antonyms, 'ant', 'Antonyms of ');
 }
 
-function ddg_spice_bighuge_related(related) {
-  if(ddg_spice_bighuge_varinym(related, 'rel', 'Related to ')){
-    ddg_spice_bighuge_varinym(related, 'rel', 'Related to ');
+function ddg_spice_big_huge_related(related) {
+  if(ddg_spice_big_huge_varinym(related, 'rel', 'Related to ')){
+    ddg_spice_big_huge_varinym(related, 'rel', 'Related to ');
   }else{
-    ddg_spice_bighuge_varinym(related, 'syn', 'Synonyms for ');
+    ddg_spice_big_huge_varinym(related, 'syn', 'Synonyms for ');
   }
 }
 
-function ddg_spice_bighuge_similar(similar) {
-  if(ddg_spice_bighuge_varinym(similar, 'sim', 'Similar to ')){
-    ddg_spice_bighuge_varinym(similar, 'sim', 'Similar to ');
+function ddg_spice_big_huge_similar(similar) {
+  if(ddg_spice_big_huge_varinym(similar, 'sim', 'Similar to ')){
+    ddg_spice_big_huge_varinym(similar, 'sim', 'Similar to ');
   }else{
-    ddg_spice_bighuge_varinym(similar, 'syn', 'Synonyms for ');
+    ddg_spice_big_huge_varinym(similar, 'syn', 'Synonyms for ');
   }
 }
 
-function ddg_spice_bighuge_synonym(synonyms) {
-  ddg_spice_bighuge_varinym(synonyms, 'syn', 'Synonyms for ');
+function ddg_spice_big_huge_synonym(synonyms) {
+  ddg_spice_big_huge_varinym(synonyms, 'syn', 'Synonyms of ');
 }
 
-function ddg_spice_bighuge_varinym(json, mode, heading) {
+function ddg_spice_big_huge_varinym(json, mode, heading) {
   if (json) {
     var content = '';
     var forms = {};
