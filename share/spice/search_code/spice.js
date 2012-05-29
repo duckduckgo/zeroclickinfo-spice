@@ -39,7 +39,11 @@ function search_codeFormatZeroClick(result) {
 	if(result.synopsis != '') {
 		return '<pre><code>' + search_codeStrip(result.synopsis) + '</code></pre>' + result.description + '<br>[<a href="'+result.url+'">Reference</a>]';
 	}
-	return result.description + '<br>[<a href="'+result.url+'">Reference</a>]';
+	var desc = result.description;
+	if(result.description.length > 250) {
+		desc = result.description.substring(0,250)+'...'
+	}
+	return desc + '<br>[<a href="'+result.url+'">Reference</a>]';
 }
 
 // This uses the browser to strip HTML, possibly YUI2 has better way to do this
