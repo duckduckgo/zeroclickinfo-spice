@@ -1,8 +1,6 @@
-// Hayoo returns a lot of data from each search
+// Hayoo returns separate results for definitions, modules, packages, and other search queries
 // we will just show "functions" results for now (which means everything that isn't a module or a package)
 // we also won't show any "did you mean..." stuff, because it's not generally that helpful
-
-// The results are currently not useful because the API doesn't give back its results in the right order - the Hayoo maintainer has been emailed
 function ddg_spice_hayoo(res) {
   if (res['hits'] > 0) {
     var items = new Array();
