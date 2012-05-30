@@ -11,8 +11,8 @@ function ddg_spice_rhymes(response) {
 
 	var items = new Array();
 	items[0] = new Array();
-    items[0]['a'] = query +  " rhymes with: " + words.join(', ') + ".";
-	items[0]['h'] = "Rhymes";
+    items[0]['a'] = words.join(', ') + ".";
+	items[0]['h'] = "Rhymes with " + query;
 	items[0]['s'] = 'RhymeBrain';
 	items[0]['u'] = 'http://rhymebrain.com/';
 	
