@@ -12,8 +12,8 @@ handle remainder => sub {
 	my $query = $_;
 	if($query =~ /(\d+)$/) {
 		return $1, ''; 
-	} elsif($query =~ /((?:[a-zA-Z]|\s)+)$/) {
-		return '', $1; 
+	} else {
+		return '', $query; 
 	}
 	return;
 };
