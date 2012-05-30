@@ -3,15 +3,17 @@ function ddg_spice_google_plus(google) {
 
 	var out = '';
 	if(google.kind === "plus#peopleFeed") {
-		var tmp, div, div2, link, img, item;
+		var tmp, div, div2, link, img, item, limit;
 
 		//Sometimes, the API returns a lot of results even if we
 		//asked for only five. (e.g. coke)
 		if(google['items'].length > 5) {
-			google['items'].length = 5;
+			limit = 5;
+		} else {
+			limit = google['items'].length;
 		}
 
-		for (var i = 0;i < google['items'].length;i++) {
+		for (var i = 0;i < limit;i++) {
 		    item = google.items[i];
 
 		    div = d.createElement("div");
@@ -51,8 +53,9 @@ function ddg_spice_google_plus(google) {
 
 		var items = new Array();
 		items[0] = new Array();
-		items[0]['a'] = out;
-		items[0]['h'] = '';
+		items[0]['a'] = out += '<div style="clear:both;"></div>';
+		var query = DDG.get_query();
+		items[0]['h'] = 'Google+ Users (' + query + ')';
 		items[0]['s'] = 'Google+';
 		items[0]['f'] = 1;
 		items[0]['u'] = 'http://plus.google.com';
@@ -90,7 +93,7 @@ function ddg_spice_google_plus(google) {
 		items[0] = new Array();
 		items[0]['a'] = out += '<div></div>';
 		items[0]['h'] = google.displayName;
-		items[0]['s'] = google.displayName;
+		items[0]['s'] = 'Google+';
 		items[0]['u'] = google.url;
 		items[0]['f'] = 1;
 		items[0]['i'] =	google.image.url;
