@@ -60,8 +60,8 @@ function ddg_spice_google_plus(google) {
 	} else if(google.kind === "plus#person") {
 		//Check if the user has a tagline
 		//Tagline or the about me page can be displayed here.
-		if (google.tagline) {
-			out += '<div class="google_profile"><i>Tagline:</i> ' + google.tagline + '</div>';
+		if (google.aboutMe) {
+			out += '<div class="google_profile"><i>Introduction:</i> ' + google.aboutMe + '</div>';
 		}
 
 		//Check for organizations
