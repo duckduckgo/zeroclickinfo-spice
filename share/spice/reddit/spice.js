@@ -34,7 +34,7 @@ function ddg_spice_reddit(re) {
         }
 
         // If info is too long, slice it and strip it of extra asterisks.
-        description = (description.length <= 120) ? description : description.replace(/(\*)/,"").slice(0, 100)+"... ";
+        description = (description.length <= 240) ? description : description.replace(/(\*)/,"").slice(0, 240)+"... ";
 
         url = re["data"]["url"];
         title = "<a href='http://www.reddit.com" + url + "'>" + re["data"]["title"] + "</a>";
@@ -48,7 +48,6 @@ function ddg_spice_reddit(re) {
         items[0]["h"] = title;
         items[0]["s"] = "Reddit";
         items[0]["u"] = "http://www.reddit.com" + url;
-        items[0]["i"] = "https://icons.duckduckgo.com/i/www.reddit.com.ico";
 
         //console.log(content);
         nra(items);
