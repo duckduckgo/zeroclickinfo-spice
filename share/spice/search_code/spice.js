@@ -28,7 +28,7 @@ function ddg_spice_search_code(data) {
 
 function search_codeFormatName(result) {
     if(result.namespace != '') {
-        return result.name + ' (' + result.namespace + ')';
+        return result.name + ' (' + result.displayname + ')';
     } else {
         return result.name;
     }   
