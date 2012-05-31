@@ -15,7 +15,6 @@ function ddg_spice_big_huge_varinym(json, mode, heading, complete, modifier, con
   if (json) {
     var forms = {};
     var wc = 0;
-    console.log(mode + " " + content);
 
     forms['noun']      = 'Nouns';
     forms['verb']      = 'Verbs';
