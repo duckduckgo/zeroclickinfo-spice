@@ -15,11 +15,6 @@ function ddg_spice_reddit(re) {
     // console.log(re["data"]["url"]);
     // validity check
     if (re["data"]["display_name"]) {
-        if (re["data"]["over18"] === true) {
-        // It would be better if over18s showed when safe
-        // search is off. How?
-        return;
-        }
 
         var content, description, title, subscribers, url;
         var converter = Markdown.getSanitizingConverter();
