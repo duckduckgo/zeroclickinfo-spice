@@ -4,7 +4,14 @@ function ddg_spice_search_code(data) {
         var searchterm; // holds the search term
         var result; // holds the main result
 
-        result = data.results[0];
+	for (var i=0; i<data.results.length; i++) {
+	    var tmp_result = data.results[i];
+	    if (!DDG.isRelevant(tmp_result.name + ' ' + tmp_result.displayname + ' ' + tmp_result.namespace, '', 2)) continue;
+	    result = tmp_result;
+	}
+
+	if (!result) return;
+
         searchterm = data.query;
     
         var div = d.createElement('div');
@@ -15,17 +22,14 @@ function ddg_spice_search_code(data) {
 
         div.appendChild(div2);
 
-	if (DDG.isRelevant(result.name + ' ' + result.displayname + ' ' + result.namespace, '', 2)) {
+	items = [[]];
+	items[0]['a'] = div.innerHTML;
+	items[0]['h'] = search_codeFormatName(result);
+	items[0]['s'] = 'search[code]';
+	items[0]['u'] = 'http://searchco.de/?q='+encodeURIComponent(searchterm);
         
-	    items = [[]];
-	    items[0]['a'] = div.innerHTML;
-	    items[0]['h'] = search_codeFormatName(result);
-	    items[0]['s'] = 'search[code]';
-	    items[0]['u'] = 'http://searchco.de/?q='+encodeURIComponent(searchterm);
-            
-	    // DDG rendering function is nra.
-	    nra(items);
-	}
+	// DDG rendering function is nra.
+	nra(items);
     }
 }
 
