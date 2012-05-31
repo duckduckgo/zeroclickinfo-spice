@@ -55,11 +55,11 @@ function ddg_spice_google_plus(google) {
 		items[0] = new Array();
 		items[0]['a'] = out += '<div style="clear:both;"></div>';
 		var query = DDG.get_query(); //"google+ this is a test"; 
-		var query = query.replace(/(google\+|google\splus|g\+|gplus|\+)\s*/, "");
+		var query = query.replace(/\s*(google\+|google\splus|g\+|gplus|\+)\s*/, "");
 		items[0]['h'] = 'Google+ Users (' + query + ')';
 		items[0]['s'] = 'Google+';
 		items[0]['f'] = 1;
-		items[0]['u'] = 'http://plus.google.com';
+		items[0]['u'] = 'http://plus.google.com/s/' + query;
 		nra(items,1,1);
 	} else if(google.kind === "plus#person") {
 		//Check if the user has a tagline
