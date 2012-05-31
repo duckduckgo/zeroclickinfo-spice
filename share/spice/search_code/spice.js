@@ -14,15 +14,18 @@ function ddg_spice_search_code(data) {
         div2.innerHTML = search_codeFormatZeroClick(result);
 
         div.appendChild(div2);
+
+	if (DDG.isRelevant(result.name + ' ' + result.displayname + ' ' + result.namespace, '', 2)) {
         
-        items = [[]];
-        items[0]['a'] = div.innerHTML;
-        items[0]['h'] = search_codeFormatName(result);
-        items[0]['s'] = 'search[code]';
-        items[0]['u'] = 'http://searchco.de/?q='+encodeURIComponent(searchterm);
+	    items = [[]];
+	    items[0]['a'] = div.innerHTML;
+	    items[0]['h'] = search_codeFormatName(result);
+	    items[0]['s'] = 'search[code]';
+	    items[0]['u'] = 'http://searchco.de/?q='+encodeURIComponent(searchterm);
             
-        // DDG rendering function is nra.
-        nra(items);
+	    // DDG rendering function is nra.
+	    nra(items);
+	}
     }
 }
 
