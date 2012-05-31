@@ -27,11 +27,19 @@ function ddg_spice_search_code(data) {
 }
 
 function search_codeFormatName(result) {
-    if(result.namespace != '') {
-        return result.name + ' (' + result.displayname + ')';
-    } else {
-        return result.name;
-    }   
+    var formatted_name = result.name;
+
+    if (result.displayname != '' || result.namespace != '') {
+	formatted_name += ' (';
+	
+	if (result.displayname != '') formatted_name += result.displayname;
+	
+	if (result.namespace != '') formatted_name += (result.displayname ? ', ' : '') + result.namespace;
+
+	formatted_name += ')';
+    }
+    
+    return formatted_name;
 }
 
 function search_codeFormatZeroClick(result) {
