@@ -8,6 +8,7 @@ function ddg_spice_search_code(data) {
 	    var tmp_result = data.results[i];
 	    if (!DDG.isRelevant(tmp_result.name + ' ' + tmp_result.displayname + ' ' + tmp_result.namespace, '', 2)) continue;
 	    result = tmp_result;
+	    break;
 	}
 
 	if (!result) return;
