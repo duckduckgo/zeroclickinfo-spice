@@ -4,11 +4,15 @@ function ddg_spice_lastfm(lastfm) {
 	if(lastfm.results) {
 		var query = DDG.get_query();
 		query = query.replace(/\s*(albums?)\s*/, "");
-		display(lastfm.results.artistmatches.artist, query, "Artists");
+		display(lastfm.results.artistmatches.artist, query, "Artists", true);
 	//Get their top albums
-	} else if(lastfm.topalbums && lastfm.topalbums.album.length > 0) {
-		display(lastfm.topalbums.album, lastfm.topalbums.album[0].artist.name, "Albums");
-	//Get album info
+	} else if(lastfm.topalbums) {
+		if(lastfm.topalbums.album.length > 0) {
+			display(lastfm.topalbums.album, lastfm.topalbums.album[0].artist.name, "Albums", true);
+		} else {
+			display(lastfm.topalbums.album, lastfm.topalbums.album.artist.name, "Albums", false);
+		}
+	//Get album information
 	} else if(lastfm.album) {
 		var songs = '';
 		var out = '';
@@ -36,14 +40,16 @@ function ddg_spice_lastfm(lastfm) {
 	}
 }
 
-function display(result, query, thing) {
+function display(result, query, thing, loop) {
 	var tmp, div, div2, link, img, item, limit, out = '', ddg;
 
+	//Make a new query to DuckDuckGo
 	if(thing === 'Albums') {
 		ddg = '/?q=albums+album-';
 	} else {
 		ddg = '/?q=albums+';
 	}
+	
 	//Get only the ones with the property mbid
 	var tmp = new Array();
 	for(var i = 0;i < result.length;i++) {
@@ -51,17 +57,32 @@ function display(result, query, thing) {
 			tmp.push(result[i]);
 		}
 	}
-	result = tmp;
 
-	//Get only 5 results.
+	//If the items returned all lack the property mbid, exit.
+	if(loop) {
+		result = tmp;
+		if(result.length === 0) {
+			return 1;
+		}
+	}
+
+	//Only five results are needed.
 	if(result.length > 5) {
 		limit = 5;
 	} else {
 		limit = result.length;
 	}
 
+	if(!loop) {
+		limit = 1;
+	}
+
 	for (var i = 0;i < limit;i++) {
-		item = result[i];
+		if(loop) {
+			item = result[i];
+		} else {
+			item = result;
+		}
 
 	    div = d.createElement("div");
 	    div2 = d.createElement("div");
