@@ -3,7 +3,7 @@ function ddg_spice_lastfm(lastfm) {
 	//Search for artists
 	if(lastfm.results) {
 		var query = DDG.get_query();
-		query = query.replace(/\s*(artist)\s*/, "");
+		query = query.replace(/\s*(albums?)\s*/, "");
 		display(lastfm.results.artistmatches.artist, query, "Artists");
 	//Get their top albums
 	} else if(lastfm.topalbums && lastfm.topalbums.album.length > 0) {
@@ -12,8 +12,13 @@ function ddg_spice_lastfm(lastfm) {
 }
 
 function display(result, query, thing) {
-	var tmp, div, div2, link, img, item, limit, out = '';
+	var tmp, div, div2, link, img, item, limit, out = '', ddg;
 
+	if(thing === 'Albums') {
+		ddg = '/?q=albums+album-';
+	} else {
+		ddg = '/?q=albums+';
+	}
 	//Get only the ones with the property mbid
 	var tmp = new Array();
 	for(var i = 0;i < result.length;i++) {
@@ -37,7 +42,7 @@ function display(result, query, thing) {
 	    div2 = d.createElement("div");
 
 	    link = d.createElement("a");
-	    link.href = '/?q=artist+' + item.mbid;
+	    link.href = ddg + item.mbid;
 	    
 	    if (item.name.length >= 10) {
 			item.name = item.name.substring(0,8) + "...";
@@ -52,7 +57,7 @@ function display(result, query, thing) {
 	    div.appendChild(link);
 
 	    link = d.createElement('a');
-	    link.href = '/?q=artist+' + item.mbid;
+	    link.href = ddg + item.mbid;
 	    link.innerHTML = item.name;
 	    div.appendChild(link);
 	    div.appendChild(d.createElement('br'));
@@ -74,6 +79,6 @@ function display(result, query, thing) {
 	items[0]['h'] = 'Last.fm ' + thing + ' (' + query + ')';
 	items[0]['s'] = 'Last.fm';
 	items[0]['f'] = 1;
-	items[0]['u'] = 'http://www.last.fm/search?q=' + query;
+	items[0]['u'] = 'http://www.last.fm/search?q=' + query + '&type=album';
 	nra(items,1,1);
 }
