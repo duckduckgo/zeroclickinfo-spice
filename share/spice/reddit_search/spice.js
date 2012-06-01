@@ -9,7 +9,8 @@ function ddg_spice_reddit(re) {
         content += "<a href='" + result.url + "'>" + result.title + "</a>";
         content += " [<a href='http://www.reddit.com" + result.permalink + "'>" + result.num_comments;
         content += (result.num_comments === 1) ? " comment</a>]" : " comments</a>]";
-        content += " (" + result.domain + ", " + result.score + " points)";
+        content += " (" + result.domain + ", " + result.score;
+        content += (result.score === 1) ? " point)" : " points)";
         content += "<br>";
         if (i == 4) break;
     }
