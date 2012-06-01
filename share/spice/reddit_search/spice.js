@@ -16,7 +16,7 @@ function ddg_spice_reddit(re) {
     items = new Array();
     items[0] = new Array();
     items[0]["a"] = content;
-    items[0]["h"] = "reddit.com/r/" + subreddit;
+    items[0]["h"] = "http://www.reddit.com/r/" + subreddit;
     items[0]["s"] = "Reddit";
     items[0]["u"] = "http://www.reddit.com/r/duckduckgo/search?q=" + query + "&restrict_sr=true&sort=relevance";
     nra(items);
