@@ -8,6 +8,31 @@ function ddg_spice_lastfm(lastfm) {
 	//Get their top albums
 	} else if(lastfm.topalbums && lastfm.topalbums.album.length > 0) {
 		display(lastfm.topalbums.album, lastfm.topalbums.album[0].artist.name, "Albums");
+	//Get album info
+	} else if(lastfm.album) {
+		var songs = '';
+		var out = '';
+		out += '<div class="release"><i>Release:</i>' + lastfm.album.releasedate.substring(0,lastfm.album.releasedate.length-7) 
+			+ '</div>';
+		if(lastfm.album.tracks.track.length > 0) {
+			for(var i = 0;i < lastfm.album.tracks.track.length;i++) {
+				songs += '<a href="' + lastfm.album.tracks.track[i].url + '">' +
+					lastfm.album.tracks.track[i].name + '</a><br>';
+			}
+		} else {
+			songs += '<a href="' + lastfm.album.tracks.track.url + '">' +
+					lastfm.album.tracks.track.name + '</a><br>'
+		}
+		out += '<div class="songs"><i>Songs:</i><br>' + songs + '</div>';
+		var items = new Array();
+		items[0] = new Array();
+		items[0]['a'] = out;
+		items[0]['h'] = lastfm.album.name + ' by ' + lastfm.album.artist;
+		items[0]['s'] = 'Last.fm';
+		items[0]['i'] = lastfm.album.image[2]['#text'];
+		items[0]['f'] = 1;
+		items[0]['u'] = lastfm.album.url;
+		nra(items);		
 	}
 }
 
