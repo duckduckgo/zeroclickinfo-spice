@@ -7,7 +7,7 @@ function ddg_spice_imdb(movie) {
     
         // Main content and title
         items[0]['a'] = get_snippet(movie);
-        items[0]['h'] = movie['Title'] + ' (' + movie['Year'] + ')';
+        items[0]['h'] = '<b>' + movie['Title'] + '</b>' + ' (' + movie['Year'] + ')';
 
         // Source name and url of the imdb page
         items[0]['s'] = 'IMDB';
@@ -27,21 +27,16 @@ function get_snippet(movie) {
     // Rating, Runtime and IMDB Rating
     div_rating = d.createElement('div');
     div_rating.innerHTML = space + movie['Rated'];
-    div_rating.innerHTML += space + movie['Runtime'];
-    div_rating.innerHTML+= space + "<big><b>" + movie['imdbRating'] + "</b></big>";
+    div_rating.innerHTML+= space + "<big>" + movie['imdbRating'] + "</big>";
     snippet.appendChild(div_rating);
 
-    // Movie plot
+    // Movie plot and actors
     div_plot = d.createElement('div');
     div_plot.innerHTML = movie['Plot'];
+    div_plot.innerHTML += " Directed by <i>" + movie['Director'] + "</i>, ";
+    div_plot.innerHTML += "starring <i>" + movie['Actors'] + "</i>.";
+    
     snippet.appendChild(div_plot);
-
-    // Director, Writer and Actors
-    div_actors = d.createElement('div');
-    div_actors.innerHTML = "<b>Director(s):</b>" + space + movie['Director'] + "<br />";
-    div_actors.innerHTML += "<b>Writer(s):</b>" + space + movie['Writer'] + "<br />";
-    div_actors.innerHTML += "<b>Star(s):</b>" + space + movie['Actors'];
-    snippet.appendChild(div_actors);
     
     return snippet;
 }
