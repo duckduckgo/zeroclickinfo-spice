@@ -1,47 +1,32 @@
 var req = document.getElementById('search_form_input').value;
-var skipArray = new Array();
-skipArray['movie'] = 1;
-skipArray['film']  = 1;
 
 function ddg_spice_movie(movie) {
-    console.log(movie);
-    console.log('query is: '+req);
     var result = req.replace(/^movie\s+/g,'');
-    console.log('scrubbed query is: '+result);
 
     // validity check
     if (movie['total'] > 0 && movie['movies']) {
-        console.log('got movies');  
 
         // more than one result
         if (movie['total'] > 1) {
-            console.log('find the right one.');
-            // movie.movies.foreach(DDG.isRelevant( this.title, ['movie'] )
-            var relevant = new RegExp(result, 'ig');
 
             // Default to first result incase nothing is more relevant
             result = movie["movies"][0];
 
             // check which movie title is most relevant
             for (var i = 0, aMovie; aMovie = movie.movies[i]; i++){
-                if (isRelevant(aMovie.title, skipArray) ) {
-                    console.log('relevant movie!');
-                    console.log(aMovie.title);
+                if (DDG.isRelevant(aMovie.title, ["movie","film"]) ) {
                     result = aMovie;
                     break;
                 }
             }             
         } else {
-            console.log('DEFAULT MOVIE!');
             result = movie["movies"][0];
         }
 
         // Create snippet to be shown
         snippet = '';
 
-        console.log('result is: ' +result); 
         // Check presence of synopsis, and create element
-
         if (result.synopsis) synopsis = result.synopsis.substring(0,140) + "...";
         else if (result.critics_consensus && result.critics_consensus.length > 0) synopsis = result.critics_consensus.substring(0,140) + "...";
         else synopsis = '';
@@ -74,8 +59,7 @@ function ddg_spice_movie(movie) {
         var score = 'with an audience score of'+result.audience_score+'%'
 
         // Call nra function as per Spice Plugin Guidelines
-        items = new Array();
-        items[0] = new Array();
+        items = [[]];
         items[0]['a'] = result.title + ' is a '+result.year+ ' movie (' 
                         +result.mpaa_rating+ ', '
                         +result.ratings.audience_score+ '%, '
@@ -90,7 +74,7 @@ function ddg_spice_movie(movie) {
         items[0]['s'] = 'Rotten Tomatoes';
         items[0]['u'] = result.links.alternate;
 
-        // Force no compression.
+        // Force vertical expansion (no scrollbar)
         items[0]['f'] = 1;
 
         // Thumbnail url
