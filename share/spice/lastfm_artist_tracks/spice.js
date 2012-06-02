@@ -24,7 +24,9 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
 			}
 
 		    img = d.createElement('img');
-		    img.src = item.image[1]["#text"];
+		    if(item.image) {
+		    	img.src = item.image[1]["#text"];
+			}
 		    YAHOO.util.Dom.setStyle(img, "margin", '0 auto 0 auto');
 		    YAHOO.util.Dom.setStyle(div,'margin-bottom', '10px');
 		    YAHOO.util.Dom.setStyle(div,'text-align', 'center');
