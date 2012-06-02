@@ -1,5 +1,5 @@
 package DDG::Spice::LastfmAlbum;
-# ABSTRACT: Search for musicians in Last.fm and get their top albums.
+# ABSTRACT: Get the albums of a musician.
 
 use DDG::Spice;
 

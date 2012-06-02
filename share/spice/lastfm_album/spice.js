@@ -3,14 +3,12 @@ function ddg_spice_lastfm_album(lastfm) {
 	var out = '';
 	if(lastfm.topalbums.album) {
 		var tmp, div, div2, link, img, item, limit;
-
 		//Limit the results
 		if(lastfm.topalbums.album.length > 5) {
 			limit = 5;
 		} else {
 			limit = lastfm.topalbums.album.length;
 		}
-
 		for (var i = 0;i < limit;i++) {
 		    item = lastfm.topalbums.album[i];
 
@@ -18,10 +16,11 @@ function ddg_spice_lastfm_album(lastfm) {
 		    div2 = d.createElement("div");
 
 		    link = d.createElement("a");
-		    link.href = item.url;
+		    link.href = '/?q=' + item.name + ' by ' + item.artist.name;
 		    
+		    var name = item.name;
 		    if (item.name.length >= 10) {
-				item.name = item.name.substring(0,8) + "...";
+				name = item.name.substring(0,8) + "...";
 			}
 
 		    img = d.createElement('img');
@@ -33,8 +32,8 @@ function ddg_spice_lastfm_album(lastfm) {
 		    div.appendChild(link);
 
 		    link = d.createElement('a');
-		    link.href = item.url;
-		    link.innerHTML = item.name;
+		    link.href = '/?q=' + item.name + ' by ' + item.artist.name;
+		    link.innerHTML = name;
 		    div.appendChild(link);
 		    div.appendChild(d.createElement('br'));
 	      
