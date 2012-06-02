@@ -18,9 +18,10 @@ function ddg_spice_khan_academy(res) {
     if (isProp(vid, 'title.$t')) title = vid.title.$t
 
     if (!isProp(vid, 'id.$t')) return
+    var id = vid.id.$t.split(':').pop()
+
     var embed = d.createElement('iframe')
-    embed.src = 'http://www.youtube.com/embed/'
-              + vid.id.$t.split(':').pop()
+    embed.src = 'http://www.youtube.com/embed/' + id
     embed.allowFullScreen = 'allowFullScreen'
     embed.frameBorder = 0
 
@@ -35,7 +36,7 @@ function ddg_spice_khan_academy(res) {
       a: div,
       h: title,
       s: 'Khan Academy',
-      u: 'http://www.khanacademy.org/'
+      u: 'http://khanacademy.org/video?v=' + id
     }]
     nra(items)
   }
