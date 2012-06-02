@@ -10,7 +10,7 @@ function ddg_spice_lastfm_artist(lastfm) {
 			}
 		}
 		similar += '</div>';
-		var albums = '<a href="/?q=albums+' + lastfm.artist.name + '">' + 
+		var albums = '<a href="/?q=albums+from+' + lastfm.artist.name + '">' + 
 					'Albums by ' + lastfm.artist.name + '</a>';
 		var items = new Array();
 		items[0] = new Array();

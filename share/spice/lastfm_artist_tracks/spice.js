@@ -1,22 +1,22 @@
-function ddg_spice_lastfm_album(lastfm) {
+function ddg_spice_lastfm_artist_tracks(lastfm) {
 	console.log(lastfm);
 	var out = '';
-	if(lastfm.topalbums.album) {
+	if(lastfm.toptracks.track) {
 		var tmp, div, div2, link, img, item, limit;
 		//Limit the results
-		if(lastfm.topalbums.album.length > 5) {
+		if(lastfm.toptracks.track.length > 5) {
 			limit = 5;
 		} else {
-			limit = lastfm.topalbums.album.length;
+			limit = lastfm.toptracks.track.length;
 		}
 		for (var i = 0;i < limit;i++) {
-		    item = lastfm.topalbums.album[i];
+		    item = lastfm.toptracks.track[i];
 
 		    div = d.createElement("div");
 		    div2 = d.createElement("div");
 
 		    link = d.createElement("a");
-		    link.href = '/?q=' + item.name + ' by ' + item.artist.name;
+		    link.href = item.url;
 		    
 		    var name = item.name;
 		    if (item.name.length >= 10) {
@@ -32,7 +32,7 @@ function ddg_spice_lastfm_album(lastfm) {
 		    div.appendChild(link);
 
 		    link = d.createElement('a');
-		    link.href = '/?q=' + item.name + ' by ' + item.artist.name;
+		    link.href = item.url;
 		    link.innerHTML = name;
 		    div.appendChild(link);
 		    div.appendChild(d.createElement('br'));
@@ -50,8 +50,8 @@ function ddg_spice_lastfm_album(lastfm) {
 		items[0] = new Array();
 		items[0]['a'] = out += '<div style="clear:both;"></div>';
 		var query = DDG.get_query();  
-		var query = query.replace(/\s*(albums?|music)\s*/, "");
-		items[0]['h'] = 'Albums from ' + query;
+		var query = query.replace(/\s*(?:tracks|songs)\s*(?:by|from)\s*/, "");
+		items[0]['h'] = 'Tracks from ' + query;
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
 		items[0]['u'] = 'http://www.last.fm/search?q=' + query;
