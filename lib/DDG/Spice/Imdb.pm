@@ -8,8 +8,8 @@ triggers startend => "imdb";
 spice to => 'http://www.imdbapi.com/?t=$1&callback={{callback}}';
 
 handle remainder => sub {
-	return $_ if $_;
-	return;
+    return $_ if $_;
+    return;
 };
 
 1;
