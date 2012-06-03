@@ -9,15 +9,11 @@ function ddg_spice_lastfm_artist(lastfm) {
 				similar += ', ';
 			}
 		}
-		similar += '</div>';
-		var albums = '<a href="/?q=albums+from+' + lastfm.artist.name + '">' + 
-					'Albums by ' + lastfm.artist.name + '</a>';
-		var songs = '<br><a href="/?q=tracks+from+' + lastfm.artist.name + '">' + 
-					'Tracks by ' + lastfm.artist.name + '</a>';			
+		similar += '</div>';		
 		var items = new Array();
 		items[0] = new Array();
 		items[0]['a'] = '<i>Summary: </i>' + lastfm.artist.bio.summary + 
-					 similar + albums + songs + '<div style="clear:both;"></div>';
+					 similar + '<div style="clear:both;"></div>';
 		items[0]['h'] = lastfm.artist.name;
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
