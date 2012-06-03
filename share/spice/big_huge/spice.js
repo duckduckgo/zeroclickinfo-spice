@@ -1,5 +1,5 @@
 function ddg_spice_big_huge_antonym(antonyms) {
-  ddg_spice_big_huge_varinym(antonyms, 'ant', 'Antonyms of ');
+  ddg_spice_big_huge_varinym(antonyms, 'ant', 'Antonyms for ');
 }
 
 function ddg_spice_big_huge_related(related) {
@@ -19,7 +19,7 @@ function ddg_spice_big_huge_similar(similar) {
 }
 
 function ddg_spice_big_huge_synonym(synonyms) {
-  ddg_spice_big_huge_varinym(synonyms, 'syn', 'Synonyms of ');
+  ddg_spice_big_huge_varinym(synonyms, 'syn', 'Synonyms for ');
 }
 
 function ddg_spice_big_huge_varinym(json, mode, heading) {
@@ -61,7 +61,7 @@ function get_content(terms, heading) {
 
 function build_items(a, h) {
   var word = decodeURIComponent(rq);//CHANGE THIS TO DDG.get_query;
-  var word = word.replace(/(synonyms?|antonyms?|similar|related)\s*(terms?|words?)?\s*(to|for)?\s*/, "");
+  var word = word.replace(/(synonyms?|antonyms?|similar|related)\s*(terms?|words?)?\s*(of|to|for)?\s*/, "");
 
   items = [[]];
   items[0]['a'] = (a);
