@@ -2,6 +2,9 @@
 // we will just show "functions" results for now (which means everything that isn't a module or a package)
 // we also won't show any "did you mean..." stuff, because it's not generally that helpful
 function ddg_spice_hayoo(res) {
+  var query = DDG.get_query();
+  query = query.replace(/^hayoo\s+/i, '');
+
   if (res['hits'] > 0) {
     var items = new Array();
     var item = new Array();
@@ -27,7 +30,7 @@ function ddg_spice_hayoo(res) {
 
     // build a link back to Hayoo, rather than Hackage - it's polite, and users rarely want exactly one result when searching by type
     item['s'] = 'Hayoo'; // source
-    item['u'] = 'http://holumbus.fh-wedel.de/hayoo/hayoo.html?query=' + info['name']; // url
+    item['u'] = 'http://holumbus.fh-wedel.de/hayoo/hayoo.html?query=' + query; // url
 
     item['t'] = info['module'];
 
@@ -45,17 +48,22 @@ function sort_functions(funcs) {
   var query = DDG.get_query();
   query = query.replace(/^hayoo\s+/i, '');
 
-  // XXX BUG - when testing this with 'duckpan server', query is erroneously populated with the value 'duckduckhack-template-for-spice' - this string appears in many places in the generated js for a search
-  // alert(query);
-
   for (var i in funcs) {
     var fun = funcs[i];
     var priority = 0;
 
-    // favor exact matches, stuff that comes with any compiler, and a shortlist of good packages in the Haskell Platform
-    if (fun['name'] == query) priority += 4;
+    // favor near-matches, but don't let it get out of hand with redundant naming
+    if (DDG.isRelevant(fun['name'], ['hayoo']) ||
+        DDG.isRelevant(fun['type'], ['hayoo'])) priority += 4;
+
+    // favor relevant packages/modules
+    if (DDG.isRelevant(fun['module'], ['hayoo']) ||
+        DDG.isRelevant(fun['package'], ['hayoo'])) priority += 1;
+
+    // favor stuff that comes with any compiler, and a shortlist of good packages in the Haskell Platform
     if (fun['package'] == 'base') priority += 2;
     if (fun['module'] == 'Prelude') priority += 1; // on top of the bonus of being in base
+
     if (fun['package'] == 'mtl') priority += 2;
     if (fun['package'] == 'transformers') priority += 1;
     if (fun['package'] == 'parallel') priority += 1;
@@ -72,11 +80,11 @@ function sort_functions(funcs) {
     // don't favor GHC-specific stuff, because internals are scary
     // don't favor acme results, for obvious reasons
     // don't favor unix, because it's OS-specific
-    // don't favor unsafe results
+    // don't favor unsafe results unless we are looking for them
     if (fun['package'].match(/ghc/i)) priority -= 1;
     if (fun['package'].match(/acme/i)) priority -= 1;
     if (fun['package'].match(/unix/i)) priority -= 1;
-    if (fun['name'].match(/unsafe/i)) priority -= 2;
+    if (fun['name'].match(/unsafe/i) && !query.match(/unsafe/i)) priority -= 1;
 
     fun['priority'] = priority;
   }
