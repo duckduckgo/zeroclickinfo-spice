@@ -5,6 +5,7 @@ function ddg_spice_reddit(re) {
     var content = '', subreddit = '';
     for (var i=0; i < re.length; i++) {
         result = re[i].data;
+        console.log(result);
         if (i == 0) subreddit = result.subreddit;
         content += "<a href='" + result.url + "'>" + result.title + "</a>";
         content += " [<a href='http://www.reddit.com" + result.permalink + "'>" + result.num_comments;
