@@ -52,7 +52,7 @@ function ddg_spice_lastfm_artist_album(lastfm) {
 		items[0] = new Array();
 		items[0]['a'] = out += '<div style="clear:both;"></div>';
 		var query = DDG.get_query();  
-		var query = query.replace(/\s*albums?\s*(?:by|from)\s*/, "");
+		var query = query.replace(/\s*(?:albums?|records?|cds?)\s*(?:by|from)?\s*/, "");
 		items[0]['h'] = 'Albums from ' + query;
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;

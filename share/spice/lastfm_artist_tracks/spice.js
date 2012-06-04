@@ -16,7 +16,7 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
 		    div2 = d.createElement("div");
 
 		    link = d.createElement("a");
-		    link.href = item.url;
+		    link.href = '/?q=' + item.name + ' song by ' + item.artist.name;
 		    
 		    var name = item.name;
 		    if (item.name.length >= 10) {
@@ -34,7 +34,7 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
 		    div.appendChild(link);
 
 		    link = d.createElement('a');
-		    link.href = item.url;
+		    link.href = '/?q=' + item.name + ' song by ' + item.artist.name;
 		    link.innerHTML = name;
 		    div.appendChild(link);
 		    div.appendChild(d.createElement('br'));
