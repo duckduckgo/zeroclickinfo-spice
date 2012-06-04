@@ -44,7 +44,7 @@ function ddg_spice_big_huge_varinym(json, mode, heading, complete, modifier, con
   }
 }
 function get_content(terms, heading) {
-  var wordlist = "<b>" + heading + "</b>: ";
+  var wordlist = "<i>" + heading + "</i>: ";
 
   for(term in terms) {
     wordlist += terms[term] + ", ";
