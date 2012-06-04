@@ -1,31 +1,49 @@
+var req = document.getElementById('search_form_input').value;
+
 function ddg_spice_movie(movie) {
-      // console.log(xk);
+    var result = req.replace(/^movie\s+/g,'');
 
-      var result,img,snippet,link,div;
+    // validity check
+    if (movie['total'] > 0 && movie['movies']) {
 
-      // validity check
-      if (movie['total'] > 0 && movie['movies']) {
+        // more than one result
+        if (movie['total'] > 1) {
 
-        result = movie["movies"][0];
+            // Default to first result incase nothing is more relevant
+            result = movie["movies"][0];
+
+            // check which movie title is most relevant
+            for (var i = 0, aMovie; aMovie = movie.movies[i]; i++){
+                if (DDG.isRelevant(aMovie.title, ["movie","film"]) ) {
+                    result = aMovie;
+                    break;
+                }
+            }             
+        } else {
+            result = movie["movies"][0];
+        }
 
         // Create snippet to be shown
         snippet = '';
 
         // Check presence of synopsis, and create element
-        if (result.synopsis.length > 0) synopsis = result.synopsis.substring(0,140) + "...";
+        if (result.synopsis) synopsis = result.synopsis.substring(0,140) + "...";
         else if (result.critics_consensus && result.critics_consensus.length > 0) synopsis = result.critics_consensus.substring(0,140) + "...";
         else synopsis = '';
+
+        synopsis = '';
 
         var names = [];
         // Loop through abridged cast members, add to cast element
         for (var i=0; i < result.abridged_cast.length; i++){
-          var pre = '';
-          if ( i == result.abridged_cast.length - 1 && result.abridged_cast.length != 1 ) pre = 'and ';
-          var name = result.abridged_cast[i].name;
-          var url = 'http://www.rottentomatoes.com/celebrity/' + result.abridged_cast[i].id + '/';
+            var pre = '';
+            if ( i == result.abridged_cast.length - 1 && result.abridged_cast.length != 1 ) pre = 'and ';
+            var name = result.abridged_cast[i].name;
+            var url = 'http://www.rottentomatoes.com/celebrity/' + result.abridged_cast[i].id + '/';
 
-          names.push(pre+'<a href="'+url+'">'+name+'</a>');
+            names.push(pre+'<a href="'+url+'">'+name+'</a>');
         }
+
         var cast = '';
         if (names.length > 1) cast = ', starring '+names.join(', ');
 
@@ -41,14 +59,14 @@ function ddg_spice_movie(movie) {
         var score = 'with an audience score of'+result.audience_score+'%'
 
         // Call nra function as per Spice Plugin Guidelines
-        items = new Array();
-        items[0] = new Array();
+        items = [[]];
         items[0]['a'] = result.title + ' is a '+result.year+ ' movie (' 
                         +result.mpaa_rating+ ', '
                         +result.ratings.audience_score+ '%, '
                         +result.ratings.critics_score+ '% critic approved)'
-                        +cast+ '. ' 
+                        +cast + '. ' 
                         +synopsis;
+                        
                         
         items[0]['h'] = header;
 
@@ -56,7 +74,7 @@ function ddg_spice_movie(movie) {
         items[0]['s'] = 'Rotten Tomatoes';
         items[0]['u'] = result.links.alternate;
 
-        // Force no compression.
+        // Force vertical expansion (no scrollbar)
         items[0]['f'] = 1;
 
         // Thumbnail url
@@ -64,5 +82,5 @@ function ddg_spice_movie(movie) {
 
         // The rendering function is nra.
         nra(items);
-     }
     }
+}

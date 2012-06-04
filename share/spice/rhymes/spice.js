@@ -8,6 +8,7 @@ function ddg_spice_rhymes(response) {
 	        words.push(word.word);
         if (words.length == 30) break;
 	}
+    if (words.length == 0) return;
 
 	var items = new Array();
 	items[0] = new Array();
