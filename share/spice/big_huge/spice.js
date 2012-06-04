@@ -1,32 +1,21 @@
 function ddg_spice_big_huge_antonym(antonyms) {
-  ddg_spice_big_huge_varinym(antonyms, 'ant', 'Antonyms of ');
+  ddg_spice_big_huge_varinym(antonyms, 'ant', 'Antonyms of ', true, '', '');
 }
-
 function ddg_spice_big_huge_related(related) {
-  if(ddg_spice_big_huge_varinym(related, 'rel', 'Related to ')){
-    ddg_spice_big_huge_varinym(related, 'rel', 'Related to ');
-  }else{
-    ddg_spice_big_huge_varinym(related, 'syn', 'Synonyms for ');
-  }
+  ddg_spice_big_huge_varinym(related, 'rel', 'Related to ', true, '', '');
 }
-
 function ddg_spice_big_huge_similar(similar) {
-  if(ddg_spice_big_huge_varinym(similar, 'sim', 'Similar to ')){
-    ddg_spice_big_huge_varinym(similar, 'sim', 'Similar to ');
-  }else{
-    ddg_spice_big_huge_varinym(similar, 'syn', 'Synonyms for ');
-  }
+  ddg_spice_big_huge_varinym(similar, 'sim', 'Similar to ', true, '', '');
 }
-
 function ddg_spice_big_huge_synonym(synonyms) {
-  ddg_spice_big_huge_varinym(synonyms, 'syn', 'Synonyms of ');
+  ddg_spice_big_huge_varinym(synonyms, 'syn', 'Synonyms of ', true, '', '');
 }
 
-function ddg_spice_big_huge_varinym(json, mode, heading) {
+function ddg_spice_big_huge_varinym(json, mode, heading, complete, modifier, content) {
   if (json) {
-    var content = '';
     var forms = {};
-    
+    var wc = 0;
+
     forms['noun']      = 'Nouns';
     forms['verb']      = 'Verbs';
     forms['adverb']    = 'Adverbs';
@@ -34,34 +23,41 @@ function ddg_spice_big_huge_varinym(json, mode, heading) {
 
     for(form in forms) {
       if(json[form] && json[form][mode]) {
-        content += get_content(json[form][mode], forms[form]);
+        content += get_content(json[form][mode], modifier + forms[form]);
+        wc += json[form][mode].length;
       }
     }
 
-    if (content.length > 0) {
-      build_items(content, heading);
-      return true;
+    if (mode == 'syn' && wc < 10) {
+      content = ddg_spice_big_huge_varinym(json, 'sim', 'Similar to ', false, 'Similar ', content);
+      ddg_spice_big_huge_varinym(json, 'rel', 'Synonyms of ', true, 'Related ', content);
+      return false;
+    }
+
+    if (!complete) {
+      return content;
+    }
+
+    if (content.length > 0 && complete) {
+        build_items(content, heading);
     }
   }
-  return false;
 }
-
 function get_content(terms, heading) {
-  var content = "<i>" + heading + "</i>: ";
+  var wordlist = "<b>" + heading + "</b>: ";
 
   for(term in terms) {
-    content += terms[term] + ", ";
+    wordlist += terms[term] + ", ";
   }
 
-  content = content.substr(0, content.length - 2);
-  content += "<br />";
+  wordlist = wordlist.substr(0, wordlist.length - 2);
+  wordlist += "<br />";
 
-  return content;
+  return wordlist;
 }
 
 function build_items(a, h) {
-  var word = decodeURIComponent(rq);//CHANGE THIS TO DDG.get_query;
-  var word = word.replace(/(synonyms?|antonyms?|similar|related)\s*(terms?|words?)?\s*(to|for)?\s*/, "");
+  var word = DDG.get_query().replace(/(synonyms?|antonyms?|similar|related)\s*(terms?|words?)?\s*(to|for)?\s*/, "");
 
   items = [[]];
   items[0]['a'] = (a);
