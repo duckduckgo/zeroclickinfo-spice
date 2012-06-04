@@ -46,6 +46,7 @@ function ddg_spice_hayoo(res) {
 // this should be done server-side, and will be when the maintainer of Hayoo replies back
 function sort_functions(funcs) {
   var query = DDG.get_query();
+  var triggers = ['hayoo'];
   query = query.replace(/^hayoo\s+/i, '');
 
   for (var i in funcs) {
@@ -53,12 +54,13 @@ function sort_functions(funcs) {
     var priority = 0;
 
     // favor near-matches, but don't let it get out of hand with redundant naming
-    if (DDG.isRelevant(fun['name'], ['hayoo']) ||
-        DDG.isRelevant(fun['type'], ['hayoo'])) priority += 4;
+    // accept words of any length, because Haskell often emulates math notation with single-character identifiers for generic things
+    if (DDG.isRelevant(fun['name'], triggers, 1) ||
+        DDG.isRelevant(fun['signature'], triggers, 1)) priority += 4;
 
     // favor relevant packages/modules
-    if (DDG.isRelevant(fun['module'], ['hayoo']) ||
-        DDG.isRelevant(fun['package'], ['hayoo'])) priority += 1;
+    if (DDG.isRelevant(fun['module'], triggers) ||
+        DDG.isRelevant(fun['package'], triggers)) priority += 1;
 
     // favor stuff that comes with any compiler, and a shortlist of good packages in the Haskell Platform
     if (fun['package'] == 'base') priority += 2;
