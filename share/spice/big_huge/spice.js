@@ -57,7 +57,7 @@ function get_content(terms, heading) {
 }
 
 function build_items(a, h) {
-  var word = DDG.get_query().replace(/(synonyms?|antonyms?|similar|related)\s*(terms?|words?)?\s*(to|for)?\s*/, "");
+  var word = DDG.get_query().replace(/(synonyms?|antonyms?|similar|related)\s*(terms?|words?)?\s*(of|to|for)?\s*/, "");
 
   items = [[]];
   items[0]['a'] = (a);
