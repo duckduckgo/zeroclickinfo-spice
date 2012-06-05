@@ -66,15 +66,30 @@ function getOrdinal(n) {
        return n+(s[(v-20)%10]||s[v]||s[0]);
 }
 
+congressMemberItems = new Array();
 
 function ddg_spice_congress_member(response) {
     var member = response.results[0];
     var pronoun = (member.gender == 'M' ? "he" : "she");
     var pronounPosessive = (member.gender == 'M' ? "his" : "her");
     var content = ''; 
-    var header = "Congress member <a href='" + member.url + "'>" + member.first_name + " " + member.middle_name + " " + member.last_name + "</a>" + (member.twitter_id != "" ? " (<a href='https://twitter.com/#!/" + member.twitter_id + "'>@" + member.twitter_id + "</a>)" : "");
-    content += member.first_name + " " + member.middle_name + " " + member.last_name;
-    content += " is the U.S. Representative for the " + getOrdinal(member.roles[0].district) + " congressional district of " + state[member.roles[0].state] + ".";
+    var header = "Congress member ";
+    header += (member.url != "" ?
+            "<a href='" + member.url + "'>"
+                + member.first_name + " " + member.middle_name
+                + " " + member.last_name + "</a>"
+            : member.first_name + " " + member.middle_name
+                + " " + member.last_name);
+    header += (member.twitter_id != "" ?
+            " (<a href='https://twitter.com/#!/" + member.twitter_id
+                + "'>@" + member.twitter_id + "</a>)"
+            : "");    
+    content += member.first_name + " " + member.middle_name
+                + " " + member.last_name;
+    content += " is the U.S. Representative for the "
+                + getOrdinal(member.roles[0].district)
+                + " congressional district of "
+                + state[member.roles[0].state] + ".";
     content += " A " + parties[member.roles[0].party] + ", ";
     content += pronoun + " has voted with " + pronounPosessive + " party ";
     content += member.roles[0].votes_with_party_pct + "% of the time.";
@@ -82,15 +97,21 @@ function ddg_spice_congress_member(response) {
     content += "<i>Term</i>: " + member.roles[0].start_date + " - " + member.roles[0].end_date;
     content += "<br>";
 
-    console.log(member);
+    cannonicalDDGURL = '/' + member.first_name + '_' + member.last_name;
+    cannonicalDDGURL += '&o=json&callback=ddg_spice_congress_member_picture';
+    nrj(cannonicalDDGURL);
 
-	var items = new Array();
-	items[0] = new Array();
-    items[0]['a'] = content;
-	items[0]['h'] = header;
-	items[0]['i'] = 'https://i.duckduckgo.com/i/b53aaf7e.jpg';
-	items[0]['s'] = 'the New York Times';
-	items[0]['u'] = 'http://politics.nytimes.com/congress/';
+	congressMemberItems[0] = new Array();
+    congressMemberItems[0]['a'] = content;
+	congressMemberItems[0]['h'] = header;
+	congressMemberItems[0]['s'] = 'the New York Times';
+	congressMemberItems[0]['u'] = 'http://politics.nytimes.com/congress/';
+}
 
-	nra(items);
+
+function ddg_spice_congress_member_picture(response) {
+    if (response.Image != "") {
+        congressMemberItems[0]['i'] = response.Image;
+    }
+    nra(congressMemberItems);
 }
