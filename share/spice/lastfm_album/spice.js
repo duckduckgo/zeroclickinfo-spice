@@ -4,12 +4,23 @@ function ddg_spice_lastfm_album(lastfm) {
 		var items = new Array();
 		items[0] = new Array();
 		var summary = '';
+		var songs = '';
 		if(lastfm.album.wiki) {
 			summary = '<i>Summary: </i>' + lastfm.album.wiki.summary;
 		} else {
-			summary = '<i>Summary: </i>No summary info available.';
+			songs = '<i>Songs: </i>';
+			if(lastfm.album.tracks.length > 0) {
+				for(var i = 0;i < lastfm.album.tracks.track.length;i++) {
+					songs += lastfm.album.tracks.track[i].name;
+					if(i !== lastfm.album.tracks.track.length-1) {
+						songs += ', ';
+					}
+				}
+			} else {
+				songs += lastfm.album.tracks.track.name;
+			}
 		}
-		items[0]['a'] = '<div style="album">' + summary + '</div>' 
+		items[0]['a'] = '<div style="album">' + summary + songs + '</div>' 
 					+ '<div style="clear:both;">';
 		var songs = '';
 		items[0]['h'] = lastfm.album.name + ' by ' + lastfm.album.artist;

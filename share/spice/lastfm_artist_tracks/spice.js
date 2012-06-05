@@ -52,7 +52,7 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
 		items[0] = new Array();
 		items[0]['a'] = out += '<div style="clear:both;"></div>';
 		var query = DDG.get_query();  
-		var query = query.replace(/\s*(?:tracks?|songs?)\s*(?:by|from)\s*/, "");
+		var query = query.replace(/\s*(?:tracks?|songs?)\s*(?:by|from|of)\s*/, "");
 		items[0]['h'] = 'Tracks from ' + query;
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
@@ -62,7 +62,7 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
 		var items = new Array();
 		items[0] = new Array();
 		var query = DDG.get_query();  
-		var query = query.replace(/\s*(?:albums?|records?|cds?)\s*(?:by|from)\s*/, "");
+		var query = query.replace(/\s*(?:albums?|records?|cds?)\s*(?:by|from|of)\s*/, "");
 		items[0]['a'] = "Sorry, we can't find tracks from " + query + 
 			'. Try <a href="/?q=' + query + ' tracks">' + query + ' tracks' +
 			'</a> to search for tracks featuring the artist. Thanks!'  + '<div style="clear:both;"></div>';
