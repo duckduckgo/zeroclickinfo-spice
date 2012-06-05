@@ -7,7 +7,7 @@ function ddg_spice_lastfm_album(lastfm) {
 		var songs = '';
 		if(lastfm.album.wiki) {
 			summary = '<i>Summary: </i>' + lastfm.album.wiki.summary;
-		} else {
+		} else if(lastfm.album.tracks.track) {
 			songs = '<i>Songs: </i>';
 			if(lastfm.album.tracks.length > 0) {
 				for(var i = 0;i < lastfm.album.tracks.track.length;i++) {
@@ -19,6 +19,8 @@ function ddg_spice_lastfm_album(lastfm) {
 			} else {
 				songs += lastfm.album.tracks.track.name;
 			}
+		} else {
+			songs = 'We can\'t find a description for this album.';
 		}
 		items[0]['a'] = '<div style="album">' + summary + songs + '</div>' 
 					+ '<div style="clear:both;">';

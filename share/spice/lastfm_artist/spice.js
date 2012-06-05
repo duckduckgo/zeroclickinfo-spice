@@ -12,10 +12,10 @@ function ddg_spice_lastfm_artist(lastfm) {
 		similar += '</div>';		
 		var items = new Array();
 		items[0] = new Array();
-		var albums = '<div style="album"><a href="/?q=albums+from+' + lastfm.artist.name + '">' + 
-					'Albums by ' + lastfm.artist.name + '</a></div>';  
-		var songs = '<div style"songs"><a href="/?q=tracks+from+' + lastfm.artist.name + '">' +
-					'Tracks by ' + lastfm.artist.name + '</a></div>';			
+		var albums = '[<a href="/?q=albums+from+' + lastfm.artist.name + '">' + 
+					'Albums by ' + lastfm.artist.name + '</a>]';  
+		var songs = '[<a href="/?q=tracks+from+' + lastfm.artist.name + '">' +
+					'Tracks by ' + lastfm.artist.name + '</a>]';			
 		items[0]['a'] = '<i>Summary: </i>' + lastfm.artist.bio.summary + 
 					 similar + albums + songs + '<div style="clear:both;"></div>';
 		items[0]['h'] = lastfm.artist.name;
