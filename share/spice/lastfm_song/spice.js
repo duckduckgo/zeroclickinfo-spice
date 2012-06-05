@@ -16,8 +16,10 @@ function ddg_spice_lastfm_song(lastfm) {
 		} else {
 			summary = '<i>Summary: </i> No summary info available.';
 		}
+		var artist = '<div style="artist"><i>Artist: </i><a href="/?q=' +  
+				' artist ' + lastfm.track.artist.name + '">' + lastfm.track.artist.name + '</a></div>';
 		items[0]['a'] = '<div style="song">' + summary + '</div>' 
-					+ album + '<div style="clear:both;">';
+					+ album + artist + '<div style="clear:both;">';
 		items[0]['h'] = lastfm.track.name + ' by ' + lastfm.track.artist.name;
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
