@@ -5,10 +5,12 @@ use DDG::Spice;
 
 spice to => 'http://api.longurl.org/v2/expand?url=$1&format=json&callback={{callback}}';
 
-triggers startend => "expand";
+triggers query => qr/^((?:expand\s(.*))|(https?:\/\/(bit\.ly|j\.mp|awe.sm|t\.co|g\.co|is\.gd|ow\.ly)\/.*))/;
 
-handle remainder => sub {
-    return $_;
+handle matches => sub {
+    return $2 if $2;
+    return $1;
+    return;
 };
 
 1;
