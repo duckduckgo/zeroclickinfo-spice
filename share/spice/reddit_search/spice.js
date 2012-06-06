@@ -1,13 +1,16 @@
 function ddg_spice_reddit(re) {    
     var query = decodeURIComponent(rq);
-    var subreddit = query.match(/\/?r\/\w+/)[0];
+    var subreddit = query.match(/\/?r\/\w+/);
+    if (subreddit) {
+        subreddit = subreddit[0];
+        if (subreddit.charAt(0) != '/') {
+            subreddit = '/' + subreddit;
+            restrict_sr = true;
+            header += subreddit;
+        }
+    }
     var restrict_sr = false;
     var header = "reddit.com";
-    if (subreddit.charAt(0) != '/') {
-        subreddit = '/' + subreddit;
-        restrict_sr = true;
-        header += subreddit;
-    }
     query = query.replace(/^(sub)?reddit|\/?r\/\w+/gi, "");
     header += " " + query;
     re = re.data.children;
