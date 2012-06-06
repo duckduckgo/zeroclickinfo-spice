@@ -70,32 +70,32 @@ congressMemberItems = new Array();
 
 function ddg_spice_congress_member(response) {
     var member = response.results[0];
-    var pronoun = (member.gender == 'M' ? "he" : "she");
-    var pronounPosessive = (member.gender == 'M' ? "his" : "her");
-    var content = ''; 
-    var header = "Congress member ";
-    header += (member.url != "" ?
-            "<a href='" + member.url + "'>"
-                + member.first_name + " " + member.middle_name
-                + " " + member.last_name + "</a>"
-            : member.first_name + " " + member.middle_name
-                + " " + member.last_name);
-    header += (member.twitter_id != "" ?
-            " (<a href='https://twitter.com/#!/" + member.twitter_id
-                + "'>@" + member.twitter_id + "</a>)"
-            : "");    
-    content += member.first_name + " " + member.middle_name
-                + " " + member.last_name;
-    content += " is the U.S. Representative for the "
-                + getOrdinal(member.roles[0].district)
-                + " congressional district of "
-                + state[member.roles[0].state] + ".";
-    content += " A " + parties[member.roles[0].party] + ", ";
-    content += pronoun + " has voted with " + pronounPosessive + " party ";
-    content += member.roles[0].votes_with_party_pct + "% of the time.";
-    content += "<br>";
-    content += "<i>Term</i>: " + member.roles[0].start_date + " - " + member.roles[0].end_date;
-    content += "<br>";
+    var pronoun = member.gender == 'M' ? "he" : "she";
+    var pronounPosessive = member.gender == 'M' ? "his" : "her";
+    var header = member.roles[0].title + " "
+                 + (member.url != "" ?
+                    "<a href='" + member.url + "'>"
+                        + member.first_name + " " + member.middle_name
+                        + " " + member.last_name + "</a>" :
+                    member.first_name + " " + member.middle_name
+                        + " " + member.last_name);
+                 + (member.twitter_id != "" ?
+                     + " (<a href='https://twitter.com/#!/"
+                     + member.twitter_id
+                     + "'>@" + member.twitter_id + "</a>)" : "");    
+    var content = member.first_name + " " + member.middle_name
+                  + " " + member.last_name
+                  + " is the U.S. " + member.roles[0].title + " for the "
+                  + getOrdinal(member.roles[0].district)
+                  + " congressional district of "
+                  + state[member.roles[0].state] + "."
+                  + " A " + parties[member.roles[0].party] + ", "
+                  + pronoun + " has voted with " + pronounPosessive + " party "
+                  + member.roles[0].votes_with_party_pct + "% of the time."
+                  + "<br>"
+                  + "<i>Term</i>: " + member.roles[0].start_date
+                  + " - " + member.roles[0].end_date
+                  + "<br>";
 
     cannonicalDDGURL = '/' + member.first_name + '_' + member.last_name;
     cannonicalDDGURL += '&o=json&callback=ddg_spice_congress_member_picture';
