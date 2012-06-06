@@ -7,7 +7,7 @@ function ddg_spice_imdb(movie) {
     
         // Main content and title
         items[0]['a'] = get_snippet(movie);
-        items[0]['h'] = '<b>' + movie['Title'] + '</b>' + ' (' + movie['Year'] + ')';
+        items[0]['h'] = movie['Title'];
 
         // Source name and url of the imdb page
         items[0]['s'] = 'IMDB';
@@ -20,23 +20,13 @@ function ddg_spice_imdb(movie) {
 
 function get_snippet(movie) {
     var snippet, div;
-    var space = "&nbsp;&nbsp;&nbsp;";
     
     snippet = d.createElement('span');
+    div = d.createElement('div');
+    div.innerHTML = movie['Title'] + " is a " + movie['Year'] + " movie, ";
+    div.innerHTML += "rated " + movie['imdbRating'] + ", ";
+    div.innerHTML += "starring " + movie['Actors'] + "."; 
+    snippet.appendChild(div);
 
-    // Rating, Runtime and IMDB Rating
-    div_rating = d.createElement('div');
-    div_rating.innerHTML = space + movie['Rated'];
-    div_rating.innerHTML+= space + "<big>" + movie['imdbRating'] + "</big>";
-    snippet.appendChild(div_rating);
-
-    // Movie plot and actors
-    div_plot = d.createElement('div');
-    div_plot.innerHTML = movie['Plot'];
-    div_plot.innerHTML += " Directed by <i>" + movie['Director'] + "</i>, ";
-    div_plot.innerHTML += "starring <i>" + movie['Actors'] + "</i>.";
-    
-    snippet.appendChild(div_plot);
-    
     return snippet;
 }
