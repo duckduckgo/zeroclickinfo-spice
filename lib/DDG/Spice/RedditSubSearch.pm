@@ -1,17 +1,14 @@
-package DDG::Spice::RedditSearch;
+package DDG::Spice::RedditSubSearch;
 
 use DDG::Spice;
 
-#triggers query_lc => qr#^(?:reddit|subreddit|/?r/)\s*(?:/?r/)?(\w+)\s+(\w*)#i;
-triggers query_lc =>
-    #qr#^(?:reddit|subreddit)?\s*(?:/?r/)?(\w+)\s+(\w*)#i;
-    qr#^(?:reddit|subreddit)?(?:\s*/?r/(\w+))?\s+(\w*)#i;
-spice to => 'http://www.reddit.com/r/$1/search.json?restrict_sr=true&q=$2&sort=relevance&jsonp=ddg_spice_reddit';
-spice from => '(?:([^~*)~~~([^~]*))';
+triggers query_lc => qr#^(?:subreddit|/r/|r/)\s*(?:/r/|r/)*(\w+)\s*$#i;
+spice to => 'http://www.reddit.com/r/$1/about.json?jsonp=ddg_spice_reddit';
 
 handle matches => sub {
-    return $_[0] . '~~~' . $_[1] unless not $_[1];
-    return '' . '~~~' . $_[0];
+    my ($rname) = @_;
+    return $rname if $rname;
+    return;
 };
 
 1;
