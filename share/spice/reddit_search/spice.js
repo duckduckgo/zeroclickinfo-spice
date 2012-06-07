@@ -25,12 +25,13 @@ function ddg_spice_reddit(re) {
     var content = '';
     for (var i=0; i < re.length; i++) {
         result = re[i].data;
-        content += "<a href='" + result.url + "'>" + result.title + "</a>";
-        content += " [<a href='http://www.reddit.com" + result.permalink + "'>" + result.num_comments;
-        content += (result.num_comments === 1) ? " comment</a>]" : " comments</a>]";
-        content += " (" + result.domain + ", " + result.score;
-        content += (result.score === 1) ? " point)" : " points)";
-        content += "<br>";
+        content += "<a href='" + result.url + "'>" + result.title + "</a>"
+                + " [<a href='http://www.reddit.com" + result.permalink
+                + "'>" + result.num_comments
+                + (result.num_comments === 1 ? " comment</a>]" : " comments</a>]")
+                + " (" + result.domain + ", " + result.score
+                + (result.score === 1 ? " point)" : " points)")
+                + "<br>";
         if (i == 4) break;
     }
     items = new Array();
