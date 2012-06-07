@@ -39,6 +39,14 @@ function ddg_spice_reddit(re) {
     items[0]["a"] = content;
     items[0]["h"] = header;
     items[0]["s"] = "Reddit";
-    items[0]["u"] = "http://www.reddit.com/r/duckduckgo/search?q=" + query + "&restrict_sr=" + restrict_sr + "&sort=relevance";
+    items[0]["u"] = "http://www.reddit.com/r/";
+    if (restrict_sr) {
+        items[0]["u"] += subreddit.substr(3)
+                      + "/search?q=" + query
+                      + "&restrict_sr=true&sort=relevance";
+    } else {
+        items[0]["u"] += "duckduckgo/search?q=" + query
+                      + "&restrict_sr=false&sort=relevance";
+    }
     nra(items);
 };
