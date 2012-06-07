@@ -10,8 +10,10 @@ function ddg_spice_reddit(re) {
         subreddit = query.split(' ')[1];
         restrict_sr = 'true';
     }
-    if (subreddit.charAt(0) != '/') {
-        subreddit = '/' + subreddit;
+    if (restrict_sr == 'true') {
+        if (subreddit.charAt(0) != '/') {
+            subreddit = '/' + subreddit;
+        }
         if (subreddit.charAt(1) != 'r') {
             subreddit = 'r/' + subreddit;
         }
