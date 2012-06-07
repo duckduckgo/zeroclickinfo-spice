@@ -15,7 +15,7 @@ function ddg_spice_reddit(re) {
             subreddit = '/' + subreddit;
         }
         if (subreddit.charAt(1) != 'r') {
-            subreddit = 'r/' + subreddit;
+            subreddit = '/r' + subreddit;
         }
     }
     if (restrict_sr) header += subreddit;
