@@ -19,7 +19,7 @@ function ddg_spice_google_plus(google) {
 		    div2 = d.createElement("div");
 
 		    link = d.createElement("a");
-		    link.href = '/?q=g%2B+id+' + item.id;
+		    link.href = '/?q=guserid: ' + item.id;
 		    
 		 //    if (item.displayName.length >= 10) {
 			// 	item.displayName = item.displayName.substring(0,8) + "...";
@@ -34,7 +34,7 @@ function ddg_spice_google_plus(google) {
 		    div.appendChild(link);
 
 		    link = d.createElement('a');
-		    link.href = '/?q=g%2B+id+' + item.id;
+		    link.href = '/?q=guserid: ' + item.id;
 		    link.innerHTML = item.displayName;
 		    div.appendChild(link);
 		    div.appendChild(d.createElement('br'));
