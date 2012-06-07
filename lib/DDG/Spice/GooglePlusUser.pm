@@ -5,7 +5,7 @@ use DDG::Spice;
 
 spice to => 'https://www.googleapis.com/plus/v1/people/$1?key={{ENV{DDG_SPICE_GOOGLE_PLUS_APIKEY}}}&callback={{callback}}';
 
-triggers startend => 'g+ id';
+triggers start => 'guserid:';
 
 handle remainder => sub {
 	my $query = $_;
