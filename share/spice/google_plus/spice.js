@@ -1,7 +1,7 @@
 function ddg_spice_google_plus(google) {
 	console.log(google);
 	var out = '';
-	if(google.kind === "plus#peopleFeed") {
+	if(google.kind === "plus#peopleFeed" && google.items.length > 0) {
 		var tmp, div, div2, link, img, item, limit;
 
 		//Sometimes, the API returns a lot of results even if we

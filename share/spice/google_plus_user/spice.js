@@ -30,7 +30,7 @@ function ddg_spice_google_plus_user(google) {
 				for(var i=0;i < google.urls.length && i < 2;i++) {
 					links += '<a href="' + google.urls[i].value + '">' + google.urls[i].value
 						+ '</a>';
-					if(i !== 1) {
+					if(i !== google.urls.length-1 && i !== 1) {
 						links += ', ';
 					}
 				}
@@ -39,12 +39,12 @@ function ddg_spice_google_plus_user(google) {
 		}
 		var items = new Array();
 		items[0] = new Array();
-		items[0]['a'] = out += '<div></div>';
+		items[0]['a'] = out += '<div style="clear:both;"></div>';
 		items[0]['h'] = google.displayName;
 		items[0]['s'] = 'Google+';
 		items[0]['u'] = google.url;
 		items[0]['f'] = 1;
-		items[0]['i'] =	google.image.url;
+		items[0]['i'] =	google.image.url.substring(0, google.image.url.length-6);
 		nra(items);
 	}
 }
