@@ -18,8 +18,8 @@ function ddg_spice_reddit(re) {
             subreddit = '/r' + subreddit;
         }
     }
+    query = query.replace(/^\s*(\/?r\/\w+|\w+\s+\w+)\s+/, "");
     if (restrict_sr) header += subreddit;
-    query = query.replace(/^(sub)?reddit|\/?r\/\w+/gi, "");
     header += " " + query;
     re = re.data.children;
     var content = '';
