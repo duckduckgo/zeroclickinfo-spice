@@ -7,9 +7,15 @@ spice to => 'http://www.reddit.com/r/$1/search.json?q=$2&restrict_sr=$3&sort=rel
 spice from => '(?:([^/]*)/([^/]*)/(true|false))';
 
 handle matches => sub {
-    return $_[1], $_[2], 'true' unless $_[0] eq "reddit"; #want it if subreddit or /?/r, don't want if "reddit"
-    return 'duckduckgo', $_[1] . " " . $_[2], 'false' if defined $_[1];
-    return 'duckduckgo', $_[2], 'false';
+    if ($_[0] eq 'subreddit') {
+        return $_[1], $_[2], 'true' if $_[1];
+        return;
+    } elsif ($_[0] eq 'reddit') {
+        return 'duckduckgo', $_[2], 'false';
+    } else {
+        return $_[1], $_[2], 'true';
+        return
+    }
 };
 
 1;
