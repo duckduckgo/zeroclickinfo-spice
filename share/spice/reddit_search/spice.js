@@ -17,9 +17,9 @@ function ddg_spice_reddit(re) {
         if (subreddit.charAt(1) != 'r') {
             subreddit = '/r' + subreddit;
         }
+        header += subreddit;
     }
-    query = query.replace(/^\s*(\/?r\/\w+|\w+\s+\w+)\s+/, "");
-    if (restrict_sr) header += subreddit;
+    query = query.replace(/^\s*(\/?r\/\w+|reddit|subreddit\s*\w+)\s+/, "");
     header += " " + query;
     re = re.data.children;
     var content = '';
