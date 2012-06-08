@@ -88,7 +88,7 @@ function ddg_spice_google_plus(google) {
 				google.urls.length -= 2;
 				for(var i=0;i < google.urls.length;i++) {
 					var re = /(?:https?:\/\/)?(?:www\.)?([^\/]+).*/;
-					var string =  google.urls[i].value;
+					var string =  google.urls[i].value.toLowerCase();
 					string = string.replace(re, "$1");
 					re = /\.com/;
 					string = string.replace(re, "");
