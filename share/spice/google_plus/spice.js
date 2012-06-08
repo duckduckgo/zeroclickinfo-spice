@@ -87,10 +87,14 @@ function ddg_spice_google_plus(google) {
 			if(google.urls.length > 2) {
 				google.urls.length -= 2;
 				for(var i=0;i < google.urls.length;i++) {
-					var re = /(?:https?:\/\/)?(?:www\.)?([^\.]+).*/;
+					var re = /(?:https?:\/\/)?(?:www\.)?([^\/]+).*/;
 					var string =  google.urls[i].value;
 					string = string.replace(re, "$1");
-					string = string.charAt(0).toUpperCase() + string.slice(1)
+					re = /\.com/;
+					string = string.replace(re, "");
+					if(string.search(/\./) === -1) {
+						string = string.charAt(0).toUpperCase() + string.slice(1)
+					}
 					links += '<a href="' + google.urls[i].value + '">' + string
 						+ '</a>';
 					if(i !== google.urls.length-1) {
