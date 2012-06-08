@@ -8,7 +8,6 @@ triggers startend => "fb", "facebook";
 spice to => 'http://graph.facebook.com/$1&callback={{callback}}';
 
 handle remainder => sub {
-    print $_;   
     $_ =~ s/ /./g;
     return $_;
     return;
