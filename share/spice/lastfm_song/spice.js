@@ -16,11 +16,21 @@ function ddg_spice_lastfm_song(lastfm) {
 		} else {
 			summary = '<i>Summary: </i> No summary info available.';
 		}
-		var artist = '<div style="artist"><i>Artist: </i><a href="/?q=' +  
+		var artist = '<div style="artist"><i>Artist: </i><a href="' +
 				' artist ' + lastfm.track.artist.name + '">' + lastfm.track.artist.name + '</a></div>';
-		items[0]['a'] = '<div style="song">' + summary + '</div>' 
-					+ album + artist + '<div style="clear:both;">';
-		items[0]['h'] = lastfm.track.name + ' by ' + lastfm.track.artist.name;
+		//Listen
+		var pandora = '<a href="/?q=!pandora ' + lastfm.track.artist.name + '">Pandora</a>';
+		var rdio = '<a href="/?q=!rdio ' + lastfm.track.artist.name + ' ' + lastfm.track.name + '">Rdio</a>';
+		
+		//More
+		var amazon = '<a href="/?q=!amazon ' + lastfm.track.artist.name + ' ' + lastfm.track.name + '">Amazon</a>';
+		var lyrics = '<a href="/?q=' + lastfm.track.artist.name + ' ' + lastfm.track.name + ' lyrics">Lyrics</a>';
+		
+		//Combine
+		var listen = pandora + ' | ' + rdio + ' | ';
+		var more = amazon + ' | ' + lyrics + ' | ';
+		
+		items[0]['a'] = '<div style="song">' + summary + '</div>' + album + artist + listen + more;
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
 		items[0]['u'] = lastfm.track.url;
