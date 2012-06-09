@@ -31,7 +31,8 @@ function ddg_spice_lastfm_song(lastfm) {
 		var listen = tinysong + ' | ' + rdio + ' | ';
 		var more = lyrics + ' | ';
 		
-		items[0]['a'] = '<div style="song">' + summary + '</div>' + album + artist + listen + more;
+		items[0]['a'] = '<div style="song">' + summary + '</div>' + album + artist + '<div style="clear:both;"></div>'
+			+ listen + more;
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
 		items[0]['u'] = lastfm.track.url;
