@@ -20,13 +20,15 @@ function ddg_spice_lastfm_song_search(lastfm) {
 		    	encodeURIComponent(item.artist);
 		    
 		    var name = item.name;
-		 //    if (item.name.length >= 10) {
-			// 	name = item.name.substring(0,8) + "...";
-			// }
+		    if (item.name.length >= 20) {
+				name = item.name.substring(0,20) + "...";
+			}
 
 		    img = d.createElement('img');
 		    if(item.image) {
 		    	img.src = item.image[1]["#text"];
+		    	img.width = '80';
+		    	img.height = '80';
 			}
 		    YAHOO.util.Dom.setStyle(img, "margin", '0 auto 0 auto');
 		    YAHOO.util.Dom.setStyle(div,'margin-bottom', '10px');
