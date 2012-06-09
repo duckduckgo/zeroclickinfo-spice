@@ -22,10 +22,12 @@ function ddg_spice_facebook (res)
 function fb_user(res)
 {
     var out = '';
-    var locale = res['locale'] ? '<i>Locale:</i> ' + res['locale'] + '<br>' : '';
-    var gender = res['gender'] ? '<i>Gender:</i> ' + res['gender'] + '<br>' : '';
+    var locale = res['locale'] ? '<i>Locale:</i> ' + res['locale'] + '<br>'         : '';
+    var gender = res['gender'] ? '<i>Gender:</i> ' + res['gender'] + '<br>'         : '';
+    var username = res['username'] ? '<i>Username:</i> ' + res['username'] + '<br>' : '';
          
     out += '<b>' + res['name'] + '</b><br>'
+        +  username
         +  locale
         +  gender;
     
