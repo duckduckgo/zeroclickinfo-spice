@@ -19,16 +19,17 @@ function ddg_spice_lastfm_song(lastfm) {
 		var artist = '<div style="artist"><i>Artist: </i><a href="' +
 				' artist ' + lastfm.track.artist.name + '">' + lastfm.track.artist.name + '</a></div>';
 		//Listen
-		var pandora = '<a href="/?q=!pandora ' + lastfm.track.artist.name + '">Pandora</a>';
+		//var pandora = '<a href="/?q=!pandora ' + lastfm.track.artist.name + '">Pandora</a>';
 		var rdio = '<a href="/?q=!rdio ' + lastfm.track.artist.name + ' ' + lastfm.track.name + '">Rdio</a>';
-		
+		var tinysong = '<a href="http://tinysong.com/#/result/' + lastfm.track.artist.name + ' ' + lastfm.track.name + '">Grooveshark</a>';
+
 		//More
-		var amazon = '<a href="/?q=!amazon ' + lastfm.track.artist.name + ' ' + lastfm.track.name + '">Amazon</a>';
+		//var amazon = '<a href="/?q=!amazon ' + lastfm.track.artist.name + ' ' + lastfm.track.name + '">Amazon</a>';
 		var lyrics = '<a href="/?q=' + lastfm.track.artist.name + ' ' + lastfm.track.name + ' lyrics">Lyrics</a>';
 		
 		//Combine
-		var listen = pandora + ' | ' + rdio + ' | ';
-		var more = amazon + ' | ' + lyrics + ' | ';
+		var listen = tinysong + ' | ' + rdio + ' | ';
+		var more = lyrics + ' | ';
 		
 		items[0]['a'] = '<div style="song">' + summary + '</div>' + album + artist + listen + more;
 		items[0]['s'] = 'Last.fm';

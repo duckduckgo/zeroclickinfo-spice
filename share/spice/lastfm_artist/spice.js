@@ -1,6 +1,6 @@
 function ddg_spice_lastfm_artist(lastfm) {
 	console.log(lastfm);
-	if(lastfm.artist.mbid) {
+	if(lastfm.artist) {
 		var similar = '<div style="similar"><i>Similar: </i>';
 		for(var i = 0;i < lastfm.artist.similar.artist.length;i++) {
 			var artist = lastfm.artist.similar.artist[i];
