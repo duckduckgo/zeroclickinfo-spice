@@ -1,6 +1,6 @@
 function ddg_spice_rhymes(response) {
     var query = decodeURIComponent(rq);
-    query = query.replace(/what|rhymes|with| |\?/gi, "")
+    query = query.replace(/^(what|rhymes( with)?)| |\?/gi, "")
     var words = new Array();
 	for (var i = 0; i < response.length; i++) {
         word = response.splice(Math.random()*response.length, 1)[0];
