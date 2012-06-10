@@ -17,7 +17,7 @@ function ddg_spice_lastfm_album(lastfm) {
 			songs += '<i>Songs: </i>';
 			if(lastfm.album.tracks.track.length > 0) {
 				for(var i = 0;i < lastfm.album.tracks.track.length;i++) {
-					var start = '<a href="' + lastfm.album.tracks.track[i].url + '">';
+					var start = '<a href="/?q=' + lastfm.album.tracks.track[i].name + ' song by '  + lastfm.album.artist + '">';
 					songs += start + lastfm.album.tracks.track[i].name + '</a>';
 					if(i !== lastfm.album.tracks.track.length-1) {
 						songs += ', ';

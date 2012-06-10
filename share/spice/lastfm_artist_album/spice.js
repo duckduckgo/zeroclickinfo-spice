@@ -53,7 +53,7 @@ function ddg_spice_lastfm_artist_album(lastfm) {
 			    out += div2.innerHTML;
 			}
 		} else {
-			out = '';
+			window.location = '/?q=' + lastfm.topalbums.album.name + ' album by ' + lastfm.topalbums.album.artist.name;
 		}
 		var items = new Array();
 		items[0] = new Array();
