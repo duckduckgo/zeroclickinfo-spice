@@ -24,7 +24,7 @@ function ddg_spice_lastfm_album(lastfm) {
 					}
 				}
 			} else {
-				var start = '<a href="' + lastfm.album.tracks.track.url + '">';
+				var start = '<a href="/?q=' + lastfm.album.tracks.track.name + ' song by ' +  lastfm.album.artist + '">';
 				songs += start + lastfm.album.tracks.track.name + '</a>';
 			}
 		} else {
