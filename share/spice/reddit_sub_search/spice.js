@@ -37,6 +37,7 @@ function ddg_spice_reddit(re) {
         content = "<div class='subreddit_description'><i>Description</i>: " + description + "</div>";
         content += "<div class='subreddit_subscribers'><i>Subscribers</i>: " + subscribers + "</div>";
 
+        content = content.replace(/---.*$/, "");
         items = new Array();
         items[0] = new Array();
         items[0]["a"] = content;
