@@ -1,13 +1,13 @@
 function ddg_spice_google_plus(google) {
-	console.log(google);
+    //	console.log(google);
 	var out = '';
 	if(google.kind === "plus#peopleFeed" && google.items.length > 0) {
 		var tmp, div, div2, link, img, item, limit;
 
 		//Sometimes, the API returns a lot of results even if we
 		//asked for only five. (e.g. coke)
-		if(google['items'].length > 5) {
-			limit = 5;
+		if(google['items'].length > 4) {
+			limit = 4;
 		} else {
 			limit = google['items'].length;
 		}
@@ -41,7 +41,7 @@ function ddg_spice_google_plus(google) {
 	      
 		    YAHOO.util.Dom.addClass(div, 'inline highlight_zero_click1 highlight_zero_click_wrapper');
 		    YAHOO.util.Dom.setStyle(div, "float", "left");
-		    YAHOO.util.Dom.setStyle(div, "margin", "10px 20px 10px 0px");
+		    YAHOO.util.Dom.setStyle(div, "margin", "0px 20px 10px 0px");
 		    YAHOO.util.Dom.setStyle(div, "padding", "5px");
 		    YAHOO.util.Dom.setStyle(div, "max-width", "80px");
 
@@ -52,7 +52,8 @@ function ddg_spice_google_plus(google) {
 
 		var items = new Array();
 		items[0] = new Array();
-		items[0]['a'] = out += '<div style="clear:both;"></div>';
+		//		items[0]['a'] = out += '<div style="clear:both;"></div>';
+		items[0]['a'] = out;
 		var query = DDG.get_query(); //"google+ this is a test"; 
 		var query = query.replace(/\s*(google\+|google\splus|g\+|gplus|\+)\s*/, "");
 		items[0]['h'] = 'Google+ Users (' + query + ')';
@@ -106,7 +107,8 @@ function ddg_spice_google_plus(google) {
 		}
 		var items = new Array();
 		items[0] = new Array();
-		items[0]['a'] = out += '<div style="clear:both;"></div>';
+		//		items[0]['a'] = out += '<div style="clear:both;"></div>';
+		items[0]['a'] = out;
 		items[0]['h'] = google.displayName;
 		items[0]['s'] = 'Google+';
 		items[0]['u'] = google.url;
