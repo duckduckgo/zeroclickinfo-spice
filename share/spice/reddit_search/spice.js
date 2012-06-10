@@ -2,7 +2,7 @@ function ddg_spice_reddit(re) {
     var query = decodeURIComponent(rq);
     var subreddit = query.match(/\/?r\/\w+/);
     var restrict_sr = false;
-    var header = "reddit.com";
+    var header = '(reddit)';
     if (subreddit) {
         subreddit = subreddit[0];
         restrict_sr = 'true';
@@ -17,10 +17,11 @@ function ddg_spice_reddit(re) {
         if (subreddit.charAt(1) != 'r') {
             subreddit = '/r' + subreddit;
         }
-        header += subreddit;
+        header = "(<a href='http://reddit.com" + subreddit
+               + "'>" + subreddit + "</a>)";
     }
     query = query.replace(/^\s*(\/?r\/\w+|reddit|subreddit\s*\w+)\s+/, "");
-    header += " " + query;
+    header = query + " " + header;
     re = re.data.children;
     var content = '';
     for (var i=0; i < re.length; i++) {
