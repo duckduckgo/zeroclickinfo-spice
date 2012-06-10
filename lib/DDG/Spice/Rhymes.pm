@@ -2,6 +2,9 @@ package DDG::Spice::Rhymes;
 
 use DDG::Spice;
 
+attribution web => ['http://dylansserver.com','Dylan Lloyd'],
+            email => ['dylan@dylansserver.com','Dylan Lloyd'];
+
 triggers any => "rhyme", "rhymes";
 
 spice to => 'http://rhymebrain.com/talk?function=getRhymes&word=$1&jsonp={{callback}}';
