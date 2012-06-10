@@ -1,5 +1,5 @@
 function ddg_spice_google_plus(google) {
-	//console.log(google);
+	console.log(google);
 	var out = '';
 	var query = DDG.get_query(); //"google+ this is a test"; 
 	var re = /\s*(google\+|google\splus|g\+|gplus|google\+\suser|g\+\suser|google\splus\suser|google\+\sprofile|g\+\sprofile|gplus\sprofile|gplus\suser|g\splus\sprofile|g\splus\suser)\s*/;
@@ -9,8 +9,8 @@ function ddg_spice_google_plus(google) {
 
 		//Sometimes, the API returns a lot of results even if we
 		//asked for only five. (e.g. coke)
-		if(google['items'].length > 5) {
-			limit = 5;
+		if(google['items'].length > 4) {
+			limit = 4;
 		} else {
 			limit = google['items'].length;
 		}
@@ -92,6 +92,16 @@ function ddg_spice_google_plus(google) {
 			}
 			out += '<div class="google_orgs"><i>Organizations: </i>' + orgs + '</div>';
 		} 
+		//Check if the person has lived in several places.
+		if(google.placesLived) {
+			var places = '';
+			for(var i=0;i < google.placesLived.length;i++) {
+				if(google.placesLived[i].primary) {
+					places += google.placesLived[i].value;
+					out += '<div class="google_places"><i>Lives in: </i>' + places + '</div>';
+				}
+			}
+		}
 		//Check if the person has links to show.
 		if(google.urls) {
 			var links = '', unique = [];
@@ -100,7 +110,7 @@ function ddg_spice_google_plus(google) {
 				for(var i=0;i < google.urls.length;i++) {
 					if(unique.indexOf(google.urls[i].value) === -1) {
 						unique.push(google.urls[i].value);
-						var re = /(?:https?:\/\/)?(?:www\.)?([^\/]+).*/;
+						var re = /(?:https?:\/\/)?(?:www\.)?([^\/]+)\/?([^\/]+)?.*/;
 						var string =  google.urls[i].value.toLowerCase();
 						string = string.replace(re, "$1");
 						re = /\.com/;
@@ -108,8 +118,8 @@ function ddg_spice_google_plus(google) {
 						if(string.search(/\./) === -1) {
 							string = string.charAt(0).toUpperCase() + string.slice(1)
 						}
-						links += '<a href="' + google.urls[i].value + '">' + string
-							+ '</a>';
+						links += '<a href="' + google.urls[i].value + '" title="' + google.urls[i].value + '">' + 
+							string + '</a>';
 						links += ', ';
 					}
 				}
