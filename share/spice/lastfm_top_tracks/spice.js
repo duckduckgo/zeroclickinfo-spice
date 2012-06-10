@@ -2,7 +2,7 @@ function ddg_spice_lastfm_top_tracks(lastfm) {
 	if(lastfm.tracks.track){
 		var songs = '<div style="top">';
 		for(var i = 0;i < lastfm.tracks.track.length;i++) {
-			songs += '<a href="' + lastfm.tracks.track[i].url + '">' + 
+			songs += '<a href="/?q=' + lastfm.tracks.track[i].name + ' song by ' + lastfm.tracks.track[i].artist.name + '">' + 
 					lastfm.tracks.track[i].name + '</a>' + ' by ' + 
 					lastfm.tracks.track[i].artist.name + '<br>';
 		}
