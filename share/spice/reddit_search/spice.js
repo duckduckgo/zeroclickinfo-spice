@@ -2,7 +2,7 @@ function ddg_spice_reddit(re) {
     var query = decodeURIComponent(rq);
     var subreddit = query.match(/\/?r\/\w+/);
     var restrict_sr = false;
-    var header = "reddit.com";
+    var header = '(reddit)';
     if (subreddit) {
         subreddit = subreddit[0];
         restrict_sr = 'true';
@@ -11,16 +11,12 @@ function ddg_spice_reddit(re) {
         restrict_sr = 'true';
     }
     if (restrict_sr == 'true') {
-        if (subreddit.charAt(0) != '/') {
-            subreddit = '/' + subreddit;
-        }
-        if (subreddit.charAt(1) != 'r') {
-            subreddit = '/r' + subreddit;
-        }
+        subreddit.replace(/^\/?r\//g, "");
+        header = "(<a href='http://reddit.com" + subreddit
+               + "'>subreddit " + subreddit + "</a>)";
     }
-    query = query.replace(/^\s*(\/?r\/\w+|\w+\s+\w+)\s+/, "");
-    if (restrict_sr) header += subreddit;
-    header += " " + query;
+    query = query.replace(/^\s*(\/?r\/\w+|reddit|subreddit\s*\w+)\s+/, "");
+    header = query + " " + header;
     re = re.data.children;
     var content = '';
     for (var i=0; i < re.length; i++) {
@@ -48,5 +44,7 @@ function ddg_spice_reddit(re) {
         items[0]["u"] += "duckduckgo/search?q=" + query
                       + "&restrict_sr=false&sort=relevance";
     }
+    items[0]["force_big_header"] = true;
+    items[0]["force_space_after"] = true;
     nra(items);
 };
