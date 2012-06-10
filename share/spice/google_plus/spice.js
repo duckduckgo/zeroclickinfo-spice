@@ -1,6 +1,9 @@
 function ddg_spice_google_plus(google) {
-	console.log(google);
+	//console.log(google);
 	var out = '';
+	var query = DDG.get_query(); //"google+ this is a test"; 
+	var re = /\s*(google\+|google\splus|g\+|gplus|google\+\suser|g\+\suser|google\splus\suser|google\+\sprofile|g\+\sprofile|gplus\sprofile|gplus\suser|g\splus\sprofile|g\splus\suser)\s*/;
+	var query = query.replace(re, "");
 	if(google.kind === "plus#peopleFeed" && google.items.length > 0) {
 		var tmp, div, div2, link, img, item, limit;
 
@@ -53,8 +56,6 @@ function ddg_spice_google_plus(google) {
 		var items = new Array();
 		items[0] = new Array();
 		items[0]['a'] = out += '<div style="clear:both;"></div>';
-		var query = DDG.get_query(); //"google+ this is a test"; 
-		var query = query.replace(/\s*(google\+|google\splus|g\+|gplus|\+)\s*/, "");
 		items[0]['h'] = 'Google+ Users (' + query + ')';
 		items[0]['s'] = 'Google+';
 		items[0]['f'] = 1;
@@ -66,16 +67,26 @@ function ddg_spice_google_plus(google) {
 		if (google.tagline) {
 			out += '<div class="google_profile"><i>Introduction: </i> ' + google.tagline + '</div>';
 		} else if(google.aboutMe) {
-			out += '<div class="google_profile"><i>Introduction: </i> ' + google.aboutMe.substring(0, 200) + '...</div>';
+			out += '<div class="google_profile"><i>Introduction: </i> ' + google.aboutMe.substring(0, 200);
+			if(google.aboutMe.length > 200) {
+				out += '...' + '</div>';
+			} else {
+				out += '</div>';
+			}
 		}
 
 		//Check for organizations
 		if(google.organizations) {
-			var orgs = '';
-			for(var i=0;i < google.organizations.length && i < 2;i++) {
+			var orgs = '', length;
+			if(google.organizations.length > 2) {
+				length = 2;
+			} else {
+				length = google.organizations.length;
+			}
+			for(var i=0;i < length;i++) {
 				orgs += google.organizations[i].name + 
 					(google.organizations[i].title ? ' (' + google.organizations[i].title + ')' : '');
-				if(i !== google.organizations.length-1) {
+				if(i !== length-1) {
 					orgs += ', ';
 				}
 			}
@@ -83,23 +94,27 @@ function ddg_spice_google_plus(google) {
 		} 
 		//Check if the person has links to show.
 		if(google.urls) {
-			var links = '';
+			var links = '', unique = [];
 			if(google.urls.length > 2) {
 				google.urls.length -= 2;
 				for(var i=0;i < google.urls.length;i++) {
-					var re = /(?:https?:\/\/)?(?:www\.)?([^\/]+).*/;
-					var string =  google.urls[i].value.toLowerCase();
-					string = string.replace(re, "$1");
-					re = /\.com/;
-					string = string.replace(re, "");
-					if(string.search(/\./) === -1) {
-						string = string.charAt(0).toUpperCase() + string.slice(1)
-					}
-					links += '<a href="' + google.urls[i].value + '">' + string
-						+ '</a>';
-					if(i !== google.urls.length-1) {
+					if(unique.indexOf(google.urls[i].value) === -1) {
+						unique.push(google.urls[i].value);
+						var re = /(?:https?:\/\/)?(?:www\.)?([^\/]+).*/;
+						var string =  google.urls[i].value.toLowerCase();
+						string = string.replace(re, "$1");
+						re = /\.com/;
+						string = string.replace(re, "");
+						if(string.search(/\./) === -1) {
+							string = string.charAt(0).toUpperCase() + string.slice(1)
+						}
+						links += '<a href="' + google.urls[i].value + '">' + string
+							+ '</a>';
 						links += ', ';
 					}
+				}
+				if(links.substring(links.length-2, links.length) === ', ') {
+					links = links.substring(0, links.length-3);
 				}
 				out += '<div class="google_links"><i>Links: </i>' + links + '</div>';
 			}
@@ -107,7 +122,7 @@ function ddg_spice_google_plus(google) {
 		var items = new Array();
 		items[0] = new Array();
 		items[0]['a'] = out += '<div style="clear:both;"></div>';
-		items[0]['h'] = google.displayName;
+		items[0]['h'] = google.displayName + ' (Google+)';
 		items[0]['s'] = 'Google+';
 		items[0]['u'] = google.url;
 		items[0]['f'] = 1;
