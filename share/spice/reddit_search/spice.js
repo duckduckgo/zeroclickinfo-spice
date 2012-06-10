@@ -48,5 +48,6 @@ function ddg_spice_reddit(re) {
         items[0]["u"] += "duckduckgo/search?q=" + query
                       + "&restrict_sr=false&sort=relevance";
     }
+    items[0]["force_big_header"] = true;
     nra(items);
 };

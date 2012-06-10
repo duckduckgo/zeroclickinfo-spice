@@ -43,6 +43,7 @@ function ddg_spice_reddit(re) {
         items[0]["h"] = title;
         items[0]["s"] = "Reddit";
         items[0]["u"] = "http://www.reddit.com" + url;
+        items[0]["force_big_header"] = true;
 
         //console.log(content);
         nra(items);
