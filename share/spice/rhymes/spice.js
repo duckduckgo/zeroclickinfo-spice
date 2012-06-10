@@ -16,6 +16,8 @@ function ddg_spice_rhymes(response) {
 	items[0]['h'] = "Rhymes with " + query;
 	items[0]['s'] = 'RhymeBrain';
 	items[0]['u'] = 'http://rhymebrain.com/';
+    items[0]["force_big_header"] = true;
+    items[0]["force_space_after"] = true;
 	
 	nra(items);
 }
