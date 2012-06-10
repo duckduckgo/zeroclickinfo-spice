@@ -49,5 +49,6 @@ function ddg_spice_reddit(re) {
                       + "&restrict_sr=false&sort=relevance";
     }
     items[0]["force_big_header"] = true;
+    items[0]["force_space_after"] = true;
     nra(items);
 };
