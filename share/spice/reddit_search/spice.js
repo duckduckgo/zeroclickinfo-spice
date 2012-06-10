@@ -11,14 +11,9 @@ function ddg_spice_reddit(re) {
         restrict_sr = 'true';
     }
     if (restrict_sr == 'true') {
-        if (subreddit.charAt(0) != '/') {
-            subreddit = '/' + subreddit;
-        }
-        if (subreddit.charAt(1) != 'r') {
-            subreddit = '/r' + subreddit;
-        }
+        subreddit.replace(/^\/?r\//g, "");
         header = "(<a href='http://reddit.com" + subreddit
-               + "'>" + subreddit + "</a>)";
+               + "'>subreddit " + subreddit + "</a>)";
     }
     query = query.replace(/^\s*(\/?r\/\w+|reddit|subreddit\s*\w+)\s+/, "");
     header = query + " " + header;
