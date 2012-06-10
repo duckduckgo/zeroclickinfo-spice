@@ -16,7 +16,7 @@ function ddg_spice_lastfm_song(lastfm) {
 		} else {
 			summary = '<i>Summary: </i> No summary info available.';
 		}
-		var artist = '<div style="artist"><i>Artist: </i><a href="' +
+		var artist = '<div style="artist"><i>Artist: </i><a href="/?q=' +
 				' artist ' + lastfm.track.artist.name + '">' + lastfm.track.artist.name + '</a></div>';
 		//Listen
 		//var pandora = '<a href="/?q=!pandora ' + lastfm.track.artist.name + '">Pandora</a>';
