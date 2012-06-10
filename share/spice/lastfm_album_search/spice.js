@@ -2,15 +2,24 @@ function ddg_spice_lastfm_album_search(lastfm) {
 	console.log(lastfm);
 	var out = '';
 	if(lastfm.results.albummatches.album) {
-		var tmp, div, div2, link, img, item, limit;
+		var tmp, div, div2, link, img, item, limit, toggle=true;
 		//Limit the results
 		if(lastfm.results.albummatches.album.length > 5) {
 			limit = 5;
 		} else {
 			limit = lastfm.results.albummatches.album.length;
 		}
+		//If there is only one album.
+		if(!lastfm.results.albummatches.album.length) {
+			toggle = false;
+			limit = 1;
+		}
 		for (var i = 0;i < limit;i++) {
-		    item = lastfm.results.albummatches.album[i];
+			if(toggle) {
+		    	item = lastfm.results.albummatches.album[i];
+			} else {
+				item = lastfm.results.albummatches.album;
+			}
 
 		    div = d.createElement("div");
 		    div2 = d.createElement("div");

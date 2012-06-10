@@ -2,15 +2,23 @@ function ddg_spice_lastfm_song_search(lastfm) {
 	console.log(lastfm);
 	var out = '';
 	if(lastfm.results.trackmatches.track) {
-		var tmp, div, div2, link, img, item, limit;
+		var tmp, div, div2, link, img, item, limit, toggle=true;
 		//Limit the results
 		if(lastfm.results.trackmatches.track.length > 5) {
 			limit = 5;
 		} else {
 			limit = lastfm.results.trackmatches.track.length;
 		}
+		if(!lastfm.results.trackmatches.track.length) {
+			toggle = false;
+			limit = 1;
+		}
 		for (var i = 0;i < limit;i++) {
-		    item = lastfm.results.trackmatches.track[i];
+			if(toggle) {
+		    	item = lastfm.results.trackmatches.track[i];
+			} else {
+				item = lastfm.results.trackmatches.track;
+			}
 
 		    div = d.createElement("div");
 		    div2 = d.createElement("div");

@@ -2,16 +2,24 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
 	console.log(lastfm);
 	var out = '';
 	if(lastfm.toptracks.track) {
-		var tmp, div, div2, link, img, item, limit;
+		var tmp, div, div2, link, img, item, limit, toggle=true;
 		//Limit the results
 		if(lastfm.toptracks.track.length > 5) {
 			limit = 5;
 		} else {
 			limit = lastfm.toptracks.track.length;
 		}
+		//If there is only one artist.
+		if(!lastfm.toptracks.track.length) {
+			toggle = false;
+			limit = 1;
+		}
 		for (var i = 0;i < limit;i++) {
-		    item = lastfm.toptracks.track[i];
-
+			if(toggle) {
+		    	item = lastfm.toptracks.track[i];
+			} else {
+				item = lastfm.toptracks.track;
+			}
 		    div = d.createElement("div");
 		    div2 = d.createElement("div");
 
