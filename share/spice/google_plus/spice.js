@@ -23,10 +23,6 @@ function ddg_spice_google_plus(google) {
 
 		    link = d.createElement("a");
 		    link.href = '/?q=google%2B+userid:' + item.id;
-		    
-		 //    if (item.displayName.length >= 10) {
-			// 	item.displayName = item.displayName.substring(0,8) + "...";
-			// }
 
 		    img = d.createElement('img');
 		    img.src = item.image.url;
@@ -132,8 +128,7 @@ function ddg_spice_google_plus(google) {
 				out += '<div class="google_links"><i>Links: </i>' + links + '</div>';
 			}
 		}
-		var items = new Array();
-		items[0] = new Array();
+		var items = [[]];
 		items[0]['a'] = out;
 		items[0]['h'] = google.displayName + ' (Google+)';
 		items[0]['s'] = 'Google+';
