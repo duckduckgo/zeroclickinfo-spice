@@ -15,6 +15,8 @@ function ddg_spice_google_plus(google) {
 			limit = google['items'].length;
 		}
 
+		out += '<div style="float:left;">';
+
 		for (var i = 0;i < limit;i++) {
 		    item = google.items[i];
 
@@ -40,7 +42,7 @@ function ddg_spice_google_plus(google) {
 	      
 		    YAHOO.util.Dom.addClass(div, 'inline highlight_zero_click1 highlight_zero_click_wrapper');
 		    YAHOO.util.Dom.setStyle(div, "float", "left");
-		    YAHOO.util.Dom.setStyle(div, "margin", "10px 20px 10px 0px");
+		    YAHOO.util.Dom.setStyle(div, "margin", "0px 20px 0px 0px");
 		    YAHOO.util.Dom.setStyle(div, "padding", "5px");
 		    YAHOO.util.Dom.setStyle(div, "max-width", "80px");
 
@@ -48,6 +50,8 @@ function ddg_spice_google_plus(google) {
 
 		    out += div2.innerHTML;
 		}
+
+		out += '</div>';
 
 		var items = new Array();
 		items[0] = new Array();
