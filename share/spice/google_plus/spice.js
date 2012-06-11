@@ -66,9 +66,9 @@ function ddg_spice_google_plus(google) {
 	} else if(google.kind === "plus#person") {
 		//Check if the user has a tagline
 		//Tagline or the about me page can be displayed here.
-		if (google.tagline) {
+		if (google.tagline && google.tagline !== '<br>') {
 			out += '<div class="google_profile"><i>Introduction: </i> ' + google.tagline + '</div>';
-		} else if(google.aboutMe) {
+		} else if(google.aboutMe && google.aboutMe !== '<br>') {
 			out += '<div class="google_profile"><i>Introduction: </i> ' + google.aboutMe.substring(0, 200);
 			if(google.aboutMe.length > 200) {
 				out += '...' + '</div>';
