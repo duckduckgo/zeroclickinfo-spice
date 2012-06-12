@@ -51,7 +51,7 @@ function ddg_spice_lastfm_album(lastfm) {
 		items[0]['i'] = lastfm.album.image[2]["#text"];
 
 		items[1]['h'] = lastfm.album.name + ' by ' + lastfm.album.artist;
-		items[1]['t'] = 'Tracks by ' + lastfm.album.artist;
+		items[1]['t'] = 'Tracks in ' + lastfm.album.name;
 		items[1]['f'] = 1;
 		items[1]['a'] = '<div style="songs">' + songs + '</div>';
 		items[1]['s'] = 'Last.fm';			

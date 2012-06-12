@@ -70,19 +70,5 @@ function ddg_spice_lastfm_artist_album(lastfm) {
 		items[0]['h'] = 'Albums from ' + query;
 		items[0]['u'] = 'http://www.last.fm/search?q=' + query + '&type=album';
 		nra(items,1,1);
-	} 
-	// else {
-	// 	var items = new Array();
-	// 	items[0] = new Array();
-	// 	var query = DDG.get_query();  
-	// 	var query = query.replace(/\s*(?:albums?|records?|cds?)\s*(?:by|from|of)\s*/, "");
-	// 	items[0]['a'] = "Sorry, we can't find albums from " + query + 
-	// 		'. Try <a href="/?q=' + query + ' albums">' + query + ' albums' +
-	// 		'</a> to search for albums featuring the artist. Thanks!'  + '<div style="clear:both;"></div>';
-	// 	items[0]['h'] = 'Albums from ' + query;
-	// 	items[0]['s'] = 'Last.fm';
-	// 	items[0]['f'] = 1;
-	// 	items[0]['u'] = 'http://www.last.fm/search?q=' + query + '&type=album';
-	// 	nra(items);
-	// }
+	}
 }
