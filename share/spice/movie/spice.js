@@ -27,8 +27,8 @@ function ddg_spice_movie(movie) {
         snippet = '';
 
         // Check presence of synopsis, and create element
-         if (result.synopsis) synopsis = result.synopsis.substring(0,140) + "...";
--        else if (result.critics_consensus && result.critics_consensus.length > 0) synopsis = result.critics_consensus.substring(0,140) + "...";
+        if (result.synopsis) synopsis = result.synopsis.substring(0,140) + "...";
+        else if (result.critics_consensus && result.critics_consensus.length > 0) synopsis = result.critics_consensus.substring(0,140) + "...";
         else synopsis = '';
 
         var names = [];
