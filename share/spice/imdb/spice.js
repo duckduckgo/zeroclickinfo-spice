@@ -28,7 +28,7 @@ function get_snippet(movie) {
     if (movie["Rated"] === "R" || movie["Rated"] === "NC-17"){
         rating = "an ";
     } else {
-        rating = "a "
+        rating = "a ";
     }
 
     rating += movie["Rated"]
