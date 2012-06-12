@@ -8,6 +8,7 @@ function ddg_spice_imdb(movie) {
         items[0]['s'] = 'IMDb';
         items[0]['u'] = 'http://www.imdb.com/title/' + movie['imdbID'];
         items[0]['f'] = 1;
+	items[0]['i'] = movie['Poster'];
         items[0]['force_big_header'] = true;
         items[0]['force_space_after'] = true;
 
@@ -44,7 +45,7 @@ function get_snippet(movie) {
     } 
 
     if (movie["Plot"]){
-        div.innerHTML += "<br>" + movie["Plot"];
+        div.innerHTML += " " + movie["Plot"];
     }
     
     snippet.appendChild(div);
