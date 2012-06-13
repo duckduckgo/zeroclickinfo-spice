@@ -5,7 +5,7 @@ use DDG::Spice;
 
 spice to => 'http://ws.audioscrobbler.com/2.0/?format=json&method=geo.gettoptracks&country=$1&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}';
 
-triggers query_lc => qr/tops?\s+(?:10\s)?(?:tracks?|charts?|songs?|musics?)(?:\s+in\s+(?:the\s+)?)?(.*)/;
+triggers query_lc => qr/(?:tops?|popular)\s+(?:10\s)?(?:tracks?|charts?|songs?|musics?)(?:\s+in\s+(?:the\s+)?)?(.*)/;
 
 handle query_lc => sub {
 	if($1) {
