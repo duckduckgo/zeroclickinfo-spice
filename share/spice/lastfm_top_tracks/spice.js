@@ -1,13 +1,19 @@
 function ddg_spice_lastfm_top_tracks(lastfm) {
 	console.log(lastfm);
 	if(lastfm.toptracks.track){
-		var songs = '<div style="top">', length = 10;
+		var songs = '<div style="top">', length = 10, table = '';
+		table += '<table>';
+		table +='<tr><td>Track</td><td>Artist</td></tr>';
 		for(var i = 0;i < 10;i++) {
-			songs += '<a href="/?q=' + lastfm.toptracks.track[i].name + ' song by ' + lastfm.toptracks.track[i].artist.name + '">' + 
-					lastfm.toptracks.track[i].name + '</a>' + ' by ' + 
-					lastfm.toptracks.track[i].artist.name + '<br>';
+			table += '<tr>';
+			table += '<td>'+ '<a href="/?q=' + lastfm.toptracks.track[i].name + ' song by ' + lastfm.toptracks.track[i].artist.name + '">' + 
+					lastfm.toptracks.track[i].name + '</a>' + '</td>';
+			table += '<td>' + '<a href="/?q=' + 'artist ' + lastfm.toptracks.track[i].artist.name + '">' +
+					lastfm.toptracks.track[i].artist.name + '</a>' + '</td>';
+			table += '</tr>';
 		}
-		songs += '</div>';
+		table += '</table>';
+		songs += table + '</div>';
 		var items = new Array();
 		items[0] = new Array();
 		items[0]['a'] = songs;
