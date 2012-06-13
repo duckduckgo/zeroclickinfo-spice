@@ -10,7 +10,7 @@ spice from => '(.*)-(.*)';
 #$2 == artist
 #$3 == artist
 #$4 == similar
-triggers query_lc => qr/(?:(?:(similar)\s+)?(?:bands?|musicians?|artists?)\s+(\w+(?:\s+\w+)*))|(?:(\w+(?:\s+\w+)*)\s+(?:(similar)\s+)?(?:bands?|musicians?|artists?))/i;
+triggers query_lc => qr/(?:(?:(similar)\s+)?(?:bands?|musicians?|artists?)\s+(?:to\s+)?(\w+(?:\s+\w+)*))|(?:(\w+(?:\s+\w+)*)\s+(?:(similar)\s+)?(?:bands?|musicians?|artists?))/i;
 
 handle query_lc => sub {
 	if($1 && $2) {
