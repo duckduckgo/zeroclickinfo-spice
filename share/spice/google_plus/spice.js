@@ -114,7 +114,7 @@ function ddg_spice_google_plus(google) {
 						var re = /(?:https?:\/\/)?(?:www\.)?([^\/]+)\/?.*/;
 						var string =  google.urls[i].value.toLowerCase();
 						string = string.replace(re, "$1");
-						re = /\.com/;
+						re = /\.(?:com|net|org)/;
 						string = string.replace(re, "");
 						links += '<a href="' + google.urls[i].value + '" title="' + google.urls[i].value + '">' + 
 							string + '</a>';
