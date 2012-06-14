@@ -34,11 +34,11 @@ function ddg_spice_lastfm_album_search(lastfm) {
 			}
 
 		    img = d.createElement('img');
-		    if(item.image) {
-		    	img.src = item.image[1]["#text"];
-		    	img.width = '80';
-		    	img.height = '80';
-			}
+		 //    if(item.image) {
+		 //    	img.src = item.image[1]["#text"];
+		 //    	img.width = '80';
+		 //    	img.height = '80';
+			// }
 		    YAHOO.util.Dom.setStyle(img, "margin", '0 auto 0 auto');
 		    YAHOO.util.Dom.setStyle(div,'margin-bottom', '10px');
 		    YAHOO.util.Dom.setStyle(div,'text-align', 'center');

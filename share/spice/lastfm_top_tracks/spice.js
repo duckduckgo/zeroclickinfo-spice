@@ -22,7 +22,7 @@ function ddg_spice_lastfm_top_tracks(lastfm) {
 		items[0]['s'] = 'Last.fm';
 		items[0]['u'] = 'http://www.last.fm/charts/tracks/top';
 		items[0]['f'] = 1;
-		items[0]['i'] = 'http://cdn.last.fm/flatness/apple-touch-icon.png';
+		//items[0]['i'] = 'http://cdn.last.fm/flatness/apple-touch-icon.png';
 		nra(items);
 	}
 }

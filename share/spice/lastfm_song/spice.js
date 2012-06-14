@@ -37,7 +37,7 @@ function ddg_spice_lastfm_song(lastfm) {
 		items[0]['f'] = 1;
 		items[0]['u'] = lastfm.track.url;
 		if(lastfm.track.album) {
-			items[0]['i'] = lastfm.track.album.image[2]["#text"];
+		//	items[0]['i'] = lastfm.track.album.image[2]["#text"];
 		}
 		nra(items);
 	}
