@@ -6,10 +6,9 @@ function ddg_spice_zipcode(result) {
        var places = result['places']['place'];
        
        var loc_string = "";
-       if (place['locality2']) loc_string += place['locality2'] + ', ';
-       if (place['locality1']) loc_string += place['locality1'] + ', ';
-       if (place['admin2']) loc_string += place['admin2'] + ', ';
-       if (place['admin1']) loc_string += place['admin1'] + ', ';
+       for (x in ['locality2', 'locality1', 'admin2', 'admin1']) {
+    	   if (place[x]) loc_string += place[x] + ', ';
+       }
        if (place['country']) loc_string += place['country'];
        
        snippet = format_snippet(place, places);    	   
