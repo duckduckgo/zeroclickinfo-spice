@@ -6,8 +6,8 @@ function ddg_spice_in_theaters(rotten) {
 		more += out;
 		for(var i = 0;i < rotten.movies.length;i++) {
 			var bullet = '<li><a href="' + rotten.movies[i].links.alternate + '">' + rotten.movies[i].title + 
-					'</a> (' + rotten.movies[i].mpaa_rating + ') (' + rotten.movies[i].ratings.critics_rating + 
-					')</li>';
+					'</a> (' + rotten.movies[i].mpaa_rating + ') <i>' + rotten.movies[i].ratings.critics_rating + 
+					'</i></li>';
 			if(i < 5) {
 				out += bullet;
 			} else {
