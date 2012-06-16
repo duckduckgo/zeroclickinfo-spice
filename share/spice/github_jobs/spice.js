@@ -6,7 +6,7 @@ function ddg_spice_github_jobs(github) {
 		more += out;
 		for(var i = 0;i < github.length;i++) {
 			var bullet = '<li><a href="' + github[i].url + '">' + github[i].title + 
-					'</a> (' + github[i].company + ') in ' + github[i].location + '</li>';
+					'</a> ' + github[i].location + ' [' + github[i].company + ']</li>';
 			if(i < 5) {
 				out += bullet;
 			} else {
