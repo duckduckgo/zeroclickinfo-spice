@@ -54,24 +54,41 @@ function ddg_spice_movie(movie) {
         if (result.title.length > 50) header += '...';
 
         //Movie Score
-        var score = 'with an audience score of'+ result.audience_score +'%'
+        //var score = 'with an audience score of'+ result.audience_score +'%';
 
-        var rating; 
+        var rating, audience, critics, reaction;
+        var currentTime = new Date();
 
-        if (result.mpaa_rating === "R" || result.mpaa_rating === "NC-17"){
-           rating = "an ";
-        } else {
-            rating = "a ";
+        // Is a release date planned?
+        if (result.release_dates.theater) {
+            var opened = new Date(result.release_dates.theater + " 00:00:00");
+            rating = (currentTime - opened < 0) ? "an upcoming " : "";
         }
+        else if (result.year > currentTime.getFullYear()) {
+            rating = "an upcoming ";
+        }
+        reaction = (rating) ? " want to see)" : " approved)";
+        
+        // Who's reviewed it?
+        audience = (result.ratings.audience_score === -1) ? "" : result.ratings.audience_score+ "% audience";
+        critics = (result.ratings.critics_score === -1) ? "" : result.ratings.critics_score+ "% critic"+reaction;        
+        audience += (critics) ? ", " : reaction;
 
+        if (!rating){
+            if (result.mpaa_rating === "R" || result.mpaa_rating === "NC-17" || result.mpaa_rating == "Unrated"){
+               rating = "an ";
+            } else {
+                rating = "a ";
+            }
+        }
         rating += result.mpaa_rating;
-
+        
         // Call nra function as per Spice Plugin Guidelines
         items = [[]];
         items[0]['a'] = result.title + ' ('+result.year+ ') is ' 
                         +rating+ ' movie ('
-                        +result.ratings.audience_score+ '% audience, '
-                        +result.ratings.critics_score+ '% critic approved)'
+                        +audience
+                        +critics
                         +cast + '. '
                         +synopsis;
 
