@@ -1,23 +1,22 @@
-function ddg_spice_deb_version(alts) 
+function ddg_spice_deb_version(ir) 
 {
-    var out, tmp, div, div2, link, img, item;
+    var out, tmp, div, div2, link, img, item, program;
     out = '';
 
-    console.log("test1")
+    console.log(ir);
 
-
-    var snippet = '';
-    if (ir['status'] == 'OK') {
-	snippet = d.createElement('span');
-	snippet.appendChild(ir['abstract']);
-	items = new Array();
-	items[0] = new Array();
-	items[0]['a'] = snippet;
-	items[0]['h'] = '';
-	items[0]['s'] = 'Expatistan';
-	items[0]['u'] = ir['source_url'];
-	nra(items);
-    }
+    if (ir == ""){ return 1;};
+    items = new Array();
+    items[0] = new Array();
+    program = ir.split("|")[0];
+    console.log(program);
+    ir = ir.split('\n');
+    ir = '<p>'+ ir.join('</p><p>') + '</p>';
+    items[0]['a'] = ir;
+    items[0]['h'] = 'Versions of ' + program + ' in Debian';
+    items[0]['s'] = 'qa.debian.org';
+    items[0]['u'] = 'http://qa.debian.org/madison.php?package=' + program + '&table=debian&a=&c=&s=#';
+    nra(items);
   
     // // validity check
     // if (alts['Items']) {
