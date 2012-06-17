@@ -5,8 +5,9 @@ use DDG::Spice;
 triggers any => "debian version";
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
-spice to => 'http://qa.debian.org/madison.php?package=$1&table=all&a=&c=&s=&text=on#';
+spice to => 'http://qa.debian.org/madison.php?package=$1&table=debian&a=&c=&s=&text=on#';
 
+spice wrap_string_callback => 1;
 
 handle query_lc => sub {
     if (/^debian version (\S*)$/i) {
