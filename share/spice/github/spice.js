@@ -25,6 +25,7 @@ function ddg_spice_github(re) {
     items[0]["h"] = query + ' (github)';
     items[0]["s"] = "github";
     items[0]["u"] = "http://www.github.com";
+    items[0]["force_big_header"] = true;
         
     nra(items);
 };
