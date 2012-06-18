@@ -1,6 +1,6 @@
 function ddg_spice_github_jobs(github) {
-	var query = DDG.get_query();
 	if(github.length > 0) {
+		var query = DDG.get_query();
 		console.log(github);
 		var out = '', more = '';
 		out += '<div style="jobs"><ul>';
