@@ -1,4 +1,5 @@
 function ddg_spice_github_jobs(github) {
+	var query = DDG.get_query();
 	if(github.length > 0) {
 		console.log(github);
 		var out = '', more = '';
@@ -17,12 +18,13 @@ function ddg_spice_github_jobs(github) {
 		more += '</ul>';
 		var items = [[],[]];
 		items[0]['a'] = out;
-		items[0]['h'] = 'Github Jobs';
+		items[0]['h'] = query + ' (Github Jobs)';
 		items[0]['s'] = 'Github';
 		items[0]['u'] = 'https://jobs.github.com/';
 		items[0]['f'] = 1;
+		items[0]['force_big_header'] = true;
 
-		if(github.length >= 5) {
+		if(github.length > 5) {
 			items[1]['a'] = more;
 			items[1]['t'] = 'More jobs';
 			items[1]['s'] = 'Github';
