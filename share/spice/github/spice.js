@@ -14,8 +14,15 @@ function ddg_spice_github(re) {
     if (re.length == 1) {
         re = re[0];
         console.log(re);
+        var url = re.homepage.replace(/^(?!https?:\/\/)/, "http://");
         content += "<i>Author</i>: " + re.owner + "<br>"
-                +  re.watchers + " watching<br>"
+                +  "<i>Homepage</i>: " + "<a href='"
+                +  url + "'>" + re.homepage + "</a><br>"
+                +  "<i>" + re.watchers + " watching, "
+                +  re.forks + "<a href='"
+                +  re.url + "/network'> forks</a>, "
+                +  re.open_issues + "<a href='" + re.url
+                +  "/issues'> issues</a></i>"
                 +  "<br>";
     }
 
