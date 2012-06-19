@@ -3,13 +3,10 @@ function ddg_spice_github(re) {
     query = query.replace(/^\s*github\s+/, "");
 
     var content = '';
-    re = re.repositories;
-    blah = re;
     for (i = 0; i < re.length; i++) {
         content += "<a href='" + re[i].url + "'>" + re[i].name + '</a>'
                 +  ": " + re[i].description
                 +  "<br>";
-        //if (i == 5) break;
     }
     var more = "http://www.github.com/search?q=" + encodeURI(query);
     if (re.length == 1) {
