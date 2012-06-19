@@ -56,9 +56,8 @@ function format_snippet(candidate){
 	snippet = d.createElement('span');
     div = d.createElement('div');
     div.innerHTML = candidate[0]['name'] + ' has received a total of $' + addCommas(candidate[0]['total_received']) + ' campaigning for the office of ' + candidate[0]['seat'].split(':')[1] + '.';    
-    var industries = nrj("http://transparencydata.com/api/1.0/aggregates/pol/f99f7d244bbf4325b31312f75643f8da/contributors/sectors.json?apikey=81ae602f16f34cbc9fe2643c7691f3d3&callback=ddg_spice_sunlight_campaign_finance_industry");
-    div.innerHTML += '<br>Top industries: ' + industries; 
-
+    div.innerHTML += '<br>Top industries: <br>' + nrj("http://transparencydata.com/api/1.0/aggregates/pol/f99f7d244bbf4325b31312f75643f8da/contributors/sectors.json?apikey=81ae602f16f34cbc9fe2643c7691f3d3&callback=ddg_spice_sunlight_campaign_finance_industry");
+    
     snippet.appendChild(div);
 
     return snippet;
@@ -68,8 +67,8 @@ function ddg_spice_sunlight_campaign_finance_industry(response) {
 	var industry_list = "";
 	for (i=0;i<response.length;i++) {
 		industry_list += response[i]['sector'] + ": $" + addCommas(response[i]['amount']) + '<br>';
-	}
-	console.log(industry_list);
+	};
+	console.log("list from _industry: " +industry_list);
 	return industry_list;
 	
 }
