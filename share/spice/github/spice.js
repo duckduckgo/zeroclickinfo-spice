@@ -2,6 +2,8 @@ function ddg_spice_github(re) {
     var query = decodeURIComponent(rq);
     query = query.replace(/^\s*github\s+/, "");
 
+    re = re.repositories;
+
     var content = '';
     for (i = 0; i < re.length; i++) {
         content += "<a href='" + re[i].url + "'>" + re[i].name + '</a>'
