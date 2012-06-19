@@ -1,6 +1,6 @@
 function ddg_spice_deb_version(ir) 
 {
-    var out, tmp, div, div2, link, img, item, program, line;
+    var out, tmp, div, div2, link, img, item, program, line, version;
     out = '';
 
     console.log(ir);
@@ -11,13 +11,15 @@ function ddg_spice_deb_version(ir)
     program = ir.split("|")[0];
     console.log(program);
     ir = ir.split('\n');
-    out += '<table border="2" cellpadding="16">\n';
+    out += '<table id="debianVersions">\n';
+    out += '<tr><th>Debian Version</th><th>Package Version</th><th>Architecture</th></tr>';
     for (var i = 0; i < ir.length-1; i++) {
 	out+= '<tr>';
-	line = ir[i].split("|")
-	out += '<td>' + line[2] + "</td>"
-	out += '<td>' + line[1] + "</td>"
-	out += '<td>' + line[3] + "</td>"
+	line = ir[i].split("|");
+	out += '<td>' + line[2] + "</td>";
+	version = line[1].replace(/-/, "\&\#8209;");
+	out += '<td>' + version  + "</td>";
+	out += '<td>' + line[3] + "</td>";
 	out += '</tr>\n';
     } 
     out+= "</table>";
