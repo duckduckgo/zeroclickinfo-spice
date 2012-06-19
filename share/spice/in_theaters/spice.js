@@ -5,21 +5,26 @@ function ddg_spice_in_theaters(rotten) {
 		out += '<div style="movies"><ul>';
 		more += out;
 		for(var i = 0;i < rotten.movies.length;i++) {
-			var rating = rotten.movies[i].ratings.critics_rating;
-			var score = rotten.movies[i].ratings.critics_score;
-			var joined = '';
-			if(rating) {
-				joined = rating + ' - ' +  score + '%';
-			} else {
-				joined = 'not reviewed yet';
-			}
-			var bullet = '<li><a href="' + rotten.movies[i].links.alternate + '">' + rotten.movies[i].title + 
-					'</a> (' + rotten.movies[i].mpaa_rating + ') <i>' + joined + '</i></li>';
-			if(i < 5) {
-				out += bullet;
-			} else {
-				more += bullet;
-			}
+			for(var i = 0;i < rotten.movies.length;i++) {
+            var movie = rotten.movies[i];
+
+            if (movie.ratings.critics_score === -1){
+                rating = "Not Yet Reviewed";
+            } else {
+                rating = movie.ratings.critics_rating + ' - ' + rotten.movies[i].ratings.critics_score +'%';
+            }
+            
+            var bullet = '<li><a href="' + movie.links.alternate + '">'
+                       + movie.title +'</a> ('
+                       + movie.mpaa_rating + ') <i>' 
+                       + rating
+                       + '</i></li>';
+            if(i < 5) {
+                out += bullet;
+            } else {
+                more += bullet;
+            }
+        }
 		}
 		out += '</ul></div>';
 		more += '</ul></div>';
