@@ -3,7 +3,7 @@ function ddg_spice_github_jobs(github) {
 		var query = DDG.get_query();
 		var re = /(?:\s*(?:i\s+|we\s+)?(?:need|want|deserve|seek|get)\s+(?:an?\s+)?)?(?:(.+)\s+)(?:jobs?|work|employment)(?:\s+(?:in\s+)?(.+))?/;
 		var moreat = query.replace(re, "https://jobs.github.com/positions?description=$1&location=$2");
-		console.log(github);
+		//console.log(github);
 		var out = '', more = '';
 		out += '<div style="jobs"><ul>';
 		more += out;
@@ -30,7 +30,7 @@ function ddg_spice_github_jobs(github) {
 			items[1]['a'] = more;
 			items[1]['t'] = 'More jobs';
 			items[1]['s'] = 'Github';
-			items[1]['u'] = moreat;
+			items[1]['u'] =  encodeURIComponent(moreat);
 			items[1]['f'] = 1;
 		}
 		nra(items);
