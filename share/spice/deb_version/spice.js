@@ -8,8 +8,8 @@ function ddg_spice_deb_version(ir)
     if (ir == ""){ return 1;};
     items = new Array();
     items[0] = new Array();
-    program = ir.split("|")[0];
-    console.log(program);
+    program = ir.split("|")[0].replace(/ /g, "");
+    
     ir = ir.split('\n');
     out += '<table id="debianVersions">\n';
     out += '<tr><th>Debian Version</th><th>Package Version</th><th>Architecture</th></tr>';
