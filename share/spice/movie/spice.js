@@ -31,8 +31,6 @@ function ddg_spice_movie(movie) {
         else if (result.critics_consensus && result.critics_consensus.length > 0) synopsis = result.critics_consensus.substring(0,140) + "...";
         else synopsis = '';
 
-        synopsis = '';
-
         var names = [];
         // Loop through abridged cast members, add to cast element
         for (var i=0; i < result.abridged_cast.length; i++){
@@ -41,7 +39,7 @@ function ddg_spice_movie(movie) {
             var name = result.abridged_cast[i].name;
             var url = 'http://www.rottentomatoes.com/celebrity/' + result.abridged_cast[i].id + '/';
 
-            names.push(pre+'<a href="'+url+'">'+name+'</a>');
+            names.push(pre+'<a onlcick="fl=1" href="'+url+'">'+name+'</a>');
         }
 
         var cast = '';
@@ -56,18 +54,27 @@ function ddg_spice_movie(movie) {
         if (result.title.length > 50) header += '...';
 
         //Movie Score
-        var score = 'with an audience score of'+result.audience_score+'%'
+        var score = 'with an audience score of'+ result.audience_score +'%'
+
+        var rating; 
+
+        if (result.mpaa_rating === "R" || result.mpaa_rating === "NC-17"){
+           rating = "an ";
+        } else {
+            rating = "a ";
+        }
+
+        rating += result.mpaa_rating;
 
         // Call nra function as per Spice Plugin Guidelines
         items = [[]];
-        items[0]['a'] = result.title + ' is a '+result.year+ ' movie (' 
-                        +result.mpaa_rating+ ', '
-                        +result.ratings.audience_score+ '%, '
+        items[0]['a'] = result.title + ' ('+result.year+ ') is ' 
+                        +rating+ ' movie ('
+                        +result.ratings.audience_score+ '% audience, '
                         +result.ratings.critics_score+ '% critic approved)'
-                        +cast + '. ' 
+                        +cast + '. '
                         +synopsis;
-                        
-                        
+
         items[0]['h'] = header;
 
         // Source name and url for the More at X link.
@@ -75,7 +82,7 @@ function ddg_spice_movie(movie) {
         items[0]['u'] = result.links.alternate;
 
         // Force vertical expansion (no scrollbar)
-        items[0]['f'] = 1;
+        // items[0]['f'] = 1;
 
         // Thumbnail url
         items[0]['i'] = poster; 

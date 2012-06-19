@@ -56,8 +56,6 @@ function ddg_spice_google_plus(google) {
 		var items = new Array();
 		items[0] = new Array();
 		items[0]['a'] = out;
-		var query = DDG.get_query(); //"google+ this is a test"; 
-		var query = query.replace(/\s*(google\+|google\splus|g\+|gplus|\+)\s*/, "");
 		items[0]['h'] = 'Google+ Users (' + query + ')';
 		items[0]['s'] = 'Google+';
 		items[0]['f'] = 1;
@@ -113,14 +111,11 @@ function ddg_spice_google_plus(google) {
 				for(var i=0;i < google.urls.length;i++) {
 					if(unique.indexOf(google.urls[i].value) === -1) {
 						unique.push(google.urls[i].value);
-						var re = /(?:https?:\/\/)?(?:www\.)?([^\/]+)\/?([^\/]+)?.*/;
+						var re = /(?:https?:\/\/)?(?:www\.)?([^\/]+)\/?.*/;
 						var string =  google.urls[i].value.toLowerCase();
 						string = string.replace(re, "$1");
-						re = /\.com/;
+						re = /\.(?:com|net|org)/;
 						string = string.replace(re, "");
-						if(string.search(/\./) === -1) {
-							string = string.charAt(0).toUpperCase() + string.slice(1)
-						}
 						links += '<a href="' + google.urls[i].value + '" title="' + google.urls[i].value + '">' + 
 							string + '</a>';
 						links += ', ';
