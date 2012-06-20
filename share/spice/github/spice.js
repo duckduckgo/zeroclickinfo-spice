@@ -18,11 +18,11 @@ function ddg_spice_github(re) {
         content += "<i>Author</i>: " + re.owner + "<br>"
                 +  "<i>Homepage</i>: " + "<a href='"
                 +  url + "'>" + re.homepage.replace(/^https?:\/\/|/$/gi, '')
-                + "</a><br>" + "<i>" + re.watchers + " watching, "
+                + "</a><br>" + "<i>Activity</i>: " + re.watchers + " watching, "
                 +  re.forks + "<a href='"
                 +  re.url + "/network'> forks</a>, "
                 +  re.open_issues + "<a href='" + re.url
-                +  "/issues'> issues</a></i>"
+                +  "/issues'> issues</a>"
                 +  "<br>";
         more = re.url;
     }
