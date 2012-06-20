@@ -30,8 +30,8 @@ function ddg_spice_github(re) {
     items = new Array();
     items[0] = new Array();
     items[0]["a"] = content;
-    items[0]["h"] = query + ' (github)';
-    items[0]["s"] = "github";
+    items[0]["h"] = query + ' (GitHub)';
+    items[0]["s"] = "GitHub";
     items[0]["u"] = more;
     items[0]["force_big_header"] = true;
         
