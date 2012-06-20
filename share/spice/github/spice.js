@@ -5,12 +5,12 @@ function ddg_spice_github(re) {
 
     re = re.data.repositories;
 
-    var content = '';
+    var content = '<ul>';
     for (i = 0; i < re.length; i++) {
-        content += "<a href='" + re[i].url + "'>" + re[i].name + '</a>'
-                +  ": " + re[i].description
-                +  "<br>";
+        content += "<li><a href='" + re[i].url + "'>" + re[i].name + '</a>'
+                +  ": " + re[i].description + "</li>";
     }
+    content += "</ul>";
     var more = "http://www.github.com/search?q=" + encodeURI(query);
     if (re.length == 1) {
         re = re[0];
