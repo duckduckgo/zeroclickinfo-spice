@@ -74,7 +74,7 @@ function ddg_spice_movie(movie) {
         
         // Who's reviewed it?
         audience = (result.ratings.audience_score === -1) ? "" : result.ratings.audience_score+ "% audience";
-        critics = (result.ratings.critics_score === -1) ? "" : result.ratings.critics_score+ "% critic"+reaction;        
+        critics = (result.ratings.critics_score === -1) ? "" : result.ratings.critics_score+ "% critics"+reaction;        
         audience += (critics) ? ", " : reaction;
 
         if (!rating){
