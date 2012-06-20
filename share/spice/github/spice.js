@@ -16,10 +16,11 @@ function ddg_spice_github(re) {
         re = re[0];
         console.log(re);
         var url = re.homepage.replace(/^(?!https?:\/\/)/, "http://");
-        content += "<i>Author</i>: " + re.owner + "<br>"
+        content =  "<i>Description</i>: " + re.description + "<br>"
+                +  "<i>Author</i>: " + re.owner + "<br>"
                 +  "<i>Homepage</i>: " + "<a href='"
                 +  url + "'>" + re.homepage.replace(/^https?:\/\/|\/$/gi, '')
-                + "</a><br>" + "<i>Activity</i>: " + re.watchers + " watching, "
+                +  "</a><br>" + "<i>Activity</i>: " + re.watchers + " watching, "
                 +  re.forks + "<a href='"
                 +  re.url + "/network'> forks</a>, "
                 +  re.open_issues + "<a href='" + re.url
