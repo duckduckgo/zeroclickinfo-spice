@@ -56,16 +56,19 @@ function ddg_spice_movie(movie) {
         //Movie Score
         //var score = 'with an audience score of'+ result.audience_score +'%';
 
-        var rating, audience, critics, reaction;
+        var rating, audience, critics, reaction, releaseDate;
         var currentTime = new Date();
 
         // Is a release date planned?
         if (result.release_dates.theater) {
-            var opened = new Date(result.release_dates.theater + " 00:00:00");
+            var rDate = result.release_dates.theater.split("-");
+            var opened = new Date(rDate[0], rDate[1]-1, rDate[2], 00, 00, 00); // Date uses month-1 notation
             rating = (currentTime - opened < 0) ? "an upcoming " : "";
+            releaseDate = (rating) ? opened.toDateString().slice(4) : result.year;
         }
         else if (result.year > currentTime.getFullYear()) {
             rating = "an upcoming ";
+            releaseDate = result.year;
         }
         reaction = (rating) ? " want to see)" : " approved)";
         
@@ -75,6 +78,7 @@ function ddg_spice_movie(movie) {
         audience += (critics) ? ", " : reaction;
 
         if (!rating){
+            releaseDate = result.year;
             if (result.mpaa_rating === "R" || result.mpaa_rating === "NC-17" || result.mpaa_rating == "Unrated"){
                rating = "an ";
             } else {
@@ -92,7 +96,7 @@ function ddg_spice_movie(movie) {
                         +cast + '. '
                         +synopsis;
 
-        items[0]['h'] = header;
+        items[0]['h'] = header+" ("+releaseDate+")";
 
         // Source name and url for the More at X link.
         items[0]['s'] = 'Rotten Tomatoes';
