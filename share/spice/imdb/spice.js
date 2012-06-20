@@ -8,7 +8,7 @@ function ddg_spice_imdb(movie) {
         items[0]['s'] = 'IMDb';
         items[0]['u'] = 'http://www.imdb.com/title/' + movie['imdbID'];
         items[0]['f'] = 1;
-	items[0]['i'] = movie['Poster'];
+	    items[0]['i'] = movie['Poster'];
         items[0]['force_big_header'] = true;
         items[0]['force_space_after'] = true;
 
@@ -23,23 +23,39 @@ function get_snippet(movie) {
     snippet = d.createElement('span');
     div = d.createElement('div');
     
-    var runtime = movie["Runtime"].replace(/\s/g, "").replace("min", "m");
-    var rating;
-    
-    if (movie["Rated"] === "R" || movie["Rated"] === "NC-17"){
-        rating = "an ";
-    } else {
-        rating = "a ";
+    var Rating, Score, Runtime;
+
+    if (movie["Runtime"] == "N/A"){
+        Runtime = "";
+    }else{
+        Runtime = " (" + movie["Runtime"].replace(/\s/g, "").replace("min", "m") + ", ";
     }
 
-    rating += movie["Rated"]
-    
+    if (movie["imdbRating"] == "N/A"){
+        Score = "";
+    }else{
+        Score = "IMDb rating " + movie["imdbRating"].replace(/\s/g, "") + "/10) ";
+    }
+
+    if (movie["Rated"] == "N/A"){
+        Rating = "unrated";
+    } else {
+        Rating = movie["Rated"].replace(/\s/g, "");
+    }
+     
+    if (Rating === "R" || Rating === "NC-17" || Rating === "unrated") {
+        Rating = "an " + Rating;
+    } else {
+        Rating = "a " + Rating;
+    }
+        
+
     div.innerHTML = movie['Title'] + " ("
                   + movie['Year'] + ") "
-                  + "is " + rating + " movie ("
-                  + runtime + ", "
-                  + "IMDb rating " + movie['imdbRating'] + "/10) "
-                  + "starring " + movie['Actors'];
+                  + "is " + Rating + " movie"
+                  + Runtime
+                  + Score
+                  + " starring " + movie['Actors'];
     if (movie["Director"]){
         div.innerHTML += ", and directed by " + movie["Director"] + ".";
     } 
