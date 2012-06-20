@@ -1,6 +1,7 @@
 function ddg_spice_github(re) {    
     var query = decodeURIComponent(rq);
     query = query.replace(/^\s*github\s+/, "");
+    var header = query;
 
     re = re.data.repositories;
 
@@ -25,12 +26,13 @@ function ddg_spice_github(re) {
                 +  "/issues'> issues</a>"
                 +  "<br>";
         more = re.url;
+        header = re.name;
     }
 
     items = new Array();
     items[0] = new Array();
     items[0]["a"] = content;
-    items[0]["h"] = query + ' (GitHub)';
+    items[0]["h"] = header + ' (GitHub)';
     items[0]["s"] = "GitHub";
     items[0]["u"] = more;
     items[0]["force_big_header"] = true;
