@@ -17,7 +17,7 @@ function ddg_spice_github(re) {
         var url = re.homepage.replace(/^(?!https?:\/\/)/, "http://");
         content += "<i>Author</i>: " + re.owner + "<br>"
                 +  "<i>Homepage</i>: " + "<a href='"
-                +  url + "'>" + re.homepage.replace(/^https?:\/\/|/$/gi, '')
+                +  url + "'>" + re.homepage.replace(/^https?:\/\/|\/$/gi, '')
                 + "</a><br>" + "<i>Activity</i>: " + re.watchers + " watching, "
                 +  re.forks + "<a href='"
                 +  re.url + "/network'> forks</a>, "
