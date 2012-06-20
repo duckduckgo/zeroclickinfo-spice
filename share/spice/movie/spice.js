@@ -27,7 +27,7 @@ function ddg_spice_movie(movie) {
         snippet = '';
 
         // Check presence of synopsis, and create element
-        if (result.synopsis) synopsis = result.synopsis.substring(0,140) + "...";
+        if (result.synopsis) synopsis = result.synopsis.substring(0,135) + "...";
         else if (result.critics_consensus && result.critics_consensus.length > 0) synopsis = result.critics_consensus.substring(0,140) + "...";
         else synopsis = '';
 
@@ -56,7 +56,7 @@ function ddg_spice_movie(movie) {
         //Movie Score
         //var score = 'with an audience score of'+ result.audience_score +'%';
 
-        var rating, audience, critics, reaction, releaseDate;
+        var rating, audience, critics, reaction, releaseDate, tomato;
         var currentTime = new Date();
 
         // Is a release date planned?
@@ -73,9 +73,12 @@ function ddg_spice_movie(movie) {
         reaction = (rating) ? " want to see)" : " approved)";
         
         // Who's reviewed it?
-        audience = (result.ratings.audience_score === -1) ? "" : result.ratings.audience_score+ "% audience";
-        critics = (result.ratings.critics_score === -1) ? "" : result.ratings.critics_score+ "% critics"+reaction;        
-        audience += (critics) ? ", " : reaction;
+        audience = (result.ratings.audience_score === -1) ? "" : result.ratings.audience_score+ "% audience"+reaction;
+        critics = (result.ratings.critics_score === -1) ? "" : result.ratings.critics_score+ "% critics, ";
+        critics += (audience) ? "" : reaction;
+
+        // Is it fresh or rotten?
+        tomato = (result.ratings.critics_rating) ? result.ratings.critics_rating+", " : "";
 
         if (!rating){
             releaseDate = result.year;
@@ -91,8 +94,9 @@ function ddg_spice_movie(movie) {
         items = [[]];
         items[0]['a'] = result.title + ' ('+result.year+ ') is ' 
                         +rating+ ' movie ('
-                        +audience
+                        +tomato
                         +critics
+                        +audience
                         +cast + '. '
                         +synopsis;
 
