@@ -14,8 +14,8 @@ function ddg_spice_github_jobs(github) {
 		out += '</ul>';
 		var items = [[]];
 		items[0]['a'] = out;
-		items[0]['h'] = query + ' (Github Jobs)';
-		items[0]['s'] = 'Github';
+		items[0]['h'] = query + ' (GitHub Jobs)';
+		items[0]['s'] = 'GitHub';
 		items[0]['u'] = moreat;
 		items[0]['force_big_header'] = true;
 
