@@ -12,34 +12,34 @@ function ddg_spice_in_theaters(rotten) {
 		var out = '', length, executed = false;
 		out += '<div style="movies"><ul>';
 		for(var i = 0;i < rotten.movies.length;i++) {
-            var movie = rotten.movies[i];
-            var rating;
-            if (movie.ratings.critics_score === -1) {
-            	rating = "Not Yet Reviewed";
-            } else {
-            	rating = movie.ratings.critics_rating + ' - ' + movie.ratings.critics_score +'%';
-            }
-            
+			var movie = rotten.movies[i];
+			var rating;
+			if (movie.ratings.critics_score === -1) {
+				rating = "Not Yet Reviewed";
+			} else {
+				rating = movie.ratings.critics_rating + ' - ' + movie.ratings.critics_score +'%';
+			}
+
 			var bullet = '<li><a href="' + movie.links.alternate + '" '
 						+ 'title="' + (movie.critics_consensus ? movie.critics_consensus : '') + '">'
-                    	+ movie.title +'</a> ('
-                    	+ movie.mpaa_rating + ') <i>' 
-                    	+ rating
-                   		+ '</i></li>';
-            if(mpaa) {
-            	if(mpaa === movie.mpaa_rating) {
-            		executed = true;
+						+ movie.title +'</a> ('
+						+ movie.mpaa_rating + ') <i>' 
+						+ rating
+						+ '</i></li>';
+			if(mpaa) {
+				if(mpaa === movie.mpaa_rating) {
+					executed = true;
 					out += bullet;
 				}
 			} else {
 				executed = true;
 				out += bullet;
 			}
-        }
-        //Check if the
-        if(!executed) {
-        	return;
-        }
+		}
+		//Check if the
+		if(!executed) {
+			return;
+		}
 		out += '</ul></div>';
 		var items = [[]];
 		items[0]['a'] = out;
