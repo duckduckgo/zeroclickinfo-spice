@@ -42,9 +42,11 @@ function ddg_spice_in_theaters(rotten) {
 
 			var hour = 0;
 			var min = 0;
-			if(movie.runtime > 60) {
+			if(movie.runtime >= 60) {
 				hour = Math.floor(movie.runtime / 60);
 				min = movie.runtime - (hour * 60);
+			} else {
+				min = movie.runtime;
 			}
 			//Display the movie
 			var bullet = '<li title="' + movie.synopsis + '"><a href="' + movie.links.alternate + '" title="' + movie.synopsis + '">'
