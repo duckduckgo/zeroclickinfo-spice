@@ -1,46 +1,54 @@
 function ddg_spice_in_theaters(rotten) {
 	if(rotten.movies.length > 0) {
 		console.log(rotten);
-		var out = '', length, more = '';
+		var query = DDG.get_query().split(' ');
+		var mpaa;
+		for(var i = 0;i < query.length;i++) {
+			if(query[i] === 'r' || query[i] === 'pg' || query[i] === 'pg-13' || query[i] === 'g') {
+				mpaa = query[i].toUpperCase();
+				console.log(mpaa);
+			}
+		}
+		var out = '', length, executed = false;
 		out += '<div style="movies"><ul>';
-		more += out;
 		for(var i = 0;i < rotten.movies.length;i++) {
-			for(var i = 0;i < rotten.movies.length;i++) {
             var movie = rotten.movies[i];
-
-            if (movie.ratings.critics_score === -1){
-                rating = "Not Yet Reviewed";
+            var rating;
+            if (movie.ratings.critics_score === -1) {
+            	rating = "Not Yet Reviewed";
             } else {
-                rating = movie.ratings.critics_rating + ' - ' + rotten.movies[i].ratings.critics_score +'%';
+            	rating = movie.ratings.critics_rating + ' - ' + movie.ratings.critics_score +'%';
             }
             
-            var bullet = '<li><a href="' + movie.links.alternate + '">'
-                       + movie.title +'</a> ('
-                       + movie.mpaa_rating + ') <i>' 
-                       + rating
-                       + '</i></li>';
-            if(i < 5) {
-                out += bullet;
-            } else {
-                more += bullet;
-            }
+			var bullet = '<li><a href="' + movie.links.alternate + '" '
+						+ 'title="' + (movie.critics_consensus ? movie.critics_consensus : '') + '">'
+                    	+ movie.title +'</a> ('
+                    	+ movie.mpaa_rating + ') <i>' 
+                    	+ rating
+                   		+ '</i></li>';
+            if(mpaa) {
+            	if(mpaa === movie.mpaa_rating) {
+            		executed = true;
+					out += bullet;
+				}
+			} else {
+				executed = true;
+				out += bullet;
+			}
         }
-		}
+        //Check if the
+        if(!executed) {
+        	return;
+        }
 		out += '</ul></div>';
-		more += '</ul></div>';
-		var items = [[],[]];
+		var items = [[]];
 		items[0]['a'] = out;
 		items[0]['h'] = 'Currently In Theaters';
 		items[0]['s'] = 'Rotten Tomatoes';
 		items[0]['u'] = 'http://www.rottentomatoes.com/movie/in-theaters/';
 		items[0]['force_big_header'] = true;
 		items[0]['f'] = 1;
-
-		items[1]['a'] = more;
-		items[1]['t'] = 'Show more movies';
-		items[1]['s'] = 'Rotten Tomatoes';
-		items[1]['u'] = 'http://www.rottentomatoes.com/movie/in-theaters/';		
-		items[1]['f'] = 1;
 		nra(items);
 	}
 }
+
