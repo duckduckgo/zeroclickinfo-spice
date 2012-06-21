@@ -1,0 +1,50 @@
+#khan:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+#khan {
+  zoom: 1;
+  position: relative;
+}
+
+#khan ul {
+  display: none;
+}
+
+#khan ul#khan-ul-0 {
+  display: block;
+}
+
+#khan li.item {
+  float: left;
+  list-style-type: none;
+  width: 160px;
+  margin: 10px;
+}
+
+#khan li.cleft {
+  clear: left;
+}
+
+#khan li.item img {
+  margin-bottom: 5px;
+}
+
+#khan a.npa {
+  font-size: 40px;
+  position: absolute;
+  top: 30px;
+}
+
+#khan a.nexta {
+  right: 0;
+}
+
+#khan a.preva {
+  left: 0;
+}
