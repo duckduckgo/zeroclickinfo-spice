@@ -3,6 +3,8 @@ function ddg_spice_in_theaters(rotten) {
 		console.log(rotten);
 		var query = DDG.get_query().split(' ');
 		var mpaa;
+
+		//Check if the user wants to filter by MPAA rating
 		for(var i = 0;i < query.length;i++) {
 			if(query[i] === 'r' || query[i] === 'pg' || query[i] === 'pg-13' || query[i] === 'g') {
 				mpaa = query[i].toUpperCase();
@@ -14,18 +16,44 @@ function ddg_spice_in_theaters(rotten) {
 		for(var i = 0;i < rotten.movies.length;i++) {
 			var movie = rotten.movies[i];
 			var rating;
+
+			//Check if the movie has ratings
 			if (movie.ratings.critics_score === -1) {
 				rating = "Not Yet Reviewed";
 			} else {
-				rating = movie.ratings.critics_rating + ' - ' + movie.ratings.critics_score +'%';
+				rating = movie.ratings.critics_score + '/100';
 			}
 
-			var bullet = '<li><a href="' + movie.links.alternate + '" '
-						+ 'title="' + (movie.critics_consensus ? movie.critics_consensus : '') + '">'
-						+ movie.title +'</a> ('
-						+ movie.mpaa_rating + ') <i>' 
-						+ rating
-						+ '</i></li>';
+			//Get cast of the movie
+			var starring = ' starring ';
+			if(movie.abridged_cast.length > 3) {
+				length = 3;
+			} else {
+				length = movie.abridged_cast.length;
+			}
+			for(var j = 0;j < length;j++) {
+				starring += movie.abridged_cast[j].name;
+				if(j < length-2) {
+					starring += ', ';
+				} else if(j === length-2) {
+					starring += ', and ';
+				}
+			}
+
+			var hour = 0;
+			var min = 0;
+			if(movie.runtime > 60) {
+				hour = Math.floor(movie.runtime / 60);
+				min = movie.runtime - (hour * 60);
+			}
+			//Display the movie
+			var bullet = '<li title="' + movie.synopsis + '"><a href="' + movie.links.alternate + '" title="' + movie.synopsis + '">'
+						+ movie.title +'</a>' + starring + ' ('
+						+ movie.mpaa_rating + ', ' + hour + 'hr. ' + min + 'min., ' 
+						+ 'rated ' + rating + ')'
+						+ '</li>';
+
+			//Check if MPAA is available
 			if(mpaa) {
 				if(mpaa === movie.mpaa_rating) {
 					executed = true;
@@ -36,7 +64,7 @@ function ddg_spice_in_theaters(rotten) {
 				out += bullet;
 			}
 		}
-		//Check if the
+		//Check if it returned any results
 		if(!executed) {
 			return;
 		}
