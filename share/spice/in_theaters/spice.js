@@ -13,7 +13,15 @@ function ddg_spice_in_theaters(rotten) {
 		}
 		var out = '', length, executed = false;
 		out += '<div style="movies"><ul>';
-		for(var i = 0;i < rotten.movies.length;i++) {
+
+		if(rotten.movies.length > 5) {
+			length = 5;
+		} else {
+			length = rotten.movies.length;
+		}
+
+		//Get the movies
+		for(var i = 0;i < length;i++) {
 			var movie = rotten.movies[i];
 			var rating;
 
@@ -25,20 +33,7 @@ function ddg_spice_in_theaters(rotten) {
 			}
 
 			//Get cast of the movie
-			var starring = ' starring ';
-			if(movie.abridged_cast.length > 3) {
-				length = 3;
-			} else {
-				length = movie.abridged_cast.length;
-			}
-			for(var j = 0;j < length;j++) {
-				starring += movie.abridged_cast[j].name;
-				if(j < length-2) {
-					starring += ', ';
-				} else if(j === length-2) {
-					starring += ', and ';
-				}
-			}
+			var starring = ' starring ' + movie.abridged_cast[0].name;
 
 			var hour = 0;
 			var min = 0;
