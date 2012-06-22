@@ -27,8 +27,8 @@ function ddg_spice_movie(movie) {
         snippet = '';
 
         // Check presence of synopsis, and create element
-        if (result.synopsis) synopsis = result.synopsis.substring(0,140) + "...";
-        else if (result.critics_consensus && result.critics_consensus.length > 0) synopsis = result.critics_consensus.substring(0,140) + "...";
+        if (result.synopsis) synopsis = result.synopsis.substring(0,135) + "...";
+        else if (result.critics_consensus && result.critics_consensus.length > 0) synopsis = result.critics_consensus.substring(0,135) + "...";
         else synopsis = '';
 
         var names = [];
@@ -54,28 +54,53 @@ function ddg_spice_movie(movie) {
         if (result.title.length > 50) header += '...';
 
         //Movie Score
-        var score = 'with an audience score of'+ result.audience_score +'%'
+        //var score = 'with an audience score of'+ result.audience_score +'%';
 
-        var rating; 
+        var rating, audience, critics, reaction, releaseDate, tomato;
+        var currentTime = new Date();
 
-        if (result.mpaa_rating === "R" || result.mpaa_rating === "NC-17"){
-           rating = "an ";
-        } else {
-            rating = "a ";
+        // Is a release date planned?
+        if (result.release_dates.theater) {
+            var rDate = result.release_dates.theater.split("-");
+            var opened = new Date(rDate[0], rDate[1]-1, rDate[2], 00, 00, 00); // Date uses month-1 notation
+            rating = (currentTime - opened < 0) ? "an upcoming " : "";
+            releaseDate = (rating) ? opened.toDateString().slice(4) : result.year;
         }
+        else if (result.year > currentTime.getFullYear()) {
+            rating = "an upcoming ";
+            releaseDate = result.year;
+        }
+        reaction = (rating) ? " want to see)" : " approved)";
+        
+        // Who's reviewed it?
+        audience = (result.ratings.audience_score === -1) ? "" : result.ratings.audience_score+ "% audience"+reaction;
+        critics = (result.ratings.critics_score === -1) ? "" : result.ratings.critics_score+ "% critics, ";
+        critics += (audience) ? "" : reaction;
 
+        // Is it fresh or rotten?
+        tomato = (result.ratings.critics_rating) ? result.ratings.critics_rating+", " : "";
+
+        if (!rating){
+            releaseDate = result.year;
+            if (result.mpaa_rating === "R" || result.mpaa_rating === "NC-17" || result.mpaa_rating == "Unrated"){
+               rating = "an ";
+            } else {
+                rating = "a ";
+            }
+        }
         rating += result.mpaa_rating;
-
+        
         // Call nra function as per Spice Plugin Guidelines
         items = [[]];
         items[0]['a'] = result.title + ' ('+result.year+ ') is ' 
                         +rating+ ' movie ('
-                        +result.ratings.audience_score+ '% audience, '
-                        +result.ratings.critics_score+ '% critic approved)'
+                        +tomato
+                        +critics
+                        +audience
                         +cast + '. '
                         +synopsis;
 
-        items[0]['h'] = header;
+        items[0]['h'] = header+" ("+releaseDate+")";
 
         // Source name and url for the More at X link.
         items[0]['s'] = 'Rotten Tomatoes';
