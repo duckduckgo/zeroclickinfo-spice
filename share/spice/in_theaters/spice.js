@@ -33,7 +33,7 @@ function ddg_spice_in_theaters(rotten) {
 			}
 
 			//Get cast of the movie
-			var starring = ' starring ' + movie.abridged_cast[0].name;
+			var starring = ' starring ' + movie.abridged_cast[0].name + ' as ' + movie.abridged_cast[0].characters[0];
 
 			var hour = 0;
 			var min = 0;
@@ -44,8 +44,8 @@ function ddg_spice_in_theaters(rotten) {
 				min = movie.runtime;
 			}
 			//Display the movie
-			var bullet = '<li title="' + movie.synopsis + '"><a href="' + movie.links.alternate + '" title="' + movie.synopsis + '">'
-						+ movie.title +'</a>' + starring + ' ('
+			var bullet = '<li title="' + movie.synopsis + '"><a href="' + movie.links.alternate + '" title="' + movie.synopsis + '"><b>'
+						+ movie.title +'</b></a>' + starring + ' ('
 						+ movie.mpaa_rating + ', ' + hour + 'hr. ' + min + 'min., ' 
 						+ 'rated ' + rating + ')'
 						+ '</li>';
