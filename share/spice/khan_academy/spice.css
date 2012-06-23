@@ -1,3 +1,7 @@
+#zero_click_abstract {
+  margin-right: 10px !important;
+}
+
 #khan:after {
 	visibility: hidden;
 	display: block;
@@ -23,8 +27,31 @@
 #khan li.item {
   float: left;
   list-style-type: none;
-  width: 160px;
+  width: 166px;
   margin: 10px;
+  margin-top: 0;
+  padding-top: 7px;
+  border: 1px solid transparent;
+  text-align: center;
+}
+
+#khan li.item:hover {
+  background: url("http://duckduckgo.com/assets/results_highlight_bg.v101.png") repeat-x;
+  background-color: #eaeaea;
+  border: 1px solid #bfbfbf !important;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#khan li.item a {
+  color: #333;
+}
+
+#khan li.item a:hover {
+  text-decoration: none;
 }
 
 #khan li.cleft {
@@ -32,19 +59,25 @@
 }
 
 #khan li.item img {
-  margin-bottom: 5px;
+  margin: 0 auto 5px auto;
 }
 
 #khan a.npa {
   font-size: 40px;
+  color: #bfbfbf;
   position: absolute;
-  top: 30px;
+  top: 120px;
 }
 
-#khan a.nexta {
+#khan a.npa:hover {
+  text-decoration: none;
+}
+
+#nexta {
   right: 0;
 }
 
-#khan a.preva {
+#preva {
   left: 0;
+  display: none;
 }
