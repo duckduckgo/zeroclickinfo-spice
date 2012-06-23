@@ -8,6 +8,8 @@ triggers any => "job", "jobs";
 spice to => 'http://jobs.github.com/positions.json?description=$1&location=$2&callback={{callback}}';
 spice from => '(.*?)-(.*)';
 
+attribution github => ['https://github.com/jagtalon','jagtalon'],
+            twitter => ['http://twitter.com/juantalon','juantalon'];
 
 handle query_lc => sub {
     if (/(?:\s*(?:i\s+|we\s+)?(?:need|want|deserve|seek|get)\s+(?:an?\s+)?)?(?:(.+)\s+)(?:jobs?|work|employment|internship)(?:\s+(?:in\s+)?(.+))?$/i) {
