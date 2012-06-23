@@ -41,8 +41,8 @@ function ddg_spice_in_theaters(rotten) {
 			//Display the movie
 			var bullet = '<li title="' + movie.synopsis + '"><a href="' + movie.links.alternate + '" title="' + movie.synopsis + '">'
 						+ movie.title +'</a>' + starring + ' ('
-						+ movie.mpaa_rating + ', ' + hour + 'hr. ' + min + 'min., ' 
-						+ 'rated ' + rating + ')'
+						+ movie.mpaa_rating + ', ' + hour + 'hr ' + min + 'min) ' 
+						+ 'rated ' + rating
 						+ '</li>';
 
 			//Check if MPAA is available
