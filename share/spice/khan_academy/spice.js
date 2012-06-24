@@ -73,15 +73,19 @@ function ddg_spice_khan_academy(res) {
     }
 
     function setup() {
-      win = parseInt(YAHOO.util.Dom.getStyle('frame', 'width'))
+      win = YAHOO.util.Dom.getRegion('frame').width
       inc = Math.floor(win / LI_WIDTH)
       last = Math.max(0, len - inc)
       pnClasses()
     }
 
+    function preventDefault(e) {
+      e.preventDefault ? e.preventDefault() : event.returnValue = false
+    }
+
     function wrapCB(next) {
       return function (e) {
-        e.preventDefault()
+        preventDefault(e)
 
         if (khanState === 0 && !next) return
         if (khanState === last && next) return
@@ -96,7 +100,6 @@ function ddg_spice_khan_academy(res) {
         YAHOO.util.Dom.setStyle('slides', 'margin-left', mar)
 
         pnClasses()
-        return false
       }
     }
 
