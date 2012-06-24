@@ -13,40 +13,42 @@ function ddg_spice_khan_academy(res) {
   // If we have a videos to display
   if (res && isProp(res, 'feed.entry') && res.feed.entry.length > 0) {
 
-    var vids = res.feed.entry
+    var LI_WIDTH = 168
 
-    var title = d.getElementById('search_form_input').value
-    if (isProp(res, 'feed.title.$t')) {
-      title = res.feed.title.$t.replace('YouTube', 'Khan Academy')
-    }
+    var vids = res.feed.entry
+    var title = 'Khan Academy Videos'
 
     var div = d.createElement('div')
     div.id = 'khan'
 
-    var i, len, ul, li, img, a, id, vid, p, txt
-    for (i = 0, len = vids.length; i < len; i++) {
+    var frame = d.createElement('div')
+    frame.id = 'frame'
 
-      if (!(i % 6)) {
-         if (i > 0) div.appendChild(ul)
-         ul = d.createElement('ul')
-         ul.id = 'khan-ul-' + (i / 6)
-      }
+    var len = vids.length
+    var end = LI_WIDTH * len
 
+    var ul = d.createElement('ul')
+    ul.id = 'slides'
+    YAHOO.util.Dom.setStyle(ul, 'width', end + 'px')
+
+    var i, li, img, a, id, vid, p, txt
+    for (i = 0; i < len; i++) {
       li = d.createElement('li')
       YAHOO.util.Dom.addClass(li, 'item')
 
-      if (!(i % 3)) YAHOO.util.Dom.addClass(li, 'cleft')
-
       vid = vids[i]
+      if (!isProp(vid, 'id.$t')) continue
       id = vid.id.$t.split(':').pop()
 
       a = d.createElement('a')
       a.href = 'http://khanacademy.org/video?v=' + id
 
       img = d.createElement('img')
+      if (!isProp(vid, 'media$group.media$thumbnail')) continue
       img.src = vid.media$group.media$thumbnail[0].url
 
       p = d.createElement('p')
+      if (!isProp(vid, 'title.$t')) continue
       txt = d.createTextNode(vid.title.$t)
       p.appendChild(txt)
 
@@ -55,51 +57,67 @@ function ddg_spice_khan_academy(res) {
 
       li.appendChild(a)
       ul.appendChild(li)
-
     }
 
-    div.appendChild(ul)
+    frame.appendChild(ul)
+    div.appendChild(frame)
 
-    if (len > 6) {  // nav
+    var win, inc, last, khanState = 0
 
-      var khanState = 0
-      function wrapCB(next) {
-        return function (e) {
-          e.preventDefault()
+    function pnClasses() {
+      if (khanState > 0) YAHOO.util.Dom.removeClass('preva', 'npah')
+      else YAHOO.util.Dom.addClass('preva', 'npah')
 
-          var last = Math.ceil(len / 6) - 1
-
-          if (khanState === 0 && !next) return
-          if (khanState === last && next) return
-
-          YAHOO.util.Dom.setStyle('khan-ul-' + khanState, 'display', 'none')
-          khanState += (next ? 1 : -1)
-          YAHOO.util.Dom.setStyle('khan-ul-' + khanState, 'display', 'block')
-
-          YAHOO.util.Dom.setStyle('preva', 'display',
-            (khanState > 0) ? 'block' : 'none')
-
-          YAHOO.util.Dom.setStyle('nexta', 'display',
-            (khanState < last) ? 'block' : 'none')
-
-          return false
-        }
-      }
-
-      function makeNav(txt, id, next) {
-        var na = d.createElement('a')
-        na.appendChild(d.createTextNode(txt))
-        na.href = '#'
-        na.id = id
-        YAHOO.util.Dom.addClass(na, 'npa')
-        YAHOO.util.Event.addListener(na, 'click', wrapCB(next))
-        div.appendChild(na) 
-      }
-
-      makeNav('>', 'nexta', true)
-      makeNav('<', 'preva', false)
-
+      if (khanState < last) YAHOO.util.Dom.removeClass('nexta', 'npah')
+      else YAHOO.util.Dom.addClass('nexta', 'npah')
     }
+
+    function setup() {
+      win = parseInt(YAHOO.util.Dom.getStyle('frame', 'width'))
+      inc = Math.floor(win / LI_WIDTH)
+      last = Math.max(0, len - inc)
+      pnClasses()
+    }
+
+    function wrapCB(next) {
+      return function (e) {
+        e.preventDefault()
+
+        if (khanState === 0 && !next) return
+        if (khanState === last && next) return
+
+        khanState += (next ? 1 : -1) * inc
+
+        // edge conditions when resizing
+        if (khanState < 0) khanState = 0
+        if (khanState > last) khanState = last
+
+        var mar = '-' + (khanState * LI_WIDTH) + 'px'
+        YAHOO.util.Dom.setStyle('slides', 'margin-left', mar)
+
+        pnClasses()
+        return false
+      }
+    }
+
+    function makeNav(txt, id, next) {
+      var na = d.createElement('a')
+      na.appendChild(d.createTextNode(txt))
+      na.href = '#'
+      na.id = id
+      YAHOO.util.Dom.addClass(na, 'npa')
+      YAHOO.util.Event.addListener(na, 'click', wrapCB(next))
+      div.appendChild(na) 
+    }
+
+    makeNav('>', 'nexta', true)
+    makeNav('<', 'preva', false)
+
+    var resize
+    YAHOO.util.Event.addListener(window, 'resize', function () {
+      clearTimeout(resize)
+      resize = setTimeout(setup, 400)  // tune
+    })
 
     var items = [{
       f: 1,
@@ -109,6 +127,8 @@ function ddg_spice_khan_academy(res) {
       u: 'http://khanacademy.org/'
     }]
     nra(items, 0, true)  // add to page
+    setup()
+
   }
 
 }
