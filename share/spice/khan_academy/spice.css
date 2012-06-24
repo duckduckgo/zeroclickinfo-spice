@@ -73,10 +73,7 @@
   color: #bfbfbf;
   position: absolute;
   top: 30px;
-}
-
-#khan a.npa:hover {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 #khan a.npah {
