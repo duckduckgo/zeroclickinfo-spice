@@ -1,5 +1,6 @@
 #zero_click_abstract {
-  margin-right: 10px !important;
+  margin: 0 5px !important;
+  padding: 0 !important;
 }
 
 #khan:after {
@@ -14,25 +15,30 @@
 #khan {
   zoom: 1;
   position: relative;
+  overflow: hidden;
+  margin: 4px 0;
+}
+
+#khan #frame {
+  margin: 0 25px;
+  overflow: hidden;
 }
 
 #khan ul {
-  display: none;
-}
-
-#khan ul#khan-ul-0 {
-  display: block;
+  margin: 0;
+  padding: 0;
 }
 
 #khan li.item {
   float: left;
   list-style-type: none;
   width: 166px;
-  margin: 10px;
-  margin-top: 0;
-  padding-top: 7px;
+  height: 135px;
+  margin: 0;
+  padding-top: 5px;
   border: 1px solid transparent;
   text-align: center;
+  overflow: hidden;
 }
 
 #khan li.item:hover {
@@ -54,23 +60,27 @@
   text-decoration: none;
 }
 
-#khan li.cleft {
-  clear: left;
-}
-
 #khan li.item img {
   margin: 0 auto 5px auto;
 }
 
+#khan li.item p {
+  padding: 0 10px;
+}
+
 #khan a.npa {
-  font-size: 40px;
+  font-size: 30px;
   color: #bfbfbf;
   position: absolute;
-  top: 120px;
+  top: 30px;
 }
 
 #khan a.npa:hover {
   text-decoration: none;
+}
+
+#khan a.npah {
+  color: #eee !important;
 }
 
 #nexta {
@@ -79,5 +89,4 @@
 
 #preva {
   left: 0;
-  display: none;
 }

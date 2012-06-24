@@ -5,7 +5,7 @@ use DDG::Spice;
 spice to => join '&',
     'https://gdata.youtube.com/feeds/api/videos?',
     'author=khanacademy',
-    'max-results=48',
+    'max-results=50',
     'alt=json-in-script',
     'callback={{callback}}',
     'v=2',
