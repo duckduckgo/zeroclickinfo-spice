@@ -1,14 +1,18 @@
 function ddg_spice_in_theaters(rotten) {
 	if(rotten.movies.length > 0) {
 		console.log(rotten);
-		var query = DDG.get_query().split(' ');
+		var query = DDG.get_query().toLowerCase().split(' ');
 		var mpaa;
+		var title = 'Currently In Theaters';
 
 		//Check if the user wants to filter by MPAA rating
 		for(var i = 0;i < query.length;i++) {
 			if(query[i] === 'r' || query[i] === 'pg' || query[i] === 'pg-13' || query[i] === 'g') {
 				mpaa = query[i].toUpperCase();
 				console.log(mpaa);
+			}
+			if(query[i] === 'opening') {
+				title = 'Opening Movies'
 			}
 		}
 		var out = '', length, executed = false, more = '', count = 0;
@@ -74,7 +78,7 @@ function ddg_spice_in_theaters(rotten) {
 		out += '</ul></div>';
 		var items = [[],[]];
 		items[0]['a'] = out;
-		items[0]['h'] = 'Currently In Theaters';
+		items[0]['h'] = title;
 		items[0]['s'] = 'Rotten Tomatoes';
 		items[0]['u'] = 'http://www.rottentomatoes.com/movie/in-theaters/';
 		items[0]['force_big_header'] = true;
