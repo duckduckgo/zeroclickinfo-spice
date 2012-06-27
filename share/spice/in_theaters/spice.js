@@ -28,7 +28,7 @@ function ddg_spice_in_theaters(rotten) {
 			if (movie.ratings.critics_score === -1) {
 				rating = "Not Yet Reviewed";
 			} else {
-				rating = movie.ratings.critics_score + '/100';
+				rating = 'rated ' + movie.ratings.critics_score + '/100';
 			}
 
 			//Get cast of the movie
@@ -36,17 +36,24 @@ function ddg_spice_in_theaters(rotten) {
 
 			var hour = 0;
 			var min = 0;
-			if(movie.runtime >= 60) {
-				hour = Math.floor(movie.runtime / 60);
-				min = movie.runtime - (hour * 60);
+			if(movie.runtime) {
+				if(movie.runtime >= 60) {
+					hour = Math.floor(movie.runtime / 60);
+					min = movie.runtime - (hour * 60);
+				} else {
+					min = String(movie.runtime);
+				}
+				hour = ', ' + hour + 'hr ';
+				min += 'min';
 			} else {
-				min = movie.runtime;
+				hour = '';
+				min = '';
 			}
 			//Display the movie
 			var bullet = '<li title="' + movie.synopsis + '"><a href="' + movie.links.alternate + '" title="' + movie.synopsis + '">'
 						+ movie.title +'</a>' + starring + ' ('
-						+ movie.mpaa_rating + ', ' + hour + 'hr ' + min + 'min) ' 
-						+ 'rated ' + rating
+						+ movie.mpaa_rating + hour + min + ') ' 
+					 	+ rating
 						+ '</li>';
 
 			//Check if MPAA is available

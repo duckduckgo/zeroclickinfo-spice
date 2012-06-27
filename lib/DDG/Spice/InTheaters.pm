@@ -8,7 +8,7 @@ triggers any => "movies", "movie", "theaters", "watch", "something", "showing", 
 
 handle query_lc => sub {
 	my $rating = '(g\s+|pg\s+|r\s+)?';
-	if(/\s*opening\s+(?:movies?|in\s+theaters)\s*$/) {
+	if(/\s*opening\s+$rating(?:movies?|in\s+theaters)\s*$/) {
 		return "opening";
 	}
 	if(/\s*(?:\s*(?:i\s+|we\s+)?(?:want\s+|need\s+|deserve\s+)?(?:to\s+)?(?:watch\s*|see\s*)(?:something|(?:an?\s+$rating)?movies?)\s*)|\s*$rating(?:movies\s*|current(?:ly)?\s*)$rating(?:movies\s*)?(?:(?:in\s+)?(?:theaters?|theatres?))?(?:(?:now\s+|already\s+)?showing)?\s*|\s*what\s+(?:to\s+|can\s+I\s+)?watch\??\s*$/) {
