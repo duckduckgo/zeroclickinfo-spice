@@ -62,7 +62,18 @@ function ddg_spice_khan_academy(res) {
     frame.appendChild(ul)
     div.appendChild(frame)
 
-    var win, inc, last, khanState = 0
+    // gradient fades
+    var gr = d.createElement('div')
+    gr.id = 'gr'
+    YAHOO.util.Dom.addClass(gr, 'grad')
+    div.appendChild(gr)
+
+    var gl = d.createElement('div')
+    gl.id = 'gl'
+    YAHOO.util.Dom.addClass(gl, 'grad')
+    div.appendChild(gl)
+
+    var win, inc, last, off = 0, off2, khanState = 0
 
     function pnClasses() {
       if (khanState > 0) YAHOO.util.Dom.removeClass('preva', 'npah')
@@ -70,12 +81,21 @@ function ddg_spice_khan_academy(res) {
 
       if (khanState < last) YAHOO.util.Dom.removeClass('nexta', 'npah')
       else YAHOO.util.Dom.addClass('nexta', 'npah')
+
+      YAHOO.util.Dom.setStyle('slides', 'padding-left', off + 'px')
+      YAHOO.util.Dom.setStyle('gl', 'width', off + 'px')
+      YAHOO.util.Dom.setStyle('gr', 'width', off2 + 'px')
     }
 
     function setup() {
       win = YAHOO.util.Dom.getRegion('frame').width
       inc = Math.floor(win / LI_WIDTH)
       last = Math.max(0, len - inc)
+
+      var extra = win - (inc * LI_WIDTH)
+      off = Math.floor(extra / 2)
+      off2 = extra - off
+
       pnClasses()
     }
 
