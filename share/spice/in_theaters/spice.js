@@ -4,6 +4,8 @@ function ddg_spice_in_theaters(rotten) {
 		var query = DDG.get_query().toLowerCase().split(' ');
 		var mpaa;
 		var title = 'Currently In Theaters';
+		var get_release = false;
+		var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 		//Check if the user wants to filter by MPAA rating
 		for(var i = 0;i < query.length;i++) {
@@ -13,6 +15,7 @@ function ddg_spice_in_theaters(rotten) {
 			}
 			if(query[i] === 'opening') {
 				title = 'Opening Movies'
+				get_release = true;
 			}
 		}
 		var out = '', length, executed = false, more = '', count = 0;
@@ -49,10 +52,20 @@ function ddg_spice_in_theaters(rotten) {
 				hour = '';
 				min = '';
 			}
+
+			var release_date = '';
+			//Get release date if it is an opening movie query
+			if(get_release) {
+				if(movie.release_dates.theater) {
+					release_date = movie.release_dates.theater.split('-');
+					release_date = ', ' + months[Number(release_date[1])-1] + ' ' + release_date[2];
+				}
+			}
+
 			//Display the movie
 			var bullet = '<li title="' + movie.synopsis + '"><a href="' + movie.links.alternate + '" title="' + movie.synopsis + '">'
 						+ movie.title +'</a>' + starring + ' ('
-						+ movie.mpaa_rating + hour + min + ') ' 
+						+ movie.mpaa_rating + hour + min + release_date + ') ' 
 					 	+ rating
 						+ '</li>';
 
