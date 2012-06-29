@@ -14,9 +14,12 @@
 
 #khan {
   zoom: 1;
+  margin: 4px 0;
+}
+
+#khan div.nav {
   position: relative;
   overflow: hidden;
-  margin: 4px 0;
 }
 
 #khan #frame {
@@ -115,4 +118,19 @@
   background: -ms-linear-gradient(left, rgba(249, 249, 249, 1) 0%, rgba(255, 255, 255, 0) 100%); /* IE10+ */
   background: linear-gradient(to right, rgba(249, 249, 249, 1) 0%, rgba(255, 255, 255, 0) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#00ffffff', GradientType=1 ); /* IE6-9 */
+}
+
+#khan #emb {
+  position: relative;
+  display: none;
+  background: #f9f9f9;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  z-index: 2;
+}
+
+#khan #emb iframe {
+  width: 100%;
+  height: 100%;
 }
