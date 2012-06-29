@@ -21,6 +21,18 @@ function ddg_spice_khan_academy(res) {
     var div = d.createElement('div')
     div.id = 'khan'
 
+    var emb = d.createElement('div')
+    emb.id = 'emb'
+    YAHOO.util.Event.addListener(emb, 'click', function (e) {
+      preventDefault(e)
+      this.innerHTML = ''  // clear video
+      YAHOO.util.Dom.setStyle('emb', 'display', 'none')
+    })
+    div.appendChild(emb)
+
+    var nav = d.createElement('div')
+    YAHOO.util.Dom.addClass(nav, 'nav')
+
     var frame = d.createElement('div')
     frame.id = 'frame'
 
@@ -30,6 +42,32 @@ function ddg_spice_khan_academy(res) {
     var ul = d.createElement('ul')
     ul.id = 'slides'
     YAHOO.util.Dom.setStyle(ul, 'width', end + 'px')
+
+    function clickA(id) {
+      return function (e) {
+        preventDefault(e)
+
+        var ne = d.createElement('iframe')
+        ne.src = [
+            'https://www.youtube.com/embed/' + id + '?'
+          , 'autoplay=1'
+          , 'wmode=opaque'
+          , 'iv_load_policy=3'
+          , 'autohide=1'
+          , 'version=3'
+          , 'enablejsapi=1'
+        ].join('&')
+
+        YAHOO.util.Dom.setAttribute(ne, 'allowFullScreen', true)
+        YAHOO.util.Dom.setAttribute(ne, 'webkitAllowFullScreen', true)
+        YAHOO.util.Dom.setAttribute(ne, 'mozallowfullscreen', true)
+        ne.frameBorder = 0
+
+        emb.innerHTML = ''  // clear
+        emb.appendChild(ne)
+        YAHOO.util.Dom.setStyle('emb', 'display', 'block')
+      }
+    }
 
     var i, li, img, a, id, vid, p, txt
     for (i = 0; i < len; i++) {
@@ -42,6 +80,8 @@ function ddg_spice_khan_academy(res) {
 
       a = d.createElement('a')
       a.href = 'http://khanacademy.org/video?v=' + id
+
+      YAHOO.util.Event.addListener(a, 'click', clickA(id))
 
       img = d.createElement('img')
       if (!isProp(vid, 'media$group.media$thumbnail')) continue
@@ -60,18 +100,18 @@ function ddg_spice_khan_academy(res) {
     }
 
     frame.appendChild(ul)
-    div.appendChild(frame)
+    nav.appendChild(frame)
 
     // gradient fades
     var gr = d.createElement('div')
     gr.id = 'gr'
     YAHOO.util.Dom.addClass(gr, 'grad')
-    div.appendChild(gr)
+    nav.appendChild(gr)
 
     var gl = d.createElement('div')
     gl.id = 'gl'
     YAHOO.util.Dom.addClass(gl, 'grad')
-    div.appendChild(gl)
+    nav.appendChild(gl)
 
     var win, inc, last, off = 0, off2, khanState = 0
 
@@ -85,6 +125,10 @@ function ddg_spice_khan_academy(res) {
       YAHOO.util.Dom.setStyle('slides', 'padding-left', off + 'px')
       YAHOO.util.Dom.setStyle('gl', 'width', off + 'px')
       YAHOO.util.Dom.setStyle('gr', 'width', off2 + 'px')
+
+      // 16/9 Aspect Ratio + menu
+      var hei = Math.floor(win * 0.5625) + 30
+      YAHOO.util.Dom.setStyle('emb', 'height', hei + 'px')
     }
 
     function setup() {
@@ -130,11 +174,13 @@ function ddg_spice_khan_academy(res) {
       na.id = id
       YAHOO.util.Dom.addClass(na, 'npa')
       YAHOO.util.Event.addListener(na, 'click', wrapCB(next))
-      div.appendChild(na) 
+      nav.appendChild(na)
     }
 
     makeNav('>', 'nexta', true)
     makeNav('<', 'preva', false)
+
+    div.appendChild(nav)
 
     var resize
     YAHOO.util.Event.addListener(window, 'resize', function () {
