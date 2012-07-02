@@ -3,6 +3,10 @@
   padding: 0 !important;
 }
 
+#zero_click_image {
+  display: none !important;
+}
+
 #khan:after {
 	visibility: hidden;
 	display: block;
@@ -126,7 +130,7 @@
   background: #f9f9f9;
   left: 0;
   right: 0;
-  padding: 10px;
+  padding: 2px 0 7px 0;
   z-index: 2;
 }
 
