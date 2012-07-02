@@ -17,7 +17,7 @@ handle matches => sub {
         return 'duckduckgo', $_[2], 'false';
     } else {
         return $_[1], $_[2], 'true';
-        return
+        return;
     }
 };
 
