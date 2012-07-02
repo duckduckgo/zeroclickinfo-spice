@@ -14,9 +14,7 @@ function ddg_spice_khan_academy(res) {
   if (res && isProp(res, 'feed.entry') && res.feed.entry.length > 0) {
 
     var LI_WIDTH = 168
-
     var vids = res.feed.entry
-    var title = 'Khan Academy Videos'
 
     var div = d.createElement('div')
     div.id = 'khan'
@@ -191,9 +189,10 @@ function ddg_spice_khan_academy(res) {
     var items = [{
       f: 1,
       a: div,
-      h: title,
+      h: 'Khan Academy Videos',
       s: 'Khan Academy',
-      u: 'http://khanacademy.org/'
+      u: 'http://khanacademy.org/',
+      force_big_header: true
     }]
     nra(items, 0, true)  // add to page
     setup()
