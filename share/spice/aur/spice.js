@@ -8,7 +8,7 @@ function ddg_spice_aur(results) {
             out += ' (Out of date)';
         }
 
-        if(res['URL']) out += ' <a href="'+res['URL']+'">Official site</a>';
+        if(res['URL']) out += ' [<a href="'+res['URL']+'">Official site</a>]';
 
         items = new Array();
         items[0] = new Array();
