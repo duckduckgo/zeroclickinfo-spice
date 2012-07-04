@@ -44,6 +44,10 @@
   margin: 0;
   padding-top: 5px;
   border: 1px solid transparent;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
   text-align: center;
   overflow: hidden;
 }
@@ -51,12 +55,14 @@
 #khan li.item:hover {
   background: url("http://duckduckgo.com/assets/results_highlight_bg.v101.png") repeat-x;
   background-color: #eaeaea;
-  border: 1px solid #bfbfbf !important;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
+  border: 1px solid #bfbfbf;
   cursor: pointer;
+}
+
+#khan li.sel, #khan li.sel:hover {
+  background-image: none !important;
+  background-color: #eaeaea;
+  border: 1px solid #fff;
 }
 
 #khan li.item a {

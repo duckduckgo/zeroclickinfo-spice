@@ -45,6 +45,12 @@ function ddg_spice_khan_academy(res) {
       return function (e) {
         preventDefault(e)
 
+        var j = 0
+        for (; j < len; j++) {
+          YAHOO.util.Dom.removeClass(ul.childNodes[j], 'sel')
+        }
+        YAHOO.util.Dom.addClass(this.parentNode, 'sel')
+
         var ne = d.createElement('iframe')
         ne.src = [
             'https://www.youtube.com/embed/' + id + '?'
