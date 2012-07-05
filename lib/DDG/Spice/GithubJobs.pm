@@ -5,7 +5,7 @@ use DDG::Spice;
 
 triggers any => "job", "jobs";
 
-spice to => 'http://jobs.github.com/positions.json?description=$1&location=$2&callback={{callback}}';
+spice to => 'https://jobs.github.com/positions.json?description=$1&location=$2&callback={{callback}}';
 spice from => '(.*?)-(.*)';
 
 attribution github => ['https://github.com/jagtalon','jagtalon'],
