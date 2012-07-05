@@ -39,8 +39,9 @@ function format_snippet(place, places){
 	var center = [place['centroid']['latitude'], place['centroid']['longitude']].join()
 
 //  bigbox sets a slightly larger frame for MapQuest's 'bestfit' parameter; not needed for Google
-	var bigbox = [[coords['northEast']['latitude']+.005, coords['southWest']['longitude']],  
-		          [coords['southWest']['latitude']-.005, coords['northEast']['longitude']]].join();
+	var boxpad = (coords['northEast']['latitude'] - coords['southWest']['latitude']) * .25
+	var bigbox = [[coords['northEast']['latitude']+boxpad, coords['southWest']['longitude']],  
+		          [coords['southWest']['latitude']-boxpad, coords['northEast']['longitude']]].join();
 
 
 	var snippet, div;	
@@ -49,7 +50,7 @@ function format_snippet(place, places){
     div.innerHTML = 'Approximate area:';
 //  comment out mapquest call, uncomment google, and change separator in coord_string above to '|' to use google's static map 
 //  div.innerHTML += '<br><img src="http://maps.googleapis.com/maps/api/staticmap?size=400x150&sensor=false&path=fillcolor:0xAA000033|color:0xff0000ff|weight:0|' + coord_string + '"></img>';
-    div.innerHTML += '<br><img src="http://open.mapquestapi.com/staticmap/v4/getmap?size=400,150&scalebar=false&bestfit=' + bigbox + '&polygon=fill:0x20ff0000|color:0x20ff0000|width:1|' + coord_string + '"></img>';
+    div.innerHTML += '<br><img src="http://open.mapquestapi.com/staticmap/v4/getmap?size=400,150&scalebar=false&bestfit=' + bigbox + '&polygon=fill:0x30ff0000|color:0x20ff0000|width:1|' + coord_string + '"></img>';
 
 //  construct a list of other possible hits if available; generates new DDG inputs with country codes in parentheses to force the right code to the top of the results
     if (places.length > 1) {
