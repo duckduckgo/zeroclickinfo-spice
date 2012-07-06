@@ -5,7 +5,7 @@ use DDG::Spice;
 
 my $rating = '(?:g\s*|pg\s*|r\s*)?';
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?apikey=ccw2b5ce8dsy7sb3x2qxmn3x&callback={{callback}}';
-triggers query_lc => qr/\s*(?:movies?\s*)?opening\s*($rating)(?:soon\s*)?(?:movies?|in\s*theaters)?\s*|\s*(?:\s*(?:i\s*|we\s*)?(?:want\s*|need\s*|deserve\s*)?(?:to\s*)?(?:watch\s*|see\s*)(?:something|(?:an?\s*)?($rating)movies?)\s*)|\s*($rating)(?:movies\s*|current(?:ly)?\s*)(?:(?:in\s*)?(?:theaters?|theatres?))?($rating)(?:(?:now\s*|already\s*)?showing)?\s*|\s*what\s*(?:to\s*|can\s*I\s*)?watch\??\s*$/i;
+triggers any => 'movie', 'movies', 'theaters', 'theaters', 'theatres', 'theater', 'theatres', 'showing', 'something', 'watch', 'opening';
 
 my %movies = (
 	'movies now showing' => 1,
@@ -14,6 +14,7 @@ my %movies = (
 	'movies opening soon' => 0,
 	'watch a movie' => 1,
 	'opening soon in theaters' => 0,
+	'opening soon in theatres' => 0,
 	'r movies opening' => 0,
 	'pg movies opening' => 0,
 	'pg-13 movies opening' => 0,
@@ -43,6 +44,8 @@ my %movies = (
 	'watch a pg movie' => 1,
 	'watch an pg-13 movie' => 1,
 	'watch a g movie' => 1,
+	'theaters' => 0,
+	'theatres' => 0,
 	'movies' => 1,
 	'r movies' => 1,
 	'pg movies' => 1,
