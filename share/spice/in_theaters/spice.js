@@ -35,7 +35,10 @@ function ddg_spice_in_theaters(rotten) {
 			}
 
 			//Get cast of the movie
-			var starring = ' starring ' + movie.abridged_cast[0].name;
+			var starring = '';
+			if(movie.abridged_cast.length) {
+				starring = ' starring ' + movie.abridged_cast[0].name;
+			}
 
 			var hour = 0;
 			var min = 0;
