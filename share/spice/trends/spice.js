@@ -2,11 +2,11 @@ function ddg_spice_trends(data) {
     if (data && data.query.count > 0) {
         var woeid = data.query.results.place[0].woeid
         if (woeid) {
-            var script = document.createElement('script');
-            script.src = "http://api.twitter.com/1/trends/"
+            var url = "http://api.twitter.com/1/trends/"
                 + woeid
                 + ".json?callback=parse";
-            document.getElementsByTagName("head")[0].appendChild(script);
+            // Undocumented API call, uses duckduckgo server
+            nrj(url);
         }
     }
 }
@@ -15,7 +15,7 @@ function parse(data) {
     var trends = data[0];
     t = trends;
 
-    var title = "Trending in " + trends.locations[0].name;
+    var title = "Trending in " + trends.locations[0].name + " &mdash; via Twitter";
     var source = "Twitter";
     var url = "http://twitter.com/";
 
