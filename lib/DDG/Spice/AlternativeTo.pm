@@ -5,8 +5,8 @@ use DDG::Spice;
 triggers start => "free","opensource","commercial";
 triggers any => "alternative","alternatives";
 
-spice from => '([^/]+)/(?:([^/]+)/(?:([^/]+)|)|)';
-spice to => 'http://api.alternativeto.net/software/$1/?$2&$3&count=6&callback={{callback}}';
+spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
+spice to => 'http://api.alternativeto.net/software/$1/?platform=$2&license=$3&count=6&callback={{callback}}';
 
 my %alternatives = (
     'google' => 'googlecom',
@@ -16,33 +16,33 @@ my %alternatives = (
 );
 
 handle query_lc => sub {
-    if ($_ =~ /^(?:(free|opensource|commercial))?\s*(?:alternative(?:s|)?\s*?(?:to|for)\s*?)(\b(?!for\b).*?\b)(?:\s*?for\s(.*))?$/) {
-	my $prog = $2;
-	$prog =~ s/\s+$//g;
-	$prog =~ s/^\s+//g;
-	$prog =~ s/\s+/-/g;
-	$prog = $alternatives{$prog} if exists $alternatives{$prog};
-
-        if ($1 and $3) {
+    if (/^(?:(free|opensource|commercial))?\s*(?:alternative(?:s|)?\s*?(?:to|for)\s*?)(\b(?!for\b).*?\b)(?:\s*?for\s(.*))?$/) {
+        my ($license, $prog, $platform) = ($1, $2, $3);
+        $prog =~ s/\s+$//g;
+        $prog =~ s/^\s+//g;
+        $prog =~ s/\s+/-/g;
+        $prog = $alternatives{$prog} if exists $alternatives{$prog};
+	
+        if ($license && $prog && $platform) {
             # license and platform specified - queries like:
             # -> free alternative to firefox for mac
             # -> opensource matlab for linux
-            return $prog, "platform=".$3, "license=".$1.'/';
-        } elsif ($1 and $prog) {
+            return $prog, $platform, $license;
+        } elsif ($license && $prog) {
             # lincense secified only:
             # -> free nod32
             # -> opensource alternative to omnigraffle
-            return $prog, "license=".$1.'/';
-        } elsif ($3) {
+            return $prog, $license;
+        } elsif ($platform && $prog) {
             # platform specified:
             # -> TextMate for windows
             # -> alternative to vim for linux
-            return $prog, "platform=".$3.'/';
+            return $prog, $platform;
         } elsif($prog) {
             # license and platform not specified
             # in this case we need to match 'alternative(s) to':
             # -> alternative to firefox
-            return $prog.'/';
+            return $prog;
         }
     }
     return;

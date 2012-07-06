@@ -14,7 +14,7 @@ function ddg_spice_xkcd(xk) {
 
        if (nur) img = nur('',xk['alt'],xk['img']);
        if (img) {
-	   YAHOO.util.Dom.addClass(img,'cizb');
+	   YAHOO.util.Dom.addClass(img,'img_zero_click_big');
 	   div = d.createElement('div');
 	   div.appendChild(img);
 	   snippet.appendChild(div);
