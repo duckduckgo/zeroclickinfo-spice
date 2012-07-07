@@ -62,6 +62,7 @@ function ddg_spice_congress(data) {
         for (var i = 0; i < members.length; i++) {
             var member = members[i];
             var name = "";
+            var normalized_name = "";
             if (member.middle_name) {
                 name = member.first_name + " " + member.middle_name + " "
                     + member.last_name;
@@ -73,7 +74,7 @@ function ddg_spice_congress(data) {
                 twitter = "@" + member.twitter_account;
             }
             snippet += "<li><a href=\""
-                + member.times_topics_url + "\">"
+                + "/?q=" + escape(name) + "\">"
                 + "(" + member.party + ") "
                 + name
                 + "</a>";
