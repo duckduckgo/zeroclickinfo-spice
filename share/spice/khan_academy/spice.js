@@ -192,12 +192,18 @@ function ddg_spice_khan_academy(res) {
       resize = setTimeout(setup, 400)  // tune
     })
 
+    var u = 'http://khanacademy.org/'
+    if (isProp(res, 'feed.title.$t')) {
+      var q = res.feed.title.$t.split(': ')[1]
+      if (q) u += 'search?page_search_query=' + q.replace(/\s/g, '+')
+    }
+
     var items = [{
       f: 1,
       a: div,
       h: 'Khan Academy Videos',
       s: 'Khan Academy',
-      u: 'http://khanacademy.org/',
+      u: u,
       force_big_header: true
     }]
     nra(items, 0, true)  // add to page
