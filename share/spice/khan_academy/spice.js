@@ -141,7 +141,7 @@ function ddg_spice_khan_academy(res) {
       last = Math.max(0, len - inc)
 
       var extra = win - (inc * LI_WIDTH)
-      off = Math.floor(extra / 2)
+      off = 0  // Math.floor(extra / 2)  // will center the vids
       off2 = extra - off
 
       pnClasses()
