@@ -1,9 +1,9 @@
 function ddg_spice_aur(results) {
         items = new Array();
         items[0] = new Array();
-        items[0]['a'] = out;
-        items[0]['h'] = res['Name'];
-        items[0]['s'] = 'Archlinux User Repository';
-        items[0]['u'] = 'https://aur.archlinux.org/packages.php?ID=' + res['ID'];
+        items[0]['a'] = 'a';
+        items[0]['h'] = 'h';
+        items[0]['s'] = 's';
+        items[0]['u'] = 'https://url';
         nra(items);
 }
