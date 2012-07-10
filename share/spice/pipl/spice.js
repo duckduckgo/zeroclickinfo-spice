@@ -1,23 +1,32 @@
 function ddg_spice_pipl(results) {
-		
-	items = [[]];
-    items[0]['a'] = '<span>some content<BR><BR>cont</span>';
-    items[0]['h'] = 'Kevin Kelber(Person)';
-    items[0]['s'] = 'Pipl';
-    items[0]['u'] = 'http://twitter.com/';
-    items[0]['i'] = 'http://a1.ec-images.myspacecdn.com/profile01/146/af7f9c694f21402f9f8f027635c738e8/t.jpg';
+	if (!results['error']) {
+		var items = [[]];
+	    items[0]['h'] = results['title'];
+	    items[0]['s'] = 'Pipl';
+	    items[0]['u'] = results['more_url'];
+	    items[0]["force_big_header"] = true;
+	    var content = "";
+	    
+		if (!(typeof results['profile'] === "undefined")) {
+			content += "<div>" + results['profile']['tagline'] + "</div>";
+			links = results['profile']['links'];
+			content += "<ul>";
+			for (var i=0; i<links.length; i++)
+				content += '<li><a href="' + links[i]['url'] + '">' + links[i]['caption'] +'</a></li>';
+			
+			content += "</ul>";
+		    
+		    items[0]['i'] = results['profile']['image'];
+		} else {
+			links = results['suggestions'];
+			content += "<ul>";
+			for (var i=0; i<links.length; i++)
+				content += '<li><a href=http://www.pipl.com/search/"' + links[i]['url'] + '">' + links[i]['caption'] +'</a></li>';
+			
+			content += "</ul>";
+		}
+		items[0]['a'] = content;
 
-//    console.log(tweets[0].user.profile_image_url);
-
-    nra(items);
-    /*
-        items = new Array();
-        items[0] = new Array();
-        items[0]['a'] = 'Kevin Scott Kelber, 52 years old, Rancho Cordova, CA, US, Sa ...';
-        items[0]['h'] = 'Kevin Kelber (Person)';
-        items[0]['s'] = 'Pipl';
-        items[0]['u'] = 'http://www.pipl.com';
-        items[0]['i'] = 'http://a1.ec-images.myspacecdn.com/profile01/146/af7f9c694f21402f9f8f027635c738e8/t.jpg';
-        nra(items);
-        */
+		nra(items);
+	}
 }

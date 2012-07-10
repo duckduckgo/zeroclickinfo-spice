@@ -2,9 +2,11 @@ package DDG::Spice::Pipl;
 
 use DDG::Spice;
 
-triggers query => qr/^([A-Za-z]+\s[A-Za-z]+)$/;
+#triggers query => qr/^([A-Za-z]+\s[A-Za-z]+)$/;
 
-spice to => 'http://ec2-23-22-204-83.compute-1.amazonaws.com/test.json?$1';
+triggers query => qr/^(.+)$/;
+
+spice to => 'http://75.126.80.72/duckduckapi/?q=$1&callback={{callback}}';
 spice wrap_jsonp_callback => 1;
 
 handle matches => sub {
