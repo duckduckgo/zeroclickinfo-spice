@@ -13,7 +13,7 @@ function ddg_spice_khan_academy(res) {
   // If we have a videos to display
   if (res && isProp(res, 'feed.entry') && res.feed.entry.length > 0) {
 
-    var LI_WIDTH = 168
+    var LI_WIDTH = 148
     var vids = res.feed.entry
 
     var div = d.createElement('div')
@@ -141,7 +141,7 @@ function ddg_spice_khan_academy(res) {
       last = Math.max(0, len - inc)
 
       var extra = win - (inc * LI_WIDTH)
-      off = 0  // Math.floor(extra / 2)  // will center the vids
+      off = Math.floor(extra / 2)  // will center the vids
       off2 = extra - off
 
       pnClasses()

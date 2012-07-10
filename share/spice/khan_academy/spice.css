@@ -39,8 +39,8 @@
 #khan li.item {
   float: left;
   list-style-type: none;
-  width: 166px;
-  height: 135px;
+  width: 146px;
+  height: 130px;
   margin: 0;
   padding-top: 5px;
   border: 1px solid transparent;
@@ -75,10 +75,13 @@
 
 #khan li.item img {
   margin: 0 auto 5px auto;
+  max-width: 120px;
 }
 
 #khan li.item p {
-  padding: 0 10px;
+  max-width: 120px;
+  margin: 0 auto;
+  font-size: 12px;
 }
 
 #khan a.npa {
