@@ -1,4 +1,4 @@
-function ddg_spice_aur(results) {
+function ddg_spice_pipl(results) {
         items = new Array();
         items[0] = new Array();
         items[0]['a'] = 'a';
