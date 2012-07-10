@@ -5,7 +5,7 @@ use DDG::Spice;
 
 my $rating = '(?:g\s*|pg\s*|r\s*)?';
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?apikey=ccw2b5ce8dsy7sb3x2qxmn3x&callback={{callback}}';
-triggers any => 'movie', 'movies', 'theaters', 'theaters', 'theatres', 'theater', 'theatres', 'showing', 'something', 'watch', 'opening', 'see';
+triggers any => 'movie', 'movies', 'theaters', 'theaters', 'theatres', 'showing', 'something', 'watch', 'opening', 'see';
 
 my %movies = (
 	'movies now showing' => 1,
@@ -56,6 +56,8 @@ my %movies = (
 	'pg movies in theaters' => 1,
 	'pg-13 movies in theaters' => 1,
 	'g movies in theaters' => 1,
+	'movies currently in theaters' => 1,
+	'movies currently in theatres' => 1,
 	);
 
 handle query_lc => sub {
