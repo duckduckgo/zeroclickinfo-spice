@@ -30,10 +30,21 @@ function ddg_spice_zanran(zanran_results) {
     idiv.appendChild(link);
     div.appendChild(idiv);
     
+    var very_short_title = results[i].short_title;
+    if(very_short_title.length > 25) {
+      var words = very_short_title.split(/\s+/);
+      very_short_title = "";
+      while(words.length && very_short_title.length + 1 + words[0].length < 25) {
+        very_short_title = very_short_title + " " + words.shift();
+      }
+      very_short_title += "\u2026";
+    }
+    
+    
     var link2 = d.createElement("a");
     link2.href = results[i].preview_url;
     link2.title = results[i].title;
-    link2.appendChild(d.createTextNode(results[i].short_title));
+    link2.appendChild(d.createTextNode(very_short_title));
     
     div.appendChild(link2);
     div.appendChild(d.createElement('br'));
