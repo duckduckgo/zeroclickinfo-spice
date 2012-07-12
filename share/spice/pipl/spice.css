@@ -3,4 +3,4 @@
 #zero_click_abstract ul { padding-left: 0px; }
 #zero_click_abstract ul li { list-style: none; }
 #zero_click_abstract ul.results li { width: 50%; float: left; }
-#zero_click_abstract ul li>a>img { float: left; padding-left: 4px; }
+#zero_click_abstract ul li>a>img { float: left; margin-right: 5px; }
