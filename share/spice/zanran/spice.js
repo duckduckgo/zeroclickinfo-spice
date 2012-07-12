@@ -31,12 +31,18 @@ function ddg_spice_zanran(zanran_results) {
     div.appendChild(idiv);
     
     var very_short_title = results[i].short_title;
+    
     if(very_short_title.length > 25) {
+      /* cut on word boundary algorithm */
       var words = very_short_title.split(/\s+/);
       very_short_title = "";
       while(words.length && very_short_title.length + 1 + words[0].length < 25) {
         very_short_title = very_short_title + " " + words.shift();
       }
+
+      /* cut without any regard to word boundary algorithm */
+      // very_short_title = very_short_title.substr(0,24);
+
       very_short_title += "\u2026";
     }
     
@@ -54,6 +60,8 @@ function ddg_spice_zanran(zanran_results) {
     YAHOO.util.Dom.setStyle(div, "max-width", "137px");
     YAHOO.util.Dom.setStyle(div, "vertical-align", "bottom");
     YAHOO.util.Dom.setStyle(div, "text-align", "center");
+
+    // YAHOO.util.Dom.setStyle(link2, "font-size", "80%");
 
     YAHOO.util.Dom.setStyle(idiv, 'height', '200px');
     YAHOO.util.Dom.setStyle(idiv, "position", "relative");
