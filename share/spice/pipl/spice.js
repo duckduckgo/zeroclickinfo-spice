@@ -51,7 +51,7 @@ function ddg_spice_pipl(results) {
 		if (spice_header_element) {
 			is_this_you = d.createElement('a');
 			is_this_you.href = CONST_PIPL_PRIVACY_URL;
-			is_this_you.appendChild(d.createTextNode('Is this you? click here to learn more about privacy');
+			is_this_you.appendChild(d.createTextNode('Is this you? click here to learn more about privacy'));
 			YAHOO.util.Dom.addClass(is_this_you, 'pipl-privacy-link');
 		}
 				
