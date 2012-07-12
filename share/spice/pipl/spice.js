@@ -70,7 +70,10 @@ function createUnorderedList(links, ulClass) {
 		link.href = links[i]['url'];
 		if (!(typeof links[i]['icon'] === "undefined")) {
 			if (nur) img = nur('',links[i]['caption'],links[i]['icon']);
-			if (img) link.appendChild(img);
+			if (img) {
+				YAHOO.util.Dom.addClass(img, 'icon);
+				link.appendChild(img);
+			}
 		}
 		link.appendChild(d.createTextNode(links[i]['caption']));
 		li.appendChild(link);
