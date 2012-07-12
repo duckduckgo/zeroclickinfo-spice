@@ -71,7 +71,7 @@ function createUnorderedList(links, ulClass) {
 		if (!(typeof links[i]['icon'] === "undefined")) {
 			if (nur) img = nur('',links[i]['caption'],links[i]['icon']);
 			if (img) {
-				YAHOO.util.Dom.addClass(img, 'icon);
+				YAHOO.util.Dom.addClass(img, 'icon');
 				link.appendChild(img);
 			}
 		}
