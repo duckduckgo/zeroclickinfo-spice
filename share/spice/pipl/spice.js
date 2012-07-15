@@ -2,7 +2,6 @@ CONST_PIPL_PRIVACY_URL = 'http://pipl.com/privacy_ddg/'
 
 
 function ddg_spice_pipl(results) {
-	if (!results['error']) {
 		var items = [[]];
 	    items[0]['h'] = results['title'];
 	    items[0]['s'] = 'Pipl';
@@ -57,7 +56,7 @@ function ddg_spice_pipl(results) {
 			spice_header_element.appendChild(is_this_you);
 		}
 				
-	}
+	
 }
 
 function createUnorderedList(links, ulClass) {
