@@ -46,22 +46,28 @@ function ddg_spice_zanran(zanran_results) {
       very_short_title += "\u2026";
     }
     
+
+    var div2 = d.createElement("div");
+    div.appendChild(div2);
     
     var link2 = d.createElement("a");
     link2.href = results[i].preview_url;
     link2.title = results[i].title;
     link2.appendChild(d.createTextNode(very_short_title));
     
-    div.appendChild(link2);
-    div.appendChild(d.createElement('br'));
+    div2.appendChild(link2);
     
     YAHOO.util.Dom.addClass(div, 'inline highlight_zero_click1 highlight_zero_click_wrapper');
     YAHOO.util.Dom.setStyle(div, "float", "left");
-    YAHOO.util.Dom.setStyle(div, "max-width", "137px");
+    YAHOO.util.Dom.setStyle(div, "width", "137px");
     YAHOO.util.Dom.setStyle(div, "vertical-align", "bottom");
     YAHOO.util.Dom.setStyle(div, "text-align", "center");
 
-    // YAHOO.util.Dom.setStyle(link2, "font-size", "80%");
+    YAHOO.util.Dom.setStyle(div2, "width", "137px");
+    YAHOO.util.Dom.setStyle(div2, "font-size", "80%");
+    YAHOO.util.Dom.setStyle(div2, "overflow", "hidden");
+    YAHOO.util.Dom.setStyle(div2, "white-space", "nowrap");
+    YAHOO.util.Dom.setStyle(div2, "text-overflow", "ellipsis");
 
     YAHOO.util.Dom.setStyle(idiv, 'height', '200px');
     YAHOO.util.Dom.setStyle(idiv, "position", "relative");
