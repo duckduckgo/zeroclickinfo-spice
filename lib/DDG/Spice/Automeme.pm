@@ -4,10 +4,10 @@ package DDG::Spice::Automeme;
 
 use DDG::Spice;
 
-spice to =>
-    'http://api.automeme.net/html.json?lines=1$1&callback={{callback}}';
+spice to => 'http://api.automeme.net/html.json?lines=1$1&callback={{callback}}';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid   => "418 1d";
+spice is_unsafe => 1;
 
 triggers any => 'automeme', 'meme';
 
