@@ -9,7 +9,7 @@ spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid   => "418 1d";
 spice is_unsafe => 1;
 
-triggers any => 'automeme', 'meme';
+triggers any => "automeme", "meme", "random meme", "meme generator";
 
 handle remainder => sub {
 
