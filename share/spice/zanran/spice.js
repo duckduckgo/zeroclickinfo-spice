@@ -86,10 +86,11 @@ function ddg_spice_zanran(zanran_results) {
   
   items = [[]];
   items[0]['a'] = out;
-  items[0]['h'] = '<h1>Data & Statistics</h1>';
+  items[0]['h'] = "Data & Statistics from Zanran (" + DDG.get_query() + ")";
   items[0]['s'] = 'Zanran';
   items[0]['u'] = zanran_results.more;
   items[0]['f'] = 1;
+  items[0]['force_big_header'] = 1;
   // items[0]['i'] = 'http://zanran.com/favicon.ico';
 
   nra(items,1,1);
