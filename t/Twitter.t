@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Twitter )],
-    'what rhymes with duck' => test_spice(
-        '/js/spice/rhymes/duck',
+    'what twitter with duck' => test_spice(
+        '/js/spice/twitter/duck',
         call_type => 'include',
         caller => 'DDG::Spice::Twitter'
     ),

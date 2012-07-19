@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::RandWord )],
-    'what rhymes with duck' => test_spice(
-        '/js/spice/rhymes/duck',
+    'what randword with duck' => test_spice(
+        '/js/spice/rand_word/duck',
         call_type => 'include',
         caller => 'DDG::Spice::RandWord'
     ),
