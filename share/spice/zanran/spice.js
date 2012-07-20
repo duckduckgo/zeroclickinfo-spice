@@ -17,67 +17,59 @@ function ddg_spice_zanran(zanran_results) {
   var out = "";
 
   for(var i=0; i<results.length; i++) {
+    if(i==3) break; // 3 results max
     var div = d.createElement("div");
-    var idiv = d.createElement("div");
-    var link = d.createElement("a");
-    link.href = results[i].preview_url;
-    link.title = results[i].title;
-
+    YAHOO.util.Dom.addClass(div, 'highlight_zero_click1 highlight_zero_click_wrapper');
+    YAHOO.util.Dom.setStyle(div, 'clear', 'both');
+    YAHOO.util.Dom.setStyle(div, 'border-bottom', '1px dotted black');
+    
+    var img_link = d.createElement("a");
+    img_link.href = results[i].preview_url;
+    img_link.title = results[i].title;
     var img = d.createElement('img');
     img.src = results[i].preview_image;
+    img_link.appendChild(img);
+    YAHOO.util.Dom.setStyle(img, 'max-width', '43px');
+    YAHOO.util.Dom.setStyle(img, 'max-height', '60px'); // A4 ratio
+    YAHOO.util.Dom.setStyle(img, 'border', '1px solid black');
+    YAHOO.util.Dom.setStyle(img_link, 'float', 'right');
     
-    link.appendChild(img);
-    idiv.appendChild(link);
-    div.appendChild(idiv);
-    
-    var very_short_title = results[i].short_title;
-    
-    if(very_short_title.length > 25) {
-      /* cut on word boundary algorithm */
-      var words = very_short_title.split(/\s+/);
-      very_short_title = "";
-      while(words.length && very_short_title.length + 1 + words[0].length < 25) {
-        very_short_title = very_short_title + " " + words.shift();
-      }
+    div.appendChild(img_link);
 
-      /* cut without any regard to word boundary algorithm */
-      // very_short_title = very_short_title.substr(0,24);
+    var p1 = d.createElement('div');
+    p1.appendChild(d.createTextNode(results[i].short_title));
+    div.appendChild(p1);
 
-      very_short_title += "\u2026";
-    }
-    
+    var p2 = d.createElement('div');
 
-    var div2 = d.createElement("div");
-    div.appendChild(div2);
-    
+    var link1 = d.createElement("a");
+    link1.href = results[i].final_url;
+    link1.title = results[i].title;
+    link1.appendChild(d.createTextNode("Link"));
+
     var link2 = d.createElement("a");
     link2.href = results[i].preview_url;
     link2.title = results[i].title;
-    link2.appendChild(d.createTextNode(very_short_title));
-    
-    div2.appendChild(link2);
-    
-    YAHOO.util.Dom.addClass(div, 'inline highlight_zero_click1 highlight_zero_click_wrapper');
-    YAHOO.util.Dom.setStyle(div, "float", "left");
-    YAHOO.util.Dom.setStyle(div, "width", "137px");
-    YAHOO.util.Dom.setStyle(div, "vertical-align", "bottom");
-    YAHOO.util.Dom.setStyle(div, "text-align", "center");
+    link2.appendChild(d.createTextNode("Preview"));
 
-    YAHOO.util.Dom.setStyle(div2, "width", "137px");
-    YAHOO.util.Dom.setStyle(div2, "font-size", "80%");
-    YAHOO.util.Dom.setStyle(div2, "overflow", "hidden");
-    YAHOO.util.Dom.setStyle(div2, "white-space", "nowrap");
-    YAHOO.util.Dom.setStyle(div2, "text-overflow", "ellipsis");
+    p2.appendChild(link1);
+    p2.appendChild(d.createTextNode(" | "));
+    p2.appendChild(link2);
+    p2.appendChild(d.createTextNode(" | "));
 
-    YAHOO.util.Dom.setStyle(idiv, 'height', '200px');
-    YAHOO.util.Dom.setStyle(idiv, "position", "relative");
+    var source = d.createElement('i');
+    p2.appendChild(source);
+    source.appendChild(d.createTextNode("Source: "));
 
-    YAHOO.util.Dom.setStyle(img, "position", "absolute");
-    YAHOO.util.Dom.setStyle(img, "bottom", "0px");
-    YAHOO.util.Dom.setStyle(img, "margin", '0 auto 0 auto');
-    YAHOO.util.Dom.setStyle(img, 'max-width', '137px');
-    YAHOO.util.Dom.setStyle(img, 'max-height', '194px'); // A4 ratio
+    p2.appendChild(d.createTextNode(results[i].site_name));
+
+    YAHOO.util.Dom.setStyle(p2, "overflow", "hidden");
+    YAHOO.util.Dom.setStyle(p2, "white-space", "nowrap");
+    YAHOO.util.Dom.setStyle(p2, "text-overflow", "ellipsis");
+
     
+    div.appendChild(p2);
+
     var container_div = d.createElement("div");
     container_div.appendChild(div);
     out += container_div.innerHTML;
