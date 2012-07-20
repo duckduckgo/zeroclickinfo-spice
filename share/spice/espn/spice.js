@@ -13,6 +13,7 @@ function ddg_spice_espn(response) {
 
     player = response.sports[0].leagues[0].athletes[0];
     team = player.positions[0].id;
+    stats = player.stats;
 
     console.log(player);
 
@@ -39,12 +40,36 @@ function ddg_spice_espn(response) {
                + '</div>'
 
                + '<div id="espn_zci_stats">'
-               + 'Status: ' + player.athleteStatus + "<br>"
-               + 'Position: ' + player.positions[0].name + "<br>"
-               + 'Height: ' + player.height + "<br>"
-               + 'Weight: ' + player.weight + "<br>"
-               + 'Born: ' + player.city + ", " + player.state + "<br>"
-               + ' ' + player.dateOfBirth
+               + 'Status: ' + player.athleteStatus + '<br>'
+               + 'Position: ' + player.positions[0].name + '<br>'
+               + 'Height: ' + player.height + '<br>'
+               + 'Weight: ' + player.weight + '<br>'
+               + 'Born: ' + player.birthPlace.city + ', ' + player.birthPlace.state
+               + ' ' + player.dateOfBirth + '<br>'
+               + 'Weight: ' + player.weight + '<br>'
+               + 'Assists: ' + stats.assists + '<br>'
+               + 'Blocks: ' + stats.blocks + '<br>'
+               + 'DefensiveRebounds: ' + stats.defensiveRebounds + '<br>'
+               + 'DoubleDouble: ' + stats.doubleDouble + '<br>'
+               + 'Ejections: ' + stats.ejections + '<br>'
+               + 'FieldGoalPercentage: ' + stats.fieldGoalPercentage + '<br>'
+               + 'FieldGoalsAttempted: ' + stats.fieldGoalsAttempted + '<br>'
+               + 'FieldGoalsMade: ' + stats.fieldGoalsMade + '<br>'
+               + 'Fouls: ' + stats.fouls + '<br>'
+               + 'FreeThrowPercentage: ' + stats.freeThrowPercentage + '<br>'
+               + 'FreeThrowsAttempted: ' + stats.freeThrowsAttempted + '<br>'
+               + 'FreeThrowsMade: ' + stats.freeThrowsMade + '<br>'
+               + 'GamesStarted: ' + stats.gamesStarted + '<br>'
+               + 'Minutes: ' + stats.minutes + '<br>'
+               + 'OffensiveRebounds: ' + stats.offensiveRebounds + '<br>'
+               + 'Points: ' + stats.points + '<br>'
+               + 'Rebounds: ' + stats.rebounds + '<br>'
+               + 'Steals: ' + stats.steals + '<br>'
+               + 'ThreePointPercentage: ' + stats.threePointPercentage + '<br>'
+               + 'ThreePointersAttempted: ' + stats.threePointersAttempted + '<br>'
+               + 'ThreePointersMade: ' + stats.threePointersMade + '<br>'
+               + 'TripleDouble: ' + stats.tripleDouble + '<br>'
+               + 'Turnovers: ' + stats.turnovers + '<br>'
                + '</div>'
 
                + '<div id="espn_zci_gamelog">'
