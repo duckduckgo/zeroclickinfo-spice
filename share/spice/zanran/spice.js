@@ -22,6 +22,7 @@ function ddg_spice_zanran(zanran_results) {
     YAHOO.util.Dom.addClass(div, 'highlight_zero_click1 highlight_zero_click_wrapper');
     YAHOO.util.Dom.setStyle(div, 'clear', 'both');
     YAHOO.util.Dom.setStyle(div, 'border-bottom', '1px dotted black');
+    YAHOO.util.Dom.setStyle(div, 'width', '620px');
     
     var img_link = d.createElement("a");
     img_link.href = results[i].preview_url;
@@ -33,12 +34,25 @@ function ddg_spice_zanran(zanran_results) {
     YAHOO.util.Dom.setStyle(img, 'max-height', '60px'); // A4 ratio
     YAHOO.util.Dom.setStyle(img, 'border', '1px solid black');
     YAHOO.util.Dom.setStyle(img_link, 'float', 'right');
+    YAHOO.util.Dom.setStyle(img_link, 'margin-left', '10px');
     
     div.appendChild(img_link);
 
+    var title = results[i].title;
+    if(title.length > 140) {
+      var words = title.split(/\s+/);
+      title = "";
+      while(words.length && title.length + 1 + words[0].length < 140) {
+        title = title + " " + words.shift();
+      }
+      title += "\u2026";
+    }
+
     var p1 = d.createElement('div');
-    p1.appendChild(d.createTextNode(results[i].short_title));
+    p1.appendChild(d.createTextNode(title));
     div.appendChild(p1);
+
+    YAHOO.util.Dom.setStyle(p1, 'max-width', '575px');
 
     var p2 = d.createElement('div');
 
