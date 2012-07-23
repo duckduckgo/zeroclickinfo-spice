@@ -39,8 +39,7 @@ function ddg_spice_espn(response) {
                + 'pretty pictures'
                + '</div>'
 
-               + '<div id="espn_zci_stats">'
-               + '<table>'
+               + '<table id="espn_zci_stats">'
                + '<tr><td>Status:</td><td>' + player.athleteStatus + '</td></tr>'
                + '<tr><td>Position:</td><td>' + player.positions[0].name.toLowerCase() + '</td></tr>'
                + '<tr><td>Height:</td><td>' + player.height + '</td></tr>'
@@ -72,7 +71,6 @@ function ddg_spice_espn(response) {
                + '<tr><td>Triple double:</td><td>' + stats.tripleDouble + '</td></tr>'
                + '<tr><td>Turnovers:</td><td>' + stats.turnovers + '</td></tr>'
                + '</table>'
-               + '</div>'
 
                + '<div id="espn_zci_gamelog">'
                + 'remember when arsenal tried to walk it in?'
@@ -93,6 +91,9 @@ function ddg_spice_espn(response) {
            +  '#espn_zci_stats, #espn_zci_photos {'
            +  'display:none; margin-top:5px;'
            +  '}'
+           +  '.tr_odd {'
+           +  'background-color:lightgrey;'
+           +  '}'
            +  '</style>';
 
 	var items = new Array();
@@ -104,6 +105,11 @@ function ddg_spice_espn(response) {
 	items[0]['force_big_header'] = 1;
 	
 	nra(items);
+
+    var table = document.getElementById("espn_zci_stats");
+    for (var i = 0; i < table.rows.length; i++) {
+        if (i % 2 == 0) table.rows[i].className="tr_odd";
+    }
 
     var ids = ["espn_zci_videos_link", "espn_zci_gamelog_link",
                "espn_zci_stats_link", "espn_zci_photos_link", "espn_zci_news_link"];
