@@ -111,13 +111,17 @@ function ddg_spice_espn(response) {
         if (i % 2 == 0) table.rows[i].className="tr_odd";
     }
 
-    var ids = ["espn_zci_videos_link", "espn_zci_gamelog_link",
+    ids = ["espn_zci_videos_link", "espn_zci_gamelog_link",
                "espn_zci_stats_link", "espn_zci_photos_link", "espn_zci_news_link"];
+    var bgtabs = [];
+    ids.map( function(id) {
+        bgtabs.push(document.getElementById(id.replace("_link","")))
+    });
     YAHOO.util.Event.addListener(ids, "click", function() {
-        var section = this.id.replace("_link", "");
-        var bgtabs = document.getElementById("zero_click_abstract").getElementsByTagName('div');
-        for (var i=0; i<bgtabs.length; i++) { bgtabs[i].style.display = "none"; }
-        section = document.getElementById(section);
-        section.style.display = "block";
+        var current_tab = this.id.replace("_link", "");
+        bgtabs.map(function(i){i.style.display="none";});
+        console.log(current_tab);
+        current_tab = document.getElementById(current_tab);
+        current_tab.style.display = "block";
     });
 }
