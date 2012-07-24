@@ -146,14 +146,14 @@ my %players = (
 
 triggers any => keys %players;
 
-spice to => 'http://api.espn.com/v1/sports/$1/$2/athletes/$3?enable=stats&apikey={{ENV{DDG_SPICE_ESPN_APIKEY}}}&callback={{callback}}';
+spice to => 'http://api.espn.com/v1/sports/$1/$2/athletes/$3/$4?enable=stats&apikey={{ENV{DDG_SPICE_ESPN_APIKEY}}}&callback=$5';
 
-spice from => '(.*?)/(.*)/(.*)';
+spice from => '(.*?)/(.*)/(.*)/(.*)/(.*)';
 
 spice is_cached => 0;
 
 handle query_lc => sub {
-    return "basketball", "nba", $players{$_};
+    return "basketball", "nba", $players{$_}, "foo", "ddg_spice_espn";
 };
 
 1;
