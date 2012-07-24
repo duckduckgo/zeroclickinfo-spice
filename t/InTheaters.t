@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::InTheaters )],
-    'what intheaters with duck' => test_spice(
-        '/js/spice/in_theaters/duck',
+    'movies now showing' => test_spice(
+        '/js/spice/in_theaters/in_theaters',
         call_type => 'include',
         caller => 'DDG::Spice::InTheaters'
     ),

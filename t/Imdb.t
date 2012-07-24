@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Imdb )],
-    'what imdb with duck' => test_spice(
-        '/js/spice/imdb/duck',
+    'imdb mighty ducks' => test_spice(
+        '/js/spice/imdb/mighty%20ducks',
         call_type => 'include',
         caller => 'DDG::Spice::Imdb'
     ),

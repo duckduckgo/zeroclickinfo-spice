@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Xkcd )],
-    'what xkcd with duck' => test_spice(
-        '/js/spice/xkcd/duck',
+    'xkcd' => test_spice(
+        '/js/spice/xkcd/',
         call_type => 'include',
         caller => 'DDG::Spice::Xkcd'
     ),

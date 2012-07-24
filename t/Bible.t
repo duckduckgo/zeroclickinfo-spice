@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Bible )],
-    'what bible with duck' => test_spice(
-        '/js/spice/bible/duck',
+    'james 1:26' => test_spice(
+        '/js/spice/bible/james%201%3A26',
         call_type => 'include',
         caller => 'DDG::Spice::Bible'
     ),

@@ -7,10 +7,11 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::IsItUp )],
-    'what isitup with duck' => test_spice(
-        '/js/spice/is_it_up/duck',
+    'is duckduckgo.com up?' => test_spice(
+        '/js/spice/is_it_up/duckduckgo.com',
         call_type => 'include',
-        caller => 'DDG::Spice::IsItUp'
+        caller => 'DDG::Spice::IsItUp',
+        is_cached => 0
     ),
 );
 

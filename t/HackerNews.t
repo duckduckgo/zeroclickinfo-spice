@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::HackerNews )],
-    'what hackernews with duck' => test_spice(
-        '/js/spice/hacker_news/duck',
+    'hn duckduckgo' => test_spice(
+        '/js/spice/hacker_news/duckduckgo',
         call_type => 'include',
         caller => 'DDG::Spice::HackerNews'
     ),

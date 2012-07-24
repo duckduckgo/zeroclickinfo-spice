@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::RedditSearch )],
-    'what redditsearch with duck' => test_spice(
-        '/js/spice/reddit_search/duck',
+    'reddit duckduckgo' => test_spice(
+        '/js/spice/reddit_search/duckduckgo/duckduckgo/false',
         call_type => 'include',
         caller => 'DDG::Spice::RedditSearch'
     ),

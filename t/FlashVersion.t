@@ -7,9 +7,9 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::FlashVersion )],
-    'what flashversion with duck' => test_spice(
-        '/js/spice/flash_version/duck',
-        call_type => 'include',
+    'flash version' => test_spice(
+        '/js/spice/flash_version/',
+        call_type => 'self',
         caller => 'DDG::Spice::FlashVersion'
     ),
 );

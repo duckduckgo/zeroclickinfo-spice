@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::HqTemp )],
-    'what hqtemp with duck' => test_spice(
-        '/js/spice/hq_temp/duck',
+    'temperature at duckduckgo' => test_spice(
+        '/js/spice/hq_temp/',
         call_type => 'include',
         caller => 'DDG::Spice::HqTemp'
     ),

@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::BigHuge )],
-    'what bighuge with duck' => test_spice(
-        '/js/spice/big_huge/duck',
+    'synonym for search' => test_spice(
+        '/js/spice/big_huge/search/synonym',
         call_type => 'include',
         caller => 'DDG::Spice::BigHuge'
     ),

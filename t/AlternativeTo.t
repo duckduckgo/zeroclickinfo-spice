@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::AlternativeTo )],
-    'what alternativeto with duck' => test_spice(
-        '/js/spice/alternative_to/duck',
+    'alternative to windows' => test_spice(
+        '/js/spice/alternative_to/windows',
         call_type => 'include',
         caller => 'DDG::Spice::AlternativeTo'
     ),

@@ -7,10 +7,11 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::RandWord )],
-    'what randword with duck' => test_spice(
-        '/js/spice/rand_word/duck',
+    'random word' => test_spice(
+        '/js/spice/rand_word/',
         call_type => 'include',
-        caller => 'DDG::Spice::RandWord'
+        caller => 'DDG::Spice::RandWord',
+        is_cached => 0
     ),
 );
 

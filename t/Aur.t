@@ -7,8 +7,18 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Aur )],
-    'what aur with duck' => test_spice(
-        '/js/spice/aur/duck',
+    'aur powermate' => test_spice(
+        '/js/spice/aur/powermate',
+        call_type => 'include',
+        caller => 'DDG::Spice::Aur'
+    ),
+    'archlinux package powermate' => test_spice(
+        '/js/spice/aur/powermate',
+        call_type => 'include',
+        caller => 'DDG::Spice::Aur'
+    ),
+    'arch package powermate' => test_spice(
+        '/js/spice/aur/powermate',
         call_type => 'include',
         caller => 'DDG::Spice::Aur'
     ),
