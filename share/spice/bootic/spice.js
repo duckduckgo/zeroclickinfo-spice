@@ -1,74 +1,68 @@
-function ddg_spice_bootic(products) 
+function ddg_spice_bootic( products ) 
 {
-    var out, tmp, div, div2, link, img, item;
-    out = '';
+	/* bail out early if there is no usable data */
+	if ( ! products.products || ! products.sorted )
+		return;
 
-    var pic_width = 100;
-    var pic_height = 100;
-    var server = 'http://www.bootic.com';
-    var pic_base_uri = 'http://static.bootic.com/_pictures/'+pic_width+'x'+pic_height+'/';
+	/* constants */
+	var pic_width = 100;
+	var pic_height = 100;
+	var server = 'http://www.bootic.com';
+	var pic_base_uri = 'http://static.bootic.com/_pictures/'
+		+ pic_width + 'x' + pic_height + '/';
 
-    if ( products.products && products.sorted ) {
-	for (var i = 0; i < products.sorted.length; i++ ) {
-	    var p_id = products.sorted[ i ];
-	    var item = products.products[ p_id ];
+	var placeholder = d.createElement( 'div' );
+	var icon_parent = d.createElement( 'div' );
+	YAHOO.util.Dom.addClass( icon_parent, 'bootic_products' );
 
-	    div = d.createElement("div");
-	    div2 = d.createElement("div");
+	placeholder.appendChild( icon_parent );
 
-	    link = d.createElement("a");
-	    link.href = server + item.url;
+	for ( var i = 0; i < products.sorted.length; i++ ) {
+		var p_id = products.sorted[ i ];
+		var item = products.products[ p_id ];
 
-	    var pic = item.pictures[0].replace( /^.*?\//, "" );
-	    img = d.createElement('img');
-	    img.src = '/iu/?u=' + pic_base_uri + pic;
-	    img.width = pic_width;
-	    img.height = pic_height;
-	    img.alt = item.name;
-	    YAHOO.util.Dom.setStyle(img, "margin", '0 auto 0 auto');
-	    YAHOO.util.Dom.setStyle(div,'margin-bottom', '10px');
-	    YAHOO.util.Dom.setStyle(div,'text-align', 'center');
-	    link.appendChild(img);
-	    div.appendChild(link);
+		var icon = d.createElement( 'div' );
+		YAHOO.util.Dom.addClass( icon,
+			'bootic_product inline highlight_zero_click1 highlight_zero_click_wrapper' );
 
-	    link = d.createElement('a');
-	    link.href = server + item.url;
-	    link.innerHTML = item.name;
+		var link = d.createElement( 'a' );
+		YAHOO.util.Dom.addClass( link, 'bootic_name' );
+		link.href = server + item.url;
 
-	    YAHOO.util.Dom.setStyle( link, 'display', 'block' );
-	    YAHOO.util.Dom.setStyle( link, 'width', '110px' );
-	    YAHOO.util.Dom.setStyle( link, 'max-height', '56px' );
-	    YAHOO.util.Dom.setStyle( link, 'overflow', 'hidden' );
+		var pic = item.pictures[0].replace( /^.*?\//, '' );
+		var img = d.createElement( 'img' );
+		YAHOO.util.Dom.addClass( img, 'bootic_picture' );
+		img.src = '/iu/?u=' + pic_base_uri + pic;
+		img.width = pic_width;
+		img.height = pic_height;
+		img.alt = item.name;
+		link.appendChild( img );
 
-	    div.appendChild(link);
-	    div.title = item.name;
-      
-	    var last_right = "16px";
-	    if ( i == products.sorted.length - 1 )
-		last_right = "0px";
+		var name = d.createElement( 'span' );
+		name.innerHTML = item.name;
+		link.appendChild( name );
 
-	    YAHOO.util.Dom.addClass(div, 'inline highlight_zero_click1 highlight_zero_click_wrapper');
-	    YAHOO.util.Dom.setStyle(div, "float", "left");
-	    YAHOO.util.Dom.setStyle(div, "margin", "10px "+last_right+" 0px 0px");
-	    YAHOO.util.Dom.setStyle(div, "padding", "5px 5px 5px 5px");
-	    YAHOO.util.Dom.setStyle(div, "max-width", "120px");
-	    
-	    div2.appendChild(div);
-	    out += div2.innerHTML;
+		icon.appendChild( link );
+		icon.title = item.name;
+
+		icon_parent.appendChild( icon );
 	}
-    }
-    if (out) {
-	out += '<div class="clear"></div>';
-	items = new Array();
+
+	var items = new Array();
 	items[0] = new Array();
-	items[0]['a'] = out;
 	items[0]['h'] = '';
+	items[0]['a'] = placeholder.innerHTML;
 	items[0]['s'] = 'Bootic (' + products.total + ' products)';
+
 	var query = '';
 	if ( products.query )
-	    query = '?q=' + encodeURIComponent( products.query );
+		query = '?q=' + encodeURIComponent( products.query );
 	items[0]['u'] = 'http://www.bootic.com/' + query;
 	items[0]['f'] = 1;
-	nra(items,1,1);
-    }
+
+	/* 
+	 * favicon placement: 1 - next to More at link;
+	 * is internal highlight: 1 - we have our own links
+	 */
+	nra( items, 1, 1 );
 }

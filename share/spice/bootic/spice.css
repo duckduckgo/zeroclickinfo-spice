@@ -1,0 +1,22 @@
+div.bootic_products {
+	overflow: hidden;
+	height: 178px;
+}
+div.bootic_product {
+	float: left;
+	margin: 10px 10px 0px 0px;
+	padding: 5px 5px 5px 5px;
+}
+div.bootic_product:last-child {
+	margin-right: 0px;
+}
+a.bootic_name {
+	display: block;
+	width: 110px;
+	height: 156px;
+	overflow: hidden;
+	text-align: center;
+}
+img.bootic_picture {
+	margin: 0 auto 0 auto;
+}
