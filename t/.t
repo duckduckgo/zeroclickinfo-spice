@@ -10,8 +10,7 @@ ddg_spice_test(
     'what rhymes with duck' => test_spice(
         '/js/spice/rhymes/duck',
         call_type => 'include',
-        caller => 'DDG::Spice::Rhymes',
-        is_cached => 1
+        caller => 'DDG::Spice::Rhymes'
     ),
 );
 

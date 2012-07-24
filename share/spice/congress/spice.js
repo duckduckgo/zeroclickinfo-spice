@@ -77,10 +77,17 @@ function ddg_spice_congress(data) {
                 + "/?q=" + escape(name) + "\">"
                 + "(" + member.party + ") "
                 + name
-                + "</a>";
+                + "</a> &mdash; ";
             if (twitter) {
-                snippet += " &mdash; <i><a href=\"http://www.twitter.com/"
-                    + member.twitter_account + "\">" + twitter + "</a></i>" 
+                snippet += "<a href=\"http://www.twitter.com/"
+                    + member.twitter_account + "\">" + twitter + "</a><br>" 
+            }
+            snippet += "votes with party on "
+                + parseFloat(member.votes_with_party_pct).toFixed(0)
+                + "% of issues"
+                + ', next election in ' + member.next_election;
+            if (member.district) {
+                snippet += ' (district ' + member.district + ')';
             }
             snippet += "</li>";
         }
