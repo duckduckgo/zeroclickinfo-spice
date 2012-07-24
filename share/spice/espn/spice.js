@@ -151,10 +151,11 @@ function ddg_spice_espn_bind() {
     ids.map( function(id) {
         bgtabs.push(document.getElementById(id.replace("_link","")))
     });
-    YAHOO.util.Event.addListener(ids, "click", function() {
+    YAHOO.util.Event.addListener(ids, "click", function(e) {
         var current_tab = this.id.replace("_link", "");
         bgtabs.map(function(i){i.style.display="none";});
         current_tab = document.getElementById(current_tab);
         current_tab.style.display = "block";
+        e.stopImmediatePropagation();
     });
 }
