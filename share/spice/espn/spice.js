@@ -5,6 +5,7 @@ items[0]['h'] = '';
 items[0]['s'] = 'ESPN';
 items[0]['u'] = 'http://espn.com';
 items[0]['force_big_header'] = 1;
+items[0]['f'] = 1;
 
 var tabs = '';
 var news = '';
