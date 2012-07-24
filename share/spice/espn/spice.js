@@ -27,20 +27,16 @@ function ddg_spice_espn(response) {
     teams['11'] = {"name":"Pacers", "location":"Indiana"};
     teams['99'] = {"name":"All-Stars", "location":"West"};
 
-    player = response.sports[0].leagues[0].athletes[0];
-    team = player.positions[0].id;
+    player = response.sports[0].leagues[0].athletes[0]; team = player.positions[0].id;
     stats = player.stats;
-    items[0]['h'] = player.displayName + " (ESPN)";
+    items[0]['h'] = player.displayName + " - "
+                  + teams[player.positions[0].id]['location'] + " "
+                  + teams[player.positions[0].id]['name']
+                  + " (ESPN)";
 
     console.log(player);
 
-    tabs = 'Team: ' + teams[player.positions[0].id]['location'] + " "
-         + teams[player.positions[0].id]['name'] + '<br>'
-         + (player.schools ? 'College: ' + player.schools[0].name + '<br>' : '')
-         // Missing from documentation?
-         //+ 'Drafted: ' + 'no info' + '<br>'
-         
-         + '<span id="espn_zci_news_link">News</span> | '
+    tabs = '<span id="espn_zci_news_link">News</span> | '
          + '<span id="espn_zci_photos_link">Photos</span> | '
          + '<span id="espn_zci_stats_link">Stats</span> | '
          + '<span id="espn_zci_gamelog_link">Game Log</span> | '
@@ -91,6 +87,7 @@ function ddg_spice_espn(response) {
     }
 
     playerStats = playerStats.map(prepareStat);
+    console.log(playerStats);
     var nestedStats = [ 'Birthplace', 'Position' ];
     [ player.birthPlace.state + ', ' + player.birthPlace.city,
       player.positions[0].name,
@@ -100,7 +97,7 @@ function ddg_spice_espn(response) {
     });
 
     stats  = '<table id="espn_zci_stats">'
-           + playerStats.join("")
+           + playerStats.join("");
            + '</table>';
 
     gamelog = '<div id="espn_zci_gamelog">'
