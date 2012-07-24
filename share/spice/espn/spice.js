@@ -50,37 +50,57 @@ function ddg_spice_espn(response) {
            + 'pretty pictures'
            + '</div>';
 
-      stats  = '<table id="espn_zci_stats">'
-           + '<tr><td>Status:</td><td>' + player.athleteStatus + '</td></tr>'
-           + '<tr><td>Position:</td><td>' + player.positions[0].name.toLowerCase() + '</td></tr>'
-           + '<tr><td>Height:</td><td>' + player.height + '</td></tr>'
-           + '<tr><td>Weight:</td><td>' + player.weight + '</td></tr>'
-           + '<tr><td>Born:</td><td>' + player.birthPlace.city + ', ' + player.birthPlace.state + '</td></tr>'
-           + '<tr><td></td><td>' + player.dateOfBirth + '</td></tr>'
-           + '<tr><td>Weight:</td><td>' + player.weight + '</td></tr>'
-           + '<tr><td>Assists:</td><td>' + stats.assists + '</td></tr>'
-           + '<tr><td>Blocks:</td><td>' + stats.blocks + '</td></tr>'
-           + '<tr><td>Defensive rebounds:</td><td>' + stats.defensiveRebounds + '</td></tr>'
-           + '<tr><td>Double double:</td><td>' + stats.doubleDouble + '</td></tr>'
-           + '<tr><td>Ejections:</td><td>' + stats.ejections + '</td></tr>'
-           + '<tr><td>Field goal percentage:</td><td>' + stats.fieldGoalPercentage + '</td></tr>'
-           + '<tr><td>Field goals attempted:</td><td>' + stats.fieldGoalsAttempted + '</td></tr>'
-           + '<tr><td>Field goals made:</td><td>' + stats.fieldGoalsMade + '</td></tr>'
-           + '<tr><td>Fouls:</td><td>' + stats.fouls + '</td></tr>'
-           + '<tr><td>Free throw percentage:</td><td>' + stats.freeThrowPercentage + '</td></tr>'
-           + '<tr><td>Free throws attempted:</td><td>' + stats.freeThrowsAttempted + '</td></tr>'
-           + '<tr><td>Free throws made:</td><td>' + stats.freeThrowsMade + '</td></tr>'
-           + '<tr><td>Games started:</td><td>' + stats.gamesStarted + '</td></tr>'
-           + '<tr><td>Minutes:</td><td>' + stats.minutes + '</td></tr>'
-           + '<tr><td>Offensive rebounds:</td><td>' + stats.offensiveRebounds + '</td></tr>'
-           + '<tr><td>Points:</td><td>' + stats.points + '</td></tr>'
-           + '<tr><td>Rebounds:</td><td>' + stats.rebounds + '</td></tr>'
-           + '<tr><td>Steals:</td><td>' + stats.steals + '</td></tr>'
-           + '<tr><td>Three point percentage:</td><td>' + stats.threePointPercentage + '</td></tr>'
-           + '<tr><td>Three pointers attempted:</td><td>' + stats.threePointersAttempted + '</td></tr>'
-           + '<tr><td>Three pointers made:</td><td>' + stats.threePointersMade + '</td></tr>'
-           + '<tr><td>Triple double:</td><td>' + stats.tripleDouble + '</td></tr>'
-           + '<tr><td>Turnovers:</td><td>' + stats.turnovers + '</td></tr>'
+    playerStats = [ 'assists',
+                    'athleteStatus',
+                    'height',
+                    'weight',
+                    'dateOfBirth',
+                    'blocks',
+                    'defensiveRebounds',
+                    'doubleDouble',
+                    'ejections',
+                    'fieldGoalsMade',
+                    'fieldGoalsAttempted',
+                    'fieldGoalPercentage',
+                    'fouls',
+                    'freeThrowsMade',
+                    'freeThrowsAttempted',
+                    'freeThrowPercentage',
+                    'gamesStarted',
+                    'minutes',
+                    'offensiveRebounds',
+                    'points',
+                    'rebounds',
+                    'steals',
+                    'threePointersMade',
+                    'threePointersAttempted',
+                    'threePointPercentage',
+                    'tripleDouble',
+                    'turnovers',
+                  ];
+
+    function prepareStat(s, index, array) {
+        display = s.replace(/([a-z\d](?=[A-Z])|[a-zA-Z](?=\d))/g, "$1 ");
+        display = display.toLowerCase();
+        display = '<tr><td>'
+                + display.charAt(0).toUpperCase() + display.slice(1)
+                + ':</td><td>'
+                + (player[s] ? player[s] : stats[s])
+                + '</td></tr>';
+        return display;
+    }
+
+    playerStats = playerStats.map(prepareStat);
+    var nestedStats = [ 'Birthplace', 'Position' ];
+    [ player.birthPlace.state + ', ' + player.birthPlace.city,
+      player.positions[0].name,
+    ].map(function(s) {
+        playerStats.unshift('<tr><td>' + nestedStats.shift()
+                          + '</td><td>' + s + '</td></tr>');
+    });
+
+    stats  = '<table id="espn_zci_stats">'
+           + playerStats.join("")
            + '</table>';
 
     gamelog = '<div id="espn_zci_gamelog">'
