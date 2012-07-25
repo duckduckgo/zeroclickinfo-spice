@@ -37,11 +37,12 @@ function ddg_spice_espn(response) {
 
     console.log(player);
 
-    tabs = '<span id="espn_zci_news_link">News</span> | '
-         + '<span id="espn_zci_photos_link">Photos</span> | '
-         + '<span id="espn_zci_stats_link">Stats</span> | '
-         + '<span id="espn_zci_gamelog_link">Game Log</span> | '
-         + '<span id="espn_zci_videos_link">Videos</span>';
+    tabs = [ 'news', 'photos', 'stats', 'gamelog', 'videos' ];
+    tabs = tabs.map(function(s, index, array) {
+        return '<span id="espn_zci_' + s + '_link">'
+            +  s.charAt(0).toUpperCase() + s.slice(1)
+            +  '</span>' + (index == array.length - 1 ? "" : " | ");
+    }).join("");
 
     photos = '<div id="espn_zci_photos">'
            + 'pretty pictures'
@@ -115,6 +116,8 @@ function ddg_spice_espn(response) {
           + '#espn_zci_stats_link, #espn_zci_photos_link, '
           + '#espn_zci_news_link {'
           + 'font-weight:bold;'
+          + 'padding:5px;'
+          + 'text-align:center;'
           + '}'
           + '#espn_zci_videos, #espn_zci_gamelog, '
           + '#espn_zci_stats, #espn_zci_photos {'
