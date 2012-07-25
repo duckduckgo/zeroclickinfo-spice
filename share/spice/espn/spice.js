@@ -22,6 +22,7 @@ function ddg_spice_espn(response) {
     var playerTeam = player.competitors[0].team;
     teamID = playerTeam.id;
     stats = player.stats;
+    items[0]['u'] = items[0]['u'] + "/nba/player/_/id/" + player.id;
     items[0]['h'] = player.displayName + " - "
                   + playerTeam.location + " "
                   + playerTeam.name
