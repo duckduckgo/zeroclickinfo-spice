@@ -97,14 +97,9 @@ function ddg_spice_espn(response) {
            + playerStats.join("")
            + '</table>';
 
-    gamelog = '<div id="espn_zci_gamelog">'
-            + 'remember when arsenal tried to walk it in?'
-            + '</div>';
-
     videos = '<div id="espn_zci_videos">'
            + 'moving pictures!'
            + '</div>';
-
 
     style = '<style>'
           + '#espn_zci_videos_link, #espn_zci_gamelog_link, '
@@ -138,8 +133,23 @@ function ddg_spice_espn(response) {
 }
 
 function ddg_spice_espn_events(response) {
-    console.log(response);
+    var events = response.sports[0].leagues[0].events;
+    console.log(events[0]);
+    gamelog = '<div id="espn_zci_gamelog"><table>';
+    for (var i = 0; i < 5 && events[i]; i++) {
+        var competitors = events[i].competitions[0].competitors;
+        competitors.map(function(competitor, index) {
+            teamDisplayName = competitor.team.location
+                            + " " + competitor.team.name
+            gamelog += (index == 0 ? '<tr>' : '') + '<td><a href="/?q='
+                    +  encodeURIComponent(teamDisplayName)
+                    +  '">' + teamDisplayName + '</a></td><td>'
+                    +  (index == 0 ? ' vs ' : '</td></tr>');
+        });
+    }
+    gamelog += '</table></div>';
     ddg_spice_espn_bind();
+
 }
 
 function ddg_spice_espn_news(response) {
