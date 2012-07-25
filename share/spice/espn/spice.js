@@ -16,6 +16,9 @@ var videos = '';
 var style = '';
 var teamID = 0;
 
+var callsMade = 0;
+var numberOfCalls = 2;
+
 function ddg_spice_espn(response) {
 
     var player = response.sports[0].leagues[0].athletes[0];
@@ -128,6 +131,8 @@ function ddg_spice_espn(response) {
 
     nrj("/js/spice/espn/basketball/nba/athletes/"
             + player.id + "/news/ddg_spice_espn_news");
+    nrj("/js/spice/espn/basketball/nba/teams/"
+            + teamID + "/foo/ddg_spice_espn_team");
 }
 
 function ddg_spice_espn_news(response) {
@@ -145,8 +150,7 @@ function ddg_spice_espn_news(response) {
     news += '</ul>'
          +  '</div>';
 
-    nrj("/js/spice/espn/basketball/nba/teams/"
-            + teamID + "/foo/ddg_spice_espn_team");
+    ddg_spice_espn_bind();
 }
 
 function ddg_spice_espn_team(response) {
@@ -197,6 +201,8 @@ function ddg_spice_espn_team(response) {
 }
 
 function ddg_spice_espn_bind() {
+    if (++callsMade != numberOfCalls) return;
+
     items[0]['a'] = tabs
                   + news
                   + team
