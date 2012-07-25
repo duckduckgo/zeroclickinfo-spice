@@ -7,10 +7,11 @@ triggers startend => "code", "example";
 spice to => 'http://searchco.de/api/jsonp_codesearch_I/?q=$1&callback={{callback}}';
 
 handle remainder => sub {
-    my $words = '\b(actionscript|ada|asp|asp\.net|assembly|awk|bc|bourneagainshell|bourneshell|c|cshell|c\/c\+\+header|c\#|c\+\+|cmake|cobol|coldfusion|css|cython|d|dal|dart|dosbatch|dtd|erlang|expect|fortran77|fortran90|fortran95|go|groovy|haskell|html|idl|java|javascript|jsp|kermit|kornshell|lex|lisp|lua|m4|make|matlab|modula3|msbuildscripts|mumps|mxml|nantscripts|objectivec|objectivec\+\+|ocaml|octave|oracleforms|oraclereports|pascal|patrancommandlanguage|perl|php|python|rexx|ruby|rubyhtml|scala|sed|skill|smarty|softbridgebasic|sql|sqldata|tcl\/tk|teamcenterdef|teamcentermet|teamcentermth|vhdl|vimscript|visualbasic|xaml|xml|xsd|xslt|yacc|yaml)\b';
-    if ($_ =~ m/$words/i) {
-	    $_ =~ s/$words//i;
-	    return "lang:".$1." ".$_;
+   
+    if ($_ =~ m/(yaml|yacc|xslt|xsd|xml|xaml|visualbasic|vimscript|vhdl|teamcentermth|teamcentermet|teamcenterdef|tcl\/tk|sqldata|sql|softbridgebasic|smarty|skill|sed|scala|rubyhtml|ruby|rexx|python|php|perl|patrancommandlanguage|pascal|oraclereports|oracleforms|octave|ocaml|objectivec\+\+|objectivec|nantscripts|mxml|mumps|msbuildscripts|modula3|matlab|make|m4|lua|lisp|lex|kornshell|kermit|jsp|javascript|java|idl|html|haskell|groovy|go|fortran95|fortran90|fortran77|expect|erlang|dtd|dosbatch|dart|dal|d|cython|css|cshell|coldfusion|cobol|cmake|c#|c\+\+|bourneshell|bourneagainshell|bc|awk|assembly|asp.net|as|ada|actionscript)/) {
+	    my $match = $1;
+	    $_ =~ s/$match//i;
+	    return "lang:".$match." ".$_;
     }
     return;
 };
