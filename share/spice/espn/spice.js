@@ -179,4 +179,10 @@ function ddg_spice_espn_bind() {
         current_tab.style.display = "block";
         e.stopImmediatePropagation();
     });
+    YAHOO.util.Event.addListener(ids, "mouseenter", function(e) {
+        YAHOO.util.Dom.setStyle(this, 'text-decoration', 'underline');
+    });
+    YAHOO.util.Event.addListener(ids, "mouseleave", function(e) {
+        YAHOO.util.Dom.setStyle(this, 'text-decoration', 'none');
+    });
 }
