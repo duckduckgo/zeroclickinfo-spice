@@ -3,6 +3,10 @@
   padding: 0 !important;
 }
 
+#zero_click_abstract {
+  position: relative;
+}
+
 #zero_click_image {
   display: none !important;
 }
@@ -146,4 +150,23 @@
 #khan #emb iframe {
   width: 100%;
   height: 100%;
+}
+
+#khan #dots {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+}
+
+#khan #dots a {
+  padding: 0 2px;
+  font-size: 16px;
+  color: #ccc;
+  text-decoration: none !important;
+}
+
+#khan #dots a.selected {
+  color: #1168cc;
 }

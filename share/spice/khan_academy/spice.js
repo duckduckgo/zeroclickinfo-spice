@@ -138,17 +138,23 @@ function ddg_spice_khan_academy(res) {
     function setup() {
       win = YAHOO.util.Dom.getRegion('frame').width
       inc = Math.floor(win / LI_WIDTH)
-      last = Math.max(0, len - inc)
+      last = Math.max(0, len - (len % inc))
 
       var extra = win - (inc * LI_WIDTH)
       off = Math.floor(extra / 2)  // will center the vids
       off2 = extra - off
 
       pnClasses()
+      makeDots()
     }
 
     function preventDefault(e) {
-      e.preventDefault ? e.preventDefault() : event.returnValue = false
+      e.preventDefault ? e.preventDefault() : e.returnValue = false
+    }
+
+    function setSlides() {
+      var mar = '-' + (khanState * LI_WIDTH) + 'px'
+      YAHOO.util.Dom.setStyle('slides', 'margin-left', mar)
     }
 
     function wrapCB(next) {
@@ -164,9 +170,8 @@ function ddg_spice_khan_academy(res) {
         if (khanState < 0) khanState = 0
         if (khanState > last) khanState = last
 
-        var mar = '-' + (khanState * LI_WIDTH) + 'px'
-        YAHOO.util.Dom.setStyle('slides', 'margin-left', mar)
-
+        highlightDot(khanState / inc)
+        setSlides()
         pnClasses()
       }
     }
@@ -185,6 +190,44 @@ function ddg_spice_khan_academy(res) {
     makeNav('<', 'preva', false)
 
     div.appendChild(nav)
+
+    function highlightDot(j) {
+      var dots = d.getElementById('dots').childNodes
+      var len = dots.length
+      var k = 0
+      for (; k < len; k++) YAHOO.util.Dom.removeClass(dots[k], 'selected')
+      YAHOO.util.Dom.addClass(dots[j], 'selected')
+    }
+
+    function dotHandler(j) {
+      return function (e) {
+        preventDefault(e)
+        khanState = j * inc
+        highlightDot(j)
+        setSlides()
+        pnClasses()
+      }
+    }
+
+    // dots
+    function makeDots() {
+      var dots = d.getElementById('dots')
+      if (dots) dots.parentNode.removeChild(dots)
+      if (win < 500) return
+      dots = d.createElement('p')
+      dots.id = 'dots'
+      var lin, j = 0, n = Math.ceil(len / inc)
+      var sel = khanState / inc
+      for (; j < n; j++) {
+        lin = d.createElement('a')
+        lin.appendChild(d.createTextNode('\u2022'))
+        lin.href = '#'
+        if (j === sel) YAHOO.util.Dom.addClass(lin, 'selected')
+        YAHOO.util.Event.addListener(lin, 'click', dotHandler(j))
+        dots.appendChild(lin)
+      }
+      div.appendChild(dots)
+    }
 
     var resize
     YAHOO.util.Event.addListener(window, 'resize', function () {
