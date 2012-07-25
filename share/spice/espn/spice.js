@@ -118,7 +118,10 @@ function ddg_spice_espn(response) {
           + 'background-color:lightgrey;'
           + '}'
           + '#zero_click_abstract table td {'
-          + 'padding-right: 25px;'
+          + 'padding-right: 15px;'
+          + '}'
+          + '#zero_click_abstract table th {'
+          + 'color:666666;font-size:12px;font-weight:700;'
           + '}'
           + '</style>';
 
@@ -167,12 +170,15 @@ function ddg_spice_espn_team(response) {
             + tiePercentage + '%">&nbsp;' + record.ties + ' ties</div>'
             : "")
          + '<table style="border-spacing:20px;margin-top:10px;">'
+         + '<th>Name</th><th>Position</th><th>No.</th>'
+         + '<th>Age</th><th>HT</th><th>WT</th>'
          + roster.map(function(player) {
              return '<tr>'
                     + '<td><a href="/?q='
                     + encodeURIComponent(player.displayName)
                     + '">' + player.displayName + '</td>'
                     + '<td>' + player.positions[0].name + '</td>'
+                    + '<td>' + player.jersey + '</td>'
                     + '<td>' + player.age + '</td>'
                     + '<td>' + player.height + '</td>'
                     + '<td>' + player.weight + '</td>'
