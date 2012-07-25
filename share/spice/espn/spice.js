@@ -165,7 +165,7 @@ function ddg_spice_espn_news(response) {
          + '<img src="/iu/?u=' + headshot.href
          + '" height="' + headshot.height
          + '" width="' + headshot.width
-         + '" style="float:right;margin-bottom:10px;"><ul>';
+         + '" style="float:right;margin:-20px 0px 10px 0px;"><ul>';
 
     for (var i = 0; i < 3 && i < headlines.length; i++) {
         var article = headlines[i];
