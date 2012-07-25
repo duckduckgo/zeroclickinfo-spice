@@ -166,23 +166,40 @@ function ddg_spice_espn_bind() {
         if (i % 2 == 0) table.rows[i].className="tr_odd";
     }
 
-    ids = ["espn_zci_videos_link", "espn_zci_gamelog_link",
-               "espn_zci_stats_link", "espn_zci_photos_link", "espn_zci_news_link"];
+    ids = [ "espn_zci_videos_link",
+            "espn_zci_gamelog_link",
+            "espn_zci_stats_link",
+            "espn_zci_photos_link",
+            "espn_zci_news_link"
+          ];
+
     var bgtabs = [];
     ids.map( function(id) {
         bgtabs.push(document.getElementById(id.replace("_link","")))
     });
+
+    var current_link = document.getElementById("espn_zci_news_link");
+    YAHOO.util.Dom.setStyle(current_link, "text-decoration", "underline");
+
+
     YAHOO.util.Event.addListener(ids, "click", function(e) {
+        YAHOO.util.Dom.setStyle(current_link, "text-decoration", "none");
+        current_link = this;
+        YAHOO.util.Dom.setStyle(this, "text-decoration", "underline");
         var current_tab = this.id.replace("_link", "");
         bgtabs.map(function(i){i.style.display="none";});
         current_tab = document.getElementById(current_tab);
         current_tab.style.display = "block";
         e.stopImmediatePropagation();
     });
+
     YAHOO.util.Event.addListener(ids, "mouseenter", function(e) {
         YAHOO.util.Dom.setStyle(this, 'text-decoration', 'underline');
     });
+
     YAHOO.util.Event.addListener(ids, "mouseleave", function(e) {
-        YAHOO.util.Dom.setStyle(this, 'text-decoration', 'none');
+        if (this != current_link) {
+            YAHOO.util.Dom.setStyle(this, 'text-decoration', 'none');
+        }
     });
 }
