@@ -193,7 +193,7 @@ function ddg_spice_espn_team(response) {
          + winPercentage + '%">&nbsp;' + record.wins + ' wins</div>'
          + '<div style="background-color:red;width:'
          + lossPercentage + '%">&nbsp;' + record.losses + ' losses</div>'
-         + (tiePercentage ? 
+         + (record.ties !== 0 ? 
             '<div style="background-color:grey;width:'
             + tiePercentage + '%">&nbsp;' + record.ties + ' ties</div>'
             : "") + '</fieldset>'
