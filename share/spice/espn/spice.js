@@ -29,7 +29,7 @@ function ddg_spice_espn(response) {
 
     console.log(player);
 
-    tabs = [ 'news', 'team', 'stats', 'gamelog', 'videos' ];
+    tabs = [ 'news', 'stats', 'team', 'gamelog', 'videos' ];
     tabs = tabs.map(function(s, index, array) {
         return '<span id="espn_zci_' + s + '_link">'
             +  s.charAt(0).toUpperCase() + s.slice(1)
