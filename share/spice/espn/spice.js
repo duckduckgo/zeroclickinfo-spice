@@ -118,9 +118,8 @@ function ddg_spice_espn(response) {
           + '}'
           + '</style>';
 
-    nrj("/js/spice/espn/basketball/nba/9/news/ddg_spice_espn_news");
-	
-
+    nrj("/js/spice/espn/basketball/nba/athletes/"
+            + player.id + "/news/ddg_spice_espn_news");
 }
 
 function ddg_spice_espn_news(response) {
