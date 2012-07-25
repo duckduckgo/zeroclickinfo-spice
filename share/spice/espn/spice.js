@@ -17,22 +17,12 @@ var style = '';
 
 function ddg_spice_espn(response) {
 
-    var teams = {};
-    teams['5'] = {"name":"Cavaliers", "location":"Cleveland"};
-    teams['7'] = {"name":"Nuggets", "location":"Denver"};
-    teams['2'] = {"name":"Celtics", "location":"Boston"};
-    teams['1'] = {"name":"Hawks", "location":"Atlanta"};
-    teams['9'] = {"name":"Warriors", "location":"Golden State"};
-    teams['6'] = {"name":"Mavericks", "location":"Dallas"};
-    teams['3'] = {"name":"Hornets", "location":"New Orleans"};
-    teams['11'] = {"name":"Pacers", "location":"Indiana"};
-    teams['99'] = {"name":"All-Stars", "location":"West"};
-
-    player = response.sports[0].leagues[0].athletes[0]; team = player.positions[0].id;
+    player = response.sports[0].leagues[0].athletes[0];
+    playerTeam = player.competitors[0].team;
     stats = player.stats;
     items[0]['h'] = player.displayName + " - "
-                  + teams[player.positions[0].id]['location'] + " "
-                  + teams[player.positions[0].id]['name']
+                  + playerTeam.location + " "
+                  + playerTeam.name
                   + " (ESPN)";
 
     console.log(player);
