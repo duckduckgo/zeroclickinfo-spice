@@ -17,7 +17,7 @@ var style = '';
 var teamID = 0;
 
 var callsMade = 0;
-var numberOfCalls = 2;
+var numberOfCalls = 3;
 
 function ddg_spice_espn(response) {
 
@@ -133,6 +133,13 @@ function ddg_spice_espn(response) {
             + player.id + "/news/foo/ddg_spice_espn_news");
     nrj("/js/spice/espn/basketball/nba/teams/"
             + teamID + "/foo/bar/ddg_spice_espn_team");
+    nrj("/js/spice/espn/basketball/nba/teams/"
+            + teamID + "/events/dates/ddg_spice_espn_events");
+}
+
+function ddg_spice_espn_events(response) {
+    console.log(response);
+    ddg_spice_espn_bind();
 }
 
 function ddg_spice_espn_news(response) {
