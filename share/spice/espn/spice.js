@@ -94,7 +94,7 @@ function ddg_spice_espn(response) {
     });
 
     stats  = '<table id="espn_zci_stats">'
-           + playerStats.join("");
+           + playerStats.join("")
            + '</table>';
 
     gamelog = '<div id="espn_zci_gamelog">'
