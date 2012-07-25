@@ -81,7 +81,6 @@ function ddg_spice_espn(response) {
     }
 
     playerStats = playerStats.map(prepareStat);
-    console.log(playerStats);
     var nestedStats = [ 'Birthplace', 'Position' ];
     [ player.birthPlace.state + ', ' + player.birthPlace.city,
       player.positions[0].name,
@@ -147,14 +146,16 @@ function ddg_spice_espn_news(response) {
 }
 
 function ddg_spice_espn_team(response) {
-    var record = response.sports[0].leagues[0].teams[0].record;
-    var stats = response.sports[0].leagues[0].teams[0].stats;
-    var logo = response.sports[0].leagues[0].teams[0].logos.large.href;
+    response = response.sports[0].leagues[0].teams[0];
+    var record = response.record;
+    var stats = response.stats;
+    var roster = response.athletes;
+    var logo = response.logos.large.href;
     var totalGames = record.wins + record.losses + record.ties;
     var winPercentage = Math.floor(record.wins / totalGames * 100);
     var lossPercentage = Math.floor(record.losses / totalGames * 100);
     var tiePercentage = 100 - winPercentage - lossPercentage;
-    console.log(response.sports[0].leagues[0].teams[0]);
+    console.log(response);
     team = '<div id="espn_zci_team">'
          + '<img style="float:right;" src="' + logo + '">'
          + '<div style="background-color:green;margin-top:15px;width:'
@@ -165,6 +166,18 @@ function ddg_spice_espn_team(response) {
             '<div style="background-color:grey;width:'
             + tiePercentage + '%">&nbsp;' + record.ties + ' ties</div>'
             : "")
+         + '<table style="border-spacing:20px;margin-top:10px;">'
+         + roster.map(function(player) {
+             return '<tr>'
+                    + '<td><a href="/?q='
+                    + encodeURIComponent(player.displayName)
+                    + '">' + player.displayName + '</td>'
+                    + '<td>' + player.positions[0].name + '</td>'
+                    + '<td>' + player.age + '</td>'
+                    + '<td>' + player.height + '</td>'
+                    + '<td>' + player.weight + '</td>'
+                    + '</tr>';
+         }).join("") + '</table>';
     team += '</div>';
 
     ddg_spice_espn_bind();

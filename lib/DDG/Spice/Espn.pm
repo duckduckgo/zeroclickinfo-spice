@@ -146,7 +146,7 @@ my %players = (
 
 triggers any => keys %players;
 
-spice to => 'http://api.espn.com/v1/sports/$1/$2/$3/$4/$5?enable=stats,competitors&apikey={{ENV{DDG_SPICE_ESPN_APIKEY}}}&callback=$6';
+spice to => 'http://api.espn.com/v1/sports/$1/$2/$3/$4/$5?enable=stats,competitors,roster,venues&apikey={{ENV{DDG_SPICE_ESPN_APIKEY}}}&callback=$6';
 
 spice from => '(.*?)/(.*)/(.*)/(.*)/(.*)/(.*)';
 
