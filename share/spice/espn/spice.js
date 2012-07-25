@@ -155,21 +155,27 @@ function ddg_spice_espn_team(response) {
     var stats = response.stats;
     var roster = response.athletes;
     var logo = response.logos.large.href;
+    var teamColor = response.color;
     var totalGames = record.wins + record.losses + record.ties;
     var winPercentage = Math.floor(record.wins / totalGames * 100);
     var lossPercentage = Math.floor(record.losses / totalGames * 100);
     var tiePercentage = 100 - winPercentage - lossPercentage;
+    var season = record.season.year
+               + " (" + record.season.description + " season)";
     console.log(response);
     team = '<div id="espn_zci_team">'
          + '<img style="float:right;" src="' + logo + '">'
-         + '<div style="background-color:green;margin-top:15px;width:'
+         + '<fieldset style="border-top:1px solid #'
+         + teamColor + ';padding:10px 10px 20px 10px;width:67%;">'
+         + '<legend>&nbsp;' + season + '&nbsp;</legend>'
+         + '<div style="background-color:green;width:'
          + winPercentage + '%">&nbsp;' + record.wins + ' wins</div>'
          + '<div style="background-color:red;width:'
          + lossPercentage + '%">&nbsp;' + record.losses + ' losses</div>'
          + (tiePercentage ? 
             '<div style="background-color:grey;width:'
             + tiePercentage + '%">&nbsp;' + record.ties + ' ties</div>'
-            : "")
+            : "") + '</fieldset>'
          + '<table style="border-spacing:20px;margin-top:10px;">'
          + '<th>Name</th><th>Position</th><th>No.</th>'
          + '<th>Age</th><th>HT</th><th>WT</th>'
