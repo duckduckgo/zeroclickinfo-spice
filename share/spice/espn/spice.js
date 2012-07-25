@@ -118,6 +118,9 @@ function ddg_spice_espn(response) {
           + '.tr_odd {'
           + 'background-color:lightgrey;'
           + '}'
+          + '#zero_click_abstract table td {'
+          + 'padding-right: 25px;'
+          + '}'
           + '</style>';
 
     nrj("/js/spice/espn/basketball/nba/athletes/"
