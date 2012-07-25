@@ -14,6 +14,7 @@ var stats = '';
 var gamelog = '';
 var videos = '';
 var style = '';
+var headshot = '';
 var teamID = 0;
 
 var callsMade = 0;
@@ -23,6 +24,7 @@ function ddg_spice_espn(response) {
 
     var player = response.sports[0].leagues[0].athletes[0];
     var playerTeam = player.competitors[0].team;
+    headshot = player.headshots.gamecast;
     teamID = playerTeam.id;
     stats = player.stats;
     items[0]['u'] = items[0]['u'] + "/nba/player/_/id/" + player.id;
@@ -122,6 +124,9 @@ function ddg_spice_espn(response) {
           + '#zero_click_abstract table th {'
           + 'color:666666;font-size:12px;font-weight:700;'
           + '}'
+          + '#zero_click_abstract div {'
+          + 'margin-top:10px;'
+          + '}'
           + '</style>';
 
     nrj("/js/spice/espn/basketball/nba/athletes/"
@@ -156,7 +161,11 @@ function ddg_spice_espn_news(response) {
     console.log(response);
     headlines = response.headlines;
 
-    news = '<div id="espn_zci_news"><ul>';
+    news = '<div id="espn_zci_news">'
+         + '<img src="/iu/?u=' + headshot.href
+         + '" height="' + headshot.height
+         + '" width="' + headshot.width
+         + '" style="float:right;margin-bottom:10px;"><ul>';
 
     for (var i = 0; i < 3 && i < headlines.length; i++) {
         var article = headlines[i];
