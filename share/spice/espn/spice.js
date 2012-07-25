@@ -140,17 +140,26 @@ function ddg_spice_espn(response) {
 function ddg_spice_espn_events(response) {
     var events = response.sports[0].leagues[0].events;
     console.log(events[0]);
-    gamelog = '<div id="espn_zci_gamelog"><table>';
+    gamelog = '<div id="espn_zci_gamelog"><table><tr>';
     for (var i = 0; i < 5 && events[i]; i++) {
         var competitors = events[i].competitions[0].competitors;
-        competitors.map(function(competitor, index) {
+        var outcome = '';
+        competitors.map(function(competitor, index, array) {
             teamDisplayName = competitor.team.location
                             + " " + competitor.team.name
-            gamelog += (index == 0 ? '<tr>' : '') + '<td><a href="/?q='
+            gamelog += '<td><a href="/?q='
                     +  encodeURIComponent(teamDisplayName)
                     +  '">' + teamDisplayName + '</a></td><td>'
-                    +  (index == 0 ? ' vs ' : '</td></tr>');
+                    +  (index == 0 ? ' vs ' : '</td>');
+            if (index == 1) {
+                outcome = competitor.score > array[0].score;
+                gamelog += '<td>'
+                        +  (competitor.team.id == teamID ?
+                            (outcome ? 'W' : 'L') : (outcome ? 'L' : 'W'))
+                        +  '</td>';
+            }
         });
+        gamelog += '</tr>';
     }
     gamelog += '</table></div>';
     ddg_spice_espn_bind();
