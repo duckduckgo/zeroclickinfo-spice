@@ -95,7 +95,7 @@ function ddg_spice_espn(response) {
       player.positions[0].name,
     ].map(function(s) {
         playerStats.unshift('<tr><td>' + nestedStats.shift()
-                          + '</td><td>' + s + '</td></tr>');
+                          + ':</td><td>' + s + '</td></tr>');
     });
 
     stats  = '<table id="espn_zci_stats">'
