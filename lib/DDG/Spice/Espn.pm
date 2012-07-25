@@ -1,6 +1,7 @@
 package DDG::Spice::Espn;
 
 use DDG::Spice;
+use Time::localtime;
 
 attribution web => ['http://dylansserver.com','Dylan Lloyd'],
             email => ['dylan@dylansserver.com','Dylan Lloyd'];
@@ -146,14 +147,14 @@ my %players = (
 
 triggers any => keys %players;
 
-spice to => 'http://api.espn.com/v1/sports/$1/$2/$3/$4/$5?enable=stats,competitors,roster,venues&apikey={{ENV{DDG_SPICE_ESPN_APIKEY}}}&callback=$6';
+spice to => 'http://api.espn.com/v1/sports/$1/$2/$3/$4/$5?enable=stats,competitors,roster,venues&$6=' . (localtime->year() + 1900) . '&apikey={{ENV{DDG_SPICE_ESPN_APIKEY}}}&callback=$7';
 
-spice from => '(.*?)/(.*)/(.*)/(.*)/(.*)/(.*)';
+spice from => '(.*?)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';
 
 spice is_cached => 0;
 
 handle query_lc => sub {
-    return "basketball", "nba", "athletes", $players{$_}, "foo", "ddg_spice_espn";
+    return "basketball", "nba", "athletes", $players{$_}, "foo", "bar", "ddg_spice_espn";
 };
 
 1;

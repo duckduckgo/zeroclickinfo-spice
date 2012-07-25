@@ -130,9 +130,9 @@ function ddg_spice_espn(response) {
           + '</style>';
 
     nrj("/js/spice/espn/basketball/nba/athletes/"
-            + player.id + "/news/ddg_spice_espn_news");
+            + player.id + "/news/foo/ddg_spice_espn_news");
     nrj("/js/spice/espn/basketball/nba/teams/"
-            + teamID + "/foo/ddg_spice_espn_team");
+            + teamID + "/foo/bar/ddg_spice_espn_team");
 }
 
 function ddg_spice_espn_news(response) {
