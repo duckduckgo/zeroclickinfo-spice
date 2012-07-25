@@ -9,16 +9,18 @@ items[0]['f'] = 1;
 
 var tabs = '';
 var news = '';
-var photos = '';
+var team = '';
 var stats = '';
 var gamelog = '';
 var videos = '';
 var style = '';
+var teamID = 0;
 
 function ddg_spice_espn(response) {
 
-    player = response.sports[0].leagues[0].athletes[0];
-    playerTeam = player.competitors[0].team;
+    var player = response.sports[0].leagues[0].athletes[0];
+    var playerTeam = player.competitors[0].team;
+    teamID = playerTeam.id;
     stats = player.stats;
     items[0]['h'] = player.displayName + " - "
                   + playerTeam.location + " "
@@ -27,14 +29,14 @@ function ddg_spice_espn(response) {
 
     console.log(player);
 
-    tabs = [ 'news', 'photos', 'stats', 'gamelog', 'videos' ];
+    tabs = [ 'news', 'team', 'stats', 'gamelog', 'videos' ];
     tabs = tabs.map(function(s, index, array) {
         return '<span id="espn_zci_' + s + '_link">'
             +  s.charAt(0).toUpperCase() + s.slice(1)
             +  '</span>' + (index == array.length - 1 ? "" : " | ");
     }).join("");
 
-    photos = '<div id="espn_zci_photos">'
+    team = '<div id="espn_zci_team">'
            + 'pretty pictures'
            + '</div>';
 
@@ -103,14 +105,14 @@ function ddg_spice_espn(response) {
 
     style = '<style>'
           + '#espn_zci_videos_link, #espn_zci_gamelog_link, '
-          + '#espn_zci_stats_link, #espn_zci_photos_link, '
+          + '#espn_zci_stats_link, #espn_zci_team_link, '
           + '#espn_zci_news_link {'
           + 'font-weight:bold;'
           + 'padding:5px;'
           + 'text-align:center;'
           + '}'
           + '#espn_zci_videos, #espn_zci_gamelog, '
-          + '#espn_zci_stats, #espn_zci_photos {'
+          + '#espn_zci_stats, #espn_zci_team {'
           + 'display:none; margin-top:5px;'
           + '}'
           + '.tr_odd {'
@@ -126,7 +128,7 @@ function ddg_spice_espn_news(response) {
     console.log(response);
     headlines = response.headlines;
 
-    var news = '<div id="espn_zci_news"><ul>'
+    news = '<div id="espn_zci_news"><ul>';
 
     for (var i = 0; i < 3 && i < headlines.length; i++) {
         var article = headlines[i];
@@ -137,19 +139,34 @@ function ddg_spice_espn_news(response) {
     news += '</ul>'
          +  '</div>';
 
+    nrj("/js/spice/espn/basketball/nba/teams/"
+            + teamID + "/foo/ddg_spice_espn_team");
+}
+
+function ddg_spice_espn_team(response) {
+    playerTeam = response.sports[0].leagues[0].teams[0];
+    console.log(playerTeam);
+    team = '<div id="espn_zci_team">'
+         + playerTeam.location + " " + playerTeam.name
+         + '<img style="float:right;" src="'
+         + playerTeam.logos.medium.href
+         + '">';
+    team += '</div>';
+
+    ddg_spice_espn_bind();
+}
+
+function ddg_spice_espn_bind() {
     items[0]['a'] = tabs
                   + news
-                  + photos
+                  + team
                   + stats
                   + gamelog
                   + videos
                   + style;
 
 	nra(items);
-    ddg_spice_espn_bind();
-}
 
-function ddg_spice_espn_bind() {
     var table = document.getElementById("espn_zci_stats");
     for (var i = 0; i < table.rows.length; i++) {
         if (i % 2 == 0) table.rows[i].className="tr_odd";
@@ -158,7 +175,7 @@ function ddg_spice_espn_bind() {
     ids = [ "espn_zci_videos_link",
             "espn_zci_gamelog_link",
             "espn_zci_stats_link",
-            "espn_zci_photos_link",
+            "espn_zci_team_link",
             "espn_zci_news_link"
           ];
 
