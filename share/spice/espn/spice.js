@@ -113,7 +113,7 @@ function ddg_spice_espn(response) {
           + '}'
           + '#espn_zci_videos, #espn_zci_gamelog, '
           + '#espn_zci_stats, #espn_zci_team {'
-          + 'display:none; margin-top:5px;'
+          + 'display:none; margin-top:5px;margin-bottom:15px;'
           + '}'
           + '.tr_odd {'
           + 'background-color:lightgrey;'
@@ -144,13 +144,24 @@ function ddg_spice_espn_news(response) {
 }
 
 function ddg_spice_espn_team(response) {
-    playerTeam = response.sports[0].leagues[0].teams[0];
-    console.log(playerTeam);
+    var record = response.sports[0].leagues[0].teams[0].record;
+    var stats = response.sports[0].leagues[0].teams[0].stats;
+    var logo = response.sports[0].leagues[0].teams[0].logos.large.href;
+    var totalGames = record.wins + record.losses + record.ties;
+    var winPercentage = Math.floor(record.wins / totalGames * 100);
+    var lossPercentage = Math.floor(record.losses / totalGames * 100);
+    var tiePercentage = 100 - winPercentage - lossPercentage;
+    console.log(response.sports[0].leagues[0].teams[0]);
     team = '<div id="espn_zci_team">'
-         + playerTeam.location + " " + playerTeam.name
-         + '<img style="float:right;" src="'
-         + playerTeam.logos.medium.href
-         + '">';
+         + '<img style="float:right;" src="' + logo + '">'
+         + '<div style="background-color:green;margin-top:15px;width:'
+         + winPercentage + '%">&nbsp;' + record.wins + ' wins</div>'
+         + '<div style="background-color:red;width:'
+         + lossPercentage + '%">&nbsp;' + record.losses + ' losses</div>'
+         + (tiePercentage ? 
+            '<div style="background-color:grey;width:'
+            + tiePercentage + '%">&nbsp;' + record.ties + ' ties</div>'
+            : "")
     team += '</div>';
 
     ddg_spice_espn_bind();
