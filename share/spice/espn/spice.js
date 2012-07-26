@@ -156,12 +156,15 @@ function ddg_spice_espn_events(response) {
                 var win = '<span style="color:green">W</span> ';
                 var loss = '<span style="color:red">L</span> ';
                 gamelog += '<td>'
+                        +  '<a href="' + events[i].links.web.boxscore.href + '">' 
                         +  (competitor.team.id == teamID ?
-                            (outcome ? win : loss)
-                                + competitor.score + '-' + array[0].score
-                           : (outcome ? loss : win)
-                                + array[0].score + '-' + competitor.score)
-                        +  '</td>';
+                                (outcome ? win : loss)
+                                + competitor.score
+                                + '-' + array[0].score
+                            : (outcome ? loss : win)
+                                + array[0].score + '-'
+                                + competitor.score)
+                        +  '</a></td>';
             }
         });
         gamelog += '</tr>';
