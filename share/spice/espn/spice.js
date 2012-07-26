@@ -153,9 +153,14 @@ function ddg_spice_espn_events(response) {
                     +  (index == 0 ? ' vs ' : '</td>');
             if (index == 1) {
                 outcome = competitor.score > array[0].score;
+                var win = '<span style="color:green">W</span> ';
+                var loss = '<span style="color:red">L</span> ';
                 gamelog += '<td>'
                         +  (competitor.team.id == teamID ?
-                            (outcome ? 'W' : 'L') : (outcome ? 'L' : 'W'))
+                            (outcome ? win : loss)
+                                + competitor.score + '-' + array[0].score
+                           : (outcome ? loss : win)
+                                + array[0].score + '-' + competitor.score)
                         +  '</td>';
             }
         });
