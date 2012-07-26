@@ -1,27 +1,30 @@
-var items = new Array();
-items[0] = new Array();
-items[0]['a'] = '';
-items[0]['h'] = '';
-items[0]['s'] = 'ESPN';
-items[0]['u'] = 'http://espn.com';
-items[0]['force_big_header'] = 1;
-items[0]['f'] = 1;
-
 var tabs = '';
 var news = '';
 var team = '';
 var stats = '';
 var gamelog = '';
 var headshot = '';
+var playerID = 0;
 var teamID = 0;
+var baseURL = 'http://espn.com';
 
 var callsMade = 0;
 var numberOfCalls = 3;
+
+items = [];
+items[0] = [];
+items[0]['a'] = '';
+items[0]['h'] = '';
+items[0]['s'] = 'ESPN';
+items[0]['force_big_header'] = 1;
+items[0]['f'] = 1;
+
 
 function ddg_spice_espn(response) {
 
     var player = response.sports[0].leagues[0].athletes[0];
     var playerTeam = player.competitors[0].team;
+    playerID = player.id;
     headshot = player.headshots.gamecast;
     teamID = playerTeam.id;
 
@@ -33,7 +36,7 @@ function ddg_spice_espn(response) {
             + teamID + "/events/dates/ddg_spice_espn_events");
 
     stats = player.stats;
-    items[0]['u'] = items[0]['u'] + "/nba/player/_/id/" + player.id;
+    items[0]['u'] = baseURL + "/nba/player/_/id/" + playerID;
     items[0]['h'] = player.displayName + " - "
                   + playerTeam.location + " "
                   + playerTeam.name
@@ -255,6 +258,26 @@ function ddg_spice_espn_bind() {
         bgtabs.map(function(i){i.style.display="none";});
         current_tab = document.getElementById(current_tab);
         current_tab.style.display = "block";
+
+        moreAtLink = YAHOO.util.Dom.getElementsByClassName(
+                        "zero_click_more_at_link", "a",
+                        document.getElementById("zero_click_abstract")
+                    )[0];
+
+        switch (current_tab.id) {
+            case "espn_zci_gamelog":
+                moreAtLink.href = baseURL + "/nba/player/gamelog/_/id/"
+                                + playerID;
+                break;
+            case "espn_zci_stats":
+                moreAtLink.href = baseURL + "/nba/player/stats/_/id/"
+                                + playerID;
+                break;
+            default:
+                moreAtLink.href = baseURL + "/nba/player/_/id/"
+                                + playerID;
+        }
+
         e.stopImmediatePropagation();
     });
 
