@@ -116,7 +116,9 @@ function ddg_spice_espn_events(response) {
     gamelog = '<div id="espn_zci_gamelog"><table><tr>';
     for (var i = events.length - 1; i > (events.length - 6); i--) {
         var competitors = events[i].competitions[0].competitors;
+        var date = new Date(events[i].date);
         var outcome = '';
+        gamelog += '<td>' + date.getMonth() + '/' + date.getDay() + '</td>';
         competitors.map(function(competitor, index, array) {
             teamDisplayName = competitor.team.location
                             + " " + competitor.team.name
