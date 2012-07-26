@@ -194,7 +194,7 @@ function ddg_spice_espn_team(response) {
          + '<legend>&nbsp;' + season + '&nbsp;</legend>'
          + '<div style="background-color:green;width:'
          + winPercentage + '%">&nbsp;' + record.wins + ' wins</div>'
-         + '<div style="background-color:red;width:'
+         + '<div style="background-color:red;margin-top:0px;width:'
          + lossPercentage + '%">&nbsp;' + record.losses + ' losses</div>'
          + (record.ties !== 0 ? 
             '<div style="background-color:grey;width:'
