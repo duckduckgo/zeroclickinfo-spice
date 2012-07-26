@@ -25,6 +25,14 @@ function ddg_spice_espn(response) {
     var playerTeam = player.competitors[0].team;
     headshot = player.headshots.gamecast;
     teamID = playerTeam.id;
+
+    nrj("/js/spice/espn/basketball/nba/athletes/"
+            + player.id + "/news/foo/ddg_spice_espn_news");
+    nrj("/js/spice/espn/basketball/nba/teams/"
+            + teamID + "/foo/bar/ddg_spice_espn_team");
+    nrj("/js/spice/espn/basketball/nba/teams/"
+            + teamID + "/events/dates/ddg_spice_espn_events");
+
     stats = player.stats;
     items[0]['u'] = items[0]['u'] + "/nba/player/_/id/" + player.id;
     items[0]['h'] = player.displayName + " - "
@@ -101,13 +109,6 @@ function ddg_spice_espn(response) {
     videos = '<div id="espn_zci_videos">'
            + 'moving pictures!'
            + '</div>';
-
-    nrj("/js/spice/espn/basketball/nba/athletes/"
-            + player.id + "/news/foo/ddg_spice_espn_news");
-    nrj("/js/spice/espn/basketball/nba/teams/"
-            + teamID + "/foo/bar/ddg_spice_espn_team");
-    nrj("/js/spice/espn/basketball/nba/teams/"
-            + teamID + "/events/dates/ddg_spice_espn_events");
 }
 
 function ddg_spice_espn_events(response) {
