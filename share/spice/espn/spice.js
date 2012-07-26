@@ -13,7 +13,6 @@ var team = '';
 var stats = '';
 var gamelog = '';
 var videos = '';
-var style = '';
 var headshot = '';
 var teamID = 0;
 
@@ -102,32 +101,6 @@ function ddg_spice_espn(response) {
     videos = '<div id="espn_zci_videos">'
            + 'moving pictures!'
            + '</div>';
-
-    style = '<style>'
-          + '#espn_zci_videos_link, #espn_zci_gamelog_link, '
-          + '#espn_zci_stats_link, #espn_zci_team_link, '
-          + '#espn_zci_news_link {'
-          + 'font-weight:bold;'
-          + 'padding:5px;'
-          + 'text-align:center;'
-          + '}'
-          + '#espn_zci_videos, #espn_zci_gamelog, '
-          + '#espn_zci_stats, #espn_zci_team {'
-          + 'display:none; margin-top:5px;margin-bottom:15px;'
-          + '}'
-          + '.tr_odd {'
-          + 'background-color:lightgrey;'
-          + '}'
-          + '#zero_click_abstract table td {'
-          + 'padding-right: 15px;'
-          + '}'
-          + '#zero_click_abstract table th {'
-          + 'color:666666;font-size:12px;font-weight:700;'
-          + '}'
-          + '#zero_click_abstract div {'
-          + 'margin-top:10px;'
-          + '}'
-          + '</style>';
 
     nrj("/js/spice/espn/basketball/nba/athletes/"
             + player.id + "/news/foo/ddg_spice_espn_news");
@@ -251,8 +224,7 @@ function ddg_spice_espn_bind() {
                   + team
                   + stats
                   + gamelog
-                  + videos
-                  + style;
+                  + videos;
 
 	nra(items);
 
