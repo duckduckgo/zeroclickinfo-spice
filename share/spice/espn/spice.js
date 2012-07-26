@@ -87,7 +87,7 @@ function ddg_spice_espn(response) {
 
     playerStats = playerStats.map(prepareStat);
     var nestedStats = [ 'Birthplace', 'Position' ];
-    [ player.birthPlace.state + ', ' + player.birthPlace.city,
+    [ player.birthPlace.city + ', ' + player.birthPlace.state,
       player.positions[0].name,
     ].map(function(s) {
         playerStats.unshift('<tr><td>' + nestedStats.shift()
