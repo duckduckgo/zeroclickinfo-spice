@@ -112,7 +112,7 @@ function ddg_spice_espn(response) {
 
 function ddg_spice_espn_events(response) {
     var events = response.sports[0].leagues[0].events;
-    console.log(events[0]);
+    console.log(events[85]);
     gamelog = '<div id="espn_zci_gamelog"><table><tr>'
             + '<th></th><th>Home</th><th></th><th>Away</th>'
             + '<th></th><th></th></tr>';

@@ -1,20 +1,25 @@
 #espn_zci_videos_link, #espn_zci_gamelog_link, 
 #espn_zci_stats_link, #espn_zci_team_link, 
 #espn_zci_news_link {
-    font-weight:bold;
-    padding:5px;
-    text-align:center;
+    font-weight: bold;
+    padding: 5px;
+    text-align: center;
     }
 
 #espn_zci_videos, #espn_zci_gamelog, 
 #espn_zci_stats, #espn_zci_team {
-    display:none;
-    margin-top:5px;
-    margin-bottom:15px;
+    display: none;
+    margin-top: 5px;
+    margin-bottom: 15px;
     }
 
+#espn_zci_stats {
+    padding-left: 5px;
+    margin: 10px 0px 0px 10px;
+}
+
 .tr_odd {
-    background-color:lightgrey;
+    background-color: lightgrey;
     }
 
 #zero_click_abstract table td {
@@ -22,11 +27,11 @@
     }
 
 #zero_click_abstract table th {
-    color:666666;
-    font-size:12px;
-    font-weight:700;
+    color: 666666;
+    font-size: 12px;
+    font-weight: 700;
     }
 
 #zero_click_abstract div {
-    margin-top:10px;
+    margin-top: 10px;
     }
