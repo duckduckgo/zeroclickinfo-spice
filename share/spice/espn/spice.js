@@ -141,7 +141,7 @@ function ddg_spice_espn_events(response) {
     var events = response.sports[0].leagues[0].events;
     console.log(events[0]);
     gamelog = '<div id="espn_zci_gamelog"><table><tr>';
-    for (var i = 0; i < 5 && events[i]; i++) {
+    for (var i = events.length - 1; i > (events.length - 6); i--) {
         var competitors = events[i].competitions[0].competitors;
         var outcome = '';
         competitors.map(function(competitor, index, array) {
