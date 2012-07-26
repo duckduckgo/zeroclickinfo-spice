@@ -12,7 +12,6 @@ var news = '';
 var team = '';
 var stats = '';
 var gamelog = '';
-var videos = '';
 var headshot = '';
 var teamID = 0;
 
@@ -42,7 +41,7 @@ function ddg_spice_espn(response) {
 
     console.log(player);
 
-    tabs = [ 'news', 'stats', 'team', 'gamelog', 'videos' ];
+    tabs = [ 'news', 'stats', 'team', 'gamelog' ];
     tabs = tabs.map(function(s, index, array) {
         return '<span id="espn_zci_' + s + '_link">'
             +  s.charAt(0).toUpperCase() + s.slice(1)
@@ -105,10 +104,6 @@ function ddg_spice_espn(response) {
     stats  = '<table id="espn_zci_stats">'
            + playerStats.join("")
            + '</table>';
-
-    videos = '<div id="espn_zci_videos">'
-           + 'moving pictures!'
-           + '</div>';
 }
 
 function ddg_spice_espn_events(response) {
@@ -228,8 +223,7 @@ function ddg_spice_espn_bind() {
                   + news
                   + team
                   + stats
-                  + gamelog
-                  + videos;
+                  + gamelog;
 
 	nra(items);
 
@@ -238,8 +232,7 @@ function ddg_spice_espn_bind() {
         if (i % 2 == 0) table.rows[i].className="tr_odd";
     }
 
-    ids = [ "espn_zci_videos_link",
-            "espn_zci_gamelog_link",
+    ids = [ "espn_zci_gamelog_link",
             "espn_zci_stats_link",
             "espn_zci_team_link",
             "espn_zci_news_link"
