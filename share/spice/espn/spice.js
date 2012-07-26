@@ -6,6 +6,8 @@ var gamelog = '';
 var headshot = '';
 var playerID = 0;
 var teamID = 0;
+var teamCity = '';
+var teamName = '';
 var baseURL = 'http://espn.com';
 
 var callsMade = 0;
@@ -27,6 +29,8 @@ function ddg_spice_espn(response) {
     playerID = player.id;
     headshot = player.headshots.gamecast;
     teamID = playerTeam.id;
+    teamCity = playerTeam.location;
+    teamName = playerTeam.name;
 
     nrj("/js/spice/espn/basketball/nba/athletes/"
             + player.id + "/news/foo/ddg_spice_espn_news");
@@ -272,6 +276,11 @@ function ddg_spice_espn_bind() {
             case "espn_zci_stats":
                 moreAtLink.href = baseURL + "/nba/player/stats/_/id/"
                                 + playerID;
+                break;
+            case "espn_zci_team":
+                moreAtLink.href = baseURL + "/nba/team/_/name/"
+                                + teamCity.toLowerCase().substr(0,3) + "/"
+                                + teamName.toLowerCase().replace(" ", "-");
                 break;
             default:
                 moreAtLink.href = baseURL + "/nba/player/_/id/"
