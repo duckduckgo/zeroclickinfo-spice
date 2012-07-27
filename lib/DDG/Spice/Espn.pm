@@ -88,6 +88,7 @@ my %players = (
     "lauren aadland" => 6217,
     "lavoy allen" => 6424,
     "leandro barbosa" => 2166,
+    "lebron james" => 1966,
     "lesley adams" => 11351,
     "louis amundson" => 3041,
     "luke adams" => 57292,
