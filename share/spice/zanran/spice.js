@@ -21,9 +21,12 @@ function ddg_spice_zanran(zanran_results) {
     var div = d.createElement("div");
     YAHOO.util.Dom.addClass(div, 'highlight_zero_click1 highlight_zero_click_wrapper');
     YAHOO.util.Dom.setStyle(div, 'clear', 'both');
-    YAHOO.util.Dom.setStyle(div, 'border-bottom', '1px dotted black');
+    YAHOO.util.Dom.setStyle(div, 'border-bottom', '1px solid #BFBFBF');
     YAHOO.util.Dom.setStyle(div, 'width', '620px');
-    
+    YAHOO.util.Dom.setStyle(div, '-moz-border-radius', '6px');
+    YAHOO.util.Dom.setStyle(div, '-webkit-border-radius', '6px');
+    YAHOO.util.Dom.setStyle(div, 'border-radius', '6px');
+
     var img_link = d.createElement("a");
     img_link.href = results[i].preview_url;
     img_link.title = results[i].title;
