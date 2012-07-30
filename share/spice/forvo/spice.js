@@ -5,13 +5,18 @@ function ddg_spice_forvo(data) {
         var words = data.items;
 
         var wrap = d.createElement("div");
+        
+        nrj("/share/spice/forvo/audiojs/audio.min.js");
+        var script = d.createElement("script");
+        script.innerHTML = 'audiojs.events.ready(function() { var as = audiojs.createAll(); }) ';
+
+        wrap.appendChild(script);
+
         out = '';
                
         for (var i = 0; i < 3 && i < words.length; i++){
             var word = words[i];
-
-            console.log("word: " + word + " i: " + i)
-            
+          
             var div = d.createElement("div");
             var audio = d.createElement("audio");
             var source_mp3 = d.createElement("source");
@@ -48,7 +53,7 @@ function ddg_spice_forvo(data) {
             YAHOO.util.Dom.setStyle(p_div, "padding-left", "5px");
             YAHOO.util.Dom.setStyle(p_div, "border-bottom", "2px solid #666");
 
-            YAHOO.util.Dom.setAttribute(audio, "controls", "controls");
+            //YAHOO.util.Dom.setAttribute(audio, "controls", "controls");
             YAHOO.util.Dom.setAttribute(audio, "preload", "auto");
             YAHOO.util.Dom.setAttribute(audio, "autobuffer", "autobuffer");
 
