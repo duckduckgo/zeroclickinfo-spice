@@ -122,8 +122,9 @@ function ddg_spice_espn_events(response) {
     for (var i = events.length - 1; i > (events.length - 6); i--) {
         var competitors = events[i].competitions[0].competitors;
         var date = new Date(events[i].date);
+        date.setMonth(date.getMonth()+1);
         var outcome = '';
-        gamelog += '<td>' + date.getMonth() + '/' + date.getDay() + '</td>';
+        gamelog += '<td>' + date.getUTCMonth() + '/' + date.getUTCDate() + '</td>';
         competitors.map(function(competitor, index, array) {
             teamDisplayName = competitor.team.location
                             + " " + competitor.team.name
