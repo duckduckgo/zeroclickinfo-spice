@@ -63,7 +63,6 @@ function ddg_spice_espn(response) {
                     'athleteStatus',
                     'height',
                     'weight',
-                    'dateOfBirth',
                     'blocks',
                     'defensiveRebounds',
                     'doubleDouble',
@@ -100,8 +99,9 @@ function ddg_spice_espn(response) {
     }
 
     playerStats = playerStats.map(prepareStat);
-    var nestedStats = [ 'Birthplace', 'Position' ];
-    [ player.birthPlace.city + ', ' + player.birthPlace.state,
+    var nestedStats = ['Date of birth', 'Birthplace', 'Position' ];
+    [ player.dateOfBirth.split("T")[0],
+      player.birthPlace.city + ', ' + player.birthPlace.state,
       player.positions[0].name,
     ].map(function(s) {
         playerStats.unshift('<tr><td>' + nestedStats.shift()
