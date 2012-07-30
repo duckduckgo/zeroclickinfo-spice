@@ -1,11 +1,11 @@
 div.bootic_products {
 	overflow: hidden;
-	height: 178px;
+	margin-bottom: 5px;
 }
 div.bootic_product {
 	float: left;
-	margin: 10px 10px 0px 0px;
-	padding: 5px 5px 5px 5px;
+	margin: 10px 1px 0px 0px;
+	padding: 2px;
 }
 div.bootic_product:last-child {
 	margin-right: 0px;
@@ -13,7 +13,7 @@ div.bootic_product:last-child {
 a.bootic_name {
 	display: block;
 	width: 110px;
-	height: 156px;
+	max-height: 156px;
 	overflow: hidden;
 	text-align: center;
 }

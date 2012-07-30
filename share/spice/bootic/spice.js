@@ -48,17 +48,19 @@ function ddg_spice_bootic( products )
 		icon_parent.appendChild( icon );
 	}
 
+	var query = '';
+	if ( products.query ) {
+		query = encodeURIComponent( products.query );
+	}
+
 	var items = new Array();
 	items[0] = new Array();
-	items[0]['h'] = '';
 	items[0]['a'] = placeholder.innerHTML;
-	items[0]['s'] = 'Bootic (' + products.total + ' products)';
-
-	var query = '';
-	if ( products.query )
-		query = '?q=' + encodeURIComponent( products.query );
-	items[0]['u'] = 'http://www.bootic.com/' + query;
+	items[0]['s'] = 'Bootic';
+	items[0]['h'] = 'Bootic (' + query + ")";
+	items[0]['u'] = 'http://www.bootic.com/?q=' + query;
 	items[0]['f'] = 1;
+	items[0]['force_big_header'] = 1;
 
 	/* 
 	 * favicon placement: 1 - next to More at link;
