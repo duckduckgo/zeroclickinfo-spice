@@ -43,7 +43,7 @@ function ddg_spice_bootic( products )
 		link.appendChild( name );
 
 		icon.appendChild( link );
-		icon.title = item.name;
+		icon.title = item.name + " -- " + item.short_desc;
 
 		icon_parent.appendChild( icon );
 	}
