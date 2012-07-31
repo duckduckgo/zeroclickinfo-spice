@@ -3,8 +3,16 @@
 use strict;
 use warnings;
 use Test::More;
+use DDG::Test::Spice;
 
-use_ok('DDG::Spice::AlternativeTo');
+ddg_spice_test(
+    [qw( DDG::Spice::AlternativeTo )],
+    'alternative to windows' => test_spice(
+        '/js/spice/alternative_to/windows',
+        call_type => 'include',
+        caller => 'DDG::Spice::AlternativeTo'
+    ),
+);
 
 done_testing;
 

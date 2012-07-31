@@ -8,17 +8,28 @@ spice to => 'http://words.bighugelabs.com/api/2/{{ENV{DDG_SPICE_BIGHUGE_APIKEY}}
 
 triggers startend => "synonyms", "synonym", "antonyms", "antonym", "related", "similar";
 
+my $term;
+my $callback;
+
 handle query_lc => sub {
-  if (/^(synonyms|antonyms|synonym|antonym|related|similar)\s*(?:terms?|words?)?\s*(?:of|to|for)?\s*(\w+)$/) {
-    my ($callback) = ($1);
+  if (/^(synonyms?|antonyms?|related|similar)\s+(?:terms?|words?)?\s*(?:of|to|for)?\s*(\w+)$/) {
+    $callback = $1;
+    $term = $2;
+  } elsif (/^(\w+)\s+(synonyms?|antonyms?|related|similar)/){
+    $callback = $2;
+    $term = $1;
+  }
+  
+  if (defined $term) {
     use feature 'switch';
-    given($1) {
+    given($callback) {
       when('synonyms') { $callback = 'synonym'; }
       when('antonyms') { $callback = 'antonym'; }
       default { $callback; }
     }
-    return $2, $callback;
+    return $term, $callback;
   }
+
   return;
 };
 
