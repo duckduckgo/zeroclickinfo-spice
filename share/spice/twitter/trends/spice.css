@@ -1,0 +1,10 @@
+ul.twitter_trends {
+    padding-left: 0;
+}
+
+li.trend {
+display: inline;
+    margin: 0;
+    padding-right: 5px;
+    list-style-type: none;
+}
