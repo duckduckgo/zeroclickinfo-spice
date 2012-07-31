@@ -8,7 +8,7 @@ triggers startend => 'zipcode', 'postcode', 'zip', 'postalcode', 'zip code', 'po
 
 spice from => '(?:([A-Z0-9%/-]+)/([A-Z]+)?)';
 
-spice to => 'http://where.yahooapis.com/v1/places$and(.q($1,$2),.type(11));count=0?appid={{ENV{DDG_SPICE_ZIPCODE_APIKEY}}}&format=json&callback={{callback}}';
+spice to => '"http://where.yahooapis.com/v1/places${dollar}and(.q($1,$2),.type(11));count=0?appid={{ENV{DDG_SPICE_ZIPCODE_APIKEY}}}&format=json&callback={{callback}}"';
 
 handle remainder => sub {
 	$_ = uc($_);
