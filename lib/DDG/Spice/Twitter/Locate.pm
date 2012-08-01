@@ -6,7 +6,7 @@ use DDG::Spice;
 attribution web => ['http://kevinschaul.com','Kevin Schaul'],
             email => ['kevin.schaul@gmail.com','Kevin Schaul'];
 
-triggers query_lc => qr/^(?:twitter\s+)?(?:trending|trends|trend)\s*(?:in)?\s*(.*)?/;
+triggers query_lc => qr/^(?:twitter\s+)?(?:trending|trends|trend)\s*(?:tweets|twitter)?\s*(?:in)?\s*(.*)?/;
 
 spice to => 'http://query.yahooapis.com/v1/public/yql?q=select%20woeid%20from%20geo.places%20where%20text%3D\'$1\'&format=json&callback={{callback}}';
 
