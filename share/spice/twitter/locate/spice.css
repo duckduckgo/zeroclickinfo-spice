@@ -5,7 +5,7 @@ ul.twitter_trends {
 li.trend {
 	display: inline-block;
 	margin: 4px 3px;
-	padding: 5px 0px;
+	padding: 5px 10px;
 	background-color: #367EDB;
 	list-style-type: none;
 	border-radius: 3px;
