@@ -1,4 +1,4 @@
-function ddg_spice_twitter(tweets) {
+function ddg_spice_twitter_user(tweets) {
   if(tweets.length) {
     var content = "";
     var heading = "@" + tweets[0].user.screen_name;
