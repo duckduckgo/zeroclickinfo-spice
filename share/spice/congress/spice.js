@@ -80,12 +80,12 @@ function ddg_spice_congress(data) {
                 + "</a> &mdash; ";
             if (twitter) {
                 snippet += "<a href=\"http://www.twitter.com/"
-                    + member.twitter_account + "\">" + twitter + "</a><br>" 
+                    + member.twitter_account + "\">" + twitter + "</a>" 
             }
-            snippet += "votes with party on "
+            snippet += "<br>Votes with party on "
                 + parseFloat(member.votes_with_party_pct).toFixed(0)
                 + "% of issues"
-                + ', next election in ' + member.next_election;
+                + ', next election in ' + member.next_election + '.';
             if (member.district) {
                 snippet += ' (district ' + member.district + ')';
             }
