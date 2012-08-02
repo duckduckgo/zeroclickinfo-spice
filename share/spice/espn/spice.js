@@ -161,9 +161,9 @@ function ddg_spice_espn_news(response) {
 
     news = '<div id="espn_zci_news">'
          + '<img src="/iu/?u=' + headshot.href
-         + '" height="' + headshot.height
-         + '" width="' + headshot.width
-         + '" style="float:right;margin:-20px 0px 10px 0px;"><ul>';
+         + '" height="110"'
+         + '" width="150"'
+         + '" id="espn_news_image"><ul>';
 
     for (var i = 0; i < 3 && i < headlines.length; i++) {
         var article = headlines[i];
@@ -233,7 +233,7 @@ function ddg_spice_espn_bind() {
                   + stats
                   + gamelog;
 
-	nra(items);
+	nra(items, 1, 1);
 
     var table = document.getElementById("espn_zci_stats");
     for (var i = 0; i < table.rows.length; i++) {

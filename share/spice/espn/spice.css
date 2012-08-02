@@ -35,3 +35,8 @@
 #zero_click_abstract div {
     margin-top: 10px;
     }
+
+#espn_news_image {
+    float: right;
+    margin: -25px -40px 0px 0px;
+    }
