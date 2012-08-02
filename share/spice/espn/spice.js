@@ -44,7 +44,9 @@ function ddg_spice_espn(response) {
     items[0]['h'] = player.displayName + " - "
                   + playerTeam.location + " "
                   + playerTeam.name
-                  + " (ESPN)";
+                  + ' (<img src="http://a.espncdn.com/'
+                  + 'i/apis/attribution/espn-red_50.png"'
+                  + 'id="espn_header_image">)';
 
     console.log(player);
 
@@ -116,6 +118,8 @@ function ddg_spice_espn(response) {
 
 function ddg_spice_espn_events(response) {
     var events = response.sports[0].leagues[0].events;
+    console.log(response);
+    test = response;
     console.log(events[85]);
     gamelog = '<div id="espn_zci_gamelog"><table><tr>'
             + '<th></th><th>Home</th><th></th><th>Away</th>'
