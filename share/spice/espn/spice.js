@@ -203,22 +203,7 @@ function ddg_spice_espn_team(response) {
          + (record.ties !== 0 ? 
             '<div style="background-color:grey;width:'
             + tiePercentage + '%">&nbsp;' + record.ties + ' ties</div>'
-            : "") + '</fieldset>'
-         + '<table style="border-spacing:20px;margin-top:10px;">'
-         + '<th>Name</th><th>Position</th><th>No.</th>'
-         + '<th>Age</th><th>HT</th><th>WT</th>'
-         + roster.map(function(player) {
-             return '<tr>'
-                    + '<td><a href="/?q='
-                    + encodeURIComponent(player.displayName)
-                    + '">' + player.displayName + '</td>'
-                    + '<td>' + player.positions[0].name + '</td>'
-                    + '<td>' + player.jersey + '</td>'
-                    + '<td>' + player.age + '</td>'
-                    + '<td>' + player.height + '</td>'
-                    + '<td>' + player.weight + '</td>'
-                    + '</tr>';
-         }).join("") + '</table>';
+            : "") + '</fieldset>';
     team += '</div>';
 
     ddg_spice_espn_bind();
