@@ -197,10 +197,7 @@ function ddg_spice_espn_team(response) {
                + " (" + record.season.description + " season)";
     console.log(response);
     team = '<div id="espn_zci_team">'
-         + '<img style="float:right;" src="' + logo + '">'
-         + '<fieldset style="border-top:1px solid #'
-         + teamColor + ';padding-top:10px;width:80%">'
-         + '<legend>&nbsp;' + season + '&nbsp;</legend>'
+         + '<img id="espn_stats_image" src="' + logo + '">'
          + '<div style="background-color:green;width:'
          + winPercentage + '%">&nbsp;' + record.wins + ' wins</div>'
          + '<div style="background-color:red;;width:'
@@ -208,7 +205,7 @@ function ddg_spice_espn_team(response) {
          + (record.ties !== 0 ? 
             '<div style="background-color:grey;width:'
             + tiePercentage + '%">&nbsp;' + record.ties + ' ties</div>'
-            : "") + '</fieldset>';
+            : "");
     team += '</div>';
 
     ddg_spice_espn_bind();
