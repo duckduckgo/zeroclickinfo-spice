@@ -199,11 +199,11 @@ function ddg_spice_espn_team(response) {
     team = '<div id="espn_zci_team">'
          + '<img style="float:right;" src="' + logo + '">'
          + '<fieldset style="border-top:1px solid #'
-         + teamColor + ';padding:10px 10px 20px 10px;width:67%;">'
+         + teamColor + ';padding-top:10px;">'
          + '<legend>&nbsp;' + season + '&nbsp;</legend>'
          + '<div style="background-color:green;width:'
          + winPercentage + '%">&nbsp;' + record.wins + ' wins</div>'
-         + '<div style="background-color:red;margin-top:0px;width:'
+         + '<div style="background-color:red;;width:'
          + lossPercentage + '%">&nbsp;' + record.losses + ' losses</div>'
          + (record.ties !== 0 ? 
             '<div style="background-color:grey;width:'

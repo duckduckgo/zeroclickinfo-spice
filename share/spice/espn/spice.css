@@ -36,6 +36,13 @@
     margin-top: 10px;
 }
 
+#espn_zci_team div {
+    padding: 5px 0px 5px 0px;
+    margin: 2px 0px 0px 0px;
+    width:67%;
+    border-radius:2px;
+}
+
 #espn_header_image {
     display: inline;
     margin-bottom: -2px;
