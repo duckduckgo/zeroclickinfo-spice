@@ -2,6 +2,9 @@ package DDG::Spice::RandNums;
 
 use DDG::Spice;
 
+attribution github  => ['https://github.com/AlexBio', 'AlexBio'  ],
+            web     => ['http://ghedini.me', 'Alessandro Ghedini'];
+
 spice to   => 'http://www.random.org/integers/?num=10&min=$1&max=$2&col=10&base=10&format=plain&rnd=new';
 spice from => '([0-9]+)\/([0-9]+)';
 
