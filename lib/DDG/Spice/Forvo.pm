@@ -14,7 +14,7 @@ my %langs = ("abkhazian" => "ab", "adygean" => "ady", "afar" => "aa", "afrikaans
 
 handle remainder => sub {
 	if (defined $_){
-		my $remainder = $_;
+		my $remainder = lc($_);
 		my $match;
 		my @words = qw(forvo pronounce pronunciation of in );
 
