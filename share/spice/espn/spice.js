@@ -199,7 +199,7 @@ function ddg_spice_espn_team(response) {
     team = '<div id="espn_zci_team">'
          + '<img style="float:right;" src="' + logo + '">'
          + '<fieldset style="border-top:1px solid #'
-         + teamColor + ';padding-top:10px;">'
+         + teamColor + ';padding-top:10px;width:80%">'
          + '<legend>&nbsp;' + season + '&nbsp;</legend>'
          + '<div style="background-color:green;width:'
          + winPercentage + '%">&nbsp;' + record.wins + ' wins</div>'
@@ -224,6 +224,8 @@ function ddg_spice_espn_bind() {
                   + gamelog;
 
 	nra(items, 1, 1);
+
+    YAHOO.util.Dom.setStyle(document.getElementById("zero_click_abstract"), "margin-right", 0);
 
     var table = document.getElementById("espn_zci_stats");
     for (var i = 0; i < table.rows.length; i++) {
