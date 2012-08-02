@@ -8,7 +8,7 @@ spice from => '([0-9]+)\/([0-9]+)';
 spice is_cached => 0;
 spice wrap_string_callback => 1;
 
-triggers query_lc => qr/^random nums ?(([0-9]+)\-([0-9]+))?$/;
+triggers query_lc => qr/^random (numbers|nums)(?: ([0-9]+)\-([0-9]+)|)$/;
 
 handle matches => sub {
 	my (undef, $a, $b) = @_;
