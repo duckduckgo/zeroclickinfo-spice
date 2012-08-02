@@ -6,11 +6,11 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-    [qw( DDG::Spice::Twitter )],
+    [qw( DDG::Spice::Twitter::User )],
     'twitter duckduckgo' => test_spice(
-        '/js/spice/twitter/duckduckgo',
+        '/js/spice/twitter/user/duckduckgo',
         call_type => 'include',
-        caller => 'DDG::Spice::Twitter'
+        caller => 'DDG::Spice::Twitter::User'
     ),
 );
 
