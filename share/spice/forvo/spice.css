@@ -1,0 +1,103 @@
+div.forvo_container {
+	float: left;
+    margin: 5px;
+    margin-bottom: 8px;
+    width: 100%;
+    height: 35px;
+    clear: both;
+}
+
+div.forvo_div{
+    width: 320px;
+    height: 25px;
+    display: block;
+    float: left;
+    padding-top: 5px;
+    padding-left: 5px;
+    border-bottom: 2px solid #666;
+}
+
+
+p {clear: both;}
+
+.audiojs { 
+    height: 22px !important;
+    background: #404040 !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #444), color-stop(0.5, #555), color-stop(0.51, #444), color-stop(1, #444)) !important;
+    background-image: -moz-linear-gradient(center top, #444 0%, #555 50%, #444 51%, #444 100%) !important;
+    -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3) !important;
+    -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3) !important;
+    -o-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.audiojs .play-pause { 
+    width: 15px !important
+        height: 20px !important;
+    padding: 0px 8px 0px 0px !important;
+
+}
+
+.audiojs p { 
+    width: 25px !important;
+    height: 20px !important;
+    margin: -3px 0px 0px -1px !important;
+}
+
+.audiojs .scrubber { 
+    background: #5a5a5a !important;
+    width: 310px !important;
+    height: 10px !important;
+    margin: 5px !important;
+}
+
+.audiojs .progress { 
+    height: 10px !important;
+    width: 0px !important;
+    background: #ccc !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ccc), color-stop(0.5, #ddd), color-stop(0.51, #ccc), color-stop(1, #ccc)) !important;
+    background-image: -moz-linear-gradient(center top, #ccc 0%, #ddd 50%, #ccc 51%, #ccc 100%) !important;
+}
+
+.audiojs .loaded { 
+    height: 10px !important;
+    background: #000 !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #222), color-stop(0.5, #333), color-stop(0.51, #222), color-stop(1, #222)) !important;
+    background-image: -moz-linear-gradient(center top, #222 0%, #333 50%, #222 51%, #222 100%) !important;
+}
+
+.audiojs .time { 
+    float: left !important;
+    height: 25px !important;
+    line-height: 25px !important;
+}
+
+.audiojs .error-message { 
+    height: 24px !important;
+    line-height: 24px !important;
+}
+
+
+.forvo_track_details { 
+    clear: both !important;
+    height: 20px !important;
+    width: 448px !important;
+    padding: 1px 6px !important;
+    background: #eee !important;
+    color: #222 !important;
+    font-family: monospace !important;
+    font-size: 11px !important;
+    line-height: 20px !important;
+    -webkit-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.15) !important;
+    -moz-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.15) !important;
+}
+
+.forvo_track_details:before { 
+    content: '♬ ' !important;
+}
+
+.forvo_track_details em { 
+    font-style: normal !important;
+    color: #999 !important;
+
+}
