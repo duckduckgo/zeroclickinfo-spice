@@ -44,9 +44,9 @@ function ddg_spice_espn(response) {
     items[0]['h'] = player.displayName + " - "
                   + playerTeam.location + " "
                   + playerTeam.name
-                  + ' (<img src="http://a.espncdn.com/'
+                  + ' <img src="http://a.espncdn.com/'
                   + 'i/apis/attribution/espn-red_50.png"'
-                  + 'id="espn_header_image">)';
+                  + 'id="espn_header_image">';
 
     console.log(player);
 
