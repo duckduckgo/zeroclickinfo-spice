@@ -11,7 +11,6 @@ triggers start => "///***never_trigger***///";
 spice to => 'http://api.twitter.com/1/trends/$1.json?callback={{callback}}';
 
 handle remainder => sub {
-    return $_ unless !defined $_;
     return;
 };
 
