@@ -8,8 +8,8 @@ attribution github  => ['https://github.com/AlexBio', 'AlexBio'  ],
 
 spice to   => 'http://api.metacpan.org/v0/module/$1?callback={{callback}}';
 
-triggers query => qr/^cpan ([A-Za-z0-9\:]+)$/;
+triggers start => "cpan";
 
-handle matches => sub { return shift };
+handle remainder => sub { return shift };
 
 1;
