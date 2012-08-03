@@ -1,3 +1,7 @@
+#zero_click_abstract.zero_click_snippet{
+    margin-right: 20px !important;
+}
+
 div.forvo_container {
     float: left;
     margin: 5px 0px;
@@ -21,6 +25,8 @@ p {clear: both;}
 
 .audiojs { 
     height: 22px !important;
+    width: auto !important;
+    float: left !important;
     background: #404040 !important;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #444), color-stop(0.5, #555), color-stop(0.51, #444), color-stop(1, #444)) !important;
     background-image: -moz-linear-gradient(center top, #444 0%, #555 50%, #444 51%, #444 100%) !important;
@@ -45,7 +51,7 @@ p {clear: both;}
 .audiojs .scrubber { 
     margin: 5px !important;
     background: #5a5a5a !important;
-    width: 310px !important;
+    width: 175px !important;
     height: 10px !important;
 }
 
@@ -76,25 +82,14 @@ p {clear: both;}
 
 
 .forvo_track_details { 
-    clear: both !important;
-    height: 20px !important;
-    width: 448px !important;
+    width: 100% !important;
     padding: 1px 6px !important;
     background: #eee !important;
-    color: #222 !important;
-    font-family: monospace !important;
-    font-size: 11px !important;
     line-height: 20px !important;
     -webkit-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.15) !important;
     -moz-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.15) !important;
-}
-
-.forvo_track_details:before { 
-    content: '♬   ' !important;
-}
-
-.forvo_track_details em { 
-    font-style: normal !important;
-    color: #999 !important;
-
+    max-width: 285px;
+    float: right;
+    font-family: 'Helvetica Neue', 'Segoe UI', Arial, sans-serif !important;
+    font-size: 14px;
 }
