@@ -22,6 +22,10 @@
     background-color: lightgrey;
 }
 
+#zero_click_abstract {
+    margin-left: 0px!important;
+}
+
 #zero_click_abstract table td {
     padding-right: 15px;
 }
@@ -35,6 +39,11 @@
 #zero_click_abstract div {
     margin-top: 10px;
 }
+
+.icon_spice_inline {
+    margin-left:10px;
+}
+
 
 #espn_zci_team div {
     padding: 5px 0px 5px 0px;

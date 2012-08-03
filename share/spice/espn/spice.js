@@ -220,7 +220,7 @@ function ddg_spice_espn_bind() {
                   + stats
                   + gamelog;
 
-	nra(items, 1, 1);
+	nra(items);
 
     YAHOO.util.Dom.setStyle(document.getElementById("zero_click_abstract"), "margin-right", 0);
 
