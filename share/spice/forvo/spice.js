@@ -1,19 +1,15 @@
 function ddg_spice_forvo(data) {
 
     if (data.attributes.total != "0") {
-        
-        nrj("/audiojs/audio.min.js");
-        nrj("/audiojs/init.js");
+                     
+        nrj("/forvo/jquery.js", true);
+        nrj("/forvo/mediaelement-and-player.min.js", true);
+        nrj("/forvo/init.js", true);
 
         var words = data.items;
 
         var wrap = d.createElement("div");
         
-        var script = d.createElement("script");
-        script.innerHTML = 'audiojs.events.ready(function() { var as = audiojs.createAll(); }) ';
-
-        wrap.appendChild(script);
-
         out = '';
                
         for (var i = 0; i < 3 && i < words.length; i++){
@@ -23,12 +19,9 @@ function ddg_spice_forvo(data) {
             YAHOO.util.Dom.addClass(container, 'forvo_container');
 
             var audio = d.createElement("audio");
-            YAHOO.util.Dom.addClass(audio, 'forvo_audio');
-
-            var source_mp3 = d.createElement("source");
-            source_mp3.src = word.standard_pronunciation.pathmp3;
-            var source_ogg = d.createElement("source");
-            source_ogg.src = word.standard_pronunciation.pathogg;
+            audio.src = word.standard_pronunciation.pathmp3 + ".mp3";
+            YAHOO.util.Dom.setAttribute(audio, "preload", "none");
+            YAHOO.util.Dom.setAttribute(audio, "type", "audio/mp3");
             
             var details_span = d.createElement("span");
             details_span.innerHTML = word.original;
@@ -36,15 +29,9 @@ function ddg_spice_forvo(data) {
             var details = d.createElement("div");
             YAHOO.util.Dom.addClass(details, 'forvo_track_details');
             details.appendChild(details_span);
-                        
-            audio.appendChild(source_mp3);
-            audio.appendChild(source_ogg);
             
             container.appendChild(audio);
             container.appendChild(details);
-            
-            YAHOO.util.Dom.setAttribute(audio, "preload", "auto");
-            YAHOO.util.Dom.setAttribute(audio, "autobuffer", "autobuffer");
 
             wrap.appendChild(container);
         }
@@ -60,6 +47,7 @@ function ddg_spice_forvo(data) {
         items[0]['f'] = 1;
         items[0]['force_big_header'] = 1;
         nra(items, 1, 1);
+
     } else {
     	var query = '';
     	var replace_words = ["forvo", "pronounce", "in","how", "to", "abkhazian", "adygean", "afar", "afrikaans", "akan", "albanian", "amharic", "ancient greek", "arabic", "aragonese", "arb&#235;resh", "armenian", "assamese", "assyrian neo-aramaic", "asturian", "avaric", "aymara", "azerbaijani", "balochi", "bambara", "bardi", "bashkir", "basque", "bavarian", "belarusian", "bengali", "bihari", "bislama", "bosnian", "botlikh", "breton", "bulgarian", "buriat", "burmese", "burushaski", "cantonese", "cape verdean creole", "catalan", "cebuano", "central bikolano", "chamorro", "chechen", "cherokee", "chichewa", "chuvash", "cornish", "corsican", "cree", "creek", "crimean tatar", "croatian", "czech", "dagbani", "danish", "dari", "divehi", "dutch", "dzongkha", "emilian", "english", "erzya", "esperanto", "estonian", "eton", "ewe", "ewondo", "faroese", "fijian", "finnish", "flemish", "franco-proven&#231;al", "french", "friulan", "fulah", "galician", "gan chinese", "georgian", "german", "gilaki", "greek", "guarani", "gujarati", "haitian", "hakka", "hassaniyya", "hausa", "hawaiian", "hebrew", "herero", "hiligaynon", "hindi", "hiri motu", "hmong", "hungarian", "icelandic", "igbo", "iloko", "indonesian", "ingush", "interlingua", "inuktitut", "inupiaq", "irish", "italian", "iwaidja", "jamaican patois", "japanese", "javanese", "jin chinese", "kabardian", "kabyle", "kalaallisut", "kalmyk", "kannada", "kanuri", "karakalpak", "kashmiri", "kazakh", "khasi", "khmer", "kikuyu", "kimbundu", "kinyarwanda", "kirundi", "klingon", "komi", "kongo", "konkani", "korean", "kotava", "krio", "kuanyama", "kurdish", "kutchi", "kyrgyz", "lakota", "lao", "latin", "latvian", "lezgian", "ligurian", "limburgish", "lingala", "lithuanian", "lombard", "low german", "lozi", "luba-katanga", "luganda", "luo", "lushootseed", "luxembourgish", "macedonian", "mainfr&#228;nkisch", "malagasy", "malay", "malayalam", "maltese", "mandarin chinese", "manx", "m&#257;ori", "mapudungun", "marathi", "marshallese", "masbate&#241;o", "mauritian creole", "mazandarani", "mbe", "meitei", "micmac", "min dong", "min nan", "minangkabau", "mohawk", "moksha", "mongolian", "nahuatl", "nauru", "navajo", "naxi", "ndonga", "neapolitan", "nepal bhasa", "nepali", "nogai", "north ndebele", "northern sami", "norwegian bokm&#229;l", "norwegian nynorsk", "nuosu", "n&#448;uu", "occitan", "ojibwa", "okinawan", "oriya", "oromo", "osage", "ossetian", "ottoman turkish", "palauan", "palenquero", "pangasinan", "panjabi", "papiamento", "pashto", "pennsylvania dutch", "persian", "picard", "piedmontese", "pitjantjatjara", "polish", "portuguese", "pulaar", "quechua", "quiatoni zapotec", "rapa nui", "romagnol", "romani", "romanian", "romansh", "rukiga", "russian", "rusyn", "samoan", "sango", "sanskrit", "sardinian", "scots", "scottish gaelic", "serbian", "serer", "shona", "shoshoni", "sicilian", "silesian", "sindhi", "sinhalese", "slovak", "slovenian", "somali", "sotho", "south ndebele", "spanish", "sranan tongo", "sundanese", "swabian german", "swahili", "swati", "swedish", "swiss german", "sylheti", "tagalog", "tahitian", "tajik", "tamil", "tatar", "telugu", "tetum", "thai", "tibetan", "tigrinya", "tok pisin", "toki pona", "tondano", "tonga", "tsonga", "tswana", "tuareg", "tundra nenets", "turkish", "turkmen", "tuscarora", "tuvan", "twi", "udmurt", "uighur", "ukrainian", "upper sorbian", "urdu", "uzbek", "valencian", "venda", "venetian", "vietnamese", "v&#245;ro", "walloon", "welsh", "western frisian", "wolof", "wu chinese", "xhosa", "xiang chinese", "yakut", "yiddish", "yoruba", "yucatec maya", "yupik", "zazaki", "zhuang", "zulu"];
