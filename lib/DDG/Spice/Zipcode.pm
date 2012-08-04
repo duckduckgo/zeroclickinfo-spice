@@ -22,6 +22,8 @@ handle remainder => sub {
 		my $country = lc($2);
 		return uri_escape($1), $countries{$country} unless !defined $countries{$country};
 	}
+
+	s/\s//g;
 	return ($_, 'XX') if $_;
 	return;
 };
