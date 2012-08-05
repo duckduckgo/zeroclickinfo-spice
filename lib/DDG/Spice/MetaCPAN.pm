@@ -8,7 +8,7 @@ attribution github  => ['https://github.com/AlexBio', 'AlexBio'  ],
 
 spice to   => 'http://api.metacpan.org/v0/module/$1?callback={{callback}}';
 
-triggers start => "cpan";
+triggers startend => "cpan", "metacpan", "meta cpan";
 
 handle remainder => sub { return shift };
 
