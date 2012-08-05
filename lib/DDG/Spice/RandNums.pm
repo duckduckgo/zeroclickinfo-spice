@@ -10,6 +10,7 @@ spice to   => 'http://www.random.org/integers/?num=10&min=$1&max=$2&col=10&base=
 spice from => '([0-9]+)\/([0-9]+)';
 
 spice is_cached => 0;
+spice proxy_cache_valid => "418 1d";
 spice wrap_string_callback => 1;
 
 triggers query_lc => qr/^random (numbers|nums)(?: ([0-9]+)\-([0-9]+)|)$/;
