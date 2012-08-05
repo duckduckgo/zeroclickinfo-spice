@@ -7,6 +7,7 @@ function ddg_spice_github(re) {
 
     var content = '<ul>';
     re.map(function(repo) {
+        if (!repo.description || !repo.url) return;
         var ownerURL = repo.url.replace(/[^\/]*$/, "");
         content += '<li><a href="' + repo.url
                 + '">' + repo.name + '</a>'
