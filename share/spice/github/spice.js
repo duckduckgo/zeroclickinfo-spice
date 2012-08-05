@@ -7,10 +7,12 @@ function ddg_spice_github(re) {
 
     var content = '<ul>';
     re.map(function(repo) {
-        content += "<li><a href='" + repo.url
-                + "'>" + repo.name + '</a>'
-                +  " (<i>" + repo.owner + "</i>): "
-                + repo.description + "</li>";
+        var ownerURL = repo.url.replace(/[^\/]*$/, "");
+        content += '<li><a href="' + repo.url
+                + '">' + repo.name + '</a>'
+                +  ' (<i><a href="' + ownerURL
+                + '">' + repo.owner + '</a></i>): '
+                + repo.description + '</li>';
     });
     content += "</ul>";
     var more = "http://www.github.com/search?q=" + encodeURI(query);
