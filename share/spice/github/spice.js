@@ -6,10 +6,12 @@ function ddg_spice_github(re) {
     re = re.data.repositories;
 
     var content = '<ul>';
-    for (i = 0; i < re.length; i++) {
-        content += "<li><a href='" + re[i].url + "'>" + re[i].name + '</a>'
-                +  ": " + re[i].description + "</li>";
-    }
+    re.map(function(repo) {
+        content += "<li><a href='" + repo.url
+                + "'>" + repo.name + '</a>'
+                +  " (<i>" + repo.owner + "</i>): "
+                + repo.description + "</li>";
+    });
     content += "</ul>";
     var more = "http://www.github.com/search?q=" + encodeURI(query);
     if (re.length == 1) {
