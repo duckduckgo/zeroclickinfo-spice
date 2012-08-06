@@ -2,7 +2,7 @@ CONST_PIPL_PRIVACY_URL = 'http://pipl.com/privacy_ddg/'
 
 
 function ddg_spice_pipl(results) {
-	if (!(typeof results['profile'] === "undefined")) {
+	if (!(typeof results === "undefined")) {
 		var items = [[]];
 	    items[0]['h'] = results['title'];
 	    items[0]['s'] = 'Pipl';
