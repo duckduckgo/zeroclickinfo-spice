@@ -19,14 +19,14 @@ function ddg_spice_meta_cpan(ir) {
 
 	if (desc) {
 		short_desc = '';
-		max_len = 260;
+		max_len = 340;
 
 		if (desc.length > max_len)
 			short_desc = desc.substring(0, max_len) + '...';
 		else
 			short_desc = desc;
 
-		text += '<p>' + short_desc + '<p>';
+		text += short_desc + "<br>";
 	}
 
 	items[0]['a'] = text;
