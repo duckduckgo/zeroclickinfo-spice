@@ -55,6 +55,7 @@ function ddg_spice_zanran(zanran_results) {
     div.appendChild(p1);
     div.appendChild(p2);
     div.appendChild(link2);
+    div.appendChild(d.createElement("br"));
 
     return div;
   };
@@ -87,52 +88,27 @@ function ddg_spice_zanran(zanran_results) {
 
   var results = zanran_results.results;
 
-  var div = create_dom_for_primary_result(results[0]);
+  var items = [{
+    a: outer_html(create_dom_for_primary_result(results[0])) + '<div class="clear"></div>',
+    u: zanran_results.more,
+    h: "Data & Statistics from Zanran (" + DDG.get_query() + ")",
+    force_big_header: 1,
+    s: 'Zanran',
+    f: 1
+  }];
 
   if(results.length > 1) {
-    var hr = d.createElement("hr");
-    var more = d.createElement("a");
-    more.id = "zanran_show_extra_results";
-    more.appendChild(d.createTextNode("More results..."));
-    
-    var list = d.createElement("ul");
-    
-    div.appendChild(hr);
-    div.appendChild(more);
-
-    var extra_results = d.createElement("div");
-    extra_results.id = "zanran_extra_results_list";
-    div.appendChild(extra_results);
-    
-    extra_results.appendChild(list);
-    var show_extra_results = false;
-    YAHOO.util.Dom.setStyle(extra_results, 'display', 'none');
-
-    YAHOO.util.Event.addListener("zanran_show_extra_results", "click", function(){
-      show_extra_results = !show_extra_results;
-      if(show_extra_results){
-        YAHOO.util.Dom.setStyle(document.getElementById("zanran_extra_results_list"), 'display', 'block');
-      } else {
-        YAHOO.util.Dom.setStyle(document.getElementById("zanran_extra_results_list"), 'display', 'none');
-      }
-    });
-
+    var extra_results = d.createElement("ul");
     for(var i=1; i<results.length && i<5; i++) {
-      var div2 = create_dom_for_secondary_result(results[i]);
-      list.appendChild(div2);
+      extra_results.appendChild(create_dom_for_secondary_result(results[i]));
     }
+    items.push({
+      a: outer_html(extra_results),
+      t: "More results",
+      f: 1,
+      s: 'Zanran',
+      u: zanran_results.more
+    });
   }
-
-  var out = outer_html(div);
-  out += '<div class="clear"></div>';
-  
-  items = [{
-    a: out,
-    h: "Data & Statistics from Zanran (" + DDG.get_query() + ")",
-    s: 'Zanran',
-    u: zanran_results.more,
-    f: 1,
-    force_big_header: 1    
-  }];
-  nra(items,1,1);
+  nra(items);
 }
