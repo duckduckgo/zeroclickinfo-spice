@@ -86,12 +86,12 @@ function ddg_spice_congress(data) {
                 + parseFloat(member.votes_with_party_pct).toFixed(0)
                 + "% of issues"
                 + (member.next_election ?
-                        ', next election in ' + member.next_election + '.'
+                        ', next election in ' + member.next_election
                         : "")
             if (member.district) {
                 snippet += ' (district ' + member.district + ')';
             }
-            snippet += "</li>";
+            snippet += ".</li>";
         }
         snippet += "</ul>";
 
