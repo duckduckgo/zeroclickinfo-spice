@@ -12,7 +12,10 @@ function ddg_spice_xkcd(xk) {
        // snippet shown in 0-click
        snippet = d.createElement('span');
 
-       if (nur) img = nur('',xk['alt'],xk['img']);
+       // route image through internal server
+       var imgUrl = '/iu/?u='+xk['img'];
+       if (nur) img = nur('', xk['alt'], imgUrl);
+
        if (img) {
 	   YAHOO.util.Dom.addClass(img,'img_zero_click_big');
 	   div = d.createElement('div');
