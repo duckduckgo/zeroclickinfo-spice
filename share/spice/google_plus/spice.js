@@ -27,7 +27,7 @@ function ddg_spice_google_plus(google) {
 		    link.href = '/?q=google%2B+userid:' + item.id;
 
 		    img = d.createElement('img');
-		    img.src = item.image.url;
+		    img.src = "/iu/?u=" + item.image.url;
 		    YAHOO.util.Dom.setStyle(img, "margin", '0 auto 0 auto');
 		    YAHOO.util.Dom.setStyle(div,'margin-bottom', '10px');
 		    YAHOO.util.Dom.setStyle(div,'text-align', 'center');
