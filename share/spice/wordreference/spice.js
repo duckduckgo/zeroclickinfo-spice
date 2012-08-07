@@ -1,4 +1,4 @@
-function ddg_spice_translate(ir) {
+function ddg_spice_wordreference(ir) {
 	items = new Array();
 
 	query  = DDG.get_query();

@@ -1,4 +1,4 @@
-package DDG::Spice::Translate;
+package DDG::Spice::Wordreference;
 
 use DDG::Spice;
 
