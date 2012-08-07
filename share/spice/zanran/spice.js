@@ -30,7 +30,7 @@ function ddg_spice_zanran(zanran_results) {
   var create_dom_for_primary_result = function(result){
     var img_link = create_link(result);
     var img = d.createElement('img');
-    img.src = result.preview_image;
+    img.src = "/iu/?u=" + result.preview_image;
     img_link.appendChild(img);
     YAHOO.util.Dom.setStyle(img, 'max-width', '71px');
     YAHOO.util.Dom.setStyle(img, 'max-height', '100px'); // A4 ratio
@@ -70,7 +70,7 @@ function ddg_spice_zanran(zanran_results) {
     var link = create_link(result);
     link.appendChild(d.createTextNode("Link"));
   
-    var div = d.createElement("li");
+    var div = d.createElement("p");
     div.appendChild(d.createTextNode(title));
     div.appendChild(link);
     div.appendChild(d.createTextNode(" | "));
@@ -98,7 +98,7 @@ function ddg_spice_zanran(zanran_results) {
   }];
 
   if(results.length > 1) {
-    var extra_results = d.createElement("ul");
+    var extra_results = d.createElement("div");
     for(var i=1; i<results.length && i<5; i++) {
       extra_results.appendChild(create_dom_for_secondary_result(results[i]));
     }
