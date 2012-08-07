@@ -3,10 +3,10 @@ function ddg_spice_rand_nums(ir) {
 	items[0] = new Array();
 
 	query  = DDG.get_query();
-	regexp = /^random (numbers|nums)(?: ([0-9]+)\-([0-9]+)|)$/i;
+	regexp = /^(rand|random) (numbers|nums)(?: (\-?[0-9]+)\-(\-?[0-9]+)|)$/i;
 	match  = query.match(regexp);
-	min    = match[2];
-	max    = match[3];
+	min    = match[3];
+	max    = match[4];
 
 	if (min == undefined)
 		min = 0;
