@@ -45,6 +45,9 @@ function format_translations(ts) {
 }
 
 function format_translation(t) {
+	if (t == undefined)
+		return '';
+
 	text = '<li><i>' + t.term + '</i> (' + t.POS + ')</li>';
 
 	return text;
