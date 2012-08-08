@@ -20,7 +20,7 @@ function ddg_spice_forvo(data) {
             YAHOO.util.Dom.addClass(container, 'forvo_container');
 
             var audio = d.createElement("audio");
-            YAHOO.util.Dom.setAttribute(audio, 'preload', "auto");
+            YAHOO.util.Dom.setAttribute(audio, 'preload', "none");
 
             var mp3_source = d.createElement("source");
             mp3_source.src = word.standard_pronunciation.pathmp3 + ".mp3";
