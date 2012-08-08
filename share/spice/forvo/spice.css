@@ -4,6 +4,7 @@
 
 div.mejs-container.mejs-audio{
     float: left !important;
+    overflow: hidden !important;
 }
 
 div.forvo_container {
@@ -25,7 +26,7 @@ div.forvo_div{
 }
 
 .forvo_track_details { 
-    width: 100% !important;
+    width: 45% !important;
     padding: 1px 6px !important;
     background: #eee !important;
     line-height: 31px !important;

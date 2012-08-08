@@ -1,10 +1,11 @@
 function ddg_spice_forvo(data) {
 
     if (data.attributes.total != "0") {
-                     
-        nrj("/forvo/jquery.js", true);
+
+	   	nrj("/forvo/jquery.js", true);
         nrj("/forvo/mediaelement-and-player.min.js", true);
         nrj("/forvo/init.js", true);
+        
 
         var words = data.items;
 
@@ -19,9 +20,18 @@ function ddg_spice_forvo(data) {
             YAHOO.util.Dom.addClass(container, 'forvo_container');
 
             var audio = d.createElement("audio");
-            audio.src = word.standard_pronunciation.pathmp3 + ".mp3";
-            YAHOO.util.Dom.setAttribute(audio, "preload", "none");
-            YAHOO.util.Dom.setAttribute(audio, "type", "audio/mp3");
+            YAHOO.util.Dom.setAttribute(audio, 'preload', "auto");
+
+            var mp3_source = d.createElement("source");
+            mp3_source.src = word.standard_pronunciation.pathmp3 + ".mp3";
+            mp3_source.type = "audio/mp3";
+            
+            var ogg_source = d.createElement("source");
+            ogg_source.src = word.standard_pronunciation.pathogg + ".ogg";
+            ogg_source.type = "audio/ogg";
+
+            audio.appendChild(mp3_source);
+            audio.appendChild(ogg_source);
             
             var details_span = d.createElement("span");
             details_span.innerHTML = word.original;
