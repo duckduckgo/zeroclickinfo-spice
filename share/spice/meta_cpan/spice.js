@@ -4,10 +4,11 @@ function ddg_spice_meta_cpan(ir) {
 	if (ir["message"])
 		return;
 
-	name = ir["documentation"];
-	desc = ir["description"];
+	query = DDG.get_query().replace(/\s*(metacpan|meta cpan|cpan)\s*/i, '');
+	name  = ir["documentation"];
+	desc  = ir["description"];
 
-	head = 'MetaCPAN (' + name + ')';
+	head = 'MetaCPAN (' + query + ')';
 
 	items[0] = new Array();
 	items[0]['h'] = head;
@@ -15,7 +16,7 @@ function ddg_spice_meta_cpan(ir) {
 	items[0]['u'] = 'http://metacpan.org/module/' + name;
 	items[0]["force_big_header"] = true;
 
-	text = '';
+	text = 'Module: ' + name;
 
 	if (desc) {
 		short_desc = '';
