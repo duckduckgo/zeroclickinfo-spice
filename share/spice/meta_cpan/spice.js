@@ -16,7 +16,7 @@ function ddg_spice_meta_cpan(ir) {
 	items[0]['u'] = 'http://metacpan.org/module/' + name;
 	items[0]["force_big_header"] = true;
 
-	text = 'Module: ' + name;
+	text = '<pre>Module: ' + name + '</pre>';
 
 	if (desc) {
 		short_desc = '';
