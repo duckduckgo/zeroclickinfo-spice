@@ -146,16 +146,44 @@ my %players = (
     "will barton" => 6579,
 );
 
-triggers any => keys %players;
+my %teams = (
+    "cavaliers" => 5,
+    "cleveland cavaliers" => 5,
+    "nuggets" => 7,
+    "denver nuggets" => 7,
+    "celtics" => 2,
+    "boston celtics" => 2,
+    "hawks" => 1,
+    "atlanta hawks" => 1,
+    "warriors" => 9,
+    "golden state warriors" => 9,
+    "mavericks" => 6,
+    "dallas mavericks" => 6,
+    "hornets" => 3,
+    "new orleans hornets" => 3,
+    "pacers" => 1,
+    "indiana pacers" => 1,
+    "all-stars" => 9,
+    "west all-stars" => 9,
+);
 
-spice to => 'http://api.espn.com/v1/sports/$1/$2/$3/$4/$5?enable=stats,competitors,roster,venues&$6=' . (localtime->year() + 1900) . '&apikey={{ENV{DDG_SPICE_ESPN_APIKEY}}}&callback=$7';
+triggers any => keys %players, keys %teams;
 
-spice from => '(.*?)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';
+spice to => 'http://api.espn.com/v1/sports/$1/$2/$3/$4/$5'
+            . '?enable=stats,competitors,roster,venues&$6='
+            . (localtime->year() + 1900)
+            . '&apikey={{ENV{DDG_SPICE_ESPN_APIKEY}}}&callback=$7';
+
+spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';
 
 spice is_cached => 0;
 
 handle query_lc => sub {
-    return "basketball", "nba", "athletes", $players{$_}, "foo", "bar", "ddg_spice_espn";
+    s/^the\s*//g;
+    return "basketball", "nba", "athletes", $players{$_}, "foo", "bar", "ddg_spice_espn"
+        if exists $players{$_};
+    return "basketball", "nba", "teams", $teams{$_}, "foo", "bar", "ddg_spice_espn"
+        if exists $teams{$_};
 };
 
 1;
