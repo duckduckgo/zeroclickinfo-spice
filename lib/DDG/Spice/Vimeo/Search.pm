@@ -7,7 +7,7 @@ spice to => 'http://vimeo.com/api/rest/v2?format=json&method=vimeo.videos.search
 
 triggers startend => 'vimeo';
 
-handle matches => sub {
+handle remainder => sub {
     return $_ if defined $_; 
     return;
 };
