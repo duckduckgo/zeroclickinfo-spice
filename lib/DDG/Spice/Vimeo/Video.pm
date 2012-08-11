@@ -8,11 +8,7 @@ spice to => 'http://vimeo.com/api/oembed.json?url=$1&maxwidth=300&maxheight=300&
 triggers query_lc => qr/^https?:\/\/vimeo.com\/[0-9]+/;
 
 handle matches => sub {
-    if (/^http:\/\/vimeo.com\/[0-9]+/) {
-        return $_;
-    } elsif ($1) {
-        return $1;
-    }    
+    return $_ if defined $_; 
     return;
 };
 
