@@ -24,8 +24,8 @@ function ddg_spice_vimeo_search(res)
 	        div.appendChild(link);
 
 	        link = d.createElement('a');
-	        link.href = item['Url'];
-	        link.innerHTML = item['Name'];
+	        link.href = vimeo_url + item["id"];
+	        link.innerHTML = item["title"];
 	        div.appendChild(link);
 	        div.appendChild(d.createElement('br'));
 
