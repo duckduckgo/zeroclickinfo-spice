@@ -1,4 +1,4 @@
-package DDG::Spice::Vimeo;
+package DDG::Spice::Vimeo::Video;
 # ABSTRACT: Embeds videos from vimeo
 
 use DDG::Spice;
