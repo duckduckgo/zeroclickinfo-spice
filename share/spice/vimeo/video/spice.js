@@ -1,4 +1,4 @@
-function ddg_spice_vimeo(res)
+function ddg_spice_vimeo_video(res)
 {
     var out = '';
 
