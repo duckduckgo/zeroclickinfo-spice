@@ -5,7 +5,7 @@ use DDG::Spice;
 
 spice to => 'http://vimeo.com/api/oembed.json?url=$1&maxwidth=300&maxheight=300&callback={{callback}}';
 
-triggers query_lc => qr/^vimeo\s(.*)|^https?:\/\/vimeo.com\/[0-9]+/;
+triggers query_lc => qr/^https?:\/\/vimeo.com\/[0-9]+/;
 
 handle matches => sub {
     if (/^http:\/\/vimeo.com\/[0-9]+/) {
