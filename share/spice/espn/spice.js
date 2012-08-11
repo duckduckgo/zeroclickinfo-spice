@@ -21,6 +21,20 @@ items[0]['s'] = 'ESPN';
 items[0]['force_big_header'] = 1;
 items[0]['f'] = 1;
 
+function ddg_spice_espn_team_query(re) {
+    var team = re.sports[0].leagues[0].teams[0];
+    console.log(team);
+
+    items[0]['a'] = '<br>'
+                  + '<img src="/iu/?u=' + team.logos.large.href
+                  + '" id="espn_news_image"><ul>';
+    items[0]['u'] = baseURL;
+    items[0]['h'] = team.location + " " + team.name + " - "
+                  + ' <img src="http://a.espncdn.com/'
+                  + 'i/apis/attribution/espn-red_50.png"'
+                  + 'id="espn_header_image">';
+    nra(items);
+}
 
 function ddg_spice_espn(response) {
 

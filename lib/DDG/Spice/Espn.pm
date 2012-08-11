@@ -6,7 +6,7 @@ use Time::localtime;
 attribution web => ['http://dylansserver.com','Dylan Lloyd'],
             email => ['dylan@dylansserver.com','Dylan Lloyd'];
 
-my %players = (
+my %nbaPlayers = (
     "aaron adeoye" => 56385,
     "alan anderson" => 6569,
     "alex abraham" => 14347,
@@ -146,7 +146,7 @@ my %players = (
     "will barton" => 6579,
 );
 
-my %teams = (
+my %nbaTeams = (
     "cavaliers" => 5,
     "cleveland cavaliers" => 5,
     "nuggets" => 7,
@@ -167,7 +167,7 @@ my %teams = (
     "west all-stars" => 9,
 );
 
-triggers any => keys %players, keys %teams;
+triggers any => keys %nbaPlayers, keys %nbaTeams;
 
 spice to => 'http://api.espn.com/v1/sports/$1/$2/$3/$4/$5'
             . '?enable=stats,competitors,roster,venues&$6='
@@ -180,10 +180,10 @@ spice is_cached => 0;
 
 handle query_lc => sub {
     s/^the\s*//g;
-    return "basketball", "nba", "athletes", $players{$_}, "foo", "bar", "ddg_spice_espn"
-        if exists $players{$_};
-    return "basketball", "nba", "teams", $teams{$_}, "foo", "bar", "ddg_spice_espn"
-        if exists $teams{$_};
+    return "basketball", "nba", "athletes", $nbaPlayers{$_}, "foo", "bar", "ddg_spice_espn"
+        if exists $nbaPlayers{$_};
+    return "basketball", "nba", "teams", $nbaTeams{$_}, "foo", "bar", "ddg_spice_espn_team_query"
+        if exists $nbaTeams{$_};
 };
 
 1;
