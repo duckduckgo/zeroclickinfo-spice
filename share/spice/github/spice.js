@@ -11,8 +11,9 @@ function ddg_spice_github(re) {
         var ownerURL = repo.url.replace(/[^\/]*$/, "");
         content += '<li><a href="' + repo.url
                 + '">' + repo.name + '</a>'
-                +  ' (<i><a href="' + ownerURL
-                + '">' + repo.owner + '</a></i>): '
+                +  ' (<a href="' + ownerURL
+                + '">' + repo.owner + '</a>'
+                + (repo.fork ? ', fork' : '') + ') - '
                 + repo.description + '</li>';
     });
     content += "</ul>";
