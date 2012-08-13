@@ -1,0 +1,8 @@
+div.thumbnail {
+    border: 1px solid rgb(255,255,255);
+}
+
+div.thumbnail:hover {
+    border: 1px solid rgb(255,102,102);
+    cursor: pointer;
+}
