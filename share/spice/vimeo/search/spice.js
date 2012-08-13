@@ -13,7 +13,7 @@ function ddg_spice_vimeo_search(res)
 	        div2 = d.createElement("div");
 
 	        link = d.createElement("a");
-	        link.href = vimeo_url + item["id"];
+	        link.href = 'http://duckduckgo.com/?q='+ encodeURIComponent(vimeo_url) + item["id"];
 
 	        img = d.createElement('img');
 		    img.src = "/iu/?u=" + item["thumbnails"]["thumbnail"][0]["_content"];
@@ -24,7 +24,7 @@ function ddg_spice_vimeo_search(res)
 	        div.appendChild(link);
 
 	        link = d.createElement('a');
-	        link.href = vimeo_url + item["id"];
+	        link.href = 'http://duckduckgo.com/?q='+ encodeURIComponent(vimeo_url) + item["id"];
 	        link.innerHTML = item["title"];
 	        div.appendChild(link);
 	        div.appendChild(d.createElement('br'));
