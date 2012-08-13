@@ -37,14 +37,21 @@ function ddg_spice_book(ir) {
 
       //snippet
       var snippet = book.review_sample.snippet;
-      var source = book.review_sample.source;
-      var snippet_short = snippet.substring(0,139);
-      if (snippet.length > 140 ) snippet_short += ' ...';
-      var review = ' <i> "' + snippet_short + '"</i>';
-      if (source) review += '<b> - ' + source + '</b>' ;
+      var review = '';
+
+      if (snippet.length > 0){
+            var source = book.review_sample.source;
+            var snippet_short = snippet.substring(0,139);
+            if (snippet.length > 140 ) snippet_short += ' ...';
+            var review = ' <i> "' + snippet_short + '"</i>';
+            if (source) review += '<b> - ' + source + '</b>' ;
+      };
+      
 
       //Summary
-      var summary = "<div align='justify';>" + rating + synopsis_short + '</div>' + '<center>' + review + '</center>';
+      var summary =  rating + '<br/>' 
+                     + "<div align='justify';>" + synopsis_short + '</div>' 
+                     + '<center>' + review + '</center>';
     
 
        items = new Array();
@@ -63,7 +70,7 @@ function ddg_spice_book(ir) {
 
        // Thumbnail url //works with public images only 
        items[0]['i'] = book.image;
-       items[0]['i'] = 'https://d21k36m3c0ezbf.cloudfront.net/uploads/asset/image/293/passport_9781594202292.jpg';
+       // items[0]['i'] = 'https://d21k36m3c0ezbf.cloudfront.net/uploads/asset/image/293/passport_9781594202292.jpg';
       
 
        
