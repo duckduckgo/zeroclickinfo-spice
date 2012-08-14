@@ -1,7 +1,7 @@
 function ddg_spice_vimeo_video(res)
 {
     var out = '';
-    var div, divtitle, divres, img, img2, whole, divdesc, divby;
+    var div, divtitle, divres, img, img2, whole, divby;
     var vimeo_url = 'http://vimeo.com/';
     
     
@@ -9,14 +9,13 @@ function ddg_spice_vimeo_video(res)
     div = d.createElement("div");
     divby = d.createElement("div");
     divtitle = d.createElement("div");
-    divdesc = d.createElement("div");
     divres = d.createElement("div");
     img = d.createElement("img");
     img2 = d.createElement("img");
 
     //div for thumbnail
-	YAHOO.util.Dom.setStyle(div, "max-width", "150px");
-	YAHOO.util.Dom.setStyle(div, "max-height", "100px");
+	YAHOO.util.Dom.setStyle(div, "max-width", "180px");
+	YAHOO.util.Dom.setStyle(div, "max-height", "130px");
 	YAHOO.util.Dom.setStyle(div, "margin-right", "10px");
 	YAHOO.util.Dom.setStyle(div, "clear", "left");
 	YAHOO.util.Dom.setStyle(div, "float", "left");
@@ -24,27 +23,26 @@ function ddg_spice_vimeo_video(res)
 
     //add thumbnail and play button	
     img.src = '/iu/?u='+ res['thumbnail_url'];
-	YAHOO.util.Dom.setStyle(img, "max-width", "150px");
-	YAHOO.util.Dom.setStyle(img, "max-height", "100px");
+	//YAHOO.util.Dom.setStyle(img, "max-width", "150px");
+	//YAHOO.util.Dom.setStyle(img, "max-height", "100px");
 
     img2.src = "http://duckduckgo.com/assets/icon_play.v101.png";
     YAHOO.util.Dom.setStyle(img2, "visibility", "visible");
     YAHOO.util.Dom.setStyle(img2, "z-index", "100");
-    YAHOO.util.Dom.setStyle(img2, "margin", "-68px auto 29px");
+    YAHOO.util.Dom.setStyle(img2, "margin", "-130px auto 29px");
 
     div.appendChild(img);
     div.appendChild(img2);
 	YAHOO.util.Dom.addClass(div, 'thumbnail');
+	YAHOO.util.Dom.addClass(div, 'inline');
     
 
     divtitle.innerHTML = res["title"];
-    divdesc.innerHTML = '<i>' + res["description"] + '</i>';
     divby.innerHTML = '<i>Author:</i> <a href="' + res["author_url"] +'">' + res["author_name"] + '</a>';
 
 
     whole.appendChild(div);
     whole.appendChild(divtitle);
-    whole.appendChild(divdesc);
     whole.appendChild(divby);
 
     divres.appendChild(whole);
