@@ -48,7 +48,7 @@ function ddg_spice_zanran(zanran_results) {
     p2.appendChild(d.createTextNode(result.title));
 
     var link2 = create_link(result);
-    link2.appendChild(d.createTextNode("Link"));
+    link2.appendChild(d.createTextNode("[Link]"));
     
     var div = d.createElement("div");
     div.appendChild(img_link);
@@ -68,7 +68,7 @@ function ddg_spice_zanran(zanran_results) {
     var title = shorten_title(result.title, 140);
 
     var link = create_link(result);
-    link.appendChild(d.createTextNode("Link"));
+    link.appendChild(d.createTextNode("[Link]"));
   
     var div = d.createElement("p");
     div.appendChild(d.createTextNode(title));
