@@ -50,7 +50,7 @@ function ddg_spice_vimeo_video(res)
     items = [[]];
     items[0]['a'] = out;
     items[0]['s'] = 'Vimeo';
-    items[0]['u'] = vimeo_url + res["vimeo_id"];
+    items[0]['u'] = vimeo_url + res["video_id"];
     
     nra(items, 1, 1);
 }
