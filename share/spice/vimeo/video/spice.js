@@ -15,7 +15,7 @@ function ddg_spice_vimeo_video(res)
 
     //div for thumbnail
 	YAHOO.util.Dom.setStyle(div, "max-width", "180px");
-	YAHOO.util.Dom.setStyle(div, "max-height", "130px");
+	YAHOO.util.Dom.setStyle(div, "max-height", "101px");
 	YAHOO.util.Dom.setStyle(div, "margin-right", "10px");
 	YAHOO.util.Dom.setStyle(div, "clear", "left");
 	YAHOO.util.Dom.setStyle(div, "float", "left");
