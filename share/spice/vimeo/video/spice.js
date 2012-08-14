@@ -14,21 +14,20 @@ function ddg_spice_vimeo_video(res)
     img2 = d.createElement("img");
 
     //div for thumbnail
-	YAHOO.util.Dom.setStyle(div, "max-width", "180px");
-	YAHOO.util.Dom.setStyle(div, "max-height", "101px");
 	YAHOO.util.Dom.setStyle(div, "margin-right", "10px");
 	YAHOO.util.Dom.setStyle(div, "clear", "left");
 	YAHOO.util.Dom.setStyle(div, "float", "left");
-	YAHOO.util.Dom.setStyle(div, "overflow", "hidden");
+	//YAHOO.util.Dom.setStyle(div, "overflow", "hidden");
 
     //add thumbnail and play button	
     img.src = '/iu/?u='+ res['thumbnail_url'];
-    YAHOO.util.Dom.setStyle(img, "margin", "-30px -50px 29px");
+	YAHOO.util.Dom.setStyle(img, "max-width", "180px");
+	YAHOO.util.Dom.setStyle(img, "max-height", "101px");
 
     img2.src = "http://duckduckgo.com/assets/icon_play.v101.png";
     YAHOO.util.Dom.setStyle(img2, "visibility", "visible");
     YAHOO.util.Dom.setStyle(img2, "z-index", "100");
-    YAHOO.util.Dom.setStyle(img2, "margin", "-130px auto 29px");
+    YAHOO.util.Dom.setStyle(img2, "margin", "-68px auto 29px");
 
     div.appendChild(img);
     div.appendChild(img2);
