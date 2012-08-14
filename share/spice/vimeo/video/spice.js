@@ -23,8 +23,7 @@ function ddg_spice_vimeo_video(res)
 
     //add thumbnail and play button	
     img.src = '/iu/?u='+ res['thumbnail_url'];
-	//YAHOO.util.Dom.setStyle(img, "max-width", "150px");
-	//YAHOO.util.Dom.setStyle(img, "max-height", "100px");
+    YAHOO.util.Dom.setStyle(img, "margin", "-30px -50px 29px");
 
     img2.src = "http://duckduckgo.com/assets/icon_play.v101.png";
     YAHOO.util.Dom.setStyle(img2, "visibility", "visible");
