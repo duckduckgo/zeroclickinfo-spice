@@ -40,7 +40,7 @@ function ddg_spice_vimeo_video(res)
 
     divres.appendChild(whole);
 
-    YAHOO.util.Event.addListener(divthumb, "click", function (e) {
+    YAHOO.util.Event.addListener('divthumb', "click", function (e) {
         YAHOO.util.Dom.setStyle('divthumb', "display", "none");
 	    YAHOO.util.Dom.setStyle('embed', "display", "block");
     });
