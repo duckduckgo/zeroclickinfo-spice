@@ -50,7 +50,7 @@ function format_snippet(place, places){
     div.innerHTML += '<br>';
     var img = d.createElement("img");
     img.id = "map";
-    img.src = 'http://www.duckduckgo.com/imq2/?size=623,150&scalebar=false&bestfit=' + bigbox + '&polygon=fill:0x30ff0000|color:0x20ff0000|width:1|' + coord_string;
+    img.src = '/imq2/?size=623,150&scalebar=false&bestfit=' + bigbox + '&polygon=fill:0x30ff0000|color:0x20ff0000|width:1|' + coord_string;
     var img_link = d.createElement("a");
     img_link.href = 'http://mapq.st/map?q=' + loc_string;
     img_link.appendChild(img);
