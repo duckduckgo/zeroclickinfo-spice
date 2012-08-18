@@ -1,3 +1,5 @@
+/*global d YAHOO nra */
+
 function ddg_spice_khan_academy(res) {
 
   // Make sure a property is defined on an object
@@ -65,6 +67,7 @@ function ddg_spice_khan_academy(res) {
         YAHOO.util.Dom.setAttribute(ne, 'allowFullScreen', true)
         YAHOO.util.Dom.setAttribute(ne, 'webkitAllowFullScreen', true)
         YAHOO.util.Dom.setAttribute(ne, 'mozallowfullscreen', true)
+        YAHOO.util.Dom.setAttribute(ne, 'scrolling', 'no')
         ne.frameBorder = 0
 
         emb.innerHTML = ''  // clear
@@ -138,10 +141,11 @@ function ddg_spice_khan_academy(res) {
     function setup() {
       win = YAHOO.util.Dom.getRegion('frame').width
       inc = Math.floor(win / LI_WIDTH)
-      last = Math.max(0, len - (len % inc))
+      var linc = len % inc
+      last = Math.max(0, len - (linc ? linc : inc))
 
       var extra = win - (inc * LI_WIDTH)
-      off = Math.floor(extra / 2)  // will center the vids
+      off  = 0  // Math.floor(extra / 2)  // will center the vids
       off2 = extra - off
 
       pnClasses()
@@ -192,7 +196,9 @@ function ddg_spice_khan_academy(res) {
     div.appendChild(nav)
 
     function highlightDot(j) {
-      var dots = d.getElementById('dots').childNodes
+      var dots = d.getElementById('dots')
+      if (!dots) return
+      dots = dots.childNodes
       var len = dots.length
       var k = 0
       for (; k < len; k++) YAHOO.util.Dom.removeClass(dots[k], 'selected')
