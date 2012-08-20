@@ -3,7 +3,7 @@ package DDG::Spice::MetaCPAN;
 
 use DDG::Spice;
 
-attribution github  => ['https://github.com/AlexBio', 'AlexBio'  ],
+attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
             web     => ['http://ghedini.me', 'Alessandro Ghedini'];
 
 spice to   => 'http://api.metacpan.org/v0/module/$1?callback={{callback}}';

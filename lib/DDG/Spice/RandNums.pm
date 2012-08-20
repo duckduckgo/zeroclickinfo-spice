@@ -5,7 +5,7 @@ use DDG::Spice;
 
 use Encode;
 
-attribution github  => ['https://github.com/AlexBio', 'AlexBio'  ],
+attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
             web     => ['http://ghedini.me', 'Alessandro Ghedini'];
 
 spice to   => 'http://www.random.org/integers/?num=10&min=$1&max=$2&col=10&base=10&format=plain&rnd=new';
