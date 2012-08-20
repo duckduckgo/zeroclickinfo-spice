@@ -2,7 +2,7 @@ package DDG::Spice::Wordreference;
 
 use DDG::Spice;
 
-attribution github  => ['https://github.com/AlexBio', 'AlexBio'  ],
+attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
             web     => ['http://ghedini.me', 'Alessandro Ghedini'];
 
 my $dicts = 'ar|zh|cz|en|fr|gr|it|ja|ko|pl|pt|ro|es|tr';
