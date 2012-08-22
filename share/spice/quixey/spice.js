@@ -1,49 +1,54 @@
 function ddg_spice_quixey(query){
     if (query != null && query.rc == 0) {
-        items = [[]];
-        items[0]['a'] = nrqx_generate_ui(query);
-        items[0]['h'] = '';
-        items[0]['s'] = 'Quixey';
-        items[0]['u'] = 'http://www.quixey.com/search?q=' + query.q;
-        nra(items,1,1);
-    }
-}
+        
+        var spice_container = d.createElement('div');
+        YAHOO.util.Dom.setAttribute(spice_container, "id", "spice_container")
+        
+        for (app in query.results) {
+            var appObj = query.results[app];
 
-function nrqx_generate_ui(query) {
-    var appDiv = d.createElement('div');
-    for (app in query.results) {
-        appObj = query.results[app];
+            var app_container = d.createElement("div");
+            YAHOO.util.Dom.addClass(app_container, 'quixey_app_container');
+            
+            var img_anchor = d.createElement("a");
+            img_anchor.href = query.results[app].dir_url;
+            
+            var img = d.createElement('img');
+            img.src = /*'/iu/?u='+*/appObj.icon_url;
+            YAHOO.util.Dom.addClass(img, 'quixey_img');
+                        
+            var info = d.createElement('div');
+            YAHOO.util.Dom.addClass(info, "quixey_app_info");
 
-        var div = d.createElement("div");
-        var div2 = d.createElement("div");
+            var name = d.createElement('a');
+            YAHOO.util.Dom.addClass(name, 'quixey_name');
+            name.href = appObj.dir_url;
+            if (appObj.name.length >= 15){
+                var app_name = appObj.name.substring(0,15).replace(" ","") + "...";
+            }else{
+                var app_name = appObj.name;
+            }
+            name.innerHTML = app_name;
+            info.appendChild(name);
+            
+            YAHOO.util.Dom.addClass(app_container, 'inline-block highlight_zero_click1 highlight_zero_click_wrapper');
 
-        var link = d.createElement("a");
-        link.href = query.results[app].dir_url;
-        if(appObj.name.length >= 10){
-            appObj.name = appObj.name.substring(0,8) + "...";
+            img_anchor.appendChild(img);
+            app_container.appendChild(img_anchor);
+            app_container.appendChild(info);
+            spice_container.appendChild(app_container);
         }
 
-        var img = nur('','',appObj.icon_url,32,32);
-        YAHOO.util.Dom.setStyle(img, "margin", '0 auto 0 auto');
-        YAHOO.util.Dom.setStyle(div,'margin-bottom', '10px');
-        YAHOO.util.Dom.setStyle(div,'text-align', 'center');
-        link.appendChild(img);
-        div.appendChild(link);
+        var dummy_container = d.createElement("div");
+        dummy_container.appendChild(spice_container);
 
-        link = d.createElement('a');
-        link.href = appObj.dir_url;
-        link.innerHTML = appObj.name;
-        div.appendChild(link);
-        div.appendChild(d.createElement('br'));
-
-        YAHOO.util.Dom.addClass(div, 'inline highlight_zero_click1 highlight_zero_click_wrapper');
-        YAHOO.util.Dom.setStyle(div, "float", "left");
-        YAHOO.util.Dom.setStyle(div, "margin", "10px 20px 10px 0px");
-        YAHOO.util.Dom.setStyle(div, "padding", "5px");
-        YAHOO.util.Dom.setStyle(div, "max-width", "80px");
-
-        div2.appendChild(div);
-        appDiv.appendChild(div2);
+        items = [[]];
+        items[0]['a'] = dummy_container.innerHTML;
+        items[0]['h'] = 'Quixey Recommended Apps';
+        items[0]['s'] = 'Quixey';
+        items[0]['u'] = 'http://www.quixey.com/search?q=' + query.q;
+        items[0]['f'] = 1;
+        items[0]['force_big_header'] = 1;
+        nra(items,1,1);
     }
-    return appDiv;
 }
