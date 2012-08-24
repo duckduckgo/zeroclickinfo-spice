@@ -1,0 +1,109 @@
+.float_left{
+	float: left;
+}
+
+.float_right{
+	float: right;
+}
+
+.hidden{
+	display: none;
+}
+
+#zero_click_abstract{
+	margin-right: 10px !important;
+}
+
+#spice_container{
+	clear: both;
+	width: auto;
+	margin: 10px 0;
+	width: 100%;
+	float: left;
+}
+
+.quixey_app_container{
+	float: left;
+    display: inline-block;
+    padding: 5px 0 5px 5px!important;
+    min-width: 200px;
+    min-height: 60px;
+}
+
+.quixey_app_container:hover{
+	background: url("/assets/results_highlight_bg.v101.png") repeat-x;
+	background-color: #EAEAEA;
+	border: 1px solid #BFBFBF !important;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.quixey_app_container:first-of-type{
+	margin-left: 0;
+}
+
+.quixey_app_container:last-of-type{
+	margin-right: 0;
+	clear: right;
+}
+
+.quixey_app_container a:first-of-type{
+	display: block;
+	float: left;
+}
+
+.quixey_app_container.expand{
+    width: 100%;
+    min-height: 120px
+}
+
+.quixey_img{
+    margin: 0px;
+    height: 48px;
+	width: 48px;
+	float: left;
+	display: block;
+}
+
+.quixey_app_info{
+	display: block;
+	float: left;
+	margin-left: 5px;
+	font-size: 12px;
+	padding: 0 2px 0 0;
+}
+
+.quixey_name{
+	display: block;
+	font-size: 13px;
+	clear: right;
+	max-width: 132px;
+}
+
+.quixey_app_more_info{
+	float: left;
+	clear: both;
+	display: block;
+	height: auto;
+	padding: 5px 5px 0 0;
+	font-size: 13px;
+}
+
+.quixey_app_platforms{
+	float: left;
+	clear: left;
+}
+
+.quixey_platform_img{
+	display: inline-block;
+	max-width: 16px;
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+.quixey_platform_img:first-of-type{
+	margin-left: 0px;
+}
