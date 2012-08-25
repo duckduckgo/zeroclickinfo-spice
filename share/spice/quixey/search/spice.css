@@ -26,8 +26,7 @@
 	float: left;
     display: inline-block;
     padding: 5px 0 5px 5px!important;
-    min-width: 200px;
-    min-height: 60px;
+    position: relative;
 }
 
 .quixey_app_container:hover{
@@ -55,9 +54,56 @@
 	float: left;
 }
 
+.quixey_app_container.collapse{
+    min-width: 135px;
+    min-height: 60px;
+}
+
 .quixey_app_container.expand{
     width: 100%;
-    min-height: 120px
+    min-height: 120px;
+    border: 1px solid #BFBFBF !important;
+    border-radius: 6px;
+}
+
+.quixey_app_container.collapse:hover::after{
+	content: "Expand";
+	background: url("/assets/results_highlight_bg.v101.png") repeat-x;
+	background-color: #EAEAEA;
+	border: 1px solid #BFBFBF !important;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius:6px 0 6px 0;
+	cursor: pointer;
+	padding: 3px;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.quixey_app_container.expand::after{
+	content: "Collapse";
+	background: url("/assets/results_highlight_bg.v101.png") repeat-x;
+	background-color: #EAEAEA;
+	border: 1px solid #BFBFBF !important;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius:6px 0 6px 0;
+	cursor: pointer;
+	padding: 3px;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .quixey_img{
@@ -81,6 +127,10 @@
 	font-size: 13px;
 	clear: right;
 	max-width: 132px;
+}
+
+.quixey_name.expand{
+	max-width: 100%;
 }
 
 .quixey_app_more_info{

@@ -1,4 +1,4 @@
-// quixey_data = '';
+
 // search_id = '';
 // session_id = '';
 
@@ -27,6 +27,7 @@ function buildResults(data){
     var spice_container = d.createElement('div');
     var dummy_container = d.createElement("div");
     var app_ids = [];
+    var quixey_data = {};
 
     search_id = data.search_id;
     session_id = data.session_id;
@@ -37,6 +38,11 @@ function buildResults(data){
 
         /* Create Objects and Elements*/
         var appObj = data.results[app];
+        var app_id = data.results[app].id;
+        var app_id_string = app_id.toString();
+        app_ids.push(app_id_string);
+        quixey_data[app_id_string] = appObj;
+        
         var app_container = d.createElement("div");
         var img_anchor = d.createElement("a");
         var img = d.createElement('img');
@@ -44,20 +50,14 @@ function buildResults(data){
             img.src = /*'/iu/?u='+*/appObj.icon_url;
         var info = d.createElement('div');
         var more_info = d.createElement('div');
-            if (appObj.short_desc){
-                more_info.innerHTML = appObj.short_desc;
-            }else{
-                more_info.innerHTML = "No description";
-            }
+            
+            more_info.innerHTML = getMoreInfo(appObj);
+
         var name = d.createElement('a');
             name.href = appObj.dir_url;
-            name.innerHTML = shorten(appObj.name, 20).replace(" ","");
+            name.innerHTML = shorten(appObj.name, 10).replace(' ','');
         var platforms = d.createElement("div");
             platforms = getPlatforms(appObj.platforms);
-        var app_id = data.results[app].id;
-        var app_id_string = app_id.toString();
-
-        app_ids.push(app_id_string);
 
         info.appendChild(name);
         info.appendChild(platforms);
@@ -70,7 +70,7 @@ function buildResults(data){
         /* Set Styles*/
         YAHOO.util.Dom.setAttribute(app_container, "id", app_id_string)
         YAHOO.util.Dom.setAttribute(more_info, "id", "more_info_" + app_id_string)
-        YAHOO.util.Dom.addClass(app_container, 'quixey_app_container');
+        YAHOO.util.Dom.addClass(app_container, 'quixey_app_container collapse');
         YAHOO.util.Dom.addClass(img, 'quixey_img');
         YAHOO.util.Dom.addClass(info, "quixey_app_info");
         YAHOO.util.Dom.addClass(more_info, "quixey_app_more_info hidden");
@@ -78,32 +78,39 @@ function buildResults(data){
         YAHOO.util.Dom.addClass(platforms, 'quixey_app_platforms');
         YAHOO.util.Dom.addClass(app_container, 'highlight_zero_click_wrapper');
 
-        /* Event Listeners*/
+        /* Event Listener*/
         YAHOO.util.Event.addListener(app_id_string, "click", function(e){
 
             var children = YAHOO.util.Dom.getChildren("spice_container");
+            var temp = YAHOO.util.Dom.getElementsByClassName('quixey_name', 'a', this.id)
+            var current_name = temp[0] //getElementsByClassName returns array, need to get first (and only) element
 
             if (YAHOO.util.Dom.hasClass('more_info_' + this.id, "hidden")){
                 YAHOO.util.Dom.removeClass('more_info_' + this.id, 'hidden');
                 YAHOO.util.Dom.addClass(this.id, 'expand');
+                YAHOO.util.Dom.addClass(current_name, 'expand');
+                YAHOO.util.Dom.removeClass(this.id, 'collapse');
 
                 for (var child in children){
-                    console.log(child);
                     if (children[child].id === this.id) continue;
                     YAHOO.util.Dom.addClass(children[child], 'hidden');
                 }
+                
+                current_name.innerHTML = quixey_data[this.id].name;
+
             }else{
                 YAHOO.util.Dom.addClass('more_info_' + this.id, 'hidden');
+                YAHOO.util.Dom.addClass(this.id, 'collapse');
                 YAHOO.util.Dom.removeClass(this.id, 'expand');
+                YAHOO.util.Dom.removeClass(current_name, 'expand');
 
                 for (var child in children){
                     if (children[child].id === this.id) continue;
                     YAHOO.util.Dom.removeClass(children[child], 'hidden');
                 }
+
+                current_name.innerHTML = shorten(quixey_data[this.id].name, 10).replace(' ','');
             }
-
-            // YAHOO.util.Dom.get("spice_container");
-
         });
     }
 
@@ -139,11 +146,22 @@ function getPlatforms (platforms){
     return platform;
 }
 
+function getMoreInfo(appObj){
+    var more_info = d.createElement('div');
+    
+    if (appObj.short_desc){
+        more_info.innerHTML = "<br>Description: " + appObj.short_desc;
+    }else{
+        more_info.innerHTML = "No description";
+    }
+
+}
+
 function shorten (string, length) {
   if (length === undefined) length = 40;
   
   if (string.length > length){
-    return string.slice(0,length) + '...';
+    return string.slice(0,length-3) + '...';
   } else {
     return string;
   }
