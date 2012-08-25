@@ -157,3 +157,21 @@
 .quixey_platform_img:first-of-type{
 	margin-left: 0px;
 }
+
+.quixey_platform_name{
+	display: inline-block;
+	margin-left: 5px;
+	border: 1px solid black;
+	padding: 3px;
+	font-size: 13px;
+}
+
+.quixey_platform_name:hover{
+	background-color: gray;
+	cursor: pointer;
+}
+
+.quixey_platform_name:first-of-type{
+	margin-left: 0px;
+}
+
