@@ -11,10 +11,13 @@ spice to => join '&',
     'v=2',
     'q=$1';
 
-triggers query_lc => qr/^khan(\s+academy)?\s+(.*)/;
+triggers any => "khan", "khan academy";
 
-handle matches => sub {
-    return $2 if $2 and $2 ne 'academy';
+attribution web => ['http://thoughtherder.org','Arlo Breault'],
+            email => ['arlolra@gmail.com','Arlo Breault'];
+
+handle remainder => sub {
+    return $_ if defined $_;
     return;   
 };
 
