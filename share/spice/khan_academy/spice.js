@@ -2,6 +2,11 @@
 
 function ddg_spice_khan_academy(res) {
 
+  // constants
+  var MIN_WIN = 500
+    , LI_WIDTH = 148
+    , MENU_WIDTH = 30;
+
   // Make sure a property is defined on an object
   function isProp(obj, prop) {
     prop = prop.split('.')
@@ -15,7 +20,6 @@ function ddg_spice_khan_academy(res) {
   // If we have a videos to display
   if (res && isProp(res, 'feed.entry') && res.feed.entry.length > 0) {
 
-    var LI_WIDTH = 148
     var vids = res.feed.entry
 
     var div = d.createElement('div')
@@ -134,7 +138,7 @@ function ddg_spice_khan_academy(res) {
       YAHOO.util.Dom.setStyle('gr', 'width', off2 + 'px')
 
       // 16/9 Aspect Ratio + menu
-      var hei = Math.floor(win * 0.5625) + 30
+      var hei = Math.floor(win * 0.5625) + MENU_WIDTH
       YAHOO.util.Dom.setStyle('emb', 'height', hei + 'px')
     }
 
@@ -148,6 +152,10 @@ function ddg_spice_khan_academy(res) {
       off  = 0  // Math.floor(extra / 2)  // will center the vids
       off2 = extra - off
 
+      // whole states
+      khanState -= khanState % inc
+
+      setSlides()
       pnClasses()
       makeDots()
     }
@@ -197,11 +205,12 @@ function ddg_spice_khan_academy(res) {
 
     function highlightDot(j) {
       var dots = d.getElementById('dots')
-      if (!dots) return
+      var n = Math.ceil(len / inc)
+      if (n > 4 && win < MIN_WIN) return showPage(dots, n)
       dots = dots.childNodes
-      var len = dots.length
+      var l = dots.length
       var k = 0
-      for (; k < len; k++) YAHOO.util.Dom.removeClass(dots[k], 'selected')
+      for (; k < l; k++) YAHOO.util.Dom.removeClass(dots[k], 'selected')
       YAHOO.util.Dom.addClass(dots[j], 'selected')
     }
 
@@ -215,15 +224,27 @@ function ddg_spice_khan_academy(res) {
       }
     }
 
+    function showPage(dots, n) {
+      var sel = khanState / inc
+      var p = d.createElement('p')
+      YAHOO.util.Dom.addClass(p, 'page')
+      p.appendChild(d.createTextNode((sel + 1) + '/' + n))
+      dots.innerHTML = ''  // clear
+      dots.appendChild(p)
+    }
+
     // dots
     function makeDots() {
       var dots = d.getElementById('dots')
-      if (dots) dots.parentNode.removeChild(dots)
-      if (win < 500) return
-      dots = d.createElement('p')
-      dots.id = 'dots'
+      if (!dots) {
+        dots = d.createElement('p')
+        dots.id = 'dots'
+        div.appendChild(dots)
+      }
       var lin, j = 0, n = Math.ceil(len / inc)
       var sel = khanState / inc
+      if (n > 4 && win < MIN_WIN) return showPage(dots, n)
+      dots.innerHTML = ''  // clear
       for (; j < n; j++) {
         lin = d.createElement('a')
         lin.appendChild(d.createTextNode('\u2022'))
@@ -232,7 +253,6 @@ function ddg_spice_khan_academy(res) {
         YAHOO.util.Event.addListener(lin, 'click', dotHandler(j))
         dots.appendChild(lin)
       }
-      div.appendChild(dots)
     }
 
     var resize
