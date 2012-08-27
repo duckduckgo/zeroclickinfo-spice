@@ -5,7 +5,8 @@ function ddg_spice_khan_academy(res) {
   // constants
   var MIN_WIN = 500
     , LI_WIDTH = 148
-    , MENU_WIDTH = 30;
+    , MENU_WIDTH = 30
+    , KHAN_MENU = 32;
 
   // Make sure a property is defined on an object
   function isProp(obj, prop) {
@@ -57,27 +58,32 @@ function ddg_spice_khan_academy(res) {
         }
         YAHOO.util.Dom.addClass(this.parentNode, 'sel')
 
-        var ne = d.createElement('iframe')
-        ne.src = [
-            'https://www.youtube.com/embed/' + id + '?'
-          , 'autoplay=1'
-          , 'wmode=opaque'
-          , 'iv_load_policy=3'
-          , 'autohide=1'
-          , 'version=3'
-          , 'enablejsapi=1'
-        ].join('&')
-
-        YAHOO.util.Dom.setAttribute(ne, 'allowFullScreen', true)
-        YAHOO.util.Dom.setAttribute(ne, 'webkitAllowFullScreen', true)
-        YAHOO.util.Dom.setAttribute(ne, 'mozallowfullscreen', true)
-        YAHOO.util.Dom.setAttribute(ne, 'scrolling', 'no')
-        ne.frameBorder = 0
-
-        emb.innerHTML = ''  // clear
-        emb.appendChild(ne)
-        YAHOO.util.Dom.setStyle('emb', 'display', 'block')
+        addVid(id)
       }
+    }
+
+    function addVid(id) {
+      var ne
+      if (!id) {
+        ne = d.getElementById('ne')
+        if (!ne) return
+        id = YAHOO.util.Dom.getAttribute(ne, 'vid')
+      }
+      ne = d.createElement('iframe')
+      ne.id = 'ne'
+      ne.src = 'http://www.khanacademy.org/embed_video?v=' + id
+      YAHOO.util.Dom.setStyle(ne, 'width', '100%')
+      YAHOO.util.Dom.setStyle(ne, 'height', '100%')
+      YAHOO.util.Dom.setAttribute(ne, 'vid', id)
+      YAHOO.util.Dom.setAttribute(ne, 'allowFullScreen', true)
+      YAHOO.util.Dom.setAttribute(ne, 'webkitAllowFullScreen', true)
+      YAHOO.util.Dom.setAttribute(ne, 'mozallowfullscreen', true)
+      YAHOO.util.Dom.setAttribute(ne, 'scrolling', 'no')
+      ne.frameBorder = 0
+
+      emb.innerHTML = ''  // clear
+      emb.appendChild(ne)
+      YAHOO.util.Dom.setStyle('emb', 'display', 'block')
     }
 
     var i, li, img, a, id, vid, p, txt
@@ -138,7 +144,7 @@ function ddg_spice_khan_academy(res) {
       YAHOO.util.Dom.setStyle('gr', 'width', off2 + 'px')
 
       // 16/9 Aspect Ratio + menu
-      var hei = Math.floor(win * 0.5625) + MENU_WIDTH
+      var hei = Math.floor(win * 0.5625) + MENU_WIDTH + KHAN_MENU
       YAHOO.util.Dom.setStyle('emb', 'height', hei + 'px')
     }
 
@@ -158,6 +164,7 @@ function ddg_spice_khan_academy(res) {
       setSlides()
       pnClasses()
       makeDots()
+      addVid()
     }
 
     function preventDefault(e) {
@@ -206,7 +213,10 @@ function ddg_spice_khan_academy(res) {
     function highlightDot(j) {
       var dots = d.getElementById('dots')
       var n = Math.ceil(len / inc)
-      if (n > 4 && win < MIN_WIN) return showPage(dots, n)
+
+      if (n > 4 && win < MIN_WIN)  // small screen
+        return showPage(dots, n)
+
       dots = dots.childNodes
       var l = dots.length
       var k = 0
@@ -243,7 +253,10 @@ function ddg_spice_khan_academy(res) {
       }
       var lin, j = 0, n = Math.ceil(len / inc)
       var sel = khanState / inc
-      if (n > 4 && win < MIN_WIN) return showPage(dots, n)
+
+      if (n > 4 && win < MIN_WIN)  // at most 4 dots on small screens
+        return showPage(dots, n)
+
       dots.innerHTML = ''  // clear
       for (; j < n; j++) {
         lin = d.createElement('a')
