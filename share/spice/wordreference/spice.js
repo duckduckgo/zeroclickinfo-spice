@@ -1,17 +1,17 @@
 function ddg_spice_wordreference(ir) {
 	items = new Array();
 
-	query  = DDG.get_query();
-	regexp = /^translate ([a-z]+) from ([a-z]+) to ([a-z]+)$/;
-	match  = query.match(regexp);
-	word   = match[1];
-	from   = match[2];
-	to     = match[3];
+	params = get_params();
+	dict   = params[0];
+	word   = params[1];
+
+	if ((word == '') || (dict == ''))
+		return;
 
 	items[0] = new Array();
 	items[0]["h"] = 'Translations for <i>' + word + '</i>';
 	items[0]['s'] = 'Wordreference.com';
-	items[0]['u'] = 'http://wordreference.com/' + from + to + '/' + word;
+	items[0]['u'] = 'http://wordreference.com/' + dict + '/' + word;
 	items[0]["force_big_header"] = true;
 
 	if (ir["Error"])
@@ -51,4 +51,18 @@ function format_translation(t) {
 	text = '<li><i>' + t.term + '</i> (' + t.POS + ')</li>';
 
 	return text;
+}
+
+function get_params() {
+	scripts = document.getElementsByTagName('script');
+
+	for (i = 0; i < scripts.length; i++) {
+		regex = /wordreference\/([a-z]+)\/([a-z]+)/;
+		match = scripts[i].src.match(regex);
+
+		if (match != undefined)
+			return [match[1], match[2]];
+	}
+
+	return ['', ''];
 }
