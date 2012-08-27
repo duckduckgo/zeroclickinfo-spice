@@ -7,11 +7,11 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-	[ qw(DDG::Spice::Translate) ],
+	[ qw(DDG::Spice::Wordreference) ],
 	'translate hello from en to it' => test_spice(
-		'/js/spice/translate/enit/hello',
+		'/js/spice/wordreference/enit/hello',
 		call_type => 'include',
-		caller => 'DDG::Spice::Translate',
+		caller => 'DDG::Spice::Wordreference',
 		is_cached => 1
 	),
 );
