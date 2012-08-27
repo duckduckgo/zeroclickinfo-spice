@@ -160,6 +160,14 @@
   margin: 0;
 }
 
+#khan #dots p {
+  margin: 0px;
+  font-weight: normal;
+  font-size: 13px;
+  color: #ccc;
+  padding: 0 2px;
+}
+
 #khan #dots a {
   padding: 0 2px;
   font-size: 16px;
