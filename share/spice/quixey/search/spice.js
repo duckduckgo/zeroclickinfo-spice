@@ -55,7 +55,7 @@ function buildResults(data){
             name.href = appObj.dir_url;
             name.innerHTML = shorten(appObj.name, 10).replace(' ','');
         var platforms = d.createElement("div");
-            platforms = getPlatforms(appObj.platforms);
+            platforms.innerHTML = getPlatforms(appObj.platforms);
 
         info.appendChild(name);
         info.appendChild(platforms);
@@ -69,7 +69,7 @@ function buildResults(data){
         YAHOO.util.Dom.setAttribute(app_container, "id", app_id_string)
         YAHOO.util.Dom.setAttribute(more_info, "id", "more_info_" + app_id_string)
         YAHOO.util.Dom.addClass(app_container, 'quixey_app_container collapse');
-        YAHOO.util.Dom.addClass(img, 'quixey_img');
+        YAHOO.util.Dom.addClass(img, 'quixey_app_icon');
         YAHOO.util.Dom.addClass(info, "quixey_app_info");
         YAHOO.util.Dom.addClass(more_info, "quixey_app_more_info hidden");
         YAHOO.util.Dom.addClass(name, 'quixey_name');
@@ -108,7 +108,7 @@ function buildResults(data){
                     YAHOO.util.Dom.removeClass(children[child], 'hidden');
                 }
 
-                current_name.innerHTML = shorten(quixey_data[this.id].name, 10).replace(' ','');
+                current_name.innerHTML = shorten(quixey_data[this.id].name, 15).replace(' ','');
             }
         });
     }
@@ -120,72 +120,79 @@ function buildResults(data){
 
 function getMoreInfo(appObj){
     var more_info = d.createElement('div');
-
-    var editions = getEditions(appObj.editions);
-    console.log(editions);
+    var editions  = d.createElement('div');
+        editions.innerHTML = getEditions(appObj.editions);
+        // console.log(editions);
+    
+    more_info.appendChild(editions);
     
     if (appObj.short_desc){
-        more_info.innerHTML = "<br>Description: " + appObj.short_desc;
+        more_info.innerHTML += "<br>Description: " + appObj.short_desc;
     }else{
-        more_info.innerHTML = "<br>No description";
+        more_info.innerHTML += "<br>No description";
     }
 
     return more_info.innerHTML;
 }
 
-function getEditions(editions){
-    var edition = d.createElement("div");
-    YAHOO.util.Dom.addClass(edition, "quixey_app_edition");
+function getEditions(editions_array){
+    var editions = d.createElement("div");
+    YAHOO.util.Dom.addClass(editions, "quixey_app_editions");
+    
+    for (var i in editions_array){
+        var current = editions_array[i];
+        var img     = d.createElement("img");
+            img.src = current.icon_url;
+        var edition = d.createElement("div");
+            edition.appendChild(img);
+            YAHOO.util.Dom.addClass(img, "quixey_app_edition_icon");
+            edition.innerHTML += getPlatforms(current.platforms, true);
 
-    for (var i in editions){
-        var current = editions[i];
-        var platforms = d.createElement("div");
-        platforms = (getPlatforms(current.platforms, true, true));
-
-        for (i in platforms){
-
-        }
-
-        edition.appendChild(platforms);
+        YAHOO.util.Dom.addClass(edition, "quixey_app_edition");
+        editions.appendChild(edition);
     }
 
-    return edition;
+    console.log("editions");
+    console.log(editions);
+
+    return editions.innerHTML;
 }
 
-function getPlatforms (platforms, getAll, getNames){
-    var getAll   = getAll || false;
+function getPlatforms (platforms_array, getNames){    
     var getNames = getNames || false;
-    var platform = d.createElement("div");
-
-    if (!getAll) var allowed_platforms = [2004, 2005, 2008, 2015];
-
-    var apple = 0;
+    var platforms = d.createElement("div");
 
     if (getNames){
-        for (var i in platforms){
-            var current = platforms[i];
+        for (var i in platforms_array){
+            var current  = platforms_array[i];
+            var platform = d.createElement("div");
             var img  = d.createElement("img");
             var name = d.createElement("span");
   
             // Get proper apple icon
             if (current.id === 2004 || current.id === 2015) {
                 img.src = "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
-            
             }else {
                 img.src = current.icon_url;
             }
 
-            name.innerHTML = current.name + " $";          
+            name.innerHTML = current.name;
 
-            YAHOO.util.Dom.addClass(img, 'quixey_platform_img');
+            YAHOO.util.Dom.addClass(img, 'quixey_platform_icon');
             YAHOO.util.Dom.addClass(name, 'quixey_platform_name');
+            YAHOO.util.Dom.addClass(platform, 'quixey_app_platform');
             platform.appendChild(img);
             platform.appendChild(name);
+            platforms.appendChild(platform);
         }
     }else{ 
         //grab icons instead of names (used for initial display)
-        for (var i in platforms){
-            var current = platforms[i];
+
+        var allowed_platforms = [2004, 2005, 2008, 2015];
+        var apple = 0;
+
+        for (var i in platforms_array){
+            var current = platforms_array[i];
             if (allowed_platforms.indexOf(current.id) != -1) {
                 var img = d.createElement("img");
 
@@ -199,12 +206,12 @@ function getPlatforms (platforms, getAll, getNames){
                 
                 if (apple === 2) continue; 
 
-                YAHOO.util.Dom.addClass(img, 'quixey_platform_img');
-                platform.appendChild(img)
+                YAHOO.util.Dom.addClass(img, 'quixey_platform_icon');
+                platforms.appendChild(img)
             }
         }
     }
-    return platform;
+    return platforms.innerHTML;
 }
 
 function shorten (string, length) {
@@ -217,7 +224,7 @@ function shorten (string, length) {
   }
 }
 
-// function getPlatforms (platforms){
+// function getPlatforms_array (platforms_array){
 //     var platform = d.createElement("div");
 
 //     var allowed_platforms = [2004, 2005, 2008, 2015];
@@ -236,7 +243,7 @@ function shorten (string, length) {
             
 //             if (apple === 2) continue; 
 
-//             YAHOO.util.Dom.addClass(img, 'quixey_platform_img');
+//             YAHOO.util.Dom.addClass(img, 'quixey_platform_icon');
 //             platform.appendChild(img)
 //         }
 //     }

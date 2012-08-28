@@ -106,7 +106,7 @@
     font-weight: bold;
 }
 
-.quixey_img{
+.quixey_app_icon{
     margin: 0px;
     height: 48px;
 	width: 48px;
@@ -127,6 +127,7 @@
 	font-size: 13px;
 	clear: right;
 	max-width: 132px;
+	margin-bottom: 5px;
 }
 
 .quixey_name.expand{
@@ -147,23 +148,35 @@
 	clear: left;
 }
 
-.quixey_platform_img{
+.quixey_app_platform{
+	
+}
+
+.quixey_app_edition{
+	float: left;
+	padding: 3px;
+}
+
+.quixey_app_edition_icon{
+	max-width: 20px;
+}
+
+.quixey_platform_icon{
 	display: inline-block;
 	max-width: 16px;
 	margin-left: 5px;
-	margin-top: 5px;
 }
 
-.quixey_platform_img:first-of-type{
+.quixey_platform_icon:first-of-type{
 	margin-left: 0px;
 }
 
 .quixey_platform_name{
 	display: inline-block;
 	margin-left: 5px;
-	border: 1px solid black;
 	padding: 3px;
-	font-size: 13px;
+	font-size: 12px;
+	vertical-align: text-bottom;
 }
 
 .quixey_platform_name:hover{
