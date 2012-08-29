@@ -18,9 +18,6 @@ function ddg_spice_twitter_locate(data) {
 function ddg_spice_twitter_trends(data) {
     if (data[0]){
         var trends = data[0].trends;
-
-        console.log(trends);
-        
         var snippet = d.createElement("div");
         var list = d.createElement("ul");
         YAHOO.util.Dom.addClass(list, 'twitter_trends');
