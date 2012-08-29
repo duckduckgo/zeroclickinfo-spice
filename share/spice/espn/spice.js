@@ -236,7 +236,9 @@ function ddg_spice_espn_bind() {
 
 	nra(items);
 
-    YAHOO.util.Dom.setStyle(document.getElementById("zero_click_abstract"), "margin-right", 0);
+    zci = document.getElementById("zero_click_abstract");
+    YAHOO.util.Dom.setStyle(zci, "margin", "4px");
+    YAHOO.util.Dom.removeClass(zci, "zero_click_snippet");
 
     var table = document.getElementById("espn_zci_stats");
     for (var i = 0; i < table.rows.length; i++) {
@@ -268,9 +270,8 @@ function ddg_spice_espn_bind() {
         current_tab.style.display = "block";
 
         moreAtLink = YAHOO.util.Dom.getElementsByClassName(
-                        "zero_click_more_at_link", "a",
-                        document.getElementById("zero_click_abstract")
-                    )[0];
+                        "zero_click_more_at_link", "a", zci
+                     )[0];
 
         switch (current_tab.id) {
             case "espn_zci_gamelog":
