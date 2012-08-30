@@ -10,15 +10,17 @@ function ddg_spice_is_it_up(res)
     responses[5] = "5xx_Server_Error";
 
     if (res['status_code'] === 1) {
-        out = "<a href='http://" + res['domain'] +"'>" + res['domain'] + "</a> seems <b>up</b>. ";
+        out = "<a href='http://" + res['domain'] +"'>" + res['domain'] + "</a> seems <b>up</b>.";
+        
+        out += "<div style='margin-top:5px'></div>";
+        
         out += "It took us " + res['response_time'] + " seconds to get a ";
 
         out += "<a href='/?q=http+" +
-	    //                responses[Math.floor(res['response_code'] / 100)] + 
-	    res['response_code'] + 
-	    "'>" + res['response_code'] + "</a>";
+	    // responses[Math.floor(res['response_code'] / 100)] + 
+	    res['response_code'] + "'>" + res['response_code'] + "</a>";
 
-        out += " response from <a href='/?q=" + res['response_ip'] + "'>" + res['response_ip'];
+        out += " response from <a href='/?q=" + res['response_ip'] + "'>" + res['response_ip'] + "</a>.";
     } else {
         out = "<a href='http://" + res['domain'] +"'>" + res['domain'] + "</a> seems <b>down</b>. We did not get a response from it.";
     } 
@@ -27,7 +29,7 @@ function ddg_spice_is_it_up(res)
 	items[0] = new Array();
 	items[0]['a'] = out;
 	items[0]['h'] = '';
-	items[0]['s'] = 'IsItUp';
+	items[0]['s'] = 'Is it up?';
 	items[0]['u'] = 'http://isitup.org/' + res['domain'];
 	nra(items);
 }
