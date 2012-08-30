@@ -18,6 +18,10 @@
     margin: 10px 0px 0px 10px;
 }
 
+#espn_zci_news {
+    margin-bottom: 8px;
+}
+
 .tr_odd {
     background-color: lightgrey;
 }
