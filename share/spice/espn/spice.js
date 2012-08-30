@@ -63,10 +63,6 @@ function ddg_spice_espn(response) {
             +  '</span>' + (index == array.length - 1 ? "" : " | ");
     }).join("");
 
-    team = '<div id="espn_zci_team">'
-           + 'pretty pictures'
-           + '</div>';
-
     playerStats = [ 
                     //'assists',
                     //'athleteStatus',
