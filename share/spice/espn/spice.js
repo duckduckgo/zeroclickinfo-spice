@@ -29,10 +29,7 @@ function ddg_spice_espn_team_query(re) {
                   + '<img src="/iu/?u=' + team.logos.large.href
                   + '" id="espn_news_image"><ul>';
     items[0]['u'] = baseURL;
-    items[0]['h'] = team.location + " " + team.name + " - "
-                  + ' <img src="http://a.espncdn.com/'
-                  + 'i/apis/attribution/espn-red_50.png"'
-                  + 'id="espn_header_image">';
+    items[0]['h'] = team.location + " " + team.name + " (Basketball)";
     nra(items);
 }
 
@@ -55,12 +52,7 @@ function ddg_spice_espn(response) {
 
     stats = player.stats;
     items[0]['u'] = baseURL + "/nba/player/_/id/" + playerID;
-    items[0]['h'] = player.displayName + " - "
-                  + playerTeam.location + " "
-                  + playerTeam.name
-                  + ' <img src="http://a.espncdn.com/'
-                  + 'i/apis/attribution/espn-red_50.png"'
-                  + 'id="espn_header_image">';
+    items[0]['h'] = player.displayName + " (Basketball)";
 
     console.log(player);
 
