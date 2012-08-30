@@ -5,6 +5,7 @@ var stats = '';
 var gamelog = '';
 var headshot = '';
 var playerID = 0;
+var playerName = '';
 var teamID = 0;
 var teamCity = '';
 var teamName = '';
@@ -51,8 +52,9 @@ function ddg_spice_espn(response) {
             + teamID + "/events/dates/ddg_spice_espn_events");
 
     stats = player.stats;
+    playerName = player.displayName;
     items[0]['u'] = baseURL + "/nba/player/_/id/" + playerID;
-    items[0]['h'] = player.displayName + " (Basketball)";
+    items[0]['h'] = playerName + " (Basketball)";
 
     console.log(player);
 
@@ -170,7 +172,12 @@ function ddg_spice_espn_news(response) {
          + '<img src="/iu/?u=' + headshot.href
          + '" height="110"'
          + '" width="150"'
-         + '" id="espn_news_image"><ul>';
+         + '" id="espn_news_image">'
+         + '<div id="espn_blurb">'
+         + playerName + ' is an American professional basketball player '
+         + 'for ' + teamCity  + ' ' + teamName
+         + ' of the National Basketball Association.'
+         + '</div><ul>';
 
     for (var i = 0; i < 3 && i < headlines.length; i++) {
         var article = headlines[i];

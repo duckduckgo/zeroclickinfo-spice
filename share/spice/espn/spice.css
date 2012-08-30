@@ -57,3 +57,8 @@
     float: right;
     margin: -25px 10px 0px 0px;
 }
+
+#espn_blurb {
+    margin: 8px 0px 0px 6px;
+    font-size 95%;
+}
