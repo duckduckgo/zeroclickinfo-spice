@@ -119,18 +119,22 @@ function buildResults(data){
 }
 
 function getMoreInfo(appObj){
-    var more_info = d.createElement('div');
-    var editions  = d.createElement('div');
+    var more_info   = d.createElement('div');
+    var description = d.createElement('span');
+    var editions    = d.createElement('div');
         editions.innerHTML = getEditions(appObj.editions);
-        // console.log(editions);
-    
+        
     more_info.appendChild(editions);
     
     if (appObj.short_desc){
-        more_info.innerHTML += "<br>Description: " + appObj.short_desc;
+        description.innerHTML += "Description: " + appObj.short_desc;
     }else{
-        more_info.innerHTML += "<br>No description";
+        description.innerHTML += "No description";
     }
+
+
+    YAHOO.util.Dom.addClass(description, "float_left")
+    more_info.appendChild(description);
 
     return more_info.innerHTML;
 }
