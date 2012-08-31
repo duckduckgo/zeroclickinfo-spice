@@ -25,3 +25,8 @@
 #embed {
     display: none;
 }
+
+#embed iframe {
+    width: 100%;
+    height: 100%;
+}

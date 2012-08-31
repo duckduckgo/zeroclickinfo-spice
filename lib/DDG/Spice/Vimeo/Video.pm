@@ -3,7 +3,7 @@ package DDG::Spice::Vimeo::Video;
 
 use DDG::Spice;
 
-spice to => 'http://vimeo.com/api/oembed.json?url=$1&maxwidth=600&callback={{callback}}';
+spice to => 'http://vimeo.com/api/oembed.json?url=$1&callback={{callback}}';
 
 triggers query_lc => qr/^https?:\/\/vimeo.com\/[0-9]+/;
 
