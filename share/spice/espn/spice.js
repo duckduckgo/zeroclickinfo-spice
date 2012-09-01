@@ -175,8 +175,7 @@ function ddg_spice_espn_news(response) {
          + '" id="espn_news_image">'
          + '<div id="espn_blurb">'
          + playerName + ' is an American professional basketball player '
-         + 'for ' + teamCity  + ' ' + teamName
-         + ' of the National Basketball Association.'
+         + 'for the ' + teamCity  + ' ' + teamName + ' (NBA).'
          + '</div><ul>';
 
     for (var i = 0; i < 3 && i < headlines.length; i++) {
