@@ -1,4 +1,4 @@
-function ddg_spice_wordreference(ir) {
+function ddg_spice_wordreference_full(ir) {
 	items = new Array();
 
 	params = get_params();
@@ -62,11 +62,12 @@ function get_params() {
 	scripts = document.getElementsByTagName('script');
 
 	for (i = 0; i < scripts.length; i++) {
-		regex = /wordreference\/([a-z]+)\/([a-z]+)/;
+		regex = /wordreference\/([a-z]+)\/([a-z]+)\/([a-z]+)/;
 		match = scripts[i].src.match(regex);
 
-		if (match != undefined)
-			return [match[1], match[2]];
+		if (match != undefined) {
+			return [match[2], match[3]];
+		}
 	}
 
 	return ['', ''];
