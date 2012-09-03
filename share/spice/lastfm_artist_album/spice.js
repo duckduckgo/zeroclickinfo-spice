@@ -1,7 +1,7 @@
 function ddg_spice_lastfm_artist_album(lastfm) {
     console.log(lastfm);
     if(lastfm.topalbums.album) {
-        var link, item, limit, toggle = true, albums = '<div style="movies">';
+        var link, item, limit, toggle = true, albums = '<div style="albums">';
 
         //Limit the results
         if(lastfm.topalbums.album.length > 5) {
@@ -24,9 +24,6 @@ function ddg_spice_lastfm_artist_album(lastfm) {
 
             //Name of the album
             var name = item.name;
-            // if (item.name.length >= 20) {
-            //     name = item.name.substring(0,20) + "...";
-            // }
 
             //Make the link
             link = '<a href="/?q=' + encodeURIComponent(item.name + ' album by ' + item.artist.name) + 
