@@ -7,41 +7,41 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-	[ qw(DDG::Spice::Wordreference) ],
+	[ qw(DDG::Spice::Wordreference::Full) ],
 	'translate hello from en to it' => test_spice(
-		'/js/spice/wordreference/enit/hello',
+		'/js/spice/wordreference/full/enit/hello',
 		call_type => 'include',
-		caller => 'DDG::Spice::Wordreference',
+		caller => 'DDG::Spice::Wordreference::Full',
 		is_cached => 1
 	),
 );
 
 ddg_spice_test(
-	[ qw(DDG::Spice::Wordreference) ],
+	[ qw(DDG::Spice::Wordreference::Detect) ],
 	'translate hello to it' => test_spice(
-		'/js/spice/wordreference/enit/hello',
+		'/js/spice/wordreference/detect/hello/it',
 		call_type => 'include',
-		caller => 'DDG::Spice::Wordreference',
+		caller => 'DDG::Spice::Wordreference::Detect',
 		is_cached => 1
 	),
 );
 
 ddg_spice_test(
-	[ qw(DDG::Spice::Wordreference) ],
+	[ qw(DDG::Spice::Wordreference::Detect) ],
 	'translate ciao to en' => test_spice(
-		'/js/spice/wordreference/iten/ciao',
+		'/js/spice/wordreference/detect/ciao/en',
 		call_type => 'include',
-		caller => 'DDG::Spice::Wordreference',
+		caller => 'DDG::Spice::Wordreference::Detect',
 		is_cached => 1
 	),
 );
 
 ddg_spice_test(
-	[ qw(DDG::Spice::Wordreference) ],
+	[ qw(DDG::Spice::Wordreference::Detect) ],
 	'translate bonjour to en' => test_spice(
-		'/js/spice/wordreference/fren/bonjour',
+		'/js/spice/wordreference/detect/bonjour/en',
 		call_type => 'include',
-		caller => 'DDG::Spice::Wordreference',
+		caller => 'DDG::Spice::Wordreference::Detect',
 		is_cached => 1
 	),
 );
