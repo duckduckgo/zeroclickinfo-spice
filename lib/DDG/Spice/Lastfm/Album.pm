@@ -1,4 +1,4 @@
-package DDG::Spice::LastfmAlbum;
+package DDG::Spice::Lastfm::Album;
 # ABSTRACT: Display album info.
 
 use DDG::Spice;
@@ -9,10 +9,10 @@ spice from => '(?:([^/]*)/([^/]*)|)';
 triggers query_lc => qr/^([^\s]+(?:\s+[^\s]+)*)\s+(?:albums?|records?|cds?)\s+(?:by|from)?\s+([^\s]+(?:\s+[^\s]+)*)$/;
 
 handle matches => sub {
-	if($1 and $2) {
-		return $1, $2;
-	}
-	return;
+    if($1 and $2) {
+        return $1, $2;
+    }
+    return;
 };
 
 1;

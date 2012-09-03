@@ -1,4 +1,4 @@
-package DDG::Spice::LastfmArtistTracks;
+package DDG::Spice::Lastfm::ArtistTracks;
 # ABSTRACT: Get the tracks of a musician.
 
 use DDG::Spice;

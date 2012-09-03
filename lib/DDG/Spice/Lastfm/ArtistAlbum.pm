@@ -1,4 +1,4 @@
-package DDG::Spice::LastfmArtistAlbum;
+package DDG::Spice::Lastfm::ArtistAlbum;
 # ABSTRACT: Get the albums of a musician.
 
 use DDG::Spice;
