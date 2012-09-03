@@ -68,19 +68,21 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
 		items[0]['h'] = 'Tracks from ' + query;
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
+		items[0]['force_big_header'] = true;
 		items[0]['u'] = 'http://www.last.fm/search?q=' + query + '&type=track';
 		nra(items,1,1);
 	} else {
 		var items = new Array();
 		items[0] = new Array();
 		var query = DDG.get_query();  
-		var query = query.replace(/\s*(?:albums?|records?|cds?)\s*(?:by|from|of)\s*/, "");
+		var query = query.replace(/\s*(?:albums?|records?|cds?)\s*(?:by|from|of)?\s*/, "");
 		items[0]['a'] = "Sorry, we can't find tracks from " + query + 
 			'. Try <a href="/?q=' + query + ' tracks">' + query + ' tracks' +
 			'</a> to search for tracks featuring the artist. Thanks!'  + '<div style="clear:both;"></div>';
 		items[0]['h'] = 'Albums from ' + query;
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
+		items[0]['force_big_header'] = true;
 		items[0]['u'] = 'http://www.last.fm/search?q=' + query + '&type=track';
 		nra(items);
 	}

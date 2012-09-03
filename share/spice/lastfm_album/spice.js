@@ -47,6 +47,7 @@ function ddg_spice_lastfm_album(lastfm) {
 		items[0]['h'] = lastfm.album.name + ' by ' + lastfm.album.artist;
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
+		items[0]['force_big_header'] = true;
 		items[0]['u'] = lastfm.album.url;
 		//items[0]['i'] = lastfm.album.image[2]["#text"];
 
@@ -55,6 +56,7 @@ function ddg_spice_lastfm_album(lastfm) {
 		items[1]['f'] = 1;
 		items[1]['a'] = '<div style="songs">' + songs + '</div>';
 		items[1]['s'] = 'Last.fm';			
+		items[1]['force_big_header'] = true;
 		items[1]['u'] = lastfm.album.url;
 		nra(items);
 	}

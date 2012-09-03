@@ -35,6 +35,9 @@ function ddg_spice_lastfm_song(lastfm) {
 			+ listen + more;
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
+		var query = DDG.get_query();
+		items[0]['h'] = query;
+		items[0]['force_big_header'] = true;
 		items[0]['u'] = lastfm.track.url;
 		if(lastfm.track.album) {
 		//	items[0]['i'] = lastfm.track.album.image[2]["#text"];
