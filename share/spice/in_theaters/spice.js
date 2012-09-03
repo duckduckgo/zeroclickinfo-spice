@@ -1,9 +1,5 @@
 function ddg_spice_in_theaters(rotten) {
 	if(rotten.movies.length > 0) {
-<<<<<<< HEAD
-		console.log(rotten);
-=======
->>>>>>> upstream/master
 		var query = DDG.get_query().toLowerCase().split(' ');
 		var mpaa;
 		var title = 'Currently In Theaters';
@@ -14,10 +10,6 @@ function ddg_spice_in_theaters(rotten) {
 		for(var i = 0;i < query.length;i++) {
 			if(query[i] === 'r' || query[i] === 'pg' || query[i] === 'pg-13' || query[i] === 'g') {
 				mpaa = query[i].toUpperCase();
-<<<<<<< HEAD
-				console.log(mpaa);
-=======
->>>>>>> upstream/master
 			}
 			if(query[i] === 'opening') {
 				title = 'Opening Movies'
