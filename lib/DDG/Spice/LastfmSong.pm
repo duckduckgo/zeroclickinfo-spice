@@ -6,13 +6,13 @@ use DDG::Spice;
 spice to => 'http://ws.audioscrobbler.com/2.0/?format=json&method=track.getinfo&track=$1&artist=$2&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}';
 spice from => '(?:([^/]*)/([^/]*)|)';
 
-triggers query_lc => qr/^\s*(.+)\s+(?:track|song)\s+(?:by|from)\s+(.+)$/;
+triggers query_lc => qr/^(\w+(?:\s+\w+)*)\s+(?:tracks?|songs?|music)\s+(?:by|from)\s+(\w+(?:\s+\w+)*)$/;
 
 handle matches => sub {
-	if($1 && $2) {
-		return $1, $2;
-	}
-	return;
+    if($1 && $2) {
+        return $1, $2;
+    }
+    return;
 };
 
 1;

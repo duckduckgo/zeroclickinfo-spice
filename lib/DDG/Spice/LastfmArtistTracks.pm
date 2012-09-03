@@ -5,10 +5,13 @@ use DDG::Spice;
 
 spice to => 'http://ws.audioscrobbler.com/2.0/?limit=5&format=json&method=artist.gettoptracks&artist=$1&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}';
 
-triggers query_lc => qr/^\s*(?:songs?|tracks?)\s*(?:by|from|of)\s*(.+)$/;
+#Queries like "songs by ben folds" and "ben folds songs"
+my $synonyms = "songs?|tracks?|music";
+triggers query_lc => qr/(?:^(?:$synonyms)\s+(?:(?:by|from|of)\s+)?(\w+(?:\s+\w+)*)$)|(?:^(\w+(?:\s+\w+)*)\s+(?:$synonyms)$)/;
 
-handle matches => sub {
-	return $1 if $1;
-	return;
+handle query_lc => sub {
+    return $1 if $1;
+    return $2 if $2;
+    return;
 };
 1;
