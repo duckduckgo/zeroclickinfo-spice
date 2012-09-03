@@ -28,9 +28,9 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
 
             //Create the link to the song. Oh, and some links to streaming services.
             link = '<li><a href="/?q=' + encodeURIComponent(name + ' song by ' + item.artist.name) + 
-                '">' + name + '</a> (Listen on ';
+                '">' + name + '</a> <span style="color: rgb(119, 119, 119); font-size: 11px; ">​(Listen on ';
             link += '<a href="' + 'http:\/\/tinysong.com\/#\/result\/' + encodeURIComponent(name) + '">' + 'Grooveshark' + '</a> or ';
-            link += '<a href="' + '/?q=' + encodeURIComponent('!rdio ' +  name) + '">' + 'Rdio' + '</a>)';
+            link += '<a href="' + '/?q=' + encodeURIComponent('!rdio ' +  name) + '">' + 'Rdio' + '</a>)</span>';
             tracks += link;
         }
         tracks += '</ul></div>';
