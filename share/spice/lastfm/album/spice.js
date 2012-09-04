@@ -17,14 +17,14 @@ function ddg_spice_lastfm_album(lastfm) {
 			songs += '<i>Songs: </i>';
 			if(lastfm.album.tracks.track.length > 0) {
 				for(var i = 0;i < lastfm.album.tracks.track.length;i++) {
-					var start = '<a href="/?q=' + lastfm.album.tracks.track[i].name + ' song by '  + lastfm.album.artist + '">';
+					var start = '<a href="/?q=' + encodeURIComponent(lastfm.album.tracks.track[i].name + ' song by '  + lastfm.album.artist) + '">';
 					songs += start + lastfm.album.tracks.track[i].name + '</a>';
 					if(i !== lastfm.album.tracks.track.length-1) {
 						songs += ', ';
 					}
 				}
 			} else {
-				var start = '<a href="/?q=' + lastfm.album.tracks.track.name + ' song by ' +  lastfm.album.artist + '">';
+				var start = '<a href="/?q=' + encodeURIComponent(lastfm.album.tracks.track.name + ' song by ' +  lastfm.album.artist) + '">';
 				songs += start + lastfm.album.tracks.track.name + '</a>';
 			}
 		} else {
@@ -40,7 +40,7 @@ function ddg_spice_lastfm_album(lastfm) {
 		var artist = '';
 		if(lastfm.album.artist) {
 			artist = '<br><i>Artist: </i>';
-			artist += '<a href="/?q=' + lastfm.album.artist + '+artist">' + lastfm.album.artist + '</a>';
+			artist += '<a href="/?q=' + encodeURIComponent(lastfm.album.artist) + '+artist">' + lastfm.album.artist + '</a>';
 		}
 		items[0]['a'] = '<div style="album">' + summary + release + artist + '</div>' 
 					+ '<div style="clear:both;">';

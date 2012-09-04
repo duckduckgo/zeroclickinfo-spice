@@ -1,20 +1,14 @@
 function ddg_spice_lastfm_top_tracks(lastfm) {
 	console.log(lastfm);
 	if(lastfm.toptracks.track){
-		var songs = '<div style="top">', length = 10, table = '';
-		table += '<table>';
+		var songs = '<div style="top">', length = 10;
 		for(var i = 0;i < 10;i++) {
-			table += '<tr>';
-			table += '<td>' + (i+1) + '.</td>'
-			table += '<td width="700">' + '<a href="/?q=' + lastfm.toptracks.track[i].name + ' song by ' + lastfm.toptracks.track[i].artist.name + '">' + 
-					lastfm.toptracks.track[i].name + '</a>' + '</td>';
-			table += '<td width="100"> by </td>';
-			table += '<td width="600">' + '<a href="/?q=' + 'artist ' + lastfm.toptracks.track[i].artist.name + '">' +
-					lastfm.toptracks.track[i].artist.name + '</a>' + '</td>';
-			table += '</tr>';
+			songs += '<a href="/?q=' + encodeURIComponent(lastfm.toptracks.track[i].name + ' song by ' + lastfm.toptracks.track[i].artist.name) + '">' + 
+					lastfm.toptracks.track[i].name + '</a>';
+			songs += '<span style="color: rgb(119, 119, 119); font-size: 11px; ">​(by <a href="/?q=' + encodeURIComponent('artist ' + lastfm.toptracks.track[i].artist.name) + '">' +
+					lastfm.toptracks.track[i].artist.name + '</a>)</span><br>';
 		}
-		table += '</table>';
-		songs += table + '</div>';
+		songs += '</div>';
 		var items = new Array();
 		items[0] = new Array();
 		items[0]['a'] = songs;
