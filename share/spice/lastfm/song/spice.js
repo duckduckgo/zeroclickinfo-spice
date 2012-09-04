@@ -5,8 +5,8 @@ function ddg_spice_lastfm_song(lastfm) {
 		items[0] = new Array();
 		var album = '';
 		if(lastfm.track.album) {
-			album = '<div style="album"><i>Album: </i><a href="/?q=' + lastfm.track.album.title + 
-				' album by ' + lastfm.track.artist.name + '">' + lastfm.track.album.title + '</a></div>';
+			album = '<div style="album"><i>Album: </i><a href="/?q=' + encodeURIComponent(lastfm.track.album.title + 
+				' album by ' + lastfm.track.artist.name) + '">' + lastfm.track.album.title + '</a></div>';
 		} else {
 			album = '<div style="album"><i>Album: </i>No album info available.</div>';
 		}
@@ -17,15 +17,15 @@ function ddg_spice_lastfm_song(lastfm) {
 			summary = '<i>Summary: </i> No summary info available.';
 		}
 		var artist = '<div style="artist"><i>Artist: </i><a href="/?q=' +
-				' artist ' + lastfm.track.artist.name + '">' + lastfm.track.artist.name + '</a></div>';
+				' artist ' + encodeURIComponent(lastfm.track.artist.name) + '">' + lastfm.track.artist.name + '</a></div>';
 		//Listen
 		//var pandora = '<a href="/?q=!pandora ' + lastfm.track.artist.name + '">Pandora</a>';
-		var rdio = '<a href="/?q=!rdio ' + lastfm.track.artist.name + ' ' + lastfm.track.name + '">Rdio</a>';
-		var tinysong = '<a href="http://tinysong.com/#/result/' + lastfm.track.artist.name + ' ' + lastfm.track.name + '">Grooveshark</a>';
+		var rdio = '<a href="/?q=!rdio ' + encodeURIComponent(lastfm.track.artist.name + ' ' + lastfm.track.name) + '">Rdio</a>';
+		var tinysong = '<a href="http://tinysong.com/#/result/' + encodeURIComponent(lastfm.track.artist.name + ' ' + lastfm.track.name) + '">Grooveshark</a>';
 
 		//More
 		//var amazon = '<a href="/?q=!amazon ' + lastfm.track.artist.name + ' ' + lastfm.track.name + '">Amazon</a>';
-		var lyrics = '<a href="/?q=' + lastfm.track.artist.name + ' ' + lastfm.track.name + ' lyrics">Lyrics</a>';
+		var lyrics = '<a href="/?q=' + encodeURIComponent(lastfm.track.artist.name + ' ' + lastfm.track.name) + ' lyrics">Lyrics</a>';
 		
 		//Combine
 		var listen = tinysong + ' | ' + rdio + ' | ';
