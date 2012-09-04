@@ -1,7 +1,7 @@
 function ddg_spice_lastfm_artist_album(lastfm) {
     console.log(lastfm);
     if(lastfm.topalbums.album) {
-        var link, item, limit, toggle = true, albums = '<div style="albums">';
+        var link, item, limit, toggle = true, albums = '<div style="albums"><ul>';
 
         //Limit the results
         if(lastfm.topalbums.album.length > 5) {
@@ -25,23 +25,23 @@ function ddg_spice_lastfm_artist_album(lastfm) {
             //Name of the album
             var name = item.name;
 
-            //Make the link
-            link = '<a href="/?q=' + encodeURIComponent(item.name + ' album by ' + item.artist.name) + 
-                    '">' + name + '</a>';
-            if(i < limit-1) {
-                link += ", ";
-            }
+            //Create the link to the song. Oh, and some links to streaming services.
+            link = '<li><a href="/?q=' + encodeURIComponent(name + ' album by ' + item.artist.name) + 
+                '">' + name + '</a> by ' + '<a href="/?q=artist ' + encodeURIComponent(item.artist.name) + '">' + item.artist.name + '</a> <span style="color: rgb(119, 119, 119);">​(Listen on ';
+            link += '<a href="' + 'http:\/\/tinysong.com\/#\/result\/' + encodeURIComponent(name) + ' ' + item.artist.name + '">' + 'Grooveshark' + '</a> or ';
+            link += '<a href="' + '/?q=' + encodeURIComponent('!rdio ' +  name + ' by ' + item.artist.name) + '">' + 'Rdio' + '</a>)</span></li>';
+
             albums += link;
         }
         albums += '</div>';
 
         var items = new Array();
         items[0] = new Array();
-        items[0]['a'] = albums += '<div style="clear:both;"></div>';
+        items[0]['a'] = albums;
         items[0]['s'] = 'Last.fm';
         items[0]['f'] = 1;
         var query = DDG.get_query();  
-        var query = query.replace(/\s*(?:albums?|records?|cds?)\s*(?:by|from|of)?\s*/, "");
+        query = query.replace(/\s*(?:albums?|records?|cds?)\s*(?:by|from|of)?\s*/, "");
         items[0]['h'] = 'Albums from ' + query;
         items[0]['u'] = 'http://www.last.fm/search?q=' + query + '&type=album';
         items[0]['force_big_header'] = true;

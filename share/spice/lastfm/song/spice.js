@@ -34,7 +34,7 @@ function ddg_spice_lastfm_song(lastfm) {
 		items[0]['a'] = '<div style="song">' + summary + '</div>' + album + artist + '<div style="clear:both;"></div>'
 			+ listen + more;
 		items[0]['s'] = 'Last.fm';
-		//items[0]['f'] = 1;
+		items[0]['f'] = 1;
 		var query = DDG.get_query();
 		items[0]['h'] = query;
 		items[0]['force_big_header'] = true;
