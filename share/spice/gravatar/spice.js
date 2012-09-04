@@ -4,8 +4,8 @@ function ddg_spice_gravatar (res)
     var photos = '';
     var item = res["entry"][0];
     var name = item["name"]["formatted"] ? 
-                item["name"]["formatted"] + ' (' +item["displayName"] + ')' : 
-                item["displayName"];
+                item["name"]["formatted"] + ' (' +item["preferredUsername"] + ')' : 
+                item["preferredUsername"];
 
     if (item){ 
         out += '<a href="mailto:'+ item["emails"][0]["value"] + '">'
