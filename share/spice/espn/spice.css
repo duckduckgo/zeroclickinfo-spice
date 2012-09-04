@@ -13,17 +13,21 @@
     margin-bottom: 15px;
 }
 
+#espn_zci_news {
+    margin-bottom: 4px;
+}
+
 #espn_zci_stats {
     padding-left: 5px;
     margin: 10px 0px 0px 10px;
 }
 
-#espn_zci_news {
-    margin-bottom: 4px;
-}
-
 .tr_odd {
     background-color: lightgrey;
+}
+
+#zero_click_abstract table {
+    margin: 4px 0px 0px 20px;
 }
 
 #zero_click_abstract table td {
@@ -38,13 +42,6 @@
 
 .icon_spice_inline {
     margin-left:10px;
-}
-
-#espn_zci_team div {
-    padding: 5px 0px 5px 0px;
-    margin: 2px 0px 0px 0px;
-    width:67%;
-    border-radius:2px;
 }
 
 #espn_header_image {
@@ -62,7 +59,7 @@
     margin: -25px 10px 0px 0px;
 }
 
-#espn_blurb {
+.blurb {
     margin: 8px 0px 0px 6px;
     font-size 95%;
 }

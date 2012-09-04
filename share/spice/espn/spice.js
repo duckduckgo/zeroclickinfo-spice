@@ -9,6 +9,9 @@ var playerName = '';
 var teamID = 0;
 var teamCity = '';
 var teamName = '';
+var teamWinPercentage = 0;
+var teamLossPercentage = 0;
+var teamTiePercentage = 0;
 var baseURL = 'http://espn.com';
 
 var callsMade = 0;
@@ -58,7 +61,7 @@ function ddg_spice_espn(response) {
 
     console.log(player);
 
-    tabs = [ 'news', 'stats', 'team', 'gamelog' ];
+    tabs = [ 'news', 'stats', 'gamelog' ];
     tabs = tabs.map(function(s, index, array) {
         return '<span id="espn_zci_' + s + '_link">'
             +  s.charAt(0).toUpperCase() + s.slice(1)
@@ -125,7 +128,10 @@ function ddg_spice_espn_events(response) {
     console.log(response);
     test = response;
     console.log(events[85]);
-    gamelog = '<div id="espn_zci_gamelog"><table><tr>'
+    gamelog = '<div id="espn_zci_gamelog">'
+            + '<div class="blurb">The ' + teamCity + ' ' + teamName
+            + ' have won ' + teamWinPercentage + '% of their season games.'
+            + '</div><table><tr>'
             + '<th></th><th>Home</th><th></th><th>Away</th>'
             + '<th></th><th></th></tr>';
     for (var i = events.length - 1; i > (events.length - 6); i--) {
@@ -173,7 +179,7 @@ function ddg_spice_espn_news(response) {
          + '" height="110"'
          + '" width="150"'
          + '" id="espn_news_image">'
-         + '<div id="espn_blurb">'
+         + '<div class="blurb">'
          + playerName + ' is an American professional basketball player '
          + 'for the ' + teamCity  + ' ' + teamName + ' (NBA).'
          + '</div><ul>';
@@ -198,23 +204,10 @@ function ddg_spice_espn_team(response) {
     var logo = response.logos.large.href;
     var teamColor = response.color;
     var totalGames = record.wins + record.losses + record.ties;
-    var winPercentage = Math.floor(record.wins / totalGames * 100);
-    var lossPercentage = Math.floor(record.losses / totalGames * 100);
-    var tiePercentage = 100 - winPercentage - lossPercentage;
-    var season = record.season.year
-               + " (" + record.season.description + " season)";
+    teamWinPercentage = Math.floor(record.wins / totalGames * 100);
+    teamLossPercentage = Math.floor(record.losses / totalGames * 100);
+    teamTiePercentage = 100 - teamWinPercentage - teamLossPercentage;
     console.log(response);
-    team = '<div id="espn_zci_team">'
-         + '<img id="espn_stats_image" src="' + logo + '">'
-         + '<div style="background-color:green;width:'
-         + winPercentage + '%">&nbsp;' + record.wins + ' wins</div>'
-         + '<div style="background-color:red;;width:'
-         + lossPercentage + '%">&nbsp;' + record.losses + ' losses</div>'
-         + (record.ties !== 0 ? 
-            '<div style="background-color:grey;width:'
-            + tiePercentage + '%">&nbsp;' + record.ties + ' ties</div>'
-            : "");
-    team += '</div>';
 
     ddg_spice_espn_bind();
 }
@@ -241,7 +234,6 @@ function ddg_spice_espn_bind() {
 
     ids = [ "espn_zci_gamelog_link",
             "espn_zci_stats_link",
-            "espn_zci_team_link",
             "espn_zci_news_link"
           ];
 
@@ -275,11 +267,6 @@ function ddg_spice_espn_bind() {
             case "espn_zci_stats":
                 moreAtLink.href = baseURL + "/nba/player/stats/_/id/"
                                 + playerID;
-                break;
-            case "espn_zci_team":
-                moreAtLink.href = baseURL + "/nba/team/_/name/"
-                                + teamCity.toLowerCase().substr(0,3) + "/"
-                                + teamName.toLowerCase().replace(" ", "-");
                 break;
             default:
                 moreAtLink.href = baseURL + "/nba/player/_/id/"
