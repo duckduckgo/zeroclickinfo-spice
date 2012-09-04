@@ -21,7 +21,7 @@ function ddg_spice_lastfm_artist_all(lastfm) {
         items[0]['h'] = lastfm.artist.name;
         items[0]['s'] = 'Last.fm';
         items[0]['force_big_header'] = true;
-        items[0]['f'] = 1;
+        //items[0]['f'] = 1;
         items[0]['u'] = lastfm.artist.url;
         //items[0]['i'] = lastfm.artist.image[2]["#text"];
         nra(items);
