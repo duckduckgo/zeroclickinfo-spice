@@ -3,6 +3,9 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
     if(lastfm.toptracks.track) {
         var link, item, limit, toggle=true, tracks = '<div style="albums"><ul>';
 
+        var query = DDG.get_query();  
+        var query = query.replace(/(?:\s*(?:tracks?|songs?|music)\s*(?:by|from|of)?\s*)/, "");
+
         //Limit the results to five.
         if(lastfm.toptracks.track.length > 5) {
             limit = 5;
@@ -28,17 +31,16 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
 
             //Create the link to the song. Oh, and some links to streaming services.
             link = '<li><a href="/?q=' + encodeURIComponent(name + ' song by ' + item.artist.name) + 
-                '">' + name + '</a> <span style="color: rgb(119, 119, 119); font-size: 11px; ">​(Listen on ';
+                '">' + name + '</a> (Listen on ';
             link += '<a href="' + 'http:\/\/tinysong.com\/#\/result\/' + encodeURIComponent(name + ' by ' + item.artist.name) + '">' + 'Grooveshark' + '</a> or ';
-            link += '<a href="' + '/?q=' + encodeURIComponent('!rdio ' +  name + ' by ' + item.artist.name) + '">' + 'Rdio' + '</a>)</span>';
+            link += '<a href="' + '/?q=' + encodeURIComponent('!rdio ' +  name + ' by ' + item.artist.name) + '">' + 'Rdio' + '</a>)';
             tracks += link;
         }
         tracks += '</ul></div>';
         var items = new Array();
         items[0] = new Array();
-        items[0]['a'] = tracks += '<div style="clear:both;"></div>';
-        var query = DDG.get_query();  
-        var query = query.replace(/(?:\s*(?:tracks?|songs?|music)\s*(?:by|from|of)?\s*)/, "");
+        var artist = '<a href="/?q=' + query + ' artist">' + "About the Artist</a> | ";
+        items[0]['a'] = tracks += '</div>' + artist;
         items[0]['h'] = 'Tracks from ' + query;
         items[0]['s'] = 'Last.fm';
         items[0]['f'] = 1;
