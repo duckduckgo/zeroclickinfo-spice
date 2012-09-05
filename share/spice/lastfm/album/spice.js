@@ -10,6 +10,12 @@ function ddg_spice_lastfm_album(lastfm) {
 		if(lastfm.album.wiki) {
 			items[1] = [];
 			summary = lastfm.album.wiki.summary;
+			//Remove all the links
+            summary = summary.replace(/<.+?>/g, "");
+            //Trim
+            if(summary.length > 200) {
+                summary = summary.slice(0, 200) + '<a href="' + lastfm.album.url + '">...</a>';
+            }
 		} else {
 			rest = false;
 		}
@@ -45,27 +51,18 @@ function ddg_spice_lastfm_album(lastfm) {
 			artist += '<a href="/?q=' + encodeURIComponent(lastfm.album.artist) + '+artist">' + lastfm.album.artist + '</a>';
 		}
 		if(rest) {
-			items[0]['a'] = '<div style="songs">' + summary + '</div>';
+			items[0]['a'] = '<div style="songs">' + summary + '</div>' + '<div style="album">' + release + artist + '</div>' + songs;
+						+ '<div style="clear:both;">';
 		} else {
 			items[0]['a'] = '<div style="album">' + release + artist + '</div>' + songs;
 						+ '<div style="clear:both;">';
 		}
 		items[0]['h'] = lastfm.album.name + ' by ' + lastfm.album.artist;
 		items[0]['s'] = 'Last.fm';
-		//items[0]['f'] = 1;
+		items[0]['f'] = 1;
 		items[0]['force_big_header'] = true;
 		items[0]['u'] = lastfm.album.url;
-		//items[0]['f'] = 1;
-
-		if(rest) {
-			items[1]['t'] = 'About the album»';
-			//items[1]['f'] = 1;
-			items[1]['a'] = '<div style="album">' + release + artist + '</div>' + songs;
-						+ '<div style="clear:both;">';
-			items[1]['s'] = 'Last.fm';			
-			items[1]['force_big_header'] = true;
-			items[1]['u'] = lastfm.album.url;
-		}
+		items[0]['f'] = 1;
 		nra(items);
 	}
 }

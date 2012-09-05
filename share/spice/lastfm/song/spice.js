@@ -16,6 +16,12 @@ function ddg_spice_lastfm_song(lastfm) {
 		if(lastfm.track.wiki) {
 			items[1] = [];
 			summary = lastfm.track.wiki.summary;
+			//Remove all the links
+            summary = summary.replace(/<.+?>/g, "");
+            //Trim
+            if(summary.length > 200) {
+                summary = summary.slice(0, 200) + '<a href="' + lastfm.track.url + '">...</a>';
+            }
 		} else {
 			rest = false;
 		}
@@ -26,34 +32,21 @@ function ddg_spice_lastfm_song(lastfm) {
 		var rdio = '<a href="/?q=!rdio ' + encodeURIComponent(lastfm.track.artist.name + ' ' + lastfm.track.name) + '">Rdio</a>';
 		var tinysong = '<a href="http://tinysong.com/#/result/' + encodeURIComponent(lastfm.track.artist.name + ' ' + lastfm.track.name) + '">Grooveshark</a>';
 
-		//More
-		//var amazon = '<a href="/?q=!amazon ' + lastfm.track.artist.name + ' ' + lastfm.track.name + '">Amazon</a>';
-		var lyrics = '<a href="/?q=' + encodeURIComponent(lastfm.track.artist.name + ' ' + lastfm.track.name) + ' lyrics">Lyrics</a>';
-		
-		//Combine
+		//More		
 		var listen = '<i>Listen:</i> ' + tinysong + ' or ' + rdio + '<br>';
-		var more = '<i>Lyrics:</i> ' + lyrics;
 		
 		if(rest) {
-			items[0]['a'] = '<div style="song">' + summary + '</div>';
+			items[0]['a'] = '<div style="song">' + summary + '</div>' + 
+			'<div>' + album + artist + listen + '</div>';
 		} else {
-			items[0]['a'] = '<div>' + album + artist + listen + more + '</div>';
+			items[0]['a'] = '<div>' + album + artist + listen + '</div>';
 		}
 		items[0]['s'] = 'Last.fm';
-		//items[0]['f'] = 1;
+		items[0]['f'] = 1;
 		var query = DDG.get_query();
 		items[0]['h'] = query;
 		items[0]['force_big_header'] = true;
 		items[0]['u'] = lastfm.track.url;
-
-		if(rest) {
-			items[1]['t'] = 'About the song»';
-			//items[1]['f'] = 1;
-			items[1]['a'] = '<div>' + album + artist + listen + more + '</div>';
-			items[1]['s'] = 'Last.fm';			
-			items[1]['force_big_header'] = true;
-			items[1]['u'] = lastfm.track.url;
-		}
 
 		nra(items);
 	}
