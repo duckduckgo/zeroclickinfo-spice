@@ -54,10 +54,15 @@ function format_translations(ts) {
 	text = '';
 
 	for (i in ts) {
-		text += format_translation(ts[i].FirstTranslation);
+		origi = ts[i].OriginalTerm;
+		first = ts[i].FirstTranslation;
+		secnd = ts[i].SecondTranslation;
 
-		if (ts[i].SecondTranslation != undefined)
-			text += format_translation( ts[i].SecondTranslation);
+		if (origi.term != first.term)
+			text += format_translation(first);
+
+		if ((secnd != undefined) && (origi.term != secnd.term))
+			text += format_translation(secnd);
 	}
 
 	return text;
