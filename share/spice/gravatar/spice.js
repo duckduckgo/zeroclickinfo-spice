@@ -7,8 +7,16 @@ function ddg_spice_gravatar (res)
                 item["name"]["formatted"] + ' (' +item["preferredUsername"] + ')' : 
                 item["preferredUsername"];
 
+    var query = DDG.get_query().replace("gravatar", "")
+                               .replace("gravatar of", "")
+                               .replace("avatar of", "");
+
+    var email = item["emails"][0]["value"] != undefined ? 
+                    item["emails"][0]["value"] : query;
+                    
+
     if (item){ 
-        out += '<a href="mailto:'+ item["emails"][0]["value"] + '">'
+        out += '<a href="mailto:'+ email + '">'
             +       item["emails"][0]["value"]
             +  '</a><br />';
 
@@ -39,7 +47,7 @@ function ddg_spice_gravatar (res)
 function add_photos(items)
 {
     var out = d.createElement('div');
-    var tmp, div, div2, img, item, res;
+    var tmp, div, div2, img, item, res, link;
     var i;
 
 	for (i=1; i <= items["photos"].length; i++) {
@@ -49,6 +57,8 @@ function add_photos(items)
 
         div = d.createElement("div");
         div2 = d.createElement("div");
+	    link = d.createElement("a");
+	    link.href = "http://gravatar.com/" + items["preferredUsername"] + "#pic-" + i;
 
         img = d.createElement('img');
         img.src = '/iu/?u=' + item["value"] + '?s=64.jpg';
@@ -56,8 +66,8 @@ function add_photos(items)
         YAHOO.util.Dom.setStyle(img, "max-height", '64px');
         YAHOO.util.Dom.setStyle(div,'margin-bottom', '10px');
         YAHOO.util.Dom.setStyle(div,'text-align', 'center');
-        //link.appendChild(img);
-        div.appendChild(img);
+        link.appendChild(img);
+        div.appendChild(link);
       
         YAHOO.util.Dom.addClass(div, 'inline highlight_zero_click1 highlight_zero_click_wrapper');
         YAHOO.util.Dom.setStyle(div, "float", "left");
