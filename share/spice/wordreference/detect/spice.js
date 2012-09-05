@@ -63,14 +63,18 @@ function format_translations(ts) {
 	return text;
 }
 
+var translations = [];
+
 function format_translation(t) {
 	if (t == undefined)
 		return '';
 
-	text = '<li><i>' + t.term + '</i>';
+	if (translations.indexOf(t.term) != -1)
+		return '';
+	else
+		translations.push(t.term);
 
-	if (t.POS)
-		text += ' (' + t.POS + ')';
+	text = '<li><i>' + t.term + '</i>';
 
 	text += '</li>';
 
