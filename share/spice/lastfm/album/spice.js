@@ -1,16 +1,17 @@
 function ddg_spice_lastfm_album(lastfm) {
 	console.log(lastfm);
 	if(lastfm.album) {	
-		var items = new Array();
-		items[0] = new Array();
-		items[1] = new Array();
+		var items = [];
+		items[0] = [];
 		var summary = '';
 		var songs = '';
+		var rest = true;
 		//Summary
 		if(lastfm.album.wiki) {
-			summary = '<i>Summary: </i>' + lastfm.album.wiki.summary;
+			items[1] = [];
+			summary = lastfm.album.wiki.summary;
 		} else {
-			summary = '<i>Summary: </i>No summary available.';
+			rest = false;
 		}
 		//Tracks
 		if(lastfm.album.tracks.track) {
@@ -33,31 +34,37 @@ function ddg_spice_lastfm_album(lastfm) {
 		//Release
 		var release = '';
 		if(lastfm.album.releasedate != '    ') {
-			release = '<br><i>Release date: </i>';
+			release = '<i>Release date: </i>';
 			release += lastfm.album.releasedate.substring(0, lastfm.album.releasedate.length-7);
+			release += '<br>';
 		}
 		//Artist
 		var artist = '';
 		if(lastfm.album.artist) {
-			artist = '<br><i>Artist: </i>';
+			artist = '<i>Artist: </i>';
 			artist += '<a href="/?q=' + encodeURIComponent(lastfm.album.artist) + '+artist">' + lastfm.album.artist + '</a>';
 		}
-		items[0]['a'] = '<div style="album">' + summary + release + artist + '</div>' 
-					+ '<div style="clear:both;">';
+		if(rest) {
+			items[0]['a'] = '<div style="songs">' + summary + '</div>';
+		} else {
+			items[0]['a'] = '<div style="album">' + release + artist + '</div>' + songs;
+						+ '<div style="clear:both;">';
+		}
 		items[0]['h'] = lastfm.album.name + ' by ' + lastfm.album.artist;
 		items[0]['s'] = 'Last.fm';
 		//items[0]['f'] = 1;
 		items[0]['force_big_header'] = true;
 		items[0]['u'] = lastfm.album.url;
-		//items[0]['i'] = lastfm.album.image[2]["#text"];
 
-		items[1]['h'] = lastfm.album.name + ' by ' + lastfm.album.artist;
-		items[1]['t'] = 'Tracks in ' + lastfm.album.name;
-		items[1]['f'] = 1;
-		items[1]['a'] = '<div style="songs">' + songs + '</div>';
-		items[1]['s'] = 'Last.fm';			
-		items[1]['force_big_header'] = true;
-		items[1]['u'] = lastfm.album.url;
+		if(rest) {
+			items[1]['t'] = 'About the album»';
+			items[1]['f'] = 1;
+			items[1]['a'] = '<div style="album">' + release + artist + '</div>' + songs;
+						+ '<div style="clear:both;">';
+			items[1]['s'] = 'Last.fm';			
+			items[1]['force_big_header'] = true;
+			items[1]['u'] = lastfm.album.url;
+		}
 		nra(items);
 	}
 }

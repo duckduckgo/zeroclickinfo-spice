@@ -1,20 +1,23 @@
 function ddg_spice_lastfm_song(lastfm) {
 	console.log(lastfm);
 	if(lastfm.track) {	
-		var items = new Array();
-		items[0] = new Array();
+		var items = [];
+		items[0] = [];
+		var rest = true;
 		var album = '';
 		if(lastfm.track.album) {
 			album = '<div style="album"><i>Album: </i><a href="/?q=' + encodeURIComponent(lastfm.track.album.title + 
 				' album by ' + lastfm.track.artist.name) + '">' + lastfm.track.album.title + '</a></div>';
 		} else {
-			album = '<div style="album"><i>Album: </i>No album info available.</div>';
+			album = "No album information available.";
 		}
+
 		var summary = '';
 		if(lastfm.track.wiki) {
-			summary = '<i>Summary: </i>' + lastfm.track.wiki.summary;
+			items[1] = [];
+			summary = lastfm.track.wiki.summary;
 		} else {
-			summary = '<i>Summary: </i> No summary info available.';
+			rest = false;
 		}
 		var artist = '<div style="artist"><i>Artist: </i><a href="/?q=' +
 				' artist ' + encodeURIComponent(lastfm.track.artist.name) + '">' + lastfm.track.artist.name + '</a></div>';
@@ -28,20 +31,30 @@ function ddg_spice_lastfm_song(lastfm) {
 		var lyrics = '<a href="/?q=' + encodeURIComponent(lastfm.track.artist.name + ' ' + lastfm.track.name) + ' lyrics">Lyrics</a>';
 		
 		//Combine
-		var listen = tinysong + ' | ' + rdio + ' | ';
-		var more = lyrics + ' | ';
+		var listen = '<i>Listen:</i> ' + tinysong + ' or ' + rdio + '<br>';
+		var more = '<i>Lyrics:</i> ' + lyrics;
 		
-		items[0]['a'] = '<div style="song">' + summary + '</div>' + album + artist + '<div style="clear:both;"></div>'
-			+ listen + more;
+		if(rest) {
+			items[0]['a'] = '<div style="song">' + summary + '</div>';
+		} else {
+			items[0]['a'] = '<div>' + album + artist + listen + more + '</div>';
+		}
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
 		var query = DDG.get_query();
 		items[0]['h'] = query;
 		items[0]['force_big_header'] = true;
 		items[0]['u'] = lastfm.track.url;
-		if(lastfm.track.album) {
-		//	items[0]['i'] = lastfm.track.album.image[2]["#text"];
+
+		if(rest) {
+			items[1]['t'] = 'About the song»';
+			items[1]['f'] = 1;
+			items[1]['a'] = '<div>' + album + artist + listen + more + '</div>';
+			items[1]['s'] = 'Last.fm';			
+			items[1]['force_big_header'] = true;
+			items[1]['u'] = lastfm.track.url;
 		}
+
 		nra(items);
 	}
 }
