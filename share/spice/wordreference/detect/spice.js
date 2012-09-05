@@ -1,3 +1,20 @@
+var langs = {
+	'ar': 'Arabic',
+	'zh': 'Chinese',
+	'cz': 'Czech',
+	'en': 'English',
+	'fr': 'French',
+	'gr': 'Greek',
+	'it': 'Italian',
+	'ja': 'Japanese',
+	'ko': 'Korean',
+	'pl': 'Polish',
+	'pt': 'Portuguese',
+	'ro': 'Romanian',
+	'es': 'Spanish',
+	'tr': 'Turkish'
+};
+
 function ddg_spice_wordreference_detect(ir) {
 	from = ir.data.detections[0].language;
 
@@ -14,12 +31,13 @@ function ddg_spice_wordreference_full(ir) {
 	params = get_params();
 	dict   = params[0];
 	word   = params[1];
+	to     = dict.slice(-2);
 
 	if ((word == '') || (dict == ''))
 		return;
 
 	items[0] = new Array();
-	items[0]["h"] = 'Translations for <i>' + word + '</i>';
+	items[0]["h"] = langs[to] + ' translations for <i>' + word + '</i>';
 	items[0]['s'] = 'Wordreference.com';
 	items[0]['u'] = 'http://wordreference.com/' + dict + '/' + word;
 	items[0]["force_big_header"] = true;
