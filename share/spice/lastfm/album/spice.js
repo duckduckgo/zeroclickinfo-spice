@@ -55,11 +55,11 @@ function ddg_spice_lastfm_album(lastfm) {
 		//items[0]['f'] = 1;
 		items[0]['force_big_header'] = true;
 		items[0]['u'] = lastfm.album.url;
-		items[0]['f'] = 1;
+		//items[0]['f'] = 1;
 
 		if(rest) {
 			items[1]['t'] = 'About the album»';
-			items[1]['f'] = 1;
+			//items[1]['f'] = 1;
 			items[1]['a'] = '<div style="album">' + release + artist + '</div>' + songs;
 						+ '<div style="clear:both;">';
 			items[1]['s'] = 'Last.fm';			

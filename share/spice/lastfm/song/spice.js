@@ -40,7 +40,7 @@ function ddg_spice_lastfm_song(lastfm) {
 			items[0]['a'] = '<div>' + album + artist + listen + more + '</div>';
 		}
 		items[0]['s'] = 'Last.fm';
-		items[0]['f'] = 1;
+		//items[0]['f'] = 1;
 		var query = DDG.get_query();
 		items[0]['h'] = query;
 		items[0]['force_big_header'] = true;
@@ -48,7 +48,7 @@ function ddg_spice_lastfm_song(lastfm) {
 
 		if(rest) {
 			items[1]['t'] = 'About the song»';
-			items[1]['f'] = 1;
+			//items[1]['f'] = 1;
 			items[1]['a'] = '<div>' + album + artist + listen + more + '</div>';
 			items[1]['s'] = 'Last.fm';			
 			items[1]['force_big_header'] = true;
