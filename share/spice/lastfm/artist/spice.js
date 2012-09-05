@@ -9,21 +9,26 @@ function ddg_spice_lastfm_artist_all(lastfm) {
                 similar += ', ';
             }
         }
-        similar += '</div>';        
-        var items = new Array();
-        items[0] = new Array();
+        similar += '.</div>';        
+        var items = [[],[]];
         var albums = '<a href="/?q=albums+from+' + encodeURIComponent(lastfm.artist.name) + '">' + 
-                    'Albums</a> | ';  
+                    'Albums</a> & ';  
         var songs = '<a href="/?q=tracks+from+' + encodeURIComponent(lastfm.artist.name) + '">' +
-                    'Tracks</a> | ';            
-        items[0]['a'] = '<i>Summary: </i>' + lastfm.artist.bio.summary + 
-                     similar + albums + songs; //+ '<div style="clear:both;"></div>';
+                    'Tracks</a>';            
+        items[0]['a'] = similar + '<i>See also:</i> ' + albums + songs + '.<div style="clear:both;"></div>';
         items[0]['h'] = lastfm.artist.name;
         items[0]['s'] = 'Last.fm';
         items[0]['force_big_header'] = true;
         items[0]['f'] = 1;
         items[0]['u'] = lastfm.artist.url;
-        //items[0]['i'] = lastfm.artist.image[2]["#text"];
+
+        items[1]['a'] = lastfm.artist.bio.summary ? (lastfm.artist.bio.summary + '<div style="clear:both;"></div>') : "No description available.";
+        items[1]['t'] = 'About the band...';
+        items[1]['s'] = 'Last.fm';
+        items[1]['u'] = lastfm.artist.url;
+        items[1]['force_big_header'] = true;
+        items[1]['f'] = 1;
+
         nra(items);
     }
 }
