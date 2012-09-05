@@ -19,16 +19,25 @@ function ddg_spice_wordreference_full(ir) {
 
 	text = '<ul>';
 
-	text += format_translations(ir.term0.PrincipalTranslations);
+	text += format_term(ir.term0);
 
-	if (ir.term0.AdditionalTranslations)
-		text += format_translations(ir.term0.AdditionalTranslations);
+	if (ir.term1 != undefined)
+		text += format_term(ir.term1);
 
 	text += '</ul>';
 
 	items[0]['a'] = text;
 
 	nra(items);
+}
+
+function format_term(term) {
+	text = format_translations(term.PrincipalTranslations);
+
+	if (term.AdditionalTranslations)
+		text += format_translations(term.AdditionalTranslations);
+
+	return text;
 }
 
 function format_translations(ts) {
