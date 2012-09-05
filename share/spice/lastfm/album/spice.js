@@ -6,6 +6,10 @@ function ddg_spice_lastfm_album(lastfm) {
 		var summary = '';
 		var songs = '';
 		var rest = true;
+		var length = lastfm.album.tracks.track.length;
+		if(length > 5) {
+			length = 5
+		}
 		//Summary
 		if(lastfm.album.wiki) {
 			items[1] = [];
@@ -14,7 +18,8 @@ function ddg_spice_lastfm_album(lastfm) {
             summary = summary.replace(/<.+?>/g, "");
             //Trim
             if(summary.length > 200) {
-                summary = summary.slice(0, 200) + '<a href="' + lastfm.album.url + '">...</a>';
+                summary = summary.slice(0, 200) + '<a href="' + lastfm.album.url + '">' + 
+                '<img src="' + 'https://duckduckgo.com/assets/icon_ellipsis.v101.png' + '"/></a>';
             }
 		} else {
 			rest = false;
@@ -23,11 +28,13 @@ function ddg_spice_lastfm_album(lastfm) {
 		if(lastfm.album.tracks.track) {
 			songs += '<i>Songs: </i>';
 			if(lastfm.album.tracks.track.length > 0) {
-				for(var i = 0;i < lastfm.album.tracks.track.length;i++) {
+				for(var i = 0;i < length;i++) {
 					var start = '<a href="/?q=' + encodeURIComponent(lastfm.album.tracks.track[i].name + ' song by '  + lastfm.album.artist) + '">';
 					songs += start + lastfm.album.tracks.track[i].name + '</a>';
-					if(i !== lastfm.album.tracks.track.length-1) {
+					if(i !== length-1) {
 						songs += ', ';
+					} else {
+						songs += '.';
 					}
 				}
 			} else {
@@ -54,7 +61,7 @@ function ddg_spice_lastfm_album(lastfm) {
 			items[0]['a'] = '<div style="songs">' + summary + '</div>' + '<div style="album">' + release + artist + '</div>' + songs;
 						+ '<div style="clear:both;">';
 		} else {
-			items[0]['a'] = '<div style="album">' + release + artist + '</div>' + songs;
+			items[0]['a'] = '<div style="album">' + release + artist + '<div style="clear:both;">' + songs + '</div>'
 						+ '<div style="clear:both;">';
 		}
 		items[0]['h'] = lastfm.album.name + ' by ' + lastfm.album.artist;

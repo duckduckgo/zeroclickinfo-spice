@@ -15,9 +15,9 @@ function ddg_spice_lastfm_artist_all(lastfm) {
         var rest = true;
 
         var albums = '<a href="/?q=albums+from+' + encodeURIComponent(lastfm.artist.name) + '">' + 
-                    'Albums</a> & ';  
+                    'Albums</a> and ';  
         var songs = '<a href="/?q=tracks+from+' + encodeURIComponent(lastfm.artist.name) + '">' +
-                    'Tracks</a>';            
+                    'tracks</a> from ' + lastfm.artist.name + '.';            
         if(lastfm.artist.bio.summary) {
             items[1] = [];
             var summary = lastfm.artist.bio.summary;
@@ -28,10 +28,10 @@ function ddg_spice_lastfm_artist_all(lastfm) {
                 summary = summary.slice(0, 200) + '<a href="' + lastfm.artist.url + '">...</a>';
             }
             items[0]['a'] = summary + '<div style="clear:both;"></div>' + similar + '<i>See also:</i> ' + 
-            albums + songs + '.<div style="clear:both;"></div>';
+            albums + songs + '<div style="clear:both;"></div>';
         } else {
             rest = false;
-            items[0]['a'] = similar + '<i>See also:</i> ' + albums + songs + '.<div style="clear:both;"></div>';
+            items[0]['a'] = similar + '<i>See also:</i> ' + albums + songs + '<div style="clear:both;"></div>';
         }
         
         items[0]['h'] = lastfm.artist.name;
