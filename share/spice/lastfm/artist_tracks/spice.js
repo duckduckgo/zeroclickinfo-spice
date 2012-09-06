@@ -51,9 +51,6 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
             link = '<li><a href="/?q=' + encodeURIComponent(name + ' song by ' + item.artist.name) + 
                 '">' + name + '</a> by ' + '<a href="/?q=artist ' + encodeURIComponent(item.artist.name) + '">' + item.artist.name + 
                 '</a><span style="color: rgb(119, 119, 119); font-size: 11px; "> ' + min + sec + '</span>';                
-                /*'</a> <span style="color: rgb(119, 119, 119);">​(Listen on ';
-            link += '<a href="' + 'http:\/\/tinysong.com\/#\/result\/' + encodeURIComponent(name) + ' ' + item.artist.name + '">' + 'Grooveshark' + '</a> or ';
-            link += '<a href="' + '/?q=' + encodeURIComponent('!rdio ' +  name + ' by ' + item.artist.name) + '">' + 'Rdio' + '</a>)</span></li>';*/
             tracks += link;
         }
         tracks += '</ul></div>\n';
