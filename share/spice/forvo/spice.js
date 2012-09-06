@@ -71,8 +71,6 @@ function ddg_spice_forvo(data) {
     				query += "  " + query_array[i];
     			}
     		}
-
-    		console.log(query)
     	}
     	
     	nrj("http://api.duckduckgo.com/?q=spell%20" + encodeURIComponent(query) + "&format=json&pretty=1&callback=handle_ddg_api");

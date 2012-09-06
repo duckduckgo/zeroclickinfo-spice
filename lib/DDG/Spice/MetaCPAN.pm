@@ -10,6 +10,8 @@ spice to   => 'http://api.metacpan.org/v0/module/$1?callback={{callback}}';
 
 triggers startend => "cpan", "metacpan", "meta cpan";
 
-handle remainder => sub { return shift };
-
+handle remainder => sub {
+    return $_ if $_;
+    return;
+};
 1;
