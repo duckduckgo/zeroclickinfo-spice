@@ -47,6 +47,7 @@ function ddg_spice_lastfm_artist_album(lastfm) {
         items[0]['h'] = 'Albums from ' + query;
         items[0]['u'] = 'http://www.last.fm/search?q=' + query + '&type=album';
         items[0]['force_big_header'] = true;
+        items[0]['force_space_after'] = true;
         nra(items,1,1);
     }
 }

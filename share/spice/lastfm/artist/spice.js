@@ -25,7 +25,9 @@ function ddg_spice_lastfm_artist_all(lastfm) {
             summary = summary.replace(/<.+?>/g, "");
             //Trim
             if(summary.length > 200) {
-                summary = summary.slice(0, 200) + '<a href="' + lastfm.artist.url + '">...</a>';
+                summary = '<span id="first" style="display: inline;">' + summary.slice(0, 200) + '</span> ' + 
+                '<a style="display: inline;" id="expand" href="javascript:;" onclick="DDG.toggle(\'ellipsis\', 1); DDG.toggle(\'first\', -1); DDG.toggle(\'expand\', -1);"><span style="color: rgb(119, 119, 119); font-size: 11px; ">Full Description»<span></a>' + 
+                '<span id="ellipsis" style="display: none;">' + summary + '</span>';
             }
             items[0]['a'] = summary + '<div style="clear:both;"></div>' + similar + '<i>See also:</i> ' + 
             albums + songs + '<div style="clear:both;"></div>';
@@ -37,9 +39,11 @@ function ddg_spice_lastfm_artist_all(lastfm) {
         items[0]['h'] = lastfm.artist.name;
         items[0]['s'] = 'Last.fm';
         items[0]['force_big_header'] = true;
+        items[0]['force_space_after'] = true;
         items[0]['f'] = 1;
         items[0]['u'] = lastfm.artist.url;
-        nra(items);
+        DDG.toggle("ellipsis", 1);
+        nra(items,1,1);
     }
 }
 
@@ -62,6 +66,7 @@ function ddg_spice_lastfm_artist_similar(lastfm) {
         items[0]['s'] = 'Last.fm';
         items[0]['f'] = 1;
         items[0]['force_big_header'] = true;
+        items[0]['force_space_after'] = true;
         items[0]['u'] = lastfm.artist.url;
         //items[0]['i'] = lastfm.artist.image[2]["#text"];
         nra(items);

@@ -20,7 +20,9 @@ function ddg_spice_lastfm_song(lastfm) {
             summary = summary.replace(/<.+?>/g, "");
             //Trim
             if(summary.length > 200) {
-                summary = summary.slice(0, 200) + '<a href="' + lastfm.track.url + '">...</a>';
+                summary = '<span id="first" style="display: inline;">' + summary.slice(0, 200) + '</span> ' + 
+                '<a style="display: inline;" id="expand" href="javascript:;" onclick="DDG.toggle(\'ellipsis\', 1); DDG.toggle(\'first\', -1); DDG.toggle(\'expand\', -1);"><span style="color: rgb(119, 119, 119); font-size: 11px; ">Full Description»<span></a>' + 
+                '<span id="ellipsis" style="display: none;">' + summary + '</span>';
             }
 		} else {
 			rest = false;
@@ -46,8 +48,8 @@ function ddg_spice_lastfm_song(lastfm) {
 		var query = DDG.get_query();
 		items[0]['h'] = query;
 		items[0]['force_big_header'] = true;
+		items[0]['force_space_after'] = true;
 		items[0]['u'] = lastfm.track.url;
-
-		nra(items);
+		nra(items,1,1);
 	}
 }
