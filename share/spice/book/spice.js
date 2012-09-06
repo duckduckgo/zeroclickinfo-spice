@@ -22,25 +22,39 @@ function ddg_spice_book(ir) {
       // genre and page info on book
       var bio = book.genre + ' book';
       if (pages) bio += ', ' + pages + ' pages';
+       
+      var to_read_or_not = ""; 
+      if (book.rating >= 70) to_read_or_not = "must read";
+      if (book.rating < 70) to_read_or_not = "don't read";
 
       // rating overview
-      var  rating  = book.title + ' (' + bio + ') '  +' is rated '
-                   + "<a href=" 
-                        + book.link + "#bookreviews>" +  book.rating + 
-                        '% by ' + book.review_count + ' critics. '
-                   + "</a>";
+      var  rating_overview  = " <img src=\""
+                               + book.to_read_or_not 
+                               + "\" style=\"display:inline;width:20px;height:auto;\""
+                               + "alt=\""
+                               + to_read_or_not
+                               + "\" />"
+                               + " " 
+                               + book.title + ' (' + bio + ') '  +' is rated '
+                               + "<a href=" 
+                                    + book.detail_link + "#bookreviews>" +  book.rating + 
+                                    '% by ' + book.review_count + ' critics. '
+                               + "</a>";
 
       //synopsis
       var synopsis = book.synopsis;
-      var synopsis_short = "<i>Synopsis: </i>" + synopsis.substring(0,199);
-      if (synopsis.length > 200) synopsis_short += ' ...';
+      var synopsis_short = "<i>Synopsis: </i>" + synopsis.substring(0,149);
+      if (synopsis.length > 150) synopsis_short += ' ...';
+
+      // critic review
+      var review_sample = book.critic_reviews[0]
 
       //snippet
-      var snippet = book.review_sample.snippet;
+      var snippet = review_sample.snippet;
       var review = '';
 
       if (snippet.length > 0){
-            var source = book.review_sample.source;
+            var source = review_sample.source;
             var snippet_short = snippet.substring(0,139);
             if (snippet.length > 140 ) snippet_short += ' ...';
             var review = ' <i> "' + snippet_short + '"</i>';
@@ -49,7 +63,7 @@ function ddg_spice_book(ir) {
       
 
       //Summary
-      var summary =  rating + '<br/>' 
+      var summary =  rating_overview + '<br/>' 
                      + "<div align='justify';>" + synopsis_short + '</div>' 
                      + '<center>' + review + '</center>';
     
@@ -61,7 +75,7 @@ function ddg_spice_book(ir) {
 
        // Source name and url for the More at X link.
        items[0]['s'] = 'idreambooks';
-       items[0]['u'] = book.link;
+       items[0]['u'] = book.detail_link;
        
        // Options
        items[0]['force_big_header'] = true;
