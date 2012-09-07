@@ -17,9 +17,11 @@ function ddg_spice_gravatar (res)
                     
 
     if (item){ 
-        out += 'Primary e-mail: <a href="mailto:'+ email + '">'
-            +       email
-            +  '</a><br />';
+        if (item["emails"]){
+            out += 'Primary e-mail: <a href="mailto:'+ email + '">'
+                +       email
+                +  '</a><br />';
+        }
 
         items = item["photos"].length > 1 ? [[], []] : [[]];
         items[0]['a'] = out;
