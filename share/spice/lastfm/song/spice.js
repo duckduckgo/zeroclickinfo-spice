@@ -20,7 +20,7 @@ function ddg_spice_lastfm_song(lastfm) {
             summary = summary.replace(/<.+?>/g, "");
             //Trim
             if(summary.length > 200) {
-                summary = '<span id="first" style="display: inline;">' + summary.slice(0, 200) + '</span> ' + 
+                summary = '<span id="first" style="display: inline;">' + summary.slice(0, 200) + '...</span> ' + 
                 '<a style="display: inline;" id="expand" href="javascript:;" onclick="DDG.toggle(\'ellipsis\', 1); DDG.toggle(\'first\', -1); DDG.toggle(\'expand\', -1);"><span style="color: rgb(119, 119, 119); font-size: 11px; ">Full Description»<span></a>' + 
                 '<span id="ellipsis" style="display: none;">' + summary + '</span>';
             }
@@ -29,13 +29,16 @@ function ddg_spice_lastfm_song(lastfm) {
 		}
 		var artist = '<div style="artist"><i>Artist: </i><a href="/?q=' +
 				' artist ' + encodeURIComponent(lastfm.track.artist.name) + '">' + lastfm.track.artist.name + '</a></div>';
+
 		//Listen
-		//var pandora = '<a href="/?q=!pandora ' + lastfm.track.artist.name + '">Pandora</a>';
-		var rdio = '<a href="/?q=!rdio ' + encodeURIComponent(lastfm.track.artist.name + ' ' + lastfm.track.name) + '">Rdio</a>';
-		var tinysong = '<a href="http://tinysong.com/#/result/' + encodeURIComponent(lastfm.track.artist.name + ' ' + lastfm.track.name) + '">Grooveshark</a>';
+		var artist_track = encodeURIComponent(lastfm.track.artist.name + ' ' + lastfm.track.name);
+		var rdio = '<a href="/?q=!rdio ' + artist_track + '">Rdio</a>';
+		var tinysong = '<a href="/?q=!grooveshark ' + artist_track + '">Grooveshark</a>';
+		var spotify = '<a href="http://open.spotify.com/search/' + artist_track + '">Spotify</a>';
+		var amazon = '<a href="/?q=!amazonmp3 ' + artist_track + '">Amazon MP3</a>';
 
 		//More		
-		var listen = '<i>Listen:</i> ' + tinysong + ' or ' + rdio + '<br>';
+		var listen = '<i>Listen:</i> ' + spotify + ', ' + rdio + ', ' + tinysong + ', or ' + amazon + '<br>';
 		
 		if(rest) {
 			items[0]['a'] = '<div style="song">' + summary + '</div>' + 

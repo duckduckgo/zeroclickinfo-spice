@@ -18,13 +18,22 @@ function ddg_spice_lastfm_album(lastfm) {
             summary = summary.replace(/<.+?>/g, "");
             //Trim
             if(summary.length > 200) {
-                summary = '<span id="first" style="display: inline;">' + summary.slice(0, 200) + '</span> ' + 
+                summary = '<span id="first" style="display: inline;">' + summary.slice(0, 200) + '...</span> ' + 
                 '<a style="display: inline;" id="expand" href="javascript:;" onclick="DDG.toggle(\'ellipsis\', 1); DDG.toggle(\'first\', -1); DDG.toggle(\'expand\', -1);"><span style="color: rgb(119, 119, 119); font-size: 11px; ">Full Description»<span></a>' + 
                 '<span id="ellipsis" style="display: none;">' + summary + '</span>';
             }
 		} else {
 			rest = false;
 		}
+
+		//Listen
+		var artist_album = encodeURIComponent(lastfm.album.name + ' ' + lastfm.album.artist);
+		var rdio = '<a href="/?q=!rdio ' + artist_album + '">Rdio</a>';
+		var tinysong = '<a href="/?q=!grooveshark ' + artist_album + '">Grooveshark</a>';
+		var spotify = '<a href="http://open.spotify.com/search/' + artist_album + '">Spotify</a>';
+		var amazon = '<a href="/?q=!amazonmp3 ' + artist_album + '">Amazon MP3</a>';
+		//var listen = '<i>Listen:</i> ' + spotify + ', ' + rdio + ', ' + tinysong + ', or ' + amazon + '<br>';
+
 		//Tracks
 		if(lastfm.album.tracks.track) {
 			songs += '<i>Songs: </i>';
@@ -56,13 +65,13 @@ function ddg_spice_lastfm_album(lastfm) {
 		var artist = '';
 		if(lastfm.album.artist) {
 			artist = '<i>Artist: </i>';
-			artist += '<a href="/?q=' + encodeURIComponent(lastfm.album.artist) + '+artist">' + lastfm.album.artist + '</a>';
+			artist += '<a href="/?q=' + encodeURIComponent(lastfm.album.artist) + '+artist">' + lastfm.album.artist + '</a>' + '<br>';
 		}
 		if(rest) {
-			items[0]['a'] = '<div style="songs">' + summary + '</div>' + release + artist + '<div style="clear:both;">' + songs;
+			items[0]['a'] = '<div style="songs">' + summary + '</div>' + release + artist + /*listen + */ '<div style="clear:both;">' + songs;
 						+ '<div style="clear:both;">';
 		} else {
-			items[0]['a'] = '<div style="album">' + release + artist + '<div style="clear:both;">' + songs + '</div>'
+			items[0]['a'] = '<div style="album">' + release + artist + /*listen +*/ '<div style="clear:both;">' + songs + '</div>'
 						+ '<div style="clear:both;">';
 		}
 		items[0]['h'] = lastfm.album.name + ' by ' + lastfm.album.artist;
