@@ -9,6 +9,8 @@ triggers startend => "gravatar", "avatar of", "gravatar of";
 spice to => 'http://gravatar.com/$1.json?callback={{callback}}';
 
 handle remainder => sub {
+    s/^\s+//;
+    s/\s+$//;
     my $email_hash = md5_hex(lc $_);
     return $email_hash if defined $email_hash;
     return;
