@@ -30,7 +30,7 @@ function ddg_spice_lastfm_album(lastfm) {
 		var artist_album = encodeURIComponent(lastfm.album.name + ' ' + lastfm.album.artist);
 		var rdio = '<a href="/?q=!rdio ' + artist_album + '">Rdio</a>';
 		var tinysong = '<a href="/?q=!grooveshark ' + artist_album + '">Grooveshark</a>';
-		var spotify = '<a href="http://open.spotify.com/search/' + artist_album + '">Spotify</a>';
+		var spotify = '<a href="spotify:search:album:' + artist_album + '">Spotify</a>';
 		var amazon = '<a href="/?q=!amazonmp3 ' + artist_album + '">Amazon MP3</a>';
 		//var listen = '<i>Listen:</i> ' + spotify + ', ' + rdio + ', ' + tinysong + ', or ' + amazon + '<br>';
 

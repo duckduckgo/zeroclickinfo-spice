@@ -34,7 +34,7 @@ function ddg_spice_lastfm_song(lastfm) {
 		var artist_track = encodeURIComponent(lastfm.track.artist.name + ' ' + lastfm.track.name);
 		var rdio = '<a href="/?q=!rdio ' + artist_track + '">Rdio</a>';
 		var tinysong = '<a href="/?q=!grooveshark ' + artist_track + '">Grooveshark</a>';
-		var spotify = '<a href="http://open.spotify.com/search/' + artist_track + '">Spotify</a>';
+		var spotify = '<a href="spotify:search:track:' + artist_track + '">Spotify</a>';
 		var amazon = '<a href="/?q=!amazonmp3 ' + artist_track + '">Amazon MP3</a>';
 
 		//More		
