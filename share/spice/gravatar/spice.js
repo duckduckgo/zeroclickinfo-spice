@@ -2,29 +2,42 @@ function ddg_spice_gravatar (res)
 {
     var out = '';
     var photos = '';
+    var ims = '';
+    var email;
     var item = res["entry"][0];
     var name = item["name"]["formatted"] ? 
-                item["name"]["formatted"] + ' (' +item["preferredUsername"] + ')' : 
-                item["preferredUsername"];
+                item["name"]["formatted"] + ' - ' +item["preferredUsername"] + ' (Gravatar)' : 
+                item["preferredUsername"] + ' (Gravatar)';
+    var clear = '<div style="clear:both;"></div>';
 
     var query = DDG.get_query().replace("gravatar", "")
                                .replace("gravatar of", "")
                                .replace("avatar of", "")
                                .replace(" ", "");
-    
-    var email = item["emails"][0]["value"] ? 
-                    item["emails"][0]["value"] : query;
-                    
 
     if (item){ 
         if (item["emails"]){
-            out += 'Primary e-mail: <a href="mailto:'+ email + '">'
-                +       email
-                +  '</a><br />';
+            email = item["emails"][0]["value"] ? 
+                        item["emails"][0]["value"] : '';
+            
+            if (email){
+                out += '<i>Primary e-mail:</i> <a href="mailto:'+ email + '">'
+                    +       email
+                    +  '</a><br />';
+            }        
         }
+    
+        if (item["aboutMe"])
+            out += '<i>About: </i>' + shorten(item["aboutMe"]) + '</a><br />';
+
+        if (item["ims"])
+            out += add_ims(item["ims"])
+
+        if (!out)
+            out += 'No profile information available.'
 
         items = item["photos"].length > 1 ? [[], []] : [[]];
-        items[0]['a'] = out;
+        items[0]['a'] = out + clear;
         items[0]['h'] = name;
         items[0]['force_big_header'] = 1;
         items[0]['i'] = 'http://gravatar.com/avatar/'+ item["hash"] + '.jpg';
@@ -34,7 +47,7 @@ function ddg_spice_gravatar (res)
         //hidden div for photos
         if (item["photos"].length > 1){
             photos += add_photos(item);
-            items[1]['a'] = photos;
+            items[1]['a'] = clear + photos + clear;
             items[1]['t'] = 'Show photos';
 			items[1]['force_big_header'] = true;
             items[1]['s'] = 'Gravatar';
@@ -45,6 +58,18 @@ function ddg_spice_gravatar (res)
     }
 }
 
+function add_ims(ims)
+{
+    var out = '';
+
+    for (i in ims){
+        out += '<i>' + ims[i]["type"] + ':</i> '
+            +  ims[i]["value"]
+            +  '<br />';
+    }
+    return out;
+}
+
 function add_photos(items)
 {
     var out = d.createElement('div');
@@ -52,9 +77,9 @@ function add_photos(items)
     var i;
 
     if (items["photos"].length > 1){
-	    for (i=1; i <= items["photos"].length; i++) {
+	    for (i=1; i < items["photos"].length; i++) {
             item = items["photos"][i];
-            if (i >= 5)
+            if (i > 6)
                 break;
 
             div = d.createElement("div");
@@ -84,4 +109,26 @@ function add_photos(items)
     }
 
     return out.innerHTML;
+}
+
+function shorten (string, length) {
+    if (length === undefined){
+        length = 75;
+    }
+
+    /*if (find && string.length > length){
+        var comma = string.indexOf(",");
+        var dot = string.indexOf(".");
+
+        if (comma !== undefined)
+            return string.slice(0, comma-1) + '...';
+        if (dot !== undefined)
+            return string.slice(0, dot-1) + '...';
+    }*/
+
+    if (string.length > length){
+        return string.slice(0,length) + '...';
+    } else {
+        return string;
+    }
 }
