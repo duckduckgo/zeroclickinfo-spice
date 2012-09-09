@@ -2,9 +2,9 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
     console.log(lastfm);
     if(lastfm.toptracks.track) {
         var link, item, limit, toggle=true, tracks = '<div><ul>', duration;
-
-        var query = DDG.get_query();  
-        query = query.replace(/(?:\s*(?:tracks?|songs?|music)\s*(?:by|from|of)?\s*)/, "");
+        var artist = '';
+        // var query = DDG.get_query();  
+        // query = query.replace(/(?:\s*(?:tracks?|songs?|music)\s*(?:by|from|of)?\s*)/, "");
 
         //Limit the results to five.
         if(lastfm.toptracks.track.length > 5) {
@@ -22,8 +22,10 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
         for (var i = 0;i < limit;i++) {
             if(toggle) {
                 item = lastfm.toptracks.track[i];
+                artist = lastfm.toptracks.track[i].artist.name;
             } else {
                 item = lastfm.toptracks.track;
+                artist = lastfm.toptracks.track.artist.name;
             }
 
             //Get the name of the song.
@@ -57,12 +59,12 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
         var items = new Array();
         items[0] = new Array();
         items[0]['a'] = tracks;
-        items[0]['h'] = 'Tracks from ' + query;
+        items[0]['h'] = 'Tracks from ' + artist;
         items[0]['s'] = 'Last.fm';
         items[0]['f'] = 1;
         items[0]['force_big_header'] = true;
         items[0]['force_space_after'] = true;
-        items[0]['u'] = 'http://www.last.fm/search?q=' + encodeURIComponent(query) + '&type=track';
+        items[0]['u'] = 'http://www.last.fm/search?q=' + encodeURIComponent(artist) + '&type=track';
         nra(items,1,1);
     }
 }
