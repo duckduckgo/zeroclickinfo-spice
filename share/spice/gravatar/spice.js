@@ -28,7 +28,7 @@ function ddg_spice_gravatar (res)
         }
     
         if (item["aboutMe"])
-            out += '<i>About: </i>' + shorten(item["aboutMe"]) + '</a><br />';
+            out += '<i>About: </i>' + shorten(item["aboutMe"], 60, true) + '</a><br />';
 
         if (item["ims"])
             out += add_ims(item["ims"])
@@ -89,10 +89,8 @@ function add_photos(items)
 
             img = d.createElement('img');
             img.src = '/iu/?u=' + item["value"] + '?s=64.jpg';
-            YAHOO.util.Dom.setStyle(img, "margin", '0 auto 0 auto');
-            YAHOO.util.Dom.setStyle(img, "max-height", '64px');
-            YAHOO.util.Dom.setStyle(div,'margin-bottom', '10px');
-            YAHOO.util.Dom.setStyle(div,'text-align', 'center');
+            img.id = "photoimg";
+
             link.appendChild(img);
             div.appendChild(link);
           
@@ -102,7 +100,7 @@ function add_photos(items)
             YAHOO.util.Dom.setStyle(div, "padding", "5px");
             YAHOO.util.Dom.setStyle(div, "max-width", "80px");
             
-            YAHOO.util.Dom.setStyle(out, "width", '100%');
+            //YAHOO.util.Dom.setStyle(out, "width", '100%');
             div2.appendChild(div);
             out.appendChild(div);
         }
@@ -111,20 +109,20 @@ function add_photos(items)
     return out.innerHTML;
 }
 
-function shorten (string, length) {
+function shorten (string, length, find) {
     if (length === undefined){
-        length = 75;
+        length = 60;
     }
 
-    /*if (find && string.length > length){
+    if (find && string.length > length){
         var comma = string.indexOf(",");
         var dot = string.indexOf(".");
 
         if (comma !== undefined)
-            return string.slice(0, comma-1) + '...';
+            return string.slice(0, comma) + '...';
         if (dot !== undefined)
-            return string.slice(0, dot-1) + '...';
-    }*/
+            return string.slice(0, dot) + '...';
+    }
 
     if (string.length > length){
         return string.slice(0,length) + '...';
