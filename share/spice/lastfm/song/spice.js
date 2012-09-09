@@ -20,9 +20,11 @@ function ddg_spice_lastfm_song(lastfm) {
             summary = summary.replace(/<.+?>/g, "");
             //Trim
             if(summary.length > 200) {
-                summary = '<span id="first" style="display: inline;">' + summary.slice(0, 200) + '</span> ' + 
+                summary = '<span id="first" style="display: inline;">' + '<i>Description:</i> ' + summary.slice(0, 200) + '</span> ' + 
                 '<a style="display: inline;" id="expand" href="javascript:;" onclick="DDG.toggle(\'ellipsis\', 1); DDG.toggle(\'first\', -1); DDG.toggle(\'expand\', -1);"><span style="color: rgb(119, 119, 119); font-size: 11px; ">More...<span></a>' + 
-                '<span id="ellipsis" style="display: none;">' + summary + '</span>';
+                '<span id="ellipsis" style="display: none;">' + '<i>Description:</i> ' +  summary + '</span>';
+            } else {
+            	summary = '<i>Description:</i> ' + summary;
             }
 		} else {
 			rest = false;
@@ -41,15 +43,14 @@ function ddg_spice_lastfm_song(lastfm) {
 		var listen = '<i>Listen:</i> ' + spotify + ', ' + rdio + ', ' + tinysong + ', or ' + amazon + '<br>';
 		
 		if(rest) {
-			items[0]['a'] = '<div style="song">' + summary + '</div>' + 
-			'<div>' + album + artist + listen + '</div>';
+			items[0]['a'] = '<div>' + artist + album + listen + '</div>' + 
+			'<div>' + summary + '</div>';
 		} else {
-			items[0]['a'] = '<div>' + album + artist + listen + '</div>';
+			items[0]['a'] = '<div>' + artist + album + listen + '</div>';
 		}
 		items[0]['s'] = 'Last.fm';
 		items[0]['f'] = 1;
-		var query = DDG.get_query();
-		items[0]['h'] = query;
+		items[0]['h'] = lastfm.track.name + ' (Song)';
 		items[0]['force_big_header'] = true;
 		items[0]['force_space_after'] = true;
 		items[0]['u'] = lastfm.track.url;
