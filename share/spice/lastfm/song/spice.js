@@ -9,7 +9,7 @@ function ddg_spice_lastfm_song(lastfm) {
 			album = '<div style="album"><i>Album: </i><a href="/?q=' + encodeURIComponent(lastfm.track.album.title + 
 				' album by ' + lastfm.track.artist.name) + '">' + lastfm.track.album.title + '</a></div>';
 		} else {
-			album = "No album information available.";
+			album = "";
 		}
 
 		var summary = '';
