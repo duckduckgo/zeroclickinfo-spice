@@ -83,6 +83,7 @@ function add_photos(items)
                 break;
 
             div = d.createElement("div");
+            div.id = "photodiv";
             div2 = d.createElement("div");
 	        link = d.createElement("a");
 	        link.href = "http://gravatar.com/" + items["preferredUsername"] + "#pic-" + i;
