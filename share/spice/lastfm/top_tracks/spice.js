@@ -23,8 +23,8 @@ function ddg_spice_lastfm_top_tracks(lastfm) {
             songs += '<li><a href="/?q=' + encodeURIComponent(lastfm.toptracks.track[i].name + ' song by ' + lastfm.toptracks.track[i].artist.name) + '">' + 
                     lastfm.toptracks.track[i].name + '</a>';
             songs += ' by <a href="/?q=' + encodeURIComponent('artist ' + lastfm.toptracks.track[i].artist.name) + '">' +
-                    lastfm.toptracks.track[i].artist.name + '</a> <span style="color: rgb(119, 119, 119); font-size: 11px; ">';
-            songs += min + sec + '</span>';
+                    lastfm.toptracks.track[i].artist.name + '</a>';// <span style="color: rgb(119, 119, 119); font-size: 11px; ">';
+            //songs += min + sec + '</span>';
         }
         songs += '</ul></div>';
         var items = new Array();
