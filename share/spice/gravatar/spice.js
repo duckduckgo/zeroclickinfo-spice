@@ -28,7 +28,7 @@ function ddg_spice_gravatar (res)
         }
     
         if (item["aboutMe"])
-            out += '<i>About: </i>' + shorten(item["aboutMe"], 60, true) + '</a><br />';
+            out += '<i>About: </i>' + shorten(item["aboutMe"], 60, true) + '<br />';
 
         if (item["ims"])
             out += add_ims(item["ims"])
