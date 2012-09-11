@@ -40,7 +40,7 @@ function ddg_spice_lastfm_song(lastfm) {
 		var amazon = '<a href="/?q=!amazonmp3 ' + artist_track + '">Amazon MP3</a>';
 
 		//More		
-		var listen = '<i>Listen:</i> ' + spotify + ', ' + rdio + ', ' + tinysong + ', or ' + amazon + '<br>';
+		var listen = '<i>Listen:</i> ' + rdio + ', ' + tinysong + ', or ' + amazon + '.<br>';
 		
 		if(rest) {
 			items[0]['a'] = '<div>' + artist + album + listen + '</div>' + 
