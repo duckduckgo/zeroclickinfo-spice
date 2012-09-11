@@ -85,8 +85,9 @@ function ddg_spice_detect_lang(ir) {
 		if (i == '0')
 			text += '<i>';
 
-		text += langs[detects[i].language];
-		text += ' (' + detects[i].confidence + ')';
+		conf  = Math.floor(detects[i].confidence * 100);
+
+		text += langs[detects[i].language] + ' (' + conf + '% confidence)';
 
 		if (i == '0')
 			text += '</i>';
