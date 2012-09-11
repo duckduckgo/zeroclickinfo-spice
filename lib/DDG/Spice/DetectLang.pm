@@ -12,7 +12,9 @@ triggers startend => 'detect language';
 
 handle remainder => sub {
 	my ($str) = @_;
-	return $str
+
+	return $str if $str;
+	return
 };
 
 1;
