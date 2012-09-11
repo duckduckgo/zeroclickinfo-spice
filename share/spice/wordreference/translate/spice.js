@@ -15,7 +15,7 @@ var langs = {
 	'tr': 'Turkish'
 };
 
-function ddg_spice_wordreference_full(ir) {
+function ddg_spice_wordreference_translate(ir) {
 	items = new Array();
 
 	params = get_params();
