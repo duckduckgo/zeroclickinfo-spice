@@ -62,8 +62,7 @@ langs = {
 	'vi': 'Vietnamese',
 	'yi': 'Yiddish',
 	'zh': 'Chinese',
-	'zh-TW': 'Chineset',
-	'xxx': 'Unknown'
+	'zh-TW': 'Chineset'
 };
 
 function ddg_spice_detect_lang(ir) {
@@ -83,13 +82,17 @@ function ddg_spice_detect_lang(ir) {
 	text = '<ul>';
 
 	for (i in detects) {
+		conf  = Math.floor(detects[i].confidence * 100);
+		lang  = langs[detects[i].language];
+
+		if (lang == undefined)
+			continue;
+
 		text += '<li>';
 
 		if (i == '0')
 			text += '<i>';
 
-		conf  = Math.floor(detects[i].confidence * 100);
-		lang  = langs[detects[i].language];
 		text += lang + ' (' + conf + '% confidence)';
 
 		if (i == '0')
@@ -99,6 +102,9 @@ function ddg_spice_detect_lang(ir) {
 	}
 
 	text += '</ul>';
+
+	if (text.length == 9)
+		return;
 
 	items[0]['a'] = text;
 
