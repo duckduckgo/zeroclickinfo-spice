@@ -71,6 +71,9 @@ function ddg_spice_detect_lang(ir) {
 
 	detects = ir.data.detections;
 
+	if (detects.length == 0)
+		return;
+
 	items[0] = new Array();
 	items[0]["h"] = 'Detected languages:';
 	items[0]['s'] = 'detectlanguage.com';
@@ -86,8 +89,8 @@ function ddg_spice_detect_lang(ir) {
 			text += '<i>';
 
 		conf  = Math.floor(detects[i].confidence * 100);
-
-		text += langs[detects[i].language] + ' (' + conf + '% confidence)';
+		lang  = langs[detects[i].language];
+		text += lang + ' (' + conf + '% confidence)';
 
 		if (i == '0')
 			text += '</i>';
