@@ -84,7 +84,7 @@ function ddg_spice_detect_lang(ir) {
 	text = '<ul>';
 
 	for (i in detects) {
-		conf  = Math.floor(detects[i].confidence * 100);
+		conf  = Math.ceil(detects[i].confidence * 100);
 		lang  = langs[detects[i].language];
 
 		if (lang == undefined)
