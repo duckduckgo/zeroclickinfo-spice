@@ -73,6 +73,8 @@ function ddg_spice_detect_lang(ir) {
 	if (detects.length == 0)
 		return;
 
+	detects.sort(function (a, b) { return a.confidence < b.confidence; });
+
 	items[0] = new Array();
 	items[0]["h"] = 'Detected languages:';
 	items[0]['s'] = 'detectlanguage.com';
