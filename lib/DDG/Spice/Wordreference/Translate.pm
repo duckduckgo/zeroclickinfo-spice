@@ -26,7 +26,7 @@ handle matches => sub {
 sub shorten_lang {
 	my ($lang) = @_;
 
-	my %langs = {
+	my $langs = {
 		'arabic'     => 'ar',
 		'chinese'    => 'zh',
 		'czech'      => 'cz',
@@ -43,7 +43,7 @@ sub shorten_lang {
 		'turkish'    => 'tr'
 	};
 
-	return $langs{$lang} ? $langs{$lang} : $lang;
+	return $langs -> {$lang} ? $langs -> {$lang} : $lang;
 }
 
 1;
