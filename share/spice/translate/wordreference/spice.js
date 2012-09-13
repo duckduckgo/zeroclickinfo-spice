@@ -15,17 +15,7 @@ var langs = {
 	'tr': 'Turkish'
 };
 
-function ddg_spice_wordreference_detect(ir) {
-	from = ir.data.detections[0].language;
-
-	params = get_params();
-	word   = params[0];
-	to     = params[1];
-
-	nrj('/js/spice/wordreference/translate/' + from + to + '/' + word);
-}
-
-function ddg_spice_wordreference_translate(ir) {
+function ddg_spice_translate_wordreference(ir) {
 	items = new Array();
 
 	params = get_params();
@@ -102,19 +92,4 @@ function format_translation(t) {
 	text += '</li>';
 
 	return text;
-}
-
-function get_params() {
-	scripts = document.getElementsByTagName('script');
-
-	for (i = 0; i < scripts.length; i++) {
-		regex = /wordreference\/([a-z]+)\/([a-z]+)\/([a-z]+)/;
-		match = scripts[i].src.match(regex);
-
-		if (match != undefined) {
-			return [match[2], match[3]];
-		}
-	}
-
-	return ['', ''];
 }

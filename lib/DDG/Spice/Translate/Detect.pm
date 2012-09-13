@@ -1,4 +1,4 @@
-package DDG::Spice::Wordreference::Translate;
+package DDG::Spice::Translate::Detect;
 
 use DDG::Spice;
 
@@ -7,20 +7,16 @@ attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
 
 my $dicts = 'arabic|ar|chinese|zh|czech|cz|english|en|french|fr|greek|gr|italian|it|japanese|ja|korean|ko|polish|pl|portuguese|pt|romanian|ro|spanish|es|turkish|tr';
 
-spice to   => 'http://api.wordreference.com/0.8/{{ENV{DDG_SPICE_WORDREFERENCE_APIKEY}}}/json/$1/$2?callback={{callback}}';
-spice from => '([a-z]+)\/([a-z]+)';
+spice to   => 'http://ws.detectlanguage.com/0.2/detect?q=$1&key={{ENV{DDG_SPICE_DETECTLANGUAGE_APIKEY}}}';
+spice from => '([a-z ]+)\/([a-z]+)';
+spice wrap_jsonp_callback => 1;
 
-triggers query_lc => qr/^translate ([a-z]+) from ($dicts) to ($dicts)$/;
+triggers query_lc => qr/^translate ([a-z ]+) to ($dicts)$/;
 
 handle matches => sub {
-	my ($word, $from, $to) = @_;
+	my ($word, $to) = @_;
 
-	$from = shorten_lang($from);
-	$to   = shorten_lang($to);
-
-	my $dict = $from.$to;
-
-	return ($dict, $word)
+	return ($word, shorten_lang($to))
 };
 
 sub shorten_lang {
