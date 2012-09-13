@@ -15,12 +15,13 @@ var langs = {
 	'tr': 'Turkish'
 };
 
-function ddg_spice_translate_wordreference(ir) {
+function ddg_spice_translate_my_memory(ir) {
 	items = new Array();
 
-	params = get_params_wordreference();
+	params = get_params_my_memory();
 	dict   = params[0];
-	word   = params[1];
+	word   = params[1].replace('%20', ' ');
+	from   = dict.slice(0, 2);
 	to     = dict.slice(-2);
 
 	if ((word == '') || (dict == ''))
@@ -28,19 +29,14 @@ function ddg_spice_translate_wordreference(ir) {
 
 	items[0] = new Array();
 	items[0]["h"] = langs[to] + ' translations for <i>' + word + '</i>';
-	items[0]['s'] = 'Wordreference.com';
-	items[0]['u'] = 'http://wordreference.com/' + dict + '/' + word;
+	items[0]['s'] = 'MyMemory';
+	items[0]['u'] = 'http://mymemory.translated.net/s.php?q='
+		+ word + '&sl=' + from + '&tl=' + to;
 	items[0]["force_big_header"] = true;
-
-	if (ir["Error"])
-		return;
 
 	text = '<ul>';
 
-	text += format_term(ir.term0);
-
-	if (ir.term1 != undefined)
-		text += format_term(ir.term1);
+	text += format_translations(ir.matches);
 
 	text += '</ul>';
 
@@ -49,11 +45,11 @@ function ddg_spice_translate_wordreference(ir) {
 	nra(items);
 }
 
-function get_params_wordreference() {
+function get_params_my_memory() {
 	scripts = document.getElementsByTagName('script');
 
 	for (i = 0; i < scripts.length; i++) {
-		regex = /translate\/wordreference\/(.+)\/(.+)/;
+		regex = /translate\/my_memory\/(.+)\/(.+)/;
 		match = scripts[i].src.match(regex);
 
 		if (match != undefined) {
@@ -64,28 +60,15 @@ function get_params_wordreference() {
 	return ['', ''];
 }
 
-function format_term(term) {
-	text = format_translations(term.PrincipalTranslations);
-
-	if (term.AdditionalTranslations)
-		text += format_translations(term.AdditionalTranslations);
-
-	return text;
-}
-
 function format_translations(ts) {
 	text = '';
 
 	for (i in ts) {
-		origi = ts[i].OriginalTerm;
-		first = ts[i].FirstTranslation;
-		secnd = ts[i].SecondTranslation;
+		origi = ts[i].segment;
+		first = ts[i].translation;
 
-		if (origi.term != first.term)
+		if (origi != first)
 			text += format_translation(first);
-
-		if ((secnd != undefined) && (origi.term != secnd.term))
-			text += format_translation(secnd);
 	}
 
 	return text;
@@ -97,12 +80,12 @@ function format_translation(t) {
 	if (t == undefined)
 		return '';
 
-	if (translations.indexOf(t.term) != -1)
+	if (translations.indexOf(t) != -1)
 		return '';
 	else
-		translations.push(t.term);
+		translations.push(t);
 
-	text = '<li><i>' + t.term + '</i>';
+	text = '<li><i>' + t + '</i>';
 
 	text += '</li>';
 

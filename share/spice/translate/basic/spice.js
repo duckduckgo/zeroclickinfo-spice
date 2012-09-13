@@ -3,11 +3,19 @@ function ddg_spice_translate_basic(ir) {
 	dict   = params[0];
 	words  = params[1];
 
+	from   = dict.slice(0, 2);
+	to     = dict.slice(-2);
+
 	script = '';
 	callbk = undefined;
 
 	if (words.split('%20').length > 1) {
-		console.log("MyMemory");
+		script = '/share/spice/translate/my_memory/spice.js';
+
+		callbk = function () {
+			base = '/js/spice/translate/my_memory/';
+			nrj(base + from + '|' + to + '/' + words);
+		};
 	} else {
 		script = '/share/spice/translate/wordreference/spice.js';
 
@@ -24,7 +32,7 @@ function get_params() {
 	scripts = document.getElementsByTagName('script');
 
 	for (i = 0; i < scripts.length; i++) {
-		regex = /translate\/([a-z]+)\/([a-z]+)\/(.+)/;
+		regex = /translate\/([a-z]+)\/(.+)\/(.+)/;
 		match = scripts[i].src.match(regex);
 
 		if (match != undefined) {
