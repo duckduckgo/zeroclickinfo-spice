@@ -49,6 +49,7 @@ function ddg_spice_hacker_news(res) {
       i++;
     }
     
+    var i = 0;
     while (i < HN_Global.discussions.length) {
 
       HN_Global.result = HN_Global.discussions[i];

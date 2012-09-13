@@ -1,7 +1,10 @@
-var req = document.getElementById('search_form_input').value;
+
+var SKIP_ARRAY = [];
+SKIP_ARRAY['movie'] = 1;
+SKIP_ARRAY['film'] = 1;
 
 function ddg_spice_movie(movie) {
-    var result = req.replace(/^movie\s+/g,'');
+    var request = DDG.get_query().replace("movie",'').replace("film", "");
 
     // validity check
     if (movie['total'] > 0 && movie['movies']) {
@@ -14,7 +17,7 @@ function ddg_spice_movie(movie) {
 
             // check which movie title is most relevant
             for (var i = 0, aMovie; aMovie = movie.movies[i]; i++){
-                if (DDG.isRelevant(aMovie.title, ["movie","film"]) ) {
+                if (DDG.isRelevant(aMovie.title, SKIP_ARRAY)) {
                     result = aMovie;
                     break;
                 }
@@ -27,11 +30,9 @@ function ddg_spice_movie(movie) {
         snippet = '';
 
         // Check presence of synopsis, and create element
-        if (result.synopsis) synopsis = result.synopsis.substring(0,140) + "...";
-        else if (result.critics_consensus && result.critics_consensus.length > 0) synopsis = result.critics_consensus.substring(0,140) + "...";
+        if (result.synopsis) synopsis = result.synopsis.substring(0,135) + "...";
+        else if (result.critics_consensus && result.critics_consensus.length > 0) synopsis = result.critics_consensus.substring(0,135) + "...";
         else synopsis = '';
-
-        synopsis = '';
 
         var names = [];
         // Loop through abridged cast members, add to cast element
@@ -41,7 +42,7 @@ function ddg_spice_movie(movie) {
             var name = result.abridged_cast[i].name;
             var url = 'http://www.rottentomatoes.com/celebrity/' + result.abridged_cast[i].id + '/';
 
-            names.push(pre+'<a href="'+url+'">'+name+'</a>');
+            names.push(pre+'<a onlcick="fl=1" href="'+url+'">'+name+'</a>');
         }
 
         var cast = '';
@@ -56,26 +57,60 @@ function ddg_spice_movie(movie) {
         if (result.title.length > 50) header += '...';
 
         //Movie Score
-        var score = 'with an audience score of'+result.audience_score+'%'
+        //var score = 'with an audience score of'+ result.audience_score +'%';
 
+        var rating, audience, critics, reaction, releaseDate, tomato;
+        var currentTime = new Date();
+
+        // Is a release date planned?
+        if (result.release_dates.theater) {
+            var rDate = result.release_dates.theater.split("-");
+            var opened = new Date(rDate[0], rDate[1]-1, rDate[2], 00, 00, 00); // Date uses month-1 notation
+            rating = (currentTime - opened < 0) ? "an upcoming " : "";
+            releaseDate = (rating) ? opened.toDateString().slice(4) : result.year;
+        }
+        else if (result.year > currentTime.getFullYear()) {
+            rating = "an upcoming ";
+            releaseDate = result.year;
+        }
+        reaction = (rating) ? " want to see)" : " approved)";
+        
+        // Who's reviewed it?
+        audience = (result.ratings.audience_score === -1) ? "" : result.ratings.audience_score+ "% audience"+reaction;
+        critics = (result.ratings.critics_score === -1) ? "" : result.ratings.critics_score+ "% critics, ";
+        critics += (audience) ? "" : reaction;
+
+        // Is it fresh or rotten?
+        tomato = (result.ratings.critics_rating) ? result.ratings.critics_rating+", " : "";
+
+        if (!rating){
+            releaseDate = result.year;
+            if (result.mpaa_rating === "R" || result.mpaa_rating === "NC-17" || result.mpaa_rating == "Unrated"){
+               rating = "an ";
+            } else {
+                rating = "a ";
+            }
+        }
+        rating += result.mpaa_rating;
+        
         // Call nra function as per Spice Plugin Guidelines
         items = [[]];
-        items[0]['a'] = result.title + ' is a '+result.year+ ' movie (' 
-                        +result.mpaa_rating+ ', '
-                        +result.ratings.audience_score+ '%, '
-                        +result.ratings.critics_score+ '% critic approved)'
-                        +cast + '. ' 
+        items[0]['a'] = result.title + ' ('+result.year+ ') is ' 
+                        +rating+ ' movie ('
+                        +tomato
+                        +critics
+                        +audience
+                        +cast + '. '
                         +synopsis;
-                        
-                        
-        items[0]['h'] = header;
+
+        items[0]['h'] = header+" ("+releaseDate+")";
 
         // Source name and url for the More at X link.
         items[0]['s'] = 'Rotten Tomatoes';
         items[0]['u'] = result.links.alternate;
 
         // Force vertical expansion (no scrollbar)
-        items[0]['f'] = 1;
+        // items[0]['f'] = 1;
 
         // Thumbnail url
         items[0]['i'] = poster; 

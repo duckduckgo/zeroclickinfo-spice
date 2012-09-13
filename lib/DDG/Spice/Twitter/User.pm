@@ -1,10 +1,10 @@
-package DDG::Spice::Twitter;
+package DDG::Spice::Twitter::User;
 
 use DDG::Spice;
 
 spice to => 'http://twitter.com/status/user_timeline/$1.json?callback={{callback}}';
 
-triggers query_lc => qr/^@([^\s]+)$/;
+triggers query_lc => qr/^(?:@|twitter\s+)([^\s]+)$/;
 
 handle matches => sub {
     my ($uname) = @_;

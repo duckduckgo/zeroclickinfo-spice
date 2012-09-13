@@ -11,8 +11,7 @@ function search_codeStrip(html) {
 	return tmp.textContent||tmp.innerText;
 }
 
-function ddg_spice_reddit(re) {    
-    // console.log(re["data"]["url"]);
+function ddg_spice_reddit(re) {
     // validity check
     if (re["data"]["display_name"]) {
 
@@ -34,17 +33,20 @@ function ddg_spice_reddit(re) {
         url = re["data"]["url"];
         title = "<a href='http://www.reddit.com" + url + "'>" + re["data"]["title"] + "</a>";
         subscribers = re["data"]["subscribers"].toString().replace(/(\d)(?=(\d{3})+(\.\d+|)\b)/g, "$1,");
-        content = "<div class='subreddit_description'><i>Description</i>: " + description + "</div>";
+        content = "<div class='subreddit_title'><i>Title</i>: " + title + "</div>";
+        content += "<div class='subreddit_description'><i>Description</i>: " + description + "</div>";
         content += "<div class='subreddit_subscribers'><i>Subscribers</i>: " + subscribers + "</div>";
 
+        content = content.replace(/---.*$/, "");
         items = new Array();
         items[0] = new Array();
         items[0]["a"] = content;
-        items[0]["h"] = title;
+        items[0]["h"] = re.data.display_name + " (subreddit)";
         items[0]["s"] = "Reddit";
         items[0]["u"] = "http://www.reddit.com" + url;
+        items[0]["force_big_header"] = true;
+        items[0]["force_space_after"] = true;
 
-        //console.log(content);
         nra(items);
     }       
 };
