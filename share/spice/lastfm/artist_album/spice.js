@@ -1,5 +1,5 @@
 function ddg_spice_lastfm_artist_album(lastfm) {
-    console.log(lastfm);
+    // console.log(lastfm);
     if(lastfm.topalbums.album) {
         var link, item, limit, toggle = true, albums = '<div style="albums"><ul>';
         var album = '';

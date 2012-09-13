@@ -1,5 +1,5 @@
 function ddg_spice_lastfm_top_tracks(lastfm) {
-    console.log(lastfm);
+    // console.log(lastfm);
     if(lastfm.toptracks.track){
         var songs = '<div style="top"><ul>', length = 5, duration;
         for(var i = 0;i < length;i++) {
