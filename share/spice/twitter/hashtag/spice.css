@@ -2,16 +2,39 @@
     clear: left;
     display: block;
     float: left;
-    margin: 6px;
+    margin: 1px 6px 0px;
     vertical-align: middle;
-    width: 2em;
+    width: 35px;
 }
 
 .twitter_hashtag_li {
-    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
-    border: 1px solid #CCCCCC;
-    border-radius: 8px 8px 8px 8px;
-    margin: 4px 12px;
+    background: #F9F9F9;
+    border: 1px solid #F9F9F9;
+    border-radius: 4px;
+    margin: 8px 12px;
     overflow: hidden;
-    padding: 2px 6px;
+    padding: 6px;
+    list-style-image: none;
+    list-style-type: none;
+}
+
+.twitter_hashtag_li:hover {
+    background-color: #EEE ;
+    border: 1px solid #AAA;
+}
+
+#zero_click_abstract{
+    margin-right: 0px !important;
+    padding-left: 0px !important;
+    margin-left: 0px !important;
+}
+
+.zero_click_snippet{
+    padding-left: 0px !important;
+    margin-left: 0px !important;
+}
+
+.twitter_hashtag_ul {
+    margin: 0px;
+    padding: 0px;
 }
