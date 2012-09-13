@@ -1,19 +1,22 @@
 function ddg_spice_twitter_hashtag(t) {
     //console.log(t);
 
+    var MAX_RESULTS = 4;
     var heading = decodeURIComponent(t.query);
     var results = t.results;
 
-    var snippet = '<ul>';
+    var snippet = '<ul class="twitter_hashtag_ul">';
+    
     for (result in results) {
-	var tweet = results[result];
+      if (result > MAX_RESULTS) break;
+    	var tweet = results[result];
 
-	snippet += '<li class="twitter_hashtag_li">';
-	snippet += '<a href="//twitter.com/' + tweet.from_user + '"><img class="twitter_hashtag_img" src="' + tweet.profile_image_url + '" /></a>';
-	snippet += makeStatus(tweet);
-	snippet += '</li>';
-
+    	snippet += '<li class="twitter_hashtag_li">';
+    	snippet += '<a href="//twitter.com/' + tweet.from_user + '"><img class="twitter_hashtag_img" src="' + tweet.profile_image_url + '" /></a>';
+    	snippet += makeStatus(tweet);
+    	snippet += '</li>';
     }
+    
     snippet += '</ul>';
 
     items = [[]];
