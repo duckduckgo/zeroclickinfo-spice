@@ -63,9 +63,9 @@ function ddg_spice_lastfm_artist_similar(lastfm) {
         }
         
         if(lastfm.artist.similar.artist.length > 1) {
-            similar += ' are similar to <a href="/?q=artist ' + lastfm.artist.name + '">' + lastfm.artist.name + '</a>';
+            similar += ' are similar to <a href="/?q=artist ' + lastfm.artist.name + '">' + lastfm.artist.name + '</a>.';
         } else {
-            similar += ' is similar to <a href="/?q=artist ' + lastfm.artist.name + '">' + lastfm.artist.name + '</a>';
+            similar += ' is similar to <a href="/?q=artist ' + lastfm.artist.name + '">' + lastfm.artist.name + '</a>.';
         }
 
         similar += '</div>';        
