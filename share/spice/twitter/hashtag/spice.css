@@ -1,0 +1,17 @@
+.twitter_hashtag_img {
+    clear: left;
+    display: block;
+    float: left;
+    margin: 6px;
+    vertical-align: middle;
+    width: 2em;
+}
+
+.twitter_hashtag_li {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid #CCCCCC;
+    border-radius: 8px 8px 8px 8px;
+    margin: 4px 12px;
+    overflow: hidden;
+    padding: 2px 6px;
+}
