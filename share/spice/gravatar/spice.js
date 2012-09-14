@@ -54,7 +54,7 @@ function ddg_spice_gravatar (res)
             items[1]['u'] = item["profileUrl"];
         }
 
-        nra(items, 1, 1);
+        nra(items, 0, 0);
     }
 }
 
