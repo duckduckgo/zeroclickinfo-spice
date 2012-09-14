@@ -49,7 +49,7 @@ function ddg_spice_gravatar (res)
             photos += add_photos(item);
             items[1]['a'] = clear + photos + clear;
             items[1]['t'] = 'Show photos';
-			items[1]['force_big_header'] = true;
+			//items[1]['force_big_header'] = true;
             items[1]['s'] = 'Gravatar';
             items[1]['u'] = item["profileUrl"];
         }
