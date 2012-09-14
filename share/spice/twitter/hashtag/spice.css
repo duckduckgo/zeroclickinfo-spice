@@ -1,0 +1,40 @@
+.twitter_hashtag_img {
+    clear: left;
+    display: block;
+    float: left;
+    margin: 1px 6px 0px;
+    vertical-align: middle;
+    width: 35px;
+}
+
+.twitter_hashtag_li {
+    background: #F9F9F9;
+    border: 1px solid #F9F9F9;
+    border-radius: 4px;
+    margin: 8px 12px;
+    overflow: hidden;
+    padding: 6px;
+    list-style-image: none;
+    list-style-type: none;
+}
+
+.twitter_hashtag_li:hover {
+    background-color: #EEE ;
+    border: 1px solid #AAA;
+}
+
+#zero_click_abstract{
+    margin-right: 0px !important;
+    padding-left: 0px !important;
+    margin-left: 0px !important;
+}
+
+.zero_click_snippet{
+    padding-left: 0px !important;
+    margin-left: 0px !important;
+}
+
+.twitter_hashtag_ul {
+    margin: 0px;
+    padding: 0px;
+}
