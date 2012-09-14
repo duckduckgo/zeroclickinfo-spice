@@ -5,19 +5,19 @@ function ddg_spice_twitter_hashtag(t) {
     var heading = decodeURIComponent(t.query);
     var results = t.results;
 
-    var snippet = '<ul class="twitter_hashtag_ul">';
+    var snippet = '<div class="twitter_hashtag_container">';
     
     for (result in results) {
       if (result > MAX_RESULTS) break;
     	var tweet = results[result];
 
-    	snippet += '<li class="twitter_hashtag_li">';
+    	snippet += '<div class="twitter_hashtag_tweet highlight_zero_click1 highlight_zero_click_wrapper">';
     	snippet += '<a href="//twitter.com/' + tweet.from_user + '"><img class="twitter_hashtag_img" src="' + tweet.profile_image_url + '" /></a>';
     	snippet += makeStatus(tweet);
-    	snippet += '</li>';
+    	snippet += '</div>';
     }
     
-    snippet += '</ul>';
+    snippet += '</div>';
 
     items = [[]];
 
