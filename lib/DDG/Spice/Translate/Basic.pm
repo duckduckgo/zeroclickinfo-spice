@@ -8,10 +8,10 @@ attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
 my $dicts = 'arabic|ar|chinese|zh|czech|cz|english|en|french|fr|greek|gr|italian|it|japanese|ja|korean|ko|polish|pl|portuguese|pt|romanian|ro|spanish|es|turkish|tr';
 
 spice to   => 'http://example.com';
-spice from => '([a-z]+)\/([a-z ]+)';
+spice from => '(.+)\/(.+)';
 spice wrap_string_callback => 1;
 
-triggers query_lc => qr/^translate ([a-z ]+) from ($dicts) to ($dicts)$/;
+triggers query_lc => qr/^translate (.+) from ($dicts) to ($dicts)$/;
 
 handle matches => sub {
 	my ($words, $from, $to) = @_;
