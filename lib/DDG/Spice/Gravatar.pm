@@ -8,6 +8,9 @@ triggers startend => "gravatar", "avatar of", "gravatar of";
 
 spice to => 'http://gravatar.com/$1.json?callback={{callback}}';
 
+attribution github => ['https://github.com/adman','Adman'],
+            twitter => ['http://twitter.com/adman_X','adman_X'];
+
 handle remainder => sub {
     s/^\s+//;
     s/\s+$//;
