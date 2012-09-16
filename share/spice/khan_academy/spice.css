@@ -22,11 +22,11 @@
 
 #khan {
   zoom: 1;
-  margin: 0;
+  margin: 4px 0;
 }
 
 #khan div.nav {
-  margin: 4px 0;
+  margin: 0;
   position: relative;
   overflow: hidden;
 }
@@ -139,6 +139,7 @@
 }
 
 #khan #emb {
+  margin-bottom: 4px;
   position: relative;
   display: none;
   background: #f9f9f9;
