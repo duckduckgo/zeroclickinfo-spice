@@ -67,7 +67,7 @@ langs = {
 
 function ddg_spice_detect_lang(ir) {
 	items = new Array();
-
+        console.log(ir);
 	detects = ir.data.detections;
 
 	if (detects.length == 0)
@@ -80,35 +80,30 @@ function ddg_spice_detect_lang(ir) {
 	items[0]['s'] = 'detectlanguage.com';
 	items[0]['u'] = 'http://detectlanguage.com/';
 	items[0]["force_big_header"] = true;
-
-	text = '<ul>';
-
+        var text = 'This is probably ';
+        var skipped = false;
+        var at_least_one = false;
 	for (i in detects) {
-		conf  = Math.ceil(detects[i].confidence * 100);
 		lang  = langs[detects[i].language];
-
-		if (lang == undefined)
-			continue;
-
-		text += '<li>';
-
-		if (i == '0')
-			text += '<i>';
-
-		text += lang + ' (' + conf + '% confidence)';
-
-		if (i == '0')
-			text += '</i>';
-
-		text += '</li>';
+                if (lang == undefined) {
+                    skipped = true;
+		    continue;
+                } else {
+                    at_least_one = true;
+                }
+                if(i === '1' && !skipped) {
+                    text += ", but it could also be ";
+                } 
+		conf = Math.ceil(detects[i].confidence * 100);
+		text += lang + ' (' + conf + '% sure)';
+                if(detects[i].isReliable === true) {
+                    break;
+                }
 	}
-
-	text += '</ul>';
-
-	if (text.length == 9)
-		return;
-
+        text += '.';
+        if(!at_least_one) {
+            return;
+        }
 	items[0]['a'] = text;
-
 	nra(items);
 }
