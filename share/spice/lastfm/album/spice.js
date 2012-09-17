@@ -1,5 +1,5 @@
 function ddg_spice_lastfm_album(lastfm) {
-	console.log(lastfm);
+	// console.log(lastfm);
 	if(lastfm.album) {	
 		var items = [];
 		items[0] = [];

@@ -1,5 +1,5 @@
 function ddg_spice_lastfm_song(lastfm) {
-	console.log(lastfm);
+	// console.log(lastfm);
 	if(lastfm.track) {	
 		var items = [];
 		items[0] = [];

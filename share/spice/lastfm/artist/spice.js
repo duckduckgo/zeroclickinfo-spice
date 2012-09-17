@@ -1,5 +1,5 @@
 function ddg_spice_lastfm_artist_all(lastfm) {
-    console.log(lastfm);
+    // console.log(lastfm);
     if(lastfm.artist) {
         var similar = '<div style="similar"><i>Similar to: </i>';
         for(var i = 0;i < lastfm.artist.similar.artist.length;i++) {
@@ -47,7 +47,7 @@ function ddg_spice_lastfm_artist_all(lastfm) {
 }
 
 function ddg_spice_lastfm_artist_similar(lastfm) {
-    console.log(lastfm);
+    // console.log(lastfm);
     if(lastfm.artist) {
         var similar = '<div style="similar">';
         for(var i = 0;i < lastfm.artist.similar.artist.length;i++) {
@@ -63,9 +63,9 @@ function ddg_spice_lastfm_artist_similar(lastfm) {
         }
         
         if(lastfm.artist.similar.artist.length > 1) {
-            similar += ' are similar to <a href="/?q=artist ' + lastfm.artist.name + '">' + lastfm.artist.name + '</a>';
+            similar += ' are similar to <a href="/?q=artist ' + lastfm.artist.name + '">' + lastfm.artist.name + '</a>.';
         } else {
-            similar += ' is similar to <a href="/?q=artist ' + lastfm.artist.name + '">' + lastfm.artist.name + '</a>';
+            similar += ' is similar to <a href="/?q=artist ' + lastfm.artist.name + '">' + lastfm.artist.name + '</a>.';
         }
 
         similar += '</div>';        

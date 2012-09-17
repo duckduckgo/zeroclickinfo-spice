@@ -1,5 +1,5 @@
 function ddg_spice_lastfm_artist_tracks(lastfm) {
-    console.log(lastfm);
+    // console.log(lastfm);
     if(lastfm.toptracks.track) {
         var link, item, limit, toggle=true, tracks = '<div><ul>', duration;
         var artist = '';
