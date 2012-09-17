@@ -1,5 +1,5 @@
-function ddg_spice_gravatar (res)
-{
+function ddg_spice_gravatar (res) {
+    console.log(res);
     var out = '';
     var photos = '';
     var ims = '';
@@ -21,7 +21,7 @@ function ddg_spice_gravatar (res)
                         item["emails"][0]["value"] : '';
             
             if (email){
-                out += '<i>Primary e-mail:</i> <a href="mailto:'+ email + '">'
+                out += '<i>Email:</i> <a href="mailto:'+ email + '">'
                     +       email
                     +  '</a><br />';
             }        
@@ -58,12 +58,20 @@ function ddg_spice_gravatar (res)
     }
 }
 
-function add_ims(ims)
-{
+function add_ims(ims) {
     var out = '';
-
+    var translate = {
+        aim: "AIM",
+        msn: "MSN",
+        yahoo: "Yahoo!",
+        icq: "ICQ",
+        xmpp: "XMPP",
+        skype: "Skype",
+        gtalk: "Gtalk"
+    }
     for (i in ims){
-        out += '<i>' + ims[i]["type"] + ':</i> '
+        var type = translate[ims[i]["type"]] ? translate[ims[i]["type"]] : ims[i]["type"];
+        out += '<i>' + type + ':</i> '
             +  ims[i]["value"]
             +  '<br />';
     }
