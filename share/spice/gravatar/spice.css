@@ -2,6 +2,12 @@ img {
     display: inline-block;
 }
 
+img.profile {   
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
 #photoimg {
     margin: 0 auto 0 auto;
     max-height: 64px;

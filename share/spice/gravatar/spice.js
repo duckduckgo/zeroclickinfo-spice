@@ -6,15 +6,15 @@ function ddg_spice_gravatar (res) {
     var email;
     var item = res["entry"][0];
     var name = item["name"]["formatted"] ? 
-                item["name"]["formatted"] + ' - ' +item["preferredUsername"] + ' (Gravatar)' : 
-                item["preferredUsername"] + ' (Gravatar)';
+                item["name"]["formatted"] + ' - ' +item["preferredUsername"]: 
+                item["preferredUsername"];
     var clear = '<div style="clear:both;"></div>';
 
     var query = DDG.get_query().replace("gravatar", "")
                                .replace("gravatar of", "")
                                .replace("avatar of", "")
                                .replace(" ", "");
-
+    var snippet, div, link, p;
     if (item){ 
         if (item["emails"]){
             email = item["emails"][0]["value"] ? 
@@ -33,14 +33,34 @@ function ddg_spice_gravatar (res) {
         if (item["ims"])
             out += add_ims(item["ims"])
 
-        if (!out)
-            out += 'No profile information available.'
-
+        var no_profile = false;
+        if (!out) {
+           var query = DDG.get_query();
+           query = query.replace(/\s*(gravatar|avatar)\s+(of)?\s*/, "");
+           query = query.replace(/\s*/, "");
+           p = d.createElement('p');
+           p.innerHTML = 'The gravatar image for <a href="mailto:' + query + '">' + query + '</a> is:<br>';
+           snippet = d.createElement('span');
+           if (nur) img = nur('','Profile Photo','http://gravatar.com/avatar/'+ item["hash"] + '?s=160');
+           if(img) {
+               snippet.appendChild(p);
+               no_profile = true;
+               YAHOO.util.Dom.addClass(img,'profile');
+               div = d.createElement('div');
+               div.appendChild(img);
+               snippet.appendChild(div);
+           }
+        }
         items = item["photos"].length > 1 ? [[], []] : [[]];
-        items[0]['a'] = out + clear;
-        items[0]['h'] = name;
+        if(no_profile) {
+            items[0]['a'] = snippet;
+            items[0]['f'] = 1;
+        } else {
+            items[0]['a'] = out + clear;
+            items[0]['i'] = 'http://gravatar.com/avatar/'+ item["hash"] + '.jpg';
+        }
+        items[0]['h'] = name + ' (Gravatar)'
         items[0]['force_big_header'] = 1;
-        items[0]['i'] = 'http://gravatar.com/avatar/'+ item["hash"] + '.jpg';
         items[0]['s'] = 'Gravatar';
         items[0]['u'] = item["profileUrl"];
 
