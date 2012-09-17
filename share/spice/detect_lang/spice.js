@@ -67,7 +67,7 @@ langs = {
 
 function ddg_spice_detect_lang(ir) {
 	items = new Array();
-        console.log(ir);
+        //console.log(ir);
 	detects = ir.data.detections;
 
 	if (detects.length == 0)
@@ -100,7 +100,7 @@ function ddg_spice_detect_lang(ir) {
                     break;
                 }
 	}
-        text += '.';
+        text += '.<div style="clear';
         if(!at_least_one) {
             return;
         }

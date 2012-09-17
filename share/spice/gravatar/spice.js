@@ -1,5 +1,5 @@
 function ddg_spice_gravatar (res) {
-    console.log(res);
+    //console.log(res);
     var out = '';
     var photos = '';
     var ims = '';
