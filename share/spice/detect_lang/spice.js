@@ -76,11 +76,16 @@ function ddg_spice_detect_lang(ir) {
 	detects.sort(function (a, b) { return a.confidence < b.confidence; });
 
 	items[0] = new Array();
-	items[0]["h"] = 'Detected languages:';
+        
+        var query = DDG.get_query();
+        query = query.replace(/\s*(detect|identify|what|determine|check)\s+(language)\s*/, "");
+        query = query.replace(/\s*/, "");
+	items[0]["h"] = query + ' (Language Detection)';
 	items[0]['s'] = 'detectlanguage.com';
 	items[0]['u'] = 'http://detectlanguage.com/';
 	items[0]["force_big_header"] = true;
-        var text = 'This is probably ';
+        items[0]["force_space_after"] = true;
+        var text = 'This text is probably ';
         var skipped = false;
         var at_least_one = false;
 	for (i in detects) {

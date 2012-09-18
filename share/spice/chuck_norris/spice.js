@@ -4,7 +4,8 @@ function ddg_spice_chuck_norris(res){
         items[0]['a'] = res['value']['joke'];
         items[0]['s'] = 'Internet Chuck Norris Database';
         items[0]['u'] = 'http://www.icndb.com/';
-        nra(items,0,1);
+        items[0]['force_space_after'] = true;
+        nra(items,1,1);
     }
 }
 
