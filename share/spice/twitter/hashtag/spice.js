@@ -7,7 +7,7 @@ function ddg_spice_twitter_hashtag(t) {
 
     var snippet = '<div class="twitter_hashtag_container">';
     
-    for (result in results) {
+    for (var result in results) {
       if (result > MAX_RESULTS) break;
     	var tweet = results[result];
 
