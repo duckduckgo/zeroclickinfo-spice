@@ -2,7 +2,7 @@ function ddg_spice_forvo(data) {
 
     if (data.attributes.total != "0") {
 
-	   	nrj("/forvo/jquery.min.js", true);
+   	nrj("/forvo/jquery.min.js", true);
         nrj("/forvo/mediaelement-and-player.min.js", true);
         nrj("/forvo/init.js", true);
         
@@ -46,14 +46,26 @@ function ddg_spice_forvo(data) {
             wrap.appendChild(container);
         }
 
-        out += wrap.innerHTML
+        out += wrap.innerHTML;
+	
+	var query = DDG.get_query();
+	var replace = ["how to say", "how do you pronounce", "how do you say", "pronounciation of", "how to pronounce", "pronunciation", "pronounce", "forvo"];
 
-        items = new Array();
+	for (i in replace){
+		var phrase = replace[i];
+		if (query.indexOf(phrase) != -1) {
+			query = query.replace(phrase, '');
+		}
+	}
+
+	query = query.trim();
+
+	items = new Array();
         items[0] = new Array();
         items[0]['a'] = out;
         items[0]['h'] = 'Pronunciations by Forvo';
         items[0]['s'] = 'Forvo';
-        items[0]['u'] = 'http://www.forvo.com/search/' + DDG.get_query();
+        items[0]['u'] = 'http://www.forvo.com/search/' + encodeURIComponent(query);
         items[0]['f'] = 1;
         items[0]['force_big_header'] = 1;
         nra(items, 1, 1);
