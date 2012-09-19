@@ -66,9 +66,9 @@ function ddg_spice_gravatar (res) {
         if (item["photos"].length > 1){
             photos += add_photos(item);
             items[1]['a'] = clear + photos + clear;
-            items[1]['t'] = 'More ' + (item["name"]["formatted"] ? 
+            items[1]['t'] = 'More photos of ' + (item["name"]["formatted"] ? 
                             item["name"]["formatted"] :
-                            item["preferredUsername"]) + ' photos';
+                            item["preferredUsername"]);
 			//items[1]['force_big_header'] = true;
             items[1]['s'] = 'Gravatar';
             items[1]['u'] = item["profileUrl"];
