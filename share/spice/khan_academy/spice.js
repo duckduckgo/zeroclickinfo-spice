@@ -13,7 +13,8 @@ function ddg_spice_khan_academy(res) {
     // minimum window width to show dots
     , min_win: 500
 
-    // default width of the navigation elements, defined in css
+    // default width of the navigation elements
+    , thumb_width: 148
     , li_width: 148
 
     // height of youtube menu, used when calculating aspect ratio
@@ -24,6 +25,9 @@ function ddg_spice_khan_academy(res) {
 
     // current video in nav
     , khan: 0
+
+    // prev / next witdth
+    , pn_width: 50
 
   }
 
@@ -51,6 +55,11 @@ function ddg_spice_khan_academy(res) {
     var nav = d.getElementById('nav')
     nav.innerHTML = ''  // clear
 
+    // container to hide extra pixels
+    var gr = d.createElement('div')
+    gr.id = 'gr'
+    nav.appendChild(gr)
+
     // create frame to hold thumbnails
     // will hide overflowing elements to look like slide
     var frame = d.createElement('div')
@@ -69,6 +78,7 @@ function ddg_spice_khan_academy(res) {
     for (i = 0; i < len; i++) {
       li = d.createElement('li')
       YAHOO.util.Dom.addClass(li, 'item')
+      YAHOO.util.Dom.setStyle(li, 'width', (state.li_width - 2) + 'px')
 
       vid = state.vids[i]
       if (!isProp(vid, 'id.$t')) continue
@@ -270,8 +280,18 @@ function ddg_spice_khan_academy(res) {
     hei += state.youtube_menu + state.khan_menu
     YAHOO.util.Dom.setStyle('emb', 'height', hei + 'px')
 
+    var frame_width = state.win - state.pn_width
+
     // increment by how many thumbs
-    state.inc = Math.floor(state.win / state.li_width)
+    state.inc = Math.floor(frame_width / state.thumb_width)
+
+    // stretch li to fit max
+    var extra = frame_width - (state.thumb_width * state.inc)
+    state.li_width = state.thumb_width + Math.floor(extra / state.inc)
+
+    // hide extras pixels
+    var hide = extra % state.inc
+    YAHOO.util.Dom.setStyle('gr', 'width', hide + 'px')
 
     // last video
     var linc = state.vids.length % state.inc
