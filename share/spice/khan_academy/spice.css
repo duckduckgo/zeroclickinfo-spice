@@ -44,7 +44,6 @@
 #khan li.item {
   float: left;
   list-style-type: none;
-  width: 146px;
   height: 130px;
   margin: 0;
   padding-top: 5px;
@@ -150,4 +149,13 @@
 
 #khan #dots a.selected {
   color: #1168cc;
+}
+
+#khan #gr {
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 25px;
+  background: #eaeaea;
 }
