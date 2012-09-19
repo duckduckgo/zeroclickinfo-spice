@@ -10,10 +10,6 @@ function ddg_spice_gravatar (res) {
                 item["preferredUsername"];
     var clear = '<div style="clear:both;"></div>';
 
-    var query = DDG.get_query().replace("gravatar", "")
-                               .replace("gravatar of", "")
-                               .replace("avatar of", "")
-                               .replace(" ", "");
     var snippet, div, link, p;
     if (item){ 
         if (item["emails"]){
@@ -70,7 +66,9 @@ function ddg_spice_gravatar (res) {
         if (item["photos"].length > 1){
             photos += add_photos(item);
             items[1]['a'] = clear + photos + clear;
-            items[1]['t'] = 'Show photos';
+            items[1]['t'] = 'More ' + (item["name"]["formatted"] ? 
+                            item["name"]["formatted"] :
+                            item["preferredUsername"]) + ' photos';
 			//items[1]['force_big_header'] = true;
             items[1]['s'] = 'Gravatar';
             items[1]['u'] = item["profileUrl"];
