@@ -38,29 +38,31 @@ function ddg_spice_gravatar (res) {
            var query = DDG.get_query();
            query = query.replace(/\s*(gravatar|avatar)\s+(of)?\s*/, "");
            query = query.replace(/\s*/, "");
-           p = d.createElement('p');
-           p.innerHTML = 'The gravatar image for <a href="mailto:' + query + '">' + query + '</a> is:<br>';
-           snippet = d.createElement('span');
-           if (nur) img = nur('','Profile Photo','http://gravatar.com/avatar/'+ item["hash"] + '?s=160');
-           if(img) {
-               snippet.appendChild(p);
-               no_profile = true;
-               YAHOO.util.Dom.addClass(img,'profile');
-               div = d.createElement('div');
-               div.appendChild(img);
-               snippet.appendChild(div);
-           }
+           out = 'Profile of <a href="mailto:' + query + '">' + query + '</a> on Gravatar.';
+           //p = d.createElement('p');
+           //p.innerHTML = 'Profile of <a href="mailto:' + query + '">' + query + '</a>';
+           //snippet = d.createElement('span');
+           //if (nur) img = nur('','Profile Photo','http://gravatar.com/avatar/'+ item["hash"] + '?s=160');
+           //if(img) {
+           //    snippet.appendChild(p);
+           //    no_profile = true;
+           //    YAHOO.util.Dom.addClass(img,'profile');
+           //    div = d.createElement('div');
+           //    div.appendChild(img);
+           //    snippet.appendChild(div);
+           // }
         }
         items = item["photos"].length > 1 ? [[], []] : [[]];
-        if(no_profile) {
-            items[0]['a'] = snippet;
-            items[0]['f'] = 1;
-        } else {
+        //if(no_profile) {
+        //    items[0]['a'] = snippet;
+        //    items[0]['f'] = 1;
+        //} else {
             items[0]['a'] = out + clear;
             items[0]['i'] = 'http://gravatar.com/avatar/'+ item["hash"] + '.jpg';
-        }
+        //}
         items[0]['h'] = name + ' (Gravatar)'
         items[0]['force_big_header'] = 1;
+        items[0]['force_no_icon'] = true;
         items[0]['s'] = 'Gravatar';
         items[0]['u'] = item["profileUrl"];
 
