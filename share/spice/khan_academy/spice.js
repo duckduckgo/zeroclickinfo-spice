@@ -20,9 +20,6 @@ function ddg_spice_khan_academy(res) {
     // height of youtube menu, used when calculating aspect ratio
     , youtube_menu: 30
 
-    // height of the extra menu in the KA embed
-    , khan_menu: 32
-
     // current video in nav
     , khan: 0
 
@@ -54,11 +51,6 @@ function ddg_spice_khan_academy(res) {
     // get main nav element
     var nav = d.getElementById('nav')
     nav.innerHTML = ''  // clear
-
-    // container to hide extra pixels
-    var gr = d.createElement('div')
-    gr.id = 'gr'
-    nav.appendChild(gr)
 
     // create frame to hold thumbnails
     // will hide overflowing elements to look like slide
@@ -251,7 +243,16 @@ function ddg_spice_khan_academy(res) {
     }
     ne = d.createElement('iframe')
     ne.id = 'ne'
-    ne.src = 'http://www.khanacademy.org/embed_video?v=' + id
+    ne.src = [
+      'https://www.youtube.com/embed/' + id + '?'
+      , 'autoplay=1'
+      , 'wmode=opaque'
+      , 'iv_load_policy=3'
+      , 'autohide=1'
+      , 'version=3'
+      , 'enablejsapi=1'
+    ].join('&')
+
     YAHOO.util.Dom.setStyle(ne, 'width', '100%')
     YAHOO.util.Dom.setStyle(ne, 'height', '100%')
     YAHOO.util.Dom.setAttribute(ne, 'vid', id)
@@ -276,8 +277,7 @@ function ddg_spice_khan_academy(res) {
     state.win = YAHOO.util.Dom.getRegion('nav').width
 
     // 16/9 Aspect Ratio + menu
-    var hei = Math.floor(state.win * 0.5625)
-    hei += state.youtube_menu + state.khan_menu
+    var hei = Math.floor(state.win * 0.5625) + state.youtube_menu
     YAHOO.util.Dom.setStyle('emb', 'height', hei + 'px')
 
     var frame_width = state.win - state.pn_width
@@ -312,9 +312,6 @@ function ddg_spice_khan_academy(res) {
     // add the dots
     makeDots()
 
-    // resize current video
-    addVid()
-
     // listen for window resizes
     YAHOO.util.Event.addListener(window, 'resize', function () {
       clearTimeout(state.resize)
@@ -342,6 +339,11 @@ function ddg_spice_khan_academy(res) {
     var nav = d.createElement('div')
     nav.id = 'nav'
     div.appendChild(nav)
+
+    // container to hide extra pixels
+    var gr = d.createElement('div')
+    gr.id = 'gr'
+    div.appendChild(gr)
 
     // set more at link
     var u = 'http://khanacademy.org/'

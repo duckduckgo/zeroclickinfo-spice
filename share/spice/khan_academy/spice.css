@@ -136,7 +136,7 @@
   margin: 0px;
   font-weight: normal;
   font-size: 13px;
-  color: #ccc;
+  color: #bfbfbf;
   padding: 0 2px;
 }
 
@@ -157,5 +157,5 @@
   height: 100%;
   top: 0;
   right: 25px;
-  background: #eaeaea;
+  background: #f9f9f9;
 }
