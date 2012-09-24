@@ -6,7 +6,7 @@ use Digest::MD5 qw(md5_hex);
 
 triggers startend => "gravatar", "avatar of", "gravatar of";
 
-spice to => 'http://gravatar.com/$1.json?callback={{callback}}';
+spice to => 'http://en.gravatar.com/$1.json?callback={{callback}}';
 
 attribution github => ['https://github.com/adman','Adman'],
             twitter => ['http://twitter.com/adman_X','adman_X'];
