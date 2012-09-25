@@ -5,6 +5,7 @@ function ddg_spice_github(re) {
 
     re = re.data.repositories;
 
+    var count = 0;
     var content = '<ul>';
     re.map(function(repo) {
         if (!repo.description || !repo.url) return;
@@ -15,7 +16,9 @@ function ddg_spice_github(re) {
                 + '">' + repo.owner + '</a>'
                 + (repo.fork ? ', fork' : '') + ') - '
                 + repo.description + '</li>';
+        count++;
     });
+    if (!count) {return};
     content += "</ul>";
     var more = "http://www.github.com/search?q=" + encodeURI(query);
     if (re.length == 1) {
