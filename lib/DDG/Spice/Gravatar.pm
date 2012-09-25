@@ -6,7 +6,7 @@ use Digest::MD5 qw(md5_hex);
 
 triggers startend => "gravatar", "avatar of", "gravatar of";
 
-spice to => 'http://duckduckgo.com:80/js/spice/gravatar_final/$1';
+spice to => 'http://jagtalon.duckduckgo.com/js/spice/gravatar_final/$1';
 
 attribution github => ['https://github.com/adman','Adman'],
             twitter => ['http://twitter.com/adman_X','adman_X'];
