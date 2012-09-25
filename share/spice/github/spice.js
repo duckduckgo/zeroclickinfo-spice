@@ -8,7 +8,10 @@ function ddg_spice_github(re) {
     var count = 0;
     var content = '<ul>';
     re.map(function(repo) {
-        if (!repo.description || !repo.url) return;
+        if (!repo.description) return;
+        if (!repo.url) {
+            repo.url = encodeURI('https://github.com/' + repo.owner + '/' + repo.name);
+        }
         var ownerURL = repo.url.replace(/[^\/]*$/, "");
         content += '<li><a href="' + repo.url
                 + '">' + repo.name + '</a>'
