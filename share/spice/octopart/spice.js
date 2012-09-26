@@ -60,10 +60,10 @@ function ddg_spice_octopart(response) {
             // links (datasheet)
             if (part.datasheets.length) {
                 var s = '<a href="' + part.datasheets[0].url + '" '
-                    + 'style="white-space:nowrap;">'
-                    + '<img src="http://n1.octostatic.com/o3/partsearch/'
-                    + 'partsearch/images/content/pdf_small.jpg" style="'
-                    + 'display:inline;margin-right:3px;height:12px;"/>'
+                    + '>'
+                    + ''
+                    + ''
+                    + ''
                     + 'Datasheet</a>';
             } else {
                 var s = 'No Datasheet';
