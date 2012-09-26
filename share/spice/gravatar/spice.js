@@ -1,4 +1,4 @@
-function ddg_spice_gravatar (res) {
+function ddg_spice_gravatar(res) {
     //console.log(res);
     var out = '';
     var photos = '';

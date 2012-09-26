@@ -1,5 +1,5 @@
 package DDG::Spice::Gravatar;
-# ABSTRACT: Shows gravatar of given e-mail 
+# ABSTRACT: Shows gravatar of a given e-mail.
 
 use DDG::Spice;
 use Digest::MD5 qw(md5_hex);
@@ -20,3 +20,4 @@ handle remainder => sub {
 };
 
 1;
+
