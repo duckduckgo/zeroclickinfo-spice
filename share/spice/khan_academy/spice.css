@@ -39,6 +39,11 @@
 #khan ul {
   margin: 0;
   padding: 0;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  -ms-transition: all 1s;
+  transition: all 1s;
 }
 
 #khan li.item {
