@@ -1,4 +1,4 @@
-function ddg_spice_twitter(tweets) {
+function ddg_spice_twitter_user(tweets) {
   if(tweets.length) {
     var content = "";
     var heading = "@" + tweets[0].user.screen_name;
@@ -19,9 +19,7 @@ function ddg_spice_twitter(tweets) {
     items[0]['u'] = 'http://twitter.com/' + tweets[0].user.screen_name;
     items[0]['i'] = tweets[0].user.profile_image_url;
 
-//    console.log(tweets[0].user.profile_image_url);
-
-    nra(items);
+    nra(items, 1, 0);
   }
 }
 

@@ -1,0 +1,29 @@
+ul.twitter_trends {
+    padding-left: 0px;
+}
+
+li.trend {
+	display: inline-block;
+	margin: 4px 3px;
+	padding: 5px 10px;
+	background-color: #367EDB;
+	list-style-type: none;
+	border-radius: 3px;
+	font-size: 12px;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+li.trend a {
+	color: #FFF;
+	padding: 0px 7px;
+}
+
+li.trend:hover {
+	background-color: #444;
+}
+
+li.trend a:hover {
+	color: #FFF;
+	text-decoration: none;
+	text-shadow: none;

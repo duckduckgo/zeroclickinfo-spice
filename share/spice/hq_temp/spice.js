@@ -1,5 +1,4 @@
 function ddg_spice_hq_temp(temp) {
-    //console.log(temp);
 
     var snippet = '';
     if (temp) {

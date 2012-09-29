@@ -1,4 +1,4 @@
-package DDG::Spice::Twitter;
+package DDG::Spice::Twitter::User;
 
 use DDG::Spice;
 

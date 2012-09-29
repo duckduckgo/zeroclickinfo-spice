@@ -1,5 +1,4 @@
 function ddg_spice_canistreamit(movies) {
-      // console.log(xk);
 
       var result,img,snippet,link,div;
       var items = new Array();

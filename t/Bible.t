@@ -5,18 +5,13 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
-use_ok('DDG::Spice::Bible');
-
-spice caller => 'DDG::Spice::Bible';
-spice call_type => 'include';
-spice answer_type => 'bible';
-
 ddg_spice_test(
-  [qw(
-    DDG::Spice::Bible
-  )],
-  'bible hebrews 8:2' => test_spice('/js/spice/bible/hebrews%208%3A2'),
-  'exodus 5:10' => test_spice('/js/spice/bible/exodus%205%3A10'),
+    [qw( DDG::Spice::Bible )],
+    'james 1:26' => test_spice(
+        '/js/spice/bible/james%201%3A26',
+        call_type => 'include',
+        caller => 'DDG::Spice::Bible'
+    ),
 );
 
 done_testing;
