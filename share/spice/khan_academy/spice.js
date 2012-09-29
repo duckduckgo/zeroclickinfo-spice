@@ -2,6 +2,8 @@
 
 function ddg_spice_khan_academy(res) {
 
+  var query = DDG.get_query().replace(/ ?khan( academy)? ?/, "");
+
 
   /* General */
 
@@ -356,7 +358,7 @@ function ddg_spice_khan_academy(res) {
     var items = [{
       f: 1,
       a: div,
-      h: 'Khan Academy Videos',
+      h: query + ' (Khan Academy Videos)',
       s: 'Khan Academy',
       u: u,
       force_big_header: true
