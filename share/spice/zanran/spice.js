@@ -32,11 +32,7 @@ function ddg_spice_zanran(zanran_results) {
     var img = d.createElement('img');
     img.src = "/iu/?u=" + result.preview_image;
     img_link.appendChild(img);
-    YAHOO.util.Dom.setStyle(img, 'max-width', '71px');
-    YAHOO.util.Dom.setStyle(img, 'max-height', '100px'); // A4 ratio
-    YAHOO.util.Dom.setStyle(img, 'border', '1px solid black');
-    YAHOO.util.Dom.setStyle(img_link, 'float', 'right');
-    YAHOO.util.Dom.setStyle(img_link, 'margin-left', '10px');
+    YAHOO.util.Dom.addClass(img_link, 'zanran_preview_image');
 
     var p1 = d.createElement("div");
     var source = d.createElement('i');
