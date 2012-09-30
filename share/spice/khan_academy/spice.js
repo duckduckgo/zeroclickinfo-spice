@@ -2,7 +2,7 @@
 
 function ddg_spice_khan_academy(res) {
 
-  var query = DDG.get_query().replace(/ ?khan( academy)? ?/, "");
+  var query = DDG.get_query().replace(/ ?khan( academy)? ?|videos?/g, "");
 
 
   /* General */
