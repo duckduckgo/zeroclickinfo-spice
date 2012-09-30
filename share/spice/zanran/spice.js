@@ -41,7 +41,7 @@ function ddg_spice_zanran(zanran_results) {
     var source = d.createElement('i');
     p1.appendChild(source);
     source.appendChild(d.createTextNode("Source: "));
-    p1.appendChild(d.createTextNode(result.site_name));
+    p1.appendChild(d.createTextNode(result.site_name + "."));
     
     var p2 = d.createElement("div");
     p2.appendChild(d.createTextNode(result.title));
@@ -62,6 +62,7 @@ function ddg_spice_zanran(zanran_results) {
     var source = d.createElement('i');
     source.appendChild(d.createTextNode("Source: "));
     source.appendChild(d.createTextNode(result.site_name));
+    source.appendChild(d.createTextNode("."));
     
     var title = shorten_title(result.title, 140);
 
@@ -69,7 +70,7 @@ function ddg_spice_zanran(zanran_results) {
     link.appendChild(d.createTextNode("[Link]"));
   
     var div = d.createElement("p");
-    div.appendChild(d.createTextNode(title));
+    div.appendChild(d.createTextNode(title + " "));
     div.appendChild(link);
     div.appendChild(d.createTextNode(" | "));
     div.appendChild(source);
@@ -90,7 +91,7 @@ function ddg_spice_zanran(zanran_results) {
     a: outer_html(create_dom_for_primary_result(results[0])),
     i: outer_html(create_img_for_primary_result(results[0])),
     u: zanran_results.more,
-    h: "Data & Statistics from Zanran (" + DDG.get_query() + ")",
+    h: "Data & Statistics from Zanran",
     force_big_header: 1,
     s: 'Zanran',
     f: 1
