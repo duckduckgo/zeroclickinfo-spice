@@ -85,7 +85,7 @@ function ddg_spice_khan_academy(res) {
 
       img = d.createElement('img')
       if (!isProp(vid, 'media$group.media$thumbnail')) continue
-      img.src = vid.media$group.media$thumbnail[0].url
+      img.src = "/iu/?u=" + vid.media$group.media$thumbnail[0].url
 
       p = d.createElement('p')
       if (!isProp(vid, 'title.$t')) continue
