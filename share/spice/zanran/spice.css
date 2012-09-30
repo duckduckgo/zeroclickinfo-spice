@@ -1,7 +1,3 @@
-a.zanran_preview_image {
-  float: right;
-  margin-left: 10px;
-}
 a.zanran_preview_image img {
   max-width: 71px;
   max-height: 100px; /* A4 ratio */

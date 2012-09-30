@@ -27,13 +27,16 @@ function ddg_spice_zanran(zanran_results) {
     return title;
   }
   
-  var create_dom_for_primary_result = function(result){
+  var create_img_for_primary_result = function(result){
     var img_link = create_link(result);
     var img = d.createElement('img');
     img.src = "/iu/?u=" + result.preview_image;
     img_link.appendChild(img);
     YAHOO.util.Dom.addClass(img_link, 'zanran_preview_image');
-
+    return img_link;
+  };
+  
+  var create_dom_for_primary_result = function(result){
     var p1 = d.createElement("div");
     var source = d.createElement('i');
     p1.appendChild(source);
@@ -47,7 +50,6 @@ function ddg_spice_zanran(zanran_results) {
     link2.appendChild(d.createTextNode("[Link]"));
     
     var div = d.createElement("div");
-    div.appendChild(img_link);
     div.appendChild(p1);
     div.appendChild(p2);
     div.appendChild(link2);
@@ -85,7 +87,8 @@ function ddg_spice_zanran(zanran_results) {
   var results = zanran_results.results;
 
   var items = [{
-    a: outer_html(create_dom_for_primary_result(results[0])) + '<div class="clear"></div>',
+    a: outer_html(create_dom_for_primary_result(results[0])),
+    i: outer_html(create_img_for_primary_result(results[0])),
     u: zanran_results.more,
     h: "Data & Statistics from Zanran (" + DDG.get_query() + ")",
     force_big_header: 1,
