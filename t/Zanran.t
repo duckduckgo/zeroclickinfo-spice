@@ -16,8 +16,8 @@ ddg_spice_test(
   [qw(
     DDG::Spice::Zanran
   )],
-  'price of gasoline' => test_spice('/js/spice/zanran/'),
-  'PRICE OF GASOLINE' => test_spice('/js/spice/zanran/'),
+  'price of gasoline' => test_spice('/js/spice/zanran/price%20of%20gasoline'),
+  'PRICE OF GASOLINE' => test_spice('/js/spice/zanran/price%20of%20gasoline'),
   'something irrelevant' => undef,
 );
 
