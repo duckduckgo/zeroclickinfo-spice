@@ -31,7 +31,7 @@ function ddg_spice_translate_basic(ir) {
 	if (words.split('%20').length > 1) {
 		base = '/js/spice/translate/my_memory/';
 
-		nrj(base + from + '|' + to + '/' + words);
+		nrj(base + from + '/' + to + '/' + words);
 	} else {
 		base = '/js/spice/translate/wordreference/';
 
