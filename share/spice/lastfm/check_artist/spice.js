@@ -5,8 +5,8 @@ function ddg_spice_lastfm_check_artist_all(lastfm) {
     }
     //Pass the original query to nrj.
     var query =  DDG.get_query();
-    query.replace(/(?:bands?|musicians?|players?|artists?|performers?|singers?|rappers?|djs?|vocalists?|songsters?)\s+similar\s+(?:to\s+)?/, "");
-    query = query.replace(/similar\s+(?:bands?|musicians?|players?|artists?|performers?|singers?|rappers?|djs?|vocalists?|songsters?)\s+(?:to\s+)?/, "");
+    query = query.replace(/\s*(?:bands?|musicians?|players?|artists?|performers?|singers?|rappers?|djs?|vocalists?|songsters?)\s*/, "");
+    console.log(query);
     nrj("/js/spice/lastfm/artist_all/" + query);
 }
 
