@@ -1,5 +1,5 @@
 function ddg_spice_lastfm_artist_tracks(lastfm) {
-    // console.log(lastfm);
+    console.log(lastfm);
     if(lastfm.toptracks.track) {
         var link, item, limit, toggle=true, tracks = '<div><ul>', duration;
         var artist = '';
@@ -31,28 +31,10 @@ function ddg_spice_lastfm_artist_tracks(lastfm) {
             //Get the name of the song.
             var name = item.name;
 
-            duration = lastfm.toptracks.track[i].duration;
-            var min = 0;
-            var sec = 0;
-            if(duration) {
-                duration = Number(duration);
-                if(duration >= 60) {
-                    min = Math.floor(duration / 60);
-                    sec = duration - (min * 60);
-                } else {
-                    sec = String(duration);
-                }
-                min = ' ' + min + 'min. ';
-                sec += 'sec.';
-            } else {
-                min = '';
-                sec = '';
-            }
-
             //Create the link to the song. Oh, and some links to streaming services.
             link = '<li><a href="/?q=' + encodeURIComponent(name + ' song by ' + item.artist.name) + 
                 '">' + name + '</a> by ' + '<a href="/?q=artist ' + encodeURIComponent(item.artist.name) + '">' + item.artist.name + 
-                '</a>';//<span style="color: rgb(119, 119, 119); font-size: 11px; "> ' + min + sec + '</span>';                
+                '</a>';
             tracks += link;
         }
         tracks += '</ul></div>\n';

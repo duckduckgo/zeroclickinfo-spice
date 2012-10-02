@@ -1,5 +1,4 @@
 function ddg_spice_lastfm_check_artist_all(lastfm) {
-    console.log(lastfm);
     if(lastfm.corrections.correction) {
         //Pass the right version to the LastfmArtist plugin.
         nrj("/js/spice/lastfm/artist_all/" + lastfm.corrections.correction.artist.name);
@@ -12,7 +11,6 @@ function ddg_spice_lastfm_check_artist_all(lastfm) {
 }
 
 function ddg_spice_lastfm_check_artist_similar(lastfm) {
-    console.log(lastfm);
     if(lastfm.corrections.correction) {
         nrj("/js/spice/lastfm/artist_similar/" + lastfm.corrections.correction.artist.name);
     } else {
@@ -27,8 +25,8 @@ function ddg_spice_lastfm_check_artist_similar(lastfm) {
 
 function ddg_spice_lastfm_artist_all(lastfm) {
     // console.log(lastfm);
-    if(lastfm.artist) {
-        var similar = '<div style="similar"><i>Similar to: </i>';
+    if(lastfm.artist && lastfm.artist.similar.artist) {
+        similar = '<div style="similar"><i>Similar to: </i>';
         for(var i = 0;i < lastfm.artist.similar.artist.length;i++) {
             var artist = lastfm.artist.similar.artist[i];
             similar += '<a href="/?q=artist+' + encodeURIComponent(artist.name) + '">' + artist.name + '</a>';
@@ -36,7 +34,7 @@ function ddg_spice_lastfm_artist_all(lastfm) {
                 similar += ', ';
             }
         }
-        similar += '.</div>';        
+        similar += '.</div>';
         var items = [];
         items[0] = [];
         var rest = true;
@@ -75,7 +73,7 @@ function ddg_spice_lastfm_artist_all(lastfm) {
 
 function ddg_spice_lastfm_artist_similar(lastfm) {
     // console.log(lastfm);
-    if(lastfm.artist) {
+    if(lastfm.artist && lastfm.artist.similar.artist) {
         var similar = '<div style="similar">';
         for(var i = 0;i < lastfm.artist.similar.artist.length;i++) {
             var artist = lastfm.artist.similar.artist[i];
