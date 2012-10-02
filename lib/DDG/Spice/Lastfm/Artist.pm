@@ -1,9 +1,9 @@
-package DDG::Spice::Lastfm::CheckArtist;
+package DDG::Spice::Lastfm::Artist;
 # ABSTRACT: Search for musicians in Last.fm and get artists or bands similar to them.
 
 use DDG::Spice;
 
-spice to => 'http://ws.audioscrobbler.com/2.0/?method=artist.getcorrection&artist=$1&format=json&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}_$2';
+spice to => 'http://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&artist=$1&autocorrect=1&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}_$2';
 spice from => '(?:([^/]*)/([^/]*)|)';
 
 triggers any => 'similar', 'band', 'bands', 'musician', 'musicians', 'player', 'artist', 'artists', 'performer', 'performers', 'singer', 'singers', 'rapper', 'dj', 'rappers', 'vocalist', 'vocalists', 'djs', 'songster', 'songsters';

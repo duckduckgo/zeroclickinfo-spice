@@ -1,29 +1,3 @@
-function ddg_spice_lastfm_check_artist_all(lastfm) {
-    console.log(lastfm);
-    if(!lastfm.error && lastfm.corrections.correction) {
-        //Pass the right version to the LastfmArtist plugin.
-        nrj("/js/spice/lastfm/artist_all/" + lastfm.corrections.correction.artist.name);
-    } else {
-        //Pass the original query to nrj.
-        var query =  DDG.get_query();
-        query = query.replace(/\s*(?:bands?|musicians?|players?|artists?|performers?|singers?|rappers?|djs?|vocalists?|songsters?)\s*/, "");
-        nrj("/js/spice/lastfm/artist_all/" + query);
-    }
-}
-
-function ddg_spice_lastfm_check_artist_similar(lastfm) {
-    if(!lastfm.error && lastfm.corrections.correction) {
-        nrj("/js/spice/lastfm/artist_similar/" + lastfm.corrections.correction.artist.name);
-    } else {
-        //Pass the original query to nrj.
-        var query =  DDG.get_query();
-        query = query.replace(/(?:bands?|musicians?|players?|artists?|performers?|singers?|rappers?|djs?|vocalists?|songsters?)\s+similar\s+(?:to\s+)?/, "");
-        query = query.replace(/similar\s+(?:bands?|musicians?|players?|artists?|performers?|singers?|rappers?|djs?|vocalists?|songsters?)\s+(?:to\s+)?/, "");
-        query = query.replace(/\s+similar\s+(?:bands?|musicians?|players?|artists?|performers?|singers?|rappers?|djs?|vocalists?|songsters?)/, "");
-        nrj("/js/spice/lastfm/artist_similar/" + query);
-    }
-}
-
 function ddg_spice_lastfm_artist_all(lastfm) {
     // console.log(lastfm);
     if(lastfm.artist && lastfm.artist.similar.artist) {
