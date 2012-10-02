@@ -60,10 +60,10 @@ function ddg_spice_octopart(response) {
             // links (datasheet)
             if (part.datasheets.length) {
                 var s = '<a href="' + part.datasheets[0].url + '" '
-                    + '>'
-                    + ''
-                    + ''
-                    + ''
+                    + 'style="white-space:nowrap;">'
+                    + '<img src="' + 'https://icons.duckduckgo.com/i/www.adobe.com.ico' 
+                    + '" style="'
+                    + 'display:inline;margin-right:3px;height:12px;"/>'
                     + 'Datasheet</a>';
             } else {
                 var s = 'No Datasheet';
@@ -98,6 +98,7 @@ function ddg_spice_octopart(response) {
                 content += snippets.join('; ') + ' ';
             if (links.length)
                 content += '[' + links.join('] [') + '] ';
+            content += '<div style="clear:both;"></div>';
 
             // set ddg display variables
             out.push({
