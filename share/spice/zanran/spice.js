@@ -21,6 +21,20 @@ function ddg_spice_zanran(zanran_results) {
     link.title = result.title;
     return link;
   };
+
+  var direct_link_label = function(result){
+    if (result.preview_url.match(/\/pdf\//)) {
+      return "pdf";
+    } else if(result.preview_url.match(/\/(xls|publicdata)\//)) {
+      return "xls";
+    } else if(result.preview_url.match(/\/(img|data)\//)) {
+      return "image";
+    } else if(result.preview_url.match(/\/html\//)) {
+      return "table";
+    } else { /* articles (where preview=document), and unknown */
+      return null;
+    }
+  };
   
   var shorten_title = function(title, max_len){
     if(title.length > max_len) {
@@ -35,12 +49,23 @@ function ddg_spice_zanran(zanran_results) {
   }
   
   var create_img_for_primary_result = function(result){
+    var div = d.createElement("div");
+    YAHOO.util.Dom.addClass(div, 'zanran_preview_image');
+    
     var img_link = create_link(result);
     var img = d.createElement('img');
     img.src = "/iu/?u=" + result.preview_image;
     img_link.appendChild(img);
-    YAHOO.util.Dom.addClass(img_link, 'zanran_preview_image');
-    return img_link;
+    div.appendChild(img_link);
+    
+    var dll = direct_link_label(result);
+    if (dll) {
+      var link_direct = create_direct_link(result);
+      link_direct.appendChild(d.createTextNode("[" + dll + "]"));
+      div.appendChild(link_direct);
+    }
+    
+    return div;
   };
   
   var create_dom_for_primary_result = function(result){
@@ -54,7 +79,7 @@ function ddg_spice_zanran(zanran_results) {
     p2.appendChild(d.createTextNode(result.title + " "));
 
     var link2 = create_link(result);
-    link2.appendChild(d.createTextNode("[view document]"));
+    link2.appendChild(d.createTextNode("[preview]"));
     
     var div = d.createElement("div");
     div.appendChild(p1);
@@ -62,9 +87,10 @@ function ddg_spice_zanran(zanran_results) {
     p2.appendChild(link2);
     div.appendChild(d.createElement("br"));
 
-    if(result.preview_url.match(/\/pdf\//)){
+    var dll = direct_link_label(result);
+    if (dll) {
       var link_direct = create_direct_link(result);
-      link_direct.appendChild(d.createTextNode("[pdf]"));
+      link_direct.appendChild(d.createTextNode("[" + dll + "]"));
       p2.appendChild(d.createTextNode(" "));
       p2.appendChild(link_direct);
     }
@@ -81,15 +107,16 @@ function ddg_spice_zanran(zanran_results) {
     var title = shorten_title(result.title, 140);
 
     var link = create_link(result);
-    link.appendChild(d.createTextNode("[view document]"));
+    link.appendChild(d.createTextNode("[preview]"));
   
     var div = d.createElement("p");
     div.appendChild(d.createTextNode(title + " "));
     div.appendChild(link);
     
-    if(result.preview_url.match(/\/pdf\//)){
+    var dll = direct_link_label(result);
+    if (dll) {
       var link_direct = create_direct_link(result);
-      link_direct.appendChild(d.createTextNode("[pdf]"));
+      link_direct.appendChild(d.createTextNode("[" + dll + "]"));
       div.appendChild(d.createTextNode(" "));
       div.appendChild(link_direct);
     }
