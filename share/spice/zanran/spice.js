@@ -44,15 +44,15 @@ function ddg_spice_zanran(zanran_results) {
     p1.appendChild(d.createTextNode(result.site_name + "."));
     
     var p2 = d.createElement("div");
-    p2.appendChild(d.createTextNode(result.title));
+    p2.appendChild(d.createTextNode(result.title + " "));
 
     var link2 = create_link(result);
-    link2.appendChild(d.createTextNode("[Link]"));
+    link2.appendChild(d.createTextNode("[view document]"));
     
     var div = d.createElement("div");
     div.appendChild(p1);
     div.appendChild(p2);
-    div.appendChild(link2);
+    p2.appendChild(link2);
     div.appendChild(d.createElement("br"));
 
     return div;
@@ -67,7 +67,7 @@ function ddg_spice_zanran(zanran_results) {
     var title = shorten_title(result.title, 140);
 
     var link = create_link(result);
-    link.appendChild(d.createTextNode("[Link]"));
+    link.appendChild(d.createTextNode("[view document]"));
   
     var div = d.createElement("p");
     div.appendChild(d.createTextNode(title + " "));
