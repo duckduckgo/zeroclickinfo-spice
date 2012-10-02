@@ -1,5 +1,6 @@
 function ddg_spice_lastfm_check_artist_all(lastfm) {
-    if(lastfm.corrections.correction) {
+    console.log(lastfm);
+    if(!lastfm.error && lastfm.corrections.correction) {
         //Pass the right version to the LastfmArtist plugin.
         nrj("/js/spice/lastfm/artist_all/" + lastfm.corrections.correction.artist.name);
     } else {
@@ -11,7 +12,7 @@ function ddg_spice_lastfm_check_artist_all(lastfm) {
 }
 
 function ddg_spice_lastfm_check_artist_similar(lastfm) {
-    if(lastfm.corrections.correction) {
+    if(!lastfm.error && lastfm.corrections.correction) {
         nrj("/js/spice/lastfm/artist_similar/" + lastfm.corrections.correction.artist.name);
     } else {
         //Pass the original query to nrj.
