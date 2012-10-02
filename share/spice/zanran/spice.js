@@ -15,6 +15,13 @@ function ddg_spice_zanran(zanran_results) {
     return link;
   };
   
+  var create_direct_link = function(result){
+    var link = d.createElement("a");
+    link.href = result.final_url;
+    link.title = result.title;
+    return link;
+  };
+  
   var shorten_title = function(title, max_len){
     if(title.length > max_len) {
       var words = title.split(/\s+/);
@@ -55,6 +62,13 @@ function ddg_spice_zanran(zanran_results) {
     p2.appendChild(link2);
     div.appendChild(d.createElement("br"));
 
+    if(result.preview_url.match(/\/pdf\//)){
+      var link_direct = create_direct_link(result);
+      link_direct.appendChild(d.createTextNode("[pdf]"));
+      p2.appendChild(d.createTextNode(" "));
+      p2.appendChild(link_direct);
+    }
+
     return div;
   };
   
@@ -72,6 +86,14 @@ function ddg_spice_zanran(zanran_results) {
     var div = d.createElement("p");
     div.appendChild(d.createTextNode(title + " "));
     div.appendChild(link);
+    
+    if(result.preview_url.match(/\/pdf\//)){
+      var link_direct = create_direct_link(result);
+      link_direct.appendChild(d.createTextNode("[pdf]"));
+      div.appendChild(d.createTextNode(" "));
+      div.appendChild(link_direct);
+    }
+    
     div.appendChild(d.createTextNode(" | "));
     div.appendChild(source);
     
