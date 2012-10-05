@@ -91,7 +91,7 @@ function ddg_spice_zanran(zanran_results) {
     if (dll) {
       var link_direct = create_direct_link(result);
       link_direct.appendChild(d.createTextNode("[" + dll + "]"));
-      p2.appendChild(d.createTextNode(" "));
+      p2.appendChild(d.createTextNode("\xa0\xa0"));
       p2.appendChild(link_direct);
     }
 
@@ -117,7 +117,7 @@ function ddg_spice_zanran(zanran_results) {
     if (dll) {
       var link_direct = create_direct_link(result);
       link_direct.appendChild(d.createTextNode("[" + dll + "]"));
-      div.appendChild(d.createTextNode(" "));
+      div.appendChild(d.createTextNode("\xa0\xa0"));
       div.appendChild(link_direct);
     }
     
