@@ -28,9 +28,9 @@ function ddg_spice_big_huge_varinym(json, mode, heading, complete, modifier, con
       }
     }
 
-    if (mode == 'syn' && wc < 10) {
-      content = ddg_spice_big_huge_varinym(json, 'sim', 'Similar to ', false, 'Similar ', content);
-      ddg_spice_big_huge_varinym(json, 'rel', 'Synonyms of ', true, 'Related ', content);
+    if (mode == 'sim' && wc < 10) {
+      content = ddg_spice_big_huge_varinym(json, 'syn', 'Synonyms of ', false, 'Synonym ', content);
+      ddg_spice_big_huge_varinym(json, 'rel', 'Similar to ', true, 'Related ', content);
       return false;
     }
 
