@@ -1,3 +1,12 @@
 td, th {
-  border: solid 1px black;
+    border: solid 1px black;
+}
+
+#debianVersions {
+    text-align: center !important
+}
+
+
+caption, th, #debianVersions{
+    text-align: center !important
 }
