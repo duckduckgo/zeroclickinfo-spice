@@ -39,8 +39,10 @@ function ddg_spice_deb_version(ir)
     items[0]['h'] = 'Versions of ' + program + ' in Debian';
     items[0]['s'] = 'qa.debian.org';
     items[0]['u'] = 'http://qa.debian.org/madison.php?package=' + program + '&table=debian&a=&c=&s=#';
-    nra(items);
 
     // Force no compression.
     items[0]['f'] = 1;  
+
+    nra(items);
+
 }
