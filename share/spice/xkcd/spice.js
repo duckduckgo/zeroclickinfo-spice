@@ -31,7 +31,7 @@ function ddg_spice_xkcd(xk) {
     items[0] = new Array();
     items[0]['a'] = snippet;
 
-    items[0]['h'] = xk['safe_title'];
+    items[0]['h'] = xk['safe_title'] + ' (XKCD)';
 
      // Source name and url for the More at X link.
      items[0]['s'] = 'XKCD';
