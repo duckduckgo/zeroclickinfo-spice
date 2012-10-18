@@ -23,35 +23,6 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 	text-decoration: underline;
 }
 
-
-/***** TABLE - Home *****/
-.home{
-	margin: 4 auto;
-	width: 960px;
-}
-
-.home p{
-	background: #336699;	
-	height:35px;
-	text-align:center;
-	font-size:18pt;
-	font-family: Verdana, Helvetica, Arial, sans-serif;
-	color: #fff;
-		
-	border-radius:10px 10px 0px 0px; 
-	-moz-border-radius:10px 10px 0px 0px; 
-	-webkit-border-radius:10px 10px 0px 0px;
-}
-
-.home ul{
-	padding-right: 150px;
-	padding-left: 150px;
-	padding-bottom: 70px;
-	text-decoration: none;
-
-	font-family: 'brandon';
-	font-size:14pt;
-}
 p{
 	background: #336699;	
 	height:35px;
@@ -71,22 +42,6 @@ p{
 
 	}
 
-/***** TABLE - All *****/
-.all
-{
-	margin: 10px;
-	
-	text-align:center;
-	font-style: 'brandon';
-	font-size: 14pt;
-	
-	-moz-border-radius: 0px 0px 10px 10px;
-	 border-radius: 0px 0px 10px 10px;
-}
-
-.all p:hover, p:active, p:focus{
-	text-decoration: underline;
-}
 	
 .alltable
 {
@@ -123,26 +78,7 @@ p{
 	-moz-border-radius: 10px 10px 10px 10px;
 	 border-radius: 10px 10px 10px 10px;
 }
-.alltable2
-{
-	
-	text-align:center;
-	font-style: 'brandon';
-	font-size: 10pt;
-    
-    width: 650px;
-    
-    border-spacing: 10px;  
-    border: 1px solid #a4c3ca;
-    -moz-border-radius: 0px 0px 10px 10px;
-	 border-radius: 0px 0px 10px 10px;
-}
-.image {
-	width: 125px;
-	height: 125px;
-	
-	padding: 10px 10px 10px 10px;
-}
+
 
 
 
