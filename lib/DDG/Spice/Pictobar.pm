@@ -3,15 +3,12 @@ package DDG::Spice::Pictobar;
 
 use DDG::Spice;
 
-spice to => 'http://www.pictobar.com/api/people_s?callback={{callback}}&sid=$1';
-
-
 triggers query_raw => qr/cinque mcfarlane-blake/;
 
+spice to => 'http://www.pictobar.com/api/people_s?callback={{callback}}&sid=$1';
+
 handle matches => sub {
-	my ($name) = @_;
-	return $name if $name;
-	return;
+	return $_;
 };
 
 1;
