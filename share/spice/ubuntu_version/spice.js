@@ -20,7 +20,7 @@ function ddg_spice_ubuntu_version(ir)
     ir = ir.split('\n');
 
     // begin table 
-    out += '<table id="debianVersions">\n';
+    out += '<table id="ubuntuVersions">\n';
     out += '<tr><th>Ubuntu Version</th><th>Package Version</th><th>Architecture</th></tr>';
 
     // Loop through and place each version in it's owrn row
