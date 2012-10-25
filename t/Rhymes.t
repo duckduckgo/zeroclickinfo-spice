@@ -13,6 +13,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Rhymes',
         is_cached => 1
     ),
+    'rhyme list' => test_spice(
+        '/js/spice/rhymes/list',
+        call_type => 'include',
+        caller => 'DDG::Spice::Rhymes',
+        is_cached => 1
+    ),
 );
 
 done_testing;
