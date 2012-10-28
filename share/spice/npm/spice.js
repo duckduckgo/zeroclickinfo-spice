@@ -3,7 +3,7 @@ function ddg_spice_npm(res) {
 
 		description = ''; // Initialize content variable
 		description += '<pre id="npm_install_command"> $ npm install ' + res.name + '</pre>'; // Easy to read command to install the package
-		description += res.description; // Add the description
+		description += '<div id="npm_package_description">' + res.description + '</div>'; // Add the description
 
 		packages = [[]]; // Create an empty array for all of our informaton
 		packages[0]['a'] =  description; // Gives the main description of the plugin
