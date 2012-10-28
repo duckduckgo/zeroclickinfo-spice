@@ -3,6 +3,9 @@ package DDG::Spice::Npm;
 
 use DDG::Spice;
 
+attribution github  => ['https://github.com/remixz', 'remixz'],
+            twitter => ['https://twitter.com/zachbruggeman', 'zachbruggeman'];
+
 spice to => 'http://registry.npmjs.org/$1/latest';
 spice wrap_jsonp_callback => 1;
 
