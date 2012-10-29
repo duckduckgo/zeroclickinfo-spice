@@ -13,5 +13,6 @@ ddg_spice_test(
         is_cached => 0
     ),
     "I am not a SNP" => undef,
+    "rsiamnotaSNP" => undef,
 );
 done_testing;

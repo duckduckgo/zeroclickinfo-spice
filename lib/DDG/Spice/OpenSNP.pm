@@ -6,7 +6,7 @@ spice to => 'http://opensnp.org/snps/json/annotation/$1.json';
 spice is_cached => 0;
 spice wrap_jsonp_callback => 1;
 
-triggers query_lc  => qr/(^rs[^\s]+)$/;
+triggers query_lc  => qr/(^rs[0-9]+)$/;
 
 handle matches => sub {
     return $_ if $_;
