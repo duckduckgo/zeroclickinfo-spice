@@ -8,7 +8,7 @@ spice wrap_jsonp_callback => 1;
 
 triggers query_lc  => qr/(^rs[0-9]+)$/;
 
-handle matches => sub {
+handle query_nowhitespace => sub {
     return $_ if $_;
     return;
 };
