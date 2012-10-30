@@ -1,7 +1,8 @@
 function ddg_spice_series(res) {
 
     var show = res[0];
-
+    if(show)
+    {
         items = new Array();
         items[0] = new Array();
         items[0]['a'] = "<b>" +  show.name + ": </b>" + "<i>" + show.description + "</i>";
@@ -11,4 +12,5 @@ function ddg_spice_series(res) {
         items[0]['s'] = 'TheTVDB.com';
         items[0]['u'] = 'http://thetvdb.com/?tab=series&id=' + show.id;
         nra(items);
+    }
 }
