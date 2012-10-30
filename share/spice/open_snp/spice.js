@@ -19,9 +19,9 @@ function ddg_spice_open_snp(ir) {
             if ( annotations['plos'] ) {
                 plos_papers = annotations['plos'].length;
             }
-            snippet += '<br/>There are ' + mendeley_papers + ' papers at Mendeley and ' + plos_papers + ' papers at PLOS available on this SNP.<br/>';
+            snippet += '<br/>There are ' + mendeley_papers + ' papers at <a href="http://www.mendeley.com/research-papers/search/?query=' + snp_name + '">Mendeley</a> and ' + plos_papers + ' papers at <a href="http://www.plosone.org/search/advancedSearch.action?noSearchFlag=true&query=' + snp_name + '">PLOS</a> available on this SNP.<br/>';
             if ( annotations['snpedia'] ) {
-                snippet += '<br/>SNPedia has the following:<br/>';
+                snippet += '<br/><a href="http://www.snpedia.com/index.php/' + snp_name + '">SNPedia</a> has the following summary:<br/>';
                 for ( var i = 0; i < annotations['snpedia'].length; i++ ) {
                     snippet += annotations['snpedia'][i]['url'].split('/')[4] + ': ' + annotations['snpedia'][i]['summary'] + '<br/>';
                 }
