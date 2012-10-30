@@ -1,10 +1,11 @@
 function ddg_spice_open_snp(ir) {
     // did the API return information?
-    var table;
     if ( ir['snp'] ) {
+
         var snp_name = ir['snp']['name'];
         var snp_position = ir['snp']['position'];
         var snp_chromosome = ir['snp']['chromosome'];
+
         var snippet = 'Position: ';
         snippet += snp_position + '<br/>';
         snippet += 'Chromosome: ' + snp_chromosome + '<br/>';
@@ -27,7 +28,6 @@ function ddg_spice_open_snp(ir) {
                 }
                 snippet += '<br/>';
             }
-
         }
 
         items = new Array();
