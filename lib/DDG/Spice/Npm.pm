@@ -11,7 +11,7 @@ spice wrap_jsonp_callback => 1;
 
 spice is_cached => 0;
 
-triggers start => 'npm';
+triggers startend => 'npm';
 
 handle remainder => sub {
 	return $_ if $_;
