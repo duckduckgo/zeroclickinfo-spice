@@ -1,5 +1,28 @@
+var skipArray = {
+    'similar': 1,
+    'band': 1,
+    'bands': 1,
+    'musician': 1,
+    'musicians': 1,
+    'player': 1,
+    'artist': 1,
+    'artists': 1,
+    'performer': 1,
+    'performers': 1,
+    'singer': 1,
+    'singers': 1,
+    'rapper': 1,
+    'dj': 1,
+    'rappers': 1,
+    'vocalist': 1,
+    'vocalists': 1,
+    'djs': 1,
+    'songster': 1,
+    'songsters': 1
+};
+
 function ddg_spice_lastfm_artist_all(lastfm) {
-    if(lastfm.artist && lastfm.artist.similar.artist) {
+    if(lastfm.artist && lastfm.artist.similar.artist && DDG.isRelevant(lastfm.artist.name, skipArray)) {
         similar = '<div style="similar"><i>Similar to: </i>';
         for(var i = 0;i < lastfm.artist.similar.artist.length;i++) {
             var artist = lastfm.artist.similar.artist[i];
@@ -9,7 +32,8 @@ function ddg_spice_lastfm_artist_all(lastfm) {
             }
         }
         similar += '.</div>';
-        var items = [[]];
+        var items = [];
+        items[0] = [];
         var rest = true;
 
         var albums = '<a href="/?q=albums+from+' + encodeURIComponent(lastfm.artist.name) + '">' + 
@@ -18,8 +42,15 @@ function ddg_spice_lastfm_artist_all(lastfm) {
                     'tracks</a> from ' + lastfm.artist.name + '.';            
         if(lastfm.artist.bio.summary) {
             items[1] = [];
-            var summary = _.str.stripTags(lastfm.artist.bio.summary);
-            summary = Coral.extractSentence(summary, 1, Coral.moreHTML);
+            var summary = lastfm.artist.bio.summary;
+            //Remove all the links
+            summary = summary.replace(/<.+?>/g, "");
+            //Trim
+            if(summary.length > 200) {
+                summary = '<span id="first" style="display: inline;">' + summary.slice(0, 200) + '</span> ' + 
+                '<a style="display: inline;" id="expand" href="javascript:;" onclick="DDG.toggle(\'ellipsis\', 1); DDG.toggle(\'first\', -1); DDG.toggle(\'expand\', -1);"><span style="color: rgb(119, 119, 119); font-size: 11px; ">More...<span></a>' + 
+                '<span id="ellipsis" style="display: none;">' + summary + '</span>';
+            }
             items[0]['a'] = summary + '<div style="clear:both;"></div>' + similar + '<i>See also:</i> ' + 
             albums + songs + '<div style="clear:both;"></div>';
         } else {
