@@ -4,6 +4,20 @@ package DDG::Spice::Zipcode;
 use DDG::Spice;
 use URI::Escape;
 
+#Attribution
+primary_example_queries => "19201", "19301 Turkey";
+secondary_example_queries => "zipcode 19087", "postal code L3P 1T4";
+description "zip and postal code maps";
+name "Zipcode";
+icon_url "/i/mapq.st.ico";
+source "MapQuest";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Zipcode.pm"
+category "geography";
+topics "everyday", "geography", "travel"; 
+attribution github => ["https://github.com/almanackist", "Almanackist"],
+            twitter => ["https://twitter.com/cajoyce", "C. Alan Joyce"];
+
+ 
 my $zip_string = qr/(zip\s*(code)?|post(al)?\s*(code)?)?\s*/;
 triggers query_lc => qr/^$zip_string[a-z]*?\s?\d+[a-z\d\s\-]*\s*(\([a-z]{2}\))?$zip_string$/;
 
