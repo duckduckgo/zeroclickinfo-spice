@@ -5,9 +5,15 @@ use DDG::Spice;
 
 triggers any => "job", "jobs";
 
+primary_example_queries  => "javascript jobs";
+secondary_example_queries => "perl jobs in san francisco";
+description "Github jobs";
+name "GithubJobs";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GithubJobs.pm";
+topics => "programming", "special interest";
+category => "programming";
 spice to => 'https://jobs.github.com/positions.json?description=$1&location=$2&callback={{callback}}';
 spice from => '(.*?)-(.*)';
-
 attribution github => ['https://github.com/jagtalon','jagtalon'],
             twitter => ['http://twitter.com/juantalon','juantalon'];
 
