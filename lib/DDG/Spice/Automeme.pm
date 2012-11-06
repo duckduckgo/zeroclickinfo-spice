@@ -11,6 +11,18 @@ spice is_unsafe => 1;
 
 triggers any => "automeme", "random meme", "meme generator";
 
+primary_example_queries   => "random meme";
+secondary_example_queries => "automeme", "meme generator";
+
+description "Generates random memes.";
+name "Automeme";
+icon_url "/i/blog.automeme.net.ico";
+source "Automeme";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Automeme.pm";
+topics => "special interest";
+categories => "random";
+attribution github => ['https://github.com/mjgardner','Mark Gardner'];
+
 handle remainder => sub {
 
    # If you liked Automeme before it was cool, use the vocab=hipster parameter
