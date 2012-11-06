@@ -2,6 +2,15 @@ package DDG::Spice::DetectLang;
 
 use DDG::Spice;
 
+primary_example_queries => "detect language こんにちは";
+secondary_example_queries => "the web browser what language";
+description "Detects the language";
+name "DetectLang";
+icon_url "/i/detectlanguage.com.ico";
+source "Detect Language";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/DetectLang.pm";
+topics => "everyday", "words and games";
+category => "language";
 attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
             web     => ['http://ghedini.me', 'Alessandro Ghedini'];
 
