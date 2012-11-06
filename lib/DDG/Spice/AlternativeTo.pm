@@ -1,5 +1,6 @@
 package DDG::Spice::AlternativeTo;
 
+use DDG::Meta::Information;
 use DDG::Spice;
 
 triggers start => "free","opensource","commercial";
@@ -8,7 +9,7 @@ triggers any => "alternative","alternatives";
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 spice to => 'http://api.alternativeto.net/software/$1/?platform=$2&license=$3&count=6&callback={{callback}}';
 
-primary_example_queries   => "alternative to notepad";
+primary_example_queries  => "alternative to notepad";
 secondary_example_queries => "alternative to photoshop for mac", "free alternative to spotify for windows";
 description "Find software alternatives";
 name "AlternativeTo";
