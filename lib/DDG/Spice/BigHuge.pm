@@ -15,7 +15,7 @@ name "BigHuge";
 source "Big Huge Labs";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BigHuge.pm";
 topics => "music", "words and games";
-categories => "language";
+category => "language";
 attribution github => ['https://github.com/lactose','lactose'],
            twitter => ['http://twitter.com/hackariah','zachariah'];
 

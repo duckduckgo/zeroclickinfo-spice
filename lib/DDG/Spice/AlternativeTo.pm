@@ -16,7 +16,7 @@ icon_url "/i/alternativeto.net.ico";
 source "AlternativeTo";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/AlternativeTo.pm";
 topics => "everyday", "programming";
-categories => "computing";
+category => "computing";
 
 attribution github => ['https://github.com/Getty','Torsten Raudssus'],
            twitter => ['https://twitter.com/raudssus','Torsten Raudssus'];
