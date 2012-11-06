@@ -8,6 +8,17 @@ spice from => '(?:([^/]*)/([^/]*)|)';
 
 triggers query_lc => qr/^([^\s]+(?:\s+[^\s]+)*)\s+(?:tracks?|songs?|music)\s+(?:by|from)\s+([^\s]+(?:\s+[^\s]+)*)$/;
 
+primary_example_queries   => "Payphone song by Maroon 5";
+description "Song information";
+name "LastfmSong";
+icon_url "/i/www.last.fm.ico";
+source "Last.fm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/Song.pm";
+topics => "entertainment", "music";
+category => "entertainment";
+attribution github => ['https://github.com/jagtalon','Jag Talon'],
+           twitter => ['http://twitter.com/juantalon','Jag Talon'];
+
 handle matches => sub {
     if($1 && $2) {
         return $1, $2;

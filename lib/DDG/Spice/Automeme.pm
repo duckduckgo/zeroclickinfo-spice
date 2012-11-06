@@ -20,7 +20,7 @@ icon_url "/i/blog.automeme.net.ico";
 source "Automeme";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Automeme.pm";
 topics => "special interest";
-categories => "random";
+category => "random";
 attribution github => ['https://github.com/mjgardner','Mark Gardner'];
 
 handle remainder => sub {

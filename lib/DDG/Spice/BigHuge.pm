@@ -8,6 +8,17 @@ spice to => 'http://words.bighugelabs.com/api/2/{{ENV{DDG_SPICE_BIGHUGE_APIKEY}}
 
 triggers startend => "synonyms", "synonym", "antonyms", "antonym", "related", "similar";
 
+primary_example_queries   => "synonyms for person";
+secondary_example_queries => "similar words to miniature";
+description 'Related words';
+name "BigHuge";
+source "Big Huge Labs";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BigHuge.pm";
+topics => "music", "words and games";
+category => "language";
+attribution github => ['https://github.com/lactose','lactose'],
+           twitter => ['http://twitter.com/hackariah','zachariah'];
+
 handle query_lc => sub {
   my $term;
   my $callback;

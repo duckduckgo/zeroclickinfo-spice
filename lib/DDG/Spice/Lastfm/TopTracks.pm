@@ -3,6 +3,19 @@ package DDG::Spice::Lastfm::TopTracks;
 
 use DDG::Spice;
 
+
+primary_example_queries => "popular songs";
+secondary_example_queries => "top tracks", "popular songs in the philippines";
+description "Popular songs";
+name "LastfmTopTracks";
+icon_url "/i/www.last.fm.ico";
+source "Last.fm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/TopTracks.pm";
+topics => "entertainment", "music";
+category => "entertainment";
+attribution github => ['https://github.com/jagtalon','Jag Talon'],
+           twitter => ['http://twitter.com/juantalon','Jag Talon'];
+
 spice to => 'http://ws.audioscrobbler.com/2.0/?format=json&method=geo.gettoptracks&country=$1&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}';
 
 triggers query_lc => qr/(?:tops?|popular)\s+(?:10\s)?(?:tracks?|charts?|songs?|musics?)(?:\s+in\s+(?:the\s+)?)?(.*)/;
