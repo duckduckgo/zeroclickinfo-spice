@@ -127,7 +127,7 @@
 	font-size: 13px;
 	clear: right;
 	max-width: 132px;
-	margin-bottom: 5px;
+	margin-bottom: 0px;
 }
 
 .quixey_name.expand{
@@ -182,11 +182,11 @@
 
 .quixey_platform_icon{
 	display: inline-block;
-	max-width: 16px;
+	max-height: 13px;
 	margin-left: 5px;
 }
 
-.quixey_app_info.quixey_platform_icon:first-of-type{
+.quixey_platform_icon:first-of-type{
 	margin-left: 0px;
 }
 
