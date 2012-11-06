@@ -14,7 +14,7 @@ triggers any => "automeme", "random meme", "meme generator";
 primary_example_queries   => "random meme";
 secondary_example_queries => "automeme", "meme generator";
 
-description "Generates random memes.";
+description "Generate a random meme";
 name "Automeme";
 icon_url "/i/blog.automeme.net.ico";
 source "Automeme";
