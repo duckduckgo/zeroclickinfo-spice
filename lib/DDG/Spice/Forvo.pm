@@ -3,6 +3,16 @@ package DDG::Spice::Forvo;
 use DDG::Spice;
 use utf8;
 
+primary_example_queries  => "pronounce cool";
+secondary_example_queries => "how to pronounce names", "pronounciation of ask", "how to say bye";
+description "Pronounce words";
+name "Forvo";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Forvo.pm";
+topics => "everyday", "words and games";
+category => "language";
+attribution github => ['https://github.com/moollaza','Zaahir Moolla'],
+           twitter => ['https://twitter.com/zmoolla','Zaahir Moolla'];
+
 triggers any => "forvo", "pronounce", "pronunciation", "how to pronounce", "pronounciation of", "how do you say", "how do you pronounce", "how to say";
 
 spice to => 'http://apifree.forvo.com/key/{{ENV{DDG_SPICE_FORVO_APIKEY}}}/format/json/action/pronounced-words-search/search/$1/language/$2/callback/{{callback}}';
