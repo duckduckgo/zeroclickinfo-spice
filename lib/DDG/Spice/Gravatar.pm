@@ -8,6 +8,12 @@ triggers startend => "gravatar", "avatar of", "gravatar of";
 
 spice to => 'http://en.gravatar.com/$1.json?callback={{callback}}';
 
+primary_example_queries  => "gravatar beau@dentedreality.com.au";
+description "Gravatar profile";
+name "Gravatar";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Gravatar.pm";
+topics => "special interest", "social";
+category => "ids";
 attribution github => ['https://github.com/adman','Adman'],
             twitter => ['http://twitter.com/adman_X','adman_X'];
 
