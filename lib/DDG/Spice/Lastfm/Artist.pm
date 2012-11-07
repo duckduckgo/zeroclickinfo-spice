@@ -8,15 +8,15 @@ spice from => '(?:([^/]*)/([^/]*)|)';
 
 triggers any => 'similar', 'band', 'bands', 'musician', 'musicians', 'player', 'artist', 'artists', 'performer', 'performers', 'singer', 'singers', 'rapper', 'dj', 'rappers', 'vocalist', 'vocalists', 'djs', 'songster', 'songsters';
 
-primary_example_queries => "ben folds five artist";
-secondary_example_queries => "kanye west rapper", "bands similar to incubus", "weezer band", "musicians similar to lady gaga";
+primary_example_queries "ben folds five artist";
+secondary_example_queries "kanye west rapper", "bands similar to incubus", "weezer band", "musicians similar to lady gaga";
 description "Musician information";
 name "LastfmArtist";
 icon_url "/i/www.last.fm.ico";
 source "Last.fm";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/Artist.pm";
-topics => "entertainment", "music";
-category => "entertainment";
+topics "entertainment", "music";
+category "entertainment";
 attribution github => ['https://github.com/jagtalon','Jag Talon'],
            twitter => ['http://twitter.com/juantalon','Jag Talon'];
 

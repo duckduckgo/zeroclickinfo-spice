@@ -7,8 +7,8 @@ description "search through APIs and open source repositories";
 source "Search[code]";
 attribution twitter => ["https://twitter.com/boyter", "boyter"],
 	    github => ["https://github.com/boyter", "Ben Boyter"];
-primary_search_queries "underscore.js bind";
-secondary_search_queries "php print_r";
+primary_example_queries "underscore.js bind";
+secondary_example_queries "php print_r";
 category "reference";
 topics "programming";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SearchCode.pm";

@@ -7,14 +7,14 @@ triggers start => "mixing", "making";
 
 spice to => 'http://drinkproject.com/api/?type=json&name=$1&callback={{callback}}';
 
-primary_example_queries => "how to mix a tom collins";
-secondary_example_queries => "mixing 007", "how to make a 1.21 gigawatts";
+primary_example_queries "how to mix a tom collins";
+secondary_example_queries "mixing 007", "how to make a 1.21 gigawatts";
 description "Bartending info";
 name "Drinks";
 source "Drink Project";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Drinks.pm";
-topics => "food and drink";
-category => "entertainment";
+topics "food_and_drink";
+category "entertainment";
 attribution github => ['https://github.com/mutilator','mutilator'];
 
 handle query_lc => sub {

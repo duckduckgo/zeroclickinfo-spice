@@ -9,15 +9,15 @@ triggers any => "alternative","alternatives";
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 spice to => 'http://api.alternativeto.net/software/$1/?platform=$2&license=$3&count=6&callback={{callback}}';
 
-primary_example_queries  => "alternative to notepad";
-secondary_example_queries => "alternative to photoshop for mac", "free alternative to spotify for windows";
+primary_example_queries "alternative to notepad";
+secondary_example_queries "alternative to photoshop for mac", "free alternative to spotify for windows";
 description "Find software alternatives";
 name "AlternativeTo";
 icon_url "/i/alternativeto.net.ico";
 source "AlternativeTo";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/AlternativeTo.pm";
-topics => "everyday", "programming";
-category => "computing";
+topics  "everyday", "programming";
+category  "computing_tools";
 
 attribution github => ['https://github.com/Getty','Torsten Raudssus'],
            twitter => ['https://twitter.com/raudssus','Torsten Raudssus'];
