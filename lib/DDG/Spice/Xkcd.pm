@@ -11,8 +11,8 @@ category "special";
 topics "entertainment", "geek", "special_interest";
 icon_url "/i/xkcd.com.ico";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Xkcd.pm"
-attribution github => ["https://github.com/hunterlang", "Hunter Lang"],
-	    web => ["http://hunterlang.com/", "Hunter Lang"];
+attribution github => ["https://github.com/sdball", "Stephen Ball"],
+	    twitter => ["https://twitter.com/StephenBallNC", "StephenBallNC"];
 status "enabled";
 
 
