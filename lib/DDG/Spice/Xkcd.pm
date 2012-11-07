@@ -2,6 +2,20 @@ package DDG::Spice::Xkcd;
 
 use DDG::Spice;
 
+name "xkcd";
+description "Get the latest xkcd comic";
+source "xkcd";
+primary_search_queries "xkcd";
+secondary_search_queries "xkcd 102";
+category "special";
+topics "entertainment", "geek", "special_interest";
+icon_url "/i/xkcd.com.ico";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Xkcd.pm"
+attribution github => ["https://github.com/hunterlang", "Hunter Lang"],
+	    web => ["http://hunterlang.com/", "Hunter Lang"];
+status "enabled";
+
+
 triggers startend => "xkcd";
 
 spice to => 'http://dynamic.xkcd.com/api-0/jsonp/comic/$1';
