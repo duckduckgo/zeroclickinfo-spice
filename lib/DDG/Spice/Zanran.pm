@@ -4,8 +4,8 @@ use DDG::Spice;
 
 attribution github => ["https://github.com/taw", "taw"],
 	    twitter => ["https://twitter.com/t_a_w", "Tomasz Wegrzanowski"];
-primary_search_queries "oil production in saudi arabia", "global mobile data usage";
-secondary_search_queries "construction injuries australia", "agriculture contribution to gdp";
+primary_search_queries "oil production in saudi arabia", "agriculture contribution to gdp";
+secondary_search_queries "construction injuries australia", "global mobile data usage";
 category "facts";
 topics "economy_and_finance", "special_interest", "trivia";
 name "Zanran";
