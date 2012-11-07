@@ -9,7 +9,7 @@ name "IsItUp";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/IsItUp.pm";
 icon_url "/i/isitup.org.ico";
 topics "geek", "sysadmin";
-category "computing";
+category "computing_tools";
 attribution github => ['https://github.com/mrshu','mrshu'];
 status "enabled";
 
