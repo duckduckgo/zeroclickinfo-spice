@@ -3,15 +3,15 @@ package DDG::Spice::Congress;
 
 use DDG::Spice;
 
-primary_example_queries => "new york senators";
-secondary_example_queries => "florida representatives", "house california";
+primary_example_queries "new york senators";
+secondary_example_queries "florida representatives", "house california";
 description "Shows congress by state";
 name "Congress";
 icon_url "/i/topics.nytimes.com.ico";
 source "The New York Times";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Congress.pm";
-topics => "special interest", "trivia";
-category => "facts";
+topics "special_interest", "trivia";
+category "facts";
 attribution web => ['http://kevinschaul.com','Kevin Schaul'],
             email => ['kevin.schaul@gmail.com','Kevin Schaul'];
 

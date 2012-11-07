@@ -9,15 +9,15 @@ spice to => 'http://ws.audioscrobbler.com/2.0/?limit=5&format=json&method=artist
 my $synonyms = "songs?|tracks?|music";
 triggers query_lc => qr/(?:^(?:$synonyms)\s+(?:(?:by|from|of)\s+)?([^\s]+(?:\s+[^\s]+)*)$)|(?:^([^\s]+(?:\s+[^\s]+)*)\s+(?:$synonyms)$)/;
 
-primary_example_queries   => "songs by she & him";
-secondary_example_queries => "songs from maroon 5";
+primary_example_queries "songs by she & him";
+secondary_example_queries "songs from maroon 5";
 description "Top tracks from an artist";
 name "LastfmArtistTracks";
 icon_url "/i/www.last.fm.ico";
 source "Last.fm";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/ArtistTracks.pm";
-topics => "entertainment", "music";
-category => "entertainment";
+topics "entertainment", "music";
+category "entertainment";
 attribution github => ['https://github.com/jagtalon','Jag Talon'],
            twitter => ['http://twitter.com/juantalon','Jag Talon'];
 

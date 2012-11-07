@@ -5,13 +5,13 @@ use DDG::Spice;
 use URI::Escape;
 
 #Attribution
-primary_example_queries => "19201", "19301 Turkey";
-secondary_example_queries => "zipcode 19087", "postal code L3P 1T4";
+primary_example_queries "19201", "19301 Turkey";
+secondary_example_queries "zipcode 19087", "postal code L3P 1T4";
 description "zip and postal code maps";
 name "Zipcode";
 icon_url "/i/mapq.st.ico";
 source "MapQuest";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Zipcode.pm"
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Zipcode.pm";
 category "geography";
 topics "everyday", "geography", "travel"; 
 attribution github => ["https://github.com/almanackist", "Almanackist"],

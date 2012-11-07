@@ -5,8 +5,8 @@ use DDG::Spice;
 name "SubReddit Search";
 description "search for subreddits";
 source "Reddit";
-primary_search_queries "subreddit pizza", "/r/games";
-secondary_search_queries "r/ accounting";
+primary_example_queries "subreddit pizza", "/r/games";
+secondary_example_queries "r/ accounting";
 category "forums";
 topics "social";
 attribution twitter => ["https://twitter.com/mithrandiragain","mithrandiragain"],

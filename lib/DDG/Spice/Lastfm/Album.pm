@@ -8,14 +8,14 @@ spice from => '(?:([^/]*)/([^/]*)|)';
 
 triggers query_lc => qr/^([^\s]+(?:\s+[^\s]+)*)\s+(?:albums?|records?|cds?)\s+(?:by|from)?\s+([^\s]+(?:\s+[^\s]+)*)$/;
 
-primary_example_queries   => "American Idiot album by Green Day";
+primary_example_queries "American Idiot album by Green Day";
 description "Shows album information";
 name "LastfmAlbum";
 icon_url "/i/www.last.fm.ico";
 source "Last.fm";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/Album.pm";
-topics => "entertainment", "music";
-category => "entertainment";
+topics "entertainment", "music";
+category "entertainment";
 attribution github => ['https://github.com/jagtalon','Jag Talon'],
            twitter => ['http://twitter.com/juantalon','Jag Talon'];
 

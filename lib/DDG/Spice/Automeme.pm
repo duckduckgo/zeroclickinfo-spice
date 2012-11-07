@@ -11,16 +11,16 @@ spice is_unsafe => 1;
 
 triggers any => "automeme", "random meme", "meme generator";
 
-primary_example_queries   => "random meme";
-secondary_example_queries => "automeme", "meme generator";
+primary_example_queries "random meme";
+secondary_example_queries "automeme", "meme generator";
 
 description "Generate a random meme";
 name "Automeme";
 icon_url "/i/blog.automeme.net.ico";
 source "Automeme";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Automeme.pm";
-topics => "special interest";
-category => "random";
+topics "special_interest";
+category "random";
 attribution github => ['https://github.com/mjgardner','Mark Gardner'];
 
 handle remainder => sub {

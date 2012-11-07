@@ -6,12 +6,12 @@ triggers startend => "flash";
 
 spice call_type => 'self';
 
-primary_example_queries  => "flash version";
+primary_example_queries "flash version";
 description "Shows the flash version";
 name "FlashVersion";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Expatistan.pm";
-topics => "everyday", "programming";
-category => "software";
+topics "everyday", "programming";
+category "software";
 attribution github => ['https://github.com/Getty','Torsten Raudssus'],
            twitter => ['https://twitter.com/raudssus','Torsten Raudssus'];
 status "disabled";
