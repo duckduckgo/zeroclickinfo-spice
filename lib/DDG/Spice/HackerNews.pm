@@ -12,7 +12,7 @@ name "HackerNews";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/HackerNews.pm";
 icon_url "/i/www.hnsearch.com.ico";
 topics "programming", "social";
-category => "forums";
+category "forums";
 attribution github => ['https://github.com/adman','Adman'],
             twitter => ['http://twitter.com/adman_X','adman_X'];
 status "enabled";
