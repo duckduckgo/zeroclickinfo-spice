@@ -5,8 +5,16 @@ use DDG::Spice;
 
 use Encode;
 
+primary_example_queries "random numbers 10 11";
+description "Displays a random number";
+name "RandNums";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RandNums.pm";
+topics "special_interest", "everyday", "math";
+category "random";
 attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
             web     => ['http://ghedini.me', 'Alessandro Ghedini'];
+status "disabled";
+
 
 spice to   => 'http://www.random.org/integers/?num=10&min=$1&max=$2&col=10&base=10&format=plain&rnd=new';
 spice from => '(\-?[0-9]+)\/(\-?[0-9]+)';
