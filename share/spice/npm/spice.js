@@ -7,6 +7,7 @@ function ddg_spice_npm(res) {
 
 		packages = [[]]; // Create an empty array for all of our informaton
 		packages[0]['a'] =  description; // Gives the main description of the plugin
+        packages[0].force_big_header = true;
 		packages[0]['h'] = res.name + ' (' + res.version + ')'; // Gives the title and version of the package
 		packages[0]['s'] = 'npm'; // For attribution (More at npm...)
 		packages[0]['u'] = 'http://npmjs.org/package/' + res.name; // Link for attribution
