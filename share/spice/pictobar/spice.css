@@ -25,7 +25,7 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 
 p{
 	background: #336699;	
-	height:35px;
+	height:36px;
 	text-align:center;
 	font-size:18pt;
 	font-family: Verdana, Helvetica, Arial, sans-serif;
@@ -37,7 +37,6 @@ p{
 }
 
 .imagecirlce {
-	width: 75px;
 	height: 75px;
 
 	}
@@ -48,10 +47,10 @@ p{
 	
 	text-align:center;
 	font-style: 'brandon';
-	font-size: 10pt;
+	font-size: 8pt;
 	background: #e8e8e8;
 
-	height: 125px;
+	height: 90px;
     width: 546px;
     
 	background: #f1f1f1;
@@ -68,7 +67,7 @@ p{
 	font-style: 'brandon';
 	font-size: 10pt;
 
-	height: 125px;
+	height: 90px;
     width: 546px;
     
 	background: #f1f1f1;
