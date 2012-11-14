@@ -86,20 +86,27 @@ root.ddg_spice_detect_lang = (language) ->
         # This checks if the language code exists. If it doesn't
         # then it sould be discarded.
         detections = for element in detections when langs[element.language]? and element.confidence?
-            language: langs[element.language], confidence: toPercent(element.confidence) 
+            language: langs[element.language], confidence: toPercent(element.confidence), isReliable: element.isReliable
 
         # Checks if we have one or more results after the filter.
-        if detections.length is 1
-            result = "This text is probably #{detections[0].language} #{detections[0].confidence}."
-        else if detections.length > 1
-            result = "This text is probably #{detections[0].language} #{detections[0].confidence}"
-            result += ", but it could also be #{detections[1].language} #{detections[1].confidence}."
+        # It also checks if it is reliable or not.
+        length = detections.length
+        if length > 0
+            if detections[0].isReliable 
+                result = "This text is definitely #{detections[0].language} #{detections[0].confidence}."
+                detections = [detections[0]]
+            else if length is 1
+                result = "This text is probably #{detections[0].language} #{detections[0].confidence}."
+            else if length > 1
+                result = "This text is probably #{detections[0].language} #{detections[0].confidence}"
+                result += ", but it could also be #{detections[1].language} #{detections[1].confidence}."
 
         # detect_lang.debug is set whenever the spec is run.
         # This effectively 
         if root.detect_lang.debug is true
             return {
-                detections
+                detections,
+                result
             }
         # Display the spice
         else if result?
