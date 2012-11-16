@@ -1,4 +1,4 @@
-package DDG::Spice::Quixey;
+package DDG::Spice::QuixeySearch;
 
 use DDG::Spice;
 use JSON;

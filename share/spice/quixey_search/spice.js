@@ -1,4 +1,4 @@
-function ddg_spice_quixey(results) {
+function ddg_spice_quixey_search(results) {
 
   var query = DDG.get_query().replace(/ ?khan( academy)? ?|videos?/g, "");
 
@@ -366,5 +366,6 @@ function ddg_spice_quixey(results) {
     setup()
 
   }
+
 
 }
