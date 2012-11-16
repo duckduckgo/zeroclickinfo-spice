@@ -1,11 +1,3 @@
-
-// search_id = '';
-// session_id = '';
-
-// function ddg_spice_quixey_info(data){
-//     quixey_data = data.app;
-// }
-
 function ddg_spice_quixey_search(data){
     if (data != null && data.rc == 0) {
                
