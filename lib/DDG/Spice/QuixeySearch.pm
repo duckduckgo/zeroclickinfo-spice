@@ -6,7 +6,7 @@ use JSON;
 triggers any => "quixey", "app", "apps", "android", "iphone", "blackberry", "windows";
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
-spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_secret={{ENV{DDG_SPICE_QUIXEY_TESTING_APIKEY}}}&q=$1&platform_ids=$2&custom_id=$3&restrict_editions=1&edition_limit=0&limit=8&include_descriptions=1&limit=10&skip=0&format=json&callback={{callback}}';
+spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_secret={{ENV{DDG_SPICE_QUIXEY_TESTING_APIKEY}}}&q=$1&platform_ids=$2&custom_id=$3&limit=35&skip=0&format=json&callback={{callback}}';
 spice proxy_ssl_session_reuse => "off";
 
 handle query_parts => sub {

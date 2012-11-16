@@ -1,202 +1,289 @@
+#zero_click_abstract {
+  margin: 0 5px !important;
+  padding: 0 !important;
+}
+
+#zero_click_abstract {
+  position: relative;
+}
+
+#zero_click_image {
+  display: none !important;
+}
+
+#quixey:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+#quixey {
+  zoom: 1;
+  margin: 4px 0;
+}
+
+#quixey #nav {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+#quixey #frame {
+  margin: 0 25px;
+  overflow: hidden;
+}
+
+#quixey ul {
+  margin: 0;
+  padding: 0;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  -ms-transition: all 1s;
+  transition: all 1s;
+}
+
+#quixey li.item {
+  float: left;
+  list-style-type: none;
+  height: 130px;
+  margin: 0;
+  padding-top: 5px;
+  border: 1px solid transparent;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  text-align: center;
+  overflow: hidden;
+}
+
+#quixey li.item:hover {
+  background: url("http://duckduckgo.com/assets/results_highlight_bg.v101.png") repeat-x;
+  background-color: #eaeaea;
+  border: 1px solid #bfbfbf;
+  cursor: pointer;
+}
+
+#quixey li.sel, #quixey li.sel:hover {
+  background-image: none !important;
+  background-color: #eaeaea;
+  border: 1px solid #fff;
+}
+
+#quixey li.item a {
+  color: #333;
+  text-decoration: none;
+}
+
+#quixey li.item a:hover {
+  text-decoration: none;
+}
+
+#quixey li.item img {
+  margin: 0 auto 5px auto;
+  max-width: 80px;
+}
+
+#quixey li.item p {
+  max-width: 80px;
+  margin: 0 auto;
+  font-size: 12px;
+}
+
+#quixey a.npa {
+  font-size: 30px;
+  color: #bfbfbf;
+  position: absolute;
+  top: 30px;
+  text-decoration: none !important;
+}
+
+#quixey a.npah {
+  color: #eee !important;
+}
+
+#quixey #nexta {
+  right: 0;
+}
+
+#quixey #preva {
+  left: 0;
+}
+
+#quixey #preview {
+  margin-bottom: 4px;
+  position: relative;
+  display: none;
+  background: #f9f9f9;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+
+#quixey #dots {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+}
+
+#quixey #dots p {
+  margin: 0px;
+  font-weight: normal;
+  font-size: 13px;
+  color: #bfbfbf;
+  padding: 0 2px;
+}
+
+#quixey #dots a {
+  padding: 0 2px;
+  font-size: 16px;
+  color: #ccc;
+  text-decoration: none !important;
+}
+
+#quixey #dots a.selected {
+  color: #1168cc;
+}
+
+#quixey #gr {
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 25px;
+  background: #f9f9f9;
+}
+
 .float_left{
-	float: left;
+  float: left;
 }
 
 .float_right{
-	float: right;
+  float: right;
 }
 
 .hidden{
-	display: none;
+  display: none;
 }
 
 #zero_click_abstract{
-	margin-right: 10px !important;
+  margin-right: 10px !important;
 }
 
-#spice_container{
-	clear: both;
-	width: auto;
-	margin: 10px 0;
-	width: 100%;
-	float: left;
+/*#spice_container{
+  clear: both;
+  width: auto;
+  margin: 10px 0;
+  width: 100%;
+  float: left;
+}*/
+
+#quixey .app_container{
+  float: left;
+  display: inline-block;
+  padding: 5px 0 5px 5px!important;
+  position: relative;
 }
 
-.quixey_app_container{
-	float: left;
-    display: inline-block;
-    padding: 5px 0 5px 5px!important;
-    position: relative;
+#quixey .app_icon{
+  margin: 0px;
+  height: 48px;
+  width: 48px;
+  float: left;
+  display: block;
 }
 
-.quixey_app_container:hover{
-	background: url("/assets/results_highlight_bg.v101.png") repeat-x;
-	background-color: #EAEAEA;
-	border: 1px solid #BFBFBF !important;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
-	cursor: pointer;
+#quixey .app_info{
+  display: block;
+  float: left;
+  margin-left: 5px;
+  font-size: 12px;
+  padding: 0 2px 0 0;
 }
 
-.quixey_app_container:first-of-type{
-	margin-left: 0;
+#quixey .name{
+  display: block;
+  font-size: 13px;
+  clear: right;
+  max-width: 132px;
+  margin-bottom: 0px;
 }
 
-.quixey_app_container:last-of-type{
-	margin-right: 0;
-	clear: right;
+#quixey .name.expand{
+  max-width: 100%;
 }
 
-.quixey_app_container a:first-of-type{
-	display: block;
-	float: left;
+#quixey .app_more_info{
+  float: left;
+  clear: both;
+  display: block;
+  height: auto;
+  padding: 5px 5px 0 0;
+  font-size: 13px;
 }
 
-.quixey_app_container.collapse{
-    min-width: 135px;
-    min-height: 60px;
+#quixey .app_platforms{
+  float: left;
+  clear: left;
 }
 
-.quixey_app_container.expand{
-    width: 100%;
-    min-height: 120px;
-    border: 1px solid #BFBFBF !important;
-    border-radius: 6px;
+#quixey .app_platform{
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 1px 2px 0;
+  vertical-align: text-bottom;
+  margin-left: 3px;
 }
 
-.quixey_app_container.collapse:hover::after{
-	content: "Expand";
-	background: url("/assets/results_highlight_bg.v101.png") repeat-x;
-	background-color: #EAEAEA;
-	border: 1px solid #BFBFBF !important;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius:6px 0 6px 0;
-	cursor: pointer;
-	padding: 3px;
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
-    margin-right: -1px;
-    margin-bottom: -1px;
-    font-size: 12px;
-    font-weight: bold;
+#quixey .app_platform:hover {
+  border: 1px solid darkblue;
+  background: lightblue;
+  cursor: pointer;
 }
 
-.quixey_app_container.expand::after{
-	content: "Collapse";
-	background: url("/assets/results_highlight_bg.v101.png") repeat-x;
-	background-color: #EAEAEA;
-	border: 1px solid #BFBFBF !important;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-webkit-border-radius: 6px;
-	border-radius:6px 0 6px 0;
-	cursor: pointer;
-	padding: 3px;
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
-    margin-right: -1px;
-    margin-bottom: -1px;
-    font-size: 12px;
-    font-weight: bold;
+#quixey .app_platform img.platform_icon{
+  max-width: 13px;
+  margin: 0 2px 0 0;
+  vertical-align: text-top;
 }
 
-.quixey_app_icon{
-    margin: 0px;
-    height: 48px;
-	width: 48px;
-	float: left;
-	display: block;
+#quixey .app_edition{
+  float: left;
+  padding: 3px;
 }
 
-.quixey_app_info{
-	display: block;
-	float: left;
-	margin-left: 5px;
-	font-size: 12px;
-	padding: 0 2px 0 0;
+#quixey .app_edition_icon{
+  max-width: 20px;
+  display: inline-block;
+  vertical-align: top;
 }
 
-.quixey_name{
-	display: block;
-	font-size: 13px;
-	clear: right;
-	max-width: 132px;
-	margin-bottom: 0px;
+#quixey .platform_icon{
+  display: inline-block;
+  max-height: 13px;
+  margin-left: 5px;
 }
 
-.quixey_name.expand{
-	max-width: 100%;
+#quixey .platform_icon:first-of-type {
+  margin-left: 0px;
 }
 
-.quixey_app_more_info{
-	float: left;
-	clear: both;
-	display: block;
-	height: auto;
-	padding: 5px 5px 0 0;
-	font-size: 13px;
+#quixey .platform_name{
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  vertical-align: top;
 }
 
-.quixey_app_platforms{
-	float: left;
-	clear: left;
-}
-
-.quixey_app_platform{
-	display: inline-block;
-	border: 1px solid gray;
-	border-radius: 5px;
-	padding: 1px 2px 0;
-	vertical-align: text-bottom;
-	margin-left: 3px
-}
-
-.quixey_app_platform:hover{
-	border: 1px solid darkblue;
-	background: lightblue;
-	cursor: pointer;
-}
-
-.quixey_app_platform img.quixey_platform_icon{
-	max-width: 13px;
-	margin: 0 2px 0 0;
-	vertical-align: text-top;
-}
-
-.quixey_app_edition{
-	float: left;
-	padding: 3px;
-}
-
-.quixey_app_edition_icon{
-	max-width: 20px;
-	display: inline-block;
-	vertical-align: top;
-}
-
-.quixey_platform_icon{
-	display: inline-block;
-	max-height: 13px;
-	margin-left: 5px;
-}
-
-.quixey_platform_icon:first-of-type{
-	margin-left: 0px;
-}
-
-.quixey_platform_name{
-	display: inline-block;
-	margin-left: 5px;
-	font-size: 12px;
-	vertical-align: top;
-}
-
-.quixey_platform_name:first-of-type{
-	margin-left: 0px;
+#quixey .platform_name:first-of-type {
+  margin-left: 0px;
 }

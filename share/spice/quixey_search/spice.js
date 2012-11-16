@@ -1,9 +1,24 @@
-function ddg_spice_quixey_search(results) {
+function ddg_spice_quixey_search (data) {
 
-  var query = DDG.get_query().replace(/ ?khan( academy)? ?|videos?/g, "");
+  /*****************/
+  /* Initial Setup */
+  /*****************/
+  var query = data.q.replace(/\s/g, '+')
 
+  var appKey = {};
+  for (var i in data.results ) {
+    app = data.results[i]
+    appKey[app.id] = app
+  }
+   
+  var getApp = function(id) {
+    return appKey[id]
+  };
+
+  /***********/
   /* General */
-
+  /***********/
+  
   var state = {
 
     // placeholder for the videos
@@ -13,14 +28,11 @@ function ddg_spice_quixey_search(results) {
     , min_win: 500
 
     // default width of the navigation elements
-    , thumb_width: 148
-    , li_width: 148
-
-    // height of youtube menu, used when calculating aspect ratio
-    , youtube_menu: 0
+    , thumb_width: 90
+    , li_width: 90
 
     // current video in nav
-    , app_preview: 0
+    , quixey: 0
 
     // prev / next witdth
     , pn_width: 50
@@ -42,8 +54,100 @@ function ddg_spice_quixey_search(results) {
     e.preventDefault ? e.preventDefault() : e.returnValue = false
   }
 
+  /*******************/
+  /* Data Extraction */
+  /*******************/
+  function getInfo(id){
+    app = getApp(id);
+    
+    var details     = d.createElement('div')
+    var icon        = d.createElement('img')
+	icon.src    = app.icon_url
+    var description = d.createElement('span')
+    var editions    = d.createElement('div')
+        editions.innerHTML = getEditions(app.editions)
 
+    YAHOO.util.Dom.addClass(icon, "float_left")
+    YAHOO.util.Dom.addClass(icon, "app_icon")
+    details.appenChild(icon)
+
+    details.appendChild(editions)
+
+    if (isProp(app, 'short_desc')){
+      description.innerHTML += "Description: " + app.short_desc
+    }else{
+      description.innerHTML += "No description"
+    }
+
+    YAHOO.util.Dom.addClass(description, "float_left")
+    details.appendChild(description)
+
+    return details.innerHTML
+  }
+
+  function getEditions(editions_array){
+    var editions = d.createElement("div")
+    YAHOO.util.Dom.addClass(editions, "app_editions")
+    
+    for (var i in editions_array){
+      var current = editions_array[i]
+      var img     = d.createElement("img")
+          img.src = current.icon_url
+      var edition = d.createElement("div")
+          edition.appendChild(img)
+          YAHOO.util.Dom.addClass(img, "app_edition_icon")
+          edition.innerHTML += getPlatforms(current.platforms, true)
+
+      YAHOO.util.Dom.addClass(edition, "app_edition")
+      editions.appendChild(edition)
+    }
+    console.log("editions")
+    console.log(editions)
+
+    return editions.innerHTML
+  }
+
+  function getPlatforms (platforms_array){    
+    var platforms = d.createElement("div");
+
+    for (var i in platforms_array){
+      var current  = platforms_array[i];
+      var platform = d.createElement("div");
+      var img  = d.createElement("img");
+      var name = d.createElement("span");
+
+      // Get proper apple icon
+      if (current.id === 2004 || current.id === 2015) {
+        img.src = "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
+      }else {
+        img.src = current.icon_url;
+      }
+
+      name.innerHTML = current.name;
+
+      YAHOO.util.Dom.addClass(img, 'quixey_platform_icon');
+      YAHOO.util.Dom.addClass(name, 'quixey_platform_name');
+      YAHOO.util.Dom.addClass(platform, 'quixey_app_platform');
+      platform.appendChild(img);
+      platform.appendChild(name);
+      platforms.appendChild(platform);
+    }
+    return platforms.innerHTML;
+  }
+
+  function shorten (string, length) {
+    if (length === undefined) length = 40;
+    
+    if (string.length > length){
+      return string.slice(0,length-3) + '...';
+    } else {
+      return string;
+    }
+  }
+  
+  /**************/
   /* Navigation */
+  /**************/
 
   function createNav() {
 
@@ -65,28 +169,30 @@ function ddg_spice_quixey_search(results) {
     ul.id = 'slides'
     YAHOO.util.Dom.setStyle(ul, 'width', end + 'px')
 
-    var i, li, img, a, id, vid, p, txt
+    var i, li, img, a, id, app, p, txt
     for (i = 0; i < len; i++) {
       li = d.createElement('li')
       YAHOO.util.Dom.addClass(li, 'item')
       YAHOO.util.Dom.setStyle(li, 'width', (state.li_width - 2) + 'px')
 
-      vid = state.apps[i]
-      if (!isProp(vid, 'id.$t')) continue
-      id = vid.id.$t.split(':').pop()
+      app = state.apps[i]
+      
+      if (!isProp(app, 'id')) continue
+      id = app.id
 
+      if (!isProp(app, 'url')) continue
       a = d.createElement('a')
-      a.href = 'http://khanacademy.org/video?v=' + id
+      a.href = app.url
 
       YAHOO.util.Event.addListener(a, 'click', clickA(id))
 
       img = d.createElement('img')
-      if (!isProp(vid, 'media$group.media$thumbnail')) continue
-      img.src = "/iu/?u=" + vid.media$group.media$thumbnail[0].url
+      if (!isProp(app, 'icon_url')) continue
+      img.src = app.icon_url /*"/iu/?u="*/
 
       p = d.createElement('p')
-      if (!isProp(vid, 'title.$t')) continue
-      txt = d.createTextNode(vid.title.$t)
+      if (!isProp(app, 'name')) continue
+      txt = d.createTextNode(app.name)
       p.appendChild(txt)
 
       a.appendChild(img)
@@ -115,7 +221,7 @@ function ddg_spice_quixey_search(results) {
         YAHOO.util.Dom.removeClass(ul.childNodes[j], 'sel')
       }
       YAHOO.util.Dom.addClass(this.parentNode, 'sel')
-      addVid(id)
+      addPreview(id)
     }
   }
 
@@ -135,16 +241,16 @@ function ddg_spice_quixey_search(results) {
     return function (e) {
       preventDefault(e)
 
-      if (state.app_preview === 0 && !next) return
-      if (state.app_preview === state.last && next) return
+      if (state.quixey === 0 && !next) return
+      if (state.quixey === state.last && next) return
 
-      state.app_preview += (next ? 1 : -1) * state.inc
+      state.quixey += (next ? 1 : -1) * state.inc
 
       // edge conditions when resizing
-      if (state.app_preview < 0) state.app_preview = 0
-      if (state.app_preview > state.last) state.app_preview = state.last
+      if (state.quixey < 0) state.quixey = 0
+      if (state.quixey > state.last) state.quixey = state.last
 
-      doNav(state.app_preview / state.inc)
+      doNav(state.quixey / state.inc)
     }
   }
 
@@ -157,16 +263,16 @@ function ddg_spice_quixey_search(results) {
 
   // Slide the thumbnails around
   function setSlides() {
-    var mar = '-' + (state.app_preview * state.li_width) + 'px'
+    var mar = '-' + (state.quixey * state.li_width) + 'px'
     YAHOO.util.Dom.setStyle('slides', 'margin-left', mar)
   }
 
   // Set styling on previous / next buttons
   function pnClasses() {
-    if (state.app_preview > 0) YAHOO.util.Dom.removeClass('preva', 'npah')
+    if (state.quixey > 0) YAHOO.util.Dom.removeClass('preva', 'npah')
     else YAHOO.util.Dom.addClass('preva', 'npah')
 
-    if (state.app_preview < state.last) YAHOO.util.Dom.removeClass('nexta', 'npah')
+    if (state.quixey < state.last) YAHOO.util.Dom.removeClass('nexta', 'npah')
     else YAHOO.util.Dom.addClass('nexta', 'npah')
   }
 
@@ -189,14 +295,14 @@ function ddg_spice_quixey_search(results) {
   function dotHandler(j) {
     return function (e) {
       preventDefault(e)
-      state.app_preview = j * state.inc
+      state.quixey = j * state.inc
       doNav(j)
     }
   }
 
   // Show page numbers
   function showPage(dots, n) {
-    var sel = state.app_preview / state.inc
+    var sel = state.quixey / state.inc
     var p = d.createElement('p')
     YAHOO.util.Dom.addClass(p, 'page')
     p.appendChild(d.createTextNode((sel + 1) + '/' + n))
@@ -213,7 +319,7 @@ function ddg_spice_quixey_search(results) {
       div.appendChild(dots)
     }
     var lin, j = 0, n = Math.ceil(state.apps.length / state.inc)
-    var sel = state.app_preview / state.inc
+    var sel = state.quixey / state.inc
 
     if (n > 4 && state.win < state.min_win)  // at most 4 dots on small screens
       return showPage(dots, n)
@@ -229,55 +335,39 @@ function ddg_spice_quixey_search(results) {
     }
   }
 
+  /*****************/
+  /* Preview Embed */
+  /*****************/
 
-  /* Video Embed */
-
-  // Add video to screen
-  function addVid(id) {
-    var ne
+  // Add app preview to screen
+  function addPreview(id) {
+    var preview_container
     if (!id) {
-      ne = d.getElementById('ne')
-      if (!ne) return
-      id = YAHOO.util.Dom.getAttribute(ne, 'vid')
+      preview_container = d.getElementById('preview_container')
+      if (!preview_container) return
+      id = YAHOO.util.Dom.getAttribute(preview_container, 'app')
     }
-    ne = d.createElement('iframe')
-    ne.id = 'ne'
-    ne.src = [
-      'https://www.youtube.com/embed/' + id + '?'
-      , 'autoplay=1'
-      , 'wmode=opaque'
-      , 'iv_load_policy=3'
-      , 'autohide=1'
-      , 'version=3'
-      , 'enablejsapi=1'
-    ].join('&')
+    preview_container = d.createElement('div')
+    preview_container.id = 'preview_container'
 
-    YAHOO.util.Dom.setStyle(ne, 'width', '100%')
-    YAHOO.util.Dom.setStyle(ne, 'height', '100%')
-    YAHOO.util.Dom.setAttribute(ne, 'vid', id)
-    YAHOO.util.Dom.setAttribute(ne, 'allowFullScreen', true)
-    YAHOO.util.Dom.setAttribute(ne, 'webkitAllowFullScreen', true)
-    YAHOO.util.Dom.setAttribute(ne, 'mozallowfullscreen', true)
-    YAHOO.util.Dom.setAttribute(ne, 'scrolling', 'no')
-    ne.frameBorder = 0
+    YAHOO.util.Dom.setStyle(preview_container, 'width', '100%')
+    YAHOO.util.Dom.setStyle(preview_container, 'height', '100%')
+    YAHOO.util.Dom.setAttribute(preview_container, 'app', id)
 
-    var emb = d.getElementById('emb')
-    emb.innerHTML = ''  // clear
-    emb.appendChild(ne)
-    YAHOO.util.Dom.setStyle('emb', 'display', 'block')
+    var preview = d.getElementById('preview')
+    preview.innerHTML = getInfo(id)
+    preview.appendChild(preview_container)
+    YAHOO.util.Dom.setStyle('preview', 'display', 'block')
   }
-
 
   /* Main plugin entry point */
 
   function setup() {
-
     // store window width
     state.win = YAHOO.util.Dom.getRegion('nav').width
 
-    // 16/9 Aspect Ratio + menu
-    var hei = Math.floor(state.win * 0.5625) + state.youtube_menu
-    YAHOO.util.Dom.setStyle('emb', 'height', hei + 'px')
+    // preview height
+    YAHOO.util.Dom.setStyle('preview', 'height', '150px')
 
     var frame_width = state.win - state.pn_width
 
@@ -288,16 +378,12 @@ function ddg_spice_quixey_search(results) {
     var extra = frame_width - (state.thumb_width * state.inc)
     state.li_width = state.thumb_width + Math.floor(extra / state.inc)
 
-    // hide extras pixels
-    var hide = extra % state.inc
-    YAHOO.util.Dom.setStyle('gr', 'width', hide + 'px')
-
     // last video
     var linc = state.apps.length % state.inc
     state.last = Math.max(0, state.apps.length - (linc ? linc : state.inc))
 
     // whole states
-    state.app_preview -= state.app_preview % state.inc
+    state.quixey -= state.quixey % state.inc
 
     // add the navigation
     createNav()
@@ -320,43 +406,37 @@ function ddg_spice_quixey_search(results) {
   }
 
   // If we have a videos to display
-  if (results && isProp(results, 'feed.entry') && results.feed.entry.length > 0) {
+  if (data && isProp(data, 'results') && data.results.length > 0) {
 
-    // store the videos
-    state.apps = results.feed.entry
+    // store the apps
+    state.apps = data.results
 
     // main container
     var div = d.createElement('div')
-    div.id = 'app_preview'
+    div.id = 'quixey'
 
-    // container for the video embed, initially hidden
-    var emb = d.createElement('div')
-    emb.id = 'emb'
-    div.appendChild(emb)
+    // container for the app preview, initially hidden
+    var preview = d.createElement('div')
+    preview.id = 'preview'
+    div.appendChild(preview)
 
     // container for navigation
     var nav = d.createElement('div')
     nav.id = 'nav'
     div.appendChild(nav)
 
-    // container to hide extra pixels
-    var gr = d.createElement('div')
-    gr.id = 'gr'
-    div.appendChild(gr)
-
     // set more at link
-    var u = 'http://khanacademy.org/'
-    if (isProp(results, 'feed.title.$t')) {
-      var q = results.feed.title.$t.split(': ')[1]
-      if (q) u += 'search?page_search_query=' + q.replace(/\s/g, '+')
+    var u = 'https://quixey.com/'
+    if (isProp(data, 'q')) {
+      var q = data.q.replace(/\s/g, '+')
     }
 
     // ddg: add to page
     var items = [{
       f: 1,
       a: div,
-      h: query + ' (Khan Academy Videos)',
-      s: 'Khan Academy',
+      h: query + ' ()',
+      s: 'Quixey',
       u: u,
       force_big_header: true
     }]
@@ -364,8 +444,5 @@ function ddg_spice_quixey_search(results) {
 
     // start spice
     setup()
-
   }
-
-
 }
