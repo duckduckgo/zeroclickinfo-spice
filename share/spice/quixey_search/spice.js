@@ -58,32 +58,77 @@ function ddg_spice_quixey_search (data) {
   /* Data Extraction */
   /*******************/
   function getInfo(id){
-    app = getApp(id);
+    app = getApp(id)
+
+    var app_id_string = app.id.toString()
+
+    //console.log("APP:")
+    //console.log(app)
     
-    var details     = d.createElement('div')
-    var icon        = d.createElement('img')
-	icon.src    = app.icon_url
-    var description = d.createElement('span')
-    var editions    = d.createElement('div')
-        editions.innerHTML = getEditions(app.editions)
+    var app_container = d.createElement("div")
+    var img_anchor = d.createElement("a")
+    var img = d.createElement('img')
+        img_anchor.href = app.url
+        img.src = app.icon_url
+    var info = d.createElement('div')
+    var name_wrap = d.createElement('div')
+    var details = d.createElement('div')
+	details.innerHTML = getDetails(app)
+    var name = d.createElement('a')
+        name.href = app.url
+        name.innerHTML = app.name
+    var price = d.createElement('div')
+        price.innerHTML = getPrice(app.editions)
+    var rating = d.createElement('div')
+        rating.innerHTML = getRating(app) 
+    var platforms = d.createElement("div")
+        platforms.innerHTML = getPlatforms(app.platforms)
+    
+    name_wrap.appendChild(name)
+    name_wrap.appendChild(price)
+    name_wrap.appendChild(rating)
+    name_wrap.appendChild(platforms)
+    img_anchor.appendChild(img)
+    info.appendChild(img_anchor)
+    info.appendChild(name_wrap)
+    app_container.appendChild(info)
+    app_container.appendChild(details)
 
-    YAHOO.util.Dom.addClass(icon, "float_left")
-    YAHOO.util.Dom.addClass(icon, "app_icon")
-    details.appenChild(icon)
+    // Set Styles
+    YAHOO.util.Dom.setAttribute(app_container, "id", app_id_string)
+    YAHOO.util.Dom.setAttribute(details, "id", "details_" + app_id_string)
+    YAHOO.util.Dom.addClass(app_container, 'app_container')
+    YAHOO.util.Dom.addClass(img_anchor, 'app_icon_anchor')
+    YAHOO.util.Dom.addClass(img, 'app_icon')
+    YAHOO.util.Dom.addClass(info, "app_info")
+    YAHOO.util.Dom.addClass(name_wrap, "name_wrap")
+    YAHOO.util.Dom.addClass(details, "app_details ")
+    YAHOO.util.Dom.addClass(name, 'name')
+    YAHOO.util.Dom.addClass(platforms, 'app_platforms')
+   
+    return app_container.innerHTML
+  }
 
-    details.appendChild(editions)
-
+    
+  function getDetails(app){
+    var more_info   = d.createElement('div');
+    var description = d.createElement('span');
+    var editions    = d.createElement('div');
+    editions.innerHTML = getEditions(app.editions);
+	
+    more_info.appendChild(editions);
+	
     if (isProp(app, 'short_desc')){
-      description.innerHTML += "Description: " + app.short_desc
+      description.innerHTML += "Description: " + app.short_desc;
     }else{
-      description.innerHTML += "No description"
+      description.innerHTML += "No description";
     }
 
     YAHOO.util.Dom.addClass(description, "float_left")
-    details.appendChild(description)
+    more_info.appendChild(description);
 
-    return details.innerHTML
-  }
+    return more_info.innerHTML;
+  } 
 
   function getEditions(editions_array){
     var editions = d.createElement("div")
@@ -107,6 +152,37 @@ function ddg_spice_quixey_search (data) {
     return editions.innerHTML
   }
 
+  function getPrice (editions_array){
+   var price = d.createElement('div')
+   var low  = editions_array[0].cents
+   var high = editions_array[0].cents  
+   var temp, range
+   for (var i in editions_array){
+     temp = editions_array[i].cents
+     if (temp < low) low == temp
+     if (temp > high) high == temp
+   }
+   
+   if (low != high) range = "$" + (low/100).toString() + " - $" + (high/100).toString()
+   if (low == high ) range = "$" + (low/100).toString()
+   
+   price.innerHTML = range.replace("$0", "FREE")
+
+   return price
+  }
+
+  function getRating (app){
+    var rating = d.createElement('p')
+    repeat = Math.round(app.rating).toString()
+    for (var i in repeat){
+      star = d.createElement('span')
+      YAHOO.util.Dom.addClass(star, "star")
+      rating.appendChild(star)
+    }
+    rating.title = app.rating
+    return rating
+  }
+
   function getPlatforms (platforms_array){    
     var platforms = d.createElement("div");
 
@@ -125,9 +201,9 @@ function ddg_spice_quixey_search (data) {
 
       name.innerHTML = current.name;
 
-      YAHOO.util.Dom.addClass(img, 'quixey_platform_icon');
-      YAHOO.util.Dom.addClass(name, 'quixey_platform_name');
-      YAHOO.util.Dom.addClass(platform, 'quixey_app_platform');
+      YAHOO.util.Dom.addClass(img, 'platform_icon');
+      YAHOO.util.Dom.addClass(name, 'platform_name');
+      YAHOO.util.Dom.addClass(platform, 'app_platform');
       platform.appendChild(img);
       platform.appendChild(name);
       platforms.appendChild(platform);
@@ -185,17 +261,18 @@ function ddg_spice_quixey_search (data) {
       a.href = app.url
 
       YAHOO.util.Event.addListener(a, 'click', clickA(id))
-
+      
       img = d.createElement('img')
       if (!isProp(app, 'icon_url')) continue
-      img.src = app.icon_url /*"/iu/?u="*/
-
+      img.src = app.icon_url 
+  
       p = d.createElement('p')
       if (!isProp(app, 'name')) continue
-      txt = d.createTextNode(app.name)
+      txt = d.createTextNode(shorten(app.name, 40))
+
+      p.appendChild(img)
       p.appendChild(txt)
 
-      a.appendChild(img)
       a.appendChild(p)
 
       li.appendChild(a)
@@ -341,23 +418,24 @@ function ddg_spice_quixey_search (data) {
 
   // Add app preview to screen
   function addPreview(id) {
-    var preview_container
+    var preview
     if (!id) {
-      preview_container = d.getElementById('preview_container')
-      if (!preview_container) return
-      id = YAHOO.util.Dom.getAttribute(preview_container, 'app')
+      preview = d.getElementById('preview')
+      if (!preview) return
+      id = YAHOO.util.Dom.getAttribute(preview, 'app')
     }
-    preview_container = d.createElement('div')
-    preview_container.id = 'preview_container'
-
-    YAHOO.util.Dom.setStyle(preview_container, 'width', '100%')
-    YAHOO.util.Dom.setStyle(preview_container, 'height', '100%')
-    YAHOO.util.Dom.setAttribute(preview_container, 'app', id)
-
-    var preview = d.getElementById('preview')
+    preview = d.createElement('div')
+    preview.id = 'preview'
     preview.innerHTML = getInfo(id)
-    preview.appendChild(preview_container)
-    YAHOO.util.Dom.setStyle('preview', 'display', 'block')
+    
+    YAHOO.util.Dom.setStyle(preview, 'width', '100%')
+    YAHOO.util.Dom.setStyle(preview, 'height', '100%')
+    YAHOO.util.Dom.setAttribute(preview, 'app', id)
+
+    var emb = d.getElementById('emb')
+    emb.innerHTML = '' //clear
+    emb.appendChild(preview)
+    YAHOO.util.Dom.setStyle('emb', 'display', 'block')
   }
 
   /* Main plugin entry point */
@@ -367,7 +445,7 @@ function ddg_spice_quixey_search (data) {
     state.win = YAHOO.util.Dom.getRegion('nav').width
 
     // preview height
-    YAHOO.util.Dom.setStyle('preview', 'height', '150px')
+    YAHOO.util.Dom.setStyle('emb', 'min-height', 300 + 'px')
 
     var frame_width = state.win - state.pn_width
 
@@ -416,9 +494,9 @@ function ddg_spice_quixey_search (data) {
     div.id = 'quixey'
 
     // container for the app preview, initially hidden
-    var preview = d.createElement('div')
-    preview.id = 'preview'
-    div.appendChild(preview)
+    var emb  = d.createElement('div')
+    emb.id = 'emb'
+    div.appendChild(emb)
 
     // container for navigation
     var nav = d.createElement('div')

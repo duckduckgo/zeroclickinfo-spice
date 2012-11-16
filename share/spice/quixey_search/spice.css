@@ -1,9 +1,6 @@
 #zero_click_abstract {
   margin: 0 5px !important;
   padding: 0 !important;
-}
-
-#zero_click_abstract {
   position: relative;
 }
 
@@ -25,13 +22,13 @@
   margin: 4px 0;
 }
 
-#quixey #nav {
+#nav {
   margin: 0;
   position: relative;
   overflow: hidden;
 }
 
-#quixey #frame {
+#frame {
   margin: 0 25px;
   overflow: hidden;
 }
@@ -106,15 +103,15 @@
   color: #eee !important;
 }
 
-#quixey #nexta {
+#nexta {
   right: 0;
 }
 
-#quixey #preva {
+#preva {
   left: 0;
 }
 
-#quixey #preview {
+#emb {
   margin-bottom: 4px;
   position: relative;
   display: none;
@@ -122,11 +119,15 @@
   left: 0;
   right: 0;
   z-index: 2;
+  border-bottom: 1px solid #CCC;
+}
+
+#preview {
   width: 100%;
   height: 100%;
 }
 
-#quixey #dots {
+#dots {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -134,7 +135,7 @@
   margin: 0;
 }
 
-#quixey #dots p {
+#dots p {
   margin: 0px;
   font-weight: normal;
   font-size: 13px;
@@ -142,18 +143,18 @@
   padding: 0 2px;
 }
 
-#quixey #dots a {
+#dots a {
   padding: 0 2px;
   font-size: 16px;
   color: #ccc;
   text-decoration: none !important;
 }
 
-#quixey #dots a.selected {
+#dots a.selected {
   color: #1168cc;
 }
 
-#quixey #gr {
+#gr {
   position: absolute;
   width: 0;
   height: 100%;
@@ -178,43 +179,46 @@
   margin-right: 10px !important;
 }
 
-/*#spice_container{
-  clear: both;
-  width: auto;
-  margin: 10px 0;
-  width: 100%;
-  float: left;
-}*/
-
-#quixey .app_container{
-  float: left;
-  display: inline-block;
-  padding: 5px 0 5px 5px!important;
-  position: relative;
-}
-
 #quixey .app_icon{
   margin: 0px;
-  height: 48px;
-  width: 48px;
-  float: left;
-  display: block;
+  max-width: 100%;
 }
+
+#quixey .star{
+  background: url(star.png)
+  width: 10px
+  height: 10px
+  display: inline-block;
+  margin 0 2px;
+}
+
+#quixey .app_icon_anchor{
+  margin: 5px 2px;
+  max-width: 10%;
+  display: inline-block;
+  float: left
+}
+
 
 #quixey .app_info{
   display: block;
   float: left;
-  margin-left: 5px;
   font-size: 12px;
   padding: 0 2px 0 0;
+  width: 100%;
+}
+
+#quixey .app_details{
+  display: block;
+  float: left;
 }
 
 #quixey .name{
-  display: block;
+  display: inline-block;
   font-size: 13px;
   clear: right;
-  max-width: 132px;
   margin-bottom: 0px;
+  width: 85%;
 }
 
 #quixey .name.expand{
@@ -237,11 +241,12 @@
 
 #quixey .app_platform{
   display: inline-block;
-  border: 1px solid gray;
   border-radius: 5px;
-  padding: 1px 2px 0;
+  padding: 5px 5px 2px 5px;
   vertical-align: text-bottom;
   margin-left: 3px;
+  background: #EEE;
+  border: 1px solid #DDD;
 }
 
 #quixey .app_platform:hover {
