@@ -46,7 +46,7 @@ function ddg_spice_pictobar(pbr) {
         mid = d.createElement('table');
         mid.setAttribute('class','alltable');
         td = d.createElement('td');
-        td.innerHTML = '<a href="'+pbr['proflink']+'"><p>'+pbr['fname']+' '+pbr['lname']+'</p></a><table class="alltable1"><tr><td><center><a href="'+pbr['proflink']+'"><img src="'+pbr['piclink']+'"  class="imagecirlce" /></a></center></td><td><center><table width="150" height="60">'+outputString+'</table></center></td></tr><tr><td><a href="'+pbr['proflink']+'">View Full Profile</a></br>Gender:'+pbr['gendr']+'</br>Total Votes: '+pbr['totvot']+'</td><td>Percent Introversion: '+pbr['intro']+'%</br>Percent Extroversion: '+pbr['extro']+'%</td></tr></table>';
+        td.innerHTML = '<a href="'+pbr['proflink']+'"><p>'+pbr['fname']+' '+pbr['lname']+'</p></a><table class="alltable1"><tr><td><center><a href="'+pbr['proflink']+'"><img src="'+pbr['piclink']+'"  class="imagecirlce" /></a></center></td><td>Described by some as:</br><font size="1">'+pbr['tags']+'</font></center></td><td><center><table width="150" height="60">'+outputString+'</table></center></td></tr><tr><td><a href="'+pbr['proflink']+'">View Full Profile</a></br>Gender:'+pbr['gendr']+'</br>Total Votes: '+pbr['totvot']+'</td><td>Percent Introversion: '+pbr['intro']+'%</br>Percent Extroversion: '+pbr['extro']+'%</td></tr></table>';
         mid.appendChild(td);
 
         //body 
