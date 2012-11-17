@@ -9,12 +9,12 @@
 }
 
 #quixey:after {
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
 }
 
 #quixey {
@@ -26,6 +26,8 @@
   margin: 0;
   position: relative;
   overflow: hidden;
+  float: left;
+  width: 100%;
 }
 
 #frame {
@@ -125,6 +127,7 @@
 #preview {
   width: 100%;
   height: 100%;
+  padding-bottom: 10px;
 }
 
 #dots {
@@ -184,12 +187,17 @@
   max-width: 100%;
 }
 
-#quixey .star{
-  background: url(star.png)
-  width: 10px
-  height: 10px
+#quixey .rating{
+  margin-left: -1px
+}
+
+#quixey span.star{
+  background: url(star.png);
+  width: 20px;
+  height: 20px;
   display: inline-block;
   margin 0 2px;
+  background-size: 100% auto;
 }
 
 #quixey .app_icon_anchor{
@@ -208,35 +216,73 @@
   width: 100%;
 }
 
+#quixey .app_descritpion{
+  max-width: 40%;
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+  font-size: 1em;
+  margin: 0 10px;
+  background: #EEE;
+  padding: 5px;
+  border: 1px solid #DDD;
+  float: right;
+}
+
 #quixey .app_details{
   display: block;
   float: left;
+  margin: 5px 0;
+  font-size: 12px;
 }
 
-#quixey .name{
+#quixey .price{
+  margin: 3px 0;
+  font-size: 1.2em;
+}
+
+#quixey .name_wrap{
   display: inline-block;
   font-size: 13px;
   clear: right;
   margin-bottom: 0px;
-  width: 85%;
+  width: 40%;
+  margin: 0 5px;
 }
 
-#quixey .name.expand{
-  max-width: 100%;
-}
-
-#quixey .app_more_info{
+#quixey .name{
   float: left;
+  width: 100%;
   clear: both;
-  display: block;
-  height: auto;
-  padding: 5px 5px 0 0;
-  font-size: 13px;
+  font-size: 1.2em;
 }
 
 #quixey .app_platforms{
   float: left;
-  clear: left;
+  clear: both;
+}
+
+#quixey .app_editions{
+  float: left;
+  width: 100%;
+}
+
+#quixey .app_editions::before{
+  content: "App Editions:";
+  float: left;
+  clear: both;
+  width: 100%;
+  margin-bottom: 3px;
+  margin-top: 10px; 
+}
+
+#quixey .app_platforms::before{
+  content: "Available On:";
+  float: left;
+  clear: both;
+  width: 100%;
+  margin-bottom: 3px;
+  margin-top: 10px; 
 }
 
 #quixey .app_platform{
@@ -244,7 +290,7 @@
   border-radius: 5px;
   padding: 5px 5px 2px 5px;
   vertical-align: text-bottom;
-  margin-left: 3px;
+  margin-right: 3px;
   background: #EEE;
   border: 1px solid #DDD;
 }
@@ -263,13 +309,14 @@
 
 #quixey .app_edition{
   float: left;
-  padding: 3px;
+  margin-right: 10px;
 }
 
 #quixey .app_edition_icon{
-  max-width: 20px;
+  max-height: 26px;
   display: inline-block;
   vertical-align: top;
+  margin-right: 3px;
 }
 
 #quixey .platform_icon{

@@ -68,7 +68,7 @@ function ddg_spice_quixey_search (data) {
     var app_container = d.createElement("div")
     var img_anchor = d.createElement("a")
     var img = d.createElement('img')
-        img_anchor.href = app.url
+        img_anchor.href = app.url || app.developer.url || dir_url
         img.src = app.icon_url
     var info = d.createElement('div')
     var name_wrap = d.createElement('div')
@@ -76,23 +76,29 @@ function ddg_spice_quixey_search (data) {
 	details.innerHTML = getDetails(app)
     var name = d.createElement('a')
         name.href = app.url
-        name.innerHTML = app.name
+        name.innerHTML = shorten(app.name, 70)
     var price = d.createElement('div')
         price.innerHTML = getPrice(app.editions)
     var rating = d.createElement('div')
         rating.innerHTML = getRating(app) 
+    var description = d.createElement('div');
     var platforms = d.createElement("div")
         platforms.innerHTML = getPlatforms(app.platforms)
+    var clear = d.createElement('div')
     
+    if (isProp(app, 'short_desc')) description.innerHTML += "Description: " + app.short_desc
+       
     name_wrap.appendChild(name)
-    name_wrap.appendChild(price)
     name_wrap.appendChild(rating)
-    name_wrap.appendChild(platforms)
+    name_wrap.appendChild(price)
     img_anchor.appendChild(img)
     info.appendChild(img_anchor)
     info.appendChild(name_wrap)
+    info.appendChild(description);
     app_container.appendChild(info)
+    app_container.appendChild(platforms)
     app_container.appendChild(details)
+    app_container.appendChild(clear)
 
     // Set Styles
     YAHOO.util.Dom.setAttribute(app_container, "id", app_id_string)
@@ -101,38 +107,33 @@ function ddg_spice_quixey_search (data) {
     YAHOO.util.Dom.addClass(img_anchor, 'app_icon_anchor')
     YAHOO.util.Dom.addClass(img, 'app_icon')
     YAHOO.util.Dom.addClass(info, "app_info")
+    YAHOO.util.Dom.addClass(price, "price")
+    YAHOO.util.Dom.addClass(rating, "rating")
     YAHOO.util.Dom.addClass(name_wrap, "name_wrap")
     YAHOO.util.Dom.addClass(details, "app_details ")
     YAHOO.util.Dom.addClass(name, 'name')
     YAHOO.util.Dom.addClass(platforms, 'app_platforms')
-   
+    YAHOO.util.Dom.addClass(clear, "clear")
+    YAHOO.util.Dom.addClass(description, "app_description")
+
     return app_container.innerHTML
   }
 
     
   function getDetails(app){
     var more_info   = d.createElement('div');
-    var description = d.createElement('span');
     var editions    = d.createElement('div');
     editions.innerHTML = getEditions(app.editions);
 	
     more_info.appendChild(editions);
 	
-    if (isProp(app, 'short_desc')){
-      description.innerHTML += "Description: " + app.short_desc;
-    }else{
-      description.innerHTML += "No description";
-    }
-
-    YAHOO.util.Dom.addClass(description, "float_left")
-    more_info.appendChild(description);
-
+    YAHOO.util.Dom.addClass(editions, "app_editions")
+    
     return more_info.innerHTML;
   } 
 
   function getEditions(editions_array){
     var editions = d.createElement("div")
-    YAHOO.util.Dom.addClass(editions, "app_editions")
     
     for (var i in editions_array){
       var current = editions_array[i]
@@ -141,46 +142,54 @@ function ddg_spice_quixey_search (data) {
       var edition = d.createElement("div")
           edition.appendChild(img)
           YAHOO.util.Dom.addClass(img, "app_edition_icon")
-          edition.innerHTML += getPlatforms(current.platforms, true)
+	  edition.innerHTML += getPlatforms(current.platforms, true)
 
       YAHOO.util.Dom.addClass(edition, "app_edition")
+
       editions.appendChild(edition)
     }
-    console.log("editions")
-    console.log(editions)
 
     return editions.innerHTML
   }
 
   function getPrice (editions_array){
-   var price = d.createElement('div')
-   var low  = editions_array[0].cents
-   var high = editions_array[0].cents  
-   var temp, range
-   for (var i in editions_array){
-     temp = editions_array[i].cents
-     if (temp < low) low == temp
-     if (temp > high) high == temp
-   }
+    var low  = editions_array[0].cents
+    var high = editions_array[0].cents  
+    var temp, range
+    for (var i in editions_array){
+      temp = editions_array[i].cents
+      if (temp < low) low == temp
+      if (temp > high) high == temp
+    }
    
-   if (low != high) range = "$" + (low/100).toString() + " - $" + (high/100).toString()
-   if (low == high ) range = "$" + (low/100).toString()
-   
-   price.innerHTML = range.replace("$0", "FREE")
+    if (low == 0) {
+      low = "FREE"
+    }else{
+      low = "$" + (low/100).toString()
+    }
 
-   return price
+    if (high > 0 && high != low) {
+       high =  "$" + (high/100).toString()
+       range = low + " - " + high
+    }else{
+      range = low
+    }
+   
+    return range
+
   }
 
   function getRating (app){
-    var rating = d.createElement('p')
-    repeat = Math.round(app.rating).toString()
-    for (var i in repeat){
+    var rating = d.createElement('div')
+    repeat = Math.round(app.rating)
+    console.log(repeat)
+    for (var i=0; i < repeat; i++){
       star = d.createElement('span')
       YAHOO.util.Dom.addClass(star, "star")
       rating.appendChild(star)
     }
-    rating.title = app.rating
-    return rating
+    YAHOO.util.Dom.setAttribute(rating, "title", app.rating)
+    return rating.innerHTML
   }
 
   function getPlatforms (platforms_array){    
@@ -444,9 +453,6 @@ function ddg_spice_quixey_search (data) {
     // store window width
     state.win = YAHOO.util.Dom.getRegion('nav').width
 
-    // preview height
-    YAHOO.util.Dom.setStyle('emb', 'min-height', 300 + 'px')
-
     var frame_width = state.win - state.pn_width
 
     // increment by how many thumbs
@@ -513,9 +519,9 @@ function ddg_spice_quixey_search (data) {
     var items = [{
       f: 1,
       a: div,
-      h: query + ' ()',
+      h: data.q + ' (Quixey App Search)',
       s: 'Quixey',
-      u: u,
+      u: u + q,
       force_big_header: true
     }]
     nra(items, 0, true)
