@@ -77,7 +77,9 @@ function ddg_spice_quixey_search (data) {
     var price = d.createElement('div')
         price.innerHTML = getPrice(app.editions)
     var rating = d.createElement('div')
-        rating.innerHTML = getRating(app) 
+        if (app.rating != null) {
+	  rating.innerHTML = getRating(app)
+	}
     var description = d.createElement('div');
     var platforms = d.createElement("div")
         platforms.innerHTML = getPlatforms(app.platforms)
@@ -100,14 +102,16 @@ function ddg_spice_quixey_search (data) {
     // Set Styles
     YAHOO.util.Dom.setAttribute(app_container, "id", app_id_string)
     YAHOO.util.Dom.setAttribute(details, "id", "details_" + app_id_string)
-    YAHOO.util.Dom.setAttribute(rating, "title", app.rating.toFixed(1))
+    if (app.rating != null){
+      YAHOO.util.Dom.setAttribute(rating, "title", app.rating.toFixed(1))
+      YAHOO.util.Dom.addClass(rating, "rating")
+    }
     YAHOO.util.Dom.setAttribute(description, "title", app.short_desc)
     YAHOO.util.Dom.addClass(app_container, 'app_container')
     YAHOO.util.Dom.addClass(img_anchor, 'app_icon_anchor')
     YAHOO.util.Dom.addClass(img, 'app_icon')
     YAHOO.util.Dom.addClass(info, "app_info")
     YAHOO.util.Dom.addClass(price, "price")
-    YAHOO.util.Dom.addClass(rating, "rating")
     YAHOO.util.Dom.addClass(name_wrap, "name_wrap")
     YAHOO.util.Dom.addClass(details, "app_details ")
     YAHOO.util.Dom.addClass(name, 'name')
@@ -118,7 +122,6 @@ function ddg_spice_quixey_search (data) {
 
     return app_container.innerHTML
   }
-
     
   function getDetails(app){
     var more_info   = d.createElement('div');
@@ -148,8 +151,12 @@ function ddg_spice_quixey_search (data) {
 
       YAHOO.util.Dom.addClass(img_anchor, "app_edition_icon")
       YAHOO.util.Dom.addClass(edition, "app_edition")
-      YAHOO.util.Dom.setAttribute(img_anchor, "title", current.name + ' - Rating: ' + current.rating.toFixed(1) + ' - Price: ' + price)
-
+      if (current.rating != null){
+	rating = getRating(current)
+        YAHOO.util.Dom.setAttribute(img_anchor, "title", current.name + ' - Rating: ' + rating + ' - Price: ' + price)
+      }else{
+	YAHOO.util.Dom.setAttribute(img_anchor, "title", current.name + ' - Price: ' + price)
+      }
       img_anchor.appendChild(img)
       edition.appendChild(img_anchor)
       edition.innerHTML += getPlatforms(current.platforms, current.url)
@@ -218,7 +225,6 @@ function ddg_spice_quixey_search (data) {
   function getRating (app){
     var rating = d.createElement('div')
     repeat = Math.round(app.rating)
-    console.log(repeat)
     for (var i=0; i < repeat; i++){
       star = d.createElement('span')
       YAHOO.util.Dom.addClass(star, "star")
