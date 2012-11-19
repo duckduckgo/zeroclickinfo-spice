@@ -62,9 +62,6 @@ function ddg_spice_quixey_search (data) {
 
     var app_id_string = app.id.toString()
 
-    //console.log("APP:")
-    //console.log(app)
-    
     var app_container = d.createElement("div")
     var img_anchor = d.createElement("a")
     var img = d.createElement('img')
@@ -76,7 +73,7 @@ function ddg_spice_quixey_search (data) {
 	details.innerHTML = getDetails(app)
     var name = d.createElement('a')
         name.href = app.url
-        name.innerHTML = shorten(app.name, 70)
+        name.innerHTML = shorten(app.name, 35)
     var price = d.createElement('div')
         price.innerHTML = getPrice(app.editions)
     var rating = d.createElement('div')
@@ -86,7 +83,7 @@ function ddg_spice_quixey_search (data) {
         platforms.innerHTML = getPlatforms(app.platforms)
     var clear = d.createElement('div')
     
-    if (isProp(app, 'short_desc')) description.innerHTML += "Description: " + app.short_desc
+    if (isProp(app, 'short_desc')) description.innerHTML += "Description: " + shorten(app.short_desc, 160)
        
     name_wrap.appendChild(name)
     name_wrap.appendChild(rating)
@@ -103,6 +100,8 @@ function ddg_spice_quixey_search (data) {
     // Set Styles
     YAHOO.util.Dom.setAttribute(app_container, "id", app_id_string)
     YAHOO.util.Dom.setAttribute(details, "id", "details_" + app_id_string)
+    YAHOO.util.Dom.setAttribute(rating, "title", app.rating.toFixed(1))
+    YAHOO.util.Dom.setAttribute(description, "title", app.short_desc)
     YAHOO.util.Dom.addClass(app_container, 'app_container')
     YAHOO.util.Dom.addClass(img_anchor, 'app_icon_anchor')
     YAHOO.util.Dom.addClass(img, 'app_icon')
@@ -112,6 +111,7 @@ function ddg_spice_quixey_search (data) {
     YAHOO.util.Dom.addClass(name_wrap, "name_wrap")
     YAHOO.util.Dom.addClass(details, "app_details ")
     YAHOO.util.Dom.addClass(name, 'name')
+    YAHOO.util.Dom.setAttribute(name, "title", app.name)
     YAHOO.util.Dom.addClass(platforms, 'app_platforms')
     YAHOO.util.Dom.addClass(clear, "clear")
     YAHOO.util.Dom.addClass(description, "app_description")
@@ -137,25 +137,61 @@ function ddg_spice_quixey_search (data) {
     
     for (var i in editions_array){
       var current = editions_array[i]
-      var img     = d.createElement("img")
+      var img_anchor = d.createElement("a")
+          img_anchor.href = current.url || dir_url
+      var img = d.createElement('img')
           img.src = current.icon_url
       var edition = d.createElement("div")
-          edition.appendChild(img)
-          YAHOO.util.Dom.addClass(img, "app_edition_icon")
-	  edition.innerHTML += getPlatforms(current.platforms, true)
+      var price = "$" + ((current.cents)/100).toFixed(2).toString()
+	  console.log("Price: " + price)
+          price = price.replace("$0.00", "FREE")
 
+      YAHOO.util.Dom.addClass(img_anchor, "app_edition_icon")
       YAHOO.util.Dom.addClass(edition, "app_edition")
+      YAHOO.util.Dom.setAttribute(img_anchor, "title", current.name + ' - Rating: ' + current.rating.toFixed(1) + ' - Price: ' + price)
 
+      img_anchor.appendChild(img)
+      edition.appendChild(img_anchor)
+      edition.innerHTML += getPlatforms(current.platforms, current.url)
       editions.appendChild(edition)
     }
 
     return editions.innerHTML
   }
 
+  function getPlatforms (platforms_array, url){
+    var platforms = d.createElement("div");
+
+    for (var i in platforms_array){
+      var current  = platforms_array[i];
+      var platform = d.createElement("a");
+          if (url != undefined) platform.href = url
+      var img  = d.createElement("img");
+      var name = d.createElement("span");
+          name.innerHTML = current.name;
+
+      // Get proper apple icon
+      if (current.id === 2004 || current.id === 2015) {
+        img.src = "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
+      }else {
+        img.src = current.icon_url;
+      }
+
+      YAHOO.util.Dom.addClass(img, 'platform_icon');
+      YAHOO.util.Dom.addClass(name, 'platform_name');
+      YAHOO.util.Dom.addClass(platform, 'app_platform');
+
+      platform.appendChild(img);
+      platform.appendChild(name);
+      platforms.appendChild(platform);
+    }
+    return platforms.innerHTML;
+  }
+
   function getPrice (editions_array){
     var low  = editions_array[0].cents
     var high = editions_array[0].cents  
-    var temp, range
+    var temp, range, lowp, highp
     for (var i in editions_array){
       temp = editions_array[i].cents
       if (temp < low) low == temp
@@ -163,16 +199,16 @@ function ddg_spice_quixey_search (data) {
     }
    
     if (low == 0) {
-      low = "FREE"
+      lowp = "FREE"
     }else{
-      low = "$" + (low/100).toString()
+      lowp = "$" + (low/100).toFixed(2).toString()
     }
 
     if (high > 0 && high != low) {
-       high =  "$" + (high/100).toString()
-       range = low + " - " + high
+       highp =  "$" + (high/100).toFixed(2).toString()
+       range = lowp + " - " + highp
     }else{
-      range = low
+      range = lowp
     }
    
     return range
@@ -188,36 +224,7 @@ function ddg_spice_quixey_search (data) {
       YAHOO.util.Dom.addClass(star, "star")
       rating.appendChild(star)
     }
-    YAHOO.util.Dom.setAttribute(rating, "title", app.rating)
     return rating.innerHTML
-  }
-
-  function getPlatforms (platforms_array){    
-    var platforms = d.createElement("div");
-
-    for (var i in platforms_array){
-      var current  = platforms_array[i];
-      var platform = d.createElement("div");
-      var img  = d.createElement("img");
-      var name = d.createElement("span");
-
-      // Get proper apple icon
-      if (current.id === 2004 || current.id === 2015) {
-        img.src = "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
-      }else {
-        img.src = current.icon_url;
-      }
-
-      name.innerHTML = current.name;
-
-      YAHOO.util.Dom.addClass(img, 'platform_icon');
-      YAHOO.util.Dom.addClass(name, 'platform_name');
-      YAHOO.util.Dom.addClass(platform, 'app_platform');
-      platform.appendChild(img);
-      platform.appendChild(name);
-      platforms.appendChild(platform);
-    }
-    return platforms.innerHTML;
   }
 
   function shorten (string, length) {

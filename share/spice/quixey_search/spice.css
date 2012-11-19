@@ -128,6 +128,7 @@
   width: 100%;
   height: 100%;
   padding-bottom: 10px;
+  font-size: 12px;
 }
 
 #dots {
@@ -216,13 +217,10 @@
   width: 100%;
 }
 
-#quixey .app_descritpion{
+#quixey .app_description{
   max-width: 40%;
   display: inline-block;
-  height: 100%;
-  vertical-align: top;
   font-size: 1em;
-  margin: 0 10px;
   background: #EEE;
   padding: 5px;
   border: 1px solid #DDD;
@@ -233,7 +231,6 @@
   display: block;
   float: left;
   margin: 5px 0;
-  font-size: 12px;
 }
 
 #quixey .price{
@@ -246,7 +243,7 @@
   font-size: 13px;
   clear: right;
   margin-bottom: 0px;
-  width: 40%;
+  max-width: 40%;
   margin: 0 5px;
 }
 
@@ -260,6 +257,7 @@
 #quixey .app_platforms{
   float: left;
   clear: both;
+  width: 100%;
 }
 
 #quixey .app_editions{
@@ -313,10 +311,15 @@
 }
 
 #quixey .app_edition_icon{
-  max-height: 26px;
+  height: 25px;
+  width: 25px;
   display: inline-block;
   vertical-align: top;
   margin-right: 3px;
+}
+
+#quixey .app_edition_icon img{
+  max-width:100%;
 }
 
 #quixey .platform_icon{
