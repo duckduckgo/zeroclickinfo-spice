@@ -3,6 +3,7 @@ package DDG::Spice::UrbanDictionary;
 
 use DDG::Spice;
 
+spice is_unsafe => 1;
 triggers startend => "ud", "urban", "urbandictionary", "urban dictionary", "meaning", "meaning of", "definition", "definition of", "acronym";
 spice to => 'http://api.urbandictionary.com/v0/define?term=$1&callback={{callback}}';
 
