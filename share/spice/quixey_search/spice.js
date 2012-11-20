@@ -152,7 +152,7 @@ function ddg_spice_quixey_search (data) {
       YAHOO.util.Dom.addClass(img_anchor, "app_edition_icon")
       YAHOO.util.Dom.addClass(edition, "app_edition")
       if (current.rating != null){
-	rating = getRating(current)
+	rating = app.rating.toFixed(1)
         YAHOO.util.Dom.setAttribute(img_anchor, "title", current.name + ' - Rating: ' + rating + ' - Price: ' + price)
       }else{
 	YAHOO.util.Dom.setAttribute(img_anchor, "title", current.name + ' - Price: ' + price)
@@ -532,7 +532,7 @@ function ddg_spice_quixey_search (data) {
     var items = [{
       f: 1,
       a: div,
-      h: data.q + ' (Quixey App Search)',
+      h: data.q + ' (App Search)</h1><h1 class="quixey_logo"></h1>',
       s: 'Quixey',
       u: u + q,
       force_big_header: true

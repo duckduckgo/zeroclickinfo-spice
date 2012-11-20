@@ -8,6 +8,16 @@
   display: none !important;
 }
 
+.quixey_logo {
+  background: url(quixey_logo.png);
+  background-size: 100% auto;
+  width: 125px;
+  height: 15px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  margin: 0 10px;
+}
+
 #quixey:after {
   visibility: hidden;
   display: block;
