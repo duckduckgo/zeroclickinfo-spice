@@ -69,6 +69,8 @@ function ddg_spice_open_snp(ir) {
         items[0]['u'] = 'http://openSNP.org/snps/' + ir['snp']['name'];
         if ( annotations_snippet != '<br/>' ) {
             items[1]['a'] = annotations_snippet + '<br/>';
+            items[1]['s'] = 'openSNP.org';
+            items[1]['u'] = 'http://openSNP.org/snps/' + ir['snp']['name'];
             items[1]['t'] = 'Further annotations';
         }
         nra(items);
