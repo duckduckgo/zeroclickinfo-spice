@@ -5,16 +5,23 @@ function ddg_spice_github(re) {
 
     re = re.data.repositories;
 
+    var count = 0;
     var content = '<ul>';
     re.map(function(repo) {
-        if (!repo.description || !repo.url) return;
+        if (!repo.description) return;
+        if (!repo.url) {
+            repo.url = encodeURI('https://github.com/' + repo.owner + '/' + repo.name);
+        }
         var ownerURL = repo.url.replace(/[^\/]*$/, "");
         content += '<li><a href="' + repo.url
                 + '">' + repo.name + '</a>'
-                +  ' (<i><a href="' + ownerURL
-                + '">' + repo.owner + '</a></i>): '
+                +  ' (<a href="' + ownerURL
+                + '">' + repo.owner + '</a>'
+                + (repo.fork ? ', fork' : '') + ') - '
                 + repo.description + '</li>';
+        count++;
     });
+    if (!count) {return};
     content += "</ul>";
     var more = "http://www.github.com/search?q=" + encodeURI(query);
     if (re.length == 1) {

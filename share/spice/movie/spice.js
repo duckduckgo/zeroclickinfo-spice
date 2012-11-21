@@ -1,7 +1,10 @@
-var req = document.getElementById('search_form_input').value;
+
+var SKIP_ARRAY = [];
+SKIP_ARRAY['movie'] = 1;
+SKIP_ARRAY['film'] = 1;
 
 function ddg_spice_movie(movie) {
-    var result = req.replace(/^movie\s+/g,'');
+    var request = DDG.get_query().replace("movie",'').replace("film", "");
 
     // validity check
     if (movie['total'] > 0 && movie['movies']) {
@@ -14,7 +17,7 @@ function ddg_spice_movie(movie) {
 
             // check which movie title is most relevant
             for (var i = 0, aMovie; aMovie = movie.movies[i]; i++){
-                if (DDG.isRelevant(aMovie.title, ["movie","film"]) ) {
+                if (DDG.isRelevant(aMovie.title, SKIP_ARRAY)) {
                     result = aMovie;
                     break;
                 }
