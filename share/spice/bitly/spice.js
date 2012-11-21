@@ -1,13 +1,14 @@
 function ddg_spice_bitly (r) {
-	if (r['status_code'] == 200) {
-		url = r['data']['url'];
-		items = new Array();
-		items[0] = new Array();
-		items[0]['a'] = '<span>Here is a shortened version of that URL: <a href="' + url + '" target="_blank">' + url + '</a> :: </span>';
-		items[0]['h'] = 'Shortened URL (bitly)';
-		items[0]['s'] = 'Bitly';
-		items[0]['u'] = 'http://bitly.com';
-		items[0]['force_big_header'] = true;
+	if (r && r.status_code == 200) {
+		var url = r.data.url;
+		var items = [[]];
+		items[0] = {
+			a: '<span>Here is a shortened version of that URL: <input type="text" autofocus="true" value="' + url + '"/> :: </span>',
+			h: 'Shortened URL (bitly)',
+			s: 'Bitly',
+			u: 'http://bitly.com',
+			force_big_header: true
+		};
 		nra(items);
 	}
 }
