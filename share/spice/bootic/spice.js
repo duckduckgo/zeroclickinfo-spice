@@ -50,7 +50,7 @@ function ddg_spice_bootic( products )
 
 	var query = '';
 	if ( products.input_query ) {
-		query = '?q=' + encodeURIComponent( products.input_query );
+		query = '?initial=1&q=' + encodeURIComponent( products.input_query );
 	}
 
 	var items = new Array();
