@@ -3,7 +3,7 @@ package DDG::Spice::Bitly;
 use DDG::Spice;
 use URI::Escape;
 
-spice to => 'http://api.bitly.com/v3/shorten?login=djarvis270&apiKey=R_ef42d418c7e0ca65f81d00963a822b90&longUrl=$1&callback={{callback}}';
+spice to => 'http://api.bitly.com/v3/shorten?login=ddgspiceplugin&apiKey=R_2cbfeea1621c9f7795e8413356cfde46&longUrl=$1&callback={{callback}}';
 
 triggers start => 'bitly';
 
