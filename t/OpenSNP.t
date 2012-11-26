@@ -10,7 +10,7 @@ ddg_spice_test(
     'rs12' => test_spice(
         '/js/spice/open_snp/rs12',
         caller => 'DDG::Spice::OpenSNP',
-        is_cached => 0
+        is_cached => 1
     ),
     "I am not a SNP" => undef,
     "rsiamnotaSNP" => undef,
