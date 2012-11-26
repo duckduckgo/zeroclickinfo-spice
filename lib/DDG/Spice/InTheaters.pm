@@ -16,7 +16,7 @@ attribution github => ['https://github.com/jagtalon','jagtalon'],
 status "enabled";
 
 my $rating = '(?:g\s*|pg\s*|r\s*)?';
-spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?apikey=ccw2b5ce8dsy7sb3x2qxmn3x&callback={{callback}}';
+spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&callback={{callback}}';
 triggers any => 'movie', 'movies', 'theaters', 'theatres', 'showing', 'something', 'watch', 'opening', 'see';
 
 my %movies = (
