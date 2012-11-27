@@ -12,6 +12,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Zipcode'
     ),
+    '19301 Turkey' => test_spice(
+        '/js/spice/zipcode/19301/TR',
+        call_type => 'include',
+        caller => 'DDG::Spice::Zipcode'
+    ),
 );
 
 done_testing;
