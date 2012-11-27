@@ -3,8 +3,8 @@ package DDG::Spice::Bitly;
 
 use DDG::Spice;
 
-primary_example_queries "bitly http://www.example.com/long/url";
-secondary_example_queries "shorten http://www.example.com/long/url", "url shorten www.example.com/long/url";
+primary_example_queries "bitly http://www.duckduckgo.com/about.html";
+secondary_example_queries "shorten http://www.duckduckgo.com/goodies", "url shorten www.github.com/explore";
 description "Shorten URLs using the bitly API";
 name "Bitly";
 icon_url "/i/bitly.com.ico";
