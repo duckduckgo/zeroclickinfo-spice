@@ -3,16 +3,12 @@ package DDG::Spice::Pictobar;
 
 use DDG::Spice;
 
-use LWP::Simple;
-
-my $namsData = get('http://www.pictobar.com/api/names_s');
-
-triggers query_raw => qr/$namsData/;
+triggers query => qr/^(\w+\s\w+\s?\w*)|([\d\s\-\+\.()]{6,20})|([a-zA-Z0-9._%\-+]+@[a-zA-Z0-9._%\-]+\.[a-zA-Z]{2,6})$/;
 
 spice to => 'http://www.pictobar.com/api/people_s?callback={{callback}}&sid=$1';
 
 handle matches => sub {
-	return $_ if $_;
+	return @_ if @_;
 	return;
 };
 
