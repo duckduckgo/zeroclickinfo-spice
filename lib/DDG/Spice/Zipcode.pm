@@ -29,7 +29,7 @@ handle query_lc => sub {
 	s/\s*\b(zip\s*(code)?|post(al)?\s*(code)?)\b\s*//i;
 
 	my $code;
-	my $country;
+	my $country = '';
 	my %countries;
 
 	if (m/\s*(?:([a-z\s]+)|\(([a-z]{2})\))\s*$/) {
@@ -42,7 +42,7 @@ handle query_lc => sub {
 	$code = $_;
 
 	return uri_escape(uc($code)), $countries{lc ($country)} unless !defined $countries{lc ($country)};
-	return uri_escape(uc($code)), $country if defined $country;
+	return uri_escape(uc($code)), $country if $country ne '';
 	return (uc $code, 'ZZ') if defined $code;
 	return;
 };
