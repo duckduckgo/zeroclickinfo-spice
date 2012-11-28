@@ -73,7 +73,7 @@ function ddg_spice_quixey_search (data) {
 	details.innerHTML = getDetails(app)
     var name = d.createElement('a')
         name.href = app.url
-        name.innerHTML = shorten(app.name, 35)
+        name.innerHTML = shorten(app.name, 32)
     var price = d.createElement('div')
         price.innerHTML = getPrice(app.editions)
     var rating = d.createElement('div')
@@ -146,7 +146,6 @@ function ddg_spice_quixey_search (data) {
           img.src = current.icon_url
       var edition = d.createElement("div")
       var price = "$" + ((current.cents)/100).toFixed(2).toString()
-	  console.log("Price: " + price)
           price = price.replace("$0.00", "FREE")
 
       YAHOO.util.Dom.addClass(img_anchor, "app_edition_icon")
@@ -201,8 +200,9 @@ function ddg_spice_quixey_search (data) {
     var temp, range, lowp, highp
     for (var i in editions_array){
       temp = editions_array[i].cents
-      if (temp < low) low == temp
-      if (temp > high) high == temp
+      if (temp < low) low = temp
+      if (temp > high) high = temp
+      console.log("Temp: " + temp + " low: " + low + " high: " + high)
     }
    
     if (low == 0) {
@@ -211,7 +211,7 @@ function ddg_spice_quixey_search (data) {
       lowp = "$" + (low/100).toFixed(2).toString()
     }
 
-    if (high > 0 && high != low) {
+    if (high > low) {
        highp =  "$" + (high/100).toFixed(2).toString()
        range = lowp + " - " + highp
     }else{

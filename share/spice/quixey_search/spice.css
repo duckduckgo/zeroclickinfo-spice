@@ -60,7 +60,7 @@
   list-style-type: none;
   height: 130px;
   margin: 0;
-  padding-top: 5px;
+  padding: 5px 0;
   border: 1px solid transparent;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -189,17 +189,14 @@
   display: none;
 }
 
-#zero_click_abstract{
-  margin-right: 10px !important;
-}
-
 #quixey .app_icon{
   margin: 0px;
   max-width: 100%;
 }
 
 #quixey .rating{
-  margin-left: -1px
+  margin-left: -1px;
+  margin-top: 5px;
 }
 
 #quixey span.star{
@@ -214,7 +211,6 @@
 #quixey .app_icon_anchor{
   margin: 5px 2px;
   max-width: 10%;
-  display: inline-block;
   float: left
 }
 
@@ -228,13 +224,14 @@
 }
 
 #quixey .app_description{
-  max-width: 40%;
-  display: inline-block;
+  width: 55%;
+  min-height: 64px;
   font-size: 1em;
-  background: #EEE;
+  background: rgb(230,230,230);
   padding: 5px;
   border: 1px solid #DDD;
-  float: right;
+  border-radius: 2px;
+  float: left;
 }
 
 #quixey .app_details{
@@ -249,19 +246,16 @@
 }
 
 #quixey .name_wrap{
-  display: inline-block;
-  font-size: 13px;
-  clear: right;
   margin-bottom: 0px;
-  max-width: 40%;
+  width: 30%;
   margin: 0 5px;
+  float: left;
 }
 
 #quixey .name{
-  float: left;
   width: 100%;
   clear: both;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 #quixey .app_platforms{
