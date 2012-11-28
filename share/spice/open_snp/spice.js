@@ -1,6 +1,6 @@
 /*jshint sub:true, boss:true */
 (function() {
-    'use strict';
+    "use strict";
     var root = this;
     root.ddg_spice_open_snp = function(result) {
         // Did the API return information?
@@ -87,4 +87,4 @@
             nra(items);
         }
     };
-}()).call(this);
+}).call(this);
