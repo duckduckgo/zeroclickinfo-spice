@@ -3,7 +3,7 @@ DuckDuckGo Goodie Plugins
 
 See [DuckDuckHack](http://duckduckhack.com/) for documentation (including a tutorial and step by step instructions).
 
-Also, feel free to checkout the [Wiki](https://github.com/duckduckgo/zeroclickinfo-spice/wiki/Handbook-for-Spice-Plugin-Developers) which featues some guidelines on submussions and answers to some commone questions about spice plugins!
+Also, feel free to checkout the [Wiki](https://github.com/duckduckgo/zeroclickinfo-spice/wiki/Handbook-for-Spice-Plugin-Developers) which features some guidelines on submissions and answers to some common questions about spice plugins!
 
 Contributing
 ------------
