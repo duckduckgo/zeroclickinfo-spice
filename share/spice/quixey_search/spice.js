@@ -415,7 +415,8 @@ function ddg_spice_quixey_search (data) {
     if (!dots) {
       dots = d.createElement('p')
       dots.id = 'dots'
-      div.appendChild(dots)
+      var nav = d.getElementById('nav')
+      nav.appendChild(dots)
     }
     var lin, j = 0, n = Math.ceil(state.apps.length / state.inc)
     var sel = state.quixey / state.inc
@@ -509,18 +510,27 @@ function ddg_spice_quixey_search (data) {
     state.apps = data.results
 
     // main container
+    var container = d.createElement('div')
     var div = d.createElement('div')
     div.id = 'quixey'
+
+    // container for navigation
+    var nav = d.createElement('div')
+    nav.id = 'nav'
+    div.appendChild(nav)
 
     // container for the app preview, initially hidden
     var emb  = d.createElement('div')
     emb.id = 'emb'
     div.appendChild(emb)
 
-    // container for navigation
-    var nav = d.createElement('div')
-    nav.id = 'nav'
-    div.appendChild(nav)
+   // Add Quixey logo to bottom
+   var logo = d.createElement('h1')
+   YAHOO.util.Dom.addClass(logo, 'quixey_logo')
+   
+   // Append Quixey div and logo to container
+   container.appendChild(div)
+   container.appendChild(logo)
 
     // set more at link
     var u = 'https://quixey.com/'
@@ -531,8 +541,8 @@ function ddg_spice_quixey_search (data) {
     // ddg: add to page
     var items = [{
       f: 1,
-      a: div,
-      h: data.q + ' (App Search)</h1><h1 class="quixey_logo"></h1>',
+      a: container,
+      h: data.q + ' (App Search)',
       s: 'Quixey',
       u: u + q,
       force_big_header: true

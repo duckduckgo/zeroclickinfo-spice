@@ -13,9 +13,9 @@
   background-size: 100% auto;
   width: 125px;
   height: 15px;
-  display: inline-block;
   background-repeat: no-repeat;
-  margin: 0 10px;
+  position:relative;
+  float: right;
 }
 
 #quixey:after {
@@ -36,8 +36,8 @@
   margin: 0;
   position: relative;
   overflow: hidden;
-  float: left;
   width: 100%;
+  border-bottom: 1px solid #e1e1e1;
 }
 
 #frame {
@@ -124,29 +124,26 @@
 }
 
 #emb {
-  margin-bottom: 4px;
-  position: relative;
   display: none;
   background: #f9f9f9;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid #e1e1e1;
+  margin-bottom: 5px;
 }
 
 #preview {
   width: 100%;
   height: 100%;
-  padding-bottom: 10px;
+  padding-top: 10px;
   font-size: 12px;
 }
 
 #dots {
-  position: absolute;
+  position: relative;
   bottom: 0;
   right: 0;
   padding: 0;
   margin: 0;
+  float: right;
 }
 
 #dots p {
