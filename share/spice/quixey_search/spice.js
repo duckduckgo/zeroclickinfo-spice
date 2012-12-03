@@ -521,6 +521,7 @@ function ddg_spice_quixey_search (data) {
 
    // Add Quixey logo to bottom
    var logo = d.createElement('h1')
+   logo.innerHTML = ''
    YAHOO.util.Dom.addClass(logo, 'quixey_logo')
    
    // Append Quixey div and logo to container
@@ -528,7 +529,7 @@ function ddg_spice_quixey_search (data) {
    container.appendChild(logo)
 
     // set more at link
-    var u = 'https://quixey.com/'
+    var u = 'https://www.quixey.com/search?q='
     if (isProp(data, 'q')) {
       var q = data.q.replace(/\s/g, '+')
     }
@@ -536,7 +537,7 @@ function ddg_spice_quixey_search (data) {
     // ddg: add to page
     var items = [{
       f: 1,
-      a: div,
+      a: container,
       h: data.q + ' (App Search)',
       s: 'Quixey',
       u: u + q,
