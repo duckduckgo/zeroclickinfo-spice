@@ -81,21 +81,18 @@ function ddg_spice_quixey_search (data) {
 	  rating.innerHTML = getRating(app)
 	}
     var description = d.createElement('div');
-    var platforms = d.createElement("div")
-        platforms.innerHTML = getPlatforms(app.platforms)
     var clear = d.createElement('div')
     
-    if (isProp(app, 'short_desc')) description.innerHTML += "Description: " + shorten(app.short_desc, 160)
+    if (isProp(app, 'short_desc')) description.innerHTML += shorten(app.short_desc, 180)
        
     name_wrap.appendChild(name)
     name_wrap.appendChild(rating)
     name_wrap.appendChild(price)
+    name_wrap.appendChild(description);
     img_anchor.appendChild(img)
     info.appendChild(img_anchor)
     info.appendChild(name_wrap)
-    info.appendChild(description);
     app_container.appendChild(info)
-    app_container.appendChild(platforms)
     app_container.appendChild(details)
     app_container.appendChild(clear)
 
@@ -116,7 +113,6 @@ function ddg_spice_quixey_search (data) {
     YAHOO.util.Dom.addClass(details, "app_details ")
     YAHOO.util.Dom.addClass(name, 'name')
     YAHOO.util.Dom.setAttribute(name, "title", app.name)
-    YAHOO.util.Dom.addClass(platforms, 'app_platforms')
     YAHOO.util.Dom.addClass(clear, "clear")
     YAHOO.util.Dom.addClass(description, "app_description")
 
@@ -202,7 +198,6 @@ function ddg_spice_quixey_search (data) {
       temp = editions_array[i].cents
       if (temp < low) low = temp
       if (temp > high) high = temp
-      console.log("Temp: " + temp + " low: " + low + " high: " + high)
     }
    
     if (low == 0) {
@@ -541,7 +536,7 @@ function ddg_spice_quixey_search (data) {
     // ddg: add to page
     var items = [{
       f: 1,
-      a: container,
+      a: div,
       h: data.q + ' (App Search)',
       s: 'Quixey',
       u: u + q,

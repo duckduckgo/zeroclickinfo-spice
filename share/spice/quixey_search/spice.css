@@ -192,23 +192,24 @@
 }
 
 #quixey .rating{
-  margin-left: -1px;
-  margin-top: 5px;
+  margin-right: 5px;
+  display: inline;
 }
 
 #quixey span.star{
   background: url(star.png);
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   display: inline-block;
   margin 0 2px;
   background-size: 100% auto;
 }
 
 #quixey .app_icon_anchor{
-  margin: 5px 2px;
+  margin: 5px 0;
   max-width: 10%;
-  float: left
+  float: left;
+  margin-right: 5px;
 }
 
 
@@ -220,38 +221,27 @@
   width: 100%;
 }
 
-#quixey .app_description{
-  width: 55%;
-  min-height: 64px;
-  font-size: 1em;
-  background: rgb(230,230,230);
-  padding: 5px;
-  border: 1px solid #DDD;
-  border-radius: 2px;
-  float: left;
-}
-
 #quixey .app_details{
   display: block;
   float: left;
-  margin: 5px 0;
+  margin: 0 0 5px;
 }
 
 #quixey .price{
   margin: 3px 0;
   font-size: 1.2em;
+  display: inline;
+  line-height: 1.5em;
 }
 
 #quixey .name_wrap{
-  margin-bottom: 0px;
-  width: 30%;
-  margin: 0 5px;
-  float: left;
+  display: inline-block;
+  max-width: 85%;
 }
 
 #quixey .name{
+  display: block;
   width: 100%;
-  clear: both;
   font-size: 1.1em;
 }
 
@@ -309,6 +299,7 @@
 #quixey .app_edition{
   float: left;
   margin-right: 10px;
+  margin-bottom: 3px;
 }
 
 #quixey .app_edition_icon{
