@@ -1,4 +1,6 @@
 (function(root) {
+    "use strict";
+
     var langs = {
         'ar': 'Arabic',
         'zh': 'Chinese',
@@ -18,14 +20,13 @@
     var hasOwn = Object.prototype.hasOwnProperty;
     var translations = [];
 
-    root.ddg_spice_translate_basic = function(ir) {
+    root.ddg_spice_translate_basic = function() {
         var params = get_params(),
             dict   = params[0],
             words  = params[1],
             from   = dict.slice(0, 2),
             to     = dict.slice(-2),
-            script = '',
-            callbk;
+            base;
 
         if (words.split('%20').length > 1) {
             base = '/js/spice/translate/my_memory/';
@@ -39,9 +40,11 @@
     };
 
     function get_params() {
-        var scripts = document.getElementsByTagName('script');
+        var scripts = document.getElementsByTagName('script'),
+            regex,
+            match;
 
-        for (i = 0; i < scripts.length; i++) {
+        for (var i = 0; i < scripts.length; i++) {
             regex = /translate\/([a-z]+)\/(.+)\/(.+)/;
             match = scripts[i].src.match(regex);
 
@@ -63,8 +66,9 @@
             to     = dict.slice(-2),
             text;
 
-        if ((word === '') || (dict === ''))
+        if ((word === '') || (dict === '')) {
             return;
+        }
 
         items[0].h = langs[to] + ' translations for <i>' + word + '</i>';
         items[0].s = 'MyMemory';
@@ -118,10 +122,10 @@
     function format_translation_my_memory(t) {
         var text;
 
-        if (t === undefined)
+        if (t === undefined) {
             return '';
-
-        if (translations.indexOf(t) != -1) {
+        }
+        if (translations.indexOf(t) !== -1) {
             return '';
         }
         else {
@@ -129,7 +133,6 @@
         }
 
         text = '<li><i>' + t + '</i>';
-
         text += '</li>';
 
         return text;
@@ -141,7 +144,8 @@
             params = get_params_wordreference(),
             dict   = params[0],
             word   = params[1],
-            to     = dict.slice(-2);
+            to     = dict.slice(-2),
+            text;
 
         if ((word === '') || (dict === '')) {
             return;
@@ -157,7 +161,6 @@
         }
 
         text = '<ul>';
-
         text += format_term_wordreference(ir.term0);
 
         if (ir.term1 !== undefined) {
@@ -175,7 +178,7 @@
             regex,
             match;
 
-        for (i = 0; i < scripts.length; i++) {
+        for (var i = 0; i < scripts.length; i++) {
             regex = /translate\/wordreference\/(.+)\/(.+)/;
             match = scripts[i].src.match(regex);
 
@@ -221,14 +224,16 @@
     }
 
     function format_translation_wordreference(t) {
+        var text;
+
         if (t === undefined || t === null) {
             return '';
         }
-
-        if (translations.indexOf(t.term) != -1)
+        if (translations.indexOf(t.term) !== -1) {
             return '';
-        else
+        } else {
             translations.push(t.term);
+        }
 
         text = '<li><i>' + t.term + '</i>';
 
