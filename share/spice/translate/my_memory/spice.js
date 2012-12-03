@@ -20,7 +20,7 @@ function ddg_spice_translate_my_memory(ir) {
 
 	params = get_params_my_memory();
 	dict   = params[0];
-	word   = unescape(params[1]);
+	word   = decodeURIComponent(params[1]);
 	from   = dict.slice(0, 2);
 	to     = dict.slice(-2);
 
