@@ -74,7 +74,7 @@ function ddg_spice_quixey_search (data) {
 	details.innerHTML = getDetails(app)
     var name = d.createElement('a')
         name.href = app.url
-        name.innerHTML = shorten(app.name, 32)
+        name.innerHTML = shorten(app.name, 80)
     var price = d.createElement('div')
         price.innerHTML = getPrice(app.editions)
     var rating = d.createElement('div')
