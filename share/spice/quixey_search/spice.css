@@ -1,5 +1,9 @@
+#zero_click_wrapper2{
+ overflow: hidden !important;
+}
+
 #zero_click_abstract {
-  margin: 0 5px !important;
+  margin: 0 !important;
   padding: 0 !important;
   position: relative;
 }
@@ -37,12 +41,22 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+}
+
+#pagination{
+  width: 100%;
+  background: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e1e1e1;
+  box-shadow: 0px -1px 1px #ddd;
+  height: 35px;
+  margin-top: 10px;
 }
 
 #frame {
-  margin: 0 25px;
+  margin: 0;
   overflow: hidden;
+  padding: 0 5px;
 }
 
 #quixey ul {
@@ -68,6 +82,7 @@
   border-radius: 6px;
   text-align: center;
   overflow: hidden;
+  margin-right: 10px;
 }
 
 #quixey li.item:hover {
@@ -106,9 +121,10 @@
 #quixey a.npa {
   font-size: 30px;
   color: #bfbfbf;
-  position: absolute;
-  top: 30px;
   text-decoration: none !important;
+  width: 5%;
+  text-align: center;
+  line-height: 30px;
 }
 
 #quixey a.npah {
@@ -117,10 +133,14 @@
 
 #nexta {
   right: 0;
+  position: absolute;
+  border-left: 1px solid #f7f7f7
 }
 
 #preva {
   left: 0;
+  position: absolute;
+  border-right: 1px solid #f7f7f7
 }
 
 #emb {
@@ -131,19 +151,13 @@
 }
 
 #preview {
-  width: 100%;
-  height: 100%;
-  padding-top: 10px;
   font-size: 12px;
+  padding: 8px 5px;
 }
 
 #dots {
-  position: relative;
-  bottom: 0;
-  right: 0;
-  padding: 0;
-  margin: 0;
-  float: right;
+  text-align: center;
+  margin: 12px 0;
 }
 
 #dots p {
@@ -156,9 +170,10 @@
 
 #dots a {
   padding: 0 2px;
-  font-size: 16px;
+  font-size: 30px;
   color: #ccc;
   text-decoration: none !important;
+  line-height: 0px;
 }
 
 #dots a.selected {
@@ -206,7 +221,6 @@
 }
 
 #quixey .app_icon_anchor{
-  margin: 5px 0;
   max-width: 10%;
   float: left;
   margin-right: 5px;

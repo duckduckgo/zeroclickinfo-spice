@@ -30,6 +30,7 @@ function ddg_spice_quixey_search (data) {
     // default width of the navigation elements
     , thumb_width: 90
     , li_width: 90
+    , li_margin: 10
 
     // current video in nav
     , quixey: 0
@@ -255,7 +256,8 @@ function ddg_spice_quixey_search (data) {
 
     // store state
     var len = state.apps.length
-    var end = state.li_width * len
+    var total_width = state.li_width + state.li_margin
+    var end = total_width * len
 
     // create list of videos
     var ul = d.createElement('ul')
@@ -299,9 +301,6 @@ function ddg_spice_quixey_search (data) {
     frame.appendChild(ul)
     nav.appendChild(frame)
 
-    // add the prev / next arrows
-    makeNav('>', 'nexta', true)
-    makeNav('<', 'preva', false)
 
   }
 
@@ -320,14 +319,15 @@ function ddg_spice_quixey_search (data) {
   }
 
   // Make prev / next arrows
-  function makeNav(txt, id, next) {
+  function makeArrow(txt, id, next) {
     var na = d.createElement('a')
     na.appendChild(d.createTextNode(txt))
     na.href = '#'
     na.id = id
     YAHOO.util.Dom.addClass(na, 'npa')
     YAHOO.util.Event.addListener(na, 'click', wrapCB(next))
-    nav.appendChild(na)
+    var pagination = d.getElementById('pagination')
+    pagination.appendChild(na)
   }
 
   // Click handler for prev / next arrows
@@ -357,7 +357,7 @@ function ddg_spice_quixey_search (data) {
 
   // Slide the thumbnails around
   function setSlides() {
-    var mar = '-' + (state.quixey * state.li_width) + 'px'
+    var mar = '-' + (state.quixey * (state.li_width + state.li_margin)) + 'px'
     YAHOO.util.Dom.setStyle('slides', 'margin-left', mar)
   }
 
@@ -408,10 +408,18 @@ function ddg_spice_quixey_search (data) {
   function makeDots() {
     var dots = d.getElementById('dots')
     if (!dots) {
-      dots = d.createElement('p')
+      dots = d.createElement('div')
       dots.id = 'dots'
       var nav = d.getElementById('nav')
-      nav.appendChild(dots)
+      
+      pagination = d.createElement('div');
+      pagination.id = "pagination";
+      nav.appendChild(pagination);
+
+      // add the prev / next arrows
+      makeArrow('>', 'nexta', true)
+      makeArrow('<', 'preva', false)
+      pagination.appendChild(dots)
     }
     var lin, j = 0, n = Math.ceil(state.apps.length / state.inc)
     var sel = state.quixey / state.inc
