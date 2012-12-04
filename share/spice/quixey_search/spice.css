@@ -102,6 +102,16 @@
 #quixey li.item a {
   color: #333;
   text-decoration: none;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  font-size: 12px;
+}
+
+#quixey li.item a span{
+  display: block;
+  margin-top: 5px;
 }
 
 #quixey li.item a:hover {
@@ -109,14 +119,16 @@
 }
 
 #quixey li.item img {
-  margin: 0 auto 5px auto;
+  margin: 0 auto;
   max-width: 80px;
 }
 
 #quixey li.item p {
   max-width: 80px;
-  margin: 0 auto;
-  font-size: 12px;
+  height: 80px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 1%;
 }
 
 #quixey a.npa {

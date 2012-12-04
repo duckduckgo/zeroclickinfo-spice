@@ -287,12 +287,13 @@ function ddg_spice_quixey_search (data) {
   
       p = d.createElement('p')
       if (!isProp(app, 'name')) continue
-      txt = d.createTextNode(shorten(app.name, 40))
+      span= d.createElement('span')
+      span.innerHTML = shorten(app.name, 40)
 
       p.appendChild(img)
-      p.appendChild(txt)
 
       a.appendChild(p)
+      a.appendChild(span)
 
       li.appendChild(a)
       ul.appendChild(li)
