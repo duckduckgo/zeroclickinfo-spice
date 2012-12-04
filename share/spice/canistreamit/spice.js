@@ -2,7 +2,7 @@ function ddg_spice_canistreamit(movies) {
     "use strict";
     
     // Words to skip when isRelevant is called.
-    if(movies && movies.length >= 1 && DDG.isRelevant(movies[0].title, skip)) {
+    if(movies && movies.length >= 1 && DDG.isRelevant(movies[0].title, {})) {
         var result,img,snippet,link,div;
         var items = new Array();
         for(var i = 0; i < movies.length; i++) {
