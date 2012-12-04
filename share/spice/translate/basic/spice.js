@@ -168,6 +168,11 @@
         }
 
         text += '</ul>';
+
+        if(text === '<ul></ul>') {
+            return;
+        }
+
         items[0].a = text;
 
         nra(items);

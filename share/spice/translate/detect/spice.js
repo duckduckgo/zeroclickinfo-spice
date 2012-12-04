@@ -1,224 +1,268 @@
-var langs = {
-	'ar': 'Arabic',
-	'zh': 'Chinese',
-	'cz': 'Czech',
-	'en': 'English',
-	'fr': 'French',
-	'gr': 'Greek',
-	'it': 'Italian',
-	'ja': 'Japanese',
-	'ko': 'Korean',
-	'pl': 'Polish',
-	'pt': 'Portuguese',
-	'ro': 'Romanian',
-	'es': 'Spanish',
-	'tr': 'Turkish'
-};
+(function(root) {
+    "use strict";
 
-var translations = [];
+    var langs = {
+        'ar': 'Arabic',
+        'zh': 'Chinese',
+        'cz': 'Czech',
+        'en': 'English',
+        'fr': 'French',
+        'gr': 'Greek',
+        'it': 'Italian',
+        'ja': 'Japanese',
+        'ko': 'Korean',
+        'pl': 'Polish',
+        'pt': 'Portuguese',
+        'ro': 'Romanian',
+        'es': 'Spanish',
+        'tr': 'Turkish'
+    };
+    var hasOwn = Object.prototype.hasOwnProperty;
+    var translations = [];
 
-function ddg_spice_translate_detect(ir) {
-	params = get_params();
-	words  = params[0];
+    root.ddg_spice_translate_detect = function(ir) {
+        var params = get_params(),
+            words  = params[0],
+            from   = ir.data.detections[0].language,
+            to     = params[1],
+            base;
 
-	from   = ir.data.detections[0].language;
-	to     = params[1];
+        if (words.split('%20').length > 1) {
+            base = '/js/spice/translate/my_memory/';
 
-	script = '';
-	callbk = undefined;
+            nrj(base + from + '/' + to + '/' + words);
+        } else {
+            base = '/js/spice/translate/wordreference/';
 
-	if (words.split('%20').length > 1) {
-		base = '/js/spice/translate/my_memory/';
+            nrj(base + from + to + '/' + words);
+        }
+    };
 
-		nrj(base + from + '/' + to + '/' + words);
-	} else {
-		base = '/js/spice/translate/wordreference/';
+    root.ddg_spice_translate_basic = function() {
+        var params = get_params(),
+            dict   = params[0],
+            words  = params[1],
+            from   = dict.slice(0, 2),
+            to     = dict.slice(-2),
+            base;
 
-		nrj(base + from + to + '/' + words);
-	}
-}
+        if (words.split('%20').length > 1) {
+            base = '/js/spice/translate/my_memory/';
 
-function get_params() {
-	scripts = document.getElementsByTagName('script');
+            nrj(base + from + '/' + to + '/' + words);
+        } else {
+            base = '/js/spice/translate/wordreference/';
 
-	for (i = 0; i < scripts.length; i++) {
-		regex = /translate\/([a-z]+)\/(.+)\/(.+)/;
-		match = scripts[i].src.match(regex);
+            nrj(base + dict + '/' + words);
+        }
+    };
 
-		if (match != undefined) {
-			return [match[2], match[3]];
-		}
-	}
+    function get_params() {
+        var scripts = document.getElementsByTagName('script'),
+            regex,
+            match;
 
-	return ['', ''];
-}
+        for (var i = 0; i < scripts.length; i++) {
+            regex = /translate\/([a-z]+)\/(.+)\/(.+)/;
+            match = scripts[i].src.match(regex);
 
-/* MyMemory */
-function ddg_spice_translate_my_memory(ir) {
-	items = new Array();
+            if (match !== undefined && match !== null) {
+                return [match[2], match[3]];
+            }
+        }
 
-	params = get_params_my_memory();
-	dict   = params[0];
-	word   = decodeURIComponent(params[1]);
-	from   = dict.slice(0, 2);
-	to     = dict.slice(-2);
+        return ['', ''];
+    }
 
-	if ((word == '') || (dict == ''))
-		return;
+    /* MyMemory */
+    root.ddg_spice_translate_my_memory = function(ir) {
+        var items = [[]],
+            params = get_params_my_memory(),
+            dict   = params[0],
+            word   = decodeURIComponent(params[1]),
+            from   = dict.slice(0, 2),
+            to     = dict.slice(-2),
+            text;
 
-	items[0] = new Array();
-	items[0]["h"] = langs[to] + ' translations for <i>' + word + '</i>';
-	items[0]['s'] = 'MyMemory';
-	items[0]['u'] = 'http://mymemory.translated.net/s.php?q='
-		+ word + '&sl=' + from + '&tl=' + to;
-	items[0]["force_big_header"] = true;
+        if ((word === '') || (dict === '')) {
+            return;
+        }
 
-	text = '<ul>';
+        items[0].h = langs[to] + ' translations for <i>' + word + '</i>';
+        items[0].s = 'MyMemory';
+        items[0].u = 'http://mymemory.translated.net/s.php?q=' + word + '&sl=' + from + '&tl=' + to;
+        items[0].force_big_header = true;
 
-	text += format_translations_my_memory(ir.matches);
+        text = '<ul>';
+        text += format_translations_my_memory(ir.matches);
+        text += '</ul>';
 
-	text += '</ul>';
+        items[0].a = text;
 
-	items[0]['a'] = text;
+        nra(items);
+    };
 
-	nra(items);
-}
+    function get_params_my_memory() {
+        var scripts = document.getElementsByTagName('script'),
+            regex,
+            match;
 
-function get_params_my_memory() {
-	scripts = document.getElementsByTagName('script');
+        for (var i = 0; i < scripts.length; i++) {
+            regex = /translate\/my_memory\/(.+)\/(.+)/;
+            match = scripts[i].src.match(regex);
 
-	for (i = 0; i < scripts.length; i++) {
-		regex = /translate\/my_memory\/(.+)\/(.+)/;
-		match = scripts[i].src.match(regex);
+            if (match !== undefined) {
+                return [match[1], match[2]];
+            }
+        }
 
-		if (match != undefined) {
-			return [match[1], match[2]];
-		}
-	}
+        return ['', ''];
+    }
 
-	return ['', ''];
-}
+    function format_translations_my_memory(ts) {
+        var text = '', origi, first;
 
-function format_translations_my_memory(ts) {
-	text = '';
+        for (var i in ts) {
+            if(hasOwn.call(ts, i)) {
+                origi = ts[i].segment;
+                first = ts[i].translation;
 
-	for (i in ts) {
-		origi = ts[i].segment;
-		first = ts[i].translation;
+                if (origi !== first) {
+                    text += format_translation_my_memory(first);
+                }
+            }
+        }
 
-		if (origi != first)
-			text += format_translation_my_memory(first);
-	}
-
-	return text;
-}
+        return text;
+    }
 
 
-function format_translation_my_memory(t) {
-	if (t == undefined)
-		return '';
+    function format_translation_my_memory(t) {
+        var text;
 
-	if (translations.indexOf(t) != -1)
-		return '';
-	else
-		translations.push(t);
+        if (t === undefined) {
+            return '';
+        }
+        if (translations.indexOf(t) !== -1) {
+            return '';
+        }
+        else {
+            translations.push(t);
+        }
 
-	text = '<li><i>' + t + '</i>';
+        text = '<li><i>' + t + '</i>';
+        text += '</li>';
 
-	text += '</li>';
+        return text;
+    }
 
-	return text;
-}
+    /* Wordreference */
+    root.ddg_spice_translate_wordreference = function(ir) {
+        var items = [[]],
+            params = get_params_wordreference(),
+            dict   = params[0],
+            word   = params[1],
+            to     = dict.slice(-2),
+            text;
+        
+        if ((word === '') || (dict === '')) {
+            return;
+        }
 
-/* Wordreference */
-function ddg_spice_translate_wordreference(ir) {
-	items = new Array();
+        items[0].h = langs[to] + ' translations for <i>' + word + '</i>';
+        items[0].s = 'Wordreference.com';
+        items[0].u = 'http://wordreference.com/' + dict + '/' + word;
+        items[0].force_big_header = true;
 
-	params = get_params_wordreference();
-	dict   = params[0];
-	word   = params[1];
-	to     = dict.slice(-2);
+        if (ir.Error) {
+            return;
+        }
 
-	if ((word == '') || (dict == ''))
-		return;
+        text = '<ul>';
+        text += format_term_wordreference(ir.term0);
 
-	items[0] = new Array();
-	items[0]["h"] = langs[to] + ' translations for <i>' + word + '</i>';
-	items[0]['s'] = 'Wordreference.com';
-	items[0]['u'] = 'http://wordreference.com/' + dict + '/' + word;
-	items[0]["force_big_header"] = true;
+        if (ir.term1 !== undefined) {
+            text += format_term_wordreference(ir.term1);
+        }
 
-	if (ir["Error"])
-		return;
+        text += '</ul>';
 
-	text = '<ul>';
+        if(text === '<ul></ul>') {
+            return;
+        }
 
-	text += format_term_wordreference(ir.term0);
+        items[0].a = text;
 
-	if (ir.term1 != undefined)
-		text += format_term_wordreference(ir.term1);
+        nra(items);
+    };
 
-	text += '</ul>';
+    function get_params_wordreference() {
+        var scripts = document.getElementsByTagName('script'),
+            regex,
+            match;
 
-	items[0]['a'] = text;
+        for (var i = 0; i < scripts.length; i++) {
+            regex = /translate\/wordreference\/(.+)\/(.+)/;
+            match = scripts[i].src.match(regex);
 
-	nra(items);
-}
+            if (match !== undefined || match !== null) {
+                return [match[1], match[2]];
+            }
+        }
 
-function get_params_wordreference() {
-	scripts = document.getElementsByTagName('script');
+        return ['', ''];
+    }
 
-	for (i = 0; i < scripts.length; i++) {
-		regex = /translate\/wordreference\/(.+)\/(.+)/;
-		match = scripts[i].src.match(regex);
+    function format_term_wordreference(term) {
+        var text = format_translations_wordreference(term.PrincipalTranslations);
 
-		if (match != undefined) {
-			return [match[1], match[2]];
-		}
-	}
+        if (term.AdditionalTranslations) {
+            text += format_translations_wordreference(term.AdditionalTranslations);
+        }
 
-	return ['', ''];
-}
+        return text;
+    }
 
-function format_term_wordreference(term) {
-	text = format_translations_wordreference(term.PrincipalTranslations);
+    function format_translations_wordreference(ts) {
+        var text = '';
+        var origi, first, secnd;
 
-	if (term.AdditionalTranslations)
-		text += format_translations_wordreference(term.AdditionalTranslations);
+        for (var i in ts) {
+            if(hasOwn.call(ts, i)) {
+                origi = ts[i].OriginalTerm;
+                first = ts[i].FirstTranslation;
+                secnd = ts[i].SecondTranslation;
 
-	return text;
-}
+                if (origi.term !== first.term) {
+                    text += format_translation_wordreference(first);
+                }
 
-function format_translations_wordreference(ts) {
-	text = '';
+                if ((secnd !== undefined) && (origi.term !== secnd.term)) {
+                    text += format_translation_wordreference(secnd);
+                }
+            }
+        }
 
-	for (i in ts) {
-		origi = ts[i].OriginalTerm;
-		first = ts[i].FirstTranslation;
-		secnd = ts[i].SecondTranslation;
+        return text;
+    }
 
-		if (origi.term != first.term)
-			text += format_translation_wordreference(first);
+    function format_translation_wordreference(t) {
+        var text;
 
-		if ((secnd != undefined) && (origi.term != secnd.term))
-			text += format_translation_wordreference(secnd);
-	}
+        if (t === undefined || t === null) {
+            return '';
+        }
+        if (translations.indexOf(t.term) !== -1) {
+            return '';
+        } else {
+            translations.push(t.term);
+        }
 
-	return text;
-}
+        text = '<li><i>' + t.term + '</i>';
 
-function format_translation_wordreference(t) {
-	if (t == undefined)
-		return '';
+        text += '</li>';
 
-	if (translations.indexOf(t.term) != -1)
-		return '';
-	else
-		translations.push(t.term);
+        return text;
+    }
 
-	text = '<li><i>' + t.term + '</i>';
-
-	text += '</li>';
-
-	return text;
-}
+}(this));
