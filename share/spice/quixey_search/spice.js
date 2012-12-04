@@ -149,9 +149,9 @@ function ddg_spice_quixey_search (data) {
       YAHOO.util.Dom.addClass(edition, "app_edition")
       if (current.rating != null){
 	rating = app.rating.toFixed(1)
-        YAHOO.util.Dom.setAttribute(img_anchor, "title", current.name + ' - Rating: ' + rating + ' - Price: ' + price)
+        YAHOO.util.Dom.setAttribute(edition, "title", current.name + ' - Rating: ' + rating + ' - Price: ' + price)
       }else{
-	YAHOO.util.Dom.setAttribute(img_anchor, "title", current.name + ' - Price: ' + price)
+	YAHOO.util.Dom.setAttribute(edition, "title", current.name + ' - Price: ' + price)
       }
       img_anchor.appendChild(img)
       edition.appendChild(img_anchor)
