@@ -15,7 +15,7 @@ category "computing_tools";
 attribution github => ['https://github.com/danjarvis','Dan Jarvis'],
             twitter => ['http://twitter.com/danjarvis','danjarvis'];
 
-spice to => 'http://api.bitly.com/v3/shorten?login=ddgspiceplugin&apiKey={{ENV{DDG_SPICE_BITLY_APIKEY}}}&longUrl=$1&callback={{callback}}';
+spice to => 'http://api.bitly.com/v3/shorten?login=duckduckhack&apiKey={{ENV{DDG_SPICE_BITLY_APIKEY}}}&longUrl=$1&callback={{callback}}';
 
 triggers start => 'bitly', 'bit.ly', 'shorten', 'shorten url', 'short url', 'url shorten';
 
