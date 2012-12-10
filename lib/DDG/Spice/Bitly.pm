@@ -2,7 +2,6 @@ package DDG::Spice::Bitly;
 # ABSTRACT: Return a shortened version of a URL using the bitly API.
 
 use DDG::Spice;
-use URI::Encode;
 
 primary_example_queries "bitly http://www.duckduckgo.com/about.html";
 secondary_example_queries "shorten http://www.duckduckgo.com/goodies", "url shorten www.github.com/explore";
@@ -16,18 +15,17 @@ category "computing_tools";
 attribution github => ['https://github.com/danjarvis','Dan Jarvis'],
             twitter => ['http://twitter.com/danjarvis','danjarvis'];
 
-spice to => 'http://api.bitly.com/v3/shorten?login=duckduckhack&apiKey={{ENV{DDG_SPICE_BITLY_APIKEY}}}&longUrl=$1&callback={{callback}}';
+spice to => 'http://api.bitly.com/v3/shorten?login=duckduckhack&apiKey={{ENV{DDG_SPICE_BITLY_APIKEY}}}&longUrl=http://$1&callback={{callback}}';
 
 triggers start => 'bitly', 'bit.ly', 'shorten', 'shorten url', 'short url', 'url shorten';
 
 handle remainder => sub {
 	my ($longUri) = shift;
 	if ($longUri) {
-		if (!($longUri =~ /^https?:\/\//)) {
-			$longUri = 'http://' . $longUri;
+		if ($longUri =~ /^https?:\/\/(.+)/) {
+			$longUri = $1;
 		}
-        my $uri = URI::Encode->new({encode_reserved => 0});
-        return $uri->encode($longUri);
+        return $longUri;
 	}
 	return;
 };

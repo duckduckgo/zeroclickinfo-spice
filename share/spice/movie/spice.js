@@ -1,9 +1,8 @@
-
-var SKIP_ARRAY = [];
-SKIP_ARRAY['movie'] = 1;
-SKIP_ARRAY['film'] = 1;
-
 function ddg_spice_movie(movie) {
+    var SKIP_ARRAY = {
+        movie: 1,
+        film: 1
+    };
     var request = DDG.get_query().replace("movie",'').replace("film", "");
 
     // validity check
