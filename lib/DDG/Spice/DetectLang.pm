@@ -1,5 +1,6 @@
 package DDG::Spice::DetectLang;
 
+use utf8;
 use DDG::Spice;
 
 primary_example_queries "detect language こんにちは";
