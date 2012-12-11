@@ -1,27 +1,27 @@
-var skipArray = {
-    'similar': 1,
-    'band': 1,
-    'bands': 1,
-    'musician': 1,
-    'musicians': 1,
-    'player': 1,
-    'artist': 1,
-    'artists': 1,
-    'performer': 1,
-    'performers': 1,
-    'singer': 1,
-    'singers': 1,
-    'rapper': 1,
-    'dj': 1,
-    'rappers': 1,
-    'vocalist': 1,
-    'vocalists': 1,
-    'djs': 1,
-    'songster': 1,
-    'songsters': 1
-};
-
 function ddg_spice_lastfm_artist_all(lastfm) {
+    var skipArray = {
+        'similar': 1,
+        'band': 1,
+        'bands': 1,
+        'musician': 1,
+        'musicians': 1,
+        'player': 1,
+        'artist': 1,
+        'artists': 1,
+        'performer': 1,
+        'performers': 1,
+        'singer': 1,
+        'singers': 1,
+        'rapper': 1,
+        'dj': 1,
+        'rappers': 1,
+        'vocalist': 1,
+        'vocalists': 1,
+        'djs': 1,
+        'songster': 1,
+        'songsters': 1
+    };
+
     if(lastfm.artist && lastfm.artist.similar.artist && DDG.isRelevant(lastfm.artist.name, skipArray)) {
         similar = '<div style="similar"><i>Similar to: </i>';
         for(var i = 0;i < lastfm.artist.similar.artist.length;i++) {
