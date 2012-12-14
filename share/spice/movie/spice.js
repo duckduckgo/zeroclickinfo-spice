@@ -15,43 +15,27 @@
         var collection = {};
         collection.request = DDG.get_query().replace("movie", "").replace("film", "");
         if (movie && movie.total > 0 && movie.movies) {
-            collection.result = getRelevant(movie);            
-            collection.synopsis = getSynopsis(collection.result);
-            collection.names = getNames(collection.result);
-            collection.poster = getPoster(collection.result);
-            collection.header = getHeader(collection.result);
+            var result = getRelevant(movie),
+                synopsis = getSynopsis(result),
+                names = getNames(result),
+                poster = getPoster(result),
+                header = getHeader(result),
+                date = getDates(result),
+                rating = getRating(result);
 
-            var dates = getDates(collection.result);
-            collection.rating = dates[0];
-            collection.releaseDate = dates[1];
-            
-            collection.reaction = getReaction(collection.rating);
-            collection.audience = getAudience(collection.result, collection.reaction);
-            collection.critics = getCritics(collection.result, 
-                                    collection.audience, collection.reaction);
-            collection.tomato = getTomato(collection.result);
-            collection.rating = getRating(collection.result, collection.rating);
+            collection = {
+                result: result,
+                synopsis: synopsis,
+                names: names,
+                poster: poster,
+                header: header,
+                date: date,
+                rating: rating
+            };
 
             display(collection);
         }
     };
-
-    function getTomato(result) {
-        return (result.ratings.critics_rating) ? result.ratings.critics_rating + ", " : "";
-    }
-
-    // Check the rating.
-    function getRating(result, rating) {
-        if (!rating) {
-            if (result.mpaa_rating === "R" || result.mpaa_rating === "NC-17" || result.mpaa_rating === "Unrated") {
-                rating = "an ";
-            } else {
-                rating = "a ";
-            }
-        }
-        rating += result.mpaa_rating;
-        return rating;
-    }
 
     // Check for the most relevant movie. If we
     // only have one movie or if we didn't find a
@@ -119,7 +103,7 @@
 
     // Trim the headers.
     function getHeader(result) {
-        var header = result.title.substring(0,49);
+        var header = result.title.substring(0, 49);
         if (result.title.length > 50) {
             header += '...';
         }
@@ -130,37 +114,50 @@
     // from the result.
     function getDates(result) {
         var currentTime = new Date(),
-            rDate, opened,
-            rating, releaseDate;
+            rDate, 
+            opened,
+            releaseDate;
         if (result.release_dates.theater) {
             rDate = result.release_dates.theater.split("-");
-            opened = new Date(rDate[0], rDate[1]-1, rDate[2], 0, 0, 0);
-            rating = (currentTime - opened < 0) ? "an upcoming " : "";
-            releaseDate = (rating) ? opened.toDateString().slice(4) : result.year;
+            opened = new Date(rDate[0], rDate[1] - 1, rDate[2], 0, 0, 0);
+            releaseDate = (currentTime - opened < 0) ? opened.toDateString().slice(4) : result.year;
         } else if (result.year > currentTime.getFullYear()) {
-            rating = "an upcoming ";
             releaseDate = result.year;
         }
-        return [rating, releaseDate];
+        return releaseDate;
     }
 
-    // Get the reaction of the movie.
-    function getReaction(rating) {
-        return (rating) ? " want to see)" : " approved)";
+    // This function accepts an array of strings and 
+    // it joins them using `delimiter` and `last`.
+    function toSentence(strings, delimiter, last) {
+        var result;
+        if (delimiter === null || delimiter === undefined) {
+            delimiter = ', ';
+        }
+        if (last === null || last === undefined) {
+            last = 'and';
+        }
+        if (strings.length === 0) {
+            return '';
+        }
+        result = strings.slice(0, -1);
+        if (result.length === 0) {
+            return strings[0];
+        } else {
+            return "" + (result.join(delimiter)) + delimiter + last + " " + strings.slice(result.length);
+        }
     }
 
-    // Get the audience score of the movie.
-    function getAudience(result, reaction) {
-        return (result.ratings.audience_score === -1) ? "" : 
-            result.ratings.audience_score + "% audience" + reaction;
-    }
-
-    // Get the critic's score of the movie.
-    function getCritics(result, audience, reaction) {
-        var critics = (result.ratings.critics_score === -1) ? "" : 
-            result.ratings.critics_score + "% critics, ";
-        critics += (audience) ? "" : reaction;
-        return critics;
+    // Check the rating.
+    function getRating(result) {
+        var adjective;
+        if (result.mpaa_rating === "R" || 
+                result.mpaa_rating === "NC-17" || result.mpaa_rating === "Unrated") {
+            adjective = "an";
+        } else {
+            adjective = "a";
+        }
+        return [adjective, result.mpaa_rating];
     }
 
     // Use this function to create the HTML and call the `nra` function.
@@ -174,36 +171,42 @@
                 url = 'http://www.rottentomatoes.com/celebrity/' + names[i].id + '/';
                 strings.push('<a onlcick="fl=1" href="' + url + '">' + names[i].name + '</a>');
             }
-            return ', starring ' + toSentence(strings);
+            return toSentence(strings);
         }
 
-        // This function accepts an array of strings and 
-        // it joins them using `delimiter` and `last`.
-        function toSentence(strings, delimiter, last) {
-            var result;
-            if (delimiter === null || delimiter === undefined) {
-                delimiter = ', ';
-            }
-            if (last === null || last === undefined) {
-                last = 'and';
-            }
-            if (strings.length === 0) {
-                return '';
-            }
-            result = strings.slice(0, -1);
-            if (result.length === 0) {
-                return strings[0];
+        // Check the Tomatometer.
+        function getTomato(result) {
+            return (result.ratings.critics_rating) ? 
+                result.ratings.critics_rating + ", " : "";
+        }
+
+        // Get the fraction of the critics who liked the movie.
+        function getCriticsScore(result) {
+            if(result.ratings.critics_score !== -1) {
+                return result.ratings.critics_score + "% critics, ";
             } else {
-                return "" + (result.join(delimiter)) + delimiter + last + " " + strings.slice(result.length);
+                return "";
             }
         }
 
-        var items = [[]];
+        // Get the fraction of the audience who liked the movie.
+        function getAudienceScore(result) {
+            if(result.ratings.audience_score !== -1) {
+                return result.ratings.audience_score + "% audience";
+            } else {
+                return "";
+            }
+        }
+
+        // Build the output.
+        var output = collection.result.title + " (" + collection.result.year + ") is " + collection.rating[0] +
+                     " " + collection.rating[1] + " movie (" + getTomato(collection.result) + getCriticsScore(collection.result) +
+                     getAudienceScore(collection.result) + "), starring " + castHTML(collection.names) + ". " + collection.synopsis,
+            items = [[]];
+
         items[0] = {
-            a: collection.result.title + ' (' + collection.result.year + ') is ' +
-               collection.rating + ' movie (' + collection.tomato + collection.critics +
-               collection.audience + castHTML(collection.names) + '. ' + collection.synopsis,
-            h: collection.header + " (" + collection.releaseDate + ")",
+            a: output,
+            h: collection.header + " (" + collection.date + ")",
             s: 'Rotten Tomatoes',
             u: collection.result.links.alternate,
             i: collection.poster
