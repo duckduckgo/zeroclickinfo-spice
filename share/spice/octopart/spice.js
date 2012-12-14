@@ -1,7 +1,7 @@
 function ddg_spice_octopart(response) {
 
         // no results
-    if (response.hits > 0) {
+    if (response && response.hits > 0) {
 
         var parts = response.results;
 
@@ -20,8 +20,11 @@ function ddg_spice_octopart(response) {
         var out = [];
 
         for (var i=0; i < parts.length; i++) {
-
             var part = parts[i].item;
+
+            if(!DDG.isRelevant(part.short_description, {specs: 1, datasheet: 1})) {
+                continue;
+            }
 
             // filter out stubs
             if (/^BAD: RFQ Only/.test(part.market_status) && part.images.length == 0)
