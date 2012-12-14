@@ -15,22 +15,16 @@
         var collection = {};
         collection.request = DDG.get_query().replace("movie", "").replace("film", "");
         if (movie && movie.total > 0 && movie.movies) {
-            var result = getRelevant(movie),
-                synopsis = getSynopsis(result),
-                names = getNames(result),
-                poster = getPoster(result),
-                header = getHeader(result),
-                date = getDates(result),
-                rating = getRating(result);
+            var result = getRelevant(movie);
 
             collection = {
                 result: result,
-                synopsis: synopsis,
-                names: names,
-                poster: poster,
-                header: header,
-                date: date,
-                rating: rating
+                synopsis: getSynopsis(result),
+                names: getNames(result),
+                poster: getPoster(result),
+                header: getHeader(result),
+                date: getDates(result),
+                rating: getRating(result)
             };
 
             display(collection);
@@ -127,27 +121,6 @@
         return releaseDate;
     }
 
-    // This function accepts an array of strings and 
-    // it joins them using `delimiter` and `last`.
-    function toSentence(strings, delimiter, last) {
-        var result;
-        if (delimiter === null || delimiter === undefined) {
-            delimiter = ', ';
-        }
-        if (last === null || last === undefined) {
-            last = 'and';
-        }
-        if (strings.length === 0) {
-            return '';
-        }
-        result = strings.slice(0, -1);
-        if (result.length === 0) {
-            return strings[0];
-        } else {
-            return "" + (result.join(delimiter)) + delimiter + last + " " + strings.slice(result.length);
-        }
-    }
-
     // Check the rating.
     function getRating(result) {
         var adjective;
@@ -192,9 +165,30 @@
         // Get the fraction of the audience who liked the movie.
         function getAudienceScore(result) {
             if(result.ratings.audience_score !== -1) {
-                return result.ratings.audience_score + "% audience";
+                return result.ratings.audience_score + "% audience approved";
             } else {
                 return "";
+            }
+        }
+
+        // This function accepts an array of strings and 
+        // it joins them using `delimiter` and `last`.
+        function toSentence(strings, delimiter, last) {
+            var result;
+            if (delimiter === null || delimiter === undefined) {
+                delimiter = ', ';
+            }
+            if (last === null || last === undefined) {
+                last = 'and';
+            }
+            if (strings.length === 0) {
+                return '';
+            }
+            result = strings.slice(0, -1);
+            if (result.length === 0) {
+                return strings[0];
+            } else {
+                return "" + (result.join(delimiter)) + delimiter + last + " " + strings.slice(result.length);
             }
         }
 
