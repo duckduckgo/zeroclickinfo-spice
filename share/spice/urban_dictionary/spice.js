@@ -6,7 +6,7 @@ function ddg_spice_urban_dictionary(res)
 		var items = [[]];
 
 		items[0] = {
-			a: def.definition.split("\n")[0],
+			a: def.definition.replace(/(\r?\n)+/gi, '<br>'),
 			//h: def.word + ' (Urban Dictionary definition)', // Optimize for vertical space
 			s: 'Urban Dictionary',
 			u: 'http://www.urbandictionary.com/define.php?term=' + def.word
