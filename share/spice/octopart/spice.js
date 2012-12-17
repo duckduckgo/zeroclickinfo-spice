@@ -2,6 +2,29 @@
 // called when people search for electronic parts. Example
 // triggers are "atmega specs" or "microprocessor datasheet."
 
+// Some example 'datasheet' queries:
+//
+// - ne555 datasheet
+// - atmel avr datasheet
+// - datasheet arduino uno
+// - UWX1V100MCL1GB datasheet
+// - UWX1V100 datasheet
+// - blue led datasheet
+// - stm32 adc dac ethernet datasheet
+// - zigbee transceiver freescale datasheet
+//
+// Extra info the Octopart API response that could be parsed and displayed
+//
+// - rohs and lead-free attributes
+// - product lifecycle status (obsolete, pre-production, active)
+// - categorization (aka, type of component)
+// - direct free sample links (for some parts)
+//
+// Another possibility is to trigger on distributor name and SKU (eg, "newark
+// 68T2515") and show part information and a direct link to the distributor's buy
+// now page. 
+
+
 // This anonymous function is used to prevent helper
 // functions from becoming global functions. We only expose
 // `ddg_spice_octopart` so we attach it to the variable `root`. 
@@ -18,7 +41,7 @@
                 part;
 
             // Our goal is to make multiple entries in the plugin.
-            for(var i = 0; i < parts.length; i += 1) {
+            for(var i = 0, length = parts.length; i < length; i += 1) {
                 snippets = [];
                 part = parts[i].item;
 

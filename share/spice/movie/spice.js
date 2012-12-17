@@ -2,7 +2,6 @@
 // called when people search for movie titles. Example
 // triggers are "pirates of the caribbean movie" or "indie game movie."
 
-
 // This anonymous function is used to prevent helper
 // functions from becoming global functions. We only expose
 // `ddg_spice_movie` so we attach it to the variable `root`. 
@@ -13,11 +12,11 @@
     // process data and display the plugin.
     root.ddg_spice_movie = function(movie) {
         var collection = {};
-        collection.request = DDG.get_query().replace("movie", "").replace("film", "");
         if (movie && movie.total > 0 && movie.movies) {
             var result = getRelevant(movie);
 
             collection = {
+                request: DDG.get_query().replace("movie", "").replace("film", ""),
                 result: result,
                 synopsis: getSynopsis(result),
                 names: getNames(result),
