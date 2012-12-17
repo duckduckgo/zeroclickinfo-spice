@@ -40,7 +40,8 @@
                     datasheet_url: getDatasheetURL(part),
                     manufacturer_url: getManufacturerURL(part),
                     part: part,
-                    snippets: snippets
+                    snippets: snippets,
+                    image: getImage(part)
                 });
             }
 
@@ -48,11 +49,18 @@
         }
     };
 
+    // Returns the URL of the image. If it doesn't exist, it returns an empty string.
+    function getImage(part) {
+        return part.images.length ? part.images[0].url_55px : "";
+    }
+
+    // Links to the manufacturer's website e.g. Atmel.
     function getManufacturerURL(part) {
         return part.hyperlinks.manufacturer ||
                     part.manufacturer.homepage_url;
     }
 
+    // Returns a link to the PDF document.
     function getDatasheetURL(part) {
         if (part.datasheets.length) {
             return part.datasheets[0].url;
@@ -61,12 +69,14 @@
         }
     }
 
+    // Check the availability of this part.
     function getMarketStatus(part, snippets) {
         if (part.num_authsuppliers === 0) {
             snippets.push(part.market_status.replace(/^BAD:/, ''));
         }
     }
 
+    // Format the cost of the part.
     function getPrice(part, snippets) {
         var s = 'Avg Price: ';
         if (part.avg_price && (part.avg_price[0] !== null || part.avg_price[0] !== undefined)) {
@@ -79,12 +89,14 @@
         }
     }
 
+    // Gets the description used in the plugin.
     function getDescription(part, snippets) {
         if(part.short_description) {
             snippets.push(specsHTML(html_escape(part.short_description.replace(/[,;]$/, ''))));
         }
     }
 
+    // Returns an array containing the title of the plugin.
     function getHeading(part) {
         return [html_escape(part.manufacturer.displayname), html_escape(part.mpn)];
     }
@@ -95,6 +107,7 @@
                 .replace(/>/g,"&gt;");
     }
 
+    // Adds an emphasis on the text.
     function specsHTML(text) {
         return "Specs: <i>" + text + "</i>";
     }
@@ -105,6 +118,8 @@
             links = [],
             content = "";
 
+        // `datasheetHTML`, `linkHTML`, and `distributorsHTML` all create links.
+        // In the future, it's better to generalize these functions.
         function datasheetHTML(collection, links) {
             if(collection.part.datasheets.length) {
                 links.push('<a href="' + collection.datasheet_url + '" ' + 
@@ -142,12 +157,9 @@
             }
         }
 
+        // Loop through each value of collection, append HTML, and then pass it to `nra`.
         for(var i = 0, length = collection.length; i < length; i += 1) {
             links = [];
-
-            if(collection.length > 0) {
-
-            }
             datasheetHTML(collection[i], links);
             linkHTML(collection[i], links);
             distributorsHTML(collection[i].part, links);
@@ -163,7 +175,7 @@
             items[i] = {
                 h: "Octopart - " + collection[i].heading.join(" "),
                 a: content,
-                i: collection[i].part.images.length ? collection[i].part.images[0].url_55px : "",
+                i: collection[i].image,
                 s: 'Octopart',
                 u: collection[i].part.detail_url,
                 t: collection[i].heading.join(" "),
