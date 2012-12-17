@@ -166,7 +166,8 @@
                 i: collection[i].part.images.length ? collection[i].part.images[0].url_55px : "",
                 s: 'Octopart',
                 u: collection[i].part.detail_url,
-                t: collection[i].heading.join(" ")
+                t: collection[i].heading.join(" "),
+                force_big_header: true
             };
         }
 
