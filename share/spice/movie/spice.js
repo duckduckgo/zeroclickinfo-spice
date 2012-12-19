@@ -16,7 +16,6 @@
             var result = getRelevant(movie);
 
             collection = {
-                request: DDG.get_query().replace("movie", "").replace("film", ""),
                 result: result,
                 synopsis: getSynopsis(result),
                 names: getNames(result),
@@ -40,7 +39,8 @@
                 film: 1,
                 rotten: 1,
                 rating: 1,
-                rt: 1
+                rt: 1,
+                tomatoes: 1
             },
             aMovie;
         if (movie.total > 1) {

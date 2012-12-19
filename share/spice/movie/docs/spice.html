@@ -6,7 +6,6 @@ functions from becoming global functions. We only expose
     <span class="s2">&quot;use strict&quot;</span><span class="p">;</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>This function is responsible for calling other functions that
 process data and display the plugin.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="nx">root</span><span class="p">.</span><span class="nx">ddg_spice_movie</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">movie</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">collection</span> <span class="o">=</span> <span class="p">{};</span>
-        <span class="nx">collection</span><span class="p">.</span><span class="nx">request</span> <span class="o">=</span> <span class="nx">DDG</span><span class="p">.</span><span class="nx">get_query</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;movie&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&quot;film&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">movie</span> <span class="o">&amp;&amp;</span> <span class="nx">movie</span><span class="p">.</span><span class="nx">total</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">movie</span><span class="p">.</span><span class="nx">movies</span><span class="p">)</span> <span class="p">{</span>
             <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">getRelevant</span><span class="p">(</span><span class="nx">movie</span><span class="p">);</span>
 
@@ -28,7 +27,10 @@ more relevant movie, we get the first one.</p>             </td>             <td
         <span class="kd">var</span> <span class="nx">result</span><span class="p">,</span>
             <span class="nx">SKIP_ARRAY</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="nx">movie</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-                <span class="nx">film</span><span class="o">:</span> <span class="mi">1</span>
+                <span class="nx">film</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="nx">rotten</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="nx">rating</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="nx">rt</span><span class="o">:</span> <span class="mi">1</span>
             <span class="p">},</span>
             <span class="nx">aMovie</span><span class="p">;</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">movie</span><span class="p">.</span><span class="nx">total</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
