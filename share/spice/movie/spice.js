@@ -37,7 +37,10 @@
         var result,
             SKIP_ARRAY = {
                 movie: 1,
-                film: 1
+                film: 1,
+                rotten: 1,
+                rating: 1,
+                rt: 1
             },
             aMovie;
         if (movie.total > 1) {
