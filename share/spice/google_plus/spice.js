@@ -11,17 +11,16 @@
     root.ddg_spice_google_plus = function(google) {
         var re, query, collection;
 
-        // Check if the user is searching for other people.
+        // Check if the user is searching for people.
         if(google && google.kind === "plus#peopleFeed" && google.items && google.items.length > 0) {
-            re = /\s*(google\+|google\splus|g\+|gplus|google\+\suser|g\+\suser|google\splus\suser|google\+\sprofile|g\+\sprofile|gplus\sprofile|gplus\suser|g\splus\sprofile|g\splus\suser)\s*/;
-            query = DDG.get_query();
             collection = {
                 limit: getLimit(google.items.length, 5),
                 google: google,
-                query: query.replace(re, "")
+                query: getQuery()
             };
 
             display(collection);
+        // Check if the user wants to view a specific person.
         } else if(google && google.kind === "plus#person") {
             collection = {
                 about: getAbout(google),
@@ -35,23 +34,28 @@
         }
     };
 
+    // This function gets the original query and strips the trigger words.
+    function getQuery() {
+        var re = /\s*(google\+|google\splus|g\+|gplus|google\+\suser|g\+\suser|google\splus\suser|google\+\sprofile|g\+\sprofile|gplus\sprofile|gplus\suser|g\splus\sprofile|g\splus\suser)\s*/,
+            query = DDG.get_query();
+        return query.replace(re, '');
+    }
+
     // This function extracts the external links on their
     // Google+ profile (e.g. Twitter).
     function getLinks(google) {
         var links = [], unique = [];
-        if(google.urls) {
-            if(google.urls.length > 2) {
-                google.urls.length -= 2;
-                for(var i = 0; i < google.urls.length; i += 1) {
-                    if(unique.indexOf(google.urls[i].value) === -1) {
-                        unique.push(google.urls[i].value);
-                        var re = /(?:https?:\/\/)?(?:www\.)?([^\/]+)\/?.*/;
-                        var string =  google.urls[i].value.toLowerCase();
-                        string = string.replace(re, "$1");
-                        re = /\.(?:com|net|org)/;
-                        string = string.replace(re, "");
-                        links.push([google.urls[i].value, string]);
-                    }
+        if(google.urls && google.urls.length > 2) {
+            google.urls.length -= 2;
+            for(var i = 0; i < google.urls.length; i += 1) {
+                if(unique.indexOf(google.urls[i].value) === -1) {
+                    unique.push(google.urls[i].value);
+                    var re = /(?:https?:\/\/)?(?:www\.)?([^\/]+)\/?.*/;
+                    var string =  google.urls[i].value.toLowerCase();
+                    string = string.replace(re, "$1");
+                    re = /\.(?:com|net|org)/;
+                    string = string.replace(re, "");
+                    links.push([google.urls[i].value, string]);
                 }
             }
         }
