@@ -212,7 +212,7 @@
         var items = [[]];
         if(collection.google.kind === "plus#peopleFeed") {
             items[0] = {
-                a: builderHTML(collection.google, collection.limit),
+                a: builderHTML(collection.google, collection.limit) + '<div style="clear:both;"></div>',
                 h: 'Google+ Users (' + collection.query + ')',
                 s: 'Google+',
                 f: true,
