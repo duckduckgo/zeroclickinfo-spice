@@ -158,7 +158,7 @@
             var out = '<div style="float:left;">', item;
             for(var i = 0; i < limit; i += 1) {
                 item = google.items[i];
-                out += googleHTML('/?q=google%2B+userid:' + item.id, item.displayName, 
+                out += googleHTML(item.url, item.displayName, 
                             "/iu/?u=" + item.image.url);
             }
             out += '</div>';
