@@ -3,6 +3,7 @@ package DDG::Spice::Octopart;
 use DDG::Spice;
 
 primary_example_queries "atmega datasheet";
+secondary_example_queries "ne555 specs";
 description "Searches parts from Octopart.";
 name "Octopart";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Octopart.pm";
