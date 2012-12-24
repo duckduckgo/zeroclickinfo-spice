@@ -46,7 +46,7 @@
                 part = parts[i].item;
 
                 // Skip a product that isn't relevant.
-                if(!DDG.isRelevant(part.short_description, {specs: 1, datasheet: 1})) {
+                if(!DDG.isRelevant(part.short_description, {specs: 1, datasheet: 1, octopart: 1})) {
                     continue;
                 }
 
