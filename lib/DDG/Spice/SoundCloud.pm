@@ -19,7 +19,7 @@ status "enabled";
 spice to => 'http://api.soundcloud.com/tracks.json?client_id={{ENV{DDG_SPICE_SOUNDCLOUD_APIKEY}}}&q=$1&limit=1&callback={{callback}}';
 spice is_cached => 0;
 
-triggers start => "sc", "soundcloud";
+triggers start => "sc", "soundcloud", "sound cloud";
 
 handle remainder => sub {
     return if $_ eq '';
