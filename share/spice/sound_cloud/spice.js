@@ -25,13 +25,10 @@ function ddg_spice_sound_cloud(sc) {
         snippet.appendChild(iframe);
 
         items[0] = {
-            // Set the header to the Sound Cloud title.
             a: snippet,
             h: "Sound Cloud (" + res.title + ")",
-            // Source name and url for the More at X link.
             s: "SoundCloud",
             u: res.permalink_url,
-            // No compression.
             f: true,
             force_big_header: true
         };
