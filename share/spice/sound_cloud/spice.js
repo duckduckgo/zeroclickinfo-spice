@@ -26,7 +26,7 @@ function ddg_spice_sound_cloud(sc) {
 
         items[0] = {
             a: snippet,
-            h: "Sound Cloud (" + res.title + ")",
+            h: res.title + " (Sound Cloud)",
             s: "SoundCloud",
             u: res.permalink_url,
             f: true,
@@ -34,6 +34,6 @@ function ddg_spice_sound_cloud(sc) {
         };
 
         // The rendering function is `nra`.
-        nra(items);
+        nra(items, 1, 1);
     }
 }
