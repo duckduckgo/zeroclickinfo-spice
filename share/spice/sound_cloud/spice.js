@@ -30,6 +30,7 @@ function ddg_spice_sound_cloud(sc) {
         nra(items, 1, 1);
     }
 
+    // Use this to set the image shown to the user.
     function initImage(res) {
         var image;
         if(res.artwork_url) {
@@ -44,6 +45,8 @@ function ddg_spice_sound_cloud(sc) {
         img.setAttribute('src', image);
         img.setAttribute('style', 'clear: left; float: left; margin-left: 10px; margin-right: 10px; border: 1px solid rgb(255, 255, 255);');
         img.addEventListener("click", hideImage, false);
+
+        // Add the image and the link to the div element.
         outer_div.appendChild(img);
         outer_div.appendChild(addLink(res.user.username, res.user.uri));
         
@@ -57,6 +60,9 @@ function ddg_spice_sound_cloud(sc) {
         return link;
     }
 
+    // hideImage uses the built-in function DDG.toggle.
+    // It hides or shows the element depending on the second argument.
+    // 1 is for showing and -1 is for hiding.
     function hideImage() { 
         DDG.toggle('soundcloud-play', -1);
         snippet.appendChild(soundcloud(res));
