@@ -16,9 +16,6 @@ category "ids";
 attribution github => ['https://github.com/jagtalon','jagtalon'],
             twitter => ['http://twitter.com/juantalon','juantalon'];
 
-spice to => 'https://jobs.github.com/positions.json?description=$1&location=$2&callback={{callback}}';
-spice from => '(.*?)-(.*)';
-
 triggers startend => 'google+', 'google plus', 'g+', 'gplus', 'google+ user', 'g+ user', 
 'google plus user', 'google+ profile', 'g+ profile', 'gplus profile', 'gplus user', 'g plus profile',
 'g plus user';
@@ -28,7 +25,7 @@ handle remainder => sub {
 	if($query =~ /userid:(\d+)$/) {
 		return $1.'-'; 
 	}
-    if($query =~ /((?:[a-zA-Z]|\s)+)$/) {
+    if($query =~ /((?:[\w]|\s)+)$/) {
 		return '-'.$1;
 	}
 	return;

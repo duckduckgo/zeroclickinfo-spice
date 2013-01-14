@@ -10,8 +10,8 @@ spice to => 'http://www.canistream.it/ddg/query/$1?callback={{callback}}';
 
 triggers any => "stream", "watch", "streaming";
 
-primary_example_queries "watch back to the future";
-secondary_example_queries "how to stream pirates of silicon valley", "can i stream indie game";
+primary_example_queries "watch pirates of the caribbean";
+secondary_example_queries "can I stream indie game";
 description "Find out how to watch movies";
 name "Canistreamit";
 icon_url "/i/www.canistream.it.ico";
