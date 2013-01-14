@@ -2,9 +2,9 @@ function ddg_spice_expand_url(res)
 {
     if (res["long-url"]){
 
-        var query = DDG.get_query().replace(/expand\s*/, "");
+        var query = DDG.get_query().replace(/expand\s*/i, "");
 
-        if (res["long-url"] != query){
+        if (res["long-url"] != query) {
 
             var out ='Expanded url: <a href="' 
                     + res['long-url'] + '">' 
