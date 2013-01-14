@@ -5,7 +5,7 @@ use DDG::Spice;
 name "Rhymes";
 description "find rhyming words";
 source "RhymeBrain";
-primary_example_queries "what rhymes with duck", "rhyme list";
+primary_example_queries "what rhymes with duck";
 secondary_example_queries "go rhymes with", "words that rhyme with smile";
 category "language";
 topics "everyday", "music", "words_and_games";
