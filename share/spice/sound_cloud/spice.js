@@ -6,66 +6,52 @@ function ddg_spice_sound_cloud(sc) {
     "use strict";
 
     var snippet = d.createElement('span'), 
-        res, 
-        items = [[]];
+        items = [[]],
+        query = DDG.get_query().replace(/(sc|sound\s+cloud|soundcloud)\s*/i, "");
+
+    function initElement(res) {
+        // hideImage uses the built-in function DDG.toggle.
+        // It hides or shows the element depending on the second argument.
+        // 1 is for showing and -1 is for hiding.
+        function hideElement() { 
+            DDG.toggle('soundcloud-play', -1);
+            snippet.appendChild(soundcloud(res));
+        }
+
+        var a = d.createElement('a');
+        a.addEventListener("click", hideElement, false);
+        a.setAttribute("href", "javascript:;");
+        a.innerHTML = res.title;
+        return a; 
+    }
 
     // Check if the properties that we need are available.
     // if it isn't, it's not going to display anything.
-    if (sc && sc.length && sc[0].uri && sc[0].title && sc[0].user && sc[0].user.username && sc[0].permalink_url) {
-        // Rename for readability
-        res = sc[0];
+    if (sc && sc.length) {
+        var li,
+            div = d.createElement('div'),
+            ul = d.createElement('ul');
 
-        snippet.appendChild(initImage(res));
+        div.setAttribute("id", "soundcloud-play");
+        for(var i = 0; i < sc.length && i < 5; i++) {
+            li = d.createElement('li');
+            li.appendChild(initElement(sc[i])); 
+            ul.appendChild(li);
+        }
+        div.appendChild(ul);
+        snippet.appendChild(div);
 
         items[0] = {
             a: snippet,
-            h: res.title + " (Sound Cloud)",
+            h: "Sound Cloud",
             s: "SoundCloud",
-            u: res.permalink_url,
+            u: "https://soundcloud.com/search?q=" + query,
             f: true,
             force_big_header: true
         };
 
         // The rendering function is `nra`.
         nra(items, 1, 1);
-    }
-
-    // Use this to set the image shown to the user.
-    function initImage(res) {
-        var image;
-        if(res.artwork_url) {
-            image = res.artwork_url;
-        } else if(res.user.avatar_url) {
-            image = res.user.avatar_url;
-        }
-        var outer_div = d.createElement('div');
-        
-        var img = d.createElement('img');
-        outer_div.setAttribute('id', 'soundcloud-play');
-        img.setAttribute('src', image);
-        img.setAttribute('style', 'clear: left; float: left; margin-left: 10px; margin-right: 10px; border: 1px solid rgb(255, 255, 255);');
-        img.addEventListener("click", hideImage, false);
-
-        // Add the image and the link to the div element.
-        outer_div.appendChild(img);
-        outer_div.appendChild(addLink(res.user.username, res.user.uri));
-        
-        return outer_div;
-    }
-
-    function addLink(value, href) {
-        var link = d.createElement('a');
-        link.setAttribute('href', href);
-        link.innerHTML = value;
-        return link;
-    }
-
-    // hideImage uses the built-in function DDG.toggle.
-    // It hides or shows the element depending on the second argument.
-    // 1 is for showing and -1 is for hiding.
-    function hideImage() { 
-        DDG.toggle('soundcloud-play', -1);
-        snippet.appendChild(soundcloud(res));
     }
 
     // Embed Sound Cloud's player in our plugin.
