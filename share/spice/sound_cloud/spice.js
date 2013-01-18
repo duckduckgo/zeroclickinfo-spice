@@ -30,12 +30,23 @@ function ddg_spice_sound_cloud(sc) {
     if (sc && sc.length) {
         var li,
             div = d.createElement('div'),
-            ul = d.createElement('ul');
+            ul = d.createElement('ul'),
+            span; 
 
+        span = d.createElement('span');
+        span.innerHTML = "Hint: Click on the title to stream.<br>";
+        div.appendChild(span);
         div.setAttribute("id", "soundcloud-play");
         for(var i = 0; i < sc.length && i < 5; i++) {
             li = d.createElement('li');
             li.appendChild(initElement(sc[i])); 
+            var span2 = d.createElement('span');
+            span2.innerHTML = " by ";
+            var a = d.createElement('a');
+            a.setAttribute('href', sc[i].user.permalink_url);
+            a.innerHTML = sc[i].user.username;
+            li.appendChild(span2);
+            li.appendChild(a);
             ul.appendChild(li);
         }
         div.appendChild(ul);
@@ -43,7 +54,7 @@ function ddg_spice_sound_cloud(sc) {
 
         items[0] = {
             a: snippet,
-            h: "Sound Cloud",
+            h: query + " (Sound Cloud)",
             s: "SoundCloud",
             u: "https://soundcloud.com/search?q=" + query,
             f: true,
