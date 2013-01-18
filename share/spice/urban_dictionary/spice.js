@@ -7,7 +7,8 @@ function ddg_spice_urban_dictionary(res)
 
 		items[0] = {
 			a: def.definition.replace(/(\r?\n)+/gi, '<br>'),
-			//h: def.word + ' (Urban Dictionary definition)', // Optimize for vertical space
+			h: def.word + ' (Urban Dictionary definition)', // Optimize for vertical space
+            force_big_header: true,
 			s: 'Urban Dictionary',
 			u: 'http://www.urbandictionary.com/define.php?term=' + def.word
 			//u: def.permalink // Alternatively, link to the specific shown definition

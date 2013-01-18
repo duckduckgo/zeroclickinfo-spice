@@ -3,7 +3,7 @@ package DDG::Spice::UrbanDictionary;
 
 use DDG::Spice;
 
-primary_example_queries "urbandictionary ROTFL";
+primary_example_queries "urban dictionary ROTFL";
 secondary_example_queries "ud OMG", "ud ASD";
 description "Lookup UrbanDictionary definitions";
 name "UrbanDictionary";
