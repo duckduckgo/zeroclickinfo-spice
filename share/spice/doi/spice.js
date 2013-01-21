@@ -52,7 +52,10 @@ function ddg_spice_doi(bib) {
 	if (bib['issued'] && bib['issued']['raw']) {
 		items[0]['a'] += ", " + bib['issued']['raw'];
 	}
-	items[0]['a'] += ", doi:" + bib['DOI'] + "<br/>";
+	items[0]['a'] += ", doi:" + bib['DOI'] + ". ";
+	items[0]['a'] += "<br/>";
+	items[0]['a'] += "<a href=\"http://data.datacite.org/application/x-bibtex/" + bib['DOI'] + "\">BibTeX</a> &bull; ";
+	items[0]['a'] += "<a href=\"http://data.datacite.org/application/x-research-info-systems/" + bib['DOI'] + "\">RIS</a> &bull;";
 	items[0]['h'] = bib['title'];
 	items[0]['s'] = "dx.doi.org";
 	if (bib['url']) {
