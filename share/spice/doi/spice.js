@@ -4,7 +4,25 @@
 function ddg_spice_doi(bib) {
 
   function format_author(author) {
-  	return author['literal']
+	if (author['family']) {
+		var ret = "";
+		if (author['given']) {
+			ret += author['given'] + " ";
+		}
+		if (author['dropping-particle']) {
+			ret += author['dropping-particle'] + " ";
+		}
+		if (author['non-dropping-particle']) {
+			ret += author['non-dropping-particle'] + " ";
+		}
+		ret += author['family'];
+		if (author['suffix']) {
+			ret += " " + author['suffix'];
+		}
+		return ret;
+	} else {
+		return author['literal']
+	}
   }
 
   function format_authors(authors) {
