@@ -1,6 +1,3 @@
-/*
-  nr is the prefix for this function space.
-  */
 function ddg_spice_doi(bib) {
 
   function format_author(author) {
@@ -42,7 +39,6 @@ function ddg_spice_doi(bib) {
   	return ret;
   }
 
-  console.log(bib);
   // validity check
   if (bib['DOI'] && bib['author'] && bib['title']) {
 
