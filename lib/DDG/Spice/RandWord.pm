@@ -3,7 +3,7 @@ package DDG::Spice::RandWord;
 use DDG::Spice;
 
 name "Random Word";
-description "Gemerates a random word";
+description "Generates a random word";
 source "WordNik";
 primary_example_queries "random word", "random word 5-10";
 category "random";

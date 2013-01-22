@@ -5,8 +5,8 @@ use DDG::Spice;
 name "Rhymes";
 description "find rhyming words";
 source "RhymeBrain";
-primary_example_queries "what rhymes with duck", "rhyme list";
-secondary_example_queries "go rhymes with";
+primary_example_queries "what rhymes with duck";
+secondary_example_queries "go rhymes with", "words that rhyme with smile";
 category "language";
 topics "everyday", "music", "words_and_games";
 attribution web => ['http://dylansserver.com','Dylan Lloyd'],
@@ -20,7 +20,7 @@ triggers any => "rhyme", "rhymes";
 spice to => 'http://rhymebrain.com/talk?function=getRhymes&word=$1&jsonp={{callback}}';
 
 handle query_lc => sub {
-    if ($_ =~ /^(?:what )?(?:rhymes?(?: ?(?:with|for))? ?)?([a-zA-Z]+)(?: rhymes?)?(?: with)?\??$/) {
+    if ($_ =~ /^(?:(?:what|words?)\s+)?(?:that\s+)?(?:rhymes?(?:\s+?(?:with|for))?\s*)?([a-zA-Z]+)(?:\s+rhymes?)?(?:\s+with)?\??$/) {
         if ($1) {
             return $1;
         } else {

@@ -8,7 +8,7 @@ description "Movie information from Rotten Tomatoes";
 name "Movie";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Movie.pm";
 icon_url "/i/www.rottentomatoes.com.ico";
-topics "entertainment";
+topics "entertainment", "everyday";
 category "entertainment";
 attribution github => ['https://github.com/moollaza','Zaahir Moolla'],
            twitter => ['https://twitter.com/zmoolla','zmoolla'];

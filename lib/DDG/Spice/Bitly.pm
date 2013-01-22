@@ -15,17 +15,19 @@ category "computing_tools";
 attribution github => ['https://github.com/danjarvis','Dan Jarvis'],
             twitter => ['http://twitter.com/danjarvis','danjarvis'];
 
-spice to => 'http://api.bitly.com/v3/shorten?login=ddgspiceplugin&apiKey={{ENV{DDG_SPICE_BITLY_APIKEY}}}&longUrl=$1&callback={{callback}}';
+spice to => 'http://api.bitly.com/v3/shorten?login=duckduckhack&apiKey={{ENV{DDG_SPICE_BITLY_APIKEY}}}&longUrl=$1://$2&callback={{callback}}';
+spice from => '(?:([^/]+)/(.+))';
 
-triggers start => 'bitly', 'bit.ly', 'shorten', 'shorten url', 'short url', 'url shorten';
+triggers any => 'bitly', 'bit.ly', 'shorten', 'shorten url', 'short url', 'url shorten';
 
 handle remainder => sub {
 	my ($longUri) = shift;
 	if ($longUri) {
-		if (!($longUri =~ /^https?:\/\//)) {
-			$longUri = 'http://' . $longUri;
-		}
-		return $longUri;
+		if($longUri =~ /(.+):\/\/(.+)/) {
+			return $1, $2;
+		} else {
+            return 'http', $longUri;
+        }
 	}
 	return;
 };
