@@ -1,4 +1,4 @@
-function ddg_spice_quixey_search (data) {
+function ddg_spice_quixey (data) {
 
   /*****************/
   /* Init */
