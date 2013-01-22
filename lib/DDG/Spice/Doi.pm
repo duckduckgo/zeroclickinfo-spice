@@ -18,9 +18,9 @@ status "enabled";
 triggers query_lc => qr%\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?!["&\'<>])\S)+)\b%;
 
 # This would work better, but needs content negotiation
-#spice to => 'http://dx.doi.org/$1';
-spice to => 'http://data.datacite.org/application/vnd.citationstyles.csl+json/$1';
+spice to => 'http://dx.doi.org/$1';
 spice wrap_jsonp_callback => 1;
+spice accept_header => 'application/vnd.citationstyles.csl+json';
 
 spice is_cached => 1;
 
