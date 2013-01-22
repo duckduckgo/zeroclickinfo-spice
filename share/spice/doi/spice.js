@@ -49,9 +49,9 @@ function ddg_spice_doi(bib) {
 		items[0]['a'] += ", " + bib['issued']['raw'];
 	}
 	items[0]['a'] += ", doi:" + bib['DOI'] + ". ";
-	items[0]['a'] += "<br/>";
-	items[0]['a'] += "<a href=\"http://data.datacite.org/application/x-bibtex/" + bib['DOI'] + "\">BibTeX</a> &bull; ";
-	items[0]['a'] += "<a href=\"http://data.datacite.org/application/x-research-info-systems/" + bib['DOI'] + "\">RIS</a> &bull;";
+	items[0]['a'] += "<br />";
+	items[0]['a'] += "<pre style=\"display:none\" id=\"bibtex\"></pre>";
+	items[0]['a'] += "<a href=\"javascript:fetch_bibtex('" + bib['DOI'] + "');\")>BibTeX</a> &bull; ";
 	items[0]['h'] = bib['title'];
 	items[0]['s'] = "dx.doi.org";
 	if (bib['url']) {
@@ -61,4 +61,17 @@ function ddg_spice_doi(bib) {
 	}
 	nra(items);
   }
+}
+
+// This uses the dummy doi_bibtex spice to lookup the bibliography data in
+// bibtex format
+function fetch_bibtex(doi) {
+	nrj("/js/spice/doi_bibtex/" + doi);
+}
+
+// And this is the return call, showing the bibtex display field.
+function ddg_spice_doi_bibtex(bibtex) {
+	document.getElementById('bibtex').style.display = 'block';
+	document.getElementById('bibtex').innerHTML = bibtex;
+
 }
