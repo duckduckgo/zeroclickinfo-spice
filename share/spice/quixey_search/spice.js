@@ -1,7 +1,7 @@
 function ddg_spice_quixey_search (data) {
 
   /*****************/
-  /* Initial Setup */
+  /* Init */
   /*****************/
   var query = data.q.replace(/\s/g, '+')
 
@@ -15,32 +15,11 @@ function ddg_spice_quixey_search (data) {
     return appKey[id]
   };
 
-  /***********/
-  /* General */
-  /***********/
   
-  var state = {
-
-    // placeholder for the videos
-      apps: []
-
-    // minimum window width to show dots
-    , min_win: 500
-
-    // default width of the navigation elements
-    , thumb_width: 90
-    , li_width: 90
-    , li_margin: 10
-
-    // current video in nav
-    , quixey: 0
-
-    // prev / next witdth
-    , pn_width: 50
-
-  }
-
-  // Make sure a property is defined on an object
+  /********************/
+  /* Helper Functions */
+  /********************/
+   // Make sure a property is defined on an object
   function isProp(obj, prop) {
     prop = prop.split('.')
     for (var i = 0, len = prop.length; i < len; i++) {
@@ -54,6 +33,78 @@ function ddg_spice_quixey_search (data) {
   function preventDefault(e) {
     e.preventDefault ? e.preventDefault() : e.returnValue = false
   }
+
+
+  /********/
+  /* Main */
+  /********/
+  
+  var state = {}
+
+  // placeholder for the videos
+  state.apps = []
+ 
+  function setup() {
+
+    /* Initialize globals */
+  
+    state.min_win = 500 // minimum window width to show dots
+
+    state.li_width = 90 // default total width and border of each carousel <li>
+    state.li_padding = 14
+    state.li_border = 0
+
+    state.frame_padding = 14 // default frame padding and border
+    state.frame_border = 2 
+    
+    state.current_item = 0 // current video in nav 
+    
+    //Set total width of <li>
+    state.thumb_width = state.li_width + state.li_padding + state.li_border;
+
+    // store window width
+    state.win = YAHOO.util.Dom.getRegion('nav').width 
+    var frame_width = state.win - state.frame_padding - state.frame_border
+   
+    // increment by how many thumbs
+    state.inc = Math.floor(frame_width / state.thumb_width)
+
+    // stretch li to fit max
+    var extra = frame_width - (state.thumb_width * state.inc)
+    state.li_width += Math.floor(extra / state.inc)
+
+    // last video
+    var linc = state.apps.length % state.inc
+    state.last = Math.max(0, state.apps.length - (linc ? linc : state.inc))
+
+    // whole states
+    state.current_item -= state.current_item % state.inc
+
+    // add the navigation
+    createNav()
+
+    // moves the slide to their current position
+    setSlides()
+
+    // style for prev / next
+    pnClasses()
+
+    // add the dots
+    makeDots()
+
+    // listen for window resizes
+    YAHOO.util.Event.addListener(window, 'resize', function () {
+      clearTimeout(state.resize)
+      state.resize = setTimeout(setup, 400)  // tune
+    })
+
+  }
+
+
+  /************************/
+  /* FUNCTION DEFINITIONS */
+  /************************/
+
 
   /*******************/
   /* Data Extraction */
@@ -71,7 +122,7 @@ function ddg_spice_quixey_search (data) {
     var info = d.createElement('div')
     var name_wrap = d.createElement('div')
     var details = d.createElement('div')
-	details.innerHTML = getDetails(app)
+        details.innerHTML = getDetails(app)
     var name = d.createElement('a')
         name.href = app.url
         name.innerHTML = shorten(app.name, 80)
@@ -79,8 +130,8 @@ function ddg_spice_quixey_search (data) {
         price.innerHTML = getPrice(app.editions)
     var rating = d.createElement('div')
         if (app.rating != null) {
-	  rating.innerHTML = getRating(app)
-	}
+    rating.innerHTML = getRating(app)
+  }
     var description = d.createElement('div');
     var clear = d.createElement('div')
     
@@ -124,9 +175,9 @@ function ddg_spice_quixey_search (data) {
     var more_info   = d.createElement('div');
     var editions    = d.createElement('div');
     editions.innerHTML = getEditions(app.editions);
-	
+  
     more_info.appendChild(editions);
-	
+  
     YAHOO.util.Dom.addClass(editions, "app_editions")
     
     return more_info.innerHTML;
@@ -148,10 +199,10 @@ function ddg_spice_quixey_search (data) {
       YAHOO.util.Dom.addClass(img_anchor, "app_edition_icon")
       YAHOO.util.Dom.addClass(edition, "app_edition")
       if (current.rating != null){
-	rating = app.rating.toFixed(1)
+        rating = app.rating.toFixed(1)
         YAHOO.util.Dom.setAttribute(edition, "title", current.name + ' - Rating: ' + rating + ' - Price: ' + price)
       }else{
-	YAHOO.util.Dom.setAttribute(edition, "title", current.name + ' - Price: ' + price)
+        YAHOO.util.Dom.setAttribute(edition, "title", current.name + ' - Price: ' + price)
       }
       img_anchor.appendChild(img)
       edition.appendChild(img_anchor)
@@ -215,7 +266,6 @@ function ddg_spice_quixey_search (data) {
     }
    
     return range
-
   }
 
   function getRating (app){
@@ -238,6 +288,7 @@ function ddg_spice_quixey_search (data) {
       return string;
     }
   }
+
   
   /**************/
   /* Navigation */
@@ -249,14 +300,17 @@ function ddg_spice_quixey_search (data) {
     var nav = d.getElementById('nav')
     nav.innerHTML = ''  // clear
 
-    // create frame to hold thumbnails
+    // create slider to hold thumbnails
     // will hide overflowing elements to look like slide
+    var slider = d.createElement('div')
+    slider.id = 'slider'
+
     var frame = d.createElement('div')
     frame.id = 'frame'
 
     // store state
     var len = state.apps.length
-    var total_width = state.li_width + state.li_margin
+    var total_width = state.li_width + state.li_padding + state.li_border
     var end = total_width * len
 
     // create list of videos
@@ -268,7 +322,7 @@ function ddg_spice_quixey_search (data) {
     for (i = 0; i < len; i++) {
       li = d.createElement('li')
       YAHOO.util.Dom.addClass(li, 'item')
-      YAHOO.util.Dom.setStyle(li, 'width', (state.li_width - 2) + 'px')
+      YAHOO.util.Dom.setStyle(li, 'width', state.li_width + 'px')
 
       app = state.apps[i]
       
@@ -300,8 +354,8 @@ function ddg_spice_quixey_search (data) {
     }
 
     frame.appendChild(ul)
-    nav.appendChild(frame)
-
+    slider.appendChild(frame)
+    nav.appendChild(slider)
 
   }
 
@@ -320,11 +374,18 @@ function ddg_spice_quixey_search (data) {
   }
 
   // Make prev / next arrows
-  function makeArrow(txt, id, next) {
+  function makeArrow(id, next) {
     var na = d.createElement('a')
-    na.appendChild(d.createTextNode(txt))
     na.href = '#'
     na.id = id
+    
+    var na_img = d.createElement('img')
+    na_img.id = id + '_img'
+    na_img.src = (next) ? DDG.get_asset_path("arrow-next.png") : DDG.get_asset_path("arrow-prev.png");
+
+    na.appendChild(na_img)
+
+    YAHOO.util.Dom.addClass(na_img, 'npa_img')
     YAHOO.util.Dom.addClass(na, 'npa')
     YAHOO.util.Event.addListener(na, 'click', wrapCB(next))
     var pagination = d.getElementById('pagination')
@@ -336,16 +397,16 @@ function ddg_spice_quixey_search (data) {
     return function (e) {
       preventDefault(e)
 
-      if (state.quixey === 0 && !next) return
-      if (state.quixey === state.last && next) return
+      if (state.current_item === 0 && !next) return
+      if (state.current_item === state.last && next) return
 
-      state.quixey += (next ? 1 : -1) * state.inc
+      state.current_item += (next ? 1 : -1) * state.inc
 
       // edge conditions when resizing
-      if (state.quixey < 0) state.quixey = 0
-      if (state.quixey > state.last) state.quixey = state.last
+      if (state.current_item < 0) state.current_item = 0
+      if (state.current_item > state.last) state.current_item = state.last
 
-      doNav(state.quixey / state.inc)
+      doNav(state.current_item / state.inc)
     }
   }
 
@@ -358,16 +419,16 @@ function ddg_spice_quixey_search (data) {
 
   // Slide the thumbnails around
   function setSlides() {
-    var mar = '-' + (state.quixey * (state.li_width + state.li_margin)) + 'px'
+    var mar = '-' + (state.current_item * (state.li_width + state.li_padding + state.li_border)) + 'px'
     YAHOO.util.Dom.setStyle('slides', 'margin-left', mar)
   }
 
   // Set styling on previous / next buttons
   function pnClasses() {
-    if (state.quixey > 0) YAHOO.util.Dom.removeClass('preva', 'npah')
+    if (state.current_item > 0) YAHOO.util.Dom.removeClass('preva', 'npah')
     else YAHOO.util.Dom.addClass('preva', 'npah')
 
-    if (state.quixey < state.last) YAHOO.util.Dom.removeClass('nexta', 'npah')
+    if (state.current_item < state.last) YAHOO.util.Dom.removeClass('nexta', 'npah')
     else YAHOO.util.Dom.addClass('nexta', 'npah')
   }
 
@@ -390,14 +451,14 @@ function ddg_spice_quixey_search (data) {
   function dotHandler(j) {
     return function (e) {
       preventDefault(e)
-      state.quixey = j * state.inc
+      state.current_item = j * state.inc
       doNav(j)
     }
   }
 
   // Show page numbers
   function showPage(dots, n) {
-    var sel = state.quixey / state.inc
+    var sel = state.current_item / state.inc
     var p = d.createElement('p')
     YAHOO.util.Dom.addClass(p, 'page')
     p.appendChild(d.createTextNode((sel + 1) + '/' + n))
@@ -418,12 +479,12 @@ function ddg_spice_quixey_search (data) {
       nav.appendChild(pagination);
 
       // add the prev / next arrows
-      makeArrow('>', 'nexta', true)
-      makeArrow('<', 'preva', false)
+      makeArrow('nexta', true)
+      makeArrow('preva', false)
       pagination.appendChild(dots)
     }
     var lin, j = 0, n = Math.ceil(state.apps.length / state.inc)
-    var sel = state.quixey / state.inc
+    var sel = state.current_item / state.inc
 
     if (n > 4 && state.win < state.min_win)  // at most 4 dots on small screens
       return showPage(dots, n)
@@ -438,6 +499,7 @@ function ddg_spice_quixey_search (data) {
       dots.appendChild(lin)
     }
   }
+
 
   /*****************/
   /* Preview Embed */
@@ -465,48 +527,6 @@ function ddg_spice_quixey_search (data) {
     YAHOO.util.Dom.setStyle('emb', 'display', 'block')
   }
 
-  /* Main plugin entry point */
-
-  function setup() {
-    // store window width
-    state.win = YAHOO.util.Dom.getRegion('nav').width
-
-    var frame_width = state.win - state.pn_width
-
-    // increment by how many thumbs
-    state.inc = Math.floor(frame_width / state.thumb_width)
-
-    // stretch li to fit max
-    var extra = frame_width - (state.thumb_width * state.inc)
-    state.li_width = state.thumb_width + Math.floor(extra / state.inc)
-
-    // last video
-    var linc = state.apps.length % state.inc
-    state.last = Math.max(0, state.apps.length - (linc ? linc : state.inc))
-
-    // whole states
-    state.quixey -= state.quixey % state.inc
-
-    // add the navigation
-    createNav()
-
-    // moves the slide to their current position
-    setSlides()
-
-    // style for prev / next
-    pnClasses()
-
-    // add the dots
-    makeDots()
-
-    // listen for window resizes
-    YAHOO.util.Event.addListener(window, 'resize', function () {
-      clearTimeout(state.resize)
-      state.resize = setTimeout(setup, 400)  // tune
-    })
-
-  }
-
   // If we have a videos to display
   if (data && isProp(data, 'results') && data.results.length > 0) {
 
@@ -528,14 +548,8 @@ function ddg_spice_quixey_search (data) {
     emb.id = 'emb'
     div.appendChild(emb)
 
-   // Add Quixey logo to bottom
-   var logo = d.createElement('h1')
-   logo.innerHTML = ''
-   YAHOO.util.Dom.addClass(logo, 'quixey_logo')
-   
-   // Append Quixey div and logo to container
+   // Append Quixey div to container
    container.appendChild(div)
-   container.appendChild(logo)
 
     // set more at link
     var u = 'https://www.quixey.com/search?q='
@@ -546,11 +560,12 @@ function ddg_spice_quixey_search (data) {
     // ddg: add to page
     var items = [{
       f: 1,
-      a: container,
+      a: container.innerHTML,
       h: data.q + ' (App Search)',
       s: 'Quixey',
       u: u + q,
-      force_big_header: true
+      force_big_header: true,
+      force_more_at_logo:"quixey_logo.png"
     }]
     nra(items, 0, true)
 
