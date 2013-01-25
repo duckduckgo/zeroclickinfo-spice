@@ -21,6 +21,7 @@ function ddg_spice_sound_cloud(sc) {
         var a = d.createElement('a');
         a.addEventListener("click", hideElement, false);
         a.setAttribute("href", "javascript:;");
+        a.setAttribute("title", "Listen to " + res.title);
         a.innerHTML = res.title;
         return a; 
     }
@@ -33,9 +34,6 @@ function ddg_spice_sound_cloud(sc) {
             ul = d.createElement('ul'),
             span; 
 
-        span = d.createElement('span');
-        span.innerHTML = "Hint: Click on the title to stream.<br>";
-        div.appendChild(span);
         div.setAttribute("id", "soundcloud-play");
         for(var i = 0; i < sc.length && i < 5; i++) {
             li = d.createElement('li');
@@ -72,7 +70,7 @@ function ddg_spice_sound_cloud(sc) {
         iframe.setAttribute('height', '166');
         iframe.setAttribute('scrolling', 'no');
         iframe.setAttribute('frameborder', 'no');
-        iframe.setAttribute('src', 'https://w.soundcloud.com/player/?url=' + encodeURI(res.uri));
+        iframe.setAttribute('src', 'https://w.soundcloud.com/player/?url=' + encodeURI(res.uri) + "&amp;auto_play=true");
         return iframe;
     }
 }
