@@ -5,7 +5,7 @@
 function ddg_spice_sound_cloud(sc) {
     "use strict";
 
-    var snippet = d.createElement('span'), 
+    var snippet = d.createElement('span'),
         items = [[]],
         query = DDG.get_query().replace(/(sc|sound\s+cloud|soundcloud)\s*/i, "");
 
@@ -16,6 +16,8 @@ function ddg_spice_sound_cloud(sc) {
         function hideElement() { 
             DDG.toggle('soundcloud-play', -1);
             snippet.appendChild(soundcloud(res));
+            var s = d.getElementById("zero_click_abstract");
+            s.setAttribute("style", "margin: 0px !important;");
         }
 
         var a = d.createElement('a');
@@ -23,6 +25,7 @@ function ddg_spice_sound_cloud(sc) {
         a.setAttribute("href", "javascript:;");
         a.setAttribute("title", "Listen to " + res.title);
         a.innerHTML = res.title;
+        a.innerHTML = "<i class='icon-play-circle'></i>" + res.title;
         return a; 
     }
 
@@ -32,22 +35,21 @@ function ddg_spice_sound_cloud(sc) {
         var li,
             div = d.createElement('div'),
             ul = d.createElement('ul'),
-            span; 
+            div2; 
 
         div.setAttribute("id", "soundcloud-play");
         for(var i = 0; i < sc.length && i < 5; i++) {
-            li = d.createElement('li');
-            li.appendChild(initElement(sc[i])); 
+            div2 = d.createElement('div');
+            div2.appendChild(initElement(sc[i])); 
             var span2 = d.createElement('span');
             span2.innerHTML = " by ";
             var a = d.createElement('a');
             a.setAttribute('href', sc[i].user.permalink_url);
             a.innerHTML = sc[i].user.username;
-            li.appendChild(span2);
-            li.appendChild(a);
-            ul.appendChild(li);
+            div2.appendChild(span2);
+            div2.appendChild(a);
+            div.appendChild(div2);
         }
-        div.appendChild(ul);
         snippet.appendChild(div);
 
         items[0] = {
