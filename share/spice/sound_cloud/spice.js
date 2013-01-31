@@ -2,67 +2,100 @@
 // called when people search for movie titles. An example trigger
 // is "sc oppa spacejam style".
 
-function ddg_spice_sound_cloud(sc) {
+(function(root) {
     "use strict";
 
     var snippet = d.createElement('span'),
         items = [[]],
         query = DDG.get_query().replace(/(sc|sound\s+cloud|soundcloud)\s*/i, "");
 
-    function initElement(res) {
-        // hideImage uses the built-in function DDG.toggle.
-        // It hides or shows the element depending on the second argument.
-        // 1 is for showing and -1 is for hiding.
-        function hideElement() { 
-            DDG.toggle('soundcloud-play', -1);
-            snippet.appendChild(soundcloud(res));
-            var s = d.getElementById("zero_click_abstract");
-            s.setAttribute("style", "margin: 0px !important;");
-        }
+    // This function is responsible for calling other functions that
+    // process data and display the plugin.
+    root.ddg_spice_sound_cloud = function(sound) {
+        if(sound && sound.length) {
+            snippet.appendChild(list_of_tracks(sound));
 
-        var a = d.createElement('a');
-        a.addEventListener("click", hideElement, false);
-        a.setAttribute("href", "javascript:;");
-        a.setAttribute("title", "Listen to " + res.title);
-        a.innerHTML = res.title;
-        a.innerHTML = "<i class='icon-play-circle'></i>" + res.title;
-        return a; 
+            items[0] = {
+                a: snippet,
+                h: query + " (Sound Cloud)",
+                s: "SoundCloud",
+                u: "https://soundcloud.com/search?q=" + query,
+                f: true,
+                force_big_header: true
+            };
+
+            // The rendering function is `nra`.
+            nra(items, 1, 1);
+        }
+    };
+
+    // `hide` is responsible for hiding the list of songs.
+    function hide(element) {
+        DDG.toggle('soundcloud-play', -1);
+        snippet.appendChild(soundcloud(element));
+        var abstract = d.getElementById("zero_click_abstract");
+        abstract.setAttribute("style", "margin: 0px !important;");
     }
 
-    // Check if the properties that we need are available.
-    // if it isn't, it's not going to display anything.
-    if (sc && sc.length) {
-        var li,
-            div = d.createElement('div'),
-            ul = d.createElement('ul'),
-            div2; 
+    // `stream` is responsible for displaying the icons and the embedded flash thing.
+    function stream(element) {
+        return link({
+            "href": "javascript:;",
+            "title": "Listen to " + element.title
+        }, "<i class='icon-play-circle'></i>" + element.title, {
+            "click": (function(){
+                hide(element);
+            })
+        });
+    }
 
-        div.setAttribute("id", "soundcloud-play");
-        for(var i = 0; i < sc.length && i < 5; i++) {
-            div2 = d.createElement('div');
-            div2.appendChild(initElement(sc[i])); 
-            var span2 = d.createElement('span');
-            span2.innerHTML = " by ";
-            var a = d.createElement('a');
-            a.setAttribute('href', sc[i].user.permalink_url);
-            a.innerHTML = sc[i].user.username;
-            div2.appendChild(span2);
-            div2.appendChild(a);
-            div.appendChild(div2);
+    // `list_of_tracks` wraps the list of songs in HTML.
+    function list_of_tracks(sound) {
+        // We added an ID so that we can hide this element later on.
+        var list = d.createElement('div');            
+        list.setAttribute("id", "soundcloud-play");
+
+        for(var i = 0; i < sound.length && i < 5; i += 1) {
+            list.appendChild(list_element(sound[i]));
         }
-        snippet.appendChild(div);
 
-        items[0] = {
-            a: snippet,
-            h: query + " (Sound Cloud)",
-            s: "SoundCloud",
-            u: "https://soundcloud.com/search?q=" + query,
-            f: true,
-            force_big_header: true
-        };
+        return list;
+    }
 
-        // The rendering function is `nra`.
-        nra(items, 1, 1);
+    // `list_element` is an auxilliary for `list_of_tracks`.
+    function list_element(element) {
+        var div = d.createElement('div'),
+            span = d.createElement('span');
+        span.innerHTML = " by ";
+
+        div.appendChild(stream(element));
+        div.appendChild(span);
+        div.appendChild(link({
+            "href": element.user.permalink_url
+        }, element.user.username, {}));
+
+        return div;
+    }
+
+    // `link` is used to create anchor tags.
+    function link(attributes, inner, events) {
+        var a = d.createElement('a'),
+            hasOwn = ({}).hasOwnProperty;
+
+        for(var i in attributes) {
+            if(hasOwn.call(attributes, i)) {
+                a.setAttribute(i, attributes[i]);
+            }
+        }
+        a.innerHTML = inner;
+
+        for(i in events) {
+            if(hasOwn.call(events, i)) {
+                a.addEventListener(i, events[i], false);
+            }
+        }
+
+        return a;
     }
 
     // Embed Sound Cloud's player in our plugin.
@@ -75,4 +108,5 @@ function ddg_spice_sound_cloud(sc) {
         iframe.setAttribute('src', 'https://w.soundcloud.com/player/?url=' + encodeURI(res.uri) + "&amp;auto_play=true");
         return iframe;
     }
-}
+}(this));
+
