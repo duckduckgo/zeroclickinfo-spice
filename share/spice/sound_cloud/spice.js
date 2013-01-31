@@ -62,7 +62,7 @@
         return list;
     }
 
-    // `list_element` is an auxilliary for `list_of_tracks`.
+    // `list_element` is an auxiliary for `list_of_tracks`.
     function list_element(element) {
         var div = d.createElement('div'),
             span = d.createElement('span');
