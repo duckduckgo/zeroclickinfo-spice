@@ -5,18 +5,16 @@
 (function(root) {
     "use strict";
 
-    var snippet = d.createElement('span'),
-        items = [[]],
+    var items = [[]],
         query = DDG.get_query().replace(/(sc|sound\s+cloud|soundcloud)\s*/i, "");
 
     // This function is responsible for calling other functions that
     // process data and display the plugin.
     root.ddg_spice_sound_cloud = function(sound) {
         if(sound && sound.length) {
-            snippet.appendChild(list_of_tracks(sound));
 
             items[0] = {
-                a: snippet,
+                a: list_of_tracks(sound),
                 h: query + " (Sound Cloud)",
                 s: "SoundCloud",
                 u: "https://soundcloud.com/search?q=" + query,
@@ -32,8 +30,9 @@
     // `hide` is responsible for hiding the list of songs.
     function hide(element) {
         DDG.toggle('soundcloud-play', -1);
-        snippet.appendChild(soundcloud(element));
         var abstract = d.getElementById("zero_click_abstract");
+        var firstChild = abstract.firstChild;
+        abstract.insertBefore(soundcloud(element), firstChild);
         abstract.setAttribute("style", "margin: 0px !important;");
     }
 
