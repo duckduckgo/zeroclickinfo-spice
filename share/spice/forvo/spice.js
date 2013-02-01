@@ -1,11 +1,10 @@
+nrj("/forvo/jquery.min.js", true);
+nrj("/forvo/mediaelement-and-player.min.js", true);
+nrj("/forvo/init.js", true);
+
 function ddg_spice_forvo(data) {
 
     if (data.attributes.total != "0") {
-
-   	nrj("/forvo/jquery.min.js", true);
-        nrj("/forvo/mediaelement-and-player.min.js", true);
-        nrj("/forvo/init.js", true);
-        
 
         var words = data.items;
 

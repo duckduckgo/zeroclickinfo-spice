@@ -11,7 +11,7 @@ name "LastfmTopTracks";
 icon_url "/i/www.last.fm.ico";
 source "Last.fm";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/TopTracks.pm";
-topics "entertainment", "music";
+topics "entertainment", "music", "everyday";
 category "entertainment";
 attribution github => ['https://github.com/jagtalon','Jag Talon'],
            twitter => ['http://twitter.com/juantalon','Jag Talon'];

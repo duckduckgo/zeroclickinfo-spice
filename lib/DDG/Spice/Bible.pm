@@ -10,7 +10,7 @@ name "Bible";
 icon_url "/i/blueletterbible.org.ico";
 source "Blue Letter Bible";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Bible.pm";
-topics "special_interest";
+topics "special_interest", "everyday";
 category "random";
 attribution github => ['https://github.com/hunterlang','Hunter Lang'],
             web => 'http://hunterlang.com/';

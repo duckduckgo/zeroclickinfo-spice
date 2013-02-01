@@ -2,80 +2,119 @@
 // called when people search for movie titles. An example trigger
 // is "sc oppa spacejam style".
 
-function ddg_spice_sound_cloud(sc) {
+(function(root) {
     "use strict";
 
-    var snippet = d.createElement('span'), 
-        res, 
-        items = [[]];
+    var items = [[]],
+        query = DDG.get_query().replace(/(sc|sound\s+cloud|soundcloud)\s*/i, "");
 
-    // Check if the properties that we need are available.
-    // if it isn't, it's not going to display anything.
-    if (sc && sc.length && sc[0].uri && sc[0].title && sc[0].user && sc[0].user.username && sc[0].permalink_url) {
-        // Rename for readability
-        res = sc[0];
+    // This function is responsible for calling other functions that
+    // process data and display the plugin.
+    root.ddg_spice_sound_cloud = function(sound) {
+        if(sound && sound.length) {
 
-        snippet.appendChild(initImage(res));
+            items[0] = {
+                a: list_of_tracks(sound),
+                h: query + " (Sound Cloud)",
+                s: "SoundCloud",
+                u: "https://soundcloud.com/search?q=" + query,
+                f: true,
+                force_big_header: true
+            };
 
-        items[0] = {
-            a: snippet,
-            h: res.title + " (Sound Cloud)",
-            s: "SoundCloud",
-            u: res.permalink_url,
-            f: true,
-            force_big_header: true
-        };
-
-        // The rendering function is `nra`.
-        nra(items, 1, 1);
-    }
-
-    // Use this to set the image shown to the user.
-    function initImage(res) {
-        var image;
-        if(res.artwork_url) {
-            image = res.artwork_url;
-        } else if(res.user.avatar_url) {
-            image = res.user.avatar_url;
+            // The rendering function is `nra`.
+            nra(items, 1, 1);
         }
-        var outer_div = d.createElement('div');
-        
-        var img = d.createElement('img');
-        outer_div.setAttribute('id', 'soundcloud-play');
-        img.setAttribute('src', image);
-        img.setAttribute('style', 'clear: left; float: left; margin-left: 10px; margin-right: 10px; border: 1px solid rgb(255, 255, 255);');
-        img.addEventListener("click", hideImage, false);
+    };
 
-        // Add the image and the link to the div element.
-        outer_div.appendChild(img);
-        outer_div.appendChild(addLink(res.user.username, res.user.uri));
-        
-        return outer_div;
-    }
-
-    function addLink(value, href) {
-        var link = d.createElement('a');
-        link.setAttribute('href', href);
-        link.innerHTML = value;
-        return link;
-    }
-
-    // hideImage uses the built-in function DDG.toggle.
-    // It hides or shows the element depending on the second argument.
-    // 1 is for showing and -1 is for hiding.
-    function hideImage() { 
+    // `hide` is responsible for hiding the list of songs.
+    // It makes use of DDG.toggle which can either hide or unhide an element.
+    function hide(element) {
         DDG.toggle('soundcloud-play', -1);
-        snippet.appendChild(soundcloud(res));
+        var abstract = d.getElementById("zero_click_abstract");
+        // It's important to insert the element before (using, well, node.insertBefore)
+        // because node.appendChild would put the element below the "More at ..." link.
+        var firstChild = abstract.firstChild;
+        abstract.insertBefore(soundcloud(element), firstChild);
+        // The player can take advantage of the excised margins.
+        abstract.setAttribute("style", "margin: 0px !important;");
     }
 
-    // Embed Sound Cloud's player in our plugin.
+    // `stream` is responsible for displaying the icons and for adding the events
+    // needed to embed SoundCloud's player.
+    function stream(element) {
+        return link({
+            "href": "javascript:;",
+            "title": "Listen to " + element.title
+            // This uses Glyphicons Halflings included in Twitter Bootstrap.
+        }, "<i class='icon-play-circle'></i>" + element.title, {
+            "click": (function(){
+                hide(element);
+            })
+        });
+    }
+
+    // `list_of_tracks` wraps the list of songs in HTML.
+    function list_of_tracks(sound) {
+        // We added an ID so that we can hide this element later on.
+        var list = d.createElement('div');            
+        list.setAttribute("id", "soundcloud-play");
+
+        for(var i = 0; i < sound.length && i < 5; i += 1) {
+            list.appendChild(list_element(sound[i]));
+        }
+
+        return list;
+    }
+
+    // `list_element` is an auxiliary for `list_of_tracks`.
+    // This will snug everything, the links, the icons, and the artists,
+    // in a single `div` element.
+    function list_element(element) {
+        var div = d.createElement('div'),
+            span = d.createElement('span');
+        span.innerHTML = " by ";
+
+        div.appendChild(stream(element));
+        div.appendChild(span);
+        div.appendChild(link({
+            "href": element.user.permalink_url
+        }, element.user.username, {}));
+
+        return div;
+    }
+
+    // `link` is used to create anchor tags.
+    function link(attributes, inner, events) {
+        var a = d.createElement('a'),
+            hasOwn = ({}).hasOwnProperty;
+
+        for(var i in attributes) {
+            if(hasOwn.call(attributes, i)) {
+                a.setAttribute(i, attributes[i]);
+            }
+        }
+        a.innerHTML = inner;
+
+        for(i in events) {
+            if(hasOwn.call(events, i)) {
+                a.addEventListener(i, events[i], false);
+            }
+        }
+
+        return a;
+    }
+
+    // Embed Sound Cloud's player in our plugin in an iframe.
+    // An optional argument to the URL is `auto_play=true`
     function soundcloud(res) {
         var iframe = d.createElement('iframe');
         iframe.setAttribute('width', '100%');
         iframe.setAttribute('height', '166');
         iframe.setAttribute('scrolling', 'no');
         iframe.setAttribute('frameborder', 'no');
-        iframe.setAttribute('src', 'https://w.soundcloud.com/player/?url=' + encodeURI(res.uri));
+        iframe.setAttribute('src', 'https://w.soundcloud.com/player/?url=' + encodeURI(res.uri) + "&amp;auto_play=true");
         return iframe;
     }
-}
+}(this));
+
