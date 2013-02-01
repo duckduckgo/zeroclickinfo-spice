@@ -28,19 +28,25 @@
     };
 
     // `hide` is responsible for hiding the list of songs.
+    // It makes use of DDG.toggle which can either hide or unhide an element.
     function hide(element) {
         DDG.toggle('soundcloud-play', -1);
         var abstract = d.getElementById("zero_click_abstract");
+        // It's important to insert the element before (using, well, node.insertBefore)
+        // because node.appendChild would put the element below the "More at ..." link.
         var firstChild = abstract.firstChild;
         abstract.insertBefore(soundcloud(element), firstChild);
+        // The player can take advantage of the excised margins.
         abstract.setAttribute("style", "margin: 0px !important;");
     }
 
-    // `stream` is responsible for displaying the icons and the embedded flash thing.
+    // `stream` is responsible for displaying the icons and for adding the events
+    // needed to embed SoundCloud's player.
     function stream(element) {
         return link({
             "href": "javascript:;",
             "title": "Listen to " + element.title
+            // This uses Glyphicons Halflings included in Twitter Bootstrap.
         }, "<i class='icon-play-circle'></i>" + element.title, {
             "click": (function(){
                 hide(element);
@@ -62,6 +68,8 @@
     }
 
     // `list_element` is an auxiliary for `list_of_tracks`.
+    // This will snug everything, the links, the icons, and the artists,
+    // in a single `div` element.
     function list_element(element) {
         var div = d.createElement('div'),
             span = d.createElement('span');
@@ -97,7 +105,8 @@
         return a;
     }
 
-    // Embed Sound Cloud's player in our plugin.
+    // Embed Sound Cloud's player in our plugin in an iframe.
+    // An optional argument to the URL is `auto_play=true`
     function soundcloud(res) {
         var iframe = d.createElement('iframe');
         iframe.setAttribute('width', '100%');
