@@ -44,15 +44,15 @@ function ddg_spice_doi(bib) {
 
   	items = new Array();
   	items[0] = new Array();
-	items[0]['a'] = "by " + format_authors(bib['author']);
+	items[0]['a'] = "by " + h(format_authors(bib['author']));
 	if (bib['issued'] && bib['issued']['raw']) {
-		items[0]['a'] += ", " + bib['issued']['raw'];
+		items[0]['a'] += ", " + h(bib['issued']['raw']);
 	}
-	items[0]['a'] += ", doi:" + bib['DOI'] + ". ";
+	items[0]['a'] += ", doi:" + h(bib['DOI']) + ". ";
 	items[0]['a'] += "<br />";
 	items[0]['a'] += "<pre style=\"display:none\" id=\"bibtex\"></pre>";
-	items[0]['a'] += "<a href=\"javascript:fetch_bibtex('" + bib['DOI'] + "');\")>BibTeX</a> &bull; ";
-	items[0]['h'] = bib['title'];
+	items[0]['a'] += "<a href=\"javascript:fetch_bibtex('" + h(bib['DOI']) + "');\")>BibTeX</a> &bull; ";
+	items[0]['h'] = h(bib['title']);
 	items[0]['s'] = "dx.doi.org";
 	if (bib['url']) {
 		items[0]['u'] = bib["URL"];
@@ -75,3 +75,8 @@ function ddg_spice_doi_bibtex(bibtex) {
 	document.getElementById('bibtex').innerHTML = bibtex;
 
 }
+
+function h(txt) {
+        return txt.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
