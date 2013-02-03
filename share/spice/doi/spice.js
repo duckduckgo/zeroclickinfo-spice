@@ -72,7 +72,7 @@ function fetch_bibtex(doi) {
 // And this is the return call, showing the bibtex display field.
 function ddg_spice_doi_bibtex(bibtex) {
 	document.getElementById('bibtex').style.display = 'block';
-	document.getElementById('bibtex').innerHTML = bibtex;
+	document.getElementById('bibtex').innerHTML = h(bibtex);
 
 }
 
