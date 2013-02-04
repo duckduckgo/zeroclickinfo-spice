@@ -36,7 +36,6 @@
     function hide(element) {
         var abstract = d.getElementById("zero_click_abstract");
         DDG.toggle('soundcloud-play', -1);
-        DDG.toggle('soundcloud-stream', 1);
         var shell = d.createElement('div');
         shell.setAttribute('id', 'soundcloud-stream');
 
