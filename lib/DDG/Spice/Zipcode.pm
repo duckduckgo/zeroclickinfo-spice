@@ -48,8 +48,7 @@ handle query_lc => sub {
     }
   }
 
-
-  # Regexs to disqualify _
+  # Regexs to disqualify:
   # Check for presence of a digit unless matches edge case
   unless (m/\d/ or m/^\b[a-z]{2}\s*[a-z]{2}\b$/) {
     return;
@@ -57,6 +56,11 @@ handle query_lc => sub {
 
   # Check for too many digits
   if (m/\d{8,}$/) {
+    return;
+  }
+
+  # Check for too many letters
+  if (m/[a-z]{5,}$/ and $_ !~ m/(\d\d [a-z\d\-]+ \d\d)/x ) {
     return;
   }
 
@@ -87,10 +91,13 @@ handle query_lc => sub {
     $code = $1;
   }
 
+  # Alphanumeric postal code patterns with dashes in them
   elsif (m/^  ( (?: \d{1,4} | [a-z]{2} ) \d\-\d\d \d{1,4} ) $/x) {
     $code = $1;
   }
 
+  # Alphanumeric postal code patterns with spaces in them
+  # Alphanumeric postal code edgecases
   elsif (m/^
             (
                 \d{4} \s+ \d{3,4}
@@ -109,6 +116,7 @@ handle query_lc => sub {
     $code = $1;
   }
 
+  # Alphanumeric postal code patterns without spaces in them
   elsif (m/^
             (
                 [a-z]{1,3} \d{3,6}
@@ -119,39 +127,25 @@ handle query_lc => sub {
     $code = $1;
   }
 
-  elsif (m/^ ( \d{2,7} ) $/x) {
+  # Numeric postal code patterns (optional dash for searches like "19301-")
+  elsif (m/^ ( \d{2,7} ) \-? $/x) {
     $code = $1;
   }
 
+  # No postal code found
   else {
     return;
   };
 
-
-  s/ //g;
-  $code = $_;
-
-  # Check for too many letters
-  if (m/[a-z]{5,}$/ and $_ !~ m/(\d\d [a-z\d\-]+ \d\d)/x ) {
-    return;
-  }
+  # remove spaces from postal code
+  $code =~ s/ //g;
 
   if (defined $country and defined $code) {
     return uri_escape(uc($code)), uc $countries{$country};
   }
 
-  # If no country given default to ZZ
-  $country = "ZZ";
-
-  # Strip potential code from query
-  # and cheque if query has multiple words
-  # (means its probably not a postal code search)
-  s/$code//g;
-  my @words = split(/\b/, $_);
-  return if ( scalar @words > 2 );
-
-  # return uri_escape(uc($code)), $country if $country ne '';
-    return (uc $code, 'ZZ') if defined $code;
+  # No country given, default to ZZ for global search
+  return (uc $code, 'ZZ') if defined $code;
 };
 
 1;
