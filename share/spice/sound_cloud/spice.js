@@ -47,7 +47,7 @@
             "href": "javascript:;",
             "title": "Listen to " + element.title
             // This uses Glyphicons Halflings included in Twitter Bootstrap.
-        }, "<i class='icon-play-circle'></i>" + element.title, {
+        }, element.title, {
             "click": (function(){
                 hide(element);
             })
@@ -72,9 +72,15 @@
     // in a single `div` element.
     function list_element(element) {
         var div = d.createElement('div'),
-            span = d.createElement('span');
+            span = d.createElement('span'),
+            icon = d.createElement('i'),
+            extra_space = d.createElement('span');
         span.innerHTML = " by ";
+        extra_space.innerHTML = " ";
+        icon.setAttribute('class', 'icon-play-circle');
 
+        div.appendChild(icon);
+        div.appendChild(extra_space);
         div.appendChild(stream(element));
         div.appendChild(span);
         div.appendChild(link({
