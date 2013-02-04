@@ -27,15 +27,34 @@
         }
     };
 
+    function remove(element) {
+        element.parentNode.removeChild(element);
+    }
+
     // `hide` is responsible for hiding the list of songs.
     // It makes use of DDG.toggle which can either hide or unhide an element.
     function hide(element) {
-        DDG.toggle('soundcloud-play', -1);
         var abstract = d.getElementById("zero_click_abstract");
+        DDG.toggle('soundcloud-play', -1);
+        DDG.toggle('soundcloud-stream', 1);
+        var shell = d.createElement('div');
+        shell.setAttribute('id', 'soundcloud-stream');
+
         // It's important to insert the element before (using, well, node.insertBefore)
         // because node.appendChild would put the element below the "More at ..." link.
         var firstChild = abstract.firstChild;
-        abstract.insertBefore(soundcloud(element), firstChild);
+        shell.appendChild(soundcloud(element));
+        // The back button removes the embedded
+        shell.appendChild(link({"href": "javascript:;", "id": "back-button"}, "Back ↩",
+            {
+                "click": 
+                    (function(){
+                        DDG.toggle('soundcloud-play', '1');
+                        abstract.setAttribute("style", "display: block; margin-right: 50px;");
+                        remove(shell);
+                    })
+            }));
+        abstract.insertBefore(shell, firstChild);
         // The player can take advantage of the excised margins.
         abstract.setAttribute("style", "margin: 0px !important;");
     }
