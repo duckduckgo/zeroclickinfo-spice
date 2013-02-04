@@ -44,7 +44,7 @@
         // because node.appendChild would put the element below the "More at ..." link.
         var firstChild = abstract.firstChild;
         shell.appendChild(soundcloud(element));
-        // The back button removes the embedded
+        // The back button removes the embedded player.
         shell.appendChild(link({"href": "javascript:;", "id": "back-button"}, "Back ↩",
             {
                 "click": 
