@@ -73,7 +73,6 @@ my @q = (
   "drupaldelphia 2011",
   "fedora 18 partition type",
   "fin 370 version 7",
-  "fuckedhard18",
   "gamestop 3ds",
   "gtx 660 ti",
   "ipad3 vs ipad4",
