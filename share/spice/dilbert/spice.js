@@ -15,7 +15,8 @@ function ddg_spice_dilbert(response) {
 	items[0]['h'] = response.items[0].title + ' (Dilbert)';
 	items[0]['s'] = response.description;
 	items[0]['u'] = response.link;
-    items[0]["force_big_header"] = true;
+    items[0]['force_big_header'] = true;
+    items[0]['f'] = 1;
 
 	nra(items);
 }
