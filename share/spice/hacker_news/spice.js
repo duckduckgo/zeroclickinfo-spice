@@ -102,7 +102,7 @@ function ddg_spice_hacker_news(res) {
 
         items[i]['h'] = 'Hacker News' + ' (' + terms + ')';
         items[i]['s'] = 'HNSearch'; 
-        items[i]['f'] = 1;
+        items[i]['force_no_fold'] = 1;
       }
     }
     

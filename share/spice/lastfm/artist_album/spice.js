@@ -40,7 +40,7 @@ function ddg_spice_lastfm_artist_album(lastfm) {
         items[0] = new Array();
         items[0]['a'] = albums;
         items[0]['s'] = 'Last.fm';
-        items[0]['f'] = 1;
+        items[0]['force_no_fold'] = 1;
         // var query = DDG.get_query();  
         // query = query.replace(/\s*(?:albums?|records?|cds?)\s*(?:by|from|of)?\s*/, "");
         items[0]['h'] = 'Albums from ' + album;

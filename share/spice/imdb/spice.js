@@ -8,7 +8,7 @@ function ddg_spice_imdb(movie) {
         items[0]['h'] = movie['Title'] + " (" + snippet[1] + ")";
         items[0]['s'] = 'IMDb';
         items[0]['u'] = 'http://www.imdb.com/title/' + movie['imdbID'];
-        items[0]['f'] = 1;
+        items[0]['force_no_fold'] = 1;
         items[0]['i'] = (movie['Poster'] != "N/A") ? movie['Poster'] : "";
         items[0]['force_big_header'] = true;
         items[0]['force_space_after'] = true;
