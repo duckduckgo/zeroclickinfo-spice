@@ -13,7 +13,7 @@ function ddg_spice_smbc(response) {
 	items[0] = new Array();
     items[0]['a'] = answer;
 	items[0]['h'] = response.items[0].title + ' (SMBC)';
-	items[0]['s'] = response.description;
+	items[0]['s'] = "SMBC";
 	items[0]['u'] = response.link;
     items[0]["force_big_header"] = true;
 
