@@ -96,7 +96,7 @@
         span.innerHTML = " by ";
         extra_space.innerHTML = " ";
         icon.setAttribute('class', 'icon-play-circle');
-
+        icon.setAttribute('style', 'margin 1px 0px 0px 0px;');
         div.appendChild(icon);
         div.appendChild(extra_space);
         div.appendChild(stream(element));
