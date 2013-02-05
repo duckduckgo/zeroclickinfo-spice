@@ -16,7 +16,7 @@ function ddg_spice_dilbert(response) {
 	items[0]['s'] = response.description;
 	items[0]['u'] = response.link;
     items[0]['force_big_header'] = true;
-    items[0]['f'] = 1;
+    items[0]['force_no_fold'] = 1;
 
 	nra(items);
 }
