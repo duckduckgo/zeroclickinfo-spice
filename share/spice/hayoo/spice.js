@@ -20,7 +20,7 @@ function ddg_spice_hayoo(res) {
     items[0]['h'] = 'Hayoo! (' + query + ')';
     items[0]['s'] = 'Hackage';
     items[0]['u'] = item.uri;
-    items[0]['f'] = 1;
+    items[0]['force_no_fold'] = 1;
     items[0]['force_big_header'] = 1;
 
     nra(items);

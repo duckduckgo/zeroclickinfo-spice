@@ -59,7 +59,7 @@ function ddg_spice_bootic( products )
 	items[0]['s'] = 'Bootic';
 	items[0]['h'] = 'Bootic (' + products.input_query + ")";
 	items[0]['u'] = 'http://www.bootic.com/' + query;
-	items[0]['f'] = 1;
+	items[0]['force_no_fold'] = 1;
 	items[0]['force_big_header'] = 1;
 
 	/* 

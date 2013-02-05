@@ -34,7 +34,7 @@ function ddg_spice_meta_cpan(ir) {
 	items[0]['a'] = text;
 	items[0]['h'] = head;
 	items[0]['s'] = 'MetaCPAN';
-	items[0]['f'] = 1;
+	items[0]['force_no_fold'] = 1;
 	items[0]['u'] = 'https://metacpan.org/search?q=' + encodeURIComponent(name);
 	items[0]["force_big_header"] = true;
 

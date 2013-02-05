@@ -49,7 +49,7 @@ function ddg_spice_lastfm_song(lastfm) {
 			items[0]['a'] = '<div>' + artist + album + listen + '</div>';
 		}
 		items[0]['s'] = 'Last.fm';
-		items[0]['f'] = 1;
+		items[0]['force_no_fold'] = 1;
 		items[0]['h'] = lastfm.track.name + ' (Song)';
 		items[0]['force_big_header'] = true;
 		items[0]['force_space_after'] = true;

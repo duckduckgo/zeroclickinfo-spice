@@ -25,7 +25,7 @@ function ddg_spice_twitter_hashtag(t) {
     items[0]['h'] = heading;
     items[0]['s'] = 'Twitter';
     items[0]['u'] = '//twitter.com/' + heading;
-    items[0]['f'] = 1;
+    items[0]['force_no_fold'] = 1;
 
     nra(items, 0, 1);
 }
