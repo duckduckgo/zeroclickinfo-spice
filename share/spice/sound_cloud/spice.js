@@ -18,7 +18,7 @@
                 h: query + " (Sound Cloud)",
                 s: "SoundCloud",
                 u: "https://soundcloud.com/search?q=" + query,
-                f: true,
+                force_no_fold: 1,
                 force_big_header: true
             };
 
