@@ -61,7 +61,8 @@ function format_snippet(place, places){
     	var similar = '';
         for (i=1;i<places.length;i++){
     		if (places[i]['name'] == place['name']){
-            	similar += '<a href = "http://www.duckduckgo.com/?q=postcode+' + encodeURI(places[i]['name']) + '+' + places[i]['country'] + '">' + places[i]['name'] + "</a> (" + places[i]['country'] + ')  ';	
+            	similar += '<a href = "http://www.duckduckgo.com/?q=postcode+' + encodeURI(places[i]['name']) + '+' + places[i]['country'] + '">' + places[i]['name'] + "</a> (" + places[i]['country'] + ')';	
+                if (i+1 < places.length) similar += ', ';
     		}
     	}
         if (similar != ''){
