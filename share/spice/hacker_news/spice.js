@@ -111,7 +111,9 @@ function ddg_spice_hacker_news(res) {
 }
 
 function discussion (res, i) {
-   
+
+  if (!HN_Global.result["discussion"]) return;
+
   var text = shorten(HN_Global.result["text"], 200);
  
   var div  = d.createElement('div');
