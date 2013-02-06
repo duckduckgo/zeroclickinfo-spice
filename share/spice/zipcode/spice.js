@@ -20,7 +20,7 @@ function ddg_spice_zipcode(result) {
         items[0]['h'] = loc_string;
         items[0]['s'] = 'MapQuest';
         items[0]['u'] = 'http://mapq.st/map?q=' + loc_string;
-        items[0]['f'] = 1;
+        items[0]['force_no_fold'] = 1;
         items[0]['force_big_header'] = 1;
         nra(items, 0, 1);
     }
@@ -61,7 +61,7 @@ function format_snippet(place, places){
     	var similar = '';
         for (i=1;i<places.length;i++){
     		if (places[i]['name'] == place['name']){
-            	similar += '<a href = "http://www.duckduckgo.com/?q=postcode+' + encodeURI(places[i]['name']) + '%20(' + places[i]['country attrs']['code']+ ')">' + places[i]['name'] + "</a> (" + places[i]['country'] + ')  ';	
+            	similar += '<a href = "http://www.duckduckgo.com/?q=postcode+' + encodeURI(places[i]['name']) + '+' + places[i]['country'] + '">' + places[i]['name'] + "</a> (" + places[i]['country'] + ')  ';	
     		}
     	}
         if (similar != ''){

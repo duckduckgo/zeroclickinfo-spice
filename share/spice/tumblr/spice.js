@@ -53,7 +53,7 @@ function ddg_spice_tumblr(t) {
     items[0]['h'] = heading;
     items[0]['s'] = 'Tumblr';
     items[0]['u'] = '//tumblr.com/tagged/' + encodeURIComponent(decodeURIComponent(rq).replace(/tumblr\s+/i,''));
-    items[0]['f'] = 1;
+    items[0]['force_no_fold'] = 1;
 
     nra(items, 0, 1);
 }

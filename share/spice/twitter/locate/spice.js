@@ -42,7 +42,7 @@ function ddg_spice_twitter_trends(data) {
         items[0]['h'] = "Trending in " + data[0].locations[0].name + " (Twitter)";
         items[0]['s'] = "Twitter";
         items[0]['u'] = "http://twitter.com";
-        items[0]['f'] = 1;
+        items[0]['force_no_fold'] = 1;
         nra(items, 1, 1);
     }
 }

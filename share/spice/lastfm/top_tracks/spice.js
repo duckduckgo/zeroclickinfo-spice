@@ -33,7 +33,7 @@ function ddg_spice_lastfm_top_tracks(lastfm) {
         items[0]['h'] = 'Top Songs (' + lastfm.toptracks["@attr"].country + ')';
         items[0]['s'] = 'Last.fm';
         items[0]['u'] = 'http://www.last.fm/charts/tracks/top';
-        items[0]['f'] = 1;
+        items[0]['force_no_fold'] = 1;
         items[0]['force_big_header'] = true;
         items[0]['force_space_after'] = true;
         //items[0]['i'] = 'http://cdn.last.fm/flatness/apple-touch-icon.png';

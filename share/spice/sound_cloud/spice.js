@@ -27,15 +27,33 @@
         }
     };
 
+    function remove(element) {
+        element.parentNode.removeChild(element);
+    }
+
     // `hide` is responsible for hiding the list of songs.
     // It makes use of DDG.toggle which can either hide or unhide an element.
     function hide(element) {
-        DDG.toggle('soundcloud-play', -1);
         var abstract = d.getElementById("zero_click_abstract");
+        DDG.toggle('soundcloud-play', -1);
+        var shell = d.createElement('div');
+        shell.setAttribute('id', 'soundcloud-stream');
+
         // It's important to insert the element before (using, well, node.insertBefore)
         // because node.appendChild would put the element below the "More at ..." link.
         var firstChild = abstract.firstChild;
-        abstract.insertBefore(soundcloud(element), firstChild);
+        shell.appendChild(soundcloud(element));
+        // The back button removes the embedded player.
+        shell.appendChild(link({"href": "javascript:;", "id": "back-button"}, "Back ↩",
+            {
+                "click": 
+                    (function(){
+                        DDG.toggle('soundcloud-play', '1');
+                        abstract.setAttribute("style", "display: block; margin-right: 50px;");
+                        remove(shell);
+                    })
+            }));
+        abstract.insertBefore(shell, firstChild);
         // The player can take advantage of the excised margins.
         abstract.setAttribute("style", "margin: 0px !important;");
     }
@@ -47,7 +65,7 @@
             "href": "javascript:;",
             "title": "Listen to " + element.title
             // This uses Glyphicons Halflings included in Twitter Bootstrap.
-        }, "<i class='icon-play-circle'></i>" + element.title, {
+        }, element.title, {
             "click": (function(){
                 hide(element);
             })
@@ -72,9 +90,15 @@
     // in a single `div` element.
     function list_element(element) {
         var div = d.createElement('div'),
-            span = d.createElement('span');
+            span = d.createElement('span'),
+            icon = d.createElement('i'),
+            extra_space = d.createElement('span');
         span.innerHTML = " by ";
-
+        extra_space.innerHTML = " ";
+        icon.setAttribute('class', 'icon-play-circle');
+        icon.setAttribute('style', 'margin 1px 0px 0px 0px;');
+        div.appendChild(icon);
+        div.appendChild(extra_space);
         div.appendChild(stream(element));
         div.appendChild(span);
         div.appendChild(link({
