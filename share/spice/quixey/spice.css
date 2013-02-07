@@ -49,9 +49,8 @@
 #pagination{
   width: 100%;
   background: #f9f9f9;
-  border-top: 1px solid #cccccc;
+  border-top: 1px solid #c6c6c6;
   border-bottom: 1px solid #e1e1e1;
-  box-shadow: 0px -1px 1px #ddd;
   height: 35px;
 }
 
@@ -83,10 +82,10 @@
   margin: 0;
   padding: 6px;
   border: 1px solid transparent;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   text-align: center;
   overflow: hidden;
 }
@@ -316,7 +315,7 @@
 
 #quixey .app_platform{
   display: inline-block;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 5px 5px 2px 5px;
   vertical-align: text-bottom;
   margin-right: 3px;
