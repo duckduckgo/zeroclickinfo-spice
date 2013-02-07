@@ -9,7 +9,7 @@ primary_example_queries "hashme admin";
 secondary_example_queries "hashme 21232f297a57a5a743894a0e4a801fc3";
 category "special";
 topics "geek", "sysadmin", "cryptography";
-icon_url "https://si0.twimg.com/profile_images/1512513508/twitt.png";
+icon_url "https://goog.li/favicon.ico";
 code_url "https://github.com/brutalhonesty/zeroclickinfo-spice/blob/master/lib/DDG/Spice/HashMe.pm";
 attribution github => ["https://github.com/brutalhonesty", "Adam Schodde"],
 	twitter => ["https://twitter.com/listeninme", "listeninme"],
@@ -22,10 +22,7 @@ spice wrap_jsonp_callback => 1;
 spice is_cached => 0;
 
 handle remainder => sub{
-	if($_){
-		return $1;
-	}
-	return '' if $_ eq '';
+	return $_;
 	return;
 };
 
