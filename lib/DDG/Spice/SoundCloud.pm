@@ -5,7 +5,7 @@ use DDG::Spice;
 
 description "Displays SoundCloud Players";
 name "SoundCloud";
-primary_example_queries "soundcloud Jetski Safari Like a Lie";
+primary_example_queries "soundcloud ray bradbury";
 secondary_example_queries "sc kavinsky";
 topics "entertainment", "music";
 category "entertainment";
