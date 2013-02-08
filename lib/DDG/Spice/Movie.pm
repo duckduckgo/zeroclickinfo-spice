@@ -16,7 +16,7 @@ status "enabled";
 
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&q=$1&page_limit=50&page=1&callback={{callback}}';
 
-my @triggers = ( "movie", "film", "rt", "rotten tomatoes", "rating", "ratings", "rotten" );
+my @triggers = ( 'movie', 'film', 'rt', 'rotten tomatoes', 'rating', 'ratings', 'rotten' );
 
 triggers startend => @triggers;
 
@@ -25,7 +25,7 @@ handle query_lc => sub {
     # i.e.: asus rt-66nu
     # this makes sure that only space deliminated words fire this spice
     my $input = $_;
-    map { return $input if $input =~ s/(^|\s)$_(\s|$)// } @triggers;
+    map { return $input if $input =~ s/(^|\s)$_(\s|$)// and $input ne '' } @triggers;
     return;
 };
 
