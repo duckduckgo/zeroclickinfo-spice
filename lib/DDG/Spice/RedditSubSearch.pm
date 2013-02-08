@@ -16,11 +16,16 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 icon_url "/i/www.reddit.com.ico";
 status "enabled";
 
-triggers query_lc => qr#^(?:subreddit|/?r/)\s*(\w+)$#i;
+triggers query_lc => qr#^(?:subreddit|/?r/)\s*(\w+)$|^(\w+)\s+subreddit$#i;
 spice to => 'http://www.reddit.com/r/$1/about.json?jsonp=ddg_spice_reddit';
 
 handle matches => sub {
-    return $_[0]
+	if($1) {
+		return $1;
+	} elsif($2) {
+		return $2;
+	}
+    return;
 };
 
 1;
