@@ -1,18 +1,15 @@
-function ddg_spice_bitcoin(xk) {
+function ddg_spice_bitcoin(data) {
   var img,snippet,link,div;
 
   // validity check
-  if (xk['status'] && xk['value']) {
-
-    // snippet shown in 0-click
-    snippet = d.createElement('span');
+  if (data['status'] == 200 && data['value']) {
 
     items = new Array();
     items[0] = new Array();
-    items[0]['a'] = xk['html']+'\n';
+    items[0]['a'] = data['html']+'\n';
 
     items[0]['h'] = 'BTC on DDG';
-    items[0]['i'] = xk['img']
+    items[0]['i'] = data['img']
 
      // Source name and url for the More at X link.
      items[0]['s'] = 'BTC on DDG';
