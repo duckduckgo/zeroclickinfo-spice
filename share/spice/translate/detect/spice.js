@@ -214,7 +214,7 @@
     }
 
     function format_term_wordreference(term) {
-        var text = format_translations_wordreference(term.PrincipalTranslations);
+        var text = format_translations_wordreference(term.Entries);
 
         if (term.AdditionalTranslations) {
             text += format_translations_wordreference(term.AdditionalTranslations);

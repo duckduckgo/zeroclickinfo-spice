@@ -36,6 +36,7 @@ function ddg_spice_lastfm_top_tracks(lastfm) {
         items[0]['force_no_fold'] = 1;
         items[0]['force_big_header'] = true;
         items[0]['force_space_after'] = true;
+        items[0]['f'] = true;
         //items[0]['i'] = 'http://cdn.last.fm/flatness/apple-touch-icon.png';
         nra(items,1,1);
     }

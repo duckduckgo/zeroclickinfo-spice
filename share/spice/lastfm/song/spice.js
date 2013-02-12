@@ -54,6 +54,7 @@ function ddg_spice_lastfm_song(lastfm) {
 		items[0]['force_big_header'] = true;
 		items[0]['force_space_after'] = true;
 		items[0]['u'] = lastfm.track.url;
+		items[0]['f'] = true;
 		nra(items,1,1);
 	}
 }

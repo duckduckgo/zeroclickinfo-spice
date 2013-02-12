@@ -20,6 +20,24 @@
     var hasOwn = Object.prototype.hasOwnProperty;
     var translations = [];
 
+    root.ddg_spice_translate_detect = function(ir) {
+        var params = get_params(),
+            words  = params[0],
+            from   = ir.data.detections[0].language,
+            to     = params[1],
+            base;
+
+        if (words.split('%20').length > 1) {
+            base = '/js/spice/translate/my_memory/';
+
+            nrj(base + from + '/' + to + '/' + words);
+        } else {
+            base = '/js/spice/translate/wordreference/';
+
+            nrj(base + from + to + '/' + words);
+        }
+    };
+
     root.ddg_spice_translate_basic = function() {
         var params = get_params(),
             dict   = params[0],
@@ -146,7 +164,7 @@
             word   = params[1],
             to     = dict.slice(-2),
             text;
-
+        
         if ((word === '') || (dict === '')) {
             return;
         }
@@ -196,7 +214,7 @@
     }
 
     function format_term_wordreference(term) {
-        var text = format_translations_wordreference(term.PrincipalTranslations);
+        var text = format_translations_wordreference(term.Entries);
 
         if (term.AdditionalTranslations) {
             text += format_translations_wordreference(term.AdditionalTranslations);

@@ -82,7 +82,7 @@ function ddg_spice_lastfm_album(lastfm) {
 		items[0]['force_big_header'] = true;
 		items[0]['force_space_after'] = true;
 		items[0]['u'] = lastfm.album.url;
-		items[0]['force_no_fold'] = 1;
+		items[0]['f'] = 1;
 		nra(items,1,1);
 	}
 }
