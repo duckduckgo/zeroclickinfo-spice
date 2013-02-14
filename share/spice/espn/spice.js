@@ -82,44 +82,42 @@ function ddg_spice_espn(response) {
                     //'ejections',
                     //'fieldGoalsMade',
                     //'fieldGoalsAttempted',
-                    'fieldGoalPercentage',
                     //'fouls',
                     //'freeThrowsMade',
                     //'freeThrowsAttempted',
-                    //'freeThrowPercentage',
                     //'gamesStarted',
                     //'minutes',
                     //'offensiveRebounds',
-                    //'points',
                     //'rebounds',
                     //'steals',
                     //'threePointersMade',
                     //'threePointersAttempted',
-                    //'threePointPercentage',
                     //'tripleDouble',
                     //'turnovers',
+                    'points',
+                    'threePointPercentage',
+                    'fieldGoalPercentage',
+                    'freeThrowPercentage',
                   ];
 
     function prepareStat(s, index, array) {
-        display = s.replace(/([a-z\d](?=[A-Z])|[a-zA-Z](?=\d))/g, "$1 ");
+        var display = s.replace(/([a-z\d](?=[A-Z])|[a-zA-Z](?=\d))/g, "$1 ");
         display = display.toLowerCase();
+        stat = (player[s] ? player[s] : stats[s]) + '';
+        if (display.indexOf('percentage') != -1) {
+            stat = (stat.split('.')[0].length == 1 ? '0' : '')
+                 + stat
+                 + (display.indexOf('percentage') != -1 ? '%' : '');
+        }
         display = '<tr><td>'
                 + display.charAt(0).toUpperCase() + display.slice(1)
                 + ':</td><td>'
-                + (player[s] ? player[s] : stats[s])
+                + stat
                 + '</td></tr>';
         return display;
     }
 
     playerStats = playerStats.map(prepareStat);
-    var nestedStats = ['Date of birth', 'Birthplace', 'Position' ];
-    [ player.dateOfBirth.split("T")[0],
-      player.birthPlace.city + ', ' + player.birthPlace.state,
-      player.positions[0].name,
-    ].map(function(s) {
-        playerStats.unshift('<tr><td>' + nestedStats.shift()
-                          + ':</td><td>' + s + '</td></tr>');
-    });
 
     stats  = '<table id="espn_zci_stats">'
            + playerStats.join("")
