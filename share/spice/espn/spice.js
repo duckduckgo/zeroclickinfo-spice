@@ -109,9 +109,9 @@ function ddg_spice_espn(response) {
                  + stat
                  + (display.indexOf('percentage') != -1 ? '%' : '');
         }
-        display = '<tr><td>'
+        display = '<tr><th>'
                 + display.charAt(0).toUpperCase() + display.slice(1)
-                + ':</td><td class="statistic">'
+                + ':</th><td>'
                 + stat
                 + '</td></tr>';
         return display;
@@ -234,12 +234,6 @@ function ddg_spice_espn_bind() {
     zci = document.getElementById("zero_click_abstract");
     YAHOO.util.Dom.setStyle(zci, "margin", "4px");
     YAHOO.util.Dom.removeClass(zci, "zero_click_snippet");
-
-    var table = document.getElementById("espn_zci_stats")
-                .getElementsByTagName('table')[0];
-    for (var i = 0; i < table.rows.length; i++) {
-        if (i % 2 == 0) table.rows[i].className="tr_odd";
-    }
 
     ids = [ "espn_zci_gamelog_link",
             "espn_zci_stats_link",

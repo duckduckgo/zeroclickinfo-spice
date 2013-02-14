@@ -17,8 +17,8 @@
     margin-bottom: 4px;
 }
 
-#espn_zci_stats .statistic {
-    text-align: right;
+#espn_zci_stats th{
+    width: 150px;
 }
 
 .tr_odd {
@@ -37,6 +37,10 @@
     color: 666666;
     font-size: 12px;
     font-weight: 700;
+}
+
+#espn_zci_stats table {
+    margin-bottom: 5px;
 }
 
 .icon_spice_inline {
