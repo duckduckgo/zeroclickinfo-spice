@@ -111,7 +111,7 @@ function ddg_spice_espn(response) {
         }
         display = '<tr><td>'
                 + display.charAt(0).toUpperCase() + display.slice(1)
-                + ':</td><td>'
+                + ':</td><td class="statistic">'
                 + stat
                 + '</td></tr>';
         return display;

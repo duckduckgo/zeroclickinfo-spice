@@ -17,9 +17,8 @@
     margin-bottom: 4px;
 }
 
-#espn_zci_stats {
-    padding-left: 5px;
-    margin: 10px 0px 0px 10px;
+#espn_zci_stats .statistic {
+    text-align: right;
 }
 
 .tr_odd {
