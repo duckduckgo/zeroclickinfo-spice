@@ -117,11 +117,18 @@ function ddg_spice_espn(response) {
         return display;
     }
 
-    playerStats = playerStats.map(prepareStat);
+    playerStats = playerStats.map(prepareStat).join('');
 
-    stats  = '<table id="espn_zci_stats">'
-           + playerStats.join("")
-           + '</table>';
+    stats  = '<div id="espn_zci_stats">'
+           + '<div class="blurb">'
+           + playerName + ' '
+           + stats.season.year
+           + ' (' + stats.season.description + ') season statistics:'
+           + '</div>'
+           + '<table>'
+           + playerStats
+           + '</table>'
+           + '</div>';
 }
 
 function ddg_spice_espn_events(response) {
@@ -228,7 +235,8 @@ function ddg_spice_espn_bind() {
     YAHOO.util.Dom.setStyle(zci, "margin", "4px");
     YAHOO.util.Dom.removeClass(zci, "zero_click_snippet");
 
-    var table = document.getElementById("espn_zci_stats");
+    var table = document.getElementById("espn_zci_stats")
+                .getElementsByTagName('table')[0];
     for (var i = 0; i < table.rows.length; i++) {
         if (i % 2 == 0) table.rows[i].className="tr_odd";
     }
