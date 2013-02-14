@@ -57,7 +57,10 @@ function ddg_spice_espn(response) {
     stats = player.stats;
     playerName = player.displayName;
     items[0]['u'] = baseURL + "/nba/player/_/id/" + playerID;
-    items[0]['h'] = playerName + " (Basketball)";
+    items[0]['h'] = '<a href="' + items[0]['u'] + '">'
+                  + playerName
+                  + '</a>'
+                  + ' (Basketball)';
 
     console.log(player);
 
