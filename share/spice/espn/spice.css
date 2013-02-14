@@ -7,7 +7,7 @@
 }
 
 #espn_zci_videos, #espn_zci_gamelog,
-#espn_zci_team {
+#espn_zci_team, #espn_zci_stats {
     display: none;
     margin-top: 5px;
     margin-bottom: 15px;
