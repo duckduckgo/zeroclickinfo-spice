@@ -122,8 +122,8 @@ function ddg_spice_espn(response) {
     stats  = '<div id="espn_zci_stats">'
            + '<div class="blurb">'
            + playerName + ' '
-           + stats.season.year
-           + ' (' + stats.season.description + ') season statistics:'
+           + stats.season.year + ' '
+           + stats.season.description + ' season statistics:'
            + '</div>'
            + '<table>'
            + playerStats
