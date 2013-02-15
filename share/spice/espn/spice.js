@@ -117,12 +117,14 @@ function ddg_spice_espn(response) {
         return display;
     }
 
-    playerStats = playerStats.map(prepareStat).join('');
+    var playerStats = playerStats.map(prepareStat).join('');
+    var statsTimeFrame = "'" + ((stats.season.year + '').substr(2, 2) - 1)
+                       + "-'" + (stats.season.year + '').substr(2, 2);
 
     stats  = '<div id="espn_zci_stats">'
            + '<div class="blurb">'
            + playerName + ' '
-           + stats.season.year + ' '
+           + statsTimeFrame + ' '
            + stats.season.description + ' season statistics:'
            + '</div>'
            + '<table>'
