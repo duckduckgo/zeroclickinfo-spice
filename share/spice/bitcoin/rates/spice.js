@@ -6,7 +6,7 @@ function ddg_spice_bitcoin_rates(data) {
 
     items = new Array();
     items[0] = new Array();
-    items[0]['a'] = data['html']+'<br><br><br>';
+    items[0]['a'] = '<section>'+data['res']+'</section><br>';
 
     items[0]['h'] = 'BTC on DDG';
     items[0]['i'] = data['img'];
