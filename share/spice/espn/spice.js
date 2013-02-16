@@ -106,8 +106,8 @@ function ddg_spice_espn(response) {
         stat = (player[s] ? player[s] : stats[s]) + '';
         if (display.indexOf('percentage') != -1) {
             stat = (stat.split('.')[0].length == 1 ? '0' : '')
-                 + stat
-                 + (display.indexOf('percentage') != -1 ? '%' : '');
+                 + (display.indexOf('percentage') != -1 ?
+                         (Math.round(stat*10)/10).toFixed(1) + '%' : '');
         }
         display = '<tr><th>'
                 + display.charAt(0).toUpperCase() + display.slice(1)
