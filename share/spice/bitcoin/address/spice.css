@@ -1,0 +1,16 @@
+#zero_click_abstract table {
+    margin-bottom:5px;
+}
+
+#zero_click_abstract table th {
+    font-size: 139%;
+    border-bottom: 1px solid #ccc;
+}
+
+#zero_click_abstract table td {
+    width: 150px;
+}
+
+.bitcoin-balance {
+    color: green;
+}
