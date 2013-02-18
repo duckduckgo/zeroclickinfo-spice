@@ -71,53 +71,51 @@ function ddg_spice_espn(response) {
             +  '</span>' + (index == array.length - 1 ? "" : " | ");
     }).join("");
 
-    playerStats = [ 
-                    //'assists',
-                    //'athleteStatus',
-                    //'height',
-                    //'weight',
-                    //'blocks',
-                    //'defensiveRebounds',
-                    //'doubleDouble',
-                    //'ejections',
-                    //'fieldGoalsMade',
-                    //'fieldGoalsAttempted',
-                    //'fouls',
-                    //'freeThrowsMade',
-                    //'freeThrowsAttempted',
-                    //'gamesStarted',
-                    //'minutes',
-                    //'offensiveRebounds',
-                    //'rebounds',
-                    //'steals',
-                    //'threePointersMade',
-                    //'threePointersAttempted',
-                    //'tripleDouble',
-                    //'turnovers',
-                    'points',
-                    'threePointPercentage',
-                    'fieldGoalPercentage',
-                    'freeThrowPercentage',
-                  ];
+    var playerStats = {
+        //'assists'                : 'assists',
+        //'athleteStatus'          : 'athleteStatus',
+        //'height'                 : 'height',
+        //'weight'                 : 'weight',
+        //'blocks'                 : 'blocks',
+        //'defensiveRebounds'      : 'defensiveRebounds',
+        //'doubleDouble'           : 'doubleDouble',
+        //'ejections'              : 'ejections',
+        //'fieldGoalsMade'         : 'fieldGoalsMade',
+        //'fieldGoalsAttempted'    : 'fieldGoalsAttempted',
+        //'fouls'                  : 'fouls',
+        //'freeThrowsMade'         : 'freeThrowsMade',
+        //'freeThrowsAttempted'    : 'freeThrowsAttempted',
+        //'gamesStarted'           : 'gamesStarted',
+        //'minutes'                : 'minutes',
+        //'offensiveRebounds'      : 'offensiveRebounds',
+        //'rebounds'               : 'rebounds',
+        //'steals'                 : 'steals',
+        //'threePointersMade'      : 'threePointersMade',
+        //'threePointersAttempted' : 'threePointersAttempted',
+        //'tripleDouble'           : 'tripleDouble',
+        //'turnovers'              : 'turnovers',
+        'points'                 : 'Average Points Per Game',
+        'threePointPercentage'   : '3-Point Field Goal Percentage (3P%)',
+        'fieldGoalPercentage'    : 'Field Goal Percentage (FG%)',
+        'freeThrowPercentage'    : 'Free Throw Percentage (FT%)',
+    };
 
-    function prepareStat(s, index, array) {
-        var display = s.replace(/([a-z\d](?=[A-Z])|[a-zA-Z](?=\d))/g, "$1 ");
-        display = display.toLowerCase();
-        stat = (player[s] ? player[s] : stats[s]) + '';
-        if (display.indexOf('percentage') != -1) {
+    function prepareStat(display, index, array) {
+        stat = (player[display] ? player[display] : stats[display]) + '';
+        console.log(display);
+        console.log(stat);
+        if (display == 'points') stat = ((stat + 0) / stats.gamesStarted) + '';
+        else if (display == 'threePointPercentage') stat = ((stat + 0) * 100) + '';
+        console.log(stat);
+        if (display.indexOf('Percentage') != -1) {
             stat = (stat.split('.')[0].length == 1 ? '0' : '')
-                 + (display.indexOf('percentage') != -1 ?
-                         (Math.round(stat*10)/10).toFixed(1) + '%' : '');
+                    + (Math.round(stat*10)/10).toFixed(1) + '%';
         }
-        display = '<tr><th>'
-                + display.charAt(0).toUpperCase() + display.slice(1)
-                + ':</th><td>'
-                + stat
-                + '</td></tr>';
+        display = '<tr><th>' + playerStats[display] + ':</th><td>' + stat + '</td></tr>';
         return display;
     }
 
-    var playerStats = playerStats.map(prepareStat).join('');
+    var statsHTML = Object.keys(playerStats).map(prepareStat).join('');
     var statsTimeFrame = "'" + ((stats.season.year + '').substr(2, 2) - 1)
                        + "-'" + (stats.season.year + '').substr(2, 2);
 
@@ -128,7 +126,7 @@ function ddg_spice_espn(response) {
            + stats.season.description + ' season statistics:'
            + '</div>'
            + '<table>'
-           + playerStats
+           + statsHTML
            + '</table>'
            + '</div>';
 }
