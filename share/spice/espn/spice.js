@@ -23,7 +23,7 @@ items[0]['a'] = '';
 items[0]['h'] = '';
 items[0]['s'] = 'ESPN';
 items[0]['force_big_header'] = 1;
-items[0]['f'] = 1;
+items[0]['force_no_fold'] = 1;
 
 function ddg_spice_espn_team_query(re) {
     var team = re.sports[0].leagues[0].teams[0];
