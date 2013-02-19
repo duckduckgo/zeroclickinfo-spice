@@ -4,7 +4,7 @@ package DDG::Spice::Hackage;
 use DDG::Spice;
 
 triggers any => "hackage", "haskell";
-spice to => 'http://localhost:8000/packages/$1.jsonp';
+spice to => 'http://www.typeful.net/~tbot/hackage/packages/$1/$1.jsonp';
 
 primary_example_queries "hackage containers";
 description "Haskell packages";
