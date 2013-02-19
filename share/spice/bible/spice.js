@@ -1,6 +1,5 @@
 function ddg_spice_bible(bi) {
-    
-    // console.log(bi[0]['text']);
+
     var snippet = '';
     
     // validity check
@@ -26,7 +25,7 @@ function ddg_spice_bible(bi) {
       // Source name and url for the More at X link.
       items[0]['s'] = 'Bible.org';
       items[0]['u'] = 'http://bible.org/';
-      items[0]['f'] = 1;
+      items[0]['force_no_fold'] = 1;
 
       nra(items);
     }

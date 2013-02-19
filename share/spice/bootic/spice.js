@@ -7,9 +7,9 @@ function ddg_spice_bootic( products )
 	/* constants */
 	var pic_width = 100;
 	var pic_height = 100;
+	var pic_size = '/' + pic_width + 'x' + pic_height + '/';
 	var server = 'http://www.bootic.com';
-	var pic_base_uri = 'http://static.bootic.com/_pictures/'
-		+ pic_width + 'x' + pic_height + '/';
+	var pic_base_uri = 'http://static.bootic.com/_pictures/';
 
 	var placeholder = d.createElement( 'div' );
 	var icon_parent = d.createElement( 'div' );
@@ -29,10 +29,10 @@ function ddg_spice_bootic( products )
 		YAHOO.util.Dom.addClass( link, 'bootic_name' );
 		link.href = server + item.url;
 
-		var pic = item.pictures[0].replace( /^.*?\//, '' );
+		var pic = item.pictures[0].split( '/' );
 		var img = d.createElement( 'img' );
 		YAHOO.util.Dom.addClass( img, 'bootic_picture' );
-		img.src = '/iu/?u=' + pic_base_uri + pic;
+		img.src = '/iu/?u=' + pic_base_uri + pic[0] + pic_size + pic[2];
 		img.width = pic_width;
 		img.height = pic_height;
 		img.alt = item.name;
@@ -49,17 +49,17 @@ function ddg_spice_bootic( products )
 	}
 
 	var query = '';
-	if ( products.query ) {
-		query = encodeURIComponent( products.query );
+	if ( products.input_query ) {
+		query = '?initial=1&q=' + encodeURIComponent( products.input_query );
 	}
 
 	var items = new Array();
 	items[0] = new Array();
 	items[0]['a'] = placeholder.innerHTML;
 	items[0]['s'] = 'Bootic';
-	items[0]['h'] = 'Bootic (' + query + ")";
-	items[0]['u'] = 'http://www.bootic.com/?q=' + query;
-	items[0]['f'] = 1;
+	items[0]['h'] = 'Bootic (' + products.input_query + ")";
+	items[0]['u'] = 'http://www.bootic.com/' + query;
+	items[0]['force_no_fold'] = 1;
 	items[0]['force_big_header'] = 1;
 
 	/* 

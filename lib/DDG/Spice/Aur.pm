@@ -5,7 +5,7 @@ use DDG::Spice;
 attribution twitter => 'crazedpsyc',
             cpan => 'CRZEDPSYC';
 
-spice to => 'http://aur.archlinux.org/rpc.php?type=search&arg=$1&callback={{callback}}';
+spice to => 'https://aur.archlinux.org/rpc.php?type=search&arg=$1&callback={{callback}}';
 
 triggers any => "aur", "archlinux package", "arch package";
 

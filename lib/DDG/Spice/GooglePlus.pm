@@ -7,6 +7,15 @@ spice to => 'https://www.googleapis.com/plus/v1/people/$1?query=$2&key={{ENV{DDG
 spice from => '(.*?)-(.*)';
 spice proxy_ssl_session_reuse => "off";
 
+primary_example_queries "google+ duckduckgo";
+description "Find Google+ users";
+name "GooglePlus";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GooglePlus.pm";
+topics "everyday", "social";
+category "ids";
+attribution github => ['https://github.com/jagtalon','jagtalon'],
+            twitter => ['http://twitter.com/juantalon','juantalon'];
+
 triggers startend => 'google+', 'google plus', 'g+', 'gplus', 'google+ user', 'g+ user', 
 'google plus user', 'google+ profile', 'g+ profile', 'gplus profile', 'gplus user', 'g plus profile',
 'g plus user';
@@ -16,7 +25,7 @@ handle remainder => sub {
 	if($query =~ /userid:(\d+)$/) {
 		return $1.'-'; 
 	}
-    if($query =~ /((?:[a-zA-Z]|\s)+)$/) {
+    if($query =~ /((?:[\w]|\s)+)$/) {
 		return '-'.$1;
 	}
 	return;

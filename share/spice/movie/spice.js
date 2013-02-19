@@ -1,118 +1,213 @@
-var req = document.getElementById('search_form_input').value;
+// `ddg_spice_movie` is a callback function that gets
+// called when people search for movie titles. Example
+// triggers are "pirates of the caribbean movie" or "indie game movie."
 
-function ddg_spice_movie(movie) {
-    var result = req.replace(/^movie\s+/g,'');
+// This anonymous function is used to prevent helper
+// functions from becoming global functions. We only expose
+// `ddg_spice_movie` so we attach it to the variable `root`. 
+(function(root) {
+    "use strict";
 
-    // validity check
-    if (movie['total'] > 0 && movie['movies']) {
+    // This function is responsible for calling other functions that
+    // process data and display the plugin.
+    root.ddg_spice_movie = function(movie) {
+        var collection = {};
+        if (movie && movie.total > 0 && movie.movies) {
+            var result = getRelevant(movie);
 
-        // more than one result
-        if (movie['total'] > 1) {
+            collection = {
+                result: result,
+                synopsis: getSynopsis(result),
+                names: getNames(result),
+                poster: getPoster(result),
+                header: getHeader(result),
+                date: getDates(result),
+                rating: getRating(result)
+            };
 
-            // Default to first result incase nothing is more relevant
-            result = movie["movies"][0];
+            display(collection);
+        }
+    };
 
-            // check which movie title is most relevant
-            for (var i = 0, aMovie; aMovie = movie.movies[i]; i++){
-                if (DDG.isRelevant(aMovie.title, ["movie","film"]) ) {
+    // Check for the most relevant movie. If we
+    // only have one movie or if we didn't find a
+    // more relevant movie, we get the first one.
+    function getRelevant(movie) {
+        var result,
+            SKIP_ARRAY = {
+                movie: 1,
+                film: 1,
+                rotten: 1,
+                rating: 1,
+                rt: 1,
+                tomatoes: 1
+            },
+            aMovie;
+        if (movie.total > 1) {
+            result = movie.movies[0];
+            for (var i = 0, length = movie.movies.length; i < length; i += 1){
+                aMovie = movie.movies[i];
+                if (DDG.isRelevant(aMovie.title, SKIP_ARRAY)) {
                     result = aMovie;
                     break;
                 }
             }             
         } else {
-            result = movie["movies"][0];
+            result = movie.movies[0];
         }
+        return result;
+    }
 
-        // Create snippet to be shown
-        snippet = '';
-
-        // Check presence of synopsis, and create element
-        if (result.synopsis) synopsis = result.synopsis.substring(0,135) + "...";
-        else if (result.critics_consensus && result.critics_consensus.length > 0) synopsis = result.critics_consensus.substring(0,135) + "...";
-        else synopsis = '';
-
-        var names = [];
-        // Loop through abridged cast members, add to cast element
-        for (var i=0; i < result.abridged_cast.length; i++){
-            var pre = '';
-            if ( i == result.abridged_cast.length - 1 && result.abridged_cast.length != 1 ) pre = 'and ';
-            var name = result.abridged_cast[i].name;
-            var url = 'http://www.rottentomatoes.com/celebrity/' + result.abridged_cast[i].id + '/';
-
-            names.push(pre+'<a onlcick="fl=1" href="'+url+'">'+name+'</a>');
+    // Checks if we have a synopsis. If we do,
+    // we should trim it so that it fits in our
+    // plugin.
+    function getSynopsis(result) {
+        var synopsis;
+        if (result.synopsis) {
+            synopsis = result.synopsis.substring(0, 135) + "...";
+        } else if (result.critics_consensus && result.critics_consensus.length > 0) {
+            synopsis = result.critics_consensus.substring(0, 135) + "...";
+        } else {
+            synopsis = '';
         }
+        return synopsis;
+    }
 
-        var cast = '';
-        if (names.length > 1) cast = ', starring '+names.join(', ');
+    // Get the abridged cast members from the result.
+    function getNames(result) {
+        var names = [],
+            obj = {};
+        for (var i = 0, length = result.abridged_cast.length; i < length; i += 1) {
+            obj = {};
+            obj.name = result.abridged_cast[i].name;
+            obj.id = result.abridged_cast[i].id;
+            names.push(obj);
+        }
+        return names;
+    }
 
-        // check for default poster
-        var poster = result.posters.thumbnail;
-        if (poster === 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif') poster = '';
+    // Get the poster from the results. If there isn't any,
+    // use something else.
+    function getPoster(result) {
+        var poster = result.posters.thumbnail,
+            default_image = 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif';
+        if (poster === default_image) {
+            poster = '';
+        }
+        return poster;
+    }
 
-        // Make title for header
-        var header = result.title.substring(0,49);
-        if (result.title.length > 50) header += '...';
+    // Trim the headers.
+    function getHeader(result) {
+        var header = result.title.substring(0, 49);
+        if (result.title.length > 50) {
+            header += '...';
+        }
+        return header;
+    }
 
-        //Movie Score
-        //var score = 'with an audience score of'+ result.audience_score +'%';
-
-        var rating, audience, critics, reaction, releaseDate, tomato;
-        var currentTime = new Date();
-
-        // Is a release date planned?
+    // Get the rating and the release date
+    // from the result.
+    function getDates(result) {
+        var currentTime = new Date(),
+            rDate, 
+            opened,
+            releaseDate;
         if (result.release_dates.theater) {
-            var rDate = result.release_dates.theater.split("-");
-            var opened = new Date(rDate[0], rDate[1]-1, rDate[2], 00, 00, 00); // Date uses month-1 notation
-            rating = (currentTime - opened < 0) ? "an upcoming " : "";
-            releaseDate = (rating) ? opened.toDateString().slice(4) : result.year;
-        }
-        else if (result.year > currentTime.getFullYear()) {
-            rating = "an upcoming ";
+            rDate = result.release_dates.theater.split("-");
+            opened = new Date(rDate[0], rDate[1] - 1, rDate[2], 0, 0, 0);
+            releaseDate = (currentTime - opened < 0) ? opened.toDateString().slice(4) : result.year;
+        } else if (result.year > currentTime.getFullYear()) {
             releaseDate = result.year;
         }
-        reaction = (rating) ? " want to see)" : " approved)";
-        
-        // Who's reviewed it?
-        audience = (result.ratings.audience_score === -1) ? "" : result.ratings.audience_score+ "% audience"+reaction;
-        critics = (result.ratings.critics_score === -1) ? "" : result.ratings.critics_score+ "% critics, ";
-        critics += (audience) ? "" : reaction;
+        return releaseDate;
+    }
 
-        // Is it fresh or rotten?
-        tomato = (result.ratings.critics_rating) ? result.ratings.critics_rating+", " : "";
+    // Check the rating.
+    function getRating(result) {
+        var adjective;
+        if (result.mpaa_rating === "R" || 
+                result.mpaa_rating === "NC-17" || result.mpaa_rating === "Unrated") {
+            adjective = "an";
+        } else {
+            adjective = "a";
+        }
+        return [adjective, result.mpaa_rating];
+    }
 
-        if (!rating){
-            releaseDate = result.year;
-            if (result.mpaa_rating === "R" || result.mpaa_rating === "NC-17" || result.mpaa_rating == "Unrated"){
-               rating = "an ";
+    // Use this function to create the HTML and call the `nra` function.
+    function display(collection) {
+
+        // This function creates links to the profile of an actor or actress.
+        function castHTML(names) {
+            var url,
+                strings = [];
+            for(var i = 0, length = names.length; i < length; i += 1) {
+                url = 'http://www.rottentomatoes.com/celebrity/' + names[i].id + '/';
+                strings.push('<a onlcick="fl=1" href="' + url + '">' + names[i].name + '</a>');
+            }
+            return toSentence(strings);
+        }
+
+        // Check the Tomatometer.
+        function getTomato(result) {
+            return (result.ratings.critics_rating) ? 
+                result.ratings.critics_rating + ", " : "";
+        }
+
+        // Get the fraction of the critics who liked the movie.
+        function getCriticsScore(result) {
+            if(result.ratings.critics_score !== -1) {
+                return result.ratings.critics_score + "% critics, ";
             } else {
-                rating = "a ";
+                return "";
             }
         }
-        rating += result.mpaa_rating;
-        
-        // Call nra function as per Spice Plugin Guidelines
-        items = [[]];
-        items[0]['a'] = result.title + ' ('+result.year+ ') is ' 
-                        +rating+ ' movie ('
-                        +tomato
-                        +critics
-                        +audience
-                        +cast + '. '
-                        +synopsis;
 
-        items[0]['h'] = header+" ("+releaseDate+")";
+        // Get the fraction of the audience who liked the movie.
+        function getAudienceScore(result) {
+            if(result.ratings.audience_score !== -1) {
+                return result.ratings.audience_score + "% audience approved";
+            } else {
+                return "";
+            }
+        }
 
-        // Source name and url for the More at X link.
-        items[0]['s'] = 'Rotten Tomatoes';
-        items[0]['u'] = result.links.alternate;
+        // This function accepts an array of strings and 
+        // it joins them using `delimiter` and `last`.
+        function toSentence(strings, delimiter, last) {
+            var result;
+            if (delimiter === null || delimiter === undefined) {
+                delimiter = ', ';
+            }
+            if (last === null || last === undefined) {
+                last = 'and';
+            }
+            if (strings.length === 0) {
+                return '';
+            }
+            result = strings.slice(0, -1);
+            if (result.length === 0) {
+                return strings[0];
+            } else {
+                return "" + (result.join(delimiter)) + delimiter + last + " " + strings.slice(result.length);
+            }
+        }
 
-        // Force vertical expansion (no scrollbar)
-        // items[0]['f'] = 1;
+        // Build the output.
+        var output = collection.result.title + " (" + collection.result.year + ") is " + collection.rating[0] +
+                     " " + collection.rating[1] + " movie (" + getTomato(collection.result) + getCriticsScore(collection.result) +
+                     getAudienceScore(collection.result) + "), starring " + castHTML(collection.names) + ". " + collection.synopsis,
+            items = [[]];
 
-        // Thumbnail url
-        items[0]['i'] = poster; 
-
-        // The rendering function is nra.
+        items[0] = {
+            a: output,
+            h: collection.header + " (" + collection.date + ")",
+            s: 'Rotten Tomatoes',
+            u: collection.result.links.alternate,
+            i: collection.poster
+        };
         nra(items);
     }
-}
+}(this));
+

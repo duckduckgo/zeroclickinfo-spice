@@ -2,23 +2,23 @@ package DDG::Spice::RedditSearch;
 
 use DDG::Spice;
 
+name "Reddit Search";
+description "Search Reddit posts";
+source "Reddit";
+primary_example_queries "reddit baking";
 attribution web => ['http://dylansserver.com','Dylan Lloyd'],
             email => ['dylan@dylansserver.com','Dylan Lloyd'];
+category "forums";
+topics "geek", "social";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RedditSearch.pm";
+icon_url "/i/www.reddit.com.ico";
+status "enabled";
 
-triggers query_lc => qr#^(reddit|subreddit|/?r/)\s*(?:/?r/)?(\w+)?\s+(.*)#i;
-spice to => 'http://www.reddit.com/r/$1/search.json?q=$2&restrict_sr=$3&sort=relevance&jsonp=ddg_spice_reddit';
-spice from => '(?:([^/]*)/([^/]*)/(true|false))';
+triggers any => "reddit";
+spice to => 'http://www.reddit.com/search.json?q=$1&restrict_sr=true&sort=relevance&jsonp=ddg_spice_reddit';
 
-handle matches => sub {
-    if ($_[0] eq 'subreddit') {
-        return $_[1], $_[2], 'true' if $_[1];
-        return;
-    } elsif ($_[0] eq 'reddit') {
-        return 'duckduckgo', $_[2], 'false';
-    } else {
-        return $_[1], $_[2], 'true';
-        return;
-    }
+handle remainder => sub {
+    return $_ if defined $_;
 };
 
 1;

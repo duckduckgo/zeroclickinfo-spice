@@ -85,11 +85,13 @@ function ddg_spice_congress(data) {
             snippet += "<br>Votes with party on "
                 + parseFloat(member.votes_with_party_pct).toFixed(0)
                 + "% of issues"
-                + ', next election in ' + member.next_election + '.';
+                + (member.next_election ?
+                        ', next election in ' + member.next_election
+                        : "")
             if (member.district) {
                 snippet += ' (district ' + member.district + ')';
             }
-            snippet += "</li>";
+            snippet += ".</li>";
         }
         snippet += "</ul>";
 

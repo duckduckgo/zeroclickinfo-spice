@@ -10,7 +10,14 @@ ddg_spice_test(
     'xkcd' => test_spice(
         '/js/spice/xkcd/',
         call_type => 'include',
-        caller => 'DDG::Spice::Xkcd'
+        caller => 'DDG::Spice::Xkcd',
+        is_cached => 0
+    ),
+    '619 xkcd' => test_spice(
+        '/js/spice/xkcd/619',
+        call_type => 'include',
+        caller => 'DDG::Spice::Xkcd',
+        is_cached => 0
     ),
 );
 

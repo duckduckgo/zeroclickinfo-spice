@@ -12,7 +12,7 @@ div.bootic_product:last-child {
 a.bootic_name {
 	display: block;
 	width: 110px;
-	max-height: 156px;
+	height: 156px;
 	overflow: hidden;
 	text-align: center;
 }

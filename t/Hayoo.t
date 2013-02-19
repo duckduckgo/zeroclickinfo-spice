@@ -6,11 +6,11 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-    [qw( DDG::Spice::Rhymes )],
-    'what rhymes with duck' => test_spice(
-        '/js/spice/rhymes/duck',
+    [qw( DDG::Spice::Hayoo )],
+    'hayoo Prelude.map' => test_spice(
+        '/js/spice/hayoo/Prelude.map',
         call_type => 'include',
-        caller => 'DDG::Spice::Rhymes'
+        caller => 'DDG::Spice::Hayoo'
     ),
 );
 

@@ -3,8 +3,20 @@ package DDG::Spice::InTheaters;
 
 use DDG::Spice;
 
+primary_example_queries "movies";
+secondary_example_queries "movies in theaters", "currently in theaters", "i want to watch a movie";
+description "Current movies from Rotten Tomatoes";
+name "InTheaters";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/InTheaters.pm";
+icon_url "/i/www.rottentomatoes.com.ico";
+topics "entertainment";
+category "entertainment";
+attribution github => ['https://github.com/jagtalon','jagtalon'],
+            twitter => ['http://twitter.com/juantalon','juantalon'];
+status "enabled";
+
 my $rating = '(?:g\s*|pg\s*|r\s*)?';
-spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?apikey=ccw2b5ce8dsy7sb3x2qxmn3x&callback={{callback}}';
+spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&callback={{callback}}';
 triggers any => 'movie', 'movies', 'theaters', 'theatres', 'showing', 'something', 'watch', 'opening', 'see';
 
 my %movies = (
