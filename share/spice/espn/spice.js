@@ -102,11 +102,8 @@ function ddg_spice_espn(response) {
 
     function prepareStat(display, index, array) {
         stat = (player[display] ? player[display] : stats[display]) + '';
-        console.log(display);
-        console.log(stat);
-        if (display == 'points') stat = ((stat + 0) / stats.gamesStarted) + '';
+        if (display == 'points') stat = (stat / stats.gamesStarted) + '';
         else if (display == 'threePointPercentage') stat = ((stat + 0) * 100) + '';
-        console.log(stat);
         if (display.indexOf('Percentage') != -1) {
             stat = (stat.split('.')[0].length == 1 ? '0' : '')
                     + (Math.round(stat*10)/10).toFixed(1) + '%';
