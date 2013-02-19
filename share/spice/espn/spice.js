@@ -132,16 +132,19 @@ function ddg_spice_espn_events(response) {
     var events = response.sports[0].leagues[0].events;
     console.log(response);
     test = response;
-    console.log(events[85]);
     gamelog = '<div id="espn_zci_gamelog">'
             + '<div class="blurb">The ' + teamCity + ' ' + teamName
             + ' have won ' + teamWinPercentage + '% of their season games.'
             + '</div><table><tr>'
             + '<th></th><th>Home</th><th></th><th>Away</th>'
             + '<th></th><th></th></tr>';
-    for (var i = events.length - 1; i > (events.length - 6); i--) {
-        var competitors = events[i].competitions[0].competitors;
+    var recentGamesFound = 0;
+    for (var i = events.length - 1; i > 0 && recentGamesFound < 5; i--) {
         var date = new Date(events[i].date);
+        if (date.getTime() > new Date().getTime() + 24*60*60*1000)
+            continue;
+        recentGamesFound++;
+        var competitors = events[i].competitions[0].competitors;
         date.setMonth(date.getMonth()+1);
         var outcome = '';
         gamelog += '<td>' + date.getUTCMonth() + '/' + date.getUTCDate() + '</td>';
