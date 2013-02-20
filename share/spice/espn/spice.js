@@ -141,7 +141,7 @@ function ddg_spice_espn_events(response) {
     var recentGamesFound = 0;
     for (var i = events.length - 1; i > 0 && recentGamesFound < 5; i--) {
         var date = new Date(events[i].date);
-        if (date.getTime() > new Date().getTime() + 24*60*60*1000)
+        if (date.getTime() > new Date().getTime() - 24*60*60*1000)
             continue;
         recentGamesFound++;
         var competitors = events[i].competitions[0].competitors;
