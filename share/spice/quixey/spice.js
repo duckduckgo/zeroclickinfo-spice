@@ -4,17 +4,6 @@ function ddg_spice_quixey (data) {
   /* Init */
   /*****************/
   var query = data.q.replace(/\s/g, '+')
-
-  var appKey = {};
-  for (var i in data.results ) {
-    app = data.results[i]
-    appKey[app.id] = app
-  }
-   
-  var getApp = function(id) {
-    return appKey[id]
-  };
-
   
   /********************/
   /* Helper Functions */
@@ -34,6 +23,28 @@ function ddg_spice_quixey (data) {
     e.preventDefault ? e.preventDefault() : e.returnValue = false
   }
 
+  // remove irrelevant result
+  function getRelevant(results){
+    var apps = [],
+	SKIP_ARRAY = {
+	  "app":1,
+	  "application":1,
+	  "android":1,
+	  "ios":1
+       }
+
+    for (var i in results ) {
+      app = results[i]
+      if ( DDG.isRelevant(app.name, SKIP_ARRAY) ){
+	console.log("RELEVANT: " + app.name);
+	apps.push(app);
+      } else {
+	console.log("SKIPPED: " + app.name);
+	continue;
+      }
+    }
+    return apps
+  }
 
   /********/
   /* Main */
@@ -109,8 +120,7 @@ function ddg_spice_quixey (data) {
   /*******************/
   /* Data Extraction */
   /*******************/
-  function getInfo(id){
-    app = getApp(id)
+  function getInfo(app){
 
     var app_id_string = app.id.toString()
 
@@ -192,6 +202,8 @@ function ddg_spice_quixey (data) {
           img_anchor.href = current.url || dir_url
       var img = d.createElement('img')
           img.src = current.icon_url
+	  img.width = "25"
+	  img.height = "25"
       var edition = d.createElement("div")
       var price = "$" + ((current.cents)/100).toFixed(2).toString()
           price = price.replace("$0.00", "FREE")
@@ -333,7 +345,7 @@ function ddg_spice_quixey (data) {
       a = d.createElement('a')
       a.href = app.url
 
-      YAHOO.util.Event.addListener(a, 'click', clickA(id))
+      YAHOO.util.Event.addListener(a, 'click', clickA(app))
       
       img = d.createElement('img')
       if (!isProp(app, 'icon_url')) continue
@@ -360,7 +372,7 @@ function ddg_spice_quixey (data) {
   }
 
   // Close around clicking thumbs
-  function clickA(id) {
+  function clickA(app) {
     return function (e) {
       preventDefault(e)
       var ul = d.getElementById('slides')
@@ -369,7 +381,7 @@ function ddg_spice_quixey (data) {
         YAHOO.util.Dom.removeClass(ul.childNodes[j], 'sel')
       }
       YAHOO.util.Dom.addClass(this.parentNode, 'sel')
-      addPreview(id)
+      addPreview(app)
     }
   }
 
@@ -468,7 +480,9 @@ function ddg_spice_quixey (data) {
 
   // Make the dots
   function makeDots() {
-    var dots = d.getElementById('dots')
+    var dots = d.getElementById('dots'),
+	n = Math.ceil(state.apps.length / state.inc)
+
     if (!dots) {
       dots = d.createElement('div')
       dots.id = 'dots'
@@ -478,13 +492,14 @@ function ddg_spice_quixey (data) {
       pagination.id = "pagination";
       nav.appendChild(pagination);
 
-      // add the prev / next arrows
-      makeArrow('nexta', true)
-      makeArrow('preva', false)
-      pagination.appendChild(dots)
+      if (n > 1){
+	// add the prev / next arrows
+	makeArrow('nexta', true)
+	makeArrow('preva', false)
+	pagination.appendChild(dots)
+      }
     }
-    var lin, j = 0, n = Math.ceil(state.apps.length / state.inc)
-    var sel = state.current_item / state.inc
+    var lin, j = 0, sel = state.current_item / state.inc
 
     if (n > 4 && state.win < state.min_win)  // at most 4 dots on small screens
       return showPage(dots, n)
@@ -506,8 +521,9 @@ function ddg_spice_quixey (data) {
   /*****************/
 
   // Add app preview to screen
-  function addPreview(id) {
-    var preview
+  function addPreview(app) {
+    var preview,
+	id = app.id
     if (!id) {
       preview = d.getElementById('preview')
       if (!preview) return
@@ -515,12 +531,11 @@ function ddg_spice_quixey (data) {
     }
     preview = d.createElement('div')
     preview.id = 'preview'
-    preview.innerHTML = getInfo(id)
+    preview.innerHTML = getInfo(app)
     
     YAHOO.util.Dom.setStyle(preview, 'width', '100%')
     YAHOO.util.Dom.setStyle(preview, 'height', '100%')
     YAHOO.util.Dom.setAttribute(preview, 'app', id)
-
     var emb = d.getElementById('emb')
     emb.innerHTML = '' //clear
     emb.appendChild(preview)
@@ -531,7 +546,8 @@ function ddg_spice_quixey (data) {
   if (data && isProp(data, 'results') && data.results.length > 0) {
 
     // store the apps
-    state.apps = data.results
+    state.apps = getRelevant(data.results)
+    if (state.apps.length < 1) return;
 
     // main container
     var container = d.createElement('div')
@@ -548,8 +564,8 @@ function ddg_spice_quixey (data) {
     emb.id = 'emb'
     div.appendChild(emb)
 
-   // Append Quixey div to container
-   container.appendChild(div)
+    // Append Quixey div to container
+    container.appendChild(div)
 
     // set more at link
     var u = 'https://www.quixey.com/search?q='
@@ -559,13 +575,13 @@ function ddg_spice_quixey (data) {
 
     // ddg: add to page
     var items = [{
-      f: 1,
       a: container.innerHTML,
       h: data.q + ' (App Search)',
       s: 'Quixey',
       u: u + q,
       force_big_header: true,
-      force_more_at_logo:"quixey_logo.png"
+      force_more_at_logo:"quixey_logo.png",
+      force_no_fold: 1
     }]
     nra(items, 0, true)
 
