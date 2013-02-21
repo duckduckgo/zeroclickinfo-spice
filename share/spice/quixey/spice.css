@@ -116,6 +116,8 @@
 #quixey li.item a span{
   display: block;
   max-width: 80px
+  max-height: 80px
+  height:auto;
   margin: 5px auto 0;
 }
 
@@ -126,14 +128,16 @@
 #quixey li.item img {
   margin: 0 auto;
   max-width: 80px;
+  max-height: 80px;
+  height:auto;
 }
 
 #quixey li.item p {
+  width: 1%;
   max-width: 80px;
   height: 80px;
   display: table-cell;
   vertical-align: middle;
-  width: 1%;
 }
 
 #quixey a.npa {
@@ -230,6 +234,8 @@
 #quixey .app_icon{
   margin: 0px;
   max-width: 100%;
+  max-height: 100%;
+  height: auto;
 }
 
 #quixey .rating{
@@ -349,14 +355,11 @@
   margin-right: 3px;
 }
 
-#quixey .app_edition_icon img{
-  max-width:100%;
-}
-
 #quixey .platform_icon{
   display: inline-block;
   max-height: 13px;
   margin-left: 5px;
+  width: auto;
 }
 
 #quixey .platform_icon:first-of-type {
