@@ -5,7 +5,7 @@ use DDG::Spice;
 attribution web => ['http://dylansserver.com','Dylan Lloyd'],
             email => ['dylan@dylansserver.com','Dylan Lloyd'];
 
-triggers any => 'bitcoin', 'bitcoins', 'btc';
+triggers any => 'bitcoin whois', 'btc whois';
 
 spice to => 'http://blockchain.info/address/$1?format=json';
 
