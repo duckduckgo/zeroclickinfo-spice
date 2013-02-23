@@ -9,8 +9,11 @@ function ddg_spice_bitcoin_rates(data) {
     
     if (isNaN(initial)) {
         
-        var currency, cx, html, item, q, _i, _len,
-          __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+        var currency, cx, html, item, q, _i, _len, initial, new_value, symb1, symb2;
+              
+        
+        
+        __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
         cx = ['aud', 'cad', 'chf', 'cny', 'dkk', 'eur', 'gbp', 'hkd', 'jpy', 'nok', 'nzd', 'pln', 'rub', 'sek', 'sgd', 'thb', 'usd'];
 
@@ -21,12 +24,18 @@ function ddg_spice_bitcoin_rates(data) {
         for (_i = 0, _len = cx.length; _i < _len; _i++) {
           item = cx[_i];
           if (__indexOf.call(q, item) >= 0) {
-            currency = item;
-            html = '<section><img alt="bitcoin chart" src=https://s3-eu-west-1.amazonaws.com/btc.convert/' + currency + '_chart.png ></section><br>';
+          
+            currency = item;         
             break;
           }
         }
         
+        new_value = 1 * data[currency].value;
+        new_value = Math.round(new_value * Math.pow(10, 2)) / Math.pow(10, 2);
+        symb1 = data.thb.hex;
+        symb2 = data[currency].hex;
+        
+        html = '<section><img alt="bitcoin chart" src=https://s3-eu-west-1.amazonaws.com/btc.convert/' + currency + '_chart.png ></section><br><section>' + symb1 + ' 1 bitcoin is equal to ' + symb2 + ' ' + new_value + ' ' + currency + '</section><br>';
         items = [];
         items[0] = [];
         items[0].a = html;
@@ -42,6 +51,7 @@ function ddg_spice_bitcoin_rates(data) {
         items[0].force_big_header = true;
         // The rendering function is nra.
         nra(items);
+        
     } if (origin === 'btc') {
         new_value = initial * data[convert_to].value;
         new_value = Math.round(new_value * Math.pow(10, 2)) / Math.pow(10, 2);
