@@ -8,10 +8,29 @@ function ddg_spice_bitcoin_rates(data) {
     convert_to = qr[3];
     
     if (isNaN(initial)) {
+        
+        var currency, cx, html, item, q, _i, _len,
+          __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+        cx = ['aud', 'cad', 'chf', 'cny', 'dkk', 'eur', 'gbp', 'hkd', 'jpy', 'nok', 'nzd', 'pln', 'rub', 'sek', 'sgd', 'thb', 'usd'];
+
+        //q = 'btc to cny';
+
+        q = query.split(' ');
+
+        for (_i = 0, _len = cx.length; _i < _len; _i++) {
+          item = cx[_i];
+          if (__indexOf.call(q, item) >= 0) {
+            currency = item;
+            html = '<section><img alt="bitcoin chart" src=https://s3-eu-west-1.amazonaws.com/btc.convert/' + currency + '_chart.png ></section><br>';
+            break;
+          }
+        }
+        
         items = [];
         items[0] = [];
-        items[0].a = '<section><img alt="bitcoin chart" src=https://s3-eu-west-1.amazonaws.com/btc.convert/usd_chart.png ></section><br>';
-        items[0].h = 'Mt. Gox BTC to USD 5 Day Chart';
+        items[0].a = html;
+        items[0].h = 'Mt. Gox BTC 5 Day Chart';
         items[0].i = data.qr;
         
         // Source name and url for the More at X link.
