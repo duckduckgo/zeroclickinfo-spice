@@ -32,10 +32,10 @@ function ddg_spice_bitcoin_rates(data) {
         
         new_value = 1 * data[currency].value;
         new_value = Math.round(new_value * Math.pow(10, 2)) / Math.pow(10, 2);
-        symb1 = data.thb.hex;
-        symb2 = data[currency].hex;
+        symb1 = data.thb.hex+';';
+        symb2 = data[currency].hex+';';
         
-        html = '<section><img alt="bitcoin chart" src=https://s3-eu-west-1.amazonaws.com/btc.convert/' + currency + '_chart.png ></section><br><section>' + symb1 + ' 1 bitcoin is equal to ' + symb2 + ' ' + new_value + ' ' + currency + '</section><br>';
+        html = '<section><img alt="bitcoin chart" src=https://s3-eu-west-1.amazonaws.com/btc.convert/' + currency + '_chart.png ></section><br><section>' + symb1 + '1 bitcoin is equal to ' + symb2 +  new_value + ' ' + currency + '</section><br>';
         items = [];
         items[0] = [];
         items[0].a = html;
@@ -55,15 +55,19 @@ function ddg_spice_bitcoin_rates(data) {
     } if (origin === 'btc') {
         new_value = initial * data[convert_to].value;
         new_value = Math.round(new_value * Math.pow(10, 2)) / Math.pow(10, 2);
-        symb1 = data.thb.hex;
-        symb2 = data[convert_to].hex;
+        symb1 = data.thb.hex+';';
+        symb2 = data[convert_to].hex+';';
+        
     } else {
+        initial;
         new_value = initial / data[origin].value;
         new_value = Math.round(new_value * Math.pow(10, 8)) / Math.pow(10, 8);
-        symb1 = data[origin].hex;
-        symb2 = datathb.hex;
+        symb1 = data[origin].hex+';';
+        symb2 = data.thb.hex+';';
     }
-    res = '<section>' + symb1 + ' ' + qr[0] + ' ' + origin + ' is equal to ' + symb2 + ' ' + new_value + ' ' + convert_to + '</section><br>';
+    
+    
+    res = '<section>' + symb1 + qr[0] + ' ' + origin + ' is equal to ' + symb2 + new_value + ' ' + convert_to + '</section><br>';
     
     items = [];
     items[0] = [];
