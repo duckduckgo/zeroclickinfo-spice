@@ -40,11 +40,11 @@ function ddg_spice_bitcoin_rates(data) {
         items[0] = [];
         items[0].a = html;
         items[0].h = 'Mt. Gox BTC 5 Day Chart';
-        items[0].i = data.qr;
+        items[0].i = 'http://s3-eu-west-1.amazonaws.com/btc.convert/1TiPS_small.png';
         
         // Source name and url for the More at X link.
         items[0].s = 'BTC on DDG';
-        items[0].u = 'http://174.129.229.21';
+        items[0].u = 'http://ec2-67-202-9-131.compute-1.amazonaws.com/';
         
         // Keep Answer Window Open to Full
         items[0].force_no_fold = 1;
@@ -73,11 +73,11 @@ function ddg_spice_bitcoin_rates(data) {
     items[0] = [];
     items[0].a = res;
     items[0].h = 'Bitcoin Currency Conversion';
-    items[0].i = data.qr;
+    items[0].i = 'http://s3-eu-west-1.amazonaws.com/btc.convert/1TiPS_small.png';
     
     // Source name and url for the More at X link.
     items[0].s = 'BTC on DDG';
-    items[0].u = 'http://174.129.229.21';
+    items[0].u = 'http://ec2-67-202-9-131.compute-1.amazonaws.com/';
     
     // Keep Answer Window Open to Full
     items[0].force_no_fold = 1;

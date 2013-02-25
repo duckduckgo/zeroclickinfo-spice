@@ -7,7 +7,7 @@ function ddg_spice_bitcoin_address(response) {
         var parts = balance.toString().split('.');
         balance = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                 + (parts[1] ? '.' + parts[1] : '');
-        return balance + ' ฿';
+        return '฿ '+balance;
     }
 
     var balance = format_bitcoin_from_satoshi(response.final_balance);
@@ -38,6 +38,7 @@ function ddg_spice_bitcoin_address(response) {
 	var items = new Array();
 	items[0] = new Array();
     items[0]['a'] = answer;
+    items[0]['i'] = 'http://s3-eu-west-1.amazonaws.com/btc.convert/1TiPS_small.png';
 	items[0]['h'] = query + " (Bitcoin Address)";
 	items[0]['s'] = 'blockchain.info';
 	items[0]['u'] = 'http://blockchain.info/address/' + query;
