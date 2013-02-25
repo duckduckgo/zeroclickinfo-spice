@@ -49,7 +49,7 @@ function ddg_spice_quixey(data) {
 			state.resize = setTimeout(setup, 400);
 		});
 	}
-
+	
 	/************************/
 	/* FUNCTION DEFINITIONS */
 	/************************/
@@ -199,7 +199,7 @@ function ddg_spice_quixey(data) {
 		YAHOO.util.Dom.addClass(description, "app_description");
 		return app_container.innerHTML;
 	}
-	// extract app information and add to view
+	// extract app information and add to view	
 	function getDetails(app) {
 		var more_info = d.createElement("div");
 		var editions = d.createElement("div");
@@ -208,7 +208,7 @@ function ddg_spice_quixey(data) {
 		YAHOO.util.Dom.addClass(editions, "app_editions");
 		return more_info.innerHTML;
 	}
-	// format app price, rating and description
+	// format app price, rating and description 
 	function getEditions(editions_array) {
 		var editions = d.createElement("div");
 		for (var i in editions_array) {
@@ -443,11 +443,11 @@ function ddg_spice_quixey(data) {
 			dots.appendChild(lin);
 		}
 	}
-
+	
 	/*****************/
 	/* Preview Embed */
 	/*****************/
-
+	
 	// Add app preview to screen
 	function addPreview(app) {
 		var preview, id = app.id;
