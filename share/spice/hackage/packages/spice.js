@@ -16,7 +16,9 @@
         
         // Key gets the lowercase, and the value gets the unmodified string. 
         for(var normal_case in packages) {
-            all_packages[normal_case.toLowerCase()] = normal_case;
+            if(hasOwn.call(packages, normal_case)) {
+                all_packages[normal_case.toLowerCase()] = normal_case;
+            }
         }
 
         // If the query exists in the dictionary, call Haskell::PackageDetails.
@@ -51,7 +53,7 @@
 
         var url = "http://hackage.haskell.org/package/" + pkgName;
 
-        items = [[]];
+        var items = [[]];
         items[0]["a"] = h(synopsis) + "<br/>";
         if (author) {
             items[0].a += "by " + h(author) + "<br/>";
