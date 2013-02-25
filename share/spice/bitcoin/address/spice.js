@@ -27,7 +27,7 @@ function ddg_spice_bitcoin_address(response) {
                        '<tr><th colspan="2">' + address_tag + '</th></tr>' : '')
                + '<tr><td>No. Transactions:</td>'
                + '<td>' + response.n_tx + '</td></tr>'
-               + '<tr><td>Total Recieved:</td>'
+               + '<tr><td>Total Received:</td>'
                + '<td class="bitcoin-balance">' + total_received + '</td></tr>'
                + '<tr><td>Total Sent:</td>'
                + '<td class="bitcoin-balance">' + total_sent + '</td></tr>'
