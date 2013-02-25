@@ -20,13 +20,7 @@ triggers any => "rhyme", "rhymes";
 spice to => 'http://rhymebrain.com/talk?function=getRhymes&word=$1&jsonp={{callback}}';
 
 handle query_lc => sub {
-    if ($_ =~ /^(?:(?:what|words?)\s+)?(?:that\s+)?(?:rhymes?(?:\s+?(?:with|for))?\s*)?([a-zA-Z]+)(?:\s+rhymes?)?(?:\s+with)?\??$/) {
-        if ($1) {
-            return $1;
-        } else {
-            return '';
-        }
-    }
+    return $1 if /^(?:(?:what|words?)\s+)?(?:that\s+)?(?:rhymes?(?:\s+?(?:with|for))?\s*)?([a-zA-Z]+)(?:\s+rhymes?)?(?:\s+with)?\??$/;
     return;
 };
 
