@@ -2,7 +2,7 @@ package DDG::Spice::Snow;
 
 use DDG::Spice;
 
-spice to => 'http://isitsnowingyet.org/api/check/$1/key/e95fad09aa5091b7734d1a268b53cef5';
+spice to => 'http://isitsnowingyet.org/api/check/$1/key/{{ENV{DDG_SPICE_SNOW_APIKEY}}}';
 
 triggers query_lc => qr/snow(?:ing)?/i;
 
@@ -20,14 +20,14 @@ my %snow = map { $_ => undef } (
 );
 
 
-handle query_lc => sub {
+handle query_lc => sub {    
     my $query = $_;
     my $location = join(" ", $loc->city . ', ', $loc->region_name . ', ', $loc->country_name);
 
     if(exists $snow{$query}) {
         return $location;
     } elsif($query =~ /^(?:is[ ]it[ ])?
-                        (?:going[ ]to )?
+                        (?:going[ ]to[ ])?
                         snow(?:ing)?[ ]?
                         (?:(?:here|now)[ ]?)?
                         (?:in[ ](.*?))?
