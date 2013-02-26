@@ -6,9 +6,11 @@ use Data::Dumper;
 spice to => 'http://www.duckduckgo.com/flights.js?airline=$1&flightno=$2';
 spice from => '(.*?)/(.*)';
 
-triggers query_lc => qr/^(.*?)(?:[ ]air.*|)\s*(\d+)$/i;
+triggers query_lc => qr/^(.*?)(?:[ ]air.*?)?\s*(\d+)$/i;
 
 handle query_lc => sub {
+	warn $2;
+
 	#block words unless they're the first word and only if separated by space (excludes TAP-Air)
 	# grammar - apostrophes specifically: 'chuck's regional charter'
 	# air, express, airlines, airways, aviation, regional, service, cargo, transport, aircraft, ventures, charter, international, world 
