@@ -1,4 +1,4 @@
-package DDG::Spice::Airlines;
+package DDG::Spice::Airlines2;
 
 use DDG::Spice;
 use Data::Dumper;
@@ -6,7 +6,7 @@ use Data::Dumper;
 spice to => 'http://www.duckduckgo.com/flights.js?airline=$1&flightno=$2';
 spice from => '(.*?)/(.*)';
 
-triggers query_lc => qr/^(\d+)\s*(.*?)(?:[ ]air.*|)$/i;
+triggers query_lc => qr/^(.*?)(?:[ ]air.*|)\s*(\d+)$/i;
 
 handle query_lc => sub {
 	#block words unless they're the first word and only if separated by space (excludes TAP-Air)
@@ -23,10 +23,19 @@ handle query_lc => sub {
 	  $airlines{lc $line[0]} = $line[0]; #AA => AA
 	}
 	close(IN);
+    
+    my %elements = ();
+    open (IN, "</usr/local/ddg/sources/elements/symbols.txt");
+	while (my $l = <IN>) {
+		warn $l;
+		chomp $l;	      
+      	$elements{lcfirst($l)} = undef;
+	}
+    close(IN);
 
-	if(exists $airlines{$2}) {
-		my $airline = $airlines{$2};
-		my $flightno = $1;
+	if(exists $airlines{$1} && !exists $elements{substr($1, 0, 2)}) {
+		my $airline = $airlines{$1};
+		my $flightno = $2;
 		return $airline, $flightno;
 	}
 	return;
