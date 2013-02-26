@@ -4,10 +4,14 @@ use DDG::Spice;
 use Data::Dumper;
 
 spice to => 'http://www.duckduckgo.com/flights.js?airline=$1&flightno=$2';
+spice from => '(.*?)/(.*)';
 
-triggers query_lc => qr/^(AA) (102)$/i;
+triggers query_lc => qr/^(\d+)\s*(.*?)(?: air.*|)$/i;
 
-handle query_lc => sub {    
+handle query_lc => sub {
+	#block words unless they're the first word and only if separated by space (excludes TAP-Air)
+	# grammar - apostrophes specifically: 'chuck's regional charter'
+	# air, express, airlines, airways, aviation, regional, service, cargo, transport, aircraft, ventures, charter, international, world 
 	my %airlines = ();
 	open(IN, "</usr/local/ddg/sources/flightstats/airlines.txt");
 	while (my $line = <IN>) {
@@ -20,9 +24,12 @@ handle query_lc => sub {
 	}
 	close(IN);
     
-	my $airline = $airlines{$2};
-	my $flight_number = $2;
-    return $airline, $flight_number;
+	if(exists $airlines{$2}) {
+		my $airline = $airlines{$2};
+		my $flightno = $1;
+		return $airline, $flightno;
+	}
+	return;
 };
 
 1;

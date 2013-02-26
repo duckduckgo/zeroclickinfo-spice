@@ -1,0 +1,10 @@
+.nrft {
+	float: left;
+	margin-right: 17px;
+	max-width: 200px;
+	text-align: left;
+}
+
+.nrft-holder {
+	margin-top: 5px;
+}
