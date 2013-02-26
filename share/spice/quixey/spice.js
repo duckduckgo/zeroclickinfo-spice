@@ -74,29 +74,70 @@ function ddg_spice_quixey(data) {
 	function getRelevant(results) {
 		var apps = [],
 			backupApps = [],
+			CATEGORIES = ["action","adventure","arcade","board","business","card","casino","developer tools","dice","education","educational","entertainment","family","finance","games","graphics and design","health and fitness","kids","lifestyle","medical","music","music","networking","news","photography","productivity","puzzle","racing","reference","role playing","simulation","social networking","social","sports","sports","strategy","travel","trivia","utilities","video","weather","word"],
 			SKIP_ARRAY = {
-				app: 1,
-				application: 1,
-				android: 1,
-				ios: 1
+				"app": 1,
+				"apps": 1,
+				"application": 1,
+				"applications": 1,
+				"android": 1,
+				"droid": 1,
+				"google play store": 1,
+				"google play": 1,
+				"windows phone": 1,
+				"windows phone 8": 1,
+				"windows mobile": 1,
+				"windows": 1,
+				"blackberry": 1,
+				"apple app store": 1,
+				"apple app": 1,
+				"ipod touch": 1,
+				"ipod": 1,
+				"iphone": 1,
+				"ipad": 1,
+				"ios": 1,
+				"free": 1
 			};
 		for (var i in results) {
-			app = results[i];
-			if (DDG.isRelevant(app.name, SKIP_ARRAY, 3)) {
-				apps.push(app);
+			// check to make sure this is actualy a key
+			if (results.hasOwnProperty(i)){
+				app = results[i];
 			} else {
-				if (app.description && DDG.isRelevant(app.description, SKIP_ARRAY, 3)) {
+				continue;
+			}
+
+			// check if this app result is relevant
+			if (DDG.isRelevant(app.name, SKIP_ARRAY, 3)) {
+				console.log("THIS IS RELEVANT: " + app.name)
+				apps.push(app);
+			} else if (app.hasOwnProperty("short_desc")) {
+				if (DDG.isRelevant(app.short_desc, SKIP_ARRAY, 3)) {
 					backupApps.push(app);
-					console.log("BACKUP APP: " + app.name);
-				} else {
-					console.log("NOT RELEVANT: " + app.name);
-					continue;
+					console.log("BACKUP APP SHORT DESC: " + app.name);
 				}
+			} else if (app.custom.hasOwnProperty("category")) {
+				if (DDG.isRelevant(app.custom.category, SKIP_ARRAY, 3)) {
+					backupApps.push(app);
+					console.log("BACKUP APP CATEGORY: " + app.name);
+				}
+			} else {
+				console.log("NOT RELEVANT: " + app.name);
+				continue;
 			}
 		}
 
 		if (apps.length < 6) {
-			return apps.concat(backupApps);
+			if (backupApps.length > 0) {
+				return apps.concat(backupApps);
+			} else {
+				// Check if search has a category
+				// if so, return original results
+				var q = DDG.get_query();
+				if (CATEGORIES.map(function(word){ return q.match("/"+word+"/i") }).indexOf("true") !== -1) {
+					console.log("RESORTED TO CATEGORY CHECK")
+					return results;
+				}
+			}
 		} else {
 			return apps;
 		}

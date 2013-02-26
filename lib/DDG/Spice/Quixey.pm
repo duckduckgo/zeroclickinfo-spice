@@ -35,9 +35,9 @@ push(@triggers, @extraTriggers);
 
 triggers any => @triggers;
 
-spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
+spice from => '([^/]+)/([^/]+)/?([^/]+)?/?([^/]+)?';
 
-spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_secret={{ENV{DDG_SPICE_QUIXEY_APIKEY}}}&q=$1&platform_ids=$2&custom_id=$3&limit=50&skip=0&format=json&callback={{callback}}';
+spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_secret={{ENV{DDG_SPICE_QUIXEY_APIKEY}}}&q=$1&platform_ids=$2&max_cents=$3&custom_id=$4&limit=50&skip=0&format=json&callback={{callback}}';
 
 spice proxy_ssl_session_reuse => "off";
 
@@ -45,6 +45,9 @@ handle query_parts => sub {
 	
 	my $full_query = join(" ", @_);
 	my $restriction;
+	my $max_price = 999999;
+
+	$max_price = 0 if ($full_query =~ s/\bfree\b//ig);
 	
 	my @matches = grep { $full_query =~ /\b$_\b/ig } sort { length($a) <=> length($b) } keys %platform_ids;
 	if (length @matches){	
@@ -65,9 +68,9 @@ handle query_parts => sub {
 		$platforms[0] = $restriction;
 		my $platforms_encoded = encode_json \@platforms;
 		if ($restriction == 2005 or $restriction == 2004) {
-			return $full_query, $platforms_encoded, $custom_ids{ $restriction };
+			return $full_query, $platforms_encoded, $max_price, $custom_ids{ $restriction };
 		} else {
-			return $full_query, $platforms_encoded, "";
+			return $full_query, $platforms_encoded, $max_price, "2414062669";
 		}
 	} else {
 		my @full_platforms = uniq (values %platform_ids);
@@ -78,7 +81,7 @@ handle query_parts => sub {
 			}
 		}
 		my $platforms_encoded = encode_json \@platforms;
-		return $full_query, $platforms_encoded, "";
+		return $full_query, $platforms_encoded, $max_price, "2414062669";
 	}
 	return;
 };
