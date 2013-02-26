@@ -70,78 +70,7 @@ function ddg_spice_quixey(data) {
 	function preventDefault(e) {
 		e.preventDefault ? e.preventDefault() : e.returnValue = false;
 	}
-	// remove irrelevant result
-	function getRelevant(results) {
-		var apps = [],
-			backupApps = [],
-			CATEGORIES = ["action","adventure","arcade","board","business","card","casino","developer tools","dice","education","educational","entertainment","family","finance","games","graphics and design","health and fitness","kids","lifestyle","medical","music","music","networking","news","photography","productivity","puzzle","racing","reference","role playing","simulation","social networking","social","sports","sports","strategy","travel","trivia","utilities","video","weather","word"],
-			SKIP_ARRAY = {
-				"app": 1,
-				"apps": 1,
-				"application": 1,
-				"applications": 1,
-				"android": 1,
-				"droid": 1,
-				"google play store": 1,
-				"google play": 1,
-				"windows phone": 1,
-				"windows phone 8": 1,
-				"windows mobile": 1,
-				"windows": 1,
-				"blackberry": 1,
-				"apple app store": 1,
-				"apple app": 1,
-				"ipod touch": 1,
-				"ipod": 1,
-				"iphone": 1,
-				"ipad": 1,
-				"ios": 1,
-				"free": 1
-			};
-		for (var i in results) {
-			// check to make sure this is actualy a key
-			if (results.hasOwnProperty(i)){
-				app = results[i];
-			} else {
-				continue;
-			}
 
-			// check if this app result is relevant
-			if (DDG.isRelevant(app.name, SKIP_ARRAY, 3)) {
-				console.log("THIS IS RELEVANT: " + app.name)
-				apps.push(app);
-			} else if (app.hasOwnProperty("short_desc")) {
-				if (DDG.isRelevant(app.short_desc, SKIP_ARRAY, 3)) {
-					backupApps.push(app);
-					console.log("BACKUP APP SHORT DESC: " + app.name);
-				}
-			} else if (app.custom.hasOwnProperty("category")) {
-				if (DDG.isRelevant(app.custom.category, SKIP_ARRAY, 3)) {
-					backupApps.push(app);
-					console.log("BACKUP APP CATEGORY: " + app.name);
-				}
-			} else {
-				console.log("NOT RELEVANT: " + app.name);
-				continue;
-			}
-		}
-
-		if (apps.length < 6) {
-			if (backupApps.length > 0) {
-				return apps.concat(backupApps);
-			} else {
-				// Check if search has a category
-				// if so, return original results
-				var q = DDG.get_query();
-				if (CATEGORIES.map(function(word){ return q.match("/"+word+"/i") }).indexOf("true") !== -1) {
-					console.log("RESORTED TO CATEGORY CHECK")
-					return results;
-				}
-			}
-		} else {
-			return apps;
-		}
-	}
 	// simple function to shorten strings
 	function shorten(string, length) {
 		if (length === undefined) length = 40;
@@ -510,6 +439,127 @@ function ddg_spice_quixey(data) {
 		YAHOO.util.Dom.setStyle("emb", "display", "block");
 	}
 
+	
+	/*******************/
+	/* Relevancy Check */
+	/*******************/
+
+	// remove irrelevant result
+	function getRelevant(results) {
+		var apps = [],
+			backupApps = [],
+			CATEGORIES = [
+				"action",
+				"adventure",
+				"arcade",
+				"board",
+				"business",
+				"casino",
+				"design",
+				"developer tools",
+				"dice",
+				"education",
+				"educational",
+				"entertainment",
+				"family",
+				"finance",
+				"graphics",
+				"graphics and design",
+				"health and fitness",
+				"kids",
+				"lifestyle",
+				"medical",
+				"music",
+				"networking",
+				"news",
+				"photography",
+				"productivity",
+				"puzzle",
+				"racing",
+				"role playing",
+				"simulation",
+				"social networking",
+				"social",
+				"sports",
+				"strategy",
+				"travel",
+				"trivia",
+				"utilities",
+				"video",
+				"weather",
+			],
+			SKIP_ARRAY = {
+				"app": 1,
+				"apps": 1,
+				"application": 1,
+				"applications": 1,
+				"android": 1,
+				"droid": 1,
+				"google play store": 1,
+				"google play": 1,
+				"windows phone": 1,
+				"windows phone 8": 1,
+				"windows mobile": 1,
+				"windows": 1,
+				"blackberry": 1,
+				"apple app store": 1,
+				"apple app": 1,
+				"ipod touch": 1,
+				"ipod": 1,
+				"iphone": 1,
+				"ipad": 1,
+				"ios": 1,
+				"free": 1
+			};
+
+		for (var i in results) {
+			// check to make sure this is actualy a key
+			if (isProp(results, i)){
+				app = results[i];
+			} else {
+				continue;
+			}
+
+			// check if this app result is relevant
+			if (DDG.isRelevant(app.name, SKIP_ARRAY, 3)) {
+				apps.push(app);
+			} else if (isProp(app, "short_desc")) {
+				if (DDG.isRelevant(app.short_desc, SKIP_ARRAY, 3)) {
+					backupApps.push(app);
+					//console.log("BACKUP APP SHORT DESC: " + app.name);
+				}
+			} else if (isProp(app.custom, "category")) {
+				if (DDG.isRelevant(app.custom.category, SKIP_ARRAY, 3)) {
+					backupApps.push(app);
+					//console.log("BACKUP APP CATEGORY: " + app.name);
+				}
+			} else{
+				//console.log("NOT RELEVANT: " + app.name);
+				continue;
+			}
+		}
+
+		if (apps.length > 6) {
+			return apps;
+		} else {
+			if (backupApps.length > 0) {
+				return apps.concat(backupApps);
+			} else {
+				// Check if search has a category
+				// if so, return original results
+				var q = DDG.get_query();
+				var matches = CATEGORIES.map(
+					function(w){
+						var word = new RegExp(w, "i");
+						return q.match(word) ? 1 : 0;
+					}
+				);
+				return (matches.indexOf(1) !== -1) ? results : null;
+			}
+		}
+	}
+
+
 	/********/
 	/* Main */
 	/********/
@@ -518,7 +568,7 @@ function ddg_spice_quixey(data) {
 	if (data && isProp(data, "results") && data.results.length > 0) {
 		// store the apps
 		state.apps = getRelevant(data.results);
-		if (state.apps.length < 1) return;
+		if (state.apps === null) return;
 		// main container
 		var container = d.createElement("div");
 		var div = d.createElement("div");
