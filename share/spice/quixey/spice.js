@@ -27,7 +27,7 @@ function ddg_spice_quixey(data) {
 		state.inc = Math.floor(frame_width / state.thumb_width);
 		// stretch li to fit max
 		var extra = frame_width - state.thumb_width * state.inc;
-		state.li_width += Math.floor(extra / state.inc);
+		state.li_width += Math.ceil(extra / state.inc);
 		// last video
 		var linc = state.apps.length % state.inc;
 		state.last = Math.max(0, state.apps.length - (linc ? linc : state.inc));
@@ -195,7 +195,7 @@ function ddg_spice_quixey(data) {
 			YAHOO.util.Dom.addClass(img_anchor, "app_edition_icon");
 			YAHOO.util.Dom.addClass(edition, "app_edition");
 			if (current.rating != null) {
-				rating = app.rating.toFixed(1);
+				rating = current.rating.toFixed(1);
 				YAHOO.util.Dom.setAttribute(edition, "title", current.name + " - Rating: " + rating + " - Price: " + price);
 			} else {
 				YAHOO.util.Dom.setAttribute(edition, "title", current.name + " - Price: " + price);
@@ -513,7 +513,7 @@ function ddg_spice_quixey(data) {
 			};
 
 		for (var i in results) {
-			// check to make sure this is actualy a key
+			// check to make sure this is actually a key
 			if (isProp(results, i)){
 				app = results[i];
 			} else {
@@ -589,7 +589,7 @@ function ddg_spice_quixey(data) {
 			var q = data.q.replace(/\s/g, "+");
 		}
 		// grab original query for header
-				var query = DDG.get_query();
+		var query = DDG.get_query();
 		// ddg: add to page
 		var items = [ {
 			a: container.innerHTML,
