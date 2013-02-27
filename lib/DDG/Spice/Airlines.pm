@@ -13,8 +13,9 @@ handle query_lc => sub {
     # grammar - apostrophes specifically: 'chuck's regional charter'
     # air, express, airlines, airways, aviation, regional, service, cargo, transport, aircraft, ventures, charter, international, world 
     my %airlines = ();
-    open(IN, "</usr/local/ddg/sources/flightstats/airlines.txt");
-    while (my $line = <IN>) {
+    my @lines = share('airlines.txt')->slurp;
+
+    foreach my $line (@lines) {
       chomp($line);
       my @line = split(/,/, $line);
 
@@ -22,7 +23,6 @@ handle query_lc => sub {
       $airlines{lc $line[1]} = $line[0]; #American (Airlines <- regex removed) => AA
       $airlines{lc $line[0]} = $line[0]; #AA => AA
     }
-    close(IN);
 
     if(exists $airlines{$2}) {
         my $airline = $airlines{$2};
