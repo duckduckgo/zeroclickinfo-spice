@@ -111,7 +111,7 @@
             regex = /translate\/my_memory\/(.+)\/(.+)/;
             match = scripts[i].src.match(regex);
 
-            if (match !== undefined) {
+            if (match !== undefined && match !== null) {
                 return [match[1], match[2]];
             }
         }
@@ -167,10 +167,12 @@
             return;
         }
 
-        items[0].h = langs[to] + ' translations for <i>' + word + '</i>';
-        items[0].s = 'Wordreference.com';
-        items[0].u = 'http://wordreference.com/' + dict + '/' + word;
-        items[0].force_big_header = true;
+        items[0] = {
+            h: langs[to] + ' translations for <i>' + word + '</i>',
+            s: 'Wordreference.com',
+            u: 'http://wordreference.com/' + dict + '/' + word,
+            force_big_header: true
+        }
 
         if (ir.Error) {
             return;
@@ -200,10 +202,10 @@
             match;
 
         for (var i = 0; i < scripts.length; i++) {
-            regex = /translate\/wordreference\/(.+)\/(.+)/;
+            regex = /translate\/wordreference\/(.+?)\/(.+)/;
             match = scripts[i].src.match(regex);
 
-            if (match !== undefined || match !== null) {
+            if (match !== undefined && match !== null) {
                 return [match[1], match[2]];
             }
         }
@@ -259,5 +261,4 @@
         text = '<li>' + t.term + '</li>';
         return text;
     }
-
 }(this));
