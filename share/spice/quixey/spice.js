@@ -531,16 +531,16 @@ function ddg_spice_quixey(data) {
 
 
 			// check if this app result is relevant
-			if (DDG.isRelevant(app.name, SKIP_ARRAY)) {
+			if (DDG.isRelevant(app.name.toLowerCase(), SKIP_ARRAY)) {
 				// console.log("RELEVANT: " + app.name);
 				apps.push(app);
 			} else if (isProp(app, "short_desc")) {
-				if (DDG.isRelevant(app.short_desc, SKIP_ARRAY)) {
+				if (DDG.isRelevant(app.short_desc.toLowerCase(), SKIP_ARRAY)) {
 					// console.log("BACKUP APP SHORT DESC: " + app.name);
 					backupApps.push(app);
 				}
 			} else if (isProp(app.custom, "category")) {
-				if (DDG.isRelevant(app.custom.category, SKIP_ARRAY)) {
+				if (DDG.isRelevant(app.custom.category.toLowerCase(), SKIP_ARRAY)) {
 					// console.log("BACKUP APP CATEGORY: " + app.name);
 					backupApps.push(app);
 				}
