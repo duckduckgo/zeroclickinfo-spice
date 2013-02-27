@@ -1,50 +1,50 @@
-function hackageDataCallback(re) {    
-    var pkgName = re['packageDescription']['package']['pkgName'];
-    var pkgVersion = re['packageDescription']['package']['pkgVersion'];
-    var synopsis = re['packageDescription']['synopsis'];
-    //var description = re['packageDescription']['description'];
-    var author = re['packageDescription']['author'];
-    var homepage = re['packageDescription']['homepage'];
-    var license = re['packageDescription']['license'];
+function hackageDataCallback(hackage) {
+    "use strict";
 
-    synopsis = synopsis.replace(/\.$/,"");
+    var pkgName = hackage.packageDescription.package.pkgName,
+        synopsis = hackage.packageDescription.synopsis,
+        author = hackage.packageDescription.author,
+        homepage = hackage.packageDescription.homepage,
+        license = hackage.packageDescription.license,
+        library = hackage.condLibrary,
+        executable = hackage.condExecutables;
 
-    var library = re['condLibrary'];
-    var executable = re['condExecutables'];
+        var type;
+        if (library && (executable.length > 0)) {
+            type = "library and program";
+        } else if (executable.length > 0) {
+            type = "program";
+        } else if (library) {
+            type = "library";
+        } else {
+            type = "something";
+        }    
 
-    var type;
-    if (library && (executable.length > 0)) {
-	    type = "library and program";
-    } else if (executable.length > 0) {
-	    type = "program";
-    } else if (library) {
-	    type = "library";
-    } else {
-	    type = "something";
-    }    
+        var items = [[]];
+        var url = "http://hackage.haskell.org/package/" + pkgName;
 
-    var url = "http://hackage.haskell.org/package/" + pkgName;
+        items[0] = {
+            h: "Hackage (" + pkgName + ")",
+            s: "Hackage",
+            u: url,
+            force_big_header: true
+        };
 
-    items = new Array();
-    items[0] = new Array();
-    items[0]["a"] = h(synopsis) + "<br/>";
-    if (author) {
-    	items[0]["a"] += "by " + h(author) + "<br/>";
-    }
-    if (license) {
-    	items[0]["a"] += h(license) + " &bull; ";
-    }
-    if (homepage) {
-    	items[0]["a"] += "<a href=\"" + h(homepage) + "\">Homepage</a> &bull; ";
-    }
-    items[0]["h"] = "The haskell " + h(type) + " »" + h(pkgName) + "« version " + h(pkgVersion);
-    items[0]["s"] = "Hackage";
-    items[0]["u"] = url;
-        
-    nra(items);
-};
-
-function h(txt) {
-        return txt.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        if(synopsis.match(/\.$/)) {
+            synopsis += "<br>";
+        } else {
+            synopsis += ".<br>";
+        }
+        items[0].a = synopsis;
+        if (author) {
+            items[0].a += "Author: " + author;
+        }
+        if(homepage) {
+            items[0].a += " (<a href='" + homepage + "'>Homepage</a>)" + "<br>";
+        }
+        if (license) {
+            items[0].a += "License: " + license + " ";
+        }
+        nra(items, 1, 1);
 }
 
