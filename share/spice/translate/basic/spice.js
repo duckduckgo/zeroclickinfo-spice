@@ -84,6 +84,8 @@
             regex = /translate\/([a-z]+)\/(.+)\/(.+)/;
             match = scripts[i].src.match(regex);
 
+            console.log(match);
+
             if (match !== undefined && match !== null) {
                 return [match[2], match[3]];
             }
