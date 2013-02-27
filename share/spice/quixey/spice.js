@@ -525,15 +525,18 @@ function ddg_spice_quixey(data) {
 			}
 
 			// check if this app result is relevant
-			if (DDG.isRelevant(app.name, SKIP_ARRAY, 3)) {
+			if (DDG.isRelevant(app.name, SKIP_ARRAY)) {
+				// console.log("RELEVANT: " + app.name);
 				apps.push(app);
 			} else if (isProp(app, "short_desc")) {
-				if (DDG.isRelevant(app.short_desc, SKIP_ARRAY, 3)) {
+				if (DDG.isRelevant(app.short_desc, SKIP_ARRAY)) {
+					// console.log("BACKUP APP SHORT DESC: " + app.name);
 					backupApps.push(app);
 					//console.log("BACKUP APP SHORT DESC: " + app.name);
 				}
 			} else if (isProp(app.custom, "category")) {
-				if (DDG.isRelevant(app.custom.category, SKIP_ARRAY, 3)) {
+				if (DDG.isRelevant(app.custom.category, SKIP_ARRAY)) {
+					// console.log("BACKUP APP CATEGORY: " + app.name);
 					backupApps.push(app);
 					//console.log("BACKUP APP CATEGORY: " + app.name);
 				}
@@ -541,26 +544,36 @@ function ddg_spice_quixey(data) {
 				//console.log("NOT RELEVANT: " + app.name);
 				continue;
 			}
+			continue;
 		}
 
 		if (apps.length > 6) {
 			return apps;
-		} else {
-			if (backupApps.length > 0) {
-				return apps.concat(backupApps);
-			} else {
-				// Check if search has a category
-				// if so, return original results
-				var q = DDG.get_query();
-				var matches = CATEGORIES.map(
-					function(w){
-						var word = new RegExp(w, "i");
-						return q.match(word) ? 1 : 0;
-					}
-				);
-				return (matches.indexOf(1) !== -1) ? results : null;
-			}
 		}
+
+		// Return less than 1 page of very relevant results
+		// and some supplemental results
+		// console.log(backupApps);
+		if (backupApps.length > 0) {
+			return apps.concat(backupApps);
+		}
+
+		// Return less than one page of very relevant results
+		if (apps.length > 0) {
+			return apps;
+		}
+
+		// No very relevant results,
+		// fallback to check if it was a
+		// categorical search Eg."free social apps for android"
+		var q = DDG.get_query();
+		var matches = CATEGORIES.map(
+			function(w){
+				var word = new RegExp(w, "i");
+				return q.match(word) ? 1 : 0;
+			}
+		);
+		return (matches.indexOf(1) !== -1) ? results : null;
 	}
 
 
