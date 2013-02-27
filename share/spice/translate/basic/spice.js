@@ -249,9 +249,10 @@
     function format_translations_wordreference(ts, word, swap) {
         var text = '';
         var origi, first, secnd;
+        var limit = 0;
 
         for (var i in ts) {
-            if(hasOwn.call(ts, i)) {
+            if(hasOwn.call(ts, i) && limit < 3) {
                 origi = ts[i].OriginalTerm;
                 first = ts[i].FirstTranslation;
                 secnd = ts[i].SecondTranslation;
@@ -268,6 +269,7 @@
                 if ((secnd !== undefined) && (origi.term !== secnd.term) && !swap) {
                     text += format_translation_wordreference(secnd);
                 }
+                limit += 1;
             }
         }
 
