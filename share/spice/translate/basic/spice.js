@@ -88,7 +88,7 @@
             return;
         }
 
-        items[0].h = langs[to] + ' translations for <i>' + word + '</i>';
+        items[0].h = langs[to] + ' translations for ' + word;
         items[0].s = 'MyMemory';
         items[0].u = 'http://mymemory.translated.net/s.php?q=' + word + '&sl=' + from + '&tl=' + to;
         items[0].force_big_header = true;
