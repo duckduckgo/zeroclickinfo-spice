@@ -81,6 +81,10 @@ function ddg_spice_quixey(data) {
 		}
 	}
 
+	function toHTTPS(url) {
+		return url.replace("http://", "https://");
+	}
+
 	/******************/
 	/* Event Handlers */
 	/******************/
@@ -121,7 +125,7 @@ function ddg_spice_quixey(data) {
 		var img_anchor = d.createElement("a");
 		var img = d.createElement("img");
 		img_anchor.href = app.url || app.developer.url || dir_url;
-		img.src = app.icon_url;
+		img.src = toHTTPS(app.icon_url);
 		var info = d.createElement("div");
 		var name_wrap = d.createElement("div");
 		var details = d.createElement("div");
@@ -186,7 +190,7 @@ function ddg_spice_quixey(data) {
 			var img_anchor = d.createElement("a");
 			img_anchor.href = current.url || dir_url;
 			var img = d.createElement("img");
-			img.src = current.icon_url;
+			img.src = toHTTPS(current.icon_url);
 			img.width = "25";
 			img.height = "25";
 			var edition = d.createElement("div");
@@ -221,7 +225,7 @@ function ddg_spice_quixey(data) {
 			if (current.id === 2004 || current.id === 2015) {
 				img.src = "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
 			} else {
-				img.src = current.icon_url;
+				img.src = toHTTPS(current.icon_url);
 			}
 			YAHOO.util.Dom.addClass(img, "platform_icon");
 			YAHOO.util.Dom.addClass(name, "platform_name");
@@ -302,7 +306,7 @@ function ddg_spice_quixey(data) {
 			YAHOO.util.Event.addListener(a, "click", clickA(app));
 			img = d.createElement("img");
 			if (!isProp(app, "icon_url")) continue;
-			img.src = app.icon_url;
+			img.src = toHTTPS(app.icon_url);
 			p = d.createElement("p");
 			if (!isProp(app, "name")) continue;
 			span = d.createElement("span");
