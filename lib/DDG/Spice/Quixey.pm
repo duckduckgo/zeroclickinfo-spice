@@ -1,7 +1,7 @@
 package DDG::Spice::Quixey;
 
 use DDG::Spice;
-use JSON;
+use JSON::XS;
 use String::Trim;
 use List::Uniq ':all';
 
