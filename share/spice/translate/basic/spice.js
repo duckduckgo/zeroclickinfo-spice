@@ -17,6 +17,24 @@
         'es': 'Spanish',
         'tr': 'Turkish'
     };
+
+    var convert = {
+        "cs": "cz",
+        "ar": "ar",
+        "zh": "zh",
+        "en": "en",
+        "fr": "fr",
+        "el": "gr",
+        "it": "it",
+        "ja": "ja",
+        "ko": "ko",
+        "pl": "pl",
+        "pt": "pt",
+        "ro": "ro",
+        "es": "es",
+        "tr": "tr"
+    };
+
     var hasOwn = ({}).hasOwnProperty;
     var translations = [];
 
@@ -154,23 +172,6 @@
         return text;
     }
 
-    var convert = {
-        "cs": "cz",
-        "ar": "ar",
-        "zh": "zh",
-        "en": "en",
-        "fr": "fr",
-        "el": "gr",
-        "it": "it",
-        "ja": "ja",
-        "ko": "ko",
-        "pl": "pl",
-        "pt": "pt",
-        "ro": "ro",
-        "es": "es",
-        "tr": "tr"
-    };
-
     /* Wordreference */
     root.ddg_spice_translate_wordreference = function(ir) {
         var items = [[]],
@@ -233,9 +234,9 @@
 
     function format_term_wordreference(term, word) {
         if(term.PrincipalTranslations || term.Entries) {
-            var text = format_translations_wordreference((term.PrincipalTranslations || term.Entries), word);
+            var text = format_translations_wordreference((term.PrincipalTranslations || term.Entries), word, false);
         } else if(term.OtherSideEntries) {
-            var text = format_translations_wordreference(term.OtherSideEntries, word, false);
+            var text = format_translations_wordreference(term.OtherSideEntries, word, true);
         }
 
         if (term.AdditionalTranslations) {
