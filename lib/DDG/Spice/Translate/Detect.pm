@@ -11,12 +11,16 @@ spice to   => 'http://ws.detectlanguage.com/0.2/detect?q=$1&key={{ENV{DDG_SPICE_
 spice from => '(.+)\/(.+)';
 spice wrap_jsonp_callback => 1;
 
-triggers query_lc => qr/^translate (.+) to ($dicts)$/;
+triggers query_lc => qr/^translate (\w+) to ($dicts)$|^translate (\w+)$/;
 
 handle matches => sub {
-	my ($word, $to) = @_;
-
-	return ($word, shorten_lang($to))
+	if($1 && $2) {
+		my ($word, $to) = ($1, $2);
+		return ($word, shorten_lang($to));
+	} elsif($3) {
+		my ($word) = ($3);
+		return ($word, substr($lang->locale, 0, 2));
+	}
 };
 
 sub shorten_lang {
@@ -39,7 +43,7 @@ sub shorten_lang {
 		'turkish'    => 'tr'
 	};
 
-	return $langs -> {$lang} ? $langs -> {$lang} : $lang;
+	return $langs->{$lang} ? $langs->{$lang} : $lang;
 }
 
 1;

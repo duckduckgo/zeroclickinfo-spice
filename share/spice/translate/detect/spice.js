@@ -17,7 +17,7 @@
         'es': 'Spanish',
         'tr': 'Turkish'
     };
-    var hasOwn = Object.prototype.hasOwnProperty;
+    var hasOwn = ({}).hasOwnProperty;
     var translations = [];
 
     root.ddg_spice_translate_detect = function(ir) {
@@ -150,9 +150,7 @@
             translations.push(t);
         }
 
-        text = '<li><i>' + t + '</i>';
-        text += '</li>';
-
+        text = '<li>' + t + '</li>';
         return text;
     }
 
@@ -214,7 +212,7 @@
     }
 
     function format_term_wordreference(term) {
-        var text = format_translations_wordreference(term.Entries);
+        var text = format_translations_wordreference(term.PrincipalTranslations);
 
         if (term.AdditionalTranslations) {
             text += format_translations_wordreference(term.AdditionalTranslations);
@@ -258,11 +256,7 @@
             translations.push(t.term);
         }
 
-        text = '<li><i>' + t.term + '</i>';
-
-        text += '</li>';
-
+        text = '<li>' + t.term + '</li>';
         return text;
     }
-
 }(this));
