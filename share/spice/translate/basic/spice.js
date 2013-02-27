@@ -34,7 +34,7 @@
         } else {
             base = '/js/spice/translate/wordreference/';
 
-            nrj(base + from + to + '/' + words);
+            nrj(base + convert[from] + to + '/' + words);
         }
     };
 
@@ -154,6 +154,23 @@
         return text;
     }
 
+    var convert = {
+        "cs": "cz",
+        "ar": "ar",
+        "zh": "zh",
+        "en": "en",
+        "fr": "fr",
+        "el": "gr",
+        "it": "it",
+        "ja": "ja",
+        "ko": "ko",
+        "pl": "pl",
+        "pt": "pt",
+        "ro": "ro",
+        "es": "es",
+        "tr": "tr"
+    };
+
     /* Wordreference */
     root.ddg_spice_translate_wordreference = function(ir) {
         var items = [[]],
@@ -167,22 +184,23 @@
             return;
         }
 
+        dict = convert[dict.slice(0, 2)] + to;
         items[0] = {
-            h: langs[to] + ' translations for <i>' + word + '</i>',
+            h: langs[to] + ' translations for ' + word,
             s: 'Wordreference.com',
             u: 'http://wordreference.com/' + dict + '/' + word,
             force_big_header: true
-        }
+        };
 
         if (ir.Error) {
             return;
         }
 
         text = '<ul>';
-        text += format_term_wordreference(ir.term0);
+        text += format_term_wordreference(ir.term0, word);
 
         if (ir.term1 !== undefined) {
-            text += format_term_wordreference(ir.term1);
+            text += format_term_wordreference(ir.term1, word);
         }
 
         text += '</ul>';
@@ -206,24 +224,28 @@
             match = scripts[i].src.match(regex);
 
             if (match !== undefined && match !== null) {
-                return [match[1], match[2]];
+                return [match[1], decodeURIComponent(match[2])];
             }
         }
 
         return ['', ''];
     }
 
-    function format_term_wordreference(term) {
-        var text = format_translations_wordreference(term.PrincipalTranslations);
+    function format_term_wordreference(term, word) {
+        if(term.PrincipalTranslations || term.Entries) {
+            var text = format_translations_wordreference((term.PrincipalTranslations || term.Entries), word);
+        } else if(term.OtherSideEntries) {
+            var text = format_translations_wordreference(term.OtherSideEntries, word, false);
+        }
 
         if (term.AdditionalTranslations) {
-            text += format_translations_wordreference(term.AdditionalTranslations);
+            text += format_translations_wordreference(term.AdditionalTranslations, word, true);
         }
 
         return text;
     }
 
-    function format_translations_wordreference(ts) {
+    function format_translations_wordreference(ts, word, swap) {
         var text = '';
         var origi, first, secnd;
 
@@ -233,11 +255,16 @@
                 first = ts[i].FirstTranslation;
                 secnd = ts[i].SecondTranslation;
 
+                if(swap) {
+                    origi = ts[i].FirstTranslation;
+                    first = ts[i].OriginalTerm;
+                }
+
                 if (origi.term !== first.term) {
                     text += format_translation_wordreference(first);
                 }
 
-                if ((secnd !== undefined) && (origi.term !== secnd.term)) {
+                if ((secnd !== undefined) && (origi.term !== secnd.term) && !swap) {
                     text += format_translation_wordreference(secnd);
                 }
             }
