@@ -198,7 +198,7 @@
             }
         }
 
-        function header(date) {
+        function check_header(date) {
             if(date === "" || date === undefined || date === null) {
                 return "";
             } else {
@@ -206,15 +206,31 @@
             }
         }
 
+        function check_year(year) {
+            if(year === "" || year === undefined || year === null) {
+                return "";
+            } else {
+                return " (" + year + ")";
+            }
+        }
+
+        function check_names(names) {
+            if(names.length === 0) {
+                return "";
+            } else {
+                return ", starring " + castHTML(names);
+            }
+        }
+
         // Build the output.
-        var output = collection.result.title + " (" + collection.result.year + ") is " + collection.rating[0] +
+        var output = collection.result.title + check_year(collection.result.year) + " is " + collection.rating[0] +
                      " " + collection.rating[1] + " movie (" + getTomato(collection.result) + getCriticsScore(collection.result) +
-                     getAudienceScore(collection.result) + "), starring " + castHTML(collection.names) + ". " + collection.synopsis,
+                     getAudienceScore(collection.result) + ")" + check_names(collection.names) + ". " + collection.synopsis,
             items = [[]];
 
         items[0] = {
             a: output,
-            h: collection.header + header(collection.date),
+            h: collection.header + check_header(collection.date),
             s: 'Rotten Tomatoes',
             u: collection.result.links.alternate,
             i: collection.poster
