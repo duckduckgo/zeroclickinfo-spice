@@ -113,11 +113,15 @@
             rDate, 
             opened,
             releaseDate;
-        if (result.release_dates.theater) {
+        console.log(result.release_dates);
+        console.log(currentTime.getFullYear());
+        console.log(result.release_dates.theater);
+        console.log( result.year);
+        if (result.release_dates && result.release_dates.theater) {
             rDate = result.release_dates.theater.split("-");
             opened = new Date(rDate[0], rDate[1] - 1, rDate[2], 0, 0, 0);
             releaseDate = (currentTime - opened < 0) ? opened.toDateString().slice(4) : result.year;
-        } else if (result.year > currentTime.getFullYear()) {
+        } else if (result.year !== 0 && result > currentTime.getFullYear()) {
             releaseDate = result.year;
         }
         return releaseDate;
@@ -194,6 +198,14 @@
             }
         }
 
+        function header(date) {
+            if(date === "" || date === undefined || date === null) {
+                return "";
+            } else {
+                return " (" + date + ")";
+            }
+        }
+
         // Build the output.
         var output = collection.result.title + " (" + collection.result.year + ") is " + collection.rating[0] +
                      " " + collection.rating[1] + " movie (" + getTomato(collection.result) + getCriticsScore(collection.result) +
@@ -202,7 +214,7 @@
 
         items[0] = {
             a: output,
-            h: collection.header + " (" + collection.date + ")",
+            h: collection.header + header(collection.date),
             s: 'Rotten Tomatoes',
             u: collection.result.links.alternate,
             i: collection.poster
