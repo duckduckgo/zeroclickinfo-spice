@@ -551,22 +551,17 @@ function ddg_spice_quixey(data) {
 			continue;
 		}
 
-		// Return more than one page of very relevant results
+		// Return relevant results
 		// console.log(apps);
-		if (apps.length > 6) {
+		if (apps.length > 0) {
 			return apps;
 		}
 
-		// Return less than 1 page of very relevant results
+		// Returnrelevant results
 		// and some supplemental results
 		// console.log(backupApps);
 		if (backupApps.length > 0) {
-			return apps.concat(backupApps);
-		}
-
-		// Return less than one page of very relevant results
-		if (apps.length > 0) {
-			return apps;
+			return backupApps;
 		}
 
 		// No very relevant results,
