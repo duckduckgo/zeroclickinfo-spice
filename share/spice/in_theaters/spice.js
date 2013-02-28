@@ -384,7 +384,7 @@ function ddg_spice_in_theaters(rotten) {
             match;
 
         for (var i = 0; i < scripts.length; i += 1) {
-            regex = /in_theaters\/in_theaters\/([A-Za-z]{2})$/;
+            regex = /in_theaters\/(?:in_theaters|opening)\/([A-Za-z]{2})$/;
             match = scripts[i].src.match(regex);
 
             if (match !== undefined && match !== null) {

@@ -28,6 +28,7 @@ my %movies = (
 	'watch a movie' => 1,
 	'opening soon in theaters' => 0,
 	'opening soon in theatres' => 0,
+	'opening movies' => 0,
 	'r movies opening' => 0,
 	'pg movies opening' => 0,
 	'pg-13 movies opening' => 0,
