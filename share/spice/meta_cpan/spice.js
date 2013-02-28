@@ -1,5 +1,4 @@
 function ddg_spice_meta_cpan(ir) {
-	console.log(ir);	
 	if (ir["message"]) {
 		return;
 	}
