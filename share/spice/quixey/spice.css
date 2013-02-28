@@ -342,9 +342,16 @@ div#pagination.minimal {
   text-decoration: none;
 }
 
+#quixey .app_platform img.platform_icon{
+  max-width: 13px;
+  margin: 0 2px 0 0;
+  vertical-align: text-top;
+}
+
 #quixey .app_edition{
   float: left;
   margin-right: 10px;
+  margin-bottom: 3px;
 }
 
 #quixey .app_edition_price{
