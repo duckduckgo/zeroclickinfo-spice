@@ -134,14 +134,14 @@ function ddg_spice_quixey(data) {
 		name.href = app.url;
 		name.innerHTML = shorten(app.name, 80);
 		var price = d.createElement("div");
-		price.innerHTML = getPrice(app.editions);
+		price.innerHTML = getPriceRange(app.editions);
 		var rating = d.createElement("div");
-		if (app.rating != null) {
+		if (app.rating != null)
 			rating.innerHTML = getRating(app);
-		}
 		var description = d.createElement("div");
 		var clear = d.createElement("div");
-		if (isProp(app, "short_desc")) description.innerHTML += shorten(app.short_desc, 180);
+		if (isProp(app, "short_desc")) 
+			description.innerHTML += shorten(app.short_desc, 180);
 		name_wrap.appendChild(name);
 		name_wrap.appendChild(rating);
 		name_wrap.appendChild(price);
@@ -187,57 +187,86 @@ function ddg_spice_quixey(data) {
 		var editions = d.createElement("div");
 		for (var i in editions_array) {
 			var current = editions_array[i];
-			var img_anchor = d.createElement("a");
-			img_anchor.href = current.url || dir_url;
-			var img = d.createElement("img");
-			img.src = toHTTPS(current.icon_url);
-			img.width = "25";
-			img.height = "25";
+			// var price = d.createElement("a");
 			var edition = d.createElement("div");
-			var price = "$" + (current.cents / 100).toFixed(2).toString();
-			price = price.replace("$0.00", "FREE");
-			YAHOO.util.Dom.addClass(img_anchor, "app_edition_icon");
 			YAHOO.util.Dom.addClass(edition, "app_edition");
 			if (current.rating != null) {
 				rating = current.rating.toFixed(1);
-				YAHOO.util.Dom.setAttribute(edition, "title", current.name + " - Rating: " + rating + " - Price: " + price);
+				YAHOO.util.Dom.setAttribute(edition, "title", current.name + " - Rating: " + rating);
 			} else {
-				YAHOO.util.Dom.setAttribute(edition, "title", current.name + " - Price: " + price);
+				YAHOO.util.Dom.setAttribute(edition, "title", current.name);
 			}
-			img_anchor.appendChild(img);
-			edition.appendChild(img_anchor);
-			edition.innerHTML += getPlatforms(current.platforms, current.url);
+
+			// Only show indivual prices if they are different
+			if (editions_array.length > 1 && getPriceRange(editions_array).match("-") != null){
+				var price = ("$" + (current.cents / 100).toFixed(2).toString()).replace("$0.00", "FREE");
+				edition.innerHTML += getPlatforms(current.platforms, current.url, price);
+			} else {
+				edition.innerHTML += getPlatforms(current.platforms, current.url);
+			}
 			editions.appendChild(edition);
 		}
 		return editions.innerHTML;
 	}
 	// format the list of platforms each app is available on
-	function getPlatforms(platforms_array, url) {
-		var platforms = d.createElement("div");
+	function getPlatforms(p_array, url, price) {
+		var platforms_array = p_array;
+			platforms = d.createElement("div"),
+			has_apple = 0,
+			has_ios = false,
+			ios = {
+				name: "iOS",
+				id: "ios"
+			}
+
+		// Check for presence of both iPhone and iPad
+		// if so, add "iOS" to array and replace them
+		// with custom "iOS" platform
+ 		for (var i in platforms_array) {
+			if (platforms_array[i].id === 2004 || platforms_array[i].id === 2015) {
+				has_apple++;
+			}
+
+			if (platforms_array[i].id === "ios"){
+				has_ios = true;
+				break;
+			}
+
+		}
+		if (has_apple > 1 && has_ios === false) {
+			platforms_array.push(ios);
+		}
+
 		for (var i in platforms_array) {
 			var current = platforms_array[i];
+
+			if ((current.id === 2004 || current.id === 2015) && has_apple > 1) {
+				continue;
+			}
+
 			var platform = d.createElement("a");
-			if (url != undefined) platform.href = url;
+			if (url != undefined)
+				platform.href = url;
 			var img = d.createElement("img");
-			var name = d.createElement("span");
-			name.innerHTML = current.name;
 			// Get proper apple icon
-			if (current.id === 2004 || current.id === 2015) {
+			if (current.id === 2004 || current.id === 2015 || current.id === "ios") {
 				img.src = "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
 			} else {
 				img.src = toHTTPS(current.icon_url);
 			}
 			YAHOO.util.Dom.addClass(img, "platform_icon");
-			YAHOO.util.Dom.addClass(name, "platform_name");
 			YAHOO.util.Dom.addClass(platform, "app_platform");
 			platform.appendChild(img);
-			platform.appendChild(name);
+			platform.innerHTML += current.name;
+			if (price !== undefined){
+				platform.innerHTML += " - " + price;
+			}
 			platforms.appendChild(platform);
 		}
 		return platforms.innerHTML;
 	}
 	// determine app price
-	function getPrice(editions_array) {
+	function getPriceRange(editions_array) {
 		var low = editions_array[0].cents;
 		var high = editions_array[0].cents;
 		var temp, range, lowp, highp;
@@ -298,17 +327,21 @@ function ddg_spice_quixey(data) {
 			YAHOO.util.Dom.addClass(li, "item");
 			YAHOO.util.Dom.setStyle(li, "width", state.li_width + "px");
 			app = state.apps[i];
-			if (!isProp(app, "id")) continue;
+			if (!isProp(app, "id"))
+				continue;
 			id = app.id;
-			if (!isProp(app, "url")) continue;
+			if (!isProp(app, "url"))
+				continue;
 			a = d.createElement("a");
 			a.href = app.url;
 			YAHOO.util.Event.addListener(a, "click", clickA(app));
 			img = d.createElement("img");
-			if (!isProp(app, "icon_url")) continue;
+			if (!isProp(app, "icon_url"))
+				continue;
 			img.src = toHTTPS(app.icon_url);
 			p = d.createElement("p");
-			if (!isProp(app, "name")) continue;
+			if (!isProp(app, "name"))
+				continue;
 			span = d.createElement("span");
 			span.innerHTML = shorten(app.name, 40);
 			p.appendChild(img);
@@ -357,7 +390,7 @@ function ddg_spice_quixey(data) {
 		var dots = d.getElementById("dots");
 		var n = Math.ceil(state.apps.length / state.inc);
 		if (n > 4 && state.win < state.min_win) // small screen
-		return showPage(dots, n);
+			return showPage(dots, n);
 		dots = dots.childNodes;
 		var l = dots.length;
 		var k = 0;
@@ -417,17 +450,18 @@ function ddg_spice_quixey(data) {
 			dots.appendChild(lin);
 		}
 	}
-	
+
 	/*****************/
 	/* Preview Embed */
 	/*****************/
-	
+
 	// Add app preview to screen
 	function addPreview(app) {
 		var preview, id = app.id;
 		if (!id) {
 			preview = d.getElementById("preview");
-			if (!preview) return;
+			if (!preview)
+				return;
 			id = YAHOO.util.Dom.getAttribute(preview, "app");
 		}
 		preview = d.createElement("div");
@@ -443,7 +477,7 @@ function ddg_spice_quixey(data) {
 		YAHOO.util.Dom.setStyle("emb", "display", "block");
 	}
 
-	
+
 	/*******************/
 	/* Relevancy Check */
 	/*******************/

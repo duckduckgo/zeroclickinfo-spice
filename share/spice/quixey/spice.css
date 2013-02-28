@@ -179,7 +179,7 @@ div#pagination.minimal {
   display: none;
   background: #f9f9f9;
   border-bottom: 1px solid #e1e1e1;
-  padding: 7px;
+  padding: 7px 7px 10px;
 }
 
 #preview {
@@ -332,32 +332,34 @@ div#pagination.minimal {
   margin-right: 3px;
   background: #EEE;
   border: 1px solid #DDD;
+  color: black;
 }
 
 #quixey .app_platform:hover {
-  border: 1px solid darkblue;
-  background: lightblue;
+  border: 1px solid #333;
+  background: #ddd;
   cursor: pointer;
-}
-
-#quixey .app_platform img.platform_icon{
-  max-width: 13px;
-  margin: 0 2px 0 0;
-  vertical-align: text-top;
+  text-decoration: none;
 }
 
 #quixey .app_edition{
   float: left;
   margin-right: 10px;
-  margin-bottom: 3px;
 }
 
-#quixey .app_edition_icon{
-  height: 25px;
-  width: 25px;
+#quixey .app_edition_price{
+  height: 15px;
   display: inline-block;
   vertical-align: top;
-  margin-right: 3px;
+	padding: 5px 0px;
+}
+
+#quixey .app_edition_price::before {
+	content: " - ";
+	height: 15px;
+  display: inline-block;
+  vertical-align: top;
+	padding: 5px;
 }
 
 #quixey .platform_icon{
