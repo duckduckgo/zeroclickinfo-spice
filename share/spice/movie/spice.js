@@ -63,8 +63,12 @@
     // plugin.
     function getSynopsis(result) {
         var synopsis;
-        if (result.synopsis) {
+        if (result.synopsis && result.synopsis.length <= 135) {
+            synopsis = result.synopsis;
+        } else if (result.synopsis) {
             synopsis = result.synopsis.substring(0, 135) + "...";
+        } else if (result.critics_consensus && result.critics_consensus.length <= 135) {
+            synopsis = result.critics_consensus;
         } else if (result.critics_consensus && result.critics_consensus.length > 0) {
             synopsis = result.critics_consensus.substring(0, 135) + "...";
         } else {
@@ -113,10 +117,6 @@
             rDate, 
             opened,
             releaseDate;
-        console.log(result.release_dates);
-        console.log(currentTime.getFullYear());
-        console.log(result.release_dates.theater);
-        console.log( result.year);
         if (result.release_dates && result.release_dates.theater) {
             rDate = result.release_dates.theater.split("-");
             opened = new Date(rDate[0], rDate[1] - 1, rDate[2], 0, 0, 0);
