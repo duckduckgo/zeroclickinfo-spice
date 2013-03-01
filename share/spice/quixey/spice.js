@@ -551,49 +551,37 @@ function ddg_spice_quixey(data) {
 			};
 
 		for (var i in results) {
-			// console.log("IS RELEVANT? : " + app.name);
-			// console.log(DDG.isRelevant(app.name, SKIP_ARRAY, 3));
 
 			// check to make sure this is actually a key
 			if (isProp(results, i)){
-				// console.log(results[i]);
 				app = results[i];
 			} else {
-				// console.log(" NOT A PROPERTY" + i);
 				continue;
 			}
 
-
 			// check if this app result is relevant
 			if (DDG.isRelevant(app.name.toLowerCase(), SKIP_ARRAY)) {
-				// console.log("RELEVANT: " + app.name);
 				apps.push(app);
 			} else if (isProp(app, "short_desc")) {
 				if (DDG.isRelevant(app.short_desc.toLowerCase(), SKIP_ARRAY)) {
-					// console.log("BACKUP APP SHORT DESC: " + app.name);
 					backupApps.push(app);
 				}
 			} else if (isProp(app.custom, "category")) {
 				if (DDG.isRelevant(app.custom.category.toLowerCase(), SKIP_ARRAY)) {
-					// console.log("BACKUP APP CATEGORY: " + app.name);
 					backupApps.push(app);
 				}
 			} else{
-				// console.log("NOT RELEVANT: " + app.name);
 				continue;
 			}
-			continue;
 		}
 
 		// Return relevant results
-		// console.log(apps);
 		if (apps.length > 0) {
 			return apps;
 		}
 
 		// Returnrelevant results
 		// and some supplemental results
-		// console.log(backupApps);
 		if (backupApps.length > 0) {
 			return backupApps;
 		}

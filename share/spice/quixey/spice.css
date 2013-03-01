@@ -21,11 +21,6 @@
   margin-bottom: -1px;
 }
 
-#attribution {
-  margin: 15px;
-  display: block !important;
-}
-
 #quixey:after {
   visibility: hidden;
   display: block;
@@ -196,14 +191,6 @@ div#pagination.minimal {
   vertical-align: middle;
 }
 
-#dots p {
-  margin: 0px;
-  font-weight: normal;
-  font-size: 13px;
-  color: #bfbfbf;
-  padding: 0 2px;
-}
-
 #dots a {
   padding: 0 2px;
   font-size: 25px;
@@ -215,24 +202,7 @@ div#pagination.minimal {
   color: #1168cc;
 }
 
-#gr {
-  position: absolute;
-  width: 0;
-  height: 100%;
-  top: 0;
-  right: 25px;
-  background: #f9f9f9;
-}
-
-.float_left{
-  float: left;
-}
-
-.float_right{
-  float: right;
-}
-
-.hidden{
+.hidden {
   display: none;
 }
 
@@ -297,16 +267,10 @@ div#pagination.minimal {
 
 #quixey .app_platforms{
   float: left;
-  clear: both;
   width: 100%;
 }
 
-#quixey .app_editions{
-  float: left;
-  width: 100%;
-}
-
-#quixey .app_editions::before{
+#quixey .app_editions::before {
   content: "App Editions:";
   float: left;
   clear: both;
@@ -315,21 +279,11 @@ div#pagination.minimal {
   margin-top: 10px; 
 }
 
-#quixey .app_platforms::before{
-  content: "Available On:";
-  float: left;
-  clear: both;
-  width: 100%;
-  margin-bottom: 3px;
-  margin-top: 10px; 
-}
-
-#quixey .app_platform{
+#quixey .app_platform {
   display: inline-block;
   border-radius: 3px;
   padding: 5px 5px 2px 5px;
   vertical-align: text-bottom;
-  margin-right: 3px;
   background: #EEE;
   border: 1px solid #DDD;
   color: black;
@@ -354,22 +308,7 @@ div#pagination.minimal {
   margin-bottom: 3px;
 }
 
-#quixey .app_edition_price{
-  height: 15px;
-  display: inline-block;
-  vertical-align: top;
-	padding: 5px 0px;
-}
-
-#quixey .app_edition_price::before {
-	content: " - ";
-	height: 15px;
-  display: inline-block;
-  vertical-align: top;
-	padding: 5px;
-}
-
-#quixey .platform_icon{
+#quixey .platform_icon {
   display: inline-block;
   max-height: 13px;
   margin-left: 5px;
@@ -377,16 +316,5 @@ div#pagination.minimal {
 }
 
 #quixey .platform_icon:first-of-type {
-  margin-left: 0px;
-}
-
-#quixey .platform_name{
-  display: inline-block;
-  margin-left: 5px;
-  font-size: 12px;
-  vertical-align: top;
-}
-
-#quixey .platform_name:first-of-type {
   margin-left: 0px;
 }
