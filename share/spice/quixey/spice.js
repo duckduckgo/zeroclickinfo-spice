@@ -305,8 +305,8 @@ function ddg_spice_quixey(data) {
 	function createNav() {
 		// get main nav element
 		var nav = d.getElementById("nav");
-		nav.innerHTML = "";
 		// clear
+		nav.innerHTML = "";
 		// create slider to hold thumbnails
 		// will hide overflowing elements to look like slide
 		var slider = d.createElement("div");

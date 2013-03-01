@@ -1,4 +1,4 @@
-#zero_click_wrapper2{
+#zero_click_wrapper2 {
  overflow: hidden !important;
 }
 
@@ -41,7 +41,7 @@
   width: 100%;
 }
 
-#pagination{
+#pagination {
   width: 100%;
   background: #f9f9f9;
   border-top: 1px solid #c6c6c6;
@@ -49,7 +49,7 @@
 	height: 35px;
 }
 
-div#pagination.minimal {
+#pagination.minimal {
 	height: 0px !important;
 	border-bottom: none;
 }
@@ -113,7 +113,7 @@ div#pagination.minimal {
   font-size: 12px;
 }
 
-#quixey li.item a span{
+#quixey li.item a span {
   display: block;
   max-width: 80px
   max-height: 80px
@@ -206,19 +206,19 @@ div#pagination.minimal {
   display: none;
 }
 
-#quixey .app_icon{
+#quixey .app_icon {
   margin: 0px;
   max-width: 100%;
   max-height: 100%;
   height: auto;
 }
 
-#quixey .rating{
+#quixey .rating {
   margin-right: 5px;
   display: inline;
 }
 
-#quixey span.star{
+#quixey span.star {
   background: url(star.png);
   width: 15px;
   height: 15px;
@@ -227,14 +227,14 @@ div#pagination.minimal {
   background-size: 100% auto;
 }
 
-#quixey .app_icon_anchor{
+#quixey .app_icon_anchor {
   max-width: 10%;
   float: left;
   margin-right: 5px;
 }
 
 
-#quixey .app_info{
+#quixey .app_info {
   display: block;
   float: left;
   font-size: 12px;
@@ -242,30 +242,30 @@ div#pagination.minimal {
   width: 100%;
 }
 
-#quixey .app_details{
+#quixey .app_details {
   display: block;
   float: left;
 }
 
-#quixey .price{
+#quixey .price {
   margin: 3px 0;
   font-size: 1.2em;
   display: inline;
   line-height: 1.5em;
 }
 
-#quixey .name_wrap{
+#quixey .name_wrap {
   display: inline-block;
   max-width: 85%;
 }
 
-#quixey .name{
+#quixey .name {
   display: block;
   width: 100%;
   font-size: 1.1em;
 }
 
-#quixey .app_platforms{
+#quixey .app_editions {
   float: left;
   width: 100%;
 }
@@ -296,13 +296,13 @@ div#pagination.minimal {
   text-decoration: none;
 }
 
-#quixey .app_platform img.platform_icon{
+#quixey .app_platform img.platform_icon {
   max-width: 13px;
   margin: 0 2px 0 0;
   vertical-align: text-top;
 }
 
-#quixey .app_edition{
+#quixey .app_edition {
   float: left;
   margin-right: 10px;
   margin-bottom: 3px;
