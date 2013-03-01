@@ -547,7 +547,8 @@ function ddg_spice_quixey(data) {
 				"iphone": 1,
 				"ipad": 1,
 				"ios": 1,
-				"free": 1
+				"free": 1,
+				"search": 1
 			};
 
 		for (var i in results) {
