@@ -51,7 +51,7 @@ handle query_parts => sub {
 	$max_price = 0 if ($full_query =~ s/\bfree\b//ig);
 	
 	my @matches = grep { $full_query =~ /\b$_\b/ig } sort { length($a) <=> length($b) } keys %platform_ids;
-	if (length @matches){	
+	if (length scalar @matches){
 		my @sorted_matches = sort { length($b) <=> length($a) } @matches;
 		foreach my $match (@sorted_matches){
 			$full_query =~ s/\b$match\b//ig;
