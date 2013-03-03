@@ -1,0 +1,52 @@
+{{#each topResults}}
+
+<div>
+	<a href="{{url}}">{{{shorten title}}}</a>
+	&nbsp;
+	<span>[{{{comment_link id  num_comments}}}]</span>
+	&nbsp;
+	<span>({{domain}}, {{{hn_points points}}})</span>
+</div>
+
+{{/each}}
+
+</div>
+
+<hr>
+
+<p class="showHide">Top Comments</p>
+<div class="hide">
+	{{#each topComments}}
+
+	<div>
+	<a href="{{url}}">{{{shorten text  200 }}}</a>
+		&nbsp;
+		<span>[by {{{user_link id  username}}}]</span>
+		&nbsp;
+		<span>[{{{item_link id  "parent"}}}]</span>
+		&nbsp;
+		{{#if discussion}}
+		<span>{{{item_link id  discussion.title}}}</span>
+		{{else}}
+		<span>{{{item_link id  title}}}</span>
+		{{/if}}
+	</div>
+
+	{{/each}}
+</div>
+
+<hr>
+
+<p class="showHide">Other Stories</p>
+<div class="hide">
+	{{#each topSubmissions}}
+
+	<div>
+		<a href="{{url}}">{{{shorten title }}}</a>
+		&nbsp;
+		<span>[{{{comment_link id  num_comments}}}]</span>
+		&nbsp;
+		<span>({{domain}}, {{{hn_points points}}})</span>
+	</div>
+
+	{{/each}}
