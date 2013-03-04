@@ -5,24 +5,32 @@ nrj("/forvo/mediaelement-and-player.min.js", true);
 
 function ddg_spice_dictionary_audio(sounds) {
 	if(sounds.length > 0) {
-		var icon = document.getElementById("play-icon");
-		icon.setAttribute('class', 'icon-play-circle');
+		var icon = $("#play-icon");
+		icon.addClass('icon-play');
 		var sound = sounds[0].fileUrl.replace(/^http/, "https");
 
 		// Get source tag.
-		var dictionary_source = document.getElementById('dictionary-source');
-		dictionary_source.setAttribute('src', sound);
+		$("#dictionary-source").attr('src', sound);
 
 		// Set the audio tags.
 		$('audio').mediaelementplayer({
-			features: ['playpause']
+			features: ['playpause'],
+			success: function(mediaElement, domObject) {
+				mediaElement.addEventListener('ended', function() {
+					icon.removeClass('icon-pause');
+					icon.addClass('icon-play');
+				});
+			}
 		});
 
-		icon.addEventListener("click", function() {
-			// Get audio tag.
-			var player = document.getElementById('dictionary-player');
-			player = new MediaElementPlayer("#dictionary-player");
-			player.play();
+		icon.click(function() {
+			if(icon.hasClass('icon-play')) {
+				icon.removeClass('icon-play');
+				icon.addClass('icon-pause');
+
+				var player = new MediaElementPlayer("#dictionary-player");
+				player.play();		
+			}
 		});
 	}
 }
