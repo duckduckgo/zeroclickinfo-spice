@@ -80,7 +80,10 @@ function ddg_spice_dictionary(words) {
 			"verb-transitive": "v.",
 			"adjective": "adj.",
 			"adverb": "adv.",
-			"verb": "v."
+			"verb": "v.",
+			"pronoun": "pro.",
+			"conjunction": "conj.",
+			"preposition": "prep."
 		};
 		var result;
 		if(part_of_speech[word.partOfSpeech]) {
