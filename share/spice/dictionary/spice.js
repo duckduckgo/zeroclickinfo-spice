@@ -1,14 +1,28 @@
-nrj("http://www.duckduckgo.com/forvo/jquery.min.js", true);
-nrj("http://www.duckduckgo.com/forvo/mediaelement-and-player.min.js", true);
-nrj("http://www.duckduckgo.com/forvo/dictionary.js", true);
+nrc('/forvo/mediaelementplayer.min.css', true);
+nrj("/forvo/jquery.min.js", true);
+nrj("/forvo/mediaelement-and-player.min.js", true);
+//nrj("/forvo/dictionary.js", true);
 
 function ddg_spice_dictionary_audio(sounds) {
 	if(sounds.length > 0) {
-		var dict = document.getElementById("audio-dictionary");
-		var play = document.getElementById("play-dictionary");
-		dict.setAttribute("src", sounds[0].fileUrl.replace(/^http/, "https"));
-		dict.addEventListener("click", function() {
-			play.play();
+		var icon = document.getElementById("play-icon");
+		icon.setAttribute('class', 'icon-play-circle');
+		var sound = sounds[0].fileUrl.replace(/^http/, "https");
+
+		// Get source tag.
+		var dictionary_source = document.getElementById('dictionary-source');
+		dictionary_source.setAttribute('src', sound);
+
+		// Set the audio tags.
+		$('audio').mediaelementplayer({
+			features: ['playpause']
+		});
+
+		icon.addEventListener("click", function() {
+			// Get audio tag.
+			var player = document.getElementById('dictionary-player');
+			player = new MediaElementPlayer("#dictionary-player");
+			player.play();
 		});
 	}
 }
@@ -47,7 +61,7 @@ function ddg_spice_dictionary(words) {
 								   get_definition(words[i]) + "</div>";  
 		}
 
-		return "<b>" + get_word(words) + "</b> <span id='pronunciation'></span> <audio preload id='play-dictionary'><source type='audio/mp3' id='audio-dictionary'></source></audio>" + list_of_definitions;
+		return "<b>" + get_word(words) + "</b> <span id='pronunciation'></span> <i id='play-icon'></i> <audio id='dictionary-player'><source src='' type='audio/mpeg' id='dictionary-source'/></audio>" + list_of_definitions;
 	}
 
 	function shorten_part_of_speech(word) {
