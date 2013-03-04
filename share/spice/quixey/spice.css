@@ -1,4 +1,4 @@
-#zero_click_wrapper2{
+#zero_click_wrapper2 {
  overflow: hidden !important;
 }
 
@@ -21,11 +21,6 @@
   margin-bottom: -1px;
 }
 
-#attribution {
-  margin: 15px;
-  display: block !important;
-}
-
 #quixey:after {
   visibility: hidden;
   display: block;
@@ -46,12 +41,17 @@
   width: 100%;
 }
 
-#pagination{
+#pagination {
   width: 100%;
   background: #f9f9f9;
   border-top: 1px solid #c6c6c6;
   border-bottom: 1px solid #e1e1e1;
-  height: 35px;
+	height: 35px;
+}
+
+#pagination.minimal {
+	height: 0px !important;
+	border-bottom: none;
 }
 
 #slider {
@@ -91,7 +91,7 @@
 }
 
 #quixey li.item:hover {
-  background: url("http://duckduckgo.com/assets/results_highlight_bg.v101.png") repeat-x;
+  background: url("/assets/results_highlight_bg.v101.png") repeat-x;
   background-color: #f3f3f3;
   border: 1px solid #eaeaea;
   cursor: pointer;
@@ -113,9 +113,11 @@
   font-size: 12px;
 }
 
-#quixey li.item a span{
+#quixey li.item a span {
   display: block;
   max-width: 80px
+  max-height: 80px
+  height:auto;
   margin: 5px auto 0;
 }
 
@@ -126,14 +128,16 @@
 #quixey li.item img {
   margin: 0 auto;
   max-width: 80px;
+  max-height: 80px;
+  height:auto;
 }
 
 #quixey li.item p {
+  width: 1%;
   max-width: 80px;
   height: 80px;
   display: table-cell;
   vertical-align: middle;
-  width: 1%;
 }
 
 #quixey a.npa {
@@ -170,7 +174,7 @@
   display: none;
   background: #f9f9f9;
   border-bottom: 1px solid #e1e1e1;
-  padding: 7px;
+  padding: 7px 7px 10px;
 }
 
 #preview {
@@ -187,14 +191,6 @@
   vertical-align: middle;
 }
 
-#dots p {
-  margin: 0px;
-  font-weight: normal;
-  font-size: 13px;
-  color: #bfbfbf;
-  padding: 0 2px;
-}
-
 #dots a {
   padding: 0 2px;
   font-size: 25px;
@@ -206,38 +202,23 @@
   color: #1168cc;
 }
 
-#gr {
-  position: absolute;
-  width: 0;
-  height: 100%;
-  top: 0;
-  right: 25px;
-  background: #f9f9f9;
-}
-
-.float_left{
-  float: left;
-}
-
-.float_right{
-  float: right;
-}
-
-.hidden{
+.hidden {
   display: none;
 }
 
-#quixey .app_icon{
+#quixey .app_icon {
   margin: 0px;
   max-width: 100%;
+  max-height: 100%;
+  height: auto;
 }
 
-#quixey .rating{
+#quixey .rating {
   margin-right: 5px;
   display: inline;
 }
 
-#quixey span.star{
+#quixey span.star {
   background: url(star.png);
   width: 15px;
   height: 15px;
@@ -246,14 +227,14 @@
   background-size: 100% auto;
 }
 
-#quixey .app_icon_anchor{
+#quixey .app_icon_anchor {
   max-width: 10%;
   float: left;
   margin-right: 5px;
 }
 
 
-#quixey .app_info{
+#quixey .app_info {
   display: block;
   float: left;
   font-size: 12px;
@@ -261,41 +242,35 @@
   width: 100%;
 }
 
-#quixey .app_details{
+#quixey .app_details {
   display: block;
   float: left;
 }
 
-#quixey .price{
+#quixey .price {
   margin: 3px 0;
   font-size: 1.2em;
   display: inline;
   line-height: 1.5em;
 }
 
-#quixey .name_wrap{
+#quixey .name_wrap {
   display: inline-block;
   max-width: 85%;
 }
 
-#quixey .name{
+#quixey .name {
   display: block;
   width: 100%;
   font-size: 1.1em;
 }
 
-#quixey .app_platforms{
-  float: left;
-  clear: both;
-  width: 100%;
-}
-
-#quixey .app_editions{
+#quixey .app_editions {
   float: left;
   width: 100%;
 }
 
-#quixey .app_editions::before{
+#quixey .app_editions::before {
   content: "App Editions:";
   float: left;
   clear: both;
@@ -304,72 +279,42 @@
   margin-top: 10px; 
 }
 
-#quixey .app_platforms::before{
-  content: "Available On:";
-  float: left;
-  clear: both;
-  width: 100%;
-  margin-bottom: 3px;
-  margin-top: 10px; 
-}
-
-#quixey .app_platform{
+#quixey .app_platform {
   display: inline-block;
   border-radius: 3px;
   padding: 5px 5px 2px 5px;
   vertical-align: text-bottom;
-  margin-right: 3px;
   background: #EEE;
   border: 1px solid #DDD;
+  color: black;
 }
 
 #quixey .app_platform:hover {
-  border: 1px solid darkblue;
-  background: lightblue;
+  border: 1px solid #333;
+  background: #ddd;
   cursor: pointer;
+  text-decoration: none;
 }
 
-#quixey .app_platform img.platform_icon{
+#quixey .app_platform img.platform_icon {
   max-width: 13px;
   margin: 0 2px 0 0;
   vertical-align: text-top;
 }
 
-#quixey .app_edition{
+#quixey .app_edition {
   float: left;
   margin-right: 10px;
   margin-bottom: 3px;
 }
 
-#quixey .app_edition_icon{
-  height: 25px;
-  width: 25px;
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 3px;
-}
-
-#quixey .app_edition_icon img{
-  max-width:100%;
-}
-
-#quixey .platform_icon{
+#quixey .platform_icon {
   display: inline-block;
   max-height: 13px;
   margin-left: 5px;
+  width: auto;
 }
 
 #quixey .platform_icon:first-of-type {
-  margin-left: 0px;
-}
-
-#quixey .platform_name{
-  display: inline-block;
-  margin-left: 5px;
-  font-size: 12px;
-  vertical-align: top;
-}
-
-#quixey .platform_name:first-of-type {
   margin-left: 0px;
 }
