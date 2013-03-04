@@ -12,11 +12,11 @@ function nrio(ir) {
 		items[0] = {
 			a: snippet,
 			h: 'Is it snowing yet?',
-			s: 'IsItSnowingYet',
+			s: 'Is It Snowing Yet?',
 			u: 'http://isitsnowingyet.org/check?q=' + ir.location.replace(/[ ]+/, ' '),
 			force_big_header: true
 		};
-		nra(items, 4, 1);
+		nra(items);
     }
 }
 

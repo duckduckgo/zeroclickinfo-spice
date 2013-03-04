@@ -148,7 +148,7 @@
                 strings = [];
             for(var i = 0, length = names.length; i < length; i += 1) {
                 url = 'http://www.rottentomatoes.com/celebrity/' + names[i].id + '/';
-                strings.push('<a onlcick="fl=1" href="' + url + '">' + names[i].name + '</a>');
+                strings.push('<a onclick="fl=1" href="' + url + '">' + names[i].name + '</a>');
             }
             return toSentence(strings);
         }
