@@ -3,7 +3,7 @@ nrj("/forvo/jquery.min.js", true);
 nrj("/forvo/mediaelement-and-player.min.js", true);
 //nrj("/forvo/dictionary.js", true);
 
-function ddg_spice_dictionary_audio(sounds) {
+function ddg_spice_dictionary_dictionary_audio(sounds) {
 	if(sounds.length > 0) {
 		var icon = $("#play-icon");
 		icon.addClass('icon-play');
@@ -35,14 +35,14 @@ function ddg_spice_dictionary_audio(sounds) {
 	}
 }
 
-function ddg_spice_dictionary_pronunciation(pronounce) {
+function ddg_spice_dictionary_dictionary_pronunciation(pronounce) {
 	if(pronounce.length > 0 && pronounce[0].raw && pronounce[0].rawType === "ahd-legacy") {
 		var pronunciation = document.getElementById("pronunciation");
 		pronunciation.innerHTML = pronounce[0].raw;
 	}
 }
 
-function ddg_spice_dictionary(words) {
+function ddg_spice_dictionary_dictionary(words) {
 	if(words.length > 0) {
 		var items = [[]];
 		items[0] = {
@@ -54,8 +54,8 @@ function ddg_spice_dictionary(words) {
 			force_no_fold: true
 		};
 		nra(items, 1, 1);
-		nrj("/js/spice/dictionary_pronunciation/" + get_word(words));
-		nrj("/js/spice/dictionary_audio/" + get_word(words));
+		nrj("/js/spice/dictionary/dictionary_pronunciation/" + get_word(words));
+		nrj("/js/spice/dictionary/dictionary_audio/" + get_word(words));
 	}
 
 	function get_header(words) {
