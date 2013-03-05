@@ -4,6 +4,16 @@ use DDG::Spice;
 
 spice to => 'http://isitsnowingyet.org/api/check/$1/key/{{ENV{DDG_SPICE_SNOW_APIKEY}}}';
 
+description "Check weather conditions at your location";
+name "Snow";
+icon_url "/icon16.png";
+source "Is it snowing yet?";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Snow.pm";
+topics "everyday";
+category "facts";
+attribution github => ['https://github.com/nilnilnil','Caine Tighe'],
+            twitter => ['http://twitter.com/__nil','caine tighe'];
+
 triggers query_lc => qr/snow(?:ing)?/i;
 
 my %snow = map { $_ => undef } (
