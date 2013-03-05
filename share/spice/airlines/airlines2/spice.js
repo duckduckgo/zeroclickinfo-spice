@@ -75,6 +75,7 @@ function nrft(flightstats) {
 		items[0]['u'] = flights.makeStatusLink(airline.AirlineCode, flightNumber);
 		items[0].force_big_header = true;
 		items[0].force_space_after = true;
+		items[0].force_no_fold = true;
 
 		if (abstractDiv.innerHTML.indexOf('NaN') == -1 && abstractDiv.innerHTML.indexOf('undefined') == -1) {
 			nra(items, 3, 1);
