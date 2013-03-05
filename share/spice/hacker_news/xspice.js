@@ -1,29 +1,29 @@
 function ddg_spice_hacker_news (res) {
 
 	// Check for at least 1 result
-	if ( res["hits"] <= 0 ) return;
-
+	if ( res.hits < 1 ) return;
 	var hn = new HackerNews(res);
-			i = 0;
 
-	while ( i < hn.limit && !hn.isFull() ) {
+	for ( var i = 0; i < hn.limit; i++ ) {
 
 		// Grab item
-		var result = new Result( res["results"][i]["item"] );
+		var result = new Result( res.results[i].item );
 
-		// Append to correct list
-		hn.addResult(result);
+		// Check if result is needed
+		// and append to correct list
+		if ( hn.canUse(result) ) {
+			hn.addResult(result);
+			console.log( "This is loop: " + i );
+		}
 
-		console.log("This is loop #" + i);
-		i++;
+		if ( hn.isFull() ){
+			break;
+		} else {
+			continue;
+		}
 	}
 
 	console.log(hn);
-
-	//required to make the spice div appear
-	items = [[]];
-	items[0]['a'] = "blah";
-	nra(items);
 
 	Spice.render({
 		data: hn,
@@ -36,65 +36,52 @@ function ddg_spice_hacker_news (res) {
 }
 
 
-/* HN Module
+/* HackerNews Object
  * Contains result lists
  */
- var HackerNews = (function () {
+ function HackerNews(data) {
 
-	// Constructor
-	var HackerNews = function (data) {
-		this.terms = data["request"]["q"],
-		this.limit = (data["request"]["limit"] < data["hits"]) ? data["request"]["limit"] : data["hits"],
-		this.topResults = [],
-		this.topComments = [],
-		this.topStories = [];
+	this.limit = (data.request.limit < data.hits) ? data.request.limit : data.hits;
+	this.topResults = [];
+	this.topComments = [];
+	this.topStories = [];
 
-		// Checks if result needs to be return to
-		// primary result list
-		this.addToTop = function () {
-			if (this.topResults && this.topResults.length >= 3) {
-				return false;
-			} else {
-				return true;
-			}
-		};
-	};
-
-	// Prototype
-	HackerNews.prototype = {
-		constructor: HackerNews,
-
-		// Adds result object to appropriate list
-		addResult: function (resultObj) {
-			var location,
+	// Adds result object to appropriate list
+	this.addResult = function (resultObj) {
+		var location,
 			that = resultObj;
 
-			if ( this.addToTop() ) {
-				location = this.topResults;
-			} else if ( that.isSubmission() && this.topStories.length < 3 ){
-				location = this.topStories;
-			} else if ( !that.isSubmission() && this.topComments.length < 3 ){
-				location = this.topComments;
-			} else {
-				console.log("WE'RE FULL");
-				return;
-			}
-			location.push( that.resultData );
-		},
-		isFull: function () {
-			var resultsLen = this.topResults.length,
-			commentsLen = this.topComments.length,
-			storiesLen = this.topStories.length;
-
-			if ( commentsLen >= 3 && storiesLen >= 3 ) {
-				return true;
-			} else {
-				return false;
-			}
+		if (this.topResults.length < 3) {
+			location = this.topResults;
+		} else {
+			location = that.isStory() ? this.topStories : this.topComments;
 		}
-	}
-	return HackerNews;
-})();
+		location.push( that.resultData );
+	};
+
+	this.canUse = function (result) {
+
+		if ( this.topResults.length < 3 ) {
+			return true;
+		} else if ( result.isStory() && this.topStories.length < 3 ) {
+			return true;
+		} else if ( !result.isStory() && this.topComments.length < 3 ) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+	this.isFull = function () {
+		if (this.topResults.length > 2 && this.topStories.length > 2 &&
+			this.topComments.length > 2) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+};
 
 
 /* Result Module
@@ -111,7 +98,7 @@ function ddg_spice_hacker_news (res) {
 	// Prototype
 	NewResult.prototype = {
 		constructor: NewResult,
-		isSubmission: function () {
+		isStory: function () {
 			return (this.resultType === "submission") ? true : false;
 		}
 	}
@@ -122,58 +109,50 @@ function ddg_spice_hacker_news (res) {
 /*******************************
   Handlebars helpers
   *******************************/
+(function () {
 
-// debug helper
-// usage: {{debug}} or {{debug someValue}}
-Handlebars.registerHelper("debug", function(optionalValue) {
-	console.log("Current Context");
-	console.log("====================");
-	console.log(this);
+	// creates an anchor linking to a result's commments
+	Handlebars.registerHelper('comment_link', function(id, num) {
+		var comment = num.toString()
+		+ (num !== 1)? 'comments' : 'comment';
 
-	if (optionalValue) {
-		console.log("Value");
-		console.log("====================");
-		console.log(optionalValue);
-	}
-});
+		var link = '<a href="http://news.ycombinator.com/item?id=' + id.toString() + '>'
+		+ comment
+		+ '</a>';
+		return link;
+	});
 
-// shorten helper
-// shortens text to given length
-Handlebars.registerHelper('shorten', function (text, limit) {
-	var limit = limit || 140;
-	if (text.length > limit) {
-		return text.slice(0,limit) + '...';
-	}
 
-	return text;
-});
+	// returns a string contianing the number of points
+	Handlebars.registerHelper('hn_points', function(points) {
+		var string = points.toString();
 
-// comment_link helper
-// creates an anchor linking to a result's commments
-Handlebars.registerHelper('comment_link', function(id, num) {
-	var comment = num.toString()
-	+ (num !== 1)? 'comments' : 'comment';
+		if ( points === 1){
+			return string + "point";
+		} else {
+			return string + "points";
+		}
+	})
 
-	var link = '<a href="http://news.ycombinator.com/item?id=' + id.toString() + '>'
-	+ comment
-	+ '</a>';
-	return link;
-});
 
-// hn_points helper
-// returns a string contianing the number of points
-Handlebars.registerHelper('hn_points', function(points) {
-	return "nice.";
-})
+	// returns a link to the HN user with given id
+	Handlebars.registerHelper('user_link', function(id) {
+		return '<a href="https://news.ycombinator.com/user?id=' + id + '">' +
+				id + '</a>';
+	})
 
-// user_link helper
-// returns a link to the HN user with given id
-Handlebars.registerHelper('user_link', function(id, username) {
-	return "nice.";
-})
 
-// item_link helper
-// returns a link to the HN item (story, comment) with given id
-Handlebars.registerHelper('item_link', function(id, text) {
-	return "nice.";
-})
+	// returns a link to the HN item (story, comment) with given id
+	Handlebars.registerHelper('item_link', function(text, context) {
+		var id;
+
+		if (text === "parent") {
+			id = context.discussion.id;
+		} else {
+			id = context.id;
+		}
+
+		return '<a href="https://news.ycombinator.com/item?id=' + id + '">' +
+			text + '</a>';
+	})
+})();
