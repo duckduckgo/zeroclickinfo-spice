@@ -81,8 +81,8 @@ function ddg_spice_quixey(data) {
 		}
 	}
 
-	function toHTTPS(url) {
-		return url.replace("http://", "https://");
+	function imageProxy(url) {
+		return "/iu/?f=1&u=" + url;
 	}
 
 	/******************/
@@ -125,7 +125,7 @@ function ddg_spice_quixey(data) {
 		var img_anchor = d.createElement("a");
 		var img = d.createElement("img");
 		img_anchor.href = app.url || app.developer.url || dir_url;
-		img.src = toHTTPS(app.icon_url);
+		img.src = imageProxy(app.icon_url);
 		var info = d.createElement("div");
 		var name_wrap = d.createElement("div");
 		var details = d.createElement("div");
@@ -250,9 +250,9 @@ function ddg_spice_quixey(data) {
 			var img = d.createElement("img");
 			// Get proper apple icon
 			if (current.id === 2004 || current.id === 2015 || current.id === "ios") {
-				img.src = "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
+				img.src = "//icons.duckduckgo.com/i/itunes.apple.com.ico";
 			} else {
-				img.src = toHTTPS(current.icon_url);
+				img.src = imageProxy(current.icon_url);
 			}
 			YAHOO.util.Dom.addClass(img, "platform_icon");
 			YAHOO.util.Dom.addClass(platform, "app_platform");
@@ -338,7 +338,7 @@ function ddg_spice_quixey(data) {
 			img = d.createElement("img");
 			if (!isProp(app, "icon_url"))
 				continue;
-			img.src = toHTTPS(app.icon_url);
+			img.src = imageProxy(app.icon_url);
 			p = d.createElement("p");
 			if (!isProp(app, "name"))
 				continue;
