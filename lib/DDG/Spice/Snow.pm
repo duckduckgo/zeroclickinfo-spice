@@ -4,6 +4,9 @@ use DDG::Spice;
 
 spice to => 'http://isitsnowingyet.org/api/check/$1/key/{{ENV{DDG_SPICE_SNOW_APIKEY}}}';
 
+primary_example_queries "is it snowing?";
+secondary_example_queries "is it snowing in New York City?";
+
 description "Check weather conditions at your location";
 name "Snow";
 icon_url "/icon16.png";
