@@ -3,6 +3,19 @@ package DDG::Spice::Airlines::Airlines;
 use DDG::Spice;
 use Data::Dumper;
 
+primary_example_queries "AA 102";
+secondary_example_queries "Delta 1544";
+
+description "Flight information";
+name "Flight";
+icon_url "/i/flightaware.com.ico";
+source "FlightAware";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Airlines/Airlines.pm";
+topics "economy_and_finance", "travel", "everyday";
+category "time_sensitive";
+attribution github => ['https://github.com/hunterlang','Hunter Lang'],
+            web => 'http://hunterlang.com/';
+
 spice to => 'http://www.duckduckgo.com/flights.js?airline=$1&flightno=$2';
 spice from => '(.*?)/(.*)';
 
