@@ -12,7 +12,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Snow',
     ),
-    'is it snowing in new york?' => (
+    'is it snowing in new york?' => test_spice(
     	'/js/spice/snow/new%20york',
     	call_type => 'include',
     	caller => 'DDG::Spice::Snow',

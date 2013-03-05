@@ -10,9 +10,9 @@ ddg_spice_test(
     'aa 102' => test_spice(
         '/js/spice/airlines/airlines2/AA/102',
         call_type => 'include',
-        caller => 'DDG::Spice::Airlines::Airlines',
+        caller => 'DDG::Spice::Airlines::Airlines2',
     ),
-    '102 aa' => (
+    '102 aa' => test_spice(
     	'/js/spice/airlines/airlines/AA/102',
     	call_type => 'include',
     	caller => 'DDG::Spice::Airlines::Airlines',
