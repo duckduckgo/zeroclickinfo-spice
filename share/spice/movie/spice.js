@@ -136,6 +136,9 @@
         } else {
             adjective = "a";
         }
+        if(result.mpaa_rating === "Unrated") {
+            return [adjective, result.mpaa_rating.toLowerCase()];
+        }
         return [adjective, result.mpaa_rating];
     }
 
