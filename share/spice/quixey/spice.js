@@ -1,23 +1,36 @@
 function ddg_spice_quixey(data) {
+
+	// Check that nothing else is already in the ZCI Box
+	if ( nux() ) return;
+
+	var zc_wrapper2 = d.getElementById("zero_click_wrapper2");
+
+	YAHOO.util.Dom.addClass(zc_wrapper2, "quixey");
+
+	var quixey_css = DDG.get_asset_path("quixey.css");
+	nrc(quixey_css);
+
 	/********/
 	/* Init */
 	/********/
+
 	var state = {};
 	// placeholder for the apps
 	state.apps = [];
 	function setup() {
+
 		/* Initialize globals */
-		state.min_win = 500;
 		// minimum window width to show dots
-		state.li_width = 90;
+		state.min_win = 500;
 		// default total width and border of each carousel <li>
+		state.li_width = 90;
 		state.li_padding = 14;
 		state.li_border = 0;
-		state.frame_padding = 14;
+		state.frame_padding = 13;
 		// default frame padding and border
 		state.frame_border = 2;
-		state.current_item = 0;
 		// current video in nav
+		state.current_item = 0;
 		//Set total width of <li>
 		state.thumb_width = state.li_width + state.li_padding + state.li_border;
 		// store window width
@@ -33,8 +46,6 @@ function ddg_spice_quixey(data) {
 		state.last = Math.max(0, state.apps.length - (linc ? linc : state.inc));
 		// whole states
 		state.current_item -= state.current_item % state.inc;
-		// check if zero click box has mouse or keyboard focus
-		state.hasFocus = false;
 		// add the navigation
 		createNav();
 		// moves the slide to their current position
@@ -146,11 +157,11 @@ function ddg_spice_quixey(data) {
 		name_wrap.appendChild(rating);
 		name_wrap.appendChild(price);
 		name_wrap.appendChild(description);
+		name_wrap.appendChild(details);
 		img_anchor.appendChild(img);
 		info.appendChild(img_anchor);
 		info.appendChild(name_wrap);
 		app_container.appendChild(info);
-		app_container.appendChild(details);
 		app_container.appendChild(clear);
 		// Set Styles
 		YAHOO.util.Dom.setAttribute(app_container, "id", app_id_string);
