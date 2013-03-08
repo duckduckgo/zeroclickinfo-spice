@@ -75,7 +75,9 @@ function ddg_spice_quixey(data) {
 		//Set total width of <li>
 		state.thumb_width = state.li_width + state.li_padding + state.li_border;
 		// store window width
-		state.win = YAHOO.util.Dom.getRegion("nav").width;
+		var wrapper_width = YAHOO.util.Dom.get("zero_click_wrapper2").offsetWidth;
+		var nav_width = YAHOO.util.Dom.get("nav").offsetWidth;
+		state.win = wrapper_width > nav_width ? wrapper_width : nav_width;
 		var frame_width = state.win - state.frame_padding - state.frame_border;
 		// increment by how many thumbs
 		state.inc = Math.floor(frame_width / state.thumb_width);
@@ -413,7 +415,7 @@ function ddg_spice_quixey(data) {
 		na.id = id;
 		var na_img = d.createElement("img");
 		na_img.id = id + "_img";
-		na_img.src = next ? DDG.get_asset_path("arrow-next.png") : DDG.get_asset_path("arrow-prev.png");
+		na_img.src = next ? DDG.get_asset_path("quixey", "arrow-next.png") : DDG.get_asset_path("quixey", "arrow-prev.png");
 		na.appendChild(na_img);
 		YAHOO.util.Dom.addClass(na_img, "npa_img");
 		YAHOO.util.Dom.addClass(na, "npa");
