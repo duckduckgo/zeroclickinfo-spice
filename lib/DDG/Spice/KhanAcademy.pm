@@ -28,7 +28,7 @@ attribution web => ['http://thoughtherder.org','Arlo Breault'],
             email => ['arlolra@gmail.com','Arlo Breault'];
 
 handle remainder => sub {
-    return $_ if defined $_;
+    return $_ if $_;
     return;   
 };
 

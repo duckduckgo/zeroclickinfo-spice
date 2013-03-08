@@ -17,7 +17,8 @@ category "facts";
 attribution github => ['https://github.com/hunterlang','Hunter Lang'];
 
 handle query_lc => sub {
-    return $_ if defined $_;
+    return $_ if $_;
+    return;
 };
 
 1;
