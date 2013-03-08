@@ -1,22 +1,63 @@
 function ddg_spice_quixey(data) {
 
-	// Check that nothing else is already in the ZCI Box
-	if ( nux() ) return;
-
-	var zc_wrapper2 = d.getElementById("zero_click_wrapper2");
-
-	YAHOO.util.Dom.addClass(zc_wrapper2, "quixey");
-
-	var quixey_css = DDG.get_asset_path("quixey.css");
-	nrc(quixey_css);
-
 	/********/
 	/* Init */
 	/********/
 
 	var state = {};
+
 	// placeholder for the apps
 	state.apps = [];
+
+	/********/
+	/* Main */
+	/********/
+
+	// Check for results
+	if (data && isProp(data, "results") && data.results.length > 0) {
+
+		// store the apps
+		state.apps = getRelevant(data.results);
+		if (state.apps === null) return;
+		// main container
+		var container = d.createElement("div");
+		var div = d.createElement("div");
+		div.id = "quixey";
+		// container for navigation
+		var nav = d.createElement("div");
+		nav.id = "nav";
+		div.appendChild(nav);
+		// container for the app preview, initially hidden
+		var emb = d.createElement("div");
+		emb.id = "emb";
+		div.appendChild(emb);
+		// Append quixey div to container
+		container.appendChild(div);
+		// set more at link
+		var u = "https://www.quixey.com/search?q=";
+		if (isProp(data, "q")) {
+			var q = data.q.replace(/\s/g, "+");
+		}
+		// grab original query for header
+		var query = DDG.get_query();
+		// ddg: add to page
+		var items = [ {
+			a: container.innerHTML,
+			h: query + " (App Search)",
+			s: "Quixey",
+			u: u + q,
+			force_big_header: true,
+			force_more_at_logo: ["quixey", "quixey_logo.png"],
+			force_no_fold: 1
+		} ];
+
+		// render zero click box, header, etc
+		nra(items, 0, true);
+
+		// populate ZCI box -- getting here quixey MUST have displayed.
+		setup();
+	}
+
 	function setup() {
 
 		/* Initialize globals */
@@ -609,51 +650,5 @@ function ddg_spice_quixey(data) {
 			}
 		);
 		return (matches.indexOf(1) !== -1) ? results : null;
-	}
-
-
-	/********/
-	/* Main */
-	/********/
-
-	// Check for results
-	if (data && isProp(data, "results") && data.results.length > 0) {
-		// store the apps
-		state.apps = getRelevant(data.results);
-		if (state.apps === null) return;
-		// main container
-		var container = d.createElement("div");
-		var div = d.createElement("div");
-		div.id = "quixey";
-		// container for navigation
-		var nav = d.createElement("div");
-		nav.id = "nav";
-		div.appendChild(nav);
-		// container for the app preview, initially hidden
-		var emb = d.createElement("div");
-		emb.id = "emb";
-		div.appendChild(emb);
-		// Append quixey div to container
-		container.appendChild(div);
-		// set more at link
-		var u = "https://www.quixey.com/search?q=";
-		if (isProp(data, "q")) {
-			var q = data.q.replace(/\s/g, "+");
-		}
-		// grab original query for header
-		var query = DDG.get_query();
-		// ddg: add to page
-		var items = [ {
-			a: container.innerHTML,
-			h: query + " (App Search)",
-			s: "Quixey",
-			u: u + q,
-			force_big_header: true,
-			force_more_at_logo: "quixey_logo.png",
-			force_no_fold: 1
-		} ];
-		nra(items, 0, true);
-		// start spice
-		setup();
 	}
 }
