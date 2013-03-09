@@ -23,7 +23,7 @@ triggers startend => "sc", "soundcloud", "sound cloud";
 
 handle remainder => sub {
     return if $_ eq '';
-    return $_ if defined $_;
+    return $_ if $_;
     return;
 };
 
