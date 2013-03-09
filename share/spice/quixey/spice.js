@@ -43,7 +43,7 @@ function ddg_spice_quixey(data) {
 		// ddg: add to page
 		var items = [ {
 			a: container.innerHTML,
-			h: query + " (App Search)",
+			h: query + " (App Search)", 
 			s: "Quixey",
 			u: u + q,
 			force_big_header: true,
@@ -63,27 +63,34 @@ function ddg_spice_quixey(data) {
 		/* Initialize globals */
 		// minimum window width to show dots
 		state.min_win = 500;
-		// default total width and border of each carousel <li>
+		// default min width of each carousel <li>
 		state.li_width = 90;
-		state.li_padding = 14;
-		state.li_border = 0;
-		state.frame_padding = 13;
-		// default frame padding and border
-		state.frame_border = 2;
+		// each li has 6px padding
+		state.li_padding = 6*2;
+		// each li has 1px border
+		state.li_border = 1*2;
+		// default frame padding
+		state.frame_padding = 7*2;
+		// default frame border
+		state.frame_border = 1*2;
 		// current video in nav
 		state.current_item = 0;
-		//Set total width of <li>
+		//Set total min width of <li>
 		state.thumb_width = state.li_width + state.li_padding + state.li_border;
 		// store window width
-		var wrapper_width = YAHOO.util.Dom.get("zero_click_wrapper2").offsetWidth;
-		var nav_width = YAHOO.util.Dom.get("nav").offsetWidth;
-		state.win = wrapper_width > nav_width ? wrapper_width : nav_width;
-		var frame_width = state.win - state.frame_padding - state.frame_border;
+		state.win = YAHOO.util.Dom.getRegion("zero_click_wrapper2").width;
+		state.frame_width = state.win - state.frame_padding - state.frame_border;
 		// increment by how many thumbs
-		state.inc = Math.floor(frame_width / state.thumb_width);
-		// stretch li to fit max
-		var extra = frame_width - state.thumb_width * state.inc;
+		// (also # of thumbs per page)
+		state.inc = Math.floor(state.frame_width / state.thumb_width);
+		// pad li's to fit frame width
+		var extra = state.frame_width - (state.thumb_width * state.inc);
 		state.li_width += Math.ceil(extra / state.inc);
+		// at this point there could be extra space on the
+		// right where the next page can overflow into
+		var new_thumb_width = state.li_width + state.li_border + state.li_padding;
+		var extra2 = Math.abs(state.frame_width - (new_thumb_width * state.inc));
+		state.frame_width += extra2;
 		// last video
 		var linc = state.apps.length % state.inc;
 		state.last = Math.max(0, state.apps.length - (linc ? linc : state.inc));
@@ -375,6 +382,7 @@ function ddg_spice_quixey(data) {
 		var ul = d.createElement("ul");
 		ul.id = "slides";
 		YAHOO.util.Dom.setStyle(ul, "width", end + "px");
+		YAHOO.util.Dom.setStyle(frame, "width", state.frame_width + "px");
 		var i, li, img, a, id, app, p, txt;
 		for (i = 0; i < len; i++) {
 			li = d.createElement("li");
