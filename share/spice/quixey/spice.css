@@ -34,13 +34,11 @@
 #slider {
   border: 1px solid #f7f7f7;
   padding: 7px;
-  padding-right: 6px;
 }
 
 #frame {
   margin: 0;
   overflow: hidden;
-  width: 100%;
 }
 
 #quixey ul {
