@@ -37,7 +37,7 @@ function ddg_spice_dictionary_dictionary_audio(sounds) {
                 icon.addClass('icon-pause');
 
                 var player = new MediaElementPlayer("#dictionary-player");
-                player.play();      
+                player.play();
             }
         });
     }
@@ -80,7 +80,7 @@ function ddg_spice_dictionary_dictionary(words) {
                                    get_definition(words[i]) + "</div>";  
         }
 
-        return "<b>" + get_word(words) + "</b> <span id='pronunciation'></span> <i id='play-icon'></i> <audio id='dictionary-player'><source src='' type='audio/mpeg' id='dictionary-source'/></audio>" + list_of_definitions;
+        return "<b>" + get_word(words) + "</b> <span id='pronunciation'></span> <i id='play-icon'></i> <audio id='dictionary-player' preload='none'><source src='' type='audio/mpeg' id='dictionary-source'/></audio>" + list_of_definitions;
     }
 
     function shorten_part_of_speech(word) {
