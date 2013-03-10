@@ -18,6 +18,7 @@ attribution github => ["https://github.com/nomeata", "Joachim Breitner"],
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
+	return $_ if $_;
     return;   
 };
 
