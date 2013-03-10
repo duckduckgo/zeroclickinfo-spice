@@ -1,0 +1,21 @@
+#zero_click_wrapper2.quixey {
+	overflow: hidden;
+}
+
+.quixey #zero_click_abstract {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none !important;
+}
+
+.quixey #zero_click_image {
+	display: none;
+}
+
+.quixey .zero_click_more_at_link {
+	padding: 9px;
+}
+
+.quixey #zero_click_more_at_logo {
+	margin-bottom: -1px;
+}

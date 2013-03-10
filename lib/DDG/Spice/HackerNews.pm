@@ -18,7 +18,8 @@ attribution github => ['https://github.com/adman','Adman'],
 status "enabled";
 
 handle remainder => sub {
-    return $_ if defined $_;
+    return $_ if $_;
+    return;
 };
 
 1;

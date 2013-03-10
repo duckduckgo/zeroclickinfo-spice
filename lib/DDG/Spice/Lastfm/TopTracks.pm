@@ -27,7 +27,7 @@ handle query_lc => sub {
         return $countries->{lc $1} if defined $countries->{lc $1};
         return $1;
     } else {
-        return "United States";
+        return $loc->country_name || "United States";
     }
     return;
 };

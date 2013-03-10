@@ -9,7 +9,7 @@ spice to => 'http://www.typeful.net/~tbot/hackage/packages/$1/$1.json';
 primary_example_queries "hackage containers";
 description "Haskell packages";
 name "Hackage";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/PackageDetails.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Hackage/PackageDetails.pm";
 topics "programming";
 category "programming";
 attribution github => ["https://github.com/nomeata", "Joachim Breitner"],

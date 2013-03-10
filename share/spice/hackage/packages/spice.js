@@ -24,7 +24,7 @@ function ddg_spice_hackage_packages(packages) {
     if(all_packages[query.toLowerCase()]) {
         nrj("/js/spice/hackage/package_details/" + all_packages[query.toLowerCase()]);
     }
-};
+}
 
 function ddg_spice_hackage_package_details(hackage) {
     "use strict";
