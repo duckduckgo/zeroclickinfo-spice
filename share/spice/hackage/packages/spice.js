@@ -1,4 +1,4 @@
-function hackagePackageVersionsCallback(packages) {
+function ddg_spice_hackage_packages(packages) {
     "use strict";
 
     // Remove the trigger word.
@@ -26,7 +26,7 @@ function hackagePackageVersionsCallback(packages) {
     }
 };
 
-function hackageDataCallback(hackage) {
+function ddg_spice_hackage_package_details(hackage) {
     "use strict";
 
     var pkgName = hackage.packageDescription.package.pkgName,
