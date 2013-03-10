@@ -40,7 +40,6 @@ handle query_lc => sub {
         return $langs -> {$lang} ? $langs -> {$lang} : $lang;
     };
     
-    warn "Basic";
     if($query =~ /^translate (.+) from ($dicts) to ($dicts)$/) {
         my ($words, $from, $to) = ($1, $2, $3);
 

@@ -39,7 +39,6 @@ handle query_lc => sub {
         return $langs->{$lang} ? $langs->{$lang} : $lang;
     };
 
-    warn "Detect";
     if($query =~ /^translate (\w+) to ($dicts)$|^translate (\w+)$/) {
         if($1 && $2) {
             my ($word, $to) = ($1, $2);
