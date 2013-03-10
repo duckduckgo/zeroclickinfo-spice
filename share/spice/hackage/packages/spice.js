@@ -1,7 +1,7 @@
 (function(root) {
     "use strict";
 
-    root.hackagePackageVersionsCallback = function(packages) {
+    root.ddg_spice_hackage_packages = function(packages) {
         // Remove the trigger word.
         var query = DDG.get_query().replace(/(^|\s)(hackage|haskell)($|\s)/, '');
         // Convert multiple spaces into a single one.
@@ -27,7 +27,7 @@
         }
     };
 
-    root.hackageDataCallback = function(packages) {
+    root.ddg_spice_hackage_package_details = function(packages) {
         var pkgName = packages.packageDescription.package.pkgName;
         var pkgVersion = packages.packageDescription.package.pkgVersion;
         var synopsis = packages.packageDescription.synopsis;
