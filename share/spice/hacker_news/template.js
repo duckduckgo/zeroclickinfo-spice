@@ -14,7 +14,7 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1)
     + "\">";
   options = {hash:{
-    'max_len': ("40")
+    'maxlen': ("40")
   },data:data};
   stack2 = ((stack1 = helpers.condense),stack1 ? stack1.call(depth0, depth0.title, options) : helperMissing.call(depth0, "condense", depth0.title, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
@@ -43,16 +43,17 @@ function program3(depth0,data) {
   buffer += escapeExpression(stack1)
     + "\">";
   options = {hash:{
-    'max_len': ("200")
+    'maxlen': ("200")
   },data:data};
-  buffer += escapeExpression(((stack1 = helpers.condense),stack1 ? stack1.call(depth0, depth0.text, options) : helperMissing.call(depth0, "condense", depth0.text, options)))
-    + "</a>\n		<span>[by ";
+  stack2 = ((stack1 = helpers.condense),stack1 ? stack1.call(depth0, depth0.text, options) : helperMissing.call(depth0, "condense", depth0.text, options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "</a>\n		<span>[by ";
   options = {hash:{},data:data};
   stack2 = ((stack1 = helpers.user_link),stack1 ? stack1.call(depth0, depth0.username, options) : helperMissing.call(depth0, "user_link", depth0.username, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "]</span>\n		<span>[";
   options = {hash:{},data:data};
-  stack2 = ((stack1 = helpers.item_link),stack1 ? stack1.call(depth0, "parent", depth0, options) : helperMissing.call(depth0, "item_link", "parent", depth0, options));
+  stack2 = ((stack1 = helpers.item_link),stack1 ? stack1.call(depth0, "parent", options) : helperMissing.call(depth0, "item_link", "parent", options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "]</span>\n		";
   stack2 = helpers['if'].call(depth0, depth0.discussion, {hash:{},inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
@@ -65,7 +66,7 @@ function program4(depth0,data) {
   var buffer = "", stack1, stack2, options;
   buffer += "\n		<span>";
   options = {hash:{},data:data};
-  stack2 = ((stack1 = helpers.item_link),stack1 ? stack1.call(depth0, ((stack1 = depth0.discussion),stack1 == null || stack1 === false ? stack1 : stack1.title), depth0, options) : helperMissing.call(depth0, "item_link", ((stack1 = depth0.discussion),stack1 == null || stack1 === false ? stack1 : stack1.title), depth0, options));
+  stack2 = ((stack1 = helpers.item_link),stack1 ? stack1.call(depth0, ((stack1 = depth0.discussion),stack1 == null || stack1 === false ? stack1 : stack1.title), options) : helperMissing.call(depth0, "item_link", ((stack1 = depth0.discussion),stack1 == null || stack1 === false ? stack1 : stack1.title), options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "</span>\n		";
   return buffer;
@@ -76,7 +77,7 @@ function program6(depth0,data) {
   var buffer = "", stack1, stack2, options;
   buffer += "\n		<span>";
   options = {hash:{},data:data};
-  stack2 = ((stack1 = helpers.item_link),stack1 ? stack1.call(depth0, depth0.title, depth0, options) : helperMissing.call(depth0, "item_link", depth0.title, depth0, options));
+  stack2 = ((stack1 = helpers.item_link),stack1 ? stack1.call(depth0, depth0.title, options) : helperMissing.call(depth0, "item_link", depth0.title, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "</span>\n		";
   return buffer;
@@ -109,13 +110,13 @@ function program8(depth0,data) {
   return buffer;
   }
 
-  stack1 = helpers.each.call(depth0, depth0.topResults, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  stack1 = helpers.each.call(depth0, depth0.topStories, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n<hr>\n\n<p class=\"showHide\">Top Comments</p>\n<div class=\"hide\">\n	\n	";
+  buffer += "\n\n<hr class=\"horizontal-line\">\n\n<p class=\"showHide\">Top Comments</p>\n<div>\n	";
   stack1 = helpers.each.call(depth0, depth0.topComments, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</div>\n\n<hr>\n\n<p class=\"showHide\">Other Stories</p>\n<div class=\"hide\">\n	";
-  stack1 = helpers.each.call(depth0, depth0.topSubmissions, {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
+  buffer += "\n</div>\n\n<hr class=\"horizontal-line\">\n\n<p class=\"showHide\">Other Stories</p>\n<div>\n	";
+  stack1 = helpers.each.call(depth0, depth0.otherStories, {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n</div>";
   return buffer;
