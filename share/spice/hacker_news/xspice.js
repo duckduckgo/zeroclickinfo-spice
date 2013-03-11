@@ -42,28 +42,26 @@ function ddg_spice_hacker_news (res) {
  function HackerNews(data) {
 
 	this.limit = (data.request.limit < data.hits) ? data.request.limit : data.hits;
-	this.topResults = [];
-	this.topComments = [];
 	this.topStories = [];
+	this.topComments = [];
+	this.otherStories = [];
 
 	// Adds result object to appropriate list
 	this.addResult = function (resultObj) {
 		var location,
 			that = resultObj;
 
-		if (this.topResults.length < 3) {
-			location = this.topResults;
+		if (this.topStories.length < 3 && that.isStory()) {
+			location = this.topStories;
 		} else {
-			location = that.isStory() ? this.topStories : this.topComments;
+			location = that.isStory() ? this.otherStories : this.topComments;
 		}
 		location.push( that.resultData );
 	};
 
 	this.canUse = function (result) {
 
-		if ( this.topResults.length < 3 ) {
-			return true;
-		} else if ( result.isStory() && this.topStories.length < 3 ) {
+		if ( result.isStory() && (this.otherStories.length < 3 || this.topStories.length < 3)) {
 			return true;
 		} else if ( !result.isStory() && this.topComments.length < 3 ) {
 			return true;
@@ -73,14 +71,13 @@ function ddg_spice_hacker_news (res) {
 	};
 
 	this.isFull = function () {
-		if (this.topResults.length > 2 && this.topStories.length > 2 &&
+		if (this.topStories.length > 2 && this.otherStories.length > 2 &&
 			this.topComments.length > 2) {
 			return true;
 		} else {
 			return false;
 		}
 	};
-
 };
 
 
@@ -112,14 +109,12 @@ function ddg_spice_hacker_news (res) {
 (function () {
 
 	// creates an anchor linking to a result's commments
-	Handlebars.registerHelper('comment_link', function(id, num) {
-		var comment = num.toString()
-		+ (num !== 1)? 'comments' : 'comment';
+	Handlebars.registerHelper('comment_link', function(num) {
+		var comment = num.toString() +
+			(num !== 1)? 'comments' : 'comment';
 
-		var link = '<a href="http://news.ycombinator.com/item?id=' + id.toString() + '>'
-		+ comment
-		+ '</a>';
-		return link;
+		return '<a href="http://news.ycombinator.com/item?id=' + this.id.toString() + '">' +
+			comment	+ '</a>';
 	});
 
 
@@ -143,13 +138,13 @@ function ddg_spice_hacker_news (res) {
 
 
 	// returns a link to the HN item (story, comment) with given id
-	Handlebars.registerHelper('item_link', function(text, context) {
+	Handlebars.registerHelper('item_link', function(text) {
 		var id;
 
 		if (text === "parent") {
-			id = context.discussion.id;
+			id = this.discussion.id;
 		} else {
-			id = context.id;
+			id = this.id;
 		}
 
 		return '<a href="https://news.ycombinator.com/item?id=' + id + '">' +
