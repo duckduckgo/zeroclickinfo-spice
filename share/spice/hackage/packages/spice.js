@@ -7,35 +7,42 @@ function ddg_spice_hackage_packages(packages) {
     query = query.replace(/[ ]+/, ' ');
     // Remove trailing / leading spaces.
     query = query.replace(/^\s+|\s+$/, '');
-    // Convert to lowercase.
-    query = query.toLowerCase();
 
     var hasOwn = ({}).hasOwnProperty;
     var all_packages = {};
-    
-    // Key gets the lowercase, and the value gets the unmodified string. 
-    for(var normal_case in packages) {
-        if(hasOwn.call(packages, normal_case)) {
-            all_packages[normal_case.toLowerCase()] = normal_case;
-        }
-    }
 
-    // If the query exists in the dictionary, call Haskell::PackageDetails.
-    if(all_packages[query.toLowerCase()]) {
-        nrj("/js/spice/hackage/package_details/" + all_packages[query.toLowerCase()]);
+    // Check if it already exists.
+    if(query in packages) {
+        nrj("/js/spice/hackage/package_details/" + query);
+    } else {
+        // Convert to lowercase.
+        query = query.toLowerCase();
+
+        // Key gets the lowercase, and the value gets the unmodified string. 
+        for(var normal_case in packages) {
+            if(hasOwn.call(packages, normal_case)) {
+                all_packages[normal_case.toLowerCase()] = normal_case;
+            }
+        }
+
+        // If the query exists in the dictionary, call Haskell::PackageDetails.
+        if(all_packages[query]) {
+            nrj("/js/spice/hackage/package_details/" + all_packages[query]);
+        }
     }
 }
 
 function ddg_spice_hackage_package_details(hackage) {
     "use strict";
 
-    var pkgName = hackage.packageDescription.package.pkgName,
-        synopsis = hackage.packageDescription.synopsis,
-        author = hackage.packageDescription.author,
-        homepage = hackage.packageDescription.homepage,
-        license = hackage.packageDescription.license,
-        library = hackage.condLibrary,
-        executable = hackage.condExecutables;
+    if(hackage && hackage.packageDescription) {
+        var pkgName = hackage.packageDescription.package.pkgName,
+            synopsis = hackage.packageDescription.synopsis,
+            author = hackage.packageDescription.author,
+            homepage = hackage.packageDescription.homepage,
+            license = hackage.packageDescription.license,
+            library = hackage.condLibrary,
+            executable = hackage.condExecutables;
 
         var type;
         if (library && (executable.length > 0)) {
@@ -60,7 +67,7 @@ function ddg_spice_hackage_package_details(hackage) {
 
         if(synopsis.match(/\.$/)) {
             synopsis += "<br>";
-        } else {
+        } else if(synopsis) {
             synopsis += ".<br>";
         }
         items[0].a = synopsis;
@@ -73,6 +80,12 @@ function ddg_spice_hackage_package_details(hackage) {
         if (license) {
             items[0].a += "License: " + license + " ";
         }
+
+        // If items[0].a is empty, we exit.
+        if(items[0].a === "") {
+            return;
+        }
         nra(items, 1, 1);
+    }
 }
 

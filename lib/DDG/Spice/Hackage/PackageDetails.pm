@@ -4,7 +4,7 @@ package DDG::Spice::Hackage::PackageDetails;
 use DDG::Spice;
 
 triggers start => "///***never_trigger***///";
-spice to => 'http://www.typeful.net/~tbot/hackage/packages/$1/$1.json';
+spice to => 'http://typeful.net/~tbot/hackage/packages/$1/$1.json';
 
 primary_example_queries "hackage containers";
 description "Haskell packages";
@@ -18,7 +18,7 @@ attribution github => ["https://github.com/nomeata", "Joachim Breitner"],
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-	return $_ if $_;
+    return $_ if $_;
     return;   
 };
 
