@@ -3,10 +3,8 @@ function ddg_spice_hackage_packages(packages) {
 
     // Remove the trigger word.
     var query = DDG.get_query().replace(/(^|\s)(hackage|haskell)($|\s)/, '');
-    // Convert multiple spaces into a single one.
-    query = query.replace(/[ ]+/, ' ');
-    // Remove trailing / leading spaces.
-    query = query.replace(/^\s+|\s+$/, '');
+    // Remove spaces.
+    query = query.replace(/[ ]+/, '');
 
     var hasOwn = ({}).hasOwnProperty;
     var all_packages = {};
