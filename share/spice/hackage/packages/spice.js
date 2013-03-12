@@ -28,6 +28,12 @@ function ddg_spice_hackage_packages(packages) {
         // If the query exists in the dictionary, call Haskell::PackageDetails.
         if(all_packages[query]) {
             nrj("/js/spice/hackage/package_details/" + all_packages[query]);
+        // Now we fumble around. First, check if we find one by just adding an "s" at the end.
+        } else if(all_packages[query + "s"]){
+            nrj("/js/spice/hackage/package_details/" + all_packages[query + "s"]);
+        // Second, we check if we find one by removing the last letter. It's a bit silly, but it works.
+        } else if(all_packages[query.substring(0, query.length-1)]) {
+            nrj("/js/spice/hackage/package_details/" + all_packages[query.substring(0, query.length-1)]);
         }
     }
 }
