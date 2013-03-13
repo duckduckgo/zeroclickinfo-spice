@@ -10,7 +10,7 @@ description "Flight information";
 name "Flight";
 icon_url "/i/flightaware.com.ico";
 source "FlightAware";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Airlines/Airlines.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Airlines.pm";
 topics "economy_and_finance", "travel", "everyday";
 category "time_sensitive";
 attribution github => ['https://github.com/hunterlang','Hunter Lang'],
