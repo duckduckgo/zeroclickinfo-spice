@@ -1,3 +1,10 @@
+#zero_click_abstract {
+    font-family: "Helvetica Neue", "Segoe UI",
+                 "Nimbus Sans L","Liberation Sans",
+                 "Open Sans", "FreeSans",
+                 "Arial", "sans-serif";
+}
+
 #espn_zci_videos_link, #espn_zci_gamelog_link, 
 #espn_zci_stats_link, #espn_zci_team_link, 
 #espn_zci_news_link {
