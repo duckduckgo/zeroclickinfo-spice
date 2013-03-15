@@ -151,8 +151,10 @@ function ddg_spice_espn_events(response) {
         competitors.map(function(competitor, index, array) {
             teamDisplayName = competitor.team.location
                             + " " + competitor.team.name
-            gamelog += '<td><a href="/?q='
-                    +  encodeURIComponent(teamDisplayName)
+            var espnTeamLink = teamDisplayName.replace(' ', '').substr(0.3)
+                             + '/' + teamDisplayName.replace(' ', '-');
+            gamelog += '<td><a href="https://espn.go.com/nba/team/_/name/'
+                    +  espnTeamLink
                     +  '">' + teamDisplayName + '</a></td><td>'
                     +  (index == 0 ? ' vs ' : '</td>');
             if (index == 1) {
