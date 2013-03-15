@@ -1,3 +1,4 @@
+{{#organizeResults}}
 {{#each topStories}}
 	<div id="topStories">
 		<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
@@ -19,7 +20,7 @@
 <div id="topComments">
 	{{#each topComments}}
 	<div>
-		{{{condense text  maxlen="200"}}}
+		{{{hn_comment text}}}
 		<span class="hn_oneline">
 			[by {{{user_link username}}}]
 			[{{{item_link "parent"}}}]
@@ -51,3 +52,4 @@
 	</div>
 	{{/each}}
 </div>
+{{/organizeResults}}
