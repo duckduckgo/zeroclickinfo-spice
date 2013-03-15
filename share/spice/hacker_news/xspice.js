@@ -114,7 +114,7 @@ function ddg_spice_hacker_news (res) {
 			(num !== 1)? 'comments' : 'comment';
 
 		return '<a href="http://news.ycombinator.com/item?id=' + this.id.toString() + '">' +
-			comment	+ '</a>';
+				comment	+ '</a>';
 	});
 
 
@@ -123,9 +123,9 @@ function ddg_spice_hacker_news (res) {
 		var string = points.toString();
 
 		if ( points === 1){
-			return string + "point";
+			return string + " point";
 		} else {
-			return string + "points";
+			return string + " points";
 		}
 	})
 
@@ -148,6 +148,7 @@ function ddg_spice_hacker_news (res) {
 		}
 
 		return '<a href="https://news.ycombinator.com/item?id=' + id + '">' +
-			text + '</a>';
+				Handlebars.helpers.condense(text, {hash:{maxlen:"30"}}) +
+				'</a>';
 	})
 })();

@@ -1,38 +1,53 @@
 {{#each topStories}}
-	<div>
-		<a href="{{url}}">{{{condense title maxlen="40"}}}</a>
-		<span>[{{{comment_link num_comments}}}]</span>
-		<span>({{domain}}, {{{hn_points points}}})</span>
+	<div id="topStories">
+		<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
+		<span class="hn_oneline">
+			[{{{comment_link num_comments}}}]
+			{{#if domain}}
+				({{domain}}, {{{hn_points points}}})
+			{{else}}
+				({{{hn_points points}}})
+			{{/if}}
+
+		</span>
 	</div>
 {{/each}}
 
-<hr class="horizontal-line">
+<hr class="horizontal_line">
 
 <p class="showHide">Top Comments</p>
-<div>
+<div id="topComments">
 	{{#each topComments}}
 	<div>
-	<a href="{{url}}">{{{condense text  maxlen="200"}}}</a>
-		<span>[by {{{user_link username}}}]</span>
-		<span>[{{{item_link "parent"}}}]</span>
-		{{#if discussion}}
-		<span>{{{item_link discussion.title}}}</span>
-		{{else}}
-		<span>{{{item_link title}}}</span>
-		{{/if}}
+		{{{condense text  maxlen="200"}}}
+		<span class="hn_oneline">
+			[by {{{user_link username}}}]
+			[{{{item_link "parent"}}}]
+			{{#if discussion}}
+				{{{item_link discussion.title}}}
+			{{else}}
+				{{{item_link title}}}
+			{{/if}}
+		</span>
 	</div>
 	{{/each}}
 </div>
 
-<hr class="horizontal-line">
+<hr class="horizontal_line">
 
 <p class="showHide">Other Stories</p>
-<div>
+<div id="otherStories">
 	{{#each otherStories}}
 	<div>
-		<a href="{{url}}">{{{condense title}}}</a>
-		<span>[{{{comment_link num_comments}}}]</span>
-		<span>({{domain}}, {{{hn_points points}}})</span>
+		<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
+		<span class="hn_oneline">
+			[{{{comment_link num_comments}}}]
+			{{#if domain}}
+				({{domain}}, {{{hn_points points}}})
+			{{else}}
+				({{{hn_points points}}})
+			{{/if}}
+		</span>
 	</div>
 	{{/each}}
 </div>

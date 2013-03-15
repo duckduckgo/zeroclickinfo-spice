@@ -1,0 +1,11 @@
+span.hn_oneline {
+	display: inline-block;
+}
+
+hr.horizontal_line {
+	margin: 5px 0;
+}
+
+#topComments div {
+	padding: 3px 0;
+}
