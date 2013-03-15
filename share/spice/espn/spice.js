@@ -149,9 +149,9 @@ function ddg_spice_espn_events(response) {
         var outcome = '';
         gamelog += '<td>' + date.getUTCMonth() + '/' + date.getUTCDate() + '</td>';
         competitors.map(function(competitor, index, array) {
-            teamDisplayName = competitor.team.location
-                            + " " + competitor.team.name
-            var espnTeamLink = teamDisplayName.replace(' ', '').substr(0.3)
+            var teamDisplayName = competitor.team.location
+                                + " " + competitor.team.name
+            var espnTeamLink = teamDisplayName.replace(' ', '').substr(0,3)
                              + '/' + teamDisplayName.replace(' ', '-');
             gamelog += '<td><a href="https://espn.go.com/nba/team/_/name/'
                     +  espnTeamLink
