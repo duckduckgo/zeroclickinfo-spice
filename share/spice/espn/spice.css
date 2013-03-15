@@ -24,8 +24,9 @@
     margin-bottom: 4px;
 }
 
-#espn_zci_stats th{
+#zero_click_abstract #espn_zci_stats table th {
     width: 220px;
+    font-weight: normal;
 }
 
 .tr_odd {
