@@ -1,40 +1,21 @@
-function ddg_spice_hacker_news (res) {
+function ddg_spice_hacker_news (api_result) {
 
 	// Check for at least 1 result
-	if ( res.hits < 1 ) return;
-	var hn = new HackerNews(res);
-
-	for ( var i = 0; i < hn.limit; i++ ) {
-
-		// Grab item
-		var result = new Result( res.results[i].item );
-
-		// Check if result is needed
-		// and append to correct list
-		if ( hn.canUse(result) ) {
-			hn.addResult(result);
-			console.log( "This is loop: " + i );
-		}
-
-		if ( hn.isFull() ){
-			break;
-		} else {
-			continue;
-		}
-	}
-
-	console.log(hn);
+	if ( api_result.hits < 1 ) return;
 
 	Spice.render({
-		data: hn,
-		force_big_header : true,
-		header1 : "Spice2 HackerNews.",
-		source_name : 'Hacker News',
-		source_url : 'http://www.hnsearch.com/search#request/all&q=' + encodeURIComponent( DDG.get_query() ),
-		template_normal : "hacker_news"
+		data: 				api_result,
+		header1 : 			"Spice2 HackerNews.",
+		source_url : 		'http://www.hnsearch.com/search#request/all&q =' + encodeURIComponent( DDG.get_query() ),
+		source_name : 		'Hacker News',
+		template_normal : 	"hacker_news",
+		force_big_header : 	true
 	});
 }
 
+/*******************************
+  Private helpers
+  *******************************/
 
 /* HackerNews Object
  * Contains result lists
@@ -106,7 +87,47 @@ function ddg_spice_hacker_news (res) {
 /*******************************
   Handlebars helpers
   *******************************/
-(function () {
+	// creates an anchor linking to a result's commments
+	Handlebars.registerHelper('organizeResults', function(options) {
+		console.log("THIS IS:", this);
+
+		var hn = new HackerNews(this);
+
+		for ( var i = 0; i < hn.limit; i++ ) {
+
+			// Grab item
+			var result = new Result( this.results[i].item );
+
+			// Check if result is needed
+			// and append to correct list
+			if ( hn.canUse(result) ) {
+				hn.addResult(result);
+				console.log( "This is loop: " + i );
+			}
+
+			if ( hn.isFull() ){
+				break;
+			} else {
+				continue;
+			}
+		}
+
+		console.log("HN IS:", hn);
+
+		// invoke context of template with hn object as context
+		return options.fn(hn);
+	});
+
+	// creates an anchor linking to a result's commments
+	Handlebars.registerHelper('hn_comment', function(text) {
+		console.log("JQUERY IS:", jQuery)
+
+		var cleanText = jQuery(text).text();
+
+		console.log("TEXT'S TEXT IS:" + cleanText);
+
+		return Handlebars.helpers.condense(cleanText, {hash:{maxlen:"120"}})
+	});
 
 	// creates an anchor linking to a result's commments
 	Handlebars.registerHelper('comment_link', function(num) {
@@ -151,4 +172,3 @@ function ddg_spice_hacker_news (res) {
 				Handlebars.helpers.condense(text, {hash:{maxlen:"30"}}) +
 				'</a>';
 	})
-})();
