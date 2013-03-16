@@ -85,11 +85,16 @@ function ddg_spice_hacker_news (api_result) {
 
 
 /*******************************
-  Handlebars helpers
+  Public Helpers
   *******************************/
+(function() {
+
+	/*******************************
+	  Handlebars helpers
+	  *******************************/
+
 	// creates an anchor linking to a result's commments
 	Handlebars.registerHelper('organizeResults', function(options) {
-		console.log("THIS IS:", this);
 
 		var hn = new HackerNews(this);
 
@@ -102,7 +107,6 @@ function ddg_spice_hacker_news (api_result) {
 			// and append to correct list
 			if ( hn.canUse(result) ) {
 				hn.addResult(result);
-				console.log( "This is loop: " + i );
 			}
 
 			if ( hn.isFull() ){
@@ -112,22 +116,20 @@ function ddg_spice_hacker_news (api_result) {
 			}
 		}
 
-		console.log("HN IS:", hn);
-
 		// invoke context of template with hn object as context
 		return options.fn(hn);
 	});
 
+
 	// creates an anchor linking to a result's commments
 	Handlebars.registerHelper('hn_comment', function(text) {
-		console.log("JQUERY IS:", jQuery)
 
-		var cleanText = jQuery(text).text();
-
-		console.log("TEXT'S TEXT IS:" + cleanText);
+		var temp = d.createTextNode(text);
+		var cleanText = $(temp).text();
 
 		return Handlebars.helpers.condense(cleanText, {hash:{maxlen:"120"}})
 	});
+
 
 	// creates an anchor linking to a result's commments
 	Handlebars.registerHelper('comment_link', function(num) {
@@ -160,15 +162,25 @@ function ddg_spice_hacker_news (api_result) {
 
 	// returns a link to the HN item (story, comment) with given id
 	Handlebars.registerHelper('item_link', function(text) {
-		var id;
 
-		if (text === "parent") {
-			id = this.discussion.id;
-		} else {
-			id = this.id;
-		}
+		var id = (text === "parent") ? this.discussion.id : this.id;
 
 		return '<a href="https://news.ycombinator.com/item?id=' + id + '">' +
 				Handlebars.helpers.condense(text, {hash:{maxlen:"30"}}) +
 				'</a>';
 	})
+})();
+
+// click handler for TopComments and OtherStories
+$(document).ready(function(){
+	// click handler for TopComments and OtherStories
+	$("a.hn_showHide").click(function(){
+
+
+		if ( $(this).data("target") ){
+			var target = $(this).data("target");
+
+			$(target).toggle();
+		}
+	});
+});
