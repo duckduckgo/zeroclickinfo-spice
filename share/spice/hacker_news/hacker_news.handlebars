@@ -1,55 +1,57 @@
 {{#organizeResults}}
-{{#each topStories}}
-	<div id="topStories">
-		<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
-		<span class="hn_oneline">
-			[{{{comment_link num_comments}}}]
-			{{#if domain}}
-				({{domain}}, {{{hn_points points}}})
-			{{else}}
-				({{{hn_points points}}})
-			{{/if}}
+	{{#each topStories}}
+		<div id="topStories">
+			<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
+			<span class="hn_oneline">
+				[{{{comment_link num_comments}}}]
+				{{#if domain}}
+					({{domain}}, {{{hn_points points}}})
+				{{else}}
+					({{{hn_points points}}})
+				{{/if}}
 
-		</span>
-	</div>
-{{/each}}
-
-<hr class="horizontal_line">
-
-<p class="showHide">Top Comments</p>
-<div id="topComments">
-	{{#each topComments}}
-	<div>
-		{{{hn_comment text}}}
-		<span class="hn_oneline">
-			[by {{{user_link username}}}]
-			[{{{item_link "parent"}}}]
-			{{#if discussion}}
-				{{{item_link discussion.title}}}
-			{{else}}
-				{{{item_link title}}}
-			{{/if}}
-		</span>
-	</div>
+			</span>
+		</div>
 	{{/each}}
-</div>
 
-<hr class="horizontal_line">
+	{{#if topComments}}
+		<hr class="horizontal_line">
+		<a href="javascript:;" data-target="#topComments" class="hn_showHide">Top Comments</a>
+		<div id="topComments" class="hide">
+			{{#each topComments}}
+			<div>
+				{{{hn_comment text}}}
+				<span class="hn_oneline">
+					[by {{{user_link username}}}]
+					[{{{item_link "parent"}}}]
+					{{#if discussion}}
+						{{{item_link discussion.title}}}
+					{{else}}
+						{{{item_link title}}}
+					{{/if}}
+				</span>
+			</div>
+			{{/each}}
+		</div>
+	{{/if}}
 
-<p class="showHide">Other Stories</p>
-<div id="otherStories">
-	{{#each otherStories}}
-	<div>
-		<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
-		<span class="hn_oneline">
-			[{{{comment_link num_comments}}}]
-			{{#if domain}}
-				({{domain}}, {{{hn_points points}}})
-			{{else}}
-				({{{hn_points points}}})
-			{{/if}}
-		</span>
-	</div>
-	{{/each}}
-</div>
+	{{#if otherStories}}
+		<hr class="horizontal_line">
+		<a href="javascript:;" data-target="#otherStories" class="hn_showHide">Other Stories</a>
+		<div id="otherStories" class="hide">
+			{{#each otherStories}}
+			<div>
+				<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
+				<span class="hn_oneline">
+					[{{{comment_link num_comments}}}]
+					{{#if domain}}
+						({{domain}}, {{{hn_points points}}})
+					{{else}}
+						({{{hn_points points}}})
+					{{/if}}
+				</span>
+			</div>
+			{{/each}}
+		</div>
+	{{/if}}
 {{/organizeResults}}
