@@ -233,7 +233,7 @@ Once everything is working properly (and you have stuff displayed on screen), yo
 Finally, please document as much as possible using in-line comments.
 
 ### Where to go now:
-Click to return to the [Spice Overview](https://github.com/duckduckgo/duckdugo#spice-overview).
+Click to return to the [Spice Overview](https://github.com/duckduckgo/duckduckgo#spice-overview).
 
 ----
 
