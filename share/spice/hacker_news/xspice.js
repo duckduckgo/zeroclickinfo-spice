@@ -1,3 +1,5 @@
+var temp, out;
+
 function ddg_spice_hacker_news (api_result) {
 
 	// Check for at least 1 result
@@ -20,7 +22,7 @@ function ddg_spice_hacker_news (api_result) {
 /* HackerNews Object
  * Contains result lists
  */
- function HackerNews(data) {
+function HackerNews(data) {
 
 	this.limit = (data.request.limit < data.hits) ? data.request.limit : data.hits;
 	this.topStories = [];
@@ -65,7 +67,7 @@ function ddg_spice_hacker_news (api_result) {
 /* Result Module
  * Encapsulates a HackerNews result
  */
- var Result = (function () {
+var Result = (function () {
 
 	// Constructor
 	var NewResult = function (data) {
@@ -82,6 +84,26 @@ function ddg_spice_hacker_news (api_result) {
 	}
 	return NewResult;
 })();
+
+
+/* Function
+ * Removes HTML markup from string
+ */
+function stripHTML(html) {
+   var temp = document.createElement("div");
+
+   // remove <a> tags but preserve link content
+   html = html.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 ($1)");
+
+   temp.innerHTML = html;
+
+   var ret = temp.textContent || temp.innerText;
+
+   // get rid of more than 2 spaces:
+   ret = ret.replace(/ +(?= )/g,'');
+
+   return ret;
+}
 
 
 /*******************************
@@ -122,13 +144,14 @@ function ddg_spice_hacker_news (api_result) {
 
 
 	// creates an anchor linking to a result's commments
-	Handlebars.registerHelper('hn_comment', function(text) {
+		Handlebars.registerHelper('hn_comment', function(text) {
 
-		var temp = d.createTextNode(text);
-		var cleanText = $(temp).text();
+			var temp = d.createElement("div")
+			temp.innerHTML = text;
+			var cleanText = $(temp).text();
 
-		return Handlebars.helpers.condense(cleanText, {hash:{maxlen:"120"}})
-	});
+			return Handlebars.helpers.condense(cleanText, {hash:{maxlen:"120"}})
+		});
 
 
 	// creates an anchor linking to a result's commments
@@ -176,10 +199,8 @@ $(document).ready(function(){
 	// click handler for TopComments and OtherStories
 	$("a.hn_showHide").click(function(){
 
-
 		if ( $(this).data("target") ){
 			var target = $(this).data("target");
-
 			$(target).toggle();
 		}
 	});
