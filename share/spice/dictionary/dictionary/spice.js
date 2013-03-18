@@ -52,6 +52,12 @@ function ddg_spice_dictionary_dictionary_pronunciation(pronounce) {
     }
 }
 
+function ddg_spice_dictionary_dictionary_fallback(words) {
+    if(words.length > 0) {
+        ddg_spice_dictionary_dictionary(words);
+    }
+}
+
 function ddg_spice_dictionary_dictionary(words) {
     "use strict";
     if(words.length > 0) {
@@ -67,6 +73,15 @@ function ddg_spice_dictionary_dictionary(words) {
         nra(items, 1, 1);
         nrj("/js/spice/dictionary/dictionary_pronunciation/" + get_word(words));
         nrj("/js/spice/dictionary/dictionary_audio/" + get_word(words));
+    // Get the results again, but this time with useCanonical set to true (useCanonical is akin to "did you mean?").
+    } else {
+        // Remove the trigger word.
+        var query = DDG.get_query().replace(/(^|\s)(define\:?|definition|definition of\:?)($|\s)/, '');
+
+        // Remove extra spaces.
+        query = query.replace(/[ ]+/, ' ');
+
+        nrj('/js/spice/dictionary/dictionary_fallback/' + query);
     }
 
     function get_header(words) {
@@ -111,5 +126,5 @@ function ddg_spice_dictionary_dictionary(words) {
 
     function get_word(words) {
         return words[0].word;
-    }
+    } 
 }
