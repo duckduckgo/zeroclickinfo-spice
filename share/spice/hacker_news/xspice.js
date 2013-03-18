@@ -13,6 +13,18 @@ function ddg_spice_hacker_news (api_result) {
 		template_normal : 	"hacker_news",
 		force_big_header : 	true
 	});
+
+	// click handler for TopComments and OtherStories
+	$(document).ready(function(){
+		// click handler for TopComments and OtherStories
+		$("a.hn_showHide").click(function(){
+
+			if ( $(this).data("target") ){
+				var target = $(this).data("target");
+				$(target).toggle();
+			}
+		});
+	});
 }
 
 /*******************************
@@ -170,17 +182,5 @@ var Result = (function () {
 		return '<a href="https://news.ycombinator.com/item?id=' + id + '">' +
 				Handlebars.helpers.condense(text, {hash:{maxlen:"30"}}) +
 				'</a>';
-	});
-
-	// click handler for TopComments and OtherStories
-	$(document).ready(function(){
-		// click handler for TopComments and OtherStories
-		$("a.hn_showHide").click(function(){
-
-			if ( $(this).data("target") ){
-				var target = $(this).data("target");
-				$(target).toggle();
-			}
-		});
 	});
 })();
