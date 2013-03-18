@@ -1,10 +1,10 @@
 DuckDuckHack Spice
 ====
 This documentation walks you through the process of writing a DuckDuckHack Spice plugin.
-Before reading this section, make sure you've read the [DuckDuckHack Intro Site](http://duckduckhack.com) and the [DuckDuckHack Developer's Overview](https://github.com/duckduckgo/duckduckgo/blob/master/README.md) (so you know what DuckDuckHack is) and have worked through the [Basic tutorial](http://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/README.md).
+Before reading this section, make sure you've read the [DuckDuckHack Intro Site](http://duckduckhack.com) and the [DuckDuckHack Developer's Overview](https://github.com/duckduckgo/duckduckgo/blob/master/README.md) (so you know what DuckDuckHack is) and have worked through the [Basic tutorial](http://github.com/duckduckgo/duckduckgo#basic-tutorial).
 
 ## Spice Handle Functions
-Spice plugins have **triggers** and **handle** functions like Goodies, as explained in the [Basic tutorial](http://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/README.md). The difference is that Spice handle functions don't return an instant answer directly like Goodies. Instead, they return arguments used to call a JavaScript callback function that then returns the instant answer.
+Spice plugins have **triggers** and **handle** functions like Goodies, as explained in the [Basic tutorial](http://github.com/duckduckgo/duckduckgo#basic-tutorial). The difference is that Spice handle functions don't return an instant answer directly like Goodies. Instead, they return arguments used to call a JavaScript callback function that then returns the instant answer.
 
 The JavaScript callback function is defined in another file and is explained in detail in the [Spice callback functions](#spice-callback-functions) section. For now let's concentrate on how it gets called via the Spice handle function.
 
@@ -38,7 +38,7 @@ handle matches => sub {
 1;
 ```
 
-To refresh your memory, the **triggers** keyword tells the plugin system when to call a plugin. In the [Basic tutorial](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/README.md) we discussed using the **start** keyword to specify trigger words that need to be present at the beginning of the query.
+To refresh your memory, the **triggers** keyword tells the plugin system when to call a plugin. In the [Basic tutorial](https://github.com/duckduckgo/duckduckgo#basic-tutorial) we discussed using the **start** keyword to specify trigger words that need to be present at the beginning of the query.
 
 In situations where you want to trigger on sub-words, you can pass a regular expression like in this Twitter example. 
 
@@ -91,12 +91,12 @@ The **{{callback}}** template gets plugged in automatically with the default cal
 At this point the response moves from the backend to the frontend. The external API sends a JSON object to the callback function that you will also define (as explained in the [Spice callback functions](#spice-callback-functions) section).
 
 ### Where to go now:
-**Before** moving on to the section below, you should make sure your trigger is doing what you think it is by following the [Testing triggers](https://github.com/duckduckgo/duckduckgo/blob/master/README.md#testing-triggers) section. 
+Click to return to the [Spice Overview](https://github.com/duckduckgo/duckduckgo#spice-overview).
 
 
 ## Spice Callback Functions
 
-Before reading this section, make sure you've read the [basic tutorial](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/README.md), the section on [spice handle functions](#spice-handle-functions), and the section on [testing triggers](https://github.com/duckduckgo/duckduckgo/blob/master/README.md#testing-triggers).
+Before reading this section, make sure you've read the [basic tutorial](https://github.com/duckduckgo/duckduckgo#basic-tutorial), the section on [spice handle functions](#spice-handle-functions), and the section on [testing triggers](https://github.com/duckduckgo/duckduckgo#testing-triggers).
 
 As explained in the [Spice handle functions](#spice-handle-functions) section, a Spice plugin usually calls an external API and returns a JSON object to a callback function. This section explains what that callback function looks like.
 
@@ -175,6 +175,185 @@ You would usually get the information to make these assignments via the object r
 function ddg_spice_expatistan(ir) {
 ```
 
-Next:
- * Test your callback function in the [Testing Spice](http://duckduckhack.com/#testing-spice) section.
- * Also you may want to check out the [Advanced Spice callbacks](#advanced-spice-callbacks) section.
+### Where to go now:
+Click to return to the [Spice Overview](https://github.com/duckduckgo/duckduckgo#spice-overview).
+
+## Testing Spice
+You should have already tested your Spice triggers by following the [Testing triggers](https://github.com/duckduckgo/duckduckgo#testing-triggers) section. Once you're confident your triggers are functioning properly, follow these steps to see your Spice plugin on a live server!
+
+**Step 1.**  &nbsp;Go to the roof of your forked repository.
+
+```bash
+cd zeroclickinfo-spice/
+```
+
+**Step 2.**  &nbsp;Start the server.
+
+```bash
+duckpan server
+```
+
+This command will start up a small Web server running on port 5000 on your machine.
+
+**Step 3.**  &nbsp;Visit the server in your browser.
+
+You should now be able to go to your duckpan server via a regular Web browser and check it out. It runs code from our site and so generally looks like a real version of DuckDuckGo. 
+
+If you're running the duckpan server on the same computer as your Web browser you can navigate to:
+
+```bash
+http://127.0.0.1:5000/
+```
+
+If you're running the duckpan server on a remote machine, then substitute 127.0.0.1 wither either its IP address or its Fully Qualified Domain Name.
+
+**Step 4.**  &nbsp;Search.
+
+Given you've already tested your plugin triggers, you should be able to search and see your spice output come through the server. As requests go through the internal Web server they are printed to STDOUT (on the screen). External API calls are highlighted (if you have color turned on in your terminal).
+
+**Step 5.** &nbsp;Debug.
+
+If for some reason a search doesn't hit a plugin, there is an error message displayed on the homepage saying "Sorry, no hit for your plugins." 
+
+If it does hit and you do not see something displayed on the screen, a number of things could be going wrong.
+
+* You have a JavaScript error of some kind. Check out the JavaScript console for details. Personally we like to use [Firebug](http://getfirebug.com/) internally.
+
+* The external API was not called correctly. You should be able to examine the Web server output to make sure the right API is being called. If it's not you will need to revise your [Spice handle function](#spice-handle-functions).
+
+* The external API did not return anything. Firebug is great for checking this as well. You should see the call in your browser and then you can examine the response.
+
+
+**Step 6.** &nbsp;Tweak the display.
+
+Once everything is working properly (and you have stuff displayed on screen), you will want to mess with your callback function to get the display nice and perfect. Check out the [Guidelines](https://github.com/duckduckgo/duckduckgo#guidelines) for some pointers.
+
+**Step 7.** &nbsp;Document. 
+
+Finally, please document as much as possible using in-line comments.
+
+### Where to go now:
+Click to return to the [Spice Overview](https://github.com/duckduckgo/duckduckgo#spice-overview).
+
+----
+
+Advanced Spice
+===
+##Advanced Spice Handlers
+These advanced handle function techniques are specific to Spice plugins:
+
+**Multiple parameters in spice_to call**. If you need to substitute multiple parameters into the API call like how the [RandWord Spice](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RandWord.pm) uses two numbers to specify the min and max length of the random word, you can use **from** keyword.
+
+```perl
+spice from => '(?:([0-9]+)\-([0-9]+)|)';
+```
+
+Whatever you return from the handle function gets sent to this **spice from** regexp, which then gets fed into the **spice to** API. 
+
+```perl
+spice to => 'http://api.wordnik.com/v4/words.json/randomWord?minLength=$1&maxLength=$2&api_key={{ENV{DDG_SPICE_RANDWORD_APIKEY}}}&callback={{callback}}';
+```
+
+In this case, the two capture blocks will be put into $1 and $2 respectively.
+
+The reason why you do not need to specify a **from** keyword by default is that the default is **(.*)**, which means whatever you return gets put into $1.
+
+**Feeding multiple arguments to spice from**. You can have multiple return values in your handle function like the [AlternativeTo Spice](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/AlternativeTo.pm).
+
+```perl
+return $prog, $platform, $license;
+```
+
+In this case they are URL encoded and joined together with '/' chars, e.g. in this case **$prog/$platform/$license**. Then that full string is fed into the **spice from** regexp.
+
+```perl
+spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
+```
+
+**API Keys**. Some APIs require API keys to function properly like in the [RandWord Spice](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RandWord.pm). You can insert an API key for testing in the callback function and replace it with a variable reference when submitting.
+
+```perl
+spice to => 'http://api.wordnik.com/v4/words.json/randomWord?minLength=$1&maxLength=$2&api_key={{ENV{DDG_SPICE_RANDWORD_APIKEY}}}&callback={{callback}}';
+```
+
+You can set the variable when you start duckpan server like this:
+
+```bash
+DDG_SPICE_RANDWORD_APIKEY=xyz duckpan server
+```
+
+**JSON -> JSONP**. Some APIs don't do JSONP by default, i.e. don't have the ability to return the JSON object to a callback function. In this case, first you should try to contact the API provider and see if it can be added. Where it cannot, you can tell us to wrap the JSON object return in a callback function like in the [XKCD Spice](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Xkcd.pm).
+
+```perl
+spice wrap_jsonp_callback => 1;
+```
+
+**Pure JS functions**. Sometimes no external API is necessary to deliver the instant answer like how the [Flash Version Spice](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/FlashVersion.pm) just prints out your [Flash Player version](https://duckduckgo.com/?q=flash+version) using an [internal call](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/share/spice/flash_version/spice.js).
+
+In cases like these you can define a **spice_call_type** as 'self' like this:
+
+```perl
+spice call_type => 'self';
+```
+
+Then in the handle function you can return call, e.g.:
+
+```perl
+return $_ eq 'flash version' ? call : ();
+```
+
+The return of **call** will run whatever is in the **call_type** setting. **self** is a special keyword to just run the callback function directly, in this case **ddg_spice_flash_version()**.
+
+**No caching of the external API call.** By default, we cache return values from external providers for speed. We use [nginx](https://duckduckgo.com/?q=nginx) and get this functionality by using the [proxy_cache_valid](http://wiki.nginx.org/HttpProxyModule#proxy_cache_valid) directive. You can override our default behavior by setting your own proxy_cache_valid directive like in the [RandWord Spice](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RandWord.pm).
+
+```perl
+spice proxy_cache_valid => "418 1d";
+```
+
+This is a special declaration that says don't cache. Actually it says cache only [418 HTTP](https://duckduckgo.com/?q=HTTP+418) return values for 1 day. Since regular return codes are [200](https://duckduckgo.com/?q=HTTP+200) and [304](https://duckduckgo.com/?q=HTTP+304), nothing will get cached.
+
+If you wanted to say cache those normal values for 1h, you could do:
+
+```perl
+spice proxy_cache_valid => "200 304 1d";
+```
+
+## Advanced Spice Callbacks
+In the [Spice callback functions](#spice-callback-functions) section we walked through a simple callback function used in the [Expatistan Spice](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/share/spice/expatistan/spice.js). 
+
+Here are some more advanced callback techniques you may need to use:
+
+**Setting styles.** We use [YUI2](http://developer.yahoo.com/yui/2/), which is a JavaScript framework like JQuery. To set styles you can do:
+
+```js
+YAHOO.util.Dom.setStyle(obj,'margin-top','5px');
+```
+
+You can also use an id directly like:
+
+```js
+YAHOO.util.Dom.setStyle('id','margin-top','5px');
+```
+
+**Creating images.** We have an internal function for image creation called **nur**. In the [XKCD spice](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/share/spice/xkcd/spice.js) it is used in this construct:
+
+```js
+       if (nur) img = nur('',xk['alt'],xk['img']);
+       if (img) {
+```
+
+Ignore the first argument. The second is the alt text (title); third is img URL; fourth and fifth optional arguments are explicit height and width to use (in px).
+
+**Big images.** If you have a big image that may be too big like in the [XKCD spice](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/share/spice/xkcd/spice.js), use the class **img_zero_click_big** that will resize it appropriately. 
+
+You can add classes like this:
+
+```js
+YAHOO.util.Dom.addClass(img,'img_zero_click_big');
+```
+
+And again you can pass in an id directly like:
+
+```js
+YAHOO.util.Dom.addClass('id','img_zero_click_big');
+```
