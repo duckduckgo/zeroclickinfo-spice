@@ -125,7 +125,7 @@ function ddg_spice_dictionary_dictionary(words) {
             "verb": "v.",
             "pronoun": "pro.",
             "conjunction": "conj.",
-            "preposition": "prep.",
+            "preposition": "prep."
         };
         var result;
         if(part_of_speech[word.partOfSpeech]) {
