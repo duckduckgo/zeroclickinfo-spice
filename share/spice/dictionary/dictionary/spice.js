@@ -62,16 +62,7 @@ function ddg_spice_dictionary_dictionary_fallback(words) {
     // Remove excess spaces.
     query = query.replace(/(^\s+|\s+$)/g, '');
 
-    // Skip
-    var skip = {
-        "define": 1,
-        "define:": 1,
-        "definition": 1,
-        "definition of": 1,
-        "definition of:": 1
-    };
-
-    if(words.length > 0 && DDG.isRelevant(query, skip)) {
+    if(words.length > 0) {
         ddg_spice_dictionary_dictionary(words);
     }
 }
