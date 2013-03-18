@@ -56,6 +56,7 @@ function ddg_spice_dictionary_dictionary_fallback(words) {
     "use strict";
     
     // Remove the trigger word (only if it's at the start or at the end).
+    // Remove definition of before anything else.
     var query = DDG.get_query().replace(/^(definition of\:?|define\:?|definition)|(define|definition)$/, '');
 
     // Remove excess spaces.
