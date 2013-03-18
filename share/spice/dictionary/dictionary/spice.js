@@ -53,7 +53,23 @@ function ddg_spice_dictionary_dictionary_pronunciation(pronounce) {
 }
 
 function ddg_spice_dictionary_dictionary_fallback(words) {
-    if(words.length > 0) {
+    "use strict";
+    
+    // Remove the trigger word.
+    var query = DDG.get_query().replace(/(^|\s)(define\:?|definition|definition of\:?)($|\s)/, '');
+    // Remove spaces.
+    query = query.replace(/[ ]+/, '');
+
+    // Skip
+    var skip = {
+        "define": 1,
+        "define:": 1,
+        "definition": 1,
+        "definition of": 1,
+        "definition of:": 1
+    };
+
+    if(words.length > 0 && DDG.isRelevant(query, skip)) {
         ddg_spice_dictionary_dictionary(words);
     }
 }
@@ -78,8 +94,8 @@ function ddg_spice_dictionary_dictionary(words) {
         // Remove the trigger word.
         var query = DDG.get_query().replace(/(^|\s)(define\:?|definition|definition of\:?)($|\s)/, '');
 
-        // Remove extra spaces.
-        query = query.replace(/[ ]+/, ' ');
+        // Remove spaces.
+        query = query.replace(/[ ]+/, '');
 
         nrj('/js/spice/dictionary/dictionary_fallback/' + query);
     }
@@ -109,7 +125,7 @@ function ddg_spice_dictionary_dictionary(words) {
             "verb": "v.",
             "pronoun": "pro.",
             "conjunction": "conj.",
-            "preposition": "prep."
+            "preposition": "prep.",
         };
         var result;
         if(part_of_speech[word.partOfSpeech]) {

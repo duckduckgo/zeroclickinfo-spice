@@ -7,7 +7,7 @@ triggers any => "define", "define:", "definition", "definition of", "definition 
 spice is_cached => 1;
 
 handle remainder => sub {
-    return $_ if $_;
+    return lc $_ if $_;
     return;
 };
 
