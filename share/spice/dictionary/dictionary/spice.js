@@ -85,7 +85,7 @@ function ddg_spice_dictionary_dictionary(words) {
     }
 
     function get_header(words) {
-        return "Definitions";
+        return get_word(words) + " (Definition)";
     }
 
     function get_definitions(words) {
