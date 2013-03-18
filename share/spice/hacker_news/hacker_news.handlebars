@@ -1,4 +1,5 @@
 {{#organizeResults}}
+	
 	{{#each topStories}}
 		<div class="hn_story">
 			<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
@@ -9,30 +10,33 @@
 				{{else}}
 					({{{hn_points points}}})
 				{{/if}}
-
 			</span>
 		</div>
 	{{/each}}
 
 	{{#if topComments}}
-		<hr class="horizontal_line">
-		<a href="javascript:;" data-target="#topComments" class="hn_showHide">Top Comments</a>
-		<div id="topComments" class="hide">
-			{{#each topComments}}
-			<div class="hn_comment">
-				{{{hn_comment text}}}
-				<span class="hn_oneline">
-					[by {{{user_link username}}}]
-					[{{{item_link "parent"}}}]
-					{{#if discussion}}
-						{{{item_link discussion.title}}}
-					{{else}}
-						{{{item_link title}}}
-					{{/if}}
-				</span>
+		{{#if topStories}}
+			<hr class="horizontal_line">
+			<a href="javascript:;" data-target="#topComments" class="hn_showHide">Top Comments</a>
+			<div id="topComments" class="hide">
+		{{else}}
+			<div id="topComments">
+		{{/if}}
+				{{#each topComments}}
+				<div class="hn_comment">
+					{{{hn_comment text}}}
+					<span class="hn_oneline">
+						[by {{{user_link username}}}]
+						[{{{item_link "parent"}}}]
+						{{#if discussion}}
+							{{{item_link discussion.title}}}
+						{{else}}
+							{{{item_link title}}}
+						{{/if}}
+					</span>
+				</div>
+				{{/each}}
 			</div>
-			{{/each}}
-		</div>
 	{{/if}}
 
 	{{#if otherStories}}
