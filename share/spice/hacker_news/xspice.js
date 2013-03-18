@@ -1,9 +1,9 @@
-var temp, out;
-
 function ddg_spice_hacker_news (api_result) {
 
 	// Check for at least 1 result
-	if ( api_result.hits < 1 ) return;
+	if ( api_result.hits < 1 ) {
+		return;
+	}
 
 	Spice.render({
 		data: 				api_result,
@@ -61,7 +61,7 @@ function HackerNews(data) {
 			return false;
 		}
 	};
-};
+}
 
 
 /* Result Module
@@ -81,30 +81,9 @@ var Result = (function () {
 		isStory: function () {
 			return (this.resultType === "submission") ? true : false;
 		}
-	}
+	};
 	return NewResult;
 })();
-
-
-/* Function
- * Removes HTML markup from string
- */
-function stripHTML(html) {
-   var temp = document.createElement("div");
-   
-   // remove <a> tags but preserve link content
-   html = html.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 ($1)");
-
-   temp.innerHTML = html;
-   
-   var ret = temp.textContent || temp.innerText;
-
-   // get rid of more than 2 spaces:
-   ret = ret.replace(/ +(?= )/g,'');
-   
-   return ret;
-}
-
 
 /*******************************
   Public Helpers
@@ -146,11 +125,11 @@ function stripHTML(html) {
 	// creates an anchor linking to a result's commments
 		Handlebars.registerHelper('hn_comment', function(text) {
 
-			var temp = d.createElement("div")
+			var temp = d.createElement("div");
 			temp.innerHTML = text;
 			var cleanText = $(temp).text();
 
-			return Handlebars.helpers.condense(cleanText, {hash:{maxlen:"120"}})
+			return Handlebars.helpers.condense(cleanText, {hash:{maxlen:"120"}});
 		});
 
 
@@ -173,14 +152,14 @@ function stripHTML(html) {
 		} else {
 			return string + " points";
 		}
-	})
+	});
 
 
 	// returns a link to the HN user with given id
 	Handlebars.registerHelper('user_link', function(id) {
 		return '<a href="https://news.ycombinator.com/user?id=' + id + '">' +
 				id + '</a>';
-	})
+	});
 
 
 	// returns a link to the HN item (story, comment) with given id
@@ -191,17 +170,17 @@ function stripHTML(html) {
 		return '<a href="https://news.ycombinator.com/item?id=' + id + '">' +
 				Handlebars.helpers.condense(text, {hash:{maxlen:"30"}}) +
 				'</a>';
-	})
-})();
-
-// click handler for TopComments and OtherStories
-$(document).ready(function(){
-	// click handler for TopComments and OtherStories
-	$("a.hn_showHide").click(function(){
-
-		if ( $(this).data("target") ){
-			var target = $(this).data("target");
-			$(target).toggle();
-		}
 	});
-});
+
+	// click handler for TopComments and OtherStories
+	$(document).ready(function(){
+		// click handler for TopComments and OtherStories
+		$("a.hn_showHide").click(function(){
+
+			if ( $(this).data("target") ){
+				var target = $(this).data("target");
+				$(target).toggle();
+			}
+		});
+	});
+})();
