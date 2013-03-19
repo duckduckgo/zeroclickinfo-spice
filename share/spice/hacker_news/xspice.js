@@ -117,20 +117,19 @@ function HackerNews(data) {
 	});
 
 
-	// creates an anchor linking to a result's commments
-		Handlebars.registerHelper('hn_comment', function(text) {
+	// creates an anchor linking to an item's commments
+	Handlebars.registerHelper('hn_comment', function(text) {
 
-			var temp = d.createElement("div");
-			temp.innerHTML = text;
-			var cleanText = $(temp).text();
+		var temp = d.createElement("div");
+		temp.innerHTML = text;
+		var cleanText = $(temp).text();
 
-			return Handlebars.helpers.condense(cleanText, {hash:{maxlen:"120"}});
-		});
+		return Handlebars.helpers.condense(cleanText, {hash:{maxlen:"120"}});
+	});
 
 
-	// creates an anchor linking to a result's commments
+	// pluralizes a word when necessary
 	Handlebars.registerHelper('plural', function(num) {
-
 		return ((num !== 1)? 's' : '');
 	});
 
