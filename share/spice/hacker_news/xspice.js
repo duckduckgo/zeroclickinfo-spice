@@ -129,24 +129,9 @@ function HackerNews(data) {
 
 
 	// creates an anchor linking to a result's commments
-	Handlebars.registerHelper('comment_link', function(num) {
-		var comment = num.toString() +
-			(num !== 1)? 'comments' : 'comment';
+	Handlebars.registerHelper('plural', function(num) {
 
-		return '<a href="http://news.ycombinator.com/item?id=' + this.id.toString() + '">' +
-				comment	+ '</a>';
-	});
-
-
-	// returns a string contianing the number of points
-	Handlebars.registerHelper('hn_points', function(points) {
-		var string = points.toString();
-
-		if ( points === 1){
-			return string + " point";
-		} else {
-			return string + " points";
-		}
+		return ((num !== 1)? 's' : '');
 	});
 
 
