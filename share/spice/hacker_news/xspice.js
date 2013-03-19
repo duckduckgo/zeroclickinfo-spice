@@ -41,24 +41,27 @@ function HackerNews(data) {
 	this.topComments = [];
 	this.otherStories = [];
 
-	// Adds result object to appropriate list
-	this.addResult = function (resultObj) {
-		var location,
-			that = resultObj;
+	function isStory (r) {
+		return ( r["type"] === "submission" );
+	}
 
-		if (this.topStories.length < 3 && that.isStory()) {
+	// Adds result object to appropriate list
+	this.addResult = function (result) {
+		var location;
+
+		if (this.topStories.length < 3 && isStory(result)) {
 			location = this.topStories;
 		} else {
-			location = that.isStory() ? this.otherStories : this.topComments;
+			location = isStory(result) ? this.otherStories : this.topComments;
 		}
-		location.push( that.resultData );
+		location.push( result );
 	};
 
 	this.canUse = function (result) {
 
-		if ( result.isStory() && (this.otherStories.length < 3 || this.topStories.length < 3)) {
+		if ( isStory(result) && (this.otherStories.length < 3 || this.topStories.length < 3)) {
 			return true;
-		} else if ( !result.isStory() && this.topComments.length < 3 ) {
+		} else if ( !isStory(result) && this.topComments.length < 3 ) {
 			return true;
 		} else {
 			return false;
@@ -76,27 +79,6 @@ function HackerNews(data) {
 }
 
 
-/* Result Module
- * Encapsulates a HackerNews result
- */
-var Result = (function () {
-
-	// Constructor
-	var NewResult = function (data) {
-		this.resultData = data;
-		this.resultType = data["type"];
-	};
-
-	// Prototype
-	NewResult.prototype = {
-		constructor: NewResult,
-		isStory: function () {
-			return (this.resultType === "submission") ? true : false;
-		}
-	};
-	return NewResult;
-})();
-
 /*******************************
   Public Helpers
   *******************************/
@@ -110,11 +92,12 @@ var Result = (function () {
 	Handlebars.registerHelper('organizeResults', function(options) {
 
 		var hn = new HackerNews(this);
+		var item;
 
 		for ( var i = 0; i < hn.limit; i++ ) {
 
 			// Grab item
-			var result = new Result( this.results[i].item );
+			result = this.results[i].result;
 
 			// Check if result is needed
 			// and append to correct list
