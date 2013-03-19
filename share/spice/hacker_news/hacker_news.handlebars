@@ -2,13 +2,17 @@
 	
 	{{#each topStories}}
 		<div class="hn_story">
-			<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
+			{{#if url}}
+				<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
+			{{else}}
+				{{{condense title maxlen="50"}}}
+			{{/if}}
 			<span class="hn_oneline">
-				[{{{comment_link num_comments}}}]
+				 <a href="http://news.ycombinator.com/item?id={{{id}}}">{{{num_comments}}} comment{{{plural num_comments}}}</a>
 				{{#if domain}}
-					({{domain}}, {{{hn_points points}}})
+					({{domain}}, {{{hn_points}}} points{{{plural hn_points}}})
 				{{else}}
-					({{{hn_points points}}})
+					({{{hn_points}}} points{{{plural hn_points}}})
 				{{/if}}
 			</span>
 		</div>
@@ -45,13 +49,17 @@
 		<div id="otherStories" class="hide">
 			{{#each otherStories}}
 			<div class="hn_story">
-				<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
+				{{#if url}}
+					<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
+				{{else}}
+					{{{condense title maxlen="50"}}}
+				{{/if}}
 				<span class="hn_oneline">
-					[{{{comment_link num_comments}}}]
+				 [<a href="http://news.ycombinator.com/item?id={{{id}}}">{{{num_comments}}} comment{{{plural num_comments}}}</a>]
 					{{#if domain}}
-						({{domain}}, {{{hn_points points}}})
+						({{domain}}, {{{hn_points}}} points{{{plural hn_points}}})
 					{{else}}
-						({{{hn_points points}}})
+						({{{hn_points}}} points{{{plural hn_points}}})
 					{{/if}}
 				</span>
 			</div>
