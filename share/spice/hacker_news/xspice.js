@@ -42,6 +42,7 @@ function HackerNews(data) {
 	this.otherStories = [];
 
 	function isStory (r) {
+		console.log("THIS IS R: ", r);
 		return ( r["type"] === "submission" );
 	}
 
@@ -97,7 +98,7 @@ function HackerNews(data) {
 		for ( var i = 0; i < hn.limit; i++ ) {
 
 			// Grab item
-			result = this.results[i].result;
+			result = this.results[i].item;
 
 			// Check if result is needed
 			// and append to correct list
