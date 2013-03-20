@@ -1,0 +1,34 @@
+
+
+{{#relevantMovie}}
+
+
+<div id="movie_data_box">
+
+    <div>
+        <span class="movie_data_item">
+            <span class="movie_star_rating">{{{star_rating ratings.critics_score}}}</span>
+        </span>
+        <span class="movie_critics_rating">{{ratings.critics_rating}}</span>
+        <div class="movie_data_description">
+        ({{ratings.critics_score}}% critics,
+         {{ratings.audience_score}}% audience approved)
+        </div>
+    </div>
+
+    <div><span class="movie_data_item">MPAA rating:</span>{{mpaa_rating}}</div>
+    <div><span class="movie_data_item">Running time:</span>{{runtime}} minutes</div>
+    <div><span class="movie_data_item">Starring:</span>
+        {{#concat abridged_cast sep=", " last=", and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
+    </div>
+</div>
+
+
+    {{#if synopsis}}
+        {{synopsis}}
+    {{else}}
+        {{condense critics_consensus maxlen="200"}}
+    {{/if}}
+
+{{/relevantMovie}}
+

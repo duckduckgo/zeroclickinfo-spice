@@ -1,0 +1,21 @@
+
+{{#relevantMovie}}
+
+{{title}} ({{year}}) is {{rating_adjective}} {{mpaa_rating}} movie
+
+({{ratings.critics_rating}},
+ {{ratings.critics_score}}% critics,
+ {{ratings.audience_score}}% audience approved)
+
+starring
+
+    {{#concat abridged_cast sep=", " last=", and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
+
+    {{#if synopsis}}
+        {{synopsis}}
+    {{else}}
+        {{condense critics_consensus maxlen="135"}}
+    {{/if}}
+
+{{/relevantMovie}}
+

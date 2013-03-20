@@ -1,0 +1,31 @@
+
+
+#movie_data_box {
+    display:block;
+    width:40%;
+    float:left;
+    padding:2px;
+    /* background:rgba(0,0,0,0.08); */
+    border-right:1px solid rgba(0,0,0,0.1);
+    margin-right:10px;
+}
+
+.movie_critics_rating {
+    font-weight:bold;
+    color:gray;
+}
+
+.movie_star_rating {
+    color:red;
+}
+
+.movie_data_item {
+    display:inline-block;
+    padding-right:6px;
+    font-weight: bold;
+    color:gray;
+}
+
+.movie_data_description {
+    font-size:smaller;
+}
