@@ -2,8 +2,9 @@ function ddg_spice_rhymes (response) {
     var query = DDG.get_query()
                 .replace(/^(what|rhymes?( with| for)?) |\?/gi, "");
 
+    var words = [];
     for (var i = 0; i < response.length; i++) {
-        word = response.splice(Math.random()*response.length, 1)[0];
+        var word = response.splice(Math.random()*response.length, 1)[0];
         if (word.score == 300)
 	        words.push(word.word);
         if (words.length == 30) break;
