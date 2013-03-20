@@ -8,11 +8,11 @@ spice is_cached => 1;
 
 handle query_lc => sub {
 	my $query = $_;
-	if($query =~ /^(?:definition of\:?|define\:?|definition\:?)(.+)/) {
+	if($query =~ /^(?:definition of\:?|define\:?|definition\:?) (.+)/) {
 		$query = $1;
 		$query =~ s/^\s+|\s+$//g;
 		return lc $query;
-	} elsif($query =~ /(.+)(?:define|definition)$/) {
+	} elsif($query =~ /(.+) (?:define|definition)$/) {
 		$query = $1;
 		$query =~ s/^\s+|\s+$//g;
 		return lc $query;
