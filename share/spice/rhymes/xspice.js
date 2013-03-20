@@ -1,4 +1,4 @@
-function ddg_spice_rhymes (api_result) {
+function ddg_spice_rhymes (response) {
     var query = DDG.get_query()
                 .replace(/^(what|rhymes?( with| for)?) |\?/gi, "");
 
