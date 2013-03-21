@@ -41,7 +41,6 @@ function ddg_spice_github(response) {
         } else {
             last_pushed = last_pushed + " day" + (last_pushed == 1 ? "" : "s") + " ago";
         }
-        singleRepository = true;
 //        content =  "<i>Description</i>: " + repository.description + "<br>"
 //                +  "<i>Author</i>: " + repository.owner + "<br>"
 //                +  "<i>Homepage</i>: " + "<a hrepositoryf='"
@@ -63,7 +62,7 @@ function ddg_spice_github(response) {
         source_url       : 'http://www.github.com/search?q='
                             + encodeURIComponent(query),
         source_name      : 'GitHub',
-        template_normal  : (singleRepository ? 'single' : 'list'),
+        template_normal  : (results.length == 1 ? 'single' : 'list'),
         force_big_header : true
     });
 }
