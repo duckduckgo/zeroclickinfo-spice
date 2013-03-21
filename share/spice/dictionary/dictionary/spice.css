@@ -157,3 +157,7 @@
 div#mep_0 {
   display: none !important;
 }
+
+#play-icon {
+	cursor: pointer;
+}
