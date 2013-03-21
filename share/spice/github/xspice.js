@@ -54,8 +54,6 @@ function ddg_spice_github(response) {
 //                +  "<br>";
     }
 
-
-
     Spice.render({
         data             : { 'repository' : results },
         header1          : query + " (GitHub)",
