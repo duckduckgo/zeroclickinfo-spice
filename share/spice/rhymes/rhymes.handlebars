@@ -1,1 +1,3 @@
-Rhymes: {{wordlist}}.
+{{#selectRhymes}}
+	Rhymes: {{#concat this sep=", " last=", and "}}{{word}}{{/concat}}.
+{{/selectRhymes}}
