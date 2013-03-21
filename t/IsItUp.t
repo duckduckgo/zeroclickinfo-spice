@@ -20,6 +20,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::IsItUp',
         is_cached => 0
     ),
+    'is http://føtex.dk up?' => test_spice(
+        '/js/spice/is_it_up/f%C3%B8tex.dk',
+        call_type => 'include',
+        caller => 'DDG::Spice::IsItUp',
+        is_cached => 0
+    ),
+    'is https://føtex.dk up?' => test_spice(
+        '/js/spice/is_it_up/f%C3%B8tex.dk',
+        call_type => 'include',
+        caller => 'DDG::Spice::IsItUp',
+        is_cached => 0
+    ),
 );
 
 done_testing;
