@@ -14,7 +14,7 @@ function ddg_spice_rhymes (response) {
 
     Spice.render({
         data             : words,
-        header1          : "(Rhymes)" + query,
+        header1          : "(Rhymes) " + query,
         source_url       : 'http://rhymebrain.com/en/What_rhymes_with_'
                             + encodeURIComponent(query),
         source_name      : 'RhymeBrain',
