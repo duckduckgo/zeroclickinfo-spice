@@ -1,4 +1,4 @@
-function ddg_spice_rhymes (response) {
+function ddg_spice_rhymes(response) {
     var query = DDG.get_query()
                 .replace(/^(what|rhymes?( with| for)?) |\?/gi, "");
 
@@ -13,8 +13,8 @@ function ddg_spice_rhymes (response) {
     if (words.length == 0) return;
 
     Spice.render({
-        data             : words,
-        header1          : "(Rhymes) " + query,
+        data             : { 'wordlist' : words.join(', ') },
+        header1          : query + " (Rhymes)",
         source_url       : 'http://rhymebrain.com/en/What_rhymes_with_'
                             + encodeURIComponent(query),
         source_name      : 'RhymeBrain',
