@@ -42,8 +42,6 @@ function ddg_spice_github(response) {
             last_pushed = last_pushed + " day" + (last_pushed == 1 ? "" : "s") + " ago";
         }
         repository['last_pushed'] = last_pushed;
-        repository['url'] = re.homepage.replace(/^(?!https?:\/\/)/, "http://");
-        repository['homepage'] = repository.homepage.replace(/^https?:\/\/|\/$/gi, '');
     }
 
     Spice.render({
