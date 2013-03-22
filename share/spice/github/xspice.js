@@ -1,21 +1,12 @@
 function ddg_spice_github(response) {
-   var query = DDG.get_query()
+    var query = DDG.get_query()
                 .replace(/^\s*github\s+/, "");
 
-    Spice.render({
-        data             : { 'repositories' : response.data.repositories },
-        header1          : query + " (GitHub)",
-        source_url       : 'http://www.github.com/search?q='
-                            + encodeURIComponent(query),
-        source_name      : 'GitHub',
-        template_normal  : (results.length == 1 ? 'single' : 'list'),
-        force_big_header : true
-    });
-}
-
-Handlebars.registerHelper('selectRepositories', function(options) {
-    var repositories = this;
+    var repositories = response.data.repositories;
     var results = [];
+
+    console.log(repositories);
+
     var singleRepository;
 
     repositories.map(function(repository) {
@@ -62,5 +53,14 @@ Handlebars.registerHelper('selectRepositories', function(options) {
 //                +  "/issues'> issues</a>"
 //                +  "<br>";
     }
-	return options.fn(results);
-});
+
+    Spice.render({
+        data             : { 'repository' : results },
+        header1          : query + " (GitHub)",
+        source_url       : 'http://www.github.com/search?q='
+                            + encodeURIComponent(query),
+        source_name      : 'GitHub',
+        template_normal  : (results.length == 1 ? 'single' : 'list'),
+        force_big_header : true
+    });
+}
