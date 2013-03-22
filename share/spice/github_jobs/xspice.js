@@ -1,4 +1,4 @@
-function ddg_spice_github(response) {
+function ddg_spice_github_jobs(response) {
     if (response.length > 0) return;
     var jobs = response;
     var query = DDG.get_query();
@@ -10,7 +10,7 @@ function ddg_spice_github(response) {
         header1          : query + " (GitHub Jobs)",
         source_url       : 'https://jobs.github.com/positions?description=' 
                             + encodeURIComponent(description)
-                            + "&location=" +  encodeURIComponent(location);
+                            + "&location=" +  encodeURIComponent(location),
         source_name      : 'GitHub',
         template_normal  : 'github_jobs',
         force_big_header : true
