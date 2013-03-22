@@ -82,12 +82,12 @@ function program7(depth0,data) {
   else { stack1 = depth0.domain; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + ", ";
-  if (stack1 = helpers.hn_points) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.hn_points; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers.points) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.points; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " points";
+  buffer += " point";
   options = {hash:{},data:data};
-  stack2 = ((stack1 = helpers.plural),stack1 ? stack1.call(depth0, depth0.hn_points, options) : helperMissing.call(depth0, "plural", depth0.hn_points, options));
+  stack2 = ((stack1 = helpers.plural),stack1 ? stack1.call(depth0, depth0.points, options) : helperMissing.call(depth0, "plural", depth0.points, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += ")\n				";
   return buffer;
@@ -97,12 +97,12 @@ function program9(depth0,data) {
   
   var buffer = "", stack1, stack2, options;
   buffer += "\n					(";
-  if (stack1 = helpers.hn_points) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.hn_points; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers.points) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.points; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " points";
+  buffer += " point";
   options = {hash:{},data:data};
-  stack2 = ((stack1 = helpers.plural),stack1 ? stack1.call(depth0, depth0.hn_points, options) : helperMissing.call(depth0, "plural", depth0.hn_points, options));
+  stack2 = ((stack1 = helpers.plural),stack1 ? stack1.call(depth0, depth0.points, options) : helperMissing.call(depth0, "plural", depth0.points, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += ")\n				";
   return buffer;
@@ -246,12 +246,12 @@ function program27(depth0,data) {
   else { stack1 = depth0.domain; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + ", ";
-  if (stack1 = helpers.hn_points) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.hn_points; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers.points) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.points; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " points";
+  buffer += " point";
   options = {hash:{},data:data};
-  stack2 = ((stack1 = helpers.plural),stack1 ? stack1.call(depth0, depth0.hn_points, options) : helperMissing.call(depth0, "plural", depth0.hn_points, options));
+  stack2 = ((stack1 = helpers.plural),stack1 ? stack1.call(depth0, depth0.points, options) : helperMissing.call(depth0, "plural", depth0.points, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += ")\n					";
   return buffer;
@@ -261,12 +261,12 @@ function program29(depth0,data) {
   
   var buffer = "", stack1, stack2, options;
   buffer += "\n						(";
-  if (stack1 = helpers.hn_points) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.hn_points; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers.points) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.points; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += " points";
+  buffer += " point";
   options = {hash:{},data:data};
-  stack2 = ((stack1 = helpers.plural),stack1 ? stack1.call(depth0, depth0.hn_points, options) : helperMissing.call(depth0, "plural", depth0.hn_points, options));
+  stack2 = ((stack1 = helpers.plural),stack1 ? stack1.call(depth0, depth0.points, options) : helperMissing.call(depth0, "plural", depth0.points, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += ")\n					";
   return buffer;
