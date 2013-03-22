@@ -41,17 +41,9 @@ function ddg_spice_github(response) {
         } else {
             last_pushed = last_pushed + " day" + (last_pushed == 1 ? "" : "s") + " ago";
         }
-//        content =  "<i>Description</i>: " + repository.description + "<br>"
-//                +  "<i>Author</i>: " + repository.owner + "<br>"
-//                +  "<i>Homepage</i>: " + "<a hrepositoryf='"
-//                +  url + "'>" + repository.homepage.repositoryplace(/^https?:\/\/|\/$/gi, '')
-//                +  "</a><br>" + "<i>Activity</i>: last updated " + last_pushed
-//                +  ", " + repository.watchers + " watching, "
-//                +  repository.forks + "<a hrepositoryf='"
-//                +  repository.url + "/network'> forks</a> and "
-//                +  repository.open_issues + "<a hrepositoryf='" + repository.url
-//                +  "/issues'> issues</a>"
-//                +  "<br>";
+        repository['last_pushed'] = last_pushed;
+        repository['url'] = re.homepage.replace(/^(?!https?:\/\/)/, "http://");
+        repository['homepage'] = repository.homepage.replace(/^https?:\/\/|\/$/gi, '');
     }
 
     Spice.render({

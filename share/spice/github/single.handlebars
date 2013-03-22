@@ -1,4 +1,6 @@
 {{#each repository}}
   <i>Description</i>: <a href="{{url}}">{{name}}</a></li><br>
   <i>Owner</i>: {{owner}}<br>
+  <i>Homepage</i>: <a href="{{url}}">{{homepage}}</a><br>
+  <i>Activity</i>: last updated {{last_pushed}}, {{watchers}} watching, {{forks}} <a href="{{url}}/network">forks</a> and {{open_issues}} <a href="{{url}}/issues">issues</a><br>
 {{/each}}
