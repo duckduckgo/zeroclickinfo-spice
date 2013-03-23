@@ -11,42 +11,38 @@ function search_codeStrip(html) {
 	return tmp.textContent||tmp.innerText;
 }
 
-function ddg_spice_reddit(re) {
+function ddg_spice_reddit(response) {
+
     // validity check
-    if (re["data"]["display_name"]) {
+    if (!response.data || !response.data.display_name) return;
+    else response = response.data;
 
-        var content, description, title, subscribers, url;
-        var converter = Markdown.getSanitizingConverter();
+    var subreddit = [];
+    var converter = Markdown.getSanitizingConverter();
 
-        if (re["data"]["public_description"]) {
-            // Public description available
-            description = search_codeStrip(converter.makeHtml(re["data"]["public_description"].replace(/\n/gm, "-")));
-            }
-        else {
-            // Public description unavailable
-            description = search_codeStrip(converter.makeHtml(re["data"]["description"].replace(/\n/gm, "-")));
-        }
+    if (response.public_description)
+        subreddit.description = search_codeStrip(converter.makeHtml(response.public_description.replace(/\n/gm, "-")));
+    else
+        subreddit.description = search_codeStrip(converter.makeHtml(response.description.replace(/\n/gm, "-")));
 
-        // If info is too long, slice it and strip it of extra asterisks.
-        description = (description.length <= 240) ? description : description.replace(/(\*)/,"").slice(0, 240)+"... ";
+    // If info is too long, slice it and strip it of extra asterisks.
+    if (subreddit.description.length <= 240)
+        subreddit.description = subreddit.description.replace(/(\*)/,'').slice(0, 240)
+                              + '... ';
 
-        url = re["data"]["url"];
-        title = "<a href='http://www.reddit.com" + url + "'>" + re["data"]["title"] + "</a>";
-        subscribers = re["data"]["subscribers"].toString().replace(/(\d)(?=(\d{3})+(\.\d+|)\b)/g, "$1,");
-        content = "<div class='subreddit_title'><i>Title</i>: " + title + "</div>";
-        content += "<div class='subreddit_description'><i>Description</i>: " + description + "</div>";
-        content += "<div class='subreddit_subscribers'><i>Subscribers</i>: " + subscribers + "</div>";
+    subreddit.description = subreddit.description.replace(/---.*$/, "");
 
-        content = content.replace(/---.*$/, "");
-        items = new Array();
-        items[0] = new Array();
-        items[0]["a"] = content;
-        items[0]["h"] = re.data.display_name + " (subreddit)";
-        items[0]["s"] = "Reddit";
-        items[0]["u"] = "http://www.reddit.com" + url;
-        items[0]["force_big_header"] = true;
-        items[0]["force_space_after"] = true;
+    subreddit.url = response.url;
+    subreddit.title = response.title;
+    subreddit.subscribers = response.subscribers.toString().replace(/(\d)(?=(\d{3})+(\.\d+|)\b)/g, "$1,");
 
-        nra(items);
-    }       
+    Spice.render({
+        data              : subreddit,
+        header1           : response.display_name + " (SubReddit)",
+        source_url        : 'http://www.reddit.com' + subreddit.url,
+        source_name       : 'Reddit',
+        template_normal   : 'reddit_sub_search',
+        force_big_header  : true,
+        force_space_after : true,
+    });
 };
