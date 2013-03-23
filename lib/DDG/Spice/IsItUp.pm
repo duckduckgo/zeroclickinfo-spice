@@ -15,7 +15,7 @@ status "enabled";
 
 spice is_cached => 0;
 
-triggers query_lc => qr/^((?:is\s|))([0-9a-z\-]+(?:\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:up|down|working)/;
+triggers query_lc => qr/^((?:is\s|))(?:http:\/\/)?([0-9a-z\-]+(?:\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:up|down|working)/i;
 
 spice to => 'http://isitup.org/$1.json?callback={{callback}}';
 
