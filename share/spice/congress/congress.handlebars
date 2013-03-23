@@ -1,0 +1,12 @@
+<ul>
+{{#each member}}
+  <li>
+  <a href="/q?={{name}}">{{name}} ({{party}})</a> &mdash;
+    {{#if twitter}}<a href="https://www.twitter.com/{{twitter}}">@{{twitter}}</a>, {{/if}}
+    {{#if next_election}}next election in {{next_election}}{{/if}}
+    <br>
+    Votes with party on {{votes_with_party_pct}}% of issues.
+    {{#if district}} (district {{district}}){{/if}}
+  </li>
+{{/each}}
+</ul>
