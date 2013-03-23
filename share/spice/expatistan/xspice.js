@@ -32,16 +32,13 @@ Here is the flow (as laid out in the ../example.html file
    which displays it on the page.
 */
 
-function ddg_spice_expatistan(ir) {
-    var snippet = '';
-    if (ir['status'] == 'OK') {
-			snippet = ir['abstract'];
-			items = new Array();
-			items[0] = new Array();
-			items[0]['a'] = snippet;
-			items[0]['h'] = '';
-			items[0]['s'] = 'Expatistan';
-			items[0]['u'] = ir['source_url'];
-			nra(items);
-    }
+function ddg_spice_expatistan(response) {
+    if (response.status != 'OK') return;
+
+    Spice.render({
+        data             : { 'abstract' : response.abstract },
+        source_url       : response.source_url,
+        source_name      : 'Expatistan',
+        template_normal  : 'expatistan',
+    });
 }
