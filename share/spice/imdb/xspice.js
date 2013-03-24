@@ -2,7 +2,7 @@ function ddg_spice_imdb(response) {
 
     if (!response['Response'] == 'True') return;
 
-    var movie = [];
+    var movie = {};
     var currentDate = new Date();
     var tempDate = response["Released"] != "N/A" ? new Date(response["Released"]) : "";
     movie.runtime = response["Runtime"].replace(/\s/g, "").replace("min", "m");
