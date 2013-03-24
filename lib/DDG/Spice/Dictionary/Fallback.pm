@@ -1,4 +1,4 @@
-package DDG::Spice::Dictionary::DictionaryFallback;
+package DDG::Spice::Dictionary::Fallback;
 
 use DDG::Spice;
 

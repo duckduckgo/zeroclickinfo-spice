@@ -1,4 +1,4 @@
-package DDG::Spice::Dictionary::DictionaryAudio;
+package DDG::Spice::Dictionary::Audio;
 
 use DDG::Spice;
 
