@@ -63,8 +63,12 @@
     // plugin.
     function getSynopsis(result) {
         var synopsis;
-        if (result.synopsis) {
+        if (result.synopsis && result.synopsis.length <= 135) {
+            synopsis = result.synopsis;
+        } else if (result.synopsis) {
             synopsis = result.synopsis.substring(0, 135) + "...";
+        } else if (result.critics_consensus && result.critics_consensus.length <= 135) {
+            synopsis = result.critics_consensus;
         } else if (result.critics_consensus && result.critics_consensus.length > 0) {
             synopsis = result.critics_consensus.substring(0, 135) + "...";
         } else {
@@ -113,11 +117,11 @@
             rDate, 
             opened,
             releaseDate;
-        if (result.release_dates.theater) {
+        if (result.release_dates && result.release_dates.theater) {
             rDate = result.release_dates.theater.split("-");
             opened = new Date(rDate[0], rDate[1] - 1, rDate[2], 0, 0, 0);
             releaseDate = (currentTime - opened < 0) ? opened.toDateString().slice(4) : result.year;
-        } else if (result.year > currentTime.getFullYear()) {
+        } else if (result.year !== 0 && result > currentTime.getFullYear()) {
             releaseDate = result.year;
         }
         return releaseDate;
@@ -132,6 +136,9 @@
         } else {
             adjective = "a";
         }
+        if(result.mpaa_rating === "Unrated") {
+            return [adjective, result.mpaa_rating.toLowerCase()];
+        }
         return [adjective, result.mpaa_rating];
     }
 
@@ -144,7 +151,7 @@
                 strings = [];
             for(var i = 0, length = names.length; i < length; i += 1) {
                 url = 'http://www.rottentomatoes.com/celebrity/' + names[i].id + '/';
-                strings.push('<a onlcick="fl=1" href="' + url + '">' + names[i].name + '</a>');
+                strings.push('<a onclick="fl=1" href="' + url + '">' + names[i].name + '</a>');
             }
             return toSentence(strings);
         }
@@ -194,15 +201,39 @@
             }
         }
 
+        function check_header(date) {
+            if(date === "" || date === undefined || date === null) {
+                return "";
+            } else {
+                return " (" + date + ")";
+            }
+        }
+
+        function check_year(year) {
+            if(year === "" || year === undefined || year === null) {
+                return "";
+            } else {
+                return " (" + year + ")";
+            }
+        }
+
+        function check_names(names) {
+            if(names.length === 0) {
+                return "";
+            } else {
+                return ", starring " + castHTML(names);
+            }
+        }
+
         // Build the output.
-        var output = collection.result.title + " (" + collection.result.year + ") is " + collection.rating[0] +
+        var output = collection.result.title + check_year(collection.result.year) + " is " + collection.rating[0] +
                      " " + collection.rating[1] + " movie (" + getTomato(collection.result) + getCriticsScore(collection.result) +
-                     getAudienceScore(collection.result) + "), starring " + castHTML(collection.names) + ". " + collection.synopsis,
+                     getAudienceScore(collection.result) + ")" + check_names(collection.names) + ". " + collection.synopsis,
             items = [[]];
 
         items[0] = {
             a: output,
-            h: collection.header + " (" + collection.date + ")",
+            h: collection.header + check_header(collection.date),
             s: 'Rotten Tomatoes',
             u: collection.result.links.alternate,
             i: collection.poster

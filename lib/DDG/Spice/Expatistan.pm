@@ -2,7 +2,7 @@ package DDG::Spice::Expatistan;
 
 use DDG::Spice;
 
-triggers query_lc => qr/cost of living/;
+triggers any => "cost of living";
 
 spice to => 'http://www.expatistan.com/api/spice?q=$1&api_key={{ENV{DDG_SPICE_EXPATISTAN_APIKEY}}}';
 
@@ -17,7 +17,8 @@ category "facts";
 attribution github => ['https://github.com/hunterlang','Hunter Lang'];
 
 handle query_lc => sub {
-    return $_ if defined $_;
+    return $_ if $_;
+    return;
 };
 
 1;

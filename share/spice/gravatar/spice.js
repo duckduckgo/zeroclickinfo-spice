@@ -51,7 +51,7 @@ function ddg_spice_gravatar(res) {
         items = item["photos"].length > 1 ? [[], []] : [[]];
         //if(no_profile) {
         //    items[0]['a'] = snippet;
-        //    items[0]['f'] = 1;
+        //    items[0]['force_no_fold'] = 1;
         //} else {
             items[0]['a'] = out + clear;
             items[0]['i'] = 'http://gravatar.com/avatar/'+ item["hash"] + '.jpg';

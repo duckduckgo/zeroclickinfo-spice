@@ -12,6 +12,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Movie'
     ),
+    'asus rt-66nu' => undef
 );
 
 done_testing;

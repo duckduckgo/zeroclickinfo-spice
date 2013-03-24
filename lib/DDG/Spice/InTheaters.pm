@@ -16,8 +16,11 @@ attribution github => ['https://github.com/jagtalon','jagtalon'],
 status "enabled";
 
 my $rating = '(?:g\s*|pg\s*|r\s*)?';
-spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&callback={{callback}}';
+spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?country=$2&apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&callback={{callback}}';
 triggers any => 'movie', 'movies', 'theaters', 'theatres', 'showing', 'something', 'watch', 'opening', 'see';
+spice from => '(.*?)/(.*)';
+spice is_cached => 0;
+spice proxy_cache_valid => "418 1d";
 
 my %movies = (
 	'movies now showing' => 1,
@@ -27,6 +30,7 @@ my %movies = (
 	'watch a movie' => 1,
 	'opening soon in theaters' => 0,
 	'opening soon in theatres' => 0,
+	'opening movies' => 0,
 	'r movies opening' => 0,
 	'pg movies opening' => 0,
 	'pg-13 movies opening' => 0,
@@ -77,9 +81,9 @@ my %movies = (
 handle query_lc => sub {
 	return unless exists $movies{$_};
 	if($movies{$_}) {
-		return "in_theaters";
+		return "in_theaters", $loc->country_code;
 	} else {
-		return "opening";
+		return "opening", $loc->country_code;
 	}
 };
 1;

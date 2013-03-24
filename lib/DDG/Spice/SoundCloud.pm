@@ -5,7 +5,7 @@ use DDG::Spice;
 
 description "Displays SoundCloud Players";
 name "SoundCloud";
-primary_example_queries "soundcloud Jetski Safari Like a Lie";
+primary_example_queries "soundcloud ray bradbury";
 secondary_example_queries "sc kavinsky";
 topics "entertainment", "music";
 category "entertainment";
@@ -16,14 +16,14 @@ attribution web => ['http://jordanscales.com', 'Jordan Scales'],
             twitter => ['http://twitter.com/prezjordan', '@prezjordan'];
 status "enabled";
 
-spice to => 'http://api.soundcloud.com/tracks.json?client_id={{ENV{DDG_SPICE_SOUNDCLOUD_APIKEY}}}&q=$1&limit=1&callback={{callback}}';
+spice to => 'http://api.soundcloud.com/tracks.json?client_id={{ENV{DDG_SPICE_SOUNDCLOUD_APIKEY}}}&q=$1&limit=5&callback={{callback}}';
 spice is_cached => 0;
 
-triggers start => "sc", "soundcloud", "sound cloud";
+triggers startend => "sc", "soundcloud", "sound cloud";
 
 handle remainder => sub {
     return if $_ eq '';
-    return $_ if defined $_;
+    return $_ if $_;
     return;
 };
 

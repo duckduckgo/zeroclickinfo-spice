@@ -37,7 +37,7 @@ function ddg_spice_drinks(drink) {
       // Source name and url for the More at X link.
       items[0]['s'] = 'The Drink Project';
       items[0]['u'] = drink[0]['url'];
-      items[0]['f'] = 1;
+      items[0]['force_no_fold'] = 1;
 
       nra(items);
     }

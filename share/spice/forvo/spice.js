@@ -1,11 +1,10 @@
+nrj("/forvo/jquery.min.js", true);
+nrj("/forvo/mediaelement-and-player.min.js", true);
+nrj("/forvo/init.js", true);
+
 function ddg_spice_forvo(data) {
 
     if (data.attributes.total != "0") {
-
-   	nrj("/forvo/jquery.min.js", true);
-        nrj("/forvo/mediaelement-and-player.min.js", true);
-        nrj("/forvo/init.js", true);
-        
 
         var words = data.items;
 
@@ -66,7 +65,7 @@ function ddg_spice_forvo(data) {
         items[0]['h'] = 'Pronunciations by Forvo';
         items[0]['s'] = 'Forvo';
         items[0]['u'] = 'http://www.forvo.com/search/' + encodeURIComponent(query);
-        items[0]['f'] = 1;
+        items[0]['force_no_fold'] = 1;
         items[0]['force_big_header'] = 1;
         nra(items, 1, 1);
 

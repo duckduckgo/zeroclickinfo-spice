@@ -17,8 +17,44 @@
         'es': 'Spanish',
         'tr': 'Turkish'
     };
-    var hasOwn = Object.prototype.hasOwnProperty;
+
+    var convert = {
+        "cs": "cz",
+        "ar": "ar",
+        "zh": "zh",
+        "en": "en",
+        "fr": "fr",
+        "el": "gr",
+        "it": "it",
+        "ja": "ja",
+        "ko": "ko",
+        "pl": "pl",
+        "pt": "pt",
+        "ro": "ro",
+        "es": "es",
+        "tr": "tr"
+    };
+
+    var hasOwn = ({}).hasOwnProperty;
     var translations = [];
+
+    root.ddg_spice_translate_detect = function(ir) {
+        var params = get_params(),
+            words  = params[0],
+            from   = ir.data.detections[0].language,
+            to     = params[1],
+            base;
+
+        if (words.split('%20').length > 1) {
+            base = '/js/spice/translate/my_memory/';
+
+            nrj(base + from + '/' + to + '/' + words);
+        } else {
+            base = '/js/spice/translate/wordreference/';
+
+            nrj(base + convert[from] + to + '/' + words);
+        }
+    };
 
     root.ddg_spice_translate_basic = function() {
         var params = get_params(),
@@ -48,6 +84,8 @@
             regex = /translate\/([a-z]+)\/(.+)\/(.+)/;
             match = scripts[i].src.match(regex);
 
+            console.log(match);
+
             if (match !== undefined && match !== null) {
                 return [match[2], match[3]];
             }
@@ -70,7 +108,7 @@
             return;
         }
 
-        items[0].h = langs[to] + ' translations for <i>' + word + '</i>';
+        items[0].h = langs[to] + ' translations for ' + word;
         items[0].s = 'MyMemory';
         items[0].u = 'http://mymemory.translated.net/s.php?q=' + word + '&sl=' + from + '&tl=' + to;
         items[0].force_big_header = true;
@@ -93,7 +131,7 @@
             regex = /translate\/my_memory\/(.+)\/(.+)/;
             match = scripts[i].src.match(regex);
 
-            if (match !== undefined) {
+            if (match !== undefined && match !== null) {
                 return [match[1], match[2]];
             }
         }
@@ -132,9 +170,7 @@
             translations.push(t);
         }
 
-        text = '<li><i>' + t + '</i>';
-        text += '</li>';
-
+        text = '<li>' + t + '</li>';
         return text;
     }
 
@@ -146,25 +182,28 @@
             word   = params[1],
             to     = dict.slice(-2),
             text;
-
+        
         if ((word === '') || (dict === '')) {
             return;
         }
 
-        items[0].h = langs[to] + ' translations for <i>' + word + '</i>';
-        items[0].s = 'Wordreference.com';
-        items[0].u = 'http://wordreference.com/' + dict + '/' + word;
-        items[0].force_big_header = true;
+        dict = convert[dict.slice(0, 2)] + to;
+        items[0] = {
+            h: langs[to] + ' translations for ' + word,
+            s: 'Wordreference.com',
+            u: 'http://wordreference.com/' + dict + '/' + word,
+            force_big_header: true
+        };
 
         if (ir.Error) {
             return;
         }
 
         text = '<ul>';
-        text += format_term_wordreference(ir.term0);
+        text += format_term_wordreference(ir.term0, word);
 
         if (ir.term1 !== undefined) {
-            text += format_term_wordreference(ir.term1);
+            text += format_term_wordreference(ir.term1, word);
         }
 
         text += '</ul>';
@@ -184,44 +223,55 @@
             match;
 
         for (var i = 0; i < scripts.length; i++) {
-            regex = /translate\/wordreference\/(.+)\/(.+)/;
+            regex = /translate\/wordreference\/(.+?)\/(.+)/;
             match = scripts[i].src.match(regex);
 
-            if (match !== undefined || match !== null) {
-                return [match[1], match[2]];
+            if (match !== undefined && match !== null) {
+                return [match[1], decodeURIComponent(match[2])];
             }
         }
 
         return ['', ''];
     }
 
-    function format_term_wordreference(term) {
-        var text = format_translations_wordreference(term.PrincipalTranslations);
+    function format_term_wordreference(term, word) {
+        if(term.PrincipalTranslations || term.Entries) {
+            var text = format_translations_wordreference((term.PrincipalTranslations || term.Entries), word, false);
+        } else if(term.OtherSideEntries) {
+            var text = format_translations_wordreference(term.OtherSideEntries, word, true);
+        }
 
         if (term.AdditionalTranslations) {
-            text += format_translations_wordreference(term.AdditionalTranslations);
+            text += format_translations_wordreference(term.AdditionalTranslations, word, true);
         }
 
         return text;
     }
 
-    function format_translations_wordreference(ts) {
+    function format_translations_wordreference(ts, word, swap) {
         var text = '';
         var origi, first, secnd;
+        var limit = 0;
 
         for (var i in ts) {
-            if(hasOwn.call(ts, i)) {
+            if(hasOwn.call(ts, i) && limit < 3) {
                 origi = ts[i].OriginalTerm;
                 first = ts[i].FirstTranslation;
                 secnd = ts[i].SecondTranslation;
+
+                if(swap) {
+                    origi = ts[i].FirstTranslation;
+                    first = ts[i].OriginalTerm;
+                }
 
                 if (origi.term !== first.term) {
                     text += format_translation_wordreference(first);
                 }
 
-                if ((secnd !== undefined) && (origi.term !== secnd.term)) {
+                if ((secnd !== undefined) && (origi.term !== secnd.term) && !swap) {
                     text += format_translation_wordreference(secnd);
                 }
+                limit += 1;
             }
         }
 
@@ -240,11 +290,7 @@
             translations.push(t.term);
         }
 
-        text = '<li><i>' + t.term + '</i>';
-
-        text += '</li>';
-
+        text = '<li>' + t.term + '</li>';
         return text;
     }
-
 }(this));

@@ -55,7 +55,7 @@ function ddg_spice_hacker_news(res) {
       HN_Global.result = HN_Global.discussions[i];
 
       if (c1 < 3) {
-        snippet[1] += discussion(HN_Global.submissions, i); 
+        if (HN_Global.result["discussion"]) snippet[1] += discussion(HN_Global.submissions, i); 
         c1++;
       }
 
@@ -102,7 +102,7 @@ function ddg_spice_hacker_news(res) {
 
         items[i]['h'] = 'Hacker News' + ' (' + terms + ')';
         items[i]['s'] = 'HNSearch'; 
-        items[i]['f'] = 1;
+        items[i]['force_no_fold'] = 1;
       }
     }
     
@@ -111,7 +111,7 @@ function ddg_spice_hacker_news(res) {
 }
 
 function discussion (res, i) {
-   
+
   var text = shorten(HN_Global.result["text"], 200);
  
   var div  = d.createElement('div');

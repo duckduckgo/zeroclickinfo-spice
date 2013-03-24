@@ -38,7 +38,7 @@ function ddg_spice_xkcd(xk) {
      items[0]['u'] = 'http://xkcd.com/' + xk['num'];
      
      // Force no compression.
-     items[0]['f'] = 1;
+     items[0]['force_no_fold'] = 1;
      
      // The rendering function is nra.
      nra(items);
