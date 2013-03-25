@@ -1,5 +1,11 @@
-require("/forvo/mediaelement-and-player.min.js", {async: false});
-require("/forvo/mediaelementplayer.min.css", {async: true});
+// The dictionary plug-in requires multiple API calls, and these are handled by:
+// ddg_spice_dictionary_definition - gets the definitions of a given word (e.g. noun. A sound or a combination of sounds).
+// ddg_spice_dictionary_pronunciation - gets the pronunciation of a word (e.g. wûrd). 
+// ddg_spice_dictionary_audio - gets the audio file of a word.
+// ddg_spice_dictionary_fallback - handles any misspellings.
+//
+// pronunciation and audio callbacks are loaded and executed much later -- that is, 
+// after ddg_spice_dictionary_definition gets executed.
 
 // This function gets the definition of a word.
 var ddg_spice_dictionary_definition = function(api_result) {
@@ -47,19 +53,18 @@ var ddg_spice_dictionary_definition = function(api_result) {
             template_small    : "dictionary"
         });
 
-        // Call Wordnik API to get the pronunciation text.
-        require("/js/spice/dictionary/pronunciation/" + context.word, {async: true});
+        // Call the Wordnik API to display the pronunciation text and the audio.
+        require("/js/spice/dictionary/pronunciation/" + context.word);
+        require("/js/spice/dictionary/audio/" + context.word);
 
-        // Call Wordnik API to get the audio file.
-        require("/js/spice/dictionary/audio/" + context.word, {async: true});
+    // If we did not get any results, we should try calling the definition API again,
+    // but this time with useCanonical=true. This works for words such as "brobdingnagian"
+    // which gets corrected to "Brobdingnagian."
     } else {
-        // Remove the trigger word (only if it's at the start or at the end).
         var query = DDG.get_query().replace(/^(definition of\:?|define\:?|definition)|(define|definition)$/, "");
-
-        // Remove excess spaces.
+        // Remove extra spaces.
         query = query.replace(/(^\s+|\s+$)/g, "");
-
-        require("/js/spice/dictionary/fallback/" + query, {async: true});
+        require("/js/spice/dictionary/fallback/" + query);
     }
 };
 
@@ -78,65 +83,123 @@ var ddg_spice_dictionary_pronunciation = function(api_result) {
 var ddg_spice_dictionary_audio = function(api_result) {
     "use strict";
 
+    var url = "";
+    if(api_result && api_result.length > 0) {
+        // Find the audio url that was created by Macmillan (it usually sounds better).
+        for(var i = 0; i < api_result.length; i += 1) {
+            if(api_result[i].createdBy === "macmillan" && url === "") {
+                url = api_result[i].fileUrl.replace(/^http:/, "https:");
+            }
+        }
+
+        // If we don't find Macmillan, we use the first one.
+        if(url === "") {
+            url = api_result[0].fileUrl.replace(/^http:/, "https:");
+        }
+    } else {
+        return;
+    }
+
     var playIcon = function(icon) {
-        icon.removeClass("icon-pause");
+        icon.removeClass("icon-stop");
         icon.addClass("icon-play");
     };
 
     var pauseIcon = function(icon) {
         icon.removeClass("icon-play");
-        icon.addClass("icon-pause");
+        icon.addClass("icon-stop");
     };
 
-    if(api_result.length > 0) {
+    var playSound = function() {
+        var finished = false;
+
+        // Set the icon.
         var $icon = $("#play-icon");
         playIcon($icon);
-        // Change HTTP to HTTPS.
-        var sound = api_result[0].fileUrl.replace(/^http:/, "https:");
 
         // Set the sound file.
-        $("#dictionary-source").attr("src", sound);
-
-        // Start the player.
-        $("audio").mediaelementplayer({
-            features: ["playpause"],
-            success: function(mediaElement) {
-                mediaElement.addEventListener("ended", function() {
-                    playIcon($icon);
-                });
+        var sound = soundManager.createSound({
+            id: "dictionary-sound",
+            url: url,
+            onfinish: function() {
+                finished = true;
+                playIcon($icon);
             }
         });
 
-        // The sound file plays when the user clicks on the icon.
+        // Play the sound when the icon is clicked.
         $icon.click(function() {
-            // This will prevent the user from playing the audio multiple times. 
-            // (This one is a trick that I found in StackOverflow.)
             if($icon.hasClass("icon-play")) {
                 pauseIcon($icon);
-
-                var $player = new MediaElementPlayer("#dictionary-player");
-                $player.play();
+                sound.play();
             }
         });
-    }
+    };
+
+    var loadSoundManager = function() {
+        window.soundManager = new SoundManager();
+        soundManager.url = "/soundmanager2/swf/";
+        soundManager.flashVersion = 9;
+        soundManager.useFlashBlock = false;
+        soundManager.useHTML5Audio = false;
+        soundManager.beginDelayedInit();
+        soundManager.onready(playSound);
+    };
+
+    // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
+    window.SM2_DEFER = true;
+    require("/soundmanager2/script/soundmanager2.js", {
+        success: loadSoundManager
+    });
 };
 
 var ddg_spice_dictionary_fallback = function(api_result) {
     "use strict";
 
-    if(api_result.length > 0) {
+    if(api_result && api_result.length > 0) {
         ddg_spice_dictionary_definition(api_result);
     }
 };
 
+// Helper functions used to load the JS files.
 function require(path, options) {
     "use strict";
 
+    if(options == null) {
+        options = {};
+        options.success = function() {};
+    }
+
     if(path.match(/\.js$/)) {
-        nrj(path, !options.async);
-    } else if(path.match(/\.css/)) {
-        nrc(path, !options.async);
+        loadJS(path, options.success);
+    } else if(path.match(/\.css$/)) {
+        nrc(path, false);
     } else {
-        nrj(path, !options.async);
+        loadJS(path, options.success);
+    }
+}
+
+function loadJS(path, callback) {
+    "use strict";
+
+    var element = document.createElement("script");
+    element.async = true;
+    element.src = path;
+    attachLoadEvent(element, callback);
+    document.body.appendChild(element);
+    return element;
+}
+
+function attachLoadEvent(element, callback) {
+    "use strict";
+
+    if (element.addEventListener) {
+        element.addEventListener("load", callback, false);
+    } else {
+        element.onreadystatechange = function() {
+            if (this.readyState === "complete") {
+                callback();
+            }
+        };
     }
 }
