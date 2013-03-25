@@ -6,7 +6,7 @@ function ddg_spice_imdb(response) {
     var currentDate = new Date();
     var tempDate = response["Released"] != "N/A" ? new Date(response["Released"]) : "";
     movie.runtime = response["Runtime"].replace(/\s/g, "").replace("min", "m");
-    movie.runtime = movie.runtime === "N/A" ? "" : movie.runtime + ", ";
+    movie.runtime = movie.runtime === "N/A" ? "" : movie.runtime;
 
     // Is a release date planned?
     if (tempDate && tempDate > currentDate){
@@ -30,8 +30,8 @@ function ddg_spice_imdb(response) {
     else movie.rating += response["Rated"];
 
     // Reviews?
-    movie.reviews = (response['imdbRating'] != "N/A") ?
-                        response['imdbRating']+"/10) " : "None) ";
+    movie.reviews = response['imdbRating'] != "N/A" ?
+                        response['imdbRating']+"/10" : "None";
     
     movie.title = response['Title'];
     movie.year = response['Year'];

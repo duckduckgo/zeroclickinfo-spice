@@ -1,7 +1,7 @@
 function ddg_spice_meta_cpan(response) {
 	if (response["message"]) return;
     
-    var pkg = [];
+    var pkg = {};
 
 	pkg.query       = DDG.get_query().replace(/\s*(metacpan|meta cpan|cpan)\s*/i, '');
 	pkg.name        = response.documentation ? response.documentation : "No documentation specified.";

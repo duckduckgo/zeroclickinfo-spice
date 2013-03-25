@@ -17,7 +17,7 @@ function ddg_spice_reddit(response) {
     if (!response.data || !response.data.display_name) return;
     else response = response.data;
 
-    var subreddit = [];
+    var subreddit = {};
     var converter = Markdown.getSanitizingConverter();
 
     if (response.public_description)

@@ -36,7 +36,7 @@ function ddg_spice_hackage_packages(response) {
 function ddg_spice_hackage_package_details(response) {
     if (!response || !response.packageDescription) return;
 
-    var pkg        = [];
+    var pkg        = {};
     pkg.name       = response.packageDescription.package.pkgName,
     pkg.synopsis   = response.packageDescription.synopsis,
     pkg.author     = response.packageDescription.author,
