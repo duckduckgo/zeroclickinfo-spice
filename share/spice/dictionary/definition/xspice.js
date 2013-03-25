@@ -84,73 +84,76 @@ var ddg_spice_dictionary_audio = function(api_result) {
     "use strict";
 
     var url = "";
+    var $icon = $("#play-icon");
+
+    var playIcon = function() {
+        $icon.removeClass("icon-stop");
+        $icon.addClass("icon-play");
+    };
+
+    var stopIcon = function() {
+        $icon.removeClass("icon-play");
+        $icon.addClass("icon-stop");
+    };
+
     if(api_result && api_result.length > 0) {
         // Find the audio url that was created by Macmillan (it usually sounds better).
         for(var i = 0; i < api_result.length; i += 1) {
             if(api_result[i].createdBy === "macmillan" && url === "") {
-                url = api_result[i].fileUrl.replace(/^http:/, "https:");
+                url = api_result[i].fileUrl;
             }
         }
 
         // If we don't find Macmillan, we use the first one.
         if(url === "") {
-            url = api_result[0].fileUrl.replace(/^http:/, "https:");
+            url = api_result[0].fileUrl;
         }
     } else {
         return;
     }
 
-    var playIcon = function(icon) {
-        icon.removeClass("icon-stop");
-        icon.addClass("icon-play");
-    };
+    $icon.click(function() {
+        if($icon.hasClass("icon-play") && window.soundManager) {
+            stopIcon();
+            soundManager.play("dictionary-sound");
+        }
+    });
 
-    var pauseIcon = function(icon) {
-        icon.removeClass("icon-play");
-        icon.addClass("icon-stop");
-    };
-
-    var playSound = function() {
-        var finished = false;
-
-        // Set the icon.
-        var $icon = $("#play-icon");
-        playIcon($icon);
-
+    var loadSound = function() {
         // Set the sound file.
         var sound = soundManager.createSound({
             id: "dictionary-sound",
-            url: url,
+            url: "/audio/?u=" + url,
             onfinish: function() {
-                finished = true;
-                playIcon($icon);
+                playIcon();
             }
         });
 
-        // Play the sound when the icon is clicked.
-        $icon.click(function() {
-            if($icon.hasClass("icon-play")) {
-                pauseIcon($icon);
-                sound.play();
-            }
-        });
+        // Preload the sound file immediately because the link expires.
+        sound.load();
+
+        // Set the icon.
+        playIcon($icon);
     };
 
-    var loadSoundManager = function() {
+    var soundSetup = function() {
         window.soundManager = new SoundManager();
         soundManager.url = "/soundmanager2/swf/";
         soundManager.flashVersion = 9;
         soundManager.useFlashBlock = false;
         soundManager.useHTML5Audio = false;
         soundManager.beginDelayedInit();
-        soundManager.onready(playSound);
+        soundManager.onready(loadSound);
     };
 
+    // Check if soundManager was already loaded.
     // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
-    window.SM2_DEFER = true;
-    require("/soundmanager2/script/soundmanager2.js", {
-        success: loadSoundManager
-    });
+    if(window.soundManager == null) {
+        window.SM2_DEFER = true;
+        require("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", {
+            success: soundSetup
+        });
+    }
 };
 
 var ddg_spice_dictionary_fallback = function(api_result) {
@@ -165,6 +168,27 @@ var ddg_spice_dictionary_fallback = function(api_result) {
 function require(path, options) {
     "use strict";
 
+    var loadJS = function(path, callback) {
+        var element = document.createElement("script");
+        element.async = true;
+        element.src = path;
+        attachLoadEvent(element, callback);
+        document.head.appendChild(element);
+        return element;
+    }
+
+    var attachLoadEvent = function(element, callback) {
+        if (element.addEventListener) {
+            element.addEventListener("load", callback, false);
+        } else {
+            element.onreadystatechange = function() {
+                if (this.readyState === "complete") {
+                    callback();
+                }
+            };
+        }
+    }
+
     if(options == null) {
         options = {};
         options.success = function() {};
@@ -176,30 +200,5 @@ function require(path, options) {
         nrc(path, false);
     } else {
         loadJS(path, options.success);
-    }
-}
-
-function loadJS(path, callback) {
-    "use strict";
-
-    var element = document.createElement("script");
-    element.async = true;
-    element.src = path;
-    attachLoadEvent(element, callback);
-    document.body.appendChild(element);
-    return element;
-}
-
-function attachLoadEvent(element, callback) {
-    "use strict";
-
-    if (element.addEventListener) {
-        element.addEventListener("load", callback, false);
-    } else {
-        element.onreadystatechange = function() {
-            if (this.readyState === "complete") {
-                callback();
-            }
-        };
     }
 }
