@@ -8,7 +8,7 @@ function ddg_spice_bible ( api_result ) {
 
 	Spice.render({
 		data: 				result,
-		header1 : 			header + " (Bibl Verse)",
+		header1 : 			header + " (Bible Verse)",
 		source_name : 		'Bible.org',
 		source_url : 		'http://bible.org/',
 		template_normal : 	"bible",
