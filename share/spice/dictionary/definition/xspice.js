@@ -133,7 +133,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         sound.load();
 
         // Set the icon.
-        playIcon($icon);
+        playIcon();
     };
 
     var soundSetup = function() {
