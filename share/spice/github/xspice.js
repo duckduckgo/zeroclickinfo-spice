@@ -5,8 +5,6 @@ function ddg_spice_github(response) {
     var repositories = response.data.repositories;
     var results = [];
 
-    console.log(repositories);
-
     var singleRepository;
 
     repositories.map(function(repository) {

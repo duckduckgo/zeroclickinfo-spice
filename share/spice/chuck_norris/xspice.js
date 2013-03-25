@@ -1,5 +1,6 @@
 function ddg_spice_chuck_norris(response) {
     if (response.type != 'success') return;
+
     Spice.render({
         data             : { 'chuck' : response.value.joke },
         source_url       : 'http://www.icndb.com',

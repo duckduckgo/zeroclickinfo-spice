@@ -1,5 +1,5 @@
 function ddg_spice_smbc(response) {
-    var smbc       = [];
+    var smbc       = {};
     smbc.img_url   = response.items[0].image_url;
     smbc.alt_text  = response.items[0].alt_text;
     smbc.prev_url  = response.items[1].link;
