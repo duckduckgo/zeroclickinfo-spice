@@ -53,12 +53,21 @@ function ddg_spice_dictionary_dictionary_pronunciation(pronounce) {
 }
 
 function ddg_spice_dictionary_dictionary_fallback(words) {
+    "use strict";
+    
+    // Remove the trigger word (only if it's at the start or at the end).
+    // Remove definition of before anything else.
+    var query = DDG.get_query().replace(/^(definition of\:?|define\:?|definition)|(define|definition)$/, '');
+
+    // Remove excess spaces.
+    query = query.replace(/(^\s+|\s+$)/g, '');
+
     if(words.length > 0) {
-        ddg_spice_dictionary_dictionary(words);
+        ddg_spice_dictionary_definition(words);
     }
 }
 
-function ddg_spice_dictionary_dictionary(words) {
+function ddg_spice_dictionary_definition(words) {
     "use strict";
     if(words.length > 0) {
         var items = [[]];
@@ -75,11 +84,11 @@ function ddg_spice_dictionary_dictionary(words) {
         nrj("/js/spice/dictionary/dictionary_audio/" + get_word(words));
     // Get the results again, but this time with useCanonical set to true (useCanonical is akin to "did you mean?").
     } else {
-        // Remove the trigger word.
-        var query = DDG.get_query().replace(/(^|\s)(define\:?|definition|definition of\:?)($|\s)/, '');
+        // Remove the trigger word (only if it's at the start or at the end).
+        var query = DDG.get_query().replace(/^(definition of\:?|define\:?|definition)|(define|definition)$/, '');
 
-        // Remove extra spaces.
-        query = query.replace(/[ ]+/, ' ');
+        // Remove excess spaces.
+        query = query.replace(/(^\s+|\s+$)/g, '');
 
         nrj('/js/spice/dictionary/dictionary_fallback/' + query);
     }
@@ -109,7 +118,8 @@ function ddg_spice_dictionary_dictionary(words) {
             "verb": "v.",
             "pronoun": "pro.",
             "conjunction": "conj.",
-            "preposition": "prep."
+            "preposition": "prep.",
+            "undefined": ""
         };
         var result;
         if(part_of_speech[word.partOfSpeech]) {

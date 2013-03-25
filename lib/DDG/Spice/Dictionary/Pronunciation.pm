@@ -1,4 +1,4 @@
-package DDG::Spice::Dictionary::DictionaryPronunciation;
+package DDG::Spice::Dictionary::Pronunciation;
 
 use DDG::Spice;
 
