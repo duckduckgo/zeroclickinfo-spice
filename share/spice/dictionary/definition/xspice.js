@@ -26,7 +26,8 @@ var ddg_spice_dictionary_definition = function(api_result) {
         "pronoun": "pro.",
         "conjunction": "conj.",
         "preposition": "prep.",
-        "undefined": ""
+        "undefined": "",
+        "auxiliary-verb": "v."
     };
 
     if (api_result && api_result.length > 0) {
@@ -44,7 +45,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
 
         // Display the data.
         Spice.render({
-            data: context,
+            data              : context,
             force_big_header  : true,
             header1           : context.word + " (Definition)",
             source_name       : "Wordnik",
