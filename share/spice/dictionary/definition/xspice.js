@@ -55,8 +55,10 @@ var ddg_spice_dictionary_definition = function(api_result) {
         });
 
         // Call the Wordnik API to display the pronunciation text and the audio.
-        require("/js/spice/dictionary/pronunciation/" + context.word);
-        require("/js/spice/dictionary/audio/" + context.word);
+        $(document).ready(function() {
+            DDG.require("/js/spice/dictionary/pronunciation/" + context.word);
+            DDG.require("/js/spice/dictionary/audio/" + context.word);
+        })
 
     // If we did not get any results, we should try calling the definition API again,
     // but this time with useCanonical=true. This works for words such as "brobdingnagian"
@@ -65,7 +67,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
         var query = DDG.get_query().replace(/^(definition of\:?|define\:?|definition)|(define|definition)$/, "");
         // Remove extra spaces.
         query = query.replace(/(^\s+|\s+$)/g, "");
-        require("/js/spice/dictionary/fallback/" + query);
+        DDG.require("/js/spice/dictionary/fallback/" + query);
     }
 };
 
@@ -151,7 +153,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
     // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
     if(window.soundManager == null) {
         window.SM2_DEFER = true;
-        require("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", {
+        DDG.require("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", {
             success: soundSetup
         });
     }
@@ -164,42 +166,3 @@ var ddg_spice_dictionary_fallback = function(api_result) {
         ddg_spice_dictionary_definition(api_result);
     }
 };
-
-// Helper functions used to load the JS files.
-function require(path, options) {
-    "use strict";
-
-    var loadJS = function(path, callback) {
-        var element = document.createElement("script");
-        element.async = true;
-        element.src = path;
-        attachLoadEvent(element, callback);
-        document.head.appendChild(element);
-        return element;
-    }
-
-    var attachLoadEvent = function(element, callback) {
-        if (element.addEventListener) {
-            element.addEventListener("load", callback, false);
-        } else {
-            element.onreadystatechange = function() {
-                if (this.readyState === "complete") {
-                    callback();
-                }
-            };
-        }
-    }
-
-    if(options == null) {
-        options = {};
-        options.success = function() {};
-    }
-
-    if(path.match(/\.js$/)) {
-        loadJS(path, options.success);
-    } else if(path.match(/\.css$/)) {
-        nrc(path, false);
-    } else {
-        loadJS(path, options.success);
-    }
-}
