@@ -2,7 +2,7 @@
 	{{#if url}}
 		<a href="{{url}}">{{{condense title maxlen="50"}}}</a>
 	{{else}}
-		{{{condense title maxlen="50"}}}
+		<a href="http://news.ycombinator.com/item?id={{{id}}}">{{{condense title maxlen="50"}}}</a>
 	{{/if}}
 	<span class="hn_oneline">
 		 [<a href="http://news.ycombinator.com/item?id={{{id}}}">{{{num_comments}}} comment{{{plural num_comments}}}</a>]
