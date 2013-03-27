@@ -10,9 +10,9 @@ function ddg_spice_lastfm_top_tracks(api_result) {
 }
 
 Handlebars.registerHelper('list', function(items, options) {
-	var out = "";
-	for(var i = 0; i < items.length && i < 5; i += 1) {
-		out += options.fn(items[i]);
-	}
-	return out;
+    var out = "";
+    for(var i = 0; i < items.length && i < 5; i += 1) {
+        out += options.fn(items[i]);
+    }
+    return out;
 });

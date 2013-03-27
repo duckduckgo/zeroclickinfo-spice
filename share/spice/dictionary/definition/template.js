@@ -8,23 +8,23 @@ helpers = helpers || Handlebars.helpers; data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n    <div><i>";
+  buffer += "\n    <div>\n    	<i>";
   if (stack1 = helpers.part) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.part; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</i> <span>";
+    + "</i> \n    	<span>";
   if (stack1 = helpers.definition) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.definition; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span></div>\n";
+    + "</span>\n    </div>\n";
   return buffer;
   }
 
-  buffer += "<div><b>";
+  buffer += "<div>\n	<b>";
   if (stack1 = helpers.word) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.word; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</b> <span id=\"pronunciation\"></span> <i id=\"play-icon\"></i></div>\n";
+    + "</b> \n	<span id=\"pronunciation\"></span> \n	<i id=\"play-icon\"></i>\n</div>\n";
   stack1 = helpers.each.call(depth0, depth0.words, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   return buffer;

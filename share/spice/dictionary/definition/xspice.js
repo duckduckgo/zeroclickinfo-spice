@@ -26,8 +26,8 @@ var ddg_spice_dictionary_definition = function(api_result) {
         "pronoun": "pro.",
         "conjunction": "conj.",
         "preposition": "prep.",
-        "undefined": "",
-        "auxiliary-verb": "v."
+        "auxiliary-verb": "v.",
+        "undefined": ""
     };
 
     if (api_result && api_result.length > 0) {
@@ -58,7 +58,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
         $(document).ready(function() {
             DDG.require("/js/spice/dictionary/pronunciation/" + context.word);
             DDG.require("/js/spice/dictionary/audio/" + context.word);
-        })
+        });
 
     // If we did not get any results, we should try calling the definition API again,
     // but this time with useCanonical=true. This works for words such as "brobdingnagian"
@@ -89,11 +89,13 @@ var ddg_spice_dictionary_audio = function(api_result) {
     var url = "";
     var $icon = $("#play-icon");
 
+    // Sets the icon to play.
     var playIcon = function() {
         $icon.removeClass("icon-stop");
         $icon.addClass("icon-play");
     };
 
+    // Sets the icon to stop.
     var stopIcon = function() {
         $icon.removeClass("icon-play");
         $icon.addClass("icon-stop");
@@ -115,6 +117,8 @@ var ddg_spice_dictionary_audio = function(api_result) {
         return;
     }
 
+    // Play the sound when the icon is clicked. Do not let the user play 
+    // without window.soundManager.
     $icon.click(function() {
         if($icon.hasClass("icon-play") && window.soundManager) {
             stopIcon();
@@ -122,6 +126,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         }
     });
 
+    // Load the sound and set the icon. 
     var loadSound = function() {
         // Set the sound file.
         var sound = soundManager.createSound({
@@ -139,6 +144,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         playIcon();
     };
 
+    // Initialize the soundManager object.
     var soundSetup = function() {
         window.soundManager = new SoundManager();
         soundManager.url = "/soundmanager2/swf/";
@@ -149,9 +155,9 @@ var ddg_spice_dictionary_audio = function(api_result) {
         soundManager.onready(loadSound);
     };
 
-    // Check if soundManager was already loaded.
+    // Check if soundManager was already loaded. If not, we should load it.
     // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
-    if(window.soundManager == null) {
+    if(!window.soundManager) {
         window.SM2_DEFER = true;
         DDG.require("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", {
             success: soundSetup
