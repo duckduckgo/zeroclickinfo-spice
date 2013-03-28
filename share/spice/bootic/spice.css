@@ -1,21 +1,25 @@
-div.bootic_products {
+.bootic_products {
 	overflow: hidden;
 }
-div.bootic_product {
+
+.bootic_product {
 	float: left;
 	margin: 10px 1px 0px 0px;
 	padding: 2px;
 }
-div.bootic_product:last-child {
+
+.bootic_product:last-child {
 	margin-right: 0px;
 }
-a.bootic_name {
+
+.bootic_name {
 	display: block;
 	width: 110px;
 	height: 156px;
 	overflow: hidden;
 	text-align: center;
 }
-img.bootic_picture {
-	margin: 0 auto 0 auto;
+
+.bootic_picture {
+	margin: 0 auto;
 }
