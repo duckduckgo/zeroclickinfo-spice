@@ -6,7 +6,7 @@ spice to => 'http://gdata.youtube.com/feeds/videos?max-results=5&start-index=1&a
 triggers startend => "video";
 
 handle query_lc => sub {
-	return $_ if $_;
+    return $_ if $_;
     return;
 };
 
