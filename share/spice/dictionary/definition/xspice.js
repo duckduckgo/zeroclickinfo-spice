@@ -56,8 +56,8 @@ var ddg_spice_dictionary_definition = function(api_result) {
 
         // Call the Wordnik API to display the pronunciation text and the audio.
         $(document).ready(function() {
-            DDG.require("/js/spice/dictionary/pronunciation/" + context.word);
-            DDG.require("/js/spice/dictionary/audio/" + context.word);
+            $.getScript("/js/spice/dictionary/pronunciation/" + context.word);
+            $.getScript("/js/spice/dictionary/audio/" + context.word);
         });
 
     // If we did not get any results, we should try calling the definition API again,
@@ -67,7 +67,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
         var query = DDG.get_query().replace(/^(definition of\:?|define\:?|definition)|(define|definition)$/, "");
         // Remove extra spaces.
         query = query.replace(/(^\s+|\s+$)/g, "");
-        DDG.require("/js/spice/dictionary/fallback/" + query);
+        $.getScript("/js/spice/dictionary/fallback/" + query);
     }
 };
 
@@ -159,9 +159,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
     // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
     if(!window.soundManager) {
         window.SM2_DEFER = true;
-        DDG.require("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", {
-            success: soundSetup
-        });
+        $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", soundSetup);
     }
 };
 
