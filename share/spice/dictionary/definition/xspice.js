@@ -11,9 +11,38 @@
 var ddg_spice_dictionary_definition = function(api_result) {
     "use strict";
 
-    // context is what we'll use for `Spice.render`.
-    var context = {};
+    if (api_result && api_result.length > 0) {
+        var word = api_result[0].word;
 
+        // Display the data.
+        Spice.render({
+            data              : api_result,
+            force_big_header  : true,
+            header1           : word + " (Definition)",
+            source_name       : "Wordnik",
+            source_url        : "http://www.wordnik.com/words/" + word,
+            template_normal   : "dictionary",
+            template_small    : "dictionary"
+        });
+
+        // Call the Wordnik API to display the pronunciation text and the audio.
+        $(document).ready(function() {
+            $.getScript("/js/spice/dictionary/pronunciation/" + word);
+            $.getScript("/js/spice/dictionary/audio/" + word);
+        });
+
+    // If we did not get any results, we should try calling the definition API again,
+    // but this time with useCanonical=true. This works for words such as "brobdingnagian"
+    // which gets corrected to "Brobdingnagian."
+    } else {
+        var query = DDG.get_query().replace(/^(definition of\:?|define\:?|definition)|(define|definition)$/, "");
+        // Remove extra spaces.
+        query = query.replace(/(^\s+|\s+$)/g, "");
+        $.getScript("/js/spice/dictionary/fallback/" + query);
+    }
+};
+
+Handlebars.registerHelper('part', function(text) {
     // We should shorten the part of speech before displaying the definition.
     var part_of_speech = {
         "interjection": "interj.",
@@ -29,47 +58,8 @@ var ddg_spice_dictionary_definition = function(api_result) {
         "auxiliary-verb": "v.",
         "undefined": ""
     };
-
-    if (api_result && api_result.length > 0) {
-        // Add the word to the context.
-        context.word = api_result[0].word;
-        context.words = [];
-
-        // Add the part of speech and the definition to the context.
-        for (var i = 0; i < api_result.length; i += 1) {
-            context.words.push({
-                part: part_of_speech[api_result[i].partOfSpeech] || api_result[i].partOfSpeech,
-                definition: api_result[i].text
-            });
-        }
-
-        // Display the data.
-        Spice.render({
-            data              : context,
-            force_big_header  : true,
-            header1           : context.word + " (Definition)",
-            source_name       : "Wordnik",
-            source_url        : "http://www.wordnik.com/words/" + context.word,
-            template_normal   : "dictionary",
-            template_small    : "dictionary"
-        });
-
-        // Call the Wordnik API to display the pronunciation text and the audio.
-        $(document).ready(function() {
-            $.getScript("/js/spice/dictionary/pronunciation/" + context.word);
-            $.getScript("/js/spice/dictionary/audio/" + context.word);
-        });
-
-    // If we did not get any results, we should try calling the definition API again,
-    // but this time with useCanonical=true. This works for words such as "brobdingnagian"
-    // which gets corrected to "Brobdingnagian."
-    } else {
-        var query = DDG.get_query().replace(/^(definition of\:?|define\:?|definition)|(define|definition)$/, "");
-        // Remove extra spaces.
-        query = query.replace(/(^\s+|\s+$)/g, "");
-        $.getScript("/js/spice/dictionary/fallback/" + query);
-    }
-};
+    return part_of_speech[text] || text;
+});
 
 // Dictionary::Pronunciation will call this function.
 // It displays the text that tells you how to pronounce a word.
