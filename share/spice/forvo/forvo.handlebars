@@ -1,0 +1,12 @@
+<div>
+    {{#each items}}
+        <div class="forvo_container">
+            <audio preload="none">
+                <source src="/audio/?u={{standard_pronunciation.pathmp3}}" type="audio/mpeg">
+            </audio>
+            <div class="forvo_track_details">
+                <span>{{original}}</span>
+            </div>
+        </div>
+    {{/each}}
+</div>
