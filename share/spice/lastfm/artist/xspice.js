@@ -7,12 +7,40 @@ function ddg_spice_lastfm_artist_all(api_result) {
         source_url       : api_result.artist.url,
         template_normal  : "artist"
     });
+
+    $(document).ready(function() {
+        $("#expand").click(function() {
+            DDG.toggle('all', 1);
+            DDG.toggle('some', -1); 
+            DDG.toggle('expand', -1);
+        })
+    });
 }
 
-Handlebars.registerHelper('shorten', function(text) {
+
+
+Handlebars.registerHelper('snippet', function(text, method) {
     var stripTags = function(text) {
-        return String(str).replace(/<\/?[^>]+>/g, '');
+        return String(text).replace(/<\/?[^>]+>/g, '');
+    };
+
+    if(method === "some") {
+        return stripTags(text).slice(0, 200);
+    } else {
+        return stripTags(text);
+    }
+});
+
+
+Handlebars.registerHelper('list', function(items, options) {
+    var out = "";
+
+    for(var i = 0; i < items.length; i += 1) {
+        out += options.fn(items[i]);
+        if(i !== items.length - 1) {
+            out += ", ";
+        }
     }
 
-    return stripTags(text);
+    return out;
 });

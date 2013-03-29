@@ -44,7 +44,7 @@ function ddg_spice_lastfm_artist_all(lastfm) {
             items[1] = [];
             var summary = lastfm.artist.bio.summary;
             //Remove all the links
-            summary = summary.replace(/<.+?>/g, "");
+            summary = summary.replace(/<.+?>.+<\/.+>/g, "");
             //Trim
             if(summary.length > 200) {
                 summary = '<span id="first" style="display: inline;">' + summary.slice(0, 200) + '</span> ' + 
