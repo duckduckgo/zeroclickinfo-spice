@@ -1,0 +1,7 @@
+span#all {
+	display: none;
+}
+
+a#expand {
+	color: rgb(119, 119, 119); font-size: 11px;
+}
