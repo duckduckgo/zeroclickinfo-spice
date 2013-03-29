@@ -18,7 +18,6 @@ function ddg_spice_lastfm_artist_all(api_result) {
 }
 
 
-
 Handlebars.registerHelper('snippet', function(text, method) {
     var stripTags = function(text) {
         return String(text).replace(/<\/?[^>]+>/g, '');
