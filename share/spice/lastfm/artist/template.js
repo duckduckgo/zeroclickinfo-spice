@@ -16,10 +16,10 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div>\n    <div>\n        <span id=\"some\">";
+  buffer += "<div>\n    <div>\n        <div id=\"some\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.snippet),stack1 ? stack1.call(depth0, ((stack1 = ((stack1 = depth0.artist),stack1 == null || stack1 === false ? stack1 : stack1.bio)),stack1 == null || stack1 === false ? stack1 : stack1.summary), "some", options) : helperMissing.call(depth0, "snippet", ((stack1 = ((stack1 = depth0.artist),stack1 == null || stack1 === false ? stack1 : stack1.bio)),stack1 == null || stack1 === false ? stack1 : stack1.summary), "some", options)))
-    + "</span>\n        <a id=\"expand\" href=\"javascript:;\">\n            <span>More...</span>\n        </a>\n        <span id=\"all\">";
+    + "</div>\n        <a id=\"expand\" href=\"javascript:;\">\n            <span>More...</span>\n        </a>\n        <span id=\"all\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.snippet),stack1 ? stack1.call(depth0, ((stack1 = ((stack1 = depth0.artist),stack1 == null || stack1 === false ? stack1 : stack1.bio)),stack1 == null || stack1 === false ? stack1 : stack1.summary), "all", options) : helperMissing.call(depth0, "snippet", ((stack1 = ((stack1 = depth0.artist),stack1 == null || stack1 === false ? stack1 : stack1.bio)),stack1 == null || stack1 === false ? stack1 : stack1.summary), "all", options)))
     + "</span>\n    </div>\n    <div>\n        <i>Similar to:</i> \n        ";
