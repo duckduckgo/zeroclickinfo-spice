@@ -1,70 +1,45 @@
-function ddg_spice_bootic( products ) 
-{
-	/* bail out early if there is no usable data */
-	if ( ! products.products || ! products.sorted )
-		return;
+function ddg_spice_bootic ( api_result ) {
 
-	/* constants */
-	var pic_width = 100;
-	var pic_height = 100;
-	var pic_size = '/' + pic_width + 'x' + pic_height + '/';
-	var server = 'http://www.bootic.com';
-	var pic_base_uri = 'http://static.bootic.com/_pictures/';
+	// check for response
+	if ( !api_result.products ) return;
 
-	var placeholder = d.createElement( 'div' );
-	var icon_parent = d.createElement( 'div' );
-	YAHOO.util.Dom.addClass( icon_parent, 'bootic_products' );
+	var query = (api_result.input_query ) ?
+		'?initial=1&q=' + encodeURIComponent( api_result.input_query ) :
+		'';
 
-	placeholder.appendChild( icon_parent );
+	var array = [];
+	
+	$.each(api_result.products, function(key, value){
+		array.push(this);
+	});
 
-	for ( var i = 0; i < products.sorted.length; i++ ) {
-		var p_id = products.sorted[ i ];
-		var item = products.products[ p_id ];
+	api_result.products = array;
 
-		var icon = d.createElement( 'div' );
-		YAHOO.util.Dom.addClass( icon,
-			'bootic_product inline highlight_zero_click1 highlight_zero_click_wrapper' );
+	console.log("ARRAY IS: ", array);
 
-		var link = d.createElement( 'a' );
-		YAHOO.util.Dom.addClass( link, 'bootic_name' );
-		link.href = server + item.url;
-
-		var pic = item.pictures[0].split( '/' );
-		var img = d.createElement( 'img' );
-		YAHOO.util.Dom.addClass( img, 'bootic_picture' );
-		img.src = '/iu/?u=' + pic_base_uri + pic[0] + pic_size + pic[2];
-		img.width = pic_width;
-		img.height = pic_height;
-		img.alt = item.name;
-		link.appendChild( img );
-
-		var name = d.createElement( 'span' );
-		name.innerHTML = item.name;
-		link.appendChild( name );
-
-		icon.appendChild( link );
-		icon.title = item.name + " -- " + item.short_desc;
-
-		icon_parent.appendChild( icon );
-	}
-
-	var query = '';
-	if ( products.input_query ) {
-		query = '?initial=1&q=' + encodeURIComponent( products.input_query );
-	}
-
-	var items = new Array();
-	items[0] = new Array();
-	items[0]['a'] = placeholder.innerHTML;
-	items[0]['s'] = 'Bootic';
-	items[0]['h'] = 'Bootic (' + products.input_query + ")";
-	items[0]['u'] = 'http://www.bootic.com/' + query;
-	items[0]['force_no_fold'] = 1;
-	items[0]['force_big_header'] = 1;
-
-	/* 
-	 * favicon placement: 1 - next to More at link;
-	 * is internal highlight: 1 - we have our own links
-	 */
-	nra( items, 1, 1 );
+	Spice.render({
+		data: api_result,
+		source_name : 'Bootic',
+		source_url : 'http://www.bootic.com/?q=' + query,
+		header1 : api_result.input_query + ' ( Bootic )' ,
+		
+		template_frame: "carousel",
+		template_normal: "bootic_items",
+		carousel_css_id: "bootic",
+		carousel_items: api_result.products,
+		
+		force_no_fold : 1,
+		force_big_header : 1,
+	});
 }
+
+/*******************************
+  Handlebars helpers
+  *******************************/
+
+// forms the url for a bootic product image
+Handlebars.registerHelper ('picture_url', function() {
+	var pic_base_uri = 'http://static.bootic.com/_pictures/';
+	var pic_id = this.pictures[0];
+	return pic_base_uri + pic_id;
+});
