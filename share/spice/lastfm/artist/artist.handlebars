@@ -1,0 +1,11 @@
+<div>
+    <div>
+        {{shorten artist.bio.summary}}
+    </div>
+    <div>
+        <i>Similar to:</i> 
+        {{#each artist.similar.artist}}
+            <a href="{{this.url}}">{{this.name}}</a> 
+        {{/each}}
+    </div>
+</div>
