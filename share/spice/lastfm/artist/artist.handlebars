@@ -1,11 +1,13 @@
 <div>
-    <div>
-        <div id="some">{{snippet artist.bio.summary "some"}}</div>
-        <a id="expand" href="javascript:;">
-            <span>More...</span>
-        </a>
-        <span id="all">{{snippet artist.bio.summary "all"}}</span>
-    </div>
+    {{#if artist.bio.summary}}
+        <div>
+            <div id="some">{{snippet artist.bio.summary "some"}}</div>
+            <a id="expand" href="javascript:;">
+                <span>More...</span>
+            </a>
+            <span id="all">{{snippet artist.bio.summary "all"}}</span>
+        </div>
+    {{/if}}
     <div>
         <i>Similar to:</i> 
         {{#list artist.similar.artist}}<a href="{{this.url}}">{{this.name}}</a>{{/list}}
