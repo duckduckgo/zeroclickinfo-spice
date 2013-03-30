@@ -1,4 +1,8 @@
 function ddg_spice_lastfm_artist_all(api_result) {
+    if(api_result.error) {
+        return;
+    }
+
     Spice.render({
         data             : api_result,
         force_big_header : true,
