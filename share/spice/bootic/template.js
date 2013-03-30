@@ -6,14 +6,14 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 
-  buffer += "<li class=\"ddgc_item\"> "
-    + "\n    <a class=\"ddgc_detail_link\" href=\"http://bootic.com";
-  if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" obj_index=\""
+  buffer += "<li class=\"ddgc_item\" data-index=\""
     + escapeExpression(((stack1 = data.index),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "\">\n        <p><img src=\"";
+    + "\"> "
+    + "\n    <a href=\"http://bootic.com";
+  if (stack2 = helpers.url) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.url; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  buffer += escapeExpression(stack2)
+    + "\">\n        <p><img src=\"/iu/?u=";
   if (stack2 = helpers.picture_url) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.picture_url; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
