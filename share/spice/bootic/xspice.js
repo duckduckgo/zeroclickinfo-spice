@@ -1,7 +1,7 @@
 function ddg_spice_bootic ( api_result ) {
 
 	// check for response
-	if ( !api_result.products ) return;
+	if ( $.isEmptyObject(api_result.products) ) return;
 
 	var query = (api_result.input_query ) ?
 		'?initial=1&q=' + encodeURIComponent( api_result.input_query ) :
@@ -14,8 +14,6 @@ function ddg_spice_bootic ( api_result ) {
 	});
 
 	api_result.products = array;
-
-	console.log("ARRAY IS: ", array);
 
 	Spice.render({
 		data: api_result,
