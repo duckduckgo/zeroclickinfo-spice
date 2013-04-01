@@ -1,7 +1,10 @@
 <div>
     {{#list events.event}}
         <li>
-            <a href="{{url}}">{{title}}</a> at <a href="{{venue.url}}">{{venue.name}}</a> <span id="distance">({{distance venue.location.[geo:point].[geo:long] venue.location.[geo:point].[geo:lat] ../events.[@attr].location}}) - {{date startDate}}</span>
+            <a href="{{url}}">{{title}}</a> at <a href="{{venue.url}}">{{venue.name}}</a>
+            <span id="distance">
+                ({{distance venue.location.[geo:point].[geo:long] venue.location.[geo:point].[geo:lat] ../events.[@attr].location}}) - {{date startDate}}
+            </span>
         </li>
     {{/list}}
 </div>
