@@ -3,7 +3,7 @@ var ddg_spice_lastfm = function(api_result, template) {
     "use strict";
 
     // These words should be skipped in the isRelevant function.
-    var skipArray = {
+    var skip = {
         "similar": 1,
         "band": 1,
         "bands": 1,
