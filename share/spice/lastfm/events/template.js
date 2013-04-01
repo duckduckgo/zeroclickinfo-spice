@@ -20,13 +20,13 @@ function program1(depth0,data,depth1) {
     + escapeExpression(((stack1 = ((stack1 = depth0.venue),stack1 == null || stack1 === false ? stack1 : stack1.url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\">"
     + escapeExpression(((stack1 = ((stack1 = depth0.venue),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</a> (";
+    + "</a> <span id=\"distance\">(";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.distance),stack1 ? stack1.call(depth0, ((stack1 = ((stack1 = ((stack1 = depth0.venue),stack1 == null || stack1 === false ? stack1 : stack1.location)),stack1 == null || stack1 === false ? stack1 : stack1['geo:point'])),stack1 == null || stack1 === false ? stack1 : stack1['geo:long']), ((stack1 = ((stack1 = ((stack1 = depth0.venue),stack1 == null || stack1 === false ? stack1 : stack1.location)),stack1 == null || stack1 === false ? stack1 : stack1['geo:point'])),stack1 == null || stack1 === false ? stack1 : stack1['geo:lat']), ((stack1 = ((stack1 = depth1.events),stack1 == null || stack1 === false ? stack1 : stack1['@attr'])),stack1 == null || stack1 === false ? stack1 : stack1.location), options) : helperMissing.call(depth0, "distance", ((stack1 = ((stack1 = ((stack1 = depth0.venue),stack1 == null || stack1 === false ? stack1 : stack1.location)),stack1 == null || stack1 === false ? stack1 : stack1['geo:point'])),stack1 == null || stack1 === false ? stack1 : stack1['geo:long']), ((stack1 = ((stack1 = ((stack1 = depth0.venue),stack1 == null || stack1 === false ? stack1 : stack1.location)),stack1 == null || stack1 === false ? stack1 : stack1['geo:point'])),stack1 == null || stack1 === false ? stack1 : stack1['geo:lat']), ((stack1 = ((stack1 = depth1.events),stack1 == null || stack1 === false ? stack1 : stack1['@attr'])),stack1 == null || stack1 === false ? stack1 : stack1.location), options)))
     + ") - ";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.date),stack1 ? stack1.call(depth0, depth0.startDate, options) : helperMissing.call(depth0, "date", depth0.startDate, options)))
-    + "\n        </li>\n    ";
+    + "</span>\n        </li>\n    ";
   return buffer;
   }
 
