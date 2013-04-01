@@ -1,19 +1,19 @@
 var ddg_spice_lastfm_events = function(api_result) {
-	// Check if we encountered an error.
-	if(api_result.error) {
-		return;
-	}
+    // Check if we encountered an error.
+    if(api_result.error) {
+        return;
+    }
 
-	// Display the spice plugin.
-	Spice.render({
-	    data              : api_result,
-	    force_big_header  : true,
-	    header1           : "Concerts Near Me",
-	    source_name       : "Last.fm",
-	    source_url        : "http://www.last.fm/events",
-	    template_normal   : "events",
-	    template_small    : "events"
-	});
+    // Display the spice plugin.
+    Spice.render({
+        data              : api_result,
+        force_big_header  : true,
+        header1           : "Concerts Near Me",
+        source_name       : "Last.fm",
+        source_url        : "http://www.last.fm/events",
+        template_normal   : "events",
+        template_small    : "events"
+    });
 }
 
 // Shortens the date.
@@ -23,45 +23,45 @@ Handlebars.registerHelper('date', function(text) {
 
 // Limits the number of displayed items to five.
 Handlebars.registerHelper('list', function(items, options) {
-	var out = "";
-	for(var i = 0; i < items.length && i < 5; i += 1) {
-		out += options.fn(items[i])
-	}
-	return out;
+    var out = "";
+    for(var i = 0; i < items.length && i < 5; i += 1) {
+        out += options.fn(items[i])
+    }
+    return out;
 });
 
 // Calculate the distance.
 Handlebars.registerHelper('distance', function(longitude, latitude, location) {
-	var toRad = function(degrees) {
-		return degrees * Math.PI / 180
-	};
+    var toRad = function(degrees) {
+        return degrees * Math.PI / 180
+    };
 
-	var pointOne = {
-		latitude: toRad(latitude),
-		longitude: toRad(longitude)
-	};
-	
-	var location = location.match(/\((.+),(.+)\)/);
-	
-	var pointTwo = {
-		latitude: toRad(location[2]),
-		longitude: toRad(location[1])
-	};
+    var pointOne = {
+        latitude: toRad(latitude),
+        longitude: toRad(longitude)
+    };
+    
+    var location = location.match(/\((.+),(.+)\)/);
+    
+    var pointTwo = {
+        latitude: toRad(location[2]),
+        longitude: toRad(location[1])
+    };
 
-	// Radius of the Earth (from Wolfram Alpha).
-	var radius = "6367.5"; 
+    // Radius of the Earth (from Wolfram Alpha).
+    var radius = "6367.5"; 
 
-	// Compute the Haversin function (from Wikipedia).
-	var haversin = function(distance) {
-		return Math.pow(Math.sin(distance) / 2, 2);
-	};
+    // Compute the Haversin function (from Wikipedia).
+    var haversin = function(distance) {
+        return Math.pow(Math.sin(distance) / 2, 2);
+    };
 
-	var square = Math.sqrt(
-							haversin(pointTwo.latitude - pointOne.latitude) + 
-							Math.cos(pointOne.latitude) * Math.cos(pointTwo.latitude) * 
-							haversin(pointTwo.longitude - pointOne.longitude));
+    var square = Math.sqrt(
+                            haversin(pointTwo.latitude - pointOne.latitude) + 
+                            Math.cos(pointOne.latitude) * Math.cos(pointTwo.latitude) * 
+                            haversin(pointTwo.longitude - pointOne.longitude));
 
-	var distance = 2 * radius * Math.asin(square);
+    var distance = 2 * radius * Math.asin(square);
 
-	return Math.floor(distance) + " km.";
+    return Math.floor(distance) + " km.";
 });
