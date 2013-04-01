@@ -60,7 +60,7 @@ Handlebars.registerHelper("distance", function(longitude, latitude, location) {
     };
 
     // Radius of the Earth (from Wolfram Alpha).
-    var radius = "6367.5";
+    var radius = 6367.5;
 
     // Compute the Haversin function (from Wikipedia).
     var haversin = function(distance) {
