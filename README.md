@@ -1,7 +1,7 @@
 DuckDuckHack Spice
 ====
-This documentation helps walk you through the process of writing a DuckDuckHack Spice plugin.
-Before reading this section, make sure you've read the [DuckDuckHack Intro Site](http://duckduckhack.com) and have started at the [DuckDuckHack Developer's Overview](https://github.com/duckduckgo/duckduckgo/blob/master/README.md). If you're here to brush up on Spice-related info, go ahead and scroll down. If you're here to learn how to write Spice plugins, head on over to the [Spice Overview](https://github.com/duckduckgo/duckduckgo#spice-overview).
+This documentation walks you through the process of writing a DuckDuckHack Spice plugin.
+Before reading this section, make sure you've read the [DuckDuckHack Intro Site](http://duckduckhack.com) and the [DuckDuckHack Developer's Overview](https://github.com/duckduckgo/duckduckgo/blob/master/README.md). If you're here to brush up on Spice-related info, go ahead and scroll down. If you're here to learn how to write Spice plugins, head on over to the [Spice Overview](https://github.com/duckduckgo/duckduckgo#spice-overview).
 
 ## Spice Handle Functions
 Spice plugins have **triggers** and **handle** functions like Goodies, as explained in the [Basic tutorial](http://github.com/duckduckgo/duckduckgo#basic-tutorial). The difference is that Spice handle functions don't return an instant answer directly like Goodies. Instead, they return arguments used to call a JavaScript callback function that then returns the instant answer.
@@ -18,21 +18,29 @@ Usually the Spice plugin flow works like this:
 * Spice callback function returns instant answer.
 * Instant answer formatted on screen.
 
-The following is [an example](https://duckduckgo.com/?q=twitter+duckduckgo) that calls [the Twitter API](http://twitter.com/status/user_timeline/duckduckgo.json?callback=ddg_spice_twitter). Within your **zeroclickinfo-spice** fork, you would define a similar file in the **/lib/DDG/Spice/** directory. This file is named **Twitter.pm**.
+The following is [an example](https://duckduckgo.com/?q=xkcd) that calls [the XKCD API](http://xkcd.com/json.html). Within your **zeroclickinfo-spice** fork, you would define a similar file in the **/lib/DDG/Spice/** directory. This file is named **Xkcd.pm**.
 
 ```perl
-package DDG::Spice::Twitter;
+package DDG::Spice::Xkcd;
 
 use DDG::Spice;
 
-spice to => 'http://twitter.com/status/user_timeline/$1.json?callback={{callback}}';
+triggers startend => "xkcd";
 
-triggers query_lc => qr/^@([^\s]+)$/;
+spice to => 'http://dynamic.xkcd.com/api-0/jsonp/comic/$1';
+spice wrap_jsonp_callback => 1;
 
-handle matches => sub {
-    my ($uname) = @_;
-    return $uname if $uname;
-    return;
+spice is_cached => 0;
+
+handle remainder => sub {
+  
+  if ($_ =~ /^(\d+|r(?:andom)?)$/) {
+    return int rand 1122 if $1 =~ /r/;
+    return $1;
+  }
+  
+  return '' if $_ eq '';
+  return;
 };
 
 1;
@@ -40,56 +48,56 @@ handle matches => sub {
 
 To refresh your memory, the **triggers** keyword tells the plugin system when to call a plugin. In the [Basic tutorial](https://github.com/duckduckgo/duckduckgo#basic-tutorial) we discussed using the **start** keyword to specify trigger words that need to be present at the beginning of the query.
 
-In situations where you want to trigger on sub-words, you can pass a regular expression like in this Twitter example. 
+In this case we are using the trigger keyword **startend** to specify that the trigger word "xkcd" needs to be present at the beginning of the query or at the ending.
+
+In the **handle** function we use the **remainder** keyword to pass along the remainder of the query, after removing the trigger word from it.
 
 ```perl
-triggers query_lc => qr/^@([^\s]+)$/;
-```
-
-The **query_lc** keyword tells the trigger system to examine a lower case version of the query. The **qr/regexp/** construct is the way to specify a compiled regular expression in Perl. 
-
-In this case **^@([^\s]+)$** says look for a **@** character at the beginning of the query (the **^**) and capture (using the parenthesis) everything that isn't a space ( **[^\s]** ) until you get to the end of the query (the **$**). Therefore it will match a query like *@duckduckgo* and capture the *duckduckgo* part.
-
-The captured parts (matches) get passed to the **handle** function via the **@_** variable (a special Perl array variable).
-
-```perl
-handle matches => sub {
-    my ($uname) = @_;
-    return $uname if $uname;
-    return;
+handle remainder => sub {
+  
+  if ($_ =~ /^(\d+|r(?:andom)?)$/) {
+    return int rand 1122 if $1 =~ /r/;
+    return $1;
+  }
+  
+  return '' if $_ eq '';
+  return;
 };
 ```
 
-Previously we saw the use of the **remainder** keyword as in **handle remainder**, which works well for trigger words. In a case like this one that uses a regular expression trigger, the equivalent is **handle matches**, which passes the captured parts of the regular expression to the handle function. We look at what was passed and put it into the **$uname** variable.
+Our **handle** function first uses an **if** statement which checks to see if the **remainder** matches one of two things using a regular expression:
+
+The ```\d+``` matches 1 or more numerical characters (0-9) while the string ```r(?:andom)?``` checks for at least the letter "r" but also checks for the letters "andom" after the "r". The regular expression's round brackets indicate our regular expression will capture whatever matches the inside expression and the **pipe** ("|") inside the brackets means it will match either the expression to the right or the left. So out regular expression looks to match and capture **either** a string of digits, or the strings "r" or "random".
+
+The first return line : ```return int rand 1122 if $1 =~ /r/;``` returns a random integer if the captured string **$1** from the regular expression in our **if** statement has an "r" in it. If this check evaluates to true, it means the user wants to see a random comic (because they didn't specify a number for the comic they want to use) so we generate a random number for them and return it to the API call.
+
+If at this point the the string did not have an "r" in it, the **handle** function will not have returned yet, so the next line: ```return $1``` means return whatever was captured in the **if** statement. Given then previous return statement, this return statement will only be reached if the **remainder** is only a string of digits, and so they will have been captured and stored in the ```$1``` variable, which we are returning.
+
+If our **if** statement returns false, it means the *remainder** could be empty, or it could be some other string which isn't just digits or the word "random". 
+
+The next line: ```return "" if $_ eq ""``` returns a blank string when our **remainder** is equal to a blank string. This means the entire query was just **"xkcd"** and so the remainder is equal to "".
+
+If our handle function hasn't returned by this point it can only mean that the **remainder** must be something else. If the original query was "xkcd comics", then the **remainder** would be "comics" and since this doesn't match any of the previous conditions, we return nothing, which short circuits the eventual external call.
 
 ```perl
-    my ($uname) = @_;
+return;
 ```
 
-If we received a non-blank user name then we return it.
+When either a number is given and returned or a random number is generated and returned, we then plug it into the **spice to** definition.
 
 ```perl
-    return $uname if $uname;
+spice to => 'http://dynamic.xkcd.com/api-0/jsonp/comic/$1';
 ```
 
-Otherwise, return nothing, which short circuits the eventual external call.
+The **$1** value (or ```int rand```) from the return statements will get inserted into the **$1** placeholder in the **spice to** line such that you can plug in parameters to the API call as needed. For passing multiple parameters, check out the [Advanced spice handlers](#advanced-spice-handlers) section.
 
-```perl
-   return;
-```
+Usually JSONP API's have a **callback** parameter, where we give it a value of "{{callback}}" like this: ```&callback={{callback}}"```. This **{{callback}}** template gets plugged in automatically with the default callback value of **ddg_spice_xkcd**. That last part (xkcd) is a lowercase version of the plugin name with different words separated by the **_** character.
 
-When the username is returned we then plug it into the **spice to** definition.
-
-```perl
-spice to => 'http://twitter.com/status/user_timeline/$1.json?callback={{callback}}';
-```
-
-The **$uname** value from the return statement will get inserted into the **$1** placeholder in the **spice to** line such that you can plug in parameters to the API call as needed. For passing multiple parameters, check out the [Advanced spice handlers](#advanced-spice-handlers) section.
-
-The **{{callback}}** template gets plugged in automatically with the default callback value of **ddg_spice_twitter**. That last part (twitter) is a lowercase version of the plugin name with different words separated by the **_** character.
+In this case however, the XKCD API doesn't allow for a callback function to be used so we use the next line ```spice wrap_jsonp_callback => 1;``` which forces the API's response to use a callback function.
 
 At this point the response moves from the backend to the frontend. The external API sends a JSON object to the callback function that you will also define (as explained in the [Spice callback functions](#spice-callback-functions) section).
 
+ 
 ### Where to go now:
 Click to return to the [Spice Overview](https://github.com/duckduckgo/duckduckgo#spice-overview).
 
@@ -127,19 +135,19 @@ function ddg_spice_expatistan(ir) {
 The end result is a call to the **nra** function, an internal display function that takes what you send it and formats it for instant answer display. 
 
 ```js
-       nra(items);
+nra(items);
 ```
 
 We're sending it a JavaScript Array we created called items.
 
 ```js
-       items = new Array();
+items = new Array();
 ```
 
 The first item in the Array is the main answer. It is another JavaScript Array.
 
 ```js
-       items[0] = new Array();
+items[0] = new Array();
 ```
 
 An item takes the following parameters. 
