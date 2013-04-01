@@ -3,7 +3,8 @@ package DDG::Spice::Lastfm::Events;
 
 use DDG::Spice;
 
-spice to => 'http://ws.audioscrobbler.com/2.0/?format=json&method=geo.getevents&location=$1&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}';
+spice to => 'http://ws.audioscrobbler.com/2.0/?format=json&method=geo.getevents&long=$1&lat=$2&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}';
+spice from => '(.*)/(.*)';
 
 triggers query_lc => qr/^(?:concerts?|music shows?|shows?|gigs)(\s+(near|near me))?/;
 
@@ -19,7 +20,7 @@ category "entertainment";
 attribution github => ['https://github.com/frncscgmz','frncscgmz'];
 
 handle query_lc => sub {
-   return $loc->city;
+   return ($loc->longitude, $loc->latitude);
 };
 
 1;

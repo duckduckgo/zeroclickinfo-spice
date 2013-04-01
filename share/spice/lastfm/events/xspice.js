@@ -8,7 +8,7 @@ var ddg_spice_lastfm_events = function(api_result) {
 	Spice.render({
 	    data              : api_result,
 	    force_big_header  : true,
-	    header1           : "Concerts in " + api_result.events["@attr"].location,
+	    header1           : "Concerts Near Me",
 	    source_name       : "Last.fm",
 	    source_url        : "http://www.last.fm/events",
 	    template_normal   : "events",
@@ -28,4 +28,40 @@ Handlebars.registerHelper('list', function(items, options) {
 		out += options.fn(items[i])
 	}
 	return out;
+});
+
+// Calculate the distance.
+Handlebars.registerHelper('distance', function(longitude, latitude, location) {
+	var toRad = function(degrees) {
+		return degrees * Math.PI / 180
+	};
+
+	var pointOne = {
+		latitude: toRad(latitude),
+		longitude: toRad(longitude)
+	};
+	
+	var location = location.match(/\((.+),(.+)\)/);
+	
+	var pointTwo = {
+		latitude: toRad(location[2]),
+		longitude: toRad(location[1])
+	};
+
+	// Radius of the Earth (from Wolfram Alpha).
+	var radius = "6367.5"; 
+
+	// Compute the Haversin function (from Wikipedia).
+	var haversin = function(distance) {
+		return Math.pow(Math.sin(distance) / 2, 2);
+	};
+
+	var square = Math.sqrt(
+							haversin(pointTwo.latitude - pointOne.latitude) + 
+							Math.cos(pointOne.latitude) * Math.cos(pointTwo.latitude) * 
+							haversin(pointTwo.longitude - pointOne.longitude));
+
+	var distance = 2 * radius * Math.asin(square);
+
+	return Math.floor(distance) + " km.";
 });
