@@ -47,19 +47,19 @@ Handlebars.registerHelper("distance", function(longitude, latitude, location) {
 
     // The coordinates of the venue.
     var pointOne = {
-        latitude: toRad(latitude),
-        longitude: toRad(longitude)
+        latitude: toRad(+latitude),
+        longitude: toRad(+longitude)
     };
 
     location = location.match(/\((.+),(.+)\)/);
 
     // The coordinates of the user.
     var pointTwo = {
-        latitude: toRad(location[2]),
-        longitude: toRad(location[1])
+        latitude: toRad(+location[2]),
+        longitude: toRad(+location[1])
     };
 
-    // Radius of the Earth (from Wolfram Alpha).
+    // Radius of the Earth (from Wolfram|Alpha).
     var radius = 6367.5;
 
     // Compute the Haversin function (from Wikipedia).
