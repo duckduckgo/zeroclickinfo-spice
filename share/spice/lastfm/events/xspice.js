@@ -67,11 +67,11 @@ Handlebars.registerHelper("distance", function(longitude, latitude, location) {
         return Math.pow(Math.sin(distance) / 2, 2);
     };
 
-    var square = Math.sqrt(haversin(pointTwo.latitude - pointOne.latitude) +
+    var square_root = Math.sqrt(haversin(pointTwo.latitude - pointOne.latitude) +
                            Math.cos(pointOne.latitude) * Math.cos(pointTwo.latitude) *
                            haversin(pointTwo.longitude - pointOne.longitude));
 
-    var distance = 2 * radius * Math.asin(square);
+    var distance = 2 * radius * Math.asin(square_root);
 
     return Math.floor(distance) + " km.";
 });
