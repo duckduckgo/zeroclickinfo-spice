@@ -22,7 +22,7 @@ function ddg_spice_bootic ( api_result ) {
 		header1 : api_result.input_query + ' ( Bootic )' ,
 		
 		template_frame: "carousel",
-		template_normal: "bootic_items",
+		template_normal: "bootic",
 		carousel_css_id: "bootic",
 		carousel_items: api_result.products,
 		

@@ -68,9 +68,8 @@
 }
 
 #quixey li.item:hover {
-  background: url("/assets/results_highlight_bg.v101.png");
-	background-size: 100%;
-	background-position: center;
+  background: url("/assets/results_highlight_bg.v101.png") repeat-x;
+  background-color: #f7f7f7;
   border: 1px solid #e7e7e7;
   cursor: pointer;
 }
