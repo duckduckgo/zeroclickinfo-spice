@@ -7,14 +7,13 @@ helpers = helpers || Handlebars.helpers; data = data || {};
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, stack2, options;
-  buffer += "\n    <div>\n    	<i>";
+  var buffer = "", stack1, options;
+  buffer += "\n    <div class=\"definition\">\n    	<em>";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.part),stack1 ? stack1.call(depth0, depth0.partOfSpeech, options) : helperMissing.call(depth0, "part", depth0.partOfSpeech, options)))
-    + "</i> \n    	<span>";
-  if (stack2 = helpers.text) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.text; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
+    + "</em> \n    	<span>";
+  options = {hash:{},data:data};
+  buffer += escapeExpression(((stack1 = helpers.format),stack1 ? stack1.call(depth0, depth0.text, options) : helperMissing.call(depth0, "format", depth0.text, options)))
     + "</span>\n    </div>\n";
   return buffer;
   }

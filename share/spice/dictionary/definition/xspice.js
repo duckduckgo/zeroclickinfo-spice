@@ -30,20 +30,11 @@ var ddg_spice_dictionary_definition = function(api_result) {
             $.getScript("/js/spice/dictionary/pronunciation/" + word);
             $.getScript("/js/spice/dictionary/audio/" + word);
         });
-
-    // If we did not get any results, we should try calling the definition API again,
-    // but this time with useCanonical=true. This works for words such as "brobdingnagian"
-    // which gets corrected to "Brobdingnagian."
-    } else {
-        var query = DDG.get_query().replace(/^(definition of\:?|define\:?|definition)|(define|definition)$/, "");
-        // Remove extra spaces.
-        query = query.replace(/(^\s+|\s+$)/g, "");
-        $.getScript("/js/spice/dictionary/fallback/" + query);
     }
 };
 
+// We should shorten the part of speech before displaying the definition.
 Handlebars.registerHelper('part', function(text) {
-    // We should shorten the part of speech before displaying the definition.
     var part_of_speech = {
         "interjection": "interj.",
         "noun": "n.",
@@ -59,6 +50,15 @@ Handlebars.registerHelper('part', function(text) {
         "undefined": ""
     };
     return part_of_speech[text] || text;
+});
+
+// Do not encode the HTML tags, and make sure we replace xref to an anchor tag.
+Handlebars.registerHelper('format', function(text) {
+    // Replace the xref tag into an anchor tag.
+    text = text.replace(/<xref>(\w+(\s\w+)*)<\/xref>/g, "<a href='/?q=define+$1'>$1</a>");
+
+    // Make sure we do not encode the HTML tags.
+    return new Handlebars.SafeString(text);
 });
 
 // Dictionary::Pronunciation will call this function.
@@ -150,13 +150,5 @@ var ddg_spice_dictionary_audio = function(api_result) {
     if(!window.soundManager) {
         window.SM2_DEFER = true;
         $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", soundSetup);
-    }
-};
-
-var ddg_spice_dictionary_fallback = function(api_result) {
-    "use strict";
-
-    if(api_result && api_result.length > 0) {
-        ddg_spice_dictionary_definition(api_result);
     }
 };

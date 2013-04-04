@@ -157,3 +157,7 @@
 #play-icon {
 	cursor: pointer;
 }
+
+div.definition em {
+    font-style: italic;
+}
