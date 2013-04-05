@@ -17,16 +17,55 @@ var ddg_spice_dictionary_definition = function(api_result) {
         // Display the data.
         Spice.render({
             data              : api_result,
-            force_big_header  : true,
-            header1           : word + " (Definition)",
             source_name       : "Wordnik",
             source_url        : "http://www.wordnik.com/words/" + word,
             template_normal   : "dictionary",
             template_small    : "dictionary"
         });
 
+        // Show / hide the popup.
+        var popover_display = function(html, element, text) {
+            $(element).popover({
+                html: true,
+                content: html,
+                placement: "right"
+            }).addClass("word-loaded");
+            $(element).popover("toggle");
+        };
+
+        // Load the definitions of the reference.
+        var popover_load = function(text, element) {
+            $.ajax({
+                url: "/js/spice/dictionary/reference/" + text,
+                jsonp: "callback",
+                dataType: "jsonp",
+                success: function(response) {
+                    popover_display(Handlebars.templates.dictionary(response), element, text);
+                }
+            });
+        }
+
+        // This function deals with the references.
+        var popover_events = function(references) {
+            references.each(function() {
+                $(this).on("click", function() {
+                    if(!$(this).hasClass("word-loaded")) {
+                        popover_load($(this).html(), this);
+                    }
+                });
+            });
+        };
+
         // Call the Wordnik API to display the pronunciation text and the audio.
         $(document).ready(function() {
+            // Check if we have words that we need to reference.
+            var references = $(".reference");
+            if(references.length > 0) {
+                $.getScript("/bootstrap/bootstrap.min.js", (function() {
+                    popover_events(references);
+                }));
+            }
+
             $.getScript("/js/spice/dictionary/pronunciation/" + word);
             $.getScript("/js/spice/dictionary/audio/" + word);
         });
@@ -55,7 +94,7 @@ Handlebars.registerHelper('part', function(text) {
 // Do not encode the HTML tags, and make sure we replace xref to an anchor tag.
 Handlebars.registerHelper('format', function(text) {
     // Replace the xref tag into an anchor tag.
-    text = text.replace(/<xref>(\w+(\s\w+)*)<\/xref>/g, "<a href='/?q=define+$1'>$1</a>");
+    text = text.replace(/<xref>(\w+(\s\w+)*)<\/xref>/g, "<a class='reference' href='javascript:void(0)'>$1</a>");
 
     // Make sure we do not encode the HTML tags.
     return new Handlebars.SafeString(text);

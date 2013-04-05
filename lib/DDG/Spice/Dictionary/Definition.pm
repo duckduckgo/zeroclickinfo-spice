@@ -11,11 +11,11 @@ handle query_lc => sub {
 	if($query =~ /^(?:definition of\:?|define\:?|definition\:?) (.+)/) {
 		$query = $1;
 		$query =~ s/^\s+|\s+$//g;
-		return $query;
+		return lc $query;
 	} elsif($query =~ /(.+) (?:define|definition)$/) {
 		$query = $1;
 		$query =~ s/^\s+|\s+$//g;
-		return $query;
+		return lc $query;
 	}
     return;
 };
