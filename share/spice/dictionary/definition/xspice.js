@@ -14,61 +14,48 @@ var ddg_spice_dictionary_definition = function(api_result) {
     if (api_result && api_result.length > 0) {
         var word = api_result[0].word;
 
-        // Display the data.
-        Spice.render({
-            data              : api_result,
-            source_name       : "Wordnik",
-            source_url        : "http://www.wordnik.com/words/" + word,
-            template_normal   : "dictionary",
-            template_small    : "dictionary"
-        });
+        var render = function(context) {
+            Spice.render({
+                data              : context,
+                header1           : "Definition (Wordnik)",
+                force_big_header  : true,
+                source_name       : "Wordnik",
+                source_url        : "http://www.wordnik.com/words/" + word,
+                template_normal   : "dictionary"
+            });
 
-        // Show / hide the popup.
-        var popover_display = function(html, element, text) {
-            $(element).popover({
-                html: true,
-                content: html,
-                placement: "right"
-            }).addClass("word-loaded");
-            $(element).popover("toggle");
+            // Call the Wordnik API to display the pronunciation text and the audio.
+            $(document).ready(function() {
+                $.getScript("/js/spice/dictionary/pronunciation/" + word);
+                $.getScript("/js/spice/dictionary/audio/" + word);
+            });
         };
 
-        // Load the definitions of the reference.
-        var popover_load = function(text, element) {
+        // Change the context and display the .
+        var pluralOf = function(response) {
+            if(response && response.length > 0) {
+                word = response[0].word;
+                response[0].pluralOf = "is the plural of " + word;
+                response[0].word = api_result[0].word;
+                render(response);
+            // If it didn't return new definitions, just display the old one.
+            } else {
+                render(api_result);
+            }
+        };
+
+        // Check how many items we have and if it refers to something that's plural.
+        var plural = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>(\w+(?:\s\w+)*)<\/xref>/i);
+        if(api_result.length === 1 && plural) {
             $.ajax({
-                url: "/js/spice/dictionary/reference/" + text,
+                url: "/js/spice/dictionary/reference/" + plural[1],
                 jsonp: "callback",
                 dataType: "jsonp",
-                success: function(response) {
-                    popover_display(Handlebars.templates.dictionary(response), element, text);
-                }
+                success: pluralOf
             });
-        }
-
-        // This function deals with the references.
-        var popover_events = function(references) {
-            references.each(function() {
-                $(this).on("click", function() {
-                    if(!$(this).hasClass("word-loaded")) {
-                        popover_load($(this).html(), this);
-                    }
-                });
-            });
-        };
-
-        // Call the Wordnik API to display the pronunciation text and the audio.
-        $(document).ready(function() {
-            // Check if we have words that we need to reference.
-            var references = $(".reference");
-            if(references.length > 0) {
-                $.getScript("/bootstrap/bootstrap.min.js", (function() {
-                    popover_events(references);
-                }));
-            }
-
-            $.getScript("/js/spice/dictionary/pronunciation/" + word);
-            $.getScript("/js/spice/dictionary/audio/" + word);
-        });
+        } else {
+            render(api_result);
+        }      
     }
 };
 
@@ -86,7 +73,8 @@ Handlebars.registerHelper('part', function(text) {
         "conjunction": "conj.",
         "preposition": "prep.",
         "auxiliary-verb": "v.",
-        "undefined": ""
+        "undefined": "",
+        "noun-plural": "n."
     };
     return part_of_speech[text] || text;
 });
@@ -94,7 +82,7 @@ Handlebars.registerHelper('part', function(text) {
 // Do not encode the HTML tags, and make sure we replace xref to an anchor tag.
 Handlebars.registerHelper('format', function(text) {
     // Replace the xref tag into an anchor tag.
-    text = text.replace(/<xref>(\w+(\s\w+)*)<\/xref>/g, "<a class='reference' href='javascript:void(0)'>$1</a>");
+    text = text.replace(/<xref>(\w+(\s\w+)*)<\/xref>/g, "<a class='reference' href='/?q=define+$1'>$1</a>");
 
     // Make sure we do not encode the HTML tags.
     return new Handlebars.SafeString(text);
