@@ -14,6 +14,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
     if (api_result && api_result.length > 0) {
         var word = api_result[0].word;
 
+        // We moved Spice.render to a function because we're choosing between two contexts.
         var render = function(context) {
             Spice.render({
                 data              : context,
@@ -31,22 +32,23 @@ var ddg_spice_dictionary_definition = function(api_result) {
             });
         };
 
-        // Change the context and display the .
+        // Change the context so that it would say something like, "dictionaries is the plural of dictionary."
         var pluralOf = function(response) {
             if(response && response.length > 0) {
                 word = response[0].word;
                 response[0].pluralOf = "is the plural of " + word;
                 response[0].word = api_result[0].word;
                 render(response);
-            // If it didn't return new definitions, just display the old one.
+            // If it didn't return new definitions, just display the old context.
             } else {
                 render(api_result);
             }
         };
 
-        // Check how many items we have and if it refers to something that's plural.
+        // Check how many items we have, and if it refers to something that's plural (we know this because of the regexp).
         var plural = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>(\w+(?:\s\w+)*)<\/xref>/i);
         if(api_result.length === 1 && plural) {
+            // This loads the definition of the singular form of the word.
             $.ajax({
                 url: "/js/spice/dictionary/reference/" + plural[1],
                 jsonp: "callback",
@@ -55,12 +57,14 @@ var ddg_spice_dictionary_definition = function(api_result) {
             });
         } else {
             render(api_result);
-        }      
+        }
     }
 };
 
 // We should shorten the part of speech before displaying the definition.
-Handlebars.registerHelper('part', function(text) {
+Handlebars.registerHelper("part", function(text) {
+    "use strict";
+
     var part_of_speech = {
         "interjection": "interj.",
         "noun": "n.",
@@ -80,7 +84,9 @@ Handlebars.registerHelper('part', function(text) {
 });
 
 // Do not encode the HTML tags, and make sure we replace xref to an anchor tag.
-Handlebars.registerHelper('format', function(text) {
+Handlebars.registerHelper("format", function(text) {
+    "use strict";
+
     // Replace the xref tag into an anchor tag.
     text = text.replace(/<xref>(\w+(\s\w+)*)<\/xref>/g, "<a class='reference' href='/?q=define+$1'>$1</a>");
 
