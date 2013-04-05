@@ -36,7 +36,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
         var pluralOf = function(response) {
             if(response && response.length > 0) {
                 word = response[0].word;
-                response[0].pluralOf = "is the plural of " + word;
+                response[0].pluralOf = "is the plural form of " + word;
                 response[0].word = api_result[0].word;
                 render(response);
             // If it didn't return new definitions, just display the old context.
