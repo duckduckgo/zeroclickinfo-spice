@@ -7,7 +7,7 @@ function ddg_spice_bitly(response) {
         data             : { 'url' : response.data.url },
         header1          : 'Shortened URL (Bitly)',
         source_url       : 'http://bitly.com',
-        image            : 'http://i.imgur.com/xVpFr.png',
+        image            : 'https://duckduckgo.com/iu/?u=http://i.imgur.com/xVpFr.png',
         source_name      : 'Bitly',
         template_normal  : 'bitly',
         force_big_header : true
