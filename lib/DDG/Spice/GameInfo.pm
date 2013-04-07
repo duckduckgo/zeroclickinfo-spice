@@ -1,7 +1,7 @@
 package DDG::Spice::GameInfo;
 
 use DDG::Spice;
-triggers startend => "game";
+triggers startend => "game","games";
 spice to => 'http://thefreegamesdb.com/API/DuckDuckGo.php?Name=$1';
 spice wrap_jsonp_callback => 1;
 
