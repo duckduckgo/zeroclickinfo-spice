@@ -164,6 +164,12 @@ The **h** param is an optional relevant (and relatively short) title.
 items[0]['h'] = title;
 ```
 
+For a big header (like [this example](https://duckduckgo.com/?q=movie+the+dark+knight)), pass `1` to **force_big_header**.
+
+```
+items[0]['force_big_header'] = 1;
+```
+
 Source name and URL are required in the **s** and **u** blocks. These are used to make the More at X link in all instant answer boxes. Think of it as source attribution.
 
 ```js
