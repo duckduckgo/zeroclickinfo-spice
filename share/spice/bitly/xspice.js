@@ -13,18 +13,23 @@ function ddg_spice_bitly(response) {
         force_big_header : true
     });
 
+    // Thanks to Jason for his answer on http://stackoverflow.com/a/987376.
+    var select = function(url) {
+        if($("body").createTextRange) {
+            range = $("body").createTextRange();
+            range.moveToElementText(url.get(0));
+            range.select();
+        } else if(window.getSelection) {
+            selection = window.getSelection();
+            range = document.createRange();
+            range.selectNodeContents(url.get(0));
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    }
+
     $(document).ready(function() {
         var url = $("#bitly-url");
-
-        // Load bootstrap.js. This shows the a tooltip that can guide the user.
-        $.getScript("/bootstrap/bootstrap.js", function() {
-            url.tooltip({
-                placement: "right",
-                trigger: "hover focus",
-                title: "Copy"
-            });
-            url.focus();
-            url.select();
-        });
+        select(url);
     });
 }
