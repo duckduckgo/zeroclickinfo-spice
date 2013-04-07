@@ -11,7 +11,7 @@ function ddg_spice_game_info(ir) {
 	items[0] = {
             a: about,
             h: ir['name'],
-            s: 'thefreegamesdb',
+            s: ir['domain'],
             u: ir['link'],
             i: ir['image']
         };
