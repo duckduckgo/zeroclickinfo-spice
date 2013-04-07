@@ -158,13 +158,13 @@ items[0]['a'] = snippet;
 
 The **a** param is the required answer. It can be pure HTML in which case it is set via innerHTML. It can also be an object (preferred), in which case onclick and other event handlers won't be destroyed.
 
-The **h** param is an optional relevant (and relatively short) title. 
+The **h** param is an optional relevant (and relatively short) title.
 
 ```js
 items[0]['h'] = title;
 ```
 
-For a big header (like [this example](https://duckduckgo.com/?q=movie+the+dark+knight)), pass `1` to **force_big_header**.
+For a big header (like [this example](https://duckduckgo.com/?q=movie+the+dark+knight)), pass `1` to **force_big_header**. When using **force_big_header**, please use our canonical header style in the form `<query> (Plugin Name)`.
 
 ```
 items[0]['force_big_header'] = 1;
