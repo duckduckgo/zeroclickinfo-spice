@@ -1,14 +1,14 @@
 <div>
-	<b>{{this.[0].word}}</b>
+    <b>{{this.[0].word}}</b>
     {{#if this.[0].pluralOf}}
         <span> {{this.[0].pluralOf}}</span>
     {{/if}} 
-	<span id="pronunciation"></span> 
-	<i id="play-icon"></i>
+    <span id="pronunciation"></span> 
+    <i id="play-icon"></i>
 </div>
 {{#each this}}
     <div class="definition">
-    	<em>{{part partOfSpeech}}</em> 
-    	<span>{{format text}}</span>
+        <em>{{part partOfSpeech}}</em> 
+        <span>{{format text}}</span>
     </div>
 {{/each}}
