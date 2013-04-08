@@ -27,7 +27,7 @@ var ddg_spice_lastfm = function(api_result, template) {
     };
 
     // Don't do anything if we find an error, or if the result is irrelevant.
-    if(api_result.error || !api_result.artist || !api_result.name) {
+    if(api_result.error || !api_result.artist || !api_result.artist.name) {
         return;
     }
 
