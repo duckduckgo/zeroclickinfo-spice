@@ -5,11 +5,11 @@ function ddg_spice_bitly(response) {
         return;
     }
 
-    var template = "bitly";
 
     // Check if it is a mobile browser (needs work). This was inspired by is.gd.
+    response.data.mobile = false;
     if(window.navigator.userAgent.match(/Android|iPhone|iPad/i)) {
-        template += "-mobile";
+        response.data.mobile = true;
     }
 
     Spice.render({
@@ -18,7 +18,7 @@ function ddg_spice_bitly(response) {
         source_url       : response.data.url + "+",
         image_url        : "https://duckduckgo.com/iu/?u=http%3A%2F%2Fi.imgur.com%2FxVpFr.png",
         source_name      : 'Bit.ly',
-        template_normal  : template,
+        template_normal  : "bitly",
         force_big_header : true
     });
 
