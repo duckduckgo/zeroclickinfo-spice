@@ -1,9 +1,7 @@
 <div>
-    <div><em>User Agent:</em> {{userAgent}}</div>
-    {{#if vendor}}<div><em>Vendor:</em> {{vendor}}</div>{{/if}}
-    {{#if cookies}}<div><em>Cookies:</em> {{cookies}}</div>{{/if}}
-    {{#if referrer}}<div><em>Referrer:</em> {{referrer}}</div>{{/if}}
-    {{#if doNotTrack}}<div><em>Do Not Track:</em> {{doNotTrack}}</div>{{/if}}
-    {{#if host}}<div><em>Host:</em> {{host}}</div>{{/if}}
-    {{#if language}}<div><em>Language:</em> {{language}}</div>{{/if}}
+    {{#each this}}
+        {{#if this.[1]}}
+            <div><em>{{this.[0]}}</em>{{this.[1]}}</div>
+        {{/if}}        
+    {{/each}}
 </div>

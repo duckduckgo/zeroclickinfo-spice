@@ -1,9 +1,12 @@
 var ddg_spice_user_agent = function() {
-    var context = window.navigator;
-    context.cookies = document.cookie;
-    context.referrer = document.referrer;
-    context.doNotTrack = context.doNotTrack || context.msDoNotTrack;
-    context.host = context.host || document.domain;
+    var context = [];
+    context.push(["User Agent: ", navigator.userAgent]);
+    context.push(["Vendor: ", navigator.vendor]);
+    context.push(["Cookies: ", document.cookie]);
+    context.push(["Referrer: ", document.referrer]);
+    context.push(["Do Not Track: ", navigator.doNotTrack || navigator.msDoNotTrack]);
+    context.push(["Host: ", navigator.host || document.domain]);
+    context.push(["Language: ", navigator.language]);
 
     // Display the plugin.
     Spice.render({
