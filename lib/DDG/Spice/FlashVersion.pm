@@ -14,7 +14,7 @@ topics "everyday", "programming";
 category "software";
 attribution github => ['https://github.com/Getty','Torsten Raudssus'],
            twitter => ['https://twitter.com/raudssus','Torsten Raudssus'];
-status "disabled";
+status "enabled";
 
 handle query_lc => sub {
     return $_ eq 'flash version' ? call : ();
