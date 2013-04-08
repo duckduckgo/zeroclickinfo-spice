@@ -3,33 +3,32 @@ function ddg_spice_bitly(response) {
         return;
     }
 
+    var template = "bitly";
+
+    // Check if it is a mobile browser (needs work).
+    if(window.navigator.userAgent.match(/Android|iPhone|iPad/i)) {
+        template += "-mobile";
+    }
+
     Spice.render({
-        data             : { 'url' : response.data.url },
+        data             : response.data,
         header1          : 'Shortened URL (Bitly)',
-        source_url       : 'http://bitly.com',
-        image            : 'https://duckduckgo.com/iu/?u=http://i.imgur.com/xVpFr.png',
+        source_url       : response.data.url + "+",
+        image_url        : response.data.url + '.qrcode?s=75',
         source_name      : 'Bitly',
-        template_normal  : 'bitly',
+        template_normal  : template,
         force_big_header : true
     });
 
-    // Thanks to Jason for his answer on http://stackoverflow.com/a/987376.
-    var select = function(url) {
-        if($("body").createTextRange) {
-            range = $("body").createTextRange();
-            range.moveToElementText(url.get(0));
-            range.select();
-        } else if(window.getSelection) {
-            selection = window.getSelection();
-            range = document.createRange();
-            range.selectNodeContents(url.get(0));
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-    }
+    var selectText = function(url) {
+        url.focus().select();
+    };
 
     $(document).ready(function() {
-        var url = $("#bitly-url");
-        select(url);
+        var url = $("input#bitly-url");
+        selectText(url);
+        url.on("click", function() {
+            selectText(url);
+        })
     });
 }
