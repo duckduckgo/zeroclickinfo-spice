@@ -1,4 +1,9 @@
 var ddg_spice_lastfm_album = function(api_result) {
+    // Don't do anything if we find an error.
+    if(api_result.error) {
+        return;
+    }
+
     // Display the spice plugin.
     Spice.render({
         data              : api_result,
@@ -27,7 +32,10 @@ Handlebars.registerHelper("releasedate", function(date, options) {
     // Let's trim the string.
     date = date.substr(0, date.lastIndexOf(","));
 
-    options.fn({date: date});
+    // Check if it's not an empty string.
+    if(date) {
+        options.fn({date: date});
+    }
 });
 
 // This helper adds a comma between a list of links.
