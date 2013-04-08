@@ -1,17 +1,5 @@
 #bitly-url {
-	border: 1px;
-	color: #333;
-	border-style: dashed;
 	text-align: center;
-}
-
-#bitly-url-mobile {
-	border: 1px;
-	color: #333;
-	border-style: dashed;
-	text-align: center;
-	padding-left: 1em; 
-	padding-right: 1em;
 }
 
 div.clear {
