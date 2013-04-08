@@ -13,3 +13,7 @@
 	padding-left: 1em; 
 	padding-right: 1em;
 }
+
+div.clear {
+	clear: both;
+}

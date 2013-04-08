@@ -14,8 +14,8 @@ function ddg_spice_bitly(response) {
         data             : response.data,
         header1          : 'Shortened URL (Bitly)',
         source_url       : response.data.url + "+",
-        image_url        : response.data.url + '.qrcode?s=75',
-        source_name      : 'Bitly',
+        image_url        : response.data.url + '.qrcode?s=100',
+        source_name      : 'Bit.ly',
         template_normal  : template,
         force_big_header : true
     });
