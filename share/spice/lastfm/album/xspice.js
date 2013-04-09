@@ -1,28 +1,40 @@
 var ddg_spice_lastfm_album = function(api_result) {
     "use strict";
 
+    var skip = {
+        "album": 1,
+        "albums": 1,
+        "records": 1,
+        "cd": 1,
+        "cds": 1
+    };
+
     // Don't do anything if we find an error.
-    if(api_result.error) {
+    if(api_result.error || !api_result.album || !api_result.album.name || !api_result.album.artist) {
         return;
     }
 
     // Display the spice plugin.
-    Spice.render({
-        data              : api_result,
-        force_big_header  : true,
-        header1           : api_result.album.name + " (Album)",
-        source_name       : "Last.fm",
-        source_url        : api_result.album.url,
-        template_normal   : "album"
-    });
-
-    $(document).ready(function() {
-        $("#expand").click(function() {
-            DDG.toggle("all", 1);
-            DDG.toggle("some", -1);
-            DDG.toggle("expand", -1);
+    // Check if it's relevant and see if it's popular enough (this is just a guess--we need to improve on this).
+    if(DDG.isRelevant(api_result.album.name, skip) && DDG.isRelevant(api_result.album.artist, skip) &&
+        +api_result.album.playcount > 1000) {
+        Spice.render({
+            data              : api_result,
+            force_big_header  : true,
+            header1           : api_result.album.name + " (Album)",
+            source_name       : "Last.fm",
+            source_url        : api_result.album.url,
+            template_normal   : "album"
         });
-    });
+
+        $(document).ready(function() {
+            $("#expand").click(function() {
+                DDG.toggle("all", 1);
+                DDG.toggle("some", -1);
+                DDG.toggle("expand", -1);
+            });
+        });
+    }
 };
 
 // Shortens the date.
