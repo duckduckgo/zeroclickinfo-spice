@@ -14,14 +14,15 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1)
     + "\n        </div>\n        ";
   options = {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data};
-  stack2 = ((stack1 = helpers.releasedate),stack1 ? stack1.call(depth0, depth0.releasedate, options) : helperMissing.call(depth0, "releasedate", depth0.releasedate, options));
+  stack2 = ((stack1 = helpers.cleanDate),stack1 ? stack1.call(depth0, depth0.releasedate, options) : helperMissing.call(depth0, "cleanDate", depth0.releasedate, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n        ";
   options = {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data};
   stack2 = ((stack1 = helpers.checkTracks),stack1 ? stack1.call(depth0, depth0.tracks, options) : helperMissing.call(depth0, "checkTracks", depth0.tracks, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n        ";
-  stack2 = helpers['if'].call(depth0, depth0.wiki, {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
+  options = {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data};
+  stack2 = ((stack1 = helpers.checkWiki),stack1 ? stack1.call(depth0, depth0.wiki, options) : helperMissing.call(depth0, "checkWiki", depth0.wiki, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n    ";
   return buffer;
@@ -60,23 +61,14 @@ function program5(depth0,data) {
 
 function program7(depth0,data) {
   
-  var buffer = "", stack1, stack2;
-  buffer += "\n            ";
-  stack2 = helpers['if'].call(depth0, ((stack1 = depth0.wiki),stack1 == null || stack1 === false ? stack1 : stack1.summary), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
-  if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n        ";
-  return buffer;
-  }
-function program8(depth0,data) {
-  
   var buffer = "", stack1, options;
-  buffer += "\n                <div>\n                    <span id=\"some\"><em>Description:</em> ";
+  buffer += "\n            <div>\n                <span id=\"some\"><em>Description:</em> ";
   options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.snippet),stack1 ? stack1.call(depth0, ((stack1 = depth0.wiki),stack1 == null || stack1 === false ? stack1 : stack1.summary), "some", options) : helperMissing.call(depth0, "snippet", ((stack1 = depth0.wiki),stack1 == null || stack1 === false ? stack1 : stack1.summary), "some", options)))
-    + "</span>\n                    <a id=\"expand\" href=\"javascript:;\">\n                        <span>More...</span>\n                    </a>\n                    <span id=\"all\"><em>Description:</em> ";
+  buffer += escapeExpression(((stack1 = helpers.snippet),stack1 ? stack1.call(depth0, depth0.summary, "some", options) : helperMissing.call(depth0, "snippet", depth0.summary, "some", options)))
+    + "</span>\n                <a id=\"expand\" href=\"javascript:;\">\n                    <span>More...</span>\n                </a>\n                <span id=\"all\"><em>Description:</em> ";
   options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.snippet),stack1 ? stack1.call(depth0, ((stack1 = depth0.wiki),stack1 == null || stack1 === false ? stack1 : stack1.summary), "all", options) : helperMissing.call(depth0, "snippet", ((stack1 = depth0.wiki),stack1 == null || stack1 === false ? stack1 : stack1.summary), "all", options)))
-    + "</span>\n                </div>\n            ";
+  buffer += escapeExpression(((stack1 = helpers.snippet),stack1 ? stack1.call(depth0, depth0.summary, "all", options) : helperMissing.call(depth0, "snippet", depth0.summary, "all", options)))
+    + "</span>\n            </div>\n        ";
   return buffer;
   }
 

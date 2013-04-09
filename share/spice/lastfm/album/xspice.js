@@ -24,7 +24,7 @@ var ddg_spice_lastfm_album = function(api_result) {
 };
 
 // Shortens the date.
-Handlebars.registerHelper("releasedate", function(date, options) {
+Handlebars.registerHelper("cleanDate", function(date, options) {
     "use strict";
 
     // Make sure it's not a string filled with whitespace.
@@ -41,6 +41,16 @@ Handlebars.registerHelper("releasedate", function(date, options) {
 Handlebars.registerHelper("checkTracks", function(tracks, options) {
     if(tracks && tracks.track && tracks.track.length > 0) {
         return options.fn(tracks);
+    }
+});
+
+Handlebars.registerHelper("checkWiki", function(wiki, options) {
+    var summary = "";
+    if(wiki && wiki.summary) {
+        summary = wiki.summary.replace(/^\s*$/g, "");
+        if(summary !== "") {
+            return options.fn(wiki);
+        }
     }
 });
 
