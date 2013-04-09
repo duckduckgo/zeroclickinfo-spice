@@ -17,10 +17,11 @@ function program1(depth0,data) {
   stack2 = ((stack1 = helpers.releasedate),stack1 ? stack1.call(depth0, depth0.releasedate, options) : helperMissing.call(depth0, "releasedate", depth0.releasedate, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n        ";
-  stack2 = helpers['if'].call(depth0, depth0.tracks, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  options = {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data};
+  stack2 = ((stack1 = helpers.checkTracks),stack1 ? stack1.call(depth0, depth0.tracks, options) : helperMissing.call(depth0, "checkTracks", depth0.tracks, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n        ";
-  stack2 = helpers['if'].call(depth0, depth0.wiki, {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
+  stack2 = helpers['if'].call(depth0, depth0.wiki, {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n    ";
   return buffer;
@@ -38,24 +39,15 @@ function program2(depth0,data) {
 
 function program4(depth0,data) {
   
-  var buffer = "", stack1, stack2;
-  buffer += "\n            ";
-  stack2 = helpers['if'].call(depth0, ((stack1 = depth0.tracks),stack1 == null || stack1 === false ? stack1 : stack1.track), {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data});
+  var buffer = "", stack1, stack2, options;
+  buffer += "\n            <div>\n                <em>Songs:</em>\n                ";
+  options = {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data};
+  stack2 = ((stack1 = helpers.list),stack1 ? stack1.call(depth0, depth0.track, options) : helperMissing.call(depth0, "list", depth0.track, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n        ";
+  buffer += "\n            </div>\n        ";
   return buffer;
   }
 function program5(depth0,data) {
-  
-  var buffer = "", stack1, stack2, options;
-  buffer += "\n                <div>\n                    <em>Songs:</em>\n                    ";
-  options = {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data};
-  stack2 = ((stack1 = helpers.list),stack1 ? stack1.call(depth0, ((stack1 = depth0.tracks),stack1 == null || stack1 === false ? stack1 : stack1.track), options) : helperMissing.call(depth0, "list", ((stack1 = depth0.tracks),stack1 == null || stack1 === false ? stack1 : stack1.track), options));
-  if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n                </div>\n            ";
-  return buffer;
-  }
-function program6(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "<a href=\""
@@ -66,16 +58,16 @@ function program6(depth0,data) {
   return buffer;
   }
 
-function program8(depth0,data) {
+function program7(depth0,data) {
   
   var buffer = "", stack1, stack2;
   buffer += "\n            ";
-  stack2 = helpers['if'].call(depth0, ((stack1 = depth0.wiki),stack1 == null || stack1 === false ? stack1 : stack1.summary), {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data});
+  stack2 = helpers['if'].call(depth0, ((stack1 = depth0.wiki),stack1 == null || stack1 === false ? stack1 : stack1.summary), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n        ";
   return buffer;
   }
-function program9(depth0,data) {
+function program8(depth0,data) {
   
   var buffer = "", stack1, options;
   buffer += "\n                <div>\n                    <span id=\"some\"><em>Description:</em> ";

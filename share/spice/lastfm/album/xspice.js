@@ -38,6 +38,12 @@ Handlebars.registerHelper("releasedate", function(date, options) {
     }
 });
 
+Handlebars.registerHelper("checkTracks", function(tracks, options) {
+    if(tracks && tracks.track && tracks.track.length > 0) {
+        return options.fn(tracks);
+    }
+});
+
 // This helper adds a comma between a list of links.
 Handlebars.registerHelper("list", function(items, options) {
     "use strict";

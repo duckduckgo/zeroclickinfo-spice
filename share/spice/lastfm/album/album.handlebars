@@ -10,14 +10,12 @@
                 {{date}}
             </div>
         {{/releasedate}}
-        {{#if tracks}}
-            {{#if tracks.track}}
-                <div>
-                    <em>Songs:</em>
-                    {{#list tracks.track}}<a href="{{this.url}}">{{this.name}}</a>{{/list}}
-                </div>
-            {{/if}}
-        {{/if}}
+        {{#checkTracks tracks}}
+            <div>
+                <em>Songs:</em>
+                {{#list track}}<a href="{{this.url}}">{{this.name}}</a>{{/list}}
+            </div>
+        {{/checkTracks}}
         {{#if wiki}}
             {{#if wiki.summary}}
                 <div>
