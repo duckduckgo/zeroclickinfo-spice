@@ -1,4 +1,6 @@
 var ddg_spice_lastfm_album = function(api_result) {
+    "use strict";
+
     // Don't do anything if we find an error.
     if(api_result.error) {
         return;
@@ -11,7 +13,7 @@ var ddg_spice_lastfm_album = function(api_result) {
         header1           : api_result.album.name + " (Album)",
         source_name       : "Last.fm",
         source_url        : api_result.album.url,
-        template_normal   : "album",
+        template_normal   : "album"
     });
 
     $(document).ready(function() {
@@ -38,15 +40,22 @@ Handlebars.registerHelper("cleanDate", function(date, options) {
     }
 });
 
+// Checks if we have tracks or songs available.
 Handlebars.registerHelper("checkTracks", function(tracks, options) {
+    "use strict";
+
     if(tracks && tracks.track && tracks.track.length > 0) {
         return options.fn(tracks);
     }
 });
 
+// Checks if we have information about the album.
 Handlebars.registerHelper("checkWiki", function(wiki, options) {
+    "use strict";
+
     var summary = "";
     if(wiki && wiki.summary) {
+        // Make sure summary isn't full of white space.
         summary = wiki.summary.replace(/^\s*$/g, "");
         if(summary !== "") {
             return options.fn(wiki);
