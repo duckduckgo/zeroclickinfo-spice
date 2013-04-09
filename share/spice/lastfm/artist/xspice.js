@@ -27,19 +27,21 @@ var ddg_spice_lastfm = function(api_result, template) {
     };
 
     // Don't do anything if we find an error, or if the result is irrelevant.
-    if(api_result.error && !DDG.isRelevant(api_result.artist.name, skip)) {
+    if(api_result.error || !api_result.artist || !api_result.artist.name) {
         return;
     }
 
     // Display the plugin.
-    Spice.render({
-        data             : api_result,
-        force_big_header : true,
-        header1          : api_result.artist.name,
-        source_name      : "Last.fm",
-        source_url       : api_result.artist.url,
-        template_normal  : template
-    });
+    if(DDG.isRelevant(api_result.artist.name, skip)) {
+        Spice.render({
+            data             : api_result,
+            force_big_header : true,
+            header1          : api_result.artist.name,
+            source_name      : "Last.fm",
+            source_url       : api_result.artist.url,
+            template_normal  : template
+        });
+    }
 };
 
 // This function calls artist.handlebars, and it shows everything about the artist.

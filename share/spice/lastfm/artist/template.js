@@ -8,10 +8,10 @@ helpers = helpers || Handlebars.helpers; data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, options;
-  buffer += "\n        <div>\n            <div id=\"some\">";
+  buffer += "\n        <div>\n            <span id=\"some\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.snippet),stack1 ? stack1.call(depth0, ((stack1 = ((stack1 = depth0.artist),stack1 == null || stack1 === false ? stack1 : stack1.bio)),stack1 == null || stack1 === false ? stack1 : stack1.summary), "some", options) : helperMissing.call(depth0, "snippet", ((stack1 = ((stack1 = depth0.artist),stack1 == null || stack1 === false ? stack1 : stack1.bio)),stack1 == null || stack1 === false ? stack1 : stack1.summary), "some", options)))
-    + "</div>\n            <a id=\"expand\" href=\"javascript:;\">\n                <span>More...</span>\n            </a>\n            <span id=\"all\">";
+    + "</span>\n            <a id=\"expand\" href=\"javascript:;\">\n                <span>More...</span>\n            </a>\n            <span id=\"all\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.snippet),stack1 ? stack1.call(depth0, ((stack1 = ((stack1 = depth0.artist),stack1 == null || stack1 === false ? stack1 : stack1.bio)),stack1 == null || stack1 === false ? stack1 : stack1.summary), "all", options) : helperMissing.call(depth0, "snippet", ((stack1 = ((stack1 = depth0.artist),stack1 == null || stack1 === false ? stack1 : stack1.bio)),stack1 == null || stack1 === false ? stack1 : stack1.summary), "all", options)))
     + "</span>\n        </div>\n    ";

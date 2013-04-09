@@ -1,1 +1,8 @@
-<a id="bitly-url" href="{{url}}">{{url}}</a>
+<div>
+    {{#if mobile}}
+        Share: <a id="bitly-url-mobile" href="{{url}}">{{url}}</a>
+    {{else}}
+       Share: <input id="bitly-url" readonly="readonly" value="{{url}}">
+    {{/if}}
+</div>
+<div class="clear"></div>

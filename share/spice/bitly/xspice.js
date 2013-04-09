@@ -1,35 +1,37 @@
 function ddg_spice_bitly(response) {
-	if (!response || !response.status_code === 200 || !response.data || !response.data.url) {
+
+    // Exit immediately if we find an error message.
+    if (!response || !response.status_code === 200 || !response.data || !response.data.url) {
         return;
     }
 
+
+    // Check if it is a mobile browser (needs work). This was inspired by is.gd.
+    response.data.mobile = false;
+    if(window.navigator.userAgent.match(/Android|iPhone|iPad/i)) {
+        response.data.mobile = true;
+    }
+
     Spice.render({
-        data             : { 'url' : response.data.url },
+        data             : response.data,
         header1          : 'Shortened URL (Bitly)',
-        source_url       : 'http://bitly.com',
-        image            : 'https://duckduckgo.com/iu/?u=http://i.imgur.com/xVpFr.png',
-        source_name      : 'Bitly',
+        source_url       : response.data.url + '+',
+        image_url        : 'https://duckduckgo.com/iu/?u=http://i.imgur.com/xVpFr.png',
+        source_name      : 'Bit.ly',
         template_normal  : 'bitly',
         force_big_header : true
     });
 
-    // Thanks to Jason for his answer on http://stackoverflow.com/a/987376.
-    var select = function(url) {
-        if($("body").createTextRange) {
-            range = $("body").createTextRange();
-            range.moveToElementText(url.get(0));
-            range.select();
-        } else if(window.getSelection) {
-            selection = window.getSelection();
-            range = document.createRange();
-            range.selectNodeContents(url.get(0));
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-    }
+    var selectText = function(url) {
+        url.focus().select();
+    };
 
+    // If we displayed an input box, make sure we focus on it.
     $(document).ready(function() {
-        var url = $("#bitly-url");
-        select(url);
+        var url = $('input#bitly-url');
+        selectText(url);
+        url.on('click', function() {
+            selectText(url);
+        })
     });
 }
