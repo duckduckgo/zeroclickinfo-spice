@@ -16,6 +16,9 @@ var ddg_spice_lastfm_album = function(api_result) {
 
     // Display the spice plugin.
     // Check if it's relevant and see if it's popular enough (this is just a guess--we need to improve on this).
+    // This successfully blocks:
+    // - girl on fire album by alicia (Returns the wrong person. Maybe Last.fm has some sort of useCanonical?)
+    // - circus album by eraserhead
     if(DDG.isRelevant(api_result.album.name, skip) && DDG.isRelevant(api_result.album.artist, skip) &&
         +api_result.album.playcount > 1000) {
         Spice.render({
