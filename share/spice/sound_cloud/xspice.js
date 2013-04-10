@@ -9,6 +9,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         force_big_header : true
     });
 
+    window.SM2_DEFER = true;
     var soundSetup = function() {
         window.soundManager = new SoundManager();
         soundManager.url = "/soundmanager2/swf/";
@@ -22,10 +23,19 @@ var ddg_spice_sound_cloud = function(api_result) {
         });
     };
 
-    var loadPagePlayer = function() {
-        $.getScript("/soundmanager2/script/page-player.js", soundSetup);
+    var ready = [false, false];
+    var checkReady = function(toggle) {
+        ready[toggle] = true;
+        if(ready[0] && ready[1]) {
+            soundSetup();
+        }
     };
 
-    window.SM2_DEFER = true;
-    $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", loadPagePlayer);
+    $.getScript("/soundmanager2/script/page-player.js", function() {
+        checkReady(0);
+    });
+
+    $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", function() {
+        checkReady(1);
+    });
 };
