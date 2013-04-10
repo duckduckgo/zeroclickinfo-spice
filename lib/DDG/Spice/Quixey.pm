@@ -16,7 +16,6 @@ my %platform_ids = (
 	"windows phone 8" => 8556073,
 	"windows phone" => 8556073,
 	"windows mobile" => 8556073,
-	"windows" => 8556073,
 	"playbook" => 2008,
 	"blackberry" => 2008,
 	"apple app store" => 2004,
@@ -29,9 +28,7 @@ my %platform_ids = (
 );
 
 my @triggers = keys %platform_ids;
-
 my @extraTriggers = qw(quixey app apps);
-
 push(@triggers, @extraTriggers);
 
 triggers any => @triggers;

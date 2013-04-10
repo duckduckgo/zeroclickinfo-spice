@@ -192,13 +192,11 @@
   display: inline;
 }
 
-#quixey span.star {
-  background: url(star.png);
+#quixey img.star {
   width: 15px;
   height: 15px;
   display: inline-block;
   margin 0 2px;
-  background-size: 100% auto;
 }
 
 #quixey .app_icon_anchor {

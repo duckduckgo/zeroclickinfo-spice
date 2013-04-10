@@ -16,12 +16,11 @@ function ddg_spice_quixey (api_result) {
 
         more_logo: "quixey_logo.png",
 
-        template_frame: "carousel",                // zci type
-        template_normal: "quixey",           // item template
-        carousel_css_id: "quixey",                 // the div used for the carousel
-        carousel_template_detail: "quixey_detail", // detail view template
-        carousel_items: api_result.results         // item array
-
+        template_frame: "carousel",                 // zci type
+        template_normal: "quixey",                  // item template
+        carousel_css_id: "quixey",                  // the div used for the carousel
+        carousel_template_detail: "quixey_detail",  // detail view template
+        carousel_items: Handlebars.helpers.organize(api_result.results) // item array
     });
 }
 
@@ -37,6 +36,121 @@ function ddg_spice_quixey (api_result) {
         return "$" + (p/100).toFixed(2).toString();
     }
 
+    // Check for relevant app results
+    Handlebars.registerHelper("organize", function(results) {
+            
+        var res,
+            apps = [],
+            backupApps = [],
+            CATEGORIES = [
+                "action",
+                "adventure",
+                "arcade",
+                "board",
+                "business",
+                "casino",
+                "design",
+                "developer tools",
+                "dice",
+                "education",
+                "educational",
+                "entertainment",
+                "family",
+                "finance",
+                "graphics",
+                "graphics and design",
+                "health and fitness",
+                "kids",
+                "lifestyle",
+                "medical",
+                "music",
+                "networking",
+                "news",
+                "photography",
+                "productivity",
+                "puzzle",
+                "racing",
+                "role playing",
+                "simulation",
+                "social networking",
+                "social",
+                "sports",
+                "strategy",
+                "travel",
+                "trivia",
+                "utilities",
+                "video",
+                "weather",
+            ],
+            SKIP_ARRAY = {
+                "app": 1,
+                "apps": 1,
+                "application": 1,
+                "applications": 1,
+                "android": 1,
+                "droid": 1,
+                "google play store": 1,
+                "google play": 1,
+                "windows phone": 1,
+                "windows phone 8": 1,
+                "windows mobile": 1,
+                "blackberry": 1,
+                "apple app store": 1,
+                "apple app": 1,
+                "ipod touch": 1,
+                "ipod": 1,
+                "iphone": 1,
+                "ipad": 1,
+                "ios": 1,
+                "free": 1,
+                "search": 1
+            };
+            
+        for (var i = 0; i < results.length; i++) {
+
+            app = results[i];
+
+            // check if this app result is relevant
+            if (DDG.isRelevant(app.name.toLowerCase(), SKIP_ARRAY)) {
+                apps.push(app);
+            } else if (app.hasOwnProperty("short_desc") &&
+                       DDG.isRelevant(app.short_desc.toLowerCase(), SKIP_ARRAY)) {
+                            backupApps.push(app);
+            } else if (app.custom.hasOwnProperty("category") &&
+                       DDG.isRelevant(app.custom.category.toLowerCase(), SKIP_ARRAY)) {
+                            backupApps.push(app);
+            } else{
+                continue;
+            }
+        }
+
+        // Return highly relevant results
+        if (apps.length > 0) {
+            res = apps;
+        }
+
+        // Return mostly relevant results
+        else if (backupApps.length > 0) {
+            res = backupApps;
+        }
+
+        else {
+
+            // No relevant results,
+            // check if it was a categorical search
+            // Eg."social apps for android"
+            var q = DDG.get_query();
+            var matches = CATEGORIES.map(
+                function(w){
+                    var word = new RegExp(w, "i");
+                    return q.match(word);
+                }
+            );
+            res = (matches.indexOf(1) !== -1) ? results : null;
+        }
+        return res;
+    });
+
     // template helper for price formatting
     // {{price x}}
     Handlebars.registerHelper("price", function(obj) {
@@ -50,7 +164,7 @@ function ddg_spice_quixey (api_result) {
             return "";
 
         var low  = this.editions[0].cents;
-        var high = this.editions[0].cents  ;
+        var high = this.editions[0].cents;
         var tmp, range, lowp, highp;
 
         for (var i in this.editions) {
@@ -64,6 +178,7 @@ function ddg_spice_quixey (api_result) {
         if (high > low) {
            highp = qprice(high);
            range = lowp + " - " + highp;
+           this.hasPricerange = true;
         } else {
             range = lowp;
         }
@@ -78,7 +193,36 @@ function ddg_spice_quixey (api_result) {
             return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
         }
 
-        return icon_url;
+        return "/iu/?u=" + icon_url + "&f=1";
     });
 
+    // template helper to replace iphone and ipod icons with
+    // smaller 'Apple' icons
+    Handlebars.registerHelper("platform_name", function() {
+        var name;
+        var platforms = this.platforms;
+
+        name = platforms[0].name;
+
+        if (platforms.length > 1) {
+            switch (platforms[0].name) {
+                case "iPhone" :
+                case "iPad" :
+                    name = "iOS";
+                    break;
+
+                case "Blackberry":
+                case "Blackberry 10":
+                    name = "Blackberry";
+                    break;
+            }
+        }
+
+        return name;
+    });
+
+    // template helper to give url for star icon
+    Handlebars.registerHelper("quixey_star", function() {
+        return DDG.get_asset_path("quixey", "star.png").replace("//", "/");
+    });
 })();
