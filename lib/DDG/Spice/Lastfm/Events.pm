@@ -9,7 +9,11 @@ spice from => '(.*?)/(.*)';
 triggers any => "concerts", "gig", "gigs", "shows";
 
 handle query_lc => sub {
-   return ($loc->longitude, $loc->latitude);
+   my $query = $_;
+   if($query =~ /^(concerts?|music shows?|shows?|gigs)( near(by)?( me)?)?$/) {
+      return ($loc->longitude, $loc->latitude);
+   }
+   return;
 };
 
 1;
