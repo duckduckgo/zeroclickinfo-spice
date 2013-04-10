@@ -3,8 +3,8 @@ console.log("quixey xspice.js");
 // spice callback function
 function ddg_spice_quixey (api_result) {
 
-    console.log("quixey spice2 test");
-
+    if (api_result.results_count == 0) return;
+    
     var q = api_result.q.replace(/\s/g, '+');
 
     Spice.render({
@@ -42,47 +42,8 @@ function ddg_spice_quixey (api_result) {
         var res,
             apps = [],
             backupApps = [],
-            CATEGORIES = [
-                "action",
-                "adventure",
-                "arcade",
-                "board",
-                "business",
-                "casino",
-                "design",
-                "developer tools",
-                "dice",
-                "education",
-                "educational",
-                "entertainment",
-                "family",
-                "finance",
-                "graphics",
-                "graphics and design",
-                "health and fitness",
-                "kids",
-                "lifestyle",
-                "medical",
-                "music",
-                "networking",
-                "news",
-                "photography",
-                "productivity",
-                "puzzle",
-                "racing",
-                "role playing",
-                "simulation",
-                "social networking",
-                "social",
-                "sports",
-                "strategy",
-                "travel",
-                "trivia",
-                "utilities",
-                "video",
-                "weather",
-            ],
-            SKIP_ARRAY = {
+            categories = /action|adventure|arcade|board|business|casino|design|developer tools|dice|education|educational|entertainment|family|finance|graphics|graphics and design|health and fitness|kids|lifestyle|medical|music|networking|news|photography|productivity|puzzle|racing|role playing|simulation|social networking|social|sports|strategy|travel|trivia|utilities|video|weather/i,
+            skip_words = {
                 "app": 1,
                 "apps": 1,
                 "application": 1,
@@ -111,13 +72,13 @@ function ddg_spice_quixey (api_result) {
             app = results[i];
 
             // check if this app result is relevant
-            if (DDG.isRelevant(app.name.toLowerCase(), SKIP_ARRAY)) {
+            if (DDG.isRelevant(app.name.toLowerCase(), skip_words)) {
                 apps.push(app);
             } else if (app.hasOwnProperty("short_desc") &&
-                       DDG.isRelevant(app.short_desc.toLowerCase(), SKIP_ARRAY)) {
+                       DDG.isRelevant(app.short_desc.toLowerCase(), skip_words)) {
                             backupApps.push(app);
             } else if (app.custom.hasOwnProperty("category") &&
-                       DDG.isRelevant(app.custom.category.toLowerCase(), SKIP_ARRAY)) {
+                       DDG.isRelevant(app.custom.category.toLowerCase(), skip_words)) {
                             backupApps.push(app);
             } else{
                 continue;
@@ -140,13 +101,7 @@ function ddg_spice_quixey (api_result) {
             // check if it was a categorical search
             // Eg."social apps for android"
             var q = DDG.get_query();
-            var matches = CATEGORIES.map(
-                function(w){
-                    var word = new RegExp(w, "i");
-                    return q.match(word);
-                }
-            );
-            res = (matches.indexOf(1) !== -1) ? results : null;
+            res = q.match(categories) ? results : null;
         }
         return res;
     });
