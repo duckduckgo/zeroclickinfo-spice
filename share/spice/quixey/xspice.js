@@ -3,8 +3,8 @@ console.log("quixey xspice.js");
 // spice callback function
 function ddg_spice_quixey (api_result) {
 
-    if (api_result.results_count == 0) return;
-    
+    if (api_result.result_count == 0) return;
+
     var q = api_result.q.replace(/\s/g, '+');
 
     Spice.render({
