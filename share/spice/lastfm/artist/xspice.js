@@ -47,8 +47,8 @@ var ddg_spice_lastfm = function(api_result, template) {
 // This function calls artist.handlebars, and it shows everything about the artist.
 var ddg_spice_lastfm_artist_all = function(api_result) {
     "use strict";
-    
-    // Display the plugin.   
+
+    // Display the plugin.
     ddg_spice_lastfm(api_result, "artist");
 
     // This minimizes and expands the text.

@@ -1,0 +1,5 @@
+<ul class="playlist">
+    {{#each this}}
+        <li><a class="soundcloud-audio" data-image="{{artwork_url}}" href="{{stream_url}}?allow_redirects=False&client_id=df14a65559c0e555d9f9fd950c2d5b17" type="audio/mp3" >{{title}} <span class="sidenote">{{user.username}}</span></a></li>
+    {{/each}}
+</ul>
