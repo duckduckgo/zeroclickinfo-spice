@@ -1,30 +1,47 @@
 var ddg_spice_lastfm_album = function(api_result) {
+    "use strict";
+
+    var skip = {
+        "album": 1,
+        "albums": 1,
+        "records": 1,
+        "cd": 1,
+        "cds": 1
+    };
+
     // Don't do anything if we find an error.
-    if(api_result.error) {
+    if(api_result.error || !api_result.album || !api_result.album.name || !api_result.album.artist) {
         return;
     }
 
     // Display the spice plugin.
-    Spice.render({
-        data              : api_result,
-        force_big_header  : true,
-        header1           : api_result.album.name + " (Album)",
-        source_name       : "Last.fm",
-        source_url        : api_result.album.url,
-        template_normal   : "album",
-    });
-
-    $(document).ready(function() {
-        $("#expand").click(function() {
-            DDG.toggle("all", 1);
-            DDG.toggle("some", -1);
-            DDG.toggle("expand", -1);
+    // Check if it's relevant and see if it's popular enough (this is just a guess--we need to improve on this).
+    // This successfully blocks:
+    // - girl on fire album by alicia (Returns the wrong person. Maybe Last.fm has some sort of useCanonical?)
+    // - circus album by eraserhead
+    if(DDG.isRelevant(api_result.album.name, skip) && DDG.isRelevant(api_result.album.artist, skip) &&
+        +api_result.album.playcount > 1000) {
+        Spice.render({
+            data              : api_result,
+            force_big_header  : true,
+            header1           : api_result.album.name + " (Album)",
+            source_name       : "Last.fm",
+            source_url        : api_result.album.url,
+            template_normal   : "album"
         });
-    });
+
+        $(document).ready(function() {
+            $("#expand").click(function() {
+                DDG.toggle("all", 1);
+                DDG.toggle("some", -1);
+                DDG.toggle("expand", -1);
+            });
+        });
+    }
 };
 
 // Shortens the date.
-Handlebars.registerHelper("releasedate", function(date, options) {
+Handlebars.registerHelper("cleanDate", function(date, options) {
     "use strict";
 
     // Make sure it's not a string filled with whitespace.
@@ -35,6 +52,29 @@ Handlebars.registerHelper("releasedate", function(date, options) {
     // Check if it's not an empty string.
     if(date) {
         options.fn({date: date});
+    }
+});
+
+// Checks if we have tracks or songs available.
+Handlebars.registerHelper("checkTracks", function(tracks, options) {
+    "use strict";
+
+    if(tracks && tracks.track && tracks.track.length > 0) {
+        return options.fn(tracks);
+    }
+});
+
+// Checks if we have information about the album.
+Handlebars.registerHelper("checkWiki", function(wiki, options) {
+    "use strict";
+
+    var summary = "";
+    if(wiki && wiki.summary) {
+        // Make sure summary isn't full of white space.
+        summary = wiki.summary.replace(/^\s*$/g, "");
+        if(summary !== "") {
+            return options.fn(wiki);
+        }
     }
 });
 
