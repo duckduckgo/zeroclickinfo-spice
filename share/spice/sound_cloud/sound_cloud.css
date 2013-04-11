@@ -1,144 +1,316 @@
-// `ddg_spice_sound_cloud` is a callback function that gets
-// called when people search for movie titles. An example trigger
-// is "sc oppa spacejam style".
+/*
 
-(function(root) {
-    "use strict";
+ SoundManager 2: "page as playlist" example
+ ------------------------------------------
+ http://schillmania.com/projects/soundmanager2/
 
-    var items = [[]],
-        query = DDG.get_query().replace(/(sc|sound\s+cloud|soundcloud)\s*/i, "");
+*/
 
-    // This function is responsible for calling other functions that
-    // process data and display the plugin.
-    root.ddg_spice_sound_cloud = function(sound) {
-        if(sound && sound.length) {
+.spectrum-container {
+ display:none;
+}
 
-            items[0] = {
-                a: list_of_tracks(sound),
-                h: query + " (Sound Cloud)",
-                s: "SoundCloud",
-                u: "https://soundcloud.com/search?q=" + query,
-                force_no_fold: 1,
-                force_big_header: true
-            };
+ul.use-spectrum li.sm2_playing .spectrum-container {
+ position:absolute;
+ left:0px;
+ top:0px;
+ margin-left:-266px;
+ margin-top:-1px;
+ display:block;
+ background-color:#5588bb;
+ border:1px solid #99ccff;
+ border-radius:4px;
+}
 
-            // The rendering function is `nra`.
-            nra(items, 1, 1);
-        }
-    };
+ul.use-spectrum .spectrum-box {
+ position:relative;
+ width:255px;
+ font-size:1em;
+ padding:2px 0px;
+ height:1.2em;
+ overflow:hidden;
+}
 
-    function remove(element) {
-        element.parentNode.removeChild(element);
-    }
+ul.use-spectrum .spectrum-box .spectrum {
+ position:absolute;
+ left:0px;
+ top:-2px;
+ margin-top:20px;
+ display:block;
+ font-size:1px;
+ width:1px;
+ height:1px; /* set to 50px for a thick line, 1px for a thin line, etc. */
+ overflow:hidden;
+ background-color:#fff;
+}
 
-    // `hide` is responsible for hiding the list of songs.
-    // It makes use of DDG.toggle which can either hide or unhide an element.
-    function hide(element) {
-        var abstract = d.getElementById("zero_click_abstract");
-        DDG.toggle('soundcloud-play', -1);
-        var shell = d.createElement('div');
-        shell.setAttribute('id', 'soundcloud-stream');
+ul.playlist {
+ list-style-type:none;
+ margin:0px;
+ padding:0px;
 
-        // It's important to insert the element before (using, well, node.insertBefore)
-        // because node.appendChild would put the element below the "More at ..." link.
-        var firstChild = abstract.firstChild;
-        shell.appendChild(soundcloud(element));
-        // The back button removes the embedded player.
-        shell.appendChild(link({"href": "javascript:;", "id": "back-button"}, "Back ↩",
-            {
-                "click": 
-                    (function(){
-                        DDG.toggle('soundcloud-play', '1');
-                        abstract.setAttribute("style", "display: block; margin-right: 50px;");
-                        remove(shell);
-                    })
-            }));
-        abstract.insertBefore(shell, firstChild);
-        // The player can take advantage of the excised margins.
-        abstract.setAttribute("style", "margin: 0px !important;");
-    }
+}
 
-    // `stream` is responsible for displaying the icons and for adding the events
-    // needed to embed SoundCloud's player.
-    function stream(element) {
-        return link({
-            "href": "javascript:;",
-            "title": "Listen to " + element.title
-            // This uses Glyphicons Halflings included in Twitter Bootstrap.
-        }, element.title, {
-            "click": (function(){
-                hide(element);
-            })
-        });
-    }
+ul.playlist li {
+ /* assume all items will be sounds rather than wait for onload etc. in this example.. may differ for your uses. */
+ position:relative;
+ display:block;
+ width:auto;
+ font-size:1em;
+ color:#666;
+ padding:0.25em 0.5em 0.25em 0.5em;
+ border:none;
+ letter-spacing:-1px; /* ZOMG WEB X.0. ;) */
+ /*background-color:#f9f9f9;*/
+ -webkit-transition-property: hover;
+ -webkit-transition: background-color 0.15s ease-in-out;
+ -moz-transition: background-color 0.15s linear 0s; /* firefox 4 */
+  -o-transition-property: background-color; /* opera 10.5 */
+  -o-transition-duration: 0.15s;
 
-    // `list_of_tracks` wraps the list of songs in HTML.
-    function list_of_tracks(sound) {
-        // We added an ID so that we can hide this element later on.
-        var list = d.createElement('div');            
-        list.setAttribute("id", "soundcloud-play");
+}
 
-        for(var i = 0; i < sound.length && i < 5; i += 1) {
-            list.appendChild(list_element(sound[i]));
-        }
+ul.playlist li a {
+ display:block;
+ text-decoration:none;
+ font-weight:normal;
+ color:#000;
+ font-size:100%;
+ outline:none;
+ position:relative;
+ z-index:2;
+}
 
-        return list;
-    }
+ul.playlist li.sm2_playing,
+ul.playlist li.sm2_paused,
+ul.playlist li.sm2_playing a {
+ color:#fff;
+ border-radius:3px;
+}
 
-    // `list_element` is an auxiliary for `list_of_tracks`.
-    // This will snug everything, the links, the icons, and the artists,
-    // in a single `div` element.
-    function list_element(element) {
-        var div = d.createElement('div'),
-            span = d.createElement('span'),
-            icon = d.createElement('i'),
-            extra_space = d.createElement('span');
-        span.innerHTML = " by ";
-        extra_space.innerHTML = " ";
-        icon.setAttribute('class', 'icon-play-circle');
-        icon.setAttribute('style', 'margin 1px 0px 0px 0px;');
-        div.appendChild(icon);
-        div.appendChild(extra_space);
-        div.appendChild(stream(element));
-        div.appendChild(span);
-        div.appendChild(link({
-            "href": element.user.permalink_url
-        }, element.user.username, {}));
+ul.playlist li:hover {
+ background-color:#eee;
+}
 
-        return div;
-    }
+ul.playlist li:hover a {
+ color:#333;
+}
 
-    // `link` is used to create anchor tags.
-    function link(attributes, inner, events) {
-        var a = d.createElement('a'),
-            hasOwn = ({}).hasOwnProperty;
+ul.playlist li.sm2_playing,
+ul.playlist li.sm2_playing:hover {
+ background-color:#6699cc;
+}
 
-        for(var i in attributes) {
-            if(hasOwn.call(attributes, i)) {
-                a.setAttribute(i, attributes[i]);
-            }
-        }
-        a.innerHTML = inner;
+ul.playlist li.sm2_paused {
+ background-color:#999;
+}
 
-        for(i in events) {
-            if(hasOwn.call(events, i)) {
-                a.addEventListener(i, events[i], false);
-            }
-        }
+ul.playlist li.sm2_playing:hover a,
+ul.playlist li.sm2_paused a {
+ color:#fff;
+}
 
-        return a;
-    }
+ul.playlist li .controls {
+ display:none;
+}
 
-    // Embed Sound Cloud's player in our plugin in an iframe.
-    // An optional argument to the URL is `auto_play=true`
-    function soundcloud(res) {
-        var iframe = d.createElement('iframe');
-        iframe.setAttribute('width', '100%');
-        iframe.setAttribute('height', '166');
-        iframe.setAttribute('scrolling', 'no');
-        iframe.setAttribute('frameborder', 'no');
-        iframe.setAttribute('src', 'https://w.soundcloud.com/player/?url=' + encodeURI(res.uri) + "&amp;auto_play=true");
-        return iframe;
-    }
-}(this));
+ul.playlist li .peak,
+ul.playlist.use-peak li .peak {
+ display:none;
+ position:absolute;
+ top:0.55em;
+ right:0.5em;
+}
 
+ul.playlist li.sm2_playing .controls,
+ul.playlist li.sm2_paused .controls {
+ position:relative;
+ display:block;
+}
+
+ul.playlist.use-peak li.sm2_playing .peak,
+ul.playlist.use-peak li.sm2_paused .peak {
+ display:inline;
+ display:inline-block;
+}
+
+ul.playlist.use-peak li .peak {
+ display:none; /* IE 7 */
+}
+
+ul.playlist li.sm2_paused .controls {
+ background-color:#666;
+}
+
+ul.playlist li:hover .controls .statusbar {
+ position:relative;
+ cursor:ew-resize;
+ cursor:-moz-grab;
+ cursor:grab;
+}
+
+ul.playlist li.sm2_paused .controls .statusbar {
+ background-color:#ccc;
+}
+
+ul.playlist li .controls {
+ position:relative;
+ margin-top:0.25em;
+ margin-bottom:0.25em;
+ background-color:#99ccff;
+}
+
+ul.playlist li .controls .statusbar {
+ position:relative;
+ height:0.5em;
+ background-color:#ccddff;
+ border:2px solid #fff;
+ border-radius:2px;
+ overflow:hidden;
+ cursor:-moz-grab;
+ cursor:grab;
+}
+
+ul.playlist li .controls.dragging .statusbar {
+ cursor:-moz-grabbing;
+ cursor:grabbing;
+}
+
+ul.playlist li .controls .statusbar .position,
+ul.playlist li .controls .statusbar .loading,
+ul.playlist li .controls .statusbar .annotation {
+ position:absolute;
+ left:0px;
+ top:0px;
+ height:0.5em;
+}
+
+ul.playlist li .controls .statusbar .position {
+ background-color:#336699;
+ border-right:3px solid #336699;
+ border-radius:3px;
+}
+
+ul.playlist li.sm2_paused .controls .statusbar .position {
+ background-color:#666;
+ border-color:#666;
+}
+
+ul.playlist li .controls .statusbar .loading {
+ background-color:#eee;
+}
+
+ul.playlist li .controls .statusbar .position,
+ul.playlist li .controls .statusbar .loading {
+ width:0px;
+}
+
+ul.playlist li.sm2_playing a.sm2_link,
+ul.playlist li.sm2_paused a.sm2_link {
+ margin-right:4.5em; /* room for timing stuff */
+}
+
+ul.playlist li .timing {
+ position:absolute;
+ display:none;
+ text-align:right;
+ right:1em;
+ top:1em;
+ width:auto;
+ height:1em;
+ padding:3px 5px;
+ background-color:#5588bb;
+ border:1px solid #99ccff;
+ border-radius:4px;
+ letter-spacing:0px;
+ font:44% monaco,"VT-100","lucida console",courier,system;
+ line-height:1em;
+ vertical-align:middle;
+}
+
+ul.playlist.use-peak li .timing {
+ right:4.25em;
+}
+
+ul.playlist li:hover .timing {
+ z-index:2;
+}
+
+ul.playlist li .timing div.sm2_timing {
+ margin:0px;
+ padding:0px;
+ margin-top:-1em;
+}
+
+ul.playlist li.sm2_playing .timing,
+ul.playlist li.sm2_paused .timing {
+ display:block;
+}
+
+ul.playlist li.sm2_paused .timing .sm2_position {
+ text-decoration:blink; /* hee hee. first actual appropriate use? :D */
+}
+
+ul.playlist li.sm2_paused .timing,
+ul.playlist.use-peak li.sm2_paused .peak {
+ background-color:#888;
+ border-color:#ccc;
+}
+
+/* peak data */
+
+/* ul.playlist ... */
+
+ul.playlist.use-peak li .peak {
+ display:none;
+ zoom:1;
+ border:1px solid #99ccff;
+ padding:2px;
+ height:0.55em;
+ border-radius:4px;
+ background-color:#5588bb;
+ width:0.8em;
+ height:0.55em;
+ margin-top:-3px;
+}
+
+ul.playlist.use-peak li .peak-box {
+ position:relative;
+ width:100%;
+ height:0.55em;
+ overflow:hidden;
+}
+
+ul.playlist li .peak .l,
+ul.playlist li .peak .r {
+ position:absolute;
+ left:0px;
+ top:0px;
+ width:7px;
+ height:50px;
+ background:#fff;
+ border:1px solid #fff;
+ border-radius:1px;
+ margin-top:1em;
+}
+
+ul.playlist li .peak .l {
+ margin-right:1px;
+}
+
+ul.playlist li .peak .r {
+ left:10px;
+}
+
+#control-template {
+ display:none;
+}
+
+.sidenote{
+    font-size:85%;
+    opacity:.75
+}
+
+.hide {
+    display: none;
+}

@@ -1,8 +1,0 @@
-.zanran_preview_image {
-  text-align: center;
-}
-.zanran_preview_image img {
-  max-width: 71px;
-  max-height: 100px; /* A4 ratio */
-  border: 1px solid black;
-}
