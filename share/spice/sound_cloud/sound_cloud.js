@@ -9,16 +9,6 @@ var ddg_spice_sound_cloud = function(api_result) {
         force_big_header : true
     });
 
-    // Check resize.
-    var width = $(window).width();
-    var zero_click_image;
-    $(window).resize(function() {
-        if(width < 750) {
-            zero_click_image = $("#zero_click_image").remove();
-        }
-
-    })
-
     window.SM2_DEFER = true;
     var soundSetup = function() {
         window.soundManager = new SoundManager();
@@ -29,6 +19,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
             // Prevent the user from clicking the link.
+            // This copies the attribute "data-stream" to "href."
             $(".soundcloud-audio").each(function() {
                 var stream = $(this).attr("data-stream");
                 $(this).attr("href", stream);
