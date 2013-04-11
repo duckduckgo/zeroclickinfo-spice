@@ -8,7 +8,7 @@ function ddg_spice_bitly(api_result) {
 
     // Check if it is a mobile browser (needs work). This was inspired by is.gd.
     api_result.data.mobile = false;
-    if(window.navigator.userAgent.match(/Android|iPhone|iPad/i)) {
+    if(window.navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)) {
         api_result.data.mobile = true;
     }
 
