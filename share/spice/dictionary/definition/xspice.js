@@ -1,10 +1,10 @@
 // The dictionary plug-in requires multiple API calls, and these are handled by:
 // ddg_spice_dictionary_definition - gets the definitions of a given word (e.g. noun. A sound or a combination of sounds).
-// ddg_spice_dictionary_pronunciation - gets the pronunciation of a word (e.g. wûrd). 
+// ddg_spice_dictionary_pronunciation - gets the pronunciation of a word (e.g. wûrd).
 // ddg_spice_dictionary_audio - gets the audio file of a word.
 // ddg_spice_dictionary_fallback - handles any misspellings.
 //
-// pronunciation and audio callbacks are loaded and executed much later -- that is, 
+// pronunciation and audio callbacks are loaded and executed much later -- that is,
 // after ddg_spice_dictionary_definition gets executed.
 
 // This function gets the definition of a word.
@@ -26,10 +26,8 @@ var ddg_spice_dictionary_definition = function(api_result) {
             });
 
             // Call the Wordnik API to display the pronunciation text and the audio.
-            $(document).ready(function() {
-                $.getScript("/js/spice/dictionary/pronunciation/" + word);
-                $.getScript("/js/spice/dictionary/audio/" + word);
-            });
+            $.getScript("/js/spice/dictionary/pronunciation/" + word);
+            $.getScript("/js/spice/dictionary/audio/" + word);
         };
 
         // Change the context so that it would say something like, "dictionaries is the plural of dictionary."
@@ -140,7 +138,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         return;
     }
 
-    // Play the sound when the icon is clicked. Do not let the user play 
+    // Play the sound when the icon is clicked. Do not let the user play
     // without window.soundManager.
     $icon.click(function() {
         if($icon.hasClass("icon-play") && window.soundManager) {
@@ -149,7 +147,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         }
     });
 
-    // Load the sound and set the icon. 
+    // Load the sound and set the icon.
     var loadSound = function() {
         // Set the sound file.
         var sound = soundManager.createSound({
