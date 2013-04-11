@@ -1,0 +1,8 @@
+<div>
+    {{#list events.event}}
+        <li>
+            <a href="{{url}}">{{title}}</a> at <a href="{{venue.url}}">{{venue.name}}</a>
+            <span id="distance"> - {{date startDate}}</span>
+        </li>
+    {{/list}}
+</div>
