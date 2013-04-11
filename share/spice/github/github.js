@@ -48,7 +48,7 @@ function ddg_spice_github(response) {
         source_url       : 'http://www.github.com/search?q='
                             + encodeURIComponent(query),
         source_name      : 'GitHub',
-        template_normal  : (results.length == 1 ? 'single' : 'list'),
+        template_normal  : (results.length == 1 ? 'github' : 'github_list'),
         force_big_header : true
     });
 }
