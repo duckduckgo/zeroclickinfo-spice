@@ -9,6 +9,16 @@ var ddg_spice_sound_cloud = function(api_result) {
         force_big_header : true
     });
 
+    // Check resize.
+    var width = $(window).width();
+    var zero_click_image;
+    $(window).resize(function() {
+        if(width < 750) {
+            zero_click_image = $("#zero_click_image").remove();
+        }
+
+    })
+
     window.SM2_DEFER = true;
     var soundSetup = function() {
         window.soundManager = new SoundManager();
