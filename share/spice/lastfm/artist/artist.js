@@ -2,6 +2,12 @@
 var ddg_spice_lastfm = function(api_result, template) {
     "use strict";
 
+    if(template === "similar") {
+        api_result.display = false;
+    } else {
+        api_result.display = true;
+    }
+
     // These words should be skipped in the isRelevant function.
     var skip = {
         "similar": 1,
@@ -39,7 +45,7 @@ var ddg_spice_lastfm = function(api_result, template) {
             header1          : api_result.artist.name,
             source_name      : "Last.fm",
             source_url       : api_result.artist.url,
-            template_normal  : template
+            template_normal  : "lastfm_artist"
         });
     }
 };
@@ -49,7 +55,7 @@ var ddg_spice_lastfm_artist_all = function(api_result) {
     "use strict";
 
     // Display the plugin.
-    ddg_spice_lastfm(api_result, "artist");
+    ddg_spice_lastfm(api_result, "all");
 
     // This minimizes and expands the text.
     // This piece of code is only relevant to this function, and it's not needed
