@@ -1,6 +1,6 @@
-function ddg_spice_congress(response) {
+function ddg_spice_congress(api_result) {
 
-    if (response.status != "OK" || response.results.length == 0) return;
+    if (api_result.status != "OK" || api_result.results.length == 0) return;
 
     var stateCodes = {
         "AL": "Alabama",
@@ -57,21 +57,11 @@ function ddg_spice_congress(response) {
         "WY": "Wyoming"
     };
     
-    var result  = response.results[0];
-    var state   = result.state;
-    var chamber = result.chamber;
-
-    var members = result.members.map(function(member) {
-        member['name'] = member.first_name + ' ' + member.last_name;
-                       + (member.middle_name ? member.middle_name : '')
-                       + member.last_name;
-        member['twitter'] = member.twitter_account;
-        member['votes_with_party_pct'] = parseFloat(member.votes_with_party_pct).toFixed(0);
-        return member;
-    });
+    var state   = api_result.results[0].state;
+    var chamber = api_result.results[0].chamber;
 
     Spice.render({
-        data             : { 'member' : members },
+        data             : api_result.results[0],
         header1          : 'Members of the ' + state + ' ' + chamber,
         source_url       : "http://topics.nytimes.com/top/reference/timestopics/"
                             + "organizations/c/congress/index.html",
@@ -81,3 +71,19 @@ function ddg_spice_congress(response) {
     });
 }    
 
+
+/*******************************
+  Handlebars helpers
+  *******************************/
+
+// Creates a full name for a given representative
+Handlebars.registerHelper ('get_name', function() {
+    var name = this.first_name + ' ' + this.middle_name + ' ' + this.last_name;
+    return name.replace(/\s+/, " "); //in case no middle name
+});
+
+// Returns vote percentage
+Handlebars.registerHelper ('votes_pct', function() {
+    var pct = parseFloat(this.votes_with_party_pct).toFixed(0);
+    return pct + "%";
+});
