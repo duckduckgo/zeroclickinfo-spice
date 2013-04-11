@@ -1,10 +1,15 @@
 var ddg_spice_sound_cloud = function(api_result) {
+    if(api_result.length === 0) {
+        return;
+    }
+
+    var image_proxy = "/iu/?u=";
     Spice.render({
         data             : api_result,
         header1          : "Sound Cloud",
         source_url       : "https://soundcloud.com/",
         source_name      : "SoundCloud",
-        image_url        : "http://developers.soundcloud.com/assets/logo_black-818d16acb6c9e65c6a4b776f375ef6fc.png",
+        image_url        : image_proxy + api_result[0].artwork_url,
         template_normal  : "sound_cloud",
         force_big_header : true
     });
