@@ -4,8 +4,8 @@ var ddg_spice_sound_cloud = function(api_result) {
         header1          : "Sound Cloud",
         source_url       : "https://soundcloud.com/",
         source_name      : "SoundCloud",
+        image_url        : "http://developers.soundcloud.com/assets/logo_black-818d16acb6c9e65c6a4b776f375ef6fc.png",
         template_normal  : "sound_cloud",
-        image_url        : "http://developers.soundcloud.com/assets/powered_by_black-ee7e351d64511ecea75c6c17ca30064f.png",
         force_big_header : true
     });
 
@@ -18,6 +18,11 @@ var ddg_spice_sound_cloud = function(api_result) {
         soundManager.useHTML5Audio = false;
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
+            // Prevent the user from clicking the link.
+            $(".soundcloud-audio").each(function() {
+                var stream = $(this).attr("data-stream");
+                $(this).attr("href", stream);
+            });
             var pagePlayer = new PagePlayer();
             pagePlayer.init(typeof PP_CONFIG !== 'undefined' ? PP_CONFIG : null);
         });

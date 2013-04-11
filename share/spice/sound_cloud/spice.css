@@ -61,7 +61,7 @@ ul.playlist li {
  padding:0.25em 0.5em 0.25em 0.5em;
  border:none;
  letter-spacing:-1px; /* ZOMG WEB X.0. ;) */
- background-color:#f9f9f9;
+ /*background-color:#f9f9f9;*/
  -webkit-transition-property: hover;
  -webkit-transition: background-color 0.15s ease-in-out;
  -moz-transition: background-color 0.15s linear 0s; /* firefox 4 */
@@ -309,4 +309,8 @@ ul.playlist li .peak .r {
 .sidenote{
     font-size:85%;
     opacity:.75
+}
+
+.hide {
+    display: none;
 }

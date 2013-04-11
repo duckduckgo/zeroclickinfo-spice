@@ -8,7 +8,11 @@ helpers = helpers || Handlebars.helpers; data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n        <li><a class=\"soundcloud-audio\" href=\"";
+  buffer += "\n        <li><a class=\"soundcloud-audio\" data-image=\"";
+  if (stack1 = helpers.artwork_url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.artwork_url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" data-stream=\"";
   if (stack1 = helpers.stream_url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.stream_url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
