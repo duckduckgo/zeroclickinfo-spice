@@ -334,8 +334,9 @@ function PagePlayer() {
       self.setPageTitle(this._data.originalTitle);
 
       // Add an image to the right of the plugin.
+      var image_proxy = "/iu/?u=";
       var soundcloud_image = $("#" + this.id).attr("data-image");
-      $("#zero_click_image img").attr("src", soundcloud_image);
+      $("#zero_click_image img").attr("src", image_proxy + soundcloud_image);
     },
 
     stop: function() {
