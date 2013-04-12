@@ -17,6 +17,23 @@ var ddg_spice_in_theaters = function(api_result) {
         force_big_header : true
     });
 
+    // Get the size of the screen.
+    // If the screen is small, don't display the image.
+    var zero_click_image = $("#zero_click_image");
+    var checkWidth = function(width) {
+        if(width < 750) {
+            zero_click_image.addClass("hide");
+        } else {
+            zero_click_image.removeClass("hide");
+        }
+    };
+
+    // Monitor the size of the window.
+    checkWidth($(window).width());
+    $(window).resize(function() {
+        checkWidth($(window).width());
+    });
+
     // Change the movie poster when the user hovers over it (will not work on mobile).
     $(".movie").each(function() {
         $(this).on("hover", function() {

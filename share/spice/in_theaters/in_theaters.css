@@ -3,6 +3,10 @@ span.metadata {
     font-size: 90%;
 }
 
+.hide {
+    display: none;
+}
+
 /*
 
  SoundManager 2: "page as playlist" example
@@ -47,3 +51,4 @@ ul.showing li a {
     position:relative;
     z-index:2;
 }
+
