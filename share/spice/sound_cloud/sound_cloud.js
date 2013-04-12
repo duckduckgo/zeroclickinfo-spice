@@ -4,10 +4,24 @@ var ddg_spice_sound_cloud = function(api_result) {
     }
 
     var image_proxy = "/iu/?u=";
+    var query = "";
+
+    // Get the original query.
+    $("script").each(function() {
+        var matched = $(this).attr("src");
+        if(matched) {
+            var result = matched.match(/\/js\/spice\/sound_cloud\/(.+)/);
+            if(result) {
+                console.log(result[1]);
+                query = result[1];
+            }
+        }
+    });
+
     Spice.render({
         data             : api_result,
         header1          : "Sound Cloud",
-        source_url       : "https://soundcloud.com/",
+        source_url       : "https://soundcloud.com/search?q=" + query,
         source_name      : "SoundCloud",
         image_url        : image_proxy + api_result[0].artwork_url,
         template_normal  : "sound_cloud",
