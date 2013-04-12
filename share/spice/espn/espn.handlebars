@@ -1,0 +1,15 @@
+<span id='espn_zci_news_link'>News</span> |
+<span id='espn_zci_stats_link'>Stats</span> |
+<span id='espn_zci_gamelog_link'>Gamelog</span>
+
+<div id='espn_zci_news'>
+    <img src='/iu?u={{headshot}}' height=110 width=150 id='espn_news_image'>
+    <div class='blurb'>
+        {{name}} is an American professional basketball player for the {{teamCity}} {{teamName}} (NBA).
+    </div>
+    <ul>
+        {{#each headline}}
+        <li><a href='{{this.links.web.href}}'>{{this.headline}}</a> ({{this.source}})</li>
+        {{/each}}
+    </ul>
+</div>
