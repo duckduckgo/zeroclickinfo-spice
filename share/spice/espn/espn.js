@@ -54,7 +54,7 @@ function ddg_spice_espn_events(api_result) {
 }
 
 function ddg_spice_espn_bind() {
-    if (++callsMade != numberOfCalls) return;
+    if (callsMade++ != numberOfCalls) return;
     Spice.render({
         data             : player,
         //header1          : '<a href="' + player.more_link + '">'+ player.name + '</a>' + ' (Basketball),
@@ -64,4 +64,20 @@ function ddg_spice_espn_bind() {
         template_normal  : 'espn',
         force_big_header : true
     });
+
+    var current_tab = $('#espn_zci_news_link')[0];
+    $('.espn_zci_tab_link')
+        .click(function() {
+            $('.espn_zci_tab_link').removeClass('espn_zci_tab_selected');
+            current_tab = $(this).addClass('espn_zci_tab_selected')[0];
+            $('.espn_zci_tab').each(function() { this.style.display = 'none'; });
+            $('#' + this.id.replace('_link', ''))[0].style.display = 'block';
+        })
+        .mouseenter(function() {
+            $(this).addClass('espn_zci_tab_selected');
+        })
+        .mouseleave(function() {
+            if ($(this)[0] !== current_tab)
+                $(this).removeClass('espn_zci_tab_selected');
+        });
 }

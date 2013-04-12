@@ -1,8 +1,8 @@
-<span id='espn_zci_news_link'>News</span> |
-<span id='espn_zci_stats_link'>Stats</span> |
-<span id='espn_zci_gamelog_link'>Gamelog</span>
+<span class='espn_zci_tab_link espn_zci_tab_selected' id='espn_zci_news_link'>News</span> |
+<span class='espn_zci_tab_link' id='espn_zci_stats_link'>Stats</span> |
+<span class='espn_zci_tab_link' id='espn_zci_gamelog_link'>Gamelog</span>
 
-<div id='espn_zci_news'>
+<div class='espn_zci_tab' style='display:block' id='espn_zci_news'>
     <img src='/iu?u={{headshot}}' height=110 width=150 id='espn_news_image'>
     <div class='blurb'>
         {{name}} is an American professional basketball player for the {{teamCity}} {{teamName}} (NBA).
@@ -12,4 +12,16 @@
         <li><a href='{{this.links.web.href}}'>{{this.headline}}</a> ({{this.source}})</li>
         {{/each}}
     </ul>
+</div>
+
+<div class='espn_zci_tab' id='espn_zci_stats'>
+    <div class='blurb'>
+        {{name}}
+    </div>
+</div>
+
+<div class='espn_zci_tab' id='espn_zci_gamelog'>
+    <div class='blurb'>
+        The {{city}} {{teamName}} have won {{winPercentage}}% of their season games.
+    </div>
 </div>
