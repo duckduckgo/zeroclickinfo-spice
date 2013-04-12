@@ -59,14 +59,3 @@ Handlebars.registerHelper("time", function(runtime) {
         return hour + minute;
     }
 });
-
-// Guarantee that we show only five items.
-Handlebars.registerHelper("list", function(items, options) {
-    var out = "";
-
-    for(var i = 0; i < items.length && i < 5; i += 1) {
-        out += options.fn(items[i]);
-    }
-
-    return out;
-});
