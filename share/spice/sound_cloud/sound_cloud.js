@@ -19,6 +19,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         }
     });
 
+    // Display the plugin.
     Spice.render({
         data             : api_result,
         header1          : "Sound Cloud",
@@ -40,12 +41,14 @@ var ddg_spice_sound_cloud = function(api_result) {
         }
     };
 
+    // Monitor the size of the window.
     checkWidth($(window).width());
     $(window).resize(function() {
         checkWidth($(window).width());
     });
 
 
+    // Initialize SoundManager2.
     window.SM2_DEFER = true;
     var soundSetup = function() {
         window.soundManager = new SoundManager();
@@ -74,10 +77,12 @@ var ddg_spice_sound_cloud = function(api_result) {
         }
     };
 
+    // Load page-player.js. This JS file converts a list of MP3s into a playlist.
     $.getScript("/soundmanager2/script/page-player.js", function() {
         checkReady(0);
     });
 
+    // Load SoundManager2. This JS file handles our audio.
     $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", function() {
         checkReady(1);
     });
