@@ -30,6 +30,7 @@ var ddg_spice_sound_cloud = function(api_result) {
     });
 
     // Get the size of the screen.
+    // If the screen is small, don't display the image.
     var zero_click_image = $("#zero_click_image");
     var checkWidth = function(width) {
         if(width < 750) {
@@ -37,7 +38,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         } else {
             zero_click_image.removeClass("hide");
         }
-    }
+    };
 
     checkWidth($(window).width());
     $(window).resize(function() {
