@@ -7,12 +7,13 @@ var ddg_spice_sound_cloud = function(api_result) {
     var query = "";
 
     // Get the original query.
+    // We're going to pass this to the More at SoundCloud link.
+    var matched, result;
     $("script").each(function() {
-        var matched = $(this).attr("src");
+        matched = $(this).attr("src");
         if(matched) {
-            var result = matched.match(/\/js\/spice\/sound_cloud\/(.+)/);
+            result = matched.match(/\/js\/spice\/sound_cloud\/(.+)/);
             if(result) {
-                console.log(result[1]);
                 query = result[1];
             }
         }
