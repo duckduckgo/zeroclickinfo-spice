@@ -29,6 +29,22 @@ var ddg_spice_sound_cloud = function(api_result) {
         force_big_header : true
     });
 
+    // Get the size of the screen.
+    var zero_click_image = $("#zero_click_image");
+    var checkWidth = function(width) {
+        if(width < 750) {
+            zero_click_image.addClass("hide");
+        } else {
+            zero_click_image.removeClass("hide");
+        }
+    }
+
+    checkWidth($(window).width());
+    $(window).resize(function() {
+        checkWidth($(window).width());
+    });
+
+
     window.SM2_DEFER = true;
     var soundSetup = function() {
         window.soundManager = new SoundManager();
