@@ -67,34 +67,35 @@ function ddg_spice_espn_events(api_result) {
     player.events = [];
 
     for (var i = events.length - 1; i > 0 && player.events.length < 5; i--) {
-        var event = {};
-        event.date = new Date(events[i].date);
-        if (event.date.getTime() > new Date().getTime() - 24*60*60*1000)
+        var eventDate = new Date(events[i].date);
+        if (eventDate.getTime() > new Date().getTime() - 24*60*60*1000)
             continue;
-        event.date.setMonth(event.date.getMonth()+1);
-        event.date = event.date.getUTCMonth() + '/' + event.date.getUTCDate();
-        var competitors = events[i].competitions[0].competitors;
+        eventDate.setMonth(eventDate.getMonth()+1);
+
+        var home, away, win, competitors = events[i].competitions[0].competitors;
+
         competitors.map(function(competitor, index, array) {
             var teamName = competitor.team.location + ' ' + competitor.team.name;
-            event[competitor.homeAway] = {
-                'teamName'  : teamName,
-                'score'     : competitor.score,
-                'link'      : 'http://espn.go.com/nba/team/_/name/'
-                                + (teamName.replace(' ', '').substr(0,3)
-                                + '/' + teamName.replace(' ', '-')).toLowerCase(),
+            competitors[competitor.homeAway] = {
+                'teamName' : teamName,
+                'score'    : competitor.score,
+                'link'     : 'http://espn.go.com/nba/team/_/name/'
+                               + (teamName.replace(' ', '').substr(0,3)
+                               + '/' + teamName.replace(' ', '-')).toLowerCase(),
             };
-            if (index == 1) {
-                event.win = competitor.score > array[0].score ? 1 : 0;
-                if (competitor.team.id != player.teamID) event.win = event.win ? 0 : 1;
-            }
+            if (competitor.team.id == player.teamID)
+                win = competitor.score > array[index ? 0 : 1].score ? 1 : 0;
         });
-        event.link  = events[i].links.web.boxscore.href;
 
-        player.events.push(event);
+        player.events.push({
+            'date' : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
+            'link' : events[i].links.web.boxscore.href,
+            'home' : competitors.home,
+            'away' : competitors.away,
+            'win'  : win
+        });
     }
 
-    console.log('player.events');
-    console.log(player.events);
     ddg_spice_espn_bind();
 }
 
