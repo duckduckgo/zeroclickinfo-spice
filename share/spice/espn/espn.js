@@ -39,10 +39,12 @@ function ddg_spice_espn(api_result) {
 function ddg_spice_espn_news(api_result) {
     console.log('ddg_spice_espn_news');
     console.log(api_result);
-    console.log("headline");
-    console.log(api_result.headlines);
 
-    player.headline = api_result.headlines.slice(0,3);
+    player.headline = api_result.headlines.filter(function(article) {
+                            if (article.headline && article.source)
+                                return true;
+                      }).slice(0,3);
+
     ddg_spice_espn_bind();
 }
 
