@@ -89,8 +89,5 @@ var ddg_spice_sound_cloud = function(api_result) {
 };
 
 Handlebars.registerHelper("chooseImage", function(first, second) {
-    if(first) {
-        return first;
-    }
-    return second;
-})
+    return first || second;
+});
