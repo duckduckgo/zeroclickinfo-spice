@@ -87,3 +87,10 @@ var ddg_spice_sound_cloud = function(api_result) {
         checkReady(1);
     });
 };
+
+Handlebars.registerHelper("chooseImage", function(first, second) {
+    if(first) {
+        return first;
+    }
+    return second;
+})
