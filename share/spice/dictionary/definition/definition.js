@@ -76,8 +76,10 @@ Handlebars.registerHelper("part", function(text) {
         "preposition": "prep.",
         "auxiliary-verb": "v.",
         "undefined": "",
-        "noun-plural": "n."
+        "noun-plural": "n.",
+        "abbreviation": "abbr."
     };
+
     return part_of_speech[text] || text;
 });
 
