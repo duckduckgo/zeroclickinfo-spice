@@ -455,70 +455,7 @@ my %nbaPlayers = (
   'tyler zeller' => 6631,
 );
 
-my %nbaTeams = (
-  'atlanta hawks' => 1,
-  'boston celtics' => 2,
-  'new orleans hornets' => 3,
-  'chicago bulls' => 4,
-  'cleveland cavaliers' => 5,
-  'dallas mavericks' => 6,
-  'denver nuggets' => 7,
-  'detroit pistons' => 8,
-  'golden state warriors' => 9,
-  'houston rockets' => 10,
-  'indiana pacers' => 11,
-  'los angeles clippers' => 12,
-  'los angeles lakers' => 13,
-  'miami heat' => 14,
-  'milwaukee bucks' => 15,
-  'minnesota timberwolves' => 16,
-  'brooklyn nets' => 17,
-  'new york knicks' => 18,
-  'orlando magic' => 19,
-  'philadelphia 76ers' => 20,
-  'phoenix suns' => 21,
-  'portland trail blazers' => 22,
-  'sacramento kings' => 23,
-  'san antonio spurs' => 24,
-  'oklahoma city thunder' => 25,
-  'utah jazz' => 26,
-  'washington wizards' => 27,
-  'toronto raptors' => 28,
-  'memphis grizzlies' => 29,
-  'charlotte bobcats' => 30,
-  'the atlanta hawks' => 1,
-  'the boston celtics' => 2,
-  'the new orleans hornets' => 3,
-  'the chicago bulls' => 4,
-  'the cleveland cavaliers' => 5,
-  'the dallas mavericks' => 6,
-  'the denver nuggets' => 7,
-  'the detroit pistons' => 8,
-  'the golden state warriors' => 9,
-  'the houston rockets' => 10,
-  'the indiana pacers' => 11,
-  'the los angeles clippers' => 12,
-  'the los angeles lakers' => 13,
-  'the miami heat' => 14,
-  'the milwaukee bucks' => 15,
-  'the minnesota timberwolves' => 16,
-  'the brooklyn nets' => 17,
-  'the new york knicks' => 18,
-  'the orlando magic' => 19,
-  'the philadelphia 76ers' => 20,
-  'the phoenix suns' => 21,
-  'the portland trail blazers' => 22,
-  'the sacramento kings' => 23,
-  'the san antonio spurs' => 24,
-  'the oklahoma city thunder' => 25,
-  'the utah jazz' => 26,
-  'the washington wizards' => 27,
-  'the toronto raptors' => 28,
-  'the memphis grizzlies' => 29,
-  'the charlotte bobcats' => 30,
-);
-
-triggers any => keys %nbaPlayers, keys %nbaTeams;
+triggers any => keys %nbaPlayers;
 
 spice to => 'http://api.espn.com/v1/sports/$1/$2/$3/$4/$5'
             . '?enable=stats,competitors,roster,venues&$6='
@@ -530,11 +467,9 @@ spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';
 spice is_cached => 0;
 
 handle query_lc => sub {
-    s/^the\s*//g;
     return "basketball", "nba", "athletes", $nbaPlayers{$_}, "foo", "bar", "ddg_spice_espn"
         if exists $nbaPlayers{$_};
-    return "basketball", "nba", "teams", $nbaTeams{$_}, "foo", "bar", "ddg_spice_espn_team_query"
-        if exists $nbaTeams{$_};
+    return;
 };
 
 1;
