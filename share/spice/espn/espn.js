@@ -1,5 +1,4 @@
 var player = {};
-var callsMade = 0;
 var numberOfCalls = 3;
 
 function ddg_spice_espn(api_result) {
@@ -100,7 +99,7 @@ function ddg_spice_espn_events(api_result) {
 }
 
 function ddg_spice_espn_bind() {
-    if (callsMade++ != numberOfCalls) return;
+    if (numberOfCalls--) return;
     Spice.render({
         data             : player,
         //header1          : '<a href="' + player.more_link + '">'+ player.name + '</a>' + ' (Basketball),
