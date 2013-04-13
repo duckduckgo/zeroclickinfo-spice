@@ -5,32 +5,32 @@
                  "Arial", "sans-serif";
 }
 
-.espn_zci_tab_link {
+#zero_click_abstract .espn_zci_tab_link {
     font-weight: bold;
     padding: 5px;
     text-align: center;
     cursor: pointer;
 }
 
-.espn_zci_tab_selected {
+#zero_click_abstract .espn_zci_tab_selected {
     text-decoration: underline;
 }
 
-.espn_zci_tab {
+#zero_click_abstract .espn_zci_tab {
     display: none;
     margin-top: 5px;
     margin-bottom: 15px;
 }
 
-#zero_click_abstract #espn_zci_stats table th {
-    width: 220px;
-    font-weight: normal;
+#zero_click_abstract #espn_news_image {
+    float: right;
+    margin: -15px 10px 0px 0px;
 }
 
-.tr_odd {
-    background-color: lightgrey;
+#zero_click_abstract .blurb {
+    margin: 8px 0px 0px 6px;
+    font-size 95%;
 }
-
 #zero_click_abstract table {
     margin: 4px 0px 0px 20px;
 }
@@ -45,30 +45,11 @@
     font-weight: 700;
 }
 
-#espn_zci_stats table {
+#zero_click_abstract #espn_zci_stats table {
     margin-bottom: 5px;
 }
 
-.icon_spice_inline {
-    margin-left:10px;
-}
-
-#espn_header_image {
-    display: inline;
-    margin-bottom: -2px;
-}
-
-#espn_news_image {
-    float: right;
-    margin: -15px 10px 0px 0px;
-}
-
-#espn_stats_image {
-    float: right;
-    margin: -25px 10px 0px 0px;
-}
-
-.blurb {
-    margin: 8px 0px 0px 6px;
-    font-size 95%;
+#zero_click_abstract #espn_zci_stats table th {
+    width: 220px;
+    font-weight: normal;
 }
