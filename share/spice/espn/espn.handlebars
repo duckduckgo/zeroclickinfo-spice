@@ -16,12 +16,18 @@
 
 <div class='espn_zci_tab' id='espn_zci_stats'>
     <div class='blurb'>
-        {{name}}
+        {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
     </div>
+    <table>
+        <tr><th>Average Points Per Game:</th><td>{{averagePointsPerGame}}</td></tr>
+        <tr><th>3-Point Field Goal Percentage (3P%):</th><td>{{threePointPercentage}}%</td></tr>
+        <tr><th>Field Goal Percentage (FG%):</th><td>{{fieldGoalPercentage}}%</td></tr>
+        <tr><th>Free Throw Percentage (FT%):</th><td>{{freeThrowPercentage}}%</td></tr>
+    </table>
 </div>
 
 <div class='espn_zci_tab' id='espn_zci_gamelog'>
     <div class='blurb'>
-        The {{city}} {{teamName}} have won {{winPercentage}}% of their season games.
+        The {{teamCity}} {{teamName}} have won {{teamWinPercentage}}% of their season games.
     </div>
 </div>

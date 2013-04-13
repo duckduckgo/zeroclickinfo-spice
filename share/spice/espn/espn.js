@@ -8,17 +8,14 @@ function ddg_spice_espn(api_result) {
 
     var player_info   = api_result.sports[0].leagues[0].athletes[0];
     var playerTeam    = player_info.competitors[0].team;
-    var baseURL       = 'http://espn.com';
 
     player.id         = player_info.id;
-    player.name = player_info.displayName;
+    player.name       = player_info.displayName;
     player.headshot   = player_info.headshots.gamecast.href;
-    //player.stats      = player_info.stats;
+    player.stats      = player_info.stats;
     player.teamID     = playerTeam.id;
     player.teamCity   = playerTeam.location;
     player.teamName   = playerTeam.name;
-
-    player.more_link  = baseURL + '/nba/player/_/id/' + player.id;
 
     nrj('/js/spice/espn/basketball/nba/athletes/'
             + player.id + '/news/foo/ddg_spice_espn_news');
@@ -26,6 +23,16 @@ function ddg_spice_espn(api_result) {
             + player.teamID + '/foo/bar/ddg_spice_espn_team');
     nrj('/js/spice/espn/basketball/nba/teams/'
             + player.teamID + '/events/dates/ddg_spice_espn_events');
+
+    player.seasonDescription = player.stats.season.description;
+    player.seasonTimeFrame   = "'" + ((player.stats.season.year + '').substr(2, 2) - 1)
+                             + "-'" + (player.stats.season.year + '').substr(2, 2);
+
+    player.averagePointsPerGame = (player.stats.points / player.stats.gamesStarted).toFixed(1) + '';
+    player.threePointPercentage = ((player.stats.threePointPercentage + 0) * 100).toFixed(1) + '';
+    player.fieldGoalPercentage  = player.stats.fieldGoalPercentage.toFixed(1) + '';
+    player.freeThrowPercentage  = player.stats.freeThrowPercentage.toFixed(1) + '';
+
     ddg_spice_espn_bind();
 }
 
@@ -43,6 +50,10 @@ function ddg_spice_espn_team(api_result) {
     console.log('ddg_spice_espn_team');
     console.log(api_result);
 
+    var record               = api_result.sports[0].leagues[0].teams[0].record;
+    var totalGames           = record.wins + record.losses + record.ties;
+    player.teamWinPercentage = Math.floor(record.wins / totalGames * 100);
+
     ddg_spice_espn_bind();
 }
 
@@ -59,7 +70,7 @@ function ddg_spice_espn_bind() {
         data             : player,
         //header1          : '<a href="' + player.more_link + '">'+ player.name + '</a>' + ' (Basketball),
         header1          : player.name + ' (Basketball)',
-        source_url       : player.more_link,
+        source_url       : 'http://espn.com/nba/player/_/id/' + player.id,
         source_name      : 'ESPN',
         template_normal  : 'espn',
         force_big_header : true
