@@ -7,6 +7,10 @@ span.metadata {
     display: none;
 }
 
+#zero_click_image img {
+    height: 130px;
+}
+
 /*
 
  SoundManager 2: "page as playlist" example

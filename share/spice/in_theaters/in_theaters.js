@@ -34,10 +34,37 @@ var ddg_spice_in_theaters = function(api_result) {
         checkWidth($(window).width());
     });
 
-    // Change the movie poster when the user hovers over it (will not work on mobile).
-    $(".movie").each(function() {
+    // This variable tracks the last movie that the user hovered on.
+    var last = 0;
+    // Remove all `img` tags first and start over.
+    // Why are we adding all the images instead of just updating the `src` attribute in $("#zero_click_image img")?
+    // Because if we do that, the browser will try to request for the image again.
+    zero_click_image.html("");
+    $(".movie").each(function(index) {
+        // We should show the first image and hide everything else by adding the class="hide" attribute.
+        if(index === 0) {
+            zero_click_image.append("<img style='height: 120px !important' id='Movie" + index + "' src='" + $(this).attr("data-image") + "'>");
+        } else {
+            zero_click_image.append("<img style='height: 120px !important' class='hide' id='Movie" + index + "' data-image='" + $(this).attr("data-image") + "'>");
+        }
+
+        // Show the image when we hover over the list of movies.
         $(this).on("hover", function() {
-            $("#zero_click_image img").attr("src", image_proxy + $(this).attr("data-image"));
+            // We wrap everything in a function to get hold of the index variable.
+            // Why? Because the computer is so fast that by the time we hover on a movie,
+            // index would point to the last element.
+            (function(index) {
+                var lastMovie = $("#Movie" + last);
+                var newMovie = $("#Movie" + index);
+                lastMovie.addClass("hide");
+                newMovie.removeClass("hide");
+
+                // Lazy loading. We should only load the image when the user hovered over it.
+                if(!newMovie.attr("src")) {
+                    newMovie.attr("src", newMovie.attr("data-image"));
+                }
+                last = index;
+            })(index);
         });
     });
 };
@@ -45,9 +72,10 @@ var ddg_spice_in_theaters = function(api_result) {
 // Convert minutes to hr. min. format.
 // e.g. {{time 90}} will return 1 hr. 30 min.
 Handlebars.registerHelper("time", function(runtime) {
+    var hour = 0,
+        minute = 0;
+
     if(runtime) {
-        var hour = 0;
-        var minute = 0;
         if(runtime >= 60) {
             hour = Math.floor(runtime / 60);
             minute = runtime - (hour * 60);
