@@ -14,7 +14,7 @@ function ddg_spice_bitly(api_result) {
 
     Spice.render({
         data             : api_result.data,
-        header1          : "Shortened URL (Bitly)",
+        header1          : "Shortened Link (Bitly)",
         source_url       : api_result.data.url + "+",
         image_url        : "https://duckduckgo.com/iu/?u=http://i.imgur.com/xVpFr.png",
         source_name      : "Bit.ly",
