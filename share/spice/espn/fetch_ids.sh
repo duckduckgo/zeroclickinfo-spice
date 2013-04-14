@@ -1,15 +1,33 @@
-#!/bin/bash
+#!/usr/bin/env perl
 
-rm espn.players.* trigger.hash;
+use strict;
+use warnings;
 
-for offset in 0 50 100 150 200 250 300 350 400 450; do
-  curl "http://api.espn.com/v1/sports/basketball/nba/athletes?offset=$offset&apikey=$DDG_SPICE_ESPN_APIKEY" \
-    > "espn.players.$offset" &&
-      perl build_triggers.pl "espn.players.$offset" >> trigger.hash;
-done;
+use JSON;
+use Data::Dumper;
 
-echo -e "\n" >> trigger.hash;
+my $json;
+{
+  local $/;
+  open my $fh, '<', $ARGV[0];
+  $json = <$fh>;
+  close $fh;
+}
 
-curl "http://api.espn.com/v1/sports/basketball/nba/teams?apikey=$DDG_SPICE_ESPN_APIKEY" \
-  > 'espn.teams' &&
-     perl build_triggers.pl 'espn.teams' >> trigger.hash;
+my $response = decode_json $json;
+
+if (exists $response->{sports}[0]{leagues}[0]{athletes}) {
+  my @athletes = $response->{sports}[0]{leagues}[0]{athletes};
+  map {
+    my $name = lc $_->{displayName};
+    print "  '$name' => $_->{id},\n"
+  } @{$athletes[0]};
+} elsif (exists $response->{sports}[0]{leagues}[0]{teams}){
+  my @teams = $response->{sports}[0]{leagues}[0]{teams};
+  map {
+    my $location = lc $_->{location};
+    my $name = lc $_->{name};
+    print "  '$location $name' => $_->{id},\n";
+    print "  'the $location $name' => $_->{id},\n";
+  } @{$teams[0]};
+}
