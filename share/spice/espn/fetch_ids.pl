@@ -10,7 +10,11 @@ use Data::Dumper;
 sub parse_players {
     my $json = shift;
     my @athletes = $json->{sports}[0]{leagues}[0]{athletes};
-    map { print lc "  '$_->{displayName}' => $_->{id},\n" } @{$athletes[0]};
+    map {
+        my $name = lc $_->{displayName};
+        $name =~ s/'//g;
+        print "  '$name' => $_->{id},\n"
+    } @{$athletes[0]};
     return $json;
 }
 
