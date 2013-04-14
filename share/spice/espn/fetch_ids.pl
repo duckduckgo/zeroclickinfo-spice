@@ -30,9 +30,8 @@ sub parse {
     my ($resource, $sub) = @_;
     my %subs = (
         'players' => \&parse_players,
-        'teams'   => \&parse_players,
+        'teams'   => \&parse_teams,
     );
-    #print Dumper($subs{$sub}($resource));
 
     my $json = $subs{$sub}(decode_json get $resource);
 
