@@ -16,12 +16,9 @@ function ddg_spice_espn_nba(api_result) {
     player.teamCity   = playerTeam.location;
     player.teamName   = playerTeam.name;
 
-    nrj('/js/spice/espn/nba/basketball/athletes/'
-            + player.id + '/news/foo/ddg_spice_espn_nba_news');
-    nrj('/js/spice/espn/nba/basketball/teams/'
-            + player.teamID + '/foo/bar/ddg_spice_espn_nba_team');
-    nrj('/js/spice/espn/nba/basketball/teams/'
-            + player.teamID + '/events/dates/ddg_spice_espn_nba_events');
+    nrj('/js/spice/espn/nba/athletes/' + player.id + '/news/foo/ddg_spice_espn_nba_news');
+    nrj('/js/spice/espn/nba/teams/' + player.teamID + '/foo/bar/ddg_spice_espn_nba_team');
+    nrj('/js/spice/espn/nba/teams/' + player.teamID + '/events/dates/ddg_spice_espn_nba_events');
 
     player.seasonDescription = player.stats.season.description;
     player.seasonTimeFrame   = "'" + ((player.stats.season.year + '').substr(2, 2) - 1)
