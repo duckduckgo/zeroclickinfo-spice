@@ -20,15 +20,19 @@ var ddg_spice_sound_cloud = function(api_result) {
     });
 
     // Display the plugin.
+    var image = Handlebars.helpers.chooseImage(api_result[0].artwork_url, api_result[0].user.avatar_url);
     Spice.render({
         data             : api_result,
         header1          : "Sound Cloud",
         source_url       : "https://soundcloud.com/search?q=" + query,
         source_name      : "SoundCloud",
-        image_url        : image_proxy + api_result[0].artwork_url,
+        image_url        : image_proxy + image,
         template_normal  : "sound_cloud",
         force_big_header : true
     });
+
+    // Force the image to be smaller.
+    $("#zero_click_image img").attr("style", "width: 120px !important; height: 120px !important;");
 
     // Get the size of the screen.
     // If the screen is small, don't display the image.
@@ -36,8 +40,10 @@ var ddg_spice_sound_cloud = function(api_result) {
     var checkWidth = function(width) {
         if(width < 750) {
             zero_click_image.addClass("hide");
+            $(".zero_click_snippet").attr("style", "margin-left: 0px !important; display: block;");
         } else {
             zero_click_image.removeClass("hide");
+            $(".zero_click_snippet").attr("style", "margin-left: 0px !important; display: block; width: 75%;");
         }
     };
 
@@ -46,7 +52,6 @@ var ddg_spice_sound_cloud = function(api_result) {
     $(window).resize(function() {
         checkWidth($(window).width());
     });
-
 
     // Initialize SoundManager2.
     window.SM2_DEFER = true;
@@ -88,6 +93,17 @@ var ddg_spice_sound_cloud = function(api_result) {
     });
 };
 
+// Get the larger version of the image.
 Handlebars.registerHelper("chooseImage", function(first, second) {
-    return first || second;
+    var image = first || second;
+    return image.replace(/large\.jpg/, "t200x200.jpg");
+});
+
+// Let's not make the title too long.
+Handlebars.registerHelper("limit", function(title, username) {
+    if(title.length + username.length > 60) {
+        return title.substring(0, 60 - username.length) + "...";
+    } else {
+        return title;
+    }
 });

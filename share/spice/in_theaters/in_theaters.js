@@ -5,10 +5,30 @@ var ddg_spice_in_theaters = function(api_result) {
         return;
     }
 
+    // Get the original query.
+    // We're going to pass this to the header.
+    var matched, result, query = "";
+    $("script").each(function() {
+        matched = $(this).attr("src");
+        if(matched) {
+            result = matched.match(/\/js\/spice\/in_theaters\/([^\/]+)/);
+            if(result) {
+                query = result[1];
+            }
+        }
+    });
+
+    var header = "";
+    if(query === "opening") {
+        header = "Opening Movies";
+    } else {
+        header = "Currently in Theaters";
+    }
+
     var image_proxy = "/iu/?u=";
     Spice.render({
         data             : api_result,
-        header1          : "Currently In Theaters",
+        header1          : header,
         source_url       : "http://www.rottentomatoes.com/",
         // The initial poster is set by the first movie.
         image_url        : image_proxy + api_result.movies[0].posters.thumbnail,
@@ -23,8 +43,10 @@ var ddg_spice_in_theaters = function(api_result) {
     var checkWidth = function(width) {
         if(width < 750) {
             zero_click_image.addClass("hide");
+            $(".zero_click_snippet").attr("style", "margin-left: 0px !important; display: block;");
         } else {
             zero_click_image.removeClass("hide");
+            $(".zero_click_snippet").attr("style", "margin-left: 0px !important; display: block; width: 80%;");
         }
     };
 
@@ -86,4 +108,13 @@ Handlebars.registerHelper("time", function(runtime) {
         minute += 'min.';
         return hour + minute;
     }
+});
+
+// Guarantee that we're only going to show five movies.
+Handlebars.registerHelper("list", function(items, options) {
+    var out = "";
+    for(var i = 0; i < items.length && i < 5; i += 1) {
+        out += options.fn(items[i]);
+    }
+    return out;
 });

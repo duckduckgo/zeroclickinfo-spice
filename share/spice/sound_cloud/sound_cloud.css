@@ -312,5 +312,9 @@ ul.playlist li .peak .r {
 }
 
 .hide {
-    display: none;
+    float: none;
+}
+
+.clear {
+    clear: both;
 }
