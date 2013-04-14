@@ -44,8 +44,17 @@ sub parse {
     }
 }
 
-my $offset = 0;
+## Do work ;-)
 
-my $api = "http://api.espn.com/v1/sports/basketball/nba/athletes?apikey=$ENV{DDG_SPICE_ESPN_APIKEY}&offset=";
+my %leagues = (
+    'nfl' => 'football',
+    'nba' => 'basketball'
+);
 
-parse $api, 'players';
+for my $league (keys %leagues) {
+    my $api = "http://api.espn.com/v1/sports/$leagues{$league}/$league/athletes?"
+            . "apikey=$ENV{DDG_SPICE_ESPN_APIKEY}&offset=";
+    print "my %${league}Players = (\n";
+    parse $api, 'players';
+    print ")\n\n";
+}
