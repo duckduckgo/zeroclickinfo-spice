@@ -60,5 +60,5 @@ for my $league (keys %leagues) {
             . "apikey=$ENV{DDG_SPICE_ESPN_APIKEY}&offset=";
     print "my %${league}Players = (\n";
     parse $api, 'players';
-    print ")\n\n";
+    print ");\n\n";
 }
