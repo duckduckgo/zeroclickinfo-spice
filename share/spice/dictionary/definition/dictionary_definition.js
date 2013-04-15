@@ -30,8 +30,6 @@ var ddg_spice_dictionary_definition = function(api_result) {
             render(api_result, api_result[0].word);
         }
     }
-
-    ddg_spice_dictionary_definition.render = render;
 };
 
 ddg_spice_dictionary_definition.render = function(context, word) {
