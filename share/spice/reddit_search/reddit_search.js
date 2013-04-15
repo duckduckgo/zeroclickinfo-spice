@@ -1,8 +1,9 @@
-function ddg_spice_reddit(response) {    
+function ddg_spice_reddit(response) {
     var query = DDG.get_query();
     var subreddit = query.match(/\/?r\/\w+/);
     var restrict_sr = false;
     var header = '(Reddit)';
+
     if (subreddit) {
         subreddit = subreddit[0];
         restrict_sr = 'true';

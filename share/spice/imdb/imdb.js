@@ -1,61 +1,120 @@
-function ddg_spice_imdb(response) {
+function ddg_spice_imdb(api_result) {
 
-    if (!response['Response'] == 'True') return;
-
-    var movie = {};
-    var currentDate = new Date();
-    var tempDate = response["Released"] != "N/A" ? new Date(response["Released"]) : "";
-    movie.runtime = response["Runtime"].replace(/\s/g, "").replace("min", "m");
-    movie.runtime = movie.runtime === "N/A" ? "" : movie.runtime;
-
-    // Is a release date planned?
-    if (tempDate && tempDate > currentDate){
-        movie.rating = "an upcoming ";
-        movie.releaseDate = tempDate.toDateString().slice(4);
-    }
-    // Is it upcoming?
-    else if (response["Year"] > currentDate.getFullYear())
-        movie.rating = "an upcoming ";
-    // It's already out.
-    else if (response["Rated"] === "R" || response["Rated"] === "NC-17" || response["Rated"] === "N/A")
-        movie.rating = "an ";
-    // otherwise:
-    else
-        movie.rating = "a ";
-    // No releaseDate? releaseDate = year
-    movie.releaseDate = !movie.releaseDate ? response["Year"] : releaseDate;
-
-    // Unrated?
-    if (response["Rated"] === "N/A") response.rating += "Unrated";
-    else movie.rating += response["Rated"];
-
-    // Reviews?
-    movie.reviews = response['imdbRating'] != "N/A" ?
-                        response['imdbRating']+"/10" : "None";
-    
-    movie.title = response['Title'];
-    movie.year = response['Year'];
-
-    if (response['Actors'] && response['Actors'] != "N/A")
-        movie.actors = response['Actors'];
-
-    if (response["Director"] && response["Director"] != "N/A")
-        movie.director = response['Director'];
-
-    if (response["Plot"] && response["Plot"] != "N/A")
-        movie.plot = response["Plot"];
+    if (!api_result.api_result == 'True') return;
 
     Spice.render({
-        data              : movie,
-        header1           : movie.title + " (IMDb)",
+        data              : api_result,
+        header1           : api_result.Title + ' (IMDb)',
         source_url        : 'http://www.imdb.com/title/'
-                            + response['imdbID'],
+                            + api_result.imdbID,
         source_name       : 'IMDb',
         template_normal   : 'imdb',
-        image             : (response['Poster'] != 'N/A' ?
-                                response['Poster'] : ''),
         force_big_header  : true,
         force_space_after : true,
         force_no_fold     : true,
     });
-}    
+}
+
+
+Handlebars.registerHelper('runtime', function(){
+    return (movie.runtime !== 'N/A') ?
+    	'' :
+    	this.Runtime.replace(/\s/g, '').replace('min', 'm');
+});
+
+
+function reverse(s){
+    return s.split("").reverse().join("");
+}
+
+function replaceLast(input, a, b) {
+    var out = reverse(input);
+    out.replace(a, b);
+    return reverse(out);
+}
+
+
+/*
+ * rating_adjective
+ *
+ * help make the description of the movie gramatically correct
+ * used in reference to the rating of the movie, as in
+ *   'an' R rated movie, or
+ *   'a'  PG rated movie
+ */
+Handlebars.registerHelper("rating_adjective", function() {
+    var currentDate = new Date();
+    var released = this.Released !== 'N/A' ? new Date(this.Released) : -1;
+    var adjective;
+
+    // Is it released?
+    if ( released > currentDate || this.Year > currentDate.getFullYear() ){
+        return 'an upcoming ';
+	}
+
+	return ( this.Rated === "R" ||
+		this.Rated === "NC-17" ||
+		this.Rated === "N/A" ) ?  "an" :"a";
+});
+
+
+// mpaa_rating
+Handlebars.registerHelper('mpaa_rating', function(){
+    return (this.Rated === 'N/A') ? 'unrated' : this.Rated;
+});
+
+
+// runtime
+Handlebars.registerHelper('get_runtime', function(){
+    if (this.Runtime !== 'N/A') {
+        var runtime = this.Runtime.replace(/\s+/g, '').replace("min", "m");
+        return runtime + ", ";
+    }
+
+    return '';
+});
+
+
+// check for movie or tv show
+Handlebars.registerHelper('result_type', function(){
+    return (this.Type === "episode") ? 'episode' : 'movie';
+});
+
+
+// imdbRating
+Handlebars.registerHelper('get_rating', function(){
+    return (this.imdbRating !== 'N/A') ?
+        this.imdbRating + "/10" :
+        "unrated";
+});
+
+
+// actors
+Handlebars.registerHelper('actors_and_director', function(){
+    if (this.Actors !== 'N/A' && this.Director !== 'N/A') {
+	   return "starring " + this.Actors +
+              " and directed by " + this.Director;
+    }
+
+    else if (this.Actors !== 'N/A'){
+        var actors = replaceLast(this.Actors, ",", "and");
+        return "starring " + actors;
+    }
+
+    else if (this.Director !== 'N/A') {
+    	return "directed by " + this.Director;
+    }
+
+    else {
+        return '';
+    }
+});
+
+// movie plot
+Handlebars.registerHelper('plot', function(){
+    if (this.Plot !== 'N/A') {
+    	return this.Plot;
+    }
+
+    return '';
+});

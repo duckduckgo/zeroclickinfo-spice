@@ -42,7 +42,6 @@ function HackerNews(data) {
 	this.otherStories = [];
 
 	function isStory (r) {
-		console.log("THIS IS R: ", r);
 		return ( r["type"] === "submission" );
 	}
 

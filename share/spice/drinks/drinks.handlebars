@@ -1,2 +1,25 @@
-<i>Ingredients</i>: {{#concat ingredients sep="; "}}{{this}}{{/concat}}<br>
-<i>Directions</i>: {{procedure}}
+<table class="drinks">
+	<thead>
+		<th>
+			Directions:
+		</th>
+		<th>
+			Ingredients:
+		</th>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td>
+				<p>{{procedure}}</p>
+			</td>
+			<td>
+				<ul>
+					{{#each ingredients}}
+						<li>{{this}}</li>
+					{{/each}}
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,14 +1,9 @@
-function ddg_spice_hq_temp(response) {
-    if (!response) return;
-
-    var temperature      = {};
-    temperature.value    = response.temp.replace(/^0*/,'');
-    temperature.units    = response.unit;
-    temperature.location = response.location;
+function ddg_spice_hq_temp(api_result) {
+    if (!api_result) return;
 
     Spice.render({
         data             : temperature,
-        header1          : 'Temperature at ' + response.location,
+        header1          : 'Temperature at ' + api_result.location,
         source_name      : 'Roberts Nifty Temperature Reader',
         source_url       : 'https://duckduckgo.com',
         template_normal  : 'hq_temp',

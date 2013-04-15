@@ -1,14 +1,9 @@
-function ddg_spice_drinks(response) {
+function ddg_spice_drinks(api_result) {
 
-    var drink = response[0];
+    var drink = api_result[0];
     
     // validity check
     if (!drink.name) return;
-      
-    var ingredients = [];
-    for (var i in drink.ingredients)
-        ingredients.push(drink.ingredients[i]);
-    drink.ingredients = ingredients;
 
     Spice.render({
         data             : drink,
@@ -16,6 +11,6 @@ function ddg_spice_drinks(response) {
         source_url       : drink.url,
         source_name      : 'The Drink Project',
         template_normal  : 'drinks',
-        force_no_fold    : true,
+        force_no_fold    : true
     });
 }

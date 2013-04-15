@@ -1,14 +1,14 @@
 function ddg_spice_plugin_name ( api_result ) {
-	
+
 	/* Make sure result exists */
 
 	Spice.render({
-		
+
 		data: 				api_result,
 		header1 : 			' ',
 		source_name : 		' ',
-		source_url : 		'https:// .com',
-		template_normal : 	" ",
+		source_url : 		'https://source.website.com',
+		template_normal : 	' ',
 		force_big_header : 	true
 	});
 }
@@ -33,6 +33,6 @@ Handlebars.registerHelper ('helper_name', function() {
 	var out;
 
 	/* Logic to build output */
-	
+
 	return out;
 });
