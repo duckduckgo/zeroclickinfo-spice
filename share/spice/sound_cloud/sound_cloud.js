@@ -1,5 +1,14 @@
 var ddg_spice_sound_cloud = function(api_result) {
-    if(api_result.length === 0) {
+
+    // Check how many tracks are actually streamable.
+    var streamable = 0;
+    for(var i = 0; i < api_result.length; i += 1) {
+        if(api_result[i].streamable) {
+            streamable += 1;
+        }
+    }
+
+    if(api_result.length === 0 || streamable === 0) {
         return;
     }
 
@@ -106,4 +115,15 @@ Handlebars.registerHelper("limit", function(title, username) {
     } else {
         return title;
     }
+});
+
+// Check if the sound is streamable.
+Handlebars.registerHelper("checkStreamable", function(items, options) {
+    var out = "";
+    for(var i = 0; i < items.length; i += 1) {
+        if(items[i].streamable) {
+            out += options.fn(items[i]);
+        }
+    }
+    return out;
 });
