@@ -11,51 +11,53 @@
 var ddg_spice_dictionary_definition = function(api_result) {
     "use strict";
 
+    // Prevent jQuery from appending "_={timestamp}" in our url.
+    $.ajaxSetup({
+        cache: true
+    });
+
     if (api_result && api_result.length > 0) {
-        var word = api_result[0].word;
-
         // We moved Spice.render to a function because we're choosing between two contexts.
-        var render = function(context) {
-            Spice.render({
-                data              : context,
-                header1           : "Definition (Wordnik)",
-                force_big_header  : true,
-                source_name       : "Wordnik",
-                source_url        : "http://www.wordnik.com/words/" + word,
-                template_normal   : "dictionary"
-            });
-
-            // Call the Wordnik API to display the pronunciation text and the audio.
-            $.getScript("/js/spice/dictionary/pronunciation/" + word);
-            $.getScript("/js/spice/dictionary/audio/" + word);
-        };
-
-        // Change the context so that it would say something like, "dictionaries is the plural of dictionary."
-        var pluralOf = function(response) {
-            if(response && response.length > 0) {
-                word = response[0].word;
-                response[0].pluralOf = "is the plural form of " + word;
-                response[0].word = api_result[0].word;
-                render(response);
-            // If it didn't return new definitions, just display the old context.
-            } else {
-                render(api_result);
-            }
-        };
+        var render = ddg_spice_dictionary_definition.render;
 
         // Check how many items we have, and if it refers to something that's plural (we know this because of the regexp).
         var plural = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>(\w+(?:\s\w+)*)<\/xref>/i);
+
         if(api_result.length === 1 && plural) {
             // This loads the definition of the singular form of the word.
-            $.ajax({
-                url: "/js/spice/dictionary/reference/" + plural[1],
-                jsonp: "callback",
-                dataType: "jsonp",
-                success: pluralOf
-            });
+            $.getScript("/js/spice/dictionary/reference/" + plural[1]);
         } else {
-            render(api_result);
+            render(api_result, api_result[0].word);
         }
+    }
+
+    ddg_spice_dictionary_definition.render = render;
+};
+
+ddg_spice_dictionary_definition.render = function(context, word) {
+    Spice.render({
+        data              : context,
+        header1           : "Definition (Wordnik)",
+        force_big_header  : true,
+        source_name       : "Wordnik",
+        source_url        : "http://www.wordnik.com/words/" + word,
+        template_normal   : "dictionary"
+    });
+
+    // Call the Wordnik API to display the pronunciation text and the audio.
+    $.getScript("/js/spice/dictionary/pronunciation/" + word);
+    $.getScript("/js/spice/dictionary/audio/" + word);
+};
+
+
+// Change the context so that it would say something like, "dictionaries is the plural of dictionary."
+var ddg_spice_dictionary_reference = function(api_result) {
+    var render = ddg_spice_dictionary_definition.render;
+
+    if(api_result && api_result.length > 0) {
+        var word = api_result[0].word;
+        api_result[0].pluralOf = "is the plural form of " + word;
+        render(api_result, word);
     }
 };
 
@@ -77,7 +79,8 @@ Handlebars.registerHelper("part", function(text) {
         "auxiliary-verb": "v.",
         "undefined": "",
         "noun-plural": "n.",
-        "abbreviation": "abbr."
+        "abbreviation": "abbr.",
+        "proper-noun": "n."
     };
 
     return part_of_speech[text] || text;
