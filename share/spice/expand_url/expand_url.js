@@ -1,19 +1,20 @@
 function ddg_spice_expand_url(api_response) {
-    var url = {};
-    url['query'] = DDG.get_query().replace(/expand\s*/i, "");
-    if (!api_response["long-url"] || api_response["long-url"] == url['query']) return;
-    url['long-url'] = api_response['long-url'];
+    "use strict";
 
-    var out ='Expanded url: <a href="' 
-            + api_response['long-url'] + '">' 
-            + api_response['long-url'] + '</a>';
+    // Get the orignal query.
+    var query = DDG.get_query().replace(/expand\s*/i, "");
 
+    // Check if there are any errors.
+    if (!api_response["long-url"] || api_response["long-url"] === query) {
+        return;
+    }
+
+    // Display the plug-in.
     Spice.render({
-        data             : url,
-        header1          : url['query'] + " (Short URL)",
-        source_url       : 'http://longurl.org/expand?url=' 
-                            + encodeURIComponent(url['query']),
-        source_name      : 'LongURL',
-        template_normal  : 'expand_url',
+        data             : api_response,
+        header1          : "Expand Link (LongURL)",
+        source_url       : "http://longurl.org/expand?url=" + encodeURIComponent(query),
+        source_name      : "LongURL",
+        template_normal  : "expand_url"
     });
 }
