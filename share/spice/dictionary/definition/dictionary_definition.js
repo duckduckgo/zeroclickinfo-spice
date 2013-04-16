@@ -93,7 +93,7 @@ Handlebars.registerHelper("format", function(text) {
     "use strict";
 
     // Replace the xref tag into an anchor tag.
-    text = text.replace(/<xref>([^<]+)<\/xref>/g, "<a class='reference' href='/?q=define+$1'>$1</a>");
+    text = text.replace(/<xref>([^<]+)<\/xref>/g, "<a class='reference' href='https://www.wordnik.com/words/$1'>$1</a>");
 
     // Make sure we do not encode the HTML tags.
     return new Handlebars.SafeString(text);
