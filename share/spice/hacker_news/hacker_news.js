@@ -6,10 +6,23 @@ function ddg_spice_hacker_news(api_result) {
         return;
     }
 
+    // Get the original query.
+    // We're going to pass this to the More at SoundCloud link.
+    var matched, result, query;
+    $("script").each(function() {
+        matched = $(this).attr("src");
+        if(matched) {
+            result = matched.match(/\/js\/spice\/hacker_news\/(.+)/);
+            if(result) {
+                query = result[1];
+            }
+        }
+    });
+
     Spice.render({
         data:               api_result,
-        header1 :           "Spice2 HackerNews.",
-        source_url :        "http://www.hnsearch.com/search#request/all&q =" + encodeURIComponent(DDG.get_query()),
+        header1 :           "Hacker News",
+        source_url :        "http://www.hnsearch.com/search#request/all&q=" + query,
         source_name :       "Hacker News",
         template_normal :   "hacker_news",
         force_big_header :  true
