@@ -20,11 +20,14 @@ var ddg_spice_lastfm_events = function(api_result) {
 
     var image_proxy = "/iu/?u=";
 
+    // Shorten the concert's date.
     var shortenDate = function(date) {
         return date.substr(0, date.lastIndexOf(" "));
     };
 
+    // Load Leaflet.js.
     $.getScript("/dist/leaflet.js", function() {
+        // Point to the icons folder.
         L.Icon.Default.imagePath = "/dist/images";
 
         // Initialize the map.
@@ -82,6 +85,7 @@ var ddg_spice_lastfm_events = function(api_result) {
     });
 };
 
+// Make sure we only display three venues.
 Handlebars.registerHelper("list", function(items, options) {
     var out = "";
     for(var i = 0; i < items.length && i < 3; i += 1) {
