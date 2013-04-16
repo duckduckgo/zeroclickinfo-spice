@@ -52,7 +52,7 @@ var ddg_spice_sound_cloud = function(api_result) {
             $(".zero_click_snippet").attr("style", "margin-left: 0px !important; display: block;");
         } else {
             zero_click_image.removeClass("hide");
-            $(".zero_click_snippet").attr("style", "margin-left: 0px !important; display: block; width: 75%;");
+            $(".zero_click_snippet").attr("style", "margin-left: 0px !important; display: block; width: 74%;");
         }
     };
 
@@ -126,4 +126,8 @@ Handlebars.registerHelper("checkStreamable", function(items, options) {
         }
     }
     return out;
+});
+
+Handlebars.registerHelper("toHttps", function(audio) {
+    return audio.replace(/^http:/, "https:");
 });
