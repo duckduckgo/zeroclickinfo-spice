@@ -7,12 +7,16 @@ var ddg_spice_forvo = function(api_result) {
         return toString.call(obj) === "[object Array]";
     };
 
+    // api_result.items can be either an array or an object.
+    // Although an array is an object, Forvo can return either
+    // {0: "...", 1: "...", 2: "..."} or ["...", "...", "..."].
     if(isArray(api_result.items)) {
         api_result.isArray = true;
     } else {
         api_result.isArray = false;
     }
 
+    // Display the Spice plug-in.
     Spice.render({
         data             : api_result,
         header1          : "Pronunciations (Forvo)",
@@ -73,6 +77,7 @@ Handlebars.registerHelper('list', function(items, options) {
     return out;
 });
 
+// The sex (returned as either "m" or "f") should be expanded.
 Handlebars.registerHelper("sex", function(sex) {
     if(sex === "m") {
         return ", Male";
@@ -82,6 +87,7 @@ Handlebars.registerHelper("sex", function(sex) {
 });
 
 // Make sure we display only five items.
+// This helper is for objects.
 Handlebars.registerHelper('listObjects', function(items, total, options) {
     var out = "",
         index = 0,
