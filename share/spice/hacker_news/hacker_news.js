@@ -1,153 +1,142 @@
-function ddg_spice_hacker_news (api_result) {
+function ddg_spice_hacker_news(api_result) {
+    "use strict";
 
-	// Check for at least 1 result
-	if ( api_result.hits < 1 ) {
-		return;
-	}
+    // Check for at least 1 result
+    if (api_result.hits < 1) {
+        return;
+    }
 
-	Spice.render({
-		data: 				api_result,
-		header1 : 			"Spice2 HackerNews.",
-		source_url : 		'http://www.hnsearch.com/search#request/all&q =' + encodeURIComponent( DDG.get_query() ),
-		source_name : 		'Hacker News',
-		template_normal : 	"hacker_news",
-		force_big_header : 	true
-	});
+    Spice.render({
+        data:               api_result,
+        header1 :           "Spice2 HackerNews.",
+        source_url :        "http://www.hnsearch.com/search#request/all&q =" + encodeURIComponent(DDG.get_query()),
+        source_name :       "Hacker News",
+        template_normal :   "hacker_news",
+        force_big_header :  true
+    });
 
-	// click handler for TopComments and OtherStories
-	$(document).ready(function(){
-		// click handler for TopComments and OtherStories
-		$("a.hn_showHide").click(function(){
-
-			if ( $(this).data("target") ){
-				var target = $(this).data("target");
-				$(target).toggle();
-			}
-		});
-	});
-}
-
-/*******************************
-  Private helpers
-  *******************************/
-
-/* HackerNews Object
- * Contains result lists
- */
-function HackerNews(data) {
-
-	this.limit = (data.request.limit < data.hits) ? data.request.limit : data.hits;
-	this.topStories = [];
-	this.topComments = [];
-	this.otherStories = [];
-
-	function isStory (r) {
-		return ( r["type"] === "submission" );
-	}
-
-	// Adds result object to appropriate list
-	this.addResult = function (result) {
-		var location;
-
-		if (this.topStories.length < 3 && isStory(result)) {
-			location = this.topStories;
-		} else {
-			location = isStory(result) ? this.otherStories : this.topComments;
-		}
-		location.push( result );
-	};
-
-	this.canUse = function (result) {
-
-		if ( isStory(result) && (this.otherStories.length < 3 || this.topStories.length < 3)) {
-			return true;
-		} else if ( !isStory(result) && this.topComments.length < 3 ) {
-			return true;
-		} else {
-			return false;
-		}
-	};
-
-	this.isFull = function () {
-		if (this.topStories.length > 2 && this.otherStories.length > 2 &&
-			this.topComments.length > 2) {
-			return true;
-		} else {
-			return false;
-		}
-	};
+    // Add click event.
+    $("a.hn_showHide").click(function(){
+        if ($(this).data("target")){
+            var target = $(this).data("target");
+            $(target).toggle();
+        }
+    });
 }
 
 
-/*******************************
-  Public Helpers
-  *******************************/
-(function() {
+// creates an anchor linking to a result's commments
+Handlebars.registerHelper("organizeResults", function(options) {
+    "use strict";
 
-	/*******************************
-	  Handlebars helpers
-	  *******************************/
+    /* HackerNews Object
+     * Contains result lists
+     */
+    function HackerNews(data) {
 
-	// creates an anchor linking to a result's commments
-	Handlebars.registerHelper('organizeResults', function(options) {
+        this.limit = (data.request.limit < data.hits) ? data.request.limit : data.hits;
+        this.topStories = [];
+        this.topComments = [];
+        this.otherStories = [];
 
-		var hn = new HackerNews(this);
-		var item;
+        function isStory (r) {
+            return (r.type === "submission");
+        }
 
-		for ( var i = 0; i < hn.limit; i++ ) {
+        // Adds result object to appropriate list
+        this.addResult = function (result) {
+            var location;
 
-			// Grab item
-			result = this.results[i].item;
+            if (this.topStories.length < 3 && isStory(result)) {
+                location = this.topStories;
+            } else {
+                location = isStory(result) ? this.otherStories : this.topComments;
+            }
+            location.push(result);
+        };
 
-			// Check if result is needed
-			// and append to correct list
-			if ( hn.canUse(result) ) {
-				hn.addResult(result);
-			}
+        this.canUse = function (result) {
 
-			if ( hn.isFull() ){
-				break;
-			} else {
-				continue;
-			}
-		}
+            if (isStory(result) && (this.otherStories.length < 3 || this.topStories.length < 3)) {
+                return true;
+            } else if (!isStory(result) && this.topComments.length < 3) {
+                return true;
+            } else {
+                return false;
+            }
+        };
 
-		// invoke context of template with hn object as context
-		return options.fn(hn);
-	});
+        this.isFull = function () {
+            if (this.topStories.length > 2 && this.otherStories.length > 2 &&
+                this.topComments.length > 2) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+    }
+
+    var hn = new HackerNews(this);
+    var result;
+
+    for (var i = 0; i < hn.limit; i += 1) {
+        // Grab item
+        result = this.results[i].item;
+
+        // Check if result is needed
+        // and append to correct list
+        if (hn.canUse(result)) {
+            hn.addResult(result);
+        }
+
+        if (hn.isFull()){
+            break;
+        } else {
+            continue;
+        }
+    }
+
+    // Invoke context of template with hn object as context.
+    return options.fn(hn);
+});
 
 
-	// creates an anchor linking to an item's commments
-	Handlebars.registerHelper('hn_comment', function(text) {
+// Creates an anchor linking to an item's commments.
+Handlebars.registerHelper("hn_comment", function(text) {
+    "use strict";
 
-		var temp = d.createElement("div");
-		temp.innerHTML = text;
-		var cleanText = $(temp).text();
+    var temp = d.createElement("div");
+    temp.innerHTML = text;
+    var cleanText = $(temp).text();
 
-		return Handlebars.helpers.condense(cleanText, {hash:{maxlen:"120"}});
-	});
-
-
-	// pluralizes a word when necessary
-	Handlebars.registerHelper('plural', function(num) {
-		return ((num !== 1)? 's' : '');
-	});
+    return Handlebars.helpers.condense(cleanText, {hash:{maxlen:"120"}});
+});
 
 
-	// returns a link to the HN user with given id
-	Handlebars.registerHelper('user_link', function(id) {
-		return '<a href="https://news.ycombinator.com/user?id=' + id + '">' +
-				id + '</a>';
-	});
+// Pluralizes a word when necessary.
+Handlebars.registerHelper("plural", function(num) {
+    "use strict";
+
+    return ((num !== 1)? "s" : "");
+});
 
 
-	// returns a link to the HN item (story, comment) with given id
-	Handlebars.registerHelper('item_link', function(text) {
+// Returns a link to the HN user with given id.
+Handlebars.registerHelper("user_link", function(id) {
+    "use strict";
 
-		var id = (text === "parent") ? this.discussion.id : this.id;
+    return "<a href='https://news.ycombinator.com/user?id=" + id + "'>" +
+            id + "</a>";
+});
 
-		return '<a href="https://news.ycombinator.com/item?id=' + id + '">' +
-				Handlebars.helpers.condense(text, {hash:{maxlen:"30"}}) +
-				'</a>';
-	});
-})();
+
+// Returns a link to the HN item (story, comment) with given id.
+Handlebars.registerHelper("item_link", function(text) {
+    "use strict";
+
+    var id = (text === "parent") ? this.discussion.id : this.id;
+
+    return "<a href='https://news.ycombinator.com/item?id=" + id + "'>" +
+            Handlebars.helpers.condense(text, {hash: {maxlen: "30"}}) +
+            "</a>";
+});
