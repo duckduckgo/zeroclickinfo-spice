@@ -1,9 +1,17 @@
 var ddg_spice_forvo = function(api_result) {
 
+    console.log(api_result);
+
     // From underscore.js. This function checks if obj is an array.
     var isArray = function(obj) {
         return toString.call(obj) === "[object Array]";
     };
+
+    if(isArray(api_result.items)) {
+        api_result.isArray = true;
+    } else {
+        api_result.isArray = false;
+    }
 
     Spice.render({
         data             : api_result,
@@ -56,10 +64,10 @@ var ddg_spice_forvo = function(api_result) {
     });
 };
 
-// Make sure we display only three items.
+// Make sure we display only five items.
 Handlebars.registerHelper('list', function(items, options) {
     var out = "";
-    for(var i = 0; i < items.length && i < 3; i += 1) {
+    for(var i = 0; i < items.length && i < 5; i += 1) {
         out += options.fn(items[i]);
     }
     return out;
@@ -67,8 +75,25 @@ Handlebars.registerHelper('list', function(items, options) {
 
 Handlebars.registerHelper("sex", function(sex) {
     if(sex === "m") {
-        return "Male";
+        return ", Male";
     } else {
-        return "Female";
+        return ", Female";
     }
+});
+
+// Make sure we display only five items.
+Handlebars.registerHelper('listObjects', function(items, total, options) {
+    var out = "",
+        index = 0,
+        showing = 0;
+
+    while(index < total && showing < 5) {
+        if(items[index]) {
+            out += options.fn(items[index]);
+            showing += 1;
+        }
+        index += 1;
+    }
+
+    return out;
 });
