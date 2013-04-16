@@ -7,15 +7,15 @@ spice to => 'http://ws.audioscrobbler.com/2.0/?format=json&method=track.getinfo&
 spice from => '(?:([^/]*)/([^/]*)|)';
 
 triggers query_lc => qr/ ^
-						 ([^\s]+(?:\s+[^\s]+)*)\s+
+						 (\S+(?:\s+\S+)*)\s+
 						 (?:tracks?|songs?|music)\s+
 						 (?:by|from)\s+
-						 ([^\s]+(?:\s+[^\s]+)*)
+						 (\S+(?:\s+\S+)*)
 						 $|^
 						 (?:listen(?:\s+to)?)\s+
-						 ([^\s]+(?:\s+[^\s]+)*)\s+
+						 (\S+(?:\s+\S+)*)\s+
 						 (?:by|from)\s+
-						 ([^\s]+(?:\s+[^\s]+)*)
+						 (\S+(?:\s+\S+)*)
 						 $/x;
 
 primary_example_queries "Payphone song by Maroon 5";

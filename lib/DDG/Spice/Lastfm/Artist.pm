@@ -25,23 +25,23 @@ handle query_lc => sub {
     my $synonyms = "bands?|musicians?|players?|artists?|performers?|singers?|rappers?|djs?|vocalists?|songsters?";
 
     #Queries like "bands similar to incubus" or "artists similar ben folds"
-    if(m{(?:$synonyms)\s+similar\s+(?:to\s+)?([^\s]+(?:\s+[^\s]+)*)}) {
+    if(m{(?:$synonyms)\s+similar\s+(?:to\s+)?(\S+(?:\s+\S+)*)}) {
         return $1, 'similar';
     } 
     #Queries like "similar bands to incubus" or "similar artists ben folds"
-    if(m{similar\s+(?:$synonyms)\s+(?:to\s+)?([^\s]+(?:\s+[^\s]+)*)}) {
+    if(m{similar\s+(?:$synonyms)\s+(?:to\s+)?(\S+(?:\s+\S+)*)}) {
         return $1, 'similar';
     } 
     #Queries like "30 seconds to mars similar bands" or "ben folds similar musicians"
-    if(m{([^\s]+(?:\s+[^\s]+)*)\s+similar\s+(?:$synonyms)}) {
+    if(m{(\S+(?:\s+\S+)*)\s+similar\s+(?:$synonyms)}) {
         return $1, 'similar';
     }
     #Queries like "weezer band"
-    if(m{([^\s]+(?:\s+[^\s]+)*)\s+(?:$synonyms)}) {
+    if(m{(\S+(?:\s+\S+)*)\s+(?:$synonyms)}) {
         return $1, 'all';
     }
     #Queries like "artist kanye west"
-    if(m{(?:$synonyms)\s+([^\s]+(?:\s+[^\s]+)*)}) {
+    if(m{(?:$synonyms)\s+(\S+(?:\s+\S+)*)}) {
         return $1, 'all';
     }
     return;
