@@ -1,10 +1,9 @@
 var ddg_spice_forvo = function(api_result) {
-
-    console.log(api_result);
+    "use strict";
 
     // From underscore.js. This function checks if obj is an array.
     var isArray = function(obj) {
-        return toString.call(obj) === "[object Array]";
+        return window.toString.call(obj) === "[object Array]";
     };
 
     // api_result.items can be either an array or an object.
@@ -45,7 +44,7 @@ var ddg_spice_forvo = function(api_result) {
                 $(this).attr("href", stream);
             });
             var pagePlayer = new PagePlayer();
-            pagePlayer.init(typeof PP_CONFIG !== 'undefined' ? PP_CONFIG : null);
+            pagePlayer.init();
         });
     };
 
@@ -69,7 +68,9 @@ var ddg_spice_forvo = function(api_result) {
 };
 
 // Make sure we display only five items.
-Handlebars.registerHelper('list', function(items, options) {
+Handlebars.registerHelper("list", function(items, options) {
+    "use strict";
+
     var out = "";
     for(var i = 0; i < items.length && i < 5; i += 1) {
         out += options.fn(items[i]);
@@ -79,6 +80,8 @@ Handlebars.registerHelper('list', function(items, options) {
 
 // The sex (returned as either "m" or "f") should be expanded.
 Handlebars.registerHelper("sex", function(sex) {
+    "use strict";
+
     if(sex === "m") {
         return ", Male";
     } else {
@@ -88,7 +91,9 @@ Handlebars.registerHelper("sex", function(sex) {
 
 // Make sure we display only five items.
 // This helper is for objects.
-Handlebars.registerHelper('listObjects', function(items, total, options) {
+Handlebars.registerHelper("listObjects", function(items, total, options) {
+    "use strict";
+
     var out = "",
         index = 0,
         showing = 0;
