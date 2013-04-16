@@ -7,9 +7,9 @@ spice to => 'http://ws.audioscrobbler.com/2.0/?limit=5&format=json&method=artist
 
 #Queries like "songs by ben folds" and "ben folds songs"
 my $synonyms = "songs?|tracks?|music";
-triggers query_lc => qr/^(?:(?:all|the)\s+)?(?:$synonyms)\s+(?:(?:by|from|of)\s+)?([^\s]+(?:\s+[^\s]+)*)$
+triggers query_lc => qr/^(?:(?:all|the)\s+)?(?:$synonyms)\s+(?:(?:by|from|of)\s+)?(\S+(?:\s+\S+)*)$
 						|
-						^([^\s]+(?:\s+[^\s]+)*)\s+(?:$synonyms)$/x;
+						^(\S+(?:\s+\S+)*)\s+(?:$synonyms)$/x;
 
 primary_example_queries "songs by she & him";
 secondary_example_queries "songs from maroon 5";

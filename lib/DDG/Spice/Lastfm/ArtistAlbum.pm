@@ -6,13 +6,13 @@ use DDG::Spice;
 spice to => 'http://ws.audioscrobbler.com/2.0/?limit=5&format=json&method=artist.gettopalbums&artist=$1&autocorrect=1&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}';
 
 my $synonyms = "albums?|records?|cds?";
-triggers query_lc => qr/^(?:$synonyms)\s+(?:(?:by|from|of)\s+)?([^\s]+(?:\s+[^\s]+)*)$
+triggers query_lc => qr/^(?:$synonyms)\s+(?:(?:by|from|of)\s+)?(\S+(?:\s+\S+)*)$
 						|
-						^([^\s]+(?:\s+[^\s]+)*)\s+(?:$synonyms)$
+						^(\S+(?:\s+\S+)*)\s+(?:$synonyms)$
 						|
-						^([^\s]+(?:\s+[^\s]+)*)\s+(?:discography)$
+						^(\S+(?:\s+\S+)*)\s+(?:discography)$
 						|
-						^(?:discography)\s+([^\s]+(?:\s+[^\s]+)*)$
+						^(?:discography)\s+(\S+(?:\s+\S+)*)$
 						/x;
 
 primary_example_queries "albums from Ben Folds";
