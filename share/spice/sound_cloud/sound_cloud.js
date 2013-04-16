@@ -1,4 +1,5 @@
 var ddg_spice_sound_cloud = function(api_result) {
+    "use strict";
 
     // Check how many tracks are actually streamable.
     var streamable = 0;
@@ -79,7 +80,7 @@ var ddg_spice_sound_cloud = function(api_result) {
                 $(this).attr("href", stream);
             });
             var pagePlayer = new PagePlayer();
-            pagePlayer.init(typeof PP_CONFIG !== 'undefined' ? PP_CONFIG : null);
+            pagePlayer.init();
         });
     };
 
@@ -104,12 +105,16 @@ var ddg_spice_sound_cloud = function(api_result) {
 
 // Get the larger version of the image.
 Handlebars.registerHelper("chooseImage", function(first, second) {
+    "use strict";
+
     var image = first || second;
     return image.replace(/large\.jpg/, "t200x200.jpg");
 });
 
 // Let's not make the title too long.
 Handlebars.registerHelper("limit", function(title, username) {
+    "use strict";
+
     if(title.length + username.length > 60) {
         return title.substring(0, 60 - username.length) + "...";
     } else {
@@ -119,6 +124,8 @@ Handlebars.registerHelper("limit", function(title, username) {
 
 // Check if the sound is streamable.
 Handlebars.registerHelper("checkStreamable", function(items, options) {
+    "use strict";
+
     var out = "";
     for(var i = 0; i < items.length; i += 1) {
         if(items[i].streamable) {
@@ -129,5 +136,7 @@ Handlebars.registerHelper("checkStreamable", function(items, options) {
 });
 
 Handlebars.registerHelper("toHttps", function(audio) {
+    "use strict";
+
     return audio.replace(/^http:/, "https:");
 });
