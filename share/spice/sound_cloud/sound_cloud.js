@@ -92,7 +92,7 @@ var ddg_spice_sound_cloud = function(api_result) {
     };
 
     // Load page-player.js. This JS file converts a list of MP3s into a playlist.
-    $.getScript("/soundmanager2/script/page-player.js", function() {
+    $.getScript("/soundmanager2/script/page-player-soundcloud.js", function() {
         checkReady(0);
     });
 
