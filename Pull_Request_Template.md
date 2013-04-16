@@ -18,6 +18,9 @@ Example queries :
 Plugin Audience :
 (Any communities this is especially useful for?)
 
+Have you done any cross-browser testing?
+(All plugins must be cross browser compatible)
+
 
 ##If Applicable
 Related UserVoice request :
