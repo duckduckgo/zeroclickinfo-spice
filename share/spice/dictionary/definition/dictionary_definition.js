@@ -21,7 +21,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
 
     // Check how many items we have, and if it refers to something that's plural (we know this because of the regexp).
     if (api_result && api_result.length > 0) {
-        var plural = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>(\w+(?:\s\w+)*)<\/xref>/i);
+        var plural = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>([^<]+)<\/xref>/i);
 
         // This loads the definition of the singular form of the word.
         if(api_result.length === 1 && plural) {
@@ -93,7 +93,7 @@ Handlebars.registerHelper("format", function(text) {
     "use strict";
 
     // Replace the xref tag into an anchor tag.
-    text = text.replace(/<xref>(\w+(\s\w+)*)<\/xref>/g, "<a class='reference' href='/?q=define+$1'>$1</a>");
+    text = text.replace(/<xref>([^<]+)<\/xref>/g, "<a class='reference' href='/?q=define+$1'>$1</a>");
 
     // Make sure we do not encode the HTML tags.
     return new Handlebars.SafeString(text);
