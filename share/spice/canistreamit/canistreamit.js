@@ -11,7 +11,7 @@ var ddg_spice_canistreamit = function(api_result) {
         force_big_head0er : true,
         source_name       : "Can I Stream.it?",
         image_url         : image_proxy + api_result[0].image,
-        source_url        : "http://www.canistream.it/",
+        source_url        : api_result[0].links.shortUrl,
         template_normal   : "canistreamit"
     });
 
