@@ -1,5 +1,5 @@
 function ddg_spice_plos(request) {
-  // var query = decodeURIComponent(rq); // Get query?
+  var query = DDG.get_query().replace(/plos/, "");
 
   // Check if response is OK.
   var status = request['responseHeader']['status'];
@@ -33,13 +33,14 @@ function ddg_spice_plos(request) {
     results = results + 'Found ' + numFound + ' results in ' + qtime + ' ms';
 
     // Define callback items.
-    var items = new Array();
-    items[0] = new Array();
-    items[0]['a'] = results;
-    items[0]['h'] = 'PLOS research articles';
-    items[0]['s'] = 'PLOS';
-    items[0]['u'] = 'http://plos.org/';
-    items[0]['force_big_header'] = 1;
+    var items = [[]];
+    items[0] = {
+      a: results,
+      h: 'PLOS research articles: ' + query,
+      s: 'PLOS',
+      u: 'http://www.plosone.org/search/advancedSearch.action?pageSize=50&unformattedQuery=' + query,
+      force_big_header: true,
+    }
     nra(items);
   }
 }
