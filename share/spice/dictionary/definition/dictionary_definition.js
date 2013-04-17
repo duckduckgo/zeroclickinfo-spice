@@ -41,7 +41,7 @@ ddg_spice_dictionary_definition.render = function(context, word) {
         force_big_header  : true,
         source_name       : "Wordnik",
         source_url        : "http://www.wordnik.com/words/" + word,
-        template_normal   : "dictionary"
+        template_normal   : "dictionary_definition"
     });
 
     // Call the Wordnik API to display the pronunciation text and the audio.
