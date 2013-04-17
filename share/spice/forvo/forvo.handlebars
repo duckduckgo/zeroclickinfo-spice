@@ -1,12 +1,17 @@
 <div>
-    {{#list items}}
-        <div class="forvo_container">
-            <audio preload="none">
-                <source src="/audio/?u={{standard_pronunciation.pathmp3}}" type="audio/mpeg">
-            </audio>
-            <div class="forvo_track_details">
-                <span>{{original}}</span>
-            </div>
-        </div>
-    {{/list}}
+    <ul class="playlist">
+        {{#if this.isArray}}
+            {{#list this.items}}
+                <li>
+                    <a class="forvo-audio" type="audio/mp3" title="{{original}}" data-stream="{{standard_pronunciation.pathmp3}}">{{original}} <span class="sidenote">({{standard_pronunciation.langname}}{{sex standard_pronunciation.sex}})</span></a>
+                </li>
+            {{/list}}
+        {{else}}
+            {{#listObjects this.items this.attributes.total}}
+                <li>
+                    <a class="forvo-audio" type="audio/mp3" title="{{original}}" data-stream="{{standard_pronunciation.pathmp3}}">{{original}} <span class="sidenote">({{standard_pronunciation.langname}}{{sex standard_pronunciation.sex}})</span></a>
+                </li>
+            {{/listObjects}}
+        {{/if}}
+    </ul>
 </div>

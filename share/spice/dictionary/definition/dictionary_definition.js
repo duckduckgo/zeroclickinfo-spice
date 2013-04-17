@@ -11,20 +11,20 @@
 var ddg_spice_dictionary_definition = function(api_result) {
     "use strict";
 
+    // We moved Spice.render to a function because we're choosing between two contexts.
+    var render = ddg_spice_dictionary_definition.render;
+
     // Prevent jQuery from appending "_={timestamp}" in our url.
     $.ajaxSetup({
         cache: true
     });
 
+    // Check how many items we have, and if it refers to something that's plural (we know this because of the regexp).
     if (api_result && api_result.length > 0) {
-        // We moved Spice.render to a function because we're choosing between two contexts.
-        var render = ddg_spice_dictionary_definition.render;
+        var plural = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>([^<]+)<\/xref>/i);
 
-        // Check how many items we have, and if it refers to something that's plural (we know this because of the regexp).
-        var plural = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>(\w+(?:\s\w+)*)<\/xref>/i);
-
+        // This loads the definition of the singular form of the word.
         if(api_result.length === 1 && plural) {
-            // This loads the definition of the singular form of the word.
             $.getScript("/js/spice/dictionary/reference/" + plural[1]);
         } else {
             render(api_result, api_result[0].word);
@@ -33,13 +33,15 @@ var ddg_spice_dictionary_definition = function(api_result) {
 };
 
 ddg_spice_dictionary_definition.render = function(context, word) {
+    "use strict";
+
     Spice.render({
         data              : context,
         header1           : "Definition (Wordnik)",
         force_big_header  : true,
         source_name       : "Wordnik",
         source_url        : "http://www.wordnik.com/words/" + word,
-        template_normal   : "dictionary"
+        template_normal   : "dictionary_definition"
     });
 
     // Call the Wordnik API to display the pronunciation text and the audio.
@@ -50,6 +52,8 @@ ddg_spice_dictionary_definition.render = function(context, word) {
 
 // Change the context so that it would say something like, "dictionaries is the plural of dictionary."
 var ddg_spice_dictionary_reference = function(api_result) {
+    "use strict";
+
     var render = ddg_spice_dictionary_definition.render;
 
     if(api_result && api_result.length > 0) {
@@ -89,7 +93,7 @@ Handlebars.registerHelper("format", function(text) {
     "use strict";
 
     // Replace the xref tag into an anchor tag.
-    text = text.replace(/<xref>(\w+(\s\w+)*)<\/xref>/g, "<a class='reference' href='/?q=define+$1'>$1</a>");
+    text = text.replace(/<xref>([^<]+)<\/xref>/g, "<a class='reference' href='https://www.wordnik.com/words/$1'>$1</a>");
 
     // Make sure we do not encode the HTML tags.
     return new Handlebars.SafeString(text);
