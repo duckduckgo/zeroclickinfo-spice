@@ -94,11 +94,12 @@ Handlebars.registerHelper("listObjects", function(items, options) {
         out = "";
 
     for(var data in items) {
-        console.log(data);
-        if(index < 5) {
-            out += options.fn(items[data]);
+        if(hasOwn.call(items, data)) {
+            if(index < 5) {
+                out += options.fn(items[data]);
+            }
+            index += 1;
         }
-        index += 1;
     }
 
     return out;
