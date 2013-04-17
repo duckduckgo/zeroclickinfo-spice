@@ -1,7 +1,7 @@
 var ddg_spice_seatgeek_concert = function(api_result) {
     Spice.render({
         data              : api_result,
-        header1           : "Concerts (SeatGeek)",
+        header1           : "Concerts Nearby (SeatGeek)",
         force_big_header  : true,
         source_name       : "SeatGeek",
         source_url        : "http://seatgeek.com/",
@@ -11,11 +11,6 @@ var ddg_spice_seatgeek_concert = function(api_result) {
     $(".zero_click_snippet").attr("style", "margin-left: 0px !important; display: block;");
 
     var image_proxy = "/iu/?u=";
-
-    // Shorten the concert's date.
-    var shortenDate = function(date) {
-        return date.substr(0, date.lastIndexOf(" "));
-    };
 
     // Load Leaflet.js.
     $.getScript("/dist/leaflet.js", function() {
@@ -92,4 +87,4 @@ Handlebars.registerHelper("checkPrice", function(price, options) {
     if(price) {
         return options.fn({average_price: price});
     }
-})
+});
