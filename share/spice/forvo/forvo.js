@@ -91,17 +91,17 @@ Handlebars.registerHelper("sex", function(sex) {
 
 // Make sure we display only five items.
 // This helper is for objects.
-Handlebars.registerHelper("listObjects", function(items, total, options) {
+Handlebars.registerHelper("listObjects", function(items, options) {
     "use strict";
 
-    var out = "",
+    var hasOwn = Object.prototype.hasOwnProperty,
         index = 0,
-        showing = 0;
+        out = "";
 
-    while(index < total && showing < 5) {
-        if(items[index]) {
-            out += options.fn(items[index]);
-            showing += 1;
+    for(var data in items) {
+        console.log(data);
+        if(index < 5) {
+            out += options.fn(items[data]);
         }
         index += 1;
     }
