@@ -1,15 +1,10 @@
 var ddg_spice_forvo = function(api_result) {
     "use strict";
 
-    // From underscore.js. This function checks if obj is an array.
-    var isArray = function(obj) {
-        return window.toString.call(obj) === "[object Array]";
-    };
-
     // api_result.items can be either an array or an object.
-    // Although an array is an object, Forvo can return either
+    // Forvo returns either an array-like object or an actual array.
     // {0: "...", 1: "...", 2: "..."} or ["...", "...", "..."].
-    if(isArray(api_result.items)) {
+    if($.isArray(api_result.items)) {
         api_result.isArray = true;
     } else {
         api_result.isArray = false;
