@@ -1,3 +1,11 @@
+// TODO
+//    - Title, authors, date, journal, doi.
+//    - Maybe facets with highlighted terms?
+//    - How about some altmetrics? http://api.plos.org/alm/faq/
+//    - Limit the number of authors to avoid filling the display.
+//    - Extract only year from publication date.
+//    - linkify the title with doi.
+
 function ddg_spice_plos(request) {
 
   // Get query and exclude the trigger.
