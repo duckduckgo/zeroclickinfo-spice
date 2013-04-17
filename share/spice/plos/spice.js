@@ -1,4 +1,6 @@
 function ddg_spice_plos(request) {
+
+  // Get query and exclude the trigger.
   var query = DDG.get_query().replace(/plos/, "");
 
   // Check if response is OK.
@@ -22,10 +24,20 @@ function ddg_spice_plos(request) {
 
     // Loop over documents.
     for (var i = 0; i < limit; i++) {
-      var doc = docs[i]
-      results  += '<li>'
-              + doc['title_display']
-              + '</li>'
+      // Define article and its variables.
+      var doc = docs[i];
+      var title = doc['title_display'];
+      var authors = doc['author_display'].join(', ');
+      var journal = doc['journal'];
+      var pubdate = doc['publication_date'];
+      var id = doc['id'];
+      results += '<li>'
+              + title + '<br>'
+              + authors + '<br>'
+              + journal + '<br>'
+              + pubdate + '<br>'
+              + id;
+      results = results + '</li>'
     };
 
     // Finish results.
