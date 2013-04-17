@@ -2,7 +2,7 @@ function ddg_spice_canistreamit(movies) {
     "use strict";
     
     // Words to skip when isRelevant is called.
-    if(movies && movies.length >= 1 && DDG.isRelevant(movies[0].title, {})) {
+    if(movies) {
         var result,
             items = [],
             hasOwn = Object.prototype.hasOwnProperty;
