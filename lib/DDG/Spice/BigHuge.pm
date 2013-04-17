@@ -1,5 +1,5 @@
 package DDG::Spice::BigHuge;
-#     ABSTRACT: Give the synonym, antonym, similar and related words of the query.
+# ABSTRACT: Give the synonym, antonym, similar and related words of the query.
 
 use DDG::Spice;
 
@@ -30,14 +30,9 @@ handle query_lc => sub {
     $callback = $2;
     $term = $1;
   }
-  
+
   if (defined $term) {
-    use feature 'switch';
-    given($callback) {
-      when('synonyms') { $callback = 'synonym'; }
-      when('antonyms') { $callback = 'antonym'; }
-      default { $callback; }
-    }
+    $callback =~ s/(.+)s$/$1/; #remove plural "s" from synonyms,antonyms
     return $term, $callback;
   }
 
