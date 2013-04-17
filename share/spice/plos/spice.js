@@ -5,6 +5,7 @@
 //    - Limit the number of authors to avoid filling the display.
 //    - Extract only year from publication date.
 //    - linkify the title with doi.
+//    - Format display with css.
 
 function ddg_spice_plos(request) {
 
