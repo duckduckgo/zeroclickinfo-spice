@@ -1,0 +1,49 @@
+/*
+
+ SoundManager 2: "page as playlist" example
+ ------------------------------------------
+ http://schillmania.com/projects/soundmanager2/
+
+*/
+
+ul.venues {
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+}
+
+ul.venues li {
+    position:relative;
+    display:block;
+    width:auto;
+    font-size:1em;
+    color:#666;
+    padding:0.25em 0.5em 0.25em 0.5em;
+    border:none;
+    letter-spacing:-1px; /* ZOMG WEB X.0. ;) */
+    -webkit-transition-property: hover;
+    -webkit-transition: background-color 0.15s ease-in-out;
+    -moz-transition: background-color 0.15s linear 0s; /* firefox 4 */
+    -o-transition-property: background-color; /* opera 10.5 */
+    -o-transition-duration: 0.15s;
+}
+
+ul.venues li:hover {
+    background-color:#eee;
+}
+
+ul.venues li a {
+    display:block;
+    text-decoration:none;
+    font-weight:normal;
+    color:#000;
+    font-size:100%;
+    outline:none;
+    position:relative;
+    z-index:2;
+}
+
+span.metadata {
+    color: rgb(119, 119, 119);
+    font-size: 90%;
+}

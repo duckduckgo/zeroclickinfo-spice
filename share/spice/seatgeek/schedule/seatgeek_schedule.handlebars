@@ -1,0 +1,7 @@
+<div>
+    <ul class="venues">
+        {{#list events}}
+            <li><a href="{{url}}">{{short_title}} <span class="metadata"> at {{venue.name}} — {{venue.display_location}} (${{stats.average_price}})</span></a></li>
+        {{/list}}
+    <ul>
+</div>
