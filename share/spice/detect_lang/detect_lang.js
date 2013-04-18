@@ -75,12 +75,12 @@ var ddg_spice_detect_lang = function(api_result) {
     var detections = api_result.data.detections, result;
 
     if(detections[0].isReliable) {
-        result = "This text is definitely " + langs[detections[0].language] + " " + toPercent(detections[0].confidence) + ".";
+        result = "This text is definitely " + langs[detections[0].language] + " (" + toPercent(detections[0].confidence) + ").";
     } else if(detections.length === 1) {
-        result = "This text is probably " + langs[detections[0].language] + " " + toPercent(detections[0].confidence) + ".";
+        result = "This text is probably " + langs[detections[0].language] + " (" + toPercent(detections[0].confidence) + ").";
     } else if(detections.length > 1) {
-        result = "This text is probably " + langs[detections[0].language] + " " + toPercent(detections[0].confidence);
-        result += ", but it could also be "  + langs[detections[1].language] + " " + toPercent(detections[1].confidence) + ".";
+        result = "This text is probably " + langs[detections[0].language] + " (" + toPercent(detections[0].confidence);
+        result += "), but it could also be "  + langs[detections[1].language] + " (" + toPercent(detections[1].confidence) + ").";
     }
 
     // Display the plug-in.
