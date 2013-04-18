@@ -3,8 +3,7 @@ package DDG::Spice::GooglePlus;
 
 use DDG::Spice;
 
-spice to => 'https://www.googleapis.com/plus/v1/people/$1?query=$2&key={{ENV{DDG_SPICE_GOOGLE_PLUS_APIKEY}}}&callback={{callback}}';
-spice from => '(.*?)-(.*)';
+spice to => 'https://www.googleapis.com/plus/v1/people/?query=$1&key={{ENV{DDG_SPICE_GOOGLE_PLUS_APIKEY}}}&callback={{callback}}';
 spice proxy_ssl_session_reuse => "off";
 
 primary_example_queries "google+ duckduckgo";
@@ -21,13 +20,8 @@ triggers startend => 'google+', 'google plus', 'g+', 'gplus', 'google+ user', 'g
 'g plus user';
 
 handle remainder => sub {
-	my $query = $_;
-	if($query =~ /userid:(\d+)$/) {
-		return $1.'-'; 
-	}
-    if($query =~ /((?:[\w]|\s)+)$/) {
-		return '-'.$1;
-	}
+	return $_ if $_;
 	return;
 };
+
 1;
