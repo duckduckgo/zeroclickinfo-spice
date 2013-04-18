@@ -26,8 +26,8 @@ function ddg_spice_plos(request) {
 
     // Create object for results.
     var results = '<div>'
-                + '<span style="font-family:monospace;">Data Provided by PLOS</span>'
-                + '<ul style="padding-left:0;">';
+                + '<span style="font-family:monospace;padding-bottom:1em;">Data Provided by PLOS</span>'
+                + '<ul style="padding:1em 0 0 0;">';
 
     // Loop over documents.
     for (var i = 0; i < limit; i++) {
@@ -39,7 +39,7 @@ function ddg_spice_plos(request) {
       var pubdate = doc['publication_date'];
       var year = pubdate.substr(0, 4);
       var id = doc['id'];
-      results += '<li style="list-style-type:none;padding-bottom:1em;">'
+      results += '<li style="list-style-type:none;padding:0 3px 1em 3px;">'
               + '<a href="http://dx.doi.org/' + id + '" style="color:#333333;">'
               + '<span style="display:block;font-weight:bold;">' + title + '</span>'
               + '<span>' + authors + '</span>. '
@@ -52,7 +52,7 @@ function ddg_spice_plos(request) {
 
     // Finish results.
     results += '</ul>'
-            + '<span style="font-family:monospace;">Found ' + numFound + ' results in ' + qtime + ' ms</span>'
+            + '<span style="font-family:monospace;float:left;padding:3px 3px 0 0;">Found ' + numFound + ' results in ' + qtime + ' ms</span>'
             + '</div>';
 
     // Define callback items.
