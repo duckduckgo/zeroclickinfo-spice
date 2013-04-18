@@ -1,4 +1,19 @@
 var ddg_spice_lastfm_song = function(api_result) {
+    "use strict";
+
+    // Check if it is an empty string.
+    var checkString = function(string) {
+        string = string.replace(/\s+/, "");
+        return string === "";
+    };
+
+    // Exit if we find an error.
+    if(!api_result || !api_result.track || !api_result.track.artist || checkString(api_result.track.name) ||
+        checkString(api_result.track.artist.name)) {
+        return;
+    }
+
+    // Display the plug-in.
     Spice.render({
         data             : api_result,
         header1          : api_result.track.name,
@@ -9,7 +24,10 @@ var ddg_spice_lastfm_song = function(api_result) {
     });
 };
 
+// Add links to other websites.
 Handlebars.registerHelper("listen", function(artist, album, options) {
+    "use strict";
+
     var listen = [["Rdio", "!rdio"], ["Grooveshark", "!grooveshark"], ["Amazon MP3", "!amazonmp3"]],
         result = [];
 
@@ -24,4 +42,4 @@ Handlebars.registerHelper("listen", function(artist, album, options) {
     first = first.join(", ");
 
     return first + ", or " + result[result.length - 1] + ".";
-})
+});
