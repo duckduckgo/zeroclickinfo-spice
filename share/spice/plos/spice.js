@@ -1,11 +1,7 @@
 // TODO
-//    - Title, authors, date, journal, doi.
 //    - Maybe facets with highlighted terms?
 //    - How about some altmetrics? http://api.plos.org/alm/faq/
 //    - Limit the number of authors to avoid filling the display.
-//    - Extract only year from publication date.
-//    - linkify the title with doi.
-//    - Format display with css.
 
 function ddg_spice_plos(request) {
 
@@ -29,7 +25,9 @@ function ddg_spice_plos(request) {
     };
 
     // Create object for results.
-    var results = 'Data Provided by PLOS<br><ul>';
+    var results = '<div>'
+                + '<span style="font-family:monospace;">Data Provided by PLOS</span>'
+                + '<ul style="padding-left:0;">';
 
     // Loop over documents.
     for (var i = 0; i < limit; i++) {
@@ -39,19 +37,23 @@ function ddg_spice_plos(request) {
       var authors = doc['author_display'].join(', ');
       var journal = doc['journal'];
       var pubdate = doc['publication_date'];
+      var year = pubdate.substr(0, 4);
       var id = doc['id'];
-      results += '<li>'
-              + title + '<br>'
-              + authors + '<br>'
-              + journal + '<br>'
-              + pubdate + '<br>'
-              + id;
-      results = results + '</li>'
+      results += '<li style="list-style-type:none;padding-bottom:1em;">'
+              + '<a href="http://dx.doi.org/' + id + '" style="color:#333333;">'
+              + '<span style="display:block;font-weight:bold;">' + title + '</span>'
+              + '<span>' + authors + '</span>. '
+              + '<span style="font-style:italic;">' + journal + '</span> '
+              + '<span>(' + year + ')</span>'
+              //+ '<span class="id">' + id + '</span>'
+              + '</a>'
+              + '</li>';
     };
 
     // Finish results.
-    results = results + '</ul>';
-    results = results + 'Found ' + numFound + ' results in ' + qtime + ' ms';
+    results += '</ul>'
+            + '<span style="font-family:monospace;">Found ' + numFound + ' results in ' + qtime + ' ms</span>'
+            + '</div>';
 
     // Define callback items.
     var items = [[]];
