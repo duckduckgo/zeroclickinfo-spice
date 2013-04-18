@@ -1,4 +1,4 @@
-var ddg_spice_lastfm_song = function(api_result) {
+var ddg_spice_detect_lang = function(api_result) {
     "use strict";
 
     var langs = {
@@ -69,7 +69,7 @@ var ddg_spice_lastfm_song = function(api_result) {
     };
 
     var toPercent = function(confidence) {
-        Math.round(confidence * 100) + "% sure";
+        return Math.round(confidence * 100) + "% sure";
     };
 
     var detections = api_result.data.detections, result;
