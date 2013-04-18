@@ -1,7 +1,6 @@
 // TODO
 //    - Maybe facets with highlighted terms?
 //    - How about some altmetrics? http://api.plos.org/alm/faq/
-//    - Limit the number of authors to avoid filling the display.
 
 function ddg_spice_plos(request) {
 
@@ -34,7 +33,12 @@ function ddg_spice_plos(request) {
       // Define article and its variables.
       var doc = docs[i];
       var title = doc['title_display'];
-      var authors = doc['author_display'].join(', ');
+      var author_list = doc['author_display'];
+      if (author_list.length > 3) {
+        var authors = author_list.splice(0, 3).join(', ') + ', et al';
+      } else {
+        var authors = author_list.join(', ');
+      }
       var journal = doc['journal'];
       var pubdate = doc['publication_date'];
       var year = pubdate.substr(0, 4);
