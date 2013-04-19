@@ -108,12 +108,3 @@ Handlebars.registerHelper("toPercent", function(confidence) {
     "use strict";
     return Math.round(confidence * 100) + "% sure";
 });
-
-Handlebars.registerHelper("confidence", function(isReliable) {
-    "use strict";
-    if(isReliable) {
-        return "definitely";
-    } else {
-        return "probably";
-    }
-});
