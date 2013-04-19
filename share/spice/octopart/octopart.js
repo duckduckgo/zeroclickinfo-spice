@@ -1,7 +1,10 @@
 var ddg_spice_octopart = function(api_result) {
 
-    var query = "";
-    var matched, result;
+    if(!api_result || !api_result.results || api_result.results.length === 0) {
+        return;
+    }
+
+    var matched, result, query;
     $("script").each(function() {
         matched = $(this).attr("src");
         if(matched) {
