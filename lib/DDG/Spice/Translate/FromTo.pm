@@ -1,4 +1,4 @@
-package DDG::Spice::Translate::Detect;
+package DDG::Spice::Translate::FromTo;
 
 use DDG::Spice;
 use Moo;
@@ -10,23 +10,23 @@ attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
 
 my $langs = 'arabic|ar|chinese|zh|czech|cz|english|en|french|fr|greek|gr|italian|it|japanese|ja|korean|ko|polish|pl|portuguese|pt|romanian|ro|spanish|es|turkish|tr';
 
-spice to   => 'http://ws.detectlanguage.com/0.2/detect?q=$1&key={{ENV{DDG_SPICE_DETECTLANGUAGE_APIKEY}}}';
+spice to   => 'http://api.wordreference.com/0.8/{{ENV{DDG_SPICE_WORDREFERENCE_APIKEY}}}/json/$1/$2?callback={{callback}}';
 spice from => '(.+)\/(.+)';
-spice wrap_jsonp_callback => 1;
 
 triggers start => "translate";
 
 handle query_lc => sub {
     my $query = $_;
 
-    if($query =~ /^translate (\w+)(?: to ($langs))?$/) {
-        my ($phrase, $to) = ($1, $2);
+    if($query =~ /^translate (\w+) from ($langs) to ($langs)$/) {
+        my ($phrase, $from, $to) = ($1, $2, $3);
 
-        if($to && $phrase) {
-            return ($phrase, shorten_lang($to));
-        }
+        $from = shorten_lang($from);
+        $to   = shorten_lang($to);
 
-        return ($phrase, substr($lang->locale, 0, 2)) unless (not defined $phrase);
+        my $dict = $from.$to;
+
+        return ($dict, $phrase);
     }
 
     return;
