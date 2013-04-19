@@ -1,0 +1,14 @@
+{{#with flight}}
+    <div class="nrft-holder">
+        <div class="nrft">
+            <div>
+                <div>{{{status DepartureDate EstimatedGateDepartureDate DepartureAirportTimeZoneOffset true}}}</div>
+            </div>
+        </div>
+        <div class="nrft">
+            <div>
+                <div>{{{status ArrivalDate EstimatedGateArrivalDate ArrivalAirportTimeZoneOffset false}}}</div>
+            </div>
+        </div>
+    </div>
+{{/with}}
