@@ -3,7 +3,7 @@ package DDG::Spice::Plos;
 
 use DDG::Spice;
 
-triggers start => 'plos';
+triggers startend => 'plos';
 
 spice to => 'http://api.plos.org/search?q="$1"&rows=5&wt=json&api_key={{ENV{DDG_SPICE_PLOS_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
