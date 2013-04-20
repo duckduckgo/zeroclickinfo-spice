@@ -5,7 +5,7 @@
 function ddg_spice_plos(request) {
 
   // Get query and exclude the trigger.
-  var query = DDG.get_query().replace(/plos/, "");
+  var query = DDG.get_query().replace(/plos/i, "");
 
   // Check if response is OK.
   var status = request['responseHeader']['status'];
