@@ -20,7 +20,8 @@ var ddg_spice_airlines = function(api_result) {
 
     // Make the header.
     var status = function(flight) {
-        return STATUS[flight.StatusCode] + ": Flight Status for " + flight.Airline.Name;
+        return STATUS[flight.StatusCode] + ": Flight Status for " +
+                    flight.Airline.Name + " " + flight.FlightNumber;
     };
 
     // Display the plug-in.
@@ -115,7 +116,7 @@ var ddg_spice_airlines = function(api_result) {
     });
 
     Handlebars.registerHelper("checkGate", function(gate) {
-        return gate || " — ";
+        return gate || "—";
     });
 
     Handlebars.registerHelper("time", function(actualDate, publishedDate) {
