@@ -1,10 +1,26 @@
-var nrft = function(api_result) {
+var ddg_spice_airlines = function(api_result) {
     "use strict";
+
+    var STATUS = {
+        'S': 'Scheduled',
+        'A': 'In the air',
+        'U': 'Unknown status',
+        'R': 'Redirected flight',
+        'L': 'Landed',
+        'D': 'Diverted',
+        'C': 'Cancelled',
+        'NO': 'Not Operational',
+        'DN': 'Data Needed'
+    };
+
+    var status = function(flight) {
+        return STATUS[flight.StatusCode] + ": Flight Status for " + flight.Airline.Name;
+    }
 
     // Display the plug-in.
     Spice.render({
         data             : api_result,
-        header1          : "Airlines",
+        header1          : status(api_result.flight),
         source_url       : "http://www.flightstats.com",
         source_name      : "FlightStats",
         template_normal  : "airlines",
@@ -58,25 +74,34 @@ var nrft = function(api_result) {
         var dateObject = getDateFromString(dateString);
 
         var delta = relativeTime(dateObject, airportOffset);
-        var time = toTime(delta);
 
         if(isDeparture) {
             if(delta === 0) {
-                return "<b>Departing</b> " + time;
+                return "Departing";
             } else if(delta > 0) {
-                return "<b>Departs</b> " + time;
+                return "Departs";
             } else {
-                return "<b>Departed</b> " + time;
+                return "Departed";
             }
         } else {
             if(delta === 0) {
-                return "<b>Arriving</b> " + time;
+                return "Arriving";
             } else if(delta > 0) {
-                return "<b>Arrives</b> " + time;
+                return "Arrives";
             } else {
-                return "<b>Arrived</b> " + time;
+                return "Arrived";
             }
         }
+    });
+
+    Handlebars.registerHelper("relative", function(actualDate, publishedDate, airportOffset) {
+        var dateString = actualDate || publishedDate
+        var dateObject = getDateFromString(dateString);
+
+        var delta = relativeTime(dateObject, airportOffset);
+        var time = toTime(delta);
+
+        return time;
     });
 
     Handlebars.registerHelper("airportName", function(name) {
@@ -84,11 +109,7 @@ var nrft = function(api_result) {
     });
 
     Handlebars.registerHelper("checkGate", function(gate) {
-        if(gate) {
-            return "Gate " + gate;
-        } else {
-            return "Gate unavailable";
-        }
+        return gate || " — ";
     });
 
     Handlebars.registerHelper("time", function(actualDate, publishedDate) {

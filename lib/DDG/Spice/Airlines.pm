@@ -16,7 +16,7 @@ category "time_sensitive";
 attribution github => ['https://github.com/hunterlang','Hunter Lang'],
             web => 'http://hunterlang.com/';
 
-spice to => 'http://www.duckduckgo.com/flights.js?airline=$1&flightno=$2';
+spice to => 'https://www.duckduckgo.com/flights.js?airline=$1&flightno=$2&callback={{callback}}';
 spice from => '(.*?)/(.*)';
 
 triggers query_lc => qr/\d+/;
