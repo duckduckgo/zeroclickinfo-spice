@@ -1,4 +1,6 @@
-var ddg_spice_airlines = nrft = function(api_result) {
+var nrft = function(api_result) {
+    "use strict";
+
     // Display the plug-in.
     Spice.render({
         data             : api_result,
@@ -11,6 +13,8 @@ var ddg_spice_airlines = nrft = function(api_result) {
 };
 
 (function() {
+    "use strict";
+
     var MILLIS_PER_MIN = 60000;
     var MILLIS_PER_HOUR = MILLIS_PER_MIN * 60;
 
@@ -26,7 +30,7 @@ var ddg_spice_airlines = nrft = function(api_result) {
     // Compute the difference between now and the time of departure or arrival.
     var relativeTime = function(date, airportOffset) {
         // This is the time of departure or arrival (not sure why we're getting the difference).
-        var date = date.getTime() - (date.getTimezoneOffset() * MILLIS_PER_MIN);
+        date = date.getTime() - (date.getTimezoneOffset() * MILLIS_PER_MIN);
 
         // This is the current time at the airport (in milliseconds).
         var now = new Date().getTime() + (airportOffset * MILLIS_PER_HOUR);
@@ -40,22 +44,18 @@ var ddg_spice_airlines = nrft = function(api_result) {
         var hours = Math.abs(Math.floor(delta / MILLIS_PER_HOUR));
         var minutes = Math.abs(Math.floor((delta % MILLIS_PER_HOUR) / MILLIS_PER_MIN));
         if (0 < hours) {
-            time += hours + ' hrs ';
+            time += hours + " hrs ";
         }
         if (0 < minutes) {
-            time += minutes + ' mins ';
+            time += minutes + " mins ";
         }
         return time;
     };
 
     // Check when the plane will depart (or if it has departed).
-    Handlebars.registerHelper("status", function(dateString, estimatedDate, airportOffset, isDeparture) {
-        var dateObject;
-        if(dateString) {
-            dateObject = getDateFromString(dateString);
-        } else {
-            dateObject = getDateFromString(estimatedDate);
-        }
+    Handlebars.registerHelper("status", function(actualDate, publishedDate, airportOffset, isDeparture) {
+        var dateString = actualDate || publishedDate
+        var dateObject = getDateFromString(dateString);
 
         var delta = relativeTime(dateObject, airportOffset);
         var time = toTime(delta);
@@ -77,5 +77,47 @@ var ddg_spice_airlines = nrft = function(api_result) {
                 return "<b>Arrived</b> " + time;
             }
         }
+    });
+
+    Handlebars.registerHelper("airportName", function(name) {
+        return name.replace(/airport|international/ig, "");
+    });
+
+    Handlebars.registerHelper("checkGate", function(gate) {
+        if(gate) {
+            return "Gate " + gate;
+        } else {
+            return "Gate unavailable";
+        }
+    });
+
+    Handlebars.registerHelper("time", function(actualDate, publishedDate) {
+        var dateString = actualDate || publishedDate
+        var dateObject = getDateFromString(dateString);
+        console.log(dateObject);
+
+        var hours = dateObject.getHours();
+        var minutes = dateObject.getMinutes();
+
+        var date = dateObject.toDateString();
+        date = date.substring(0, date.lastIndexOf(" "));
+
+        var suffix = "";
+        // AM or PM?
+        if(hours >= 12) {
+            suffix = "p.m.";
+        } else {
+            suffix = "a.m.";
+        }
+
+        // Convert to 12-hour clock.
+        if(hours > 12) {
+            hours -= 12;
+        }
+
+        // Add leading zeroes.
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+
+        return date + ", " + hours + ":" + minutes + " " + suffix;
     });
 }());

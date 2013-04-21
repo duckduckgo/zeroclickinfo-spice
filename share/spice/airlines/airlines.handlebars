@@ -2,13 +2,20 @@
     <div class="nrft-holder">
         <div class="nrft">
             <div>
-                <div>{{{status DepartureDate EstimatedGateDepartureDate DepartureAirportTimeZoneOffset true}}}</div>
+                <div>{{{status ActualRunwayDepartureDate PublishedDepartureDate DepartureAirportTimeZoneOffset true}}}</div>
+                <div><a href="http://www.flightstats.com/go/Airport/airportDetails.do?airport={{Origin.AirportCode}}">{{airportName Origin.Name}} ({{Origin.AirportCode}})</a></div>
+                <div>Terminal {{DepartureTerminal}}, {{checkGate DepartureGate}}</div>
+                <div>{{time ActualRunwayDepartureDate PublishedDepartureDate}}</div>
             </div>
         </div>
         <div class="nrft">
             <div>
-                <div>{{{status ArrivalDate EstimatedGateArrivalDate ArrivalAirportTimeZoneOffset false}}}</div>
+                <div>{{{status ActualRunwayArrivalDate PublishedArrivalDate ArrivalAirportTimeZoneOffset false}}}</div>
+                <div><a href="http://www.flightstats.com/go/Airport/airportDetails.do?airport={{Destination.AirportCode}}">{{airportName Destination.Name}} ({{Destination.AirportCode}})</a></div>
+                <div>Terminal {{ArrivalTerminal}}, {{checkGate ArrivalGate}}</div>
+                <div>{{time ActualRunwayArrivalDate PublishedArrivalDate}}</div>
             </div>
         </div>
     </div>
+    <div style="clear: both;"></div>
 {{/with}}
