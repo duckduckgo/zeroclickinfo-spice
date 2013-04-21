@@ -1,6 +1,11 @@
 var ddg_spice_airlines = function(api_result) {
     "use strict";
 
+    // Check if we have anything returned.
+    if(!api_result || !api_result.flight) {
+        return;
+    }
+
     var STATUS = {
         'S': 'Scheduled',
         'A': 'In the air',
@@ -13,9 +18,10 @@ var ddg_spice_airlines = function(api_result) {
         'DN': 'Data Needed'
     };
 
+    // Make the header.
     var status = function(flight) {
         return STATUS[flight.StatusCode] + ": Flight Status for " + flight.Airline.Name;
-    }
+    };
 
     // Display the plug-in.
     Spice.render({
@@ -70,7 +76,7 @@ var ddg_spice_airlines = function(api_result) {
 
     // Check when the plane will depart (or if it has departed).
     Handlebars.registerHelper("status", function(actualDate, publishedDate, airportOffset, isDeparture) {
-        var dateString = actualDate || publishedDate
+        var dateString = actualDate || publishedDate;
         var dateObject = getDateFromString(dateString);
 
         var delta = relativeTime(dateObject, airportOffset);
@@ -95,7 +101,7 @@ var ddg_spice_airlines = function(api_result) {
     });
 
     Handlebars.registerHelper("relative", function(actualDate, publishedDate, airportOffset) {
-        var dateString = actualDate || publishedDate
+        var dateString = actualDate || publishedDate;
         var dateObject = getDateFromString(dateString);
 
         var delta = relativeTime(dateObject, airportOffset);
@@ -113,9 +119,8 @@ var ddg_spice_airlines = function(api_result) {
     });
 
     Handlebars.registerHelper("time", function(actualDate, publishedDate) {
-        var dateString = actualDate || publishedDate
+        var dateString = actualDate || publishedDate;
         var dateObject = getDateFromString(dateString);
-        console.log(dateObject);
 
         var hours = dateObject.getHours();
         var minutes = dateObject.getMinutes();
