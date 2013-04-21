@@ -24,11 +24,17 @@ var ddg_spice_airlines = function(api_result) {
                     flight.Airline.Name + " " + flight.FlightNumber;
     };
 
+    // This is the URL for the "More at ..." link.
+    var flightURL = function(flight) {
+        return "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" +
+                    flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber;
+    };
+
     // Display the plug-in.
     Spice.render({
         data             : api_result,
         header1          : status(api_result.flight),
-        source_url       : "http://www.flightstats.com",
+        source_url       : flightURL(api_result.flight),
         source_name      : "FlightStats",
         template_normal  : "airlines",
         force_big_header : true
