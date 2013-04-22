@@ -1,6 +1,5 @@
 // TODO
 //    - Don't show ZCI if results == 0.
-//    - Remove info line.
 //    - Use canonical header style: "query (PLOS)".
 //    - Change list style, use ordered list.
 //    - Remove bolding titles, use another thing to make it stand out.
@@ -12,14 +11,11 @@ function ddg_spice_plos(request) {
   // Get query and exclude the trigger.
   var query = DDG.get_query().replace(/plos/i, "");
 
-  // Check if response is OK.
+  // Check if response is OK and results > 0.
   var status = request['responseHeader']['status'];
-  if (status === 0) {
+  var numFound = request['response']['numFound'];
 
-    // Fetch information.
-    var qtime = request['responseHeader']['QTime'];
-    var numFound = request['response']['numFound'];
-    
+  if (status === 0) {
     // Get docs and define loop limit.
     var docs = request['response']['docs'];
     if (docs.length < 5) {
@@ -54,14 +50,12 @@ function ddg_spice_plos(request) {
               + '<span>' + authors + '</span>. '
               + '<span style="font-style:italic;">' + journal + '</span> '
               + '<span>(' + year + ')</span>'
-              //+ '<span class="id">' + id + '</span>'
               + '</a>'
               + '</li>';
     };
 
     // Finish results.
     results += '</ul>'
-            + '<span style="font-family:monospace;float:left;padding:3px 3px 0 0;">Found ' + numFound + ' results in ' + qtime + ' ms</span>'
             + '</div>';
 
     // Define callback items.
