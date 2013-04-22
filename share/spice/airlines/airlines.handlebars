@@ -1,21 +1,13 @@
-{{#with this}}
-    <div class="nrft-holder">
+<div class="nrft-holder">
+    {{#each this}}
         <div class="nrft">
             <div>
-                <b>{{{status DepartureAirportTimeZoneOffset true}}}</b> {{relative DepartureAirportTimeZoneOffset true}}
+                <b>{{{status airportTimezone true}}}</b> {{relative airportTimezone true}}
             </div>
-            <div><a href="http://www.flightstats.com/go/Airport/airportDetails.do?airport={{Origin.AirportCode}}">{{airportName Origin.Name}} ({{Origin.AirportCode}})</a></div>
-            <div>Terminal {{checkTerminal DepartureTerminal}}, Gate {{checkGate DepartureGate}}</div>
+            <div><a href="http://www.flightstats.com/go/Airport/airportDetails.do?airport={{airport.AirportCode}}">{{airportName airport.Name}} ({{airport.AirportCode}})</a></div>
+            <div>Terminal {{checkTerminal terminal}}, Gate {{checkGate gate}}</div>
             <div>{{time true}}</div>
         </div>
-        <div class="nrft">
-            <div>
-                <b>{{{status ArrivalAirportTimeZoneOffset false}}}</b> {{relative ArrivalAirportTimeZoneOffset false}}
-            </div>
-            <div><a href="http://www.flightstats.com/go/Airport/airportDetails.do?airport={{Destination.AirportCode}}">{{airportName Destination.Name}} ({{Destination.AirportCode}})</a></div>
-            <div>Terminal {{checkTerminal ArrivalTerminal}}, Gate {{checkGate ArrivalGate}}</div>
-            <div>{{time false}}</div>
-        </div>
-    </div>
-    <div style="clear: both;"></div>
-{{/with}}
+    {{/each}}
+</div>
+<div style="clear: both;"></div>

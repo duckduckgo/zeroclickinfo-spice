@@ -185,9 +185,22 @@ var ddg_spice_airlines = function(api_result) {
                     flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber;
     };
 
+    // Create the context.
+    var context = [{
+        airportTimezone: flight.DepartureAirportTimeZoneOffset,
+        airport: flight.Origin,
+        terminal: flight.DepartureTerminal,
+        gate: flight.DepartureGate
+    }, {
+        airportTimezone: flight.ArrivalAirportTimeZoneOffset,
+        airport: flight.Destination,
+        terminal: flight.ArrivalTerminal,
+        gate: flight.ArrivalGate
+    }];
+
     // Display the plug-in.
     Spice.render({
-        data             : flight,
+        data             : context,
         header1          : statusHeader(),
         source_url       : flightURL(),
         source_name      : "FlightStats",
