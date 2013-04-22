@@ -34,6 +34,10 @@ var ddg_spice_airlines = function(api_result) {
         return new Date(milliseconds);
     };
 
+    // Pre-compute the departure and arrival dates.
+    var departureDate = getDateFromString(flight.ActualGateDepartureDate || flight.EstimatedGateDepartureDate || flight.DepartureDate);
+    var arrivalDate = getDateFromString(flight.ActualGateArrivalDate || flight.EstimatedGateArrivalDate || flight.ArrivalDate);
+
     // Compute the difference between now and the time of departure or arrival.
     var relativeTime = function(date, airportOffset) {
         // This is the time of departure or arrival (not sure why we're getting the difference).
@@ -68,9 +72,11 @@ var ddg_spice_airlines = function(api_result) {
     };
 
     // Check when the plane will depart (or if it has departed).
-    Handlebars.registerHelper("status", function(actualDate, estimatedDate, publishedDate, airportOffset, isDeparture) {
-        var dateString = actualDate || estimatedDate || publishedDate;
-        var dateObject = getDateFromString(dateString);
+    Handlebars.registerHelper("status", function(airportOffset, isDeparture) {
+        var dateObject = arrivalDate;
+        if(isDeparture) {
+            dateObject = departureDate;
+        }
 
         var delta = relativeTime(dateObject, airportOffset);
 
@@ -94,9 +100,11 @@ var ddg_spice_airlines = function(api_result) {
     });
 
     // Compute for the relative time (e.g. 31 minutes ago).
-    Handlebars.registerHelper("relative", function(actualDate, estimatedDate, publishedDate, airportOffset) {
-        var dateString = actualDate || estimatedDate || publishedDate;
-        var dateObject = getDateFromString(dateString);
+    Handlebars.registerHelper("relative", function(airportOffset, isDeparture) {
+        var dateObject = arrivalDate;
+        if(isDeparture) {
+            dateObject = departureDate;
+        }
 
         var delta = relativeTime(dateObject, airportOffset);
         var time = toTime(delta);
@@ -117,9 +125,11 @@ var ddg_spice_airlines = function(api_result) {
     });
 
     // Add the date and time or departure or arrival.
-    Handlebars.registerHelper("time", function(actualDate, estimatedDate, publishedDate) {
-        var dateString = actualDate || estimatedDate || publishedDate;
-        var dateObject = getDateFromString(dateString);
+    Handlebars.registerHelper("time", function(isDeparture) {
+        var dateObject = arrivalDate;
+        if(isDeparture) {
+            dateObject = departureDate;
+        }
 
         var hours = dateObject.getHours();
         var minutes = dateObject.getMinutes();
@@ -148,10 +158,7 @@ var ddg_spice_airlines = function(api_result) {
 
     // Check if the airplane is on-time or delayed.
     var onTime = function() {
-        var departureDate = getDateFromString(flight.ActualGateDepartureDate || flight.EstimatedGateDepartureDate || flight.DepartureDate);
         var scheduledDeparture = getDateFromString(flight.ScheduledGateDepartureDate);
-
-        var arrivalDate = getDateFromString(flight.ActualRunwayArrivalDate || flight.EstimatedGateArrivalDate || flight.ArrivalDate);
         var scheduledArrival = getDateFromString(flight.ScheduledGateArrivalDate);
 
         var deltaDepart = departureDate - scheduledDeparture;
