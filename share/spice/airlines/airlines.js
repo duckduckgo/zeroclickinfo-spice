@@ -183,12 +183,14 @@ var ddg_spice_airlines = function(api_result) {
         airportTimezone: flight.DepartureAirportTimeZoneOffset,
         airport: flight.Origin,
         terminal: flight.DepartureTerminal || "—",
-        gate: flight.DepartureGate || "—"
+        gate: flight.DepartureGate || "—",
+        isDeparted: true
     }, {
         airportTimezone: flight.ArrivalAirportTimeZoneOffset,
         airport: flight.Destination,
         terminal: flight.ArrivalTerminal || "—",
-        gate: flight.ArrivalGate || "—"
+        gate: flight.ArrivalGate || "—",
+        isDeparted: false
     }];
 
     // Display the plug-in.
