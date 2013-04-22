@@ -20,6 +20,7 @@ var ddg_spice_airlines = function(api_result) {
         "DN": "Data Needed"
     };
 
+    // Check if flight is an array or not.
     var flight = api_result.flight;
     if($.isArray(flight)) {
         flight = flight[0];
@@ -143,7 +144,7 @@ var ddg_spice_airlines = function(api_result) {
             suffix = "p.m.";
         }
 
-        // Convert to 12-hour clock.
+        // Convert to 12-hour time.
         if(hours > 12) {
             hours -= 12;
         } else if(hours === 0) {
