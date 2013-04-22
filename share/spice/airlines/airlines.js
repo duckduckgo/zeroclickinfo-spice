@@ -6,46 +6,19 @@ var ddg_spice_airlines = function(api_result) {
         return;
     }
 
-    var STATUS = {
-        'S': 'Scheduled',
-        'A': 'In the air',
-        'U': 'Unknown status',
-        'R': 'Redirected flight',
-        'L': 'Landed',
-        'D': 'Diverted',
-        'C': 'Cancelled',
-        'NO': 'Not Operational',
-        'DN': 'Data Needed'
-    };
-
-    // Make the header.
-    var status = function(flight) {
-        return STATUS[flight.StatusCode] + ": Flight Status for " +
-                    flight.Airline.Name + " " + flight.FlightNumber;
-    };
-
-    // This is the URL for the "More at ..." link.
-    var flightURL = function(flight) {
-        return "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" +
-                    flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber;
-    };
-
-    // Display the plug-in.
-    Spice.render({
-        data             : api_result,
-        header1          : status(api_result.flight),
-        source_url       : flightURL(api_result.flight),
-        source_name      : "FlightStats",
-        template_normal  : "airlines",
-        force_big_header : true
-    });
-};
-
-(function() {
-    "use strict";
-
     var MILLIS_PER_MIN = 60000;
     var MILLIS_PER_HOUR = MILLIS_PER_MIN * 60;
+    var STATUS = {
+        "S": "Scheduled",
+        "A": "In the air",
+        "U": "Unknown status",
+        "R": "Redirected flight",
+        "L": "Landed",
+        "D": "Diverted",
+        "C": "Cancelled",
+        "NO": "Not Operational",
+        "DN": "Data Needed"
+    };
 
     // Parse string, and return the date (either arrival or departure date).
     var getDateFromString = function(date) {
@@ -70,20 +43,28 @@ var ddg_spice_airlines = function(api_result) {
     // Convert the time from milliseconds to hours and minutes.
     var toTime = function(delta) {
         var time = "";
-        var hours = Math.abs(Math.floor(delta / MILLIS_PER_HOUR));
-        var minutes = Math.abs(Math.floor((delta % MILLIS_PER_HOUR) / MILLIS_PER_MIN));
+        var hours = Math.floor(Math.abs(delta / MILLIS_PER_HOUR));
+        var minutes = Math.floor(Math.abs((delta % MILLIS_PER_HOUR) / MILLIS_PER_MIN));
+
         if (0 < hours) {
             time += hours + " hrs ";
         }
         if (0 < minutes) {
             time += minutes + " mins ";
         }
-        return time;
+
+        if(delta === 0) {
+            return "now";
+        } else if(delta > 0) {
+            return "in " + time;
+        } else {
+            return time + " ago";
+        }
     };
 
     // Check when the plane will depart (or if it has departed).
-    Handlebars.registerHelper("status", function(actualDate, publishedDate, airportOffset, isDeparture) {
-        var dateString = actualDate || publishedDate;
+    Handlebars.registerHelper("status", function(actualDate, estimatedDate, publishedDate, airportOffset, isDeparture) {
+        var dateString = actualDate || estimatedDate || publishedDate;
         var dateObject = getDateFromString(dateString);
 
         var delta = relativeTime(dateObject, airportOffset);
@@ -107,8 +88,9 @@ var ddg_spice_airlines = function(api_result) {
         }
     });
 
-    Handlebars.registerHelper("relative", function(actualDate, publishedDate, airportOffset) {
-        var dateString = actualDate || publishedDate;
+    // Compute for the relative time (e.g. 31 minutes ago).
+    Handlebars.registerHelper("relative", function(actualDate, estimatedDate, publishedDate, airportOffset) {
+        var dateString = actualDate || estimatedDate || publishedDate;
         var dateObject = getDateFromString(dateString);
 
         var delta = relativeTime(dateObject, airportOffset);
@@ -125,8 +107,13 @@ var ddg_spice_airlines = function(api_result) {
         return gate || "—";
     });
 
-    Handlebars.registerHelper("time", function(actualDate, publishedDate) {
-        var dateString = actualDate || publishedDate;
+    Handlebars.registerHelper("checkTerminal", function(terminal) {
+        return terminal || "—";
+    });
+
+    // Add the date and time or departure or arrival.
+    Handlebars.registerHelper("time", function(actualDate, estimatedDate, publishedDate) {
+        var dateString = actualDate || estimatedDate || publishedDate;
         var dateObject = getDateFromString(dateString);
 
         var hours = dateObject.getHours();
@@ -135,17 +122,17 @@ var ddg_spice_airlines = function(api_result) {
         var date = dateObject.toDateString();
         date = date.substring(0, date.lastIndexOf(" "));
 
-        var suffix = "";
         // AM or PM?
+        var suffix = "a.m.";
         if(hours >= 12) {
             suffix = "p.m.";
-        } else {
-            suffix = "a.m.";
         }
 
         // Convert to 12-hour clock.
         if(hours > 12) {
             hours -= 12;
+        } else if(hours === 0) {
+            hours = 12;
         }
 
         // Add leading zeroes.
@@ -153,4 +140,46 @@ var ddg_spice_airlines = function(api_result) {
 
         return date + ", " + hours + ":" + minutes + " " + suffix;
     });
-}());
+
+    // Check if the airplane is on-time or delayed.
+    var onTime = function(status, flight) {
+        var departureDate = getDateFromString(flight.EstimatedGateDepartureDate || flight.DepartureDate);
+        var scheduledDeparture = getDateFromString(flight.ScheduledGateDepartureDate);
+
+        var arrivalDate = getDateFromString(flight.EstimatedGateArrivalDate || flight.ArrivalDate);
+        var scheduledArrival = getDateFromString(flight.ScheduledGateArrivalDate);
+
+        var deltaDepart = departureDate - scheduledDeparture;
+        var deltaArrive = arrivalDate - scheduledArrival;
+        if(status === "A") {
+            if(MILLIS_PER_MIN * 5 < deltaDepart || MILLIS_PER_MIN * 5 < deltaArrive) {
+                return "Delayed";
+            } else {
+                return "On-time";
+            }
+        }
+        return STATUS[status];
+    };
+
+    // Make the header.
+    var statusHeader = function(flight) {
+        return onTime(flight.StatusCode, flight) + ": Flight Status for " +
+                    flight.Airline.Name + " " + flight.FlightNumber;
+    };
+
+    // This is the URL for the "More at ..." link.
+    var flightURL = function(flight) {
+        return "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" +
+                    flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber;
+    };
+
+    // Display the plug-in.
+    Spice.render({
+        data             : api_result,
+        header1          : statusHeader(api_result.flight),
+        source_url       : flightURL(api_result.flight),
+        source_name      : "FlightStats",
+        template_normal  : "airlines",
+        force_big_header : true
+    });
+};

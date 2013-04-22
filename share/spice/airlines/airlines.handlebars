@@ -3,23 +3,27 @@
         <div class="nrft">
             <div>
                 <div>
-                    <b>{{{status ActualRunwayDepartureDate PublishedDepartureDate DepartureAirportTimeZoneOffset true}}}</b> in
-                    {{relative ActualRunwayDepartureDate PublishedDepartureDate DepartureAirportTimeZoneOffset}}
+                    <b>
+                        {{{status ActualGateDepartureDate EstimatedGateDepartureDate DepartureDate DepartureAirportTimeZoneOffset true}}}
+                    </b>
+                    {{relative ActualGateDepartureDate EstimatedGateDepartureDate DepartureDate DepartureAirportTimeZoneOffset}}
                 </div>
                 <div><a href="http://www.flightstats.com/go/Airport/airportDetails.do?airport={{Origin.AirportCode}}">{{airportName Origin.Name}} ({{Origin.AirportCode}})</a></div>
-                <div>Terminal {{DepartureTerminal}}, Gate {{checkGate DepartureGate}}</div>
-                <div>{{time ActualRunwayDepartureDate PublishedDepartureDate}}</div>
+                <div>Terminal {{checkTerminal DepartureTerminal}}, Gate {{checkGate DepartureGate}}</div>
+                <div>{{time ActualGateDepartureDate EstimatedGateDepartureDate DepartureDate}}</div>
             </div>
         </div>
         <div class="nrft">
             <div>
                 <div>
-                    <b>{{{status ActualRunwayArrivalDate PublishedArrivalDate ArrivalAirportTimeZoneOffset false}}}</b> in
-                    {{relative ActualRunwayArrivalDate PublishedArrivalDate ArrivalAirportTimeZoneOffset}}
+                    <b>
+                        {{{status ActualRunwayArrivalDate EstimatedGateArrivalDate ArrivalDate ArrivalAirportTimeZoneOffset false}}}
+                    </b>
+                    {{relative ActualRunwayArrivalDate EstimatedGateArrivalDate ArrivalDate ArrivalAirportTimeZoneOffset}}
                 </div>
                 <div><a href="http://www.flightstats.com/go/Airport/airportDetails.do?airport={{Destination.AirportCode}}">{{airportName Destination.Name}} ({{Destination.AirportCode}})</a></div>
-                <div>Terminal {{ArrivalTerminal}}, Gate {{checkGate ArrivalGate}}</div>
-                <div>{{time ActualRunwayArrivalDate PublishedArrivalDate}}</div>
+                <div>Terminal {{checkTerminal ArrivalTerminal}}, Gate {{checkGate ArrivalGate}}</div>
+                <div>{{time ActualRunwayArrivalDate EstimatedGateArrivalDate ArrivalDate}}</div>
             </div>
         </div>
     </div>
