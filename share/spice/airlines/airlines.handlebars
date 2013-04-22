@@ -1,14 +1,13 @@
-{{#with flight}}
-    <div class="nrft-holder">
+<div class="nrft-holder">
+    {{#each this}}
         <div class="nrft">
             <div>
-                <div>{{{status DepartureDate EstimatedGateDepartureDate DepartureAirportTimeZoneOffset true}}}</div>
+                <b>{{{status airportTimezone isDeparted}}}</b> {{relative airportTimezone isDeparted}}
             </div>
+            <div><a href="http://www.flightstats.com/go/Airport/airportDetails.do?airport={{airport.AirportCode}}">{{airportName airport.Name}} ({{airport.AirportCode}})</a></div>
+            <div>Terminal {{terminal}}, Gate {{gate}}</div>
+            <div>{{time isDeparted}}</div>
         </div>
-        <div class="nrft">
-            <div>
-                <div>{{{status ArrivalDate EstimatedGateArrivalDate ArrivalAirportTimeZoneOffset false}}}</div>
-            </div>
-        </div>
-    </div>
-{{/with}}
+    {{/each}}
+</div>
+<div style="clear: both;"></div>
