@@ -117,14 +117,6 @@ var ddg_spice_airlines = function(api_result) {
         return name.replace(/airport|international/ig, "");
     });
 
-    Handlebars.registerHelper("checkGate", function(gate) {
-        return gate || "—";
-    });
-
-    Handlebars.registerHelper("checkTerminal", function(terminal) {
-        return terminal || "—";
-    });
-
     // Add the date and time or departure or arrival.
     Handlebars.registerHelper("time", function(isDeparture) {
         var dateObject = arrivalDate;
@@ -190,13 +182,13 @@ var ddg_spice_airlines = function(api_result) {
     var context = [{
         airportTimezone: flight.DepartureAirportTimeZoneOffset,
         airport: flight.Origin,
-        terminal: flight.DepartureTerminal,
-        gate: flight.DepartureGate
+        terminal: flight.DepartureTerminal || "—",
+        gate: flight.DepartureGate || "—"
     }, {
         airportTimezone: flight.ArrivalAirportTimeZoneOffset,
         airport: flight.Destination,
-        terminal: flight.ArrivalTerminal,
-        gate: flight.ArrivalGate
+        terminal: flight.ArrivalTerminal || "—",
+        gate: flight.ArrivalGate || "—"
     }];
 
     // Display the plug-in.
