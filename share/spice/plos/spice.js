@@ -62,7 +62,7 @@ function ddg_spice_plos(request) {
     var items = [[]];
     items[0] = {
       a: results,
-      h: 'PLOS research articles: ' + query,
+      h: query + ' (PLOS)',
       s: 'PLOS',
       u: 'http://www.plosone.org/search/advancedSearch.action?pageSize=50&unformattedQuery=' + query,
       force_big_header: true,
