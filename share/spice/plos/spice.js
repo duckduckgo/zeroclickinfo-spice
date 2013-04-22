@@ -1,6 +1,11 @@
 // TODO
-//    - Maybe facets with highlighted terms?
-//    - How about some altmetrics? http://api.plos.org/alm/faq/
+//    - Don't show ZCI if results == 0.
+//    - Remove info line.
+//    - Use canonical header style: "query (PLOS)".
+//    - Change list style, use ordered list.
+//    - Remove bolding titles, use another thing to make it stand out.
+//    - Make citation look clickable.
+//    - Check if data is available before showing "undefined".
 
 function ddg_spice_plos(request) {
 
