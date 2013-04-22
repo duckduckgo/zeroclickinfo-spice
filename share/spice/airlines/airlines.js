@@ -161,7 +161,7 @@ var ddg_spice_airlines = function(api_result) {
         var deltaDepart = departureDate - scheduledDeparture;
         var deltaArrive = arrivalDate - scheduledArrival;
         if(flight.StatusCode === "A" || flight.StatusCode === "S") {
-            if(MILLIS_PER_MIN * 5 < deltaDepart || MILLIS_PER_MIN * 5 < deltaArrive) {
+            if(MILLIS_PER_MIN * 5 < deltaDepart && MILLIS_PER_MIN * 5 < deltaArrive) {
                 return "Delayed";
             } else {
                 return "On-time";
