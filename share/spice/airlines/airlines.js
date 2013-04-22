@@ -20,6 +20,15 @@ var ddg_spice_airlines = function(api_result) {
         "DN": "Data Needed"
     };
 
+    var flight = api_result.flight;
+    if($.isArray(flight)) {
+        flight = flight[0];
+    }
+
+    Handlebars.registerHelper("chooseFlight", function(object) {
+        return object.fn(flight);
+    });
+
     // Parse string, and return the date (either arrival or departure date).
     var getDateFromString = function(date) {
         date = date.match(/([\d]{4})\-([\d]{2})\-([\d]{2})T([\d]{2}):([\d]{2}):([\d]{2})/);
@@ -142,33 +151,33 @@ var ddg_spice_airlines = function(api_result) {
     });
 
     // Check if the airplane is on-time or delayed.
-    var onTime = function(status, flight) {
-        var departureDate = getDateFromString(flight.EstimatedGateDepartureDate || flight.DepartureDate);
+    var onTime = function() {
+        var departureDate = getDateFromString(flight.ActualGateDepartureDate || flight.EstimatedGateDepartureDate || flight.DepartureDate);
         var scheduledDeparture = getDateFromString(flight.ScheduledGateDepartureDate);
 
-        var arrivalDate = getDateFromString(flight.EstimatedGateArrivalDate || flight.ArrivalDate);
+        var arrivalDate = getDateFromString(flight.ActualRunwayArrivalDate || flight.EstimatedGateArrivalDate || flight.ArrivalDate);
         var scheduledArrival = getDateFromString(flight.ScheduledGateArrivalDate);
 
         var deltaDepart = departureDate - scheduledDeparture;
         var deltaArrive = arrivalDate - scheduledArrival;
-        if(status === "A") {
+        if(flight.StatusCode === "A" || flight.StatusCode === "S") {
             if(MILLIS_PER_MIN * 5 < deltaDepart || MILLIS_PER_MIN * 5 < deltaArrive) {
                 return "Delayed";
             } else {
                 return "On-time";
             }
         }
-        return STATUS[status];
+        return STATUS[flight.StatusCode];
     };
 
     // Make the header.
-    var statusHeader = function(flight) {
-        return onTime(flight.StatusCode, flight) + ": Flight Status for " +
+    var statusHeader = function() {
+        return onTime() + ": Flight Status for " +
                     flight.Airline.Name + " " + flight.FlightNumber;
     };
 
     // This is the URL for the "More at ..." link.
-    var flightURL = function(flight) {
+    var flightURL = function() {
         return "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" +
                     flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber;
     };
@@ -176,8 +185,8 @@ var ddg_spice_airlines = function(api_result) {
     // Display the plug-in.
     Spice.render({
         data             : api_result,
-        header1          : statusHeader(api_result.flight),
-        source_url       : flightURL(api_result.flight),
+        header1          : statusHeader(),
+        source_url       : flightURL(),
         source_name      : "FlightStats",
         template_normal  : "airlines",
         force_big_header : true
