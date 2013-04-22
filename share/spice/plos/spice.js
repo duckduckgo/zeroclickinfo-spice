@@ -1,9 +1,5 @@
 // TODO
 //    - Don't show ZCI if results == 0.
-//    - Use canonical header style: "query (PLOS)".
-//    - Change list style, use ordered list.
-//    - Remove bolding titles, use another thing to make it stand out.
-//    - Make citation look clickable.
 //    - Check if data is available before showing "undefined".
 
 function ddg_spice_plos(request) {
@@ -27,7 +23,7 @@ function ddg_spice_plos(request) {
     // Create object for results.
     var results = '<div>'
                 + '<span style="font-family:monospace;padding-bottom:1em;">Data Provided by PLOS</span>'
-                + '<ul style="padding:1em 0 0 0;">';
+                + '<ol style="padding-top:0.5em;">';
 
     // Loop over documents.
     for (var i = 0; i < limit; i++) {
@@ -44,18 +40,18 @@ function ddg_spice_plos(request) {
       var pubdate = doc['publication_date'];
       var year = pubdate.substr(0, 4);
       var id = doc['id'];
-      results += '<li style="list-style-type:none;padding:0 3px 1em 3px;">'
-              + '<a href="http://dx.doi.org/' + id + '" style="color:#333333;">'
-              + '<span style="display:block;font-weight:bold;">' + title + '</span>'
-              + '<span>' + authors + '</span>. '
-              + '<span style="font-style:italic;">' + journal + '</span> '
-              + '<span>(' + year + ')</span>'
+      results += '<li style="padding-bottom:0.5em;">'
+              + '<a href="http://dx.doi.org/' + id + '" style="">'
+              + '<span style="font-size:1.2em;">' + title + '</span><br>'
+              + '<span style="color:#444444;">' + authors + '</span>. '
+              + '<span style="color:#444444;font-style:italic;">' + journal + '</span> '
+              + '<span style="color:#444444;">(' + year + ')</span>'
               + '</a>'
               + '</li>';
     };
 
     // Finish results.
-    results += '</ul>'
+    results += '</ol>'
             + '</div>';
 
     // Define callback items.
