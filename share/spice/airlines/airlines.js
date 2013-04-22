@@ -25,10 +25,6 @@ var ddg_spice_airlines = function(api_result) {
         flight = flight[0];
     }
 
-    Handlebars.registerHelper("chooseFlight", function(object) {
-        return object.fn(flight);
-    });
-
     // Parse string, and return the date (either arrival or departure date).
     var getDateFromString = function(date) {
         date = date.match(/([\d]{4})\-([\d]{2})\-([\d]{2})T([\d]{2}):([\d]{2}):([\d]{2})/);
@@ -184,7 +180,7 @@ var ddg_spice_airlines = function(api_result) {
 
     // Display the plug-in.
     Spice.render({
-        data             : api_result,
+        data             : flight,
         header1          : statusHeader(),
         source_url       : flightURL(),
         source_name      : "FlightStats",
