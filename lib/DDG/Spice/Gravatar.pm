@@ -20,8 +20,12 @@ attribution github => ['https://github.com/adman','Adman'],
 handle remainder => sub {
     #Remove whitespace.
     s/^\s+|\s+$//;
-    my $email_hash = md5_hex(lc $_);
-    return $email_hash if defined $email_hash;
+    if($_ =~ /@/) {
+        my $email_hash = md5_hex(lc $_);
+        return $email_hash if $email_hash;
+    } elsif($_) {
+        return $_;
+    }
     return;
 };
 
