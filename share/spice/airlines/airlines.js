@@ -5,13 +5,7 @@
 // Requires jQuery.
 //
 // Commands:
-// american airlines 102 - will show 
-//
-// Notes:
-// ddg_spice_dictionary_definition - gets the definitions of a given word (e.g. noun. A sound or a combination of sounds).
-// ddg_spice_dictionary_pronunciation - gets the pronunciation of a word (e.g. wûrd).
-// ddg_spice_dictionary_audio - gets the audio file.
-// ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
+// american airlines 102 - will show details about the flight.
 
 var ddg_spice_airlines = function(api_result) {
     "use strict";
