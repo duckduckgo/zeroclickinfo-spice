@@ -1,0 +1,44 @@
+<div>
+    {{#with entry.[0]}}
+            {{#getEmail emails}}
+                <div>
+                    Email: <a href="mailto:{{value}}">{{value}}</a>
+                </div>
+            {{/getEmail}}
+            {{#if aboutMe}}
+                <div>
+                    About: {{{condense aboutMe maxlen="60"}}}
+                </div>
+            {{/if}}
+            {{#if currentLocation}}
+                <div>
+                    Location: {{{condense currentLocation maxlen="40"}}}
+                </div>
+            {{/if}}
+            {{#if accounts}}
+                <div>
+                    {{#each accounts}}
+                        <a href="{{url}}" title="{{display}}" class="more-links-anchor">
+                            <img class="more-links" src="https://icons.duckduckgo.com/i/{{checkDomain domain}}.ico">
+                        </a>
+                    {{/each}}
+                </div>
+                <div></div>
+            {{/if}}
+            {{#fallbackInfo emails aboutMe currentLocation accounts this}}
+                <div>
+                    Link to this profile: <a href="{{profileUrl}}" title="{{profileUrl}}">{{profileUrl}}</a>
+                </div>
+                <div>
+                    For developers:
+                    <a href="http://en.gravatar.com/{{requestHash}}.json">JSON</a> ·
+                    <a href="http://en.gravatar.com/{{requestHash}}.xml">XML</a> ·
+                    <a href="http://en.gravatar.com/{{requestHash}}.php">PHP</a> ·
+                    <a href="http://en.gravatar.com/{{requestHash}}.vcf">VCF</a> ·
+                    <a href="http://en.gravatar.com/{{requestHash}}.qr">QR</a>
+                </div>
+            {{/fallbackInfo}}
+        {{/with}}
+    </div>
+    <div style="clear: both"></div>
+</div>
