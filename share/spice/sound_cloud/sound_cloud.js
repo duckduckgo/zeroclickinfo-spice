@@ -1,3 +1,12 @@
+// Description:
+// Returns a list of streamable MP3s.
+//
+// Dependencies:
+// Requires SoundManager2, jQuery, and SoundManager2 page-player (for the player).
+//
+// Commands:
+// soundcloud falloutboy
+
 var ddg_spice_sound_cloud = function(api_result) {
     "use strict";
 
