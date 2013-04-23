@@ -52,7 +52,7 @@ handle query_lc => sub {
     my $airline;
     my $flightno;
 
-    if($query =~ /^(\d+)\s*(.*?)(?:[ ]air.*|)$/) {
+    if($query =~ /^(\d+)\s*(.*?)(?:[ ]air.*?)$/) {
         $airline = $airlines{$2};
         $flightno = $1;
         if(length($2) > 2 && !exists $elements{$2} && exists $airlines{$2}) {
@@ -60,7 +60,8 @@ handle query_lc => sub {
         } elsif(length($2) == 2 && !exists $elements{$2} && exists $airlines{$2}) {
             return $airline, $flightno;
         }
-    } elsif($query =~ /^(.*?)(?:[ ]air.*|)?\s*(\d+)$/) {
+    } elsif($query =~ /^(.*?)(?:[ ]air.*?)?\s*(\d+)$/) {
+        warn $1;
         $airline = $airlines{$1};
         $flightno = $2;
         if(length($1) > 2 && !exists $elements{$1} && exists $airlines{$1}) {
