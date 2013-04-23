@@ -2,7 +2,7 @@ package DDG::Spice::Dictionary::Definition;
 
 use DDG::Spice;
 
-spice to => 'https://api.wordnik.com/v4/word.json/$1/definitions?includeRelated=true&useCanonical=true&includeTags=true&limit=3&api_key={{ENV{DDG_SPICE_RANDWORD_APIKEY}}}&callback={{callback}}';
+spice to => 'https://api.wordnik.com/v4/word.json/$1/definitions?includeRelated=true&useCanonical=true&includeTags=true&limit=3&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}';
 triggers startend => "define", "define:", "definition", "definition of", "definition of:";
 spice is_cached => 1;
 
