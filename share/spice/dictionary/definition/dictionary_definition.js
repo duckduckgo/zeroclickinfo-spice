@@ -1,11 +1,17 @@
-// The dictionary plug-in requires multiple API calls, and these are handled by:
+// Description:
+// Shows the definition of a word.
+//
+// Dependencies:
+// Requires SoundManager2 and jQuery.
+//
+// Commands:
+// define dictionary - gives the definition of the word "dictionary."
+//
+// Notes:
 // ddg_spice_dictionary_definition - gets the definitions of a given word (e.g. noun. A sound or a combination of sounds).
 // ddg_spice_dictionary_pronunciation - gets the pronunciation of a word (e.g. wûrd).
-// ddg_spice_dictionary_audio - gets the audio file of a word.
-// ddg_spice_dictionary_fallback - handles any misspellings.
-//
-// pronunciation and audio callbacks are loaded and executed much later -- that is,
-// after ddg_spice_dictionary_definition gets executed.
+// ddg_spice_dictionary_audio - gets the audio file.
+// ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
 
 // This function gets the definition of a word.
 var ddg_spice_dictionary_definition = function(api_result) {
