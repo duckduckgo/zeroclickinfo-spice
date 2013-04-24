@@ -66,5 +66,8 @@ Handlebars.registerHelper("checkDomain", function(domain) {
     if(domain === "plus.google.com") {
         return "google.com";
     }
+    if(domain === "yelp.com") {
+        return "/iu/?u=http://s3-media2.ak.yelpcdn.com/assets/2/www/img/118ff475a341/ico/favicon.ico";
+    }
     return domain;
 });
