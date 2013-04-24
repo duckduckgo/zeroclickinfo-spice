@@ -3,6 +3,9 @@ DuckDuckHack Spice
 This documentation walks you through the process of writing a DuckDuckHack Spice plugin.
 Before reading this section, make sure you've read the [DuckDuckHack Intro Site](http://duckduckhack.com) and the [DuckDuckHack Developer's Overview](https://github.com/duckduckgo/duckduckgo/blob/master/README.md). If you're here to brush up on Spice-related info, go ahead and scroll down. If you're here to learn how to write Spice plugins, head on over to the [Spice Overview](https://github.com/duckduckgo/duckduckgo#spice-overview).
 
+### Example
+![quixey example](https://s3.amazonaws.com/ddg-assets/docs/spice_example.png)
+
 ## Spice Handle Functions
 Spice plugins have **triggers** and **handle** functions like Goodies, as explained in the [Basic tutorial](http://github.com/duckduckgo/duckduckgo#basic-tutorial). The difference is that Spice handle functions don't return an instant answer directly like Goodies. Instead, they return arguments used to call a JavaScript callback function that then returns the instant answer.
 
