@@ -1,3 +1,12 @@
+// Description:
+// Shows the departure and arrival times of an airplane.
+//
+// Dependencies:
+// Requires jQuery.
+//
+// Commands:
+// american airlines 102 - will show details about the flight.
+
 var ddg_spice_airlines = function(api_result) {
     "use strict";
 
@@ -39,60 +48,6 @@ var ddg_spice_airlines = function(api_result) {
     var departureDate = getDateFromString(flight.ActualGateDepartureDate || flight.EstimatedGateDepartureDate || flight.DepartureDate);
     var arrivalDate = getDateFromString(flight.ActualGateArrivalDate || flight.EstimatedGateArrivalDate || flight.ArrivalDate);
 
-    // Check if the airplane is on-time or delayed.
-    var onTime = function() {
-        var scheduledDeparture = getDateFromString(flight.ScheduledGateDepartureDate);
-        var scheduledArrival = getDateFromString(flight.ScheduledGateArrivalDate);
-
-        var deltaDepart = departureDate - scheduledDeparture;
-        var deltaArrive = arrivalDate - scheduledArrival;
-        if(flight.StatusCode === "A") {
-            if(MILLIS_PER_MIN * 5 < deltaDepart && MILLIS_PER_MIN * 5 < deltaArrive) {
-                return "Delayed";
-            } else {
-                return "On-time";
-            }
-        }
-        return STATUS[flight.StatusCode];
-    };
-
-    // Make the header.
-    var statusHeader = function() {
-        return onTime() + ": Flight Status for " +
-                    flight.Airline.Name + " " + flight.FlightNumber;
-    };
-
-    // This is the URL for the "More at ..." link.
-    var flightURL = function() {
-        return "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" +
-                    flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber;
-    };
-
-    // Create the context.
-    var context = [{
-        airportTimezone: flight.DepartureAirportTimeZoneOffset,
-        airport: flight.Origin,
-        terminal: flight.DepartureTerminal || "—",
-        gate: flight.DepartureGate || "—",
-        isDeparted: true
-    }, {
-        airportTimezone: flight.ArrivalAirportTimeZoneOffset,
-        airport: flight.Destination,
-        terminal: flight.ArrivalTerminal || "—",
-        gate: flight.ArrivalGate || "—",
-        isDeparted: false
-    }];
-
-    // Display the plug-in.
-    Spice.render({
-        data             : context,
-        header1          : statusHeader(),
-        source_url       : flightURL(),
-        source_name      : "FlightStats",
-        template_normal  : "airlines",
-        force_big_header : true
-    });
-
     // Compute the difference between now and the time of departure or arrival.
     var relativeTime = function(date, airportOffset) {
         // This is the time of departure or arrival (not sure why we're getting the difference).
@@ -122,7 +77,7 @@ var ddg_spice_airlines = function(api_result) {
         } else if(delta > 0) {
             return "in " + time;
         } else {
-            return time + " ago";
+            return time + "ago";
         }
     };
 
@@ -201,5 +156,59 @@ var ddg_spice_airlines = function(api_result) {
         minutes = minutes < 10 ? "0" + minutes : minutes;
 
         return date + ", " + hours + ":" + minutes + " " + suffix;
+    });
+
+    // Check if the airplane is on-time or delayed.
+    var onTime = function() {
+        var scheduledDeparture = getDateFromString(flight.ScheduledGateDepartureDate);
+        var scheduledArrival = getDateFromString(flight.ScheduledGateArrivalDate);
+
+        var deltaDepart = departureDate - scheduledDeparture;
+        var deltaArrive = arrivalDate - scheduledArrival;
+        if(flight.StatusCode === "A") {
+            if(MILLIS_PER_MIN * 5 < deltaDepart && MILLIS_PER_MIN * 5 < deltaArrive) {
+                return "Delayed";
+            } else {
+                return "On-time";
+            }
+        }
+        return STATUS[flight.StatusCode];
+    };
+
+    // Make the header.
+    var statusHeader = function() {
+        return onTime() + ": Flight Status for " +
+                    flight.Airline.Name + " " + flight.FlightNumber;
+    };
+
+    // This is the URL for the "More at ..." link.
+    var flightURL = function() {
+        return "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" +
+                    flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber;
+    };
+
+    // Create the context.
+    var context = [{
+        airportTimezone: flight.DepartureAirportTimeZoneOffset,
+        airport: flight.Origin,
+        terminal: flight.DepartureTerminal || "—",
+        gate: flight.DepartureGate || "—",
+        isDeparted: true
+    }, {
+        airportTimezone: flight.ArrivalAirportTimeZoneOffset,
+        airport: flight.Destination,
+        terminal: flight.ArrivalTerminal || "—",
+        gate: flight.ArrivalGate || "—",
+        isDeparted: false
+    }];
+
+    // Display the plug-in.
+    Spice.render({
+        data             : context,
+        header1          : statusHeader(),
+        source_url       : flightURL(),
+        source_name      : "FlightStats",
+        template_normal  : "airlines",
+        force_big_header : true
     });
 };

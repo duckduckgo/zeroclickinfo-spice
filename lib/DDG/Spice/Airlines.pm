@@ -33,6 +33,7 @@ foreach my $line (@airlines_lines) {
   my @line = split(/,/, $line);
 
   $line[1] =~ s/\s+air.*$//i;
+
   $airlines{lc $line[1]} = $line[0]; #American (Airlines <- regex removed) => AA
   $airlines{lc $line[0]} = $line[0]; #AA => AA
 }
@@ -40,8 +41,10 @@ foreach my $line (@airlines_lines) {
 my %elements = ();
 my @elements_lines = share('symbols.txt')->slurp;
 foreach my $line (@elements_lines) {
-    chomp $line;         
-    $elements{lcfirst($line)} = undef;
+    chomp $line;
+    my @line = split(/,/, $line);
+    $elements{$line[0]} = 1;
+    $elements{$line[1]} = 1;
 }
 
 handle query_lc => sub {
@@ -49,16 +52,21 @@ handle query_lc => sub {
     my $airline;
     my $flightno;
 
-    if($query =~ /^(\d+)\s*(.*?)(?:[ ]air.*|)$/) {
-        if(exists $airlines{$2} && !exists $elements{substr($2, 0, 2)}) {
-            $airline = $airlines{$2};
-            $flightno = $1;
+    if($query =~ /^(\d+)\s*(.*?)(?:[ ]air.*?)?$/) {
+        $airline = $airlines{$2};
+        $flightno = $1;
+        if(length($2) > 2 && !exists $elements{$2} && exists $airlines{$2}) {
+            return $airline, $flightno;
+        } elsif(length($2) == 2 && !exists $elements{$2} && exists $airlines{$2}) {
             return $airline, $flightno;
         }
     } elsif($query =~ /^(.*?)(?:[ ]air.*?)?\s*(\d+)$/) {
-        if(exists $airlines{$1} && !exists $elements{substr($1, 0, 2)}) {
-            $airline = $airlines{$1};
-            $flightno = $2;
+        warn $1;
+        $airline = $airlines{$1};
+        $flightno = $2;
+        if(length($1) > 2 && !exists $elements{$1} && exists $airlines{$1}) {
+            return $airline, $flightno;
+        } elsif(length($1) == 2 && !exists $elements{$1} && exists $airlines{$1}) {
             return $airline, $flightno;
         }
     }
