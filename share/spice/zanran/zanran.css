@@ -6,3 +6,11 @@
   max-height: 100px; /* A4 ratio */
   border: 1px solid black;
 }
+
+.hide {
+    display: none;
+}
+
+hr.horizontal_line {
+    margin: 5px 0;
+}
