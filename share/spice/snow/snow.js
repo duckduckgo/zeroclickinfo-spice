@@ -28,7 +28,3 @@ var nrio = function(api_result) {
         template_normal   : "snow"
     });
 };
-
-Handlebars.registerHelper("lowerCase", function(text) {
-    return text.toLowerCase();
-});
