@@ -25,7 +25,7 @@ var ddg_spice_gravatar = function(api_result) {
             return entry.name.givenName + " " + entry.name.familyName;
         }
         return entry.displayName;
-    }
+    };
 
     // Display the spice plugin.
     Spice.render({
@@ -67,4 +67,4 @@ Handlebars.registerHelper("checkDomain", function(domain) {
         return "google.com";
     }
     return domain;
-})
+});
