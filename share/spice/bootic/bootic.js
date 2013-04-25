@@ -7,14 +7,6 @@ function ddg_spice_bootic ( api_result ) {
 		'?initial=1&q=' + encodeURIComponent( api_result.input_query ) :
 		'';
 
-	var array = [];
-
-	$.each(api_result.products, function(key, value){
-		array.push(this);
-	});
-
-	api_result.products = array;
-
 	Spice.render({
 		data: api_result,
 		source_name : 'Bootic',
@@ -37,9 +29,8 @@ function ddg_spice_bootic ( api_result ) {
 
 // forms the url for a bootic product image
 Handlebars.registerHelper ('picture_url', function() {
-	var pic_base_uri = 'http://static.bootic.com/_pictures/',
-		pic_id = this.pictures[0],
+	var pic_id = this.pictures[0],
 		url = pic_id.replace(/\d+x\d+/, "60x80");
 
-	return pic_base_uri + url;
+	return url;
 });
