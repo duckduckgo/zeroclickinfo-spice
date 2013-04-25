@@ -26,17 +26,45 @@ var ddg_spice_sound_cloud = function(api_result) {
     });
 
     var playSound = function(element) {
+        $(".soundcloud-stream").each(function() {
+            $(this).removeClass("playing");
+            $(this).removeClass("paused");
+        });
         soundManager.stopAll();
         var sound = soundManager.createSound({
             id       : $(element).attr("id"),
-            url      : $(element).data("stream")
+            url      : $(element).data("stream"),
+            onfinish : function() {
+                $(element).removeClass("playing");
+            }
         });
         sound.play();
+        $(element).addClass("playing");
     };
+
+    var pauseSound = function(element) {
+        var id= $(element).attr("id");
+        soundManager.pause(id);
+        $(element).removeClass("playing");
+        $(element).addClass("paused");
+    };
+
+    var resumeSound = function(element) {
+        var id = $(element).attr("id");
+        soundManager.resume(id);
+        $(element).removeClass("paused");
+        $(element).addClass("playing");
+    }
 
     $(".soundcloud-stream").click(function() {
         if(window.soundManager) {
-            playSound(this);
+            if($(this).hasClass("playing")) {
+                pauseSound(this);
+            } else if($(this).hasClass("paused")) {
+                resumeSound(this);
+            } else {
+                playSound(this);
+            }
         } else {
             // Load SoundManager2. This JS file handles our audio.
             window.SM2_DEFER = true;
