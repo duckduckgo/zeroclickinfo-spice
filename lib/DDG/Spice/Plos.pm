@@ -1,5 +1,5 @@
 package DDG::Spice::Plos;
-# ABSTRACT: Returns 5 best research articles from PLOS database.
+# ABSTRACT: Returns top 5 hits from PLOS database of research articles.
 
 use DDG::Spice;
 

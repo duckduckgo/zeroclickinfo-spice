@@ -1,5 +1,3 @@
-// TODO
-
 function ddg_spice_plos(request) {
 
   // Get query and exclude the trigger.
