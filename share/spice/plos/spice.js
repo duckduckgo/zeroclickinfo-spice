@@ -1,5 +1,4 @@
 // TODO
-//    - Don't show ZCI if results == 0.
 //    - Check if data is available before showing "undefined".
 
 function ddg_spice_plos(request) {
@@ -11,7 +10,7 @@ function ddg_spice_plos(request) {
   var status = request['responseHeader']['status'];
   var numFound = request['response']['numFound'];
 
-  if (status === 0) {
+  if (status === 0 && numFound > 0) {
     // Get docs and define loop limit.
     var docs = request['response']['docs'];
     if (docs.length < 5) {
