@@ -1,7 +1,7 @@
 <div>
-    {{#with firstResult}}
+    {{#each results from="0" to="1"}}
         <div>
-            {{title}}
+            {{{condense title maxlen="215"}}
             {{#if preview_url}}
                 [<a href="{{preview_url}}">Preview</a>]
             {{/if}}
@@ -9,23 +9,21 @@
         <div>
             <i>Source: <a href="{{final_url}}">{{site_name}}</a></i>
         </div>
-    {{/with}}
+    {{/each}}
 </div>
-{{#if otherResults}}
-    <div style="clear: both;"></div>
-    <hr class="horizontal_line">
-    <a href="javascript:void(0);" data-target="#other-results" class="show-hide">Other Results</a>
-    <div class="hide" id="other-results">
-        {{#each otherResults}}
-            <div>
-                {{{condense title maxlen="150"}}}
-                {{#if preview_url}}
-                    [<a href="{{preview_url}}">Preview</a>]
-                {{/if}}
-            </div>
-            <div>
-                <i>Source: <a href="{{final_url}}">{{site_name}}</a></i>
-            </div>
-        {{/each}}
-    </div>
-{{/if}}
+<div style="clear: both;"></div>
+<hr class="horizontal_line">
+<a href="javascript:void(0);" data-target="#other-results" class="show-hide">Other Results</a>
+<div class="hide" id="other-results">
+    {{#each results from="1"}}
+        <div>
+            {{short_title}}
+            {{#if preview_url}}
+                [<a href="{{preview_url}}">Preview</a>]
+            {{/if}}
+        </div>
+        <div>
+            <i>Source: <a href="{{final_url}}">{{site_name}}</a></i>
+        </div>
+    {{/each}}
+</div>

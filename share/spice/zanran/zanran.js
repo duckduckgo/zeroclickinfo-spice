@@ -10,8 +10,6 @@ function ddg_spice_zanran(api_result) {
         return "";
     };
 
-    api_result.firstResult = api_result.results[0];
-    api_result.otherResults = api_result.results.splice(1, api_result.results.length);
     Spice.render({
         data             : api_result,
         header1          : 'Data & Statistics from Zanran',
@@ -27,3 +25,26 @@ function ddg_spice_zanran(api_result) {
         $(id).toggle();
     });
 };
+
+Handlebars.registerHelper("each", function(context, options) {
+    if(!context) {
+        return;
+    }
+
+    var from = +options.hash.from || 0,
+        to = +options.hash.to || context.length,
+        result = "";
+
+    for(var i = from; i < to; i += 1) {
+        result += options.fn(context[i]);
+    }
+
+    return result;
+});
+
+Handlebars.registerHelper("checkLength", function(context, options) {
+    if(context.length > 1) {
+        console.log(options.fn(context));
+        return options.fn(context);
+    }
+});
