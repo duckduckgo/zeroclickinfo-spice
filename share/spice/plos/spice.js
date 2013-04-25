@@ -1,5 +1,4 @@
 // TODO
-//    - Check if data is available before showing "undefined".
 
 function ddg_spice_plos(request) {
 
@@ -26,26 +25,40 @@ function ddg_spice_plos(request) {
 
     // Loop over documents.
     for (var i = 0; i < limit; i++) {
-      // Define article and its variables.
+      // Define article and its id.
       var doc = docs[i];
+      var id = doc['id'];
+
+      // Write article citation.
+      results += '<li style="padding-bottom:0.5em;">'
+              + '<a href="http://dx.doi.org/' + id + '" style="">';
+      
+      // Title, has to exist.
       var title = doc['title_display'];
+      results += '<span style="color:#333333;">' + title + '</span><br>';
+
+      // Author list trimmed for more than 3 authors.
       var author_list = doc['author_display'];
       if (author_list.length > 3) {
         var authors = author_list.splice(0, 3).join(', ') + ', et al';
       } else {
         var authors = author_list.join(', ');
       }
-      var journal = doc['journal'];
+      results += '<span style="color:#444444;font-size:0.8em;">' + authors + '.</span> ';
+
+      // Journal, only add if it is defined.
+      if (doc['journal']) {
+        var journal = doc['journal'];
+        results += '<span style="color:#444444;font-style:italic;font-size:0.8em;">' + journal + '</span> ';
+      } 
+
+      // Publication date and year.
       var pubdate = doc['publication_date'];
       var year = pubdate.substr(0, 4);
-      var id = doc['id'];
-      results += '<li style="padding-bottom:0.5em;">'
-              + '<a href="http://dx.doi.org/' + id + '" style="">'
-              + '<span style="color:#333333;">' + title + '</span><br>'
-              + '<span style="color:#444444;font-size:0.8em;">' + authors + '.</span> '
-              + '<span style="color:#444444;font-style:italic;font-size:0.8em;">' + journal + '</span> '
-              + '<span style="color:#444444;font-size:0.8em;">(' + year + ')</span>'
-              + '</a>'
+      results += '<span style="color:#444444;font-size:0.8em;">(' + year + ')</span>';
+
+      // Close up citation.
+      results += '</a>'
               + '</li>';
     };
 
