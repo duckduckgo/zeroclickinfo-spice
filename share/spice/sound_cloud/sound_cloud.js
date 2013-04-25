@@ -118,3 +118,10 @@ Handlebars.registerHelper("chooseImage", function(artwork, avatar) {
     var image = artwork || avatar;
     return image.replace(/large\.jpg/, "t200x200.jpg");
 });
+
+Handlebars.registerHelper("toHttps", function(audio) {
+    "use strict";
+    if(audio) {
+        return audio.replace(/^http:/, "https:");
+    }
+});
