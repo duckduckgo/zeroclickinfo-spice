@@ -42,10 +42,10 @@ function ddg_spice_plos(request) {
       var id = doc['id'];
       results += '<li style="padding-bottom:0.5em;">'
               + '<a href="http://dx.doi.org/' + id + '" style="">'
-              + '<span style="font-size:1.2em;">' + title + '</span><br>'
-              + '<span style="color:#444444;">' + authors + '.</span> '
-              + '<span style="color:#444444;font-style:italic;">' + journal + '</span> '
-              + '<span style="color:#444444;">(' + year + ')</span>'
+              + '<span style="color:#333333;">' + title + '</span><br>'
+              + '<span style="color:#444444;font-size:0.8em;">' + authors + '.</span> '
+              + '<span style="color:#444444;font-style:italic;font-size:0.8em;">' + journal + '</span> '
+              + '<span style="color:#444444;font-size:0.8em;">(' + year + ')</span>'
               + '</a>'
               + '</li>';
     };
