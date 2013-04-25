@@ -1,6 +1,6 @@
 <ul class="playlist">
     {{#checkStreamable this}}
-        <li><a class="soundcloud-audio" data-image="{{chooseImage artwork_url user.avatar_url}}" data-stream="{{toHttps stream_url}}?client_id=df14a65559c0e555d9f9fd950c2d5b17" type="audio/mp3" title="{{title}}">{{limit title user.username}} <span class="sidenote">by {{user.username}}</span></a></li>
+        <li><a class="soundcloud-audio" data-image="{{chooseImage artwork_url user.avatar_url}}" data-url="{{permalink_url}}" data-stream="{{toHttps stream_url}}?client_id=df14a65559c0e555d9f9fd950c2d5b17" type="audio/mp3" title="{{title}}">{{limit title user.username}} <span class="sidenote">by {{user.username}}</span></a></li>
     {{/checkStreamable}}
 </ul>
 <div class="clear"></div>

@@ -405,11 +405,12 @@ function PagePlayer() {
         var oTemp = this._data.oLI.getElementsByTagName('a')[0],
             oString = oTemp.innerHTML,
             oThis = this;
-        oTemp.innerHTML = oString+' <span style="font-size:0.5em"> | Load failed, d\'oh! '+(sm.sandbox.noRemote?' Possible cause: Flash sandbox is denying remote URL access.':(sm.sandbox.noLocal?'Flash denying local filesystem access':'404?'))+'</span>';
-        setTimeout(function(){
+        window.location.href = $("#" + this.id).data("url");
+        // oTemp.innerHTML = oString+' <span style="font-size:1em"> | Load failed! '+(sm.sandbox.noRemote?' Possible cause: Flash sandbox is denying remote URL access.':(sm.sandbox.noLocal?'Flash denying local filesystem access':'404?'))+'</span>';
+        /*setTimeout(function(){
           oTemp.innerHTML = oString;
           // pl.events.finish.apply(oThis); // load next
-        },5000);
+        },5000);*/
       } else {
         if (this._data.metadata) {
           this._data.metadata.refresh();

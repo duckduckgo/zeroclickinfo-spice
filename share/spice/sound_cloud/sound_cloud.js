@@ -137,7 +137,8 @@ Handlebars.registerHelper("checkStreamable", function(items, options) {
 
     var out = "";
     for(var i = 0; i < items.length; i += 1) {
-        if(items[i].streamable) {
+        // Check if it's streamable and if we have anything to stream.
+        if(items[i].streamable && items[i].stream_url) {
             out += options.fn(items[i]);
         }
     }
