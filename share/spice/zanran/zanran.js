@@ -3,6 +3,13 @@ function ddg_spice_zanran(api_result) {
         return;
     }
 
+    var checkImage = function(image) {
+        if(image) {
+            return "/iu/?u=" + image;
+        }
+        return "";
+    };
+
     api_result.firstResult = api_result.results[0];
     api_result.otherResults = api_result.results.splice(1, api_result.results.length);
     Spice.render({
@@ -11,6 +18,7 @@ function ddg_spice_zanran(api_result) {
         source_url       : api_result.more,
         source_name      : 'Zanran',
         template_normal  : 'zanran',
+        image_url        : checkImage(api_result.results[0].preview_image),
         force_big_header : true
     });
 

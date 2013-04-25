@@ -1,10 +1,11 @@
-.zanran_preview_image {
-  text-align: center;
+#zero_click_image {
+    float: right;
 }
-.zanran_preview_image img {
+#zero_click_image img {
   max-width: 71px;
   max-height: 100px; /* A4 ratio */
   border: 1px solid black;
+  float: right;
 }
 
 .hide {
@@ -13,4 +14,8 @@
 
 hr.horizontal_line {
     margin: 5px 0;
+}
+
+#zero_click_abstract {
+    max-width: auto !important;
 }
