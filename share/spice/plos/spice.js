@@ -10,10 +10,9 @@ function ddg_spice_plos(request) {
   if (status === 0 && numFound > 0) {
     // Get docs and define loop limit.
     var docs = request['response']['docs'];
+    var limit = 5;
     if (docs.length < 5) {
-      var limit = docs.length;
-    } else {
-      var limit = 5;
+      limit = docs.length;
     }
 
     // Create object for results.
