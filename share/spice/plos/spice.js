@@ -14,7 +14,7 @@ function ddg_spice_plos(request) {
       var limit = docs.length;
     } else {
       var limit = 5;
-    };
+    }
 
     // Create object for results.
     var results = '<div>'
@@ -23,41 +23,41 @@ function ddg_spice_plos(request) {
 
     // Loop over documents.
     for (var i = 0; i < limit; i++) {
-      // Define article and its id.
+      // Define article and its variables.
       var doc = docs[i];
       var id = doc['id'];
+      var title = doc['title_display'];
+      var author_list = doc['author_display'];
+      var authors = '';
+      var journal = doc['journal'];
+      var pubdate = doc['publication_date'];
+      var year = pubdate.substr(0, 4);
 
       // Write article citation.
-      results += '<li style="padding-bottom:0.5em;">'
-              + '<a href="http://dx.doi.org/' + id + '" style="">';
+      results += '<li style="padding-bottom:0.5em;">';
       
       // Title, has to exist.
-      var title = doc['title_display'];
-      results += '<span style="color:#333333;">' + title + '</span><br>';
+      results += '<a href="http://dx.doi.org/' + id + '" style="">'
+              + '<span style="">' + title + '</span></a><br>';
 
       // Author list trimmed for more than 3 authors.
-      var author_list = doc['author_display'];
       if (author_list.length > 3) {
-        var authors = author_list.splice(0, 3).join(', ') + ', et al';
+        authors = author_list.splice(0, 3).join(', ') + ', et al';
       } else {
-        var authors = author_list.join(', ');
+        authors = author_list.join(', ');
       }
       results += '<span style="color:#444444;font-size:0.8em;">' + authors + '.</span> ';
 
       // Journal, only add if it is defined.
-      if (doc['journal']) {
-        var journal = doc['journal'];
+      if (journal) {
         results += '<span style="color:#444444;font-style:italic;font-size:0.8em;">' + journal + '</span> ';
       } 
 
       // Publication date and year.
-      var pubdate = doc['publication_date'];
-      var year = pubdate.substr(0, 4);
       results += '<span style="color:#444444;font-size:0.8em;">(' + year + ')</span>';
 
       // Close up citation.
-      results += '</a>'
-              + '</li>';
+      results += '</li>';
     };
 
     // Finish results.
