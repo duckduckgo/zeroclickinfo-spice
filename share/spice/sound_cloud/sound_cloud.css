@@ -1,0 +1,26 @@
+.paused {
+    background-image: url(/soundmanager2/play.png);
+    display: block;
+    width: 16px;
+    height: 18px;
+    display: inline-block;
+    background-color: transparent;
+}
+
+.playing {
+    background-image: url(/soundmanager2/pause.png);
+    display: block;
+    width: 10px;
+    height: 16px;
+    display: inline-block;
+    background-color: transparent;
+}
+
+.stopped {
+    background-image: url(/soundmanager2/play.png);
+    display: block;
+    width: 16px;
+    height: 18px;
+    display: inline-block;
+    background-color: transparent;
+}

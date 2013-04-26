@@ -77,6 +77,7 @@ var ddg_spice_sound_cloud = function(api_result) {
 
     // Initialize SoundManager2.
     var soundSetup = function(element) {
+        console.log(element);
         window.soundManager = new SoundManager();
         soundManager.url = "/soundmanager2/swf/";
         soundManager.flashVersion = 9;
@@ -88,29 +89,33 @@ var ddg_spice_sound_cloud = function(api_result) {
         });
     };
 
-    $(".soundcloud-stream").click(function() {
+    var clicked = function(element) {
+        $(element).removeClass("stopped");
+
         // Check if we already loaded SoundManager.
         if(window.soundManager) {
             // If it's playing, pause it.
-            if($(this).hasClass("playing")) {
-                pauseSound(this);
+            if($(element).hasClass("playing")) {
+                pauseSound(element);
             // If it's paused, play it.
-            } else if($(this).hasClass("paused")) {
-                resumeSound(this);
+            } else if($(element).hasClass("paused")) {
+                resumeSound(element);
             // If it's none of the above, just play it.
             } else {
-                playSound(this);
+                playSound(element);
             }
         } else {
             // Load SoundManager2 if it hasn't loaded.
             window.SM2_DEFER = true;
-            var that = this;
             $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", function() {
-                soundSetup(that);
+                soundSetup(element);
             });
         }
-    });
+    };
+
+    ddg_spice_sound_cloud.clicked = clicked;
 };
+
 
 Handlebars.registerHelper("chooseImage", function(artwork, avatar) {
     "use strict";
