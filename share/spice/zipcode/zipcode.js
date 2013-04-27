@@ -22,18 +22,40 @@ var ddg_spice_zipcode = function(api_result) {
         }).addTo(map);
 
         // Let's make a rectangle, shall we?
-        var southWest = api_result.places.place[0].boundingBox.southWest;
-        var northEast = api_result.places.place[0].boundingBox.northEast;
+        // This rectangle is used to mark the area occupied by the area code.
+        $(".places").each(function(index) {
+            var southWest = [$(this).data("southwest-latitude"), $(this).data("southwest-longitude")];
+            var northEast = [$(this).data("northeast-latitude"), $(this).data("northeast-longitude")];
 
-        southWest = new L.LatLng(southWest.latitude, southWest.longitude);
-        northEast = new L.LatLng(northEast.latitude, northEast.longitude);
+            console.log(southWest, northEast);
 
-        var bounds = bounds = new L.LatLngBounds(southWest, northEast);
+            southWest = new L.LatLng(southWest[0], southWest[1]);
+            northEast = new L.LatLng(northEast[0], northEast[1]);
 
-        L.rectangle(bounds).addTo(map);
+            var bounds = new L.LatLngBounds(southWest, northEast);
+            L.rectangle(bounds).addTo(map);
 
-        map.fitBounds(bounds);
+            if(index === 0) {
+                map.fitBounds(bounds);
+            }
+
+            $(this).click(function() {
+                (function(bounds) {
+                    map.fitBounds(bounds);
+                }(bounds));
+            });
+        });
     };
 
     $.getScript("/dist/leaflet.js", loadMap);
 };
+
+Handlebars.registerHelper("similar", function(place, firstName, options) {
+    var result = "";
+    for(var i = 1; i < place.length; i += 1) {
+        if(place[i].name === firstName) {
+            result += options.fn(place[i]);
+        }
+    }
+    return result;
+});
