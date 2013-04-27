@@ -59,7 +59,11 @@ Handlebars.registerHelper("similar", function(place, firstName, options) {
     // Only get the first n - 1 items because we want
     // to add a coordinating conjunction before the last item.
     var first = result.slice(0, result.length - 1);
-    first = first.join(", ");
 
-    return first + ", and " + result[result.length - 1] + ".";
+    var conjunction = " and ";
+    if(first.length > 1) {
+        conjunction = ", " + conjunction;
+    }
+
+    return first.join(", ") + conjunction + result[result.length - 1] + ".";
 });
