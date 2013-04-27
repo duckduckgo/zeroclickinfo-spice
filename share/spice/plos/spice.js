@@ -46,15 +46,15 @@ function ddg_spice_plos(request) {
       results += '<a href="http://dx.doi.org/' + id + '" style="">'
               + '<span style="">' + title + '</span></a><br>';
 
-      results += '<span style="color:#444444;font-size:0.8em;">' + authors + '.</span> ';
+      results += '<span style="color:#444444;font-size:0.9em;">' + authors + '.</span> ';
 
       // Journal, only add if it is defined.
       if (journal) {
-        results += '<span style="color:#444444;font-style:italic;font-size:0.8em;">' + journal + '</span> ';
+        results += '<span style="color:#444444;font-style:italic;font-size:0.9em;">' + journal + '</span> ';
       } 
 
       // Publication date and year.
-      results += '<span style="color:#444444;font-size:0.8em;">(' + year + ')</span>';
+      results += '<span style="color:#444444;font-size:0.9em;">(' + year + ')</span>';
 
       // Close up citation.
       results += '</li>';
