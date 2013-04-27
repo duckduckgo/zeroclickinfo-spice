@@ -22,10 +22,11 @@ function ddg_spice_plos(request) {
       limit = docs.length;
     }
 
-    // Create object for results.
+    // Create object for results and citation.
     var results = '<div>'
                 + '<span style="font-family:monospace;padding-bottom:1em;">Data Provided by PLOS</span>'
                 + '<ol style="padding-top:0.5em;">';
+    var citation = '';
 
     // Loop over documents.
     for (var i = 0; i < limit; i++) {
@@ -33,6 +34,7 @@ function ddg_spice_plos(request) {
       var doc = docs[i];
       var id = doc['id'];
       var title = doc['title_display'];
+      var abstract = doc['abstract_primary_display'][0];
       var author_list = doc['author_display'];
       var authors = '';
       var journal = doc['journal'];
@@ -42,6 +44,14 @@ function ddg_spice_plos(request) {
       var year = pubdate.substr(0, 4);
       var views = doc['counter_total_all'];
 
+      // Write full inline citation for hover.
+      var full_citation = '';
+      full_citation += author_list.join(', ')
+                    + '(' + year + ') '
+                    + title
+                    + journal + volume + '(' + issue + ')'
+                    + 'doi:' + id;
+
       // Author list trimmed for more than 3 authors.
       if (author_list.length > 3) {
         authors = author_list.splice(0, 3).join(', ') + ', et al';
@@ -50,39 +60,47 @@ function ddg_spice_plos(request) {
       }
 
       // Write article citation.
-      results += '<li style="padding-bottom:0.5em;" title="'
-              + '">';
+      citation += '<li style="padding-bottom:0.5em;">';
       
       // Title, has to exist.
-      results += '<a href="http://dx.doi.org/' + id + '" style="">'
-              + '<span style="">' + title + '</span></a>'
-              + ' [' + views + ' views]'
-              + '<br>';
+      citation += '<a href="http://dx.doi.org/' + id + '">'
+              + '<span title="' + views + ' views">' + title + '</span>'
+              +'</a><br>';
 
-      results += '<span style="color:#444444;font-size:0.9em;">' + authors + '.</span> ';
+      citation += '<span style="color:#444444;font-size:0.9em;">' + authors + '.</span> ';
 
       // Journal, only add if it is defined.
       if (journal) {
-        results += '<span style="color:#444444;font-style:italic;font-size:0.9em;">'
+        citation += '<span style="color:#444444;font-style:italic;font-size:0.9em;">'
                 + journal;
-        // if (volume) {
-        //   results += ' ' + volume;
-        //   if (issue) {
-        //     results += '(' + issue + ')';
-        //   }
-        // }
-        results += '</span> ';
+        if (volume) {
+          citation += ' ' + volume;
+          if (issue) {
+            citation += '(' + issue + ')';
+          }
+        }
+        citation += '</span> ';
       } 
 
       // Publication date and year.
-      results += '<span style="color:#444444;font-size:0.9em;">(' + year + ')</span>';
+      citation += '<span style="color:#444444;font-size:0.9em;">' + year + '</span>';
+
+      // Abstract, if present.
+      if (abstract) {
+        abstract_id = 'abstract' + i;
+        citation += ' <a href="javascript:;" title="Toggle abstract" onclick="DDG.toggle(\'' + abstract_id + '\');">[+]</a>'
+                  + '<div style="display:none;padding-top:3px;" id="' + abstract_id + '">'
+                  + abstract
+                  + '</div>';        
+      }
 
       // Close up citation.
-      results += '</li>';
+      citation += '</li>';
     };
 
     // Finish results.
-    results += '</ol>'
+    results += citation
+            + '</ol>'
             + '</div>';
 
     // Define callback items.
