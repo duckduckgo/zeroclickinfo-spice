@@ -36,8 +36,11 @@ function ddg_spice_plos(request) {
       var author_list = doc['author_display'];
       var authors = '';
       var journal = doc['journal'];
+      var volume = doc['volume'];
+      var issue = doc['issue'];
       var pubdate = doc['publication_date'];
       var year = pubdate.substr(0, 4);
+      var views = doc['counter_total_all'];
 
       // Author list trimmed for more than 3 authors.
       if (author_list.length > 3) {
@@ -47,17 +50,28 @@ function ddg_spice_plos(request) {
       }
 
       // Write article citation.
-      results += '<li style="padding-bottom:0.5em;">';
+      results += '<li style="padding-bottom:0.5em;" title="'
+              + '">';
       
       // Title, has to exist.
       results += '<a href="http://dx.doi.org/' + id + '" style="">'
-              + '<span style="">' + title + '</span></a><br>';
+              + '<span style="">' + title + '</span></a>'
+              + ' [' + views + ' views]'
+              + '<br>';
 
       results += '<span style="color:#444444;font-size:0.9em;">' + authors + '.</span> ';
 
       // Journal, only add if it is defined.
       if (journal) {
-        results += '<span style="color:#444444;font-style:italic;font-size:0.9em;">' + journal + '</span> ';
+        results += '<span style="color:#444444;font-style:italic;font-size:0.9em;">'
+                + journal;
+        // if (volume) {
+        //   results += ' ' + volume;
+        //   if (issue) {
+        //     results += '(' + issue + ')';
+        //   }
+        // }
+        results += '</span> ';
       } 
 
       // Publication date and year.
