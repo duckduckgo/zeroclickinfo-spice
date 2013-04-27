@@ -1,3 +1,10 @@
+// TODO
+//    - Specify the exact fields to be returned using "&fl=field,field"
+//      see http://api.plos.org/solr/search-fields/
+//    - Add volume and issue to the citation.
+//    - Display number of views from each aticle?
+//    - Show/hide abstract?
+
 function ddg_spice_plos(request) {
 
   // Get query and exclude the trigger.
