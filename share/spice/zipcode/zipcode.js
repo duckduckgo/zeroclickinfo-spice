@@ -27,8 +27,6 @@ var ddg_spice_zipcode = function(api_result) {
             var southWest = [$(this).data("southwest-latitude"), $(this).data("southwest-longitude")];
             var northEast = [$(this).data("northeast-latitude"), $(this).data("northeast-longitude")];
 
-            console.log(southWest, northEast);
-
             southWest = new L.LatLng(southWest[0], southWest[1]);
             northEast = new L.LatLng(northEast[0], northEast[1]);
 
@@ -51,11 +49,17 @@ var ddg_spice_zipcode = function(api_result) {
 };
 
 Handlebars.registerHelper("similar", function(place, firstName, options) {
-    var result = "";
+    var result = [];
     for(var i = 1; i < place.length; i += 1) {
         if(place[i].name === firstName) {
-            result += options.fn(place[i]);
+            result.push(options.fn(place[i]));
         }
     }
-    return result;
+
+    // Only get the first n - 1 items because we want
+    // to add a coordinating conjunction before the last item.
+    var first = result.slice(0, result.length - 1);
+    first = first.join(", ");
+
+    return first + ", and " + result[result.length - 1] + ".";
 });
