@@ -32,6 +32,13 @@ function ddg_spice_plos(request) {
       var pubdate = doc['publication_date'];
       var year = pubdate.substr(0, 4);
 
+      // Author list trimmed for more than 3 authors.
+      if (author_list.length > 3) {
+        authors = author_list.splice(0, 3).join(', ') + ', et al';
+      } else {
+        authors = author_list.join(', ');
+      }
+
       // Write article citation.
       results += '<li style="padding-bottom:0.5em;">';
       
@@ -39,12 +46,6 @@ function ddg_spice_plos(request) {
       results += '<a href="http://dx.doi.org/' + id + '" style="">'
               + '<span style="">' + title + '</span></a><br>';
 
-      // Author list trimmed for more than 3 authors.
-      if (author_list.length > 3) {
-        authors = author_list.splice(0, 3).join(', ') + ', et al';
-      } else {
-        authors = author_list.join(', ');
-      }
       results += '<span style="color:#444444;font-size:0.8em;">' + authors + '.</span> ';
 
       // Journal, only add if it is defined.
