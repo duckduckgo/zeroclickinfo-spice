@@ -44,14 +44,6 @@ function ddg_spice_plos(request) {
       var year = pubdate.substr(0, 4);
       var views = doc['counter_total_all'];
 
-      // Write full inline citation for hover.
-      var full_citation = '';
-      full_citation += author_list.join(', ')
-                    + '(' + year + ') '
-                    + title
-                    + journal + volume + '(' + issue + ')'
-                    + 'doi:' + id;
-
       // Author list trimmed for more than 3 authors.
       if (author_list.length > 3) {
         authors = author_list.splice(0, 3).join(', ') + ', et al';
@@ -64,15 +56,17 @@ function ddg_spice_plos(request) {
       
       // Title, has to exist.
       citation += '<a href="http://dx.doi.org/' + id + '">'
-              + '<span title="' + views + ' views">' + title + '</span>'
-              +'</a><br>';
+                + '<span title="' + views + ' views">' + title + '</span>'
+                + '</a><br>';
 
+      // Author list.
       citation += '<span style="color:#444444;font-size:0.9em;">' + authors + '.</span> ';
 
       // Journal, only add if it is defined.
       if (journal) {
         citation += '<span style="color:#444444;font-style:italic;font-size:0.9em;">'
                 + journal;
+        // Include volume and issue.
         if (volume) {
           citation += ' ' + volume;
           if (issue) {
