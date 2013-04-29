@@ -4,7 +4,6 @@
         <div id="map"></div>
     {{/with}}
     <div>
-        Similar postal codes:
         {{#concat places.place from="1" filter="checkZipcode"}}<a href="javascript:void(0);" class="places" data-southwest="{{boundingBox.southWest.latitude}}|{{boundingBox.southWest.longitude}}" data-northeast="{{boundingBox.northEast.latitude}}|{{boundingBox.northEast.longitude}}">{{name}}</a> ({{country}}){{/concat}}
     </div>
 </div>

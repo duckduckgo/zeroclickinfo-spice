@@ -1,12 +1,26 @@
 var ddg_spice_zipcode = function(api_result) {
 
+    // Get the original query.
+    // We're going to pass this to the More at SoundCloud link.
+    var query;
+    $("script").each(function() {
+        var matched, result;
+        matched = $(this).attr("src");
+        if(matched) {
+            result = matched.match(/\/js\/spice\/zipcode\/(.+?)\//);
+            if(result) {
+                query = result[1];
+            }
+        }
+    });
+
     Handlebars.registerHelper("checkZipcode", function(context) {
-        return context.name === api_result.places.place[0].name;
+        return context.name === query;
     });
 
     Spice.render({
         data              : api_result,
-        header1           : "Zip Code",
+        header1           : api_result.places.place[0].admin2 + ", " + api_result.places.place[0].admin1,
         force_big_header  : true,
         source_name       : "MapQuest",
         source_url        : "http://mapq.st/",
@@ -52,12 +66,6 @@ var ddg_spice_zipcode = function(api_result) {
     $.getScript("/dist/leaflet.js", loadMap);
 };
 
-Handlebars.registerHelper("checkName", function(name, firstName, place, options) {
-    if(name === firstName) {
-        return options.fn(place);
-    }
-});
-
 Handlebars.registerHelper("concat", function(context, options) {
     var result = [];
     var filter = Handlebars.helpers[options.hash.filter] || function() {
@@ -71,6 +79,10 @@ Handlebars.registerHelper("concat", function(context, options) {
         if(filter(context[i])) {
             result.push(options.fn(context[i]));
         }
+    }
+
+    if(result.length === 0) {
+        return;
     }
 
     // Only get the first n - 1 items because we want
