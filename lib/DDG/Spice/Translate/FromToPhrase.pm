@@ -1,4 +1,4 @@
-package DDG::Spice::Translate::FromTo;
+package DDG::Spice::Translate::FromToPhrase;
 
 use DDG::Spice;
 use Moo;
@@ -10,8 +10,9 @@ attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
 
 my $langs = 'arabic|ar|chinese|zh|czech|cz|english|en|french|fr|greek|gr|italian|it|japanese|ja|korean|ko|polish|pl|portuguese|pt|romanian|ro|spanish|es|turkish|tr';
 
-spice to   => 'http://api.wordreference.com/0.8/{{ENV{DDG_SPICE_WORDREFERENCE_APIKEY}}}/json/$1/$2?callback={{callback}}';
-spice from => '(.+)\/(.+)';
+spice to   => 'http://mymemory.translated.net/api/get?q=$3&langpair=$1|$2&de=office@duckduckgo.com';
+spice from => '(.+)\/(.+)\/(.+)';
+spice wrap_jsonp_callback => 1;
 
 triggers start => "translate";
 
@@ -21,7 +22,7 @@ handle query_lc => sub {
     $query =~ s/\s+/ /; #merge multiple spaces
 
     # NEED TO MATCH UNICODE!
-    if($query =~ /^translate (\S+) from ($langs)(?: to ($langs))?$/) {
+    if($query =~ /^translate (.+) from ($langs)(?: to ($langs))?$/) {
         my ($phrase, $from, $to) = ($1, $2, $3);
 
         $from = shorten_lang($from);
@@ -29,12 +30,12 @@ handle query_lc => sub {
 
         my $dict = $from.$to;
 
-        # Wordreference API only supports translations
-        # to or from english
-        return unless $dict =~ /en/;
+        # Only use mymemory for multi-word translation
+        # or non-english translations
+        return unless ($phrase =~ /\w+\s+\w+/ or $dict !~ /en/);
 
         # NEED TO ENCODE UNICODE!
-        return ($dict, $phrase);
+        return ($from, $to, $phrase);
     }
 
     return;
