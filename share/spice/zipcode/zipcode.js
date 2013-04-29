@@ -1,4 +1,9 @@
 var ddg_spice_zipcode = function(api_result) {
+
+    Handlebars.registerHelper("checkZipcode", function(context) {
+        return context.name === api_result.places.place[0].name;
+    });
+
     Spice.render({
         data              : api_result,
         header1           : "Zip Code",
@@ -17,15 +22,14 @@ var ddg_spice_zipcode = function(api_result) {
 
         // Tell Leaflet where to get the map tiles.
         L.tileLayer('http://{s}.tile.cloudmade.com/2f62ad0b4ba046f2b907b67e2c866fa4/997/256/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy <a href="http://cloudmade.com">CloudMade</a>',
             maxZoom: 18
         }).addTo(map);
 
         // Let's make a rectangle, shall we?
         // This rectangle is used to mark the area occupied by the area code.
         $(".places").each(function(index) {
-            var southWest = [$(this).data("southwest-latitude"), $(this).data("southwest-longitude")];
-            var northEast = [$(this).data("northeast-latitude"), $(this).data("northeast-longitude")];
+            var southWest = $(this).data("southwest").split("|");
+            var northEast = $(this).data("northeast").split("|");
 
             southWest = new L.LatLng(southWest[0], southWest[1]);
             northEast = new L.LatLng(northEast[0], northEast[1]);
@@ -48,11 +52,24 @@ var ddg_spice_zipcode = function(api_result) {
     $.getScript("/dist/leaflet.js", loadMap);
 };
 
-Handlebars.registerHelper("similar", function(place, firstName, options) {
+Handlebars.registerHelper("checkName", function(name, firstName, place, options) {
+    if(name === firstName) {
+        return options.fn(place);
+    }
+});
+
+Handlebars.registerHelper("concat", function(context, options) {
     var result = [];
-    for(var i = 1; i < place.length; i += 1) {
-        if(place[i].name === firstName) {
-            result.push(options.fn(place[i]));
+    var filter = Handlebars.helpers[options.hash.filter] || function() {
+        return true;
+    };
+
+    var from = +options.hash.from || 0;
+    var to = +options.hash.to || context.length;
+
+    for(var i = from; i < to; i += 1) {
+        if(filter(context[i])) {
+            result.push(options.fn(context[i]));
         }
     }
 

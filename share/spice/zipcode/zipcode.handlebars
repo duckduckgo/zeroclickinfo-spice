@@ -1,10 +1,10 @@
 <div>
     {{#with places.place.[0]}}
-        <div>Zip Code <a href="javascript:void(0);" class="places" data-southWest-latitude="{{boundingBox.southWest.latitude}}" data-southWest-longitude="{{boundingBox.southWest.longitude}}" data-northEast-latitude="{{boundingBox.northEast.latitude}}" data-northEast-longitude="{{boundingBox.northEast.longitude}}">{{name}}</a> approximate area:</div>
+        <div>Zip Code <a href="javascript:void(0);" class="places" data-southwest="{{boundingBox.southWest.latitude}}|{{boundingBox.southWest.longitude}}" data-northeast="{{boundingBox.northEast.latitude}}|{{boundingBox.northEast.longitude}}">{{name}}</a> approximate area:</div>
         <div id="map"></div>
     {{/with}}
     <div>
         Similar postal codes:
-        {{#similar places.place places.place.[0].name}}<a href="javascript:void(0);" class="places" data-southWest-latitude="{{boundingBox.southWest.latitude}}" data-southWest-longitude="{{boundingBox.southWest.longitude}}" data-northEast-latitude="{{boundingBox.northEast.latitude}}" data-northEast-longitude="{{boundingBox.northEast.longitude}}">{{name}}</a> ({{country}}){{/similar}}
+        {{#concat places.place from="1" filter="checkZipcode"}}<a href="javascript:void(0);" class="places" data-southwest="{{boundingBox.southWest.latitude}}|{{boundingBox.southWest.longitude}}" data-northeast="{{boundingBox.northEast.latitude}}|{{boundingBox.northEast.longitude}}">{{name}}</a> ({{country}}){{/concat}}
     </div>
 </div>
