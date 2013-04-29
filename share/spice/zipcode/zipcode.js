@@ -23,7 +23,7 @@ var ddg_spice_zipcode = function(api_result) {
         header1           : api_result.places.place[0].admin2 + ", " + api_result.places.place[0].admin1,
         force_big_header  : true,
         source_name       : "MapQuest",
-        source_url        : "http://mapq.st/",
+        source_url        : "http://mapq.st/map?q=" + query,
         template_normal   : "zipcode"
     });
 
