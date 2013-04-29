@@ -1,21 +1,4 @@
-.alternative_to_item {
-    display:inline-block;
-    vertical-align:top;
-    margin: 6px 10px 0px 10px;
-    padding: 5px;
-    max-width:80px;
+.likes {
+    font-size: 11px;
+    color: #777;
 }
-
-.alternative_to_item img {
-    display:block;
-    margin:auto;
-    border:none;
-}
-.alternative_to_item div {
-    display:block;
-    margin:auto;
-}
-.alternative_to_item p {
-    text-align:center;
-}
-
