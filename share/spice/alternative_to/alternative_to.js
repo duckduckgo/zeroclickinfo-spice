@@ -11,4 +11,3 @@ function ddg_spice_alternative_to(api_result) {
         force_no_fold  : 1
     });
 }
-

@@ -1,4 +1,5 @@
 <div>
     <div><b><a href="{{Url}}">{{Name}}</a></b> <span class="likes">({{Votes}} likes)</span></div>
     <div><i>Description:</i> {{{ShortDescription}}}</div>
+    <div><i>Platforms:</i> {{#concat Platforms sep=", " last=" and "}}{{this}}{{/concat}}</div>
 </div>
