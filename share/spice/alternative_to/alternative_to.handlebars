@@ -1,12 +1,6 @@
-<div>
-
-{{#each Items}}
-
-<a class="alternative_to_item highlight_zero_click1 highlight_zero_click_wrapper" href="{{{Url}}}">
-    <div><img src="/iu/?u={{{IconUrl}}}" /></div>
-    <p>{{{Name}}}</p>
-</a>
-
-{{/each}}
-
-</div>
+<li class="ddgc_item">
+    <a href="{{Url}}">
+        <p><img src="/iu/?u={{IconUrl}}"></p>
+        <span>{{{condense Name maxlen="25"}}}</span>
+    </a>
+</li>

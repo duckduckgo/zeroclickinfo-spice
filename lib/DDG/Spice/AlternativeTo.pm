@@ -36,7 +36,7 @@ handle query_lc => sub {
         $prog =~ s/^\s+//g;
         $prog =~ s/\s+/-/g;
         $prog = $alternatives{$prog} if exists $alternatives{$prog};
-	
+
         if ($license && $prog && $platform) {
             # license and platform specified - queries like:
             # -> free alternative to firefox for mac
