@@ -1,5 +1,10 @@
 var ddg_spice_zipcode = function(api_result) {
 
+    // Check errors.
+    if(!api_result || !api_result.places || api_result.places.total === 0) {
+        return;
+    }
+
     // Get the original query.
     // We're going to pass this to the More at SoundCloud link.
     var query;
