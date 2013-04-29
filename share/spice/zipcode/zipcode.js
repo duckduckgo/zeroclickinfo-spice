@@ -86,18 +86,13 @@ Handlebars.registerHelper("concat", function(context, options) {
         }
     }
 
-    if(result.length === 0) {
-        return;
-    }
-
-    // Only get the first n - 1 items because we want
-    // to add a coordinating conjunction before the last item.
-    var first = result.slice(0, result.length - 1);
-
+    var last = result.pop();
     var conjunction = " and ";
-    if(first.length > 1) {
-        conjunction = ", " + conjunction;
+    if(result.length >= 2) {
+        conjunction = "," + conjunction;
+    } else if(result.length === 0) {
+        conjunction = "";
     }
 
-    return first.join(", ") + conjunction + result[result.length - 1] + ".";
+    return result.join(", ") + conjunction + last;
 });
