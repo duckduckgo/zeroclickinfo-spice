@@ -46,6 +46,6 @@ function ddg_spice_reddit(response) {
         source_name       : 'Reddit',
         template_normal   : 'reddit',
         force_big_header  : true,
-        force_space_after : true,
+        force_space_after : true
     });
 };
