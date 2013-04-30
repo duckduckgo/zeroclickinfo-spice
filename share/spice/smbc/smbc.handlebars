@@ -1,2 +1,6 @@
-<img src="{{items.[0].image_url}}" class="img_zero_click_big"/><br>
-<a href="{{items.[1].url}}" alt="{{alt}}">Prev</a>
+{{#with items.[0]}}
+    <img src="{{image_url}}" {{#if alt}} alt="{{alt_text}}" {{else}} alt="{{title}}" {{/if}} class="img_zero_click_big"/><br>
+{{/with}}
+{{#with items.[1]}}
+    <a href="{{url}}" title="{{title}}">Prev</a>
+{{/with}}
