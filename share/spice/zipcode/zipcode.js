@@ -19,10 +19,6 @@ var ddg_spice_zipcode = function(api_result) {
         }
     });
 
-    Handlebars.registerHelper("checkZipcode", function(context) {
-        return context.name === query;
-    });
-
     Spice.render({
         data              : api_result,
         header1           : api_result.places.place[0].admin2 + ", " + api_result.places.place[0].admin1,
@@ -71,28 +67,20 @@ var ddg_spice_zipcode = function(api_result) {
     $.getScript("/dist/leaflet.js", loadMap);
 };
 
-Handlebars.registerHelper("concat", function(context, options) {
+Handlebars.registerHelper("checkZipcode", function(context, options) {
     var result = [];
-    var filter = Handlebars.helpers[options.hash.filter] || function() {
-        return true;
-    };
+    var place = this.places.place;
+    var name = place[0].name;
 
-    var from = +options.hash.from || 0;
-    var to = +options.hash.to || context.length;
+    if(place.length === 1) {
+        return;
+    }
 
-    for(var i = from; i < to; i += 1) {
-        if(filter(context[i])) {
-            result.push(options.fn(context[i]));
+    for(var i = 1; i < place.length; i += 1) {
+        if(place[i].name === name) {
+            result.push(place[i]);
         }
     }
 
-    var last = result.pop();
-    var conjunction = " and ";
-    if(result.length >= 2) {
-        conjunction = "," + conjunction;
-    } else if(result.length === 0) {
-        conjunction = "";
-    }
-
-    return result.join(", ") + conjunction + last;
+    return context.fn(result);
 });

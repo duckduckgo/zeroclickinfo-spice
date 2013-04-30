@@ -4,6 +4,8 @@
         <div id="map"></div>
     {{/with}}
     <div>
-        {{#concat places.place from="1" filter="checkZipcode"}}<a href="javascript:void(0);" class="places" data-southwest="{{boundingBox.southWest.latitude}}|{{boundingBox.southWest.longitude}}" data-northeast="{{boundingBox.northEast.latitude}}|{{boundingBox.northEast.longitude}}">{{name}}</a> ({{country}}){{/concat}}
+        {{#checkZipcode}}
+            {{#concat this sep=", " last=", and "}}<a href="javascript:void(0);" class="places" data-southwest="{{boundingBox.southWest.latitude}}|{{boundingBox.southWest.longitude}}" data-northeast="{{boundingBox.northEast.latitude}}|{{boundingBox.northEast.longitude}}">{{name}}</a> ({{country}}){{/concat}}
+        {{/checkZipcode}}
     </div>
 </div>
