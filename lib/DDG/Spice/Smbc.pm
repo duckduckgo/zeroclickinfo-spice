@@ -14,7 +14,7 @@ attribution web => ['http://dylansserver.com','Dylan Lloyd'],
 status 'enabled';
 
 
-triggers any => 'smbc';
+triggers any => 'smbc', 'saturday morning breakfast cereal';
 
 spice to => 'http://comics.signedzero.com/smbc/feed.json';
 spice wrap_jsonp_callback => 1;
@@ -22,7 +22,7 @@ spice wrap_jsonp_callback => 1;
 spice is_cached => 0;
 
 handle query_lc => sub {
-    s/(today'?s )?smbc( comic)?//g;
+    s/(today'?s )?(smbc|saturday morning breakfast cereal)( comic)?//g;
     return '' if $_ eq '';
     return;
 };
