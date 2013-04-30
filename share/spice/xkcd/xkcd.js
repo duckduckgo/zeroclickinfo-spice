@@ -1,10 +1,10 @@
-function ddg_spice_xkcd(response) {
-  if (!response.img || !response.alt) return;
+function ddg_spice_xkcd(api_result) {
+  if (!api_result.img || !api_result.alt) return;
 
   Spice.render({
-      data             : response,
-      header1          : response.safe_title + " (XKCD)",
-      source_url       : 'http://xkcd.com/' + response.num,
+      data             : api_result,
+      header1          : api_result.safe_title + " (XKCD)",
+      source_url       : 'http://xkcd.com/' + api_result.num,
       source_name      : 'XKCD',
       template_normal  : 'xkcd',
       force_big_header : true,
