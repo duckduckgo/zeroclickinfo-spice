@@ -1,13 +1,12 @@
-function ddg_spice_smbc(response) {
-    var smbc       = {};
-    smbc.img_url   = response.items[0].image_url;
-    smbc.alt_text  = response.items[0].alt_text;
-    smbc.prev_url  = response.items[1].url;
+function ddg_spice_smbc(api_result) {
+    if(!api_result || !api_result.items || api_result.items < 2) {
+        return;
+    }
 
     Spice.render({
-        data             : smbc,
-        header1          : response.items[0].title,
-        source_url       : response.url,
+        data             : api_result,
+        header1          : api_result.items[0].title,
+        source_url       : api_result.url,
         source_name      : 'SMBC',
         template_normal  : 'smbc',
         force_big_header : true
