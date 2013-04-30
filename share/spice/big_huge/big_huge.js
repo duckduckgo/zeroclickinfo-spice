@@ -26,7 +26,7 @@ function ddg_spice_big_huge_varinym(api_result, mode, header, complete, modifier
   Spice.render({
     data:               api_result,
     header1 :           header + word,
-    source_name :       'Big Huge THesaurus',
+    source_name :       'Big Huge Thesaurus',
     source_url :        'http://words.bighugelabs.com/' + word,
     template_normal :   'big_huge',
     force_big_header :  true
