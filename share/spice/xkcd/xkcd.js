@@ -11,3 +11,9 @@ function ddg_spice_xkcd(response) {
       force_no_fold    : true,
   });
 }
+
+Handlebars.registerHelper("previousNum", function(num) {
+  if(num > 0) {
+    return num - 1;
+  }
+});
