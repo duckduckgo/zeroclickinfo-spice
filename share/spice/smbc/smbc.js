@@ -6,8 +6,7 @@ function ddg_spice_smbc(response) {
 
     Spice.render({
         data             : smbc,
-        header1          : response.items[0].title
-                           + " (GitHub Jobs)",
+        header1          : response.items[0].title,
         source_url       : response.link,
         source_name      : 'SMBC',
         template_normal  : 'smbc',
