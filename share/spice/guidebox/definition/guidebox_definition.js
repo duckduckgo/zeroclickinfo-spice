@@ -5,17 +5,19 @@
 // Requires jQuery.
 //
 // Commands:
-// watch NCIS - gives the definition of TV show NCIS and shows last 3 episodes
+// watch NCIS - gives the definition of TV show NCIS and shows last 3 episodes and 3 similar shows in name
 //
 // Notes:
 // ddg_spice_guidebox_definition - 
 // ddg_spice_guidebox_lastshows - 
 
+var query;
+
 var ddg_spice_guidebox_definition = function (api_result){
-    var query = DDG.get_query().replace("watch", "");
-        query = query.replace("full episodes", "");
-        query = query.replace("full episodes of", "");
-        query = query.replace("guidebox", "");
+    query = DDG.get_query().replace("watch", "");
+    query = query.replace("full episodes", "");
+    query = query.replace("full episodes of", "");
+    query = query.replace("guidebox", "");
 
     var render = ddg_spice_dictionary_definition.render;
 
@@ -46,10 +48,18 @@ ddg_spice_guidebox_definition.render = function(res, query) {
 };
 
 var ddg_spice_guidebox_lastshows = function (api_result){
+    "use strict";
+ 
+    var render = ddg_spice_dictionary_definition.render;
 
+    render(api_result, query)
 };
 
 var ddg_spice_guidebox_search = function (api_result){
+    "use strict";
 
+    var render = ddg_spice_dictionary_definition.render;
+
+    render(api_result, query);
 
 };
