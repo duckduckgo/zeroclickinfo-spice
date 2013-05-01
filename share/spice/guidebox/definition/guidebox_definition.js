@@ -21,7 +21,7 @@ var ddg_spice_guidebox_definition = function (api_result){
     query = query.replace("full episodes of ", "");
     query = query.replace("guidebox ", "");
 
-    var render = ddg_spice_dictionary_definition.render;
+    var render = ddg_spice_guidebox_definition.render;
 
     // Prevent jQuery from appending "_={timestamp}" in our url.
     $.ajaxSetup({
