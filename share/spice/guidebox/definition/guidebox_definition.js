@@ -33,20 +33,20 @@ var ddg_spice_guidebox_definition = function (api_result){
 
 };
 
-ddg_spice_guidebox_definition.render = function(res, query) {
+ddg_spice_guidebox_definition.render = function(api_result, query) {
     "use strict";
 
     Spice.render({
-        data : res,
-        header1 : "Definition (Guidebox)",
+        data : api_result,
+        header1 : api_result.title + " (Guidebox)",
         force_big_header : true,
         source_name : "Guidebox",
-        source_url : res["guidebox_url"],
+        source_url : api_result.guidebox_url,
         template_normal : "guidebox_definition"
     });
 
-    $.getScript("/js/spice/guidebox/lastshows/"+ query);
-    $.getScript("/js/spice/guidebox/search/"+ query);
+    //$.getScript("/js/spice/guidebox/lastshows/"+ query);
+    //$.getScript("/js/spice/guidebox/search/"+ query);
 };
 
 var ddg_spice_guidebox_lastshows = function (api_result){

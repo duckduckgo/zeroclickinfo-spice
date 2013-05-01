@@ -24,14 +24,16 @@ handle remainder => sub {
         'NCIS' => 19274,
         'Castle' => 23580,
         'Grimm' => 36833,
-        'Stranger Than Fiction' => 10871
+        'Stranger Than Fiction' => 10871,
+        'Snatch' => 10074
     );
 
     my %type = (
         'NCIS' => 'series',
         'Castle' => 'series',
         'Grimm' => 'series',
-        'Stranger Than Fiction' => 'movie'
+        'Stranger Than Fiction' => 'movie',
+        'Snatch' => 'movie'
     );
 
     return $type{$_}, $IDS{$_} if $_;
