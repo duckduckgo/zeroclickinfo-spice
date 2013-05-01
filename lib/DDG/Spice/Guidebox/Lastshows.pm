@@ -3,7 +3,7 @@ package DDG::Spice::Guidebox::Lastshows;
 use DDG::Spice;
 
 
-spice to => 'http://api.thetvapi.com/v1.2/json/NdlLbziCtRxn7zQQWIe80beqcthMlP/$1/all';
+spice to => 'http://api.thetvapi.com/v1.2/json/NdlLbziCtRxn7zQQWIe80beqcthMlP/$1/watch/all';
 
 spice wrap_jsonp_callback => 1;
 
