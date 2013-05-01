@@ -14,6 +14,8 @@
 var query;
 
 var ddg_spice_guidebox_definition = function (api_result){
+    "use strict";
+
     query = DDG.get_query().replace("watch", "");
     query = query.replace("full episodes", "");
     query = query.replace("full episodes of", "");
