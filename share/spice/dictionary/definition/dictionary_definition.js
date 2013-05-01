@@ -98,7 +98,7 @@ Handlebars.registerHelper("format", function(text) {
     text = text.replace(/<xref>([^<]+)<\/xref>/g, "<a class='reference' href='https://www.wordnik.com/words/$1'>$1</a>");
 
     // Make sure we do not encode the HTML tags.
-    return new Handlebars.SafeString(text);
+    return text;
 });
 
 // Dictionary::Pronunciation will call this function.
