@@ -4,7 +4,7 @@ use DDG::Spice;
 
 triggers startend => "guidebox", "watch", "full episodes", "full episodes of";
 
-spice to => 'http://api.thetvapi.com/v1.2/json/NdlLbziCtRxn7zQQWIe80beqcthMlP/$1';
+spice to => 'http://api.thetvapi.com/v1.2/json/NdlLbziCtRxn7zQQWIe80beqcthMlP/series/$1';
 
 primary_example_queries "guidebox Castle";
 description "Search for full episodes of all your favorite TV shows (USA only)";
