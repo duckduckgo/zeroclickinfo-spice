@@ -16,10 +16,10 @@ var query;
 var ddg_spice_guidebox_definition = function (api_result){
     "use strict";
 
-    query = DDG.get_query().replace("watch", "");
-    query = query.replace("full episodes", "");
-    query = query.replace("full episodes of", "");
-    query = query.replace("guidebox", "");
+    query = DDG.get_query().replace("watch ", "");
+    query = query.replace("full episodes ", "");
+    query = query.replace("full episodes of ", "");
+    query = query.replace("guidebox ", "");
 
     var render = ddg_spice_dictionary_definition.render;
 
@@ -45,7 +45,7 @@ ddg_spice_guidebox_definition.render = function(res, query) {
         template_normal : "guidebox_definition"
     });
 
-    $.getScript("/js/spice/guidebox/lastshows/"+ res["id"]);
+    $.getScript("/js/spice/guidebox/lastshows/"+ query);
     $.getScript("/js/spice/guidebox/search/"+ query);
 };
 
