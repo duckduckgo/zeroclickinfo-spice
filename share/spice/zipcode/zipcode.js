@@ -20,7 +20,7 @@ window.ddg_spice_zipcode = function(api_result) {
     });
 
     // Expose the query. We want a Handlebars helper to use it later.
-    ddg_spice_zipcode.query = query;
+    window.ddg_spice_zipcode.query = query;
 
     // Display the Spice plugin.
     Spice.render({
@@ -80,7 +80,7 @@ Handlebars.registerHelper("checkZipcode", function(context) {
 
     var result = [];
     var place = this.places.place;
-    var name = ddg_spice_zipcode.query;
+    var name = window.ddg_spice_zipcode.query;
 
     if(place.length === 1) {
         return;
