@@ -50,7 +50,7 @@ ddg_spice_guidebox_definition.render = function(res, query) {
 var ddg_spice_guidebox_lastshows = function (api_result){
     "use strict";
  
-    var render = ddg_spice_dictionary_definition.render;
+    var render = ddg_spice_guidebox_definition.render;
 
     render(api_result, query)
 };
@@ -58,7 +58,7 @@ var ddg_spice_guidebox_lastshows = function (api_result){
 var ddg_spice_guidebox_search = function (api_result){
     "use strict";
 
-    var render = ddg_spice_dictionary_definition.render;
+    var render = ddg_spice_guidebox_definition.render;
 
     render(api_result, query);
 
