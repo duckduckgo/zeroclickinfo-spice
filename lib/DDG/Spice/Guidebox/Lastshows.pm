@@ -15,7 +15,7 @@ handle remainder => sub {
         'Castle' => 23580,
         'Grimm' => 36833,
         'Stranger Than Fiction' => 10871,
-        'Snatch' => 10074;
+        'Snatch' => 10074
     );
 
     my %type = (
