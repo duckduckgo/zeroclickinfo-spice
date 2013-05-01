@@ -24,12 +24,12 @@ var ddg_spice_guidebox_definition = function (api_result){
         cache: true
     });
 
-    render(api_result);
+    render(api_result, query);
 
 
 };
 
-ddg_spice_guidebox_definition.render = function(res) {
+ddg_spice_guidebox_definition.render = function(res, query) {
     "use strict";
 
     Spice.render({
@@ -41,10 +41,15 @@ ddg_spice_guidebox_definition.render = function(res) {
         template_normal : "guidebox_definition"
     });
 
-    $.getScript("/js/spice/guidebox/lastshows/series/"+ res["id"]);
+    $.getScript("/js/spice/guidebox/lastshows/"+ res["id"]);
+    $.getScript("/js/spice/guidebox/search/"+ query);
 };
 
 var ddg_spice_guidebox_lastshows = function (api_result){
+
+};
+
+var ddg_spice_guidebox_search = function (api_result){
 
 
 };
