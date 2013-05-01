@@ -26,13 +26,8 @@ handle remainder => sub {
         'Grimm' => 36833,
     );
 
-    my %choose = (
-        'NCIS' => 'series',
-        'Castle' => 'series',
-        'Grimm' => 'series',
-    );
-
-    return $choose{$_}, $IDS{$_};
+    return $IDS{$_} if $_;
+    return;
 };
 
 1;

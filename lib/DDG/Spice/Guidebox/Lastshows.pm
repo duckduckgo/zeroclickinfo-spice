@@ -3,7 +3,7 @@ package DDG::Spice::Guidebox::Lastshows;
 use DDG::Spice;
 
 
-spice to => 'http://api.thetvapi.com/v1.2/json/NdlLbziCtRxn7zQQWIe80beqcthMlP/$1/watch/all';
+spice to => 'http://api.thetvapi.com/v1.2/json/NdlLbziCtRxn7zQQWIe80beqcthMlP/series/$1/watch/all';
 
 spice wrap_jsonp_callback => 1;
 
@@ -16,13 +16,8 @@ handle remainder => sub {
         'Grimm' => 36833,
     );
 
-    my %choose = (
-        'NCIS' => 'series',
-        'Castle' => 'series',
-        'Grimm' => 'series',
-    );
-
-    return $choose{$_}, $IDS{$_};
+    return $IDS{$_} if $_;
+    return;
 };
 
 1;
