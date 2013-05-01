@@ -14,11 +14,25 @@
 // ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
 
 // This function gets the definition of a word.
-var ddg_spice_dictionary_definition = function(api_result) {
+window.ddg_spice_dictionary_definition = function(api_result) {
     "use strict";
 
     // We moved Spice.render to a function because we're choosing between two contexts.
-    var render = ddg_spice_dictionary_definition.render;
+    var render = function(context, word) {
+        Spice.render({
+            data              : context,
+            header1           : "Definition (Wordnik)",
+            force_big_header  : true,
+            source_name       : "Wordnik",
+            source_url        : "http://www.wordnik.com/words/" + word,
+            template_normal   : "dictionary_definition"
+        });
+
+        // Call the Wordnik API to display the pronunciation text and the audio.
+        $.getScript("/js/spice/dictionary/pronunciation/" + word);
+        $.getScript("/js/spice/dictionary/audio/" + word);
+    };
+    window.ddg_spice_dictionary_definition.render = render;
 
     // Prevent jQuery from appending "_={timestamp}" in our url.
     $.ajaxSetup({
@@ -38,29 +52,11 @@ var ddg_spice_dictionary_definition = function(api_result) {
     }
 };
 
-ddg_spice_dictionary_definition.render = function(context, word) {
-    "use strict";
-
-    Spice.render({
-        data              : context,
-        header1           : "Definition (Wordnik)",
-        force_big_header  : true,
-        source_name       : "Wordnik",
-        source_url        : "http://www.wordnik.com/words/" + word,
-        template_normal   : "dictionary_definition"
-    });
-
-    // Call the Wordnik API to display the pronunciation text and the audio.
-    $.getScript("/js/spice/dictionary/pronunciation/" + word);
-    $.getScript("/js/spice/dictionary/audio/" + word);
-};
-
-
 // Change the context so that it would say something like, "dictionaries is the plural of dictionary."
-var ddg_spice_dictionary_reference = function(api_result) {
+window.ddg_spice_dictionary_reference = function(api_result) {
     "use strict";
 
-    var render = ddg_spice_dictionary_definition.render;
+    var render = window.ddg_spice_dictionary_definition.render;
 
     if(api_result && api_result.length > 0) {
         var word = api_result[0].word;
@@ -107,7 +103,7 @@ Handlebars.registerHelper("format", function(text) {
 
 // Dictionary::Pronunciation will call this function.
 // It displays the text that tells you how to pronounce a word.
-var ddg_spice_dictionary_pronunciation = function(api_result) {
+window.ddg_spice_dictionary_pronunciation = function(api_result) {
     "use strict";
 
     if(api_result && api_result.length > 0 && api_result[0].rawType === "ahd-legacy") {
@@ -117,7 +113,7 @@ var ddg_spice_dictionary_pronunciation = function(api_result) {
 
 // Dictionary::Audio will call this function.
 // It gets the link to an audio file.
-var ddg_spice_dictionary_audio = function(api_result) {
+window.ddg_spice_dictionary_audio = function(api_result) {
     "use strict";
 
     var url = "";
