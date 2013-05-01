@@ -1,4 +1,5 @@
-var ddg_spice_zipcode = function(api_result) {
+window.ddg_spice_zipcode = function(api_result) {
+    "use strict";
 
     // Check errors.
     if(!api_result || !api_result.places || api_result.places.total === 0) {
@@ -6,7 +7,6 @@ var ddg_spice_zipcode = function(api_result) {
     }
 
     // Get the original query.
-    // We're going to pass this to the More at SoundCloud link.
     var query;
     $("script").each(function() {
         var matched, result;
@@ -19,6 +19,10 @@ var ddg_spice_zipcode = function(api_result) {
         }
     });
 
+    // Expose the query. We want a Handlebars helper to use it later.
+    ddg_spice_zipcode.query = query;
+
+    // Display the Spice plugin.
     Spice.render({
         data              : api_result,
         header1           : api_result.places.place[0].admin2 + ", " + api_result.places.place[0].admin1,
@@ -37,9 +41,7 @@ var ddg_spice_zipcode = function(api_result) {
 
         // Tell Leaflet where to get the map tiles.
         L.tileLayer('http://{s}.tile.cloudmade.com/2f62ad0b4ba046f2b907b67e2c866fa4/997/256/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            detectRetina: true
-        }).addTo(map);
+            maxZoom: 18, detectRetina: true }).addTo(map);
 
         // Let's make a rectangle, shall we?
         // This rectangle is used to mark the area occupied by the area code.
@@ -53,10 +55,12 @@ var ddg_spice_zipcode = function(api_result) {
             var bounds = new L.LatLngBounds(southWest, northEast);
             L.rectangle(bounds).addTo(map);
 
+            // Zoom in to the first one.
             if(index === 0) {
                 map.fitBounds(bounds);
             }
 
+            // Zoom in to the location when the link is clicked.
             $(this).click(function() {
                 (function(bounds) {
                     map.fitBounds(bounds);
@@ -65,13 +69,18 @@ var ddg_spice_zipcode = function(api_result) {
         });
     };
 
+    // Load LeafletJS.
     $.getScript("/dist/leaflet.js", loadMap);
 };
 
-Handlebars.registerHelper("checkZipcode", function(context, options) {
+// Filter the zipcodes.
+// Only get the ones which are actually equal to the query.
+Handlebars.registerHelper("checkZipcode", function(context) {
+    "use strict";
+
     var result = [];
     var place = this.places.place;
-    var name = place[0].name;
+    var name = ddg_spice_zipcode.query;
 
     if(place.length === 1) {
         return;
