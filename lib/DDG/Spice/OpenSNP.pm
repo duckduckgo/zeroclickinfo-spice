@@ -14,5 +14,5 @@ handle query_nowhitespace => sub {
     return;
 };
 attribution github => ['https://github.com/drsnuggles','Philipp Bayer'],
-               twitter => ['https://twitter.com/PhilippBayer'];
+               twitter => ['https://twitter.com/PhilippBayer', 'Philipp Bayer'];
 1;
