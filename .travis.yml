@@ -1,9 +1,8 @@
 ---
 before_install:
-  - export AUTOMATED_TESTING=1
-  - export HARNESS_OPTIONS=j10:c
-  - export HARNESS_TIMER=1
-  - git config --global user.name "TravisCI"
+  - export AUTOMATED_TESTING=1 HARNESS_OPTIONS=j10:c HARNESS_TIMER=1
+  - rm .travis.yml
+  - git config --global user.name "Dist Zilla Plugin TravisCI"
   - git config --global user.email $HOSTNAME":not-for-mail@travis-ci.org"
 install:
   - cpanm  --quiet  --notest --skip-satisfied Dist::Zilla
@@ -12,17 +11,6 @@ install:
   - cpanm --quiet --notest App::DuckPAN
   - duckpan DDG
 language: perl
-notifications:
-  email:
-    - open@duckduckgo.com
-  irc:
-    channels:
-      - irc.freenode.net#duckduckgo
-    on_failure: always
-    on_success: change
-    template:
-      - '%{branch}#%{build_number} by %{author}: %{message} (%{build_url})'
-    use_notice: true
 perl:
   - 5.16
   - 5.14
