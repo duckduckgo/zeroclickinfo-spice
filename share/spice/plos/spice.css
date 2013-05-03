@@ -1,0 +1,29 @@
+#results {}
+
+#results ol {
+    padding-top: 0.5em;
+}
+
+#results ol li {
+    padding-bottom: 0.5em;
+}
+
+#credit {
+    font-family: monospace;
+    padding-bottom: 1em;
+}
+
+.information {
+    color: #444444;
+    font-size: 0.9em;
+}
+
+.title {}
+
+.authors {}
+
+.journal {
+    font-style: italic;
+}
+
+.year {}
