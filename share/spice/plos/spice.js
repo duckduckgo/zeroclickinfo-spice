@@ -20,9 +20,9 @@ function ddg_spice_plos(request) {
     }
 
     // Create object for results and citation.
-    var results = '<div>'
-                + '<span style="font-family:monospace;padding-bottom:1em;">Data Provided by PLOS</span>'
-                + '<ol style="padding-top:0.5em;">';
+    var results = '<div id="results">'
+                + '<span id="credit">Data Provided by PLOS</span>'
+                + '<ol>';
     var citation = '';
 
     // Loop over documents.
@@ -49,19 +49,22 @@ function ddg_spice_plos(request) {
       }
 
       // Write article citation.
-      citation += '<li style="padding-bottom:0.5em;">';
+      citation += '<li>';
       
       // Title, has to exist.
       citation += '<a href="http://dx.doi.org/' + id + '">'
-                + '<span title="' + views + ' views">' + title + '</span>'
-                + '</a><br>';
+                + '<span class="title">' + title + '</span>'
+                + '</a>';
+
+      // Container for bibliograpihc information.
+      citation += '<div class="information">';
 
       // Author list.
-      citation += '<span style="color:#444444;font-size:0.9em;">' + authors + '.</span> ';
+      citation += '<span class="authors">' + authors + '.</span> ';
 
       // Journal, only add if it is defined.
       if (journal) {
-        citation += '<span style="color:#444444;font-style:italic;font-size:0.9em;">'
+        citation += '<span class="journal">'
                 + journal;
         // Include volume and issue.
         if (volume) {
@@ -74,7 +77,7 @@ function ddg_spice_plos(request) {
       } 
 
       // Publication date and year.
-      citation += '<span style="color:#444444;font-size:0.9em;">' + year + '</span>';
+      citation += '<span class="year">' + year + '</span>';
 
       // Abstract, if present.
       if (abstract) {
@@ -84,6 +87,9 @@ function ddg_spice_plos(request) {
                   + abstract
                   + '</div>';        
       }
+
+      // Close information container.
+      citation += '</div>';
 
       // Close up citation.
       citation += '</li>';
