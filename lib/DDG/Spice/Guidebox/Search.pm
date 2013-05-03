@@ -2,7 +2,7 @@ package DDG::Spice::Guidebox::Search;
 
 use DDG::Spice;
 
-spice to => 'http://api.thetvapi.com/v1.2/json/NdlLbziCtRxn7zQQWIe80beqcthMlP/search/title/$1/fuzzy';
+spice to => 'http://api.thetvapi.com/v1.3/json/tQudk9zw2SJyooZGV8cO85LfysYklk/search/title/$1/fuzzy';
 
 spice wrap_jsonp_callback => 1;
 
