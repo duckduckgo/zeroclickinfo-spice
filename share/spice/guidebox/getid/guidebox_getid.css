@@ -5,3 +5,7 @@ hr.horizontal_line {
 span.overview {
     font-size: 85%;
 }
+
+span.smaller {
+    font-size: 75%;
+}
