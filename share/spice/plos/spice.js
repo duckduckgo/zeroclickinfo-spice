@@ -1,6 +1,5 @@
 // TODO
-//    - Move styles to spice.css.
-//    - Put abstract on title tag and remove toggle.
+//    - Improve abstract display somehow.
 
 function ddg_spice_plos(request) {
 
@@ -51,10 +50,18 @@ function ddg_spice_plos(request) {
       // Write article citation.
       citation += '<li>';
       
-      // Title, has to exist.
+      // Start writing title link.
       citation += '<a href="http://dx.doi.org/' + id + '">'
-                + '<span class="title">' + title + '</span>'
-                + '</a>';
+
+      // Add abstract to link title tag, if present.
+      if (abstract) {
+        citation += '<span class="title" title="' + abstract + '">' + title + ' [abstract]</span>';
+      } else {
+        citation += '<span class="title">' + title + '</span>';
+      }
+
+      // Close title link.
+      citation += '</a>';
 
       // Container for bibliograpihc information.
       citation += '<div class="information">';
@@ -65,7 +72,7 @@ function ddg_spice_plos(request) {
       // Journal, only add if it is defined.
       if (journal) {
         citation += '<span class="journal">'
-                + journal;
+                  + journal;
         // Include volume and issue.
         if (volume) {
           citation += ' ' + volume;
@@ -78,15 +85,6 @@ function ddg_spice_plos(request) {
 
       // Publication date and year.
       citation += '<span class="year">' + year + '</span>';
-
-      // Abstract, if present.
-      if (abstract) {
-        abstract_id = 'abstract' + i;
-        citation += ' <a href="javascript:;" title="Toggle abstract" onclick="DDG.toggle(\'' + abstract_id + '\');">[+]</a>'
-                  + '<div style="display:none;padding-top:3px;" id="' + abstract_id + '">'
-                  + abstract
-                  + '</div>';        
-      }
 
       // Close information container.
       citation += '</div>';
