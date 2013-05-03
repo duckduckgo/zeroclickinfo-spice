@@ -1,8 +1,9 @@
 ---
 after_success:
-  - dzil run "AUTHOR_TESTING=1 RELEASE_TESTING=1 cover -test && cover -report coveralls"
+  - cover -report coveralls
 before_install:
   - export HARNESS_OPTIONS=j10:c HARNESS_TIMER=1
+  - 'export HARNESS_PERL_SWITCHES=-MDevel::Cover=-db,$TRAVIS_BUILD_DIR/cover_db'
   - rm .travis.yml
   - git config --global user.name "Dist Zilla Plugin TravisCI"
   - git config --global user.email $HOSTNAME":not-for-mail@travis-ci.org"
