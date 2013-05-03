@@ -1,4 +1,6 @@
 // TODO
+//    - Move styles to spice.css.
+//    - Put abstract on title tag and remove toggle.
 
 function ddg_spice_plos(request) {
 
