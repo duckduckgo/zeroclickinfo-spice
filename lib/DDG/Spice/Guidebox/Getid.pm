@@ -3,7 +3,7 @@ package DDG::Spice::Guidebox::Getid;
 use DDG::Spice;
 
 
-triggers startend => "guidebox", "watch", "full episodes", "full episodes of";
+triggers startend => "guidebox", "watch", "full episodes", "full episodes of", "watch free", "full free episodes", "full free episodes of", "free episodes", "free episodes of";
 
 spice to => 'http://api-public.guidebox.com/v1.3/json/tQudk9zw2SJyooZGV8cO85LfysYklk/search/all/title/$1';
 

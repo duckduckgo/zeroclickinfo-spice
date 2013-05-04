@@ -17,10 +17,13 @@ var ddg_spice_guidebox_getid = function (api_result){
 
     if (!api_result.results) return;
 
-    GB_global.query = DDG.get_query().replace("watch ", "");
-    GB_global.query = GB_global.query.replace("full episodes ", "");
-    GB_global.query = GB_global.query.replace("full episodes of ", "");
-    GB_global.query = GB_global.query.replace("guidebox ", "");
+    var queries = ["guidebox", "watch", "full episodes", "full episodes of", "watch free", "full free episodes", "full free episodes of", "free episodes", "free episodes of"];
+
+    GB_global.query = DDG.get_query();
+
+    for (var i in queries){
+        GB_global.query = GB_global.query.replace(queries[i], "");
+    }
 
     // Prevent jQuery from appending "_={timestamp}" in our url.
     $.ajaxSetup({
