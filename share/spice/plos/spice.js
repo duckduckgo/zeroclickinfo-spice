@@ -1,6 +1,3 @@
-// TODO
-//    - Improve abstract display somehow.
-
 function ddg_spice_plos(request) {
 
   // Get query and exclude the trigger.
@@ -30,7 +27,6 @@ function ddg_spice_plos(request) {
       var doc = docs[i];
       var id = doc['id'];
       var title = doc['title_display'];
-      var abstract = doc['abstract_primary_display'][0];
       var author_list = doc['author_display'];
       var authors = '';
       var journal = doc['journal'];
@@ -38,7 +34,6 @@ function ddg_spice_plos(request) {
       var issue = doc['issue'];
       var pubdate = doc['publication_date'];
       var year = pubdate.substr(0, 4);
-      var views = doc['counter_total_all'];
 
       // Author list trimmed for more than 3 authors.
       if (author_list.length > 3) {
@@ -52,16 +47,8 @@ function ddg_spice_plos(request) {
       
       // Start writing title link.
       citation += '<a href="http://dx.doi.org/' + id + '">'
-
-      // Add abstract to link title tag, if present.
-      if (abstract) {
-        citation += '<span class="title" title="' + abstract + '">' + title + ' [abstract]</span>';
-      } else {
-        citation += '<span class="title">' + title + '</span>';
-      }
-
-      // Close title link.
-      citation += '</a>';
+                + '<span class="title">' + title + '</span>'
+                + '</a>';
 
       // Container for bibliograpihc information.
       citation += '<div class="information">';

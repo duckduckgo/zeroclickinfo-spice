@@ -6,7 +6,7 @@ use DDG::Spice;
 triggers startend => 'plos';
 
 spice to => 'http://api.plos.org/search?q=$1&rows=5&wt=json'
-            . '&fl=id,title_display,author_display,journal,volume,issue,publication_date,abstract_primary_display,counter_total_all'
+            . '&fl=id,title_display,author_display,journal,volume,issue,publication_date'
             . '&api_key={{ENV{DDG_SPICE_PLOS_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
