@@ -1,5 +1,6 @@
 hr.horizontal_line {
     margin: 5px 0;
+    margin-right: 1px;
 }
 
 span.overview {
@@ -8,4 +9,8 @@ span.overview {
 
 span.smaller {
     font-size: 75%;
+}
+
+div.last_episodes {
+    width: 100%;
 }

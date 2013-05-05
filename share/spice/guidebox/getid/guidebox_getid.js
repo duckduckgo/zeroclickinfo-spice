@@ -17,12 +17,14 @@ var ddg_spice_guidebox_getid = function (api_result){
 
     if (!api_result.results) return;
 
-    var queries = ["guidebox", "watch", "full episodes", "full episodes of", "watch free", "full free episodes", "full free episodes of", "free episodes", "free episodes of"];
+    var queries = ["full episodes of", "full free episodes of", "free episodes of", "guidebox", "watch", "full episodes", "watch free", "full free episodes", "free episodes"];
+    var i;
 
     GB_global.query = DDG.get_query();
 
-    for (var i in queries){
+    for (i in queries){
         GB_global.query = GB_global.query.replace(queries[i], "");
+        
     }
 
     // Prevent jQuery from appending "_={timestamp}" in our url.
@@ -57,7 +59,7 @@ Handlebars.registerHelper("getQuery", function() {
     return GB_global.query;
 });
 
-Handlebars.registerHelper("getSearched", function() {
+Handlebars.registerHelper("getSimilar", function() {
     "use strict";
 
     var out = '<ul>', i, item;
@@ -65,7 +67,7 @@ Handlebars.registerHelper("getSearched", function() {
     for (i in GB_global.searched.results.result){
         if (i === '0') continue;
         if (i === '10') break;
-        item = GB_global.results.result[i];
+        item = GB_global.searched.results.result[i];
         out += '<li> <a href="' + item.url +'">' + item.title + '</a></li>';
     }
 
