@@ -135,17 +135,19 @@ Handlebars.registerHelper("recentEps", function(results) {
     
         datesplit = item.first_aired.split('-')
         date = months[datesplit[1]] + ' ' + datesplit[2] + ', ' + datesplit[0];
-        ep = '<br />';
-        ep += '<span class="smaller">';
-        ep += 'Season ' + item.season_number;
-        ep += ', Episode #' + item.episode_number;
-        ep += '<br />';
-        ep += 'Aired on ' + date;
-        ep += '</span>';
         
-	    link.innerHTML = item.episode_name + ep;
+        ep = d.createElement('span');
+	    YAHOO.util.Dom.addClass(ep, 'smaller');
+        ep.innerHTML += 'Season ' + item.season_number;
+        ep.innerHTML += ', Episode ' + item.episode_number;
+        ep.innerHTML += '<br />';
+        ep.innerHTML += date;
+        
+	    link.innerHTML = item.episode_name;
 
 	    div.appendChild(link);
+        div.appendChild(d.createElement('br'));
+	    div.appendChild(ep);
 	    div.appendChild(d.createElement('br'));
       
 	    YAHOO.util.Dom.addClass(div, 'inline highlight_zero_click1 highlight_zero_click_wrapper');

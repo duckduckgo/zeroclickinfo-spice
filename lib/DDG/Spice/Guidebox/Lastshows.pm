@@ -5,7 +5,7 @@ use DDG::Spice;
 
 triggers any => "///***never_trigger***///";
 
-spice to => 'http://api-public.guidebox.com/v1.3/json/tQudk9zw2SJyooZGV8cO85LfysYklk/$1/watch/all/10';
+spice to => 'http://api-public.guidebox.com/v1.3/json/tQudk9zw2SJyooZGV8cO85LfysYklk/$1/watch/free/10';
 
 
 spice wrap_jsonp_callback => 1;
