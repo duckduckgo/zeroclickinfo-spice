@@ -21,6 +21,9 @@ Plugin Audience :
 Have you done any cross-browser testing?
 (All plugins must be cross browser compatible)
 
+Is this plugin connected to an [Ideas.DuckDuckHack](https://duckduckhack.uservoice.com/forums/5168-ideas-for-duckduckgo-instant-answer-plugins) or [Duck.co](http://duck.co/) thread?
+(If so *please* let us know - a link would help - so we can update them accordingly)
+
 
 ##If Applicable
 Related UserVoice request :
