@@ -68,7 +68,8 @@ Handlebars.registerHelper("getSimilar", function() {
         if (i === '0') continue;
         if (i === '10') break;
         item = GB_global.searched.results.result[i];
-        out += '<li> <a href="' + item.url +'">' + item.title + '</a></li>';
+        //out += '<li> <a href="' + item.url +'">' + item.title + '</a></li>';
+        out += '<li> <a href="http://0:5000/?q=guidebox ' + item.title +'">' + item.title + '</a></li>';
     }
 
     out += '</ul>';
@@ -78,8 +79,23 @@ Handlebars.registerHelper("getSimilar", function() {
 Handlebars.registerHelper("recentEps", function(results) {
     "use strict";
 
-    var out, tmp, div, div2, link, img, play, item, i, ep;
+    var out, tmp, div, div2, link, img, play, item, i, ep, date, datesplit;
     out = '';
+
+    var months = {
+            '01' : 'January',
+            '02' : 'February',
+            '03' : 'March',
+            '04' : 'April',
+            '05' : 'May',
+            '06' : 'Jun',
+            '07' : 'July',
+            '08' : 'August',
+            '09' : 'September',
+            '10' : 'October',
+            '11' : 'November',
+            '12' : 'December',
+    };
 
     // validity check
     if (results.result) {
@@ -110,7 +126,6 @@ Handlebars.registerHelper("recentEps", function(results) {
 	    YAHOO.util.Dom.setStyle(play, "margin", '-50px auto 15px');
 
 	    YAHOO.util.Dom.setStyle(div,'margin-bottom', '10px');
-	    YAHOO.util.Dom.setStyle(div,'text-align', 'center');
 	    link.appendChild(img);
         link.appendChild(play);
 	    div.appendChild(link);
@@ -118,13 +133,18 @@ Handlebars.registerHelper("recentEps", function(results) {
 	    link = d.createElement('a');
 	    link.href = item.smart_url;
     
+        datesplit = item.first_aired.split('-')
+        date = months[datesplit[1]] + ' ' + datesplit[2] + ', ' + datesplit[0];
         ep = '<br />';
         ep += '<span class="smaller">';
         ep += 'Season ' + item.season_number;
         ep += ', Episode #' + item.episode_number;
+        ep += '<br />';
+        ep += 'Aired on ' + date;
         ep += '</span>';
         
 	    link.innerHTML = item.episode_name + ep;
+
 	    div.appendChild(link);
 	    div.appendChild(d.createElement('br'));
       
