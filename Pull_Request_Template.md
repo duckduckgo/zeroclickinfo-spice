@@ -29,7 +29,7 @@ Is this plugin connected to an [Ideas.DuckDuckHack](https://duckduckhack.uservoi
 Related UserVoice request :
 (Provide link to UserVoice thread)
 
-Which plugins will this plugin supercede/overlap with? :
+Which existing plugins will this plugin supercede/overlap with? :
 (List the plugin names) 
 
 Any issue you're having? :
