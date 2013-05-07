@@ -10,10 +10,10 @@ Plugin data source (API) :
 (Provide the name/url of the api)
 
 Reason for API selection :
-(Any special reason? Is it the only one?)
+(Any special reason? Is it the only one? Any possible alternatives?)
 
 Example queries :
-(Various queries that would trigger this plugin)
+(Provide a couple queries that would trigger this plugin)
 
 Plugin Audience :
 (Any communities this is especially useful for?)
@@ -21,16 +21,13 @@ Plugin Audience :
 Have you done any cross-browser testing?
 (All plugins must be cross browser compatible)
 
-Is this plugin connected to an [Ideas.DuckDuckHack](https://duckduckhack.uservoice.com/forums/5168-ideas-for-duckduckgo-instant-answer-plugins) or [Duck.co](http://duck.co/) thread?
-(If so *please* let us know - a link would help - so we can update them accordingly)
-
 
 ##If Applicable
-Related UserVoice request :
-(Provide link to UserVoice thread)
+Is this plugin connected to an [Ideas.DuckDuckHack](https://duckduckhack.uservoice.com/forums/5168-ideas-for-duckduckgo-instant-answer-plugins) or [Duck.co](http://duck.co/) thread?
+(Please provide a link)
 
 Which existing plugins will this plugin supercede/overlap with? :
 (List the plugin names) 
 
-Any issue you're having? :
-(Describe them)
+Are you having any problems? Do you need our help with anything? :
+(Let us know!)
