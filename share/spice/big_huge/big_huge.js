@@ -1,4 +1,14 @@
+// Description:
+// Given a word, it would return similar words and even the word's antonym.
+//
+// Dependencies:
+// None.
+//
+// Commands:
+// thesaurus big - would show similar words such as "large."
+
 var ddg_spice_big_huge = function(api_result) {
+    "use strict";
 
     // Get the query and the mode.
     // What's the mode? Don't worry, it's just our trigger words.
@@ -64,9 +74,10 @@ var ddg_spice_big_huge = function(api_result) {
 
 // Determine which results to show.
 Handlebars.registerHelper("checkWords", function(options) {
+    "use strict";
+
     var results = [],
-        mode = this.mode,
-        part;
+        mode = this.mode;
 
     for(var parts_of_speech in this) {
         if(this.hasOwnProperty(parts_of_speech) && this[parts_of_speech][mode]) {
