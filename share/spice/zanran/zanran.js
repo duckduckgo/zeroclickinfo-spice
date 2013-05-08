@@ -25,19 +25,3 @@ function ddg_spice_zanran(api_result) {
         $(id).toggle();
     });
 };
-
-Handlebars.registerHelper("each", function(context, options) {
-    if(!context) {
-        return;
-    }
-
-    var from = +options.hash.from || 0,
-        to = +options.hash.to || context.length,
-        result = "";
-
-    for(var i = from; i < to; i += 1) {
-        result += options.fn(context[i]);
-    }
-
-    return result;
-});
