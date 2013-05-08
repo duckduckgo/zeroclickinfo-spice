@@ -1,5 +1,5 @@
 <div>
-    {{#each results from="0" to="1"}}
+    {{#with results.[0]}}
         <div>
             {{{condense title maxlen="215"}}
             {{#if preview_url}}
@@ -9,8 +9,8 @@
         <div>
             <i>Source: <a href="{{final_url}}">{{site_name}}</a></i>
         </div>
-    {{/each}}
-</div>
+    {{/with}}
+</with>
 <div style="clear: both;"></div>
 <hr class="horizontal_line">
 <a href="javascript:void(0);" data-target="#other-results" class="show-hide">Other Results</a>
