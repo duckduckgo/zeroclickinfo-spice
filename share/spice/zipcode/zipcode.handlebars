@@ -5,7 +5,7 @@
     {{/with}}
     <div>
         {{#checkZipcode}}
-            {{#concat this sep=", " last=", and "}}<a href="javascript:void(0);" class="places" data-southwest="{{boundingBox.southWest.latitude}}|{{boundingBox.southWest.longitude}}" data-northeast="{{boundingBox.northEast.latitude}}|{{boundingBox.northEast.longitude}}">{{name}}</a> ({{country}}){{/concat}}
+            {{#concat this sep=", " conj=" and "}}<a href="javascript:void(0);" class="places" data-southwest="{{boundingBox.southWest.latitude}}|{{boundingBox.southWest.longitude}}" data-northeast="{{boundingBox.northEast.latitude}}|{{boundingBox.northEast.longitude}}">{{name}}</a> ({{country}}){{/concat}}
         {{/checkZipcode}}
     </div>
 </div>
