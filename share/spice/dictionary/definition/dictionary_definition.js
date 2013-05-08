@@ -47,6 +47,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
         // This loads the definition of the singular form of the word.
         if(api_result.length === 1 && plural) {
             $.getScript("/js/spice/dictionary/reference/" + plural[1]);
+            window.ddg_spice_dictionary_definition.pluralOf = api_result[0].word;
         } else {
             render(api_result, api_result[0].word);
         }
@@ -62,7 +63,8 @@ var ddg_spice_dictionary_reference = function(api_result) {
     if(api_result && api_result.length > 0) {
         var word = api_result[0].word;
         api_result[0].pluralOf = "is the plural form of " + word;
-        render(api_result, word);
+        api_result[0].word = window.ddg_spice_dictionary_definition.pluralOf;
+        render(api_result, api_result[0].word);
     }
 };
 
