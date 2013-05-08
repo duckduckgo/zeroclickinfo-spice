@@ -14,7 +14,7 @@
 // ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
 
 // This function gets the definition of a word.
-window.ddg_spice_dictionary_definition = function(api_result) {
+var ddg_spice_dictionary_definition = function(api_result) {
     "use strict";
 
     // We moved Spice.render to a function because we're choosing between two contexts.
@@ -29,6 +29,7 @@ window.ddg_spice_dictionary_definition = function(api_result) {
         });
 
         // Call the Wordnik API to display the pronunciation text and the audio.
+        $.getScript("/js/spice/dictionary/hyphenation/" + word);
         $.getScript("/js/spice/dictionary/pronunciation/" + word);
         $.getScript("/js/spice/dictionary/audio/" + word);
     };
@@ -53,7 +54,7 @@ window.ddg_spice_dictionary_definition = function(api_result) {
 };
 
 // Change the context so that it would say something like, "dictionaries is the plural of dictionary."
-window.ddg_spice_dictionary_reference = function(api_result) {
+var ddg_spice_dictionary_reference = function(api_result) {
     "use strict";
 
     var render = window.ddg_spice_dictionary_definition.render;
@@ -62,6 +63,18 @@ window.ddg_spice_dictionary_reference = function(api_result) {
         var word = api_result[0].word;
         api_result[0].pluralOf = "is the plural form of " + word;
         render(api_result, word);
+    }
+};
+
+var ddg_spice_dictionary_hyphenation = function(api_result) {
+    "use strict";
+
+    var result = [];
+    if(api_result && api_result.length > 0) {
+        for(var i = 0; i < api_result.length; i += 1) {
+            result.push(api_result[i].text);
+        }
+        $("#hyphenation").html(result.join("•"));
     }
 };
 
@@ -103,7 +116,7 @@ Handlebars.registerHelper("format", function(text) {
 
 // Dictionary::Pronunciation will call this function.
 // It displays the text that tells you how to pronounce a word.
-window.ddg_spice_dictionary_pronunciation = function(api_result) {
+var ddg_spice_dictionary_pronunciation = function(api_result) {
     "use strict";
 
     if(api_result && api_result.length > 0 && api_result[0].rawType === "ahd-legacy") {
@@ -113,7 +126,7 @@ window.ddg_spice_dictionary_pronunciation = function(api_result) {
 
 // Dictionary::Audio will call this function.
 // It gets the link to an audio file.
-window.ddg_spice_dictionary_audio = function(api_result) {
+var ddg_spice_dictionary_audio = function(api_result) {
     "use strict";
 
     var url = "";
