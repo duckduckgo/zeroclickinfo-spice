@@ -4,9 +4,9 @@ package DDG::Spice::BigHuge;
 use DDG::Spice;
 
 spice from => '([^/]+)/([^/]+)';
-spice to => 'http://words.bighugelabs.com/api/2/{{ENV{DDG_SPICE_BIGHUGE_APIKEY}}}/$1/json?callback={{callback}}_$2';
+spice to => 'http://words.bighugelabs.com/api/2/{{ENV{DDG_SPICE_BIGHUGE_APIKEY}}}/$1/json?callback={{callback}}';
 
-triggers startend => "synonyms", "synonym", "antonyms", "antonym", "related", "similar";
+triggers startend => "synonyms", "synonym", "antonyms", "antonym", "related", "similar", "thesaurus";
 
 primary_example_queries "synonyms for person";
 secondary_example_queries "similar words to miniature";
@@ -20,20 +20,10 @@ attribution github => ['https://github.com/lactose','lactose'],
            twitter => ['http://twitter.com/hackariah','zachariah'];
 
 handle query_lc => sub {
-  my $term;
-  my $callback;
-
-  if (/^(synonyms?|antonyms?|related|similar)\s+(?:terms?|words?)?\s*(?:of|to|for)?\s*([\w\s]+)$/) {
-    $callback = $1;
-    $term = $2;
-  } elsif (/^([\w\s]+)\s+(synonyms?|antonyms?|related|similar)/){
-    $callback = $2;
-    $term = $1;
-  }
-
-  if (defined $term) {
-    $callback =~ s/(.+)s$/$1/; #remove plural "s" from synonyms,antonyms
-    return $term, $callback;
+  if (/^(synonyms?|antonyms?|related|similar|thesaurus)\s+(?:terms?|words?)?\s*(?:of|to|for)?\s*([\w\s]+)$/) {
+    return $2, $1;
+  } elsif (/^([\w\s]+)\s+(synonyms?|antonyms?|related|similar|thesaurus)/){
+    return $1, $2;
   }
 
   return;

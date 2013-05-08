@@ -1,75 +1,81 @@
-function ddg_spice_big_huge_antonym(api_result) {
-  ddg_spice_big_huge_varinym(api_result, 'ant', 'Antonyms of ', true, '', '');
-}
-function ddg_spice_big_huge_related(api_result) {
-  ddg_spice_big_huge_varinym(api_result, 'rel', 'Related to ', true, '', '');
-}
-function ddg_spice_big_huge_similar(api_result) {
-  ddg_spice_big_huge_varinym(api_result, 'sim', 'Similar to ', true, '', '');
-}
-function ddg_spice_big_huge_synonym(api_result) {
-  ddg_spice_big_huge_varinym(api_result, 'syn', 'Synonyms of ', true, '', '');
-}
+var ddg_spice_big_huge = function(api_result) {
 
-function ddg_spice_big_huge_varinym(api_result, mode, header, complete, modifier, content) {
+    // Get the query and the mode.
+    // What's the mode? Don't worry, it's just our trigger words.
+    // The mode is there to tell us what to return, e.g., maybe you'd want the antonym but not the synonym.
+    var query = "", mode = "";
+    $("script").each(function() {
+        var matched, result;
+        matched = $(this).attr("src");
+        if(matched) {
+            result = matched.match(/\/js\/spice\/big_huge\/([^\/]+)\/([^\/]+)/);
+            if(result) {
+                query = result[1];
+                mode = result[2];
+            }
+        }
+    });
 
-  // Check if desired result exists in api_result
-  if (JSON.stringify(api_result).indexOf(mode) === -1 ) {
-    return;
-  }
+    var shorthand = {
+        "synonyms"  : "syn",
+        "synonym"   : "syn",
+        "antonyms"  : "ant",
+        "antonym"   : "ant",
+        "related"   : "rel",
+        "similar"   : "sim",
+        "thesaurus" : "syn"
+    };
 
-  api_result.mode = mode;
-  api_result.header = header;
-
-  var word = DDG.get_query().replace(/(synonyms?|antonyms?|similar|related)\s*(terms?|words?)?\s*(of|to|for)?\s*/, "");
-
-  Spice.render({
-    data:               api_result,
-    header1 :           header + word,
-    source_name :       'Big Huge Thesaurus',
-    source_url :        'http://words.bighugelabs.com/' + word,
-    template_normal :   'big_huge',
-    force_big_header :  true
-  });
-}
-
-/*******************************
-  Handlebars helpers
-  *******************************/
-
-// Determine which results to show
-Handlebars.registerHelper("checkWords", function(options){
-
-  var out = {
-        results: []
-      },
-      wc,
-      mode = this.mode;
-
-  for (var wordClass in this) {
-    if (this.hasOwnProperty(wordClass) &&
-        this[wordClass].hasOwnProperty(mode)) {
-
-      var obj = {
-        heading:  wordClass.charAt(0).toUpperCase() + wordClass.slice(1)+"s",
-        words:    this[wordClass][mode].join(", ")
-      };
-
-      out.results.push(obj);
+    // Create the header.
+    var header = "Thesaurus";
+    if(shorthand[mode] === "syn") {
+        header = "Synonyms of " + query;
+    } else if(shorthand[mode] === "ant") {
+        header = "Antonyms of " + query;
+    } else if(shorthand[mode] === "rel") {
+        header = "Related to " + query;
+    } else if(shorthand[mode] === "sim") {
+        header = "Similar to " + query;
     }
 
-    if (mode === "sim" &&
-        this[wordClass].hasOwnProperty("syn")) {
-
-      var obj = {
-        heading:  "Similar " + wordClass+"s",
-        words:    this[wordClass].syn.join(", ")
-      };
-
-      out.results.push(obj);
+    // Check if the mode exists.
+    var how_many = 0;
+    for(var i in api_result) {
+        if(api_result.hasOwnProperty(i) && (shorthand[mode] in api_result[i])) {
+            how_many += 1;
+        }
     }
-  }
+    if(how_many === 0) {
+        return;
+    }
 
-  return options.fn(out);
+    api_result.mode = shorthand[mode];
 
+    // Create the plugin.
+    Spice.render({
+        data              :  api_result,
+        header1           :  header + " (Big Huge)",
+        source_name       :  'Big Huge Thesaurus',
+        source_url        :  'http://words.bighugelabs.com/' + query,
+        template_normal   :  'big_huge',
+        force_big_header  :  true
+    });
+};
+
+// Determine which results to show.
+Handlebars.registerHelper("checkWords", function(options) {
+    var results = [],
+        mode = this.mode,
+        part;
+
+    for(var parts_of_speech in this) {
+        if(this.hasOwnProperty(parts_of_speech) && this[parts_of_speech][mode]) {
+            results.push({
+                heading : parts_of_speech.charAt(0).toUpperCase() + parts_of_speech.slice(1),
+                words   : this[parts_of_speech][mode].join(", ")
+            });
+        }
+    }
+
+    return options.fn(results);
 });
