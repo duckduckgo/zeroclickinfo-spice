@@ -10,6 +10,8 @@
 var ddg_spice_sound_cloud = function(api_result) {
     "use strict";
 
+    var hasLoaded = false;
+
     // Get the tracks that are actually streamable.
     var context= [];
     for(var i = 0; i < api_result.length; i += 1) {
@@ -38,46 +40,9 @@ var ddg_spice_sound_cloud = function(api_result) {
         force_no_fold            : 1
     });
 
-    // Play the sound.
-    var playSound = function(element) {
-        // Everything else should be stopped.
-        $(".soundcloud-stream").each(function() {
-            $(this).removeClass("playing");
-            $(this).removeClass("paused");
-        });
-        soundManager.stopAll();
-
-        // Let's play the sound.
-        var sound = soundManager.createSound({
-            id       : $(element).attr("id"),
-            url      : $(element).data("stream"),
-            onfinish : function() {
-                $(element).removeClass("playing");
-            }
-        });
-        sound.play();
-        $(element).addClass("playing");
-    };
-
-    // Pause the sound.
-    var pauseSound = function(element) {
-        var id= $(element).attr("id");
-        soundManager.pause(id);
-        $(element).removeClass("playing");
-        $(element).addClass("paused");
-    };
-
-    // Resume the sound.
-    var resumeSound = function(element) {
-        var id = $(element).attr("id");
-        soundManager.resume(id);
-        $(element).removeClass("paused");
-        $(element).addClass("playing");
-    }
-
     // Initialize SoundManager2.
-    var soundSetup = function(element) {
-        console.log(element);
+    window.SM2_DEFER = true;
+    var soundSetup = function() {
         window.soundManager = new SoundManager();
         soundManager.url = "/soundmanager2/swf/";
         soundManager.flashVersion = 9;
@@ -85,37 +50,41 @@ var ddg_spice_sound_cloud = function(api_result) {
         soundManager.useHTML5Audio = false;
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
-            playSound(element);
+            hasLoaded = true;
         });
     };
 
-    var clicked = function(element) {
-        $(element).removeClass("stopped");
-
-        // Check if we already loaded SoundManager.
-        if(window.soundManager) {
-            // If it's playing, pause it.
-            if($(element).hasClass("playing")) {
-                pauseSound(element);
-            // If it's paused, play it.
-            } else if($(element).hasClass("paused")) {
-                resumeSound(element);
-            // If it's none of the above, just play it.
-            } else {
-                playSound(element);
-            }
-        } else {
-            // Load SoundManager2 if it hasn't loaded.
-            window.SM2_DEFER = true;
-            $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", function() {
-                soundSetup(element);
-            });
+    var ready = [false, false];
+    var checkReady = function(toggle) {
+        ready[toggle] = true;
+        if(ready[0] && ready[1]) {
+            soundSetup();
         }
     };
 
-    ddg_spice_sound_cloud.clicked = clicked;
+    // Load page-player.js. This JS file converts a list of MP3s into a playlist.
+    $.getScript("/soundmanager2/script/page-player-soundcloud.js", function() {
+        checkReady(0);
+    });
+
+    // Load SoundManager2. This JS file handles our audio.
+    $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", function() {
+        checkReady(1);
+    });
+
+    $("#ddgc_detail").prependTo("#sound_cloud");
 };
 
+
+Handlebars.registerHelper("initializeSound", function(id) {
+    var element = $("#" + id);
+
+    var stream = element.attr("data-stream");
+    element.attr("href", stream);
+
+    var pagePlayer = new PagePlayer();
+    pagePlayer.init();
+});
 
 Handlebars.registerHelper("chooseImage", function(artwork, avatar) {
     "use strict";
