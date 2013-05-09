@@ -71,3 +71,14 @@ Handlebars.registerHelper("coordString", function(northEast, southWest) {
 
     return box.join(",");
 });
+
+Handlebars.registerHelper("location", function(place) {
+    var locations = ["locality2", "locality1", "admin2", "admin1", "country"];
+    var result = [];
+    for(var i = 0; i < locations.length; i += 1) {
+        if(place[locations[i]]) {
+            result.push(place[locations[i]]);
+        }
+    }
+    return result.join(", ");
+})

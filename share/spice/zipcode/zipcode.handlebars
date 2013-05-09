@@ -1,11 +1,11 @@
 <div>
     {{#with places.place.[0]}}
         <div>Zip Code {{name}} approximate area:</div>
-        <a href="javascript:void(0);">
+        <a href="http://mapq.st/map?q={{location this}}">
             <img id="map" src="/imq2/?size=623,150&scalebar=false&bestfit={{bigbox boundingBox.northEast boundingBox.southWest}}&polygon=fill:0x30ff0000|color:0x20ff0000|width:1|{{coordString boundingBox.northEast boundingBox.southWest}}">
         </a>
     {{/with}}
-    <div>
+    <div>Similar postal codes:
         {{#checkZipcode}}
             {{#concat this sep=", " conj=" and "}}<a href="javascript:void(0);">{{name}}</a> ({{country}}){{/concat}}
         {{/checkZipcode}}

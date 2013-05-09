@@ -82,6 +82,8 @@ Handlebars.registerHelper("initializeSound", function(id) {
     var stream = element.attr("data-stream");
     element.attr("href", stream);
 
+    console.log(stream, "Hello, there.", id);
+
     var pagePlayer = new PagePlayer();
     pagePlayer.init();
 });
