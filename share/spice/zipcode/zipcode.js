@@ -31,46 +31,6 @@ window.ddg_spice_zipcode = function(api_result) {
         source_url        : "http://mapq.st/map?q=" + query,
         template_normal   : "zipcode"
     });
-
-    var loadMap = function() {
-        // Point to the icons folder.
-        L.Icon.Default.imagePath = "/dist/images";
-
-        // Initialize the map.
-        var map = L.map('map');
-
-        // Tell Leaflet where to get the map tiles.
-        L.tileLayer('http://{s}.tile.cloudmade.com/2f62ad0b4ba046f2b907b67e2c866fa4/997/256/{z}/{x}/{y}.png', {
-            maxZoom: 18, detectRetina: true }).addTo(map);
-
-        // Let's make a rectangle, shall we?
-        // This rectangle is used to mark the area occupied by the area code.
-        $(".places").each(function(index) {
-            var southWest = $(this).data("southwest").split("|");
-            var northEast = $(this).data("northeast").split("|");
-
-            southWest = new L.LatLng(southWest[0], southWest[1]);
-            northEast = new L.LatLng(northEast[0], northEast[1]);
-
-            var bounds = new L.LatLngBounds(southWest, northEast);
-            L.rectangle(bounds).addTo(map);
-
-            // Zoom in to the first one.
-            if(index === 0) {
-                map.fitBounds(bounds);
-            }
-
-            // Zoom in to the location when the link is clicked.
-            $(this).click(function() {
-                (function(bounds) {
-                    map.fitBounds(bounds);
-                }(bounds));
-            });
-        });
-    };
-
-    // Load LeafletJS.
-    $.getScript("/dist/leaflet.js", loadMap);
 };
 
 // Filter the zipcodes.
@@ -93,4 +53,25 @@ Handlebars.registerHelper("checkZipcode", function(context) {
     }
 
     return context.fn(result);
+});
+
+Handlebars.registerHelper("bigbox", function(northEast, southWest) {
+    var boxpad = (northEast.latitude - southWest.latitude) * 0.25;
+
+    return [[northEast.latitude + boxpad, southWest.longitude],
+                  [southWest.latitude - boxpad, northEast.longitude]].join();
+});
+
+Handlebars.registerHelper("coordString", function(northEast, southWest) {
+    var box = [[southWest.latitude, southWest.longitude],
+               [northEast.latitude, southWest.longitude],
+               [northEast.latitude, northEast.longitude],
+               [southWest.latitude, northEast.longitude],
+               [southWest.latitude, southWest.longitude]];
+
+    for(var i = 0; i < box.length; i += 1) {
+        box[i] = box[i].join();
+    }
+
+    return box.join(",");
 });
