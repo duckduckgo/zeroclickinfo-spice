@@ -7,7 +7,7 @@
     {{/with}}
     <div>Similar postal codes:
         {{#checkZipcode}}
-            {{#concat this sep=", " conj=" and "}}<a href="javascript:void(0);">{{name}}</a> ({{country}}){{/concat}}
+            {{#concat this sep=", " conj=" and "}}<a href="/?q=postcode+{{name}}+{{country}}">{{name}}</a> ({{country}}){{/concat}}
         {{/checkZipcode}}
     </div>
 </div>
