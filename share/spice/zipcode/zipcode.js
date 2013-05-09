@@ -63,15 +63,11 @@ Handlebars.registerHelper("bigbox", function(northEast, southWest) {
 });
 
 Handlebars.registerHelper("coordString", function(northEast, southWest) {
-    var box = [[southWest.latitude, southWest.longitude],
-               [northEast.latitude, southWest.longitude],
-               [northEast.latitude, northEast.longitude],
-               [southWest.latitude, northEast.longitude],
-               [southWest.latitude, southWest.longitude]];
-
-    for(var i = 0; i < box.length; i += 1) {
-        box[i] = box[i].join();
-    }
+    var box = [[southWest.latitude, southWest.longitude].join(),
+               [northEast.latitude, southWest.longitude].join(),
+               [northEast.latitude, northEast.longitude].join(),
+               [southWest.latitude, northEast.longitude].join(),
+               [southWest.latitude, southWest.longitude].join()];
 
     return box.join(",");
 });
