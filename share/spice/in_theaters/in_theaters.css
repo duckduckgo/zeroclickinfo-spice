@@ -33,7 +33,6 @@ ul.showing li {
     color:#666;
     padding:0.25em 0.5em 0.25em 0.5em;
     border:none;
-    letter-spacing:-1px; /* ZOMG WEB X.0. ;) */
     -webkit-transition-property: hover;
     -webkit-transition: background-color 0.15s ease-in-out;
     -moz-transition: background-color 0.15s linear 0s; /* firefox 4 */
