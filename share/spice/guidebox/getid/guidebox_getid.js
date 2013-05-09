@@ -69,7 +69,7 @@ Handlebars.registerHelper("getSimilar", function() {
         if (i === '10') break;
         item = GB_global.searched.results.result[i];
         //out += '<li> <a href="' + item.url +'">' + item.title + '</a></li>';
-        out += '<li> <a href="http://0:5000/?q=guidebox ' + item.title +'">' + item.title + '</a></li>';
+        out += '<li> <a href="https://duckduckgo.com/?q=guidebox ' + item.title +'">' + item.title + '</a></li>';
     }
 
     out += '</ul>';
