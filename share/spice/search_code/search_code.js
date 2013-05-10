@@ -35,7 +35,7 @@ function ddg_spice_search_code(response) {
         source_url       : 'http://searchco.de/?q='
                            + encodeURIComponent(searchterm),
         source_name      : 'search[code]',
-        template_normal  : 'searchcode',
+        template_normal  : 'search_code',
         force_big_header : true,
     });
 }

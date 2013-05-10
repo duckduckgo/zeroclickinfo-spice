@@ -1,11 +1,11 @@
-#ddgc_slides li {
+#alternative_to #ddgc_slides li {
 	height: 60px !important;
 }
 
-#ddgc_slides p{
+#alternative_to #ddgc_slides p{
 	height: 0px !important;
 }
 
-#ddgc_slides span {
+#alternative_to #ddgc_slides span {
 	margin-top: 0pxi !important;
 }
