@@ -30,7 +30,6 @@ ul.showing li {
     display:block;
     width:auto;
     font-size:1em;
-    color:#666;
     padding:0.25em 0.5em 0.25em 0.5em;
     border:none;
     -webkit-transition-property: hover;
@@ -48,7 +47,6 @@ ul.showing li a {
     display:block;
     text-decoration:none;
     font-weight:normal;
-    color:#000;
     font-size:100%;
     outline:none;
     position:relative;

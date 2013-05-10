@@ -60,7 +60,6 @@ ul.playlist li {
  color:#666;
  padding:0.25em 0.5em 0.25em 0.5em;
  border:none;
- letter-spacing:-1px; /* ZOMG WEB X.0. ;) */
  /*background-color:#f9f9f9;*/
  -webkit-transition-property: hover;
  -webkit-transition: background-color 0.15s ease-in-out;
