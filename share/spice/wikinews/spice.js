@@ -11,7 +11,7 @@ function ddg_spice_wikinews(ir){
 
     items[0] = {
         a: content,
-        h: "News",
+        h: "Wikinews",
         s: "Wikinews",
         force_big_header: 1,
         u: "http://en.wikinews.org/wiki/Main_Page"
