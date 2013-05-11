@@ -69,7 +69,7 @@ Handlebars.registerHelper("getSimilar", function() {
         if (i === '10') break;
         item = GB_global.searched.results.result[i];
         //out += '<li> <a href="' + item.url +'">' + item.title + '</a></li>';
-        out += '<li> <a href="http://0:5000/?q=guidebox ' + item.title +'">' + item.title + '</a></li>';
+        out += '<li> <a href="https://duckduckgo.com/?q=guidebox ' + item.title +'">' + item.title + '</a></li>';
     }
 
     out += '</ul>';
@@ -79,7 +79,7 @@ Handlebars.registerHelper("getSimilar", function() {
 Handlebars.registerHelper("recentEps", function(results) {
     "use strict";
 
-    var out, tmp, div, div2, link, img, play, item, i, ep, date, datesplit;
+    var out, tmp, div, p, link, img, play, item, i, ep, date, datesplit, name;
     out = '';
 
     var months = {
@@ -105,7 +105,7 @@ Handlebars.registerHelper("recentEps", function(results) {
 	    item = results.result[i];
 
 	    div = d.createElement("div");
-	    div2 = d.createElement("div");
+        p = d.createElement("p");
 
 	    link = d.createElement("a");
 	    link.href = item.smart_url;
@@ -126,25 +126,24 @@ Handlebars.registerHelper("recentEps", function(results) {
 	    YAHOO.util.Dom.setStyle(play, "margin", '-50px auto 15px');
 
 	    YAHOO.util.Dom.setStyle(div,'margin-bottom', '10px');
-	    link.appendChild(img);
-        link.appendChild(play);
-	    div.appendChild(link);
-
-	    link = d.createElement('a');
-	    link.href = item.smart_url;
+        p.appendChild(img);
+        p.appendChild(play);
+	    link.appendChild(p);
     
         datesplit = item.first_aired.split('-')
         date = months[datesplit[1]] + ' ' + datesplit[2] + ', ' + datesplit[0];
         
         ep = d.createElement('span');
+        name = d.createElement('span');
+        name.innerHTML = item.episode_name;
+
 	    YAHOO.util.Dom.addClass(ep, 'smaller');
         ep.innerHTML += 'Season ' + item.season_number;
         ep.innerHTML += ', Episode ' + item.episode_number;
         ep.innerHTML += '<br />';
         ep.innerHTML += date;
-        
-	    link.innerHTML = item.episode_name;
 
+        link.appendChild(name);
 	    div.appendChild(link);
         div.appendChild(d.createElement('br'));
 	    div.appendChild(ep);
@@ -155,8 +154,7 @@ Handlebars.registerHelper("recentEps", function(results) {
 	    YAHOO.util.Dom.setStyle(div, "margin", "10px 20px 10px 0px");
 	    YAHOO.util.Dom.setStyle(div, "padding", "5px");
 	    
-	    div2.appendChild(div);
-	    out += div2.innerHTML;
+	    out += div.innerHTML;
 	}
     }
     return out;
@@ -172,7 +170,11 @@ ddg_spice_guidebox_getid.render = function(api_result) {
         force_big_header : true,
         source_name : "Guidebox",
         source_url : GB_global.more,
-        template_normal : "guidebox_getid"
+        template_normal : "guidebox_getid",
+        template_frame : "carousel",
+        carousel_css_id: "guidebox_getid",
+        carousel_items : api_result.results.result,
+        force_no_fold  : 1
     });
 
     $("a.GB_showHide").click(function(){
