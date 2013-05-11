@@ -79,7 +79,7 @@ Handlebars.registerHelper("getSimilar", function() {
 Handlebars.registerHelper("recentEps", function(results) {
     "use strict";
 
-    var out, tmp, div, p, link, img, play, item, i, ep, date, datesplit, name;
+    var out, tmp, div, p, link, img, play, item, i, ep, date, datesplit, name, li;
     out = '';
 
     var months = {
@@ -106,6 +106,7 @@ Handlebars.registerHelper("recentEps", function(results) {
 
 	    div = d.createElement("div");
         p = d.createElement("p");
+        li = d.createElement('li');
 
 	    link = d.createElement("a");
 	    link.href = item.smart_url;
@@ -144,16 +145,14 @@ Handlebars.registerHelper("recentEps", function(results) {
         ep.innerHTML += date;
 
         link.appendChild(name);
-	    div.appendChild(link);
-        div.appendChild(d.createElement('br'));
-	    div.appendChild(ep);
-	    div.appendChild(d.createElement('br'));
+	    li.appendChild(link);
+        li.appendChild(d.createElement('br'));
+	    li.appendChild(ep);
+	    li.appendChild(d.createElement('br'));
       
-	    YAHOO.util.Dom.addClass(div, 'inline highlight_zero_click1 highlight_zero_click_wrapper');
-	    YAHOO.util.Dom.setStyle(div, "float", "left");
-	    YAHOO.util.Dom.setStyle(div, "margin", "10px 20px 10px 0px");
-	    YAHOO.util.Dom.setStyle(div, "padding", "5px");
+	    YAHOO.util.Dom.addClass(li, 'ddgc_item');
 	    
+        div.appendChild('li');
 	    out += div.innerHTML;
 	}
     }
