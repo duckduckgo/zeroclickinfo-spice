@@ -20,7 +20,7 @@ function ddg_spice_meta_cpan(response) {
         source_url       : 'https://metacpan.org/search?q='
                            + encodeURIComponent(name),
         source_name      : 'MetaCPAN',
-        template_normal  : 'metacpan',
+        template_normal  : 'meta_cpan',
         force_big_header : true,
         force_no_fold    : true,
     });
