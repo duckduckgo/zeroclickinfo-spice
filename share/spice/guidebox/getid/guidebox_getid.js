@@ -76,6 +76,36 @@ Handlebars.registerHelper("getSimilar", function() {
     return out;
 });
 
+Handlebars.registerHelper("getDate", function(first_aired) {
+    "use strict";
+
+    var datesplit;
+    var months = {
+            '01' : 'January',
+            '02' : 'February',
+            '03' : 'March',
+            '04' : 'April',
+            '05' : 'May',
+            '06' : 'June',
+            '07' : 'July',
+            '08' : 'August',
+            '09' : 'September',
+            '10' : 'October',
+            '11' : 'November',
+            '12' : 'December',
+    };
+
+    datesplit = first_aired.split('-')
+    return months[datesplit[1]] + ' ' + datesplit[2] + ', ' + datesplit[0];
+
+});
+
+Handlebars.registerHelper("getEpisodeInfo", function(episode, season) {
+    "use strict";
+
+        return 'Season ' + season + ', Episode ' + episode;
+});
+
 Handlebars.registerHelper("recentEps", function(results) {
     "use strict";
 

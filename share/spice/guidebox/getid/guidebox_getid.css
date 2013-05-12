@@ -3,6 +3,11 @@ hr.horizontal_line {
     margin-right: 1px;
 }
 
+span.text_of_episode {
+    float: left;
+    text-align: left;
+}
+
 span.overview {
     font-size: 85%;
 }
