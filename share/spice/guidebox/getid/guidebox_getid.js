@@ -152,7 +152,7 @@ Handlebars.registerHelper("recentEps", function(results) {
       
 	    YAHOO.util.Dom.addClass(li, 'ddgc_item');
 	    
-        div.appendChild('li');
+        div.appendChild(li);
 	    out += div.innerHTML;
 	}
     }
