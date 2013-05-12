@@ -3,6 +3,12 @@ hr.horizontal_line {
     margin-right: 1px;
 }
 
+img.play_button {
+    visibility: visible;
+    z-index: 100;
+    margin: -50px auto 15px;
+}
+
 span.text_of_episode {
     float: left;
     text-align: left;
