@@ -1,14 +1,14 @@
-function ddg_spice_meta_cpan(response) {
-	if (response["message"]) return;
+function ddg_spice_meta_cpan(api_response) {
+	if (api_response["message"]) return;
     
     var pkg = {};
 
 	pkg.query       = DDG.get_query().replace(/\s*(metacpan|meta cpan|cpan)\s*/i, '');
-	pkg.name        = response.documentation ? response.documentation : "No documentation specified.";
-	pkg.author      = response.author ? response.author : "No author specified.";
-	pkg.abstract    = response.abstract ? response.abstract : "No abstract specified.";
-	pkg.version     = response.version ? response.version : "No version given.";
-	pkg.description = response.description ? response.description : "No description specified.";
+	pkg.name        = api_response.documentation ? api_response.documentation : "No documentation specified.";
+	pkg.author      = api_response.author ? api_response.author : "No author specified.";
+	pkg.abstract    = api_response.abstract ? api_response.abstract : "No abstract specified.";
+	pkg.version     = api_response.version ? api_response.version : "No version given.";
+	pkg.description = api_response.description ? api_response.description : "No description specified.";
 
     if (pkg.description.length > 340)
         pkg.description = pkg.description.substring(0, 340)
