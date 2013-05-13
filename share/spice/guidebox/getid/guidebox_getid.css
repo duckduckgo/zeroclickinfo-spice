@@ -3,15 +3,16 @@ hr.horizontal_line {
     margin-right: 1px;
 }
 
-img.play_button {
+#guidebox_getid li.ddgc_item img.play_button {
     visibility: visible;
     z-index: 100;
-    margin: -50px auto 15px;
+    margin: -35px auto 15px;
+    width: 30px;
+    height: 29px;
 }
 
 span.text_of_episode {
-    float: left;
-    text-align: left;
+
 }
 
 span.overview {
@@ -20,6 +21,7 @@ span.overview {
 
 span.smaller {
     font-size: 75%;
+    margin-top: -5px;
 }
 
 div.last_episodes {
