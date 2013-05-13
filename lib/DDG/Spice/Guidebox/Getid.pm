@@ -5,7 +5,7 @@ use DDG::Spice;
 
 triggers startend => "guidebox", "watch", "full episodes", "full episodes of", "watch free", "full free episodes", "full free episodes of", "free episodes", "free episodes of";
 
-spice to => 'http://api-public.guidebox.com/v1.3/json/rKu5Jv4vtj0T0qOQAhSYr8sUQWcBNmpS /search/all/title/$1';
+spice to => 'http://api-public.guidebox.com/v1.3/json/rKu5Jv4vtj0T0qOQAhSYr8sUQWcBNmpS/search/all/title/$1';
 
 primary_example_queries "guidebox Castle";
 description "Search for full episodes of all your favorite TV shows (USA only)";
