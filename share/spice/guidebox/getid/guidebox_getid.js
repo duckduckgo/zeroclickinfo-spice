@@ -103,7 +103,7 @@ Handlebars.registerHelper("getDate", function(first_aired) {
 Handlebars.registerHelper("getEpisodeInfo", function(episode, season) {
     "use strict";
 
-        return 'Season ' + season + ', Episode ' + episode;
+        return 'Season ' + season + ',Episode ' + episode;
 });
 
 
