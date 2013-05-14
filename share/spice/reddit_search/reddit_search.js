@@ -44,7 +44,7 @@ function ddg_spice_reddit(response) {
         header1           : header,
         source_url        : source,
         source_name       : 'Reddit',
-        template_normal   : 'reddit',
+        template_normal   : 'reddit_search',
         force_big_header  : true,
         force_space_after : true
     });
