@@ -95,7 +95,7 @@ var ddg_spice_detect_lang = function(api_result) {
 
     // Display the plug-in.
     Spice.render({
-        data             : api_result.data.detections[0],
+        data             : api_result.data.detections,
         header1          : "Language Detection (Detect Language)",
         source_url       : "http://detectlanguage.com/",
         source_name      : "Detect Language",
