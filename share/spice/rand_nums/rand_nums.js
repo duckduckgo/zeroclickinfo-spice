@@ -1,4 +1,4 @@
-function ddg_spice_rand_nums(response) {
+function ddg_spice_rand_nums(api_result) {
 
 	var query  = DDG.get_query();
 	var regexp = /^(rand|random) (numbers|nums)(?: (\-?[0-9]+)\-(\-?[0-9]+)|)$/i;
@@ -10,7 +10,7 @@ function ddg_spice_rand_nums(response) {
 	if (max == undefined) max = 100;
 
     Spice.render({
-        data             : { 'numbers' : response },
+        data             : api_result,
         source_url       : 'http://www.random.org/integers/?num=100&min='
                             + min + '&max=' + max + '&col=5&base=10&format=html&rnd=new',
         source_name      : 'Random.org',
