@@ -6,6 +6,18 @@ var ddg_spice_detect_lang = function(api_result) {
         return;
     }
 
+    var query = "";
+    $("script").each(function() {
+        var matched, result;
+        matched = $(this).attr("src");
+        if(matched) {
+            result = matched.match(/\/js\/spice\/detect_lang\/([^\/]+)/);
+            if(result) {
+                query = decodeURIComponent(result[1]);
+            }
+        }
+    });
+
     var expandLang = function(language) {
         var langs = {
             af: "Afrikaans",
@@ -96,7 +108,7 @@ var ddg_spice_detect_lang = function(api_result) {
     // Display the plug-in.
     Spice.render({
         data             : api_result.data.detections,
-        header1          : "Language Detection (Detect Language)",
+        header1          : query + " (Detect Language)",
         source_url       : "http://detectlanguage.com/",
         source_name      : "Detect Language",
         template_normal  : "detect_lang",
