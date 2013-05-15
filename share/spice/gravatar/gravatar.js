@@ -34,7 +34,7 @@ var ddg_spice_gravatar = function(api_result) {
         force_big_header  : true,
         source_name       : "Gravatar",
         source_url        : api_result.entry[0].profileUrl,
-        image_url         : api_result.entry[0].thumbnailUrl,
+        image_url         : api_result.entry[0].thumbnailUrl + ".png",
         template_normal   : "gravatar"
     });
 };

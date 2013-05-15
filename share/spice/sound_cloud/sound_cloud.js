@@ -10,7 +10,7 @@
 var ddg_spice_sound_cloud = function(api_result) {
     "use strict";
 
-    var hasLoaded = false;
+    var pagePlayer;
 
     // Get the tracks that are actually streamable.
     var context= [];
@@ -50,7 +50,9 @@ var ddg_spice_sound_cloud = function(api_result) {
         soundManager.useHTML5Audio = false;
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
-            hasLoaded = true;
+            pagePlayer = new PagePlayer();
+            pagePlayer.init();
+            window.pagePlayer = pagePlayer;
         });
     };
 
@@ -68,25 +70,25 @@ var ddg_spice_sound_cloud = function(api_result) {
     });
 
     // Load SoundManager2. This JS file handles our audio.
-    $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", function() {
+    $.getScript("/soundmanager2/script/soundmanager2.js", function() {
         checkReady(1);
     });
 
     $("#ddgc_detail").prependTo("#sound_cloud");
+
+    var last = "";
+    var wasInitialized = false;
+    $(".ddgc_item").click(function() {
+        var sound = $(".playlist a").get(0);
+        if(last !== "") {
+            pagePlayer.getSoundByObject(last).destruct();
+            soundManager.reset();
+            last = sound;
+        } else {
+            last = sound;
+        }
+    });
 };
-
-
-Handlebars.registerHelper("initializeSound", function(id) {
-    var element = $("#" + id);
-
-    var stream = element.attr("data-stream");
-    element.attr("href", stream);
-
-    console.log(stream, "Hello, there.", id);
-
-    var pagePlayer = new PagePlayer();
-    pagePlayer.init();
-});
 
 Handlebars.registerHelper("chooseImage", function(artwork, avatar) {
     "use strict";
