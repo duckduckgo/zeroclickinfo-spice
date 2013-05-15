@@ -10,7 +10,7 @@ var ddg_spice_youtube = function(api_result) {
     };
 
     // Loads the YouTube plugin.
-    loadJS("/js/r/nryt114.js", function() {
+    loadJS("/js/r/nryt116.js", function() {
         window.iqyt = 2;
         ddgyt.nryt(api_result);
     });
