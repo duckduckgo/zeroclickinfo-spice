@@ -19,19 +19,33 @@ function ddg_spice_search_code(response) {
 	    break;
 	}
 
-	if (!result) return;
+	if (!result) {
+        return;
+    }
 
-    var header = result.displayname != '' && result.namespace != '' ?
-                    '(' + (result.displayname != '' ?
-                            result.displayname : '')
-                        + (result.namespace != '' ?
-                            (result.displayname ? ', ' : '') : result.namespace)
-                        + ')'
-                    : result.name;
+    function formatName(result) {
+        var formatted_name = result.name;
+
+        if (result.displayname !== '' || result.namespace !== '') {
+            formatted_name += ' (';
+
+            if (result.displayname !== '') {
+                formatted_name += result.displayname;
+            }
+
+            if (result.namespace !== '') {
+                formatted_name += (result.displayname ? ', ' : '') + result.namespace;
+            }
+
+            formatted_name += ')';
+        }
+
+        return formatted_name;
+    }
 
     Spice.render({
         data             : result,
-        header1          : header + ' (search[code])',
+        header1          : formatName(result),
         source_url       : 'http://searchco.de/?q='
                            + encodeURIComponent(searchterm),
         source_name      : 'search[code]',
