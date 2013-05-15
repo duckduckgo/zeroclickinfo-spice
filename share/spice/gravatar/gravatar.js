@@ -21,7 +21,9 @@ var ddg_spice_gravatar = function(api_result) {
             return;
         }
 
-        if(entry.name.givenName && entry.name.familyName) {
+        if(entry.name.formatted) {
+            return entry.name.formatted;
+        } else if(entry.name.givenName && entry.name.familyName) {
             return entry.name.givenName + " " + entry.name.familyName;
         }
         return entry.displayName;
