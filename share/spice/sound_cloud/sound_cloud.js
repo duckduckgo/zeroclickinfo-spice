@@ -40,6 +40,8 @@ var ddg_spice_sound_cloud = function(api_result) {
 
     // Initialize SoundManager2.
     window.SM2_DEFER = true;
+    var loaded = false;
+    var loading = false;
     var soundSetup = function() {
         window.soundManager = new SoundManager();
         soundManager.url = "/soundmanager2/swf/";
@@ -48,28 +50,35 @@ var ddg_spice_sound_cloud = function(api_result) {
         soundManager.useHTML5Audio = false;
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
+            loaded = true;
             console.log("Lololololoaded!");
         });
     };
 
-    // Load SoundManager2. This JS file handles our audio.
-    $.getScript("/soundmanager2/script/soundmanager2.js", soundSetup);
-
     $("#ddgc_detail").prependTo("#sound_cloud");
 
     ddg_spice_sound_cloud.player = function(element) {
+        var li = $(element).parent();
+
         // Check if it is already playing.
         // If it is, pause it.
-        if($(element).hasClass("sm2_playing")) {
+        if(li.hasClass("sm2_playing") && loaded) {
             console.log("It's playing. I'm going to pause this now.");
-            $(element).removeClass("sm2_playing");
-            $(element).addClass("sm2_paused");
+            li.removeClass("sm2_playing");
+            li.addClass("sm2_paused");
         // If it's not playing, it's probably paused.
         // Let's play it.
-        } else {
+        } else if(li.hasClass("sm2_paused")){
             console.log("It's paused. I'm going to play this now.");
-            $(element).removeClass("sm2_paused");
-            $(element).addClass("sm2_playing");
+            li.removeClass("sm2_paused");
+            li.addClass("sm2_playing");
+        } else if(!loading) {
+            // Load SoundManager2. This JS file handles our audio.
+            if(!loaded) {
+                loading = true;
+                $.getScript("/soundmanager2/script/soundmanager2.js", soundSetup);   
+            }
+            li.addClass("sm2_playing");
         }
     };
 };
