@@ -10,8 +10,6 @@
 var ddg_spice_sound_cloud = function(api_result) {
     "use strict";
 
-    var pagePlayer;
-
     // Get the tracks that are actually streamable.
     var context= [];
     for(var i = 0; i < api_result.length; i += 1) {
@@ -50,44 +48,30 @@ var ddg_spice_sound_cloud = function(api_result) {
         soundManager.useHTML5Audio = false;
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
-            pagePlayer = new PagePlayer();
-            pagePlayer.init();
-            window.pagePlayer = pagePlayer;
+            console.log("Lololololoaded!");
         });
     };
 
-    var ready = [false, false];
-    var checkReady = function(toggle) {
-        ready[toggle] = true;
-        if(ready[0] && ready[1]) {
-            soundSetup();
-        }
-    };
-
-    // Load page-player.js. This JS file converts a list of MP3s into a playlist.
-    $.getScript("/soundmanager2/script/page-player-soundcloud.js", function() {
-        checkReady(0);
-    });
-
     // Load SoundManager2. This JS file handles our audio.
-    $.getScript("/soundmanager2/script/soundmanager2.js", function() {
-        checkReady(1);
-    });
+    $.getScript("/soundmanager2/script/soundmanager2.js", soundSetup);
 
     $("#ddgc_detail").prependTo("#sound_cloud");
 
-    var last = "";
-    var wasInitialized = false;
-    $(".ddgc_item").click(function() {
-        var sound = $(".playlist a").get(0);
-        if(last !== "") {
-            pagePlayer.getSoundByObject(last).destruct();
-            soundManager.reset();
-            last = sound;
+    ddg_spice_sound_cloud.player = function(element) {
+        // Check if it is already playing.
+        // If it is, pause it.
+        if($(element).hasClass("sm2_playing")) {
+            console.log("It's playing. I'm going to pause this now.");
+            $(element).removeClass("sm2_playing");
+            $(element).addClass("sm2_paused");
+        // If it's not playing, it's probably paused.
+        // Let's play it.
         } else {
-            last = sound;
+            console.log("It's paused. I'm going to play this now.");
+            $(element).removeClass("sm2_paused");
+            $(element).addClass("sm2_playing");
         }
-    });
+    };
 };
 
 Handlebars.registerHelper("chooseImage", function(artwork, avatar) {
