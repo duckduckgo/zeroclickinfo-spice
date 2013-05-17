@@ -38,11 +38,25 @@ var ddg_spice_sound_cloud = function(api_result) {
         force_no_fold            : 1
     });
 
+    // Loads and plays the sound
+    var playSound = function(element) {
+        soundManager.stopAll();
+
+        var sound = soundManager.createSound({
+            // SoundManager2 doesn't like an ID that
+            // starts with a non-numeric character.
+            id: "sound_" + $(element).attr("id"),
+            url: $(element).data("stream")
+        });
+
+        sound.play();
+    }
+
     // Initialize SoundManager2.
     window.SM2_DEFER = true;
     var loaded = false;
     var loading = false;
-    var soundSetup = function() {
+    var soundSetup = function(element) {
         window.soundManager = new SoundManager();
         soundManager.url = "/soundmanager2/swf/";
         soundManager.flashVersion = 9;
@@ -50,33 +64,50 @@ var ddg_spice_sound_cloud = function(api_result) {
         soundManager.useHTML5Audio = false;
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
+            playSound(element);
             loaded = true;
-            console.log("Lololololoaded!");
         });
     };
 
     $("#ddgc_detail").prependTo("#sound_cloud");
 
+    $(".ddgc_item").click(function() {
+        if(window.soundManager) {
+            soundManager.stopAll();
+        }
+    })
+
     ddg_spice_sound_cloud.player = function(element) {
         var li = $(element).parent();
+        var current_id = $(element).attr("id");
+        var sound;
 
         // Check if it is already playing.
         // If it is, pause it.
         if(li.hasClass("sm2_playing") && loaded) {
-            console.log("It's playing. I'm going to pause this now.");
             li.removeClass("sm2_playing");
             li.addClass("sm2_paused");
+
+            sound = soundManager.getSoundById("sound_" + current_id);
+            sound.pause();
         // If it's not playing, it's probably paused.
         // Let's play it.
         } else if(li.hasClass("sm2_paused")){
-            console.log("It's paused. I'm going to play this now.");
             li.removeClass("sm2_paused");
             li.addClass("sm2_playing");
-        } else if(!loading) {
+
+            sound = soundManager.getSoundById("sound_" + current_id);
+            sound.resume();
+        } else {
             // Load SoundManager2. This JS file handles our audio.
-            if(!loaded) {
+            if(!loaded && !loading) {
                 loading = true;
-                $.getScript("/soundmanager2/script/soundmanager2.js", soundSetup);   
+                $.getScript("/soundmanager2/script/soundmanager2.js", function() {
+                    soundSetup(element);
+                });
+            // Only play the sound when the sound has loaded.   
+            } else if(loaded) {
+                playSound(element);
             }
             li.addClass("sm2_playing");
         }
