@@ -78,8 +78,9 @@ function ddg_spice_congress(api_result) {
 
 // Creates a full name for a given representative
 Handlebars.registerHelper ('get_name', function() {
-    var name = this.first_name + ' ' + this.middle_name + ' ' + this.last_name;
-    return name.replace(/\s+/, " "); //in case no middle name
+    return this.first_name + ' '
+            + (this.middle_name ? this.middle_name + ' ' : '')
+            + this.last_name;
 });
 
 // Returns vote percentage
