@@ -4,7 +4,7 @@
             <a class="movie" data-image="{{posters.profile}}" href="{{links.alternate}}">
             	{{title}}
             </a>
-            <span class="metadata">({{mpaa_rating}}  -  {{time runtime}}) {{ratings.critics_rating}} {{ratings.critics_score}}%</span>
+            <span class="metadata">({{mpaa_rating}}  -  {{time runtime}}) {{ratings.critics_rating}} {{ratings.critics_score}}% {{{star_rating ratings.critics_score}}}</span>
         </li>
     {{/list}}
 </ul>

@@ -66,3 +66,26 @@ Handlebars.registerHelper("list", function(items, options) {
     }
     return out;
 });
+
+Handlebars.registerHelper("star_rating", function(obj, params) {
+        console.log("rating_adjective helper");
+
+
+        var r = (obj / 20) - 1;
+        var s = "";
+
+        console.log("rating %d --> %d", obj, r);
+
+
+        if (r > 0) {
+            for (var i=0; i<r; i++) {
+
+                s += "&#9733;";
+            }
+        }
+
+        if (s.length == 0)
+            s = "(0)";
+
+        return s;
+});
