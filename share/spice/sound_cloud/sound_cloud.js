@@ -45,7 +45,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         var sound = soundManager.createSound({
             // SoundManager2 doesn't like an ID that
             // starts with a non-numeric character.
-            id: "sound_" + $(element).attr("id"),
+            id: $(element).attr("id"),
             url: $(element).data("stream")
         });
 
@@ -75,7 +75,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         if(window.soundManager) {
             soundManager.stopAll();
         }
-    })
+    });
 
     ddg_spice_sound_cloud.player = function(element) {
         var li = $(element).parent();
@@ -88,7 +88,7 @@ var ddg_spice_sound_cloud = function(api_result) {
             li.removeClass("sm2_playing");
             li.addClass("sm2_paused");
 
-            sound = soundManager.getSoundById("sound_" + current_id);
+            sound = soundManager.getSoundById(current_id);
             sound.pause();
         // If it's not playing, it's probably paused.
         // Let's play it.
@@ -96,7 +96,7 @@ var ddg_spice_sound_cloud = function(api_result) {
             li.removeClass("sm2_paused");
             li.addClass("sm2_playing");
 
-            sound = soundManager.getSoundById("sound_" + current_id);
+            sound = soundManager.getSoundById(current_id);
             sound.resume();
         } else {
             // Load SoundManager2. This JS file handles our audio.
