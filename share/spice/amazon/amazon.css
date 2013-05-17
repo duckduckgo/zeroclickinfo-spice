@@ -1,0 +1,25 @@
+#amazon .spotlight {
+    float: left;
+    width: 155px;
+    border: 1px solid #E1E1E1;
+}
+
+#amazon .description {
+    float: left;
+    width: 450px;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+#amazon h1 {
+    font-size: 125%;
+}
+
+#amazon img {
+    display: inline;
+}
+
+#amazon .description ul {
+    font-size: 90%;
+    margin-left: 15px;
+}
