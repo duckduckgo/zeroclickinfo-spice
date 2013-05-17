@@ -19,7 +19,7 @@ var ddg_spice_octopart = function(api_result) {
         data: api_result,
         source_name : 'Octopart',
         source_url : 'http://octopart.com/partsearch#search/requestData&q=' + query,
-        header1 : "Octopart",
+        header1 : api_result.request.q + " (Octopart)",
         template_frame: "carousel",
         template_normal: "octopart",
         carousel_css_id: "octopart",
