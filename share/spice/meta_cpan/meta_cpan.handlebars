@@ -1,4 +1,7 @@
 {{#if abstract}}    <i>Abstract</i>:    {{abstract}}   <br> {{/if}}
 {{#if author}}      <i>Author</i>:      {{author}}     <br> {{/if}}
 {{#if description}} <i>Version</i>:     {{version}}    <br> {{/if}}
-{{#if description}} <i>Description</i>: {{description}}     {{/if}}
+{{#if description}}
+    <i>Description</i>:
+    {{condense description maxlen="340" truncation="..."}}
+{{/if}}
