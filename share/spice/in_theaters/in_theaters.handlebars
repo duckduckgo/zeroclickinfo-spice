@@ -1,11 +1,10 @@
-<div>
-    <ul class="showing">
-        {{#list this.movies}}
-            <li>
-                <a class="movie" data-image="{{posters.profile}}" href="{{links.alternate}}">{{title}}
-                    <span class="metadata">({{mpaa_rating}}  -  {{time runtime}}) {{ratings.critics_rating}} {{ratings.critics_score}}%</span>
-                </a>
-            </li>
-        {{/list}}
-    </ul>
-</div>
+<ul class="showing">
+    {{#list this.movies}}
+        <li>
+            <a class="movie" data-image="{{posters.profile}}" href="{{links.alternate}}">
+            	{{title}}
+            </a>
+            <span class="metadata">({{mpaa_rating}}  -  {{time runtime}}) {{ratings.critics_rating}} {{ratings.critics_score}}%</span>
+        </li>
+    {{/list}}
+</ul>
