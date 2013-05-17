@@ -109,6 +109,7 @@ var ddg_spice_sound_cloud = function(api_result) {
             } else if(loaded) {
                 playSound(element);
             }
+            li.removeClass("sm2_stopped");
             li.addClass("sm2_playing");
         }
     };
