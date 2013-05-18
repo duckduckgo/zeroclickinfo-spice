@@ -28,7 +28,7 @@ function ddg_spice_plos(request) {
       var id = doc['id'];
       var title = doc['title_display'];
       var author_list = doc['author_display'];
-      var authors = '';
+      var authors = author_list.join(', ');
       var journal = doc['journal'];
       var volume = doc['volume'];
       var issue = doc['issue'];
@@ -36,18 +36,18 @@ function ddg_spice_plos(request) {
       var year = pubdate.substr(0, 4);
       var hover = '';
 
-      // Author list trimmed for more than 3 authors.
-      if (author_list.length > 3) {
-        authors = author_list.splice(0, 3).join(', ') + ', et al';
-      } else {
-        authors = author_list.join(', ');
-      }
+      // // Author list trimmed for more than 3 authors.
+      // if (author_list.length > 3) {
+      //   authors = author_list.splice(0, 3).join(', ') + ', et al';
+      // } else {
+      //   authors = author_list.join(', ');
+      // }
 
       // Write article citation.
       citation += '<li>';
 
       // Author list.
-      hover += authors + ' ';
+      hover += authors + '. ';
 
       // Journal, only add if it is defined.
       if (journal) {
