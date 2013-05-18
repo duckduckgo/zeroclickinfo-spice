@@ -34,6 +34,7 @@ function ddg_spice_plos(request) {
       var issue = doc['issue'];
       var pubdate = doc['publication_date'];
       var year = pubdate.substr(0, 4);
+      var hover = '';
 
       // Author list trimmed for more than 3 authors.
       if (author_list.length > 3) {
@@ -44,34 +45,52 @@ function ddg_spice_plos(request) {
 
       // Write article citation.
       citation += '<li>';
+
+      // Author list.
+      hover += authors + ' ';
+
+      // Journal, only add if it is defined.
+      if (journal) {
+        hover += journal;
+        // Include volume and issue.
+        if (volume) {
+          hover += ' ' + volume;
+          if (issue) {
+            hover += '(' + issue + ')';
+          }
+        }
+      } 
+
+      // Publication date and year.
+      hover += ' ' + year;
       
       // Start writing title link.
       citation += '<a href="http://dx.doi.org/' + id + '">'
-                + '<span class="title">' + title + '</span>'
-                + '</a>';
+                + '<span class="title" title="' + hover + '">' + title + '</span>'
+                + '</a>' + ' (' + year + ')';
 
       // Container for bibliograpihc information.
       citation += '<div class="information">';
 
-      // Author list.
-      citation += '<span class="authors">' + authors + '.</span> ';
+      // // Author list.
+      // citation += '<span class="authors">' + authors + '.</span> ';
 
-      // Journal, only add if it is defined.
-      if (journal) {
-        citation += '<span class="journal">'
-                  + journal;
-        // Include volume and issue.
-        if (volume) {
-          citation += ' ' + volume;
-          if (issue) {
-            citation += '(' + issue + ')';
-          }
-        }
-        citation += '</span> ';
-      } 
+      // // Journal, only add if it is defined.
+      // if (journal) {
+      //   citation += '<span class="journal">'
+      //             + journal;
+      //   // Include volume and issue.
+      //   if (volume) {
+      //     citation += ' ' + volume;
+      //     if (issue) {
+      //       citation += '(' + issue + ')';
+      //     }
+      //   }
+      //   citation += '</span> ';
+      // } 
 
-      // Publication date and year.
-      citation += '<span class="year">' + year + '</span>';
+      // // Publication date and year.
+      // citation += '<span class="year">' + year + '</span>';
 
       // Close information container.
       citation += '</div>';
