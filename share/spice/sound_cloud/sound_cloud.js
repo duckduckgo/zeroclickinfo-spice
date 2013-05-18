@@ -54,8 +54,8 @@ var ddg_spice_sound_cloud = function(api_result) {
 
     // Initialize SoundManager2.
     window.SM2_DEFER = true;
-    var loaded = false;
-    var loading = false;
+    var isLoaded = false;
+    var isLoading = false;
     var soundSetup = function(element) {
         window.soundManager = new SoundManager();
         soundManager.url = "/soundmanager2/swf/";
@@ -65,7 +65,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
             playSound(element);
-            loaded = true;
+            isLoaded = true;
         });
     };
 
@@ -79,13 +79,13 @@ var ddg_spice_sound_cloud = function(api_result) {
     });
 
     ddg_spice_sound_cloud.player = function(element) {
-        var li = $(element).parent();
+        var li = element;
         var current_id = $(element).attr("id");
         var sound;
 
         // Check if it is already playing.
         // If it is, pause it.
-        if(li.hasClass("sm2_playing") && loaded) {
+        if(li.hasClass("sm2_playing") && isLoaded) {
             li.removeClass("sm2_playing");
             li.addClass("sm2_paused");
 
@@ -101,13 +101,13 @@ var ddg_spice_sound_cloud = function(api_result) {
             sound.resume();
         } else {
             // Load SoundManager2. This JS file handles our audio.
-            if(!loaded && !loading) {
-                loading = true;
+            if(!isLoaded && !isLoading) {
+                isLoading = true;
                 $.getScript("/soundmanager2/script/soundmanager2.js", function() {
                     soundSetup(element);
                 });
             // Only play the sound when the sound has loaded.   
-            } else if(loaded) {
+            } else if(isLoaded) {
                 playSound(element);
             }
             li.removeClass("sm2_stopped");
