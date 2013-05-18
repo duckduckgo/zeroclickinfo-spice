@@ -18,7 +18,7 @@ function ddg_spice_plos(request) {
     // Create object for results and citation.
     var results = '<div id="results">'
                 + '<span id="credit">Data Provided by PLOS</span>'
-                + '<ol>';
+                + '<ul>';
     var citation = '';
 
     // Loop over documents.
@@ -82,7 +82,7 @@ function ddg_spice_plos(request) {
 
     // Finish results.
     results += citation
-            + '</ol>'
+            + '</ul>'
             + '</div>';
 
     // Define callback items.
