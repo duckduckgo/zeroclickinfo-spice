@@ -71,6 +71,7 @@ var ddg_spice_sound_cloud = function(api_result) {
 
     $("#ddgc_detail").prependTo("#sound_cloud");
 
+    // Clicking on an image should stop the sound.
     $(".ddgc_item").click(function() {
         if(window.soundManager) {
             soundManager.stopAll();
@@ -118,8 +119,7 @@ var ddg_spice_sound_cloud = function(api_result) {
 Handlebars.registerHelper("chooseImage", function(artwork, avatar) {
     "use strict";
 
-    var image = artwork || avatar;
-    return image.replace(/large\.jpg/, "t200x200.jpg");
+    return artwork || avatar;
 });
 
 Handlebars.registerHelper("toHttps", function(audio) {
