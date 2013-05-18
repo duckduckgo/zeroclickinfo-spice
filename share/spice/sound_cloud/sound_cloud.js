@@ -10,7 +10,7 @@
 var ddg_spice_sound_cloud = function(api_result) {
     "use strict";
 
-    // Get the tracks that are actually streamable.
+    // Remove the tracks that aren't streamable.
     var context= [];
     for(var i = 0; i < api_result.length; i += 1) {
         if(api_result[i].streamable) {
@@ -34,19 +34,19 @@ var ddg_spice_sound_cloud = function(api_result) {
         template_frame           : "carousel",
         force_big_header         : true,
         carousel_items           : context,
-        carousel_template_detail: "sound_cloud_details",
+        carousel_template_detail : "sound_cloud_details",
         force_no_fold            : 1
     });
 
-    // Loads and plays the sound
-    var playSound = function(element) {
+    // Loads and plays the audio file.
+    var playSound = function(anchor) {
         soundManager.stopAll();
 
         var sound = soundManager.createSound({
             // SoundManager2 doesn't like an ID that
             // starts with a non-numeric character.
-            id: $(element).attr("id"),
-            url: $(element).data("stream")
+            id: anchor.attr("id"),
+            url: anchor.data("stream")
         });
 
         sound.play();
@@ -56,31 +56,31 @@ var ddg_spice_sound_cloud = function(api_result) {
     window.SM2_DEFER = true;
     var isLoaded = false;
     var isLoading = false;
-    var soundSetup = function(element) {
+    var soundSetup = function(anchor) {
         window.soundManager = new SoundManager();
         soundManager.url = "/soundmanager2/swf/";
         soundManager.flashVersion = 9;
-        soundManager.useFlashBlock = false;
-        soundManager.useHTML5Audio = false;
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
-            playSound(element);
+            playSound(anchor);
             isLoaded = true;
         });
     };
 
     $("#ddgc_detail").prependTo("#sound_cloud");
 
-    // Clicking on an image should stop the sound.
-    $(".ddgc_item").click(function() {
+    // Clicking on the items in the carousel should stop the sound.
+    $(".ddgc_item").click(function(e) {
+        console.log(e.target);
         if(window.soundManager) {
             soundManager.stopAll();
         }
     });
 
     ddg_spice_sound_cloud.player = function(element) {
-        var li = element;
-        var current_id = $(element).attr("id");
+        var li = $(element);
+        var anchor = li.children();
+        var current_id = anchor.attr("id");
         var sound;
 
         // Check if it is already playing.
@@ -99,31 +99,36 @@ var ddg_spice_sound_cloud = function(api_result) {
 
             sound = soundManager.getSoundById(current_id);
             sound.resume();
+        // If it's neither paused nor playing, we should load the audio and play it.
         } else {
-            // Load SoundManager2. This JS file handles our audio.
+            // Load SoundManager2 if it hasn't already.
             if(!isLoaded && !isLoading) {
                 isLoading = true;
                 $.getScript("/soundmanager2/script/soundmanager2.js", function() {
-                    soundSetup(element);
+                    soundSetup(anchor);
                 });
-            // Only play the sound when the sound has loaded.   
+            // If SoundManager already loaded, we should just play the sound.
             } else if(isLoaded) {
-                playSound(element);
+                playSound(anchor);
             }
+            
             li.removeClass("sm2_stopped");
             li.addClass("sm2_playing");
         }
     };
 };
 
+// Get the user's avatar if the artwork does not exist.
 Handlebars.registerHelper("chooseImage", function(artwork, avatar) {
     "use strict";
 
     return artwork || avatar;
 });
 
+// Get the HTTPS version of the audio file.
 Handlebars.registerHelper("toHttps", function(audio) {
     "use strict";
+
     if(audio) {
         return audio.replace(/^http:/, "https:");
     }
