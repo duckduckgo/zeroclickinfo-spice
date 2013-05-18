@@ -33,7 +33,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
         $.getScript("/js/spice/dictionary/pronunciation/" + word);
         $.getScript("/js/spice/dictionary/audio/" + word);
     };
-    window.ddg_spice_dictionary_definition.render = render;
+    ddg_spice_dictionary_definition.render = render;
 
     // Prevent jQuery from appending "_={timestamp}" in our url.
     $.ajaxSetup({
@@ -47,7 +47,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
         // This loads the definition of the singular form of the word.
         if(api_result.length === 1 && plural) {
             $.getScript("/js/spice/dictionary/reference/" + plural[1]);
-            window.ddg_spice_dictionary_definition.pluralOf = api_result[0].word;
+            ddg_spice_dictionary_definition.pluralOf = api_result[0].word;
         } else {
             render(api_result, api_result[0].word);
         }
@@ -58,12 +58,12 @@ var ddg_spice_dictionary_definition = function(api_result) {
 var ddg_spice_dictionary_reference = function(api_result) {
     "use strict";
 
-    var render = window.ddg_spice_dictionary_definition.render;
+    var render = ddg_spice_dictionary_definition.render;
 
     if(api_result && api_result.length > 0) {
         var word = api_result[0].word;
         api_result[0].pluralOf = "is the plural form of " + word;
-        api_result[0].word = window.ddg_spice_dictionary_definition.pluralOf;
+        api_result[0].word = ddg_spice_dictionary_definition.pluralOf;
         render(api_result, api_result[0].word);
     }
 };
