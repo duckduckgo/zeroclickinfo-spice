@@ -35,7 +35,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         force_big_header         : true,
         carousel_items           : context,
         carousel_template_detail : "sound_cloud_details",
-        force_no_fold            : 1
+        force_no_fold            : true
     });
 
     // Loads and plays the audio file.
@@ -67,14 +67,17 @@ var ddg_spice_sound_cloud = function(api_result) {
         });
     };
 
-    $("#ddgc_detail").prependTo("#sound_cloud");
+    $(document).ready(function() {
+        $("#ddgc_detail").prependTo("#sound_cloud");
 
-    // Clicking on the items in the carousel should stop the sound.
-    $(".ddgc_item").click(function(e) {
-        console.log(e.target);
-        if(window.soundManager) {
-            soundManager.stopAll();
-        }
+        // Clicking on the items in the carousel should stop the sound.
+        $(".ddgc_item").click(function(e) {
+            console.log(e.target);
+            console.log("Hello, there!");
+            if(window.soundManager) {
+                soundManager.stopAll();
+            }
+        });
     });
 
     ddg_spice_sound_cloud.player = function(element) {
