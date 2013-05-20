@@ -29,7 +29,9 @@ var ddg_spice_dictionary_definition = function(api_result) {
         });
 
         // Call the Wordnik API to display the pronunciation text and the audio.
-        $.getScript("/js/spice/dictionary/hyphenation/" + word);
+        if(!word.match(/\s/)) {
+            $.getScript("/js/spice/dictionary/hyphenation/" + word);
+        }
         $.getScript("/js/spice/dictionary/pronunciation/" + word);
         $.getScript("/js/spice/dictionary/audio/" + word);
     };
