@@ -52,6 +52,14 @@ var ddg_spice_sound_cloud = function(api_result) {
         force_no_fold            : true
     });
 
+    var clearPlayer = function() {
+        var li = $("ul.playlist li");
+        li.removeClass("sm2_paused");
+        li.removeClass("sm2_playing");
+        li.addClass("sm2_stopped");
+        soundManager.stopAll();
+    };
+
     // Loads and plays the audio file.
     var playSound = function(anchor) {
         soundManager.stopAll();
@@ -62,11 +70,7 @@ var ddg_spice_sound_cloud = function(api_result) {
             id: anchor.attr("id"),
             url: anchor.data("stream"),
             onfinish: function() {
-                var li = $("ul.playlist li");
-                li.removeClass("sm2_paused");
-                li.removeClass("sm2_playing");
-                li.addClass("sm2_stopped");
-                soundManager.stopAll();
+                clearPlayer();
             }
         });
 
