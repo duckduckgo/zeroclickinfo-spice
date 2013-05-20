@@ -60,6 +60,17 @@ var ddg_spice_sound_cloud = function(api_result) {
         soundManager.stopAll();
     };
 
+    var addPadding = function(time) {
+        return time < 10 ? "0" + time : time;
+    }
+
+    var formatTime = function(milliseconds) {
+        var minutes = Math.floor(milliseconds / 1000 / 60);
+        var seconds = Math.floor(60 * ((milliseconds / 1000 / 60) - minutes));
+        
+        return addPadding(minutes) + ":" + addPadding(seconds);
+    };
+
     // Loads and plays the audio file.
     var playSound = function(anchor) {
         soundManager.stopAll();
@@ -71,6 +82,10 @@ var ddg_spice_sound_cloud = function(api_result) {
             url: anchor.data("stream"),
             onfinish: function() {
                 clearPlayer();
+            },
+            whileplaying: function() {
+                $("#sm2_timing .sm2_position").html(formatTime(this.position));
+                $("#sm2_timing .sm2_total").html(formatTime(this.durationEstimate));
             }
         });
 
