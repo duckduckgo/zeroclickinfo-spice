@@ -10,6 +10,20 @@
 var ddg_spice_sound_cloud = function(api_result) {
     "use strict";
 
+    // Get the original query.
+    // We're going to pass this to the header.
+    var query = "";
+    $("script").each(function() {
+        var matched, result;
+        matched = $(this).attr("src");
+        if(matched) {
+            result = matched.match(/\/js\/spice\/sound_cloud\/([^\/]+)/);
+            if(result) {
+                query = result[1];
+            }
+        }
+    });
+
     // Remove the tracks that aren't streamable.
     var context= [];
     for(var i = 0; i < api_result.length; i += 1) {
@@ -26,8 +40,8 @@ var ddg_spice_sound_cloud = function(api_result) {
     // Display the plugin.
     Spice.render({
         data                     : context,
-        header1                  : "Sound Cloud",
-        source_url               : "https://soundcloud.com/search?q=",
+        header1                  : query + " (SoundCloud)",
+        source_url               : "https://soundcloud.com/search?q=" + query,
         source_name              : "SoundCloud",
         template_normal          : "sound_cloud",
         carousel_css_id          : "sound_cloud",
@@ -57,7 +71,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         });
 
         sound.play();
-    }
+    };
 
     // Initialize SoundManager2.
     window.SM2_DEFER = true;

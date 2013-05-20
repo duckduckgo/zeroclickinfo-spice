@@ -109,6 +109,7 @@ ul.playlist li.sm2_paused {
 /* overflow: hidden;
  white-space: nowrap;*/
  text-overflow: ellipsis;
+ cursor: pointer;
 }
 
 ul.playlist li.sm2_stopped {
@@ -119,6 +120,7 @@ ul.playlist li.sm2_stopped {
 /* overflow: hidden;
  white-space: nowrap;*/
  text-overflow: ellipsis;
+ cursor: pointer;
 }
 
 ul.playlist li.sm2_playing {
@@ -129,6 +131,7 @@ ul.playlist li.sm2_playing {
 /* overflow: hidden;
  white-space: nowrap;*/
  text-overflow: ellipsis;
+ cursor: pointer;
 }
 
 ul.playlist li.sm2_playing:hover a,

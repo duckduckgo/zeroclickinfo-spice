@@ -32,34 +32,16 @@ var ddg_spice_forvo = function(api_result) {
         soundManager.useHTML5Audio = false;
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
-            // Prevent the user from clicking the link.
-            // This copies the attribute "data-stream" to "href."
-            $(".forvo-audio").each(function() {
-                var stream = $(this).attr("data-stream");
-                $(this).attr("href", stream);
-            });
-            var pagePlayer = new PagePlayer();
-            pagePlayer.init();
+
         });
     };
 
-    var ready = [false, false];
-    var checkReady = function(toggle) {
-        ready[toggle] = true;
-        if(ready[0] && ready[1]) {
-            soundSetup();
-        }
-    };
-
-    // Load page-player.js. This JS file converts a list of MP3s into a playlist.
-    $.getScript("/soundmanager2/script/page-player-forvo.js", function() {
-        checkReady(0);
-    });
+    ddg_spice_forvo.player = function(element) {
+        console.log(element);
+    }
 
     // Load SoundManager2. This JS file handles our audio.
-    $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", function() {
-        checkReady(1);
-    });
+    $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", soundSetup);
 };
 
 // Make sure we display only five items.
