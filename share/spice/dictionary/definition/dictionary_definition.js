@@ -29,7 +29,9 @@ var ddg_spice_dictionary_definition = function(api_result) {
         });
 
         // Call the Wordnik API to display the pronunciation text and the audio.
-        $.getScript("/js/spice/dictionary/hyphenation/" + word);
+        if(!word.match(/\s/)) {
+            $.getScript("/js/spice/dictionary/hyphenation/" + word);
+        }
         $.getScript("/js/spice/dictionary/pronunciation/" + word);
         $.getScript("/js/spice/dictionary/audio/" + word);
     };
@@ -196,6 +198,8 @@ var ddg_spice_dictionary_audio = function(api_result) {
         soundManager.flashVersion = 9;
         soundManager.useFlashBlock = false;
         soundManager.useHTML5Audio = false;
+        soundManager.useFastPolling = true;
+        soundManager.useHighPerformance = true;
         soundManager.beginDelayedInit();
         soundManager.onready(loadSound);
     };
