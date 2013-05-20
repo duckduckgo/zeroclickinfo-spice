@@ -46,7 +46,14 @@ var ddg_spice_sound_cloud = function(api_result) {
             // SoundManager2 doesn't like an ID that
             // starts with a non-numeric character.
             id: anchor.attr("id"),
-            url: anchor.data("stream")
+            url: anchor.data("stream"),
+            onfinish: function() {
+                var li = $("ul.playlist li");
+                li.removeClass("sm2_paused");
+                li.removeClass("sm2_playing");
+                li.addClass("sm2_stopped");
+                soundManager.stopAll();
+            }
         });
 
         sound.play();
@@ -60,6 +67,10 @@ var ddg_spice_sound_cloud = function(api_result) {
         window.soundManager = new SoundManager();
         soundManager.url = "/soundmanager2/swf/";
         soundManager.flashVersion = 9;
+        soundManager.useFlashBlock = false;
+        soundManager.useHTML5Audio = false;
+        soundManager.useFastPolling = true;
+        soundManager.useHighPerformance = true;
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
             playSound(anchor);
@@ -72,8 +83,6 @@ var ddg_spice_sound_cloud = function(api_result) {
 
         // Clicking on the items in the carousel should stop the sound.
         $(".ddgc_item").click(function(e) {
-            console.log(e.target);
-            console.log("Hello, there!");
             if(window.soundManager) {
                 soundManager.stopAll();
             }
@@ -107,7 +116,7 @@ var ddg_spice_sound_cloud = function(api_result) {
             // Load SoundManager2 if it hasn't already.
             if(!isLoaded && !isLoading) {
                 isLoading = true;
-                $.getScript("/soundmanager2/script/soundmanager2.js", function() {
+                $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", function() {
                     soundSetup(anchor);
                 });
             // If SoundManager already loaded, we should just play the sound.

@@ -106,8 +106,8 @@ ul.playlist li.sm2_paused {
  background-repeat: no-repeat;
  background-position: 3px 35%;
  padding-left: 25px;
- overflow: hidden;
- white-space: nowrap;
+/* overflow: hidden;
+ white-space: nowrap;*/
  text-overflow: ellipsis;
 }
 
@@ -116,8 +116,8 @@ ul.playlist li.sm2_stopped {
  background-repeat: no-repeat;
  background-position: 3px 35%;
  padding-left: 25px;
- overflow: hidden;
- white-space: nowrap;
+/* overflow: hidden;
+ white-space: nowrap;*/
  text-overflow: ellipsis;
 }
 
@@ -126,8 +126,8 @@ ul.playlist li.sm2_playing {
  background-repeat: no-repeat;
  background-position: 3px 35%;
  padding-left: 25px;
- overflow: hidden;
- white-space: nowrap;
+/* overflow: hidden;
+ white-space: nowrap;*/
  text-overflow: ellipsis;
 }
 
