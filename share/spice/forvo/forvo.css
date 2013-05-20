@@ -350,3 +350,7 @@ ul.playlist li .peak .r {
 .clear {
     clear: both;
 }
+
+ul.playlist {
+	margin-left: -5px;
+}
