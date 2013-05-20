@@ -40,7 +40,7 @@ var ddg_spice_sound_cloud = function(api_result) {
     // Display the plugin.
     Spice.render({
         data                     : context,
-        header1                  : query + " (SoundCloud)",
+        header1                  : decodeURIComponent(query) + " (SoundCloud)",
         source_url               : "https://soundcloud.com/search?q=" + query,
         source_name              : "SoundCloud",
         template_normal          : "sound_cloud",
