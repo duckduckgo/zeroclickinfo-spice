@@ -46,7 +46,14 @@ var ddg_spice_sound_cloud = function(api_result) {
             // SoundManager2 doesn't like an ID that
             // starts with a non-numeric character.
             id: anchor.attr("id"),
-            url: anchor.data("stream")
+            url: anchor.data("stream"),
+            onfinish: function() {
+                var li = $("ul.playlist li");
+                li.removeClass("sm2_paused");
+                li.removeClass("sm2_playing");
+                li.addClass("sm2_stopped");
+                soundManager.stopAll();
+            }
         });
 
         sound.play();
@@ -72,8 +79,6 @@ var ddg_spice_sound_cloud = function(api_result) {
 
         // Clicking on the items in the carousel should stop the sound.
         $(".ddgc_item").click(function(e) {
-            console.log(e.target);
-            console.log("Hello, there!");
             if(window.soundManager) {
                 soundManager.stopAll();
             }
