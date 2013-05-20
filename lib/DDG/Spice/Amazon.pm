@@ -2,7 +2,7 @@ package DDG::Spice::Amazon;
 
 use DDG::Spice;
 
-spice to => 'https://dylan.duckduckgo.com/m.js?q=$1';
+spice to => 'https://dylan.duckduckgo.com/m.js?q=$1&callback=ddg_spice_amazon';
 
 triggers any => 'amazon';
 
