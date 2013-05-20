@@ -198,6 +198,8 @@ var ddg_spice_dictionary_audio = function(api_result) {
         soundManager.flashVersion = 9;
         soundManager.useFlashBlock = false;
         soundManager.useHTML5Audio = false;
+        soundManager.useFastPolling = true;
+        soundManager.useHighPerformance = true;
         soundManager.beginDelayedInit();
         soundManager.onready(loadSound);
     };

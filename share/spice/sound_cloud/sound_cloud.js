@@ -71,7 +71,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         });
 
         sound.play();
-    }
+    };
 
     // Initialize SoundManager2.
     window.SM2_DEFER = true;
