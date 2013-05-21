@@ -20,6 +20,8 @@ var ddg_spice_forvo = function(api_result) {
         force_big_header : true
     });
 
+    // This gets called when the sound is finished playing 
+    // or when another player is playing. It basically just resets the look of the player.
     var clearPlayer = function() {
         var li = $("ul.playlist li");
         li.removeClass("sm2_paused");
@@ -62,6 +64,7 @@ var ddg_spice_forvo = function(api_result) {
         });
     };
 
+    // This controls our player.
     var last_id;
     ddg_spice_forvo.player = function(element) {
         var li = $(element);
