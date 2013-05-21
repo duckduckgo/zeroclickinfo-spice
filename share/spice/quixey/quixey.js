@@ -1,5 +1,3 @@
-console.log("quixey xspice.js");
-
 // spice callback function
 function ddg_spice_quixey (api_result) {
 

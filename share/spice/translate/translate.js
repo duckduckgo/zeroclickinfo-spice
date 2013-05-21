@@ -80,7 +80,6 @@ function ddg_spice_translate_from_to (api_result) {
     var params = get_params("from_to"),
         endpoint;
 
-    console.log("PARAMS IS: ", params);
 
     Spice.render({
         data             :  api_result,
