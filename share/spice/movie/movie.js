@@ -6,7 +6,7 @@ var ddg_spice_movie = function(api_result) {
     Spice.render({
             data: api_result,
             source_name: 'Rotten Tomatoes',
-            template_normal: "movie2",
+            template_normal: "movie_alt",
             template_small: "movie_small",
 						force_no_fold: 1
             // source_url, image_url, header set in relevantMovie helper function below
