@@ -56,8 +56,7 @@ var ddg_spice_sound_cloud = function(api_result) {
     // It basically just resets the look of the player.
     var clearPlayer = function() {
         var li = $("ul.playlist li");
-        li.removeClass("sm2_paused");
-        li.removeClass("sm2_playing");
+        li.removeClass();
         li.addClass("sm2_stopped");
         soundManager.stopAll();
     };
