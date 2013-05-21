@@ -111,7 +111,7 @@ var ddg_spice_forvo = function(api_result) {
             li.removeClass("sm2_stopped");
             li.addClass("sm2_playing");
         }
-    }
+    };
 };
 
 // Make sure we display only five items.

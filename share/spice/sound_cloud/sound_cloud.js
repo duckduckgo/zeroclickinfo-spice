@@ -64,7 +64,7 @@ var ddg_spice_sound_cloud = function(api_result) {
 
     var addPadding = function(time) {
         return time < 10 ? "0" + time : time;
-    }
+    };
 
     // Coverts the milliseconds given to minutes and seconds.
     // e.g., 70000 milliseconds gets converted to 01:00.
@@ -161,7 +161,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         $("#ddgc_detail").prependTo("#sound_cloud");
 
         // Clicking on the items in the carousel should stop the sound.
-        $(".ddgc_item").click(function(e) {
+        $(".ddgc_item").click(function() {
             if(window.soundManager) {
                 soundManager.stopAll();
             }
