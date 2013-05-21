@@ -24,8 +24,7 @@ var ddg_spice_forvo = function(api_result) {
     // or when another player is playing. It basically just resets the look of the player.
     var clearPlayer = function() {
         var li = $("ul.playlist li");
-        li.removeClass("sm2_paused");
-        li.removeClass("sm2_playing");
+        li.removeClass();
         li.addClass("sm2_stopped");
         soundManager.stopAll();
     };
@@ -69,9 +68,15 @@ var ddg_spice_forvo = function(api_result) {
     ddg_spice_forvo.player = function(element) {
         var li = $(element);
         var anchor = li.children();
+
+        // Get the sound
         var current_id = anchor.attr("id");
         var sound;
+        
+        // Remove all the classes.
+        li.removeClass();
 
+        // Make sure only one player is playing at any one time.
         if(!last_id) {
             last_id = current_id;
         } else if(last_id !== current_id) {
@@ -82,7 +87,6 @@ var ddg_spice_forvo = function(api_result) {
         // Check if it is already playing.
         // If it is, pause it.
         if(li.hasClass("sm2_playing") && isLoaded) {
-            li.removeClass("sm2_playing");
             li.addClass("sm2_paused");
 
             sound = soundManager.getSoundById(current_id);
@@ -90,7 +94,6 @@ var ddg_spice_forvo = function(api_result) {
         // If it's not playing, it's probably paused.
         // Let's play it.
         } else if(li.hasClass("sm2_paused")){
-            li.removeClass("sm2_paused");
             li.addClass("sm2_playing");
 
             sound = soundManager.getSoundById(current_id);
@@ -108,7 +111,6 @@ var ddg_spice_forvo = function(api_result) {
                 playSound(anchor);
             }
             
-            li.removeClass("sm2_stopped");
             li.addClass("sm2_playing");
         }
     };
