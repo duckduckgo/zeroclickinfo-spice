@@ -16,5 +16,6 @@ function ddg_spice_amazon(api_response) {
         carousel_css_id          : "amazon",
         carousel_template_detail : "amazon_detail",
         carousel_items           : items,
+        force_no_fold            : true,
     });
 }
