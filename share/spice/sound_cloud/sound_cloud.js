@@ -119,13 +119,17 @@ var ddg_spice_sound_cloud = function(api_result) {
     var player = function(element) {
         var li = $(element);
         var anchor = li.children();
+
+        // Get the sound
         var current_id = anchor.attr("id");
         var sound;
+        
+        // Remove all the classes.
+        li.removeClass();
 
         // Check if it is already playing.
         // If it is, pause it.
         if(li.hasClass("sm2_playing") && isLoaded) {
-            li.removeClass("sm2_playing");
             li.addClass("sm2_paused");
 
             sound = soundManager.getSoundById(current_id);
@@ -133,7 +137,6 @@ var ddg_spice_sound_cloud = function(api_result) {
         // If it's not playing, it's probably paused.
         // Let's play it.
         } else if(li.hasClass("sm2_paused")){
-            li.removeClass("sm2_paused");
             li.addClass("sm2_playing");
 
             sound = soundManager.getSoundById(current_id);
@@ -151,7 +154,6 @@ var ddg_spice_sound_cloud = function(api_result) {
                 playSound(anchor);
             }
             
-            li.removeClass("sm2_stopped");
             li.addClass("sm2_playing");
         }
     };
@@ -165,7 +167,9 @@ var ddg_spice_sound_cloud = function(api_result) {
             if(window.soundManager) {
                 soundManager.stopAll();
             }
-            player($("#sound_" + $(this).attr("id")).parent().get(0));
+            // Automatically play the sound.
+            var sound = $("#sound_" + $(this).attr("id"));
+            player(sound.parent().get(0));
         });
     });
 
