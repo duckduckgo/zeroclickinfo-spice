@@ -34,8 +34,6 @@ var ddg_spice_forvo = function(api_result) {
         soundManager.stopAll();
 
         var sound = soundManager.createSound({
-            // SoundManager2 doesn't like an ID that
-            // starts with a non-numeric character.
             id: anchor.attr("id"),
             url: anchor.data("stream"),
             onfinish: function() {
@@ -73,9 +71,6 @@ var ddg_spice_forvo = function(api_result) {
         var current_id = anchor.attr("id");
         var sound;
         
-        // Remove all the classes.
-        li.removeClass();
-
         // Make sure only one player is playing at any one time.
         if(!last_id) {
             last_id = current_id;
@@ -87,6 +82,7 @@ var ddg_spice_forvo = function(api_result) {
         // Check if it is already playing.
         // If it is, pause it.
         if(li.hasClass("sm2_playing") && isLoaded) {
+            li.removeClass();
             li.addClass("sm2_paused");
 
             sound = soundManager.getSoundById(current_id);
@@ -94,6 +90,7 @@ var ddg_spice_forvo = function(api_result) {
         // If it's not playing, it's probably paused.
         // Let's play it.
         } else if(li.hasClass("sm2_paused")){
+            li.removeClass();
             li.addClass("sm2_playing");
 
             sound = soundManager.getSoundById(current_id);
@@ -111,6 +108,7 @@ var ddg_spice_forvo = function(api_result) {
                 playSound(anchor);
             }
             
+            li.removeClass();
             li.addClass("sm2_playing");
         }
     };

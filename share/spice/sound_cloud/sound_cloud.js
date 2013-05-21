@@ -71,7 +71,7 @@ var ddg_spice_sound_cloud = function(api_result) {
         var minutes = Math.floor(milliseconds / 1000 / 60);
         var seconds = Math.floor(60 * ((milliseconds / 1000 / 60) - minutes));
         
-        return addPadding(minutes) + ":" + seconds;
+        return addPadding(minutes) + ":" + addPadding(seconds);
     };
 
     // Loads and plays the audio file.
@@ -122,20 +122,19 @@ var ddg_spice_sound_cloud = function(api_result) {
         // Get the sound
         var current_id = anchor.attr("id");
         var sound;
-        
-        // Remove all the classes.
-        li.removeClass();
 
         // Check if it is already playing.
         // If it is, pause it.
         if(li.hasClass("sm2_playing") && isLoaded) {
+            li.removeClass();
             li.addClass("sm2_paused");
 
             sound = soundManager.getSoundById(current_id);
             sound.pause();
         // If it's not playing, it's probably paused.
         // Let's play it.
-        } else if(li.hasClass("sm2_paused")){
+        } else if(li.hasClass("sm2_paused")) {
+            li.removeClass();
             li.addClass("sm2_playing");
 
             sound = soundManager.getSoundById(current_id);
@@ -153,6 +152,7 @@ var ddg_spice_sound_cloud = function(api_result) {
                 playSound(anchor);
             }
             
+            li.removeClass();
             li.addClass("sm2_playing");
         }
     };
