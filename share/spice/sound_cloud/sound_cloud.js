@@ -168,9 +168,6 @@ var ddg_spice_sound_cloud = function(api_result) {
             if(window.soundManager) {
                 soundManager.stopAll();
             }
-            // Automatically play the sound.
-            var sound = $("#sound_" + $(this).attr("id"));
-            player(sound.parent().get(0));
         });
     });
 
