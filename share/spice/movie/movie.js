@@ -9,7 +9,8 @@ var ddg_spice_movie = function(api_result) {
             data: api_result,
             source_name: 'Rotten Tomatoes',
             template_normal: "movie2",
-            template_small: "movie_small"
+            template_small: "movie_small",
+						force_no_fold: 1
             // source_url, image_url, header set in relevantMovie helper function below
         });
 };
@@ -24,9 +25,8 @@ var ddg_spice_movie = function(api_result) {
  * based on the best movie.
  *
  */
-Handlebars.registerHelper("relevantMovie", function(context,options) {
+Handlebars.registerHelper("relevantMovie", function(options) {
     console.log("handlebars helper: relevantMovie, this is:", this);
-    console.log("relevantMovie context is: ", context);
 
     var ignore = {movie:1, film:1, rotten:1, rating:1, rt:1, tomatoes:1};
     var result, max_score = 0;
@@ -68,7 +68,7 @@ Handlebars.registerHelper("relevantMovie", function(context,options) {
     console.log("movie: setting image_url to '%s'", this.ddh.image_url);
 
     // invoke the body of the block with the relevant movie as the context
-    return context.fn(result);
+    return options.fn(result);
 });
 
 
