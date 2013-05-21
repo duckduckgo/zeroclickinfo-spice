@@ -52,6 +52,8 @@ var ddg_spice_sound_cloud = function(api_result) {
         force_no_fold            : true
     });
 
+    // This gets called when the sound is finished playing.
+    // It basically just resets the look of the player.
     var clearPlayer = function() {
         var li = $("ul.playlist li");
         li.removeClass("sm2_paused");
@@ -64,11 +66,13 @@ var ddg_spice_sound_cloud = function(api_result) {
         return time < 10 ? "0" + time : time;
     }
 
+    // Coverts the milliseconds given to minutes and seconds.
+    // e.g., 70000 milliseconds gets converted to 01:00.
     var formatTime = function(milliseconds) {
         var minutes = Math.floor(milliseconds / 1000 / 60);
         var seconds = Math.floor(60 * ((milliseconds / 1000 / 60) - minutes));
         
-        return addPadding(minutes) + ":" + addPadding(seconds);
+        return addPadding(minutes) + ":" + seconds;
     };
 
     // Loads and plays the audio file.
@@ -76,13 +80,13 @@ var ddg_spice_sound_cloud = function(api_result) {
         soundManager.stopAll();
 
         var sound = soundManager.createSound({
-            // SoundManager2 doesn't like an ID that
-            // starts with a non-numeric character.
             id: anchor.attr("id"),
             url: anchor.data("stream"),
+            // When the sound is finished playing, reset it.
             onfinish: function() {
                 clearPlayer();
             },
+            // Update the time displayed.
             whileplaying: function() {
                 $("#sm2_timing .sm2_position").html(formatTime(this.position));
                 $("#sm2_timing .sm2_total").html(formatTime(this.durationEstimate));
@@ -111,18 +115,8 @@ var ddg_spice_sound_cloud = function(api_result) {
         });
     };
 
-    $(document).ready(function() {
-        $("#ddgc_detail").prependTo("#sound_cloud");
-
-        // Clicking on the items in the carousel should stop the sound.
-        $(".ddgc_item").click(function(e) {
-            if(window.soundManager) {
-                soundManager.stopAll();
-            }
-        });
-    });
-
-    ddg_spice_sound_cloud.player = function(element) {
+    // This controls our player.
+    var player = function(element) {
         var li = $(element);
         var anchor = li.children();
         var current_id = anchor.attr("id");
@@ -144,7 +138,7 @@ var ddg_spice_sound_cloud = function(api_result) {
 
             sound = soundManager.getSoundById(current_id);
             sound.resume();
-        // If it's neither paused nor playing, we should load the audio and play it.
+        // If it's neither paused nor playing, then it means that we didn't load it yet.
         } else {
             // Load SoundManager2 if it hasn't already.
             if(!isLoaded && !isLoading) {
@@ -161,6 +155,22 @@ var ddg_spice_sound_cloud = function(api_result) {
             li.addClass("sm2_playing");
         }
     };
+
+    $(document).ready(function() {
+        // Add the player on top of the carousel.
+        $("#ddgc_detail").prependTo("#sound_cloud");
+
+        // Clicking on the items in the carousel should stop the sound.
+        $(".ddgc_item").click(function(e) {
+            if(window.soundManager) {
+                soundManager.stopAll();
+            }
+            player($("#sound_" + $(this).attr("id")).parent().get(0));
+        });
+    });
+
+    // Expose the function that controls our player.
+    ddg_spice_sound_cloud.player = player;
 };
 
 // Get the user's avatar if the artwork does not exist.
