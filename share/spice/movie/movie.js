@@ -79,7 +79,7 @@ Handlebars.registerHelper("rating_adjective", function() {
 
 
 /* star rating */
-Handlebars.registerHelper("star_rating", function(obj, params) {
+Handlebars.registerHelper("star_rating", function(obj) {
         var r = (obj / 20) - 1;
         var s = "";
 
