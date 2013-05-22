@@ -75,24 +75,31 @@ var ddg_spice_sound_cloud = function(api_result) {
     };
 
     // Loads and plays the audio file.
+    var isFailed = false;
     var playSound = function(anchor) {
         soundManager.stopAll();
 
-        var sound = soundManager.createSound({
-            id: anchor.attr("id"),
-            url: anchor.data("stream"),
-            // When the sound is finished playing, reset it.
-            onfinish: function() {
+        if(isFailed) {
+            setTimeout(function() {
                 clearPlayer();
-            },
-            // Update the time displayed.
-            whileplaying: function() {
-                $("#sm2_timing .sm2_position").html(formatTime(this.position));
-                $("#sm2_timing .sm2_total").html(formatTime(this.durationEstimate));
-            }
-        });
+            }, 1000);
+        } else {
+            var sound = soundManager.createSound({
+                id: anchor.attr("id"),
+                url: anchor.data("stream"),
+                // When the sound is finished playing, reset it.
+                onfinish: function() {
+                    clearPlayer();
+                },
+                // Update the time displayed.
+                whileplaying: function() {
+                    $("#sm2_timing .sm2_position").html(formatTime(this.position));
+                    $("#sm2_timing .sm2_total").html(formatTime(this.durationEstimate));
+                }
+            });
 
-        sound.play();
+            sound.play();
+        }
     };
 
     // Initialize SoundManager2.
@@ -107,6 +114,11 @@ var ddg_spice_sound_cloud = function(api_result) {
         soundManager.useHTML5Audio = false;
         soundManager.useFastPolling = true;
         soundManager.useHighPerformance = true;
+        soundManager.ontimeout(function() {
+            isFailed = true;
+            isLoaded = true;
+            clearPlayer();
+        });
         soundManager.beginDelayedInit();
         soundManager.onready(function() {
             playSound(anchor);
@@ -145,7 +157,7 @@ var ddg_spice_sound_cloud = function(api_result) {
             // Load SoundManager2 if it hasn't already.
             if(!isLoaded && !isLoading) {
                 isLoading = true;
-                $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", function() {
+                $.getScript("/soundmanager2/script/soundmanager2.js", function() {
                     soundSetup(anchor);
                 });
             // If SoundManager already loaded, we should just play the sound.
