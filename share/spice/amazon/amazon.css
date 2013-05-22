@@ -19,6 +19,12 @@
     display: inline;
 }
 
+#amazon div .stars {
+    display: inline-block;
+    width: 55px;
+    height: 12px;
+}
+
 #amazon .description ul {
     font-size: 90%;
     margin-left: 15px;
