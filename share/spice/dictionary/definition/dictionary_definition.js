@@ -19,7 +19,8 @@ var ddg_spice_dictionary_definition = function(api_result) {
     var path = "/js/spice/dictionary";
 
     // We moved Spice.render to a function because we're choosing between two contexts.
-    var render = function(context, word) {
+    var render = function(context, word, pluralOf) {
+        console.log(context);
         Spice.render({
             data              : context,
             header1           : "Definition (Wordnik)",
@@ -33,13 +34,13 @@ var ddg_spice_dictionary_definition = function(api_result) {
             $.getScript(path + "/hyphenation/" + word);
         }
         // Call the Wordnik API to display the pronunciation text and the audio.
-        $.getScript(path + "/pronunciation/" + word);
+        $.getScript(path + "/pronunciation/" + pluralOf);
 
         var isLoading = false;
         $("#play-icon").click(function() {
             if(!isLoading) {
                 isLoading = true;
-                $.getScript(path + "/audio/" + word);
+                $.getScript(path + "/audio/" + pluralOf);
             }
         });
     };
@@ -76,7 +77,7 @@ var ddg_spice_dictionary_reference = function(api_result) {
         var word = api_result[0].word;
         api_result[0].pluralOf = "is the plural form of " + word;
         api_result[0].word = ddg_spice_dictionary_definition.pluralOf;
-        render(api_result, api_result[0].word);
+        render(api_result, api_result[0].word, word);
     }
 };
 
