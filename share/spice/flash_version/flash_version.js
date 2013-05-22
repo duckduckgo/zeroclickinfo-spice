@@ -14,7 +14,7 @@ var ddg_spice_flash_version = function() {
         header1          : 'Flash Version',
         source_name      : 'Adobe',
         source_url       : 'https://get.adobe.com/flashplayer/',
-        template_normal  : 'flash',
+        template_normal  : 'flash_version',
         force_big_header : true
     }); 
 };

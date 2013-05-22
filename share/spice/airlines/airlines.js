@@ -37,6 +37,7 @@ var ddg_spice_airlines = function(api_result) {
 
     // Parse string, and return the date (either arrival or departure date).
     var getDateFromString = function(date) {
+        console.log(date);
         date = date.match(/([\d]{4})\-([\d]{2})\-([\d]{2})T([\d]{2}):([\d]{2}):([\d]{2})/);
         var now = new Date();
         var milliseconds = Date.UTC(date[1], date[2] - 1, date[3], date[4], date[5], date[6]) +
