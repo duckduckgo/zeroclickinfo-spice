@@ -181,7 +181,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         if(isFailed) {
             stopIcon();
             setTimeout(playIcon, 1000);
-        } else if(icon.hasClass("icon-play") && window.soundManager) {
+        } else if(icon.hasClass("icon-volume-up") && window.soundManager) {
             stopIcon();
             soundManager.play("dictionary-sound");
         }
