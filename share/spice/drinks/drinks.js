@@ -12,7 +12,7 @@ function ddg_spice_drinks(api_result) {
 
     Spice.render({
         data             : api_result[0],
-        header1          : api_result[0].name + " (Drinks)",
+        header1          : api_result[0].name + " (The Drink Project)",
         source_url       : api_result[0].url,
         source_name      : 'The Drink Project',
         template_normal  : 'drinks',
