@@ -16,6 +16,7 @@
 // This function gets the definition of a word.
 var ddg_spice_dictionary_definition = function(api_result) {
     "use strict";
+    var path = "/js/spice/dictionary";
 
     // We moved Spice.render to a function because we're choosing between two contexts.
     var render = function(context, word) {
@@ -28,15 +29,18 @@ var ddg_spice_dictionary_definition = function(api_result) {
             template_normal   : "dictionary_definition"
         });
 
-        // Call the Wordnik API to display the pronunciation text and the audio.
         if(!word.match(/\s/)) {
-            $.getScript("/js/spice/dictionary/hyphenation/" + word);
+            $.getScript(path + "/hyphenation/" + word);
         }
-        $.getScript("/js/spice/dictionary/pronunciation/" + word);
+        // Call the Wordnik API to display the pronunciation text and the audio.
+        $.getScript(path + "/pronunciation/" + word);
 
-        var isLoaded = false;
+        var isLoading = false;
         $("#play-icon").click(function() {
-            $.getScript("/js/spice/dictionary/audio/" + word);
+            if(!isLoading) {
+                isLoading = true;
+                $.getScript(path + "/audio/" + word);
+            }
         });
     };
 
@@ -54,7 +58,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
 
         // This loads the definition of the singular form of the word.
         if(api_result.length === 1 && plural) {
-            $.getScript("/js/spice/dictionary/reference/" + plural[1]);
+            $.getScript(path + "/reference/" + plural[1]);
             ddg_spice_dictionary_definition.pluralOf = api_result[0].word;
         } else {
             render(api_result, api_result[0].word);
@@ -139,6 +143,7 @@ var ddg_spice_dictionary_pronunciation = function(api_result) {
 var ddg_spice_dictionary_audio = function(api_result) {
     "use strict";
 
+    var isFailed = false;
     var url = "";
     var icon = $("#play-icon");
 
@@ -173,7 +178,10 @@ var ddg_spice_dictionary_audio = function(api_result) {
     // Play the sound when the icon is clicked. Do not let the user play
     // without window.soundManager.
     icon.click(function() {
-        if(icon.hasClass("icon-play") && window.soundManager) {
+        if(isFailed) {
+            stopIcon();
+            setTimeout(playIcon, 1000);
+        } else if(icon.hasClass("icon-play") && window.soundManager) {
             stopIcon();
             soundManager.play("dictionary-sound");
         }
@@ -203,6 +211,10 @@ var ddg_spice_dictionary_audio = function(api_result) {
         soundManager.useHTML5Audio = false;
         soundManager.useFastPolling = true;
         soundManager.useHighPerformance = true;
+        soundManager.ontimeout(function() {
+            isFailed = true;
+            playIcon();
+        });
         soundManager.beginDelayedInit();
         soundManager.onready(loadSound);
     };
