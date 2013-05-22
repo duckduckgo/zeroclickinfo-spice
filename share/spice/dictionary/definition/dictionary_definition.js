@@ -33,8 +33,14 @@ var ddg_spice_dictionary_definition = function(api_result) {
             $.getScript("/js/spice/dictionary/hyphenation/" + word);
         }
         $.getScript("/js/spice/dictionary/pronunciation/" + word);
-        $.getScript("/js/spice/dictionary/audio/" + word);
+
+        var isLoaded = false;
+        $("#play-icon").click(function() {
+            $.getScript("/js/spice/dictionary/audio/" + word);
+        });
     };
+
+    // Expose the render function.
     ddg_spice_dictionary_definition.render = render;
 
     // Prevent jQuery from appending "_={timestamp}" in our url.
@@ -134,18 +140,18 @@ var ddg_spice_dictionary_audio = function(api_result) {
     "use strict";
 
     var url = "";
-    var $icon = $("#play-icon");
+    var icon = $("#play-icon");
 
     // Sets the icon to play.
     var playIcon = function() {
-        $icon.removeClass("icon-stop");
-        $icon.addClass("icon-play");
+        icon.removeClass();
+        icon.addClass("icon-play");
     };
 
     // Sets the icon to stop.
     var stopIcon = function() {
-        $icon.removeClass("icon-play");
-        $icon.addClass("icon-stop");
+        icon.removeClass();
+        icon.addClass("icon-stop");
     };
 
     if(api_result && api_result.length > 0) {
@@ -166,8 +172,8 @@ var ddg_spice_dictionary_audio = function(api_result) {
 
     // Play the sound when the icon is clicked. Do not let the user play
     // without window.soundManager.
-    $icon.click(function() {
-        if($icon.hasClass("icon-play") && window.soundManager) {
+    icon.click(function() {
+        if(icon.hasClass("icon-play") && window.soundManager) {
             stopIcon();
             soundManager.play("dictionary-sound");
         }
@@ -184,11 +190,8 @@ var ddg_spice_dictionary_audio = function(api_result) {
             }
         });
 
-        // Preload the sound file immediately because the link expires.
-        sound.load();
-
-        // Set the icon.
-        playIcon();
+        stopIcon();
+        sound.play();
     };
 
     // Initialize the soundManager object.
@@ -208,6 +211,6 @@ var ddg_spice_dictionary_audio = function(api_result) {
     // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
     if(!window.soundManager) {
         window.SM2_DEFER = true;
-        $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", soundSetup);
+        $.getScript("/soundmanager2/script/soundmanager2.js", soundSetup);
     }
 };
