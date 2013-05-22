@@ -38,4 +38,6 @@ function ddg_spice_amazon_detail(api_response) {
     console.log(api_response);
     $('#ddgc_detail .stars')
         .attr('src', '/iu/?u=' + api_response.item.stars.$t);
+    $('#ddgc_detail .review-count')
+        .text(api_response.item.reviews.$t);
 }
