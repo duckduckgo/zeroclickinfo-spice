@@ -10,7 +10,7 @@ The spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and 
 
 If you're not already familiar with Handlebars, *please* read the [Handlebars documentation](http://handlebarsjs.com) before continuing continuing on. Don't worry if you don't fully understand how to use Handlebars, the examples will explain but you should, at the very least, be familiarize yourself with Handlebars before moving on.
 
-Also, if you are unfamiliar with jQuery 
+Also, if you are unfamiliar with jQuery, you can familiarize yourself with that if you'd like, but jQuery is not required to write a spice plugin.
 
 Below, we will walk you through several examples ranging from simple to complicated, which will explain how to use the template system and make your plugins look awesome.
 
@@ -24,30 +24,10 @@ The NPM plugin [[link](https://duckduckgo.com/?q=npm+uglify-js)] [[code](https:/
 
 #####npm.js
 
-    ```javascript
-    var ddg_spice_npm = function(api_result) {
-        if (api_result.error) return
-    
-        Spice.render({
-             data              : api_result,
-             force_big_header  : true,
-             header1           : api_result.name + ' (' + api_result.version + ')',
-             source_name       : "npmjs.org", // More at ...
-             source_url        : 'http://npmjs.org/package/' + api_result.name,
-             template_normal   : 'npm',
-             template_small    : 'npm'
-        });
-    }
-    ```
+```javascript
+var ddg_spice_npm = function(api_result) {
+    if (api_result.error) return
 
-`ddg_spice_npm()` is the function that the Perl module specifies -- it's the callback in the API response. This function will be called when the data returns from the upstream (API) provider.
-
-	```javascript 
-	if (api_result.error) return
-	```
-Pretty self-explanatory - If the error object in the API result is defined, then break out of the function and don't show any results. In the case of this API, when the error object is defined, it means no results are given, so we have no data to use for a spice result. 
-
-	```javascript
     Spice.render({
          data              : api_result,
          force_big_header  : true,
@@ -57,7 +37,27 @@ Pretty self-explanatory - If the error object in the API result is defined, then
          template_normal   : 'npm',
          template_small    : 'npm'
     });
-	```
+}
+```
+
+`ddg_spice_npm()` is the function that the Perl module specifies -- it's the callback in the API response. This function will be called when the data returns from the upstream (API) provider.
+
+```javascript 
+if (api_result.error) return
+```
+Pretty self-explanatory - If the error object in the API result is defined, then break out of the function and don't show any results. In the case of this API, when the error object is defined, it means no results are given, so we have no data to use for a spice result. 
+
+```javascript
+Spice.render({
+     data              : api_result,
+     force_big_header  : true,
+     header1           : api_result.name + ' (' + api_result.version + ')',
+     source_name       : "npmjs.org", // More at ...
+     source_url        : 'http://npmjs.org/package/' + api_result.name,
+     template_normal   : 'npm',
+     template_small    : 'npm'
+});
+```
 
 Alright, so here is the bulk of the plugin, but it's very simple:
 
@@ -82,37 +82,37 @@ Now, let's look at the NPM plugin's Handlebars template:
 
 ######npm.handlebars
 
-	```html
-	<div id="npm_abstract">
-	    <div id="npm_package_description">{{{description}}}</div>
-	    <pre id="npm_install_command"> $ npm install {{{name}}}</pre>
-	</div>
-	```
+```html
+<div id="npm_abstract">
+    <div id="npm_package_description">{{{description}}}</div>
+    <pre id="npm_install_command"> $ npm install {{{name}}}</pre>
+</div>
+```
 
 As you can see, this is a special type of HTML template. Within the template, you can refer directly to objects that are returned by the API. `description` and `name` are both from the `api_result` object that we discussed earlier -- the data that's returned by the API. All of `api_result`'s sub-objects (e.g. `name`, `description`) are in the template's scope. You can access them by name within double or triple curly braces, which escape the contents. Here, we just create a basic HTML skeleton and fill it in with the proper information. The style for these HTML elements are defined in the npm css file.
 
 **!!! DDG Base CSS Already Defines Styles for `<pre>` Tags !!!**
 ######npm.css
 
-	```css
-	#npm_install_command {
-	    background-color: #eee;
-	    color: #333;
-	    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-	    margin-bottom: 5px;
-	    padding: 5px;
-	    margin-right: 10px;
-	    word-wrap: break-word;
-	    white-space: pre-wrap;
-	    /* css-3 */
-	    white-space: -moz-pre-wrap;
-	    /* Mozilla, since 1999 */
-	    white-space: -pre-wrap;
-	    /* Opera 4-6 */
-	    white-space: -o-pre-wrap;
-	    /* Opera 7 */
-	}
-	```
+```css
+#npm_install_command {
+    background-color: #eee;
+    color: #333;
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    margin-bottom: 5px;
+    padding: 5px;
+    margin-right: 10px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    /* css-3 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+}
+```
 
 This CSS simply defines the styles for the `pre` tag with `id="npm_install_command"`, which we defined in `npm.handlebars`. This CSS gives that block its definitive grey background, etc. The `npm.css` file is automatically recognized by the plugin system. It's just critical that the name of the file is the same as the name of the plugin, just like the javascript file must be `npm.js` and the template must be `npm.handlebars`.
 
@@ -128,20 +128,20 @@ We've created three files in the spice share directory (`share/spice/npm/`) :
 The Alternative.To plugin is very similar to NPM in that it is also relatively basic, however, it uses the new **Carousel** Spice Template. Let's take a look at the code and see how this is done:
 
 ######alternative_to.js
-	```javascript
-	function ddg_spice_alternative_to(api_result) {
-	    Spice.render({
-	        data           : api_result,
-	        source_name    : 'AlternativeTo',
-	        source_url     : api_result.Url,
-	        template_normal: "alternative_to",
-	        template_frame : "carousel",
-	        carousel_template_detail: "alternative_to_details",
-	        carousel_css_id: "alternative_to",
-	        carousel_items : api_result.Items,
-	    });
-	}
-	```
+```javascript
+function ddg_spice_alternative_to(api_result) {
+    Spice.render({
+        data           : api_result,
+        source_name    : 'AlternativeTo',
+        source_url     : api_result.Url,
+        template_normal: "alternative_to",
+        template_frame : "carousel",
+        carousel_template_detail: "alternative_to_details",
+        carousel_css_id: "alternative_to",
+        carousel_items : api_result.Items,
+    });
+}
+```
 Just like the NPM plugin, Alternative.To uses `Spice.render()` with most of the same parameters, however, unlike NPM it uses a few new parameters as well:
 
 - `template_frame` is used to tell the Render function that the base template for this plugin will be the **Carousel** template.  
@@ -157,12 +157,12 @@ Just like the NPM plugin, Alternative.To uses `Spice.render()` with most of the 
 
 Now, let's take a look at the Alternative.To Handlebars templates:
 ######alternative_to.handlebars
-	```html
-	<li class="ddgc_item">
-        <img src="/iu/?u={{IconUrl}}">
-	    <span>{{{condense Name maxlen="25"}}}</span>
-	</li>
-	```
+```html
+<li class="ddgc_item">
+    <img src="/iu/?u={{IconUrl}}">
+    <span>{{{condense Name maxlen="25"}}}</span>
+</li>
+```
 This simple template is used to define each of the carousel items. More specifically, it defines each `<li>` in the carousel and defines what the contents will be. In this case we specify an image - the result's icon - and a span tag, which contains the name of the result.
 
 The carousel uses this template by iterating over each item in the object given to `carousel_items` and uses that item as the context of the template.
@@ -173,113 +173,109 @@ Another important point is that we use `{{{condense Name maxlen="25"}}}` which d
 
 Seeing as this is a carousel plugin, which uses the optional carousel details area, it has another Handlebars template which defines the content for that.  Let's have a look at the Alternative.To details template:
 ######alternative_to_details.handlebars
-    ```html
-    <div>
-        <div><b><a href="{{Url}}">{{Name}}</a></b> <span class="likes">({{Votes}} likes)</span></div>
-        <div><i>Description:</i> {{{ShortDescription}}}</div>
-        <div><i>Platforms:</i> {{#concat Platforms sep=", " conj=" and "}}{{this}}{{/concat}}</div>
-    </div>
-    ```
+```html
+<div>
+    <div><b><a href="{{Url}}">{{Name}}</a></b> <span class="likes">({{Votes}} likes)</span></div>
+    <div><i>Description:</i> {{{ShortDescription}}}</div>
+    <div><i>Platforms:</i> {{#concat Platforms sep=", " conj=" and "}}{{this}}{{/concat}}</div>
+</div>
+```
     
 This template is also relatively simple. It creates a few `<div>` tags and populates them with relevant information related to the carousel item that was clicked. You'll notice the use of another Handlebars helper function, `concat`. This function takes an array as its first parameter and returns the elements of the array as a string, joined by the separator string (`sep=`) with the final element separated by the `conj=` string. In this case, if `Platforms` is a list of operating systems: `["windows", "linux", "mac"]`, then `concat` would return: **"widows, linux and mac"**.
 
 Let's take a look at the Alternative.To CSS:
 
 ######alternative_to.css
-	```css
-	#alternative_to #ddgc_slides li {
-		height: 60px !important;
-	}
-	
-	#alternative_to #ddgc_slides p{
-		height: 0px !important;
-	}
-	
-	#alternative_to #ddgc_slides span {
-		margin-top: 0px !important;
-	}	
-	```
-	
+```css
+#alternative_to #ddgc_slides li {
+    height: 60px !important;
+}
+
+#alternative_to #ddgc_slides p{
+    height: 0px !important;
+}
+
+#alternative_to #ddgc_slides span {
+    margin-top: 0px !important;
+}   
+```
+    
 This CSS is fairly straightforward, but the most important thing to notice here is that we've namespaced the css using `#alternative_to` and that we have used `!important` to over-ride the default carousel css.
 
 
 ##Example #3 - Movie (Advance Plugin)
-The movie plugin is a much more involved plugin, but most of the logic is in a single Handlebars block helper function which is used for obtaining the most relevant result. Other than that, its relatively easy to understand. Lets start by looking at the Movie plugin's javascript:
+The movie plugin is a more advanced than **NPM** and **Alternative.To**, but most of the logic is in a single function which is used to obtain the most relevant movie from list given to us in `api_result`. Other than that, its relatively easy to understand, so lets start by looking at the Movie plugin's javascript:
 
 ######movie.js
-    ```javascript
-    var ddg_spice_movie = function(api_result) {
-    
-        Spice.render({
-                data: api_result,
-                source_name: 'Rotten Tomatoes',
-                template_normal: "movie2",
-                template_small: "movie_small"
-                // source_url, image_url and header set in relevantMovie helper function below
-            });
-    };
+```javascript
+var ddg_spice_movie = function(api_result) {
+
+    Spice.render({
+            data: api_result,
+            source_name: 'Rotten Tomatoes',
+            template_normal: "movie_alt",
+            template_small: "movie_small"                
+            // source_url, image_url and header set in relevantMovie helper function below
+        });
+};    
+```
     
 This plugin has a very simple call to `Spice.render()`, but it slightly differs from other plugin because it not only defines `template_normal`, the default template to be used, but it also defines `template_small` which is the template to be used when this plugin is shown in a stacked state i.e., it is shown below another zero click result, but the content is minimal, preferably a single line of text.
 
-Moving on, the bulk of this plugin can be found in the Handlebars helpers. Let's look at the `relevantMovie` function:
-######movie.js (continued) - relevantMovie helper
-    /*
-        * relevantMovie
-        *
-        * a block helper that finds the best movie and applies
-        * it to the enclosed template block.
-        *
-        * Sets the source_url, image_url, and header1 for the template
-        * based on the best movie.
-        *
-        */
-    Handlebars.registerHelper("relevantMovie", function(options) {
-        console.log("handlebars helper: relevantMovie, this is:", this);
-    
-        var ignore = {movie:1, film:1, rotten:1, rating:1, rt:1, tomatoes:1};
-        var result, max_score = 0;
-    
-        // assign a ranking value for the movie. this isn't a complete sorting value though
-        // also we are blindling assuming these values exist
-        var score = function(m) {
-            var s = m.ratings.critics_score * m.ratings.audience_score;
-            if (s > max_score) max_score = s;
-            console.log("%d for %s", s, m.title);
-            return s; // if any above are undefined, s is undefined
-        };
-    
-        // returns the more relevant of the two movies
-        var better = function(currentbest, next) {
-            console.log("better: comparing %s", next.title);
-    
-            return (score(next) > score(currentbest) // if score() returns undefined, this is false, so we're still ok
-                        && (next.year < currentbest.year)
-                        && DDG.isRelevant(next.title, ignore)) ?
-                    next : currentbest;
-        };
-    
-        result = DDG_bestResult(this.movies, better);
-    
-        // favor the first result if the max score is within 1% of the score for the first result
-        if (result !== this.movies[0] && Math.abs(score(this.movies[0]) - max_score) / max_score < 0.1) {
-            result = this.movies[0];
-        }
-    
-        // make the movie's info available to the zero click template
-        // by setting spice value in the ddh (duckduckhack) object
-    
-        // this.ddh.relevantMovie = result;
-        this.ddh.source_url = result.links.alternate;
-        this.ddh.image_url = (result.posters.thumbnail || 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif');
-        this.ddh.header1 = result.title + ' (' + result.year + ')';
-    
-        console.log("movie: setting image_url to '%s'", this.ddh.image_url);
-    
-        // invoke the body of the block with the relevant movie as the context
-        return options.fn(result);
-    });
+Before looking at the implementation of the Handlebars helper functions lets first take a look at the Movie spice's Handlebars template to see how the helper functions are used:
 
-As the comment explains, this function is a [Handlebars block helper](http://handlebarsjs.com/block_helpers.html) which we use to find the most relevant movie from the list of movies in our `api_result`. 
+######movie.handlebars
+```html
+{{#relevantMovie}}
+
+    <div id="movie_data_box">
+    
+        <div>
+            <span class="movie_data_item">
+                <span class="movie_star_rating">{{{star_rating ratings.critics_score}}}</span>
+            </span>
+            <span class="movie_critics_rating">{{ratings.critics_rating}}</span>
+            <div class="movie_data_description">
+            ({{ratings.critics_score}}% critics,
+             {{ratings.audience_score}}% audience approved)
+            </div>
+        </div>
+    
+        <div><span class="movie_data_item">MPAA rating:</span>{{mpaa_rating}}</div>
+        <div><span class="movie_data_item">Running time:</span>{{runtime}} minutes</div>
+        <div><span class="movie_data_item">Starring:</span>
+            {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
+        </div>
+    </div>
+    
+    {{#if synopsis}}
+        {{synopsis}}
+    {{else}}
+        {{condense critics_consensus maxlen="200"}}
+    {{/if}}
+
+{{/relevantMovie}}
+```
+
+The first line of the template demonstrates the use of a [Handlebars block helper](http://handlebarsjs.com/block_helpers.html), `{{#relevantMovie}}` which is defined in **movie.js**. This block helper is important because it sets the context for the rest of the template. In this case we use `{{#relevantMovie}}` to find the most relevant movie from the list of movies in our `api_result`, and then using that single movie object as the context, we use the rest of the template to reference the various properties of the movie and build a result.  
+
+It's important you understand this concept: outside of the block helper, the context of the template is equal to `api_result`, however, inside the `{{#relevantMovie}}` helper, the context of the template is explicitly set to be the return value of the `{{#relevantMovie}}`. Before looking at the rest of the Handlebars template, let's look at the implementation of `{{#relevantMovie}}`:
+
+######movie.js (continued) - relevantMovie helper
+```javascript
+/*
+ * relevantMovie
+ *
+ * a block helper that finds the best movie and applies
+ * it to the enclosed template block.
+ *
+ * Sets the source_url, image_url, and header1 for the template
+ * based on the best movie.
+ *
+ */
+Handlebars.registerHelper("relevantMovie", function(options) {
+    console.log("handlebars helper: relevantMovie, this is:", this);
+```
 
 We define the function by using the `Handlebars.registerHelper()` method which takes two parameters: 
 
@@ -287,53 +283,159 @@ We define the function by using the `Handlebars.registerHelper()` method which t
 
 2. The body of the function (which we then define inline)
 
-An important concept to understand is that when a Handlebars block helper is invoked with no input, `this` (inside the function) refers to the **context** of the template *at the time the function is invoked* . In this case, we set the `data` parameter to `api_result` in `Spice.render()` so the context of the template is `api_result` when `relevantMovie()` is invoked. This means that inside `relevantMovie()`, `this === api_result`. However, we add a few keys to `api_result` that are needed for other functions, so `api_result` is actually slightly modified, but you can ignore this.
+***\*\*Note:*** when a Handlebars block helper is invoked with no input, `this` (inside the function) refers to the **context** of the template *at the time the function is invoked* . In this case, we set the `data` parameter to `api_result` in `Spice.render()` so the context of the template is `api_result` when `relevantMovie()` is invoked. This means that inside `relevantMovie()`, `this === api_result`. However, we add a few keys to `api_result` that are needed for other functions, so `api_result` is actually slightly modified, but you can ignore this.
 
-Understanding how this function chooses the most relevant movie isn't very important, however understanding the last line is **very** important:
-   
+```javascript   
+    var ignore = {movie:1, film:1, rotten:1, rating:1, rt:1, tomatoes:1};
+    var result, max_score = 0;
+
+    // assign a ranking value for the movie. this isn't a complete sorting value though
+    // also we are blindling assuming these values exist
+    var score = function(m) {
+        var s = m.ratings.critics_score * m.ratings.audience_score;
+        if (s > max_score) max_score = s;
+        console.log("%d for %s", s, m.title);
+        return s; // if any above are undefined, s is undefined
+    };
+```
+A fairly simple function which calculates a score for a given movie based on the combined critics score and audience score. It also keeps track of the highest score so far.
+    
+```javascript
+    // returns the more relevant of the two movies
+    var better = function(currentbest, next) {
+        console.log("better: comparing %s", next.title);
+
+        return (score(next) > score(currentbest) // if score() returns undefined, this is false, so we're still ok
+                    && (next.year < currentbest.year)
+                    && DDG.isRelevant(next.title, ignore)) ?
+                next : currentbest;
+    };
+```
+As the comment explains, this function simply compares the score of two movies and returns the higher scoring movie. However, it is important to mention the use of the function `DDG.isRelevant()`. This is a special internal function which compares the input string to the current search query (i.e., the one that triggered this plugin), to see how relevant the string is with respect to the words in the query. `DDG.isRelevant()` also takes an **optional** second parameter which is an object containing sets of keys with a value of 1. The keys of this object, defined by the developer, will explicitly be ignored when comparing the query string against the candidate string. In our case we are comparing the title of the movie we are currently considering, `next.title`, against the search query and we explicitly ignore a set of words - mostly trigger words for the plugin - as defined above: `var ignore = {movie:1, film:1, rotten:1, rating:1, rt:1, tomatoes:1};`.
+
+```javascript
+    result = DDG_bestResult(this.movies, better);
+
+    // favor the first result if the max score is within 1% of the score for the first result
+    if (result !== this.movies[0] && Math.abs(score(this.movies[0]) - max_score) / max_score < 0.1) {
+        result = this.movies[0];
+    }
+```
+    
+Now that we have our functions defined, we use them to find the most relevant movie. In order to do so, we use the function `DDG_bestResult()` which is another internal function that takes two parameters, a list and a comparison function. In our case we use `DDG_bestResult()` to iterate over our the list of movies, `this.movies` using the function `better()` which we defined above.
+    
+```javascript
+    
+    // make the movie's info available to the zero click template
+    // by setting spice value in the ddh (duckduckhack) object
+
+    // this.ddh.relevantMovie = result;
+    this.ddh.source_url = result.links.alternate;
+    this.ddh.image_url = (result.posters.thumbnail || 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif');
+    this.ddh.header1 = result.title + ' (' + result.year + ')';
+
+    console.log("movie: setting image_url to '%s'", this.ddh.image_url);
+
+    // invoke the body of the block with the relevant movie as the context
     return options.fn(result);
-    
-Here, we are using the Handlebars function `options.fn()` which is a special function used specifically to change the context of the template, ***within the body of the block helper***, to the value of the function's input. So in this case, within `{{relevantMovie}} … {{/relevantMovie}}` the context of the template is equal to the `result` object created by `relevantMovie()`.
+});
+```
+Now that we have selected our most relevant result, we use it to set the values of the Zero Click Box Header, Source URL and Image URL. As previously mentioned, we slightly modify `api_result` when we set it as the context of the template. What we actually do is append the `ddh` object to `api_result`, which lets us modify the properties of `Spice.render()`.
 
+```javascript   
+return options.fn(result);
+```
+This last line is **very** important. Here, we are using the Handlebars function `options.fn()` which is a special function used specifically to change the context of the template, ***within the body of the block helper***, to the value of the function's input. So in this case, within `{{relevantMovie}} … {{/relevantMovie}}` the context of the template is equal to the `result` object created by `relevantMovie()` which allows us to reference the properties of the `result` object, in our Handlebars template. With that in mind, lets move on and see the rest of the **Movie.handlebars**:
 
-######movie.js (continued) - rating_adjective helper
-    /*
-        * rating_adjective
-        *
-        * help make the description of the movie gramatically correct
-        * used in reference to the rating of the movie, as in
-        *   'an' R rated movie, or
-        *   'a'  PG rated movie
-        */
-    Handlebars.registerHelper("rating_adjective", function() {
-            console.log("rating_adjective helper");
-            return (this.mpaa_rating === "R"
-                    || this.mpaa_rating === "NC-17"
-                    || this.mpaa_rating === "Unrated") ?  "an" :"a";
-    });
+######movie.handlebars (again...)
+```html
+{{#relevantMovie}}
+
+    <div id="movie_data_box">
     
+        <div>
+            <span class="movie_data_item">
+                <span class="movie_star_rating">{{{star_rating ratings.critics_score}}}</span>
+            </span>
+            <span class="movie_critics_rating">{{ratings.critics_rating}}</span>
+            <div class="movie_data_description">
+            ({{ratings.critics_score}}% critics,
+             {{ratings.audience_score}}% audience approved)
+            </div>
+        </div>
+    
+        <div><span class="movie_data_item">MPAA rating:</span>{{mpaa_rating}}</div>
+        <div><span class="movie_data_item">Running time:</span>{{runtime}} minutes</div>
+        <div><span class="movie_data_item">Starring:</span>
+            {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
+        </div>
+    </div>
+    
+    {{#if synopsis}}
+        {{synopsis}}
+    {{else}}
+        {{condense critics_consensus maxlen="200"}}
+    {{/if}}
+
+{{/relevantMovie}}
+```
+
+Inside the `{{relevantMovie}}` block helper, the template is pretty simple - we create a few `div`'s and reference properties of the context just like we did in **NPM** and **Alternative.To**. We also use a few more Handlebars helper functions, `star_rating` which we define in **movie.js**, `concat` and `condense`, which we've already discussed and another block helper, `{{#if}}` (a default Handlebars helper) which should be self-explanatory. We use the `{{if}}` helper to check if a variable exists in the current context. However, this block helper, unlike `{{#relevantMovie}}` ***doesn't*** change the context of the template inside its block.
+
+Moving on, let's take a look at the implementation of `star_rating`:
     
 ######movie.js (continued) - star_rating helper
-    /* star rating */
-    Handlebars.registerHelper("star_rating", function(obj, params) {
-            console.log("rating_adjective helper");
-    
-    
-            var r = (obj / 20) - 1;
-            var s = "";
-    
-            console.log("rating %d --> %d", obj, r);
-    
-            if (r > 0) {
-                for (var i=0; i<r; i++) {
-    
-                    s += "&#9733;";
-                }
-            }
-    
-            if (s.length == 0)
-                s = "(0)";
-    
-            return s;
+
+```javascript
+// star rating
+Handlebars.registerHelper("star_rating", function(score) {
+    console.log("rating_adjective helper");
+
+    var r = (score / 20) - 1;
+    var s = "";
+
+    if (r > 0) {
+        for (var i=0; i < r; i++) {
+            s += '&#9733;';
+        }
+    }
+
+    if (s.length == 0)
+        s = '(0)';
+
+    return s;
+});
+```
+
+As you can see this is a pretty simple function, it takes a number as input, and use that to calculate a star rating. Then creates a string of ASCII stars and returns it to the template which will then be rendered by the browser to show a star rating of the movie.  
+
+Now that you've seen a more advanced plugin and understand how to use Handlebars helpers, lets look at another advanced plugin example.
+
+##Example #4 - Quixey (Advance Carousel Plugin)
+The Quixey plugin is one of our more advanced carousel plugins which uses a considerable amount of Handlebars helpers and similarly to the **Movie** plugin has a relevancy checking component. Let's begin by taking a look at the Quixey plugin's Javascript:
+
+######quixey.js
+```javascript
+function ddg_spice_quixey (api_result) {
+
+    if (api_result.result_count == 0) return;
+
+    var q = api_result.q.replace(/\s/g, '+');
+
+    Spice.render({
+        data: api_result,
+        source_name: 'Quixey',
+        source_url: 'https://www.quixey.com/search?q=' + q,
+        header1: api_result.q + ' (App Search)',
+        force_big_header: true,
+        more_logo: "quixey_logo.png",
+        template_frame: "carousel",
+        template_normal: "quixey",
+        carousel_css_id: "quixey",  
+        carousel_template_detail: "quixey_detail",
+        carousel_items: Handlebars.helpers.organize(api_result.results)
     });
-    ```
+}
+```
+
+Similarly to the
