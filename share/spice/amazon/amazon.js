@@ -28,11 +28,14 @@ function ddg_spice_amazon(api_response) {
 
     $('.ddgc_item').on("click", function() {
         nrj('https://dylan.duckduckgo.com/m.js?r='
-            + escape(items[this.id]));
+            + escape(items[this.id])
+            + '&callback=ddg_spice_amazon_detail');
     });
 }
 
 
 function ddg_spice_amazon_detail(api_response) {
     console.log(api_response);
+    $('#ddgc_detail .stars')
+        .attr('src', '/iu/?u=' + api_response.item.stars.$t);
 }

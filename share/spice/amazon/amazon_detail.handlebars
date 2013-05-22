@@ -1,10 +1,10 @@
 <div>
-    <img class="spotlight" src="{{LargeImage.URL.$t}}">
+    <img class="spotlight" src="/iu/?u={{LargeImage.URL.$t}}">
     <div class="description">
         <h1><a href="{{DetailPageURL.$t}}">{{ItemAttributes.Title.$t}}</a></h1>
         <br>
         by <a href="/?q={{ItemAttributes.Brand.$t}}">{{ItemAttributes.Brand.$t}}</a> &bull;
-        <img src="/iu2/?u=http://g-ecx.images-amazon.com/images/G/01/x-locale/common/customer-reviews/ratings/stars-4-0._V192251205_.gif">
+        <img class="stars" src="/iu2/?u=">
         (<a href="{{CustomerReviews.IFrameURL.$t}}">customer reviews</a>)
         <br>
         List Price: {{OfferSummary.LowestNewPrice.FormattedPrice.$t}}
@@ -14,7 +14,7 @@
         </ul>
         <a href="{{DetailPageURL.$t}}">Read More</a>
         <br>
-        <a href=""><img src="https://images-na.ssl-images-amazon.com/images/G/01/associates/remote-buy-box/buy1._V192207739_.gif/"></a>
+        <a href=""><img src="/iu/?u=https://images-na.ssl-images-amazon.com/images/G/01/associates/remote-buy-box/buy1._V192207739_.gif/"></a>
     </div>
     <div class="clear">&nbsp;</div>
 </div>
