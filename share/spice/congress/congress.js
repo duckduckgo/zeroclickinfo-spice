@@ -1,4 +1,5 @@
 function ddg_spice_congress(api_result) {
+    console.log(api_result);
 
     if (api_result.status != "OK" || api_result.results.length == 0) return;
 
