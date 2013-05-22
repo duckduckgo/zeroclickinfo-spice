@@ -223,6 +223,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
     // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
     if(!window.soundManager) {
         window.SM2_DEFER = true;
+        stopIcon();
         $.getScript("/soundmanager2/script/soundmanager2.js", soundSetup);
     }
 };
