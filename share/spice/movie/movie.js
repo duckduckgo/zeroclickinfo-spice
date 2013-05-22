@@ -79,8 +79,8 @@ Handlebars.registerHelper("rating_adjective", function() {
 
 
 /* star rating */
-Handlebars.registerHelper("star_rating", function(obj) {
-        var r = (obj / 20) - 1;
+Handlebars.registerHelper("star_rating", function(score) {
+        var r = (score / 20) - 1;
         var s = "";
 
         if (r > 0) {
