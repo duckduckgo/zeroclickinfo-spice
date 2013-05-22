@@ -150,7 +150,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
     // Sets the icon to play.
     var playIcon = function() {
         icon.removeClass();
-        icon.addClass("icon-play");
+        icon.addClass("icon-volume-up");
     };
 
     // Sets the icon to stop.

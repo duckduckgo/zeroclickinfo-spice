@@ -67,8 +67,8 @@
 .dropdown-submenu:focus > a > [class*=" icon-"] {
   background-image: url("img/glyphicons-halflings-white.png");
 }
-.icon-play {
-  background-position: -264px -72px;
+.icon-volume-up {
+  background-position: -408px -24px;
 }
 .icon-stop {
   background-position: -312px -72px;
