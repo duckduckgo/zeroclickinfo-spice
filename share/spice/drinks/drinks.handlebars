@@ -1,25 +1,30 @@
 <table class="drinks">
-	<thead>
-		<th>
-			Directions:
-		</th>
-		<th>
-			Ingredients:
-		</th>
-	</thead>
+    <thead>
+        <th>
+            Directions:
+        </th>
+        <th>
+            Ingredients:
+        </th>
+    </thead>
 
-	<tbody>
-		<tr>
-			<td>
-				<p>{{procedure}}</p>
-			</td>
-			<td>
-				<ul>
-					{{#each ingredients}}
-						<li>{{this}}</li>
-					{{/each}}
-				</ul>
-			</td>
-		</tr>
-	</tbody>
+    <tbody>
+        <tr>
+            <td>
+                <p>{{procedure}}</p>
+            </td>
+            <td>
+                <ul>{{#if isArray}}
+                        {{#each ingredients}}
+                            <li>{{this}}</li>
+                        {{/each}}
+                    {{else}}
+                        {{#keys ingredients}}
+                            <li>{{value}}</li>
+                        {{/keys}}
+                    {{/if}}
+                </ul>
+            </td>
+        </tr>
+    </tbody>
 </table>
