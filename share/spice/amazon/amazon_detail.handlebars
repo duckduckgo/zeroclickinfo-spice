@@ -1,19 +1,19 @@
 <div>
-    <img class="spotlight" src="/iu/?u={{LargeImage.URL.$t}}">
+    <img class="spotlight" src="/iu/?u={{LargeImage.[@URL]}}">
     <div class="description">
-        <h1><a href="{{DetailPageURL.$t}}">{{ItemAttributes.Title.$t}}</a></h1>
+        <h1><a href="{{DetailPageURL}}">{{ItemAttributes.[@Title]}}</a></h1>
         <br>
-        by <a href="/?q={{ItemAttributes.Brand.$t}}">{{ItemAttributes.Brand.$t}}</a> &bull;
+        by <a href="/?q={{ItemAttributes.[@Brand]}}">{{ItemAttributes.[@Brand]}}</a> &bull;
         <img class="stars" src="">
-        (<a href="{{CustomerReviews.IFrameURL.$t}}"><span class="review-count"></span>
+        (<a href="{{CustomerReviews.[@IFrameURL]}}"><span class="review-count"></span>
             customer reviews</a>)
         <br>
-        List Price: {{OfferSummary.LowestNewPrice.FormattedPrice.$t}}
+        List Price: {{OfferSummary.LowestNewPrice.[@FormattedPrice]}}
         <br>
         <ul>
             {{#each ItemAttributes.Feature}}<li>{{$t}}</li>{{/each}}
         </ul>
-        <a href="{{DetailPageURL.$t}}">Read More</a>
+        <a href="{{this.[@DetailPageURL]}}">Read More</a>
         <br>
         <a href=""><img src="/iu/?u=https://images-na.ssl-images-amazon.com/images/G/01/associates/remote-buy-box/buy1._V192207739_.gif/"></a>
     </div>

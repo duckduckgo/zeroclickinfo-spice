@@ -1,5 +1,6 @@
 function ddg_spice_amazon(api_response) {
-    api_response = api_response.ItemSearchResponse.Items;
+    console.log(api_response);
+    api_response = api_response.opt.Items;
 
     var items = api_response.Item;
     
@@ -9,7 +10,7 @@ function ddg_spice_amazon(api_response) {
 
     Spice.render({
         header1                  : query + ' (Amazon)',
-        source_url               : api_response.MoreSearchResultsUrl.$t,
+        source_url               : api_response['@MoreSearchResultsUrl'].$t,
         source_name              : 'Amazon',
         force_big_header         : true,
         template_frame           : 'carousel',
@@ -22,8 +23,8 @@ function ddg_spice_amazon(api_response) {
 
 
     items.map(function(el, i) {
-        items['amazon-' + el.ASIN.$t] =
-            el.CustomerReviews.IFrameURL.$t
+        items['amazon-' + el['@ASIN']] =
+            el.CustomerReviews['@IFrameURL']
                 .replace('http://www.amazon.com/reviews/iframe?', '');
     });
 

@@ -1,6 +1,6 @@
-<li class="ddgc_item" id="amazon-{{ASIN.$t}}">
+<li class="ddgc_item" id="amazon-{{this.[@ASIN]}}">
     <a href="javascript:void(0);">
-        <p><img src="/iu/?u={{MediumImage.URL.$t}}"></p>
-        <span>{{{condense ItemAttributes.Title.$t maxlen="25"}}}</span>
+        <p><img src="/iu/?u={{MediumImage.[@URL]}}"></p>
+        <span>{{{condense ItemAttributes.[@Title] maxlen="25"}}}</span>
     </a>
 </li>
