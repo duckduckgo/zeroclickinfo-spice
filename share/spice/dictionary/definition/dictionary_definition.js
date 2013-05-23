@@ -142,14 +142,14 @@ var ddg_spice_dictionary_audio = function(api_result) {
 
     // Sets the icon to play.
     var playIcon = function() {
+        $("#play-button").removeClass("widget-button-press");
         icon.removeClass();
         icon.addClass("icon-volume-up");
     };
 
     // Sets the icon to stop.
     var stopIcon = function() {
-        icon.removeClass();
-        icon.addClass("icon-stop");
+        $("#play-button").addClass("widget-button-press");
     };
 
     if(api_result && api_result.length > 0) {
