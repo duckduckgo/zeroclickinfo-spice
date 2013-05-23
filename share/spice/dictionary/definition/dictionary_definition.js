@@ -19,7 +19,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
     var path = "/js/spice/dictionary";
 
     // We moved Spice.render to a function because we're choosing between two contexts.
-    var render = function(context, word, pluralOf) {
+    var render = function(context, word, otherWord) {
         Spice.render({
             data              : context,
             header1           : "Definition (Wordnik)",
@@ -33,8 +33,8 @@ var ddg_spice_dictionary_definition = function(api_result) {
             $.getScript(path + "/hyphenation/" + word);
         }
         // Call the Wordnik API to display the pronunciation text and the audio.
-        $.getScript(path + "/pronunciation/" + pluralOf);
-        $.getScript(path + "/audio/" + pluralOf);
+        $.getScript(path + "/pronunciation/" + otherWord);
+        $.getScript(path + "/audio/" + otherWord);
     };
 
     // Expose the render function.
@@ -222,6 +222,10 @@ var ddg_spice_dictionary_audio = function(api_result) {
 
     // Check if soundManager was already loaded. If not, we should load it.
     // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
-    window.SM2_DEFER = true;
-    $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", soundSetup);
+    if(window.soundManager) {
+        window.SM2_DEFER = true;
+        $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", soundSetup);
+    } else {
+        isLoaded = true;
+    }
 };
