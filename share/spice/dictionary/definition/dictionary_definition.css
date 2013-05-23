@@ -115,6 +115,7 @@ div.definition em {
     cursor: pointer;
     line-height: normal;
     padding:2px 0;
+    vertical-align: text-bottom;
 }
 
 .widget-button:hover {
