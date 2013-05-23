@@ -138,25 +138,23 @@ var ddg_spice_dictionary_audio = function(api_result) {
 
     var isFailed = false;
     var url = "";
-    var icon = $("#play-icon");
+    var icon = $("#play-button");
 
     // Sets the icon to play.
     var playIcon = function() {
-        $("#play-button").removeClass("widget-button-press");
-        icon.removeClass();
-        icon.addClass("icon-volume-up");
+        icon.removeClass("widget-button-press");
+        icon.addClass("playing");
     };
 
     // Sets the icon to stop.
     var stopIcon = function() {
-        $("#play-button").addClass("widget-button-press");
-        icon.removeClass();
-        icon.addClass("icon-stop");
+        icon.removeClass("playing");
+        icon.addClass("widget-button-press");
     };
 
     if(api_result && api_result.length > 0) {
         icon.html("▶");
-        $("#play-button").removeClass("widget-disappear");
+        icon.removeClass("widget-disappear");
 
         // Load the icon immediately if we know that the url exists.
         playIcon();
@@ -220,7 +218,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         if(isFailed) {
             stopIcon();
             setTimeout(playIcon, 1000);
-        } else if(icon.hasClass("icon-volume-up") && isLoaded) {
+        } else if(icon.hasClass("playing") && isLoaded) {
             stopIcon();
             soundManager.play("dictionary-sound");
         }
