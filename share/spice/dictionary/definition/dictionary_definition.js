@@ -150,6 +150,8 @@ var ddg_spice_dictionary_audio = function(api_result) {
     // Sets the icon to stop.
     var stopIcon = function() {
         $("#play-button").addClass("widget-button-press");
+        icon.removeClass();
+        icon.addClass("icon-stop");
     };
 
     if(api_result && api_result.length > 0) {
