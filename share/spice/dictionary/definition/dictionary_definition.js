@@ -179,9 +179,13 @@ var ddg_spice_dictionary_audio = function(api_result) {
             url: "/audio/?u=" + url,
             onfinish: function() {
                 playIcon();
+            },
+            ontimeout: function() {
+                playIcon();
             }
         });
 
+        isLoaded = true;
         stopIcon();
         sound.play();
     };
@@ -205,21 +209,19 @@ var ddg_spice_dictionary_audio = function(api_result) {
 
     // Play the sound when the icon is clicked. Do not let the user play
     // without window.soundManager.
-    var isLoading = false;
+    var isLoaded = false;
     icon.click(function() {
         if(isFailed) {
             stopIcon();
             setTimeout(playIcon, 1000);
-        } else if(icon.hasClass("icon-volume-up") && window.soundManager) {
+        } else if(icon.hasClass("icon-volume-up") && isLoaded) {
             stopIcon();
             soundManager.play("dictionary-sound");
-        } else if(!isLoading) {
-            isLoading = true;
-            playIcon();
-            // Check if soundManager was already loaded. If not, we should load it.
-            // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
-            window.SM2_DEFER = true;
-            $.getScript("/soundmanager2/script/soundmanager2.js", soundSetup);
         }
     });
+
+    // Check if soundManager was already loaded. If not, we should load it.
+    // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
+    window.SM2_DEFER = true;
+    $.getScript("/soundmanager2/script/soundmanager2.js", soundSetup);
 };
