@@ -1,5 +1,10 @@
-#zero_click_abstract table.drinks td,
-#zero_click_abstract table.drinks th {
-	padding: 0 5px;
-	width: 50%
+.drinks {
+    float: left;
+    margin-right: 17px;
+    max-width: 200px;
+    text-align: left;
+}
+
+.drinks-holder {
+    margin-top: 5px;
 }
