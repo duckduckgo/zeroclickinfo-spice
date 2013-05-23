@@ -114,7 +114,7 @@ div.definition em {
     text-shadow: 0 1px rgba(255, 255, 255, .75);
     cursor: pointer;
     line-height: normal;
-    padding:2px 0;
+    padding: 0px 3px;
     vertical-align: text-bottom;
 }
 
