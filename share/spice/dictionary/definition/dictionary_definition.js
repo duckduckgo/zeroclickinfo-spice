@@ -172,6 +172,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
     }
 
     // Load the sound and set the icon.
+    var isLoaded = false;
     var loadSound = function() {
         // Set the sound file.
         var sound = soundManager.createSound({
@@ -181,13 +182,13 @@ var ddg_spice_dictionary_audio = function(api_result) {
                 playIcon();
             },
             ontimeout: function() {
+                isFailed = true;
                 playIcon();
             }
         });
 
+        sound.load();
         isLoaded = true;
-        stopIcon();
-        sound.play();
     };
 
     // Initialize the soundManager object.
@@ -209,7 +210,6 @@ var ddg_spice_dictionary_audio = function(api_result) {
 
     // Play the sound when the icon is clicked. Do not let the user play
     // without window.soundManager.
-    var isLoaded = false;
     icon.click(function() {
         if(isFailed) {
             stopIcon();
