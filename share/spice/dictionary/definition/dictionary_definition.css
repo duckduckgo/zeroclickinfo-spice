@@ -134,25 +134,6 @@ div.definition em {
     /* border-left: 1px solid #aaa; */
 }
 
-.widget-button:active {
-    /* border: 1px solid #666; */
-    border-color: #666;
-    background: #ccc; /* Old browsers */
-    background: #ccc -moz-linear-gradient(top, rgba(255,255,255,.25) 0%, rgba(10,10,10,.4) 100%); /* FF3.6+ */
-    background: #ccc -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.25)), color-stop(100%,rgba(10,10,10,.4))); /* Chrome,Safari4+ */
-    background: #ccc -webkit-linear-gradient(top, rgba(255,255,255,.25) 0%,rgba(10,10,10,.4) 100%); /* Chrome10+,Safari5.1+ */
-    background: #ccc -o-linear-gradient(top, rgba(255,255,255,.25) 0%,rgba(10,10,10,.4) 100%); /* Opera11.10+ */
-    background: #ccc -ms-linear-gradient(top, rgba(255,255,255,.25) 0%,rgba(10,10,10,.4) 100%); /* IE10+ */
-    background: #ccc linear-gradient(top, rgba(255,255,255,.25) 0%,rgba(10,10,10,.4) 100%); /* W3C */ }
-
-
-    /* Fix for odd Mozilla border & padding issues */
-    button::-moz-focus-inner,
-    input::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-}
-
 .widget-button-press {
   /* border: 1px solid #666; */
     border-color: #666;
