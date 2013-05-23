@@ -20,7 +20,6 @@ var ddg_spice_dictionary_definition = function(api_result) {
 
     // We moved Spice.render to a function because we're choosing between two contexts.
     var render = function(context, word, pluralOf) {
-        console.log(context);
         Spice.render({
             data              : context,
             header1           : "Definition (Wordnik)",
@@ -35,14 +34,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
         }
         // Call the Wordnik API to display the pronunciation text and the audio.
         $.getScript(path + "/pronunciation/" + pluralOf);
-
-        var isLoading = false;
-        $("#play-icon").click(function() {
-            if(!isLoading) {
-                isLoading = true;
-                $.getScript(path + "/audio/" + pluralOf);
-            }
-        });
+        $.getScript(path + "/audio/" + pluralOf);
     };
 
     // Expose the render function.
@@ -62,7 +54,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
             $.getScript(path + "/reference/" + plural[1]);
             ddg_spice_dictionary_definition.pluralOf = api_result[0].word;
         } else {
-            render(api_result, api_result[0].word);
+            render(api_result, api_result[0].word, api_result[0].word);
         }
     }
 };
@@ -161,6 +153,9 @@ var ddg_spice_dictionary_audio = function(api_result) {
     };
 
     if(api_result && api_result.length > 0) {
+        // Load the icon immediately if we know that the url exists.
+        playIcon();
+
         // Find the audio url that was created by Macmillan (it usually sounds better).
         for(var i = 0; i < api_result.length; i += 1) {
             if(api_result[i].createdBy === "macmillan" && url === "") {
@@ -175,18 +170,6 @@ var ddg_spice_dictionary_audio = function(api_result) {
     } else {
         return;
     }
-
-    // Play the sound when the icon is clicked. Do not let the user play
-    // without window.soundManager.
-    icon.click(function() {
-        if(isFailed) {
-            stopIcon();
-            setTimeout(playIcon, 1000);
-        } else if(icon.hasClass("icon-volume-up") && window.soundManager) {
-            stopIcon();
-            soundManager.play("dictionary-sound");
-        }
-    });
 
     // Load the sound and set the icon.
     var loadSound = function() {
@@ -220,11 +203,23 @@ var ddg_spice_dictionary_audio = function(api_result) {
         soundManager.onready(loadSound);
     };
 
-    // Check if soundManager was already loaded. If not, we should load it.
-    // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
-    if(!window.soundManager) {
-        window.SM2_DEFER = true;
-        stopIcon();
-        $.getScript("/soundmanager2/script/soundmanager2.js", soundSetup);
-    }
+    // Play the sound when the icon is clicked. Do not let the user play
+    // without window.soundManager.
+    var isLoading = false;
+    icon.click(function() {
+        if(isFailed) {
+            stopIcon();
+            setTimeout(playIcon, 1000);
+        } else if(icon.hasClass("icon-volume-up") && window.soundManager) {
+            stopIcon();
+            soundManager.play("dictionary-sound");
+        } else if(!isLoading) {
+            isLoading = true;
+            playIcon();
+            // Check if soundManager was already loaded. If not, we should load it.
+            // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
+            window.SM2_DEFER = true;
+            $.getScript("/soundmanager2/script/soundmanager2.js", soundSetup);
+        }
+    });
 };
