@@ -157,7 +157,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
     if(api_result && api_result.length > 0) {
         icon.html("▶");
         $("#play-button").removeClass("widget-disappear");
-        
+
         // Load the icon immediately if we know that the url exists.
         playIcon();
 
@@ -205,6 +205,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         soundManager.useHTML5Audio = false;
         soundManager.useFastPolling = true;
         soundManager.useHighPerformance = true;
+        soundManager.multiShotEvents = true;
         soundManager.ontimeout(function() {
             isFailed = true;
             playIcon();

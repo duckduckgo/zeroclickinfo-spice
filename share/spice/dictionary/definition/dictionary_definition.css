@@ -71,3 +71,7 @@
 .widget-disappear {
   display: none;
 }
+
+#play-icon {
+  line-height: normal;
+}
