@@ -27,7 +27,7 @@ var nrio = function(api_result) {
         header1           : "Is it snowing in " + getLocation() + "?",
         force_big_header  : true,
         source_name       : "isitsnowingyet.org",
-        source_url        : "http://isitsnowingyet.org/",
+        source_url        : "http://isitsnowingyet.org/check?q=" + api_result.location,
         template_normal   : "snow"
     });
 };
