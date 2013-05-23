@@ -222,7 +222,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
 
     // Check if soundManager was already loaded. If not, we should load it.
     // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
-    if(window.soundManager) {
+    if(!window.soundManager) {
         window.SM2_DEFER = true;
         $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", soundSetup);
     } else {
