@@ -17,9 +17,9 @@
 	display: inline-block;
 	border: solid 1px;
 	list-style-type: none;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
 	margin: 3px 3px;
 	padding: 2px 2px;
 	font-size: 12px;
