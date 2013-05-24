@@ -25,9 +25,7 @@ var ddg_spice_in_theaters = function(api_result) {
         header = "Currently in Theaters";
     }
 
-    var image_proxy = "/iu/?u=";
     Spice.render({
-        data                     : api_result,
         header1                  : header,
         source_url               : "http://www.rottentomatoes.com/",
         source_name              : "Rotten Tomatoes",
