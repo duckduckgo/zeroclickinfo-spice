@@ -27,16 +27,18 @@ var ddg_spice_in_theaters = function(api_result) {
 
     var image_proxy = "/iu/?u=";
     Spice.render({
-        data             : api_result,
-        header1          : header,
-        source_url       : "http://www.rottentomatoes.com/",
-        // The initial poster is set by the first movie.
-        image_url        : image_proxy + api_result.movies[0].posters.thumbnail,
-        source_name      : "Rotten Tomatoes",
-        template_normal  : "in_theaters",
-        force_big_header : true
+        data                     : api_result,
+        header1                  : header,
+        source_url               : "http://www.rottentomatoes.com/",
+        source_name              : "Rotten Tomatoes",
+        template_normal          : "in_theaters",
+        force_big_header         : true,
+        template_frame           : "carousel",
+        carousel_css_id          : "in_theaters",
+        carousel_items           : api_result.movies,
+        carousel_template_detail : "in_theaters_details",
+        force_no_fold            : true
     });
-
 };
 
 // Convert minutes to hr. min. format.
@@ -67,9 +69,9 @@ Handlebars.registerHelper("list", function(items, options) {
     return out;
 });
 
-Handlebars.registerHelper("star_rating", function(obj, params) {
-        var r = (obj / 20) - 1;
-        var s = "";
+Handlebars.registerHelper("star_rating", function(score) {
+        var r = (score / 20) - 1,
+            s = "";
 
         if (r > 0) {
             for (var i = 0; i < r; i++) {
