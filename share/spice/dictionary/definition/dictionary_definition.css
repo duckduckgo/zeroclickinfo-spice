@@ -75,3 +75,7 @@
 #play-icon {
   line-height: normal;
 }
+
+.definition em {
+    font-style: italic;
+}
