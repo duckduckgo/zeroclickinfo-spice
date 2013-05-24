@@ -85,3 +85,7 @@ Handlebars.registerHelper("star_rating", function(score) {
 
         return s;
 });
+
+Handlebars.registerHelper("checkRating", function(critics_rating) {
+    return critics_rating || "No Rating";
+})
