@@ -78,7 +78,7 @@ Handlebars.registerHelper("star_rating", function(score) {
         }
 
         if (s.length === 0) {
-            s = "(0)";
+            s = "";
         }
 
         return s;
@@ -86,4 +86,11 @@ Handlebars.registerHelper("star_rating", function(score) {
 
 Handlebars.registerHelper("checkRating", function(critics_rating) {
     return critics_rating || "No Rating";
+});
+
+Handlebars.registerHelper("checkScore", function(critics_score) {
+    if(critics_score === -1) {
+        return "";
+    }
+    return " — " + critics_score + "%";
 })
