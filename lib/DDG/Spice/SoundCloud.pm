@@ -3,10 +3,10 @@ package DDG::Spice::SoundCloud;
 
 use DDG::Spice;
 
-description "Displays SoundCloud Players";
+description "Displays audio from SoundCloud";
 name "SoundCloud";
 primary_example_queries "soundcloud ray bradbury";
-secondary_example_queries "sc kavinsky";
+secondary_example_queries "sc the new yorker";
 topics "entertainment", "music";
 category "entertainment";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SoundCloud.pm";
