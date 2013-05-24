@@ -3,3 +3,7 @@ div.metadata {
     font-size: 90%;
 }
 
+#ddgcarousel #in_theaters li.ddgc_item img {
+	max-height: 100px;
+}
+
