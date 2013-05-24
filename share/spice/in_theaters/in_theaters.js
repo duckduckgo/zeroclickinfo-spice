@@ -35,10 +35,7 @@ var ddg_spice_in_theaters = function(api_result) {
         carousel_css_id          : "in_theaters",
         carousel_items           : api_result.movies,
         carousel_template_detail : "in_theaters_details",
-        force_no_fold            : true,
-        template_options         : {
-            li_height: 165
-        }
+        force_no_fold            : true
     });
 };
 

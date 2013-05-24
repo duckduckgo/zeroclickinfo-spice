@@ -1,4 +1,4 @@
-div.metadata {
+.metadata {
     color: rgb(119, 119, 119);
     font-size: 90%;
 }
@@ -14,4 +14,8 @@ div.metadata {
 
 #ddgcarousel #in_theaters #ddgc_slider {
     padding-bottom: 45px;
+}
+
+#ddgcarousel #in_theaters #ddgc_frame {
+    height: 180px;
 }
