@@ -5,11 +5,17 @@ function ddg_spice_khan_academy ( api_result ) {
 
 	var query = DDG.get_query().replace(/khan(\sacademy)?|videos?/g, "").trim();
 
+	if(!query) {
+		query = "Khan Academy";
+	} else {
+		query = query + " (Khan Academy)";
+	}
+
 	Spice.render({
 		data: api_result,
 		source_name : 'Khan Academy',
 		source_url : 'http://www.khan_academy.com/?q=' + query,
-		header1 : query + ' (Khan Academy)' ,
+		header1 : query,
 		force_no_fold : 1,
 		force_big_header : 1,
 		
