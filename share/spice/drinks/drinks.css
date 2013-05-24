@@ -8,3 +8,19 @@
 .drinks-holder {
     margin-top: 5px;
 }
+
+.drinks ul {
+	padding-left: 0px;
+}
+
+.drinks ul li {
+	display: inline-block;
+	border: solid 1px;
+	list-style-type: none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	margin: 3px 3px;
+	padding: 2px 2px;
+	font-size: 12px;
+}
