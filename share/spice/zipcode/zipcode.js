@@ -52,7 +52,10 @@ Handlebars.registerHelper("checkZipcode", function(context) {
         }
     }
 
-    return context.fn(result);
+    result = context.fn(result);
+    if(result.replace(/\s+/, "") !== "") {
+        return "Similar postal codes: " + result;
+    }
 });
 
 Handlebars.registerHelper("bigbox", function(northEast, southWest) {

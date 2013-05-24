@@ -8,7 +8,7 @@ var ddg_spice_canistreamit = function(api_result) {
     Spice.render({
         data              : api_result,
         header1           : api_result[0].title,
-        force_big_header : true,
+        force_big_header  : true,
         source_name       : "Can I Stream.it?",
         image_url         : image_proxy + api_result[0].image,
         source_url        : api_result[0].links.shortUrl,
