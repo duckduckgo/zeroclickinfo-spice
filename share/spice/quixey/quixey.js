@@ -149,9 +149,8 @@ function ddg_spice_quixey (api_result) {
         return "/iu/?u=" + icon_url + "&f=1";
     });
 
-    // template helper to replace iphone and ipod icons with
-    // smaller 'Apple' icons
-    Handlebars.registerHelper("platform_name", function() {
+		// template helper that returns and unifies platform names
+		Handlebars.registerHelper("platform_name", function() {
         var name;
         var platforms = this.platforms;
 
