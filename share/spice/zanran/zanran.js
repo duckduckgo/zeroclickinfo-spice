@@ -12,7 +12,7 @@ function ddg_spice_zanran(api_result) {
 
     Spice.render({
         data             : api_result,
-        header1          : 'Data & Statistics from Zanran',
+        header1          : DDG.get_query() + " (Zanran)",
         source_url       : api_result.more,
         source_name      : 'Zanran',
         template_normal  : 'zanran',
