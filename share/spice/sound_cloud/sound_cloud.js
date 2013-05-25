@@ -93,8 +93,8 @@ var ddg_spice_sound_cloud = function(api_result) {
                 },
                 // Update the time displayed.
                 whileplaying: function() {
-                    $("#sm2_timing .sm2_position").html(formatTime(this.position));
-                    $("#sm2_timing .sm2_total").html(formatTime(this.durationEstimate));
+                    $("#position").html(formatTime(this.position));
+                    $("#total").html(formatTime(this.durationEstimate));
 
                     // We add this just in case onfinish doesn't fire.
                     if(this.position === this.durationEstimate) {

@@ -29,9 +29,12 @@ var ddg_spice_dictionary_definition = function(api_result) {
             template_normal   : "dictionary_definition"
         });
 
+        // Do not add hyphenation when we're asking for two words.
+        // If we don't have this, we'd can have results such as "black• hole".
         if(!word.match(/\s/)) {
             $.getScript(path + "/hyphenation/" + word);
         }
+
         // Call the Wordnik API to display the pronunciation text and the audio.
         $.getScript(path + "/pronunciation/" + otherWord);
         $.getScript(path + "/audio/" + otherWord);
@@ -40,26 +43,34 @@ var ddg_spice_dictionary_definition = function(api_result) {
     // Expose the render function.
     ddg_spice_dictionary_definition.render = render;
 
-    // Prevent jQuery from appending "_={timestamp}" in our url.
+    // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript.
+    // If cache was set to false, it would be calling /js/spice/dictionary/definition/hello?_=12345
+    // and that's something that we don't want.
     $.ajaxSetup({
         cache: true
     });
 
-    // Check how many items we have, and if it refers to something that's plural (we know this because of the regexp).
+    // Check if we have results we need.
     if (api_result && api_result.length > 0) {
+
+        // Wait, before we display the plugin, let's check if it's a plural
+        // such as the word "cacti."
         var plural = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>([^<]+)<\/xref>/i);
 
-        // This loads the definition of the singular form of the word.
+        // If the word is plural, then we should load the definition of the word
+        // in singular form. The definition of the singular word is usually more helpful.
         if(api_result.length === 1 && plural) {
             $.getScript(path + "/reference/" + plural[1]);
             ddg_spice_dictionary_definition.pluralOf = api_result[0].word;
         } else {
+            // Render the plugin if everything is fine.
             render(api_result, api_result[0].word, api_result[0].word);
         }
     }
 };
 
-// Change the context so that it would say something like, "dictionaries is the plural of dictionary."
+// This is the part where we load the definition of the
+// singular form of the word.
 var ddg_spice_dictionary_reference = function(api_result) {
     "use strict";
 
@@ -67,12 +78,18 @@ var ddg_spice_dictionary_reference = function(api_result) {
 
     if(api_result && api_result.length > 0) {
         var word = api_result[0].word;
+
+        // We're doing this because we want to say:
+        // "Cacti is the plural form of cactus."
         api_result[0].pluralOf = "is the plural form of " + word;
         api_result[0].word = ddg_spice_dictionary_definition.pluralOf;
+
+        // Render the plugin.
         render(api_result, api_result[0].word, word);
     }
 };
 
+// We want to add hyphenation to the word, e.g., hel•lo.
 var ddg_spice_dictionary_hyphenation = function(api_result) {
     "use strict";
 
@@ -81,6 +98,7 @@ var ddg_spice_dictionary_hyphenation = function(api_result) {
         for(var i = 0; i < api_result.length; i += 1) {
             result.push(api_result[i].text);
         }
+        // Replace the, rather lame, non-hyphenated version of the word.
         $("#hyphenation").html(result.join("•"));
     }
 };
@@ -110,14 +128,15 @@ Handlebars.registerHelper("part", function(text) {
     return part_of_speech[text] || text;
 });
 
-// Do not encode the HTML tags, and make sure we replace xref to an anchor tag.
+// Make sure we replace xref to an anchor tag.
+// <xref> comes from the Wordnik API.
 Handlebars.registerHelper("format", function(text) {
     "use strict";
 
-    // Replace the xref tag into an anchor tag.
-    text = text.replace(/<xref>([^<]+)<\/xref>/g, "<a class='reference' href='https://www.wordnik.com/words/$1'>$1</a>");
+    // Replace the xref tag with an anchor tag.
+    text = text.replace(/<xref>([^<]+)<\/xref>/g, 
+                "<a class='reference' href='https://www.wordnik.com/words/$1'>$1</a>");
 
-    // Make sure we do not encode the HTML tags.
     return text;
 });
 
@@ -152,6 +171,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         icon.addClass("widget-button-press");
     };
 
+    // Check if we got anything from Wordnik.
     if(api_result && api_result.length > 0) {
         icon.html("▶");
         icon.removeClass("widget-disappear");
