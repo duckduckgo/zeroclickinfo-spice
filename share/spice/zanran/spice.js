@@ -140,7 +140,7 @@ function ddg_spice_zanran(zanran_results) {
     a: outer_html(create_dom_for_primary_result(results[0])),
     i: outer_html(create_img_for_primary_result(results[0])),
     u: zanran_results.more,
-    h: DDG.get_query + " (Zanran)",
+    h: DDG.get_query() + " (Zanran)",
     force_big_header: 1,
     s: 'Zanran',
     f: 1
