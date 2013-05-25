@@ -32,7 +32,7 @@ Handlebars.registerHelper("createLinks", function(affiliates, options) {
 
     options.hash.sep = ", ";
     options.hash.conj = " and ";
-    return Handlebars.helpers.concat(results, options);
+    return Handlebars.helpers.concat(results, options) + ".";
 });
 
 Handlebars.registerHelper("createMore", function(links, options) {
@@ -54,5 +54,5 @@ Handlebars.registerHelper("createMore", function(links, options) {
 
     options.hash.sep = ", ";
     options.hash.conj = " and ";
-    return Handlebars.helpers.concat(results, options);
+    return Handlebars.helpers.concat(results, options) + ".";
 });
