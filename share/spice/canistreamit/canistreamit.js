@@ -19,42 +19,40 @@ var ddg_spice_canistreamit = function(api_result) {
     $("#zero_click_image img").attr("style", "width: 78px !important; height: 120px !important;");
 };
 
-Handlebars.registerHelper("createLinks", function(links, options) {
+Handlebars.registerHelper("createLinks", function(affiliates, options) {
     var hasOwn = Object.prototype.hasOwnProperty,
         results = [];
 
-    for(var index in links) {
-        if(hasOwn.call(links, index)) {
-            links[index].friendlyName = links[index].friendlyName.replace(/ Rental$/, "");
-            results.push(options.fn(links[index]));
+    for(var index in affiliates) {
+        if(hasOwn.call(affiliates, index)) {
+            affiliates[index].friendlyName = affiliates[index].friendlyName.replace(/ Rental$/, "");
+            results.push(affiliates[index]);
         }
     }
 
-    var first = results.slice(0, results.length - 1);
-    first = first.join(", ");
-
-    return first + ", and " + results[results.length - 1] + ".";
+    options.hash.sep = ", ";
+    options.hash.conj = " and ";
+    return Handlebars.helpers.concat(results, options);
 });
 
 Handlebars.registerHelper("createMore", function(links, options) {
     var results = [];
 
     if(links.rottentomatoes) {
-        results.push(options.fn({
+        results.push({
             url: links.rottentomatoes,
             friendlyName: "Rotten Tomatoes"
-        }));
+        });
     }
 
     if(links.imdb) {
-        results.push(options.fn({
+        results.push({
             url: links.imdb,
             friendlyName: "IMDB"
-        }));
+        });
     }
 
-    var first = results.slice(0, results.length - 1);
-    first = first.join(", ");
-
-    return first + ", and " + results[results.length - 1] + ".";
+    options.hash.sep = ", ";
+    options.hash.conj = " and ";
+    return Handlebars.helpers.concat(results, options);
 });
