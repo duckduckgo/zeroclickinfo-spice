@@ -9,6 +9,7 @@ triggers startend => "gravatar", "avatar of", "gravatar of";
 spice to => 'http://en.gravatar.com/$1.json?callback={{callback}}';
 
 primary_example_queries 'gravatar gravatar@duckduckgo.com';
+secondary_example_queries 'gravatar duckduckhack';
 description "Gravatar profile";
 name "Gravatar";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Gravatar.pm";
