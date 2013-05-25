@@ -2,7 +2,7 @@
 // Shows the definition of a word.
 //
 // Dependencies:
-// Requires SoundManager2 and jQuery.
+// Requires SoundManager2.
 //
 // Commands:
 // define dictionary - gives the definition of the word "dictionary."
