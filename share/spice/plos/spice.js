@@ -36,13 +36,6 @@ function ddg_spice_plos(request) {
       var year = pubdate.substr(0, 4);
       var hover = '';
 
-      // // Author list trimmed for more than 3 authors.
-      // if (author_list.length > 3) {
-      //   authors = author_list.splice(0, 3).join(', ') + ', et al';
-      // } else {
-      //   authors = author_list.join(', ');
-      // }
-
       // Write article citation.
       citation += '<li>';
 
@@ -68,32 +61,6 @@ function ddg_spice_plos(request) {
       citation += '<a href="http://dx.doi.org/' + id + '">'
                 + '<span class="title" title="' + hover + '">' + title + '</span>'
                 + '</a>' + ' (' + year + ')';
-
-      // Container for bibliograpihc information.
-      citation += '<div class="information">';
-
-      // // Author list.
-      // citation += '<span class="authors">' + authors + '.</span> ';
-
-      // // Journal, only add if it is defined.
-      // if (journal) {
-      //   citation += '<span class="journal">'
-      //             + journal;
-      //   // Include volume and issue.
-      //   if (volume) {
-      //     citation += ' ' + volume;
-      //     if (issue) {
-      //       citation += '(' + issue + ')';
-      //     }
-      //   }
-      //   citation += '</span> ';
-      // } 
-
-      // // Publication date and year.
-      // citation += '<span class="year">' + year + '</span>';
-
-      // Close information container.
-      citation += '</div>';
 
       // Close up citation.
       citation += '</li>';
