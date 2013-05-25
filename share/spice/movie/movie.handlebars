@@ -12,7 +12,7 @@ starring
     {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
 
     {{#if synopsis}}
-        {{synopsis}}
+        {{condense synopsis maxlen="135"}}
     {{else}}
         {{condense critics_consensus maxlen="135"}}
     {{/if}}
