@@ -30,18 +30,25 @@ var ddg_spice_forvo = function(api_result) {
     };
 
     // Loads and plays the audio file.
+    var isFailed = false;
     var playSound = function(anchor) {
         soundManager.stopAll();
 
-        var sound = soundManager.createSound({
-            id: anchor.attr("id"),
-            url: anchor.data("stream"),
-            onfinish: function() {
+        if(isFailed) {
+            setTimeout(function() {
                 clearPlayer();
-            }
-        });
+            }, 1000);
+        } else {
+            var sound = soundManager.createSound({
+                id: anchor.attr("id"),
+                url: anchor.data("stream"),
+                onfinish: function() {
+                    clearPlayer();
+                }
+            });
 
-        sound.play();
+            sound.play();
+        }
     };
 
     // Initialize SoundManager2.
@@ -55,6 +62,11 @@ var ddg_spice_forvo = function(api_result) {
         soundManager.useFlashBlock = false;
         soundManager.useHTML5Audio = false;
         soundManager.beginDelayedInit();
+        soundManager.ontimeout(function() {
+            isFailed = true;
+            isLoaded = true;
+            clearPlayer();
+        })
         soundManager.onready(function() {
             playSound(anchor);
             isLoaded = true;
