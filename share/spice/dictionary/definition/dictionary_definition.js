@@ -183,10 +183,18 @@ var ddg_spice_dictionary_audio = function(api_result) {
             url: "/audio/?u=" + url,
             onfinish: function() {
                 playIcon();
+                soundManager.stopAll();
             },
             ontimeout: function() {
                 isFailed = true;
                 playIcon();
+            },
+            whileplaying: function() {
+                // We add this just in case onfinish doesn't fire.
+                if(this.position === this.durationEstimate) {
+                    playIcon();
+                    soundManager.stopAll();
+                }
             }
         });
 
