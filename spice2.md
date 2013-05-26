@@ -1,11 +1,11 @@
-# Spice Frontend
+#Spice Frontend
 
-## Overview
+##Overview
 The Spice frontend is the code that is triggered by the Perl backend that you wrote. It mainly consists of a function that takes an API response as its parameter. From this API response, you call a function that renders the data and specifies which template format you'd like your data to have.
 
 The Perl part of the plugins go in `lib/DDG/Spice/PluginName.pm`, while all of the files discussed below should go in `share/spice/plugin_name/`.
 
-### Tech
+###Tech
 The spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and includes [jQuery](https://jquery.org) for use with JavaScript.
 
 If you're not already familiar with Handlebars, *please* read the [Handlebars documentation](http://handlebarsjs.com) before continuing continuing on. Don't worry if you don't fully understand how to use Handlebars, the examples will explain but you should, at the very least, be familiarize yourself with Handlebars before moving on.
@@ -18,7 +18,7 @@ Below, we will walk you through several examples ranging from simple to complica
 ------------------------
 
 
-## Example #1 - NPM (Basic Plugin)
+##Example #1 - NPM (Basic Plugin)
 
 The NPM plugin [[link](https://duckduckgo.com/?q=npm+uglify-js)] [[code](https://github.com/duckduckgo/zeroclickinfo-spice/tree/master/share/spice/npm)] is a great example of a basic Spice implementation. Let's walk through it line-by-line:
 
@@ -116,7 +116,7 @@ As you can see, this is a special type of HTML template. Within the template, yo
 
 This CSS simply defines the styles for the `pre` tag with `id="npm_install_command"`, which we defined in `npm.handlebars`. This CSS gives that block its definitive grey background, etc. The `npm.css` file is automatically recognized by the plugin system. It's just critical that the name of the file is the same as the name of the plugin, just like the javascript file must be `npm.js` and the template must be `npm.handlebars`.
 
-### Conclusion
+###Conclusion
 We've created three files in the spice share directory (`share/spice/npm/`) :
 
 1. `npm.js` - which delegates the API's response and calls `Spice.render()`
@@ -124,7 +124,7 @@ We've created three files in the spice share directory (`share/spice/npm/`) :
 3. `npm.css` - which outlines the style for the HTML defined in the template
 
 
-## Example #2 - Alternative.To (Basic Carousel Plugin)
+##Example #2 - Alternative.To (Basic Carousel Plugin)
 The Alternative.To plugin is very similar to NPM in that it is also relatively basic, however, it uses the new **Carousel** Spice Template. Let's take a look at the code and see how this is done:
 
 ######alternative_to.js
@@ -696,25 +696,34 @@ Each plugin we've seen so far has had one perl module, which had a matching fold
 ##Advanced Techniques
 
 ###Slurping a Textfile (when you have a *lot* of trigger words...)
+(tbd)
 
 ###Using API Keys
+(tbd)
 
 ###Using the GEO Location API
+(tbd)
 
 ###Common Code for Spice Endpoints (.pm's)
+(tbd)
 
 ###Common Javascript and Handlebars Templates
+(tbd)
 
 ------
 
 ##Common Pitfalls
 
 ###Defining Perl Variables and Functions
+(tbd)
+
+------
 
 ##StyleGuide
+(overview - tbd)
 
-
-### Formatting
+###Formatting
+(overview - tbd)
 
 ####Consistant Variable Names
 ex. "api_return"
@@ -723,39 +732,42 @@ ex. "api_return"
 `<search term>` (<Source>)
 
 ####No bolded text in spice body
+(tbd)
 
 ####No "undefined" values in spice body
+(tbd)
 
 ####Indent with spaces (not tabs)
+(tbd)
 
 ------
 
-### Naming Conventions
+###Naming Conventions
 - Folder hierarchy (Also follows Perl naming convention)
 
-### Do's & Don'ts
+###Do's & Don'ts
 
-#### Proxy Images & Audio
+####Proxy Images & Audio
 /iu/
 - Requires a standard image format extension!
 
-#### Add extra attribution
+####Add extra attribution
 "More at" link should be enough
+
+------
 
 ##FAQ
 
-###Api doesn't have endpoint for X
-Email them!
+###I want to use this API but it doesn't have an endpoint for X. What should I do?
+Email them! - If you explain what its for, they might be willing to create and endpoint for you!
 
-###API returns XML
-We don't support XML. Sorry
+###Can I use an API that returns XML?
+Sorry but no. We currently don't support XML. We're considering it though...
 
-###API returns HTML
-If the response is a small string, jQuery can be used to parse HTML - we don't advocate the use of HTML API's though!
+###Can I use an API that returns HTML? (or just a string)
+If the response is a single string, then yes - you can use `zci wrap_jsonp_callback`. You can read more about that [here](#). Or take a look at the [Automeme](https://github.com/duckduckgo/zeroclickinfo-spice/blob/spice2/lib/DDG/Spice/Automeme.pm#L8) plugin.
 
-###API returns only text
-Use zci_wrap_string_callback
-See example
+If the response is more complicated, then sorry but **no**.
 
 ###Can I move the carousel detail are above the carousel?
 Yup - See the Khan Academy Spice!
@@ -769,10 +781,36 @@ No.
 ###What about...
 No.
 
-## DDG Methods (DuckDuck.js) 
-### DDG.get_query()
-### DDG.get_query_raw()
+------
 
-## Spice2 Handlebars Block Helpers
+##DDG Methods (DuckDuck.js) 
+
+###DDG.get_query()
+(tbd)
+
+###DDG.get_query_raw()
+(tbd)
+
+------
+
+##Spice Handlebars Block Helpers
 \#concat
 \#loop
+
+-------
+
+##Spice Attributes
+
+###Spice to
+(tbd)
+
+###Spice from
+(tbd)
+
+###Spice wrap_jsonp_callback
+(tbd)
+
+###Spice proxy_cache_valid 
+(tbd)
+
+###Spice is_unsafe
