@@ -1,12 +1,12 @@
 # Spice Frontend
 
 ## Overview
-The spice frontend is the code that is triggered by the Perl backend that you wrote. It mainly consists of a function that takes an API response as its parameter. From this API response, you call a function that renders the data and specify which template format you'd like your data to have.
+The Spice frontend is the code that is triggered by the Perl backend that you wrote. It mainly consists of a function that takes an API response as its parameter. From this API response, you call a function that renders the data and specifies which template format you'd like your data to have.
 
 The Perl part of the plugins go in `lib/DDG/Spice/PluginName.pm`, while all of the files discussed below should go in `share/spice/plugin_name/`.
 
 ### Tech
-The spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and includes [jQuery](https://jquery.org) for use with JavaScript. Please don't abuse either of these :smile:
+The spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and includes [jQuery](https://jquery.org) for use with JavaScript.
 
 If you're not already familiar with Handlebars, *please* read the [Handlebars documentation](http://handlebarsjs.com) before continuing continuing on. Don't worry if you don't fully understand how to use Handlebars, the examples will explain but you should, at the very least, be familiarize yourself with Handlebars before moving on.
 
@@ -165,6 +165,8 @@ Now, let's take a look at the Alternative.To Handlebars templates:
 ```
 This simple template is used to define each of the carousel items. More specifically, it defines each `<li>` in the carousel and defines what the contents will be. In this case we specify an image - the result's icon - and a span tag, which contains the name of the result.
 
+You might notice that we prepend the `<img>`'s `src` url with the string `"/iu/?u="`. This is **required** for any images in your handlebars template. What this line does is proxy the image through our own servers, which ensure the user's privacy (because it force the request to come from DuckDuckGo instead of the user).
+
 The carousel uses this template by iterating over each item in the object given to `carousel_items` and uses that item as the context of the template.
 
 It's also important to note that the `<li>` has a `class` of `ddgc_item` which is used by our own Carousel CSS to style each item appropriately.
@@ -181,7 +183,7 @@ Seeing as this is a carousel plugin, which uses the optional carousel details ar
 </div>
 ```
     
-This template is also relatively simple. It creates a few `<div>` tags and populates them with relevant information related to the carousel item that was clicked. You'll notice the use of another Handlebars helper function, `concat`. This function takes an array as its first parameter and returns the elements of the array as a string, joined by the separator string (`sep=`) with the final element separated by the `conj=` string. In this case, if `Platforms` is a list of operating systems: `["windows", "linux", "mac"]`, then `concat` would return: **"widows, linux and mac"**.
+This template is also relatively simple. It creates a few `<div>` tags and populates them with relevant information related to the carousel item that was clicked. You'll notice the use of another Handlebars helper function, `concat`. This function takes an array as its first parameter and iterates over each element in the array. For each iteration, `{{#concat}}` sets the context of the block equal to the current array element and then concatenates the content of its block, joining each by the separator string (`sep=`) with the final element separated by the `conj=` string. In this case, if `Platforms` is a list of operating systems: `["windows", "linux", "mac"]`, then `concat` would return: **"widows, linux and mac"**.
 
 Let's take a look at the Alternative.To CSS:
 
@@ -325,7 +327,6 @@ As the comment explains, this function simply compares the score of two movies a
 Now that we have our functions defined, we use them to find the most relevant movie. In order to do so, we use the function `DDG_bestResult()` which is another internal function that takes two parameters, a list and a comparison function. In our case we use `DDG_bestResult()` to iterate over our the list of movies, `this.movies` using the function `better()` which we defined above.
     
 ```javascript
-    
     // make the movie's info available to the zero click template
     // by setting spice value in the ddh (duckduckhack) object
 
@@ -335,15 +336,13 @@ Now that we have our functions defined, we use them to find the most relevant mo
     this.ddh.header1 = result.title + ' (' + result.year + ')';
 
     console.log("movie: setting image_url to '%s'", this.ddh.image_url);
-
-    // invoke the body of the block with the relevant movie as the context
-    return options.fn(result);
-});
 ```
 Now that we have selected our most relevant result, we use it to set the values of the Zero Click Box Header, Source URL and Image URL. As previously mentioned, we slightly modify `api_result` when we set it as the context of the template. What we actually do is append the `ddh` object to `api_result`, which lets us modify the properties of `Spice.render()`.
 
-```javascript   
-return options.fn(result);
+```javascript
+    // invoke the body of the block with the relevant movie as the context
+    return options.fn(result);
+});
 ```
 This last line is **very** important. Here, we are using the Handlebars function `options.fn()` which is a special function used specifically to change the context of the template, ***within the body of the block helper***, to the value of the function's input. So in this case, within `{{relevantMovie}} … {{/relevantMovie}}` the context of the template is equal to the `result` object created by `relevantMovie()` which allows us to reference the properties of the `result` object, in our Handlebars template. With that in mind, lets move on and see the rest of the **Movie.handlebars**:
 
@@ -433,9 +432,347 @@ function ddg_spice_quixey (api_result) {
         template_normal: "quixey",
         carousel_css_id: "quixey",  
         carousel_template_detail: "quixey_detail",
+```
+
+Similarly to **Alternative.To**, the Quixey plugin uses the carousel, and sets values for all the required carousel-specific properties. However, this plugin also uses the `force_big_header` property to create a ZeroClick header and subsquently sets the value of the header text, `header1`. Also, the `more_logo` property is set, which allows a custom image to be used instead of the `source_name` text. One important difference about Quixey is the use of our own `organize()` Handlebars helper in `Spice.render()`:
+
+######quixey.js (continued)
+```javascript
         carousel_items: Handlebars.helpers.organize(api_result.results)
     });
 }
 ```
 
-Similarly to the
+Here we are using `organize()` (defined below in **Quixey.js**) in our *Javascript* rather than inside our Handlebars template. We are able to do this using the `Handlebars.helpers` object which contains all the helpers we have defined, as well as the helpers defined by our own core Spice code and those that are native to Handlebars. Unlike the **Movie** plugin, we are required to use our block helper in this manner (i.e., outside the template) so that only the results we want included in the carousel are passed on to the **quixey.handlebars** template.
+
+Moving on, let's take a look at the implementation of the `organize()` helper:
+
+######quixey.js (continued) - organize helper
+```javascript
+// Check for relevant app results
+Handlebars.registerHelper("organize", function(results) {
+        
+    var res,
+        apps = [],
+        backupApps = [],
+        categories = /action|adventure|arcade|board|business|casino|design|developer tools|dice|education|educational|entertainment|family|finance|graphics|graphics and design|health and fitness|kids|lifestyle|medical|music|networking|news|photography|productivity|puzzle|racing|role playing|simulation|social networking|social|sports|strategy|travel|trivia|utilities|video|weather/i,
+        skip_words = {"app": 1, "apps": 1, "application": 1, "applications": 1, "android": 1, "droid": 1, "google play store": 1, "google play": 1, "windows phone": 1, "windows phone 8": 1, "windows mobile": 1, "blackberry": 1, "apple app store": 1, "apple app": 1, "ipod touch": 1, "ipod": 1, "iphone": 1, "ipad": 1, "ios": 1, "free": 1, "search": 1};
+        
+    for (var i = 0; i < results.length; i++) {
+
+        app = results[i];
+
+        // check if this app result is relevant
+        if (DDG.isRelevant(app.name.toLowerCase(), skip_words)) {
+            apps.push(app);
+        } else if (app.hasOwnProperty("short_desc") &&
+                   DDG.isRelevant(app.short_desc.toLowerCase(), skip_words)) {
+                        backupApps.push(app);
+        } else if (app.custom.hasOwnProperty("category") &&
+                   DDG.isRelevant(app.custom.category.toLowerCase(), skip_words)) {
+                        backupApps.push(app);
+        } else{
+            continue;
+        }
+    }
+
+    // Return highly relevant results
+    if (apps.length > 0) {
+        res = apps;
+    }
+
+    // Return mostly relevant results
+    else if (backupApps.length > 0) {
+        res = backupApps;
+    }
+
+    else {
+        // No relevant results,
+        // check if it was a categorical search
+        // Eg."social apps for android"
+        var q = DDG.get_query();
+        res = q.match(categories) ? results : null;
+    }
+    return res;
+});
+```
+
+We begin by defining the function and its input, `results` which is an array of apps. Then we define some variables, notable we define `skip_words`, which we will use later for a call to the `isRelevant()` function we discussed earlier. Then, we move onto a `for` loop which does the bulk of the work by iterating over ever app in the `results` array and applies a series of `isRelevant()` checks to see if either the app name, short description or category are relevant to the search query. If the name is considered to be relevant we add it to the `apps` array which contains all the relevant app results. If the name isn't relevant but the description or category is, we add it to the `backupApps` array, because we might need them later. If none of those properties are considered relevant we simply exclude that app from the set of apps that will be displayed to the user.
+
+After we've checked every app we check to see if there were any relevant apps and if so, we show them to the user. Otherwise, we check our `backupApps` array to see if there were any apps who might be relevant and show those to the user. Failing that, we check if the search was for an app category and if so, we return all the results because the Quixey API is assumed to have relevant results. 
+
+Before looking at the implementation of the remaining Quixey Handlebars helpers, lets look at the template to see how the helpers are used:
+
+######quixey.handlebars
+```html
+<li class="ddgc_item"> {{! width set in setup() }}
+    <p><img src="{{{icon_url}}}" /></p>
+    <span>{{{condense name maxlen="40"}}}</span>
+</li>
+```
+
+This template is very simple, it creates an `<li>` with an `<img>` tag, for the resulting app icon and a `<span>` tag for the app name. You may also notice that unlilke **Alternative.To**, we placed the `<img>` tag inside `<p>` tags. We do this to automatically center and align the images, through the use of carousel specific CSS that we wrote, because the images aren't all the same size and would otherwise be missalligned. So, if the images for your plugin aren't the same size, simply wrap them in `<p>` tags and the carousel will take care of the rest. If not, simply ignore the use of the `<p>` tags.
+
+Now let's take a look at the Quixey `carousel_template_detail` template. This template is more advanced, but most of the content is basic HTML which is populated by various `api_result` properties and Handlebars helpers:
+
+######quixey_detail.handlebars (continued)
+```html
+<div id="quixey_preview" style="width: 100%; height: 100%;" app="{{id}}">
+    <div class="app_info">
+        <a href="{{{url}}}" class="app_icon_anchor">
+            <img src="{{{icon_url}}}" class="app_icon">
+        </a>
+        <div class="name_wrap">
+            <a href="{{url}}" class="name" title="{{name}}">{{name}}</a>
+```
+
+Here we create the outer div that wraps the content in the detail area. Note the use of HTML ids and classes - this is to make the css more straightforward, modular and understandable.
+
+######quixey_detail.handlebars (continued)
+```html
+            {{#if rating}}
+                <div title="{{rating}}" class="rating">
+                    {{#loop rating}}
+                        <img src="{{quixey_star}}" class="star"></span>
+                    {{/loop}}
+                </div>
+            {{/if}}
+```
+
+Here we use the `{{#if}}` block helper and nested inside that, we use our own `{{#loop}}` block helper (defined internally), which simply counts from 0 to the value of its input, each time applying the content of its own block. In this example, we use it to create a one or more star images to represent the app's rating.
+ 
+######quixey_detail.handlebars (continued) 
+```html
+            <div class="price">{{pricerange}}</div>
+            <div class="app_description">{{{short_desc}}}</div>
+            <div id="details_{{id}}" class="app_details">
+                <div class="app_editions">
+                    {{#each editions}}
+                        <div class="app_edition" title="{{name}} - Rating: {{rating}}">
+                            <a href="{{{url}}}" class="app_platform">
+                                {{#with this.platforms.[0]}}
+                                <img src="{{platform_icon icon_url}}" class="platform_icon">
+                                {{/with}}
+                                {{platform_name}}
+                                {{#if ../hasPricerange}}
+                                     - {{price cents}}
+                                {{/if}}
+                            </a>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+```
+
+Here, we create a few more `<div>`'s and then we use another block helper, `{{#each}}`, which takes an array as input, and iterates over each of the array's elements, using them as the context for the `{{#each}}` block. Nested within the `{{#each}]` helper, we also use the `#{{with}}` block helper, which takes a single object as input, and applies that object as the context for its block. One more interesting thing to note is the input we give to the `{{#if}}` block nested in our `{{#each}}` block. We use the `../` to reference the parent template's context.  
+
+Now that we've seen the template and the helpers we're using, let's take a look at how they're all implemented:
+
+######quixey.js (continued) -  qprice function
+```javascript
+// format a price
+// p is expected to be a number
+function qprice(p) {
+    if (p == 0) {    // == type coercion is ok here
+        return "FREE";
+    }
+    
+    return "$" + (p/100).toFixed(2).toString();
+}
+```
+
+This is a simple function that formats a price. We don't register it as a helper because we don't need to use this function directly in our templates, however our helper functions do use this function `qprice()` function.
+
+######quixey.js (continued) -  price helper
+```javascript
+// template helper for price formatting
+// {{price x}}
+Handlebars.registerHelper("price", function(obj) {
+    return qprice(obj);
+});
+```
+
+This helper function is relatively simple, it takes a number as input, calls the `qprice()` function we just saw, and returns it's output to the template. It essentially abstracts our `qprice()` function into a Handlebars helper. We do this because the next function we'll see also uses `qprice()` and its simply easier to call it as a locally defined function, rather than register it as a helper and then use the `Handlebars.helpers` object to call the `qprice()` function.
+
+######quixey.js (continued) -  pricerange helper
+```javascript
+// template helper to format a price range
+Handlebars.registerHelper("pricerange", function(obj) {
+   
+    if (!this.editions)
+        return "";
+
+    var low  = this.editions[0].cents;
+    var high = this.editions[0].cents;
+    var tmp, range, lowp, highp;
+
+    for (var i in this.editions) {
+        tmp = this.editions[i].cents;
+        if (tmp < low) low = tmp;
+        if (tmp > high) high = tmp;
+    }
+
+    lowp = qprice(low);
+
+    if (high > low) {
+       highp = qprice(high);
+       range = lowp + " - " + highp;
+       this.hasPricerange = true;
+    } else {
+        range = lowp;
+    }
+   
+    return range;
+});
+```
+
+This function is a little more complex, it takes an object as input, iterates over the objects keys, and records the highest and lowest prices for the app. Then, it verifies that the range has different high and low values. If not, it simply returns the low price, formatted using our `qprice()` function. Otherwise, it creates a string indicating the range and formats the values with `qprice()`.
+
+######quixey.js (continued) -  platform_icons helper
+```javascript
+// template helper to replace iphone and ipod icons with
+// smaller 'Apple' icons
+Handlebars.registerHelper("platform_icon", function(icon_url) {
+    if (this.id === 2004 || this.id === 2015) {
+        return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
+    }
+
+    return "/iu/?u=" + icon_url + "&f=1";
+});
+```
+
+Another very simple helper function, the `platform_icon()` function simply checks if its input is equal to `2005` or `2015` and if so returns a special url for the platform icon. If not, it returns the originial icon url but adds our proxy redirect, `/iu/?u=` as previously discussed.
+
+######quixey.js (continued) -  platform_name helper
+```javascript
+// template helper that returns and unifies platform names
+Handlebars.registerHelper("platform_name", function() {
+    var name;
+    var platforms = this.platforms;
+
+    name = platforms[0].name;
+
+    if (platforms.length > 1) {
+        switch (platforms[0].name) {
+            case "iPhone" :
+            case "iPad" :
+                name = "iOS";
+                break;
+
+            case "Blackberry":
+            case "Blackberry 10":
+                name = "Blackberry";
+                break;
+        }
+    }
+
+    return name;
+});
+```
+
+This helper is also quite simple, it is used to return a platform name and someties also unifies the platform name when multiple platforms exist for an app. If the app is available for both 'iPhone' and 'iPad', the `switch()` will catch this and indicate the app is availabe for "iOS".
+
+######quixey.js (continued) -  quixey_star helper
+```javascript
+// template helper to give url for star icon
+Handlebars.registerHelper("quixey_star", function() {
+    return DDG.get_asset_path("quixey", "star.png").replace("//", "/");
+});
+```
+
+This helper is also very simple, but it is important because it uses the `DDG.get_asset_path()` function which returns the URI for an asset stored in a plugin's share folder. This is necessary because spice plugins and their content are versioned internally. So the URI returned by this function will contain the proper version number, which is required to access any assets.
+
+##Example #5 - Dictionary (More Advanced Plugin)
+The dictionary plugin is a more advanced plugin than the previous examples, because it requires multiple endpoints (which means it has multiple perl modules -`.pm` files) in order to function properly. You will notice it has its own directory in the the Spice repository: `zeroclickinfo-spice/share/spice/dictionary/definition/`
+
+Each plugin we've seen so far has had one perl module, which had a matching folder in the `zeroclickinfo-spice/share/spice/share/` directory. For this plugin, each module is a seperate folder contained with the `zeroclickinfo-spice/share/spice/share/dictionary` directory which allows each module to use their own Javascript, Handlebars and CSS files. In the case of the **Dictionary** plugin these various endpoints work together as a single plugin. However, other plugins such as [**Last.FM**](https://github.com/duckduckgo/zeroclickinfo-spice/tree/spice2/share/spice/lastfm) are able to have multiple endpoints which are independant and react to different queries and each have different results.
+
+---
+
+##Advanced Techniques
+
+###Slurping a Textfile (when you have a *lot* of trigger words...)
+
+###Using API Keys
+
+###Using the GEO Location API
+
+###Common Code for Spice Endpoints (.pm's)
+
+###Common Javascript and Handlebars Templates
+
+------
+
+##Common Pitfalls
+
+###Defining Perl Variables and Functions
+
+##StyleGuide
+
+
+### Formatting
+
+####Consistant Variable Names
+ex. "api_return"
+
+####Spice Header Format
+`<search term>` (<Source>)
+
+####No bolded text in spice body
+
+####No "undefined" values in spice body
+
+####Indent with spaces (not tabs)
+
+------
+
+### Naming Conventions
+- Folder hierarchy (Also follows Perl naming convention)
+
+### Do's & Don'ts
+
+#### Proxy Images & Audio
+/iu/
+- Requires a standard image format extension!
+
+#### Add extra attribution
+"More at" link should be enough
+
+##FAQ
+
+###Api doesn't have endpoint for X
+Email them!
+
+###API returns XML
+We don't support XML. Sorry
+
+###API returns HTML
+If the response is a small string, jQuery can be used to parse HTML - we don't advocate the use of HTML API's though!
+
+###API returns only text
+Use zci_wrap_string_callback
+See example
+
+###Can I move the carousel detail are above the carousel?
+Yup - See the Khan Academy Spice!
+
+###Can I add this JS library?
+Probably not. Maybe if it is very small. But only you should ask us first before writing a plugin that is dependant on another library. We prefer no third party libraries are used.
+
+###Can I use Coffeescript?
+No.
+
+###What about...
+No.
+
+## DDG Methods (DuckDuck.js) 
+### DDG.get_query()
+### DDG.get_query_raw()
+
+## Spice2 Handlebars Block Helpers
+\#concat
+\#loop
