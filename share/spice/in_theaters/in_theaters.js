@@ -92,5 +92,5 @@ Handlebars.registerHelper("checkScore", function(critics_score) {
     if(critics_score === -1) {
         return "";
     }
-    return " — " + critics_score + "%";
+    return ": " + critics_score + "%";
 })
