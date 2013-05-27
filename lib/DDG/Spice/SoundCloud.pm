@@ -16,8 +16,8 @@ attribution web => ['http://jordanscales.com', 'Jordan Scales'],
             twitter => ['http://twitter.com/prezjordan', '@prezjordan'];
 status "enabled";
 
-spice to => 'http://api.soundcloud.com/tracks.json?client_id={{ENV{DDG_SPICE_SOUNDCLOUD_APIKEY}}}&q=$1&limit=10&callback={{callback}}&filter=streamable';
-spice is_cached => 0;
+spice to => 'http://api.soundcloud.com/tracks.json?client_id={{ENV{DDG_SPICE_SOUNDCLOUD_APIKEY}}}&q=$1&limit=12&callback={{callback}}&filter=streamable';
+spice is_cached => 1;
 
 triggers startend => "sc", "soundcloud", "sound cloud";
 
