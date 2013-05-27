@@ -11,13 +11,13 @@ ddg_spice_test(
         '/js/spice/sound_cloud/ray%20bradbury',
         call_type => 'include',
         caller => 'DDG::Spice::SoundCloud',
-        is_cached => 0
+        is_cached => 1
     ),
     'sc kavinsky' => test_spice(
         '/js/spice/sound_cloud/kavinsky',
         call_type => 'include',
         caller => 'DDG::Spice::SoundCloud',
-        is_cached => 0
+        is_cached => 1
     ),
 );
 
