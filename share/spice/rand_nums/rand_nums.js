@@ -1,8 +1,9 @@
 function ddg_spice_rand_nums(api_result) {
 
 	var query  = DDG.get_query();
-	var regexp = /^(rand|random) (numbers|nums)(?: (\-?[0-9]+)\-(\-?[0-9]+)|)$/i;
+	var regexp = /^(rand|random) (numbers|nums)(?: (\-?[0-9]+)(?:\-| )(\-?[0-9]+)|)$/i;
 	var match  = query.match(regexp);
+	console.log(match);
 	var min    = match[3];
 	var max    = match[4];
 
