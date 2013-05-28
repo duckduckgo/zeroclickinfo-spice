@@ -11,8 +11,8 @@ description "Search for mobile apps";
 name "Quixey App Search";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Quixey.pm";
 icon_url "/i/www.quixey.com";
-category "everyday";
-topics "entertainment", "software";
+category "entertainment";
+topics "everyday", "special_interest";
 attribution github => ['https://github.com/duckduckgo', 'DuckDuckGo'],
             twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
 status "enabled";
