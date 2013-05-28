@@ -1,17 +1,17 @@
-#amazon #ddgcarousel li.ddgc_item p {
+#amazon li.ddgc_item p {
     background-color: #ffffff;
     border: 1px solid #e7e7e7;
 }
 
-#amazon #ddgcarousel li.ddgc_item img {
+#amazon li.ddgc_item img {
     padding: 5px;
 }
 
-#amazon #ddgcarousel li.ddgc_item span {
+#amazon li.ddgc_item span {
     font-size: 95%;
 }
 
-#amazon #ddgcarousel li.ddgc_selected span {
+#amazon li.ddgc_selected span {
     color: #1168CC;
 }
 
