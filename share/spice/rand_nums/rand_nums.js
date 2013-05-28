@@ -1,7 +1,4 @@
 function ddg_spice_rand_nums(api_result) {
-
-    console.log(api_result);
-
     var min;
     var max;
 
