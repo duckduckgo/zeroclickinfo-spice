@@ -12,11 +12,9 @@ var ddg_spice_canistreamit = function(api_result) {
         source_name       : "Can I Stream.it?",
         image_url         : image_proxy + api_result[0].image,
         source_url        : api_result[0].links.shortUrl,
-        template_normal   : "canistreamit"
+        template_normal   : "canistreamit",
+        image_width       : 70
     });
-
-    // Force the image to be smaller.
-    $("#zero_click_image img").attr("style", "width: 78px !important; height: 120px !important;");
 };
 
 Handlebars.registerHelper("createLinks", function(affiliates, options) {
