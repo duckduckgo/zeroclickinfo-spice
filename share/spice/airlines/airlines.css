@@ -1,10 +1,5 @@
-.nrft {
-	float: left;
-	margin-right: 17px;
-	max-width: 200px;
-	text-align: left;
-}
-
-.nrft-holder {
-	margin-top: 5px;
+.airlines {
+	display: inline-block;
+	width: 45%;
+	vertical-align: top;
 }
