@@ -28,10 +28,12 @@ function ddg_spice_amazon(api_response) {
                 .replace('http://www.amazon.com/reviews/iframe?', '');
     });
 
-    $('.ddgc_item').on("click", function() {
-        nrj('https://dylan.duckduckgo.com/m.js?r='
-            + escape(items[this.id])
-            + '&callback=ddg_spice_amazon_detail');
+    $(document).ready(function() {
+        $('.ddgc_item').on("click", function() {
+            nrj('https://dylan.duckduckgo.com/m.js?r='
+                + escape(items[this.id])
+                + '&callback=ddg_spice_amazon_detail');
+        });
     });
 }
 
