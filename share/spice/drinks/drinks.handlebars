@@ -1,13 +1,13 @@
 <div class="drinks-holder">
     
     {{! First tile which shows the directions.}}
-    <div class="drinks">
+    <div class="directions">
         <div>Directions:</div>
-        <div>{{{condense procedure maxlen="120"}}}</div>
+        <div>{{{condense procedure maxlen="170"}}}</div>
     </div>
 
     {{! Second tile which shows the ingredients.}}
-    <div class="drinks">
+    <div class="ingredients">
         <div>Ingredients:</div>
         <ul>
             {{#if isArray}}

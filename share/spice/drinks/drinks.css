@@ -1,26 +1,26 @@
-.drinks {
-    float: left;
-    margin-right: 17px;
-    max-width: 200px;
-    text-align: left;
-}
-
-.drinks-holder {
-    margin-top: 5px;
-}
-
-.drinks ul {
-	padding-left: 0px;
-}
-
-.drinks ul li {
+.ingredients{
 	display: inline-block;
-	border: solid 1px;
+	width: 40%;
+}
+
+.directions {
+	width: 50%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.ingredients ul li {
+	display: inline-block;
 	list-style-type: none;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	margin: 3px 3px;
-	padding: 2px 2px;
+	padding: 0px 8px;
 	font-size: 12px;
+	background-color: #e5e5e5;
+}
+
+.ingredients ul {
+	padding-left: 0px;
+	padding-top: 0px;
 }
