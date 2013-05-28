@@ -14,7 +14,7 @@ attribution github  => ['https://github.com/bnewbold', 'bnewbold'];
 status "enabled";
 triggers any => "datasheet", "specs", "octopart";
 
-spice to => 'http://octopart.com/api/v2/parts/search?apikey={{ENV{DDG_SPICE_OCTOPART_APIKEY}}}&limit=5&optimize.hide_offers=1&optimize.hide_specs=1&q=$1&callback={{callback}}';
+spice to => 'http://octopart.com/api/v2/parts/search?apikey={{ENV{DDG_SPICE_OCTOPART_APIKEY}}}&limit=12&optimize.hide_offers=1&optimize.hide_specs=1&q=$1&callback={{callback}}';
 
 handle remainder => sub {
     return $_ if $_;

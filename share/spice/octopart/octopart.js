@@ -4,8 +4,9 @@ var ddg_spice_octopart = function(api_result) {
         return;
     }
 
-    var matched, result, query;
+    var query;
     $("script").each(function() {
+        var matched, result; 
         matched = $(this).attr("src");
         if(matched) {
             result = matched.match(/\/js\/spice\/octopart\/(.+)/);
@@ -15,8 +16,14 @@ var ddg_spice_octopart = function(api_result) {
         }
     });
 
+    var results = [];
+    for(var i = 0; i < api_result.results.length; i += 1) {
+        if(api_result.results[i].item.images.length > 0) {
+            results.push(api_result.results[i]);
+        }
+    }
+
     Spice.render({
-        data: api_result,
         source_name : 'Octopart',
         source_url : 'http://octopart.com/partsearch#search/requestData&q=' + query,
         header1 : api_result.request.q + " (Octopart)",
@@ -24,7 +31,7 @@ var ddg_spice_octopart = function(api_result) {
         template_normal: "octopart",
         carousel_css_id: "octopart",
         carousel_template_detail: "octopart_details",
-        carousel_items: api_result.results,
+        carousel_items: results,
         force_no_fold : 1
     });
 };
