@@ -42,7 +42,7 @@ function ddg_spice_earthquakes(response) {
         var result = [];
 	var ticker = NUMBER_OF_QUAKES_TO_DISPLAY;
         n=0;
-	while (n < ticker) {
+	while (n < ticker && n < quakesWeWant.length) {
 		if (n>0 && response.earthquakes[quakesWeWant[n]].timedate === response.earthquakes[quakesWeWant[n-1]].timedate) {
 			ticker++;
 			n++;
