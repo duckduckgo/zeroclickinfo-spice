@@ -162,7 +162,7 @@ var ddg_spice_sound_cloud = function(api_result) {
             // Load SoundManager2 if it hasn't already.
             if(!isLoaded && !isLoading) {
                 isLoading = true;
-                $.getScript("/soundmanager2/script/soundmanager2.js", function() {
+                $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", function() {
                     soundSetup(anchor);
                 });
             // If SoundManager already loaded, we should just play the sound.
