@@ -5,6 +5,8 @@
 
 #amazon li.ddgc_item img {
     padding: 5px;
+    width: 80px;
+    height: 80px;
 }
 
 #amazon li.ddgc_item span {
