@@ -21,6 +21,11 @@
     border: 1px solid #E1E1E1;
 }
 
+#amazon .price {
+    font-weight: bold;
+    color: #900000;
+}
+
 #amazon .description {
     float: left;
     width: 450px;
