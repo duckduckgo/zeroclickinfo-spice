@@ -1,0 +1,11 @@
+<ul>
+	{{#unless earthquakes.[0]}}
+	Sorry, no recent earthquakes matching your query were found.<br /><br />
+	{{/unless}}
+	{{#each earthquakes}}
+	{{#if this}}
+	<img src="http://duckduckgo.com/imq2/?size=156,78&zoom=1&center={{this.lat}},{{this.lon}}&imageType=jpg&mcenter={{this.lat}},{{this.lon}}" align="right" />
+	<b>{{this.timedate}}</b><br />{{this.region}}<br />Magnitude: {{this.magnitude}}<br />Depth: {{this.depth}} km<br /><br />
+	{{/if}}
+	{{/each}}
+</ul>
