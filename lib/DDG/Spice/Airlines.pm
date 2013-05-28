@@ -35,7 +35,6 @@ foreach my $line (@airlines_lines) {
   $airlines{lc $line[1]} = $line[0];
   #AA => AA
   $airlines{lc $line[0]} = $line[0];
-  warn "$line[0] => $line[1]";
 }
 
 # Get the list of elements because an airline name can be an element.
@@ -50,8 +49,6 @@ foreach my $line (@elements_lines) {
 
 handle query_lc => sub {
     my $query = $_;
-    my $airline;
-    my $flightno;
 
     sub checkAirlines {
         my ($airline, $flightno, $original) = @_;
