@@ -53,10 +53,17 @@ Handlebars.registerHelper("relevantMovie", function(options) {
     // make the movie's info available to the zero click template
     // by setting spice value in the ddh (duckduckhack) object
 
+    var checkYear = function(year) {
+        if(year) {
+            return " (" + result.year + ")";
+        }
+        return "";
+    };
+
     // this.ddh.relevantMovie = result;
     this.ddh.source_url = result.links.alternate;
     this.ddh.image_url = (result.posters.thumbnail || 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif');
-    this.ddh.header1 = result.title + ' (' + result.year + ')';
+    this.ddh.header1 = result.title + checkYear(result.year);
 
     // invoke the body of the block with the relevant movie as the context
     return options.fn(result);

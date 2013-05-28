@@ -18,9 +18,11 @@
 
     <div><span class="movie_data_item">MPAA rating:</span>{{mpaa_rating}}</div>
     <div><span class="movie_data_item">Running time:</span>{{runtime}} minutes</div>
-    <div><span class="movie_data_item">Starring:</span>
-        {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
-    </div>
+    {{#if abridged_cast}}
+        <div><span class="movie_data_item">Starring:</span>
+            {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
+        </div>
+    {{/if}}
 </div>
 
 
