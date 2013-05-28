@@ -21,13 +21,17 @@ spice is_cached => 0;
 spice proxy_cache_valid => "418 1d";
 spice wrap_string_callback => 1;
 
-triggers query_lc => qr/^(rand|random) (numbers?|nums?)(?: (\-?[0-9]+)(?:\-| )(\-?[0-9]+)|)$/;
+triggers query_lc => qr/^(rand|random) (numbers?|nums?)(?: (\-?[0-9]+)(?:\s*)(?:\-)(?:\s*)(\-?[0-9]+)|)$/;
 
 handle matches => sub {
-	my (undef, undef, $a, $b) = @_;
+	my (undef, undef, $min, $max) = @_;
 
-	my $min = $a || 1;
-	my $max = $b || 100;
+	if(!defined $min) {
+		$min = 1;
+	}
+	if(!defined $max) {
+		$max = 100;
+	}
 
 	$min = -1000000000 if $min < -1000000000;
 	$max =  1000000000 if $max >  1000000000;
