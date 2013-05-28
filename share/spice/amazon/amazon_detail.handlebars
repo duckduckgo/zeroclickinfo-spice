@@ -12,7 +12,7 @@
             customer reviews</a>)
         <br>
         <ul>
-            {{#each ItemAttributes.Feature}}<li>{{$t}}</li>{{/each}}
+            {{#each ItemAttributes.Feature to="4"}}<li>{{$t}}</li>{{/each}}
         </ul>
         <a href="{{this.[@DetailPageURL]}}">Read More</a>
         <br>
