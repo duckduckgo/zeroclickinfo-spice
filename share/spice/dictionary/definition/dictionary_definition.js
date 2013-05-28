@@ -55,13 +55,13 @@ var ddg_spice_dictionary_definition = function(api_result) {
 
         // Wait, before we display the plugin, let's check if it's a plural
         // such as the word "cacti."
-        var plural = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>([^<]+)<\/xref>/i);
+        var singular = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>([^<]+)<\/xref>/i);
 
         // If the word is plural, then we should load the definition of the word
         // in singular form. The definition of the singular word is usually more helpful.
-        if(api_result.length === 1 && plural) {
-            $.getScript(path + "/reference/" + plural[1]);
+        if(api_result.length === 1 && singular) {
             ddg_spice_dictionary_definition.pluralOf = api_result[0].word;
+            $.getScript(path + "/reference/" + singular[1]);
         } else {
             // Render the plugin if everything is fine.
             render(api_result, api_result[0].word, api_result[0].word);
