@@ -35,7 +35,7 @@ window.ddg_spice_zipcode = function(api_result) {
 
 // Filter the zipcodes.
 // Only get the ones which are actually equal to the query.
-Handlebars.registerHelper("checkZipcode", function(context) {
+Handlebars.registerHelper("checkZipcode", function(options) {
     "use strict";
 
     var result = [];
@@ -52,7 +52,11 @@ Handlebars.registerHelper("checkZipcode", function(context) {
         }
     }
 
-    result = context.fn(result);
+    if(result.length === 0) {
+        return;
+    }
+
+    result = options.fn(result);
     if(result.replace(/\s+/, "") !== "") {
         return "Similar postal codes: " + result;
     }
