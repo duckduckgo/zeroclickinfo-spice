@@ -3,8 +3,10 @@
     <div class="description">
         <h1><a href="{{this.[@DetailPageURL]}}">{{ItemAttributes.[@Title]}}</a></h1>
         <br>
-        <span class="price">{{OfferSummary.LowestNewPrice.[@FormattedPrice]}}</span> &bull;
-        <a href="/?q={{ItemAttributes.[@Brand]}}">{{ItemAttributes.[@Brand]}}</a> &bull;
+        <span class="price">
+            {{OfferSummary.LowestNewPrice.[@FormattedPrice]}}
+        </span> &bull;
+        by {{ItemAttributes.[@Brand]}} &bull;
         <img class="stars" src="">
         (<a href="{{ItemLink.[5].[@URL]}}"><span class="review-count"></span>
             customer reviews</a>)
