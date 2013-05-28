@@ -1,14 +1,27 @@
 function ddg_spice_rand_nums(api_result) {
 
-	var query  = DDG.get_query();
-	var regexp = /^(rand|random) (numbers|nums)(?: (\-?[0-9]+)(?:\-| )(\-?[0-9]+)|)$/i;
-	var match  = query.match(regexp);
-	console.log(match);
-	var min    = match[3];
-	var max    = match[4];
+    console.log(api_result);
 
-	if (min == undefined) min = 0;
-	if (max == undefined) max = 100;
+    var min;
+    var max;
+
+    // Get the original query.
+    // We're going to pass this to the header.
+    var query = "";
+    $("script").each(function() {
+        var matched, result;
+        matched = $(this).attr("src");
+        if(matched) {
+            result = matched.match(/\/js\/spice\/rand_nums\/([^\/]+)\/(.+)/);
+            if(result) {
+                min = result[1];
+                max = result[2];
+            }
+        }
+    });
+
+    min = min || 0;
+    max = max || 100;
 
     Spice.render({
         data             : api_result,

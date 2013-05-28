@@ -3,8 +3,6 @@ package DDG::Spice::RandNums;
 
 use DDG::Spice;
 
-use Encode;
-
 primary_example_queries "random numbers 10 11";
 description "Displays a random number";
 name "RandNums";
@@ -28,13 +26,17 @@ triggers query_lc => qr/^(rand|random) (numbers?|nums?)(?: (\-?[0-9]+)(?:\-| )(\
 handle matches => sub {
 	my (undef, undef, $a, $b) = @_;
 
-	my $min = $a ? decode_utf8($a) : 1;
-	my $max = $b ? decode_utf8($b) : 100;
+	my $min = $a || 1;
+	my $max = $b || 100;
 
 	$min = -1000000000 if $min < -1000000000;
 	$max =  1000000000 if $max >  1000000000;
 
-	return ($min, $max)
+	if($min >= $max) {
+		return $max, $min;
+	} else {
+		return ($min, $max);
+	}
 };
 
 1;
