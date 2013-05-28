@@ -1,3 +1,20 @@
+#ddgcarousel li.ddgc_item p {
+    background-color: #ffffff;
+    border: 1px solid #e7e7e7;
+}
+
+#ddgcarousel li.ddgc_item img {
+    padding: 5px;
+}
+
+#ddgcarousel li.ddgc_item span {
+    font-size: 95%;
+}
+
+#ddgcarousel li.ddgc_selected span {
+    color: #1168CC;
+}
+
 #amazon .spotlight {
     float: left;
     width: 155px;
