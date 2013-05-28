@@ -5,7 +5,11 @@ function ddg_spice_quixey (api_result) {
 
     var q = api_result.q.replace(/\s/g, '+');
 
-    Spice.render({
+		var relevants = Handlebars.helpers.organize(api_result.results);
+
+		if (!relevants) return;
+
+		Spice.render({
         data: api_result,
         source_name: 'Quixey',
         source_url: 'https://www.quixey.com/search?q=' + q,     //api_result.q,
@@ -18,7 +22,7 @@ function ddg_spice_quixey (api_result) {
         template_normal: "quixey",                  // item template
         carousel_css_id: "quixey",                  // the div used for the carousel
         carousel_template_detail: "quixey_detail",  // detail view template
-        carousel_items: Handlebars.helpers.organize(api_result.results) // item array
+        carousel_items: relevants // item array
     });
 }
 
