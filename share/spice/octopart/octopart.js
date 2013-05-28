@@ -17,10 +17,18 @@ var ddg_spice_octopart = function(api_result) {
     });
 
     var results = [];
+    var isRelevant;
     for(var i = 0; i < api_result.results.length; i += 1) {
-        if(api_result.results[i].item.images.length > 0) {
+        console.log(api_result.results[i].item.short_description);
+        isRelevant = DDG.isRelevant(api_result.results[i].item.short_description, 
+                        {specs: 1, datasheet: 1, octopart: 1});
+        if(api_result.results[i].item.images.length > 0 && isRelevant) {
             results.push(api_result.results[i]);
         }
+    }
+
+    if(results.length === 0) {
+        return;
     }
 
     Spice.render({
