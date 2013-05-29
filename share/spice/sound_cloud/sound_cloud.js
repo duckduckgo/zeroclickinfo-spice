@@ -12,17 +12,11 @@ var ddg_spice_sound_cloud = function(api_result) {
 
     // Get the original query.
     // We're going to pass this to the header.
-    var query = "";
-    $("script").each(function() {
-        var matched, result;
-        matched = $(this).attr("src");
-        if(matched) {
-            result = matched.match(/\/js\/spice\/sound_cloud\/([^\/]+)/);
-            if(result) {
-                query = result[1];
-            }
-        }
-    });
+    var getCaller = function() {
+        return spice_call_path.split("/").splice(4);
+    };
+
+    var query = getCaller()[0];
 
     // Remove the tracks that aren't streamable.
     var context= [];
