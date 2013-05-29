@@ -19,13 +19,15 @@
 						{{condense this maxlen="120"}}
 					{{/strip_html}}
 					<small class="hn_oneline">
-						[by {{{user_link username}}}]
-						[{{{item_link "parent"}}}]
-						{{#if discussion}}
-							{{{item_link discussion.title}}}
-						{{else}}
-							{{{item_link title}}}
-						{{/if}}
+						[by <a href='https://news.ycombinator.com/user?id={{{username}}}'>{{{username}}}</a>]
+						[<a href='https://news.ycombinator.com/item?id={{{discussion.id}}}'>parent</a>]
+						<a href='https://news.ycombinator.com/item?id={{{id}}}'>
+							{{#if discussion}}
+								{{{condense discussion.title maxlen="30"}}
+							{{else}}
+								{{{condense title maxlen="30"}}
+							{{/if}}
+						</a>
 					</small>
 				</div>
 				{{/each}}

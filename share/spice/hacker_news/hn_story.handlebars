@@ -5,11 +5,7 @@
 		<a href="http://news.ycombinator.com/item?id={{{id}}}">{{{condense title maxlen="50"}}}</a>
 	{{/if}}
 	<small class="hn_oneline">
-		 [<a href="http://news.ycombinator.com/item?id={{{id}}}">{{{plural num_comments singular="comment" plural="comments"}}}</a>]
-		{{#if domain}}
-			({{domain}}, {{{plural points singular="point" plural="points"}}})
-		{{else}}
-			({{{plural points singular="point" plural="points"}}})
-		{{/if}}
+		[<a href="http://news.ycombinator.com/item?id={{{id}}}">{{{plural num_comments singular="comment" plural="comments"}}}</a>]
+		({{#if domain}}{{domain}}, {{/if}}{{{plural points singular="point" plural="points"}}})
 	</small>
 </div>

@@ -99,21 +99,3 @@ Handlebars.registerHelper("strip_html", function(text, options) {
 
     return options.fn( cleanText );
 });
-
-
-// Returns a link to the HN user with given id.
-Handlebars.registerHelper("user_link", function(id) {
-    return "<a href='https://news.ycombinator.com/user?id=" + id + "'>" +
-            id + "</a>";
-});
-
-
-// Returns a link to the HN item (story, comment) with given id.
-Handlebars.registerHelper("item_link", function(text) {
-
-    var id = (text === "parent") ? this.discussion.id : this.id;
-
-    return "<a href='https://news.ycombinator.com/item?id=" + id + "'>" +
-            Handlebars.helpers.condense(text, {hash: {maxlen: "30"}}) +
-            "</a>";
-});
