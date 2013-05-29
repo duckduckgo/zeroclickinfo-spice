@@ -24,6 +24,7 @@ function ddg_spice_amazon(api_response) {
         source_url               : api_response['@MoreSearchResultsUrl'].$t,
         source_name              : 'Amazon',
         force_big_header         : true,
+        force_favicon_domain     : 'www.amazon.com',
         template_frame           : 'carousel',
         template_normal          : 'amazon',
         carousel_css_id          : 'amazon',
