@@ -14,9 +14,7 @@ function ddg_spice_quixey (api_result) {
         source_url: 'https://www.quixey.com/search?q=' + q,
         header1: api_result.q + ' (App Search)',
         force_big_header: true,
-
         more_logo: "quixey_logo.png",
-
         template_frame: "carousel",
         template_normal: "quixey",
         carousel_css_id: "quixey",
@@ -31,8 +29,7 @@ function ddg_spice_quixey (api_result) {
             apps = [],
             backupApps = [],
             categories = /action|adventure|arcade|board|business|casino|design|developer tools|dice|education|educational|entertainment|family|finance|graphics|graphics and design|health and fitness|kids|lifestyle|medical|music|networking|news|photography|productivity|puzzle|racing|role playing|simulation|social networking|social|sports|strategy|travel|trivia|utilities|video|weather/i,
-
-						skip_words = [
+            skip_words = [
                 "app",
                 "apps",
                 "application",
@@ -55,7 +52,7 @@ function ddg_spice_quixey (api_result) {
                 "free",
                 "search"
             ];
-            
+
         for (var i = 0; i < results.length; i++) {
 
             app = results[i];
@@ -93,7 +90,7 @@ function ddg_spice_quixey (api_result) {
             res = q.match(categories) ? results : null;
         }
         return res;
-    });
+    };
 }
 
 // format a price
@@ -105,7 +102,6 @@ function qprice(p) {
 
     return "$" + (p/100).toFixed(2).toString();
 }
-
 
 // template helper for price formatting
 // {{price x}}
@@ -152,8 +148,8 @@ Handlebars.registerHelper("platform_icon", function(icon_url) {
     return "/iu/?u=" + icon_url + "&f=1";
 });
 
-    // template helper that returns and unifies platform names
-    Handlebars.registerHelper("platform_name", function() {
+// template helper that returns and unifies platform names
+Handlebars.registerHelper("platform_name", function() {
     var name;
     var platforms = this.platforms;
 
