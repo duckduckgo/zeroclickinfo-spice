@@ -55,8 +55,13 @@ function ddg_spice_amazon(api_response) {
 
 function ddg_spice_amazon_detail(api_response) {
     console.log(api_response);
-    $('#ddgc_detail .stars')
-        .attr('src', '/iu/?u=' + api_response.item.stars.$t);
+    if (api_response.item.stars.$t == 'unrated') {
+        $('<span>unrated</span>').insertAfter('#ddgc_detail .stars');
+        $('#ddgc_detail .stars').hide();
+    } else {
+        $('#ddgc_detail .stars')
+            .attr('src', '/iu/?u=' + api_response.item.stars.$t);
+    }
     $('#ddgc_detail .review-count')
         .text(api_response.item.reviews.$t);
 }
