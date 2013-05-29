@@ -6,7 +6,9 @@
         <span class="price">
             {{OfferSummary.LowestNewPrice.[@FormattedPrice]}}
         </span> &bull;
-        by {{ItemAttributes.[@Brand]}} &bull;
+        {{#if ItemAttributes.[@Brand]}}
+            by {{ItemAttributes.[@Brand]}} &bull;
+        {{/if}}
         <img class="stars" src="">
         (<a href="{{ItemLink.[5].[@URL]}}"><span class="review-count"></span>
             customer reviews</a>)
