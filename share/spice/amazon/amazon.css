@@ -21,6 +21,7 @@
     float: left;
     width: 155px;
     border: 1px solid #E1E1E1;
+    max-height: 0px;
 }
 
 #amazon .price {
