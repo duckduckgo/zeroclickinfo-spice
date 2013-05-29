@@ -33,6 +33,8 @@ function ddg_spice_amazon(api_response) {
         item_callback            : spotlight_resize
     });
 
+    $(window).resize(spotlight_resize);
+
 
     items.map(function(el, i) {
         items['amazon-' + el['@ASIN']] =
