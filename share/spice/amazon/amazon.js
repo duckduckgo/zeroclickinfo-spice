@@ -6,7 +6,14 @@ function ddg_spice_amazon(api_response) {
     
     if (!items || !(items.length > 1)) return;
 
-	var query = DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
+    var query = DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
+
+    var spotlight_resize = function() {
+        $('#amazon .spotlight').css(
+            {'max-height' : ($('#ddgc_detail').height() > 150 ?
+                                $('#ddgc_detail').height() : 150) + 'px'}
+        );
+    };
 
     Spice.render({
         header1                  : query + ' (Amazon)',
@@ -19,7 +26,7 @@ function ddg_spice_amazon(api_response) {
         carousel_template_detail : 'amazon_detail',
         carousel_items           : items,
         force_no_fold            : true,
-        item_callback            : function () { $('#amazon .spotlight').css({'max-height' : $('#ddgc_detail').height() + 'px'}) }
+        item_callback            : spotlight_resize
     });
 
 
