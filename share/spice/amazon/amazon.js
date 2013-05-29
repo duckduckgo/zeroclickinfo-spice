@@ -13,6 +13,10 @@ function ddg_spice_amazon(api_response) {
             {'max-height' : ($('#ddgc_detail').height() > 150 ?
                                 $('#ddgc_detail').height() : 150) + 'px'}
         );
+        $('#amazon .description').width(
+            //width - parent padding - spotlight image width - left-margin
+            $('#ddgc_detail').width() - (7*2) - 150 - 20
+        );
     };
 
     Spice.render({
