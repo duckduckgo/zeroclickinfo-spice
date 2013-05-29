@@ -6,11 +6,11 @@ The Spice frontend is the code that is triggered by the Perl backend that you wr
 The Perl part of the plugins go in `lib/DDG/Spice/PluginName.pm`, while all of the files discussed below should go in `share/spice/plugin_name/`.
 
 ###Tech
-The spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and includes [jQuery](https://jquery.org) for use with JavaScript.
+The Spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and includes [jQuery](https://jquery.org) for use with JavaScript.
 
 If you're not already familiar with Handlebars, *please* read the [Handlebars documentation](http://handlebarsjs.com) before continuing continuing on. Don't worry if you don't fully understand how to use Handlebars, the examples will explain but you should, at the very least, be familiarize yourself with Handlebars before moving on.
 
-Also, if you are unfamiliar with jQuery, you can familiarize yourself with that if you'd like, but jQuery is not required to write a spice plugin.
+Also, if you are unfamiliar with jQuery, you can familiarize yourself with that if you'd like, but jQuery is not required to write a Spice plugin.
 
 Below, we will walk you through several examples ranging from simple to complicated, which will explain how to use the template system and make your plugins look awesome.
 
@@ -45,14 +45,14 @@ var ddg_spice_npm = function(api_result) {
 ```javascript 
 if (api_result.error) return
 ```
-Pretty self-explanatory - If the error object in the API result is defined, then break out of the function and don't show any results. In the case of this API, when the error object is defined, it means no results are given, so we have no data to use for a spice result. 
+Pretty self-explanatory - If the error object in the API result is defined, then break out of the function and don't show any results. In the case of this API, when the error object is defined, it means no results are given, so we have no data to use for a Spice result. 
 
 ```javascript
 Spice.render({
      data              : api_result,
      force_big_header  : true,
      header1           : api_result.name + ' (' + api_result.version + ')',
-     source_name       : "npmjs.org", // More at ...
+     source_name       : "npmjs.org",
      source_url        : 'http://npmjs.org/package/' + api_result.name,
      template_normal   : 'npm',
      template_small    : 'npm'
@@ -83,46 +83,21 @@ Now, let's look at the NPM plugin's Handlebars template:
 ######npm.handlebars
 
 ```html
-<div id="npm_abstract">
-    <div id="npm_package_description">{{{description}}}</div>
-    <pre id="npm_install_command"> $ npm install {{{name}}}</pre>
+<div>
+    <div>{{{description}}}</div>
+    <pre> $ npm install {{{name}}}</pre>
 </div>
 ```
 
-As you can see, this is a special type of HTML template. Within the template, you can refer directly to objects that are returned by the API. `description` and `name` are both from the `api_result` object that we discussed earlier -- the data that's returned by the API. All of `api_result`'s sub-objects (e.g. `name`, `description`) are in the template's scope. You can access them by name within double or triple curly braces, which escape the contents. Here, we just create a basic HTML skeleton and fill it in with the proper information. The style for these HTML elements are defined in the npm css file.
-
-**!!! DDG Base CSS Already Defines Styles for `<pre>` Tags !!!**
-######npm.css
-
-```css
-#npm_install_command {
-    background-color: #eee;
-    color: #333;
-    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-    margin-bottom: 5px;
-    padding: 5px;
-    margin-right: 10px;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    /* css-3 */
-    white-space: -moz-pre-wrap;
-    /* Mozilla, since 1999 */
-    white-space: -pre-wrap;
-    /* Opera 4-6 */
-    white-space: -o-pre-wrap;
-    /* Opera 7 */
-}
-```
-
-This CSS simply defines the styles for the `pre` tag with `id="npm_install_command"`, which we defined in `npm.handlebars`. This CSS gives that block its definitive grey background, etc. The `npm.css` file is automatically recognized by the plugin system. It's just critical that the name of the file is the same as the name of the plugin, just like the javascript file must be `npm.js` and the template must be `npm.handlebars`.
+As you can see, this is a special type of HTML template. Within the template, you can refer directly to objects that are returned by the API. `description` and `name` are both from the `api_result` object that we discussed earlier -- the data that's returned by the API. All of `api_result`'s sub-objects (e.g. `name`, `description`) are in the template's scope. You can access them by name within double or triple curly braces, which escape the contents. Here, we just create a basic HTML skeleton and fill it in with the proper information.
 
 ###Conclusion
-We've created three files in the spice share directory (`share/spice/npm/`) :
+We've created two files in the Spice share directory (`share/spice/npm/`) :
 
 1. `npm.js` - which delegates the API's response and calls `Spice.render()`
 2. `npm.handlebars` - which specifies the plugin's HTML structure and determines which attributes of the API response are placed in the HTML result
-3. `npm.css` - which outlines the style for the HTML defined in the template
 
+You may notice other plugins also include a css file. For **NPM** the use of CSS wasn't necesary and this is also true for many other plugins. If however CSS is needed it can be added. Please refer to the [FAQ](#) for more inforamtion about custom css.
 
 ##Example #2 - Alternative.To (Basic Carousel Plugin)
 The Alternative.To plugin is very similar to NPM in that it is also relatively basic, however, it uses the new **Carousel** Spice Template. Let's take a look at the code and see how this is done:
@@ -224,7 +199,7 @@ var ddg_spice_movie = function(api_result) {
     
 This plugin has a very simple call to `Spice.render()`, but it slightly differs from other plugin because it not only defines `template_normal`, the default template to be used, but it also defines `template_small` which is the template to be used when this plugin is shown in a stacked state i.e., it is shown below another zero click result, but the content is minimal, preferably a single line of text.
 
-Before looking at the implementation of the Handlebars helper functions lets first take a look at the Movie spice's Handlebars template to see how the helper functions are used:
+Before looking at the implementation of the Handlebars helper functions lets first take a look at the Movie Spice's Handlebars template to see how the helper functions are used:
 
 ######movie.handlebars
 ```html
@@ -259,9 +234,11 @@ Before looking at the implementation of the Handlebars helper functions lets fir
 {{/relevantMovie}}
 ```
 
-The first line of the template demonstrates the use of a [Handlebars block helper](http://handlebarsjs.com/block_helpers.html), `{{#relevantMovie}}` which is defined in **movie.js**. This block helper is important because it sets the context for the rest of the template. In this case we use `{{#relevantMovie}}` to find the most relevant movie from the list of movies in our `api_result`, and then using that single movie object as the context, we use the rest of the template to reference the various properties of the movie and build a result.  
+The first line of the template demonstrates the use of a [Handlebars block helper](http://handlebarsjs.com/block_helpers.html), `{{#relevantMovie}}` which is defined in **movie.js**. This block helper is important because it sets the context for the rest of the template. In this case we use `{{#relevantMovie}}` to find the most relevant movie from the list of movies in our `api_result`, and then using that single movie object as the context, we use the rest of the template to reference the various properties of the movie and build a result.
 
-It's important you understand this concept: outside of the block helper, the context of the template is equal to `api_result`, however, inside the `{{#relevantMovie}}` helper, the context of the template is explicitly set to be the return value of the `{{#relevantMovie}}`. Before looking at the rest of the Handlebars template, let's look at the implementation of `{{#relevantMovie}}`:
+If we had implemented this plugin as a Carousel, we would not need to use our relevancy function in this manner becaues the aim wouldn't be to get the single most relevant result. However we chose to implement the movie function in this manner in order to do just that, show the *most* relevant result and so this required the use of a block helper.
+
+It's important you understand the concept of the block helper: outside of the block helper, the context of the template is equal to `api_result`, however, inside the `{{#relevantMovie}}` helper, the context of the template is explicitly set to be the return value of the `{{#relevantMovie}}`. Before looking at the rest of the Handlebars template, let's look at the implementation of `{{#relevantMovie}}`:
 
 ######movie.js (continued) - relevantMovie helper
 ```javascript
@@ -328,7 +305,7 @@ Now that we have our functions defined, we use them to find the most relevant mo
     
 ```javascript
     // make the movie's info available to the zero click template
-    // by setting spice value in the ddh (duckduckhack) object
+    // by setting Spice value in the ddh (duckduckhack) object
 
     // this.ddh.relevantMovie = result;
     this.ddh.source_url = result.links.alternate;
@@ -410,16 +387,20 @@ As you can see this is a pretty simple function, it takes a number as input, and
 
 Now that you've seen a more advanced plugin and understand how to use Handlebars helpers, lets look at another advanced plugin example.
 
-##Example #4 - Quixey (Advance Carousel Plugin)
+##Example #4 - Quixey (Advanced Carousel Plugin)
 The Quixey plugin is one of our more advanced carousel plugins which uses a considerable amount of Handlebars helpers and similarly to the **Movie** plugin has a relevancy checking component. Let's begin by taking a look at the Quixey plugin's Javascript:
 
 ######quixey.js
 ```javascript
+// spice callback function
 function ddg_spice_quixey (api_result) {
 
     if (api_result.result_count == 0) return;
 
     var q = api_result.q.replace(/\s/g, '+');
+    var relevants = getRelevants(api_result.results);
+
+    if (!relevants) return;
 
     Spice.render({
         data: api_result,
@@ -427,30 +408,25 @@ function ddg_spice_quixey (api_result) {
         source_url: 'https://www.quixey.com/search?q=' + q,
         header1: api_result.q + ' (App Search)',
         force_big_header: true,
+
         more_logo: "quixey_logo.png",
+
         template_frame: "carousel",
         template_normal: "quixey",
-        carousel_css_id: "quixey",  
+        carousel_css_id: "quixey",
         carousel_template_detail: "quixey_detail",
 ```
 
-Similarly to **Alternative.To**, the Quixey plugin uses the carousel, and sets values for all the required carousel-specific properties. However, this plugin also uses the `force_big_header` property to create a ZeroClick header and subsquently sets the value of the header text, `header1`. Also, the `more_logo` property is set, which allows a custom image to be used instead of the `source_name` text. One important difference about Quixey is the use of our own `organize()` Handlebars helper in `Spice.render()`:
+Similarly to **Alternative.To**, the Quixey plugin uses the carousel, and sets values for all the required carousel-specific properties. However, this plugin also uses the `force_big_header` property to create a ZeroClick header and subsquently sets the value of the header text, `header1`. Also, the `more_logo` property is set, which allows a custom image to be used instead of the `source_name` text.  
 
-######quixey.js (continued)
-```javascript
-        carousel_items: Handlebars.helpers.organize(api_result.results)
-    });
-}
-```
+One important difference about Quixey is the use of our own `getRelevants()` function (defined below in **Quixey.js**), which is used to check for relevant results before calling `Spice.render()`. Unlike the **Movie** plugin, we are required to get relevant results in this manner (i.e., outside the template) so that only the results we want included in the carousel are passed on to the **quixey.handlebars** template.
 
-Here we are using `organize()` (defined below in **Quixey.js**) in our *Javascript* rather than inside our Handlebars template. We are able to do this using the `Handlebars.helpers` object which contains all the helpers we have defined, as well as the helpers defined by our own core Spice code and those that are native to Handlebars. Unlike the **Movie** plugin, we are required to use our block helper in this manner (i.e., outside the template) so that only the results we want included in the carousel are passed on to the **quixey.handlebars** template.
+Moving on, let's take a look at the implementation of the `getRelevants()` helper:
 
-Moving on, let's take a look at the implementation of the `organize()` helper:
-
-######quixey.js (continued) - organize helper
+######quixey.js (continued) - getRelevants function
 ```javascript
 // Check for relevant app results
-Handlebars.registerHelper("organize", function(results) {
+function getRelevants (results) {
         
     var res,
         apps = [],
@@ -684,12 +660,125 @@ Handlebars.registerHelper("quixey_star", function() {
 });
 ```
 
-This helper is also very simple, but it is important because it uses the `DDG.get_asset_path()` function which returns the URI for an asset stored in a plugin's share folder. This is necessary because spice plugins and their content are versioned internally. So the URI returned by this function will contain the proper version number, which is required to access any assets.
+This helper is also very simple, but it is important because it uses the `DDG.get_asset_path()` function which returns the URI for an asset stored in a plugin's share folder. This is necessary because Spice plugins and their content are versioned internally. So the URI returned by this function will contain the proper version number, which is required to access any assets.
 
 ##Example #5 - Dictionary (More Advanced Plugin)
-The dictionary plugin is a more advanced plugin than the previous examples, because it requires multiple endpoints (which means it has multiple perl modules -`.pm` files) in order to function properly. You will notice it has its own directory in the the Spice repository: `zeroclickinfo-spice/share/spice/dictionary/definition/`
+The dictionary plugin is a more advanced plugin than the previous examples, because it requires multiple endpoints (which means it has multiple perl modules -`.pm` files) in order to function properly. You will notice the `definition` endpoint is a subdirectory of the `dictionary` directory: `zeroclickinfo-spice/share/spice/dictionary/definition/`. In the case of the **Dictionary** plugin, its Perl modules work together as one plugin, however if the other endpoints worked seperately from the `definition` endpoint, such as they do in the **[Last.FM](https://github.com/duckduckgo/zeroclickinfo-spice/tree/spice2/share/spice/lastfm)** plugin, they too would each have their own subdirectories and would also each have their own respective Javascript, Handlebars and CSS files. 
 
-Each plugin we've seen so far has had one perl module, which had a matching folder in the `zeroclickinfo-spice/share/spice/share/` directory. For this plugin, each module is a seperate folder contained with the `zeroclickinfo-spice/share/spice/share/dictionary` directory which allows each module to use their own Javascript, Handlebars and CSS files. In the case of the **Dictionary** plugin these various endpoints work together as a single plugin. However, other plugins such as [**Last.FM**](https://github.com/duckduckgo/zeroclickinfo-spice/tree/spice2/share/spice/lastfm) are able to have multiple endpoints which are independant and react to different queries and each have different results.
+To begin, lets look at the first callback function definition in the Dictionary javascript:
+
+######dictionary_definition.js
+```javascript
+// Description:
+// Shows the definition of a word.
+//
+// Dependencies:
+// Requires SoundManager2.
+//
+// Commands:
+// define dictionary - gives the definition of the word "dictionary."
+//
+// Notes:
+// ddg_spice_dictionary_definition - gets the definitions of a given word (e.g. noun. A sound or a combination of sounds).
+// ddg_spice_dictionary_pronunciation - gets the pronunciation of a word (e.g. wûrd).
+// ddg_spice_dictionary_audio - gets the audio file.
+// ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
+```
+
+The comments at the beginning of the file explain what the various callbacks are for. Each of these callback functions is connected to a different endpoint, meaning they each belong to a different Perl module. As you can see, the name of each callback corellates to the name of the perlmodule. So `dictionary_definition()` is the callback for `DDG::Spice::Dictionary::Definition`, likewise `dictionary_audio` is for `DDG::Spice::Dictionary::Audio`, etc.
+
+Each of these endpoints are used to make different API calls (either to a different endpoint or possibly even a different API altogether), which can only be done by creating a different Perl module for each endpoint. We can make these endpoints work together for a given plugin by using the jQuery `getScript()` function which makes an ajax call to a given endpoint, which results in a call to that endpoint's callback function. This function needs to be defined before it is called, so the Dictionary plugin defines all **four** callback functions in **dictionary_definition.js**
+
+Moving on, let's take a look at the implementation of the `Spice.render()` call and the `dictionary_definition()`  callback:
+
+######dictionary_definition.js (continued) - dictionary_definition callback
+```javascript
+// This function gets the definition of a word.
+var ddg_spice_dictionary_definition = function(api_result) {
+    "use strict";
+    var path = "/js/spice/dictionary";
+
+    // We moved Spice.render to a function because we're choosing between two contexts.
+    var render = function(context, word, otherWord) {
+        Spice.render({
+            data              : context,
+            header1           : "Definition (Wordnik)",
+            force_big_header  : true,
+            source_name       : "Wordnik",
+            source_url        : "http://www.wordnik.com/words/" + word,
+            template_normal   : "dictionary_definition"
+        });
+
+        // Do not add hyphenation when we're asking for two words.
+        // If we don't have this, we'd have results such as "black• hole".
+        if(!word.match(/\s/)) {
+            $.getScript(path + "/hyphenation/" + word);
+        }
+
+        // Call the Wordnik API to display the pronunciation text and the audio.
+        $.getScript(path + "/pronunciation/" + otherWord);
+        $.getScript(path + "/audio/" + otherWord);
+    };
+```
+
+We begin by wrapping the `Spice.render()` call in a function which also does a little extra work. Specifically after rendering the result it calls the Wordnik API, this time using two different API endpoints. The first gets the pronounciation text, the second gets the audio file for the pronounciation of the word. As mentioned these endpoints are used to work together as one plugin so using the returns from the seperate API calls we construct one dictionary plugin result which contains the word definition, the pronounciation text and the audio recording of the pronounciation.
+
+The reason for wrapping the `Spice.render()` call in a function is because we need to be able to call our `render()` function from both the `dictionary_defintion()` callback as well as the `dictionary_reference()` callback, as you will see below:
+
+```javascript
+    // Expose the render function.
+    ddg_spice_dictionary_definition.render = render;
+
+    // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript.
+    // If cache was set to false, it would be calling /js/spice/dictionary/definition/hello?_=12345
+    // and that's something that we don't want.
+    $.ajaxSetup({
+        cache: true
+    });
+
+    // Check if we have results we need.
+    if (api_result && api_result.length > 0) {
+
+        // Wait, before we display the plugin, let's check if it's a plural
+        // such as the word "cacti."
+        var singular = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>([^<]+)<\/xref>/i);
+
+        // If the word is plural, then we should load the definition of the word
+        // in singular form. The definition of the singular word is usually more helpful.
+        if(api_result.length === 1 && singular) {
+            ddg_spice_dictionary_definition.pluralOf = api_result[0].word;
+            $.getScript(path + "/reference/" + singular[1]);
+        } else {
+            // Render the plugin if everything is fine.
+            render(api_result, api_result[0].word, api_result[0].word);
+        }
+    }
+};
+```
+
+After defining the `render()` function we expose it, `ddg_spice_dictionary_definition.render = render;` and then move on to check if we actually have any definition results returned from the API. If so, we then check if the queried word is a plural word and if so, make another API call for the singular version of the queried word. This call, `$.getScript(path + "/reference/" + singular[1]);` will result in calling the `dictionary_reference()` callback which eventually calls our `render()` function - which shows a result on the page. If the word is not a plural, we instead immediately call the `render()` function and display our result.
+
+```javascript
+// This is the part where we load the definition of the
+// singular form of the word.
+var ddg_spice_dictionary_reference = function(api_result) {
+    "use strict";
+
+    var render = ddg_spice_dictionary_definition.render;
+
+    if(api_result && api_result.length > 0) {
+        var word = api_result[0].word;
+
+        // We're doing this because we want to say:
+        // "Cacti is the plural form of cactus."
+        api_result[0].pluralOf = "is the plural form of " + word;
+        api_result[0].word = ddg_spice_dictionary_definition.pluralOf;
+
+        // Render the plugin.
+        render(api_result, api_result[0].word, word);
+    }
+};
+```
 
 ---
 
@@ -731,10 +820,10 @@ ex. "api_return"
 ####Spice Header Format
 `<search term>` (<Source>)
 
-####No bolded text in spice body
+####No bolded text in Spice body
 (tbd)
 
-####No "undefined" values in spice body
+####No "undefined" values in Spice body (Spice result shouldn't say something is "not defined")
 (tbd)
 
 ####Indent with spaces (not tabs)
@@ -743,11 +832,11 @@ ex. "api_return"
 ------
 
 ###Naming Conventions
-- Folder hierarchy (Also follows Perl naming convention)
+(tbd)
 
 ###Do's & Don'ts
 
-####Proxy Images & Audio
+####Proxying Images & Audio
 /iu/
 - Requires a standard image format extension!
 
@@ -783,23 +872,37 @@ No.
 
 ------
 
-##DDG Methods (DuckDuck.js) 
+##DDG Methods (Javascript)
 
 ###DDG.get_query()
 (tbd)
 
-###DDG.get_query_raw()
+###DDG.get_query_encoded()
 (tbd)
+
+###DDG.isRelevant()
+(tbd)
+
+###DDG.getRelevants()
+(tbd)
+(developers comparator function is required to assign a property of the candidate called comparable which is the string undergoing relevancy check in isRelevant)
 
 ------
 
-##Spice Handlebars Block Helpers
-\#concat
-\#loop
+##Spice Helpers (Handlebars)
+
+###{{\#concat}}
+(tbd)
+
+###{{\#condense}}
+(tbd)
+
+###{{\#loop}}
+(tbd)
 
 -------
 
-##Spice Attributes
+##Spice Attributes (Perl)
 
 ###Spice to
 (tbd)
@@ -814,3 +917,4 @@ No.
 (tbd)
 
 ###Spice is_unsafe
+(tbd)
