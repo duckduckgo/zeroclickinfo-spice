@@ -41,29 +41,29 @@ function ddg_spice_quixey (api_result) {
             apps = [],
             backupApps = [],
             categories = /action|adventure|arcade|board|business|casino|design|developer tools|dice|education|educational|entertainment|family|finance|graphics|graphics and design|health and fitness|kids|lifestyle|medical|music|networking|news|photography|productivity|puzzle|racing|role playing|simulation|social networking|social|sports|strategy|travel|trivia|utilities|video|weather/i,
-            skip_words = {
-                "app": 1,
-                "apps": 1,
-                "application": 1,
-                "applications": 1,
-                "android": 1,
-                "droid": 1,
-                "google play store": 1,
-                "google play": 1,
-                "windows phone": 1,
-                "windows phone 8": 1,
-                "windows mobile": 1,
-                "blackberry": 1,
-                "apple app store": 1,
-                "apple app": 1,
-                "ipod touch": 1,
-                "ipod": 1,
-                "iphone": 1,
-                "ipad": 1,
-                "ios": 1,
-                "free": 1,
-                "search": 1
-            };
+            skip_words = [
+                "app",
+                "apps",
+                "application",
+                "applications",
+                "android",
+                "droid",
+                "google play store",
+                "google play",
+                "windows phone",
+                "windows phone 8",
+                "windows mobile",
+                "blackberry",
+                "apple app store",
+                "apple app",
+                "ipod touch",
+                "ipod",
+                "iphone",
+                "ipad",
+                "ios",
+                "free",
+                "search"
+            ];
             
         for (var i = 0; i < results.length; i++) {
 

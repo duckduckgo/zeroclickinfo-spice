@@ -1,10 +1,10 @@
 var ddg_spice_lastfm_artist_album = function(api_result) {
-    var skip = {
-        albums: 1,
-        records: 1,
-        cd: 1,
-        cds: 1
-    };
+    var skip = [
+        "albums",
+        "records",
+        "cd",
+        "cds"
+    ];
 
     // Don't do anything if we find an error.
     if(api_result.error || !api_result.topalbums || !api_result.topalbums.album || api_result.topalbums.album.length === 0) {

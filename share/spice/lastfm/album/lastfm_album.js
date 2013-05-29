@@ -1,13 +1,13 @@
 var ddg_spice_lastfm_album = function(api_result) {
     "use strict";
 
-    var skip = {
-        "album": 1,
-        "albums": 1,
-        "records": 1,
-        "cd": 1,
-        "cds": 1
-    };
+    var skip = [
+        "album",
+        "albums",
+        "records",
+        "cd",
+        "cds"
+    ];
 
     // Don't do anything if we find an error.
     if(api_result.error || !api_result.album || !api_result.album.name || !api_result.album.artist) {
