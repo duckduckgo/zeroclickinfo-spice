@@ -8,15 +8,17 @@
 	{{#if topComments}}
 		{{#if topStories}}
 			<hr class="horizontal_line">
-			<a href="javascript:;" data-target="#topComments" class="hn_showHide">Top Comments</a>
+			<a data-target="#topComments" class="hn_showHide">Top Comments</a>
 			<div id="topComments" class="hide">
 		{{else}}
 			<div id="topComments">
 		{{/if}}
 				{{#each topComments}}
 				<div class="hn_comment">
-					{{{hn_comment text}}}
-					<span class="hn_oneline">
+					{{#strip_html text}}
+						{{condense this maxlen="120"}}
+					{{/strip_html}}
+					<small class="hn_oneline">
 						[by {{{user_link username}}}]
 						[{{{item_link "parent"}}}]
 						{{#if discussion}}
@@ -24,7 +26,7 @@
 						{{else}}
 							{{{item_link title}}}
 						{{/if}}
-					</span>
+					</small>
 				</div>
 				{{/each}}
 			</div>
@@ -32,7 +34,7 @@
 
 	{{#if otherStories}}
 		<hr class="horizontal_line">
-		<a href="javascript:;" data-target="#otherStories" class="hn_showHide">Other Stories</a>
+		<a data-target="#otherStories" class="hn_showHide">Other Stories</a>
 		<div id="otherStories" class="hide">
 			{{#each otherStories}}
 				{{! Use hn_story partial}}

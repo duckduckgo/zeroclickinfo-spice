@@ -1,23 +1,9 @@
 function ddg_spice_hacker_news(api_result) {
-    "use strict";
 
     // Check for at least 1 result
-    if (api_result.hits < 1) {
-        return;
-    }
+    if (!api_result.results.length) return;
 
-    // Get the original query.
-    // We're going to pass this to the More at SoundCloud link.
-    var matched, result, query;
-    $("script").each(function() {
-        matched = $(this).attr("src");
-        if(matched) {
-            result = matched.match(/\/js\/spice\/hacker_news\/(.+)/);
-            if(result) {
-                query = result[1];
-            }
-        }
-    });
+    var query = DDG.get_query().replace(/\bhn\b|\bhacker news\b/, "").trim();
 
     Spice.render({
         data:               api_result,
@@ -42,102 +28,81 @@ function ddg_spice_hacker_news(api_result) {
 Handlebars.registerHelper("organizeResults", function(options) {
     "use strict";
 
-    /* HackerNews Object
-     * Contains result lists
-     */
-    function HackerNews(data) {
+    var topStories = [],
+        topComments = [],
+        otherStories = [],
+        result;
 
-        this.limit = (data.request.limit < data.hits) ? data.request.limit : data.hits;
-        this.topStories = [];
-        this.topComments = [];
-        this.otherStories = [];
-
-        function isStory (r) {
-            return (r.type === "submission");
-        }
-
-        // Adds result object to appropriate list
-        this.addResult = function (result) {
-            var location;
-
-            if (this.topStories.length < 3 && isStory(result)) {
-                location = this.topStories;
-            } else {
-                location = isStory(result) ? this.otherStories : this.topComments;
-            }
-            location.push(result);
-        };
-
-        this.canUse = function (result) {
-
-            if (isStory(result) && (this.otherStories.length < 3 || this.topStories.length < 3)) {
-                return true;
-            } else if (!isStory(result) && this.topComments.length < 3) {
-                return true;
-            } else {
-                return false;
-            }
-        };
-
-        this.isFull = function () {
-            if (this.topStories.length > 2 && this.otherStories.length > 2 &&
-                this.topComments.length > 2) {
-                return true;
-            } else {
-                return false;
-            }
-        };
+    function isStory (r) {
+        return (r.type === "submission");
     }
 
-    var hn = new HackerNews(this);
-    var result;
+    // Adds result to appropriate list
+    function addResult (result) {
+        var location;
 
-    for (var i = 0; i < hn.limit; i += 1) {
-        // Grab item
+        if ( isStory(result) ) {
+            location = (topStories.length < 3) ? topStories : otherStories;
+        } else {
+            location = topComments;
+        }
+
+        location.push(result);
+    };
+
+    // checks if we can use this result given its type
+    // and the number of results we already have
+    function canUse (result) {
+
+        if ( isStory(result) ) {
+            return (otherStories.length < 3 || topStories.length < 3);
+        } else {
+            return (topComments.length < 3);
+        }
+    };
+
+    // checks if we've filled all 3 result lists
+    function isFull () {
+        return (topStories.length == 3 &&
+                otherStories.length == 3 &&
+                topComments.length == 3);
+    };
+
+    for (var i = 0; i < this.results.length; i++) {
+
         result = this.results[i].item;
 
-        // Check if result is needed
-        // and append to correct list
-        if (hn.canUse(result)) {
-            hn.addResult(result);
+        // Check if result is needed and
+        // appends to correct list
+        if ( canUse(result) ) {
+            addResult(result);
         }
 
-        if (hn.isFull()){
-            break;
-        } else {
-            continue;
-        }
+        if ( isFull() ) break;
     }
 
     // Invoke context of template with hn object as context.
-    return options.fn(hn);
+    return options.fn({
+        topStories : topStories,
+        topComments : topComments,
+        otherStories : otherStories
+    });
 });
 
 
 // Creates an anchor linking to an item's commments.
-Handlebars.registerHelper("hn_comment", function(text) {
-    "use strict";
+Handlebars.registerHelper("strip_html", function(text, options) {
 
     var temp = d.createElement("div");
     temp.innerHTML = text;
     var cleanText = $(temp).text();
 
-    return Handlebars.helpers.condense(cleanText, {hash:{maxlen:"120"}});
-});
-
-
-// Pluralizes a word when necessary.
-Handlebars.registerHelper("plural", function(num) {
-    "use strict";
-
-    return ((num !== 1)? "s" : "");
+    return options.fn( cleanText );
 });
 
 
 // Returns a link to the HN user with given id.
 Handlebars.registerHelper("user_link", function(id) {
-    "use strict";
-
     return "<a href='https://news.ycombinator.com/user?id=" + id + "'>" +
             id + "</a>";
 });
@@ -145,7 +110,6 @@ Handlebars.registerHelper("user_link", function(id) {
 
 // Returns a link to the HN item (story, comment) with given id.
 Handlebars.registerHelper("item_link", function(text) {
-    "use strict";
 
     var id = (text === "parent") ? this.discussion.id : this.id;
 
