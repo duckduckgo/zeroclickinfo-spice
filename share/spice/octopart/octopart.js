@@ -4,18 +4,6 @@ var ddg_spice_octopart = function(api_result) {
         return;
     }
 
-    var query;
-    $("script").each(function() {
-        var matched, result; 
-        matched = $(this).attr("src");
-        if(matched) {
-            result = matched.match(/\/js\/spice\/octopart\/(.+)/);
-            if(result) {
-                query = result[1];
-            }
-        }
-    });
-
     var results = [],
         isRelevant,
         skip_words = {
@@ -49,7 +37,7 @@ var ddg_spice_octopart = function(api_result) {
 
     Spice.render({
         source_name : 'Octopart',
-        source_url : 'http://octopart.com/partsearch#search/requestData&q=' + query,
+        source_url : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q,
         header1 : api_result.request.q + " (Octopart)",
         template_frame: "carousel",
         template_normal: "octopart",
