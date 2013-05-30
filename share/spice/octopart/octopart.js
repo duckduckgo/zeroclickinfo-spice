@@ -20,6 +20,11 @@ var ddg_spice_octopart = function(api_result) {
     for(var i = 0; i < api_result.results.length; i += 1) {
         if(api_result.results[i].item.images.length > 0) {
             results.push(api_result.results[i]);
+        } else {
+            api_result.results[i].item.images.push({
+                url_90px: "http://n1.octostatic.com/o3web/detail/images/camera-icon.8ef4d9f52c3be05d143196b967ba629b.png"
+            });
+            results.push(api_result.results[i]);
         }
     }
 
@@ -46,4 +51,8 @@ Handlebars.registerHelper("toFixed", function(number) {
 
 Handlebars.registerHelper("escapeURL", function(string) {
     return encodeURIComponent(string);
-})
+});
+
+Handlebars.registerHelper("trim", function(string) {
+    return string.replace(/[^:]+:\s/, "");
+});

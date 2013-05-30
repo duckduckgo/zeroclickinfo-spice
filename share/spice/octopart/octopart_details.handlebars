@@ -1,5 +1,12 @@
 <div>
     <div><a href="{{item.detail_url}}"><b>{{item.mpn}}</b></a></div>
-    <div><i>Details: </i> {{item.short_description}}</div>
-    <div><i>Average Price: </i> ${{toFixed item.avg_price.[0]}}</div>
+    {{#if item.short_description}}
+    	<div><i>Details:</i> {{item.short_description}}</div>
+    {{/if}}
+    {{#if item.market_status}}
+    	<div><i>Market Status:</i> {{trim item.market_status}}</div>
+    {{/if}}
+    {{#if item.avg_price.[0]}}
+    	<div><i>Average Price:</i> ${{toFixed item.avg_price.[0]}}</div>
+    {{/if}}
 </div>
