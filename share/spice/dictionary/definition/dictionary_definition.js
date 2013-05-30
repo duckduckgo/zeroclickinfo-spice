@@ -126,14 +126,14 @@ var ddg_spice_dictionary_audio = function(api_result) {
     var icon = $("#play-button");
 
     // Sets the icon to play.
-    var playIcon = function() {
+    var unpressIcon = function() {
         icon.removeClass("widget-button-press");
-        icon.addClass("playing");
+        icon.addClass("widget-button-unpress");
     };
 
     // Sets the icon to stop.
-    var stopIcon = function() {
-        icon.removeClass("playing");
+    var pressIcon = function() {
+        icon.removeClass("widget-button-unpress");
         icon.addClass("widget-button-press");
     };
 
@@ -143,7 +143,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         icon.removeClass("widget-disappear");
 
         // Load the icon immediately if we know that the url exists.
-        playIcon();
+        unpressIcon();
 
         // Find the audio url that was created by Macmillan (it usually sounds better).
         for(var i = 0; i < api_result.length; i += 1) {
@@ -168,17 +168,17 @@ var ddg_spice_dictionary_audio = function(api_result) {
             id: "dictionary-sound",
             url: "/audio/?u=" + url,
             onfinish: function() {
-                playIcon();
+                unpressIcon();
                 soundManager.stopAll();
             },
             ontimeout: function() {
                 isFailed = true;
-                playIcon();
+                unpressIcon();
             },
             whileplaying: function() {
                 // We add this just in case onfinish doesn't fire.
                 if(this.position === this.durationEstimate) {
-                    playIcon();
+                    unpressIcon();
                     soundManager.stopAll();
                 }
             }
@@ -200,7 +200,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         soundManager.multiShotEvents = true;
         soundManager.ontimeout(function() {
             isFailed = true;
-            playIcon();
+            unpressIcon();
         });
         soundManager.beginDelayedInit();
         soundManager.onready(loadSound);
@@ -210,10 +210,10 @@ var ddg_spice_dictionary_audio = function(api_result) {
     // without window.soundManager.
     icon.click(function() {
         if(isFailed) {
-            stopIcon();
-            setTimeout(playIcon, 1000);
-        } else if(icon.hasClass("playing") && isLoaded) {
-            stopIcon();
+            pressIcon();
+            setTimeout(unpressIcon, 1000);
+        } else if(icon.hasClass("widget-button-unpress") && isLoaded) {
+            pressIcon();
             soundManager.play("dictionary-sound");
         }
     });
