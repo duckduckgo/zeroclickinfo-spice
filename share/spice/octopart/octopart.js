@@ -16,30 +16,30 @@ var ddg_spice_octopart = function(api_result) {
         }
     });
 
-    var results = [];
-    var isRelevant;
-
-    var skip_words = {
-        "datasheet": 1,
-        "specs": 1,
-        "octopart": 1
-    };
+    var results = [],
+        isRelevant,
+        skip_words = {
+            "datasheet": 1,
+            "specs": 1,
+            "octopart": 1
+        };
 
     for(var i = 0; i < api_result.results.length; i += 1) {
-        isRelevant = DDG.isRelevant(api_result.results[i].item.mpn, skip_words, 4, true) || 
-            DDG.isRelevant(api_result.results[i].item.manufacturer.displayname, skip_words, 4, true)
+        var iter = api_result.results[i];
 
-        checkName(api_result.results[i].item.manufacturer.displayname);
+        // Checks both the MPN and the manufacturer if the query is somehow relevant.
+        isRelevant = DDG.isRelevant(iter.item.mpn, skip_words, 4, true) || 
+            DDG.isRelevant(iter.item.manufacturer.displayname, skip_words, 4, true);
 
         // Check if we have images.
-        if(api_result.results[i].item.images.length > 0 && isRelevant) {
-            results.push(api_result.results[i]);
+        if(iter.item.images.length > 0 && isRelevant) {
+            results.push(iter);
         // If an image doesn't exist, add a different image.
         } else if(isRelevant) {
-            api_result.results[i].item.images.push({
+            iter.item.images.push({
                 url_90px: "http://n1.octostatic.com/o3web/detail/images/camera-icon.png"
             });
-            results.push(api_result.results[i]);
+            results.push(iter);
         }
     }
 
