@@ -81,7 +81,7 @@ var ddg_spice_dictionary_reference = function(api_result) {
 
         // We're doing this because we want to say:
         // "Cacti is the plural form of cactus."
-        api_result[0].pluralOf = "is the plural form of " + word;
+        api_result[0].pluralOf = word;
         api_result[0].word = ddg_spice_dictionary_definition.pluralOf;
 
         // Render the plugin.
