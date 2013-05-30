@@ -18,19 +18,18 @@ var ddg_spice_octopart = function(api_result) {
 
     var results = [];
     var isRelevant;
-    var checkName = function(displayname) {
-        if(displayname) {
-            return query === displayname.toLowerCase();
-        }
-        return false;
+
+    var skip_words = {
+        "datasheet": 1,
+        "specs": 1,
+        "octopart": 1
     };
 
     for(var i = 0; i < api_result.results.length; i += 1) {
-        isRelevant = DDG.isRelevant(api_result.results[i].item.mpn, {
-            "datasheet": 1,
-            "specs": 1,
-            "octopart": 1
-        }, 4, true) || checkName(api_result.results[i].item.manufacturer.displayname);
+        isRelevant = DDG.isRelevant(api_result.results[i].item.mpn, skip_words, 4, true) || 
+            DDG.isRelevant(api_result.results[i].item.manufacturer.displayname, skip_words, 4, true)
+
+        checkName(api_result.results[i].item.manufacturer.displayname);
 
         // Check if we have images.
         if(api_result.results[i].item.images.length > 0 && isRelevant) {
