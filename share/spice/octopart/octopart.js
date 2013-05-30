@@ -18,7 +18,7 @@ var ddg_spice_octopart = function(api_result) {
 
     var results = [];
     for(var i = 0; i < api_result.results.length; i += 1) {
-        if(api_result.results[i].item.images.length > 0 && isRelevant) {
+        if(api_result.results[i].item.images.length > 0) {
             results.push(api_result.results[i]);
         }
     }
@@ -43,3 +43,7 @@ var ddg_spice_octopart = function(api_result) {
 Handlebars.registerHelper("toFixed", function(number) {
     return number.toFixed(2);
 });
+
+Handlebars.registerHelper("escape", function(string) {
+    return encodeURIComponent(string);
+})
