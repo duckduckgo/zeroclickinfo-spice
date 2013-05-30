@@ -17,12 +17,21 @@ var ddg_spice_octopart = function(api_result) {
     });
 
     var results = [];
+    var isRelevant;
     for(var i = 0; i < api_result.results.length; i += 1) {
-        if(api_result.results[i].item.images.length > 0) {
+        isRelevant = DDG.isRelevant(api_result.results[i].item.mpn, {
+            "datasheet": 1,
+            "specs": 1,
+            "octopart": 1
+        }, 4, true);
+
+        // Check if we have images.
+        if(api_result.results[i].item.images.length > 0 && isRelevant) {
             results.push(api_result.results[i]);
-        } else {
+        // If an image doesn't exist, add a different image.
+        } else if(isRelevant) {
             api_result.results[i].item.images.push({
-                url_90px: "http://n1.octostatic.com/o3web/detail/images/camera-icon.8ef4d9f52c3be05d143196b967ba629b.png"
+                url_90px: "http://n1.octostatic.com/o3web/detail/images/camera-icon.png"
             });
             results.push(api_result.results[i]);
         }
