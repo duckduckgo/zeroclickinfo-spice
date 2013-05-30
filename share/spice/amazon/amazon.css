@@ -1,12 +1,11 @@
 #amazon li.ddgc_item p {
     background-color: #ffffff;
     border: 1px solid #e7e7e7;
+    overflow: hidden;
 }
 
 #amazon li.ddgc_item img {
     padding: 5px;
-    width: 80px;
-    height: 80px;
 }
 
 #amazon li.ddgc_item span {
@@ -19,9 +18,9 @@
 
 #amazon .spotlight {
     float: left;
-    max-width: 155px;
     border: 1px solid #E1E1E1;
     max-height: 0px;
+    max-width: 150px;
 }
 
 #amazon .price {
