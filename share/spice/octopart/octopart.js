@@ -44,6 +44,6 @@ Handlebars.registerHelper("toFixed", function(number) {
     return number.toFixed(2);
 });
 
-Handlebars.registerHelper("escape", function(string) {
+Handlebars.registerHelper("escapeURL", function(string) {
     return encodeURIComponent(string);
 })
