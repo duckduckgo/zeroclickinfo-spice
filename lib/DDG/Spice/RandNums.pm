@@ -20,7 +20,7 @@ spice is_cached => 0;
 spice proxy_cache_valid => "418 1d";
 spice wrap_string_callback => 1;
 
-triggers query_lc => qr/^(?:rand|random) (?:numbers?|nums?)(?: (\-?[0-9]+)\s*-?\s*(\-?[0-9]+))?$/;
+triggers query_lc => qr/^(?:rand|random) (?:numbers?|nums?)(?: (\-?[0-9]+)\s*(?:-|to)?\s*(\-?[0-9]+))?$/;
 
 handle matches => sub {
     my ($min, $max) = @_;
