@@ -59,6 +59,5 @@ Handlebars.registerHelper ('video_id', function() {
 // forms the url for a khan_academy product image
 Handlebars.registerHelper ('image_url', function() {
 	var image_url = this.media$group.media$thumbnail[1].url;
-	var secure_image_url = image_url.replace("http", "https");
-	return secure_image_url;
+	return image_url;
 });
