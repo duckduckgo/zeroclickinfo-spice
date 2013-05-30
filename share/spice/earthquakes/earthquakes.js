@@ -63,6 +63,12 @@ function ddg_spice_earthquakes(response) {
 			result[i].region = ro.charAt(0).toUpperCase() + ro.slice(1);
 		}
 	}
+	/* mapquest API sucks. for a 78px height, for some reason the latitude cannot
+	 * be less than -26.4312 or else it conks out. this means we will have problems
+	 * displaying images for countries like Argentina or New Zealand */
+	for (i=0; i < result.length; i++) {
+		if (result[i].lat < -26.4313) result[i].latNew = -26.4312;
+	}
 	//make sure the first letter of the month query is capitalised
 	if (month) {
 		var month2 = month;
