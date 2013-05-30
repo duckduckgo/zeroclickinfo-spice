@@ -34,10 +34,6 @@ handle remainder => sub {
 		$month = $months{lc $word} if (exists $months{lc $word});
 	}
 	if (($month ne "foo") && ($year eq "foo")) { $year = floor(time / 31536000) + 1970; }
-#	if ($year ne "foo") { $year = '/' . $year; }
-#	if ($month ne "foo") { $month = '/' . $month; }
-#	if ($year eq "foo") { return ""; }
-#	if ($month eq "foo") { return $year; }
 	return $year, $month
 };
 
