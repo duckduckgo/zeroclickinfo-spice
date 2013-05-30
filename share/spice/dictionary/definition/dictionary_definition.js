@@ -13,6 +13,7 @@
 // ddg_spice_dictionary_audio - gets the audio file.
 // ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
 
+// Dictionary::Definition will call this function.
 // This function gets the definition of a word.
 var ddg_spice_dictionary_definition = function(api_result) {
     "use strict";
@@ -69,6 +70,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
     }
 };
 
+// Dictionary::Reference will call this function.
 // This is the part where we load the definition of the
 // singular form of the word.
 var ddg_spice_dictionary_reference = function(api_result) {
@@ -89,6 +91,7 @@ var ddg_spice_dictionary_reference = function(api_result) {
     }
 };
 
+// Dictionary::Hyphenation will call this function.
 // We want to add hyphenation to the word, e.g., hel•lo.
 var ddg_spice_dictionary_hyphenation = function(api_result) {
     "use strict";
@@ -102,43 +105,6 @@ var ddg_spice_dictionary_hyphenation = function(api_result) {
         $("#hyphenation").html(result.join("•"));
     }
 };
-
-// We should shorten the part of speech before displaying the definition.
-Handlebars.registerHelper("part", function(text) {
-    "use strict";
-
-    var part_of_speech = {
-        "interjection": "interj.",
-        "noun": "n.",
-        "verb-intransitive": "v.",
-        "verb-transitive": "v.",
-        "adjective": "adj.",
-        "adverb": "adv.",
-        "verb": "v.",
-        "pronoun": "pro.",
-        "conjunction": "conj.",
-        "preposition": "prep.",
-        "auxiliary-verb": "v.",
-        "undefined": "",
-        "noun-plural": "n.",
-        "abbreviation": "abbr.",
-        "proper-noun": "n."
-    };
-
-    return part_of_speech[text] || text;
-});
-
-// Make sure we replace xref to an anchor tag.
-// <xref> comes from the Wordnik API.
-Handlebars.registerHelper("format", function(text) {
-    "use strict";
-
-    // Replace the xref tag with an anchor tag.
-    text = text.replace(/<xref>([^<]+)<\/xref>/g, 
-                "<a class='reference' href='https://www.wordnik.com/words/$1'>$1</a>");
-
-    return text;
-});
 
 // Dictionary::Pronunciation will call this function.
 // It displays the text that tells you how to pronounce a word.
@@ -261,3 +227,40 @@ var ddg_spice_dictionary_audio = function(api_result) {
         isLoaded = true;
     }
 };
+
+// We should shorten the part of speech before displaying the definition.
+Handlebars.registerHelper("part", function(text) {
+    "use strict";
+
+    var part_of_speech = {
+        "interjection": "interj.",
+        "noun": "n.",
+        "verb-intransitive": "v.",
+        "verb-transitive": "v.",
+        "adjective": "adj.",
+        "adverb": "adv.",
+        "verb": "v.",
+        "pronoun": "pro.",
+        "conjunction": "conj.",
+        "preposition": "prep.",
+        "auxiliary-verb": "v.",
+        "undefined": "",
+        "noun-plural": "n.",
+        "abbreviation": "abbr.",
+        "proper-noun": "n."
+    };
+
+    return part_of_speech[text] || text;
+});
+
+// Make sure we replace xref to an anchor tag.
+// <xref> comes from the Wordnik API.
+Handlebars.registerHelper("format", function(text) {
+    "use strict";
+
+    // Replace the xref tag with an anchor tag.
+    text = text.replace(/<xref>([^<]+)<\/xref>/g,
+                "<a class='reference' href='https://www.wordnik.com/words/$1'>$1</a>");
+
+    return text;
+});
