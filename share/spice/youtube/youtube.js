@@ -5,4 +5,4 @@ var ddg_spice_youtube = function(api_result) {
         window.iqyt = 2;
         ddgyt.nryt(api_result);
     });
-}
+};

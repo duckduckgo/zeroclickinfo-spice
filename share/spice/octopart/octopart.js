@@ -17,11 +17,7 @@ var ddg_spice_octopart = function(api_result) {
     });
 
     var results = [];
-    var isRelevant;
     for(var i = 0; i < api_result.results.length; i += 1) {
-        console.log(api_result.results[i].item.short_description);
-        isRelevant = DDG.isRelevant(api_result.results[i].item.short_description,
-                        ["specs", "datasheet", "octopart"]);
         if(api_result.results[i].item.images.length > 0 && isRelevant) {
             results.push(api_result.results[i]);
         }
