@@ -27,7 +27,7 @@ var ddg_spice_movie = function(api_result) {
  *
  */
 Handlebars.registerHelper("relevantMovie", function(options) {
-    var ignore = {movie:1, film:1, rotten:1, rating:1, rt:1, tomatoes:1};
+    var ignore = ["movie", "film", "rotten", "rating", "rt", "tomatoes"];
     var result, max_score = 0;
 
     // assign a ranking value for the movie. this isn't a complete sorting value though
