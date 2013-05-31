@@ -3,7 +3,7 @@ package DDG::Spice::Aur;
 use DDG::Spice;
 
 primary_example_queries "arch package 9base";
-secondary_example_queries "archlinux package epiphany"
+secondary_example_queries "archlinux package epiphany";
 description "Github info";
 name "Github";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Aur.pm";
