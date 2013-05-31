@@ -4,18 +4,20 @@ function ddg_spice_khan_academy ( api_result ) {
 	if ( $.isEmptyObject(api_result.feed.entry) ) return;
 
 	var query = DDG.get_query().replace(/khan(\sacademy)?|videos?/g, "").trim();
+	var header;
 
 	if(!query) {
-		query = "Khan Academy";
+		header = "Khan Academy";
 	} else {
-		query = query + " (Khan Academy)";
+		header = query + " (Khan Academy)";
+		query = 'search?page_search_query=' + query;
 	}
 
 	Spice.render({
 		data: api_result,
 		source_name : 'Khan Academy',
-		source_url : 'http://www.khan_academy.com/?q=' + query,
-		header1 : query,
+		source_url : 'https://www.khanacademy.org/' + query,
+		header1 : header,
 		force_no_fold : 1,
 		force_big_header : 1,
 		
