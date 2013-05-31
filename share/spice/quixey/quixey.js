@@ -58,13 +58,13 @@ function ddg_spice_quixey (api_result) {
             app = results[i];
 
             // check if this app result is relevant
-            if (DDG.isRelevant(app.name.toLowerCase(), skip_words)) {
+            if (DDG.isRelevant(app.name.toLowerCase(), skip_words) && app.icon_url) {
                 apps.push(app);
             } else if (app.hasOwnProperty("short_desc") &&
-                       DDG.isRelevant(app.short_desc.toLowerCase(), skip_words)) {
+                       DDG.isRelevant(app.short_desc.toLowerCase(), skip_words) && app.icon_url) {
                             backupApps.push(app);
             } else if (app.custom.hasOwnProperty("category") &&
-                       DDG.isRelevant(app.custom.category.toLowerCase(), skip_words)) {
+                       DDG.isRelevant(app.custom.category.toLowerCase(), skip_words) && app.icon_url) {
                             backupApps.push(app);
             } else{
                 continue;
