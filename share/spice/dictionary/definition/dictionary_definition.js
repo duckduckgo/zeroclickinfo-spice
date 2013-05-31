@@ -126,14 +126,12 @@ var ddg_spice_dictionary_audio = function(api_result) {
     var icon = $("#play-button");
 
     // Sets the icon to play.
-    var unpressIcon = function() {
+    var resetIcon = function() {
         icon.removeClass("widget-button-press");
-        icon.addClass("widget-button-unpress");
     };
 
     // Sets the icon to stop.
     var pressIcon = function() {
-        icon.removeClass("widget-button-unpress");
         icon.addClass("widget-button-press");
     };
 
@@ -143,7 +141,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         icon.removeClass("widget-disappear");
 
         // Load the icon immediately if we know that the url exists.
-        unpressIcon();
+        resetIcon();
 
         // Find the audio url that was created by Macmillan (it usually sounds better).
         for(var i = 0; i < api_result.length; i += 1) {
@@ -168,17 +166,17 @@ var ddg_spice_dictionary_audio = function(api_result) {
             id: "dictionary-sound",
             url: "/audio/?u=" + url,
             onfinish: function() {
-                unpressIcon();
+                resetIcon();
                 soundManager.stopAll();
             },
             ontimeout: function() {
                 isFailed = true;
-                unpressIcon();
+                resetIcon();
             },
             whileplaying: function() {
                 // We add this just in case onfinish doesn't fire.
                 if(this.position === this.durationEstimate) {
-                    unpressIcon();
+                    resetIcon();
                     soundManager.stopAll();
                 }
             }
@@ -200,7 +198,7 @@ var ddg_spice_dictionary_audio = function(api_result) {
         soundManager.multiShotEvents = true;
         soundManager.ontimeout(function() {
             isFailed = true;
-            unpressIcon();
+            resetIcon();
         });
         soundManager.beginDelayedInit();
         soundManager.onready(loadSound);
@@ -211,8 +209,8 @@ var ddg_spice_dictionary_audio = function(api_result) {
     icon.click(function() {
         if(isFailed) {
             pressIcon();
-            setTimeout(unpressIcon, 1000);
-        } else if(icon.hasClass("widget-button-unpress") && isLoaded) {
+            setTimeout(resetIcon, 1000);
+        } else if(!icon.hasClass("widget-button-press") && isLoaded) {
             pressIcon();
             soundManager.play("dictionary-sound");
         }
