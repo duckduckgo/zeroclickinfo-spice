@@ -6,11 +6,11 @@ var ddg_spice_octopart = function(api_result) {
 
     var results = [],
         isRelevant,
-        skip_words = {
-            "datasheet": 1,
-            "specs": 1,
-            "octopart": 1
-        };
+        skip_words = [
+            "datasheet",
+            "specs",
+            "octopart"
+        ];
 
     for(var i = 0; i < api_result.results.length; i += 1) {
         var iter = api_result.results[i];
