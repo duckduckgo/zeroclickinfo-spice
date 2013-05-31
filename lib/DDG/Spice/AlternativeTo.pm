@@ -7,7 +7,7 @@ triggers start => "free","opensource","commercial";
 triggers any => "alternative","alternatives";
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
-spice to => 'http://api.alternativeto.net/software/$1/?platform=$2&license=$3&count=6&callback={{callback}}';
+spice to => 'http://api.alternativeto.net/software/$1/?platform=$2&license=$3&count=12&callback={{callback}}';
 
 primary_example_queries "alternative to notepad";
 secondary_example_queries "alternative to photoshop for mac", "free alternative to spotify for windows";
@@ -27,6 +27,7 @@ my %alternatives = (
     'photoshop' => 'adobe-photoshop',
     'yahoo' => 'yahoo-search',
     'bing' => 'bingcom',
+    'mac-os-x' => 'mac-os'
 );
 
 handle query_lc => sub {
