@@ -3,7 +3,10 @@
  *
  */
 var ddg_spice_movie = function(api_result) {
-    Spice.render({
+
+  if (api_result.total === 0) return;
+
+	Spice.render({
             data: api_result,
             source_name: 'Rotten Tomatoes',
             template_normal: "movie_alt",
