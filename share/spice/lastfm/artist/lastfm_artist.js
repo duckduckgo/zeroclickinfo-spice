@@ -9,28 +9,28 @@ var ddg_spice_lastfm = function(api_result, template) {
     }
 
     // These words should be skipped in the isRelevant function.
-    var skip = {
-        "similar": 1,
-        "band": 1,
-        "bands": 1,
-        "musician": 1,
-        "musicians": 1,
-        "player": 1,
-        "artist": 1,
-        "artists": 1,
-        "performer": 1,
-        "performers": 1,
-        "singer": 1,
-        "singers": 1,
-        "rapper": 1,
-        "dj": 1,
-        "rappers": 1,
-        "vocalist": 1,
-        "vocalists": 1,
-        "djs": 1,
-        "songster": 1,
-        "songsters": 1
-    };
+    var skip = [
+        "similar",
+        "band",
+        "bands",
+        "musician",
+        "musicians",
+        "player",
+        "artist",
+        "artists",
+        "performer",
+        "performers",
+        "singer",
+        "singers",
+        "rapper",
+        "dj",
+        "rappers",
+        "vocalist",
+        "vocalists",
+        "djs",
+        "songster",
+        "songsters"
+    ];
 
     // Don't do anything if we find an error, or if the result is irrelevant.
     if(api_result.error || !api_result.artist || !api_result.artist.name) {
