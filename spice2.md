@@ -693,6 +693,7 @@ Moving on, let's take a look at the implementation of the `Spice.render()` call 
 
 ######dictionary_definition.js (continued) - dictionary_definition callback
 ```javascript
+// Dictionary::Definition will call this function.
 // This function gets the definition of a word.
 var ddg_spice_dictionary_definition = function(api_result) {
     "use strict";
@@ -725,6 +726,7 @@ We begin by wrapping the `Spice.render()` call in a function which also does a l
 
 The reason for wrapping the `Spice.render()` call in a function is because we need to be able to call our `render()` function from both the `dictionary_defintion()` callback as well as the `dictionary_reference()` callback, as you will see below:
 
+######dictionary_definition.js (continued) - dictionary_definition callback
 ```javascript
     // Expose the render function.
     ddg_spice_dictionary_definition.render = render;
@@ -756,9 +758,13 @@ The reason for wrapping the `Spice.render()` call in a function is because we ne
 };
 ```
 
-After defining the `render()` function we expose it, `ddg_spice_dictionary_definition.render = render;` and then move on to check if we actually have any definition results returned from the API. If so, we then check if the queried word is a plural word and if so, make another API call for the singular version of the queried word. This call, `$.getScript(path + "/reference/" + singular[1]);` will result in calling the `dictionary_reference()` callback which eventually calls our `render()` function - which shows a result on the page. If the word is not a plural, we instead immediately call the `render()` function and display our result.
+After defining the `render()` function we give the function a `render` property, `ddg_spice_dictionary_definition.render = render;` (so we can access the `render()` function from other callbacks) and then move on to check if we actually have any definition results returned from the API. If so, we then check if the queried word is a plural word and if so, make another API call for the singular version of the queried word. This call, `$.getScript(path + "/reference/" + singular[1]);` will result in calling the `dictionary_reference()` callback which eventually calls our `render()` function to show our Spice result on the page. If the word is not a plural, we instead immediately call the `render()` function and display our result.
 
+**\*\*Note:** More info on the jQuery `$.getScript()` method is available [here](http://api.jquery.com/jQuery.getScript/).
+
+######dictionary_definition.js (continued) - dictionary_reference callback
 ```javascript
+// Dictionary::Reference will call this function.
 // This is the part where we load the definition of the
 // singular form of the word.
 var ddg_spice_dictionary_reference = function(api_result) {
@@ -771,7 +777,7 @@ var ddg_spice_dictionary_reference = function(api_result) {
 
         // We're doing this because we want to say:
         // "Cacti is the plural form of cactus."
-        api_result[0].pluralOf = "is the plural form of " + word;
+        api_result[0].pluralOf = word;
         api_result[0].word = ddg_spice_dictionary_definition.pluralOf;
 
         // Render the plugin.
@@ -779,6 +785,200 @@ var ddg_spice_dictionary_reference = function(api_result) {
     }
 };
 ```
+
+In this relatively simple callback, we begin by using the previously defined render property of the `dictionary_definiton()` function to give this callback access to the `render()` function we defined at the beginning of `quixey.js`. Then we confirm that this callback's `api_result` actually recieved the singular form of the originially searched query. If so, we add the singular and plural form of the word to our `api_result` object so we can check for and use them later in our Handlebars template.
+
+######dictionary_definition.js (continued) - dictionary_hyphenation callback
+```javascript
+// Dictionary::Hyphenation will call this function.
+// We want to add hyphenation to the word, e.g., hello -> hel•lo.
+var ddg_spice_dictionary_hyphenation = function(api_result) {
+    "use strict";
+
+    var result = [];
+    if(api_result && api_result.length > 0) {
+        for(var i = 0; i < api_result.length; i += 1) {
+            result.push(api_result[i].text);
+        }
+        // Replace the, rather lame, non-hyphenated version of the word.
+        $("#hyphenation").html(result.join("•"));
+    }
+};
+```
+
+This callback is also fairly simple. If the API returns a result for the hyphenated version of the word, we loop over the response to get the various parts of the word, then join them with the dot character "•", and inject the text into the HTML of the **#hyphenation** `<div>` using jQuery.
+
+######dictionary_definition.js (continued) - dictionary_pronunciation callback
+```javascript
+// Dictionary::Pronunciation will call this function.
+// It displays the text that tells you how to pronounce a word.
+var ddg_spice_dictionary_pronunciation = function(api_result) {
+    "use strict";
+
+    if(api_result && api_result.length > 0 && api_result[0].rawType === "ahd-legacy") {
+        $("#pronunciation").html(api_result[0].raw);
+    }
+};
+```
+
+Similarly to the `dictionary_hyphenation()` callback, this callback receives a phonetic spelling of the queried word and injects it into the Spice result by using jQuery as well to modify the HTML of the **#pronounciation** `<div>`.
+ 
+######dictionary_definition.js (continued) - dictionary_audio callback
+```javascript
+// Dictionary::Audio will call this function.
+// It gets the link to an audio file.
+var ddg_spice_dictionary_audio = function(api_result) {
+    "use strict";
+
+    var isFailed = false;
+    var url = "";
+    var icon = $("#play-button");
+
+    // Sets the icon to play.
+    var resetIcon = function() {
+        icon.removeClass("widget-button-press");
+    };
+
+    // Sets the icon to stop.
+    var pressIcon = function() {
+        icon.addClass("widget-button-press");
+    };
+```
+
+This callback begins by defining a few simple functions and some variables to used below. Again, jQuery is used to modify the DOM as needed in this callback.  
+
+```javascript
+    // Check if we got anything from Wordnik.
+    if(api_result && api_result.length > 0) {
+        icon.html("▶");
+        icon.removeClass("widget-disappear");
+
+        // Load the icon immediately if we know that the url exists.
+        resetIcon();
+
+        // Find the audio url that was created by Macmillan (it usually sounds better).
+        for(var i = 0; i < api_result.length; i += 1) {
+            if(api_result[i].createdBy === "macmillan" && url === "") {
+                url = api_result[i].fileUrl;
+            }
+        }
+
+        // If we don't find Macmillan, we use the first one.
+        if(url === "") {
+            url = api_result[0].fileUrl;
+        }
+    } else {
+        return;
+    }
+```
+
+The callback then verifies the API returned a pronunciation of the queried word and if so, injects a play icon, "▶" into the **#play-button** `<button>` and grabs the url for the audio file from the API response.
+
+```javascript
+    // Load the sound and set the icon.
+    var isLoaded = false;
+    var loadSound = function() {
+        // Set the sound file.
+        var sound = soundManager.createSound({
+            id: "dictionary-sound",
+            url: "/audio/?u=" + url,
+            onfinish: function() {
+                resetIcon();
+                soundManager.stopAll();
+            },
+            ontimeout: function() {
+                isFailed = true;
+                resetIcon();
+            },
+            whileplaying: function() {
+                // We add this just in case onfinish doesn't fire.
+                if(this.position === this.durationEstimate) {
+                    resetIcon();
+                    soundManager.stopAll();
+                }
+            }
+        });
+
+        sound.load();
+        isLoaded = true;
+    };
+```
+
+Here, we define a function, `loadSound()` that uses the [**SoundManager**](http://www.schillmania.com/projects/soundmanager2/) JavasScript library to load the audio file and also allows us to easily control the playing of the audio. An important piece of this `loadSound()` function is the use of our audio proxy: `url: "/audio/?u=" + url`. Similarly to any images used in a plugin, any audio files must also be proxied through DuckDuckGo to ensure our users' privacy.
+
+**\*\*Note:** The use of the SoundManager library for this plugin shouldn't be taken lightly. We chose to use a JavaScript library to ensure cross-browser compatabilty but the use of 3rd party libraries is not something we advocate, however since this was an internally written plugin, we decided to use the SoundManager library for this plugin as well as all others which utilize audio (eg. [Forvo](https://duckduckgo.com/?q=pronounce+awesome)).
+
+```javascript
+    // Initialize the soundManager object.
+    var soundSetup = function() {
+        window.soundManager = new SoundManager();
+        soundManager.url = "/soundmanager2/swf/";
+        soundManager.flashVersion = 9;
+        soundManager.useFlashBlock = false;
+        soundManager.useHTML5Audio = false;
+        soundManager.useFastPolling = true;
+        soundManager.useHighPerformance = true;
+        soundManager.multiShotEvents = true;
+        soundManager.ontimeout(function() {
+            isFailed = true;
+            resetIcon();
+        });
+        soundManager.beginDelayedInit();
+        soundManager.onready(loadSound);
+    };
+```
+
+As the comment explains, this function is used to initialize SoundManager so we can then use it to control the audio on the page.
+
+```javascript
+    // Play the sound when the icon is clicked. Do not let the user play
+    // without window.soundManager.
+    icon.click(function() {
+        if(isFailed) {
+            pressIcon();
+            setTimeout(resetIcon, 1000);
+        } else if(!icon.hasClass("widget-button-press") && isLoaded) {
+            pressIcon();
+            soundManager.play("dictionary-sound");
+        }
+    });
+```
+
+Here we define a click handler function using jQuery. Based on the state of the sound widget, `isFailed`, the handler either 
+
+```javascript
+    // Check if soundManager was already loaded. If not, we should load it.
+    // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
+    if(!window.soundManager) {
+        window.SM2_DEFER = true;
+        $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", soundSetup);
+    } else {
+        isLoaded = true;
+    }
+};
+```
+
+Now that we've seen how all the API callback functions are implemented, lets take a look at the Handlebars to see what helpers are used and how the display is built:
+
+```html
+<div>
+    <b id="hyphenation">{{this.[0].word}}</b>
+    {{#if this.[0].pluralOf}}
+        <span> is the plural form of {{this.[0].pluralOf}}</span>
+    {{/if}}
+    <span id="pronunciation"></span>
+    <button id="play-button" class="widget-button widget-disappear"></button>
+</div>
+{{#each this}}
+    <div class="definition">
+        <i>{{part partOfSpeech}}</i>
+        <span>{{{format text}}}</span>
+    </div>
+{{/each}}
+```
+
+
+
 
 ---
 
@@ -798,6 +998,11 @@ var ddg_spice_dictionary_reference = function(api_result) {
 
 ###Common Javascript and Handlebars Templates
 (tbd)
+
+###Using Custom CSS
+(tbd)
+
+###Using images 
 
 ------
 
@@ -868,7 +1073,7 @@ Probably not. Maybe if it is very small. But only you should ask us first before
 No.
 
 ###What about...
-No.
+Nope.
 
 ------
 
