@@ -977,15 +977,139 @@ Now that we've seen how all the API callback functions are implemented, lets tak
 {{/each}}
 ```
 
+As you can see, the template and layout for the dictionary Spice is relatively simple. We begin by placing the term to be defined in a `<b>` tag. As you can see, to access the element from the context, we need to use a special array notation: `this.[0].word`, where the `[0]` indicates the first element in the array.
+
+We then check if the `this.[0].pluralOf` variable has been set. As you may recall, we set this variable in the `dictionary_reference()` callback function, after checking in the `dictionary_definition()` callback if the queried term is a plurl. If the `pluralOf` variable has been set we then create a `<span>` tag and for a sentence to indicate which word the queried word is a plural of.
+
+Then the template creates two empty elements, a `<span>` tag to contain the phonetic spelling, which may or may not be populated by our `dictionary_pronunciation()` callback, depending on the wether or not the API has a phonetic spelling for the queried word. Similarly we create an empty `<button>` tag to play an audio recording of the word pronunciation which is potentially populated by the `dictionary_audio()` callback, again if the API has an audio file for the queried word's pronunciation.
+
+The template then uses a Handlebars `{{#each}}` helper to iterate over the context (because it is an array in this case, not an object) and for each element creates a snippet of text indicating the usage of the term (eg. noun, verb) and provides the definition of the term. This `{{#each}}` helper also uses two Handlebars helpers defined in **dictionary_definition.js**, `{{part}}` and `{{format}}`. Lets take a look at how they're implemented:
+
+######dictionary_definition.js (continued) - part helper
+```javascript
+// We should shorten the part of speech before displaying the definition.
+Handlebars.registerHelper("part", function(text) {
+    "use strict";
+
+    var part_of_speech = {
+        "interjection": "interj.",
+        "noun": "n.",
+        "verb-intransitive": "v.",
+        "verb-transitive": "v.",
+        "adjective": "adj.",
+        "adverb": "adv.",
+        "verb": "v.",
+        "pronoun": "pro.",
+        "conjunction": "conj.",
+        "preposition": "prep.",
+        "auxiliary-verb": "v.",
+        "undefined": "",
+        "noun-plural": "n.",
+        "abbreviation": "abbr.",
+        "proper-noun": "n."
+    };
+
+    return part_of_speech[text] || text;
+});
+```
+
+As the comment explains, this simple helper function is used to shorten the "part of speech" word returned by the API.
+
+######dictionary_definition.js (continued) - format helper
+```javascript
+// Make sure we replace xref to an anchor tag.
+// <xref> comes from the Wordnik API.
+Handlebars.registerHelper("format", function(text) {
+    "use strict";
+
+    // Replace the xref tag with an anchor tag.
+    text = text.replace(/<xref>([^<]+)<\/xref>/g,
+                "<a class='reference' href='https://www.wordnik.com/words/$1'>$1</a>");
+
+    return text;
+});
+```
+
+This helper is used to create hyperlinks within the word definition text. The Wordnik API we are using for this plugin provides definitions which often contain words or phrases that are wrapped in `<xref>` tags indicating that Wordnik also has a definition for that word or phrase. This helper is used to replace the `<xref>` tags with `<a>` tags that link to a search for that particular word on **Wordnik.com**.
+
+Now that we have seen the Handlebars template and all looked over all the Javascript related to the dictionary plugin, lets take a look at the CSS used to style the display of the result:
+
+######dictionary_definition.css
+```css
+.widget-button {
+    background: #eee; /* Old browsers */
+    background: #eee -moz-linear-gradient(top, rgba(255,255,255,.1) 0%, rgba(0,0,0,.1) 100%); /* FF3.6+ */
+    background: #eee -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.1)), color-stop(100%,rgba(0,0,0,.1))); /* Chrome,Safari4+ */
+    background: #eee -webkit-linear-gradient(top, rgba(255,255,255,.1) 0%,rgba(0,0,0,.1) 100%); /* Chrome10+,Safari5.1+ */
+    background: #eee -o-linear-gradient(top, rgba(255,255,255,.1) 0%,rgba(0,0,0,.1) 100%); /* Opera11.10+ */
+    background: #eee -ms-linear-gradient(top, rgba(255,255,255,.1) 0%,rgba(0,0,0,.1) 100%); /* IE10+ */
+    background: #eee linear-gradient(top, rgba(255,255,255,.1) 0%,rgba(0,0,0,.1) 100%); /* W3C */
+
+    border-left: 1px solid #ccc;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    color: #444;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 0 1px rgba(255, 255, 255, .75);
+    cursor: pointer;
+    line-height: normal;
+    padding: 2px 5px;
+    vertical-align: text-bottom;
+}
+
+.widget-button-press {
+    border-color: #666;
+    background: #ccc; /* Old browsers */
+    background: #ccc -moz-linear-gradient(top, rgba(255,255,255,.25) 0%, rgba(10,10,10,.4) 100%); /* FF3.6+ */
+    background: #ccc -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.25)), color-stop(100%,rgba(10,10,10,.4))); /* Chrome,Safari4+ */
+    background: #ccc -webkit-linear-gradient(top, rgba(255,255,255,.25) 0%,rgba(10,10,10,.4) 100%); /* Chrome10+,Safari5.1+ */
+    background: #ccc -o-linear-gradient(top, rgba(255,255,255,.25) 0%,rgba(10,10,10,.4) 100%); /* Opera11.10+ */
+    background: #ccc -ms-linear-gradient(top, rgba(255,255,255,.25) 0%,rgba(10,10,10,.4) 100%); /* IE10+ */
+    background: #ccc linear-gradient(top, rgba(255,255,255,.25) 0%,rgba(10,10,10,.4) 100%); /* W3C */ }
 
 
+    /* Fix for odd Mozilla border & padding issues */
+    button::-moz-focus-inner,
+    input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
 
----
+.widget-disappear {
+  display: none;
+}
+
+#play-icon {
+  line-height: normal;
+}
+
+.definition em {
+    font-style: italic;
+}
+```
+
+Understanding this CSS isn't terribly important in this case because most of it has been borrowed from the [Skeleton](http://getskeleton.com) framework's button styling. Most of this CSS is specific to the `.widget-button` class and is used to style the look of the play button. Also its worth mentioning that this particular CSS has been written to be very cross-browser compatible as you can see by the comments which indicate the browsers each line has been written for.
+
+As you can see, the Dictionary plugin is one of the most involved Spice plugins we have due to its use of multiple endpoints and their respective callback functions. Most plugins however shouldn't need to be so complex in order to function, so we greatly prefer that plugins are built as simple and straighforward as possible.
+
+##Conclusion
+Now that you have completed the walkthrough you should have the required knowledge to go on and build your own plugins. More information about writing plugins is available below.
+
+------
 
 ##Advanced Techniques
 
 ###Slurping a Textfile (when you have a *lot* of trigger words...)
-(tbd)
+Some plugins, such as the [**Airlines**]() plugin
 
 ###Using API Keys
 (tbd)
