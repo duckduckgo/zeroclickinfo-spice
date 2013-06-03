@@ -6,15 +6,6 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-    [qw( DDG::Spice::Twitter::User )],
-    'twitter duckduckgo' => test_spice(
-        '/js/spice/twitter/user/duckduckgo',
-        call_type => 'include',
-        caller => 'DDG::Spice::Twitter::User'
-    ),
-);
-
-ddg_spice_test(
     [qw( DDG::Spice::Twitter::Locate )],
     'twitter trends usa' => test_spice(
         '/js/spice/twitter/locate/usa',
