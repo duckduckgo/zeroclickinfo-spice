@@ -1,0 +1,351 @@
+accident
+accidents
+adjusted
+age distribution
+age distributions?
+age structure
+alcoholism
+amount
+amounts
+average
+balance of payment
+balance of payments
+balance of trade
+bank asset
+bank assets
+bank deposit
+bank deposits
+banking assets
+birth
+births
+budget deficit
+burn
+burns
+capacities
+capacity
+capital gains tax
+capital gains taxes
+car ownership
+car ownerships
+cases
+causes of death
+comparison
+comparisons
+composition of
+consumed
+consumer expenditure
+consumer expenditures
+consumer price index
+consumption
+consumption expenditure
+consumption expenditures
+consumptions
+contribution
+contributions
+cost
+costs
+cpi
+crash
+crashes
+credit market debt
+crude birth
+crude births
+crude death
+crude deaths
+cumulated
+cumulative
+cure rate
+cure rates
+current account deficit
+current account deficits
+death
+death rate
+death rates
+deaths
+debt service
+debt to income
+decile
+deciles
+decreases
+demand
+disposable household income
+disposable income
+distribution
+divorce
+divorces
+drowning
+economic growth
+education expenditure
+education expenditures
+educational attainment
+emigration
+emission
+emissions
+employment
+estimated
+estimates
+expenditure
+expenditures
+exported
+exports
+external debt
+family debt
+family expenditure
+family expenditures
+family financial asset
+family financial assets
+family income
+family incomes
+fatalities
+fatality
+fdi
+fdi flow
+fdi flows
+fdi stock
+fdi stocks
+fertility
+final consumption expenditure
+final consumption expenditures
+financial asset
+financial assets
+forecasted
+forecasts
+foreign direct investment
+foreign direct investments
+foreign exchange reserve
+foreign exchange reserves
+foreign investment
+foreign investments
+foreign-exchange reserve
+foreign-exchange reserves
+frequency
+gas reserve
+gas reserves
+gdp
+generation
+gini coefficient
+gni
+gnp
+government debt
+government expenditure
+government expenditures
+government final consumption expenditure
+government final consumption expenditures
+government spending
+gross debt
+gross domestic product
+gross investment
+gross national product
+growth
+growths
+health care expenditure
+health care expenditures
+health expenditure
+health expenditures
+healthcare expenditure
+healthcare expenditures
+home ownership
+household consumption
+household debt
+household expenditure
+household expenditures
+household final consumption expenditure
+household final consumption expenditures
+household financial asset
+household financial assets
+household income
+household incomes
+household spending
+immigration
+imported
+imports
+incidence
+incident
+incidents
+income
+income distribution
+income tax
+income taxes
+incomes
+increases
+industrial production
+inflation
+inflow
+inflows
+injuries
+injury
+labor cost
+labor costs
+labor force participation
+labor force participations
+labor productivity
+labour cost
+labour costs
+labour force participation
+labour force participations
+labour productivity
+level
+levels
+life expectancies
+life expectancy
+literacy
+live birth
+live births
+lti
+ltis
+maltreatment
+maltreatments
+manufacture
+manufactured
+manufacturing
+market for
+markets for
+markets share
+markets shares
+markets size
+markets sizes
+marriage
+marriages
+mean
+median
+morbidities
+morbidity
+mortalities
+mortality
+national debt
+national debts
+national income
+national incomes
+net asset
+net assets
+net borrowing
+net borrowings
+net debt
+net export
+net exports
+net foreign assets
+net worth
+nonfarm payroll
+nonfarm payrolls
+number of
+numbers of
+obesity
+oil reserves
+outflow
+outflows
+outlook
+outlooks
+output
+outputs
+ownership
+ownerships
+participation
+penetration
+pension fund
+pension funds
+percentage
+percentage of
+percentages
+percentages of
+personal consumption expenditure
+personal consumption expenditures
+physical balance of trade
+population
+poverty
+ppi
+pregnancies
+pregnancy
+prevalence
+price
+prices
+private consumption
+produced
+producer price index
+production
+productivities
+productivity
+projected
+projection
+proportion
+proportions
+public debt
+quartile
+quartiles
+quintile
+quintiles
+r&d expenditure
+r&d expenditures
+range
+ranges
+ranking
+rankings
+rate
+rate of return
+rates
+ratio
+ratios
+relationship between
+relationship with
+reserve
+reserves
+retail price index
+scald
+scalds
+seaborne trade
+sex ratio
+shares by
+shares by
+shares in
+shares in
+shares of
+shares of
+shipment
+shipments
+shipped
+size
+spending
+standardised
+standardized
+stat
+state domestic product
+statistic
+statistics
+stats
+suicide
+suicides
+supplies
+supply
+supply curve
+supply curves
+surplus
+surpluses
+survival rate
+survival rates
+tariff
+tariffs
+tax revenue
+tax revenues
+teen birth rate
+teen birth rates
+teenage birth rate
+teenage birth rates
+total
+totals
+trade balance
+trade balances
+trade intensity
+trade intensity index
+trade weighted index
+trend
+trends
+unemployment
+usage
+usages
+use
+volume
+volumes
+wealth distribution
+wholesale price index
+wpi
+yield
+yields
