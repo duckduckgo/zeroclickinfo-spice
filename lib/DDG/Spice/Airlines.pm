@@ -53,15 +53,6 @@ handle query_lc => sub {
     sub checkAirlines {
         my ($airline, $flightno, $original) = @_;
 
-        # Check the individual words if they're in the $airlines hash.
-        if(!$airline) {
-            foreach my $word (split(" ", $original)) {
-                if($airlines{$word} && !$airline) {
-                    $airline = $airlines{$word};
-                }
-            }
-        }
-
         # Check if we found something and if it's not an element.
         if($airline && !exists $elements{$airline}) {
             return $airline, $flightno;
