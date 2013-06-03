@@ -2,10 +2,6 @@ package DDG::Spice::Canistreamit;
 
 use DDG::Spice;
 
-attribution twitter => 'CanIStreamIt',
-            web => ['http://canistream.it','CanIStream.It'],
-            email => ['canistreamit@gmail.com','CanIStream.It'];
-
 spice to => 'http://www.canistream.it/ddg/query/$1?callback={{callback}}';
 
 triggers any => "stream", "watch", "streaming";
@@ -20,12 +16,13 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "entertainment";
 category "entertainment";
 attribution github => ['https://github.com/CanIStreamIt','CanIStream.it'],
-           twitter => ['https://twitter.com/CanIStreamIt','CanIStream.It'];
+            twitter => ['https://twitter.com/CanIStreamIt','CanIStream.It'],
+            email => ['canistreamit@gmail.com','CanIStream.It'];
 
 handle remainder => sub {
 
     my $remainder = $_;
-    
+
     $remainder =~ s/\?//;
     $remainder =~ s/ online//i;
 
