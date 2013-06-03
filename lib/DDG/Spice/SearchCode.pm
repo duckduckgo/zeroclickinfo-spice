@@ -1,6 +1,7 @@
 package DDG::Spice::SearchCode;
 
 use DDG::Spice;
+use File::Slurp;
 
 name "SearchCode";
 description "search through APIs and open source repositories";
@@ -15,12 +16,16 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 icon_url "/i/searchco.de.ico";
 status "enabled";
 
-triggers startend => "apache2","apache","apple ios","ios","brainfuck","clojure","cobol","emacs","fossil","ftp code","git","hello world","hresult","http code","java","jquery","linux command","linux kernel error","kernel error","mercurial","hg","mysql error","mysql function","nt status","osx","perl","perl5","perl5 var","perl var","php","python","smarty","sql server function","sql server","svn","underscore.js","underscore","vb6","win32 error","windows command";
+
+my @triggers = share('triggers.txt')->slurp;
+triggers startend => @triggers;
 
 spice to => 'http://searchco.de/api/jsonp_search_IV/?q=$1&callback={{callback}}';
 
-# list of trigger words
-my $words = 'apache2\s*directive|apache|apache2|apple\s*ios|ios|brainfuck|clojure|cobol|emacs|fossil|ftp\s*code|git|hello\s*world|hresult|http\s*code|java|jquery|linux\s*command|linux\s*kernel\s*error|mercurial|hg|mysql\s*error|mysql\s*function|nt\s*status|osx|perl|perl5|perl5\s*var|perl\s*var|php|python|smarty|snippet|sql\s*server\s*function|sql\*server|svn|underscore\.js|underscore|vb6|win32\s*error|windows\s*command';
+# use list of trigger words to create regex
+# and strip newline characters
+my $words = join "|", @triggers;
+$words =~ s/\n//g;
 
 handle query_raw => sub {
 
