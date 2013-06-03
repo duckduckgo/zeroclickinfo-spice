@@ -1,10 +1,7 @@
 function ddg_spice_amazon(api_response) {
     console.log(api_response);
-    api_response = api_response.opt.Items;
-
-    var items = api_response.Item;
     
-    if (!items || !(items.length > 1)) return;
+    if (!api_response || !(api_response.length > 1)) return;
 
     var query = DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
 
@@ -21,7 +18,7 @@ function ddg_spice_amazon(api_response) {
 
     Spice.render({
         header1                  : query + ' (Amazon)',
-        source_url               : api_response['@MoreSearchResultsUrl'].$t,
+        source_url               : api_response.url,
         source_name              : 'Amazon',
         force_big_header         : true,
         force_favicon_domain     : 'www.amazon.com',
@@ -29,7 +26,7 @@ function ddg_spice_amazon(api_response) {
         template_normal          : 'amazon',
         carousel_css_id          : 'amazon',
         carousel_template_detail : 'amazon_detail',
-        carousel_items           : items,
+        carousel_items           : api_response,
         force_no_fold            : true,
         item_callback            : spotlight_resize
     });
@@ -37,16 +34,15 @@ function ddg_spice_amazon(api_response) {
     $(window).resize(spotlight_resize);
 
 
-    items.map(function(el, i) {
-        items['amazon-' + el['@ASIN']] =
-            el.CustomerReviews['@IFrameURL']
-                .replace('http://www.amazon.com/reviews/iframe?', '');
+    api_response.map(function(el, i) {
+        api_response['amazon-' + el['@ASIN']] =
+            el.rating.replace('http://www.amazon.com/reviews/iframe?', '');
     });
 
     $(document).ready(function() {
         $('.ddgc_item').on("click", function() {
             nrj('https://dylan.duckduckgo.com/m.js?r='
-                + escape(items[this.id])
+                + escape(api_response[this.id])
                 + '&callback=ddg_spice_amazon_detail');
         });
     });
