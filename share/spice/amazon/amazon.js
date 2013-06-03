@@ -35,7 +35,7 @@ function ddg_spice_amazon(api_response) {
 
 
     api_response.map(function(el, i) {
-        api_response['amazon-' + el['@ASIN']] =
+        api_response['amazon-' + el['ASIN']] =
             el.rating.replace('http://www.amazon.com/reviews/iframe?', '');
     });
 
@@ -51,13 +51,14 @@ function ddg_spice_amazon(api_response) {
 
 function ddg_spice_amazon_detail(api_response) {
     console.log(api_response);
-    if (api_response.item.stars.$t == 'unrated') {
-        $('<span>unrated</span>').insertAfter('#ddgc_detail .stars');
+    if (api_response.stars == 'unrated') {
+        $('<span>unrated</span>')
+            .insertAfter('#ddgc_detail .stars');
         $('#ddgc_detail .stars').hide();
     } else {
         $('#ddgc_detail .stars')
-            .attr('src', '/iu/?u=' + api_response.item.stars.$t);
+            .attr('src', '/iu/?u=' + api_response.stars);
     }
     $('#ddgc_detail .review-count')
-        .text(api_response.item.reviews.$t);
+        .text(api_response.reviews);
 }
