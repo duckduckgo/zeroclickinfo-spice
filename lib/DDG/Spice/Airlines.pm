@@ -62,6 +62,7 @@ handle query_lc => sub {
     }
 
     # 102 AA
+
     if($query =~ /^(\d+)\s*(.*?)(?:[ ]air.*?)?$/) {
         return checkAirlines($airlines{$2}, $1, $2);
     # AA 102
