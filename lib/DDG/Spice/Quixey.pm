@@ -52,14 +52,24 @@ spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_sec
 spice proxy_ssl_session_reuse => "off";
 
 handle query_parts => sub {
-	
+
 	my $full_query = join(" ", @_);
 	my $restriction;
 	my $max_price = 999999;
 
+	# set price to $0 if "free" is in the query
 	$max_price = 0 if ($full_query =~ s/\bfree\b//ig);
-	
-	my @matches = grep { $full_query =~ /\b$_\b/ig } sort { length($a) <=> length($b) } keys %platform_ids;
+
+	# check if device mentioned, if so verify app search intent
+	if ($full_query =~ qr/\b(iphone|ipad|ipod|blackberry|playbook)\b/) {
+		my $device = $1;
+		return unless ($full_query =~ qr/(?:on|for)\s+$device/i or $full_query =~ qr/apps?/i );
+	}
+
+	# check for platform specific trigger in query
+	# if found remove from query
+	# Note: sort trigger list to catch longer phrase first (eg "ipod touch" vs "ipod")
+	my @matches = grep { $full_query =~ /\b$_\b/ig } sort { length($a) <=> length($b) } @triggers;
 	if (length scalar @matches){
 		my @sorted_matches = sort { length($b) <=> length($a) } @matches;
 		foreach my $match (@sorted_matches){
@@ -68,11 +78,16 @@ handle query_parts => sub {
 		}
 	}
 
+	# check for and strip extra triggers and whitespace
+	# if nothing remains query was just trigger words
+	# so return nothing
 	$full_query =~ s/\b$_\b//ig foreach (@extraTriggers);
 	$full_query =~ s/\s+/ /ig;
 	$full_query = trim $full_query;
 	return unless (length $full_query);
 
+	# if platform restiction(s) detected
+	# return query, specify proper ids for API
 	if (defined $restriction) {
 		my @platforms = ();
 		$platforms[0] = $restriction;
