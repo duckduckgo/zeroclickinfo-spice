@@ -69,7 +69,7 @@ handle query_parts => sub {
 	# check for platform specific trigger in query
 	# if found remove from query
 	# Note: sort trigger list to catch longer phrase first (eg "ipod touch" vs "ipod")
-	my @matches = grep { $full_query =~ /\b$_\b/ig } sort { length($a) <=> length($b) } @triggers;
+	my @matches = grep { $full_query =~ /\b$_\b/ig } sort { length($a) <=> length($b) } keys %platform_ids;
 	if (length scalar @matches){
 		my @sorted_matches = sort { length($b) <=> length($a) } @matches;
 		foreach my $match (@sorted_matches){

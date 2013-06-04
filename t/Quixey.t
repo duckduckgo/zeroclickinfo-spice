@@ -17,7 +17,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Quixey'
     ),
-    'ios flight tracker' => test_spice(
+    'ios flight tracker app' => test_spice(
         '/js/spice/quixey/flight%20tracker/%5B2004%5D/999999/78989893',
         call_type => 'include',
         caller => 'DDG::Spice::Quixey'
