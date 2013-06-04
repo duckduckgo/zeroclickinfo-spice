@@ -16,23 +16,28 @@ function ddg_spice_amazon(api_response) {
         );
         nrj('https://dylan.duckduckgo.com/m.js?r='
             + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
-            + '&callback=ddg_spice_amazon_detail');
+            + '&cb=ddg_spice_amazon_detail');
     };
 
-    Spice.render({
-        header1                  : query + ' (Amazon)',
-        source_url               : api_response.url,
-        source_name              : 'Amazon',
-        force_big_header         : true,
-        force_favicon_domain     : 'www.amazon.com',
-        template_frame           : 'carousel',
-        template_normal          : 'amazon',
-        carousel_css_id          : 'amazon',
-        carousel_template_detail : 'amazon_detail',
-        carousel_items           : api_response,
-        force_no_fold            : true,
-        item_callback            : spotlight_resize
-    });
+    Spice.carousel_add_items =
+        Spice.render({
+            header1                  : query + ' (Amazon)',
+            source_url               : api_response.url,
+            source_name              : 'Amazon',
+            force_big_header         : true,
+            force_favicon_domain     : 'www.amazon.com',
+            template_frame           : 'carousel',
+            template_normal          : 'amazon',
+            carousel_css_id          : 'amazon',
+            carousel_template_detail : 'amazon_detail',
+            carousel_items           : api_response,
+            force_no_fold            : true,
+            item_callback            : spotlight_resize
+        });
+
+    nrj('https://dylan.duckduckgo.com/m.js?pg=2'
+            + '&cb=Spice.carousel_add_items'
+            + '&q=' + escape(DDG.get_query()));
 
     $(window).resize(spotlight_resize);
 }
