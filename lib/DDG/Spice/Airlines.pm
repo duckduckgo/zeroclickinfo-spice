@@ -20,7 +20,7 @@ attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
 spice to => 'https://duckduckgo.com/flights.js?airline=$1&flightno=$2&callback={{callback}}';
 spice from => '(.*?)/(.*)';
 
-triggers query_lc => qr/\d+/;
+triggers query_lc => qr/^(\d+)\s*(.*?)(?:[ ]air.*?)?$|^(.*?)(?:[ ]air.*?)?\s*(\d+)$/;
 
 # Get the list of airlines and strip out the words.
 my %airlines = ();
