@@ -5,7 +5,7 @@ function ddg_spice_amazon(api_response) {
 
     var query = DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
 
-    var spotlight_resize = function() {
+    var spotlight_resize = function(index, item) {
         $('#amazon .spotlight').css(
             {'max-height' : ($('#ddgc_detail').height() > 150 ?
                                 $('#ddgc_detail').height() : 150) + 'px'}
@@ -14,6 +14,9 @@ function ddg_spice_amazon(api_response) {
             //width - parent padding - spotlight image width - left-margin
             $('#ddgc_detail').width() - (7*2) - 150 - 20
         );
+        nrj('https://dylan.duckduckgo.com/m.js?r='
+            + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
+            + '&callback=ddg_spice_amazon_detail');
     };
 
     Spice.render({
@@ -32,22 +35,7 @@ function ddg_spice_amazon(api_response) {
     });
 
     $(window).resize(spotlight_resize);
-
-
-    api_response.map(function(el, i) {
-        api_response['amazon-' + el['ASIN']] =
-            el.rating.replace('http://www.amazon.com/reviews/iframe?', '');
-    });
-
-    $(document).ready(function() {
-        $('.ddgc_item').on("click", function() {
-            nrj('https://dylan.duckduckgo.com/m.js?r='
-                + escape(api_response[this.id])
-                + '&callback=ddg_spice_amazon_detail');
-        });
-    });
 }
-
 
 function ddg_spice_amazon_detail(api_response) {
     console.log(api_response);
