@@ -1109,7 +1109,7 @@ Now that you have completed the walkthrough you should have the required knowled
 ##Advanced Techniques
 
 ###Slurping a Textfile (when you have a *lot* of trigger words...)
-Some plugins, such as the [**Airlines**]() plugin
+Some plugins, such as the [****]() plugin
 
 ###Using API Keys
 (tbd)
