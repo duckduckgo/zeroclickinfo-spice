@@ -3,9 +3,6 @@ package DDG::Spice::GooglePlus;
 
 use DDG::Spice;
 
-spice to => 'https://www.googleapis.com/plus/v1/people/?query=$1&key={{ENV{DDG_SPICE_GOOGLE_PLUS_APIKEY}}}&callback={{callback}}&maxResults=12';
-spice proxy_ssl_session_reuse => "off";
-
 primary_example_queries "google+ duckduckgo";
 description "Find Google+ users";
 name "GooglePlus";
@@ -15,9 +12,11 @@ category "ids";
 attribution github => ['https://github.com/jagtalon','jagtalon'],
             twitter => ['http://twitter.com/juantalon','juantalon'];
 
-triggers startend => 'google+', 'google plus', 'g+', 'gplus', 'google+ user', 'g+ user', 
-'google plus user', 'google+ profile', 'g+ profile', 'gplus profile', 'gplus user', 'g plus profile',
-'g plus user';
+spice to => 'https://www.googleapis.com/plus/v1/people/?query=$1&key={{ENV{DDG_SPICE_GOOGLE_PLUS_APIKEY}}}&callback={{callback}}&maxResults=12';
+spice proxy_ssl_session_reuse => "off";
+
+my @triggers = share("triggers.txt")->slurp;
+triggers startend => @triggers;
 
 handle remainder => sub {
 	return $_ if $_;
