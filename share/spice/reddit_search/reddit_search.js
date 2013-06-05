@@ -21,18 +21,8 @@ function ddg_spice_reddit(api_result) {
         source += '/search?q=' + query;
     }
 
-    var repositories = api_result.data.children.splice(0, 4)
-                       .map(function(repository) {
-                           repository = repository.data;
-                           repository.comments = repository.num_comments + " comment"
-                                               + (repository.num_comments === 1 ? '' : 's');
-                           repository.score = repository.score
-                                            + (repository.score === 1 ? " point)" : " points)")
-                           return repository;
-                       });
-
     Spice.render({
-        data              : { 'repository' : repositories },
+        data              : api_result.data.children,
         header1           : header,
         source_url        : source,
         source_name       : 'Reddit',
