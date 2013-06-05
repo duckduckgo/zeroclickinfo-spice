@@ -2,7 +2,7 @@ package DDG::Spice::RubyGems;
 
 use DDG::Spice;
 
-name 'RubyGems'
+name 'RubyGems';
 description 'Returns a list of matching ruby packages in rubygems.org';
 primary_example_queries 'rubygems cucumber';
 topics 'programming';

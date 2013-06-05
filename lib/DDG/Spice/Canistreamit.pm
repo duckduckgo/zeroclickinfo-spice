@@ -16,9 +16,8 @@ attribution github => ['https://github.com/CanIStreamIt','CanIStream.it'],
 
 spice to => 'http://www.canistream.it/ddg/query/$1?callback={{callback}}';
 
-triggers any => "stream", "watch", "streaming";
-
-            email => ['canistreamit@gmail.com','CanIStream.It'];
+triggers any => "stream", "watch", "streaming",
+		 email => ['canistreamit@gmail.com','CanIStream.It'];
 
 handle remainder => sub {
 

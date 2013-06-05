@@ -13,7 +13,7 @@ category "entertainment";
 attribution github => ['https://github.com/nilnilnil','Caine Tighe'],
             twitter => ['http://twitter.com/__nil','caine tighe'];
 
-triggers any => "tumblr"/;
+triggers any => "tumblr";
 
 handle remainder => sub {
     return $_ if $_;
