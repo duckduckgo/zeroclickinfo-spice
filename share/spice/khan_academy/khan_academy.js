@@ -36,9 +36,6 @@ function ddg_spice_khan_academy ( api_result ) {
 
 	// Set height of ddgc_detail;
 	resizeDetail();
-	
-	// Maintain 16/9 aspect ratio
-	$(window).resize( resizeDetail );
 
 	function resizeDetail() {
 		var $detail = $("#ddgc_detail");
@@ -46,6 +43,12 @@ function ddg_spice_khan_academy ( api_result ) {
 		var height = Math.floor(width * 0.5625) + 30;	//30px for player menu
 		$detail.height(height);
 	};
+	
+	$(document).ready(function() {
+		// Maintain 16/9 aspect ratio
+		$(window).resize(resizeDetail);
+	});
+
 }
 
 /*******************************

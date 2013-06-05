@@ -24,7 +24,6 @@ function ddg_spice_quixey (api_result) {
 
     // Check for relevant app results
     function getRelevant (results) {
-
         var res,
             apps = [],
             backupApps = [],
@@ -89,7 +88,8 @@ function ddg_spice_quixey (api_result) {
                 "ios",
                 "free",
                 "search"
-            ];
+            ],
+            app;
 
         categories = new RegExp(categories.join("|"), "i");
         for (var i = 0; i < results.length; i++) {
@@ -129,7 +129,7 @@ function ddg_spice_quixey (api_result) {
             res = q.match(categories) ? results : null;
         }
         return res;
-    };
+    }
 }
 
 // format a price
@@ -149,7 +149,7 @@ Handlebars.registerHelper("price", function(obj) {
 });
 
 // template helper to format a price range
-Handlebars.registerHelper("pricerange", function(obj) {
+Handlebars.registerHelper("pricerange", function() {
 
     if (!this.editions)
         return "";
