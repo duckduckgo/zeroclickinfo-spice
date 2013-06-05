@@ -1,7 +1,10 @@
-function ddg_spice_bootic ( api_result ) {
+function ddg_spice_bootic (api_result) {
+	"use strict";
 
 	// check for response
-	if ( $.isEmptyObject(api_result.products) ) return;
+	if ($.isEmptyObject(api_result.products)) {
+		return;
+	}
 
 	var query = (api_result.input_query ) ?
 		'?initial=1&q=' + encodeURIComponent( api_result.input_query ) :
@@ -19,7 +22,7 @@ function ddg_spice_bootic ( api_result ) {
 		carousel_items: api_result.products,
 
 		force_no_fold : 1,
-		force_big_header : 1,
+		force_big_header : 1
 	});
 }
 
@@ -29,6 +32,8 @@ function ddg_spice_bootic ( api_result ) {
 
 // forms the url for a bootic product image
 Handlebars.registerHelper ('picture_url', function() {
+	"use strict";
+
 	var pic_id = this.pictures[0],
 		url = pic_id.replace(/\d+x\d+/, "60x80");
 
