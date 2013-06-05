@@ -31,3 +31,7 @@ Handlebars.registerHelper("unescape", function(escaped, options) {
     options.hash.maxlen = "200";
     return Handlebars.helpers.condense(html.replace(/<\/?[^>]+>/g, ""), options);
 });
+
+Handlebars.registerHelper("formatSubscribers", function(subscribers) {
+    return String(subscribers).replace(/(\d)(?=(\d{3})+(\.\d+|)\b)/g, "$1,");
+});
