@@ -1,4 +1,9 @@
 function ddg_spice_reddit(api_result) {
+
+    if(!api_result || !api_result.data || !api_result.data.children || api_result.data.children.length === 0) {
+        return;
+    }
+
     var query = DDG.get_query();
     var subreddit = query.match(/\/?r\/\w+/);
     var restrict_sr = false;
