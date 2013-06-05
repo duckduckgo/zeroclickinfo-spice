@@ -13,7 +13,6 @@ topics "entertainment";
 category "entertainment";
 attribution github => ['https://github.com/jagtalon','jagtalon'],
             twitter => ['http://twitter.com/juantalon','juantalon'];
-status "enabled";
 
 my $rating = '(?:g\s*|pg\s*|r\s*)?';
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?country=$2&apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&callback={{callback}}&page_limit=12&limit=12';

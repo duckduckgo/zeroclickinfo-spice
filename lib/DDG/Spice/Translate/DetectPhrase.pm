@@ -1,7 +1,6 @@
 package DDG::Spice::Translate::DetectPhrase;
 
 use DDG::Spice;
-use String::Trim;
 use Moo;
 
 with('DDG::SpiceRole::Translate');

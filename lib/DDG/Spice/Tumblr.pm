@@ -12,15 +12,11 @@ topics "everyday", "social";
 category "entertainment";
 attribution github => ['https://github.com/nilnilnil','Caine Tighe'],
             twitter => ['http://twitter.com/__nil','caine tighe'];
-status "disabled";
 
-#triggers query_lc => qr/^(?:tumblr\s+)([^\s]+)$/;
-#triggers startend => "tumblr";
-triggers query_lc => qr/^tumblr\s+(.+)$/;
+triggers any => "tumblr"/;
 
-#handle query_lc => sub {
-handle matches => sub {
-    return $_[0];
+handle remainder => sub {
+    return $_ if $_;
 };
 
 'im a little teapot';

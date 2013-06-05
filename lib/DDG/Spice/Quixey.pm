@@ -15,7 +15,6 @@ category "entertainment";
 topics "everyday", "special_interest";
 attribution github => ['https://github.com/duckduckgo', 'DuckDuckGo'],
             twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
-status "enabled";
 
 # Variable Definitions
 my %custom_ids = (2005 => 75675980, 2004 => 78989893);

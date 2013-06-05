@@ -1,7 +1,6 @@
 package DDG::Spice::Bible;
 
 use DDG::Spice;
-use File::Slurp;
 
 primary_example_queries "genesis 15:7";
 secondary_example_queries "bible genesis 26:4";

@@ -1,11 +1,9 @@
 package DDG::Spice::Airlines;
 
 use DDG::Spice;
-use Data::Dumper;
 
 primary_example_queries "AA 102";
 secondary_example_queries "Delta 3684";
-
 description "Flight information";
 name "Flight";
 icon_url "/i/flightaware.com.ico";

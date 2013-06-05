@@ -3,11 +3,6 @@ package DDG::Spice::BigHuge;
 
 use DDG::Spice;
 
-spice from => '([^/]+)/([^/]+)';
-spice to => 'http://words.bighugelabs.com/api/2/{{ENV{DDG_SPICE_BIGHUGE_APIKEY}}}/$1/json?callback={{callback}}';
-
-triggers startend => "synonyms", "synonym", "antonyms", "antonym", "related", "similar", "thesaurus";
-
 primary_example_queries "synonyms for person";
 secondary_example_queries "similar words to miniature";
 description 'Related words';
@@ -18,6 +13,11 @@ topics "music", "words_and_games";
 category  "language";
 attribution github => ['https://github.com/lactose','lactose'],
            twitter => ['http://twitter.com/hackariah','zachariah'];
+
+spice from => '([^/]+)/([^/]+)';
+spice to => 'http://words.bighugelabs.com/api/2/{{ENV{DDG_SPICE_BIGHUGE_APIKEY}}}/$1/json?callback={{callback}}';
+
+triggers startend => "synonyms", "synonym", "antonyms", "antonym", "related", "similar", "thesaurus";
 
 handle query_lc => sub {
   if (/^(synonyms?|antonyms?|related|similar|thesaurus)\s+(?:terms?|words?)?\s*(?:of|to|for)?\s*([\w\s]+)$/) {

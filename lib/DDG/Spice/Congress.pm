@@ -12,7 +12,7 @@ source "The New York Times";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Congress.pm";
 topics "special_interest", "trivia";
 category "facts";
-attribution web => ['http://kevinschaul.com','Kevin Schaul'],
+attribution web =>   ['http://kevinschaul.com','Kevin Schaul'],
             email => ['kevin.schaul@gmail.com','Kevin Schaul'];
 
 spice to => 'http://api.nytimes.com/svc/politics/v3/us/legislative/congress/112/$1/members.json?state=$2&api-key={{ENV{DDG_SPICE_CONGRESS_APIKEY}}}';
@@ -135,7 +135,7 @@ handle query_lc => sub {
 
     # Regex returns a space after $1, so we must remove it before hashing
     $state1 = rtrim($state1);
-    
+
     if (exists $states{$state1}) {
         $state = $states{$state1};
     } elsif (exists $states{$state2}) {

@@ -12,7 +12,6 @@ topics "sysadmin", "programming";
 category "programming";
 attribution github  => ['https://github.com/remixz', 'remixz'],
             twitter => ['https://twitter.com/zachbruggeman', 'zachbruggeman'];
-status "enabled";
 
 spice to => 'http://registry.npmjs.org/$1/latest';
 spice wrap_jsonp_callback => 1;

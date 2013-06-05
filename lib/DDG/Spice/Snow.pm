@@ -2,11 +2,8 @@ package DDG::Spice::Snow;
 
 use DDG::Spice;
 
-spice to => 'http://isitsnowingyet.org/api/check/$1/key/{{ENV{DDG_SPICE_SNOW_APIKEY}}}';
-
 primary_example_queries "is it snowing?";
 secondary_example_queries "is it snowing in New York City?";
-
 description "Check weather conditions at your location";
 name "Snow";
 icon_url "/icon16.png";
@@ -18,7 +15,9 @@ attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
             github => [ 'https://github.com/duckduckgo', 'duckduckgo'],
             twitter => ['http://twitter.com/duckduckgo', 'duckduckgo'];
 
-triggers query_lc => qr/snow(?:ing)?/i;
+spice to => 'http://isitsnowingyet.org/api/check/$1/key/{{ENV{DDG_SPICE_SNOW_APIKEY}}}';
+
+triggers any => "snow", "snowing";
 
 my %snow = map { $_ => undef } (
     'is it going to snow',
@@ -33,7 +32,6 @@ my %snow = map { $_ => undef } (
     'going to snow today',
     'is it snowing yet'
 );
-
 
 handle query_lc => sub {
     my $query = $_;

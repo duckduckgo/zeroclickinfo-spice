@@ -4,10 +4,6 @@ package DDG::Spice::Gravatar;
 use DDG::Spice;
 use Digest::MD5 qw(md5_hex);
 
-triggers startend => "gravatar", "avatar of", "gravatar of";
-
-spice to => 'http://en.gravatar.com/$1.json?callback={{callback}}';
-
 primary_example_queries 'gravatar gravatar@duckduckgo.com';
 secondary_example_queries 'gravatar duckduckhack';
 description "Gravatar profile";
@@ -17,6 +13,10 @@ topics "special_interest", "social";
 category "ids";
 attribution github => ['https://github.com/adman','Adman'],
             twitter => ['http://twitter.com/adman_X','adman_X'];
+
+triggers startend => "gravatar", "avatar of", "gravatar of";
+
+spice to => 'http://en.gravatar.com/$1.json?callback={{callback}}';
 
 handle remainder => sub {
     #Remove whitespace.

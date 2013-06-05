@@ -14,7 +14,6 @@ category "computing_tools";
 attribution github => ['https://github.com/adman','Adman'],
            twitter => ['http://twitter.com/adman_X','adman_X'];
 
-
 my @triggers = share('triggers.txt')->slurp;
 triggers any => @triggers;
 

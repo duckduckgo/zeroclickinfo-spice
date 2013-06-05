@@ -11,7 +11,6 @@ category "language";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Dictionary/Definition.pm";
 attribution web => ['http://duckduckgo.com', 'DuckDuckGo'],
             twitter => ['http://twitter.com/duckduckgo', '@duckduckgo'];
-status "enabled";
 
 spice to => 'https://api.wordnik.com/v4/word.json/$1/definitions?includeRelated=true&useCanonical=true&includeTags=true&limit=3&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}';
 triggers startend => "define", "define:", "definition", "definition of", "definition of:";

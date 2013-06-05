@@ -3,7 +3,6 @@ package DDG::Spice::Lastfm::TopTracks;
 
 use DDG::Spice;
 
-
 primary_example_queries "popular songs";
 secondary_example_queries "top tracks", "popular songs in the philippines";
 description "Popular songs";

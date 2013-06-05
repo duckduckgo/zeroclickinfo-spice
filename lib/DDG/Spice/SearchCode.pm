@@ -6,16 +6,14 @@ use File::Slurp;
 name "SearchCode";
 description "search through APIs and open source repositories";
 source "Search[code]";
-attribution twitter => ["https://twitter.com/boyter", "boyter"],
-			github => ["https://github.com/boyter", "Ben Boyter"];
 primary_example_queries "underscore.js bind";
 secondary_example_queries "php print_r";
 category "reference";
 topics "programming";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SearchCode.pm";
 icon_url "/i/searchco.de.ico";
-status "enabled";
-
+attribution twitter => ["https://twitter.com/boyter", "boyter"],
+			github => ["https://github.com/boyter", "Ben Boyter"];
 
 my @triggers = share('triggers.txt')->slurp;
 triggers startend => @triggers;

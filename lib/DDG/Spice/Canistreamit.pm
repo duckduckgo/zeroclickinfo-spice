@@ -2,10 +2,6 @@ package DDG::Spice::Canistreamit;
 
 use DDG::Spice;
 
-spice to => 'http://www.canistream.it/ddg/query/$1?callback={{callback}}';
-
-triggers any => "stream", "watch", "streaming";
-
 primary_example_queries "watch pirates of the caribbean";
 secondary_example_queries "can I stream indie game";
 description "Find out how to watch movies";
@@ -16,7 +12,12 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "entertainment";
 category "entertainment";
 attribution github => ['https://github.com/CanIStreamIt','CanIStream.it'],
-            twitter => ['https://twitter.com/CanIStreamIt','CanIStream.It'],
+            twitter => ['https://twitter.com/CanIStreamIt','CanIStream.It'];
+
+spice to => 'http://www.canistream.it/ddg/query/$1?callback={{callback}}';
+
+triggers any => "stream", "watch", "streaming";
+
             email => ['canistreamit@gmail.com','CanIStream.It'];
 
 handle remainder => sub {
