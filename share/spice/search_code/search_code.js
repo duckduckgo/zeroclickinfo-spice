@@ -1,25 +1,25 @@
-function ddg_spice_search_code(response) {
-    var query = response.query;
-    var data = response.results;
+function ddg_spice_search_code(api_response) {
+    var query = api_response.query;
+    var data = api_response.results;
 
     if(!data.length || !data.length > 0) return;
 
     var searchterm; // holds the search term
     var result; // holds the main result
 
-	for (var i = 0; i < data.length; i++) {
-	    var tmp_result = data[i];
-	    if (!DDG.isRelevant(tmp_result.name
+    for (var i = 0; i < data.length; i++) {
+        var tmp_result = data[i];
+        if (!DDG.isRelevant(tmp_result.name
                                 + ' ' + tmp_result.displayname
                                 + ' ' + tmp_result.namespace,
-                            '',
+                            [],
                             2))
             continue;
-	    result = tmp_result;
-	    break;
-	}
+        result = tmp_result;
+        break;
+    }
 
-	if (!result) {
+    if (!result) {
         return;
     }
 
