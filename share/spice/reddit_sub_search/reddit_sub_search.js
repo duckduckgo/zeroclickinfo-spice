@@ -1,4 +1,5 @@
 function ddg_spice_reddit(api_response) {
+    "use strict";
 
     Spice.render({
         data              : api_response.data,
@@ -7,11 +8,13 @@ function ddg_spice_reddit(api_response) {
         source_name       : 'Reddit',
         template_normal   : 'reddit_sub_search',
         force_big_header  : true,
-        force_space_after : true,
+        force_space_after : true
     });
-};
+}
 
 Handlebars.registerHelper("unescape", function(escaped, options) {
+    "use strict";
+
     var unescape = {
         "&amp": "&",
         "&lt": "<",
@@ -32,5 +35,7 @@ Handlebars.registerHelper("unescape", function(escaped, options) {
 });
 
 Handlebars.registerHelper("formatSubscribers", function(subscribers) {
+    "use strict";
+
     return String(subscribers).replace(/(\d)(?=(\d{3})+(\.\d+|)\b)/g, "$1,");
 });
