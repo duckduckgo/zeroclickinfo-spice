@@ -28,7 +28,45 @@ function ddg_spice_quixey (api_result) {
         var res,
             apps = [],
             backupApps = [],
-            categories = /action|adventure|arcade|board|business|casino|design|developer tools|dice|education|educational|entertainment|family|finance|graphics|graphics and design|health and fitness|kids|lifestyle|medical|music|networking|news|photography|productivity|puzzle|racing|role playing|simulation|social networking|social|sports|strategy|travel|trivia|utilities|video|weather/i,
+            categories = [
+                "action",
+                "adventure",
+                "arcade",
+                "board",
+                "business",
+                "casino",
+                "design",
+                "developer tools",
+                "dice",
+                "education",
+                "educational",
+                "entertainment",
+                "family",
+                "finance",
+                "graphics",
+                "graphics and design",
+                "health and fitness",
+                "kids",
+                "lifestyle",
+                "medical",
+                "music",
+                "networking",
+                "news",
+                "photography",
+                "productivity",
+                "puzzle",
+                "racing",
+                "role playing",
+                "simulation",
+                "social networking",
+                "social",
+                "sports",
+                "strategy",
+                "travel",
+                "trivia",
+                "utilities",
+                "video",
+                "weather"],
             skip_words = [
                 "app",
                 "apps",
@@ -53,6 +91,7 @@ function ddg_spice_quixey (api_result) {
                 "search"
             ];
 
+        categories = new RegExp(categories.join("|", "i"));
         for (var i = 0; i < results.length; i++) {
 
             app = results[i];
