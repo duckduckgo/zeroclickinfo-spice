@@ -1,4 +1,4 @@
-function ddg_spice_reddit(response) {
+function ddg_spice_reddit(api_result) {
     var query = DDG.get_query();
     var subreddit = query.match(/\/?r\/\w+/);
     var restrict_sr = false;
@@ -6,30 +6,22 @@ function ddg_spice_reddit(response) {
 
     if (subreddit) {
         subreddit = subreddit[0];
-        restrict_sr = 'true';
-    } else if (query.split(' ')[0] == 'subreddit') {
-        subreddit = query.split(' ')[1];
-        restrict_sr = 'true';
+        restrict_sr = true;
     }
-    if (restrict_sr == 'true') {
-        subreddit.replace(/^\/?r\//g, '');
-        header = '(<a href="http://reddit.com' + subreddit
-               + '">subreddit ' + subreddit + '</a>)';
-    }
+
     query = query.replace(/^\s*(\/?r\/\w+|reddit|subreddit\s*\w+)\s+/, "");
     header = query + ' ' + header;
 
     var source = "http://www.reddit.com/r/";
     if (restrict_sr) {
-        source += subreddit.substr(3)
+        source += subreddit.replace(/\/?r\//, "")
                 + '/search?q=' + query
-                + '&restrict_sr=true&sort=relevance';
+                + '&restrict_sr=on&sort=relevance';
     } else {
-        source += 'duckduckgo/search?q=' + query
-                + '&restrict_sr=false&sort=relevance';
+        source += '/search?q=' + query;
     }
 
-    var repositories = response.data.children.splice(0, 4)
+    var repositories = api_result.data.children.splice(0, 4)
                        .map(function(repository) {
                            repository = repository.data;
                            repository.comments = repository.num_comments + " comment"
