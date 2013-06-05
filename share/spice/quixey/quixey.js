@@ -91,7 +91,7 @@ function ddg_spice_quixey (api_result) {
                 "search"
             ];
 
-        categories = new RegExp(categories.join("|", "i"));
+        categories = new RegExp(categories.join("|"), "i");
         for (var i = 0; i < results.length; i++) {
 
             app = results[i];
