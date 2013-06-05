@@ -9,7 +9,6 @@ function ddg_spice_reddit(api_response) {
         force_big_header  : true,
         force_space_after : true,
     });
-    // subreddit.subscribers = response.subscribers.toString().replace(/(\d)(?=(\d{3})+(\.\d+|)\b)/g, "$1,");
 };
 
 Handlebars.registerHelper("unescape", function(escaped, options) {
