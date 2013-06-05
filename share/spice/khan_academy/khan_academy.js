@@ -38,10 +38,10 @@ function ddg_spice_khan_academy ( api_result ) {
 	resizeDetail();
 
 	function resizeDetail() {
-		var $detail = $("#ddgc_detail");
-		var width = $detail.width();
+		var $frame = $("#ddgc_frame");
+		var width = $frame.width();
 		var height = Math.floor(width * 0.5625) + 30;	//30px for player menu
-		$detail.height(height);
+		$("#ddgc_detail").height(height);
 	};
 	
 	$(document).ready(function() {
