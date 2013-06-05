@@ -28,7 +28,7 @@ Handlebars.registerHelper("unescape", function(escaped, options) {
     });
 
     // Remove all the tags.
-    options.hash.maxlen = "200";
+    options.hash.maxlen = "150";
     return Handlebars.helpers.condense(html.replace(/<\/?[^>]+>/g, ""), options);
 });
 
