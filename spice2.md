@@ -388,7 +388,7 @@ As you can see this is a pretty simple function, it takes a number as input, and
 Now that you've seen a more advanced plugin and understand how to use Handlebars helpers, lets look at another advanced plugin example.
 
 ##Example #4 - Quixey (Advanced Carousel Plugin)
-The Quixey plugin is one of our more advanced carousel plugins which uses a considerable amount of Handlebars helpers and similarly to the **Movie** plugin has a relevancy checking component. Let's begin by taking a look at the Quixey plugin's Javascript:
+The Quixey plugin is one of our more advanced carousel plugins which uses a considerable amount of Handlebars helpers and similarly to the **Movie** plugin has a relevancy checking component. Let's begin by taking a look at the Quixey plugin's JavaScript:
 
 ######quixey.js
 ```javascript
@@ -663,7 +663,7 @@ Handlebars.registerHelper("quixey_star", function() {
 This helper is also very simple, but it is important because it uses the `DDG.get_asset_path()` function which returns the URI for an asset stored in a plugin's share folder. This is necessary because Spice plugins and their content are versioned internally. So the URI returned by this function will contain the proper version number, which is required to access any assets.
 
 ##Example #5 - Dictionary (More Advanced Plugin)
-The dictionary plugin is a more advanced plugin than the previous examples, because it requires multiple endpoints (which means it has multiple perl modules -`.pm` files) in order to function properly. You will notice the `definition` endpoint is a subdirectory of the `dictionary` directory: `zeroclickinfo-spice/share/spice/dictionary/definition/`. In the case of the **Dictionary** plugin, its Perl modules work together as one plugin, however if the other endpoints worked seperately from the `definition` endpoint, such as they do in the **[Last.FM](https://github.com/duckduckgo/zeroclickinfo-spice/tree/spice2/share/spice/lastfm)** plugin, they too would each have their own subdirectories and would also each have their own respective Javascript, Handlebars and CSS files. 
+The dictionary plugin is a more advanced plugin than the previous examples, because it requires multiple endpoints (which means it has multiple perl modules -`.pm` files) in order to function properly. You will notice the `definition` endpoint is a subdirectory of the `dictionary` directory: `zeroclickinfo-spice/share/spice/dictionary/definition/`. In the case of the **Dictionary** plugin, its Perl modules work together as one plugin, however if the other endpoints worked seperately from the `definition` endpoint, such as they do in the **[Last.FM](https://github.com/duckduckgo/zeroclickinfo-spice/tree/spice2/share/spice/lastfm)** plugin, they too would each have their own subdirectories and would also each have their own respective JavaScript, Handlebars and CSS files. 
 
 To begin, lets look at the first callback function definition in the Dictionary javascript:
 
@@ -1032,7 +1032,7 @@ Handlebars.registerHelper("format", function(text) {
 
 This helper is used to create hyperlinks within the word definition text. The Wordnik API we are using for this plugin provides definitions which often contain words or phrases that are wrapped in `<xref>` tags indicating that Wordnik also has a definition for that word or phrase. This helper is used to replace the `<xref>` tags with `<a>` tags that link to a search for that particular word on **Wordnik.com**.
 
-Now that we have seen the Handlebars template and all looked over all the Javascript related to the dictionary plugin, lets take a look at the CSS used to style the display of the result:
+Now that we have seen the Handlebars template and all looked over all the JavaScript related to the dictionary plugin, lets take a look at the CSS used to style the display of the result:
 
 ######dictionary_definition.css
 ```css
@@ -1099,17 +1099,17 @@ Now that we have seen the Handlebars template and all looked over all the Javasc
 
 Understanding this CSS isn't terribly important in this case because most of it has been borrowed from the [Skeleton](http://getskeleton.com) framework's button styling. Most of this CSS is specific to the `.widget-button` class and is used to style the look of the play button. Also its worth mentioning that this particular CSS has been written to be very cross-browser compatible as you can see by the comments which indicate the browsers each line has been written for.
 
-As you can see, the Dictionary plugin is one of the most involved Spice plugins we have due to its use of multiple endpoints and their respective callback functions. Most plugins however shouldn't need to be so complex in order to function, so we greatly prefer that plugins are built as simple and straighforward as possible.
+As you can see, the Dictionary plugin is one of the most involved Spice plugins we have due to its use of multiple endpoints and their respective callback functions. Most plugins however shouldn't need to be so complex in order to function, so we greatly prefer that plugins are built as simple and straightforward as possible.
 
 ##Conclusion
-Now that you have completed the walkthrough you should have the required knowledge to go on and build your own plugins. More information about writing plugins is available below.
+Now that you have completed the walk through you should have the required knowledge to go on and build your own plugins. More information about writing plugins is available below.
 
 ------
 
 ##Advanced Techniques
 
 ###Slurping a Textfile (when you have a *lot* of trigger words...)
-Some plugins, such as the [****]() plugin
+Some plugins, such as the [**Zanran**](https://github.com/duckduckgo/zeroclickinfo-spice/blob/spice2/lib/DDG/Spice/Zanran.pm) and [**ExpandURL**](https://github.com/duckduckgo/zeroclickinfo-spice/blob/spice2/lib/DDG/Spice/ExpandURL.pm) plugins require a large list of trigger words due to the nature of the plugin. However, listing all those triggers in the Perl code can make it very difficult to read. As an easy fix, we have opted to list all the possible trigger words for each plugin in a `triggers.txt` file located in each plugin's respective share folder.
 
 ###Using API Keys
 (tbd)
@@ -1120,7 +1120,7 @@ Some plugins, such as the [****]() plugin
 ###Common Code for Spice Endpoints (.pm's)
 (tbd)
 
-###Common Javascript and Handlebars Templates
+###Common JavaScript and Handlebars Templates
 (tbd)
 
 ###Using Custom CSS
@@ -1176,32 +1176,46 @@ ex. "api_return"
 
 ##FAQ
 
-###I want to use this API but it doesn't have an endpoint for X. What should I do?
-Email them! - If you explain what its for, they might be willing to create and endpoint for you!
+###I want to use 'X' API, but it doesn't have an endpoint for 'Y'. What should I do?
+Email them! - If you explain what it's for, they might be willing to create and endpoint for you! If not, it's probably best to find an another API.
 
 ###Can I use an API that returns XML?
-Sorry but no. We currently don't support XML. We're considering it though...
+Sorry, but **no**. We currently don't support XML. We're considering it though...
 
-###Can I use an API that returns HTML? (or just a string)
-If the response is a single string, then yes - you can use `zci wrap_jsonp_callback`. You can read more about that [here](#). Or take a look at the [Automeme](https://github.com/duckduckgo/zeroclickinfo-spice/blob/spice2/lib/DDG/Spice/Automeme.pm#L8) plugin.
+###Can I use an API that returns HTML or a String? 
+If the response is a single string, then yes - you can use `zci wrap_jsonp_callback`. You can read more about that [here](#). Or take a look at the [Automeme](https://github.com/duckduckgo/zeroclickinfo-spice/blob/spice2/lib/DDG/Spice/Automeme.pm#L8) plugin. If the response is more complicated, then sorry but **no**.
 
-If the response is more complicated, then sorry but **no**.
+###Can I move the carousel detail area above the carousel?
+Yup - Checkout the [**Khan Academy Spice**](https://github.com/duckduckgo/zeroclickinfo-spice/blob/spice2/share/spice/khan_academy/khan_academy.js) for an example.
 
-###Can I move the carousel detail are above the carousel?
-Yup - See the Khan Academy Spice!
+All you need to do is set the `carousel_css_id` property in the `Spice.render()` call, and then use jQuery's `prependTo()` method, to move the detail area:
 
-###Can I add this JS library?
-Probably not. Maybe if it is very small. But only you should ask us first before writing a plugin that is dependant on another library. We prefer no third party libraries are used.
+```javascript
+Spice.render(){
+    ...
+    carousel_css_id: "my_unique_name",
+    ...
+}
+
+$("#ddgc_detail").prependTo("#my_unique_name");
+```
+
+This snippet uses jQuery to grab the **#ddgc\_detail** `<div>` from the DOM, and then moves it right in front of the **#my_unique_name** `<div>`.  
+
+**\*\*Note**: In order to move the carouse detail area, the `prependTo()` method must be used ***after*** the `Spice.render()` call because before that call, none of the `<div>`'s related to your Spice plugin exist in the DOM!
+
+###Can I use the 'X', 'Y' or 'Z' JavaScript library?
+Probably not. Maybe, if it is very small. But we prefer that no third party, extra libraries are used. ***Please*** ask us first before writing a plugin that is **dependent** on an extra library - we don't want you to waste your time and energy on something we can't accept!
 
 ###Can I use Coffeescript?
 No.
 
 ###What about...
-Nope.
+Nope. Just use JavaScript, please.
 
 ------
 
-##DDG Methods (Javascript)
+##DDG Methods (JavaScript)
 
 ###DDG.get_query()
 (tbd)
@@ -1246,4 +1260,11 @@ Nope.
 (tbd)
 
 ###Spice is_unsafe
+(tbd)
+
+------
+
+##Spice Helper Functions (perl)
+
+###share()
 (tbd)
