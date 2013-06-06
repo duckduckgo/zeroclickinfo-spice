@@ -110,18 +110,31 @@ Handlebars.registerHelper("getEpisodeInfo", function(episode, season) {
 ddg_spice_guidebox_getid.render = function(api_result) {
     "use strict";
 
-    Spice.render({
-        data : api_result,
-        header1 : "Watch full episodes of " + GB_global.query + " (Guidebox)",
-        force_big_header : true,
-        source_name : "Guidebox",
-        source_url : GB_global.more,
-        template_normal : "guidebox_getid",
-        template_frame : "carousel",
-        carousel_css_id: "guidebox_getid",
-        carousel_items : api_result.results.result,
-        force_no_fold  : 1
-    });
+    if (GB_global.type == "series"){
+        Spice.render({
+            data : api_result,
+            header1 : "Watch full episodes of " + GB_global.query + " (Guidebox)",
+            force_big_header : true,
+            source_name : "Guidebox",
+            source_url : GB_global.more,
+            template_normal : "guidebox_getid_series",
+            template_frame : "carousel",
+            carousel_css_id: "guidebox_getid",
+            carousel_items : api_result.results.result,
+            force_no_fold  : 1
+        });
+    } else if (GB_global.type == "movie"){
+        Spice.render({
+            data : api_result,
+            header1 : "Watch full " + GB_global.query + " (Guidebox)",
+            image_url : api_result.poster_120x171,
+            force_big_header : true,
+            source_name : "Guidebox",
+            source_url : GB_global.more,
+            template_normal : "guidebox_getid_movie",
+            force_no_fold  : 1
+        });
+    }
 
     $("a.GB_showHide").click(function(){
         if ($(this).data("target")){
