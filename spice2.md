@@ -290,7 +290,7 @@ A fairly simple function which calculates a score for a given movie based on the
                 next : currentbest;
     };
 ```
-As the comment explains, this function simply compares the score of two movies and returns the higher scoring movie. However, it is important to mention the use of the function `DDG.isRelevant()`. This is a special internal function which compares the input string to the current search query (i.e., the one that triggered this plugin), to see how relevant the string is with respect to the words in the query. `DDG.isRelevant()` also takes an **optional** second parameter which is an object containing sets of keys with a value of 1. The keys of this object, defined by the developer, will explicitly be ignored when comparing the query string against the candidate string. In our case we are comparing the title of the movie we are currently considering, `next.title`, against the search query and we explicitly ignore a set of words - mostly trigger words for the plugin - as defined above: `var ignore = {movie:1, film:1, rotten:1, rating:1, rt:1, tomatoes:1};`.
+As the comment explains, this function simply compares the score of two movies and returns the higher scoring movie. However, it is important to mention the use of the function `DDG.isRelevant()`. This is a special internal function which compares the input string to the current search query (i.e., the one that triggered this plugin), to see how relevant the string is with respect to the words in the query. `DDG.isRelevant()` also takes an **optional** second parameter which is an object containing sets of keys with a value of 1. The keys of this object, defined by the developer, will explicitly be ignored when comparing the query string against the candidate string. In our case we are comparing the title of the movie we are currently considering, `next.title`, against the search query and we explicitly ignore a set of words - mostly trigger words for the plugin - as defined above: `var ignore = ["movie", "film", "rotten", "rating", "rt", "tomatoes"];`.
 
 ```javascript
     result = DDG_bestResult(this.movies, better);
@@ -432,7 +432,7 @@ function getRelevants (results) {
         apps = [],
         backupApps = [],
         categories = /action|adventure|arcade|board|business|casino|design|developer tools|dice|education|educational|entertainment|family|finance|graphics|graphics and design|health and fitness|kids|lifestyle|medical|music|networking|news|photography|productivity|puzzle|racing|role playing|simulation|social networking|social|sports|strategy|travel|trivia|utilities|video|weather/i,
-        skip_words = {"app": 1, "apps": 1, "application": 1, "applications": 1, "android": 1, "droid": 1, "google play store": 1, "google play": 1, "windows phone": 1, "windows phone 8": 1, "windows mobile": 1, "blackberry": 1, "apple app store": 1, "apple app": 1, "ipod touch": 1, "ipod": 1, "iphone": 1, "ipad": 1, "ios": 1, "free": 1, "search": 1};
+        skip_words = ["app", "apps", "application", "applications", "android", "droid", "google play store", "google play", "windows phone", "windows phone 8", "windows mobile", "blackberry", "apple app store", "apple app", "ipod touch", "ipod", "iphone", "ipad", "ios", "free", "search"];
         
     for (var i = 0; i < results.length; i++) {
 
