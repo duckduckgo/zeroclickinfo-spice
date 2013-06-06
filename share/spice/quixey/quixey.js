@@ -79,6 +79,7 @@ function ddg_spice_quixey (api_result) {
                 "windows phone 8",
                 "windows mobile",
                 "blackberry",
+                "playbook",
                 "apple app store",
                 "apple app",
                 "ipod touch",

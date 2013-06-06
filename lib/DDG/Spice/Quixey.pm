@@ -60,9 +60,10 @@ handle query_parts => sub {
 	$max_price = 0 if ($full_query =~ s/\bfree\b//ig);
 
 	# check if device mentioned, if so verify app search intent
-	if ($full_query =~ qr/\b(iphone|ipad|ipod|blackberry|playbook)\b/) {
+	if ($full_query =~ qr/\b(iphone|ipad|ipod|ios|blackberry|playbook|android)\b/) {
 		my $device = $1;
-		return unless ($full_query =~ qr/(?:on|for)\s+$device/i or $full_query =~ qr/apps?/i );
+		return unless ($full_query =~ qr/\b(?:on|for)\s+$device/i or $full_query =~ qr/\bapps?|quixey\b/i );
+		$full_query =~ s/(on|for)\s+$device/ $device/gi;
 	}
 
 	# check for platform specific trigger in query
