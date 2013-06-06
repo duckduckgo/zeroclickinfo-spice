@@ -107,20 +107,27 @@ while (@t) {
 };
 
 # FAILING TESTS
-# No Postal Code
-# These should trigger but not make an API call
+# These queries should NOT trigger the plugin
 
 my @q = (
   # Queries with numbers
-  "windows 8 license",
-  "windows 8 skype keeps closing",
+  "androd broken on ebay",
+  "android broken phone",
   "android broken screen",
-  "ipone cracked screen",
-  "facebook android login blank",
-  "default iphone root password",
+  "android chargin cable",
+  "android random shutoff",
+  "android repair",
+  "android restart",
   "android uninstall google voice",
+  "best android games",
+  "contractor ios developer rates",
+  "default iphone root password",
+  "facebook android login blank",
+  "how to turn off android phone",
   "ios testing games",
-  "best android games"
+  "ipone cracked screen",
+  "windows 8 license",
+  "windows 8 skype keeps closing"
 );
 
 ddg_spice_test(
