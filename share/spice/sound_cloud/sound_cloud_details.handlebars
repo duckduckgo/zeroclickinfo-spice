@@ -1,6 +1,6 @@
 <ul class="playlist">
     <li class="sm2_stopped" onclick="ddg_spice_sound_cloud.player(this);">
-    <a data-stream="{{toHttps stream_url}}?client_id=df14a65559c0e555d9f9fd950c2d5b17" id="sound_{{id}}">{{title}} <span class="sidenote">by {{user.username}}</span></a>
+    <a data-stream="{{toHttps stream_url}}?client_id=df14a65559c0e555d9f9fd950c2d5b17" id="sound_{{id}}">{{condense title maxlen="40"}} <span class="sidenote">by {{user.username}}</span></a>
     <span class="sidenote">
         <span id="position">0:00</span>
         /
