@@ -37,9 +37,12 @@ var ddg_spice_guidebox_getid = function (api_result){
     GB_global.searched = api_result
 
     var second_call = ddg_spice_guidebox_getid.second_api_call;
+    var render = ddg_spice_guidebox_getid.render;
 
-    second_call(api_result);
-
+    if (GB_global.type !== "movie")
+        second_call(api_result);
+    else
+        render(api_result);
 };
 
 var ddg_spice_guidebox_lastshows = function (api_result){
@@ -127,11 +130,13 @@ ddg_spice_guidebox_getid.render = function(api_result) {
         Spice.render({
             data : api_result,
             header1 : "Watch full " + GB_global.query + " (Guidebox)",
-            image_url : api_result.poster_120x171,
             force_big_header : true,
             source_name : "Guidebox",
             source_url : GB_global.more,
             template_normal : "guidebox_getid_movie",
+            template_frame : "carousel",
+            carousel_css_id: "guidebox_getid",
+            carousel_items : api_result.results.result,
             force_no_fold  : 1
         });
     }
