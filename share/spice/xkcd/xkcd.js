@@ -12,8 +12,8 @@ function ddg_spice_xkcd(api_result) {
   });
 }
 
-Handlebars.registerHelper("previousNum", function(num) {
-  if(num > 0) {
-    return num - 1;
-  }
+Handlebars.registerHelper("previousNum", function(num, options) {
+    if(num > 1) {
+        return options.fn({num: num - 1});
+    }
 });
