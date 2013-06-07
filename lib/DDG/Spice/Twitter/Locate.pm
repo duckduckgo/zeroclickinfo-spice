@@ -14,7 +14,7 @@ handle matches => sub {
     my ($location) = @_;
     return $location if $location;
     return 'world';
-    # `world` will return woeid `1`, which is used for Twitter's gloabl
+    # `world` will return woeid `1`, which is used for Twitter's global
     # trending topics search.
 };
 
