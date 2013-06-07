@@ -4,14 +4,14 @@
  */
 var ddg_spice_movie = function(api_result) {
 
-  if (api_result.total === 0) return;
+    if (api_result.total === 0) return;
 
-	Spice.render({
+    Spice.render({
             data: api_result,
             source_name: 'Rotten Tomatoes',
-            template_normal: "movie_alt",
+            template_normal: "movie",
             template_small: "movie_small",
-						force_no_fold: 1
+            force_no_fold: 1
             // source_url, image_url, header set in relevantMovie helper function below
         });
 };
@@ -27,7 +27,7 @@ var ddg_spice_movie = function(api_result) {
  *
  */
 Handlebars.registerHelper("relevantMovie", function(options) {
-    var ignore = ["movie", "film", "rotten", "rating", "rt", "tomatoes"];
+    var ignore = ["movie", "film", "rotten", "rating", "rt", "tomatoes", "release date"];
     var result, max_score = 0;
 
     // assign a ranking value for the movie. this isn't a complete sorting value though
@@ -68,6 +68,11 @@ Handlebars.registerHelper("relevantMovie", function(options) {
     this.ddh.image_url = (result.posters.thumbnail || 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif');
     this.ddh.header1 = result.title + checkYear(result.year);
 
+    if ((result.synopsis && result.synopsis.length) ||
+        (result.critics_consensus && result.critics_consensus.length)){
+        result.hasContent = true;
+    }
+
     // invoke the body of the block with the relevant movie as the context
     return options.fn(result);
 });
@@ -82,27 +87,25 @@ Handlebars.registerHelper("relevantMovie", function(options) {
  *   'a'  PG rated movie
  */
 Handlebars.registerHelper("rating_adjective", function() {
-        return (this.mpaa_rating === "R"
-             || this.mpaa_rating === "NC-17"
-             || this.mpaa_rating === "Unrated") ?  "an" :"a";
+    return (this.mpaa_rating === "R"
+         || this.mpaa_rating === "NC-17"
+         || this.mpaa_rating === "Unrated") ?  "an" :"a";
 });
-
 
 /* star rating */
 Handlebars.registerHelper("star_rating", function(score) {
-        var r = (score / 20) - 1;
-        var s = "";
+    var r = (score / 20) - 1;
+    var s = "";
 
-        if (r > 0) {
-            for (var i = 0; i < r; i++) {
-                s += "&#9733;";
-            }
+    if (r > 0) {
+        for (var i = 0; i < r; i++) {
+            s += "&#9733;";
         }
+    }
 
-        if (s.length == 0) {
-            s = "(0)";
-        }
+    if (s.length == 0) {
+        s = "(0)";
+    }
 
-        return s;
+    return s;
 });
-

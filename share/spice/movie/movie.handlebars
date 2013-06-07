@@ -1,21 +1,36 @@
-
 {{#relevantMovie}}
 
-{{title}} ({{year}}) is {{rating_adjective}} {{mpaa_rating}} movie
+    <div id="movie_data_box" {{#if hasContent}}class="half-width"{{/if}}>
 
-({{ratings.critics_rating}},
- {{ratings.critics_score}}% critics,
- {{ratings.audience_score}}% audience approved)
+        <div>
+            <span class="movie_data_item">
+                <span class="movie_star_rating">{{{star_rating ratings.critics_score}}}</span>
+            </span>
+            <span class="movie_critics_rating">{{ratings.critics_rating}}</span>
+            <div class="movie_data_description">
+            ({{ratings.critics_score}}% critics,
+             {{ratings.audience_score}}% audience approved)
+            </div>
+        </div>
 
-starring
+        <div><span class="movie_data_item">MPAA rating:</span>{{mpaa_rating}}</div>
+        <div><span class="movie_data_item">Running time:</span>{{runtime}} minutes</div>
 
-    {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
+        {{#if abridged_cast}}
+            <div><span class="movie_data_item">Starring:</span>
+                {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
+            </div>
+        {{/if}}
 
-    {{#if synopsis}}
-        {{condense synopsis maxlen="135"}}
-    {{else}}
-        {{condense critics_consensus maxlen="135"}}
+    </div>
+    {{#if hasContent}}
+        <span>
+            {{#if synopsis}}
+                {{condense synopsis maxlen="230"}}
+            {{else}}
+                {{condense critics_consensus maxlen="230"}}
+            {{/if}}
+        </span>
     {{/if}}
 
 {{/relevantMovie}}
-
