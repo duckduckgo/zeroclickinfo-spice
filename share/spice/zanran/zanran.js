@@ -29,8 +29,5 @@ function ddg_spice_zanran(api_result) {
 
 Handlebars.registerHelper("preview_link", function() {
     var s = this.preview_url;
-    console.log("I GOT TRIGGERED");
-    console.log(s);
-    console.log(s.indexOf("zanran"));
     return (s.indexOf("zanran")) ? this.preview_url : "http://zanran.com" + this.preview_url;
 });
