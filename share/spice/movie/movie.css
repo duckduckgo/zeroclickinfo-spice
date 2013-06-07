@@ -15,7 +15,8 @@
 }
 
 .movie_star_rating {
-    color:red;
+    color:gold;
+    text-shadow: 1px 1px black, 0px 1px black
 }
 
 .movie_data_item {
