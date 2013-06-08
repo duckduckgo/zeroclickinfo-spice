@@ -1,16 +1,18 @@
 #Spice Frontend
 
 ##Overview
-The Spice frontend is the code that is triggered by the Perl backend that you wrote. It mainly consists of a function that takes an API response as its parameter. From this API response, you call a function that renders the data and specifies which template format you'd like your data to have.
+The Spice frontend is the code that is triggered by the Perl backend ( which hopefully you already wrote) for your spice plugin. It mainly consists of a function (the Spice "callback" function) that takes a JSON formatted, API response as its input, specifies which template format you'd like your result to have and uses the data to render a Spice result at the top of the DuckDuckGo search results page.
 
-The Perl part of the plugins go in `lib/DDG/Spice/PluginName.pm`, while all of the files discussed below should go in `share/spice/plugin_name/`.
+The Perl part of the plugins go in lib directory: `lib/DDG/Spice/PluginName.pm`, while all of the frontend files discussed below should go in the share directory: `share/spice/plugin_name/`.
+
+**\*\*Note** : The file and folder names must adhere to our [naming conventions](#) in order for everything to function properly.
 
 ###Tech
-The Spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and includes [jQuery](https://jquery.org) for use with JavaScript.
+The Spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and includes [jQuery](https://jquery.org) for use with JavaScript. It also allows the use of custom CSS when required.
 
-If you're not already familiar with Handlebars, *please* read the [Handlebars documentation](http://handlebarsjs.com) before continuing continuing on. Don't worry if you don't fully understand how to use Handlebars, the examples will explain but you should, at the very least, be familiarize yourself with Handlebars before moving on.
+If you're not already familiar with Handlebars, *please* read the [Handlebars documentation](http://handlebarsjs.com) before continuing on. Don't worry if you don't fully understand how to use Handlebars, the examples will explain but you should, at the very least, familiarize yourself with Handlebars concepts and terminology before moving on. (Don't worry, it should only take a few minutes to read!)
 
-Also, if you are unfamiliar with jQuery, you can familiarize yourself with that if you'd like, but jQuery is not required to write a Spice plugin.
+Also, if you are unfamiliar with jQuery, you can familiarize yourself with that if you'd like, but understand and using jQuery is not required for you to write a Spice plugin.
 
 Below, we will walk you through several examples ranging from simple to complicated, which will explain how to use the template system and make your plugins look awesome.
 
@@ -23,7 +25,6 @@ Below, we will walk you through several examples ranging from simple to complica
 The NPM plugin [[link](https://duckduckgo.com/?q=npm+uglify-js)] [[code](https://github.com/duckduckgo/zeroclickinfo-spice/tree/master/share/spice/npm)] is a great example of a basic Spice implementation. Let's walk through it line-by-line:
 
 #####npm.js
-
 ```javascript
 var ddg_spice_npm = function(api_result) {
     if (api_result.error) return
@@ -42,11 +43,13 @@ var ddg_spice_npm = function(api_result) {
 
 `ddg_spice_npm()` is the function that the Perl module specifies -- it's the callback in the API response. This function will be called when the data returns from the upstream (API) provider.
 
+#####npm.js (continued)
 ```javascript 
 if (api_result.error) return
 ```
 Pretty self-explanatory - If the error object in the API result is defined, then break out of the function and don't show any results. In the case of this API, when the error object is defined, it means no results are given, so we have no data to use for a Spice result. 
 
+#####npm.js (continued)
 ```javascript
 Spice.render({
      data              : api_result,
@@ -81,7 +84,6 @@ Alright, so here is the bulk of the plugin, but it's very simple:
 Now, let's look at the NPM plugin's Handlebars template:
 
 ######npm.handlebars
-
 ```html
 <div>
     <div>{{{description}}}</div>
@@ -97,7 +99,7 @@ We've created two files in the Spice share directory (`share/spice/npm/`) :
 1. `npm.js` - which delegates the API's response and calls `Spice.render()`
 2. `npm.handlebars` - which specifies the plugin's HTML structure and determines which attributes of the API response are placed in the HTML result
 
-You may notice other plugins also include a css file. For **NPM** the use of CSS wasn't necesary and this is also true for many other plugins. If however CSS is needed it can be added. Please refer to the [FAQ](#) for more inforamtion about custom css.
+You may notice other plugins also include a css file. For **NPM** the use of CSS wasn't necesary and this is also true for many other plugins. If however CSS is needed it can be added. Please refer to the [Spice FAQ](#) for more inforamtion about custom css.
 
 ##Example #2 - Alternative.To (Basic Carousel Plugin)
 The Alternative.To plugin is very similar to NPM in that it is also relatively basic, however, it uses the new **Carousel** Spice Template. Let's take a look at the code and see how this is done:
@@ -1126,7 +1128,8 @@ Some plugins, such as the [**Zanran**](https://github.com/duckduckgo/zeroclickin
 ###Using Custom CSS
 (tbd)
 
-###Using images 
+###Using images
+(tbd)
 
 ------
 
@@ -1211,7 +1214,7 @@ Probably not. Maybe, if it is very small. But we prefer that no third party, ext
 No.
 
 ###What about...
-Nope. Just use JavaScript, please.
+Nope. Just use JavaScript, please and thanks.
 
 ------
 
@@ -1229,6 +1232,9 @@ Nope. Just use JavaScript, please.
 ###DDG.getRelevants()
 (tbd)
 (developers comparator function is required to assign a property of the candidate called comparable which is the string undergoing relevancy check in isRelevant)
+
+###DDG.get_asset_path()
+(tbd)
 
 ------
 
