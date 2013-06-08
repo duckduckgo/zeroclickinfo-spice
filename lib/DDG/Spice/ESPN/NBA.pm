@@ -3,8 +3,14 @@ package DDG::Spice::ESPN::NBA;
 use DDG::Spice;
 use Time::localtime;
 
-attribution web => ['http://dylansserver.com','Dylan Lloyd'],
-            email => ['dylan@dylansserver.com','Dylan Lloyd'];
+description "News and stats for NBA players";
+name "ESPN";
+primary_example_queries "Dwayne Wayde", "Kobe Bryant";
+topics "entertainment", "special_interest";
+category "reference";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/ESPN/NBA.pm";
+attribution web => ['http://duckduckgo.com', 'DuckDuckGo'],
+            twitter => ['http://twitter.com/duckduckgo', '@duckduckgo'];
 
 my %players = (
   'quincy acy' => 6576,
