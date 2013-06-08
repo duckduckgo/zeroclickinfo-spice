@@ -7,13 +7,13 @@ var ddg_spice_movie = function(api_result) {
     if (api_result.total === 0) return;
 
     Spice.render({
-            data: api_result,
-            source_name: 'Rotten Tomatoes',
-            template_normal: "movie",
-            template_small: "movie_small",
-            force_no_fold: 1
-            // source_url, image_url, header set in relevantMovie helper function below
-        });
+        data: api_result,
+        source_name: 'Rotten Tomatoes',
+        template_normal: "movie",
+        template_small: "movie_small",
+        force_no_fold: 1
+        // source_url, image_url, header set in relevantMovie helper function below
+    });
 };
 
 /*
@@ -41,9 +41,9 @@ Handlebars.registerHelper("relevantMovie", function(options) {
     // returns the more relevant of the two movies
     var better = function(currentbest, next) {
         return (score(next) > score(currentbest) // if score() returns undefined, this is false, so we're still ok
-                    && (next.year < currentbest.year)
-                    && DDG.isRelevant(next.title, ignore)) ?
-                next : currentbest;
+                && (next.year < currentbest.year)
+                && DDG.isRelevant(next.title, ignore)) ?
+                    next : currentbest;
     };
 
     result = DDG_bestResult(this.movies, better);
@@ -66,6 +66,7 @@ Handlebars.registerHelper("relevantMovie", function(options) {
     // this.ddh.relevantMovie = result;
     this.ddh.source_url = result.links.alternate;
     this.ddh.image_url = (result.posters.thumbnail || 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif');
+    this.ddh.image_max_width = "80px";
     this.ddh.header1 = result.title + checkYear(result.year);
 
     if ((result.synopsis && result.synopsis.length) ||
