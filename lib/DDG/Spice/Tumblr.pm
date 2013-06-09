@@ -11,7 +11,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday", "social";
 category "entertainment";
 attribution github => ['https://github.com/nilnilnil','Caine Tighe'],
-            twitter => ['http://twitter.com/__nil','caine tighe'];
+            twitter => ['http://twitter.com/__nil','__nil'];
 
 triggers any => "tumblr";
 

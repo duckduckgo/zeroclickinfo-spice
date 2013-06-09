@@ -15,13 +15,10 @@ function ddg_spice_bootic (api_result) {
 		source_name : 'Bootic',
 		source_url : 'http://www.bootic.com/?q=' + query,
 		header1 : api_result.input_query + ' ( Bootic )' ,
-
 		template_frame: "carousel",
 		template_normal: "bootic",
 		carousel_css_id: "bootic",
 		carousel_items: api_result.products,
-
-		force_no_fold : 1,
 		force_big_header : 1
 	});
 }

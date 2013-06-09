@@ -4,12 +4,12 @@ use DDG::Spice;
 
 primary_example_queries "arch package 9base";
 secondary_example_queries "archlinux package epiphany";
-description "Github info";
-name "Github";
+description "Lookup packages from the Archlinux user repository";
+name "AUR";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Aur.pm";
 topics "programming";
 category "programming";
-attribution twitter => 'crazedpsyc',
+attribution twitter => ['https://twitter.com/crazedpsyc', 'crazedpsyc'],
             cpan => 'CRZEDPSYC';
 
 spice to => 'https://aur.archlinux.org/rpc.php?type=search&arg=$1&callback={{callback}}';

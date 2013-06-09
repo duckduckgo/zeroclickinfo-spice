@@ -12,7 +12,7 @@ icon_url "/i/www.zanran.com.ico";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Zanran.pm";
 source "Zanran";
 attribution github => ["https://github.com/taw", "taw"],
-	        twitter => ["https://twitter.com/t_a_w", "Tomasz Wegrzanowski"];
+	        twitter => ["https://twitter.com/t_a_w", "t_a_w"];
 
 spice to => 'http://www.zanran.com/search/simple_json?callback={{callback}}&q=$1';
 

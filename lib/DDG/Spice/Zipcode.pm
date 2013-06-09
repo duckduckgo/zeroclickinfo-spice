@@ -15,7 +15,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 category "geography";
 topics "everyday", "geography", "travel";
 attribution github => ["https://github.com/almanackist", "Almanackist"],
-            twitter => ["https://twitter.com/cajoyce", "C. Alan Joyce"];
+            twitter => ["https://twitter.com/cajoyce", "cajoyce"];
 
 # Triggers
 my $zip_string = qr/(zip|post(al)?)\s*(code)?/;

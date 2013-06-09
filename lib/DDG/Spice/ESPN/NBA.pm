@@ -10,7 +10,7 @@ topics "entertainment", "special_interest";
 category "reference";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/ESPN/NBA.pm";
 attribution web => ['http://duckduckgo.com', 'DuckDuckGo'],
-            twitter => ['http://twitter.com/duckduckgo', '@duckduckgo'];
+            twitter => ['http://twitter.com/duckduckgo', 'duckduckgo'];
 
 my %players = (
   'quincy acy' => 6576,

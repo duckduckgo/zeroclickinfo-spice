@@ -11,7 +11,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday", "words_and_games";
 category "language";
 attribution github => ['https://github.com/moollaza','Zaahir Moolla'],
-           twitter => ['https://twitter.com/zmoolla','Zaahir Moolla'];
+           twitter => ['https://twitter.com/zmoolla','zmoolla'];
 
 triggers any => "forvo", "pronounce", "pronunciation", "how to pronounce", "pronounciation of", "how do you say", "how do you pronounce", "how to say";
 
@@ -33,7 +33,7 @@ handle remainder => sub {
 			$match = $1;
 			$remainder =~ s/\s*$match\s*//ig;
 		}
-		
+
 		foreach my $word (@words) {
 			$remainder =~ s/\s*\b$word\b\s*//ig;
 		}

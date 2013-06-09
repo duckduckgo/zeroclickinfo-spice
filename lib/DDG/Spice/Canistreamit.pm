@@ -12,7 +12,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "entertainment";
 category "entertainment";
 attribution github => ['https://github.com/CanIStreamIt','CanIStream.it'],
-            twitter => ['https://twitter.com/CanIStreamIt','CanIStream.It'];
+            twitter => ['https://twitter.com/CanIStreamIt','CanIStreamIt'];
 
 spice to => 'http://www.canistream.it/ddg/query/$1?callback={{callback}}';
 

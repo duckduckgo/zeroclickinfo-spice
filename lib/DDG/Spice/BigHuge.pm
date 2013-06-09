@@ -3,7 +3,7 @@ package DDG::Spice::BigHuge;
 
 use DDG::Spice;
 
-primary_example_queries "synonyms for person";
+primary_example_queries "synonyms for person", "thesaurus awesome";
 secondary_example_queries "similar words to miniature";
 description 'Related words';
 name "BigHuge";
