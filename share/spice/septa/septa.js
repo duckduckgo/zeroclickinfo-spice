@@ -1,5 +1,9 @@
 function ddg_spice_septa(api_result) {
-    console.log(api_result);
+    if (api_result.length < 1 ||
+            api_result[0].orig_line ||
+            api_result[0].orig_departure_time ||
+            api_result[0].orig_delay) return;
+
     var query = DDG.get_query().toLowerCase()
         .replace(/\s+septa|septa\s+/, '')
         .replace(/(next trains?|train times|train schedule)?( from| to)? /, '')
