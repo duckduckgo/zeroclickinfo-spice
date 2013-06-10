@@ -5,7 +5,8 @@ function ddg_spice_septa(api_result) {
         data              : api_result,
         source_name       : 'SEPTA',
         source_url        : 'http://www.septa.org/schedules/',
-        template_normal   : 'septa'
+        template_normal   : 'septa',
+        force_no_icon     : true
     });
 };
 
