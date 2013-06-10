@@ -17,12 +17,13 @@ spice to => 'http://www3.septa.org/hackathon/NextToArrive/$1/$2/5/';
 
 spice wrap_jsonp_callback => 1;
 
-triggers any => "next train", "train times", "train schedule";
+triggers any => "next train", "train times", "train schedule", "septa";
 
 spice from => '(.*)/(.*)';
 
 handle query_lc => sub {
-    /(?:next train|train times|train schedule)(?: from)? (.+)? to (.+)/;
+    s/\s+septa|septa\s+//;
+    /(?:next trains?|train times|train schedule)?(?: from)? (.+)? to (.+)/;
     my $curr = join " ", map { ucfirst(lc) } split /\s+/, $1;
     my $dest = join " ", map { ucfirst(lc) } split /\s+/, $2;
     return $curr, $dest;
