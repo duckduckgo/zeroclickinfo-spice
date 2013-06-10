@@ -4,23 +4,11 @@ function ddg_spice_septa(api_result) {
             !api_result[0].orig_departure_time ||
             !api_result[0].orig_delay) return;
 
-    var query = DDG.get_query().toLowerCase()
-        .replace(/\s+septa|septa\s+/, '')
-        .replace(/(next trains?|train times|train schedule)?( from| to)? /, '')
-        .replace(/\w\S*/g, function(txt) {
-            return txt.charAt(0).toUpperCase()
-                 + txt.substr(1).toLowerCase()
-        });
-    var from, to;
-    if (query.indexOf(" From ") != -1) {
-        places = query.split(" From ");
-        from = places[1];
-        to  = places[0];
-    } else if (query.indexOf(" To ") != -1) {
-        places = query.split(" To ");
-        from = places[0];
-        to  = places[1];
-    }
+    var script  = $("[src*='js/spice/septa/']")[0];
+    var source  = $(script).attr("src");
+    var parts   = source.split('/');
+    var from    = parts[4];
+    var to      = parts[5];
 
     Spice.render({
         data              : api_result,
