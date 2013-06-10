@@ -5,7 +5,7 @@ function ddg_spice_septa(api_result) {
             !api_result[0].orig_delay) return;
 
     var script  = $("[src*='js/spice/septa/']")[0];
-    var source  = $(script).attr("src");
+    var source  = unescape($(script).attr("src"));
     var parts   = source.split('/');
     var from    = parts[4];
     var to      = parts[5];
