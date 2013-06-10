@@ -29,7 +29,7 @@ Handlebars.registerHelper("createLinks", function(affiliates, options) {
         results = [];
 
     for(var index in affiliates) {
-        if(hasOwn.call(affiliates, index)) {
+        if(hasOwn.call(affiliates, index) && affiliates[index].price !== "") {
             affiliates[index].friendlyName = affiliates[index].friendlyName.replace(/ Rental$/, "");
             results.push(affiliates[index]);
         }
