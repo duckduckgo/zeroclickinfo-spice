@@ -3,8 +3,8 @@ function ddg_spice_septa(api_result) {
 
     Spice.render({
         data              : api_result,
-        source_name       : 'www.septa.org',
-        source_url        : 'www.septa.org',
+        source_name       : 'SEPTA',
+        source_url        : 'http://www.septa.org/schedules/',
         template_normal   : 'septa'
     });
 };
