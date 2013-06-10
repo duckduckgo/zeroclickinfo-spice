@@ -1,12 +1,14 @@
 // TODO: Probably better if we display all the plugins similar to https://www.mozilla.org/en-US/plugincheck/.
 // We can get that from window.navigator.plugins.
 var ddg_spice_flash_version = function() {
+    "use strict";
+
     var context = {version: "You're using " + YAHOO.util.FlashDetect.raw};
 
     // Check if Flash was detected.
     if(!YAHOO.util.FlashDetect.installed) {
-        context.version = "You don't have Flash installed"
-    } 
+        context.version = "You don't have Flash installed";
+    }
 
     // Display the plugin.
     Spice.render({
@@ -16,7 +18,7 @@ var ddg_spice_flash_version = function() {
         source_url       : 'https://get.adobe.com/flashplayer/',
         template_normal  : 'flash_version',
         force_big_header : true
-    }); 
+    });
 };
 
 // Manually call the function.

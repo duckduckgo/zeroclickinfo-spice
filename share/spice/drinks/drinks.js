@@ -1,4 +1,5 @@
 function ddg_spice_drinks(api_result) {
+    "use strict";
 
     if(!api_result || api_result.length === 0 || !api_result[0].name) {
         return;

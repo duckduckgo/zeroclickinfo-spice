@@ -1,4 +1,5 @@
 var ddg_spice_canistreamit = function(api_result) {
+    "use strict";
 
     if(api_result.length === 0) {
         return;
@@ -18,6 +19,8 @@ var ddg_spice_canistreamit = function(api_result) {
 };
 
 Handlebars.registerHelper("createLinks", function(affiliates, options) {
+    "use strict";
+
     var hasOwn = Object.prototype.hasOwnProperty,
         results = [];
 
@@ -34,6 +37,8 @@ Handlebars.registerHelper("createLinks", function(affiliates, options) {
 });
 
 Handlebars.registerHelper("createMore", function(links, options) {
+    "use strict";
+
     var results = [];
 
     if(links.rottentomatoes) {
