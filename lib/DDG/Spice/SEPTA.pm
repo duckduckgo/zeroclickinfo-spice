@@ -3,6 +3,7 @@ package DDG::Spice::SEPTA;
 use DDG::Spice;
 
 primary_example_queries "next train from Villanova to Paoli";
+secondary_example_queries "train times to paoli from Villanova";
 description "Lookup the next SEPTA train going your way";
 name "SEPTA";
 source "SEPTA";
