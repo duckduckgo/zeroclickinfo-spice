@@ -1,3 +1,5 @@
+nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
+
 var ddg_spice_forvo = function(api_result) {
     "use strict";
 
@@ -112,9 +114,7 @@ var ddg_spice_forvo = function(api_result) {
             // Load SoundManager2 if it hasn't already.
             if(!isLoaded && !isLoading) {
                 isLoading = true;
-                $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", function() {
-                    soundSetup(anchor);
-                });
+                soundSetup(anchor);
             // If SoundManager already loaded, we should just play the sound.
             } else if(isLoaded) {
                 playSound(anchor);
