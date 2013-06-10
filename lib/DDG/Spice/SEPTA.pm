@@ -23,10 +23,10 @@ spice from => '(.*)/(.*)';
 
 handle query_lc => sub {
     s/\s+septa|septa\s+//;
-    /(?:next trains?|train times|train schedule)?(?: from)? (.+)? to (.+)/;
-    my $curr = join " ", map { ucfirst(lc) } split /\s+/, $1;
-    my $dest = join " ", map { ucfirst(lc) } split /\s+/, $2;
-    return $curr, $dest;
+    /(?:next trains?|train times|train schedule)?(?: from| to)? (.+) (to|from) (.+)/;
+    my $curr = join " ", map { ucfirst } split /\s+/, $1;
+    my $dest = join " ", map { ucfirst } split /\s+/, $3;
+    return ($2 eq 'to' ? ($curr, $dest) : ($dest, $curr));
 };
 
 1;
