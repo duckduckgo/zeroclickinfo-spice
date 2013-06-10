@@ -1,8 +1,8 @@
 function ddg_spice_septa(api_result) {
     if (api_result.length < 1 ||
-            api_result[0].orig_line ||
-            api_result[0].orig_departure_time ||
-            api_result[0].orig_delay) return;
+            !api_result[0].orig_line ||
+            !api_result[0].orig_departure_time ||
+            !api_result[0].orig_delay) return;
 
     var query = DDG.get_query().toLowerCase()
         .replace(/\s+septa|septa\s+/, '')
