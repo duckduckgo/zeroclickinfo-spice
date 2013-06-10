@@ -8,11 +8,11 @@ function ddg_spice_septa(api_result) {
                  + txt.substr(1).toLowerCase()
         });
     var from, to;
-    if (query.indexOf(" From ")) {
+    if (query.indexOf(" From ") != -1) {
         places = query.split(" From ");
         from = places[1];
         to  = places[0];
-    } else if (query.indexOf(" To ")) {
+    } else if (query.indexOf(" To ") != -1) {
         places = query.split(" To ");
         from = places[0];
         to  = places[1];
