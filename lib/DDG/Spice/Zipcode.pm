@@ -82,10 +82,10 @@ handle query_lc => sub {
   # Check if postal code matches any known patterns
   if (m/^
           (
-              [a-z]{2} \s+ [a-z]{2} \b
+              [a-z]{2} \s* [a-z]{2} \b
             | \d{2} [a-z]+ [a-z\s]+ \d{2}
             | \d{3} \- \d{3} \- \d
-            | \d{6} \s+ \d{3} \- \d{3}
+            | \d{6} \s* \d{3} \- \d{3}
           )
       $/x) {
     $code = $1;
@@ -100,17 +100,17 @@ handle query_lc => sub {
   # Alphanumeric postal code edgecases
   elsif (m/^
             (
-                \d{4} \s+ \d{3,4}
-              | \d{4} \s+ [a-z]{1,2}
+                \d{4} \s* \d{3,4}
+              | \d{4} \s* [a-z]{1,2}
               | [a-z] \d [a-z] \s* \d [a-z] \d
-              | [a-z]{3} \s+ \d{3}
-              | [a-z]{2} \s+ \d{2}
-              | \d{3} \s+ \d{2,3}
+              | [a-z]{3} \s* \d{3}
+              | [a-z]{2} \s* \d{2}
+              | \d{3} \s* \d{2,3}
               | (?:
                     [a-z]{2} \d ( [a-z] | \d )
                   | [a-z] (?: \d{2} | \d[a-z] | [a-z]\d )
                   | [a-z]\d
-                ) \s+ \d [a-z]{2}
+                ) \s* \d [a-z]{2}
             )
         $/x) {
     $code = $1;
