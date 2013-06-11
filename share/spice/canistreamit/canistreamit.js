@@ -3,8 +3,8 @@ var ddg_spice_canistreamit = function(api_result) {
 
     var query = DDG.get_query().replace(/^(?:can\s*i?|how\s*to|where\s*(?:to|can\s+i))?\s*(?:find\s+a)?\s*(.+)$/, "$1");
 
-    if(!api_result || api_result.length === 0 || 
-       !DDG.stringsRelevant(api_result[0].title, query, ["stream", "watch", "streaming"])) {
+    if(!api_result || api_result.length === 0 /*|| 
+       !DDG.stringsRelevant(api_result[0].title, query, ["stream", "watch", "streaming"])*/) {
         return;
     }
 
