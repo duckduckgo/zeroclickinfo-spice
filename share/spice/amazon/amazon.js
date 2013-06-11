@@ -12,7 +12,7 @@ function ddg_spice_amazon(api_response) {
         );
         $('#amazon .description').width(
             //width - parent padding - spotlight image width - left-margin
-            $('#ddgc_detail').width() - (7*2) - 150 - 20
+            $('#ddgc_nav').width() - (7*2) - 150 - 20
         );
         nrj('https://dylan.duckduckgo.com/m.js?r='
             + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
