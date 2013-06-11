@@ -6,7 +6,7 @@ triggers startend => "code", "example";
 
 spice to => 'http://searchco.de/api/jsonp_codesearch_I/?q=$1&callback={{callback}}';
 
-primary_example_queries "cobol sin";
+primary_example_queries "javascript console.log examples";
 description "Code search";
 name "CodeSearch";
 icon_url "/i/searchco.de.ico";
