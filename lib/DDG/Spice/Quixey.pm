@@ -62,7 +62,7 @@ handle query_parts => sub {
 	# check if device mentioned, if so verify app search intent
 	if ($full_query =~ qr/\b(iphone|ipad|ipod|ios|blackberry|playbook|android)\b/) {
 		my $device = $1;
-		return unless ($full_query =~ qr/\b(?:on|for)\s+$device/i or $full_query =~ qr/\bapps?|quixey\b/i );
+		return unless ($full_query =~ qr/\b(?:on|for)\s+$device/i or $full_query =~ qr/\b(apps?|quixey)\b/i );
 		$full_query =~ s/(on|for)\s+$device/ $device/gi;
 	}
 
