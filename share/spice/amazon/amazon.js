@@ -1,3 +1,5 @@
+function ddg_spice_amazon_carousel_add_items;
+
 function ddg_spice_amazon(api_response) {
     console.log(api_response);
     
@@ -19,7 +21,7 @@ function ddg_spice_amazon(api_response) {
             + '&cb=ddg_spice_amazon_detail');
     };
 
-    Spice.carousel_add_items =
+    ddg_spice_amazon_carousel_add_items =
         Spice.render({
             header1                  : query + ' (Amazon)',
             source_url               : api_response.url,
@@ -36,10 +38,14 @@ function ddg_spice_amazon(api_response) {
         });
 
     nrj('https://dylan.duckduckgo.com/m.js?pg=2'
-            + '&cb=Spice.carousel_add_items'
+            + '&cb=ddg_spice_amazon_wait_for_render'
             + '&q=' + escape(DDG.get_query()));
 
     $(window).resize(spotlight_resize);
+}
+
+function ddg_spice_amazon_wait_for_render(items) {
+    window.setTimeout(ddg_spice_amazon_carousel_add_items, 500, items);
 }
 
 function ddg_spice_amazon_detail(api_response) {
