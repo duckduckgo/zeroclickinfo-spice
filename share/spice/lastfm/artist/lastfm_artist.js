@@ -29,7 +29,8 @@ var ddg_spice_lastfm = function(api_result, template) {
         "vocalists",
         "djs",
         "songster",
-        "songsters"
+        "songsters",
+        "to"
     ];
 
     // Don't do anything if we find an error, or if the result is irrelevant.
@@ -38,7 +39,7 @@ var ddg_spice_lastfm = function(api_result, template) {
     }
 
     // Display the plugin.
-    if(DDG.isRelevant(api_result.artist.name, skip)) {
+    if(DDG.isRelevant(api_result.artist.name, skip, 4, true)) {
         Spice.render({
             data             : api_result,
             force_big_header : true,
