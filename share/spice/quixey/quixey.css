@@ -1,21 +1,115 @@
-#zero_click_wrapper2.quixey {
-	overflow: hidden;
+#quixey .hidden {
+  display: none;
 }
 
-.quixey #zero_click_abstract {
-	margin: 0 !important;
-	padding: 0 !important;
-	border: none !important;
+#quixey .app_icon {
+  margin: 0px;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
 }
 
-.quixey #zero_click_image {
-	display: none;
+#quixey .rating {
+  margin-right: 5px;
+  display: inline;
 }
 
-.quixey .zero_click_more_at_link {
-	padding: 9px;
+#quixey img.star {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  margin 0 2px;
 }
 
-.quixey #zero_click_more_at_logo {
-	margin-bottom: -1px;
+#quixey .app_icon_anchor {
+  max-width: 10%;
+  float: left;
+  margin-right: 22px;
+  margin-bottom: 5px;
+}
+
+
+#quixey .app_info {
+  display: block;
+  float: left;
+  font-size: 12px;
+  padding: 0 2px 0 0;
+  width: 100%;
+}
+
+#quixey .app_details {
+  display: block;
+  float: left;
+}
+
+#quixey .price {
+  margin: 3px 0;
+  font-size: 1.2em;
+  display: inline;
+  line-height: 1.5em;
+}
+
+#quixey .name_wrap {
+  display: inline-block;
+  max-width: 85%;
+}
+
+#quixey .name {
+  display: block;
+  width: 100%;
+  font-size: 1.1em;
+}
+
+#quixey .app_editions {
+  float: left;
+  width: 100%;
+}
+
+#quixey .app_editions::before {
+  content: "App Editions:";
+  float: left;
+  clear: both;
+  width: 100%;
+  margin-bottom: 3px;
+  margin-top: 10px;
+}
+
+#quixey .app_platform {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 5px 5px 2px 5px;
+  vertical-align: text-bottom;
+  background: #EEE;
+  border: 1px solid #DDD;
+  color: black;
+}
+
+#quixey .app_platform:hover {
+  border: 1px solid #333;
+  background: #ddd;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#quixey .app_platform img.platform_icon {
+  max-width: 13px;
+  margin: 0 2px 0 0;
+  vertical-align: text-top;
+}
+
+#quixey .app_edition {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 3px;
+}
+
+#quixey .platform_icon {
+  display: inline-block;
+  max-height: 13px;
+  margin-left: 5px;
+  width: auto;
+}
+
+#quixey .platform_icon:first-of-type {
+  margin-left: 0px;
 }

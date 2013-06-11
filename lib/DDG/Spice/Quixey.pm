@@ -5,6 +5,17 @@ use JSON;
 use String::Trim;
 use List::Uniq ':all';
 
+primary_example_queries "flight tracking app", "quixey angry birds";
+secondary_example_queries "free calculator app", "tiny piano for iphone";
+description "Search for mobile apps";
+name "Quixey App Search";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Quixey.pm";
+icon_url "/i/www.quixey.com";
+category "entertainment";
+topics "everyday", "special_interest";
+attribution github => ['https://github.com/duckduckgo', 'DuckDuckGo'],
+            twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
+
 # Variable Definitions
 my %custom_ids = (2005 => 75675980, 2004 => 78989893);
 
@@ -28,9 +39,7 @@ my %platform_ids = (
 );
 
 my @triggers = keys %platform_ids;
-
 my @extraTriggers = qw(quixey app apps);
-
 push(@triggers, @extraTriggers);
 
 triggers any => @triggers;
@@ -42,13 +51,24 @@ spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_sec
 spice proxy_ssl_session_reuse => "off";
 
 handle query_parts => sub {
-	
+
 	my $full_query = join(" ", @_);
 	my $restriction;
 	my $max_price = 999999;
 
+	# set price to $0 if "free" is in the query
 	$max_price = 0 if ($full_query =~ s/\bfree\b//ig);
-	
+
+	# check if device mentioned, if so verify app search intent
+	if ($full_query =~ qr/\b(iphone|ipad|ipod|ios|blackberry|playbook|android)\b/) {
+		my $device = $1;
+		return unless ($full_query =~ qr/\b(?:on|for)\s+$device/i or $full_query =~ qr/\bapps?|quixey\b/i );
+		$full_query =~ s/(on|for)\s+$device/ $device/gi;
+	}
+
+	# check for platform specific trigger in query
+	# if found remove from query
+	# Note: sort trigger list to catch longer phrase first (eg "ipod touch" vs "ipod")
 	my @matches = grep { $full_query =~ /\b$_\b/ig } sort { length($a) <=> length($b) } keys %platform_ids;
 	if (length scalar @matches){
 		my @sorted_matches = sort { length($b) <=> length($a) } @matches;
@@ -58,11 +78,16 @@ handle query_parts => sub {
 		}
 	}
 
+	# check for and strip extra triggers and whitespace
+	# if nothing remains query was just trigger words
+	# so return nothing
 	$full_query =~ s/\b$_\b//ig foreach (@extraTriggers);
 	$full_query =~ s/\s+/ /ig;
 	$full_query = trim $full_query;
 	return unless (length $full_query);
 
+	# if platform restiction(s) detected
+	# return query, specify proper ids for API
 	if (defined $restriction) {
 		my @platforms = ();
 		$platforms[0] = $restriction;

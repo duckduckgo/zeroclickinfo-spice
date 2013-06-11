@@ -1,55 +1,50 @@
 package DDG::Spice::Translate::Detect;
 
 use DDG::Spice;
+use Moo;
+
+with('DDG::SpiceRole::Translate');
 
 attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
             web     => ['http://ghedini.me', 'Alessandro Ghedini'];
 
-my $dicts = 'arabic|ar|chinese|zh|czech|cz|english|en|french|fr|greek|gr|italian|it|japanese|ja|korean|ko|polish|pl|portuguese|pt|romanian|ro|spanish|es|turkish|tr';
+my $langs = 'arabic|ar|chinese|zh|czech|cz|english|en|french|fr|greek|gr|italian|it|japanese|ja|korean|ko|polish|pl|portuguese|pt|romanian|ro|spanish|es|turkish|tr';
 
 spice to   => 'http://ws.detectlanguage.com/0.2/detect?q=$1&key={{ENV{DDG_SPICE_DETECTLANGUAGE_APIKEY}}}';
 spice from => '(.+)\/(.+)';
 spice wrap_jsonp_callback => 1;
 
-triggers query_lc => qr/translate/;
+triggers start => "translate";
 
 handle query_lc => sub {
-    my ($query) = $_;
-    
-    sub shorten_lang {
-        my ($lang) = @_;
+    my $query = $_;
 
-        my $langs = {
-            'arabic'     => 'ar',
-            'chinese'    => 'zh',
-            'czech'      => 'cz',
-            'english'    => 'en',
-            'french'     => 'fr',
-            'greek'      => 'gr',
-            'italian'    => 'it',
-            'japanese'   => 'ja',
-            'korean'     => 'ko',
-            'polish'     => 'pl',
-            'portuguese' => 'pt',
-            'romanian'   => 'ro',
-            'spanish'    => 'es',
-            'turkish'    => 'tr'
-        };
+    ##TODO:
+    # Find a better way of getting the $lang->local to javascript
+    # Currently we parse the API Call script tag and grab the last param
+    # https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/share/spice/translate/detect/spice.js#L84
 
-        return $langs->{$lang} ? $langs->{$lang} : $lang;
-    };
+    # Don't need to detect when "from" language is given
+    # return if ($query =~ (/from (?:$langs)/));
 
-    if($query =~ /^translate (\w+) to ($dicts)$|^translate (\w+)$/) {
-        if($1 && $2) {
-            my ($word, $to) = ($1, $2);
-            return ($word, shorten_lang($to));
-        } elsif($3) {
-            my ($word) = ($3);
-            return ($word, substr($lang->locale, 0, 2));
-        }
+    $query =~ s/\s+/ /; #merge multiple spaces
+
+    # NEED TO MATCH UNICODE!
+    if ($query =~ /^translate (\S+)$/ ) {
+        my $phrase = $1;
+        # NEED TO ENCODE UNICODE!
+        return ($phrase, substr($lang->locale, 0, 2));
+
+    # NEED TO MATCH UNICODE!
+    } elsif ($query =~ /^translate (\S+) to ($langs)$/) {
+        my ($phrase, $to) = ($1, $2);
+        # NEED TO ENCODE UNICODE!
+        return ($phrase, shorten_lang($to));
+
+    } else {
+        return;
     }
 
-    return;
 };
 
 1;

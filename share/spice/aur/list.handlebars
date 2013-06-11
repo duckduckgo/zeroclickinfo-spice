@@ -1,0 +1,9 @@
+<ul>
+{{#each package}}
+  <li>
+    {{Name}}-{{Version}}: {{Description}} ({{License}})
+    {{#if OutOfDate}}(out of date){{/if}}
+    [<a href="{{URL}}">official site</a>]
+  </li>
+{{/each}}
+</ul>

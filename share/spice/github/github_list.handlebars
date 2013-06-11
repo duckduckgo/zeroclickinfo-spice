@@ -1,0 +1,11 @@
+<ul>
+{{#each data.repositories}}
+  <li>
+    <a href="{{url}}">{{name}}</a>
+    (<a href="ownerURL">{{owner}}</a>{{#if fork}}, fork{{/if}})
+    {{#if description}}
+    	- {{description}}
+    {{/if}}
+  </li>
+{{/each}}
+</ul>

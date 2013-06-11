@@ -1,0 +1,14 @@
+{{#with this.[0]}}
+    <div>
+        <em>Starring:</em>
+        {{actors}}.
+    </div>
+    <div>
+        <em>Available on:</em>
+        {{#createLinks affiliates}}<a href="{{url}}">{{friendlyName}}</a> (${{price}}){{/createLinks}}
+    </div>
+    <div>
+        <em>Reviews:</em>
+        {{#createMore links}}<a href="{{url}}">{{friendlyName}}</a>{{/createMore}}
+    </div>
+{{/with}}

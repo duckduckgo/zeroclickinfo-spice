@@ -3,9 +3,6 @@ package DDG::Spice::Github;
 
 use DDG::Spice;
 
-triggers startend => "github";
-spice to => 'https://api.github.com/legacy/repos/search/$1?callback={{callback}}';
-
 primary_example_queries "github zeroclickinfo";
 description "Github info";
 name "Github";
@@ -14,6 +11,10 @@ topics "programming", "web_design";
 category "programming";
 attribution web => ['http://dylansserver.com','Dylan Lloyd'],
             email => ['dylan@dylansserver.com','Dylan Lloyd'];
+
+triggers startend => "github";
+spice to => 'https://api.github.com/legacy/repos/search/$1?callback={{callback}}';
+
 
 handle query_lc => sub {
     s/^github\s+|\s+github$//;

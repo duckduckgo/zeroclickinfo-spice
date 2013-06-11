@@ -1,0 +1,10 @@
+{{#each this}}
+    <div class="airlines">
+        <div>
+            <b>{{{status airportTimezone isDeparted}}}</b> {{relative airportTimezone isDeparted}}
+        </div>
+        <div><a href="http://www.flightstats.com/go/Airport/airportDetails.do?airport={{airport.AirportCode}}">{{airportName airport.Name}} ({{airport.AirportCode}})</a></div>
+        <div>Terminal {{terminal}}, Gate {{gate}}</div>
+        <div>{{time isDeparted}}</div>
+    </div>
+{{/each}}

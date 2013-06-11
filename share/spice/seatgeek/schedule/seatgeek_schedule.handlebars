@@ -1,0 +1,8 @@
+<div>
+    <div id="map"></div>
+    <ul class="venues">
+        {{#list events}}
+            <li><a href="javascript:void(0)" class="location" data-venue-url="{{venue.url}}" data-url="{{url}}" data-address="{{venue.address}}" data-location="{{venue.display_location}}" data-venue="{{venue.name}}" data-title="{{title}}" data-lat="{{venue.location.lat}}" data-price="{{stats.average_price}}" data-lon="{{venue.location.lon}}">{{title}} <span class="metadata">at {{venue.name}} {{#checkPrice stats.average_price}}(${{average_price}}){{/checkPrice}}</span></a></li>
+        {{/list}}
+    <ul>
+</div>

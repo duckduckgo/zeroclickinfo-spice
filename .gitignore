@@ -3,3 +3,4 @@ DDG-*
 *.sw*
 *~
 *#
+.jshintrc

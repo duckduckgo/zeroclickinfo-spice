@@ -2,11 +2,8 @@ package DDG::Spice::Snow;
 
 use DDG::Spice;
 
-spice to => 'http://isitsnowingyet.org/api/check/$1/key/{{ENV{DDG_SPICE_SNOW_APIKEY}}}';
-
 primary_example_queries "is it snowing?";
 secondary_example_queries "is it snowing in New York City?";
-
 description "Check weather conditions at your location";
 name "Snow";
 icon_url "/icon16.png";
@@ -14,10 +11,13 @@ source "Is it snowing yet?";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Snow.pm";
 topics "everyday";
 category "facts";
-attribution github => ['https://github.com/nilnilnil','Caine Tighe'],
-            twitter => ['http://twitter.com/__nil','caine tighe'];
+attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
+            github => [ 'https://github.com/duckduckgo', 'duckduckgo'],
+            twitter => ['http://twitter.com/duckduckgo', 'duckduckgo'];
 
-triggers query_lc => qr/snow(?:ing)?/i;
+spice to => 'http://isitsnowingyet.org/api/check/$1/key/{{ENV{DDG_SPICE_SNOW_APIKEY}}}';
+
+triggers any => "snow", "snowing";
 
 my %snow = map { $_ => undef } (
     'is it going to snow',
@@ -30,10 +30,10 @@ my %snow = map { $_ => undef } (
     'is it snowing today',
     'is it going to snow today',
     'going to snow today',
+    'is it snowing yet'
 );
 
-
-handle query_lc => sub {    
+handle query_lc => sub {
     my $query = $_;
     my $location = join(" ", $loc->city . ', ', $loc->region_name . ', ', $loc->country_name);
 
@@ -42,7 +42,7 @@ handle query_lc => sub {
     } elsif($query =~ /^(?:is[ ]it[ ])?
                         (?:going[ ]to[ ])?
                         snow(?:ing)?[ ]?
-                        (?:(?:here|now)[ ]?)?
+                        (?:(?:here|now|yet)[ ]?)?
                         (?:in[ ](.*?))?
                         (?:[ ]today)?\??$/ix) {
         $location = $1 || $location;

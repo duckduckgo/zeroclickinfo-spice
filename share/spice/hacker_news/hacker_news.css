@@ -1,0 +1,17 @@
+span.hn_oneline {
+	display: inline-block;
+}
+
+hr.horizontal_line {
+	margin: 5px 0;
+}
+
+.hn_comment,
+.hn_story {
+	margin-bottom: 4px;
+}
+
+.hn_comment:first-of-type,
+.hn_story:first-of-type {
+	margin-top: 3px;
+}

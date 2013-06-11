@@ -12,7 +12,6 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 icon_url "/i/wordnik.com.ico";
 attribution web => ['http://dylansserver.com','Dylan Lloyd'],
             email => ['dylan@dylansserver.com','Dylan Lloyd'];
-status "enabled";
 
 spice is_cached => 0;
 

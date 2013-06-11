@@ -15,7 +15,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 category "geography";
 topics "everyday", "geography", "travel";
 attribution github => ["https://github.com/almanackist", "Almanackist"],
-            twitter => ["https://twitter.com/cajoyce", "C. Alan Joyce"];
+            twitter => ["https://twitter.com/cajoyce", "cajoyce"];
 
 # Triggers
 my $zip_string = qr/(zip|post(al)?)\s*(code)?/;
@@ -23,7 +23,7 @@ my $zip_string = qr/(zip|post(al)?)\s*(code)?/;
 triggers query_lc => qr/(?:$zip_string|[a-z\d\-\s]{2,15})/;
 
 spice from => '([A-Z0-9\-]+)(?:/([A-Z]+)?)?';
-spice to => '"http://where.yahooapis.com/v1/places${dollar}and(.q($1,$2),.type(11));count=0?appid={{ENV{DDG_SPICE_ZIPCODE_APIKEY}}}&format=json&callback={{callback}}"';
+spice to => '"http://where.yahooapis.com/v1/places{{dollar}}and(.q($1,$2),.type(11));count=0?appid={{ENV{DDG_SPICE_ZIPCODE_APIKEY}}}&format=json&callback={{callback}}"';
 
 # Handle statement
 handle query_lc => sub {
@@ -82,10 +82,10 @@ handle query_lc => sub {
   # Check if postal code matches any known patterns
   if (m/^
           (
-              [a-z]{2} \s+ [a-z]{2} \b
+              [a-z]{2} \s* [a-z]{2} \b
             | \d{2} [a-z]+ [a-z\s]+ \d{2}
             | \d{3} \- \d{3} \- \d
-            | \d{6} \s+ \d{3} \- \d{3}
+            | \d{6} \s* \d{3} \- \d{3}
           )
       $/x) {
     $code = $1;
@@ -100,17 +100,17 @@ handle query_lc => sub {
   # Alphanumeric postal code edgecases
   elsif (m/^
             (
-                \d{4} \s+ \d{3,4}
-              | \d{4} \s+ [a-z]{1,2}
+                \d{4} \s* \d{3,4}
+              | \d{4} \s* [a-z]{1,2}
               | [a-z] \d [a-z] \s* \d [a-z] \d
-              | [a-z]{3} \s+ \d{3}
-              | [a-z]{2} \s+ \d{2}
-              | \d{3} \s+ \d{2,3}
+              | [a-z]{3} \s* \d{3}
+              | [a-z]{2} \s* \d{2}
+              | \d{3} \s* \d{2,3}
               | (?:
                     [a-z]{2} \d ( [a-z] | \d )
                   | [a-z] (?: \d{2} | \d[a-z] | [a-z]\d )
                   | [a-z]\d
-                ) \s+ \d [a-z]{2}
+                ) \s* \d [a-z]{2}
             )
         $/x) {
     $code = $1;
