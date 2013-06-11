@@ -4,7 +4,7 @@ use DDG::Spice;
 use Time::localtime;
 
 description "News and stats for NBA players";
-name "ESPN";
+name "ESPN NBA";
 primary_example_queries "Dwayne Wayde", "Kobe Bryant";
 topics "entertainment", "special_interest";
 category "reference";

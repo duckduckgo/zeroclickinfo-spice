@@ -6,7 +6,7 @@ use DDG::Spice;
 primary_example_queries "javascript jobs";
 secondary_example_queries "perl jobs in san francisco";
 description "Github jobs";
-name "GithubJobs";
+name "Github Jobs";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GithubJobs.pm";
 topics "programming", "special_interest";
 category  "programming";

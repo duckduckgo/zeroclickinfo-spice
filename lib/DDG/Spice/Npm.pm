@@ -5,7 +5,7 @@ use DDG::Spice;
 
 primary_example_queries "npm underscore";
 description "Shows an NPM package";
-name "Npm";
+name "NPM";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Npm.pm";
 icon_url "/i/npmjs.org.ico";
 topics "sysadmin", "programming";

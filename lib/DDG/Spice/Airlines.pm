@@ -5,7 +5,7 @@ use DDG::Spice;
 primary_example_queries "AA 102";
 secondary_example_queries "Delta 3684";
 description "Flight information";
-name "Flight";
+name "Flight Info";
 icon_url "/i/flightaware.com.ico";
 source "FlightAware";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Airlines.pm";

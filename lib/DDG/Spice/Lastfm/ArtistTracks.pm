@@ -6,7 +6,7 @@ use DDG::Spice;
 primary_example_queries "songs by she & him";
 secondary_example_queries "songs from maroon 5";
 description "Top tracks from an artist";
-name "LastfmArtistTracks";
+name "LastFM Artist Tracks";
 icon_url "/i/www.last.fm.ico";
 source "Last.fm";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/ArtistTracks.pm";

@@ -5,7 +5,7 @@ use DDG::Spice;
 
 primary_example_queries "Payphone song by Maroon 5";
 description "Song information";
-name "LastfmSong";
+name "LastFM Song";
 icon_url "/i/www.last.fm.ico";
 source "Last.fm";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/Song.pm";

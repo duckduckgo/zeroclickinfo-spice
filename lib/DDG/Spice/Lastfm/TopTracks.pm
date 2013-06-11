@@ -6,7 +6,7 @@ use DDG::Spice;
 primary_example_queries "popular songs";
 secondary_example_queries "top tracks", "popular songs in the philippines";
 description "Popular songs";
-name "LastfmTopTracks";
+name "LastFM Top Tracks";
 icon_url "/i/www.last.fm.ico";
 source "Last.fm";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/TopTracks.pm";

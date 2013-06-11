@@ -5,7 +5,7 @@ use DDG::Spice;
 primary_example_queries "watch pirates of the caribbean";
 secondary_example_queries "can I stream indie game";
 description "Find out how to watch movies";
-name "Canistreamit";
+name "CanIStream.It";
 icon_url "/i/www.canistream.it.ico";
 source "CanIStream.It";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Canistreamit.pm";

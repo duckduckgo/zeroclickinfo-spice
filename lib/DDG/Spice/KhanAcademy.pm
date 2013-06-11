@@ -5,7 +5,7 @@ use DDG::Spice;
 primary_example_queries "khan academy videos";
 secondary_example_queries "khan trigonometry";
 description "Shows Khan Academy videos";
-name "KhanAcademy";
+name "Khan Academy";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/KhanAcademy.pm";
 icon_url "/i/khanacademy.org.ico";
 topics "math";

@@ -4,7 +4,7 @@ use DDG::Spice;
 
 primary_example_queries "flash version";
 description "Shows the flash version";
-name "FlashVersion";
+name "Flash Version";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/FlashVersion.pm";
 topics "everyday", "programming";
 category "software";

@@ -6,7 +6,7 @@ use DDG::Spice;
 primary_example_queries "detect language こんにちは";
 secondary_example_queries "the web browser what language";
 description "Detects the language";
-name "DetectLang";
+name "Detect Language";
 icon_url "/i/detectlanguage.com.ico";
 source "Detect Language";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/DetectLang.pm";

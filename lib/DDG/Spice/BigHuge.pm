@@ -6,7 +6,7 @@ use DDG::Spice;
 primary_example_queries "synonyms for person", "thesaurus awesome";
 secondary_example_queries "similar words to miniature";
 description 'Related words';
-name "BigHuge";
+name "BigHuge Thesaurus";
 source "Big Huge Labs";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BigHuge.pm";
 topics "music", "words_and_games";

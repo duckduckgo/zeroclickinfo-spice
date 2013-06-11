@@ -5,7 +5,7 @@ use DDG::Spice;
 
 primary_example_queries "albums from Ben Folds";
 description "Top albums from an artist";
-name "LastfmArtistAlbum";
+name "LastFM Artist Album";
 icon_url "/i/www.last.fm.ico";
 source "Last.fm";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/ArtistAlbum.pm";

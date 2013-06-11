@@ -5,7 +5,7 @@ use DDG::Spice;
 
 primary_example_queries "American Idiot album by Green Day";
 description "Shows album information";
-name "LastfmAlbum";
+name "LastFM Album";
 icon_url "/i/www.last.fm.ico";
 source "Last.fm";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/Album.pm";

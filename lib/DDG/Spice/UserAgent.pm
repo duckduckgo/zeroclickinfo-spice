@@ -2,7 +2,7 @@ package DDG::Spice::UserAgent;
 
 use DDG::Spice;
 
-name "UserAgent";
+name "User Agent";
 description "Returns user agent information";
 primary_example_queries "useragent";
 topics "programming", "sysadmin";
