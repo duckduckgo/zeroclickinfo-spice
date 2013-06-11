@@ -2,7 +2,7 @@
     background-color: #ffffff;
     border: 1px solid #e7e7e7;
     overflow: hidden;
-    height: 95px;
+    height: 95px !important;
 }
 
 #amazon li.ddgc_item img {
