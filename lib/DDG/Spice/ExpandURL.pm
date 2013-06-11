@@ -3,7 +3,7 @@ package DDG::Spice::ExpandURL;
 
 use DDG::Spice;
 
-primary_example_queries "http://bit.ly/LiyPH8";
+primary_example_queries "http://bit.ly/a", "expand bit.ly/lolcatz";
 description "Expand shortened URLs using LongURL.org";
 name "ExpandURL";
 icon_url "/i/longurl.org.ico";
