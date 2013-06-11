@@ -1127,6 +1127,16 @@ Some plugins, such as the [**Zanran**](https://github.com/duckduckgo/zeroclickin
 
 ###Using Custom CSS
 (tbd)
+**\*\*Note**: Every Spice plugin result is wrapped in a `<div>` with an id of `spice_<spice_name>`.
+
+For example the NPM plugin will have: `<div id="spice_npm">`. This allows any custom CSS you write to be scoped by addressing this id first for all your CSS rules. So, if the NPM plugin needed any CSS you could write it like so:
+
+```css
+#spice_npm pre {
+    background: grey;
+    ...
+}
+```
 
 ###Using images
 (tbd)
