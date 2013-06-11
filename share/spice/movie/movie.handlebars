@@ -3,14 +3,19 @@
     <div id="movie_data_box" {{#if hasContent}}class="half-width"{{/if}}>
 
         <div>
-            <span class="movie_data_item">{{ratings.critics_rating}}</span>
-            <span>
+            {{#if ratings.critics_rating}}
+                <span class="movie_data_item">{{ratings.critics_rating}}</span>
                 <span class="movie_star_rating">{{{star_rating ratings.critics_score}}}</span>
-            </span>
-            <div class="movie_data_description">
-            ({{ratings.critics_score}}% critics,
-             {{ratings.audience_score}}% audience approved)
-            </div>
+                <div class="movie_data_description">
+                ({{ratings.critics_score}}% critics,
+                 {{ratings.audience_score}}% audience approved)
+                </div>
+            {{else}}
+                <span>No score yet...</span>
+                <div class="movie_data_description">
+                    ({{ratings.audience_score}}% audience approved)
+                </div>
+            {{/if}}
         </div>
 
         <div><span class="movie_data_item">MPAA rating:</span>{{mpaa_rating}}</div>

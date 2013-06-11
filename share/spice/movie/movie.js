@@ -102,7 +102,7 @@ Handlebars.registerHelper("star_rating", function(score) {
     }
 
     if (s.length == 0) {
-        s = "(0)";
+        s = "0 Stars";
     }
 
     return s;
