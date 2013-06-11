@@ -11,8 +11,8 @@ function ddg_spice_amazon(api_response) {
                                 $('#ddgc_detail').height() : 150) + 'px'}
         );
         $('#amazon .description').width(
-            //width - parent padding - spotlight image width - left-margin
-            $('#ddgc_nav').width() - (7*2) - 150 - 20
+            //width - parent margins (both sides) - parent padding - spotlight image width - left-margin
+            $('#ddgc_nav').width() - 10 - (7*2) - 150 - 20
         );
         nrj('https://dylan.duckduckgo.com/m.js?r='
             + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
