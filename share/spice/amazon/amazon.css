@@ -5,6 +5,14 @@
     height: 95px !important;
 }
 
+#amazon #ddgc_slider {
+    max-height: 160px !important;
+}
+
+#amazon li.ddgc_item {
+    height: 140px !important;
+}
+
 #amazon li.ddgc_item img {
     padding: 5px;
 }
