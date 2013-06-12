@@ -1,0 +1,60 @@
+<table>
+<thead>
+<tr>
+<th> Member</th>
+<th> Twitter </th>
+
+{{#if ddh.is_house}}
+<th> District</th>
+{{/if}}
+
+<th> Next<br>election</th>
+
+<th> votes<br>with party</th>
+</tr>
+</thead>
+<tbody>
+{{#each members}}
+    <tr>
+    
+    <td>
+    {{#if url}}
+        <a href="{{url}}">
+    {{else}}
+        <a href="/?q={{get_name}}">
+    {{/if}}
+
+        {{get_name}} ({{party}})
+    
+    </a>
+    </td>
+
+    <td>
+    {{#if twitter_account}}
+        <a href="https://www.twitter.com/{{twitter_account}}">@{{twitter_account}}</a>
+    {{/if}}
+    </td>
+
+    {{#if district}}
+    <td>
+        {{! district }} {{district}}
+    </td>
+    {{/if}}
+    
+    <td>
+    {{#if next_election}}
+        {{! next election in}} {{next_election}}
+    {{/if}}
+    </td>
+    
+    
+    <td>
+    {{! Votes with party on }}
+    {{votes_pct}}
+    {{! of issues. }}
+    </td>
+
+</tr>
+{{/each}}
+</tbody>
+</table>
