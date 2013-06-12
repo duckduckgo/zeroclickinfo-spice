@@ -1,0 +1,21 @@
+#spice_congress table {
+    /* border:1px solid #d0d0d0; */
+    width:100%;
+    margin-bottom:5px;
+}
+#spice_congress tbody {
+    border:1px solid #d0d0d0;
+}
+#spice_congress tr {
+    border-bottom:1px solid #d0d0d0;
+}
+#spice_congress th {
+    vertical-align:bottom;
+    text-align:left;
+    font-size:83.3%;
+    font-style:italic;
+    padding-left:3px;
+}
+#spice_congress td {
+    padding:2px;
+}

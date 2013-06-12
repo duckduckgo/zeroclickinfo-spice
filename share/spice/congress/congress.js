@@ -14,8 +14,9 @@ function ddg_spice_congress(api_result) {
         source_url       : "http://topics.nytimes.com/top/reference/timestopics/" +
                            "organizations/c/congress/index.html",
         source_name      : 'The New York Times',
-        template_normal  : 'congress',
-        force_big_header : true
+        template_normal  : 'congress_table',
+        force_big_header : true,
+        is_house         : (chamber == "House")
     });
 }
 
