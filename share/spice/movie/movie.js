@@ -1,7 +1,3 @@
-/*
- *  rotten tomatoes for spice 2
- *
- */
 var ddg_spice_movie = function(api_result) {
 
     if (api_result.total === 0) return;
@@ -63,11 +59,12 @@ Handlebars.registerHelper("relevantMovie", function(options) {
         return "";
     };
 
-    // this.ddh.relevantMovie = result;
     this.ddh.source_url = result.links.alternate;
-    this.ddh.image_url = (result.posters.thumbnail || 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif');
-    this.ddh.image_max_width = "80px";
     this.ddh.header1 = result.title + checkYear(result.year);
+
+    if (result.posters.thumbnail && result.posters.thumbnail.indexOf("poster_default.gif") == -1) {
+        this.ddh.image_url = result.posters.thumbnail;
+    }
 
     if ((result.synopsis && result.synopsis.length) ||
         (result.critics_consensus && result.critics_consensus.length)){
@@ -105,7 +102,7 @@ Handlebars.registerHelper("star_rating", function(score) {
     }
 
     if (s.length == 0) {
-        s = "(0)";
+        s = "0 Stars";
     }
 
     return s;

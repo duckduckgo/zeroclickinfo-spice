@@ -189,13 +189,16 @@ The movie plugin is a more advanced than **NPM** and **Alternative.To**, but mos
 ```javascript
 var ddg_spice_movie = function(api_result) {
 
+    if (api_result.total === 0) return;
+
     Spice.render({
-            data: api_result,
-            source_name: 'Rotten Tomatoes',
-            template_normal: "movie_alt",
-            template_small: "movie_small"                
-            // source_url, image_url and header set in relevantMovie helper function below
-        });
+        data: api_result,
+        source_name: 'Rotten Tomatoes',
+        template_normal: "movie",
+        template_small: "movie_small",
+        force_no_fold: 1
+        // source_url, image_url, header set in relevantMovie helper function below
+    });
 };    
 ```
     
@@ -207,30 +210,42 @@ Before looking at the implementation of the Handlebars helper functions lets fir
 ```html
 {{#relevantMovie}}
 
-    <div id="movie_data_box">
-    
+    <div id="movie_data_box" {{#if hasContent}}class="half-width"{{/if}}>
+
         <div>
-            <span class="movie_data_item">
+            {{#if ratings.critics_rating}}
+                <span class="movie_data_item">{{ratings.critics_rating}}</span>
                 <span class="movie_star_rating">{{{star_rating ratings.critics_score}}}</span>
-            </span>
-            <span class="movie_critics_rating">{{ratings.critics_rating}}</span>
-            <div class="movie_data_description">
-            ({{ratings.critics_score}}% critics,
-             {{ratings.audience_score}}% audience approved)
-            </div>
+                <div class="movie_data_description">
+                ({{ratings.critics_score}}% critics,
+                 {{ratings.audience_score}}% audience approved)
+                </div>
+            {{else}}
+                <span>No score yet...</span>
+                <div class="movie_data_description">
+                    ({{ratings.audience_score}}% audience approved)
+                </div>
+            {{/if}}
         </div>
-    
+
         <div><span class="movie_data_item">MPAA rating:</span>{{mpaa_rating}}</div>
         <div><span class="movie_data_item">Running time:</span>{{runtime}} minutes</div>
-        <div><span class="movie_data_item">Starring:</span>
-            {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
-        </div>
+
+        {{#if abridged_cast}}
+            <div><span class="movie_data_item">Starring:</span>
+                {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
+            </div>
+        {{/if}}
+
     </div>
-    
-    {{#if synopsis}}
-        {{synopsis}}
-    {{else}}
-        {{condense critics_consensus maxlen="200"}}
+    {{#if hasContent}}
+        <span>
+            {{#if synopsis}}
+                {{condense synopsis maxlen="300"}}
+            {{else}}
+                {{condense critics_consensus maxlen="300"}}
+            {{/if}}
+        </span>
     {{/if}}
 
 {{/relevantMovie}}
@@ -307,14 +322,26 @@ Now that we have our functions defined, we use them to find the most relevant mo
     
 ```javascript
     // make the movie's info available to the zero click template
-    // by setting Spice value in the ddh (duckduckhack) object
+    // by setting spice value in the ddh (duckduckhack) object
 
-    // this.ddh.relevantMovie = result;
+    var checkYear = function(year) {
+        if(year) {
+            return " (" + result.year + ")";
+        }
+        return "";
+    };
+
     this.ddh.source_url = result.links.alternate;
-    this.ddh.image_url = (result.posters.thumbnail || 'http://images.rottentomatoescdn.com/images/redesign/poster_default.gif');
-    this.ddh.header1 = result.title + ' (' + result.year + ')';
+    this.ddh.header1 = result.title + checkYear(result.year);
 
-    console.log("movie: setting image_url to '%s'", this.ddh.image_url);
+    if (result.posters.thumbnail && result.posters.thumbnail.indexOf("poster_default.gif") == -1) {
+        this.ddh.image_url = result.posters.thumbnail;
+    }
+
+    if ((result.synopsis && result.synopsis.length) ||
+        (result.critics_consensus && result.critics_consensus.length)){
+        result.hasContent = true;
+    }
 ```
 Now that we have selected our most relevant result, we use it to set the values of the Zero Click Box Header, Source URL and Image URL. As previously mentioned, we slightly modify `api_result` when we set it as the context of the template. What we actually do is append the `ddh` object to `api_result`, which lets us modify the properties of `Spice.render()`.
 
@@ -329,63 +356,95 @@ This last line is **very** important. Here, we are using the Handlebars function
 ```html
 {{#relevantMovie}}
 
-    <div id="movie_data_box">
-    
+    <div id="movie_data_box" {{#if hasContent}}class="half-width"{{/if}}>
+
         <div>
-            <span class="movie_data_item">
+            {{#if ratings.critics_rating}}
+                <span class="movie_data_item">{{ratings.critics_rating}}</span>
                 <span class="movie_star_rating">{{{star_rating ratings.critics_score}}}</span>
-            </span>
-            <span class="movie_critics_rating">{{ratings.critics_rating}}</span>
-            <div class="movie_data_description">
-            ({{ratings.critics_score}}% critics,
-             {{ratings.audience_score}}% audience approved)
-            </div>
+                <div class="movie_data_description">
+                ({{ratings.critics_score}}% critics,
+                 {{ratings.audience_score}}% audience approved)
+                </div>
+            {{else}}
+                <span>No score yet...</span>
+                <div class="movie_data_description">
+                    ({{ratings.audience_score}}% audience approved)
+                </div>
+            {{/if}}
         </div>
-    
+
         <div><span class="movie_data_item">MPAA rating:</span>{{mpaa_rating}}</div>
         <div><span class="movie_data_item">Running time:</span>{{runtime}} minutes</div>
-        <div><span class="movie_data_item">Starring:</span>
-            {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
-        </div>
+
+        {{#if abridged_cast}}
+            <div><span class="movie_data_item">Starring:</span>
+                {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.
+            </div>
+        {{/if}}
+
     </div>
-    
-    {{#if synopsis}}
-        {{synopsis}}
-    {{else}}
-        {{condense critics_consensus maxlen="200"}}
+    {{#if hasContent}}
+        <span>
+            {{#if synopsis}}
+                {{condense synopsis maxlen="300"}}
+            {{else}}
+                {{condense critics_consensus maxlen="300"}}
+            {{/if}}
+        </span>
     {{/if}}
 
 {{/relevantMovie}}
 ```
 
-Inside the `{{relevantMovie}}` block helper, the template is pretty simple - we create a few `div`'s and reference properties of the context just like we did in **NPM** and **Alternative.To**. We also use a few more Handlebars helper functions, `star_rating` which we define in **movie.js**, `concat` and `condense`, which we've already discussed and another block helper, `{{#if}}` (a default Handlebars helper) which should be self-explanatory. We use the `{{if}}` helper to check if a variable exists in the current context. However, this block helper, unlike `{{#relevantMovie}}` ***doesn't*** change the context of the template inside its block.
+Inside the `{{relevantMovie}}` block helper, the template is pretty simple - we create a few `div`'s and reference properties of the context just like we did in **NPM** and **Alternative.To**. We also use a few more Handlebars helper functions, `star_rating` which we define in **movie.js**, `concat` and `condense`, which we've already discussed and another block helper, `{{#if}}` (a default Handlebars helper) which should be self-explanatory. We use the `{{if}}` helper to check if a variable exists in the current context. However, this block helper, unlike `{{#relevantMovie}}` ***doesn't*** change the context of the template inside its block. Rather, it adds the contents of its own block to the template if the input variable exists. As well, the `{{if}}` block allows the use of the optional `{{else}}` block which lets you add alternate content to the template when the input variable does not exist.
 
 Moving on, let's take a look at the implementation of `star_rating`:
     
 ######movie.js (continued) - star_rating helper
 
 ```javascript
-// star rating
+/* star rating */
 Handlebars.registerHelper("star_rating", function(score) {
-    console.log("rating_adjective helper");
-
     var r = (score / 20) - 1;
     var s = "";
 
     if (r > 0) {
-        for (var i=0; i < r; i++) {
-            s += '&#9733;';
+        for (var i = 0; i < r; i++) {
+            s += "&#9733;";
         }
     }
 
-    if (s.length == 0)
-        s = '(0)';
+    if (s.length == 0) {
+        s = "0 Stars";
+    }
 
     return s;
 });
 ```
 
-As you can see this is a pretty simple function, it takes a number as input, and use that to calculate a star rating. Then creates a string of ASCII stars and returns it to the template which will then be rendered by the browser to show a star rating of the movie.  
+As you can see this is a pretty simple function, it takes a number as input, and use that to calculate a star rating. Then creates a string of ASCII stars and returns it to the template which will then be rendered by the browser to show a star rating of the movie.
+
+Now let's take a look at the implementation of `rating_adjectibve`:
+
+######movie.js (continued) - rating_adjective helper
+```javascript
+/*
+ * rating_adjective
+ *
+ * help make the description of the movie gramatically correct
+ * used in reference to the rating of the movie, as in
+ *   'an' R rated movie, or
+ *   'a'  PG rated movie
+ */
+Handlebars.registerHelper("rating_adjective", function() {
+    return (this.mpaa_rating === "R"
+         || this.mpaa_rating === "NC-17"
+         || this.mpaa_rating === "Unrated") ?  "an" :"a";
+});
+```
+
+Again, this is a fairly simply function which simply returns either "a" or "an" based on the rating of the movie.
 
 Now that you've seen a more advanced plugin and understand how to use Handlebars helpers, lets look at another advanced plugin example.
 

@@ -16,7 +16,7 @@ function ddg_spice_septa(api_result) {
         source_url        : 'http://www.septa.org/schedules/',
         template_normal   : 'septa',
         header1           : 'Trains from ' + from + ' to ' + to,
-        force_no_icon     : true
+        force_favicon_url : 'http://www.septa.org/site/images/favicon.ico'
     });
 };
 

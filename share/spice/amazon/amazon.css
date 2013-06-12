@@ -1,0 +1,64 @@
+#amazon li.ddgc_item p {
+    background-color: #ffffff;
+    border: 1px solid #e7e7e7;
+    overflow: hidden;
+    height: 95px !important;
+}
+
+#amazon #ddgc_slider {
+    max-height: 160px !important;
+}
+
+#amazon li.ddgc_item {
+    height: 140px !important;
+}
+
+#amazon li.ddgc_item img {
+    padding: 5px;
+}
+
+#amazon li.ddgc_item span {
+    font-size: 95%;
+}
+
+#amazon li.ddgc_selected span {
+    color: #1168CC;
+}
+
+#amazon .spotlight {
+    float: left;
+    border: 1px solid #E1E1E1;
+    max-height: 0px;
+    max-width: 150px;
+}
+
+#amazon .price {
+    font-weight: bold;
+    color: #900000;
+}
+
+#amazon .description {
+    float: left;
+    width: 450px;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+#amazon h1 {
+    font-size: 125%;
+}
+
+#amazon img {
+    display: inline;
+}
+
+#amazon div .stars {
+    display: inline-block;
+    width: 55px;
+    height: 12px;
+}
+
+#amazon .description ul {
+    font-size: 90%;
+    margin-left: 15px;
+}

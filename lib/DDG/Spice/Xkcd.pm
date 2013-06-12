@@ -16,7 +16,7 @@ attribution github => ["https://github.com/sdball", "Stephen Ball"],
 
 triggers startend => "xkcd";
 
-spice to => 'http://dynamic.xkcd.com/api-0/jsonp/comic/$1';
+spice to => 'http://xkcd.com/$1/info.0.json';
 spice wrap_jsonp_callback => 1;
 
 spice is_cached => 0;

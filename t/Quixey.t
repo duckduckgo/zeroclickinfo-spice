@@ -127,7 +127,8 @@ my @q = (
   "ios testing games",
   "ipone cracked screen",
   "windows 8 license",
-  "windows 8 skype keeps closing"
+  "windows 8 skype keeps closing",
+  "apple ios 5 musicplayer tutorial"
 );
 
 ddg_spice_test(
