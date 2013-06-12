@@ -1,4 +1,4 @@
-function ddg_spice_amazon_carousel_add_items;
+var ddg_spice_amazon_carousel_add_items;
 
 function ddg_spice_amazon(api_response) {
     console.log(api_response);
