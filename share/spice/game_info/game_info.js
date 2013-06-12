@@ -45,10 +45,12 @@ function ddg_spice_game_info(api_result) {
 
     Spice.render({
         data                     : api_result,
+        image_url                : api_result.image,
         header1                  : api_result.name + ' (Games)',
         source_url               : api_result.link,
-        source_name              : 'TheGamesDB',
-        template_normal          : 'game_info'
+        source_name              : 'TheFreeGamesDB',
+        template_normal          : 'game_info',
+        force_no_favicon         : true
         //force_favicon_url        : 'http://' + api_result.domain
     });
 }
