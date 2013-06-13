@@ -5,7 +5,6 @@ use strict;
 use Test::More;
 use DDG::Test::Language;
 use DDG::Test::Spice;
-use Data::Dumper;
 
 # Define Language for purpose of the test
 my $lang = test_language(de => 'German of Germany de_DE');
