@@ -18,6 +18,15 @@ var ddg_spice_detect_lang = function(api_result) {
         }
     });
 
+    api_result.data.detections.sort(function(a, b) {
+        if(a.confidence > b.confidence) {
+            return -1;
+        } else if(a.confidence < b.confidence) {
+            return 1;
+        }
+        return 0;
+    });
+
     var expandLang = function(language) {
         var langs = {
             af: "Afrikaans",
