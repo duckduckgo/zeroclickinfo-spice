@@ -68,7 +68,8 @@ var ddg_spice_thesaurus = function(api_result) {
         source_name       :  'Big Huge Thesaurus',
         source_url        :  'http://words.bighugelabs.com/' + query,
         template_normal   :  'thesaurus',
-        force_big_header  :  true
+        force_big_header  :  true,
+        force_no_favicon  :  true
     });
 };
 
