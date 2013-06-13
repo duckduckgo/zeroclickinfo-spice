@@ -88,14 +88,3 @@ Handlebars.registerHelper("organizeResults", function(options) {
         otherStories : otherStories
     });
 });
-
-
-// Creates an anchor linking to an item's commments.
-Handlebars.registerHelper("strip_html", function(text, options) {
-
-    var temp = d.createElement("div");
-    temp.innerHTML = text;
-    var cleanText = $(temp).text();
-
-    return options.fn( cleanText );
-});
