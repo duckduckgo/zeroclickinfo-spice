@@ -20,6 +20,7 @@ var ddg_spice_lastfm_song = function(api_result) {
         source_url       : api_result.track.url,
         source_name      : "Last.fm",
         template_normal  : "lastfm_song",
+        force_no_fold    : true,
         force_big_header : true
     });
 };
