@@ -16,9 +16,10 @@ function ddg_spice_amazon(api_response) {
             //width - parent margins (both sides) - parent padding - spotlight image width - left-margin
             $('#ddgc_nav').width() - 10 - (12*2) - 150 - 20
         );
-        nrj('https://dylan.duckduckgo.com/m.js?r='
-            + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
-            + '&cb=ddg_spice_amazon_detail');
+        if (item)
+            nrj('https://dylan.duckduckgo.com/m.js?r='
+                + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
+                + '&cb=ddg_spice_amazon_detail');
     };
 
     ddg_spice_amazon_carousel_add_items =
