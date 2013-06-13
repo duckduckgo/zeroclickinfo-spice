@@ -70,7 +70,7 @@ function ddg_spice_espn_nba_events(api_result) {
 
         var home, away, win, competitors = events[i].competitions[0].competitors;
 
-        competitors.map(function(competitor, index, array) {
+        $.map(competitors, function(competitor, index) {
             var teamName = competitor.team.location + ' ' + competitor.team.name;
             competitors[competitor.homeAway] = {
                 'teamName' : teamName,
@@ -80,7 +80,7 @@ function ddg_spice_espn_nba_events(api_result) {
                                + '/' + teamName.replace(' ', '-')).toLowerCase(),
             };
             if (competitor.team.id == player.teamID)
-                win = competitor.score > array[index ? 0 : 1].score ? 1 : 0;
+                win = competitor.score > competitors[index ? 0 : 1].score ? 1 : 0;
         });
 
         player.events.push({
