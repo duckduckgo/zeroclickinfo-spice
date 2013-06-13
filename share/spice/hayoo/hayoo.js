@@ -13,3 +13,7 @@ function ddg_spice_hayoo(results) {
       force_no_fold    : true,
   });
 }
+
+Handlebars.registerHelper("strip_anchor", function(text) {
+  return text.replace(/<\/?(a|code|strong)[^>]*>/g, "");
+});
