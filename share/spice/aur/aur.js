@@ -15,7 +15,7 @@ function ddg_spice_aur(response) {
         header1          : pkg.Name + " (AUR)",
         source_url       : 'https://aur.archlinux.org/packages/?O=0&K=' + query,
         source_name      : 'ArchLinux User Repository',
-        template_normal  : pkgs.length === 1 ? 'single' : 'list',
+        template_normal  : pkgs.length === 1 ? 'single' : 'aur',
         force_big_header : true
     });
 }
