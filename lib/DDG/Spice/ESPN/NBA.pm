@@ -5,7 +5,7 @@ use Time::localtime;
 
 description "News and stats for NBA players";
 name "ESPN NBA";
-primary_example_queries "Dwayne Wayde", "Kobe Bryant";
+primary_example_queries "Dwyane Wade", "Kobe Bryant";
 topics "entertainment", "special_interest";
 category "reference";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/ESPN/NBA.pm";
