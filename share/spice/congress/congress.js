@@ -16,6 +16,7 @@ function ddg_spice_congress(api_result) {
         source_name      : 'The New York Times',
         template_normal  : 'congress_table',
         force_big_header : true,
+        spice_name       : "congress",
         is_house         : (chamber == "House")
     });
 }
