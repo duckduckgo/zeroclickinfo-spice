@@ -5,7 +5,8 @@ function ddg_spice_lastfm_top_tracks(api_result) {
         header1          : "Top Songs (" + api_result.toptracks["@attr"].country + ")",
         source_name      : "Last.fm",
         source_url       : "http://www.last.fm/charts/tracks/top",
-        template_normal  : "lastfm_top_tracks"
+        template_normal  : "lastfm_top_tracks",
+        force_no_fold    : true
     });
 }
 
