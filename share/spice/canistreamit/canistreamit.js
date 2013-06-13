@@ -18,7 +18,8 @@ var ddg_spice_canistreamit = function(api_result) {
         source_url        : api_result[0].links.shortUrl,
         template_normal   : "canistreamit",
         template_small    : "canistreamit_small",
-        image_width       : 70
+        image_width       : 70,
+				force_no_fold			: true
     });
 };
 
