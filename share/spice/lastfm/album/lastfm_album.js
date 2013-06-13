@@ -27,7 +27,7 @@ var ddg_spice_lastfm_album = function(api_result) {
             header1           : api_result.album.name + " (Album)",
             source_name       : "Last.fm",
             source_url        : api_result.album.url,
-            template_normal   : "album"
+            template_normal   : "lastfm_album"
         });
 
         $(document).ready(function() {
