@@ -27,7 +27,8 @@ var ddg_spice_dictionary_definition = function(api_result) {
             force_big_header  : true,
             source_name       : "Wordnik",
             source_url        : "http://www.wordnik.com/words/" + word,
-            template_normal   : "dictionary_definition"
+            template_normal   : "dictionary_definition",
+            force_no_fold     : true
         });
 
         // Do not add hyphenation when we're asking for two words.
