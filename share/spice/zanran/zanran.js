@@ -17,7 +17,8 @@ function ddg_spice_zanran(api_result) {
         source_name      : 'Zanran',
         template_normal  : 'zanran',
         image_url        : checkImage(api_result.results[0].preview_image),
-        force_big_header : true
+        force_big_header : true,
+				force_no_fold 	 : true
     });
 
     $("a.show-hide").click(function() {
