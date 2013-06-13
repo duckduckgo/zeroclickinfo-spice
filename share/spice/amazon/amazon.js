@@ -1,8 +1,6 @@
 var ddg_spice_amazon_carousel_add_items;
 
 function ddg_spice_amazon(api_response) {
-    console.log(api_response);
-    
     if (!api_response || !(api_response.length > 1)) return;
 
     var query = DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
@@ -50,7 +48,6 @@ function ddg_spice_amazon_wait_for_render(items) {
 }
 
 function ddg_spice_amazon_detail(api_response) {
-    console.log(api_response);
     if (api_response.stars == 'unrated') {
         $('<span>unrated</span>')
             .insertAfter('#ddgc_detail .stars');

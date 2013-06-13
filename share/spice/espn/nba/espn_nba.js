@@ -2,9 +2,6 @@ var player = {};
 var numberOfCalls = 3;
 
 function ddg_spice_espn_nba(api_result) {
-    console.log('ddg_spice_espn_nba');
-    console.log(api_result);
-
     var player_info   = api_result.sports[0].leagues[0].athletes[0];
     var playerTeam    = player_info.competitors[0].team;
 
@@ -33,9 +30,6 @@ function ddg_spice_espn_nba(api_result) {
 }
 
 function ddg_spice_espn_nba_news(api_result) {
-    console.log('ddg_spice_espn_nba_news');
-    console.log(api_result);
-
     player.headline = api_result.headlines.filter(function(article) {
                             if (article.headline && article.source)
                                 return true;
@@ -45,9 +39,6 @@ function ddg_spice_espn_nba_news(api_result) {
 }
 
 function ddg_spice_espn_nba_team(api_result) {
-    console.log('ddg_spice_espn_nba_team');
-    console.log(api_result);
-
     var record               = api_result.sports[0].leagues[0].teams[0].record;
     var totalGames           = record.wins + record.losses + record.ties;
     player.teamWinPercentage = Math.floor(record.wins / totalGames * 100);
@@ -56,9 +47,6 @@ function ddg_spice_espn_nba_team(api_result) {
 }
 
 function ddg_spice_espn_nba_events(api_result) {
-    console.log('ddg_spice_espn_nba_events');
-    console.log(api_result);
-
     var events    = api_result.sports[0].leagues[0].events;
     player.events = [];
 
