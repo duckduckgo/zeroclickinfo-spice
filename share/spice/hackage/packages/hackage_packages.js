@@ -52,7 +52,7 @@ function ddg_spice_hackage_package_details(response) {
         header1          : pkg.name + " (Hackage)",
         source_url       : 'http://hackage.haskell.org/package/' + pkg.name,
         source_name      : 'Hackage',
-        template_normal  : 'hackage',
+        template_normal  : 'hackage_packages',
         force_big_header : true
     });
 }
