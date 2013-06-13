@@ -1,13 +1,10 @@
 #spice_congress table {
     /* border:1px solid #d0d0d0; */
     width:100%;
-    margin-bottom:5px;
-}
-#spice_congress tbody {
-    border:1px solid #d0d0d0;
+    margin:5px;
 }
 #spice_congress tr {
-    border-bottom:1px solid #d0d0d0;
+    border-bottom:1px solid #efefef;
 }
 #spice_congress th {
     vertical-align:bottom;
