@@ -4,7 +4,7 @@ use utf8;
 use DDG::Spice;
 
 primary_example_queries "detect language こんにちは";
-secondary_example_queries "the web browser what language";
+secondary_example_queries "what language is como estas";
 description "Detects the language";
 name "Detect Language";
 icon_url "/i/detectlanguage.com.ico";
