@@ -2,8 +2,8 @@ package DDG::Spice::Aur;
 
 use DDG::Spice;
 
-primary_example_queries "arch package 9base";
-secondary_example_queries "archlinux package epiphany";
+primary_example_queries "arch package powermate";
+secondary_example_queries "archlinux package 9base";
 description "Lookup packages from the Archlinux user repository";
 name "AUR";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Aur.pm";
