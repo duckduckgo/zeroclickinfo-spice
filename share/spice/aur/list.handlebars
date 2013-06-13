@@ -1,9 +1,9 @@
 <ul>
 {{#each package}}
   <li>
-    {{Name}}-{{Version}}: {{Description}} ({{License}})
+    {{Name}}-{{Version}}: {{Description}} {{#if License}}({{License}}){{/if}}
     {{#if OutOfDate}}(out of date){{/if}}
-    [<a href="{{URL}}">official site</a>]
+    {{#if URL}}[<a href="{{URL}}">official site</a>]{{/if}}
   </li>
 {{/each}}
 </ul>

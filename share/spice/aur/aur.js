@@ -11,7 +11,7 @@ function ddg_spice_aur(response) {
     var query = DDG.get_query().replace(/(aur|archlinux package|arch package|arch linux package)/, "");
 
     Spice.render({
-        data             : pkgs.length === 1 ? pkg : {'package' : pkgs},
+        data             : pkgs.length === 1 ? pkg : {'package' : pkgs },
         header1          : pkg.Name + " (AUR)",
         source_url       : 'https://aur.archlinux.org/packages/?O=0&K=' + query,
         source_name      : 'ArchLinux User Repository',
