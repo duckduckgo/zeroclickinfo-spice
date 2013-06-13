@@ -18,6 +18,8 @@ triggers any => "rhyme", "rhymes";
 
 spice to => 'http://rhymebrain.com/talk?function=getRhymes&word=$1&jsonp={{callback}}';
 
+spice proxy_cache_valid => "418 1d";
+
 handle query_lc => sub {
     return $1 if /^(?:(?:what|words?)\s+)?(?:that\s+)?(?:rhymes?(?:\s+?(?:with|for))?\s*)?([a-zA-Z]+)(?:\s+rhymes?)?(?:\s+with)?\??$/;
     return;
