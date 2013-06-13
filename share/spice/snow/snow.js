@@ -28,6 +28,7 @@ var nrio = function(api_result) {
         force_big_header  : true,
         source_name       : "isitsnowingyet.org",
         source_url        : "http://isitsnowingyet.org/check?q=" + api_result.location,
-        template_normal   : "snow"
+        template_normal   : "snow",
+        force_no_favicon  : true
     });
 };
