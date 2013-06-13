@@ -47,7 +47,8 @@ var ddg_spice_lastfm = function(api_result, template) {
             source_name      : "Last.fm",
             source_url       : api_result.artist.url,
             force_no_fold    : true,
-            template_normal  : "lastfm_artist"
+            template_normal  : "lastfm_artist",
+            template_small   : "lastfm_artist_small"
         });
     }
 };
