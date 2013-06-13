@@ -1,11 +1,7 @@
 {{#if this.display}}
     {{#if artist.bio.summary}}
         <div>
-            <span id="some">{{snippet artist.bio.summary "some"}}</span>
-            <a id="expand" href="javascript:;">
-                <span>More...</span>
-            </a>
-            <span id="all">{{snippet artist.bio.summary "all"}}</span>
+            <span id="some">{{condense artist.bio.summary maxlen="100"}}</span>
         </div>
     {{/if}}
 {{/if}}
