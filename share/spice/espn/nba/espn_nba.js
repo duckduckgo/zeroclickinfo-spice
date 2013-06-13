@@ -104,7 +104,8 @@ function ddg_spice_espn_nba_bind() {
         source_url       : 'http://espn.com/nba/player/_/id/' + player.id,
         source_name      : 'ESPN',
         template_normal  : 'espn_nba',
-        force_big_header : true
+        force_big_header : true,
+        force_no_fold    : true
     });
 
     var current_tab = $('#espn_zci_news_link')[0];
