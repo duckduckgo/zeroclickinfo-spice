@@ -8,12 +8,13 @@ function ddg_spice_bible(api_result) {
     var header = result.bookname + ' ' + result.chapter + ':' + result.verse;
 
     Spice.render({
-        data:               result,
-        header1 :           header + " (Bible Verse)",
-        source_name :       'Bible.org',
-        source_url :        'http://bible.org/',
-        template_normal :   "bible",
-        force_no_fold :     true
+        data              : result,
+        header1           : header + ' (Bible Verse)',
+        source_name       : 'Bible.org',
+        source_url        : 'http://bible.org/',
+        template_normal   : 'bible',
+        force_no_fold     : true,
+        force_favicon_url : 'http://bible.org/sites/bible.org/files/borg6_favicon.ico'
     });
 }
 
