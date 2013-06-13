@@ -7,7 +7,7 @@
 // Commands:
 // thesaurus big - would show similar words such as "large."
 
-var ddg_spice_big_huge = function(api_result) {
+var ddg_spice_thesaurus = function(api_result) {
     "use strict";
 
     // Get the query and the mode.
@@ -67,7 +67,7 @@ var ddg_spice_big_huge = function(api_result) {
         header1           :  header + " (Big Huge)",
         source_name       :  'Big Huge Thesaurus',
         source_url        :  'http://words.bighugelabs.com/' + query,
-        template_normal   :  'big_huge',
+        template_normal   :  'thesaurus',
         force_big_header  :  true
     });
 };

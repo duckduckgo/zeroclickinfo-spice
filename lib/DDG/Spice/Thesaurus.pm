@@ -1,4 +1,4 @@
-package DDG::Spice::BigHuge;
+package DDG::Spice::Thesaurus;
 # ABSTRACT: Give the synonym, antonym, similar and related words of the query.
 
 use DDG::Spice;
@@ -8,7 +8,7 @@ secondary_example_queries "similar words to miniature";
 description 'Related words';
 name "BigHuge Thesaurus";
 source "Big Huge Labs";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BigHuge.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Thesaurus.pm";
 topics "music", "words_and_games";
 category  "language";
 attribution github => ['https://github.com/lactose','lactose'],
