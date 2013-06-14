@@ -31,7 +31,7 @@
 #Spice Frontend
 
 ##Overview
-The Spice frontend is the code that is triggered by the Perl backend (which hopefully you already wrote) for your spice plugin. It mainly consists of a function (the Spice "callback" function) that takes a JSON formatted, API response as its input, specifies which template format you'd like your result to have and uses the data to render a Spice result at the top of the DuckDuckGo search results page.
+The Spice frontend is the code that is triggered by the Perl backend (which we learned about in the previous tutorial) for your spice plugin. It mainly consists of a function (the Spice "callback" function) that takes a JSON formatted, API response as its input, specifies which template format you'd like your result to have and uses the data to render a Spice result at the top of the DuckDuckGo search results page.
 
 The Perl part of the plugins go in lib directory: `lib/DDG/Spice/PluginName.pm`, while all of the frontend files discussed below should go in the share directory: `share/spice/plugin_name/`.
 
@@ -40,7 +40,7 @@ The Perl part of the plugins go in lib directory: `lib/DDG/Spice/PluginName.pm`,
 ###Tech
 The Spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and includes [jQuery](https://jquery.org) (although it's use is not required). It also allows the use of custom CSS when required.
 
-If you're not already familiar with Handlebars, *please* read the [Handlebars documentation](http://handlebarsjs.com) before continuing on. Don't worry if you don't fully understand how to use Handlebars, the examples will explain but you should, at the very least, familiarize yourself with Handlebars concepts and terminology before moving on. (Don't worry, it should only take a few minutes to read!)
+If you're not already familiar with Handlebars, *please* read the [Handlebars documentation](http://handlebarsjs.com) before continuing on. Don't worry if you don't fully understand how to use Handlebars; the examples will explain it to you. But you should, at the very least, familiarize yourself with Handlebars concepts and terminology before moving on. (Don't worry, it should only take a few minutes to read!)
 
 Below, we will walk you through several examples ranging from simple to complicated, which will explain how to use the template system and make your plugins look awesome.
 
@@ -92,7 +92,7 @@ Spice.render({
 
 Alright, so here is the bulk of the plugin, but it's very simple:
 
-- `Spice.render()` is a function that the plugin system has already defined. You call it with a JSON object that specifies a bunch of important parameters. 
+- `Spice.render()` is a function that the plugin system has already defined. You pass an object to it that specifies a bunch of important parameters. 
 
 - `data` is perhaps the most important parameter. The object given here will be the object that is passed along to the Handlebars template. In this case, the context of the NPM template will be the **api_result** object. This is very important to understand because **only the data passed along to the template is accessible to the template**. In most cases the `data` parameter should be set to 
 `api_result` so all the data returned from the API is accessible to the template. 
