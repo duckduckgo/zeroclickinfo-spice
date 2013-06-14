@@ -170,7 +170,7 @@ Now, let's take a look at the Alternative.To Handlebars templates:
 ```
 This simple template is used to define each of the carousel items. More specifically, it defines each `<li>` in the carousel and defines what the contents will be. In this case we specify an image - the result's icon - and a span tag, which contains the name of the result.
 
-You might notice that we prepend the `<img>`'s `src` url with the string `"/iu/?u="`. This is **required** for any images in your handlebars template. What this line does is proxy the image through our own servers, which ensure the user's privacy (because it force the request to come from DuckDuckGo instead of the user).
+You might notice that we prepend the `<img>`'s `src` url with the string `"/iu/?u="`. This is **required** for any images in your handlebars template. What this line does is proxy the image through our own servers, which ensure the user's privacy (because it forces the request to come from DuckDuckGo instead of the user).
 
 The carousel uses this template by iterating over each item in the object given to `carousel_items` and uses that item as the context of the template.
 
@@ -307,7 +307,7 @@ We define the function by using the `Handlebars.registerHelper()` method which t
 
 2. The body of the function (which we then define inline)
 
-***\*\*Note:*** when a Handlebars block helper is invoked with no input, `this` (inside the function) refers to the **context** of the template *at the time the function is invoked* . In this case, we set the `data` parameter to `api_result` in `Spice.render()` so the context of the template is `api_result` when `relevantMovie()` is invoked. This means that inside `relevantMovie()`, `this === api_result`. However, we add a few keys to `api_result` that are needed for other functions, so `api_result` is actually slightly modified, but you can ignore this.
+***Note:*** when a Handlebars block helper is invoked with no input, `this` (inside the function) refers to the context of the template *at the time the function is invoked*. In this case, we set the `data` parameter to `api_result` in `Spice.render()` so the context of the template is `api_result` when `relevantMovie()` is invoked. This means that inside `relevantMovie()`, `this === api_result`. However, we add a few keys to `api_result` that are needed for other functions, so `api_result` is actually slightly modified, but you can ignore this.
 
 ```javascript   
     var ignore = {movie:1, film:1, rotten:1, rating:1, rt:1, tomatoes:1};
@@ -425,7 +425,7 @@ This last line is **very** important. Here, we are using the Handlebars function
 {{/relevantMovie}}
 ```
 
-Inside the `{{relevantMovie}}` block helper, the template is pretty simple - we create a few `div`'s and reference properties of the context just like we did in **NPM** and **Alternative.To**. We also use a few more Handlebars helper functions, `star_rating` which we define in **movie.js**, `concat` and `condense`, which we've already discussed and another block helper, `{{#if}}` (a default Handlebars helper) which should be self-explanatory. We use the `{{if}}` helper to check if a variable exists in the current context. However, this block helper, unlike `{{#relevantMovie}}` ***doesn't*** change the context of the template inside its block. Rather, it adds the contents of its own block to the template if the input variable exists. As well, the `{{if}}` block allows the use of the optional `{{else}}` block which lets you add alternate content to the template when the input variable does not exist.
+Inside the `{{relevantMovie}}` block helper, the template is pretty simple - we create a few `div`'s and reference properties of the context just like we did in **NPM** and **Alternative.To**. We also use a few more Handlebars helper functions, `star_rating` which we define in **movie.js**, `concat` and `condense`, which we've already discussed, and another block helper, `{{#if}}` (a default Handlebars helper) which should be self-explanatory. We use the `{{if}}` helper to check if a variable exists in the current context. However, this block helper, unlike `{{#relevantMovie}}`, ***doesn't*** change the context of the template inside its block. Rather, it adds the contents of its own block to the template if the input variable exists. As well, the `{{if}}` block allows the use of the optional `{{else}}` block which lets you add alternate content to the template when the input variable does not exist.
 
 Moving on, let's take a look at the implementation of `star_rating`:
     
@@ -453,7 +453,7 @@ Handlebars.registerHelper("star_rating", function(score) {
 
 As you can see this is a pretty simple function, it takes a number as input, and use that to calculate a star rating. Then creates a string of ASCII stars and returns it to the template which will then be rendered by the browser to show a star rating of the movie.
 
-Now let's take a look at the implementation of `rating_adjectibve`:
+Now let's take a look at the implementation of `rating_adjective`:
 
 ######movie.js (continued) - rating_adjective helper
 ```javascript
