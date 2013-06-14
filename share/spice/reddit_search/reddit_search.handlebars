@@ -1,8 +1,8 @@
 <ul>
 {{#each this to="4"}}
   <li>
-    <a href="{{data.url}}">{{data.title}}</a> [<a href="http://www.reddit.com{{data.permalink}}">{{plural data.num_comments singular="comment" plural="comments"}}</a>]
-    ({{data.domain}}, {{plural data.score singular="point" plural="points"}})
+    <a href="{{data.url}}">{{data.title}}</a> <small>[<a href="http://www.reddit.com{{data.permalink}}">{{plural data.num_comments singular="comment" plural="comments"}}</a>]
+    ({{data.domain}}, {{plural data.score singular="point" plural="points"}})</small>
   </li>
 {{/each}}
 </ul>
