@@ -31,7 +31,7 @@
 #Spice Frontend
 
 ##Overview
-The Spice frontend is the code that is triggered by the Perl backend ( which hopefully you already wrote) for your spice plugin. It mainly consists of a function (the Spice "callback" function) that takes a JSON formatted, API response as its input, specifies which template format you'd like your result to have and uses the data to render a Spice result at the top of the DuckDuckGo search results page.
+The Spice frontend is the code that is triggered by the Perl backend (which hopefully you already wrote) for your spice plugin. It mainly consists of a function (the Spice "callback" function) that takes a JSON formatted, API response as its input, specifies which template format you'd like your result to have and uses the data to render a Spice result at the top of the DuckDuckGo search results page.
 
 The Perl part of the plugins go in lib directory: `lib/DDG/Spice/PluginName.pm`, while all of the frontend files discussed below should go in the share directory: `share/spice/plugin_name/`.
 
