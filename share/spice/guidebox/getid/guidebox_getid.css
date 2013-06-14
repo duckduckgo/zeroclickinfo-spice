@@ -1,0 +1,37 @@
+hr.horizontal_line {
+    margin: 5px 0;
+    margin-right: 1px;
+}
+
+#guidebox_getid li.ddgc_item img.play_button {
+    visibility: visible;
+    z-index: 100;
+    margin: -35px auto 15px;
+    width: 30px;
+    height: 29px;
+}
+
+#guidebox_getid li.ddgc_item img.movie_play_button {
+    visibility: visible;
+    z-index: 100;
+    margin: -45px auto 15px;
+    width: 30px;
+    height: 29px;
+}
+
+span.text_of_episode {
+
+}
+
+span.overview {
+    font-size: 85%;
+}
+
+span.smaller {
+    font-size: 75%;
+    margin-top: -5px;
+}
+
+div.last_episodes {
+    width: 100%;
+}
