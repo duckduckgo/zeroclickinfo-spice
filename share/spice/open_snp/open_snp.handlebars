@@ -1,0 +1,42 @@
+<div id='snp-data'>
+    <i>Chromosome:</i> {{chromosome}}<br>
+    <i>Position:</i> {{position}}<br>
+</div>
+
+<div id='snp-facts'>
+    {{#facts annotations.snpedia}}
+        {{#each this}}
+        <a href='{{url}}'>{{reference}}</a>: {{fact}}<br>
+        {{/each}}
+    {{/facts}}
+    [<a id='snpedia-link' href='http://www.snpedia.com/index.php/{{name}}'>
+        More at SNPedia
+    </a>]
+</div>
+
+<div class="clear"></div>
+
+<a id="show-references">Show references</a>
+
+<hr class='horizontal_line'>
+
+<div id='snp-annotations'>
+    {{#annotations annotations name}}
+    {{#each this}}
+            <br>
+            {{author}} <i> et. al.</i>, {{year}}:
+            <a href='{{url}}'>{{title}}</a>.
+            {{#if num}}
+                [<a href='{{source}}'>{{num}} more papers at {{publication}}</a>]
+            {{/if}}
+            <br>
+    {{/each}}
+    {{#if pgp}}{{#with pgp}}
+        <br>
+        Gene: {{gene}}
+        | Impact: {{impact}}
+        | More at <a href='{{source}}'>{{publication}}</a>
+        <br>
+    {{/with}}{{/if}}
+    {{/annotations}}
+</div>
