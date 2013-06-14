@@ -11,6 +11,14 @@ hr.horizontal_line {
     height: 29px;
 }
 
+#guidebox_getid li.ddgc_item img.movie_play_button {
+    visibility: visible;
+    z-index: 100;
+    margin: -45px auto 15px;
+    width: 30px;
+    height: 29px;
+}
+
 span.text_of_episode {
 
 }

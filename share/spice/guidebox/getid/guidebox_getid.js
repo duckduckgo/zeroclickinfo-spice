@@ -129,7 +129,7 @@ ddg_spice_guidebox_getid.render = function(api_result) {
     } else if (GB_global.type == "movie"){
         Spice.render({
             data : api_result,
-            header1 : "Watch full " + GB_global.query + " (Guidebox)",
+            header1 : "Watch full movie: " + GB_global.query + " (Guidebox)",
             force_big_header : true,
             source_name : "Guidebox",
             source_url : GB_global.more,
