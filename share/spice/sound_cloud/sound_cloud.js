@@ -52,7 +52,12 @@ var ddg_spice_sound_cloud = function(api_result) {
         force_big_header         : true,
         carousel_items           : context,
         carousel_template_detail : "sound_cloud_details",
-        force_no_fold            : true
+        force_no_fold            : true,
+        item_callback            : function() {
+            if(window.soundManager) {
+                clearPlayer();
+            }
+        }
     });
 
     // This gets called when the sound is finished playing.
@@ -179,14 +184,6 @@ var ddg_spice_sound_cloud = function(api_result) {
     $(document).ready(function() {
         // Add the player on top of the carousel.
         $("#ddgc_detail").prependTo("#sound_cloud");
-
-        // Clicking on the items in the carousel should stop the sound.
-        $(".ddgc_item").click(function() {
-
-            if(window.soundManager) {
-                clearPlayer();
-            }
-        });
     });
 
     // Expose the function that controls our player.
