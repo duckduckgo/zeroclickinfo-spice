@@ -1,30 +1,30 @@
 #Index
 - [Overview](#overview)
     - [Tech](#tech)
-- [Example #1: NPM (Basic Plugin)](#example-#1:-npm-(basic-plugin))
-- [Example #2: Alternative.To (Basic Carousel Plugin)](#example-#2:-Alternative.To (Basic Carousel Plugin))
-- [Example #3: Movie (Advance Plugin)](#example-#3:-movie-(advance-Plugin))
-- [Example #4: Quixey (Advanced Carousel Plugin)](#example-#4:-quixey (Advanced Carousel Plugin))
-- [Example #5: Dictionary (More Advanced Plugin)](#example-#5:-Dictionary (More Advanced Plugin))
+- [Example #1: NPM (Basic Plugin)](#example-1---npm-basic-plugin)
+- [Example #2: Alternative.To (Basic Carousel Plugin)](#example-2---alternativeto-basic-carousel-plugin)
+- [Example #3: Movie (Advance Plugin)](#example-3---movie-advance-plugin)
+- [Example #4: Quixey (Advanced Carousel Plugin)](#example-4---quixey-advanced-carousel-plugin)
+- [Example #5: Dictionary (More Advanced Plugin)](#example-5---dictionary-more-advanced-plugin)
 - [Advanced Techniques](#advanced-techniques)
-    - [Slurping a Textfile (when you have a *lot* of trigger words...)](#slurping-a-textfile-(when-you-have-a-*lot*-of-trigger-words...))
+    - [Slurping Multiple Trigger Words](#slurping-multiple-trigger-words...))
     - [Using API Keys](#using-api-keys)
     - [Using the GEO Location API](#using-the-geo-location-api)
-    - [Common Code for Spice Endpoints (.pm's)](#common-code-for-Spice Endpoints (.pm's))
-    - [Common JavaScript and Handlebars Templates](#common-JavaScript and Handlebars Templates)
+    - [Common Code for Spice Endpoints (.pm's)](#common-code-for-spice-endpoints-pms)
+    - [Common JavaScript and Handlebars Templates](#common-javascript-and-handlebars-templates)
     - [Using Custom CSS](#using-custom-css)
     - [Using images](#using-images)
 - [Common Pitfalls](#common-pitfalls)
-    - [Defining Perl Variables and Functions](#defining-perl-Variables and Functions)
+    - [Defining Perl Variables and Functions](#defining-perl-variables-and-functions)
 - [StyleGuide](#styleguide)
     - [Formatting](#formatting)
     - [Naming Conventions](#naming-conventions)
-    - [Do's & Don'ts](#do's-&-don'ts)
+    - [Do's & Don'ts](#dos--donts)
 - [FAQ](#faq)
-- [DDG Methods (JavaScript)](#ddg-methods-(javascript))
-- [Spice Helpers (Handlebars)](#spice-helpers-(handlebars))
-- [Spice Attributes (Perl)](#spice-attributes-(perl))
-- [Spice Helper Functions (perl)](#spice-helper-functions-(perl))
+- [DDG Methods (JavaScript)](#ddg-methods-javascript)
+- [Spice Helpers (Handlebars)](#spice-helpers-handlebars)
+- [Spice Attributes (Perl)](#spice-attributes-perl)
+- [Spice Helper Functions (perl)](#spice-helper-functions-perl)
 
 -------
 
@@ -1199,7 +1199,7 @@ Now that you have completed the walk through you should have the required knowle
 
 ##Advanced Techniques
 
-###Slurping a Textfile (when you have a *lot* of trigger words...)
+###Slurping Multiple Trigger Words
 Some plugins, such as the [**Zanran**](https://github.com/duckduckgo/zeroclickinfo-spice/blob/spice2/lib/DDG/Spice/Zanran.pm) and [**ExpandURL**](https://github.com/duckduckgo/zeroclickinfo-spice/blob/spice2/lib/DDG/Spice/ExpandURL.pm) plugins require a large list of trigger words due to the nature of the plugin. However, listing all those triggers in the Perl code can make it very difficult to read. As an easy fix, we have opted to list all the possible trigger words for each plugin in a `triggers.txt` file located in each plugin's respective share folder.
 
 ###Using API Keys
