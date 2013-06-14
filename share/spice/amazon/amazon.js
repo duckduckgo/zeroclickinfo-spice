@@ -5,7 +5,7 @@ function ddg_spice_amazon(api_response) {
 
     var query = DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
 
-    var spotlight_resize = function(index, item, is_cached) {
+    var spotlight_resize = function(index, item, obj, is_cached) {
         $('#amazon .spotlight').css(
             {'max-height' : ($('#ddgc_detail').height() > 150 ?
                                 $('#ddgc_detail').height() : 150) + 'px'}
