@@ -38,11 +38,9 @@ The Perl part of the plugins go in lib directory: `lib/DDG/Spice/PluginName.pm`,
 **\*\*Note** : The file and folder names must adhere to our [naming conventions](#naming-conventions) in order for everything to function properly.
 
 ###Tech
-The Spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and includes [jQuery](https://jquery.org) for use with JavaScript. It also allows the use of custom CSS when required.
+The Spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and includes [jQuery](https://jquery.org) (although it's use is not required). It also allows the use of custom CSS when required.
 
 If you're not already familiar with Handlebars, *please* read the [Handlebars documentation](http://handlebarsjs.com) before continuing on. Don't worry if you don't fully understand how to use Handlebars, the examples will explain but you should, at the very least, familiarize yourself with Handlebars concepts and terminology before moving on. (Don't worry, it should only take a few minutes to read!)
-
-Also, if you are unfamiliar with jQuery, you can familiarize yourself with that if you'd like, but understand and using jQuery is not required for you to write a Spice plugin.
 
 Below, we will walk you through several examples ranging from simple to complicated, which will explain how to use the template system and make your plugins look awesome.
 
