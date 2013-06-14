@@ -5,7 +5,7 @@ function ddg_spice_amazon(api_response) {
 
     var query = DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
 
-    var spotlight_resize = function(index, item) {
+    var spotlight_resize = function(index, item, is_cached) {
         $('#amazon .spotlight').css(
             {'max-height' : ($('#ddgc_detail').height() > 150 ?
                                 $('#ddgc_detail').height() : 150) + 'px'}
@@ -14,7 +14,7 @@ function ddg_spice_amazon(api_response) {
             //width - parent margins (both sides) - parent padding - spotlight image width - left-margin
             $('#ddgc_nav').width() - 10 - (12*2) - 150 - 20
         );
-        if (item)
+        if (item && !is_cached)
             nrj('https://dylan.duckduckgo.com/m.js?r='
                 + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
                 + '&cb=ddg_spice_amazon_detail');
