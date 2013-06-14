@@ -22,9 +22,8 @@
 }
 
 #quixey .app_icon_anchor {
-  max-width: 10%;
+  max-width: 60px;
   float: left;
-  margin-right: 22px;
 }
 
 
@@ -51,6 +50,8 @@
 #quixey .name_wrap {
   display: inline-block;
   max-width: 85%;
+  margin-left: 88px;
+	display: block;
 }
 
 #quixey .name {
