@@ -12,6 +12,7 @@ var ddg_spice_lastfm_artist_tracks = function(api_result) {
         force_big_header  : true,
         source_name       : "Last.fm",
         source_url        : "http://www.last.fm/search?q=" + artist + "&type=track",
-        template_normal   : "lastfm_artist_tracks"
+        template_normal   : "lastfm_artist_tracks",
+        force_no_fold     : true
     });
 };
