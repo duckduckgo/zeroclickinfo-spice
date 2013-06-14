@@ -3,7 +3,7 @@
     - [Tech](#tech)
 - [Example #1: NPM (Basic Plugin)](#example-1---npm-basic-plugin)
 - [Example #2: Alternative.To (Basic Carousel Plugin)](#example-2---alternativeto-basic-carousel-plugin)
-- [Example #3: Movie (Advance Plugin)](#example-3---movie-advance-plugin)
+- [Example #3: Movie (Advanced Plugin)](#example-3---movie-advance-plugin)
 - [Example #4: Quixey (Advanced Carousel Plugin)](#example-4---quixey-advanced-carousel-plugin)
 - [Example #5: Dictionary (More Advanced Plugin)](#example-5---dictionary-more-advanced-plugin)
 - [Advanced Techniques](#advanced-techniques)
@@ -35,7 +35,7 @@ The Spice frontend is the code that is triggered by the Perl backend ( which hop
 
 The Perl part of the plugins go in lib directory: `lib/DDG/Spice/PluginName.pm`, while all of the frontend files discussed below should go in the share directory: `share/spice/plugin_name/`.
 
-**\*\*Note** : The file and folder names must adhere to our [naming conventions](#) in order for everything to function properly.
+**\*\*Note** : The file and folder names must adhere to our [naming conventions](#naming-conventions) in order for everything to function properly.
 
 ###Tech
 The Spice frontend uses [Handlebars](http://handlebarsjs.com) for templates and includes [jQuery](https://jquery.org) for use with JavaScript. It also allows the use of custom CSS when required.
