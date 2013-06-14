@@ -40,6 +40,15 @@ var ddg_spice_sound_cloud = function(api_result) {
         return;
     }
 
+    // This gets called when the sound is finished playing.
+    // It basically just resets the look of the player.
+    var clearPlayer = function() {
+        var li = $("ul.playlist li");
+        li.removeClass();
+        li.addClass("sm2_stopped");
+        soundManager.stopAll();
+    };
+
     // Display the plugin.
     Spice.render({
         data                     : context,
@@ -59,15 +68,6 @@ var ddg_spice_sound_cloud = function(api_result) {
             }
         }
     });
-
-    // This gets called when the sound is finished playing.
-    // It basically just resets the look of the player.
-    var clearPlayer = function() {
-        var li = $("ul.playlist li");
-        li.removeClass();
-        li.addClass("sm2_stopped");
-        soundManager.stopAll();
-    };
 
     var addPadding = function(time) {
         return time < 10 ? "0" + time : time;
