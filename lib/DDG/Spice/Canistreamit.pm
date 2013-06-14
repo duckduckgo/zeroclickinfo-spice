@@ -3,7 +3,7 @@ package DDG::Spice::Canistreamit;
 use DDG::Spice;
 
 primary_example_queries "watch pirates of the caribbean";
-secondary_example_queries "can I stream indie game";
+secondary_example_queries "Can I stream The Dark Knight";
 description "Find out how to watch movies";
 name "CanIStream.It";
 icon_url "/i/www.canistream.it.ico";
