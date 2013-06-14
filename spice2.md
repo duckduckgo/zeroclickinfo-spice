@@ -127,7 +127,7 @@ We've created two files in the Spice share directory (`share/spice/npm/`) :
 1. `npm.js` - which delegates the API's response and calls `Spice.render()`
 2. `npm.handlebars` - which specifies the plugin's HTML structure and determines which attributes of the API response are placed in the HTML result
 
-You may notice other plugins also include a css file. For **NPM** the use of CSS wasn't necesary and this is also true for many other plugins. If however CSS is needed it can be added. Please refer to the [Spice FAQ](#) for more inforamtion about custom css.
+You may notice other plugins also include a css file. For **NPM** the use of CSS wasn't necesary and this is also true for many other plugins. If however CSS is needed it can be added. Please refer to the [Spice FAQ](#faq) for more inforamtion about custom css.
 
 ##Example #2 - Alternative.To (Basic Carousel Plugin)
 The Alternative.To plugin is very similar to NPM in that it is also relatively basic, however, it uses the new **Carousel** Spice Template. Let's take a look at the code and see how this is done:
