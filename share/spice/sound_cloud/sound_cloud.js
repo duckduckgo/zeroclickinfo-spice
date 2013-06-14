@@ -182,9 +182,9 @@ var ddg_spice_sound_cloud = function(api_result) {
 
         // Clicking on the items in the carousel should stop the sound.
         $(".ddgc_item").click(function() {
-            console.log("Hello.");
+
             if(window.soundManager) {
-                soundManager.stopAll();
+                clearPlayer();
             }
         });
     });
