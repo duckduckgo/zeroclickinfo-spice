@@ -19,7 +19,7 @@ var ddg_spice_lastfm_artist_album = function(api_result) {
             force_big_header  : true,
             source_name       : "Last.fm",
             source_url        : "http://www.last.fm/search?q=" + artist + "&type=album",
-            template_normal   : "artist_album"
+            template_normal   : "lastfm_artist_album"
         });
     }
 };
