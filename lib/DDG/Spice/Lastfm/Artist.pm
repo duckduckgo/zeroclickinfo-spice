@@ -18,7 +18,7 @@ attribution github => ['https://github.com/jagtalon','Jag Talon'],
 spice to => 'http://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&artist=$1&autocorrect=1&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}_$2';
 spice from => '(?:([^/]*)/([^/]*)|)';
 
-triggers any => 'similar', 'band', 'bands', 'musician', 'musicians', 'player', 'artist', 'artists', 'performer', 'performers', 'singer', 'singers', 'rapper', 'dj', 'rappers', 'vocalist', 'vocalists', 'djs', 'songster', 'songsters';
+triggers any => 'similar', 'band', 'bands', 'musician', 'musicians', 'artist', 'artists', 'performer', 'performers', 'singer', 'singers', 'rapper', 'dj', 'rappers', 'vocalist', 'vocalists', 'djs', 'songster', 'songsters';
 
 
 
