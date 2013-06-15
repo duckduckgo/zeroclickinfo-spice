@@ -20,7 +20,7 @@ function ddg_spice_khan_academy ( api_result ) {
         header1 : header,
         force_no_fold : 1,
         force_big_header : 1,
-        
+
         template_frame: "carousel",
         template_normal: "khan_academy",
         carousel_css_id: "khan_academy",
@@ -38,12 +38,12 @@ function ddg_spice_khan_academy ( api_result ) {
     resizeDetail();
 
     function resizeDetail() {
-        var $frame = $("#ddgc_frame");
-        var width = $frame.width();
-        var height = Math.floor(width * 0.5625) + 30;   //30px for player menu
+        var $khan = $("#spice_khan_academy");
+        var width = $khan.width() - 14;    //need 7px of padding on each side
+        var height = Math.floor(width * 0.5625) + 30;    //30px for player menu
         $("#ddgc_detail").height(height);
     };
-    
+
     $(document).ready(function() {
         // Maintain 16/9 aspect ratio
         $(window).resize(resizeDetail);

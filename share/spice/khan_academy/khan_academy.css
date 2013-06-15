@@ -39,3 +39,7 @@
 	border-top: none;
 	padding-top: 8px !important;
 }
+
+#khan_academy #ddgc_detail > div {
+	height: 100%;
+}
