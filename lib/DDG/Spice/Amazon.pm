@@ -2,7 +2,7 @@ package DDG::Spice::Amazon;
 
 use DDG::Spice;
 
-spice to => '//m.js?q=$1&cb=ddg_spice_amazon';
+spice to => 'http://localhost/m.js?q=$1&cb=ddg_spice_amazon';
 
 triggers any => 'amazon';
 
