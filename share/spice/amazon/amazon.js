@@ -59,3 +59,21 @@ function ddg_spice_amazon_detail(api_response) {
     $('#ddgc_detail .review-count')
         .text(api_response.reviews);
 }
+
+function ddg_spice_amazon_deep_image(api_result) {
+    var link_container = $('#links').css({ 'float' : 'left' });
+    var links = $('#links div[id|="r1"]');
+
+    var image_column = $('<div id="image-column"></div>')
+                        .css({ 'float' : 'left', 'width' : '100px' })
+                        .insertAfter(link_container);
+
+    links.each(function(i, el) {
+        image_column.append(
+            $('<div id="deep-image-' + i + '"></div>')
+            .css({ 'height' : $(el).outerHeight(true),
+                   'border' : '1px solid black' })
+        );
+    });
+
+}
