@@ -84,7 +84,7 @@ Handlebars.registerHelper("checkWords", function(options) {
         if(this.hasOwnProperty(parts_of_speech) && this[parts_of_speech][mode]) {
             results.push({
                 heading : parts_of_speech.charAt(0).toUpperCase() + parts_of_speech.slice(1),
-                words   : this[parts_of_speech][mode].join(", ")
+                words   : this[parts_of_speech][mode].splice(0, 10).join(", ")
             });
         }
     }
