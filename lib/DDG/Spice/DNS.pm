@@ -4,7 +4,7 @@ package DDG::Spice::DNS;
 use DDG::Spice;
 use Data::Validate::Domain qw(is_domain);
 
-spice to => 'http://pro.viewdns.info/dnsrecord/?domain=$1&recordtype=A&apikey={{ENV{DDG_SPICE_VIEWDNS_APIKEY}}}&output=json';
+spice to => 'http://pro.viewdns.info/dnsrecord/?domain=$2&recordtype=$1&apikey={{ENV{DDG_SPICE_VIEWDNS_APIKEY}}}&output=json';
 
 spice wrap_jsonp_callback => 1;
 
@@ -19,9 +19,9 @@ triggers any => 'dns', 'record';
 spice from => '(.*)/(.*)';
 
 handle query_lc => sub {
-    s/(a)\s+record\s+//;
-	my $valid = is_domain($_);
-	return 'A', "$_" if $valid;
+    s/(?:(a|aaaa|afsdb|apl|caa|cert|cname|dhcid|dlv|dname|dnskey|ds|hip|ipseckey|key|kx|loc|mx|naptr|ns|nsec|nsec3|nsec3param|ptr|rrsig|rp|sig|soa|spf|srv|sshfp|ta|tkey|tlsa|tsig|tx)\s+)?(record|dns)\s+//;
+    my $record = defined $1 ? $1 : 'any';
+	return uc $record, $_ if is_domain $_;
     return;
 };
 
