@@ -7,7 +7,6 @@ function ddg_spice_dns(api_result) {
         source_url        : 'http://www.viewdns.info/dnsrecord/?domain=' + api_result.query.domain,
         source_name       : 'ViewDNS',
         template_normal   : 'dns',
-        force_big_header  : true,
         force_favicon_url : 'http://viewdns.info/favicon.ico'
     });
 }
