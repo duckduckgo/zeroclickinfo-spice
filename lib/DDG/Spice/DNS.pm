@@ -10,17 +10,19 @@ spice wrap_jsonp_callback => 1;
 
 primary_example_queries 'dns viewdns.info';
 description 'IP address of domain';
-name 'Dns';
+name 'DNS';
 attribution github => ['https://www.github.com/OndroNR', 'Ondrej Galbavy'],
             twitter => ['https://www.twitter.com/OndroNR', 'Ondrej Galbavy'];
 
-triggers start => 'dns';
+triggers any => 'dns', 'record';
 
-handle remainder => sub {
+spice from => '(.*)/(.*)';
+
+handle query_lc => sub {
+    s/(a)\s+record\s+//;
 	my $valid = is_domain($_);
-	return $_ if $valid;
-	return;
-#	return $_;
+	return 'A', "$_" if $valid;
+    return;
 };
 
 1;
