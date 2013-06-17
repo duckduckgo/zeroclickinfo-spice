@@ -10,7 +10,7 @@
 
 nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
 
-var ddg_spice_sound_cloud = function(api_result) {
+function ddg_spice_sound_cloud (api_result) {
     "use strict";
 
     // Get the original query.

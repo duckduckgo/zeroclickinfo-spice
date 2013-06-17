@@ -7,7 +7,7 @@
 // Commands:
 // thesaurus big - would show similar words such as "large."
 
-var ddg_spice_thesaurus = function(api_result) {
+function ddg_spice_thesaurus (api_result) {
     "use strict";
 
     // Get the query and the mode.

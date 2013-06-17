@@ -7,7 +7,7 @@
 // Commands:
 // american airlines 102 - will show details about the flight.
 
-var ddg_spice_airlines = function(api_result) {
+function ddg_spice_airlines (api_result) {
     "use strict";
 
     // Check if we have anything returned.

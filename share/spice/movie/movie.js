@@ -1,4 +1,4 @@
-var ddg_spice_movie = function(api_result) {
+function ddg_spice_movie (api_result) {
 
     if (api_result.total === 0) return;
 

@@ -8,7 +8,7 @@
 // gravatar gravatar@duckduckgo.com - shows information about the e-mail address.
 // gravatar matt - shows information about a user.
 
-var ddg_spice_gravatar = function(api_result) {
+function ddg_spice_gravatar (api_result) {
     // Check for errors.
     if(!api_result || !api_result.entry || api_result.entry.length === 0) {
         return;

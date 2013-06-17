@@ -1,4 +1,4 @@
-var ddg_spice_octopart = function(api_result) {
+function ddg_spice_octopart (api_result) {
 
     if(!api_result || !api_result.results || api_result.results.length === 0) {
         return;

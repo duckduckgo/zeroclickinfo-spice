@@ -1,4 +1,4 @@
-var ddg_spice_in_theaters = function(api_result) {
+function ddg_spice_in_theaters (api_result) {
 
     // Exit if we don't find any movies or if we see an error.
     if(api_result.error || !api_result.movies || api_result.movies.length === 0) {

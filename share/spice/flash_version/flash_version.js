@@ -1,6 +1,6 @@
 // TODO: Probably better if we display all the plugins similar to https://www.mozilla.org/en-US/plugincheck/.
 // We can get that from window.navigator.plugins.
-var ddg_spice_flash_version = function() {
+function ddg_spice_flash_version () {
     "use strict";
 
     var context = {version: "You're using " + YAHOO.util.FlashDetect.raw};

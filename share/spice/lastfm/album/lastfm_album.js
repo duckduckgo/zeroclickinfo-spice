@@ -1,4 +1,4 @@
-var ddg_spice_lastfm_album = function(api_result) {
+function ddg_spice_lastfm_album (api_result) {
     "use strict";
 
     var skip = [

@@ -1,5 +1,5 @@
 // This function checks for errors, and it's also the one that calls Spice.render.
-var ddg_spice_lastfm = function(api_result, template) {
+function ddg_spice_lastfm (api_result, template) {
     "use strict";
 
     if(template === "similar") {
@@ -54,7 +54,7 @@ var ddg_spice_lastfm = function(api_result, template) {
 };
 
 // This function calls artist.handlebars, and it shows everything about the artist.
-var ddg_spice_lastfm_artist_all = function(api_result) {
+function ddg_spice_lastfm_artist_all (api_result) {
     "use strict";
 
     // Display the plugin.
@@ -73,7 +73,7 @@ var ddg_spice_lastfm_artist_all = function(api_result) {
 };
 
 // This function calls similar.handlebars, and it only shows the similar artists.
-var ddg_spice_lastfm_artist_similar = function(api_result) {
+function ddg_spice_lastfm_artist_similar (api_result) {
     "use strict";
 
     ddg_spice_lastfm(api_result, "similar");

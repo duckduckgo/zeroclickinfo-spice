@@ -1,4 +1,4 @@
-var ddg_spice_seatgeek_concert = function(api_result) {
+function ddg_spice_seatgeek_concert (api_result) {
     Spice.render({
         data              : api_result,
         header1           : "Concerts Nearby (SeatGeek)",

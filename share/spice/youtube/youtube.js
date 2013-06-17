@@ -1,4 +1,4 @@
-var ddg_spice_youtube = function(api_result) {
+function ddg_spice_youtube (api_result) {
     "use strict";
 
     $.getScript("/js/r/nryt116.js", function() {

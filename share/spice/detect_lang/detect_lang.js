@@ -1,4 +1,4 @@
-var ddg_spice_detect_lang = function(api_result) {
+function ddg_spice_detect_lang (api_result) {
     "use strict";
 
     // Check for any errors.

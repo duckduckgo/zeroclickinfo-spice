@@ -1,4 +1,4 @@
-var ddg_spice_lastfm_song = function(api_result) {
+function ddg_spice_lastfm_song (api_result) {
     "use strict";
 
     // Check if it is an empty string.

@@ -15,7 +15,7 @@
 
 // Dictionary::Definition will call this function.
 // This function gets the definition of a word.
-var ddg_spice_dictionary_definition = function(api_result) {
+function ddg_spice_dictionary_definition (api_result) {
     "use strict";
     var path = "/js/spice/dictionary";
 
@@ -74,7 +74,7 @@ var ddg_spice_dictionary_definition = function(api_result) {
 // Dictionary::Reference will call this function.
 // This is the part where we load the definition of the
 // singular form of the word.
-var ddg_spice_dictionary_reference = function(api_result) {
+function ddg_spice_dictionary_reference (api_result) {
     "use strict";
 
     var render = ddg_spice_dictionary_definition.render;
@@ -94,7 +94,7 @@ var ddg_spice_dictionary_reference = function(api_result) {
 
 // Dictionary::Hyphenation will call this function.
 // We want to add hyphenation to the word, e.g., hel•lo.
-var ddg_spice_dictionary_hyphenation = function(api_result) {
+function ddg_spice_dictionary_hyphenation (api_result) {
     "use strict";
 
     var result = [];
@@ -109,7 +109,7 @@ var ddg_spice_dictionary_hyphenation = function(api_result) {
 
 // Dictionary::Pronunciation will call this function.
 // It displays the text that tells you how to pronounce a word.
-var ddg_spice_dictionary_pronunciation = function(api_result) {
+function ddg_spice_dictionary_pronunciation (api_result) {
     "use strict";
 
     if(api_result && api_result.length > 0 && api_result[0].rawType === "ahd-legacy") {
@@ -119,7 +119,7 @@ var ddg_spice_dictionary_pronunciation = function(api_result) {
 
 // Dictionary::Audio will call this function.
 // It gets the link to an audio file.
-var ddg_spice_dictionary_audio = function(api_result) {
+function ddg_spice_dictionary_audio (api_result) {
     "use strict";
 
     var isFailed = false;

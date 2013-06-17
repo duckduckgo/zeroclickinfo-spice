@@ -1,6 +1,6 @@
 nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
 
-var ddg_spice_forvo = function(api_result) {
+function ddg_spice_forvo (api_result) {
     "use strict";
 
     // api_result.items can be either an array or an object.

@@ -1,4 +1,4 @@
-var ddg_spice_npm = function(api_result) {
+function ddg_spice_npm (api_result) {
 	if (api_result.error) return
 
     Spice.render({

@@ -1,4 +1,4 @@
-var ddg_spice_lastfm_artist_tracks = function(api_result) {
+function ddg_spice_lastfm_artist_tracks (api_result) {
 
     // Don't do anything if we find an error.
     if(api_result.error || !api_result.toptracks || !api_result.toptracks.track || api_result.toptracks.track.length === 0) {

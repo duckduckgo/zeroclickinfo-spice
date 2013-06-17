@@ -1,4 +1,4 @@
-var ddg_spice_seatgeek_schedule = function(api_result) {
+function ddg_spice_seatgeek_schedule (api_result) {
     var query = "";
 
     // Get the original query.

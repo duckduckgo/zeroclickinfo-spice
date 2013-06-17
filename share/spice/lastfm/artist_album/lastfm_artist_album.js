@@ -1,4 +1,4 @@
-var ddg_spice_lastfm_artist_album = function(api_result) {
+function ddg_spice_lastfm_artist_album (api_result) {
     var skip = [
         "albums",
         "records",

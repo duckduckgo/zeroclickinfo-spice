@@ -1,4 +1,4 @@
-var ddg_spice_canistreamit = function(api_result) {
+function ddg_spice_canistreamit (api_result) {
     "use strict";
 
     var query = DDG.get_query().replace(/^(?:can\s*i?|how\s*to|where\s*(?:to|can\s+i))?\s*(?:find\s+a)?\s*(.+)$/, "$1");
