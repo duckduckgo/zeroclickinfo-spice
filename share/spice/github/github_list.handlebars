@@ -1,11 +1,16 @@
 <ul>
-{{#each data.repositories}}
-  <li>
-    <a href="{{url}}">{{name}}</a>
-    (<a href="ownerURL">{{owner}}</a>{{#if fork}}, fork{{/if}})
-    {{#if description}}
-    	- {{description}}
-    {{/if}}
-  </li>
+{{#each data.repositories from="0" to="3"}}
+    {{{include "github_list_item"}}}
 {{/each}}
 </ul>
+
+<hr class="horizontal_line">
+
+<a id="gh_showHide">Show More Results</a>
+<div id="gh_more_results">
+    <ul>
+        {{#each data.repositories from="4"}}
+            {{{include "github_list_item"}}}
+        {{/each}}
+    </ul>
+</div>

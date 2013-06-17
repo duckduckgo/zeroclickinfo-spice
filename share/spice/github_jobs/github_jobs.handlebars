@@ -1,5 +1,16 @@
 <ul>
-{{#each this}}
+{{#each this from="0" to="4"}}
   <li><a href="{{url}}">{{title}}</a> in {{location}} ({{company}})</li>
 {{/each}}
 </ul>
+
+<hr class="horizontal_line">
+
+<a id="ghj_showHide">Show More Jobs</a>
+<div id="ghj_more_results">
+    <ul>
+        {{#each this from="5"}}
+            <li><a href="{{url}}">{{title}}</a> in {{location}} ({{company}})</li>
+        {{/each}}
+    </ul>
+</div>

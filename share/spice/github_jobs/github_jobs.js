@@ -10,11 +10,16 @@ function ddg_spice_github_jobs(api_result) {
     Spice.render({
         data             : api_result,
         header1          : query + " (GitHub Jobs)",
-        source_url       : 'https://jobs.github.com/positions?description=' 
+        source_url       : 'https://jobs.github.com/positions?description='
                             + encodeURIComponent(jobs['description'])
                             + "&location=" +  encodeURIComponent(jobs['location']),
         source_name      : 'GitHub',
         template_normal  : 'github_jobs',
-        force_big_header : true
+        force_big_header : true,
+        force_no_fold    : true
+    });
+
+    $("#ghj_showHide").click(function(){
+        $("#ghj_more_results").toggle();
     });
 }

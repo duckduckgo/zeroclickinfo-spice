@@ -8,9 +8,10 @@ function ddg_spice_hacker_news(api_result) {
     Spice.render({
         data:               api_result,
         header1 :           "Hacker News",
-        source_url :        "http://www.hnsearch.com/search#request/all&q=" + query,
+        source_url :        "http://www.hnsearch.com/search#request/all&q =" + query,
         source_name :       "Hacker News",
         template_normal :   "hacker_news",
+        force_no_fold :     true,
         force_big_header :  true
     });
 

@@ -12,7 +12,12 @@ function ddg_spice_github(api_result) {
                             + encodeURIComponent(query),
         source_name      : 'GitHub',
         template_normal  : (results.length == 1 ? 'github' : 'github_list'),
-        force_big_header : true
+        force_big_header : true,
+        force_no_fold    : true
+    });
+
+    $("#gh_showHide").click(function(){
+        $("#gh_more_results").toggle();
     });
 }
 
