@@ -18,7 +18,7 @@ var ddg_spice_thesaurus = function(api_result) {
         var matched, result;
         matched = $(this).attr("src");
         if(matched) {
-            result = matched.match(/\/js\/spice\/big_huge\/([^\/]+)\/([^\/]+)/);
+            result = matched.match(/\/js\/spice\/thesaurus\/([^\/]+)\/([^\/]+)/);
             if(result) {
                 query = result[1];
                 mode = result[2];
