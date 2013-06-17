@@ -6,8 +6,8 @@ description "Get the definition of a word";
 name "Dictionary";
 primary_example_queries "define inundate";
 secondary_example_queries "definition of dictionary";
-topics "words_and_games";
-category "language";
+topics "everyday";
+category "reference";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Dictionary/Definition.pm";
 attribution web => ['http://duckduckgo.com', 'DuckDuckGo'],
             twitter => ['http://twitter.com/duckduckgo', '@duckduckgo'];
