@@ -69,7 +69,7 @@ function ddg_spice_npm (api_result) {
 }
 ```
 
-`ddg_spice_npm()` is the function that the Perl module specifies -- it's the callback in the API response. This function will be called when the data returns from the upstream (API) provider.
+As mentioned, every plugin requires a Spice callback function, for the *NPM* plugin, the callback is the `ddg_spice_npm()` function that we defined here in *npm.js*. The *NPM* Perl module we wrote specifies this as the callback by using the name of the package `DDG::Spice::NPM` and gives this *ddg_spice_npm* name to the API call so that this funtion will be executed when the API responds using the data returned from the upstream (API) provider as the function's input.
 
 #####npm.js (continued)
 ```javascript 
@@ -105,7 +105,9 @@ Alright, so here is the bulk of the plugin, but it's very simple:
 
 - `source_url` is the target of the "More at" link. It's the page that the user will click through to. 
 
-- `template_normal` is the name of the Handlebars template that contains the structure information for your plugin. 
+- `template_normal` is the name of the Handlebars template that contains the structure information for your plugin.
+
+- `template_small` is the name of the Handlebars template to be used when you plugin is displayed in a stacked state. This isn't required, but if your plugin can provide a succint, one or two line answer this template should be used in the event that the plugin appears in the stacked state. If no template is given the stacked result will simply show the header of the spice result 
 
 ----
 
@@ -127,7 +129,7 @@ We've created two files in the Spice share directory (`share/spice/npm/`) :
 1. `npm.js` - which delegates the API's response and calls `Spice.render()`
 2. `npm.handlebars` - which specifies the plugin's HTML structure and determines which attributes of the API response are placed in the HTML result
 
-You may notice other plugins also include a css file. For **NPM** the use of CSS wasn't necesary and this is also true for many other plugins. If however CSS is needed it can be added. Please refer to the [Spice FAQ](#faq) for more inforamtion about custom css.
+You may notice other plugins also include a css file. For **NPM** the use of CSS wasn't necessary and this is also true for many other plugins. If however CSS is needed it can be added. Please refer to the [Spice FAQ](#faq) for more inforamtion about custom css.
 
 ##Example #2 - Alternative.To (Basic Carousel Plugin)
 The Alternative.To plugin is very similar to NPM in that it is also relatively basic, however, it uses the new **Carousel** Spice Template. Let's take a look at the code and see how this is done:
@@ -210,7 +212,7 @@ Let's take a look at the Alternative.To CSS:
 This CSS is fairly straightforward, but the most important thing to notice here is that we've namespaced the css using `#alternative_to` and that we have used `!important` to over-ride the default carousel css.
 
 
-##Example #3 - Movie (Advance Plugin)
+##Example #3 - Movie (Advanced Plugin)
 The movie plugin is a more advanced than **NPM** and **Alternative.To**, but most of the logic is in a single function which is used to obtain the most relevant movie from list given to us in `api_result`. Other than that, its relatively easy to understand, so lets start by looking at the Movie plugin's javascript:
 
 ######movie.js
