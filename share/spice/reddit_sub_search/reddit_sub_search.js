@@ -31,7 +31,7 @@ Handlebars.registerHelper("unescape", function(escaped, options) {
 
     // Remove all the tags.
     options.hash.maxlen = "150";
-    return Handlebars.helpers.condense(html.replace(/<\/?[^>]+>/g, ""), options);
+    return Handlebars.helpers.condense(DDG.strip_html(html), options);
 });
 
 Handlebars.registerHelper("formatSubscribers", function(subscribers) {
