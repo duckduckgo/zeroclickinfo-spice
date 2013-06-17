@@ -54,7 +54,7 @@ The NPM plugin [[link](https://duckduckgo.com/?q=npm+uglify-js)] [[code](https:/
 
 #####npm.js
 ```javascript
-var ddg_spice_npm = function(api_result) {
+function ddg_spice_npm (api_result) {
     if (api_result.error) return
 
     Spice.render({
@@ -215,7 +215,7 @@ The movie plugin is a more advanced than **NPM** and **Alternative.To**, but mos
 
 ######movie.js
 ```javascript
-var ddg_spice_movie = function(api_result) {
+function ddg_spice_movie (api_result) {
 
     if (api_result.total === 0) return;
 
@@ -784,7 +784,7 @@ Moving on, let's take a look at the implementation of the `Spice.render()` call 
 ```javascript
 // Dictionary::Definition will call this function.
 // This function gets the definition of a word.
-var ddg_spice_dictionary_definition = function(api_result) {
+function ddg_spice_dictionary_definition (api_result) {
     "use strict";
     var path = "/js/spice/dictionary";
 
@@ -856,7 +856,7 @@ After defining the `render()` function we give the function a `render` property,
 // Dictionary::Reference will call this function.
 // This is the part where we load the definition of the
 // singular form of the word.
-var ddg_spice_dictionary_reference = function(api_result) {
+function ddg_spice_dictionary_reference (api_result) {
     "use strict";
 
     var render = ddg_spice_dictionary_definition.render;
@@ -881,7 +881,7 @@ In this relatively simple callback, we begin by using the previously defined ren
 ```javascript
 // Dictionary::Hyphenation will call this function.
 // We want to add hyphenation to the word, e.g., hello -> hel•lo.
-var ddg_spice_dictionary_hyphenation = function(api_result) {
+function ddg_spice_dictionary_hyphenation (api_result) {
     "use strict";
 
     var result = [];
@@ -901,7 +901,7 @@ This callback is also fairly simple. If the API returns a result for the hyphena
 ```javascript
 // Dictionary::Pronunciation will call this function.
 // It displays the text that tells you how to pronounce a word.
-var ddg_spice_dictionary_pronunciation = function(api_result) {
+function ddg_spice_dictionary_pronunciation (api_result) {
     "use strict";
 
     if(api_result && api_result.length > 0 && api_result[0].rawType === "ahd-legacy") {
@@ -916,7 +916,7 @@ Similarly to the `dictionary_hyphenation()` callback, this callback receives a p
 ```javascript
 // Dictionary::Audio will call this function.
 // It gets the link to an audio file.
-var ddg_spice_dictionary_audio = function(api_result) {
+function ddg_spice_dictionary_audio (api_result) {
     "use strict";
 
     var isFailed = false;
