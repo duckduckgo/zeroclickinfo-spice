@@ -10,7 +10,7 @@ secondary_example_queries "free calculator app", "tiny piano for iphone";
 description "Search for mobile apps";
 name "Quixey App Search";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Quixey.pm";
-icon_url "/i/www.quixey.com";
+icon_url "/i/www.quixey.com.ico";
 category "entertainment";
 topics "everyday", "special_interest";
 attribution github => ['https://github.com/duckduckgo', 'DuckDuckGo'],
