@@ -9,6 +9,7 @@ primary_example_queries "flight tracking app", "quixey angry birds";
 secondary_example_queries "free calculator app", "tiny piano for iphone";
 description "Search for mobile apps";
 name "Quixey App Search";
+source "Quixey";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Quixey.pm";
 icon_url "/i/www.quixey.com.ico";
 category "entertainment";
