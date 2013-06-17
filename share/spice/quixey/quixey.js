@@ -88,7 +88,9 @@ function ddg_spice_quixey (api_result) {
                 "ipad",
                 "ios",
                 "free",
-                "search"
+                "search",
+								"release",
+								"release data"
             ],
             app;
 

@@ -523,7 +523,7 @@ function getRelevants (results) {
         apps = [],
         backupApps = [],
         categories = /action|adventure|arcade|board|business|casino|design|developer tools|dice|education|educational|entertainment|family|finance|graphics|graphics and design|health and fitness|kids|lifestyle|medical|music|networking|news|photography|productivity|puzzle|racing|role playing|simulation|social networking|social|sports|strategy|travel|trivia|utilities|video|weather/i,
-        skip_words = ["app", "apps", "application", "applications", "android", "droid", "google play store", "google play", "windows phone", "windows phone 8", "windows mobile", "blackberry", "apple app store", "apple app", "ipod touch", "ipod", "iphone", "ipad", "ios", "free", "search"];
+        skip_words = ["app", "apps", "application", "applications", "android", "droid", "google play store", "google play", "windows phone", "windows phone 8", "windows mobile", "blackberry", "apple app store", "apple app", "ipod touch", "ipod", "iphone", "ipad", "ios", "free", "search", "release", release date"];
         
     for (var i = 0; i < results.length; i++) {
 
