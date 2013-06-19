@@ -3,6 +3,8 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
 function ddg_spice_forvo (api_result) {
     "use strict";
 
+    if (api_result.attributes.total < 1) return;
+
     // api_result.items can be either an array or an object.
     // Forvo returns either an array-like object or an actual array.
     // {0: "...", 1: "...", 2: "..."} or ["...", "...", "..."].
@@ -22,7 +24,7 @@ function ddg_spice_forvo (api_result) {
         force_big_header : true
     });
 
-    // This gets called when the sound is finished playing 
+    // This gets called when the sound is finished playing
     // or when another player is playing. It basically just resets the look of the player.
     var clearPlayer = function() {
         var li = $("ul.playlist li");
@@ -84,7 +86,7 @@ function ddg_spice_forvo (api_result) {
         // Get the sound
         var current_id = anchor.attr("id");
         var sound;
-        
+
         // Make sure only one player is playing at any one time.
         if(!last_id) {
             last_id = current_id;
@@ -119,7 +121,7 @@ function ddg_spice_forvo (api_result) {
             } else if(isLoaded) {
                 playSound(anchor);
             }
-            
+
             li.removeClass();
             li.addClass("sm2_playing");
         }
