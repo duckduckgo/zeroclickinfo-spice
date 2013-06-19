@@ -23,7 +23,8 @@ function ddg_spice_amazon(api_response) {
     ddg_spice_amazon_carousel_add_items =
         Spice.render({
             header1                  : query + ' (Amazon)',
-            source_url               : api_response.url,
+            source_url               : 'http://www.amazon.com/s/?tag=duc0c-20&field-keywords='
+                                        + encode(query),
             source_name              : 'Amazon',
             force_big_header         : true,
             force_favicon_domain     : 'www.amazon.com',
