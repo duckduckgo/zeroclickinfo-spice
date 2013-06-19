@@ -24,7 +24,7 @@ function ddg_spice_amazon(api_response) {
         Spice.render({
             header1                  : query + ' (Amazon)',
             source_url               : 'http://www.amazon.com/s/?tag=duc0c-20&field-keywords='
-                                        + encode(query),
+                                        + encodeURIComponent(query),
             source_name              : 'Amazon',
             force_big_header         : true,
             force_favicon_domain     : 'www.amazon.com',
