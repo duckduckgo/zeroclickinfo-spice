@@ -7,7 +7,7 @@
 - [Example #4: Quixey (Advanced Carousel Plugin)](#example-4---quixey-advanced-carousel-plugin)
 - [Example #5: Dictionary (More Advanced Plugin)](#example-5---dictionary-more-advanced-plugin)
 - [Advanced Techniques](#advanced-techniques)
-    - [Slurping Multiple Trigger Words](#slurping-multiple-trigger-words...))
+    - [Slurping Multiple Trigger Words](#slurping-multiple-trigger-words...)
     - [Using API Keys](#using-api-keys)
     - [Using the GEO Location API](#using-the-geo-location-api)
     - [Common Code for Spice Endpoints (.pm's)](#common-code-for-spice-endpoints-pms)
@@ -24,7 +24,7 @@
 - [DDG Methods (JavaScript)](#ddg-methods-javascript)
 - [Spice Helpers (Handlebars)](#spice-helpers-handlebars)
 - [Spice Attributes (Perl)](#spice-attributes-perl)
-- [Spice Helper Functions (perl)](#spice-helper-functions-perl)
+- [Spice Helper Functions (Perl)](#spice-helper-functions-perl)
 
 -------
 
@@ -1359,17 +1359,17 @@ Nope. Just use JavaScript, please and thanks.
 (tbd)
 
 ###Spice wrap_jsonp_callback
-(tbd)
+If the API used for your plugin does not support JSONP (ie. it doesn't provide a URI parameter to indicate the callback function to be used on the API response), set `wrap_jsonp_callback` to true and the API response will automatically be wrapped in the appropriate function call for your plugin.
 
 ###Spice proxy_cache_valid 
 (tbd)
 
 ###Spice is_unsafe
-(tbd)
+If your plugin has the potential to return unsafe results (eg. contains vulgar words, crude humour) the `is_unsafe` flag must be set to true. Any plugins that have `is_unsafe` set to true can only be seen when a user has safe-search turned off, or when they add the phrase `!safeoff` to their query (eg. "automeme !safeoff").
 
 ------
 
-##Spice Helper Functions (perl)
+##Spice Helper Functions (Perl)
 
 ###share()
 (tbd)
