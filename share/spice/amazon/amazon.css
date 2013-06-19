@@ -9,10 +9,6 @@
     max-height: 154 !important;
 }
 
-#amazon li.ddgc_item {
-    height: 140px !important;
-}
-
 #amazon li.ddgc_item img {
     padding: 5px;
 }
