@@ -1,4 +1,5 @@
 function ddg_spice_movie (api_result) {
+    "use strict";
 
     if (api_result.total === 0) {
         return;
@@ -7,25 +8,26 @@ function ddg_spice_movie (api_result) {
     var ignore = ["movie", "film", "rotten", "rating", "rt", "tomatoes", "release date"];
     var result, max_score = 0;
 
-    // assign a ranking value for the movie. this isn't a complete sorting value though
+    // Assign a ranking value for the movie. This isn't a complete sorting value though
     // also we are blindling assuming these values exist
     var score = function(m) {
         var s = m.ratings.critics_score * m.ratings.audience_score;
         if (s > max_score) max_score = s;
-        return s; // if any above are undefined, s is undefined
+        // If any above are undefined, s is undefined.
+        return s;
     };
 
     // returns the more relevant of the two movies
     var better = function(currentbest, next) {
-        return (score(next) > score(currentbest) // if score() returns undefined, this is false, so we're still ok
-                && (next.year < currentbest.year)
-                && DDG.isRelevant(next.title, ignore)) ?
-                    next : currentbest;
+        // If score() returns undefined, this is false, so we're still OK.
+        return (score(next) > score(currentbest) &&
+                (next.year < currentbest.year) &&
+                DDG.isRelevant(next.title, ignore)) ? next : currentbest;
     };
 
     result = DDG_bestResult(api_result.movies, better);
 
-    // favor the first result if the max score is within 1% of the score for the first result
+    // Favor the first result if the max score is within 1% of the score for the first result.
     if (result !== api_result.movies[0] && Math.abs(score(api_result.movies[0]) - max_score) / max_score < 0.1) {
         result = api_result.movies[0];
     }
@@ -35,30 +37,6 @@ function ddg_spice_movie (api_result) {
         return;
     }
 
-    Spice.render({
-        data: result,
-        source_name: 'Rotten Tomatoes',
-        template_normal: "movie",
-        template_small: "movie_small",
-        force_no_fold: 1
-        // source_url, image_url, header set in relevantMovie helper function below
-    });
-};
-
-/*
- * relevantMovie
- *
- * a block helper that finds the best movie and applies
- * it to the enclosed template block.
- *
- * Sets the source_url, image_url, and header1 for the template
- * based on the best movie.
- *
- */
-Handlebars.registerHelper("relevantMovie", function(options) {
-    // make the movie's info available to the zero click template
-    // by setting spice value in the ddh (duckduckhack) object
-
     var checkYear = function(year) {
         if(year) {
             return " (" + year + ")";
@@ -66,22 +44,22 @@ Handlebars.registerHelper("relevantMovie", function(options) {
         return "";
     };
 
-    this.ddh.source_url = this.links.alternate;
-    this.ddh.header1 = this.title + checkYear(this.year);
-
-    if (this.posters.thumbnail && this.posters.thumbnail.indexOf("poster_default.gif") == -1) {
-        this.ddh.image_url = this.posters.thumbnail;
+    if ((result.synopsis && result.synopsis.length) ||
+        (result.critics_consensus && result.critics_consensus.length)) {
+        result.hasContent = true;
     }
 
-    if ((this.synopsis && this.synopsis.length) ||
-        (this.critics_consensus && this.critics_consensus.length)){
-        this.hasContent = true;
-    }
-
-    // invoke the body of the block with the relevant movie as the context
-    return options.fn(this);
-});
-
+    Spice.render({
+        data: result,
+        source_name: 'Rotten Tomatoes',
+        template_normal: "movie",
+        template_small: "movie_small",
+        force_no_fold: 1,
+        source_url: result.links.alternate,
+        header1: result.title + checkYear(result.year),
+        image_url: result.posters.thumbnail.indexOf("poster_default.gif") === -1 ? result.posters.thumbnail : ""
+    });
+};
 
 /*
  * rating_adjective
