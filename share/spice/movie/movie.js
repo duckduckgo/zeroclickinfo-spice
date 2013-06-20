@@ -1,28 +1,9 @@
 function ddg_spice_movie (api_result) {
 
-    if (api_result.total === 0) return;
+    if (api_result.total === 0) {
+        return;
+    }
 
-    Spice.render({
-        data: api_result,
-        source_name: 'Rotten Tomatoes',
-        template_normal: "movie",
-        template_small: "movie_small",
-        force_no_fold: 1
-        // source_url, image_url, header set in relevantMovie helper function below
-    });
-};
-
-/*
- * relevantMovie
- *
- * a block helper that finds the best movie and applies
- * it to the enclosed template block.
- *
- * Sets the source_url, image_url, and header1 for the template
- * based on the best movie.
- *
- */
-Handlebars.registerHelper("relevantMovie", function(options) {
     var ignore = ["movie", "film", "rotten", "rating", "rt", "tomatoes", "release date"];
     var result, max_score = 0;
 
@@ -42,37 +23,63 @@ Handlebars.registerHelper("relevantMovie", function(options) {
                     next : currentbest;
     };
 
-    result = DDG_bestResult(this.movies, better);
+    result = DDG_bestResult(api_result.movies, better);
 
     // favor the first result if the max score is within 1% of the score for the first result
-    if (result !== this.movies[0] && Math.abs(score(this.movies[0]) - max_score) / max_score < 0.1) {
-        result = this.movies[0];
+    if (result !== api_result.movies[0] && Math.abs(score(api_result.movies[0]) - max_score) / max_score < 0.1) {
+        result = api_result.movies[0];
     }
 
+    // Check if the movie that we have is relevant enough.
+    if(!DDG.isRelevant(result.title, ignore)) {
+        return;
+    }
+
+    Spice.render({
+        data: result,
+        source_name: 'Rotten Tomatoes',
+        template_normal: "movie",
+        template_small: "movie_small",
+        force_no_fold: 1
+        // source_url, image_url, header set in relevantMovie helper function below
+    });
+};
+
+/*
+ * relevantMovie
+ *
+ * a block helper that finds the best movie and applies
+ * it to the enclosed template block.
+ *
+ * Sets the source_url, image_url, and header1 for the template
+ * based on the best movie.
+ *
+ */
+Handlebars.registerHelper("relevantMovie", function(options) {
     // make the movie's info available to the zero click template
     // by setting spice value in the ddh (duckduckhack) object
 
     var checkYear = function(year) {
         if(year) {
-            return " (" + result.year + ")";
+            return " (" + year + ")";
         }
         return "";
     };
 
-    this.ddh.source_url = result.links.alternate;
-    this.ddh.header1 = result.title + checkYear(result.year);
+    this.ddh.source_url = this.links.alternate;
+    this.ddh.header1 = this.title + checkYear(this.year);
 
-    if (result.posters.thumbnail && result.posters.thumbnail.indexOf("poster_default.gif") == -1) {
-        this.ddh.image_url = result.posters.thumbnail;
+    if (this.posters.thumbnail && this.posters.thumbnail.indexOf("poster_default.gif") == -1) {
+        this.ddh.image_url = this.posters.thumbnail;
     }
 
-    if ((result.synopsis && result.synopsis.length) ||
-        (result.critics_consensus && result.critics_consensus.length)){
-        result.hasContent = true;
+    if ((this.synopsis && this.synopsis.length) ||
+        (this.critics_consensus && this.critics_consensus.length)){
+        this.hasContent = true;
     }
 
     // invoke the body of the block with the relevant movie as the context
-    return options.fn(result);
+    return options.fn(this);
 });
 
 
