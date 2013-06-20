@@ -19,7 +19,9 @@
         </div>
 
         <div><span class="movie_data_item">MPAA rating:</span>{{mpaa_rating}}</div>
-        <div><span class="movie_data_item">Running time:</span>{{runtime}} minutes</div>
+        {{#if runtime}}
+            <div><span class="movie_data_item">Running time:</span>{{runtime}} minutes</div>
+        {{/if}}
 
         {{#if abridged_cast}}
             <div><span class="movie_data_item">Starring:</span>
