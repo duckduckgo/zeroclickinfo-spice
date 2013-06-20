@@ -59,7 +59,7 @@ function ddg_spice_movie (api_result) {
         header1: result.title + checkYear(result.year),
         image_url: result.posters.thumbnail.indexOf("poster_default.gif") === -1 ? result.posters.thumbnail : ""
     });
-};
+}
 
 /*
  * rating_adjective
@@ -70,13 +70,17 @@ function ddg_spice_movie (api_result) {
  *   'a'  PG rated movie
  */
 Handlebars.registerHelper("rating_adjective", function() {
-    return (this.mpaa_rating === "R"
-         || this.mpaa_rating === "NC-17"
-         || this.mpaa_rating === "Unrated") ?  "an" :"a";
+    "use strict";
+
+    return (this.mpaa_rating === "R" ||
+            this.mpaa_rating === "NC-17" ||
+            this.mpaa_rating === "Unrated") ?  "an" :"a";
 });
 
 /* star rating */
 Handlebars.registerHelper("star_rating", function(score) {
+    "use strict";
+
     var r = (score / 20) - 1;
     var s = "";
 
@@ -86,7 +90,7 @@ Handlebars.registerHelper("star_rating", function(score) {
         }
     }
 
-    if (s.length == 0) {
+    if (s.length === 0) {
         s = "0 Stars";
     }
 
