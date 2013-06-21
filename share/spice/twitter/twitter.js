@@ -32,7 +32,7 @@ Handlebars.registerHelper("processEntities", function(text, entities, options) {
         }
         // If it's a hashtag.
         if(twitter.text) {
-            return createLink("https://twitter.com/search?q=%23" + twitter.text, "#" + text);
+            return createLink("https://twitter.com/search?q=%23" + twitter.text, "&#35;" + twitter.text);
         }
         return string;
     };
