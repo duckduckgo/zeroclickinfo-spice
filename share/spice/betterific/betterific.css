@@ -1,0 +1,45 @@
+/* Where possible, this copies the styles found at http://betterific.com/search */
+
+#spice_betterific {
+  font-family: Helvetica, Arial, sans-serif;
+  margin-top: 12px;
+}
+
+#spice_betterific a,
+#spice_betterific a:active,
+#spice_betterific a:hover {
+  color: #2c86c0;
+  text-decoration: none;
+}
+
+#spice_betterific .tag-img {
+  cursor: pointer;
+  float: left;
+  height: 40px;
+  width: 40px;
+}
+
+#spice_betterific .tag-box {
+  float: left;
+  margin-left: 20px;
+}
+
+#spice_betterific .tag-box .user-stats {
+  color: #777;
+}
+
+#spice_betterific .tag-box .user-stats span {
+  border-left: 1px solid #777;
+  margin-left: 9px;
+  padding-left: 10px;
+}
+
+#spice_betterific .tag-box .user-stats span:first-child {
+  border-left: 0;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#spice_betterific .clear-both {
+  clear: both;
+}
