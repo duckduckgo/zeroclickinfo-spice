@@ -1,4 +1,4 @@
-ddg_spice_zipcode = function(api_result) {
+function ddg_spice_zipcode (api_result) {
     "use strict";
 
     // Check errors.
@@ -10,13 +10,19 @@ ddg_spice_zipcode = function(api_result) {
     var query,
         script  = $("[src*='js/spice/zipcode']")[0],
         source  = $(script).attr("src"),
-        matches = source.match(/\/([^\/]+)\/(\w+)$/),
-        zip     = matches[1];
+        matches = source.match(/\/([^\/]+)\/(\w+)$/);
 
-    // Expose the zipcode from the query
-    api_result.zip = zip;
+    // expose the zipcode and country from the query
+    api_result.zip = matches[1];
+    api_result.country = matches[2];
 
-    var place = api_result.places.place[0];
+    // Get the right result based on the query
+    var place = zipcode_getCountry(api_result, matches);
+
+    api_result.relevantPlace = place;
+
+    // Make sure we have a relevant result
+    if (!place) return;
 
     // Get location
     var names = ["locality1", "admin2", "admin1"],
@@ -24,7 +30,7 @@ ddg_spice_zipcode = function(api_result) {
 
     for (var i = 0; i < names.length ; i++) {
         var name = place[names[i]];
-        if (name.length) header.push(name);
+        if (name.length && header.indexOf(name) === -1) header.push(name);
     };
 
     header.push(place.country);
@@ -46,20 +52,54 @@ ddg_spice_zipcode = function(api_result) {
     });
 };
 
+// If a country was specified in the query
+// select the result which returned for the
+// given country or return null if no match
+function zipcode_getCountry (result, matches) {
+
+    var zip     = result.zip,
+        country = result.country,
+        locs    = result.places.place;
+
+    for (var i = 0; i < locs.length; i++) {
+
+        var current = locs[i];
+        var resName = current.name.replace(/s+/, "");
+
+        console.log("ZIP IS: ", zip);
+        console.log("COUNTRY IS: ", country);
+        console.log("CURRENT NAME IS: ", resName);
+        console.log("CURRENT COUNTRY IS: ", current["country attrs"].code);
+        console.log("\n");
+
+        // check if zipcodes match and either countries match OR no country specified
+        if (resName === zip && ( country === "ZZ" || current["country attrs"].code === country )) {
+            console.log("NAME MATCH IS: ", zip);
+            return locs[i];
+        };
+    };
+    return null;
+};
+
 // Filter the zipcodes.
 // Only get the ones which are actually equal to the query.
 Handlebars.registerHelper("checkZipcode", function(options) {
     "use strict";
 
     var result = [];
-    var place = this.places.place;
+    var locs = this.places.place;
     var name = this.zip;
 
-    if(place.length === 1) return;
+    if(locs.length === 1) return;
 
-    for(var i = 1; i < place.length; i += 1) {
-        if(place[i].name === name) {
-            result.push(place[i]);
+    locs = locs.sort(function(a, b) {
+        return a.country > b.country ? 1 : -1;
+    });
+
+
+    for(var i = 1; i < locs.length; i += 1) {
+        if(locs[i].name === name) {
+            result.push(locs[i]);
         }
     }
 
@@ -68,8 +108,9 @@ Handlebars.registerHelper("checkZipcode", function(options) {
     }
 
     result = options.fn(result);
+
     if(result.replace(/\s+/, "") !== "") {
-        return "Similar postal codes: " + result;
+        return "Postal code " + name + " in other countries: " + result;
     }
 });
 
