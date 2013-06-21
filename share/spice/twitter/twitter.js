@@ -37,6 +37,7 @@ Handlebars.registerHelper("processEntities", function(text, entities, options) {
         return string;
     };
 
+    // Recursion, baby!
     var twitterSplit = function(twitter, result, final_text, original, start_index, i) {
         if(twitter.length === i || twitter.length === 0) {
             result.push(final_text);
@@ -56,5 +57,16 @@ Handlebars.registerHelper("processEntities", function(text, entities, options) {
         all_entities = all_entities.concat(entities[k]);
     }
     
+    // Sort indices. No matter what you do, sort the damn indices!
+    all_entities.sort(function(a, b) {
+        if(a.indices[0] < b.indices[0]) {
+            return -1;
+        }
+        if(a.indices[0] > b.indices[0]) {
+            return 1;
+        }
+        return 0;
+    });
+
     return twitterSplit(all_entities, [], text, text, 0, 0).join("");
 });
