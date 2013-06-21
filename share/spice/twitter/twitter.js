@@ -12,7 +12,7 @@ var ddg_spice_twitter = function(api_result) {
     });
 };
 
-Handlebars.registerHelper("processEntities", function(text, entities, options) {
+Handlebars.registerHelper("processEntities", function(text, entities) {
     var createLink = function(href, inner) {
         return "<a href='" + href + "'>" + inner + "</a>";
     };
@@ -28,7 +28,7 @@ Handlebars.registerHelper("processEntities", function(text, entities, options) {
         }
         // If it's a picture or a video.
         if(twitter.media_url) {
-            return createLink(twitter.media_url_https, display_url);
+            return createLink(twitter.media_url_https, twitter.display_url);
         }
         // If it's a hashtag.
         if(twitter.text) {
@@ -54,7 +54,9 @@ Handlebars.registerHelper("processEntities", function(text, entities, options) {
     // Concatenate all the entities.
     var all_entities = [];
     for(var k in entities) {
-        all_entities = all_entities.concat(entities[k]);
+        if(entities.hasOwnProperty(k)) {
+            all_entities = all_entities.concat(entities[k]);
+        }
     }
     
     // Sort indices. No matter what you do, sort the damn indices!
