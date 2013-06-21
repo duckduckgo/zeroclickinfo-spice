@@ -35,11 +35,11 @@ Handlebars.registerHelper("processEntities", function(text, entities, options) {
             return createLink("https://twitter.com/search?q=%23" + twitter.text, "#" + text);
         }
         return string;
-    }
+    };
 
-    var twitterSplit = function(twitter, result, final, original, start_index, i) {
+    var twitterSplit = function(twitter, result, final_text, original, start_index, i) {
         if(twitter.length === i || twitter.length === 0) {
-            result.push(final);
+            result.push(final_text);
             return result;
         } else {
             var indices = twitter[i].indices;
