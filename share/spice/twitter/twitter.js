@@ -1,4 +1,9 @@
 var ddg_spice_twitter = function(api_result) {
+
+    if(!api_result || !api_result.current_status) {
+        return;
+    }
+
     // Display the plugin.
     Spice.render({
         data                     : api_result.current_status,
