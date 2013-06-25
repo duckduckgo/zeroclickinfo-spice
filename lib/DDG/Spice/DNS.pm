@@ -19,8 +19,8 @@ triggers any => 'dns', 'record';
 spice from => '(.*)/(.*)';
 
 handle query_lc => sub {
-    s/(?:(a|aaaa|afsdb|apl|caa|cert|cname|dhcid|dlv|dname|dnskey|ds|hip|ipseckey|key|kx|loc|mx|naptr|ns|nsec|nsec3|nsec3param|ptr|rrsig|rp|sig|soa|spf|srv|sshfp|ta|tkey|tlsa|tsig|tx)\s+)?(record|dns)\s+//;
-    my $record = defined $1 ? $1 : '*';
+    s/(?:(any|\*|a|aaaa|afsdb|apl|caa|cert|cname|dhcid|dlv|dname|dnskey|ds|hip|ipseckey|key|kx|loc|mx|naptr|ns|nsec|nsec3|nsec3param|ptr|rrsig|rp|sig|soa|spf|srv|sshfp|ta|tkey|tlsa|tsig|tx)\s+)?(record|dns)\s+//;
+    my $record = defined $1 ? $1 : 'any';
 	return uc $record, $_ if is_domain $_;
     return;
 };

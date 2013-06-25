@@ -1,5 +1,8 @@
 function ddg_spice_dns(api_result) {
-    if (!api_result.response.records > 0) return;
+    if (!api_result
+            || api_result.response
+            || api_result.response.records
+            || api_result.response.records > 0) return;
 
     api_result.response.records =
         api_result.response.records.sort(
