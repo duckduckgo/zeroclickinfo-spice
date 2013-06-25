@@ -7,7 +7,10 @@ function ddg_spice_dns(api_result) {
     api_result.response.records =
         api_result.response.records.sort(
             function(a, b) {
-                return parseInt(a.priority) > parseInt(b.priority)
+                if (a.type == b.type)
+                    return parseInt(a.priority) > parseInt(b.priority)
+                else
+                  return a.type > b.type;
             });
 
     Spice.render({
