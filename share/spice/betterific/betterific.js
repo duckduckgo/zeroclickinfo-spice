@@ -94,11 +94,11 @@ function dashed_s(s) {
 }
 
 function naive_pluralize(s, c) {
-  return (c == 1) ? s : (s + 's');
+  return (parseInt(c) == 1) ? s : (s + 's');
 }
 
 function naive_pluralize_with_count(s, c) {
-  return s + ' ' + naive_pluralize(s);
+  return c + ' ' + naive_pluralize(s, c);
 }
 
 Handlebars.registerHelper('betterifUrl', function(params) {
