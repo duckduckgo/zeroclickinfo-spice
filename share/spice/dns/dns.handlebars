@@ -1,1 +1,20 @@
-{{query.domain}} resolves to {{response.records.[0].data}}.
+<table>
+<tr>
+    <th>name</th>
+    <th>ttl</th>
+    <th>class</th>
+    <th>type</th>
+    <th>priority</th>
+    <th>data</th>
+</tr>
+{{#each records}}
+    <tr>
+        <td>{{name}}</td>
+        <td>{{ttl}}</td>
+        <td>{{class}}</td>
+        <td>{{type}}</td>
+        <td>{{priority}}</td>
+        <td>{{data}}</td>
+    </tr>
+{{/each}}
+</table>
