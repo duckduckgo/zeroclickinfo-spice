@@ -70,6 +70,10 @@ function ddg_spice_betterific(api_result) {
         }
         api_result[k][k][j-1] = url_fn(api_result[k][k][j-1]);
         api_result[k][k][j-1] = txt_fn(api_result[k][k][j-1]);
+        // FIXME Abstract this.
+        if (k == 'betterifs') {
+          api_result[k][k][j-1].user = kinds[2][1](api_result[k][k][j-1].user);
+        }
       }
     }
   }

@@ -9,6 +9,9 @@
 #spice_betterific a:active,
 #spice_betterific a:hover {
   color: #2c86c0;
+  text-decoration: underline;
+}
+#spice_betterific a {
   text-decoration: none;
 }
 
@@ -46,7 +49,7 @@
   border: 1px solid #e5e5e5;
 }
 
-#spice_betterific .obj-wrapper .left-img {
+#spice_betterific .left-img {
   float: left;
   height: 40px;
   width: 40px;
@@ -58,17 +61,27 @@
   width: 550px;
 }
 
-#spice_betterific .right-box .stats {
+#spice_betterific .betterif-user {
+  color: #777;
+  font-size: 90%;
+}
+#spice_betterific .betterif-user a,
+#spice_betterific .betterif-user a:active,
+#spice_betterific .betterif-user a:hover {
   color: #777;
 }
 
-#spice_betterific .right-box .stats span {
+#spice_betterific .stats {
+  color: #777;
+}
+
+#spice_betterific .stats span {
   border-left: 1px solid #777;
   margin-left: 9px;
   padding-left: 10px;
 }
 
-#spice_betterific .right-box .stats span:first-child {
+#spice_betterific .stats span:first-child {
   border-left: 0;
   margin-left: 0;
   padding-left: 0;
