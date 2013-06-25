@@ -1,11 +1,73 @@
-<img src="{{cached_image_url}}" title="{{name}}" alt="{{name}} at betterific.com" class="tag-img" />
-<div class="tag-box">
-  <div class="tag-name">
-    <a href="{{tagUrl url_params}}" class="link-color-blue">{{name}}</a>
+{{#if betterifs.betterifs}}
+  <div class="header">Betterifs</div>
+  <div class="betterifs">
+    {{#each betterifs.betterifs}}
+      <div class="obj-wrapper">
+        <a href="{{betterifUrl url_params}}" class="left-img">
+          <img src="{{user.cached_image_url}}" title="{{name}}" alt="{{name}} at betterific.com" height="40" width="40" />
+        </a>
+        <div class="right-box">
+          <div class="betterif-name">
+            <a href="{{betterifUrl url_params}}" class="link-color-blue">Wouldn't it be better if {{name}}</a>
+          </div>
+          <div class="stats">
+            <span>{{upvotes_s}}</span>
+            <span>{{downvotes_s}}</span>
+          </div>
+        </div>
+        <div class="clear-both">&nbsp;</div>
+      </div>
+    {{/each}}
   </div>
-  <div class="user-stats">
-    <span>{{betterifs_s}}</span>
-    <span>{{followers_s}}</span>
+{{/if}}
+{{#if users.users}}
+  <div class="header">Users</div>
+  <div class="users">
+    {{#each users.users}}
+      <div class="obj-wrapper">
+        <a href="{{userUrl url_params}}" class="left-img">
+          <img src="{{cached_image_url}}" title="{{first_name}} {{last_name}}" alt="{{first_name}} {{last_name}} at betterific.com" height="40" width="40" />
+        </a>
+        <div class="right-box">
+          <div class="user-username">
+            <a href="{{userUrl url_params}}" class="link-color-blue">{{first_name}} {{last_name}}</a>
+          </div>
+          <div class="stats">
+            <span>{{betterifs_s}}</span>
+            <span>{{followers_s}}</span>
+            <span>{{upvotes_given_s}}</span>
+            <span>{{upvotes_received_s}}</span>
+          </div>
+        </div>
+        <div class="clear-both">&nbsp;</div>
+      </div>
+    {{/each}}
   </div>
-</div>
-<div class="clear-both">&nbsp;</div>
+{{/if}}
+{{#if tags.tags}}
+  <div class="header">Tags</div>
+  <div class="tags">
+    {{#each tags.tags}}
+      <div class="obj-wrapper">
+        <a href="{{tagUrl url_params}}" class="left-img">
+          <img src="{{cached_image_url}}" title="{{name}}" alt="{{name}} at betterific.com" height="40" width="40" />
+        </a>
+        <div class="right-box">
+          <div class="tag-name">
+            <a href="{{tagUrl url_params}}" class="link-color-blue">{{name}}</a>
+          </div>
+          <div class="stats">
+            <span>{{betterifs_s}}</span>
+            <span>{{followers_s}}</span>
+          </div>
+        </div>
+        <div class="clear-both">&nbsp;</div>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
+{{#if cnt_more}}
+  <div class="more">
+    <a href="#" id="spice_betterific_more">More ({{cnt_more}})</a>
+  </div>
+{{/if}}
