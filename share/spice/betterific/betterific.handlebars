@@ -4,7 +4,7 @@
     {{#each betterifs.betterifs}}
       <div class="obj-wrapper">
         <a href="{{betterifUrl url_params}}" class="left-img">
-          <img src="{{user.cached_image_url}}" title="{{name}}" alt="{{name}} at betterific.com" height="40" width="40" />
+          <img src="{{user.cached_image_url}}" title="Wouldn't it be better if {{name}}" alt="Wouldn't it be better if {{name}} at betterific.com" height="40" width="40" />
         </a>
         <div class="right-box">
           <div class="betterif-name">
@@ -14,29 +14,8 @@
             <span>{{upvotes_s}}</span>
             <span>{{downvotes_s}}</span>
           </div>
-        </div>
-        <div class="clear-both">&nbsp;</div>
-      </div>
-    {{/each}}
-  </div>
-{{/if}}
-{{#if users.users}}
-  <div class="header">Users</div>
-  <div class="users">
-    {{#each users.users}}
-      <div class="obj-wrapper">
-        <a href="{{userUrl url_params}}" class="left-img">
-          <img src="{{cached_image_url}}" title="{{first_name}} {{last_name}}" alt="{{first_name}} {{last_name}} at betterific.com" height="40" width="40" />
-        </a>
-        <div class="right-box">
-          <div class="user-username">
-            <a href="{{userUrl url_params}}" class="link-color-blue">{{first_name}} {{last_name}}</a>
-          </div>
-          <div class="stats">
-            <span>{{betterifs_s}}</span>
-            <span>{{followers_s}}</span>
-            <span>{{upvotes_given_s}}</span>
-            <span>{{upvotes_received_s}}</span>
+          <div class="betterif-user">
+            Submitted by <a href="{{userUrl user.url_params}}">{{user.first_name}} {{user.last_name}}</a>
           </div>
         </div>
         <div class="clear-both">&nbsp;</div>
@@ -50,7 +29,7 @@
     {{#each tags.tags}}
       <div class="obj-wrapper">
         <a href="{{tagUrl url_params}}" class="left-img">
-          <img src="{{cached_image_url}}" title="{{name}}" alt="{{name}} at betterific.com" height="40" width="40" />
+          <img src="{{cached_image_url}}" title="See great ideas about {{name}} at betterific.com" alt="See great ideas about {{name}} at betterific.com" height="40" width="40" />
         </a>
         <div class="right-box">
           <div class="tag-name">
@@ -59,6 +38,30 @@
           <div class="stats">
             <span>{{betterifs_s}}</span>
             <span>{{followers_s}}</span>
+          </div>
+        </div>
+        <div class="clear-both">&nbsp;</div>
+      </div>
+    {{/each}}
+  </div>
+{{/if}}
+{{#if users.users}}
+  <div class="header">Users</div>
+  <div class="users">
+    {{#each users.users}}
+      <div class="obj-wrapper">
+        <a href="{{userUrl url_params}}" class="left-img">
+          <img src="{{cached_image_url}}" title="See great ideas from {{first_name}} {{last_name}} at betterific.com" alt="See great ideas from {{first_name}} {{last_name}} at betterific.com" height="40" width="40" />
+        </a>
+        <div class="right-box">
+          <div class="user-username">
+            <a href="{{userUrl url_params}}" class="link-color-blue">{{first_name}} {{last_name}}</a>
+          </div>
+          <div class="stats">
+            <span>{{betterifs_s}}</span>
+            <span>{{followers_s}}</span>
+            <span>{{upvotes_given_s}}</span>
+            <span>{{upvotes_received_s}}</span>
           </div>
         </div>
         <div class="clear-both">&nbsp;</div>
