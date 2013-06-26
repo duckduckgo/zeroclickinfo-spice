@@ -14,13 +14,15 @@ name 'DNS';
 attribution github => ['https://www.github.com/OndroNR', 'Ondrej Galbavy'],
             twitter => ['https://www.twitter.com/OndroNR', 'Ondrej Galbavy'];
 
-triggers any => 'dns', 'record';
+triggers any => 'dns', 'record', 'records';
 
 spice from => '(.*)/(.*)';
 
 handle query_lc => sub {
-    s/(?:(any|\*|a|aaaa|afsdb|apl|caa|cert|cname|dhcid|dlv|dname|dnskey|ds|hip|ipseckey|key|kx|loc|mx|naptr|ns|nsec|nsec3|nsec3param|ptr|rrsig|rp|sig|soa|spf|srv|sshfp|ta|tkey|tlsa|tsig|tx)\s+)?(record|dns)\s+//;
+    s/(?:(any|\*|a|aaaa|afsdb|apl|caa|cert|cname|dhcid|dlv|dname|dnskey|ds|hip|ipseckey|key|kx|loc|mx|naptr|ns|nsec|nsec3|nsec3param|ptr|rrsig|rp|sig|soa|spf|srv|sshfp|ta|tkey|tlsa|tsig|tx)\s+)?(dns\s+)?(records?|dns)\s+//x;
     my $record = defined $1 ? $1 : 'any';
+    return if not defined $1
+        and not (defined $2 and defined $3);
 	return uc $record, $_ if is_domain $_;
     return;
 };
