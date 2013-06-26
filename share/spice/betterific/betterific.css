@@ -7,7 +7,8 @@
 
 #spice_betterific a,
 #spice_betterific a:active,
-#spice_betterific a:hover {
+#spice_betterific a:hover,
+#spice_betterific a:visited {
   color: #2c86c0;
   text-decoration: underline;
 }
@@ -67,8 +68,39 @@
 }
 #spice_betterific .betterif-user a,
 #spice_betterific .betterif-user a:active,
-#spice_betterific .betterif-user a:hover {
+#spice_betterific .betterif-user a:hover,
+#spice_betterific .betterif-user a:visited {
   color: #777;
+}
+
+#spice_betterific .betterif-name a {
+  display: none;
+  max-height: 36px;
+  overflow-y: hidden;
+}
+#spice_betterific .betterif-name a:first-child {
+  display: inline;
+}
+#spice_betterific .betterif-name .togglers {
+  color: #777;
+  display: inline;
+  font-size: 90%;
+  margin-left: 6px;
+}
+#spice_betterific .betterif-name .togglers a,
+#spice_betterific .betterif-name .togglers a:active,
+#spice_betterific .betterif-name .togglers a:hover,
+#spice_betterific .betterif-name .togglers a:visited {
+  color: #777;
+  display: none;
+}
+#spice_betterific .betterif-name .togglers a:first-child {
+  display: inline-block;
+}
+#spice_betterific .betterif-name .togglers a.short-name-text {
+  max-height: 1em;
+  max-width: 490px;
+  overflow: hidden;
 }
 
 #spice_betterific .stats {
@@ -90,4 +122,11 @@
 #spice_betterific .clear-both {
   clear: both;
   height: 0px;
+}
+
+#spice_betterific #spice_betterific_more span {
+  display: none;
+}
+#spice_betterific #spice_betterific_more span:first-child {
+  display: inline;
 }
