@@ -34,6 +34,8 @@ ddg_spice_test(
     ),
     'a record by foo' => undef,
     'records amazon.com' => undef,
+    'dig a hole' => undef,
+    'do you dig it' => undef,
 );
 
 done_testing;
