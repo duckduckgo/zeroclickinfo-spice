@@ -1,3 +1,14 @@
+# Attention:
+
+## We recently made some big changes to our Spice plugins system!
+We have moved to Spice v2 which now includes the use of Handlebars templates.
+We are in the middle of overhauling our documentation, but in the intrim please read **[Spice2.md](/spice2.md)**.
+
+
+If you have any questions or concerns please feel free to contact us at open@duckduckgo.com.
+
+------
+
 DuckDuckHack Spice
 ====
 This documentation walks you through the process of writing a DuckDuckHack Spice plugin.
