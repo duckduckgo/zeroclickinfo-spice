@@ -8,7 +8,15 @@
         </a>
         <div class="right-box">
           <div class="betterif-name">
-            <a href="{{betterifUrl url_params}}" class="link-color-blue">Wouldn't it be better if {{name}}</a>
+            {{#if shortened_name}}
+              <a href="{{betterifUrl url_params}}" class="link-color-blue name-text short-name-text">Wouldn't it be better if {{shortened_name}}</a>
+            {{/if}}
+            <a href="{{betterifUrl url_params}}" class="link-color-blue name-text">Wouldn't it be better if {{name}}</a>
+            {{#if shortened_name}}
+              <div class="togglers">
+                (<a href="#">more</a><a href="#">less</a>)
+              </div>
+            {{/if}}
           </div>
           <div class="stats">
             <span>{{upvotes_s}}</span>
@@ -71,6 +79,6 @@
 {{/if}}
 {{#if cnt_more}}
   <div class="more">
-    <a href="#" id="spice_betterific_more">More ({{cnt_more}})</a>
+    <a href="#" id="spice_betterific_more"><span>More</span><span>Less</span> ({{cnt_more}})</a>
   </div>
 {{/if}}
