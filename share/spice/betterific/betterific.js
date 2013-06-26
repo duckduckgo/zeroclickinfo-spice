@@ -43,7 +43,6 @@ function ddg_spice_betterific(api_result) {
   };
   var s = 0;
   var cnt_more = 0;
-  //api_result.cnt_more = 0;
   for (var kind in kinds) {
     if (kinds.hasOwnProperty(kind)) {
       if (!api_result[kind] || !api_result[kind][kind]) {
@@ -71,7 +70,6 @@ function ddg_spice_betterific(api_result) {
           api_result[kind][kind][j-1] = pp_fn(api_result[kind][kind][j-1]);
           // We have to set up each betterif's User.
           if (kind == 'betterifs') {
-            console.log(api_result[kind][kind][j-1].user);
             api_result[kind][kind][j-1].user = kinds.users(api_result[kind][kind][j-1].user);
           }
         }
