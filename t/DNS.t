@@ -17,6 +17,21 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::DNS'
     ),
+    'any dns records dylansserver.com' => test_spice(
+        '/js/spice/dns/ANY/dylansserver.com',
+        call_type => 'include',
+        caller => 'DDG::Spice::DNS'
+    ),
+    'dig dylansserver.com' => test_spice(
+        '/js/spice/dns/ANY/dylansserver.com',
+        call_type => 'include',
+        caller => 'DDG::Spice::DNS'
+    ),
+    'dig ns dylansserver.com' => test_spice(
+        '/js/spice/dns/NS/dylansserver.com',
+        call_type => 'include',
+        caller => 'DDG::Spice::DNS'
+    ),
     'a record by foo' => undef,
     'records amazon.com' => undef,
 );
