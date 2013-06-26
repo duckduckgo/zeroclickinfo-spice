@@ -67,7 +67,7 @@ function zipcode_getCountry (result, matches) {
         var resName = current.name.replace(/s+/, "");
 
         // check if zipcodes match and either countries match OR no country specified
-        if (resName === zip && ( country === "ZZ" || current["country attrs"].code === country ))
+        if (resName === zip && ( country === "ZZ" || current["country attrs"].code === country )){
             return locs[i];
         };
     };
@@ -79,9 +79,10 @@ function zipcode_getCountry (result, matches) {
 Handlebars.registerHelper("checkZipcode", function(options) {
     "use strict";
 
-    var result = [];
-    var locs = this.places.place;
-    var name = this.zip;
+    var result  = [],
+        locs    = this.places.place,
+        name    = this.zip,
+        country = this.relevantPlace["country attrs"].code;
 
     if(locs.length === 1) return;
 
@@ -89,9 +90,9 @@ Handlebars.registerHelper("checkZipcode", function(options) {
         return a.country > b.country ? 1 : -1;
     });
 
-
     for(var i = 1; i < locs.length; i += 1) {
-        if(locs[i].name === name) {
+        if(locs[i].name === name &&
+            locs[i]["country attrs"].code !== country ) {
             result.push(locs[i]);
         }
     }
