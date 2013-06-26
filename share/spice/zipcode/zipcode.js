@@ -66,15 +66,8 @@ function zipcode_getCountry (result, matches) {
         var current = locs[i];
         var resName = current.name.replace(/s+/, "");
 
-        console.log("ZIP IS: ", zip);
-        console.log("COUNTRY IS: ", country);
-        console.log("CURRENT NAME IS: ", resName);
-        console.log("CURRENT COUNTRY IS: ", current["country attrs"].code);
-        console.log("\n");
-
         // check if zipcodes match and either countries match OR no country specified
-        if (resName === zip && ( country === "ZZ" || current["country attrs"].code === country )) {
-            console.log("NAME MATCH IS: ", zip);
+        if (resName === zip && ( country === "ZZ" || current["country attrs"].code === country ))
             return locs[i];
         };
     };
