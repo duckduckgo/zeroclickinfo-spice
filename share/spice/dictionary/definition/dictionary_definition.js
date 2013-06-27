@@ -15,6 +15,9 @@
 
 // Dictionary::Definition will call this function.
 // This function gets the definition of a word.
+
+nrj("/soundmanager2/script/soundmanager2-nodebug-jsmin.js");
+
 function ddg_spice_dictionary_definition (api_result) {
     "use strict";
     var path = "/js/spice/dictionary";
@@ -219,12 +222,8 @@ function ddg_spice_dictionary_audio (api_result) {
 
     // Check if soundManager was already loaded. If not, we should load it.
     // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
-    if(!window.soundManager) {
-        window.SM2_DEFER = true;
-        $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", soundSetup);
-    } else {
-        isLoaded = true;
-    }
+    window.SM2_DEFER = true;
+    soundSetup();
 };
 
 // We should shorten the part of speech before displaying the definition.
