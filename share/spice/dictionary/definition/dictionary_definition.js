@@ -141,12 +141,6 @@ function ddg_spice_dictionary_audio (api_result) {
 
     // Check if we got anything from Wordnik.
     if(api_result && api_result.length > 0) {
-        icon.html("▶");
-        icon.removeClass("widget-disappear");
-
-        // Load the icon immediately if we know that the url exists.
-        resetIcon();
-
         // Find the audio url that was created by Macmillan (it usually sounds better).
         for(var i = 0; i < api_result.length; i += 1) {
             if(api_result[i].createdBy === "macmillan" && url === "") {
@@ -168,7 +162,7 @@ function ddg_spice_dictionary_audio (api_result) {
         // Set the sound file.
         var sound = soundManager.createSound({
             id: "dictionary-sound",
-            url: "/audio/?u=" + url,
+            url: url.replace(/http:/, "https:"),
             onfinish: function() {
                 resetIcon();
                 soundManager.stopAll();
@@ -188,6 +182,13 @@ function ddg_spice_dictionary_audio (api_result) {
 
         sound.load();
         isLoaded = true;
+
+        // Set icon.
+        icon.html("▶");
+        icon.removeClass("widget-disappear");
+
+        // Load the icon immediately if we know that the url exists.
+        resetIcon();
     };
 
     // Initialize the soundManager object.
