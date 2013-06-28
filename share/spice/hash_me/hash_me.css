@@ -1,0 +1,22 @@
+#spice_hash_me table {
+    /* border:1px solid #d0d0d0; */
+    width:100%;
+    margin:5px;
+}
+
+#spice_hash_me tr {
+    border-bottom:1px solid #efefef;
+}
+
+#spice_hash_me th {
+    vertical-align:bottom;
+    text-align:left;
+    font-size:83.3%;
+    font-style:italic;
+    padding-left:3px;
+}
+
+#spice_hash_me td {
+    padding:2px;
+    max-width:250px;
+}
