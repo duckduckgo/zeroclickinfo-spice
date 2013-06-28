@@ -16,7 +16,7 @@
 // Dictionary::Definition will call this function.
 // This function gets the definition of a word.
 
-nrj("/soundmanager2/script/soundmanager2-nodebug-jsmin.js");
+nrj("/soundmanager2/script/soundmanager2.js");
 
 function ddg_spice_dictionary_definition (api_result) {
     "use strict";
@@ -162,7 +162,7 @@ function ddg_spice_dictionary_audio (api_result) {
         // Set the sound file.
         var sound = soundManager.createSound({
             id: "dictionary-sound",
-            url: url.replace(/http:/, "https:"),
+            url: "/audio/?u=" + url,
             onfinish: function() {
                 resetIcon();
                 soundManager.stopAll();
