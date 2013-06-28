@@ -16,14 +16,15 @@ function ddg_spice_hash_me(api_result){
 }
 
 Handlebars.registerHelper('list', function(hash, options) {
+    if (hash.plaintext) delete hash.plaintext;
     return Object.keys(hash)
         .sort(function(a, b) {
             return a == 'plaintext' ? -1 : 1
         })
-        .reduce(function(previous, current) {
-            return previous + options.fn({
-                'type'  : current,
-                'value' : hash[current]
+        .reduce(function(accumulator, key) {
+            return accumulator + options.fn({
+                'type'  : key,
+                'value' : hash[key]
             })
         }, '');
 });
