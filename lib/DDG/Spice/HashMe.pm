@@ -21,8 +21,9 @@ spice to => 'http://api.leakdb.abusix.com/?j=$1';
 spice wrap_jsonp_callback => 1;
 spice is_cached => 0;
 
-handle remainder => sub{
-	return $_;
+handle query_lc => sub{
+    s/^hashme\s+|\s+hashme$//g;
+	return $_ if $_ ne '';
 	return;
 };
 
