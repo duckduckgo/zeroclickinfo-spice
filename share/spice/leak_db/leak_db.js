@@ -3,7 +3,7 @@ function ddg_spice_leak_db(api_result){
             || !api_result.hashes) return;
 
     var query = DDG.get_query()
-                .replace(/^hashme\s+|\s+hashme$/i, '');
+                .replace(/^(leakdb|hashme)\s+|\s+(leakdb|hashme)$/i, '');
     var type  = api_result.type == 'plaintext' ?
                     query : api_result.type + ' hash';
 
@@ -11,7 +11,7 @@ function ddg_spice_leak_db(api_result){
 
     Spice.render({
         data             : api_result,
-        header1          : type + " (leakdb)",
+        header1          : type + " (LeakDB)",
         source_url       : 'http://leakdb.abusix.com/?q='
                             + encodeURIComponent(query),
         source_name      : 'leakdb.abusix.com',
