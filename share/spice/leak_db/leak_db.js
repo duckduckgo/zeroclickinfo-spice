@@ -1,4 +1,4 @@
-function ddg_spice_hash_me(api_result){
+function ddg_spice_leak_db(api_result){
     if (!api_result || !api_result.found
             || !api_result.hashes) return;
 
@@ -11,11 +11,11 @@ function ddg_spice_hash_me(api_result){
 
     Spice.render({
         data             : api_result,
-        header1          : type + " (HashMe)",
+        header1          : type + " (leakdb)",
         source_url       : 'http://leakdb.abusix.com/?q='
                             + encodeURIComponent(query),
         source_name      : 'leakdb.abusix.com',
-        template_normal  : 'hash_me',
+        template_normal  : 'leak_db',
         force_big_header : true,
         force_no_fold    : true
     });
