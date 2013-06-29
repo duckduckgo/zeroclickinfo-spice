@@ -14,6 +14,6 @@ function ddg_spice_alternative_to(api_result) {
         carousel_template_detail : "alternative_to_details",
         carousel_css_id          : "alternative_to",
         carousel_items           : api_result.Items,
-        template_options         : { li_height : 60 }
+        template_options         : { li_height : 70 }
     });
 }
