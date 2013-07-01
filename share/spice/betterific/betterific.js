@@ -3,7 +3,7 @@ function ddg_spice_betterific(api_result) {
   if (!api_result.betterifs || !api_result.tags || !api_result.users) {
     return;
   }
-  var short_betterif_name_length = 55;
+  var short_betterif_name_length = 50;
   // We have to build URLs for each entity, and since Handlebars templates
   // can't take multiple arguments, we have to build some text snippets.
   var kinds = {
@@ -16,7 +16,7 @@ function ddg_spice_betterific(api_result) {
       o.upvotes_s = naive_pluralize_with_count('upvote', o.upvotes_count);
       o.downvotes_s = naive_pluralize_with_count('downvote', o.downvotes_count);
       if (o.name.length > short_betterif_name_length) {
-        o.shortened_name = o.name.slice(0, short_betterif_name_length);
+        o.shortened_name = o.name.slice(0, short_betterif_name_length) + '...';
       }
       return o;
     },
