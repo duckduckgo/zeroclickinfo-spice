@@ -86,6 +86,7 @@
   display: inline;
   font-size: 90%;
   margin-left: 6px;
+  white-space: nowrap;
 }
 #spice_betterific .betterif-name .togglers a,
 #spice_betterific .betterif-name .togglers a:active,
