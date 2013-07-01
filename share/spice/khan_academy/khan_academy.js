@@ -42,6 +42,7 @@ function ddg_spice_khan_academy ( api_result ) {
         var width = $khan.width() - 14;    //need 7px of padding on each side
         var height = Math.floor(width * 0.5625) + 30;    //30px for player menu
         $("#ddgc_detail").height(height);
+        console.log(width, height);
     };
 
     $(document).ready(function() {
