@@ -196,12 +196,3 @@ Handlebars.registerHelper("chooseImage", function(artwork, avatar) {
 
     return artwork || avatar;
 });
-
-// Get the HTTPS version of the audio file.
-Handlebars.registerHelper("toHttps", function(audio) {
-    "use strict";
-
-    if(audio) {
-        return audio.replace(/^http:/, "https:");
-    }
-});
