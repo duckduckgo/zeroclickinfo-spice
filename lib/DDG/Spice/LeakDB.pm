@@ -5,8 +5,8 @@ use DDG::Spice;
 name 'LeakDB';
 description 'Get plaintext or hash of input';
 source 'leakdb.abusix.com';
-primary_example_queries 'leakdb admin';
-secondary_example_queries 'hashme 21232f297a57a5a743894a0e4a801fc3';
+primary_example_queries 'leakdb 21232f297a57a5a743894a0e4a801fc3';
+secondary_example_queries 'hashme admin';
 category 'special';
 topics 'geek', 'sysadmin', 'cryptography';
 icon_url 'https://leakdb.abusix.com/favicon.ico';
@@ -19,7 +19,7 @@ status 'enabled';
 triggers startend => 'hashme', 'leakdb';
 spice to => 'http://api.leakdb.abusix.com/?j=$1';
 spice wrap_jsonp_callback => 1;
-spice is_cached => 0;
+spice is_cached => 1;
 
 handle query_lc => sub{
     s/^(hashme|leakdb)\s+|\s+(hashme|leakdb)$//g;
