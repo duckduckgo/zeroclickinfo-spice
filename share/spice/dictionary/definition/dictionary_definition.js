@@ -16,7 +16,7 @@
 // Dictionary::Definition will call this function.
 // This function gets the definition of a word.
 
-nrj("/soundmanager2/script/soundmanager2.js");
+nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
 
 function ddg_spice_dictionary_definition (api_result) {
     "use strict";
