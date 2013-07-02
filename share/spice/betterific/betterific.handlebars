@@ -1,80 +1,31 @@
 {{#if betterifs.betterifs}}
-  <div class="header">Betterifs</div>
-  <div class="betterifs">
-    {{#each betterifs.betterifs}}
-      <div class="obj-wrapper">
-        <a href="{{betterifUrl url_params}}" class="left-img">
-          <img src="{{user.cached_image_url}}" title="Wouldn't it be better if {{name}}" alt="Wouldn't it be better if {{name}} at betterific.com" height="40" width="40" />
-        </a>
-        <div class="right-box">
-          <div class="betterif-name">
-            {{#if shortened_name}}
-              <a href="{{betterifUrl url_params}}" class="link-color-blue name-text short-name-text">Wouldn't it be better if {{shortened_name}}</a>
-            {{/if}}
-            <a href="{{betterifUrl url_params}}" class="link-color-blue name-text">Wouldn't it be better if {{name}}</a>
-            {{#if shortened_name}}
-              <div class="togglers">
-                (<a href="#">more</a><a href="#">less</a>)
-              </div>
-            {{/if}}
-          </div>
-          <div class="stats">
-            <span>{{upvotes_s}}</span>
-            <span>{{downvotes_s}}</span>
-          </div>
-          <div class="betterif-user">
-            Submitted by <a href="{{userUrl user.url_params}}">{{user.first_name}} {{user.last_name}}</a> {{created_at_ago_in_words}} ago
-          </div>
-        </div>
-        <div class="clear-both">&nbsp;</div>
-      </div>
-    {{/each}}
+  <div class="kind-wrapper">
+    <div class="header">Betterifs</div>
+    <div class="betterifs">
+      {{#each betterifs.betterifs}}
+        {{{include "betterif"}}}
+      {{/each}}
+    </div>
   </div>
 {{/if}}
 {{#if tags.tags}}
-  <div class="header">Tags</div>
-  <div class="tags">
-    {{#each tags.tags}}
-      <div class="obj-wrapper">
-        <a href="{{tagUrl url_params}}" class="left-img">
-          <img src="{{cached_image_url}}" title="See great ideas about {{name}} at betterific.com" alt="See great ideas about {{name}} at betterific.com" height="40" width="40" />
-        </a>
-        <div class="right-box">
-          <div class="tag-name">
-            <a href="{{tagUrl url_params}}" class="link-color-blue">{{name}}</a>
-          </div>
-          <div class="stats">
-            <span>{{betterifs_s}}</span>
-            <span>{{followers_s}}</span>
-          </div>
-        </div>
-        <div class="clear-both">&nbsp;</div>
-      </div>
-    {{/each}}
+  <div class="kind-wrapper">
+    <div class="header">Tags</div>
+    <div class="tags">
+      {{#each tags.tags}}
+        {{{include "tag"}}}
+      {{/each}}
+    </div>
   </div>
 {{/if}}
 {{#if users.users}}
-  <div class="header">Users</div>
-  <div class="users">
-    {{#each users.users}}
-      <div class="obj-wrapper">
-        <a href="{{userUrl url_params}}" class="left-img">
-          <img src="{{cached_image_url}}" title="See great ideas from {{first_name}} {{last_name}} at betterific.com" alt="See great ideas from {{first_name}} {{last_name}} at betterific.com" height="40" width="40" />
-        </a>
-        <div class="right-box">
-          <div class="user-username">
-            <a href="{{userUrl url_params}}" class="link-color-blue">{{first_name}} {{last_name}}</a>
-          </div>
-          <div class="stats">
-            <span>{{betterifs_s}}</span>
-            <span>{{followers_s}}</span>
-            <span>{{upvotes_given_s}}</span>
-            <span>{{upvotes_received_s}}</span>
-          </div>
-        </div>
-        <div class="clear-both">&nbsp;</div>
-      </div>
-    {{/each}}
+  <div class="kind-wrapper">
+    <div class="header">Users</div>
+    <div class="users">
+      {{#each users.users}}
+        {{{include "user"}}}
+      {{/each}}
+    </div>
   </div>
 {{/if}}
 {{#if cnt_more}}

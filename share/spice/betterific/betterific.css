@@ -1,35 +1,17 @@
-/* Where possible, this copies the styles found at http://betterific.com/search */
-
-#spice_betterific {
-  font-family: Helvetica, Arial, sans-serif;
-  margin-top: 12px;
-}
-
-#spice_betterific a,
-#spice_betterific a:active,
-#spice_betterific a:hover,
-#spice_betterific a:visited {
-  color: #2c86c0;
-  text-decoration: underline;
-}
-#spice_betterific a {
-  text-decoration: none;
-}
-
-#spice_betterific .hidden {
+#spice_betterific .kind-wrapper {
   display: none;
+}
+#spice_betterific .kind-wrapper:first-child {
+  display: block;
 }
 
 #spice_betterific .betterifs,
 #spice_betterific .tags,
 #spice_betterific .users {
   clear: both;
-  margin-bottom: 12px;
 }
 
 #spice_betterific .header {
-  color: #2c86c0;
-  font-weight: bold;
   font-size: 110%;
 }
 
@@ -40,7 +22,7 @@
   -webkit-border-radius: 3px;
   border-radius: 3px;
   display: none;
-  padding: 6px;
+  padding: 3px 6px;
 }
 #spice_betterific .obj-wrapper:first-child {
   display: block;
@@ -51,26 +33,23 @@
 }
 
 #spice_betterific .left-img {
+  display: none;
   float: left;
   height: 40px;
+  margin-right: 20px;
   width: 40px;
 }
 
 #spice_betterific .right-box {
   float: left;
-  margin-left: 20px;
   width: 550px;
 }
 
-#spice_betterific .betterif-user {
-  color: #777;
-  font-size: 90%;
-}
-#spice_betterific .betterif-user a,
-#spice_betterific .betterif-user a:active,
-#spice_betterific .betterif-user a:hover,
-#spice_betterific .betterif-user a:visited {
-  color: #777;
+#spice_betterific .tags .tag-name,
+#spice_betterific .tags .stats,
+#spice_betterific .users .user-username,
+#spice_betterific .users .stats {
+  display: inline-block;
 }
 
 #spice_betterific .betterif-name a {
@@ -82,9 +61,7 @@
   display: inline;
 }
 #spice_betterific .betterif-name .togglers {
-  color: #777;
   display: inline;
-  font-size: 90%;
   margin-left: 6px;
   white-space: nowrap;
 }
@@ -92,7 +69,7 @@
 #spice_betterific .betterif-name .togglers a:active,
 #spice_betterific .betterif-name .togglers a:hover,
 #spice_betterific .betterif-name .togglers a:visited {
-  color: #777;
+  color: #000;
   display: none;
 }
 #spice_betterific .betterif-name .togglers a:first-child {
@@ -104,17 +81,13 @@
   overflow: hidden;
 }
 
-#spice_betterific .stats {
-  color: #777;
-}
-
 #spice_betterific .stats span {
-  border-left: 1px solid #777;
+  border-left: 1px solid #000;
   margin-left: 9px;
   padding-left: 10px;
 }
 
-#spice_betterific .stats span:first-child {
+#spice_betterific .betterifs .stats span:first-child {
   border-left: 0;
   margin-left: 0;
   padding-left: 0;
@@ -125,6 +98,12 @@
   height: 0px;
 }
 
+#spice_betterific a#spice_betterific_more,
+#spice_betterific a#spice_betterific_more:active,
+#spice_betterific a#spice_betterific_more:hover,
+#spice_betterific a#spice_betterific_more:visited {
+  color: #1168cc;
+}
 #spice_betterific #spice_betterific_more span {
   display: none;
 }
