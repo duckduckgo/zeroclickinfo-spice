@@ -2,13 +2,14 @@
    https://gist.github.com/821904 */
 if (typeof(Number.prototype.number_with_delimiter) === 'undefined') {
   Number.prototype.number_with_delimiter = function(delimiter) {
-      var number = this + '', delimiter = delimiter || ',';
-      var split = number.split('.');
-      split[0] = split[0].replace(
-          /(\d)(?=(\d\d\d)+(?!\d))/g,
-          '$1' + delimiter
-      );
-      return split.join('.');    
+    "use strict";
+    var number = this + '', delimiter = delimiter || ',';
+    var split = number.split('.');
+    split[0] = split[0].replace(
+      /(\d)(?=(\d\d\d)+(?!\d))/g,
+      '$1' + delimiter
+    );
+    return split.join('.');    
   };
 }
 
@@ -17,13 +18,6 @@ function ddg_spice_betterific(api_result) {
   if (!api_result.betterifs || !api_result.tags || !api_result.users) {
     return;
   }
-  var short_betterif_name_length = 50;
-  var betterif_shortened_name = function(o) {
-    if (o.name.length > short_betterif_name_length) {
-      o.shortened_name = o.name.slice(0, short_betterif_name_length) + '...';
-    }
-    return o;
-  };
   var kinds = ['betterifs', 'tags', 'users'];
   var s = 0;
   var kind;
@@ -47,10 +41,6 @@ function ddg_spice_betterific(api_result) {
         if (!api_result[kind][kind][j-1].id) {
           return;
         }
-        if (kind == 'betterifs') {
-          // We have to set up each betterif's shortened_name.
-          api_result[kind][kind][j-1] = betterif_shortened_name(api_result[kind][kind][j-1]);
-        }
       }
     }
   }
@@ -65,29 +55,14 @@ function ddg_spice_betterific(api_result) {
   });
 }
 
-/* Adapted from lib/ruby_extensions.rb
+/* Adapted from Betterific's lib/ruby_extensions.rb
  *   def dashed
  *     self.gsub(/[^a-z0-9\-\s]/i, '').squeeze(' ').gsub(/\s+/, '-')
  *   end
  */
-function dashed_s(s) {
+Handlebars.registerHelper('dashedS', function(s) {
   "use strict";
   return s.replace(/[^a-z0-9\-\s]/gi, '').replace(/\s+/g, '-');
-}
-
-Handlebars.registerHelper('betterifUrl', function(params) {
-  "use strict";
-  return 'http://betterific.com/' + dashed_s(params.user.username) + '/' + dashed_s(params.name) + '/' + params.id;
-});
-
-Handlebars.registerHelper('tagUrl', function(params) {
-  "use strict";
-  return 'http://betterific.com/' + dashed_s(params.name) + '/' + params.id;
-});
-
-Handlebars.registerHelper('userUrl', function(params) {
-  "use strict";
-  return 'http://betterific.com/innovator/' + dashed_s(params.username) + '/' + params.id;
 });
 
 Handlebars.registerHelper('pluralize', function(number, single, plural) {
@@ -95,18 +70,6 @@ Handlebars.registerHelper('pluralize', function(number, single, plural) {
   return parseInt(number).number_with_delimiter() + ' ' + ((parseInt(number) == 1) ? single : plural);
 });
 
-// The More link (which also serves as the Less link) at the bottom of the
-// plugin should show (or hide) the extra content.
-$('body').on('click', '#spice_betterific_more', function() {
-  $('#spice_betterific').find('.obj-wrapper').not(':first-child').slideToggle(200, function() {
-    $('#spice_betterific').find('#spice_betterific_more').find('span').toggle();
-  });
-  $('#spice_betterific').find('.left-img').toggle();
-  $('#spice_betterific').find('.kind-wrapper').not(':first-child').toggle();
-});
-// The More and Less links next to long betterif names should hide and show the
-// truncated part of the names.
-$('body').on('click', '.betterifs .betterif-name .togglers a', function() {
-  $(this).parent().children().toggle();
-  $(this).closest('.betterif-name').find('.name-text').toggle();
+$('body').on('click', 'a.header', function() {
+  $(this).closest('.kind-wrapper').find('.collapsible').toggle();
 });

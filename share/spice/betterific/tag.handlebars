@@ -1,14 +1,12 @@
 <div class="obj-wrapper">
-  <div class="right-box">
-    <div class="tag-name">
-      <a href="{{tagUrl this}}">{{name}}</a>
-    </div>
-    <div class="stats">
-      <small>
-        <span>{{pluralize betterifs_count "betterif" "betterifs"}}</span>
-        <span>{{pluralize followers_count "follower" "followers"}}</span>
-      </small>
-    </div>
+  <div class="tag-name">
+    <a href="http://betterific.com/{{dashedS name}}/{{id}}">{{name}}</a>
+  </div>
+  <div class="stats">
+    <small>
+      [{{pluralize betterifs_count "betterif" "betterifs"}},
+       {{pluralize followers_count "follower" "followers"}}]
+    </small>
   </div>
   <div class="clear-both">&nbsp;</div>
 </div>
