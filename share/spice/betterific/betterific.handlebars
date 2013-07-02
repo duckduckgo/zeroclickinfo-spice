@@ -1,6 +1,5 @@
 {{#if betterifs.betterifs}}
   <div class="kind-wrapper">
-    <div class="header">Betterifs</div>
     <div class="betterifs">
       {{#each betterifs.betterifs}}
         {{{include "betterif"}}}
@@ -9,9 +8,12 @@
   </div>
 {{/if}}
 {{#if tags.tags}}
+  {{#if betterifs.betterifs}}
+    <hr/>
+  {{/if}}
   <div class="kind-wrapper">
-    <div class="header">Tags</div>
-    <div class="tags">
+    <a href="#" class="header">Tags</a>
+    <div class="tags{{#if betterifs.betterifs}} collapsible{{/if}}">
       {{#each tags.tags}}
         {{{include "tag"}}}
       {{/each}}
@@ -19,17 +21,19 @@
   </div>
 {{/if}}
 {{#if users.users}}
+  {{#if betterifs.betterifs}}
+    <hr/>
+  {{else}}
+    {{#if tags.tags}}
+      <hr/>
+    {{/if}}
+  {{/if}}
   <div class="kind-wrapper">
-    <div class="header">Users</div>
-    <div class="users">
+    <a href="#" class="header">Users</a>
+    <div class="users{{#if betterifs.betterifs}} collapsible{{else}}{{#if tags.tags}} collapsible{{/if}}{{/if}}">
       {{#each users.users}}
         {{{include "user"}}}
       {{/each}}
     </div>
-  </div>
-{{/if}}
-{{#if cnt_more}}
-  <div class="more">
-    <a href="#" id="spice_betterific_more"><span>More</span><span>Less</span> ({{cnt_more}})</a>
   </div>
 {{/if}}

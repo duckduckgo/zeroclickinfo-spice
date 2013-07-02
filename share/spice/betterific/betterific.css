@@ -1,96 +1,31 @@
-#spice_betterific .kind-wrapper {
-  display: none;
-}
-#spice_betterific .kind-wrapper:first-child {
-  display: block;
-}
-
-#spice_betterific .betterifs,
-#spice_betterific .tags,
-#spice_betterific .users {
-  clear: both;
+#spice_betterific hr {
+  background-color: #d2d2d2;
+  background-color: rgba(136, 136, 136, 0.39);
+  border: 0;
+  color: #bade89;
+  height: 1px;
+  margin: 5px 0;
+  padding: 0;
+  text-align: left;
 }
 
 #spice_betterific .header {
+  color: #1168cc;
   font-size: 110%;
 }
 
 #spice_betterific .obj-wrapper {
-  border: 1px solid #fff;
-  -khtml-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  display: none;
-  padding: 3px 6px;
+  margin-bottom: 4px;
 }
 #spice_betterific .obj-wrapper:first-child {
-  display: block;
-}
-#spice_betterific .obj-wrapper:hover {
-  background: rgba(127, 127, 127, 0.04);
-  border: 1px solid #e5e5e5;
+  margin-top: 3px;
 }
 
-#spice_betterific .left-img {
-  display: none;
-  float: left;
-  height: 40px;
-  margin-right: 20px;
-  width: 40px;
-}
-
-#spice_betterific .right-box {
-  float: left;
-  width: 550px;
-}
-
-#spice_betterific .tags .tag-name,
-#spice_betterific .tags .stats,
-#spice_betterific .users .user-username,
-#spice_betterific .users .stats {
+#spice_betterific .betterif-name,
+#spice_betterific .tag-name,
+#spice_betterific .user-username,
+#spice_betterific .stats {
   display: inline-block;
-}
-
-#spice_betterific .betterif-name a {
-  display: none;
-  max-height: 36px;
-  overflow-y: hidden;
-}
-#spice_betterific .betterif-name a:first-child {
-  display: inline;
-}
-#spice_betterific .betterif-name .togglers {
-  display: inline;
-  margin-left: 6px;
-  white-space: nowrap;
-}
-#spice_betterific .betterif-name .togglers a,
-#spice_betterific .betterif-name .togglers a:active,
-#spice_betterific .betterif-name .togglers a:hover,
-#spice_betterific .betterif-name .togglers a:visited {
-  color: #000;
-  display: none;
-}
-#spice_betterific .betterif-name .togglers a:first-child {
-  display: inline-block;
-}
-#spice_betterific .betterif-name .togglers a.short-name-text {
-  max-height: 1em;
-  max-width: 490px;
-  overflow: hidden;
-}
-
-#spice_betterific .stats span {
-  border-left: 1px solid #000;
-  margin-left: 9px;
-  padding-left: 10px;
-}
-
-#spice_betterific .betterifs .stats span:first-child {
-  border-left: 0;
-  margin-left: 0;
-  padding-left: 0;
 }
 
 #spice_betterific .clear-both {
@@ -98,15 +33,6 @@
   height: 0px;
 }
 
-#spice_betterific a#spice_betterific_more,
-#spice_betterific a#spice_betterific_more:active,
-#spice_betterific a#spice_betterific_more:hover,
-#spice_betterific a#spice_betterific_more:visited {
-  color: #1168cc;
-}
-#spice_betterific #spice_betterific_more span {
+#spice_betterific .collapsible {
   display: none;
-}
-#spice_betterific #spice_betterific_more span:first-child {
-  display: inline;
 }
