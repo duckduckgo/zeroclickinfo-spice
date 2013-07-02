@@ -36,7 +36,7 @@ function ddg_spice_in_theaters (api_result) {
         carousel_items           : api_result.movies,
         carousel_template_detail : "in_theaters_details",
         force_no_fold            : true,
-        template_options         : { li_height : 165 }
+        template_options         : { li_height : 155 }
     });
 };
 
