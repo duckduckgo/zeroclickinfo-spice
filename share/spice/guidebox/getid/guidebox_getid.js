@@ -62,7 +62,7 @@ Handlebars.registerHelper("getQuery", function() {
 Handlebars.registerHelper("getSimilar", function() {
     "use strict";
 
-    var out = '<ul>', i, item;
+    /*var out = '<ul>', i, item;
 
     for (i in GB_global.searched.results.result){
         if (i === '0') continue;
@@ -72,8 +72,8 @@ Handlebars.registerHelper("getSimilar", function() {
         out += '<li> <a href="https://duckduckgo.com/?q=guidebox ' + item.title +'">' + item.title + '</a></li>';
     }
 
-    out += '</ul>';
-    return out;
+    out += '</ul>';*/
+    return GB_global.searched.results.result;
 });
 
 Handlebars.registerHelper("getDate", function(first_aired) {
