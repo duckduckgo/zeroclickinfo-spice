@@ -14,21 +14,18 @@ function ddg_spice_khan_academy ( api_result ) {
     }
 
     Spice.render({
-        data: api_result,
-        source_name : 'Khan Academy',
-        source_url : 'https://www.khanacademy.org/' + query,
-        header1 : header,
-        force_no_fold : 1,
-        force_big_header : 1,
-
-        template_frame: "carousel",
-        template_normal: "khan_academy",
-        carousel_css_id: "khan_academy",
-        carousel_template_detail: "khan_academy_detail",
-        carousel_items: api_result.feed.entry,
-        template_options : {
-            li_width : 120
-        }
+        data                     : api_result,
+        source_name              : 'Khan Academy',
+        source_url               : 'https://www.khanacademy.org/' + query,
+        header1                  : header,
+        force_no_fold            : 1,
+        force_big_header         : 1,
+        template_frame           : "carousel",
+        template_normal          : "khan_academy",
+        carousel_css_id          : "khan_academy",
+        carousel_template_detail : "khan_academy_detail",
+        carousel_items           : api_result.feed.entry,
+        template_options         : { li_width : 120 }
     });
 
     // Move ddgc_detail above carousel
