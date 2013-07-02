@@ -5,10 +5,8 @@
 // Requires jQuery.
 //
 // Commands:
-// watch NCIS - shows last 3 episodes 
+// watch NCIS - shows last 3 episodes
 //
-// Notes:
-// ddg_spice_guidebox_lastshows - 
 
 GB_global = { "more" : "", "type" : "", "query" : "", "searched" : ""};
 
@@ -24,7 +22,6 @@ var ddg_spice_guidebox_getid = function (api_result){
 
     for (i in queries){
         GB_global.query = GB_global.query.replace(queries[i], "");
-        
     }
 
     // Prevent jQuery from appending "_={timestamp}" in our url.
@@ -84,18 +81,18 @@ Handlebars.registerHelper("getDate", function(first_aired) {
 
     var datesplit;
     var months = {
-            '01' : 'January',
-            '02' : 'February',
-            '03' : 'March',
-            '04' : 'April',
+            '01' : 'Jan.',
+            '02' : 'Feb.',
+            '03' : 'Mar.',
+            '04' : 'Apr.',
             '05' : 'May',
-            '06' : 'June',
-            '07' : 'July',
-            '08' : 'August',
-            '09' : 'September',
-            '10' : 'October',
-            '11' : 'November',
-            '12' : 'December',
+            '06' : 'Jun.',
+            '07' : 'Jul.',
+            '08' : 'Aug.',
+            '09' : 'Sep.',
+            '10' : 'Oct.',
+            '11' : 'Nov.',
+            '12' : 'Dec.',
     };
 
     datesplit = first_aired.split('-')
@@ -103,25 +100,22 @@ Handlebars.registerHelper("getDate", function(first_aired) {
 
 });
 
-Handlebars.registerHelper("getEpisodeInfo", function(episode, season) {
-    "use strict";
-
-        return 'Season ' + season + ',Episode ' + episode;
-});
-
-
 ddg_spice_guidebox_getid.render = function(api_result) {
     "use strict";
 
-    var options = {            
+    var options = {
             data : api_result,
             force_big_header : true,
             source_name : "Guidebox",
             source_url : GB_global.more,
             template_frame : "carousel",
-            carousel_css_id: "guidebox_getid",
+            carousel_css_id: "guidebox",
             carousel_items : api_result.results.result,
-            force_no_fold  : 1
+            force_no_fold : 1,
+            template_options : {
+                li_width : 120,
+                li_height : 135
+            }
     };
 
     if (GB_global.type === "series"){
@@ -141,4 +135,3 @@ ddg_spice_guidebox_getid.render = function(api_result) {
         }
     });
 };
-
