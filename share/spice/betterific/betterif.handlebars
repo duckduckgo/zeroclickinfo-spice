@@ -1,0 +1,31 @@
+<div class="obj-wrapper">
+  <a href="{{betterifUrl this}}" class="left-img">
+    <img src="{{user.cached_image_url}}" title="Wouldn't it be better if {{name}}" alt="Wouldn't it be better if {{name}} at betterific.com" height="40" width="40" />
+  </a>
+  <div class="right-box">
+    <div class="betterif-name">
+      {{#if shortened_name}}
+        <a href="{{betterifUrl this}}" class="name-text short-name-text">Wouldn't it be better if {{shortened_name}}</a>
+      {{/if}}
+      <a href="{{betterifUrl this}}" class="name-text">Wouldn't it be better if {{name}}</a>
+      {{#if shortened_name}}
+        <div class="togglers">
+          <small>(<a href="#">more</a><a href="#">less</a>)</small>
+        </div>
+      {{/if}}
+    </div>
+    <div class="stats">
+      <small>
+        <span>{{pluralize upvotes_count "upvote" "upvotes"}}</span>
+        <span>{{pluralize downvotes_count "downvote" "downvotes"}}</span>
+        <span>
+          {{#with this.user}}
+            Submitted by <a href="{{userUrl this}}">{{first_name}} {{last_name}}</a>
+          {{/with}}
+          {{created_at_ago_in_words}} ago
+        </span>
+      </small>
+    </div>
+  </div>
+  <div class="clear-both">&nbsp;</div>
+</div>
