@@ -15,13 +15,16 @@ var ddg_spice_guidebox_getid = function (api_result){
 
     if (!api_result.results) return;
 
-    var queries = ["full episodes of", "full free episodes of", "free episodes of", "guidebox", "watch", "full episodes", "watch free", "full free episodes", "free episodes"];
+    var queries = ["full episodes of", "full free episodes of", 
+                   "free episodes of", "guidebox", "watch", 
+                   "full episodes", "watch free", "full free episodes", 
+                   "free episodes"];
     var i;
 
-    GB_global.query = DDG.get_query();
+    api_result.GB_query = DDG.get_query();
 
     for (i in queries){
-        GB_global.query = GB_global.query.replace(queries[i], "");
+        api_result.GB_query = api_result.GB_query.replace(queries[i], "");
     }
 
     // Prevent jQuery from appending "_={timestamp}" in our url.
@@ -29,17 +32,17 @@ var ddg_spice_guidebox_getid = function (api_result){
         cache: true
     });
 
-    GB_global.type = api_result.results.result[0].type;
-    GB_global.more = api_result.results.result[0].url;
-    GB_global.searched = api_result
-
     var second_call = ddg_spice_guidebox_getid.second_api_call;
-    var render = ddg_spice_guidebox_getid.render;
 
-    if (GB_global.type !== "movie")
+    if (GB_global.type !== "movie"){
+        api_result.GB_type = api_result.results.result[0].type;
+        api_result.GB_more = api_result.results.result[0].url;
+
         second_call(api_result);
-    else
+    } else {
+        var render = ddg_spice_guidebox_getid.render;
         render(api_result);
+    }
 };
 
 var ddg_spice_guidebox_lastshows = function (api_result){
@@ -52,12 +55,6 @@ ddg_spice_guidebox_getid.second_api_call = function (api_result){
 
     $.getScript("/js/spice/guidebox/lastshows/"+ api_result.results.result[0].type + "/" + api_result.results.result[0].id);
 };
-
-Handlebars.registerHelper("getQuery", function() {
-    "use strict";
-
-    return GB_global.query;
-});
 
 Handlebars.registerHelper("getSimilar", function() {
     "use strict";
@@ -95,7 +92,7 @@ Handlebars.registerHelper("getDate", function(first_aired) {
             '12' : 'Dec.',
     };
 
-    datesplit = first_aired.split('-')
+    datesplit = first_aired.split('-');
     return months[datesplit[1]] + ' ' + datesplit[2] + ', ' + datesplit[0];
 
 });
@@ -107,7 +104,7 @@ ddg_spice_guidebox_getid.render = function(api_result) {
             data : api_result,
             force_big_header : true,
             source_name : "Guidebox",
-            source_url : GB_global.more,
+            source_url : api_result.GB_more,
             template_frame : "carousel",
             carousel_css_id: "guidebox",
             carousel_items : api_result.results.result,
@@ -118,11 +115,11 @@ ddg_spice_guidebox_getid.render = function(api_result) {
             }
     };
 
-    if (GB_global.type === "series"){
+    if (api_result.GB_type === "series"){
         options.header1 = "Watch full episodes of " + GB_global.query + " (Guidebox)";
         options.template_normal = "guidebox_getid_series";
-    } else if (GB_global.type === "movie"){
-        options.header1 = "Watch full movie: " + GB_global.query + " (Guidebox)";
+    } else if (api_result.GB_type === "movie"){
+        options.header1 = "Watch full movie: " + api_result.GB_query + " (Guidebox)";
         options.template_normal = "guidebox_getid_movie";
     }
 
