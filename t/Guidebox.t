@@ -26,6 +26,7 @@ ddg_spice_test(
         '/js/spice/guidebox/getid/Snatch',
         call_type => 'include',
         caller => 'DDG::Spice::Guidebox::Getid'
+    )
 );
 
 done_testing;
