@@ -24,15 +24,6 @@
     height: auto !important;
 }
 
-#guidebox li.ddgc_item img.play_button {
-    z-index: 100;
-    margin: -35px auto 15px;
-}
-
-#guidebox li.ddgc_item img.movie_play_button {
-    margin: -45px auto 15px;
-}
-
 #guidebox span.overview {
     font-size: 85%;
 }
@@ -47,6 +38,10 @@
 
 #guidebox div.image_wrap {
     position: relative;
+}
+
+#guidebox div.image_wrap img {
+    height: 100px;
 }
 
 #guidebox small.gb_info {
