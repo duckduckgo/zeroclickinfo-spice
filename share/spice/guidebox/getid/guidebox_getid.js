@@ -34,10 +34,11 @@ var ddg_spice_guidebox_getid = function (api_result){
 
     var second_call = ddg_spice_guidebox_getid.second_api_call;
 
-    if (GB_global.type !== "movie"){
-        api_result.GB_type = api_result.results.result[0].type;
-        api_result.GB_more = api_result.results.result[0].url;
+    api_result.GB_type = api_result.results.result[0].type;
+    api_result.GB_more = api_result.results.result[0].url;
 
+    if (api_result.results.result[0].type !== "movie"){
+        
         second_call(api_result);
     } else {
         var render = ddg_spice_guidebox_getid.render;
