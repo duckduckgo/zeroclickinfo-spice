@@ -122,6 +122,7 @@ ddg_spice_guidebox_getid.render = function(api_result) {
     } else if (api_result.GB_type === "movie"){
         options.header1 = "Watch full movie: " + api_result.GB_query + " (Guidebox)";
         options.template_normal = "guidebox_getid_movie";
+        options.carousel_template_detail = "guidebox_getid_movie_details";
     }
 
     Spice.render(options);
