@@ -20,18 +20,6 @@
     cursor: pointer;
 }
 
-#guidebox li.ddgc_item div.image_wrap::before {
-    content: url("/iu/?u=http://duckduckgo.com/assets/icon_play.v101.png");
-    display: block;
-    font-weight: bold;
-    color: #FFF;
-    width: 100%;
-    text-align: center;
-    position: absolute;
-    line-height: 120px;
-    cursor: pointer;
-}
-
 #guidebox li.ddgc_item a {
     height: auto !important;
 }
