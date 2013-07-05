@@ -11,7 +11,7 @@ icon_url "/i/khanacademy.org.ico";
 topics "math";
 category "reference";
 attribution web => ['http://thoughtherder.org','Arlo Breault'],
-            email => ['arlolra@gmail.com','Arlo Breault'];
+            email => ['arlolra@gmail.com','Arlo Breault'],
 						github => ['https://github.com/arlolra','arlolra'];
 
 spice to => 'https://gdata.youtube.com/feeds/api/videos?&author=khanacademy&max-results=50&alt=json-in-script&callback={{callback}}&v=2&q=$1';
