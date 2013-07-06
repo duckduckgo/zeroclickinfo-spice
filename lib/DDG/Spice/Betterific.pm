@@ -15,7 +15,7 @@ code_url "https://github.com/bradcater/zeroclickinfo-spice/blob/master/lib/DDG/S
 attribution github => ["https://github.com/bradcater", "Brad Cater"],
             twitter => ["https://twitter.com/bradcater", "bradcater"];
 
-triggers startend => "betterif", "betterific";
+triggers startend => "betterif", "better if", "betterific";
 
 spice to => 'http://betterific.com/api/search/all?q=$1&page=1&per_page=2';
 # FIXME Remove this before deploying.

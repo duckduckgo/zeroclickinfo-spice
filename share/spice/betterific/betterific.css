@@ -21,11 +21,13 @@
   margin-top: 3px;
 }
 
-#spice_betterific .betterif-name,
 #spice_betterific .tag-name,
 #spice_betterific .user-username,
 #spice_betterific .stats {
   display: inline-block;
+}
+#spice_betterific .block-stats {
+  display: block;
 }
 
 #spice_betterific .clear-both {
@@ -35,4 +37,7 @@
 
 #spice_betterific .collapsible {
   display: none;
+}
+#spice_betterific .open {
+  display: block;
 }

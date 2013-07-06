@@ -1,12 +1,12 @@
-<div class="obj-wrapper">
+<li>
   <div class="betterif-name">
-    <a href="http://betterific.com/{{dashedS user.username}}/{{dashedS name}}/{{id}}" class="name-text" title="Wouldn't it be better if {{name}}">Wouldn't it be better if {{condense name maxlen="46"}}</a>
+    <a href="http://betterific.com/{{dashedS user.username}}/{{dashedS name}}/{{id}}" class="name-text" title="Wouldn't it be better if {{name}}">{{condense name maxlen="90"}}</a>
   </div>
-  <div class="stats">
+  <div class="stats block-stats">
     <small>
       [{{pluralize upvotes_count "upvote" "upvotes"}}]
-      ({{#with this.user}}by <a href="http://betterific.com/innovator/{{dashedS username}}/{{id}}">{{first_name}} {{last_name}}</a>{{/with}})
+      ({{#with this.user}}by <a href="http://betterific.com/innovator/{{dashedS username}}/{{id}}" title="See more great ideas from {{first_name}} {{last_name}} at http://betterific.com">{{first_name}} {{last_name}}</a>{{/with}})
     </small>
   </div>
   <div class="clear-both">&nbsp;</div>
-</div>
+</li>

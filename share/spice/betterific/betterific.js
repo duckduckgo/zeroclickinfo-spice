@@ -72,4 +72,5 @@ Handlebars.registerHelper('pluralize', function(number, single, plural) {
 
 $('body').on('click', 'a.header', function() {
   $(this).closest('.kind-wrapper').find('.collapsible').toggle();
+  return false;
 });
