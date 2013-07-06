@@ -1,9 +1,12 @@
 {{#if betterifs.betterifs}}
   <div class="kind-wrapper">
-    <div class="betterifs">
-      {{#each betterifs.betterifs}}
-        {{{include "betterif"}}}
-      {{/each}}
+    <a href="#" class="header">Wouldn't it be better if...</a>
+    <div class="betterifs collapsible open">
+      <ul>
+        {{#each betterifs.betterifs}}
+          {{{include "betterif"}}}
+        {{/each}}
+      </ul>
     </div>
   </div>
 {{/if}}
@@ -13,7 +16,7 @@
   {{/if}}
   <div class="kind-wrapper">
     <a href="#" class="header">Tags</a>
-    <div class="tags{{#if betterifs.betterifs}} collapsible{{/if}}">
+    <div class="tags collapsible{{#unless betterifs.betterifs}} open{{/unless}}">
       {{#each tags.tags}}
         {{{include "tag"}}}
       {{/each}}
@@ -30,7 +33,7 @@
   {{/if}}
   <div class="kind-wrapper">
     <a href="#" class="header">Users</a>
-    <div class="users{{#if betterifs.betterifs}} collapsible{{else}}{{#if tags.tags}} collapsible{{/if}}{{/if}}">
+    <div class="users collapsible{{#unless betterifs.betterifs}}{{#unless tags.tags}} open{{/unless}}{{/unless}}">
       {{#each users.users}}
         {{{include "user"}}}
       {{/each}}
