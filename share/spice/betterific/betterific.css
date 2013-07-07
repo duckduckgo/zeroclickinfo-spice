@@ -14,11 +14,8 @@
   font-size: 110%;
 }
 
-#spice_betterific .obj-wrapper {
-  margin-bottom: 4px;
-}
-#spice_betterific .obj-wrapper:first-child {
-  margin-top: 3px;
+#spice_betterific .betterif-name {
+  display: block;
 }
 
 #spice_betterific .tag-name,
@@ -32,6 +29,7 @@
 
 #spice_betterific .clear-both {
   clear: both;
+  display: block;
   height: 0px;
 }
 
