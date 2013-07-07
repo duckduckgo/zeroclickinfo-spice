@@ -17,9 +17,11 @@
   <div class="kind-wrapper">
     <a href="#" class="header">Tags</a>
     <div class="tags collapsible{{#unless betterifs.betterifs}} open{{/unless}}">
-      {{#each tags.tags}}
-        {{{include "tag"}}}
-      {{/each}}
+      <ul>
+        {{#each tags.tags}}
+          {{{include "tag"}}}
+        {{/each}}
+      </ul>
     </div>
   </div>
 {{/if}}
@@ -34,9 +36,11 @@
   <div class="kind-wrapper">
     <a href="#" class="header">Users</a>
     <div class="users collapsible{{#unless betterifs.betterifs}}{{#unless tags.tags}} open{{/unless}}{{/unless}}">
-      {{#each users.users}}
-        {{{include "user"}}}
-      {{/each}}
+      <ul>
+        {{#each users.users}}
+          {{{include "user"}}}
+        {{/each}}
+      </ul>
     </div>
   </div>
 {{/if}}
