@@ -16,7 +16,7 @@
     width: 100%;
     text-align: center;
     position: absolute;
-    line-height: 120px;
+    line-height: 100px;
     cursor: pointer;
 }
 
@@ -38,10 +38,6 @@
 
 #guidebox div.image_wrap {
     position: relative;
-}
-
-#guidebox div.image_wrap img {
-    height: 100px;
 }
 
 #guidebox small.gb_info {

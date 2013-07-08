@@ -10,68 +10,92 @@
 
 GB_global = { "more" : "", "type" : "", "query" : "", "searched" : ""};
 
-var ddg_spice_guidebox_getid = function (api_result){
+function ddg_spice_guidebox_getid (api_result)
+{
     "use strict";
 
     if (!api_result.results) return;
-
-    var queries = ["full episodes of", "full free episodes of", 
-                   "free episodes of", "guidebox", "watch", 
-                   "full episodes", "watch free", "full free episodes", 
-                   "free episodes"];
-    var i;
-
-    api_result.GB_query = DDG.get_query();
-
-    for (i in queries){
-        api_result.GB_query = api_result.GB_query.replace(queries[i], "");
-    }
 
     // Prevent jQuery from appending "_={timestamp}" in our url.
     $.ajaxSetup({
         cache: true
     });
 
-    var second_call = ddg_spice_guidebox_getid.second_api_call;
+    var metadata = {};
+    metadata.res_type = api_result.results.result[0].type;
+    metadata.more = api_result.results.result[0].url;
+    ddg_spice_guidebox_getid.metadata = metadata;
 
-    api_result.GB_type = api_result.results.result[0].type;
-    api_result.GB_more = api_result.results.result[0].url;
 
-    if (api_result.results.result[0].type !== "movie"){
-        
-        second_call(api_result);
+    if (metadata.res_type === "series"){
+        ddg_spice_guidebox_getid.metadata.searched = api_result;
+        //delete ddg_spice_guidebox_getid.metadata.searched.results.result[0];
+        $.getScript("/js/spice/guidebox/lastshows/"+ api_result.results.result[0].type + "/" + api_result.results.result[0].id);
     } else {
-        var render = ddg_spice_guidebox_getid.render;
-        render(api_result);
+        ddg_spice_guidebox_getid.render(api_result);
     }
-};
+}
 
-var ddg_spice_guidebox_lastshows = function (api_result){
-    var render = ddg_spice_guidebox_getid.render;
-    render(api_result);
-};
+function ddg_spice_guidebox_lastshows(api_result)
+{
+    ddg_spice_guidebox_getid.render(api_result);
+}
 
-ddg_spice_guidebox_getid.second_api_call = function (api_result){
+ddg_spice_guidebox_getid.render = function(api_result) {
     "use strict";
 
-    $.getScript("/js/spice/guidebox/lastshows/"+ api_result.results.result[0].type + "/" + api_result.results.result[0].id);
+    var terms = ["full episodes of", "full free episodes of", 
+                   "free episodes of", "guidebox", "watch", 
+                   "full episodes", "watch free", "full free episodes", 
+                   "free episodes"];
+    var i;
+
+    var query = DDG.get_query();
+
+    for (i in terms){
+        query = query.replace(terms[i], "");
+    }
+
+    var metadata = ddg_spice_guidebox_getid.metadata;
+
+    var options = {
+            data : api_result,
+            force_big_header : true,
+            source_name : "Guidebox",
+            source_url : metadata.more,
+            template_frame : "carousel",
+            carousel_css_id: "guidebox",
+            carousel_items : api_result.results.result,
+            force_no_fold : 1,
+            template_options : {
+                li_width : 120,
+                li_height : 135
+            }
+    };
+
+    if (metadata.res_type === "series"){
+        options.header1 = "Watch full episodes of " + query + " (Guidebox)";
+        options.template_normal = "guidebox_getid_series";
+    } else if (metadata.res_type === "movie"){
+        options.header1 = "Watch full movie: " + query + " (Guidebox)";
+        options.template_normal = "guidebox_getid_movie";
+        options.carousel_template_detail = "guidebox_getid_movie_details";
+    }
+
+    Spice.render(options);
+
+    $("a.GB_showHide").click(function(){
+        if ($(this).data("target")){
+            var target = $(this).data("target");
+            $(target).toggle();
+        }
+    });
 };
 
 Handlebars.registerHelper("getSimilar", function() {
     "use strict";
 
-    /*var out = '<ul>', i, item;
-
-    for (i in GB_global.searched.results.result){
-        if (i === '0') continue;
-        if (i === '10') break;
-        item = GB_global.searched.results.result[i];
-        //out += '<li> <a href="' + item.url +'">' + item.title + '</a></li>';
-        out += '<li> <a href="https://duckduckgo.com/?q=guidebox ' + item.title +'">' + item.title + '</a></li>';
-    }
-
-    out += '</ul>';*/
-    return GB_global.searched.results.result;
+    return ddg_spice_guidebox_getid.metadata.searched.results.result;
 });
 
 Handlebars.registerHelper("getDate", function(first_aired) {
@@ -97,40 +121,3 @@ Handlebars.registerHelper("getDate", function(first_aired) {
     return months[datesplit[1]] + ' ' + datesplit[2] + ', ' + datesplit[0];
 
 });
-
-ddg_spice_guidebox_getid.render = function(api_result) {
-    "use strict";
-
-    var options = {
-            data : api_result,
-            force_big_header : true,
-            source_name : "Guidebox",
-            source_url : api_result.GB_more,
-            template_frame : "carousel",
-            carousel_css_id: "guidebox",
-            carousel_items : api_result.results.result,
-            force_no_fold : 1,
-            template_options : {
-                li_width : 120,
-                li_height : 135
-            }
-    };
-
-    if (api_result.GB_type === "series"){
-        options.header1 = "Watch full episodes of " + GB_global.query + " (Guidebox)";
-        options.template_normal = "guidebox_getid_series";
-    } else if (api_result.GB_type === "movie"){
-        options.header1 = "Watch full movie: " + api_result.GB_query + " (Guidebox)";
-        options.template_normal = "guidebox_getid_movie";
-        options.carousel_template_detail = "guidebox_getid_movie_details";
-    }
-
-    Spice.render(options);
-
-    $("a.GB_showHide").click(function(){
-        if ($(this).data("target")){
-            var target = $(this).data("target");
-            $(target).toggle();
-        }
-    });
-};
