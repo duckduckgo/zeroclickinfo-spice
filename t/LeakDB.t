@@ -22,6 +22,8 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::LeakDB'
     ),
+    'leakdb' => undef,
+    'hashme' => undef,
 );
 
 done_testing;
