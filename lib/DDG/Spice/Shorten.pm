@@ -15,20 +15,13 @@ category "computing_tools";
 attribution github => ['https://github.com/danjarvis','Dan Jarvis'],
             twitter => ['http://twitter.com/danjarvis','danjarvis'];
 
-spice to => 'http://is.gd/create.php?format=json&url=$1://$2&callback={{callback}}';
-
-spice from => '(?:([^/]+)/(.+))';
+spice to => 'http://is.gd/create.php?format=json&url=$1&callback={{callback}}';
 triggers any => 'shorten', 'shorten url', 'short url', 'url shorten';
 
 handle remainder => sub {
 	my ($longUri) = shift;
-	if ($longUri) {
-		if($longUri =~ /(.+):\/\/(.+)/) {
-			return $1, $2;
-		} else {
-            return 'http', $longUri;
-        }
-	}
+
+    return $longUri if $longUri;
 	return;
 };
 

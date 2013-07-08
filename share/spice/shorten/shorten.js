@@ -20,7 +20,8 @@ function ddg_spice_shorten(api_result) {
         source_url       : "http://is.gd/",
         source_name      : "is.gd",
         template_normal  : "shorten",
-        force_big_header : true
+        force_big_header : true,
+        favicon_style    : "inline"
     });
 
     var selectText = function(url) {
