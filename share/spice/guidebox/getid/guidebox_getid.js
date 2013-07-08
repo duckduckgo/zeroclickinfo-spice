@@ -21,9 +21,22 @@ function ddg_spice_guidebox_getid (api_result)
         cache: true
     });
 
+    var terms = ["full episodes of", "full free episodes of", 
+                   "free episodes of", "guidebox", "watch", 
+                   "full episodes", "watch free", "full free episodes", 
+                   "free episodes"];
+    var i;
+
+    var query = DDG.get_query();
+
+    for (i in terms){
+        query = query.replace(terms[i], "");
+    }
+
     var metadata = {};
     metadata.res_type = api_result.results.result[0].type;
     metadata.more = api_result.results.result[0].url;
+    metadata.query = query;
     ddg_spice_guidebox_getid.metadata = metadata;
 
 
@@ -44,17 +57,7 @@ function ddg_spice_guidebox_lastshows(api_result)
 ddg_spice_guidebox_getid.render = function(api_result) {
     "use strict";
 
-    var terms = ["full episodes of", "full free episodes of", 
-                   "free episodes of", "guidebox", "watch", 
-                   "full episodes", "watch free", "full free episodes", 
-                   "free episodes"];
-    var i;
 
-    var query = DDG.get_query();
-
-    for (i in terms){
-        query = query.replace(terms[i], "");
-    }
 
     var metadata = ddg_spice_guidebox_getid.metadata;
 
@@ -74,10 +77,10 @@ ddg_spice_guidebox_getid.render = function(api_result) {
     };
 
     if (metadata.res_type === "series"){
-        options.header1 = "Watch full episodes of " + query + " (Guidebox)";
+        options.header1 = "Watch full episodes of " + metadata.query + " (Guidebox)";
         options.template_normal = "guidebox_getid_series";
     } else if (metadata.res_type === "movie"){
-        options.header1 = "Watch full movie: " + query + " (Guidebox)";
+        options.header1 = "Watch full movie: " + metadata.query + " (Guidebox)";
         options.template_normal = "guidebox_getid_movie";
         options.carousel_template_detail = "guidebox_getid_movie_details";
     }
@@ -96,6 +99,12 @@ Handlebars.registerHelper("getSimilar", function() {
     "use strict";
 
     return ddg_spice_guidebox_getid.metadata.searched.results.result;
+});
+
+Handlebars.registerHelper("getQuery", function() {
+    "use strict";
+
+    return ddg_spice_guidebox_getid.metadata.query;
 });
 
 Handlebars.registerHelper("getDate", function(first_aired) {
