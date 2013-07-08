@@ -2,8 +2,6 @@ var ddg_spice_amazon_carousel_add_items;
 var ddg_spice_amazon_single_item;
 var ddg_spice_amazon_query;
 
-var ddg_spice_amazon_endpoint = 'http://127.0.0.1';
-
 function ddg_spice_amazon(api_response) {
     if (!api_response || api_response.length == 0) return;
 
@@ -12,8 +10,7 @@ function ddg_spice_amazon(api_response) {
 
     if (api_response.length == 1) {
         ddg_spice_amazon_single_item = api_response[0];
-        nrj(ddg_spice_amazon_endpoint + '/m.js?r='
-            + escape(ddg_spice_amazon_single_item.rating
+        nrj('/m.js?r='+ escape(ddg_spice_amazon_single_item.rating
                         .replace('http://www.amazon.com/reviews/iframe?', ''))
             + '&cb=ddg_spice_amazon_render_single');
         return;
@@ -30,7 +27,7 @@ function ddg_spice_amazon(api_response) {
             $('#ddgc_nav').width() - 10 - (12*2) - 150 - 20
         );
         if (item && !is_cached)
-            nrj(ddg_spice_amazon_endpoint + '/m.js?r='
+            nrj('/m.js?r='
                 + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
                 + '&cb=ddg_spice_amazon_detail');
     };
@@ -54,9 +51,9 @@ function ddg_spice_amazon(api_response) {
 						template_options         : { li_height : 145 }
         });
 
-    nrj(ddg_spice_amazon_endpoint + '/m.js?pg=2'
-            + '&cb=ddg_spice_amazon_wait_for_render'
-            + '&q=' + escape(DDG.get_query()));
+    nrj('/m.js?pg=2'
+	+ '&cb=ddg_spice_amazon_wait_for_render'
+	+ '&q=' + escape(DDG.get_query()));
 
     $(window).resize(spotlight_resize);
 }
