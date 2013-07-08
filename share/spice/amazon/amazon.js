@@ -59,7 +59,9 @@ function ddg_spice_amazon(api_response) {
 }
 
 function ddg_spice_amazon_wait_for_render(items) {
-    window.setTimeout(ddg_spice_amazon_carousel_add_items, 500, items);
+    window.setTimeout(function() {
+            ddg_spice_amazon_carousel_add_items(items)
+    }, 500);
 }
 
 function ddg_spice_amazon_detail(api_response) {
