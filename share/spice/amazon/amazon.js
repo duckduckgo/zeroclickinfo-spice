@@ -3,7 +3,7 @@ var ddg_spice_amazon_single_item;
 var ddg_spice_amazon_query;
 
 function ddg_spice_amazon(api_response) {
-    if (!api_response || api_response.length == 0) return;
+    if (!api_response || !api_response.length || api_response.length == 0) return;
 
     ddg_spice_amazon_query =
         DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
