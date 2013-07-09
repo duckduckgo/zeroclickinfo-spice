@@ -1,1 +1,8 @@
-<div>details</div>
+<div>
+    {{#if review_count}}
+        <img id="rating" src="/iu/?u={{rating_img_url}}">
+    {{/if}}
+    <h1><a href="{{url}}">{{name}}</a></h1>
+    {{#concat location.display_address sep=", " conj=", "}}{{this}}{{/concat}}<br>
+    ({{display_phone}})
+</div>
