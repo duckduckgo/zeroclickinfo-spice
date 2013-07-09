@@ -1,0 +1,40 @@
+#spice_betterific hr {
+  background-color: #d2d2d2;
+  background-color: rgba(136, 136, 136, 0.39);
+  border: 0;
+  color: #bade89;
+  height: 1px;
+  margin: 5px 0;
+  padding: 0;
+  text-align: left;
+}
+
+#spice_betterific .header {
+  font-size: 14px;
+}
+
+#spice_betterific .betterif-name {
+  display: block;
+}
+
+#spice_betterific .tag-name,
+#spice_betterific .user-username,
+#spice_betterific .stats {
+  display: inline-block;
+}
+#spice_betterific .block-stats {
+  display: block;
+}
+
+#spice_betterific .clear-both {
+  clear: both;
+  display: block;
+  height: 0px;
+}
+
+#spice_betterific .collapsible {
+  display: none;
+}
+#spice_betterific .open {
+  display: block;
+}
