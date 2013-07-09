@@ -20,6 +20,10 @@
     cursor: pointer;
 }
 
+#guidebox li.ddgc_item div.smaller img {
+    height: 100px;
+}
+
 #guidebox li.ddgc_item a {
     height: auto !important;
 }
