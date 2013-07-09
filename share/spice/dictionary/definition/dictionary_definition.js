@@ -103,7 +103,9 @@ function ddg_spice_dictionary_hyphenation (api_result) {
     var result = [];
     if(api_result && api_result.length > 0) {
         for(var i = 0; i < api_result.length; i += 1) {
-            result.push(api_result[i].text);
+            if(i === api_result[i].seq) {
+                result.push(api_result[i].text);
+            }
         }
         // Replace the, rather lame, non-hyphenated version of the word.
         $("#hyphenation").html(result.join("•"));

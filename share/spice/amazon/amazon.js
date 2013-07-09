@@ -3,15 +3,14 @@ var ddg_spice_amazon_single_item;
 var ddg_spice_amazon_query;
 
 function ddg_spice_amazon(api_response) {
-    if (!api_response || api_response.length == 0) return;
+    if (!api_response || !api_response.length || api_response.length == 0) return;
 
     ddg_spice_amazon_query =
         DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
 
     if (api_response.length == 1) {
         ddg_spice_amazon_single_item = api_response[0];
-        nrj('https://dylan.duckduckgo.com/m.js?r='
-            + escape(ddg_spice_amazon_single_item.rating
+        nrj('/m.js?r='+ escape(ddg_spice_amazon_single_item.rating
                         .replace('http://www.amazon.com/reviews/iframe?', ''))
             + '&cb=ddg_spice_amazon_render_single');
         return;
@@ -28,7 +27,7 @@ function ddg_spice_amazon(api_response) {
             $('#ddgc_nav').width() - 10 - (12*2) - 150 - 20
         );
         if (item && !is_cached)
-            nrj('https://dylan.duckduckgo.com/m.js?r='
+            nrj('/m.js?r='
                 + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
                 + '&cb=ddg_spice_amazon_detail');
     };
@@ -48,18 +47,21 @@ function ddg_spice_amazon(api_response) {
             carousel_template_detail : 'amazon_detail',
             carousel_items           : api_response,
             force_no_fold            : true,
-            item_callback            : spotlight_resize
+            item_callback            : spotlight_resize,
+						template_options         : { li_height : 145 }
         });
 
-    nrj('https://dylan.duckduckgo.com/m.js?pg=2'
-            + '&cb=ddg_spice_amazon_wait_for_render'
-            + '&q=' + escape(DDG.get_query()));
+    nrj('/m.js?pg=2'
+	+ '&cb=ddg_spice_amazon_wait_for_render'
+	+ '&q=' + escape(DDG.get_query()));
 
     $(window).resize(spotlight_resize);
 }
 
 function ddg_spice_amazon_wait_for_render(items) {
-    window.setTimeout(ddg_spice_amazon_carousel_add_items, 500, items);
+    window.setTimeout(function() {
+            ddg_spice_amazon_carousel_add_items(items)
+    }, 500);
 }
 
 function ddg_spice_amazon_detail(api_response) {
