@@ -1,4 +1,17 @@
-<li class="ddgc_item">
-    <img src="/iu/?u={{image_url}}">
-    <span>{{condense name maxlen="25"}}</span>
-</li>
+<div id="local">
+    <div id="map"></div>
+    <ul>
+    {{#each businesses}}
+    <li id="{{phone}}">
+        <div class="right">
+        {{#if review_count}}
+            <img class="rating" src="/iu/?u={{rating_img_url}}">
+        {{/if}}
+        </div>
+        <h1><a href="{{url}}">{{name}}</a></h1>
+        {{#concat location.display_address sep=", " conj=", "}}{{this}}{{/concat}}<br>
+        ({{display_phone}})
+    </li>
+    {{/each}}
+    </ul>
+</div>
