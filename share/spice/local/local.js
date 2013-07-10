@@ -50,10 +50,12 @@ function ddg_spice_local(api_response) {
         $(e.target).attr('class', 'ddgc_selected');
     });
 
-    $('#ddgc_pagination').off().click(function(e) {
-        if (e.target.id == 'nexta' && ddg_spice_local_current != dots.length - 1)
+    $('#nexta, #preva').off().click(function(e) {
+        if (e.target.id.indexOf('next') != -1
+            && ddg_spice_local_current != dots.length - 1)
             dots[++ddg_spice_local_current].click();
-        else if (e.target.id == 'preva' && ddg_spice_local_current != 0)
+        else if (e.target.id.indexOf('prev') != -1
+                 && ddg_spice_local_current != 0)
             dots[--ddg_spice_local_current].click();
     });
 
@@ -82,9 +84,7 @@ function render_map(api_response) {
         ddg_spice_local_markers.push(
             L.marker(location, { 'title' : businesses[i].name, 'id' : i }
             ).on('click', function(e) {
-                $('#map .leaflet-marker-icon').attr(
-                    'src', '/dist/images/marker-icon.png');
-                e.target._icon.src = '/dist/images/marker-icon-green.png';
+                $('#ddgc_dots a')[e.target.options.id].click();
             }).addTo(ddg_spice_local_map));
     }
 };
