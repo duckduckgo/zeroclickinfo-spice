@@ -1,5 +1,6 @@
 var ddg_spice_local_map;
 var ddg_spice_local_markers = [];
+var ddg_spice_local_current = 0;
 
 function ddg_spice_local(api_response) {
     if (!api_response || api_response.length == 0) return;
@@ -22,11 +23,15 @@ function ddg_spice_local(api_response) {
         data                     : api_response,
     });
 
+    $('#ddgc_detail').append($('<div>').attr('id', 'map'));
     $.getScript("/dist/leaflet.js", function() { render_map(api_response) });
 
-    //$("#ddgc_detail").prependTo("#local");
-    $('#local .ddgc_item').off().click(function(e) {
-        $('#ddgc_detail').show()
+    $('#local .ddgc_item').off().click(function(e) { $('#ddgc_detail').show() });
+
+    var dots = $('#ddgc_dots a').off();
+    for (var i in dots) dots[i].id = i;
+    dots.click(function(e) {
+        var page = ddg_spice_local_current = e.target.id;
         for (var i in ddg_spice_local_markers) {
             if (i == e.target.id) {
                 ddg_spice_local_markers[i]
@@ -37,11 +42,21 @@ function ddg_spice_local(api_response) {
             }
         }
         ddg_spice_local_map.setView(
-            ddg_spice_local_markers[e.target.id].getLatLng(), 13,
+            ddg_spice_local_markers[page].getLatLng(), 13,
                 { 'animate' : true });
+        $('#ddgc_slides').css('margin-left',
+            -1 * $('#ddgc_frame').outerWidth() * page);
+        dots.attr('class', '');
+        $(e.target).attr('class', 'ddgc_selected');
     });
-    //$('#ddgc_nav').hide();
-    $('#ddgc_detail').append($('<div>').attr('id', 'map'));
+
+    $('#ddgc_pagination').off().click(function(e) {
+        if (e.target.id == 'nexta' && ddg_spice_local_current != dots.length - 1)
+            dots[++ddg_spice_local_current].click();
+        else if (e.target.id == 'preva' && ddg_spice_local_current != 0)
+            dots[--ddg_spice_local_current].click();
+    });
+
 };
 
 function render_map(api_response) {
