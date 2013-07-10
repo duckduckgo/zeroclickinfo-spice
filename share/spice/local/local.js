@@ -8,16 +8,22 @@ function ddg_spice_local(api_response) {
         source_url               : 'http://yelp.com/?q='
                                     + encodeURIComponent(DDG.get_query()),
         source_name              : 'places near you',
-        //template_frame           : 'carousel',
+        template_frame           : 'carousel',
         template_normal          : 'local',
-        //carousel_css_id          : 'local',
-        //carousel_template_detail : 'local_detail',
-        //carousel_items           : api_response.businesses,
+        template_options         : { li_width : 400 },
+        carousel_css_id          : 'local',
+        carousel_template_detail : 'local_detail',
+        carousel_items           : api_response.businesses,
         force_no_fold            : true,
-        data                     : api_response
+        data                     : api_response,
     });
 
     $.getScript("/dist/leaflet.js", function() { render_map(api_response) });
+
+    $("#ddgc_detail").prependTo("#local");
+    $('#local .ddgc_item').off();
+    $('#ddgc_nav').hide();
+    $('#ddgc_detail').append($('<div>').attr('id', 'map')).show();
 };
 
 function render_map(api_response) {
@@ -37,11 +43,15 @@ function render_map(api_response) {
 
     var businesses = api_response.businesses;
     for (var i in businesses) {
-        L.marker([
-                businesses[i].location.coordinate.latitude,
-                businesses[i].location.coordinate.longitude
-                ]).on('click', function(e) {
-                    console.log(e);
+        L.marker([ businesses[i].location.coordinate.latitude,
+                businesses[i].location.coordinate.longitude ],
+                { 'title' : businesses[i].name, 'id' : i }
+                ).on('click', function(e) {
+                    $('#ddgc_nav').show();
+                    $('#ddgc_dots a')[e.target.options.id].click();
+                    $('#map .leaflet-marker-icon').attr(
+                        'src', '/dist/images/marker-icon.png');
+                    e.target._icon.src = '/dist/images/marker-icon-green.png';
                 }).addTo(map);
     }
 
@@ -49,4 +59,5 @@ function render_map(api_response) {
         api_response.region.center.latitude,
         api_response.region.center.longitude
         ], 12);
+
 };

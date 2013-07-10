@@ -1,3 +1,20 @@
+#local h1 {
+    display: block;
+}
+
+#local .details {
+    float: left;
+    width: 20%;
+    border-right: 1px solid rgba(0,0,0,0.1);
+    padding-right: 10px;
+}
+
+#local .reviews {
+    float: left;
+    width: 60%;
+    margin-left: 10px;
+}
+
 #local .right {
     float: right;
 }
@@ -10,15 +27,19 @@
     width: 150px;
 }
 
-#local h1 {
-    display: block;
+#local .left {
+    float: left;
 }
 
+#ddgc_detail {
+    padding: 1px !important;
+}
 
+#ddgcarousel li.ddgc_item {
+    text-align: left !important;
+}
 
 /* leaflet.js */
-
-
 /* required styles */
 
 .leaflet-map-pane,

@@ -1,17 +1,13 @@
-<div id="local">
-    <div id="map"></div>
-    <ul>
-    {{#each businesses}}
-    <li id="{{phone}}">
-        <div class="right">
-        {{#if review_count}}
-            <img class="rating" src="/iu/?u={{rating_img_url}}">
-        {{/if}}
-        </div>
+<li class="ddgc_item" id="{{phone}}">
+    <div class="right">
+    {{#if review_count}}
+        <img class="rating" src="/iu/?u={{rating_img_url}}">
+    {{/if}}
+    </div>
+    <div class="details">
         <h1><a href="{{url}}">{{name}}</a></h1>
         {{#concat location.display_address sep=", " conj=", "}}{{this}}{{/concat}}<br>
         ({{display_phone}})
-    </li>
-    {{/each}}
-    </ul>
-</div>
+    </div>
+    <div class="reviews">{{snippet_text}}</div>
+</li>
