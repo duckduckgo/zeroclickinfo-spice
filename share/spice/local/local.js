@@ -33,7 +33,9 @@ function ddg_spice_local(api_response) {
     dots.click(function(e) {
         var page = ddg_spice_local_current = e.target.id;
         for (var i in ddg_spice_local_markers) {
-            if (i == e.target.id) {
+            $(ddg_spice_local_markers[page]._icon).css('z-index',
+                ddg_spice_local_markers[page].options.zIndex);
+            if (i == page) {
                 ddg_spice_local_markers[i]
                     ._icon.src = '/dist/images/marker-icon-green.png';
             } else {
@@ -43,7 +45,8 @@ function ddg_spice_local(api_response) {
         }
         ddg_spice_local_map.setView(
             ddg_spice_local_markers[page].getLatLng(), 13,
-                { 'animate' : true });
+                { 'pan' : { 'animate' : true, 'duration' : 1 } });
+        $(ddg_spice_local_markers[page]._icon).css('z-index', 1000);
         $('#ddgc_slides').css('margin-left',
             -1 * $('#ddgc_frame').outerWidth() * page);
         dots.attr('class', '');
@@ -87,4 +90,7 @@ function render_map(api_response) {
                 $('#ddgc_dots a')[e.target.options.id].click();
             }).addTo(ddg_spice_local_map));
     }
+    for (var i in ddg_spice_local_markers) 
+        ddg_spice_local_markers[i].options.zIndex =
+            $(ddg_spice_local_markers[i]._icon).css('z-index');
 };
