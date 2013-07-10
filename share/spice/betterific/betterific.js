@@ -23,10 +23,10 @@ function ddg_spice_betterific(api_result) {
     
     // Since we show 1 entity by default, subtract 1 here.
     api_result.cnt_more = s - 1;
-    var obj_length, pp_fn;
+    var obj_length;
     
     for (var i=kinds.length-1; i>=0; i--) {
-           kind = kinds[i];
+        kind = kinds[i];
         
         if ((obj_length = api_result[kind][kind].length) > 0) {
             for (var j=obj_length; j>0; j--) {
@@ -44,6 +44,11 @@ function ddg_spice_betterific(api_result) {
         force_big_header : true,
         force_no_fold    : true
     });
+
+    $('body').on('click', 'a.header', function() {
+        $(this).closest('.kind-wrapper').find('.collapsible').toggle();
+        return false;
+    });
 }
 
 /* Adapted from Betterific's lib/ruby_extensions.rb
@@ -54,9 +59,4 @@ function ddg_spice_betterific(api_result) {
 Handlebars.registerHelper('dashedS', function(s) {
     "use strict";
     return s.replace(/[^a-z0-9\-\s]/gi, '').replace(/\s+/g, '-');
-});
-
-$('body').on('click', 'a.header', function() {
-    $(this).closest('.kind-wrapper').find('.collapsible').toggle();
-    return false;
 });
