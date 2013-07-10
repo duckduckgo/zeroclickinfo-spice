@@ -4,7 +4,7 @@ function ddg_spice_local(api_response) {
     if (!api_response || api_response.length == 0) return;
 
     Spice.render({
-        header1                  : ' (Local)',
+        //header1                  : ' (Local)',
         source_url               : 'http://yelp.com/?q='
                                     + encodeURIComponent(DDG.get_query()),
         source_name              : 'places near you',
@@ -20,10 +20,10 @@ function ddg_spice_local(api_response) {
 
     $.getScript("/dist/leaflet.js", function() { render_map(api_response) });
 
-    $("#ddgc_detail").prependTo("#local");
-    $('#local .ddgc_item').off();
-    $('#ddgc_nav').hide();
-    $('#ddgc_detail').append($('<div>').attr('id', 'map')).show();
+    //$("#ddgc_detail").prependTo("#local");
+    $('#local .ddgc_item').off().click(function() { $('#ddgc_detail').show() });
+    //$('#ddgc_nav').hide();
+    $('#ddgc_detail').append($('<div>').attr('id', 'map'));
 };
 
 function render_map(api_response) {
@@ -43,21 +43,17 @@ function render_map(api_response) {
 
     var businesses = api_response.businesses;
     for (var i in businesses) {
+        if (i == 0) map.setView([ businesses[i].location.coordinate.latitude,
+                            businesses[i].location.coordinate.longitude ], 13);
         L.marker([ businesses[i].location.coordinate.latitude,
                 businesses[i].location.coordinate.longitude ],
                 { 'title' : businesses[i].name, 'id' : i }
                 ).on('click', function(e) {
-                    $('#ddgc_nav').show();
-                    $('#ddgc_dots a')[e.target.options.id].click();
                     $('#map .leaflet-marker-icon').attr(
                         'src', '/dist/images/marker-icon.png');
                     e.target._icon.src = '/dist/images/marker-icon-green.png';
                 }).addTo(map);
     }
 
-    map.setView([
-        api_response.region.center.latitude,
-        api_response.region.center.longitude
-        ], 12);
 
 };
