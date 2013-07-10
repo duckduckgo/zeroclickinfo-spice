@@ -1,5 +1,6 @@
 #local h1 {
     display: block;
+    font-size: 115%;
 }
 
 #local .details {
@@ -19,12 +20,8 @@
     float: right;
 }
 
-#local .right .rating{
-    float: right;
-}
-
-#local .right .map {
-    width: 150px;
+#local .right img {
+    margin-bottom: 5px !important;
 }
 
 #local .left {
