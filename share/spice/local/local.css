@@ -39,6 +39,11 @@
     text-align: left !important;
 }
 
+#ddgcarousel li.ddgc_item:hover {
+    cursor: auto !important;
+    background-image: none !important;
+}
+
 /* leaflet.js */
 /* required styles */
 
