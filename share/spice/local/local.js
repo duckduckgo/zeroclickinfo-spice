@@ -62,7 +62,10 @@ function render_map(api_response) {
 };
 
 function bind_navigation() {
-    $('#local .ddgc_item').off().click(function(e) { $('#ddgc_detail').show() });
+    $('#local .ddgc_item').off().click(function(e) {
+        $('#ddgc_detail').show();
+        ddg_spice_local_map.invalidateSize();
+    });
 
     var dots = $('#ddgc_dots a').off();
     for (var i in dots) dots[i].id = i;
