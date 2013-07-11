@@ -48,7 +48,6 @@ function ddg_spice_amazon(api_response) {
             carousel_items           : api_response,
             force_no_fold            : true,
             item_callback            : spotlight_resize,
-						template_options         : { li_height : 145 }
         });
 
     nrj('/m.js?pg=2'
