@@ -25,10 +25,20 @@ function ddg_spice_local(api_response) {
         });
         $(document).ready(function() {
             render_map(api_response);
+            var deep = false;
+            if (!deep) move_map_to_top();
             bind_navigation();
         });
     });
 };
+
+function move_map_to_top() {
+    $('#ddgc_detail').prependTo('#local');
+    $('#ddgc_detail').show();
+    ddg_spice_local_map.invalidateSize();
+    $('#ddgc_nav').hide();
+    $('#ddgc_dots a').click(function() { $('#ddgc_nav').show(); });
+}
 
 function render_map(api_response) {
     $('#ddgc_detail').append($('<div>').attr('id', 'map'));
@@ -72,6 +82,7 @@ function bind_navigation() {
     var dots = $('#ddgc_dots a').off();
     for (var i in dots) dots[i].id = i;
     dots.click(function(e) {
+        $('#ddgc_nav').show();
         var page = ddg_spice_local_current = e.target.id;
         for (var i in ddg_spice_local_markers) {
             $(ddg_spice_local_markers[page]._icon).css('z-index',
