@@ -1,5 +1,4 @@
 function ddg_spice_video(api_result) {
-    console.log(api_result);
     Spice.render({
         data: api_result,
         source_name : 'YouTube',
