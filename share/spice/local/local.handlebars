@@ -1,10 +1,10 @@
 <li class="ddgc_item" id="{{index}}">
+    <h1 class="title"><a href="{{url}}">{{name}}</a></h1>
     <div class="right">
-        {{#if review_count}}<img src="/iu/?u={{rating_img_url}}">{{/if}}
         {{#if image_url}}<img src="/iu/?u={{image_url}}">{{/if}}
+        {{#if review_count}}<img src="/iu/?u={{rating_img_url}}">{{/if}}
     </div>
     <div class="details">
-        <h1><a href="{{url}}">{{name}}</a></h1>
         {{#concat location.display_address sep=", " conj=", "}}{{this}}{{/concat}}<br>
         {{#if display_phone}}({{display_phone}}){{/if}}
     </div>

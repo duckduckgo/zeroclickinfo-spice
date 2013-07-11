@@ -8,9 +8,11 @@ function ddg_spice_local(api_response) {
     for (var i in api_response.businesses)
         api_response.businesses[i].index = i;
 
+    var query = DDG.get_query().replace(/nearest/, '').trim();
+
     $.getScript("/dist/leaflet.js", function() {
         Spice.render({
-            //header1                  : ' (Local)',
+            header1                  : query + ' (Local)',
             source_url               : 'http://yelp.com/?q='
                                         + encodeURIComponent(DDG.get_query()),
             source_name              : 'places near you',

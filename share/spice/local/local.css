@@ -1,18 +1,24 @@
 #local h1 {
     display: block;
-    font-size: 115%;
+    font-size: 120%;
+    margin-bottom: 5px;
+}
+
+#local h1.title {
+    float:left;
+    width: 70%;
 }
 
 #local .details {
     float: left;
-    width: 20%;
+    width: 30%;
     border-right: 1px solid rgba(0,0,0,0.1);
     padding-right: 10px;
 }
 
 #local .reviews {
     float: left;
-    width: 60%;
+    width: 50%;
     margin-left: 10px;
 }
 
