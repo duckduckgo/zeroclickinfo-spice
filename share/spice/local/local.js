@@ -23,8 +23,10 @@ function ddg_spice_local(api_response) {
             force_no_fold            : true,
             data                     : api_response,
         });
-        render_map(api_response);
-        bind_navigation();
+        $(document).ready(function() {
+            render_map(api_response);
+            bind_navigation();
+        });
     });
 };
 
