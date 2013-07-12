@@ -127,5 +127,6 @@ function ddg_spice_detect_lang (api_result) {
 
 Handlebars.registerHelper("toPercent", function(confidence) {
     "use strict";
-    return Math.round(confidence * 100) + "% sure";
+    var percentage = Math.round(confidence * 100);
+    return (percentage > 100 ? 100 : percentage) + "% sure";
 });
