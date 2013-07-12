@@ -68,7 +68,7 @@ function render_map(api_response) {
         ddg_spice_local_markers.push(
             L.marker(location, { 'title' : businesses[i].name, 'id' : i }
             ).on('click', function(e) {
-                $('#ddgc_dots a')[e.target.options.id].click();
+                move_to_page(e.target.options.id);
             }).addTo(ddg_spice_local_map));
     }
     for (var i in ddg_spice_local_markers) 
@@ -80,14 +80,26 @@ function bind_navigation() {
     $('#local .ddgc_item').off().click(function(e) {
         $('#ddgc_detail').show();
         ddg_spice_local_map.invalidateSize();
-        dots[$(e.target).closest('li').attr('id')].click();
+        move_to_page($(e.target).closest('li').attr('id'));
     });
 
     var dots = $('#ddgc_dots a').off();
-    for (var i in dots) dots[i].id = i;
-    dots.click(function(e) {
+    dots.each(function(i, el) { $(el).attr('id', i) });
+    dots.click(function(e) { move_to_page(e.target.id); });
+
+    $('#nexta, #preva').off().click(function(e) {
+        if (e.target.id.indexOf('next') != -1
+            && ddg_spice_local_current != dots.length - 1)
+            move_to_page(++ddg_spice_local_current);
+        else if (e.target.id.indexOf('prev') != -1
+                 && ddg_spice_local_current != 0)
+            move_to_page(--ddg_spice_local_current);
+    });
+}
+
+function move_to_page(page) {
         $('#ddgc_nav').show();
-        var page = ddg_spice_local_current = e.target.id;
+        ddg_spice_local_current = page;
         for (var i in ddg_spice_local_markers) {
             $(ddg_spice_local_markers[page]._icon).css('z-index',
                 ddg_spice_local_markers[page].options.zIndex);
@@ -105,16 +117,6 @@ function bind_navigation() {
         $(ddg_spice_local_markers[page]._icon).css('z-index', 1000);
         $('#ddgc_slides').css('margin-left',
             -1 * $('#ddgc_frame').outerWidth() * page);
-        dots.attr('class', '');
-        $(e.target).attr('class', 'ddgc_selected');
-    });
-
-    $('#nexta, #preva').off().click(function(e) {
-        if (e.target.id.indexOf('next') != -1
-            && ddg_spice_local_current != dots.length - 1)
-            dots[++ddg_spice_local_current].click();
-        else if (e.target.id.indexOf('prev') != -1
-                 && ddg_spice_local_current != 0)
-            dots[--ddg_spice_local_current].click();
-    });
+        $('#ddgc_dots a').attr('class', '');
+        $('#ddgc_dots #' + page).attr('class', 'ddgc_selected');
 }
