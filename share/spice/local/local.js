@@ -37,8 +37,7 @@ function ddg_spice_local(api_response) {
 };
 
 function move_map_to_top() {
-    $('#ddgc_detail').prependTo('#local');
-    $('#ddgc_detail').show();
+    $('#ddgc_detail').prependTo('#local').css('display', 'block');
     ddg_spice_local_map.invalidateSize();
     $('#ddgc_nav').hide();
     $('#ddgc_dots a').click(function() { $('#ddgc_nav').show(); });
