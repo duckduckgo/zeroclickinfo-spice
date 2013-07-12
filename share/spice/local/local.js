@@ -3,6 +3,7 @@ var ddg_spice_local_markers = [];
 var ddg_spice_local_current = 0;
 
 function ddg_spice_local(api_response) {
+    console.log(api_response);
     if (!api_response || api_response.length == 0) return;
 
     for (var i in api_response.businesses)
@@ -80,7 +81,7 @@ function bind_navigation() {
     $('#local .ddgc_item').off().click(function(e) {
         $('#ddgc_detail').show();
         ddg_spice_local_map.invalidateSize();
-        dots[e.target.id].click();
+        dots[$(e.target).closest('li').attr('id')].click();
     });
 
     var dots = $('#ddgc_dots a').off();
