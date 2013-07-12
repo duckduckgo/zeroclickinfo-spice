@@ -1,8 +1,9 @@
 <li class="ddgc_item" id="{{index}}">
+    <div style="vertical-align:middle">
     <h1 class="title"><a href="{{url}}">{{name}}</a></h1>
     <div class="right">
-        {{#if image_url}}<img src="/iu/?u={{image_url}}">{{/if}}
         {{#if review_count}}<img src="/iu/?u={{rating_img_url}}">{{/if}}
+        {{#if image_url}}<img src="/iu/?u={{image_url}}">{{/if}}
     </div>
     <div class="details">
         {{#concat location.display_address sep=", " conj=", "}}{{this}}{{/concat}}<br>
@@ -10,5 +11,6 @@
     </div>
     <div class="reviews">
         {{#if snippet_text}}{{snippet_text}}{{else}}{{No reviews.}}{{/if}}
+    </div>
     </div>
 </li>

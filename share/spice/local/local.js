@@ -12,13 +12,13 @@ function ddg_spice_local(api_response) {
 
     $.getScript("/dist/leaflet.js", function() {
         Spice.render({
-            header1                  : query + ' (Local)',
+            //header1                  : query + ' (Local)',
             source_url               : 'http://yelp.com/?q='
                                         + encodeURIComponent(DDG.get_query()),
             source_name              : 'places near you',
             template_frame           : 'carousel',
             template_normal          : 'local',
-            template_options         : { li_width : 400 },
+            template_options         : { li_width : 400, li_height : 100  },
             carousel_css_id          : 'local',
             carousel_template_detail : 'local_detail',
             carousel_items           : api_response.businesses,
@@ -30,6 +30,7 @@ function ddg_spice_local(api_response) {
             var deep = false;
             if (!deep) move_map_to_top();
             bind_navigation();
+            $(window).resize(bind_navigation());
         });
     });
 };
@@ -79,6 +80,7 @@ function bind_navigation() {
     $('#local .ddgc_item').off().click(function(e) {
         $('#ddgc_detail').show();
         ddg_spice_local_map.invalidateSize();
+        dots[e.target.id].click();
     });
 
     var dots = $('#ddgc_dots a').off();

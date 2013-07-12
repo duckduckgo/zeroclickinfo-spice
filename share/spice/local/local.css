@@ -1,7 +1,13 @@
 #local h1 {
-    display: block;
-    font-size: 120%;
+    display: inline-block;
+    font-size: 200%;
     margin-bottom: 5px;
+    vertical-align: middle;
+}
+
+#local .right, #local .details, #local .reviews {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 #local h1.title {
@@ -40,6 +46,7 @@
 
 #ddgcarousel li.ddgc_item {
     text-align: left !important;
+    display: inline-block !important;
 }
 
 /* leaflet.js */
