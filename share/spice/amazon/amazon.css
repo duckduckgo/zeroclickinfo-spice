@@ -5,10 +5,6 @@
     height: 95px !important;
 }
 
-#amazon #ddgc_slider {
-    max-height: 154 !important;
-}
-
 #amazon li.ddgc_item img {
     padding: 5px;
 }
@@ -38,10 +34,6 @@
     width: 450px;
     margin-left: 20px;
     margin-top: 5px;
-}
-
-#amazon img {
-    display: inline;
 }
 
 #amazon div .stars {

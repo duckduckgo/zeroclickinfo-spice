@@ -3,19 +3,11 @@
     font-size: 90%;
 }
 
-#ddgcarousel #in_theaters li.ddgc_item img {
-    max-height: 130px;
-    max-width: none;
+#in_theaters li.ddgc_item img {
+    max-height: 130px !important;
+    max-width: none !important;
 }
 
-#ddgcarousel #in_theaters li.ddgc_item {
+#in_theaters li.ddgc_item {
     height: 165px;
-}
-
-#ddgcarousel #in_theaters #ddgc_slider {
-    padding-bottom: 45px;
-}
-
-#ddgcarousel #in_theaters #ddgc_frame {
-    height: 180px;
 }

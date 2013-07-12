@@ -21,7 +21,7 @@ function ddg_spice_movie (api_result) {
     var better = function(currentbest, next) {
         // If score() returns undefined, this is false, so we're still OK.
         return (score(next) > score(currentbest) &&
-                (next.year < currentbest.year) &&
+                (next.year > currentbest.year) &&
                 DDG.isRelevant(next.title, ignore)) ? next : currentbest;
     };
 
