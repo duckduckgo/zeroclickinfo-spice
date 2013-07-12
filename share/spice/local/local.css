@@ -5,6 +5,11 @@
     vertical-align: middle;
 }
 
+#ddgcarousel li.ddgc_item a {
+    width: auto !important;
+    display: inline-block !important;
+}
+
 #local .right, #local .details, #local .reviews {
     display: inline-block;
     vertical-align: middle;
@@ -12,7 +17,7 @@
 
 #local h1.title {
     float:left;
-    width: 70%;
+    width: 80%;
 }
 
 #local .details {
