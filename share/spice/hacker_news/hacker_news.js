@@ -1,19 +1,13 @@
 function ddg_spice_hacker_news(api_result) {
 
     // Check for at least 1 result
-    if (!api_result.results.length) return;
+    if (!api_result.results.length) {
+        return;
+    }
 
-    var query = "";
-    $("script").each(function() {
-        var matched, result;
-        matched = $(this).attr("src");
-        if(matched) {
-            result = matched.match(/\/js\/spice\/hacker_news\/([^\/]+)/);
-            if(result) {
-                query = result[1];
-            }
-        }
-    });
+    var script = $('[src*="/js/spice/hacker_news/"]')[0];
+    var source = $(script).attr("src");
+    var query = source.match(/hacker_news\/([^\/]+)/)[1];
 
     Spice.render({
         data:               api_result,
