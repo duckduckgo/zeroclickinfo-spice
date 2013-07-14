@@ -8,8 +8,6 @@
 // watch NCIS - shows last 3 episodes
 //
 
-GB_global = { "more" : "", "type" : "", "query" : "", "searched" : ""};
-
 function ddg_spice_guidebox_getid (api_result)
 {
     "use strict";
