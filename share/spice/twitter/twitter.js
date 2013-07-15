@@ -1,6 +1,6 @@
 var ddg_spice_twitter = function(api_result) {
 
-    if(!api_result) {
+    if(!api_result || (!api_result.current_status && !api_result.description)) {
         return;
     }
 
