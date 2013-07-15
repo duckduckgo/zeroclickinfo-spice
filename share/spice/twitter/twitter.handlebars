@@ -1,1 +1,6 @@
-{{{processEntities text entities}}}
+{{#if description}}
+    <div><i>Bio:</i> {{description}}</div>
+{{/if}}
+{{#if current_status}}
+    <div><i>Latest Tweet:</i> {{{processEntities current_status.text current_status.entities}}}</div>
+{{/if}}

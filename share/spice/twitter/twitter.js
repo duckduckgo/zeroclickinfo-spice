@@ -1,19 +1,23 @@
 var ddg_spice_twitter = function(api_result) {
 
-    if(!api_result || !api_result.current_status) {
+    if(!api_result) {
         return;
+    }
+
+    var bigger_picture = function(image) {
+        return image.replace(/normal\.([a-zA-Z]+)$/, "bigger.$1");
     }
 
     // Display the plugin.
     Spice.render({
-        data                     : api_result.current_status,
+        data                     : api_result,
         header1                  : "@" + api_result.user,
         source_url               : "https://twitter.com/" + api_result.user,
         source_name              : "Twitter",
         template_normal          : "twitter",
         force_big_header         : true,
         force_no_fold            : true,
-        image_url                : api_result.profile_image
+        image_url                : bigger_picture(api_result.profile_image)
     });
 };
 
