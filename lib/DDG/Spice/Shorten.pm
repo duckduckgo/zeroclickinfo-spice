@@ -7,7 +7,7 @@ primary_example_queries "shorten http://www.duckduckgo.com/about.html";
 secondary_example_queries "url shorten www.github.com/explore";
 description "Shorten URLs using the is.gd API";
 name "Shorten";
-icon_url "/i/bitly.com.ico";
+icon_url "/i/is.gd.ico";
 source "Shorten";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Shorten.pm";
 topics "social";

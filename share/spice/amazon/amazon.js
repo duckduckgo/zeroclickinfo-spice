@@ -17,15 +17,24 @@ function ddg_spice_amazon(api_response) {
     }
 
     var spotlight_resize = function(index, item, obj, is_cached) {
-        $('#amazon .spotlight').css(
-            {'max-height' : ($('#ddgc_detail').height() > 150 ?
-                                $('#ddgc_detail').height() : 150) + 'px'}
-        );
-        $('#amazon .description').width(
-            // width - parent margins (both sides)
-            // - parent padding - spotlight image width - left-margin
-            $('#ddgc_nav').width() - 10 - (12*2) - 150 - 20
-        );
+        if ($('#ddgcarousel').outerWidth() <= 400) {
+            $('#amazon .spotlight').hide();
+            $('#amazon .description').css({
+                'width' : '100%',
+                'margin-left' : '0',
+            });
+        } else {
+            $('#amazon .spotlight').show().css({
+                'max-height'  : ($('#ddgc_detail').height() > 150 ?
+                                    $('#ddgc_detail').height() : 150) + 'px',
+            });
+            $('#amazon .description').css({
+                // width - parent margins (both sides)
+                // - parent padding - spotlight image width - left-margin
+                'width' : $('#ddgc_nav').width() - 10 - (12*2) - 150 - 20,
+                'margin-left' : '20px'
+            });
+        }
         if (item && !is_cached)
             nrj('/m.js?r='
                 + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
@@ -48,6 +57,7 @@ function ddg_spice_amazon(api_response) {
             carousel_items           : api_response,
             force_no_fold            : true,
             item_callback            : spotlight_resize,
+						template_options         : { li_height : 130 },
         });
 
     nrj('/m.js?pg=2'
