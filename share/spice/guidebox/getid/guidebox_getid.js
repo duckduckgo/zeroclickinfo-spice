@@ -80,7 +80,7 @@ ddg_spice_guidebox_getid.render = function(api_result) {
             force_no_fold : 1,
             template_options : {
                 li_width : 120,
-                li_height : 135
+                li_height : 115
             }
     };
 
@@ -91,6 +91,7 @@ ddg_spice_guidebox_getid.render = function(api_result) {
         options.header1 = "Watch full movie: " + metadata.query + " (Guidebox)";
         options.template_normal = "guidebox_getid_movie";
         options.carousel_template_detail = "guidebox_getid_movie_details";
+        options.template_options.li_height = 135;
     }
 
     Spice.render(options);
