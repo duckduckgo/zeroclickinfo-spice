@@ -22,6 +22,7 @@
     border: 1px solid #E1E1E1;
     max-height: 0px;
     max-width: 150px;
+    display: none;
 }
 
 #amazon .price {

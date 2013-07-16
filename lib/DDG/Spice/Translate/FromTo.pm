@@ -20,7 +20,6 @@ handle query_lc => sub {
 
     $query =~ s/\s+/ /; #merge multiple spaces
 
-    # NEED TO MATCH UNICODE!
     if($query =~ /^translate (\S+) from ($langs)(?: to ($langs))?$/) {
         my ($phrase, $from, $to) = ($1, $2, $3);
 
@@ -33,7 +32,6 @@ handle query_lc => sub {
         # to or from english
         return unless $dict =~ /en/;
 
-        # NEED TO ENCODE UNICODE!
         return ($dict, $phrase);
     }
 

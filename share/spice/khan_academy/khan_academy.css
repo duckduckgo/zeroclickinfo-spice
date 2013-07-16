@@ -19,7 +19,7 @@
 
 #khan_academy li.ddgc_item img {
 	max-width: 100% !important;
-	max-height: 90px !important;
+	max-height: 80px !important;
 	margin: 0 auto;
 }
 
@@ -30,7 +30,7 @@
 }
 
 #khan_academy #ddgc_detail {
-	padding: 15px 15px 0px;
+	padding: 9px 8px 0;
 	border-bottom: none;
 	background: #FFF;
 }

@@ -25,7 +25,6 @@ handle query_lc => sub {
     # Don't need to detect when "from" language is given
     return if ($query =~ (/from (?:$langs)/));
 
-    # NEED TO MATCH UNICODE!
     if ($query =~ /^translate (.*?)(?: to ([a-z]+))?$/) {
         my ($phrase, $to )= ($1, $2);
 
@@ -34,7 +33,6 @@ handle query_lc => sub {
         # Only use MyMemory for multi-word translation
         return unless ($phrase =~ /\w+\s+\w+/);
 
-        # NEED TO ENCODE UNICODE!
         return ($phrase, $to);
     }
 
