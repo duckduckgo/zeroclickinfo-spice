@@ -5,7 +5,7 @@ var ddg_spice_twitter = function(api_result) {
     }
 
     var bigger_picture = function(image) {
-        return image.replace(/normal\.([a-zA-Z]+)$/, "bigger.$1");
+        return image.replace(/_normal\./, "_bigger.");
     }
 
     // Display the plugin.

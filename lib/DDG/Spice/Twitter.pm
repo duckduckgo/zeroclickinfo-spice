@@ -5,7 +5,7 @@ use DDG::Spice;
 spice to => 'https://jagtalon.duckduckgo.com/tw.js?user=$1&callback={{callback}}&current=1';
 spice is_cached => 1;
 
-triggers query => qr/^twitter\s([a-z0-9_]+)$|^@([a-z0-9_]+)$/i;
+triggers query => qr/^(?:twitter\s)?@([a-z0-9_]+)$|^twitter\s([a-z0-9_]+)$/i;
 
 handle matches => sub { 
     if($1) {
