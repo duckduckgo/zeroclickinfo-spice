@@ -1,12 +1,12 @@
 // Description:
-// Show last 3 episodes.
+// Watch TV series/Movies for free
 //
 // Dependencies:
 // Requires jQuery.
 //
 // Commands:
-// watch NCIS - shows last 3 episodes
-//
+// watch NCIS - shows last 5 episodes and similar TV series
+// watch Snatch - shows Movies related to name
 
 function ddg_spice_guidebox_getid (api_result)
 {
@@ -39,8 +39,7 @@ function ddg_spice_guidebox_getid (api_result)
 
 
     if (metadata.res_type === "series"){
-        ddg_spice_guidebox_getid.metadata.searched = api_result;
-        //delete ddg_spice_guidebox_getid.metadata.searched.results.result[0];
+        ddg_spice_guidebox_getid.metadata.searched = api_result.results.result;
         $.getScript("/js/spice/guidebox/lastshows/"+ api_result.results.result[0].type + "/" + api_result.results.result[0].id);
     } else {
         ddg_spice_guidebox_getid.render(api_result);
@@ -50,6 +49,17 @@ function ddg_spice_guidebox_getid (api_result)
 function ddg_spice_guidebox_lastshows(api_result)
 {
     ddg_spice_guidebox_getid.render(api_result);
+}
+
+function getSimilar(searched)
+{
+    var out = "";
+    var i, j;
+
+    for (i in searched){
+        out += "<li><a href='https://duckduckgo.com/?q=guidebox" + searched[i].title + "'>" + searched[i].title + "</a></li>";
+    }
+    return out;
 }
 
 ddg_spice_guidebox_getid.render = function(api_result) {
@@ -85,25 +95,30 @@ ddg_spice_guidebox_getid.render = function(api_result) {
 
     Spice.render(options);
 
-    $("a.GB_showHide").click(function(){
-        if ($(this).data("target")){
-            var target = $(this).data("target");
-            $(target).toggle();
-        }
-    });
+    if (metadata.res_type === "series"){
+        
+        $("#ddgc_detail").html(
+            "<div>"
+           +     "<a data-target='#searched' class='GB_showHide'>Similar to" + metadata.query + "</a>"
+           +     "<div id='searched' class='hide'>"
+           +         "<ul>"
+           +             getSimilar(metadata.searched)
+           +         "</ul>"
+           +     "</div>"
+           + "</div>"
+        );
+
+        $("#ddgc_detail").css("display", "block");
+        $("a.GB_showHide").click(function(){
+            if ($(this).data("target")){
+                var target = $(this).data("target");
+                $(target).toggle();
+            }
+        });
+    }
 };
 
-Handlebars.registerHelper("getSimilar", function() {
-    "use strict";
 
-    return ddg_spice_guidebox_getid.metadata.searched.results.result;
-});
-
-Handlebars.registerHelper("getQuery", function() {
-    "use strict";
-
-    return ddg_spice_guidebox_getid.metadata.query;
-});
 
 Handlebars.registerHelper("getDate", function(first_aired) {
     "use strict";
