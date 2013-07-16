@@ -21,46 +21,29 @@ var ddg_spice_twitter = function(api_result) {
     });
 };
 
-Handlebars.registerHelper("processEntities", function(text, entities) {
-    var createLink = function(href, inner) {
-        return "<a href='" + href + "'>" + inner + "</a>";
-    };
-
-    var replaceString = function(string, twitter) {
-        // If it's a mention.
-        if(twitter.screen_name) {
-            return createLink("https://twitter.com/" + string.replace(/^@/, ""), string);
-        }
-        // If it's a link.
-        if(twitter.url) {
-            return createLink(twitter.url, twitter.display_url);
-        }
-        // If it's a picture or a video.
-        if(twitter.media_url) {
-            return createLink(twitter.media_url_https, twitter.display_url);
-        }
-        // If it's a hashtag.
-        if(twitter.text) {
-            return createLink("https://twitter.com/search?q=%23" + twitter.text, "&#35;" + twitter.text);
-        }
-        return string;
-    };
-
-    // Recursion, baby!
+Handlebars.registerHelper("findLinks", function(text, entities, options) {
+    // Chop the string so that we can surreptitiously insert links.
     var twitterSplit = function(twitter, result, final_text, original, start_index, i) {
         if(twitter.length === i || twitter.length === 0) {
-            result.push(final_text);
+            result.push({text: final_text});
             return result;
         } else {
             var indices = twitter[i].indices;
-            result.push(original.substring(start_index, indices[0]));
-            result.push(replaceString(original.substring(indices[0], indices[1]), twitter[i]));
+            // Text only.
+            result.push({
+                text: original.substring(start_index, indices[0])
+            });
+            // Text with link.
+            result.push({
+                text: original.substring(indices[0], indices[1]), 
+                link: twitter[i]
+            });
             start_index = indices[1];
             return twitterSplit(twitter, result, original.substring(start_index, original.length), original, start_index, i + 1);
         }
     };
 
-    // Concatenate all the entities.
+    // Concatenate all the entities. (It's easier this way.)
     var all_entities = [];
     for(var k in entities) {
         if(entities.hasOwnProperty(k)) {
@@ -68,7 +51,7 @@ Handlebars.registerHelper("processEntities", function(text, entities) {
         }
     }
     
-    // Sort indices. No matter what you do, sort the damn indices!
+    // Sort indices. (These things have to be in order.)
     all_entities.sort(function(a, b) {
         if(a.indices[0] < b.indices[0]) {
             return -1;
@@ -79,5 +62,40 @@ Handlebars.registerHelper("processEntities", function(text, entities) {
         return 0;
     });
 
-    return twitterSplit(all_entities, [], text, text, 0, 0).join("");
+    return options.fn(twitterSplit(all_entities, [], text, text, 0, 0));
+});
+
+Handlebars.registerHelper("makeLinks", function(results) {
+    window.r = results;
+
+    var createLink = function(href, inner) {
+        return "<a href='" + href + "'>" + inner + "</a>";
+    };
+
+    var output = "";
+    for(var i = 0; i < results.length; i += 1) {
+        if(!results[i].link) {
+            output += results[i].text;
+        } else {
+            var twitter = results[i].link;
+            // If it's a mention.
+            if(twitter.screen_name) {
+                output += createLink("https://twitter.com/" + results[i].text.replace(/^@/, ""), results[i].text);
+            }
+            // If it's a link.
+            if(twitter.url) {
+                output += createLink(twitter.url, twitter.display_url);
+            }
+            // If it's a picture or a video.
+            if(twitter.media_url) {
+                output += createLink(twitter.media_url_https, twitter.display_url);
+            }
+            // If it's a hashtag.
+            if(twitter.text) {
+                output += createLink("https://twitter.com/search?q=%23" + twitter.text, "&#35;" + twitter.text);
+            }
+        }
+    }
+
+    return output;
 });
