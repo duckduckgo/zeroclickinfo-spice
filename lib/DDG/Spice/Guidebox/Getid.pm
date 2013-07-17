@@ -21,7 +21,9 @@ spice to => 'http://api-public.guidebox.com/v1.3/json/rKu5Jv4vtj0T0qOQAhSYr8sUQW
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-    return $_ if $_;
+    if ($loc->country_name eq "United States"){
+        return $_ if $_;
+    }
     return;
 };
 
