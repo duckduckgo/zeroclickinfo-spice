@@ -89,7 +89,7 @@ ddg_spice_guidebox_getid.render = function(api_result) {
     };
 
     if (metadata.res_type === "series"){
-        options.header1 = "Watch full episodes of " + metadata.query + " (Guidebox)";
+        options.header1 = metadata.query + " (Guidebox)";
         options.template_normal = "guidebox_getid_series";
         options.carousel_template_detail = "guidebox_getid_series_details";
     }/* else if (metadata.res_type === "movie"){
@@ -124,7 +124,11 @@ ddg_spice_guidebox_getid.render = function(api_result) {
     }*/
 };
 
-
+Handlebars.registerHelper("getQuery", function(first_aired) {
+    "use strict";
+    
+    return ddg_spice_guidebox_getid.metadata.query;
+});
 
 Handlebars.registerHelper("getDate", function(first_aired) {
     "use strict";
