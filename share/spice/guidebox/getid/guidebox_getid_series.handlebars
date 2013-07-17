@@ -1,12 +1,9 @@
 <li class='ddgc_item'>
-    <a href="{{smart_url}}">
-        <div class="image_wrap">
-            <img src="/iu/?u={{thumbnail_208x117}}"></img>
-        </div>
-        <span>
-            {{{condense episode_name maxlen="25"}}} <br />
-            <small class="gb_info">Season {{season_number}}, Ep. {{episode_number}}</small>
-            <small class="gb_info">{{getDate first_aired}}</small>
-        </span>
-    </a>
+    <div class="image_wrap">
+        <img src="/iu/?u={{thumbnail_208x117}}"></img>
+    </div>
+    <span>
+        <b>Season {{season_number}}, Ep. {{episode_number}}</b> <br/>
+        {{{condense episode_name maxlen="25"}}}
+    </span>
 </li>

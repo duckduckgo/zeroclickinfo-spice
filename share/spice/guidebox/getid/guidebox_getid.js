@@ -41,9 +41,9 @@ function ddg_spice_guidebox_getid (api_result)
     if (metadata.res_type === "series"){
         ddg_spice_guidebox_getid.metadata.searched = api_result.results.result;
         $.getScript("/js/spice/guidebox/lastshows/"+ api_result.results.result[0].type + "/" + api_result.results.result[0].id);
-    } else {
+    }/* else {
         ddg_spice_guidebox_getid.render(api_result);
-    }
+    }*/
 }
 
 function ddg_spice_guidebox_lastshows(api_result)
@@ -80,23 +80,23 @@ ddg_spice_guidebox_getid.render = function(api_result) {
             force_no_fold : 1,
             template_options : {
                 li_width : 120,
-                li_height : 115
             }
     };
 
     if (metadata.res_type === "series"){
         options.header1 = "Watch full episodes of " + metadata.query + " (Guidebox)";
         options.template_normal = "guidebox_getid_series";
-    } else if (metadata.res_type === "movie"){
+        options.carousel_template_detail = "guidebox_getid_series_details";
+    }/* else if (metadata.res_type === "movie"){
         options.header1 = "Watch full movie: " + metadata.query + " (Guidebox)";
         options.template_normal = "guidebox_getid_movie";
         options.carousel_template_detail = "guidebox_getid_movie_details";
         options.template_options.li_height = 135;
-    }
+    }*/
 
     Spice.render(options);
 
-    if (metadata.res_type === "series"){
+    /*if (metadata.res_type === "series"){
         
         $("#ddgc_detail").html(
             "<div>"
@@ -116,7 +116,7 @@ ddg_spice_guidebox_getid.render = function(api_result) {
                 $(target).toggle();
             }
         });
-    }
+    }*/
 };
 
 

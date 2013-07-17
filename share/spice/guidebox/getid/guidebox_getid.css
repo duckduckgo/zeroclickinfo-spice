@@ -8,7 +8,7 @@
     max-height: 100% !important;
 }
 
-#guidebox li.ddgc_item a div.image_wrap::before {
+#guidebox li.ddgc_item div.image_wrap::before {
     content: url("/iu/?u=http://duckduckgo.com/assets/icon_play.v101.png");
     display: block;
     font-weight: bold;
