@@ -19,7 +19,7 @@ function ddg_spice_guidebox_getid (api_result)
         cache: true
     });
 
-    var terms = ["full episodes of", "full free episodes of", 
+    /*var terms = ["full episodes of", "full free episodes of", 
                    "free episodes of", "guidebox", "watch", 
                    "full episodes", "watch free", "full free episodes", 
                    "free episodes"];
@@ -29,7 +29,12 @@ function ddg_spice_guidebox_getid (api_result)
 
     for (i in terms){
         query = query.replace(terms[i], "");
-    }
+    }*/
+
+    var script = $('[src*="/js/spice/guidebox/getid/"]')[0],
+        source = $(script).attr("src"),
+        matched  = source.match(/\/js\/spice\/guidebox\/getid\/([a-zA-Z1-9]+)/),
+        query  = matched[1];
 
     var metadata = {};
     metadata.res_type = api_result.results.result[0].type;
