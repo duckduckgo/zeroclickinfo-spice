@@ -20,13 +20,6 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Guidebox::Getid'
     ),
-
-    # Movie
-    'guidebox Snatch' => test_spice(
-        '/js/spice/guidebox/getid/Snatch',
-        call_type => 'include',
-        caller => 'DDG::Spice::Guidebox::Getid'
-    )
 );
 
 done_testing;
