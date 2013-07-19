@@ -5,7 +5,7 @@
 
 #guidebox li.ddgc_item img {
     max-width: 100% !important;
-    max-height: 100% !important;
+    max-height: 75% !important;
 }
 
 #guidebox li.ddgc_item div.smaller img {

@@ -19,18 +19,6 @@ function ddg_spice_guidebox_getid (api_result)
         cache: true
     });
 
-    /*var terms = ["full episodes of", "full free episodes of", 
-                   "free episodes of", "guidebox", "watch", 
-                   "full episodes", "watch free", "full free episodes", 
-                   "free episodes"];
-    var i;
-
-    var query = DDG.get_query();
-
-    for (i in terms){
-        query = query.replace(terms[i], "");
-    }*/
-
     var script = $('[src*="/js/spice/guidebox/getid/"]')[0],
         source = $(script).attr("src"),
         matched  = source.match(/\/js\/spice\/guidebox\/getid\/([a-zA-Z1-9]+)/),
@@ -90,8 +78,8 @@ ddg_spice_guidebox_getid.render = function(api_result) {
 
     if (metadata.res_type === "series"){
         options.header1 = metadata.query + " (Guidebox)";
-        options.template_normal = "guidebox_getid_series";
-        options.carousel_template_detail = "guidebox_getid_series_details";
+        options.template_normal = "guidebox_getid";
+        options.carousel_template_detail = "guidebox_getid_details";
     }/* else if (metadata.res_type === "movie"){
         options.header1 = "Watch full movie: " + metadata.query + " (Guidebox)";
         options.template_normal = "guidebox_getid_movie";
