@@ -27,6 +27,10 @@ handle remainder => sub {
             $tmp = $1;
         } elsif ($_ ~= qr/^watch episodes of ([\w\s])+ online$/){
             $tmp = $1;
+        } elsif ($_ ~= qr/^watch ([\w\s])+ series$/){
+            $tmp = $1;
+        } elsif ($_ ~= qr/^watch ([\w\s])+ tv series$/){
+            $tmp = $1;
         } else {
             $tmp = $_;
         }
