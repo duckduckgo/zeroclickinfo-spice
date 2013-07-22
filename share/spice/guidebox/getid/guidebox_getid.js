@@ -20,9 +20,9 @@ function ddg_spice_guidebox_getid (api_result)
     });
 
     var script = $('[src*="/js/spice/guidebox/getid/"]')[0],
-        source = $(script).attr("src"),
-        matched  = source.match(/\/js\/spice\/guidebox\/getid\/([a-zA-Z0-9%20]+)/),
-        query  = matched[1].replace("%20", " ");
+        source = decodeURIComponent($(script).attr("src")),
+        matched  = source.match(/\/js\/spice\/guidebox\/getid\/([a-zA-Z0-9\s]+)/),
+        query  = matched[1];
 
     var metadata = {};
     metadata.res_type = api_result.results.result[0].type;
