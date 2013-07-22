@@ -2,15 +2,15 @@
     <div style="vertical-align:middle">
     <h1 class="title"><a href="{{url}}">{{name}}</a></h1>
     <div class="right">
-        {{#if review_count}}<img src="/iu/?u={{rating_img_url}}">{{/if}}
-        {{#if image_url}}<img src="/iu/?u={{image_url}}">{{/if}}
+        {{#if rating}}<img src="/iu/?u={{rating}}">{{/if}}
+        {{#if image}}<img src="/iu/?u={{image}}">{{/if}}
     </div>
     <div class="details">
-        {{#concat location.display_address sep=", " conj=", "}}{{this}}{{/concat}}<br>
-        {{#if display_phone}}({{display_phone}}){{/if}}
+        {{address}}<br>
+        {{#if phone}}({{phone}}){{/if}}
     </div>
     <div class="reviews">
-        {{#if snippet_text}}{{snippet_text}}{{else}}{{No reviews.}}{{/if}}
+        {{#if reviews}}{{reviews}}{{else}}No reviews.{{/if}}
     </div>
     </div>
 </li>

@@ -11,7 +11,7 @@ function ddg_spice_local(api_response) {
 
     var query = DDG.get_query().replace(/nearest/, '').trim();
 
-    $.getScript("/dist/leaflet.js", function() {
+    $.getScript("/js/leaflet/leaflet.js", function() {
         Spice.render({
             //header1                  : query + ' (Local)',
             source_url               : 'http://yelp.com/?q='
@@ -22,7 +22,7 @@ function ddg_spice_local(api_response) {
             template_options         : { li_width : 400, li_height : 100  },
             carousel_css_id          : 'local',
             carousel_template_detail : 'local_detail',
-            carousel_items           : api_response.businesses,
+            carousel_items           : api_response,
             force_no_fold            : true,
             data                     : api_response,
         });
@@ -46,7 +46,7 @@ function move_map_to_top() {
 function render_map(api_response) {
     $('#ddgc_detail').append($('<div>').attr('id', 'map'));
 
-    L.Icon.Default.imagePath = "/dist/images";
+    L.Icon.Default.imagePath = "/js/leaflet/images";
     ddg_spice_local_map = L.map('map');
 
     var attribution = 'Map data &copy; '
@@ -60,13 +60,13 @@ function render_map(api_response) {
         { 'attribution' : attribution, 'maxZoom' : 18 }
     ).addTo(ddg_spice_local_map);
 
-    var businesses = api_response.businesses;
-    for (var i in businesses) {
-        var location = [ businesses[i].location.coordinate.latitude,
-                         businesses[i].location.coordinate.longitude ]
+    for (var i in api_response) {
+        if (!api_response[i].coordinates) continue;
+        var location = [ api_response[i].coordinates.latitude,
+                         api_response[i].coordinates.longitude ];
         if (i == 0) ddg_spice_local_map.setView(location, 13);
         ddg_spice_local_markers.push(
-            L.marker(location, { 'title' : businesses[i].name, 'id' : i }
+            L.marker(location, { 'title' : api_response[i].name, 'id' : i }
             ).on('click', function(e) {
                 move_to_page(e.target.options.id);
             }).addTo(ddg_spice_local_map));
@@ -105,10 +105,10 @@ function move_to_page(page) {
                 ddg_spice_local_markers[page].options.zIndex);
             if (i == page) {
                 ddg_spice_local_markers[i]
-                    ._icon.src = '/dist/images/marker-icon-green.png';
+                    ._icon.src = '/js/leaflet/images/marker-icon-green.png';
             } else {
                 ddg_spice_local_markers[i]
-                    ._icon.src = '/dist/images/marker-icon.png';
+                    ._icon.src = '/js/leaflet/images/marker-icon.png';
             }
         }
         ddg_spice_local_map.setView(
