@@ -71,9 +71,6 @@ function render_map(api_response) {
                 move_to_page(e.target.options.id);
             }).addTo(ddg_spice_local_map));
     }
-    for (var i in ddg_spice_local_markers) 
-        ddg_spice_local_markers[i].options.zIndex =
-            $(ddg_spice_local_markers[i]._icon).css('z-index');
 };
 
 function bind_navigation() {
