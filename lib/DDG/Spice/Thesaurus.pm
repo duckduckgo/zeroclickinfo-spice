@@ -20,11 +20,23 @@ spice to => 'http://words.bighugelabs.com/api/2/{{ENV{DDG_SPICE_BIGHUGE_APIKEY}}
 triggers startend => "synonyms", "synonym", "antonyms", "antonym", "related", "similar", "thesaurus";
 
 handle query_lc => sub {
-  if (/^(synonyms?|antonyms?|related|similar|thesaurus)\s+(?:terms?|words?)?\s*(?:of|to|for)?\s*([\w\s]+)$/) {
-    return $2, $1;
-  } elsif (/^([\w\s]+)\s+(synonyms?|antonyms?|related|similar|thesaurus)/){
-    return $1, $2;
-  }
+  /^
+      (?:(synonym|antonym|related|similar|thesaurus)s?)\s+
+      (?:(?:terms?|words?)\s+)? (?:(?:of|to|for)\s+)?
+      (\w+) \s*
+      |
+      (\w+)\s+
+      ((synonym|antonym|thesaurus)s?)?
+  $/x;
+
+  my $type = $1 || $4;
+  my $word = $2 || $3;
+
+  return unless $word and $type;
+
+  $type = 'synonym' if $type eq 'thesaurus';
+
+  return $word, $type;
 
   return;
 };
