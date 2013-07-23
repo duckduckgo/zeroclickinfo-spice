@@ -21,12 +21,12 @@ triggers startend => "synonyms", "synonym", "antonyms", "antonym", "related", "s
 
 handle query_lc => sub {
   /^
-      (?:(synonym|antonym|related|similar|thesaurus)s?)\s+
+      (?:(synonym|antonym|related|similar|thesaurus)s?) \s+
       (?:(?:terms?|words?)\s+)? (?:(?:of|to|for)\s+)?
       (\w+) \s*
       |
-      (\w+)\s+
-      ((synonym|antonym|thesaurus)s?)?
+      (\w+) \s+
+      ((synonym|antonym|thesaurus)s?)? \s*
   $/x;
 
   my $type = $1 || $4;
