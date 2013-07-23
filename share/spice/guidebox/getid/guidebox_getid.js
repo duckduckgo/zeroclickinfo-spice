@@ -26,6 +26,7 @@ function ddg_spice_guidebox_getid (api_result)
 
     var metadata = {};
     metadata.res_type = api_result.results.result[0].type;
+    metadata.res_title = api_result.results.result[0].title;
     metadata.more = api_result.results.result[0].url;
     metadata.query = query;
     ddg_spice_guidebox_getid.metadata = metadata;
@@ -77,7 +78,7 @@ ddg_spice_guidebox_getid.render = function(api_result) {
     };
 
     if (metadata.res_type === "series"){
-        options.header1 = metadata.query + " (Guidebox)";
+        options.header1 = metadata.res_title + " (Guidebox)";
         options.template_normal = "guidebox_getid";
         options.carousel_template_detail = "guidebox_getid_details";
     }/* else if (metadata.res_type === "movie"){
@@ -112,10 +113,16 @@ ddg_spice_guidebox_getid.render = function(api_result) {
     }*/
 };
 
-Handlebars.registerHelper("getQuery", function(first_aired) {
+Handlebars.registerHelper("getQuery", function() {
     "use strict";
     
     return ddg_spice_guidebox_getid.metadata.query;
+});
+
+Handlebars.registerHelper("getTitle", function() {
+    "use strict";
+    
+    return ddg_spice_guidebox_getid.metadata.res_title;
 });
 
 Handlebars.registerHelper("getDate", function(first_aired) {
