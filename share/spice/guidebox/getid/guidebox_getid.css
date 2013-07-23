@@ -1,0 +1,42 @@
+#guidebox hr.horizontal_line {
+    margin: 5px 0;
+    margin-right: 1px;
+}
+
+#guidebox li.ddgc_item img {
+    max-width: 100% !important;
+    max-height: 75% !important;
+}
+
+#guidebox li.ddgc_item div.smaller img {
+    height: 100px;
+}
+
+#guidebox li.ddgc_item a {
+    height: auto !important;
+}
+
+#guidebox span.overview {
+    font-size: 85%;
+}
+
+#guidebox span.aired_on {
+    color: rgb(119, 119, 119);
+}
+
+#guidebox small {
+    display: block;
+}
+
+#guidebox div.last_episodes {
+    width: 100%;
+}
+
+#guidebox div.image_wrap {
+    position: relative;
+}
+
+#guidebox small.gb_info {
+    color: rgb(119, 119, 119);
+    font-size: 11px
+}
