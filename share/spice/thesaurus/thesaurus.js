@@ -1,30 +1,14 @@
-// Description:
-// Given a word, it would return similar words and even the word's antonym.
-//
-// Dependencies:
-// None.
-//
-// Commands:
-// thesaurus big - would show similar words such as "large."
-
 function ddg_spice_thesaurus (api_result) {
     "use strict";
 
-    // Get the query and the mode.
-    // What's the mode? Don't worry, it's just our trigger words.
-    // The mode is there to tell us what to return, e.g., maybe you'd want the antonym but not the synonym.
-    var query = "", mode = "";
-    $("script").each(function() {
-        var matched, result;
-        matched = $(this).attr("src");
-        if(matched) {
-            result = matched.match(/\/js\/spice\/thesaurus\/([^\/]+)\/([^\/]+)/);
-            if(result) {
-                query = result[1];
-                mode = result[2];
-            }
-        }
-    });
+    // Get the query and the mode (trigger words)
+    // The mode tells us what to return
+    // e.g. you want the antonym but not the synonym
+    var script = $('[src*="/js/spice/thesaurus/"]')[0],
+        source = $(script).attr("src"),
+        match  = source.match(/\/js\/spice\/thesaurus\/([^\/]+)\/([^\/]+)/),
+        query  = match[1],
+        mode   = match[2];
 
     var shorthand = {
         "synonyms"  : "syn",
