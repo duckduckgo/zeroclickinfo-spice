@@ -1,4 +1,8 @@
 function ddg_spice_video(api_result) {
+    if(!api_result) {
+        return;
+    }
+
     Spice.render({
         data: api_result,
         source_name : 'YouTube',
@@ -21,8 +25,10 @@ function ddg_spice_video(api_result) {
 
     function resizeDetail() {
         var $video = $("#spice_video");
-        var width = $video.width() - 14;    //need 7px of padding on each side
-        var height = Math.floor(width * 0.5625) + 30;    //30px for player menu
+        //need 7px of padding on each side
+        var width = $video.width() - 14;
+        //30px for player menu
+        var height = Math.floor(width * 0.5625) + 30;
         $("#ddgc_detail").height(height);
         console.log(width, height);
     };
@@ -35,3 +41,10 @@ function ddg_spice_video(api_result) {
         $(window).resize(resizeDetail);
     });
 }
+
+Handlebars.registerHelper("checkCategory", function(category, title, options) {
+    console.log(category);
+    if(category === "Music") {
+        return options.fn({title: title});
+    }
+});
