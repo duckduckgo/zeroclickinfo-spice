@@ -68,6 +68,7 @@ function render_map(api_response) {
         ddg_spice_local_markers.push(
             L.marker(location, { 'title' : api_response[i].name, 'id' : i }
             ).on('click', function(e) {
+                $('#ddgc_nav').show();
                 move_to_page(e.target.options.id);
             }).addTo(ddg_spice_local_map));
     }
@@ -95,7 +96,6 @@ function bind_navigation() {
 }
 
 function move_to_page(page) {
-        $('#ddgc_nav').show();
         ddg_spice_local_current = page;
         for (var i in ddg_spice_local_markers) {
             $(ddg_spice_local_markers[page]._icon).css('z-index',
