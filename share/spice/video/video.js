@@ -50,31 +50,57 @@ ddg_spice_video.itunes = function(api_result) {
         return;
     }
 
-    // Redirect to Apple's website.
-    window.location = api_result.results[0].trackViewUrl;
+    var artist = $("#itunes").data("artist").toLowerCase();
+    var song = $("#itunes").data("song").toLowerCase();
+
+    console.log("Artist: " + artist, "Song: " + song);
+
+    // Find the song that matches.
+    var index = 0;
+    for(var i = 0; i < api_result.results.length; i++) {
+	console.log(api_result.results[i].artistName, api_result.results[i].trackName);
+
+	if(artist === api_result.results[i].artistName.toLowerCase() ||
+	   artist === api_result.results[i].trackName.toLowerCase() ||
+	   song === api_result.results[i].artistName.toLowerCase() ||
+	   song === api_result.results[i].trackName.toLowerCase()) {
+	    index = i;
+	    break;
+	}
+    }
+
+    console.log("Redirecting!");
+    window.location = api_result.results[index].trackViewUrl;
 };
 
 ddg_spice_video.set_itunes = function(element) {
     var title = $(element).data("title");
-    title = stripTitle(title);
 
+    console.log("Title is " + title);
     $.getScript("/iit/" + encodeURIComponent(title));
 };
 
 Handlebars.registerHelper("checkMusic", function(category, title, options) {
-	//Remove things from the title that we don't really need.
+	// Remove things from the title that we don't really need.
 	var stripTitle = function(s) {
 	    // Remove things like "(Explicit)".
-	    s = s.replace(/\(.*\)|\[.*\]/, "");
+	    s = s.replace(/\(.*\)|\[.*\]/g, "");
 	    // Remove things like "feat. Alicia Keys".
-	    s = s.replace(/\s+f(?:ea|)t\..*$/, "");
+	    s = s.replace(/\s+f(?:ea|)t\..*$/g, "");
 	    // Trim the ends of the string.
-	    return s.replace(/^\s+|\s+$/, "");
+	    return s.replace(/^\s+|\s+$/g, "");
 	}
+
+	title = stripTitle(title);
+	var songData = title.split(" - ");
+	var artist = songData[0];
+	var song = songData[1] || artist;
 
 	if(category === "Music") { 
 	    return options.fn({
-		    title: stripTitle(title)
+		    title: title.replace(/ - /, " "),
+		    artist: artist,
+		    song: song
 	    });
 	}
 });
