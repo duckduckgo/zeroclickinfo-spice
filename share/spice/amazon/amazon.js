@@ -1,3 +1,4 @@
+var ddg_spice_amazon_tag = 'duckduckgo-d-20';
 var ddg_spice_amazon_carousel_add_items;
 var ddg_spice_amazon_single_item;
 var ddg_spice_amazon_query;
@@ -45,7 +46,7 @@ function ddg_spice_amazon(api_response) {
         Spice.render({
             header1                  : ddg_spice_amazon_query + ' (Amazon)',
             source_url               : 'http://www.amazon.com/s/?'
-                                        + 'tag=duc0c-20&field-keywords='
+                                        + 'tag=' + ddg_spice_amazon_tag + '&field-keywords='
                                         + encodeURIComponent(ddg_spice_amazon_query),
             source_name              : 'Amazon',
             force_big_header         : true,
@@ -109,7 +110,7 @@ function ddg_spice_amazon_render_single(api_result) {
     ddg_spice_amazon_single_item.reviews = api_result.reviews;
     Spice.render({
         source_url               : 'http://www.amazon.com/s/?'
-                                    + 'tag=duc0c-20&field-keywords='
+                                    + 'tag=' + ddg_spice_amazon_tag + '&field-keywords='
                                     + encodeURIComponent(ddg_spice_amazon_query),
         source_name              : 'Amazon',
         data                     : ddg_spice_amazon_single_item,
