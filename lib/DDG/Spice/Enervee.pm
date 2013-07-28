@@ -16,6 +16,8 @@ use Encode;
 primary_example_queries "show EW39T6MZ product";
 description "Gets the product info from Enervee";
 name "Enervee";
+attribution github => ['https://github.com/sidchilling', 'Siddharth Saha'],
+            twitter => ['http://twitter.com/sid_chilling', 'Siddharth Saha'];
 
 # Declare the internal functions needed
 sub trim($);
