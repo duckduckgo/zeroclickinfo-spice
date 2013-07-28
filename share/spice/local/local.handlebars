@@ -1,5 +1,4 @@
-<li class="ddgc_item" id="{{index}}">
-    <div style="vertical-align:middle">
+<li class="ddgc_item" id="{{id}}">
     <h1 class="title"><a href="{{url}}">{{name}}</a></h1>
     <div class="right">
         {{#if rating}}<img src="/iu/?u={{rating}}">{{/if}}
@@ -10,7 +9,6 @@
         {{#if phone}}({{phone}}){{/if}}
     </div>
     <div class="reviews">
-        {{#if reviews}}{{reviews}}{{else}}No reviews.{{/if}}
-    </div>
+        {{#if reviews}}{{reviews.[0]}}{{/if}}
     </div>
 </li>
