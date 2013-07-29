@@ -18,33 +18,14 @@ function ddg_spice_video(api_result) {
         carousel_items: api_result,
         force_no_fold : 1,
         carousel_template_detail: "video_detail",
-        template_options: {
-            li_width: 120,
-            li_height: 90
-        }
-    });
-
-    // Move ddgc_detail above carousel
-    $("#ddgc_detail").prependTo("#video");
-
-    function resizeDetail() {
-        var $video = $("#spice_video");
-        var width = $video.width() - 14;
-        var height = Math.floor(width * 0.5625) + 30;
-        $("#ddgc_detail").height(height);
-        console.log(width, height);
-    };
-
-    // Set height of ddgc_detail;
-    resizeDetail();
-
-    $(document).ready(function() {
-        // Maintain 16/9 aspect ratio
-        $(window).resize(resizeDetail);
+	template_options: {
+	    li_width: 152
+	}
     });
 }
 
 // This is the callback function of /itt.
+// TODO: Don't show the link when we didn't find the iTunes URL.
 ddg_spice_video.itunes = function(api_result) {
     if(!api_result || !api_result.results || api_result.results.length === 0) {
         return;
@@ -81,26 +62,28 @@ ddg_spice_video.set_itunes = function(element) {
 };
 
 Handlebars.registerHelper("checkMusic", function(category, title, options) {
-	// Remove things from the title that we don't really need.
-	var stripTitle = function(s) {
-	    // Remove things like "(Explicit)".
-	    s = s.replace(/\(.*\)|\[.*\]/g, "");
-	    // Remove things like "feat. Alicia Keys".
-	    s = s.replace(/\s+f(?:ea|)t\..*$/g, "");
-	    // Trim the ends of the string.
-	    return s.replace(/^\s+|\s+$/g, "");
-	}
+    // Remove things from the title that we don't really need.
+    var stripTitle = function(s) {
+	// Remove things like "(Explicit)".
+	s = s.replace(/\(.*\)|\[.*\]/g, "");
+	// Remove things like "feat. Alicia Keys".
+	s = s.replace(/\s+f(?:ea|)t\..*$/g, "");
+	// Trim the ends of the string.
+	return s.replace(/^\s+|\s+$/g, "");
+    }
 
-	title = stripTitle(title);
-	var songData = title.split(" - ");
-	var artist = songData[0];
-	var song = songData[1] || artist;
+    var original_title = title;
+    title = stripTitle(title);
+    var songData = title.split(" - ");
+    var artist = songData[0];
+    var song = songData[1] || artist;
 
-	if(category === "Music") { 
-	    return options.fn({
-		    title: title.replace(/ - /, " "),
-		    artist: artist,
-		    song: song
-	    });
-	}
+    if(category === "Music") {
+	// There's no need to escape the values--Handlebars.js does this for us.
+	return options.fn({
+	    title: title,
+	    artist: artist,
+	    song: song
+	});
+    }
 });
