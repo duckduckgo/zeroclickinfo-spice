@@ -1,6 +1,5 @@
-#guidebox hr.horizontal_line {
-    margin: 5px 0;
-    margin-right: 1px;
+#guidebox .grey { 
+    color: rgb(119, 119, 119);
 }
 
 #guidebox li.ddgc_item img {
@@ -20,12 +19,8 @@
     font-size: 85%;
 }
 
-#guidebox span.aired_on {
-    color: rgb(119, 119, 119);
-}
-
-#guidebox small {
-    display: block;
+#guidebox span.left {
+    float: left;
 }
 
 #guidebox div.last_episodes {
@@ -37,6 +32,22 @@
 }
 
 #guidebox small.gb_info {
-    color: rgb(119, 119, 119);
     font-size: 11px
+}
+
+#guidebox .button {
+    border-radius: 3px;
+    padding: 3px 5px 2px 5px;
+    vertical-align: text-bottom;
+    background: #EEE;
+    border: 1px solid #DDD;
+    color: black;
+    font-size: 13px;
+}
+
+#guidebox .button:hover {
+    background-image: none !important;
+    background-color: #f7f7f7;
+    border: 1px solid #80b5ff;
+    text-decoration: none;
 }
