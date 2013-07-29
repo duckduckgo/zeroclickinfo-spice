@@ -6,11 +6,6 @@ function ddg_spice_local(api_response) {
     console.log(api_response);
     if (!api_response || api_response.length == 0) return;
 
-    for (var i in api_response.businesses)
-        api_response.businesses[i].index = i;
-
-    var query = DDG.get_query().replace(/nearest/, '').trim();
-
     $.getScript("/js/leaflet/leaflet.js", function() {
         Spice.render({
             //header1                  : query + ' (Local)',
@@ -98,6 +93,9 @@ function bind_navigation() {
 }
 
 function move_to_page(page) {
+    var id_parts = $('#ddgc_slides li ')[page].id.match(/([^\-]*)-(.*)/);
+    if (id_parts[1] == 'Foursquare')
+        get_details(id_parts[1], id_parts[2], page);
     ddg_spice_local_current = page;
     for (var i in ddg_spice_local_markers) {
         $(ddg_spice_local_markers[page]._icon).css('z-index',
@@ -122,6 +120,7 @@ function move_to_page(page) {
 
 function get_details(engine, id, page) {
     $.getJSON('/local.js?eng=' + engine + '&id=' + id, function(json) {
-        $('#' + id + ' .reviews').text(json[0].reviews[0]);
+        console.log(json);
+        var slide = $('#' + engine + '-' + id + ' .reviews').text(json[0].reviews[0]);
     });
 }
