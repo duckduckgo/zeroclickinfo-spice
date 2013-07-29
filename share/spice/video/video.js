@@ -87,3 +87,9 @@ Handlebars.registerHelper("checkMusic", function(category, title, options) {
 	});
     }
 });
+
+Handlebars.registerHelper("formatViews", function(views) {
+    "use strict";
+
+    return String(views).replace(/(\d)(?=(\d{3})+(\.\d+|)\b)/g, "$1,");
+});
