@@ -125,9 +125,6 @@ function get_details(engine, id, page) {
             ddg_spice_local_details[engine + '-' + id] = json[0];
             render_details(json[0], $('#' + engine + '-' + id));
         });
-    else render_details(
-            ddg_spice_local_details[engine + '-' + id],
-            $('#' + engine + '-' + id));
 }
 
 function render_details(json, el) {
