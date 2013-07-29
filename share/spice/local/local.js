@@ -22,6 +22,41 @@ function ddg_spice_local(api_response) {
             force_no_fold            : true,
             data                     : api_response,
         });
+        L.MapResizeControl = L.Control.extend({
+            options: { position: 'topright' },
+            onAdd: function (map) {
+                return $('<div>').text('expand')
+                        .attr('class', 'leaflet-control-map-resize')
+                        .click(function(e) {
+                            var width = $('#zero_click_wrapper').css('width');
+                            var height = $('#map').css('height');
+                            var label = 'expand';
+                            if ($(e.target).text() == 'expand') {
+                                width = '900px';
+                                height = '375px';
+                                label = 'contract';
+                            }
+                            console.log(width, height, label);
+                            $('#zero_click_wrapper').animate({
+                                'max-width' : width,
+                                'width' : width
+                            }, {
+                                duration : 1000,
+                                step : function() {
+                                    ddg_spice_local_map.invalidateSize();
+                                },
+                            });
+                            $('#map').animate({'height' : height}, 1000);
+                            $(e.target).fadeOut({
+                                duration : 500,
+                                complete : function() {
+                                    $(this).text(label).fadeIn(500);
+                                }
+                            });
+                            //$('#zero_click').css('border', 'none');
+                        })[0];
+            }
+        });
         $(document).ready(function() {
             render_map(api_response);
             var deep = false;
@@ -62,7 +97,6 @@ function render_map(api_response) {
         if (!api_response[i].coordinates) continue;
         var location = [ api_response[i].coordinates.latitude,
                          api_response[i].coordinates.longitude ];
-        if (i == 0) ddg_spice_local_map.setView(location, 13);
         ddg_spice_local_markers.push(
             L.marker(location, { 'title' : api_response[i].name, 'id' : i })
                 .on('click', function(e) {
@@ -70,6 +104,11 @@ function render_map(api_response) {
                     move_to_page(e.target.options.id);
                 }).addTo(ddg_spice_local_map)
         );
+
+        if (i == 0) {
+            ddg_spice_local_map.setView(location, 13);
+            ddg_spice_local_map.addControl(new L.MapResizeControl());
+        }
     }
 };
 

@@ -62,6 +62,10 @@
     margin: 4px 11px !important;
 }
 
+.leaflet-control-map-resize {
+    cursor: pointer !important;
+}
+
 /* leaflet.js */
 /* required styles */
 
