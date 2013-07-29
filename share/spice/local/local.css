@@ -58,6 +58,10 @@
     display: none !important;
 }
 
+.leaflet-popup-content {
+    margin: 4px 11px !important;
+}
+
 /* leaflet.js */
 /* required styles */
 
