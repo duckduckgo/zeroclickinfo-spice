@@ -28,6 +28,8 @@ function ddg_spice_local(api_response) {
             if (!deep) move_map_to_top();
             bind_navigation();
             $(window).resize(bind_navigation());
+            ddg_spice_local_markers[0]
+                .bindPopup(api_response[0].name).openPopup();
         });
     });
 };
@@ -69,7 +71,6 @@ function render_map(api_response) {
                 }).addTo(ddg_spice_local_map)
         );
     }
-    //ddg_spice_local_markers[0].bindPopup(api_response[0].name).openPopup();
 };
 
 function bind_navigation() {
@@ -94,6 +95,7 @@ function bind_navigation() {
 }
 
 function move_to_page(page) {
+    $('.leaflet-popup-pane').hide();
     var id_parts = $('#ddgc_slides li ')[page].id.match(/([^\-]*)-(.*)/);
     get_details(id_parts[1], id_parts[2], page);
     ddg_spice_local_current = page;

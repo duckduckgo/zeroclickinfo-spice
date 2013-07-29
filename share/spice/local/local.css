@@ -54,6 +54,10 @@
     display: inline-block !important;
 }
 
+.leaflet-popup-close-button {
+    display: none !important;
+}
+
 /* leaflet.js */
 /* required styles */
 
