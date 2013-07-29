@@ -1,6 +1,7 @@
 var ddg_spice_local_map;
 var ddg_spice_local_markers = [];
 var ddg_spice_local_current = 0;
+var ddg_spice_local_details = {};
 
 function ddg_spice_local(api_response) {
     console.log(api_response);
@@ -94,8 +95,7 @@ function bind_navigation() {
 
 function move_to_page(page) {
     var id_parts = $('#ddgc_slides li ')[page].id.match(/([^\-]*)-(.*)/);
-    if (id_parts[1] == 'Foursquare')
-        get_details(id_parts[1], id_parts[2], page);
+    get_details(id_parts[1], id_parts[2], page);
     ddg_spice_local_current = page;
     for (var i in ddg_spice_local_markers) {
         $(ddg_spice_local_markers[page]._icon).css('z-index',
@@ -119,8 +119,24 @@ function move_to_page(page) {
 }
 
 function get_details(engine, id, page) {
-    $.getJSON('/local.js?eng=' + engine + '&id=' + id, function(json) {
-        console.log(json);
-        var slide = $('#' + engine + '-' + id + ' .reviews').text(json[0].reviews[0]);
-    });
+    if (engine != 'Foursquare') return;
+    if (!ddg_spice_local_details[engine + '-' + id])
+        $.getJSON('/local.js?eng=' + engine + '&id=' + id, function(json) {
+            ddg_spice_local_details[engine + '-' + id] = json[0];
+            render_details(json[0], $('#' + engine + '-' + id));
+        });
+    else render_details(
+            ddg_spice_local_details[engine + '-' + id],
+            $('#' + engine + '-' + id));
+}
+
+function render_details(json, el) {
+    if (json.reviews[0])
+        el.children('.reviews').text(json.reviews[0]);
+    if (json.image)
+        el.children('.right').append($('<img>').attr('src', json.image));
+    if (json.menu)
+        el.children('.details').append($('<a>').attr('href', json.menu).text('Menu'));
+    if (json.hours)
+        el.children('.details').append('Hours: ' + json.hours['Tue']);
 }
