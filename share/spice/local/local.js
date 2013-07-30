@@ -136,6 +136,7 @@ function render_map(api_response) {
         if (i == 0) {
             ddg_spice_local_map.setView(location, 13);
             ddg_spice_local_map.addControl(new L.MapResizeControl());
+            $(ddg_spice_local_markers[i]._icon).css('z-index', 999);
         }
     }
 };
