@@ -6,8 +6,8 @@ At DuckDuckGo, we truly appreciate our community members taking the time to cont
 
 * Make sure you have a [GitHub account](https://github.com/signup/free)
 
-If submitting a **bug/suggestion**:
-* Check if a GitHub issue already exists for the given bug/suggestion
+If submitting a **bug*** or **suggestion**:
+* Check the ZeroClickInfo-Spice [issues](https://github.com/duckduckgo/zeroclickinfo-spice/issues) to see if an issue already exists for the given bug or suggestion
     * If one doesn't exist, create a GitHub issue in the ZeroClickInfo-Spice repository
         * Clearly describe the bug/improvemnt, including steps to reproduce when it is a bug
     * If one already exists, please add any aditional comments you have regarding the matter
