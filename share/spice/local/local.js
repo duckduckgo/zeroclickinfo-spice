@@ -25,35 +25,36 @@ function ddg_spice_local(api_response) {
         L.MapResizeControl = L.Control.extend({
             options: { position: 'topright' },
             onAdd: function (map) {
+                var width = $('#zero_click_wrapper').css('width');
+                var height = $('#map').css('height');
                 return $('<div>').text('expand')
                         .attr('class', 'leaflet-control-map-resize')
                         .click(function(e) {
-                            var width = $('#zero_click_wrapper').css('width');
-                            var height = $('#map').css('height');
-                            var label = 'expand';
-                            if ($(e.target).text() == 'expand') {
-                                width = '900px';
-                                height = '375px';
-                                label = 'contract';
-                            }
-                            console.log(width, height, label);
-                            $('#zero_click_wrapper').animate({
-                                'max-width' : width,
-                                'width' : width
-                            }, {
-                                duration : 1000,
-                                step : function() {
-                                    ddg_spice_local_map.invalidateSize();
-                                },
-                            });
-                            $('#map').animate({'height' : height}, 1000);
-                            $(e.target).fadeOut({
-                                duration : 500,
-                                complete : function() {
-                                    $(this).text(label).fadeIn(500);
+                            return function(width, height) {
+                                var label = 'expand';
+                                if ($(e.target).text() == 'expand') {
+                                    console.log("contract to");
+                                    width = '900px';
+                                    height = '375px';
+                                    label = 'contract';
                                 }
-                            });
-                            //$('#zero_click').css('border', 'none');
+                                $('#zero_click_wrapper').animate({
+                                    'max-width' : width,
+                                    'width' : width
+                                }, {
+                                    duration : 1000,
+                                    step : function() {
+                                        ddg_spice_local_map.invalidateSize();
+                                    },
+                                });
+                                $('#map').animate({'height' : height}, 1000);
+                                $(e.target).fadeOut({
+                                    duration : 500,
+                                    complete : function() {
+                                        $(this).text(label).fadeIn(500);
+                                    }
+                                });
+                            }(width, height)
                         })[0];
             }
         });
