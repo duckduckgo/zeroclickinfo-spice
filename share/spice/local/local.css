@@ -66,6 +66,15 @@
     cursor: pointer !important;
 }
 
+.leaflet-bar-full {
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+}
+
+.leaflet-bar a:hover {
+    text-decoration: none;
+}
+
 /* leaflet.js */
 /* required styles */
 

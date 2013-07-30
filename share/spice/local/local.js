@@ -23,20 +23,29 @@ function ddg_spice_local(api_response) {
             data                     : api_response,
         });
         L.MapResizeControl = L.Control.extend({
-            options: { position: 'topright' },
+            options: { position: 'bottomright' },
             onAdd: function (map) {
                 var width = $('#zero_click_wrapper').css('width');
                 var height = $('#map').css('height');
-                return $('<div>').text('expand')
-                        .attr('class', 'leaflet-control-map-resize')
+                var frame = $('#ddgc_frame').width();
+                var offset = $('#zero_click_wrapper').css('margin-left');
+                return $('<div>').append(
+                            $('<a>').text('⇲').attr('href', '#')
+                            .addClass('leaflet-control-zoom-in')
+                            .addClass('leaflet-bar-part')
+                            .addClass('leaflet-bar-full'))
+                        .addClass('leaflet-control-zoom')
+                        .addClass('leaflet-bar')
+                        .addClass('leaflet-control')
                         .click(function(e) {
-                            return function(width, height) {
-                                var label = 'expand';
-                                if ($(e.target).text() == 'expand') {
-                                    console.log("contract to");
+                            return function(width, height, frame, offset) {
+                                var label = '⇲';
+                                if ($(e.target).text() == label) {
                                     width = '900px';
                                     height = '375px';
-                                    label = 'contract';
+                                    frame = '771';
+                                    offset = '-77px';
+                                    label = '⇱';
                                 }
                                 $('#zero_click_wrapper').animate({
                                     'max-width' : width,
@@ -48,13 +57,31 @@ function ddg_spice_local(api_response) {
                                     },
                                 });
                                 $('#map').animate({'height' : height}, 1000);
+                                $('#zero_click_wrapper').animate({
+                                    'margin-left' : offset
+                                }, 1000);
+                                $('#ddgc_frame').animate({
+                                    'width' : frame + 'px'
+                                }, 1000);
+                                $('#ddgc_slides li').animate({
+                                    'width' : frame - 10 + 'px'
+                                }, {
+                                    duration : 1000,
+                                    //complete: function() {
+                                    step: function() {
+                                        $('#ddgc_slides').css(
+                                            'margin-left',
+                                            -1 * $('#ddgc_frame').outerWidth() * ddg_spice_local_current
+                                        );
+                                    }
+                                });
                                 $(e.target).fadeOut({
                                     duration : 500,
                                     complete : function() {
                                         $(this).text(label).fadeIn(500);
                                     }
                                 });
-                            }(width, height)
+                            }(width, height, frame, offset)
                         })[0];
             }
         });
