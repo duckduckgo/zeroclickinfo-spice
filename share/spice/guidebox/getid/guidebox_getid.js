@@ -55,7 +55,7 @@ Handlebars.registerHelper("getDate", function(first_aired) {
     "use strict";
 
     var aired = new Date(first_aired),
-        days = ['Sunday','Monday','Tueday','Wednesday','Thursday','Friday','Saturday'],
+        days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
         months = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
 
     return days[aired.getDay()] + ", " + months[aired.getMonth()] + " " + aired.getDate() + ", " + aired.getFullYear()
