@@ -19,7 +19,7 @@ If submitting a **pull request** (bugfix/addition):
 
 * Before making and changes, refer to the **ZeroClickInfo Plugin [Guidelines](#)** to assure your changes are made in the correct fashion
 * Make sure your commits are of a reasonable size. They shouldn't be too big (or too small)
-* Make sure your commit messages effectively explain what changes have been made, and please identify which plugin or file has been affected:
+* Make sure your commit messages effectively explain what changes have been made, and please identify which plugin or file has been modified:
 
     ```
     AlternativeTo - removed CSS file, fixed <li> height in Spice.render()
