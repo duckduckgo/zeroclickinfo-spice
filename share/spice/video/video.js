@@ -20,6 +20,11 @@ function ddg_spice_video(api_result) {
         carousel_template_detail: "video_detail",
 	template_options: {
 	    li_width: 152
+	},
+	item_callback: function() {
+	    $("#expand").click(function() {
+		$("#all").toggle();
+	    });	    
 	}
     });
 }
@@ -39,8 +44,6 @@ ddg_spice_video.itunes = function(api_result) {
     // Find the song that matches.
     var index = 0;
     for(var i = 0; i < api_result.results.length; i++) {
-	console.log(api_result.results[i].artistName, api_result.results[i].trackName);
-
 	if(artist === api_result.results[i].artistName.toLowerCase() ||
 	   artist === api_result.results[i].trackName.toLowerCase() ||
 	   song === api_result.results[i].artistName.toLowerCase() ||
@@ -50,14 +53,12 @@ ddg_spice_video.itunes = function(api_result) {
 	}
     }
 
-    console.log("Redirecting!");
     window.location = api_result.results[index].trackViewUrl;
 };
 
 ddg_spice_video.set_itunes = function(element) {
     var title = $(element).data("title");
 
-    console.log("Title is " + title);
     $.getScript("/iit/" + encodeURIComponent(title));
 };
 
@@ -72,12 +73,12 @@ Handlebars.registerHelper("checkMusic", function(category, title, options) {
 	return s.replace(/^\s+|\s+$/g, "");
     }
 
-    var original_title = title;
     title = stripTitle(title);
     var songData = title.split(" - ");
     var artist = songData[0];
     var song = songData[1] || artist;
 
+    // Only add links to the music if, well, we have links to the music section.
     if(category === "Music") {
 	// There's no need to escape the values--Handlebars.js does this for us.
 	return options.fn({
@@ -88,6 +89,7 @@ Handlebars.registerHelper("checkMusic", function(category, title, options) {
     }
 });
 
+// We'll use this for showing the view counts.
 Handlebars.registerHelper("formatViews", function(views) {
     "use strict";
 
