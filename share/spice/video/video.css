@@ -11,3 +11,9 @@
     max-height: 115px !important;
     max-width: none !important;
 }
+
+#video img.favicon {
+    display: inline;
+    width: 16px;
+    height: 16px;
+}

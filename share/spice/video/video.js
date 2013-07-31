@@ -20,11 +20,6 @@ function ddg_spice_video(api_result) {
         carousel_template_detail: "video_detail",
 	template_options: {
 	    li_width: 152
-	},
-	item_callback: function() {
-	    $("#expand").click(function() {
-		$("#all").toggle();
-	    });	    
 	}
     });
 }
