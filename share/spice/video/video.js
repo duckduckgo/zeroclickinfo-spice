@@ -19,12 +19,17 @@ function ddg_spice_video(api_result) {
         force_no_fold : 1,
         carousel_template_detail: "video_detail",
 	template_options: {
-	    li_width: 152
+	    li_height: 150,
+	    li_width: 130
 	}
     });
 
     // Add the video on top.
     $("#ddgc_detail").prependTo("#video");
+
+    $(document).ready(function() {
+	
+    });
 }
 
 // This is the callback function of /itt.
