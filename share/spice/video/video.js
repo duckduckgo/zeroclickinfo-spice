@@ -11,7 +11,7 @@ function ddg_spice_video(api_result) {
         data: api_result,
         source_name : 'YouTube',
         source_url : 'http://www.youtube.com/',
-        header1 : "YouTube",
+        header1 : "Video Search",
         template_frame: "carousel",
         template_normal: "video",
         carousel_css_id: "video",
@@ -22,6 +22,9 @@ function ddg_spice_video(api_result) {
 	    li_width: 152
 	}
     });
+
+    // Add the video on top.
+    $("#ddgc_detail").prependTo("#video");
 }
 
 // This is the callback function of /itt.
