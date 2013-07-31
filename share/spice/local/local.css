@@ -10,6 +10,15 @@
     display: inline-block !important;
 }
 
+#ddgc_slider {
+    display: block !important;
+    background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+#ddgc_nav {
+    min-height: 0px !important;
+}
+
 #local .right, #local .details, #local .reviews {
     display: inline-block;
     vertical-align: middle;
@@ -52,6 +61,12 @@
 #ddgcarousel li.ddgc_item {
     text-align: left !important;
     display: inline-block !important;
+    padding-top: 10px !important;
+}
+
+#local .nohover {
+    background: none !important;
+    cursor: auto !important;
 }
 
 .leaflet-popup-close-button {
@@ -69,6 +84,7 @@
 .leaflet-bar-full {
     border-radius: 4px 4px 4px 4px;
     cursor: pointer;
+    font-size: 15px !important;
 }
 
 .leaflet-bar a:hover {

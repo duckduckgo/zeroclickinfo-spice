@@ -38,50 +38,7 @@ function ddg_spice_local(api_response) {
                         .addClass('leaflet-bar')
                         .addClass('leaflet-control')
                         .click(function(e) {
-                            return function(width, height, frame, offset) {
-                                var label = '⇲';
-                                if ($(e.target).text() == label) {
-                                    width = '900px';
-                                    height = '375px';
-                                    frame = '771';
-                                    offset = '-77px';
-                                    label = '⇱';
-                                }
-                                $('#zero_click_wrapper').animate({
-                                    'max-width' : width,
-                                    'width' : width
-                                }, {
-                                    duration : 1000,
-                                    step : function() {
-                                        ddg_spice_local_map.invalidateSize();
-                                    },
-                                });
-                                $('#map').animate({'height' : height}, 1000);
-                                $('#zero_click_wrapper').animate({
-                                    'margin-left' : offset
-                                }, 1000);
-                                $('#ddgc_frame').animate({
-                                    'width' : frame + 'px'
-                                }, 1000);
-                                $('#ddgc_slides li').animate({
-                                    'width' : frame - 10 + 'px'
-                                }, {
-                                    duration : 1000,
-                                    //complete: function() {
-                                    step: function() {
-                                        $('#ddgc_slides').css(
-                                            'margin-left',
-                                            -1 * $('#ddgc_frame').outerWidth() * ddg_spice_local_current
-                                        );
-                                    }
-                                });
-                                $(e.target).fadeOut({
-                                    duration : 500,
-                                    complete : function() {
-                                        $(this).text(label).fadeIn(500);
-                                    }
-                                });
-                            }(width, height, frame, offset)
+                            return expand_map(width, height, frame, offset, e)
                         })[0];
             }
         });
@@ -91,8 +48,7 @@ function ddg_spice_local(api_response) {
             if (!deep) move_map_to_top();
             bind_navigation();
             $(window).resize(bind_navigation());
-            ddg_spice_local_markers[0]
-                .bindPopup(api_response[0].name).openPopup();
+            ddg_spice_local_markers[0].openPopup();
         });
     });
 };
@@ -128,15 +84,21 @@ function render_map(api_response) {
         ddg_spice_local_markers.push(
             L.marker(location, { 'title' : api_response[i].name, 'id' : i })
                 .on('click', function(e) {
-                    $('#ddgc_nav').show();
+                    $('#ddgc_nav').slideDown(1000);
                     move_to_page(e.target.options.id);
                 }).addTo(ddg_spice_local_map)
         );
+
+        //ddg_spice_local_markers[i].bindPopup(api_response[i].name);
+        ddg_spice_local_markers[i]
+            .bindPopup(api_response[i].name);
 
         if (i == 0) {
             ddg_spice_local_map.setView(location, 13);
             ddg_spice_local_map.addControl(new L.MapResizeControl());
             $(ddg_spice_local_markers[i]._icon).css('z-index', 999);
+            ddg_spice_local_map.invalidateSize();
+            //ddg_spice_local_markers[i].openPopup();
         }
     }
 };
@@ -144,9 +106,10 @@ function render_map(api_response) {
 function bind_navigation() {
     $('#local .ddgc_item').off().click(function(e) {
         $('#ddgc_detail').show();
+        //$('.leaflet-popup-pane').fadeOut();
         ddg_spice_local_map.invalidateSize();
         move_to_page($(e.target).closest('li').attr('id'));
-    });
+    }).addClass('nohover');
 
     var dots = $('#ddgc_dots a').off();
     dots.each(function(i, el) { $(el).attr('id', i) });
@@ -163,7 +126,8 @@ function bind_navigation() {
 }
 
 function move_to_page(page) {
-    $('.leaflet-popup-pane').hide();
+    // TODO: if (not big)
+    ddg_spice_local_markers[page].openPopup();
     var id_parts = $('#ddgc_slides li ')[page].id.match(/([^\-]*)-(.*)/);
     get_details(id_parts[1], id_parts[2], page);
     ddg_spice_local_current = page;
@@ -205,5 +169,73 @@ function render_details(json, el) {
     if (json.menu)
         el.children('.details').append($('<a>').attr('href', json.menu).text('Menu'));
     if (json.hours)
-        el.children('.details').append('Hours: ' + json.hours['Tue']);
+        el.children('.details').append(
+                '<br>Hours: ' + $.map(json.hours, function(el, i) {
+                    return i + ': ' + el.join(', ')
+                }).join(' ')
+        );
+}
+
+function expand_map(width, height, frame, offset, e) {
+    var label = '⇲';
+    if ($(e.target).text() == label) {
+        width = '900px';
+        height = '375px';
+        frame = '725';
+        offset = '-77px';
+        label = '⇱';
+    }
+    $('#zero_click_wrapper').animate({
+        'max-width' : width,
+        'width' : width
+    }, {
+        duration : 1000,
+        step : function() {
+            ddg_spice_local_map.invalidateSize();
+        },
+    });
+    $('#map').animate({'height' : height}, 1000);
+    $('#zero_click_wrapper').animate({
+        'margin-left' : offset
+    }, 1000);
+    $('#ddgc_frame').animate({
+        'width' : frame + 'px'
+    }, 1000);
+    $('#ddgc_slides li.ddgc_item').animate({
+        'width' : frame - 10 + 'px',
+        'height' : '116px',
+    }, {
+        duration : 1000,
+        step: function() {
+            $('#ddgc_slides').css(
+                'margin-left',
+                -1 * $('#ddgc_frame').outerWidth() * ddg_spice_local_current
+            );
+        }
+    }).css('border', 'none !important');
+    $(e.target).fadeOut({
+        duration : 500,
+        complete : function() {
+            console.log(e.target);
+            $(e.target).text(label).fadeIn(500);
+        }
+    });
+    $('#ddgc_nav').css({
+        'position' : 'absolute',
+        'box-shadow' : '-1px -1px #bbb',
+        'bottom' : 0
+    }, 1000);
+    $('#ddgc_slider').css({
+        'height' : '159px',
+        'border' : 'none',
+        'background-color' : 'rgba(255, 255, 255, 0.7)',
+    }, 1000);
+    $('.leaflet-control-attribution').css({
+        'box-shadow' : 'none',
+        'background-color' : 'none'
+    });
+    ddg_spice_local_map.options({
+        'paddingBottomRight' : [0,120]
+    });
+    ddg_spice_local_map.options.invalidateSize();
 }
