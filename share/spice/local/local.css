@@ -12,11 +12,13 @@
 
 #ddgc_slider {
     display: block !important;
-    background-color: rgba(255, 255, 255, 0.7) !important;
+    background-color: white;
 }
 
 #ddgc_nav {
     min-height: 0px !important;
+    position: absolute !important;
+    bottom: 32px;
 }
 
 #local .right, #local .details, #local .reviews {

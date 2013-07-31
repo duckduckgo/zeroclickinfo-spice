@@ -84,6 +84,7 @@ function render_map(api_response) {
         ddg_spice_local_markers.push(
             L.marker(location, { 'title' : api_response[i].name, 'id' : i })
                 .on('click', function(e) {
+                    $('#map').animate({ 'height' : '285px' }, 1000);
                     $('#ddgc_nav').slideDown(1000);
                     move_to_page(e.target.options.id);
                 }).addTo(ddg_spice_local_map)
@@ -185,6 +186,13 @@ function expand_map(width, height, frame, offset, e) {
         offset = '-77px';
         label = '⇱';
     }
+    $(e.target).fadeOut({
+        duration : 500,
+        complete : function() {
+            console.log(e.target);
+            $(e.target).text(label).fadeIn(500);
+        }
+    });
     $('#zero_click_wrapper').animate({
         'max-width' : width,
         'width' : width
@@ -213,23 +221,14 @@ function expand_map(width, height, frame, offset, e) {
             );
         }
     }).css('border', 'none !important');
-    $(e.target).fadeOut({
-        duration : 500,
-        complete : function() {
-            console.log(e.target);
-            $(e.target).text(label).fadeIn(500);
-        }
-    });
     $('#ddgc_nav').css({
-        'position' : 'absolute',
-        'box-shadow' : '-1px -1px #bbb',
-        'bottom' : 0
-    }, 1000);
-    $('#ddgc_slider').css({
-        'height' : '159px',
-        'border' : 'none',
-        'background-color' : 'rgba(255, 255, 255, 0.7)',
-    }, 1000);
+        'box-shadow' : '-1px -1px #bbb'
+    });
+    $('#ddgc_slider').animate({
+        'height' : '126px',
+    }).css({
+        'background-color' : 'rgba(255, 255, 255, 0.7)'
+    });
     $('.leaflet-control-attribution').css({
         'box-shadow' : 'none',
         'background-color' : 'none'
