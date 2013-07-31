@@ -1,0 +1,15 @@
+#ddgcarousel #coupon_mountain li.ddgc_item{ padding:0; margin-right:8px;}
+#ddgcarousel #coupon_mountain li.ddgc_item p{ height:65px!important;}
+#ddgcarousel #coupon_mountain li.ddgc_item img{ width:130px!important; height:33px!important; max-height:150px; max-width:150px; padding:2px; background:#fff; border:#e1e1e1 1px solid;}
+#ddgcarousel #coupon_mountain li.ddgc_item span{ text-align:center; font-size:16px; padding:0 15px; line-height:20px;}
+#ddgcarousel #coupon_mountain img.coupon_icon{ width:130px; height:33px; padding:2px; background:#fff; border:#e1e1e1 1px solid;}
+#ddgcarousel #coupon_mountain .coupon_icon_wrap{float:left; width:160px; text-align:center; height:100%; padding-top:12px;}
+#ddgcarousel #coupon_mountain .coupon_icon_wrap p{ width:136px; padding-top:5px;}
+#ddgcarousel #coupon_mountain .coupon_detail_wrap {margin-left:160px; font-size:12px; padding-top:8px;}
+#ddgcarousel #coupon_mountain .coupon_name{ color:#1168cc; font-size:18px; padding-bottom:3px}
+#ddgcarousel #coupon_mountain .coupon_code{ padding-bottom:2px;font-size:14px; color:#808080; line-height:25px;}
+#ddgcarousel #coupon_mountain .coupon_code span{ font-size:18px; font-weight:bold; color:#333;}
+#ddgcarousel #coupon_mountain .coupon_expdate{ padding-bottom:0px; color:#808080; font-size:11px;}
+#ddgcarousel #coupon_mountain .coupon_description{ font-size:14px; color:#333; line-height:18px;}
+#ddgcarousel #coupon_mountain .clear{ clear:both;}
+#ddgcarousel #coupon_mountain #ddgc_detail{ padding:0 12px 12px;}
