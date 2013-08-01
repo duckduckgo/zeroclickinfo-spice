@@ -26,10 +26,6 @@ function ddg_spice_video(api_result) {
 
     // Add the video on top.
     $("#ddgc_detail").prependTo("#video");
-
-    $(document).ready(function() {
-	
-    });
 }
 
 // This is the callback function of /itt.
