@@ -12,13 +12,12 @@
 
 #ddgc_slider {
     display: block !important;
+    border-top: 1px solid #C6C6C6 !important;
     background-color: white;
 }
 
 #ddgc_nav {
     min-height: 0px !important;
-    position: absolute !important;
-    bottom: 32px;
 }
 
 #local .right, #local .details, #local .reviews {
@@ -552,7 +551,10 @@
             border-radius: 2px;
     }
 
-#map { height: 180px; }
+#map {
+    height: 180px;
+    position: static !important;
+}
 
 span.metadata {
     color: rgb(119, 119, 119);

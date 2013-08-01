@@ -25,9 +25,9 @@ function ddg_spice_local(api_response) {
         L.MapResizeControl = L.Control.extend({
             options: { position: 'bottomright' },
             onAdd: function (map) {
-                var width = $('#zero_click_wrapper').css('width');
-                var height = $('#map').css('height');
-                var frame = $('#ddgc_frame').width();
+                var width = $('#zero_click_wrapper').outerWidth();
+                var height = $('#map').outerHeight();
+                var frame = $('#ddgc_frame').outerWidth();
                 var offset = $('#zero_click_wrapper').css('margin-left');
                 return $('<div>').append(
                             $('<a>').text('⇲').attr('href', '#')
@@ -84,9 +84,9 @@ function render_map(api_response) {
         ddg_spice_local_markers.push(
             L.marker(location, { 'title' : api_response[i].name, 'id' : i })
                 .on('click', function(e) {
-                    $('#map').animate({ 'height' : '285px' }, 1000);
                     $('#ddgc_nav').slideDown(1000);
                     move_to_page(e.target.options.id);
+                    ddg_spice_local_map.invalidateSize();
                 }).addTo(ddg_spice_local_map)
         );
 
@@ -178,35 +178,42 @@ function render_details(json, el) {
 }
 
 function expand_map(width, height, frame, offset, e) {
-    var label = '⇲';
+    var label      = '⇲';
+    var shadow     = '';
+    var background = '';
+    var nav_offset = 0;
     if ($(e.target).text() == label) {
-        width  = '900px';
-        height = '375px';
-        frame  = '725';
-        offset = '-77px';
-        label  = '⇱';
+        label      = '⇱';
+        shadow     = '-1px -1px #bbb';
+        background = 'rgba(255, 255, 255, 0.7)';
+        nav_offset = -150;
+        width      = 900;
+        frame      = 725;
+        height     = height + 300;
+        offset     = '-77px';
     }
     var options = {
         '#zero_click_wrapper' : {
-            'max-width'   : width,
-            'width'       : width,
+            'max-width'   : width + 'px',
+            'width'       : width + 'px',
+            'margin-left' : offset,
         },
         '#ddgc_slides li.ddgc_item' : {
             'width'  : frame - 10 + 'px',
-            'height' : '116px',
+            'height' : height + 'px',
         },
         '#map' : {
-            'height' : height,
+            'height' : height + 'px',
         },
         '#ddgc_frame' : {
             'width' : frame + 'px',
         },
-        '#ddgc_slider' : {
-            'height' : '126px',
+        '#ddgc_nav' : {
+            'margin-top' : nav_offset + 'px',
         },
     };
-    $('#ddgc_nav').css('box-shadow', '-1px -1px #bbb');
-    $('#ddgc_slider').css('background-color',  'rgba(255, 255, 255, 0.7)');
+    $('#ddgc_nav').css('box-shadow', shadow);
+    $('#ddgc_slider').css('background-color',  background);
     $('.leaflet-control-attribution').css({
         'box-shadow' : 'none',
         'background-color' : 'none'
@@ -229,5 +236,4 @@ function expand_map(width, height, frame, offset, e) {
             },
         });
     });
-    $('#zero_click_wrapper').animate({'margin-left' : offset}, 1000)
 }
