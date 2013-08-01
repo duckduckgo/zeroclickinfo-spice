@@ -34,7 +34,7 @@ If submitting a **pull request** (bugfix/addition):
 * Make sure you have added the necessary tests for your changes. Consider all edge cases and make sure they are handled correctly
     * Examples can be found in the t/ directory
     * Exhasutive tests are always appreciated!
-* Run `dzil test` (executes all tests in t/) to assure nothing else was accidentally broken.
+* Run `dzil test` (executes all tests in t/) to ensure nothing else was accidentally broken
 
 ## Submitting Changes
 
