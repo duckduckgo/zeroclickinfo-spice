@@ -20,7 +20,7 @@ function ddg_spice_video(api_result) {
         carousel_template_detail: "video_detail",
 	template_options: {
 	    li_height: 150,
-	    li_width: 130
+	    li_width: 205
 	}
     });
 
