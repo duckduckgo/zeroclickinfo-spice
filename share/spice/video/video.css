@@ -23,6 +23,10 @@
     position: relative;
 }
 
+#video #ddgc_detail {
+    padding: 8px;
+}
+
 #video li.ddgc_selected div.image_wrap::before {
     content: "Now Playing";
     background: #000;
