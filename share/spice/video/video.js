@@ -94,3 +94,20 @@ Handlebars.registerHelper("formatViews", function(views) {
 
     return String(views).replace(/(\d)(?=(\d{3})+(\.\d+|)\b)/g, "$1,");
 });
+
+Handlebars.registerHelper("embedURL", function(provider, id) {
+    if(provider === "YouTube") {
+	return "https://www.youtube-nocookie.com/embed/" + id;
+    } else if(provider === "Vimeo") {
+	return "https://player.vimeo.com/video/" + id;
+    }
+    return "";
+});
+
+Handlebars.registerHelper("playURL", function(provider, id) {
+    if(provider === "YouTube") {
+	return "https://www.youtube.com/watch?v=" + id;
+    } else if(provider === "Vimeo") {
+	return "https://vimeo.com/" + id;
+    }
+});
