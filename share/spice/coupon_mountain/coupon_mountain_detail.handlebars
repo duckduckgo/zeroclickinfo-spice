@@ -11,9 +11,9 @@
         </div>
         <div class="coupon_description">
             {{{desc}}}
-            {{#if expire}}
-            <div class="coupon_expdate">Expires {{expire}}</div>
-            {{/if}}
         </div>
+        {{#if expire}}
+        <div class="coupon_expdate">Expires {{dateString expire}}</div>
+        {{/if}}
     </div>
 </div>

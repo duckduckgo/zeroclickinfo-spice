@@ -1,4 +1,3 @@
-// spice callback function
 function ddg_spice_coupon_mountain (api_result) {
 
     if (api_result.count < 1) return;
@@ -32,4 +31,9 @@ function ddg_spice_coupon_mountain (api_result) {
         return coupons;
     }
 }
-// li_height: 138
+
+Handlebars.registerHelper("dateString", function(string) {
+    var date = new Date(string),
+        months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
+    return months[date.getMonth()] + " " + date.getDay() + ", " + date.getFullYear();
+});
