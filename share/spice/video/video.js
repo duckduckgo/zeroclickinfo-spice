@@ -21,11 +21,22 @@ function ddg_spice_video(api_result) {
 	template_options: {
 	    li_height: 150,
 	    li_width: 205
+	},
+	item_callback: function(i, item) {
+	    if(item.provider === "YouTube") {
+		$(".zero_click_more_at_link").attr("href", "https://www.youtube.com");
+		$(".zero_click_more_at_link img").attr("src", "http://icons.duckduckgo.com/i/www.youtube.com.ico");
+		$(".zero_click_more_at_link span").html("More at YouTube");
+	    } else if(item.provider === "Vimeo") {
+		$(".zero_click_more_at_link").attr("href", "https://www.vimeo.com");
+		$(".zero_click_more_at_link img").attr("src", "http://icons.duckduckgo.com/i/www.vimeo.com.ico");
+		$(".zero_click_more_at_link span").html("More at Vimeo");
+	    }
 	}
     });
 
     // Add the video on top.
-    $("#ddgc_detail").prependTo("#video");
+    // $("#ddgc_detail").prependTo("#video");
 }
 
 // This is the callback function of /itt.
