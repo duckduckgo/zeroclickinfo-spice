@@ -7,6 +7,10 @@ function ddg_spice_video(api_result) {
         cache: true
     });
 
+    var script = $('[src*="/js/spice/video/"]').attr("src");
+    var query = script.match(/video\/([^\/]+)/)[1]
+    
+    // Change the "More at ..." link.
     var change_more = function(obj) {
 	var more_at_link = $(".zero_click_more_at_link").get(0);
 	$(more_at_link).attr("href", obj.link);
@@ -33,13 +37,13 @@ function ddg_spice_video(api_result) {
 	    var more_at_link = $(".zero_click_more_at_link").get(0);
 	    if(item.provider === "YouTube") {
 		change_more({
-		    "link": "https://www.youtube.com",
+		    "link": "https://www.youtube.com/results?search_query=" + query,
 		    "image": "http://icons.duckduckgo.com/i/www.youtube.com.ico",
 		    "text": "More at YouTube"
 		});
 	    } else {
 		change_more({
-		    "link": "https://www.vimeo.com",
+		    "link": "https://www.vimeo.com/search?q=" + query,
 		    "image": "http://icons.duckduckgo.com/i/www.vimeo.com.ico",
 		    "text": "More at Vimeo"
 		});
