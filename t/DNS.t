@@ -33,6 +33,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::DNS'
     ),
     'a record by foo' => undef,
+    'ptr record dylansserver.com' => undef,
     'records amazon.com' => undef,
     'dig a hole' => undef,
     'do you dig it' => undef,
