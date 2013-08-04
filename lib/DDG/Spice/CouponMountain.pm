@@ -14,19 +14,19 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution web => ['http://www.couponmountain.com', 'Coupon Mountain'],
             email => ['dwashburn@valueclickbrands.com', 'Daniel Washburn'];
 
-triggers any => "coupon", "coupons", "promo code", "promo codes", "discount code", "discount codes", "promotional code", "promotional codes";
+my @triggers = ("coupon", "coupons", "promo code", "promo codes", "discount code", "discount codes", "promotional code", "promotional codes", "deal", "deals");
 
-#spice from => '([^/]+)/?([^/]+)?';
-#spice to => 'http://mamsweb101.dev.wl.mezimedia.com:8081/Coupon/searchEngine.html?keyword=$1';
+triggers any => @triggers;
+triggers start => map {"$_ for"} @triggers;
+
 spice to => 'http://www.couponmountain.com/plugin/searchEngine.html?keyword=$1';
 spice wrap_jsonp_callback => 1;
 
 spice is_cached => 0;
 
-handle query => sub {
-	return unless (length $_);
-	#my $refer = $ENV{HTTP_REFERER};
-	return $_;
+handle remainder => sub {
+    return $_ if $_;
+    return;
 };
 
 1;

@@ -22,18 +22,35 @@ function ddg_spice_coupon_mountain (api_result) {
         carousel_items           : relevants
     });
 
+    // Check relevancy of coupon results
     function getRelevant (coupons) {
+        var relevants = [],
+            skip_words = ['coupon', 'coupon mountain'];
+
         for (var i = 0; i < coupons.length; i++) {
-            if (coupons[i].expire == "3333-03-03") {
-                coupons[i].expire = "";
+            var coupon = coupons[i];
+
+            if (coupon.expire == "3333-03-03") {
+                coupon.expire = "";
+            }
+
+            if (DDG.isRelevant(coupon.merName.toLowerCase(), skip_words) ||
+                DDG.isRelevant(coupon.desc.toLowerCase(), skip_words)){
+                relevants.push(coupon);
+                console.log("RELEVANT! ", coupon);
             }
         }
-        return coupons;
+        return relevants;
     }
 }
 
 Handlebars.registerHelper("dateString", function(string) {
-    var date = new Date(string),
+    var cleanString = string.replace(/-0/g, "-");
+    var date = new Date(cleanString),
         months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
-    return months[date.getMonth()] + " " + date.getDay() + ", " + date.getFullYear();
+    return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+});
+
+Handlebars.registerHelper("stripExpiry", function(string) {
+    return string.replace(/(offer|good through|expires|ends|valid \w+) .+$/i, "");
 });

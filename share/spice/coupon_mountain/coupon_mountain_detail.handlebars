@@ -6,11 +6,8 @@
     
     <div class="coupon_info">
         {{merName}}
-        <div class="coupon_name">
-            <a href="{{merUrl}}">{{name}}</a>
-        </div>
         <div class="coupon_description">
-            {{{desc}}}
+            <a href="{{merUrl}}">{{{stripExpiry desc}}}</a>
         </div>
         {{#if expire}}
         <div class="coupon_expdate">Expires {{dateString expire}}</div>
