@@ -23,11 +23,18 @@ handle remainder => sub {
 
     my $remainder = $_;
 
-    $remainder =~ s/\?//;
-    $remainder =~ s/ online//i;
+    if ($remainder =~ /episodes?/){
+        return;
+    } else { 
+        $remainder =~ s/\?//;
+        $remainder =~ s/ online//i;
 
-    return unless $remainder =~ /^(?:can\s*i?|how\s*to|where\s*(?:to|can\s+i))?\s*(?:find\s+a)?\s*(.+)$/i;
-    return $1;
+        if ($remainder =~ /^(?:can\s*i?|how\s*to|where\s*(?:to|can\s+i))?\s*(?:find\s+a)?\s*(.+)$/i) {
+            return $1;
+        }
+    }
+
+    return;
 };
 
 1;
