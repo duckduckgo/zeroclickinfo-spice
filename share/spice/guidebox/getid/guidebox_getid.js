@@ -39,7 +39,10 @@ function ddg_spice_guidebox_lastshows (api_result) {
         carousel_css_id          : "guidebox",
         carousel_items           : api_result.results.result,
         carousel_template_detail : "guidebox_getid_details",
-        template_options         : { li_width : 120 }
+        template_options         : { 
+            li_width : 120,
+            li_height : 105
+        }
     });
 };
 

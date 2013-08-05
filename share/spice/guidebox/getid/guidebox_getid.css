@@ -11,6 +11,27 @@
     position: relative;
 }
 
-#guidebox small.gb_info {
-    font-size: 11px
+#guidebox .gb_info {
+    white-space: nowrap;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0px !important
+}
+
+#guidebox .button {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 2px 9px 0px;
+  vertical-align: text-bottom;
+  background: #EEE;
+  border: 1px solid #DDD;
+  color: black;
+}
+
+#guidebox .button:hover {
+  border: 1px solid #80b5ff;
+  background: #f7f7f7;
+  cursor: pointer;
+  text-decoration: none;
 }

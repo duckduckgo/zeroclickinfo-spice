@@ -1,18 +1,22 @@
 <div>
-    <a href="{{smart_url}}">(Watch Now{{#unless is_free_web}} - Paid Content{{/unless}})</a>
+    <a class="button" href="{{smart_url}}">Watch Now{{#unless is_free_web}} - Paid Content{{/unless}}</a>
+    <br>
     {{{overview}}}
-    <br>
 
-    <span class="grey">Aired: </span>
-    {{getDate first_aired}}
-    <br>
+    <div>
+        <span class="grey">Aired: </span>
+        {{getDate first_aired}}
+    </div>
     
-    <span class="grey">Episode: </span>
-       {{{episode_name}}} (season {{season_number}}, #{{episode_number}})
-    <br>
+    <div>
+        <span class="grey">Episode: </span>
+        {{{episode_name}}} (season {{season_number}}, #{{episode_number}})
+    </div>
     
-    {{#creators}}
-        <span class="grey">Creators: </span>
-        {{#if writers}}({{pluralize writers singular="writer" plural="writers"}}) {{split writers}}{{/if}}{{#if directors}}{{#if writers}},{{/if}} ({{pluralize directors singular="director" plural="directors"}}) {{split directors}}{{/if}}
-    {{/creators}}
+    <div>
+        {{#creators}}
+            <span class="grey">Creators: </span>
+            {{#if writers}}({{pluralize writers singular="writer" plural="writers"}}) {{split writers}}{{/if}}{{#if directors}}{{#if writers}},{{/if}} ({{pluralize directors singular="director" plural="directors"}}) {{split directors}}{{/if}}
+        {{/creators}}
+    </div>
 </div>
