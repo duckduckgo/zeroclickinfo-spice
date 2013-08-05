@@ -5,7 +5,6 @@ function ddg_spice_canistreamit (api_result) {
 
     if(!api_result || api_result.length === 0 || 
         !DDG.stringsRelevant(api_result[0].title, query, ["stream", "watch", "streaming"]), 3) {
-        alert("BYE!");
         return;
     }
 
