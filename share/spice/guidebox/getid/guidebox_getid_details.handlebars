@@ -1,13 +1,22 @@
 <div>
+    <a class="button" href="{{smart_url}}">Watch Now{{#unless is_free_web}} - Paid Content{{/unless}}</a>
+    <br>
+    {{{overview}}}
+
     <div>
-        <span class="watch_button">
-            <a href="{{smart_url}}">{{getTitle}} - {{{condense episode_name maxlen="25"}}} (Watch Now)</a>
-        </span>
+        <span class="grey">Aired: </span>
+        {{getDate first_aired}}
     </div>
+    
     <div>
-        <span class="aired_on">Aired on:</span> {{getDate first_aired}}
+        <span class="grey">Episode: </span>
+        {{{episode_name}}} (season {{season_number}}, #{{episode_number}})
     </div>
+    
     <div>
-        {{overview}}
+        {{#creators}}
+            <span class="grey">Creators: </span>
+            {{#if writers}}({{pluralize writers singular="writer" plural="writers"}}) {{split writers}}{{/if}}{{#if directors}}{{#if writers}},{{/if}} ({{pluralize directors singular="director" plural="directors"}}) {{split directors}}{{/if}}
+        {{/creators}}
     </div>
 </div>

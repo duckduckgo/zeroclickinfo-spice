@@ -19,8 +19,46 @@ triggers any => 'dns', 'record', 'records', 'dig';
 
 spice from => '(.*)/(.*)';
 
+my $record_types = join '|', qw/
+    any
+    a
+    aaaa
+    afsdb
+    apl
+    caa
+    cert
+    cname
+    dhcid
+    dlv
+    dname
+    dnskey
+    ds
+    hip
+    ipseckey
+    key
+    kx
+    loc
+    mx
+    ns
+    nsec
+    nsec3
+    nsec3param
+    rrsig
+    rp
+    sig
+    soa
+    spf
+    srv
+    sshfp
+    ta
+    tkey
+    tlsa
+    tsig
+    tx
+/;
+
 handle query_lc => sub {
-    s/(dig\s+)?(?:(any|\*|a|aaaa|afsdb|apl|caa|cert|cname|dhcid|dlv|dname|dnskey|ds|hip|ipseckey|key|kx|loc|mx|naptr|ns|nsec|nsec3|nsec3param|ptr|rrsig|rp|sig|soa|spf|srv|sshfp|ta|tkey|tlsa|tsig|tx)\s+)?(dns\s+)?(records?|dns)?\s*//;
+    s/(dig\s+)?(?:($record_types)\s+)?(dns\s+)?(records?|dns)?\s*//;
     my $record = defined $2 ? $2 : 'any';
     return if not defined $2 and not defined $1
         and not (defined $3 and defined $4);

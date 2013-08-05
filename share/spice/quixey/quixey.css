@@ -85,8 +85,8 @@
 }
 
 #quixey .app_platform:hover {
-  border: 1px solid #333;
-  background: #ddd;
+  border: 1px solid #80b5ff;
+  background: #f7f7f7;
   cursor: pointer;
   text-decoration: none;
 }
