@@ -35,17 +35,12 @@ function ddg_spice_video(api_result) {
 	},
 	item_callback: function(i, item) {
 	    var more_at_link = $(".zero_click_more_at_link").get(0);
-	    if(item.provider === "YouTube") {
+	    if(item.provider in ddg_spice_video.providers) {
+		var providers = ddg_spice_video.providers;
 		change_more({
-		    "link": "https://www.youtube.com/results?search_query=" + query,
-		    "image": "http://icons.duckduckgo.com/i/www.youtube.com.ico",
-		    "text": "More at YouTube"
-		});
-	    } else {
-		change_more({
-		    "link": "https://www.vimeo.com/search?q=" + query,
-		    "image": "http://icons.duckduckgo.com/i/www.vimeo.com.ico",
-		    "text": "More at Vimeo"
+		    "search_link": providers[item.provider].search_link + query,
+		    "image": providers[item.provider].image,
+		    "text": providers[item.provider].text
 		});
 	    }
 	}
@@ -54,6 +49,23 @@ function ddg_spice_video(api_result) {
     // Add the video on top.
     // $("#ddgc_detail").prependTo("#video");
 }
+
+ddg_spice_video.providers = {
+    "YouTube": {
+	"search_link": "https://www.youtube.com/results?search_query=",
+	"image": "http://icons.duckduckgo.com/i/www.youtube.com.ico",
+	"text": "More at YouTube",
+	"embed": "https://www.youtube-nocookie.com/embed/",
+	"play_url": "https://www.youtube.com/watch?v="
+    },
+    "Vimeo": {
+	"search_link": "https://www.vimeo.com/search?q=",
+	"image": "http://icons.duckduckgo.com/i/www.vimeo.com.ico",
+	"text": "More at Vimeo",
+	"embed": "https://player.vimeo.com/video/",
+	"play_url": "https://vimeo.com/"
+    }
+};
 
 // This is the callback function of /itt.
 // TODO: Don't show the link when we didn't find the iTunes URL.
@@ -124,20 +136,17 @@ Handlebars.registerHelper("formatViews", function(views) {
 });
 
 Handlebars.registerHelper("embedURL", function(provider, id) {
-    if(provider === "YouTube") {
-	return "https://www.youtube-nocookie.com/embed/" + id;
-    } else if(provider === "Vimeo") {
-	return "https://player.vimeo.com/video/" + id;
+    if(provider in ddg_spice_video.providers) {
+	return ddg_spice_video.providers[provider].embed + id;
     }
     return "";
 });
 
 Handlebars.registerHelper("playURL", function(provider, id) {
-    if(provider === "YouTube") {
-	return "https://www.youtube.com/watch?v=" + id;
-    } else if(provider === "Vimeo") {
-	return "https://vimeo.com/" + id;
+    if(provider in ddg_spice_video.providers) {
+	return ddg_spice_video.providers[provider].play_url + id;
     }
+    return "";
 });
 
 Handlebars.registerHelper("checkStatistics", function(viewCount, options) {
