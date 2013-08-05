@@ -118,8 +118,9 @@ Handlebars.registerHelper("checkMusic", function(category, title, options) {
 // We'll use this for showing the view counts.
 Handlebars.registerHelper("formatViews", function(views) {
     "use strict";
-
-    return String(views).replace(/(\d)(?=(\d{3})+(\.\d+|)\b)/g, "$1,");
+    if(views) {
+	return String(views).replace(/(\d)(?=(\d{3})+(\.\d+|)\b)/g, "$1,");
+    }
 });
 
 Handlebars.registerHelper("embedURL", function(provider, id) {
@@ -137,4 +138,11 @@ Handlebars.registerHelper("playURL", function(provider, id) {
     } else if(provider === "Vimeo") {
 	return "https://vimeo.com/" + id;
     }
+});
+
+Handlebars.registerHelper("checkStatistics", function(viewCount, options) {
+    if(Object.prototype.toString.call(viewCount) === "[object Null]") {
+	return "";
+    }
+    return options.fn({viewCount: viewCount});
 });

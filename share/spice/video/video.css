@@ -4,7 +4,7 @@
 
 #video .description {
     color: rgb(119, 119, 119);
-    font-size: 12px;
+    font-size: smaller;
 }
 
 #video li.ddgc_item img {
@@ -41,4 +41,25 @@
     line-height: 122px;
     opacity: 0.75;
     text-align: center;
+}
+
+#video .app_platform {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 2px 3px 0px 2px;
+  vertical-align: text-bottom;
+  background: #EEE;
+  border: 1px solid #DDD;
+  color: black;
+}
+
+#video .links {
+    font-size: smaller;
+}
+
+#video .app_platform:hover {
+  border: 1px solid #80b5ff;
+  background: #f7f7f7;
+  cursor: pointer;
+  text-decoration: none;
 }
