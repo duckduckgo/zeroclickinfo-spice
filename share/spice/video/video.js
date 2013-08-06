@@ -71,30 +71,22 @@ ddg_spice_video.itunes = function(api_result) {
         return;
     }
 
-    var artist = $("#itunes").data("artist").toLowerCase();
-    var song = $("#itunes").data("song").toLowerCase();
-
-    console.log("Artist: " + artist, "Song: " + song);
+    var itunes = $("#itunes");
+    var artist = itunes.data("artist").toLowerCase();
+    var song = itunes.data("song").toLowerCase();
 
     // Find the song that matches.
-    var index = 0;
     for(var i = 0; i < api_result.results.length; i++) {
 	if(artist === api_result.results[i].artistName.toLowerCase() ||
 	   artist === api_result.results[i].trackName.toLowerCase() ||
 	   song === api_result.results[i].artistName.toLowerCase() ||
 	   song === api_result.results[i].trackName.toLowerCase()) {
-	    index = i;
+	    itunes.attr("href", api_result.results[i].trackViewUrl);
+	    itunes.toggle();
 	    break;
 	}
     }
 
-    window.location = api_result.results[index].trackViewUrl;
-};
-
-ddg_spice_video.set_itunes = function(element) {
-    var title = $(element).data("title");
-
-    $.getScript("/iit/" + encodeURIComponent(title));
 };
 
 Handlebars.registerHelper("checkMusic", function(category, title, options) {
@@ -106,12 +98,15 @@ Handlebars.registerHelper("checkMusic", function(category, title, options) {
 	s = s.replace(/\s+f(?:ea|)t\..*$/g, "");
 	// Trim the ends of the string.
 	return s.replace(/^\s+|\s+$/g, "");
-    }
+    };
 
     title = stripTitle(title);
     var songData = title.split(" - ");
     var artist = songData[0];
     var song = songData[1] || artist;
+
+    // Call iTunes.
+    $.getScript("/iit/" + encodeURIComponent(title));
 
     // Only add links to the music if, well, we have links to the music section.
     if(category === "Music") {
