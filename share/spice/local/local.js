@@ -33,13 +33,14 @@ function ddg_spice_local(api_response) {
                             $('<a>').text('⇲').attr('href', '#')
                             .addClass('leaflet-control-zoom-in')
                             .addClass('leaflet-bar-part')
-                            .addClass('leaflet-bar-full'))
+                            .addClass('leaflet-bar-full')
+                            .click(function(e) {
+                                return expand_map(width, height, frame, offset, e)
+                            }))
                         .addClass('leaflet-control-zoom')
                         .addClass('leaflet-bar')
                         .addClass('leaflet-control')
-                        .click(function(e) {
-                            return expand_map(width, height, frame, offset, e)
-                        })[0];
+                        .get(0);
             }
         });
         $(document).ready(function() {
