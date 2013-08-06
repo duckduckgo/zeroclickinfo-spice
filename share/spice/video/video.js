@@ -45,6 +45,18 @@ function ddg_spice_video(api_result) {
 	    }
 	}
     });
+    
+    function resizeDetail() {
+	var $video = $("#spice_video");
+	var width = $video.width() - 14;
+	var height = Math.floor(width * 0.5625) + 30;
+	$("#ddgc_detail").height(height);
+    }
+
+    $(document).ready(function() {
+	resizeDetail();
+	$(window).resize(resizeDetail);
+    });
 }
 
 ddg_spice_video.providers = {
