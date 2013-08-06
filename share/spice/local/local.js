@@ -77,6 +77,7 @@ function render_map(api_response) {
         { 'attribution' : attribution, 'maxZoom' : 18 }
     ).addTo(ddg_spice_local_map);
 
+    var pagination_height = $('#ddgc_pagination').outerHeight();
     for (var i in api_response) {
         if (!api_response[i].coordinates) continue;
         var location = [ api_response[i].coordinates.latitude,
@@ -84,7 +85,15 @@ function render_map(api_response) {
         ddg_spice_local_markers.push(
             L.marker(location, { 'title' : api_response[i].name, 'id' : i })
                 .on('click', function(e) {
-                    $('#ddgc_nav').slideDown(1000);
+                    $('#ddgc_nav').slideDown({
+                        duration : 1000,
+                        step : function(number) {
+                            if (number > 0) {
+                                $('.leaflet-bottom').css(
+                                    'margin-bottom', pagination_height + number);
+                            }
+                        }
+                    });
                     move_to_page(e.target.options.id);
                     ddg_spice_local_map.invalidateSize();
                 }).addTo(ddg_spice_local_map)
