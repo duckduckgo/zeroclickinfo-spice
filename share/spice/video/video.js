@@ -13,7 +13,7 @@ function ddg_spice_video(api_result) {
     // Change the "More at ..." link.
     var change_more = function(obj) {
 	var more_at_link = $(".zero_click_more_at_link").get(0);
-	$(more_at_link).attr("href", obj.link);
+	$(more_at_link).attr("href", obj.search_link);
         $("img", more_at_link).attr("src", obj.image);
         $("span", more_at_link).html(obj.text);
     };
@@ -21,7 +21,7 @@ function ddg_spice_video(api_result) {
     Spice.render({
         data: api_result,
         source_name : 'YouTube',
-        source_url : 'http://www.youtube.com/',
+        source_url : 'https://www.youtube.com/results?search_query=' + query,
         header1 : "Video Search",
         template_frame: "carousel",
         template_normal: "video",
@@ -45,9 +45,6 @@ function ddg_spice_video(api_result) {
 	    }
 	}
     });
-
-    // Add the video on top.
-    // $("#ddgc_detail").prependTo("#video");
 }
 
 ddg_spice_video.providers = {
