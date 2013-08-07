@@ -13,21 +13,23 @@ attribution web => ['http://duckduckgo.com', 'DuckDuckGo'],
             twitter => ['http://twitter.com/duckduckgo', '@duckduckgo'];
 
 spice to => 'https://api.wordnik.com/v4/word.json/$1/definitions?includeRelated=true&useCanonical=true&includeTags=true&limit=3&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}';
-triggers startend => "define", "define:", "definition", "definition of", "definition of:";
+
+triggers startend => (
+    "define",
+    "define:",
+    "definition",
+    "definition:",
+    "definition of",
+    "definition of:",
+    "meaning",
+    "meaning of",
+    "meaning of:",
+);
+
 spice is_cached => 1;
 
-handle query_lc => sub {
-	my $query = $_;
-	if($query =~ /^(?:definition of\:?|define\:?|definition\:?) (.+)/) {
-		$query = $1;
-		$query =~ s/^\s+|\s+$//g;
-		return lc $query;
-	} elsif($query =~ /(.+) (?:define|definition)$/) {
-		$query = $1;
-		$query =~ s/^\s+|\s+$//g;
-		return lc $query;
-	}
-    return;
+handle remainder => sub {
+    return lc $_;
 };
 
 1;
