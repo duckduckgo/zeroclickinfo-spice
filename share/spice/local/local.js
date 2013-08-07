@@ -153,9 +153,7 @@ function move_to_page(page) {
                 ._icon.src = '/js/leaflet/images/marker-icon.png';
         }
     }
-    ddg_spice_local_map.setView(
-        ddg_spice_local_markers[page].getLatLng(), 13,
-            { 'pan' : { 'animate' : true, 'duration' : 1 } });
+    ddg_spice_local_map.setView(ddg_spice_local_markers[page].getLatLng(), 13);
     $(ddg_spice_local_markers[page]._icon).css('z-index', 1000);
     $('#ddgc_slides').css('margin-left',
         -1 * $('#ddgc_frame').outerWidth() * page);
@@ -244,6 +242,10 @@ function expand_map(width, height, frame, offset, e) {
                     -1 * $('#ddgc_frame').outerWidth() * ddg_spice_local_current
                 );
             },
+            complete : function() {
+                ddg_spice_local_map.setView(
+                    ddg_spice_local_markers[ddg_spice_local_current].getLatLng(), 13);
+            }
         });
     });
 }
