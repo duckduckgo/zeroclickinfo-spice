@@ -88,12 +88,12 @@ function render_map(api_response) {
                 .on('click', function(e) {
                     $('#ddgc_nav').slideDown({
                         duration : 1000,
-                        step : function(number) {
-                            if (number > 0) {
+                        step : function(number, tween) {
+                            if (tween.prop == 'height') {
                                 $('.leaflet-bottom').css(
                                     'margin-bottom', pagination_height + number);
                             }
-                        }
+                        },
                     });
                     move_to_page(e.target.options.id);
                     ddg_spice_local_map.invalidateSize();
