@@ -56,12 +56,12 @@ function ddg_spice_video(api_result) {
 	var video_title = $("#video #video-title").width();
 	var video_links = $("#video .links").width();
 
-	console.log(width);
-	console.log(video_title + video_links);
+	console.log(width - (video_title + video_links) - 20);
+
 	if(width - (video_title + video_links) < 20) {
-	    $("#video .links").hide();
+	    $("#video .links").css("position", "static");
 	} else {
-	    $("#video .links").show();
+	    $("#video .links").css("position", "absolute");
 	}
     }
 
