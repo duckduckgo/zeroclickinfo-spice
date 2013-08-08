@@ -28,10 +28,6 @@
     padding: 9px;
     border-bottom: none;
     background: #FFF;
-    height: 100% !important;
-}
-
-#video #ddgc_detail > div {
     height: 100%;
 }
 
