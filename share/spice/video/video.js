@@ -52,6 +52,17 @@ function ddg_spice_video(api_result) {
 	var height = Math.floor(width * 0.5625) + 30;
 	$("#video #embed").width(width);
 	$("#video #embed").height(height);
+
+	var video_title = $("#video #video-title").width();
+	var video_links = $("#video .links").width();
+
+	console.log(width);
+	console.log(video_title + video_links);
+	if(width - (video_title + video_links) < 20) {
+	    $("#video .links").hide();
+	} else {
+	    $("#video .links").show();
+	}
     }
 
     $(document).ready(function() {

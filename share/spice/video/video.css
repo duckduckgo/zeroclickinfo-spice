@@ -5,6 +5,7 @@
 #video .description {
     color: rgb(119, 119, 119);
     font-size: smaller;
+    display: inline-block;
 }
 
 #video li.ddgc_item img {
@@ -59,6 +60,9 @@
 
 #video .links {
     font-size: smaller;
+    position: absolute;
+    right: 8px;
+    bottom: 23px;
 }
 
 #video .app_platform:hover {
