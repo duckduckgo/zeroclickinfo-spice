@@ -30,8 +30,7 @@ function ddg_spice_video(api_result) {
         force_no_fold : 1,
         carousel_template_detail: "video_detail",
 	template_options: {
-	    li_height: 150,
-	    li_width: 205
+	    li_width: 120
 	},
 	item_callback: function(i, item) {
 	    var more_at_link = $(".zero_click_more_at_link").get(0);
@@ -43,14 +42,16 @@ function ddg_spice_video(api_result) {
 		    "text": providers[item.provider].text
 		});
 	    }
+	    resizeDetail();
 	}
     });
     
     function resizeDetail() {
 	var $video = $("#spice_video");
-	var width = $video.width() - 14;
+	var width = $video.width() - 18;
 	var height = Math.floor(width * 0.5625) + 30;
-	$("#ddgc_detail").height(height);
+	$("#video #embed").width(width);
+	$("#video #embed").height(height);
     }
 
     $(document).ready(function() {
