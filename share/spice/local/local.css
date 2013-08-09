@@ -1,18 +1,27 @@
 #local h1 {
-    display: inline-block;
-    font-size: 200%;
-    margin-bottom: 5px;
-    vertical-align: middle;
+    font-size: 120%;
+    display: block !important;
+}
+
+#local div.border{
+    border: 1px solid #c6c6c6;
+    padding: 5px;
+    height: 100px;
+}
+
+#ddgcarousel li.ddgc_item span {
+    display: inline-block !important;
+    margin: 0px !important;
 }
 
 #ddgcarousel li.ddgc_item a {
     width: auto !important;
     display: inline-block !important;
+    color: auto !important;
 }
 
 #ddgc_slider {
     display: block !important;
-    border-top: 1px solid #C6C6C6 !important;
     background-color: white;
 }
 
@@ -25,34 +34,12 @@
     vertical-align: middle;
 }
 
-#local h1.title {
-    float:left;
-    width: 80%;
-}
-
-#local .details {
-    float: left;
-    width: 30%;
-    border-right: 1px solid rgba(0,0,0,0.1);
-    padding-right: 10px;
-}
-
-#local .reviews {
-    float: left;
-    width: 50%;
-    margin-left: 10px;
-}
-
 #local .right {
     float: right;
 }
 
 #local .right img {
     margin-bottom: 5px !important;
-}
-
-#local .left {
-    float: left;
 }
 
 #ddgc_detail {
@@ -62,7 +49,6 @@
 #ddgcarousel li.ddgc_item {
     text-align: left !important;
     display: inline-block !important;
-    padding-top: 10px !important;
 }
 
 #local .nohover {
@@ -90,6 +76,10 @@
 
 .leaflet-bar a:hover {
     text-decoration: none;
+}
+
+.leaflet-control-attribution {
+    box-shadow: none !important;
 }
 
 /* leaflet.js */
