@@ -31,8 +31,16 @@ function ddg_spice_reddit(api_result) {
         header1           : header,
         source_url        : source,
         source_name       : 'Reddit',
-        template_normal   : 'reddit_search',
+        spice_name        : 'reddit_search',
+        template_frame    : 'list',
+        frame_options     : {
+            items: api_result.data.children,
+            show: 2,
+            max: 14,
+            item_template: 'reddit_search'
+        },
         force_big_header  : true,
-        force_space_after : true
+        force_space_after : true,
+        force_no_fold : true
     });
 };
