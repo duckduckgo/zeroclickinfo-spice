@@ -77,14 +77,16 @@ ddg_spice_video.providers = {
 	"image": "http://icons.duckduckgo.com/i/www.youtube.com.ico",
 	"text": "More at YouTube",
 	"embed": "https://www.youtube-nocookie.com/embed/",
-	"play_url": "https://www.youtube.com/watch?v="
+	"play_url": "https://www.youtube.com/watch?v=",
+	"user_url": "https://www.youtube.com/user/"
     },
     "Vimeo": {
 	"search_link": "https://www.vimeo.com/search?q=",
 	"image": "http://icons.duckduckgo.com/i/www.vimeo.com.ico",
 	"text": "More at Vimeo",
 	"embed": "https://player.vimeo.com/video/",
-	"play_url": "https://vimeo.com/"
+	"play_url": "https://vimeo.com/",
+	"user_url": "htps://vimeo.com/"
     }
 };
 
@@ -112,6 +114,13 @@ ddg_spice_video.itunes = function(api_result) {
     }
 
 };
+
+Handlebars.registerHelper("userURL", function(provider, uploader) {
+    if(provider in ddg_spice_video.providers) {
+	return ddg_spice_video.providers[provider].user_url + uploader; 
+    }
+    return "";
+});
 
 Handlebars.registerHelper("checkMusic", function(category, title, options) {
     // Remove things from the title that we don't really need.
