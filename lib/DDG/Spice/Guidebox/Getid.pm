@@ -21,7 +21,7 @@ spice to => 'http://api-public.guidebox.com/v1.3/json/{{ENV{DDG_SPICE_GUIDEBOX_A
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-    if ($loc->country_name eq "United States" || $loc->country_name eq Canada){
+    if ($loc->country_name eq "United States" || $loc->country_name eq "Canada"){
         
         my $show = '';
         
