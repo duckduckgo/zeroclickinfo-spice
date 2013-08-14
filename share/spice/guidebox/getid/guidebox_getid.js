@@ -57,7 +57,7 @@ Handlebars.registerHelper("getTitle", function() {
 Handlebars.registerHelper("getDate", function(first_aired) {
     "use strict";
 
-    var aired = new Date(first_aired),
+    var aired = DDG.getDateFromString(first_aired),
         days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
         months = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
 
