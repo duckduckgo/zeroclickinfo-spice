@@ -14,9 +14,9 @@ function ddg_spice_github(api_result) {
         spice_name       : 'github',
 
         template_frame   : 'list',
-        frame_options: {
+        template_options: {
             items: results,
-            item_template: "github_item",
+            template_item: "github_item",
             single_template: "github",
             show: 3,
             type: 'ul',
