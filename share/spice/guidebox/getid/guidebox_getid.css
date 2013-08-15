@@ -3,8 +3,8 @@
 }
 
 #guidebox li.ddgc_item img {
-    max-width: 100% !important;
-    max-height: 75% !important;
+    max-width: 100%;
+    max-height: 70px;
 }
 
 #guidebox div.image_wrap {
