@@ -33,11 +33,11 @@ function ddg_spice_reddit(api_result) {
         source_name       : 'Reddit',
         spice_name        : 'reddit_search',
         template_frame    : 'list',
-        frame_options     : {
+        template_options     : {
             items: api_result.data.children,
             show: 2,
             max: 14,
-            item_template: 'reddit_search'
+            template_item: 'reddit_search'
         },
         force_big_header  : true,
         force_space_after : true,

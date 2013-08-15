@@ -17,9 +17,9 @@ function ddg_spice_github_jobs(api_result) {
         spice_name      : 'github',
 
         template_frame   : 'list',
-        frame_options: {
+        template_options: {
             items: api_result,
-            item_template: "github_jobs",
+            template_item: "github_jobs",
             show: 3,
             type: 'ul',
         },
