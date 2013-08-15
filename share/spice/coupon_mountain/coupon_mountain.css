@@ -10,6 +10,7 @@
 #ddgcarousel #coupon_mountain .coupon_code{ padding-bottom:2px;font-size:14px; color:#808080; line-height:25px;}
 #ddgcarousel #coupon_mountain .coupon_code span{ font-size:18px; font-weight:bold; color:#333;}
 #ddgcarousel #coupon_mountain .coupon_expdate{ padding-bottom:0px; color:#808080; font-size:11px;}
-#ddgcarousel #coupon_mountain .coupon_description{ font-size:14px; color:#333; line-height:18px;}
+#ddgcarousel #coupon_mountain .coupon_description{ font-size:14px; color:#333; line-height:18px; padding-bottom:3px;}
+#ddgcarousel #coupon_mountain .coupon_url{ color:#808080; font-size:14px;}
 #ddgcarousel #coupon_mountain .clear{ clear:both;}
 #ddgcarousel #coupon_mountain #ddgc_detail{ padding:0 12px 12px;}
