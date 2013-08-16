@@ -138,9 +138,11 @@ function move_to_page(page) {
     ddg_spice_local_markers[page].openPopup();
     var id, id_parts;
     for (var pair in Iterator([page, page + 1])) {
-        id = $('#ddgc_slides li')[pair[1]].id;
-        id_parts = id.match(/([^\-]*)-(.*)/);
-        get_details(id_parts[1], id_parts[2], pair[1]);
+        if ($('#ddgc_slides li')[pair[1]]) {
+            id = $('#ddgc_slides li')[pair[1]].id;
+            id_parts = id.match(/([^\-]*)-(.*)/);
+            get_details(id_parts[1], id_parts[2], pair[1]);
+        }
     }
     ddg_spice_local_current = page;
     for (var i in ddg_spice_local_markers) {
@@ -177,7 +179,7 @@ function render_details(json, el) {
         el.children('.right').append($('<img>').attr('src', json.image));
     if (json.menu)
         el.children('.left').append($('<a>').attr('href', json.menu).text('Menu'));
-    if (json.hours) {
+    if (json.hours && json.hours['Today']) {
         el.children('.left').append(
                 '<br>Open today: ' + json.hours['Today'].join(', ')
         );
@@ -231,6 +233,7 @@ function expand_map(width, height, frame, offset, e) {
             duration : 1000,
             step     : function() {
                 ddg_spice_local_map.invalidateSize();
+                $(window).trigger('resize');
                 $('#ddgc_slides').css(
                     'margin-left',
                     -1 * $('#ddgc_frame').outerWidth() * ddg_spice_local_current
