@@ -84,3 +84,7 @@ Handlebars.registerHelper("creators", function(options) {
     }
     return "";
 });
+
+Handlebars.registerHelper("get_network", function(options) {  
+    return ddg_spice_guidebox_getid.metadata.network;
+});
