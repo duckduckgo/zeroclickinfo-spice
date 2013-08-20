@@ -19,7 +19,7 @@ function ddg_spice_github(api_result) {
             template_item: "github_item",
             single_template: "github",
             show: 3,
-            type: 'ul',
+            type: 'ul'
         },
 
         force_big_header : true,
