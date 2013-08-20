@@ -1,11 +1,11 @@
 <div>
-    <a class="button" href="{{smart_url}}">Watch Now ({{get_network}}){{#unless is_free_web}} - Paid Content{{/unless}}</a>
+    <a class="button" href="{{smart_url}}">Watch Now {{#unless is_free_web}} - Paid Content{{/unless}}</a>
     <br>
     {{{overview}}}
 
     <div>
         <span class="grey">Aired: </span>
-        {{getDate first_aired}}
+        {{getDate first_aired}} ({{get_network}})
     </div>
     
     <div>
