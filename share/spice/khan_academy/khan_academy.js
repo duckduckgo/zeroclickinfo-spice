@@ -20,16 +20,17 @@ function ddg_spice_khan_academy ( api_result ) {
         header1                  : header,
         force_no_fold            : 1,
         force_big_header         : 1,
+        spice_name               : "khan_academy",
         template_frame           : "carousel",
-        template_normal          : "khan_academy",
-        carousel_css_id          : "khan_academy",
-        carousel_template_detail : "khan_academy_detail",
-        carousel_items           : api_result.feed.entry,
-        template_options         : { li_width : 120 }
+        template_options         : {
+            items           : api_result.feed.entry,
+            template_detail : "khan_academy_detail",
+            li_width : 120
+        }
     });
 
     // Move ddgc_detail above carousel
-    $("#ddgc_detail").prependTo("#khan_academy");
+    $("#ddgc_detail").prependTo("#ddgcarousel");
 
     // Set height of ddgc_detail;
     resizeDetail();

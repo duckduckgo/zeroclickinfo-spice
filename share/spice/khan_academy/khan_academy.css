@@ -1,8 +1,8 @@
-#khan_academy li.ddgc_item div.image_wrap{
+#spice_khan_academy li.ddgc_item div.image_wrap{
 	position: relative;
 }
 
-#khan_academy li.ddgc_selected div.image_wrap::before{
+#spice_khan_academy li.ddgc_selected div.image_wrap::before{
 	content: "Now Playing";
 	background: #000;
 	width: 100%;
@@ -17,29 +17,29 @@
 	text-align: center;
 }
 
-#khan_academy li.ddgc_item img {
+#spice_khan_academy li.ddgc_item img {
 	max-width: 100% !important;
 	max-height: 80px !important;
 	margin: 0 auto;
 }
 
-#khan_academy li.ddgc_item span {
+#spice_khan_academy li.ddgc_item span {
 	width: 100%;
 	margin-top: 5px;
 	margin-bottom: none;
 }
 
-#khan_academy #ddgc_detail {
+#spice_khan_academy #ddgc_detail {
 	padding: 9px 8px 0;
 	border-bottom: none;
 	background: #FFF;
 }
 
-#khan_academy #ddgc_slider {
+#spice_khan_academy #ddgc_slider {
 	border-top: none;
 	padding-top: 8px !important;
 }
 
-#khan_academy #ddgc_detail > div {
+#spice_khan_academy #ddgc_detail > div {
 	height: 100%;
 }
