@@ -18,6 +18,7 @@ function ddg_spice_lastfm_artist_tracks (api_result) {
 	    template_item: "lastfm_artist_tracks_item",
 	    single_template: "lastfm_artist_tracks",
 	    show: 3,
+	    max: 10,
 	    type: "ul"
 	},
 

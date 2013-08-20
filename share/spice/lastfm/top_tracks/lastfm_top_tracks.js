@@ -11,6 +11,7 @@ function ddg_spice_lastfm_top_tracks(api_result) {
 	    template_item: "lastfm_top_tracks_item",
 	    single_template: "lastfm_top_tracks",
 	    show: 3,
+	    max: 10,
 	    type: "ul"
 	},
 
