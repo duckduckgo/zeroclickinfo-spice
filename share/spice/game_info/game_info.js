@@ -6,7 +6,7 @@ function ddg_spice_game_info(api_result) {
         image_url                : api_result.image,
         header1                  : api_result.name + ' (Games)',
         source_url               : api_result.link,
-        source_name              : 'TheFreeGamesDB',
+        source_name              : api_result.domain,
         template_normal          : 'game_info',
         force_no_favicon         : true
     });
