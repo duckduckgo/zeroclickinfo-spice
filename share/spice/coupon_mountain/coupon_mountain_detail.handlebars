@@ -1,0 +1,18 @@
+<div id="coupon_preview" mer="{{merName}}">
+    <div class="coupon_info">
+		<div class="coupon_icon_wrap">
+            <a href="{{merUrl}}"><img src="/iu/?u={{iconUrl}}" class="coupon_icon"></a>
+			<p><a href="{{merUrl}}">{{merName}}</a></p>
+		</div>
+        <div class="coupon_detail_wrap">
+			<div class="coupon_name"><a href="{{merUrl}}">{{name}}</a></div>
+			{{#if expire}}
+            <div class="coupon_expdate">Deal Expires: <span>{{expire}}<span></div>
+			{{/if}}
+            <div class="coupon_code">USE CODE: <span>{{code}}</span></div>
+            <div class="coupon_description">{{{desc}}}</div>
+            <div class="coupon_url">{{{displayURL}}}</div>
+        </div>
+		<div class="clear"></div>
+    </div>
+</div>
