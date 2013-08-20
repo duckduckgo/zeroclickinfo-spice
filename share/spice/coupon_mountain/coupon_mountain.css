@@ -38,7 +38,7 @@
     clear: both;
 }
 
-#coupon_mountain #ddgc_detail a.button {
+#coupon_mountain #ddgc_detail .button {
     display: inline-block;
     border-radius: 3px;
     padding: 3px;
@@ -47,9 +47,10 @@
     border: 1px solid #DDD;
     color: black;
     min-width: 100px;
+    text-align: center;
 }
 
-#coupon_mountain #ddgc_detail a.button:hover {
+#coupon_mountain #ddgc_detail .button:hover {
     background-image: none !important;
     background-color: #f7f7f7;
     border: 1px solid #80b5ff;

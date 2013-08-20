@@ -2,51 +2,48 @@ function ddg_spice_coupon_mountain (api_result) {
 
     if (api_result.count < 1) return;
 
-    var relevants = getRelevant(api_result.coupon);
-    var hander = api_result.keyword ? api_result.keyword + " (CouponMountain)" : "Coupon Search (CouponMountain)";
+    var coupons = fixExpiry(api_result.coupon),
+        header = api_result.keyword
+            ? api_result.keyword + " (CouponMountain)"
+            : "Coupon Search (CouponMountain)",
+        keyword = encodeURIComponent(api_result.keyword);
 
-    if (!relevants) return;
+    // highlight coupon code on detail area opening
+    function highlight_code () {
+        var coupon_code = $("#coupon_code");
+        coupon_code.click(function() {
+            coupon_code.focus().select();
+        }).click();
+    }
 
     Spice.render({
         data                     : api_result,
         source_name              : 'CouponMountain',
-        source_url               : 'http://www.couponmountain.com',
-        header1                  : hander,
+        source_url               : 'http://www.couponmountain.com/search.php?searchtext='
+                                    + keyword,
+        header1                  : header,
         template_frame           : "carousel",
         template_normal          : "coupon_mountain",
-        template_options         : {
-            li_width: 150
-        },
+        template_options         : { li_width: 150  },
         carousel_css_id          : "coupon_mountain",
         carousel_template_detail : "coupon_mountain_detail",
-        carousel_items           : relevants
+        carousel_items           : coupons,
+        item_callback            : highlight_code
     });
 
     // Check relevancy of coupon results
-    function getRelevant (coupons) {
-        var relevants = [],
-            skip_words = ['coupon', 'coupon mountain'];
-
+    function fixExpiry (coupons) {
         for (var i = 0; i < coupons.length; i++) {
-            var coupon = coupons[i];
-
-            if (coupon.expire == "3333-03-03") {
-                coupon.expire = "";
-            }
-
-            if (DDG.isRelevant(coupon.merName.toLowerCase(), skip_words) ||
-                DDG.isRelevant(coupon.desc.toLowerCase(), skip_words)){
-                relevants.push(coupon);
-                console.log("RELEVANT! ", coupon);
+            if (coupons[i].expire == "3333-03-03") {
+                coupons[i].expire = "";
             }
         }
-        return relevants;
+        return coupons;
     }
 }
 
 Handlebars.registerHelper("dateString", function(string) {
-    var cleanString = string.replace(/-0/g, "-");
-    var date = new Date(cleanString),
+    var date = DDG.getDateFromString(string),
         months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
     return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
 });
