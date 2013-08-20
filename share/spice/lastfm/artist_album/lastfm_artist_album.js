@@ -16,10 +16,20 @@ function ddg_spice_lastfm_artist_album (api_result) {
         Spice.render({
             data              : api_result,
             header1           : "Albums from " + artist,
-            force_big_header  : true,
             source_name       : "Last.fm",
             source_url        : "http://www.last.fm/search?q=" + artist + "&type=album",
-            template_normal   : "lastfm_artist_album"
+
+	    template_frame    : "list",
+	    template_options  : {
+		items: api_result.topalbums.album,
+		template_item: "lastfm_artist_album_item",
+		single_template: "lastfm_artist_tracks",
+		show: 3,
+		type: "ul"
+	    },
+
+            force_big_header  : true,
+	    force_no_fold     : true
         });
     }
 };
