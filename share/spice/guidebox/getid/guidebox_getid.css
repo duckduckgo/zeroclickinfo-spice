@@ -23,14 +23,14 @@
   display: inline-block;
   border-radius: 3px;
   padding: 2px 9px 0px;
-  background: #EEE;
-  border: 1px solid #DDD;
+  background: #fefefe;
+  border: 1px solid #bbb;
   color: black;
+  line-height: 24px;
 }
 
 #guidebox .button:hover {
   border: 1px solid #80b5ff;
-  background: #f7f7f7;
   cursor: pointer;
   text-decoration: none;
 }
