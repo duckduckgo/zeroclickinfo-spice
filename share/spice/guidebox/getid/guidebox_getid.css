@@ -22,11 +22,13 @@
 #guidebox .button {
   display: inline-block;
   border-radius: 3px;
-  padding: 2px 9px 0px;
+  padding: 0px 9px;
   background: #fefefe;
   border: 1px solid #bbb;
   color: black;
   line-height: 24px;
+  margin-bottom: 5px;
+  margin-right: 5px;
 }
 
 #guidebox .button:hover {
