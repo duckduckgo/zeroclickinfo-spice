@@ -1,16 +1,16 @@
 <div>
     <a class="button" href="{{smart_url}}">Watch Now {{#unless is_free_web}} - Paid Content{{/unless}}</a>
-    {{{overview}}}
+    
+    {{{episode_name}}} (season {{season_number}}, #{{episode_number}})
 
     <div>
-        <span class="grey">Aired: </span>
-        {{getDate first_aired}} ({{get_network}})
+        {{{overview}}}
     </div>
     
     <div>
-        <span class="grey">Episode: </span>
-        {{{episode_name}}} (season {{season_number}}, #{{episode_number}})
-    </div>
+        <span class="grey">Aired: </span>
+        {{getDate first_aired}} ({{get_network}})
+    </div>    
     
     <div>
         {{#creators}}
