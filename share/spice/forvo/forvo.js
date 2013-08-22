@@ -13,6 +13,24 @@ function ddg_spice_forvo (api_result) {
     } else {
         api_result.isArray = false;
     }
+    
+    var list = [];
+    if(api_result.isArray) {
+	var hasOwn = Object.prototype.hasOwnProperty,
+            index = 0,
+            out = "";
+
+	for(var data in api_result.items) {
+            if(hasOwn.call(api_result.items, data)) {
+		if(index < 5) {
+                    list.push(api_result.items[data]);
+		}
+		index += 1;
+            }
+	}
+    } else {
+	list = api_result.items;
+    }
 
     // Display the Spice plug-in.
     Spice.render({
@@ -20,14 +38,26 @@ function ddg_spice_forvo (api_result) {
         header1          : "Pronunciations (Forvo)",
         source_url       : "http://www.forvo.com/",
         source_name      : "Forvo",
-        template_normal  : "forvo",
-        force_big_header : true
+	spice_name       : "forvo",
+
+	template_frame   : "list",
+	template_options : {
+	    items: list,
+	    template_item: "forvo",
+	    show: 3,
+	    type: "ul"
+	},
+
+        force_big_header : true,
+	force_no_fold    : true
     });
+
+
 
     // This gets called when the sound is finished playing
     // or when another player is playing. It basically just resets the look of the player.
     var clearPlayer = function() {
-        var li = $("ul.playlist li");
+        var li = $("ul.ddg_spicelist li");
         li.removeClass();
         li.addClass("sm2_stopped");
         soundManager.stopAll();
@@ -79,8 +109,8 @@ function ddg_spice_forvo (api_result) {
 
     // This controls our player.
     var last_id;
-    ddg_spice_forvo.player = function(element) {
-        var li = $(element);
+    ddg_spice_forvo.player = function() {
+        var li = $(this);
         var anchor = li.children();
 
         // Get the sound
@@ -126,6 +156,11 @@ function ddg_spice_forvo (api_result) {
             li.addClass("sm2_playing");
         }
     };
+
+    $(document).ready(function() {
+	$(".spice2list_item").click(ddg_spice_forvo.player);
+	$(".spice2list_item").attr("class", "sm2_stopped");
+    });
 };
 
 // Make sure we display only five items.
@@ -150,23 +185,3 @@ Handlebars.registerHelper("sex", function(sex) {
     }
 });
 
-// Make sure we display only five items.
-// This helper is for objects.
-Handlebars.registerHelper("listObjects", function(items, options) {
-    "use strict";
-
-    var hasOwn = Object.prototype.hasOwnProperty,
-        index = 0,
-        out = "";
-
-    for(var data in items) {
-        if(hasOwn.call(items, data)) {
-            if(index < 5) {
-                out += options.fn(items[data]);
-            }
-            index += 1;
-        }
-    }
-
-    return out;
-});

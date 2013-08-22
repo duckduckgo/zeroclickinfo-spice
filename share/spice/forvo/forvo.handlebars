@@ -1,15 +1,2 @@
-<ul class="playlist">
-    {{#if this.isArray}}
-        {{#list this.items}}
-            <li class="sm2_stopped" onclick="ddg_spice_forvo.player(this);">
-                <a class="forvo-audio" type="audio/mp3" title="{{original}}" data-stream="/audio/?u={{standard_pronunciation.pathmp3}}" id="sound_{{id}}">{{original}} <span class="sidenote">({{standard_pronunciation.langname}}{{sex standard_pronunciation.sex}})</span></a>
-            </li>
-        {{/list}}
-    {{else}}
-        {{#listObjects this.items}}
-            <li class="sm2_stopped" onclick="ddg_spice_forvo.player(this);">
-                <a class="forvo-audio" type="audio/mp3" title="{{original}}" data-stream="/audio/?u={{standard_pronunciation.pathmp3}}" id="sound_{{id}}">{{original}} <span class="sidenote">({{standard_pronunciation.langname}}{{sex standard_pronunciation.sex}})</span></a>
-            </li>
-        {{/listObjects}}
-    {{/if}}
-</ul>
+<a class="forvo-audio" type="audio/mp3" title="{{original}}" data-stream="/audio/?u={{standard_pronunciation.pathmp3}}" id="sound_{{id}}">{{original}} <span class="sidenote">({{standard_pronunciation.langname}}{{sex standard_pronunciation.sex}})</span></a>
+
