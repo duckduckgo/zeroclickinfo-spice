@@ -44,14 +44,14 @@ ul.use-spectrum .spectrum-box .spectrum {
  background-color:#fff;
 }
 
-ul.playlist {
+ul.ddg_spicelist {
  list-style-type:none;
  margin:0px;
  padding:0px;
 
 }
 
-ul.playlist li {
+ul.ddg_spicelist li {
  /* assume all items will be sounds rather than wait for onload etc. in this example.. may differ for your uses. */
  position:relative;
  display:block;
@@ -69,7 +69,7 @@ ul.playlist li {
 
 }
 
-ul.playlist li a {
+ul.ddg_spicelist li a {
  display:block;
  text-decoration:none;
  font-weight:normal;
@@ -80,27 +80,27 @@ ul.playlist li a {
  z-index:2;
 }
 
-ul.playlist li.sm2_playing,
-ul.playlist li.sm2_paused,
-ul.playlist li.sm2_playing a {
+ul.ddg_spicelist li.sm2_playing,
+ul.ddg_spicelist li.sm2_paused,
+ul.ddg_spicelist li.sm2_playing a {
  color:#fff;
  border-radius:3px;
 }
 
-ul.playlist li:hover {
+ul.ddg_spicelist li:hover {
  background-color:#eee;
 }
 
-ul.playlist li:hover a {
+ul.ddg_spicelist li:hover a {
  color:#333;
 }
 
-ul.playlist li.sm2_playing,
-ul.playlist li.sm2_playing:hover {
+ul.ddg_spicelist li.sm2_playing,
+ul.ddg_spicelist li.sm2_playing:hover {
  background-color:#6699cc;
 }
 
-ul.playlist li.sm2_paused {
+ul.ddg_spicelist li.sm2_paused {
  background-color:#999;
  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAA6ElEQVR42q2UvQqDMBRGC47dAj6rgygIDg5OfQlHF30GX0JFURddnEQU+eoNLaSJFRUvnPzA/c4QkjwA3AIf1tJWnitsRT8I+2Q0UfTM8/yFk0UZyooiNk0ThmE4BWUoK4r0cRxxBcr+iMh+AVW0LAtkoihCURS0/ocqwkaZpgnbtrmwrmts1DGR67owDIPjeR7iOEbXdfuisiwh4zgOSb5wcZIkYo8qapoGMpZlkYALwzBElmWoqkrsUUVt20LG930EQUAHTvstVFHf95BJ05TmPVQR3dQLKCI2zzOuQNnbHu3t38gtvAF1L6rpAc8MDwAAAABJRU5ErkJggg==);
  background-repeat: no-repeat;
@@ -112,7 +112,7 @@ ul.playlist li.sm2_paused {
  cursor: pointer;
 }
 
-ul.playlist li.sm2_stopped {
+ul.ddg_spicelist li.sm2_stopped {
  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAA6ElEQVR42q2UvQqDMBRGC47dAj6rgygIDg5OfQlHF30GX0JFURddnEQU+eoNLaSJFRUvnPzA/c4QkjwA3AIf1tJWnitsRT8I+2Q0UfTM8/yFk0UZyooiNk0ThmE4BWUoK4r0cRxxBcr+iMh+AVW0LAtkoihCURS0/ocqwkaZpgnbtrmwrmts1DGR67owDIPjeR7iOEbXdfuisiwh4zgOSb5wcZIkYo8qapoGMpZlkYALwzBElmWoqkrsUUVt20LG930EQUAHTvstVFHf95BJ05TmPVQR3dQLKCI2zzOuQNnbHu3t38gtvAF1L6rpAc8MDwAAAABJRU5ErkJggg==);
  background-repeat: no-repeat;
  background-position: 3px 35%;
@@ -123,7 +123,7 @@ ul.playlist li.sm2_stopped {
  cursor: pointer;
 }
 
-ul.playlist li.sm2_playing {
+ul.ddg_spicelist li.sm2_playing {
  background-image: url(https://jagtalon.duckduckgo.com/soundmanager2/icon_pause.png);
  background-repeat: no-repeat;
  background-position: 3px 35%;
@@ -134,44 +134,44 @@ ul.playlist li.sm2_playing {
  cursor: pointer;
 }
 
-ul.playlist li.sm2_playing:hover a,
-ul.playlist li.sm2_paused a {
+ul.ddg_spicelist li.sm2_playing:hover a,
+ul.ddg_spicelist li.sm2_paused a {
  color:#fff;
 }
 
-ul.playlist li .controls {
+ul.ddg_spicelist li .controls {
  display:none;
 }
 
-ul.playlist li .peak,
-ul.playlist.use-peak li .peak {
+ul.ddg_spicelist li .peak,
+ul.ddg_spicelist.use-peak li .peak {
  display:none;
  position:absolute;
  top:0.55em;
  right:0.5em;
 }
 
-ul.playlist li.sm2_playing .controls,
-ul.playlist li.sm2_paused .controls {
+ul.ddg_spicelist li.sm2_playing .controls,
+ul.ddg_spicelist li.sm2_paused .controls {
  position:relative;
  display:block;
 }
 
-ul.playlist.use-peak li.sm2_playing .peak,
-ul.playlist.use-peak li.sm2_paused .peak {
+ul.ddg_spicelist.use-peak li.sm2_playing .peak,
+ul.ddg_spicelist.use-peak li.sm2_paused .peak {
  display:inline;
  display:inline-block;
 }
 
-ul.playlist.use-peak li .peak {
+ul.ddg_spicelist.use-peak li .peak {
  display:none; /* IE 7 */
 }
 
-ul.playlist li.sm2_paused .controls {
+ul.ddg_spicelist li.sm2_paused .controls {
  background-color:#666;
 }
 
-ul.playlist li:hover .controls .statusbar {
+ul.ddg_spicelist li:hover .controls .statusbar {
  position:relative;
  cursor:ew-resize;
  cursor:-moz-grab;
@@ -179,18 +179,18 @@ ul.playlist li:hover .controls .statusbar {
  cursor:grab;
 }
 
-ul.playlist li.sm2_paused .controls .statusbar {
+ul.ddg_spicelist li.sm2_paused .controls .statusbar {
  background-color:#ccc;
 }
 
-ul.playlist li .controls {
+ul.ddg_spicelist li .controls {
  position:relative;
  margin-top:0.25em;
  margin-bottom:0.25em;
  background-color:#99ccff;
 }
 
-ul.playlist li .controls .statusbar {
+ul.ddg_spicelist li .controls .statusbar {
  position:relative;
  height:0.5em;
  background-color:#ccddff;
@@ -208,41 +208,41 @@ ul.playlist li .controls.dragging .statusbar {
  cursor:grabbing;
 }
 
-ul.playlist li .controls .statusbar .position,
-ul.playlist li .controls .statusbar .loading,
-ul.playlist li .controls .statusbar .annotation {
+ul.ddg_spicelist li .controls .statusbar .position,
+ul.ddg_spicelist li .controls .statusbar .loading,
+ul.ddg_spicelist li .controls .statusbar .annotation {
  position:absolute;
  left:0px;
  top:0px;
  height:0.5em;
 }
 
-ul.playlist li .controls .statusbar .position {
+ul.ddg_spicelist li .controls .statusbar .position {
  background-color:#336699;
  border-right:3px solid #336699;
  border-radius:3px;
 }
 
-ul.playlist li.sm2_paused .controls .statusbar .position {
+ul.ddg_spicelist li.sm2_paused .controls .statusbar .position {
  background-color:#666;
  border-color:#666;
 }
 
-ul.playlist li .controls .statusbar .loading {
+ul.ddg_spicelist li .controls .statusbar .loading {
  background-color:#eee;
 }
 
-ul.playlist li .controls .statusbar .position,
-ul.playlist li .controls .statusbar .loading {
+ul.ddg_spicelist li .controls .statusbar .position,
+ul.ddg_spicelist li .controls .statusbar .loading {
  width:0px;
 }
 
-ul.playlist li.sm2_playing a.sm2_link,
-ul.playlist li.sm2_paused a.sm2_link {
+ul.ddg_spicelist li.sm2_playing a.sm2_link,
+ul.ddg_spicelist li.sm2_paused a.sm2_link {
  margin-right:4.5em; /* room for timing stuff */
 }
 
-ul.playlist li .timing {
+ul.ddg_spicelist li .timing {
  position:absolute;
  display:none;
  text-align:right;
@@ -260,40 +260,40 @@ ul.playlist li .timing {
  vertical-align:middle;
 }
 
-ul.playlist.use-peak li .timing {
+ul.ddg_spicelist.use-peak li .timing {
  right:4.25em;
 }
 
-ul.playlist li:hover .timing {
+ul.ddg_spicelist li:hover .timing {
  z-index:2;
 }
 
-ul.playlist li .timing div.sm2_timing {
+ul.ddg_spicelist li .timing div.sm2_timing {
  margin:0px;
  padding:0px;
  margin-top:-1em;
 }
 
-ul.playlist li.sm2_playing .timing,
-ul.playlist li.sm2_paused .timing {
+ul.ddg_spicelist li.sm2_playing .timing,
+ul.ddg_spicelist li.sm2_paused .timing {
  display:block;
 }
 
-ul.playlist li.sm2_paused .timing .sm2_position {
+ul.ddg_spicelist li.sm2_paused .timing .sm2_position {
  text-decoration:blink; /* hee hee. first actual appropriate use? :D */
 }
 
-ul.playlist li.sm2_paused .timing,
-ul.playlist.use-peak li.sm2_paused .peak {
+ul.ddg_spicelist li.sm2_paused .timing,
+ul.ddg_spicelist.use-peak li.sm2_paused .peak {
  background-color:#888;
  border-color:#ccc;
 }
 
 /* peak data */
 
-/* ul.playlist ... */
+/* ul.ddg_spicelist ... */
 
-ul.playlist.use-peak li .peak {
+ul.ddg_spicelist.use-peak li .peak {
  display:none;
  zoom:1;
  border:1px solid #99ccff;
@@ -306,15 +306,15 @@ ul.playlist.use-peak li .peak {
  margin-top:-3px;
 }
 
-ul.playlist.use-peak li .peak-box {
+ul.ddg_spicelist.use-peak li .peak-box {
  position:relative;
  width:100%;
  height:0.55em;
  overflow:hidden;
 }
 
-ul.playlist li .peak .l,
-ul.playlist li .peak .r {
+ul.ddg_spicelist li .peak .l,
+ul.ddg_spicelist li .peak .r {
  position:absolute;
  left:0px;
  top:0px;
@@ -326,11 +326,11 @@ ul.playlist li .peak .r {
  margin-top:1em;
 }
 
-ul.playlist li .peak .l {
+ul.ddg_spicelist li .peak .l {
  margin-right:1px;
 }
 
-ul.playlist li .peak .r {
+ul.ddg_spicelist li .peak .r {
  left:10px;
 }
 
@@ -351,6 +351,6 @@ ul.playlist li .peak .r {
     clear: both;
 }
 
-ul.playlist {
+ul.ddg_spicelist {
 	margin-left: -5px;
 }
