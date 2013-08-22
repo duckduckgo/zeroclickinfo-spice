@@ -12,11 +12,11 @@ function ddg_spice_lastfm_artist_tracks (api_result) {
         source_name       : "Last.fm",
         source_url        : "http://www.last.fm/search?q=" + artist + "&type=track",
 
+	    template_normal: "lastfm_artist_tracks",
 	template_frame    : "list",
 	template_options  : {
 	    items: api_result.toptracks.track,
 	    template_item: "lastfm_artist_tracks_item",
-	    single_template: "lastfm_artist_tracks",
 	    show: 3,
 	    max: 10,
 	    type: "ul"
