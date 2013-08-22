@@ -70,7 +70,7 @@ ul.ddg_spicelist li {
 }
 
 ul.ddg_spicelist li a {
- display:block;
+ display:inline-block;
  text-decoration:none;
  font-weight:normal;
  color:#000;
