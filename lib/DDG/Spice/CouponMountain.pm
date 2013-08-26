@@ -14,7 +14,8 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution web => ['http://www.couponmountain.com', 'Coupon Mountain'],
             email => ['dwashburn@valueclickbrands.com', 'Daniel Washburn'];
 
-my @triggers = ("coupon", "coupons", "promo code", "promo codes", "discount code", "discount codes", "promotional code", "promotional codes", "deal", "deals");
+my @triggers = ("coupon", "promo code", "discount coupon", "discount code", "promotional code", "deal", "discount");
+push (@triggers, map {$_."s"} @triggers);
 
 triggers any => @triggers;
 triggers start => map {"$_ for"} @triggers;
