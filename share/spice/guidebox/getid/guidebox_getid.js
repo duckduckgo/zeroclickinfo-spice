@@ -9,7 +9,6 @@ function ddg_spice_guidebox_getid (api_result) {
 
     $.each(results, function(key, result){
         if (DDG.isRelevant(result.title, SKIP_ARRAY, 3)){
-            console.log("RELEVANT: ", result);
             relevant = result;
             return(false);
         }
