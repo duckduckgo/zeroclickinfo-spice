@@ -3,6 +3,20 @@ function ddg_spice_guidebox_getid (api_result) {
 
     if (!api_result.results) return;
 
+    var SKIP_ARRAY = ["online","tv","episode","episodes","free","guidebox","watch","full"],
+        results = api_result.results.result,
+        relevant = [];
+
+    $.each(results, function(key, result){
+        if (DDG.isRelevant(result.title, SKIP_ARRAY, 3)){
+            console.log("RELEVANT: ", result);
+            relevant = result;
+            return(false);
+        }
+    });
+
+    if (relevant.length == 0) return;
+
     // Prevent jQuery from appending "_={timestamp}" in our url.
     $.ajaxSetup({
         cache: true
@@ -14,15 +28,14 @@ function ddg_spice_guidebox_getid (api_result) {
         query  = matched[1];
 
     var metadata = {
-        res_title :  api_result.results.result[0].title,
-        network   :  api_result.results.result[0].network,
-        more      :  api_result.results.result[0].url,
-        query     :  query
+        res_title : api_result.results.result[0].title,
+        network   : api_result.results.result[0].network,
+        more      : api_result.results.result[0].url,
+        query     : query,
     };
     
     ddg_spice_guidebox_getid.metadata = metadata;
-    ddg_spice_guidebox_getid.metadata.searched = api_result.results.result;
-    $.getScript("/js/spice/guidebox/lastshows/series/" + api_result.results.result[0].id);
+    $.getScript("/js/spice/guidebox/lastshows/series/" + relevant.id);
 }
 
 function ddg_spice_guidebox_lastshows (api_result) {
