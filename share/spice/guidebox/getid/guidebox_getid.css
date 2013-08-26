@@ -1,10 +1,6 @@
-#guidebox .grey { 
-    color: grey;
-}
-
 #guidebox li.ddgc_item img {
-    max-width: 100% !important;
-    max-height: 75% !important;
+  max-width: 100% !important;
+  max-height: 68px !important;
 }
 
 #guidebox div.image_wrap {
@@ -12,26 +8,41 @@
 }
 
 #guidebox .gb_info {
-    white-space: nowrap;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    margin: 0px !important
+  white-space: nowrap;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0px !important
 }
 
 #guidebox .button {
   display: inline-block;
   border-radius: 3px;
-  padding: 2px 9px 0px;
-  vertical-align: text-bottom;
-  background: #EEE;
-  border: 1px solid #DDD;
+  padding: 3px 9px;
+  background: #fefefe;
+  border: 1px solid #bbb;
   color: black;
+  margin-right: 10px;
 }
 
 #guidebox .button:hover {
   border: 1px solid #80b5ff;
-  background: #f7f7f7;
   cursor: pointer;
   text-decoration: none;
+}
+
+#guidebox #ddgc_detail p {
+  margin-bottom: 10px;
+}
+
+#guidebox .grey {
+  color: grey;
+}
+
+#guidebox .red {
+  color: #B57367
+}
+
+#guidebox .small {
+  font-size: 13px;
 }
