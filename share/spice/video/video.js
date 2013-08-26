@@ -1,5 +1,5 @@
 function ddg_spice_video(api_result) {
-    if(!api_result) {
+    if(!api_result || api_result.length === 0) {
         return;
     }
 
