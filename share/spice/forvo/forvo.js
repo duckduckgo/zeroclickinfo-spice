@@ -58,7 +58,7 @@ function ddg_spice_forvo (api_result) {
     // This gets called when the sound is finished playing
     // or when another player is playing. It basically just resets the look of the player.
     var clearPlayer = function() {
-        var li = $("ul.ddg_spicelist li");
+        var li = $(".spice2list_item");
         li.removeClass("sm2_playing");
         li.removeClass("sm2_paused");
         li.addClass("sm2_stopped");
@@ -169,25 +169,14 @@ function ddg_spice_forvo (api_result) {
     });
 };
 
-// Make sure we display only five items.
-Handlebars.registerHelper("list", function(items, options) {
-    "use strict";
-
-    var out = "";
-    for(var i = 0; i < items.length && i < 5; i += 1) {
-        out += options.fn(items[i]);
-    }
-    return out;
-});
 
 // The sex (returned as either "m" or "f") should be expanded.
-Handlebars.registerHelper("sex", function(sex) {
+Handlebars.registerHelper("forvo_sex", function(sex) {
     "use strict";
 
-    if(sex === "m") {
-        return ", Male";
-    } else {
-        return ", Female";
-    }
+    if(sex === "m")
+        return "Male";
+
+    return "Female";
 });
 

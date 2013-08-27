@@ -60,12 +60,11 @@ ul.ddg_spicelist li {
  color:#666;
  padding:0.25em 0.5em 0.25em 0.5em;
  border:none;
- /*background-color:#f9f9f9;*/
- -webkit-transition-property: hover;
- -webkit-transition: background-color 0.15s ease-in-out;
- -moz-transition: background-color 0.15s linear 0s; /* firefox 4 */
-  -o-transition-property: background-color; /* opera 10.5 */
-  -o-transition-duration: 0.15s;
+ /* -webkit-transition-property: hover; */
+ /* -webkit-transition: background-color 0.15s ease-in-out; */
+ /* -moz-transition: background-color 0.15s linear 0s; */
+ /*  -o-transition-property: background-color; */
+ /*  -o-transition-duration: 0.15s; */
 
 }
 
@@ -83,22 +82,22 @@ ul.ddg_spicelist li a {
 ul.ddg_spicelist li.sm2_playing,
 ul.ddg_spicelist li.sm2_paused,
 ul.ddg_spicelist li.sm2_playing a {
- color:#fff;
+ /* color:#fff; */
  border-radius:3px;
 }
 
-ul.ddg_spicelist li:hover {
- background-color:#eee;
-}
+/* ul.ddg_spicelist li:hover { */
+/*  background-color:#eee; */
+/* } */
 
 ul.ddg_spicelist li:hover a {
  color:#333;
 }
 
-ul.ddg_spicelist li.sm2_playing,
-ul.ddg_spicelist li.sm2_playing:hover {
- background-color:#6699cc;
-}
+/* ul.ddg_spicelist li.sm2_playing, */
+/* ul.ddg_spicelist li.sm2_playing:hover { */
+/*  background-color:#6699cc; */
+/* } */
 
 ul.ddg_spicelist li.sm2_paused {
  background-color:#999;
@@ -134,10 +133,10 @@ ul.ddg_spicelist li.sm2_playing {
  cursor: pointer;
 }
 
-ul.ddg_spicelist li.sm2_playing:hover a,
-ul.ddg_spicelist li.sm2_paused a {
- color:#fff;
-}
+/* ul.ddg_spicelist li.sm2_playing:hover a, */
+/* ul.ddg_spicelist li.sm2_paused a { */
+/*  color:#fff; */
+/* } */
 
 ul.ddg_spicelist li .controls {
  display:none;
