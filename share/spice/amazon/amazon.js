@@ -50,14 +50,16 @@ function ddg_spice_amazon(api_response) {
             source_name              : 'Amazon',
             force_big_header         : true,
             force_favicon_domain     : 'www.amazon.com',
-            template_frame           : 'carousel',
             template_normal          : 'amazon',
-            carousel_css_id          : 'amazon',
-            carousel_template_detail : 'amazon_detail',
-            carousel_items           : api_response.results,
+            template_frame           : 'carousel',
+            template_options         : {
+                template_detail          : 'amazon_detail',
+                use_alternate_template   : false, // single item case will be handled by the backend not by carousel
+                items                    : api_response.results,
+                li_height                : 130
+            },
             force_no_fold            : true,
             item_callback            : spotlight_resize,
-	    template_options         : { li_height : 130 },
         });
 
     nrj('/m.js?pg=2'
