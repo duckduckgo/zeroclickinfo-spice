@@ -22,14 +22,9 @@ function ddg_spice_shorten(api_result) {
         favicon_style    : "inline"
     });
 
-    var selectText = function(url) {
-        url.focus().select();
-    };
-
     // If we displayed an input box, make sure we focus on it.
     var url = $("input#shorten-url");
-    selectText(url);
     url.click(function() {
-        selectText(url);
-    });
+        url.focus().select();
+    }).click();
 }
