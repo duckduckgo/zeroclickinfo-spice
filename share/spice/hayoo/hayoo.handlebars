@@ -1,6 +1,4 @@
-<pre>
-    {{name}} :: {{signature}}
-</pre>
-<div>Package: {{#strip_html package}}{{this}}{{/strip_html}}</div>
-<div>Module: {{#strip_html module}}{{this}}{{/strip_html}}</div>
-<div>{{{strip_anchor description}}}</div>
+{{#rt}}<pre>{{name}} :: {{signature}}</pre>{{/rt}}
+{{#rd "Package"}} {{#strip_html package}}{{this}}{{/strip_html}} {{/rd}}
+{{#rd "Module"}} {{#strip_html module}}{{this}}{{/strip_html}}</div>
+{{#rd}}{{{strip_anchor description}}}{{/rd}}
