@@ -20,17 +20,17 @@ function ddg_spice_amazon(api_response) {
 
     var spotlight_resize = function(index, item, obj, is_cached) {
         if ($('#ddgcarousel').outerWidth() <= 400) {
-            $('#amazon .spotlight').hide();
-            $('#amazon .description').css({
+            $('#spice_amazon .spotlight').hide();
+            $('#spice_amazon .description').css({
                 'width' : '100%',
                 'margin-left' : '0',
             });
         } else {
-            $('#amazon .spotlight').show().css({
+            $('#spice_amazon .spotlight').show().css({
                 'max-height'  : ($('#ddgc_detail').height() > 150 ?
                                     $('#ddgc_detail').height() : 150) + 'px',
             });
-            $('#amazon .description').css({
+            $('#spice_amazon .description').css({
                 // width - parent margins (both sides)
                 // - parent padding - spotlight image width - left-margin
                 'width' : $('#ddgc_nav').width() - 10 - (12*2) - 150 - 20,
@@ -50,10 +50,11 @@ function ddg_spice_amazon(api_response) {
             source_name              : 'Amazon',
             force_big_header         : true,
             force_favicon_domain     : 'www.amazon.com',
-            template_normal          : 'amazon',
             template_frame           : 'carousel',
+            spice_name               : 'amazon',
             template_options         : {
                 template_detail          : 'amazon_detail',
+                template_item            : 'amazon',
                 use_alternate_template   : false, // single item case will be handled by the backend not by carousel
                 items                    : api_response.results,
                 li_height                : 130
@@ -71,7 +72,7 @@ function ddg_spice_amazon(api_response) {
 
 function ddg_spice_amazon_wait_for_render(api_response) {
     window.setTimeout(function() {
-            ddg_spice_amazon_carousel_add_items(api_response.results)
+        ddg_spice_amazon_carousel_add_items(api_response);
     }, 500);
 }
 
