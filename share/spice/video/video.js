@@ -81,7 +81,8 @@ ddg_spice_video.providers = {
 	"user_url": "https://www.youtube.com/user/",
 	"embed_options": {
 	    "disablekb": 1,
-	    "iv_load_policy": 3
+	    "iv_load_policy": 3,
+	    "autoplay": 1
 	}
 },
     "Vimeo": {
@@ -92,7 +93,8 @@ ddg_spice_video.providers = {
 	"play_url": "https://vimeo.com/",
 	"user_url": "htps://vimeo.com/",
 	"embed_options": {
-	    "api": 0
+	    "api": 0,
+	    "autoplay": 1
 	}
     }
 };
