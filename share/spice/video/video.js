@@ -78,20 +78,26 @@ ddg_spice_video.providers = {
 	"text": "More at YouTube",
 	"embed": "https://www.youtube-nocookie.com/embed/",
 	"play_url": "https://www.youtube.com/watch?v=",
-	"user_url": "https://www.youtube.com/user/"
-    },
+	"user_url": "https://www.youtube.com/user/",
+	"embed_options": {
+	    "disablekb": 1,
+	    "iv_load_policy": 3
+	}
+},
     "Vimeo": {
 	"search_link": "https://www.vimeo.com/search?q=",
 	"image": "http://icons.duckduckgo.com/i/www.vimeo.com.ico",
 	"text": "More at Vimeo",
 	"embed": "https://player.vimeo.com/video/",
 	"play_url": "https://vimeo.com/",
-	"user_url": "htps://vimeo.com/"
+	"user_url": "htps://vimeo.com/",
+	"embed_options": {
+	    "api": 0
+	}
     }
 };
 
 // This is the callback function of /itt.
-// TODO: Don't show the link when we didn't find the iTunes URL.
 ddg_spice_video.itunes = function(api_result) {
     if(!api_result || !api_result.results || api_result.results.length === 0) {
         return;
@@ -161,8 +167,17 @@ Handlebars.registerHelper("formatViews", function(views) {
 });
 
 Handlebars.registerHelper("embedURL", function(provider, id) {
+    function parameters(embed_options) {
+	var result = [];
+	for(o in embed_options) {
+	    result.push(o + "=" + embed_options[o]);
+	}
+	return result.join("&");
+    }
+
     if(provider in ddg_spice_video.providers) {
-	return ddg_spice_video.providers[provider].embed + id;
+	return ddg_spice_video.providers[provider].embed + id + "?" +
+	    parameters(ddg_spice_video.providers[provider].embed_options);
     }
     return "";
 });
