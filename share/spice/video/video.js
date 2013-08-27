@@ -192,7 +192,7 @@ Handlebars.registerHelper("playURL", function(provider, id) {
 });
 
 Handlebars.registerHelper("checkStatistics", function(viewCount, options) {
-    if(Object.prototype.toString.call(viewCount) === "[object Null]") {
+    if(viewCount === null) {
 	return "";
     }
     return options.fn({viewCount: viewCount});
