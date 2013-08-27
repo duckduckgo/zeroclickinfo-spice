@@ -45,6 +45,7 @@ function ddg_spice_forvo (api_result) {
 	    items: api_result.items, //list,
 	    template_item: "forvo",
 	    show: 3,
+	    max: 5,
 	    type: "ul"
 	},
 
