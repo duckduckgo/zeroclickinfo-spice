@@ -11,7 +11,7 @@ category "reference";
 attribution github => ['https://github.com/thomaspreece10','thomaspreece10'];
 
 triggers startend => "game","games";
-spice to => 'http://thefreegamesdb.com/API/DuckDuckGo.php?Name=$1';
+spice to => 'http://tfgdb.com/API/DuckDuckGo.php?Name=$1';
 spice wrap_jsonp_callback => 1;
 spice is_cached => 1;
 
