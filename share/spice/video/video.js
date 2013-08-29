@@ -56,8 +56,6 @@ function ddg_spice_video(api_result) {
 	var video_title = $("#video #video-title").width();
 	var video_links = $("#video .links").width();
 
-	console.log(width - (video_title + video_links) - 20);
-
 	if(width - (video_title + video_links) < 20) {
 	    $("#video .links").css("position", "static");
 	} else {
@@ -80,9 +78,11 @@ ddg_spice_video.providers = {
 	"play_url": "https://www.youtube.com/watch?v=",
 	"user_url": "https://www.youtube.com/user/",
 	"embed_options": {
-	    "disablekb": 1,
 	    "iv_load_policy": 3,
-	    "autoplay": 1
+	    "autoplay": 1,
+	    "wmode": "opaque",
+	    "autohide": 1,
+	    "version": 3
 	}
 },
     "Vimeo": {
