@@ -91,7 +91,7 @@ ddg_spice_video.providers = {
 	"text": "More at Vimeo",
 	"embed": "https://player.vimeo.com/video/",
 	"play_url": "https://vimeo.com/",
-	"user_url": "htps://vimeo.com/",
+	"user_url": "https://vimeo.com/",
 	"embed_options": {
 	    "api": 0,
 	    "autoplay": 1
