@@ -50,7 +50,7 @@
 #video .app_platform {
   display: inline-block;
   border-radius: 3px;
-  padding: 2px 3px 0px 2px;
+  padding: 5px 5px 2px 5px;
   vertical-align: text-bottom;
   background: #EEE;
   border: 1px solid #DDD;
@@ -59,7 +59,6 @@
 
 #video .links {
     font-size: smaller;
-    position: absolute;
     right: 8px;
     bottom: 21px;
     display: inline-block;
