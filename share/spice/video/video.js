@@ -8,7 +8,6 @@ function ddg_spice_video(api_result) {
     });
 
     var encodedQuery = DDG.get_query_encoded().replace(/(?:vimeo|youtube|videos?)/i, '');
-    console.log('Video encoded query: '+encodedQuery);
     
     // Change the "More at ..." link.
     var change_more = function(obj) {
