@@ -12,10 +12,10 @@ function ddg_spice_video(api_result) {
     
     // Change the "More at ..." link.
     var change_more = function(obj) {
-	var more_at_link = $(".zero_click_more_at_link").get(0);
-	$(more_at_link).attr("href", obj.search_link);
-        $("img", more_at_link).attr("src", obj.image);
-        $("span", more_at_link).html(obj.text);
+	var more_at_link = $(".zero_click_more_at_link");
+	more_at_link.attr("href", obj.search_link);
+        more_at_link.find("img").attr("src", obj.image);
+        more_at_link.find("span").html(obj.text);
     };
 
     Spice.render({
@@ -45,7 +45,7 @@ function ddg_spice_video(api_result) {
 	    resizeDetail();
 	}
     });
-    
+
     function resizeDetail() {
 	var $video = $("#spice_video");
 	var width = $video.width() - 18;
@@ -72,7 +72,7 @@ function ddg_spice_video(api_result) {
 ddg_spice_video.providers = {
     "YouTube": {
 	"search_link": "https://www.youtube.com/results?search_query=",
-	"image": "http://icons.duckduckgo.com/i/www.youtube.com.ico",
+	"image": "https://icons.duckduckgo.com/i/www.youtube.com.ico",
 	"text": "More at YouTube",
 	"embed": "https://www.youtube-nocookie.com/embed/",
 	"play_url": "https://www.youtube.com/watch?v=",
@@ -80,14 +80,12 @@ ddg_spice_video.providers = {
 	"embed_options": {
 	    "iv_load_policy": 3,
 	    "autoplay": 1,
-	    "wmode": "opaque",
-	    "autohide": 1,
-	    "version": 3
+	    "wmode": "opaque"
 	}
-},
+    },
     "Vimeo": {
 	"search_link": "https://www.vimeo.com/search?q=",
-	"image": "http://icons.duckduckgo.com/i/www.vimeo.com.ico",
+	"image": "https://icons.duckduckgo.com/i/www.vimeo.com.ico",
 	"text": "More at Vimeo",
 	"embed": "https://player.vimeo.com/video/",
 	"play_url": "https://vimeo.com/",
