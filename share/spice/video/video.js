@@ -7,8 +7,8 @@ function ddg_spice_video(api_result) {
         cache: true
     });
 
-    var script = $('[src*="/js/spice/video/"]').attr("src");
-    var query = script.match(/video\/([^\/]+)/)[1]
+    var encodedQuery = DDG.get_query_encoded().replace(/(?:vimeo|youtube|videos?)/i, '');
+    console.log('Video encoded query: '+encodedQuery);
     
     // Change the "More at ..." link.
     var change_more = function(obj) {
@@ -21,7 +21,7 @@ function ddg_spice_video(api_result) {
     Spice.render({
         data: api_result,
         source_name : 'YouTube',
-        source_url : 'https://www.youtube.com/results?search_query=' + query,
+        source_url : 'https://www.youtube.com/results?search_query=' + encodedQuery,
         header1 : "Video Search",
         template_frame: "carousel",
         template_normal: "video",
@@ -37,7 +37,7 @@ function ddg_spice_video(api_result) {
 	    if(item.provider in ddg_spice_video.providers) {
 		var providers = ddg_spice_video.providers;
 		change_more({
-		    "search_link": providers[item.provider].search_link + query,
+		    "search_link": providers[item.provider].search_link + encodedQuery,
 		    "image": providers[item.provider].image,
 		    "text": providers[item.provider].text
 		});
