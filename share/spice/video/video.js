@@ -21,7 +21,7 @@ function ddg_spice_video(api_result) {
         data: api_result,
         source_name : 'YouTube',
         source_url : 'https://www.youtube.com/results?search_query=' + encodedQuery,
-        header1 : "Video Search",
+        header1 :  decodeURIComponent(encodedQuery) + " (Video Search)",
         template_frame: "carousel",
         template_normal: "video",
         carousel_css_id: "video",
