@@ -1,5 +1,3 @@
-var ddg_spice_local_details = {};
-
 function ddg_spice_local(api_response) {
     console.log(api_response);
     if (!api_response || api_response.length == 0) return;
@@ -21,12 +19,11 @@ function ddg_spice_local(api_response) {
     });
 };
 
-function get_details(engine, id, page) {
-    if (engine != 'Foursquare') return;
-    if (!ddg_spice_local_details[engine + '-' + id])
-        $.getJSON('/local.js?eng=' + engine + '&id=' + id, function(json) {
-            ddg_spice_local_details[engine + '-' + id] = json[0];
-            render_details(json[0], $('#' + engine + '-' + id + ' div.border'));
+function get_details(item, cached) {
+    if (item.engine != 'Foursquare') return;
+    if (!cached)
+        $.getJSON('/local.js?eng=' + item.engine + '&id=' + item.id, function(json) {
+            render_details(json[0], $('#' + item.engine + '-' + item.id + ' div.border'));
         });
 }
 
@@ -43,5 +40,5 @@ function render_details(json, el) {
 }
 
 Handlebars.registerHelper('format_address', function(address) {
-    return address.split(',')[0];
+    if (address) return address.split(',')[0];
 });
