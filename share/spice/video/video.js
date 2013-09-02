@@ -7,8 +7,24 @@ function ddg_spice_video(api_result) {
         cache: true
     });
 
-    var encodedQuery = DDG.get_query_encoded().replace(/(?:vimeo|youtube|videos?)/i, '');
-    
+    var query = DDG.get_query();
+
+    // Exit if the word "khan" exists.
+    // We want the Khan academy plugin to take precedence.
+    if(query.match(/\bkhan\b/)) {
+	return;
+    }
+
+    // TODO: Remove only the trigger words that appear at the beginning or at the end of the string.
+    var triggers = ["videos?", "youtube", "vimeo"].join("|");
+    // Remove the trigger word.
+    query = query.replace(new RegExp(triggers, "i"), "");
+    // Remove extra spaces.
+    query = query.replace(/\s+/, " ");
+    // Trim spaces at the end and at the beginning. We can use String.prototype.trim, but that's only on ECMAScript 5 browsers.
+    query = query.replace(/^\s+|\s+$/, "");
+    var encodedQuery = encodeURIComponent(query);
+
     // Change the "More at ..." link.
     var change_more = function(obj) {
 	var more_at_link = $(".zero_click_more_at_link");
