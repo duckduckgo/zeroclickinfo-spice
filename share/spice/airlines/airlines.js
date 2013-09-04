@@ -82,7 +82,7 @@ function ddg_spice_airlines (api_result) {
     };
 
     // Check when the plane will depart (or if it has departed).
-    Handlebars.registerHelper("status", function(airportOffset, isDeparture) {
+    Handlebars.registerHelper("airline_status", function(airportOffset, isDeparture) {
         var dateObject = arrivalDate;
         if(isDeparture) {
             dateObject = departureDate;
@@ -127,7 +127,7 @@ function ddg_spice_airlines (api_result) {
     });
 
     // Add the date and time or departure or arrival.
-    Handlebars.registerHelper("time", function(isDeparture) {
+    Handlebars.registerHelper("airline_time", function(isDeparture) {
         var dateObject = arrivalDate;
         if(isDeparture) {
             dateObject = departureDate;
@@ -175,40 +175,33 @@ function ddg_spice_airlines (api_result) {
         return STATUS[flight.StatusCode];
     };
 
-    // Make the header.
-    var statusHeader = function() {
-        return onTime() + ": Flight Status for " +
-                    flight.Airline.Name + " " + flight.FlightNumber;
-    };
-
-    // This is the URL for the "More at ..." link.
-    var flightURL = function() {
-        return "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" +
-                    flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber;
-    };
-
-    // Create the context.
-    var context = [{
-        airportTimezone: flight.DepartureAirportTimeZoneOffset,
-        airport: flight.Origin,
-        terminal: flight.DepartureTerminal || "—",
-        gate: flight.DepartureGate || "—",
-        isDeparted: true
-    }, {
-        airportTimezone: flight.ArrivalAirportTimeZoneOffset,
-        airport: flight.Destination,
-        terminal: flight.ArrivalTerminal || "—",
-        gate: flight.ArrivalGate || "—",
-        isDeparted: false
-    }];
+    var departing = {
+            airportTimezone: flight.DepartureAirportTimeZoneOffset,
+            airport: flight.Origin,
+            terminal: flight.DepartureTerminal || "—",
+            gate: flight.DepartureGate || "—",
+            isDeparted: true
+        },
+        arriving = {
+            airportTimezone: flight.ArrivalAirportTimeZoneOffset,
+            airport: flight.Destination,
+            terminal: flight.ArrivalTerminal || "—",
+            gate: flight.ArrivalGate || "—",
+            isDeparted: false
+        };
 
     // Display the plug-in.
     Spice.render({
-        data             : context,
-        header1          : statusHeader(),
-        source_url       : flightURL(),
+        header1          : onTime() + ": Flight Status for " + flight.Airline.Name + " " + flight.FlightNumber,
+        source_url       : "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" + flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber,
         source_name      : "FlightStats",
-        template_normal  : "airlines",
+        spice_name       : "airlines",
+        template_frame   : "twopane",
+        template_options : {
+            left : { template: "airlines", data: departing },
+            right : { template: "airlines", data: arriving },
+        },
+        force_no_fold    : true,
         force_big_header : true
     });
 };
