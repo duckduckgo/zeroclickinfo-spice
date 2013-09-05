@@ -66,6 +66,9 @@ function ddg_spice_video(api_result) {
 	resizeDetail();
 	$(window).resize(resizeDetail);
     });
+
+    // Expose the function so that ddg_spice_video.itunes can use it.
+    ddg_spice_video.resizeDetail = resizeDetail;
 }
 
 ddg_spice_video.providers = {
@@ -114,6 +117,8 @@ ddg_spice_video.itunes = function(api_result) {
 	   song === api_result.results[i].trackName.toLowerCase()) {
 	    itunes.attr("href", api_result.results[i].trackViewUrl);
 	    itunes.toggle();
+	    // We need to resize when we add in the iTunes button.
+	    ddg_spice_video.resizeDetail();
 	    break;
 	}
     }
