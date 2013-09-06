@@ -1,4 +1,4 @@
-package DDG::Spice::RubyGems;
+package DDG::Spice::PyPI;
 
 use DDG::Spice;
 
