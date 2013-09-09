@@ -22,7 +22,6 @@ my $regex_domain = qr/\.(c(?:o(?:m|op)?|at?|[iykgdmnxruhcfzvl])|o(?:rg|m)|n(?:et
 my $regex_ipv4 = qr/^(?:\d{1,3}\.){3}\d{1,3}$/;
 
 handle matches => sub {
-    p @_;
     if ($_[2]) {
         my $root_url = $_[1];
         my $domain = $_[2];
