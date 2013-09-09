@@ -11,8 +11,7 @@ attribution github => ['https://github.com/djinn', 'djinn'],
             twitter => ['https://twitter.com/djinn', 'djinn'];
 
 triggers startend => 'python', 'pip', 'easy_install', 'egg', 'pythonegg';
-spice to => 'https://rubygems.org/api/v1/search.json?query=$1&callback={{callback}}';
-spice wrap_jsonp_callback => 1;
+spice to => 'http://ddg.absent.co.in/pypi?query=$1';
 
 spice is_cached => 1;
 
