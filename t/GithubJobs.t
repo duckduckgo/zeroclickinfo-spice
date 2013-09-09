@@ -18,22 +18,22 @@ ddg_spice_test(
 	caller => 'DDG::Spice::GithubJobs'
     ),
     'support engineer jobs san jose' => test_spice(
-	'/js/spice/github_jobs/python-remote',
+	'/js/spice/github_jobs/support%20engineer-san%20jose',
 	call_type => 'include',
 	caller => 'DDG::Spice::GithubJobs'
     ),
     'ror jobs la' => test_spice(
-	'/js/spice/github_jobs/python-remote',
+	'/js/spice/github_jobs/ror-la',
 	call_type => 'include',
 	caller => 'DDG::Spice::GithubJobs'
     ),
     'node.js jobs london' => test_spice(
-	'/js/spice/github_jobs/python-remote',
+	'/js/spice/github_jobs/node.js-london',
 	call_type => 'include',
 	caller => 'DDG::Spice::GithubJobs'
     ),
     'django jobs munich' => test_spice(
-	'/js/spice/github_jobs/python-remote',
+	'/js/spice/github_jobs/django-munich',
 	call_type => 'include',
 	caller => 'DDG::Spice::GithubJobs'
     ),
