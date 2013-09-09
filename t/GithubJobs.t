@@ -14,7 +14,7 @@ ddg_spice_test(
     ),
     'python jobs remote' => test_spice(
 	'/js/spice/github_jobs/python-remote',
-	call_type = > 'include',
+	call_type => 'include',
 	caller => 'DDG::Spice::GithubJobs'
     ),
     'support engineer jobs san jose' => test_spice(

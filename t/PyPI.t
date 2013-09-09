@@ -8,12 +8,12 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::PyPI )],
     'django python' => test_spice(
-        '/js/spice/python_eggs/django',
+        '/js/spice/py_pi/django',
         call_type => 'include',
         caller => 'DDG::Spice::PyPI'
     ),
     'zodb pip' => test_spice(
-        '/js/spice/python_eggs/zodb',
+        '/js/spice/py_pi/zodb',
         call_type => 'include',
         caller => 'DDG::Spice::PyPI'
     ),
