@@ -37,11 +37,6 @@ ddg_spice_test(
 	call_type = > 'include',
 	caller => 'DDG::Spice::GithubJobs'
     ),
-    'blah blah jobs foo' => test_spice(
-	'/js/spice/github_jobs/python-remote',
-	call_type = > 'include',
-	caller => 'DDG::Spice::GithubJobs'
-    ),
 
 );
 
