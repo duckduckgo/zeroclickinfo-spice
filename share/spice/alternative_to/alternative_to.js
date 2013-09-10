@@ -16,7 +16,7 @@ function ddg_spice_alternative_to(api_result) {
             template_item        : "alternative_to",
             template_detail      : "alternative_to_details",
             li_height            : 60,
-            single_item_handler  : function(obj) {      // gets called in the event of a single result
+            single_item_handler  : function(obj) {            // gets called in the event of a single result
                 obj.header1 = obj.data.Items[0].Name;         // set the header
                 obj.image_url = obj.data.Items[0].IconUrl;    // set the image
             }
