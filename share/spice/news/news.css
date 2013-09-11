@@ -1,0 +1,15 @@
+#ddgcarousel li.ddgc_item span.news-time {
+    font-size: 11px;
+    color: #777;
+    display: inline;
+}
+
+#ddgcarousel li.ddgc_item a.news-link {
+    color: #1168CC;
+    display: inline;
+}
+
+#ddgcarousel #news li.ddgc_item {
+    text-align: left;
+    font-size: 14px;
+}
