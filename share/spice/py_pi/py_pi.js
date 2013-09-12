@@ -7,7 +7,7 @@ function ddg_spice_python_eggs(response) {
     Spice.render({
         data             : response,
         header1          : query + " (Python Package)",
-        source_url       : 'http://ddg.absent.co.in/pypi?query=$1' + encodeURIComponent(query),
+        source_url       : 'http://ddg.absent.co.in/pypi?query=' + encodeURIComponent(query),
         source_name      : 'PyPI',
         template_normal  : 'py_pi',
         force_big_header : true

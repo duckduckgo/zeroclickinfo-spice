@@ -18,7 +18,7 @@ spice is_cached => 1;
 handle remainder => sub {
     s/^\s+//;
     s/\s+$//;
-    return $_ if length $_;
+    return $_ if $_;
     return;
 };
 
