@@ -49,8 +49,8 @@ function ddg_spice_video(api_result) {
 	var $video = $("#spice_video");
 	var width = $video.width() - 18;
 	var height = Math.floor(width * 0.5625) + 30;
-	$("#spice_video #embed").width(width);
-	$("#spice_video #embed").height(height);
+	$("#spice_video #video-embed").width(width);
+	$("#spice_video #video-embed").height(height);
 
 	var video_title = $("#spice_video #spice_video-title").width();
 	var video_links = $("#spice_video .links").width();
