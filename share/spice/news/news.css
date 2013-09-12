@@ -4,7 +4,7 @@
     display: inline;
 }
 
-#ddgcarousel li.ddgc_item a.news-link {
+#ddgcarousel li.ddgc_item span.news-title {
     color: #1168CC;
     display: inline;
 }
