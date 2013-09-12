@@ -19,6 +19,7 @@ function ddg_spice_github(api_result) {
             template_item: "github_item",
             single_template: "github",
             show: 3,
+	    max: 10,
             type: 'ul'
         },
 
