@@ -19,6 +19,7 @@ function ddg_spice_lastfm_artist_album (api_result) {
             source_name       : "Last.fm",
             source_url        : "http://www.last.fm/search?q=" + artist + "&type=album",
 
+	    spice_name        : "lastfm_artist_album",
             template_frame    : "list",
             template_options  : {
                 items: api_result.topalbums.album,

@@ -12,6 +12,7 @@ function ddg_spice_lastfm_artist_tracks (api_result) {
         source_name       : "Last.fm",
         source_url        : "http://www.last.fm/search?q=" + artist + "&type=track",
 
+	spice_name        : "lastfm_artist_tracks",
         template_frame    : "list",
         template_options  : {
             items: api_result.toptracks.track,
