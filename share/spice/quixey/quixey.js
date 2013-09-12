@@ -15,6 +15,7 @@ function ddg_spice_quixey (api_result) {
         header1: api_result.q + ' (App Search)',
         force_big_header: true,
         more_logo: "quixey_logo.png",
+        spice_name: 'quixey',
         template_frame: "carousel",
         template_options: {
             template_item: "quixey",
@@ -108,7 +109,7 @@ function ddg_spice_quixey (api_result) {
             } else if (app.hasOwnProperty("short_desc") &&
                        DDG.isRelevant(app.short_desc.toLowerCase(), skip_words) && app.icon_url) {
                             backupApps.push(app);
-            } else if (app.custom.hasOwnProperty("category") &&
+            } else if (app.custom && app.custom.hasOwnProperty("category") &&
                        DDG.isRelevant(app.custom.category.toLowerCase(), skip_words) && app.icon_url) {
                             backupApps.push(app);
             } else{
