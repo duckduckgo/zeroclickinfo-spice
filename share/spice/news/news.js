@@ -17,14 +17,17 @@ function ddg_spice_news(api_result) {
 	header1: "DuckDuckGo News",
 	source_url: api_result[0].url,
 	source_name: api_result[0].source,
-	template_normal: "news",
+
+	spice_name: "news",
+
 	template_frame: "carousel",
-	carousel_css_id: "news",
-	carousel_items: api_result,
-	force_big_header: true,
-	force_no_fold: true,
 	template_options: {
+	    items: api_result,
+	    template_item: "news",
 	    li_width: 640
-	}
+	},
+
+	force_big_header: true,
+	force_no_fold: true
     });
 }
