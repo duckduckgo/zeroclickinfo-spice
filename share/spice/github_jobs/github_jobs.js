@@ -21,7 +21,8 @@ function ddg_spice_github_jobs(api_result) {
             items: api_result,
             template_item: "github_jobs",
             show: 3,
-            type: 'ul',
+	    max: 10,
+            type: 'ul'
         },
         force_big_header : true,
         force_no_fold    : true
