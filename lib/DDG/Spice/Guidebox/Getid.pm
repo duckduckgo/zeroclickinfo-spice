@@ -13,7 +13,7 @@ attribution github => ['https://github.com/adman','Adman'],
             twitter => ['http://twitter.com/adman_X','adman_X'];
 
 triggers startend => "guidebox";
-triggers start => "watch", "full episodes of", "full free episodes of", "free episodes of", "episodes of";
+triggers start => "watch", "stream", "full episodes of", "full free episodes of", "free episodes of", "episodes of", "where to watch";
 triggers any => "full episodes", "watch free", "full free episodes", "free episodes", "episodes", "recent episodes";
 
 spice to => 'http://api-public.guidebox.com/v1.3/json/{{ENV{DDG_SPICE_GUIDEBOX_APIKEY}}}/search/title/$1';
@@ -25,15 +25,15 @@ handle remainder => sub {
         
         my $show = '';
         
-        if ($_ =~ qr/^([\w\s]+) (?:episodes?)? online$/ ){
+        if ($_ =~ qr/^([\w\s]+)\s*?(?:episodes?)? online$/ ){
             $show = $1; 
-        } elsif ($_ =~ qr/^episodes? of ([\w\s]+)(?:\s*online)?$/){
+        } elsif ($_ =~ qr/^episodes? of ([\w\s]+)\s*?(?:\s*online)?$/){
             $show = $1;
-        } elsif ($_ =~ qr/^([\w\s]+) episodes?$/){
+        } elsif ($_ =~ qr/^([\w\s]+)\s*?episodes?$/){
             $show = $1;
-        } elsif ($_ =~ qr/^([\w\s]+) series$/){
+        } elsif ($_ =~ qr/^([\w\s]+)\s*?series$/){
             $show = $1;
-        } elsif ($_ =~ qr/^([\w\s]+) tv series$/){
+        } elsif ($_ =~ qr/^([\w\s]+)\s*?tv series$/){
             $show = $1;
         } else {
             $show = $_;

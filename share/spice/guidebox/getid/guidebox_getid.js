@@ -58,6 +58,15 @@ function ddg_spice_guidebox_lastshows (api_result) {
     });
 };
 
+Handlebars.registerHelper("checkSeason", function(season_number, episode_number, options) {
+    if(season_number !== "0") {
+	return options.fn({
+	    season_number: season_number, 
+	    episode_number: episode_number
+	});
+    }
+});
+
 Handlebars.registerHelper("getQuery", function() {
     return ddg_spice_guidebox_getid.metadata.query;
 });
