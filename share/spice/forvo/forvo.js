@@ -5,33 +5,6 @@ function ddg_spice_forvo (api_result) {
 
     if (api_result.attributes.total < 1) return;
 
-    // api_result.items can be either an array or an object.
-    // Forvo returns either an array-like object or an actual array.
-    // {0: "...", 1: "...", 2: "..."} or ["...", "...", "..."].
-    // if($.isArray(api_result.items)) {
-    //     api_result.isArray = true;
-    // } else {
-    //     api_result.isArray = false;
-    // }
-    
-    // var list = [];
-    // if(api_result.isArray) {
-	// var hasOwn = Object.prototype.hasOwnProperty,
-    //         index = 0,
-    //         out = "";
-
-	// for(var data in api_result.items) {
-    //         if(hasOwn.call(api_result.items, data)) {
-		// if(index < 5) {
-    //                 list.push(api_result.items[data]);
-		// }
-		// index += 1;
-    //         }
-	// }
-    // } else {
-	// list = api_result.items;
-    // }
-
     // Display the Spice plug-in.
     Spice.render({
         data             : api_result,
