@@ -55,12 +55,16 @@ function ddg_spice_sound_cloud (api_result) {
         header1                  : decodeURIComponent(query) + " (SoundCloud)",
         source_url               : "https://soundcloud.com/search?q=" + query,
         source_name              : "SoundCloud",
-        template_normal          : "sound_cloud",
-        carousel_css_id          : "sound_cloud",
+        spice_name               : "sound_cloud",
         template_frame           : "carousel",
+        template_options         : {
+            items           : context,
+            template_detail : "sound_cloud_details",
+            single_item_handler: function(obj) {
+                obj.image_url = obj.data[0].artwork_url || obj.data[0].user.avatar_url;
+            }
+        },
         force_big_header         : true,
-        carousel_items           : context,
-        carousel_template_detail : "sound_cloud_details",
         force_no_fold            : true,
         item_callback            : function() {
             if(window.soundManager) {

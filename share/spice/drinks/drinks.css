@@ -1,15 +1,15 @@
-.ingredients{
+#spice_drinks .spice_pane_left{
 	display: inline-block;
 	width: 40%;
 }
 
-.directions {
+#spice_drinks .spice_pane_right {
 	width: 50%;
 	display: inline-block;
 	vertical-align: top;
 }
 
-.ingredients ul li {
+#spice_drinks .spice_pane_right ul li {
 	display: inline-block;
 	list-style-type: none;
 	-webkit-border-radius: 10px;
@@ -20,7 +20,7 @@
 	background-color: #e5e5e5;
 }
 
-.ingredients ul {
+#spice_drinks .spice_pane_right ul {
 	padding-left: 0px;
 	padding-top: 0px;
 }

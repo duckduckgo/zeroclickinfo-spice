@@ -15,11 +15,13 @@ function ddg_spice_quixey (api_result) {
         header1: api_result.q + ' (App Search)',
         force_big_header: true,
         more_logo: "quixey_logo.png",
+        spice_name: 'quixey',
         template_frame: "carousel",
-        template_normal: "quixey",
-        carousel_css_id: "quixey",
-        carousel_template_detail: "quixey_detail",
-        carousel_items: relevants
+        template_options: {
+            template_item: "quixey",
+            template_detail: "quixey_detail",
+            items: relevants
+        }
     });
 
     // Check for relevant app results

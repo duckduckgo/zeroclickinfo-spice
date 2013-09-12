@@ -11,13 +11,20 @@ function ddg_spice_github(api_result) {
         source_url       : 'http://www.github.com/search?q='
                             + encodeURIComponent(query),
         source_name      : 'GitHub',
-        template_normal  : (results.length == 1 ? 'github' : 'github_list'),
+        spice_name       : 'github',
+
+        template_frame   : 'list',
+        template_options: {
+            items: results,
+            template_item: "github_item",
+            single_template: "github",
+            show: 3,
+	    max: 10,
+            type: 'ul'
+        },
+
         force_big_header : true,
         force_no_fold    : true
-    });
-
-    $("#gh_showHide").click(function(){
-        $("#gh_more_results").toggle();
     });
 }
 

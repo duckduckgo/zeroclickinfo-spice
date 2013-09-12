@@ -9,10 +9,20 @@ function ddg_spice_lastfm_artist_tracks (api_result) {
     Spice.render({
         data              : api_result,
         header1           : "Tracks from " + artist,
-        force_big_header  : true,
         source_name       : "Last.fm",
         source_url        : "http://www.last.fm/search?q=" + artist + "&type=track",
-        template_normal   : "lastfm_artist_tracks",
+
+	spice_name        : "lastfm_artist_tracks",
+        template_frame    : "list",
+        template_options  : {
+            items: api_result.toptracks.track,
+            template_item: "lastfm_artist_tracks",
+            show: 3,
+            max: 10,
+            type: "ul"
+        },
+
+        force_big_header  : true,
         force_no_fold     : true
     });
 };
