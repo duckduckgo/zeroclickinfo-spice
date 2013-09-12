@@ -122,8 +122,8 @@ ul.ddg_spicelist li.sm2_stopped {
  cursor: pointer;
 }
 
-ul.ddg_spicelist li.sm2_playing {
- background-image: url(https://jagtalon.duckduckgo.com/soundmanager2/icon_pause.png);
+ul.playlist li.sm2_playing {
+ background-image: url(https://duckduckgo.com/soundmanager2/icon_pause.png);
  background-repeat: no-repeat;
  background-position: 3px 35%;
  padding-left: 25px;

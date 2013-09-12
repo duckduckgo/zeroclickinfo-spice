@@ -1,9 +1,11 @@
 <li class='ddgc_item'>
     <div class="image_wrap">
-        <img src="/iu/?u={{thumbnail_208x117}}"></img>
+      <img src="/iu/?u={{thumbnail_208x117}}"></img>
     </div>
     <span>
+      {{#checkSeason season_number episode_number}}
         Season {{season_number}}, Ep. {{episode_number}}
-        <span class='gb_info'>{{{episode_name}}}</span>
+      {{/checkSeason}}
+      <span class='gb_info'>{{{episode_name}}}</span>
     </span>
 </li>
