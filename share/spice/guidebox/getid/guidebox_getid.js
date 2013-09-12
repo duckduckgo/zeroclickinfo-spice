@@ -47,13 +47,13 @@ function ddg_spice_guidebox_lastshows (api_result) {
         source_name              : "Guidebox",
         source_url               : metadata.more,
         template_frame           : "carousel",
-        template_normal          : "guidebox_getid",
-        carousel_css_id          : "guidebox",
-        carousel_items           : api_result.results.result,
-        carousel_template_detail : "guidebox_getid_details",
+        spice_name               : "guidebox",
         template_options         : { 
-            li_width : 120,
-            li_height : 105
+            items                : api_result.results.result,
+            template_item        : "guidebox_getid",
+            template_detail      : "guidebox_getid_details",
+            li_width             : 120,
+            li_height            : 105
         }
     });
 };

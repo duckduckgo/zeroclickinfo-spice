@@ -1,13 +1,13 @@
-#guidebox li.ddgc_item img {
+#spice_guidebox li.ddgc_item img {
   max-width: 100% !important;
   max-height: 68px !important;
 }
 
-#guidebox div.image_wrap {
+#spice_guidebox div.image_wrap {
     position: relative;
 }
 
-#guidebox .gb_info {
+#spice_guidebox .gb_info {
   white-space: nowrap;
   word-wrap: break-word;
   text-overflow: ellipsis;
@@ -15,7 +15,7 @@
   margin: 0px !important
 }
 
-#guidebox .button {
+#spice_guidebox .button {
   display: inline-block;
   border-radius: 3px;
   padding: 3px 9px;
@@ -25,24 +25,24 @@
   margin-right: 10px;
 }
 
-#guidebox .button:hover {
+#spice_guidebox .button:hover {
   border: 1px solid #80b5ff;
   cursor: pointer;
   text-decoration: none;
 }
 
-#guidebox #ddgc_detail p {
+#spice_guidebox #ddgc_detail p {
   margin-bottom: 10px;
 }
 
-#guidebox .grey {
+#spice_guidebox .grey {
   color: grey;
 }
 
-#guidebox .red {
+#spice_guidebox .red {
   color: #B57367
 }
 
-#guidebox .small {
+#spice_guidebox .small {
   font-size: 13px;
 }
