@@ -9,7 +9,7 @@
 	vertical-align: top;
 }
 
-#spice_drinks .spice_pane_left ul li {
+#spice_drinks .spice_pane_right ul li {
 	display: inline-block;
 	list-style-type: none;
 	-webkit-border-radius: 10px;
@@ -20,7 +20,7 @@
 	background-color: #e5e5e5;
 }
 
-#spice_drinks .spice_pane_left ul {
+#spice_drinks .spice_pane_right ul {
 	padding-left: 0px;
 	padding-top: 0px;
 }

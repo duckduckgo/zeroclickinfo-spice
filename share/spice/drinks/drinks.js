@@ -19,9 +19,9 @@ function ddg_spice_drinks(api_result) {
         spice_name       : 'drinks',
         template_frame   : "twopane",
         template_options: {
-            left  : { template: "drinks_directions" },
+            left  : { template: "drinks" },
             right : { template: "drinks_ingredients" },
         },
-        force_no_fold    : true
+        force_no_fold    : false
     });
 }
