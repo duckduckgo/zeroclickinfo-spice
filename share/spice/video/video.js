@@ -22,15 +22,15 @@ function ddg_spice_video(api_result) {
         source_name : 'YouTube',
         source_url : 'https://www.youtube.com/results?search_query=' + encodedQuery,
         header1 :  decodeURIComponent(encodedQuery) + " (Video Search)",
+	spice_name: "video",
         template_frame: "carousel",
-        template_normal: "video",
-        carousel_css_id: "video",
-        carousel_items: api_result,
-        force_no_fold : 1,
-        carousel_template_detail: "video_detail",
 	template_options: {
+	    items: api_result,
+	    template_item: "video",
+	    template_detail: "video_detail",
 	    li_width: 120
 	},
+        force_no_fold : 1,
 	item_callback: function(i, item) {
 	    var more_at_link = $(".zero_click_more_at_link").get(0);
 	    if(item.provider in ddg_spice_video.providers) {
@@ -49,16 +49,16 @@ function ddg_spice_video(api_result) {
 	var $video = $("#spice_video");
 	var width = $video.width() - 18;
 	var height = Math.floor(width * 0.5625) + 30;
-	$("#video #embed").width(width);
-	$("#video #embed").height(height);
+	$("#spice_video #embed").width(width);
+	$("#spice_video #embed").height(height);
 
-	var video_title = $("#video #video-title").width();
-	var video_links = $("#video .links").width();
+	var video_title = $("#spice_video #spice_video-title").width();
+	var video_links = $("#spice_video .links").width();
 
 	if(width - (video_title + video_links) < 20) {
-	    $("#video .links").css("position", "static");
+	    $("#spice_video .links").css("position", "static");
 	} else {
-	    $("#video .links").css("position", "absolute");
+	    $("#spice_video .links").css("position", "absolute");
 	}
     }
 
