@@ -18,7 +18,6 @@
     display: block;
     width: auto;
     font-size: 1em;
-    color: #666;
     padding: 0.25em 0.5em 0.25em 0.5em;
     border: none;
     /* -webkit-transition-property: hover; */
@@ -27,6 +26,10 @@
     /*  -o-transition-property: background-color; */
     /*  -o-transition-duration: 0.15s; */
 
+}
+
+#spice_forvo ul.ddg_spicelist li.spice2list_item {
+    color: #666;
 }
 
 #spice_forvo ul.ddg_spicelist li a.forvo-audio {
@@ -47,7 +50,7 @@
     border-radius: 3px;
 }
 
-#spice_forvo ul.ddg_spicelist li:hover a {
+#spice_forvo ul.ddg_spicelist li.spice2list_item:hover a {
 /*  background-color:#eee; */
     color:#333;
 }
@@ -96,154 +99,9 @@
 /*  color:#fff; */
 /* } */
 
-#spice_forvo ul.ddg_spicelist li .controls {
-    display: none;
-}
-
-#spice_forvo ul.ddg_spicelist li .peak,
-#spice_forvo ul.ddg_spicelist.use-peak li .peak {
-    display: none;
-    position: absolute;
-    top: 0.55em;
-    right: 0.5em;
-}
-
-#spice_forvo ul.ddg_spicelist li.sm2_playing .controls,
-#spice_forvo ul.ddg_spicelist li.sm2_paused .controls {
-    position: relative;
-    display: block;
-}
-
-#spice_forvo ul.ddg_spicelist.use-peak li.sm2_playing .peak,
-#spice_forvo ul.ddg_spicelist.use-peak li.sm2_paused .peak {
-    display: inline;
-    display: inline-block;
-}
-
-#spice_forvo ul.ddg_spicelist.use-peak li .peak {
-    display: none; /* IE 7 */
-}
-
-#spice_forvo ul.ddg_spicelist li.sm2_paused .controls {
-    background-color: #666;
-}
-
-#spice_forvo ul.ddg_spicelist li:hover .controls .statusbar {
-    position: relative;
-    cursor: ew-resize;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
-    cursor: grab;
-}
-
-#spice_forvo ul.ddg_spicelist li.sm2_paused .controls .statusbar {
-    background-color: #ccc;
-}
-
-#spice_forvo ul.ddg_spicelist li .controls {
-    position: relative;
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
-    background-color: #99ccff;
-}
-
-#spice_forvo ul.ddg_spicelist li .controls .statusbar {
-    position: relative;
-    height: 0.5em;
-    background-color: #ccddff;
-    border: 2px solid #fff;
-    border-radius: 2px;
-    overflow: hidden;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
-    cursor: grab;
-}
-
-ul.ddg_spicelist li .controls.dragging .statusbar {
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
-    cursor: grabbing;
-}
-
-#spice_forvo ul.ddg_spicelist li .controls .statusbar .position,
-#spice_forvo ul.ddg_spicelist li .controls .statusbar .loading,
-#spice_forvo ul.ddg_spicelist li .controls .statusbar .annotation {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    height: 0.5em;
-}
-
-#spice_forvo ul.ddg_spicelist li .controls .statusbar .position {
-    background-color: #336699;
-    border-right: 3px solid #336699;
-    border-radius: 3px;
-}
-
-#spice_forvo ul.ddg_spicelist li.sm2_paused .controls .statusbar .position {
-    background-color: #666;
-    border-color: #666;
-}
-
-#spice_forvo ul.ddg_spicelist li .controls .statusbar .loading {
-    background-color: #eee;
-}
-
-#spice_forvo ul.ddg_spicelist li .controls .statusbar .position,
-#spice_forvo ul.ddg_spicelist li .controls .statusbar .loading {
-    width: 0px;
-}
-
 #spice_forvo ul.ddg_spicelist li.sm2_playing a.sm2_link,
 #spice_forvo ul.ddg_spicelist li.sm2_paused a.sm2_link {
     margin-right: 4.5em; /* room for timing stuff */
-}
-
-#spice_forvo ul.ddg_spicelist li .timing {
-    position: absolute;
-    display: none;
-    text-align: right;
-    right: 1em;
-    top: 1em;
-    width: auto;
-    height: 1em;
-    padding: 3px 5px;
-    background-color: #5588bb;
-    border: 1px solid #99ccff;
-    border-radius: 4px;
-    letter-spacing: 0px;
-    font: 44% monaco,"VT-100","lucida console",courier,system;
-    line-height: 1em;
-    vertical-align: middle;
-}
-
-#spice_forvo ul.ddg_spicelist.use-peak li .timing {
-    right: 4.25em;
-}
-
-#spice_forvo ul.ddg_spicelist li:hover .timing {
-    z-index: 2;
-}
-
-#spice_forvo ul.ddg_spicelist li .timing div.sm2_timing {
-    margin: 0px;
-    padding: 0px;
-    margin-top: -1em;
-}
-
-#spice_forvo ul.ddg_spicelist li.sm2_playing .timing,
-#spice_forvo ul.ddg_spicelist li.sm2_paused .timing {
-    display: block;
-}
-
-#spice_forvo ul.ddg_spicelist li.sm2_paused .timing .sm2_position {
-    text-decoration: blink; /* hee hee. first actual appropriate use? :D */
-}
-
-#spice_forvo ul.ddg_spicelist li.sm2_paused .timing,
-#spice_forvo ul.ddg_spicelist.use-peak li.sm2_paused .peak {
-    background-color: #888;
-    border-color: #ccc;
 }
 
 #spice_forvo #control-template {
