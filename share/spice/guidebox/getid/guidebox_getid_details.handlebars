@@ -3,8 +3,8 @@
     <a class="button" href="{{smart_url}}">Watch Now</a>
     {{#checkSeason season_number episode_number}}
       {{{episode_name}}} (season {{season_number}}, #{{episode_number}})
-      {{#unless is_free_web}} <span class="red">Paid Content</span>{{/unless}}
     {{/checkSeason}}
+    {{#unless is_free_web}} <span class="red">Paid Content</span>{{/unless}}
   </p>
 
   <p>
