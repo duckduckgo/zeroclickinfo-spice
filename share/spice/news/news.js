@@ -1,11 +1,6 @@
 function ddg_spice_news(api_result) {
     "use strict";
 
-    // Exit if we didn't get any results.
-    if(api_result.length === 0) {
-	return;
-    }
-
     // Words that we have to skip in DDG.isRelevant.
     var skip = [
 	"news",
@@ -18,23 +13,40 @@ function ddg_spice_news(api_result) {
 	"sort:date"
     ];
 
+    // Check if the word news is in the query.
     var generic = false;
-    if((/news/i).test(DDG.get_query())) {
+    if((/\bnews\b/i).test(DDG.get_query())) {
 	generic = true;
+    }
+
+    var good_stories = [];
+    if(generic) {
+	good_stories = api_result;
+    } else {
+	for(var i = 0, story; story = api_result[i]; i++) {
+	    var title = story.title.replace(/<b>|<\/b>|:/g, "");
+	    if(DDG.isRelevant(title, skip, 3)) {
+		good_stories.push(story);
+	    }
+	}
+    }
+
+    // Exit if we didn't get any results.
+    if(good_stories.length === 0) {
+	return;
     }
 
     // Display the plugin.
     Spice.render({
-	data: api_result,
 	header1: "DuckDuckGo News",
-	source_url: api_result[0].url,
-	source_name: api_result[0].source,
+	source_url: good_stories[0].url,
+	source_name: good_stories[0].source,
 
 	spice_name: "news",
 
 	template_frame: "carousel",
 	template_options: {
-	    items: api_result,
+	    items: good_stories,
 	    template_item: "news",
 	    li_width: 640
 	},
@@ -56,20 +68,20 @@ function ddg_spice_news(api_result) {
     // We can only move to the next item when:
     // 1. The left or right button is clicked.
     // 2. The dots are clicked.
-    var n = api_result.length,
+    var n = good_stories.length,
         index = 0;
 
     // Left link.
     $("#preva").click(function() {
 	if(index !== 0) {
-	    change_more(api_result[--index]);
+	    change_more(good_stories[--index]);
 	}
     });
 
     // Right link.
     $("#nexta").click(function() {
 	if(index < n - 1) {
-	    change_more(api_result[++index]);
+	    change_more(good_stories[++index]);
 	}
     });
 
@@ -80,7 +92,7 @@ function ddg_spice_news(api_result) {
 	    a.each(function(i) {
 		if($(this).hasClass("ddgc_selected")) {
 		    index = i;
-		    change_more(api_result[index]);
+		    change_more(good_stories[index]);
 		}
 	    });
 	}
