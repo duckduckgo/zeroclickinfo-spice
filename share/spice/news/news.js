@@ -19,6 +19,18 @@ function ddg_spice_news(api_result) {
 	generic = true;
     }
 
+    // Some sources need to be set by us.
+    var getSource = function(story) {
+	switch(story.syndicate) {
+	    case "Topsy":
+	    story.source = story.author || "Topsy";
+	    break;
+	    case "NewsCred":
+	    story.source = story.source + " by " + story.author;
+	    break;
+	}
+    };
+
     var good_stories = [];
     if(generic) {
 	good_stories = api_result;
@@ -26,6 +38,7 @@ function ddg_spice_news(api_result) {
 	for(var i = 0, story; story = api_result[i]; i++) {
 	    var title = story.title.replace(/<b>|<\/b>|:/g, "");
 	    if(DDG.isRelevant(title, skip, 3)) {
+		getSource(story);
 		good_stories.push(story);
 	    }
 	}
