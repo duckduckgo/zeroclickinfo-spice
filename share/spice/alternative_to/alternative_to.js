@@ -10,6 +10,7 @@ function ddg_spice_alternative_to(api_result) {
         source_name              : 'AlternativeTo',
         source_url               : api_result.Url,
         spice_name               : 'alternative_to',
+        more_icon_offset         : '-2px',
         template_frame           : "carousel",
         template_options         : {
             items                : api_result.Items,
