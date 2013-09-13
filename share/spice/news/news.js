@@ -49,9 +49,12 @@ function ddg_spice_news(api_result) {
 	return;
     }
 
+    // Limit the number of stories to 5.
+    good_stories.splice(5);
+
     // Display the plugin.
     Spice.render({
-	header1: "DuckDuckGo News",
+	header1: good_stories[0].query +  " (News)",
 	source_url: good_stories[0].url,
 	source_name: good_stories[0].source,
 
