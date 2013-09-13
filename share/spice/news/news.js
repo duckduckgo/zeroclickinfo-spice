@@ -3,50 +3,50 @@ function ddg_spice_news(api_result) {
 
     // Words that we have to skip in DDG.isRelevant.
     var skip = [
-	"news",
-	"headline",
-	"headlines",
-	"latest",
-	"breaking",
-	"update",
-	"s:d",
-	"sort:date"
+        "news",
+        "headline",
+        "headlines",
+        "latest",
+        "breaking",
+        "update",
+        "s:d",
+        "sort:date"
     ];
 
     // Check if the word news is in the query.
     var generic = false;
     if((/\bnews\b/i).test(DDG.get_query())) {
-	generic = true;
+        generic = true;
     }
 
     // Some sources need to be set by us.
     var getSource = function(story) {
-	switch(story.syndicate) {
-	    case "Topsy":
-	    story.source = story.author || "Topsy";
-	    break;
-	    case "NewsCred":
-	    story.source = story.source + " by " + story.author;
-	    break;
-	}
+        switch(story.syndicate) {
+            case "Topsy":
+            story.source = story.author || "Topsy";
+            break;
+            case "NewsCred":
+            story.source = story.source + " by " + story.author;
+            break;
+        }
     };
 
     var good_stories = [];
     if(generic) {
-	good_stories = api_result;
+        good_stories = api_result;
     } else {
-	for(var i = 0, story; story = api_result[i]; i++) {
-	    var title = story.title.replace(/<b>|<\/b>|:/g, "");
-	    if(DDG.isRelevant(title, skip, 3)) {
-		getSource(story);
-		good_stories.push(story);
-	    }
-	}
+        for(var i = 0, story; story = api_result[i]; i++) {
+            var title = story.title.replace(/<b>|<\/b>|:/g, "");
+            if(DDG.isRelevant(title, skip, 3)) {
+                getSource(story);
+                good_stories.push(story);
+            }
+        }
     }
 
     // Exit if we didn't get any results.
     if(good_stories.length === 0) {
-	return;
+        return;
     }
 
     // Limit the number of stories to 5.
@@ -54,7 +54,7 @@ function ddg_spice_news(api_result) {
 
     // Display the plugin.
     Spice.render({
-	header1: good_stories[0].query +  " (News)",
+        header1: good_stories[0].query +  " (News)",
 	source_url: good_stories[0].url,
 	source_name: good_stories[0].source,
 
@@ -78,7 +78,7 @@ function ddg_spice_news(api_result) {
 	more_at_link.attr("href", obj.url);
         more_at_link.find("img").attr("src", image);
         more_at_link.find("span").html("More at " + obj.source);
-    }
+    };
 
     // We only change the "More at ..." link when we move to the next item in the carousel. 
     // We can only move to the next item when:
