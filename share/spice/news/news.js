@@ -1,17 +1,29 @@
 function ddg_spice_news(api_result) {
     "use strict";
 
+    // Exit if we didn't get any results.
     if(api_result.length === 0) {
 	return;
     }
 
-    console.log(api_result);
+    // Words that we have to skip in DDG.isRelevant.
+    var skip = [
+	"news",
+	"headline",
+	"headlines",
+	"latest",
+	"breaking",
+	"update",
+	"s:d",
+	"sort:date"
+    ];
 
     var generic = false;
     if((/news/i).test(DDG.get_query())) {
 	generic = true;
     }
 
+    // Display the plugin.
     Spice.render({
 	data: api_result,
 	header1: "DuckDuckGo News",
@@ -31,6 +43,7 @@ function ddg_spice_news(api_result) {
 	force_no_fold: true
     });
 
+    // This function changes the "More at ..." link.
     var change_more = function(obj) {
 	var image = Handlebars.helpers.favicon.call({source_url: obj.url, forces: {}});
 	var more_at_link = $(".zero_click_more_at_link");
@@ -38,28 +51,36 @@ function ddg_spice_news(api_result) {
         more_at_link.find("img").attr("src", image);
         more_at_link.find("span").html("More at " + obj.source);
     }
-    
-    var length = api_result.length;
-    var i = 0;
+
+    // We only change the "More at ..." link when we move to the next item in the carousel. 
+    // We can only move to the next item when:
+    // 1. The left or right button is clicked.
+    // 2. The dots are clicked.
+    var n = api_result.length,
+        index = 0;
+
+    // Left link.
     $("#preva").click(function() {
-	if(i !== 0) {
-	    change_more(api_result[--i]);
+	if(index !== 0) {
+	    change_more(api_result[--index]);
 	}
     });
 
+    // Right link.
     $("#nexta").click(function() {
-	if(i < length - 1) {
-	    change_more(api_result[++i]);
+	if(index < n - 1) {
+	    change_more(api_result[++index]);
 	}
     });
 
+    // Dots.
     $("#ddgc_dots").click(function() {
 	var a = $(this).find("a");
 	if(a.length > 0) { 
-	    a.each(function(index) {
+	    a.each(function(i) {
 		if($(this).hasClass("ddgc_selected")) {
-		    i = index;
-		    change_more(api_result[i]);
+		    index = i;
+		    change_more(api_result[index]);
 		}
 	    });
 	}
