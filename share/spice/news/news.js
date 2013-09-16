@@ -64,7 +64,8 @@ function ddg_spice_news(api_result) {
 	template_options: {
 	    items: good_stories,
 	    template_item: "news",
-	    li_width: 640
+	    li_width: 196,
+	    li_height: 170
 	},
 
 	force_big_header: true,

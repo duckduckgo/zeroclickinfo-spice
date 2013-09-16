@@ -7,9 +7,14 @@
 #ddgcarousel li.ddgc_item span.news-title {
     color: #1168CC;
     display: inline;
+    font-size: 14px;
 }
 
 #spice_news #ddgcarousel li.ddgc_item {
     text-align: left;
-    font-size: 14px;
+}
+
+#spice_news #ddgcarousel #news-snippet {
+    text-overflow: ellipsis;
+    color: #777;
 }
