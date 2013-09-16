@@ -1,4 +1,4 @@
-function ddg_spice_python_eggs(response) {
+function ddg_spice_py_pi(response) {
     if (response.length == 0)
         return;
 
