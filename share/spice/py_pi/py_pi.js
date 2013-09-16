@@ -6,7 +6,7 @@ function ddg_spice_py_pi(response) {
     query = query.replace(/\s*(?:(?:python(?:pip?)?)|(?:easy_install?))\s*/i, '');
     Spice.render({
         data             : response,
-        header1          : query + " (Python Package)",
+        header1          : query + " (Python Packages)",
         source_url       : 'http://ddg.absent.co.in/pypi?query=' + encodeURIComponent(query),
         source_name      : 'PyPI',
         template_normal  : 'py_pi',

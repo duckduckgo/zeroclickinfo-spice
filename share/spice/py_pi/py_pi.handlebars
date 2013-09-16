@@ -1,5 +1,9 @@
 <ul>
-{{#each this}}
-    <li><a href="{{project_uri}}">{{name}}</a> - {{{condense info maxlen="125"}}</li>
+{{#each package}}
+  <li>
+    {{name}}-{{version}}: {{condense info maxlen="125"}} {{#if license}}({{license}}){{/if}}
+    {{#if OutOfDate}}(out of date){{/if}}
+    {{#if project_uri}}[<a href="{{project_uri}}">official site</a>]{{/if}}
+  </li>
 {{/each}}
 </ul>
