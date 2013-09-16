@@ -1,0 +1,186 @@
+.fe_container {
+  width: 100%;
+  font-weight: 300;
+  min-width: 500px;
+  max-width: 1000px;
+  color: #333;
+  margin: 0 auto;
+  height: 170px; /* DDG 245px; */
+}
+.fe_container.alert { height: 208px; } /* DDG */
+
+.fe_container a { color: #333; }
+
+.fe_container .fe_title {
+  position: relative;
+  height: 32px;
+  border-bottom: 2px solid #444;
+}
+
+.fe_container .fe_title .fe_location {
+  position: absolute;
+  left: 10px;
+  bottom: 6px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.fe_container .fe_title .fe_forecast_link {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font-size: 14px;
+}
+
+.fe_container .fe_forecast {
+  margin-top: 14px;
+}
+
+.fe_container .fe_currently {
+  float: left;
+  position: relative;
+  width: 35%;
+  height: 100%;
+  font-size: 14px;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.fe_container #fe_current_icon {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.fe_container .fe_currently .fe_temp {
+  display: inline-block;
+  position: relative;
+  top: -8px;
+  margin-left: 5px;
+  text-align: left;
+  line-height: 0.65em;
+}
+
+.fe_container .fe_currently .fe_temp .fe_temp_str {
+  font-size: 42px;
+  font-weight: bold;
+  line-height: 42px;
+}
+
+.fe_container .fe_currently .fe_temp .fe_temp_unit {
+  display: inline-block;
+  position: relative;
+  font-size: 28px;
+  font-weight: normal;
+  vertical-align: top;
+  line-height: 42px;
+}
+
+.fe_container .fe_currently .fe_temp .fe_dir,
+.fe_container .fe_currently .fe_temp .fe_feelslike {
+  display: block;
+  position: relative;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 18px;
+}
+
+.fe_container .fe_currently .fe_summary {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.fe_container .fe_currently .fe_wind {
+  font-size: 14px;
+}
+
+.fe_container .fe_daily {
+  float: left;
+  display: table;
+  width: 65%;
+  height: 100%;
+  font-size: 14px;
+  text-align: center;
+}
+
+.fe_container .fe_daily .fe_day {
+  display: table-cell;
+  text-align: center;
+}
+
+.fe_container .fe_daily .fe_day .fe_label {
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+}
+
+.fe_container .fe_daily .fe_icon {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  margin-top: 2px;
+}
+
+.fe_container .fe_daily .fe_day .fe_temp_bar {
+  position: relative;
+  width: 20px;
+  margin: 18px auto 0;
+  font-size: 12px;
+  border-radius: 200px;
+}
+
+.fe_container .fe_daily .fe_day .fe_high_temp {
+  position: absolute;
+  width: 100%;
+  top: -16px;
+  left: 2px;
+}
+
+.fe_container .fe_daily .fe_day .fe_low_temp {
+  position: absolute;
+  width: 100%;
+  bottom: -16px;
+  left: 2px;
+}
+
+.fe_alert {
+  position: absolute;
+  top: 205px;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fe_alert a {
+  text-decoration: underline;
+  text-overflow: ellipsis;
+  font-style: italic;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #A00;
+}
+
+.fe_alert a .fe_icon {
+  font-size: 20px;
+}
+
+.fe_loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 240px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#fe_loading_icon {
+  position: relative;
+  top: 15px;
+  left: -5px;
+}
