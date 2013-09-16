@@ -26,7 +26,7 @@
 #spice_khan_academy li.ddgc_item span {
 	width: 100%;
 	margin-top: 5px;
-	margin-bottom: none;
+	margin-bottom: 0;
 }
 
 #spice_khan_academy #ddgc_detail {
