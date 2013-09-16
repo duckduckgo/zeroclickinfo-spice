@@ -50,7 +50,7 @@ function ddg_spice_news(api_result) {
     }
 
     // Limit the number of stories to 5.
-    good_stories.splice(5);
+    // good_stories.splice(5);
 
     // Display the plugin.
     Spice.render({
@@ -69,48 +69,5 @@ function ddg_spice_news(api_result) {
 
 	force_big_header: true,
 	force_no_fold: true
-    });
-
-    // This function changes the "More at ..." link.
-    var change_more = function(obj) {
-	var image = Handlebars.helpers.favicon.call({source_url: obj.url, forces: {}});
-	var more_at_link = $(".zero_click_more_at_link");
-	more_at_link.attr("href", obj.url);
-        more_at_link.find("img").attr("src", image);
-        more_at_link.find("span").html("More at " + obj.source);
-    };
-
-    // We only change the "More at ..." link when we move to the next item in the carousel. 
-    // We can only move to the next item when:
-    // 1. The left or right button is clicked.
-    // 2. The dots are clicked.
-    var n = good_stories.length,
-        index = 0;
-
-    // Left link.
-    $("#preva").click(function() {
-	if(index !== 0) {
-	    change_more(good_stories[--index]);
-	}
-    });
-
-    // Right link.
-    $("#nexta").click(function() {
-	if(index < n - 1) {
-	    change_more(good_stories[++index]);
-	}
-    });
-
-    // Dots.
-    $("#ddgc_dots").click(function() {
-	var a = $(this).find("a");
-	if(a.length > 0) { 
-	    a.each(function(i) {
-		if($(this).hasClass("ddgc_selected")) {
-		    index = i;
-		    change_more(good_stories[index]);
-		}
-	    });
-	}
     });
 }
