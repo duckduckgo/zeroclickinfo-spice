@@ -12,7 +12,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 
 triggers query_lc => qr/^(?:weather(?: fore?cast)?|fore?cast)(?: (?:at|for|in))?(?: (.+))?$/;
 
-spice to => 'https://forecast.io/ddg?q=$1&callback={{callback}}';
+spice to => 'https://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
 
 spice is_cached => 0;
 
