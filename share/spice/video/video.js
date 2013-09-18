@@ -17,6 +17,7 @@ function ddg_spice_video(api_result) {
         more_at_link.find("span").html(obj.text);
     };
 
+    // This are things that a provider needs when building the spice.
     var provider_data = {
 	"YouTube": {
 	    "search_link": "https://www.youtube.com/results?search_query=",
@@ -63,6 +64,7 @@ function ddg_spice_video(api_result) {
 	    template_detail: "video_detail",
 	    li_width: 120,
 	    single_item_handler: function(obj) {
+		// Prevent the video from playing if we only have one item.
 		obj.data[0].provider_data.embed_options.autoplay = 0;
 	    }
 	},
