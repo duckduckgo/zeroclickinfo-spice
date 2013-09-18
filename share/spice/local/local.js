@@ -1,25 +1,5 @@
-function ddg_spice_local(api_response) {
-    console.log(api_response);
-    if (!api_response || api_response.length == 0) return;
-
-    Spice.render({
-        //header1                  : query + ' (Local)',
-        source_url               : 'http://yelp.com/?q='
-                                    + encodeURIComponent(DDG.get_query()),
-        source_name              : 'places near you',
-        template_frame           : 'map',
-        template_normal          : 'local',
-        template_options         : { li_width : 300, li_height : 110 },
-        map_css_id               : 'local',
-        map_template_detail      : 'local_detail',
-        map_items                : api_response,
-        force_no_fold            : true,
-        data                     : api_response,
-        item_callback            : get_details
-    });
-};
-
 function get_details(item, cached) {
+    console.log('get_details');
     if (item.engine != 'Foursquare') return;
     if (!cached)
         $.getJSON('/local.js?eng=' + item.engine + '&id=' + item.id, function(json) {
@@ -38,6 +18,26 @@ function render_details(json, el) {
         );
     }
 }
+
+function ddg_spice_local(api_response) {
+    console.log(api_response);
+    window.results = api_response;
+    if (!api_response || api_response.length == 0) return;
+
+    Spice.render({
+        source_url               : 'http://yelp.com/?q='
+                                    + encodeURIComponent(DDG.get_query()),
+        source_name              : 'places near you',
+        template_frame           : 'map',
+        template_normal          : 'local',
+        map_css_id               : 'local',
+        map_template_detail      : 'local_detail',
+        map_items                : api_response,
+        force_no_fold            : true,
+        data                     : api_response,
+        item_callback            : get_details
+    });
+};
 
 Handlebars.registerHelper('format_address', function(address) {
     if (address) return address.split(',')[0];
