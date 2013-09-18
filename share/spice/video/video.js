@@ -17,6 +17,39 @@ function ddg_spice_video(api_result) {
         more_at_link.find("span").html(obj.text);
     };
 
+    var provider_data = {
+	"YouTube": {
+	    "search_link": "https://www.youtube.com/results?search_query=",
+	    "image": "https://icons.duckduckgo.com/i/www.youtube.com.ico",
+	    "text": "More at YouTube",
+	    "embed": "https://www.youtube-nocookie.com/embed/",
+	    "play_url": "https://www.youtube.com/watch?v=",
+	    "user_url": "https://www.youtube.com/user/",
+	    "embed_options": {
+		"iv_load_policy": 3,
+		"autoplay": 1,
+		"wmode": "opaque"
+	    }
+	},
+	"Vimeo": {
+	    "search_link": "https://www.vimeo.com/search?q=",
+	    "image": "https://icons.duckduckgo.com/i/www.vimeo.com.ico",
+	    "text": "More at Vimeo",
+	    "embed": "https://player.vimeo.com/video/",
+	    "play_url": "https://vimeo.com/",
+	    "user_url": "https://vimeo.com/",
+	    "embed_options": {
+		"api": 0,
+		"autoplay": 1
+	    }
+	}
+    };
+
+    // Copy provider-specific data to the item.
+    $.map(api_result, function(item) {
+	item.provider_data = provider_data[item.provider];
+    });
+    
     Spice.render({
         data: api_result,
         source_name : 'YouTube',
@@ -28,19 +61,19 @@ function ddg_spice_video(api_result) {
 	    items: api_result,
 	    template_item: "video",
 	    template_detail: "video_detail",
-	    li_width: 120
+	    li_width: 120,
+	    single_item_handler: function(obj) {
+		obj.data[0].provider_data.embed_options.autoplay = 0;
+	    }
 	},
         force_no_fold : 1,
 	item_callback: function(i, item) {
 	    var more_at_link = $(".zero_click_more_at_link").get(0);
-	    if(item.provider in ddg_spice_video.providers) {
-		var providers = ddg_spice_video.providers;
-		change_more({
-		    "search_link": providers[item.provider].search_link + encodedQuery,
-		    "image": providers[item.provider].image,
-		    "text": providers[item.provider].text
-		});
-	    }
+	    change_more({
+		"search_link": item.provider_data.search_link + encodedQuery,
+		"image": item.provider_data.image,
+		"text": item.provider_data.text
+	    });
 	    resizeDetail();
 	}
     });
@@ -71,34 +104,6 @@ function ddg_spice_video(api_result) {
     ddg_spice_video.resizeDetail = resizeDetail;
 }
 
-ddg_spice_video.providers = {
-    "YouTube": {
-	"search_link": "https://www.youtube.com/results?search_query=",
-	"image": "https://icons.duckduckgo.com/i/www.youtube.com.ico",
-	"text": "More at YouTube",
-	"embed": "https://www.youtube-nocookie.com/embed/",
-	"play_url": "https://www.youtube.com/watch?v=",
-	"user_url": "https://www.youtube.com/user/",
-	"embed_options": {
-	    "iv_load_policy": 3,
-	    "autoplay": 1,
-	    "wmode": "opaque"
-	}
-    },
-    "Vimeo": {
-	"search_link": "https://www.vimeo.com/search?q=",
-	"image": "https://icons.duckduckgo.com/i/www.vimeo.com.ico",
-	"text": "More at Vimeo",
-	"embed": "https://player.vimeo.com/video/",
-	"play_url": "https://vimeo.com/",
-	"user_url": "https://vimeo.com/",
-	"embed_options": {
-	    "api": 0,
-	    "autoplay": 1
-	}
-    }
-};
-
 // This is the callback function of /itt.
 ddg_spice_video.itunes = function(api_result) {
     if(!api_result || !api_result.results || api_result.results.length === 0) {
@@ -125,11 +130,8 @@ ddg_spice_video.itunes = function(api_result) {
 
 };
 
-Handlebars.registerHelper("userURL", function(provider, uploader) {
-    if(provider in ddg_spice_video.providers) {
-	return ddg_spice_video.providers[provider].user_url + uploader; 
-    }
-    return "";
+Handlebars.registerHelper("userURL", function(provider_data, uploader) {
+    return provider_data.user_url + uploader; 
 });
 
 Handlebars.registerHelper("checkMusic", function(category, title, options) {
@@ -170,7 +172,7 @@ Handlebars.registerHelper("formatViews", function(views) {
     }
 });
 
-Handlebars.registerHelper("embedURL", function(provider, id) {
+Handlebars.registerHelper("embedURL", function(provider_data, id) {
     function parameters(embed_options) {
 	var result = [];
 	for(o in embed_options) {
@@ -179,18 +181,14 @@ Handlebars.registerHelper("embedURL", function(provider, id) {
 	return result.join("&");
     }
 
-    if(provider in ddg_spice_video.providers) {
-	return ddg_spice_video.providers[provider].embed + id + "?" +
-	    parameters(ddg_spice_video.providers[provider].embed_options);
-    }
+    return provider_data.embed + id + "?" +
+	parameters(provider_data.embed_options);
+
     return "";
 });
 
-Handlebars.registerHelper("playURL", function(provider, id) {
-    if(provider in ddg_spice_video.providers) {
-	return ddg_spice_video.providers[provider].play_url + id;
-    }
-    return "";
+Handlebars.registerHelper("playURL", function(provider_data, id) {
+    return provider_data.play_url + id;
 });
 
 Handlebars.registerHelper("checkStatistics", function(viewCount, options) {
