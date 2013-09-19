@@ -1,5 +1,4 @@
 function get_details(item, cached) {
-    console.log('get_details');
     if (item.engine != 'Foursquare') return;
     if (!cached)
         $.getJSON('/local.js?eng=' + item.engine + '&id=' + item.id, function(json) {
@@ -20,8 +19,6 @@ function render_details(json, el) {
 }
 
 function ddg_spice_local(api_response) {
-    console.log(api_response);
-    window.results = api_response;
     if (!api_response || api_response.length == 0) return;
 
     Spice.render({
