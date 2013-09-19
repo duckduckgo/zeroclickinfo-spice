@@ -1,9 +1,3 @@
-<ul>
-{{#each package}}
-  <li>
-    {{name}}-{{version}}: {{condense info maxlen="125"}} {{#if license}}({{license}}){{/if}}
-    {{#if OutOfDate}}(out of date){{/if}}
-    {{#if project_uri}}[<a href="{{project_uri}}">official site</a>]{{/if}}
-  </li>
-{{/each}}
-</ul>
+{{name}}-{{version}}: {{condense info maxlen="125"}} {{#if license}}({{license}}){{/if}}
+{{#if OutOfDate}}(out of date){{/if}}
+{{#if project_uri}}[<a href="{{project_uri}}">official site</a>]{{/if}}

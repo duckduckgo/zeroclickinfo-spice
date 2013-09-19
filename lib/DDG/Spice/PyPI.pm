@@ -18,8 +18,6 @@ spice wrap_jsonp_callback => 1;
 spice is_cached => 1;
 
 handle remainder => sub {
-    s/^\s+//;
-    s/\s+$//;
     return $_ if $_;
     return;
 };

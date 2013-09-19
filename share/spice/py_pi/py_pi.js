@@ -9,7 +9,13 @@ function ddg_spice_py_pi(response) {
         header1          : query + " (Python Packages)",
         source_url       : 'http://ddg.absent.co.in/pypi?query=' + encodeURIComponent(query),
         source_name      : 'PyPI',
-        template_normal  : 'py_pi',
+        template_frame   : 'list',
+	template_options  : {
+            items: response,
+            show: 5,
+            max: 14,
+            template_item: 'py_pi'
+	},
         force_big_header : true
     });
 }
