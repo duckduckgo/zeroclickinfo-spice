@@ -29,9 +29,6 @@ function ddg_spice_khan_academy ( api_result ) {
         }
     });
 
-    // Move ddgc_detail above carousel
-    $("#ddgc_detail").prependTo("#ddgcarousel");
-
     // Set height of ddgc_detail;
     resizeDetail();
 
@@ -39,8 +36,7 @@ function ddg_spice_khan_academy ( api_result ) {
         var $khan = $("#spice_khan_academy");
         var width = $khan.width() - 14;    //need 7px of padding on each side
         var height = Math.floor(width * 0.5625) + 30;    //30px for player menu
-        $("#ddgc_detail").height(height);
-        // console.log(width, height);
+        $("#spice_khan_academy  #ddgc_detail").height(height);
     };
 
     $(document).ready(function() {
@@ -49,10 +45,6 @@ function ddg_spice_khan_academy ( api_result ) {
     });
 
 }
-
-/*******************************
-  Handlebars helpers
-  *******************************/
 
 // forms the url for a khan_academy product image
 Handlebars.registerHelper ('video_id', function() {
