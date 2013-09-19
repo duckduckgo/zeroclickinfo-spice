@@ -21,3 +21,7 @@
 #local .right img {
     margin-bottom: 5px !important;
 }
+
+#local .title {
+    overflow: hidden;
+}
