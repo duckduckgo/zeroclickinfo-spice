@@ -13,12 +13,14 @@ function ddg_spice_bootic (api_result) {
     Spice.render({
         data             : api_result,
         source_name      : 'Bootic',
+        spice_name       : "bootic",
         source_url       : 'http://www.bootic.com/?q =' + query,
         header1          : api_result.input_query + ' (Bootic)',
         template_frame   : "carousel",
-        template_normal  : "bootic",
-        carousel_css_id  : "bootic",
-        carousel_items   : api_result.products,
+        template_options: {
+            items           : api_result.products,
+            template_item   : "bootic",
+        },
         force_big_header : 1
     });
 }

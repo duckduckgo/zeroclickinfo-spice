@@ -1,0 +1,12 @@
+<div>Ingredients:</div>
+<ul>
+    {{#if isArray}}
+        {{#each ingredients}}
+            <li>{{this}}</li>
+        {{/each}}
+    {{else}}
+        {{#keys ingredients}}
+            <li>{{value}}</li>
+        {{/keys}}
+    {{/if}}
+</ul>

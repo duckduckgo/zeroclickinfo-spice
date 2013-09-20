@@ -5,17 +5,19 @@ function ddg_spice_aur(response) {
         return;
     }
 
-    var pkgs = response.results;
-    var pkg  = pkgs[0];
-
     var query = DDG.get_query().replace(/(aur|archlinux package|arch package|arch linux package)/, "");
 
     Spice.render({
-        data             : pkgs.length === 1 ? pkg : {'package' : pkgs },
-        header1          : pkg.Name + " (AUR)",
+        data             : response.results,
+        header1          : response.results[0].Name + " (AUR)",
         source_url       : 'https://aur.archlinux.org/packages/?O=0&K=' + query,
         source_name      : 'ArchLinux User Repository',
-        template_normal  : pkgs.length === 1 ? 'single' : 'aur',
+        spice_name       : 'aur',
+        template_frame   : "list",
+        template_options : {
+            items: response.results,
+            template_item: "aur" // will use this also for a single item
+        },
         force_big_header : true
     });
 }

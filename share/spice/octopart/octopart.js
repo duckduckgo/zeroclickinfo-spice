@@ -37,13 +37,14 @@ function ddg_spice_octopart (api_result) {
 
     Spice.render({
         source_name : 'Octopart',
+        spice_name: "octopart",
         source_url : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q,
         header1 : api_result.request.q + " (Octopart)",
         template_frame: "carousel",
-        template_normal: "octopart",
-        carousel_css_id: "octopart",
-        carousel_template_detail: "octopart_details",
-        carousel_items: results,
+        template_options: {
+            template_detail: "octopart_details",
+            items: results
+        },
         force_no_fold : 1
     });
 };

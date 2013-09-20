@@ -29,14 +29,15 @@ function ddg_spice_in_theaters (api_result) {
         header1                  : header,
         source_url               : "http://www.rottentomatoes.com/",
         source_name              : "Rotten Tomatoes",
-        template_normal          : "in_theaters",
+        spice_name               : "in_theaters",
         force_big_header         : true,
         template_frame           : "carousel",
-        carousel_css_id          : "in_theaters",
-        carousel_items           : api_result.movies,
-        carousel_template_detail : "in_theaters_details",
-        force_no_fold            : true,
-        template_options         : { li_height : 155 }
+        template_options         : {
+            items           : api_result.movies,
+            template_detail : "in_theaters_details",
+            li_height : 155
+        },
+        force_no_fold            : true
     });
 };
 

@@ -9,10 +9,12 @@ function ddg_spice_google_plus (api_result) {
         source_name : 'Google+',
         source_url : 'http://plus.google.com',
         header1 : "Google+ Users",
+        spice_name: "google_plus",
         template_frame: "carousel",
-        template_normal: "google_plus",
-        carousel_css_id: "google_plus",
-        carousel_items: api_result.items,
+        template_options: {
+            items: api_result.items,
+            template_item: "google_plus"
+        },
         force_no_fold : 1
     });
 };
@@ -20,3 +22,4 @@ function ddg_spice_google_plus (api_result) {
 Handlebars.registerHelper("changeSize", function(image) {
     return image.replace(/sz=50$/, "sz=100");
 });
+

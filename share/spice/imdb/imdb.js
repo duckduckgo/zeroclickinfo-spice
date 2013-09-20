@@ -6,7 +6,7 @@ function ddg_spice_imdb(api_result) {
         data              : api_result,
         header1           : api_result.Title + ' (IMDb)',
         source_url        : 'http://www.imdb.com/title/'
-                            + api_result.imdbID,
+            + api_result.imdbID,
         source_name       : 'IMDb',
         template_normal   : 'imdb',
         force_big_header  : true,
@@ -28,8 +28,7 @@ function reverse(s){
 }
 
 function replaceLast(input, a, b) {
-    var out = reverse(input);
-    out.replace(a, b);
+    var out = reverse(input).replace(a, reverse(b));
     return reverse(out);
 }
 
@@ -53,6 +52,7 @@ Handlebars.registerHelper("rating_adjective", function() {
 	}
 
 	return ( this.Rated === "R" ||
+		this.Rated === "M" || 
 		this.Rated === "NC-17" ||
 		this.Rated === "N/A" ) ?  "an" :"a";
 });
@@ -77,7 +77,10 @@ Handlebars.registerHelper('get_runtime', function(){
 
 // check for movie or tv show
 Handlebars.registerHelper('result_type', function(){
-    return (this.Type === "episode") ? 'episode' : 'movie';
+    if (this.Type !== "N/A") {
+	return this.Type;
+    }
+    return "title"; //eg, Goodbye Miami (2013) is an unrated title starring...
 });
 
 
@@ -97,8 +100,8 @@ Handlebars.registerHelper('actors_and_director', function(){
     }
 
     else if (this.Actors !== 'N/A'){
-        var actors = replaceLast(this.Actors, ",", "and");
-        return "starring " + actors;
+        var actors = replaceLast(this.Actors, ',', ' and ');
+	return "starring " + actors;
     }
 
     else if (this.Director !== 'N/A') {

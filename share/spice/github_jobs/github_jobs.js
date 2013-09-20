@@ -14,12 +14,17 @@ function ddg_spice_github_jobs(api_result) {
                             + encodeURIComponent(jobs['description'])
                             + "&location=" +  encodeURIComponent(jobs['location']),
         source_name      : 'GitHub',
-        template_normal  : 'github_jobs',
+        spice_name      : 'github',
+
+        template_frame   : 'list',
+        template_options: {
+            items: api_result,
+            template_item: "github_jobs",
+            show: 3,
+	    max: 10,
+            type: 'ul'
+        },
         force_big_header : true,
         force_no_fold    : true
-    });
-
-    $("#ghj_showHide").click(function(){
-        $("#ghj_more_results").toggle();
     });
 }

@@ -1,13 +1,13 @@
-.metadata {
+.spice_in_theaters_metadata {
     color: rgb(119, 119, 119);
     font-size: 90%;
 }
 
-#in_theaters li.ddgc_item img {
-    max-height: 130px !important;
+#spice_in_theaters li.ddgc_item img {
+    max-height: 120px !important;
     max-width: none !important;
 }
 
-#in_theaters li.ddgc_item {
+#spice_in_theaters li.ddgc_item {
     height: 165px;
 }

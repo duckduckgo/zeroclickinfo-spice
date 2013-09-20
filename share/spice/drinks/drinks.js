@@ -16,7 +16,12 @@ function ddg_spice_drinks(api_result) {
         header1          : api_result[0].name + " (The Drink Project)",
         source_url       : api_result[0].url,
         source_name      : 'The Drink Project',
-        template_normal  : 'drinks',
-        force_no_fold    : true
+        spice_name       : 'drinks',
+        template_frame   : "twopane",
+        template_options: {
+            left  : { template: "drinks" },
+            right : { template: "drinks_ingredients" },
+        },
+        force_no_fold    : false
     });
 }

@@ -1,21 +1,2 @@
-{{! First tile which shows the directions.}}
-<div class="directions">
-    <div>Directions:</div>
-    <div>{{{condense procedure maxlen="170"}}}</div>
-</div>
-
-{{! Second tile which shows the ingredients.}}
-<div class="ingredients">
-    <div>Ingredients:</div>
-    <ul>
-        {{#if isArray}}
-            {{#each ingredients}}
-                <li>{{this}}</li>
-            {{/each}}
-        {{else}}
-            {{#keys ingredients}}
-                <li>{{value}}</li>
-            {{/keys}}
-        {{/if}}
-    </ul>
-</div>
+<div>Directions:</div>
+<div>{{{condense procedure maxlen="170"}}}</div>
