@@ -44,7 +44,8 @@ function ddg_spice_guidebox_lastshows (api_result) {
 
     var metadata = ddg_spice_guidebox_getid.metadata;
 
-    var a = {
+    Spice.render({
+        data                     : api_result,
         header1                  : metadata.res_title + " (TV  - " + metadata.network + ")",
         source_name              : "Guidebox",
         source_url               : metadata.more,
@@ -56,12 +57,8 @@ function ddg_spice_guidebox_lastshows (api_result) {
             template_detail      : "guidebox_getid_details",
             li_width             : 120,
             li_height            : 105
-        },
-	force_no_fold: true
-    };
-
-    console.log(a);
-    Spice.render(a);
+        }
+    });
 };
 
 Handlebars.registerHelper("checkSeason", function(season_number, episode_number, options) {
