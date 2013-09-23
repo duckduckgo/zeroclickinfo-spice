@@ -1,0 +1,49 @@
+#spice_amazon li.ddgc_item p {
+    background-color: #ffffff;
+    border: 1px solid #e7e7e7;
+    overflow: hidden;
+    height: 95px !important;
+}
+
+#spice_amazon li.ddgc_item img {
+    padding: 5px;
+}
+
+#spice_amazon .amazon-heading {
+    font-size: 95%;
+}
+
+#spice_amazon li.ddgc_selected .amazon-heading {
+    color: #1168CC;
+}
+
+#spice_amazon .spotlight {
+    float: left;
+    border: 1px solid #E1E1E1;
+    max-height: 0px;
+    max-width: 150px;
+    display: none;
+}
+
+#spice_amazon .price {
+    font-weight: bold;
+    color: #900000;
+}
+
+#spice_amazon .description {
+    float: left;
+    width: 450px;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+#spice_amazon div .stars {
+    display: inline-block;
+    width: 55px;
+    height: 12px;
+}
+
+#spice_amazon .description ul {
+    font-size: 90%;
+    margin-left: 15px;
+}

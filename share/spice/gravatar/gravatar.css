@@ -1,0 +1,7 @@
+.more-links {
+    float: left; padding-right: 5px; padding-top: 2px; width: 16px; height: 16px;
+}
+
+.more-links-anchor:hover {
+    text-decoration: none;
+}

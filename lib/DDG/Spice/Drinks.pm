@@ -2,10 +2,21 @@ package DDG::Spice::Drinks;
 
 use DDG::Spice;
 
+primary_example_queries "how to mix a tom collins";
+secondary_example_queries "mixing 007", "how to make a 1.21 gigawatts";
+description "Bartending info";
+name "Drinks";
+source "Drink Project";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Drinks.pm";
+topics "food_and_drink";
+category "entertainment";
+attribution github => ['https://github.com/mutilator','mutilator'];
+
 triggers any => "drink", "make", "mix", "recipe", "ingredients";
 triggers start => "mixing", "making";
 
 spice to => 'http://drinkproject.com/api/?type=json&name=$1&callback={{callback}}';
+
 
 handle query_lc => sub {
     if (/^((((making|mixing)+|(how\sto\s(make|mix)+)+)+(\s(a|an|the)*)*)|(mixed\s+)*drink(\s+(recipe|mix))*)+\s+(.+)$/) {

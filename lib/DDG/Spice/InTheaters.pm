@@ -3,9 +3,24 @@ package DDG::Spice::InTheaters;
 
 use DDG::Spice;
 
+primary_example_queries "movies";
+secondary_example_queries "movies in theaters", "currently in theaters", "i want to watch a movie";
+description "Current movies from Rotten Tomatoes";
+name "InTheaters";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/InTheaters.pm";
+icon_url "/i/www.rottentomatoes.com.ico";
+topics "entertainment";
+category "entertainment";
+attribution github => ['https://github.com/jagtalon','jagtalon'],
+            twitter => ['http://twitter.com/juantalon','juantalon'];
+
 my $rating = '(?:g\s*|pg\s*|r\s*)?';
-spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?apikey=ccw2b5ce8dsy7sb3x2qxmn3x&callback={{callback}}';
 triggers any => 'movie', 'movies', 'theaters', 'theatres', 'showing', 'something', 'watch', 'opening', 'see';
+spice from => '(.*?)/(.*)';
+spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?country=$2&apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&callback={{callback}}&page_limit=12&limit=12';
+
+spice is_cached => 0;
+spice proxy_cache_valid => "418 1d";
 
 my %movies = (
 	'movies now showing' => 1,
@@ -15,6 +30,7 @@ my %movies = (
 	'watch a movie' => 1,
 	'opening soon in theaters' => 0,
 	'opening soon in theatres' => 0,
+	'opening movies' => 0,
 	'r movies opening' => 0,
 	'pg movies opening' => 0,
 	'pg-13 movies opening' => 0,
@@ -65,9 +81,9 @@ my %movies = (
 handle query_lc => sub {
 	return unless exists $movies{$_};
 	if($movies{$_}) {
-		return "in_theaters";
+		return "in_theaters", $loc->country_code;
 	} else {
-		return "opening";
+		return "opening", $loc->country_code;
 	}
 };
 1;

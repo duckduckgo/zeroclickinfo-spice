@@ -13,7 +13,13 @@ ddg_spice_test(
 		call_type => 'include',
 		caller    => 'DDG::Spice::RandNums',
 		is_cached => 0
-	)
+	),
+	'random numbers 1 50' => test_spice(
+		'/js/spice/rand_nums/1/50',
+		call_type => 'include',
+		caller    => 'DDG::Spice::RandNums',
+		is_cached => 0
+	),
 );
 
 done_testing;

@@ -1,0 +1,115 @@
+#spice_quixey .hidden {
+  display: none;
+}
+
+#spice_quixey .app_icon {
+  margin: 0px;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+#spice_quixey .rating {
+  margin-right: 5px;
+  display: inline;
+}
+
+#spice_quixey img.star {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  margin 0 2px;
+}
+
+#spice_quixey .app_icon_anchor {
+  max-width: 60px;
+  float: left;
+}
+
+
+#spice_quixey .app_info {
+  display: block;
+  float: left;
+  font-size: 12px;
+  padding: 0 2px 0 0;
+  width: 100%;
+}
+
+#spice_quixey .app_details {
+  display: block;
+  float: left;
+}
+
+#spice_quixey .price {
+  margin: 3px 0;
+  font-size: 1.2em;
+  display: inline;
+  line-height: 1.5em;
+}
+
+#spice_quixey .name_wrap {
+  display: inline-block;
+  max-width: 85%;
+  margin-left: 88px;
+	display: block;
+}
+
+#spice_quixey .name {
+  display: block;
+  width: 100%;
+  font-size: 1.1em;
+}
+
+#spice_quixey .app_editions {
+  float: left;
+  width: 100%;
+}
+
+#spice_quixey .app_editions::before {
+  content: "App Editions:";
+  float: left;
+  clear: both;
+  width: 100%;
+  margin-bottom: 3px;
+  margin-top: 10px;
+}
+
+#spice_quixey .app_platform {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 5px 5px 2px 5px;
+  vertical-align: text-bottom;
+  background: #EEE;
+  border: 1px solid #DDD;
+  color: black;
+}
+
+#spice_quixey .app_platform:hover {
+  border: 1px solid #80b5ff;
+  background: #f7f7f7;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#spice_quixey .app_platform img.platform_icon {
+  max-width: 13px;
+  margin: 0 2px 0 0;
+  vertical-align: text-top;
+}
+
+#spice_quixey .app_edition {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 3px;
+}
+
+#spice_quixey .platform_icon {
+  display: inline-block;
+  max-height: 13px;
+  margin-left: 5px;
+  width: auto;
+}
+
+#spice_quixey .platform_icon:first-of-type {
+  margin-left: 0px;
+}

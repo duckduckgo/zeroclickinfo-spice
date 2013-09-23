@@ -1,0 +1,30 @@
+#movie_data_box {
+    display:block;
+    padding:2px;
+}
+
+#movie_data_box.half-width {
+    width:40%;
+    float:left;
+    border-right:1px solid rgba(0,0,0,0.1);
+    margin-right:10px;
+}
+
+.movie_critics_rating {
+    color:gray;
+}
+
+.movie_star_rating {
+    color:gold;
+    text-shadow: 1px 1px black, 0px 1px black
+}
+
+.movie_data_item {
+    display:inline-block;
+    padding-right:6px;
+    color:gray;
+}
+
+.movie_data_description {
+    font-size:smaller;
+}

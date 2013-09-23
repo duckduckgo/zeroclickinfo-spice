@@ -1,0 +1,29 @@
+<div id="zanran">
+    <div>
+        {{#with results.[0]}}
+            <div>
+                {{{condense title maxlen="215"}}
+                {{#if preview_url}}
+                    [<a href="{{preview_link}}">Preview</a>]
+                {{/if}}
+            </div>
+            <i>Source: <a href="{{final_url}}">{{site_name}}</a></i>
+        {{/with}}
+    </div>
+
+    <div style="clear: both;"></div>
+    <hr class="horizontal_line">
+
+    <a data-target="#other-results" class="show-hide">Other Results</a>
+    <div class="hide" id="other-results">
+        {{#each results from="1"}}
+            <div>
+                {{short_title}}
+                {{#if preview_url}}
+                    [<a href="{{preview_link}}">Preview</a>]
+                {{/if}}
+            </div>
+            <i>Source: <a href="{{final_url}}">{{site_name}}</a></i>
+        {{/each}}
+    </div>
+</div>

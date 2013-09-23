@@ -1,0 +1,118 @@
+/*
+
+    SoundManager 2: "page as playlist" example
+    ------------------------------------------
+    http://schillmania.com/projects/soundmanager2/
+
+*/
+
+#spice_forvo ul.ddg_spicelist {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#spice_forvo ul.ddg_spicelist li {
+    /* assume all items will be sounds rather than wait for onload etc. in this example.. may differ for your uses. */
+    position: relative;
+    display: block;
+    width: auto;
+    font-size: 1em;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+    border: none;
+    /* -webkit-transition-property: hover; */
+    /* -webkit-transition: background-color 0.15s ease-in-out; */
+    /* -moz-transition: background-color 0.15s linear 0s; */
+    /*  -o-transition-property: background-color; */
+    /*  -o-transition-duration: 0.15s; */
+
+}
+
+#spice_forvo ul.ddg_spicelist li.spice2list_item {
+    color: #666;
+}
+
+#spice_forvo ul.ddg_spicelist li a.forvo-audio {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: normal;
+    color: #000;
+    font-size: 100%;
+    outline: none;
+    position: relative;
+    z-index: 2;
+}
+
+#spice_forvo ul.ddg_spicelist li.sm2_playing,
+#spice_forvo ul.ddg_spicelist li.sm2_paused,
+#spice_forvo ul.ddg_spicelist li.sm2_playing a {
+    /* color:#fff; */
+    border-radius: 3px;
+}
+
+#spice_forvo ul.ddg_spicelist li.spice2list_item:hover a {
+/*  background-color:#eee; */
+    color:#333;
+}
+
+/* ul.ddg_spicelist li.sm2_playing, */
+/* ul.ddg_spicelist li.sm2_playing:hover { */
+/*  background-color:#6699cc; */
+/* } */
+
+#spice_forvo ul.ddg_spicelist li.sm2_paused {
+    background-color: #eee;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAA6ElEQVR42q2UvQqDMBRGC47dAj6rgygIDg5OfQlHF30GX0JFURddnEQU+eoNLaSJFRUvnPzA/c4QkjwA3AIf1tJWnitsRT8I+2Q0UfTM8/yFk0UZyooiNk0ThmE4BWUoK4r0cRxxBcr+iMh+AVW0LAtkoihCURS0/ocqwkaZpgnbtrmwrmts1DGR67owDIPjeR7iOEbXdfuisiwh4zgOSb5wcZIkYo8qapoGMpZlkYALwzBElmWoqkrsUUVt20LG930EQUAHTvstVFHf95BJ05TmPVQR3dQLKCI2zzOuQNnbHu3t38gtvAF1L6rpAc8MDwAAAABJRU5ErkJggg==);
+    background-repeat: no-repeat;
+    background-position: 3px 35%;
+    padding-left: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+#spice_forvo ul.ddg_spicelist li.sm2_stopped {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAA6ElEQVR42q2UvQqDMBRGC47dAj6rgygIDg5OfQlHF30GX0JFURddnEQU+eoNLaSJFRUvnPzA/c4QkjwA3AIf1tJWnitsRT8I+2Q0UfTM8/yFk0UZyooiNk0ThmE4BWUoK4r0cRxxBcr+iMh+AVW0LAtkoihCURS0/ocqwkaZpgnbtrmwrmts1DGR67owDIPjeR7iOEbXdfuisiwh4zgOSb5wcZIkYo8qapoGMpZlkYALwzBElmWoqkrsUUVt20LG930EQUAHTvstVFHf95BJ05TmPVQR3dQLKCI2zzOuQNnbHu3t38gtvAF1L6rpAc8MDwAAAABJRU5ErkJggg==);
+    background-repeat: no-repeat;
+    background-position: 3px 35%;
+    padding-left: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+#spice_forvo ul.ddg_spicelist  li.sm2_playing {
+    background-image: url(https://duckduckgo.com/soundmanager2/icon_pause.png);
+    background-repeat: no-repeat;
+    background-position: 3px 35%;
+    padding-left: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+/* ul.ddg_spicelist li.sm2_playing:hover a, */
+/* ul.ddg_spicelist li.sm2_paused a { */
+/*  color:#fff; */
+/* } */
+
+#spice_forvo ul.ddg_spicelist li.sm2_playing a.sm2_link,
+#spice_forvo ul.ddg_spicelist li.sm2_paused a.sm2_link {
+    margin-right: 4.5em; /* room for timing stuff */
+}
+
+#spice_forvo #control-template {
+    display: none;
+}
+
+#spice_forvo .sidenote {
+   font-size: 85%;
+   opacity: .75;
+}
+
+#spice_forvo ul.ddg_spicelist {
+    margin-left: -5px;
+}

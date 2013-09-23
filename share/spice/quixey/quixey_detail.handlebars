@@ -1,0 +1,38 @@
+<div id="quixey_preview" style="width: 100%; height: 100%;" app="{{id}}">
+    <div class="app_info">
+        <a href="{{{url}}}" class="app_icon_anchor">
+            <img src="/iu/?u={{{icon_url}}}&f=1" class="app_icon">
+        </a>
+        <div class="name_wrap">
+            <a href="{{url}}" class="name" title="{{name}}">{{name}}</a>
+
+            {{#if rating}}
+                <div title="{{rating}}" class="rating">
+                    {{#loop rating}}
+                        <img src="{{quixey_star}}" class="star"></span>
+                    {{/loop}}
+                </div>
+            {{/if}}
+            <div class="price">{{pricerange}}</div>
+            <div class="app_description">{{{short_desc}}}</div>
+            <div id="details_{{id}}" class="app_details">
+                <div class="app_editions">
+                    {{#each editions}}
+                        <div class="app_edition" title="{{name}} - Rating: {{rating}}">
+                            <a href="{{{url}}}" class="app_platform">
+                                {{#with this.platforms.[0]}}
+                                <img src="{{platform_icon icon_url}}" class="platform_icon">
+                                {{/with}}
+                                {{platform_name}}
+                                {{#if ../hasPricerange}}
+                                     - {{price cents}}
+                                {{/if}}
+                            </a>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
