@@ -1,3 +1,10 @@
+#spice_khan_academy #ddgc_detail {
+    padding: 9px;
+    border-bottom: none;
+    background: #FFF;
+    height: 100%;
+}
+
 #spice_khan_academy li.ddgc_item div.image_wrap{
 	position: relative;
 }
@@ -32,8 +39,4 @@
 #spice_khan_academy #ddgc_slider {
 	border-top: none;
 	padding-top: 8px !important;
-}
-
-#spice_khan_academy #ddgc_detail > div {
-	height: 100%;
 }
