@@ -5,16 +5,19 @@ function ddg_spice_guidebox_getid (api_result) {
 
     var SKIP_ARRAY = ["online","tv","episode","episodes","free","guidebox","watch","full"],
         results = api_result.results.result,
-        relevant = [];
+        relevant;
 
-    $.each(results, function(key, result){
-        if (DDG.isRelevant(result.title, SKIP_ARRAY, 3)){
+    // Check which show is relevant to our query.
+    $.each(results, function(key, result) {
+        if (DDG.isRelevant(result.title, SKIP_ARRAY, 3) && !relevant) {
             relevant = result;
-            return(false);
         }
     });
 
-    if (relevant.length == 0) return;
+    // Exit if we didn't find anything relevant.
+    if (!relevant) {
+	return;
+    }
 
     // Prevent jQuery from appending "_={timestamp}" in our url.
     $.ajaxSetup({
@@ -27,9 +30,9 @@ function ddg_spice_guidebox_getid (api_result) {
         query  = matched[1];
 
     var metadata = {
-        res_title : api_result.results.result[0].title,
-        network   : api_result.results.result[0].network,
-        more      : api_result.results.result[0].url,
+        res_title : relevant.title,
+        network   : relevant.network,
+        more      : relevant.url,
         query     : query,
     };
     

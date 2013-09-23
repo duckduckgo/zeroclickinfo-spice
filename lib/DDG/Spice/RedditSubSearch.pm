@@ -6,7 +6,7 @@ name "SubReddit Search";
 description "search for subreddits";
 source "Reddit";
 primary_example_queries "subreddit pizza", "/r/games";
-secondary_example_queries "r/ accounting";
+secondary_example_queries "r/accounting";
 category "forums";
 topics "social";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RedditSubSearch.pm";
