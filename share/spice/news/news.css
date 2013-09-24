@@ -15,6 +15,7 @@
 }
 
 #spice_news #ddgcarousel #news-snippet {
+    overflow: hidden;
     text-overflow: ellipsis;
     color: #777;
 }
