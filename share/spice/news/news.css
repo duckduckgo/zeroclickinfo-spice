@@ -5,9 +5,12 @@
 }
 
 #ddgcarousel li.ddgc_item span.news-title {
-    color: #1168CC;
-    display: inline;
+    color: RGB(68,68,68);
     font-size: 14px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #spice_news #ddgcarousel li.ddgc_item {
@@ -16,6 +19,11 @@
 
 #spice_news #ddgcarousel #news-snippet {
     overflow: hidden;
-    text-overflow: ellipsis;
     color: #777;
+    height: 100px;
+}
+
+#spice_news #news-more-at {
+    border-top: 1px dashed #777;
+    margin-top: 10px;
 }
