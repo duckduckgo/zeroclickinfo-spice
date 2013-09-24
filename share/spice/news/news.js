@@ -65,10 +65,21 @@ function ddg_spice_news(api_result) {
 	    items: good_stories,
 	    template_item: "news",
 	    li_width: 196,
-	    li_height: 170
+	    li_height: 180
 	},
 
 	force_big_header: true,
 	force_no_fold: true
     });
 }
+
+Handlebars.registerHelper("getIcon", function(url) {
+    return Handlebars.helpers.favicon.call({source_url: url, forces: {}});
+});
+
+Handlebars.registerHelper("getDomain", function(url) {
+    re = new RegExp('^.*?\/\/([^\/\?\:\#]+)');
+    if(re.test(url)) {
+	return RegExp.$1;
+    }
+});

@@ -1,7 +1,9 @@
 #ddgcarousel li.ddgc_item span.news-time {
     font-size: 11px;
     color: #777;
-    display: inline;
+    position: relative;
+    left: 22px;
+    bottom: 9px;
 }
 
 #ddgcarousel li.ddgc_item span.news-title {
@@ -17,13 +19,29 @@
     text-align: left;
 }
 
-#spice_news #ddgcarousel #news-snippet {
+#spice_news #ddgcarousel .news-snippet {
     overflow: hidden;
     color: #777;
     height: 100px;
 }
 
-#spice_news #news-more-at {
-    border-top: 1px dashed #777;
+#spice_news #ddgcarousel .news-more-at {
+    border-top: 1px dashed #C2C2E4;
     margin-top: 10px;
+    padding-top: 5px;
+}
+
+#spice_news #ddgcarousel img.favicon {
+    display: inline;
+    width: 16px;
+    height: 16px;
+}
+
+#spice_news #ddgcarousel .news-more-at .news-domain {
+    display: inline;
+    margin-top: 0px;
+    position: relative;
+    top: -4px;
+    left: 3px;
+    color: #824C42;
 }
