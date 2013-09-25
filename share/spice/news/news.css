@@ -9,10 +9,9 @@
 #ddgcarousel li.ddgc_item span.news-title {
     color: RGB(68,68,68);
     font-size: 14px;
-    height: 20px;
+    height: 41px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 #spice_news #ddgcarousel li.ddgc_item {
@@ -26,7 +25,7 @@
 }
 
 #spice_news #ddgcarousel .news-more-at {
-    border-top: 1px dashed RGB(99,100,112);
+    border-top: 1px dashed #777;
     margin-top: 10px;
     padding-top: 5px;
 }
