@@ -87,7 +87,7 @@ function ddg_spice_video(api_result) {
 	$("#spice_video #video-embed").width(width);
 	$("#spice_video #video-embed").height(height);
 
-	var video_title = $("#spice_video #spice_video-title").width();
+	var video_title = $("#spice_video #video-title").width();
 	var video_links = $("#spice_video .links").width();
 
 	if(width - (video_title + video_links) < 20) {
