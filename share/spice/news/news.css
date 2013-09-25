@@ -44,3 +44,7 @@
     left: 3px;
     color: #824C42;
 }
+
+#spice_news #ddgc_pagination a.zero_click_more_at_link {
+    visibility: hidden;
+}
