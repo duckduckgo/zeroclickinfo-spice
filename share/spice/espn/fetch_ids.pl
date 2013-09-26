@@ -12,8 +12,11 @@ sub parse_players {
     my @athletes = $json->{sports}[0]{leagues}[0]{athletes};
     map {
         my $name = lc $_->{displayName};
-        $name =~ s/'//g;
-        print "  '$name' => $_->{id},\n"
+        if ($name =~ m/'/) {
+            print "  \"$name\" => $_->{id},\n";
+            $name =~ s/'//g;
+        }
+        print "  \"$name\" => $_->{id},\n";
     } @{$athletes[0]};
     return $json;
 }
@@ -53,6 +56,7 @@ sub parse {
 my %leagues = (
     'nfl' => 'football',
     'nba' => 'basketball'
+    'nhl' => 'hockey'
 );
 
 for my $league (keys %leagues) {
