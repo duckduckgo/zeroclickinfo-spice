@@ -9,7 +9,7 @@
 #ddgcarousel li.ddgc_item span.news-title {
     color: RGB(68,68,68);
     font-size: 14px;
-    height: 41px;
+    height: 45px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
