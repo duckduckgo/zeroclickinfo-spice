@@ -7,18 +7,18 @@ function ddg_spice_reddit(api_result) {
     // Check if we have search results. If we do, remove items with over_18 set to true.
     var results = [];
     if(DDG.get_is_safe_search()) {
-	for(var i = 0; i < api_result.data.children.length; i++) {
-	    if(!api_result.data.children[i].data.over_18) {
-		results.push(api_result.data.children[i]);
-	    }
-	}
+        for(var i = 0; i < api_result.data.children.length; i++) {
+            if(!api_result.data.children[i].data.over_18) {
+                results.push(api_result.data.children[i]);
+            }
+        }
     } else {
-	results = api_result.data.children;
+        results = api_result.data.children;
     }
 
     // Check if we still have results after filtering.
     if(results.length === 0) {
-	return;
+        return;
     }
     
     var query = DDG.get_query();
