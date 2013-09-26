@@ -1,7 +1,8 @@
 var player = {};
 var numberOfCalls = 3;
 
-function ddg_spice_espn_nba(api_result) {
+function ddg_spice_espn_nfl(api_result) {
+    console.log(api_result);
     var player_info   = api_result.sports[0].leagues[0].athletes[0];
     var playerTeam    = player_info.competitors[0].team;
 
@@ -12,41 +13,37 @@ function ddg_spice_espn_nba(api_result) {
     player.teamID     = playerTeam.id;
     player.teamCity   = playerTeam.location;
     player.teamName   = playerTeam.name;
+    player.position   = player_info.positions[0].name.toLowerCase();
 
-    nrj('/js/spice/espn/nba/athletes/' + player.id + '/news/foo/ddg_spice_espn_nba_news');
-    nrj('/js/spice/espn/nba/teams/' + player.teamID + '/foo/bar/ddg_spice_espn_nba_team');
-    nrj('/js/spice/espn/nba/teams/' + player.teamID + '/events/dates/ddg_spice_espn_nba_events');
+    nrj('/js/spice/espn/nfl/athletes/' + player.id + '/news/foo/ddg_spice_espn_nfl_news');
+    nrj('/js/spice/espn/nfl/teams/' + player.teamID + '/foo/bar/ddg_spice_espn_nfl_team');
+    nrj('/js/spice/espn/nfl/teams/' + player.teamID + '/events/dates/ddg_spice_espn_nfl_events');
 
     player.seasonDescription = player.stats.season.description;
     player.seasonTimeFrame   = "'" + ((player.stats.season.year + '').substr(2, 2) - 1)
                              + "-'" + (player.stats.season.year + '').substr(2, 2);
 
-    player.averagePointsPerGame = (player.stats.points / player.stats.gamesStarted).toFixed(1) + '';
-    player.threePointPercentage = ((player.stats.threePointPercentage + 0) * 100).toFixed(1) + '';
-    player.fieldGoalPercentage  = player.stats.fieldGoalPercentage.toFixed(1) + '';
-    player.freeThrowPercentage  = player.stats.freeThrowPercentage.toFixed(1) + '';
-
-    ddg_spice_espn_nba_bind();
+    ddg_spice_espn_nfl_bind();
 }
 
-function ddg_spice_espn_nba_news(api_result) {
+function ddg_spice_espn_nfl_news(api_result) {
     player.headline = api_result.headlines.filter(function(article) {
                             if (article.headline && article.source)
                                 return true;
                       }).slice(0,3);
 
-    ddg_spice_espn_nba_bind();
+    ddg_spice_espn_nfl_bind();
 }
 
-function ddg_spice_espn_nba_team(api_result) {
+function ddg_spice_espn_nfl_team(api_result) {
     var record               = api_result.sports[0].leagues[0].teams[0].record;
     var totalGames           = record.wins + record.losses + record.ties;
     player.teamWinPercentage = Math.floor(record.wins / totalGames * 100);
 
-    ddg_spice_espn_nba_bind();
+    ddg_spice_espn_nfl_bind();
 }
 
-function ddg_spice_espn_nba_events(api_result) {
+function ddg_spice_espn_nfl_events(api_result) {
     var events    = api_result.sports[0].leagues[0].events;
     player.events = [];
 
@@ -63,7 +60,7 @@ function ddg_spice_espn_nba_events(api_result) {
             competitors[competitor.homeAway] = {
                 'teamName' : teamName,
                 'score'    : competitor.score,
-                'link'     : 'http://espn.go.com/nba/team/_/name/'
+                'link'     : 'http://espn.go.com/nfl/team/_/name/'
                                + (teamName.replace(' ', '').substr(0,3)
                                + '/' + teamName.replace(' ', '-')).toLowerCase(),
             };
@@ -80,18 +77,18 @@ function ddg_spice_espn_nba_events(api_result) {
         });
     }
 
-    ddg_spice_espn_nba_bind();
+    ddg_spice_espn_nfl_bind();
 }
 
-function ddg_spice_espn_nba_bind() {
+function ddg_spice_espn_nfl_bind() {
     if (numberOfCalls--) return;
     Spice.render({
         data             : player,
-        //header1          : '<a href="' + player.more_link + '">'+ player.name + '</a>' + ' (Basketball),
-        header1          : player.name + ' (NBA)',
-        source_url       : 'http://espn.com/nba/player/_/id/' + player.id,
+        //header1          : '<a href="' + player.more_link + '">'+ player.name + '</a>' + ' (NFL),
+        header1          : player.name + ' (NFL)',
+        source_url       : 'http://espn.com/nfl/player/_/id/' + player.id,
         source_name      : 'ESPN',
-        template_normal  : 'espn_nba',
+        template_normal  : 'espn_nfl',
         force_big_header : true,
         force_no_fold    : true
     });
