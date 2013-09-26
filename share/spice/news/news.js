@@ -31,13 +31,16 @@ function ddg_spice_news(api_result) {
         }
     };
 
+    for(var i = 0, story; story = api_result[i]; i++) {
+	story.title = story.title.replace(/<b>|<\/b>|:/g, "");
+    }
+
     var good_stories = [];
     if(generic) {
         good_stories = api_result;
     } else {
         for(var i = 0, story; story = api_result[i]; i++) {
-            var title = story.title.replace(/<b>|<\/b>|:/g, "");
-            if(DDG.isRelevant(title, skip, 3)) {
+            if(DDG.isRelevant(story.title, skip, 3)) {
                 getSource(story);
                 good_stories.push(story);
             }
