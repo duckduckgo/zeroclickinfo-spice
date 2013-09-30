@@ -6,7 +6,7 @@
 # Requires env var DDG_SPICE_ESPN_APIKEY
 #
 # Outputs perl hashes in the form
-# my %sport = ( $organization => \@players );
+# my %sport = ( $organization => \%players );
 #
 # Logs fetch/decode errors
 
@@ -103,7 +103,8 @@ sub retrieve {
     my ( $sport, $organization, $type ) = @_;
     my $resource = "$api/$sport/$_/athletes?apikey=$key";
 
-    print "\t$organization => [\n";
+    $organization =~ s/-/_/g;
+    print "\t$organization => {\n";
 
     my $json = fetch $resource;
 
@@ -120,12 +121,12 @@ sub retrieve {
         }
     }
 
-    print "\t],\n";
+    print "\t},\n";
 }
 
 map {
     my $sport = $_;
-    print "my %$sport => (\n";
+    print "my %$sport = (\n";
     map { retrieve $sport, $_, 'players' } @{$leagues{$_}};
     print ");\n";
 } keys %leagues;
