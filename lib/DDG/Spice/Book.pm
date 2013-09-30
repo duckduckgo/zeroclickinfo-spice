@@ -9,14 +9,16 @@ name "iDreambooks";
 spice to => 'http://idreambooks.com/newbooks/api.json?api_key=6ddd49633a8809eadb42a28f160bb25a1f24254d&q=$1';
 #spice to => 'http://localhost:3000/newbooks/api.json?api_key=&q=$1';
 
-triggers startend => "idreambooks", "critic reviews", "critic review", "book reviews", "book review";
+
+triggers startend => "idreambooks", "book reviews", "book review";
 
 spice wrap_jsonp_callback => 1;
 
-spice is_cached => 0;
+spice is_cached => 1;
 
 handle remainder => sub {
-    return $_;
+    return $_ if $_;
 };
 
 1;
+

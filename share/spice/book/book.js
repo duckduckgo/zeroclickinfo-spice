@@ -1,11 +1,29 @@
 function ddg_spice_book(api_result) {
      
     if  (api_result == null || api_result.total_results < 1 || api_result.book.critic_reviews.length == 0) return
-    var header = "Critic Reviews for " + api_result.book.title;
+    var header = "Critic Reviews of " + api_result.book.title;
     if(api_result.book.author && (api_result.book.author.length > 0) ) {header += (" by " + api_result.book.author)};
+    
+    var data =  api_result.book.critic_reviews[0];
+    
+     
+
+   
+    var d = new Date(data.review_date);
+    if (d && !isNaN( d.getTime() ) ){
+        var m_names = new Array("Jan", "Feb", "Mar",  "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+        var curr_date = d.getDate();
+        var curr_month = d.getMonth();
+        var curr_year = d.getFullYear();
+        data.review_date = ( m_names[curr_month] + " " + curr_date + ", " + curr_year);
+    }else{
+        data.review_date = "";
+    };
+
+    
 
     Spice.render({
-         data              : api_result.book.critic_reviews[0],
+         data              : data,
          force_big_header  : true,
          header1           : header,
          source_name       : "idreambooks.com", // More at ...
