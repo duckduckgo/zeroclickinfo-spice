@@ -12,7 +12,7 @@ my ( $api, $key ) = (
     "$ENV{DDG_SPICE_ESPN_APIKEY}"
 );
 
-my ( $sports, $organizers ) #, $divisions ) =
+my ( $sports, $organizers ) = #, $divisions ) =
     decode_json get "$api?apikey=$key";
 
 map {
