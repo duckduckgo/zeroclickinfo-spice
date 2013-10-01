@@ -11,10 +11,10 @@ function ddg_spice_book(api_result) {
    
     var d = new Date(data.review_date);
     if (d && !isNaN( d.getTime() ) ){
-        var m_names = new Array("Jan", "Feb", "Mar",  "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
-        var curr_date = d.getDate();
-        var curr_month = d.getMonth();
-        var curr_year = d.getFullYear();
+        var m_names = ["Jan", "Feb", "Mar",  "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var curr_date = d.getUTCDate();
+        var curr_month = d.getUTCMonth();
+        var curr_year = d.getUTCFullYear();
         data.review_date = ( m_names[curr_month] + " " + curr_date + ", " + curr_year);
     }else{
         data.review_date = "";
