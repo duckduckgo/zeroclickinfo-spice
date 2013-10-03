@@ -6,6 +6,7 @@
   color: #333;
   margin: 0 auto;
   height: 170px; /* DDG 245px; */
+  position: relative;
 }
 #spice_forecast.alert { height: 208px; } /* DDG */
 
@@ -16,28 +17,26 @@
 }
 
 #spice_forecast .fe_currently {
-  float: left;
+  display:inline-block;
   position: relative;
   width: 35%;
   height: 100%;
-  font-size: 14px;
-  text-align: center;
   padding-top: 5px;
 }
 
 #spice_forecast #fe_current_icon {
-  display: inline-block;
+  display: block;
+  position:absolute;
+  right:20px;
   width: 80px;
   height: 80px;
 }
 
 #spice_forecast .fe_currently .fe_temp {
-  display: inline-block;
   position: relative;
   top: -5px;
   margin-left: 5px;
   text-align: left;
-  line-height: 0.65em;
 }
 
 #spice_forecast .fe_currently .fe_temp .fe_temp_str {
@@ -76,8 +75,10 @@
 }
 
 #spice_forecast .fe_daily {
-  float: left;
   display: table;
+  position:absolute;
+  right:0;
+  top:0;
   width: 65%;
   height: 100%;
   font-size: 14px;
@@ -127,7 +128,7 @@
 
 #spice_forecast .fe_alert {
   position: absolute;
-  top: 205px;
+  bottom:0;
   text-align: center;
   width: 100%;
   overflow: hidden;
