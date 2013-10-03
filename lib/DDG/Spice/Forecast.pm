@@ -1,5 +1,7 @@
 package DDG::Spice::Forecast;
 
+use Data::Dumper;
+
 use DDG::Spice;
 
 name "Forecast";
@@ -24,7 +26,9 @@ handle query_lc => sub{
     if (/^(?:what(?:'s| is) the |)(?:(?:weather|temp(?:erature|)) (?:fore?cast |report |today |tomm?orr?ow |this week |))+(?:in |for |at |)(.*)/) {
         $location = $1 unless ($1 =~ /fore?cast|report|weather|temp(erature)/);
     }
-    $location = "${\$loc->latitude},${\$loc->longitude}" unless($location);
+
+    $location = $loc->loc_str unless ($location);
+
     return $location;
 };
 
