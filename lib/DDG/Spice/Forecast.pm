@@ -22,7 +22,7 @@ handle query_lc => sub{
     my $location = '';
     
     if (/^(?:what(?:'s| is) the |)(?:(?:weather|temp(?:erature|)) (?:fore?cast |report |today |tomm?orr?ow |this week |))+(?:in |for |at |)(.*)/) {
-        $location = $1; # unless ($1 =~ /fore?cast|report|weather|temp(erature)/);
+        $location = $1 unless ($1 =~ /fore?cast|report|weather|temp(erature)/);
     }
     $location = "${\$loc->latitude},${\$loc->longitude}" unless($location);
     return $location;
