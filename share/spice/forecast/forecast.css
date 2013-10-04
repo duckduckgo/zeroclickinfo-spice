@@ -78,7 +78,7 @@
 #spice_forecast .fe_daily {
   display: table;
   position:absolute;
-  right:1em;
+  right:0;
   top:0;
   width: 65%;
   height: 100%;
