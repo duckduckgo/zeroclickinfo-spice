@@ -4,6 +4,23 @@ function ddg_spice_reddit(api_result) {
         return;
     }
 
+    // Check if we have search results. If we do, remove items with over_18 set to true.
+    var results = [];
+    if(DDG.get_is_safe_search()) {
+        for(var i = 0; i < api_result.data.children.length; i++) {
+            if(!api_result.data.children[i].data.over_18) {
+                results.push(api_result.data.children[i]);
+            }
+        }
+    } else {
+        results = api_result.data.children;
+    }
+
+    // Check if we still have results after filtering.
+    if(results.length === 0) {
+        return;
+    }
+    
     var query = DDG.get_query();
     var subreddit = query.match(/\/?r\/\w+/);
     var restrict_sr = false;
@@ -27,14 +44,14 @@ function ddg_spice_reddit(api_result) {
     }
 
     Spice.render({
-        data              : api_result.data.children,
+        data              : results,
         header1           : header,
         source_url        : source,
         source_name       : 'Reddit',
         spice_name        : 'reddit_search',
         template_frame    : 'list',
         template_options     : {
-            items: api_result.data.children,
+            items: results,
             show: 2,
             max: 14,
             template_item: 'reddit_search'
