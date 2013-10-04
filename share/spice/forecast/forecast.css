@@ -19,7 +19,7 @@
 #spice_forecast .fe_currently {
   display:inline-block;
   position: absolute;
-  left: 1em;
+  left: 0;
   width: 35%;
   height: 100%;
   padding-top: 5px;
@@ -28,7 +28,7 @@
 #spice_forecast #fe_current_icon {
   display: block;
   position:absolute;
-  right:25px;
+  left: 50%;
   width: 80px;
   height: 80px;
 }
@@ -36,7 +36,7 @@
 #spice_forecast .fe_currently .fe_temp {
   position: relative;
   top: -5px;
-  margin-left: 5px;
+  margin-left: 0;
   text-align: left;
 }
 
