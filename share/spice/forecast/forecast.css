@@ -149,3 +149,41 @@
 .fe_alert a .fe_icon {
   font-size: 20px;
 }
+
+
+@media screen and (max-width:480px) {
+    #spice_forecast {
+        min-width:240px; /* something small */
+        height:auto;
+    }
+    #spice_forecast .fe_currently {
+        width:80%;
+        position:relative;
+        display:block;
+        margin:auto;
+        left:auto;
+        padding-top:0;
+    }
+
+    #spice_forecast #fe_current_icon {
+        right:0;
+    }
+
+    #spice_forecast .fe_currently .fe_summary {
+        text-align:center;
+    }
+    #spice_forecast .fe_currently .fe_wind {
+        text-align:center;
+    }
+
+    #spice_forecast .fe_daily {
+        position:relative;
+        width:100%;
+        right:auto;
+        left:auto;
+        margin:auto;
+        top:auto;
+        margin-top:1em;
+        margin-bottom:3em;
+    }
+}
