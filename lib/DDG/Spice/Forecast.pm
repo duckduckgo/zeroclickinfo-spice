@@ -18,7 +18,9 @@ triggers any => 'forecast', 'forcast', 'weather', 'temp', 'temperature';
 spice to => 'https://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
 
 spice is_cached => 0;
-spice proxy_cache_valid   => "200 30m";
+
+# 'weather' query itself can't be cached
+spice proxy_cache_valid   => "418 1s";
 
 handle query_lc => sub{
     my $location = '';
