@@ -15,7 +15,6 @@ attribution github  => ['https://github.com/ghedo', 'ghedo'],
 spice to   => 'http://www.random.org/integers/?num=10&min=$1&max=$2&col=10&base=10&format=plain&rnd=new';
 spice from => '(\-?[0-9]+)\/(\-?[0-9]+)';
 
-spice is_cached => 0;
 spice proxy_cache_valid => "418 1d";
 spice wrap_string_callback => 1;
 

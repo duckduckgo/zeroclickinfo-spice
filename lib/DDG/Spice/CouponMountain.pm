@@ -25,8 +25,6 @@ triggers any => @triggers;
 spice to => 'http://www.couponmountain.com/plugin/searchEngine.html?keyword=$1';
 spice wrap_jsonp_callback => 1;
 
-spice is_cached => 0;
-
 handle remainder => sub {
     return $_ if $_;
     return;
