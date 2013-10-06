@@ -16,10 +16,9 @@ attribution web => ['http://www.couponmountain.com', 'Coupon Mountain'],
 
 my @triggers = ("coupon", "promo code", "discount coupon", "discount code", "promotional code", "deal", "discount");
 push (@triggers, map {$_."s"} @triggers);
-
-triggers start => map {"$_ for"} @triggers;
-
+push (@triggers, map {"$_ for"} @triggers);
 push (@triggers, "coupon mountain");
+
 triggers any => @triggers;
 
 spice to => 'http://www.couponmountain.com/plugin/searchEngine.html?keyword=$1';
