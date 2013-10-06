@@ -14,11 +14,7 @@ my %q = (
 ddg_spice_test(
   [qw( DDG::Spice::CouponMountain)],
   map {
-    $_ => test_spice(
-		'/js/spice/coupon_mountain/'.$q{$_},
-		is_cached => 0,
-		caller => 'DDG::Spice::CouponMountain', 
-	)
+    $_ => test_spice('/js/spice/coupon_mountain/'.$q{$_},	caller => 'DDG::Spice::CouponMountain')
   } keys %q,
 );
 

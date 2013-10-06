@@ -12,13 +12,11 @@ ddg_spice_test(
         '/js/spice/is_it_up/duckduckgo.com',
         call_type => 'include',
         caller => 'DDG::Spice::IsItUp',
-        is_cached => 0
     ),
     'is http://duckduckgo.com up?' => test_spice(
         '/js/spice/is_it_up/duckduckgo.com',
         call_type => 'include',
         caller => 'DDG::Spice::IsItUp',
-        is_cached => 0
     ),
     # unfortunately, the isitup.com api does not
     # currently support unicode or ssl

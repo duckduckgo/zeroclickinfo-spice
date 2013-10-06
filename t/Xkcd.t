@@ -26,9 +26,6 @@ ddg_spice_test(
         call_type => 'include',
         # This is the Spice that should be triggered by the query.
         caller => 'DDG::Spice::Xkcd',
-        # This is the cache value to expect. It's only necessary if you specify
-        # one in your Spice.
-        is_cached => 0
     ),
     # You should include more test cases here. Try to think of ways that your
     # plugin might break, and add them here to ensure they won't. Here are is
@@ -37,7 +34,6 @@ ddg_spice_test(
         '/js/spice/xkcd/',
         call_type => 'include',
         caller => 'DDG::Spice::Xkcd',
-        is_cached => 0
     ),
 );
 
