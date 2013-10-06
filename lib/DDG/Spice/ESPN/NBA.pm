@@ -678,8 +678,6 @@ spice to => 'http://api.espn.com/v1/sports/basketball/nba/$1/$2/$3'
 
 spice from => '(.*)/(.*)/(.*)/(.*)/(.*)';
 
-spice is_cached => 0;
-
 handle query_lc => sub {
     return "athletes", $players{$_}, "foo", "bar", "ddg_spice_espn_nba";
 };

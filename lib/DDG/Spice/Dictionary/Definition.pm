@@ -26,7 +26,6 @@ triggers startend => (
     "meaning of:",
 );
 
-spice is_cached => 1;
 
 handle remainder => sub {
     return lc $_;
