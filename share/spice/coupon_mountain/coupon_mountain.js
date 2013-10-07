@@ -18,16 +18,17 @@ function ddg_spice_coupon_mountain (api_result) {
 
     Spice.render({
         data                     : api_result,
+        spice_name               : "coupon_mountain",
         source_name              : 'CouponMountain',
-        source_url               : 'http://www.couponmountain.com/search.php?searchtext='
-                                    + keyword,
+        source_url               : 'http://www.couponmountain.com/search.php?searchtext='+ keyword,
         header1                  : header,
         template_frame           : "carousel",
-        template_normal          : "coupon_mountain",
-        template_options         : { li_width: 150  },
-        carousel_css_id          : "coupon_mountain",
-        carousel_template_detail : "coupon_mountain_detail",
-        carousel_items           : coupons,
+        template_options         : { 
+            items                : coupons,
+            template_item        : "coupon_mountain",
+            template_detail      : "coupon_mountain_detail",
+            li_width             : 150  
+        },
         item_callback            : highlight_code
     });
 
