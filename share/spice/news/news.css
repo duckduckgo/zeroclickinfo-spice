@@ -12,7 +12,8 @@
     height: 41px;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 97%;
+    padding-left: 7px;
+    padding-right: 5px;
 }
 
 #spice_news #ddgcarousel li.ddgc_item {
@@ -24,14 +25,16 @@
     color: #777;
     height: 66px;
     padding-top: 6px;
-    width: 97%;
+    padding-left: 7px;
+    padding-right: 5px;
 }
 
 #spice_news #ddgcarousel .news-more-at {
     border-top: 1px dashed #e0e0e0;
     margin-top: 10px;
     padding-top: 5px;
-    width: 97%;
+    margin-left: 7px;
+    margin-right: 5px;
 }
 
 #spice_news #ddgcarousel img.favicon {
