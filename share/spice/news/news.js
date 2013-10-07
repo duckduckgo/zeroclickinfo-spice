@@ -51,13 +51,6 @@ function ddg_spice_news(api_result) {
 	return result.join(" ");
     };
 
-    for(var i = 0, story; story = api_result[i]; i++) {
-	story.title = story.title.replace(/<b>|<\/b>|:/g, "");
-
-	story.title = ellipsis(story.title, 55);
-	story.excerpt = ellipsis(story.excerpt, 130);
-    }
-
     var good_stories = [];
     if(generic) {
         good_stories = api_result;
@@ -73,6 +66,16 @@ function ddg_spice_news(api_result) {
     // Exit if we didn't get any results.
     if(good_stories.length === 0) {
         return;
+    }
+
+    if(good_stories.length > 1) {
+	var story;
+	for(var i = 0, good_stories; story = api_result[i]; i++) {
+	    story.title = story.title.replace(/<b>|<\/b>|:/g, "");
+
+	    story.title = ellipsis(story.title, 55);
+	    story.excerpt = ellipsis(story.excerpt, 130);
+	}
     }
 
     // Limit the number of stories to 5.

@@ -1,11 +1,3 @@
-#ddgcarousel li.ddgc_item span.news-time {
-    font-size: 11px;
-    color: #777;
-    position: relative;
-    left: 22px;
-    bottom: 9px;
-}
-
 #ddgcarousel li.ddgc_item span.news-title {
     color: RGB(68,68,68);
     font-size: 14px;
@@ -55,4 +47,60 @@
 
 #spice_news #ddgc_pagination a.zero_click_more_at_link {
     visibility: hidden;
+}
+
+#spice_news a.news-link {
+    color: #333333;
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+    text-decoration: none;
+    width: 100%;
+}
+
+#spice_news span.news-title {
+    color: #444444;
+    font-size: 14px;
+    height: 41px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 7px;
+    padding-right: 5px;
+}
+
+#spice_news .news-snippet {
+    color: #777777;
+    height: 66px;
+    overflow: hidden;
+    padding-left: 7px;
+    padding-right: 5px;
+    padding-top: 6px;
+}
+
+#spice_news .news-more-at {
+    border-top: 1px dashed #E0E0E0;
+    margin-left: 7px;
+    margin-right: 5px;
+    margin-top: 10px;
+    padding-top: 5px;
+}
+
+#spice_news img.favicon {
+    display: inline;
+    height: 16px;
+    width: 16px;
+}
+
+#spice_news .news-more-at .news-domain {
+    color: #824C42;
+    display: inline-block;
+    margin-top: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+}
+
+#zero_click_more_at_wrap {
+    display: none;
 }
