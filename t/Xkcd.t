@@ -23,7 +23,6 @@ ddg_spice_test(
         # This is the Spice calltype. It's almost always set to 'include',
         # except for some special cases like FlashVersion which don't make a
         # normal API call.
-        call_type => 'include',
         # This is the Spice that should be triggered by the query.
         caller => 'DDG::Spice::Xkcd',
     ),
@@ -32,7 +31,6 @@ ddg_spice_test(
     # another that is tested for this Spice.
     'xkcd' => test_spice(
         '/js/spice/xkcd/',
-        call_type => 'include',
         caller => 'DDG::Spice::Xkcd',
     ),
 );

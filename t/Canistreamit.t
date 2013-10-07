@@ -9,7 +9,6 @@ ddg_spice_test(
     [qw( DDG::Spice::Canistreamit )],
     'stream the wire' => test_spice(
         '/js/spice/canistreamit/the%20wire',
-        call_type => 'include',
         caller => 'DDG::Spice::Canistreamit'
     ),
 );

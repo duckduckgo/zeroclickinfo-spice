@@ -9,7 +9,6 @@ ddg_spice_test(
     [qw( DDG::Spice::RedditSearch )],
     'reddit duckduckgo' => test_spice(
         '/js/spice/reddit_search/duckduckgo',
-        call_type => 'include',
         caller => 'DDG::Spice::RedditSearch'
     ),
 );
