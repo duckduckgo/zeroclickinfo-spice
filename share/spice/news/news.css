@@ -10,8 +10,6 @@
     color: RGB(68,68,68);
     font-size: 14px;
     height: 41px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     padding-left: 7px;
     padding-right: 5px;
 }
