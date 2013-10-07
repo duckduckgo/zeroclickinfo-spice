@@ -39,6 +39,7 @@
     display: inline;
     width: 16px;
     height: 16px;
+    vertical-align: -16%;
 }
 
 #spice_news #ddgcarousel .news-more-at .news-domain {
@@ -49,6 +50,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    vertical-align: text-bottom;
 }
 
 #spice_news #ddgc_pagination a.zero_click_more_at_link {
