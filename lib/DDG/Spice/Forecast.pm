@@ -15,9 +15,11 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 triggers any => 'forecast', 'forcast', 'weather', 'temp', 'temperature';
 
 
-spice to => 'https://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
+spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
 
+# Do not cache in the backend for queries like 'weather'.
 spice is_cached => 0;
+
 spice proxy_cache_valid   => "200 30m";
 
 handle query_lc => sub{
