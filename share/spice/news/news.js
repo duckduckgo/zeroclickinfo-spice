@@ -43,7 +43,8 @@ function ddg_spice_news(api_result) {
 	    }
 	}
 
-	if(words.length > result.length) {
+	if(words.length > result.length && 
+	   !(result[result.length - 1].match(/\.$/))) {
 	    result.push("...");
 	}	   
 
@@ -54,7 +55,7 @@ function ddg_spice_news(api_result) {
 	story.title = story.title.replace(/<b>|<\/b>|:/g, "");
 
 	story.title = ellipsis(story.title, 55);
-	story.excerpt = ellipsis(story.excerpt, 140);
+	story.excerpt = ellipsis(story.excerpt, 130);
     }
 
     var good_stories = [];
