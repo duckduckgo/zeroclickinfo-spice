@@ -112,7 +112,6 @@ Handlebars.registerHelper("getDomain", function(url) {
 
 Handlebars.registerHelper("getTime", function(relative_time) {
     relative_time = relative_time.match(/([0-9]+)([a-z]+).*/);
-    console.log(relative_time);
     if(+relative_time[1] > 1) {
 	return relative_time[1] + " " + (relative_time[2] === "hr" ? "hrs" : "mins");
     }
