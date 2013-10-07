@@ -33,6 +33,23 @@ function ddg_spice_news(api_result) {
 
     for(var i = 0, story; story = api_result[i]; i++) {
 	story.title = story.title.replace(/<b>|<\/b>|:/g, "");
+	var words = story.title.split(" ");
+
+	// Limit the number of chars to 55.
+	var result = [];
+	var count = 0;
+	for(var j = 0; j < words.length; j++) {
+	    count += words[j].length + 1;
+	    if(count < 55) {
+		result.push(words[j]);
+	    }
+	}
+
+	if(words.length > result.length) {
+	    result.push("...");
+	}
+
+	story.title = result.join(" ");
     }
 
     var good_stories = [];
