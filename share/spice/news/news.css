@@ -44,12 +44,13 @@
 }
 
 #spice_news #ddgcarousel .news-more-at .news-domain {
-    display: inline;
+    display: inline-block;
     margin-top: 0px;
-    position: relative;
-    top: -4px;
-    left: 3px;
     color: #824C42;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #spice_news #ddgc_pagination a.zero_click_more_at_link {
