@@ -26,7 +26,11 @@ function ddg_spice_news(api_result) {
             story.source = story.author || "Topsy";
             break;
             case "NewsCred":
-            story.source = story.source + " by " + story.author;
+            if(story.source && story.author) {
+		story.source = story.source + " by " + story.author;
+	    } else {
+		story.source = "NewsCred";
+	    }
             break;
         }
     };
@@ -56,7 +60,7 @@ function ddg_spice_news(api_result) {
         good_stories = api_result;
     } else {
         for(var i = 0, story; story = api_result[i]; i++) {
-            if(DDG.isRelevant(story.title, skip, 3)) {
+            if(DDG.isRelevant(story.title.replace(/<b>|<\/b>|:/g, ""), skip, 3)) {
                 getSource(story);
                 good_stories.push(story);
             }
@@ -71,8 +75,6 @@ function ddg_spice_news(api_result) {
     if(good_stories.length > 1) {
 	var story;
 	for(var i = 0, good_stories; story = api_result[i]; i++) {
-	    story.title = story.title.replace(/<b>|<\/b>|:/g, "");
-
 	    story.title = ellipsis(story.title, 55);
 	    story.excerpt = ellipsis(story.excerpt, 130);
 	}
