@@ -55,12 +55,16 @@ function ddg_spice_news(api_result) {
 	return result.join(" ");
     };
 
+    var story;
+    for(var i = 0, story; story = api_result[i]; i++) {
+	story.title = story.title.replace(/<b>|<\/b>|:/g, "");
+    }
+
     var good_stories = [];
     if(generic) {
         good_stories = api_result;
     } else {
         for(var i = 0, story; story = api_result[i]; i++) {
-            story.title = story.title.replace(/<b>|<\/b>|:/g, "");
 	    if(DDG.isRelevant(story.title, skip, 3)) {
                 getSource(story);
                 good_stories.push(story);
@@ -74,7 +78,6 @@ function ddg_spice_news(api_result) {
     }
 
     if(good_stories.length > 1) {
-	var story;
 	for(var i = 0, good_stories; story = api_result[i]; i++) {
 	    story.title = ellipsis(story.title, 55);
 	    story.excerpt = ellipsis(story.excerpt, 130);
