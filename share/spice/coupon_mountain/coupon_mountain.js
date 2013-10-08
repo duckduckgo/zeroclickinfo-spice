@@ -31,6 +31,10 @@ function ddg_spice_coupon_mountain (api_result) {
             coupon_code.focus().select();
         }).click();
     }
+
+    // Manually trigger our callback function,
+    // item_callback doesn't fire for single result
+    if (api_result.count === 1) highlight_code();
 }
 
 Handlebars.registerHelper("check_expirey", function(string) {
