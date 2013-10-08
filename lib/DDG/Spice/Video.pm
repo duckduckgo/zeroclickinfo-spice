@@ -2,8 +2,7 @@ package DDG::Spice::Video;
 
 use DDG::Spice;
 
-primary_example_queries "ted education video";
-secondary_example_queries "wong fu videos", "coffee videos";
+primary_example_queries "ted education video", "wong fu videos", "coffee videos";
 description "Shows videos from around the web.";
 name "Video";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Video.pm";
