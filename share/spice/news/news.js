@@ -26,8 +26,10 @@ function ddg_spice_news(api_result) {
             story.source = story.author || "Topsy";
             break;
             case "NewsCred":
-            if(story.source && story.author) {
-		story.source = story.source + " by " + story.author;
+            if(story.source) {
+		if(story.author) {
+		    story.source = story.source + " by " + story.author;
+		}
 	    } else {
 		story.source = "NewsCred";
 	    }
