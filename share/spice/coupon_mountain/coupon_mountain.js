@@ -14,6 +14,7 @@ function ddg_spice_coupon_mountain (api_result) {
         source_url               : 'http://www.couponmountain.com/search.php?searchtext='+ keyword,
         header1                  : header,
         template_frame           : "carousel",
+        more_icon_offset         : "-3px",
         template_options         : { 
             items                : api_result.coupon,
             template_item        : "coupon_mountain",
