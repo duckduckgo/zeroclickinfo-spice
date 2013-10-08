@@ -1,6 +1,17 @@
 package DDG::Spice::News;
+# ABSTRACT: Show current news from different sources.
 
 use DDG::Spice;
+
+primary_example_queries "duckduckgo news";
+secondary_example_queries "obama news", "government shutdown news";
+description "Shows the current news from different websites.";
+name "News";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/News.pm";
+topics "everyday";
+category "time_sensitive";
+attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
+            twitter => ["https://twitter.com/duckduckgo", "duckduckgo"];
 
 triggers startend => "news";
 spice to => 'https://duckduckgo.com/news.js?q=$1&cb={{callback}}';
