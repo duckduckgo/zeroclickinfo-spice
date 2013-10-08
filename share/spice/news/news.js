@@ -37,16 +37,31 @@ function ddg_spice_news(api_result) {
         }
     };
 
+    // Trim the snippet and the title using this function.
+    // We don't want to trim in the middle of a word.
     var ellipsis = function(text, limit) {
 	var result = [];
 	var count = 0;
 	var words = text.split(" ");
+	var inside_tag = false;
 
 	for(var i = 0; i < words.length; i++) {
 	    count += words[i].length + 1;
 	    if(count < limit) {
+		if(words[i].match(/<b>/) && !words[i].match(/<\/b>/)) {
+		    inside_tag = true;
+		}
+
+		if(words[i].match(/<\/b>/)) {
+		    inside_tag = false;
+		}
+
 		result.push(words[i]);
 	    }
+	}
+
+	if(inside_tag) {
+	    result[result.length - 1] += "</b>";
 	}
 
 	if(words.length > result.length && 
