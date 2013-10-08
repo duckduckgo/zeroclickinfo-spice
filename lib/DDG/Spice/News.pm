@@ -3,8 +3,7 @@ package DDG::Spice::News;
 
 use DDG::Spice;
 
-primary_example_queries "duckduckgo news";
-secondary_example_queries "obama news", "government shutdown news";
+primary_example_queries "duckduckgo news", "obama news", "government shutdown news";
 description "Shows the current news about a topic.";
 name "News";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/News.pm";
