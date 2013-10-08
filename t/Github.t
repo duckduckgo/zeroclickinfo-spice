@@ -9,12 +9,10 @@ ddg_spice_test(
     [qw( DDG::Spice::Github )],
     'github zeroclickinfo' => test_spice(
         '/js/spice/github/zeroclickinfo',
-        call_type => 'include',
         caller => 'DDG::Spice::Github'
     ),
     'zeroclickinfo github' => test_spice(
         '/js/spice/github/zeroclickinfo',
-        call_type => 'include',
         caller => 'DDG::Spice::Github'
     ),
 );

@@ -19,8 +19,6 @@ spice to => 'http://betterific.com/api/search/all?q=$1&page=1&per_page=2';
 
 spice wrap_jsonp_callback => 1;
 
-spice is_cached => 0;
-
 handle remainder => sub {
   # If the query isn't blank, then use it for the API query.
   return $_ if length($_) > 0;

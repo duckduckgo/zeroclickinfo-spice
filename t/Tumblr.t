@@ -9,7 +9,6 @@ ddg_spice_test(
     [qw( DDG::Spice::Tumblr )],
     'tumblr ducks' => test_spice(
         '/js/spice/tumblr/ducks',
-        call_type => 'include',
         caller => 'DDG::Spice::Tumblr'
     ),
 );

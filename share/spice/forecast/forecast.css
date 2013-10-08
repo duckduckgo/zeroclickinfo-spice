@@ -1,0 +1,197 @@
+#spice_forecast {
+  width: 100%;
+  font-weight: 300;
+  min-width: 500px;
+  max-width: 1000px;
+  color: #333;
+  margin: 0 auto;
+  height: 170px; /* DDG 245px; */
+  position: relative;
+}
+#spice_forecast.alert { height: 208px; } /* DDG */
+
+#spice_forecast a { color: #333; }
+
+#spice_forecast .fe_forecast {
+  margin-top: 14px;
+}
+
+#spice_forecast .fe_currently {
+  display:inline-block;
+  position: absolute;
+  left: 0;
+  width: 35%;
+  height: 100%;
+  padding-top: 5px;
+}
+
+#spice_forecast #fe_current_icon {
+  display: block;
+  position:absolute;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+#spice_forecast .fe_currently .fe_temp {
+  position: relative;
+  top: -5px;
+  margin-left: 0;
+  text-align: left;
+}
+
+#spice_forecast .fe_currently .fe_temp .fe_temp_str {
+  font-size: 42px;
+  font-weight: bold;
+  line-height: 42px;
+}
+
+#spice_forecast .fe_currently .fe_temp .fe_temp_unit {
+  display: inline-block;
+  position: relative;
+  font-size: 28px;
+  font-weight: normal;
+  vertical-align: top;
+  line-height: 42px;
+}
+
+#spice_forecast .fe_currently .fe_temp .fe_dir,
+#spice_forecast .fe_currently .fe_temp .fe_feelslike {
+  display: block;
+  position: relative;
+  top: -1px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 18px;
+}
+
+#spice_forecast .fe_currently .fe_summary {
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#spice_forecast .fe_currently .fe_wind {
+  font-size: 14px;
+}
+
+#spice_forecast .fe_daily {
+  display: table;
+  position:absolute;
+  right:0;
+  top:0;
+  width: 65%;
+  height: 100%;
+  font-size: 14px;
+  text-align: center;
+}
+
+#spice_forecast .fe_daily .fe_day {
+  display: table-cell;
+  text-align: center;
+}
+
+#spice_forecast .fe_daily .fe_day .fe_label {
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+}
+
+#spice_forecast .fe_daily .fe_icon {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  margin-top: 2px;
+}
+
+#spice_forecast .fe_daily .fe_day .fe_temp_bar {
+  position: relative;
+  width: 20px;
+  margin: 18px auto 0;
+  font-size: 12px;
+  border-radius: 200px;
+  background-color: #333;
+}
+
+#spice_forecast .fe_daily .fe_day .fe_high_temp {
+  position: absolute;
+  width: 100%;
+  top: -16px;
+  left: 2px;
+}
+
+#spice_forecast .fe_daily .fe_day .fe_low_temp {
+  position: absolute;
+  width: 100%;
+  bottom: -16px;
+  left: 2px;
+}
+
+#spice_forecast .fe_alert {
+  position: absolute;
+  bottom:0;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#spice_forecast .fe_alert a {
+  text-decoration: underline;
+  text-overflow: ellipsis;
+  font-style: italic;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #A00;
+}
+
+.fe_alert a .fe_icon {
+  font-size: 20px;
+}
+
+
+@media screen and (max-width:480px) {
+    #spice_forecast {
+        min-width:200px;
+        height:auto;
+    }
+    #spice_forecast .fe_currently {
+        width:80%;
+        position:relative;
+        display:block;
+        margin:auto;
+        left:auto;
+        padding-top:0;
+    }
+
+    #spice_forecast #fe_current_icon {
+        right:0;
+    }
+
+    #spice_forecast .fe_currently .fe_summary {
+        text-align:center;
+    }
+    #spice_forecast .fe_currently .fe_wind {
+        text-align:center;
+    }
+
+    #spice_forecast .fe_daily {
+        position:relative;
+        width:100%;
+        right:auto;
+        left:auto;
+        margin:auto;
+        top:auto;
+        margin-top:1em;
+        margin-bottom:3em;
+    }
+    #spice_forecast.alert {
+        height:auto;
+    }
+
+    #spice_forecast .fe_alert {
+        /* bottom:4.2em; */
+        position:static;
+    }
+}

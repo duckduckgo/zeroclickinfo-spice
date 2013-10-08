@@ -9,7 +9,6 @@ ddg_spice_test(
     [qw( DDG::Spice::Movie )],
     'movie mighty ducks' => test_spice(
         '/js/spice/movie/mighty%20ducks',
-        call_type => 'include',
         caller => 'DDG::Spice::Movie'
     ),
     'asus rt-66nu' => undef

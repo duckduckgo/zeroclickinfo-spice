@@ -1,0 +1,106 @@
+#ddgcarousel li.ddgc_item span.news-title {
+    color: RGB(68,68,68);
+    font-size: 14px;
+    height: 41px;
+    padding-left: 7px;
+    padding-right: 5px;
+}
+
+#spice_news #ddgcarousel li.ddgc_item {
+    text-align: left;
+}
+
+#spice_news #ddgcarousel .news-snippet {
+    overflow: hidden;
+    color: #777;
+    height: 66px;
+    padding-top: 6px;
+    padding-left: 7px;
+    padding-right: 5px;
+}
+
+#spice_news #ddgcarousel .news-more-at {
+    border-top: 1px dashed #e0e0e0;
+    margin-top: 10px;
+    padding-top: 5px;
+    margin-left: 7px;
+    margin-right: 5px;
+}
+
+#spice_news #ddgcarousel img.favicon {
+    display: inline;
+    width: 16px;
+    height: 16px;
+    vertical-align: -16%;
+}
+
+#spice_news #ddgcarousel .news-more-at .news-domain {
+    display: inline-block;
+    margin-top: 0px;
+    color: #824C42;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: text-bottom;
+}
+
+#spice_news #ddgc_pagination a.zero_click_more_at_link {
+    visibility: hidden;
+}
+
+#spice_news a.news-link {
+    color: #333333;
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+    text-decoration: none;
+    width: 100%;
+}
+
+#spice_news span.news-title {
+    color: #444444;
+    font-size: 14px;
+    height: 41px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 7px;
+    padding-right: 5px;
+}
+
+#spice_news .news-snippet {
+    color: #777777;
+    height: 66px;
+    overflow: hidden;
+    padding-left: 7px;
+    padding-right: 5px;
+    padding-top: 6px;
+}
+
+#spice_news .news-more-at {
+    border-top: 1px dashed #E0E0E0;
+    margin-left: 7px;
+    margin-right: 5px;
+    margin-top: 10px;
+    padding-top: 5px;
+}
+
+#spice_news img.favicon {
+    display: inline;
+    height: 16px;
+    width: 16px;
+}
+
+#spice_news .news-more-at .news-domain {
+    color: #824C42;
+    display: inline-block;
+    margin-top: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+}
+
+#zero_click_more_at_wrap {
+    display: none;
+}

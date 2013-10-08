@@ -1,7 +1,7 @@
 function ddg_spice_meta_cpan(api_response) {
 	if (api_response["message"]) return;
     
-	query = DDG.get_query().replace(/\s*(metacpan|meta cpan|cpan)\s*/i, '');
+	query = DDG.get_query().replace(/\s*(metacpan|meta cpan|cpanm?)\s*/i, '');
     var link = "search?q=" + encodeURIComponent(query);
     if(api_response.module && api_response.module.length > 0 && api_response.module[0].associated_pod) {
         link = "module/" + api_response.module[0].associated_pod;
