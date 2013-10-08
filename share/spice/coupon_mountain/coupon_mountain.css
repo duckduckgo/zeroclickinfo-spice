@@ -1,44 +1,45 @@
-#coupon_mountain li.ddgc_item p {
+#spice_coupon_mountain li.ddgc_item p {
     background-color: #ffffff;
     border: 1px solid #e7e7e7;
 }
 
-#coupon_mountain li.ddgc_item img {
+#spice_coupon_mountain li.ddgc_item img {
     max-width: 95% !important;
 }
 
-#coupon_mountain #ddgc_detail #coupon_preview {
+#spice_coupon_mountain #coupon_preview {
     overflow: hidden;
 }
 
-#coupon_mountain #ddgc_detail div.inline {
+#spice_coupon_mountain div.inline {
     display: inline-block;
 }
 
-#coupon_mountain #ddgc_detail .coupon_info {
+#spice_coupon_mountain .coupon_info {
     overflow: hidden;   
 }
 
-#coupon_mountain #ddgc_detail .coupon_code {
+#spice_coupon_mountain .coupon_code {
     color: #808080;
     float: left;
     margin-right: 20px;
     text-align: center;
 }
 
-#coupon_mountain #ddgc_detail .coupon_code span {
-    display: block;
-}
-
-#coupon_mountain #ddgc_detail .coupon_expdate {
+#spice_coupon_mountain .coupon_expdate {
     color: gray;
 }
 
-#coupon_mountain .clear {
+#spice_coupon_mountain .coupon_description {
+    display: block;
+    padding-top: 3px;
+}
+
+#spice_coupon_mountain .clear {
     clear: both;
 }
 
-#coupon_mountain #ddgc_detail .button {
+#spice_coupon_mountain .button {
     display: inline-block;
     border-radius: 3px;
     padding: 3px;
@@ -50,7 +51,7 @@
     text-align: center;
 }
 
-#coupon_mountain #ddgc_detail .button:hover {
+#spice_coupon_mountain .button:hover {
     background-image: none !important;
     background-color: #f7f7f7;
     border: 1px solid #80b5ff;
