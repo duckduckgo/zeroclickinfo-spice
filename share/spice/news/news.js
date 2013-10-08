@@ -60,7 +60,8 @@ function ddg_spice_news(api_result) {
         good_stories = api_result;
     } else {
         for(var i = 0, story; story = api_result[i]; i++) {
-            if(DDG.isRelevant(story.title.replace(/<b>|<\/b>|:/g, ""), skip, 3)) {
+            story.title = story.title.replace(/<b>|<\/b>|:/g, "");
+	    if(DDG.isRelevant(story.title, skip, 3)) {
                 getSource(story);
                 good_stories.push(story);
             }
