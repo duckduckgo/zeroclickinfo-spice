@@ -57,7 +57,6 @@ function ddg_spice_news(api_result) {
 	return result.join(" ");
     };
 
-    var story;
     for(var i = 0, story; story = api_result[i]; i++) {
 	story.title = story.title.replace(/<b>|<\/b>|:/g, "");
     }
@@ -80,14 +79,11 @@ function ddg_spice_news(api_result) {
     }
 
     if(good_stories.length > 1) {
-	for(var i = 0, good_stories; story = api_result[i]; i++) {
+	for(var i = 0, story; story = good_stories[i]; i++) {
 	    story.title = ellipsis(story.title, 55);
 	    story.excerpt = ellipsis(story.excerpt, 130);
 	}
     }
-
-    // Limit the number of stories to 5.
-    // good_stories.splice(5);
 
     // Display the plugin.
     Spice.render({
