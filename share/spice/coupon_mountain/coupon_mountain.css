@@ -7,30 +7,30 @@
     max-width: 95% !important;
 }
 
-#spice_coupon_mountain #ddgc_detail #coupon_preview {
+#spice_coupon_mountain #coupon_preview {
     overflow: hidden;
 }
 
-#spice_coupon_mountain #ddgc_detail div.inline {
+#spice_coupon_mountain div.inline {
     display: inline-block;
 }
 
-#spice_coupon_mountain #ddgc_detail .coupon_info {
+#spice_coupon_mountain .coupon_info {
     overflow: hidden;   
 }
 
-#spice_coupon_mountain #ddgc_detail .coupon_code {
+#spice_coupon_mountain .coupon_code {
     color: #808080;
     float: left;
     margin-right: 20px;
     text-align: center;
 }
 
-#spice_coupon_mountain #ddgc_detail .coupon_expdate {
+#spice_coupon_mountain .coupon_expdate {
     color: gray;
 }
 
-#spice_coupon_mountain #ddgc_detail .coupon_description {
+#spice_coupon_mountain .coupon_description {
     display: block;
     padding-top: 3px;
 }
@@ -39,7 +39,7 @@
     clear: both;
 }
 
-#spice_coupon_mountain #ddgc_detail .button {
+#spice_coupon_mountain .button {
     display: inline-block;
     border-radius: 3px;
     padding: 3px;
@@ -51,7 +51,7 @@
     text-align: center;
 }
 
-#spice_coupon_mountain #ddgc_detail .button:hover {
+#spice_coupon_mountain .button:hover {
     background-image: none !important;
     background-color: #f7f7f7;
     border: 1px solid #80b5ff;
