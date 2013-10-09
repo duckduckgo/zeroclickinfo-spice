@@ -31,7 +31,7 @@ my $words = join "|", @triggers;
 $words =~ s/\n//g;
 
 handle query_raw => sub {
-        return if exists $skip_queries{$_};
+        return if exists $skip_queries{lc($_)};
 
 	# don't trigger on:
 	# app (for Quixey)
