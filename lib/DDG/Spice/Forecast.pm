@@ -26,7 +26,7 @@ handle query_lc => sub {
 
     # Don't cache generic queries due to
     # variations in the users location.
-    if (grep {$query eq $_} @triggers) {
+    if (grep {lc($query) eq $_} @triggers) {
 	spice is_cached => 0;
     }
 
