@@ -101,7 +101,6 @@ function ddg_spice_news(api_result) {
 	    li_height: 155
 	},
 
-	force_big_header: true,
 	force_no_fold: true
     });
 }
