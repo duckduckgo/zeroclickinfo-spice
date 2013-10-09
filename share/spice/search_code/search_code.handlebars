@@ -1,5 +1,7 @@
 {{#if synopsis}}
   <pre>{{synopsis}}</pre>
 {{/if}}
-{{description}}
+{{#strip_html description}}
+  {{this}}
+{{/strip_html}}
 [<a href="{{url}}">Reference</a>]
