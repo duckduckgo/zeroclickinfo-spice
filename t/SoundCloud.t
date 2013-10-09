@@ -9,10 +9,12 @@ ddg_spice_test(
     [qw( DDG::Spice::SoundCloud )],
     'soundcloud ray bradbury' => test_spice(
         '/js/spice/sound_cloud/ray%20bradbury',
+        call_type => 'include',
         caller => 'DDG::Spice::SoundCloud',
     ),
     'sc kavinsky' => test_spice(
         '/js/spice/sound_cloud/kavinsky',
+        call_type => 'include',
         caller => 'DDG::Spice::SoundCloud',
     ),
 );

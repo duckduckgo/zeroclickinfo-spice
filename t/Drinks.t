@@ -9,6 +9,7 @@ ddg_spice_test(
     [qw( DDG::Spice::Drinks )],
     'how to make a white russian' => test_spice(
         '/js/spice/drinks/white%20russian',
+        call_type => 'include',
         caller => 'DDG::Spice::Drinks'
     ),
 );

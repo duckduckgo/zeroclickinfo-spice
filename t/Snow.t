@@ -21,12 +21,14 @@ ddg_spice_test(
     ) => test_spice(
         '/js/spice/snow/'
         .'M%C3%B6nchengladbach%2C%20%20Nordrhein-Westfalen%2C%20%20Germany',
+        call_type => 'include',
         caller => 'DDG::Spice::Snow',
     ),
     # The DDG::Request is used in place of a query string, and isn't necessary
     # to be used with every test passed to ddg_spice_test.
     'is it snowing in new york?' => test_spice(
     	'/js/spice/snow/new%20york',
+    	call_type => 'include',
     	caller => 'DDG::Spice::Snow',
     )
 );

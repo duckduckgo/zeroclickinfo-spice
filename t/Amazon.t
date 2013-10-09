@@ -15,6 +15,7 @@ ddg_spice_test(
     map {(
         "amazon $_" => test_spice(
             '/js/spice/amazon/' . join('%20', split /\s+/, $_),
+            call_type => 'include',
             caller => 'DDG::Spice::Amazon'
         ),
     )} @queries
