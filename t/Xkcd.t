@@ -28,7 +28,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Xkcd',
     ),
     # You should include more test cases here. Try to think of ways that your
-    # plugin might break, and add them here to ensure they won't. Here are is
+    # instant answer might break, and add them here to ensure they won't. Here are is
     # another that is tested for this Spice.
     'xkcd' => test_spice(
         '/js/spice/xkcd/',
