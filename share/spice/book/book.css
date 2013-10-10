@@ -1,0 +1,19 @@
+#book_data_box {
+    display:block;
+    padding:2px;
+    width:30%;
+    float:left;
+    border-right:1px solid rgba(0,0,0,0.1);
+    margin-right:10px;
+}
+
+.book_critic_rating {
+    font-weight: bold;
+}
+
+.book_data_item {
+    display:inline-block;
+    padding-right:6px;
+    color:gray;
+}
+

@@ -1,4 +1,23 @@
-<div> <a href={{review_link}}> <h1> {{source}} </h1> <img src="{{smiley_or_sad}}" width="25" style="display:inline" title="{{pos_or_neg}} rating"/> </a></div>
-<p>  &ldquo;{{snippet}}&rdquo; -  {{review_date}} </p>
+<div id="book_data_box" title="based on {{review_count}} critic reviews">
+    {{#if author}}
+        <div><span class="book_data_item">Author:</span>{{author}}</div>
+    {{/if}}   
+
+    {{#if rating}}
+        <div><span class="book_data_item">Critic Rating:</span>
+        <img src="{{to_read_or_not_small}}" width="25" style="display:inline;vertical-align:middle;"/><span class="book_critic_rating"> {{rating}}% </span></div>
+    {{/if}} 
+
+    {{#if genre}}
+        <div><span class="book_data_item">{{genre}}</span></div>
+    {{/if}}
+</div>
+
+<span>
+    {{#if critic_review}}
+        <span>  &ldquo;{{critic_review.snippet}}&rdquo; </span>
+        <div> <a href={{critic_review.review_link}} style="float:right;">  - {{critic_review.source}} {{#if critic_review.review_date}}({{critic_review.review_date}}) {{/if}}</a> </div>
+    {{/if}}
+</span>
 
 
