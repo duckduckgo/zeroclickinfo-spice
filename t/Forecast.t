@@ -26,7 +26,7 @@ ddg_spice_test(
     	'/js/spice/forecast/troy%2C%20ny',
     	call_type => 'include',
     	caller => 'DDG::Spice::Forecast',
-        is_cached => 1
+        is_cached => 0
     )
 );
 
