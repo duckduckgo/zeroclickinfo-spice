@@ -24,19 +24,19 @@ spice proxy_cache_valid   => "200 30m";
 handle query_lc => sub {
     my $query = $_;
 
-    # Don't cache generic queries due to
-    # variations in the users location.
-    if (grep {$query eq $_} @triggers) {
-	spice is_cached => 0;
-    }
-
     my $location = '';
     
     if (/^(?:what(?:'s| is) the |)(?:(?:weather|temp(?:erature|)) (?:fore?cast |report |today |tomm?orr?ow |this week |))+(?:in |for |at |)(.*)/) {
         $location = $1 unless ($1 =~ /fore?cast|report|weather|temp(erature)/);
     }
 
-    $location = $loc->loc_str unless ($location);
+    if (!$location) {
+	# Don't cache generic queries due to
+	# variations in the users location.
+	spice is_cached => 0;
+
+	$location = $loc->loc_str;
+    }
 
     return $location;
 };
