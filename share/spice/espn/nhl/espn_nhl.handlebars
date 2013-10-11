@@ -1,0 +1,51 @@
+<span class='espn_zci_tab_link espn_zci_tab_selected' id='espn_zci_news_link'>News</span> |
+<span class='espn_zci_tab_link' id='espn_zci_stats_link'>Stats</span> |
+<span class='espn_zci_tab_link' id='espn_zci_gamelog_link'>Gamelog</span>
+
+<div class='espn_zci_tab' style='display:block' id='espn_zci_news'>
+    <img src='/iu?u={{headshot}}' height=110 width=150 id='espn_news_image'>
+    <div class='blurb'>
+        {{name}} is an American professional hockey player for the {{teamCity}} {{teamName}} (NBA).
+    </div>
+    <ul>
+        {{#each headline}}
+        <li><a href='{{links.web.href}}'>{{headline}}</a> ({{source}})</li>
+        {{/each}}
+    </ul>
+</div>
+
+<div class='espn_zci_tab' id='espn_zci_stats'>
+    <div class='blurb'>
+        {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
+    </div>
+    <table>
+        <tr><th>Average Points Per Game:</th><td>-</td></tr>
+    </table>
+</div>
+
+<div class='espn_zci_tab' id='espn_zci_gamelog'>
+    <div class='blurb'>
+        The {{teamCity}} {{teamName}} have won {{teamWinPercentage}}% of their season games.
+    </div>
+    <table>
+        <th></th><th>Home</th><th></th><th>Away</th><th></th><th></th></tr>
+        {{#each events}}
+        <tr>
+            <td>{{date}}</td>
+            <td><a href='{{home.link}}'>{{home.teamName}}<a/></td>
+            <td>vs</td>
+            <td><a href='{{away.link}}'>{{away.teamName}}<a/></td>
+            <td>
+                <a href='{{link}}'>
+                    {{#if win}}
+                        <span style='color:green'>W</span>
+                    {{else}}
+                        <span style='color:red'>L</span>
+                    {{/if}}
+                    {{home.score}}-{{away.score}}
+                </a>
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
