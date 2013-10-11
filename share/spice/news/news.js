@@ -43,33 +43,33 @@ function ddg_spice_news(api_result) {
 	var result = [];
 	var count = 0;
 	var words = text.split(" ");
-	var inside_tag = false;
 
 	for(var i = 0; i < words.length; i++) {
 	    count += words[i].length + 1;
 	    if(count < limit) {
-		if(words[i].match(/<b>/) && !words[i].match(/<\/b>/)) {
-		    inside_tag = true;
-		}
-
-		if(words[i].match(/<\/b>/)) {
-		    inside_tag = false;
-		}
-
 		result.push(words[i]);
 	    }
 	}
 
-	if(inside_tag) {
-	    result[result.length - 1] += "</b>";
+	// Return the same text if we weren't able to trim.
+	if(result.length === 0) {
+	    return text;
 	}
 
-	if(words.length > result.length && 
-	   !(result[result.length - 1].match(/\.$/))) {
-	    result.push("...");
-	}	   
+	var append = words.length > result.length;
+	result = result.join(" ");
 
-	return result.join(" ");
+	// Count the number of opening and closing tags.
+	var open_b = result.split("<b>").length - 1;
+	var close_b = result.split("</b>").length - 1;
+
+	// Check if there is a mismatch.
+	result += open_b > close_b ? "</b>" : "";
+
+	if(append && !(result[result.length - 1].match(/\.$/))) {
+	    return result + "...";
+	}
+	return result;
     };
 
     var story;
