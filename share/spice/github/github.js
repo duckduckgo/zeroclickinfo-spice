@@ -8,26 +8,22 @@ function ddg_spice_github(api_result) {
     Spice.render({
         data             : api_result,
         header1          : query + " (GitHub)",
-        source_url       : 'http://www.github.com/search?q='
-                            + encodeURIComponent(query),
+        source_url       : 'http://www.github.com/search?q=' +  encodeURIComponent(query),
         source_name      : 'GitHub',
         spice_name       : 'github',
-
         template_frame   : 'list',
         template_options: {
             items: results,
             template_item: "github_item",
             single_template: "github",
             show: 3,
-	    max: 10,
+            max: 10,
             type: 'ul'
         },
-
         force_big_header : true,
         force_no_fold    : true
     });
 }
-
 
 // Make sure we display only three items.
 Handlebars.registerHelper("last_pushed", function(){
