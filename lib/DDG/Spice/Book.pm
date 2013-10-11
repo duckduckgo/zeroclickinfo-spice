@@ -6,7 +6,7 @@ primary_example_queries "book reviews moonwalking with einstein";
 description "Shows critic rating and a sample review of a book from publications like NY Times, NPR, Guardian.";
 name "iDreambooks";
 
-spice to => 'http://idreambooks.com/newbooks/api.json?api_key={{ENV{DDG_SPICE_BOOK_APIKEY}}}&q=$1';
+spice to => 'http://idreambooks.com/api/books/reviews.json?api_key={{ENV{DDG_SPICE_BOOK_APIKEY}}}&q=$1';
 
 triggers startend => "idreambooks", "book reviews", "book review";
 

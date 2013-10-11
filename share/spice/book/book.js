@@ -34,7 +34,7 @@ function ddg_spice_book(api_result) {
     // pick a random critic review out of all the reviews returned
     data.critic_review = data.critic_reviews[Math.floor(Math.random() * data.critic_reviews.length)];
 
-    var header = "Critic Reviews for " + api_result.book.title;
+    var header =  data.title;
     // add year of release to header
     if (data.release_year){
         header += " (" + data.release_year + ")"
@@ -45,7 +45,7 @@ function ddg_spice_book(api_result) {
          force_big_header  : true,
          header1           : header,
          source_name       : "idreambooks.com", // More at ...
-         source_url        :  api_result.book.detail_link,
+         source_url        :  data.detail_link,
          template_normal   : 'book',
          template_small    : 'book'
     });
