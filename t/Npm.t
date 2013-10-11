@@ -9,6 +9,7 @@ ddg_spice_test(
 	[qw( DDG::Spice::Npm )],
 	'npm underscore' => test_spice(
 		'/js/spice/npm/underscore',
+		call_type => 'include',
 		caller => 'DDG::Spice::Npm',
 	),
 );

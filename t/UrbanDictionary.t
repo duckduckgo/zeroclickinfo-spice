@@ -10,6 +10,7 @@ ddg_spice_test(
     'urban dictionary cool' => test_spice(
         '/js/spice/urban_dictionary/cool',
         is_unsafe => 1,
+        call_type => 'include',
         caller => 'DDG::Spice::UrbanDictionary'
     ),
 );

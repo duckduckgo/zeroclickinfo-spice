@@ -9,14 +9,17 @@ ddg_spice_test(
     [qw( DDG::Spice::Aur )],
     'aur powermate' => test_spice(
         '/js/spice/aur/powermate',
+        call_type => 'include',
         caller => 'DDG::Spice::Aur'
     ),
     'archlinux package powermate' => test_spice(
         '/js/spice/aur/powermate',
+        call_type => 'include',
         caller => 'DDG::Spice::Aur'
     ),
     'arch package powermate' => test_spice(
         '/js/spice/aur/powermate',
+        call_type => 'include',
         caller => 'DDG::Spice::Aur'
     ),
 );

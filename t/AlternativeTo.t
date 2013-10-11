@@ -9,6 +9,7 @@ ddg_spice_test(
     [qw( DDG::Spice::AlternativeTo )],
     'alternative to windows' => test_spice(
         '/js/spice/alternative_to/windows/all/',
+        call_type => 'include',
         caller => 'DDG::Spice::AlternativeTo'
     ),
 );

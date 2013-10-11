@@ -18,6 +18,7 @@ ddg_spice_test(
             . (join '%20', map { ucfirst } split /\s+/, $_)
             . '/'
             . (join '%20', map { ucfirst } split /\s+/, $queries{$_}),
+            call_type => 'include',
             caller => 'DDG::Spice::SEPTA'
         ),
         "next train to $_ from $queries{$_}" => test_spice(
@@ -25,6 +26,7 @@ ddg_spice_test(
             . (join '%20', map { ucfirst } split /\s+/, $queries{$_})
             . '/'
             . (join '%20', map { ucfirst } split /\s+/, $_),
+            call_type => 'include',
             caller => 'DDG::Spice::SEPTA'
         ),
     )} keys %queries

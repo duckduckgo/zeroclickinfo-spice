@@ -9,6 +9,7 @@ ddg_spice_test(
     [qw( DDG::Spice::Imdb )],
     'imdb mighty ducks' => test_spice(
         '/js/spice/imdb/mighty%20ducks',
+        call_type => 'include',
         caller => 'DDG::Spice::Imdb'
     ),
 );
