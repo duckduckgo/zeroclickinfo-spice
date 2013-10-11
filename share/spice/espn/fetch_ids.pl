@@ -58,6 +58,10 @@ my %leagues = (
         'nhra',
         'alms',
     ],
+    'baseball' => [
+        'mlb',
+        'college-baseball'
+    ],
 );
 
 sub parse_players {

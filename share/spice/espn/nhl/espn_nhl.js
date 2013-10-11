@@ -16,6 +16,8 @@ function ddg_spice_espn_process_stats(player) {
             player.seasonTimeFrame   = "'" + ((player.stats.season.year + '').substr(2, 2) - 1)
                                      + "-'" + (player.stats.season.year + '').substr(2, 2);
         break;
+        case 'mlb':
+        break;
     }
 }
 
@@ -102,7 +104,7 @@ function ddg_spice_espn_bind() {
     if (numberOfCalls--) return;
     Spice.render({
         data             : player,
-        header1          : player.name + ' ' + player.league.toUpperCase(),
+        header1          : player.name + ' (' + player.league.toUpperCase() + ')',
         source_url       : 'http://espn.com/' + player.league + '/player/_/id/' + player.id,
         source_name      : 'ESPN',
         template_normal  : 'espn_' + player.league,
