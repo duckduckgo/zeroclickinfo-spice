@@ -1613,7 +1613,7 @@ spice from => '(.*)/(.*)/(.*)/(.*)/(.*)';
 spice is_cached => 0;
 
 handle query_lc => sub {
-    return "athletes", $players{$_}, "foo", "bar", "ddg_spice_espn_nhl";
+    return "athletes", $players{$_}, "foo", "bar", "ddg_spice_espn";
 };
 
 1;

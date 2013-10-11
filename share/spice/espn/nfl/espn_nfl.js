@@ -1,11 +1,32 @@
+function ddg_spice_espn_process_stats(player) {
+    switch (player.league) {
+        case 'nba':
+            player.seasonDescription = player.stats.season.description;
+            player.seasonTimeFrame   = "'" + ((player.stats.season.year + '').substr(2, 2) - 1)
+                                     + "-'" + (player.stats.season.year + '').substr(2, 2);
+
+            player.averagePointsPerGame = (player.stats.points / player.stats.gamesStarted).toFixed(1) + '';
+            player.threePointPercentage = ((player.stats.threePointPercentage + 0) * 100).toFixed(1) + '';
+            player.fieldGoalPercentage  = player.stats.fieldGoalPercentage.toFixed(1) + '';
+            player.freeThrowPercentage  = player.stats.freeThrowPercentage.toFixed(1) + '';
+        break;
+        case 'nfl':
+        case 'nhl':
+            player.seasonDescription = player.stats.season.description;
+            player.seasonTimeFrame   = "'" + ((player.stats.season.year + '').substr(2, 2) - 1)
+                                     + "-'" + (player.stats.season.year + '').substr(2, 2);
+        break;
+    }
+}
+
 var player = {};
 var numberOfCalls = 3;
 
-function ddg_spice_espn_nfl(api_result) {
-    console.log(api_result);
+function ddg_spice_espn(api_result) {
     var player_info   = api_result.sports[0].leagues[0].athletes[0];
     var playerTeam    = player_info.competitors[0].team;
 
+    player.league     = api_result.sports[0].leagues[0].abbreviation;
     player.id         = player_info.id;
     player.name       = player_info.displayName;
     player.headshot   = player_info.headshots.gamecast.href;
@@ -13,37 +34,34 @@ function ddg_spice_espn_nfl(api_result) {
     player.teamID     = playerTeam.id;
     player.teamCity   = playerTeam.location;
     player.teamName   = playerTeam.name;
-    player.position   = player_info.positions[0].name.toLowerCase();
 
-    nrj('/js/spice/espn/nfl/athletes/' + player.id + '/news/foo/ddg_spice_espn_nfl_news');
-    nrj('/js/spice/espn/nfl/teams/' + player.teamID + '/foo/bar/ddg_spice_espn_nfl_team');
-    nrj('/js/spice/espn/nfl/teams/' + player.teamID + '/events/dates/ddg_spice_espn_nfl_events');
+    nrj('/js/spice/espn/' + player.league + '/athletes/' + player.id + '/news/foo/ddg_spice_espn_news');
+    nrj('/js/spice/espn/' + player.league + '/teams/' + player.teamID + '/foo/bar/ddg_spice_espn_team');
+    nrj('/js/spice/espn/' + player.league + '/teams/' + player.teamID + '/events/dates/ddg_spice_espn_events');
 
-    player.seasonDescription = player.stats.season.description;
-    player.seasonTimeFrame   = "'" + ((player.stats.season.year + '').substr(2, 2) - 1)
-                             + "-'" + (player.stats.season.year + '').substr(2, 2);
+    ddg_spice_espn_process_stats(player);
 
-    ddg_spice_espn_nfl_bind();
+    ddg_spice_espn_bind();
 }
 
-function ddg_spice_espn_nfl_news(api_result) {
+function ddg_spice_espn_news(api_result) {
     player.headline = api_result.headlines.filter(function(article) {
                             if (article.headline && article.source)
                                 return true;
                       }).slice(0,3);
 
-    ddg_spice_espn_nfl_bind();
+    ddg_spice_espn_bind();
 }
 
-function ddg_spice_espn_nfl_team(api_result) {
+function ddg_spice_espn_team(api_result) {
     var record               = api_result.sports[0].leagues[0].teams[0].record;
     var totalGames           = record.wins + record.losses + record.ties;
     player.teamWinPercentage = Math.floor(record.wins / totalGames * 100);
 
-    ddg_spice_espn_nfl_bind();
+    ddg_spice_espn_bind();
 }
 
-function ddg_spice_espn_nfl_events(api_result) {
+function ddg_spice_espn_events(api_result) {
     var events    = api_result.sports[0].leagues[0].events;
     player.events = [];
 
@@ -60,7 +78,7 @@ function ddg_spice_espn_nfl_events(api_result) {
             competitors[competitor.homeAway] = {
                 'teamName' : teamName,
                 'score'    : competitor.score,
-                'link'     : 'http://espn.go.com/nfl/team/_/name/'
+                'link'     : 'http://espn.go.com/' + player.league + '/team/_/name/'
                                + (teamName.replace(' ', '').substr(0,3)
                                + '/' + teamName.replace(' ', '-')).toLowerCase(),
             };
@@ -77,18 +95,17 @@ function ddg_spice_espn_nfl_events(api_result) {
         });
     }
 
-    ddg_spice_espn_nfl_bind();
+    ddg_spice_espn_bind();
 }
 
-function ddg_spice_espn_nfl_bind() {
+function ddg_spice_espn_bind() {
     if (numberOfCalls--) return;
     Spice.render({
         data             : player,
-        //header1          : '<a href="' + player.more_link + '">'+ player.name + '</a>' + ' (NFL),
-        header1          : player.name + ' (NFL)',
-        source_url       : 'http://espn.com/nfl/player/_/id/' + player.id,
+        header1          : player.name + ' ' + player.league.toUpperCase(),
+        source_url       : 'http://espn.com/' + player.league + '/player/_/id/' + player.id,
         source_name      : 'ESPN',
-        template_normal  : 'espn_nfl',
+        template_normal  : 'espn_' + player.league,
         force_big_header : true,
         force_no_fold    : true
     });
