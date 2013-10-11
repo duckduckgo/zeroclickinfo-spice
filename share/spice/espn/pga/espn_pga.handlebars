@@ -1,0 +1,31 @@
+<span class='espn_zci_tab_link espn_zci_tab_selected' id='espn_zci_news_link'>News</span> |
+<span class='espn_zci_tab_link' id='espn_zci_stats_link'>Stats</span> |
+<span class='espn_zci_tab_link' id='espn_zci_gamelog_link'>Gamelog</span>
+
+<div class='espn_zci_tab' style='display:block' id='espn_zci_news'>
+    <img src='/iu?u={{headshot}}' height=110 width=150 id='espn_news_image'>
+    <div class='blurb'>
+        {{name}} is an American professional golfer (PGA).
+    </div>
+    <ul>
+        {{#each headline}}
+        <li><a href='{{links.web.href}}'>{{headline}}</a> ({{source}})</li>
+        {{/each}}
+    </ul>
+</div>
+
+<div class='espn_zci_tab' id='espn_zci_stats'>
+    <div class='blurb'>
+        {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
+    </div>
+    <table>
+        <tr><th>Something:</th><td>N/A</td></tr>
+    </table>
+</div>
+
+<div class='espn_zci_tab' id='espn_zci_gamelog'>
+    <div class='blurb'>
+        TODO
+    </div>
+    TODO
+</div>
