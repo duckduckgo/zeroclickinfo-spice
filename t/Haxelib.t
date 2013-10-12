@@ -12,7 +12,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Haxelib'
     ),
-    'haxe library for nodejs' => test_spice(
+    'nodejs haxe library' => test_spice(
         '/js/spice/haxelib/nodejs',
         call_type => 'include',
         caller => 'DDG::Spice::Haxelib'
