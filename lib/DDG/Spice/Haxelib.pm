@@ -6,6 +6,7 @@ primary_example_queries "haxelib openfl";
 description "Lookup packages from the Haxe libraries";
 name "Haxelib";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Haxelib.pm";
+icon_url "/i/www.haxe.org.ico";
 topics "programming";
 category "programming";
 spice to => 'http://haxelib-json.herokuapp.com/package/$1?callback={{callback}}';
