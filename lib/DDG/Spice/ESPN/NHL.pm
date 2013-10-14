@@ -5,7 +5,7 @@ use Time::localtime;
 
 description "News and stats for NHL players";
 name "ESPN NHL";
-primary_example_queries "Spencer Abbot", "Will Acton";
+primary_example_queries "Sidney Crosby", "Evgeni Malkin   ";
 topics "entertainment", "special_interest";
 category "reference";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/ESPN/NHL.pm";
