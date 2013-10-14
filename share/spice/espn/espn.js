@@ -22,24 +22,30 @@ function ddg_spice_espn_process_stats(player) {
 }
 
 var player = {};
-var numberOfCalls = 3;
+var numberOfCalls = 1;
 
 function ddg_spice_espn(api_result) {
     var player_info   = api_result.sports[0].leagues[0].athletes[0];
-    var playerTeam    = player_info.competitors[0].team;
+
+    if (player_info.competitors) {
+        player.team       = player_info.competitors[0].team;
+        player.teamID     = player.team.id;
+        player.teamCity   = player.team.location;
+        player.teamName   = player.team.name;
+    }
 
     player.league     = api_result.sports[0].leagues[0].abbreviation;
     player.id         = player_info.id;
     player.name       = player_info.displayName;
     player.headshot   = player_info.headshots.gamecast.href;
     player.stats      = player_info.stats;
-    player.teamID     = playerTeam.id;
-    player.teamCity   = playerTeam.location;
-    player.teamName   = playerTeam.name;
 
     nrj('/js/spice/espn/' + player.league + '/athletes/' + player.id + '/news/foo/ddg_spice_espn_news');
-    nrj('/js/spice/espn/' + player.league + '/teams/' + player.teamID + '/foo/bar/ddg_spice_espn_team');
-    nrj('/js/spice/espn/' + player.league + '/teams/' + player.teamID + '/events/dates/ddg_spice_espn_events');
+    if (player.team) {
+        numberOfCalls += 2;
+        nrj('/js/spice/espn/' + player.league + '/teams/' + player.teamID + '/foo/bar/ddg_spice_espn_team');
+        nrj('/js/spice/espn/' + player.league + '/teams/' + player.teamID + '/events/dates/ddg_spice_espn_events');
+    }
 
     ddg_spice_espn_process_stats(player);
 
