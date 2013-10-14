@@ -135,12 +135,24 @@ function ddg_spice_espn_events(api_result) {
             } else if (competitor.athlete.id == player.id) {
                 var place = competitor.athlete.place ?
                                 competitor.athlete.place : competitor.place;
-                player.events.push({
-                    'date'  : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
-                    'name'  : events[i].competitions[0].name,
-                    'place' : DDG.getOrdinal(place),
-                    'win'   : place == 1 ? 1 : 0
-                });
+                if (place) {
+                    player.events.push({
+                        'date'  : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
+                        'name'  : events[i].competitions[0].name,
+                        'place' : DDG.getOrdinal(place),
+                        'win'   : place == 1 ? 1 : 0
+                    });
+                } else {
+                    console.log(competitors);
+                    player.events.push({
+                        'date'     : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
+                        'name'     : events[i].competitions[0].note,
+                        'opponent' : competitors[index+1] ?
+                                        competitors[index+1].athlete.displayName
+                                        : competitors[index-1].athlete.displayName,
+                        'win'      : competitor.isWinner
+                    });
+                }
             }
         });
     }

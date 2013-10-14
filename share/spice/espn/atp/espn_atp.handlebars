@@ -5,7 +5,7 @@
 <div class='espn_zci_tab' style='display:block' id='espn_zci_news'>
     <img src='/iu?u={{headshot}}' height=110 width=150 id='espn_news_image'>
     <div class='blurb'>
-        {{name}} is an American professional tennis player (ATP).
+        {{name}} is an American professional tennis player (WTA).
     </div>
     <ul>
         {{#each headline}}
@@ -28,25 +28,22 @@
 
 <div class='espn_zci_tab' id='espn_zci_gamelog'>
     <div class='blurb'>
-        The {{teamCity}} {{teamName}} have won {{teamWinPercentage}}% of their season games.
+        {{name}} has recently competed in these matches:
     </div>
     <table>
-        <th></th><th>Home</th><th></th><th>Away</th><th></th><th></th></tr>
+        <th></th><th>Event</th><th></th><th>Opponent</th><th></th><th></th></tr>
         {{#each events}}
         <tr>
             <td>{{date}}</td>
-            <td><a href='{{home.link}}'>{{home.teamName}}<a/></td>
+            <td>{{name}}</td>
             <td>vs</td>
-            <td><a href='{{away.link}}'>{{away.teamName}}<a/></td>
+            <td>{{opponent}}</td>
             <td>
-                <a href='{{link}}'>
-                    {{#if win}}
-                        <span style='color:green'>W</span>
-                    {{else}}
-                        <span style='color:red'>L</span>
-                    {{/if}}
-                    {{home.score}}-{{away.score}}
-                </a>
+                {{#if win}}
+                    <span style='color:green'>W</span>
+                {{else}}
+                    <span style='color:red'>L</span>
+                {{/if}}
             </td>
         </tr>
         {{/each}}
