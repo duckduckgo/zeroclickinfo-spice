@@ -18,7 +18,7 @@ function ddg_spice_zanran(api_result) {
         template_normal  : 'zanran',
         image_url        : checkImage(api_result.results[0].preview_image),
         force_big_header : true,
-				force_no_fold 	 : true
+		force_no_fold 	 : true
     });
 
     $("a.show-hide").click(function() {
@@ -26,6 +26,20 @@ function ddg_spice_zanran(api_result) {
         $(id).toggle();
     });
 
+    $("#zero_click_abstract").css({
+        "max-width" : "auto !important"
+    });
+
+    $("#zero_click_image").css({
+        "float" : "right"
+    });
+
+    $("#zero_click_image img").css({
+      "max-width"  : "71px",
+      "max-height" : "100px", // A4 ratio
+      "border"     : "1px solid black",
+      "float"      : "right"
+    });
 };
 
 Handlebars.registerHelper("preview_link", function() {
