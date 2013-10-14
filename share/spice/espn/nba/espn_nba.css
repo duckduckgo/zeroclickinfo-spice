@@ -1,55 +1,55 @@
-#zero_click_abstract {
+#spice_espn_nba {
     font-family: "Helvetica Neue", "Segoe UI",
                  "Nimbus Sans L","Liberation Sans",
                  "Open Sans", "FreeSans",
                  "Arial", "sans-serif";
 }
 
-#zero_click_abstract .espn_zci_tab_link {
+#spice_espn_nba .espn_zci_tab_link {
     font-weight: bold;
     padding: 5px;
     text-align: center;
     cursor: pointer;
 }
 
-#zero_click_abstract .espn_zci_tab_selected {
+#spice_espn_nba .espn_zci_tab_selected {
     text-decoration: underline;
 }
 
-#zero_click_abstract .espn_zci_tab {
+#spice_espn_nba .espn_zci_tab {
     display: none;
     margin-top: 5px;
     margin-bottom: 15px;
 }
 
-#zero_click_abstract #espn_news_image {
+#spice_espn_nba #espn_news_image {
     float: right;
     margin: -15px 10px 0px 0px;
 }
 
-#zero_click_abstract .blurb {
+#spice_espn_nba .blurb {
     margin: 8px 0px 0px 6px;
     font-size 95%;
 }
-#zero_click_abstract table {
+#spice_espn_nba table {
     margin: 4px 0px 0px 20px;
 }
 
-#zero_click_abstract table td {
+#spice_espn_nba table td {
     padding-right: 15px;
 }
 
-#zero_click_abstract table th {
+#spice_espn_nba table th {
     color: 666666;
     font-size: 12px;
     font-weight: 700;
 }
 
-#zero_click_abstract #espn_zci_stats table {
+#spice_espn_nba #espn_zci_stats table {
     margin-bottom: 5px;
 }
 
-#zero_click_abstract #espn_zci_stats table th {
+#spice_espn_nba #espn_zci_stats table th {
     width: 220px;
     font-weight: normal;
 }
