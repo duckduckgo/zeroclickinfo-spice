@@ -72,6 +72,7 @@ function ddg_spice_espn(api_result) {
         nrj('/js/spice/espn/' + player.league + '/teams/' + player.teamID + '/foo/bar/ddg_spice_espn_team');
         nrj('/js/spice/espn/' + player.league + '/teams/' + player.teamID + '/events/dates/ddg_spice_espn_events');
     } else {
+        numberOfCalls += 1;
         nrj('/js/spice/espn/' + player.league + '/athletes/' + player.id + '/events/dates/ddg_spice_espn_events');
     }
 
@@ -108,27 +109,36 @@ function ddg_spice_espn_events(api_result) {
             continue;
         eventDate.setMonth(eventDate.getMonth()+1);
 
+        if (!events[i].competitions[0]) continue;
         var home, away, win, competitors = events[i].competitions[0].competitors;
 
         $.map(competitors, function(competitor, index) {
-            var teamName = competitor.team.location + ' ' + competitor.team.name;
-            competitors[competitor.homeAway] = {
-                'teamName' : teamName,
-                'score'    : competitor.score,
-                'link'     : 'http://espn.go.com/' + player.league + '/team/_/name/'
-                               + (teamName.replace(' ', '').substr(0,3)
-                               + '/' + teamName.replace(' ', '-')).toLowerCase(),
-            };
-            if (competitor.team.id == player.teamID)
-                win = competitor.score > competitors[index ? 0 : 1].score ? 1 : 0;
-        });
-
-        player.events.push({
-            'date' : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
-            'link' : events[i].links.web.boxscore.href,
-            'home' : competitors.home,
-            'away' : competitors.away,
-            'win'  : win
+            if (player.team) {
+                var teamName = competitor.team.location + ' ' + competitor.team.name;
+                competitors[competitor.homeAway] = {
+                    'teamName' : teamName,
+                    'score'    : competitor.score,
+                    'link'     : 'http://espn.go.com/' + player.league + '/team/_/name/'
+                                   + (teamName.replace(' ', '').substr(0,3)
+                                   + '/' + teamName.replace(' ', '-')).toLowerCase(),
+                };
+                if (competitor.team.id == player.teamID)
+                    win = competitor.score > competitors[index ? 0 : 1].score ? 1 : 0;
+                if (index == 1)
+                    player.events.push({
+                        'date' : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
+                        'link' : events[i].links.web.boxscore.href,
+                        'home' : competitors.home,
+                        'away' : competitors.away,
+                        'win'  : win
+                    });
+            } else if (competitor.athlete.id == player.id) {
+                player.events.push({
+                    'date' : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
+                    'name' : events[i].competitions[0].name,
+                    'place' : competitor.athlete.place
+                });
+            }
         });
     }
 
@@ -137,6 +147,7 @@ function ddg_spice_espn_events(api_result) {
 
 function ddg_spice_espn_bind() {
     if (numberOfCalls--) return;
+    console.log("events", player.events);
     Spice.render({
         data             : player,
         header1          : player.name + ' (' + player.league.toUpperCase() + ')',

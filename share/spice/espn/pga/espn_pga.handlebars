@@ -28,5 +28,16 @@
 
 <div class='espn_zci_tab' id='espn_zci_gamelog'>
     <div class='blurb'>
+        {{name}} has recently played in these tournaments:
     </div>
+    <table>
+        <th></th><th>Competition</th><th>Placed</th>
+        {{#each events}}
+        <tr>
+            <td>{{date}}</td>
+            <td>{{name}}</td>
+            <td>{{place}}</td>
+        </tr>
+        {{/each}}
+    </table>
 </div>
