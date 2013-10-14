@@ -1,4 +1,4 @@
-span.hn_oneline {
+#spice_hacker_news span.hn_oneline {
 	display: inline-block;
 }
 
@@ -6,12 +6,12 @@ span.hn_oneline {
 	margin: 5px 0;
 }
 
-.hn_comment,
-.hn_story {
+#spice_hacker_news .hn_comment,
+#spice_hacker_news .hn_story {
 	margin-bottom: 4px;
 }
 
-.hn_comment:first-of-type,
-.hn_story:first-of-type {
+#spice_hacker_news .hn_comment:first-of-type,
+#spice_hacker_news .hn_story:first-of-type {
 	margin-top: 3px;
 }
