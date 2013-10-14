@@ -60,6 +60,7 @@ function ddg_spice_espn(api_result) {
         player.teamName   = player.team.name;
     }
 
+    // this should probably be rewritten as a switch for clarity
     player.league     = api_result.sports[0].leagues[0].abbreviation;
     player.id         = player_info.id;
     player.name       = player_info.displayName;
