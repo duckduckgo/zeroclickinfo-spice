@@ -36,7 +36,11 @@
         <tr>
             <td>{{date}}</td>
             <td>{{name}}</td>
-            <td>{{place}}</td>
+            <td>
+                {{#if win}}<span style='color:green'>{{/if}}
+                {{place}}
+                {{#if win}}</span>{{/if}}
+            </td>
         </tr>
         {{/each}}
     </table>
