@@ -101,6 +101,13 @@ function ddg_spice_news(api_result) {
 	    li_height: 155
 	}
     });
+
+    // adjust the box margins - can't do this in css
+    $("#zero_click_wrapper2 #zero_click_abstract").css( {
+            'padding-left': '0px !important',
+            'margin-left' : '0px !important'
+        });
+    $("#zero_click_more_at_wrap").toggle(false);
 }
 
 Handlebars.registerHelper("getIcon", function(url) {

@@ -1,8 +1,3 @@
-#zero_click_wrapper2 #zero_click_abstract {
-    padding-left: 0px !important;
-    margin-left: 0px !important;
-}
-
 #spice_news #ddgcarousel li.ddgc_item {
     text-align: left;
 }
@@ -72,6 +67,3 @@
     vertical-align: text-bottom;
 }
 
-#zero_click_more_at_wrap {
-    display: none;
-}
