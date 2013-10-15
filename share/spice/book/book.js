@@ -47,6 +47,7 @@ function ddg_spice_book(api_result) {
          source_name       : "idreambooks.com", // More at ...
          source_url        :  data.detail_link,
          template_normal   : 'book',
-         template_small    : 'book'
+         template_small    : 'book',
+	 force_no_fold     : true
     });
 }

@@ -17,3 +17,12 @@
     color: gray;
 }
 
+#spice_book #critic-link {
+    float: right;
+}
+
+#spice_book #book-rating-visual {
+    display: inline;
+    vertical-align: bottom;
+}
+
