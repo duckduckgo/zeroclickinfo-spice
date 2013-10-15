@@ -90,16 +90,15 @@ handle query_parts => sub {
 	# if platform restiction(s) detected
 	# return query, specify proper ids for API
 	if (defined $restriction) {
-		my @platforms = ();
-		$platforms[0] = $restriction;
+		my @platforms = ($restriction);
 		my $platforms_encoded = encode_json \@platforms;
-		if ($restriction == 2005 or $restriction == 2004) {
+		if ($restriction eq 2005 or $restriction eq 2004) {
 			return $full_query, $platforms_encoded, $max_price, $custom_ids{ $restriction };
 		} else {
 			return $full_query, $platforms_encoded, $max_price, "2414062669";
 		}
 	} else {
-		my @full_platforms = uniq (values %platform_ids);
+		my @full_platforms = sort @{uniq (values %platform_ids)};
 		my @platforms = ();
 		foreach my $element(@full_platforms) {
 			if (defined $element and $element ne 0) {
