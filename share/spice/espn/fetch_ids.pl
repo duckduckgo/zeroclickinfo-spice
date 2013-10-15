@@ -62,6 +62,9 @@ my %leagues = (
         'mlb',
         'college-baseball'
     ],
+    'soccer' => [
+        'eng.1',
+    ]
 );
 
 sub parse_players {

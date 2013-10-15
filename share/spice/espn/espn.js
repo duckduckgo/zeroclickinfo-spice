@@ -1,11 +1,17 @@
 function ddg_spice_espn_process_stats(player) {
-    var season_year = player.stats.season ?
-        player.stats.season.year : player.stats.year.dates;
+    var season_year;
+    if (player.stats.season) {
+        season_year = player.stats.season.year;
+    } else if (player.stats.year) {
+        season_year = player.stats.year.dates;
+    } else {
+        season_year = player.stats.season.startDate.substr(0,4);
+    }
     if (player.stats.season)
         player.seasonDescription = player.stats.season.description;
     player.seasonTimeFrame   = "'" + ((season_year + '').substr(2, 2) - 1)
                              + "-'" + (season_year + '').substr(2, 2);
-    switch (player.league) {
+    switch (player.spice) {
         case 'nba':
             player.averagePointsPerGame = (player.stats.points / player.stats.gamesStarted).toFixed(1) + '';
             player.threePointPercentage = ((player.stats.threePointPercentage + 0) * 100).toFixed(1) + '';
@@ -37,6 +43,12 @@ function ddg_spice_espn_process_stats(player) {
             player.tournamentsPlayed = player.stats.tournamentsPlayed;
             player.cupPoints         = player.stats.cupPoints;
         break;
+        case 'soccer':
+            player.goals          = player.stats.totalGoals;
+            player.shots          = player.stats.totalShots;
+            player.starts         = player.stats.starts;
+            player.foulsCommitted = player.stats.foulsCommitted;
+        break;
         case 'mlb':
             //needs case by case handingly by position played.
         break;
@@ -50,7 +62,6 @@ var player = {};
 var numberOfCalls = 1;
 
 function ddg_spice_espn(api_result) {
-    console.log(api_result);
     var player_info   = api_result.sports[0].leagues[0].athletes[0];
 
     if (player_info.competitors) {
@@ -60,21 +71,24 @@ function ddg_spice_espn(api_result) {
         player.teamName   = player.team.name;
     }
 
-    // this should probably be rewritten as a switch for clarity
+    if (player_info.headshots)
+        player.headshot   = player_info.headshots.gamecast.href;
+
     player.league     = api_result.sports[0].leagues[0].abbreviation;
+    player.spice = (player.league == 'eng.1' ? 'soccer' : player.league);
+
     player.id         = player_info.id;
     player.name       = player_info.displayName;
-    player.headshot   = player_info.headshots.gamecast.href;
     player.stats      = player_info.stats;
 
-    nrj('/js/spice/espn/' + player.league + '/athletes/' + player.id + '/news/foo/ddg_spice_espn_news');
+    nrj('/js/spice/espn/' + player.spice + '/athletes/' + player.id + '/news/foo/ddg_spice_espn_news');
     if (player.team) {
         numberOfCalls += 2;
-        nrj('/js/spice/espn/' + player.league + '/teams/' + player.teamID + '/foo/bar/ddg_spice_espn_team');
-        nrj('/js/spice/espn/' + player.league + '/teams/' + player.teamID + '/events/dates/ddg_spice_espn_events');
+        nrj('/js/spice/espn/' + player.spice + '/teams/' + player.teamID + '/foo/bar/ddg_spice_espn_team');
+        nrj('/js/spice/espn/' + player.spice + '/teams/' + player.teamID + '/events/dates/ddg_spice_espn_events');
     } else {
         numberOfCalls += 1;
-        nrj('/js/spice/espn/' + player.league + '/athletes/' + player.id + '/events/dates/ddg_spice_espn_events');
+        nrj('/js/spice/espn/' + player.spice + '/athletes/' + player.id + '/events/dates/ddg_spice_espn_events');
     }
 
     ddg_spice_espn_process_stats(player);
@@ -100,7 +114,6 @@ function ddg_spice_espn_team(api_result) {
 }
 
 function ddg_spice_espn_events(api_result) {
-    console.log("events:", api_result);
     var events    = api_result.sports[0].leagues[0].events;
     player.events = [];
 
@@ -114,6 +127,7 @@ function ddg_spice_espn_events(api_result) {
         var home, away, win, competitors = events[i].competitions[0].competitors;
 
         $.map(competitors, function(competitor, index) {
+            // this should be rewritten as a switch for clarity
             if (player.team) {
                 var teamName = competitor.team.location + ' ' + competitor.team.name;
                 competitors[competitor.homeAway] = {
@@ -128,7 +142,8 @@ function ddg_spice_espn_events(api_result) {
                 if (index == 1)
                     player.events.push({
                         'date' : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
-                        'link' : events[i].links.web.boxscore.href,
+                        'link' : (events[i].links.web.boxscore ? 
+                                    events[i].links.web.boxscore.href : null),
                         'home' : competitors.home,
                         'away' : competitors.away,
                         'win'  : win
@@ -144,7 +159,6 @@ function ddg_spice_espn_events(api_result) {
                         'win'   : place == 1 ? 1 : 0
                     });
                 } else {
-                    console.log(competitors);
                     player.events.push({
                         'date'     : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
                         'name'     : events[i].competitions[0].note,
@@ -163,13 +177,12 @@ function ddg_spice_espn_events(api_result) {
 
 function ddg_spice_espn_bind() {
     if (numberOfCalls--) return;
-    console.log("events", player.events);
     Spice.render({
         data             : player,
-        header1          : player.name + ' (' + player.league.toUpperCase() + ')',
+        header1          : player.name + ' (' + player.spice.toUpperCase() + ')',
         source_url       : 'http://espn.com/' + player.league + '/player/_/id/' + player.id,
         source_name      : 'ESPN',
-        template_normal  : 'espn_' + player.league,
+        template_normal  : 'espn_' + player.spice,
         force_big_header : true,
         force_no_fold    : true
     });
