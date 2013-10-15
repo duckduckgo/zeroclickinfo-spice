@@ -1,12 +1,14 @@
 function ddg_spice_espn_process_stats(player) {
     var season_year;
-    if (player.stats.season) {
+    if (player.stats.season && player.stats.season.year) {
         season_year = player.stats.season.year;
-    } else if (player.stats.year) {
-        season_year = player.stats.year.dates;
-    } else {
+    } else if (player.stats.season) {
         season_year = player.stats.season.startDate.substr(0,4);
+    } else if (player.stats.year && player.stats.year.dates) {
+        season_year = player.stats.year.dates;
     }
+    console.log(player.stats);
+    console.log(season_year);
     if (player.stats.season)
         player.seasonDescription = player.stats.season.description;
     player.seasonTimeFrame   = "'" + ((season_year + '').substr(2, 2) - 1)
