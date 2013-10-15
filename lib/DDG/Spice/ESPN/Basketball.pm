@@ -686,7 +686,7 @@ for my $league (keys %leagues) {
 
 triggers any => keys %players;
 
-spice to => 'http://api.espn.com/v1/sports/football/$1/$2/$3/$4'
+spice to => 'http://api.espn.com/v1/sports/basketball/$1/$2/$3/$4'
             . '?enable=stats,competitors,roster,venues&$5='
             . (localtime->year() + 1900)
             . '&apikey={{ENV{DDG_SPICE_ESPN_APIKEY}}}&callback=$6';
