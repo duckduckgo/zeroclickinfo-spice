@@ -1,23 +1,15 @@
-<div id="book_data_box" >
-    {{#if author}}
-        <div><span class="book_data_item">Author:</span>{{author}}</div>
-    {{/if}}   
+{{#if author}}
+  <div><span class="book_data_item">Author:</span>{{author}}</div>
+{{/if}}   
 
-    {{#if genre}}
-        <div><span class="book_data_item">{{genre}}</span></div>
-    {{/if}}
+{{#if genre}}
+  <div><span class="book_data_item">Genre: </span>{{genre}}</div>
+{{/if}}
 
-    {{#if rating}}
-        <div title="based on {{review_count}} critic reviews"><span class="book_data_item">Critic Rating:</span>
-        <img src="{{to_read_or_not}}" width="30" style="display:inline;vertical-align:bottom;"/><span class="book_critic_rating"> {{rating}}% </span></div>
-    {{/if}} 
-</div>
+{{#if rating}}
+  <div title="based on {{review_count}} critic reviews"><span class="book_data_item">Critic Rating:</span>
+  <img id="book-rating-visual" src="{{to_read_or_not}}"><span class="book_critic_rating"> {{rating}}% </span></div>
+{{/if}}
 
-<span>
-    {{#if critic_review}}
-        <span>  &ldquo;{{condense critic_review.snippet maxlen="300"}}&rdquo; </span>
-        <div> <a href={{critic_review.review_link}} style="float:right;">  - {{critic_review.source}} {{#if critic_review.review_date}}({{critic_review.review_date}}) {{/if}}</a> </div>
-    {{/if}}
-</span>
 
 

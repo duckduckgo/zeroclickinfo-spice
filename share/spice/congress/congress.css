@@ -3,9 +3,11 @@
     width:100%;
     margin:5px;
 }
+
 #spice_congress tr {
     border-bottom:1px solid #efefef;
 }
+
 #spice_congress th {
     vertical-align:bottom;
     text-align:left;
@@ -13,6 +15,7 @@
     font-style:italic;
     padding-left:3px;
 }
+
 #spice_congress td {
     padding:2px;
 }

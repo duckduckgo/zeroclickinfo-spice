@@ -1,21 +1,21 @@
-#snp-data {
+#spice_open_snp #snp-data {
     padding: 2px;
     width: 25%;
     float: left;
 }
 
-#snp-facts {
+#spice_open_snp #snp-facts {
     width: 70%;
     float: left;
     border-left: 1px solid rgba(0,0,0,0.1);
     padding-left: 10px;
 }
 
-#snpedia-link {
+#spice_open_snp #snpedia-link {
     font-style: italic;
 }
 
-#snp-annotations {
+#spice_open_snp #snp-annotations {
     display: none;
     margin-bottom: 5px;
 }

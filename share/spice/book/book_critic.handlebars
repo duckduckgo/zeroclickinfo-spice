@@ -1,0 +1,4 @@
+{{#if critic_review}}
+  <span>&ldquo;{{condense critic_review.snippet maxlen="300"}}&rdquo;</span>
+  <div id="critic-link"> - <a href={{critic_review.review_link}}>{{critic_review.source}}</a> {{#if critic_review.review_date}}({{critic_review.review_date}}) {{/if}}</div>
+{{/if}}
