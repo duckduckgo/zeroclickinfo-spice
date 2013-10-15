@@ -175,15 +175,15 @@ my %leagues = (
 # Transform %leagues into player => { league => "league_name", id => id_number }
 # to keep %leagues in a friendly/dry form, but keep fast lookups. This only
 # executes once.
-my %players = map {
-    my $league = $_;
-    map {
-        $_ => {
+my %players;
+for my $league (keys %leagues) {
+    for my $player (keys %{$leagues{$league}}) {
+        $players{$player} = +{
+            id => $leagues{$league}{$player},
             league => $league,
-            id => $leagues{$league}{$_}
-        }
-    } keys $leagues{$_}
-} keys %leagues;
+        };
+    }
+}
 
 triggers any => keys %players;
 

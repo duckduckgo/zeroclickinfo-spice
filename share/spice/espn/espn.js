@@ -7,8 +7,6 @@ function ddg_spice_espn_process_stats(player) {
     } else if (player.stats.year && player.stats.year.dates) {
         season_year = player.stats.year.dates;
     }
-    console.log(player.stats);
-    console.log(season_year);
     if (player.stats.season)
         player.seasonDescription = player.stats.season.description;
     player.seasonTimeFrame   = "'" + ((season_year + '').substr(2, 2) - 1)
