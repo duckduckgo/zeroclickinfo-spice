@@ -1,52 +1,56 @@
-function ddg_spice_espn_process_stats(player) {
+function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
     var season_year;
-    if (player.stats.season && player.stats.season.year) {
-        season_year = player.stats.season.year;
-    } else if (player.stats.season) {
-        season_year = player.stats.season.startDate.substr(0,4);
-    } else if (player.stats.year && player.stats.year.dates) {
-        season_year = player.stats.year.dates;
+    if (ddg_spice_espn_player.stats.season && ddg_spice_espn_player.stats.season.year) {
+        season_year = ddg_spice_espn_player.stats.season.year;
+    } else if (ddg_spice_espn_player.stats.season) {
+        season_year = ddg_spice_espn_player.stats.season.startDate.substr(0,4);
+    } else if (ddg_spice_espn_player.stats.year && ddg_spice_espn_player.stats.year.dates) {
+        season_year = ddg_spice_espn_player.stats.year.dates;
     }
-    if (player.stats.season)
-        player.seasonDescription = player.stats.season.description;
-    player.seasonTimeFrame   = "'" + ((season_year + '').substr(2, 2) - 1)
+    if (ddg_spice_espn_player.stats.season)
+        ddg_spice_espn_player.seasonDescription = ddg_spice_espn_player.stats.season.description;
+    ddg_spice_espn_player.seasonTimeFrame   = "'" + ((season_year + '').substr(2, 2) - 1)
                              + "-'" + (season_year + '').substr(2, 2);
-    switch (player.sport) {
+    switch (ddg_spice_espn_player.sport) {
         case 'basketball':
-            player.averagePointsPerGame = (player.stats.points / player.stats.gamesStarted).toFixed(1) + '';
-            player.threePointPercentage = ((player.stats.threePointPercentage + 0) * 100).toFixed(1) + '';
-            player.fieldGoalPercentage  = player.stats.fieldGoalPercentage.toFixed(1) + '';
-            player.freeThrowPercentage  = player.stats.freeThrowPercentage.toFixed(1) + '';
+            ddg_spice_espn_player.averagePointsPerGame =
+                (ddg_spice_espn_player.stats.points / ddg_spice_espn_player.stats.gamesStarted).toFixed(1) + '';
+            ddg_spice_espn_player.threePointPercentage=
+                ((ddg_spice_espn_player.stats.threePointPercentage + 0) * 100).toFixed(1) + '';
+            ddg_spice_espn_player.fieldGoalPercentage =
+                ddg_spice_espn_player.stats.fieldGoalPercentage.toFixed(1) + '';
+            ddg_spice_espn_player.freeThrowPercentage =
+                ddg_spice_espn_player.stats.freeThrowPercentage.toFixed(1) + '';
         break;
         case 'hockey':
-            player.goals = player.stats.goals;
-            player.assists = player.stats.assists;
-            player.points = player.stats.points;
-            player.averageTimeOnIce = player.stats.averageTimeOnIce;
+            ddg_spice_espn_player.goals = ddg_spice_espn_player.stats.goals;
+            ddg_spice_espn_player.assists = ddg_spice_espn_player.stats.assists;
+            ddg_spice_espn_player.points = ddg_spice_espn_player.stats.points;
+            ddg_spice_espn_player.averageTimeOnIce = ddg_spice_espn_player.stats.averageTimeOnIce;
         break;
         case 'tennis':
-            player.rank        = player.stats.year.rank;
-            player.matchesWon  = player.stats.year.singlesMatchesWon;
-            player.matchesLost = player.stats.year.singlesMatchesLost;
-            player.titles      = player.stats.year.singlesTitles;
+            ddg_spice_espn_player.rank        = ddg_spice_espn_player.stats.year.rank;
+            ddg_spice_espn_player.matchesWon  = ddg_spice_espn_player.stats.year.singlesMatchesWon;
+            ddg_spice_espn_player.matchesLost = ddg_spice_espn_player.stats.year.singlesMatchesLost;
+            ddg_spice_espn_player.titles      = ddg_spice_espn_player.stats.year.singlesTitles;
         break;
         case 'racing':
-            player.starts   = player.stats.starts;
-            player.lapsLead = player.stats.lapsLead;
-            player.wins     = player.stats.wins;
-            player.top10s   = player.stats.top10s;
+            ddg_spice_espn_player.starts   = ddg_spice_espn_player.stats.starts;
+            ddg_spice_espn_player.lapsLead = ddg_spice_espn_player.stats.lapsLead;
+            ddg_spice_espn_player.wins     = ddg_spice_espn_player.stats.wins;
+            ddg_spice_espn_player.top10s   = ddg_spice_espn_player.stats.top10s;
         break;
         case 'golf':
-            player.wins              = player.stats.wins;
-            player.topTenFinishes    = player.stats.topTenFinishes;
-            player.tournamentsPlayed = player.stats.tournamentsPlayed;
-            player.cupPoints         = player.stats.cupPoints;
+            ddg_spice_espn_player.wins              = ddg_spice_espn_player.stats.wins;
+            ddg_spice_espn_player.topTenFinishes    = ddg_spice_espn_player.stats.topTenFinishes;
+            ddg_spice_espn_player.tournamentsPlayed = ddg_spice_espn_player.stats.tournamentsPlayed;
+            ddg_spice_espn_player.cupPoints         = ddg_spice_espn_player.stats.cupPoints;
         break;
         case 'soccer':
-            player.goals          = player.stats.totalGoals;
-            player.shots          = player.stats.totalShots;
-            player.starts         = player.stats.starts;
-            player.foulsCommitted = player.stats.foulsCommitted;
+            ddg_spice_espn_player.goals          = ddg_spice_espn_player.stats.totalGoals;
+            ddg_spice_espn_player.shots          = ddg_spice_espn_player.stats.totalShots;
+            ddg_spice_espn_player.starts         = ddg_spice_espn_player.stats.starts;
+            ddg_spice_espn_player.foulsCommitted = ddg_spice_espn_player.stats.foulsCommitted;
         break;
         case 'baseball':
             //needs case by case handingly by position played.
@@ -57,50 +61,50 @@ function ddg_spice_espn_process_stats(player) {
     }
 }
 
-var player = {};
-var numberOfCalls = 1;
+var ddg_spice_espn_player = {};
+var ddg_spice_espn_calls = 1;
 
 function ddg_spice_espn(api_result) {
-    var player_info   = api_result.sports[0].leagues[0].athletes[0];
+    var ddg_spice_espn_player_info   = api_result.sports[0].leagues[0].athletes[0];
 
-    if (player_info.competitors) {
-        player.team       = player_info.competitors[0].team;
-        player.teamID     = player.team.id;
-        player.teamCity   = player.team.location;
-        player.teamName   = player.team.name;
+    if (ddg_spice_espn_player_info.competitors) {
+        ddg_spice_espn_player.team       = ddg_spice_espn_player_info.competitors[0].team;
+        ddg_spice_espn_player.teamID     = ddg_spice_espn_player.team.id;
+        ddg_spice_espn_player.teamCity   = ddg_spice_espn_player.team.location;
+        ddg_spice_espn_player.teamName   = ddg_spice_espn_player.team.name;
     }
 
-    if (player_info.headshots)
-        player.headshot   = player_info.headshots.gamecast.href;
+    if (ddg_spice_espn_player_info.headshots)
+        ddg_spice_espn_player.headshot   = ddg_spice_espn_player_info.headshots.gamecast.href;
 
-    player.sport  = api_result.sports[0].name;
-    player.league = api_result.sports[0].leagues[0].abbreviation;
+    ddg_spice_espn_player.sport  = api_result.sports[0].name;
+    ddg_spice_espn_player.league = api_result.sports[0].leagues[0].abbreviation;
 
-    player.id     = player_info.id;
-    player.name   = player_info.displayName;
-    player.stats  = player_info.stats;
+    ddg_spice_espn_player.id     = ddg_spice_espn_player_info.id;
+    ddg_spice_espn_player.name   = ddg_spice_espn_player_info.displayName;
+    ddg_spice_espn_player.stats  = ddg_spice_espn_player_info.stats;
 
-    nrj('/js/spice/espn/' + player.sport + '/' + player.league
-            + '/athletes/' + player.id + '/news/foo/ddg_spice_espn_news');
-    if (player.team) {
-        numberOfCalls += 2;
-        nrj('/js/spice/espn/' + player.sport + '/' + player.league
-                + '/teams/' + player.teamID + '/foo/bar/ddg_spice_espn_team');
-        nrj('/js/spice/espn/' + player.sport + '/' + player.league
-                + '/teams/' + player.teamID + '/events/dates/ddg_spice_espn_events');
+    nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league
+            + '/athletes/' + ddg_spice_espn_player.id + '/news/foo/ddg_spice_espn_news');
+    if (ddg_spice_espn_player.team) {
+        ddg_spice_espn_calls += 2;
+        nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league
+                + '/teams/' + ddg_spice_espn_player.teamID + '/foo/bar/ddg_spice_espn_team');
+        nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league
+                + '/teams/' + ddg_spice_espn_player.teamID + '/events/dates/ddg_spice_espn_events');
     } else {
-        numberOfCalls += 1;
-        nrj('/js/spice/espn/' + player.sport + '/' + player.league
-                + '/athletes/' + player.id + '/events/dates/ddg_spice_espn_events');
+        ddg_spice_espn_calls += 1;
+        nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league
+                + '/athletes/' + ddg_spice_espn_player.id + '/events/dates/ddg_spice_espn_events');
     }
 
-    ddg_spice_espn_process_stats(player);
+    ddg_spice_espn_process_stats(ddg_spice_espn_player);
 
     ddg_spice_espn_bind();
 }
 
 function ddg_spice_espn_news(api_result) {
-    player.headline = api_result.headlines.filter(function(article) {
+    ddg_spice_espn_player.headline = api_result.headlines.filter(function(article) {
                             if (article.headline && article.source)
                                 return true;
                       }).slice(0,3);
@@ -111,16 +115,16 @@ function ddg_spice_espn_news(api_result) {
 function ddg_spice_espn_team(api_result) {
     var record               = api_result.sports[0].leagues[0].teams[0].record;
     var totalGames           = record.wins + record.losses + record.ties;
-    player.teamWinPercentage = Math.floor(record.wins / totalGames * 100);
+    ddg_spice_espn_player.teamWinPercentage = Math.floor(record.wins / totalGames * 100);
 
     ddg_spice_espn_bind();
 }
 
 function ddg_spice_espn_events(api_result) {
     var events    = api_result.sports[0].leagues[0].events;
-    player.events = [];
+    ddg_spice_espn_player.events = [];
 
-    for (var i = events.length - 1; i > 0 && player.events.length < 5; i--) {
+    for (var i = events.length - 1; i > 0 && ddg_spice_espn_player.events.length < 5; i--) {
         var eventDate = new Date(events[i].date);
         if (eventDate.getTime() > new Date().getTime() - 24*60*60*1000)
             continue;
@@ -131,19 +135,19 @@ function ddg_spice_espn_events(api_result) {
 
         $.map(competitors, function(competitor, index) {
             // this should be rewritten as a switch for clarity
-            if (player.team) {
+            if (ddg_spice_espn_player.team) {
                 var teamName = competitor.team.location + ' ' + competitor.team.name;
                 competitors[competitor.homeAway] = {
                     'teamName' : teamName,
                     'score'    : competitor.score,
-                    'link'     : 'http://espn.go.com/' + player.league + '/team/_/name/'
+                    'link'     : 'http://espn.go.com/' + ddg_spice_espn_player.league + '/team/_/name/'
                                    + (teamName.replace(' ', '').substr(0,3)
                                    + '/' + teamName.replace(' ', '-')).toLowerCase(),
                 };
-                if (competitor.team.id == player.teamID)
+                if (competitor.team.id == ddg_spice_espn_player.teamID)
                     win = competitor.score > competitors[index ? 0 : 1].score ? 1 : 0;
                 if (index == 1)
-                    player.events.push({
+                    ddg_spice_espn_player.events.push({
                         'date' : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
                         'link' : (events[i].links.web.boxscore ? 
                                     events[i].links.web.boxscore.href : null),
@@ -151,18 +155,18 @@ function ddg_spice_espn_events(api_result) {
                         'away' : competitors.away,
                         'win'  : win
                     });
-            } else if (competitor.athlete.id == player.id) {
+            } else if (competitor.athlete.id == ddg_spice_espn_player.id) {
                 var place = competitor.athlete.place ?
                                 competitor.athlete.place : competitor.place;
                 if (place) {
-                    player.events.push({
+                    ddg_spice_espn_player.events.push({
                         'date'  : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
                         'name'  : events[i].competitions[0].name,
                         'place' : DDG.getOrdinal(place),
                         'win'   : place == 1 ? 1 : 0
                     });
                 } else {
-                    player.events.push({
+                    ddg_spice_espn_player.events.push({
                         'date'     : eventDate.getUTCMonth() + '/' + eventDate.getUTCDate(),
                         'name'     : events[i].competitions[0].note,
                         'opponent' : competitors[index+1] ?
@@ -179,13 +183,16 @@ function ddg_spice_espn_events(api_result) {
 }
 
 function ddg_spice_espn_bind() {
-    if (numberOfCalls--) return;
+    if (ddg_spice_espn_calls--) return;
     Spice.render({
-        data             : player,
-        header1          : player.name + ' (' + player.sport.charAt(0).toUpperCase() + player.sport.slice(1) + ')',
-        source_url       : 'http://espn.com/' + player.league + '/player/_/id/' + player.id,
+        data             : ddg_spice_espn_player,
+        header1          : ddg_spice_espn_player.name + ' ('
+                            + ddg_spice_espn_player.sport.charAt(0).toUpperCase()
+                            + ddg_spice_espn_player.sport.slice(1) + ')',
+        source_url       : 'http://espn.com/' + ddg_spice_espn_player.league
+                            + '/ddg_spice_espn_player/_/id/' + ddg_spice_espn_player.id,
         source_name      : 'ESPN',
-        template_normal  : 'espn_' + player.sport,
+        template_normal  : 'espn_' + ddg_spice_espn_player.sport,
         force_big_header : true,
         force_no_fold    : true
     });
