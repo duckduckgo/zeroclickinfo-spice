@@ -46,8 +46,16 @@ function ddg_spice_book(api_result) {
          header1           : header,
          source_name       : "idreambooks.com", // More at ...
          source_url        :  data.detail_link,
-         template_normal   : 'book',
-         template_small    : 'book',
+	 spice_name        : "book",
+	 template_frame    : "twopane",
+	 template_options  : {
+	     left: {
+		 template: "book"
+	     },
+	     right: {
+		 template: "book_critic"
+	     }
+	 },
 	 force_no_fold     : true
     });
 }
