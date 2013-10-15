@@ -37,6 +37,8 @@ function ddg_spice_news(api_result) {
         }
     };
 
+    // Trim the snippet and the title using this function.
+    // We don't want to trim in the middle of a word.
     var ellipsis = function(text, limit) {
 	var result = [];
 	var count = 0;
@@ -49,12 +51,25 @@ function ddg_spice_news(api_result) {
 	    }
 	}
 
-	if(words.length > result.length && 
-	   !(result[result.length - 1].match(/\.$/))) {
-	    result.push("...");
-	}	   
+	// Return the same text if we weren't able to trim.
+	if(result.length === 0) {
+	    return text;
+	}
 
-	return result.join(" ");
+	var append = words.length > result.length;
+	result = result.join(" ");
+
+	// Count the number of opening and closing tags.
+	var open_b = result.split("<b>").length - 1;
+	var close_b = result.split("</b>").length - 1;
+
+	// Check if there is a mismatch.
+	result += open_b > close_b ? "</b>" : "";
+
+	if(append && !(result[result.length - 1].match(/\.$/))) {
+	    return result + "...";
+	}
+	return result;
     };
 
     for(var i = 0, story; story = api_result[i]; i++) {
