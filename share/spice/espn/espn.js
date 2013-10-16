@@ -109,7 +109,29 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
             }
         break;
         case 'baseball':
-            //needs case by case handingly by position played.
+            ddg_spice_espn_player.slugAverage = ddg_spice_espn_player.stats.slugAverage;
+            switch (ddg_spice_espn_player) {
+                case 'pitcher':
+                    ddg_spice_espn_player.role = 'pitching';
+                    ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
+                    ddg_spice_espn_player.ERA = ddg_spice_espn_player.stats.ERA;
+                    ddg_spice_espn_player.fullInnings = ddg_spice_espn_player.stats.fullInnings;
+                    ddg_spice_espn_player.strikeouts = ddg_spice_espn_player.stats.strikeouts;
+                case 'catcher':
+                case 'first baseman':
+                case 'second baseman':
+                case 'third baseman':
+                case 'shortstop':
+                case 'left fielder':
+                case 'center fielder':
+                case 'right fielder':
+                    ddg_spice_espn_player.role = 'fielding';
+                    ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
+                    ddg_spice_espn_player.putouts = ddg_spice_espn_player.stats.putouts;
+                    ddg_spice_espn_player.errors = ddg_spice_espn_player.stats.errors;
+                    ddg_spice_espn_player.fieldingPercentage = ddg_spice_espn_player.stats.fieldingPercentage;
+                break;
+            }
         break;
     }
 }
@@ -135,7 +157,10 @@ function ddg_spice_espn(api_result) {
     ddg_spice_espn_player.sport  = api_result.sports[0].name;
     ddg_spice_espn_player.league = api_result.sports[0].leagues[0].abbreviation;
 
-    if (ddg_spice_espn_player_info.positions)
+    if (ddg_spice_espn_player_info.positionsPlayed)
+        ddg_spice_espn_player.postitionsPlayed =
+            ddg_spice_espn_player_info.postitionsPlayed[0].name.toLowerCase();
+    else if (ddg_spice_espn_player_info.positions)
         ddg_spice_espn_player.position = ddg_spice_espn_player_info.positions[0].name.toLowerCase();
 
     ddg_spice_espn_player.id     = ddg_spice_espn_player_info.id;
