@@ -194,10 +194,16 @@ function ddg_spice_espn(api_result) {
 }
 
 function ddg_spice_espn_news(api_result) {
-    ddg_spice_espn_player.headline = api_result.headlines.filter(function(article) {
-                            if (article.headline && article.source)
-                                return true;
-                      }).slice(0,3);
+    console.log(api_result);
+    ddg_spice_espn_player.headline =
+        api_result.headlines.filter(function(article) {
+            console.log(article.source);
+            if (article.headline && article.source) {
+                article.headline = DDG.strip_html(article.headline);
+                article.source = DDG.strip_html(article.source);
+                return true;
+            }
+        }).slice(0,3);
 
     ddg_spice_espn_bind();
 }
