@@ -11,6 +11,7 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
         ddg_spice_espn_player.seasonDescription = ddg_spice_espn_player.stats.season.description;
     ddg_spice_espn_player.seasonTimeFrame   = "'" + ((season_year + '').substr(2, 2) - 1)
                              + "-'" + (season_year + '').substr(2, 2);
+    console.log('stats', ddg_spice_espn_player.stats);
     switch (ddg_spice_espn_player.sport) {
         case 'basketball':
             ddg_spice_espn_player.averagePointsPerGame =
@@ -52,19 +53,73 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
             ddg_spice_espn_player.starts         = ddg_spice_espn_player.stats.starts;
             ddg_spice_espn_player.foulsCommitted = ddg_spice_espn_player.stats.foulsCommitted;
         break;
-        case 'baseball':
-            //needs case by case handingly by position played.
-        break;
         case 'football':
+            switch (ddg_spice_espn_player.position) {
+                case 'quarterback':
+                    ddg_spice_espn_player.role = 'passing';
+                    ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
+                    ddg_spice_espn_player.completionPercentage = ddg_spice_espn_player.stats.completionPercentage;
+                    ddg_spice_espn_player.passingAttempts = ddg_spice_espn_player.stats.passingAttempts;
+                    ddg_spice_espn_player.passingYards = ddg_spice_espn_player.stats.passingYards;
+                    ddg_spice_espn_player.passingTouchdowns = ddg_spice_espn_player.stats.passingTouchdowns;
+                break;
+                case 'center':
+                case 'offensive guard':
+                case 'offensive tackle':
+                    ddg_spice_espn_player.role = 'rushing';
+                    ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
+                    ddg_spice_espn_player.rushingAttempts = ddg_spice_espn_player.stats.rushingAttempts;
+                    ddg_spice_espn_player.rushingYards = ddg_spice_espn_player.stats.rushingYards;
+                    ddg_spice_espn_player.longRushing = ddg_spice_espn_player.stats.longRushing;
+                    ddg_spice_espn_player.yardsPerRushAttempt = ddg_spice_espn_player.stats.yardsPerRushAttempt;
+                break;
+                case 'running back':
+                case 'wide receiver':
+                case 'tight end':
+                    ddg_spice_espn_player.role = 'receiving';
+                    ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
+                    ddg_spice_espn_player.receptions = ddg_spice_espn_player.stats.receptions;
+                    ddg_spice_espn_player.receivingYards = ddg_spice_espn_player.stats.receivingYards;
+                    ddg_spice_espn_player.fumbles = ddg_spice_espn_player.stats.fumbles;
+                    ddg_spice_espn_player.receivingTouchdowns = ddg_spice_espn_player.stats.receivingTouchdowns;
+                break;
+                case 'defensive tackle':
+                case 'defensive end':
+                case 'middle linebacker':
+                case 'outside linebacker':
+                case 'cornerback':
+                case 'safety':
+                case 'nickelback':
+                case 'dimeback':
+                    ddg_spice_espn_player.role = 'defense';
+                    ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
+                    ddg_spice_espn_player.totalTackles = ddg_spice_espn_player.stats.totalTackles;
+                    ddg_spice_espn_player.passesDefended = ddg_spice_espn_player.stats.passesDefended;
+                    ddg_spice_espn_player.fumblesForced = ddg_spice_espn_player.stats.fumblesForced;
+                    ddg_spice_espn_player.interceptions = ddg_spice_espn_player.stats.interceptions;
+                break;
+                case 'kicker':
+                case 'holder':
+                case 'long snapper':
+                case 'punter':
+                case 'kick returner':
+                case 'upback':
+                case 'gunner':
+                break;
+            }
+        break;
+        case 'baseball':
             //needs case by case handingly by position played.
         break;
     }
 }
 
 var ddg_spice_espn_player = {};
+//var ddg_spice_espn_stats = {};
 var ddg_spice_espn_calls = 1;
 
 function ddg_spice_espn(api_result) {
+    console.log('player', api_result);
     var ddg_spice_espn_player_info   = api_result.sports[0].leagues[0].athletes[0];
 
     if (ddg_spice_espn_player_info.competitors) {
@@ -79,6 +134,9 @@ function ddg_spice_espn(api_result) {
 
     ddg_spice_espn_player.sport  = api_result.sports[0].name;
     ddg_spice_espn_player.league = api_result.sports[0].leagues[0].abbreviation;
+
+    if (ddg_spice_espn_player_info.positions)
+        ddg_spice_espn_player.position = ddg_spice_espn_player_info.positions[0].name.toLowerCase();
 
     ddg_spice_espn_player.id     = ddg_spice_espn_player_info.id;
     ddg_spice_espn_player.name   = ddg_spice_espn_player_info.displayName;
@@ -121,6 +179,7 @@ function ddg_spice_espn_team(api_result) {
 }
 
 function ddg_spice_espn_events(api_result) {
+    console.log('events', api_result);
     var events    = api_result.sports[0].leagues[0].events;
     ddg_spice_espn_player.events = [];
 
