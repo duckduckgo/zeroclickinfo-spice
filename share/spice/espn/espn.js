@@ -105,6 +105,9 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                 case 'kick returner':
                 case 'upback':
                 case 'gunner':
+                    // these positions, when not supplementary, do not appear to have stats from espn,
+                    // so skip the stats tab. See "steve weatherford" for an example.
+                    ddg_spice_espn_player.stats = false;
                 break;
             }
         break;
@@ -140,7 +143,6 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
 }
 
 var ddg_spice_espn_player = {};
-//var ddg_spice_espn_stats = {};
 var ddg_spice_espn_calls = 1;
 
 function ddg_spice_espn(api_result) {
