@@ -102,12 +102,11 @@ handle query_parts => sub {
 		}
 	} else {
 		my @full_platforms = uniq({sort => 1}, values %platform_ids);
-		foreach my $element(@full_platforms) {
-			if (defined $element and $element ne 0) {
-				push @platforms, int($element);
-			}
-		}
+
+		# need to recast as int because uniq and sort convert to string
+		push @platforms, int($_) foreach @full_platforms;
 		$platforms_encoded = encode_json \@platforms;
+
 		return $full_query, $platforms_encoded, $max_price, "2414062669";
 	}
 	return;
