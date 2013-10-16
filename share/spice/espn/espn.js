@@ -167,7 +167,6 @@ function ddg_spice_espn(api_result) {
 
     ddg_spice_espn_player.id     = ddg_spice_espn_player_info.id;
     ddg_spice_espn_player.name   = ddg_spice_espn_player_info.displayName;
-    ddg_spice_espn_player.stats  = ddg_spice_espn_player_info.stats;
 
     nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league
             + '/athletes/' + ddg_spice_espn_player.id + '/news/foo/ddg_spice_espn_news');
@@ -183,7 +182,11 @@ function ddg_spice_espn(api_result) {
                 + '/athletes/' + ddg_spice_espn_player.id + '/events/dates/ddg_spice_espn_events');
     }
 
-    ddg_spice_espn_process_stats(ddg_spice_espn_player);
+
+    if (ddg_spice_espn_player_info.stats) {
+        ddg_spice_espn_player.stats = ddg_spice_espn_player_info.stats;
+        ddg_spice_espn_process_stats(ddg_spice_espn_player);
+    }
 
     ddg_spice_espn_bind();
 }
