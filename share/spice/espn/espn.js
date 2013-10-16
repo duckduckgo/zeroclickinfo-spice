@@ -120,13 +120,13 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                     ddg_spice_espn_player.strikeouts = ddg_spice_espn_player.stats.strikeouts;
                 break;
                 case 'catcher':
-                case 'first baseman':
-                case 'second baseman':
-                case 'third baseman':
+                case 'first base':
+                case 'second base':
+                case 'third base':
                 case 'shortstop':
-                case 'left fielder':
-                case 'center fielder':
-                case 'right fielder':
+                case 'left field':
+                case 'center field':
+                case 'right field':
                     ddg_spice_espn_player.role = 'fielding';
                     ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
                     ddg_spice_espn_player.putouts = ddg_spice_espn_player.stats.putouts;
