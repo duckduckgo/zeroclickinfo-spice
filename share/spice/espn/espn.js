@@ -109,14 +109,16 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
             }
         break;
         case 'baseball':
-            ddg_spice_espn_player.slugAverage = ddg_spice_espn_player.stats.slugAverage;
-            switch (ddg_spice_espn_player) {
+            if (ddg_spice_espn_player.stats.slugAverage)
+                ddg_spice_espn_player.slugAverage = ddg_spice_espn_player.stats.slugAverage;
+            switch (ddg_spice_espn_player.position) {
                 case 'pitcher':
                     ddg_spice_espn_player.role = 'pitching';
                     ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
                     ddg_spice_espn_player.ERA = ddg_spice_espn_player.stats.ERA;
                     ddg_spice_espn_player.fullInnings = ddg_spice_espn_player.stats.fullInnings;
                     ddg_spice_espn_player.strikeouts = ddg_spice_espn_player.stats.strikeouts;
+                break;
                 case 'catcher':
                 case 'first baseman':
                 case 'second baseman':
@@ -134,6 +136,7 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
             }
         break;
     }
+    console.log(ddg_spice_espn_player);
 }
 
 var ddg_spice_espn_player = {};
@@ -158,8 +161,7 @@ function ddg_spice_espn(api_result) {
     ddg_spice_espn_player.league = api_result.sports[0].leagues[0].abbreviation;
 
     if (ddg_spice_espn_player_info.positionsPlayed)
-        ddg_spice_espn_player.postitionsPlayed =
-            ddg_spice_espn_player_info.postitionsPlayed[0].name.toLowerCase();
+        ddg_spice_espn_player.position = ddg_spice_espn_player_info.positionsPlayed[0].name.toLowerCase();
     else if (ddg_spice_espn_player_info.positions)
         ddg_spice_espn_player.position = ddg_spice_espn_player_info.positions[0].name.toLowerCase();
 
