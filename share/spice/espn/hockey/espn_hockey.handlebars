@@ -19,10 +19,18 @@
         {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
     </div>
     <table>
-        <tr><th>Goals:</th><td>{{goals}}</td></tr>
-        <tr><th>Assists</th><td>{{assists}}</td></tr>
-        <tr><th>Points</th><td>{{points}}</td></tr>
-        <tr><th>Average time on ice:</th><td>{{averageTimeOnIce}}</td></tr>
+        {{#if goals}}<tr><th>Goals:</th><td>{{goals}}</td></tr>{{/if}}
+        {{#if assists}}<tr><th>Assists</th><td>{{assists}}</td></tr>{{/if}}
+        {{#if points}}<tr><th>Points</th><td>{{points}}</td></tr>{{/if}}
+        {{#if averageTimeOnIce}}<tr><th>Average time on ice:</th><td>{{averageTimeOnIce}}</td></tr>{{/if}}
+
+        {{#if goalsAgainst}}<tr><th>Goals against:</th><td>{{goalsAgainst}}</td></tr>{{/if}}
+        {{#if saves}}<tr><th>Saves:</th><td>{{saves}}</td></tr>{{/if}}
+        {{#if shutouts}}<tr><th>Shutouts:</th><td>{{shutouts}}</td></tr>{{/if}}
+        {{#if gamesPlayed}}<tr><th>Games played:</th><td>{{gamesPlayed}}</td></tr>{{/if}}
+
+        {{#if totalShots}}<tr><th>Total shots:</th><td>{{totalShots}}</td></tr>{{/if}}
+        {{#if points}}<tr><th>Points:</th><td>{{points}}</td></tr>{{/if}}
     </table>
 </div>
 

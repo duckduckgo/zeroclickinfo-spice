@@ -24,10 +24,32 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                 ddg_spice_espn_player.stats.freeThrowPercentage.toFixed(1) + '';
         break;
         case 'hockey':
-            ddg_spice_espn_player.goals = ddg_spice_espn_player.stats.goals;
-            ddg_spice_espn_player.assists = ddg_spice_espn_player.stats.assists;
-            ddg_spice_espn_player.points = ddg_spice_espn_player.stats.points;
-            ddg_spice_espn_player.averageTimeOnIce = ddg_spice_espn_player.stats.averageTimeOnIce;
+            switch (ddg_spice_espn_player.position) {
+                case 'center':
+                    ddg_spice_espn_player.goals = ddg_spice_espn_player.stats.goals;
+                    ddg_spice_espn_player.assists = ddg_spice_espn_player.stats.assists;
+                    ddg_spice_espn_player.points = ddg_spice_espn_player.stats.points;
+                    ddg_spice_espn_player.averageTimeOnIce = ddg_spice_espn_player.stats.averageTimeOnIce;
+                break;
+                case 'goaltender':
+                    ddg_spice_espn_player.goalsAgainst = ddg_spice_espn_player.stats.goalsAgainst;
+                    ddg_spice_espn_player.saves = ddg_spice_espn_player.stats.saves;
+                    ddg_spice_espn_player.shutouts = ddg_spice_espn_player.stats.shutouts;
+                    ddg_spice_espn_player.gamesPlayed = ddg_spice_espn_player.stats.gamesPlayed;
+                break;
+                case 'left wing':
+                    ddg_spice_espn_player.totalShots = ddg_spice_espn_player.stats.totalShots;
+                    ddg_spice_espn_player.goals = ddg_spice_espn_player.stats.goals;
+                    ddg_spice_espn_player.averageTimeOnIce = ddg_spice_espn_player.stats.averageTimeOnIce;
+                    ddg_spice_espn_player.gamesPlayed = ddg_spice_espn_player.stats.gamesPlayed;
+                break;
+                case 'defense':
+                    ddg_spice_espn_player.totalShots = ddg_spice_espn_player.stats.totalShots;
+                    ddg_spice_espn_player.averageTimeOnIce = ddg_spice_espn_player.stats.averageTimeOnIce;
+                    ddg_spice_espn_player.assists = ddg_spice_espn_player.stats.assists;
+                    ddg_spice_espn_player.points = ddg_spice_espn_player.stats.points;
+                break;
+            }
         break;
         case 'tennis':
             ddg_spice_espn_player.rank        = ddg_spice_espn_player.stats.year.rank;
@@ -194,10 +216,9 @@ function ddg_spice_espn(api_result) {
 }
 
 function ddg_spice_espn_news(api_result) {
-    console.log(api_result);
+    console.log('news', api_result);
     ddg_spice_espn_player.headline =
         api_result.headlines.filter(function(article) {
-            console.log(article.source);
             if (article.headline && article.source) {
                 article.headline = DDG.strip_html(article.headline);
                 article.source = DDG.strip_html(article.source);
