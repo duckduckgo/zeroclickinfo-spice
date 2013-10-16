@@ -19,10 +19,15 @@
         {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
     </div>
     <table>
-        <tr><th>Slug average:</th><td>{{slugAverage}}</td></tr>
-        <tr><th>Earned run average:</th><td>{{ERA}}</td></tr>
-        <tr><th>Full innings:</th><td>{{fullInnings}}</td></tr>
-        <tr><th>Strikeouts:</th><td>{{strikeouts}}</td></tr>
+        {{#if slugAverage}}<tr><th>Slug average:</th><td>{{slugAverage}}</td></tr>{{/if}}
+
+        {{#if ERA}}<tr><th>Earned run average:</th><td>{{ERA}}</td></tr>{{/if}}
+        {{#if fullInnings}}<tr><th>Full innings:</th><td>{{fullInnings}}</td></tr>{{/if}}
+        {{#if strikeouts}}<tr><th>Strikeouts:</th><td>{{strikeouts}}</td></tr>{{/if}}
+
+        {{#if putouts}}<tr><th>Putouts:</th><td>{{putouts}}</td></tr>{{/if}}
+        {{#if errors}}<tr><th>Errors:</th><td>{{errors}}</td></tr>{{/if}}
+        {{#if fieldingPercentage}}<tr><th>Fielding percentage:</th><td>{{fieldingPercentage}}</td></tr>{{/if}}
     </table>
 </div>
 

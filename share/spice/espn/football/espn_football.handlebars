@@ -19,10 +19,25 @@
         {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
     </div>
     <table>
-        <tr><th>Completion percentage:</th><td>{{completionPercentage}}</td></tr>
-        <tr><th>Passing attempts:</th><td>{{passingAttempts}}</td></tr>
-        <tr><th>Passing yards:</th><td>{{passingYards}}</td></tr>
-        <tr><th>Passing touchdowns:</th><td>{{passingTouchdowns}}</td></tr>
+        {{#if completionPercentage}}<tr><th>Completion percentage:</th><td>{{completionPercentage}}</td></tr>{{/if}}
+        {{#if passingAttempts}}<tr><th>Passing attempts:</th><td>{{passingAttempts}}</td></tr>{{/if}}
+        {{#if passingYards}}<tr><th>Passing yards:</th><td>{{passingYards}}</td></tr>{{/if}}
+        {{#if passingTouchdowns}}<tr><th>Passing touchdowns:</th><td>{{passingTouchdowns}}</td></tr>{{/if}}
+
+        {{#if rushingAttempts}}<tr><th>Rushing attempts:</th><td>{{rushingAttempts}}</td></tr>{{/if}}
+        {{#if rushingYards}}<tr><th>Rushing yards:</th><td>{{rushingYards}}</td></tr>{{/if}}
+        {{#if longRushing}}<tr><th>Long rushing:</th><td>{{longRushing}}</td></tr>{{/if}}
+        {{#if yardsPerRushAttempt}}<tr><th>Yards per rush attempt:</th><td>{{yardsPerRushAttempt}}</td></tr>{{/if}}
+
+        {{#if receptions}}<tr><th>Receptions:</th><td>{{receptions}}</td></tr>{{/if}}
+        {{#if receivingYards}}<tr><th>Receiving yards:</th><td>{{receivingYards}}</td></tr>{{/if}}
+        {{#if fumbles}}<tr><th>Fumbles:</th><td>{{fumbles}}</td></tr>{{/if}}
+        {{#if receivingTouchdowns}}<tr><th>Receiving touchdowns:</th><td>{{receivingTouchdowns}}</td></tr>{{/if}}
+
+        {{#if totalTackles}}<tr><th>Total tackles:</th><td>{{totalTackles}}</td></tr>{{/if}}
+        {{#if passesDefended}}<tr><th>Passes defended:</th><td>{{passesDefended}}</td></tr>{{/if}}
+        {{#if fumblesForced}}<tr><th>Fumbles forced:</th><td>{{fumblesForced}}</td></tr>{{/if}}
+        {{#if interceptions}}<tr><th>Interceptions:</th><td>{{interceptions}}</td></tr>{{/if}}
     </table>
 </div>
 
