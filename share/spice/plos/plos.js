@@ -71,7 +71,7 @@ Handlebars.registerHelper("showDocs", function(docs) {
       
       // Start writing title link.
       citation += '<a href="http://dx.doi.org/' + id + '">'
-                + '<span class="title" title="' + hover + '">' + title + '</span>'
+                + '<span title="' + hover + '">' + title + '</span>'
                 + '</a>' + ' (' + year + ')';
 
       // Close up citation.
