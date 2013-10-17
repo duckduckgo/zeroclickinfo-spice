@@ -1,5 +1,6 @@
 function ddg_spice_video(api_result) {
-    if(!api_result || api_result.length === 0) {
+    // Do not show the single detail view for now.
+    if(!api_result || api_result.length <= 1) {
         return;
     }
 
