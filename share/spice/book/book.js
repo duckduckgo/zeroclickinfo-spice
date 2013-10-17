@@ -6,8 +6,10 @@ function ddg_spice_book(api_result) {
     // Assign the book object to data
     var data =  api_result.book;
    
+    var skip = ["book", "books", "review", "idreambooks"];
     // Check if the title is relevant.
-    if(!DDG.isRelevant(data.title, ["book", "books", "review", "idreambooks"])) {
+    if(!DDG.isRelevant(data.title, skip) ||
+       !DDG.isRelevant(data.title + " " + data.author, skip)) {
 	return;
     }
 
