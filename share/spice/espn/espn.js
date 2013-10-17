@@ -23,31 +23,24 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
             ddg_spice_espn_player.freeThrowPercentage =
                 ddg_spice_espn_player.stats.freeThrowPercentage.toFixed(1) + '';
         break;
+        // For NHL, I would show, Goals, Assists, +/-, Hits (for goalies it
+        // would be Record (W/L/T), Save%, GAA. OTL)
         case 'hockey':
             switch (ddg_spice_espn_player.position) {
                 case 'center':
+                case 'left wing':
+                case 'defense':
                     ddg_spice_espn_player.goals = ddg_spice_espn_player.stats.goals;
                     ddg_spice_espn_player.assists = ddg_spice_espn_player.stats.assists;
-                    ddg_spice_espn_player.points = ddg_spice_espn_player.stats.points;
+                    ddg_spice_espn_player.plusMinus = ddg_spice_espn_player.stats.plusMinus;
                     ddg_spice_espn_player.averageTimeOnIce = ddg_spice_espn_player.stats.averageTimeOnIce;
                 break;
                 case 'goaltender':
-                    ddg_spice_espn_player.goalsAgainst = ddg_spice_espn_player.stats.goalsAgainst;
+                    ddg_spice_espn_player.wins = ddg_spice_espn_player.stats.wins;
+                    ddg_spice_espn_player.losses = ddg_spice_espn_player.stats.losses;
                     ddg_spice_espn_player.saves = ddg_spice_espn_player.stats.saves;
-                    ddg_spice_espn_player.shutouts = ddg_spice_espn_player.stats.shutouts;
-                    ddg_spice_espn_player.gamesPlayed = ddg_spice_espn_player.stats.gamesPlayed;
-                break;
-                case 'left wing':
-                    ddg_spice_espn_player.totalShots = ddg_spice_espn_player.stats.totalShots;
-                    ddg_spice_espn_player.goals = ddg_spice_espn_player.stats.goals;
-                    ddg_spice_espn_player.averageTimeOnIce = ddg_spice_espn_player.stats.averageTimeOnIce;
-                    ddg_spice_espn_player.gamesPlayed = ddg_spice_espn_player.stats.gamesPlayed;
-                break;
-                case 'defense':
-                    ddg_spice_espn_player.totalShots = ddg_spice_espn_player.stats.totalShots;
-                    ddg_spice_espn_player.averageTimeOnIce = ddg_spice_espn_player.stats.averageTimeOnIce;
-                    ddg_spice_espn_player.assists = ddg_spice_espn_player.stats.assists;
-                    ddg_spice_espn_player.points = ddg_spice_espn_player.stats.points;
+                    ddg_spice_espn_player.goalsAgainstAverage = ddg_spice_espn_player.stats.goalsAgainstAverage;
+                    ddg_spice_espn_player.overtimeLosses = ddg_spice_espn_player.stats.overtimeLosses;
                 break;
             }
         break;
@@ -133,6 +126,8 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                 break;
             }
         break;
+        // For MLB, I would show, R, RBI, AVG, SLG (for pitchers it would be
+        // W/L, ERA, SO, WHIP - for closers substitute Wins for Saves)
         case 'baseball':
             if (ddg_spice_espn_player.stats.slugAverage)
                 ddg_spice_espn_player.slugAverage = ddg_spice_espn_player.stats.slugAverage;
@@ -140,9 +135,16 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                 case 'pitcher':
                     ddg_spice_espn_player.role = 'pitching';
                     ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
+                    ddg_spice_espn_player.wins = ddg_spice_espn_player.stats.wins;
+                    ddg_spice_espn_player.losses = ddg_spice_espn_player.stats.losses;
                     ddg_spice_espn_player.ERA = ddg_spice_espn_player.stats.ERA;
-                    ddg_spice_espn_player.fullInnings = ddg_spice_espn_player.stats.fullInnings;
                     ddg_spice_espn_player.strikeouts = ddg_spice_espn_player.stats.strikeouts;
+                    ddg_spice_espn_player.walks = ddg_spice_espn_player.stats.walks;
+                    ddg_spice_espn_player.runsAgainst = ddg_spice_espn_player.stats.runs;
+                    ddg_spice_espn_player.innings = ddg_spice_espn_player.stats.fullInnings;
+                    ddg_spice_espn_player.WHIP =
+                        ((ddg_spice_espn_player.walks + ddg_spice_espn_player.runsAgainst)
+                            / ddg_spice_espn_player.innings).toFixed(2);
                 break;
                 case 'catcher':
                 case 'first base':
@@ -152,11 +154,12 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                 case 'left field':
                 case 'center field':
                 case 'right field':
-                    ddg_spice_espn_player.role = 'fielding';
+                    ddg_spice_espn_player.role = 'batting';
                     ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
-                    ddg_spice_espn_player.putouts = ddg_spice_espn_player.stats.putouts;
-                    ddg_spice_espn_player.errors = ddg_spice_espn_player.stats.errors;
-                    ddg_spice_espn_player.fieldingPercentage = ddg_spice_espn_player.stats.fieldingPercentage;
+                    ddg_spice_espn_player.runs = ddg_spice_espn_player.stats.runs;
+                    ddg_spice_espn_player.RBIs = ddg_spice_espn_player.stats.RBIs;
+                    ddg_spice_espn_player.average = ddg_spice_espn_player.statsaverage;
+                    ddg_spice_espn_player.slugAverage = ddg_spice_espn_player.stats.slugAverage;
                 break;
             }
         break;
