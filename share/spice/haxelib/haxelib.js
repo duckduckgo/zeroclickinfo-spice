@@ -9,6 +9,7 @@ function ddg_spice_haxelib(response) {
         source_name      : 'Haxelib',
         spice_name       : 'haxelib',
         force_no_fold    : true,
-        force_big_header : true
+        force_big_header : true,
+        force_no_favicon : true
     });
 }

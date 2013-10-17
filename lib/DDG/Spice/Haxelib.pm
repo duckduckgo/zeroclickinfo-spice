@@ -14,7 +14,6 @@ spice to => 'http://haxelib-json.herokuapp.com/package/$1?callback={{callback}}'
 attribution github => ['https://github.com/TopHattedCoder','TopHattedCoder'];
 
 triggers any => "haxelib", "haxe lib", "haxe library";
-spice proxy_cache_valid => "200 1d";
 handle remainder => sub {
     return $_ if $_;
     return;

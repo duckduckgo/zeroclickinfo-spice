@@ -1,3 +1,2 @@
-<div>{{desc}}{{#if license}} ({{license}}){{/if}}</div>
+<div>{{{condense desc maxlen="255"}}}{{#if license}} ({{license}}){{/if}} {{#if website}} - <a href="{{website}}">Official Website</a>{{/if}}</div>
 <pre> $ haxelib install {{{name}}}</pre>
-{{#if website}}[<a href="{{website}}">official site</a>]{{/if}}
