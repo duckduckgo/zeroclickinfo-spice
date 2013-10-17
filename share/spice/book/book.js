@@ -1,12 +1,17 @@
 function ddg_spice_book(api_result) {
      
-    // return if no book is returned or if the returned book has no reviews
+    // Return if no book is returned or if the returned book has no reviews
     if  (api_result == null || api_result.total_results < 1 || api_result.book.critic_reviews.length == 0) return;
       
-    // assign the book object to data
+    // Assign the book object to data
     var data =  api_result.book;
    
-    // function to convert date from 2012-07-20 format to Jul 20, 2012
+    // Check if the title is relevant.
+    if(!DDG.isRelevant(data.title, ["book", "books", "review", "idreambooks"])) {
+	return;
+    }
+
+    // Function to convert date from 2012-07-20 format to Jul 20, 2012
     var prettyDate = function(date) {
         var d = new Date(date);
         if (d && !isNaN(d.getTime())) {
@@ -20,22 +25,22 @@ function ddg_spice_book(api_result) {
         };
     };
     
-    // convert pulication date of reviews to pretty format
+    // Convert pulication date of reviews to pretty format
     for (var i = 0; i < data.critic_reviews.length; i++) {
         data.critic_reviews[i].review_date = prettyDate(data.critic_reviews[i].review_date);
     }
     
-    // convert book publication date to pretty format
+    // Convert book publication date to pretty format
     data.release_date = prettyDate(data.release_date);
 
-    // get only the year of release date for header 
+    // Get only the year of release date for header 
     data.release_year = ( data.release_date || "" ).match(/\d{4}$/);
 
-    // pick a random critic review out of all the reviews returned
+    // Pick a random critic review out of all the reviews returned
     data.critic_review = data.critic_reviews[Math.floor(Math.random() * data.critic_reviews.length)];
 
     var header = data.title;
-    // add year of release to header
+    // Add year of release to header
     if (data.release_year) {
         header += " (" + data.release_year + ")";
     }
