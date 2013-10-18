@@ -30,7 +30,7 @@ function ddg_spice_sound_cloud (api_result) {
     // Items that we should not show.
     var skip_id = {
 	80320921: true, 
-	75349402: true,
+	75349402: true
     };
 
     var skip_array = ["soundcloud"];
