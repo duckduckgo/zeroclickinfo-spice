@@ -1,4 +1,4 @@
-package DDG::Spice::$plugin_name.pm;
+package DDG::Spice::%(plugin_name)s.pm;
 # ABSTRACT: Write and abstract here
 # Start at https://dukgo.com/duckduckhack/spice_overview if you are new
 # to plugin development
@@ -9,10 +9,10 @@ use DDG::Spice;
 primary_example_queries "Provide an second example query";
 secondary_example_queries "Provide an second example query";
 description "Write an absolutely dazzling explaination of what this plugin does";
-name "$plugin_name";
+name "%(plugin_name)s";
 icon_url "";
 source "";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/$plugin_name.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/%(plugin_name)s.pm";
 category "";
 topics "";
 attribution github => ["https://github.com/", ""],
