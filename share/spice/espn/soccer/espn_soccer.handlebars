@@ -34,25 +34,27 @@
     <div class='blurb'>
         The {{teamCity}} {{teamName}} have won {{teamWinPercentage}}% of their season games.
     </div>
-    <table>
-        <th></th><th>Home</th><th></th><th>Away</th><th></th><th></th></tr>
-        {{#each events}}
-        <tr>
-            <td>{{date}}</td>
-            <td><a href='{{home.link}}'>{{home.teamName}}<a/></td>
-            <td>vs</td>
-            <td><a href='{{away.link}}'>{{away.teamName}}<a/></td>
-            <td>
-                <a href='{{link}}'>
-                    {{#if win}}
-                        <span style='color:green'>W</span>
-                    {{else}}
-                        <span style='color:red'>L</span>
-                    {{/if}}
-                    {{home.score}}-{{away.score}}
-                </a>
-            </td>
-        </tr>
-        {{/each}}
-    </table>
+    <div id='espn_zci_gamelog_wrapper'>
+        <table>
+            <th></th><th>Home</th><th></th><th>Away</th><th></th><th></th></tr>
+            {{#each events}}
+            <tr>
+                <td>{{date}}</td>
+                <td><a href='{{home.link}}'>{{home.teamName}}<a/></td>
+                <td>vs</td>
+                <td><a href='{{away.link}}'>{{away.teamName}}<a/></td>
+                <td>
+                    <a href='{{link}}'>
+                        {{#if win}}
+                            <span style='color:green'>W</span>
+                        {{else}}
+                            <span style='color:red'>L</span>
+                        {{/if}}
+                        {{home.score}}-{{away.score}}
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
 </div>

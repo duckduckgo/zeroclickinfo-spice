@@ -28,6 +28,10 @@
     font-size 95%;
 }
 
+#espn_zci_gamelog_wrapper {
+    overflow-x: auto;
+}
+
 #espn_zci_stats table,
 #espn_zci_gamelog table {
     margin: 4px 0px 5px 20px;

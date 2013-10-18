@@ -30,18 +30,20 @@
     <div class='blurb'>
         {{name}} has recently played in these tournaments:
     </div>
-    <table>
-        <th></th><th>Competition</th><th>Placed</th>
-        {{#each events}}
-        <tr>
-            <td>{{date}}</td>
-            <td>{{name}}</td>
-            <td>
-                {{#if win}}<span style='color:green'>{{/if}}
-                {{place}}
-                {{#if win}}</span>{{/if}}
-            </td>
-        </tr>
-        {{/each}}
-    </table>
+    <div id='espn_zci_gamelog_wrapper'>
+        <table>
+            <th></th><th>Competition</th><th>Placed</th>
+            {{#each events}}
+            <tr>
+                <td>{{date}}</td>
+                <td>{{name}}</td>
+                <td>
+                    {{#if win}}<span style='color:green'>{{/if}}
+                    {{place}}
+                    {{#if win}}</span>{{/if}}
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
 </div>
