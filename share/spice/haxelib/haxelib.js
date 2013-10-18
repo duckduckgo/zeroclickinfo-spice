@@ -1,7 +1,6 @@
 function ddg_spice_haxelib(response) {
     "use strict";
-    if(response.err) return;
-    var query = DDG.get_query().replace(/(haxelib|haxe lib|haxe library)/, "");
+    if(response.err) return; // indicates an API error
     Spice.render({
         data             : response.info,
         header1          : response.info.name + " ("+response.info.curversion+") by " + response.info.owner,
@@ -10,6 +9,6 @@ function ddg_spice_haxelib(response) {
         spice_name       : 'haxelib',
         force_no_fold    : true,
         force_big_header : true,
-        force_no_favicon : true
+        force_favicon_url: "http://haxe.org/img/haxe2/favicon.ico" // the Haxe icon
     });
 }
