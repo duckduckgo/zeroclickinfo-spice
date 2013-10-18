@@ -11,7 +11,6 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
         ddg_spice_espn_player.seasonDescription = ddg_spice_espn_player.stats.season.description;
     ddg_spice_espn_player.seasonTimeFrame   = "'" + ((season_year + '').substr(2, 2) - 1)
                              + "-'" + (season_year + '').substr(2, 2);
-    console.log('stats', ddg_spice_espn_player.stats);
     switch (ddg_spice_espn_player.sport) {
         case 'basketball':
             ddg_spice_espn_player.averagePointsPerGame =
@@ -168,14 +167,12 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
             }
         break;
     }
-    console.log(ddg_spice_espn_player);
 }
 
 var ddg_spice_espn_player = {};
 var ddg_spice_espn_calls = 1;
 
 function ddg_spice_espn(api_result) {
-    console.log('player', api_result);
     var ddg_spice_espn_player_info   = api_result.sports[0].leagues[0].athletes[0];
 
     if (ddg_spice_espn_player_info.competitors) {
@@ -224,7 +221,6 @@ function ddg_spice_espn(api_result) {
 }
 
 function ddg_spice_espn_news(api_result) {
-    console.log('news', api_result);
     ddg_spice_espn_player.headline =
         $(api_result.headlines).filter(function(i, article) {
             if (article.headline && article.source) {
@@ -246,7 +242,6 @@ function ddg_spice_espn_team(api_result) {
 }
 
 function ddg_spice_espn_events(api_result) {
-    console.log('events', api_result);
     var events    = api_result.sports[0].leagues[0].events;
     ddg_spice_espn_player.events = [];
 
