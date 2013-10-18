@@ -73,6 +73,7 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                 case 'quarterback':
                     ddg_spice_espn_player.role = 'passing';
                     ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
+                    if (!ddg_spice_espn_player.stats) return;
                     ddg_spice_espn_player.completionPercentage = ddg_spice_espn_player.stats.completionPercentage;
                     ddg_spice_espn_player.passingAttempts = ddg_spice_espn_player.stats.passingAttempts;
                     ddg_spice_espn_player.passingYards = ddg_spice_espn_player.stats.passingYards;
@@ -83,6 +84,7 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                 case 'offensive tackle':
                     ddg_spice_espn_player.role = 'rushing';
                     ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
+                    if (!ddg_spice_espn_player.stats) return;
                     ddg_spice_espn_player.rushingAttempts = ddg_spice_espn_player.stats.rushingAttempts;
                     ddg_spice_espn_player.rushingYards = ddg_spice_espn_player.stats.rushingYards;
                     ddg_spice_espn_player.longRushing = ddg_spice_espn_player.stats.longRushing;
@@ -93,6 +95,7 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                 case 'tight end':
                     ddg_spice_espn_player.role = 'receiving';
                     ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
+                    if (!ddg_spice_espn_player.stats) return;
                     ddg_spice_espn_player.receptions = ddg_spice_espn_player.stats.receptions;
                     ddg_spice_espn_player.receivingYards = ddg_spice_espn_player.stats.receivingYards;
                     ddg_spice_espn_player.fumbles = ddg_spice_espn_player.stats.fumbles;
@@ -108,6 +111,7 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                 case 'dimeback':
                     ddg_spice_espn_player.role = 'defense';
                     ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
+                    if (!ddg_spice_espn_player.stats) return;
                     ddg_spice_espn_player.totalTackles = ddg_spice_espn_player.stats.totalTackles;
                     ddg_spice_espn_player.passesDefended = ddg_spice_espn_player.stats.passesDefended;
                     ddg_spice_espn_player.fumblesForced = ddg_spice_espn_player.stats.fumblesForced;
