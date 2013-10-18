@@ -47,5 +47,13 @@
     color: 666666;
     font-size: 12px;
     font-weight: 700;
+    font-weight: bold;
+}
+
+#espn_zci_stats table th {
     font-weight: normal;
+}
+
+#espn_zci_stats table td {
+    padding-left: 10px;
 }
