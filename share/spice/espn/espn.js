@@ -183,7 +183,7 @@ function ddg_spice_espn(api_result) {
 
     if (ddg_spice_espn_player_info.headshots)
         ddg_spice_espn_player.headshot =
-            encodeURIComponent(ddg_spice_espn_player_info.headshots.small.href);
+            encodeURIComponent(ddg_spice_espn_player_info.headshots.gamecast.href);
 
     ddg_spice_espn_player.sport  = api_result.sports[0].name;
     ddg_spice_espn_player.league = api_result.sports[0].leagues[0].abbreviation;
