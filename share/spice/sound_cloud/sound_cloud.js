@@ -41,9 +41,12 @@ function ddg_spice_sound_cloud (api_result) {
 	// - Streamable.
 	// - Are not in the skip hash.
 	// - Is relevant.
-        if(api_result[i].streamable && !(api_result[i].id in skip_id) &&
-	   (DDG.isRelevant(api_result[i].title, skip_array) || DDG.isRelevant(api_result[i].user.username, skip_array) ||
-	   DDG.isRelevant(api_result[i].title + " " + api_result[i].user.username, skip_array))) {
+	var inSkip = api_result[i].id in skip_id;
+	var isRelevantTitle = DDG.isRelevant(api_result[i].title, skip_array);
+	var isRelevantUsername = DDG.isRelevant(api_result[i].user.username, skip_array);
+	var isRelevantBoth = DDG.isRelevant(api_result[i].title + " " + api_result[i].user.username, skip_array);
+
+        if(api_result[i].streamable && !inSkip && (isRelevantTitle || isRelevantUsername || isRelevantBoth)) {
             context.push(api_result[i]);
         }
     }
