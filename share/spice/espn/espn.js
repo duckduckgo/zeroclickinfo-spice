@@ -173,6 +173,8 @@ var ddg_spice_espn_player = {};
 var ddg_spice_espn_calls = 1;
 
 function ddg_spice_espn(api_result) {
+    // disable spice on iphone and android mobile
+    if (ip || iam) return;
     var ddg_spice_espn_player_info   = api_result.sports[0].leagues[0].athletes[0];
 
     if (ddg_spice_espn_player_info.competitors) {
