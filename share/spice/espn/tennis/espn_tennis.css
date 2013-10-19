@@ -44,10 +44,11 @@
 
 #espn_zci_stats table th,
 #espn_zci_gamelog table th {
-    color: 666666;
-    font-size: 12px;
-    font-weight: 700;
     font-weight: bold;
+}
+
+#espn_zci_gamelog table th {
+    font-size: 12px;
 }
 
 #espn_zci_stats table th {
