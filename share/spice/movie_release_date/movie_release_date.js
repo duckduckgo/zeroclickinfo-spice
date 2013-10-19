@@ -1,4 +1,4 @@
-function ddg_spice_release_date (result) {
+function ddg_spice_movie_release_date (result) {
     "use strict";
     if(!result.results || result.results.length === 0)
         return;

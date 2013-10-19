@@ -1,12 +1,12 @@
-package DDG::Spice::ReleaseDate;
+package DDG::Spice::MovieReleaseDate;
 
 use DDG::Spice;
 
 primary_example_queries "release thor the dark world";
 secondary_example_queries "thor release date";
 description "Movie release information from TheMovieDB";
-name "Release Date";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/ReleaseDate.pm";
+name "Movie Release Date";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/MovieReleaseDate.pm";
 icon_url "/i/http://www.themoviedb.org.ico";
 topics "entertainment", "everyday";
 category "entertainment";
