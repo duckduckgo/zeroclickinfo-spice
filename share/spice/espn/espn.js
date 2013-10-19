@@ -73,7 +73,7 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                     ddg_spice_espn_player.role = 'passing';
                     ddg_spice_espn_player.stats = ddg_spice_espn_player.stats[ddg_spice_espn_player.role];
                     if (!ddg_spice_espn_player.stats) return;
-                    ddg_spice_espn_player.completionPercentage = ddg_spice_espn_player.stats.completionPercentage;
+                    ddg_spice_espn_player.completionPercentage = ddg_spice_espn_player.stats.completionPercentage.toFixed(1);
                     ddg_spice_espn_player.passingAttempts = ddg_spice_espn_player.stats.passingAttempts;
                     ddg_spice_espn_player.passingYards = ddg_spice_espn_player.stats.passingYards;
                     ddg_spice_espn_player.passingTouchdowns = ddg_spice_espn_player.stats.passingTouchdowns;
