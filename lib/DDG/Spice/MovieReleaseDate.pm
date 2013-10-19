@@ -14,7 +14,7 @@ attribution github => ['https://github.com/tophattedcoder','Tom Bebbington'];
 
 spice to => 'http://api.themoviedb.org/3/search/movie?api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}&query=$1&include_adult=false&callback={{callback}}';
 
-my @triggers = ( 'release date', 'air date', 'release', 'movie release' );
+my @triggers = ( 'release date', 'air date', 'release', 'air', 'premiere' );
 
 triggers startend => @triggers;
 
