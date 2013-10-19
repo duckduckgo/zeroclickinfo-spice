@@ -3,13 +3,12 @@ function ddg_spice_movie_release_date (result) {
     if(!result.results || result.results.length === 0)
         return;
     var data = result.results[0];
-    console.log(data);
     Spice.render({
         data             : data,
         header1          : data.title + " release date",
         source_url       : 'http://www.themoviedb.org/movie/' + data.id,
         source_name      : 'TheMovieDB',
-        spice_name       : 'release_date',
+        spice_name       : 'movie_release_date',
         force_big_header : true
     });
 }
