@@ -1,38 +1,30 @@
 function ddg_spice_plugin_name ( api_result ) {
 
-	/* Make sure result exists */
+  /* Make sure result exists */
 
-	Spice.render({
+  Spice.render({
+    data             : api_result,
+    header1          : ' ',
+    source_name      : ' ',
+    source_url       : 'https://source.website.com',
+    template_normal  : ' ',
+    force_big_header : true
+  });
 
-		data: 				api_result,
-		header1 : 			' ',
-		source_name : 		' ',
-		source_url : 		'https://source.website.com',
-		template_normal : 	' ',
-		force_big_header : 	true
-	});
-}
-
-/*******************************
-  Private helpers
-  *******************************/
-
-  // Private functions here
+  // Any private functions here
   function myPrivateFn ( param1, param2 ) {
 
   }
 
+}
 
-/*******************************
-  Handlebars helpers
-  *******************************/
 
-// creates an anchor linking to a result's commments
+// Any Handlebars helpers here
 Handlebars.registerHelper ('helper_name', function() {
 
-	var out;
+  var out;
 
-	/* Logic to build output */
+  /* Logic to build output */
 
-	return out;
+  return out;
 });
