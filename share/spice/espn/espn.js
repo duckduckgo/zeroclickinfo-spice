@@ -173,7 +173,6 @@ var ddg_spice_espn_player = {};
 var ddg_spice_espn_calls = 1;
 
 function ddg_spice_espn(api_result) {
-    console.log(api_result);
     // disable spice on iphone and android mobile
     if (ip || iam) return;
     var ddg_spice_espn_player_info   = api_result.sports[0].leagues[0].athletes[0];
@@ -190,7 +189,7 @@ function ddg_spice_espn(api_result) {
             encodeURIComponent(ddg_spice_espn_player_info.headshots.gamecast.href);
 
     ddg_spice_espn_player.sport  = api_result.sports[0].name;
-    ddg_spice_espn_player.league = api_result.sports[0].leagues[0].abbreviation;
+    ddg_spice_espn_player.league = api_result.sports[0].leagues[0].abbreviation.toUpperCase();
 
     if (ddg_spice_espn_player_info.positionsPlayed)
         ddg_spice_espn_player.position = ddg_spice_espn_player_info.positionsPlayed[0].name.toLowerCase();
@@ -200,17 +199,17 @@ function ddg_spice_espn(api_result) {
     ddg_spice_espn_player.id     = ddg_spice_espn_player_info.id;
     ddg_spice_espn_player.name   = ddg_spice_espn_player_info.displayName;
 
-    nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league
+    nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league.toLowerCase()
             + '/athletes/' + ddg_spice_espn_player.id + '/news/foo/ddg_spice_espn_news');
     if (ddg_spice_espn_player.team) {
         ddg_spice_espn_calls += 2;
-        nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league
+        nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league.toLowerCase()
                 + '/teams/' + ddg_spice_espn_player.teamID + '/foo/bar/ddg_spice_espn_team');
-        nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league
+        nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league.toLowerCase()
                 + '/teams/' + ddg_spice_espn_player.teamID + '/events/dates/ddg_spice_espn_events');
     } else {
         ddg_spice_espn_calls += 1;
-        nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league
+        nrj('/js/spice/espn/' + ddg_spice_espn_player.sport + '/' + ddg_spice_espn_player.league.toLowerCase()
                 + '/athletes/' + ddg_spice_espn_player.id + '/events/dates/ddg_spice_espn_events');
     }
 
@@ -264,8 +263,8 @@ function ddg_spice_espn_events(api_result) {
                 competitors[competitor.homeAway] = {
                     'teamName' : teamName,
                     'score'    : competitor.score,
-                    'link'     : 'http://espn.go.com/' + ddg_spice_espn_player.league + '/team/_/name/'
-                                   + (teamName.replace(' ', '').substr(0,3)
+                    'link'     : 'http://espn.go.com/' + ddg_spice_espn_player.league.toLowerCase()
+                                   + '/team/_/name/' + (teamName.replace(' ', '').substr(0,3)
                                    + '/' + teamName.replace(' ', '-')).toLowerCase(),
                 };
                 if (competitor.team.id == ddg_spice_espn_player.teamID)
@@ -313,7 +312,7 @@ function ddg_spice_espn_bind() {
         header1          : ddg_spice_espn_player.name + ' ('
                             + ddg_spice_espn_player.sport.charAt(0).toUpperCase()
                             + ddg_spice_espn_player.sport.slice(1) + ')',
-        source_url       : 'http://espn.com/' + ddg_spice_espn_player.league
+        source_url       : 'http://espn.com/' + ddg_spice_espn_player
                             + '/ddg_spice_espn_player/_/id/' + ddg_spice_espn_player.id,
         source_name      : 'ESPN',
         template_normal  : 'espn_' + ddg_spice_espn_player.sport,
