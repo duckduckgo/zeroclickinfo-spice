@@ -3,11 +3,10 @@ function ddg_spice_plos(api_result) {
     // Get query and exclude the trigger.
     var query = DDG.get_query().replace(/plos/i, "");
 
-    // Check if response is OK and results > 0.
-    // var status = api_result.responseHeader.status;
+    // Grab number of results.
     var numFound = api_result.response.numFound;
 
-    // if (status === 0 && numFound > 0) return
+    // if no results, don't show spice.
     if (numFound < 1) return
 
     Spice.render({
