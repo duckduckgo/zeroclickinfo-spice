@@ -4,7 +4,7 @@ We ask that you please use this template when submitting a plugin pull request s
 
 ##Required
 **Plugin functionality** :
-(Explain what you plugin does)
+(Explain what your plugin does)
 
 **Plugin data source (API)** :
 (Provide the name/url of the api)
