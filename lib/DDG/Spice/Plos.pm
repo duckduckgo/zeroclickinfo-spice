@@ -13,8 +13,7 @@ spice wrap_jsonp_callback => 1;
 spice is_cached => 0;
 
 handle remainder => sub {
-    return $_;
-    return '' if $_ eq '';
+    return $_ if $_;
     return;
 };
 
