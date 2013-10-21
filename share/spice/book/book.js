@@ -1,10 +1,22 @@
 function ddg_spice_book(api_result) {
      
-    // return if no book is returned or if the returned book has no reviews
-    if  (api_result == null || api_result.total_results < 1 || api_result.book.critic_reviews.length == 0) return;
-      
+    // return if no book is returned 
+    if  (api_result == null || api_result.books.length == 0) return;
+    
+    // select the book to display from the returned books
+    // current logic is to select first book with critic reviews
+    var selected_book;
+    for (var i = 0; i < api_result.books.length; i++) {
+        if (api_result.books[i].review_count > 0){
+            // may want to add logic here to select book based on (book.title)'s match with the query
+            selected_book = api_result.books[i];
+            break;
+        };
+    };
+    if ( selected_book == null) return ;
+
     // assign the book object to data
-    var data =  api_result.book;
+    var data =  selected_book;
    
     // function to convert date from 2012-07-20 format to Jul 20, 2012
     var prettyDate = function(date) {
