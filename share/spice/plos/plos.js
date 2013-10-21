@@ -1,7 +1,7 @@
 function ddg_spice_plos(api_result) {
 
-    // Get query and exclude the trigger.
-    var query = DDG.get_query().replace(/plos/i, "");
+    // Get query, exclude the trigger, and exclude preceding/trailing white space.
+    var query = DDG.get_query().replace(/plos/i, "").replace(/(^\s+|\s+$)/g,'');
 
     // Grab number of results.
     var numFound = api_result.response.numFound;
