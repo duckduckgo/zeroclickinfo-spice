@@ -1,4 +1,4 @@
-package DDG::Spice::ESPN::Soccer;
+package DDG::Spice::Espn::Soccer;
 
 use DDG::Spice;
 use Time::localtime;
