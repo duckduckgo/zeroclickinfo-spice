@@ -1,5 +1,6 @@
 function ddg_spice_video(api_result) {
-    if(!api_result || api_result.length === 0) {
+    // Do not show the single detail view for now.
+    if(!api_result || api_result.length == 0) {
         return;
     }
 
@@ -66,7 +67,8 @@ function ddg_spice_video(api_result) {
 	    single_item_handler: function(obj) {
 		// Prevent the video from playing if we only have one item.
 		obj.data[0].provider_data.embed_options.autoplay = 0;
-	    }
+	    },
+	    use_alternate_template: false
 	},
         force_no_fold : 1,
 	item_callback: function(i, item) {

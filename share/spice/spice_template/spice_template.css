@@ -1,1 +1,11 @@
-// Add any necessary css here
+/*
+ * Add any necessary css here, but
+ * only use CSS if you absolutely need it.
+ *  
+ * Note: All css rules should be prefaced with:;
+ * #spice_<spice_name>
+ * 
+ * where <spice_name> matches the name of the 
+ * Spice package and callback (DDG::Spice::SpiceName, ddg_spice_spice_name())
+*/
+
