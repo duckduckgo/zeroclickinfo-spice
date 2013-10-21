@@ -1,7 +1,7 @@
 function ddg_spice_plos(api_result) {
 
     // Get query, exclude the trigger, and exclude preceding/trailing white space.
-    var query = DDG.get_query().replace(/plos/i, "").replace(/(^\s+|\s+$)/g,'');
+    var query = DDG.get_query().replace(/plos/i, "").replace(/(^\s+|\s+$)/g, "");
 
     // Grab number of results.
     var numFound = api_result.response.numFound;
@@ -10,18 +10,16 @@ function ddg_spice_plos(api_result) {
     if (numFound < 1) return
 
     Spice.render({
-         data              : api_result,
-         force_big_header  : true,
-         force_no_fold     : true,
-         header1           : query + ' (PLOS)',
-         source_name       : "PLOS",
-         source_url        : 'http://www.plosone.org/search/advanced?unformattedQuery=' + query,
-         template_normal   : 'plos',
-         template_small    : 'plos'
+         data               : api_result,
+         force_big_header   : true,
+         force_no_fold      : true,
+         header1            : query + ' (PLOS)',
+         source_name        : "PLOS",
+         source_url         : 'http://www.plosone.org/search/advanced?unformattedQuery=' + query,
+         template_normal    : 'plos',
+         template_small     : 'plos'
     });
 }
-
-
 
 Handlebars.registerHelper("showDocs", function(docs) {
 
