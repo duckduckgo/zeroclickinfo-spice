@@ -12,6 +12,7 @@ function ddg_spice_plos(api_result) {
     Spice.render({
          data              : api_result,
          force_big_header  : true,
+         force_no_fold     : true,
          header1           : query + ' (PLOS)',
          source_name       : "PLOS",
          source_url        : 'http://www.plosone.org/search/advancedSearch.action?pageSize=50&unformattedQuery=' + api_result.query,
