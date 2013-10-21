@@ -14,7 +14,7 @@ attribution web => ['http://thoughtherder.org','Arlo Breault'],
             email => ['arlolra@gmail.com','Arlo Breault'],
 						github => ['https://github.com/arlolra','arlolra'];
 
-spice to => 'https://gdata.youtube.com/feeds/api/videos?&author=khanacademy&max-results=50&alt=json-in-script&callback={{callback}}&v=2&q=$1';
+spice to => 'http://gdata.youtube.com/feeds/api/videos?&author=khanacademy&max-results=50&alt=json-in-script&callback={{callback}}&v=2&q=$1';
 
 triggers any => "khan", "khan academy";
 
