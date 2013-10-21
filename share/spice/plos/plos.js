@@ -15,11 +15,13 @@ function ddg_spice_plos(api_result) {
          force_no_fold     : true,
          header1           : query + ' (PLOS)',
          source_name       : "PLOS",
-         source_url        : 'http://www.plosone.org/search/advancedSearch.action?pageSize=50&unformattedQuery=' + api_result.query,
+         source_url        : 'http://www.plosone.org/search/advanced?unformattedQuery=' + query,
          template_normal   : 'plos',
          template_small    : 'plos'
     });
 }
+
+
 
 Handlebars.registerHelper("showDocs", function(docs) {
 
