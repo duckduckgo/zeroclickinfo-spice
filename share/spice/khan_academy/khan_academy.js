@@ -86,5 +86,7 @@ Handlebars.registerHelper ('video_id', function() {
 // forms the url for a khan_academy product image
 Handlebars.registerHelper ('image_url', function() {
     var image_url = this.media$group.media$thumbnail[1].url;
-    return image_url;
+
+    // Change HTTPS to HTTP for speed.
+    return image_url.replace(/^https/, "http");
 });
