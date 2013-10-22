@@ -312,8 +312,8 @@ function ddg_spice_espn_bind() {
         header1          : ddg_spice_espn_player.name + ' ('
                             + ddg_spice_espn_player.sport.charAt(0).toUpperCase()
                             + ddg_spice_espn_player.sport.slice(1) + ')',
-        source_url       : 'http://espn.com/' + ddg_spice_espn_player
-                            + '/ddg_spice_espn_player/_/id/' + ddg_spice_espn_player.id,
+        source_url       : 'http://espn.com/' + ddg_spice_espn_player.league.toLowerCase()
+                            + '/player/_/id/' + ddg_spice_espn_player.id,
         source_name      : 'ESPN',
         template_normal  : 'espn_' + ddg_spice_espn_player.sport,
         force_big_header : true,
