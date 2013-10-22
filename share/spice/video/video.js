@@ -134,6 +134,10 @@ ddg_spice_video.itunes = function(api_result) {
 
 };
 
+Handlebars.registerHelper("toHTTP", function (image) {
+    return image.replace(/^https/, "http");
+});
+
 Handlebars.registerHelper("userURL", function(provider_data, uploader) {
     return provider_data.user_url + uploader; 
 });

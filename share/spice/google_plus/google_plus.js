@@ -19,7 +19,11 @@ function ddg_spice_google_plus (api_result) {
     });
 };
 
-Handlebars.registerHelper("changeSize", function(image) {
-    return image.replace(/sz=50$/, "sz=100");
+Handlebars.registerHelper("changeURL", function(image) {
+    // Make the icon a little bigger.
+    image = image.replace(/sz=50$/, "sz=100");
+
+    // Change HTTPS to HTTP.
+    return image.replace(/^https/, "http");
 });
 
