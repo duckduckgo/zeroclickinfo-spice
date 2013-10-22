@@ -9,8 +9,6 @@ function ddg_spice_canistreamit (api_result) {
 	return;
     }
 
-    console.log(api_result[0].title);
-
     Spice.render({
         data             : api_result,
         header1          : api_result[0].title + " (Can I Stream.it)",
