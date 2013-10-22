@@ -8,9 +8,9 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::%(plugin_name)s)],
     'example test' => test_spice(
-        '/js/spice/ruby_gems/cucumber',
+        '/js/spice/$ia_name/',
         call_type => 'include',
-        caller => 'DDG::Spice::%(plugin_name)s'
+        caller => 'DDG::Spice:$ia_name'
     )
 );
 
