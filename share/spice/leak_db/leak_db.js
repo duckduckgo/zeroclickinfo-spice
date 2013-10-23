@@ -1,6 +1,7 @@
 function ddg_spice_leak_db(api_result){
-    if (!api_result || !api_result.found
-            || !api_result.hashes) return;
+    if (!api_result 
+        || !api_result.found
+        || !api_result.hashes) return;
 
     var query = DDG.get_query()
                 .replace(/^(leakdb|hashme)\s+|\s+(leakdb|hashme)$/i, '');
@@ -18,6 +19,10 @@ function ddg_spice_leak_db(api_result){
         template_normal  : 'leak_db',
         force_big_header : true,
         force_no_fold    : true
+    });
+
+    $("#zero_click_abstract").css({
+        "margin" : "4px 12px 0px 2px !important"
     });
 }
 
