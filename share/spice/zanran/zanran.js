@@ -30,15 +30,10 @@ function ddg_spice_zanran(api_result) {
         "max-width" : "auto !important"
     });
 
-    $("#zero_click_image").css({
-        "float" : "right"
-    });
-
     $("#zero_click_image img").css({
       "max-width"  : "71px",
       "max-height" : "100px", // A4 ratio
-      "border"     : "1px solid black",
-      "float"      : "right"
+      "border"     : "1px solid black"
     });
 };
 
