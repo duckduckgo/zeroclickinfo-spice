@@ -16,6 +16,5 @@ function ddg_spice_maven(api_result) {
 
     $("#zero_click_abstract").css({
         "margin": "4px 12px 0px 2px !important",
-        "background" : "red"
     });
 }
