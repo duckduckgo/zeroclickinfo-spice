@@ -155,6 +155,27 @@ Handlebars.registerHelper("price", function(obj) {
     return qprice(obj);
 });
 
+Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
+    var domain = "";
+
+    // Get the image server that the icon_url in platforms is pointing to.
+    // It's not ideal, but the link to the app's image still has to redirect
+    // and it redirects to HTTPS. What we want is an HTTP link (for speed).
+    if(platforms && platforms.length > 0 && platforms[0].icon_url) {
+	domain = platforms[0].icon_url.match(/https?:\/\/([^\/]+)/)[1];
+    }
+
+    // Just in case we don't have an empty platforms array.
+    if(!domain) {
+	domain = "d1z22zla46lb9g.cloudfront.net";
+    }
+
+    // Replace the domain in our icon_url to the one that we got from
+    // the platforms array.
+    icon_url = icon_url.match(/\/image\/.+/)[0];
+    return "http://" + domain + icon_url;
+});
+
 // template helper to format a price range
 Handlebars.registerHelper("pricerange", function() {
 
