@@ -6,10 +6,10 @@ package DDG::Spice::$ia_name;
 use DDG::Spice;
 
 #Attribution
-primary_example_queries "Provide an second example queries";
+primary_example_queries "Provide an primary example query";
 #Optional -- Provide secondary example queries that 
 #            demonstrate additional triggers
-secondary_example_queries "Provide an second example queries";
+secondary_example_queries "Provide an second example query";
 description "Write an absolutely dazzling explanation of what this plugin does";
 name "$ia_name";
 icon_url "";
