@@ -6,11 +6,11 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-    [qw( DDG::Spice::%(plugin_name)s)],
+    [qw( DDG::Spice::<: $ia_name :>)],
     'example test' => test_spice(
-        '/js/spice/$ia_name/',
+        '/js/spice/<: $lia_name :>/',
         call_type => 'include',
-        caller => 'DDG::Spice:$ia_name'
+        caller => 'DDG::Spice:<: $ia_name :>'
     )
 );
 

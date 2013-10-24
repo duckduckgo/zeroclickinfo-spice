@@ -1,4 +1,4 @@
-function ddg_spice_$ia_name (api_result) {
+function ddg_spice_<: $lia_name :> (api_result) {
     "use strict";
     // Display the Spice plugin.
     // Verify api_result contains result
