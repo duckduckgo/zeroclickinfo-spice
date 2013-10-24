@@ -1,24 +1,35 @@
-function ddg_spice_book(api_result) {
-     
-    // return if no book is returned 
-    if  (api_result == null || api_result.books.length == 0) return;
-    
-    // select the book to display from the returned books
-    // current logic is to select first book with critic reviews
-    var selected_book;
-    for (var i = 0; i < api_result.books.length; i++) {
-        if (api_result.books[i].review_count > 0){
-            // may want to add logic here to select book based on (book.title)'s match with the query
-            selected_book = api_result.books[i];
-            break;
-        };
-    };
-    if ( selected_book == null) return ;
+function ddg_spice_book(api_result) {     
+    // Return if no book is returned 
+    if (!api_result || api_result.books.length == 0) {
+	return;
+    }
 
-    // assign the book object to data
-    var data =  selected_book;
-   
-    // function to convert date from 2012-07-20 format to Jul 20, 2012
+    var script = $('[src*="/js/spice/book/"]')[0];
+    var source = $(script).attr("src");
+    var query = source.match(/book\/([^\/]+)/)[1];
+
+    // Select the book to display from the returned books
+    // Current logic is to select first book with critic reviews
+    var data;
+    for (var i = 0; i < api_result.books.length; i++) {
+        console.log(api_result.books[i].title, api_result.books[i].review_count, decodeURIComponent(query));
+	if((api_result.books[i].review_count || api_result.books[i].unrated_review_count) && 
+	    DDG.stringsRelevant(api_result.books[i].title, decodeURIComponent(query), [], 3, true)) {
+            data = api_result.books[i];
+	    break;
+        }
+    }
+
+    if (!data) {
+	return;
+    }
+
+    if(data.review_count === 0) {
+	data.critic_reviews = data.unrated_critic_reviews;
+	data.review_count = data.unrated_review_count;
+    }
+
+    // Function to convert date from 2012-07-20 format to Jul 20, 2012
     var prettyDate = function(date) {
         var d = new Date(date);
         if (d && !isNaN(d.getTime())) {
@@ -32,22 +43,20 @@ function ddg_spice_book(api_result) {
         };
     };
     
-    // convert pulication date of reviews to pretty format
-    for (var i = 0; i < data.critic_reviews.length; i++) {
-        data.critic_reviews[i].review_date = prettyDate(data.critic_reviews[i].review_date);
-    }
-    
-    // convert book publication date to pretty format
+    // Convert book publication date to pretty format
     data.release_date = prettyDate(data.release_date);
 
-    // get only the year of release date for header 
-    data.release_year = ( data.release_date || "" ).match(/\d{4}$/);
+    // Get only the year of release date for header 
+    data.release_year = (data.release_date || "").match(/\d{4}$/);
 
-    // pick a random critic review out of all the reviews returned
+    // Pick a random critic review out of all the reviews returned
     data.critic_review = data.critic_reviews[Math.floor(Math.random() * data.critic_reviews.length)];
 
+    // Convert pulication date of reviews to pretty format
+    data.critic_review.review_date = prettyDate(data.critic_review.review_date);
+
     var header = data.title;
-    // add year of release to header
+    // Add year of release to header
     if (data.release_year) {
         header += " (" + data.release_year + ")";
     }
