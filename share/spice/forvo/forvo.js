@@ -11,19 +11,17 @@ function ddg_spice_forvo (api_result) {
         header1          : "Pronunciations (Forvo)",
         source_url       : "http://www.forvo.com/",
         source_name      : "Forvo",
-	spice_name       : "forvo",
-
-	template_frame   : "list",
-	template_options : {
-	    items: api_result.items, //list,
-	    template_item: "forvo",
-	    show: 3,
-	    max: 5,
-	    type: "ul"
-	},
-
+        spice_name       : "forvo",
+        template_frame   : "list",
+        template_options : {
+            items         : api_result.items, //list,
+            template_item : "forvo",
+            show          : 3,
+            max           : 5,
+            type          : "ul"
+        },
         force_big_header : true,
-	force_no_fold    : true
+        force_no_fold    : true
     });
 
 
@@ -86,10 +84,11 @@ function ddg_spice_forvo (api_result) {
     var last_id;
     ddg_spice_forvo.player = function() {
         var li = $(this);
-        var anchor = li.children();
+        var anchor = li.find("a.forvo-audio");
 
         // Get the sound
         var current_id = anchor.attr("id");
+
         var sound;
 
         // Make sure only one player is playing at any one time.
@@ -137,8 +136,8 @@ function ddg_spice_forvo (api_result) {
 
     $(document).ready(function() {
     $(".spice2list_item").click(ddg_spice_forvo.player);
-	// $(".spice2list_item").attr("class", "sm2_stopped");
-	$(".spice2list_item").addClass("sm2_stopped");
+    // $(".spice2list_item").attr("class", "sm2_stopped");
+    $(".spice2list_item").addClass("sm2_stopped");
     });
 };
 
