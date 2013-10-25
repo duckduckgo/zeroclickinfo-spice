@@ -11,7 +11,7 @@
     - [Using API Keys](#using-api-keys)
     - [Using the GEO Location API](#using-the-geo-location-api)
     - [Common Code for Spice Endpoints (.pm's)](#common-code-for-spice-endpoints-pms)
-    - [Common JavaScript and Handlebars Templates](#common-javascript-and-handlebars-templates)
+    - [Common HTML and Handlebars Templates](#common-javascript-and-handlebars-templates)
     - [Using Custom CSS](#using-custom-css)
     - [Using images](#using-images)
 - [Common Pitfalls](#common-pitfalls)
