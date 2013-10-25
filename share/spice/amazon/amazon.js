@@ -71,9 +71,11 @@ function ddg_spice_amazon(api_response) {
 }
 
 function ddg_spice_amazon_wait_for_render(api_response) {
-    window.setTimeout(function() {
-        ddg_spice_amazon_carousel_add_items(api_response.items);
-    }, 500);
+    if (ddg_spice_amazon_carousel_add_items) {
+        window.setTimeout(function() {
+            ddg_spice_amazon_carousel_add_items(api_response.items);
+        }, 500);
+    }
 }
 
 function ddg_spice_amazon_detail(api_response) {

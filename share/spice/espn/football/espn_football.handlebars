@@ -1,0 +1,73 @@
+<span class='espn_zci_tab_link espn_zci_tab_selected' id='espn_zci_news_link'>News</span> |
+{{#if stats}}<span class='espn_zci_tab_link' id='espn_zci_stats_link'>Stats</span> |{{/if}}
+<span class='espn_zci_tab_link' id='espn_zci_gamelog_link'>Gamelog</span>
+
+<div class='espn_zci_tab' style='display:block' id='espn_zci_news'>
+    <img src='/iu?u={{headshot}}' id='espn_news_image'>
+    <div class='blurb'>
+        {{name}} is a football {{position}} for the {{teamCity}} {{teamName}} ({{league}}).
+    </div>
+    <ul>
+        {{#each headline}}
+        <li><a href='{{links.web.href}}'>{{headline}}</a> ({{source}})</li>
+        {{/each}}
+    </ul>
+</div>
+
+{{#if stats}}
+<div class='espn_zci_tab' id='espn_zci_stats'>
+    <div class='blurb'>
+        {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
+    </div>
+    <table>
+        {{#if completionPercentage}}<tr><th>Completion percentage:</th><td>{{completionPercentage}}%</td></tr>{{/if}}
+        {{#if passingAttempts}}<tr><th>Passing attempts:</th><td>{{passingAttempts}}</td></tr>{{/if}}
+        {{#if passingYards}}<tr><th>Passing yards:</th><td>{{passingYards}}</td></tr>{{/if}}
+        {{#if passingTouchdowns}}<tr><th>Passing touchdowns:</th><td>{{passingTouchdowns}}</td></tr>{{/if}}
+
+        {{#if rushingAttempts}}<tr><th>Rushing attempts:</th><td>{{rushingAttempts}}</td></tr>{{/if}}
+        {{#if rushingYards}}<tr><th>Rushing yards:</th><td>{{rushingYards}}</td></tr>{{/if}}
+        {{#if longRushing}}<tr><th>Long rushing:</th><td>{{longRushing}}</td></tr>{{/if}}
+        {{#if yardsPerRushAttempt}}<tr><th>Yards per rush attempt:</th><td>{{yardsPerRushAttempt}}</td></tr>{{/if}}
+
+        {{#if receptions}}<tr><th>Receptions:</th><td>{{receptions}}</td></tr>{{/if}}
+        {{#if receivingYards}}<tr><th>Receiving yards:</th><td>{{receivingYards}}</td></tr>{{/if}}
+        {{#if fumbles}}<tr><th>Fumbles:</th><td>{{fumbles}}</td></tr>{{/if}}
+        {{#if receivingTouchdowns}}<tr><th>Receiving touchdowns:</th><td>{{receivingTouchdowns}}</td></tr>{{/if}}
+
+        {{#if totalTackles}}<tr><th>Total tackles:</th><td>{{totalTackles}}</td></tr>{{/if}}
+        {{#if passesDefended}}<tr><th>Passes defended:</th><td>{{passesDefended}}</td></tr>{{/if}}
+        {{#if fumblesForced}}<tr><th>Fumbles forced:</th><td>{{fumblesForced}}</td></tr>{{/if}}
+        {{#if interceptions}}<tr><th>Interceptions:</th><td>{{interceptions}}</td></tr>{{/if}}
+    </table>
+</div>
+{{/if}}
+
+<div class='espn_zci_tab' id='espn_zci_gamelog'>
+    <div class='blurb'>
+        The {{teamCity}} {{teamName}} have won {{teamWinPercentage}}% of their season games.
+    </div>
+    <div id='espn_zci_gamelog_wrapper'>
+        <table>
+            <th></th><th>Home</th><th></th><th>Away</th><th></th><th></th></tr>
+            {{#each events}}
+            <tr>
+                <td>{{date}}</td>
+                <td><a href='{{home.link}}'>{{home.teamName}}<a/></td>
+                <td>vs</td>
+                <td><a href='{{away.link}}'>{{away.teamName}}<a/></td>
+                <td>
+                    <a href='{{link}}'>
+                        {{#if win}}
+                            <span style='color:green'>W</span>
+                        {{else}}
+                            <span style='color:red'>L</span>
+                        {{/if}}
+                        {{home.score}}-{{away.score}}
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>
