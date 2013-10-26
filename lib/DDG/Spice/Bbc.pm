@@ -54,7 +54,7 @@ handle query_lc => sub {
     if (!defined($local_location)) {
         $local_location = "england";
     }
-    if($_ =~ /^bbc radio (berksire|bristol|cambridgeshire|cornwall|cumbria|derby|devon|gloucestershire|humberside|jersey|kent|lancashire|leeds|leicester|manchester|merseyside|norfolk|northampton|nottingham|sheffield|shropshire|solent|stoke|suffolk|york)$/) {
+    if($_ =~ /^bbc radio( in)? (berksire|bristol|cambridgeshire|cornwall|cumbria|derby|devon|gloucestershire|humberside|jersey|kent|lancashire|leeds|leicester|manchester|merseyside|norfolk|northampton|nottingham|sheffield|shropshire|solent|stoke|suffolk|york)$/) {
         return "radio$1";
     }
     return ('worldserviceradio', '') if($_ =~ /^bbc world (service|radio|service radio)?$/);
