@@ -4,14 +4,20 @@ function ddg_spice_bbc(api_result) {
     var broadcasts = api_result.schedule.day.broadcasts;
     var programmes = [];
     var now = Date.now();
+    console.log(+now);
+    var date = api_result.schedule.day.date;
+    var fulldate = Date.parse(date);
+    console.log(+fulldate);
+    var date_round = 1000 * 60 * 60 * 24;
+    var inPast = +fulldate < Math.floor(+now / date_round)*date_round;
     for(var i=0;i<broadcasts.length;i++) {
         var end = Date.parse(broadcasts[i].end);
-        if(end > now)
+        if(end > now || inPast)
             programmes.push(broadcasts[i]);
     }
     Spice.render({
         data             : api_result.schedule,
-        header1          : api_result.schedule.service.title + (api_result.schedule.service.outlet ? " "+api_result.schedule.service.outlet.title : "") + " (TV Schedule)",
+        header1          : api_result.schedule.service.title + (api_result.schedule.service.outlet ? " "+api_result.schedule.service.outlet.title : "") + " (TV Schedule for "+date+")",
         source_url       : "http://www.bbc.co.uk/"+api_result.schedule.service.key+"/programmes",
         source_name      : 'BBC',
         template_frame   : "carousel",
