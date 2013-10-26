@@ -19,11 +19,11 @@ spice from => '([^\/]+)(\/([^\/]+))?';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "200 304 1d";
 
-triggers any => "schedule", "what's on", "tv guide", "now on", "bbc";#
+triggers any => "schedule", "what's on", "tv guide", "now on", "bbc";
 
 # Handle statement
 handle query_lc => sub {
-    s/\s*(schedule|what's on|tv guide|now on)\s*//g;
+    s/\s*(schedule|what's on|tv guide|now on|tonight|today|now)\s*//g;
     my %locals = (
         "scotland" => "scotland",
         "wales" => "wales",
