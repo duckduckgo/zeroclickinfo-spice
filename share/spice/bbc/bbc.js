@@ -55,7 +55,21 @@ Handlebars.registerHelper("display_title", function() {
 Handlebars.registerHelper("display_url", function() {
     return "http://www.bbc.co.uk/programmes/"+this.programme.pid;
 });
+/*
+ * display_image
+ *
+ * Find the programme image and return it
+ */
 Handlebars.registerHelper("display_image", function() {
     "use strict";
     return this.programme.image ? "http://ichef.bbci.co.uk/images/ic/144x81/" + this.programme.image.pid + ".jpg" :  "http://ichef.bbci.co.uk/images/ic/144x81/legacy/episode/"+this.programme.pid+".jpg?nodefault=true";
+});
+/*
+ * synopsis
+ *
+ * Find the programme synopsis and return it
+ */
+Handlebars.registerHelper("synopsis", function() {
+    "use strict";
+    return this.programme.short_synopsis;
 });
