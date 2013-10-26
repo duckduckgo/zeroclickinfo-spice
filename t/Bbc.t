@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use Test::More;
-use DDG::Test::Bbc;
+use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Bbc )],
