@@ -18,7 +18,8 @@ function ddg_spice_forvo (api_result) {
             template_item : "forvo",
             show          : 3,
             max           : 5,
-            type          : "ul"
+            type          : "ul",
+	    use_alternate_template: false
         },
         force_big_header : true,
         force_no_fold    : true
