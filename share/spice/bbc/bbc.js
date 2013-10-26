@@ -25,12 +25,7 @@ function ddg_spice_bbc(api_result) {
         spice_name       : "bbc",
     });
 }
-/*
- * display_title
- * 
- * Find the displayable title of a program and return it
- */
-Handlebars.registerHelper("display_title", function() {
+Handlebars.registerHelper("display_time", function() {
     "use strict";
     function toStr(num, digs) {
         var str = new Number(num|0).toString();
@@ -41,14 +36,26 @@ Handlebars.registerHelper("display_title", function() {
     }
     var start = new Date(Date.parse(this.start));
     var end = new Date(Date.parse(this.end));
-    return "<code>"+toStr(start.getHours(),2) + ":" + toStr(start.getMinutes(), 2) + " - " + toStr(end.getHours(), 2) + ":" + toStr(end.getMinutes(), 2) + "</code><br>"
-    + "<span class=\"bbc_title\">"+this.programme.display_titles.title + "</span>" + (this.programme.display_titles.subtitle ? "<span class=\"bbc_subtitle\">" + this.programme.display_titles.subtitle + "</span>":"");
+    return toStr(start.getHours(),2) + ":" + toStr(start.getMinutes(), 2) + " - " + toStr(end.getHours(), 2) + ":" + toStr(end.getMinutes(), 2);
 });
+/*
+ * display_title
+ * 
+ * Find the displayable title of a programme and return it
+ */
+Handlebars.registerHelper("display_title", function() {
+    "use strict";
+    return "<span class=\"bbc_title\">"+this.programme.display_titles.title + "</span>" + (this.programme.display_titles.subtitle ? "<span class=\"bbc_subtitle\">" + this.programme.display_titles.subtitle + "</span>":"");
+});
+/*
+ * display_url
+ * 
+ * Find the programme URL and return it
+ */
 Handlebars.registerHelper("display_url", function() {
     return "http://www.bbc.co.uk/programmes/"+this.programme.pid;
 });
 Handlebars.registerHelper("display_image", function() {
     "use strict";
-    var url = (this.programme.image ? "http://ichef.bbci.co.uk/images/ic/144x81/" + this.programme.image.pid + ".jpg" :  "http://ichef.bbci.co.uk/images/ic/144x81/legacy/episode/"+this.programme.pid+".jpg?nodefault=true");
-    return "<img class=\"bbc_img\" src=\""+url+"\"></img>";
+    return this.programme.image ? "http://ichef.bbci.co.uk/images/ic/144x81/" + this.programme.image.pid + ".jpg" :  "http://ichef.bbci.co.uk/images/ic/144x81/legacy/episode/"+this.programme.pid+".jpg?nodefault=true";
 });
