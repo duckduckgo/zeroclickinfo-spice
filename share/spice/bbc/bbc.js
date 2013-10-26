@@ -11,7 +11,7 @@ function ddg_spice_bbc(api_result) {
     }
     Spice.render({
         data             : api_result.schedule,
-        header1          : api_result.schedule.service.title + " (TV Schedule)",
+        header1          : api_result.schedule.service.title + (api_result.schedule.service.outlet ? " "+api_result.schedule.service.outlet.title : "") + " (TV Schedule)",
         source_url       : "http://www.bbc.co.uk/"+api_result.schedule.service.key+"/programmes",
         source_name      : 'BBC',
         template_frame   : "carousel",
