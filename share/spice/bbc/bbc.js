@@ -1,13 +1,13 @@
 function ddg_spice_bbc(api_result) {
     "use strict";
-    
+    var query = DDG.get_query();
     var broadcasts = api_result.schedule.day.broadcasts;
     var programmes = [];
-    var now = Date.now();
-    console.log(+now);
+    var now = new Date(Date.now());
+    if(query.indexOf("tonight") != -1)
+        now.setHours(18);
     var date = api_result.schedule.day.date;
     var fulldate = Date.parse(date);
-    console.log(+fulldate);
     var date_round = 1000 * 60 * 60 * 24;
     var inPast = +fulldate < Math.floor(+now / date_round)*date_round;
     for(var i=0;i<broadcasts.length;i++) {
