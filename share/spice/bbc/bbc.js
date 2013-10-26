@@ -45,7 +45,7 @@ Handlebars.registerHelper("display_time", function() {
  */
 Handlebars.registerHelper("display_title", function() {
     "use strict";
-    return "<span class=\"bbc_title\">"+this.programme.display_titles.title + "</span>" + (this.programme.display_titles.subtitle ? "<span class=\"bbc_subtitle\">" + this.programme.display_titles.subtitle + "</span>":"");
+    return "<div class=\"bbc_title\">"+this.programme.display_titles.title + "</div>" + (this.programme.display_titles.subtitle ? "<div class=\"bbc_subtitle\">" + this.programme.display_titles.subtitle + "</div>":"");
 });
 /*
  * display_url
