@@ -27,12 +27,14 @@ function ddg_spice_plos(api_result) {
     });
 }
 
+// Get list of authors and return string.
 Handlebars.registerHelper('authors', function(author_display) {
     var author_list = author_display;
     var authors = author_list.join(', ');
     return authors;
 });
 
+// Convert full publication date to year only.
 Handlebars.registerHelper('year', function(pubdate) {
     var year = pubdate.substr(0, 4);
     return year;
