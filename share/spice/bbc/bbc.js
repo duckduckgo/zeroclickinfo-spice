@@ -4,7 +4,7 @@ function ddg_spice_bbc(api_result) {
     var broadcasts = api_result.schedule.day.broadcasts;
     var programmes = [];
     var now = new Date(Date.now());
-    if(query.indexOf("tonight") != -1)
+    if(query.indexOf("night") != -1)
         now.setHours(18);
     var date = api_result.schedule.day.date;
     var fulldate = Date.parse(date);

@@ -23,7 +23,7 @@ triggers any => "schedule", "what's on", "what was on", "tv guide", "now on", "b
 
 # Handle statement
 handle query_lc => sub {
-    s/\s*(schedule|what's on|tv guide|now on|tonight|today|now|for|programmes)\s*//g;
+    s/\s*(schedule|what's on|tv guide|now on|tonight|today|now|programmes)\s*//g;
     my %locals = (
         "scotland" => "scotland",
         "wales" => "wales",
@@ -32,60 +32,61 @@ handle query_lc => sub {
     my @local_keys = reverse keys %locals;
     my $location = "london";
     my $time = "today";
-    if($_ =~ /^(.*) (tomorrow|in a day|in 1 day)$/) {
+    if($_ =~ /tomorrow|in a day|in 1 day/) {
         $time = "tomorrow";
-        $_ = $1;
     }
-    if($_ =~ /^(.*) (yesterday|a day ago|1 day ago)$/) {
+    if($_ =~ /yesterday|a day ago|1 day ago|last night/) {
         $time = "yesterday";
-        $_ = $1;
     }
-    if($_ =~ /^(.*)( in)?( north(ern)?)? ireland$/) {
+    if($_ =~ /north(ern)? ireland/) {
         $location = "ni";
-        $_ = $1;
-    }
-    if($_ =~ /^(.*) (in )?(the )?(north|south) (east|west)$/) {
-        $location = "$4_$5";
-        $_ = $1;
-    }
-    if($_ =~ /^(.*) (in )?(the )?(south|east|west)( of england)?$/) {
-        $location = "$4";
-        $_ = $1;
-    }
-    if($_ =~ /^(.*) (in )?(scotland|cambridge|oxford|wales|yorkshire|london)$/) {
-        $location = "$3";
-        $_ = $1;
-    }
-    if($_ =~ /^(.*) hd$/) {
-        $_ = $1;
+    } elsif($_ =~ /(north|south) (east|west)/) {
+        $location = "$1_$2";
+    } elsif($_ =~ /(south|east|west)/) {
+        $location = "$1";
+    } elsif($_ =~ /(scotland|cambridge|oxford|wales|yorkshire|london)/) {
+        $location = "$1";
+    } elsif($_ =~ /cambridgeshire/) {
+        $location = "cambridge";
+    } elsif($_ =~ /east yorkshire|yorks|lincs/) {
+        $location = "east_yorkshire";
+    } elsif($_ =~ /channel islands/) {
+        $location = "channel_islands";
+    } elsif($_ =~ /(east|west) midlands/) {
+        $location = "$1_midlands";
+    } elsif($_ =~ /midlands/) {
+        $location = "west_midlands";
+    } elsif($_ =~ /cumbria/) {
+        $location = "north_east";
     }
     my $local_location = $locals{$location};
     if (!defined($local_location)) {
         $local_location = "england";
     }
-    if($_ =~ /^bbc radio( in| for)? (berksire|bristol|cambridgeshire|cornwall|cumbria|derby|devon|gloucestershire|humberside|jersey|kent|lancashire|leeds|leicester|manchester|merseyside|norfolk|northampton|nottingham|sheffield|shropshire|solent|stoke|suffolk|york)$/) {
+    print "\n\n\n$_\n$location\n\n";
+    if($_ =~ /bbc radio( in| for)? (berksire|bristol|cambridgeshire|cornwall|cumbria|derby|devon|gloucestershire|humberside|jersey|kent|lancashire|leeds|leicester|manchester|merseyside|norfolk|northampton|nottingham|sheffield|shropshire|solent|stoke|suffolk|york)/) {
         return ("radio$2", '', $time);
     }
-    return ('worldserviceradio', '', $time) if($_ =~ /^bbc world (service|radio|service radio)?$/);
-    return ('asiannetwork', '', $time) if($_ =~ /^bbc asian network?$/);
-    return ('6music', '', $time) if($_ =~ /^bbc radio (6|six)( music)?$/);
-    return ('5livesportsextra', '', $time) if($_ =~ /^bbc radio (5|five)( live)? extra$/);
-    return ('5live', '', $time) if($_ =~ /^bbc radio (5|five)( live)?$/);
-    return ('radio4extra', '', $time) if($_ =~ /^bbc radio (4|four) e?xtra$/);
-    return ('radio4', '', $time) if($_ =~ /^bbc radio (4|four)$/);
-    return ('radio3', '', $time) if($_ =~ /^bbc radio (3|three)$/);
-    return ('radio2', '', $time) if($_ =~ /^bbc radio (2|two)$/);
-    return ('1xtra', '', $time) if($_ =~ /^bbc radio (1|one) e?xtra$/);
-    return ('radio1', 'england', $time) if($_ =~ /^bbc radio( 1| one)?$/);
-    return ('bbcalba', '', $time) if($_ =~ /^(bbc )?alba$/);
-    return ('parliament', '', $time) if($_ =~ /^(bbc )?parliament$/);
-    return ('bbcnews', '', $time) if($_ =~ /^bbc news$/);
-    return ('cbeebies', '', $time) if($_ =~ /^cbeebies$/);
-    return ('cbbc', '', $time) if($_ =~ /^cbbc$/);
-    return ('bbcfour', '', $time) if($_ =~ /^bbc (4|four)$/);
-    return ('bbcthree', '', $time) if($_ =~ /^bbc (3|three)$/);
-    return ('bbctwo', $local_location, $time) if($_ =~ /^bbc (2|two)?$/);
-    return ('bbcone', $location, $time) if($_ =~ /^bbc( 1| one)?$/);
+    return ('worldserviceradio', '', $time) if($_ =~ /bbc world (service|radio|service radio)?/);
+    return ('asiannetwork', '', $time) if($_ =~ /bbc asian network?/);
+    return ('6music', '', $time) if($_ =~ /bbc radio (6|six)( music)?/);
+    return ('5livesportsextra', '', $time) if($_ =~ /bbc radio (5|five)( live)? extra/);
+    return ('5live', '', $time) if($_ =~ /bbc radio (5|five)( live)?/);
+    return ('radio4extra', '', $time) if($_ =~ /bbc radio (4|four) e?xtra/);
+    return ('radio4', '', $time) if($_ =~ /bbc radio (4|four)/);
+    return ('radio3', '', $time) if($_ =~ /bbc radio (3|three)/);
+    return ('radio2', '', $time) if($_ =~ /bbc radio (2|two)/);
+    return ('1xtra', '', $time) if($_ =~ /bbc radio (1|one) e?xtra/);
+    return ('radio1', 'england', $time) if($_ =~ /bbc radio( 1| one)?/);
+    return ('bbcalba', '', $time) if($_ =~ /(bbc )?alba/);
+    return ('parliament', '', $time) if($_ =~ /(bbc )?parliament/);
+    return ('bbcnews', '', $time) if($_ =~ /bbc news/);
+    return ('cbeebies', '', $time) if($_ =~ /cbeebies/);
+    return ('cbbc', '', $time) if($_ =~ /cbbc/);
+    return ('bbcfour', '', $time) if($_ =~ /bbc (4|four)/);
+    return ('bbcthree', '', $time) if($_ =~ /bbc (3|three)/);
+    return ('bbctwo', $local_location, $time) if($_ =~ /bbc (2|two)/);
+    return ('bbcone', $location, $time) if($_ =~ /bbc( 1| one)?/);
     return;
 };
 1;
