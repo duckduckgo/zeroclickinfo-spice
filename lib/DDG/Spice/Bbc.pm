@@ -38,7 +38,7 @@ handle query_lc => sub {
     if($_ =~ /yesterday|a day ago|1 day ago|last night/) {
         $time = "yesterday";
     }
-    if($_ =~ /north(ern)? ireland/) {
+    if($_ =~ /(north(ern)? )?ireland/) {
         $location = "ni";
     } elsif($_ =~ /(north|south) (east|west)/) {
         $location = "$1_$2";
@@ -63,7 +63,6 @@ handle query_lc => sub {
     if (!defined($local_location)) {
         $local_location = "england";
     }
-    print "\n\n\n$_\n$location\n\n";
     if($_ =~ /bbc radio( in| for)? (berksire|bristol|cambridgeshire|cornwall|cumbria|derby|devon|gloucestershire|humberside|jersey|kent|lancashire|leeds|leicester|manchester|merseyside|norfolk|northampton|nottingham|sheffield|shropshire|solent|stoke|suffolk|york)/) {
         return ("radio$2", '', $time);
     }
