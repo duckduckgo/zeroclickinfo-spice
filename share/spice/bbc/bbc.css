@@ -1,3 +1,13 @@
 .bbc_title {
 	font-weight: bold;
+	clear: both;
+}
+.bbc_duration {
+	font-style: italic;
+}
+.bbc_big_image {
+	float: right;
+}
+.bbc_details {
+	height: 153px;
 }

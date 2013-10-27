@@ -24,14 +24,19 @@ function ddg_spice_bbc(api_result) {
         template_options: {
             items: programmes, 
             template_item: "bbc",
-            type: 'ul'
+            template_detail: "bbc_details",
         },
         force_big_header : true,
         force_no_fold: true,
         spice_name       : "bbc",
     });
 }
-Handlebars.registerHelper("display_time", function() {
+/*
+ * time
+ * 
+ * Find the start and end of a programme and format appropriately
+ */
+Handlebars.registerHelper("time", function() {
     "use strict";
     function toStr(num, digs) {
         var str = new Number(num|0).toString();
@@ -45,31 +50,72 @@ Handlebars.registerHelper("display_time", function() {
     return toStr(start.getHours(),2) + ":" + toStr(start.getMinutes(), 2) + " - " + toStr(end.getHours(), 2) + ":" + toStr(end.getMinutes(), 2);
 });
 /*
- * display_title
+ * duration
+ * 
+ * Find the duration of a programme and return it
+ */
+Handlebars.registerHelper("duration", function() {
+    "use strict";
+    function pluralise(n) {
+        return n > 1 ? "s" : "";
+    }
+    var dur = this.duration;
+    var hours = Math.floor(dur / (60 * 60));
+    dur -= hours * 60 * 60;
+    var minutes = Math.floor(dur / 60);
+    this.duration -= minutes * 60;
+    if(hours > 0 && minutes > 0) {
+        return hours + " hour"+pluralise(hours)+", "+minutes+" min"+pluralise(minutes);
+    } else if(hours > 0 && minutes == 0) {
+        return hours + " hour"+pluralise(hours);
+    } else {
+        return minutes+" min"+pluralise(minutes);
+    }
+});
+/*
+ * full_title
+ * 
+ * Find the full displayable title of a programme and return it
+ */
+Handlebars.registerHelper("full_title", function() {
+    "use strict";
+    return this.programme.display_titles.title + (this.programme.display_titles.subtitle ? " - "+this.programme.display_titles.subtitle : "");
+});
+/*
+ * title
  * 
  * Find the displayable title of a programme and return it
  */
-Handlebars.registerHelper("display_title", function() {
+Handlebars.registerHelper("title", function() {
     "use strict";
-    return "<div class=\"bbc_title\">"+this.programme.display_titles.title + "</div>" + (this.programme.display_titles.subtitle ? "<div class=\"bbc_subtitle\">" + this.programme.display_titles.subtitle + "</div>":"");
+    return this.programme.display_titles.title;
 });
 /*
- * display_url
+ * url
  * 
  * Find the programme URL and return it
  */
-Handlebars.registerHelper("display_url", function() {
+Handlebars.registerHelper("url", function() {
     return "http://www.bbc.co.uk/programmes/"+this.programme.pid;
 });
 /*
- * display_image
+ * image
  *
  * Find the programme image and return it
  */
-Handlebars.registerHelper("display_image", function() {
+Handlebars.registerHelper("image", function() {
     "use strict";
     return this.programme.image ? "http://ichef.bbci.co.uk/images/ic/144x81/" + this.programme.image.pid + ".jpg" :  "http://ichef.bbci.co.uk/images/ic/144x81/legacy/episode/"+this.programme.pid+".jpg?nodefault=true";
 });
+/*
+ * image
+ *
+ * Find the programme's big image and return it
+ */
+Handlebars.registerHelper("big_image", function() {
+    "use strict";
+    return this.programme.image ? "http://ichef.bbci.co.uk/images/ic/272x153/" + this.programme.image.pid + ".jpg" :  "http://ichef.bbci.co.uk/images/ic/272x153/legacy/episode/"+this.programme.pid+".jpg?nodefault=true";
+})
 /*
  * synopsis
  *
