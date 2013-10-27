@@ -64,7 +64,7 @@ handle query_lc => sub {
         $local_location = "england";
     }
     if($_ =~ /^bbc radio( in| for)? (berksire|bristol|cambridgeshire|cornwall|cumbria|derby|devon|gloucestershire|humberside|jersey|kent|lancashire|leeds|leicester|manchester|merseyside|norfolk|northampton|nottingham|sheffield|shropshire|solent|stoke|suffolk|york)$/) {
-        return "radio$2";
+        return ("radio$2", '', $time);
     }
     return ('worldserviceradio', '', $time) if($_ =~ /^bbc world (service|radio|service radio)?$/);
     return ('asiannetwork', '', $time) if($_ =~ /^bbc asian network?$/);
