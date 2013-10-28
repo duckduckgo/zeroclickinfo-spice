@@ -109,20 +109,6 @@ Handlebars.registerHelper("programme_url", function() {
     return "http://www.bbc.co.uk/programmes/"+(this.programme.programme ? this.programme.programme : this.programme).pid;
 });
 /*
- * series_info
- * 
- * Find the series information and return it
- */
-Handlebars.registerHelper("series_info", function() {
-    var meta = this.programme.programme;
-    console.log(meta);
-    if(this.programme.type == "episode" && meta.type == "series") {
-        return "S" + ddg_spice_bbc_to_str(meta.position) + "E" + ddg_spice_bbc_to_str(this.programme.position);
-    } else {
-        return "";
-    }
-});
-/*
  * url
  * 
  * Find the programme URL and return it
