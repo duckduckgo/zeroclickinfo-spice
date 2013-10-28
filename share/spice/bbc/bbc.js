@@ -79,7 +79,14 @@ Handlebars.registerHelper("duration", function() {
  */
 Handlebars.registerHelper("full_title", function() {
     "use strict";
-    return this.programme.display_titles.title + (this.programme.display_titles.subtitle ? " - "+this.programme.display_titles.subtitle : "");
+    return this.programme.display_titles.title;
+});
+/*
+ * subtitle
+ * Find the subtitle (if any) of a programme and return it
+ */
+Handlebars.registerHelper("subtitle", function() {
+    return this.programme.display_titles.subtitle;
 });
 /*
  * title
@@ -89,6 +96,14 @@ Handlebars.registerHelper("full_title", function() {
 Handlebars.registerHelper("title", function() {
     "use strict";
     return this.programme.display_titles.title;
+});
+/*
+ * programme_url
+ * 
+ * Find the series URL and return it
+ */
+Handlebars.registerHelper("programme_url", function() {
+    return "http://www.bbc.co.uk/programmes/"+this.programme.programme.pid;
 });
 /*
  * url
