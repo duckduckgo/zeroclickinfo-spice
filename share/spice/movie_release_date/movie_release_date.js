@@ -28,7 +28,7 @@ Handlebars.registerHelper("pretty_release_date", function() {
         month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     };
     var parts = this.release_date.split("-");
-    var date = new Date(parts[0], parts[1], parts[2]);
+    var date = new Date(parts[0], parts[1] - 1, parts[2]);
     var postfix_info = date.getDate() % 10;
     var postfix;
     switch(postfix_info) {
