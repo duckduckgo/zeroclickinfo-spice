@@ -100,10 +100,10 @@ Handlebars.registerHelper("title", function() {
 /*
  * programme_url
  * 
- * Find the series URL and return it
+ * Find the series URL and return it, or if it is not part of a series return the normal url
  */
 Handlebars.registerHelper("programme_url", function() {
-    return "http://www.bbc.co.uk/programmes/"+this.programme.programme.pid;
+    return "http://www.bbc.co.uk/programmes/"+(this.programme.programme ? this.programme.programme : this.programme).pid;
 });
 /*
  * url
