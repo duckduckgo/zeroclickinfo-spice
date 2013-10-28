@@ -24,18 +24,16 @@ triggers any => "schedule", "what's on", "what was on", "tv guide", "now on";
 # Handle statement
 handle query_lc => sub {
     s/\s*(schedule|what's on|tv guide|now on|tonight|today|now|programmes)\s*//g;
-    my %locals = (
+    my @locals = (
         "scotland" => "scotland",
         "wales" => "wales",
         "ni" => "ni"
     );
-    my @local_keys = reverse keys %locals;
     my $location = "london";
     my $time = "today";
     if($_ =~ /tomorrow|in a day|in 1 day/) {
         $time = "tomorrow";
-    }
-    if($_ =~ /yesterday|a day ago|1 day ago|last night/) {
+    } elsif($_ =~ /yesterday|a day ago|1 day ago|last night/) {
         $time = "yesterday";
     }
     if($_ =~ /(north(ern)? )?ireland/) {
