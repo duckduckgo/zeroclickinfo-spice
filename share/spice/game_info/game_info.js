@@ -20,7 +20,7 @@ ddg_spice_game_info.date_info = {
         "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
     ],
     day: [
-        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
     ]
 }
 
@@ -72,5 +72,5 @@ Handlebars.registerHelper("release_date", function() {
     if(parts[2] > 10 && parts[2] < 20) {
         postfix = "th";
     }
-    return ddg_spice_game_info.date_info.day[date.getDay() - 1] + " " + date.getDate() + postfix + " " + ddg_spice_game_info.date_info.month[date.getMonth()] + " " + date.getFullYear();
+    return ddg_spice_game_info.date_info.day[date.getDay()] + " " + date.getDate() + postfix + " " + ddg_spice_game_info.date_info.month[date.getMonth()] + " " + date.getFullYear();
 })
