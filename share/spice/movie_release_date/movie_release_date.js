@@ -1,15 +1,12 @@
 function ddg_spice_movie_release_date (api_result) {
     "use strict";
-    if(!result.results || api_result.results.length === 0)
+    if(!api_result.results || api_result.results.length === 0)
         return;
-    var query = DDG.get_query().replace(/(release|air|date|for|of|premiere|date)/, "");
-    console.log(query);
     var data = null;
     for(var i=0; i < api_result.results.length; i++) {
         var curr = api_result.results[i];
-        if(curr.release_date && DDG.isRelevant(curr.original_title, ["release", "date", "premiere", "of", "for"])) {
+        if(curr.release_date && DDG.isRelevant(curr.original_title, ["release", "date", "premiere", "of", "for", "premiere"])) {
             data = curr;
-            console.log(data);
             break;
         }
     }
