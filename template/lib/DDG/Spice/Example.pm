@@ -6,11 +6,9 @@ package DDG::Spice::<: $ia_name :>;
 use DDG::Spice;
 
 #Attribution
-primary_example_queries "Provide an primary example query";
-#Optional -- Provide secondary example queries that 
-#            demonstrate additional triggers
-secondary_example_queries "Provide an second example query";
-description "Write an absolutely dazzling explanation of what this plugin does";
+primary_example_queries "first example query", "second example query";
+secondary_example_queries "optional -- demonstrate any additional triggers";
+description "Succinct explanation of what this instant answer does";
 name "<: $ia_name :>";
 icon_url "";
 source "";
@@ -21,12 +19,16 @@ attribution github => ["https://github.com/", ""],
             twitter => ["https://twitter.com/", ""];
 
 # Triggers
-# Example Word Trigger
-triggers any => 'example';
-
+triggers any => "triggerWord", "trigger phrase";
 
 # Handle statement
 handle remainder => sub {
+
+	# optional - regex guard
+	# return unless qr/^\w+/;
+
+	return $_ if $_;
+	return;
 };
 
 1;
