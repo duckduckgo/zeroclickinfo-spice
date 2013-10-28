@@ -24,7 +24,7 @@ function ddg_spice_movie_release_date (api_result) {
 Handlebars.registerHelper("pretty_release_date", function() {
     "use strict";
     var meta = {
-        day: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        day: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     };
     var parts = this.release_date.split("-");
@@ -43,5 +43,7 @@ Handlebars.registerHelper("pretty_release_date", function() {
         default:
             postfix = "th";
     }
+    if(date.getDate() > 10 && date.getDate() < 20)
+        postfix = "th";
     return meta.day[date.getDay()] + " " + date.getDate() + postfix + " " + meta.month[date.getMonth()] + " " + date.getFullYear();
 });
