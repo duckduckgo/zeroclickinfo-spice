@@ -1,4 +1,4 @@
-package DDG::Spice::Bbc;
+package DDG::Spice::BBC;
 
 # ABSTRACT: BBC guide on when something is showing
 
@@ -10,7 +10,7 @@ description "Find out what's on a BBC show";
 name "BBC";
 icon_url "/i/bbc.co.uk.ico";
 source "BBC";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Bbc.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BBC.pm";
 topics "everyday";
 category "entertainment";
 attribution github => ['https://github.com/tophattedcoder','Tom Bebbington'];
