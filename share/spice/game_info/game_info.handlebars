@@ -1,8 +1,10 @@
+{{#if platforms}}
 <span class="game_info_platform">Platforms:</span> {{platforms}}<br>
+{{/if}}
 {{#if original_game_rating}}
 <span class="game_info_rating">Rating:</span> {{ratings}}<br>
 {{/if}}
 {{#if original_release_date}}
 <span class="game_info_release">Release Date:</span> {{release_date}}<br>
 {{/if}}
-{{condense deck maxlen="350" fuzz="30"}}
+{{{condense deck maxlen="350" fuzz="30"}}}

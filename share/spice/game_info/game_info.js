@@ -6,7 +6,7 @@ function ddg_spice_game_info(api_result) {
     if(!DDG.isRelevant(data.name, ignore)) return;
     Spice.render({
         data                     : data,
-        image_url                : data.image.small_url,
+        image_url                : data.image.thumb_url,
         header1                  : data.name + ' (Game)',
         source_url               : data.site_detail_url,
         source_name              : "GiantBomb",
