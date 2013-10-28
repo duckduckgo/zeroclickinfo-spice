@@ -19,7 +19,7 @@ spice from => '([^\/]+)(\/([^\/]+))?\/([^\/]+)(\/([^\/]+))?(\/([^\/]+))?';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "200 304 1d";
 
-triggers any => "schedule", "what's on", "what was on", "tv guide", "now on", "bbc";
+triggers any => "schedule", "what's on", "what was on", "tv guide", "now on";
 
 # Handle statement
 handle query_lc => sub {
