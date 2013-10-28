@@ -1,3 +1,13 @@
+function ddg_spice_bbc_to_str(num) {
+    if(num == 0) {
+         return "00";
+    }
+    var str = (num|0)+"";
+    if(str.length < 2) {
+        str = "0" + str;
+    }
+    return str;
+}
 function ddg_spice_bbc(api_result) {
     "use strict";
     var query = DDG.get_query();
@@ -38,16 +48,9 @@ function ddg_spice_bbc(api_result) {
  */
 Handlebars.registerHelper("time", function() {
     "use strict";
-    function toStr(num, digs) {
-        var str = new Number(num|0).toString();
-        while(str.length < digs) {
-            str = "0" + str;
-        }
-        return str;
-    }
     var start = new Date(Date.parse(this.start));
     var end = new Date(Date.parse(this.end));
-    return toStr(start.getHours(),2) + ":" + toStr(start.getMinutes(), 2) + " - " + toStr(end.getHours(), 2) + ":" + toStr(end.getMinutes(), 2);
+    return ddg_spice_bbc_to_str(start.getHours()) + ":" + ddg_spice_bbc_to_str(start.getMinutes()) + " - " + ddg_spice_bbc_to_str(end.getHours()) + ":" + ddg_spice_bbc_to_str(end.getMinutes());
 });
 /*
  * duration
@@ -104,6 +107,20 @@ Handlebars.registerHelper("title", function() {
  */
 Handlebars.registerHelper("programme_url", function() {
     return "http://www.bbc.co.uk/programmes/"+(this.programme.programme ? this.programme.programme : this.programme).pid;
+});
+/*
+ * series_info
+ * 
+ * Find the series information and return it
+ */
+Handlebars.registerHelper("series_info", function() {
+    var meta = this.programme.programme;
+    console.log(meta);
+    if(this.programme.type == "episode" && meta.type == "series") {
+        return "S" + ddg_spice_bbc_to_str(meta.position) + "E" + ddg_spice_bbc_to_str(this.programme.position);
+    } else {
+        return "";
+    }
 });
 /*
  * url
