@@ -1,16 +1,12 @@
-var ddg_spice_movie_release_date_date_meta = {
-    day: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-}
-function ddg_spice_movie_release_date (result) {
+function ddg_spice_movie_release_date (api_result) {
     "use strict";
-    if(!result.results || result.results.length === 0)
+    if(!result.results || api_result.results.length === 0)
         return;
     var query = DDG.get_query().replace(/(release|air|date|for|of|premiere|date)/, "");
     console.log(query);
     var data = null;
-    for(var i=0; i < result.results.length; i++) {
-        var curr = result.results[i];
+    for(var i=0; i < api_result.results.length; i++) {
+        var curr = api_result.results[i];
         if(curr.release_date && DDG.isRelevant(curr.original_title, ["release", "date", "premiere", "of", "for"])) {
             data = curr;
             console.log(data);
@@ -30,7 +26,10 @@ function ddg_spice_movie_release_date (result) {
 
 Handlebars.registerHelper("pretty_release_date", function() {
     "use strict";
-    var meta = ddg_spice_movie_release_date_date_meta;
+    var meta = {
+        day: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    };
     var parts = this.release_date.split("-");
     var date = new Date(parts[0], parts[1], parts[2]);
     var postfix_info = date.getDate() % 10;
