@@ -49,10 +49,6 @@ function ddg_spice_book(api_result) {
     data.critic_review = data.critic_reviews[Math.floor(Math.random() * data.critic_reviews.length)];
 
     var header = data.title;
-    // Add year of release to header
-    if (data.release_year) {
-        header += " (" + data.release_year + ")";
-    }
 
     Spice.render({
          data              : data,
