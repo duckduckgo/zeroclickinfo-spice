@@ -1,18 +1,25 @@
 function ddg_spice_game_info(api_result) {
     "use strict";
-    if (api_result == null || api_result.error != "OK" || api_result.results == null || api_result.results.length != 1) return;
-    var data = api_result.results[0];
-    var ignore = ["game"];
-    if(!DDG.isRelevant(data.name, ignore)) return;
+    if (api_result == null || api_result.error != "OK" || api_result.results == null || api_result.results.length <= 0) return;
+    var datas = api_result.results;
+    var query = DDG.get_query().replace("games?", "");
+    var ignore = ["game", "games"];
+    datas = datas.filter(function(data) { return DDG.isRelevant(data.name, ignore);});
     Spice.render({
-        data                     : data,
-        image_url                : data.image.thumb_url,
-        header1                  : data.name + ' (Game)',
-        source_url               : data.site_detail_url,
+        data                     : api_result,
+        source_url               : "http://www.giantbomb.com/search/?q="+encodeURI(query),
+        spice_name               : "game_info",
         source_name              : "GiantBomb",
-        template_normal          : 'game_info',
-        force_big_header         : true,
-        force_no_fold            : 1
+        template_frame           : "carousel",
+        template_options         : {
+            items                : datas,
+            template_item        : "game_info",
+            template_detail      : "game_info_details",
+            single_item_handler  : function(obj) {            // gets called in the event of a single result
+                obj.header1 = obj.data.results[0].name;         // set the header
+                obj.image_url = obj.data.results[0].image.thumb_url;    // set the image
+            }
+        },
     });
 }
 ddg_spice_game_info.date_info = {
@@ -73,4 +80,8 @@ Handlebars.registerHelper("release_date", function() {
         postfix = "th";
     }
     return ddg_spice_game_info.date_info.day[date.getDay()] + " " + date.getDate() + postfix + " " + ddg_spice_game_info.date_info.month[date.getMonth()] + " " + date.getFullYear();
+});
+
+Handlebars.registerHelper("image", function() {
+    return this.image.thumb_url;
 })

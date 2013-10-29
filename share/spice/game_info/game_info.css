@@ -1,3 +1,15 @@
-.game_info_platform, .game_info_rating, .game_info_release {
+.game_info_field {
 	font-weight: bold;
+}
+.game_info_title {
+	position: absolute;
+	bottom: 0px;
+	height: 2.5em;
+	margin: 0;
+	font-weight: bold;
+}
+.game_info_cont {
+	position: relative;
+	width: 100%;
+	height: 100%;
 }
