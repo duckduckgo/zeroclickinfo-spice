@@ -1,10 +1,15 @@
 function ddg_spice_game_info(api_result) {
     "use strict";
+    console.log(api_result);
     if (api_result == null || api_result.error != "OK" || api_result.results == null || api_result.results.length <= 0) return;
     var datas = api_result.results;
     var query = DDG.get_query().replace("games", "").replace("game", "");
-    var ignore = ["game", "games"];
-    datas = datas.filter(function(data) { return DDG.isRelevant(data.name, ignore);});
+    console.log(query);
+    var ignore = ["game", "games", "giantbomb"];
+    datas = datas.filter(function(data) { return DDG.isRelevant(data.name, ignore) || DDG.isRelevant(data.aliases, ignore);});
+    console.log(datas);
+    if(datas.length == 0)
+        return;
     Spice.render({
         data                     : api_result,
         source_url               : "http://www.giantbomb.com/search/?q="+encodeURI(query),
