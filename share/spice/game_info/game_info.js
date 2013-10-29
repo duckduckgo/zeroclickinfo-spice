@@ -31,40 +31,6 @@ ddg_spice_game_info.date_info = {
     ]
 }
 
-// Provide up to 2 game ratings
-Handlebars.registerHelper("ratings", function(){
-    var r = this.original_game_rating;
-    if(r == null || r.length == 0)
-        return "N/A";
-    var max = r.length > 2 ? 2 : r.length;
-    var s = "";
-    for(var i=0; i<max; i++) {
-        var curr = r[i];
-        if(i > 0)
-            s += i == max -1 ? " and " : ", ";
-        s += curr.name;
-    }
-    return s;
-});
-
-// Provide up to 3 platforms
-Handlebars.registerHelper("platforms", function(){
-    var ps = this.platforms;
-    if(ps == null || ps.length == 0)
-        return "N/A";
-    var max = ps.length > 2 ? 2 : ps.length;
-    var s = "";
-    for(var i=0; i<max; i++) {
-        var curr = ps[i];
-        if(i > 0)
-            s += ", ";
-        s += curr.name;
-    }
-    if(max < ps.length)
-        s += " and "+(ps.length - max)+" more";
-    return s;
-});
-
 Handlebars.registerHelper("release_date", function() {
     var release = this.original_release_date.split(" ")[0];
     var parts = release.split("-");
@@ -81,7 +47,3 @@ Handlebars.registerHelper("release_date", function() {
     }
     return ddg_spice_game_info.date_info.day[date.getDay()] + " " + date.getDate() + postfix + " " + ddg_spice_game_info.date_info.month[date.getMonth()] + " " + date.getFullYear();
 });
-
-Handlebars.registerHelper("image", function() {
-    return this.image.thumb_url;
-})
