@@ -2,7 +2,7 @@ function ddg_spice_game_info(api_result) {
     "use strict";
     if (api_result == null || api_result.error != "OK" || api_result.results == null || api_result.results.length <= 0) return;
     var datas = api_result.results;
-    var query = DDG.get_query().replace("games?", "");
+    var query = DDG.get_query().replace("games", "").replace("game", "");
     var ignore = ["game", "games"];
     datas = datas.filter(function(data) { return DDG.isRelevant(data.name, ignore);});
     Spice.render({
@@ -18,6 +18,7 @@ function ddg_spice_game_info(api_result) {
             single_item_handler  : function(obj) {            // gets called in the event of a single result
                 obj.header1 = obj.data.results[0].name;         // set the header
                 obj.image_url = obj.data.results[0].image.thumb_url;    // set the image
+                obj.source_url = obj.data.results[0].site_detail_url; // set the source
             }
         },
     });

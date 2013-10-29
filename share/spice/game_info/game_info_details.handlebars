@@ -1,16 +1,12 @@
 <a href="{{site_detail_url}}">{{name}}</a><br>
 {{#if platforms}}
 <span class="game_info_field">Platforms:</span>
-{{#concat platforms sep="," conj="and"}}
-    <a href="{{site_detail_url}}" title="{{name}}">{{abbreviation}}</a>
-{{/concat}}
+{{#concat platforms sep=", " conj=" and "}}<a href="{{site_detail_url}}" title="{{name}}">{{abbreviation}}</a>{{/concat}}
 <br>
 {{/if}}
 {{#if original_game_rating}}
-<span class="game_info_field">Rating:</span>
-{{#concat original_game_rating sep="," conj="and"}}
-    {{name}}
-{{/concat}}
+<span class="game_info_field">Ratings:</span>
+{{#concat original_game_rating sep=", " conj=" and "}}{{name}}{{/concat}}
 <br>
 {{/if}}
 {{#if original_release_date}}
