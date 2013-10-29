@@ -4,7 +4,7 @@ var ddg_spice_amazon_query;
 
 function ddg_spice_amazon(api_response) {
     if (!api_response || !api_response.results ||
-	!api_response.results.length || api_response.results.length == 0) return;
+    !api_response.results.length || api_response.results.length == 0) return;
 
     ddg_spice_amazon_query =
         DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
@@ -64,8 +64,8 @@ function ddg_spice_amazon(api_response) {
         });
 
     nrj('/m.js?pg=2'
-	+ '&cb=ddg_spice_amazon_wait_for_render'
-	+ '&q=' + escape(DDG.get_query()));
+    + '&cb=ddg_spice_amazon_wait_for_render'
+    + '&q=' + escape(DDG.get_query()));
 
     $(window).resize(spotlight_resize);
 }
@@ -113,12 +113,27 @@ function ddg_spice_amazon_render_single(api_response) {
     ddg_spice_amazon_single_item.stars = api_response.stars;
     ddg_spice_amazon_single_item.reviews = api_response.reviews;
     Spice.render({
-	source_url               : api_response.more_at,
+        source_url               : api_response.more_at,
         source_name              : 'Amazon',
         data                     : ddg_spice_amazon_single_item,
         image_url                : ddg_spice_amazon_single_item.img,
         force_favicon_domain     : 'www.amazon.com',
+        spice_name               : 'amazon',
         template_normal          : 'amazon_single',
         force_no_fold            : true,
     });
+    amazon_single_images(ddg_spice_amazon_single_item);
+}
+
+function amazon_single_images(api_response) {
+    if (api_response.stars == 'unrated') {
+        $('<span>unrated</span>')
+            .insertAfter('#spice_amazon .stars');
+        $('#spice_amazon .stars').hide();
+    } else {
+        $('#spice_amazon .stars')
+            .attr('src', '/iu/?u=' + api_response.stars);
+    }
+    $('#spice_amazon .review-count')
+        .text(api_response.reviews);
 }
