@@ -250,7 +250,7 @@ function BasketballPlayer(player) {
     return player;
 }
 
-function HockerPlayer(player) {
+function HockeyPlayer(player) {
     // For NHL, I would show, Goals, Assists, +/-, Hits (for goalies it
     // would be Record (W/L/T), Save%, GAA. OTL)
     var stats = player.stats;
