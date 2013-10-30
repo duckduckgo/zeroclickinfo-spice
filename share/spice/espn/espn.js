@@ -20,6 +20,7 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                              + "-'" + (season_year + '').substr(2, 2);
 
     // player's sport
+    if ($.isEmptyObject(ddg_spice_espn_player.stats)) return ddg_spice_espn_player;
     switch (ddg_spice_espn_player.sport) {
         case 'baseball':
 	    ddg_spice_espn_player = new BaseballPlayer(ddg_spice_espn_player);
