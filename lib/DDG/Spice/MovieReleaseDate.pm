@@ -14,6 +14,8 @@ attribution github => ['https://github.com/tophattedcoder','Tom Bebbington'];
 
 spice to => 'http://api.themoviedb.org/3/search/movie?api_key={{ENV{DDG_SPICE_THEMOVIEDB_APIKEY}}}&query=$1&include_adult=false&callback={{callback}}';
 
+spice is_cached => 1;
+
 triggers any => 'release', 'air', 'premiere', 'come out';
 
 handle remainder => sub {

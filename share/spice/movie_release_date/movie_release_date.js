@@ -1,12 +1,12 @@
 function ddg_spice_movie_release_date (api_result) {
     "use strict";
-    if(!api_result.results || api_result.results.length === 0)
+    if(api_result.results == null || api_result.results.length == 0 || api_result.total_results == 0)
         return;
     var data = null;
     var ignore = ["release", "date", "premiere", "of", "for", "when", "will", "did", "come", "out", "air"];
     for(var i=0; i < api_result.results.length; i++) {
         var curr = api_result.results[i];
-        if(curr.release_date && DDG.isRelevant(curr.original_title, ignore, 4, true)) {
+        if(curr.release_date != null && DDG.isRelevant(curr.original_title, ignore, 4, true)) {
             data = curr;
             break;
         }
@@ -16,6 +16,7 @@ function ddg_spice_movie_release_date (api_result) {
     Spice.render({
         data             : data,
         header1          : data.title + " (USA Release Date)",
+        image_url        : data.poster_path || data.backdrop_path ? "https://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92"+(data.poster_path || data.backdrop_path) : null,
         source_url       : 'http://www.themoviedb.org/movie/' + data.id,
         source_name      : 'TheMovieDB',
         spice_name       : 'movie_release_date'
@@ -24,6 +25,8 @@ function ddg_spice_movie_release_date (api_result) {
 
 Handlebars.registerHelper("pretty_release_date", function() {
     "use strict";
+    if(this.release_date == null)
+        return null;
     var meta = {
         day: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
