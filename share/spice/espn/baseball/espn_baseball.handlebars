@@ -1,5 +1,5 @@
 <span class='espn_zci_tab_link espn_zci_tab_selected' id='espn_zci_news_link'>News</span> |
-<span class='espn_zci_tab_link' id='espn_zci_stats_link'>Stats</span> |
+{{#if}}<span class='espn_zci_tab_link' id='espn_zci_stats_link'>Stats</span> |{{/if}}
 <span class='espn_zci_tab_link' id='espn_zci_gamelog_link'>Gamelog</span>
 
 <div class='espn_zci_tab' style='display:block' id='espn_zci_news'>
@@ -14,6 +14,7 @@
     </ul>
 </div>
 
+{{#if stats}}
 <div class='espn_zci_tab' id='espn_zci_stats'>
     <div class='blurb'>
         {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
@@ -34,6 +35,7 @@
         {{#if WHIP}}<tr><th>WHIP:</th><td>{{WHIP}}</td></tr>{{/if}}
     </table>
 </div>
+{{/if}}
 
 <div class='espn_zci_tab' id='espn_zci_gamelog'>
     <div class='blurb'>
