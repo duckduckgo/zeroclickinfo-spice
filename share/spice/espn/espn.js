@@ -15,7 +15,7 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
         case 'basketball':
             ddg_spice_espn_player.averagePointsPerGame =
                 (ddg_spice_espn_player.stats.points / ddg_spice_espn_player.stats.gamesStarted).toFixed(1) + '';
-            ddg_spice_espn_player.threePointPercentage=
+            ddg_spice_espn_player.threePointPercentage =
                 ((ddg_spice_espn_player.stats.threePointPercentage + 0) * 100).toFixed(1) + '';
             ddg_spice_espn_player.fieldGoalPercentage =
                 ddg_spice_espn_player.stats.fieldGoalPercentage.toFixed(1) + '';
@@ -242,7 +242,8 @@ function ddg_spice_espn_news(api_result) {
 function ddg_spice_espn_team(api_result) {
     var record               = api_result.sports[0].leagues[0].teams[0].record;
     var totalGames           = record.wins + record.losses + record.ties;
-    ddg_spice_espn_player.teamWinPercentage = Math.floor(record.wins / totalGames * 100);
+    ddg_spice_espn_player.teamWinPercentage = record.wins && record.wins > 0 &&
+	totalGames && totalGames > 0 ? Math.floor(record.wins / totalGames * 100) : 0;
 
     ddg_spice_espn_bind();
 }
