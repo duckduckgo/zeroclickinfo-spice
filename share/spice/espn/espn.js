@@ -115,6 +115,31 @@ function ddg_spice_espn(api_result) {
     ddg_spice_espn_player.stats = ddg_spice_espn_player_info.stats ? ddg_spice_espn_player_info.stats : {};
     ddg_spice_espn_process_stats(ddg_spice_espn_player);
 
+    // 20131030 (caine): started a hack to determine if stats were useful
+    // and then realized it needed template support so tabling as aspirational
+    // for someone else to pick up in redesign..
+    /*var statCount = 0;
+    var usefulStats = 0;
+    for (var stat in ddg_spice_espn_player.stats) {
+	// make sure the key comes from the object
+	// and not the prototype...
+	if (ddg_spice_espn_player.stats.hasOwnProperty(stat)) {
+	    statCount++;
+	    // stats set to 0 aren't really useful
+	    if (ddg_spice_espn_player.stats[stat] > 0) {
+		usefulStats++;
+	    }
+	}
+    }
+    console.log('statcount: '+statCount, 'useful stat count: '+usefulStats);
+    if (statCount > 0) {
+	var usefulStatRat = usefulStats / statCount;
+	console.log("useful stat ratio: "+usefulStatRat);
+    } else {
+	console.log('no useful stats at all...');
+	ddg_spice_espn_player.stats = false;
+    }*/
+
     ddg_spice_espn_bind();
 }
 
