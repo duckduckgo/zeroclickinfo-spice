@@ -5,11 +5,15 @@ function ddg_spice_forvo (api_result) {
 
     if (api_result.attributes.total < 1) return;
 
+    var script = $('[src*="/js/spice/forvo/"]')[0];
+    var source = $(script).attr("src");
+    var query = source.match(/forvo\/([^\/]+)\/\w+/)[1];
+
     // Display the Spice plug-in.
     Spice.render({
         data             : api_result,
         header1          : "Pronunciations (Forvo)",
-        source_url       : "http://www.forvo.com/",
+        source_url       : "http://www.forvo.com/search/" + query,
         source_name      : "Forvo",
         spice_name       : "forvo",
         template_frame   : "list",
@@ -19,13 +23,11 @@ function ddg_spice_forvo (api_result) {
             show          : 3,
             max           : 5,
             type          : "ul",
-	    use_alternate_template: false
+            use_alternate_template: false
         },
         force_big_header : true,
         force_no_fold    : true
     });
-
-
 
     // This gets called when the sound is finished playing
     // or when another player is playing. It basically just resets the look of the player.
