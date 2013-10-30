@@ -20,7 +20,6 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
                              + "-'" + (season_year + '').substr(2, 2);
 
     // player's sport
-    if ($.isEmptyObject(ddg_spice_espn_player.stats)) return ddg_spice_espn_player;
     switch (ddg_spice_espn_player.sport) {
         case 'baseball':
 	    ddg_spice_espn_player = new BaseballPlayer(ddg_spice_espn_player);
@@ -115,8 +114,9 @@ function ddg_spice_espn(api_result) {
 
 
     // setup player's stats & process them
-    ddg_spice_espn_player.stats = ddg_spice_espn_player_info.stats ? ddg_spice_espn_player_info.stats : {};
-    ddg_spice_espn_player = ddg_spice_espn_process_stats(ddg_spice_espn_player);
+    ddg_spice_espn_player.stats = ddg_spice_espn_player_info.stats;
+    if (ddg_spice_espn_player.stats)
+        ddg_spice_espn_player = ddg_spice_espn_process_stats(ddg_spice_espn_player);
 
     // 20131030 (caine): started a hack to determine if stats were useful
     // and then realized it needed template support so tabling as aspirational

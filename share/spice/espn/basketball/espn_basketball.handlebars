@@ -1,5 +1,5 @@
 <span class='espn_zci_tab_link espn_zci_tab_selected' id='espn_zci_news_link'>News</span> |
-<span class='espn_zci_tab_link' id='espn_zci_stats_link'>Stats</span> |
+{{#if stats}}<span class='espn_zci_tab_link' id='espn_zci_stats_link'>Stats</span> |{{/if}}
 <span class='espn_zci_tab_link' id='espn_zci_gamelog_link'>Gamelog</span>
 
 <div class='espn_zci_tab' style='display:block' id='espn_zci_news'>
@@ -14,17 +14,19 @@
     </ul>
 </div>
 
+{{#if stats}}
 <div class='espn_zci_tab' id='espn_zci_stats'>
     <div class='blurb'>
         {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
     </div>
     <table>
-        <tr><th>Average Points Per Game:</th><td>{{averagePointsPerGame}}</td></tr>
-        <tr><th>3-Point Field Goal Percentage (3P%):</th><td>{{threePointPercentage}}%</td></tr>
-        <tr><th>Field Goal Percentage (FG%):</th><td>{{fieldGoalPercentage}}%</td></tr>
-        <tr><th>Free Throw Percentage (FT%):</th><td>{{freeThrowPercentage}}%</td></tr>
+        {{#if averagePointsPerGame}}<tr><th>Average Points Per Game:</th><td>{{averagePointsPerGame}}</td></tr>{{/if}}
+        {{#if threePointPercentage}}<tr><th>3-Point Field Goal Percentage (3P%):</th><td>{{threePointPercentage}}%</td></tr>{{/if}}
+        {{#if fieldGoalPercentage}}<tr><th>Field Goal Percentage (FG%):</th><td>{{fieldGoalPercentage}}%</td></tr>{{/if}}
+        {{#if freeThrowPercentage}}<tr><th>Free Throw Percentage (FT%):</th><td>{{freeThrowPercentage}}%</td></tr>{{/if}}
     </table>
 </div>
+{{/if}}
 
 <div class='espn_zci_tab' id='espn_zci_gamelog'>
     <div class='blurb'>
