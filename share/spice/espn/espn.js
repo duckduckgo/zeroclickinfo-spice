@@ -60,6 +60,8 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
             ddg_spice_espn_player.foulsCommitted = ddg_spice_espn_player.stats.foulsCommitted;
         break;
     }
+
+    return ddg_spice_espn_player;
 }
 
 var ddg_spice_espn_player = {};
@@ -113,7 +115,7 @@ function ddg_spice_espn(api_result) {
 
     // setup player's stats & process them
     ddg_spice_espn_player.stats = ddg_spice_espn_player_info.stats ? ddg_spice_espn_player_info.stats : {};
-    ddg_spice_espn_process_stats(ddg_spice_espn_player);
+    ddg_spice_espn_player = ddg_spice_espn_process_stats(ddg_spice_espn_player);
 
     // 20131030 (caine): started a hack to determine if stats were useful
     // and then realized it needed template support so tabling as aspirational
