@@ -44,6 +44,7 @@ Handlebars.registerHelper("pretty_release_date", function() {
             break;
         case 3:
             postfix = "rd";
+            break;
         default:
             postfix = "th";
     }
