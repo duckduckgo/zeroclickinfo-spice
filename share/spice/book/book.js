@@ -45,6 +45,15 @@ function ddg_spice_book(api_result) {
     // Get only the year of release date for header 
     data.release_year = (data.release_date || "").match(/^\d{4}/);
 
+    // Filter critic reviews that have really short critic reviews.
+    var critic_reviews = [];
+    for(var i = 0; i < data.critic_reviews.length; i++) {
+	if(data.critic_reviews[i].snippet.length > 10) {
+	    critic_reviews.push(data.critic_reviews[i]);
+	}
+    }
+    data.critic_reviews = critic_reviews;
+    
     // Pick a random critic review out of all the reviews returned
     data.critic_review = data.critic_reviews[Math.floor(Math.random() * data.critic_reviews.length)];
 
