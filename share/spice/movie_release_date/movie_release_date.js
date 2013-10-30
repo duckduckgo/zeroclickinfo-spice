@@ -3,9 +3,10 @@ function ddg_spice_movie_release_date (api_result) {
     if(!api_result.results || api_result.results.length === 0)
         return;
     var data = null;
+    var ignore = ["release", "date", "premiere", "of", "for", "when", "will", "did", "come", "out", "air"];
     for(var i=0; i < api_result.results.length; i++) {
         var curr = api_result.results[i];
-        if(curr.release_date && DDG.isRelevant(curr.original_title, ["release", "date", "premiere", "of", "for", "premiere"])) {
+        if(curr.release_date && DDG.isRelevant(curr.original_title, ignore, 4, true)) {
             data = curr;
             break;
         }
@@ -14,7 +15,7 @@ function ddg_spice_movie_release_date (api_result) {
         return;
     Spice.render({
         data             : data,
-        header1          : data.title + " (Release Date)",
+        header1          : data.title + " (USA Release Date)",
         source_url       : 'http://www.themoviedb.org/movie/' + data.id,
         source_name      : 'TheMovieDB',
         spice_name       : 'movie_release_date'
