@@ -1,33 +1,85 @@
-# ZeroClickInfo Spice - Pull Request Template
+# Spice Pull Request Template
 
-We ask that you please use this template when submitting a instant answer pull request so we can better understand your instant answer and help you along when necessary.
+We ask that you please use this template when submitting an instant answer pull request so we can better understand it and help you along when necessary.
 
-## Required
+**What does your instant answer do?**
 
-**Instant Answer functionality** :
-(Explain what you instant answer does)
 
-**Instant Answer data source (API)** :
-(Provide the name/url of the API)
+**What problem does your instant answer solve (Why is it better than organic links)?**
 
-**Reason for API selection** :
-(Any special reason? Is it the only one? Any possible alternatives?)
 
-**Example queries** :
-(Provide a couple queries that would trigger this instant answer)
+**What is the data source for your instant answer? (Provide a link if possible)**
 
-**Instant Answer Audience** :
-(Any communities this is especially useful for?)
 
-**Have you done any cross-browser testing?**
-(All instant answers must be cross browser compatible)
+**Why did you choose this data source?**
 
-## If Applicable
-**Is this instant answer connected to an [Ideas.DuckDuckHack](https://duckduckhack.uservoice.com/forums/5168-ideas-for-duckduckgo-instant-answer-instant answers) or [Duck.co](http://duck.co/) thread?**
-(Please provide a link)
 
-**Which existing instant answers will this instant answer supersede/overlap with?**
-(List the instant answer names) 
+**Are there any other alternative (better) data sources?**
+
+
+**What are some example queries that trigger this instant answer?**
+
+
+**Which communities will this instant answer be especially useful for? (gamers, book lovers, etc)**
+
+
+**Is this instant answer connected to an [Ideas.DuckDuckHack](https://duckduckhack.uservoice.com/forums/5168-ideas-for-duckduckgo-instant-answer-plugins) or [Duck.co](http://duck.co/) thread?**
+
+
+**Which existing instant answers will this one supersede/overlap with?**
+
 
 **Are you having any problems? Do you need our help with anything?**
-(Let us know!)
+
+**\*\*Note:** Please attach a screenshot for new instant answer pull requests, and for pull requests which modify the look/design of existing instant answers.
+
+##Checklist
+Please place a ✔ where appropriate.
+
+```
+[] Added metadata and attribution information
+[] Wrote test file and added to t/ directory
+[] Verified that instant answer adheres to design guidelines(https://github.com/duckduckgo/duckduckgo-documentation/blob/master/duckduckhack/styleguides/design_styleguide.md)
+[] Tested cross-browser compatability
+
+    Please let us know which browsers/devices you've tested on:
+    - Windows 8
+        [] Google Chrome   
+        [] Firefox         
+        [] Opera           
+        [] IE 10           
+
+    - Windows 7
+        [] Google Chrome   
+        [] Firefox         
+        [] Opera           
+        [] IE 8            
+        [] IE 9            
+        [] IE 10           
+
+    - Windows XP
+        [] IE 7            
+        [] IE 8            
+
+    - Mac OSX
+        [] Google Chrome   
+        [] Firefox         
+        [] Opera           
+        [] Safari          
+
+    - iOS (iPhone)
+        [] Safari Mobile   
+        [] Google Chrome   
+        [] Opera           
+
+    - iOS (iPad)
+        [] Safari Mobile   
+        [] Google Chrome   
+        [] Opera            
+
+    - Android
+        [] Firefox         
+        [] Native Browser  
+        [] Google Chrome   
+        [] Opera
+```
