@@ -8,8 +8,6 @@ function ddg_spice_amazon(api_response) {
     ddg_spice_amazon_query =
         DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
 
-    api_response.results = [api_response.results[0]];
-
     // Pass single item response into data object
     if (api_response.results.length == 1) {
         var data = api_response.results[0];
