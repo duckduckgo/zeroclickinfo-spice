@@ -3,6 +3,7 @@ function ddg_spice_game_info(api_result) {
     var datas = api_result.results;
     var query = DDG.get_query().replace("games", "").replace("game", "").replace("giantbomb", "").trim();
     var ignore = ["game", "games", "giantbomb"];
+    // filter out irrelevant and malformed results
     datas = datas.filter(function(data) { return data.name != null && data.image != null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));});
     if(datas.length == 0)
         return;
@@ -24,6 +25,11 @@ function ddg_spice_game_info(api_result) {
         },
     });
 }
+/**
+ * release_date
+ *
+ * Find the release date for a game
+ */
 Handlebars.registerHelper("release_date", function() {
     var date_info = {
         month: [
@@ -48,6 +54,11 @@ Handlebars.registerHelper("release_date", function() {
     }
     return date_info.day[date.getDay()] + " " + date.getDate() + postfix + " " + date_info.month[date.getMonth()] + " " + date.getFullYear();
 });
+/** 
+ * platform_summary
+ *
+ * Summarise the platforms a game is available on
+ */
 Handlebars.registerHelper("platform_summary", function() {
     var ps = this.platforms;
     var max = Math.min(ps.length, 3);
