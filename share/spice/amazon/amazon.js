@@ -37,7 +37,7 @@ function ddg_spice_amazon(api_response) {
         if (item && !is_cached)
             nrj('/m.js?r='
                 + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
-                + '&cb=ddg_spice_amazon_detail');
+                + '&cb=ddg_spice_amazon_reviews');
     };
 
     ddg_spice_amazon_carousel_add_items =
@@ -64,10 +64,10 @@ function ddg_spice_amazon(api_response) {
                     obj.image_url = obj.data.img;
 
                     // Get "star rating" for item and pass it
-                    // to ddg_spice_amazon_detail
+                    // to ddg_spice_amazon_reviews
                     $.getJSON(
                         '/m.js?r='+ escape(obj.data.rating.replace('http://www.amazon.com/reviews/iframe?', '')),
-                        function( response ){ ddg_spice_amazon_detail(response) }
+                        function( response ){ ddg_spice_amazon_reviews(response) }
                     );
                 }
             }
@@ -88,7 +88,7 @@ function ddg_spice_amazon_wait_for_render(api_response) {
     }
 }
 
-function ddg_spice_amazon_detail(api_response) {
+function ddg_spice_amazon_reviews(api_response) {
 
     if (api_response.stars == 'unrated') {
         $('<span>unrated</span>')
