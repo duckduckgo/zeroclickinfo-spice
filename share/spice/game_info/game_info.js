@@ -1,10 +1,9 @@
 function ddg_spice_game_info(api_result) {
-    "use strict";
     if (api_result == null || api_result.error != "OK" || api_result.results == null || api_result.results.length <= 0) return;
     var datas = api_result.results;
     var query = DDG.get_query().replace("games", "").replace("game", "").replace("giantbomb", "").trim();
     var ignore = ["game", "games", "giantbomb"];
-    datas = datas.filter(function(data) { return data.name != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));});
+    datas = datas.filter(function(data) { return data.name != null && data.image != null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));});
     if(datas.length == 0)
         return;
     Spice.render({
@@ -25,16 +24,15 @@ function ddg_spice_game_info(api_result) {
         },
     });
 }
-ddg_spice_game_info.date_info = {
-    month: [
-        "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-    ],
-    day: [
-        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-    ]
-}
-
 Handlebars.registerHelper("release_date", function() {
+    var date_info = {
+        month: [
+            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+        ],
+        day: [
+            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+        ]
+    };
     var release = this.original_release_date.split(" ")[0];
     var parts = release.split("-");
     var date = new Date(parts[0], parts[1] - 1, parts[2]);
@@ -48,5 +46,23 @@ Handlebars.registerHelper("release_date", function() {
     if(parts[2] > 10 && parts[2] < 20) {
         postfix = "th";
     }
-    return ddg_spice_game_info.date_info.day[date.getDay()] + " " + date.getDate() + postfix + " " + ddg_spice_game_info.date_info.month[date.getMonth()] + " " + date.getFullYear();
+    return date_info.day[date.getDay()] + " " + date.getDate() + postfix + " " + date_info.month[date.getMonth()] + " " + date.getFullYear();
+});
+Handlebars.registerHelper("platform_summary", function() {
+    var ps = this.platforms;
+    var max = Math.min(ps.length, 3);
+    var isCut = max < ps.length;
+    var s = "";
+    for(var i = 0; i < max; i++) {
+        if(i > 0 && i == max - 1 && !isCut) {
+            s += " and ";
+        } else if(i > 0) {
+            s += ", ";
+        }
+        s += "<a href="+ps[i].site_detail_url+">"+ps[i].name+"</a>";
+    }
+    if(isCut) {
+        s += " and "+(ps.length - max)+" more";
+    }
+    return s;
 });

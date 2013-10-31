@@ -1,7 +1,7 @@
 <a href="{{site_detail_url}}">{{name}}</a><br>
 {{#if platforms}}
 <span class="game_info_field">Platforms:</span>
-{{#concat platforms sep=", " conj=" and "}}<a href="{{site_detail_url}}" title="{{name}}">{{abbreviation}}</a>{{/concat}}
+{{{platform_summary}}}
 <br>
 {{/if}}
 {{#if original_game_rating}}
