@@ -17,7 +17,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::BBC'
     ),
-    'bbc two tomorrow' => test_spice(
+    'bbc two schedule for tomorrow' => test_spice(
         '/js/spice/bbc/bbctwo/england/tomorrow',
         call_type => 'include',
         caller => 'DDG::Spice::BBC'
