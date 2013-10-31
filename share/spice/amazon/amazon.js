@@ -1,5 +1,4 @@
 var ddg_spice_amazon_carousel_add_items;
-var ddg_spice_amazon_single_item;
 var ddg_spice_amazon_query;
 
 function ddg_spice_amazon(api_response) {
@@ -9,13 +8,11 @@ function ddg_spice_amazon(api_response) {
     ddg_spice_amazon_query =
         DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
 
-    // Get review stars
+    api_response.results = [api_response.results[0]];
+
+    // Pass single item response into data object
     if (api_response.results.length == 1) {
-        ddg_spice_amazon_single_item = api_response.results[0];
-        nrj('/m.js?r='+ escape(ddg_spice_amazon_single_item.rating
-                        .replace('http://www.amazon.com/reviews/iframe?', ''))
-            + '&cb=ddg_spice_amazon_render_single');
-        return;
+        var data = api_response.results[0];
     }
 
     var spotlight_resize = function(index, item, obj, is_cached) {
@@ -45,6 +42,7 @@ function ddg_spice_amazon(api_response) {
 
     ddg_spice_amazon_carousel_add_items =
         Spice.render({
+            data                     : data || api_response,
             header1                  : ddg_spice_amazon_query + ' (Amazon)',
             source_url               : api_response.more_at,
             source_name              : 'Amazon',
@@ -52,15 +50,27 @@ function ddg_spice_amazon(api_response) {
             force_favicon_domain     : 'www.amazon.com',
             template_frame           : 'carousel',
             spice_name               : 'amazon',
+            template_normal          : 'amazon_single',
+            force_no_fold            : true,
+            item_callback            : spotlight_resize,
             template_options         : {
                 template_detail          : 'amazon_detail',
                 template_item            : 'amazon',
-                use_alternate_template   : false, // single item case will be handled by the backend not by carousel
                 items                    : api_response.results,
-                li_height                : 130
-            },
-            force_no_fold            : true,
-            item_callback            : spotlight_resize,
+                li_height                : 130,
+                single_item_handler      : function(obj){
+
+                    // set image_url to populate img_zero_click
+                    obj.image_url = obj.data.img;
+
+                    // Get "star rating" for item and pass it
+                    // to ddg_spice_amazon_detail
+                    $.getJSON(
+                        '/m.js?r='+ escape(obj.data.rating.replace('http://www.amazon.com/reviews/iframe?', '')),
+                        function( response ){ ddg_spice_amazon_detail(response) }
+                    );
+                }
+            }
         });
 
     nrj('/m.js?pg=2'
@@ -79,15 +89,16 @@ function ddg_spice_amazon_wait_for_render(api_response) {
 }
 
 function ddg_spice_amazon_detail(api_response) {
+
     if (api_response.stars == 'unrated') {
         $('<span>unrated</span>')
-            .insertAfter('#ddgc_detail .stars');
-        $('#ddgc_detail .stars').hide();
+            .insertAfter('#spice_amazon .stars');
+        $('#spice_amazon .stars').hide();
     } else {
-        $('#ddgc_detail .stars')
+        $('#spice_amazon .stars')
             .attr('src', '/iu/?u=' + api_response.stars);
     }
-    $('#ddgc_detail .review-count')
+    $('#spice_amazon .review-count')
         .text(api_response.reviews);
 }
 
@@ -106,34 +117,4 @@ function ddg_spice_amazon_deep_image(api_response) {
                    'border' : '1px solid black' })
         );
     });
-
-}
-
-function ddg_spice_amazon_render_single(api_response) {
-    ddg_spice_amazon_single_item.stars = api_response.stars;
-    ddg_spice_amazon_single_item.reviews = api_response.reviews;
-    Spice.render({
-        source_url               : api_response.more_at,
-        source_name              : 'Amazon',
-        data                     : ddg_spice_amazon_single_item,
-        image_url                : ddg_spice_amazon_single_item.img,
-        force_favicon_domain     : 'www.amazon.com',
-        spice_name               : 'amazon',
-        template_normal          : 'amazon_single',
-        force_no_fold            : true,
-    });
-    amazon_single_images(ddg_spice_amazon_single_item);
-}
-
-function amazon_single_images(api_response) {
-    if (api_response.stars == 'unrated') {
-        $('<span>unrated</span>')
-            .insertAfter('#spice_amazon .stars');
-        $('#spice_amazon .stars').hide();
-    } else {
-        $('#spice_amazon .stars')
-            .attr('src', '/iu/?u=' + api_response.stars);
-    }
-    $('#spice_amazon .review-count')
-        .text(api_response.reviews);
 }
