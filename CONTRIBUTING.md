@@ -1,4 +1,4 @@
-# Contributing to **Spice**
+# Contributing to the **Spice** repository
 
 At DuckDuckGo, we truly appreciate our community members taking the time to contribute to our open-source repositories. In an effort to ensure contributions are easy for you to make and for us to manage, we have written some guidelines that we ask our contributors to follow so that we can handle pull requests in a timely manner with as little friction as possible.
 
@@ -10,7 +10,7 @@ Before you can do anything, you first need a [GitHub account](https://github.com
 
 - Firstly, please make sure the bug is related to the **Spice** repository. If this bug is about the DuckDuckGo API, or the relevancy of our search results, please visit our feedback page at <https://duckduckgo.com/feedback>. If you're unsure, its best to use the feedback page (your message will be passed along to the correct people).
 
-- Check the **Spice** [issues](#link-to-issues) to see if an issue already exists for the given bug or suggestion
+- Check the **Spice** [issues](https://github.com/duckduckgo/zeroclickinfo-spice/issues) to see if an issue already exists for the given bug or suggestion
   - If one doesn't exist, create a GitHub issue in the **Spice** repository
     - Clearly describe the bug/improvemnt, including steps to reproduce when it is a bug
   - If one already exists, please add any additional comments you have regarding the matter
@@ -65,6 +65,6 @@ If you're submitting a **pull request** (bugfix/addition):
   ```
 
 4. Add your info to the instant answer so we can give you credit for it on the [Goodies page](https://duckduckgo.com/goodies). You'll see your name or handle on the live site!
-Check out the [Metadata README](metadata.md) for detailed instructions on how to include your name and links.
+Check out the [Metadata documentation](https://dukgo.com/duckduckhack/metadata) for detailed instructions on how to include your name and links.
 
-5. Go into GitHub and submit a [pull request!](http://help.github.com/send-pull-requests/) to the **Spice** repository, making sure to use the **Spice** repository's **[Pull Request Template](#link-to-file)**. This will let us know about your changes and start the conversation about integrating it into the live code.
+5. Go into GitHub and submit a [pull request!](http://help.github.com/send-pull-requests/) to the **Spice** repository, making sure to use the **Spice** repository's **[Pull Request Template](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/spice_pr_template.md)**. This will let us know about your changes and start the conversation about integrating it into the live code.
