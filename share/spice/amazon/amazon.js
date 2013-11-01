@@ -60,6 +60,7 @@ function ddg_spice_amazon(api_response) {
 
                     // set image_url to populate img_zero_click
                     obj.image_url = obj.data.img;
+                    obj.header1   = obj.data.heading;
 
                     // Get "star rating" for item and pass it
                     // to ddg_spice_amazon_reviews
