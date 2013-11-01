@@ -6,11 +6,7 @@
 		<a href="{{site_detail_url}}" class="name">{{name}}</a><br>
 		{{#if platforms}}
 		<span class="game_info_field">Platforms:</span>
-		{{#platform_summary platforms}}
-			{{#if site_detail_url}}<a href="{{site_detail_url}}">{{/if}}
-				{{name}}
-			{{#if site_detail_url}}</a>{{/if}}
-			{{/platform_summary}}
+		{{#platform_summary platforms}}{{#if site_detail_url}}<a href="{{site_detail_url}}">{{/if}}{{name}}{{#if site_detail_url}}</a>{{/if}}{{/platform_summary}}
 		<br>
 		{{/if}}
 		{{#if original_game_rating}}
