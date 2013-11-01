@@ -1,13 +1,10 @@
-.bbc_title {
+#spice_bbc .title {
 	color: #444;
 	clear: both;
 }
-.bbc_duration {
+#spice_bbc .duration {
 	color: #555;
 }
-.bbc_big_image {
-	float: right;
-}
-.bbc_details {
+#spice_bbc .details {
 	height: 153px;
 }
