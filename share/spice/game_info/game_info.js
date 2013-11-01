@@ -1,10 +1,17 @@
 function ddg_spice_game_info(api_result) {
-    if (api_result == null || api_result.error != "OK" || api_result.results == null || api_result.results.length <= 0) return;
-    var datas = api_result.results;
-    var query = DDG.get_query().replace("games", "").replace("game", "").replace("giantbomb", "").trim();
+    if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0)
+        return;
     var ignore = ["game", "games", "giantbomb"];
+    var datas = api_result.results;
+    var query = DDG.get_query();
+    for(var i = 0; i < ignore.length; i++) {
+        query = query.replace(ignore[i], "");
+    }
+    query = $.trim(query);
     // filter out irrelevant and malformed results
-    datas = datas.filter(function(data) { return data.name != null && data.image != null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));});
+    datas = $.grep(datas, function(data, ind) {
+        return data.name != null && data.image != null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
+    });
     if(datas.length == 0)
         return;
     Spice.render({
@@ -21,8 +28,9 @@ function ddg_spice_game_info(api_result) {
                 obj.header1 = obj.data.results[0].name;         // set the header
                 obj.image_url = obj.data.results[0].image.thumb_url;    // set the image
                 obj.source_url = obj.data.results[0].site_detail_url; // set the source
+                obj.data.results[0].single = true;
             }
-        },
+        }
     });
 }
 /**
@@ -65,6 +73,5 @@ Handlebars.registerHelper("platform_summary", function(platforms, options) {
     if(platforms.length > 4) {
         platforms = [platforms[0], platforms[1], platforms[2], {name: (platforms.length - 3) + " more"}]
     }
-    console.log(platforms);
     return Handlebars.helpers.concat(platforms, options);
 });

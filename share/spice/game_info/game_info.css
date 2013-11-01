@@ -22,20 +22,6 @@
 #spice_game_info .name {
 	color: #444;
 }
-#spice_game_info .description {
-	position: absolute;
-	left: 100px;
-	width: auto;
-	height: 100%;
-	padding: 8px;
-}
-#spice_game_info .detail_image {
-	position: absolute;
-	left: 0;
-	width: 100px;
-	max-height: 100%;
-	box-shadow: black 0px 0px 2px;
-}
 #spice_game_info .item_container {
 	position: relative;
 	height: 150px;
