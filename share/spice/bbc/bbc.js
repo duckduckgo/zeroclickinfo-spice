@@ -9,7 +9,6 @@ function ddg_spice_bbc_to_str(num) {
     return str;
 }
 function ddg_spice_bbc(api_result) {
-    "use strict";
     var query = DDG.get_query();
     var broadcasts = api_result.schedule.day.broadcasts;
     var programmes = [];
@@ -47,7 +46,6 @@ function ddg_spice_bbc(api_result) {
  * Find the start and end of a programme and format appropriately
  */
 Handlebars.registerHelper("time", function() {
-    "use strict";
     var start = new Date(Date.parse(this.start));
     var end = new Date(Date.parse(this.end));
     return ddg_spice_bbc_to_str(start.getHours()) + ":" + ddg_spice_bbc_to_str(start.getMinutes()) + " - " + ddg_spice_bbc_to_str(end.getHours()) + ":" + ddg_spice_bbc_to_str(end.getMinutes());
@@ -58,7 +56,6 @@ Handlebars.registerHelper("time", function() {
  * Find the duration of a programme and return it
  */
 Handlebars.registerHelper("duration", function() {
-    "use strict";
     function pluralise(n) {
         return n > 1 ? "s" : "";
     }
@@ -81,7 +78,6 @@ Handlebars.registerHelper("duration", function() {
  * Find the full displayable title of a programme and return it
  */
 Handlebars.registerHelper("full_title", function() {
-    "use strict";
     return this.programme.display_titles.title;
 });
 /*
@@ -97,7 +93,6 @@ Handlebars.registerHelper("subtitle", function() {
  * Find the displayable title of a programme and return it
  */
 Handlebars.registerHelper("title", function() {
-    "use strict";
     return this.programme.display_titles.title;
 });
 /*
@@ -122,7 +117,6 @@ Handlebars.registerHelper("url", function() {
  * Find the programme image and return it
  */
 Handlebars.registerHelper("image", function() {
-    "use strict";
     return this.programme.image ? "http://ichef.bbci.co.uk/images/ic/144x81/" + this.programme.image.pid + ".jpg" :  "http://ichef.bbci.co.uk/images/ic/144x81/legacy/episode/"+this.programme.pid+".jpg?nodefault=true";
 });
 /*
@@ -140,6 +134,5 @@ Handlebars.registerHelper("big_image", function() {
  * Find the programme synopsis and return it
  */
 Handlebars.registerHelper("synopsis", function() {
-    "use strict";
     return this.programme.short_synopsis;
 });
