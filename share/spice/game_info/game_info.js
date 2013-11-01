@@ -59,21 +59,12 @@ Handlebars.registerHelper("release_date", function() {
  *
  * Summarise the platforms a game is available on
  */
-Handlebars.registerHelper("platform_summary", function() {
-    var ps = this.platforms;
-    var max = Math.min(ps.length, 3);
-    var isCut = max < ps.length;
-    var s = "";
-    for(var i = 0; i < max; i++) {
-        if(i > 0 && i == max - 1 && !isCut) {
-            s += " and ";
-        } else if(i > 0) {
-            s += ", ";
-        }
-        s += "<a href="+ps[i].site_detail_url+">"+ps[i].name+"</a>";
+Handlebars.registerHelper("platform_summary", function(platforms, options) {
+    options.hash.sep = ", ";
+    options.hash.conj = " and ";
+    if(platforms.length > 4) {
+        platforms = [platforms[0], platforms[1], platforms[2], {name: (platforms.length - 3) + " more"}]
     }
-    if(isCut) {
-        s += " and "+(ps.length - max)+" more";
-    }
-    return s;
+    console.log(platforms);
+    return Handlebars.helpers.concat(platforms, options);
 });
