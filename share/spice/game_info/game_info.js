@@ -12,6 +12,7 @@ function ddg_spice_game_info(api_result) {
     datas = $.grep(datas, function(data, ind) {
         return data.name != null && data.image != null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
     });
+
     if(datas.length == 0)
         return;
     Spice.render({
@@ -25,10 +26,11 @@ function ddg_spice_game_info(api_result) {
             template_item        : "game_info",
             template_detail      : "game_info_details",
             single_item_handler  : function(obj) {            // gets called in the event of a single result
-                obj.header1 = obj.data.results[0].name;         // set the header
-                obj.image_url = obj.data.results[0].image.thumb_url;    // set the image
-                obj.source_url = obj.data.results[0].site_detail_url; // set the source
-                obj.data.results[0].single = true;
+                var data = obj.data.results[0];
+                obj.header1 = data.name;         // set the header
+                obj.image_url = data.image.thumb_url;    // set the image
+                obj.source_url = data.site_detail_url; // set the source
+                data.name = null;
             }
         }
     });
