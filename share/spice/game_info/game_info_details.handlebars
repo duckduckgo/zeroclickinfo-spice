@@ -1,15 +1,22 @@
-<a href="{{site_detail_url}}">{{name}}</a><br>
-{{#if platforms}}
-<span class="game_info_field">Platforms:</span>
-{{{platform_summary}}}
-<br>
-{{/if}}
-{{#if original_game_rating}}
-<span class="game_info_field">Ratings:</span>
-{{#concat original_game_rating sep=", " conj=" and "}}{{name}}{{/concat}}
-<br>
-{{/if}}
-{{#if original_release_date}}
-<span class="game_info_field">Release Date:</span> {{release_date}}<br>
-{{/if}}
-{{{condense deck maxlen="350" fuzz="30"}}}
+<div class="item_container">
+	{{#if image}}
+	<img src="{{image.thumb_url}}" class="detail_image"></img>
+	{{/if}}
+	<div class="description">
+		<a href="{{site_detail_url}}" class="name">{{name}}</a><br>
+		{{#if platforms}}
+		<span class="game_info_field">Platforms:</span>
+		{{{platform_summary}}}
+		<br>
+		{{/if}}
+		{{#if original_game_rating}}
+		<span class="game_info_field">Ratings:</span>
+		{{#concat original_game_rating sep=", " conj=" and "}}{{name}}{{/concat}}
+		<br>
+		{{/if}}
+		{{#if original_release_date}}
+		<span class="game_info_field">Release Date:</span> {{release_date}}<br>
+		{{/if}}
+		<p>{{{condense deck maxlen="350" fuzz="30"}}}</p>
+	</div>
+</div>
