@@ -27,13 +27,14 @@
 	left: 100px;
 	width: auto;
 	height: 100%;
-	padding: 5px;
+	padding: 8px;
 }
 #spice_game_info .detail_image {
 	position: absolute;
 	left: 0;
 	width: 100px;
 	max-height: 100%;
+	box-shadow: black 0px 0px 2px;
 }
 #spice_game_info .item_container {
 	position: relative;
