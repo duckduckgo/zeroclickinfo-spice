@@ -27,10 +27,8 @@ function ddg_spice_game_info(api_result) {
             template_detail      : "game_info_details",
             single_item_handler  : function(obj) {            // gets called in the event of a single result
                 var data = obj.data.results[0];
-                obj.header1 = data.name;         // set the header
                 obj.image_url = data.image.thumb_url;    // set the image
                 obj.source_url = data.site_detail_url; // set the source
-                data.name = null;
             }
         }
     });
