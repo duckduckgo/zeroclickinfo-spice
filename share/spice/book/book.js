@@ -5,6 +5,10 @@ function ddg_spice_book(api_result) {
     }
 
     // Get the query without the trigger words.
+    // We do this because it's a bit easier to do than
+    // just passing a skip array to DDG.isRelevant or DDG.stringsRelevant.
+    // For example, we can't just skip the word book by passing ["book"]
+    // because some book titles have the word book in them such as "the graveyard book".
     var script = $('[src*="/js/spice/book/"]')[0];
     var source = $(script).attr("src");
     var query = source.match(/book\/([^\/]+)/)[1];
@@ -12,14 +16,19 @@ function ddg_spice_book(api_result) {
 
     api_result.books.splice(5);
 
-    // Select the book to display from the returned books
-    // Current logic is to select first book with critic reviews
+    // Select the book to display from the returned books.
     var data;
     for (var i = 0; i < api_result.books.length; i++) {
 	var title = api_result.books[i].title || "";
 	var sub_title = api_result.books[i].sub_title || "";
 	var author = api_result.books[i].author || "";
 
+	// Check relevancy of the item.
+	// 1. Check if we have reviews (rated or unrated is fine).
+	// 2. Check if the title + sub_title is relevant to the query.
+	// 3. Check if the title is relevant to the query.
+	// 4. Check if the title + author is relevant to the query.
+	// 5. Check if the title + sub_title + author is relevant to the query.
 	if((api_result.books[i].review_count || api_result.books[i].unrated_review_count) && 
 	   (DDG.stringsRelevant(title + " " + sub_title, decoded_query, [], 3, true) ||
 	    DDG.stringsRelevant(title, decoded_query, [], 3, true) ||
@@ -30,6 +39,7 @@ function ddg_spice_book(api_result) {
         }
     }
 
+    // Exit immediately if we didn't find a relevant item.
     if (!data) {
 	return;
     }
@@ -88,4 +98,17 @@ Handlebars.registerHelper("prettyDate", function(date) {
         var curr_year = d.getUTCFullYear();
         return m_names[curr_month] + " " + curr_date + ", " + curr_year;
     }
+});
+
+// This function adds a colon before the subtitle.
+// It doesn't add a colon if the subtitle begins with anything other
+// than letters or numbers, e.g., a parenthesis.
+Handlebars.registerHelper("formatSub", function(sub_title) {
+    if(sub_title && sub_title.length > 0) {
+	if(sub_title.match(/^[a-z0-9]/i)) {
+	    return ": " + sub_title;
+	}
+	return " " + sub_title;
+    }
+    return "";
 });
