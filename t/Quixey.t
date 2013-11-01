@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use Test::More;
 use DDG::Test::Spice;
+use JSON;
+use URI::Escape;
 
 # PASSING TESTS
 my @t = (
@@ -11,14 +13,14 @@ my @t = (
     # All platforms
     'flight search app'      => {
     query                    => 'flight%20search',
-    platform_ids             => '%5B2004%2C2008%2C2005%2C8556073%2C2015%5D',
+    platform_ids             => uri_escape (encode_json [(2004, 2005, 2008, 2015, 8556073)]),
     price                    => '999999',
     custom_id                => '2414062669'
     },
 
     'free angry birds app'   => {
     query                    => 'angry%20birds',
-    platform_ids             => '%5B2004%2C2008%2C2005%2C8556073%2C2015%5D',
+    platform_ids             => uri_escape (encode_json [(2004, 2005, 2008, 2015, 8556073)]),
     price                    => '0',
     custom_id                => '2414062669'
     },
@@ -26,14 +28,14 @@ my @t = (
     # Android apps
     'android calculator app' => {
     query                    => 'calculator',
-    platform_ids             => '%5B2005%5D',
+    platform_ids             => uri_escape (encode_json [(2005)]),
     price                    => '999999',
     custom_id                => '75675980'
     },
 
     'google play store traffic' => {
     query                    => 'traffic',
-    platform_ids             => '%5B2005%5D',
+    platform_ids             => uri_escape (encode_json [(2005)]),
     price                    => '999999',
     custom_id                => '75675980'
     },
@@ -41,28 +43,28 @@ my @t = (
     # iOS apps
     'flight tracker ios app' => {
     query                    => 'flight%20tracker',
-    platform_ids             => '%5B2004%5D',
+    platform_ids             => uri_escape (encode_json [(2004)]),
     price                    => '999999',
     custom_id                => '78989893'
     },
 
     'vlc on iphone'          => {
     query                    => 'vlc',
-    platform_ids             => '%5B2004%5D',
+    platform_ids             => uri_escape (encode_json [(2004)]),
     price                    => '999999',
     custom_id                => '78989893'
     },
 
     'quixey free sparrow mail ios' => {
     query                    => 'sparrow%20mail',
-    platform_ids             => '%5B2004%5D',
+    platform_ids             => uri_escape (encode_json [(2004)]),
     price                    => '0',
     custom_id                => '78989893'
     },
 
     'path app for ipad' => {
     query                    => 'path',
-    platform_ids             => '%5B2015%5D',
+    platform_ids             => uri_escape (encode_json [(2015)]),
     price                    => '999999',
     custom_id                => '2414062669'
     },
@@ -70,14 +72,14 @@ my @t = (
     # Blackberry apps
     'whatsapp for blackberry' => {
     query                    => 'whatsapp',
-    platform_ids             => '%5B2008%5D',
+    platform_ids             => uri_escape (encode_json [(2008)]),
     price                    => '999999',
     custom_id                => '2414062669'
     },
 
     'twitter for playbook' => {
     query                    => 'twitter',
-    platform_ids             => '%5B2008%5D',
+    platform_ids             => uri_escape (encode_json [(2008)]),
     price                    => '999999',
     custom_id                => '2414062669'
     },
@@ -85,7 +87,7 @@ my @t = (
     # Windows apps
     'windows phone 8 facebook' => {
     query                    => 'facebook',
-    platform_ids             => '%5B8556073%5D',
+    platform_ids             => uri_escape (encode_json [(8556073)]),
     price                    => '999999',
     custom_id                => '2414062669'
     },
@@ -132,7 +134,7 @@ my @q = (
 );
 
 ddg_spice_test(
-  [qw( DDG::Spice::Quixey)],
+  [qw(DDG::Spice::Quixey)],
   map {
     $_ => undef
   } @q,

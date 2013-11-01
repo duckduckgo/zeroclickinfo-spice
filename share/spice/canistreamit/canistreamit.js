@@ -1,11 +1,12 @@
 function ddg_spice_canistreamit (api_result) {
     "use strict";
 
-    var query = DDG.get_query().replace(/^(?:can\s*i?|how\s*to|where\s*(?:to|can\s+i))?\s*(?:find\s+a)?\s*(.+)$/, "$1");
-
-    if(!api_result || api_result.length === 0 || 
-        !DDG.stringsRelevant(api_result[0].title, query, ["stream", "watch", "streaming"]), 3) {
+    if(!api_result || api_result.length === 0) {
         return;
+    }
+
+    if(!DDG.isRelevant(api_result[0].title, ["stream", "watch", "streaming", "can", "i", "how", "where", "find", "to"], 3)) {
+	return;
     }
 
     Spice.render({

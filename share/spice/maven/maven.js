@@ -1,7 +1,7 @@
 function ddg_spice_maven(api_result) {
     if (api_result.responseHeader.status
         || api_result.response.numFound == 0) return
-
+    
     Spice.render({
         data             : api_result,
         header1          : api_result.responseHeader.params.q
@@ -12,5 +12,9 @@ function ddg_spice_maven(api_result) {
         template_normal  : 'maven',
         force_big_header : true,
         force_no_fold    : true
+    });
+
+    $("#zero_click_abstract").css({
+        "margin": "4px 12px 0px 2px !important",
     });
 }

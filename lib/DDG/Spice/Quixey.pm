@@ -15,7 +15,7 @@ icon_url "/i/www.quixey.com.ico";
 category "entertainment";
 topics "everyday", "special_interest";
 attribution github => ['https://github.com/duckduckgo', 'DuckDuckGo'],
-            twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
+			twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
 
 # Variable Definitions
 my %custom_ids = (2005 => 75675980, 2004 => 78989893);
@@ -87,26 +87,26 @@ handle query_parts => sub {
 	$full_query = trim $full_query;
 	return unless (length $full_query);
 
+	my @platforms;
+	my $platforms_encoded;
+
 	# if platform restiction(s) detected
 	# return query, specify proper ids for API
 	if (defined $restriction) {
-		my @platforms = ();
-		$platforms[0] = $restriction;
-		my $platforms_encoded = encode_json \@platforms;
+		push @platforms, $restriction;
+		$platforms_encoded = encode_json \@platforms;
 		if ($restriction == 2005 or $restriction == 2004) {
 			return $full_query, $platforms_encoded, $max_price, $custom_ids{ $restriction };
 		} else {
 			return $full_query, $platforms_encoded, $max_price, "2414062669";
 		}
 	} else {
-		my @full_platforms = uniq (values %platform_ids);
-		my @platforms = ();
-		foreach my $element(@full_platforms) {
-			if (defined $element and $element ne 0) {
-				push @platforms, int($element);
-			}
-		}
-		my $platforms_encoded = encode_json \@platforms;
+		my @full_platforms = uniq({sort => 1}, values %platform_ids);
+
+		# need to recast as int because uniq and sort convert to string
+		push @platforms, int($_) foreach @full_platforms;
+		$platforms_encoded = encode_json \@platforms;
+
 		return $full_query, $platforms_encoded, $max_price, "2414062669";
 	}
 	return;

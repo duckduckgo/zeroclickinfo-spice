@@ -102,6 +102,12 @@ function ddg_spice_forecast(r) {
       temp_str += ' <span class="fe_feelslike">Feels like '+Math.round(f.currently.apparentTemperature)+'&deg;'+'</span>'
     
     $container.find('.fe_currently .fe_temp').html(temp_str)
+    
+    if(current_summary.length > 45)
+      $container.find('.fe_currently .fe_summary').addClass('fe_small')
+    else
+      $container.find('.fe_currently .fe_summary').removeClass('fe_small')
+    
     $container.find('.fe_currently .fe_summary').html(current_summary)
     
     if(f.currently.windSpeed) {
@@ -128,7 +134,7 @@ function ddg_spice_forecast(r) {
     var $day_template = $(
         '<div class="fe_day"> \
           <span class="fe_label">MON</span> \
-          <canvas class="fe_icon" width="52" height="52" style="width:26px; height:26px" /> \
+          <canvas class="fe_icon" /> \
           <div class="fe_temp_bar"> \
             <span class="fe_high_temp">72&deg;</span> \
             <span class="fe_low_temp">50&deg;</span> \
@@ -187,8 +193,21 @@ function ddg_spice_forecast(r) {
       return
     }
     
-    var alert = f.alerts[0]
-    $('<a target="_blank"></a>').html('<span class="fe_icon">&#9873;</span> '+alert.title).attr('href', alert.uri).appendTo($alert)
+    var alert_message
+    for(var i = 0; i < f.alerts.length; i++) {
+      if(f.alerts[i].title.match(/Special Weather Statement/i) ||
+         f.alerts[i].title.match(/Advisory/i) ||
+         f.alerts[i].title.match(/Statement/i))
+        continue
+      
+      alert_message = f.alerts[i]
+      break
+    }
+
+    if(!alert_message)
+      return
+    
+    $('<a target="_blank"></a>').html('<span class="fe_icon">&#9873;</span> '+alert_message.title).attr('href', alert_message.uri).appendTo($alert)
     
     $container.addClass('alert')
     $alert.show()
