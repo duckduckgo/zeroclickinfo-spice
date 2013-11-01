@@ -1,9 +1,9 @@
 .bbc_title {
-	font-weight: bold;
+	color: #444;
 	clear: both;
 }
 .bbc_duration {
-	font-style: italic;
+	color: #555;
 }
 .bbc_big_image {
 	float: right;
