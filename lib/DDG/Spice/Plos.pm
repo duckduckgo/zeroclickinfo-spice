@@ -1,7 +1,19 @@
 package DDG::Spice::Plos;
-# ABSTRACT: Returns top 5 hits from PLOS database of research articles.
 
 use DDG::Spice;
+
+name 'PLOS Search';
+description 'Search research articles of PLOS journals';
+primary_example_queries 'plos dinosaurs', 'plos echinoderm evolution';
+secondary_example_queries 'plos dinosaurs title:metabolism';
+source 'PLOS';
+category 'special';
+topics 'science';
+icon_url 'http://www.plosone.org/images/favicon.ico';
+code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Plos.pm';
+attribution twitter => 'nelas',
+			github => ['nelas', 'Bruno C. Vellutini'],
+			web => ['http://organelas.com/', 'organelas.com'];
 
 triggers startend => 'plos';
 
