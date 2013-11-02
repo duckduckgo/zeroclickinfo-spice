@@ -1,4 +1,4 @@
-#spice_game_info .game_info_field {
+#spice_game_info .field {
 	color: gray;
 }
 #spice_game_info .header {
@@ -12,11 +12,6 @@
 	width: 100%;
 	display: block;
 	text-align: center;
-}
-#spice_game_info .container {
-	position: relative;
-	width: 100%;
-	height: 100%;
 }
 #spice_game_info .thumbnail {
 	height: 75px;
