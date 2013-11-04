@@ -117,12 +117,28 @@ function ddg_spice_news(api_result) {
 	}
     });
 
-    // adjust the box margins - can't do this in css
-    $("#zero_click_wrapper2 #zero_click_abstract").css( {
+    // Since we're hiding the "More at ..." link, we should
+    // also hide the element containing it, but only if it has the class "minimal".
+    var hide_minimal = function() {
+	if($("#ddgc_pagination").hasClass("minimal")) {
+	    $("#ddgc_pagination").hide();
+	} else {
+	    $("#ddgc_pagination").show();
+	}
+    };
+
+    $(function() {
+	// Decide whether we should show or hide the #ddgc_pagination.
+	hide_minimal();
+	$(window).resize(hide_minimal);
+
+	// Adjust the box margins--can't do this in css
+	$("#zero_click_wrapper2 #zero_click_abstract").css( {
             'padding-left': '0px !important',
             'margin-left' : '0px !important'
-        });
-    $("#zero_click_more_at_wrap").toggle(false);
+	});
+	$("#zero_click_more_at_wrap").toggle(false);
+    });
 }
 
 Handlebars.registerHelper("getIcon", function(url) {
