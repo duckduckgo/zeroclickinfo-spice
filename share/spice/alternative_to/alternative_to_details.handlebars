@@ -1,3 +1,3 @@
 {{#rt}} <a href="{{Url}}">{{Name}}</a> <span class="likes">({{Votes}} likes)</span>{{/rt}}
-<i class="details-property">{{#rd "Description"}}</i> {{{ShortDescription}}}{{/rd}}
-<i class="details-property">{{#rd "Platforms"}}</i> {{#concat Platforms sep=", " conj=" and "}}{{this}}{{/concat}}{{/rd}}
+{{#rd "Description"}} {{{ShortDescription}}}{{/rd}}
+{{#rd "Platforms"}} {{#concat Platforms sep=", " conj=" and "}}{{this}}{{/concat}}{{/rd}}
