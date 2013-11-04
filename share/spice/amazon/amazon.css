@@ -31,6 +31,7 @@
 }
 
 #spice_amazon .description {
+    -webkit-text-size-adjust: 100%;
     float: left;
     width: 450px;
     margin-left: 20px;
