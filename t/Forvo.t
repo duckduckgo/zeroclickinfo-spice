@@ -11,9 +11,7 @@ ddg_spice_test(
         '/js/spice/forvo/duck/empty',
         call_type => 'include',
         caller => 'DDG::Spice::Forvo',
-        is_cached => 0
     ),
 );
 
 done_testing;
-

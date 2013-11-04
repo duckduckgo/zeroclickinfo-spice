@@ -11,14 +11,28 @@ ddg_spice_test(
         '/js/spice/rhymes/duck',
         call_type => 'include',
         caller => 'DDG::Spice::Rhymes',
-        is_cached => 1
     ),
-    'rhyme list' => test_spice(
+    'what words rhymes with quack?' => test_spice(
+        '/js/spice/rhymes/quack',
+        call_type => 'include',
+        caller => 'DDG::Spice::Rhymes',
+    ),
+    'dax rhymes with?' => test_spice(
+        '/js/spice/rhymes/dax',
+        call_type => 'include',
+        caller => 'DDG::Spice::Rhymes',
+    ),
+    'Rhyme LIST' => test_spice(
         '/js/spice/rhymes/list',
         call_type => 'include',
         caller => 'DDG::Spice::Rhymes',
-        is_cached => 1
     ),
+    'words that rhyme with rhyme' => test_spice(
+        '/js/spice/rhymes/rhyme',
+        call_type => 'include',
+        caller => 'DDG::Spice::Rhymes',
+    ),
+    'rhymes' => undef,
 );
 
 done_testing;

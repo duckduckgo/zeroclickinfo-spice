@@ -1,0 +1,22 @@
+#spice_leak_db table {
+    /* border:1px solid #d0d0d0; */
+    width:100%;
+    margin:5px;
+}
+
+#spice_leak_db tr {
+    border-bottom:1px solid #efefef;
+}
+
+#spice_leak_db th {
+    vertical-align:bottom;
+    text-align:left;
+    font-size:83.3%;
+    font-style:italic;
+    padding-left:3px;
+}
+
+#spice_leak_db td {
+    padding:2px;
+    max-width:250px;
+}

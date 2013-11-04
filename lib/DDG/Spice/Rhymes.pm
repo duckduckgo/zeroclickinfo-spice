@@ -20,8 +20,14 @@ spice to => 'http://rhymebrain.com/talk?function=getRhymes&word=$1&jsonp={{callb
 
 spice proxy_cache_valid => "418 1d";
 
-handle query_lc => sub {
-    return $1 if /^(?:(?:what|words?)\s+)?(?:that\s+)?(?:rhymes?(?:\s+?(?:with|for))?\s*)?([a-zA-Z]+)(?:\s+rhymes?)?(?:\s+with)?\??$/;
+handle remainder_lc => sub {
+    /^
+    (?:(?:what|words|that?)\s+){0,2}
+    (?:(?:with|for)\s+)?
+    ([a-zA-Z]+)
+    (?:\s+with)?\??
+    $/x;
+    return $1 if defined $1;
     return;
 };
 

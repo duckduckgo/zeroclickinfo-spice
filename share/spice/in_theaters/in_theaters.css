@@ -1,21 +1,13 @@
-.metadata {
+#spice_in_theaters .spice_in_theaters_metadata {
     color: rgb(119, 119, 119);
     font-size: 90%;
 }
 
-#ddgcarousel #in_theaters li.ddgc_item img {
-    max-height: 130px;
-    max-width: none;
+#spice_in_theaters li.ddgc_item img {
+    max-height: 120px !important;
+    max-width: none !important;
 }
 
-#ddgcarousel #in_theaters li.ddgc_item {
+#spice_in_theaters li.ddgc_item {
     height: 165px;
-}
-
-#ddgcarousel #in_theaters #ddgc_slider {
-    padding-bottom: 45px;
-}
-
-#ddgcarousel #in_theaters #ddgc_frame {
-    height: 180px;
 }

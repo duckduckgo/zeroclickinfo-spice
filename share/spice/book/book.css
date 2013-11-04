@@ -1,0 +1,29 @@
+#spice_book .spice_pane_left {
+    width: 40%;
+    display: inline-block;
+}
+
+#spice_book .spice_pane_right {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    border-left: 1px solid rgba(0,0,0,0.1);
+    padding-left: 10px;
+}
+
+#spice_book .book_data_item {
+    display: inline-block;
+    padding-right: 6px;
+    color: gray;
+}
+
+#spice_book #critic-link {
+    float: right;
+}
+
+#spice_book #book-rating-visual {
+    display: inline;
+    width: 21px;
+    vertical-align: -12%;
+}
+

@@ -1,11 +1,4 @@
-#alternative_to #ddgc_slides li {
-	height: 60px !important;
-}
-
-#alternative_to #ddgc_slides p{
-	height: 0px !important;
-}
-
-#alternative_to #ddgc_slides span {
-	margin-top: 0px !important;
+#spice_alternative_to .rd_key {
+    color: #777777;
+    font-style: italic;
 }

@@ -27,10 +27,26 @@ function ddg_spice_sound_cloud (api_result) {
         }
     });
 
-    // Remove the tracks that aren't streamable.
-    var context= [];
+    // Items that we should not show.
+    var skip_id = {
+	80320921: true, 
+	75349402: true
+    };
+
+    var skip_array = ["soundcloud"];
+
+    var context = [];
     for(var i = 0; i < api_result.length; i += 1) {
-        if(api_result[i].streamable) {
+	// Only add the tracks that are:
+	// - Streamable.
+	// - Are not in the skip hash.
+	// - Is relevant.
+	var inSkip = api_result[i].id in skip_id;
+	var isRelevantTitle = DDG.isRelevant(api_result[i].title, skip_array);
+	var isRelevantUsername = DDG.isRelevant(api_result[i].user.username, skip_array);
+	var isRelevantBoth = DDG.isRelevant(api_result[i].title + " " + api_result[i].user.username, skip_array);
+
+        if(api_result[i].streamable && !inSkip && (isRelevantTitle || isRelevantUsername || isRelevantBoth)) {
             context.push(api_result[i]);
         }
     }
@@ -55,12 +71,16 @@ function ddg_spice_sound_cloud (api_result) {
         header1                  : decodeURIComponent(query) + " (SoundCloud)",
         source_url               : "https://soundcloud.com/search?q=" + query,
         source_name              : "SoundCloud",
-        template_normal          : "sound_cloud",
-        carousel_css_id          : "sound_cloud",
+        spice_name               : "sound_cloud",
         template_frame           : "carousel",
+        template_options         : {
+            items           : context,
+            template_detail : "sound_cloud_details",
+            single_item_handler: function(obj) {
+                obj.image_url = obj.data[0].artwork_url || obj.data[0].user.avatar_url;
+            }
+        },
         force_big_header         : true,
-        carousel_items           : context,
-        carousel_template_detail : "sound_cloud_details",
         force_no_fold            : true,
         item_callback            : function() {
             if(window.soundManager) {
@@ -195,13 +215,4 @@ Handlebars.registerHelper("chooseImage", function(artwork, avatar) {
     "use strict";
 
     return artwork || avatar;
-});
-
-// Get the HTTPS version of the audio file.
-Handlebars.registerHelper("toHttps", function(audio) {
-    "use strict";
-
-    if(audio) {
-        return audio.replace(/^http:/, "https:");
-    }
 });

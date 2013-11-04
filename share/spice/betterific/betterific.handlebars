@@ -1,46 +1,49 @@
 {{#if betterifs.betterifs}}
-  <div class="kind-wrapper">
-    <div class="header">Wouldn't it be better if...</div>
-    <div class="betterifs collapsible open">
-      <ul>
-        {{#each betterifs.betterifs}}
-          {{{include "betterif"}}}
-        {{/each}}
-      </ul>
+    <div class="kind-wrapper">
+        <div class="header">Wouldn't it be better if...</div>
+        <div class="betterifs collapsible open">
+          <ul>
+            {{#each betterifs.betterifs}}
+              {{{include "betterif"}}}
+            {{/each}}
+          </ul>
+        </div>
     </div>
-  </div>
 {{/if}}
+
 {{#if tags.tags}}
-  {{#if betterifs.betterifs}}
-    <hr/>
-  {{/if}}
-  <div class="kind-wrapper">
-    <a href="#" class="header">Tags</a>
-    <div class="tags collapsible{{#unless betterifs.betterifs}} open{{/unless}}">
-      <ul>
-        {{#each tags.tags}}
-          {{{include "tag"}}}
-        {{/each}}
-      </ul>
-    </div>
-  </div>
-{{/if}}
-{{#if users.users}}
-  {{#if betterifs.betterifs}}
-    <hr/>
-  {{else}}
-    {{#if tags.tags}}
-      <hr/>
+    {{#if betterifs.betterifs}}
+        <hr/>
     {{/if}}
-  {{/if}}
-  <div class="kind-wrapper">
-    <a href="#" class="header">Users</a>
-    <div class="users collapsible{{#unless betterifs.betterifs}}{{#unless tags.tags}} open{{/unless}}{{/unless}}">
-      <ul>
-        {{#each users.users}}
-          {{{include "user"}}}
-        {{/each}}
-      </ul>
+    <div class="kind-wrapper">
+        <a href="#" class="header">Tags</a>
+        <div class="tags collapsible{{#unless betterifs.betterifs}} open{{/unless}}">
+            <ul>
+                {{#each tags.tags}}
+                    {{{include "tag"}}}
+                {{/each}}
+            </ul>
+        </div>
     </div>
-  </div>
+{{/if}}
+
+{{#if users.users}}
+    {{#if betterifs.betterifs}}
+        <hr/>
+    {{else}}
+        {{#if tags.tags}}
+            <hr/>
+        {{/if}}
+    {{/if}}
+    
+    <div class="kind-wrapper">
+        <a href="#" class="header">Users</a>
+        <div class="users collapsible{{#unless betterifs.betterifs}}{{#unless tags.tags}} open{{/unless}}{{/unless}}">
+            <ul>
+                {{#each users.users}}
+                    {{{include "user"}}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
 {{/if}}

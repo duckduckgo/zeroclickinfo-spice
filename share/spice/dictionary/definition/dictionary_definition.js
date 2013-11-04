@@ -15,6 +15,9 @@
 
 // Dictionary::Definition will call this function.
 // This function gets the definition of a word.
+
+nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
+
 function ddg_spice_dictionary_definition (api_result) {
     "use strict";
     var path = "/js/spice/dictionary";
@@ -100,7 +103,9 @@ function ddg_spice_dictionary_hyphenation (api_result) {
     var result = [];
     if(api_result && api_result.length > 0) {
         for(var i = 0; i < api_result.length; i += 1) {
-            result.push(api_result[i].text);
+            if(i === api_result[i].seq) {
+                result.push(api_result[i].text);
+            }
         }
         // Replace the, rather lame, non-hyphenated version of the word.
         $("#hyphenation").html(result.join("•"));
@@ -138,12 +143,6 @@ function ddg_spice_dictionary_audio (api_result) {
 
     // Check if we got anything from Wordnik.
     if(api_result && api_result.length > 0) {
-        icon.html("▶");
-        icon.removeClass("widget-disappear");
-
-        // Load the icon immediately if we know that the url exists.
-        resetIcon();
-
         // Find the audio url that was created by Macmillan (it usually sounds better).
         for(var i = 0; i < api_result.length; i += 1) {
             if(api_result[i].createdBy === "macmillan" && url === "") {
@@ -185,6 +184,13 @@ function ddg_spice_dictionary_audio (api_result) {
 
         sound.load();
         isLoaded = true;
+
+        // Set icon.
+        icon.html("▶");
+        icon.removeClass("widget-disappear");
+
+        // Load the icon immediately if we know that the url exists.
+        resetIcon();
     };
 
     // Initialize the soundManager object.
@@ -219,12 +225,8 @@ function ddg_spice_dictionary_audio (api_result) {
 
     // Check if soundManager was already loaded. If not, we should load it.
     // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
-    if(!window.soundManager) {
-        window.SM2_DEFER = true;
-        $.getScript("/soundmanager2/script/soundmanager2-nodebug-jsmin.js", soundSetup);
-    } else {
-        isLoaded = true;
-    }
+    window.SM2_DEFER = true;
+    soundSetup();
 };
 
 // We should shorten the part of speech before displaying the definition.

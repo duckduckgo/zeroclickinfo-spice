@@ -15,11 +15,13 @@ function ddg_spice_quixey (api_result) {
         header1: api_result.q + ' (App Search)',
         force_big_header: true,
         more_logo: "quixey_logo.png",
+        spice_name: 'quixey',
         template_frame: "carousel",
-        template_normal: "quixey",
-        carousel_css_id: "quixey",
-        carousel_template_detail: "quixey_detail",
-        carousel_items: relevants
+        template_options: {
+            template_item: "quixey",
+            template_detail: "quixey_detail",
+            items: relevants
+        }
     });
 
     // Check for relevant app results
@@ -28,6 +30,7 @@ function ddg_spice_quixey (api_result) {
             apps = [],
             backupApps = [],
             categories = [
+                "developer tools",
                 "action",
                 "adventure",
                 "arcade",
@@ -35,7 +38,6 @@ function ddg_spice_quixey (api_result) {
                 "business",
                 "casino",
                 "design",
-                "developer tools",
                 "dice",
                 "education",
                 "educational",
@@ -67,30 +69,32 @@ function ddg_spice_quixey (api_result) {
                 "video",
                 "weather"],
             skip_words = [
-                "app",
-                "apps",
-                "application",
-                "applications",
-                "android",
-                "droid",
                 "google play store",
-                "google play",
-                "windows phone",
                 "windows phone 8",
-                "windows mobile",
-                "blackberry",
-                "playbook",
                 "apple app store",
-                "apple app",
+                "windows mobile",
+                "windows phone",
+                "applications",
+                "release data",
+                "application",
+                "google play",
+                "blackberry",
                 "ipod touch",
-                "ipod",
+                "downloaded",
+                "apple app",
+                "playbook",
+                "download",
+                "android",
+                "release",
                 "iphone",
+                "search",
+                "droid",
+                "apps",
+                "free",
+                "ipod",
                 "ipad",
                 "ios",
-                "free",
-                "search",
-								"release",
-								"release data"
+                "app"
             ],
             app;
 
@@ -105,7 +109,7 @@ function ddg_spice_quixey (api_result) {
             } else if (app.hasOwnProperty("short_desc") &&
                        DDG.isRelevant(app.short_desc.toLowerCase(), skip_words) && app.icon_url) {
                             backupApps.push(app);
-            } else if (app.custom.hasOwnProperty("category") &&
+            } else if (app.custom && app.custom.hasOwnProperty("category") &&
                        DDG.isRelevant(app.custom.category.toLowerCase(), skip_words) && app.icon_url) {
                             backupApps.push(app);
             } else{
@@ -149,6 +153,22 @@ function qprice(p) {
 // {{price x}}
 Handlebars.registerHelper("price", function(obj) {
     return qprice(obj);
+});
+
+Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
+    var domain = "d1z22zla46lb9g.cloudfront.net";
+
+    // Get the image server that the icon_url in platforms is pointing to.
+    // It's not ideal, but the link to the app's image still has to redirect
+    // and it redirects to HTTPS. What we want is an HTTP link (for speed).
+    if(platforms && platforms.length > 0 && platforms[0].icon_url) {
+	domain = platforms[0].icon_url.match(/https?:\/\/([^\/]+)/)[1];
+    }
+
+    // Replace the domain in our icon_url to the one that we got from
+    // the platforms array.
+    icon_url = icon_url.match(/\/image\/.+/)[0];
+    return "http://" + domain + icon_url;
 });
 
 // template helper to format a price range

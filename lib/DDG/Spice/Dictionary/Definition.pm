@@ -12,22 +12,23 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution web => ['http://duckduckgo.com', 'DuckDuckGo'],
             twitter => ['http://twitter.com/duckduckgo', '@duckduckgo'];
 
-spice to => 'https://api.wordnik.com/v4/word.json/$1/definitions?includeRelated=true&useCanonical=true&includeTags=true&limit=3&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}';
-triggers startend => "define", "define:", "definition", "definition of", "definition of:";
-spice is_cached => 1;
+spice to => 'http://api.wordnik.com/v4/word.json/$1/definitions?includeRelated=true&useCanonical=true&includeTags=true&limit=3&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}';
 
-handle query_lc => sub {
-	my $query = $_;
-	if($query =~ /^(?:definition of\:?|define\:?|definition\:?) (.+)/) {
-		$query = $1;
-		$query =~ s/^\s+|\s+$//g;
-		return lc $query;
-	} elsif($query =~ /(.+) (?:define|definition)$/) {
-		$query = $1;
-		$query =~ s/^\s+|\s+$//g;
-		return lc $query;
-	}
-    return;
+triggers startend => (
+    "define",
+    "define:",
+    "definition",
+    "definition:",
+    "definition of",
+    "definition of:",
+    "meaning",
+    "meaning of",
+    "meaning of:",
+);
+
+
+handle remainder => sub {
+    return lc $_;
 };
 
 1;

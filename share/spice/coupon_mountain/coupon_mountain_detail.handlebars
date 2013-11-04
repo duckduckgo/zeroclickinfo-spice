@@ -1,0 +1,14 @@
+<div id="coupon_preview">
+    <div class="coupon_code">
+        <div>Use code: </div>
+        <input id="coupon_code" class="button" readonly="readonly" value="{{code}}">
+    </div>
+    
+    <div class="coupon_info">
+        {{merName}}
+        <a class="coupon_description" href="{{displayURL}}">{{{stripExpiry desc}}}</a>
+        {{#check_expiry}}
+            <div class="coupon_expdate">{{dateString expire}}</div>
+        {{/check_expiry}}
+    </div>
+</div>

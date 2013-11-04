@@ -19,7 +19,6 @@ ddg_spice_test(
 		'/js/spice/meta_cpan/App%3A%3ADuckPAN',
 		call_type => 'include',
 		caller => 'DDG::Spice::MetaCPAN',
-		is_cached => 1
         )
     }, @triggers,
 );

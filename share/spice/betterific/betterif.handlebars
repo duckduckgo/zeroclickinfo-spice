@@ -4,7 +4,7 @@
   </span>
   <span class="stats block-stats">
     <small>
-      [{{pluralize upvotes_count "upvote" "upvotes"}}]
+      [{{plural upvotes_count singular="upvote" plural="upvotes" delimeter=","}}]
       ({{#with this.user}}by <a href="http://betterific.com/innovator/{{dashedS username}}/{{id}}" title="See more great ideas from {{first_name}} {{last_name}} at http://betterific.com">{{first_name}} {{last_name}}</a>{{/with}})
     </small>
   </span>
