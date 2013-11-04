@@ -67,12 +67,26 @@ function ddg_spice_book(api_result) {
     // Pick a random critic review out of all the reviews returned
     data.critic_review = data.critic_reviews[Math.floor(Math.random() * data.critic_reviews.length)];
 
-    var header = data.title;
+    // This function adds a colon before the subtitle.
+    // It doesn't add a colon if the subtitle begins with anything other
+    // than letters or numbers, e.g., a parenthesis.
+    var formatSub = function(sub_title) {
+	if(sub_title && sub_title.length > 0) {
+	    if(sub_title.match(/^[a-z0-9]/i)) {
+		return ": " + sub_title;
+	    }
+	    return " " + sub_title;
+	}
+	return "";
+    };
+
+    var header = data.title = data.title + formatSub(data.sub_title);
+    header = Handlebars.helpers.condense(header, {hash: {maxlen: 35}});
 
     Spice.render({
          data              : data,
          force_big_header  : true,
-         header1           : header,
+         header1           : header + " (Book Reviews)",
          source_name       : "idreambooks.com", // More at ...
          source_url        :  data.detail_link,
 	 spice_name        : "book",
@@ -98,17 +112,4 @@ Handlebars.registerHelper("prettyDate", function(date) {
         var curr_year = d.getUTCFullYear();
         return m_names[curr_month] + " " + curr_date + ", " + curr_year;
     }
-});
-
-// This function adds a colon before the subtitle.
-// It doesn't add a colon if the subtitle begins with anything other
-// than letters or numbers, e.g., a parenthesis.
-Handlebars.registerHelper("formatSub", function(sub_title) {
-    if(sub_title && sub_title.length > 0) {
-	if(sub_title.match(/^[a-z0-9]/i)) {
-	    return ": " + sub_title;
-	}
-	return " " + sub_title;
-    }
-    return "";
 });
