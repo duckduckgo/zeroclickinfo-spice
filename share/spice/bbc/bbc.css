@@ -1,10 +1,23 @@
 #spice_bbc .title {
-	color: #444;
-	clear: both;
+	color: #333;
 }
-#spice_bbc .duration {
+#spice_bbc .time {
 	color: #555;
 }
-#spice_bbc .details {
-	height: 153px;
+
+#spice_bbc li.ddgc_item img {
+	max-width: 100% !important;
+	max-height: 68px !important;
+}
+#spice_bbc .initial_broadcast, #spice_bbc .duration {
+	font-style: italic;
+}
+#spice_bbc .button {
+	display: inline-block;
+	border-radius: 3px;
+	padding: 3px 9px;
+	background: #fefefe;
+	border: 1px solid #bbb;
+	color: #F54897;
+	margin-right: 10px;
 }

@@ -1,3 +1,23 @@
-<span class="title"><a href="{{programme_url}}" class="title">{{full_title}}</a></span>{{#if programme.programme}}: <a href="{{url}}"><span class="subtitle">{{subtitle}}</a></span>{{/if}}<br>
-<span class="synopsis"><p>{{synopsis}}</p></span><br>
-Duration: <span class="bbc_duration">{{duration}}</span>
+{{#if programme.is_available_mediaset_pc_sd}}
+	<a class="button" href="http://www.bbc.co.uk/iplayer/episode/{{programme.pid}}">Watch Now</a>{{programme.media.availability}}
+{{/if}}
+<div class="title">
+	<a href="{{programme_url}}">
+		{{full_title}}
+	</a>
+	{{#if programme.programme}}: 
+	<a href="{{url}}">
+		<span class="subtitle">
+			{{subtitle}}
+		</span>
+	</a>
+	{{/if}}
+</div>
+<div class="synopsis">
+	<p>{{programme.short_synopsis}}</p>
+</div>
+<div>
+	<span class="duration">
+		On for {{duration}}</span> - <span class="initial_broadcast">Originally aired {{initial_broadcast}}
+	</span>
+</div>

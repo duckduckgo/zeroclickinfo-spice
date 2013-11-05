@@ -1,18 +1,8 @@
-function ddg_spice_bbc_to_str(num) {
-    if(num == 0) {
-         return "00";
-    }
-    var str = (num|0)+"";
-    if(str.length < 2) {
-        str = "0" + str;
-    }
-    return str;
-}
 function ddg_spice_bbc(api_result) {
     var query = DDG.get_query();
     var broadcasts = api_result.schedule.day.broadcasts;
     var programmes = [];
-    var now = new Date(Date.now());
+    var now = new Date();
     if(query.indexOf("night") != -1)
         now.setHours(18);
     var date = api_result.schedule.day.date;
@@ -34,10 +24,12 @@ function ddg_spice_bbc(api_result) {
             items: programmes, 
             template_item: "bbc",
             template_detail: "bbc_details",
+            li_width: 120,
+            li_height: 110
         },
         force_big_header : true,
         force_no_fold: true,
-        spice_name       : "bbc",
+        spice_name       : "bbc"
     });
 }
 /*
@@ -46,9 +38,19 @@ function ddg_spice_bbc(api_result) {
  * Find the start and end of a programme and format appropriately
  */
 Handlebars.registerHelper("time", function() {
+    var to_str = function ddg_spice_bbc_to_str(num) {
+        if(num == 0) {
+             return "00";
+        }
+        var str = (num|0)+"";
+        if(str.length < 2) {
+            str = "0" + str;
+        }
+        return str;
+    };
     var start = new Date(Date.parse(this.start));
     var end = new Date(Date.parse(this.end));
-    return ddg_spice_bbc_to_str(start.getHours()) + ":" + ddg_spice_bbc_to_str(start.getMinutes()) + " - " + ddg_spice_bbc_to_str(end.getHours()) + ":" + ddg_spice_bbc_to_str(end.getMinutes());
+    return to_str(start.getHours()) + ":" + to_str(start.getMinutes()) + " - " + to_str(end.getHours()) + ":" + to_str(end.getMinutes());
 });
 /*
  * duration
@@ -56,9 +58,9 @@ Handlebars.registerHelper("time", function() {
  * Find the duration of a programme and return it
  */
 Handlebars.registerHelper("duration", function() {
-    function pluralise(n) {
+    var pluralise = function(n) {
         return n > 1 ? "s" : "";
-    }
+    };
     var dur = this.duration;
     var hours = Math.floor(dur / (60 * 60));
     dur -= hours * 60 * 60;
@@ -117,22 +119,16 @@ Handlebars.registerHelper("url", function() {
  * Find the programme image and return it
  */
 Handlebars.registerHelper("image", function() {
-    return this.programme.image ? "http://ichef.bbci.co.uk/images/ic/144x81/" + this.programme.image.pid + ".jpg" :  "http://ichef.bbci.co.uk/images/ic/144x81/legacy/episode/"+this.programme.pid+".jpg?nodefault=true";
+    return this.programme.image ? "http://ichef.bbci.co.uk/images/ic/272x153/" + this.programme.image.pid + ".jpg" :  "http://ichef.bbci.co.uk/images/ic/272x153/legacy/episode/"+this.programme.pid+".jpg?nodefault=true";
 });
 /*
- * image
+ * initial_broadcast
  *
- * Find the programme's big image and return it
+ * Find the programme's initial broadcast date/time and return it
  */
-Handlebars.registerHelper("big_image", function() {
-    "use strict";
-    return this.programme.image ? "http://ichef.bbci.co.uk/images/ic/272x153/" + this.programme.image.pid + ".jpg" :  "http://ichef.bbci.co.uk/images/ic/272x153/legacy/episode/"+this.programme.pid+".jpg?nodefault=true";
-})
-/*
- * synopsis
- *
- * Find the programme synopsis and return it
- */
-Handlebars.registerHelper("synopsis", function() {
-    return this.programme.short_synopsis;
+Handlebars.registerHelper("initial_broadcast", function() {
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var d = new Date(Date.parse(this.programme.first_broadcast_date));
+    console.log(d);
+    return d.getDate() + " " + months[d.getMonth()] + " " + (1900 + d.getYear());
 });
