@@ -45,7 +45,6 @@ function ddg_spice_songkick_events(api_result) {
   // }
   // At this point, we have the metro_area_id, so we can get the list of
   // concerts.
-  console.log(api_result);
   if (!api_result.resultsPage || !api_result.resultsPage.results || !api_result.resultsPage.results.length == 0) {
     return;
   }
@@ -53,9 +52,7 @@ function ddg_spice_songkick_events(api_result) {
     return;
   }
   var metro_area_id = api_result.resultsPage.results.location[0].metroArea.id;
-  console.log('metro_area_id: ' + metro_area_id);
   var metro_area_uri = api_result.resultsPage.results.location[0].metroArea.uri;
-  console.log('metro_area_uri: ' + metro_area_uri);
   $.getJSON('http://api.songkick.com/api/3.0/metro_areas/' + metro_area_id + '/calendar.json?per_page=' + per_page + '&apikey=' + api_key, function(events_data) {
     // Taken from
     //   http://www.songkick.com/developer/upcoming-events-for-metro-area
@@ -97,12 +94,9 @@ function ddg_spice_songkick_events(api_result) {
       return;
     }
     var city_name = events_data.resultsPage.results.event[0].location.city;
-    console.log('city_name: ' + city_name);
-    console.log(events_data.resultsPage.results.event);
     Spice.render({
       data             : {
         events: $(events_data.resultsPage.results.event.slice(0, 5)).map(function(idx, o) {
-            console.log(o);
             return {
               uri         : o.uri,
               displayName : o.displayName,

@@ -15,7 +15,6 @@ function ddg_spice_songkick_artists(api_result) {
   //     },"totalEntries":1,"perPage":50,"page":1,"status":"ok"}}
   // At this point, we have the artist_id, so we can get the list of similar
   // artists.
-  console.log(api_result);
   if (!api_result.resultsPage || !api_result.resultsPage.results || !api_result.resultsPage.results.length == 0) {
     return;
   }
@@ -23,13 +22,9 @@ function ddg_spice_songkick_artists(api_result) {
     return;
   }
   var artist_id = api_result.resultsPage.results.artist[0].id;
-  console.log('artist_id: ' + artist_id);
   var artist_name = api_result.resultsPage.results.artist[0].displayName;
-  console.log('artist_name: ' + artist_name);
   var artist_uri = api_result.resultsPage.results.artist[0].uri;
-  console.log('artist_uri: ' + artist_uri);
   var similar_artist_uri = 'http://api.songkick.com/api/3.0/artists/' + artist_id + '/similar_artists.json?per_page=' + per_page + '&apikey=' + api_key;
-  console.log('similar_artist_uri: ' + similar_artist_uri);
   $.getJSON(similar_artist_uri, function(artists_data) {
     // Taken from
     //   http://www.songkick.com/developer/similar-artists
@@ -59,11 +54,9 @@ function ddg_spice_songkick_artists(api_result) {
     if (!artists_data.resultsPage || !artists_data.resultsPage.results || !artists_data.resultsPage.results.artist) {
       return;
     }
-    console.log(artists_data.resultsPage.results.artist);
     Spice.render({
       data             : {
         artists: $(artists_data.resultsPage.results.artist.slice(0, 5)).map(function(idx, o) {
-            console.log(o);
             return {
               uri         : o.uri,
               displayName : o.displayName
