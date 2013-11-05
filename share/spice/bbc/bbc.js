@@ -6,11 +6,11 @@ function ddg_spice_bbc(api_result) {
     if(query.indexOf("night") != -1)
         now.setHours(18);
     var date = api_result.schedule.day.date;
-    var fulldate = Date.parse(date);
+    var fulldate = new Date(date);
     var date_round = 1000 * 60 * 60 * 24;
     var inPast = +fulldate < Math.floor(+now / date_round)*date_round;
     for(var i=0;i<broadcasts.length;i++) {
-        var end = Date.parse(broadcasts[i].end);
+        var end = new Date(broadcasts[i].end);
         if(end > now || inPast)
             programmes.push(broadcasts[i]);
     }
@@ -48,8 +48,8 @@ Handlebars.registerHelper("time", function() {
         }
         return str;
     };
-    var start = new Date(Date.parse(this.start));
-    var end = new Date(Date.parse(this.end));
+    var start = new Date(this.start);
+    var end = new Date(this.end);
     return to_str(start.getHours()) + ":" + to_str(start.getMinutes()) + " - " + to_str(end.getHours()) + ":" + to_str(end.getMinutes());
 });
 /*
@@ -128,7 +128,7 @@ Handlebars.registerHelper("image", function() {
  */
 Handlebars.registerHelper("initial_broadcast", function() {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    var d = new Date(Date.parse(this.programme.first_broadcast_date));
+    var d = new Date(this.programme.first_broadcast_date);
     console.log(d);
     return d.getDate() + " " + months[d.getMonth()] + " " + (1900 + d.getYear());
 });
