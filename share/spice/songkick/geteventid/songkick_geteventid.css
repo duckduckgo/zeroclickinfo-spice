@@ -1,0 +1,7 @@
+#spice_songkick_events .songkick-event {
+  margin: 4px 0;
+}
+
+#spice_songkick_events .songkick-event:first-child {
+  margin-top: 0;
+}
