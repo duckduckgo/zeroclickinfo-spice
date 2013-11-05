@@ -241,6 +241,7 @@ function ddg_spice_espn_bind() {
                             + '/player/_/id/' + ddg_spice_espn_player.id,
         source_name      : 'ESPN',
         template_normal  : 'espn_' + ddg_spice_espn_player.sport,
+	force_favicon_url: 'http://espn.go.com/favicon.ico',
         force_big_header : true,
         force_no_fold    : true
     });
