@@ -3,12 +3,12 @@
 {{/if}}
 <div class="title">
 	<a href="{{programme_url}}">
-		{{full_title}}
+		{{programme.display_titles.title}}
 	</a>
 	{{#if programme.programme}}: 
-	<a href="{{url}}">
+	<a href="http://www.bbc.co.uk/programmes/{{programme.pid}}">
 		<span class="subtitle">
-			{{subtitle}}
+			{{this.programme.display_titles.subtitle}}
 		</span>
 	</a>
 	{{/if}}

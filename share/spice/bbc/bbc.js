@@ -75,29 +75,6 @@ Handlebars.registerHelper("duration", function() {
     }
 });
 /*
- * full_title
- * 
- * Find the full displayable title of a programme and return it
- */
-Handlebars.registerHelper("full_title", function() {
-    return this.programme.display_titles.title;
-});
-/*
- * subtitle
- * Find the subtitle (if any) of a programme and return it
- */
-Handlebars.registerHelper("subtitle", function() {
-    return this.programme.display_titles.subtitle;
-});
-/*
- * title
- * 
- * Find the displayable title of a programme and return it
- */
-Handlebars.registerHelper("title", function() {
-    return this.programme.display_titles.title;
-});
-/*
  * programme_url
  * 
  * Find the series URL and return it, or if it is not part of a series return the normal url
@@ -106,20 +83,12 @@ Handlebars.registerHelper("programme_url", function() {
     return "http://www.bbc.co.uk/programmes/"+(this.programme.programme ? this.programme.programme : this.programme).pid;
 });
 /*
- * url
- * 
- * Find the programme URL and return it
- */
-Handlebars.registerHelper("url", function() {
-    return "http://www.bbc.co.uk/programmes/"+this.programme.pid;
-});
-/*
  * image
  *
  * Find the programme image and return it
  */
 Handlebars.registerHelper("image", function() {
-    return this.programme.image ? "http://ichef.bbci.co.uk/images/ic/272x153/" + this.programme.image.pid + ".jpg" :  "http://ichef.bbci.co.uk/images/ic/272x153/legacy/episode/"+this.programme.pid+".jpg?nodefault=true";
+    return "http://ichef.bbci.co.uk/images/ic/272x153/" + (this.programme.image ? this.programme.image.pid :  "legacy/episode/"+this.programme.pid) + ".jpg";
 });
 /*
  * initial_broadcast
@@ -129,6 +98,5 @@ Handlebars.registerHelper("image", function() {
 Handlebars.registerHelper("initial_broadcast", function() {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var d = new Date(this.programme.first_broadcast_date);
-    console.log(d);
     return d.getDate() + " " + months[d.getMonth()] + " " + (1900 + d.getYear());
 });
