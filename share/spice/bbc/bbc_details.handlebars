@@ -5,10 +5,10 @@
 	<a href="{{programme_url}}">
 		{{programme.display_titles.title}}
 	</a>
-	{{#if programme.programme}}: 
+	{{#if programme.display_titles.subtitle}}:
 	<a href="http://www.bbc.co.uk/programmes/{{programme.pid}}">
 		<span class="subtitle">
-			{{this.programme.display_titles.subtitle}}
+			{{pretty_subtitle}}
 		</span>
 	</a>
 	{{/if}}

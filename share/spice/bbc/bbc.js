@@ -100,3 +100,19 @@ Handlebars.registerHelper("initial_broadcast", function() {
     var d = new Date(this.programme.first_broadcast_date);
     return d.getDate() + " " + months[d.getMonth()] + " " + (1900 + d.getYear());
 });
+
+/*
+ * pretty_subtitle
+ *
+ * Remove all the episode info from the subtitle
+ */
+Handlebars.registerHelper("pretty_subtitle", function(options) {
+    var detailedSubtitle = /s(eries)? *[0-9]+,?( *e(pisode)? *[0-9]+)?/ig;
+    var subtitle = this.programme.display_titles.subtitle;
+    subtitle = subtitle.replace(detailedSubtitle, "");
+    subtitle = $.trim(subtitle);
+    if(this.programme.type == "episode" && this.programme.programme.type == "series") {
+        subtitle = "Series "+this.programme.programme.position+", Ep. "+this.programme.position+(subtitle.length > 0 ? " - " + subtitle : "");
+    }
+    return subtitle;
+});
