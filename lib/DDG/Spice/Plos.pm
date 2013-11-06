@@ -22,8 +22,6 @@ spice to => 'http://api.plos.org/search?q=$1&rows=10&wt=json'
             . '&api_key={{ENV{DDG_SPICE_PLOS_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
-spice is_cached => 0;
-
 handle remainder => sub {
     return $_ if $_;
     return;
