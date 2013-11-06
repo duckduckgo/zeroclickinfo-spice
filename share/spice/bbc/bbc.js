@@ -21,11 +21,11 @@ function ddg_spice_bbc(api_result) {
         source_name      : 'BBC',
         template_frame   : "carousel",
         template_options: {
+            li_width: 120,
+            li_height: 110,
             items: programmes, 
             template_item: "bbc",
-            template_detail: "bbc_details",
-            li_width: 120,
-            li_height: 110
+            template_detail: "bbc_details"
         },
         force_big_header : true,
         force_no_fold: true,
