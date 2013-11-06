@@ -111,8 +111,11 @@ Handlebars.registerHelper("pretty_subtitle", function(options) {
     var subtitle = this.programme.display_titles.subtitle;
     subtitle = subtitle.replace(detailedSubtitle, "");
     subtitle = $.trim(subtitle);
-    if(this.programme.type == "episode" && this.programme.programme.type == "series") {
-        subtitle = "Series "+this.programme.programme.position+", Ep. "+this.programme.position+(subtitle.length > 0 ? " - " + subtitle : "");
+    if(this.programme.type == "episode") {
+        subtitle = "Ep. "+this.programme.position+(subtitle.length > 0 ? " - " + subtitle : "");
+        if(this.programme.programme.type == "series" && this.programme.programme.position !== null) {
+            subtitle = "Series "+this.programme.programme.position+", "+subtitle;
+        }
     }
     return subtitle;
 });
