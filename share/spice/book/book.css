@@ -32,11 +32,9 @@
 	padding-left: 0px;
 	border-left: 0px none;
 	width: 100%;
-	display: block;
     }
 
     #spice_book .spice_pane_left {
 	width: 100%;
-	display: block;
     }
 }
