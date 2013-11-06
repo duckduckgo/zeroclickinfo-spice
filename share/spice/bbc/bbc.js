@@ -107,15 +107,18 @@ Handlebars.registerHelper("initial_broadcast", function() {
  * Remove all the episode info from the subtitle
  */
 Handlebars.registerHelper("pretty_subtitle", function(options) {
-    var detailedSubtitle = /s(eries)? *[0-9]+,?( *e(pisode)? *[0-9]+)?/ig;
+    var seriesInfo = /series [0-9]+/ig;
+    var episodeInfo = /episode [0-9]+/ig;
+    var junk = /, ?/ig;
     var subtitle = this.programme.display_titles.subtitle;
-    subtitle = subtitle.replace(detailedSubtitle, "");
+    subtitle = subtitle.replace(seriesInfo, "").replace(episodeInfo, "").replace(junk, "");
     subtitle = $.trim(subtitle);
-    if(this.programme.type == "episode") {
-        subtitle = "Ep. "+this.programme.position+(subtitle.length > 0 ? " - " + subtitle : "");
-        if(this.programme.programme.type == "series" && this.programme.programme.position !== null) {
-            subtitle = "Series "+this.programme.programme.position+", "+subtitle;
-        }
+    if(this.programme.type == "episode" && this.programme.position !== null) {
+        subtitle = subtitle.replace(this.programme.programme.title, "");
+        subtitle = "Episode "+this.programme.position+(subtitle.length > 0 ? " - " + subtitle : "");
+    }
+    if(this.programme.programme.type == "series" && this.programme.programme.position !== null) {
+        subtitle = this.programme.programme.title+", "+subtitle;
     }
     return subtitle;
 });
