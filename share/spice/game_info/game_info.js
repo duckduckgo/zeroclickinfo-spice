@@ -1,7 +1,7 @@
 function ddg_spice_game_info(api_result) {
     if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0)
         return;
-    var ignore = ["game", "games", "giantbomb"];
+    var ignore = ["games", "game", "giantbomb"];
     var datas = api_result.results;
     var query = DDG.get_query();
     for(var i = 0; i < ignore.length; i++) {
@@ -9,7 +9,7 @@ function ddg_spice_game_info(api_result) {
     }
     query = $.trim(query);
     // filter out irrelevant and malformed results
-    datas = $.grep(datas, function(data, ind) {
+    datas = DDG.get_query().indexOf("games") == -1 ? [datas[0]] : $.grep(datas, function(data, ind) {
         return data.name != null && data.image != null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
     });
 
@@ -27,7 +27,7 @@ function ddg_spice_game_info(api_result) {
             template_detail      : "game_info_details",
             single_item_handler  : function(obj) {            // gets called in the event of a single result
                 var data = obj.data.results[0];
-                obj.image_url = data.image.thumb_url;    // set the image
+                obj.image_url = data.image.icon_url;    // set the image
                 obj.source_url = data.site_detail_url; // set the source
             }
         }
@@ -74,4 +74,31 @@ Handlebars.registerHelper("platform_summary", function(platforms, options) {
         platforms = [platforms[0], platforms[1], platforms[2], {name: (platforms.length - 3) + " more"}]
     }
     return Handlebars.helpers.concat(platforms, options);
+});
+
+/** 
+ * game_rating
+ *
+ * Summarise the game's rating
+ */
+Handlebars.registerHelper("game_rating", function() {
+    console.log(this.image);
+    var rating = "";
+    var ratings = this.original_game_rating;
+    for(var i = 0; i < ratings.length; i++) { // they in the form PEGI: ...
+        var parts = ratings[i].name.split(": ");
+        if(parts.length == 2) {
+            switch(parts[0]) {
+                case "PEGI":
+                    rating = parts[1] + (rating.length > 0 ? " / "+rating : "");
+                    break;
+                case "ESRB":
+                    rating = (rating.length > 0 ? rating+" / " : "") + parts[1];
+                    break;
+                default:
+
+            }
+        }
+    }
+    return rating.length == 0 ? "N/A" : rating;
 });

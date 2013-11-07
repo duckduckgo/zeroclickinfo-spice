@@ -5,7 +5,6 @@
     font-size: 95%;
 }
 #spice_game_info .title {
-	position: absolute;
 	bottom: 0px;
 	height: 2.5em;
 	margin: 0;
@@ -13,14 +12,6 @@
 	display: block;
 	text-align: center;
 }
-#spice_game_info .thumbnail {
-	height: 75px;
-	width: auto;
-}
 #spice_game_info .name {
 	color: #444;
-}
-#spice_game_info .item_container {
-	position: relative;
-	height: 150px;
 }
