@@ -5,12 +5,8 @@
     font-size: 95%;
 }
 #spice_game_info .title {
-	bottom: 0px;
-	height: 2.5em;
-	margin: 0;
-	width: 100%;
-	display: block;
-	text-align: center;
+	padding-top: 3px;
+	display: inline-block;
 }
 #spice_game_info .name {
 	color: #444;
