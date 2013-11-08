@@ -3,6 +3,7 @@ package DDG::Spice::Forecast;
 use Data::Dumper;
 
 use DDG::Spice;
+use Text::Trim;
 
 name "Forecast";
 description "Weather forecast";
@@ -23,15 +24,22 @@ spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=
 spice is_cached => 0;
 spice proxy_cache_valid   => "200 30m";
 
+my $no_location_qr = qr/fore?cast|report|weather|temp(erature)/;
+my $weather_qr = qr/(?:(?:weather|temp(?:erature|))(?: fore?cast| report| today| tomm?orr?ow| this week|))+/;
+
 handle query_lc => sub {
-    my $location;
+    my $location = '';
 
     # Capture user defined location if it exists.
-    if (/^(?:what(?:'s| is) the |)(?:(?:weather|temp(?:erature|)) (?:fore?cast |report |today |tomm?orr?ow |this week |))+(?:in |for |at |)(.*)/) {
-        $location = $1 unless ($1 =~ /fore?cast|report|weather|temp(erature)/);
+    if (/^(?:what(?:'s| is) the |)$weather_qr(?: in | for | at |)(.*)/) {
+        $location = $1 unless ($1 =~ $no_location_qr);
+
+    } elsif (/^(.*) $weather_qr/) {
+        $location = $1 unless ($1 =~ $no_location_qr);
     }
 
     # 10/29/2013 russell double check for things we don't want
+    $location = trim $location if $location;
     
     # bbc
     # shipping forecast, bbc forecast, bbc weather forecast etc.

@@ -27,7 +27,31 @@ ddg_spice_test(
     	call_type => 'include',
     	caller => 'DDG::Spice::Forecast',
         is_cached => 0
-    )
+    ),
+    'Philadelphia weather' => test_spice(
+    	'/js/spice/forecast/philadelphia',
+    	call_type => 'include',
+    	caller => 'DDG::Spice::Forecast',
+        is_cached => 0
+    ),
+    'Philadelphia weather forecast' => test_spice(
+    	'/js/spice/forecast/philadelphia',
+    	call_type => 'include',
+    	caller => 'DDG::Spice::Forecast',
+        is_cached => 0
+    ),
+    'Philadelphia weather this week' => test_spice(
+    	'/js/spice/forecast/philadelphia',
+    	call_type => 'include',
+    	caller => 'DDG::Spice::Forecast',
+        is_cached => 0
+    ),
+    'what is the weather in new york' => test_spice(
+    	'/js/spice/forecast/new%20york',
+    	call_type => 'include',
+    	caller => 'DDG::Spice::Forecast',
+        is_cached => 0
+    ),
 );
 
 done_testing;
