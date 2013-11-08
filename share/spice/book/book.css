@@ -27,3 +27,14 @@
     vertical-align: -12%;
 }
 
+@media (max-width: 320px) {
+    #spice_book .spice_pane_right {
+	padding-left: 0px;
+	border-left: 0px none;
+	width: 100%;
+    }
+
+    #spice_book .spice_pane_left {
+	width: 100%;
+    }
+}
