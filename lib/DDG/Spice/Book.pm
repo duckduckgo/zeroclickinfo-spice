@@ -5,6 +5,9 @@ use DDG::Spice;
 primary_example_queries "book reviews moonwalking with einstein";
 description "Shows critic rating and a sample review of a book from publications like NY Times, NPR, Guardian.";
 name "iDreambooks";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Book.pm";
+category "reference";
+topics "entertainment", "everyday";
 
 spice to => 'http://idreambooks.com/api/books/reviews.json?api_key={{ENV{DDG_SPICE_BOOK_APIKEY}}}&bpq=10&q=$1';
 
