@@ -84,7 +84,7 @@ function ddg_spice_amazon(api_response) {
 function ddg_spice_amazon_wait_for_render(api_response) {
     if (ddg_spice_amazon_carousel_add_items) {
         window.setTimeout(function() {
-            ddg_spice_amazon_carousel_add_items(api_response.items);
+            ddg_spice_amazon_carousel_add_items(api_response.results);
         }, 500);
     }
 }
