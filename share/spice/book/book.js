@@ -104,12 +104,15 @@ function ddg_spice_book(api_result) {
 }
 
 Handlebars.registerHelper("prettyDate", function(date) {
-    var d = new Date(date);
-    if (d && !isNaN(d.getTime())) {
-        var m_names = ["Jan", "Feb", "Mar",  "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        var curr_date = d.getUTCDate();
-        var curr_month = d.getUTCMonth();
-        var curr_year = d.getUTCFullYear();
-        return m_names[curr_month] + " " + curr_date + ", " + curr_year;
+    if(date) {
+	date = date.split("-")
+	var d = new Date(date[0], date[1]-1, date[2]);
+	if (d && !isNaN(d.getTime())) {
+            var m_names = ["Jan", "Feb", "Mar",  "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            var curr_date = d.getDate();
+            var curr_month = d.getMonth();
+            var curr_year = d.getFullYear();
+            return m_names[curr_month] + " " + curr_date + ", " + curr_year;
+	}
     }
 });

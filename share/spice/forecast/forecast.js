@@ -3,6 +3,12 @@ function ddg_spice_forecast(r) {
   // Exit if we've got a bad forecast
   if(!r || !r.hourly || !r.hourly.data || !r.daily || !r.daily.data)
     return
+
+  // Check if the query is relevant enough.
+  // Function signature for reference: 
+  // DDG.isRelevant(candidate, skipArray, minWordLength, strict)
+  if(!DDG.isRelevant(r.flags["ddg-location"], ["weather", "temp", "forecast", "forcast"])) {
+  }
   
   // Render the container elements
   Spice.render({
