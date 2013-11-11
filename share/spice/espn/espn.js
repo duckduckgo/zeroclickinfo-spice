@@ -171,13 +171,10 @@ function ddg_spice_espn_team(api_result) {
 function ddg_spice_espn_events(api_result) {
     var events    = api_result.sports[0].leagues[0].events;
     ddg_spice_espn_player.events = [];
-    console.log(events);
 
     for (var i = events.length - 1; i > 0 && ddg_spice_espn_player.events.length < 5; i--) {
         var eventDate = new Date(events[i].date);
-	console.log(eventDate);
         if (eventDate.getTime() > new Date().getTime() - 24*60*60*1000) {
-	    console.log('skipping event on ', eventDate);
             continue;
 	}
         eventDate.setMonth(eventDate.getMonth()+1);
