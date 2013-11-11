@@ -174,8 +174,9 @@ function ddg_spice_espn_events(api_result) {
 
     for (var i = events.length - 1; i > 0 && ddg_spice_espn_player.events.length < 5; i--) {
         var eventDate = new Date(events[i].date);
-        if (eventDate.getTime() > new Date().getTime() - 24*60*60*1000)
+        if (eventDate.getTime() > new Date().getTime() - 24*60*60*1000) {
             continue;
+	}
         eventDate.setMonth(eventDate.getMonth()+1);
 
         if (!events[i].competitions[0]) continue;
