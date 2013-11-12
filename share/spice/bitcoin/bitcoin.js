@@ -35,6 +35,7 @@ function ddg_spice_bitcoin (api_result) {
         source_name       : "Bitcoin",
         spice_name        : "bitcoin",
         source_url        : 'http://markets.blockchain.info/',
+        force_favicon_url : "https://icons.duckduckgo.com/i/bitcoin.org.ico",
 
         template_frame   : "twopane",
         template_options : {
