@@ -32,10 +32,10 @@ function ddg_spice_bitcoin (api_result) {
 
     Spice.render({
         header1           : "Bitcoin Exchange Prices",
-        source_name       : "Bitcoin",
+        source_name       : "Blockchain",
         spice_name        : "bitcoin",
         source_url        : 'http://markets.blockchain.info/',
-        force_favicon_url : "https://icons.duckduckgo.com/i/bitcoin.org.ico",
+        force_favicon_url : "http://blockchain.info/favicon.ico",
 
         template_frame   : "twopane",
         template_options : {
