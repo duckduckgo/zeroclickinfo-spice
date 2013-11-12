@@ -15,6 +15,11 @@ icon_url "/i/searchco.de.ico";
 attribution twitter => ["https://twitter.com/boyter", "boyter"],
 			github => ["https://github.com/boyter", "Ben Boyter"];
 
+# known bad queries
+my %skip_queries = map { $_ => undef } (
+    'sql server with',
+);
+
 my @triggers = share('triggers.txt')->slurp;
 triggers startend => @triggers;
 
@@ -26,6 +31,7 @@ my $words = join "|", @triggers;
 $words =~ s/\n//g;
 
 handle query_raw => sub {
+        return if exists $skip_queries{lc($_)};
 
 	# don't trigger on:
 	# app (for Quixey)

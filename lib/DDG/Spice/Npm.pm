@@ -16,8 +16,6 @@ attribution github  => ['https://github.com/remixz', 'remixz'],
 spice to => 'http://registry.npmjs.org/$1/latest';
 spice wrap_jsonp_callback => 1;
 
-spice is_cached => 0;
-
 triggers startend => 'npm';
 
 handle remainder => sub {

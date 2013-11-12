@@ -11,7 +11,6 @@ ddg_spice_test(
         '/js/spice/rand_word/0-100',
         call_type => 'include',
         caller => 'DDG::Spice::RandWord',
-        is_cached => 0
     ),
 );
 

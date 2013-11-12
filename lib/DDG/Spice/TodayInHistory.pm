@@ -25,8 +25,6 @@ spice to => 'http://www.history.com/this-day-in-history/rss';
 
 spice wrap_string_callback => 1;
 
-spice is_cached => 0;
-
 handle remainder => sub {
 	return '' if $_ eq '';
 	return;

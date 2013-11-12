@@ -1,0 +1,40 @@
+#spice_book .spice_pane_left {
+    width: 40%;
+    display: inline-block;
+}
+
+#spice_book .spice_pane_right {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    border-left: 1px solid rgba(0,0,0,0.1);
+    padding-left: 10px;
+}
+
+#spice_book .book_data_item {
+    display: inline-block;
+    padding-right: 6px;
+    color: gray;
+}
+
+#spice_book #critic-link {
+    float: right;
+}
+
+#spice_book #book-rating-visual {
+    display: inline;
+    width: 21px;
+    vertical-align: -12%;
+}
+
+@media (max-width: 320px) {
+    #spice_book .spice_pane_right {
+	padding-left: 0px;
+	border-left: 0px none;
+	width: 100%;
+    }
+
+    #spice_book .spice_pane_left {
+	width: 100%;
+    }
+}

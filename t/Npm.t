@@ -11,7 +11,6 @@ ddg_spice_test(
 		'/js/spice/npm/underscore',
 		call_type => 'include',
 		caller => 'DDG::Spice::Npm',
-		is_cached => 0
 	),
 );
 

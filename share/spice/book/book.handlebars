@@ -1,0 +1,17 @@
+<div><span class="book_data_item">Title: </span>{{title}}</div>
+
+{{#if author}}
+  <div><span class="book_data_item">Author:</span>{{author}}</div>
+{{/if}}   
+
+{{#if genre}}
+  <div><span class="book_data_item">Genre: </span>{{genre}}</div>
+{{/if}}
+
+{{#if rating}}
+  <div title="based on {{review_count}} critic reviews"><span class="book_data_item">Critic Rating:</span>
+  <img id="book-rating-visual" src="{{to_read_or_not}}"><span class="book_critic_rating"> {{rating}}% </span></div>
+{{/if}}
+
+
+
