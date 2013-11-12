@@ -9,14 +9,15 @@ function ddg_spice_bitcoin(api_result) {
     var query = DDG.get_query();
     var params = query.split(/\s+/g);
 
-    var currency = null;
-    if (params.length > 1) {
-        currency = params[1].toUpperCase();
-    } else {
-        currency = DEFAULT_CURRENCY;
+    var prices = null;
+    for (var i=0; i < params.length; i++) {
+        var currency = $.trim(params[i].toUpperCase());
+        prices = api_result[currency];
+        if (prices) {
+            break;
+        }
     }
 
-    var prices = api_result[currency];
     if (!prices) {
         prices = api_result[DEFAULT_CURRENCY];
     }
