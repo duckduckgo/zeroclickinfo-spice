@@ -10,8 +10,10 @@ function ddg_spice_bitcoin(api_result) {
     var params = query.split(/\s+/g);
 
     var prices = null;
+    var currency = null;
+
     for (var i=0; i < params.length; i++) {
-        var currency = $.trim(params[i].toUpperCase());
+        currency = $.trim(params[i].toUpperCase());
         prices = api_result[currency];
         if (prices) {
             break;
@@ -19,8 +21,9 @@ function ddg_spice_bitcoin(api_result) {
     }
 
     if (!prices) {
-        prices = api_result[DEFAULT_CURRENCY];
-    }
+        currency = DEFAULT_CURRENCY;
+        prices = api_result[currency];
+    }    
 
     var buy = {
         price: prices.buy.toFixed(2),
@@ -35,7 +38,7 @@ function ddg_spice_bitcoin(api_result) {
     };
 
     Spice.render({
-        header1           : "Bitcoin Exchange Prices",
+        header1           : "Bitcoin Exchange Prices (" + currency + ")" ,
         source_name       : "Blockchain",
         spice_name        : "bitcoin",
         source_url        : 'http://markets.blockchain.info/',
