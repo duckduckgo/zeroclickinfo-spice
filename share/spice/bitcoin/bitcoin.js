@@ -4,6 +4,17 @@ function ddg_spice_bitcoin(api_result) {
         return;
     }
 
+    var symbolsAtEnd = ["PLN", "SEK"];
+
+    function getFormattedPrice(currency, price, symbol) {
+
+        price = price.toFixed(2).toString();
+        if ($.inArray(currency, symbolsAtEnd) !== -1) {
+            return price + symbol;
+        }
+        return symbol + price;
+    }
+
     var DEFAULT_CURRENCY = "USD";
 
     var query = DDG.get_query();
@@ -26,14 +37,12 @@ function ddg_spice_bitcoin(api_result) {
     }    
 
     var buy = {
-        price: prices.buy.toFixed(2),
-        symbol: prices.symbol,
+        formatted_price: getFormattedPrice(currency, prices.buy, prices.symbol),
         title: "Buy"
     };
 
     var sell = {
-        price: prices.sell.toFixed(2),
-        symbol: prices.symbol,
+        formatted_price: getFormattedPrice(currency, prices.sell, prices.symbol),
         title: "Sell"
     };
 
