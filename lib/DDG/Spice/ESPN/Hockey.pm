@@ -1620,7 +1620,7 @@ triggers any => keys %players;
 
 spice to => 'http://api.espn.com/v1/sports/hockey/$1/$2/$3/$4'
             . '?enable=stats,competitors,roster,venues&$5='
-            . (localtime->year() + 1900)
+            . (localtime->year() + 1900 + 1) # need + 1 because the hockey season is offset
             . '&apikey={{ENV{DDG_SPICE_ESPN_APIKEY}}}&callback=$6';
 
 spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';
