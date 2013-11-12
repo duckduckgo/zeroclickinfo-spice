@@ -161,9 +161,11 @@ function ddg_spice_espn_news(api_result) {
 
 function ddg_spice_espn_team(api_result) {
     var record               = api_result.sports[0].leagues[0].teams[0].record;
-    var totalGames           = record.wins + record.losses + record.ties;
-    ddg_spice_espn_player.teamWinPercentage = record.wins && record.wins > 0 &&
-	totalGames && totalGames > 0 ? Math.floor(record.wins / totalGames * 100) : 0;
+
+    ddg_spice_espn_player.record = (record.wins?record.wins:0)+'-'+(record.losses?record.losses:0);
+    if (record.ties) {
+	ddg_spice_espn_player.record += '-'+record.ties;
+    }
 
     ddg_spice_espn_bind();
 }
