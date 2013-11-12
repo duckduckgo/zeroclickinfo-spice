@@ -16,6 +16,7 @@ attribution github => ['https://github.com/jmg','Juan Manuel García'],
 
 spice to => 'http://blockchain.info/ticker';
 spice wrap_jsonp_callback => 1;
+spice proxy_cache_valid => "418 1d";
 
 triggers any => "bitcoin", "bit coin";
 
