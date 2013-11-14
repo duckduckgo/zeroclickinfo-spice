@@ -59,8 +59,15 @@ function ddg_spice_songkick_geteventid(api_result) {
   });
   
   var considered_location = api_result.resultsPage.results.location[0];
-  if (!DDG.isRelevant(considered_location.city.displayName, ['concert', 'concerts'])) {
-    return;
+  var skip_words = ['concert', 'concerts'];
+  if (!DDG.isRelevant(considered_location.city.displayName, skip_words)) {
+    // If the query is just 'concert' or 'concerts', we use the location API to
+    // get the user's location, so we can't rely on isRelevant to tell us if the
+    // location matches the query or not. If the query isn't in skip_words, we
+    // return;
+    if (skip_words.indexOf(DDG.get_query()) < 0) {
+      return;
+    }
   }
   var metro_area_id = considered_location.metroArea.id;
   var metadata = {
