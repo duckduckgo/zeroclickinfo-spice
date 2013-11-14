@@ -82,12 +82,12 @@ function ddg_spice_songkick_artists(artists_data) {
     spice_name       : 'songkick',
     template_frame   : 'list',
     template_options: {
-      items         : $(artists_data.resultsPage.results.artist.slice(0, max_results)).map(function(idx, o) {
+      items         : $.map(artists_data.resultsPage.results.artist.slice(0, max_results), function(o, idx) {
         return {
           uri         : o.uri,
           displayName : o.displayName
         };
-      }).toArray(),
+      }),
       template_item : 'songkick_artist',
       show          : show_results,
       max           : max_results

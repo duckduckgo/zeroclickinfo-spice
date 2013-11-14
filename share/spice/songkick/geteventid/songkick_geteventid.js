@@ -126,7 +126,7 @@ function ddg_spice_songkick_events(events_data) {
     spice_name       : 'songkick',
     template_frame   : 'list',
     template_options: {
-      items         : $(events_data.resultsPage.results.event.slice(0, max_results)).map(function(idx, o) {
+      items         : $.map(events_data.resultsPage.results.event.slice(0, max_results), function(o, idx) {
         return {
           uri         : o.uri,
           displayName : o.displayName,
@@ -135,7 +135,7 @@ function ddg_spice_songkick_events(events_data) {
             time : twenty_four_to_twelve_hour_time(o.start.time)
           }
         };
-      }).toArray(),
+      }),
       template_item : 'songkick_event',
       show          : show_results,
       max           : max_results
