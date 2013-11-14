@@ -31,7 +31,8 @@ handle remainder => sub {
       return $_;
     }
   }
-	return;
+  my $location = join(", ", $loc->city, $loc->region_name, $loc->country_name);
+  return $location;
 };
 
 1;
