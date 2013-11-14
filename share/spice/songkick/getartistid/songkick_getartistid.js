@@ -25,10 +25,14 @@ function ddg_spice_songkick_getartistid(api_result) {
     cache: true
   });
   
-  var artist_id = api_result.resultsPage.results.artist[0].id;
+  var considered_artist = api_result.resultsPage.results.artist[0];
+  if (!DDG.isRelevant(considered_artist.displayName, ['artists'])) {
+    return;
+  }
+  var artist_id = considered_artist.id;
   var metadata = {
-    artist_name : api_result.resultsPage.results.artist[0].displayName,
-    artist_uri  : api_result.resultsPage.results.artist[0].uri
+    artist_name : considered_artist.displayName,
+    artist_uri  : considered_artist.uri
   };
   ddg_spice_songkick_getartistid.metadata = metadata;
   

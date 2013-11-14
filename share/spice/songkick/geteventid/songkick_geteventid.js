@@ -58,9 +58,13 @@ function ddg_spice_songkick_geteventid(api_result) {
     cache: true
   });
   
-  var metro_area_id = api_result.resultsPage.results.location[0].metroArea.id;
+  var considered_location = api_result.resultsPage.results.location[0];
+  if (!DDG.isRelevant(considered_location.city.displayName, ['concert', 'concerts'])) {
+    return;
+  }
+  var metro_area_id = considered_location.metroArea.id;
   var metadata = {
-    metro_area_uri : api_result.resultsPage.results.location[0].metroArea.uri
+    metro_area_uri : considered_location.metroArea.uri
   };
   ddg_spice_songkick_geteventid.metadata = metadata;
   
