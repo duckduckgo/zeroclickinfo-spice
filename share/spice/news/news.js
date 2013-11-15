@@ -100,8 +100,6 @@ function ddg_spice_news(api_result) {
 	}
     }
 
-    good_stories.splice(1);
-
     // Display the plugin.
     Spice.render({
         header1: good_stories[0].query +  " (News)",
@@ -111,6 +109,7 @@ function ddg_spice_news(api_result) {
 	spice_name: "news",
 
 	template_frame: "carousel",
+	template_normal: "news_single",
 	template_options: {
 	    items: good_stories,
 	    template_item: "news",
@@ -151,12 +150,4 @@ Handlebars.registerHelper("getDomain", function(url) {
     if(re.test(url)) {
 	return RegExp.$1;
     }
-});
-
-Handlebars.registerHelper("getTime", function(relative_time) {
-    relative_time = relative_time.match(/([0-9]+)([a-z]+).*/);
-    if(+relative_time[1] > 1) {
-	return relative_time[1] + " " + (relative_time[2] === "hr" ? "hrs" : "mins");
-    }
-    return relative_time[1] + " " + relative_time[2];
 });
