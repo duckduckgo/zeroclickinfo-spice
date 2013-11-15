@@ -37,7 +37,7 @@
     overflow: hidden;
     padding-left: 7px;
     padding-right: 5px;
-    padding-top: 6px;
+    padding-top: 4px;
 }
 
 #spice_news .news-more-at {
@@ -71,10 +71,10 @@
     padding-left: 7px;
     padding-right: 5px;
     margin-top: 0px !important;
-    color: #777777;
+    color: #B4AFAE;
 }
 
 #spice_news .news-title .news-date {
-    color: #777777;
+    color: #B4AFAE;
     font-size: 12px;
 }
