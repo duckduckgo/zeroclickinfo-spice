@@ -67,12 +67,9 @@
     vertical-align: text-bottom;
 }
 
-#spice_news .news-more-at .news-date {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 150px;
-    margin-left: 20px;
+#spice_news .news-link .news-date {
+    padding-left: 7px;
+    padding-right: 5px;
     margin-top: 0px !important;
     color: #777777;
 }

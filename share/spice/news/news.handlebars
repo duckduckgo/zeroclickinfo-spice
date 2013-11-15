@@ -1,9 +1,9 @@
 <a class="news-link" href="{{url}}">
   <span class="news-title">{{{title}}}</span>
-  <div class="news-snippet">{{{excerpt}}}</div>
+  <span class="news-date">Posted {{{shortenDate relative_time}}} ago</span>
+  <span class="news-snippet">{{{excerpt}}}</span>
   <div class="news-more-at">
     <img src="{{getIcon url}}" class="favicon">
     <span class="news-domain">{{getDomain url}}</span>
-    <span class="news-date">Posted {{{shortenDate relative_time}}} ago</span>
   </div>
 </a>
