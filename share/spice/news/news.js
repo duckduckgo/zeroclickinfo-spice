@@ -86,20 +86,20 @@ function ddg_spice_news(api_result) {
 	}
     };
 
-    // Check if we get a 1x1 pixel image or not.
-    // If we do, then don't display that at all.
-    $("img.favicon").one("load", function() {
-	console.log(this.naturalWidth);
-	if(this.naturalWidth === 1) {
-	    $(this).width(0);
-	}
-    }).each(function() {
-	if(this.complete) {
-	    $(this).load();
-	}
-    });
-
     $(function() {	
+	// Check if we get a 1x1 pixel image or not.
+	// If we do, then don't display that at all.
+	$("img.favicon").one("load", function() {
+	    console.log(this.naturalWidth);
+	    if(this.naturalWidth === 1) {
+		$(this).width(0);
+	    }
+	}).each(function() {
+	    if(this.complete) {
+		$(this).load();
+	    }
+	});
+
 	// Decide whether we should show or hide the #ddgc_pagination.
 	hide_minimal();
 	$(window).resize(hide_minimal);
