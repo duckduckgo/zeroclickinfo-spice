@@ -110,7 +110,8 @@ Handlebars.registerHelper("pretty_subtitle", function(options) {
     var seriesInfo = /series [0-9]+/ig;
     var episodeInfo = /episode [0-9]+/ig;
     var junk = /, ?/ig;
-    var subtitle = this.programme.display_titles.subtitle;
+    console.log(this);
+    var subtitle = this.programme.display_titles.subtitle + "";
     subtitle = subtitle.replace(seriesInfo, "").replace(episodeInfo, "").replace(junk, "");
     subtitle = $.trim(subtitle);
     if(this.programme.type == "episode" && this.programme.position !== null) {

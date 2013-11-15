@@ -14,11 +14,16 @@
 }
 #spice_bbc .button {
 	display: inline-block;
-	border-radius: 3px;
-	padding: 3px 9px;
+	border-radius: 4px;
 	background: #fefefe;
 	border: 1px solid #d27;
 	color: #F54897;
-	margin-right: 10px;
-	float: right;
+	padding: 4px 8px;
+	margin-right: 27px;
+	margin-bottom: 5px;
+	float: left;
+}
+#spice_bbc .full_title {
+	display: inline-block;
+	margin-top: 0.4em;
 }
