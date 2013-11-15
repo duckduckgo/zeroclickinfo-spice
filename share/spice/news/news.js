@@ -90,7 +90,6 @@ function ddg_spice_news(api_result) {
 	// Check if we get a 1x1 pixel image or not.
 	// If we do, then don't display that at all.
 	$("img.favicon").one("load", function() {
-	    console.log(this.naturalWidth);
 	    if(this.naturalWidth === 1) {
 		$(this).width(0);
 	    }
