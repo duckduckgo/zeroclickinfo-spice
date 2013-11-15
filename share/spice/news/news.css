@@ -67,3 +67,8 @@
     vertical-align: text-bottom;
 }
 
+#spice_news .news-date {
+    margin-left: 20px;
+    margin-top: 0px !important;
+    color: #777777;
+}

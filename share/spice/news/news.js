@@ -113,7 +113,7 @@ function ddg_spice_news(api_result) {
 	    items: good_stories,
 	    template_item: "news",
 	    li_width: 196,
-	    li_height: 155
+	    li_height: 165
 	}
     });
 
