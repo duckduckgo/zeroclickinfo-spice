@@ -58,7 +58,6 @@ function ddg_spice_news(api_result) {
         return;
     }
 
-    good_stories.splice(1);
     // Display the plugin.
     Spice.render({
         header1: good_stories[0].query +  " (News)",
@@ -87,7 +86,15 @@ function ddg_spice_news(api_result) {
 	}
     };
 
-    $(function() {
+    // Check if we get a 1x1 pixel image or not.
+    // If we do, then don't display that at all.
+    $("img.favicon").load(function() {
+	if(this.naturalWidth === 1) {
+	    $(this).width(0);
+	}
+    });
+
+    $(function() {	
 	// Decide whether we should show or hide the #ddgc_pagination.
 	hide_minimal();
 	$(window).resize(hide_minimal);
