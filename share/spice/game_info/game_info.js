@@ -15,14 +15,9 @@ function ddg_spice_game_info(api_result) {
             (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
     });
     // sort them by the number of reviews, which is pretty much how 'controversial' they are
-    games.sort(function(a, b) {
+    games = games.sort(function(a, b) {
         return b.number_of_user_reviews - a.number_of_user_reviews;
     });
-    // if the query doesn't contain the string "games"
-    if(DDG.get_query().indexOf("games") == -1) {
-        // trim it to just one game
-        games = games.slice(0, 1);
-    }
     // if there is just one game
     if(games.length == 0) {
         // ignore this
@@ -40,6 +35,7 @@ function ddg_spice_game_info(api_result) {
             template_detail      : "game_info_details",
             // gets called in the event of a single result
             single_item_handler  : function(obj) {
+                console.log(obj);
                 var data = obj.data.results[0];
                 // set the image
                 obj.image_url = data.image.icon_url;
