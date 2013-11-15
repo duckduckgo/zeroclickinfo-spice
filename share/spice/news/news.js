@@ -37,41 +37,6 @@ function ddg_spice_news(api_result) {
         }
     };
 
-    // Trim the snippet and the title using this function.
-    // We don't want to trim in the middle of a word.
-    var ellipsis = function(text, limit) {
-	var result = [];
-	var count = 0;
-	var words = text.split(" ");
-
-	for(var i = 0; i < words.length; i++) {
-	    count += words[i].length + 1;
-	    if(count < limit) {
-		result.push(words[i]);
-	    }
-	}
-
-	// Return the same text if we weren't able to trim.
-	if(result.length === 0) {
-	    return text;
-	}
-
-	var append = words.length > result.length;
-	result = result.join(" ");
-
-	// Count the number of opening and closing tags.
-	var open_b = result.split("<b>").length - 1;
-	var close_b = result.split("</b>").length - 1;
-
-	// Check if there is a mismatch.
-	result += open_b > close_b ? "</b>" : "";
-
-	if(append && !(result[result.length - 1].match(/\.$/))) {
-	    return result + "...";
-	}
-	return result;
-    };
-
     for(var i = 0, story; story = api_result[i]; i++) {
 	story.title = story.title.replace(/<b>|<\/b>|:/g, "");
     }
@@ -93,13 +58,7 @@ function ddg_spice_news(api_result) {
         return;
     }
 
-    if(good_stories.length > 1) {
-	for(var i = 0, story; story = good_stories[i]; i++) {
-	    story.title = ellipsis(story.title, 55);
-	    story.excerpt = ellipsis(story.excerpt, 130);
-	}
-    }
-
+    good_stories.splice(1);
     // Display the plugin.
     Spice.render({
         header1: good_stories[0].query +  " (News)",
@@ -161,5 +120,38 @@ Handlebars.registerHelper("shortenDate", function(date) {
     result = result.replace(/hrs?/, "h");
     result = result.replace(/mins?/, "m");
 
+    return result;
+});
+
+Handlebars.registerHelper("ellipsis", function(text, limit) {
+    var result = [];
+    var count = 0;
+    var words = text.split(" ");
+    
+    for(var i = 0; i < words.length; i++) {
+        count += words[i].length + 1;
+        if(count < limit) {
+            result.push(words[i]);
+        }
+    }
+    
+    // Return the same text if we weren't able to trim.
+    if(result.length === 0) {
+        return text;
+    }
+    
+    var append = words.length > result.length;
+    result = result.join(" ");
+    
+    // Count the number of opening and closing tags.
+    var open_b = result.split("<b>").length - 1;
+    var close_b = result.split("</b>").length - 1;
+    
+    // Check if there is a mismatch.
+    result += open_b > close_b ? "</b>" : "";
+    
+    if(append && !(result[result.length - 1].match(/\.$/))) {
+        return result + "...";
+    }
     return result;
 });
