@@ -100,6 +100,8 @@ function ddg_spice_news(api_result) {
 	}
     }
 
+    good_stories.splice(1);
+
     // Display the plugin.
     Spice.render({
         header1: good_stories[0].query +  " (News)",
@@ -133,10 +135,9 @@ function ddg_spice_news(api_result) {
 	$(window).resize(hide_minimal);
 
 	// Adjust the box margins--can't do this in css
-	$("#zero_click_wrapper2 #zero_click_abstract").css( {
-            'padding-left': '0px !important',
-            'margin-left' : '0px !important'
-	});
+	$("#zero_click_wrapper2 #zero_click_abstract").attr("style", 
+							    "padding-left: 0px !important;" +
+							    "margin-left: 0px !important;");
 	$("#zero_click_more_at_wrap").toggle(false);
     });
 }
