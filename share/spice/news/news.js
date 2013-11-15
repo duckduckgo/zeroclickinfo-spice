@@ -151,3 +151,15 @@ Handlebars.registerHelper("getDomain", function(url) {
 	return RegExp.$1;
     }
 });
+
+
+Handlebars.registerHelper("shortenDate", function(date) {
+    date = date.split(",");
+
+    var result = date[0];
+    result = result.replace(/(&nbsp;)?days?/, "d");
+    result = result.replace(/hrs?/, "h");
+    result = result.replace(/mins?/, "m");
+
+    return result;
+});
