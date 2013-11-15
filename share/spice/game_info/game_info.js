@@ -11,7 +11,8 @@ function ddg_spice_game_info(api_result) {
     // throw out all the bad games
     games = $.grep(games, function(data, ind) {
         // which are the ones without a name, image, thumbnail url, or matching name or alias
-        return data.name !== null && data.image !== null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
+        return data.name !== null && data.image !== null && data.image.thumb_url != null && 
+            (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
     });
     // sort them by the number of reviews, which is pretty much how 'controversial' they are
     games.sort(function(a, b) {
