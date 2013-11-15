@@ -2,19 +2,31 @@ function ddg_spice_game_info(api_result) {
     if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0)
         return;
     var ignore = ["games", "game", "giantbomb"];
-    var datas = api_result.results;
+    var games = api_result.results;
     var query = DDG.get_query();
-    for(var i = 0; i < ignore.length; i++) {
-        query = query.replace(ignore[i], "");
-    }
-    query = $.trim(query);
-    // filter out irrelevant and malformed results
-    datas = DDG.get_query().indexOf("games") == -1 ? [datas[0]] : $.grep(datas, function(data, ind) {
-        return data.name != null && data.image != null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
+    $.each(ignore, function(phrase, ind) {
+        query = query.replace(phrase, "");
     });
-
-    if(datas.length == 0)
+    query = $.trim(query);
+    // throw out all the bad games
+    games = $.grep(games, function(data, ind) {
+        // which are the ones without a name, image, thumbnail url, or matching name or alias
+        return data.name !== null && data.image !== null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
+    });
+    // sort them by the number of reviews, which is pretty much how 'controversial' they are
+    games.sort(function(a, b) {
+        return b.number_of_user_reviews - a.number_of_user_reviews;
+    });
+    // if the query doesn't contain the string "games"
+    if(DDG.get_query().indexOf("games") == -1) {
+        // trim it to just one game
+        games = games.slice(0, 1);
+    }
+    // if there is just one game
+    if(games.length == 0) {
+        // ignore this
         return;
+    }
     Spice.render({
         data                     : api_result,
         source_url               : "http://www.giantbomb.com/search/?q="+encodeURI(query),
@@ -22,13 +34,16 @@ function ddg_spice_game_info(api_result) {
         source_name              : "GiantBomb",
         template_frame           : "carousel",
         template_options         : {
-            items                : datas,
+            items                : games,
             template_item        : "game_info",
             template_detail      : "game_info_details",
-            single_item_handler  : function(obj) {            // gets called in the event of a single result
+            // gets called in the event of a single result
+            single_item_handler  : function(obj) {
                 var data = obj.data.results[0];
-                obj.image_url = data.image.icon_url;    // set the image
-                obj.source_url = data.site_detail_url; // set the source
+                // set the image
+                obj.image_url = data.image.icon_url;
+                // set the source
+                obj.source_url = data.site_detail_url;
             }
         }
     });
@@ -82,7 +97,6 @@ Handlebars.registerHelper("platform_summary", function(platforms, options) {
  * Summarise the game's rating
  */
 Handlebars.registerHelper("game_rating", function() {
-    console.log(this.image);
     var rating = "";
     var ratings = this.original_game_rating;
     for(var i = 0; i < ratings.length; i++) { // they in the form PEGI: ...

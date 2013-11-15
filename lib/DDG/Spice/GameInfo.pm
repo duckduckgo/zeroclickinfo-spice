@@ -10,8 +10,7 @@ topics "gaming";
 category "reference";
 attribution github => ['https://github.com/tophattedcoder','tophattedcoder'];
 triggers startend => "game","games","giantbomb";
-spice to => 'http://www.giantbomb.com/api/search/?field_list=name,image,site_detail_url,original_game_rating,platforms,deck,original_release_date,aliases&api_key={{ENV{DDG_SPICE_GIANTBOMB_APIKEY}}}&format=json&query=$1&limit=12&callback={{callback}}&resources=game';
-spice wrap_jsonp_callback => 1;
+spice to => 'http://www.giantbomb.com/api/search/?field_list=number_of_user_reviews,name,image,site_detail_url,original_game_rating,platforms,deck,original_release_date,aliases&api_key={{ENV{DDG_SPICE_GIANTBOMB_APIKEY}}}&format=jsonp&query=$1&limit=12&json_callback={{callback}}&resources=game';
 
 handle remainder => sub {
     return $_ if $_;
