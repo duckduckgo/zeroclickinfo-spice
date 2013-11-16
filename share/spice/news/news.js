@@ -78,6 +78,14 @@ function ddg_spice_news(api_result) {
 	}
     });
 
+    // Remove the "More at ..." link at the bottom.
+    $("#zero_click_more_at_wrap").toggle(false);
+
+    // Adjust the box margins--can't do this in css
+    $("#zero_click_wrapper2 #zero_click_abstract").attr("style", 
+							"padding-left: 0px !important;" +
+							"margin-left: 0px !important;");
+
     // Since we're hiding the "More at ..." link, we should
     // also hide the element containing it, but only if it has the class "minimal".
     var hide_minimal = function() {
@@ -110,12 +118,6 @@ function ddg_spice_news(api_result) {
 	// Decide whether we should show or hide the #ddgc_pagination.
 	hide_minimal();
 	$(window).resize(hide_minimal);
-
-	// Adjust the box margins--can't do this in css
-	$("#zero_click_wrapper2 #zero_click_abstract").attr("style", 
-							    "padding-left: 0px !important;" +
-							    "margin-left: 0px !important;");
-	$("#zero_click_more_at_wrap").toggle(false);
     });
 }
 
