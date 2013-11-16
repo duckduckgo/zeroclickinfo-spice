@@ -87,15 +87,21 @@ function ddg_spice_news(api_result) {
     };
 
     $(function() {	
+	// I would just use el.naturalWidth, but that doesn't
+	// work on IE8. This will fix that.
+	var getWidth = function(el) {
+	    var image = new Image();
+	    image.src = $(el).attr("src");
+	    
+	    return image.width;
+	};
+
 	// Check if we get a 1x1 pixel image or not.
 	// If we do, then don't display that at all.
-	$("img.favicon").one("load", function() {
-	    if(this.naturalWidth === 1) {
+	$("img.favicon").load(function() {
+	    var width = getWidth(this);
+	    if(width === 1) {
 		$(this).width(0);
-	    }
-	}).each(function() {
-	    if(this.complete) {
-		$(this).load();
 	    }
 	});
 
