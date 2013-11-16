@@ -41,6 +41,8 @@ function ddg_spice_news(api_result) {
 	story.title = story.title.replace(/<b>|<\/b>|:/g, "");
     }
 
+    // Relevancy:
+    // Check if the title is relevant to our query.
     var good_stories = [];
     if(generic) {
         good_stories = api_result;
@@ -117,10 +119,14 @@ function ddg_spice_news(api_result) {
     });
 }
 
+// Get's the favicon of a given URL.
 Handlebars.registerHelper("getIcon", function(url) {
     return Handlebars.helpers.favicon.call({source_url: url, forces: {}});
 });
 
+// Gets the domain name of a given URL.
+// It converts things like: http://blogs.wsj.com/law/2013/11/14/google-wins-dismissal-of-book-scanning-suit/?mod=smallbusiness/
+// Into: blogs.wsj.com
 Handlebars.registerHelper("getDomain", function(url) {
     re = new RegExp('^.*?\/\/([^\/\?\:\#]+)');
     if(re.test(url)) {
@@ -128,18 +134,23 @@ Handlebars.registerHelper("getDomain", function(url) {
     }
 });
 
-
-Handlebars.registerHelper("shortenDate", function(date) {
+// Compresses the relative time given by the API.
+// Converts 1&nbsp;day,&nbsp;19hr&nbsp;ago to 1d.
+Handlebars.registerHelper("shortenTime", function(date) {
     date = date.split(",");
 
     var result = date[0];
-    result = result.replace(/(&nbsp;)?days?/, "d");
-    result = result.replace(/hrs?/, "h");
-    result = result.replace(/mins?/, "m");
+    result = result.replace(/(&nbsp;)?ago/, "");
+    result = result.replace(/(&nbsp;)?days?.*/, "d");
+    result = result.replace(/hrs?.*/, "h");
+    result = result.replace(/mins?.*/, "m");
 
     return result;
 });
 
+// This function trims our text.
+// It makes sure that we're not trimming over words,
+// and it automatically appends a closing tag if we're missing one.
 Handlebars.registerHelper("ellipsis", function(text, limit) {
     var result = [];
     var count = 0;
