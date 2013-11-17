@@ -179,8 +179,10 @@ function ddg_spice_forecast(r) {
       
       $day.find('.fe_icon').attr('id', 'fe_day_icon'+i)
       setTimeout(function(){set_skycons('fe_day_icon'+i, skycon_type(days[i].icon))}, 0)
-      
-      $day.appendTo($daily_container)
+
+      if(day.temperatureMax && day.temperatureMin) { 
+        $day.appendTo($daily_container)
+      }
     })(i)
   }
   
