@@ -1,8 +1,31 @@
 function ddg_spice_forecast(r) {
   
   // Exit if we've got a bad forecast
-  if(!r || !r.hourly || !r.hourly.data || !r.daily || !r.daily.data)
-    return
+  if(!r || !r.hourly || !r.hourly.data || !r.daily || !r.daily.data || !r.flags['ddg-location']) {
+    return;
+  }
+
+  // Get the query.
+  // We could actually use DDG.get_query() here, but we'd have
+  // to strip all the unnecessary stuff that we don't need, and that
+  // Forecast.pm already does for us.
+  var script = $('[src*="/js/spice/forecast/"]')[0];
+  var source = $(script).attr('src');
+  var query = source.match(/forecast\/([^\/]+)/)[1];
+  query = decodeURIComponent(query);
+
+  // Pass flags['ddg-location'] to DDG.stringsRelevant to check
+  // if the result is relevant to our query.
+  var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'], query, []);
+
+  // Queries such as "Weather in NY" will fail DDG.stringsRelevant.
+  // For queries like this, check if the query is a word in flags['ddg-location'].
+  var relevant_state = new RegExp("\\b" + query.toLowerCase() + "\\b").test(r.flags['ddg-location'].toLowerCase());
+
+  // Exit if it's not an area code, e.g., 07871, and if it's relevant.
+  if(!(/^\d+$/).test(query) && !(relevant_location || relevant_state)) {
+    return;
+  }
 
   // Render the container elements
   Spice.render({
