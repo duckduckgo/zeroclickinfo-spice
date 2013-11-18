@@ -16,14 +16,10 @@ function ddg_spice_forecast(r) {
 
   // Pass flags['ddg-location'] to DDG.stringsRelevant to check
   // if the result is relevant to our query.
-  var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'], query);
-
-  // Queries such as "Weather in NY" will fail DDG.stringsRelevant.
-  // For queries like this, check if the query is a word in flags['ddg-location'].
-  var relevant_state = new RegExp("\\b" + query.toLowerCase() + "\\b").test(r.flags['ddg-location'].toLowerCase());
+  var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'], query, undefined, 2);
 
   // Exit if it's not an area code, e.g., 07871, and if it's relevant.
-  if(!(/^\d+$/).test(query) && !(relevant_location || relevant_state)) {
+  if(!(/^\d+$/).test(query) && !relevant_location) {
     return;
   }
 
