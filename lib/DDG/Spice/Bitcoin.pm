@@ -18,7 +18,8 @@ spice to => 'http://blockchain.info/ticker';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
-triggers any => "bitcoin", "bit coin", "bitcoin exchange", "bit coin exchange";
+triggers start => "bitcoin exchange in";
+triggers startend => "bitcoin", "bit coin", "bitcoin exchange", "bit coin exchange";
 
 handle remainder => sub {    
 

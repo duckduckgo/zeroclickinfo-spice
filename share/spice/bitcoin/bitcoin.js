@@ -4,6 +4,7 @@ function ddg_spice_bitcoin(api_result) {
         return;
     }
 
+    var DEFAULT_CURRENCY = "USD";
     var symbolsAtEnd = ["PLN", "SEK"];
 
     function getFormattedPrice(currency, price, symbol) {
@@ -15,10 +16,21 @@ function ddg_spice_bitcoin(api_result) {
         return symbol + price;
     }
 
-    var DEFAULT_CURRENCY = "USD";
+    function getQueryParams() {
 
-    var query = DDG.get_query();
-    var params = query.split(/\s+/g);
+        var script = $('[src*="/js/spice/bitcoin/"]')[0];
+        var source = $(script).attr("src");
+        var query = source.match(/bitcoin\/([^\/]*)/)[1];
+        query = $.trim(query.replace(/%20/g, " "));
+
+        if (!query) {
+            return [];
+        }
+
+        return query.split(/\s+/g);
+    }
+    
+    var params = getQueryParams();
 
     var prices = null;
     var currency = null;
@@ -32,6 +44,11 @@ function ddg_spice_bitcoin(api_result) {
     }
 
     if (!prices) {
+
+        if (params.length > 0) {
+            //No parameter matches the valid currencies and is not an empty query
+            return;
+        }
         currency = DEFAULT_CURRENCY;
         prices = api_result[currency];
     }    
