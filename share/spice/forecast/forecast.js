@@ -16,7 +16,7 @@ function ddg_spice_forecast(r) {
 
   // Pass flags['ddg-location'] to DDG.stringsRelevant to check
   // if the result is relevant to our query.
-  var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'], query, []);
+  var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'], query);
 
   // Queries such as "Weather in NY" will fail DDG.stringsRelevant.
   // For queries like this, check if the query is a word in flags['ddg-location'].
