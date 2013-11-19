@@ -35,23 +35,26 @@ function ddg_spice_bitcoin(api_result) {
     var prices = null;
     var currency = null;
 
-    for (var i=0; i < params.length; i++) {
-        currency = $.trim(params[i].toUpperCase());
-        prices = api_result[currency];
-        if (prices) {
-            break;
-        }
-    }
+    if (params.length == 0) {
 
-    if (!prices) {
-
-        if (params.length > 0) {
-            //No parameter matches the valid currencies and is not an empty query
-            return;
-        }
         currency = DEFAULT_CURRENCY;
         prices = api_result[currency];
-    }    
+    }
+    else if (params.length > 1) {
+
+        // Just allow the currency as a parameter
+        return;
+    } 
+    else {
+
+        currency = $.trim(params[0].toUpperCase());
+        prices = api_result[currency];
+
+        if (!prices) {
+            // Is not a valid currency
+            return;
+        }
+    }        
 
     var buy = {
         formatted_price: getFormattedPrice(currency, prices.buy, prices.symbol),
