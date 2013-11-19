@@ -96,25 +96,7 @@ function ddg_spice_news(api_result) {
 	}
     };
 
-    $(function() {	
-	// I would just use el.naturalWidth, but that doesn't
-	// work on IE8. This will fix that.
-	var getWidth = function(el) {
-	    var image = new Image();
-	    image.src = $(el).attr("src");
-	    
-	    return image.width;
-	};
-
-	// Check if we get a 1x1 pixel image or not.
-	// If we do, then don't display that at all.
-	$("img.favicon").load(function() {
-	    var width = getWidth(this);
-	    if(width === 1) {
-		$(this).width(0);
-	    }
-	});
-
+    $(function() {
 	// Decide whether we should show or hide the #ddgc_pagination.
 	hide_minimal();
 	$(window).resize(hide_minimal);
@@ -123,7 +105,8 @@ function ddg_spice_news(api_result) {
 
 // Get's the favicon of a given URL.
 Handlebars.registerHelper("getIcon", function(url) {
-    return Handlebars.helpers.favicon.call({source_url: url, forces: {}});
+    // Add "p=1" to enable the default icon.
+    return Handlebars.helpers.favicon.call({source_url: url, forces: {}}) + "?p=1";
 });
 
 // Gets the domain name of a given URL.
