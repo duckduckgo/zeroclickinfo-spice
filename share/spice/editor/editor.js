@@ -3,13 +3,13 @@ function ddg_spice_editor() {
     var query = DDG.get_query();
     var params = query.split(/\s+/g);
 
-    var supportedLanguajes = ["abap", "actionscript", "ada", "asciidoc", "assembly_x86", "autohotkey", "batchfile", "c9search", "c_cpp", "clojure", "cobol", "coffee", "coldfusion", "csharp", "css", "curly", "dart", "diff", "django", "d", "dot", "ejs", "erlang", "forth", "ftl", "glsl", "golang", "groovy", "haml", "handlebars", "haskell", "haxe", "html_completions", "html", "html_ruby", "ini", "jack", "jade", "java", "javascript", "jsoniq", "json", "jsp", "jsx", "julia", "latex", "less", "liquid", "lisp", "livescript", "logiql", "lsl", "lua", "luapage", "lucene", "makefile", "markdown", "matlab", "mushcode_high_rules", "mushcode", "mysql", "nix", "objectivec", "ocaml", "pascal", "perl", "pgsql", "php", "plain_text", "powershell", "prolog", "properties", "protobuf", "python", "rdoc", "rhtml", "r", "ruby", "rust", "sass", "scad", "scala", "scheme", "scss", "sh", "sjs", "snippets", "soy_template", "space", "sql", "stylus", "svg", "tcl", "tex", "textile", "text", "tmsnippet", "toml", "twig", "typescript", "vbscript", "velocity", "verilog", "vhdl", "xml", "xquery", "yaml"];
+    var supportedLanguages = ["javascript", "python"];
 
     var languaje = null;
     for (var i=0; i < params.length; i++) {
 
         var possibleLanguaje = $.trim(params[i].toLowerCase());
-        if ($.inArray(possibleLanguaje, supportedLanguajes) !== -1) {
+        if ($.inArray(possibleLanguaje, supportedLanguages) !== -1) {
             languaje = possibleLanguaje;
             break;
         }
@@ -22,7 +22,7 @@ function ddg_spice_editor() {
     window.aceScriptLoaded = function() {
 
         var editor = ace.edit("ace-editor");    
-        editor.setTheme("ace/theme/twilight");
+        editor.setTheme("ace/theme/eclipse");
         editor.getSession().setMode("ace/mode/" + languaje);
     }    
 
