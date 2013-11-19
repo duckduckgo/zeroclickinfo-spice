@@ -21,7 +21,7 @@ function ddg_spice_bitcoin(api_result) {
         var script = $('[src*="/js/spice/bitcoin/"]')[0];
         var source = $(script).attr("src");
         var query = source.match(/bitcoin\/([^\/]*)/)[1];
-        query = $.trim(query.replace(/%20/g, " "));
+        query = $.trim(decodeURIComponent(query));
 
         if (!query) {
             return [];
