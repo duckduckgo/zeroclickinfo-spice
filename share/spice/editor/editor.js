@@ -1,21 +1,8 @@
 function ddg_spice_editor() {    
 
-    var query = DDG.get_query();
-    var params = query.split(/\s+/g);
-
-    var supportedLanguages = ["javascript", "python"];
-
-    var languaje = null;
-    for (var i=0; i < params.length; i++) {
-
-        var possibleLanguaje = $.trim(params[i].toLowerCase());
-        if ($.inArray(possibleLanguaje, supportedLanguages) !== -1) {
-            languaje = possibleLanguaje;
-            break;
-        }
-    }
-
-    if (!languaje) return;
+    var script = $('[src*="/js/spice/editor/"]')[0];
+    var source = $(script).attr("src");
+    var language = source.match(/editor\/([^\/]+)/)[1];
 
     nrj("share/spice/editor/ace.js");
 
@@ -23,7 +10,7 @@ function ddg_spice_editor() {
 
         var editor = ace.edit("ace-editor");    
         editor.setTheme("ace/theme/eclipse");
-        editor.getSession().setMode("ace/mode/" + languaje);
+        editor.getSession().setMode("ace/mode/" + language);
     }    
 
     function capitaliseFirstLetter(string) {
@@ -31,11 +18,11 @@ function ddg_spice_editor() {
     }
     
     Spice.render({
-        header1          :  capitaliseFirstLetter(languaje) + " Editor",
+        header1          :  capitaliseFirstLetter(language) + " Editor",
         source_name      : "Ace",
         source_url       : "http://ace.c9.io/",
-        template_normal  : "editor",        
+        template_normal  : "editor",
         force_big_header :  true,
-        force_no_fold    : true,
+        force_no_fold    :  true
     });
 }
