@@ -30,7 +30,7 @@ function ddg_spice_dictionary_definition (api_result) {
         original = context.word;
 
     // Load SoundManager JS Library, used to play pronunciation audio
-    nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
+    $.getScript("soundmanager2/script/soundmanager2-nodebug-jsmin.js");
 
     // Check if the word is a plural e.g "cacti"
     var singular = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>([^<]+)<\/xref>/i);
