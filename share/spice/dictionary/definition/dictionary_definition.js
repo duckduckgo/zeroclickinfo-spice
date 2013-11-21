@@ -16,20 +16,53 @@
 // Dictionary::Definition will call this function.
 // This function gets the definition of a word.
 
-nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
-
 function ddg_spice_dictionary_definition (api_result) {
     "use strict";
-    var path = "/js/spice/dictionary";
 
-    // We moved Spice.render to a function because we're choosing between two contexts.
-    var render = function(context, word, otherWord) {
+    // Check if we have results we need.
+    if (!api_result || !api_result.length) return;
+
+    var path = "/js/spice/dictionary",
+        context = {
+            definitions: api_result,
+            word: api_result[0].word
+        },
+        original = context.word;
+
+    // Load SoundManager JS Library, used to play pronunciation audio
+    nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
+
+    // Check if the word is a plural e.g "cacti"
+    var singular = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>([^<]+)<\/xref>/i);
+
+    // If the word is plural, then we should load the definition of the word
+    // in singular form. The definition of the singular word is usually more helpful.
+    if (api_result.length === 1 && singular) {
+        $.getJSON(path + "/reference/" + singular[1], function (api_result){
+
+            if (!api_result && !api_result.length) return;
+            context = {
+                definitions:  api_result,
+                pluralOf:  api_result[0].word,
+                word:  original
+            };
+
+            render(context);
+        });
+    } else {
+        render(context);
+    }
+
+    // Render result for display
+    function render (context) {
+        var singular = context.pluralOf || context.word;
+
         Spice.render({
             data              : context,
             header1           : "Definition (Wordnik)",
             force_big_header  : true,
             source_name       : "Wordnik",
-            source_url        : "http://www.wordnik.com/words/" + word,
+            source_url        : "http://www.wordnik.com/words/" + context.word,
             template_normal   : "dictionary_definition",
             force_no_fold     : true
         });
