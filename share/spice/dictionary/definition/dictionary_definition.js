@@ -77,62 +77,45 @@ function ddg_spice_dictionary_definition (api_result) {
         $.getJSON(path + "/pronunciation/" + singular, dictionary_pronunciation);
         $.getJSON(path + "/audio/" + singular, dictionary_audio);
     }
-};
 
-// Dictionary::Reference will call this function.
-// This is the part where we load the definition of the
-// singular form of the word.
-function ddg_spice_dictionary_reference (api_result) {
-    "use strict";
-
-    var render = ddg_spice_dictionary_definition.render;
 
     // Dictionary::Hyphenation will call this function.
     // We want to add hyphenation to the word, e.g., hel•lo.
     function dictionary_hyphenation (api_result) {
         "use strict";
 
-        // We're doing this because we want to say:
-        // "Cacti is the plural form of cactus."
-        api_result[0].pluralOf = word;
-        api_result[0].word = ddg_spice_dictionary_definition.pluralOf;
+        var result = [];
+        if (api_result && api_result.length > 0) {
+            for (var i = 0; i < api_result.length; i += 1) {
+                if (i === api_result[i].seq) {
+                    result.push(api_result[i].text);
+                }
+            }
+            // Replace the, rather lame, non-hyphenated version of the word.
+            $("#hyphenation").html(result.join("•"));
+        }
+    };
 
-        // Render the plugin.
-        render(api_result, api_result[0].word, word);
-    }
-};
 
     // Dictionary::Pronunciation will call this function.
     // It displays the text that tells you how to pronounce a word.
     function dictionary_pronunciation (api_result) {
         "use strict";
 
-    var result = [];
-    if(api_result && api_result.length > 0) {
-        for(var i = 0; i < api_result.length; i += 1) {
-            if(i === api_result[i].seq) {
-                result.push(api_result[i].text);
-            }
+        if (api_result && api_result.length > 0 && api_result[0].rawType === "ahd-legacy") {
+            $("#pronunciation").html(api_result[0].raw);
         }
-        // Replace the, rather lame, non-hyphenated version of the word.
-        $("#hyphenation").html(result.join("•"));
-    }
-};
+    };
 
-// Dictionary::Pronunciation will call this function.
-// It displays the text that tells you how to pronounce a word.
-function ddg_spice_dictionary_pronunciation (api_result) {
-    "use strict";
 
     // Dictionary::Audio will call this function.
     // It gets the link to an audio file.
     function dictionary_audio (api_result) {
         "use strict";
 
-// Dictionary::Audio will call this function.
-// It gets the link to an audio file.
-function ddg_spice_dictionary_audio (api_result) {
-    "use strict";
+        var isFailed = false;
+        var url = "";
+        var $icon = $("#play-button");
 
         // Sets the icon to play.
         function resetIcon () {
@@ -144,27 +127,25 @@ function ddg_spice_dictionary_audio (api_result) {
             $icon.addClass("widget-button-press");
         };
 
-    // Sets the icon to stop.
-    var pressIcon = function() {
-        icon.addClass("widget-button-press");
-    };
-
-    // Check if we got anything from Wordnik.
-    if(api_result && api_result.length > 0) {
-        // Find the audio url that was created by Macmillan (it usually sounds better).
-        for(var i = 0; i < api_result.length; i += 1) {
-            if(api_result[i].createdBy === "macmillan" && url === "") {
-                url = api_result[i].fileUrl;
+        // Check if we got anything from Wordnik.
+        if (api_result && api_result.length > 0) {
+            // Find the audio url that was created by Macmillan (it usually sounds better).
+            for (var i = 0; i < api_result.length; i += 1) {
+                if (api_result[i].createdBy === "macmillan" && url === "") {
+                    url = api_result[i].fileUrl;
+                }
             }
+
+            // If we don't find Macmillan, we use the first one.
+            if (url === "") {
+                url = api_result[0].fileUrl;
+            }
+        } else {
+            return;
         }
 
-        // If we don't find Macmillan, we use the first one.
-        if(url === "") {
-            url = api_result[0].fileUrl;
-        }
-    } else {
-        return;
-    }
+        // Load the sound and set the icon
+        var isLoaded = false;
 
         function loadSound () {
             // Set the sound file.
@@ -174,33 +155,28 @@ function ddg_spice_dictionary_audio (api_result) {
                 onfinish: function() {
                     resetIcon();
                     soundManager.stopAll();
+                },
+                ontimeout: function() {
+                    isFailed = true;
+                    resetIcon();
+                },
+                whileplaying: function() {
+                    // We add this just in case onfinish doesn't fire.
+                    if (this.position === this.durationEstimate) {
+                        resetIcon();
+                        soundManager.stopAll();
+                    }
                 }
-            }
-        });
+            });
 
-        sound.load();
-        isLoaded = true;
+            sound.load();
+            isLoaded = true;
 
-        // Set icon.
-        icon.html("▶");
-        icon.removeClass("widget-disappear");
+            // Set icon
+            $icon.html("&#9658;");
+            $icon.removeClass("widget-disappear");
 
-        // Load the icon immediately if we know that the url exists.
-        resetIcon();
-    };
-
-    // Initialize the soundManager object.
-    var soundSetup = function() {
-        window.soundManager = new SoundManager();
-        soundManager.url = "/soundmanager2/swf/";
-        soundManager.flashVersion = 9;
-        soundManager.useFlashBlock = false;
-        soundManager.useHTML5Audio = false;
-        soundManager.useFastPolling = true;
-        soundManager.useHighPerformance = true;
-        soundManager.multiShotEvents = true;
-        soundManager.ontimeout(function() {
-            isFailed = true;
+            // Load the icon immediately if we know that the url exists.
             resetIcon();
         };
 
@@ -233,27 +209,14 @@ function ddg_spice_dictionary_audio (api_result) {
                 soundManager.play("dictionary-sound");
             }
         });
-        soundManager.beginDelayedInit();
-        soundManager.onready(loadSound);
+
+        // Check if soundManager was already loaded. If not, we should load it.
+        // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
+        window.SM2_DEFER = true;
+        soundSetup();
     };
-
-    // Play the sound when the icon is clicked. Do not let the user play
-    // without window.soundManager.
-    icon.click(function() {
-        if(isFailed) {
-            pressIcon();
-            setTimeout(resetIcon, 1000);
-        } else if(!icon.hasClass("widget-button-press") && isLoaded) {
-            pressIcon();
-            soundManager.play("dictionary-sound");
-        }
-    });
-
-    // Check if soundManager was already loaded. If not, we should load it.
-    // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
-    window.SM2_DEFER = true;
-    soundSetup();
 };
+
 
 // We should shorten the part of speech before displaying the definition.
 Handlebars.registerHelper("part", function(text) {
