@@ -8,10 +8,10 @@
 // define dictionary - gives the definition of the word "dictionary."
 //
 // Notes:
-// ddg_spice_dictionary_definition - gets the definitions of a given word (e.g. noun. A sound or a combination of sounds).
-// ddg_spice_dictionary_pronunciation - gets the pronunciation of a word (e.g. wûrd).
-// ddg_spice_dictionary_audio - gets the audio file.
-// ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
+// dictionary_definition - gets the definitions of a given word (e.g. noun. A sound or a combination of sounds).
+// dictionary_pronunciation - gets the pronunciation of a word (e.g. wûrd).
+// dictionary_audio - gets the audio file.
+// dictionary_reference - handles plural words. (Improve on this in the future.)
 
 // Dictionary::Definition will call this function.
 // This function gets the definition of a word.
@@ -36,41 +36,13 @@ function ddg_spice_dictionary_definition (api_result) {
 
         // Do not add hyphenation when we're asking for two words.
         // If we don't have this, we'd can have results such as "black• hole".
-        if(!word.match(/\s/)) {
-            $.getScript(path + "/hyphenation/" + word);
+        if (!context.word.match(/\s/)) {
+            $.getJSON(path + "/hyphenation/" + context.word, dictionary_hyphenation);
         }
 
         // Call the Wordnik API to display the pronunciation text and the audio.
-        $.getScript(path + "/pronunciation/" + otherWord);
-        $.getScript(path + "/audio/" + otherWord);
-    };
-
-    // Expose the render function.
-    ddg_spice_dictionary_definition.render = render;
-
-    // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript.
-    // If cache was set to false, it would be calling /js/spice/dictionary/definition/hello?_=12345
-    // and that's something that we don't want.
-    $.ajaxSetup({
-        cache: true
-    });
-
-    // Check if we have results we need.
-    if (api_result && api_result.length > 0) {
-
-        // Wait, before we display the plugin, let's check if it's a plural
-        // such as the word "cacti."
-        var singular = api_result[0].text.match(/^(?:A )?plural (?:form )?of <xref>([^<]+)<\/xref>/i);
-
-        // If the word is plural, then we should load the definition of the word
-        // in singular form. The definition of the singular word is usually more helpful.
-        if(api_result.length === 1 && singular) {
-            ddg_spice_dictionary_definition.pluralOf = api_result[0].word;
-            $.getScript(path + "/reference/" + singular[1]);
-        } else {
-            // Render the plugin if everything is fine.
-            render(api_result, api_result[0].word, api_result[0].word);
-        }
+        $.getJSON(path + "/pronunciation/" + singular, dictionary_pronunciation);
+        $.getJSON(path + "/audio/" + singular, dictionary_audio);
     }
 };
 
@@ -82,8 +54,10 @@ function ddg_spice_dictionary_reference (api_result) {
 
     var render = ddg_spice_dictionary_definition.render;
 
-    if(api_result && api_result.length > 0) {
-        var word = api_result[0].word;
+    // Dictionary::Hyphenation will call this function.
+    // We want to add hyphenation to the word, e.g., hel•lo.
+    function dictionary_hyphenation (api_result) {
+        "use strict";
 
         // We're doing this because we want to say:
         // "Cacti is the plural form of cactus."
@@ -95,10 +69,10 @@ function ddg_spice_dictionary_reference (api_result) {
     }
 };
 
-// Dictionary::Hyphenation will call this function.
-// We want to add hyphenation to the word, e.g., hel•lo.
-function ddg_spice_dictionary_hyphenation (api_result) {
-    "use strict";
+    // Dictionary::Pronunciation will call this function.
+    // It displays the text that tells you how to pronounce a word.
+    function dictionary_pronunciation (api_result) {
+        "use strict";
 
     var result = [];
     if(api_result && api_result.length > 0) {
@@ -117,24 +91,25 @@ function ddg_spice_dictionary_hyphenation (api_result) {
 function ddg_spice_dictionary_pronunciation (api_result) {
     "use strict";
 
-    if(api_result && api_result.length > 0 && api_result[0].rawType === "ahd-legacy") {
-        $("#pronunciation").html(api_result[0].raw);
-    }
-};
+    // Dictionary::Audio will call this function.
+    // It gets the link to an audio file.
+    function dictionary_audio (api_result) {
+        "use strict";
 
 // Dictionary::Audio will call this function.
 // It gets the link to an audio file.
 function ddg_spice_dictionary_audio (api_result) {
     "use strict";
 
-    var isFailed = false;
-    var url = "";
-    var icon = $("#play-button");
+        // Sets the icon to play.
+        function resetIcon () {
+            $icon.removeClass("widget-button-press");
+        };
 
-    // Sets the icon to play.
-    var resetIcon = function() {
-        icon.removeClass("widget-button-press");
-    };
+        // Sets the icon to stop.
+        function pressIcon () {
+            $icon.addClass("widget-button-press");
+        };
 
     // Sets the icon to stop.
     var pressIcon = function() {
@@ -158,24 +133,12 @@ function ddg_spice_dictionary_audio (api_result) {
         return;
     }
 
-    // Load the sound and set the icon.
-    var isLoaded = false;
-    var loadSound = function() {
-        // Set the sound file.
-        var sound = soundManager.createSound({
-            id: "dictionary-sound",
-            url: "/audio/?u=" + url,
-            onfinish: function() {
-                resetIcon();
-                soundManager.stopAll();
-            },
-            ontimeout: function() {
-                isFailed = true;
-                resetIcon();
-            },
-            whileplaying: function() {
-                // We add this just in case onfinish doesn't fire.
-                if(this.position === this.durationEstimate) {
+        function loadSound () {
+            // Set the sound file.
+            var sound = soundManager.createSound({
+                id: "dictionary-sound",
+                url: "/audio/?u=" + url,
+                onfinish: function() {
                     resetIcon();
                     soundManager.stopAll();
                 }
@@ -206,6 +169,36 @@ function ddg_spice_dictionary_audio (api_result) {
         soundManager.ontimeout(function() {
             isFailed = true;
             resetIcon();
+        };
+
+        // Initialize the soundManager object.
+        function soundSetup () {
+            window.soundManager = new SoundManager();
+            soundManager.url = "/soundmanager2/swf/";
+            soundManager.flashVersion = 9;
+            soundManager.useFlashBlock = false;
+            soundManager.useHTML5Audio = false;
+            soundManager.useFastPolling = true;
+            soundManager.useHighPerformance = true;
+            soundManager.multiShotEvents = true;
+            soundManager.ontimeout(function() {
+                isFailed = true;
+                resetIcon();
+            });
+            soundManager.beginDelayedInit();
+            soundManager.onready(loadSound);
+        };
+
+        // Play the sound when the icon is clicked. Do not let the user play
+        // without window.soundManager.
+        $icon.click(function() {
+            if (isFailed) {
+                pressIcon();
+                setTimeout(resetIcon, 1000);
+            } else if (!$icon.hasClass("widget-button-press") && isLoaded) {
+                pressIcon();
+                soundManager.play("dictionary-sound");
+            }
         });
         soundManager.beginDelayedInit();
         soundManager.onready(loadSound);
