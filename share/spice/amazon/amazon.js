@@ -1,12 +1,11 @@
-var ddg_spice_amazon_carousel_add_items;
-var ddg_spice_amazon_query;
-
 function ddg_spice_amazon(api_response) {
-    if (!api_response || !api_response.results ||
-    !api_response.results.length || api_response.results.length == 0) return;
 
-    ddg_spice_amazon_query =
-        DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
+    if (!api_response ||
+        !api_response.results ||
+        !api_response.results.length ||
+        api_response.results.length == 0) return;
+
+    query = DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
 
     // Pass single item response into data object
     if (api_response.results.length == 1) {
@@ -33,15 +32,16 @@ function ddg_spice_amazon(api_response) {
             });
         }
         if (item && !is_cached)
-            nrj('/m.js?r='
-                + escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', ''))
-                + '&cb=ddg_spice_amazon_reviews');
+            $.getJSON(
+                '/m.js?r='+ escape(item.rating.replace('http://www.amazon.com/reviews/iframe?', '')),
+                amazon_reviews
+            );
     };
 
-    ddg_spice_amazon_carousel_add_items =
+    amazon_carousel_add_items =
         Spice.render({
             data                     : data || api_response,
-            header1                  : ddg_spice_amazon_query + ' (Amazon)',
+            header1                  : query + ' (Amazon)',
             source_url               : api_response.more_at,
             source_name              : 'Amazon',
             force_big_header         : true,
@@ -68,39 +68,37 @@ function ddg_spice_amazon(api_response) {
                     // to ddg_spice_amazon_reviews
                     $.getJSON(
                         '/m.js?r='+ escape(obj.data.rating.replace('http://www.amazon.com/reviews/iframe?', '')),
-                        function( response ){ ddg_spice_amazon_reviews(response) }
+                        amazon_reviews
                     );
                 }
             }
         });
 
-    nrj('/m.js?pg=2'
-    + '&cb=ddg_spice_amazon_wait_for_render'
-    + '&q=' + escape(DDG.get_query()));
+    $.getJSON('/m.js?pg=2' + '&q=' + escape(DDG.get_query()), amazon_wait_for_render);
 
     $(window).resize(spotlight_resize);
-}
 
-function ddg_spice_amazon_wait_for_render(api_response) {
-    if (ddg_spice_amazon_carousel_add_items) {
-        window.setTimeout(function() {
-            ddg_spice_amazon_carousel_add_items(api_response.results);
-        }, 500);
+    function amazon_wait_for_render(api_response) {
+        if (amazon_carousel_add_items) {
+            window.setTimeout(function() {
+                amazon_carousel_add_items(api_response.results);
+            }, 500);
+        }
     }
-}
 
-function ddg_spice_amazon_reviews(api_response) {
+    function amazon_reviews(api_response) {
 
-    if (api_response.stars == 'unrated') {
-        $('<span>unrated</span>')
-            .insertAfter('#spice_amazon .stars');
-        $('#spice_amazon .stars').hide();
-    } else {
-        $('#spice_amazon .stars')
-            .attr('src', '/iu/?u=' + api_response.stars);
+        if (api_response.stars == 'unrated') {
+            $('<span>unrated</span>')
+                .insertAfter('#spice_amazon .stars');
+            $('#spice_amazon .stars').hide();
+        } else {
+            $('#spice_amazon .stars')
+                .attr('src', '/iu/?u=' + api_response.stars);
+        }
+        $('#spice_amazon .review-count')
+            .text(api_response.reviews);
     }
-    $('#spice_amazon .review-count')
-        .text(api_response.reviews);
 }
 
 function ddg_spice_amazon_deep_image(api_response) {
