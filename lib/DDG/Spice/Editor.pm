@@ -4,7 +4,7 @@ use DDG::Spice;
 use URI::Escape;
 use Encode;
 
-primary_example_queries "editor";
+primary_example_queries "python editor";
 secondary_example_queries "python editor", "javascript editor";
 description "Show a text editor with sintax highlighting";
 name "Editor";

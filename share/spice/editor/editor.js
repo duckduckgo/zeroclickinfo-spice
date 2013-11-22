@@ -8,9 +8,13 @@ function ddg_spice_editor() {
 
     window.aceScriptLoaded = function() {
 
-        var editor = ace.edit("ace-editor");    
+        var editor_id = "ace-editor";
+
+        var editor = ace.edit(editor_id);    
         editor.setTheme("ace/theme/eclipse");
         editor.getSession().setMode("ace/mode/" + language);
+
+        $("#" + editor_id).height("400px");
     }    
 
     function capitaliseFirstLetter(string) {
