@@ -19,6 +19,7 @@ use DDG::Spice;
 #       "purple quotes"
 #       "to be or not to be quotes"
 #       "chicago quotes"
+#       "quotes about cats"
 #
 #     No "full text" searching
 #     ------------------------
