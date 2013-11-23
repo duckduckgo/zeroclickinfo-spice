@@ -15,6 +15,16 @@ function ddg_spice_editor() {
         editor.getSession().setMode("ace/mode/" + language);
 
         $("#" + editor_id).height("400px");
+
+        // Adjust the box margins--can't do this in css
+        var style = "padding-left: 0px !important; margin-left: 0px !important;" +
+                    "padding-top: 0px !important; margin-top: 0px !important;";
+        $("#zero_click_wrapper2 #zero_click_abstract").attr("style", style);
+
+        // Stop DDG keybindings, when editor has focus
+        $("#" + editor_id).keydown(function(e) {            
+            event.stopPropagation();
+        });
     }    
 
     function capitaliseFirstLetter(string) {
