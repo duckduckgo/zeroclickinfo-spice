@@ -106,7 +106,7 @@ function ddg_spice_news(api_result) {
 // Get's the favicon of a given URL.
 Handlebars.registerHelper("getIcon", function(url) {
     // Add "p=1" to enable the default icon.
-    return Handlebars.helpers.favicon.call({source_url: url, forces: {}}) + "?p=1";
+    return Handlebars.helpers.favicon.call({source_url: url, forces: {}}).replace(/(icons\.duckduckgo\.com)\/i/, "$1/ip");
 });
 
 // Gets the domain name of a given URL.
