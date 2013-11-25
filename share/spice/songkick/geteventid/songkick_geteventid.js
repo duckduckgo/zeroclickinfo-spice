@@ -1,19 +1,3 @@
-function twenty_four_to_twelve_hour_time(t) {
-  "use strict";
-  if (t === null) {
-    return t;
-  }
-  var a = t.split(/:/);
-  a[0] = parseInt(a[0]);
-  if (a[0] > 12) {
-    a = [a[0] - 12, a[1], 'PM'];
-  } else {
-    a = [a[0], a[1], ((a[0] == 12) ? 'PM' : 'AM')];
-  }
-  a[0] += '';
-  return a[0] + ':' + a[1] + ' ' + a[2];
-}
-
 function ddg_spice_songkick_geteventid(api_result) {
   "use strict";
   // Taken from
@@ -82,6 +66,20 @@ function ddg_spice_songkick_events(events_data) {
   "use strict";
   var max_results = 10;
   var show_results = 3;
+  var twenty_four_to_twelve_hour_time = function(t) {
+    if (t === null) {
+      return t;
+    }
+    var a = t.split(/:/);
+    a[0] = parseInt(a[0]);
+    if (a[0] > 12) {
+      a = [a[0] - 12, a[1], 'PM'];
+    } else {
+      a = [a[0], a[1], ((a[0] == 12) ? 'PM' : 'AM')];
+    }
+    a[0] += '';
+    return a[0] + ':' + a[1] + ' ' + a[2];
+  };
   // Taken from
   //   http://www.songkick.com/developer/upcoming-events-for-metro-area
   // {"resultsPage:" {
