@@ -23,7 +23,7 @@ function ddg_spice_editor() {
 
         // Stop DDG keybindings, when editor has focus
         $("#" + editor_id).keydown(function(e) {            
-            event.stopPropagation();
+            e.stopPropagation();
         });
     }    
 
