@@ -4,9 +4,9 @@ package DDG::Spice::BrainyQuote;
 use DDG::Spice;
 
 primary_example_queries "John Kennedy quotes";
-secondary_example_queries "quotes about motivation", "Brad Pitt quotes", "chicago quotes";
+secondary_example_queries "quotes about motivation", "Brad Pitt quotations", "chicago quotes";
 description "Quotations from Brainyquote";
-name "Quote";
+name "Quotations";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BrainyQuote.pm";
 topics "entertainment", "reference";
 category "reference";
