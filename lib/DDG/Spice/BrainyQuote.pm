@@ -3,6 +3,15 @@ package DDG::Spice::BrainyQuote;
 
 use DDG::Spice;
 
+primary_example_queries "John Kennedy quotes";
+secondary_example_queries "quotes about motivation", "Brad Pitt quotes", "chicago quotes";
+description "Quotations from Brainyquote";
+name "Quote";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BrainyQuote.pm";
+topics "entertainment", "reference";
+category "reference";
+attribution web => ['http://www.brainyquote.com','BrainyQuote.com'];
+
 # The BrainyQuote Spice: Instant answers for famous quotations
 #
 # This spice will handle these type queries:
