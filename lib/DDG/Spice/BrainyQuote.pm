@@ -8,8 +8,10 @@ secondary_example_queries "quotes about motivation", "Brad Pitt quotations", "ch
 description "Quotations from Brainyquote.com";
 name "Quotations";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BrainyQuote.pm";
+icon_url "http://brainyquote.com/favicon.ico";
 topics "entertainment", "reference";
 category "reference";
+source "BrainyQuote.com";
 attribution web => ['http://www.brainyquote.com','BrainyQuote.com'];
 
 # The BrainyQuote Spice: Instant answers for famous quotations
