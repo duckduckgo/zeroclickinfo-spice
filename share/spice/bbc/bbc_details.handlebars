@@ -1,0 +1,28 @@
+<p>
+	{{#if programme.is_available_mediaset_pc_sd}}
+		<a class="button" href="http://www.bbc.co.uk/iplayer/episode/{{programme.pid}}" alt="{programme.media.availability}}">Watch Now</a>
+	{{/if}}
+
+	<span>
+		<a href="{{programme_url}}">{{programme.display_titles.title}}</a>{{#if programme.display_titles.subtitle}}:
+		<a href="http://www.bbc.co.uk/programmes/{{programme.pid}}">
+			<span>{{pretty_subtitle}}</span>
+		</a>
+		{{/if}}
+	</span>
+</p>
+
+<div class="synopsis">
+	<p>{{programme.short_synopsis}}</p>
+</div>
+
+<div>
+	<span class="duration">
+			Runtime: {{duration}}
+	</span>
+	
+	{{#checkAirDate}}
+		<br>
+		<i class="initial_broadcast">Originally aired {{initial_broadcast}} on {{programme.ownership.service.title}}</i>
+	{{/checkAirDate}}
+</div>
