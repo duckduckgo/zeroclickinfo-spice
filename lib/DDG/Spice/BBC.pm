@@ -1,5 +1,4 @@
 package DDG::Spice::BBC;
-
 # ABSTRACT: BBC guide on when something is showing
 
 use DDG::Spice;
@@ -14,18 +13,23 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday";
 category "entertainment";
 attribution github => ['https://github.com/tophattedcoder','Tom Bebbington'];
+
 spice to => 'http://www.bbc.co.uk/$1/programmes/schedules/$3/$4.json';
+
 spice from => '([^\/]+)(\/([^\/]+))?\/([^\/]+)(\/([^\/]+))?(\/([^\/]+))?';
+
 spice wrap_jsonp_callback => 1;
+
 triggers startend => "what's on", "what was on", "what will be on", "what is on";
 triggers any => "schedule", "tv guide", "now on";
+
 # map of areas to regions where it shouldn't default to england
 my %regions = (
     "scotland" => "scotland",
     "wales" => "wales",
     "ni" => "ni"
 );
-# handle the query
+
 handle query_lc => sub {
     # the city / area
     my $area = "london";
@@ -37,6 +41,7 @@ handle query_lc => sub {
     } elsif($_ =~ /yesterday|a day ago|1 day ago|last night/) {
         $day = "yesterday";
     }
+
     # set the code for the location
     if($_ =~ /(north(ern)? )?ireland/) {
         $area = "ni";
@@ -59,17 +64,20 @@ handle query_lc => sub {
     } elsif($_ =~ /cumbria/) {
         $area = "north_east";
     }
+
     # look up the region
     my $region = $regions{$area};
-    # if the region wasn't found...
+
+    # default region to "england"
     if (!defined($region)) {
-        # ...default to england
         $region = "england";
     }
+
     # detect simple city radio names
     if($_ =~ /bbc radio( in| for)? (berksire|bristol|cambridgeshire|cornwall|cumbria|derby|devon|gloucestershire|humberside|jersey|kent|lancashire|leeds|leicester|manchester|merseyside|norfolk|northampton|nottingham|sheffield|shropshire|solent|stoke|suffolk|york)/) {
         return ("radio$2", '', $day);
     }
+    
     return ('worldserviceradio', '', $day) if($_ =~ /bbc world (service|radio|service radio)?/);
     return ('asiannetwork', '', $day) if($_ =~ /bbc asian network/);
     return ('6music', '', $day) if($_ =~ /bbc radio (6|six)( music)?/);
@@ -92,4 +100,5 @@ handle query_lc => sub {
     return ('bbcone', $area, $day) if($_ =~ /bbc( 1| one)?/);
     return;
 };
+
 1;
