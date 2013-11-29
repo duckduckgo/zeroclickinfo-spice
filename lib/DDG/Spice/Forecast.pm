@@ -62,10 +62,9 @@ handle query_lc => sub {
         spice is_cached => 1;
     } else {
         spice is_cached => 0;
+        # Infer location if not explicitly in the query.
+        $location = $loc->loc_str unless ($location);
     }
-
-    # Infer location if not explicitly in the query.
-    $location = $loc->loc_str unless ($location);
 
     return $location;
 };
