@@ -13,7 +13,6 @@ function ddg_spice_movie_release_date (api_result) {
 	for(var i = 0; i < movies.length; i++) {
 		movies[i].relevance = movies.length - i;
 		movies[i].score = movie_score(movies[i]);
-		console.log("Score of "+movies[i].title+" = "+movies[i].score);
 	}
 	var movie = DDG_bestResult(movies, function(a, b) {
 		return movie_score(a) > movie_score(b) ? a : b;
