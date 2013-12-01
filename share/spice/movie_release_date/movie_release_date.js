@@ -7,15 +7,13 @@ function ddg_spice_movie_release_date (api_result) {
     movies.filter(function(movie) {
 		return movie.release_date !== null && movie.release_date.length > 0 && movie.release_date.split("-").length === 3 && (DDG.isRelevant(movie.title, ignore) || DDG.isRelevant(movie.original_title, ignore));
 	});
-	function movie_score(movie) {
-		return movie.relevance * 2 + movie.vote_average * 0.5 + movie.popularity * 0.06;
-	}
 	for(var i = 0; i < movies.length; i++) {
-		movies[i].relevance = movies.length - i;
-		movies[i].score = movie_score(movies[i]);
+		var cmovie = movies[i];
+		cmovie.relevance = movies.length - i;
+		cmovie.score = cmovie.relevance * 2 + cmovie.vote_average * 0.5 + cmovie.popularity * 0.06;
 	}
 	var movie = DDG_bestResult(movies, function(a, b) {
-		return movie_score(a) > movie_score(b) ? a : b;
+		return a.score > b.score ? a : b;
 	});
     Spice.render({
         data             : movie,
