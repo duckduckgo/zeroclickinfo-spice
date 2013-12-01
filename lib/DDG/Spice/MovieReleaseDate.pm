@@ -12,16 +12,18 @@ topics "entertainment", "everyday";
 category "entertainment";
 attribution github => ['https://github.com/tophattedcoder','Tom Bebbington'];
 
-spice to => 'http://api.themoviedb.org/3/search/movie?api_key={{ENV{DDG_SPICE_THEMOVIEDB_APIKEY}}}&query=$1&include_adult=false&callback={{callback}}';
+spice to => 'http://api.themoviedb.org/3/search/movie?query=$1&include_adult=false&api_key={{ENV{DDG_SPICE_THEMOVIEDB_APIKEY}}}&callback={{callback}}';
 
 triggers any => 'release date', 'release', 'air date', 'air', 'premiere date', 'premiere', 'come out';
 
-handle remainder => sub {
-	s/^when //;
-	s/(?:^| )(did|does|will)(?: |$)//;
-	s/ (for|of)(?= )//;
-	s/(?:^| )date(?: |$)//;
-    return $_ if $_;
-    return;
+handle query_lc => sub {
+    if($_ =~/^when (?:will|did|does|shall) (.+) (?:release|come out|premiere)$/) {
+		return $1;
+	} elsif($_ =~/^(?:release|premiere|air)( date)? (?:for|of) (.+)$/) {
+		return $1;
+	} elsif($_ =~/^(.+?)(?:'s)? (?:release|premiere|air)$/) {
+		return $1;
+	}
+	return;
 };
 1;
