@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::MovieReleaseDate )],
-    'air date thor' => test_spice(
-        '/js/spice/movie_release_date/thor',
+    'air date thor 2' => test_spice(
+        '/js/spice/movie_release_date/thor%202',
         call_type => 'include',
         caller => 'DDG::Spice::MovieReleaseDate'
     ),
