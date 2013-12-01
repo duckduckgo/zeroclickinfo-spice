@@ -19,7 +19,7 @@ triggers any => 'release date', 'release', 'air date', 'air', 'premiere date', '
 handle remainder => sub {
 	s/^when //;
 	s/(?:^| )(did|does|will)(?: |$)//;
-	s/(?:^| )(for|of)(?: |$)//;
+	s/ (for|of)(?= )//;
 	s/(?:^| )date(?: |$)//;
     return $_ if $_;
     return;
