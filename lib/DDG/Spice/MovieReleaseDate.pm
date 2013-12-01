@@ -17,11 +17,11 @@ spice to => 'http://api.themoviedb.org/3/search/movie?query=$1&include_adult=fal
 triggers any => 'release date', 'release', 'air date', 'air', 'premiere date', 'premiere', 'come out';
 
 handle query_lc => sub {
-    if($_ =~/^when (?:will|did|does|shall) (.+) (?:release|come out|premiere)$/) {
+    if($_ =~/^when (?:will|did|does|shall|was) (.+) (?:release|come out|premiere|air)$/) {
 		return $1;
-	} elsif($_ =~/^(?:release|premiere|air)( date)? (?:for|of) (.+)$/) {
+	} elsif($_ =~/^(?:release|premiere|air)(?: date)?(?: (?:for|of))? (.+)$/) {
 		return $1;
-	} elsif($_ =~/^(.+?)(?:'s)? (?:release|premiere|air)$/) {
+	} elsif($_ =~/^(.+?)(?:'s)? (?:release|premiere|air)(?: date)?$/) {
 		return $1;
 	}
 	return;
