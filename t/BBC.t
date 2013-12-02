@@ -8,7 +8,7 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::BBC )],
     'what\'s on bbc 3' => test_spice(
-        '/js/spice/bbc/bbcthree//today',
+        '/js/spice/bbc/bbcthree/today',
         call_type => 'include',
         caller => 'DDG::Spice::BBC'
     ),
