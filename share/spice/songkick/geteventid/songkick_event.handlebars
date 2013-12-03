@@ -1,3 +1,4 @@
 <div class="songkick-event">
-  <a href="{{uri}}">{{displayName}}</a>{{#if start.time}} - {{start.time}}{{/if}}
+  <a href="{{uri}}">{{artist}}</a><br/>
+  <small><span class="songkick-event-kicker">{{venue}} - {{dateString start.date}}{{#if start.time}} @ {{start.time}}{{/if}}</span></small>
 </div>

@@ -134,7 +134,8 @@ function ddg_spice_songkick_events(events_data) {
       items         : $.map(events_data.resultsPage.results.event.slice(0, max_results), function(o, idx) {
         return {
           uri         : o.uri,
-          displayName : o.displayName,
+          artist      : o.performance[0].displayName,
+          venue       : o.venue.displayName,
           start       : {
             date : o.start.date,
             time : twenty_four_to_twelve_hour_time(o.start.time)
@@ -149,3 +150,9 @@ function ddg_spice_songkick_events(events_data) {
     force_no_fold    : true
   });
 }
+
+Handlebars.registerHelper("dateString", function(s) {
+  var date = DDG.getDateFromString(s),
+      months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
+  return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+});
