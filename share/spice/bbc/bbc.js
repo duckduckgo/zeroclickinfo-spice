@@ -42,21 +42,21 @@ function ddg_spice_bbc(api_result) {
  * Find the start and end of a programme and format appropriately
  */
 Handlebars.registerHelper("time", function() {
-    function to_str (num) {
-        if (num == 0) {
-             return "00";
-        }
-        var str = (num|0)+"";
-        if (str.length < 2) {
-            str = "0" + str;
-        }
-        return str;
-    };
+    var start = new Date(this.start).toTimeString(),
+        end = new Date(this.end).toTimeString();
 
-    var start = new Date(this.start),
-        end = new Date(this.end);
+    function standard_time(time) {
+        var hour = time.getHours() % 12;
+        if (hour == 0) hour = 1;
 
-    return to_str(start.getHours()) + ":" + to_str(start.getMinutes()) + " - " + to_str(end.getHours()) + ":" + to_str(end.getMinutes());
+        var min = time.getMinutes() > 10 ? time.getMinutes() : "0" + time.getMinutes();
+
+        return hour + ":" + min + (time.getHours() > 12 ? "PM" : "AM");
+    }
+
+    return standard_time(start) + " - " + standard_time(end);
+
+
 });
 
 /*
