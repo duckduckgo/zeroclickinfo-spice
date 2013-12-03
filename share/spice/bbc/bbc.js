@@ -42,8 +42,8 @@ function ddg_spice_bbc(api_result) {
  * Find the start and end of a programme and format appropriately
  */
 Handlebars.registerHelper("time", function() {
-    var start = new Date(this.start).toTimeString(),
-        end = new Date(this.end).toTimeString();
+    var start = new Date(this.start),
+        end = new Date(this.end);
 
     function standard_time(time) {
         var hour = time.getHours() % 12;
