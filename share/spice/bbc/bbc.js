@@ -36,11 +36,7 @@ function ddg_spice_bbc(api_result) {
     });
 }
 
-/*
- * time
- * 
- * Find the start and end of a programme and format appropriately
- */
+// Find the start and end of a programme and format appropriately
 Handlebars.registerHelper("time", function() {
     var start = new Date(this.start),
         end = new Date(this.end);
@@ -55,15 +51,9 @@ Handlebars.registerHelper("time", function() {
     }
 
     return standard_time(start) + " - " + standard_time(end);
-
-
 });
 
-/*
- * duration
- * 
- * Find the duration of a programme and return it
- */
+//Find the duration of a programme and return it
 Handlebars.registerHelper("duration", function() {
     var pluralise = function(n) {
         return n > 1 ? "s" : "";
