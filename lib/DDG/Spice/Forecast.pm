@@ -19,7 +19,9 @@ triggers any => @triggers;
 
 spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
 
-# cache API responses with return code 200 for 30 minutes
+# cache DDG Rewrite for 24 hours and
+# API responses with return code 200 for 30 minutes
+spice is_cached => 1;
 spice proxy_cache_valid => "200 30m";
 
 my $no_location_qr = qr/fore?cast|report|weather|temp(erature)/;
@@ -59,14 +61,12 @@ handle query_lc => sub {
     # Don't cache generic queries due to
     # variations in the users location.
     if ($location) {
-        spice is_cached => 1;
+        return $location;
     } else {
-        spice is_cached => 0;
         # Infer location if not explicitly in the query.
         $location = $loc->loc_str unless ($location);
+        return $location, {is_cached => 0};
     }
-
-    return $location;
 };
 
 1;
