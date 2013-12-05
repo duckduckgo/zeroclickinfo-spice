@@ -10,7 +10,10 @@ function ddg_spice_bbc(api_result) {
     var date = api_result.schedule.day.date,
         fulldate = new Date(date),
         date_round = 1000 * 60 * 60 * 24,
-        inPast = +fulldate < Math.floor(+now / date_round)*date_round;
+        inPast = +fulldate < Math.floor(+now / date_round)*date_round,
+        re = /today|tomorrow|yesterday|tonight/,
+        relative_date = re.test(query) ? query.match(re)[0] : "Today",
+        header_date = relative_date.charAt(0).toUpperCase() + relative_date.slice(1);
 
     for (var i=0; i<broadcasts.length; i++) {
         var end = new Date(broadcasts[i].end);
@@ -20,7 +23,7 @@ function ddg_spice_bbc(api_result) {
 
     Spice.render({
         data           : api_result.schedule,
-        header1        : api_result.schedule.service.title + (api_result.schedule.service.outlet ? " "+api_result.schedule.service.outlet.title : "") + " (TV Schedule for "+date+")",
+        header1        : api_result.schedule.service.title + (api_result.schedule.service.outlet ? " "+api_result.schedule.service.outlet.title : "") + " (TV Schedule for "+header_date+")",
         source_url     : "http://www.bbc.co.uk/"+api_result.schedule.service.key+"/programmes/schedules/"+(api_result.schedule.service.outlet ? api_result.schedule.service.outlet.key+"/" : "")+api_result.schedule.day.date.split("-").join("/"),
         source_name    : 'BBC',
         template_frame : "carousel",
