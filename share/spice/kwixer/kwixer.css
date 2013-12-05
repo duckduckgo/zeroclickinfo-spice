@@ -25,11 +25,6 @@
     display: none;
 }
 
-#spice_kwixer .price {
-    font-weight: bold;
-    color: #900000;
-}
-
 #spice_kwixer .description {
     float: left;
     width: 450px;
@@ -37,10 +32,12 @@
     margin-top: 5px;
 }
 
+#spice_kwixer div .labelField {
+    color: gray;
+}
+
 #spice_kwixer div .stars {
     display: inline-block;
-    width: 55px;
-    height: 12px;
 }
 
 #spice_kwixer .description ul {

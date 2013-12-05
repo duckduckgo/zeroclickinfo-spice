@@ -1,16 +1,15 @@
 <div>
-    <img class="spotlight" src="/iu/?u={{img}}">
+    <img class="spotlight" src="/iu/?u={{ResourceImageUrl}}">
     <div class="description">
-        <h1><a href="{{url}}">{{heading}}</a></h1>
-        <br>
-        <span class="price">{{price}}</span> &bull;
-        by {{brand}} &bull;
-        <img class="stars" src="">
-        (<a href="{{rating}}"><span class="review-count"></span>
-            customer reviews</a>)
-        <br>
-        {{{abstract}}}
-        <br>
+        <h1><a href="https://kwixer.com/#/watching/movie/{{ResourceId}}">{{ResourceTitle}}</a></h1>
+        <br/>
+        <span class="labelField">Released: </span><span>{{ResourceYear}}</span> 
+        <br/>
+        <span class="labelField">Starring: </span><span id="lblActors">{{ResourceDetails2}}</span> 
+        <br/>
+        <span class="labelField">Starring: </span><span id="lblGenres">{{ResourceGenre}}</span> 
+        <br/>
+        <a href="https://kwixer.com/#/watching/movie/{{ResourceId}}">Reviews and more on Kwixer</a>
     </div>
     <div class="clear">&nbsp;</div>
 </div>
