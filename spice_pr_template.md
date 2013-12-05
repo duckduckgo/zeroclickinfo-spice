@@ -3,35 +3,37 @@
 We ask that you please use this template when submitting an instant answer pull request so we can better understand it and help you along when necessary.
 
 **What does your instant answer do?**
-
+Generate semantically related words.
 
 **What problem does your instant answer solve (Why is it better than organic links)?**
-
+Twinword Word Map suggests better words to express what people had in mind for search.
 
 **What is the data source for your instant answer? (Provide a link if possible)**
-
+http://twinword.com 
 
 **Why did you choose this data source?**
-
+We, Twinword has a copyright. Also, most thesaurus or synonyms have only 4K ~ 8K words while Twinword has 19K words.
 
 **Are there any other alternative (better) data sources?**
-
+There are many thesaurus or dictionaries, but, for the word map, Twinword is the best.  
 
 **What are some example queries that trigger this instant answer?**
-
+similar to sound, words like sound, related to sound...
 
 **Which communities will this instant answer be especially useful for? (gamers, book lovers, etc)**
-
+Publishers, Marketers, Advertisers, English Learners, Planners, and General Users for keyword suggestion.
 
 **Is this instant answer connected to an [Ideas.DuckDuckHack](https://duckduckhack.uservoice.com/forums/5168-ideas-for-duckduckgo-instant-answer-plugins) or [Duck.co](http://duck.co/) thread?**
-
+No.
 
 **Which existing instant answers will this one supersede/overlap with?**
-
+Thesaurus or synonym.  
 
 **Are you having any problems? Do you need our help with anything?**
+Not yet.
 
 **\*\*Note:** Please attach a screenshot for new instant answer pull requests, and for pull requests which modify the look/design of existing instant answers.
+
 
 ##Checklist
 Please place a ✔ where appropriate.
