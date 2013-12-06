@@ -9,7 +9,7 @@ primary_example_queries 'leakdb 21232f297a57a5a743894a0e4a801fc3';
 secondary_example_queries 'hashme admin';
 category 'special';
 topics 'geek', 'sysadmin', 'cryptography';
-icon_url 'https://leakdb.abusix.com/favicon.ico';
+icon_url 'https://leakdb.abusix.com/images/favicon.ico';
 code_url 'https://github.com/brutalhonesty/zeroclickinfo-spice/blob/master/lib/DDG/Spice/HashMe.pm';
 attribution github => ['https://github.com/brutalhonesty', 'Adam Schodde'],
 	twitter => ['https://twitter.com/listeninme', 'listeninme'],
