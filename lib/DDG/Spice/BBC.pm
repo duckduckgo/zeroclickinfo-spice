@@ -20,10 +20,10 @@ spice from => '([^/]+)/([^/]+(/[^/]+)?)';
 
 spice wrap_jsonp_callback => 1;
 
-triggers startend => "what's on", "what was on", "what will be on", "what is on";
-triggers any => "schedule", "tv guide", "now on";
+triggers start => "what's on", "what was on", "what will be on", "what is on", "now on";
+triggers any => "schedule", "tv guide";
 
-handle query_lc => sub {
+handle remainder => sub {
 
     # no schedules available for BBC America or BBC Canada
     return if $_ =~ /america|canada/;
@@ -37,6 +37,7 @@ handle query_lc => sub {
     } else {
         $day = "today";
     }
+    $_ =~ s/\s*(tomorrow|in a day|in 1 day|yesterday|a day ago|1 day ago|last night|today|tonight)\s*//;
 
     # set the code for the location
     my $area;
@@ -63,6 +64,7 @@ handle query_lc => sub {
     } else {
         $area = "london";
     }
+    $_ =~ s/\s*((north(ern)? )?ireland|(north|south) (east|west)|south|east|west|scotland|cambridge|oxford|wales|yorkshire|london|cambridgeshire|east yorkshire|yorks|lincs|channel islands|(east|west) midlands|midlands|cumbria|england|uk|united kingdom|britain)\s*//;
 
     # look up the region
     my $region = $area =~ /scotland|wales|ni/ ? $area : "england";
@@ -71,7 +73,7 @@ handle query_lc => sub {
     if ($_ =~ /bbc radio( in| for)? (berksire|bristol|cambridgeshire|cornwall|cumbria|derby|devon|gloucestershire|humberside|jersey|kent|lancashire|leeds|leicester|manchester|merseyside|norfolk|northampton|nottingham|sheffield|shropshire|solent|stoke|suffolk|york)/) {
         return ("radio$2", $day);
     }
-    
+
     return ('worldserviceradio', $day) if ($_ =~ /bbc world (service|radio|service radio)?/);
     return ('asiannetwork', $day) if ($_ =~ /bbc asian network/);
     return ('6music', $day) if ($_ =~ /bbc radio (6|six)( music)?/);
@@ -82,7 +84,7 @@ handle query_lc => sub {
     return ('radio3', $day) if ($_ =~ /bbc radio (3|three)/);
     return ('radio2', $day) if ($_ =~ /bbc radio (2|two)/);
     return ('1xtra', $day) if ($_ =~ /bbc radio (1|one) e?xtra/);
-    return ('radio1', 'england', $day) if ($_ =~ /bbc radio( 1| one)?/);
+    return ('radio1', 'england', $day) if ($_ =~ /bbc radio( 1| one)?$/);
     return ('bbcalba', $day) if ($_ =~ /bbc alba/);
     return ('parliament', $day) if ($_ =~ /bbc parliament/);
     return ('bbcnews', $day) if ($_ =~ /bbc news/);
@@ -91,7 +93,7 @@ handle query_lc => sub {
     return ('bbcfour', $day) if ($_ =~ /bbc (4|four)/);
     return ('bbcthree', $day) if ($_ =~ /bbc (3|three)/);
     return ('bbctwo', $region, $day) if ($_ =~ /bbc (2|two)/);
-    return ('bbcone', $area, $day) if ($_ =~ /bbc (1|one)/);
+    return ('bbcone', $area, $day) if ($_ =~ /bbc( 1| one)?$/);
     return;
 };
 
