@@ -15,7 +15,9 @@ attribution web => ['http://twinword.com','Twinword Inc.'],
             twitter => ['http://twitter.com/levelpump', '@levelpump'],
             email => ['feedback@twinword.com','Twinword Inc.'];
 
-spice to => 'http://duckduckgo.twinword.com/api/v2/context/user/duckduckgo/?entry=$1&api_key={{ENV{DDG_SPICE_WORDMAP_APIKEY}}}&callback={{callback}}';
+spice to => 'http://duckduckgo.twinword.com/api/v2/context/user/duckduckgo/?entry=$1&api_key={{ENV{DDG_SPICE_WORDMAP_APIKEY}}}';
+spice wrap_string_callback => 1;
+
 spice proxy_cache_valid => "418 1d";
 
 
@@ -42,6 +44,7 @@ triggers startend => (
 	"word map", 
 	"word cluster", 
 	"word graph",
+	"twinword"
 );
 
 
