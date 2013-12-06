@@ -74,7 +74,7 @@ handle remainder => sub {
         return ("radio$2", $day);
     }
 
-    return ('worldserviceradio', $day) if ($_ =~ /bbc world (service|radio|service radio)?/);
+    return ('worldserviceradio', $day) if ($_ =~ /bbc world( service| radio| service radio)?/);
     return ('asiannetwork', $day) if ($_ =~ /bbc asian network/);
     return ('6music', $day) if ($_ =~ /bbc radio (6|six)( music)?/);
     return ('5livesportsextra', $day) if ($_ =~ /bbc radio (5|five)( live)? extra/);
