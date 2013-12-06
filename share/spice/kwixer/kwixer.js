@@ -7,15 +7,15 @@ function ddg_spice_kwixer(api_response) {
     if (!api_response || api_response.lengt==0 ) return;
     
     ddg_spice_kwixer_query = DDG.get_query();
-    var searchTriggers = ['movie' ,'movie with',  'movies', 'movies with', 'movies starring','film with','films with','films starring','film starring',
-    'movies directed by','movies directed', 'directed movies', 'director','film director','film by',
-    'actor','actress' ,
-    'kwixer'];
-    searchTriggers.forEach(function(str)
-    {
+    ddg_spice_kwixer_server_query = ddg_spice_kwixer_query;
+    var searchEndTriggers = ['actor','actress','movies','films','movie','film'];
 
+    searchEndTriggers.forEach(function(str)
+    {
+        if(ddg_spice_kwixer_server_query.indexOf(str) == ddg_spice_kwixer_server_query.length - str.length)
+            ddg_spice_kwixer_server_query = ddg_spice_kwixer_server_query.replace(str,"");
     });
-    ddg_spice_kwixer_server_query = ddg_spice_kwixer_query.replace("movi")
+    
     var spotlight_resize = function(index, item, obj, is_cached) {
         if ($('#ddgcarousel').outerWidth() <= 400) {
             $('#spice_kwixer .spotlight').hide();
@@ -40,7 +40,7 @@ function ddg_spice_kwixer(api_response) {
     ddg_spice_kwixer_carousel_add_items =
         Spice.render({
             header1                  : ddg_spice_kwixer_query + ' (Kwixer)',
-            source_url               : "https://www.kwixer.com/#/explore?category=movie&query=" + ddg_spice_kwixer_query , //TODO more at URL 
+            source_url               : "https://www.kwixer.com/#/explore?category=movie&query=" + ddg_spice_kwixer_server_query , //TODO more at URL 
             source_name              : 'Kwixer',
             force_big_header         : true,
             force_favicon_domain     : 'www.kwixer.com',
