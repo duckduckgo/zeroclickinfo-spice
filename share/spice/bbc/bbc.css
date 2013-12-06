@@ -1,0 +1,33 @@
+#spice_bbc li.ddgc_item img {
+	max-width: 100% !important;
+	max-height: 68px !important;
+}
+
+#spice_bbc .title {
+	margin: 0 !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: break-word;
+}
+
+#spice_bbc .button {
+  background: none repeat scroll 0 0 #FEFEFE;
+  border: 1px solid #BBBBBB;
+  border-radius: 3px;
+  color: #000000;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 3px 9px;
+}
+
+#spice_guidebox .button:hover {
+  border: 1px solid #80b5ff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#spice_bbc .initial_broadcast{
+	font-size: 13px;
+	color: #808080;
+}

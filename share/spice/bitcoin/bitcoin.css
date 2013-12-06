@@ -1,0 +1,11 @@
+#spice_bitcoin .spice_pane {
+    display: inline-block;
+    width: 40%;
+    vertical-align: top;
+    margin: 10px 10px;
+    font-size: 24px;
+}
+
+#spice_bitcoin .spice_pane span {
+    font-weight: bold;    
+}
