@@ -7,7 +7,7 @@ name "Word Map";
 description "Generates semantically related words";
 source "Twinword";
 primary_example_queries "similar to sound", "words like sound";
-category "language";
+category "reference";
 topics "words_and_games", "everyday";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/WordMap.pm";
 icon_url "/i/tw_favicon.ico";
