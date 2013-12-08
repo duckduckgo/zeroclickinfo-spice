@@ -18,25 +18,16 @@ attribution web 	=> ['http://twinword.com','Twinword Inc.'],
 spice to => 'http://duckduckgo.twinword.com/api/v2/context/user/duckduckgo/?entry=$1&api_key={{ENV{DDG_SPICE_WORDMAP_APIKEY}}}';
 spice wrap_string_callback => 1;
 
-spice proxy_cache_valid => "418 1d";		# for not caching
-#spice proxy_cache_valid => "200 304 1d";	# for caching
+spice proxy_cache_valid => "200 304 1d";	# for caching
 
 
 triggers startend => (
-	"similar to", 
-	"associate to", 
-	"association to", 
-	"association of", 
 	"association:", 
 	"evocation", 
 	"evocation:", 
-	"relate to", 
-	"related to", 
 	"related words", 
 	"related word", 
 	"word association", 
-	"words like", 
-	"word like", 
 	"expand:",
 	"context:",	 	
 	"expand word", 
@@ -45,6 +36,21 @@ triggers startend => (
 	"word map", 
 	"word cluster", 
 	"word graph",
+	"twinword",
+	"levelpump"
+);
+
+
+triggers start => (
+	"similar to", 
+	"associate to", 
+	"association to", 
+	"association of", 
+	"relate to", 
+	"related to", 
+	"words like", 
+	"word like", 
+	"words similar to",
 	"more words like"
 );
 
