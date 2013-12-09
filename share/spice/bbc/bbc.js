@@ -4,16 +4,28 @@ function ddg_spice_bbc(api_result) {
         programmes = [],
         now = new Date();
 
-    if (query.indexOf("night") != -1)
+    if (query.match(/night|evening/)){
         now.setHours(18);
+    }
 
     var date = api_result.schedule.day.date,
         fulldate = new Date(date),
         date_round = 1000 * 60 * 60 * 24,
         inPast = +fulldate < Math.floor(+now / date_round)*date_round,
-        re = /today|tomorrow|yesterday|tonight/,
-        relative_date = re.test(query) ? query.match(re)[0] : "Today",
-        header_date = relative_date.charAt(0).toUpperCase() + relative_date.slice(1);
+        header_date,
+        re1 = /today|tomorrow|yesterday|tonight|last/,
+        re2 = /\b(night|evening)\b/,
+        match;
+
+    if (re1.test(query)){
+        match = query.match(re1)[0];
+        header_date = match.charAt(0).toUpperCase() + match.slice(1);
+    }
+
+    if (re2.test(query)){
+        match = query.match(re2)[0];
+        header_date += " " + match.charAt(0).toUpperCase() + match.slice(1);
+    }
 
     for (var i=0; i<broadcasts.length; i++) {
         var end = new Date(broadcasts[i].end);

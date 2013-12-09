@@ -38,7 +38,7 @@ handle remainder => sub {
     } else {
         $day = "today";
     }
-    $_ =~ s/\s*(tomorrow|in a day|in 1 day|yesterday|a day ago|1 day ago|last night|today|tonight)\s*//;
+    $_ =~ s/\s*(tomorrow(\s(night|evening))?|in a day|in 1 day|yesterday(\s(night|evening))?|a day ago|1 day ago|last night|today|tonight)\s*//;
 
     my $dt = DateTime->now->set_time_zone( $loc->time_zone );
     $dt->add( days => 1 ) if $day eq "tomorrow";
