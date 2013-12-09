@@ -2,6 +2,7 @@ package DDG::Spice::BBC;
 # ABSTRACT: BBC programme schedule
 
 use DDG::Spice;
+use DateTime;
 
 primary_example_queries "what's on bbc";
 secondary_example_queries "what's on bbc three", "bbc two yesterday";
@@ -16,7 +17,7 @@ attribution github => ['https://github.com/tophattedcoder','Tom Bebbington'];
 
 spice to => 'http://www.bbc.co.uk/$1/programmes/schedules/$2.json';
 
-spice from => '([^/]+)/([^/]+(/[^/]+)?)';
+spice from => '([^/]+)/([^/]+(/[^/]+)*)';
 
 spice wrap_jsonp_callback => 1;
 
@@ -38,6 +39,12 @@ handle remainder => sub {
         $day = "today";
     }
     $_ =~ s/\s*(tomorrow|in a day|in 1 day|yesterday|a day ago|1 day ago|last night|today|tonight)\s*//;
+
+    my $dt = DateTime->now->set_time_zone( $loc->time_zone );
+    $dt->add( days => 1 ) if $day eq "tomorrow";
+    $dt->subtract( days => 1 ) if $day eq "yesterday";
+
+    my @date = ( $dt->year(), $dt->month(), $dt->day());
 
     # set the code for the location
     my $area;
@@ -71,29 +78,29 @@ handle remainder => sub {
 
     # detect simple city radio names
     if ($_ =~ /bbc radio( in| for)? (berksire|bristol|cambridgeshire|cornwall|cumbria|derby|devon|gloucestershire|humberside|jersey|kent|lancashire|leeds|leicester|manchester|merseyside|norfolk|northampton|nottingham|sheffield|shropshire|solent|stoke|suffolk|york)/) {
-        return ("radio$2", $day);
+        return ("radio$2", @date);
     }
 
-    return ('worldserviceradio', $day) if ($_ =~ /bbc world( service| radio| service radio)?/);
-    return ('asiannetwork', $day) if ($_ =~ /bbc asian network/);
-    return ('6music', $day) if ($_ =~ /bbc radio (6|six)( music)?/);
-    return ('5livesportsextra', $day) if ($_ =~ /bbc radio (5|five)( live)? extra/);
-    return ('5live', $day) if ($_ =~ /bbc radio (5|five)( live)?/);
-    return ('radio4extra', $day) if ($_ =~ /bbc radio (4|four) e?xtra/);
-    return ('radio4', $day) if ($_ =~ /bbc radio (4|four)/);
-    return ('radio3', $day) if ($_ =~ /bbc radio (3|three)/);
-    return ('radio2', $day) if ($_ =~ /bbc radio (2|two)/);
-    return ('1xtra', $day) if ($_ =~ /bbc radio (1|one) e?xtra/);
-    return ('radio1', 'england', $day) if ($_ =~ /bbc radio( 1| one)?$/);
-    return ('bbcalba', $day) if ($_ =~ /bbc alba/);
-    return ('parliament', $day) if ($_ =~ /bbc parliament/);
-    return ('bbcnews', $day) if ($_ =~ /bbc news/);
-    return ('cbeebies', $day) if ($_ =~ /cbeebies/);
-    return ('cbbc', $day) if ($_ =~ /cbbc/);
-    return ('bbcfour', $day) if ($_ =~ /bbc (4|four)/);
-    return ('bbcthree', $day) if ($_ =~ /bbc (3|three)/);
-    return ('bbctwo', $region, $day) if ($_ =~ /bbc (2|two)/);
-    return ('bbcone', $area, $day) if ($_ =~ /bbc( 1| one)?$/);
+    return ('worldserviceradio', @date) if ($_ =~ /bbc world( service| radio| service radio)?/);
+    return ('asiannetwork', @date) if ($_ =~ /bbc asian network/);
+    return ('6music', @date) if ($_ =~ /bbc radio (6|six)( music)?/);
+    return ('5livesportsextra', @date) if ($_ =~ /bbc radio (5|five)( live)? extra/);
+    return ('5live', @date) if ($_ =~ /bbc radio (5|five)( live)?/);
+    return ('radio4extra', @date) if ($_ =~ /bbc radio (4|four) e?xtra/);
+    return ('radio4', @date) if ($_ =~ /bbc radio (4|four)/);
+    return ('radio3', @date) if ($_ =~ /bbc radio (3|three)/);
+    return ('radio2', @date) if ($_ =~ /bbc radio (2|two)/);
+    return ('1xtra', @date) if ($_ =~ /bbc radio (1|one) e?xtra/);
+    return ('radio1', 'england', @date) if ($_ =~ /bbc radio( 1| one)?$/);
+    return ('bbcalba', @date) if ($_ =~ /bbc alba/);
+    return ('parliament', @date) if ($_ =~ /bbc parliament/);
+    return ('bbcnews', @date) if ($_ =~ /bbc news/);
+    return ('cbeebies', @date) if ($_ =~ /cbeebies/);
+    return ('cbbc', @date) if ($_ =~ /cbbc/);
+    return ('bbcfour', @date) if ($_ =~ /bbc (4|four)/);
+    return ('bbcthree', @date) if ($_ =~ /bbc (3|three)/);
+    return ('bbctwo', $region, @date) if ($_ =~ /bbc (2|two)/);
+    return ('bbcone', $area, @date) if ($_ =~ /bbc( 1| one)?$/);
     return;
 };
 
