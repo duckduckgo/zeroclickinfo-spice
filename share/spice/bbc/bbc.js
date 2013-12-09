@@ -13,18 +13,20 @@ function ddg_spice_bbc(api_result) {
         date_round = 1000 * 60 * 60 * 24,
         inPast = +fulldate < Math.floor(+now / date_round)*date_round,
         header_date,
-        re1 = /today|tomorrow|yesterday|tonight|last/,
-        re2 = /\b(night|evening)\b/,
+        re = /today|tomorrow|yesterday|tonight|last/,
         match;
 
-    if (re1.test(query)){
-        match = query.match(re1)[0];
+    if (re.test(query)){
+        match = query.match(re)[0];
         header_date = match.charAt(0).toUpperCase() + match.slice(1);
-    }
-
-    if (re2.test(query)){
-        match = query.match(re2)[0];
-        header_date += " " + match.charAt(0).toUpperCase() + match.slice(1);
+        
+        re = /\b(night|evening)\b/
+        if (re.test(query)){
+            match = query.match(re)[0];
+            header_date += " " + match.charAt(0).toUpperCase() + match.slice(1);
+        }
+    } else {
+        header_date = "Today";
     }
 
     for (var i=0; i<broadcasts.length; i++) {
