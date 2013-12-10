@@ -23,7 +23,7 @@ We ask that you please use this template when submitting an instant answer pull 
 **Which communities will this instant answer be especially useful for? (gamers, book lovers, etc)**
 
 
-**Is this instant answer connected to an [Ideas.DuckDuckHack](https://duck.co/ideas) or [Duck.co](http://duck.co/) thread?**
+**Is this instant answer connected to a DuckDuckHack [instant answer idea](https://duck.co/ideas)?**
 
 
 **Which existing instant answers will this one supersede/overlap with?**
