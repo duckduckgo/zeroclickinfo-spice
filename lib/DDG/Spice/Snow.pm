@@ -37,18 +37,18 @@ my %snow = map { $_ => undef } (
 
 handle query_lc => sub {
     my $query = $_;
-    my $location = $loc->city.', '.$loc->region_name.', '.$loc->country_name;
+    my $location = join (',', $loc->city,$loc->region_name,$loc->country_name);
 
-    if(exists $snow{$query}) {
+    if (exists $snow{$query}) {
         return $location, {is_cached => 0};
-    } elsif($query =~ /^(?:is[ ]it[ ])?
+    } elsif ($query =~ /^(?:is[ ]it[ ])?
                         (?:going[ ]to[ ])?
                         snow(?:ing)?[ ]?
                         (?:(?:here|now|yet)[ ]?)?
                         (?:in[ ](.*?))?
                         (?:[ ]today)?\??$/ix) {
-        $location = $1 || $location;
-        return $location;
+        return $1 if $1;
+        return $location, {is_cached => 0};
     }
     return;
 };
