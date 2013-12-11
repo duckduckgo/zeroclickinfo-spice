@@ -20,14 +20,13 @@
 #spice_kwixer .spotlight {
     float: left;
     border: 1px solid #E1E1E1;
-    max-height: 0px;
+    max-height: 150px;
     max-width: 150px;
-    display: none;
 }
 
 #spice_kwixer .description {
     float: left;
-    width: 450px;
+    width: 50%;
     margin-left: 20px;
     margin-top: 5px;
 }

@@ -29,7 +29,8 @@ handle remainder => sub {
     #my $input = $_;
     #map { return $input if $input =~ s/(^|\s)$_(\s|$)// and $input ne '' } @triggers;
     #return;
-  	return "$_" if $_;
+  	return $_ if $_;
+  	return;
 };
 
 1;
