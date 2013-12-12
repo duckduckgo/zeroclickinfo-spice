@@ -8,7 +8,7 @@ function ddg_spice_video(api_result) {
         cache: true
     });
 
-    var encodedQuery = DDG.get_query_encoded().replace(/(?:youtube|videos?)/i, '');
+    var encodedQuery = DDG.get_query_encoded().replace(/(?:youtube(\.com)?|videos?)/i, '');
     
     // Change the "More at ..." link.
     var change_more = function(obj) {
