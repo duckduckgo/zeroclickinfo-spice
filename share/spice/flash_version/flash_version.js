@@ -1,14 +1,12 @@
-// TODO: Probably better if we display all the plugins similar to https://www.mozilla.org/en-US/plugincheck/.
-// We can get that from window.navigator.plugins.
 function ddg_spice_flash_version () {
-    "use strict";
 
-    var context = {version: "You're using " + YAHOO.util.FlashDetect.raw};
-
-    // Check if Flash was detected.
-    if(!YAHOO.util.FlashDetect.installed) {
-        context.version = "You don't have Flash installed";
-    }
+    // TODO: Probably better if we display all the plugins similar to https://www.mozilla.org/en-US/plugincheck/.
+    // We can get that from window.navigator.plugins.
+    var context = { 
+        version: YAHOO.util.FlashDetect.installed
+                    ? YAHOO.util.FlashDetect.raw
+                    : "You don't have Flash installed"
+    };
 
     // Display the plugin.
     Spice.render({
@@ -19,7 +17,5 @@ function ddg_spice_flash_version () {
         template_normal  : 'flash_version',
         force_big_header : true
     });
-};
-
-// Manually call the function.
+}
 ddg_spice_flash_version();
