@@ -77,6 +77,16 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Kwixer'
     ),
+    'films by Steven' => test_spice(
+        '/js/spice/kwixer/Steven',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'films directed by Steven' => test_spice(
+        '/js/spice/kwixer/Steven',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
     'actress Kate' => test_spice(
         '/js/spice/kwixer/Kate',
         call_type => 'include',

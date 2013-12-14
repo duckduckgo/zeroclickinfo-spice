@@ -9,7 +9,7 @@ function ddg_spice_kwixer_test_queries()
     'movies tom cruise and Kate','film starring tom cruise',
     'films starring tom cruise and kate','movies starring tom cruise and Kate',
     'movies directed Steven','movies directed by Steven',
-    'director Steven', 'film director Steven','film by Steven',
+    'director Steven', 'film director Steven','film by Steven','films by Steven','films directed by Steven',
     'actress Kate','actor tom cruise','tom cruise actor',
     'Keira Knightley actress','James Bond films',
     'James Bond movies','Skyfall movie','Skyfall film'];
@@ -17,7 +17,7 @@ function ddg_spice_kwixer_test_queries()
     'Skyfall','tom cruise','tom cruise','tom cruise',
     'tom cruise and Kate','tom cruise and Kate',
     'tom cruise','tom cruise and kate','tom cruise and Kate',
-    'Steven','Steven','Steven','Steven','Steven',
+    'Steven','Steven','Steven','Steven','Steven','Steven','Steven',
     'Kate','tom cruise','tom cruise','Keira Knightley',
     'James Bond','James Bond','Skyfall','Skyfall'];
     
@@ -41,6 +41,7 @@ function ddg_spice_kwixer_getQuery(ddgQuery)
     'movies directed by','movies directed', 'directed movies',
     'film with','films with','movie with',
     'film director','film by',
+    'films by','films directed by',
     'movies','movie',
     'director',
     'actor','actress' ,

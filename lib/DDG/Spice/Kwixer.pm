@@ -20,6 +20,7 @@ spice wrap_jsonp_callback => 1;
 
 my @triggers = ('movie' ,'movie with',  'movies', 'movies with', 'movies starring','film with','films with','films starring','film starring',
 	'movies directed by','movies directed', 'directed movies', 'director','film director','film by',
+	'films by','films directed by',
 	'actor','actress' ,
 	'kwixer');
 triggers start => @triggers;
