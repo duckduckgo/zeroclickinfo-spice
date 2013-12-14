@@ -2,12 +2,40 @@ var ddg_spice_kwixer_carousel_add_items;
 var ddg_spice_kwixer_single_item;
 var ddg_spice_kwixer_query;
 var ddg_spice_kwixer_server_query;
-function ddg_spice_kwixer(api_response) {
-    if (!api_response || api_response.length==0 ) return;
+function ddg_spice_kwixer_test_queries()
+{
+    var tests = ['movie Skyfall','film with tom cruise','films with tom cruise',
+    'movies with tom cruise','movies with tom cruise and Kate',
+    'movies tom cruise and Kate','film starring tom cruise',
+    'films starring tom cruise and kate','movies starring tom cruise and Kate',
+    'movies directed Steven','movies directed by Steven',
+    'director Steven', 'film director Steven','film by Steven',
+    'actress Kate','actor tom cruise','tom cruise actor',
+    'Keira Knightley actress','James Bond films',
+    'James Bond movies','Skyfall movie','Skyfall film'];
+    var expectedResults = [
+    'Skyfall','tom cruise','tom cruise','tom cruise',
+    'tom cruise and Kate','tom cruise and Kate',
+    'tom cruise','tom cruise and kate','tom cruise and Kate',
+    'Steven','Steven','Steven','Steven','Steven',
+    'Kate','tom cruise','tom cruise','Keira Knightley',
+    'James Bond','James Bond','Skyfall','Skyfall'];
+    
+    for (var i=0;i<tests.length;i++)
+    { 
+        if( ddg_spice_kwixer_getQuery(tests[i]) != expectedResults[i])
+        {
+            console.log("Test nb " + i + " failed for " + tests[i] + " : expected " 
+                + expectedResults[i] + " but got " + ddg_spice_kwixer_getQuery(tests[i]));
+        }
+        else
+            console.log("test succeeded: " + tests[i] + " - " + expectedResults[i]);
+    }
 
-    //api_response = api_response.slice(0,1);
-    ddg_spice_kwixer_query = DDG.get_query();
-    ddg_spice_kwixer_server_query = ddg_spice_kwixer_query;
+}
+function ddg_spice_kwixer_getQuery(ddgQuery)
+{
+    var result = ddgQuery;
     var searchEndTriggers = ['actor','actress','movies','films','movie','film'];
     var searchStartTriggers = ['films starring','film starring','movies with', 'movies starring',
     'movies directed by','movies directed', 'directed movies',
@@ -19,30 +47,38 @@ function ddg_spice_kwixer(api_response) {
     'kwixer'];
 
     var needToCheckForStart = true;
-    for(var index in searchEndTriggers)
+    for (var index=0;index<searchEndTriggers.length;index++)
     {
         var str = " " + searchEndTriggers[index];
-        var lastIndexOfTrigger= ddg_spice_kwixer_server_query.lastIndexOf(str);
-        if(lastIndexOfTrigger == ddg_spice_kwixer_server_query.length - str.length)
+        var lastIndexOfTrigger= result.lastIndexOf(str);
+        if(lastIndexOfTrigger == result.length - str.length)
         {
-            ddg_spice_kwixer_server_query = ddg_spice_kwixer_server_query.substring(0, lastIndexOfTrigger);
+            result = result.substring(0, lastIndexOfTrigger);
             needToCheckForStart = false;
             break;//no need to continue since triggered by one of the items
         }
     }
     if(needToCheckForStart)
     {
-        for(var index in searchStartTriggers)
+        for (var index=0;index<searchStartTriggers.length;index++)
         {
             var str = searchStartTriggers[index] + " ";
-            if(ddg_spice_kwixer_server_query.indexOf(str) == 0)
+            if(result.indexOf(str) == 0)
             {
-                ddg_spice_kwixer_server_query = ddg_spice_kwixer_server_query.replace(str ,"");
+                result = result.replace(str ,"");
                 break;
             }
         }
     }
-    
+    return result;
+}
+
+function ddg_spice_kwixer(api_response) {
+    if (!api_response || api_response.length==0 ) return;
+
+    //api_response = api_response.slice(0,1);
+    ddg_spice_kwixer_query = DDG.get_query();
+    ddg_spice_kwixer_server_query = ddg_spice_kwixer_getQuery(ddg_spice_kwixer_query);
     //set default image if empty
     //fixed here so no test needed on the handlebar template
     for(var index in api_response)
