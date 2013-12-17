@@ -12,8 +12,14 @@ attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
             twitter => ["https://twitter.com/duckduckgo", "duckduckgo"];
 
 
-spice to => 'https://127.0.0.1/v.js?q=$1&n=20&callback={{callback}}';
-triggers any => 'video', 'videos', 'youtube', 'vimeo';
+spice to => 'https://duckduckgo.com/v.js?q=$1&n=20&callback={{callback}}';
+
+triggers any => 
+    'video', 
+    'videos', 
+    'youtube',  
+#    'vimeo',
+    ;
 
 handle remainder => sub {
     return $_ if $_;
