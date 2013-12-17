@@ -61,5 +61,6 @@ function ddg_spice_news(apiResult) {
     }
 
     // display good stories if there are some!
+    DDG.duckbar.news.stories = goodStories;
     DDG.duckbar.news.display(goodStories);
 }
