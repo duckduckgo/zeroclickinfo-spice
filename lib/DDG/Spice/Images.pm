@@ -2,17 +2,24 @@ package DDG::Spice::Images;
 
 use DDG::Spice;
 
-spice to => 'https://duckduckgo.com/i.js?q=$1&o=json&cb={{callback}}';
+use String::Trim;
 
-triggers any =>
-    'image',
+spice to => 'https://127.0.0.1/i.js?q=$1&o=json&cb={{callback}}';
+
+# Order matters for strip_qr.
+my @any = (
     'images',
-    'pic',
+    'image',
     'pics',
-    'photo',
+    'pic',
     'photos',
+    'photo',
     'photographs',
-    ;
+    );
+
+triggers any => @any;
+my $strip_qr = join('|',@any);
+$strip_qr = qr/$strip_qr/;
 
 triggers startend =>
     'photograph',
@@ -26,8 +33,14 @@ triggers startend =>
     'logo',
     ;
 
-handle remainder => sub {
-    return $_ if $_;
+handle query_lc => sub {
+
+    my $query = $_;
+
+    $query =~ s/\s*$strip_qr//;
+    $query = trim $query;
+
+    return $query;
     return;
 };
 
