@@ -20,7 +20,8 @@ function ddg_spice_movie_release_date (api_result) {
         header1          : movie.title + " (Release Date)",
         source_url       : 'http://www.themoviedb.org/movie/' + movie.id,
         source_name      : 'TheMovieDB',
-        spice_name       : 'movie_release_date'
+        spice_name       : 'movie_release_date',
+        force_favicon_url: 'http://www.themoviedb.org/favicon.ico'
     });
 }
 Handlebars.registerHelper("pretty_release_date", function() {
