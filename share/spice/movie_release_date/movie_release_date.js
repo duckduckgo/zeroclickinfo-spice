@@ -2,10 +2,12 @@ function ddg_spice_movie_release_date (api_result) {
     "use strict";
     if(!api_result || api_result.results === null || api_result.results.length == 0 || api_result.total_results == 0)
         return;
-    var ignore = ["release", "date", "premiere", "of", "for", "when", "will", "did", "come", "out", "air"];
+    var ignore = ["release", "date", "premiere", "when", "will", "did", "come out", "air"];
     var movies = api_result.results;
     movies.filter(function(movie) {
-		return movie.release_date !== null && movie.release_date.length > 0 && movie.release_date.split("-").length === 3 && (DDG.isRelevant(movie.title, ignore) || DDG.isRelevant(movie.original_title, ignore));
+		var min_word_len = 3;
+		var relevant = DDG.isRelevant(movie.title, ignore, min_word_len) || DDG.isRelevant(movie.original_title, ignore, min_word_len);
+		return relevant && movie.release_date !== null && movie.release_date.length > 0 && movie.release_date.split("-").length === 3;
 	});
 	for(var i = 0; i < movies.length; i++) {
 		var cmovie = movies[i];
