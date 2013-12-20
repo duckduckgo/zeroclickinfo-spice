@@ -10,7 +10,7 @@ primary_example_queries "similar to sound", "words like sound";
 category 	"reference";
 topics 		"words_and_games", "everyday";
 code_url 	"https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/WordMap.pm";
-icon_url 	"/i/tw_favicon.ico";
+icon_url 	"/i/www.twinword.com.ico";
 attribution web 	=> ['http://twinword.com','Twinword Inc.'],
             twitter => ['http://twitter.com/levelpump', '@levelpump'],
             email 	=> ['feedback@twinword.com','Twinword Inc.'];
@@ -39,9 +39,6 @@ triggers startend => (
 
 triggers start => (
 	"similar to", 
-	"associate to", 
-	"association to", 
-	"association of", 
 	"relate to", 
 	"related to", 
 	"words like", 
