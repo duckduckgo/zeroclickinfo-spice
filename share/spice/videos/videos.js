@@ -1,3 +1,3 @@
-function ddg_spice_video(apiResult) {
+function ddg_spice_videos(apiResult) {
     DDG.duckbar.videos.display(apiResult);
 }

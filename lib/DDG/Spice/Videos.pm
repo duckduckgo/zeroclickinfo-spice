@@ -1,4 +1,4 @@
-package DDG::Spice::Video;
+package DDG::Spice::Videos;
 
 use DDG::Spice;
 
