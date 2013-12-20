@@ -202,8 +202,8 @@ function ddg_spice_forecast(r) {
   weatherData.current.alerts = build_alerts(r);
   weatherData.daily = build_daily(r);
   
-  // Render the container elements
-  Spice.render({
+  // Render/Display
+  DDG.duckbar.forecast.display({
     data             : weatherData,
     header1          : r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] : 'Weather',
     source_url       : 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
