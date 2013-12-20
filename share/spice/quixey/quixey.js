@@ -1,5 +1,11 @@
+(function(env) {
+
+    console.log("quixey items_test");
+
 // spice callback function
-function ddg_spice_quixey (api_result) {
+env.ddg_spice_quixey = function(api_result) {
+
+    console.log(api_result);
 
     if (api_result.result_count == 0) return;
 
@@ -12,7 +18,7 @@ function ddg_spice_quixey (api_result) {
         data: api_result,
         source_name: 'Quixey',
         source_url: 'https://www.quixey.com/search?q=' + q,
-        header1: api_result.q + ' (App Search)',
+        header1: api_result.q,
         force_big_header: true,
         more_logo: "quixey_logo.png",
         spice_name: 'quixey',
@@ -21,6 +27,12 @@ function ddg_spice_quixey (api_result) {
             template_item: "quixey",
             template_detail: "quixey_detail",
             items: relevants
+        },
+
+        items_test: {
+            data: relevants,
+            image: make_icon_url,
+            title: function(item) { return item.name; }
         }
     });
 
@@ -155,6 +167,25 @@ Handlebars.registerHelper("price", function(obj) {
     return qprice(obj);
 });
 
+
+var make_icon_url = function(item) {
+    var domain = "d1z22zla46lb9g.cloudfront.net";
+
+    console.log("make_icon_url: for item", item);
+
+    // Get the image server that the icon_url in platforms is pointing to.
+    // It's not ideal, but the link to the app's image still has to redirect
+    // and it redirects to HTTPS. What we want is an HTTP link (for speed).
+    if (item.platforms && item.platforms.length > 0 && item.platforms[0].icon_url) {
+        domain = item.platforms[0].icon_url.match(/https?:\/\/([^\/]+)/)[1];
+    }
+
+    // Replace the domain in our icon_url to the one that we got from
+    // the platforms array.
+    return "/iu/?u=http://" + domain + item.icon_url.match(/\/image\/.+/)[0] + "&f=1";
+};
+
+
 Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
     var domain = "d1z22zla46lb9g.cloudfront.net";
 
@@ -162,7 +193,7 @@ Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
     // It's not ideal, but the link to the app's image still has to redirect
     // and it redirects to HTTPS. What we want is an HTTP link (for speed).
     if(platforms && platforms.length > 0 && platforms[0].icon_url) {
-	domain = platforms[0].icon_url.match(/https?:\/\/([^\/]+)/)[1];
+    domain = platforms[0].icon_url.match(/https?:\/\/([^\/]+)/)[1];
     }
 
     // Replace the domain in our icon_url to the one that we got from
@@ -170,6 +201,7 @@ Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
     icon_url = icon_url.match(/\/image\/.+/)[0];
     return "http://" + domain + icon_url;
 });
+
 
 // template helper to format a price range
 Handlebars.registerHelper("pricerange", function() {
@@ -238,3 +270,6 @@ Handlebars.registerHelper("platform_name", function() {
 Handlebars.registerHelper("quixey_star", function() {
     return DDG.get_asset_path("quixey", "star.png").replace("//", "/");
 });
+
+
+})(this);
