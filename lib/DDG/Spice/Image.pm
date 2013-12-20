@@ -15,6 +15,8 @@ my @any = (
     'photos',
     'photo',
     'photographs',
+    'icons',
+    'icon'
     );
 
 triggers any => @any;
