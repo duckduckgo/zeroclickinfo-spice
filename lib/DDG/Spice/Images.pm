@@ -40,6 +40,9 @@ handle query_lc => sub {
     $query =~ s/\s*$strip_qr//;
     $query = trim $query;
 
+    warn $strip_qr;
+    warn $query;
+
     return $query;
     return;
 };
