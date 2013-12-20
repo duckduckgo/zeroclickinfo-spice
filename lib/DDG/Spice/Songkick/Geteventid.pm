@@ -24,11 +24,8 @@ handle remainder => sub {
   # If the query isn't blank, then use it for the API query.
   if (length($_) > 0) {
     if ($_ =~ /^(around|in|near) (.+)$/) {
-      return $2;
-    } elsif ($_ =~ /^(.+) area$/) {
-      return $1;
-    } else {
-      return $_;
+      (my $loc = $2) =~ s/(^the\s+|\s+area$)//g;
+      return $loc;
     }
   }
   my $location = join(", ", $loc->city, $loc->region_name, $loc->country_name);
