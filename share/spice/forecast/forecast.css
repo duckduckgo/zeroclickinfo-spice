@@ -1,220 +1,102 @@
-#spice_forecast {
-  width: 100%;
-  font-weight: 300;
-  min-width: 500px;
-  max-width: 1000px;
-  color: #333;
-  margin: 0 auto;
-  height: 170px; /* DDG 245px; */
-  position: relative;
-}
-#spice_forecast.alert { height: 208px; } /* DDG */
+/*
+	TODO: Namespace everything
+*/
 
-#spice_forecast a { color: #333; }
-
-#spice_forecast .fe_forecast {
-  margin-top: 14px;
+.fe_currently,
+.fe_day {
+	height: 16em;
+	color: #818181;
 }
 
-#spice_forecast .fe_currently {
-  display:inline-block;
-  position: absolute;
-  left: 0;
-  width: 35%;
-  height: 100%;
-  padding-top: 5px;
+.fe_currently {
+	text-align: center;
+	width: 20em;
+}
+.fe_day {
+	width: 10em;
 }
 
-#spice_forecast #fe_current_icon {
-  display: block;
-  position: absolute;
-  top: -4px;
-  left: 50%;
-  width: 80px;
-  height: 80px;
+.fe_current-wrap {
+	display: inline-block;
+	margin-top: 1em;
 }
-
-#spice_forecast .fe_currently .fe_temp {
-  position: relative;
-  top: -5px;
-  margin-left: 0;
-  text-align: left;
+.fe_top {
+	font-size: 2em;
 }
-
-#spice_forecast .fe_currently .fe_temp .fe_temp_str {
-  font-size: 42px;
-  font-weight: bold;
-  line-height: 42px;
+.fe_bottom {
+	font-size: 1.1em;
+	text-align: left;
 }
-
-#spice_forecast .fe_currently .fe_temp .fe_temp_unit {
-  display: inline-block;
-  position: relative;
-  font-size: 28px;
-  font-weight: normal;
-  vertical-align: top;
-  line-height: 42px;
-}
-
-#spice_forecast .fe_currently .fe_temp .fe_dir,
-#spice_forecast .fe_currently .fe_temp .fe_feelslike {
-  display: block;
-  position: relative;
-  top: -1px;
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 18px;
-}
-
-#spice_forecast .fe_currently .fe_summary {
-  font-size: 18px;
-  line-height: 1.3em;
-  font-weight: bold;
-  margin-top: 8px;
-}
-#spice_forecast .fe_currently .fe_summary.fe_small {
-  font-size: 15px;
-}
-
-#spice_forecast .fe_currently .fe_wind {
-  font-size: 14px;
-  margin-top: 4px;
-}
-
-#spice_forecast .fe_daily {
-  display: table;
-  position:absolute;
-  right:0;
-  top:0;
-  width: 65%;
-  height: 100%;
-  font-size: 14px;
-  text-align: center;
-}
-
-#spice_forecast .fe_daily .fe_day {
-  display: table-cell;
-  text-align: center;
-}
-
-#spice_forecast .fe_daily .fe_day .fe_label {
-  font-weight: bold;
-  display: inline-block;
-  width: 100%;
-}
-
-#spice_forecast .fe_daily .fe_icon {
-  display: inline-block;
-  width: 26px;
-  height: 26px;
-  margin-top: 2px;
-}
-
-#spice_forecast .fe_daily .fe_day .fe_temp_bar {
-  position: relative;
-  width: 20px;
-  margin: 18px auto 0;
-  font-size: 12px;
-  border-radius: 200px;
-  background-color: #333;
-  white-space: nowrap;
-}
-
-#spice_forecast .fe_daily .fe_day .fe_high_temp {
-  position: absolute;
-  width: 100%;
-  top: -16px;
-  left: 2px;
-}
-
-#spice_forecast .fe_daily .fe_day .fe_low_temp {
-  position: absolute;
-  width: 100%;
-  bottom: -16px;
-  left: 2px;
-}
-
-#spice_forecast .fe_alert {
-  position: absolute;
-  bottom:0;
-  text-align: center;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-#spice_forecast .fe_alert a {
-  text-decoration: underline;
-  text-overflow: ellipsis;
-  font-style: italic;
-  font-weight: bold;
-  text-decoration: underline;
-  color: #A00;
-}
-
-.fe_alert a .fe_icon {
-  font-size: 20px;
-}
-
-
-@media screen and (max-width:480px) {
-    #spice_forecast {
-        min-width:200px;
-        height:auto;
-    }
-    #spice_forecast .fe_currently {
-        width:100%;
-        position:relative;
-        display:block;
-        margin:auto;
-        left:auto;
-        padding-top:0;
-    }
-
-    #spice_forecast #fe_current_icon {
-        right: 0;
-        top: -8px;
-    }
-
-    #spice_forecast .fe_currently .fe_top {
-      position: relative;
-      left: 6px;
-      width: 200px;
-      margin: 0 auto;
-    }
-    
-    #spice_forecast .fe_daily .fe_day .fe_temp_bar {
-      width: 15px;
-    }
-    
-    #spice_forecast .fe_daily .fe_day .fe_label {
-      font-size: 13px;
-    }
-    
-    #spice_forecast .fe_daily .fe_icon {
-      width: 22px;
-      height: 22px;
-      margin-top: 2px;
-    }
-
-    #spice_forecast .fe_daily {
-        position:relative;
-        width:100%;
-        right:auto;
-        left:auto;
-        margin:auto;
-        top:auto;
-        margin-top:1em;
-        margin-bottom:3em;
-    }
-    #spice_forecast.alert {
-        height:auto;
-    }
-
-    #spice_forecast .fe_alert {
-        /* bottom:4.2em; */
-        position:static;
-        margin: 10px 0;
-    }
-}
+	.fe_summary h6,
+	.fe_bottom h6 {
+		font-weight: normal !important;
+		padding-bottom: 0;
+	}
+	.fe_bottom h6 {
+		font-size: 1.15em;
+	}
+	.fe_summary h6 {
+		font-size: 1em;
+	}
+	
+	.fe_current_icon {
+		width: 3.125em;
+		vertical-align: bottom;
+		margin-bottom: 0.25em;
+		margin-right: 0.25em;
+	}
+	.fe_icon {
+		float: right;
+		width: 3.5em;
+	}
+	/*h1*/.fe_temp {
+		display: inline-block;
+		line-height: 1.1;
+		margin-bottom: 0 !important;
+		margin-right: -.25em;
+	}
+	
+	.fe_temp_bar {
+		text-align: right;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		padding-right: 1em;
+	}
+		.fe_temp_bar h1 { 
+			margin-bottom: 0 !important; 
+		}
+		
+	.fe_sep { 
+		padding: 0 0.25em;
+		display: inline-block;
+		color: #dadada; 
+	}
+	
+	.fe_label,
+	.fe_date {
+		text-align: left;
+		font-size: 1.15em;
+	}
+	.fe_date {
+		font-size: 1em;
+	}
+	
+	.fe_label,
+	.fe_high_temp,
+	.fe_temp  {
+		color: #333;
+	}
+	
+	/*h1*/.fe_low_temp,
+	.fe_date {
+		margin-top: -0.25em;
+		color: #b2b2b2;
+	}
+		.fe_label + .fe_date {
+			margin-top: -0.5em;
+		}
+	
+	.fe_day .fe_summary {
+		margin-top: 1em;
+	}
