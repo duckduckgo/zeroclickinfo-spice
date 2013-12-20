@@ -32,7 +32,9 @@ env.ddg_spice_quixey = function(api_result) {
         items_test: {
             data: relevants,
             image: make_icon_url,
-            title: function(item) { return item.name; }
+            title: function(item) { return item.name; },
+            rating: function(item) { return item.rating; },
+            pricerange: pricerange
         }
     });
 
@@ -204,17 +206,17 @@ Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
 
 
 // template helper to format a price range
-Handlebars.registerHelper("pricerange", function() {
+var pricerange = function(item) {
 
-    if (!this.editions)
+    if (!item || !item.editions)
         return "";
 
-    var low  = this.editions[0].cents;
-    var high = this.editions[0].cents;
+    var low  = item.editions[0].cents;
+    var high = item.editions[0].cents;
     var tmp, range, lowp, highp;
 
-    for (var i in this.editions) {
-        tmp = this.editions[i].cents;
+    for (var i in item.editions) {
+        tmp = item.editions[i].cents;
         if (tmp < low) low = tmp;
         if (tmp > high) high = tmp;
     }
@@ -224,12 +226,16 @@ Handlebars.registerHelper("pricerange", function() {
     if (high > low) {
        highp = qprice(high);
        range = lowp + " - " + highp;
-       this.hasPricerange = true;
+       item.hasPricerange = true;
     } else {
         range = lowp;
     }
 
     return range;
+};
+
+Handlebars.registerHelper("pricerange", function() {
+    return pricerange(this);
 });
 
 // template helper to replace iphone and ipod icons with
