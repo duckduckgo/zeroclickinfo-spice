@@ -1,12 +1,14 @@
-<img class="spotlight" src="/iu/?u={{ResourceImageUrl}}">
+<img class="spotlight" src="/iu/?u={{getMediumImage ResourceImageUrl}}">
 <div class="description">
     <h1><a href="https://kwixer.com/#/watching/movie/{{ResourceId}}">{{ResourceTitle}}</a></h1>
     <br/>
     <span class="labelField">Released: </span><span>{{ResourceYear}}</span> 
     <br/>
-    <span class="labelField">Starring: </span><span id="lblActors">{{ResourceDetails2}}</span> 
+    <span class="labelField">Starring: </span><span>{{formatDetail ResourceDetails2}}</span> 
     <br/>
-    <span class="labelField">Genres: </span><span id="lblGenres">{{ResourceGenre}}</span> 
+    <span class="labelField">Genres: </span><span>{{formatDetail ResourceGenre}}</span> 
+ 	<br/>
+    <span class="labelField">Director: </span><span>{{formatDetail ResourceDetails}}</span> 
     <br/>
     <a href="https://kwixer.com/#/watching/movie/{{ResourceId}}">Reviews and more on Kwixer</a>
 </div>

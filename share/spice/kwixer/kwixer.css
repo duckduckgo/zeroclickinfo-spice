@@ -1,12 +1,14 @@
+#spice_kwixer li.ddgc_item {
+    height: 165px;
+}
 #spice_kwixer li.ddgc_item p {
     background-color: #ffffff;
-    border: 1px solid #e7e7e7;
     overflow: hidden;
-    height: 95px !important;
+    height:120px !important;
 }
-
 #spice_kwixer li.ddgc_item img {
-    padding: 5px;
+    max-height: 120px !important;
+    max-width: 100px !important;
 }
 
 #spice_kwixer .kwixer-heading {
@@ -20,7 +22,7 @@
 #spice_kwixer .spotlight {
     float: left;
     border: 1px solid #E1E1E1;
-    max-height: 150px;
+    max-height: 175px;
     max-width: 150px;
 }
 
@@ -33,13 +35,4 @@
 
 #spice_kwixer div .labelField {
     color: gray;
-}
-
-#spice_kwixer div .stars {
-    display: inline-block;
-}
-
-#spice_kwixer .description ul {
-    font-size: 90%;
-    margin-left: 15px;
 }
