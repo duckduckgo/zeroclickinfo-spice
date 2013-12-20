@@ -30,10 +30,13 @@ function ddg_spice_songkick_geteventid(api_result) {
   // }
   // At this point, we have the metro_area_id, so we can get the list of
   // concerts.
-  if (!api_result || !api_result.resultsPage || !api_result.resultsPage.results || !api_result.resultsPage.results) {
+  if (!api_result || !api_result.resultsPage || !api_result.resultsPage.results) {
     return;
   }
-  if (api_result.resultsPage.results.length == 0 || api_result.resultsPage.results.location.length == 0) {
+  if (api_result.resultsPage.results.totalEntries == 0 || api_result.resultsPage.results.length == 0) {
+    return;
+  }
+  if (!api_result.resultsPage.results.location || api_result.resultsPage.results.location.length == 0) {
     return;
   }
 

@@ -16,7 +16,10 @@ function ddg_spice_songkick_getartistid(api_result) {
   if (!api_result || !api_result.resultsPage || !api_result.resultsPage.results) {
     return;
   }
-  if (api_result.resultsPage.results.length == 0 || api_result.resultsPage.results.artist.length == 0) {
+  if (api_result.resultsPage.results.totalEntries == 0 || api_result.resultsPage.results.length == 0) {
+    return;
+  }
+  if (!api_result.resultsPage.results.artist || api_result.resultsPage.results.artist.length == 0) {
     return;
   }
 
@@ -68,10 +71,13 @@ function ddg_spice_songkick_artists(artists_data) {
   //     "status": "ok"
   //   }
   // }
-  if (!artists_data || !artists_data.resultsPage || !artists_data.resultsPage.results || !artists_data.resultsPage.results.artist) {
+  if (!artists_data || !artists_data.resultsPage || !artists_data.resultsPage.results) {
     return;
   }
-  if (artists_data.resultsPage.results.artist.length == 0) {
+  if (artists_data.resultsPage.results.totalEntries == 0 || artists_data.resultsPage.results.length == 0) {
+    return;
+  }
+  if (!artists_data.resultsPage.results.artist || artists_data.resultsPage.results.artist.length == 0) {
     return;
   }
   Spice.render({
