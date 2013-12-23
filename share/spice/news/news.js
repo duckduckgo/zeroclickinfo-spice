@@ -44,16 +44,16 @@ function ddg_spice_news(apiResult) {
     // Relevancy:
     // Check if the title is relevant to our query.
     var goodStories = [];
-    if(generic) {
-        goodStories = apiResult;
-    } else {
-        for(var i = 0, story; story = apiResult[i]; i++) {
-            if(DDG.isRelevant(story.title, skip, 3)) {
-                getSource(story);
-                goodStories.push(story);
-            }
+    //if(generic) {
+    goodStories = apiResult;
+    //} else {
+    for(var i = 0, story; story = apiResult[i]; i++) {
+        if(DDG.isRelevant(story.title, skip, 3)) {
+            getSource(story);
+            goodStories.push(story);
         }
     }
+    //}
 
     // Exit if we didn't get any results.
     if(goodStories.length === 0) {
