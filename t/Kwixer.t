@@ -7,11 +7,6 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Kwixer )],
-    'movie Skyfall' => test_spice(
-        '/js/spice/kwixer/Skyfall',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
     'film with tom cruise' => test_spice(
         '/js/spice/kwixer/tom%20cruise',
         call_type => 'include',
@@ -28,11 +23,6 @@ ddg_spice_test(
         caller => 'DDG::Spice::Kwixer'
     ),
     'movies with tom cruise and Kate' => test_spice(
-        '/js/spice/kwixer/tom%20cruise%20and%20Kate',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'movies tom cruise and Kate' => test_spice(
         '/js/spice/kwixer/tom%20cruise%20and%20Kate',
         call_type => 'include',
         caller => 'DDG::Spice::Kwixer'
@@ -107,27 +97,6 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Kwixer'
     ),
-    'James Bond films' => test_spice(
-        '/js/spice/kwixer/James%20Bond',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'James Bond movies' => test_spice(
-        '/js/spice/kwixer/James%20Bond',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'Skyfall movie' => test_spice(
-        '/js/spice/kwixer/Skyfall',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'Skyfall film' => test_spice(
-        '/js/spice/kwixer/Skyfall',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-      
 );
 
 done_testing;

@@ -1,16 +1,17 @@
-function getQueryParams() 
-{
-    var script = $('[src*="/js/spice/kwixer/"]')[0];
-    var source = $(script).attr("src");
-    var query = source.match(/kwixer\/([^\/]*)/)[1];
-    query = $.trim(decodeURIComponent(query));
-    if (!query) {
-        return [];
-    }
-    return query;
-}
+
     
 function ddg_spice_kwixer(api_response) {
+    function getQueryParams() 
+    {
+        var script = $('[src*="/js/spice/kwixer/"]')[0];
+        var source = $(script).attr("src");
+        var query = source.match(/kwixer\/([^\/]*)/)[1];
+        query = $.trim(decodeURIComponent(query));
+        if (!query) {
+            return [];
+        }
+        return query;
+    }
     if (!api_response || api_response.length==0 ) return;
 
     var ddg_spice_kwixer_query = DDG.get_query();
@@ -29,7 +30,7 @@ function ddg_spice_kwixer(api_response) {
             items                    : api_response,
             li_height                : 155
         },
-        force_no_fold            : true,
+        force_no_fold            : true
     });
 }
 /* 

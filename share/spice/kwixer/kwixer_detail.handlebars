@@ -1,15 +1,25 @@
-<img class="spotlight" src="/iu/?u={{getMediumImage ResourceImageUrl}}">
+{{#if ResourceImageUrl}}
+    <img class="spotlight" src="/iu/?u={{getMediumImage ResourceImageUrl}}">
+{{/if}}
 <div class="description">
     <h1><a href="https://kwixer.com/#/watching/movie/{{ResourceId}}">{{ResourceTitle}}</a></h1>
     <br/>
-    <span class="labelField">Released: </span><span>{{ResourceYear}}</span> 
-    <br/>
+    {{#if ResourceYear}}
+        <span class="labelField">Released: </span><span>{{ResourceYear}}</span> 
+        <br/>
+    {{/if}}
+    {{#if ResourceDetails2}}
     <span class="labelField">Starring: </span><span>{{formatDetail ResourceDetails2}}</span> 
     <br/>
-    <span class="labelField">Genres: </span><span>{{formatDetail ResourceGenre}}</span> 
- 	<br/>
-    <span class="labelField">Director: </span><span>{{formatDetail ResourceDetails}}</span> 
-    <br/>
+    {{/if}}
+    {{#if ResourceGenre}}
+        <span class="labelField">Genres: </span><span>{{formatDetail ResourceGenre}}</span> 
+        <br/>
+    {{/if}}
+    {{#if ResourceDetails}}
+        <span class="labelField">Director: </span><span>{{formatDetail ResourceDetails}}</span> 
+        <br/>
+    {{/if}}
     <a href="https://kwixer.com/#/watching/movie/{{ResourceId}}">Reviews and more on Kwixer</a>
 </div>
 <div class="clear">&nbsp;</div>

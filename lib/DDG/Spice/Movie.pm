@@ -23,8 +23,8 @@ handle query_lc => sub {
     # spice triggers are called when a trigger is part of a hyphenated word
     # i.e.: asus rt-66nu
     # this makes sure that only space deliminated words fire this spice
-    #my $input = $_;
-    #map { return $input if $input =~ s/(^|\s)$_(\s|$)// and $input ne '' } @triggers;
+    my $input = $_;
+    map { return $input if $input =~ s/(^|\s)$_(\s|$)// and $input ne '' } @triggers;
     return "$_" if $_;
 };
 
