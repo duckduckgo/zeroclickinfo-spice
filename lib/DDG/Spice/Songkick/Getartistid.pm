@@ -16,7 +16,7 @@ code_url "https://github.com/bradcater/zeroclickinfo-spice/blob/master/lib/DDG/S
 attribution github => ["https://github.com/bradcater", "Brad Cater"],
             twitter => ["https://twitter.com/bradcater", "bradcater"];
 
-triggers startend => "artists";
+triggers start => "artists", "bands", "musicians";
 
 spice to => 'http://api.songkick.com/api/3.0/search/artists.json?apikey={{ENV{DDG_SPICE_SONGKICK_APIKEY}}}&per_page=1&query=$1&jsoncallback={{callback}}';
 
@@ -27,8 +27,6 @@ handle remainder => sub {
       return $1;
     } elsif ($_ =~ /^similar to (.+)$/) {
       return $1;
-    } else {
-      return $_;
     }
   }
 	return;
