@@ -26,6 +26,8 @@ handle remainder => sub {
     if ($_ =~ /^(around|in|near) (.+)$/) {
       (my $loc = $2) =~ s/(^the\s+|\s+area$)//g;
       return $loc;
+    } else {
+      return;
     }
   }
   my $location = join(", ", $loc->city, $loc->region_name, $loc->country_name);
