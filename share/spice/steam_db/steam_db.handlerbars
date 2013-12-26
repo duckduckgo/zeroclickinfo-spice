@@ -1,1 +1,1 @@
-{{AppID}} {{StoreName}}
+<a href="http://steamdb.info/app/{{AppID}}/">{{StoreName}}</a>
