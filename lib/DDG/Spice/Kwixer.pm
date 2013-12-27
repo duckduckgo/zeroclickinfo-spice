@@ -15,7 +15,7 @@ attribution twitter => ['kwixerapp','Kwixer'],
 			web => ['https://www.kwixer.com','Kwixer'];
 
 
-spice to => 'https://www.kwixer.com/api/search?filter=movie&take=40&source=ddg&query=$1';
+spice to => 'https://www.kwixer.com/api/search?filter=movie&take=40&source=ddg&lang=en&query=$1';
 spice wrap_jsonp_callback => 1;
 
 my @triggers = ('movie with','movies with', 'movies starring','film with','films with','films starring','film starring',
@@ -25,8 +25,8 @@ my @triggers = ('movie with','movies with', 'movies starring','film with','films
 	'kwixer');
 triggers start => @triggers;
 triggers end => ('actor','actress');
-handle remainder => sub {
-  	return $_ if $_;
+handle query => sub {
+	return $_ if $_;
   	return;
 };
 

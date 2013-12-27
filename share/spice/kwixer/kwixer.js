@@ -1,24 +1,12 @@
 
     
 function ddg_spice_kwixer(api_response) {
-    function getQueryParams() 
-    {
-        var script = $('[src*="/js/spice/kwixer/"]')[0];
-        var source = $(script).attr("src");
-        var query = source.match(/kwixer\/([^\/]*)/)[1];
-        query = $.trim(decodeURIComponent(query));
-        if (!query) {
-            return [];
-        }
-        return query;
-    }
     if (!api_response || api_response.length==0 ) return;
 
     var ddg_spice_kwixer_query = DDG.get_query();
-    var ddg_spice_kwixer_server_query = getQueryParams();
     Spice.render({
         header1                  : ddg_spice_kwixer_query + ' (Kwixer)',
-        source_url               : "https://www.kwixer.com/#/explore?category=movie&query=" + ddg_spice_kwixer_server_query , //TODO more at URL 
+        source_url               : "https://www.kwixer.com/#/explore?category=movie&query=" + ddg_spice_kwixer_query ,
         source_name              : 'Kwixer',
         force_big_header         : true,
         force_favicon_domain     : 'www.kwixer.com',
