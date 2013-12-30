@@ -8,9 +8,8 @@ function ddg_spice_game_info(api_result) {
         query = query.replace(phrase, "");
     });
     query = $.trim(query);
-    // throw out all the bad games
+    // filter irrelevant or incomplete games
     games = $.grep(games, function(data, ind) {
-        // which are the ones without a name, image, thumbnail url, or matching name or alias
         return data.name !== null && data.image !== null && data.image.thumb_url != null && 
             (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
     });
@@ -18,9 +17,8 @@ function ddg_spice_game_info(api_result) {
     games = games.sort(function(a, b) {
         return b.number_of_user_reviews - a.number_of_user_reviews;
     });
-    // if there is just one game
+    // quit if there aren't any relevant games
     if(games.length == 0) {
-        // ignore this
         return;
     }
     Spice.render({
@@ -81,12 +79,13 @@ Handlebars.registerHelper("platform_summary", function(platforms, options) {
 /** 
  * game_rating
  *
- * Summarise the game's rating
+ * Summarise the game's age rating
  */
 Handlebars.registerHelper("game_rating", function() {
     var rating = "";
     var ratings = this.original_game_rating;
-    for(var i = 0; i < ratings.length; i++) { // they in the form PEGI: ...
+    // they are in the form PEGI: 3,...
+    for(var i = 0; i < ratings.length; i++) {
         var parts = ratings[i].name.split(": ");
         if(parts.length == 2) {
             switch(parts[0]) {
@@ -97,7 +96,6 @@ Handlebars.registerHelper("game_rating", function() {
                     rating = (rating.length > 0 ? rating+" / " : "") + parts[1];
                     break;
                 default:
-
             }
         }
     }
