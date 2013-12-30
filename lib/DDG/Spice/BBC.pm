@@ -27,6 +27,7 @@ triggers any => "schedule", "tv guide";
 handle remainder => sub {
 
     my $query = lc $_;
+    $query =~ s/\?//;
 
     # no schedules available for BBC America or BBC Canada
     return if $query =~ /america|canada/;
