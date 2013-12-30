@@ -62,17 +62,7 @@ Handlebars.registerHelper("release_date", function() {
     var release = this.original_release_date.split(" ")[0];
     var parts = release.split("-");
     var date = new Date(parts[0], parts[1] - 1, parts[2]);
-    var postfix = null;
-    switch(parts[2] % 10) {
-        case 1: postfix = "st"; break;
-        case 2: postfix = "nd"; break;
-        case 3: postfix = "rd"; break;
-        default: postfix = "th";
-    }
-    if(parts[2] > 10 && parts[2] < 20) {
-        postfix = "th";
-    }
-    return date_info.day[date.getDay()] + " " + date.getDate() + postfix + " " + date_info.month[date.getMonth()] + " " + date.getFullYear();
+    return date_info.day[date.getDay()] + " " + DDG.getOrdinal(date.getDate()) + " " + date_info.month[date.getMonth()] + " " + date.getFullYear();
 });
 /** 
  * platform_summary
