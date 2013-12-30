@@ -4,7 +4,7 @@ function ddg_spice_game_info(api_result) {
     var ignore = ["games", "game", "giantbomb"];
     var games = api_result.results;
     var query = DDG.get_query();
-    $.each(ignore, function(phrase, ind) {
+    $.each(ignore, function(ind, phrase) {
         query = query.replace(phrase, "");
     });
     query = $.trim(query);
@@ -33,8 +33,9 @@ function ddg_spice_game_info(api_result) {
             template_detail      : "game_info_details",
             // gets called in the event of a single result
             single_item_handler  : function(obj) {
-                console.log(obj);
                 var data = obj.data.results[0];
+                // set the header
+                obj.header1 = data.name + " (Game Info)";
                 // set the image
                 obj.image_url = data.image.icon_url;
                 // set the source
