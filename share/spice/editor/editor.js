@@ -27,12 +27,18 @@ function ddg_spice_editor() {
         });
     }    
 
-    function capitaliseFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
+    function formatLanguageName(language) {
+
+        var languageNames = {
+            "javascript": "JavaScript",
+            "python": "Python"
+        };
+
+        return languageNames[language.toLowerCase()];
     }
     
     Spice.render({
-        header1          :  capitaliseFirstLetter(language) + " Editor",
+        header1          :  formatLanguageName(language) + " Editor",
         source_name      : "Ace",
         source_url       : "http://ace.c9.io/",
         template_normal  : "editor",

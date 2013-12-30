@@ -21,10 +21,10 @@ spice wrap_jsonp_callback => 1;
 
 triggers startend => "editor";
 
-handle query_parts => sub {
+my @supported_languages = ("javascript", "python");
+my %supported_languages = map { $_ => 1 } @supported_languages;
 
-    my @supported_languages = ("javascript","python");
-    my %supported_languages = map { $_ => 1 } @supported_languages;
+handle remainder => sub {
 
     foreach my $param (0, 1) {
 
