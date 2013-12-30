@@ -12,11 +12,13 @@ function ddg_spice_movie_release_date (api_result) {
 	for(var i = 0; i < movies.length; i++) {
 		var cmovie = movies[i];
 		cmovie.relevance = movies.length - i;
-		cmovie.score = cmovie.relevance * 2 + cmovie.vote_average * 0.5 + cmovie.popularity * 0.06;
+		cmovie.score = cmovie.relevance * Math.log(cmovie.popularity) + cmovie.vote_average;
+        console.log(cmovie.title + " - " + cmovie.score);
 	}
 	var movie = DDG_bestResult(movies, function(a, b) {
 		return a.score > b.score ? a : b;
 	});
+    console.log(movie);
     Spice.render({
         data             : movie,
         header1          : movie.title + " (Release Date)",
