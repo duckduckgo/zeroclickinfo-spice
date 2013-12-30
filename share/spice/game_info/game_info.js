@@ -77,11 +77,11 @@ Handlebars.registerHelper("platform_summary", function(platforms, options) {
 });
 
 /** 
- * game_rating
+ * age_rating
  *
  * Summarise the game's age rating
  */
-Handlebars.registerHelper("game_rating", function() {
+Handlebars.registerHelper("age_rating", function() {
     var rating = "";
     var ratings = this.original_game_rating;
     // they are in the form PEGI: 3,...
