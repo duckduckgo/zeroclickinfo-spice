@@ -4,7 +4,7 @@ function ddg_spice_movie_release_date (api_result) {
         return;
     var ignore = ["release", "date", "premiere", "when", "will", "did", "come out", "air"];
     var movies = api_result.results;
-    movies.filter(function(movie) {
+    $.grep(function(ind, movie) {
 		var min_word_len = 3;
 		var relevant = DDG.isRelevant(movie.title, ignore, min_word_len) || DDG.isRelevant(movie.original_title, ignore, min_word_len);
 		return relevant && movie.release_date !== null && movie.release_date.length > 0 && movie.release_date.split("-").length === 3;
@@ -13,12 +13,10 @@ function ddg_spice_movie_release_date (api_result) {
 		var cmovie = movies[i];
 		cmovie.relevance = movies.length - i;
 		cmovie.score = cmovie.relevance * Math.log(cmovie.popularity) + cmovie.vote_average;
-        console.log(cmovie.title + " - " + cmovie.score);
 	}
 	var movie = DDG_bestResult(movies, function(a, b) {
 		return a.score > b.score ? a : b;
 	});
-    console.log(movie);
     Spice.render({
         data             : movie,
         header1          : movie.title + " (Release Date)",
