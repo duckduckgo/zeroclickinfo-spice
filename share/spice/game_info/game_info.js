@@ -1,7 +1,7 @@
 function ddg_spice_game_info(api_result) {
     if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0)
         return;
-    var ignore = ["video games", "video game", "giantbomb"];
+    var ignore = ["video", "game", "games", "giantbomb"];
     var games = api_result.results;
     var query = DDG.get_query();
     $.each(ignore, function(ind, phrase) {
@@ -10,8 +10,7 @@ function ddg_spice_game_info(api_result) {
     query = $.trim(query);
     // filter irrelevant or incomplete games
     games = $.grep(games, function(data, ind) {
-        return data.name !== null && data.image !== null && data.image.thumb_url != null && 
-            (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
+        return data.name != null && data.image !== null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
     });
     // sort them by the number of reviews, which is pretty much how 'controversial' they are
     games = games.sort(function(a, b) {
