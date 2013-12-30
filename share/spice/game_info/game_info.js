@@ -1,7 +1,7 @@
 function ddg_spice_game_info(api_result) {
     if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0)
         return;
-    var ignore = ["games", "game", "giantbomb"];
+    var ignore = ["video games", "video game", "giantbomb"];
     var games = api_result.results;
     var query = DDG.get_query();
     $.each(ignore, function(ind, phrase) {
