@@ -18,8 +18,7 @@ triggers startend => "steam";
 spice to => 'http://steamdb.info/api/GetMetadata/?search=$1&jsonp={{callback}}';
 
 handle remainder => sub {
-	return $1 if $1;
-	return;
+	return $_;
 };
 
 1;
