@@ -33,6 +33,10 @@ triggers startend =>
     'jpg',
     'png',
     'logo',
+    'wallpaper',
+    'wallpapers',
+    'wall paper',
+    'wall papers',
     ;
 
 handle query_lc => sub {
@@ -42,8 +46,8 @@ handle query_lc => sub {
     $query =~ s/\s*$strip_qr//;
     $query = trim $query;
 
-    warn $strip_qr;
-    warn $query;
+#    warn $strip_qr;
+#    warn $query;
 
     return $query;
     return;
