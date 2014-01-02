@@ -48,7 +48,19 @@ handle remainder => sub {
     }
     $query =~ s/\s*(tomorrow(\s(night|evening))?|in a day|in 1 day|yesterday(\s(night|evening))?|a day ago|1 day ago|last night|today|tonight)\s*//;
 
-    my $dt = DateTime->now->set_time_zone( $loc->time_zone );
+    # Get the time zone of the user.
+    my $dt = DateTime->now;
+    # We use an eal because setting the wrong time zone can kill the program.
+    my $check = eval {
+	$dt->set_time_zone($loc->time_zone);
+	1;
+    };
+
+    # If we weren't able to set $loc->time_zone, use GMT as the default. 
+    if (!$check) {
+	$dt->set_time_zone('GMT');
+    }
+
     $dt->add( days => 1 ) if $day eq "tomorrow";
     $dt->subtract( days => 1 ) if $day eq "yesterday";
 
