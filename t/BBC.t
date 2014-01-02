@@ -18,7 +18,8 @@ ddg_spice_test(
   [qw( DDG::Spice::BBC)],
   map {
     $_ => test_spice( '/js/spice/bbc/'.$q{$_},
-    caller => 'DDG::Spice::BBC' )
+    caller => 'DDG::Spice::BBC',
+    is_cached => 0 )
   } keys %q,
 );
 

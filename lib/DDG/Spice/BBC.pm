@@ -21,6 +21,8 @@ spice from => '([^/]+)/([^/]+(/[^/]+)*)';
 
 spice wrap_jsonp_callback => 1;
 
+spice is_cached => 0;
+
 triggers start => "what's on", "what was on", "what will be on", "what is on", "now on";
 triggers any => "schedule", "tv guide";
 
