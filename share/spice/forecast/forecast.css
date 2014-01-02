@@ -19,6 +19,7 @@
 .fe_current-wrap {
 	display: inline-block;
 	margin-top: 1em;
+	max-width: 100%;
 }
 .fe_top {
 	font-size: 2em;
