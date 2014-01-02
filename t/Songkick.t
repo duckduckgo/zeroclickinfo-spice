@@ -31,8 +31,9 @@ ddg_spice_test(
         '/js/spice/songkick/geteventid/Princeton',
         call_type => 'include',
         caller => 'DDG::Spice::Songkick::Geteventid',
-    )
+    ),
+    'concerts phoenix' => undef,
+    'madison concerts' => undef
 );
 
 done_testing;
-
