@@ -29,6 +29,9 @@ handle remainder => sub {
     my $query = lc $_;
     $query =~ s/\?//;
 
+    # make sure this is a relevant query
+    return unless $query =~ /bbc|cbbc|cbeebies/;
+
     # no schedules available for BBC America or BBC Canada
     return if $query =~ /america|canada/;
 
