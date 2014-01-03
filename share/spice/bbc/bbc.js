@@ -125,25 +125,3 @@ Handlebars.registerHelper("initial_broadcast", function() {
 
     return days[aired.getDay()] + ", " + months[aired.getMonth()] + " " + aired.getDate() + ", " + aired.getFullYear()
 });
-
-// Remove all the episode info from the subtitle 
-Handlebars.registerHelper("pretty_subtitle", function() {
-    var seriesInfo = /series [0-9]+/ig,
-        episodeInfo = /episode [0-9]+/ig,
-        junk = /, ?/ig,
-        subtitle = this.programme.display_titles.subtitle + "";
-
-    subtitle = subtitle.replace(seriesInfo, "").replace(episodeInfo, "").replace(junk, "");
-    subtitle = $.trim(subtitle);
-
-    if (this.programme.type == "episode" && this.programme.position !== null) {
-        subtitle = subtitle.replace(this.programme.programme.title, "");
-        subtitle = "Episode "+this.programme.position+(subtitle.length > 0 ? " - " + subtitle : "");
-    }
-
-    if (this.programme.programme.type == "series" && this.programme.programme.position !== null) {
-        subtitle = this.programme.programme.title+", "+subtitle;
-    }
-
-    return subtitle;
-});
