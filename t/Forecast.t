@@ -102,12 +102,6 @@ ddg_spice_test(
         caller => 'DDG::Spice::Forecast', 
         is_cached => 1
     ),
-    'Philadelphia forecast' => test_spice(
-        '/js/spice/forecast/philadelphia',
-        call_type => 'include',
-        caller => 'DDG::Spice::Forecast', 
-        is_cached => 1
-    ),
     'Philadelphia temp' => test_spice(
         '/js/spice/forecast/philadelphia',
         call_type => 'include',
