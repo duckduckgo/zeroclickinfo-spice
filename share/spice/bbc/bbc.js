@@ -1,3 +1,4 @@
+
 function ddg_spice_bbc(api_result) {
     var query = DDG.get_query(),
         broadcasts = api_result.schedule.day.broadcasts,
@@ -95,7 +96,11 @@ Handlebars.registerHelper("duration", function() {
 
 // Find the series URL and return it, or if it is not part of a series return the normal url
 Handlebars.registerHelper("programme_url", function() {
-    return "http://www.bbc.co.uk/programmes/"+(this.programme.programme ? this.programme.programme : this.programme).pid;
+    var programme = this.programme;
+    while(programme.programme != null && programme.programme.pid != null) {
+        programme = programme.programme;
+    }
+    return "http://bbc.co.uk/" + (programme.pid == null ? "" : "programmes/"+programme.pid);
 });
 
 

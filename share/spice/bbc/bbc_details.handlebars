@@ -1,13 +1,13 @@
 <p>
 	{{#if programme.is_available_mediaset_pc_sd}}
-		<a class="button" href="http://www.bbc.co.uk/iplayer/episode/{{programme.pid}}" alt="{programme.media.availability}}">Watch Now</a>
+		<a class="button" href="http://www.bbc.co.uk/iplayer/episode/{{programme.pid}}" title="{{programme.media.availability}}">Watch Now</a>
 	{{/if}}
 
 	<span>
 		<a href="{{programme_url}}">{{programme.display_titles.title}}</a>{{#if programme.display_titles.subtitle}}:
-		<a href="http://www.bbc.co.uk/programmes/{{programme.pid}}">
+		{{#if programme.pid}}<a href="http://www.bbc.co.uk/programmes/{{programme.pid}}">{{/if}}
 			<span>{{programme.display_titles.subtitle}}</span>
-		</a>
+		{{#if programme.pid}}</a>{{/if}}
 		{{/if}}
 	</span>
 </p>
