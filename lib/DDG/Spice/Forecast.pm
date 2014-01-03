@@ -13,6 +13,7 @@ secondary_example_queries "weather 12180";
 topics "everyday", "travel";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Forecast.pm";
 
+
 my @triggers = ('forecast', 'forcast', 'weather', 'temp', 'temperature');
 triggers any => @triggers;
 
@@ -23,20 +24,19 @@ spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=
 spice is_cached => 1;
 spice proxy_cache_valid => "200 30m";
 
-my $weather_qr = qr/(?:fore?cast|weather|temp(?:erature|))/;
-my $trigger_qr = qr/fore?cast|report|weather (fore?cast|)|temp(erature)/;
+my $no_location_qr = qr/fore?cast|report|weather|temp(erature)/;
+my $weather_qr = qr/(?:(?:weather|temp(?:erature|)|fore?cast)(?: fore?cast| report| today| tomm?orr?ow| this week|))+/;
 
 handle query_lc => sub {
     my $location = '';
 
-    if(/^(?:what(?:'s| is) the |)$weather_qr(?: in | for | at |)(.*)/) {
-        $location = $1 unless ($1 =~ $trigger_qr);
-    }elsif (/^(.*) $weather_qr/) {
-        $location = $1 unless ($1 =~ $trigger_qr);
-    }
+    # Capture user defined location if it exists.
+    if (/^(?:what(?:'s| is) the |)$weather_qr(?: in | for | at |)(.*)/) {
+        $location = $1 unless ($1 =~ $no_location_qr);
 
-    #remove double trigger
-    $location =~ s/$weather_qr//;
+    } elsif (/^(.*?) $weather_qr/) {
+        $location = $1 unless ($1 =~ $no_location_qr);
+    }
 
     # 10/29/2013 russell double check for things we don't want
     $location = trim $location if $location;
