@@ -2,7 +2,7 @@ package DDG::Spice::Local;
 
 use DDG::Spice;
 
-spice to => 'https://duckduckgo.com/local.js?q=$1&cb=ddg_spice_local';
+spice to => 'https://127.0.0.1/local.js?q=$1&cb=ddg_spice_local';
 
 triggers any => (
     'near',

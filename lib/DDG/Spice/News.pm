@@ -13,7 +13,7 @@ attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
             twitter => ["https://twitter.com/duckduckgo", "duckduckgo"];
 
 triggers startend => "news";
-spice to => 'https://duckduckgo.com/news.js?q=$1&cb={{callback}}';
+spice to => 'https://127.0.0.1/news.js?q=$1&cb={{callback}}';
 
 handle query_lc => sub {
     return $_ if $_;
