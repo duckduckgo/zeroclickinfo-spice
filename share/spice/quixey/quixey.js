@@ -1,11 +1,7 @@
 (function(env) {
 
-    console.log("quixey items_test");
-
 // spice callback function
 env.ddg_spice_quixey = function(api_result) {
-
-    console.log(api_result);
 
     if (api_result.result_count == 0) return;
 
@@ -22,19 +18,40 @@ env.ddg_spice_quixey = function(api_result) {
         force_big_header: true,
         more_logo: "quixey_logo.png",
         spice_name: 'quixey',
-        template_frame: "carousel",
-        template_options: {
-            template_item: "quixey",
-            template_detail: "quixey_detail",
-            items: relevants
+
+        // template_frame: "carousel",
+        // template_options: {
+        //     template_item: "quixey",
+        //     template_detail: "quixey_detail",
+        //     items: relevants
+        // },
+
+        relevant_items: relevants,  // to distinguish it from 'items' and to indicate it's been gone over
+
+        templates: {
+            // summary:     Spice.quixey.summary,
+            item:        DDG.templates.products,         // built-in
+            // single_item: DDG.templates.products,      // built-in
+            // tiny:        Spice.quixey.tiny,           // one liner
+
+            detail: Handlebars.templates.quixey_detail  // will be Spice.quixey.detail with namespaces
         },
 
-        items_test: {
-            data: relevants,
-            image: make_icon_url,
-            title: function(item) { return item.name; },
-            rating: function(item) { return item.rating; },
-            pricerange: pricerange
+        normalize_item : function(item) {
+            var normal = {
+                img: item.icon_url, //make_icon_url(item),
+                title: item.name,
+                ratingData: {
+                    stars: item.rating,
+                    reviews: item.rating_count
+                },
+                price: pricerange(item)
+            };
+
+            if (item.developer && item.developer.name)
+                normal.brand = item.developer.name;
+
+            return normal;
         }
     });
 
@@ -165,15 +182,13 @@ function qprice(p) {
 
 // template helper for price formatting
 // {{price x}}
-Handlebars.registerHelper("price", function(obj) {
+Handlebars.registerHelper("qprice", function(obj) {
     return qprice(obj);
 });
 
 
 var make_icon_url = function(item) {
     var domain = "d1z22zla46lb9g.cloudfront.net";
-
-    console.log("make_icon_url: for item", item);
 
     // Get the image server that the icon_url in platforms is pointing to.
     // It's not ideal, but the link to the app's image still has to redirect

@@ -42,8 +42,16 @@ function ddg_spice_octopart (api_result) {
         header1 : api_result.request.q + " (Octopart)",
         template_frame: "carousel",
         template_options: {
+            template_item: "octopart",
             template_detail: "octopart_details",
             items: results
+        },
+        items_test: {
+            data: results,
+            image: function(item) { return item.item.images[0].url_90px; },
+            title: function(item) { return item.item.mpn; }
+            // rating: function(item) { return item.rating; },
+            // pricerange: pricerange
         },
         force_no_fold : 1
     });
