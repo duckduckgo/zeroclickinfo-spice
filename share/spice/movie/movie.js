@@ -96,3 +96,10 @@ Handlebars.registerHelper("star_rating", function(score) {
 
     return s;
 });
+
+/* date format */
+Handlebars.registerHelper("date_string", function(string) {
+    var date = DDG.getDateFromString(string),
+        months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
+    return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+});
