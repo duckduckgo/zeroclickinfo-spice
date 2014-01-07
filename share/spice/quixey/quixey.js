@@ -19,22 +19,13 @@ env.ddg_spice_quixey = function(api_result) {
         more_logo: "quixey_logo.png",
         spice_name: 'quixey',
 
-        // template_frame: "carousel",
-        // template_options: {
-        //     template_item: "quixey",
-        //     template_detail: "quixey_detail",
-        //     items: relevants
-        // },
-
         relevant_items: relevants,  // to distinguish it from 'items' and to indicate it's been gone over
 
         templates: {
             // summary:     Spice.quixey.summary,
             item:        DDG.templates.products,         // built-in
             // single_item: DDG.templates.products,      // built-in
-            // tiny:        Spice.quixey.tiny,           // one liner
 
-            // detail: Handlebars.templates.quixey_detail  // will be Spice.quixey.detail with namespaces
             detail: DDG.templates.products_detail  // will be Spice.quixey.detail with namespaces
         },
 
@@ -52,8 +43,9 @@ env.ddg_spice_quixey = function(api_result) {
                 products_buy: Handlebars.templates.quixey_buy // should/will be Spice.quixey.products_buy 
             };
 
-            // if (item.developer && item.developer.name)
-            //     normal.brand = item.developer.name;
+            // this should be the array of screenshots with captions
+            // and check for the existence of them
+            normal.img_m = item.editions[0].screenshots[0].image_url;
 
             return normal;
         }
