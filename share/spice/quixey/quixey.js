@@ -34,7 +34,8 @@ env.ddg_spice_quixey = function(api_result) {
             // single_item: DDG.templates.products,      // built-in
             // tiny:        Spice.quixey.tiny,           // one liner
 
-            detail: Handlebars.templates.quixey_detail  // will be Spice.quixey.detail with namespaces
+            // detail: Handlebars.templates.quixey_detail  // will be Spice.quixey.detail with namespaces
+            detail: DDG.templates.products_detail  // will be Spice.quixey.detail with namespaces
         },
 
         normalize_item : function(item) {
@@ -45,11 +46,14 @@ env.ddg_spice_quixey = function(api_result) {
                     stars: item.rating,
                     reviews: item.rating_count
                 },
-                price: pricerange(item)
+                price: pricerange(item),
+                abstract: item.short_desc || "",
+                brand: (item.developer && item.developer.name) || "",
+                products_buy: Handlebars.templates.quixey_buy // should/will be Spice.quixey.products_buy 
             };
 
-            if (item.developer && item.developer.name)
-                normal.brand = item.developer.name;
+            // if (item.developer && item.developer.name)
+            //     normal.brand = item.developer.name;
 
             return normal;
         }
