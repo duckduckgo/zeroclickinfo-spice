@@ -18,7 +18,7 @@ attribution twitter => ['kwixerapp','Kwixer'],
 spice to => 'https://www.kwixer.com/api/search?filter=movie&take=40&source=ddg&lang=en&query=$1';
 spice wrap_jsonp_callback => 1;
 
-my @triggers = ('movie with','movies with', 'movies starring','film with','films with','films starring','film starring',
+my @triggers = ('movie with','movies with', 'movies starring','film with','films with','films starring','film starring','movies featuring','films featuring',
 	'movies directed by','movies directed', 'directed movies', 'director','film director','film by',
 	'films by','films directed by',
 	'actor','actress' ,
