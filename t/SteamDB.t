@@ -7,7 +7,7 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::SteamDB )],
-    'steam duckduckgo' => test_spice(
+    'steamdb duckduckgo' => test_spice(
         '/js/spice/steam_db/duckduckgo',
         call_type => 'include',
         caller => 'DDG::Spice::SteamDB'
