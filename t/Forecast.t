@@ -16,7 +16,7 @@ ddg_spice_test(
         query_raw => 'weather forecast',
         location => $loc
     ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}),
+        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
         call_type => 'include',
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
@@ -25,7 +25,7 @@ ddg_spice_test(
         query_raw => 'forecast',
         location => $loc
     ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}),
+        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
         call_type => 'include',
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
@@ -34,7 +34,7 @@ ddg_spice_test(
         query_raw => 'weather',
         location => $loc
     ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}),
+        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
         call_type => 'include',
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
@@ -43,7 +43,7 @@ ddg_spice_test(
         query_raw => 'weather today',
         location => $loc
     ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}),
+        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
         call_type => 'include',
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
@@ -52,7 +52,7 @@ ddg_spice_test(
         query_raw => 'weather tomorrow',
         location => $loc
     ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}),
+        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
         call_type => 'include',
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
@@ -61,7 +61,7 @@ ddg_spice_test(
         query_raw => 'forecast today',
         location => $loc
     ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}),
+        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
         call_type => 'include',
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
