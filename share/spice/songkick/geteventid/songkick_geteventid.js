@@ -131,6 +131,24 @@ function ddg_spice_songkick_events(events_data) {
     return;
   }
 
+  // Filter out unknown venues and events with no artists.
+  // Also redefine the objects into something cleaner.
+  var events = events_data.resultsPage.results.event;
+  var results = [];
+  for(var i = 0; i < events.length; i++) {
+    if(events[i].performance.length > 0 && events[i].venue.displayName !== "Unknown venue") {
+      results.push({
+        uri: events[i].uri,
+        artist: events[i].performance[0].displayName,
+	venue: events[i].venue.displayName,
+        start: {
+          date: events[i].start.date,
+          time: twenty_four_to_twelve_hour_time(events[i].start.time)
+        }
+      });
+    }
+  }
+
   Spice.render({
     data             : events_data,
     header1          : 'Events in ' + ddg_spice_songkick_geteventid.metadata.metro_area_display_name + ' (Songkick)',
@@ -139,17 +157,7 @@ function ddg_spice_songkick_events(events_data) {
     spice_name       : 'songkick',
     template_frame   : 'list',
     template_options: {
-      items         : $.map(events_data.resultsPage.results.event.slice(0, max_results), function(o, idx) {
-        return {
-          uri         : o.uri,
-          artist      : o.performance[0] ? o.performance[0].displayName : o.displayName,
-          venue       : o.venue.displayName,
-          start       : {
-            date : o.start.date,
-            time : twenty_four_to_twelve_hour_time(o.start.time)
-          }
-        };
-      }),
+      items         : results,
       template_item : 'songkick_geteventid',
       show          : show_results,
       max           : max_results
