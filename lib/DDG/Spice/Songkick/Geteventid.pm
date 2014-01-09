@@ -14,7 +14,7 @@ topics "entertainment", "everyday", "music";
 # FIXME Point to the duckduckgo repository on pull.
 code_url "https://github.com/bradcater/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Songkick/Events.pm";
 attribution github => ["https://github.com/bradcater", "Brad Cater"],
-            twitter => ["https://twitter.com/bradcater", "bradcater"];
+    twitter => ["https://twitter.com/bradcater", "bradcater"];
 
 triggers startend => "concert", "concerts";
 
@@ -22,17 +22,17 @@ spice to => 'http://api.songkick.com/api/3.0/search/locations.json?apikey={{ENV{
 
 handle remainder => sub {
     # If the query isn't blank, then use it for the API query.
-    if ($_) {
-      if ($_ =~ /^(around|in|near) (.+)$/) {
-	  # Exit if the user typed in "around the area" or something similar.
-	  return if $2 =~ /^the\s*area$/;
-	  return $2;
-      } else {
-	  return;
-      }
+    if (length($_) > 0) {
+	if ($_ =~ /^(around|in|near) (.+)$/) {
+	    (my $loc = $2) =~ s/^the\sarea$//g;
+	    if (length($loc) > 0) {
+		return $loc;
+	    }
+	} else {
+	    return;
+	}
     }
 
-    # If the query is empty, return the current location of the user.
     my $location = join(", ", $loc->city, $loc->region_name, $loc->country_name);
     return $location;
 };
