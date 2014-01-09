@@ -24,10 +24,9 @@ handle remainder => sub {
   # If the query isn't blank, then use it for the API query.
   if ($_) {
       if ($_ =~ /^(around|in|near) (.+)$/) {
-	  (my $loc = $2) =~ s/^the\sarea$//g;
-	  return $loc if $loc;
-	  # We want this to exit immediately after
-	  return;
+	  # Exit if the user typed in "around the area" or something similar.
+	  return if $2 =~ /^the\s*area$/;
+	  return $2;
       } else {
 	  return;
       }
