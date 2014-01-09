@@ -138,8 +138,6 @@ function ddg_spice_songkick_events(events_data) {
   }
 
   var place = ddg_spice_songkick_geteventid.metadata.metro_area_display_name;
-  
-
   Spice.render({
     data             : events_data,
     header1          : 'Events in ' + place + ' (Songkick)',
@@ -168,6 +166,7 @@ function ddg_spice_songkick_events(events_data) {
   });
 }
 
+// Make the date look prettier.
 Handlebars.registerHelper("dateString", function(s) {
   var date = new Date(s),
       months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
