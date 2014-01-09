@@ -71,6 +71,7 @@ function ddg_spice_songkick_geteventid(api_result) {
 
 function ddg_spice_songkick_events(events_data) {
   "use strict";
+
   var max_results = 10;
   var show_results = 3;
   var twenty_four_to_twelve_hour_time = function(t) {
@@ -129,6 +130,7 @@ function ddg_spice_songkick_events(events_data) {
   if (events_data.resultsPage.results.event.length == 0) {
     return;
   }
+
   Spice.render({
     data             : events_data,
     header1          : 'Events in ' + ddg_spice_songkick_geteventid.metadata.metro_area_display_name + ' (Songkick)',
@@ -140,7 +142,7 @@ function ddg_spice_songkick_events(events_data) {
       items         : $.map(events_data.resultsPage.results.event.slice(0, max_results), function(o, idx) {
         return {
           uri         : o.uri,
-          artist      : o.performance[0].displayName,
+          artist      : o.performance[0] ? o.performance[0].displayName : o.displayName,
           venue       : o.venue.displayName,
           start       : {
             date : o.start.date,
