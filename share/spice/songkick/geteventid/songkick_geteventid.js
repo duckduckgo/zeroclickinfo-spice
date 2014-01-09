@@ -44,8 +44,14 @@ function ddg_spice_songkick_geteventid(api_result) {
   $.ajaxSetup({
     cache: true
   });
-  
+
   var considered_location = api_result.resultsPage.results.location[0];
+
+  // If lat and lng are null, exit.
+  if (considered_location.city.lat === null || considered_location.city.lng === null) {
+    return;
+  }
+
   var skip_words = ['concert', 'concerts'];
   if (!DDG.isRelevant(considered_location.city.displayName, skip_words)) {
     // If the query is just 'concert' or 'concerts', we use the location API to
@@ -68,14 +74,17 @@ function ddg_spice_songkick_geteventid(api_result) {
 
 function ddg_spice_songkick_events(events_data) {
   "use strict";
+
   var max_results = 10;
   var show_results = 3;
-  var twenty_four_to_twelve_hour_time = function(t) {
+
+  var twenty_four_to_twelve_hour_time = function(t, date) {
     if (t === null) {
       return t;
     }
     var a = t.split(/:/);
-    a[0] = parseInt(a[0]);
+    a[0] = new Date(date).getHours();
+
     if (a[0] > 12) {
       a = [a[0] - 12, a[1], 'PM'];
     } else {
@@ -84,6 +93,7 @@ function ddg_spice_songkick_events(events_data) {
     a[0] += '';
     return a[0] + ':' + a[1] + ' ' + a[2];
   };
+
   // Taken from
   //   http://www.songkick.com/developer/upcoming-events-for-metro-area
   // {"resultsPage:" {
@@ -126,9 +136,11 @@ function ddg_spice_songkick_events(events_data) {
   if (events_data.resultsPage.results.event.length == 0) {
     return;
   }
+
+  var place = ddg_spice_songkick_geteventid.metadata.metro_area_display_name;
   Spice.render({
     data             : events_data,
-    header1          : 'Events in ' + ddg_spice_songkick_geteventid.metadata.metro_area_display_name + ' (Songkick)',
+    header1          : 'Events in ' + place + ' (Songkick)',
     source_url       : encodeURI(ddg_spice_songkick_geteventid.metadata.metro_area_uri),
     source_name      : 'Songkick',
     spice_name       : 'songkick',
@@ -141,7 +153,7 @@ function ddg_spice_songkick_events(events_data) {
           venue       : o.venue.displayName,
           start       : {
             date : o.start.date,
-            time : twenty_four_to_twelve_hour_time(o.start.time)
+            time : twenty_four_to_twelve_hour_time(o.start.time, o.start.datetime)
           }
         };
       }),
@@ -154,8 +166,9 @@ function ddg_spice_songkick_events(events_data) {
   });
 }
 
+// Make the date look prettier.
 Handlebars.registerHelper("dateString", function(s) {
-  var date = DDG.getDateFromString(s),
+  var date = new Date(s),
       months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
   return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
 });
