@@ -46,13 +46,16 @@ function ddg_spice_songkick_geteventid(api_result) {
   });
   
   var considered_location = api_result.resultsPage.results.location[0];
+
   var skip_words = ['concert', 'concerts'];
-  if (!DDG.isRelevant(considered_location.city.displayName, skip_words)) {
+  if (!DDG.isRelevant(considered_location.city.displayName, skip_words) && 
+      !DDG.isRelevant(considered_location.city.country.displayName, skip_words) &&
+      !DDG.isRelevant(considered_location.metroArea.displayName, skip_words)) {
     // If the query is just 'concert' or 'concerts', we use the location API to
     // get the user's location, so we can't rely on isRelevant to tell us if the
     // location matches the query or not. If the query isn't in skip_words, we
     // return;
-    if (skip_words.indexOf(DDG.get_query()) < 0) {
+    if (['concert', 'concerts', 'concerts in the area'].indexOf(DDG.get_query()) < 0) {
       return;
     }
   }
@@ -68,6 +71,7 @@ function ddg_spice_songkick_geteventid(api_result) {
 
 function ddg_spice_songkick_events(events_data) {
   "use strict";
+
   var max_results = 10;
   var show_results = 3;
   var twenty_four_to_twelve_hour_time = function(t) {
@@ -126,6 +130,25 @@ function ddg_spice_songkick_events(events_data) {
   if (events_data.resultsPage.results.event.length == 0) {
     return;
   }
+
+  // Filter out unknown venues and events with no artists.
+  // Also redefine the objects into something cleaner.
+  var events = events_data.resultsPage.results.event;
+  var results = [];
+  for(var i = 0; i < events.length; i++) {
+    if(events[i].performance.length > 0 && events[i].venue.displayName !== "Unknown venue") {
+      results.push({
+        uri: events[i].uri,
+        artist: events[i].performance[0].displayName,
+	venue: events[i].venue.displayName,
+        start: {
+          date: events[i].start.date,
+          time: twenty_four_to_twelve_hour_time(events[i].start.time)
+        }
+      });
+    }
+  }
+
   Spice.render({
     data             : events_data,
     header1          : 'Events in ' + ddg_spice_songkick_geteventid.metadata.metro_area_display_name + ' (Songkick)',
@@ -134,18 +157,8 @@ function ddg_spice_songkick_events(events_data) {
     spice_name       : 'songkick',
     template_frame   : 'list',
     template_options: {
-      items         : $.map(events_data.resultsPage.results.event.slice(0, max_results), function(o, idx) {
-        return {
-          uri         : o.uri,
-          artist      : o.performance[0].displayName,
-          venue       : o.venue.displayName,
-          start       : {
-            date : o.start.date,
-            time : twenty_four_to_twelve_hour_time(o.start.time)
-          }
-        };
-      }),
-      template_item : 'songkick_event',
+      items         : results,
+      template_item : 'songkick_geteventid',
       show          : show_results,
       max           : max_results
     },
