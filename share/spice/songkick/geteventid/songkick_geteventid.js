@@ -151,7 +151,7 @@ function ddg_spice_songkick_events(events_data) {
           }
         };
       }),
-      template_item : 'songkick_event',
+      template_item : 'songkick_geteventid',
       show          : show_results,
       max           : max_results
     },
