@@ -58,7 +58,8 @@ function ddg_spice_songkick_geteventid(api_result) {
   }
   var metro_area_id = considered_location.metroArea.id;
   var metadata = {
-    metro_area_uri : considered_location.metroArea.uri
+    metro_area_uri          : considered_location.metroArea.uri,
+    metro_area_display_name : considered_location.city.displayName
   };
   ddg_spice_songkick_geteventid.metadata = metadata;
   
@@ -125,10 +126,9 @@ function ddg_spice_songkick_events(events_data) {
   if (events_data.resultsPage.results.event.length == 0) {
     return;
   }
-  var city_name = events_data.resultsPage.results.event[0].location.city;
   Spice.render({
     data             : events_data,
-    header1          : 'Events in ' + city_name + ' (Songkick)',
+    header1          : 'Events in ' + ddg_spice_songkick_geteventid.metadata.metro_area_display_name + ' (Songkick)',
     source_url       : encodeURI(ddg_spice_songkick_geteventid.metadata.metro_area_uri),
     source_name      : 'Songkick',
     spice_name       : 'songkick',
