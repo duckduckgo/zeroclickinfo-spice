@@ -44,8 +44,14 @@ function ddg_spice_songkick_geteventid(api_result) {
   $.ajaxSetup({
     cache: true
   });
-  
+
   var considered_location = api_result.resultsPage.results.location[0];
+
+  // If lat and lng are null, exit.
+  if (considered_location.city.lat === null || considered_location.city.lng === null) {
+    return;
+  }
+
   var skip_words = ['concert', 'concerts'];
   if (!DDG.isRelevant(considered_location.city.displayName, skip_words)) {
     // If the query is just 'concert' or 'concerts', we use the location API to
@@ -130,9 +136,13 @@ function ddg_spice_songkick_events(events_data) {
   if (events_data.resultsPage.results.event.length == 0) {
     return;
   }
+
+  var place = ddg_spice_songkick_geteventid.metadata.metro_area_display_name;
+  
+
   Spice.render({
     data             : events_data,
-    header1          : 'Events in ' + ddg_spice_songkick_geteventid.metadata.metro_area_display_name + ' (Songkick)',
+    header1          : 'Events in ' + place + ' (Songkick)',
     source_url       : encodeURI(ddg_spice_songkick_geteventid.metadata.metro_area_uri),
     source_name      : 'Songkick',
     spice_name       : 'songkick',
