@@ -63,9 +63,8 @@ handle query_lc => sub {
     if ($location) {
         return $location;
     } else {
-        # Infer location if not explicitly in the query.
-        $location = $loc->loc_str unless ($location);
-        return $location, {is_cached => 0};
+        $location = $loc->loc_str;
+        return $location, 'current', {is_cached => 0};
     }
 };
 
