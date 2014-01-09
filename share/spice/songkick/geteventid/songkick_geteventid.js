@@ -47,18 +47,15 @@ function ddg_spice_songkick_geteventid(api_result) {
   
   var considered_location = api_result.resultsPage.results.location[0];
 
-  // Exit if lat or lng is null.
-  if(considered_location.city.lat === null || considered_location.city.lng === null) {
-    return;
-  }
-
   var skip_words = ['concert', 'concerts'];
-  if (!DDG.isRelevant(considered_location.city.displayName, skip_words)) {
+  if (!DDG.isRelevant(considered_location.city.displayName, skip_words) && 
+      !DDG.isRelevant(considered_location.city.country.displayName, skip_words) &&
+      !DDG.isRelevant(considered_location.metroArea.displayName, skip_words)) {
     // If the query is just 'concert' or 'concerts', we use the location API to
     // get the user's location, so we can't rely on isRelevant to tell us if the
     // location matches the query or not. If the query isn't in skip_words, we
     // return;
-    if (skip_words.indexOf(DDG.get_query()) < 0) {
+    if (['concert', 'concerts', 'concerts in the area'].indexOf(DDG.get_query()) < 0) {
       return;
     }
   }
