@@ -1,0 +1,11 @@
+#spice_steam_db .price-initial {
+	margin-right: 5px;
+	color: #888;
+	text-decoration: line-through;
+}
+
+#spice_steam_db .price-discount {
+	margin-right: 5px;
+	color: #84BC3C;
+	font-weight: bold;
+}
