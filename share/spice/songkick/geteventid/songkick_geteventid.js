@@ -49,7 +49,6 @@ function ddg_spice_songkick_geteventid(api_result) {
 
   var skip_words = ['concert', 'concerts'];
   if (!DDG.isRelevant(considered_location.city.displayName, skip_words) && 
-      !DDG.isRelevant(considered_location.city.country.displayName, skip_words) &&
       !DDG.isRelevant(considered_location.metroArea.displayName, skip_words)) {
     // If the query is just 'concert' or 'concerts', we use the location API to
     // get the user's location, so we can't rely on isRelevant to tell us if the
