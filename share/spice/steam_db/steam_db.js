@@ -6,8 +6,8 @@ function ddg_spice_steam_db(api_result) {
     // Get the original query.
     // This is not a clean way of doing it, but it does the job.
     var script = $('[src*="/js/spice/steam_db/"]')[0],
-    	source = $(script).attr('src'),
-    	query = source.match(/steam_db\/([^\/]+)/)[1];
+        source = $(script).attr('src'),
+        query = source.match(/steam_db\/([^\/]+)/)[1];
 
     // This displays the Spice instant answer.
     Spice.render({
@@ -19,8 +19,10 @@ function ddg_spice_steam_db(api_result) {
 	header1           : decodeURIComponent(query) + " (SteamDB)",
 	template_options  : {
 	    items: api_result.data,
-	    show: 5,
+	    show: 3,
+	    max: 10,
 	    template_item: 'steam_db'
-	}
+	},
+	force_no_fold     : true
     });
 };
