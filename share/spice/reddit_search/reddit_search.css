@@ -1,0 +1,10 @@
+#spice_reddit_search{
+	overflow:hidden;
+}
+
+#spice_reddit_search .title {
+	white-space: nowrap;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
