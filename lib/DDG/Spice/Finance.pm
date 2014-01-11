@@ -7,15 +7,16 @@ use DDG::Spice;
 
 #Attribution
 primary_example_queries "finance yhoo", "stock quote msft";
-description "Succinct explanation of what this instant answer does";
+description "Provides expanded stock/security quote information.";
 name "Finance";
-icon_url "http://finance.yahoo.com/q?s=";
+icon_url "http://yahoo.com/favicon.ico";
 source "";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Finance.pm";
+code_url "https://github.com/henryhund/ddg/blob/ddh-finance/lib/DDG/Spice/Finance.pm";
 category "finance";
 topics "economy_and_finance";
 attribution github => ["https://github.com/henryhund", "Henry Hund"],
-            twitter => ["https://twitter.com/henryhund", "Henry Hund"];
+            twitter => ["https://twitter.com/henryhund", "Henry Hund"],
+            web => ['http://www.henryhund.com','Henry Hund'];
 
 # Triggers
 triggers start => "finance", "stock", "stock price", "share", "share price", "px", "stock quote";
