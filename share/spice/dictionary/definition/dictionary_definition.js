@@ -46,7 +46,7 @@ var ddg_spice_dictionary = {
         var word = definitions[0].word;
 
         this.$el = Spice.render({
-            spice_name: 'dictionary', // why do we need to pass a spice_name?
+            spice_name: 'dictionary_definition', // why do we need to pass a spice_name?
             data: {
                 word: word,
                 plural_form: this.plural_form,
