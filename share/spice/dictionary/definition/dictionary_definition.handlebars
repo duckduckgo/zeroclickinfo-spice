@@ -1,14 +1,24 @@
-<div>
-    <b id="hyphenation">{{this.[0].word}}</b>
-    {{#if this.[0].pluralOf}}
-        <span> is the plural form of {{this.[0].pluralOf}}</span>
-    {{/if}}
-    <span id="pronunciation"></span>
-    <button id="play-button" class="widget-button widget-disappear"></button>
-</div>
-{{#each this}}
-    <div class="definition">
-        <i>{{part partOfSpeech}}</i>
-        <span>{{{format text}}}</span>
+<div class="cw">
+    <div class="zci__main  zci__main--def">
+        <div class="zci__body  zci__body--def">
+            <h3>
+                {{#if plural_form}}
+                    <span class="zci__def__word">{{plural_form}}</span><span class="zci__def__plural"> is the plural form of {{word}}</span>
+                {{else}}
+                    <span class="zci__def__word">{{word}}</span>
+                {{/if}}
+                <span class="zci__def__pronunciation"></span>
+                <span class="zci__def__audio"></span>
+            </h3>
+            <ul>
+            {{#definitions}}
+                <li>
+                    <span class="zci__def__part-of-speech">{{formatPartOfSpeech partOfSpeech}}</span>
+                    <span class="zci__def__definition">{{{formatDefinition text}}}</span>
+                </li>
+            {{/definitions}}
+            </ul>
+            <a class="zci__more-at" href="{{source_url}}"><img class="zci__more-at__icon" src="//icons.duckduckgo.com/ip/{{getDomain source_url}}.ico" /> More at {{source_name}}</a>
+        </div>
     </div>
-{{/each}}
+</div>
