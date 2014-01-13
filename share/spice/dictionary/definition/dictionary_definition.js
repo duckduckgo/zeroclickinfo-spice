@@ -58,7 +58,6 @@ var ddg_spice_dictionary = {
                 summary: 'dictionary_definition'
             },
             topic: 'definition',
-            trump: true
         });
 
         // Do not add hyphenation when we're asking for two words.
