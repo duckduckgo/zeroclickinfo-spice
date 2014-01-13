@@ -1,13 +1,13 @@
-{{#each editions}}
 <span class="detail__callout">
-    <a href="{{{url}}}" class="btn btn--primary">
+{{#each editions}}
+    <a href="{{{url}}}" class="btn">
         {{#with this.platforms.[0]}}
-        <img src="{{platform_icon icon_url}}" class="platform_icon">
+        <img src="{{platform_icon icon_url}}" class="btn__icon  platform_icon">
         {{/with}}
         {{platform_name}}
         {{#if ../hasPricerange}}
              - {{qprice cents}}
         {{/if}}
     </a>
-</span>
 {{/each}}
+</span>
