@@ -1,4 +1,5 @@
 (function(env) {
+var quixey_image_domain = "d1z22zla46lb9g.cloudfront.net";
 
 // spice callback function
 env.ddg_spice_quixey = function(api_result) {
@@ -45,7 +46,7 @@ env.ddg_spice_quixey = function(api_result) {
 
             // this should be the array of screenshots with captions
             // and check for the existence of them
-            normal.img_m = item.editions[0].screenshots[0].image_url;
+            normal.img_m = quixey_image(item.editions[0].screenshots[0].image_url);
 
             return normal;
         }
@@ -182,6 +183,10 @@ Handlebars.registerHelper("qprice", function(obj) {
     return qprice(obj);
 });
 
+
+var quixey_image = function(image_url) {
+    return "http://" + quixey_image_domain + image_url.match(/\/image\/.+/)[0];
+}
 
 var make_icon_url = function(item) {
     var domain = "d1z22zla46lb9g.cloudfront.net";
