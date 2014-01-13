@@ -1,8 +1,8 @@
-package DDG::Spice::Local;
+package DDG::Spice::Maps;
 
 use DDG::Spice;
 
-spice to => 'https://127.0.0.1/local.js?q=$1&cb=ddg_spice_local';
+spice to => 'https://127.0.0.1/local.js?q=$1&cb={{callback}}';
 
 triggers any => (
     'near',

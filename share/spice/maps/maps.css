@@ -1,27 +1,27 @@
-#local h1 {
+#maps h1 {
     font-size: 120%;
     display: block !important;
 }
 
-#local div.border {
+#maps div.border {
     border: 1px solid #e2e2e2;
     padding: 5px;
     height: 100px;
 }
 
-#local .right, #local .details, #local .reviews {
+#maps .right, #maps .details, #maps .reviews {
     display: inline-block;
     vertical-align: middle;
 }
 
-#local .right {
+#maps .right {
     float: right;
 }
 
-#local .right img {
+#maps .right img {
     margin-bottom: 5px !important;
 }
 
-#local .title {
+#maps .title {
     overflow: hidden;
 }

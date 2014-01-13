@@ -6,11 +6,11 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-    [qw( DDG::Spice::Local )],
+    [qw( DDG::Spice::Maps )],
     'nearest primos' => test_spice(
-        '/js/spice/local/primos',
+        '/js/spice/maps/primos',
         call_type => 'include',
-        caller => 'DDG::Spice::Local'
+        caller => 'DDG::Spice::Maps'
     ),
 );
 
