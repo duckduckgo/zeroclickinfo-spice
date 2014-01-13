@@ -15,9 +15,11 @@ triggers any => (
     'close',
     'closest',
     'nearest',
+    'locations',
+    'location',
 );
 
-handle remainder => sub { $_ };
+handle remainder => sub { return $_ if $_ };
 
 1;
 
