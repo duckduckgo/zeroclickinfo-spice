@@ -31,7 +31,7 @@ env.ddg_spice_quixey = function(api_result) {
 
         normalize_item : function(item) {
             var normal = {
-                img: item.icon_url, //make_icon_url(item),
+                img: make_icon_url(item), 
                 title: item.name,
                 ratingData: {
                     stars: item.rating,
@@ -195,7 +195,8 @@ var make_icon_url = function(item) {
 
     // Replace the domain in our icon_url to the one that we got from
     // the platforms array.
-    return "/iu/?u=http://" + domain + item.icon_url.match(/\/image\/.+/)[0] + "&f=1";
+    // return "/iu/?u=http://" + domain + item.icon_url.match(/\/image\/.+/)[0] + "&f=1";
+    return "http://" + domain + item.icon_url.match(/\/image\/.+/)[0];
 };
 
 
@@ -256,7 +257,8 @@ Handlebars.registerHelper("platform_icon", function(icon_url) {
         return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
     }
 
-    return "/iu/?u=" + icon_url + "&f=1";
+    // return "/iu/?u=" + icon_url + "&f=1";
+    return icon_url;
 });
 
 // template helper that returns and unifies platform names
