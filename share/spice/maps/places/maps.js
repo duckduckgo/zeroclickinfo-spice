@@ -1,3 +1,9 @@
+function ddg_spice_maps_places(places) {
+    console.log(places);
+    DDG.maps.renderLocal(places);
+}
+
+/*
 function get_details(item, cached) {
     if (item.engine != 'Foursquare') return;
     if (!cached)
@@ -39,3 +45,4 @@ function ddg_spice_maps(api_response) {
 Handlebars.registerHelper('format_address', function(address) {
     if (address) return address.split(',')[0];
 });
+*/

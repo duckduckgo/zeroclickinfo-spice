@@ -1,4 +1,4 @@
-package DDG::Spice::Maps;
+package DDG::Spice::Maps::Places;
 
 use DDG::Spice;
 
@@ -19,7 +19,9 @@ triggers any => (
     'location',
 );
 
-handle remainder => sub { return $_ if $_ };
+handle remainder => sub {
+    return $_ if $_
+};
 
 1;
 
