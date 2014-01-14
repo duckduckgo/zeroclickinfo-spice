@@ -2,7 +2,12 @@ function ddg_spice_recipes(res) {
     if(!res.matches || !res.matches.length){ return; }
 
     var normalizeData = function(matches){
-        var normalized = matches.map(function(m){
+        var normalized = [];
+
+        for(var i=0,m; m=matches[i]; i++){
+            // skip any results that don't have images:
+            if(!m.imageUrlsBySize){ continue; }
+
             m.recipeName = m.recipeName.replace(/ recipe/i,"");
             m.url = "http://www.yummly.com/recipe/" + m.id;
 
@@ -42,8 +47,8 @@ function ddg_spice_recipes(res) {
 
             m.flavors = sortAndFormatFlavors(m.flavors);
 
-            return m;
-        });
+            normalized.push(m);
+        }
 
         // sort by rating:
         return normalized.sort(function(a,b){
