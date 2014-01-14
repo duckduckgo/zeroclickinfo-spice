@@ -1,3 +1,9 @@
+function ddg_spice_maps_places(places) {
+    console.log(places);
+    DDG.maps.renderLocal(places);
+}
+
+/*
 function get_details(item, cached) {
     if (item.engine != 'Foursquare') return;
     if (!cached)
@@ -18,7 +24,7 @@ function render_details(json, el) {
     }
 }
 
-function ddg_spice_local(api_response) {
+function ddg_spice_maps(api_response) {
     if (!api_response || api_response.length == 0) return;
 
     Spice.render({
@@ -26,9 +32,9 @@ function ddg_spice_local(api_response) {
                                     + encodeURIComponent(DDG.get_query()),
         source_name              : 'places near you',
         template_frame           : 'map',
-        template_normal          : 'local',
-        map_css_id               : 'local',
-        map_template_detail      : 'local_detail',
+        template_normal          : 'maps',
+        map_css_id               : 'maps',
+        map_template_detail      : 'maps_detail',
         map_items                : api_response,
         force_no_fold            : true,
         data                     : api_response,
@@ -39,3 +45,4 @@ function ddg_spice_local(api_response) {
 Handlebars.registerHelper('format_address', function(address) {
     if (address) return address.split(',')[0];
 });
+*/
