@@ -1,0 +1,44 @@
+<div class="detail__media  detail__media--recipe">
+    <img src="{{image_redirect image}}" alt="{{recipeName}}" class="tile__media__img" />
+</div>
+<div class="detail__body  detail__body--recipe">
+	<div class="detail__body__content">
+		<h5 class="detail__title"><a href='{{url}}' title="{{title}}">{{recipeName}}</a></h5>
+        <div class="detail__desc">
+            <p class="detail__source">
+                {{sourceDisplayName}}
+                {{{starRating rating}}}
+            </p>
+            {{#cuisine}}
+                <p class="detail__cuisine"><b>Cuisine:</b> {{.}}</p>
+            {{/cuisine}}
+            {{#cookingTime}}
+                <p class="detail__cooking-time"><b>Cooking Time:</b> {{.}} minutes</p>
+            {{/cookingTime}}
+            {{#if ingredientDetails}}
+                <div class="detail__ingredients">
+                    <ul>
+                        {{#ingredientDetails}}
+                            <li><a href="{{url}}">{{displayName}}</a></li>
+                        {{/ingredientDetails}}
+                    </ul>
+                </div>
+            {{/if}}
+            {{#if flavors}}
+                <div class="detail__flavors">
+                    <ul>
+                        {{#flavors}}
+                            <li>
+                                <a class="detail__flavors__name" href="{{url}}">{{name}}</a>
+                                <div class="detail__flavors__strength">
+                                    <span style="width:{{strength}}%;"></span>
+                                </div>
+                            </li>
+                        {{/flavors}}
+                    </ul>
+                </div>
+            {{/if}}
+            <a class="zci__more-at" href="{{url}}"><img class="zci__more-at__icon" src="{{meta.sourceIconUrl}}" /> More at {{meta.sourceName}}</a>
+        </div>
+	</div>		
+</div>

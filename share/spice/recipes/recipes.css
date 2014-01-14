@@ -1,0 +1,85 @@
+.tile--recipe .stars {
+    float: right;
+}
+
+.tile--recipe .tile__title {
+    font-size: 1.3em;
+    font-weight: 400;
+    height: 1.3em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.tile--recipe .tile__ingredients {
+    margin-bottom: 0.5em;
+    height: 2.7em;
+    overflow: hidden;
+    text-transform: capitalize;
+}
+
+.tile--recipe .tile__media {
+    height: 11em;
+}
+
+.detail__media.detail__media--recipe {
+    width: 30%;
+    margin-right: 1em;
+    text-align: center;
+}
+
+.detail__media--recipe .tile__media__img {
+    display: inline;
+    vertical-align: middle;
+}
+
+.detail__body--recipe .detail__title {
+    padding: 0;
+}
+
+.detail__body--recipe .detail__source {
+    padding-bottom: 1em;
+}
+
+.detail__cuisine {
+    text-transform: capitalize;
+}
+
+.detail__ingredients {
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
+.detail__ingredients li {
+    display: inline;
+}
+
+.detail__ingredients,
+.detail__flavors__name {
+    text-transform: capitalize;
+}
+
+.detail__flavors {
+    width: 70%;
+    padding-bottom: 1em;
+}
+
+.detail__flavors__name {
+    display: inline-block;
+    text-align: right;
+    width: 9%;
+    min-width: 4em;
+    padding-right: 1%;
+}
+
+.detail__flavors__strength {
+    display: inline-block;
+    width: 40%;
+}
+
+.detail__flavors__strength span {
+    display: inline-block;
+    height: 0.4em;
+    background: #e16120;
+    vertical-align: middle;
+    border-radius: 2em;
+}
