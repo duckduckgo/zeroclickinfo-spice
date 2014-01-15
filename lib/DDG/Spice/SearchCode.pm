@@ -1,6 +1,7 @@
 package DDG::Spice::SearchCode;
 
 use DDG::Spice;
+use File::Slurp;
 
 name "SearchCode";
 description "search through APIs and open source repositories";
