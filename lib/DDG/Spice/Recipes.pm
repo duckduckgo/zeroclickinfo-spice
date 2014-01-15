@@ -16,7 +16,7 @@ triggers any => ('recipe', 'recipes', keys(%ingredients));
 spice to => 'http://api.yummly.com/v1/api/recipes?q=$1&requirePictures=true&maxResult=35&_app_id={{ENV{DDG_SPICE_YUMMLY_APPID}}}&_app_key={{ENV{DDG_SPICE_YUMMLY_APIKEY}}}&callback={{callback}}';
 
 handle query_lc => sub {
-	if ($_ =~ s/recipes?//gi) {
+	if ($_ =~ s/recipes?//g) {
 		return trim($_);
 	}
 
