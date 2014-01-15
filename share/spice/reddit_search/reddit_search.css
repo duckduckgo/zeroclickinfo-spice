@@ -1,8 +1,4 @@
-#spice_reddit_search{
-	overflow: hidden;
-}
-
-.spice2list_item span{
+#spice_reddit_search .spice2list_item span{
 	display: block;
 	max-width: 100%;
 	text-overflow: ellipsis;
