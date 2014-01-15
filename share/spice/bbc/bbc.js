@@ -1,3 +1,4 @@
+
 function ddg_spice_bbc(api_result) {
     var query = DDG.get_query(),
         broadcasts = api_result.schedule.day.broadcasts,
@@ -13,6 +14,7 @@ function ddg_spice_bbc(api_result) {
         date_round = 1000 * 60 * 60 * 24,
         inPast = +fulldate < Math.floor(+now / date_round)*date_round,
         header_date,
+        header_service_type,
         re = /today|tomorrow|yesterday|tonight|last/,
         match;
 
@@ -35,9 +37,11 @@ function ddg_spice_bbc(api_result) {
             programmes.push(broadcasts[i]);
     }
 
+    header_service_type = api_result.schedule.service.type == "radio" ? "Radio" : "TV";
+
     Spice.render({
         data           : api_result.schedule,
-        header1        : api_result.schedule.service.title + (api_result.schedule.service.outlet ? " "+api_result.schedule.service.outlet.title : "") + " (TV Schedule for "+header_date+")",
+        header1        : api_result.schedule.service.title + (api_result.schedule.service.outlet ? " "+api_result.schedule.service.outlet.title : "") + " ("+header_service_type+" Schedule for "+header_date+")",
         source_url     : "http://www.bbc.co.uk/"+api_result.schedule.service.key+"/programmes/schedules/"+(api_result.schedule.service.outlet ? api_result.schedule.service.outlet.key+"/" : "")+api_result.schedule.day.date.split("-").join("/"),
         source_name    : 'BBC',
         template_frame : "carousel",
@@ -92,7 +96,11 @@ Handlebars.registerHelper("duration", function() {
 
 // Find the series URL and return it, or if it is not part of a series return the normal url
 Handlebars.registerHelper("programme_url", function() {
-    return "http://www.bbc.co.uk/programmes/"+(this.programme.programme ? this.programme.programme : this.programme).pid;
+    var programme = this.programme;
+    while(programme.programme != null && programme.programme.pid != null) {
+        programme = programme.programme;
+    }
+    return "http://bbc.co.uk/" + (programme.pid == null ? "" : "programmes/"+programme.pid);
 });
 
 
@@ -121,26 +129,4 @@ Handlebars.registerHelper("initial_broadcast", function() {
         months = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
 
     return days[aired.getDay()] + ", " + months[aired.getMonth()] + " " + aired.getDate() + ", " + aired.getFullYear()
-});
-
-// Remove all the episode info from the subtitle 
-Handlebars.registerHelper("pretty_subtitle", function() {
-    var seriesInfo = /series [0-9]+/ig,
-        episodeInfo = /episode [0-9]+/ig,
-        junk = /, ?/ig,
-        subtitle = this.programme.display_titles.subtitle + "";
-
-    subtitle = subtitle.replace(seriesInfo, "").replace(episodeInfo, "").replace(junk, "");
-    subtitle = $.trim(subtitle);
-
-    if (this.programme.type == "episode" && this.programme.position !== null) {
-        subtitle = subtitle.replace(this.programme.programme.title, "");
-        subtitle = "Episode "+this.programme.position+(subtitle.length > 0 ? " - " + subtitle : "");
-    }
-
-    if (this.programme.programme.type == "series" && this.programme.programme.position !== null) {
-        subtitle = this.programme.programme.title+", "+subtitle;
-    }
-
-    return subtitle;
 });

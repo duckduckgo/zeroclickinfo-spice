@@ -25,7 +25,7 @@ spice is_cached => 1;
 spice proxy_cache_valid => "200 30m";
 
 my $no_location_qr = qr/fore?cast|report|weather|temp(erature)/;
-my $weather_qr = qr/(?:(?:weather|temp(?:erature|))(?: fore?cast| report| today| tomm?orr?ow| this week|))+/;
+my $weather_qr = qr/(?:(?:weather|temp(?:erature|)|fore?cast)(?: fore?cast| report| today| tomm?orr?ow| this week|))+/;
 
 handle query_lc => sub {
     my $location = '';
@@ -34,7 +34,7 @@ handle query_lc => sub {
     if (/^(?:what(?:'s| is) the |)$weather_qr(?: in | for | at |)(.*)/) {
         $location = $1 unless ($1 =~ $no_location_qr);
 
-    } elsif (/^(.*) $weather_qr/) {
+    } elsif (/^(.*?) $weather_qr/) {
         $location = $1 unless ($1 =~ $no_location_qr);
     }
 
@@ -63,9 +63,8 @@ handle query_lc => sub {
     if ($location) {
         return $location;
     } else {
-        # Infer location if not explicitly in the query.
-        $location = $loc->loc_str unless ($location);
-        return $location, {is_cached => 0};
+        $location = $loc->loc_str;
+        return $location, 'current', {is_cached => 0};
     }
 };
 

@@ -14,7 +14,7 @@ function ddg_spice_urban_dictionary(response) {
     Spice.render({
         data             : { 'definition' : definition },
         header1          : word + " (Urban Dictionary)",
-        source_url       : 'http://www.urbandictionary.com/define.php?term=' + definition.word,
+        source_url       : 'http://www.urbandictionary.com/define.php?term=' + word,
         source_name      : 'Urban Dictionary',
         template_normal  : 'urban_dictionary',
         force_big_header : true,
