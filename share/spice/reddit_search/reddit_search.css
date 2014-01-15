@@ -1,10 +1,11 @@
 #spice_reddit_search{
-	overflow:hidden;
+    overflow: hidden;
 }
 
-#spice_reddit_search .title {
-	white-space: nowrap;
-	word-wrap: break-word;
+.spice2list_item span{
+	display: block;
+	max-width:100%;
 	text-overflow: ellipsis;
-	overflow: hidden;
+	word-wrap:break-word;
+    white-space: nowrap;
 }
