@@ -3,6 +3,9 @@ package DDG::Spice::BBC;
 
 use DDG::Spice;
 use DateTime;
+use DDG::Location;
+
+use Data::Printer;
 
 primary_example_queries "what's on bbc";
 secondary_example_queries "what's on bbc three", "bbc two yesterday";
@@ -48,11 +51,23 @@ handle remainder => sub {
     }
     $query =~ s/\s*(tomorrow(\s(night|evening))?|in a day|in 1 day|yesterday(\s(night|evening))?|a day ago|1 day ago|last night|today|tonight)\s*//;
 
-    my $dt = DateTime->now->set_time_zone( $loc->time_zone );
+    warn "LOCATION:";
+    warn p($loc);
+
+    my $tz = $loc->time_zone;
+    warn "\n\nTZ IS: $tz\n\n";
+    warn $loc->time_zone;
+    return unless defined $tz;
+    my $dt = DateTime->now->set_time_zone( $tz );
+    warn "\n\nDT IS: $dt\n\n";
+    return unless defined $dt;
+
     $dt->add( days => 1 ) if $day eq "tomorrow";
     $dt->subtract( days => 1 ) if $day eq "yesterday";
 
     my @date = ( $dt->year(), $dt->month(), $dt->day());
+
+    warn "\n\nDATE IS: @date\n\n";
 
     # set the code for the location
     my $area;
