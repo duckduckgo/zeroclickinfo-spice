@@ -11,10 +11,7 @@ code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 # removing line breaks from ingredients.txt file:
 my %ingredients = map { trim($_) => 0 } share('ingredients.txt')->slurp;
 
-$ingredients{'recipe'} = 0;
-$ingredients{'recipes'} = 0;
-
-triggers any => keys %ingredients;
+triggers any => ('recipe', 'recipes', keys(%ingredients));
 
 spice to => 'http://api.yummly.com//v1/api/recipes?q=$1&requirePictures=true&maxResult=35&_app_id={{ENV{DDG_SPICE_YUMMLY_APPID}}}&_app_key={{ENV{DDG_SPICE_YUMMLY_APIKEY}}}&callback={{callback}}';
 
