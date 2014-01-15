@@ -1,24 +1,40 @@
+.tile--recipe .tile__body {
+    padding: 0.8em 1em;
+    font-family: "ProximaNova";
+}
+
 .tile--recipe .stars {
     float: right;
 }
 
 .tile--recipe .tile__title {
     font-size: 1.3em;
-    font-weight: 400;
+    font-weight: 600;
     height: 1.3em;
     padding-bottom: 0;
     margin-bottom: 0;
 }
 
 .tile--recipe .tile__ingredients {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.75em;
+    padding-bottom: 0;
     height: 2.7em;
     overflow: hidden;
     text-transform: capitalize;
+    color: #808080;
 }
 
 .tile--recipe .tile__media {
-    height: 11em;
+    height: 9.5em;
+}
+
+.tile--recipe .tile__media__img {
+    margin-top: -20%;
+}
+
+.tile--recipe .tile__source,
+.tile--recipe.highlight .tile__source {
+    color: #999;
 }
 
 .detail__media.detail__media--recipe {
@@ -27,9 +43,17 @@
     text-align: center;
 }
 
+.tileview--grid .detail__media--recipe {
+    text-align: center;
+}
+
 .detail__media--recipe .tile__media__img {
     display: inline;
     vertical-align: middle;
+}
+
+.detail__body--recipe {
+    font-family: "ProximaNova";
 }
 
 .detail__body--recipe .detail__title {
