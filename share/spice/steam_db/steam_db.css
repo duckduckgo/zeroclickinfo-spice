@@ -1,3 +1,11 @@
+#spice_steam_db .more-information a {
+    color: #777;
+}
+
+#spice_steam_db .more-information {
+    color: #777;
+}
+
 #spice_steam_db .price-initial {
 	margin-right: 5px;
 	color: #888;
