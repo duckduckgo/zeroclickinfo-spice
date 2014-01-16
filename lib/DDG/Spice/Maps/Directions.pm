@@ -13,7 +13,8 @@ triggers any => (
 );
 
 handle query_lc => sub {
-    return $_ if $_
+    return $_ if $_;
+    return;
 };
 
 1;

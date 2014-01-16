@@ -22,7 +22,7 @@ triggers any => (
 handle remainder => sub {
     return $_ if $_;
     return;
-}
+};
 
 1;
 
