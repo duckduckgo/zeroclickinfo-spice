@@ -11,7 +11,7 @@ my %generic_map_queries = map {$_ => 0} ('map', 'maps', 'current location', 'whe
 triggers any => keys(%generic_map_queries);
 
 handle query_lc => sub {
-    # force generic;
+    # force generic
     return if !exists($generic_map_queries{$_});
 
     my $location = $loc->loc_str;
