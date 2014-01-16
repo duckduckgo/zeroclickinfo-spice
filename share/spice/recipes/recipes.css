@@ -30,6 +30,7 @@
 
 .tile--recipe .tile__media__img {
     margin-top: -20%;
+    min-width: 100%;
 }
 
 .tile--recipe .tile__source,
