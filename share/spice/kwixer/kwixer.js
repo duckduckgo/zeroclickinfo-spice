@@ -3,6 +3,41 @@
 function ddg_spice_kwixer(api_response) {
     if (!api_response || api_response.length==0 ) return;
 
+    var skipArray = ['movie with','movies with', 'movies starring','film with','films with','films starring','film starring','movies featuring','films featuring'];
+    var finalArray = new Array();
+    var itemsToInsertAtTheEnd = new Array();
+    //checks if the result is relevant.
+    //if the item doesn't have an image sets the default image and puts it in the end
+    //replaces large with medium images for faster loading
+    for(var index in api_response)
+    {
+        var item = api_response[index];
+        if(DDG.isRelevant(item.ResourceTitle,skipArray))
+        {
+            if(!item.ResourceImageUrl || item.ResourceImageUrl.length == 0 || (item.ResourceImageUrl.indexOf(".jpeg") == -1 && item.ResourceImageUrl.indexOf(".jpg") == -1 && item.ResourceImageUrl.indexOf(".png") == -1))
+                {
+                    item.ResourceImageUrl= "https://kwix.blob.core.windows.net/icons/icon-watching-vanilla.png";
+                    itemsToInsertAtTheEnd.push(item);
+                }
+            else
+            {
+                item.ResourceImageUrl = item.ResourceImageUrl.replace("large_", "medium_");
+                finalArray.push(item);
+            }
+        }
+        else
+        {
+            console.log("DDG ignored: " + item.ResourceTitle);
+        }
+    }
+    if(itemsToInsertAtTheEnd.length > 0)
+    {
+        finalArray = finalArray.concat(itemsToInsertAtTheEnd);
+    }
+
+
+    if (!finalArray || finalArray.length==0 ) return;
+
     var ddg_spice_kwixer_query = DDG.get_query();
     Spice.render({
         header1                  : ddg_spice_kwixer_query + ' (Kwixer)',
@@ -15,7 +50,7 @@ function ddg_spice_kwixer(api_response) {
         template_options         : {
             template_detail          : 'kwixer_detail',
             template_item            : 'kwixer',
-            items                    : api_response,
+            items                    : finalArray,
             li_height                : 155
         },
         force_no_fold            : true
@@ -26,6 +61,7 @@ function ddg_spice_kwixer(api_response) {
 * also checks for image extensions - if image url doesn't contain an image extension replaces it with a default image
 * if image doesn't end with .jpg or .png the image doesn't work for some reason through the DDG Proxy
 */
+/* commented for now because we're already doing a loop before 
 Handlebars.registerHelper("getMediumImage", function (image) {
     if(image && image.length > 0)
     {
@@ -39,6 +75,7 @@ Handlebars.registerHelper("getMediumImage", function (image) {
         image = "https://kwix.blob.core.windows.net/icons/icon-watching-vanilla.png";
     return image;
 });
+*/
 //replaces ";" with ","
 Handlebars.registerHelper("formatDetail", function (detail) {
     if(detail)
