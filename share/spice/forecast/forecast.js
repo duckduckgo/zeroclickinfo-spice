@@ -209,7 +209,6 @@ function ddg_spice_forecast(r) {
 
         relevant_items: [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]],
 
-        trump: 1,
         signal: "high",
 
         // ideally this happens inside of Spice.render()?
@@ -220,7 +219,7 @@ function ddg_spice_forecast(r) {
         },
 
         templates: {
-            item: "forecast",
+            item: "forecast_item",
             summary: "forecast" // Spice.forecast.summary
         }
 
