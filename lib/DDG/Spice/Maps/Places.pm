@@ -19,8 +19,10 @@ triggers any => (
     'location',
 );
 
+my %skip_remainders = map {$_ => 0} ('current');
+
 handle remainder => sub {
-    return $_ if $_;
+    return $_ if $_ && !exists($skip_remainders{$_});
     return;
 };
 
