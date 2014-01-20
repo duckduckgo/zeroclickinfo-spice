@@ -203,18 +203,26 @@ function ddg_spice_forecast(r) {
   weatherData.daily = build_daily(r);
   
   // Render/Display
-  DDG.duckbar.forecast.display({
-    data             : weatherData,
-    header1          : r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] : 'Weather',
-    source_url       : 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
-    source_name      : 'Forecast.io',
-    spice_name       : 'forecast',
-    force_big_header : true,
-    force_no_fold    : true,
-    templates: {
-        item: "forecast_item",
-        summary: "forecast" // Spice.forecast.summary
-    },
-    relevant_items: [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]]
-  });
+    Spice.render({
+        data: weatherData,
+        spice_name: 'forecast',
+
+        relevant_items: [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]],
+
+        trump: 1,
+        signal: "high",
+
+        // ideally this happens inside of Spice.render()?
+        meta: {
+            heading: r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] : 'Weather',
+            sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
+            sourceName: 'Forecast.io'
+        },
+
+        templates: {
+            item: "forecast",
+            summary: "forecast" // Spice.forecast.summary
+        }
+
+    });
 }
