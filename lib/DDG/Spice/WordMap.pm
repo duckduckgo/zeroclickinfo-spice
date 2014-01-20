@@ -16,7 +16,7 @@ attribution web 	=> ['http://twinword.com','Twinword Inc.'],
             email 	=> ['feedback@twinword.com','Twinword Inc.'];
 
 spice to => 'http://duckduckgo.twinword.com/api/v2/context/user/duckduckgo/?entry=$1&api_key={{ENV{DDG_SPICE_WORDMAP_APIKEY}}}';
-spice wrap_string_callback => 1;
+spice wrap_jsonp_callback => 1;
 
 triggers startend => (
 	"association:", 
