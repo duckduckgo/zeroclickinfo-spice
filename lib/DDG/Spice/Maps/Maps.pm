@@ -6,7 +6,7 @@ spice to => 'http://open.mapquestapi.com/nominatim/v1/search?format=json&json_ca
 spice is_cached => 0;
 spice proxy_cache_valid => "418 1d";
 
-my %generic_map_queries = map {$_ => 0} ('map', 'maps', 'current location', 'where am i', 'here');
+my %generic_map_queries = map {$_ => 0} ('map', 'maps', 'current location');
 
 triggers any => keys(%generic_map_queries);
 
@@ -16,6 +16,7 @@ handle query_lc => sub {
 
     my $location = $loc->loc_str;
     return $location if $location;
+    return;
 };
 
 1;
