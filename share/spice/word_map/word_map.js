@@ -1,5 +1,5 @@
 function ddg_spice_word_map(api_result) {
-    if ( 200 != api_result.result_code ) {
+    if ( "200" !== api_result.result_code ) {
 	return;
     }
 
