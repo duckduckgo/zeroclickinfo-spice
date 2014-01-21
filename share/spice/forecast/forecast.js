@@ -215,7 +215,8 @@ function ddg_spice_forecast(r) {
         meta: {
             heading: r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] : 'Weather',
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
-            sourceName: 'Forecast.io'
+            sourceName: 'Forecast.io',
+            altMeta: 'Temperatures in '+unit_labels[units].temperature+'&deg;'
         },
 
         templates: {
