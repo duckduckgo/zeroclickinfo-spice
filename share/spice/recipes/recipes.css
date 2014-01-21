@@ -58,7 +58,7 @@
 }
 
 .detail--recipes .detail__desc {
-	color: #707070;
+    color: #707070;
 }
 
 .detail__body--recipe .detail__title {
@@ -96,7 +96,7 @@
     display: inline-block;
     width: 9%;
     min-width: 4em;
-	text-align: left;
+    text-align: left;
 }
 
 .detail__flavors__strength {
