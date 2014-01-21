@@ -57,6 +57,10 @@
     font-family: "ProximaNova";
 }
 
+.detail--recipes .detail__desc {
+	color: #707070;
+}
+
 .detail__body--recipe .detail__title {
     padding: 0;
 }
@@ -90,10 +94,9 @@
 
 .detail__flavors__name {
     display: inline-block;
-    text-align: right;
     width: 9%;
     min-width: 4em;
-    padding-right: 1%;
+	text-align: left;
 }
 
 .detail__flavors__strength {
@@ -104,7 +107,7 @@
 .detail__flavors__strength span {
     display: inline-block;
     height: 0.4em;
-    background: #e16120;
+    background: #f0624d;
     vertical-align: middle;
     border-radius: 2em;
 }
