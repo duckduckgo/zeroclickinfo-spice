@@ -6,29 +6,50 @@ function ddg_spice_kwixer(api_response) {
     var skipArray = ['movie with','movies with', 'movies starring','film with','films with','films starring','film starring','movies featuring','films featuring'];
     var finalArray = new Array();
     var itemsToInsertAtTheEnd = new Array();
+    var ddg_spice_kwixer_query = DDG.get_query();
+    var remainer = ddg_spice_kwixer_query.toLowerCase();
+    for(var index in skipArray)
+    {
+        remainer = remainer.replace(skipArray[index],"");
+    }
+    remainer = remainer.trim();
+    var remainerArray = remainer.split(" ");
     //checks if the result is relevant.
     //if the item doesn't have an image sets the default image and puts it in the end
     //replaces large with medium images for faster loading
     for(var index in api_response)
     {
         var item = api_response[index];
-        if(DDG.isRelevant(item.ResourceTitle,skipArray))
+        //item.ResourceDetails2.toLowerCase().indexOf(remainer) != -1
+        //DDG.isRelevant(item.ResourceDetails2,skipArray)
+        //DDG.isRelevant(remainer,skipArray)
+        var isRelevant = false;
+        var actors = item.ResourceDetails2.toLowerCase();
+        //workaound for DDG.isRelevant
+        //mainly to ignore queries like "movies featuring people" this will only check if there's a match with at least one actor 
+        for (var index in remainerArray)
+        {
+            //just checking if there's one match or not, the api is already intelligent enough to ignore "and" etc..
+            if(actors.indexOf( remainerArray[index]) != -1)
+            {
+                isRelevant = true;
+                break;
+            }
+        }
+        if(isRelevant)
         {
             if(!item.ResourceImageUrl || item.ResourceImageUrl.length == 0 || (item.ResourceImageUrl.indexOf(".jpeg") == -1 && item.ResourceImageUrl.indexOf(".jpg") == -1 && item.ResourceImageUrl.indexOf(".png") == -1))
-                {
-                    item.ResourceImageUrl= "https://kwix.blob.core.windows.net/icons/icon-watching-vanilla.png";
-                    itemsToInsertAtTheEnd.push(item);
-                }
+            {
+                item.ResourceImageUrl= "https://kwix.blob.core.windows.net/icons/icon-watching-vanilla.png";
+                itemsToInsertAtTheEnd.push(item);
+            }
             else
             {
                 item.ResourceImageUrl = item.ResourceImageUrl.replace("large_", "medium_");
                 finalArray.push(item);
             }
         }
-        else
-        {
-            console.log("DDG ignored: " + item.ResourceTitle);
-        }
+
     }
     if(itemsToInsertAtTheEnd.length > 0)
     {
@@ -38,7 +59,7 @@ function ddg_spice_kwixer(api_response) {
 
     if (!finalArray || finalArray.length==0 ) return;
 
-    var ddg_spice_kwixer_query = DDG.get_query();
+    
     Spice.render({
         header1                  : ddg_spice_kwixer_query + ' (Kwixer)',
         source_url               : "https://www.kwixer.com/#/explore?category=movie&query=" + ddg_spice_kwixer_query ,

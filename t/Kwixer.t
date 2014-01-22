@@ -62,61 +62,6 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Kwixer'
     ),
-    'movies directed Steven' => test_spice(
-        '/js/spice/kwixer/movies%20directed%20Steven',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'movies directed by Steven' => test_spice(
-        '/js/spice/kwixer/movies%20directed%20by%20Steven',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'director Steven' => test_spice(
-        '/js/spice/kwixer/director%20Steven',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'film director Steven' => test_spice(
-        '/js/spice/kwixer/film%20director%20Steven',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'film by Steven' => test_spice(
-        '/js/spice/kwixer/film%20by%20Steven',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'films by Steven' => test_spice(
-        '/js/spice/kwixer/films%20by%20Steven',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'films directed by Steven' => test_spice(
-        '/js/spice/kwixer/films%20directed%20by%20Steven',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'actress Kate' => test_spice(
-        '/js/spice/kwixer/actress%20Kate',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'actor tom cruise' => test_spice(
-        '/js/spice/kwixer/actor%20tom%20cruise',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-     'tom cruise actor' => test_spice(
-        '/js/spice/kwixer/tom%20cruise%20actor',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
-    'Keira Knightley actress' => test_spice(
-        '/js/spice/kwixer/Keira%20Knightley%20actress',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
 );
 
 done_testing;
