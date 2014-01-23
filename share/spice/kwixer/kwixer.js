@@ -8,48 +8,55 @@ function ddg_spice_kwixer(api_response) {
     var itemsToInsertAtTheEnd = new Array();
     var ddg_spice_kwixer_query = DDG.get_query();
     var remainer = ddg_spice_kwixer_query.toLowerCase();
+    
     for(var index in skipArray)
     {
-        remainer = remainer.replace(skipArray[index],"");
+        if(skipArray.hasOwnProperty(index))
+            remainer = remainer.replace(skipArray[index],"");
     }
-    remainer = remainer.trim();
+    remainer = remainer.replace(/^\s+|\s+$/g, '');
     var remainerArray = remainer.split(" ");
     //checks if the result is relevant.
     //if the item doesn't have an image sets the default image and puts it in the end
     //replaces large with medium images for faster loading
     for(var index in api_response)
     {
-        var item = api_response[index];
-        //item.ResourceDetails2.toLowerCase().indexOf(remainer) != -1
-        //DDG.isRelevant(item.ResourceDetails2,skipArray)
-        //DDG.isRelevant(remainer,skipArray)
-        var isRelevant = false;
-        var actors = item.ResourceDetails2.toLowerCase();
-        //workaound for DDG.isRelevant
-        //mainly to ignore queries like "movies featuring people" this will only check if there's a match with at least one actor 
-        for (var index in remainerArray)
+        if(api_response.hasOwnProperty(index))
         {
-            //just checking if there's one match or not, the api is already intelligent enough to ignore "and" etc..
-            if(actors.indexOf( remainerArray[index]) != -1)
+            var item = api_response[index];
+            //item.ResourceDetails2.toLowerCase().indexOf(remainer) != -1
+            //DDG.isRelevant(item.ResourceDetails2,skipArray)
+            //DDG.isRelevant(remainer,skipArray)
+            var isRelevant = false;
+            var actors = item.ResourceDetails2.toLowerCase();
+            //workaound for DDG.isRelevant
+            //mainly to ignore queries like "movies featuring people" this will only check if there's a match with at least one actor 
+            for (var index in remainerArray)
             {
-                isRelevant = true;
-                break;
+                if(remainerArray.hasOwnProperty(index))
+                {
+                    //just checking if there's one match or not, the api is already intelligent enough to ignore "and" etc..
+                    if(actors.indexOf( remainerArray[index]) != -1)
+                    {
+                        isRelevant = true;
+                        break;
+                    }
+                }
+            }
+            if(isRelevant)
+            {
+                if(!item.ResourceImageUrl || item.ResourceImageUrl.length == 0 || (item.ResourceImageUrl.indexOf(".jpeg") == -1 && item.ResourceImageUrl.indexOf(".jpg") == -1 && item.ResourceImageUrl.indexOf(".png") == -1))
+                {
+                    item.ResourceImageUrl= "https://kwix.blob.core.windows.net/icons/icon-watching-vanilla.png";
+                    itemsToInsertAtTheEnd.push(item);
+                }
+                else
+                {
+                    item.ResourceImageUrl = item.ResourceImageUrl.replace("large_", "medium_");
+                    finalArray.push(item);
+                }
             }
         }
-        if(isRelevant)
-        {
-            if(!item.ResourceImageUrl || item.ResourceImageUrl.length == 0 || (item.ResourceImageUrl.indexOf(".jpeg") == -1 && item.ResourceImageUrl.indexOf(".jpg") == -1 && item.ResourceImageUrl.indexOf(".png") == -1))
-            {
-                item.ResourceImageUrl= "https://kwix.blob.core.windows.net/icons/icon-watching-vanilla.png";
-                itemsToInsertAtTheEnd.push(item);
-            }
-            else
-            {
-                item.ResourceImageUrl = item.ResourceImageUrl.replace("large_", "medium_");
-                finalArray.push(item);
-            }
-        }
-
     }
     if(itemsToInsertAtTheEnd.length > 0)
     {
