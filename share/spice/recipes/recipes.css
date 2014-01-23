@@ -48,19 +48,6 @@
     text-align: center;
 }
 
-.detail__media--recipe .tile__media__img {
-    display: inline;
-    vertical-align: middle;
-}
-
-.detail__body--recipe {
-    font-family: "ProximaNova";
-}
-
-.detail--recipes .detail__desc {
-    color: #707070;
-}
-
 .detail__body--recipe .detail__title {
     padding: 0;
 }
@@ -110,4 +97,5 @@
     background: #f0624d;
     vertical-align: middle;
     border-radius: 2em;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
 }
