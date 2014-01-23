@@ -120,7 +120,9 @@ function ddg_spice_recipes(res) {
             itemType: 'Recipes',
             sourceIconUrl: DDG.get_asset_path('recipes','yummly.com.ico'),
             sourceUrl: moreUrl,
-            sourceName: 'Yummly'
+            sourceName: 'Yummly',
+            detailBg: 'image',
+            detailClass: 'detail--i'
         },
 
         templates: {
