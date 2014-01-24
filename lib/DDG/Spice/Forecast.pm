@@ -24,17 +24,17 @@ spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=
 spice is_cached => 1;
 spice proxy_cache_valid => "200 30m";
 
-my $no_location_qr = qr/fore?cast|report|weather|temp(erature)/;
+my $no_location_qr = qr/fore?cast|report|weather|temp(?:erature)/;
 my $weather_qr = qr/(?:(?:weather|temp(?:erature|)|fore?cast)(?: fore?cast| report| today| tomm?orr?ow| this week|))+/;
 
 handle query_lc => sub {
     my $location = '';
 
     # Capture user defined location if it exists.
-    if (/^(?:what(?:'s| is) the |)$weather_qr(?: in | for | at |)(.*)/) {
+    if (/^(?:what(?:'s| is) the |)(?:(?:current|local) )?$weather_qr(?: in | for | at |)(.*)/) {
         $location = $1 unless ($1 =~ $no_location_qr);
 
-    } elsif (/^(.*?) $weather_qr/) {
+    } elsif (/^(.*?)(?:(?:current|local) )?$weather_qr/) {
         $location = $1 unless ($1 =~ $no_location_qr);
     }
 
