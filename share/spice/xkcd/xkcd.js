@@ -17,3 +17,7 @@ Handlebars.registerHelper("previousNum", function(num, options) {
         return options.fn({num: num - 1});
     }
 });
+
+Handlebars.registerHelper("nextNum", function(num, options) {
+    return options.fn({num: num + 1});
+});
