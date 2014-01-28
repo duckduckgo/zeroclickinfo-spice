@@ -6,7 +6,7 @@ function ddg_spice_movie (api_result) {
     }
 
     var ignore = ["movie", "film", "rotten", "rating", "rt", "tomatoes", "release date"];
-    var result, max_score = 0;
+	var result, max_score = 0;
 
     // Assign a ranking value for the movie. This isn't a complete sorting value though
     // also we are blindling assuming these values exist
@@ -49,15 +49,33 @@ function ddg_spice_movie (api_result) {
         result.hasContent = true;
     }
 
+	var searchTerm = rqd.replace(new RegExp(ignore.join('|'),'i'),'').trim();
+
     Spice.render({
-        data: result,
+        data: api_result.movies,
+		relevant_items: api_result.movies,
+
+		normalize_item: function(obj){
+			obj.rating = Math.round(obj.ratings.critics_score / 20);
+			return obj;
+		},
+
+		spice_name: 'movie',
         source_name: 'Rotten Tomatoes',
-        template_normal: "movie",
-        template_small: "movie_small",
-        force_no_fold: 1,
-        source_url: result.links.alternate,
-        header1: result.title + checkYear(result.year),
-        image_url: result.posters.thumbnail.indexOf("poster_default.gif") === -1 ? result.posters.thumbnail : ""
+        source_url: api_result.links.self,
+
+		meta: {
+			sourceName: 'Rotten Tomatoes',
+			sourceUrl: 'http://rottentomatoes.com/search/?search=' + searchTerm,
+			sourceIcon: true,
+			count: api_result.movies.length,
+			total: api_result.total,
+			itemType: 'Movies',
+			searchTerm: searchTerm
+		},
+		templates: {
+			item: Handlebars.templates.movie_item,
+		}
     });
 }
 
