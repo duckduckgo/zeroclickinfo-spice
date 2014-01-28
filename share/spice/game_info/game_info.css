@@ -1,0 +1,17 @@
+#spice_game_info .field {
+	color: gray;
+}
+#spice_game_info .header {
+    font-size: 95%;
+}
+#spice_game_info .title {
+	padding-top: 3px;
+	display: inline-block;
+}
+#spice_game_info .name {
+	color: #444;
+}
+#spice_game_info .thumbnail {
+	height: 80px !important;
+	max-width: 98px;
+}
