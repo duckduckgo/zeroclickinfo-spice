@@ -34,10 +34,12 @@ env.ddg_spice_quixey = function(api_result) {
             var normal = {
                 img: make_icon_url(item), 
                 title: item.name,
+                heading: item.name,
                 ratingData: {
                     stars: item.rating,
                     reviews: item.rating_count
                 },
+                url_review: item.dir_url,
                 price: pricerange(item),
                 abstract: item.short_desc || "",
                 brand: (item.developer && item.developer.name) || "",
