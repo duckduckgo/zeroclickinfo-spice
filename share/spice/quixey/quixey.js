@@ -19,7 +19,7 @@ env.ddg_spice_quixey = function(api_result) {
 
         meta: {
             count: relevants.length,
-            total: api_result.results,
+            total: api_result.results.length,
             itemType: 'Apps',
             sourceName: 'Quixey',
             sourceUrl: 'https://www.quixey.com/search?q=' + q,
