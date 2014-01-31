@@ -12,43 +12,25 @@ env.ddg_spice_quixey = function(api_result) {
     if (!relevants) return;
 
     Spice.render({
-        data: api_result,
-        source_name: 'Quixey',
-        source_url: 'https://www.quixey.com/search?q=' + q,
-        header1: api_result.q,
-        force_big_header: true,
-        more_logo: "quixey_logo.png",
-        spice_name: 'quixey',
+        id: 'quixey',
+        name: 'Apps',
 
-        relevant_items: relevants,  // to distinguish it from 'items' and to indicate it's been gone over
+        data: relevants,
 
-        templates: {
-            // summary:     Spice.quixey.summary,
-            item:        DDG.templates.products,         // built-in
-            // single_item: DDG.templates.products,      // built-in
-
-            detail: DDG.templates.products_detail  // will be Spice.quixey.detail with namespaces
+        meta: {
+            count: relevants.length,
+            total: api_result.results,
+            itemType: 'Apps',
+            sourceName: 'Quixey',
+            sourceUrl: 'https://www.quixey.com/search?q=' + q,
+            sourceIconUrl: DDG.get_asset_path('quixey','quixey_logo.png')
         },
 
-        normalize_item : function(item) {
-            var normal = {
-                img: make_icon_url(item), 
-                title: item.name,
-                ratingData: {
-                    stars: item.rating,
-                    reviews: item.rating_count
-                },
-                price: pricerange(item),
-                abstract: item.short_desc || "",
-                brand: (item.developer && item.developer.name) || "",
-                products_buy: Handlebars.templates.quixey_buy // should/will be Spice.quixey.products_buy 
-            };
+        view: 'Tiles',
 
-            // this should be the array of screenshots with captions
-            // and check for the existence of them
-            normal.img_m = quixey_image(item.editions[0].screenshots[0].image_url);
-
-            return normal;
+        templates: {
+            item: 'products',
+            detail: 'products_detail'
         }
     });
 
@@ -128,7 +110,6 @@ env.ddg_spice_quixey = function(api_result) {
 
         categories = new RegExp(categories.join("|"), "i");
         for (var i = 0; i < results.length; i++) {
-
             app = results[i];
 
             // check if this app result is relevant
@@ -163,6 +144,29 @@ env.ddg_spice_quixey = function(api_result) {
             var q = DDG.get_query();
             res = q.match(categories) ? results : null;
         }
+
+        // normalize it:
+        res = res.map(function(app){
+            var normal = {
+                img: make_icon_url(app),
+                title: app.name,
+                ratingData: {
+                    stars: app.rating,
+                    reviews: app.rating_count
+                },
+                price: pricerange(app),
+                abstract: app.short_desc || "",
+                brand: (app.developer && app.developer.name) || "",
+                products_buy: Handlebars.templates.quixey_buy // should/will be Spice.quixey.products_buy 
+            };
+
+            // this should be the array of screenshots with captions
+            // and check for the existence of them
+            normal.img_m = quixey_image(app.editions[0].screenshots[0].image_url);
+
+            return normal;
+        });
+
         return res;
     }
 }
