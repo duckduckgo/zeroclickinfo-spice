@@ -36,11 +36,6 @@ function ddg_spice_news(apiResult) {
     for(var i = 0, story; story = apiResult[i]; i++) {
     // strip bold from story titles.
         story.title = story.title.replace(/<b>|<\/b>|:/g, "");
-        story.template = 'news_items';
-        story.view = 'Tiles';
-        story.id = 'news';
-        story.name = 'News';
-
         if(DDG.isRelevant(story.title, skip, 3)) {
             getSource(story);
             goodStories.push(story);
@@ -49,6 +44,22 @@ function ddg_spice_news(apiResult) {
 
     // If we found some good stories, display them.
     if(goodStories.length > 0) {
-        DDG.duckbar.add_array(goodStories);
+        Spice.render({
+            id: 'news',
+            name: 'News',
+
+            data: goodStories,
+
+            meta: {
+                query: rqd.replace(/(?: news|news ?)/i, ''),
+                query_meta:"News articles"
+            },
+
+            view: 'Tiles',
+
+            templates: {
+                item: 'news_items'
+            }
+        });
     }
 }
