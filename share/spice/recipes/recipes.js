@@ -127,8 +127,8 @@ function ddg_spice_recipes(res) {
         view: 'Tiles',
 
         templates: {
-            detail: 'recipes_detail'
             item: 'recipes',
+            detail: 'recipes_detail'
         }
 
     });
