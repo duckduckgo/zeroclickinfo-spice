@@ -25,6 +25,10 @@ function ddg_spice_amazon(apiResult) {
             // add the ratings data:
             v.ratingData = r;
 
+            // add the products_buy template
+            // TODO: this is hacky, can it combine with the Spice.templates?
+            v.products_buy = Handlebars.templates.products_amazon_buy;
+
             // decrement the numLeft and
             // see if all have returned yet:
             numLeft--;
