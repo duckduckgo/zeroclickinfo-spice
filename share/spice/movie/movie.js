@@ -6,7 +6,7 @@ function ddg_spice_movie (api_result) {
     }
 
     var ignore = ["movie", "film", "rotten", "rating", "rt", "tomatoes", "release date"];
-	var result, max_score = 0;
+    var result, max_score = 0;
 
     // Assign a ranking value for the movie. This isn't a complete sorting value though
     // also we are blindling assuming these values exist
@@ -49,33 +49,34 @@ function ddg_spice_movie (api_result) {
         result.hasContent = true;
     }
 
-	var searchTerm = rqd.replace(new RegExp(ignore.join('|'),'i'),'').trim();
+    var data = api_result.movies.map(function(m){
+        m.rating = Math.round(m.ratings.critics_score / 20);
+        return m;
+    });
+
+    var searchTerm = rqd.replace(new RegExp(ignore.join('|'),'i'),'').trim();
 
     Spice.render({
-        data: api_result.movies,
-		relevant_items: api_result.movies,
+        id: 'movie',
+        name: 'Movies',
 
-		normalize_item: function(obj){
-			obj.rating = Math.round(obj.ratings.critics_score / 20);
-			return obj;
-		},
+        data: data,
 
-		spice_name: 'movie',
-        source_name: 'Rotten Tomatoes',
-        source_url: api_result.links.self,
+        meta: {
+            sourceName: 'Rotten Tomatoes',
+            sourceUrl: 'http://rottentomatoes.com/search/?search=' + searchTerm,
+            sourceIcon: true,
+            count: api_result.movies.length,
+            total: api_result.total,
+            itemType: 'Movies',
+            searchTerm: searchTerm
+        },
 
-		meta: {
-			sourceName: 'Rotten Tomatoes',
-			sourceUrl: 'http://rottentomatoes.com/search/?search=' + searchTerm,
-			sourceIcon: true,
-			count: api_result.movies.length,
-			total: api_result.total,
-			itemType: 'Movies',
-			searchTerm: searchTerm
-		},
-		templates: {
-			item: Handlebars.templates.movie_item,
-		}
+        view: 'Tiles',
+
+        templates: {
+            item: 'movie_item',
+        }
     });
 }
 

@@ -34,8 +34,12 @@ function ddg_spice_news(apiResult) {
     // Check if the title is relevant to the query.
     var goodStories = [];
     for(var i = 0, story; story = apiResult[i]; i++) {
-	// strip bold from story titles.
+    // strip bold from story titles.
         story.title = story.title.replace(/<b>|<\/b>|:/g, "");
+        story.template = 'news_items';
+        story.view = 'Tiles';
+        story.id = 'news';
+        story.name = 'News';
 
         if(DDG.isRelevant(story.title, skip, 3)) {
             getSource(story);
@@ -45,7 +49,6 @@ function ddg_spice_news(apiResult) {
 
     // If we found some good stories, display them.
     if(goodStories.length > 0) {
-        DDG.duckbar.news.stories = goodStories;
-        DDG.duckbar.news.display(goodStories);
+        DDG.duckbar.add_array(goodStories);
     }
 }
