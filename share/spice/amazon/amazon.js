@@ -1,33 +1,21 @@
 function ddg_spice_amazon(apiResult) {
     if(!apiResult || !apiResult.results || !apiResult.results.length){ return; }
 
-    var items = apiResult.results,
-        view, template;
+    var items = apiResult.results;
 
-    if(items.length > 1){
-        view = 'Tiles';
-        template: 'products'
-    } else {
-        view = 'Base';
-        template: 'products_single';
-    }
-
+    // TODO: this is obviously not ideal, just ported over
+    // what was in permenant.js. It loads ratings data for each item,
+    // the render the spice plugin:
     var loadRatingsData = function(items,fn){
-        var numLeft = items.length,
-            arg = v.rating,
-            url = '/m.js?r=';
-
-        arg = arg.replace(/(?:.com.au|.com.br|.cn|.fr|.de|.in|.it|.co.jp|.mx|.es|.co.uk|.com|.ca?)/i, '');
-        arg = arg.replace('http://www.amazon/reviews/iframe?', '');
+        var numLeft = items.length;
 
         var onGotRatingsData = function(r,s,x){
-
             // add the ratings data:
-            v.ratingData = r;
+            this.ratingData = r;
 
             // add the products_buy template
             // TODO: this is hacky, can it combine with the Spice.templates?
-            v.products_buy = Handlebars.templates.products_amazon_buy;
+            this.products_buy = Handlebars.templates.products_amazon_buy;
 
             // decrement the numLeft and
             // see if all have returned yet:
@@ -38,12 +26,20 @@ function ddg_spice_amazon(apiResult) {
             }
         }
 
-        $.getJSON(url + encodeURIComponent(arg),onGotRatingsData);
+
+        for(var i=0;i<items.length;i++){
+            var item = items[i],
+                arg = item.rating,
+                url = '/m.js?r=';
+
+            arg = arg.replace(/(?:.com.au|.com.br|.cn|.fr|.de|.in|.it|.co.jp|.mx|.es|.co.uk|.com|.ca?)/i, '');
+            arg = arg.replace('http://www.amazon/reviews/iframe?', '');
+            $.getJSON(url + encodeURIComponent(arg),onGotRatingsData.bind(item));
+        }
     };
 
-    // TODO: this is obviously not ideal, just ported over
-    // what was in permenant.js. It loads ratings data for each item,
-    // the render the spice plugin:
+    // loading ratings data for all the items
+    // then render the spice:
     loadRatingsData(items,function(){
         Spice.render({
             id: 'products',
@@ -60,11 +56,10 @@ function ddg_spice_amazon(apiResult) {
                 sourceIcon: true
             },
 
-            view: view,
-
             templates: {
-                item: template,
-                detail: 'products_detail'
+                item: 'products',
+                detail: 'products_detail',
+                summary: 'products_single'
             }
         });
     });
