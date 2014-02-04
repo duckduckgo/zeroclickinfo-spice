@@ -18,6 +18,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::IsItUp',
     ),
+    'is http://duckduckgo.com online?' => test_spice(
+        '/js/spice/is_it_up/duckduckgo.com',
+        call_type => 'include',
+        caller => 'DDG::Spice::IsItUp',
+    ),
     # unfortunately, the isitup.com api does not
     # currently support unicode or ssl
     'is føtex.dk up?' => undef,
