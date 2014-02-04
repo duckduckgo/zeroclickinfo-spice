@@ -3,19 +3,24 @@
 function ddg_spice_kwixer(api_response) {
     if (!api_response || api_response.length==0 ) return;
 
-    var skipArray = ['movie with','movies with', 'movies starring','film with','films with','films starring','film starring','movies featuring','films featuring'];
+
+    var skipArray = ['movie with','movies with', 'movies starring','film with','films with','films starring','film starring','movies featuring','films featuring','movies with the',' the '];
     var finalArray = [];
-    var itemsToInsertAtTheEnd = new Array();
+    var itemsToInsertAtTheEnd = [];
     var ddg_spice_kwixer_query = DDG.get_query();
     var remainder = ddg_spice_kwixer_query.toLowerCase();
     
     for(var index in skipArray)
     {
         if(skipArray.hasOwnProperty(index))
-            remainder = remainer.replace(skipArray[index],"");
+            remainder = remainder.replace(skipArray[index],"");
     }
-    remainder = remainer.replace(/^\s+|\s+$/g, '');
-    var remainerArray = remainer.split(" ");
+    remainder = remainder.replace(/^\s+|\s+$/g, '');
+
+    if(remainder.length <= 2)
+        return;
+
+    var remainderArray = remainder.split(" ");
     //checks if the result is relevant.
     //if the item doesn't have an image sets the default image and puts it in the end
     //replaces large with medium images for faster loading
@@ -24,14 +29,13 @@ function ddg_spice_kwixer(api_response) {
         if(api_response.hasOwnProperty(index))
         {
             var item = api_response[index];
-            //item.ResourceDetails2.toLowerCase().indexOf(remainer) != -1
-            //DDG.isRelevant(item.ResourceDetails2,skipArray)
-            //DDG.isRelevant(remainer,skipArray)
             var isRelevant = false;
             var actors = item.ResourceDetails2.toLowerCase();
             //workaound for DDG.isRelevant
             //mainly to ignore queries like "movies featuring people" this will only check if there's a match with at least one actor
             var actorArray = actors.split(";"); 
+            
+            /*
             for (var index in actorArray) {
                 if(actorArray.hasOwnProperty(index)) {    
                     if(DDG.isRelevant(actorArray[index], ['movies', 'with','starring','film','films','featuring'], 4, true)) {
@@ -40,19 +44,21 @@ function ddg_spice_kwixer(api_response) {
                     }
                 }
             }
-            /*
-            for (var index in remainerArray)
+            */
+            
+            for (var index in remainderArray)
             {
-                if(remainerArray.hasOwnProperty(index))
+                if(remainderArray.hasOwnProperty(index))
                 {
                     //just checking if there's one match or not, the api is already intelligent enough to ignore "and" etc..
-                    if(actors.indexOf( remainerArray[index]) != -1)
+                    //we need to match actors for now, because the API's default search searches also by general context.
+                    if(actors.indexOf( remainderArray[index]) != -1)
                     {
                         isRelevant = true;
                         break;
                     }
                 }
-            }*/
+            }
             
             if(isRelevant)
             {
@@ -80,7 +86,7 @@ function ddg_spice_kwixer(api_response) {
     
     Spice.render({
         header1                  : ddg_spice_kwixer_query + ' (Kwixer)',
-        source_url               : "https://www.kwixer.com/#/explore?category=movie&query=" + ddg_spice_kwixer_query ,
+        source_url               : "https://www.kwixer.com/#/explore?category=movie&query=" + DDG.get_query_encoded() ,
         source_name              : 'Kwixer',
         force_big_header         : true,
         force_favicon_domain     : 'www.kwixer.com',
@@ -95,27 +101,7 @@ function ddg_spice_kwixer(api_response) {
         force_no_fold            : true
     });
 }
-/* 
-* replaces "large_" with "medium_" images and empty ones with a default one.
-* also checks for image extensions - if image url doesn't contain an image extension replaces it with a default image
-* if image doesn't end with .jpg or .png the image doesn't work for some reason through the DDG Proxy
-*/
-/* commented for now because we're already doing a loop before 
-Handlebars.registerHelper("getMediumImage", function (image) {
-    if(image && image.length > 0)
-    {
-       
-        if( image.indexOf(".jpeg") != -1 || image.indexOf(".jpg") != -1 || image.indexOf(".png") != -1 )
-            image= image.replace("large_", "medium_");
-        else
-            image = "https://kwix.blob.core.windows.net/icons/icon-watching-vanilla.png";
-    }
-    else
-        image = "https://kwix.blob.core.windows.net/icons/icon-watching-vanilla.png";
-    return image;
-});
-*/
-//replaces ";" with ","
+
 Handlebars.registerHelper("formatDetail", function (detail) {
     if(detail)
         detail = detail.replace(/;/g,", ");

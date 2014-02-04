@@ -3,7 +3,7 @@ package DDG::Spice::Kwixer;
 use DDG::Spice;
 
 #metadata
-primary_example_queries "movies with Keira Knightley", "movies directed by steven spielberg";
+primary_example_queries "movies with Keira Knightley";
 secondary_example_queries "films with with Tom Cruise and Emily";
 description "Advanced movie queries with Kwixer";
 name "Kwixer";
