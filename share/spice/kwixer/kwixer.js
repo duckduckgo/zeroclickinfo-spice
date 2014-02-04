@@ -4,17 +4,17 @@ function ddg_spice_kwixer(api_response) {
     if (!api_response || api_response.length==0 ) return;
 
     var skipArray = ['movie with','movies with', 'movies starring','film with','films with','films starring','film starring','movies featuring','films featuring'];
-    var finalArray = new Array();
+    var finalArray = [];
     var itemsToInsertAtTheEnd = new Array();
     var ddg_spice_kwixer_query = DDG.get_query();
-    var remainer = ddg_spice_kwixer_query.toLowerCase();
+    var remainder = ddg_spice_kwixer_query.toLowerCase();
     
     for(var index in skipArray)
     {
         if(skipArray.hasOwnProperty(index))
-            remainer = remainer.replace(skipArray[index],"");
+            remainder = remainer.replace(skipArray[index],"");
     }
-    remainer = remainer.replace(/^\s+|\s+$/g, '');
+    remainder = remainer.replace(/^\s+|\s+$/g, '');
     var remainerArray = remainer.split(" ");
     //checks if the result is relevant.
     //if the item doesn't have an image sets the default image and puts it in the end
@@ -30,7 +30,17 @@ function ddg_spice_kwixer(api_response) {
             var isRelevant = false;
             var actors = item.ResourceDetails2.toLowerCase();
             //workaound for DDG.isRelevant
-            //mainly to ignore queries like "movies featuring people" this will only check if there's a match with at least one actor 
+            //mainly to ignore queries like "movies featuring people" this will only check if there's a match with at least one actor
+            var actorArray = actors.split(";"); 
+            for (var index in actorArray) {
+                if(actorArray.hasOwnProperty(index)) {    
+                    if(DDG.isRelevant(actorArray[index], ['movies', 'with','starring','film','films','featuring'], 4, true)) {
+                        isRelevant = true;
+                        break;
+                    }
+                }
+            }
+            /*
             for (var index in remainerArray)
             {
                 if(remainerArray.hasOwnProperty(index))
@@ -42,7 +52,8 @@ function ddg_spice_kwixer(api_response) {
                         break;
                     }
                 }
-            }
+            }*/
+            
             if(isRelevant)
             {
                 if(!item.ResourceImageUrl || item.ResourceImageUrl.length == 0 || (item.ResourceImageUrl.indexOf(".jpeg") == -1 && item.ResourceImageUrl.indexOf(".jpg") == -1 && item.ResourceImageUrl.indexOf(".png") == -1))
