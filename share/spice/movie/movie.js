@@ -72,8 +72,6 @@ function ddg_spice_movie (api_result) {
             searchTerm: searchTerm
         },
 
-        view: 'Tiles',
-
         templates: {
             item: 'movie_item',
         }

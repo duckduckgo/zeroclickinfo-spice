@@ -55,8 +55,6 @@ function ddg_spice_news(apiResult) {
                 query_meta:"News articles"
             },
 
-            view: 'Tiles',
-
             templates: {
                 item: 'news_items'
             }

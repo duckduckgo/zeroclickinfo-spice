@@ -38,8 +38,6 @@ function ddg_spice_hacker_news(api_result) {
             itemType: 'Results'
         },
 
-        view: 'Tiles',
-
         templates: {
             item: 'hacker_news'
         }

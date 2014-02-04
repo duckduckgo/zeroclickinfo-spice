@@ -26,8 +26,6 @@ env.ddg_spice_quixey = function(api_result) {
             sourceIconUrl: DDG.get_asset_path('quixey','quixey_logo.png')
         },
 
-        view: 'Tiles',
-
         templates: {
             item: 'products',
             detail: 'products_detail'

@@ -11,7 +11,6 @@ function ddg_spice_github_jobs(api_result) {
                             + encodeURIComponent(jobs['description'])
                             + "&location=" +  encodeURIComponent(jobs['location']);
 
-    
     var desc = jobs['description'] + ' Jobs';
     if(jobs['location']){
         desc += ' in ' + jobs['location'];
@@ -30,8 +29,6 @@ function ddg_spice_github_jobs(api_result) {
             sourceName: 'GitHub',
             sourceIcon: true
         },
-        
-        view: 'Tiles',
 
         templates: {
             item: 'github_jobs_item',

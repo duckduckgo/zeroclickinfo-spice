@@ -124,8 +124,6 @@ function ddg_spice_recipes(res) {
             detailClass: 'detail--i'
         },
 
-        view: 'Tiles',
-
         templates: {
             item: 'recipes',
             detail: 'recipes_detail'
