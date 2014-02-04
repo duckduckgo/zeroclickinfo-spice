@@ -3,7 +3,6 @@
 function ddg_spice_kwixer(api_response) {
     if (!api_response || api_response.length==0 ) return;
 
-
     var skipArray = ['movie with','movies with', 'movies starring','film with','films with','films starring','film starring','movies featuring','films featuring','movies with the',' the '];
     var finalArray = [];
     var itemsToInsertAtTheEnd = [];
@@ -80,10 +79,8 @@ function ddg_spice_kwixer(api_response) {
         finalArray = finalArray.concat(itemsToInsertAtTheEnd);
     }
 
-
     if (!finalArray || finalArray.length==0 ) return;
 
-    
     Spice.render({
         header1                  : ddg_spice_kwixer_query + ' (Kwixer)',
         source_url               : "https://www.kwixer.com/#/explore?category=movie&query=" + DDG.get_query_encoded() ,
