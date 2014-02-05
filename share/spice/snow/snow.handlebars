@@ -1,1 +1,9 @@
-<b>{{answer}}.</b> {{forecast}}
+<div class="spice-snow {{#is_snowing}}is-snowing{{/is_snowing}}">
+    <div class="zci__main">
+        <div class="zci__body">
+            <h1>{{answer}}</h1>
+            <p>{{forecast}}</p>
+            <a href="{{meta.sourceUrl}}">More at {{meta.sourceName}}</a>
+        </div>
+    </div>
+</div>

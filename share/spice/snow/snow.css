@@ -1,0 +1,31 @@
+.zci--snow {
+    padding: 0 !important;
+}
+
+.spice-snow {
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.spice-snow h1 {
+    font-size: 3.5em;
+    line-height: 0.9;
+    font-weight: 900;
+    margin-bottom: 0 !important;
+}
+
+.spice-snow.is-snowing {
+    margin-top: -7px;
+    padding: 37px 0 30px;
+    background: #0C0F2B;
+    color: #fff;
+}
+
+.spice-snow a {
+    font-size: .8em;
+}
+
+.spice-snow.is-snowing a {
+    color: #888;
+}
