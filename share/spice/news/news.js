@@ -42,6 +42,8 @@ function ddg_spice_news(apiResult) {
         }
     }
 
+    var searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim();
+
     // If we found some good stories, display them.
     if(goodStories.length > 0) {
         Spice.render({
@@ -51,8 +53,9 @@ function ddg_spice_news(apiResult) {
             data: goodStories,
 
             meta: {
-                query: rqd.replace(/(?: news|news ?)/i, ''),
-                query_meta:"News articles"
+                count: goodStories.length,
+                searchTerm: searchTerm,
+                itemType: 'News articles'
             },
 
             templates: {
