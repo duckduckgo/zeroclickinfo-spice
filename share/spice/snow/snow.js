@@ -19,9 +19,18 @@ var nrio = function(api_result) {
             return api_result.location.substring(0, api_result.location.indexOf(","));
         }
         return api_result.location;
-    };
+    }
 
-    api_result.is_snowing = !!(api_result.answer && api_result.answer.match(/yes/i));
+    if(DDG.get_query().match(/make|let/i)){
+        api_result.answer = 'Snow!';
+        api_result.location = 'The North Pole';
+        api_result.forecast = 'It may not be snowing outside, but it is in here!';
+        api_result.is_snowing = true;
+    }
+
+    if(api_result.answer && api_result.answer.match(/yes/i)){
+        api_result.is_snowing = true;
+    }
 
     // Display the spice plug-in.
     Spice.render({
@@ -45,6 +54,7 @@ var nrio = function(api_result) {
 
     var $dom = Spice.getDOM('snow').find('.spice-snow');
 
+    // TODO: Contact this guy and make sure he's cool with us using it:
     // http://www.zachstronaut.com/posts/2009/12/21/happy-xmas-winternet.html
     var ww = 0;
     var wh = 0;
