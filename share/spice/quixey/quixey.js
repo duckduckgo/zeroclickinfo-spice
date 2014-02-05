@@ -143,6 +143,8 @@ env.ddg_spice_quixey = function(api_result) {
             res = q.match(categories) ? results : null;
         }
 
+        if(!res || !res.length){ return null; }
+
         // normalize it:
         res = res.map(function(app){
             var normal = {
