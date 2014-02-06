@@ -7,11 +7,8 @@
 		  <h1 class="fe_temp">{{{temp}}}</h1>
 		</div>
 		<div class="fe_bottom">
-			<h6>{{#if summary}}<span class="fe_summary {{summaryClass}}">{{{summary}}}</span>{{#if feelslike}} <span class="fe_sep">|</span>{{/if}}{{/if}}
-			{{#if feelslike}}<span class="fe_feelslike">{{{feelslike}}}</span>{{/if}}
-			</h6>
+			{{#if summary}}<h6 class="fe_topline"><span class="fe_summary {{summaryClass}}">{{{summary}}}</span></h6>{{/if}}
 			{{#if wind}}<h6 class="fe_wind">{{{wind}}}</h6>{{/if}}
-			{{#if alerts}}<h6 class="fe_alert  one-line">{{{alerts}}}</h6>{{/if}}
 		</div>
 	</div>
 </div>

@@ -26,7 +26,7 @@
 }
 .fe_bottom {
 	font-size: 1.1em;
-	text-align: left;
+	text-align: center;
 }
 	.fe_summary h6,
 	.fe_bottom h6 {
@@ -97,7 +97,17 @@
 		.fe_label + .fe_date {
 			margin-top: -0.5em;
 		}
+		
+	.fe_currently .fe_topline {
+		border-bottom: 1px solid #dadada;
+		margin-bottom: 0.25em;
+		padding-bottom: 0.25em;
+	}
 	
 	.fe_day .fe_summary {
 		margin-top: 1em;
+	}
+	
+	.fe_alert {
+		margin-left: 0.5em;
 	}

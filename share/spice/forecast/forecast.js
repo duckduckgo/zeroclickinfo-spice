@@ -194,12 +194,12 @@ function ddg_spice_forecast(r) {
     }
 
     if(alert_message)
-      return '<a href="'+alert_message.uri+'" target="_blank"><span class="fe_icon--flag">&#9873;</span> '+alert_message.title+'</a>';
+      return '<a href="'+alert_message.uri+'" class="fe_alert" target="_blank"><span class="fe_icon--flag">&#9873;</span> '+alert_message.title+'</a>';
   }
   
   // Go!
   weatherData.current = build_currently(r);
-  weatherData.current.alerts = build_alerts(r);
+  weatherData.alerts = build_alerts(r);
   weatherData.daily = build_daily(r);
   
   // Render/Display
@@ -213,7 +213,7 @@ function ddg_spice_forecast(r) {
 
         // ideally this happens inside of Spice.render()?
         meta: {
-            heading: r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] : 'Weather',
+            heading: r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] + weatherData.alerts : 'Weather' + weatherData.alerts,
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
             sourceName: 'Forecast.io',
             altMeta: 'Temperatures in '+unit_labels[units].temperature+'&deg;'
