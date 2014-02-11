@@ -6,6 +6,7 @@
     margin: 0.5%;
     background-color: #F5F5F5;
     float: left;
+    border-radius: 3px;
 }
 
 #spice_bitcoin .spice_pane span {
