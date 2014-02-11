@@ -3,6 +3,17 @@ package DDG::Spice::TimeAndDateHoliday;
 
 use DDG::Spice;
 
+name "Time and Date holiday search";
+source "timeanddate.com";
+icon_url "/i/www.timeanddate.com.ico";
+description "Search for holidays";
+primary_example_queries "when is halloween", "when is constitution day in kazakhstan";
+category "dates";
+topics "everyday";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TimeAndDateHoliday.pm";
+attribution email => 'webmaster@timeanddate.com',
+            web => ['http://www.timeanddate.com', 'timeanddate.com'];
+
 triggers start => 'when is';
 
 spice from => '([^/]+)/([^/]+)';
