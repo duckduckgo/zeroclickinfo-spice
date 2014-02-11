@@ -1,11 +1,27 @@
 #spice_bitcoin .spice_pane {
     display: inline-block;
-    width: 40%;
+    width: 43%;
     vertical-align: top;
-    margin: 10px 10px;
-    font-size: 24px;
+    padding: 2.2% 2% 2.2% 4%;
+    margin: 0.5%;
+    background-color: #F5F5F5;
+    float: left;
 }
 
 #spice_bitcoin .spice_pane span {
     font-weight: bold;    
+}
+
+#spice_bitcoin .spice_pane_right {
+    float: right;
+}
+
+#spice_bitcoin span.title {
+    font-size: 15px;
+    vertical-align: 4px;
+    padding-right: 15%
+}
+
+#spice_bitcoin span.price {
+    font-size: 35px;
 }
