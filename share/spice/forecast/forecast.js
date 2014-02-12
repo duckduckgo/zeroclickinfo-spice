@@ -204,10 +204,10 @@ function ddg_spice_forecast(r) {
   
   // Render/Display
     Spice.render({
-        data: weatherData,
-        spice_name: 'forecast',
+        id: 'forecast',
+        name: 'Weather',
 
-        relevant_items: [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]],
+        data: [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]],
 
         signal: "high",
 
@@ -218,6 +218,8 @@ function ddg_spice_forecast(r) {
             sourceName: 'Forecast.io',
             altMeta: 'Temperatures in '+unit_labels[units].temperature+'&deg;'
         },
+
+        view: 'Tiles',
 
         templates: {
             item: "forecast_item",

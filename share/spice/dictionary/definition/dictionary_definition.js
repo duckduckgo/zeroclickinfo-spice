@@ -22,8 +22,6 @@ var ddg_spice_dictionary = {
 
     plural_form: null,
 
-    $el: null,
-
     parts_of_speech: {
         "interjection": "interj.",
         "noun": "n.",
@@ -42,11 +40,17 @@ var ddg_spice_dictionary = {
         "proper-noun": "n."
     },
 
+    id: 'definition',
+
+    $el: null,
+
     render: function(definitions) {
         var word = definitions[0].word;
 
-        this.$el = Spice.render({
-            spice_name: 'dictionary_definition', // why do we need to pass a spice_name?
+        Spice.render({
+            id: 'definition',
+            name: 'Definition',
+
             data: {
                 word: word,
                 plural_form: this.plural_form,
@@ -54,11 +58,13 @@ var ddg_spice_dictionary = {
                 source_name: "Wordnik",
                 source_url : "http://www.wordnik.com/words/" + word
             },
+
             templates: {
                 summary: 'dictionary_definition'
-            },
-            topic: 'definition',
+            }
         });
+
+        this.$el = Spice.getDOM(this.id);
 
         // Do not add hyphenation when we're asking for two words.
         // If we don't have this, we'd can have results such as "black• hole".
@@ -255,7 +261,7 @@ ddg_spice_dictionary_audio = ddg_spice_dictionary.audio.bind(ddg_spice_dictionar
 
 
 // We should shorten the part of speech before displaying the definition.
-Handlebars.registerHelper("formatPartOfSpeech", function(text) {
+Spice.registerHelper("formatPartOfSpeech", function(text) {
     "use strict";
 
     return ddg_spice_dictionary.parts_of_speech[text] || text;
@@ -263,7 +269,7 @@ Handlebars.registerHelper("formatPartOfSpeech", function(text) {
 
 // Make sure we replace xref to an anchor tag.
 // <xref> comes from the Wordnik API.
-Handlebars.registerHelper("formatDefinition", function(text) {
+Spice.registerHelper("formatDefinition", function(text) {
     "use strict";
 
     // Replace the xref tag with an anchor tag.

@@ -49,15 +49,32 @@ function ddg_spice_movie (api_result) {
         result.hasContent = true;
     }
 
+    var data = api_result.movies.map(function(m){
+        m.rating = Math.round(m.ratings.critics_score / 20);
+        return m;
+    });
+
+    var searchTerm = rqd.replace(new RegExp(ignore.join('|'),'i'),'').trim();
+
     Spice.render({
-        data: result,
-        source_name: 'Rotten Tomatoes',
-        template_normal: "movie",
-        template_small: "movie_small",
-        force_no_fold: 1,
-        source_url: result.links.alternate,
-        header1: result.title + checkYear(result.year),
-        image_url: result.posters.thumbnail.indexOf("poster_default.gif") === -1 ? result.posters.thumbnail : ""
+        id: 'movie',
+        name: 'Movies',
+
+        data: data,
+
+        meta: {
+            sourceName: 'Rotten Tomatoes',
+            sourceUrl: 'http://rottentomatoes.com/search/?search=' + searchTerm,
+            sourceIcon: true,
+            count: api_result.movies.length,
+            total: api_result.total,
+            itemType: 'Movies',
+            searchTerm: searchTerm
+        },
+
+        templates: {
+            item: 'movie_item',
+        }
     });
 }
 

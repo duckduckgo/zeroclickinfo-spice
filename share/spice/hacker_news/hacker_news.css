@@ -1,17 +1,17 @@
-#spice_hacker_news span.hn_oneline {
-	display: inline-block;
+.tile--hacker-news {
+	height: 14em;
 }
 
-#spice_hacker_news hr.horizontal_line {
-	margin: 5px 0;
+.tile__stat {
+	display: block;
 }
 
-#spice_hacker_news .hn_comment,
-#spice_hacker_news .hn_story {
-	margin-bottom: 4px;
+.tile__stat__num {
+	font-weight: 900;
 }
 
-#spice_hacker_news .hn_comment:first-of-type,
-#spice_hacker_news .hn_story:first-of-type {
-	margin-top: 3px;
+.tile--hacker-news .tile__date {
+	color: #aaa;
+	padding-top: .75em;
+	padding-bottom: .75em;
 }

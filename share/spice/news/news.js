@@ -34,18 +34,33 @@ function ddg_spice_news(apiResult) {
     // Check if the title is relevant to the query.
     var goodStories = [];
     for(var i = 0, story; story = apiResult[i]; i++) {
-	// strip bold from story titles.
+    // strip bold from story titles.
         story.title = story.title.replace(/<b>|<\/b>|:/g, "");
-
         if(DDG.isRelevant(story.title, skip, 3)) {
             getSource(story);
             goodStories.push(story);
         }
     }
 
+    var searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim();
+
     // If we found some good stories, display them.
     if(goodStories.length > 0) {
-        DDG.duckbar.news.stories = goodStories;
-        DDG.duckbar.news.display(goodStories);
+        Spice.render({
+            id: 'news',
+            name: 'News',
+
+            data: goodStories,
+
+            meta: {
+                count: goodStories.length,
+                searchTerm: searchTerm,
+                itemType: 'News articles'
+            },
+
+            templates: {
+                item: 'news_items'
+            }
+        });
     }
 }
