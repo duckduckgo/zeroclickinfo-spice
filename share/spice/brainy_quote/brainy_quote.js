@@ -1,9 +1,7 @@
 function ddg_spice_brainy_quote (api_result) {
-    if (api_result.error) return;
-
     // Check if the result is a category search or not.
     // We'll know that if the author is specified in the JSON response.
-    if(api_result.author) {
+    if(api_result.error || api_result.author) {
 	return;
     }
 
