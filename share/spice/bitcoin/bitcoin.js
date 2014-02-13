@@ -58,12 +58,12 @@ function ddg_spice_bitcoin(api_result) {
 
     var buy = {
         formatted_price: getFormattedPrice(currency, prices.buy, prices.symbol),
-        title: "Buy"
+        title: "BUY"
     };
 
     var sell = {
         formatted_price: getFormattedPrice(currency, prices.sell, prices.symbol),
-        title: "Sell"
+        title: "SELL"
     };
 
     Spice.render({
@@ -81,4 +81,9 @@ function ddg_spice_bitcoin(api_result) {
         force_no_fold    : true,
         force_big_header : true
     });
+
+    // Adjust the box margins--can't do this in css
+    $("#zero_click_wrapper2 #zero_click_abstract").attr("style", 
+							"padding-left: 2px !important;" +
+							"margin-left: 2px !important;");
 }
