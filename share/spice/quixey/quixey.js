@@ -1,8 +1,12 @@
+console.warn("quixey.js");
+
 (function(env) {
 var quixey_image_domain = "d1z22zla46lb9g.cloudfront.net";
 
 // spice callback function
 env.ddg_spice_quixey = function(api_result) {
+
+    console.warn("ddg_spice_quixey()");
 
     if (api_result.result_count == 0) return;
 
@@ -11,7 +15,7 @@ env.ddg_spice_quixey = function(api_result) {
 
     if (!relevants) return;
 
-    Spice.render({
+    Spice.add({
         id: 'quixey',
         name: 'Apps',
 
@@ -49,8 +53,8 @@ env.ddg_spice_quixey = function(api_result) {
 
 
         templates: {
-            item: 'products',
-            detail: 'products_detail'
+            item: DDG.templates.products,
+            detail: DDG.templates.products_detail
         }
     });
 
@@ -141,8 +145,6 @@ env.ddg_spice_quixey = function(api_result) {
             } else if (app.custom && app.custom.hasOwnProperty("category") &&
                        DDG.isRelevant(app.custom.category.toLowerCase(), skip_words) && app.icon_url) {
                             backupApps.push(app);
-            } else{
-                continue;
             }
         }
 
@@ -165,29 +167,28 @@ env.ddg_spice_quixey = function(api_result) {
             res = q.match(categories) ? results : null;
         }
 
-        if(!res || !res.length){ return null; }
 
         // normalize it:
-        res = res.map(function(app){
-            var normal = {
-                img: make_icon_url(app),
-                title: app.name,
-                ratingData: {
-                    stars: app.rating,
-                    reviews: app.rating_count
-                },
-                price: pricerange(app),
-                abstract: app.short_desc || "",
-                brand: (app.developer && app.developer.name) || "",
-                products_buy: Handlebars.templates.quixey_buy // should/will be Spice.quixey.products_buy 
-            };
+        // res = res.map(function(app){
+        //     var normal = {
+        //         img: make_icon_url(app),
+        //         title: app.name,
+        //         ratingData: {
+        //             stars: app.rating,
+        //             reviews: app.rating_count
+        //         },
+        //         price: pricerange(app),
+        //         abstract: app.short_desc || "",
+        //         brand: (app.developer && app.developer.name) || "",
+        //         products_buy: Handlebars.templates.quixey_buy // should/will be Spice.quixey.products_buy 
+        //     };
 
-            // this should be the array of screenshots with captions
-            // and check for the existence of them
-            normal.img_m = quixey_image(app.editions[0].screenshots[0].image_url);
+        //     // this should be the array of screenshots with captions
+        //     // and check for the existence of them
+        //     normal.img_m = quixey_image(app.editions[0].screenshots[0].image_url);
 
-            return normal;
-        });
+        //     return normal;
+        // });
 
         return res;
     }
