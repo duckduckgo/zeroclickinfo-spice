@@ -105,14 +105,13 @@ function ddg_spice_recipes(res) {
         moreUrl = res.attribution.url + '?q=' + searchTerm; // should replace trigger word or use the same logic that is used for the api call
 
     Spice.render({
-        data: res,
-        spice_name: 'yummly',
+        id: 'recipes',
+        name: 'Recipes',
 
-        relevant_items: normalizedData,
+        data: normalizedData,
 
         trump: searchContainedRecipe,
 
-        // ideally this happens inside of Spice.render()?
         meta: {
             count: normalizedData.length,
             total: res.totalMatchCount,
@@ -126,8 +125,8 @@ function ddg_spice_recipes(res) {
         },
 
         templates: {
-            item: Handlebars.templates.recipes,
-            detail: Handlebars.templates.recipes_detail
+            item: 'recipes',
+            detail: 'recipes_detail'
         }
 
     });

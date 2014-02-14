@@ -30,7 +30,9 @@ my %snow = map { $_ => undef } (
     'is it snowing today',
     'is it going to snow today',
     'going to snow today',
-    'is it snowing yet'
+    'is it snowing yet',
+    'make it snow',
+    'let it snow'
 );
 
 handle query_lc => sub {
