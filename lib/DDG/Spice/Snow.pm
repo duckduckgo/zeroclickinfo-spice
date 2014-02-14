@@ -38,6 +38,10 @@ my %snow = map { $_ => undef } (
 handle query_lc => sub {
     my $query = $_;
 
+    # It's possible that $loc or some of its attributes will be null. If we
+    # don't know where the user is, we can't determine the weather there, so we
+    # return. This prevents a needless request to isitsnowingyet; we already
+    # know that we would get an empty response.
     return unless $loc && ($loc->city || $loc->region_name) && $loc->country_name;
 
     my @location = ();
