@@ -39,13 +39,14 @@ function ddg_spice_mass_on_time (api_result) {
 	force_big_header  : true,
 	force_favicon_url : 'http://massontime.com/favicon.ico'
     });
-    
-    /*    
-	  ###  Handlebars Helpers ###
-    */
-    
-    //Event types are returns as integers. This converts them to their string reps.
-    Handlebars.registerHelper( "format_eventtypeid", function (eventtypeid) {
+}
+
+  /*
+   ###  Handlebars Helpers ###
+   */
+
+//Event types are returns as integers. This converts them to their string reps.
+Handlebars.registerHelper( "format_eventtypeid", function (eventtypeid) {
 	switch (eventtypeid) {
 	case 1:
 	    return "Adoration";
@@ -61,6 +62,7 @@ function ddg_spice_mass_on_time (api_result) {
 	    return "Weekday Mass";
 	case 8:
 	    return "Weekend Mass";
+	default:
+	    return "Service";
 	};
     });
-}
