@@ -14,7 +14,7 @@ attribution github => ['https://github.com/astine','astine'];
 triggers start => "catholic";
 
 spice from => '([^/]*)/([^/]*)';
-spice to => 'http://massontime.com/nearest/$1/5/json?address=$2&api-key={{ENV{DDG_SPICE_MASSONTIME_APIKEY}}}';
+spice to => 'http://massontime.com/nearest/$1/10/json?address=$2&api-key={{ENV{DDG_SPICE_MASSONTIME_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
