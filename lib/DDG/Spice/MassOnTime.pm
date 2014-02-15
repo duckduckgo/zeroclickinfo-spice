@@ -2,7 +2,7 @@ package DDG::Spice::MassOnTime;
 
 use DDG::Spice;
 
-primary_example_queries "Catholic masses near Pittsburg";
+primary_example_queries "Catholic masses near Pittsburgh";
 description "Search for Catholic Religious Events";
 name "MassOnTime";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/MassOnTime.pm";
