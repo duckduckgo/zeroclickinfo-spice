@@ -65,4 +65,11 @@ Handlebars.registerHelper( "format_eventtypeid", function (eventtypeid) {
 	default:
 	    return "Service";
 	};
-    });
+});
+
+Handlebars.registerHelper( "backup_link", function (webaddress, parish_id) {
+	if (webaddress === "http://" || webaddress === "")
+	  { return "http://massontime.com/parish/" + parish_id; }
+	else
+	  { return webaddress; }
+});
