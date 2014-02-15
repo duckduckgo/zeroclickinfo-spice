@@ -38,7 +38,8 @@ function ddg_spice_mass_on_time (api_result) {
 	template_frame   : 'list',
 	template_options : {
             items: api_result.results,
-            show: 5,
+            show: 3,
+            max:  10,
             template_item: pick_item_template(details)
 	},
 	force_no_fold     : true,
