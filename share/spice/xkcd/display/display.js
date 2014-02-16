@@ -1,4 +1,4 @@
-function ddg_spice_xkcd_xkcd(api_result) {
+function ddg_spice_xkcd_display(api_result) {
   if (!api_result.img || !api_result.alt) return;
 
   $.getJSON('/js/spice/xkcd/latest/', function(data){
