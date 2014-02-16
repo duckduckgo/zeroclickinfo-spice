@@ -2,6 +2,8 @@
 {{#previousNum num}}
 	<a href="/?q=xkcd+{{num}}">Prev</a>
 {{/previousNum}}
-{{#nextNum num}}
-	<a id="xkcd-next-link" style="float:right; margin-right:20px;" href="/?q=xkcd+{{num}}">Next</a>
-{{/nextNum}}
+{{#if has_next}}
+	{{#nextNum num}}
+		<a id="xkcd-next-link" href="/?q=xkcd+{{num}}">Next</a>
+	{{/nextNum}}
+{{/if}}

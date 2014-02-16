@@ -1,4 +1,4 @@
-package DDG::Spice::Xkcd::Xkcd;
+package DDG::Spice::Xkcd::Display;
 
 use DDG::Spice;
 
