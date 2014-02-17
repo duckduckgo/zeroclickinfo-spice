@@ -1,4 +1,4 @@
-function ddg_spice_stopwatch(api_result) {
+function ddg_spice_stopwatch(api_result) { //api_result should be removed in production
   Spice.render({
     header1          : "Stopwatch",
     template_normal  : 'stopwatch',
@@ -6,11 +6,11 @@ function ddg_spice_stopwatch(api_result) {
     force_no_fold    : true,
   });
 
-  var running = false;
-  var start_time = null;
-  var last_lap = null;
-  var interval_id = null;
-  var old_time = 0;
+  var running = false,
+      start_time = null,
+      last_lap = null,
+      interval_id = null,
+      old_time = 0;
 
   function padZeros(n, len){
     var s = n.toString();
@@ -21,11 +21,11 @@ function ddg_spice_stopwatch(api_result) {
   }
 
   function formatTime(t){
-    hrs = Math.floor(t / (1000*60*60));
+    var hrs = Math.floor(t / (1000*60*60));
     t = t % (1000*60*60);
-    mins = Math.floor(t / (1000*60));
+    var mins = Math.floor(t / (1000*60));
     t = t % (1000*60);
-    secs = Math.floor(t / 1000);
+    var secs = Math.floor(t / 1000);
     t = t % 1000;
     return padZeros(hrs, 2) + ":" + padZeros(mins, 2) + ":" + padZeros(secs, 2) + '.' + padZeros(t, 3)
   }
@@ -72,4 +72,9 @@ function ddg_spice_stopwatch(api_result) {
     $('#split-list').append('<li>' + formatTime(t) + '</li>');
     last_lap = new Date().getTime();
   });
+
+  //hide the source link
+  if ($('#spice_stopwatch').length){
+    $('#zero_click_more_at_wrap').css('display', 'none');
+  }
 }
