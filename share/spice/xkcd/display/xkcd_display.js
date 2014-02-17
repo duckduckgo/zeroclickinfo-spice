@@ -12,9 +12,9 @@ function ddg_spice_xkcd_display(api_result) {
       header1          : api_result.safe_title + " (xkcd)",
       source_url       : 'http://xkcd.com/' + api_result.num,
       source_name      : 'xkcd',
-      template_normal  : 'xkcd',
+      template_normal  : 'xkcd_display',
       force_big_header : true,
-      force_no_fold    : true,
+      force_no_fold    : true
     });
   });
 }
