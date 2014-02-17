@@ -4,14 +4,15 @@ function ddg_spice_mass_on_time (api_result) {
     var details = api_result['query-details'];
 
     var generate_header = function (query_details) {
-	type = "";
+	var type = "";
 	//Convert the query type to plural and capitalize
-	if (query_details.type == "mass")
-	{ type = "Masses"; }
-	else if (query_details.type == "parish")
-	{ type = "Parishes"; }
-	else
-	{ type = query_details.type.charAt(0).toUpperCase() + query_details.type.slice(1) + "s"; }
+	if (query_details.type == "mass") {
+	  type = "Masses";
+	} else if (query_details.type == "parish") {
+	  type = "Parishes";
+	} else {
+	  type = query_details.type.charAt(0).toUpperCase() + query_details.type.slice(1) + "s";
+	}
 
 	//Add the location string
 	return type + " near " + query_details.address;
@@ -19,10 +20,11 @@ function ddg_spice_mass_on_time (api_result) {
 
     //Parishes return different info than events, so a different template is in order for those
     var pick_item_template = function (query_details) {
-	if (query_details.type == "parish")
-	{ return "mass_on_time_church"; }
-	else
-	{ return "mass_on_time"; }
+	if (query_details.type == "parish") {
+	  return "mass_on_time_church";
+	} else {
+	  return "mass_on_time";
+	}
     };
 
     //Return if service couldn't find the address given
@@ -75,8 +77,9 @@ Handlebars.registerHelper( "format_eventtypeid", function (eventtypeid) {
 });
 
 Handlebars.registerHelper( "backup_link", function (webaddress, parish_id) {
-	if (webaddress === "http://" || webaddress === "")
-	  { return "http://massontime.com/parish/" + parish_id; }
-	else
-	  { return webaddress; }
+	if (webaddress === "http://" || webaddress === "") {
+	  return "http://massontime.com/parish/" + parish_id;
+	} else {
+	  return webaddress;
+	}
 });
