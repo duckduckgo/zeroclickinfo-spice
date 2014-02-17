@@ -65,6 +65,10 @@
     padding-bottom: 0.25em;
 }
 
+.detail__ingredients ul {
+    display: inline;
+}
+
 .detail__ingredients li {
     display: inline;
 }
