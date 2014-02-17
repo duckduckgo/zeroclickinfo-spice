@@ -1,4 +1,6 @@
 package DDG::Spice::Xkcd::Latest;
+#ABSTRACT: gets the info on the latest xkcd comic.
+#called by display spice to decide if the 'next' link needs to be displayed
 
 use DDG::Spice;
 
