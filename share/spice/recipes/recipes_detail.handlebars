@@ -8,16 +8,18 @@
             <p class="detail__source">
                 {{sourceDisplayName}}
                 {{{starRating rating}}}
+                {{#cuisine}}
+                    <span class="detail__separator"> | </span>
+                    <span class="detail__cuisine">Cuisine: {{.}}</span>
+                {{/cuisine}}
+                {{#cookingTime}}
+                    <span class="detail__separator"> | </span>
+                    <span class="detail__cooking-time">Cooking Time: {{.}} minutes</span>
+                {{/cookingTime}}
             </p>
-            {{#cuisine}}
-                <p class="detail__cuisine"><b>Cuisine:</b> {{.}}</p>
-            {{/cuisine}}
-            {{#cookingTime}}
-                <p class="detail__cooking-time"><b>Cooking Time:</b> {{.}} minutes</p>
-            {{/cookingTime}}
             {{#if ingredientDetails}}
                 <div class="detail__ingredients">
-                    <b>Ingredients:</b> 
+                    Ingredients: 
                     <ul>
                         {{#ingredientDetails}}
                             <li><a href="{{url}}">{{displayName}}</a></li>
