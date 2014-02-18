@@ -56,6 +56,14 @@
     padding-bottom: 1em;
 }
 
+.detail__body--recipe .detail__source .stars {
+    margin-right: 0;
+}
+
+.detail__body--recipe .detail__separator {
+    padding: 0 5px;
+}
+
 .detail__cuisine {
     text-transform: capitalize;
 }
