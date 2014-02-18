@@ -3,7 +3,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     header1          : "Stopwatch",
     template_normal  : 'stopwatch',
     force_big_header : true,
-    force_no_fold    : true,
+    force_no_fold    : true
   });
 
   var running = false,
@@ -12,6 +12,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
       interval_id = null,
       old_time = 0;
 
+  //add zeros to the end of the number
   function padZeros(n, len){
     var s = n.toString();
     while (s.length < len){
@@ -20,6 +21,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     return s;
   }
 
+  //go from a time in ms to human-readable
   function formatTime(t){
     var hrs = Math.floor(t / (1000*60*60));
     t = t % (1000*60*60);
@@ -30,42 +32,43 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     return padZeros(hrs, 2) + ":" + padZeros(mins, 2) + ":" + padZeros(secs, 2) + '.' + padZeros(t, 3)
   }
 
+  //called on every interval
   function updateStopwatch(){
     var t = new Date().getTime() - start_time + old_time;
     $('#nums').html(formatTime(t));
     return t;
   }
 
-  $('#start-btn').on('click', function(){
+  $('#start-btn').click(function(){
     if (running) return;
     running = true;
     start_time = new Date().getTime();
     last_lap = start_time;
-    interval_id = window.setInterval(updateStopwatch, 50);
+    interval_id = setInterval(updateStopwatch, 50);
   });
 
-  $('#stop-btn').on('click', function(){
+  $('#stop-btn').click(function(){
     if (!running) return;
     running = false;
-    window.clearInterval(interval_id);
+    clearInterval(interval_id);
     old_time = updateStopwatch();
   });
 
-  $('#reset-btn').on('click', function(){
+  $('#reset-btn').click(function(){
     running = false;
     old_time = 0;
     $('#nums').html('00:00:00.000');
     $('#split-list').html('');
-    window.clearInterval(interval_id);
+    clearInterval(interval_id);
   });
 
-  $('#split-btn').on('click', function(){
+  $('#split-btn').click(function(){
     if (!running) return;
     updateStopwatch();
     $('#split-list').append('<li>' + $('#nums').html() + '</li>')
   });
 
-  $('#lap-btn').on('click', function(){
+  $('#lap-btn').click(function(){
     if (!running) return;
     updateStopwatch();
     var t = new Date().getTime() - last_lap;
