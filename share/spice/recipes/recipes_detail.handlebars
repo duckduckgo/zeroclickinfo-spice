@@ -2,8 +2,8 @@
     <img src="{{image_redirect image}}" alt="{{recipeName}}" class="detail__media__img" />
 </div>
 <div class="detail__body  detail__body--recipe">
-	<div class="detail__body__content">
-		<h5 class="detail__title"><a href='{{url}}' title="{{title}}">{{recipeName}}</a></h5>
+    <div class="detail__body__content">
+        <h5 class="detail__title"><a href='{{url}}' title="{{title}}">{{recipeName}}</a></h5>
         <div class="detail__desc">
             <p class="detail__source">
                 {{sourceDisplayName}}
@@ -17,6 +17,7 @@
             {{/cookingTime}}
             {{#if ingredientDetails}}
                 <div class="detail__ingredients">
+                    <b>Ingredients:</b> 
                     <ul>
                         {{#ingredientDetails}}
                             <li><a href="{{url}}">{{displayName}}</a></li>

@@ -65,6 +65,10 @@
     padding-bottom: 0.25em;
 }
 
+.detail__ingredients ul {
+    display: inline;
+}
+
 .detail__ingredients li {
     display: inline;
 }
@@ -97,5 +101,4 @@
     background: #f0624d;
     vertical-align: middle;
     border-radius: 2em;
-    box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
 }
