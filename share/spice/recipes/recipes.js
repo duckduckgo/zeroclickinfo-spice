@@ -1,12 +1,27 @@
 function ddg_spice_recipes(res) {
-    if(!res.matches || !res.matches.length){ return; }
 
-    var normalizeData = function(matches){
-        var normalized = [];
+    console.log("ddg_spice_recipes");
 
-        for(var i=0,m; m=matches[i]; i++){
+    var query = DDG.get_query();
+
+    // delete for spice
+    // if(!res.matches || !res.matches.length){ return; }
+
+    // var normalizeData = function(matches){
+    //     var normalized = [];
+
+        //for(var i=0,m; m=matches[i]; i++){
+
+    var normalize = function(item) {
+
             // skip any results that don't have images:
-            if(!m.imageUrlsBySize){ continue; }
+            if (!item.imageUrlsBySize) {
+                return null;
+            }
+
+            console.log("ddg_spice_recipes normalize()");
+
+            var m = $.extend({}, item);
 
             m.recipeName = m.recipeName.replace(/ recipe/i,"");
             m.url = "http://www.yummly.com/recipe/" + m.id;
@@ -28,8 +43,8 @@ function ddg_spice_recipes(res) {
                 }
 
                 m.ingredientString = m.ingredients.join(", ");
-                m.ingredientDetails = m.ingredients.map(function(ingredient,i){
-                    var refinedTerm = (searchTermContainsRecipe) ? rqd.replace(/ recipe/i,' ' + ingredient + ' recipe') : rqd + ' ' + ingredient,
+                m.ingredientDetails = m.ingredients.map(function(ingredient,i) {
+                    var refinedTerm = (searchTermContainsRecipe) ? query.replace(/ recipe/i,' ' + ingredient + ' recipe') : query + ' ' + ingredient,
                         displayName = ingredient;
 
                     // append comman to all but the last:
@@ -47,14 +62,18 @@ function ddg_spice_recipes(res) {
 
             m.flavors = sortAndFormatFlavors(m.flavors);
 
-            normalized.push(m);
-        }
+            return m;
+
+            // normalized.push(m);
+        // }
 
         // sort by rating:
-        return normalized.sort(function(a,b){
-            return (a.rating > b.rating) ? -1 : 1;
-        });
-    }
+        // return normalized.sort(function(a,b){
+        //     return (a.rating > b.rating) ? -1 : 1;
+        // });
+    // }
+
+    }; // normalize()
 
     /**
      * takes a hash of flavor names + strength [0,1]
@@ -86,7 +105,7 @@ function ddg_spice_recipes(res) {
 
                 sparse.push({
                     name: key,
-                    url: '/?q=' + key + '+' + rqd.replace(/ /g,'+'),
+                    url: '/?q=' + key + '+' + query.replace(/ /g,'+'),
                     strength: Math.round(strength * 100)
                 });
             }
@@ -99,34 +118,39 @@ function ddg_spice_recipes(res) {
         });
     }
 
-    var normalizedData = normalizeData(res.matches),
-        searchContainedRecipe = !!(rqd.match(/recipe/i)),
-        searchTerm = rqd.replace(/recipes|recipe/i,'').trim(),
+    var //normalizedData = normalizeData(res.matches),
+
+        searchContainedRecipe = !!(query.match(/recipe/i)),
+        searchTerm = query.replace(/recipes|recipe/i,'').trim(),
         moreUrl = res.attribution.url + '?q=' + searchTerm; // should replace trigger word or use the same logic that is used for the api call
 
-    Spice.render({
+    Spice.add({
         id: 'recipes',
         name: 'Recipes',
 
-        data: normalizedData,
+        data: res.matches,  //normalizedData,
 
-        trump: searchContainedRecipe,
+        trump: searchContainedRecipe,   // XXX: signal?
 
         meta: {
-            count: normalizedData.length,
+            // count: normalizedData.length,
             total: res.totalMatchCount,
             searchTerm: searchTerm,
             itemType: 'Recipes',
+            detailBg: 'image',
+            detailClass: 'detail--i',
+
+            // TODO: the following metadata will be injected by spice
             sourceIconUrl: DDG.get_asset_path('recipes','yummly.com.ico'),
             sourceUrl: moreUrl,
-            sourceName: 'Yummly',
-            detailBg: 'image',
-            detailClass: 'detail--i'
+            sourceName: 'Yummly'
         },
 
+        normalize: normalize,
+
         templates: {
-            item: 'recipes',
-            detail: 'recipes_detail'
+            item: Spice.recipes.recipes,
+            detail: Spice.recipes.recipes_detail
         }
 
     });
