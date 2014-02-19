@@ -1,7 +1,5 @@
 function ddg_spice_recipes(res) {
 
-    console.log("ddg_spice_recipes");
-
     var query = DDG.get_query();
 
     // delete for spice
@@ -18,8 +16,6 @@ function ddg_spice_recipes(res) {
             if (!item.imageUrlsBySize) {
                 return null;
             }
-
-            console.log("ddg_spice_recipes normalize()");
 
             var m = $.extend({}, item);
 
