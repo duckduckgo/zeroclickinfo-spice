@@ -118,7 +118,7 @@ function ddg_spice_recipes(res) {
     var //normalizedData = normalizeData(res.matches),
 
         searchContainedRecipe = !!(query_encoded.match(/recipe/i)),
-        searchTerm = query_encoded.replace(/recipes|recipe/i,'').trim(),
+        searchTerm = query.replace(/recipes|recipe/i,'').trim(),
         moreUrl = res.attribution.url + '?q=' + searchTerm; // should replace trigger word or use the same logic that is used for the api call
 
     Spice.add({
