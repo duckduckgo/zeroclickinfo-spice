@@ -1,12 +1,8 @@
-console.warn("quixey.js");
-
 (function(env) {
 var quixey_image_domain = "d1z22zla46lb9g.cloudfront.net";
 
 // spice callback function
 env.ddg_spice_quixey = function(api_result) {
-
-    console.warn("ddg_spice_quixey()");
 
     if (api_result.result_count == 0) return;
 
