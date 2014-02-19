@@ -43,7 +43,7 @@ env.ddg_spice_quixey = function(api_result) {
                 price: pricerange(item),
                 abstract: item.short_desc || "",
                 brand: (item.developer && item.developer.name) || "",
-                products_buy: Handlebars.templates.quixey_buy, // should be Spice.quixey.products_buy 
+                products_buy: Spice.quixey_buy,
 
                 // this should be the array of screenshots with captions
                 // and check for the existence of them
