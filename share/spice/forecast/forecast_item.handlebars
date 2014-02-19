@@ -1,20 +1,17 @@
 <div class="tile tile--s">
     {{#if isCurrent}}
     <div class="fe_currently {{#if alerts}}alert{{/if}}">
-        <h5 class="fe_label">Right Now:</h5>
-        <div class="fe_current-wrap">
-            <div class="fe_top">
-              <img class="fe_current_icon" src="{{{image_redirect icon}}}" />
-              <h1 class="fe_temp">{{{temp}}}</h1>
-            </div>
-            <div class="fe_bottom">
-                <h6>{{#if summary}}<span class="fe_summary {{summaryClass}}">{{{summary}}}</span>{{#if feelslike}} <span class="fe_sep">|</span>{{/if}}{{/if}}
-                {{#if feelslike}}<span class="fe_feelslike">{{{feelslike}}}</span>{{/if}}
-                </h6>
-                {{#if wind}}<h6 class="fe_wind">{{{wind}}}</h6>{{/if}}
-                {{#if alerts}}<h6 class="fe_alert  one-line">{{{alerts}}}</h6>{{/if}}
-            </div>
-        </div>
+		<h5 class="fe_label">Right Now:</h5>
+		<div class="fe_current-wrap">
+			<div class="fe_top">
+			  <img class="fe_current_icon" src="{{{image_redirect icon}}}" />
+			  <h1 class="fe_temp">{{{temp}}}</h1>
+			</div>
+			<div class="fe_bottom">
+				{{#if summary}}<h6 class="fe_topline"><span class="fe_summary {{summaryClass}}">{{{summary}}}</span></h6>{{/if}}
+				{{#if wind}}<h6 class="fe_wind">{{{wind}}}</h6>{{/if}}
+			</div>
+		</div>
     </div>
     {{else}}
         <div class="fe_day">

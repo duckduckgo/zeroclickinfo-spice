@@ -13,3 +13,8 @@
 .tile--movie .tile__media__img {
 	width: 100%;
 }
+
+.tile--movie .tile__source,
+.tile--movie:hover .tile__source {
+    color: #aaa;
+}

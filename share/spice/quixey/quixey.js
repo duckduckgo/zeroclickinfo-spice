@@ -132,6 +132,11 @@ env.ddg_spice_quixey = function(api_result) {
         for (var i = 0; i < results.length; i++) {
             app = results[i];
 
+            // make sure it has at least 3 reviews:
+            if(!app.rating_count || app.rating_count < 3){
+                continue;
+            }
+
             // check if this app result is relevant
             if (DDG.isRelevant(app.name.toLowerCase(), skip_words) && app.icon_url) {
                 apps.push(app);
