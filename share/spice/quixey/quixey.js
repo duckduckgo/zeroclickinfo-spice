@@ -11,7 +11,7 @@ env.ddg_spice_quixey = function(api_result) {
 
     if (!relevants) return;
 
-    Spice.render({
+    Spice.add({
         id: 'quixey',
         name: 'Apps',
 
@@ -26,9 +26,31 @@ env.ddg_spice_quixey = function(api_result) {
             sourceIconUrl: DDG.get_asset_path('quixey','quixey_logo.png')
         },
 
+        normalize : function(item) {
+            return {
+                img: make_icon_url(item), 
+                title: item.name,
+                heading: item.name,
+                ratingData: {
+                    stars: item.rating,
+                    reviews: item.rating_count
+                },
+                url_review: item.dir_url,
+                price: pricerange(item),
+                abstract: item.short_desc || "",
+                brand: (item.developer && item.developer.name) || "",
+                products_buy: Spice.quixey_buy,
+
+                // this should be the array of screenshots with captions
+                // and check for the existence of them
+                img_m: quixey_image(item.editions[0].screenshots[0].image_url)
+            };
+        },
+
+
         templates: {
-            item: 'products',
-            detail: 'products_detail'
+            item: DDG.templates.products,
+            detail: DDG.templates.products_detail
         }
     });
 
@@ -124,8 +146,6 @@ env.ddg_spice_quixey = function(api_result) {
             } else if (app.custom && app.custom.hasOwnProperty("category") &&
                        DDG.isRelevant(app.custom.category.toLowerCase(), skip_words) && app.icon_url) {
                             backupApps.push(app);
-            } else{
-                continue;
             }
         }
 
@@ -148,29 +168,28 @@ env.ddg_spice_quixey = function(api_result) {
             res = q.match(categories) ? results : null;
         }
 
-        if(!res || !res.length){ return null; }
 
         // normalize it:
-        res = res.map(function(app){
-            var normal = {
-                img: make_icon_url(app),
-                title: app.name,
-                ratingData: {
-                    stars: app.rating,
-                    reviews: app.rating_count
-                },
-                price: pricerange(app),
-                abstract: app.short_desc || "",
-                brand: (app.developer && app.developer.name) || "",
-                products_buy: Handlebars.templates.quixey_buy // should/will be Spice.quixey.products_buy 
-            };
+        // res = res.map(function(app){
+        //     var normal = {
+        //         img: make_icon_url(app),
+        //         title: app.name,
+        //         ratingData: {
+        //             stars: app.rating,
+        //             reviews: app.rating_count
+        //         },
+        //         price: pricerange(app),
+        //         abstract: app.short_desc || "",
+        //         brand: (app.developer && app.developer.name) || "",
+        //         products_buy: Handlebars.templates.quixey_buy // should/will be Spice.quixey.products_buy 
+        //     };
 
-            // this should be the array of screenshots with captions
-            // and check for the existence of them
-            normal.img_m = quixey_image(app.editions[0].screenshots[0].image_url);
+        //     // this should be the array of screenshots with captions
+        //     // and check for the existence of them
+        //     normal.img_m = quixey_image(app.editions[0].screenshots[0].image_url);
 
-            return normal;
-        });
+        //     return normal;
+        // });
 
         return res;
     }

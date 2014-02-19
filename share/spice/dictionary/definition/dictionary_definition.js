@@ -47,7 +47,7 @@ var ddg_spice_dictionary = {
     render: function(definitions) {
         var word = definitions[0].word;
 
-        Spice.render({
+        Spice.add({
             id: 'definition',
             name: 'Definition',
 
@@ -60,7 +60,7 @@ var ddg_spice_dictionary = {
             },
 
             templates: {
-                summary: 'dictionary_definition'
+                summary: Spice.dictionary_definition.dictionary_definition
             }
         });
 
