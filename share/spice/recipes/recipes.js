@@ -1,6 +1,7 @@
 function ddg_spice_recipes(res) {
 
-    var query = DDG.get_query();
+    var query = DDG.get_query(),
+        query_encoded = DDG.get_query_encoded();
 
     // delete for spice
     // if(!res.matches || !res.matches.length){ return; }
@@ -101,7 +102,7 @@ function ddg_spice_recipes(res) {
 
                 sparse.push({
                     name: key,
-                    url: '/?q=' + key + '+' + query.replace(/ /g,'+'),
+                    url: '/?q=' + key + '+' + query_encoded.replace(/ /g,'+'),
                     strength: Math.round(strength * 100)
                 });
             }
@@ -116,8 +117,8 @@ function ddg_spice_recipes(res) {
 
     var //normalizedData = normalizeData(res.matches),
 
-        searchContainedRecipe = !!(query.match(/recipe/i)),
-        searchTerm = query.replace(/recipes|recipe/i,'').trim(),
+        searchContainedRecipe = !!(query_encoded.match(/recipe/i)),
+        searchTerm = query_encoded.replace(/recipes|recipe/i,'').trim(),
         moreUrl = res.attribution.url + '?q=' + searchTerm; // should replace trigger word or use the same logic that is used for the api call
 
     Spice.add({
