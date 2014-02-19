@@ -56,6 +56,14 @@
     padding-bottom: 1em;
 }
 
+.detail__body--recipe .detail__source .stars {
+    margin-right: 0;
+}
+
+.detail__body--recipe .detail__separator {
+    padding: 0 5px;
+}
+
 .detail__cuisine {
     text-transform: capitalize;
 }
@@ -63,6 +71,10 @@
 .detail__ingredients {
     padding-top: 0.25em;
     padding-bottom: 0.25em;
+}
+
+.detail__ingredients ul {
+    display: inline;
 }
 
 .detail__ingredients li {
@@ -97,5 +109,4 @@
     background: #f0624d;
     vertical-align: middle;
     border-radius: 2em;
-    box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
 }

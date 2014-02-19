@@ -15,7 +15,7 @@ function ddg_spice_amazon(apiResult) {
 
             // add the products_buy template
             // TODO: this is hacky, can it combine with the Spice.templates?
-            this.products_buy = Handlebars.templates.products_amazon_buy;
+            this.products_buy = DDG.templates.products_amazon_buy;
 
             // decrement the numLeft and
             // see if all have returned yet:

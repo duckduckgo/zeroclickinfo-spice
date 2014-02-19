@@ -67,9 +67,7 @@ function ddg_spice_movie (api_result) {
             sourceUrl: 'http://rottentomatoes.com/search/?search=' + searchTerm,
             sourceIcon: true,
             count: api_result.movies.length,
-            total: api_result.total,
-            itemType: 'Movies',
-            searchTerm: searchTerm
+            itemType: 'Movies'
         },
 
         templates: {
