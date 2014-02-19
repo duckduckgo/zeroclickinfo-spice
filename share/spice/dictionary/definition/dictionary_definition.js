@@ -60,7 +60,7 @@ var ddg_spice_dictionary = {
             },
 
             templates: {
-                summary: 'dictionary_definition'
+                summary: Spice.dictionary_definition.dictionary_definition
             }
         });
 
