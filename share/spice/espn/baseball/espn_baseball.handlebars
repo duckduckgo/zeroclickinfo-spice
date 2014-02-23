@@ -20,20 +20,19 @@
         {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
     </div>
     <table>
-        <ul>
-            {{#if runs}}<li><tr><th>Runs:</th><td>{{runs}}</td></tr></li>{{/if}}
-            {{#if RBIs}}<li><tr><th>Runs batted in:</th><td>{{RBIs}}</td></tr></li>{{/if}}
-            {{#if average}}<li><tr><th>Average:</th><td>{{average}}</td></tr></li>{{/if}}
-            {{#if slugAverage}}<li><tr><th>Slug average:</th><td>{{slugAverage}}</td></tr></li>{{/if}}
+        {{#if runs}}<ul><li><tr><th>Runs:</th><td>{{runs}}</td></tr></li></ul>{{/if}}
+        {{#if RBIs}}<ul><li><tr><th>Runs batted in:</th><td>{{RBIs}}</td></tr></li></ul>{{/if}}
+        {{#if average}}<ul><li><tr><th>Average:</th><td>{{average}}</td></tr></li></ul>{{/if}}
+        {{#if slugAverage}}<ul><li><tr><th>Slug average:</th><td>{{slugAverage}}</td></tr></li></ul>{{/if}}
 
             {{#if wins}}
-                <li><tr><th>Record:</th><td>
+                <ul><li><tr><th>Record:</th><td>
                     <span style="color:green">{{wins}}</span>/<span style="color:red">{{losses}}</span>
-                </td></tr></li>
+                </td></tr></li></ul>
             {{/if}}
-            {{#if ERA}}<li><tr><th>ERA:</th><td>{{ERA}}</td></tr></li>{{/if}}
-            {{#if strikeouts}}<li><tr><th>Strikeouts:</th><td>{{strikeouts}}</td></tr></li>{{/if}}
-            {{#if WHIP}}<li><tr><th>WHIP:</th><td>{{WHIP}}</td></tr></li>{{/if}}
+            {{#if ERA}}<ul><li><tr><th>ERA:</th><td>{{ERA}}</td></tr></li></ul>{{/if}}
+            {{#if strikeouts}}<ul><li><tr><th>Strikeouts:</th><td>{{strikeouts}}</td></tr></li></ul>{{/if}}
+            {{#if WHIP}}<ul><li><tr><th>WHIP:</th><td>{{WHIP}}</td></tr></li></ul>{{/if}}
         </ul>
     </table>
 </div>
