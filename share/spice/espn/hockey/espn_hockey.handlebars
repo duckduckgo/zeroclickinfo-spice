@@ -20,21 +20,19 @@
         {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
     </div>
     <table>
-        <ul>
-            {{#if goals}}<li><tr><th>Goals:</th><td>{{goals}}</td></tr></li>{{/if}}
-            {{#if assists}}<li><tr><th>Assists</th><td>{{assists}}</td></tr></li>{{/if}}
-            {{#if plusMinus}}<li><tr><th>Plus/minus:</th><td>{{plusMinus}}</td></tr></li>{{/if}}
-            {{#if averageTimeOnIce}}<li><tr><th>Average time on ice:</th><td>{{averageTimeOnIce}}</td></tr></li>{{/if}}
+        {{#if goals}}<ul><li><tr><th>Goals:</th><td>{{goals}}</td></tr></li></ul>{{/if}}
+        {{#if assists}}<ul><li><tr><th>Assists</th><td>{{assists}}</td></tr></li></ul>{{/if}}
+        {{#if plusMinus}}<ul><li><tr><th>Plus/minus:</th><td>{{plusMinus}}</td></tr></li></ul>{{/if}}
+        {{#if averageTimeOnIce}}<ul><li><tr><th>Average time on ice:</th><td>{{averageTimeOnIce}}</td></tr></li></ul>{{/if}}
 
-            {{#if wins}}
-                <li><tr><th>Record:</th><td>
-                    <span style="color:green">{{wins}}</span>/<span style="color:red">{{losses}}</span>
-                </td></tr></li>
-            {{/if}}
-            {{#if saves}}<li><tr><th>Saves:</th><td>{{saves}}</td></tr></li>{{/if}}
-            {{#if goalsAgainstAverage}}<li><tr><th>Goals against average:</th><td>{{goalsAgainstAverage}}</td></tr></li>{{/if}}
-            {{#if overtimeLosses}}<li><tr><th>Overtime losses:</th><td>{{overtimeLosses}}</td></tr></li>{{/if}}
-        </ul>
+        {{#if wins}}
+            <ul><li><tr><th>Record:</th><td>
+                <span style="color:green">{{wins}}</span>/<span style="color:red">{{losses}}</span>
+            </td></tr></li></ul>
+        {{/if}}
+        {{#if saves}}<ul><li><tr><th>Saves:</th><td>{{saves}}</td></tr></li></ul>{{/if}}
+        {{#if goalsAgainstAverage}}<ul><li><tr><th>Goals against average:</th><td>{{goalsAgainstAverage}}</td></tr></li></ul>{{/if}}
+        {{#if overtimeLosses}}<ul><li><tr><th>Overtime losses:</th><td>{{overtimeLosses}}</td></tr></li></ul>{{/if}}
     </table>
 </div>
 {{/if}}

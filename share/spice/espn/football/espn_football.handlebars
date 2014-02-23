@@ -20,27 +20,25 @@
         {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
     </div>
     <table>
-        <ul>
-            {{#if completionPercentage}}<li><tr><th>Completion percentage:</th><td>{{completionPercentage}}%</td></tr></li>{{/if}}
-            {{#if passingAttempts}}<li><tr><th>Passing attempts:</th><td>{{passingAttempts}}</td></tr></li>{{/if}}
-            {{#if passingYards}}<li><tr><th>Passing yards:</th><td>{{passingYards}}</td></tr></li>{{/if}}
-            {{#if passingTouchdowns}}<li><tr><th>Passing touchdowns:</th><td>{{passingTouchdowns}}</td></tr></li>{{/if}}
+        {{#if completionPercentage}}<ul><li><tr><th>Completion percentage:</th><td>{{completionPercentage}}%</td></tr></li></ul>{{/if}}
+        {{#if passingAttempts}}<ul><li><tr><th>Passing attempts:</th><td>{{passingAttempts}}</td></tr></li></ul>{{/if}}
+        {{#if passingYards}}<ul><li><tr><th>Passing yards:</th><td>{{passingYards}}</td></tr></li></ul>{{/if}}
+        {{#if passingTouchdowns}}<ul><li><tr><th>Passing touchdowns:</th><td>{{passingTouchdowns}}</td></tr></li></ul>{{/if}}
 
-            {{#if rushingAttempts}}<li><tr><th>Rushing attempts:</th><td>{{rushingAttempts}}</td></tr></li>{{/if}}
-            {{#if rushingYards}}<li><tr><th>Rushing yards:</th><td>{{rushingYards}}</td></tr></li>{{/if}}
-            {{#if longRushing}}<li><tr><th>Long rushing:</th><td>{{longRushing}}</td></tr></li>{{/if}}
-            {{#if yardsPerRushAttempt}}<li><tr><th>Yards per rush attempt:</th><td>{{yardsPerRushAttempt}}</td></tr></li>{{/if}}
+        {{#if rushingAttempts}}<ul><li><tr><th>Rushing attempts:</th><td>{{rushingAttempts}}</td></tr></li></ul>{{/if}}
+        {{#if rushingYards}}<ul><li><tr><th>Rushing yards:</th><td>{{rushingYards}}</td></tr></li></ul>{{/if}}
+        {{#if longRushing}}<ul><li><tr><th>Long rushing:</th><td>{{longRushing}}</td></tr></li></ul>{{/if}}
+        {{#if yardsPerRushAttempt}}<ul><li><tr><th>Yards per rush attempt:</th><td>{{yardsPerRushAttempt}}</td></tr></li></ul>{{/if}}
 
-            {{#if receptions}}<li><tr><th>Receptions:</th><td>{{receptions}}</td></tr></li>{{/if}}
-            {{#if receivingYards}}<li><tr><th>Receiving yards:</th><td>{{receivingYards}}</td></tr></li>{{/if}}
-            {{#if fumbles}}<li><tr><th>Fumbles:</th><td>{{fumbles}}</td></tr></li>{{/if}}
-            {{#if receivingTouchdowns}}<li><tr><th>Receiving touchdowns:</th><td>{{receivingTouchdowns}}</td></tr></li>{{/if}}
+        {{#if receptions}}<ul><li><tr><th>Receptions:</th><td>{{receptions}}</td></tr></li></ul>{{/if}}
+        {{#if receivingYards}}<ul><li><tr><th>Receiving yards:</th><td>{{receivingYards}}</td></tr></li></ul>{{/if}}
+        {{#if fumbles}}<ul><li><tr><th>Fumbles:</th><td>{{fumbles}}</td></tr></li></ul>{{/if}}
+        {{#if receivingTouchdowns}}<ul><li><tr><th>Receiving touchdowns:</th><td>{{receivingTouchdowns}}</td></tr></li></ul>{{/if}}
 
-            {{#if totalTackles}}<li><tr><th>Total tackles:</th><td>{{totalTackles}}</td></tr></li>{{/if}}
-            {{#if passesDefended}}<li><tr><th>Passes defended:</th><td>{{passesDefended}}</td></tr></li>{{/if}}
-            {{#if fumblesForced}}<li><tr><th>Fumbles forced:</th><td>{{fumblesForced}}</td></tr></li>{{/if}}
-            {{#if interceptions}}<li><tr><th>Interceptions:</th><td>{{interceptions}}</td></tr></li>{{/if}}
-        </ul>
+        {{#if totalTackles}}<ul><li><tr><th>Total tackles:</th><td>{{totalTackles}}</td></tr></li></ul>{{/if}}
+        {{#if passesDefended}}<ul><li><tr><th>Passes defended:</th><td>{{passesDefended}}</td></tr></li></ul>{{/if}}
+        {{#if fumblesForced}}<ul><li><tr><th>Fumbles forced:</th><td>{{fumblesForced}}</td></tr></li></ul>{{/if}}
+        {{#if interceptions}}<ul><li><tr><th>Interceptions:</th><td>{{interceptions}}</td></tr></li></ul>{{/if}}
     </table>
 </div>
 {{/if}}

@@ -20,12 +20,10 @@
         {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
     </div>
     <table>
-        <ul>
-            {{#if averagePointsPerGame}}<li><tr><th>Average Points Per Game:</th><td>{{averagePointsPerGame}}</td></tr></li>{{/if}}
-            {{#if threePointPercentage}}<li><tr><th>3-Point Field Goal Percentage (3P%):</th><td>{{threePointPercentage}}%</td></tr></li>{{/if}}
-            {{#if fieldGoalPercentage}}<li><tr><th>Field Goal Percentage (FG%):</th><td>{{fieldGoalPercentage}}%</td></tr></li>{{/if}}
-            {{#if freeThrowPercentage}}<li><tr><th>Free Throw Percentage (FT%):</th><td>{{freeThrowPercentage}}%</td></tr></li>{{/if}}
-        </ul>
+        {{#if averagePointsPerGame}}<ul><li><tr><th>Average Points Per Game:</th><td>{{averagePointsPerGame}}</td></tr></li></ul>{{/if}}
+        {{#if threePointPercentage}}<ul><li><tr><th>3-Point Field Goal Percentage (3P%):</th><td>{{threePointPercentage}}%</td></tr></li></ul>{{/if}}
+        {{#if fieldGoalPercentage}}<ul><li><tr><th>Field Goal Percentage (FG%):</th><td>{{fieldGoalPercentage}}%</td></tr></li></ul>{{/if}}
+        {{#if freeThrowPercentage}}<ul><li><tr><th>Free Throw Percentage (FT%):</th><td>{{freeThrowPercentage}}%</td></tr></li></ul>{{/if}}
     </table>
 </div>
 {{/if}}
