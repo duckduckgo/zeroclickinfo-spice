@@ -22,6 +22,7 @@ function ddg_spice_septa(api_result) {
 
 Handlebars.registerHelper ('delay', function(delay) {
     if (delay == "On time") return "";
+    if (delay == "Suspended") return " (Suspended) ";
     var parts = delay.split(" ");
     var delay = parts[0] + " minute" + (parts[0] > 1 ? "s" : "") + " late";
     return " (" + delay + ")";
