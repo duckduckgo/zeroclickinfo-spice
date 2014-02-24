@@ -2,9 +2,12 @@ function ddg_spice_ruby_gems(api_result) {
     
     if (api_result.length === 0) return;
 
-    var query = DDG.get_query()
-    query = query.replace(/\s*(?:(?:ruby(?:gems?)?)|(?:gems?))\s*/i, '');
+    // Get the original query.
+    var script = $('[src*="/js/spice/ruby_gems/"]')[0];
+    var source = $(script).attr("src");
+    var query = source.match(/ruby_gems\/([^\/]*)/)[1];
 
+    // Display the instant answer.
     Spice.render({
         data             : api_result,
         header1          : query + " (RubyGems)",
@@ -15,6 +18,7 @@ function ddg_spice_ruby_gems(api_result) {
         template_options : {
             items: api_result,
             show: 5,
+	    max: 10,
             template_item: 'ruby_gems'
         },
         force_no_fold    : true,

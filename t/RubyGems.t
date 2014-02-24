@@ -12,11 +12,6 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::RubyGems'
     ),
-    'ruby xml' => test_spice(
-        '/js/spice/ruby_gems/xml',
-        call_type => 'include',
-        caller => 'DDG::Spice::RubyGems'
-    ),
 );
 
 done_testing;
