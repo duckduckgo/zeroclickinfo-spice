@@ -10,7 +10,7 @@ category 'programming';
 attribution github => ['https://github.com/koosha--', 'koosha--'],
             twitter => ['https://github.com/_koosha_', '_koosha_'];
 
-triggers startend => 'rubygem', 'rubygems', 'ruby gems', 'ruby gem', 'gem install';
+triggers startend => 'rubygem', 'rubygems', 'ruby gems', 'ruby gem', 'gem install', 'gem';
 spice to => 'http://rubygems.org/api/v1/search.json?query=$1&callback={{callback}}';
 spice wrap_jsonp_callback => 1;
 
