@@ -89,7 +89,6 @@
 
 .detail__flavors {
     width: 70%;
-    padding-bottom: 1em;
 }
 
 .detail__flavors__name {
@@ -110,4 +109,8 @@
     background: #f0624d;
     vertical-align: middle;
     border-radius: 2em;
+}
+
+.detail__body--recipe .detail__links__btn {
+    margin-top: 1em;
 }
