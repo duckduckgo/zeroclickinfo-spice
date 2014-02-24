@@ -18,7 +18,10 @@ spice to   => 'http://api.metacpan.org/v0/module/$1?callback={{callback}}';
 triggers startend => "cpan", "cpanm", "metacpan", "meta cpan";
 
 handle remainder => sub {
-    return $_ if $_;
+    if ($_) {
+        $_ =~ s/-/::/g;
+        return $_;
+    }
     return;
 };
 1;
