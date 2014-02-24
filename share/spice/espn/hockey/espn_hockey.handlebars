@@ -20,19 +20,19 @@
         {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
     </div>
     <table>
-        {{#if goals}}<ul><li><tr><th>Goals:</th><td>{{goals}}</td></tr></li></ul>{{/if}}
-        {{#if assists}}<ul><li><tr><th>Assists</th><td>{{assists}}</td></tr></li></ul>{{/if}}
-        {{#if plusMinus}}<ul><li><tr><th>Plus/minus:</th><td>{{plusMinus}}</td></tr></li></ul>{{/if}}
-        {{#if averageTimeOnIce}}<ul><li><tr><th>Average time on ice:</th><td>{{averageTimeOnIce}}</td></tr></li></ul>{{/if}}
+        {{#if goals}}<tr><th>&bull; Goals:</th><td>{{goals}}</td></tr>{{/if}}
+        {{#if assists}}<tr><th>&bull; Assists</th><td>{{assists}}</td></tr>{{/if}}
+        {{#if plusMinus}}<tr><th>&bull; Plus/minus:</th><td>{{plusMinus}}</td></tr>{{/if}}
+        {{#if averageTimeOnIce}}<tr><th>&bull; Average time on ice:</th><td>{{averageTimeOnIce}}</td></tr>{{/if}}
 
         {{#if wins}}
-            <ul><li><tr><th>Record:</th><td>
+            <tr><th>&bull; Record:</th><td>
                 <span style="color:green">{{wins}}</span>/<span style="color:red">{{losses}}</span>
-            </td></tr></li></ul>
+            </td></tr>
         {{/if}}
-        {{#if saves}}<ul><li><tr><th>Saves:</th><td>{{saves}}</td></tr></li></ul>{{/if}}
-        {{#if goalsAgainstAverage}}<ul><li><tr><th>Goals against average:</th><td>{{goalsAgainstAverage}}</td></tr></li></ul>{{/if}}
-        {{#if overtimeLosses}}<ul><li><tr><th>Overtime losses:</th><td>{{overtimeLosses}}</td></tr></li></ul>{{/if}}
+        {{#if saves}}<tr><th>&bull; Saves:</th><td>{{saves}}</td></tr>{{/if}}
+        {{#if goalsAgainstAverage}}<tr><th>&bull; Goals against average:</th><td>{{goalsAgainstAverage}}</td></tr>{{/if}}
+        {{#if overtimeLosses}}<tr><th>&bull; Overtime losses:</th><td>{{overtimeLosses}}</td></tr>{{/if}}
     </table>
 </div>
 {{/if}}
