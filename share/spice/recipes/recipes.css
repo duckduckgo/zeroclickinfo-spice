@@ -62,6 +62,7 @@
 
 .detail__body--recipe .detail__separator {
     padding: 0 5px;
+    color: #c5c5c5;
 }
 
 .detail__cuisine {
