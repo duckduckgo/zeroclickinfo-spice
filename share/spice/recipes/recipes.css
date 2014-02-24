@@ -60,6 +60,10 @@
     margin-right: 0;
 }
 
+.detail__body--recipe .stars--unrated .star {
+    color: #d0d0d0;
+}
+
 .detail__body--recipe .detail__separator {
     padding: 0 5px;
     color: #c5c5c5;
