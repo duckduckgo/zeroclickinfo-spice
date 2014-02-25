@@ -59,7 +59,17 @@ var ddg_spice_dictionary = {
                 source_url : "http://www.wordnik.com/words/" + word
             },
 
+            relevancy: [
+                {   
+                    key: 'word',
+                    // min_length: 1,
+                    // strict: true,
+                    special: function(v) { return !!(DDG.get_query().match(new RegExp(v))); }
+                }
+            ],
+
             templates: {
+                item: Spice.dictionary_definition.dictionary_definition,
                 summary: Spice.dictionary_definition.dictionary_definition
             }
         });
