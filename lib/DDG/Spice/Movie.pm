@@ -25,7 +25,7 @@ handle query_lc => sub {
     # this makes sure that only space deliminated words fire this spice
     my $input = $_;
     map { return $input if $input =~ s/(^|\s)$_(\s|$)// and $input ne '' } @triggers;
-    return "$_" if $_;
+    return; 
 };
 
 1;
