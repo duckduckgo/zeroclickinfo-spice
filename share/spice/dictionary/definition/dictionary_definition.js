@@ -62,9 +62,9 @@ var ddg_spice_dictionary = {
             relevancy: [
                 {   
                     key: 'word',
-                    // min_length: 1,
-                    // strict: true,
-                    special: function(v) { return !!(DDG.get_query().match(new RegExp(v))); }
+                    min_length: word.length,
+                    strict: false
+                    // special: function(v) { return !!(DDG.get_query().match(new RegExp(v))); }
                 }
             ],
 
