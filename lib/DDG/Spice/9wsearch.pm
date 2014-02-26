@@ -12,9 +12,8 @@ category 'finance';
 topics 'economy_and_finance';
 icon_url 'http://www.9wsearch.com/media/images/9wLogo.png';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/9wsearch.pm';
-#attribution twitter => 'nelas',
-#			github => ['nelas', 'Bruno C. Vellutini'],
-#			web => ['http://organelas.com/', 'organelas.com'];
+attribution twitter => 'Aparna',
+			github => ['aparna-hexagon', 'Aparna'];
 
 triggers startend => "information","9wsearch","description","company", "company information", "company description";
 spice to => 'http://www.9wsearch.com/widget/description.php?arg=$1';
