@@ -27,6 +27,11 @@ env.ddg_spice_quixey = function(api_result) {
         },
 
         normalize : function(item) {
+
+            // skip ones that have less than three reviews
+            if (!item.rating_count || item.rating_count < 3)
+                return null;
+
             return {
                 img: make_icon_url(item), 
                 title: item.name,
