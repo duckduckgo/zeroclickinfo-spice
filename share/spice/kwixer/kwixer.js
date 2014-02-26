@@ -1,7 +1,5 @@
-
-    
 function ddg_spice_kwixer(api_response) {
-    if (!api_response || api_response.length==0 ) return;
+    if (!api_response || api_response.length ===0 ) return;
 
     var skipArray = ['movie with','movies with', 'movies starring','film with','films with','films starring','film starring','movies featuring','films featuring','movies with the',' the '];
     var finalArray = [];
@@ -9,10 +7,10 @@ function ddg_spice_kwixer(api_response) {
     var ddg_spice_kwixer_query = DDG.get_query();
     var remainder = ddg_spice_kwixer_query.toLowerCase();
     
-    for(var index in skipArray)
+    for(var it in skipArray)
     {
-        if(skipArray.hasOwnProperty(index))
-            remainder = remainder.replace(skipArray[index],"");
+        if(skipArray.hasOwnProperty(it))
+            remainder = remainder.replace(skipArray[it],"");
     }
     remainder = remainder.replace(/^\s+|\s+$/g, '');
 
@@ -30,28 +28,14 @@ function ddg_spice_kwixer(api_response) {
             var item = api_response[index];
             var isRelevant = false;
             var actors = item.ResourceDetails2.toLowerCase();
-            //workaound for DDG.isRelevant
-            //mainly to ignore queries like "movies featuring people" this will only check if there's a match with at least one actor
-            var actorArray = actors.split(";"); 
             
-            /*
-            for (var index in actorArray) {
-                if(actorArray.hasOwnProperty(index)) {    
-                    if(DDG.isRelevant(actorArray[index], ['movies', 'with','starring','film','films','featuring'], 4, true)) {
-                        isRelevant = true;
-                        break;
-                    }
-                }
-            }
-            */
-            
-            for (var index in remainderArray)
+            for (var i in remainderArray)
             {
-                if(remainderArray.hasOwnProperty(index))
+                if(remainderArray.hasOwnProperty(i))
                 {
                     //just checking if there's one match or not, the api is already intelligent enough to ignore "and" etc..
                     //we need to match actors for now, because the API's default search searches also by general context.
-                    if(actors.indexOf( remainderArray[index]) != -1)
+                    if(actors.indexOf( remainderArray[i]) != -1)
                     {
                         isRelevant = true;
                         break;
@@ -61,7 +45,7 @@ function ddg_spice_kwixer(api_response) {
             
             if(isRelevant)
             {
-                if(!item.ResourceImageUrl || item.ResourceImageUrl.length == 0 || (item.ResourceImageUrl.indexOf(".jpeg") == -1 && item.ResourceImageUrl.indexOf(".jpg") == -1 && item.ResourceImageUrl.indexOf(".png") == -1))
+                if(!item.ResourceImageUrl || item.ResourceImageUrl.length === 0 || (item.ResourceImageUrl.indexOf(".jpeg") == -1 && item.ResourceImageUrl.indexOf(".jpg") == -1 && item.ResourceImageUrl.indexOf(".png") == -1))
                 {
                     item.ResourceImageUrl= "https://kwix.blob.core.windows.net/icons/icon-watching-vanilla.png";
                     itemsToInsertAtTheEnd.push(item);
@@ -79,7 +63,7 @@ function ddg_spice_kwixer(api_response) {
         finalArray = finalArray.concat(itemsToInsertAtTheEnd);
     }
 
-    if (!finalArray || finalArray.length==0 ) return;
+    if (!finalArray || finalArray.length ===0 ) return;
 
     Spice.render({
         header1                  : ddg_spice_kwixer_query + ' (Kwixer)',
