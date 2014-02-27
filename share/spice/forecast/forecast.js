@@ -39,14 +39,21 @@ function ddg_spice_forecast(r) {
   
   // Set up some stuff we'll need
   var $container = $('#spice_forecast'),
-      units = (r.flags && r.flags.units) || 'us',
       unit_labels = {
         'us': {speed: 'mph', temperature: 'F'},
         'si': {speed: 'm/s', temperature: 'C'},
         'ca': {speed: 'km/h', temperature: 'C'},
         'uk': {speed: 'mph', temperature: 'C'},
-      }
-  
+	'uk2': {speed: 'mph', temperature: 'C'}
+      },
+      units = r.flags && r.flags.units;
+
+  // Check if the unit that we got is actually in the hash.
+  // If the API changes the r.flags or r.flags.units, it will break everything.
+  if(!(units in unit_labels)) {
+      units = 'us';
+  }
+
   // Skycons (static version of these: http://darkskyapp.github.io/skycons/)
   var set_skycons = function(elem_id, type) {
     var $elem = $('#'+elem_id),
@@ -95,6 +102,7 @@ function ddg_spice_forecast(r) {
   }
   
   // Build the current conditions
+  console.log(unit_labels, units);
   var build_currently = function(f) {
     var now = new Date().getTime() / 1000,
         hourly = f.hourly.data,
