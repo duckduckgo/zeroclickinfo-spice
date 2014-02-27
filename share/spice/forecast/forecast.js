@@ -102,7 +102,6 @@ function ddg_spice_forecast(r) {
   }
   
   // Build the current conditions
-  console.log(unit_labels, units);
   var build_currently = function(f) {
     var now = new Date().getTime() / 1000,
         hourly = f.hourly.data,
