@@ -23,4 +23,14 @@ ddg_spice_test(
     }, @triggers,
 );
 
+ddg_spice_test(
+    [ qw(DDG::Spice::MetaCPAN) ],
+    map { "$_ App-DuckPAN" => test_spice(
+        '/js/spice/meta_cpan/App-DuckPAN',
+        call_type => 'include',
+        caller => 'DDG::Spice::MetaCPAN',
+        )
+    }, @triggers,
+);
+
 done_testing;
