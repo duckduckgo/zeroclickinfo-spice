@@ -1,7 +1,11 @@
-{{rv "abstract"}}
-{{rv "author"}}
-{{rv "version"}}
-{{#rd "Description"}}
-    {{condense description maxlen="340" truncation="..."}}
-{{/rd}}
+{{#if abstract}}
+    {{#rd "Abstract"}}{{abstract}}{{/rd}}
+{{/if}}
+{{#rd "Author"}}{{author}}{{/rd}}
+{{#rd "Version"}}{{version}}{{/rd}}
+{{#if description}}
+    {{#rd "Description"}}
+        {{condense description maxlen="340" truncation="..."}}
+    {{/rd}}
+{{/if}}
 
