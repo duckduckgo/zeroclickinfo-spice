@@ -1,4 +1,6 @@
 function ddg_spice_book(api_result) {     
+    "use strict";
+
     // Return if no book is returned 
     if (!api_result || api_result.books.length == 0) {
 	return;
@@ -104,6 +106,8 @@ function ddg_spice_book(api_result) {
 }
 
 Handlebars.registerHelper("prettyDate", function(date) {
+    "use strict";
+
     if(date) {
 	date = date.split("-")
 	var d = new Date(date[0], date[1]-1, date[2]);
