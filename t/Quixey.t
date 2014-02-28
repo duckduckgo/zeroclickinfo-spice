@@ -25,6 +25,13 @@ my @t = (
     custom_id                => '2414062669'
     },
 
+    'quixey angry birds' => {
+    query                    => 'angry%20birds',
+    platform_ids             => uri_escape (encode_json [(2004, 2005, 2008, 2015, 8556073)]),
+    price                    => '999999',
+    custom_id                => '2414062669'
+    },
+
     # Android apps
     'android calculator app' => {
     query                    => 'calculator',
@@ -67,6 +74,13 @@ my @t = (
     platform_ids             => uri_escape (encode_json [(2015)]),
     price                    => '999999',
     custom_id                => '2414062669'
+    },
+
+    'tiny piano for iphone' => {
+    query                    => 'tiny%20piano',
+    platform_ids             => uri_escape (encode_json [(2004)]),
+    price                    => '999999',
+    custom_id                => '78989893'
     },
 
     # Blackberry apps
