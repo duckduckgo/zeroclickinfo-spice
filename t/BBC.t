@@ -12,10 +12,14 @@ my $today = $dt->year . '/' . $dt->month . '/' . $dt->day;
 $dt->add(days => 1);
 my $tomorrow = $dt->year . '/' . $dt->month . '/' . $dt->day;
 
+$dt->subtract(days => 2);
+my $yesterday = $dt->year . '/' . $dt->month . '/' . $dt->day;
+
 my %q = (
   "what's on bbc 3"               => "bbcthree/$today",
   "bbc radio 1 schedule"          => "radio1/england/$today",
   "bbc two schedule for tomorrow" => "bbctwo/england/$tomorrow",
+  "bbc two schedule yesterday"    => "bbctwo/england/$yesterday",
   "what's on bbc"                 => "bbcone/london/$today",
   "what's on bbc three"           => "bbcthree/$today",
 );
