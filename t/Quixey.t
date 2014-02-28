@@ -18,6 +18,20 @@ my @t = (
     custom_id                => '2414062669'
     },
 
+    'flight tracking app'    => {
+    query                    => 'flight%20tracking',
+    platform_ids             => uri_escape (encode_json [(2004, 2005, 2008, 2015, 8556073)]),
+    price                    => '999999',
+    custom_id                => '2414062669'
+    },
+
+    'free calculator app'    => {
+    query                    => 'calculator',
+    platform_ids             => uri_escape (encode_json [(2004, 2005, 2008, 2015, 8556073)]),
+    price                    => '0',
+    custom_id                => '2414062669'
+    },
+
     'free angry birds app'   => {
     query                    => 'angry%20birds',
     platform_ids             => uri_escape (encode_json [(2004, 2005, 2008, 2015, 8556073)]),
