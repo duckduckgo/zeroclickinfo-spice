@@ -12,6 +12,10 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Canistreamit'
     ),
+    'Can I stream The Dark Knight' => test_spice(
+        '/js/spice/canistreamit/The%20Dark%20Knight',
+        caller    => 'DDG::Spice::Canistreamit',
+    ),
 );
 
 done_testing;
