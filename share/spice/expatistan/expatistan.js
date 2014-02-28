@@ -1,4 +1,6 @@
 function ddg_spice_expatistan(api_result) {
+    "use strict";
+
     if(!api_result || api_result.status !== 'OK') {
         return;
     }
