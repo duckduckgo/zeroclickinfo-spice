@@ -6,21 +6,14 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-    [qw( DDG::Spice::Aur )],
-    'aur powermate' => test_spice(
-        '/js/spice/aur/powermate',
-        call_type => 'include',
-        caller => 'DDG::Spice::Aur'
+    [qw( DDG::Spice::Bootic )],
+    'bootic watches' => test_spice(
+        '/js/spice/bootic/watches',
+        caller => 'DDG::Spice::Bootic',
     ),
-    'archlinux package powermate' => test_spice(
-        '/js/spice/aur/powermate',
-        call_type => 'include',
-        caller => 'DDG::Spice::Aur'
-    ),
-    'arch package powermate' => test_spice(
-        '/js/spice/aur/powermate',
-        call_type => 'include',
-        caller => 'DDG::Spice::Aur'
+    'bootic irobot' => test_spice(
+        '/js/spice/bootic/irobot',
+        caller => 'DDG::Spice::Bootic',
     ),
 );
 
