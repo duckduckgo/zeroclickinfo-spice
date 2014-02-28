@@ -6,6 +6,11 @@ function ddg_spice_xkcd_display(api_result) {
 
     //if we are looking at the latest comic, don't display the 'next' link
     api_result.has_next = parseInt(data.num) > parseInt(api_result.num);
+
+    // Add exception for comic 1335.
+    if(api_result.num === 1335) {
+	api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
+    }
     
     Spice.render({
       data             : api_result,
