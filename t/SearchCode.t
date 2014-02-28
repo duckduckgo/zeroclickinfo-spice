@@ -6,11 +6,18 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-    [qw( DDG::Spice::CodeSearch )],
-    'perl code' => test_spice(
-        '/js/spice/code_search/lang%3Aperl%20',
-        call_type => 'include',
-        caller => 'DDG::Spice::CodeSearch'
+    [qw( DDG::Spice::SearchCode )],
+    'perl next' => test_spice(
+        '/js/spice/search_code/perl%20next',
+        caller => 'DDG::Spice::SearchCode'
+    ),
+    'underscore.js bind' => test_spice(
+        '/js/spice/search_code/underscore.js%20bind',
+        caller => 'DDG::Spice::SearchCode',
+    ),
+    'php print_r' => test_spice(
+        '/js/spice/search_code/php%20print_r',
+        caller => 'DDG::Spice::SearchCode',
     ),
 );
 
