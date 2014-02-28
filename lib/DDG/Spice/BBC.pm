@@ -5,7 +5,7 @@ use DDG::Spice;
 use DateTime;
 
 primary_example_queries "what's on bbc";
-secondary_example_queries "what's on bbc three", "bbc two yesterday";
+secondary_example_queries "what's on bbc three", "bbc two schedule yesterday";
 description "Find out what's on a BBC show";
 name "BBC";
 icon_url "/i/bbc.co.uk.ico";
