@@ -1,5 +1,6 @@
-
 function ddg_spice_bbc(api_result) {
+    "use strict";
+
     var query = DDG.get_query(),
         broadcasts = api_result.schedule.day.broadcasts,
         programmes = [],
@@ -33,8 +34,9 @@ function ddg_spice_bbc(api_result) {
 
     for (var i=0; i<broadcasts.length; i++) {
         var end = new Date(broadcasts[i].end);
-        if (end > now || inPast)
+        if (end > now || inPast) {
             programmes.push(broadcasts[i]);
+        }
     }
 
     header_service_type = api_result.schedule.service.type == "radio" ? "Radio" : "TV";
@@ -59,14 +61,18 @@ function ddg_spice_bbc(api_result) {
 
 // Find the start and end of a programme and format appropriately
 Handlebars.registerHelper("time", function() {
+    "use strict";
+
     var start = new Date(this.start),
         end = new Date(this.end);
 
     function standard_time(time) {
         var hour = time.getHours() % 12;
-        if (hour == 0) hour = 1;
+        if (hour == 0) {
+          hour = 1;
+        }
 
-        var min = time.getMinutes() > 9 ? time.getMinutes() : "0" + time.getMinutes();
+        var min = ((time.getMinutes() > 9) ? time.getMinutes() : "0") + time.getMinutes();
 
         return hour + ":" + min + (time.getHours() > 12 ? "PM" : "AM");
     }
@@ -76,6 +82,8 @@ Handlebars.registerHelper("time", function() {
 
 //Find the duration of a programme and return it
 Handlebars.registerHelper("duration", function() {
+    "use strict";
+
     var pluralise = function(n) {
         return n > 1 ? "s" : "";
     };
@@ -96,6 +104,8 @@ Handlebars.registerHelper("duration", function() {
 
 // Find the series URL and return it, or if it is not part of a series return the normal url
 Handlebars.registerHelper("programme_url", function() {
+    "use strict";
+
     var programme = this.programme;
     while(programme.programme != null && programme.programme.pid != null) {
         programme = programme.programme;
@@ -106,27 +116,29 @@ Handlebars.registerHelper("programme_url", function() {
 
 // Find the programme image and return it
 Handlebars.registerHelper("image", function() {
+    "use strict";
+
     return "http://ichef.bbci.co.uk/images/ic/272x153/" + (this.programme.image ? this.programme.image.pid :  "legacy/episode/"+this.programme.pid) + ".jpg";
 });
 
 
 // Check if original air date is before today
 Handlebars.registerHelper("checkAirDate", function(options) {
+    "use strict";
+
     var d = new Date(this.programme.first_broadcast_date),
         now = new Date();
 
-    if (d < now) {
-        return options.fn(this);
-    } else {
-        return false;
-    }
+    return (d < now) ? options.fn(this) : false;
 });
 
 // Find the programme's initial broadcast date/time and return it
 Handlebars.registerHelper("initial_broadcast", function() {
+    "use strict";
+
     var aired = DDG.getDateFromString(this.programme.first_broadcast_date),
         days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
         months = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
 
-    return days[aired.getDay()] + ", " + months[aired.getMonth()] + " " + aired.getDate() + ", " + aired.getFullYear()
+    return days[aired.getDay()] + ", " + months[aired.getMonth()] + " " + aired.getDate() + ", " + aired.getFullYear();
 });
