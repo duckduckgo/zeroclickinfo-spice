@@ -1,4 +1,5 @@
 function ddg_spice_automeme ( api_result ) {
+  "use strict";
 	
 	if (api_result.length) {
 
