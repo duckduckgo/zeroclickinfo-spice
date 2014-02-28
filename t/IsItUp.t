@@ -27,6 +27,10 @@ ddg_spice_test(
     # currently support unicode or ssl
     'is føtex.dk up?' => undef,
     'is https://føtex.dk up?' => undef,
+    'is wolframalpha.com working?' => test_spice(
+        '/js/spice/is_it_up/wolframalpha.com',
+        caller    => 'DDG::Spice::IsItUp',
+    ),
 );
 
 done_testing;

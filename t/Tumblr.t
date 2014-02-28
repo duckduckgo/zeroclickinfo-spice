@@ -12,6 +12,10 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Tumblr'
     ),
+    'tumblr flowers' => test_spice(
+        '/js/spice/tumblr/flowers',
+        caller    => 'DDG::Spice::Tumblr',
+    ),
 );
 
 done_testing;
