@@ -10,7 +10,7 @@ function ddg_spice_ruby_gems(api_result) {
     // Display the instant answer.
     Spice.render({
         data             : api_result,
-        header1          : query + " (RubyGems)",
+        header1          : decodeURIComponent(query) + " (RubyGems)",
         source_url       : 'http://rubygems.org/search?utf8=%E2%9C%93&query=' + encodeURIComponent(query),
         source_name      : 'RubyGems',
         spice_name       : 'ruby_gems',
