@@ -1,4 +1,6 @@
 function ddg_spice_smbc(api_result) {
+    "use strict";
+
     if(!api_result || !api_result.items || api_result.items < 2) {
         return;
     }
