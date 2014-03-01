@@ -1,5 +1,9 @@
 function ddg_spice_npm (api_result) {
-	if (api_result.error) return
+  "use strict";
+
+	if (api_result.error) {
+    return;
+  }
 
     Spice.render({
          data              : api_result,
