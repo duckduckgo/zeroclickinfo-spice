@@ -1,4 +1,5 @@
 function ddg_spice_reddit(api_result) {
+    "use strict";
 
     if(!api_result || !api_result.data || !api_result.data.children || api_result.data.children.length === 0) {
         return;
