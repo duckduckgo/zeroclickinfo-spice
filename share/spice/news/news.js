@@ -108,6 +108,8 @@ function ddg_spice_news(api_result) {
 
 // Get's the favicon of a given URL.
 Handlebars.registerHelper("getIcon", function(url) {
+    "use strict";
+
     // Add "p=1" to enable the default icon.
     return Handlebars.helpers.favicon.call({source_url: url, forces: {}}).replace(/(icons\.duckduckgo\.com)\/i/, "$1/ip");
 });
@@ -116,7 +118,9 @@ Handlebars.registerHelper("getIcon", function(url) {
 // It converts things like: http://blogs.wsj.com/law/2013/11/14/google-wins-dismissal-of-book-scanning-suit/?mod=smallbusiness/
 // Into: blogs.wsj.com
 Handlebars.registerHelper("getDomain", function(url) {
-    re = new RegExp('^.*?\/\/([^\/\?\:\#]+)');
+    "use strict";
+
+    var re = new RegExp('^.*?\/\/([^\/\?\:\#]+)');
     if(re.test(url)) {
 	return RegExp.$1;
     }
@@ -125,6 +129,8 @@ Handlebars.registerHelper("getDomain", function(url) {
 // Compresses the relative time given by the API.
 // Converts 1&nbsp;day,&nbsp;19hr&nbsp;ago to 1d.
 Handlebars.registerHelper("shortenTime", function(date) {
+    "use strict";
+
     date = date.split(",");
 
     var result = date[0];
@@ -140,6 +146,8 @@ Handlebars.registerHelper("shortenTime", function(date) {
 // It makes sure that we're not trimming over words,
 // and it automatically appends a closing tag if we're missing one.
 Handlebars.registerHelper("ellipsis", function(text, limit) {
+    "use strict";
+
     var result = [];
     var count = 0;
     var words = text.split(" ");
