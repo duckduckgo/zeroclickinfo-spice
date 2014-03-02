@@ -10,13 +10,14 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
       start_time = null,
       last_lap = null,
       interval_id = null,
+      lap_num = 1,
       old_time = 0;
 
   //add zeros to the end of the number
   function padZeros(n, len){
     var s = n.toString();
     while (s.length < len){
-      s = '0' + s
+      s = '0' + s;
     }
     return s;
   }
@@ -28,8 +29,8 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     var mins = Math.floor(t / (1000*60));
     t = t % (1000*60);
     var secs = Math.floor(t / 1000);
-    t = t % 1000;
-    return padZeros(hrs, 2) + ":" + padZeros(mins, 2) + ":" + padZeros(secs, 2) + '.' + padZeros(t, 3)
+    t = (t % 1000).toString().substring(0, 2);
+    return padZeros(hrs, 2) + ":" + padZeros(mins, 2) + ":" + padZeros(secs, 2) + '.' + padZeros(t, 2);
   }
 
   //called on every interval
@@ -39,42 +40,48 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     return t;
   }
 
+  //trigger for lap button (extracted so the stop button trigger can access it)
+  function addLap(){
+    if (!running) return;
+    var current_time = updateStopwatch();
+    var current_lap = current_time - last_lap;
+    $('#split-list').prepend('<li>' + lap_num + ': ' + formatTime(current_lap) + ' / ' + $('#nums').html() + '</li>');
+    last_lap = current_time;
+    lap_num++;
+    return current_time;
+  }
+
+  //when we click the start button, we save the time we started and start updating it
   $('#start-btn').click(function(){
     if (running) return;
     running = true;
     start_time = new Date().getTime();
-    last_lap = start_time;
-    interval_id = setInterval(updateStopwatch, 50);
+    if (!last_lap) last_lap = 0;
+    interval_id = setInterval(updateStopwatch, 10);
   });
 
+  //stop the stopwatch and save the time in case we start it again
   $('#stop-btn').click(function(){
     if (!running) return;
+    //add a lap (useful for people who want to stop and get a split at the same time)
+    old_time = addLap();
     running = false;
     clearInterval(interval_id);
-    old_time = updateStopwatch();
   });
 
+  //reset everything
   $('#reset-btn').click(function(){
     running = false;
     old_time = 0;
-    $('#nums').html('00:00:00.000');
+    last_lap = null;
+    lap_num = 1;
+    $('#nums').html('00:00:00.00');
     $('#split-list').html('');
     clearInterval(interval_id);
   });
 
-  $('#split-btn').click(function(){
-    if (!running) return;
-    updateStopwatch();
-    $('#split-list').append('<li>' + $('#nums').html() + '</li>')
-  });
-
-  $('#lap-btn').click(function(){
-    if (!running) return;
-    updateStopwatch();
-    var t = new Date().getTime() - last_lap;
-    $('#split-list').append('<li>' + formatTime(t) + '</li>');
-    last_lap = new Date().getTime();
-  });
+  //add a split (the time that was on the watch) and lap (time between laps)
+  $('#lap-btn').click(addLap);
 
   //hide the source link
   if ($('#spice_stopwatch').length){
