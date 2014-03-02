@@ -18,93 +18,11 @@ attribution github => ['https://github.com/boyter','Ben Boyter'],
            twitter => ['http://twitter.com/boyter','boyter'];
 
 handle remainder => sub {
+
+    my @languages_list = share('languages.txt')->slurp;
+    my $languages      = join "|", @languages_list;
    
-    if ($_ =~ m/
-            \b # word boundary
-            (yaml
-            |yacc
-            |xslt
-            |xsd
-            |xml
-            |xaml
-            |visualbasic
-            |vimscript
-            |vhdl
-            |teamcentermth
-            |teamcentermet
-            |teamcenterdef
-            |tcl\/tk
-            |sqldata
-            |sql
-            |softbridgebasic
-            |smarty
-            |skill
-            |sed
-            |scala
-            |rubyhtml
-            |ruby
-            |rexx
-            |python
-            |php
-            |perl
-            |patrancommandlanguage
-            |pascal
-            |oraclereports
-            |oracleforms
-            |octave
-            |ocaml
-            |objectivec\+\+
-            |objectivec
-            |nantscripts
-            |mxml
-            |mumps
-            |msbuildscripts
-            |modula3
-            |matlab
-            |make
-            |m4
-            |lua
-            |lisp
-            |lex
-            |kornshell
-            |kermit
-            |jsp
-            |javascript
-            |java
-            |idl
-            |html
-            |haskell
-            |groovy
-            |go
-            |fortran95
-            |fortran90
-            |fortran77
-            |expect
-            |erlang
-            |dtd
-            |dosbatch
-            |dart
-            |dal
-            |d
-            |cython
-            |css
-            |cshell
-            |coldfusion
-            |cobol
-            |cmake
-            |c#?
-            |c\+\+
-            |bourneshell
-            |bourneagainshell
-            |bc
-            |awk
-            |assembly
-            |asp.net
-            |as
-            |ada
-            |actionscript
-            )\b # word boundary
-            /x) {
+    if ($_ =~ m/\b($languages)\b/) {
 	    my $match = $1;
 
 	    $match =~ s/\+/\\+/g;
