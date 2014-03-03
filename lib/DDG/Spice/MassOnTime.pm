@@ -22,6 +22,8 @@ handle remainder => sub {
     my $event_type = $1;
     $event_type = "parish" if $event_type eq "church";
     my $address = $4;
+    $address = join(", ", $loc->city, $loc->region_name, $loc->country_name) 
+        if ($address eq "me" or $address eq "" or not defined $address);
     return $event_type, $address;
 };
 
