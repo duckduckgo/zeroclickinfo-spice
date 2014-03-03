@@ -83,3 +83,16 @@ Handlebars.registerHelper( "backup_link", function (webaddress, parish_id) {
 	  return webaddress;
 	}
 });
+
+Handlebars.registerHelper( "format_parish_address", function (address, city, province) {
+	if (address && city && province) {
+          return address + ", " + city + ", " + province;
+        } else if (address && city) {
+          return address + ", " + city;
+        } else if (address) {
+          return address;
+	} else {
+	  return "";
+	}
+});
+           
