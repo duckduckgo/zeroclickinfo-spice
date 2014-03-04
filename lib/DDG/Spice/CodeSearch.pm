@@ -22,7 +22,7 @@ handle remainder => sub {
     my @languages_list = share('languages.txt')->slurp;
     my $languages      = join "|", @languages_list;
    
-    if ($_ =~ m/\b($languages)\b/) {
+    if ($_ =~ m/\b($languages)\b/x) {
 	    my $match = $1;
 
 	    $match =~ s/\+/\\+/g;
