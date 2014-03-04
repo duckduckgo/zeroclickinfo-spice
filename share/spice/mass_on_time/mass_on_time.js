@@ -30,6 +30,12 @@ function ddg_spice_mass_on_time (api_result) {
     //Return if service couldn't find the address given
     if (details.location.lat == 0 && details.location.lng == 0) return;
 
+    var results = api_result.results.filter(function(result) {
+					      return result.address != null && result.address !== "";
+    });
+
+    if (results.length < 1) return;
+
     Spice.render({
 	data              : api_result,
 	header1           : generate_header(details),
@@ -39,7 +45,7 @@ function ddg_spice_mass_on_time (api_result) {
 	  "/25?lat=" + details.location.lat + "&lng=" + details.location.lng,
 	template_frame   : 'list',
 	template_options : {
-            items: api_result.results,
+            items: results,
             show: 3,
             max:  10,
             template_item: pick_item_template(details)
@@ -95,4 +101,3 @@ Handlebars.registerHelper( "format_parish_address", function (address, city, pro
 	  return "";
 	}
 });
-           
