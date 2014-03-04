@@ -148,7 +148,7 @@ function ddg_spice_forecast(r) {
   
   // Build the list of days
   var build_daily = function(f) {
-    $daily_container = $container.find('.fe_daily');
+    var $daily_container = $container.find('.fe_daily');
     $daily_container.empty();
     
     var $day_template = $(
@@ -212,7 +212,7 @@ function ddg_spice_forecast(r) {
   
   // Build any weather alerts or warnings
   var build_alerts = function(f) {
-    $alert = $container.find('.fe_alert').empty();
+    var $alert = $container.find('.fe_alert').empty();
     
     if(!f.alerts || !f.alerts.length) {
       $alert.hide();
