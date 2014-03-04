@@ -7,10 +7,9 @@ function ddg_spice_kwixer(api_response) {
     var ddg_spice_kwixer_query = DDG.get_query();
     var remainder = ddg_spice_kwixer_query.toLowerCase();
     
-    for(var it in skipArray)
+    for (var i = 0; i < skipArray.length; i++)
     {
-        if(skipArray.hasOwnProperty(it))
-            remainder = remainder.replace(skipArray[it],"");
+        remainder = remainder.replace(skipArray[i],"");
     }
     remainder = remainder.replace(/^\s+|\s+$/g, '');
 
@@ -28,21 +27,16 @@ function ddg_spice_kwixer(api_response) {
             var item = api_response[index];
             var isRelevant = false;
             var actors = item.ResourceDetails2.toLowerCase();
-            
-            for (var i in remainderArray)
+            for (var i = 0; i < remainderArray.length; i++)
             {
-                if(remainderArray.hasOwnProperty(i))
+                //just checking if there's one match or not, the api is already intelligent enough to ignore "and" etc..
+                //we need to match actors for now, because the API's default search searches also by general context.
+                if(actors.indexOf( remainderArray[i]) != -1)
                 {
-                    //just checking if there's one match or not, the api is already intelligent enough to ignore "and" etc..
-                    //we need to match actors for now, because the API's default search searches also by general context.
-                    if(actors.indexOf( remainderArray[i]) != -1)
-                    {
-                        isRelevant = true;
-                        break;
-                    }
+                    isRelevant = true;
+                    break;
                 }
             }
-            
             if(isRelevant)
             {
                 if(!item.ResourceImageUrl || item.ResourceImageUrl.length === 0 || (item.ResourceImageUrl.indexOf(".jpeg") == -1 && item.ResourceImageUrl.indexOf(".jpg") == -1 && item.ResourceImageUrl.indexOf(".png") == -1))
@@ -71,6 +65,7 @@ function ddg_spice_kwixer(api_response) {
         source_name              : 'Kwixer',
         force_big_header         : true,
         force_favicon_domain     : 'www.kwixer.com',
+        force_favicon_url        : 'https://kwixer.com/favicon.ico',
         template_frame           : 'carousel',
         spice_name               : 'kwixer',
         template_options         : {
