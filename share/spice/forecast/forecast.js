@@ -69,15 +69,17 @@ function ddg_spice_forecast(r) {
     $elem.replaceWith($img);
   };
   
+  var available_skycon_icons = [
+    'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy', 'partly_cloudy_day',
+    'partly_cloudy_night', 'clear_day', 'clear_night'
+  ];
+
   var skycon_type = function(icon) {
     if (icon === 'hail') {
       icon = 'sleet';
     }
     icon = icon.replace(/-/g, '_');
-    if ([
-      'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy', 'partly_cloudy_day',
-      'partly_cloudy_night', 'clear_day', 'clear_night'
-    ].indexOf(icon) === -1) {
+    if (available_skycon_icons.indexOf(icon) === -1) {
       icon = 'cloudy';
     }
     return icon;
