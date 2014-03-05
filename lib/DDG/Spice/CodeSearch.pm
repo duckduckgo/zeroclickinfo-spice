@@ -17,11 +17,10 @@ category "programming";
 attribution github => ['https://github.com/boyter','Ben Boyter'],
            twitter => ['http://twitter.com/boyter','boyter'];
 
+my $languages = join "|", share('languages.txt')->slurp;
+
 handle remainder => sub {
 
-    my @languages_list = share('languages.txt')->slurp;
-    my $languages      = join "|", @languages_list;
-   
     if ($_ =~ m/\b($languages)\b/x) {
 	    my $match = $1;
 
