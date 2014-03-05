@@ -26,13 +26,17 @@ env.ddg_spice_quixey = function(api_result) {
             "entertainment",
             "family",
             "finance",
+            "fitness",
             "graphics and design",
             "graphics",
+            "health",
             "health and fitness",
             "kids",
             "lifestyle",
+            "map",
             "medical",
             "music",
+            "navigation",
             "networking",
             "news",
             "photography",
@@ -88,7 +92,7 @@ env.ddg_spice_quixey = function(api_result) {
                 'price':         pricerange(item),
                 'abstract':      item.short_desc || "",
                 'brand':         (item.developer && item.developer.name) || "",
-                'products_buy':  Spice.quixey_buy,
+                'products_buy':  Spice.quixey.quixey_buy,
 
                 // this should be the array of screenshots with captions
                 // and check for the existence of them
@@ -96,15 +100,9 @@ env.ddg_spice_quixey = function(api_result) {
             };
         },
 
-        /* keys refer to non-normalized item */
-        // relevancy: [
-        //     { key: 'name', skip_words: skip_words },
-        //     { key: 'short_desc', skip_words: skip_words },
-        //     { key: 'custom.category', skip_words: skip_words }
-        // ],
-
         relevancy: {
             type: DDG.get_query().match(category_regexp) ? "category" : "primary",
+
             skip_words: [
                 "android",
                 "app",
@@ -134,57 +132,59 @@ env.ddg_spice_quixey = function(api_result) {
                 "windows phone"
             ],
 
-            // maybe these are search types
             category: [
+                { required: 'icon_url' },
                 { key: 'short_desc' },
                 { key: 'name' },
-                { key: 'custom.features.category', match: category_regexp },
-                { required: 'icon_url' }
+                { key: 'custom.features.category', match: category_regexp, strict:true }    // strict means this key has to contain a category phrase or we reject
             ],
-
-
-            // vine twitter app
-            // one or both words in header
-            // one in header, one elsewhere
-
 
             primary: [
-                { key: 'name' },    // this should somehow indicate that a name match == more relevant
-                { required: 'icon_url' }
-            ],
-
-            secondary:  [
-                { key: 'short_desc' },
+                { required: 'icon_url' },
                 { key: 'name' },
-                { key: 'custom.features.category' },
-                { required: 'icon_url' }
+                { key: 'short_desc', strict: false }
             ],
 
-            // last_resort: { query: quixey_categories },
+            // secondary:  [
+            //     { key: 'short_desc' },
+            //     { key: 'name' },
+            //     { key: 'custom.features.category' },
+            //     { required: 'icon_url' }
+            // ],
 
-            dup: 'id',  // identifier for de duplication,
-                        // or function(item) { return item.id; }
+            // field for de-duplication
+            // currently single value, could be differentiated by type
+            // eg { 'category': 'name', 'primary': 'id' }
+            dup: 'name'
 
         },
 
 
-        //TODO context specific sort
-
-        // sort: {
-        //     'rating': //Spice.rating_comparator('rating', 'rating_count')
-        //         function(a,b) {
-        //             var rank = function(r,count) {
-        //                 return r*r*r*count/5;
-        //             };
-        //         return rank(a.rating,a.rating_count) > rank(b.rating, b.rating_count) ? -1: 1;
-        //     },
-        // },
-
-        default_sort: 'rating',
-
+        // sort field definition: how this data can be sorted. each field may appear in a UI drop-down.
+        sort_fields: {
+            'rating': //Spice.rating_comparator('rating', 'rating_count')
+                function(a,b) {
+                    var rank = function(r,count) {  // will be moved up
+                        return r*r*r*count/5;
+                    };
+                    return rank(a.rating,a.rating_count) > rank(b.rating, b.rating_count) ? -1: 1;
+                }
+            // ,
+            // 'platform': function(a,b) { } ,
+            // 'name':
+            // 'price':
+        },
+        
+        // default sorting- how the data will be initially arranged.
+        // depends on the type of search. here only a 'category' search will
+        // perform a default initial sort.
+        // 'primary' is not here, meaning will remain in api_result order.
+        // sort_default: { <sorttype>:<field>, <sorttype>:<field>, ... }
+        sort_default: { 'category': 'rating' },
 
         templates: {
             item: DDG.templates.products,
+            item_variant: 'short',
             detail: DDG.templates.products_detail
         }
     });
