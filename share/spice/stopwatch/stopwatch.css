@@ -1,9 +1,97 @@
-#spice_stopwatch #stopwatch-container > button {
-	margin-right: 5px;
+#spice_stopwatch #split-list {
+	margin-top: 20px;
 }
 
-#spice_stopwatch #split-list {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
+#spice_stopwatch .btn {
+	height: 75px;
+	width: 75px;
+	border-radius: 37.5px;
+	text-align: center;
+	line-height: 75px;
+	border: 2px solid black;
+	font-size: 15px;
+	font-weight: bold;
+	background-color: #fff;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+	
+#spice_stopwatch .btn.start {
+	border-color: #5eaf4b;
+	background-color: #5eaf4b;
+	color: white;
+}
+
+#spice_stopwatch .btn.stop {
+	border-color: #ef5436;
+	background-color: #ef5436;
+	color: white;
+}
+
+#spice_stopwatch .btn[disabled] {
+	color: #999;
+	border-color: #999;
+}
+
+#spice_stopwatch .spice_pane {
+	width: 45%; height: 100%;
+	line-height: 100%;
+	background-color: #f5f5f5;
+	font-size: 35px;
+	display: inline-block;
+	padding: 2%;
+	min-width: 280px;
+}
+
+#spice_stopwatch .spice_pane_right {
+	float: right;
+}
+
+#spice_stopwatch .pane_block {
+	height: 50px;
+}
+
+#spice_stopwatch .label {
+	padding-left: 5%;
+	font-size: 15px;
+	vertical-align: 4px;
+}
+
+#spice_stopwatch .btn-wrapper {
+	margin-top: 50px;
+	width: 100%;
+}
+
+#spice_stopwatch #lap-btn {
+	float: right;
+}
+
+#spice_stopwatch .time {
+	float: right;
+	margin-right: 10%;
+}
+
+#spice_stopwatch #total-time {
+	font-weight: bold;
+}
+
+#spice_stopwatch .hidden {
+	display: none;
+}
+
+#spice_stopwatch table {
+	width: 100%;
+	background-color: #f5f5f5;
+	border-collapse: collapse;
+}
+
+#spice_stopwatch td {
+	text-align: center;
+	border-top: 1px solid #ccc;
+}
+
+#spice_stopwatch th {
+	color: #999;
+	font-weight: normal;
+	text-align: center;
 }
