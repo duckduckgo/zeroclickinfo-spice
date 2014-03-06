@@ -88,11 +88,7 @@ Handlebars.registerHelper( "format_eventtypeid", function (eventtypeid) {
 });
 
 Handlebars.registerHelper( "backup_link", function (webaddress, parish_id) {
-	if (webaddress === "http://" || webaddress === "") {
-	  return "http://massontime.com/parish/" + parish_id;
-	} else {
-	  return webaddress;
-	}
+        return "http://massontime.com/parish/" + parish_id;
 });
 
 Handlebars.registerHelper( "format_parish_address", function (address, city, province) {
