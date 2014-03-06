@@ -17,6 +17,16 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::MassOnTime'
     ),
+    'catholic churches near me' => test_spice(
+        '/js/spice/mass_on_time/parish/Phoenixville%2C%20Pennsylvania%2C%20United%20States',
+        call_type => 'include',
+        caller => 'DDG::Spice::MassOnTime'
+    ),
+    'catholic churches nearby' => test_spice(
+        '/js/spice/mass_on_time/parish/Phoenixville%2C%20Pennsylvania%2C%20United%20States',
+        call_type => 'include',
+        caller => 'DDG::Spice::MassOnTime'
+    ),
 );
 
 done_testing;
