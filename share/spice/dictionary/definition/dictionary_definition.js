@@ -60,14 +60,11 @@ var ddg_spice_dictionary = {
                 content_template: Spice.dictionary_definition.dictionary_definition
             },
 
-            relevancy: [
-                {   
-                    key: 'word',
-                    min_length: word.length,
-                    strict: false
-                    // special: function(v) { return !!(DDG.get_query().match(new RegExp(v))); }
-                }
-            ],
+            relevancy: {   
+                primary: [
+                    { key: 'word', min_length: word.length, strict: false }
+                ]
+            },
 
             templates: {
                 summary: DDG.templates.base
