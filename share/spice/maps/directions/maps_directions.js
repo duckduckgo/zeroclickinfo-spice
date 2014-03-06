@@ -8,6 +8,6 @@ function ddg_spice_maps_directions(directions) {
             window.setTimeout(f2, 50);
             return;
         }
-	DDG.maps.renderDirections(directions);
+        DDG.duckbar.add_directions(directions);
     };
 }

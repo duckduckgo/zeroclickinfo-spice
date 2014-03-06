@@ -9,7 +9,7 @@ function ddg_spice_maps_maps(place) {
             window.setTimeout(f2, 50);
             return;
         }
-	DDG.maps.renderMap(place);
+        DDG.duckbar.add_map(place);
     };
 
     f2();

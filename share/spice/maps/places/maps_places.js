@@ -24,7 +24,7 @@ var ddg_spice_maps_places = function (places) {
 
 //        console.log("L found, here we go with places: %o", places);
 
-        DDG.maps.renderLocal(places);
+        DDG.duckbar.add_local(places);
     };
 
     f2();
