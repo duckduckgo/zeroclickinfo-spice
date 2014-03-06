@@ -153,6 +153,18 @@ function ddg_spice_recipes(res) {
 
         default_sort: 'rating',
 
+        relevancy: {
+
+            skip_words: [ "recipes", "recipe", "ingredient", "ingredients" ],
+
+            primary: [
+                { key: 'recipeName' },
+                { key: 'attributes.cuisine.0' },
+                { key: 'ingredients' }
+            ]
+
+        },
+
         templates: {
             item: Spice.recipes.recipes,
             detail: Spice.recipes.recipes_detail

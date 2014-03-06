@@ -4,21 +4,63 @@ var quixey_image_domain = "d1z22zla46lb9g.cloudfront.net";
 // spice callback function
 env.ddg_spice_quixey = function(api_result) {
 
-    if (api_result.result_count == 0) return;
-
     var q = api_result.q.replace(/\s/g, '+');
-    var relevants = getRelevant(api_result.results);
 
-    if (!relevants) return;
+    var category_regexp = new RegExp([
+            "action",
+            "adventure",
+            "arcade",
+            "board",
+            "business",
+            "casino",
+            // "calculator",
+            "design",
+            "developer tools",
+            "dice",
+            "education",
+            "educational",
+            "entertainment",
+            "family",
+            "finance",
+            "fitness",
+            "graphics and design",
+            "graphics",
+            "health and fitness",
+            "health",
+            "kids",
+            "lifestyle",
+            "map",
+            "medical",
+            "music",
+            "navigation",
+            "networking",
+            "news",
+            "photography",
+            "productivity",
+            "puzzle",
+            "racing",
+            "role playing",
+            "simulation",
+            "social networking",
+            "social",
+            "sports",
+            "strategy",
+            "travel",
+            "trivia",
+            "utilities",
+            "video",
+            "weather"
+        ].join("|"), "i");
 
     Spice.add({
         id: 'quixey',
         name: 'Apps',
 
-        data: relevants,
+        data: api_result.results,   //relevants,
 
         meta: {
-            count: relevants.length,
+            // count is now computed by Spice
+            // count: relevants.length,
             total: api_result.results.length,
             itemType: 'Apps',
             sourceName: 'Quixey',
@@ -27,172 +69,125 @@ env.ddg_spice_quixey = function(api_result) {
         },
 
         normalize : function(item) {
+
+            // relevancy pre-filter: skip ones that have less than three reviews
+            if (!item.rating_count || item.rating_count < 3)
+                return null;
+
             return {
-                img: make_icon_url(item), 
-                title: item.name,
-                heading: item.name,
-                ratingData: {
-                    stars: item.rating,
-                    reviews: item.rating_count
-                },
-                url_review: item.dir_url,
-                price: pricerange(item),
-                abstract: item.short_desc || "",
-                brand: (item.developer && item.developer.name) || "",
-                products_buy: Spice.quixey_buy,
+                'img':           make_icon_url(item), 
+                'title':         item.name,
+                'heading':       item.name,
+                'ratingData':    {
+                                   stars: item.rating,
+                                   reviews: item.rating_count
+                               },
+                'url_review':    item.dir_url,
+                'price':         pricerange(item),
+                'abstract':      item.short_desc || "",
+                'brand':         (item.developer && item.developer.name) || "",
+                'products_buy':  Spice.quixey.quixey_buy,
 
                 // this should be the array of screenshots with captions
                 // and check for the existence of them
-                img_m: quixey_image(item.editions[0].screenshots[0].image_url)
+                'img_m': quixey_image(item.editions[0].screenshots[0].image_url)
             };
         },
 
+        relevancy: {
+            type: DDG.get_query().match(category_regexp) ? "category" : "primary",
+
+            skip_words: [
+                "android",
+                "app",
+                "apple app store",
+                "apple app",
+                "application",
+                "applications",
+                "apps",
+                "best",
+                "blackberry",
+                "download",
+                "downloaded",
+                "droid",
+                "enhanced",
+                "free",
+                "fully featured",
+                "google play store",
+                "google play",
+                "ios",
+                "ipad",
+                "iphone",
+                "ipod touch",
+                "ipod",
+                "most",
+                "playbook",
+                "popular",
+                "release data",
+                "release",
+                "sale",
+                "search",
+                "windows mobile",
+                "windows phone 8",
+                "windows phone"
+            ],
+
+            category: [
+                { required: 'icon_url' },
+                { key: 'short_desc' },
+                { key: 'name' },
+                { key: 'custom.features.category', match: category_regexp, strict:false }    // strict means this key has to contain a category phrase or we reject
+            ],
+
+            primary: [
+                { required: 'icon_url' }, // would like to add  alt: 'platforms.0.icon_url'
+                { key: 'name' },
+                { key: 'short_desc', strict: false }
+            ],
+
+            // secondary:  [
+            //     { key: 'short_desc' },
+            //     { key: 'name' },
+            //     { key: 'custom.features.category' },
+            //     { required: 'icon_url' }
+            // ],
+
+            // field for de-duplication
+            // currently single value, could be differentiated by type
+            // eg { 'category': 'name', 'primary': 'id' }
+            dup: 'name'
+
+        },
+
+
+        // sort field definition: how this data can be sorted. each field may appear in a UI drop-down.
+        sort_fields: {
+            'rating': //Spice.rating_comparator('rating', 'rating_count')
+                function(a,b) {
+                    var rank = function(r,count) {  // will be moved up
+                        return r*r*r*count/5;
+                    };
+                    return rank(a.rating,a.rating_count) > rank(b.rating, b.rating_count) ? -1: 1;
+                }
+            // 'platform': function(a,b) { } ,
+            // 'name':
+            // 'price':
+        },
+        
+        // default sorting- how the data will be initially arranged.
+        // depends on the type of search. here only a 'category' search will
+        // perform a default initial sort.
+        // 'primary' is not here, meaning will remain in api_result order.
+        // sort_default: { <sorttype>:<field>, <sorttype>:<field>, ... }
+        sort_default: { 'category': 'rating' },
 
         templates: {
             item: DDG.templates.products,
+            item_variant: 'short',
             detail: DDG.templates.products_detail
         }
     });
 
-    // Check for relevant app results
-    function getRelevant (results) {
-        var res,
-            apps = [],
-            backupApps = [],
-            categories = [
-                "developer tools",
-                "action",
-                "adventure",
-                "arcade",
-                "board",
-                "business",
-                "casino",
-                "design",
-                "dice",
-                "education",
-                "educational",
-                "entertainment",
-                "family",
-                "finance",
-                "graphics",
-                "graphics and design",
-                "health and fitness",
-                "kids",
-                "lifestyle",
-                "medical",
-                "music",
-                "networking",
-                "news",
-                "photography",
-                "productivity",
-                "puzzle",
-                "racing",
-                "role playing",
-                "simulation",
-                "social networking",
-                "social",
-                "sports",
-                "strategy",
-                "travel",
-                "trivia",
-                "utilities",
-                "video",
-                "weather"],
-            skip_words = [
-                "google play store",
-                "windows phone 8",
-                "apple app store",
-                "windows mobile",
-                "windows phone",
-                "applications",
-                "release data",
-                "application",
-                "google play",
-                "blackberry",
-                "ipod touch",
-                "downloaded",
-                "apple app",
-                "playbook",
-                "download",
-                "android",
-                "release",
-                "iphone",
-                "search",
-                "droid",
-                "apps",
-                "free",
-                "ipod",
-                "ipad",
-                "ios",
-                "app"
-            ],
-            app;
-
-        categories = new RegExp(categories.join("|"), "i");
-        for (var i = 0; i < results.length; i++) {
-            app = results[i];
-
-            // make sure it has at least 3 reviews:
-            if(!app.rating_count || app.rating_count < 3){
-                continue;
-            }
-
-            // check if this app result is relevant
-            if (DDG.isRelevant(app.name.toLowerCase(), skip_words) && app.icon_url) {
-                apps.push(app);
-            } else if (app.hasOwnProperty("short_desc") &&
-                       DDG.isRelevant(app.short_desc.toLowerCase(), skip_words) && app.icon_url) {
-                            backupApps.push(app);
-            } else if (app.custom && app.custom.hasOwnProperty("category") &&
-                       DDG.isRelevant(app.custom.category.toLowerCase(), skip_words) && app.icon_url) {
-                            backupApps.push(app);
-            }
-        }
-
-        // Return highly relevant results
-        if (apps.length > 0) {
-            res = apps;
-        }
-
-        // Return mostly relevant results
-        else if (backupApps.length > 0) {
-            res = backupApps;
-        }
-
-        else {
-
-            // No relevant results,
-            // check if it was a categorical search
-            // Eg."social apps for android"
-            var q = DDG.get_query();
-            res = q.match(categories) ? results : null;
-        }
-
-
-        // normalize it:
-        // res = res.map(function(app){
-        //     var normal = {
-        //         img: make_icon_url(app),
-        //         title: app.name,
-        //         ratingData: {
-        //             stars: app.rating,
-        //             reviews: app.rating_count
-        //         },
-        //         price: pricerange(app),
-        //         abstract: app.short_desc || "",
-        //         brand: (app.developer && app.developer.name) || "",
-        //         products_buy: Handlebars.templates.quixey_buy // should/will be Spice.quixey.products_buy 
-        //     };
-
-        //     // this should be the array of screenshots with captions
-        //     // and check for the existence of them
-        //     normal.img_m = quixey_image(app.editions[0].screenshots[0].image_url);
-
-        //     return normal;
-        // });
-
-        return res;
-    }
 }
 
 // format a price
@@ -217,7 +212,16 @@ var quixey_image = function(image_url) {
 }
 
 var make_icon_url = function(item) {
-    var domain = "d1z22zla46lb9g.cloudfront.net";
+    var domain = "d1z22zla46lb9g.cloudfront.net",
+        icon_url = item.icon_url;
+
+    if (!icon_url) {
+        console.warn("quixey: icon_url is null for %o", item);
+        if (item.editions && item.editions[0].icon_url)
+            icon_url = item.editions[0].icon_url;
+        else
+            return "";
+    }
 
     // Get the image server that the icon_url in platforms is pointing to.
     // It's not ideal, but the link to the app's image still has to redirect
@@ -229,7 +233,7 @@ var make_icon_url = function(item) {
     // Replace the domain in our icon_url to the one that we got from
     // the platforms array.
     // return "/iu/?u=http://" + domain + item.icon_url.match(/\/image\/.+/)[0] + "&f=1";
-    return "http://" + domain + item.icon_url.match(/\/image\/.+/)[0];
+    return "http://" + domain + icon_url.match(/\/image\/.+/)[0];
 };
 
 

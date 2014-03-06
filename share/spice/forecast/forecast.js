@@ -222,8 +222,8 @@ function ddg_spice_forecast(r) {
         view: 'Tiles',
 
         templates: {
-            item: "forecast_item",
-            summary: "forecast" // Spice.forecast.summary
+            item: Spice.forecast.forecast_item,
+            summary: Spice.forecast.forecast
         }
 
     });
