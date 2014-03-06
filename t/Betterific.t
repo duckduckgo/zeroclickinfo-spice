@@ -31,7 +31,15 @@ ddg_spice_test(
         '/js/spice/betterific/golf%20balls',
         call_type => 'include',
         caller => 'DDG::Spice::Betterific',
-    )
+    ),
+    "betterific Arby's" => test_spice(
+        '/js/spice/betterific/Arby%27s',
+        caller    => 'DDG::Spice::Betterific',
+    ),
+    'betterif General Electric' => test_spice(
+        '/js/spice/betterific/General%20Electric',
+        caller    => 'DDG::Spice::Betterific',
+    ),
 );
 
 done_testing;

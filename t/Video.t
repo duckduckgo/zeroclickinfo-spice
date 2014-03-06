@@ -17,6 +17,18 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Video',
     ),
+    'ted education video' => test_spice(
+        '/js/spice/video/ted%20education',
+        caller    => 'DDG::Spice::Video',
+    ),
+    'wong fu videos' => test_spice(
+        '/js/spice/video/wong%20fu',
+        caller    => 'DDG::Spice::Video',
+    ),
+    'coffee videos' => test_spice(
+        '/js/spice/video/coffee',
+        caller    => 'DDG::Spice::Video',
+    ),
 );
 
 done_testing;

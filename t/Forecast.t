@@ -40,6 +40,15 @@ ddg_spice_test(
         is_cached => 0
     ),
     DDG::Request->new(
+        query_raw => 'weather 12180',
+        location => $loc
+    ) => test_spice(
+        "/js/spice/forecast/12180",
+        call_type => 'include',
+        caller => 'DDG::Spice::Forecast',
+        is_cached => 1
+    ),
+    DDG::Request->new(
         query_raw => 'weather today',
         location => $loc
     ) => test_spice(
