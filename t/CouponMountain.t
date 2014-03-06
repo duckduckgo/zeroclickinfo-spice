@@ -9,6 +9,8 @@ my %q = (
   "coupons for nordstrom" => "nordstrom",
   "dell discount codes"   => "dell",
   "coupons subway"        => "subway",
+  'hp coupon'             => 'hp',
+  'hp promo codes'        => 'hp',
 );
 
 ddg_spice_test(
