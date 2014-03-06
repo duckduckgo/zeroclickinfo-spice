@@ -35,7 +35,7 @@ function ddg_spice_mass_on_time (api_result) {
     for(var i=api_result.results.length-1; i>=0; i--) {
       var result=api_result.results[i];
       if (result.address != null && result.address !== "") {
-	results.push(result);
+	results.unshift(result);
       }
     }
 
