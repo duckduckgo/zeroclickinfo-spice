@@ -30,9 +30,14 @@ function ddg_spice_mass_on_time (api_result) {
     //Return if service couldn't find the address given
     if (details.location.lat == 0 && details.location.lng == 0) return;
 
-    var results = api_result.results.filter(function(result) {
-					      return result.address != null && result.address !== "";
-    });
+    //Filter results with no address
+    var results = [];
+    for(var i=api_result.results.length-1; i>=0; i--) {
+      var result=api_result.results[i];
+      if (result.address != null && result.address !== "") {
+	results.push(result);
+      }
+    }
 
     if (results.length < 1) return;
 
