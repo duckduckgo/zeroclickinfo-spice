@@ -24,19 +24,20 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
 
   //go from a time in ms to human-readable
   function formatTime(t){
-    var hrs = Math.floor(t / (1000*60*60));
-    t = t % (1000*60*60);
+    // var hrs = Math.floor(t / (1000*60*60));
+    // t = t % (1000*60*60);
     var mins = Math.floor(t / (1000*60));
     t = t % (1000*60);
     var secs = Math.floor(t / 1000);
     t = (t % 1000).toString().substring(0, 2);
-    return padZeros(hrs, 2) + ":" + padZeros(mins, 2) + ":" + padZeros(secs, 2) + '.' + padZeros(t, 2);
+    return padZeros(mins, 2) + ":" + padZeros(secs, 2) + '.' + padZeros(t, 2);
   }
 
   //called on every interval
   function updateStopwatch(){
     var t = new Date().getTime() - start_time + old_time;
-    $('#nums').html(formatTime(t));
+    $('#total-time').html(formatTime(t));
+    $('#current-time').html(formatTime(t-last_lap))
     return t;
   }
 
@@ -45,28 +46,37 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     if (!running) return;
     var current_time = updateStopwatch();
     var current_lap = current_time - last_lap;
-    $('#split-list').prepend('<li>' + lap_num + ': ' + formatTime(current_lap) + ' / ' + $('#nums').html() + '</li>');
+    $('#split-list').prepend('<tr><td>' + lap_num + '</td><td>' + formatTime(current_lap) + '</td><td>' + $('#total-time').html() + '</td></tr>');
+    $('#split-list').removeClass('hidden');
     last_lap = current_time;
     lap_num++;
     return current_time;
   }
 
   //when we click the start button, we save the time we started and start updating it
-  $('#start-btn').click(function(){
+  $('.btn-wrapper').on('click', '.btn.start', function(){
     if (running) return;
     running = true;
     start_time = new Date().getTime();
     if (!last_lap) last_lap = 0;
     interval_id = setInterval(updateStopwatch, 10);
+
+    $(this).html('STOP').removeClass('start').addClass('stop');
+    $('#reset-btn').prop('disabled', true);
+    $('#lap-btn').prop('disabled', false);
   });
 
   //stop the stopwatch and save the time in case we start it again
-  $('#stop-btn').click(function(){
+  $('.btn-wrapper').on('click', '.btn.stop', function(){
     if (!running) return;
     //add a lap (useful for people who want to stop and get a split at the same time)
     old_time = addLap();
     running = false;
     clearInterval(interval_id);
+
+    $(this).html('START').removeClass('stop').addClass('start');
+    $('#reset-btn').prop('disabled', false);
+    $('#lap-btn').prop('disabled', true);
   });
 
   //reset everything
@@ -75,9 +85,13 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     old_time = 0;
     last_lap = null;
     lap_num = 1;
-    $('#nums').html('00:00:00.00');
-    $('#split-list').html('');
+    $('#total-time').html(formatTime(0));
+    $('#current-time').html(formatTime(0));
+    $('#split-list > tbody').children().remove();
     clearInterval(interval_id);
+
+    $(this).prop('disabled', true);
+    $('#split-list').addClass('hidden');
   });
 
   //add a split (the time that was on the watch) and lap (time between laps)
