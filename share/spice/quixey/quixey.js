@@ -4,12 +4,7 @@ var quixey_image_domain = "d1z22zla46lb9g.cloudfront.net";
 // spice callback function
 env.ddg_spice_quixey = function(api_result) {
 
-    // if (api_result.result_count == 0) return;
-
     var q = api_result.q.replace(/\s/g, '+');
-    // var relevants = getRelevant(api_result.results);
-
-    // if (!relevants) return;
 
     var category_regexp = new RegExp([
             "action",
@@ -55,8 +50,6 @@ env.ddg_spice_quixey = function(api_result) {
             "video",
             "weather"
         ].join("|"), "i");
-    
-    console.log("quixey: category match: %o", DDG.get_query().match(category_regexp));
 
     Spice.add({
         id: 'quixey',
@@ -169,7 +162,6 @@ env.ddg_spice_quixey = function(api_result) {
                     };
                     return rank(a.rating,a.rating_count) > rank(b.rating, b.rating_count) ? -1: 1;
                 }
-            // ,
             // 'platform': function(a,b) { } ,
             // 'name':
             // 'price':
@@ -189,124 +181,6 @@ env.ddg_spice_quixey = function(api_result) {
         }
     });
 
-    // Check for relevant app results
-    function getRelevant (results) {
-        var res,
-            apps = [],
-            backupApps = [],
-            categories = [
-                "developer tools",
-                "action",
-                "adventure",
-                "arcade",
-                "board",
-                "business",
-                "casino",
-                "design",
-                "dice",
-                "education",
-                "educational",
-                "entertainment",
-                "family",
-                "finance",
-                "graphics",
-                "graphics and design",
-                "health and fitness",
-                "kids",
-                "lifestyle",
-                "medical",
-                "music",
-                "networking",
-                "news",
-                "photography",
-                "productivity",
-                "puzzle",
-                "racing",
-                "role playing",
-                "simulation",
-                "social networking",
-                "social",
-                "sports",
-                "strategy",
-                "travel",
-                "trivia",
-                "utilities",
-                "video",
-                "weather"],
-            skip_words = [
-                "google play store",
-                "windows phone 8",
-                "apple app store",
-                "windows mobile",
-                "windows phone",
-                "applications",
-                "release data",
-                "application",
-                "google play",
-                "blackberry",
-                "ipod touch",
-                "downloaded",
-                "apple app",
-                "playbook",
-                "download",
-                "android",
-                "release",
-                "iphone",
-                "search",
-                "droid",
-                "apps",
-                "free",
-                "ipod",
-                "ipad",
-                "ios",
-                "app"
-            ],
-            app;
-
-        categories = new RegExp(categories.join("|"), "i");
-        for (var i = 0; i < results.length; i++) {
-            app = results[i];
-
-            // make sure it has at least 3 reviews:
-            if(!app.rating_count || app.rating_count < 3){
-                continue;
-            }
-
-            // check if this app result is relevant
-            if (DDG.isRelevant(app.name.toLowerCase(), skip_words) && app.icon_url) {
-                apps.push(app);
-            } else if (app.hasOwnProperty("short_desc") &&
-                       DDG.isRelevant(app.short_desc.toLowerCase(), skip_words) && app.icon_url) {
-                            backupApps.push(app);
-            } else if (app.custom && app.custom.hasOwnProperty("category") &&
-                       DDG.isRelevant(app.custom.category.toLowerCase(), skip_words) && app.icon_url) {
-                            backupApps.push(app);
-            }
-        }
-
-        // Return highly relevant results
-        if (apps.length > 0) {
-            res = apps;
-        }
-
-        // Return mostly relevant results
-        else if (backupApps.length > 0) {
-            res = backupApps;
-        }
-
-        else {
-
-            console.warn("quixey: category search");
-
-            // No relevant results,
-            // check if it was a categorical search
-            // Eg."social apps for android"
-            var q = DDG.get_query();
-            res = q.match(categories) ? results : null;
-        }
-
-        return res;
-    }
 }
 
 // format a price
