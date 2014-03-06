@@ -60,8 +60,13 @@
     margin-right: 0;
 }
 
+.detail__body--recipe .stars--unrated .star {
+    color: #d0d0d0;
+}
+
 .detail__body--recipe .detail__separator {
     padding: 0 5px;
+    color: #c5c5c5;
 }
 
 .detail__cuisine {
@@ -88,7 +93,6 @@
 
 .detail__flavors {
     width: 70%;
-    padding-bottom: 1em;
 }
 
 .detail__flavors__name {
@@ -109,4 +113,8 @@
     background: #f0624d;
     vertical-align: middle;
     border-radius: 2em;
+}
+
+.detail__body--recipe .detail__links__btn {
+    margin-top: 1em;
 }
