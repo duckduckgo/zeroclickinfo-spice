@@ -17,13 +17,28 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::MassOnTime'
     ),
+    'catholic Adoration around New York' => test_spice(
+        '/js/spice/mass_on_time/adoration/New%20York',
+        call_type => 'include',
+        caller => 'DDG::Spice::MassOnTime'
+    ),
     'catholic churches near me' => test_spice(
         '/js/spice/mass_on_time/parish/Phoenixville%2C%20Pennsylvania%2C%20United%20States',
         call_type => 'include',
         caller => 'DDG::Spice::MassOnTime'
     ),
-    'catholic churches nearby' => test_spice(
+    'catholic confessions close by' => test_spice(
+        '/js/spice/mass_on_time/confession/Phoenixville%2C%20Pennsylvania%2C%20United%20States',
+        call_type => 'include',
+        caller => 'DDG::Spice::MassOnTime'
+    ),
+    'catholic churches near here' => test_spice(
         '/js/spice/mass_on_time/parish/Phoenixville%2C%20Pennsylvania%2C%20United%20States',
+        call_type => 'include',
+        caller => 'DDG::Spice::MassOnTime'
+    ),
+    'catholic Services nearby' => test_spice(
+        '/js/spice/mass_on_time/service/Phoenixville%2C%20Pennsylvania%2C%20United%20States',
         call_type => 'include',
         caller => 'DDG::Spice::MassOnTime'
     ),
