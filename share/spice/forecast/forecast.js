@@ -179,18 +179,18 @@ function ddg_spice_forecast(r) {
   // Build any weather alerts or warnings
   var build_alerts = function(f) {    
     if(!f.alerts || !f.alerts.length) {
-      return
+      return "";
     }
     
     var alert_message;
     for(var i = 0; i < f.alerts.length; i++) {
-      if(f.alerts[i].title.match(/Special Weather Statement/i) ||
+      if (f.alerts[i].title.match(/Special Weather Statement/i) ||
          f.alerts[i].title.match(/Advisory/i) ||
          f.alerts[i].title.match(/Statement/i))
-        continue
+        continue;
       
-      alert_message = f.alerts[i]
-      break
+      alert_message = f.alerts[i];
+      break;
     }
 
     if(alert_message)
