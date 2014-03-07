@@ -10,6 +10,8 @@ function ddg_spice_mass_on_time (api_result) {
 	  type = "Masses";
 	} else if (query_details.type == "parish") {
 	  type = "Parishes";
+	} else if (query_details.type == "any") {
+	  type = "Services";
 	} else {
 	  type = query_details.type.charAt(0).toUpperCase() + query_details.type.slice(1) + "s";
 	}
