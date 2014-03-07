@@ -37,10 +37,10 @@ function ddg_spice_hacker_news(api_result) {
         },
 
         relevancy: {
+            skip_words: [ 'hacker', 'news', 'hn' ],
             primary: [
                 { required: 'item.title' },
-                { key: 'item.title'},
-                { key: 'item.text'}
+                { key: 'item.title', strict:false}
             ]
         },
 
