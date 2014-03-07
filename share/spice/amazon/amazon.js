@@ -41,7 +41,7 @@ function ddg_spice_amazon(apiResult) {
     // loading ratings data for all the items
     // then render the spice:
     loadRatingsData(items,function(){
-        Spice.render({
+        Spice.add({
             id: 'products',
             name: 'Products',
 
@@ -57,9 +57,9 @@ function ddg_spice_amazon(apiResult) {
             },
 
             templates: {
-                item: 'products',
-                detail: 'products_detail',
-                summary: 'products_single'
+                item: DDG.templates.products,
+                detail: DDG.templates.products_detail,
+                summary: DDG.templates.products_single
             }
         });
     });
