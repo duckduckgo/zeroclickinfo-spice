@@ -97,8 +97,11 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
   //add a split (the time that was on the watch) and lap (time between laps)
   $('#lap-btn').click(addLap);
 
-  //hide the source link
+  //hide the source link and remove the padding
   if ($('#spice_stopwatch').length){
     $('#zero_click_more_at_wrap').css('display', 'none');
+
+    $('#zero_click_wrapper2 #zero_click_abstract').attr('style',
+      'padding: 0 !important; margin: 4px 0 0 0 !important');
   }
 }
