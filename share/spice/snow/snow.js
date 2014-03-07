@@ -33,7 +33,7 @@ var nrio = function(api_result) {
     }
 
     // Display the spice plug-in.
-    Spice.render({
+    Spice.add({
         id: 'snow',
         name: 'Is It Snowing?',
 
@@ -45,7 +45,7 @@ var nrio = function(api_result) {
         },
 
         templates: {
-            summary: "snow"
+            summary: Spice.snow.snow
         }
     });
 
