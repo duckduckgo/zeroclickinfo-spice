@@ -1,7 +1,7 @@
 <div class="tile tile--s">
     {{#if isCurrent}}
     <div class="fe_currently {{#if alerts}}alert{{/if}}">
-		<h5 class="fe_label">Right Now:</h5>
+		<h5 class="fe_label"><a href="{{{meta.sourceUrl}}}">Right Now:</a></h5>
 		<div class="fe_current-wrap">
 			<div class="fe_top">
 			  <img class="fe_current_icon" src="{{{image_redirect icon}}}" />
@@ -16,7 +16,7 @@
     {{else}}
         <div class="fe_day">
               <img class="fe_icon" src="{{{image_redirect icon}}}" />
-              <h5 class="fe_label">{{{day}}}:</h5>
+              <h5 class="fe_label"><a href="{{{meta.sourceUrl}}}">{{{day}}}:</a></h5>
               <h6 class="fe_date">{{{date}}}</h6>
               
               <div class="fe_summary"><h6>{{{ellipsis summary 65}}}</h6></div>
