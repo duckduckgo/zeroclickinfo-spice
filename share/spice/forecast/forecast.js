@@ -211,7 +211,6 @@ function ddg_spice_forecast(r) {
 
         signal: "high",
 
-        // ideally this happens inside of Spice.render()?
         meta: {
             heading: r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] + weatherData.alerts : 'Weather' + weatherData.alerts,
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
