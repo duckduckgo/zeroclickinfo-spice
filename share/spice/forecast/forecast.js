@@ -26,7 +26,7 @@ function ddg_spice_forecast(r) {
   }
   
   // Set up some stuff we'll need
-  var $container = $('#spice_forecast'),
+  var //$container = $('#zci-forecast'),  // #spice_forecast'
       units = (r.flags && r.flags.units) || 'us',
       unit_labels = {
         'us': {speed: 'mph', temperature: 'F'},
@@ -36,18 +36,18 @@ function ddg_spice_forecast(r) {
       }
   
   // Skycons (static version of these: http://darkskyapp.github.io/skycons/)
-  var set_skycons = function(elem_id, type) {
-    var $elem = $('#'+elem_id),
-        $img = $('<img />').attr('id', $elem.attr('id'))
-                           .attr('class', $elem.attr('class'))
-                           .attr('src', '/iu/?u=http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif') // DDG
-                           .css({
-                              'width': $elem.width(),
-                              'height': $elem.height()
-                            })
+  // var set_skycons = function(elem_id, type) {
+  //   var $elem = $('#'+elem_id),
+  //       $img = $('<img />').attr('id', $elem.attr('id'))
+  //                          .attr('class', $elem.attr('class'))
+  //                          .attr('src', '/iu/?u=http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif') // DDG
+  //                          .css({
+  //                             'width': $elem.width(),
+  //                             'height': $elem.height()
+  //                           })
     
-    $elem.replaceWith($img)
-  };
+  //   $elem.replaceWith($img)
+  // };
   
   var get_skycon = function(type) {
 	return 'http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif';
@@ -179,18 +179,18 @@ function ddg_spice_forecast(r) {
   // Build any weather alerts or warnings
   var build_alerts = function(f) {    
     if(!f.alerts || !f.alerts.length) {
-      return
+      return "";
     }
     
     var alert_message;
     for(var i = 0; i < f.alerts.length; i++) {
-      if(f.alerts[i].title.match(/Special Weather Statement/i) ||
+      if (f.alerts[i].title.match(/Special Weather Statement/i) ||
          f.alerts[i].title.match(/Advisory/i) ||
          f.alerts[i].title.match(/Statement/i))
-        continue
+        continue;
       
-      alert_message = f.alerts[i]
-      break
+      alert_message = f.alerts[i];
+      break;
     }
 
     if(alert_message)
@@ -203,7 +203,7 @@ function ddg_spice_forecast(r) {
   weatherData.daily = build_daily(r);
   
   // Render/Display
-    Spice.render({
+    Spice.add({
         id: 'forecast',
         name: 'Weather',
 
