@@ -89,6 +89,10 @@
 	.fe_temp  {
 		color: #333;
 	}
+
+    .fe_label a {
+		color: #333;
+    }
 	
 	/*h1*/.fe_low_temp,
 	.fe_date {
