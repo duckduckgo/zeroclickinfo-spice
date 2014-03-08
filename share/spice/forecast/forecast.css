@@ -157,6 +157,9 @@
   font-size: 20px;
 }
 
+#spice_forecast #switch-temp {
+  margin-top: 5px;
+}
 
 @media screen and (max-width:480px) {
     #spice_forecast {
