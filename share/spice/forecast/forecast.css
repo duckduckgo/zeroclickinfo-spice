@@ -90,7 +90,7 @@
 		color: #333;
 	}
 
-    .fe_label a {
+    .fe_label a, .fe_label a:visited {
 		color: #333;
     }
 	
