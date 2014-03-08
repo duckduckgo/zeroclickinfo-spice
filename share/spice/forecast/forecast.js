@@ -248,4 +248,53 @@ function ddg_spice_forecast(r) {
   build_currently(r)
   build_daily(r)
   build_alerts(r)
+
+  var other_unit = unit_labels[units].temperature == 'F' ? 'C' : 'F'
+  $('#switch-temp').html('&deg;' + other_unit)
+
+  var convertTemp = function(unit, d){
+    if (unit == 'C') {
+      return (d-32)*(5/9)
+    } else if (unit == 'F') {
+      return d*(9/5) + 32
+    }
+  }
+
+  $('#switch-temp').click(function(){
+    //if they want the units returned by the API
+    if (other_unit == unit_labels[units].temperature) {
+      $('.fe_currently .fe_temp_str').html(Math.round(r.currently.temperature) + '&deg;')
+      $('.fe_currently .fe_temp_unit').html(other_unit)
+
+      $('.fe_currently .fe_feelslike').html('Feels like '+Math.round(r.currently.apparentTemperature)+'&deg;')
+
+      $('.fe_temp_bar').each(function(i){
+        var day = r.daily.data[i]
+
+        $(this).find('.fe_high_temp').html(Math.round(day.temperatureMax) + '&deg;')
+        $(this).find('.fe_low_temp').html(Math.round(day.temperatureMin) + '&deg;')
+      })
+    } 
+    //they want the other units
+    else {
+      var new_current = convertTemp(other_unit, r.currently.temperature)
+      $('.fe_currently .fe_temp_str').html(Math.round(new_current) + '&deg;')
+      $('.fe_currently .fe_temp_unit').html(other_unit)
+
+      var new_feelslike = convertTemp(other_unit, r.currently.apparentTemperature)
+      $('.fe_currently .fe_feelslike').html('Feels like '+Math.round(new_feelslike)+'&deg;')
+
+      $('.fe_temp_bar').each(function(i){
+        var day = r.daily.data[i],
+            new_low = convertTemp(other_unit, day.temperatureMin),
+            new_high = convertTemp(other_unit, day.temperatureMax)
+
+        $(this).find('.fe_high_temp').html(Math.round(new_high) + '&deg;')
+        $(this).find('.fe_low_temp').html(Math.round(new_low) + '&deg;')
+      })
+    }    
+
+    other_unit = (other_unit == 'F') ? 'C' : 'F'
+    $(this).html('&deg;' + other_unit)
+  })
 }
