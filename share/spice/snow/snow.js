@@ -1,13 +1,4 @@
-// Description:
-// Tells you if it's snowing in your area.
-//
-// Dependencies:
-// None.
-//
-// Commands:
-// is it snowing? - tells you if it's snowing in your current location.
-
-var nrio = function(api_result) {
+function nrio (api_result) {
     // Check for errors.
     if(!api_result || api_result.error || !api_result.location) {
         return;

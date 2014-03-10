@@ -20,19 +20,20 @@
         {{name}} {{seasonTimeFrame}} {{seasonDescription}} season statistics:
     </div>
     <table>
-        {{#if runs}}<tr><th>Runs:</th><td>{{runs}}</td></tr>{{/if}}
-        {{#if RBIs}}<tr><th>Runs batted in:</th><td>{{RBIs}}</td></tr>{{/if}}
-        {{#if average}}<tr><th>Average:</th><td>{{average}}</td></tr>{{/if}}
-        {{#if slugAverage}}<tr><th>Slug average:</th><td>{{slugAverage}}</td></tr>{{/if}}
+        {{#if runs}}<tr><th>&bull; Runs:</th><td>{{runs}}</td></tr>{{/if}}
+        {{#if RBIs}}<tr><th>&bull; Runs batted in:</th><td>{{RBIs}}</td></tr>{{/if}}
+        {{#if average}}<tr><th>&bull; Average:</th><td>{{average}}</td></tr>{{/if}}
+        {{#if slugAverage}}<tr><th>&bull; Slug average:</th><td>{{slugAverage}}</td></tr>{{/if}}
 
-        {{#if wins}}
-            <tr><th>Record:</th><td>
-                <span style="color:green">{{wins}}</span>/<span style="color:red">{{losses}}</span>
-            </td></tr>
-        {{/if}}
-        {{#if ERA}}<tr><th>ERA:</th><td>{{ERA}}</td></tr>{{/if}}
-        {{#if strikeouts}}<tr><th>Strikeouts:</th><td>{{strikeouts}}</td></tr>{{/if}}
-        {{#if WHIP}}<tr><th>WHIP:</th><td>{{WHIP}}</td></tr>{{/if}}
+            {{#if wins}}
+                <tr><th>&bull; Record:</th><td>
+                    <span style="color:green">{{wins}}</span>/<span style="color:red">{{losses}}</span>
+                </td></tr>
+            {{/if}}
+            {{#if ERA}}<tr><th>&bull; ERA:</th><td>{{ERA}}</td></tr>{{/if}}
+            {{#if strikeouts}}<tr><th>&bull; Strikeouts:</th><td>{{strikeouts}}</td></tr>{{/if}}
+            {{#if WHIP}}<tr><th>&bull; WHIP:</th><td>{{WHIP}}</td></tr>{{/if}}
+        </ul>
     </table>
 </div>
 {{/if}}

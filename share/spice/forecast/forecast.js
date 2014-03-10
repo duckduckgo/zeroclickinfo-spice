@@ -13,15 +13,18 @@ function ddg_spice_forecast(r) {
   // Forecast.pm already does for us.
   var script = $('[src*="/js/spice/forecast/"]')[0];
   var source = $(script).attr('src');
-  var query = source.match(/forecast\/([^\/]+)/)[1];
+  var matches = source.match(/forecast\/([^\/]+)\/?(.*)/);
+  var query = matches[1];
+  var current_location = matches[2];
   query = decodeURIComponent(query);
 
   // Pass flags['ddg-location'] to DDG.stringsRelevant to check
   // if the result is relevant to our query.
   var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'], query, undefined, 2);
 
-  // Exit if it's not an area code, e.g., 07871, and if it's relevant.
-  if(!(/^\d+$/).test(query) && !relevant_location) {
+  // Exit if it's not the current location that we're looking for,
+  // not the area code, e.g., 07871, and if it's not relevant.
+  if(!current_location && !(/\d/).test(query) && !relevant_location) {
     return;
   }
   
@@ -33,8 +36,16 @@ function ddg_spice_forecast(r) {
         'si': {speed: 'm/s', temperature: 'C'},
         'ca': {speed: 'km/h', temperature: 'C'},
         'uk': {speed: 'mph', temperature: 'C'},
-      }
-  
+	'uk2': {speed: 'mph', temperature: 'C'}
+      },
+      units = r.flags && r.flags.units;
+
+  // Check if the unit that we got is actually in the hash.
+  // If the API changes the r.flags or r.flags.units, it will break everything.
+  if(!(units in unit_labels)) {
+      units = 'us';
+  }
+
   // Skycons (static version of these: http://darkskyapp.github.io/skycons/)
   // var set_skycons = function(elem_id, type) {
   //   var $elem = $('#'+elem_id),

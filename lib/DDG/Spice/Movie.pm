@@ -15,7 +15,10 @@ attribution github => ['https://github.com/moollaza','Zaahir Moolla'],
 
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&q=$1&page_limit=50&page=1&callback={{callback}}';
 
-my @triggers = ( 'movie', 'film', 'rt', 'rotten tomatoes', 'rating', 'ratings', 'rotten' );
+# It's important that 'movie info' precede 'movie' so that the handler
+# encounters it first and removes both words, rather than encountering 'movie'
+# first in the list, removing it, and leaving the word 'info.'
+my @triggers = ( 'movie info', 'movie', 'film', 'rt', 'rotten tomatoes', 'rating', 'ratings', 'rotten' );
 
 triggers startend => @triggers;
 

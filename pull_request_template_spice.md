@@ -1,6 +1,6 @@
 # Spice Pull Request Template
 
-We ask that you please use this template when submitting an instant answer pull request so we can better understand it and help you along when necessary.
+Using this template will help us better understand your Instant Answer and assist you when necessary.  Simply copy and paste the markdown below into the description of your GitHub pull request and complete as appropriate.
 
 **What does your instant answer do?**
 
@@ -23,7 +23,7 @@ We ask that you please use this template when submitting an instant answer pull 
 **Which communities will this instant answer be especially useful for? (gamers, book lovers, etc)**
 
 
-**Is this instant answer connected to an [Ideas.DuckDuckHack](https://duckduckhack.uservoice.com/forums/5168-ideas-for-duckduckgo-instant-answer-plugins) or [Duck.co](http://duck.co/) thread?**
+**Is this instant answer connected to a DuckDuckHack [instant answer idea](https://duck.co/ideas)?**
 
 
 **Which existing instant answers will this one supersede/overlap with?**
@@ -34,7 +34,7 @@ We ask that you please use this template when submitting an instant answer pull 
 **\*\*Note:** Please attach a screenshot for new instant answer pull requests, and for pull requests which modify the look/design of existing instant answers.
 
 ##Checklist
-Please place a ✔ where appropriate.
+Please place an 'X' where appropriate.
 
 ```
 [] Added metadata and attribution information
