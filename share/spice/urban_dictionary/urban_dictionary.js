@@ -10,9 +10,8 @@ function ddg_spice_urban_dictionary(response) {
       || response.list || response.list[0])) {
     return;
   }
-
   var word       = response.list[0].word;
-  var definition = response.list[0].definition.replace(/(\r?\n)+/gi, '<br>');
+  var definition = response.list[0].definition.replace(/(\r?\n)+/gi, '<br/>');
 
   Spice.render({
     data             : { 'definition' : definition },
