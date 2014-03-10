@@ -4,9 +4,10 @@
 // Note: This plugin can display adult content and profanity.
 
 function ddg_spice_urban_dictionary(response) {
-	if (!(response || response.response.result_type === "exact"
-            || response.list || response.list[0]))
+	if (!(response && response.result_type === "exact"
+            && response.list && response.list[0])) {
         return;
+    }
 
     var word       = response.list[0].word;
 	var definition = response.list[0].definition.replace(/(\r?\n)+/gi, '<br/>');
