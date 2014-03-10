@@ -16,13 +16,8 @@ function ddg_spice_guidebox_getid (api_result) {
 
     // Exit if we didn't find anything relevant.
     if (!relevant) {
-	return;
+	   return;
     }
-
-    // Prevent jQuery from appending "_={timestamp}" in our url.
-    $.ajaxSetup({
-        cache: true
-    });
 
     var script = $('[src*="/js/spice/guidebox/getid/"]')[0],
         source = decodeURIComponent($(script).attr("src")),
@@ -36,30 +31,25 @@ function ddg_spice_guidebox_getid (api_result) {
         query     : query,
     };
     
-    ddg_spice_guidebox_getid.metadata = metadata;
-    $.getScript("/js/spice/guidebox/lastshows/series/" + relevant.id);
-}
+    $.getJSON("/js/spice/guidebox/lastshows/series/" + relevant.id, function(api_result){
 
-function ddg_spice_guidebox_lastshows (api_result) {
-
-    var metadata = ddg_spice_guidebox_getid.metadata;
-
-    Spice.render({
-        data                     : api_result,
-        header1                  : metadata.res_title + " (TV  - " + metadata.network + ")",
-        source_name              : "Guidebox",
-        source_url               : metadata.more,
-        template_frame           : "carousel",
-        spice_name               : "guidebox",
-        template_options         : { 
-            items                : api_result.results.result,
-            template_item        : "guidebox_getid",
-            template_detail      : "guidebox_getid_details",
-            li_width             : 120,
-            li_height            : 105
-        }
+        Spice.render({
+            data                     : api_result,
+            header1                  : metadata.res_title + " (TV  - " + metadata.network + ")",
+            source_name              : "Guidebox",
+            source_url               : metadata.more,
+            template_frame           : "carousel",
+            spice_name               : "guidebox",
+            template_options         : { 
+                items                : api_result.results.result,
+                template_item        : "guidebox_getid",
+                template_detail      : "guidebox_getid_details",
+                li_width             : 120,
+                li_height            : 105
+            }
+        });
     });
-};
+}
 
 Handlebars.registerHelper("checkSeason", function(season_number, episode_number, options) {
     if(season_number !== "0") {
