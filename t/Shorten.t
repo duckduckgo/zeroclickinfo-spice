@@ -22,6 +22,10 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Shorten'
     ),
+    'url shorten www.github.com/explore' => test_spice(
+        '/js/spice/shorten/www.github.com%2Fexplore',
+        caller    => 'DDG::Spice::Shorten',
+    ),
 );
 
 done_testing;
