@@ -1,7 +1,8 @@
-#spice_github_list hr.horizontal_line {
-    margin: 5px 0px;
-}
-
-#gh_more_results {
-    display: none;
+#spice_github span {
+    display: block;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
 }

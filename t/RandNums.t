@@ -18,6 +18,10 @@ ddg_spice_test(
 		call_type => 'include',
 		caller    => 'DDG::Spice::RandNums',
 	),
+    'random numbers 10 11' => test_spice(
+        '/js/spice/rand_nums/10/11',
+        caller    => 'DDG::Spice::RandNums',
+    ),
 );
 
 done_testing;
