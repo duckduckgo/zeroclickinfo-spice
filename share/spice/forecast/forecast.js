@@ -89,7 +89,7 @@ function ddg_spice_forecast(r) {
   var wind_bearing_to_str = function(bearing) {
     var wind_i = Math.round(bearing / 45);
     return ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'][wind_i];
-  }
+  };
   
   // Build the current conditions
   var build_currently = function(f) {
@@ -144,7 +144,7 @@ function ddg_spice_forecast(r) {
     }
     
     setTimeout(function() {
-      set_skycons('fe_current_icon', skycon_type(f.currently.icon))
+      set_skycons('fe_current_icon', skycon_type(f.currently.icon));
     }, 0);
   };
   
@@ -204,7 +204,9 @@ function ddg_spice_forecast(r) {
       });
       
       $day.find('.fe_icon').attr('id', 'fe_day_icon'+i);
-      setTimeout(function(){set_skycons('fe_day_icon'+i, skycon_type(days[i].icon))}, 0);
+      setTimeout(function(){
+        set_skycons('fe_day_icon'+i, skycon_type(days[i].icon));
+      }, 0);
 
       if(day.temperatureMax && day.temperatureMin) { 
         $day.appendTo($daily_container);
