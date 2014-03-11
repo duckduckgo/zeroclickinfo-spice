@@ -12,23 +12,32 @@ topics "special_interest";
 category "reference";
 attribution github => ['https://github.com/astine','astine'];
 
-triggers start => "catholic";
+triggers any => "catholic";
 
 spice from => '([^/]*)/([^/]*)';
 spice to => 'http://massontime.com/nearest/$1/10/json?address=$2&api-key={{ENV{DDG_SPICE_MASSONTIME_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
-handle remainder => sub {
-    return unless $_ =~ /^([Cc]hurch|[Pp]arish|[Mm]ass|[Cc]onfession|[Aa]doration|[Ss]ervice)(s|es)?(\s+close\sby|\s+around|\s+in|\s+nearby|\s+near|\s+at)?\s*(.*)$/i;
-    my $event_type = lc($1);
-    my $address = $4;
+handle query_lc => sub {
+    my $event_type;
+    my $address;
+    if ($_ =~ /^catholic\s(church|parish|mass|confession|adoration|service)(s|es)?(\s+close\sby|\s+around|\s+in|\s+nearby|\s+near|\s+at)?\s*(.*)$/i) {
+	$event_type = $1;
+	$address = $4;
+    } elsif ($_ =~ /^(.*)\s+catholic\s+(church|parish|mass|confession|adoration|service)(s|es)?$/i) {
+	$event_type = $2;
+	$address = $1;
+    }
+    else {
+	return;
+    }
     
     #MassOnTime API doesn't recognize 'church;, replace with 'parish'
     $event_type = "parish" if $event_type eq "church";
 
     #Handle blank addresses or 'me' using DDG location api
-    $address = join(", ", $loc->city, $loc->region_name, $loc->country_name) 
-        if ($address eq "me" or $address eq "here" or $address eq "" or not defined $address);
+    $address = lc(join(", ", $loc->city, $loc->region_name, $loc->country_name))
+        if ($address eq "close" or $address eq "me" or $address eq "here" or $address eq "" or not defined $address);
 
     return $event_type, $address;
 };
