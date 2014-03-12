@@ -37,7 +37,7 @@ handle query_lc => sub {
 
     #Handle blank addresses or 'me' using DDG location api
     $address = lc(join(", ", $loc->city, $loc->region_name, $loc->country_name))
-        if ($address eq "close" or $address eq "me" or $address eq "here" or $address eq "" or not defined $address);
+        if ($address =~ m/^(close|me|here|nearby)$/i or $address eq "" or not defined $address);
 
     return $event_type, $address;
 };
