@@ -17,7 +17,7 @@ function ddg_spice_mass_on_time (api_result) {
 	}
 
 	//Add the location string
-	return type + " near " + query_details.address;
+	return type + " near " + query_details.address.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
     };
 
     //Parishes return different info than events, so a different template is in order for those
