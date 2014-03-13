@@ -196,7 +196,7 @@ Handlebars.registerHelper("embedURL", function(provider_data, id) {
 
     function parameters(embed_options) {
 	var result = [];
-	for(o in embed_options) {
+	for(var o in embed_options) {
 	    result.push(o + "=" + embed_options[o]);
 	}
 	return result.join("&");
