@@ -16,9 +16,11 @@ function render_details(json, el) {
 
     if (json.image) {
         el.children('.right').append($('<img>').attr('src', json.image));
-    } else if (json.menu) {
+    } 
+    if (json.menu) {
         el.children('.left').append($('<a>').attr('href', json.menu).text('Menu'));
-    } else if (json.hours && json.hours['Today']) {
+    } 
+    if (json.hours && json.hours['Today']) {
         el.children('.left').append(
                 '<br>Open today: ' + json.hours['Today'].join(', ')
         );
