@@ -20,6 +20,6 @@ function ddg_spice_urban_dictionary(response) {
     source_url       : 'http://www.urbandictionary.com/define.php?term=' + word,
     source_name      : 'Urban Dictionary',
     template_normal  : 'urban_dictionary',
-    force_big_header : true,
+    force_big_header : true
   });
 }
