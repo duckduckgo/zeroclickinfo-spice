@@ -1,4 +1,6 @@
 function ddg_spice_video(api_result) {
+    "use strict";
+
     // Do not show the single detail view for now.
     if(!api_result || api_result.length == 0) {
         return;
@@ -110,6 +112,8 @@ function ddg_spice_video(api_result) {
 
 // This is the callback function of /itt.
 ddg_spice_video.itunes = function(api_result) {
+    "use strict";
+
     if(!api_result || !api_result.results || api_result.results.length === 0) {
         return;
     }
@@ -135,14 +139,20 @@ ddg_spice_video.itunes = function(api_result) {
 };
 
 Handlebars.registerHelper("toHTTP", function (image) {
+    "use strict";
+
     return image.replace(/^https/, "http");
 });
 
 Handlebars.registerHelper("userURL", function(provider_data, uploader) {
+    "use strict";
+
     return provider_data.user_url + uploader; 
 });
 
 Handlebars.registerHelper("checkMusic", function(category, title, options) {
+    "use strict";
+
     // Remove things from the title that we don't really need.
     var stripTitle = function(s) {
 	// Remove things like "(Explicit)".
@@ -175,15 +185,18 @@ Handlebars.registerHelper("checkMusic", function(category, title, options) {
 // We'll use this for showing the view counts.
 Handlebars.registerHelper("formatViews", function(views) {
     "use strict";
+
     if(views) {
 	return String(views).replace(/(\d)(?=(\d{3})+(\.\d+|)\b)/g, "$1,");
     }
 });
 
 Handlebars.registerHelper("embedURL", function(provider_data, id) {
+    "use strict";
+
     function parameters(embed_options) {
 	var result = [];
-	for(o in embed_options) {
+	for(var o in embed_options) {
 	    result.push(o + "=" + embed_options[o]);
 	}
 	return result.join("&");
@@ -196,10 +209,14 @@ Handlebars.registerHelper("embedURL", function(provider_data, id) {
 });
 
 Handlebars.registerHelper("playURL", function(provider_data, id) {
+    "use strict";
+
     return provider_data.play_url + id;
 });
 
 Handlebars.registerHelper("checkStatistics", function(viewCount, options) {
+    "use strict";
+
     if(viewCount === null) {
 	return "";
     }

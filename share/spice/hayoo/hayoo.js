@@ -1,6 +1,9 @@
 function ddg_spice_hayoo(results) {
+  "use strict";
 
-  if (!results.hits > 0) return;
+  if (!results.hits > 0) {
+    return;
+  }
   var query = DDG.get_query().replace(/\s*hayoo\s*/i, '');
 
   Spice.render({
@@ -15,5 +18,7 @@ function ddg_spice_hayoo(results) {
 }
 
 Handlebars.registerHelper("strip_anchor", function(text) {
+  "use strict";
+
   return text.replace(/<\/?(a|code|strong)[^>]*>/g, "");
 });
