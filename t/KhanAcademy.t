@@ -17,6 +17,14 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::KhanAcademy'
     ),
+    'khan academy videos' => test_spice(
+        '/js/spice/khan_academy/videos',
+        caller    => 'DDG::Spice::KhanAcademy',
+    ),
+    'khan trigonometry' => test_spice(
+        '/js/spice/khan_academy/trigonometry',
+        caller    => 'DDG::Spice::KhanAcademy',
+    ),
 );
 
 done_testing;

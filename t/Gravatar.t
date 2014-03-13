@@ -12,6 +12,14 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Gravatar'
     ),
+    'gravatar gravatar@duckduckgo.com' => test_spice(
+        '/js/spice/gravatar/a4ef35219b54c904e8af196e142ca9f9',
+        caller    => 'DDG::Spice::Gravatar',
+    ),
+    'gravatar duckduckhack' => test_spice(
+        '/js/spice/gravatar/duckduckhack',
+        caller    => 'DDG::Spice::Gravatar',
+    ),
 );
 
 done_testing;

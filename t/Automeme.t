@@ -13,6 +13,16 @@ ddg_spice_test(
         caller => 'DDG::Spice::Automeme',
         is_unsafe => 1
     ),
+    'automeme' => test_spice(
+        '/js/spice/automeme/',
+        caller    => 'DDG::Spice::Automeme',
+        is_unsafe => 1,
+    ),
+    'meme generator' => test_spice(
+        '/js/spice/automeme/',
+        caller    => 'DDG::Spice::Automeme',
+        is_unsafe => 1,
+    ),
 );
 
 done_testing;

@@ -31,6 +31,11 @@ ddg_spice_test(
     	'/js/spice/snow/new%20york',
     	call_type => 'include',
     	caller => 'DDG::Spice::Snow',
+    ),
+    'is it snowing in new york city?' => test_spice(
+    	'/js/spice/snow/new%20york%20city',
+    	call_type => 'include',
+    	caller => 'DDG::Spice::Snow',
     )
 );
 

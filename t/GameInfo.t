@@ -17,6 +17,10 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::GameInfo',
     ),
+    'homesick video game' => test_spice(
+        '/js/spice/game_info/homesick',
+        caller    => 'DDG::Spice::GameInfo',
+    ),
 );
 
 done_testing;

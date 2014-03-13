@@ -12,6 +12,14 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::GithubJobs'
     ),
+    'javascript jobs' => test_spice(
+        '/js/spice/github_jobs/javascript-',
+        caller    => 'DDG::Spice::GithubJobs',
+    ),
+    'perl jobs in san francisco' => test_spice(
+        '/js/spice/github_jobs/perl-san%20francisco',
+        caller    => 'DDG::Spice::GithubJobs',
+    ),
 );
 
 done_testing;
