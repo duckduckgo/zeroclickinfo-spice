@@ -1,5 +1,9 @@
 function ddg_spice_chuck_norris(api_result) {
-    if (api_result.type !== 'success') return;
+    "use strict";
+
+    if (api_result.type !== 'success') {
+      return;
+    }
 
     Spice.render({
         data             : api_result.value,
@@ -9,4 +13,3 @@ function ddg_spice_chuck_norris(api_result) {
         force_no_icon    : true
     });
 }
-

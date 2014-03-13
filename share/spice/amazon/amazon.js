@@ -2,8 +2,12 @@ var ddg_spice_amazon_carousel_add_items;
 var ddg_spice_amazon_query;
 
 function ddg_spice_amazon(api_response) {
+    "use strict";
+
     if (!api_response || !api_response.results ||
-    !api_response.results.length || api_response.results.length == 0) return;
+    !api_response.results.length || api_response.results.length == 0) {
+      return;
+    }
 
     ddg_spice_amazon_query =
         DDG.get_query().replace(/\s+amazon\s*$|^\s*amazon\s+/i, '');
@@ -82,6 +86,8 @@ function ddg_spice_amazon(api_response) {
 }
 
 function ddg_spice_amazon_wait_for_render(api_response) {
+    "use strict";
+
     if (ddg_spice_amazon_carousel_add_items) {
         window.setTimeout(function() {
             ddg_spice_amazon_carousel_add_items(api_response.results);
@@ -90,6 +96,7 @@ function ddg_spice_amazon_wait_for_render(api_response) {
 }
 
 function ddg_spice_amazon_reviews(api_response) {
+    "use strict";
 
     if (api_response.stars == 'unrated') {
         $('<span>unrated</span>')
@@ -104,6 +111,8 @@ function ddg_spice_amazon_reviews(api_response) {
 }
 
 function ddg_spice_amazon_deep_image(api_response) {
+    "use strict";
+
     var link_container = $('#links').css({ 'float' : 'left' });
     var links = $('#links div[id|="r1"]');
 

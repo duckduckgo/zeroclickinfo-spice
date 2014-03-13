@@ -1,8 +1,12 @@
 function ddg_spice_septa(api_result) {
+    "use strict";
+
     if (api_result.length < 1 ||
             !api_result[0].orig_line ||
             !api_result[0].orig_departure_time ||
-            !api_result[0].orig_delay) return;
+            !api_result[0].orig_delay) {
+        return;
+    }
 
     var script  = $("[src*='js/spice/septa/']")[0];
     var source  = unescape($(script).attr("src"));
@@ -21,8 +25,14 @@ function ddg_spice_septa(api_result) {
 };
 
 Handlebars.registerHelper ('delay', function(delay) {
-    if (delay == "On time") return "";
-    if (delay == "Suspended") return " (Suspended) ";
+    "use strict";
+
+    if (delay == "On time") {
+        return "";
+    }
+    if (delay == "Suspended") {
+        return " (Suspended) ";
+    }
     var parts = delay.split(" ");
     var delay = parts[0] + " minute" + (parts[0] > 1 ? "s" : "") + " late";
     return " (" + delay + ")";

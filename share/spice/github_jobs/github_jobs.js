@@ -1,5 +1,9 @@
 function ddg_spice_github_jobs(api_result) {
-    if (api_result.length == 0) return;
+    "use strict";
+
+    if (api_result.length == 0) {
+      return;
+    }
 
     var jobs = api_result;
     var query = DDG.get_query();
