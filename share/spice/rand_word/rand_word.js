@@ -1,5 +1,9 @@
 function ddg_spice_rand_word(api_result) {
-    if (!api_result.word) return;
+    "use strict";
+
+    if (!api_result.word) {
+        return;
+    }
 
     Spice.render({
         data             : api_result,

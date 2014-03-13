@@ -1,4 +1,5 @@
 var ddg_spice_twitter = function(api_result) {
+    "use strict";
 
     if(!api_result || (!api_result.current_status && !api_result.description)) {
         return;
@@ -22,6 +23,8 @@ var ddg_spice_twitter = function(api_result) {
 };
 
 Handlebars.registerHelper("findLinks", function(text, entities, options) {
+    "use strict";
+
     // Chop the string so that we can surreptitiously insert links.
     var twitterSplit = function(twitter, result, final_text, original, start_index, i) {
         if(twitter.length === i || twitter.length === 0) {
@@ -66,6 +69,8 @@ Handlebars.registerHelper("findLinks", function(text, entities, options) {
 });
 
 Handlebars.registerHelper("makeLinks", function(results) {
+    "use strict";
+
     window.r = results;
 
     var createLink = function(href, inner) {

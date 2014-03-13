@@ -1,6 +1,9 @@
 function ddg_spice_ruby_gems(api_result) {
+    "use strict";
     
-    if (api_result.length === 0) return;
+    if (api_result.length === 0) {
+        return;
+    }
 
     // Get the original query.
     var script = $('[src*="/js/spice/ruby_gems/"]')[0];

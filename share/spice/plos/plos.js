@@ -1,10 +1,13 @@
 function ddg_spice_plos(api_result) {
+    "use strict";
 
     // Grab number of results.
     var numFound = api_result.response.numFound;
 
     // if no results, don't show spice.
-    if (numFound < 1) return
+    if (numFound < 1) {
+        return;
+    }
 
     // Get query, exclude the trigger, and exclude preceding/trailing white space.
     var script = $('[src*="/js/spice/plos/"]')[0];
@@ -31,6 +34,8 @@ function ddg_spice_plos(api_result) {
 
 // Convert full publication date to year only.
 Handlebars.registerHelper('year', function(pubdate) {
+    "use strict";
+
     var year = pubdate.substr(0, 4);
     return year;
 });

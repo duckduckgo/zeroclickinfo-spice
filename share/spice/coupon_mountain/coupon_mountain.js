@@ -1,6 +1,9 @@
 function ddg_spice_coupon_mountain (api_result) {
+  "use strict";
 
-	if (api_result.count < 1) return;
+	if (api_result.count < 1) {
+    return;
+  }
 
 	var header = api_result.keyword
 			? api_result.keyword + " (CouponMountain)"
@@ -34,10 +37,14 @@ function ddg_spice_coupon_mountain (api_result) {
 
 	// Manually trigger our callback function,
 	// item_callback doesn't fire for single result
-	if (api_result.count === 1) highlight_code();
+	if (api_result.count === 1) {
+    highlight_code();
+  }
 }
 
 Handlebars.registerHelper("check_expiry", function(string, options) {
+  "use strict";
+
 	if (string && string != "3333-03-03"){
 		return options.fn(this);
 	} else {
@@ -46,11 +53,15 @@ Handlebars.registerHelper("check_expiry", function(string, options) {
 });
 
 Handlebars.registerHelper("dateString", function(string) {
+  "use strict";
+
 	var date = DDG.getDateFromString(string),
 		months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
 	return "Expires " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
 });
 
 Handlebars.registerHelper("stripExpiry", function(string) {
+  "use strict";
+
 	return string.replace(/(offer|good through|expires|ends|valid \w+) .+$/i, "");
 });

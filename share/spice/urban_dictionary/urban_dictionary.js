@@ -4,20 +4,22 @@
 // Note: This plugin can display adult content and profanity.
 
 function ddg_spice_urban_dictionary(response) {
-	if (!(response && response.result_type === "exact"
-            && response.list && response.list[0])) {
-        return;
-    }
+  "use strict";
 
-    var word       = response.list[0].word;
-	var definition = response.list[0].definition.replace(/(\r?\n)+/gi, '<br/>');
+  if (!(response && response.result_type === "exact"
+        && response.list && response.list[0])) {
+      return;
+  }
 
-    Spice.render({
-        data             : { 'definition' : definition },
-        header1          : word + " (Urban Dictionary)",
-        source_url       : 'http://www.urbandictionary.com/define.php?term=' + word,
-        source_name      : 'Urban Dictionary',
-        template_normal  : 'urban_dictionary',
-        force_big_header : true,
-    });
+  var word       = response.list[0].word;
+  var definition = response.list[0].definition.replace(/(\r?\n)+/gi, '<br/>');
+
+  Spice.render({
+    data             : { 'definition' : definition },
+    header1          : word + " (Urban Dictionary)",
+    source_url       : 'http://www.urbandictionary.com/define.php?term=' + word,
+    source_name      : 'Urban Dictionary',
+    template_normal  : 'urban_dictionary',
+    force_big_header : true,
+  });
 }

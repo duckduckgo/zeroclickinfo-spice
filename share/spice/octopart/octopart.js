@@ -1,4 +1,5 @@
 function ddg_spice_octopart (api_result) {
+    "use strict";
 
     if(!api_result || !api_result.results || api_result.results.length === 0) {
         return;
@@ -50,13 +51,19 @@ function ddg_spice_octopart (api_result) {
 };
 
 Handlebars.registerHelper("toFixed", function(number) {
+    "use strict";
+
     return number.toFixed(2);
 });
 
 Handlebars.registerHelper("escapeURL", function(string) {
+    "use strict";
+
     return encodeURIComponent(string);
 });
 
 Handlebars.registerHelper("trim", function(string) {
+    "use strict";
+
     return string.replace(/[^:]+:\s/, "");
 });

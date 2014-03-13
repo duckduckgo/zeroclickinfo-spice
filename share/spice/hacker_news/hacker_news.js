@@ -1,4 +1,5 @@
 function ddg_spice_hacker_news(api_result) {
+    "use strict";
 
     // Check for at least 1 result
     if (!api_result.results.length) {
@@ -83,7 +84,9 @@ Handlebars.registerHelper("organizeResults", function(options) {
             addResult(result);
         }
 
-        if ( isFull() ) break;
+        if ( isFull() ) {
+          break;
+        }
     }
 
     // Invoke context of template with hn object as context.
