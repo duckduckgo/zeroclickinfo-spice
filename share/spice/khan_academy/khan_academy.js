@@ -73,7 +73,7 @@ Handlebars.registerHelper ("embedURL", function(single) {
     // Concatenate all the parameters here.
     function parameters() {
         var result = [];
-        for(o in youtube_params) {
+        for(var o in youtube_params) {
             result.push(o + "=" + youtube_params[o]);
         }
         return result.join("&");
