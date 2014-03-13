@@ -1,6 +1,9 @@
 function ddg_spice_game_info(api_result) {
-    if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0)
+    "use strict";
+
+    if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0) {
         return;
+    }
     var ignore = ["video", "game", "games", "giantbomb"];
     var games = api_result.results;
     var query = DDG.get_query();
@@ -49,6 +52,8 @@ function ddg_spice_game_info(api_result) {
  * Find the release date for a game
  */
 Handlebars.registerHelper("release_date", function() {
+    "use strict";
+
     var date_info = {
         month: [
             "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
@@ -68,6 +73,8 @@ Handlebars.registerHelper("release_date", function() {
  * Summarise the platforms a game is available on
  */
 Handlebars.registerHelper("platform_summary", function(platforms, options) {
+    "use strict";
+
     options.hash.sep = ", ";
     options.hash.conj = " and ";
     if(platforms.length > 4) {
@@ -82,6 +89,8 @@ Handlebars.registerHelper("platform_summary", function(platforms, options) {
  * Summarise the game's age rating
  */
 Handlebars.registerHelper("age_rating", function() {
+    "use strict";
+
     var rating = "";
     var ratings = this.original_game_rating;
     // they are in the form PEGI: 3,...
@@ -99,5 +108,5 @@ Handlebars.registerHelper("age_rating", function() {
             }
         }
     }
-    return rating.length == 0 ? "N/A" : rating;
+    return (rating.length == 0) ? "N/A" : rating;
 });

@@ -1,4 +1,6 @@
 function ddg_spice_rand_nums(api_result) {
+    "use strict";
+
     var min;
     var max;
 
