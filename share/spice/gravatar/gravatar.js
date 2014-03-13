@@ -18,7 +18,6 @@ function ddg_spice_gravatar (api_result) {
 
     // Get the name of the user (if available).
     var getName = function(entry) {
-        var name = "";
         if(!entry.name || !entry.displayName) {
             return;
         }
@@ -42,7 +41,7 @@ function ddg_spice_gravatar (api_result) {
         template_normal   : "gravatar",
         force_favicon_url : 'http://gravatar.com/favicon.ico'
     });
-};
+}
 
 // Find the primary e-mail.
 Handlebars.registerHelper("getEmail", function(emails, options) {
