@@ -9,6 +9,8 @@
 // gravatar matt - shows information about a user.
 
 function ddg_spice_gravatar (api_result) {
+    "use strict";
+
     // Check for errors.
     if(!api_result || !api_result.entry || api_result.entry.length === 0) {
         return;
@@ -16,7 +18,6 @@ function ddg_spice_gravatar (api_result) {
 
     // Get the name of the user (if available).
     var getName = function(entry) {
-        var name = "";
         if(!entry.name || !entry.displayName) {
             return;
         }
@@ -40,10 +41,12 @@ function ddg_spice_gravatar (api_result) {
         template_normal   : "gravatar",
         force_favicon_url : 'http://gravatar.com/favicon.ico'
     });
-};
+}
 
 // Find the primary e-mail.
 Handlebars.registerHelper("getEmail", function(emails, options) {
+    "use strict";
+
     // Check if the variable exists.
     if(!emails) {
         return;
@@ -59,6 +62,8 @@ Handlebars.registerHelper("getEmail", function(emails, options) {
 
 // If we don't have any information to display, just show this.
 Handlebars.registerHelper("fallbackInfo", function(emails, aboutMe, currentLocation, accounts, context, options) {
+    "use strict";
+
     if(!emails && !aboutMe && !currentLocation && !accounts) {
         return options.fn(context);
     }
@@ -66,6 +71,8 @@ Handlebars.registerHelper("fallbackInfo", function(emails, aboutMe, currentLocat
 
 // This is for favicons that don't work.
 Handlebars.registerHelper("checkDomain", function(domain) {
+    "use strict";
+
     if(domain === "plus.google.com") {
         return "google.com";
     }

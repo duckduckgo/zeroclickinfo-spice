@@ -1,4 +1,6 @@
 function ddg_spice_rhymes ( api_result ) {
+    "use strict";
+
     var query = DDG.get_query()
                 .replace(/^(what|rhymes?( with| for)?) |\?/gi, "");
 
@@ -20,6 +22,8 @@ function ddg_spice_rhymes ( api_result ) {
 // Randomly selects rhyming words from the
 // list returned by the RhymeBrain API
 Handlebars.registerHelper('selectRhymes', function(options) {
+    "use strict";
+
     var words = [];
 
     for (var i = 0; i < this.length && i < 15; i++) {

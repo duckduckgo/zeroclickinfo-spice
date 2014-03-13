@@ -1,4 +1,6 @@
 function nrio (api_result) {
+    "use strict";
+
     // Check for errors.
     if(!api_result || api_result.error || !api_result.location) {
         return;

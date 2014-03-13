@@ -1,5 +1,9 @@
 function ddg_spice_meta_cpan(api_response) {
-    if (!(api_response.author && api_response.version)) return;
+    "use strict";
+
+    if (!(api_response.author && api_response.version)) {
+        return;
+    }
 
     var query = DDG.get_query().replace(/\s*(metacpan|meta cpan|cpanm?)\s*/i, '').replace(/-/g, '::');
     var link = "search?q=" + encodeURIComponent(query);

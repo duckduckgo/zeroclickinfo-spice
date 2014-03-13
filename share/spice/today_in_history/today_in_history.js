@@ -1,15 +1,23 @@
 function ddg_spice_today_in_history(api_response) {
-    if (!api_response) return;
+    "use strict";
 
-    var item  = $( $.parseXML(api_response) ).find('item');
+    if (!api_response) {
+        return;
+    }
 
-    if (!item) return;
+    var item = $( $.parseXML(api_response) ).find('item');
+
+    if (!item) {
+        return;
+    }
 
     var title = item.find('title').text();
     var link  = item.find('link').text();
     var text  = item.find('description').text();
 
-    if (!title || !link || !text) return;
+    if (!title || !link || !text) {
+        return;
+    }
 
     Spice.render({
         data             : text,

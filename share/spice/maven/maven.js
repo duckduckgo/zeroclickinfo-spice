@@ -1,6 +1,10 @@
 function ddg_spice_maven(api_result) {
+    "use strict";
+
     if (api_result.responseHeader.status
-        || api_result.response.numFound == 0) return
+        || api_result.response.numFound == 0) {
+        return;
+    }
     
     Spice.render({
         data             : api_result,
