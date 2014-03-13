@@ -11,7 +11,7 @@ category 'reference';
 attribution github => ['https://github.com/drsnuggles','Philipp Bayer'],
             twitter => ['https://twitter.com/PhilippBayer', 'PhilippBayer'];
 
-spice to => 'http://opensnp.org/snps/json/annotation/$1.json';
+spice to => 'https://opensnp.org/snps/json/annotation/$1.json';
 spice proxy_cache_valid  => "5m";
 spice wrap_jsonp_callback => 1;
 
