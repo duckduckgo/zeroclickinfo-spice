@@ -4,7 +4,7 @@ function ddg_spice_mass_on_time (api_result) {
     var details = api_result['query-details'];
 
     var generate_header = function (query_details) {
-	var type = "";
+	var type;
 	//Convert the query type to plural and capitalize
 	if (query_details.type == "mass") {
 	  type = "Masses";
@@ -69,24 +69,16 @@ function ddg_spice_mass_on_time (api_result) {
 
 //Event types are returns as integers. This converts them to their string reps.
 Handlebars.registerHelper( "format_eventtypeid", function (eventtypeid) {
-	switch (eventtypeid) {
-	case 1:
-	    return "Adoration";
-	case 2:
-	    return "Confession";
-	case 3:
-	    return "Devotion";
-	case 5:
-	    return "Holy Day Mass";
-	case 6:
-	    return "Holy Day Mass (Vigil)";
-	case 7:
-	    return "Weekday Mass";
-	case 8:
-	    return "Weekend Mass";
-	default:
-	    return "Service";
+        var event_type_name = {
+	  1 : "Adoration",
+	  2 : "Confession",
+	  3 : "Devotion",
+	  5 : "Holy Day Mass",
+	  6 : "Holy Day Mass (Vigil)",
+	  7 : "Weekday Mass",
+	  8 : "Weekend Mass"
 	};
+	return event_type_name[eventtypeid] || "Service";
 });
 
 Handlebars.registerHelper( "backup_link", function (webaddress, parish_id) {
