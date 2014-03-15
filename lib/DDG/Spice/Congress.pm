@@ -21,7 +21,7 @@ spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 
 spice wrap_jsonp_callback => 1;
 
-triggers startend => 'senate', 'senators', 'representatives', 'reps', 'house';
+triggers startend => 'senate', 'senators', 'representatives', 'reps', 'house', 'representative';
 sub rtrim($);
 
 handle query_lc => sub {
@@ -129,7 +129,7 @@ handle query_lc => sub {
     );
 
     # Matches against special variable `$_`, which contains query
-    my ($state1, $chamber, $state2) = /^(.*)(?:\s)*(senate|senators|representatives|reps|house)(?:\s)*(.*)$/g;
+    my ($state1, $chamber, $state2) = /^(.*)(?:\s)*(senate|senators|representatives|representative|reps|house)(?:\s)*(.*)$/g;
 
     my ($state);
 
@@ -149,6 +149,7 @@ handle query_lc => sub {
         "senate" => "senate",
         "reps" => "house",
         "representatives" => "house",
+        "representative" => "house",
         "house" => "house"
     );
 
@@ -166,4 +167,3 @@ sub rtrim($) {
     $string =~ s/\s+$//;
     return $string;
 }
-
