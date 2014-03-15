@@ -4,8 +4,8 @@
 	border-radius: 37.5px;
 	text-align: center;
 	line-height: 75px;
-	border: 2px solid black;
-	font-size: 15px;
+	border: 1px solid black;
+	font-size: 13px;
 	font-weight: bold;
 	background-color: #fff;
 	margin-left: 10px;
@@ -13,36 +13,36 @@
 }
 	
 #spice_stopwatch .btn.start {
-	border-color: #5eaf4b;
-	background-color: #5eaf4b;
+	border-color: #20b84c;
+	background-color: #20b84c;
 	color: white;
 }
 
 #spice_stopwatch .btn.stop {
-	border-color: #ef5436;
-	background-color: #ef5436;
+	border-color: #ff3908;
+	background-color: #ff3908;
 	color: white;
 }
 
 #spice_stopwatch .btn[disabled] {
-	color: #999;
-	border-color: #999;
+	color: #b4b4b4;
+	border-color: #b4b4b4;
 }
 
-#spice_stopwatch .spice_pane {
+#spice_stopwatch .spice-pane {
 	width: 45%; height: 100%;
-	line-height: 100%;
+	line-height: 50px;
 	background-color: #f5f5f5;
-	font-size: 35px;
 	display: inline-block;
 	padding: 2%;
+	border-radius: 2px;
 }
 
-#spice_stopwatch .spice_pane_right {
+#spice_stopwatch .spice-pane-right {
 	float: right;
 }
 
-#spice_stopwatch .pane_block {
+#spice_stopwatch .pane-block {
 	height: 50px;
 	margin-left: 5px;
 	margin-right: 5px;
@@ -50,27 +50,33 @@
 
 #spice_stopwatch .label {
 	padding-left: 5%;
-	font-size: 15px;
+	font-size: 13px;
 	vertical-align: 4px;
+	font-weight: 400;
 }
 
 #spice_stopwatch .btn-wrapper {
-	margin-top: 50px;
+	margin-top: 37px;
 	margin-bottom: 10px;
 	width: 100%;
 }
 
-#spice_stopwatch #lap-btn {
+#spice_stopwatch #lap_btn {
 	float: right;
 }
 
 #spice_stopwatch .time {
 	float: right;
 	margin-right: 10%;
+	font-size: 40px;
 }
 
-#spice_stopwatch #total-time {
-	font-weight: bold;
+#spice_stopwatch #total_time {
+	font-weight: 400;
+}
+
+#spice_stopwatch #current_time {
+	font-weight: 300;
 }
 
 #spice_stopwatch .hidden {
@@ -79,7 +85,7 @@
 
 #spice_stopwatch table {
 	width: 100%;
-	background-color: #f5f5f5;
+	background-color: #fafafa;
 	border-collapse: collapse;
 }
 
@@ -94,9 +100,18 @@
 	text-align: center;
 }
 
+#spice_stopwatch .lap-num {
+	font-size: 13px;
+}
+
+#spice_stopwatch .lap-time {
+	font-size: 16px;
+}
+
 /* stack the big time divs if the screen is too narrow */
 @media screen and (max-width: 850px) {
-	#spice_stopwatch .pane_block {height: 100px;}
-	#spice_stopwatch .spice_pane {width: 96%; height: 45%; float: none;}
-	#spice_stopwatch .spice_pane_right {margin-top: 5px;}
+	#spice_stopwatch .pane-block {height: 100px;}
+	#spice_stopwatch .spice-pane {width: 96%; height: 45%; float: none;}
+	#spice_stopwatch .spice-pane-right {margin-top: 5px;}
+	#spice_stopwatch .btn-wrapper {margin-top: 52px;}
 }
