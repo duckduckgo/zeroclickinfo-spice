@@ -15,7 +15,8 @@ category "facts";
 attribution web =>   ['http://kevinschaul.com','Kevin Schaul'],
             email => ['kevin.schaul@gmail.com','Kevin Schaul'];
 
-spice to => 'http://api.nytimes.com/svc/politics/v3/us/legislative/congress/members/$1/$2/current.json?api-key={{ENV{DDG_SPICE_CONGRESS_APIKEY}}}';
+spice to => 'https://www.govtrack.us/api/v2/role?current=true&role_type=$1&state=$2';
+
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 
 spice wrap_jsonp_callback => 1;
@@ -144,16 +145,15 @@ handle query_lc => sub {
     }
 
     my (%chambers) = (
-        "senators" => "senate",
-        "senate" => "senate",
-        "reps" => "house",
-        "representatives" => "house",
-        "representative" => "house",
-        "house" => "house"
+        "senators" => "senator",
+        "senate" => "senator",
+        "reps" => "representative",
+        "representative" => "representative",
+        "representative" => "representative",
+        "house" => "representative"
     );
 
     $chamber = $chambers{$chamber};
-
     return $chamber, $state if ($chamber && $state);
     return;
 };
