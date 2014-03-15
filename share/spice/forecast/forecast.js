@@ -243,14 +243,24 @@ function ddg_spice_forecast(r) {
     $container.addClass('alert')
     $alert.show()
   }
+
+  function build_temp_switch(current_unit){
+    if (current_unit === 'F'){
+      $('#fe_celsius').addClass('fe_gray').removeClass('fe_selected');
+      $('#fe_fahrenheit').removeClass('fe_gray').addClass('fe_selected');
+    } else if (current_unit === 'C'){
+      $('#fe_fahrenheit').addClass('fe_gray').removeClass('fe_selected');
+      $('#fe_celsius').removeClass('fe_gray').addClass('fe_selected');
+    }
+  }
   
   // Go!
   build_currently(r)
   build_daily(r)
   build_alerts(r)
+  build_temp_switch(unit_labels[units].temperature);
 
   var other_unit = unit_labels[units].temperature === 'F' ? 'C' : 'F';
-  $('#fe_switch_temp').html('&deg;' + other_unit);
 
   var convertTemp = function(unit, d){
     if (unit === 'C') {
@@ -261,7 +271,7 @@ function ddg_spice_forecast(r) {
   }
 
   //when we press the small button, switch the temperature units
-  $('#fe_switch_temp').click(function(){
+  $('#fe_temp_switch').click(function(){
     //initialize the temperatures with the API data
     var temps = {};
     temps.current = r.currently.temperature;
@@ -294,7 +304,7 @@ function ddg_spice_forecast(r) {
     })
 
     //switch the units on the button
+    build_temp_switch(other_unit);
     other_unit = (other_unit === 'F') ? 'C' : 'F';
-    $(this).html('&deg;' + other_unit);
   });
 }
