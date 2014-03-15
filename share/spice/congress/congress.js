@@ -16,8 +16,7 @@ function ddg_spice_congress(api_result) {
     Spice.render({
         data             : api_result.objects,
         header1          : 'Members of the ' + state + ' ' + chamber,
-        source_url       : "http://topics.nytimes.com/top/reference/timestopics/" +
-                           "organizations/c/congress/index.html",
+        source_url       : "https://www.govtrack.us/congress/members",
         source_name      : 'govtrack.us',
 
         template_frame   : 'list',
