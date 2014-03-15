@@ -5,11 +5,12 @@ function ddg_spice_congress(api_result) {
         return;
     }
     
-    var state   = api_result.results[0].state;
-    var chamber = api_result.results[0].chamber;
+    var state   = "state here";
+    var chamber = "chamber here";
+    console.log(api_result.results);
 
     Spice.render({
-        data             : api_result.results[0],
+        data             : api_result.results,
         header1          : 'Members of the ' + state + ' ' + chamber,
         source_url       : "http://topics.nytimes.com/top/reference/timestopics/" +
                            "organizations/c/congress/index.html",
@@ -17,7 +18,7 @@ function ddg_spice_congress(api_result) {
 
         template_frame   : 'list',
         template_options: {
-            items: api_result.results[0].members, 
+            items: api_result.results, 
             template_item: "congress",
             show: 3,
             type: 'ul'
@@ -39,9 +40,7 @@ function ddg_spice_congress(api_result) {
 Handlebars.registerHelper ('get_name', function() {
     "use strict";
 
-    return this.first_name + ' ' +
-           (this.middle_name ? this.middle_name + ' ' : '') +
-           this.last_name;
+    return this.name
 });
 
 // Returns vote percentage
