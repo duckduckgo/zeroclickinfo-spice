@@ -1,5 +1,5 @@
-    {{#if url}}
-        <a href="{{times_topics_url}}">
+    {{#if person.link}}
+        <a href="{{person.link}}">
     {{else}}
         <a href="/?q={{get_name}}">
     {{/if}}
@@ -8,15 +8,11 @@
     
     </a> &mdash;
 
-    {{#if twitter_account}}
-        <a href="https://www.twitter.com/{{twitter_account}}">@{{twitter_account}}</a>,
+    {{#if person.twitterid}}
+        <a href="https://www.twitter.com/{{person.twitterid}}">@{{person.twitterid}}</a>,
     {{/if}}
     
-    {{#if next_election}}
-        next election in {{next_election}}.
+    {{#if phone}}
+        Phone: {{phone}}.
     {{/if}}
-    
-    <br>
-    
-    Votes with party on {{votes_pct}} of issues.
-    {{#if district}} (district {{district}}){{/if}}
+

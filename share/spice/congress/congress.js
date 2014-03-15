@@ -1,24 +1,28 @@
 function ddg_spice_congress(api_result) {
     "use strict";
 
-    if (!api_result || api_result.status !== "OK" || api_result.results.length === 0) {
+    if (!api_result || api_result.meta.total_count === 0) {
         return;
     }
     
-    var state   = "state here";
-    var chamber = "chamber here";
-    console.log(api_result.results);
+    var state   = api_result.objects[0].state;
+    var chamber;
+
+    if(api_result.objects[0].role_type == "senator")
+        chamber = "Senate";
+    else
+        chamber = "House";
 
     Spice.render({
-        data             : api_result.results,
+        data             : api_result.objects,
         header1          : 'Members of the ' + state + ' ' + chamber,
         source_url       : "http://topics.nytimes.com/top/reference/timestopics/" +
                            "organizations/c/congress/index.html",
-        source_name      : 'The New York Times',
+        source_name      : 'govtrack.us',
 
         template_frame   : 'list',
         template_options: {
-            items: api_result.results, 
+            items: api_result.objects, 
             template_item: "congress",
             show: 3,
             type: 'ul'
@@ -39,8 +43,9 @@ function ddg_spice_congress(api_result) {
 // Creates a full name for a given representative
 Handlebars.registerHelper ('get_name', function() {
     "use strict";
-
-    return this.name
+    return this.title + ' ' + this.person.firstname + ' ' +
+           (this.person.middlename ? this.person.middlename + ' ' : '') +
+           this.person.lastname;
 });
 
 // Returns vote percentage
