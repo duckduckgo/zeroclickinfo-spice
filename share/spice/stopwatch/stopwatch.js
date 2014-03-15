@@ -11,7 +11,12 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
       last_lap = null,
       interval_id = null,
       lap_num = 1,
-      old_time = 0;
+      old_time = 0,
+      $total_time = $('#total_time'),
+      $current_time = $('#current_time'),
+      $split_list = $('#split_list'),
+      $lap_btn = $('#lap_btn'),
+      $reset_btn = $('#reset_btn');
 
   //add zeros to the end of the number
   function padZeros(n, len){
@@ -29,15 +34,15 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     var mins = Math.floor(t / (1000*60));
     t = t % (1000*60);
     var secs = Math.floor(t / 1000);
-    t = (t % 1000).toString().substring(0, 2);
-    return padZeros(mins, 2) + ":" + padZeros(secs, 2) + '.' + padZeros(t, 2);
+    t = padZeros((t % 1000).toString(), 3).substring(0, 2);
+    return padZeros(mins, 2) + ":" + padZeros(secs, 2) + '.' + t;
   }
 
   //called on every interval
   function updateStopwatch(){
     var t = new Date().getTime() - start_time + old_time;
-    $('#total-time').html(formatTime(t));
-    $('#current-time').html(formatTime(t-last_lap))
+    $total_time.html(formatTime(t));
+    $current_time.html(formatTime(t-last_lap))
     return t;
   }
 
@@ -46,8 +51,9 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     if (!running) return;
     var current_time = updateStopwatch();
     var current_lap = current_time - last_lap;
-    $('#split-list').prepend('<tr><td>' + lap_num + '</td><td>' + formatTime(current_lap) + '</td><td>' + $('#total-time').html() + '</td></tr>');
-    $('#split-list').removeClass('hidden');
+    $split_list.prepend('<tr><td class="lap-num">' + lap_num + '</td><td class="lap-time">' + formatTime(current_lap) + 
+      '</td><td class="lap-time">' + $total_time.html() + '</td></tr>');
+    $split_list.removeClass('hidden');
     last_lap = current_time;
     lap_num++;
     return current_time;
@@ -62,8 +68,8 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     interval_id = setInterval(updateStopwatch, 10);
 
     $(this).html('STOP').removeClass('start').addClass('stop');
-    $('#reset-btn').prop('disabled', true);
-    $('#lap-btn').prop('disabled', false);
+    $reset_btn.prop('disabled', true);
+    $lap_btn.prop('disabled', false);
   });
 
   //stop the stopwatch and save the time in case we start it again
@@ -75,31 +81,31 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     clearInterval(interval_id);
 
     $(this).html('START').removeClass('stop').addClass('start');
-    $('#reset-btn').prop('disabled', false);
-    $('#lap-btn').prop('disabled', true);
+    $reset_btn.prop('disabled', false);
+    $lap_btn.prop('disabled', true);
   });
 
   //reset everything
-  $('#reset-btn').click(function(){
+  $reset_btn.click(function(){
     running = false;
     old_time = 0;
     last_lap = null;
     lap_num = 1;
-    $('#total-time').html(formatTime(0));
-    $('#current-time').html(formatTime(0));
-    $('#split-list > tbody').children().remove();
+    $total_time.html(formatTime(0));
+    $current_time.html(formatTime(0));
+    $split_list.find('tbody').children().remove();
     clearInterval(interval_id);
 
     $(this).prop('disabled', true);
-    $('#split-list').addClass('hidden');
+    $split_list.addClass('hidden');
   });
 
   //add a split (the time that was on the watch) and lap (time between laps)
-  $('#lap-btn').click(addLap);
+  $lap_btn.click(addLap);
 
   //hide the source link and remove the padding
   if ($('#spice_stopwatch').length){
-    $('#zero_click_more_at_wrap').css('display', 'none');
+    $('#zero_click_more_at_wrap').hide();
 
     $('#zero_click_wrapper2 #zero_click_abstract').attr('style',
       'padding: 0 !important; margin: 4px 0 0 0 !important');
