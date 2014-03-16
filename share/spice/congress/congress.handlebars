@@ -4,15 +4,19 @@
         <a href="/?q={{get_name}}">
     {{/if}}
 
-        {{get_name}} ({{party}})
+        {{get_name}} </a> ({{party}}) {{#if district}} District: {{district}} {{/if}}
     
-    </a> &mdash;
+     <br>
+
+    &nbsp &nbsp
+    {{#if phone}}
+        Phone:{{phone}},
+    {{/if}}
 
     {{#if person.twitterid}}
         <a href="https://www.twitter.com/{{person.twitterid}}">@{{person.twitterid}}</a>,
     {{/if}}
-    
-    {{#if phone}}
-        Phone: {{phone}}.
-    {{/if}}
 
+    {{#if person.youtubeid}}
+       Youtube: <a href="https://www.youtube.com/{{person.youtubeid}}">{{person.youtubeid}}</a>,
+    {{/if}}

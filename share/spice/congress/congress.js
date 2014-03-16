@@ -5,7 +5,7 @@ function ddg_spice_congress(api_result) {
         return;
     }
     
-    var state   = api_result.objects[0].state;
+    var state = api_result.objects[0].state;
     var chamber;
 
     if(api_result.objects[0].role_type == "senator")
@@ -45,12 +45,4 @@ Handlebars.registerHelper ('get_name', function() {
     return this.title + ' ' + this.person.firstname + ' ' +
            (this.person.middlename ? this.person.middlename + ' ' : '') +
            this.person.lastname;
-});
-
-// Returns vote percentage
-Handlebars.registerHelper ('votes_pct', function() {
-    "use strict";
-
-    var pct = parseFloat(this.votes_with_party_pct).toFixed(0);
-    return pct + "%";
 });
