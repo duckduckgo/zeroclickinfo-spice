@@ -140,10 +140,7 @@ function ddg_spice_airlines (api_result) {
         date = date.substring(0, date.lastIndexOf(" "));
 
         // AM or PM?
-        var suffix = "a.m.";
-        if(hours >= 12) {
-            suffix = "p.m.";
-        }
+        var suffix = (hours >= 12) ? "p.m." : "a.m.";
 
         // Convert to 12-hour time.
         if(hours > 12) {

@@ -12,6 +12,14 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Bible'
     ),
+    'genesis 15:7' => test_spice(
+        '/js/spice/bible/genesis%2015%3A7',
+        caller    => 'DDG::Spice::Bible',
+    ),
+    'bible genesis 26:4' => test_spice(
+        '/js/spice/bible/genesis%2026%3A4',
+        caller    => 'DDG::Spice::Bible',
+    ),
 );
 
 done_testing;

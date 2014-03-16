@@ -90,7 +90,7 @@ function ddg_spice_sound_cloud (api_result) {
     });
 
     var addPadding = function(time) {
-        return time < 10 ? "0" + time : time;
+        return (time < 10) ? "0" + time : time;
     };
 
     // Coverts the milliseconds given to minutes and seconds.

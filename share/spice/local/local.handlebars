@@ -1,0 +1,13 @@
+<li class="ddgmap_item" id="{{engine}}-{{id}}">
+    <div class="border">
+        <div class="right">
+            {{#if rating}}<img src="/iu/?u={{rating}}">{{/if}}
+            {{#if image}}<img src="/iu/?u={{image}}">{{/if}}
+        </div>
+        <div class="left">
+            <h1 class="title"><a href="{{url}}">{{name}}</a></h1>
+            {{format_address address}}<br>
+            {{#if phone}}{{phone}}{{/if}}
+        </div>
+    </div>
+</li>

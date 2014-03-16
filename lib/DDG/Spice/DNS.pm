@@ -15,7 +15,7 @@ name 'DNS';
 attribution github => ['https://www.github.com/OndroNR', 'Ondrej Galbavy'],
             twitter => ['https://www.twitter.com/OndroNR', 'Ondrej Galbavy'];
 
-triggers any => 'dns', 'record', 'records', 'dig';
+triggers any => 'dns', 'record', 'records', 'dig', 'nslookup';
 
 spice from => '(.*)/(.*)';
 

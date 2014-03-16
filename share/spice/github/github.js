@@ -1,9 +1,13 @@
 function ddg_spice_github(api_result) {
+    "use strict";
+
     var query = DDG.get_query()
                 .replace(/^\s*github\s+/, "");
 
     var results = api_result.data.repositories;
-    if (results.length == 0) return;
+    if (results.length == 0) {
+      return;
+    }
 
     Spice.render({
         data             : api_result,
@@ -27,6 +31,7 @@ function ddg_spice_github(api_result) {
 
 // Make sure we display only three items.
 Handlebars.registerHelper("last_pushed", function(){
+    "use strict";
 
     var last_pushed = Math.floor((new Date() - new Date(this.pushed)) / (1000*60*60*24));
 

@@ -12,6 +12,14 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::News'
     ),
+    'duckduckgo news' => test_spice(
+        '/js/spice/news/duckduckgo%20news',
+        caller    => 'DDG::Spice::News',
+    ),
+    'government shutdown news' => test_spice(
+        '/js/spice/news/government%20shutdown%20news',
+        caller    => 'DDG::Spice::News',
+    ),
 );
 
 done_testing;

@@ -1,4 +1,5 @@
 function ddg_spice_plugin_name ( api_result ) {
+  "use strict";
 
   /* Make sure result exists */
 
@@ -21,6 +22,7 @@ function ddg_spice_plugin_name ( api_result ) {
 
 // Any Handlebars helpers here
 Handlebars.registerHelper ('helper_name', function() {
+  "use strict";
 
   var out;
 

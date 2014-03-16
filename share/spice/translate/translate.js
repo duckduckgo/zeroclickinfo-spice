@@ -1,4 +1,5 @@
 function get_params(name, api_result) {
+    "use strict";
 
     var regex = {
         "from_to" : /^translate (.*?)(?: from ([a-z]+))?(?: to ([a-z]+))?$/,
@@ -74,8 +75,11 @@ function get_params(name, api_result) {
 }
 
 function ddg_spice_translate_from_to (api_result) {
+    "use strict";
 
-    if (api_result.Error) return;
+    if (api_result.Error) {
+        return;
+    }
 
     var params = get_params("from_to"),
         endpoint;
@@ -92,8 +96,11 @@ function ddg_spice_translate_from_to (api_result) {
 }
 
 function ddg_spice_translate_from_to_phrase (api_result) {
+    "use strict";
 
-    if (!api_result.matches.length) return;
+    if (!api_result.matches.length) {
+        return;
+    }
 
     var params = get_params("from_to");
 

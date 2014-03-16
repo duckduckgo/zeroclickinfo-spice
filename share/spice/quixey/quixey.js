@@ -1,12 +1,17 @@
 // spice callback function
 function ddg_spice_quixey (api_result) {
+    "use strict";
 
-    if (api_result.result_count == 0) return;
+    if (api_result.result_count == 0) {
+        return;
+    }
 
     var q = api_result.q.replace(/\s/g, '+');
     var relevants = getRelevant(api_result.results);
 
-    if (!relevants) return;
+    if (!relevants) {
+        return;
+    }
 
     Spice.render({
         data: api_result,
@@ -142,6 +147,8 @@ function ddg_spice_quixey (api_result) {
 // format a price
 // p is expected to be a number
 function qprice(p) {
+    "use strict";
+
     if (p == 0) {    // == type coercion is ok here
         return "FREE";
     }
@@ -152,10 +159,14 @@ function qprice(p) {
 // template helper for price formatting
 // {{price x}}
 Handlebars.registerHelper("price", function(obj) {
+    "use strict";
+
     return qprice(obj);
 });
 
 Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
+    "use strict";
+
     var domain = "d1z22zla46lb9g.cloudfront.net";
 
     // Get the image server that the icon_url in platforms is pointing to.
@@ -173,9 +184,11 @@ Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
 
 // template helper to format a price range
 Handlebars.registerHelper("pricerange", function() {
+    "use strict";
 
-    if (!this.editions)
+    if (!this.editions) {
         return "";
+    }
 
     var low  = this.editions[0].cents;
     var high = this.editions[0].cents;
@@ -203,6 +216,8 @@ Handlebars.registerHelper("pricerange", function() {
 // template helper to replace iphone and ipod icons with
 // smaller 'Apple' icons
 Handlebars.registerHelper("platform_icon", function(icon_url) {
+    "use strict";
+
     if (this.id === 2004 || this.id === 2015) {
         return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
     }
@@ -212,6 +227,8 @@ Handlebars.registerHelper("platform_icon", function(icon_url) {
 
 // template helper that returns and unifies platform names
 Handlebars.registerHelper("platform_name", function() {
+    "use strict";
+
     var name;
     var platforms = this.platforms;
 
@@ -236,5 +253,7 @@ Handlebars.registerHelper("platform_name", function() {
 
 // template helper to give url for star icon
 Handlebars.registerHelper("quixey_star", function() {
+    "use strict";
+
     return DDG.get_asset_path("quixey", "star.png").replace("//", "/");
 });

@@ -15,7 +15,7 @@ attribution github => ['https://github.com/Getty','Torsten Raudssus'],
            twitter => ['https://twitter.com/raudssus','raudssus'];
 
 triggers start => "free","opensource","commercial";
-triggers any => "alternative","alternatives";
+triggers any => "alternative","alternatives","alternativeto";
 
 spice from => '([^/]+)/(.*?)/([^/]*)';
 spice to => 'http://api.alternativeto.net/software/$1/?platform=$2&license=$3&count=12&callback={{callback}}';

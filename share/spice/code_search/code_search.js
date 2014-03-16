@@ -1,4 +1,5 @@
 function ddg_spice_code_search(response) {
+    "use strict";
 
     var query = response.query;
     var data  = response.results;

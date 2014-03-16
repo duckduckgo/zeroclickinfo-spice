@@ -5,11 +5,7 @@ function ddg_spice_drinks(api_result) {
         return;
     }
 
-    if($.isArray(api_result[0].ingredients)) {
-        api_result[0].isArray = true;
-    } else {
-        api_result[0].isArray = false;
-    }
+    api_result[0].isArray = $.isArray(api_result[0].ingredients);
 
     Spice.render({
         data             : api_result[0],

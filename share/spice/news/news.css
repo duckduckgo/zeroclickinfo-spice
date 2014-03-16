@@ -15,7 +15,7 @@
     width: 100%;
 }
 
-#spice_news span.news-title {
+#spice_news .news-title {
     display: inline-block;
     color: #444444;
     font-size: 14px;
@@ -37,7 +37,11 @@
     overflow: hidden;
     padding-left: 7px;
     padding-right: 5px;
-    padding-top: 6px;
+    padding-top: 4px;
+}
+
+#spice_news .news-no-height {
+    height: 100%;
 }
 
 #spice_news .news-more-at {
@@ -67,3 +71,10 @@
     vertical-align: text-bottom;
 }
 
+#spice_news .news-link .news-date {
+    padding-left: 7px;
+    padding-right: 5px;
+    margin-top: 0px !important;
+    color: #B4AFAE;
+    font-size: 12px;
+}

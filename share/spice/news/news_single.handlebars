@@ -1,0 +1,9 @@
+<a class="news-link" href="{{url}}">
+  <div class="news-title">{{{ellipsis title 100}}}</div>
+  <div class="news-date">Posted {{{shortenTime relative_time}}} ago</div>
+  <div class="news-snippet news-no-height">{{{ellipsis excerpt 200}}}</div>
+  <div class="news-more-at">
+    <img src="{{getIcon url}}" class="favicon">
+    <span class="news-domain">{{getDomain url}}</span>
+  </div>
+</a>

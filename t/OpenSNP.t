@@ -13,5 +13,9 @@ ddg_spice_test(
     ),
     "I am not a SNP" => undef,
     "rsiamnotaSNP" => undef,
+    'rs7903146' => test_spice(
+        '/js/spice/open_snp/rs7903146',
+        caller    => 'DDG::Spice::OpenSNP',
+    ),
 );
 done_testing;

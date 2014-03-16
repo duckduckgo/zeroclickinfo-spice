@@ -161,9 +161,11 @@ function ddg_spice_espn_news(api_result) {
 
 function ddg_spice_espn_team(api_result) {
     var record               = api_result.sports[0].leagues[0].teams[0].record;
-    var totalGames           = record.wins + record.losses + record.ties;
-    ddg_spice_espn_player.teamWinPercentage = record.wins && record.wins > 0 &&
-	totalGames && totalGames > 0 ? Math.floor(record.wins / totalGames * 100) : 0;
+
+    ddg_spice_espn_player.record = (record.wins?record.wins:0)+'-'+(record.losses?record.losses:0);
+    if (record.ties) {
+	ddg_spice_espn_player.record += '-'+record.ties;
+    }
 
     ddg_spice_espn_bind();
 }
@@ -174,8 +176,9 @@ function ddg_spice_espn_events(api_result) {
 
     for (var i = events.length - 1; i > 0 && ddg_spice_espn_player.events.length < 5; i--) {
         var eventDate = new Date(events[i].date);
-        if (eventDate.getTime() > new Date().getTime() - 24*60*60*1000)
+        if (eventDate.getTime() > new Date().getTime() - 24*60*60*1000) {
             continue;
+	}
         eventDate.setMonth(eventDate.getMonth()+1);
 
         if (!events[i].competitions[0]) continue;
@@ -241,6 +244,7 @@ function ddg_spice_espn_bind() {
                             + '/player/_/id/' + ddg_spice_espn_player.id,
         source_name      : 'ESPN',
         template_normal  : 'espn_' + ddg_spice_espn_player.sport,
+	force_favicon_url: 'http://espn.go.com/favicon.ico',
         force_big_header : true,
         force_no_fold    : true
     });

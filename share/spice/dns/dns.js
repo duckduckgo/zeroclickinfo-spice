@@ -1,16 +1,21 @@
 function ddg_spice_dns(api_result) {
+    "use strict";
+
     if (!api_result
             || !api_result.response
             || !api_result.response.records
-            || api_result.response.records < 1) return;
+            || api_result.response.records < 1) {
+        return;
+    }
 
     api_result.response.records =
         api_result.response.records.sort(
             function(a, b) {
-                if (a.type == b.type)
+                if (a.type == b.type) {
                     return parseInt(a.priority) > parseInt(b.priority)
-                else
+                } else {
                   return a.type > b.type;
+                }
             });
 
     Spice.render({

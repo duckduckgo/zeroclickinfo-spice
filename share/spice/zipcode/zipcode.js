@@ -30,7 +30,9 @@ function ddg_spice_zipcode (api_result) {
 
     for (var i = 0; i < names.length ; i++) {
         var name = place[names[i]];
-        if (name.length && header.indexOf(name) === -1) header.push(name);
+        if (name.length && header.indexOf(name) === -1) {
+            header.push(name);
+        }
     };
 
     header.push(place.country);
@@ -84,7 +86,9 @@ Handlebars.registerHelper("checkZipcode", function(options) {
         name    = this.zip,
         country = this.relevantPlace["country attrs"].code;
 
-    if(locs.length === 1) return;
+    if(locs.length === 1) {
+        return;
+    }
 
     locs = locs.sort(function(a, b) {
         return a.country > b.country ? 1 : -1;

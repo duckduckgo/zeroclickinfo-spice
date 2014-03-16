@@ -60,3 +60,7 @@
 #spice_dictionary_definition .definition em {
     font-style: italic;
 }
+
+#spice_dictionary_definition #play-button {
+    outline: none;
+}

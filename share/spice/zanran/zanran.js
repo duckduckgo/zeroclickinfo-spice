@@ -1,4 +1,6 @@
 function ddg_spice_zanran(api_result) {
+    "use strict";
+
     if(!api_result || !api_result.results || api_result.results.length === 0) {
         return;
     }
@@ -38,6 +40,8 @@ function ddg_spice_zanran(api_result) {
 };
 
 Handlebars.registerHelper("preview_link", function() {
+    "use strict";
+
     var s = this.preview_url;
     return (s.indexOf("zanran")) ? this.preview_url : "http://zanran.com" + this.preview_url;
 });

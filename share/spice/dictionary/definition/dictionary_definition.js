@@ -20,6 +20,7 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
 
 function ddg_spice_dictionary_definition (api_result) {
     "use strict";
+
     var path = "/js/spice/dictionary";
 
     // We moved Spice.render to a function because we're choosing between two contexts.

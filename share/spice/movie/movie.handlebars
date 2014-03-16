@@ -19,7 +19,9 @@
     {{#if runtime}}
         <div><span class="movie_data_item">Running time:</span>{{runtime}} minutes</div>
     {{/if}}
-
+    {{#if release_dates.theater}}
+            <div><span class="movie_data_item">Release Date:</span>{{{date_string release_dates.theater}}}</div>
+    {{/if}}
     {{#if abridged_cast}}
         <div><span class="movie_data_item">Starring:</span>
             {{#concat abridged_cast sep=", " conj=" and "}}<a href="http://www.rottentomatoes.com/celebrity/{{id}}/">{{name}}</a>{{/concat}}.

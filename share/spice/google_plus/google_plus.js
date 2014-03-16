@@ -1,4 +1,5 @@
 function ddg_spice_google_plus (api_result) {
+    "use strict";
 
     if(!api_result || !api_result.items || api_result.items.length === 0) {
         return;
@@ -20,10 +21,11 @@ function ddg_spice_google_plus (api_result) {
 };
 
 Handlebars.registerHelper("changeURL", function(image) {
+    "use strict";
+
     // Make the icon a little bigger.
     image = image.replace(/sz=50$/, "sz=100");
 
     // Change HTTPS to HTTP.
     return image.replace(/^https/, "http");
 });
-
