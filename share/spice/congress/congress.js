@@ -16,7 +16,7 @@ function ddg_spice_congress(api_result) {
     Spice.render({
         data             : api_result.objects,
         header1          : 'Members of the ' + state + ' ' + chamber,
-        source_url       : "https://www.govtrack.us/congress/members",
+        source_url       : "https://www.govtrack.us/congress/members/"+state,
         source_name      : 'govtrack.us',
 
         template_frame   : 'list',
