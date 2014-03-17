@@ -70,6 +70,8 @@ Handlebars.registerHelper("time", function() {
         var hour = time.getHours(), ampm = time.getHours() < 12 ? "AM" : "PM";
         if(hour > 12) {
             hour -= 12;
+        } else if(hour == 0) {
+            hour = 12;
         }
         var min = time.getMinutes();
         if(min < 10) {
