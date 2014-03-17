@@ -215,7 +215,8 @@ function ddg_spice_forecast(r) {
             heading: r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] + weatherData.alerts : 'Weather' + weatherData.alerts,
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
             sourceName: 'Forecast.io',
-            altMeta: 'Temperatures in '+unit_labels[units].temperature+'&deg;'
+            altMeta: 'Temperatures in '+unit_labels[units].temperature+'&deg;',
+            variableTileWidth: true
         },
 
         view: 'Tiles',
