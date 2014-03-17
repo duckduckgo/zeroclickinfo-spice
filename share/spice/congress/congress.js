@@ -1,27 +1,22 @@
 function ddg_spice_congress(api_result) {
     "use strict";
-
-    if (!api_result || api_result.meta.total_count === 0) {
+    console.log(api_result);
+    if (!api_result || api_result.count === 0) {
         return;
     }
     
-    var state = api_result.objects[0].state;
-    var chamber;
-
-    if(api_result.objects[0].role_type == "senator")
-        chamber = "Senate";
-    else
-        chamber = "House";
+    var state = api_result.results[0].state_name;
+    var chamber = api_result.results[0].chamber;
 
     Spice.render({
-        data             : api_result.objects,
+        data             : api_result.results,
         header1          : 'Members of the ' + state + ' ' + chamber,
         source_url       : "https://www.govtrack.us/congress/members/"+state,
         source_name      : 'govtrack.us',
 
         template_frame   : 'list',
         template_options: {
-            items: api_result.objects, 
+            items: api_result.results, 
             template_item: "congress",
             show: 3,
             type: 'ul'
@@ -42,7 +37,13 @@ function ddg_spice_congress(api_result) {
 // Creates a full name for a given representative
 Handlebars.registerHelper ('get_name', function() {
     "use strict";
-    return this.title + ' ' + this.person.firstname + ' ' +
-           (this.person.middlename ? this.person.middlename + ' ' : '') +
-           this.person.lastname;
+    return this.title + '. ' + this.first_name + ' ' +
+           (this.middle_name ? this.middle_name + ' ' : '') +
+           this.last_name;
+});
+
+Handlebars.registerHelper ('get_date', function() {
+    "use strict";
+    var date = this.term_end.substring(0,4);
+    return date
 });

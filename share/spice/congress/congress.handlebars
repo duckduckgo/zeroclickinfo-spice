@@ -1,10 +1,11 @@
-    {{#if person.link}}
-        <a href="{{person.link}}">
+    {{#if govtrack_id}}
+        <a href="https://www.govtrack.us/congress/members/{{govtrack_id}}">
     {{else}}
         <a href="/?q={{get_name}}">
     {{/if}}
 
         {{get_name}} </a> ({{party}}) {{#if district}} District: {{district}} {{/if}}
+        {{#if term_end}} Next election in {{get_date}} {{/if}}
     
      <br>
 
@@ -13,10 +14,10 @@
         Phone:{{phone}},
     {{/if}}
 
-    {{#if person.twitterid}}
-        <a href="https://www.twitter.com/{{person.twitterid}}">@{{person.twitterid}}</a>,
+    {{#if twitter_id}}
+        <a href="https://www.twitter.com/{{twitter_id}}">@{{twitter_id}}</a>,
     {{/if}}
 
-    {{#if person.youtubeid}}
-       Youtube: <a href="https://www.youtube.com/{{person.youtubeid}}">{{person.youtubeid}}</a>,
+    {{#if youtube_id}}
+       Youtube: <a href="https://www.youtube.com/user/{{youtube_id}}">{{youtube_id}}</a>,
     {{/if}}

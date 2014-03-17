@@ -15,7 +15,8 @@ category "facts";
 attribution web =>   ['http://kevinschaul.com','Kevin Schaul'],
             email => ['kevin.schaul@gmail.com','Kevin Schaul'];
 
-spice to => 'https://www.govtrack.us/api/v2/role?current=true&role_type=$1&state=$2';
+spice to => 'https://congress.api.sunlightfoundation.com/legislators/locate?apikey=c1d1d84619704ae9b8e001d9505bf1a6&latitude=$1&longitude=$2';
+#spice to => 'https://www.govtrack.us/api/v2/role?current=true&role_type=$1&state=$2';
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 
@@ -25,6 +26,12 @@ triggers startend => 'senate', 'senators', 'representatives', 'reps', 'house', '
 sub rtrim($);
 
 handle query_lc => sub {
+    my $lat = '';
+    my $lon = '';
+
+    return $loc->latitude, $loc->longitude;
+  
+    print "lat: ".$loc->latitude."  long: ".$loc->longitude;
     my (%states) = (
         'alabama' => 'al',
         'al' => 'al',
