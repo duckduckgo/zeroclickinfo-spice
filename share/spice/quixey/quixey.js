@@ -74,8 +74,13 @@ env.ddg_spice_quixey = function(api_result) {
             if (!item.rating_count || item.rating_count < 3)
                 return null;
 
+            var icon_url = make_icon_url(item); 
+
+            if (!icon_url)
+                return null;
+
             return {
-                'img':           make_icon_url(item), 
+                'img':           icon_url,
                 'title':         item.name,
                 'heading':       item.name,
                 'ratingData':    {
@@ -216,11 +221,11 @@ var make_icon_url = function(item) {
         icon_url = item.icon_url;
 
     if (!icon_url) {
-        console.warn("quixey: icon_url is null for %o", item);
+        // console.warn("quixey: icon_url is null for %o", item);
         if (item.editions && item.editions[0].icon_url)
             icon_url = item.editions[0].icon_url;
         else
-            return "";
+            return null;
     }
 
     // Get the image server that the icon_url in platforms is pointing to.
