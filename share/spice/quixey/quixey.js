@@ -74,9 +74,13 @@ env.ddg_spice_quixey = function(api_result) {
             if (!item.rating_count || item.rating_count < 3)
                 return null;
 
-            var icon_url = make_icon_url(item); 
+            var icon_url = make_icon_url(item), screenshot; 
 
             if (!icon_url)
+                return null;
+
+            screenshot = item.editions && item.editions[0].screenshot && item.editions[0].screenshot[0].image_url;
+            if (!screenshot)
                 return null;
 
             return {
@@ -95,7 +99,7 @@ env.ddg_spice_quixey = function(api_result) {
 
                 // this should be the array of screenshots with captions
                 // and check for the existence of them
-                'img_m': quixey_image(item.editions[0].screenshots[0].image_url)
+                'img_m': quixey_image(screenshot)
             };
         },
 
