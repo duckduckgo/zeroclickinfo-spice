@@ -14,6 +14,7 @@ attribution github => ['https://github.com/astine','astine'];
 
 triggers any => "catholic";
 
+spice is_cached => 1;
 spice from => '([^/]*)/([^/]*)';
 spice to => 'http://massontime.com/nearest/$1/10/json?address=$2&api-key={{ENV{DDG_SPICE_MASSONTIME_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
@@ -36,8 +37,11 @@ handle query_lc => sub {
     $event_type = "parish" if $event_type eq "church";
 
     #Handle blank addresses or 'me' using DDG location api
-    $address = lc(join(", ", $loc->city, $loc->region_name, $loc->country_name))
-        if ($address =~ m/^(close|me|here|nearby)$/i or $address eq "" or not defined $address);
+    if ($address =~ m/^(close|me|here|nearby)$/i or $address eq "" or not defined $address) {
+	$address = lc(join(", ", $loc->city, $loc->region_name, $loc->country_name));
+	
+	return $event_type, $address, {is_cached => 0};
+    }
 
     return $event_type, $address;
 };
