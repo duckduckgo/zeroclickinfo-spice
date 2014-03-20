@@ -6,6 +6,20 @@ env.ddg_spice_quixey = function(api_result) {
 
     var q = api_result.q.replace(/\s/g, '+');
 
+    // will move to spice
+    var getpath = function(obj, pathname) {
+        var paths = pathname.split('.'),
+            o = obj;
+
+        for (var i=0,len=paths.length; i<len; i++) {
+            if (!o)
+                return null;
+
+            o = o[paths[i]];
+        }
+        return o;
+    };
+
     var category_regexp = new RegExp([
             "action",
             "adventure",
@@ -79,7 +93,8 @@ env.ddg_spice_quixey = function(api_result) {
             if (!icon_url)
                 return null;
 
-            screenshot = item.editions && item.editions[0].screenshot && item.editions[0].screenshot[0].image_url;
+            screenshot = getpath(item, 'editions.0.screenshots.0.image_url');
+
             if (!screenshot)
                 return null;
 
