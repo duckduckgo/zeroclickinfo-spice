@@ -68,7 +68,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     interval_id = setInterval(updateStopwatch, 10);
 
     $(this).html('STOP').removeClass('start').addClass('stop');
-    $reset_btn.prop('disabled', true);
+    $reset_btn.prop('disabled', false);
     $lap_btn.prop('disabled', false);
   });
 
@@ -96,6 +96,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     $split_list.find('tbody').children().remove();
     clearInterval(interval_id);
 
+    $('.btn.stop').removeClass('stop').addClass('start').html('START');
     $(this).prop('disabled', true);
     $split_list.addClass('hidden');
   });
