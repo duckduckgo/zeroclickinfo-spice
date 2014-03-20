@@ -80,7 +80,7 @@ env.ddg_spice_quixey = function(api_result) {
             if (!icon_url)
                 return null;
 
-            screenshot = DDG.getpath(item, 'editions.0.screenshots.0.image_url');
+            screenshot = DDG.getProperty(item, 'editions.0.screenshots.0.image_url');
 
             if (!screenshot)
                 return null;
