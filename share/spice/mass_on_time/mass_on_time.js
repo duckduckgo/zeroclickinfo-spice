@@ -3,6 +3,11 @@ function ddg_spice_mass_on_time (api_result) {
 
     var details = api_result['query-details'];
 
+    // Check the URL if we passed in the "current" word.
+    // This says if we should check for relevancy or not.
+    var script = $('[src*="/js/spice/mass_on_time/"]')[0];
+    var source = $(script).attr("src");
+
     var generate_header = function (query_details) {
 	var type;
 	//Convert the query type to plural and capitalize
@@ -36,8 +41,9 @@ function ddg_spice_mass_on_time (api_result) {
     var results = [];
     for(var i = api_result.results.length - 1; i >= 0; i--) {
 	var result = api_result.results[i];
+	// Check if it's the current location. If it is, don't check the relevancy.
 	if (result.address !== null && result.address !== "" && 
-	    DDG.stringsRelevant(details.address, result.formateaddress)) {
+	    (/current$/.test(source) || DDG.stringsRelevant(details.address, result.formateaddress))) {
 	    results.unshift(result);
 	}
     }
