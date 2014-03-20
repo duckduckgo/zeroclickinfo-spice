@@ -34,11 +34,12 @@ function ddg_spice_mass_on_time (api_result) {
 
     //Filter results with no address
     var results = [];
-    for(var i=api_result.results.length-1; i>=0; i--) {
-      var result=api_result.results[i];
-      if (result.address != null && result.address !== "") {
-	results.unshift(result);
-      }
+    for(var i = api_result.results.length - 1; i >= 0; i--) {
+	var result = api_result.results[i];
+	if (result.address !== null && result.address !== "" && 
+	    DDG.stringsRelevant(details.address, result.formateaddress)) {
+	    results.unshift(result);
+	}
     }
 
     if (results.length < 1) return;
