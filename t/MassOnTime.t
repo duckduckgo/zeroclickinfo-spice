@@ -25,22 +25,26 @@ ddg_spice_test(
     'catholic churches near me' => test_spice(
         '/js/spice/mass_on_time/parish/phoenixville%2C%20pennsylvania%2C%20united%20states',
         call_type => 'include',
-        caller => 'DDG::Spice::MassOnTime'
+        caller => 'DDG::Spice::MassOnTime',
+	is_cached => 0,
     ),
     'catholic confessions close by' => test_spice(
         '/js/spice/mass_on_time/confession/phoenixville%2C%20pennsylvania%2C%20united%20states',
         call_type => 'include',
-        caller => 'DDG::Spice::MassOnTime'
+        caller => 'DDG::Spice::MassOnTime',
+	is_cached => 0,
     ),
     'catholic churches near here' => test_spice(
         '/js/spice/mass_on_time/parish/phoenixville%2C%20pennsylvania%2C%20united%20states',
         call_type => 'include',
-        caller => 'DDG::Spice::MassOnTime'
+        caller => 'DDG::Spice::MassOnTime',
+	is_cached => 0,
     ),
     'catholic Services nearby' => test_spice(
         '/js/spice/mass_on_time/service/phoenixville%2C%20pennsylvania%2C%20united%20states',
         call_type => 'include',
-        caller => 'DDG::Spice::MassOnTime'
+        caller => 'DDG::Spice::MassOnTime',
+	is_cached => 0,
     ),
     'New York Catholic churches' => test_spice(
         '/js/spice/mass_on_time/parish/new%20york',
@@ -50,7 +54,8 @@ ddg_spice_test(
     'close catholic Services' => test_spice(
         '/js/spice/mass_on_time/service/phoenixville%2C%20pennsylvania%2C%20united%20states',
         call_type => 'include',
-        caller => 'DDG::Spice::MassOnTime'
+        caller => 'DDG::Spice::MassOnTime',
+	is_cached => 0,
     ),
 );
 
