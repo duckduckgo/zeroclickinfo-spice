@@ -13,7 +13,10 @@
 // ddg_spice_dictionary_audio - gets the audio file.
 // ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
 
+
+/* sound manager disabled for bttf for now
 nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
+*/
 
 
 var ddg_spice_dictionary = {
@@ -57,17 +60,17 @@ var ddg_spice_dictionary = {
                 definitions: definitions,
                 source_name: "Wordnik",
                 source_url : "http://www.wordnik.com/words/" + word,
-                content_template: Spice.dictionary_definition.dictionary_definition
+                content: Spice.dictionary_definition.dictionary_definition
             },
 
             relevancy: {   
                 primary: [
-                    { key: 'word', min_length: word.length, strict: false }
+                    { key: 'word', min_length: -1, strict: false }
                 ]
             },
 
             templates: {
-                summary: DDG.templates.base
+                summary: Spice.dictionary_definition.temp // DDG.templates.base
             }
         });
 
