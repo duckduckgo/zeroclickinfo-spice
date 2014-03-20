@@ -276,17 +276,18 @@ function ddg_spice_forecast(r) {
     var temps = {};
     temps.current = r.currently.temperature;
     temps.feelslike = r.currently.apparentTemperature;
-    temps.daily = r.daily.data.map(function(e){
-      return {'tempMin': e.temperatureMin, 'tempMax': e.temperatureMax}
+    temps.daily = $.map(r.daily.data, function(e){
+      return {'tempMin': e.temperatureMin, 'tempMax': e.temperatureMax};
     });
 
     //if they want the units that aren't by the API, calculate the new temps
     if (other_unit !== unit_labels[units].temperature) {
       temps.current = convertTemp(other_unit, temps.current);
       temps.feelslike = convertTemp(other_unit, temps.feelslike);
-      temps.daily.forEach(function(e){
-        e.tempMax = convertTemp(other_unit, e.tempMax);
-        e.tempMin = convertTemp(other_unit, e.tempMin);
+      temps.daily = $.map(temps.daily, function(e){
+        var tempMin = convertTemp(other_unit, e.tempMin),
+            tempMax = convertTemp(other_unit, e.tempMax);
+        return {'tempMin': tempMin, 'tempMax': tempMax};
       });
     } 
     //insert the new temps in the html
