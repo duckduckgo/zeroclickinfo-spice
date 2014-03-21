@@ -150,7 +150,7 @@ handle query_lc => sub {
         "senate" => "senate",
         "senator" => "senate",
         "reps" => "house",
-        "representative" => "house",
+        "representatives" => "house",
         "representative" => "house",
         "house" => "house"
     );
