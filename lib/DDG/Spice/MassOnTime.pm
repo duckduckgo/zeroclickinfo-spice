@@ -40,7 +40,7 @@ handle query_lc => sub {
     if ($address =~ m/^(close|me|here|nearby)$/i or $address eq "" or not defined $address) {
 	$address = lc(join(", ", $loc->city, $loc->region_name, $loc->country_name));
 	
-	return $event_type, $address, {is_cached => 0};
+	return $event_type, $address, 'current', {is_cached => 0};
     }
 
     return $event_type, $address;
