@@ -15,23 +15,17 @@ category "facts";
 attribution web =>   ['http://kevinschaul.com','Kevin Schaul'],
             email => ['kevin.schaul@gmail.com','Kevin Schaul'];
 
-spice to => 'https://congress.api.sunlightfoundation.com/legislators/locate?apikey=c1d1d84619704ae9b8e001d9505bf1a6&latitude=$1&longitude=$2';
-#spice to => 'https://www.govtrack.us/api/v2/role?current=true&role_type=$1&state=$2';
+spice to => 'https://congress.api.sunlightfoundation.com/legislators?apikey=c1d1d84619704ae9b8e001d9505bf1a6&chamber=$1&state=$2';
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 
 spice wrap_jsonp_callback => 1;
 
-triggers startend => 'senate', 'senators', 'representatives', 'reps', 'house', 'representative';
+triggers startend => 'senate', 'senators', 'senator', 'representatives', 'reps', 'house', 'representative';
 sub rtrim($);
 
 handle query_lc => sub {
-    my $lat = '';
-    my $lon = '';
 
-    return $loc->latitude, $loc->longitude;
-  
-    print "lat: ".$loc->latitude."  long: ".$loc->longitude;
     my (%states) = (
         'alabama' => 'al',
         'al' => 'al',
@@ -136,7 +130,7 @@ handle query_lc => sub {
     );
 
     # Matches against special variable `$_`, which contains query
-    my ($state1, $chamber, $state2) = /^(.*)(?:\s)*(senate|senators|representatives|representative|reps|house)(?:\s)*(.*)$/g;
+    my ($state1, $chamber, $state2) = /^(.*)(?:\s)*(senate|senators|senator|representatives|representative|reps|house)(?:\s)*(.*)$/g;
 
     my ($state);
 
@@ -152,16 +146,17 @@ handle query_lc => sub {
     }
 
     my (%chambers) = (
-        "senators" => "senator",
-        "senate" => "senator",
-        "reps" => "representative",
-        "representative" => "representative",
-        "representative" => "representative",
-        "house" => "representative"
+        "senators" => "senate",
+        "senate" => "senate",
+        "senator" => "senate",
+        "reps" => "house",
+        "representative" => "house",
+        "representative" => "house",
+        "house" => "house"
     );
 
     $chamber = $chambers{$chamber};
-    return $chamber, $state if ($chamber && $state);
+    return $chamber, uc $state if ($chamber && $state);
     return;
 };
 

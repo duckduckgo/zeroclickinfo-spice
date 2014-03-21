@@ -1,6 +1,6 @@
 function ddg_spice_congress(api_result) {
     "use strict";
-    console.log(api_result);
+
     if (!api_result || api_result.count === 0) {
         return;
     }
