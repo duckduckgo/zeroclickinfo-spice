@@ -70,7 +70,7 @@ var ddg_spice_dictionary = {
             },
 
             templates: {
-                summary: Spice.dictionary_definition.temp // DDG.templates.base
+                summary: DDG.templates.spice_summary
             }
         });
 
