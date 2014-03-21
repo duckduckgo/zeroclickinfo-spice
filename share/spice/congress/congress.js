@@ -8,9 +8,11 @@ function ddg_spice_congress(api_result) {
     var state = api_result.results[0].state_name;
     var chamber = api_result.results[0].chamber;
 
+
+
     Spice.render({
         data             : api_result.results,
-        header1          : 'Members of the ' + state + ' ' + chamber,
+        header1          : 'Members of the ' + state + ' ' + capitalize(chamber),
         source_url       : "https://www.govtrack.us/congress/members/"+state,
         source_name      : 'govtrack.us',
 
@@ -29,6 +31,10 @@ function ddg_spice_congress(api_result) {
     });
 }
 
+//capitalize the chamber name
+function capitalize(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 /*******************************
   Handlebars helpers

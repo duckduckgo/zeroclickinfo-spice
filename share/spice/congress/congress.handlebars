@@ -10,13 +10,13 @@
      <br>
 
     {{#if phone}}
-        Phone: {{phone}},
+        Phone: {{phone}}{{#if twitter_id}},{{/if}}
     {{/if}}
-
+    
     {{#if twitter_id}}
-        <a href="https://www.twitter.com/{{twitter_id}}">@{{twitter_id}}</a>,
+        <a href="https://www.twitter.com/{{twitter_id}}">@{{twitter_id}}</a>{{#if youtube_id}},{{/if}}
     {{/if}}
 
     {{#if youtube_id}}
-       YouTube: <a href="https://www.youtube.com/user/{{youtube_id}}">{{youtube_id}}</a>
+        YouTube: <a href="https://www.youtube.com/user/{{youtube_id}}">{{youtube_id}}</a>
     {{/if}}
