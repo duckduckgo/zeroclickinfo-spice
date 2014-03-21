@@ -8,7 +8,7 @@ secondary_example_queries "florida representatives", "house california";
 description "Shows congress by state";
 name "Congress";
 icon_url "/i/topics.nytimes.com.ico";
-source "The New York Times";
+source "Sunlight Foundation";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Congress.pm";
 topics "special_interest", "trivia";
 category "facts";
