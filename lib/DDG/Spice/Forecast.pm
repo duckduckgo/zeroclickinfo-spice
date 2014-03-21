@@ -17,6 +17,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 my @triggers = ('forecast', 'forcast', 'weather', 'temp', 'temperature');
 triggers any => @triggers;
 
+spice from => '([^/]*)/?([^/]*)';
 spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
 
 # cache DDG Rewrite for 24 hours and
