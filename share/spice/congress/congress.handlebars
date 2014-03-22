@@ -4,13 +4,20 @@
         <a href="/?q={{get_name}}">
     {{/if}}
 
-        {{get_name}} </a> ({{party}}) {{#if district}} District: {{district}} {{/if}}
-        {{#if term_end}} Next election in {{get_date}} {{/if}}
+    {{get_name}} </a> ({{party}}){{#if district}},{{else}}{{#if term_end}},{{/if}}{{/if}}
+
+    {{#if district}} 
+        District: {{district}}{{#if term_end}},{{/if}} 
+    {{/if}}
+    
+    {{#if term_end}}
+        Next election in {{get_date}} 
+    {{/if}}
     
      <br>
 
     {{#if phone}}
-        Phone: {{phone}}{{#if twitter_id}},{{/if}}
+        Phone: {{phone}}{{#if twitter_id}},{{else}}{{#if youtube_id}},{{/if}}{{/if}}
     {{/if}}
     
     {{#if twitter_id}}
