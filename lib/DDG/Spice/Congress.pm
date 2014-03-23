@@ -156,6 +156,7 @@ handle query_lc => sub {
     );
 
     $chamber = $chambers{$chamber};
+    # state needs to be uppercase for Sunlight API
     return $chamber, uc $state if ($chamber && $state);
     return;
 };
