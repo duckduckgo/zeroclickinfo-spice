@@ -13,18 +13,26 @@ function ddg_spice_lobbying(api_result) {
         .replace(/(\W|^)(lobby(ing?|ist)|campaign contributio(n?|ns)|contributio(n?|ns)|campaign financ(e?|es))(\W|$)/, '');
 
     /* get rid of entries in the api result that don't contain
-        an amount given or received.  */
+        an amount given or received.  Push to the sorted_result
+        array */
     for(var e in api_result){
         //make sure we don't look at _proto_ objects
         if(!api_result.hasOwnProperty(e)){
             continue;
         }
-        if((api_result[e].total_given || api_result[e].total_received))
-            sorted_results.push(api_result[e]);  
+        if((api_result[e].total_given || api_result[e].total_received)){
+            sorted_results.push(api_result[e]); 
+        } 
     }
 
     // sort by the sum of amounts given and received
     sorted_results = sortTotal(sorted_results);
+
+    // convert to currency format
+    for(var e in sorted_results){
+        sorted_results[e].total_given = toCurrency(sorted_results[e].total_given);
+        sorted_results[e].total_received = toCurrency(sorted_results[e].total_received);
+    }
     
    Spice.render({
         data             : sorted_results,
@@ -52,6 +60,30 @@ function ddg_spice_lobbying(api_result) {
             var y = b.total_received + b.total_given;
             return ((x > y) ? -1 : ((x < y) ? 1 : 0));
         });
+    }
+
+    // convert from whole number to currency format
+    function toCurrency(num){
+        // returning null here filters out zero amounts
+        if(num == 0)
+            return null;
+
+        var currencyNum = '';
+        var wholeNum = num.toFixed(0).split('');
+        var digits = wholeNum.length;
+        var reverseNum = num.toFixed(0).split('').reverse().join('');
+
+        // loop though the reversed number and add a comma at i%3
+        // this gives a reversed but comma separated number
+        for(var i = 0; i < digits; i++){
+            if((i%3 == 0) && (i!=0)){
+                currencyNum += ','+ reverseNum[i]
+            } else {
+                currencyNum += reverseNum[i];
+            }
+        }
+        // reverse the number and return it
+        return currencyNum.split('').reverse().join('');
     }
 
 }
@@ -82,17 +114,16 @@ Handlebars.registerHelper('get_name', function(){
         : null);
 });
 
-// Return the amount given rounded up to nearest dollar
+// Return the amount given
 Handlebars.registerHelper('given', function(){
     "use strict";
-    // TODO: return currency format with commas
-    return (this.total_given ? 'Given: $' + this.total_given.toFixed(0) 
-        + (this.total_received ? ',' : '') : null);
+
+    return (this.total_given ? 'Given: $' + this.total_given : null);
 });
 
 // Return the amount received rounded up to nearest dollar
 Handlebars.registerHelper('received', function(){
     "use strict";
-    // TODO: return currency format with commas
-    return (this.total_received ? 'Received: $' + this.total_received.toFixed(0) : null);
+
+    return (this.total_received ? 'Received: $' + this.total_received : null);
 });
