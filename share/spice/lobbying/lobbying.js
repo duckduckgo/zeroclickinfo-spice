@@ -10,7 +10,7 @@ function ddg_spice_lobbying(api_result) {
 
     // remove trigger word to display in the IA header
     var query = DDG.get_query()
-        .replace(/(\W|^)(lobbying|contribution|contributions|campaign|finance|lobbyist)(\W|$)/, '');
+        .replace(/(\W|^)(lobby(ing?|ist)|campaign contributio(n?|ns)|contributio(n?|ns)|campaign financ(e?|es))(\W|$)/, '');
 
     /* get rid of entries in the api result that don't contain
         an amount given or received.  */
