@@ -5,13 +5,15 @@ function ddg_spice_lobbying(api_result) {
         return;
     }
 
+    // to hold the data sorted in decending order
     var sorted_results = [];
 
+    // remove trigger word to display in the IA header
     var query = DDG.get_query()
         .replace(/\s(lobbying|contribution[s]|campaign finance|campaign contribution[s]|lobbyist)/, '');
 
     /* get rid of entries in the api result that don't contain
-        an amount spent or received.  */
+        an amount given or received.  */
     for(var e in api_result){
         //make sure we don't look at _proto_ objects
         if(!api_result.hasOwnProperty(e)){
@@ -21,7 +23,7 @@ function ddg_spice_lobbying(api_result) {
             sorted_results.push(api_result[e]);  
     }
 
-    // sort by sum of amounts given and received
+    // sort by the sum of amounts given and received
     sorted_results = sortTotal(sorted_results);
     
    Spice.render({
@@ -43,9 +45,7 @@ function ddg_spice_lobbying(api_result) {
         spice_name       : "lobbying"
     });
 
-
-
-    // sort results by sum or total given and received
+    // sort results by sum of total given and received
     function sortTotal(array){
         return array.sort(function(a, b){
             var x = a.total_received + a.total_given;
@@ -82,15 +82,17 @@ Handlebars.registerHelper('get_name', function(){
         : null);
 });
 
-// Return the contribution amounts
+// Return the amount given rounded up to nearest dollar
 Handlebars.registerHelper('given', function(){
     "use strict";
+    // TODO: return currency format with commas
     return (this.total_given ? 'Given: $' + this.total_given.toFixed(0) 
         + (this.total_received ? ',' : '') : null);
 });
 
-// Return the contribution amounts
+// Return the amount received rounded up to nearest dollar
 Handlebars.registerHelper('received', function(){
     "use strict";
+    // TODO: return currency format with commas
     return (this.total_received ? 'Received: $' + this.total_received.toFixed(0) : null);
 });
