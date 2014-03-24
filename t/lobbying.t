@@ -1,0 +1,24 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use Test::More;
+use DDG::Test::Spice;
+
+ddg_spice_test(
+    [qw( DDG::Spice::Lobbying )],
+    'exxon lobbying' => test_spice(
+        '/js/spice/lobbying/exxon',
+        call_type => 'include',
+        caller => 'DDG::Spice::Lobbying'
+    ),
+    'Barack Obama campaign contributions' => test_spice(
+        '/js/spice/lobbying/barack%20obama',
+        call_type => 'include',
+        caller => 'DDG::Spice::Lobbying'
+    )
+# Add more tests later
+);
+
+done_testing;
+
