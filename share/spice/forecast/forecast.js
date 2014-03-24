@@ -241,12 +241,72 @@ function ddg_spice_forecast(r) {
     
     $('<a target="_blank"></a>').html('<span class="fe_icon">&#9873;</span> '+alert_message.title).attr('href', alert_message.uri).appendTo($alert);
     
-    $container.addClass('alert');
-    $alert.show();
-  };
+    $container.addClass('alert')
+    $alert.show()
+  }
+
+  function build_temp_switch(current_unit){
+    if (current_unit === 'F'){
+      $('#fe_celsius').addClass('fe_gray').removeClass('fe_selected');
+      $('#fe_fahrenheit').removeClass('fe_gray').addClass('fe_selected');
+    } else if (current_unit === 'C'){
+      $('#fe_fahrenheit').addClass('fe_gray').removeClass('fe_selected');
+      $('#fe_celsius').removeClass('fe_gray').addClass('fe_selected');
+    }
+  }
   
   // Go!
-  build_currently(r);
-  build_daily(r);
-  build_alerts(r);
+  build_currently(r)
+  build_daily(r)
+  build_alerts(r)
+  build_temp_switch(unit_labels[units].temperature);
+
+  var other_unit = unit_labels[units].temperature === 'F' ? 'C' : 'F';
+
+  var convertTemp = function(unit, d){
+    if (unit === 'C') {
+      return (d-32)*(5/9);
+    } else if (unit === 'F') {
+      return d*(9/5) + 32;
+    }
+  }
+
+  //when we press the small button, switch the temperature units
+  $('#fe_temp_switch').click(function(){
+    //initialize the temperatures with the API data
+    var temps = {};
+    temps.current = r.currently.temperature;
+    temps.feelslike = r.currently.apparentTemperature;
+    temps.daily = $.map(r.daily.data, function(e){
+      return {'tempMin': e.temperatureMin, 'tempMax': e.temperatureMax};
+    });
+
+    //if they want the units that aren't by the API, calculate the new temps
+    if (other_unit !== unit_labels[units].temperature) {
+      temps.current = convertTemp(other_unit, temps.current);
+      temps.feelslike = convertTemp(other_unit, temps.feelslike);
+      temps.daily = $.map(temps.daily, function(e){
+        var tempMin = convertTemp(other_unit, e.tempMin),
+            tempMax = convertTemp(other_unit, e.tempMax);
+        return {'tempMin': tempMin, 'tempMax': tempMax};
+      });
+    } 
+    //insert the new temps in the html
+    var $fe_currently = $('.fe_currently');
+    $fe_currently.find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
+    $fe_currently.find('.fe_temp_unit').html(other_unit);
+    $fe_currently.find('.fe_feelslike').html('Feels like '+Math.round(temps.feelslike)+'&deg;');
+
+    $('.fe_temp_bar').each(function(i){
+      var day = temps.daily[i],
+          $this = $(this);
+
+      $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
+      $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
+    })
+
+    //switch the units on the button
+    build_temp_switch(other_unit);
+    other_unit = (other_unit === 'F') ? 'C' : 'F';
+  });
 }
