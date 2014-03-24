@@ -157,6 +157,18 @@
   font-size: 20px;
 }
 
+#spice_forecast #fe_temp_switch {
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+#spice_forecast #fe_temp_switch .fe_gray {
+  color: #666;
+}
+
+#spice_forecast #fe_temp_switch .fe_selected {
+  font-weight: bold;
+}
 
 @media screen and (max-width:480px) {
     #spice_forecast {
