@@ -26,8 +26,22 @@ ddg_spice_test(
         '/js/spice/lobbying/barack%20obama',
         call_type => 'include',
         caller => 'DDG::Spice::Lobbying'
+    ),
+    'University lobbying' => test_spice(
+        '/js/spice/lobbying/university',
+        call_type => 'include',
+        caller => 'DDG::Spice::Lobbying'
+    ),
+    'University lobbyist' => test_spice(
+        '/js/spice/lobbying/university',
+        call_type => 'include',
+        caller => 'DDG::Spice::Lobbying'
+    ),
+    'University contribution' => test_spice(
+        '/js/spice/lobbying/university',
+        call_type => 'include',
+        caller => 'DDG::Spice::Lobbying'
     )
-# Add more tests later
 );
 
 done_testing;
