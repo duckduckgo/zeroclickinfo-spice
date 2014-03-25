@@ -8,11 +8,11 @@ function ddg_spice_lobbying(api_result) {
     // to hold the data sorted in decending order
     var sorted_results = [];
 
-    // remove trigger word to display in the IA header
+    // remove trigger word to display the remainder in the IA header
     var query = DDG.get_query()
         .replace(/(\W|^)(lobby(ing?|ist)|campaign contributio(n?|ns)|contributio(n?|ns)|campaign financ(e?|es))(\W|$)/, '');
 
-    /* get rid of entries in the api result that don't contain
+    /* get rid of entries in the api results that don't contain
         an amount given or received.  Push to the sorted_result
         array */
     for(var e in api_result){
@@ -28,7 +28,7 @@ function ddg_spice_lobbying(api_result) {
     // sort by the sum of amounts given and received
     sorted_results = sortTotal(sorted_results);
 
-    // convert to currency format
+    // convert to currency format, comma separated without dollar sign
     for(var e in sorted_results){
         sorted_results[e].total_given = toCurrency(sorted_results[e].total_given);
         sorted_results[e].total_received = toCurrency(sorted_results[e].total_received);
@@ -53,7 +53,8 @@ function ddg_spice_lobbying(api_result) {
         spice_name       : "lobbying"
     });
 
-    // sort results by sum of total given and received
+    // sort results in decending order using the sum of total 
+    // amounts given and received
     function sortTotal(array){
         return array.sort(function(a, b){
             var x = a.total_received + a.total_given;
@@ -63,6 +64,7 @@ function ddg_spice_lobbying(api_result) {
     }
 
     // convert from whole number to currency format
+    // i.e. 1000.00 to 1,000
     function toCurrency(num){
         // returning null here filters out zero amounts
         if(num == 0)
