@@ -1,12 +1,16 @@
 function ddg_spice_congress(api_result) {
     "use strict";
 
-    if (!api_result || api_result.count === 0 || api_result.results.length === 0) {
+    if (!api_result || !api_result.results) {
         return;
     }
     
     var state = api_result.results[0].state_name;
     var chamber = api_result.results[0].chamber;
+
+    // sort by district for House members
+    if(chamber == 'house')
+        api_result.results = sortDistrict(api_result.results);
 
     Spice.render({
         data             : api_result.results,
@@ -31,6 +35,16 @@ function ddg_spice_congress(api_result) {
     function capitalize(string){
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+
+    // Sort based on house member's district
+    function sortDistrict(array){
+        return array.sort(function(a, b){
+            var x = a.district;
+            var y = b.district;
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+        });
+    }
+
 }
 
 /*******************************
