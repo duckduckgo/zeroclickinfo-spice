@@ -1,7 +1,7 @@
 function ddg_spice_congress(api_result) {
     "use strict";
 
-    if (!api_result || !api_result.results) {
+    if (!api_result || !api_result.results || !api_result.results.length === 0) {
         return;
     }
     
@@ -27,7 +27,7 @@ function ddg_spice_congress(api_result) {
         },
 
         force_big_header : true,
-        force_no_fold: true,
+        force_no_fold    : true,
         spice_name       : "congress"
     });
 
