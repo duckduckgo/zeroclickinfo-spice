@@ -4,26 +4,26 @@
         <a href="/?q={{get_name}}">
     {{/if}}
 
-    {{get_name}} </a> ({{party}}){{#if district}},{{else}}{{#if term_end}},{{/if}}{{/if}}
+    {{get_name}} </a> ({{get_party}}){{#if district}},{{else}}{{#if term_end}},{{/if}}{{/if}}
 
     {{#if district}} 
-        District: {{district}}{{#if term_end}},{{/if}} 
+        District: {{district}}{{#if term_end}},{{/if}}
     {{/if}}
     
     {{#if term_end}}
-        Next election in {{get_date}} 
+        {{get_date}}
     {{/if}}
     
      <br>
 
     {{#if phone}}
-        Phone: {{phone}}{{#if twitter_id}},{{else}}{{#if youtube_id}},{{/if}}{{/if}}
+        Phone: {{phone}}{{#if twitter_id}}{{else}}{{#if facebook_id}},{{/if}}{{/if}}
     {{/if}}
     
     {{#if twitter_id}}
-        <a href="https://www.twitter.com/{{twitter_id}}">@{{twitter_id}}</a>{{#if youtube_id}},{{/if}}
+        <a href="https://www.twitter.com/{{twitter_id}}">@{{twitter_id}}</a>{{#if facebook_id}},{{/if}}
     {{/if}}
 
-    {{#if youtube_id}}
-        YouTube: <a href="https://www.youtube.com/user/{{youtube_id}}">{{youtube_id}}</a>
+    {{#if facebook_id}}
+        <a href="https://www.facebook.com/{{facebook_id}}">facebook</a>
     {{/if}}
