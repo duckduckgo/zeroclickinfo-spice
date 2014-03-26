@@ -1,7 +1,7 @@
 function ddg_spice_congress(api_result) {
     "use strict";
 
-    if (!api_result || !api_result.results || !api_result.results.length === 0) {
+    if (!api_result || !api_result.results || api_result.results.length === 0) {
         return;
     }
     
