@@ -1,6 +1,6 @@
 function ddg_spice_congress(api_result) {
     "use strict";
-
+console.log(api_result);
     if (!api_result || !api_result.results || !api_result.results.length === 0) {
         return;
     }
@@ -63,10 +63,18 @@ Handlebars.registerHelper ('get_name', function() {
 // return the next election year
 Handlebars.registerHelper ('get_date', function() {
     "use strict";
+<<<<<<< HEAD
     if(this.term_end)           
         return "Next Election " + this.term_end.substring(0,4);
     return null;
 });
+=======
+    if(this.chamber == 'senate'){
+        if(this.term_end)           
+            return "Next Election " + this.term_end.substring(0,4);
+    }
+    return null;
+>>>>>>> c690109251ce3a80e71141fcbcfd6e42e6a8f448
 
 // return the party
 Handlebars.registerHelper ('get_party', function() {
