@@ -19,3 +19,7 @@
 #spice_congress td {
     padding:2px;
 }
+
+#spice_congress .link {
+    color: #888;
+}
