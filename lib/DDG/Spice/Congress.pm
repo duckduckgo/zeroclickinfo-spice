@@ -16,8 +16,7 @@ category "facts";
 attribution web =>   ['http://kevinschaul.com','Kevin Schaul','http://www.transistor.io', 'Jason Dorweiler'],
             email => ['kevin.schaul@gmail.com','Kevin Schaul','jason@transistor.io', 'Jason Dorweiler'];
 
-
-spice to =>'https://congress.api.sunlightfoundation.com/legislators/$1?chamber=$2&state=$3&$4=$5&$6=$7&per_page=all&apikey=c1d1d84619704ae9b8e001d9505bf1a6';
+spice to =>'https://congress.api.sunlightfoundation.com/legislators/$1?chamber=$2&state=$3&$4=$5&$6=$7&per_page=all&apikey={{ENV{DDG_SPICE_CONGRESS_APIKEY}}}';
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)|)|)|)|)|)';
 
