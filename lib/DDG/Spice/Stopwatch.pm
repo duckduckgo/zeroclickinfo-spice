@@ -11,7 +11,7 @@ code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution twitter => 'mattr555',
             github => ['https://github.com/mattr555/', 'Matt Ramina'];
 
-triggers end => ['stopwatch', 'stop watch', 'timer'];
+triggers end => ['stopwatch', 'stop watch'];
 
 #in real code this should just be spice call_type => 'self'
 #for now, it lets me test on DuckPAN
@@ -19,7 +19,7 @@ spice to => 'http://httpbin.org/get';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-    return '' if $_ ~~ ['', 'online'];
+    return '' if ($_ eq '' || $_ eq 'online');
     return;
 };
 
