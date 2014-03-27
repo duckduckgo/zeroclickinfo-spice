@@ -223,7 +223,7 @@ function ddg_spice_forecast(r) {
 
         templates: {
             item: Spice.forecast.forecast_item,
-            summary: Spice.forecast.forecast
+            detail: Spice.forecast.forecast
         }
 
     });
