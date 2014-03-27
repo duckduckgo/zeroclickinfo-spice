@@ -2,6 +2,7 @@ package DDG::Spice::Congress;
 # ABSTRACT: Return current Congress members for given state.
 
 use DDG::Spice;
+use URI::Escape;
 
 primary_example_queries "new york senators";
 secondary_example_queries "florida representatives", "house california";
@@ -15,9 +16,10 @@ category "facts";
 attribution web =>   ['http://kevinschaul.com','Kevin Schaul','http://www.transistor.io', 'Jason Dorweiler'],
             email => ['kevin.schaul@gmail.com','Kevin Schaul','jason@transistor.io', 'Jason Dorweiler'];
 
-spice to => 'https://congress.api.sunlightfoundation.com/legislators?apikey=c1d1d84619704ae9b8e001d9505bf1a6&chamber=$1&state=$2&per_page=all';
 
-spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
+spice to =>'https://congress.api.sunlightfoundation.com/legislators/$1?chamber=$2&state=$3&$4=$5&$6=$7&per_page=all&apikey=c1d1d84619704ae9b8e001d9505bf1a6';
+
+spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)|)|)|)|)|)';
 
 spice wrap_jsonp_callback => 1;
 
@@ -129,22 +131,6 @@ handle query_lc => sub {
         'wy' => 'wy'
     );
 
-    # Matches against special variable `$_`, which contains query
-    my ($state1, $chamber, $state2) = /^(.*)(?:\s)*(senate|senators|senator|representatives|representative|reps|house)(?:\s)*(.*)$/g;
-
-    my ($state);
-
-    # Regex returns a space after $1, so we must remove it before hashing
-    $state1 = rtrim($state1);
-
-    if (exists $states{$state1}) {
-        $state = $states{$state1};
-    } elsif (exists $states{$state2}) {
-        $state = $states{$state2};
-    } else {
-        return;
-    }
-
     my (%chambers) = (
         "senators" => "senate",
         "senate" => "senate",
@@ -155,9 +141,73 @@ handle query_lc => sub {
         "house" => "house"
     );
 
+    # Matches against special variable `$_`, which contains query
+    my ($state1, $chamber, $state2) = /^(.*)(?:\s)*(senate|senators|senator|representatives|representative|reps|house)(?:\s)*(.*)$/g;
+    
     $chamber = $chambers{$chamber};
+
+    # We are building the URL for the GET request.  The DDG::Spice
+    # package encodes special chars to their equivalent hex number.  
+    # This breaks the api with some exceptions, a '/' can
+    # be used as a place holder for 'locate' and a blank space for all 
+    # others. 
+    # the template for the return statement can look something like this
+    # return location, chamber, state (upper), "zip", $zip, "lat", latitude, "lon", longitude
+
+    # There are 3 return cases:
+
+    # case 1. If we don't have anything in the state variables
+    # : locate by latitude longitude no other terms are needed
+    if($chamber && !$state1 && !$state2){
+        return 'locate', ' ', ' ', 'latitude', $loc->latitude, 'longitude', $loc->longitude ;
+    }
+
+    my ($state);
+    my ($zip); 
+
+    # Regex returns a space after $1, so we must remove it before hashing
+    $state1 = rtrim($state1);
+
+    #trim off "from" for search terms "from state"
+    $state1 =~ s/from\s//;
+    $state2 =~ s/from\s//;
+
+    if (exists $states{$state1}) {
+        $state = $states{$state1};
+    } elsif (exists $states{$state2}) {
+        $state = $states{$state2};
+    }
+    # check to see if we got something that looks like a zip 
+    else{
+        $zip = $state1;
+        if($zip = m/(\W|^)\d{5}(\W|^)/){
+            $zip = $state1;
+        }
+        else{
+            $zip = $state2;
+            if($zip = m/(\W|\s)\d{5}(\W|$)/){
+                $zip = $state2;
+            }
+        }
+    }
+ 
+    # check to see if we only got the search term "house"
+    # this IA probably isn't relevant in this case so return
+    if($chamber eq "house" && !$state && !$zip){
+        return;
+    }
+    
+    # Case 2. If we have a state: provide the chamber and state
     # state needs to be uppercase for Sunlight API
-    return $chamber, uc $state if ($chamber && $state);
+    if($chamber && $state){
+        return '/', $chamber, uc $state, ' ', ' ', ' ', ' ', ' ' ;
+    }
+
+    # Case 3. If there is a zip code no other terms are needed
+    if($zip){
+        return 'locate', ' ', ' ', 'zip', $zip, ' ', ' ', ' ';
+    }
+
     return;
 };
 
