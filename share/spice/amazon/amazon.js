@@ -59,7 +59,7 @@ function ddg_spice_amazon(apiResult) {
             templates: {
                 item: DDG.templates.products_item,
                 detail: DDG.templates.products_detail,
-                summary: DDG.templates.products_summary
+                item_detail: DDG.templates.products_item_detail
             }
         });
     });

@@ -70,7 +70,7 @@ var ddg_spice_dictionary = {
             },
 
             templates: {
-                summary: DDG.templates.spice_summary
+                detail: DDG.templates.spice_detail
             }
         });
 
