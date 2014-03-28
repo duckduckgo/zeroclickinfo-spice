@@ -1,11 +1,6 @@
 #spice_lobbying table {
-    /* border:1px solid #d0d0d0; */
     width:100%;
     margin:5px;
-}
-
-#spice_lobbying tr {
-    border-bottom:1px solid #efefef;
 }
 
 #spice_lobbying th {

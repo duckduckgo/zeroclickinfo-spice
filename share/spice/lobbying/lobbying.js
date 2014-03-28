@@ -41,16 +41,77 @@ function ddg_spice_lobbying(api_result) {
     for(var e in sorted_results){
         sorted_results[e].total_given = toCurrency(sorted_results[e].total_given);
         sorted_results[e].total_received = toCurrency(sorted_results[e].total_received);
+        sorted_results[e].non_firm_spending = toCurrency(sorted_results[e].non_firm_spending);
     }
     
-    // sort results in decending order using the sum of total 
-    // amounts given and received
-    function sortTotal(array){
-        return array.sort(function(a, b){
-            var x = a.total_received + a.total_given;
-            var y = b.total_received + b.total_given;
-            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
-        });
+    var n = 0;
+    for(e in sorted_results){
+        // show the first n results
+        if( n < 3){
+            $('#lobbying_table tbody').append('<tr>'
+                + '<td>' + getName(sorted_results[e]) + '</td>' 
+                + '<td>' + getType(sorted_results[e]) + '</td>'
+                + '<td>' + amtGiven(sorted_results[e]) + '</td>' 
+                + '<td>' + amtLobby(sorted_results[e]) + '</td>' 
+                + '<td>' + amtRecv(sorted_results[e]) + '</td>'
+                + '</tr>');
+        }
+        // more results button
+        else if(n == 3 && sorted_results.length > 4){
+            $('#lobbying_table tbody').append("<tr class='moreRows'><td><a href=''>"
+                + (sorted_results.length-4) + " more ..." + '</a></td></tr>');
+        }
+        // the rest in hidden rows
+        else{
+                $('#lobbying_table tbody').append('<tr class="hiddenRows">'
+                + '<td>' + getName(sorted_results[e]) + '</td>' 
+                + '<td>' + getType(sorted_results[e]) + '</td>'                
+                + '<td>' + amtGiven(sorted_results[e]) + '</td>' 
+                + '<td>' + amtLobby(sorted_results[e]) + '</td>' 
+                + '<td>' + amtRecv(sorted_results[e]) + '</td>'
+                + '</tr>');
+        }
+        n+=1;
+    }
+
+/**** helper functions *******/
+
+    // click handler to show additional rows
+    $('.moreRows').click(function(e){
+        e.preventDefault();
+        $('.moreRows').hide();
+        $('.hiddenRows').show();
+    });
+
+    // Return the name truncated to 25 chars
+    function getName(e){
+        var name = (e.name ? (e.name.length < 30 ? e.name : e.name.substring(0,29) + ' ... ')
+            : null);
+        // we need a URL with no special chars
+        // and '-' in place of white space
+        var urlName = e.name.replace(/\s/gi, '-').replace(/[^\w\-]/gi, '');
+        var url = (e.name ? "http://influenceexplorer.com/search?query="+urlName : null)
+        return '<a href='+url+'>'+name+'</a>';
+    }
+
+    // Return the amount given
+    function amtLobby(e){
+        return (e.non_firm_spending ? '$' + e.non_firm_spending : '-');
+    }
+
+    // Return the amount given
+    function amtGiven(e){
+        return (e.total_given ? '$' + e.total_given : '-');
+    }
+
+    // Return the amount given
+    function amtRecv(e){
+        return (e.total_received ? '$' + e.total_received : '-');
+    }
+
+    // Return the type
+    function getType(e){
+        return (e.type ? e.type : "");
     }
 
     // convert from whole number to currency format
@@ -78,63 +139,13 @@ function ddg_spice_lobbying(api_result) {
         return currencyNum.split('').reverse().join('');
     }
 
-    var n = 0;
-    for(e in sorted_results){
-        // show the first n results
-        console.log(n);
-        if( n < 3){
-            $('#lobbying_table tbody').append('<tr>'
-                + '<td>' + getName(sorted_results[e]) + '</td>' 
-                + '<td>' + getType(sorted_results[e]) + '</td>'
-                + '<td>' + amtGiven(sorted_results[e]) + '</td>' 
-                + '<td>' + amtRecv(sorted_results[e]) + '</td>'
-                + '</tr>');
-        }
-        else if(n == 3 && sorted_results.length > 4){
-            $('#lobbying_table tbody').append("<tr class='moreRows'><td><a href=''>"
-                + (sorted_results.length-4) + " more ..." + '</a></td></tr>');
-        }
-        else{
-                $('#lobbying_table tbody').append('<tr class="hiddenRows">'
-                + '<td>' + getName(sorted_results[e]) + '</td>' 
-                + '<td>' + getType(sorted_results[e]) + '</td>'                
-                + '<td>' + amtGiven(sorted_results[e]) + '</td>' 
-                + '<td>' + amtRecv(sorted_results[e]) + '</td>'
-                + '</tr>');
-        }
-        n+=1;
-    }
-
-    // click handler to show additional rows
-    $('.moreRows').click(function(e){
-        e.preventDefault();
-        $('.moreRows').hide();
-        $('.hiddenRows').show();
-    });
-
-    // Return the name truncated to 25 chars
-    function getName(e){
-        var name = (e.name ? (e.name.length < 30 ? e.name : e.name.substring(0,29) + ' ... ')
-            : null);
-        // we need a URL with no special chars
-        // and '-' in place of white space
-        var urlName = e.name.replace(/\s/gi, '-').replace(/[^\w\-]/gi, '');
-        var url = (e.name ? "http://influenceexplorer.com/search?query="+urlName : null)
-        return '<a href='+url+'>'+name+'</a>';
-    }
-
-    // Return the amount given
-    function amtGiven(e){
-        return (e.total_given ? '$' + e.total_given : '-');
-    }
-
-    // Return the amount given
-    function amtRecv(e){
-        return (e.total_received ? '$' + e.total_received : '-');
-    }
-
-    // Return the type
-    function getType(e){
-        return (e.type ? e.type : "");
+    // sort results in decending order using the sum of total 
+    // amounts given and received
+    function sortTotal(array){
+        return array.sort(function(a, b){
+            var x = a.total_received + a.total_given + a.non_firm_spending;
+            var y = b.total_received + b.total_given + a.non_firm_spending;
+            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+        });
     }
 }
