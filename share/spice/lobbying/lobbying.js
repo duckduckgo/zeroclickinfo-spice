@@ -1,10 +1,12 @@
 function ddg_spice_lobbying(api_result) {
     "use strict";
-console.log(api_result);
 
     if (!api_result || api_result.length === 0) {
         return;
     }
+
+    // Number of results to display
+    var displayResults = 3;
 
     // to hold the data sorted in decending order
     var sorted_results = [];
@@ -48,7 +50,7 @@ console.log(api_result);
     var n = 0;
     for(e in sorted_results){
         // show the first n results
-        if( n < 3){
+        if( n < displayResults){
             $('#lobbying_table tbody').append('<tr>'
                 + '<td>' + getName(sorted_results[e]) + '</td>' 
                 + '<td>' + getType(sorted_results[e]) + '</td>'
@@ -58,9 +60,9 @@ console.log(api_result);
                 + '</tr>');
         }
         // more results button
-        else if(n == 3 && sorted_results.length > 4){
+        else if(n == displayResults && sorted_results.length > 4){
             $('#lobbying_table tbody').append("<tr class='moreRows'><td><a href=''>"
-                + (sorted_results.length-4) + " more ..." + '</a></td></tr>');
+                + (sorted_results.length-4) + " more " + '</a>...</td></tr>');
         }
         // the rest in hidden rows
         else{
@@ -84,7 +86,7 @@ console.log(api_result);
         $('.hiddenRows').show();
     });
 
-    // Return the name truncated to 25 chars
+    // Return the name truncated to 25 chars formatted as a link
     function getName(e){
         var name = (e.name ? (e.name.length < 30 ? e.name : e.name.substring(0,29) + ' ... ')
             : null);
@@ -101,7 +103,7 @@ console.log(api_result);
         return '<a href='+url+'>'+name+'</a>';
     }
 
-    // Return the amount given
+    // Return the spent on lobbying
     function amtLobby(e){
         return (e.non_firm_spending ? '$' + e.non_firm_spending : '-');
     }
@@ -124,7 +126,6 @@ console.log(api_result);
     // convert from whole number to currency format
     // i.e. 1000.00 to 1,000
     function toCurrency(num){
-        // returning null here filters out zero amounts
         if(num == 0)
             return null;
 
@@ -151,7 +152,7 @@ console.log(api_result);
     function sortTotal(array){
         return array.sort(function(a, b){
             var x = a.total_received + a.total_given + a.non_firm_spending;
-            var y = b.total_received + b.total_given + a.non_firm_spending;
+            var y = b.total_received + b.total_given + b.non_firm_spending;
             return ((x > y) ? -1 : ((x < y) ? 1 : 0));
         });
     }
