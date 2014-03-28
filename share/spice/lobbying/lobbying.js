@@ -1,5 +1,6 @@
 function ddg_spice_lobbying(api_result) {
     "use strict";
+console.log(api_result);
 
     if (!api_result || api_result.length === 0) {
         return;
@@ -90,7 +91,13 @@ function ddg_spice_lobbying(api_result) {
         // we need a URL with no special chars
         // and '-' in place of white space
         var urlName = e.name.replace(/\s/gi, '-').replace(/[^\w\-]/gi, '');
-        var url = (e.name ? "http://influenceexplorer.com/search?query="+urlName : null)
+
+        // form the url: link to exact page if we have the type and id
+        // otherwise just link to the query page using the name field
+        var url = (e.name ? "http://influenceexplorer.com/" 
+            + (e.type ? e.type + "/" : "search?query=")
+            + urlName+'/'
+            + (e.id ? e.id : '') : null);
         return '<a href='+url+'>'+name+'</a>';
     }
 
