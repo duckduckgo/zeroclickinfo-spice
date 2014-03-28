@@ -19,3 +19,7 @@
 #spice_lobbying td {
     padding:2px;
 }
+
+#spice_lobbying .hiddenRows {
+    display: none;
+}

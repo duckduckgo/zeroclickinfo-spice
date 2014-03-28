@@ -12,6 +12,15 @@ function ddg_spice_lobbying(api_result) {
     var query = DDG.get_query()
         .replace(/(\W|^)(lobby(ing?|ist)|campaign contributio(n?|ns)|contributio(n?|ns)|campaign financ(e?|es))(\W|$)/, '');
 
+   Spice.render({
+        header1          : 'Political Contributions ' + '(' + query + ')',
+        template_normal  : 'lobbying',
+        source_url : "http://influenceexplorer.com/search?query=" + query,
+        source_name : 'influenceexplorer',
+        force_big_header : true,
+        force_no_fold    : true
+    });
+
     /* get rid of entries in the api results that don't contain
         an amount given or received.  Push to the sorted_result
         array */
@@ -34,25 +43,6 @@ function ddg_spice_lobbying(api_result) {
         sorted_results[e].total_received = toCurrency(sorted_results[e].total_received);
     }
     
-   Spice.render({
-        data             : sorted_results,
-        header1          : 'Political Contributions ' + '(' + query + ')',
-        source_url       : "http://influenceexplorer.com/search?query=" + query,
-        source_name      : 'influenceexplorer',
-
-        template_frame   : 'list',
-        template_options: {
-            items: sorted_results, 
-            template_item: "lobbying",
-            show: 3,
-            type: 'ul'
-        },
-
-        force_big_header : true,
-        force_no_fold    : true,
-        spice_name       : "lobbying"
-    });
-
     // sort results in decending order using the sum of total 
     // amounts given and received
     function sortTotal(array){
@@ -88,44 +78,63 @@ function ddg_spice_lobbying(api_result) {
         return currencyNum.split('').reverse().join('');
     }
 
-}
-
-/*******************************
-  Handlebars helpers
-  *******************************/
-
-// Creates a url from the name and id
-Handlebars.registerHelper ('get_url', function() {
-    "use strict";
-    var name;
-    if(this.name){
-        // we need a URL with no special chars
-        // and '-' in place of white space
-        name = this.name.replace(/\s/gi, '-').replace(/[^\w\-]/gi, '');
+    var n = 0;
+    for(e in sorted_results){
+        // show the first n results
+        console.log(n);
+        if( n < 3){
+            $('#lobbying_table tbody').append('<tr>'
+                + '<td>' + getName(sorted_results[e]) + '</td>' 
+                + '<td>' + getType(sorted_results[e]) + '</td>'
+                + '<td>' + amtGiven(sorted_results[e]) + '</td>' 
+                + '<td>' + amtRecv(sorted_results[e]) + '</td>'
+                + '</tr>');
+        }
+        else if(n == 3 && sorted_results.length > 4){
+            $('#lobbying_table tbody').append("<tr class='moreRows'><td><a href=''>"
+                + (sorted_results.length-4) + " more ..." + '</a></td></tr>');
+        }
+        else{
+                $('#lobbying_table tbody').append('<tr class="hiddenRows">'
+                + '<td>' + getName(sorted_results[e]) + '</td>' 
+                + '<td>' + getType(sorted_results[e]) + '</td>'                
+                + '<td>' + amtGiven(sorted_results[e]) + '</td>' 
+                + '<td>' + amtRecv(sorted_results[e]) + '</td>'
+                + '</tr>');
+        }
+        n+=1;
     }
 
-    return (this.type ? this.type + '/' : null ) 
-            + name + '/'
-            + (this.id ? this.id : null); 
-});
+    // click handler to show additional rows
+    $('.moreRows').click(function(e){
+        e.preventDefault();
+        $('.moreRows').hide();
+        $('.hiddenRows').show();
+    });
 
-// Return the name truncated to 25 chars
-Handlebars.registerHelper('get_name', function(){
-    "use strict";
-    return (this.name ? (this.name.length < 30 ? this.name : this.name.substring(0,29) + ' ... ')
-        : null);
-});
+    // Return the name truncated to 25 chars
+    function getName(e){
+        var name = (e.name ? (e.name.length < 30 ? e.name : e.name.substring(0,29) + ' ... ')
+            : null);
+        // we need a URL with no special chars
+        // and '-' in place of white space
+        var urlName = e.name.replace(/\s/gi, '-').replace(/[^\w\-]/gi, '');
+        var url = (e.name ? "http://influenceexplorer.com/search?query="+urlName : null)
+        return '<a href='+url+'>'+name+'</a>';
+    }
 
-// Return the amount given
-Handlebars.registerHelper('given', function(){
-    "use strict";
+    // Return the amount given
+    function amtGiven(e){
+        return (e.total_given ? '$' + e.total_given : '-');
+    }
 
-    return (this.total_given ? 'Given: $' + this.total_given : null);
-});
+    // Return the amount given
+    function amtRecv(e){
+        return (e.total_received ? '$' + e.total_received : '-');
+    }
 
-// Return the amount received rounded up to nearest dollar
-Handlebars.registerHelper('received', function(){
-    "use strict";
-
-    return (this.total_received ? 'Received: $' + this.total_received : null);
-});
+    // Return the type
+    function getType(e){
+        return (e.type ? e.type : "");
+    }
+}
