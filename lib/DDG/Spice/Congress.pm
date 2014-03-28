@@ -157,7 +157,7 @@ handle query_lc => sub {
     # case 1. If we don't have anything in the state variables
     # : locate by latitude longitude no other terms are needed
     if($chamber && !$state1 && !$state2){
-        return 'locate', ' ', ' ', 'latitude', $loc->latitude, 'longitude', $loc->longitude ;
+        return 'locate', ' ', ' ', 'latitude', $loc->latitude, 'longitude', $loc->longitude, {is_cached => 0} ;
     }
 
     my ($state);
