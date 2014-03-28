@@ -4,7 +4,13 @@ function ddg_spice_videos(apiResult) {
         id: 'videos',
         name: 'Videos',
 
-        data: apiResult
+        allowMultipleCalls: true,
+
+        data: apiResult.results,
+
+        meta: {
+            next: apiResult.next
+        }
     });
 
 }
