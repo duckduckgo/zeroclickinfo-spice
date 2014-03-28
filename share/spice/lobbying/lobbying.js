@@ -18,8 +18,8 @@ function ddg_spice_lobbying(api_result) {
    Spice.render({
         header1          : 'Political Contributions ' + '(' + query + ')',
         template_normal  : 'lobbying',
-        source_url : "http://influenceexplorer.com/search?query=" + query,
-        source_name : 'influenceexplorer',
+        source_url       : "http://influenceexplorer.com/search?query=" + query,
+        source_name      : 'influenceexplorer',
         force_big_header : true,
         force_no_fold    : true
     });

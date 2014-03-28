@@ -3,7 +3,7 @@ package DDG::Spice::Lobbying;
 
 use DDG::Spice;
 
-primary_example_queries "exxon contributions";
+primary_example_queries "chase contributions";
 secondary_example_queries "obama campagin finance";
 description "Shows political contributions by person, industry, or org";
 name "Lobbying";
@@ -15,7 +15,7 @@ category "facts";
 attribution web =>   ['http://www.transistor.io', 'Jason Dorweiler'],
             email => ['jason@transistor.io', 'Jason Dorweiler'];
 
-spice to => 'http://transparencydata.com/api/1.0/entities.json?apikey=c1d1d84619704ae9b8e001d9505bf1a6&search=$1';
+spice to => 'http://transparencydata.com/api/1.0/entities.json?apikey={ENV{{DDG_SPICE_CONGRESS_APIKEY}}}&search=$1';
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 
