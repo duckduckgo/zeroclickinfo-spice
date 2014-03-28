@@ -60,9 +60,9 @@ function ddg_spice_lobbying(api_result) {
                 + '</tr>');
         }
         // more results button
-        else if(n == displayResults && sorted_results.length > 4){
+        else if(n == displayResults && sorted_results.length > (displayResults+1)){
             $('#lobbying_table tbody').append("<tr class='moreRows'><td><a href=''>"
-                + (sorted_results.length-4) + " more " + '</a>...</td></tr>');
+                + (sorted_results.length-(displayResults+1)) + " more " + '</a>...</td></tr>');
         }
         // the rest in hidden rows
         else{
@@ -105,29 +105,30 @@ function ddg_spice_lobbying(api_result) {
 
     // Return the spent on lobbying
     function amtLobby(e){
-        return (e.non_firm_spending ? '$' + e.non_firm_spending : '-');
+        return (e.non_firm_spending ? '$' + e.non_firm_spending : '&ndash;');
     }
 
     // Return the amount given
     function amtGiven(e){
-        return (e.total_given ? '$' + e.total_given : '-');
+        return (e.total_given ? '$' + e.total_given : '&ndash;');
     }
 
     // Return the amount given
     function amtRecv(e){
-        return (e.total_received ? '$' + e.total_received : '-');
+        return (e.total_received ? '$' + e.total_received : '&ndash;');
     }
 
     // Return the type
     function getType(e){
-        return (e.type ? e.type : "");
+        return (e.type ? e.type : '&ndash;');
     }
 
     // convert from whole number to currency format
     // i.e. 1000.00 to 1,000
     function toCurrency(num){
-        if(num == 0)
+        if(num == 0){
             return null;
+        }
 
         var currencyNum = '';
         var wholeNum = num.toFixed(0).split('');
