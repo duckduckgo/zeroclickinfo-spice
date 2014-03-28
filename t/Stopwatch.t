@@ -12,15 +12,15 @@ ddg_spice_test(
     ],
     'stopwatch' =>
         test_spice(
-            '/js/spice/stopwatch/', 
-            call_type => 'include', #should be 'self' in real code
+            '', 
+            call_type => 'self', #should be 'self' in real code
             caller => 'DDG::Spice::Stopwatch'
         ),
 	'blahblah stopwatch' => undef,
     'online stop watch' =>
         test_spice(
-            '/js/spice/stopwatch/', 
-            call_type => 'include', #should be 'self' in real code
+            '',
+            call_type => 'self', #should be 'self' in real code
             caller => 'DDG::Spice::Stopwatch'
         ),
 );

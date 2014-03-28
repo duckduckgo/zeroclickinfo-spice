@@ -15,8 +15,7 @@ triggers end => ['stopwatch', 'stop watch'];
 
 #in real code this should just be spice call_type => 'self'
 #for now, it lets me test on DuckPAN
-spice to => 'http://httpbin.org/get';
-spice wrap_jsonp_callback => 1;
+spice call_type => 'self';
 
 handle remainder => sub {
     return '' if ($_ eq '' || $_ eq 'online');
