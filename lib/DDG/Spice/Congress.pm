@@ -15,7 +15,7 @@ category "facts";
 attribution web =>   ['http://kevinschaul.com','Kevin Schaul','http://www.transistor.io', 'Jason Dorweiler'],
             email => ['kevin.schaul@gmail.com','Kevin Schaul','jason@transistor.io', 'Jason Dorweiler'];
 
-spice to =>'https://congress.api.sunlightfoundation.com/legislators/$1?chamber=$2&state=$3&$4=$5&$6=$7&per_page=all&apikey={{ENV{DDG_SPICE_CONGRESS_APIKEY}}}';
+spice to =>'https://congress.api.sunlightfoundation.com/$1?chamber=$2&state=$3&$4=$5&$6=$7&per_page=all&apikey={{ENV{DDG_SPICE_CONGRESS_APIKEY}}}';
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)|)|)|)|)|)';
 
@@ -157,7 +157,7 @@ handle query_lc => sub {
     # case 1. If we don't have anything in the state variables
     # : locate by latitude longitude no other terms are needed
     if($chamber && !$state1 && !$state2){
-        return 'locate', ' ', ' ', 'latitude', $loc->latitude, 'longitude', $loc->longitude, {is_cached => 0} ;
+        return 'legislators/locate', ' ', ' ', 'latitude', $loc->latitude, 'longitude', $loc->longitude, {is_cached => 0} ;
     }
 
     my ($state);
@@ -198,12 +198,12 @@ handle query_lc => sub {
     # Case 2. If we have a state: provide the chamber and state
     # state needs to be uppercase for Sunlight API
     if($chamber && $state){
-        return '/', $chamber, uc $state, ' ', ' ', ' ', ' ', ' ' ;
+        return 'legislators/', $chamber, uc $state, ' ', ' ', ' ', ' ', ' ' ;
     }
 
     # Case 3. If there is a zip code no other terms are needed
     if($zip){
-        return 'locate', ' ', ' ', 'zip', $zip, ' ', ' ', ' ';
+        return 'legislators/locate', ' ', ' ', 'zip', $zip, ' ', ' ', ' ';
     }
 
     return;
