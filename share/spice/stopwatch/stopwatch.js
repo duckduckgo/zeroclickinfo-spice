@@ -112,3 +112,5 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
       'padding: 0 !important; margin: 4px 0 0 0 !important');
   }
 }
+
+ddg_spice_stopwatch();
