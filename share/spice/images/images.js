@@ -4,7 +4,7 @@ function ddg_spice_images(apiResult) {
         id: 'images',
         name: 'Images',
 
-        allowMultipleAdds: true,
+        allowMultipleCalls: true,
 
         data: apiResult.results,
 
