@@ -4,6 +4,10 @@ use strict;
 use warnings;
 use Test::More;
 use DDG::Test::Spice;
+use URI::Escape;
+use DDG::Test::Location;
+
+my $loc = test_location('us');
 
 ddg_spice_test(
     [qw( DDG::Spice::Congress )],
@@ -23,6 +27,16 @@ ddg_spice_test(
     'senators from 55812' => test_spice(
         '/js/spice/congress/locate/%20/%20/zip/55812/%20/%20/%20',
         caller    => 'DDG::Spice::Congress',
+    ),
+    DDG::Request->new(
+        query_raw => 'senator',
+        location => $loc
+    ) => test_spice(
+        "/js/spice/congress/locate/%20/%20/latitude/"
+        .uri_escape_utf8(${\$loc->latitude})."/longitude/".uri_escape_utf8(${\$loc->longitude}),
+        call_type => 'include',
+        caller => 'DDG::Spice::Congress',
+        is_cached => 0
     ),
 );
 
