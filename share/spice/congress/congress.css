@@ -1,3 +1,21 @@
 #spice_congress .link {
     color: #888;
 }
+
+#spice_congress .congress_mobile{
+	display: inline;
+}
+
+@media screen and (max-width: 650px){
+	#spice_congress .congress_term{display: none;}
+}
+
+@media screen and (max-width: 450px){
+	#spice_congress .congress_facebook{display: none;}
+	#spice_congress .congress_district{display: none;}
+}
+
+@media screen and (max-width: 340px){
+	#spice_congress .congress_twitter{display: none;}
+}
+

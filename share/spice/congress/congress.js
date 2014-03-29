@@ -67,6 +67,8 @@ function ddg_spice_congress(api_result) {
             return 'house';
     }
 
+    $('.congress_mobile').listview('refresh');
+
 }
 
 /*******************************
