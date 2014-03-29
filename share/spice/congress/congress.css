@@ -6,6 +6,7 @@
 	display: inline;
 }
 
+/* remove less important info for smaller screens */
 @media screen and (max-width: 650px){
 	#spice_congress .congress_term{display: none;}
 }

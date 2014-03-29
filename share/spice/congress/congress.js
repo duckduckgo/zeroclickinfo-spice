@@ -66,9 +66,6 @@ function ddg_spice_congress(api_result) {
         if(string.indexOf("rep") !== -1 || string.indexOf("house") != -1)
             return 'house';
     }
-
-    $('.congress_mobile').listview('refresh');
-
 }
 
 /*******************************
