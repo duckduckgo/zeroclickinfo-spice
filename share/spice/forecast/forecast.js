@@ -222,8 +222,7 @@ function ddg_spice_forecast(r) {
         view: 'Tiles',
 
         templates: {
-            item: Spice.forecast.forecast_item,
-            detail: Spice.forecast.forecast
+            item: Spice.forecast.forecast_item
         }
 
     });
