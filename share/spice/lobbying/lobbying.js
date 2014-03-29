@@ -53,9 +53,9 @@ function ddg_spice_lobbying(api_result) {
         if( n < displayResults){
             $('#lobbying_table tbody').append('<tr>'
                 + '<td>' + getName(sorted_results[e]) + '</td>' 
-                + '<td>' + getType(sorted_results[e]) + '</td>'
+                + '<td class="lobbying_type">' + getType(sorted_results[e]) + '</td>'
                 + '<td>' + amtGiven(sorted_results[e]) + '</td>' 
-                + '<td>' + amtLobby(sorted_results[e]) + '</td>' 
+                + '<td class="lobbying_amt">' + amtLobby(sorted_results[e]) + '</td>' 
                 + '<td>' + amtRecv(sorted_results[e]) + '</td>'
                 + '</tr>');
         }
@@ -68,9 +68,9 @@ function ddg_spice_lobbying(api_result) {
         else{
                 $('#lobbying_table tbody').append('<tr class="hiddenRows">'
                 + '<td>' + getName(sorted_results[e]) + '</td>' 
-                + '<td>' + getType(sorted_results[e]) + '</td>'                
+                + '<td class="lobbying_type">' + getType(sorted_results[e]) + '</td>'               
                 + '<td>' + amtGiven(sorted_results[e]) + '</td>' 
-                + '<td>' + amtLobby(sorted_results[e]) + '</td>' 
+                + '<td class="lobbying_amt">' + amtLobby(sorted_results[e]) + '</td>' 
                 + '<td>' + amtRecv(sorted_results[e]) + '</td>'
                 + '</tr>');
         }

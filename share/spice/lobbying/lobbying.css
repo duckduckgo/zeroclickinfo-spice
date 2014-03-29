@@ -19,3 +19,19 @@
 #spice_lobbying .hiddenRows {
     display: none;
 }
+
+/* hide the type column on small screens */
+@media (max-width: 600px){
+    #spice_lobbying td.lobbying_type {display: none;}
+    #spice_lobbying th.lobbying_type {display: none;}
+    #spice_lobbying td { padding:1px; padding-right: 2px;}
+
+}
+
+/* hide the lobbying column on even smaller screens */
+@media (max-width: 400px){
+    #spice_lobbying td.lobbying_amt {display: none;}
+    #spice_lobbying th.lobbying_amt {display: none;}
+    #spice_lobbying td { padding:1px; padding-right: 2px;}
+
+}
