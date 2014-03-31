@@ -45,7 +45,7 @@ var nrio = function(api_result) {
         },
 
         templates: {
-            summary: Spice.snow.snow
+            detail: Spice.snow.snow
         }
     });
 

@@ -66,7 +66,11 @@ env.ddg_spice_quixey = function(api_result) {
             itemType: 'Apps',
             sourceName: 'Quixey',
             sourceUrl: 'https://www.quixey.com/search?q=' + q,
-            sourceIconUrl: DDG.get_asset_path('quixey','quixey_logo.png')
+            sourceLogo: {
+                url: DDG.get_asset_path('quixey','quixey_logo.png'),
+                width: '45',
+                height: '12'
+            }
         },
 
         normalize : function(item) {
@@ -193,9 +197,9 @@ env.ddg_spice_quixey = function(api_result) {
         sort_default: { 'category': 'rating' },
 
         templates: {
-            item: DDG.templates.products,
+            item: DDG.templates.products_item,
             item_variant: 'short',
-            detail: DDG.templates.products_detail
+            detail: DDG.templates.products_item_detail
         }
     });
 

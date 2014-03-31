@@ -57,9 +57,9 @@ function ddg_spice_amazon(apiResult) {
             },
 
             templates: {
-                item: DDG.templates.products,
+                item: DDG.templates.products_item,
                 detail: DDG.templates.products_detail,
-                summary: DDG.templates.products_single
+                item_detail: DDG.templates.products_item_detail
             }
         });
     });
