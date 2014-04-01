@@ -20,7 +20,7 @@
 		sourceUrl: source_url,
 		sourceIcon: true,
 		total: api_result.hits,
-		itemType: 'Results'
+		itemType: 'Hacker News results for <b>' + decodeURIComponent(query) + '</b>'
             },
 
             normalize: function(o) {
@@ -38,8 +38,8 @@
 
             templates: {
 		item: Spice.hacker_news.hacker_news
-            },
-
+            }
+/*
             relevancy: {
 		skip_words: [ 'hacker', 'news', 'hn' ],
 		primary: [
@@ -47,6 +47,7 @@
                     { key: 'title', strict: false}
 		]
             },
+*/
 	});
     }
 }(this));
