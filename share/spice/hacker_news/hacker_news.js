@@ -38,7 +38,7 @@
 
             templates: {
 		item: Spice.hacker_news.hacker_news
-            }
+            },
 
             relevancy: {
 		skip_words: [ 'hacker', 'news', 'hn', 'hackernews', 'news.yc', 'news.ycombinator.com', 'hn search', 'search' ],
