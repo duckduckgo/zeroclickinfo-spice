@@ -11,15 +11,17 @@ function ddg_spice_lobbying(api_result) {
     // to hold the data sorted in decending order
     var sorted_results = [];
 
-    // remove trigger word to display the remainder in the IA header
-    var query = DDG.get_query()
-        .replace(/(\W|^)(lobby(ing?|ist)|campaign contributio(n?|ns)|contributio(n?|ns)|campaign financ(e?|es))(\W|$)/, '');
+    // get the query to display in the IA header
+    var script = $('[src*="/js/spice/lobbying"]')[0];
+    var source = $(script).attr("src");
+    var query = source.match(/lobbying\/([^\/]+)/)[1];
+    query = decodeURIComponent(query);
 
    Spice.render({
         header1          : 'Political Contributions ' + '(' + query + ')',
         template_normal  : 'lobbying',
         source_url       : "http://influenceexplorer.com/search?query=" + query,
-        source_name      : 'influenceexplorer',
+        source_name      : 'Influence Explorer',
         force_big_header : true,
         force_no_fold    : true
     });
