@@ -39,15 +39,14 @@
             templates: {
 		item: Spice.hacker_news.hacker_news
             }
-/*
+
             relevancy: {
-		skip_words: [ 'hacker', 'news', 'hn' ],
+		skip_words: [ 'hacker', 'news', 'hn', 'hackernews', 'news.yc', 'news.ycombinator.com', 'hn search', 'search' ],
 		primary: [
                     { required: 'title' },
                     { key: 'title', strict: false}
 		]
             },
-*/
 	});
     }
 }(this));
