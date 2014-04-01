@@ -1,4 +1,6 @@
 (function(env) {
+    "use strict";
+
     env.ddg_spice_hacker_news = function(api_result) {
 	var script = $('[src*="/js/spice/hacker_news/"]')[0];
 	var source = $(script).attr("src");
