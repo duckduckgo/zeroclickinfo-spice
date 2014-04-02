@@ -199,7 +199,8 @@ env.ddg_spice_quixey = function(api_result) {
         templates: {
             item: DDG.templates.products_item,
             item_variant: 'short',
-            detail: DDG.templates.products_item_detail
+            detail: DDG.templates.products_detail,
+            item_detail: DDG.templates.products_item_detail
         }
     });
 
