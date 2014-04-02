@@ -16,7 +16,7 @@ function ddg_spice_forecast(r) {
   var query = source.match(/forecast\/([^\/]+)/)[1];
   query = decodeURIComponent(query);
 
-  // Pass flags['ddg-location'] to DDG.isRelevant to check
+  // Pass flags['ddg-location'] to DDG.stringsRelevant to check
   // if the result is relevant to our query.
   var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'].toLowerCase(), query, undefined, 2);
 
