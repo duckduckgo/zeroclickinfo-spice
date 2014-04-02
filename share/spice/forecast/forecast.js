@@ -13,11 +13,12 @@ function ddg_spice_forecast(r) {
   // Forecast.pm already does for us.
   var script = $('[src*="/js/spice/forecast/"]')[0];
   var source = $(script).attr('src');
-  var query = DDG.get_query();
+  var query = source.match(/forecast\/([^\/]+)/)[1];
+  query = decodeURIComponent(query);
 
   // Pass flags['ddg-location'] to DDG.isRelevant to check
   // if the result is relevant to our query.
-  var relevant_location = DDG.isRelevant(r.flags['ddg-location'].toLowerCase(), ['forecast', 'forcast', 'weather', 'temp', 'temperature', 'report', 'today', 'tomorrow', 'this week'], 2);
+  var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'].toLowerCase(), query, ['forecast', 'forcast', 'weather', 'temp', 'temperature', 'report', 'today', 'tomorrow', 'this week'], 2);
 
   // Exit if it's not an area code, e.g., 07871, and if it's relevant.
   if(!(/\d+/).test(query) && !relevant_location) {
