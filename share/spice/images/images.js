@@ -4,7 +4,13 @@ function ddg_spice_images(apiResult) {
         id: 'images',
         name: 'Images',
 
-        data: apiResult
+        allowMultipleCalls: true,
+
+        data: apiResult.results,
+
+        meta: {
+            next: apiResult.next
+        }
     });
 
 }
