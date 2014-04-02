@@ -21,7 +21,7 @@ function ddg_spice_forecast(r) {
   var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'].toLowerCase(), query, undefined, 2);
 
   // Exit if it's not an area code, e.g., 07871, and if it's relevant.
-  if(!(/\d+/).test(query) && !relevant_location) {
+  if(!(/^\d+$/).test(query) && !relevant_location) {
     return;
   }
   
