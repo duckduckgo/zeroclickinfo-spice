@@ -10,6 +10,10 @@ function ddg_spice_images(apiResult) {
 
         meta: {
             next: apiResult.next
+        },
+
+        relevancy: {
+            dup: 'j'
         }
     });
 
