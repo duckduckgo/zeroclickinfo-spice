@@ -59,8 +59,7 @@ var ddg_spice_dictionary = {
                 plural_form: this.plural_form,
                 definitions: definitions,
                 source_name: "Wordnik",
-                source_url : "http://www.wordnik.com/words/" + word,
-                content: Spice.dictionary_definition.dictionary_definition
+                source_url : "http://www.wordnik.com/words/" + word
             },
 
             relevancy: {   
@@ -70,7 +69,7 @@ var ddg_spice_dictionary = {
             },
 
             templates: {
-                detail: DDG.templates.spice_detail
+                detail: Spice.dictionary_definition.dictionary_definition
             }
         });
 
