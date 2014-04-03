@@ -10,6 +10,10 @@ function ddg_spice_videos(apiResult) {
 
         meta: {
             next: apiResult.next
+        },
+
+        relevancy: {
+            dup: 'id'
         }
     });
 
