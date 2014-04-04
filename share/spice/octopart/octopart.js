@@ -35,12 +35,12 @@ function ddg_spice_octopart (api_result) {
         return;
     }
 
-    Spice.render({
-        source_name : 'Octopart',
-        spice_name: "octopart",
-        source_url : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q,
+    Spice.add({
+        sourceName : 'Octopart',
+        id: "octopart",
+        sourceUrl : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q,
         header1 : api_result.request.q + " (Octopart)",
-        template_frame: "carousel",
+        view: "Tiles",
         template_options: {
             template_item: "octopart",
             template_detail: "octopart_details",
@@ -53,7 +53,7 @@ function ddg_spice_octopart (api_result) {
             // rating: function(item) { return item.rating; },
             // pricerange: pricerange
         },
-        force_no_fold : 1
+        
     });
 };
 

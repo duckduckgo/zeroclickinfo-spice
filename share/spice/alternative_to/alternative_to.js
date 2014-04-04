@@ -5,13 +5,13 @@ function ddg_spice_alternative_to(api_result) {
         return;
     }
 
-    Spice.render({
+    Spice.add({
         data                     : api_result,
-        source_name              : 'AlternativeTo',
-        source_url               : api_result.Url,
-        spice_name               : 'alternative_to',
-        more_icon_offset         : '-2px',
-        template_frame           : "carousel",
+        sourceName              : 'AlternativeTo',
+        sourceUrl               : api_result.Url,
+        id               : 'alternative_to',
+        
+        view: "Tiles",
         template_options         : {
             items                : api_result.Items,
             template_item        : "alternative_to",

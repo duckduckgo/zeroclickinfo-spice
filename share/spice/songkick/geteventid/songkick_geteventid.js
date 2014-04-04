@@ -148,12 +148,12 @@ function ddg_spice_songkick_events(events_data) {
     }
   }
 
-  Spice.render({
+  Spice.add({
     data             : events_data,
     header1          : 'Events in ' + ddg_spice_songkick_geteventid.metadata.metro_area_display_name + ' (Songkick)',
-    source_url       : encodeURI(ddg_spice_songkick_geteventid.metadata.metro_area_uri),
-    source_name      : 'Songkick',
-    spice_name       : 'songkick',
+    sourceUrl       : encodeURI(ddg_spice_songkick_geteventid.metadata.metro_area_uri),
+    sourceName      : 'Songkick',
+    id       : 'songkick',
     template_frame   : 'list',
     template_options: {
       items         : results,
@@ -161,8 +161,8 @@ function ddg_spice_songkick_events(events_data) {
       show          : show_results,
       max           : max_results
     },
-    force_big_header : true,
-    force_no_fold    : true
+    
+    
   });
 }
 

@@ -12,13 +12,13 @@ function ddg_spice_shorten(api_result) {
         api_result.mobile = true;
     }
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
         header1          : "Shortened Link (is.gd)",
-        source_url       : "http://is.gd/",
-        source_name      : "is.gd",
+        sourceUrl       : "http://is.gd/",
+        sourceName      : "is.gd",
         template_normal  : "shorten",
-        force_big_header : true,
+        
         favicon_style    : "inline"
     });
 

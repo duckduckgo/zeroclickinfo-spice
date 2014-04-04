@@ -56,7 +56,7 @@ function ddg_spice_movie (api_result) {
 
     var searchTerm = rqd.replace(new RegExp(ignore.join('|'),'i'),'').trim();
 
-    Spice.render({
+    Spice.add({
         id: 'movie',
         name: 'Movies',
 

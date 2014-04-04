@@ -188,17 +188,17 @@ function ddg_spice_airlines (api_result) {
         };
 
     // Display the plug-in.
-    Spice.render({
+    Spice.add({
         header1          : onTime() + ": Flight Status for " + flight.Airline.Name + " " + flight.FlightNumber,
-        source_url       : "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" + flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber,
-        source_name      : "FlightStats",
-        spice_name       : "airlines",
+        sourceUrl       : "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" + flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber,
+        sourceName      : "FlightStats",
+        id       : "airlines",
         template_frame   : "twopane",
         template_options : {
             left : { template: "airlines", data: departing },
             right : { template: "airlines", data: arriving },
         },
-        force_no_fold    : true,
-        force_big_header : true
+        
+        
     });
 };

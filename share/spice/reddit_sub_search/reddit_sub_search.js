@@ -11,14 +11,14 @@ function ddg_spice_reddit(api_response) {
         return;
     }
 
-    Spice.render({
+    Spice.add({
         data              : api_response.data,
         header1           : api_response.data.display_name + " (SubReddit)",
-        source_url        : 'http://www.reddit.com' + api_response.data.url,
-        source_name       : 'Reddit',
+        sourceUrl        : 'http://www.reddit.com' + api_response.data.url,
+        sourceName       : 'Reddit',
         template_normal   : 'reddit_sub_search',
-        force_big_header  : true,
-        force_space_after : true
+        
+        
     });
 }
 

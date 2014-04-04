@@ -44,13 +44,13 @@ function ddg_spice_guidebox_lastshows (api_result) {
 
     var metadata = ddg_spice_guidebox_getid.metadata;
 
-    Spice.render({
+    Spice.add({
         data                     : api_result,
         header1                  : metadata.res_title + " (TV  - " + metadata.network + ")",
-        source_name              : "Guidebox",
-        source_url               : metadata.more,
-        template_frame           : "carousel",
-        spice_name               : "guidebox",
+        sourceName              : "Guidebox",
+        sourceUrl               : metadata.more,
+        view: "Tiles",
+        id               : "guidebox",
         template_options         : { 
             items                : api_result.results.result,
             template_item        : "guidebox_getid",

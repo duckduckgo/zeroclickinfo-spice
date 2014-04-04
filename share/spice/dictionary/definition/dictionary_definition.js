@@ -56,8 +56,8 @@ var ddg_spice_dictionary = {
                 word: word,
                 plural_form: this.plural_form,
                 definitions: definitions,
-                source_name: "Wordnik",
-                source_url : "http://www.wordnik.com/words/" + word
+                sourceName: "Wordnik",
+                sourceUrl : "http://www.wordnik.com/words/" + word
             },
 
             relevancy: {   

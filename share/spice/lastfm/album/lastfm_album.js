@@ -21,13 +21,13 @@ function ddg_spice_lastfm_album (api_result) {
     // - circus album by eraserhead
     if(DDG.isRelevant(api_result.album.name, skip) && DDG.isRelevant(api_result.album.artist, skip) &&
         +api_result.album.playcount > 1000) {
-        Spice.render({
+        Spice.add({
             data              : api_result,
-            force_big_header  : true,
+            
             header1           : api_result.album.name + " (Album)",
-            source_name       : "Last.fm",
-            source_url        : api_result.album.url,
-            force_no_fold     : true,
+            sourceName       : "Last.fm",
+            sourceUrl        : api_result.album.url,
+            
             template_normal   : "lastfm_album"
         });
 

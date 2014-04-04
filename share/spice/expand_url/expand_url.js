@@ -10,11 +10,11 @@ function ddg_spice_expand_url(api_response) {
     }
 
     // Display the plug-in.
-    Spice.render({
+    Spice.add({
         data             : api_response,
         header1          : "Expand Link (LongURL)",
-        source_url       : "http://longurl.org/expand?url=" + encodeURIComponent(query),
-        source_name      : "LongURL",
+        sourceUrl       : "http://longurl.org/expand?url=" + encodeURIComponent(query),
+        sourceName      : "LongURL",
         template_normal  : "expand_url"
     });
 }

@@ -9,14 +9,14 @@ var ddg_spice_twitter = function(api_result) {
     }
 
     // Display the plugin.
-    Spice.render({
+    Spice.add({
         data                     : api_result,
         header1                  : "@" + api_result.user,
-        source_url               : "https://twitter.com/" + api_result.user,
-        source_name              : "Twitter",
+        sourceUrl               : "https://twitter.com/" + api_result.user,
+        sourceName              : "Twitter",
         template_normal          : "twitter",
-        force_big_header         : true,
-        force_no_fold            : true,
+        
+        
         image_url                : bigger_picture(api_result.profile_image)
     });
 };

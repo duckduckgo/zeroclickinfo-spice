@@ -38,12 +38,12 @@ function ddg_spice_search_code(api_response) {
         return formatted_name;
     }
 
-    Spice.render({
+    Spice.add({
         data             : result,
         header1          : formatName(result),
-        source_url       : 'http://searchco.de/?q=' + query,
-        source_name      : 'search[code]',
+        sourceUrl       : 'http://searchco.de/?q=' + query,
+        sourceName      : 'search[code]',
         template_normal  : 'search_code',
-        force_big_header : true
+        
     });
 }

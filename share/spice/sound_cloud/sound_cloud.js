@@ -66,13 +66,13 @@ function ddg_spice_sound_cloud (api_result) {
     };
 
     // Display the plugin.
-    Spice.render({
+    Spice.add({
         data                     : context,
         header1                  : decodeURIComponent(query) + " (SoundCloud)",
-        source_url               : "https://soundcloud.com/search?q=" + query,
-        source_name              : "SoundCloud",
-        spice_name               : "sound_cloud",
-        template_frame           : "carousel",
+        sourceUrl               : "https://soundcloud.com/search?q=" + query,
+        sourceName              : "SoundCloud",
+        id               : "sound_cloud",
+        view: "Tiles",
         template_options         : {
             items           : context,
             template_detail : "sound_cloud_details",
@@ -80,8 +80,8 @@ function ddg_spice_sound_cloud (api_result) {
                 obj.image_url = obj.data[0].artwork_url || obj.data[0].user.avatar_url;
             }
         },
-        force_big_header         : true,
-        force_no_fold            : true,
+        
+        
         item_callback            : function() {
             if(window.soundManager) {
                 clearPlayer();

@@ -46,14 +46,14 @@ function ddg_spice_thesaurus (api_result) {
     api_result.mode = shorthand[mode];
 
     // Create the plugin.
-    Spice.render({
+    Spice.add({
         data              :  api_result,
         header1           :  header + " (Big Huge)",
-        source_name       :  'Big Huge Thesaurus',
-        source_url        :  'http://words.bighugelabs.com/' + query,
+        sourceName       :  'Big Huge Thesaurus',
+        sourceUrl        :  'http://words.bighugelabs.com/' + query,
         template_normal   :  'thesaurus',
-        force_big_header  :  true,
-        force_no_favicon  :  true
+        
+        
     });
 };
 
