@@ -3,12 +3,12 @@ function ddg_spice_smbc(api_result) {
         return;
     }
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
         header1          : api_result.items[0].title + " (SMBC)",
-        source_url       : api_result.url,
-        source_name      : 'SMBC',
+        sourceUrl       : api_result.url,
+        sourceName      : 'SMBC',
         template_normal  : 'smbc',
-        force_big_header : true
+        
     });
 }

@@ -6,14 +6,14 @@ function ddg_spice_rhymes ( api_result ) {
         return;
     }
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
         header1          : query + " (Rhymes)",
-        source_url       : 'http://rhymebrain.com/en/What_rhymes_with_' +
+        sourceUrl       : 'http://rhymebrain.com/en/What_rhymes_with_' +
                             encodeURIComponent(query),
-        source_name      : 'RhymeBrain',
+        sourceName      : 'RhymeBrain',
         template_normal  : 'rhymes',
-        force_big_header : true
+        
     });
 }
 

@@ -10,15 +10,15 @@ function ddg_spice_leak_db(api_result){
 
     api_result.hashes = api_result.hashes[0];
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
         header1          : type + " (LeakDB)",
-        source_url       : 'http://leakdb.abusix.com/?q='
+        sourceUrl       : 'http://leakdb.abusix.com/?q='
                             + encodeURIComponent(query),
-        source_name      : 'leakdb.abusix.com',
+        sourceName      : 'leakdb.abusix.com',
         template_normal  : 'leak_db',
-        force_big_header : true,
-        force_no_fold    : true
+        
+        
     });
 
     $("#zero_click_abstract").css({

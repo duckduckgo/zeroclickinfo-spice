@@ -7,13 +7,13 @@ function ddg_spice_meta_cpan(api_response) {
         link = "module/" + api_response.module[0].associated_pod;
     }
 
-    Spice.render({
+    Spice.add({
         data             : api_response,
         header1          : query + " (MetaCPAN)",
-        source_url       : 'https://metacpan.org/' + link,
-        source_name      : 'MetaCPAN',
+        sourceUrl       : 'https://metacpan.org/' + link,
+        sourceName      : 'MetaCPAN',
         template_normal  : 'meta_cpan',
-        force_big_header : true,
-        force_no_fold    : true
+        
+        
     });
 }

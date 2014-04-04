@@ -7,7 +7,7 @@ function ddg_spice_github_jobs(api_result) {
     jobs['description'] = query.replace(re, "$1");
     jobs['location'] = query.replace(re, "$2");
 
-    var source_url = 'https://jobs.github.com/positions?description='
+    var sourceUrl = 'https://jobs.github.com/positions?description='
                             + encodeURIComponent(jobs['description'])
                             + "&location=" +  encodeURIComponent(jobs['location']);
 
@@ -16,7 +16,7 @@ function ddg_spice_github_jobs(api_result) {
         desc += ' in ' + jobs['location'];
     }
 
-    Spice.render({
+    Spice.add({
         id: 'github_jobs',
         name: 'Jobs',
 
@@ -25,7 +25,7 @@ function ddg_spice_github_jobs(api_result) {
         meta: {
             count: api_result.length,
             count_meta: desc,
-            sourceUrl: source_url,
+            sourceUrl: sourceUrl,
             sourceName: 'GitHub',
             sourceIcon: true
         },

@@ -1,11 +1,11 @@
 function ddg_spice_lastfm_top_tracks(api_result) {
-    Spice.render({
+    Spice.add({
         data             : api_result,
         header1          : "Top Songs (" + api_result.toptracks["@attr"].country + ")",
-        source_name      : "Last.fm",
-        source_url       : "http://www.last.fm/charts/tracks/top",
+        sourceName      : "Last.fm",
+        sourceUrl       : "http://www.last.fm/charts/tracks/top",
 
-	spice_name       : "lastfm_top_tracks",
+	id       : "lastfm_top_tracks",
 	template_frame   : "list",
 	template_options : {
 	    items: api_result.toptracks.track,
@@ -15,8 +15,8 @@ function ddg_spice_lastfm_top_tracks(api_result) {
 	    type: "ul"
 	},
 
-        force_big_header : true,
-        force_no_fold    : true
+        
+        
     });
 }
 

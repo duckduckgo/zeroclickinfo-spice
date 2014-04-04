@@ -80,12 +80,12 @@ function ddg_spice_songkick_artists(artists_data) {
   if (!artists_data.resultsPage.results.artist || artists_data.resultsPage.results.artist.length == 0) {
     return;
   }
-  Spice.render({
+  Spice.add({
     data             : artists_data,
     header1          : 'Artists Similar to ' + ddg_spice_songkick_getartistid.metadata.artist_name + ' (Songkick)',
-    source_url       : encodeURI(ddg_spice_songkick_getartistid.metadata.artist_uri),
-    source_name      : 'Songkick',
-    spice_name       : 'songkick',
+    sourceUrl       : encodeURI(ddg_spice_songkick_getartistid.metadata.artist_uri),
+    sourceName      : 'Songkick',
+    id       : 'songkick',
     template_frame   : 'list',
     template_options: {
       items         : $.map(artists_data.resultsPage.results.artist.slice(0, max_results), function(o, idx) {
@@ -98,7 +98,7 @@ function ddg_spice_songkick_artists(artists_data) {
       show          : show_results,
       max           : max_results
     },
-    force_big_header : true,
-    force_no_fold    : true
+    
+    
   });
 }

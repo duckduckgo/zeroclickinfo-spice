@@ -30,12 +30,12 @@ function ddg_spice_gravatar (api_result) {
     };
 
     // Display the spice plugin.
-    Spice.render({
+    Spice.add({
         data              : api_result,
         header1           : getName(api_result.entry[0]) + " (Gravatar)",
-        force_big_header  : true,
-        source_name       : "Gravatar",
-        source_url        : api_result.entry[0].profileUrl,
+        
+        sourceName       : "Gravatar",
+        sourceUrl        : api_result.entry[0].profileUrl,
         image_url         : api_result.entry[0].thumbnailUrl + ".png",
         template_normal   : "gravatar",
         force_favicon_url : 'http://gravatar.com/favicon.ico'

@@ -43,12 +43,12 @@ function ddg_spice_reddit(api_result) {
         source += '/search?q=' + query;
     }
 
-    Spice.render({
+    Spice.add({
         data              : results,
         header1           : header,
-        source_url        : source,
-        source_name       : 'Reddit',
-        spice_name        : 'reddit_search',
+        sourceUrl        : source,
+        sourceName       : 'Reddit',
+        id        : 'reddit_search',
         template_frame    : 'list',
         template_options     : {
             items: results,
@@ -56,8 +56,8 @@ function ddg_spice_reddit(api_result) {
             max: 14,
             template_item: 'reddit_search'
         },
-        force_big_header  : true,
-        force_space_after : true,
-        force_no_fold : true
+        
+        
+        
     });
 };

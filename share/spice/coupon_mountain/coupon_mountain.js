@@ -7,14 +7,14 @@ function ddg_spice_coupon_mountain (api_result) {
 			: "Coupon Search (CouponMountain)",
 		keyword = encodeURIComponent(api_result.keyword);
 
-	Spice.render({
+	Spice.add({
 		data                     : api_result,
-		spice_name               : "coupon_mountain",
-		source_name              : 'CouponMountain',
-		source_url               : 'http://www.couponmountain.com/search.php?searchtext='+ keyword,
+		id               : "coupon_mountain",
+		sourceName              : 'CouponMountain',
+		sourceUrl               : 'http://www.couponmountain.com/search.php?searchtext='+ keyword,
 		header1                  : header,
-		template_frame           : "carousel",
-		more_icon_offset         : "-3px",
+		view: "Tiles",
+		
 		template_options         : {
 			items                : api_result.coupon,
 			template_item        : "coupon_mountain",

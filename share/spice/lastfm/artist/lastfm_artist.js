@@ -1,4 +1,4 @@
-// This function checks for errors, and it's also the one that calls Spice.render.
+// This function checks for errors, and it's also the one that calls Spice.add.
 function ddg_spice_lastfm (api_result, template) {
     "use strict";
 
@@ -40,13 +40,13 @@ function ddg_spice_lastfm (api_result, template) {
 
     // Display the plugin.
     if(DDG.isRelevant(api_result.artist.name, skip, 4, true)) {
-        Spice.render({
+        Spice.add({
             data             : api_result,
-            force_big_header : true,
+            
             header1          : api_result.artist.name + " (Last.FM)",
-            source_name      : "Last.fm",
-            source_url       : api_result.artist.url,
-            force_no_fold    : true,
+            sourceName      : "Last.fm",
+            sourceUrl       : api_result.artist.url,
+            
             template_normal  : "lastfm_artist",
             template_small   : "lastfm_artist_small"
         });

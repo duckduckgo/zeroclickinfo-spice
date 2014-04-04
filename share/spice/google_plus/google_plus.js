@@ -4,18 +4,18 @@ function ddg_spice_google_plus (api_result) {
         return;
     }
 
-    Spice.render({
+    Spice.add({
         data: api_result,
-        source_name : 'Google+',
-        source_url : 'http://plus.google.com',
+        sourceName : 'Google+',
+        sourceUrl : 'http://plus.google.com',
         header1 : "Google+ Users",
-        spice_name: "google_plus",
-        template_frame: "carousel",
+        id: "google_plus",
+        view: "Tiles",
         template_options: {
             items: api_result.items,
             template_item: "google_plus"
         },
-        force_no_fold : 1
+        
     });
 };
 
