@@ -10,23 +10,23 @@ function ddg_spice_forvo (api_result) {
     var query = source.match(/forvo\/([^\/]+)\/\w+/)[1];
 
     // Display the Spice plug-in.
-    Spice.render({
+    Spice.add({
         data             : api_result,
         header1          : "Pronunciations (Forvo)",
-        source_url       : "http://www.forvo.com/search/" + query,
-        source_name      : "Forvo",
-        spice_name       : "forvo",
+        sourceUrl       : "http://www.forvo.com/search/" + query,
+        sourceName      : "Forvo",
+        id       : "forvo",
         template_frame   : "list",
-        template_options : {
+        templates : {
             items         : api_result.items, //list,
-            template_item : "forvo",
+            item: Spice.forvo.forvo,
             show          : 3,
             max           : 5,
             type          : "ul",
             use_alternate_template: false
         },
-        force_big_header : true,
-        force_no_fold    : true
+        
+        
     });
 
     // This gets called when the sound is finished playing

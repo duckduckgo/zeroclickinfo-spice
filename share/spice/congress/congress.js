@@ -8,24 +8,24 @@ function ddg_spice_congress(api_result) {
     var state   = api_result.results[0].state;
     var chamber = api_result.results[0].chamber;
 
-    Spice.render({
+    Spice.add({
         data             : api_result.results[0],
         header1          : 'Members of the ' + state + ' ' + chamber,
-        source_url       : "http://topics.nytimes.com/top/reference/timestopics/" +
+        sourceUrl       : "http://topics.nytimes.com/top/reference/timestopics/" +
                            "organizations/c/congress/index.html",
-        source_name      : 'The New York Times',
+        sourceName      : 'The New York Times',
 
         template_frame   : 'list',
-        template_options: {
+        templates: {
             items: api_result.results[0].members, 
-            template_item: "congress",
+            item: Spice.congress.congress,
             show: 3,
             type: 'ul'
         },
 
-        force_big_header : true,
-        force_no_fold: true,
-        spice_name       : "congress",
+        
+        
+        id       : "congress",
         is_house         : (chamber == "House")
     });
 }

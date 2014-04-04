@@ -25,19 +25,19 @@ function ddg_spice_in_theaters (api_result) {
         header = "Currently in Theaters";
     }
 
-    Spice.render({
+    Spice.add({
         header1                  : header,
-        source_url               : "http://www.rottentomatoes.com/",
-        source_name              : "Rotten Tomatoes",
-        spice_name               : "in_theaters",
-        force_big_header         : true,
-        template_frame           : "carousel",
-        template_options         : {
+        sourceUrl               : "http://www.rottentomatoes.com/",
+        sourceName              : "Rotten Tomatoes",
+        id               : "in_theaters",
+        
+        view: "Tiles",
+        templates         : {
             items           : api_result.movies,
-            template_detail : "in_theaters_details",
+            detail: Spice.in_theaters.in_theaters_details,
             li_height : 155
         },
-        force_no_fold            : true
+        
     });
 };
 

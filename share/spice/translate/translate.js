@@ -81,13 +81,16 @@ function ddg_spice_translate_from_to (api_result) {
         endpoint;
 
 
-    Spice.render({
+    Spice.add({
         data             :  api_result,
         header1          :  params.to + ' translations for ' + params.phrase,
-        source_name      :  'wordreference.com',
-        source_url       :  'https://wordreference.com/' + params.from_to + '/' + params.phrase,
-        template_normal  :  'translate_from_to',
-        force_big_header :  true
+        sourceName      :  'wordreference.com',
+        sourceUrl       :  'https://wordreference.com/' + params.from_to + '/' + params.phrase,
+        templates: {
+            item: Spice.translate_from_to.translate_from_to,
+            detail: Spice.translate_from_to.translate_from_to
+        },
+        
     });
 }
 
@@ -97,14 +100,17 @@ function ddg_spice_translate_from_to_phrase (api_result) {
 
     var params = get_params("from_to");
 
-    Spice.render({
+    Spice.add({
         data:               api_result,
         header1 :           params.to + ' translations for ' + params.phrase,
-        source_name :       'MyMemory',
-        source_url :        'http://mymemory.translated.net/s.php?q=' + params.phrase +
+        sourceName :       'MyMemory',
+        sourceUrl :        'http://mymemory.translated.net/s.php?q=' + params.phrase +
                             '&sl=' + params.from + '&tl=' + params.to ,
-        force_big_header :  true,
-        template_normal  :  'translate_from_to_phrase',
+        
+        templates: {
+            item: Spice.translate_from_to_phrase.translate_from_to_phrase,
+            detail: Spice.translate_from_to_phrase.translate_from_to_phrase
+        },
 
     });
 }

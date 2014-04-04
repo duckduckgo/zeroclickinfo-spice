@@ -10,11 +10,14 @@ function ddg_spice_septa(api_result) {
     var from    = parts[4];
     var to      = parts[5];
 
-    Spice.render({
+    Spice.add({
         data              : api_result,
-        source_name       : 'SEPTA',
-        source_url        : 'http://www.septa.org/schedules/',
-        template_normal   : 'septa',
+        sourceName       : 'SEPTA',
+        sourceUrl        : 'http://www.septa.org/schedules/',
+        templates: {
+            item: Spice.septa.septa,
+            detail: Spice.septa.septa
+        },
         header1           : 'Trains from ' + from + ' to ' + to,
         force_favicon_url : 'http://www.septa.org/site/images/favicon.ico'
     });

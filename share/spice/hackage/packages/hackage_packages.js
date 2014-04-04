@@ -47,13 +47,16 @@ function ddg_spice_hackage_package_details(response) {
 
     if (pkg.synopsis == "") return;
 
-    Spice.render({
+    Spice.add({
         data             : pkg,
         header1          : pkg.name + " (Hackage)",
-        source_url       : 'http://hackage.haskell.org/package/' + pkg.name,
-        source_name      : 'Hackage',
-        template_normal  : 'hackage_packages',
-        force_big_header : true
+        sourceUrl       : 'http://hackage.haskell.org/package/' + pkg.name,
+        sourceName      : 'Hackage',
+        templates: {
+            item: Spice.hackage_packages.hackage_packages,
+            detail: Spice.hackage_packages.hackage_packages
+        },
+        
     });
 }
 

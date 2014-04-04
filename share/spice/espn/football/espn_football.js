@@ -235,18 +235,21 @@ function ddg_spice_espn_events(api_result) {
 
 function ddg_spice_espn_bind() {
     if (ddg_spice_espn_calls--) return;
-    Spice.render({
+    Spice.add({
         data             : ddg_spice_espn_player,
         header1          : ddg_spice_espn_player.name + ' ('
                             + ddg_spice_espn_player.sport.charAt(0).toUpperCase()
                             + ddg_spice_espn_player.sport.slice(1) + ')',
-        source_url       : 'http://espn.com/' + ddg_spice_espn_player.league.toLowerCase()
+        sourceUrl       : 'http://espn.com/' + ddg_spice_espn_player.league.toLowerCase()
                             + '/player/_/id/' + ddg_spice_espn_player.id,
-        source_name      : 'ESPN',
-        template_normal  : 'espn_' + ddg_spice_espn_player.sport,
+        sourceName      : 'ESPN',
+        templates: {
+            item: Spice.espn_.espn_,
+            detail: Spice.espn_.espn_
+        } + ddg_spice_espn_player.sport,
 	force_favicon_url: 'http://espn.go.com/favicon.ico',
-        force_big_header : true,
-        force_no_fold    : true
+        
+        
     });
 
     var current_tab = $('#espn_zci_news_link')[0];

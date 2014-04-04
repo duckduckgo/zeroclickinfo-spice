@@ -2,15 +2,18 @@ ddg_spice_open_snp = function(api_result) {
     if (!api_result.snp) return;
     api_result = api_result.snp;
 
-    Spice.render({
+    Spice.add({
         data              : api_result,
         header1           : api_result.name + ' (OpenSNP)',
-        source_url        : 'https://opensnp',
+        sourceUrl        : 'https://opensnp',
         force_favicon_url : 'http://opensnp.org/favicon.ico',
-        source_name       : 'OpenSNP',
-        template_normal   : 'open_snp',
-        force_big_header  : true,
-        force_no_fold     : true
+        sourceName       : 'OpenSNP',
+        templates: {
+            item: Spice.open_snp.open_snp,
+            detail: Spice.open_snp.open_snp
+        },
+        
+        
     });
 
     $('#show-references').click(function() {

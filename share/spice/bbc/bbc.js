@@ -41,21 +41,21 @@ function ddg_spice_bbc(api_result) {
 
     header_service_type = api_result.schedule.service.type == "radio" ? "Radio" : "TV";
 
-    Spice.render({
+    Spice.add({
         data           : api_result.schedule,
         header1        : api_result.schedule.service.title + (api_result.schedule.service.outlet ? " "+api_result.schedule.service.outlet.title : "") + " ("+header_service_type+" Schedule for "+header_date+")",
-        source_url     : "http://www.bbc.co.uk/"+api_result.schedule.service.key+"/programmes/schedules/"+(api_result.schedule.service.outlet ? api_result.schedule.service.outlet.key+"/" : "")+api_result.schedule.day.date.split("-").join("/"),
-        source_name    : 'BBC',
-        template_frame : "carousel",
-        spice_name     : "bbc",
-        template_options: {
+        sourceUrl     : "http://www.bbc.co.uk/"+api_result.schedule.service.key+"/programmes/schedules/"+(api_result.schedule.service.outlet ? api_result.schedule.service.outlet.key+"/" : "")+api_result.schedule.day.date.split("-").join("/"),
+        sourceName    : 'BBC',
+        view: "Tiles",
+        id     : "bbc",
+        templates: {
             li_width        : 120,
             li_height       : 105,
             items           : programmes, 
-            template_item   : "bbc",
-            template_detail : "bbc_details"
+            item: Spice.bbc.bbc,
+            detail: Spice.bbc.bbc_details
         },
-        force_big_header : true
+        
     });
 }
 

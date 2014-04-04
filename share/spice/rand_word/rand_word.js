@@ -1,10 +1,13 @@
 function ddg_spice_rand_word(api_result) {
     if (!api_result.word) return;
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
-        source_url       : 'http://wordnik.com',
-        source_name      : 'Wordnik',
-        template_normal  : 'rand_word',
+        sourceUrl       : 'http://wordnik.com',
+        sourceName      : 'Wordnik',
+        templates: {
+            item: Spice.rand_word.rand_word,
+            detail: Spice.rand_word.rand_word
+        },
     });
 }

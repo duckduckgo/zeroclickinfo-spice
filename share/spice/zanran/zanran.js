@@ -10,15 +10,18 @@ function ddg_spice_zanran(api_result) {
         return "";
     };
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
         header1          : DDG.get_query() + " (Zanran)",
-        source_url       : api_result.more,
-        source_name      : 'Zanran',
-        template_normal  : 'zanran',
+        sourceUrl       : api_result.more,
+        sourceName      : 'Zanran',
+        templates: {
+            item: Spice.zanran.zanran,
+            detail: Spice.zanran.zanran
+        },
         image_url        : checkImage(api_result.results[0].preview_image),
-        force_big_header : true,
-        force_no_fold    : true
+        
+        
     });
 
     $("a.show-hide").click(function() {

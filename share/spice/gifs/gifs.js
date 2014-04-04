@@ -13,7 +13,7 @@ function ddg_spice_gifs(res) {
         }
     });
 
-    Spice.render({
+    Spice.add({
         id: 'gifs',
         name: 'Gifs',
 

@@ -3,10 +3,13 @@ function ddg_spice_expatistan(api_result) {
         return;
     }
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
-        source_url       : api_result.source_url,
-        source_name      : 'Expatistan',
-        template_normal  : 'expatistan'
+        sourceUrl       : api_result.sourceUrl,
+        sourceName      : 'Expatistan',
+        templates: {
+            item: Spice.expatistan.expatistan,
+            detail: Spice.expatistan.expatistan
+        }
     });
 }

@@ -83,15 +83,15 @@ function ddg_spice_book(api_result) {
     var header = data.title = data.title + formatSub(data.sub_title);
     header = Handlebars.helpers.condense(header, {hash: {maxlen: 35}});
 
-    Spice.render({
+    Spice.add({
          data              : data,
-         force_big_header  : true,
+         
          header1           : header + " (Book Reviews)",
-         source_name       : "idreambooks.com", // More at ...
-         source_url        :  data.detail_link,
-	 spice_name        : "book",
+         sourceName       : "idreambooks.com", // More at ...
+         sourceUrl        :  data.detail_link,
+	 id        : "book",
 	 template_frame    : "twopane",
-	 template_options  : {
+	 templates  : {
 	     left: {
 		 template: "book"
 	     },
@@ -99,7 +99,7 @@ function ddg_spice_book(api_result) {
 		 template: "book_critic"
 	     }
 	 },
-	 force_no_fold     : true
+	 
     });
 }
 

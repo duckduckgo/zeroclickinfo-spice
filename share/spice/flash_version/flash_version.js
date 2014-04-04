@@ -11,13 +11,16 @@ function ddg_spice_flash_version () {
     }
 
     // Display the plugin.
-    Spice.render({
+    Spice.add({
         data             : context,
         header1          : 'Flash Version',
-        source_name      : 'Adobe',
-        source_url       : 'https://get.adobe.com/flashplayer/',
-        template_normal  : 'flash_version',
-        force_big_header : true
+        sourceName      : 'Adobe',
+        sourceUrl       : 'https://get.adobe.com/flashplayer/',
+        templates: {
+            item: Spice.flash_version.flash_version,
+            detail: Spice.flash_version.flash_version
+        },
+        
     });
 }
 ddg_spice_flash_version();

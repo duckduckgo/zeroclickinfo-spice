@@ -2,13 +2,16 @@ function ddg_spice_plugin_name ( api_result ) {
 
   /* Make sure result exists */
 
-  Spice.render({
+  Spice.add({
     data             : api_result,
     header1          : ' ',
-    source_name      : ' ',
-    source_url       : 'https://source.website.com',
-    template_normal  : ' ',
-    force_big_header : true
+    sourceName      : ' ',
+    sourceUrl       : 'https://source.website.com',
+    templates: {
+            item: Spice. . ,
+            detail: Spice. . 
+        },
+    
   });
 
   // Any private functions here

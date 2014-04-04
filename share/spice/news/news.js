@@ -46,7 +46,7 @@ function ddg_spice_news(apiResult) {
 
     // If we found some good stories, display them.
     if(goodStories.length > 0) {
-        Spice.render({
+        Spice.add({
             id: 'news',
             name: 'News',
 
@@ -59,7 +59,7 @@ function ddg_spice_news(apiResult) {
             },
 
             templates: {
-                item: 'news_items'
+                item: 'news_item'
             }
         });
     }

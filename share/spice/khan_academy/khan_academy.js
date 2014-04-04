@@ -13,18 +13,18 @@ function ddg_spice_khan_academy ( api_result ) {
         query = 'search?page_search_query=' + query;
     }
 
-    Spice.render({
+    Spice.add({
         data                     : api_result,
-        source_name              : 'Khan Academy',
-        source_url               : 'https://www.khanacademy.org/' + query,
+        sourceName              : 'Khan Academy',
+        sourceUrl               : 'https://www.khanacademy.org/' + query,
         header1                  : header,
-        force_no_fold            : 1,
-        force_big_header         : 1,
-        spice_name               : "khan_academy",
-        template_frame           : "carousel",
-        template_options         : {
+        
+        
+        id               : "khan_academy",
+        view: "Tiles",
+        templates         : {
             items           : api_result.feed.entry,
-            template_detail : "khan_academy_detail",
+            detail: Spice.khan_academy.khan_academy_detail,
             li_width : 120,
             single_item_handler: function(obj) {
                 // This disables autoplay.
