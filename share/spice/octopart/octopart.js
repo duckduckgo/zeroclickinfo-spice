@@ -38,16 +38,39 @@ function ddg_spice_octopart (api_result) {
     // }
 
     Spice.add({
-        sourceName : 'Octopart',
-        data: api_result.results,
         id: "octopart",
-        sourceUrl : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q,
-        header1 : api_result.request.q + " (Octopart)",
+        name: 'Parts',
         view: "Tiles",
+        data: api_result.results,
+
         templates: {
-            item: Spice.octopart.octopart,
-            detail: Spice.octopart.octopart_details
+            item: DDG.templates.products_item,
+            detail: DDG.templates.products_item_detail
         },
+
+        meta: {
+            // total: api_result.results.length,
+            // itemType: 'showing n of m results',
+            sourceName: 'Octopart',
+			sourceUrl : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q,
+            // sourceLogo: {
+            //     url: DDG.get_asset_path('quixey','quixey_logo.png'),
+            //     width: '45',
+            //     height: '12'
+            // }
+        },
+
+        normalize: function(item) {
+            return {
+                brand: item.item.manufacturer.displayname,
+                price: item.item.avg_price[1] + ' ' + item.item.avg_price[0].toFixed(2),
+                img:   DDG.getProperty(item, "item.images.0.url_55px"),
+                img_m: this.img,
+				url_review: item.item.detail_url,
+                title: DDG.strip_html(item.item.mpn),
+                heading: DDG.strip_html(item.highlight)
+            };
+        }
 
         
     });
