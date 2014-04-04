@@ -1,17 +1,18 @@
-            <h3>
-                {{#if plural_form}}
-                    <span class="zci__def__word">{{plural_form}}</span><span class="zci__def__plural"> is the plural form of {{word}}</span>
-                {{else}}
-                    <span class="zci__def__word">{{word}}</span>
-                {{/if}}
-                <span class="zci__def__pronunciation"></span>
-                <span class="zci__def__audio"></span>
-            </h3>
-            <ul>
-            {{#definitions}}
-                <li>
-                    <span class="zci__def__part-of-speech">{{formatPartOfSpeech partOfSpeech}}</span>
-                    <span class="zci__def__definition">{{{formatDefinition text}}}</span>
-                </li>
-            {{/definitions}}
-            </ul>
+<h3>
+	{{#if plural_form}}
+		<span class="zci__def__word">{{plural_form}}</span><span class="zci__def__plural"> is the plural form of {{word}}</span>
+	{{else}}
+		<span class="zci__def__word">{{word}}</span>
+	{{/if}}
+	<span class="zci__def__pronunciation"></span>
+	<span class="zci__def__audio"></span>
+</h3>
+<ul>
+{{#definitions}}
+	<li>
+		<span class="zci__def__part-of-speech">{{formatPartOfSpeech partOfSpeech}}</span>
+		<span class="zci__def__definition">{{{formatDefinition text}}}</span>
+	</li>
+{{/definitions}}
+</ul>
+{{{moreAt source_url source_name}}}

@@ -59,7 +59,7 @@ function ddg_spice_news(apiResult) {
             },
 
             templates: {
-                item: 'news_items'
+                item: 'news_item'
             }
         });
     }

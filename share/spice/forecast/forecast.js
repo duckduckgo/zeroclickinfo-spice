@@ -20,7 +20,7 @@ function ddg_spice_forecast(r) {
 
   // Pass flags['ddg-location'] to DDG.stringsRelevant to check
   // if the result is relevant to our query.
-  var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'], query, undefined, 2);
+  var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'].toLowerCase(), query, undefined, 2);
 
   // Exit if it's not the current location that we're looking for,
   // not the area code, e.g., 07871, and if it's not relevant.
@@ -226,14 +226,14 @@ function ddg_spice_forecast(r) {
             heading: r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] + weatherData.alerts : 'Weather' + weatherData.alerts,
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
             sourceName: 'Forecast.io',
-            altMeta: 'Temperatures in '+unit_labels[units].temperature+'&deg;'
+            altMeta: 'Temperatures in '+unit_labels[units].temperature+'&deg;',
+            variableTileWidth: true
         },
 
         view: 'Tiles',
 
         templates: {
-            item: Spice.forecast.forecast_item,
-            summary: Spice.forecast.forecast
+            item: Spice.forecast.forecast_item
         }
 
     });
