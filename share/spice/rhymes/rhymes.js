@@ -12,7 +12,10 @@ function ddg_spice_rhymes ( api_result ) {
         sourceUrl       : 'http://rhymebrain.com/en/What_rhymes_with_' +
                             encodeURIComponent(query),
         sourceName      : 'RhymeBrain',
-        template_normal  : 'rhymes',
+        templates: {
+            item: Spice.rhymes.rhymes,
+            detail: Spice.rhymes.rhymes
+        },
         
     });
 }

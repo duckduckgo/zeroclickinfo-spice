@@ -5,6 +5,9 @@ function ddg_spice_is_it_up(response) {
         data             : response,
         sourceUrl       : 'http://isitup.org/' + response['domain'],
         sourceName      : 'Is it up?',
-        template_normal  : 'is_it_up',
+        templates: {
+            item: Spice.is_it_up.is_it_up,
+            detail: Spice.is_it_up.is_it_up
+        },
     });
 }

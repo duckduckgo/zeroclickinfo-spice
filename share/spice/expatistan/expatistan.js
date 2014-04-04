@@ -7,6 +7,9 @@ function ddg_spice_expatistan(api_result) {
         data             : api_result,
         sourceUrl       : api_result.sourceUrl,
         sourceName      : 'Expatistan',
-        template_normal  : 'expatistan'
+        templates: {
+            item: Spice.expatistan.expatistan,
+            detail: Spice.expatistan.expatistan
+        }
     });
 }

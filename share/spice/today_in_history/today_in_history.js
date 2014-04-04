@@ -16,7 +16,10 @@ function ddg_spice_today_in_history(api_response) {
         header1          : title + ' (Today in History)',
         sourceUrl       : link,
         sourceName      : 'History.com',
-        template_normal  : 'today_in_history',
+        templates: {
+            item: Spice.today_in_history.today_in_history,
+            detail: Spice.today_in_history.today_in_history
+        },
         
     });
 }

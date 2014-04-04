@@ -15,7 +15,10 @@ function ddg_spice_zanran(api_result) {
         header1          : DDG.get_query() + " (Zanran)",
         sourceUrl       : api_result.more,
         sourceName      : 'Zanran',
-        template_normal  : 'zanran',
+        templates: {
+            item: Spice.zanran.zanran,
+            detail: Spice.zanran.zanran
+        },
         image_url        : checkImage(api_result.results[0].preview_image),
         
         

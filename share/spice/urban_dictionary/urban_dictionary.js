@@ -16,7 +16,10 @@ function ddg_spice_urban_dictionary(response) {
         header1          : word + " (Urban Dictionary)",
         sourceUrl       : 'http://www.urbandictionary.com/define.php?term=' + word,
         sourceName      : 'Urban Dictionary',
-        template_normal  : 'urban_dictionary',
+        templates: {
+            item: Spice.urban_dictionary.urban_dictionary,
+            detail: Spice.urban_dictionary.urban_dictionary
+        },
         
     });
 }

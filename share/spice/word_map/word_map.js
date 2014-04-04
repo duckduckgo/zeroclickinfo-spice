@@ -9,7 +9,10 @@ function ddg_spice_word_map(api_result) {
         header1          	: "Related to " + api_result.entry + " (Levelpump)",
         sourceUrl       	: 'http://levelpump.com/graph-dictionary.php?mailLink=' + encodeURIComponent(api_result.encrypt_entry) + '&from=ddg',
         sourceName      	: 'Levelpump',
-        template_normal  	: 'word_map',
+        templates: {
+            item: Spice.word_map.word_map,
+            detail: Spice.word_map.word_map
+        },
 	force_favicon_url       : 'http://icons.duckduckgo.com/ip/www.levelpump.com.ico'
     });
 }

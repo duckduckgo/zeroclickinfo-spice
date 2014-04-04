@@ -16,7 +16,10 @@ function ddg_spice_leak_db(api_result){
         sourceUrl       : 'http://leakdb.abusix.com/?q='
                             + encodeURIComponent(query),
         sourceName      : 'leakdb.abusix.com',
-        template_normal  : 'leak_db',
+        templates: {
+            item: Spice.leak_db.leak_db,
+            detail: Spice.leak_db.leak_db
+        },
         
         
     });

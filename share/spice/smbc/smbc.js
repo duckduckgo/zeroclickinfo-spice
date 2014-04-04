@@ -8,7 +8,10 @@ function ddg_spice_smbc(api_result) {
         header1          : api_result.items[0].title + " (SMBC)",
         sourceUrl       : api_result.url,
         sourceName      : 'SMBC',
-        template_normal  : 'smbc',
+        templates: {
+            item: Spice.smbc.smbc,
+            detail: Spice.smbc.smbc
+        },
         
     });
 }

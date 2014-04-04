@@ -16,7 +16,10 @@ function ddg_spice_flash_version () {
         header1          : 'Flash Version',
         sourceName      : 'Adobe',
         sourceUrl       : 'https://get.adobe.com/flashplayer/',
-        template_normal  : 'flash_version',
+        templates: {
+            item: Spice.flash_version.flash_version,
+            detail: Spice.flash_version.flash_version
+        },
         
     });
 }

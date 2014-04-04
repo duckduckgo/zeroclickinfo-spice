@@ -11,7 +11,10 @@ function ddg_spice_brainy_quote (api_result) {
          header1           : api_result.header1,
          sourceName       : api_result.sourceName, // More at ...
          sourceUrl        : api_result.sourceUrl,
-         template_normal   : 'brainy_quote',
+         templates: {
+            item: Spice.brainy_quote.brainy_quote,
+            detail: Spice.brainy_quote.brainy_quote
+        },
 	 
     });
 }

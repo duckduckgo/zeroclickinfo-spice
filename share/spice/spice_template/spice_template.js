@@ -7,7 +7,10 @@ function ddg_spice_plugin_name ( api_result ) {
     header1          : ' ',
     sourceName      : ' ',
     sourceUrl       : 'https://source.website.com',
-    template_normal  : ' ',
+    templates: {
+            item: Spice. . ,
+            detail: Spice. . 
+        },
     
   });
 

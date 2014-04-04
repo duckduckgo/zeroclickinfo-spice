@@ -16,7 +16,10 @@ function ddg_spice_reddit(api_response) {
         header1           : api_response.data.display_name + " (SubReddit)",
         sourceUrl        : 'http://www.reddit.com' + api_response.data.url,
         sourceName       : 'Reddit',
-        template_normal   : 'reddit_sub_search',
+        templates: {
+            item: Spice.reddit_sub_search.reddit_sub_search,
+            detail: Spice.reddit_sub_search.reddit_sub_search
+        },
         
         
     });

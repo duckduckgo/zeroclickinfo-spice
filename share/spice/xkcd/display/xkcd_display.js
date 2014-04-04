@@ -17,7 +17,10 @@ function ddg_spice_xkcd_display(api_result) {
       header1          : api_result.safe_title + " (xkcd)",
       sourceUrl       : 'http://xkcd.com/' + api_result.num,
       sourceName      : 'xkcd',
-      template_normal  : 'xkcd_display',
+      templates: {
+            item: Spice.xkcd_display.xkcd_display,
+            detail: Spice.xkcd_display.xkcd_display
+        },
       
       
     });

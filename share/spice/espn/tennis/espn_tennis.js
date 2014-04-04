@@ -243,7 +243,10 @@ function ddg_spice_espn_bind() {
         sourceUrl       : 'http://espn.com/' + ddg_spice_espn_player.league.toLowerCase()
                             + '/player/_/id/' + ddg_spice_espn_player.id,
         sourceName      : 'ESPN',
-        template_normal  : 'espn_' + ddg_spice_espn_player.sport,
+        templates: {
+            item: Spice.espn_.espn_,
+            detail: Spice.espn_.espn_
+        } + ddg_spice_espn_player.sport,
 	force_favicon_url: 'http://espn.go.com/favicon.ico',
         
         

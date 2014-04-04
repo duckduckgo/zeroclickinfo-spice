@@ -11,7 +11,10 @@ function ddg_spice_translate_from_to_phrase (api_result) {
         sourceUrl :        'http://mymemory.translated.net/s.php?q=' + params.phrase +
                             '&sl=' + params.from + '&tl=' + params.to ,
         
-        template_normal  :  'translate_from_to_phrase',
+        templates: {
+            item: Spice.translate_from_to_phrase.translate_from_to_phrase,
+            detail: Spice.translate_from_to_phrase.translate_from_to_phrase
+        },
 
     });
 }

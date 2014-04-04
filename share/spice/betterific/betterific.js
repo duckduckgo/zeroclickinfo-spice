@@ -40,7 +40,10 @@ function ddg_spice_betterific(api_result) {
         header1          : api_result.q + ' (Betterific)',
         sourceUrl       : encodeURI('http://betterific.com/search/' + api_result.q),
         sourceName      : 'betterific',
-        template_normal  : 'betterific',
+        templates: {
+            item: Spice.betterific.betterific,
+            detail: Spice.betterific.betterific
+        }
         
         
     });

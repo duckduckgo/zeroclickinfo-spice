@@ -51,7 +51,10 @@ function ddg_spice_thesaurus (api_result) {
         header1           :  header + " (Big Huge)",
         sourceName       :  'Big Huge Thesaurus',
         sourceUrl        :  'http://words.bighugelabs.com/' + query,
-        template_normal   :  'thesaurus',
+        templates: {
+            item: Spice.thesaurus.thesaurus,
+            detail: Spice.thesaurus.thesaurus
+        },
         
         
     });

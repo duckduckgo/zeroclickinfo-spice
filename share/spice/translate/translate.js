@@ -86,7 +86,10 @@ function ddg_spice_translate_from_to (api_result) {
         header1          :  params.to + ' translations for ' + params.phrase,
         sourceName      :  'wordreference.com',
         sourceUrl       :  'https://wordreference.com/' + params.from_to + '/' + params.phrase,
-        template_normal  :  'translate_from_to',
+        templates: {
+            item: Spice.translate_from_to.translate_from_to,
+            detail: Spice.translate_from_to.translate_from_to
+        },
         
     });
 }
@@ -104,7 +107,10 @@ function ddg_spice_translate_from_to_phrase (api_result) {
         sourceUrl :        'http://mymemory.translated.net/s.php?q=' + params.phrase +
                             '&sl=' + params.from + '&tl=' + params.to ,
         
-        template_normal  :  'translate_from_to_phrase',
+        templates: {
+            item: Spice.translate_from_to_phrase.translate_from_to_phrase,
+            detail: Spice.translate_from_to_phrase.translate_from_to_phrase
+        },
 
     });
 }

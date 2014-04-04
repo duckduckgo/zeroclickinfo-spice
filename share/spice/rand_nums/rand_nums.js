@@ -25,6 +25,9 @@ function ddg_spice_rand_nums(api_result) {
         sourceUrl       : 'http://www.random.org/integers/?num=100&min='
                             + min + '&max=' + max + '&col=5&base=10&format=html&rnd=new',
         sourceName      : 'Random.org',
-        template_normal  : 'rand_nums',
+        templates: {
+            item: Spice.rand_nums.rand_nums,
+            detail: Spice.rand_nums.rand_nums
+        },
     });
 }

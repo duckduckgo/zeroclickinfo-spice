@@ -43,7 +43,10 @@ function ddg_spice_search_code(api_response) {
         header1          : formatName(result),
         sourceUrl       : 'http://searchco.de/?q=' + query,
         sourceName      : 'search[code]',
-        template_normal  : 'search_code',
+        templates: {
+            item: Spice.search_code.search_code,
+            detail: Spice.search_code.search_code
+        },
         
     });
 }

@@ -17,7 +17,7 @@ function ddg_spice_canistreamit (api_result) {
         image_url        : "/iu/?u=" + api_result[0].image,
         sourceUrl       : api_result[0].links.shortUrl,
         template_normal  : "canistreamit",
-        template_small   : "canistreamit_small",
+        
         image_width      : 70,
         
     });

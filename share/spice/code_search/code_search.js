@@ -35,6 +35,9 @@ function ddg_spice_code_search(response) {
                             + encodeURIComponent(query)
                             + '&cs=true',
         sourceName      : 'search[code]',
-        template_normal  : 'code_search',
+        templates: {
+            item: Spice.code_search.code_search,
+            detail: Spice.code_search.code_search
+        },
     });
 }
