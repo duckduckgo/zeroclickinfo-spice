@@ -87,14 +87,14 @@ function ddg_spice_songkick_artists(artists_data) {
     sourceName      : 'Songkick',
     id       : 'songkick',
     template_frame   : 'list',
-    template_options: {
+    templates: {
       items         : $.map(artists_data.resultsPage.results.artist.slice(0, max_results), function(o, idx) {
         return {
           uri         : o.uri,
           displayName : o.displayName
         };
       }),
-      template_item : 'songkick_artist',
+      item: Spice.songkick_artist.songkick_artist,
       show          : show_results,
       max           : max_results
     },

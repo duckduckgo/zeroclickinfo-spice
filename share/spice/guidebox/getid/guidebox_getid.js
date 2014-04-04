@@ -51,10 +51,10 @@ function ddg_spice_guidebox_lastshows (api_result) {
         sourceUrl               : metadata.more,
         view: "Tiles",
         id               : "guidebox",
-        template_options         : { 
+        templates         : { 
             items                : api_result.results.result,
-            template_item        : "guidebox_getid",
-            template_detail      : "guidebox_getid_details",
+            item: Spice.guidebox_getid.guidebox_getid,
+            detail: Spice.guidebox_getid.guidebox_getid_details,
             li_width             : 120,
             li_height            : 105
         }

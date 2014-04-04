@@ -37,7 +37,10 @@ function ddg_spice_gravatar (api_result) {
         sourceName       : "Gravatar",
         sourceUrl        : api_result.entry[0].profileUrl,
         image_url         : api_result.entry[0].thumbnailUrl + ".png",
-        template_normal   : "gravatar",
+        templates: {
+            item: Spice.gravatar.gravatar,
+            detail: Spice.gravatar.gravatar
+        },
         force_favicon_url : 'http://gravatar.com/favicon.ico'
     });
 };

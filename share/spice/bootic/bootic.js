@@ -17,9 +17,9 @@ function ddg_spice_bootic (api_result) {
         sourceUrl       : 'http://www.bootic.com/?q =' + query,
         header1          : api_result.input_query + ' (Bootic)',
         view: "Tiles",
-        template_options: {
+        templates: {
             items           : api_result.products,
-            template_item   : "bootic",
+            item: Spice.bootic.bootic,
         },
         
     });

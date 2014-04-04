@@ -41,7 +41,10 @@ function ddg_spice_editor() {
         header1          :  formatLanguageName(language) + " Editor",
         sourceName      : "Ace",
         sourceUrl       : "http://ace.c9.io/",
-        template_normal  : "editor",
+        templates: {
+            item: Spice.editor.editor,
+            detail: Spice.editor.editor
+        },
         
         
     });

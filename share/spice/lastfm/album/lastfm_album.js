@@ -28,7 +28,10 @@ function ddg_spice_lastfm_album (api_result) {
             sourceName       : "Last.fm",
             sourceUrl        : api_result.album.url,
             
-            template_normal   : "lastfm_album"
+            templates: {
+            item: Spice.lastfm_album.lastfm_album,
+            detail: Spice.lastfm_album.lastfm_album
+        }
         });
 
         $(document).ready(function() {

@@ -14,9 +14,9 @@ function ddg_spice_lastfm_artist_tracks (api_result) {
 
 	id        : "lastfm_artist_tracks",
         template_frame    : "list",
-        template_options  : {
+        templates  : {
             items: api_result.toptracks.track,
-            template_item: "lastfm_artist_tracks",
+            item: Spice.lastfm_artist_tracks.lastfm_artist_tracks,
             show: 3,
             max: 10,
             type: "ul"

@@ -22,9 +22,9 @@ function ddg_spice_khan_academy ( api_result ) {
         
         id               : "khan_academy",
         view: "Tiles",
-        template_options         : {
+        templates         : {
             items           : api_result.feed.entry,
-            template_detail : "khan_academy_detail",
+            detail: Spice.khan_academy.khan_academy_detail,
             li_width : 120,
             single_item_handler: function(obj) {
                 // This disables autoplay.

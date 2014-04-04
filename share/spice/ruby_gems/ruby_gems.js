@@ -15,11 +15,11 @@ function ddg_spice_ruby_gems(api_result) {
         sourceName      : 'RubyGems',
         id       : 'ruby_gems',
         template_frame   : 'list',
-        template_options : {
+        templates : {
             items: api_result,
             show: 5,
 	    max: 10,
-            template_item: 'ruby_gems'
+            item: Spice.ruby_gems.ruby_gems
         },
         
         

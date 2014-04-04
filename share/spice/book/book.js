@@ -91,7 +91,7 @@ function ddg_spice_book(api_result) {
          sourceUrl        :  data.detail_link,
 	 id        : "book",
 	 template_frame    : "twopane",
-	 template_options  : {
+	 templates  : {
 	     left: {
 		 template: "book"
 	     },

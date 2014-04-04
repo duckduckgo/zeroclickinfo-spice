@@ -73,9 +73,9 @@ function ddg_spice_sound_cloud (api_result) {
         sourceName              : "SoundCloud",
         id               : "sound_cloud",
         view: "Tiles",
-        template_options         : {
+        templates         : {
             items           : context,
-            template_detail : "sound_cloud_details",
+            detail: Spice.sound_cloud.sound_cloud_details,
             single_item_handler: function(obj) {
                 obj.image_url = obj.data[0].artwork_url || obj.data[0].user.avatar_url;
             }

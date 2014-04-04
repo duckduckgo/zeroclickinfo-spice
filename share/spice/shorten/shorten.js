@@ -17,7 +17,10 @@ function ddg_spice_shorten(api_result) {
         header1          : "Shortened Link (is.gd)",
         sourceUrl       : "http://is.gd/",
         sourceName      : "is.gd",
-        template_normal  : "shorten",
+        templates: {
+            item: Spice.shorten.shorten,
+            detail: Spice.shorten.shorten
+        },
         
         favicon_style    : "inline"
     });

@@ -26,10 +26,10 @@ function ddg_spice_game_info(api_result) {
         id               : "game_info",
         sourceName              : "GiantBomb",
         view: "Tiles",
-        template_options         : {
+        templates         : {
             items                : games,
-            template_item        : "game_info",
-            template_detail      : "game_info_details",
+            item: Spice.game_info.game_info,
+            detail: Spice.game_info.game_info_details,
             // gets called in the event of a single result
             single_item_handler  : function(obj) {
                 var data = obj.data.results[0];

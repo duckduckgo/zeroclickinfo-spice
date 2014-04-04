@@ -32,9 +32,9 @@ function ddg_spice_in_theaters (api_result) {
         id               : "in_theaters",
         
         view: "Tiles",
-        template_options         : {
+        templates         : {
             items           : api_result.movies,
-            template_detail : "in_theaters_details",
+            detail: Spice.in_theaters.in_theaters_details,
             li_height : 155
         },
         

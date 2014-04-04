@@ -15,6 +15,9 @@ function ddg_spice_expand_url(api_response) {
         header1          : "Expand Link (LongURL)",
         sourceUrl       : "http://longurl.org/expand?url=" + encodeURIComponent(query),
         sourceName      : "LongURL",
-        template_normal  : "expand_url"
+        templates: {
+            item: Spice.expand_url.expand_url,
+            detail: Spice.expand_url.expand_url
+        }
     });
 }

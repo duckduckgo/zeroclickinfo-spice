@@ -30,11 +30,11 @@ function ddg_spice_steam_db(api_result) {
 	id        : 'steam_db',
 	template_frame    : "list",
 	header1           : decodeURIComponent(query) + " (SteamDB)",
-	template_options  : {
+	templates  : {
 	    items: results,
 	    show: 3,
 	    max: 10,
-	    template_item: 'steam_db'
+	    item: Spice.steam_db.steam_db
 	},
 	
     });

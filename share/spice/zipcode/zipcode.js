@@ -47,7 +47,10 @@ function ddg_spice_zipcode (api_result) {
         
         sourceName       : "MapQuest",
         sourceUrl        : "http://mapq.st/map?q=" + encodeURIComponent(latitude + "," + longitude),
-        template_normal   : "zipcode",
+        templates: {
+            item: Spice.zipcode.zipcode,
+            detail: Spice.zipcode.zipcode
+        },
         
     });
 };

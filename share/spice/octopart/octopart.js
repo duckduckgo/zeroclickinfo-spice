@@ -41,9 +41,9 @@ function ddg_spice_octopart (api_result) {
         sourceUrl : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q,
         header1 : api_result.request.q + " (Octopart)",
         view: "Tiles",
-        template_options: {
-            template_item: "octopart",
-            template_detail: "octopart_details",
+        templates: {
+            item: Spice.octopart.octopart,
+            detail: Spice.octopart.octopart_details,
             items: results
         },
         items_test: {

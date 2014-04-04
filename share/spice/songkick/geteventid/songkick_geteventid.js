@@ -155,9 +155,9 @@ function ddg_spice_songkick_events(events_data) {
     sourceName      : 'Songkick',
     id       : 'songkick',
     template_frame   : 'list',
-    template_options: {
+    templates: {
       items         : results,
-      template_item : 'songkick_geteventid',
+      item: Spice.songkick_geteventid.songkick_geteventid,
       show          : show_results,
       max           : max_results
     },

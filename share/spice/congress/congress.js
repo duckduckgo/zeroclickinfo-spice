@@ -16,9 +16,9 @@ function ddg_spice_congress(api_result) {
         sourceName      : 'The New York Times',
 
         template_frame   : 'list',
-        template_options: {
+        templates: {
             items: api_result.results[0].members, 
-            template_item: "congress",
+            item: Spice.congress.congress,
             show: 3,
             type: 'ul'
         },

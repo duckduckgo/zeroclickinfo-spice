@@ -47,7 +47,10 @@ function ddg_spice_lastfm (api_result, template) {
             sourceName      : "Last.fm",
             sourceUrl       : api_result.artist.url,
             
-            template_normal  : "lastfm_artist",
+            templates: {
+            item: Spice.lastfm_artist.lastfm_artist,
+            detail: Spice.lastfm_artist.lastfm_artist
+        },
             
         });
     }

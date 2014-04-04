@@ -32,7 +32,10 @@ function ddg_spice_lastfm_song(api_result) {
             header1          : api_result.track.name,
             sourceUrl       : api_result.track.url,
             sourceName      : "Last.fm",
-            template_normal  : "lastfm_song",
+            templates: {
+            item: Spice.lastfm_song.lastfm_song,
+            detail: Spice.lastfm_song.lastfm_song
+        },
             
             
         });

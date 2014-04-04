@@ -14,9 +14,9 @@ function ddg_spice_aur(response) {
         sourceName      : 'ArchLinux User Repository',
         id       : 'aur',
         template_frame   : "list",
-        template_options : {
+        templates : {
             items: response.results,
-            template_item: "aur" // will use this also for a single item
+            item: Spice.aur.aur // will use this also for a single item
         },
         
     });

@@ -7,9 +7,9 @@ function ddg_spice_lastfm_top_tracks(api_result) {
 
 	id       : "lastfm_top_tracks",
 	template_frame   : "list",
-	template_options : {
+	templates : {
 	    items: api_result.toptracks.track,
-	    template_item: "lastfm_top_tracks",
+	    item: Spice.lastfm_top_tracks.lastfm_top_tracks,
 	    show: 3,
 	    max: 10,
 	    type: "ul"

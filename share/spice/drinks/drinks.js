@@ -14,7 +14,7 @@ function ddg_spice_drinks(api_result) {
         sourceName      : 'The Drink Project',
         id       : 'drinks',
         template_frame   : "twopane",
-        template_options: {
+        templates: {
             left  : { template: "drinks" },
             right : { template: "drinks_ingredients" },
         },

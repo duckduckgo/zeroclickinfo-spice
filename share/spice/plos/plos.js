@@ -20,11 +20,11 @@ function ddg_spice_plos(api_result) {
          sourceUrl         : 'http://www.plosone.org/search/advanced?unformattedQuery=' + query,
          id         : 'plos',
          template_frame     : 'list',
-         template_options   : {
+         templates   : {
             items: api_result.response.docs,
             show: 5,
             max: 10,
-            template_item: 'plos',
+            item: Spice.plos.plos,
          },
     });
 }
