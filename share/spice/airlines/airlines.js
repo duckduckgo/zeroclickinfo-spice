@@ -194,7 +194,7 @@ function ddg_spice_airlines (api_result) {
         sourceName      : "FlightStats",
         id       : "airlines",
         template_frame   : "twopane",
-        template_options : {
+        templates : {
             left : { template: "airlines", data: departing },
             right : { template: "airlines", data: arriving },
         },

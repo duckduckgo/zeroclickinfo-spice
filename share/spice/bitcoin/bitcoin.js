@@ -74,7 +74,7 @@ function ddg_spice_bitcoin(api_result) {
         force_favicon_url : "http://blockchain.info/favicon.ico",
 
         template_frame   : "twopane",
-        template_options : {
+        templates : {
             left : { template: "bitcoin", data: buy },
             right : { template: "bitcoin", data: sell }
         },

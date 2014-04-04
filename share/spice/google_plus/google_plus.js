@@ -11,9 +11,9 @@ function ddg_spice_google_plus (api_result) {
         header1 : "Google+ Users",
         id: "google_plus",
         view: "Tiles",
-        template_options: {
+        templates: {
             items: api_result.items,
-            template_item: "google_plus"
+            item: Spice.google_plus.google_plus
         },
         
     });

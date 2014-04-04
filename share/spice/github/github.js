@@ -12,9 +12,9 @@ function ddg_spice_github(api_result) {
         sourceName      : 'GitHub',
         id       : 'github',
         template_frame   : 'list',
-        template_options: {
+        templates: {
             items: results,
-            template_item: "github_item",
+            item: Spice.github_item.github_item,
             single_template: "github",
             show: 3,
             max: 10,

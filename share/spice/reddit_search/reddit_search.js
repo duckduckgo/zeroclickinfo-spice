@@ -50,11 +50,11 @@ function ddg_spice_reddit(api_result) {
         sourceName       : 'Reddit',
         id        : 'reddit_search',
         template_frame    : 'list',
-        template_options     : {
+        templates     : {
             items: results,
             show: 2,
             max: 14,
-            template_item: 'reddit_search'
+            item: Spice.reddit_search.reddit_search
         },
         
         

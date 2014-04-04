@@ -14,7 +14,10 @@ var ddg_spice_twitter = function(api_result) {
         header1                  : "@" + api_result.user,
         sourceUrl               : "https://twitter.com/" + api_result.user,
         sourceName              : "Twitter",
-        template_normal          : "twitter",
+        templates: {
+            item: Spice.twitter.twitter,
+            detail: Spice.twitter.twitter
+        },
         
         
         image_url                : bigger_picture(api_result.profile_image)

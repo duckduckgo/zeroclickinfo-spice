@@ -21,9 +21,9 @@ function ddg_spice_lastfm_artist_album (api_result) {
 
 	    id        : "lastfm_artist_album",
             template_frame    : "list",
-            template_options  : {
+            templates  : {
                 items: api_result.topalbums.album,
-                template_item: "lastfm_artist_album",
+                item: Spice.lastfm_artist_album.lastfm_artist_album,
                 show: 3,
                 max: 10,
                 type: "ul"

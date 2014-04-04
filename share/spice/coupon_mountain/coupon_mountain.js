@@ -15,10 +15,10 @@ function ddg_spice_coupon_mountain (api_result) {
 		header1                  : header,
 		view: "Tiles",
 		
-		template_options         : {
+		templates         : {
 			items                : api_result.coupon,
-			template_item        : "coupon_mountain",
-			template_detail      : "coupon_mountain_detail",
+			item: Spice.coupon_mountain.coupon_mountain,
+			detail: Spice.coupon_mountain.coupon_mountain_detail,
 			li_width             : 150
 		},
 		item_callback            : highlight_code

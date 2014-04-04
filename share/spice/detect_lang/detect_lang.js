@@ -120,7 +120,10 @@ function ddg_spice_detect_lang (api_result) {
         header1          : query + " (Detect Language)",
         sourceUrl       : "http://detectlanguage.com/",
         sourceName      : "Detect Language",
-        template_normal  : "detect_lang",
+        templates: {
+            item: Spice.detect_lang.detect_lang,
+            detail: Spice.detect_lang.detect_lang
+        },
         
     });
 };

@@ -17,9 +17,9 @@ function ddg_spice_forvo (api_result) {
         sourceName      : "Forvo",
         id       : "forvo",
         template_frame   : "list",
-        template_options : {
+        templates : {
             items         : api_result.items, //list,
-            template_item : "forvo",
+            item: Spice.forvo.forvo,
             show          : 3,
             max           : 5,
             type          : "ul",

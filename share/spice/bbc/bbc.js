@@ -48,12 +48,12 @@ function ddg_spice_bbc(api_result) {
         sourceName    : 'BBC',
         view: "Tiles",
         id     : "bbc",
-        template_options: {
+        templates: {
             li_width        : 120,
             li_height       : 105,
             items           : programmes, 
-            template_item   : "bbc",
-            template_detail : "bbc_details"
+            item: Spice.bbc.bbc,
+            detail: Spice.bbc.bbc_details
         },
         
     });
