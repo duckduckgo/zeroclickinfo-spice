@@ -14,9 +14,7 @@
 // ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
 
 
-/* sound manager disabled for bttf for now
 nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
-*/
 
 
 var ddg_spice_dictionary = {
