@@ -12,7 +12,10 @@ function ddg_spice_meta_cpan(api_response) {
         header1          : query + " (MetaCPAN)",
         sourceUrl       : 'https://metacpan.org/' + link,
         sourceName      : 'MetaCPAN',
-        template_normal  : 'meta_cpan',
+        templates: {
+            item: Spice.meta_cpan.meta_cpan,
+            detail: Spice.meta_cpan.meta_cpan
+        },
         
         
     });

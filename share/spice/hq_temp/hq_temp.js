@@ -6,7 +6,10 @@ function ddg_spice_hq_temp(api_result) {
         header1          : 'Temperature at ' + api_result.location,
         sourceName      : 'Roberts Nifty Temperature Reader',
         sourceUrl       : 'https://duckduckgo.com',
-        template_normal  : 'hq_temp',
+        templates: {
+            item: Spice.hq_temp.hq_temp,
+            detail: Spice.hq_temp.hq_temp
+        },
     });
 
 }

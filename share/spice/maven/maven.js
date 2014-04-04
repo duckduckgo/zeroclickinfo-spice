@@ -9,7 +9,10 @@ function ddg_spice_maven(api_result) {
         sourceUrl       : 'http://search.maven.org/#search%7Cga%7C1%7C'
                             + encodeURIComponent(api_result.responseHeader.params.q),
         sourceName      : 'Maven Central Repository',
-        template_normal  : 'maven',
+        templates: {
+            item: Spice.maven.maven,
+            detail: Spice.maven.maven
+        },
         
         
     });

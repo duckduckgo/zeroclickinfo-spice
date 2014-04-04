@@ -5,6 +5,9 @@ function ddg_spice_rand_word(api_result) {
         data             : api_result,
         sourceUrl       : 'http://wordnik.com',
         sourceName      : 'Wordnik',
-        template_normal  : 'rand_word',
+        templates: {
+            item: Spice.rand_word.rand_word,
+            detail: Spice.rand_word.rand_word
+        },
     });
 }

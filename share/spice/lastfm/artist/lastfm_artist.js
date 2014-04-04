@@ -48,7 +48,7 @@ function ddg_spice_lastfm (api_result, template) {
             sourceUrl       : api_result.artist.url,
             
             template_normal  : "lastfm_artist",
-            template_small   : "lastfm_artist_small"
+            
         });
     }
 };

@@ -8,7 +8,10 @@ function ddg_spice_imdb(api_result) {
         sourceUrl        : 'http://www.imdb.com/title/'
             + api_result.imdbID,
         sourceName       : 'IMDb',
-        template_normal   : 'imdb',
+        templates: {
+            item: Spice.imdb.imdb,
+            detail: Spice.imdb.imdb
+        },
         
         
         

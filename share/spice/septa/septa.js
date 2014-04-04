@@ -14,7 +14,10 @@ function ddg_spice_septa(api_result) {
         data              : api_result,
         sourceName       : 'SEPTA',
         sourceUrl        : 'http://www.septa.org/schedules/',
-        template_normal   : 'septa',
+        templates: {
+            item: Spice.septa.septa,
+            detail: Spice.septa.septa
+        },
         header1           : 'Trains from ' + from + ' to ' + to,
         force_favicon_url : 'http://www.septa.org/site/images/favicon.ico'
     });

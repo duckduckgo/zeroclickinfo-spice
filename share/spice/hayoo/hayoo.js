@@ -8,7 +8,10 @@ function ddg_spice_hayoo(results) {
       header1          : query + ' (Hayoo!)',
       sourceUrl       : results.functions[0].uri,
       sourceName      : 'Hackage',
-      template_normal  : 'hayoo',
+      templates: {
+            item: Spice.hayoo.hayoo,
+            detail: Spice.hayoo.hayoo
+        },
       
       
   });

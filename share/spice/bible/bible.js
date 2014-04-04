@@ -12,7 +12,10 @@ function ddg_spice_bible(api_result) {
         header1           : header + ' (Bible Verse)',
         sourceName       : 'Bible.org',
         sourceUrl        : 'http://bible.org/',
-        template_normal   : 'bible',
+        templates: {
+            item: Spice.bible.bible,
+            detail: Spice.bible.bible
+        },
         
         force_favicon_url : 'http://bible.org/sites/bible.org/files/borg6_favicon.ico'
     });

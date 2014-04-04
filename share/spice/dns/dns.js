@@ -19,7 +19,10 @@ function ddg_spice_dns(api_result) {
         sourceUrl        : 'http://www.viewdns.info/dnsrecord/?domain='
                             + api_result.query.domain,
         sourceName       : 'ViewDNS',
-        template_normal   : 'dns',
+        templates: {
+            item: Spice.dns.dns,
+            detail: Spice.dns.dns
+        },
         force_favicon_url : 'http://viewdns.info/favicon.ico',
         
     });

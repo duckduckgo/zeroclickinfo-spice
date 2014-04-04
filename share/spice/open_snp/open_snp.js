@@ -8,7 +8,10 @@ ddg_spice_open_snp = function(api_result) {
         sourceUrl        : 'https://opensnp',
         force_favicon_url : 'http://opensnp.org/favicon.ico',
         sourceName       : 'OpenSNP',
-        template_normal   : 'open_snp',
+        templates: {
+            item: Spice.open_snp.open_snp,
+            detail: Spice.open_snp.open_snp
+        },
         
         
     });
