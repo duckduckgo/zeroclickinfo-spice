@@ -15,8 +15,12 @@ triggers any => (
     'close',
     'closest',
     'nearest',
+
     'locations',
     'location',
+
+    'restaurant',
+    'restaurants',
 );
 
 my %skip_remainders = map {$_ => 0} ('current');
