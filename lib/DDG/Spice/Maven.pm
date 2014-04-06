@@ -11,7 +11,7 @@ triggers startend => "maven", "mvn";
 name "Maven";
 source "Maven Central Repository";
 icon_url "http://search.maven.org/favicon.ico";
-description "Search packages available on the Maven Central Repository."
+description "Search packages available on the Maven Central Repository.";
 primary_example_queries "maven pegasus";
 secondary_example_queries "mvn mod4j";
 
