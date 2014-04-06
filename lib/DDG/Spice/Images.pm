@@ -33,15 +33,13 @@ triggers startend =>
     'jpg',
     'png',
     'logo',
+    'logos',
     'wallpaper',
     'wallpapers',
     'wall paper',
     'wall papers',
     'screenshot',
     'screenshots',
-
-    'logo',
-    'logos',
     ;
 
 handle query_lc => sub {
