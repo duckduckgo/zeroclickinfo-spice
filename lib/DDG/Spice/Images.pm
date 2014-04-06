@@ -39,6 +39,9 @@ triggers startend =>
     'wall papers',
     'screenshot',
     'screenshots',
+
+    'logo',
+    'logos',
     ;
 
 handle query_lc => sub {
