@@ -13,6 +13,8 @@ source "Maven Central Repository";
 icon_url "http://search.maven.org/favicon.ico";
 description "Search packages available on the Maven Central Repository."
 primary_example_queries "maven pegasus";
+secondary_example_queries "mvn mod4j";
+
 category "software";
 topics "computing", "programming";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Maven.pm";
