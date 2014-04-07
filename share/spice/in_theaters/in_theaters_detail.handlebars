@@ -14,6 +14,10 @@
                 <span class="detail__separator"> | </span>
                 <span class="detail__cooking-time">Run Time: {{time runtime}}</span>
               {{/if}}
+              {{#if mpaa_rating}}
+                <span class="detail__separator"> | </span>
+                <span class="detail__cooking-time">{{mpaa_rating}}</span>
+              {{/if}}
             </p>
             <p>
               {{ellipsis synopsis 200}}
