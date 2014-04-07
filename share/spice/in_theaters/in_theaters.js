@@ -51,42 +51,5 @@
             return hour + minute;
 	}
     });
-
-    // Guarantee that we're only going to show five movies.
-    Handlebars.registerHelper("list", function(items, options) {
-	var out = "";
-	for(var i = 0; i < items.length && i < 5; i += 1) {
-            out += options.fn(items[i]);
-	}
-	return out;
-    });
-
-    Handlebars.registerHelper("star_rating", function(score) {
-        var r = (score / 20) - 1,
-        s = "";
-	
-        if (r > 0) {
-            for (var i = 0; i < r; i++) {
-                s += "&#9733;";
-            }
-        }
-
-        if (s.length === 0) {
-            s = "";
-        }
-	
-        return s;
-    });
-
-    Handlebars.registerHelper("checkRating", function(critics_rating) {
-	return critics_rating || "";
-    });
-
-    Handlebars.registerHelper("checkScore", function(critics_score) {
-	if(critics_score === -1) {
-            return "";
-	}
-	return ": " + critics_score + "%";
-    });
 }(this));
 
