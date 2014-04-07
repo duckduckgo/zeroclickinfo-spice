@@ -1,4 +1,6 @@
 function ddg_spice_steam_db(api_result) {
+    "use strict";
+
     if(!api_result || !api_result.success) {
 	return;
     }

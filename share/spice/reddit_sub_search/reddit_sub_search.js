@@ -39,7 +39,7 @@ Handlebars.registerHelper("unescape", function(escaped, options) {
 
     var html = escaped.replace(/(&[^;]+);/g, function(a, b) {
         var r = unescape[b];
-        return typeof r === "string" ? r : a;
+        return (typeof(r) === "string") ? r : a;
     });
 
     // Remove all the tags.

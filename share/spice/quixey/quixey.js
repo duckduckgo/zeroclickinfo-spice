@@ -6,7 +6,6 @@ env.ddg_spice_quixey = function(api_result) {
 
     var q = api_result.q.replace(/\s/g, '+');
 
-
     var category_regexp = new RegExp([
             "action",
             "adventure",
@@ -209,6 +208,8 @@ env.ddg_spice_quixey = function(api_result) {
 // format a price
 // p is expected to be a number
 function qprice(p) {
+    "use strict";
+
     if (p == 0) {    // == type coercion is ok here
         return "FREE";
     }
@@ -219,6 +220,8 @@ function qprice(p) {
 // template helper for price formatting
 // {{price x}}
 Handlebars.registerHelper("qprice", function(obj) {
+    "use strict";
+
     return qprice(obj);
 });
 
@@ -254,6 +257,8 @@ var make_icon_url = function(item) {
 
 
 Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
+    "use strict";
+
     var domain = "d1z22zla46lb9g.cloudfront.net";
 
     // Get the image server that the icon_url in platforms is pointing to.
@@ -271,6 +276,7 @@ Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
 
 
 // template helper to format a price range
+<<<<<<< HEAD
 var pricerange = function(item) {
 
     if (!item || !item.editions)
@@ -306,6 +312,8 @@ Handlebars.registerHelper("pricerange", function() {
 // template helper to replace iphone and ipod icons with
 // smaller 'Apple' icons
 Handlebars.registerHelper("platform_icon", function(icon_url) {
+    "use strict";
+
     if (this.id === 2004 || this.id === 2015) {
         return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
     }
@@ -316,6 +324,8 @@ Handlebars.registerHelper("platform_icon", function(icon_url) {
 
 // template helper that returns and unifies platform names
 Handlebars.registerHelper("platform_name", function() {
+    "use strict";
+
     var name;
     var platforms = this.platforms;
 
@@ -340,6 +350,8 @@ Handlebars.registerHelper("platform_name", function() {
 
 // template helper to give url for star icon
 Handlebars.registerHelper("quixey_star", function() {
+    "use strict";
+
     return DDG.get_asset_path("quixey", "star.png").replace("//", "/");
 });
 

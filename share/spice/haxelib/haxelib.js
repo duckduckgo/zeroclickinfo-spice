@@ -1,6 +1,9 @@
 function ddg_spice_haxelib(response) {
     "use strict";
-    if(response.err) return; // indicates an API error
+
+    if(response.err) {
+	return; // indicates an API error
+    }
     Spice.add({
         data             : response.info,
         header1          : response.info.name + " ("+response.info.curversion+") by " + response.info.owner,

@@ -1,4 +1,5 @@
 function ddg_spice_octopart (api_result) {
+    "use strict";
 
     console.log(api_result);
 
@@ -77,7 +78,7 @@ function ddg_spice_octopart (api_result) {
 };
 
 Handlebars.registerHelper("toFixed", function(number) {
+    "use strict";
+
     return number.toFixed(2);
 });
-
-

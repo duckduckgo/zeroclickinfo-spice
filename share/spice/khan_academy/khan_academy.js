@@ -1,7 +1,10 @@
 function ddg_spice_khan_academy ( api_result ) {
+    "use strict";
 
     // check for response
-    if ( $.isEmptyObject(api_result.feed.entry) ) return;
+    if ( $.isEmptyObject(api_result.feed.entry) ) {
+        return;
+    }
 
     var query = DDG.get_query().replace(/khan(\sacademy)?|videos?/g, "").trim();
     var header;
@@ -52,6 +55,8 @@ function ddg_spice_khan_academy ( api_result ) {
 }
 
 Handlebars.registerHelper ("embedURL", function(single) {
+    "use strict";
+
     var youtube_params = {
         autoplay: 1,
         wmode: "opaque",
@@ -68,7 +73,7 @@ Handlebars.registerHelper ("embedURL", function(single) {
     // Concatenate all the parameters here.
     function parameters() {
         var result = [];
-        for(o in youtube_params) {
+        for(var o in youtube_params) {
             result.push(o + "=" + youtube_params[o]);
         }
         return result.join("&");
@@ -79,12 +84,16 @@ Handlebars.registerHelper ("embedURL", function(single) {
 
 // forms the url for a khan_academy product image
 Handlebars.registerHelper ('video_id', function() {
+    "use strict";
+
     var video_id = this.id.$t.split(":").pop();
     return video_id;
 });
 
 // forms the url for a khan_academy product image
 Handlebars.registerHelper ('image_url', function() {
+    "use strict";
+
     var image_url = this.media$group.media$thumbnail[1].url;
 
     // Change HTTPS to HTTP for speed.
