@@ -1,5 +1,9 @@
 function ddg_spice_hq_temp(api_result) {
-    if (!api_result) return;
+    "use strict";
+
+    if (!api_result) {
+        return;
+    }
 
     Spice.add({
         data             : temperature,
@@ -11,5 +15,4 @@ function ddg_spice_hq_temp(api_result) {
             detail: Spice.hq_temp.hq_temp
         },
     });
-
 }

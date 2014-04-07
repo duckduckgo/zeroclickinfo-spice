@@ -67,13 +67,12 @@ Handlebars.registerHelper("time", function() {
         end = new Date(this.end);
 
     function standard_time(time) {
-        var hour = time.getHours() % 12;
-        if (hour == 0) {
-          hour = 1;
+        var hour = time.getHours() % 12,
+            ampm = hour < 12 ? "AM" : "PM";
+        if(hour == 0) {
+            hour = 12;
         }
-
-        var min = ((time.getMinutes() > 9) ? time.getMinutes() : "0") + time.getMinutes();
-
+        var min = ((time.getMinutes() > 9) ? time.getMinutes() : "0" + time.getMinutes());
         return hour + ":" + min + (time.getHours() > 12 ? "PM" : "AM");
     }
 

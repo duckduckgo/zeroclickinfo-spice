@@ -1,4 +1,5 @@
 function ddg_spice_in_theaters (api_result) {
+    "use strict";
 
     // Exit if we don't find any movies or if we see an error.
     if(api_result.error || !api_result.movies || api_result.movies.length === 0) {
@@ -44,6 +45,8 @@ function ddg_spice_in_theaters (api_result) {
 // Convert minutes to hr. min. format.
 // e.g. {{time 90}} will return 1 hr. 30 min.
 Handlebars.registerHelper("time", function(runtime) {
+    "use strict";
+
     var hour = 0,
         minute = 0;
 
@@ -62,6 +65,8 @@ Handlebars.registerHelper("time", function(runtime) {
 
 // Guarantee that we're only going to show five movies.
 Handlebars.registerHelper("list", function(items, options) {
+    "use strict";
+
     var out = "";
     for(var i = 0; i < items.length && i < 5; i += 1) {
         out += options.fn(items[i]);
@@ -70,6 +75,8 @@ Handlebars.registerHelper("list", function(items, options) {
 });
 
 Handlebars.registerHelper("star_rating", function(score) {
+    "use strict";
+
         var r = (score / 20) - 1,
             s = "";
 
@@ -87,10 +94,14 @@ Handlebars.registerHelper("star_rating", function(score) {
 });
 
 Handlebars.registerHelper("checkRating", function(critics_rating) {
+    "use strict";
+
     return critics_rating || "No Rating";
 });
 
 Handlebars.registerHelper("checkScore", function(critics_score) {
+    "use strict";
+
     if(critics_score === -1) {
         return "";
     }

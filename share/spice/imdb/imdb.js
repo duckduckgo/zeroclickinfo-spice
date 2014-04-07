@@ -1,6 +1,9 @@
 function ddg_spice_imdb(api_result) {
+    "use strict";
 
-    if (!api_result.api_result == 'True') return;
+    if (!api_result.api_result == 'True') {
+        return;
+    }
 
     Spice.add({
         data              : api_result,
@@ -20,6 +23,8 @@ function ddg_spice_imdb(api_result) {
 
 
 Handlebars.registerHelper('runtime', function(){
+    "use strict";
+
     return (movie.runtime !== 'N/A') ?
     	'' :
     	this.Runtime.replace(/\s/g, '').replace('min', 'm');
@@ -27,10 +32,14 @@ Handlebars.registerHelper('runtime', function(){
 
 
 function reverse(s){
+    "use strict";
+
     return s.split("").reverse().join("");
 }
 
 function replaceLast(input, a, b) {
+    "use strict";
+
     var out = reverse(input).replace(a, reverse(b));
     return reverse(out);
 }
@@ -45,6 +54,8 @@ function replaceLast(input, a, b) {
  *   'a'  PG rated movie
  */
 Handlebars.registerHelper("rating_adjective", function() {
+    "use strict";
+
     var currentDate = new Date();
     var released = this.Released !== 'N/A' ? new Date(this.Released) : -1;
     var adjective;
@@ -63,12 +74,16 @@ Handlebars.registerHelper("rating_adjective", function() {
 
 // mpaa_rating
 Handlebars.registerHelper('mpaa_rating', function(){
+    "use strict";
+
     return (this.Rated === 'N/A') ? 'unrated' : this.Rated;
 });
 
 
 // runtime
 Handlebars.registerHelper('get_runtime', function(){
+    "use strict";
+
     if (this.Runtime !== 'N/A') {
         var runtime = this.Runtime.replace(/\s+/g, '').replace("min", "m");
         return runtime + ", ";
@@ -80,6 +95,8 @@ Handlebars.registerHelper('get_runtime', function(){
 
 // check for movie or tv show
 Handlebars.registerHelper('result_type', function(){
+    "use strict";
+
     if (this.Type !== "N/A") {
 	return this.Type;
     }
@@ -89,6 +106,8 @@ Handlebars.registerHelper('result_type', function(){
 
 // imdbRating
 Handlebars.registerHelper('get_rating', function(){
+    "use strict";
+
     return (this.imdbRating !== 'N/A') ?
         this.imdbRating + "/10" :
         "unrated";
@@ -97,6 +116,8 @@ Handlebars.registerHelper('get_rating', function(){
 
 // actors
 Handlebars.registerHelper('actors_and_director', function(){
+    "use strict";
+
     if (this.Actors !== 'N/A' && this.Director !== 'N/A') {
 	   return "starring " + this.Actors +
               " and directed by " + this.Director;
@@ -118,6 +139,8 @@ Handlebars.registerHelper('actors_and_director', function(){
 
 // movie plot
 Handlebars.registerHelper('plot', function(){
+    "use strict";
+
     if (this.Plot !== 'N/A') {
     	return this.Plot;
     }

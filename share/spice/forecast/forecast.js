@@ -1,4 +1,5 @@
 function ddg_spice_forecast(r) {
+  "use strict";
   
   var weatherData = {};
   
@@ -64,38 +65,27 @@ function ddg_spice_forecast(r) {
 	return 'http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif';
   };
   
+  var available_skycon_icons = [
+    'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy', 'partly_cloudy_day',
+    'partly_cloudy_night', 'clear_day', 'clear_night'
+  ];
+
   var skycon_type = function(icon) {
-    if(icon === 'rain')
-      return 'rain'
-    else if(icon === 'snow')
-      return 'snow'
-    else if(icon === 'sleet')
-      return 'sleet'
-    else if(icon === 'hail')
-      return 'sleet'
-    else if(icon === 'wind')
-      return 'wind'
-    else if(icon === 'fog')
-      return 'fog'
-    else if(icon === 'cloudy')
-      return 'cloudy'
-    else if(icon === 'partly-cloudy-day')
-      return 'partly_cloudy_day'
-    else if(icon === 'partly-cloudy-night')
-      return 'partly_cloudy_night'
-    else if(icon === 'clear-day')
-      return 'clear_day'
-    else if(icon === 'clear-night')
-      return 'clear_night'
-    else
-      return 'cloudy'
-  }
+    if (icon === 'hail') {
+      icon = 'sleet';
+    }
+    icon = icon.replace(/-/g, '_');
+    if ($.inArray(icon, available_skycon_icons) === -1) {
+      icon = 'cloudy';
+    }
+    return icon;
+  };
   
   // Convert a wind bearing in degrees to a string
   var wind_bearing_to_str = function(bearing) {
-    var wind_i = Math.round(bearing / 45)
-    return ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'][wind_i]
-  }
+    var wind_i = Math.round(bearing / 45);
+    return ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'][wind_i];
+  };
   
   // Build the current conditions
   var build_currently = function(f) {
@@ -108,16 +98,19 @@ function ddg_spice_forecast(r) {
     
 	currentObj.isCurrent = 1;
     // If the next-hour summary is interesting enough, use that instead
-    if(f.minutely && !f.minutely.summary.match(/ for the hour\.$/))
-      current_summary = f.minutely.summary
+    if(f.minutely && !f.minutely.summary.match(/ for the hour\.$/)) {
+      current_summary = f.minutely.summary;
+    }
     
     // Find the first hourly point in the future, so we can figure out
     // if the temperature is rising or falling
-    var temp_direction = 0
+    var temp_direction = 0;
     for(var i = 0; i < hourly.length; i++) {
-      if(hourly[i].time < now) continue
-      temp_direction = hourly[i].temperature > f.currently.temperature ? 1 : -1
-      break
+      if(hourly[i].time < now) {
+        continue;
+      }
+      temp_direction = (hourly[i].temperature > f.currently.temperature) ? 1 : -1;
+      break;
     }
     
     var temp_str = '<span class="fe_temp_str">'+Math.round(f.currently.temperature)+'&deg;</span>'
@@ -140,7 +133,7 @@ function ddg_spice_forecast(r) {
     currentObj.summary = current_summary;
 	
     if(f.currently.windSpeed) {
-      var wind_speed = Math.round(f.currently.windSpeed)
+      var wind_speed = Math.round(f.currently.windSpeed);
       
       if(wind_speed != 0 && f.currently.windBearing)
         wind_speed += ' '+speed_units+' ('+wind_bearing_to_str(f.currently.windBearing)+')'
@@ -206,6 +199,16 @@ function ddg_spice_forecast(r) {
 
     if(alert_message)
       return '<a href="'+alert_message.uri+'" class="fe_alert" target="_blank"><span class="fe_icon--flag">&#9873;</span> '+alert_message.title+'</a>';
+  }
+
+  function build_temp_switch(current_unit){
+    if (current_unit === 'F'){
+      $('#fe_celsius').addClass('fe_gray').removeClass('fe_selected');
+      $('#fe_fahrenheit').removeClass('fe_gray').addClass('fe_selected');
+    } else if (current_unit === 'C'){
+      $('#fe_fahrenheit').addClass('fe_gray').removeClass('fe_selected');
+      $('#fe_celsius').removeClass('fe_gray').addClass('fe_selected');
+    }
   }
   
   // Go!

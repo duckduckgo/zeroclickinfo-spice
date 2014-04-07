@@ -1,7 +1,12 @@
-function ddg_spice_amazon(apiResult) {
-    if(!apiResult || !apiResult.results || !apiResult.results.length){ return; }
+function ddg_spice_amazon(api_response) {
+    "use strict";
 
-    var items = apiResult.results;
+    if (!api_response || !api_response.results ||
+	!api_response.results.length || api_response.results.length == 0) {
+	return;
+    }
+
+    var items = api_result.results;
 
     // TODO: this is obviously not ideal, just ported over
     // what was in permenant.js. It loads ratings data for each item,
@@ -25,7 +30,6 @@ function ddg_spice_amazon(apiResult) {
                 fn();
             }
         }
-
 
         for(var i=0;i<items.length;i++){
             var item = items[i],

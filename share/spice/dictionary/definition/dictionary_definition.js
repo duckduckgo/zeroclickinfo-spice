@@ -16,7 +16,6 @@
 
 nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
 
-
 var ddg_spice_dictionary = {
 
     path: "/js/spice/dictionary",

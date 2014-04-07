@@ -1,4 +1,5 @@
 function ddg_spice_bitcoin(api_result) {
+    "use strict"
 
     if (!api_result) {
         return;
