@@ -1,45 +1,33 @@
-function ddg_spice_in_theaters (api_result) {
+(function(env) {
+    "use strict";
 
-    // Exit if we don't find any movies or if we see an error.
-    if(api_result.error || !api_result.movies || api_result.movies.length === 0) {
-        return;
+    env.ddg_spice_in_theaters = function(api_result) {
+	// Exit if we don't find any movies or if we see an error.
+	if(api_result.error || !api_result.movies || api_result.movies.length === 0) {
+            return;
+	}
+
+	Spice.add({
+	    id: 'in_theaters',
+	    name: 'Movies in Theaters',
+	    data: api_result.movies,
+	    meta: {
+		sourceName: 'Rotten Tomatoes',
+		sourceUrl: 'http://www.rottentomatoes.com/',
+		sourceIcon: true,
+		total: api_result.movies,
+		itemType: 'Movies in Theaters'
+	    },
+	    normalize: function(o) {
+		return o;
+	    },
+	    templates: {
+		item: Spice.in_theaters.in_theaters
+//		detail: Spice.in_theaters.in_theaters_detail
+	    }
+	});
     }
-
-    // Get the original query.
-    // We're going to pass this to the header.
-    var matched, result, query = "";
-    $("script").each(function() {
-        matched = $(this).attr("src");
-        if(matched) {
-            result = matched.match(/\/js\/spice\/in_theaters\/([^\/]+)/);
-            if(result) {
-                query = result[1];
-            }
-        }
-    });
-
-    var header = "";
-    if(query === "opening") {
-        header = "Opening Movies";
-    } else {
-        header = "Currently in Theaters";
-    }
-
-    Spice.render({
-        header1                  : header,
-        source_url               : "http://www.rottentomatoes.com/",
-        source_name              : "Rotten Tomatoes",
-        spice_name               : "in_theaters",
-        force_big_header         : true,
-        template_frame           : "carousel",
-        template_options         : {
-            items           : api_result.movies,
-            template_detail : "in_theaters_details",
-            li_height : 155
-        },
-        force_no_fold            : true
-    });
-};
+}(this));
 
 // Convert minutes to hr. min. format.
 // e.g. {{time 90}} will return 1 hr. 30 min.
