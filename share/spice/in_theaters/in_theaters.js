@@ -19,6 +19,9 @@
 		itemType: 'Movies in Theaters'
 	    },
 	    normalize: function(o) {
+		// The critic's score ranges from 0 to 100, but the helper function starRating
+		// expects a range between 0 to 5.
+		o.ratings = o.ratings.critics_score ? o.ratings.critics_score / 20 : 0;
 		return o;
 	    },
 	    templates: {
