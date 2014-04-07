@@ -1,0 +1,27 @@
+<div class="detail__media  detail__media--in_theaters">
+    <img src="{{imageProxy posters.original}}" alt="{{title}}" class="detail__media__img" />
+</div>
+<div class="detail__body  detail__body--in_theaters">
+    <div class="detail__body__content">
+        <h5 class="detail__title"><a href='{{links.alternate}}' title="{{title}}">{{title}}</a></h5>
+        <div class="detail__desc">
+            <p class="detail__source">
+              {{{starRating ratings.normalized}}}
+              {{#if ratings.critics_score}}
+                {{ratings.critics_rating}}: {{ratings.critics_score}}%
+              {{/if}}
+              {{#if runtime}}
+                <span class="detail__separator"> | </span>
+                <span class="detail__cooking-time">Run Time: {{time runtime}}</span>
+              {{/if}}
+            </p>
+            <p>
+              {{ellipsis synopsis 200}}
+            </p>
+            <a href="{{links.alternate}}" class="detail__links__btn">
+                <img class="btn__icon" src="https://icons.duckduckgo.com/ip/www.rottentomatoes.com.ico" />
+                Reviews and Showtimes
+            </a>
+        </div>
+    </div>
+</div>

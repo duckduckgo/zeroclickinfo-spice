@@ -6,9 +6,9 @@
 		<h6 class="tile__title">{{ellipsis title 26}}</h6>
 		<div class="tile__rating  one-line">
 		  {{{starRating ratings.normalized}}}
-                  <span>
+                  {{#if ratings.critics_score}}
                     {{ratings.critics_score}}%
-                  </span>
+                  {{/if}}
 		</div>
 	</div>
 </div>
