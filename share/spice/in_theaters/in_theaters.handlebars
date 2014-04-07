@@ -1,11 +1,14 @@
-<div class="tile  tile--c  has-detail  tile--recipe  opt--t-xxs">
+<div class="tile  tile--c  has-detail  tile--in_theaters  opt--t-xxs">
 	<div class="tile__media">
 		<img src="{{imageProxy posters.original}}" alt="{{title}}" class="tile__media__img" />
 	</div>
 	<div class="tile__body">
 		<h6 class="tile__title">{{ellipsis title 26}}</h6>
 		<div class="tile__rating  one-line">
-			{{{starRating ratings}}}
+		  {{{starRating ratings.normalized}}}
+                  <span>
+                    {{ratings.critics_score}}%
+                  </span>
 		</div>
 	</div>
 </div>

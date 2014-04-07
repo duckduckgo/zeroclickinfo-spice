@@ -1,13 +1,9 @@
-.tile--recipe .tile__body {
+.tile--in_theaters .tile__body {
     padding: 0.8em 1em;
     font-family: "ProximaNova";
 }
 
-.tile--recipe .stars {
-    float: right;
-}
-
-.tile--recipe .tile__title {
+.tile--in_theaters .tile__title {
     font-size: 1.3em;
     font-weight: 600;
     height: 1.3em;
@@ -15,7 +11,7 @@
     margin-bottom: 0;
 }
 
-.tile--recipe .tile__ingredients {
+.tile--in_theaters .tile__ingredients {
     margin-bottom: 0.75em;
     padding-bottom: 0;
     height: 2.7em;
@@ -24,47 +20,47 @@
     color: #808080;
 }
 
-.tile--recipe .tile__media {
+.tile--in_theaters .tile__media {
     height: 9.5em;
 }
 
-.tile--recipe .tile__media__img {
+.tile--in_theaters .tile__media__img {
     margin-top: -20%;
     min-width: 100%;
 }
 
-.tile--recipe .tile__source,
-.tile--recipe.highlight .tile__source {
+.tile--in_theaters .tile__source,
+.tile--in_theaters.highlight .tile__source {
     color: #999;
 }
 
-.detail__media.detail__media--recipe {
+.detail__media.detail__media--in_theaters {
     width: 30%;
     margin-right: 1em;
     text-align: center;
 }
 
-.tileview--grid .detail__media--recipe {
+.tileview--grid .detail__media--in_theaters {
     text-align: center;
 }
 
-.detail__body--recipe .detail__title {
+.detail__body--in_theaters .detail__title {
     padding: 0;
 }
 
-.detail__body--recipe .detail__source {
+.detail__body--in_theaters .detail__source {
     padding-bottom: 1em;
 }
 
-.detail__body--recipe .detail__source .stars {
+.detail__body--in_theaters .detail__source .stars {
     margin-right: 0;
 }
 
-.detail__body--recipe .stars--unrated .star {
+.detail__body--in_theaters .stars--unrated .star {
     color: #d0d0d0;
 }
 
-.detail__body--recipe .detail__separator {
+.detail__body--in_theaters .detail__separator {
     padding: 0 5px;
     color: #c5c5c5;
 }
@@ -115,6 +111,6 @@
     border-radius: 2em;
 }
 
-.detail__body--recipe .detail__links__btn {
+.detail__body--in_theaters .detail__links__btn {
     margin-top: 1em;
 }
