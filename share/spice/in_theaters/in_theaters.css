@@ -11,15 +11,6 @@
     margin-bottom: 0;
 }
 
-.tile--in_theaters .tile__ingredients {
-    margin-bottom: 0.75em;
-    padding-bottom: 0;
-    height: 2.7em;
-    overflow: hidden;
-    text-transform: capitalize;
-    color: #808080;
-}
-
 .tile--in_theaters .tile__media {
     height: 9.5em;
 }
@@ -63,52 +54,6 @@
 .detail__body--in_theaters .detail__separator {
     padding: 0 5px;
     color: #c5c5c5;
-}
-
-.detail__cuisine {
-    text-transform: capitalize;
-}
-
-.detail__ingredients {
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
-}
-
-.detail__ingredients ul {
-    display: inline;
-}
-
-.detail__ingredients li {
-    display: inline;
-}
-
-.detail__ingredients,
-.detail__flavors__name {
-    text-transform: capitalize;
-}
-
-.detail__flavors {
-    width: 70%;
-}
-
-.detail__flavors__name {
-    display: inline-block;
-    width: 9%;
-    min-width: 4em;
-    text-align: left;
-}
-
-.detail__flavors__strength {
-    display: inline-block;
-    width: 40%;
-}
-
-.detail__flavors__strength span {
-    display: inline-block;
-    height: 0.4em;
-    background: #f0624d;
-    vertical-align: middle;
-    border-radius: 2em;
 }
 
 .detail__body--in_theaters .detail__links__btn {
