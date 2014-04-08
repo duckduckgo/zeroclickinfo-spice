@@ -1,30 +1,25 @@
 function ddg_spice_coupon_mountain (api_result) {
   "use strict";
-
-	if (api_result.count < 1) {
-    return;
-  }
+    
+    if (api_result.count < 1) {
+	return;
+    }
 
 	var header = api_result.keyword
 			? api_result.keyword + " (CouponMountain)"
 			: "Coupon Search (CouponMountain)",
 		keyword = encodeURIComponent(api_result.keyword);
 
+    console.log(api_result);
 	Spice.add({
-		data                     : api_result,
+		data                     : api_result.coupon,
 		id               : "coupon_mountain",
 		sourceName              : 'CouponMountain',
 		sourceUrl               : 'http://www.couponmountain.com/search.php?searchtext='+ keyword,
-		header1                  : header,
-		view: "Tiles",
-		
 		templates         : {
-			items                : api_result.coupon,
-			item: Spice.coupon_mountain.coupon_mountain,
-			detail: Spice.coupon_mountain.coupon_mountain_detail,
-			li_width             : 150
-		},
-		item_callback            : highlight_code
+		    item: Spice.coupon_mountain.coupon_mountain,
+		    detail: Spice.coupon_mountain.coupon_mountain_detail,
+		}
 	});
 
 	// highlight coupon code on detail area opening
