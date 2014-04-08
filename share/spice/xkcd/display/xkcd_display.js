@@ -13,20 +13,19 @@ function ddg_spice_xkcd_display(api_result) {
 
     // Add exception for comic 1335.
     if(api_result.num === 1335) {
-	api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
+		api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
     }
     
     Spice.add({
-      data             : api_result,
-      header1          : api_result.safe_title + " (xkcd)",
-      sourceUrl       : 'http://xkcd.com/' + api_result.num,
-      sourceName      : 'xkcd',
-      templates: {
-            item: Spice.xkcd_display.xkcd_display,
-            detail: Spice.xkcd_display.xkcd_display
-        },
-      
-      
+		id: 'xkcd',
+		data             : api_result,
+		// header1          : api_result.safe_title + " (xkcd)",
+		sourceUrl       : 'http://xkcd.com/' + api_result.num,
+		sourceName      : 'xkcd',
+		templates: {
+			item: Spice.xkcd_display.item,
+			detail: Spice.xkcd_display.item
+		},
     });
   });
 }
