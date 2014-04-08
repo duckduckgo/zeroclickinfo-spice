@@ -1,22 +1,29 @@
-    {{#if url}}
-        <a href="{{url}}">
+    <li>
+    {{#if govtrack_id}}
+        <a href="https://www.govtrack.us/congress/members/{{govtrack_id}}">
     {{else}}
         <a href="/?q={{get_name}}">
     {{/if}}
 
-        {{get_name}} ({{party}})
-    
-    </a> &mdash;
+    {{get_name}} </a> ({{get_party}}){{#if district}},{{else}}{{#if term_end}},{{/if}}{{/if}}
 
-    {{#if twitter_account}}
-        <a href="https://www.twitter.com/{{twitter_account}}">@{{twitter_account}}</a>,
+    {{#if district}}
+        District: {{district}}{{#if term_end}} - {{/if}}
     {{/if}}
     
-    {{#if next_election}}
-        next election in {{next_election}}.
+    {{#if term_end}}
+        {{get_date}}
+    {{/if}}
+ 
+     {{#if phone}}
+       Phone: {{phone}}{{#if twitter_id}},{{else}}{{#if facebook_id}},{{/if}}{{/if}}
     {{/if}}
     
-    <br>
-    
-    Votes with party on {{votes_pct}} of issues.
-    {{#if district}} (district {{district}}){{/if}}
+    {{#if twitter_id}}
+        <a class="congress_link" href="https://www.twitter.com/{{twitter_id}}">@{{twitter_id}}</a>{{#if facebook_id}},{{/if}}
+    {{/if}}
+
+    {{#if facebook_id}}
+        <a class="congress_link" href="https://www.facebook.com/{{facebook_id}}">Facebook</a>
+    {{/if}}
+    </li>
