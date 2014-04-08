@@ -1,5 +1,9 @@
 function ddg_spice_xkcd_display(api_result) {
-  if (!api_result.img || !api_result.alt) return;
+  "use strict";
+
+  if (!api_result.img || !api_result.alt) {
+    return;
+  }
 
   //calls our endpoint to get the number of the latest comic
   $.getJSON('/js/spice/xkcd/latest/', function(data){
@@ -12,20 +16,25 @@ function ddg_spice_xkcd_display(api_result) {
 	api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
     }
     
-    Spice.render({
+    Spice.add({
       data             : api_result,
       header1          : api_result.safe_title + " (xkcd)",
-      source_url       : 'http://xkcd.com/' + api_result.num,
-      source_name      : 'xkcd',
-      template_normal  : 'xkcd_display',
-      force_big_header : true,
-      force_no_fold    : true
+      sourceUrl       : 'http://xkcd.com/' + api_result.num,
+      sourceName      : 'xkcd',
+      templates: {
+            item: Spice.xkcd_display.xkcd_display,
+            detail: Spice.xkcd_display.xkcd_display
+        },
+      
+      
     });
   });
 }
 
 //gets the number for the previous comic
 Handlebars.registerHelper("previousNum", function(num, options) {
+    "use strict";
+
     if(num > 1) {
         return options.fn({num: num - 1});
     }
@@ -33,5 +42,7 @@ Handlebars.registerHelper("previousNum", function(num, options) {
 
 //gets the number for the next comic 
 Handlebars.registerHelper("nextNum", function(num, options) {
+    "use strict";
+
     return options.fn({num: num + 1});
 });

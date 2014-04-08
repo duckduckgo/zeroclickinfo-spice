@@ -65,7 +65,11 @@ env.ddg_spice_quixey = function(api_result) {
             itemType: 'Apps',
             sourceName: 'Quixey',
             sourceUrl: 'https://www.quixey.com/search?q=' + q,
-            sourceIconUrl: DDG.get_asset_path('quixey','quixey_logo.png')
+            sourceLogo: {
+                url: DDG.get_asset_path('quixey','quixey_logo.png'),
+                width: '45',
+                height: '12'
+            }
         },
 
         normalize : function(item) {
@@ -74,8 +78,18 @@ env.ddg_spice_quixey = function(api_result) {
             if (!item.rating_count || item.rating_count < 3)
                 return null;
 
+            var icon_url = make_icon_url(item), screenshot; 
+
+            if (!icon_url)
+                return null;
+
+            screenshot = DDG.getProperty(item, 'editions.0.screenshots.0.image_url');
+
+            if (!screenshot)
+                return null;
+
             return {
-                'img':           make_icon_url(item), 
+                'img':           icon_url,
                 'title':         item.name,
                 'heading':       item.name,
                 'ratingData':    {
@@ -90,7 +104,7 @@ env.ddg_spice_quixey = function(api_result) {
 
                 // this should be the array of screenshots with captions
                 // and check for the existence of them
-                'img_m': quixey_image(item.editions[0].screenshots[0].image_url)
+                'img_m': quixey_image(screenshot)
             };
         },
 
@@ -182,9 +196,10 @@ env.ddg_spice_quixey = function(api_result) {
         sort_default: { 'category': 'rating' },
 
         templates: {
-            item: DDG.templates.products,
+            item: DDG.templates.products_item,
             item_variant: 'short',
-            detail: DDG.templates.products_detail
+            detail: DDG.templates.products_detail,
+            item_detail: DDG.templates.products_item_detail
         }
     });
 
@@ -193,6 +208,8 @@ env.ddg_spice_quixey = function(api_result) {
 // format a price
 // p is expected to be a number
 function qprice(p) {
+    "use strict";
+
     if (p == 0) {    // == type coercion is ok here
         return "FREE";
     }
@@ -203,6 +220,8 @@ function qprice(p) {
 // template helper for price formatting
 // {{price x}}
 Handlebars.registerHelper("qprice", function(obj) {
+    "use strict";
+
     return qprice(obj);
 });
 
@@ -216,11 +235,11 @@ var make_icon_url = function(item) {
         icon_url = item.icon_url;
 
     if (!icon_url) {
-        console.warn("quixey: icon_url is null for %o", item);
+        // console.warn("quixey: icon_url is null for %o", item);
         if (item.editions && item.editions[0].icon_url)
             icon_url = item.editions[0].icon_url;
         else
-            return "";
+            return null;
     }
 
     // Get the image server that the icon_url in platforms is pointing to.
@@ -238,6 +257,8 @@ var make_icon_url = function(item) {
 
 
 Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
+    "use strict";
+
     var domain = "d1z22zla46lb9g.cloudfront.net";
 
     // Get the image server that the icon_url in platforms is pointing to.
@@ -255,6 +276,7 @@ Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
 
 
 // template helper to format a price range
+<<<<<<< HEAD
 var pricerange = function(item) {
 
     if (!item || !item.editions)
@@ -290,6 +312,8 @@ Handlebars.registerHelper("pricerange", function() {
 // template helper to replace iphone and ipod icons with
 // smaller 'Apple' icons
 Handlebars.registerHelper("platform_icon", function(icon_url) {
+    "use strict";
+
     if (this.id === 2004 || this.id === 2015) {
         return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
     }
@@ -300,6 +324,8 @@ Handlebars.registerHelper("platform_icon", function(icon_url) {
 
 // template helper that returns and unifies platform names
 Handlebars.registerHelper("platform_name", function() {
+    "use strict";
+
     var name;
     var platforms = this.platforms;
 
@@ -324,6 +350,8 @@ Handlebars.registerHelper("platform_name", function() {
 
 // template helper to give url for star icon
 Handlebars.registerHelper("quixey_star", function() {
+    "use strict";
+
     return DDG.get_asset_path("quixey", "star.png").replace("//", "/");
 });
 

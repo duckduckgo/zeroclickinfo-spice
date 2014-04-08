@@ -1,4 +1,5 @@
 function ddg_spice_code_search(response) {
+    "use strict";
 
     var query = response.query;
     var data  = response.results;
@@ -28,13 +29,16 @@ function ddg_spice_code_search(response) {
         code += lines[i][0] + ": " + lines[i][1] + "\n";
     }
 
-    Spice.render({
+    Spice.add({
         data             : { 'lines' : code },
         header1          : result.filename + ' in ' + result.name + ' (search[code])',
-        source_url       : 'http://searchco.de/?q='
+        sourceUrl       : 'http://searchco.de/?q='
                             + encodeURIComponent(query)
                             + '&cs=true',
-        source_name      : 'search[code]',
-        template_normal  : 'code_search',
+        sourceName      : 'search[code]',
+        templates: {
+            item: Spice.code_search.code_search,
+            detail: Spice.code_search.code_search
+        },
     });
 }

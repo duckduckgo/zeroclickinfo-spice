@@ -1,12 +1,17 @@
 function ddg_spice_expatistan(api_result) {
+    "use strict";
+
     if(!api_result || api_result.status !== 'OK') {
         return;
     }
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
-        source_url       : api_result.source_url,
-        source_name      : 'Expatistan',
-        template_normal  : 'expatistan'
+        sourceUrl       : api_result.sourceUrl,
+        sourceName      : 'Expatistan',
+        templates: {
+            item: Spice.expatistan.expatistan,
+            detail: Spice.expatistan.expatistan
+        }
     });
 }

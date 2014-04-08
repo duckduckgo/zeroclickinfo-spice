@@ -7,17 +7,17 @@ function ddg_spice_aur(response) {
 
     var query = DDG.get_query().replace(/(aur|archlinux package|arch package|arch linux package)/, "");
 
-    Spice.render({
+    Spice.add({
         data             : response.results,
         header1          : response.results[0].Name + " (AUR)",
-        source_url       : 'https://aur.archlinux.org/packages/?O=0&K=' + query,
-        source_name      : 'ArchLinux User Repository',
-        spice_name       : 'aur',
+        sourceUrl       : 'https://aur.archlinux.org/packages/?O=0&K=' + query,
+        sourceName      : 'ArchLinux User Repository',
+        id       : 'aur',
         template_frame   : "list",
-        template_options : {
+        templates : {
             items: response.results,
-            template_item: "aur" // will use this also for a single item
+            item: Spice.aur.aur // will use this also for a single item
         },
-        force_big_header : true
+        
     });
 }

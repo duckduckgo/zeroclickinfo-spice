@@ -66,22 +66,22 @@ function ddg_spice_sound_cloud (api_result) {
     };
 
     // Display the plugin.
-    Spice.render({
+    Spice.add({
         data                     : context,
         header1                  : decodeURIComponent(query) + " (SoundCloud)",
-        source_url               : "https://soundcloud.com/search?q=" + query,
-        source_name              : "SoundCloud",
-        spice_name               : "sound_cloud",
-        template_frame           : "carousel",
-        template_options         : {
+        sourceUrl               : "https://soundcloud.com/search?q=" + query,
+        sourceName              : "SoundCloud",
+        id               : "sound_cloud",
+        view: "Tiles",
+        templates         : {
             items           : context,
-            template_detail : "sound_cloud_details",
+            detail: Spice.sound_cloud.sound_cloud_details,
             single_item_handler: function(obj) {
                 obj.image_url = obj.data[0].artwork_url || obj.data[0].user.avatar_url;
             }
         },
-        force_big_header         : true,
-        force_no_fold            : true,
+        
+        
         item_callback            : function() {
             if(window.soundManager) {
                 clearPlayer();
@@ -90,7 +90,7 @@ function ddg_spice_sound_cloud (api_result) {
     });
 
     var addPadding = function(time) {
-        return time < 10 ? "0" + time : time;
+        return (time < 10) ? "0" + time : time;
     };
 
     // Coverts the milliseconds given to minutes and seconds.
