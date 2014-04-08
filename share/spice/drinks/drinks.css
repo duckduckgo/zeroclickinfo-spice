@@ -1,15 +1,15 @@
-#spice_drinks .spice_pane_left{
+.zci--drinks .spice_pane_left{
 	display: inline-block;
 	width: 40%;
 }
 
-#spice_drinks .spice_pane_right {
+.zci--drinks .spice_pane_right {
 	width: 50%;
 	display: inline-block;
 	vertical-align: top;
 }
 
-#spice_drinks .spice_pane_right ul li {
+.zci--drinks .spice_pane_right ul li {
 	display: inline-block;
 	list-style-type: none;
 	-webkit-border-radius: 10px;
@@ -20,7 +20,7 @@
 	background-color: #e5e5e5;
 }
 
-#spice_drinks .spice_pane_right ul {
+.zci--drinks .spice_pane_right ul {
 	padding-left: 0px;
 	padding-top: 0px;
 }
