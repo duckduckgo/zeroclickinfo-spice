@@ -6,6 +6,7 @@ function ddg_spice_rand_word(api_result) {
     }
 
     Spice.add({
+		id: "rand_word",
         data             : api_result,
         sourceUrl       : 'http://wordnik.com',
         sourceName      : 'Wordnik',
