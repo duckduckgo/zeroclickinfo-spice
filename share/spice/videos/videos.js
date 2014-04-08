@@ -9,7 +9,8 @@ function ddg_spice_videos(apiResult) {
         data: apiResult.results,
 
         meta: {
-            next: apiResult.next
+            next: apiResult.next,
+            searchTerm: apiResult.query
         },
 
         relevancy: {
