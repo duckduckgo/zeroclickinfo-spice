@@ -9,7 +9,8 @@ function ddg_spice_images(apiResult) {
         data: apiResult.results,
 
         meta: {
-            next: apiResult.next
+            next: apiResult.next,
+            searchTerm: apiResult.query
         },
 
         relevancy: {
