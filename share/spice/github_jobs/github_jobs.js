@@ -8,27 +8,35 @@ function ddg_spice_github_jobs(api_result) {
     var jobs = api_result;
     var query = DDG.get_query();
     var re = /(?:\s*(?:i\s+|we\s+)?(?:need|want|deserve|seek|get)\s+(?:an?\s+)?)?(?:(.+)\s+)(?:jobs?|work|employment)(?:\s+(?:in\s+)?(.+))?/;
-	jobs['description'] = query.replace(re, "$1");
-	jobs['location'] = query.replace(re, "$2");
+    jobs['description'] = query.replace(re, "$1");
+    jobs['location'] = query.replace(re, "$2");
 
-    Spice.render({
-        data             : api_result,
-        header1          : query + " (GitHub Jobs)",
-        source_url       : 'https://jobs.github.com/positions?description='
+    var sourceUrl = 'https://jobs.github.com/positions?description='
                             + encodeURIComponent(jobs['description'])
-                            + "&location=" +  encodeURIComponent(jobs['location']),
-        source_name      : 'GitHub',
-        spice_name      : 'github',
+                            + "&location=" +  encodeURIComponent(jobs['location']);
 
-        template_frame   : 'list',
-        template_options: {
-            items: api_result,
-            template_item: "github_jobs",
-            show: 3,
-	    max: 10,
-            type: 'ul'
+    var desc = jobs['description'] + ' Jobs';
+    if(jobs['location']){
+        desc += ' in ' + jobs['location'];
+    }
+
+    Spice.add({
+        id: 'github_jobs',
+        name: 'Jobs',
+
+        data: api_result,
+
+        meta: {
+            count: api_result.length,
+            count_meta: desc,
+            sourceUrl: sourceUrl,
+            sourceName: 'GitHub',
+            sourceIcon: true
         },
-        force_big_header : true,
-        force_no_fold    : true
+
+        templates: {
+            item: Spice.github_jobs.item,
+            detail: Spice.github_jobs.item
+        }
     });
 }

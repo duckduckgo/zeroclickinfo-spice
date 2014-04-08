@@ -35,14 +35,17 @@ function ddg_spice_betterific(api_result) {
         }
     }
     
-    Spice.render({
+    Spice.add({
         data             : api_result,
         header1          : api_result.q + ' (Betterific)',
-        source_url       : encodeURI('http://betterific.com/search/' + api_result.q),
-        source_name      : 'betterific',
-        template_normal  : 'betterific',
-        force_big_header : true,
-        force_no_fold    : true
+        sourceUrl       : encodeURI('http://betterific.com/search/' + api_result.q),
+        sourceName      : 'betterific',
+        templates: {
+            item: Spice.betterific.betterific,
+            detail: Spice.betterific.betterific
+        }
+        
+        
     });
 
     $('body').on('click', 'a.header', function() {

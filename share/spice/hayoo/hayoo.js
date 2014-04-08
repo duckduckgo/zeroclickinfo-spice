@@ -6,14 +6,17 @@ function ddg_spice_hayoo(results) {
   }
   var query = DDG.get_query().replace(/\s*hayoo\s*/i, '');
 
-  Spice.render({
+  Spice.add({
       data             : results.functions[0],
       header1          : query + ' (Hayoo!)',
-      source_url       : results.functions[0].uri,
-      source_name      : 'Hackage',
-      template_normal  : 'hayoo',
-      force_big_header : true,
-      force_no_fold    : true,
+      sourceUrl       : results.functions[0].uri,
+      sourceName      : 'Hackage',
+      templates: {
+            item: Spice.hayoo.hayoo,
+            detail: Spice.hayoo.hayoo
+        },
+      
+      
   });
 }
 

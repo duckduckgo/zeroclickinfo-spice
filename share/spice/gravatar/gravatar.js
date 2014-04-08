@@ -31,14 +31,18 @@ function ddg_spice_gravatar (api_result) {
     };
 
     // Display the spice plugin.
-    Spice.render({
+    Spice.add({
         data              : api_result,
+		id: "gravatar",
         header1           : getName(api_result.entry[0]) + " (Gravatar)",
-        force_big_header  : true,
-        source_name       : "Gravatar",
-        source_url        : api_result.entry[0].profileUrl,
-        image_url         : api_result.entry[0].thumbnailUrl + ".png",
-        template_normal   : "gravatar",
+        
+        sourceName       : "Gravatar",
+        sourceUrl        : api_result.entry[0].profileUrl,
+        img_m         : api_result.entry[0].thumbnailUrl + ".png",
+        templates: {
+            item: Spice.gravatar.gravatar,
+            detail: Spice.gravatar.gravatar
+        },
         force_favicon_url : 'http://gravatar.com/favicon.ico'
     });
 }

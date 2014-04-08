@@ -1,98 +1,56 @@
-function ddg_spice_hacker_news(api_result) {
+(function(env) {
     "use strict";
 
-    // Check for at least 1 result
-    if (!api_result.results.length) {
-        return;
+    env.ddg_spice_hacker_news = function(api_result) {
+	var script = $('[src*="/js/spice/hacker_news/"]')[0];
+	var source = $(script).attr("src");
+	var query = source.match(/hacker_news\/([^\/]+)/)[1];
+	var sourceUrl = 'https://hn.algolia.com/#!/story/forever/0/' + query;
+    
+	if(!api_result || !api_result.hits || api_result.hits.length === 0) {
+	    return;
+	}
+
+	Spice.add({
+            id:   'hacker_news',
+            name: 'Hacker News',
+
+            data: api_result.hits,
+
+            meta: {
+		sourceName: 'Hacker News',
+		sourceUrl: sourceUrl,
+		sourceIcon: true,
+		total: api_result.hits,
+		itemType: 'Hacker News',
+		searchTerm: decodeURIComponent(query)
+            },
+
+            normalize: function(o) {
+		return {
+                    title: o.title,
+                    url: (o.url) ? o.url : 'https://news.ycombinator.com/item?id=' + o.objectID,
+                    points: o.points || 0,
+                    pointsLabel: (o.points == 1) ? 'Point' : 'Points',
+                    num_comments: o.num_comments || 0,
+                    commentsLabel: (o.num_comments == 1) ? 'Comment' : 'Comments',
+                    domain: 'news.ycombinator.com',
+		    id: o.objectID
+		};
+            },
+
+            templates: {
+		item: Spice.hacker_news.hacker_news
+            }
+/*
+            relevancy: {
+		skip_words: [ 'hacker', 'news', 'hn', 'hackernews', 'news.yc', 'news.ycombinator.com', 'hn search', 'search' ],
+		primary: [
+                    { required: 'title' },
+                    { key: 'title', strict: false}
+		]
+            },
+*/
+	});
     }
-
-    var script = $('[src*="/js/spice/hacker_news/"]')[0];
-    var source = $(script).attr("src");
-    var query = source.match(/hacker_news\/([^\/]+)/)[1];
-
-    Spice.render({
-        data:               api_result,
-        header1 :           "Hacker News",
-        source_url :        "https://www.hnsearch.com/search#request/all&q=" + query,
-        source_name :       "Hacker News",
-        template_normal :   "hacker_news",
-        force_no_fold :     true,
-        force_big_header :  true
-    });
-
-    // Add click event.
-    $("a.hn_showHide").click(function(){
-        if ($(this).data("target")){
-            var target = $(this).data("target");
-            $(target).toggle();
-        }
-    });
-}
-
-
-// creates an anchor linking to a result's commments
-Handlebars.registerHelper("organizeResults", function(options) {
-    "use strict";
-
-    var topStories = [],
-        topComments = [],
-        otherStories = [],
-        result;
-
-    function isStory (r) {
-        return (r.type === "submission");
-    }
-
-    // Adds result to appropriate list
-    function addResult (result) {
-        var location;
-
-        if ( isStory(result) ) {
-            location = (topStories.length < 3) ? topStories : otherStories;
-        } else {
-            location = topComments;
-        }
-
-        location.push(result);
-    };
-
-    // checks if we can use this result given its type
-    // and the number of results we already have
-    function canUse (result) {
-
-        if ( isStory(result) ) {
-            return (otherStories.length < 3 || topStories.length < 3);
-        } else {
-            return (topComments.length < 3);
-        }
-    };
-
-    // checks if we've filled all 3 result lists
-    function isFull () {
-        return (topStories.length == 3 &&
-                otherStories.length == 3 &&
-                topComments.length == 3);
-    };
-
-    for (var i = 0; i < this.results.length; i++) {
-
-        result = this.results[i].item;
-
-        // Check if result is needed and
-        // appends to correct list
-        if ( canUse(result) ) {
-            addResult(result);
-        }
-
-        if ( isFull() ) {
-          break;
-        }
-    }
-
-    // Invoke context of template with hn object as context.
-    return options.fn({
-        topStories : topStories,
-        topComments : topComments,
-        otherStories : otherStories
-    });
-});
+}(this));

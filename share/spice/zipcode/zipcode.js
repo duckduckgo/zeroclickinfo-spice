@@ -43,14 +43,17 @@ function ddg_spice_zipcode (api_result) {
     var longitude = place.centroid.longitude;
 
     // Display the Spice plugin.
-    Spice.render({
+    Spice.add({
         data              : api_result,
         header1           : header_string,
-        force_big_header  : true,
-        source_name       : "MapQuest",
-        source_url        : "http://mapq.st/map?q=" + encodeURIComponent(latitude + "," + longitude),
-        template_normal   : "zipcode",
-        force_no_fold     : true
+        
+        sourceName       : "MapQuest",
+        sourceUrl        : "http://mapq.st/map?q=" + encodeURIComponent(latitude + "," + longitude),
+        templates: {
+            item: Spice.zipcode.zipcode,
+            detail: Spice.zipcode.zipcode
+        },
+        
     });
 };
 

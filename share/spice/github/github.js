@@ -9,23 +9,23 @@ function ddg_spice_github(api_result) {
       return;
     }
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
         header1          : query + " (GitHub)",
-        source_url       : 'http://www.github.com/search?q=' +  encodeURIComponent(query),
-        source_name      : 'GitHub',
-        spice_name       : 'github',
+        sourceUrl       : 'http://www.github.com/search?q=' +  encodeURIComponent(query),
+        sourceName      : 'GitHub',
+        id       : 'github',
         template_frame   : 'list',
-        template_options: {
+        templates: {
             items: results,
-            template_item: "github_item",
+            item: Spice.github_item.github_item,
             single_template: "github",
             show: 3,
             max: 10,
             type: 'ul'
         },
-        force_big_header : true,
-        force_no_fold    : true
+        
+        
     });
 }
 

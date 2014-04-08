@@ -12,29 +12,24 @@ function ddg_spice_congress(api_result) {
     if(chamber == 'house')
         api_result.results = sortDistrict(api_result.results);
 
-    Spice.render({
+    Spice.add({
         data             : api_result.results,
-        header1          : 'Members of the U.S. ' + capitalize(chamber) + ' ' + '(' + state + ')',
-        source_url       : "https://www.govtrack.us/congress/members/"+state,
-        source_name      : 'govtrack.us',
+        header1          : 'Members of the U.S. ' + DDG.capitalize(chamber) + ' ' + '(' + state + ')',
+        sourceUrl       : "https://www.govtrack.us/congress/members/"+state,
+        sourceName      : 'govtrack.us',
 
         template_frame   : 'list',
-        template_options: {
+        templates: {
             items: api_result.results, 
-            template_item: "congress",
+            item: Spice.congress.congress,
             show: 3,
             type: 'ul'
         },
 
+	id: 'congress',
         force_big_header : true,
         force_no_fold    : true,
-        spice_name       : "congress"
     });
-
-    //capitalize the chamber name
-    function capitalize(string){
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
 
     // Sort based on house member's district
     function sortDistrict(array){

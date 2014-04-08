@@ -23,16 +23,16 @@ function ddg_spice_game_info(api_result) {
     if(games.length == 0) {
         return;
     }
-    Spice.render({
+    Spice.add({
         data                     : api_result,
-        source_url               : "http://www.giantbomb.com/search/?q="+encodeURI(query),
-        spice_name               : "game_info",
-        source_name              : "GiantBomb",
-        template_frame           : "carousel",
-        template_options         : {
+        sourceUrl               : "http://www.giantbomb.com/search/?q="+encodeURI(query),
+        id               : "game_info",
+        sourceName              : "GiantBomb",
+        view: "Tiles",
+        templates         : {
             items                : games,
-            template_item        : "game_info",
-            template_detail      : "game_info_details",
+            item: Spice.game_info.game_info,
+            detail: Spice.game_info.game_info_details,
             // gets called in the event of a single result
             single_item_handler  : function(obj) {
                 var data = obj.data.results[0];
@@ -41,7 +41,7 @@ function ddg_spice_game_info(api_result) {
                 // set the image
                 obj.image_url = data.image.icon_url;
                 // set the source
-                obj.source_url = data.site_detail_url;
+                obj.sourceUrl = data.site_detail_url;
             }
         }
     });

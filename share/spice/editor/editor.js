@@ -37,12 +37,15 @@ function ddg_spice_editor() {
         return languageNames[language.toLowerCase()];
     }
     
-    Spice.render({
+    Spice.add({
         header1          :  formatLanguageName(language) + " Editor",
-        source_name      : "Ace",
-        source_url       : "http://ace.c9.io/",
-        template_normal  : "editor",
-        force_big_header :  true,
-        force_no_fold    :  true
+        sourceName      : "Ace",
+        sourceUrl       : "http://ace.c9.io/",
+        templates: {
+            item: Spice.editor.editor,
+            detail: Spice.editor.editor
+        },
+        
+        
     });
 }

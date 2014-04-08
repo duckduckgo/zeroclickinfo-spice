@@ -14,12 +14,13 @@ function ddg_spice_urban_dictionary(response) {
   var word       = response.list[0].word;
   var definition = response.list[0].definition.replace(/(\r?\n)+/gi, '<br/>');
 
-  Spice.render({
+  Spice.add({
     data             : { 'definition' : definition },
     header1          : word + " (Urban Dictionary)",
-    source_url       : 'http://www.urbandictionary.com/define.php?term=' + word,
-    source_name      : 'Urban Dictionary',
-    template_normal  : 'urban_dictionary',
-    force_big_header : true
+    sourceUrl       : 'http://www.urbandictionary.com/define.php?term=' + word,
+    sourceName      : 'Urban Dictionary',
+    templates  : {
+	item: Spice.urban_dictionary.urban_dictionary,
+    }
   });
 }

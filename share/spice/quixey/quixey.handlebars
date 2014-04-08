@@ -1,2 +1,8 @@
-<p><img src="/iu/?u={{{toHTTP icon_url platforms}}}&f=1" /></p>
-<span>{{{condense name maxlen="30"}}}</span>
+{{#if rating}}
+    <div title="{{rating}}" class="rating">
+        {{#loop rating}}
+            <img src="{{quixey_star}}" class="star"></span>
+        {{/loop}}
+    </div>
+{{/if}}
+<div class="price">{{pricerange}}</div>

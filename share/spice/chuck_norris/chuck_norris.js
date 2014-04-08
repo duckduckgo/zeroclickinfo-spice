@@ -5,11 +5,14 @@ function ddg_spice_chuck_norris(api_result) {
       return;
     }
 
-    Spice.render({
+    Spice.add({
         data             : api_result.value,
-        source_url       : 'http://www.icndb.com',
-        source_name      : 'Internet Chuck Norris Database',
-        template_normal  : 'chuck_norris',
-        force_no_icon    : true
+        sourceUrl       : 'http://www.icndb.com',
+        sourceName      : 'Internet Chuck Norris Database',
+        templates: {
+            item: Spice.chuck_norris.chuck_norris,
+            detail: Spice.chuck_norris.chuck_norris
+        },
+        
     });
 }

@@ -1,0 +1,15 @@
+<div class="tile  tile--c  has-detail  tile--recipe  opt--t-xxs">
+	<div class="tile__media">
+		<img src="{{imageProxy image}}" alt="{{recipeName}}" class="tile__media__img" />
+	</div>
+	<div class="tile__body">
+		<h6 class="tile__title">{{ellipsis recipeName 26}}</h6>
+        {{#if showIngredientsOnTile}}
+            <p class="tile__ingredients opt">{{ellipsis ingredientString 56}}</p>
+        {{/if}}
+		<div class="tile__rating  one-line">
+			{{{starRating rating}}}
+            <span class="tile__source  one-line">{{ellipsis sourceDisplayName 19}}</span>
+		</div>
+	</div>
+</div>

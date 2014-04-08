@@ -7,13 +7,16 @@ function ddg_spice_brainy_quote (api_result) {
 	return;
     }
 
-    Spice.render({
+    Spice.add({
          data              : api_result,
-         force_big_header  : true,
+         
          header1           : api_result.header1,
-         source_name       : api_result.source_name, // More at ...
-         source_url        : api_result.source_url,
-         template_normal   : 'brainy_quote',
-	 force_no_fold     : true
+         sourceName       : api_result.sourceName, // More at ...
+         sourceUrl        : api_result.sourceUrl,
+         templates: {
+            item: Spice.brainy_quote.brainy_quote,
+            detail: Spice.brainy_quote.brainy_quote
+        },
+	 
     });
 }

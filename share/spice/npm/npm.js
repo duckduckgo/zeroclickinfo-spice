@@ -1,17 +1,19 @@
 function ddg_spice_npm (api_result) {
-  "use strict";
+    "use strict";
 
-  if (api_result.error) {
-    return;
-  }
+    if (api_result.error) {
+	return;
+    }
 
-  Spice.render({
-    data              : api_result,
-    force_big_header  : true,
-    header1           : api_result.name + ' (' + api_result.version + ')',
-    source_name       : "npmjs.org", // More at ...
-    source_url        : 'http://npmjs.org/package/' + api_result.name,
-    template_normal   : 'npm',
-    template_small    : 'npm'
-  });
+    Spice.add({
+        data              : api_result,
+        id: "npm", 
+        header1           : api_result.name + ' (' + api_result.version + ')',
+        sourceName       : "npmjs.org", // More at ...
+        sourceUrl        : 'http://npmjs.org/package/' + api_result.name,
+        templates: {
+            item: Spice.npm.npm,
+            detail: Spice.npm.npm
+        },  
+    });
 }

@@ -13,6 +13,7 @@
                     {{/loop}}
                 </div>
             {{/if}}
+
             <div class="price">{{pricerange}}</div>
             <div class="app_description">{{{short_desc}}}</div>
             <div id="details_{{id}}" class="app_details">
@@ -25,7 +26,7 @@
                                 {{/with}}
                                 {{platform_name}}
                                 {{#if ../hasPricerange}}
-                                     - {{price cents}}
+                                     - {{qprice cents}}
                                 {{/if}}
                             </a>
                         </div>

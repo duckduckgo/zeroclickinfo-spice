@@ -5,22 +5,14 @@ function ddg_spice_alternative_to(api_result) {
         return;
     }
 
-    Spice.render({
-        data                     : api_result,
-        source_name              : 'AlternativeTo',
-        source_url               : api_result.Url,
-        spice_name               : 'alternative_to',
-        more_icon_offset         : '-2px',
-        template_frame           : "carousel",
-        template_options         : {
-            items                : api_result.Items,
-            template_item        : "alternative_to",
-            template_detail      : "alternative_to_details",
-            li_height            : 65,
-            single_item_handler  : function(obj) {            // gets called in the event of a single result
-                obj.header1 = obj.data.Items[0].Name;         // set the header
-                obj.image_url = obj.data.Items[0].IconUrl;    // set the image
-            }
+    console.log(api_result);
+    Spice.add({
+        data                     : api_result.Items,
+        sourceName              : 'AlternativeTo',
+        sourceUrl               : api_result.Url,
+        id               : 'alternative_to',
+        templates         : {
+            item: Spice.alternative_to.alternative_to,
         },
     });
 }
