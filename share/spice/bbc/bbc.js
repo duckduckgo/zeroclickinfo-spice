@@ -41,21 +41,18 @@ function ddg_spice_bbc(api_result) {
 
     header_service_type = api_result.schedule.service.type == "radio" ? "Radio" : "TV";
 
+    console.log(api_result);
+
     Spice.add({
-        data           : api_result.schedule,
+        data           : api_result.schedule.day.broadcasts,
         header1        : api_result.schedule.service.title + (api_result.schedule.service.outlet ? " "+api_result.schedule.service.outlet.title : "") + " ("+header_service_type+" Schedule for "+header_date+")",
         sourceUrl     : "http://www.bbc.co.uk/"+api_result.schedule.service.key+"/programmes/schedules/"+(api_result.schedule.service.outlet ? api_result.schedule.service.outlet.key+"/" : "")+api_result.schedule.day.date.split("-").join("/"),
         sourceName    : 'BBC',
-        view: "Tiles",
         id     : "bbc",
         templates: {
-            li_width        : 120,
-            li_height       : 105,
-            items           : programmes, 
             item: Spice.bbc.bbc,
             detail: Spice.bbc.bbc_details
-        },
-        
+        }
     });
 }
 
