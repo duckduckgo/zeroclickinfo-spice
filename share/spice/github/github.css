@@ -1,4 +1,4 @@
-#spice_github span {
+.zci--github span {
     display: block;
     max-width: 100%;
     text-overflow: ellipsis;

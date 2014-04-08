@@ -1,9 +1,9 @@
-#spice_book .spice_pane_left {
+.zci--book .spice_pane_left {
     width: 40%;
     display: inline-block;
 }
 
-#spice_book .spice_pane_right {
+.zci--book .spice_pane_right {
     width: 50%;
     display: inline-block;
     vertical-align: top;
@@ -11,17 +11,17 @@
     padding-left: 10px;
 }
 
-#spice_book .book_data_item {
+.zci--book .book_data_item {
     display: inline-block;
     padding-right: 6px;
     color: gray;
 }
 
-#spice_book #critic-link {
+.zci--book #critic-link {
     float: right;
 }
 
-#spice_book #book-rating-visual {
+.zci--book #book-rating-visual {
     display: inline;
     width: 21px;
     vertical-align: -12%;
