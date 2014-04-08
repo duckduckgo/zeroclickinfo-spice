@@ -47,8 +47,20 @@ function ddg_spice_guidebox_lastshows (api_result) {
 
     var metadata = ddg_spice_guidebox_getid.metadata;
 
+    function toArray(obj) {
+	var result = [];
+	if($.isArray(obj)) {
+	    return obj;
+	} else {
+	    $.each(obj, function(key, value) {
+		result[key] = value;
+	    });
+	    return result;
+	}
+    }
+
     Spice.add({
-        data                     : api_result,
+        data                     : toArray(api_result.results.result),
         header1                  : metadata.res_title + " (TV  - " + metadata.network + ")",
         sourceName              : "Guidebox",
         sourceUrl               : metadata.more,
