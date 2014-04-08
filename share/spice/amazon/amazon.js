@@ -6,7 +6,7 @@ function ddg_spice_amazon(api_response) {
 	return;
     }
 
-    var items = api_result.results;
+    var items = api_response.results;
 
     // TODO: this is obviously not ideal, just ported over
     // what was in permenant.js. It loads ratings data for each item,
@@ -56,7 +56,7 @@ function ddg_spice_amazon(api_response) {
                 total: items.length,
                 itemType: 'Products',
                 sourceName: 'Amazon',
-                sourceUrl: apiResult.more_at,
+                sourceUrl: api_response.more_at,
                 sourceIcon: true
             },
 
