@@ -61,7 +61,7 @@ var ddg_spice_dictionary = {
 
             relevancy: {   
                 primary: [
-                    { key: 'word', min_length: -1, strict: false }
+                    { key: 'word', min_length: word.length, strict: false }
                 ]
             },
 
