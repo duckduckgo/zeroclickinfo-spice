@@ -11,14 +11,17 @@ function ddg_spice_reddit(api_response) {
         return;
     }
 
-    Spice.render({
+    Spice.add({
         data              : api_response.data,
         header1           : api_response.data.display_name + " (SubReddit)",
-        source_url        : 'http://www.reddit.com' + api_response.data.url,
-        source_name       : 'Reddit',
-        template_normal   : 'reddit_sub_search',
-        force_big_header  : true,
-        force_space_after : true
+        sourceUrl        : 'http://www.reddit.com' + api_response.data.url,
+        sourceName       : 'Reddit',
+        templates: {
+            item: Spice.reddit_sub_search.reddit_sub_search,
+            detail: Spice.reddit_sub_search.reddit_sub_search
+        },
+        
+        
     });
 }
 
@@ -36,7 +39,7 @@ Handlebars.registerHelper("unescape", function(escaped, options) {
 
     var html = escaped.replace(/(&[^;]+);/g, function(a, b) {
         var r = unescape[b];
-        return typeof r === "string" ? r : a;
+        return (typeof(r) === "string") ? r : a;
     });
 
     // Remove all the tags.

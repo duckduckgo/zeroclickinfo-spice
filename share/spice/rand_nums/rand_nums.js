@@ -1,4 +1,6 @@
 function ddg_spice_rand_nums(api_result) {
+    "use strict";
+
     var min;
     var max;
 
@@ -20,11 +22,14 @@ function ddg_spice_rand_nums(api_result) {
     min = min || 0;
     max = max || 100;
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
-        source_url       : 'http://www.random.org/integers/?num=100&min='
+        sourceUrl       : 'http://www.random.org/integers/?num=100&min='
                             + min + '&max=' + max + '&col=5&base=10&format=html&rnd=new',
-        source_name      : 'Random.org',
-        template_normal  : 'rand_nums',
+        sourceName      : 'Random.org',
+        templates: {
+            item: Spice.rand_nums.rand_nums,
+            detail: Spice.rand_nums.rand_nums
+        },
     });
 }

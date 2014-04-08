@@ -1,4 +1,6 @@
 function nrio (api_result) {
+    "use strict";
+
     // Check for errors.
     if(!api_result || api_result.error || !api_result.location) {
         return;
@@ -36,7 +38,7 @@ function nrio (api_result) {
         },
 
         templates: {
-            summary: Spice.snow.snow
+            detail: Spice.snow.snow
         }
     });
 

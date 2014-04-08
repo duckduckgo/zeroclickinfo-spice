@@ -1,0 +1,6 @@
+#spice_mass_on_time .spice2list_item span {
+	max-width: 100%;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	white-space: nowrap;
+}

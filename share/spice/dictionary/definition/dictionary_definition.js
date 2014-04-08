@@ -13,8 +13,8 @@
 // ddg_spice_dictionary_audio - gets the audio file.
 // ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
 
-nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
 
+nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
 
 var ddg_spice_dictionary = {
 
@@ -55,19 +55,18 @@ var ddg_spice_dictionary = {
                 word: word,
                 plural_form: this.plural_form,
                 definitions: definitions,
-                source_name: "Wordnik",
-                source_url : "http://www.wordnik.com/words/" + word,
-                content_template: Spice.dictionary_definition.dictionary_definition
+                sourceName: "Wordnik",
+                sourceUrl : "http://www.wordnik.com/words/" + word
             },
 
             relevancy: {   
                 primary: [
-                    { key: 'word', min_length: word.length, strict: false }
+                    { key: 'word', min_length: -1, strict: false }
                 ]
             },
 
             templates: {
-                summary: DDG.templates.base
+                detail: Spice.dictionary_definition.dictionary_definition
             }
         });
 

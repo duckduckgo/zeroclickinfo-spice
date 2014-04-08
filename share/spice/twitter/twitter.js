@@ -1,4 +1,5 @@
 var ddg_spice_twitter = function(api_result) {
+    "use strict";
 
     if(!api_result || (!api_result.current_status && !api_result.description)) {
         return;
@@ -9,19 +10,24 @@ var ddg_spice_twitter = function(api_result) {
     }
 
     // Display the plugin.
-    Spice.render({
+    Spice.add({
         data                     : api_result,
         header1                  : "@" + api_result.user,
-        source_url               : "https://twitter.com/" + api_result.user,
-        source_name              : "Twitter",
-        template_normal          : "twitter",
-        force_big_header         : true,
-        force_no_fold            : true,
+        sourceUrl               : "https://twitter.com/" + api_result.user,
+        sourceName              : "Twitter",
+        templates: {
+            item: Spice.twitter.twitter,
+            detail: Spice.twitter.twitter
+        },
+        
+        
         image_url                : bigger_picture(api_result.profile_image)
     });
 };
 
 Handlebars.registerHelper("findLinks", function(text, entities, options) {
+    "use strict";
+
     // Chop the string so that we can surreptitiously insert links.
     var twitterSplit = function(twitter, result, final_text, original, start_index, i) {
         if(twitter.length === i || twitter.length === 0) {
@@ -66,6 +72,8 @@ Handlebars.registerHelper("findLinks", function(text, entities, options) {
 });
 
 Handlebars.registerHelper("makeLinks", function(results) {
+    "use strict";
+
     window.r = results;
 
     var createLink = function(href, inner) {

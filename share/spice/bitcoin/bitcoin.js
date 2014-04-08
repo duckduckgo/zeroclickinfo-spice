@@ -1,4 +1,5 @@
 function ddg_spice_bitcoin(api_result) {
+    "use strict"
 
     if (!api_result) {
         return;
@@ -66,20 +67,20 @@ function ddg_spice_bitcoin(api_result) {
         title: "SELL"
     };
 
-    Spice.render({
+    Spice.add({
         header1           : "Bitcoin Exchange Prices (" + currency + ")" ,
-        source_name       : "Blockchain",
-        spice_name        : "bitcoin",
-        source_url        : 'http://markets.blockchain.info/',
+        sourceName       : "Blockchain",
+        id        : "bitcoin",
+        sourceUrl        : 'http://markets.blockchain.info/',
         force_favicon_url : "http://blockchain.info/favicon.ico",
 
         template_frame   : "twopane",
-        template_options : {
+        templates : {
             left : { template: "bitcoin", data: buy },
             right : { template: "bitcoin", data: sell }
         },
-        force_no_fold    : true,
-        force_big_header : true
+        
+        
     });
 
     // Adjust the box margins--can't do this in css
