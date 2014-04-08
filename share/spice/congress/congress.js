@@ -14,7 +14,7 @@ function ddg_spice_congress(api_result) {
 
     Spice.add({
         data             : api_result.results,
-        header1          : 'Members of the U.S. ' + capitalize(chamber) + ' ' + '(' + state + ')',
+        header1          : 'Members of the U.S. ' + DDG.capitalize(chamber) + ' ' + '(' + state + ')',
         sourceUrl       : "https://www.govtrack.us/congress/members/"+state,
         sourceName      : 'govtrack.us',
 
@@ -30,11 +30,6 @@ function ddg_spice_congress(api_result) {
         force_big_header : true,
         force_no_fold    : true,
     });
-
-    //capitalize the chamber name
-    function capitalize(string){
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
 
     // Sort based on house member's district
     function sortDistrict(array){
