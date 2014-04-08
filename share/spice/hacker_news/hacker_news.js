@@ -22,7 +22,8 @@
 		sourceUrl: sourceUrl,
 		sourceIcon: true,
 		total: api_result.hits,
-		itemType: 'Hacker News results for <b>' + decodeURIComponent(query) + '</b>'
+		itemType: 'Hacker News',
+		searchTerm: decodeURIComponent(query)
             },
 
             normalize: function(o) {
@@ -40,7 +41,7 @@
 
             templates: {
 		item: Spice.hacker_news.hacker_news
-            },
+            }
 /*
             relevancy: {
 		skip_words: [ 'hacker', 'news', 'hn', 'hackernews', 'news.yc', 'news.ycombinator.com', 'hn search', 'search' ],

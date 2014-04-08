@@ -33,6 +33,7 @@ triggers startend =>
     'jpg',
     'png',
     'logo',
+    'logos',
     'wallpaper',
     'wallpapers',
     'wall paper',
