@@ -35,8 +35,8 @@ function ddg_spice_github_jobs(api_result) {
         },
 
         templates: {
-            item: 'github_jobs_item',
-            detail: 'github_jobs_detail'
+            item: Spice.github_jobs.item,
+            detail: Spice.github_jobs.item
         }
     });
 }

@@ -33,11 +33,12 @@ function ddg_spice_gravatar (api_result) {
     // Display the spice plugin.
     Spice.add({
         data              : api_result,
+		id: "gravatar",
         header1           : getName(api_result.entry[0]) + " (Gravatar)",
         
         sourceName       : "Gravatar",
         sourceUrl        : api_result.entry[0].profileUrl,
-        image_url         : api_result.entry[0].thumbnailUrl + ".png",
+        img_m         : api_result.entry[0].thumbnailUrl + ".png",
         templates: {
             item: Spice.gravatar.gravatar,
             detail: Spice.gravatar.gravatar

@@ -6,14 +6,13 @@ function ddg_spice_google_plus (api_result) {
     }
 
     Spice.add({
-        data: api_result,
+        data: api_result.items,
         sourceName : 'Google+',
         sourceUrl : 'http://plus.google.com',
         header1 : "Google+ Users",
         id: "google_plus",
         view: "Tiles",
         templates: {
-            items: api_result.items,
             item: Spice.google_plus.google_plus
         },
         

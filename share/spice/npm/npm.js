@@ -7,7 +7,7 @@ function ddg_spice_npm (api_result) {
 
     Spice.add({
         data              : api_result,
-         
+        id: "npm", 
         header1           : api_result.name + ' (' + api_result.version + ')',
         sourceName       : "npmjs.org", // More at ...
         sourceUrl        : 'http://npmjs.org/package/' + api_result.name,

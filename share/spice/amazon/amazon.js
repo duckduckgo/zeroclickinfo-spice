@@ -1,8 +1,8 @@
-function ddg_spice_amazon(api_response) {
+function ddg_spice_amazon(api_result) {
     "use strict";
 
-    if (!api_response || !api_response.results ||
-	!api_response.results.length || api_response.results.length == 0) {
+    if (!api_result || !api_result.results ||
+	!api_result.results.length || api_result.results.length == 0) {
 	return;
     }
 
@@ -56,7 +56,7 @@ function ddg_spice_amazon(api_response) {
                 total: items.length,
                 itemType: 'Products',
                 sourceName: 'Amazon',
-                sourceUrl: apiResult.more_at,
+                sourceUrl: api_result.more_at,
                 sourceIcon: true
             },
 
