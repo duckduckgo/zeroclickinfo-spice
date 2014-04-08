@@ -16,27 +16,23 @@
 
 	Spice.add({
 		id: 'congress',
-		name: 'U.S. ' + capitalize(chamber) + ' ' + '(' + state + ')',
+		name: 'Congress',
 		data: api_result.results,
 
 		meta: {
 			sourceName: 'govtrack.us',
 			total: api_result.results.length,
-			sourceUrl: "https://www.govtrack.us/congress/members/"+state
+			sourceUrl: "https://www.govtrack.us/congress/members/"+state,
+            itemType: 'U.S. ' + DDG.capitalize(chamber) + ' ' + '(' + state + ')'
 		},
 
 		templates: {
-			item: Spice.congress.congress
+			item: Spice.congress.item
 		}
 
 	});
- 
+    
    };
-
-       //capitalize the chamber name
-    function capitalize(string){
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
 
     // Sort based on house member's district
     function sortDistrict(array){
@@ -54,7 +50,7 @@ Handlebars helpers
 *******************************/
 
 // Creates a full name for a given representative
-Handlebars.registerHelper ('get_name', function() {
+Handlebars.registerHelper ('congress_get_name', function() {
     "use strict";
     return (this.title ? this.title + '. ' : '')
             + (this.first_name ? this.first_name + ' ' : '')
@@ -63,7 +59,7 @@ Handlebars.registerHelper ('get_name', function() {
 });
 
 // return the next election year
-Handlebars.registerHelper ('get_date', function() {
+Handlebars.registerHelper ('congress_get_date', function() {
     "use strict";
     if(this.term_end)
         return "Next Election " + this.term_end.substring(0,4);
@@ -71,7 +67,7 @@ Handlebars.registerHelper ('get_date', function() {
 });
 
 // return the party
-Handlebars.registerHelper ('get_party', function() {
+Handlebars.registerHelper ('congress_get_party', function() {
     "use strict";
     if(this.party){
         switch(this.party){
