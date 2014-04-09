@@ -5,20 +5,40 @@
 
 	Spice.add({
 	    id: 'movie',
-	    name: 'Movie',
+	    name: 'Movies',
 	    data: api_result.movies,
 	    meta: {
-		sourceName: 'Movie',
+		sourceName: 'Rotten Tomatoes',
 		sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
 		sourceIcon: true,
-		itemType: 'Movie'
+		itemType: 'movies'
 	    },
 	    normalize: function(o) {
-		return o.ratings.normalized = o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0;
+		// Check for default poster.
+		// Check for critic's score.
+		var normalized = o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0;
+		return {ratings: {normalized: normalized}};
 	    },
 	    templates: {
 		item: Spice.movie.movie_item,
 		detail: Spice.movie.movie_detail
+	    },
+	    relevancy: {
+		skip_words: [
+		    'movie',
+		    'info',
+		    'film',
+		    'rt',
+		    'rotten',
+		    'tomatoes',
+		    'rating',
+		    'ratings',
+		    'rotten'
+		],
+		primary: [
+		    { key: 'title' },
+		    { key: 'posters.detailed', match: /_det\.jpg$/, strict: false }
+		]
 	    }
 	});
 
