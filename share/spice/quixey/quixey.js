@@ -231,7 +231,7 @@ var quixey_image = function(image_url) {
 }
 
 var make_icon_url = function(item) {
-    var domain = "d1z22zla46lb9g.cloudfront.net",
+    var domain = quixey_image_domain,
         icon_url = item.icon_url;
 
     if (!icon_url) {
@@ -256,27 +256,7 @@ var make_icon_url = function(item) {
 };
 
 
-Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
-    "use strict";
-
-    var domain = "d1z22zla46lb9g.cloudfront.net";
-
-    // Get the image server that the icon_url in platforms is pointing to.
-    // It's not ideal, but the link to the app's image still has to redirect
-    // and it redirects to HTTPS. What we want is an HTTP link (for speed).
-    if(platforms && platforms.length > 0 && platforms[0].icon_url) {
-    domain = platforms[0].icon_url.match(/https?:\/\/([^\/]+)/)[1];
-    }
-
-    // Replace the domain in our icon_url to the one that we got from
-    // the platforms array.
-    icon_url = icon_url.match(/\/image\/.+/)[0];
-    return "http://" + domain + icon_url;
-});
-
-
 // template helper to format a price range
-<<<<<<< HEAD
 var pricerange = function(item) {
 
     if (!item || !item.editions)
@@ -347,13 +327,5 @@ Handlebars.registerHelper("platform_name", function() {
 
     return name;
 });
-
-// template helper to give url for star icon
-Handlebars.registerHelper("quixey_star", function() {
-    "use strict";
-
-    return DDG.get_asset_path("quixey", "star.png").replace("//", "/");
-});
-
 
 })(this);

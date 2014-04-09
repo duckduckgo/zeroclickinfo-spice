@@ -1,4 +1,4 @@
-#spice_bitcoin .spice_pane {
+.zci--bitcoin .spice_pane {
     display: inline-block;
     width: 43%;
     vertical-align: top;
@@ -9,20 +9,20 @@
     border-radius: 3px;
 }
 
-#spice_bitcoin .spice_pane span {
+.zci--bitcoin .spice_pane span {
     font-weight: bold;    
 }
 
-#spice_bitcoin .spice_pane_right {
+.zci--bitcoin .spice_pane_right {
     float: right;
 }
 
-#spice_bitcoin span.title {
+.zci--bitcoin span.title {
     font-size: 15px;
     vertical-align: 4px;
     padding-right: 15%
 }
 
-#spice_bitcoin span.price {
+.zci--bitcoin span.price {
     font-size: 35px;
 }

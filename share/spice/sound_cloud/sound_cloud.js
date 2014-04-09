@@ -33,6 +33,7 @@ function ddg_spice_sound_cloud (api_result) {
 	75349402: true
     };
 
+    /*
     var skip_array = ["soundcloud"];
 
     var context = [];
@@ -50,12 +51,12 @@ function ddg_spice_sound_cloud (api_result) {
             context.push(api_result[i]);
         }
     }
-
+    
     // Exit if we don't have what we need.
     if(!api_result || context.length === 0) {
         return;
     }
-
+*/
     // This gets called when the sound is finished playing.
     // It basically just resets the look of the player.
     var clearPlayer = function() {
@@ -67,25 +68,14 @@ function ddg_spice_sound_cloud (api_result) {
 
     // Display the plugin.
     Spice.add({
-        data                     : context,
-        header1                  : decodeURIComponent(query) + " (SoundCloud)",
+        data                     : api_result,
         sourceUrl               : "https://soundcloud.com/search?q=" + query,
         sourceName              : "SoundCloud",
         id               : "sound_cloud",
         view: "Tiles",
         templates         : {
-            items           : context,
-            detail: Spice.sound_cloud.sound_cloud_details,
-            single_item_handler: function(obj) {
-                obj.image_url = obj.data[0].artwork_url || obj.data[0].user.avatar_url;
-            }
-        },
-        
-        
-        item_callback            : function() {
-            if(window.soundManager) {
-                clearPlayer();
-            }
+	    item: Spice.sound_cloud.sound_cloud,
+            detail: Spice.sound_cloud.sound_cloud_details
         }
     });
 
