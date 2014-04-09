@@ -68,22 +68,22 @@ function ddg_spice_kwixer(api_response) {
 
     if (!finalArray || finalArray.length ===0 ) return;
 
-    Spice.render({
+    Spice.add({
+		data                    : finalArray,
         header1                  : ddg_spice_kwixer_query + ' (Kwixer)',
-        source_url               : "https://www.kwixer.com/#/explore?category=movie&query=" + DDG.get_query_encoded() ,
-        source_name              : 'Kwixer',
-        force_big_header         : true,
+        sourceUrl               : "https://www.kwixer.com/#/explore?category=movie&query=" + DDG.get_query_encoded() ,
+        sourceName              : 'Kwixer',
+        
         force_favicon_domain     : 'www.kwixer.com',
         force_favicon_url        : 'https://kwixer.com/favicon.ico',
-        template_frame           : 'carousel',
-        spice_name               : 'kwixer',
-        template_options         : {
-            template_detail          : 'kwixer_detail',
-            template_item            : 'kwixer',
-            items                    : finalArray,
+        view: 'Tiles',
+        id               : 'kwixer',
+        templates         : {
+            detail: Spice.kwixer.kwixer_detail,
+            item: Spice.kwixer.kwixer,
             li_height                : 155
         },
-        force_no_fold            : true
+        
     });
 }
 
