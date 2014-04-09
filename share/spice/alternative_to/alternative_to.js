@@ -11,7 +11,8 @@
 		searchTerm: 'something',
 		itemType: 'Alternative to',
 		sourceUrl: 'http://alternativeto.net/',
-		sourceName: 'AlternativeTo'
+		sourceName: 'AlternativeTo',
+		sourceIcon: true
 	    },
 	    normalize: function(o) {
 		o.Platforms = o.Platforms.join(", ");
