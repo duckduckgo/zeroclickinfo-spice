@@ -1,6 +1,10 @@
 (function(env) {
     "use strict";
 
+    var script = $('[src*="/js/spice/alternative_to/"]')[0];
+    var source = $(script).attr("src");
+    var query = source.match(/alternative_to\/([^\/]*)/)[1];
+
     env.ddg_spice_alternative_to = function(api_result) {
 	Spice.add({
 	    id: 'alternative_to',
@@ -8,8 +12,8 @@
 	    data: api_result.Items,
 	    meta: {
 		total: api_result.Items,
-		searchTerm: 'something',
-		itemType: 'Alternative to',
+		searchTerm: decodeURIComponent(query),
+		itemType: 'Alternatives ',
 		sourceUrl: 'http://alternativeto.net/',
 		sourceName: 'AlternativeTo',
 		sourceIcon: true
