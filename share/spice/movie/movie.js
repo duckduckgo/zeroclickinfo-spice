@@ -1,6 +1,25 @@
 (function(env) {
+    "use strict";
+
     env.ddg_spice_movie = function(api_result) {
-	console.log(api_result);
+
+	Spice.add({
+	    id: 'movie',
+	    name: 'Movie',
+	    data: api_result.movies,
+	    meta: {
+		sourceName: 'Movie',
+		sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
+		sourceIcon: true,
+		itemType: 'Movie'
+	    },
+	    normalize: function(o) {
+		return { rating: o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0 };
+	    },
+	    templates: {
+		item: Spice.movie.movie_item
+	    }
+	});
     };
 }(this));
 
