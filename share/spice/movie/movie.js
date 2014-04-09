@@ -14,10 +14,13 @@
 		itemType: 'movies'
 	    },
 	    normalize: function(o) {
-		// Check for default poster.
-		// Check for critic's score.
-		var normalized = o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0;
-		return {ratings: {normalized: normalized}};
+		// If the critics_score is -1. Set it to zero so that we can easily check in the template.
+		if(o.ratings.critics_score === -1) {
+		    o.ratings.critics_score = 0;
+		}
+		o.ratings.normalized = o.ratings.critics_score === -1 ? o.ratings.critics_score / 20 : 0;
+		
+		return {ratings: o.ratings};
 	    },
 	    templates: {
 		item: Spice.movie.movie_item,
