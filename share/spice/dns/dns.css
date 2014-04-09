@@ -1,14 +1,14 @@
-#spice_dns table {
+.zci--dns table {
     /* border:1px solid #d0d0d0; */
     width:100%;
     margin:5px;
 }
 
-#spice_dns tr {
+.zci--dns tr {
     border-bottom:1px solid #efefef;
 }
 
-#spice_dns th {
+.zci--dns th {
     vertical-align:bottom;
     text-align:left;
     font-size:83.3%;
@@ -16,7 +16,7 @@
     padding-left:3px;
 }
 
-#spice_dns td {
+.zci--dns td {
     padding:2px;
     max-width:250px;
 }

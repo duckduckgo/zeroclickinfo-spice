@@ -10,25 +10,30 @@ function ddg_spice_bootic (api_result) {
         '?initial=1&q=' + encodeURIComponent( api_result.input_query ) :
         '';
 
+    // Create an array from the object.
+    // The Bootic API gives us a `products` object which contains everything,
+    // but it's not sorted in any order. We use the `sorted` array for that.
+    var result = [];
+    for(var i = 0; i < api_result.sorted.length; i++) {
+	result.push(api_result.products[api_result.sorted[i]]);
+    }
+
     Spice.add({
-        data             : api_result,
+        data             : result,
         sourceName      : 'Bootic',
         id       : "bootic",
-        sourceUrl       : 'http://www.bootic.com/?q =' + query,
-        header1          : api_result.input_query + ' (Bootic)',
-        view: "Tiles",
+        sourceUrl       : 'http://www.bootic.com/?q=' + query,
         templates: {
-            items           : api_result.products,
-            item: Spice.bootic.bootic,
-        },
-        
+            item: Spice.bootic.bootic
+        }
     });
 }
-
 
 // Forms the url for a bootic product image
 Handlebars.registerHelper ('bootic_picture', function() {
     "use strict";
+
+    console.log(this);
 
     var pic_id = this.pictures[0],
         url = pic_id.replace(/\d+x\d+/, "60x80");

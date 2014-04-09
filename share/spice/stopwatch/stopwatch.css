@@ -1,4 +1,4 @@
-#spice_stopwatch .btn {
+.zci--stopwatch .btn {
 	height: 75px;
 	width: 75px;
 	border-radius: 37.5px;
@@ -14,28 +14,28 @@
 }
 
 /*remove the dashed line in FF/IE*/
-#spice_stopwatch .btn::-moz-focus-inner {
+.zci--stopwatch .btn::-moz-focus-inner {
 	border: 0;
 }
 	
-#spice_stopwatch .btn.start {
+.zci--stopwatch .btn.start {
 	border-color: #20b84c;
 	background-color: #20b84c;
 	color: white;
 }
 
-#spice_stopwatch .btn.stop {
+.zci--stopwatch .btn.stop {
 	border-color: #ff3908;
 	background-color: #ff3908;
 	color: white;
 }
 
-#spice_stopwatch .btn[disabled] {
+.zci--stopwatch .btn[disabled] {
 	color: #b4b4b4;
 	border-color: #b4b4b4;
 }
 
-#spice_stopwatch .spice-pane {
+.zci--stopwatch .spice-pane {
 	width: 45%; height: 100%;
 	line-height: 50px;
 	background-color: #f5f5f5;
@@ -44,73 +44,73 @@
 	border-radius: 2px;
 }
 
-#spice_stopwatch .spice-pane-right {
+.zci--stopwatch .spice-pane-right {
 	float: right;
 }
 
-#spice_stopwatch .pane-block {
+.zci--stopwatch .pane-block {
 	height: 50px;
 	margin-left: 5px;
 	margin-right: 5px;
 }
 
-#spice_stopwatch .label {
+.zci--stopwatch .label {
 	padding-left: 5%;
 	font-size: 13px;
 	vertical-align: 4px;
 	font-weight: 400;
 }
 
-#spice_stopwatch .btn-wrapper {
+.zci--stopwatch .btn-wrapper {
 	margin-top: 37px;
 	margin-bottom: 10px;
 	width: 100%;
 }
 
-#spice_stopwatch #lap_btn {
+.zci--stopwatch #lap_btn {
 	float: right;
 }
 
-#spice_stopwatch .time {
+.zci--stopwatch .time {
 	float: right;
 	margin-right: 10%;
 	font-size: 40px;
 }
 
-#spice_stopwatch #total_time {
+.zci--stopwatch #total_time {
 	font-weight: 400;
 }
 
-#spice_stopwatch #current_time {
+.zci--stopwatch #current_time {
 	font-weight: 300;
 }
 
-#spice_stopwatch .hidden {
+.zci--stopwatch .hidden {
 	display: none;
 }
 
-#spice_stopwatch table {
+.zci--stopwatch table {
 	width: 100%;
 	background-color: #fafafa;
 	border-collapse: collapse;
 }
 
-#spice_stopwatch td {
+.zci--stopwatch td {
 	text-align: center;
 	border-top: 1px solid #ccc;
 }
 
-#spice_stopwatch th {
+.zci--stopwatch th {
 	color: #999;
 	font-weight: normal;
 	text-align: center;
 }
 
-#spice_stopwatch .lap-num {
+.zci--stopwatch .lap-num {
 	font-size: 13px;
 }
 
-#spice_stopwatch .lap-time {
+.zci--stopwatch .lap-time {
 	font-size: 16px;
 }
 
