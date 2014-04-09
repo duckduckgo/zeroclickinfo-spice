@@ -9,15 +9,14 @@ function ddg_spice_drinks(api_result) {
 
     Spice.add({
         data             : api_result[0],
-        header1          : api_result[0].name + " (The Drink Project)",
+        // header1          : api_result[0].name + " (The Drink Project)",
+		name: "Drinks",
         sourceUrl       : api_result[0].url,
         sourceName      : 'The Drink Project',
         id       : 'drinks',
-        template_frame   : "twopane",
         templates: {
-            left  : { template: "drinks" },
-            right : { template: "drinks_ingredients" },
-        },
+			detail: Spice.drinks.detail
+        }
         
     });
 }
