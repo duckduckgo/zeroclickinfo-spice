@@ -14,10 +14,12 @@
 		sourceName: 'AlternativeTo'
 	    },
 	    normalize: function(o) {
+		o.Platforms = o.Platforms.join(", ");
 		return o;
 	    },
 	    templates: {
-		item: Spice.alternative_to.alternative_to
+		item: Spice.alternative_to.alternative_to,
+		detail: Spice.alternative_to.alternative_to_details
 	    }
 	});
     };
