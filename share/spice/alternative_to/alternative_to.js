@@ -18,8 +18,7 @@
 		sourceIcon: true
 	    },
 	    normalize: function(o) {
-		o.Platforms = o.Platforms.join(", ");
-		return o;
+		return { Platforms: o.Platforms.join(", ") };
 	    },
 	    templates: {
 		item: Spice.alternative_to.alternative_to,
