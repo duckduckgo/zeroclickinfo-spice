@@ -11,7 +11,6 @@
 	    name: 'Alternative Software',
 	    data: api_result.Items,
 	    meta: {
-		total: api_result.Items,
 		searchTerm: decodeURIComponent(query),
 		itemType: 'Alternatives ',
 		sourceUrl: 'http://alternativeto.net/',
