@@ -14,10 +14,30 @@
 		itemType: 'Movie'
 	    },
 	    normalize: function(o) {
-		return { rating: o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0 };
+		return o.ratings.normalized = o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0;
 	    },
 	    templates: {
-		item: Spice.movie.movie_item
+		item: Spice.movie.movie_item,
+		detail: Spice.movie.movie_detail
+	    }
+	});
+
+	// Convert minutes to hr. min. format.
+	// e.g. {{time 90}} will return 1 hr. 30 min.
+	Handlebars.registerHelper("time", function(runtime) {
+	    var hour = 0,
+                minute = 0;
+
+	    if(runtime) {
+		if(runtime >= 60) {
+		    hour = Math.floor(runtime / 60);
+		    minute = runtime - (hour * 60);
+		} else {
+		    minute = runtime;
+		}
+		hour = hour + ' hr ';
+		minute += ' min';
+		return hour + minute;
 	    }
 	});
     };
