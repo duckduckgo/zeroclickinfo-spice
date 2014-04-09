@@ -63,3 +63,7 @@
 .detail__body--in_theaters .detail__links__btn {
     margin-top: 1em;
 }
+
+.detail__media--movie .detail__media__img {
+    height: 90%;
+}
