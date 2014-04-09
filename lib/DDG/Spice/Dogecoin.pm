@@ -12,7 +12,7 @@ category "conversions";
 
 attribution github => ['https://github.com/cryptospout','Cryptospout'],
             email => ['admin@cryptospout.com','Cryptospout'];
-
+code_url "https://github.com/cryptospout/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RedditSubSearch.pm";
 spice to => 'https://api.prelude.io/last-usd/doge';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
