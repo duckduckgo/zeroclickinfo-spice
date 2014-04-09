@@ -1,6 +1,7 @@
-.tile--c.tile--movie {
+.tile--movie.tile--c {
 	width: 12em;
 }
+
 
 .tile--movie .stars {
 	float: right;
