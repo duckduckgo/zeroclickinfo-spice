@@ -1,0 +1,95 @@
+#spice_timer .btn {
+	height: 75px;
+	width: 75px;
+	border-radius: 37.5px;
+	text-align: center;
+	line-height: 75px;
+	border: 1px solid black;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: #fff;
+	margin-left: 5px;
+	margin-right: 5px;
+	outline: none; /*remove the blue outline in chrome/opera*/
+}
+
+/*remove the dashed line in FF/IE*/
+#spice_timer .btn::-moz-focus-inner {
+	border: 0;
+}
+	
+#spice_timer .btn.start {
+	border-color: #20b84c;
+	background-color: #20b84c;
+	color: white;
+}
+
+#spice_timer .btn.pause {
+	border-color: #ff3908;
+	background-color: #ff3908;
+	color: white;
+}
+
+#spice_timer .btn[disabled] {
+	color: #b4b4b4;
+	border-color: #b4b4b4;
+}
+
+#spice_timer .spice-pane {
+	width: 45%; height: 100%;
+	line-height: 65px;
+	display: inline-block;
+	padding: 2%;
+	border-radius: 2px;
+	text-align: center;
+}
+
+#spice_timer .spice-pane-right {
+	float: right;
+}
+
+#spice_timer .pane-block {
+	height: 100px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#spice_timer .time {
+	text-align: center;
+	font-size: 40px;
+}
+
+#spice_timer .hidden {
+	display: none;
+}
+
+#spice_timer input[type="text"] {
+	width: 70px;
+	margin-top: 10px;
+}
+
+#spice_timer #timer_input {
+	font-size: 40px;
+}
+
+#spice_timer .btn-wrapper {
+	float: right;
+}
+
+#spice_timer #timer_container {
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+/*stack the big time divs if the screen is too narrow*/
+@media screen and (max-width: 420px) {
+	#spice_timer .spice-pane {width: 96%; height: 50px; float: none;}
+	#spice_timer .spice-pane-right {margin-top: 5px;}
+	#spice_timer .btn-wrapper {float:none;}
+	#spice_timer input[type="text"] {margin-top: 0px}
+	#spice_timer #timer_container {height:170px;}
+}
+
+@media screen and (max-width: 320px){
+	#spice_timer .btn {margin-right: 2px; margin-left: 2px;}
+}
