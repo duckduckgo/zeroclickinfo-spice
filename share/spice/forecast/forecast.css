@@ -58,14 +58,14 @@
 		margin-right: -.25em;
 	}
 	
-	.fe_temp_bar {
+	.fe_temp_corner {
 		text-align: right;
 		position: absolute;
 		bottom: 0;
 		right: 0;
 		padding-right: 1em;
 	}
-		.fe_temp_bar h1 { 
+		.fe_temp_corner h1 { 
 			margin-bottom: 0 !important; 
 		}
 		
@@ -127,4 +127,52 @@
 	
 	.fe_alert {
 		margin-left: 0.5em;
+	}
+	
+/* 
+	Mobile-Specific Objects
+*/
+.fe_days {
+	display: block;
+}
+	.fe_day--bar {
+		text-align: center;
+		display: inline-block;
+		min-height: 200px;
+		width: 14.2%;
+	}
+		.fe_day--bar .fe_label {
+			text-transform: uppercase;
+			text-align: center;
+		}
+
+.fe_icon--bar {
+	display: inline-block;
+	margin-top: 2px;
+	height: 26px;
+	width: 26px;
+}
+
+.fe_temp_bar {
+	border-radius: 2em;
+	background-color: #333;
+	margin: 1.25em auto 0;
+	white-space: nowrap;
+	position: relative;
+	width: 1em;
+}
+	.fe_temp_bar .fe_high_temp,
+	.fe_temp_bar .fe_low_temp {
+		font-size: 0.8em;
+		position: absolute;
+		width: 100%;
+		left: 2px;
+	}
+	
+	.fe_temp_bar .fe_high_temp {
+		top: -1em;
+	}
+	
+	.fe_temp_bar .fe_low_temp {
+		bottom: -1em;
 	}

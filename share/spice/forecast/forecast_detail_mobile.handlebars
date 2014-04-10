@@ -1,0 +1,30 @@
+<div class="tile tile--s">
+	<div class="fe_currently {{#if data.alerts}}alert{{/if}}">
+		<h5 class="fe_label"><a href="{{{meta.sourceUrl}}}">Right Now:</a></h5>
+		<div class="fe_current-wrap">
+		{{#with data.current}}
+			<div class="fe_top">
+			  <img class="fe_current_icon" src="{{{imageProxy icon}}}" />
+			  <h1 class="fe_temp">{{{temp}}}</h1>
+			</div>
+			<div class="fe_bottom">
+				{{#if summary}}<h6 class="fe_topline"><span class="fe_summary {{summaryClass}}">{{{summary}}}</span></h6>{{/if}}
+				{{#if wind}}<h6 class="fe_wind">{{{wind}}}</h6>{{/if}}
+			</div>
+		{{/with}}
+		</div>
+    </div>
+</div>
+<div class="fe_days">
+	{{#each data.daily}}
+		<div class="fe_day--bar">
+			<h5 class="fe_label"><a href="{{{meta.sourceUrl}}}">{{{day}}}:</a></h5>
+			<img class="fe_icon--bar" src="{{{imageProxy icon}}}" />
+
+			<div class="fe_temp_bar" style="top: {{tempBar.top}};height: {{tempBar.height}}">
+				<span class="fe_high_temp">{{{highTemp}}}</span>
+				<span class="fe_low_temp">{{{lowTemp}}}</span>
+			</div>
+		</div>
+	{{/each}}
+</div>

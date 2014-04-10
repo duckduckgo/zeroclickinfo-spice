@@ -1,6 +1,6 @@
 function ddg_spice_forecast(r) {
   
-  var weatherData = {}, spiceData;
+  var weatherData = {}, spiceData, spiceView;
   
   // Exit if we've got a bad forecast
   if(!r || !r.hourly || !r.hourly.data || !r.daily || !r.daily.data || !r.flags['ddg-location']) {
@@ -147,7 +147,7 @@ function ddg_spice_forecast(r) {
   // Build the list of days
   var build_daily = function(f) {
 	var dailyObj = [],
-		day_strs = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+		day_strs = [],
 		today = new Date(),
 		today_i = today.getDay(),
 		month_i = today.getMonth(),
@@ -160,6 +160,12 @@ function ddg_spice_forecast(r) {
 		high_temp = -Infinity,
 		low_temp = Infinity;
         
+        if (!is_mobile) {
+            day_strs = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        } else {
+            day_strs = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        }
+        
     // find weekly high and low temps
     for(var i = 0; i < num_days; i++) {
         day = days[i];
@@ -171,7 +177,7 @@ function ddg_spice_forecast(r) {
         }
     }
     // figure out the temp span now that we have highs and lows
-    temp_span = high_temp - low_temp,
+    temp_span = high_temp - low_temp;
 
     // store daily values
     for(var i = 0,tmp_date; i < num_days; i++) (function(i) {
@@ -224,9 +230,12 @@ function ddg_spice_forecast(r) {
   // structure the data differently for mobile and desktop views
   if (is_mobile) {
     spiceData = weatherData;
+    spiceView = 'Detail';
   } else {
     spiceData = [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]];
+    spiceView = 'Tiles';
   }
+  console.log(spiceData);
   
   // Render/Display
     Spice.add({
@@ -245,7 +254,7 @@ function ddg_spice_forecast(r) {
             variableTileWidth: true
         },
 
-        view: 'Tiles',
+        view: spiceView,
 
         templates: {
             item: Spice.forecast.forecast_item,
