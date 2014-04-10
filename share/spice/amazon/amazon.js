@@ -10,8 +10,12 @@ function ddg_spice_amazon(apiResult) {
         var numLeft = items.length;
 
         var onGotRatingsData = function(r,s,x){
-            // add the ratings data:
-            this.ratingData = r;
+
+            if (r.stars.match(/stars-(\d)-(\d)/)) {
+                console.log("rating: %s.%s", RegExp.$1, RegExp.$2);
+                this.rating = RegExp.$1 + "." + RegExp.$2;
+            }
+            this.reviewCount = r.reviews;
 
             // add the products_buy template
             // TODO: this is hacky, can it combine with the Spice.templates?
