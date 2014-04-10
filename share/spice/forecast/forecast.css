@@ -91,7 +91,7 @@
 	}
 
     .fe_label a, .fe_label a:visited {
-		color: #333;
+		color: inherit;
     }
 	
 	/*h1*/.fe_low_temp,
@@ -132,18 +132,60 @@
 /* 
 	Mobile-Specific Objects
 */
+/* ewww */
+.is-mobile .zci--forecast .zci__body {
+	margin-bottom: -1.5em;
+	margin-top: -2em;
+	padding-top: 1px;
+	padding-left: 0;
+}
+
+.fe_current-wrap--mob .fe_currently {
+	margin: -0.5em;
+	width: auto;
+}
+.fe_current-wrap--mob .fe_currently .fe_topline {
+	padding-bottom: 0.5em;
+	margin-bottom: 0.5em;
+}
+	.fe_current-wrap--mob .fe_currently .fe_topline:after {
+		border-bottom-color: #aeaeae;
+	}
+
+.fe_meta {
+	padding-top: 0.125em;
+	color: #696969;
+	float: right;
+}
+	.fe_meta .fe_sep {
+		padding: 0 0.5em;
+	}
+	.fe_meta .fe_more-at {
+		display: inline;
+		font-size: 1em;
+		color: inherit;
+	}
+
 .fe_days {
 	display: block;
+	padding-left: 0.5em;
+	white-space: nowrap;
+	overflow: hidden;
+	overflow-x: auto;
+	min-height: 180px;
 }
 	.fe_day--bar {
 		text-align: center;
 		display: inline-block;
-		min-height: 200px;
-		width: 14.2%;
+		min-height: 180px;
+		min-width: 45px;
+		width: 11.6%;
 	}
 		.fe_day--bar .fe_label {
 			text-transform: uppercase;
 			text-align: center;
+			font-size: 0.9em;
+			color: #696969;
 		}
 
 .fe_icon--bar {
@@ -156,23 +198,24 @@
 .fe_temp_bar {
 	border-radius: 2em;
 	background-color: #333;
-	margin: 1.25em auto 0;
+	margin: 0 auto 3em;
 	white-space: nowrap;
 	position: relative;
-	width: 1em;
+	width: 0.7em;
+	top: 1.5em;
 }
 	.fe_temp_bar .fe_high_temp,
 	.fe_temp_bar .fe_low_temp {
 		font-size: 0.8em;
 		position: absolute;
-		width: 100%;
-		left: 2px;
+		width: 2em;
+		left: -0.5em;
 	}
 	
 	.fe_temp_bar .fe_high_temp {
-		top: -1em;
+		top: -1.5em;
 	}
 	
 	.fe_temp_bar .fe_low_temp {
-		bottom: -1em;
+		bottom: -1.5em;
 	}

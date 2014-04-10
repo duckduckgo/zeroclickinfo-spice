@@ -1,8 +1,9 @@
-<div class="tile tile--s">
-	<div class="fe_currently {{#if data.alerts}}alert{{/if}}">
+<div class="tile--s  fe_current-wrap--mob">
+	<div class="fe_currently {{#if alerts}}alert{{/if}}">
+		<span class="fe_meta">&deg;{{activeUnit}}<span class="fe_sep">|</span>{{{moreAt meta.sourceUrl meta.sourceName className="fe_more-at" noIcon="1"}}}</span>
 		<h5 class="fe_label"><a href="{{{meta.sourceUrl}}}">Right Now:</a></h5>
 		<div class="fe_current-wrap">
-		{{#with data.current}}
+		{{#with current}}
 			<div class="fe_top">
 			  <img class="fe_current_icon" src="{{{imageProxy icon}}}" />
 			  <h1 class="fe_temp">{{{temp}}}</h1>
@@ -16,12 +17,12 @@
     </div>
 </div>
 <div class="fe_days">
-	{{#each data.daily}}
+	{{#each daily}}
 		<div class="fe_day--bar">
-			<h5 class="fe_label"><a href="{{{meta.sourceUrl}}}">{{{day}}}:</a></h5>
+			<h5 class="fe_label"><a href="{{{meta.sourceUrl}}}">{{{day}}}</a></h5>
 			<img class="fe_icon--bar" src="{{{imageProxy icon}}}" />
 
-			<div class="fe_temp_bar" style="top: {{tempBar.top}};height: {{tempBar.height}}">
+			<div class="fe_temp_bar" style="margin-top: {{tempBar.top}}px; height: {{tempBar.height}}px;">
 				<span class="fe_high_temp">{{{highTemp}}}</span>
 				<span class="fe_low_temp">{{{lowTemp}}}</span>
 			</div>

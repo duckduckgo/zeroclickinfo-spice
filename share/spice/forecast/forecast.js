@@ -1,6 +1,6 @@
 function ddg_spice_forecast(r) {
   
-  var weatherData = {}, spiceData, spiceView;
+  var weatherData = {}, spiceData;
   
   // Exit if we've got a bad forecast
   if(!r || !r.hourly || !r.hourly.data || !r.daily || !r.daily.data || !r.flags['ddg-location']) {
@@ -226,16 +226,14 @@ function ddg_spice_forecast(r) {
   weatherData.current = build_currently(r);
   weatherData.alerts = build_alerts(r);
   weatherData.daily = build_daily(r);
+  weatherData.activeUnit = unit_labels[units].temperature;
   
   // structure the data differently for mobile and desktop views
   if (is_mobile) {
     spiceData = weatherData;
-    spiceView = 'Detail';
   } else {
     spiceData = [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]];
-    spiceView = 'Tiles';
   }
-  console.log(spiceData);
   
   // Render/Display
     Spice.add({
@@ -254,7 +252,7 @@ function ddg_spice_forecast(r) {
             variableTileWidth: true
         },
 
-        view: spiceView,
+        view: 'Tiles',
 
         templates: {
             item: Spice.forecast.forecast_item,
