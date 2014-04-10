@@ -189,14 +189,20 @@ function ddg_spice_airlines (api_result) {
 
     // Display the plug-in.
     Spice.add({
-        header1          : onTime() + ": Flight Status for " + flight.Airline.Name + " " + flight.FlightNumber,
+        data: [ { departing: departing, arriving: arriving } ],
         sourceUrl       : "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" + flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber,
         sourceName      : "FlightStats",
         id       : "airlines",
+        name: "Flights",
+        view: "Tiles",
         template_frame   : "twopane",
+        meta: {
+            sourceName: 'FlightStatus',
+            sourceUrl: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" + flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber,
+            itemType: onTime() + ": Flight Status for " + flight.Airline.Name + " " + flight.FlightNumber
+        },
         templates : {
-            left : { template: "airlines", data: departing },
-            right : { template: "airlines", data: arriving },
+            item: Spice.airlines.item
         },
         
         
