@@ -146,19 +146,34 @@ function ddg_spice_forecast(r) {
   
   // Build the list of days
   var build_daily = function(f) {
-	var dailyObj = [];
-	//$daily_container = $container.find('.fe_daily')
-    //$daily_container.empty()
-    
-	var day_strs = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+	var dailyObj = [],
+		day_strs = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 		today = new Date(),
 		today_i = today.getDay(),
 		month_i = today.getMonth(),
 		date_i = today.getDate(),
 		days = f.daily.data,
 		num_days = Math.max(6, days.length),
-		day;
-   
+		day,
+		temp_span,
+		max_temp_height = 82,
+		high_temp = -Infinity,
+		low_temp = Infinity;
+        
+    // find weekly high and low temps
+    for(var i = 0; i < num_days; i++) {
+        day = days[i];
+        if(day.temperatureMax > high_temp) {
+            high_temp = day.temperatureMax;
+        }
+        if(day.temperatureMin < low_temp) {
+            low_temp = day.temperatureMin;
+        }
+    }
+    // figure out the temp span now that we have highs and lows
+    temp_span = high_temp - low_temp,
+
+    // store daily values
     for(var i = 0,tmp_date; i < num_days; i++) (function(i) {
 	  dailyObj[i] = days[i];
 	  day = days[i];
@@ -170,6 +185,10 @@ function ddg_spice_forecast(r) {
       dailyObj[i].highTemp = Math.round(day.temperatureMax)+'&deg;';
       dailyObj[i].lowTemp = Math.round(day.temperatureMin)+'&deg;';
       dailyObj[i].icon = get_skycon(skycon_type(days[i].icon));
+      dailyObj[i].tempBar = {
+        height: max_temp_height * (day.temperatureMax - day.temperatureMin) / temp_span,
+        top: max_temp_height * (high_temp - day.temperatureMax) / temp_span
+      };
 	  
     })(i);
 	
@@ -229,7 +248,8 @@ function ddg_spice_forecast(r) {
         view: 'Tiles',
 
         templates: {
-            item: Spice.forecast.forecast_item
+            item: Spice.forecast.forecast_item,
+            detail_mobile: Spice.forecast.forecast_detail_mobile
         }
 
     });
