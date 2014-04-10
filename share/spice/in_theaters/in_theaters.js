@@ -19,12 +19,13 @@
 		itemType: 'Now Showing'
 	    },
 	    normalize: function(o) {
-		// The critic's score ranges from 0 to 100, but the helper function starRating
-		// expects a range between 0 to 5.
 		o.ratings.normalized = o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0;
-		o.ratings.runtime = o.ratings.runtime >= 0 ? o.ratings.runtime : 0;
+		// If the critics_score is -1. Set it to zero so that we can easily check in the template.
+		if(o.ratings.critics_score === -1) {
+		    o.ratings.critics_score = 0;
+		}
 
-		return o;
+		return {ratings: o.ratings};
 	    },
 	    templates: {
 		item: Spice.in_theaters.in_theaters,
