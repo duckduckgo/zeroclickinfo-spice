@@ -1,7 +1,10 @@
-<<<<<<< HEAD
 .tile--in_theaters .tile__body {
     padding: 0.8em 1em;
     font-family: "ProximaNova";
+}
+
+.tile--in_theaters.tile--c {
+    width: 12em;
 }
 
 .tile--in_theaters .tile__title {
@@ -13,7 +16,7 @@
 }
 
 .tile--in_theaters .tile__media {
-    height: 9.5em;
+    height: 14em;
 }
 
 .tile--in_theaters .tile__media__img {
@@ -59,4 +62,8 @@
 
 .detail__body--in_theaters .detail__links__btn {
     margin-top: 1em;
+}
+
+.detail__media--movie .detail__media__img {
+    height: 90%;
 }
