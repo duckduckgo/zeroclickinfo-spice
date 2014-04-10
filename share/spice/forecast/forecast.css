@@ -142,7 +142,11 @@
 
 .fe_current-wrap--mob .fe_currently {
 	margin: -0.5em;
+	height: 14.25em;
 	width: auto;
+}
+.fe_current-wrap--mob .fe_current-wrap {
+	margin-top: 0.5em;
 }
 .fe_current-wrap--mob .fe_currently .fe_topline {
 	padding-bottom: 0.5em;
@@ -150,6 +154,10 @@
 }
 	.fe_current-wrap--mob .fe_currently .fe_topline:after {
 		border-bottom-color: #aeaeae;
+	}
+	
+	.fe_current-wrap--mob .fe_bottom {
+		font-size: 1em;
 	}
 
 .fe_meta {
@@ -168,20 +176,22 @@
 
 .fe_days {
 	display: block;
-	padding-left: 0.5em;
+	padding-left: 0.6em;
 	white-space: nowrap;
 	overflow: hidden;
 	overflow-x: auto;
-	min-height: 180px;
+	min-height: 150px;
+	-webkit-overflow-scrolling: touch;
 }
 	.fe_day--bar {
 		text-align: center;
 		display: inline-block;
-		min-height: 180px;
-		min-width: 45px;
+		min-height: 150px;
+		min-width: 48px;
 		width: 11.6%;
 	}
 		.fe_day--bar .fe_label {
+			padding-top: 0;
 			text-transform: uppercase;
 			text-align: center;
 			font-size: 0.9em;

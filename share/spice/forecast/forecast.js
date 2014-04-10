@@ -156,7 +156,7 @@ function ddg_spice_forecast(r) {
 		num_days = Math.max(6, days.length),
 		day,
 		temp_span,
-		max_temp_height = 82,
+		max_temp_height = 65,
 		high_temp = -Infinity,
 		low_temp = Infinity;
         
