@@ -1,18 +1,29 @@
-function ddg_spice_alternative_to(api_result) {
+(function(env) {
     "use strict";
 
-    if(!api_result || !api_result.Items || api_result.Items.length === 0) {
-        return;
-    }
+    var script = $('[src*="/js/spice/alternative_to/"]')[0];
+    var source = $(script).attr("src");
+    var query = source.match(/alternative_to\/([^\/]*)/)[1];
 
-    console.log(api_result);
-    Spice.add({
-        data                     : api_result.Items,
-        sourceName              : 'AlternativeTo',
-        sourceUrl               : api_result.Url,
-        id               : 'alternative_to',
-        templates         : {
-            item: Spice.alternative_to.alternative_to,
-        },
-    });
-}
+    env.ddg_spice_alternative_to = function(api_result) {
+	Spice.add({
+	    id: 'alternative_to',
+	    name: 'Alternative Software',
+	    data: api_result.Items,
+	    meta: {
+		searchTerm: decodeURIComponent(query),
+		itemType: 'Alternatives ',
+		sourceUrl: 'http://alternativeto.net/',
+		sourceName: 'AlternativeTo',
+		sourceIcon: true
+	    },
+	    normalize: function(o) {
+		return { Platforms: o.Platforms.join(", ") };
+	    },
+	    templates: {
+		item: Spice.alternative_to.alternative_to,
+		detail: Spice.alternative_to.alternative_to_details
+	    }
+	});
+    };
+}(this));
