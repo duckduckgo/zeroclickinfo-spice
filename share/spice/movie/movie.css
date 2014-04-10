@@ -4,6 +4,7 @@
 
 .tile--movie .tile__title {
     font-size: 1.2em;
+    margin-bottom: 0.4em;
 }
 
 .tile--movie .stars {
