@@ -6,7 +6,6 @@
 //
 // Commands:
 // american airlines 102 - will show details about the flight.
-
 function ddg_spice_airlines (api_result) {
     "use strict";
 
@@ -36,8 +35,6 @@ function ddg_spice_airlines (api_result) {
     } else {
         flight = api_result.flight;
     }
-
-    console.log(flight[0]);
 
     // Parse string, and return the date (either arrival or departure date).
     var getDateFromString = function(date) {
@@ -173,10 +170,11 @@ function ddg_spice_airlines (api_result) {
         return STATUS[flight.StatusCode];
     };
 
+    // array of flights 
     var results = [];
 
+    // package up the flights into the result array
     for(var i in flight){
-        // Pre-compute the departure and arrival dates.
         var departureDate = getDateFromString(flight[i].ActualGateDepartureDate || flight[i].EstimatedGateDepartureDate || flight[i].DepartureDate);
         var arrivalDate = getDateFromString(flight[i].ActualGateArrivalDate || flight[i].EstimatedGateArrivalDate || flight[i].ArrivalDate);
         var departing = {
@@ -196,8 +194,6 @@ function ddg_spice_airlines (api_result) {
         results.push({departing: departing, arriving: arriving});
     }
 
-    console.log(results);
-
     // Display the plug-in.
     Spice.add({
         data: results,
@@ -214,8 +210,6 @@ function ddg_spice_airlines (api_result) {
         templates : {
             item: Spice.airlines.item,
             detail: Spice.airlines.item
-        },
-        
-        
+        }, 
     });
 };
