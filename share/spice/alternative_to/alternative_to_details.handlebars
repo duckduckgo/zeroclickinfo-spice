@@ -1,3 +1,22 @@
-{{#rt}} <a href="{{Url}}">{{Name}}</a> <span class="likes">({{Votes}} likes)</span>{{/rt}}
-{{#rd "Description"}} {{{ShortDescription}}}{{/rd}}
-{{#rd "Platforms"}} {{#concat Platforms sep=", " conj=" and "}}{{this}}{{/concat}}{{/rd}}
+<div class="detail__body  detail__body--alternative_to">
+    <div class="detail__body__content">
+        <h5 class="detail__title"><a href='Url}}' title="{{Name}}">{{Name}}</a></h5>
+        <div class="detail__desc">
+            <p class="detail__source">
+              {{Votes}} likes
+              <span class="detail__separator"> | </span>
+              <span class="detail__cooking-time">{{License}}</span>
+            </p>
+            <p>
+              <strong>Platforms:</strong> {{Platforms}}
+            </p>
+            <p>
+              {{ellipsis ShortDescription 200}}
+            </p>
+            <a href="{{Url}}" class="detail__links__btn">
+                <img class="btn__icon" src="{{imageProxy IconUrl}}" />
+                More Information
+            </a>
+        </div>
+    </div>
+</div>
