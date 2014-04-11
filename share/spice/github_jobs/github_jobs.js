@@ -16,7 +16,6 @@
             + encodeURIComponent(jobs['description'])
             + "&location=" +  encodeURIComponent(jobs['location']);
 
-	console.log(api_result);
 	Spice.add({
             id: 'github_jobs',
             name: 'Jobs',
