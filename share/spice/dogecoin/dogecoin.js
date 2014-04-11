@@ -8,8 +8,8 @@ function ddg_spice_dogecoin(api_result) {
    function getRates(type){
         var low = 0;
         var high = 0;
-        api_result.orders.forEach(function(entry) {
-            if(entry.type === type){
+        for(var i = 0; i < api_result.orders.length; i++){
+		   var entry = api_result.orders[i];		   if(entry.type === type){
                 var temp = parseFloat(entry.rate);
                 if(temp > high){
                     high = temp;
@@ -18,7 +18,7 @@ function ddg_spice_dogecoin(api_result) {
                     low = temp;
                 }
             }
-        });    
+        }    
         return {high:high,low:low};
     }
     
