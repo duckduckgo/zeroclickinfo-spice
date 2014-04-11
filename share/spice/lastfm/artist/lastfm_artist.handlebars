@@ -1,15 +1,11 @@
-{{#if this.display}}
-    {{#if artist.bio.summary}}
-        <div>
-            <span id="some">{{snippet artist.bio.summary "some"}}</span>
-            <a id="expand" href="javascript:;">
-                <span>More...</span>
-            </a>
-            <span id="all">{{snippet artist.bio.summary "all"}}</span>
-        </div>
-    {{/if}}
-{{/if}}
-<div>
-    <i>Similar to:</i>
-    {{#list artist.similar.artist}}<a href="{{this.url}}">{{this.name}}</a>{{/list}}
+<div class="zci__img-wrap">
+    <img src="{{imageProxy image}}" alt="{{name}}" class="zci__img" />
+</div>
+<div class="zci__body">
+  <h5 class="zci__header"><a href='{{url}}' title="{{name}}">{{name}}</a></h5>
+  <div>
+    <p>
+      {{ellipsis bio.summary 200}}
+    </p>
+  </div>
 </div>

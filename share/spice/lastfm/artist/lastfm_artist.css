@@ -1,7 +1,10 @@
-span#all {
-	display: none;
+.detail__media--lastfm {
+    width: 25%;
+    margin-right: 3em;
+    text-align: center;
+    max-height: 10em;
 }
 
-a#expand {
-	color: rgb(119, 119, 119); font-size: 11px;
+.detail__media--lastfm .detail__media__img {
+    margin: 0;
 }
