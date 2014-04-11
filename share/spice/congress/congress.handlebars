@@ -4,26 +4,27 @@
         <a href="/?q={{get_name}}">
     {{/if}}
 
-    {{get_name}} </a> ({{get_party}}){{#if district}},{{else}}{{#if term_end}},{{/if}}{{/if}}
-
+    {{get_name}} </a> ({{get_party}})<div class="congress_mobile congress_term">{{#if district}},{{else}}{{#if term_end}},{{/if}}{{/if}}</div>
+   
     {{#if district}} 
-        District: {{district}}{{#if term_end}} - {{/if}}
+     <div class="congress_mobile congress_district">District: {{district}} </div><div class="congress_mobile congress_term">{{#if term_end}} - {{/if}} </div>
     {{/if}}
+
     
     {{#if term_end}}
-        {{get_date}}
+      <div class="congress_mobile congress_term">  {{get_date}} </div>
     {{/if}}
-    
-     <br>
+
+    <br>
 
     {{#if phone}}
-        Phone: {{phone}}{{#if twitter_id}},{{else}}{{#if facebook_id}},{{/if}}{{/if}}
+        Phone: {{phone}}<div class="congress_mobile congress_twitter">{{#if twitter_id}},{{else}}{{#if facebook_id}},{{/if}}{{/if}}</div>
     {{/if}}
     
     {{#if twitter_id}}
-        <a class="link" href="https://www.twitter.com/{{twitter_id}}">@{{twitter_id}}</a>{{#if facebook_id}},{{/if}}
+        <a class="link" href="https://www.twitter.com/{{twitter_id}}">@{{twitter_id}}</a>{{#if facebook_id}}<div class="congress_mobile congress_facebook">,</div>{{/if}}
     {{/if}}
 
     {{#if facebook_id}}
-        <a class="link" href="https://www.facebook.com/{{facebook_id}}">Facebook</a>
+        <a class="link congress_mobile congress_facebook" href="https://www.facebook.com/{{facebook_id}}">Facebook</a>
     {{/if}}

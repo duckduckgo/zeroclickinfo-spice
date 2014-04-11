@@ -5,22 +5,34 @@ function ddg_spice_congress(api_result) {
         return;
     }
     
-    var state = api_result.results[0].state_name;
-    var chamber = api_result.results[0].chamber;
+    var query = getChamber(DDG.get_query().toLowerCase());
+
+    // location search returns a list of both senate and house members
+    // figure out which the user searched for and push those member
+    // to the result array.
+    var results = [];
+    for(var e in api_result.results){
+        if(api_result.results[e].chamber == query){
+            results.push(api_result.results[e]);
+        }
+    }
+
+    var state = results[0].state_name;
+    var chamber = results[0].chamber;
 
     // sort by district for House members
     if(chamber == 'house')
-        api_result.results = sortDistrict(api_result.results);
+        results = sortDistrict(results);
 
     Spice.render({
-        data             : api_result.results,
+        data             : results,
         header1          : 'Members of the U.S. ' + capitalize(chamber) + ' ' + '(' + state + ')',
         source_url       : "https://www.govtrack.us/congress/members/"+state,
         source_name      : 'govtrack.us',
 
         template_frame   : 'list',
         template_options: {
-            items: api_result.results, 
+            items: results, 
             template_item: "congress",
             show: 3,
             type: 'ul'
@@ -45,6 +57,15 @@ function ddg_spice_congress(api_result) {
         });
     }
 
+    // return the chamber from the search query
+    function getChamber(string){
+        //matches senate, senator
+        if(string.indexOf("senat") != -1)
+            return 'senate';
+        // matches rep, represenative(s), and house
+        if(string.indexOf("rep") !== -1 || string.indexOf("house") != -1)
+            return 'house';
+    }
 }
 
 /*******************************
