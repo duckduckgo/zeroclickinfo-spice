@@ -14,6 +14,9 @@
     padding-bottom: 0;
     margin-bottom: 0;
 }
+	.is-mobile .tile--recipe .tile__title {
+		height: 2.7em;
+	}
 
 .tile--recipe .tile__ingredients {
     margin-bottom: 0.75em;
@@ -27,6 +30,9 @@
 .tile--recipe .tile__media {
     height: 9.5em;
 }
+	.is-mobile .tile--recipe .tile__media {
+		height: 7.5em;
+	}
 
 .tile--recipe .tile__media__img {
     margin-top: -20%;
@@ -43,6 +49,13 @@
     margin-right: 1em;
     text-align: center;
 }
+	.is-mobile .detail .detail__media.detail__media--recipe {
+		max-height: 40%;
+		top: 0;
+	}
+	.is-mobile .detail .detail__body.detail__body--recipe {
+		top: 40%;
+	}
 
 .tileview--grid .detail__media--recipe {
     text-align: center;
@@ -94,6 +107,11 @@
 .detail__flavors {
     width: 70%;
 }
+	@media only screen and (max-height: 580px) {
+		.is-mobile .detail .detail__flavors {
+			display: none;
+		}
+	}
 
 .detail__flavors__name {
     display: inline-block;
