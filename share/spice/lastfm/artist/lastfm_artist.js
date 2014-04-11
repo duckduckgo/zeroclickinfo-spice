@@ -1,6 +1,23 @@
 (function(env) {
-    env.ddg_spice_lastfm_artist_all =  function(api_result) {
-	console.log(api_result);
+    env.ddg_spice_lastfm_artist_all = function(api_result) {
+	Spice.add({
+	    id: 'lastfm',
+	    name: 'Last.fm',
+	    data: api_result.artist,
+	    meta: {
+		sourceName: 'Last.fm',
+		sourceUrl: api_result.artist.url
+	    },
+	    normalize: function(o) {
+		o.image = o.image[3]["#text"];
+		o.bio.summary = DDG.strip_html(o.bio.summary);
+
+		return o;
+	    },
+	    templates: {
+		detail: Spice.lastfm_artist.lastfm_artist
+	    }
+	});
     };
 }(this));
 
