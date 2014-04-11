@@ -11,7 +11,7 @@
         if (api_response.module && api_response.module.length > 0 && api_response.module[0].associated_pod) {
             link = "module/" + api_response.module[0].associated_pod;
         }
-        console.log(api_response);
+
         api_response.sourceUrl = 'https://metacpan.org/' + link;
         api_response.sourceName = "MetaCPAN";
 
