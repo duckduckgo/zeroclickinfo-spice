@@ -1,42 +1,47 @@
-function ddg_spice_github_jobs(api_result) {
-    "use strict";
+(function(env) {
+    env.ddg_spice_github_jobs = function(api_result) {
+	"use strict";
 
-    if (api_result.length == 0) {
-      return;
-    }
+	if (api_result.length == 0) {
+	    return;
+	}
 
-    var jobs = api_result;
-    var query = DDG.get_query();
-    var re = /(?:\s*(?:i\s+|we\s+)?(?:need|want|deserve|seek|get)\s+(?:an?\s+)?)?(?:(.+)\s+)(?:jobs?|work|employment)(?:\s+(?:in\s+)?(.+))?/;
-    jobs['description'] = query.replace(re, "$1");
-    jobs['location'] = query.replace(re, "$2");
+	var jobs = api_result;
+	var query = DDG.get_query();
+	var re = /(?:\s*(?:i\s+|we\s+)?(?:need|want|deserve|seek|get)\s+(?:an?\s+)?)?(?:(.+)\s+)(?:jobs?|work|employment)(?:\s+(?:in\s+)?(.+))?/;
+	jobs['description'] = query.replace(re, "$1");
+	jobs['location'] = query.replace(re, "$2");
+	
+	var sourceUrl = 'https://jobs.github.com/positions?description='
+            + encodeURIComponent(jobs['description'])
+            + "&location=" +  encodeURIComponent(jobs['location']);
 
-    var sourceUrl = 'https://jobs.github.com/positions?description='
-                            + encodeURIComponent(jobs['description'])
-                            + "&location=" +  encodeURIComponent(jobs['location']);
+	console.log(api_result);
+	Spice.add({
+            id: 'github_jobs',
+            name: 'Jobs',
+	    
+            data: api_result,
+	    
+            meta: {
+		sourceUrl: sourceUrl,
+		sourceName: 'GitHub',
+		sourceIcon: true,
+		itemType: 'GitHub Jobs'
+            },
 
-    var desc = jobs['description'] + ' Jobs';
-    if(jobs['location']){
-        desc += ' in ' + jobs['location'];
-    }
+            templates: {
+		item: Spice.github_jobs.item
+            }
+	});
+    };
 
-    Spice.add({
-        id: 'github_jobs',
-        name: 'Jobs',
+    Handlebars.registerHelper("formatDate", function(created_at) {
+	var date = new Date(created_at);
+	var months = ["January", "February", "March", "April", "May", "June", "July", 
+		      "August", "September", "October", "November", "December"];
+	var month = months[date.getUTCMonth()];
 
-        data: api_result,
-
-        meta: {
-            count: api_result.length,
-            count_meta: desc,
-            sourceUrl: sourceUrl,
-            sourceName: 'GitHub',
-            sourceIcon: true
-        },
-
-        templates: {
-            item: Spice.github_jobs.item,
-            detail: Spice.github_jobs.item
-        }
+	return month + " " + date.getUTCDate() + ", " + date.getUTCFullYear();
     });
-}
+}(this));
