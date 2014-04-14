@@ -252,8 +252,6 @@ function ddg_spice_forecast(r) {
             variableTileWidth: true
         },
 
-        view: 'Tiles',
-
         templates: {
             item: Spice.forecast.forecast_item,
             detail_mobile: Spice.forecast.forecast_detail_mobile
