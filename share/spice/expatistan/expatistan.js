@@ -12,7 +12,7 @@
             data: api_result,
             meta: {
                 sourceUrl: api_result.sourceUrl,
-                sourceName: 'Expatistan',
+                sourceName: 'Expatistan'
             },
             templates: {
                 detail: Spice.expatistan.detail
