@@ -2,8 +2,8 @@
     "use strict";
 
     env.ddg_spice_congress = function(api_result) {
-	
-	if (!api_result || !api_result.results || api_result.results.length === 0) {
+    
+    if (!api_result || !api_result.results || api_result.results.length === 0) {
         return;
     }
 
@@ -14,23 +14,23 @@
     if(chamber == 'house')
         api_result.results = sortDistrict(api_result.results);
 
-	Spice.add({
-		id: 'congress',
-		name: 'Congress',
-		data: api_result.results,
+    Spice.add({
+        id: 'congress',
+        name: 'Congress',
+        data: api_result.results,
 
-		meta: {
-			sourceName: 'govtrack.us',
-			total: api_result.results.length,
-			sourceUrl: "https://www.govtrack.us/congress/members/"+state,
+        meta: {
+            sourceName: 'govtrack.us',
+            total: api_result.results.length,
+            sourceUrl: "https://www.govtrack.us/congress/members/"+state,
             itemType: 'U.S. ' + DDG.capitalize(chamber) + ' ' + '(' + state + ')'
-		},
+        },
 
-		templates: {
-			item: Spice.congress.item
-		}
+        templates: {
+            item: Spice.congress.item
+        }
 
-	});
+    });
     
    };
 
