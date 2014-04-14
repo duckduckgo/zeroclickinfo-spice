@@ -9,10 +9,10 @@
         Spice.add({
             id: "expatistan",
             name: "Expatistan",
-            data             : api_result,
+            data: api_result,
             meta: {
-                sourceUrl       : api_result.sourceUrl,
-                sourceName      : 'Expatistan',
+                sourceUrl: api_result.sourceUrl,
+                sourceName: 'Expatistan',
             },
             templates: {
                 detail: Spice.expatistan.detail
