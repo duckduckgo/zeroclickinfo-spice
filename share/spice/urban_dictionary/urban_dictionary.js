@@ -17,13 +17,16 @@
     Spice.add({
       id: "urban_dictionary",
       name: "Urban Dictionary",
-      data: { definition: definition,
+      data: { 
+        definition: definition,
         itemType: word + " (Urban Dictionary)",
+      },
+      meta: {
         sourceUrl       : 'http://www.urbandictionary.com/define.php?term=' + word,
         sourceName      : 'Urban Dictionary'
       },
       templates: {
-        detail: Spice.urban_dictionary.detail,
+        detail: Spice.urban_dictionary.detail
       }
     });
   }
