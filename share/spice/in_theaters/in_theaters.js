@@ -29,6 +29,9 @@
 		//detail: Spice.in_theaters.in_theaters_detail
 	    }
 	});
+
+	var in_theaters = Spice.getDOM('in_theaters');
+	$(in_theaters).find('.tile__body').addClass('opt');
     }
 
     // Convert minutes to hr. min. format.
