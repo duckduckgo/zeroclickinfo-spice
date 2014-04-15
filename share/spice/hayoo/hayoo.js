@@ -2,7 +2,7 @@
 	env.ddg_spice_hayoo = function(results) {
 	  "use strict";
 
-	  if (!(results || results.hits > 0)) {
+	  if (!(results && results.hits > 0)) {
 	    return;
 	  }
 
