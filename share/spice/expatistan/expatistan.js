@@ -11,7 +11,7 @@
             name: "Expatistan",
             data: api_result,
             meta: {
-                sourceUrl: api_result.sourceUrl,
+                sourceUrl: api_result.source_url,
                 sourceName: 'Expatistan'
             },
             templates: {
