@@ -38,3 +38,10 @@ Handlebars.registerHelper('year', function(pubdate) {
     var year = pubdate.substr(0, 4);
     return year;
 });
+
+// Convert full publication date to year only.
+Handlebars.registerHelper('debug', function(res) {
+    "use strict";
+    console.log(res);
+
+});
