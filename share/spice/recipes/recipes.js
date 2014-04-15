@@ -178,7 +178,7 @@ function ddg_spice_recipes(res) {
         */
 
         templates: {
-            item: DDG.templates.basic_image_item,
+            item: 'basic_image_item',
             detail: Spice.recipes.recipes_detail
         }
 
