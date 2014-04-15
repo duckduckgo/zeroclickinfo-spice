@@ -1,31 +1,32 @@
-.tile--in_theaters .tile__body {
+.zci--in_theaters.tile--basic-image .tile__body {
     padding: 0.8em 1em;
     font-family: "ProximaNova";
 }
 
-.tile--in_theaters.tile--c {
+.zci--in_theaters .tile--basic-image.tile--c {
     width: 12em;
 }
 
-.tile--in_theaters .tile__title {
-    font-size: 1.3em;
-    font-weight: 600;
-    height: 1.3em;
-    padding-bottom: 0;
-    margin-bottom: 0;
+.zci_in_theaters .tile--basic-image.tile--c.has-tiles--grid  {
+    width: 12em;
 }
 
-.tile--in_theaters .tile__media {
-    height: 14em;
+.zci--in_theaters .tile--basic-image .tile__media {
+    height: 17.5em;
 }
 
-.tile--in_theaters .tile__media__img {
-    margin-top: -20%;
+.zci--in_theaters .tile--basic-image .tile__media__img {
     min-width: 100%;
+    height: 100%;
+    margin-top: 0;
 }
 
-.tile--in_theaters .tile__source,
-.tile--in_theaters.highlight .tile__source {
+.zci--in_theaters .one-line {
+    float: left;
+}
+
+.tile--basic-image .tile__source,
+.tile--basic-image.highlight .tile__source {
     color: #999;
 }
 
