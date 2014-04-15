@@ -6,7 +6,7 @@
     if (!api_result || !api_result.results || api_result.results.length === 0) {
         return;
     }
-
+    console.log(api_result);
     var state = api_result.results[0].state_name;
     var chamber = api_result.results[0].chamber;
 
