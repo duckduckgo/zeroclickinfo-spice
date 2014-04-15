@@ -25,8 +25,8 @@
 		};
 	    },
 	    templates: {
-		item: DDG.templates.basic_image_item 
-		//detail: Spice.in_theaters.in_theaters_detail
+		item: DDG.templates.basic_image_item,
+		detail: Spice.in_theaters.in_theaters_detail
 	    }
 	});
 
