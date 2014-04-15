@@ -12,7 +12,7 @@
 }
 
 .zci--in_theaters .tile--basic-image .tile__media {
-    height: 17.5em;
+    height: 17.1em;
 }
 
 .zci--in_theaters .tile--basic-image .tile__media__img {
@@ -25,9 +25,18 @@
     float: left;
 }
 
+.zci--in_theaters .tile--basic-image .tile__title {
+    height: 2.5em;
+}
+
 .tile--basic-image .tile__source,
 .tile--basic-image.highlight .tile__source {
     color: #999;
+}
+
+.detail.detail--in_theaters {
+    background-color: #e5e5e5;
+    border-color: #c7c7c7;
 }
 
 .detail__media.detail__media--in_theaters {
@@ -50,10 +59,6 @@
 
 .detail__body--in_theaters .detail__source .stars {
     margin-right: 0;
-}
-
-.detail__body--in_theaters .stars--unrated .star {
-    color: #d0d0d0;
 }
 
 .detail__body--in_theaters .detail__separator {

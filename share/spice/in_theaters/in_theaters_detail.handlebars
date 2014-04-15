@@ -1,5 +1,5 @@
 <div class="detail__media  detail__media--in_theaters">
-    <img src="{{imageProxy posters.detailed}}" alt="{{title}}" class="detail__media__img" />
+    <img src="{{imageProxy image}}" alt="{{title}}" class="detail__media__img" />
 </div>
 <div class="detail__body  detail__body--in_theaters">
     <div class="detail__body__content">
@@ -7,7 +7,7 @@
         <div class="detail__desc">
           <p class="detail__source">
             {{#if ratings.normalized}}
-              {{{starRating ratings.normalized}}}
+              {{{starRating rating}}}
             {{/if}}
             {{#if ratings.critics_score}}
               {{ratings.critics_rating}}: {{ratings.critics_score}}%
