@@ -254,7 +254,8 @@ function ddg_spice_forecast(r) {
 
         templates: {
             item: Spice.forecast.forecast_item,
-            detail_mobile: Spice.forecast.forecast_detail_mobile
+            detail_mobile: Spice.forecast.forecast_detail_mobile,
+            customTile: true
         }
 
     });

@@ -197,10 +197,10 @@ env.ddg_spice_quixey = function(api_result) {
         sort_default: { 'category': 'rating' },
 
         templates: {
-            item: DDG.templates.products_item,
+            item: 'products_item',
             item_variant: 'short',
-            detail: DDG.templates.products_detail,
-            item_detail: DDG.templates.products_item_detail
+            detail: 'products_detail',
+            item_detail: 'products_item_detail'
         }
     });
 
