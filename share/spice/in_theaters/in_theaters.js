@@ -7,7 +7,7 @@
             return;
 	}
 
-	Spice.add({
+ 	Spice.add({
 	    id: 'in_theaters',
 	    name: 'Now Showing',
 	    data: api_result.movies,
@@ -19,17 +19,14 @@
 		itemType: 'Now Showing'
 	    },
 	    normalize: function(o) {
-		o.ratings.normalized = o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0;
-		// If the critics_score is -1. Set it to zero so that we can easily check in the template.
-		if(o.ratings.critics_score === -1) {
-		    o.ratings.critics_score = 0;
-		}
-
-		return {ratings: o.ratings};
+		return { 
+		    rating: o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0,
+		    image: o.posters.detailed
+		};
 	    },
 	    templates: {
-		item: Spice.in_theaters.in_theaters,
-		detail: Spice.in_theaters.in_theaters_detail
+		item: DDG.templates.basic_image_item 
+		//detail: Spice.in_theaters.in_theaters_detail
 	    }
 	});
     }
