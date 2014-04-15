@@ -31,7 +31,7 @@
 	});
 
 	var in_theaters = Spice.getDOM('in_theaters');
-	$(in_theaters).find('.tile__body').addClass('opt');
+	$(in_theaters).find('.tile__body').addClass('is_hidden');
     }
 
     // Convert minutes to hr. min. format.
