@@ -44,16 +44,6 @@
     }
 }(this));
 
-    // Sort based on house member's district
-    function sortDistrict(array){
-        return array.sort(function(a, b){
-            var x = a.district;
-            var y = b.district;
-            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-        });
-    }
-
-}
 
 /*******************************
 Handlebars helpers
