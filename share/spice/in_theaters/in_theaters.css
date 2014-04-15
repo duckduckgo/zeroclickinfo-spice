@@ -3,6 +3,10 @@
     font-family: "ProximaNova";
 }
 
+div.tile__body.is_hidden {
+    display: none;
+}
+
 .zci--in_theaters .tile--basic-image.tile--c {
     width: 12em;
 }
