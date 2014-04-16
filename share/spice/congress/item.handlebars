@@ -15,9 +15,11 @@
     {{/if}}
  
      {{#if phone}}
-       Phone: {{phone}}{{#if twitter_id}},{{else}}{{#if facebook_id}},{{/if}}{{/if}}
+       Phone: {{phone}}
     {{/if}}
-    
+
+     <br>
+
     {{#if twitter_id}}
         <a class="congress_link" href="https://www.twitter.com/{{twitter_id}}">@{{twitter_id}}</a>{{#if facebook_id}},{{/if}}
     {{/if}}
@@ -25,3 +27,4 @@
     {{#if facebook_id}}
         <a class="congress_link" href="https://www.facebook.com/{{facebook_id}}">Facebook</a>
     {{/if}}
+    <br>
