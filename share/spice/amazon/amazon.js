@@ -12,7 +12,6 @@ function ddg_spice_amazon(apiResult) {
         var onGotRatingsData = function(r,s,x){
 
             if (r.stars.match(/stars-(\d)-(\d)/)) {
-                console.log("rating: %s.%s", RegExp.$1, RegExp.$2);
                 this.rating = RegExp.$1 + "." + RegExp.$2;
             }
             this.reviewCount = r.reviews;
