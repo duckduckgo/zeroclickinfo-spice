@@ -17,8 +17,7 @@
                 sourceIconUrl: 'http://icons.duckduckgo.com/ip/www.levelpump.com.ico'
             },
             templates: {
-                detail: Spice.word_map.detail,
-                wrap_detail: 'base_spice_detail'
+                detail: Spice.word_map.detail
             }
         });
     }
