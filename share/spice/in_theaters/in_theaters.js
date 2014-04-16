@@ -16,7 +16,7 @@
 		sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
 		sourceIcon: true,
 		total: api_result.movies,
-		itemType: 'Now Showing'
+		itemType: 'Movies'
 	    },
 	    normalize: function(o) {
 		return { 
