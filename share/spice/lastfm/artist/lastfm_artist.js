@@ -13,16 +13,14 @@
 	    },
 	    normalize: function(o) {
 		return {
-		    content: DDG.strip_html(o.bio.summary),
-		    item: {
-			image: o.image[3]["#text"],
-			title: o.name,
-			meta: o.url
-		    }
+		    summary: DDG.strip_html(o.bio.summary),
+		    image: o.image[3]["#text"],
+		    title: o.name
 		};
 	    },
 	    templates: {
-		detail: 'basic_image_detail'
+		detail: Spice.lastfm_artist.lastfm_artist,
+		wrap_detail: 'basic_image_detail'
 	    }
 	});
 	
