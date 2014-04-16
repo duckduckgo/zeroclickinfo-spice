@@ -2,7 +2,6 @@
     <br>
     <i>Owner</i>: <a href="https://github.com/{{owner}}">{{owner}}</a>
     <br>
-    <i>Description</i>: {{description}}
-    <br>
+    {{#if description}}<i>Description</i>: {{description}}<br>{{/if}}
     <i>Activity</i>: last updated {{last_pushed}}, {{watchers}} watching, {{forks}} <a href="{{url}}/network">forks</a> and {{open_issues}} <a href="{{url}}/issues">issues</a>
     <br>
