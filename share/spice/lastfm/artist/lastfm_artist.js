@@ -12,13 +12,17 @@
 		sourceUrl: api_result.artist.url
 	    },
 	    normalize: function(o) {
-		o.image = o.image[3]["#text"];
-		o.bio.summary = DDG.strip_html(o.bio.summary);
-
-		return o;
+		return {
+		    content: DDG.strip_html(o.bio.summary),
+		    item: {
+			image: o.image[3]["#text"],
+			title: o.name,
+			meta: o.url
+		    }
+		};
 	    },
 	    templates: {
-		detail: Spice.lastfm_artist.lastfm_artist
+		detail: 'basic_image_detail'
 	    }
 	});
 	
