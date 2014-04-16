@@ -20,7 +20,7 @@
 		};
 	    },
 	    templates: {
-		item: DDG.templates.basic_image_item,
+		item: 'basic_image_item',
 		detail: Spice.movie.movie_detail
 	    },
 	    relevancy: {
