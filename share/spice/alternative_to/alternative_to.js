@@ -5,6 +5,13 @@
     var source = $(script).attr("src");
     var query = source.match(/alternative_to\/([^\/]*)/)[1];
 
+    function get_platform(Platforms) {
+	if(Platforms.length > 1) {
+	    return "Multiplatform";
+	}
+	return Platforms[0];
+    }
+    
     env.ddg_spice_alternative_to = function(api_result) {
 	Spice.add({
 	    id: 'alternative_to',
@@ -20,7 +27,7 @@
 	    normalize: function(o) {
 		return { 
 		    title: o.Name,
-		    Platforms: o.Platforms.join(", ") 
+		    Platforms: get_platform(o.Platforms)
 		};
 	    },
 	    templates: {
