@@ -2,7 +2,7 @@
     env.ddg_spice_github = function(api_result) {
         "use strict";
 
-        if (!api_result || !api_result.meta.status === '200') {
+        if (!api_result || !api_result.meta.status === 200) {
           return;
         }
 
@@ -19,7 +19,7 @@
                 total: results.length,
                 itemType: query + " (GitHub)",
                 sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
-                sourceName: 'GitHub',
+                sourceName: 'GitHub'
             },
             templates: {
                 item: Spice.github.item
