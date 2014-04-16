@@ -1,10 +1,6 @@
 (function(env) {
     "use strict";
 
-    var script = $('[src*="/js/spice/alternative_to/"]')[0];
-    var source = $(script).attr("src");
-    var query = source.match(/alternative_to\/([^\/]*)/)[1];
-
     function get_platform(Platforms) {
 	if(Platforms.length > 1) {
 	    return "Multiplatform";
@@ -18,7 +14,7 @@
 	    name: 'Alternative Software',
 	    data: api_result.Items,
 	    meta: {
-		searchTerm: decodeURIComponent(query),
+		searchTerm: api_result.Name,
 		itemType: 'Alternatives ',
 		sourceUrl: 'http://alternativeto.net/',
 		sourceName: 'AlternativeTo',
