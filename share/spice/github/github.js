@@ -13,7 +13,7 @@
 
         Spice.add({
             id: "gihub",
-            name: "Github",
+            name: "GitHub",
             data: results,
             meta: {
                 total: results.length,
