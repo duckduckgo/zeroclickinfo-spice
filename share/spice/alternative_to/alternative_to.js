@@ -6,9 +6,6 @@
     var query = source.match(/alternative_to\/([^\/]*)/)[1];
 
     env.ddg_spice_alternative_to = function(api_result) {
-	console.log("YO");
-	console.log(api_result);
-
 	Spice.add({
 	    id: 'alternative_to',
 	    name: 'Alternative Software',
