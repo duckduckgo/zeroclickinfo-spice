@@ -9,14 +9,16 @@
         Spice.add({
             id: 'word_map',
             name: 'Word Map',
-            data             	: api_result,
+            data: api_result,
             meta: {
                 itemType: "Related to " + api_result.entry + " (Levelpump)",
                 sourceUrl: 'http://levelpump.com/graph-dictionary.php?mailLink=' + encodeURIComponent(api_result.encrypt_entry) + '&from=ddg',
-                sourceName: 'Levelpump'
+                sourceName: 'Levelpump',
+                sourceIconUrl: 'http://icons.duckduckgo.com/ip/www.levelpump.com.ico'
             },
             templates: {
-                detail: Spice.word_map.detail
+                detail: Spice.word_map.detail,
+                wrap_detail: 'base_spice_detail'
             }
         });
     }
