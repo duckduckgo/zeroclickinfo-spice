@@ -18,29 +18,34 @@ function ddg_spice_recipes(res) {
                 return null;
             }
 
-            var m = $.extend({}, item);
+            var m = { };    //$.extend({}, item);
 
-            m.recipeName = m.recipeName.replace(/ recipe/i,"");
+            /* item */
+
+            m.title = item.recipeName.replace(/ recipe/i,"");
             m.url = "http://www.yummly.com/recipe/" + m.id;
 
-            m.image = m.imageUrlsBySize['250'];
+            m.image = item.imageUrlsBySize['250'];
+            m.ratingText = item.sourceDisplayName;
 
-            m.cuisine = m.attributes && m.attributes.cuisine && m.attributes.cuisine[0];
+            /* detail */
 
-            if(m.totalTimeInSeconds){
+            m.cuisine = item.attributes && item.attributes.cuisine && item.attributes.cuisine[0];
+
+            if(item.totalTimeInSeconds){
                 m.cookingTime = m.totalTimeInSeconds / 60;
             }
 
-            if(m.ingredients && m.ingredients.length){
-                var searchTermContainsRecipe = rq.match(/recipe/i)
-                    len = m.ingredients.length;
+            if(item.ingredients && item.ingredients.length){
+                var searchTermContainsRecipe = rq.match(/recipe/i),
+                    len = item.ingredients.length;
 
                 if(searchTermContainsRecipe){
                     m.showIngredientsOnTile = true;
                 }
 
-                m.ingredientString = m.ingredients.join(", ");
-                m.ingredientDetails = m.ingredients.map(function(ingredient,i) {
+                m.ingredientString = item.ingredients.join(", ");
+                m.ingredientDetails = item.ingredients.map(function(ingredient,i) {
                     var refinedTerm = (searchTermContainsRecipe) ? query.replace(/ recipe/i,' ' + ingredient + ' recipe') : query + ' ' + ingredient,
                         displayName = ingredient;
 
@@ -55,6 +60,11 @@ function ddg_spice_recipes(res) {
                         url: '?q=' + refinedTerm.replace(/ /g,'+')
                     }
                 });
+
+                // normalization: description for item, ingredientString for custom detail template
+                if (m.showIngredientsOnTile) {
+                    m.description = m.ingredientString;
+                }
             }
 
             m.flavors = sortAndFormatFlavors(m.flavors);
@@ -168,7 +178,7 @@ function ddg_spice_recipes(res) {
         */
 
         templates: {
-            item: Spice.recipes.recipes,
+            item: 'basic_image_item',
             detail: Spice.recipes.recipes_detail
         }
 
