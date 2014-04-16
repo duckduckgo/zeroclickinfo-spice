@@ -25,7 +25,6 @@
 	    },
 	    templates: {
 		item: Spice.alternative_to.alternative_to,
-		detail: Spice.alternative_to.alternative_to_details
 	    }
 	});
     };
