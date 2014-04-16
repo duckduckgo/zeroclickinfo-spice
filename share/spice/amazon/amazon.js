@@ -19,7 +19,7 @@ function ddg_spice_amazon(apiResult) {
 
             // add the products_buy template
             // TODO: this is hacky, can it combine with the Spice.templates?
-            this.products_buy = DDG.templates.products_amazon_buy;
+            this.products_buy = 'products_amazon_buy';
 
             // decrement the numLeft and
             // see if all have returned yet:
@@ -61,9 +61,9 @@ function ddg_spice_amazon(apiResult) {
             },
 
             templates: {
-                item: DDG.templates.products_item,
-                detail: DDG.templates.products_detail,
-                item_detail: DDG.templates.products_item_detail
+                item: 'products_item',
+                detail: 'products_detail',
+                item_detail: 'products_item_detail'
             }
         });
     });
