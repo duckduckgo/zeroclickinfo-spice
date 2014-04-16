@@ -1,28 +1,46 @@
-.tile--in_theaters .tile__body {
+.zci--in_theaters.tile--basic-image .tile__body {
     padding: 0.8em 1em;
     font-family: "ProximaNova";
 }
 
-.tile--in_theaters .tile__title {
-    font-size: 1.2em;
+div.tile__body.is_hidden {
+    display: none;
 }
 
-.tile--in_theaters.tile--c {
+.zci--in_theaters .tile--basic-image.tile--c {
     width: 12em;
 }
 
-.tile--in_theaters .tile__media {
+.zci_in_theaters .tile--basic-image.tile--c.has-tiles--grid  {
+    width: 12em;
+}
+
+.zci--in_theaters .tile--basic-image .tile__media {
     height: 17.1em;
 }
 
-.tile--in_theaters .tile__media__img {
-    width: 100%;
+.zci--in_theaters .tile--basic-image .tile__media__img {
+    min-width: 100%;
     height: 100%;
+    margin-top: 0;
 }
 
-.tile--in_theaters .tile__source,
-.tile--in_theaters.highlight .tile__source {
+.zci--in_theaters .one-line {
+    float: left;
+}
+
+.zci--in_theaters .tile--basic-image .tile__title {
+    height: 2.5em;
+}
+
+.tile--basic-image .tile__source,
+.tile--basic-image.highlight .tile__source {
     color: #999;
+}
+
+.detail.detail--in_theaters {
+    background-color: #e5e5e5;
+    border-color: #c7c7c7;
 }
 
 .detail__media.detail__media--in_theaters {
@@ -45,10 +63,6 @@
 
 .detail__body--in_theaters .detail__source .stars {
     margin-right: 0;
-}
-
-.detail__body--in_theaters .stars--unrated .star {
-    color: #d0d0d0;
 }
 
 .detail__body--in_theaters .detail__separator {
