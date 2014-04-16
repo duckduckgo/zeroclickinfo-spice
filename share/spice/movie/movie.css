@@ -2,17 +2,22 @@
 	width: 12em;
 }
 
+.tile--movie .tile__title {
+    font-size: 1.2em;
+    margin-bottom: 0.4em;
+}
 
 .tile--movie .stars {
 	float: right;
 }
 
 .tile--movie .tile__media {
-	height: 14em;
+	height: 17.1em;
 }
 
 .tile--movie .tile__media__img {
 	width: 100%;
+	height: 100%;
 }
 
 .tile--movie .tile__source,
