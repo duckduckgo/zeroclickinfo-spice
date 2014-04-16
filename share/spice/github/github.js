@@ -22,8 +22,29 @@
                 sourceName: 'GitHub'
             },
             templates: {
-                item: Spice.github.item
+                item: Spice.github.item,
+                detail: Spice.github.item
             }
         });
     }
 }(this));
+
+// Make sure we display only three items.
+Handlebars.registerHelper("last_pushed", function(){
+    "use strict";
+
+    var last_pushed = Math.floor((new Date() - new Date(this.pushed)) / (1000*60*60*24));
+
+    var years_ago = Math.floor(last_pushed / 365);
+    if (years_ago >= 1) {
+        last_pushed = years_ago + " year" + (years_ago == 1 ? "" : "s") + " ago";
+    } else if (last_pushed == 0) {
+        last_pushed = "today";
+    } else if (last_pushed == 1) {
+        last_pushed = "yesterday";
+    } else {
+        last_pushed = last_pushed + " day" + (last_pushed == 1 ? "" : "s") + " ago";
+    }
+
+    return last_pushed;
+});
