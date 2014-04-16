@@ -38,6 +38,11 @@ div.tile__body.is_hidden {
     color: #aaa;
 }
 
+.detail.detail--movie {
+    background-color: #e5e5e5;
+    border-color: #c7c7c7;
+}
+
 .detail__media.detail__media--movie {
     width: 30%;
     margin-right: 1em;
