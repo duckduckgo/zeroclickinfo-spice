@@ -2,7 +2,7 @@
     "use strict";
 
     env.ddg_spice_movie = function(api_result) {
-
+	console.log(api_result);
 	Spice.add({
 	    id: 'movie',
 	    name: 'Movies',
@@ -14,16 +14,13 @@
 		itemType: 'movies'
 	    },
 	    normalize: function(o) {
-		o.ratings.normalized = o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0;
-		// If the critics_score is -1. Set it to zero so that we can easily check in the template.
-		if(o.ratings.critics_score === -1) {
-		    o.ratings.critics_score = 0;
-		}
-
-		return {ratings: o.ratings};
+		return {
+		    rating: o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0,
+		    image: o.posters.detailed
+		};
 	    },
 	    templates: {
-		item: Spice.movie.movie_item,
+		item: DDG.templates.basic_image_item,
 		detail: Spice.movie.movie_detail
 	    },
 	    relevancy: {

@@ -1,28 +1,46 @@
-.tile--movie.tile--c {
-	width: 12em;
+.zci--movie.tile--basic-image .tile__body {
+    padding: 0.8em 1em;
+    font-family: "ProximaNova";
 }
 
-.tile--movie .tile__title {
-    font-size: 1.2em;
-    margin-bottom: 0.4em;
+div.tile__body.is_hidden {
+    display: none;
 }
 
-.tile--movie .stars {
-	float: right;
+.zci--movie .tile--basic-image.tile--c {
+    width: 12em;
 }
 
-.tile--movie .tile__media {
-	height: 17.1em;
+.zci_movie .tile--basic-image.tile--c.has-tiles--grid  {
+    width: 12em;
 }
 
-.tile--movie .tile__media__img {
-	width: 100%;
-	height: 100%;
+.zci--movie .tile--basic-image .tile__media {
+    height: 17.1em;
+}
+
+.zci--movie .tile--basic-image .tile__media__img {
+    min-width: 100%;
+    height: 100%;
+    margin-top: 0;
+}
+
+.zci--movie .one-line {
+    float: left;
+}
+
+.zci--movie .tile--basic-image .tile__title {
+    height: 2.5em;
 }
 
 .tile--movie .tile__source,
 .tile--movie:hover .tile__source {
     color: #aaa;
+}
+
+.detail.detail--movie {
+    background-color: #e5e5e5;
+    border-color: #c7c7c7;
 }
 
 .detail__media.detail__media--movie {
