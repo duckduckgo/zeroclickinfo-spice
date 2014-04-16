@@ -45,8 +45,8 @@ function ddg_spice_octopart (api_result) {
         data: api_result.results,
 
         templates: {
-            item: DDG.templates.products_item,
-            detail: DDG.templates.products_item_detail
+            item:   'products_item',
+            detail: 'products_item_detail'
         },
 
         meta: {

@@ -34,14 +34,21 @@ function ddg_spice_gravatar (api_result) {
     Spice.add({
         data              : api_result,
 		id: "gravatar",
-        header1           : getName(api_result.entry[0]) + " (Gravatar)",
+        name: "Avatar",
         
-        sourceName       : "Gravatar",
-        sourceUrl        : api_result.entry[0].profileUrl,
-        img_m         : api_result.entry[0].thumbnailUrl + ".png",
+        meta: {
+            sourceName       : "Gravatar",
+            sourceUrl        : api_result.entry[0].profileUrl
+        },
+        normalize: function() {
+            return {
+                image         : api_result.entry[0].thumbnailUrl + ".png",
+                title         : getName(api_result.entry[0])
+            };
+        },
         templates: {
-            item: Spice.gravatar.gravatar,
-            detail: Spice.gravatar.gravatar
+            detail: Spice.gravatar.detail,
+            wrap_detail: 'basic_image_detail'
         },
         force_favicon_url : 'http://gravatar.com/favicon.ico'
     });

@@ -3,25 +3,21 @@
     font-family: "ProximaNova";
 }
 
+.tile--in_theaters .tile__title {
+    font-size: 1.2em;
+}
+
 .tile--in_theaters.tile--c {
     width: 12em;
 }
 
-.tile--in_theaters .tile__title {
-    font-size: 1.3em;
-    font-weight: 600;
-    height: 1.3em;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
 .tile--in_theaters .tile__media {
-    height: 14em;
+    height: 17.1em;
 }
 
 .tile--in_theaters .tile__media__img {
-    margin-top: -20%;
-    min-width: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .tile--in_theaters .tile__source,
