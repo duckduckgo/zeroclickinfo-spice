@@ -1,24 +1,28 @@
-function ddg_spice_hayoo(results) {
-  "use strict";
+(function(env) {	
+	env.ddg_spice_hayoo = function(results) {
+	  "use strict";
 
-  if (!results.hits > 0) {
-    return;
-  }
-  var query = DDG.get_query().replace(/\s*hayoo\s*/i, '');
+	  if (!(results && results.hits > 0)) {
+	    return;
+	  }
 
-  Spice.add({
-      data             : results.functions[0],
-      header1          : query + ' (Hayoo!)',
-      sourceUrl       : results.functions[0].uri,
-      sourceName      : 'Hackage',
-      templates: {
-            item: Spice.hayoo.hayoo,
-            detail: Spice.hayoo.hayoo
-        },
-      
-      
-  });
-}
+	  var query = DDG.get_query().replace(/\s*hayoo\s*/i, '');
+
+	  Spice.add({
+	  	id: 'hayoo',
+	  	name: 'Hayoo',
+	  	data: results.functions[0],
+	  	meta: {
+	  		itmeType: query + ' (Hayoo!)',
+		    sourceUrl: results.functions[0].uri,
+		    sourceName: 'Hackage'
+		},
+		templates: {
+	            detail: Spice.hayoo.detail
+	        }    
+	  });
+	}
+}(this));
 
 Handlebars.registerHelper("strip_anchor", function(text) {
   "use strict";

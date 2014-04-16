@@ -25,9 +25,11 @@ function ddg_spice_rand_nums(api_result) {
     Spice.add({
 		id: "rand_num",
         data             : api_result,
-        sourceUrl       : 'http://www.random.org/integers/?num=100&min='
-                            + min + '&max=' + max + '&col=5&base=10&format=html&rnd=new',
-        sourceName      : 'Random.org',
+        meta {
+            sourceUrl       : 'http://www.random.org/integers/?num=100&min='
+                                + min + '&max=' + max + '&col=5&base=10&format=html&rnd=new',
+            sourceName      : 'Random.org',
+        },
         templates: {
             item: Spice.rand_nums.rand_nums,
             detail: Spice.rand_nums.rand_nums
