@@ -1,14 +1,14 @@
-function ddg_spice_earthquake(response) {
+function ddg_spice_earthquake(api_result) {
     "use strict";
-	
-    var results = [];
-	
-    for (var i = 0; i < response.features.length; i++) {
-        results.push(response.features[i]);
+
+    if (!api_result || !api_result.features) {
+    	return;
     }
 
-    if (!results.length) {
-        return;
+    var results = [];
+
+    for (var i = 0; i < api_result.features.length; i++) {
+        results.push(response.features[i]);
     }
 
     Spice.render({
