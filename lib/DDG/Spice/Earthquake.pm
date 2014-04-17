@@ -14,11 +14,16 @@ attribution github => ['https://github.com/yzwx', 'yzwx'];
 
 triggers startend => (
      'earthquake',
-     'earthquakes'
+     'earthquakes',
+     'recent earthquake',
+     'recent earthquakes',
+     'quake',
+     'quakes'
 );
 
 spice to => 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
 spice wrap_jsonp_callback => 1;
+spice is_cached => 0;
 
 handle remainder => sub {
     return '' if $_ eq '';
