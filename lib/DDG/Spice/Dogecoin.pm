@@ -17,7 +17,7 @@ spice to => 'https://api.prelude.io/last-usd/doge';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
-triggers startend => "dogecoin", "dogecoin price", "doge to usd", "doge coin exchange", "dogecoin exchange rate", "doge coin price","doge/usd","usd/doge";
+triggers startend => "dogecoin", "dogecoin price", "doge to usd", "doge coin exchange", "dogecoin exchange rate", "doge coin price","doge/usd","usd/doge","dogecoin to usd","dogecoin usd";
 
 handle remainder => sub {
 	return '' if $_ eq '';

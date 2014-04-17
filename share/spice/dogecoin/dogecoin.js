@@ -9,15 +9,15 @@ function ddg_spice_dogecoin(api_result) {
         var low = 0;
         var high = 0;
         for(var i = 0; i < api_result.orders.length; i++){
-		   var entry = api_result.orders[i];		   if(entry.type === type){
-                var temp = parseFloat(entry.rate);
-                if(temp > high){
-                    high = temp;
-                }
-                if(temp < low || low === 0){
-                    low = temp;
-                }
-            }
+			var entry = api_result.orders[i];			if(entry.type === type){
+				var temp = parseFloat(entry.rate);
+				if(temp > high){
+					high = temp;
+				}
+				if(temp < low || low === 0){
+					low = temp;
+				}
+			}
         }    
         return {high:high,low:low};
     }
@@ -43,7 +43,7 @@ function ddg_spice_dogecoin(api_result) {
         template_frame   : "twopane",
         template_options : {
            left : { template: "dogecoin",data: buy},
-           right : { template: "dogecoin",data: sell},
+           right : { template: "dogecoin",data: sell}
        },
         force_no_fold    : true,
        force_big_header : true
