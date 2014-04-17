@@ -34,5 +34,5 @@ function ddg_spice_earthquake(api_result) {
 Handlebars.registerHelper('UTC', function (time) {
     "use strict";
 
-    return new Date(time).toUTCString();
+    return new Date(time).toLocaleString();
 });
