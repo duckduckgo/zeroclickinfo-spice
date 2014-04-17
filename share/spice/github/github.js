@@ -11,13 +11,16 @@
 
         var results = api_result.data.repositories;
 
+        // temp size limit - relevancy block should handle this later
+        if (results.length > 30)
+            results = results.splice(0,30);
+
         Spice.add({
-            id: "gihub",
+            id: "github",
             name: "GitHub",
             data: results,
             meta: {
-                total: results.length,
-                itemType: query + " (GitHub)",
+                itemType: "Git repositories containing '" + query + "'",
                 sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
                 sourceName: 'GitHub'
             },
