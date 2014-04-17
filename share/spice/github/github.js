@@ -20,7 +20,7 @@
             name: "GitHub",
             data: results,
             meta: {
-                itemType: "Git repositories containing '" + query + "'",
+                itemType: "Git repositories",
                 sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
                 sourceName: 'GitHub'
             },
