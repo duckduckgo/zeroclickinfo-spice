@@ -22,8 +22,7 @@
                 sourceName: 'GitHub'
             },
             templates: {
-                item: Spice.github.item,
-                detail: Spice.github.item
+                item: Spice.github.item
             }
         });
     }
