@@ -4,6 +4,10 @@ use DDG::Spice;
 
 spice to => 'https://127.0.0.1/local.js?q=$1&cb={{callback}}';
 
+# no caching.
+spice proxy_cache_valid => "418 1d";
+spice is_cached => 0;
+
 triggers any => (
     'near',
     'local',
