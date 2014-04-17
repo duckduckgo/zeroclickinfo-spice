@@ -9,10 +9,6 @@
   text-align: left;
 }
 
-.zci--betterific .header {
-  font-size: 14px;
-}
-
 .zci--betterific .betterif-name {
   display: block;
 }
@@ -33,7 +29,7 @@
 }
 
 .zci--betterific .collapsible {
-  display: none;
+ 
 }
 .zci--betterific .open {
   display: block;

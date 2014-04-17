@@ -46,7 +46,7 @@
                 sourceName: 'betterific'
             },
             templates: {
-                detail: Spice.betterific.betterific
+                detail: Spice.betterific.detail
             }
         });
     }
