@@ -91,12 +91,18 @@
 .detail__body--recipe .detail__source {
     padding-bottom: 1em;
 }
+	.is-mobile .detail--recipes .detail__source {
+		min-height: 2.5em;
+	}
 
-.detail__body--recipe .detail__source .stars {
+.detail--recipes .detail__source .stars {
     margin-right: 0;
 }
+	.is-mobile .detail--recipes .stars {
+		display: block;
+	}
 
-.detail__body--recipe .stars--unrated .star {
+.detail--recipes .stars--unrated .star {
     color: #d0d0d0;
 }
 
