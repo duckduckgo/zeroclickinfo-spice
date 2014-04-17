@@ -31,7 +31,7 @@ function ddg_spice_earthquake(api_result) {
 }
 
 // Convert epoch time to a readable format
-Handlebars.registerHelper('UTC', function (time) {
+Handlebars.registerHelper('local', function (time) {
     "use strict";
 
     return new Date(time).toLocaleString();
