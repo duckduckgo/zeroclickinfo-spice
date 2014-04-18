@@ -199,7 +199,7 @@ function ddg_spice_airlines (api_result) {
                 terminal: flight[i].DepartureTerminal || "<span class='na'>N/A</span>",
                 gate: flight[i].DepartureGate || "<span class='na'>N/A</span>",
                 isDeparted: true,
-	        weekday: date[0],
+	        weekday: date[0].toUpperCase(),
 	        day: date[2]
             },
             arriving = {
@@ -218,6 +218,8 @@ function ddg_spice_airlines (api_result) {
 	flight[0].Airline.AirlineCode +
 	"&flightNumber=" +
 	flight[0].FlightNumber;
+
+    results.reverse();
 
     Spice.add({
         data: results,
