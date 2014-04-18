@@ -1,26 +1,29 @@
 function ddg_spice_bang() {
     "use strict";
 
-    var query = DDG.get_query();
-
-    if (/^\?[A-Za-z0-9.-]+ ?$/.test(query)) {
-	query = query.replace('?', '!') + '%20{{{s}}}';
-    } else if (/^\?[A-Za-z0-9.-]+ .+$/.test(query)) {
-	query = query.replace('?', '!');
-    }
+    var query = DDG.get_query().replace(/^\?/g, '!');
 
     $.getJSON('https://api.duckduckgo.com/?q=' + query + '&format=json&no_redirect=1&callback=?', function (response) {
 	if (!response || !response.Redirect) {
 	    return;
 	}
 
-	var data = {
-	    redirect: response.Redirect,
-	    search: false
-	};
+	var redirect = response.Redirect,
+	    url = redirect.split('/'),
+	    data = {
+		href: '',
+		query: query,
+		text: url[0] + '//' + url[2] + '/'
+	    };
 
-	if (data.redirect.indexOf(encodeURIComponent('{{{s}}}')) > -1) {
-	    data.search = true;
+	if (/^\![A-Za-z0-9.-]+ ?$/.test(query)) {
+	    if (/[?&=]/.test(redirect)) {
+		data.href = data.text;
+	    } else {
+		data.href = redirect;
+	    }
+	} else if (/^\![A-Za-z0-9.-]+ .+$/.test(query)) {
+	    data.href = redirect;
 	}
 
 	Spice.render({
@@ -33,12 +36,5 @@ function ddg_spice_bang() {
 	});
     });
 }
-
-// Decode "{{{s}}}"
-Handlebars.registerHelper('decode', function (query) {
-    "use strict";
-
-   return decodeURIComponent(query);
-});
 
 ddg_spice_bang();
