@@ -40,7 +40,7 @@
             },
 
             templates: {
-		item: Spice.hacker_news.hacker_news
+		item_custom: Spice.hacker_news.hacker_news
             }
 /*
             relevancy: {
