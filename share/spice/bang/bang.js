@@ -1,7 +1,15 @@
 function ddg_spice_bang() {
     "use strict";
 
-    $.getJSON('https://api.duckduckgo.com/?q=' + DDG.get_query().replace('?', '!').replace(/ .+/g, '') + '%20{{{s}}}&format=json&no_redirect=1&callback=?', function (response) {
+    var query = DDG.get_query();
+
+    if (/^\?[A-Za-z0-9.-]+ ?$/.test(query)) {
+	query = query.replace('?', '!') + '%20{{{s}}}';
+    } else if (/^\?[A-Za-z0-9.-]+ .+$/.test(query)) {
+	query = query.replace('?', '!');
+    }
+
+    $.getJSON('https://api.duckduckgo.com/?q=' + query + '&format=json&no_redirect=1&callback=?', function (response) {
 	if (!response || !response.Redirect) {
 	    return;
 	}
