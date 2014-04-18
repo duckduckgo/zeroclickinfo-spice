@@ -186,18 +186,27 @@ function ddg_spice_airlines (api_result) {
         var arrivalDate = getDateFromString(flight[i].ActualGateArrivalDate || 
 					    flight[i].EstimatedGateArrivalDate || 
 					    flight[i].ArrivalDate).toString();
+
+	// Get the weekday and the day.
+	var dateObject = new Date(departureDate);
+
+        var date = dateObject.toDateString();
+	date = date.split(" ");
+
         var departing = {
                 airportTimezone: flight[i].DepartureAirportTimeZoneOffset,
                 airport: flight[i].Origin,
-                terminal: flight[i].DepartureTerminal || "—",
-                gate: flight[i].DepartureGate || "—",
-                isDeparted: true
+                terminal: flight[i].DepartureTerminal || "<span class='na'>N/A</span>",
+                gate: flight[i].DepartureGate || "<span class='na'>N/A</span>",
+                isDeparted: true,
+	        weekday: date[0],
+	        day: date[2]
             },
             arriving = {
                 airportTimezone: flight[i].ArrivalAirportTimeZoneOffset,
                 airport: flight[i].Destination,
-                terminal: flight[i].ArrivalTerminal || "—",
-                gate: flight[i].ArrivalGate || "—",
+                terminal: flight[i].ArrivalTerminal || "<span class='na'>N/A</span>",
+                gate: flight[i].ArrivalGate || "<span class='na'>N/A</span>",
                 isDeparted: false
             };
 	
