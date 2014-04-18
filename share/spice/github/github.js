@@ -1,33 +1,35 @@
-function ddg_spice_github(api_result) {
-    "use strict";
+(function(env) {    
+    env.ddg_spice_github = function(api_result) {
+        "use strict";
 
-    var query = DDG.get_query()
-                .replace(/^\s*github\s+/, "");
+        if (!api_result || !api_result.meta.status === 200) {
+          return;
+        }
 
-    var results = api_result.data.repositories;
-    if (results.length == 0) {
-      return;
+        var query = DDG.get_query()
+                    .replace(/^\s*github\s+/, "");
+
+        var results = api_result.data.repositories;
+
+        // temp size limit - relevancy block should handle this later
+        if (results.length > 30)
+            results = results.splice(0,30);
+
+        Spice.add({
+            id: "github",
+            name: "GitHub",
+            data: results,
+            meta: {
+                itemType: "Git repositories",
+                sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
+                sourceName: 'GitHub'
+            },
+            templates: {
+                item: Spice.github.item
+            }
+        });
     }
-
-    Spice.add({
-        data             : api_result,
-        header1          : query + " (GitHub)",
-        sourceUrl       : 'http://www.github.com/search?q=' +  encodeURIComponent(query),
-        sourceName      : 'GitHub',
-        id       : 'github',
-        template_frame   : 'list',
-        templates: {
-            items: results,
-            item: Spice.github_item.github_item,
-            single_template: "github",
-            show: 3,
-            max: 10,
-            type: 'ul'
-        },
-        
-        
-    });
-}
+}(this));
 
 // Make sure we display only three items.
 Handlebars.registerHelper("last_pushed", function(){
