@@ -210,9 +210,6 @@ function ddg_spice_airlines (api_result) {
 	"&flightNumber=" +
 	flight[0].FlightNumber;
 
-    console.log("YO");
-    console.log(results);
-
     Spice.add({
         data: results,
         sourceUrl: source,
