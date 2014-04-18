@@ -1,5 +1,44 @@
-.zci--airlines .spice_pane {
-	display: inline-block;
-	width: 45%;
-	vertical-align: top;
+.zci--airlines .tile.tile--c {
+    width: 37em;
+}
+
+.zci--airlines .tile__schedule {
+    color: #878787;
+    font-size: 12px;
+}
+
+.zci--airlines .tile__time {
+    font-size: 2em;
+}
+
+.zci--airlines .tile__heading {
+    margin-bottom: 1em;
+}
+
+.zci--airlines .tile__location {
+    padding-bottom: 0;
+}
+
+.zci--airlines .tile__ok {
+    color: #60AB5D;
+}
+
+.zci--airlines .tile__not {
+    color: #C14316;
+}
+
+.zci--airlines .tile__date {
+    color: #B3B3B3;
+    float: right;
+    text-align: center;
+    font-weight: 600;
+}
+
+.zci--airlines .tile__week {
+    font-size: 12px;
+}
+
+.zci--airlines .tile__day {
+    line-height: 12px;
+    font-size: 1.5em;
 }

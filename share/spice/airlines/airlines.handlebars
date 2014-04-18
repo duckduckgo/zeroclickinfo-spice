@@ -1,0 +1,24 @@
+<div class="tile__heading">
+  <div class="tile__date">
+    <div class="tile__week">FRI</div>
+    <div class="tile__day">18</div>
+  </div>
+  <h5 class="tile__location">
+    {{airportName departing.airport.Name}} ({{departing.airport.AirportCode}}) to {{airportName arriving.airport.Name}} ({{arriving.airport.AirportCode}})
+  </h5>
+  <div>
+    <span class="tile__status">
+      {{{status flight departureDate arrivalDate}}}
+    </span>
+  </div>
+</div>
+<div class="half">
+  <div class="tile__schedule">Scheduled Departure: {{airline_time departing.isDeparted arrivalDate departureDate}}</div>
+  <div class="tile__time">{{airline_time departing.isDeparted arrivalDate departureDate}}</div>
+  <div>Gate {{departing.gate}} - Terminal {{departing.terminal}}</div>
+</div>
+<div class="half">
+  <div class="tile__schedule">Scheduled Arrival: {{airline_time arriving.isDeparted arrivalDate departureDate}}</div>
+  <div class="tile__time">{{airline_time arriving.isDeparted arrivalDate departureDate}}</div>
+  <div>Gate {{arriving.gate}} - Terminal {{arriving.terminal}}</div>
+</div>
