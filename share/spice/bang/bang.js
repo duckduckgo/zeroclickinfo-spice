@@ -2,14 +2,14 @@ function ddg_spice_bang() {
     "use strict";
 
     $.getJSON('https://api.duckduckgo.com/?q=' + DDG.get_query().replace('?', '!').replace(/ .+/g, '') + '%20{{{s}}}&format=json&no_redirect=1&callback=?', function (response) {
+	if (!response || !response.Redirect) {
+	    return;
+	}
+
 	var data = {
 	    redirect: response.Redirect,
 	    search: false
 	};
-
-	if (!data.redirect) {
-	    return;
-	}
 
 	if (data.redirect.indexOf(encodeURIComponent('{{{s}}}')) > -1) {
 	    data.search = true;
