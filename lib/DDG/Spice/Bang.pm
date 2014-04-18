@@ -2,7 +2,7 @@ package DDG::Spice::Bang;
 
 use DDG::Spice;
 
-triggers query_lc => qr/^\?[A-Za-z0-9.-]+/;
+triggers query_lc => qr/^\?[A-Za-z0-9.-]+$/;
 
 spice call_type => 'self';
 
