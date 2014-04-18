@@ -15,8 +15,6 @@ attribution github => ['https://github.com/yzwx', 'yzwx'];
 triggers startend => (
      'earthquake',
      'earthquakes',
-     'recent earthquake',
-     'recent earthquakes',
      'quake',
      'quakes'
 );
