@@ -108,7 +108,6 @@ function ddg_spice_airlines (api_result) {
 
     // Compute for the relative time (e.g. 31 minutes ago).
     Handlebars.registerHelper("relative", function(airportOffset, isDeparture) {
-        console.log(this);
         var dateObject = arrivalDate;
         if(isDeparture) {
             dateObject = departureDate;
@@ -125,10 +124,10 @@ function ddg_spice_airlines (api_result) {
     });
 
     // Add the date and time or departure or arrival.
-    Handlebars.registerHelper("airline_time", function(isDeparture) {
-        var dateObject = arrivalDate;
+    Handlebars.registerHelper("airline_time", function(isDeparture, arrivalDate, departureDate) {
+        var dateObject = new Date(arrivalDate);
         if(isDeparture) {
-            dateObject = departureDate;
+            dateObject = new Date(departureDate);
         }
 
         var hours = dateObject.getHours();
@@ -138,7 +137,7 @@ function ddg_spice_airlines (api_result) {
         date = date.substring(0, date.lastIndexOf(" "));
 
         // AM or PM?
-        var suffix = (hours >= 12) ? "p.m." : "a.m.";
+        var suffix = (hours >= 12) ? "PM" : "AM";
 
         // Convert to 12-hour time.
         if(hours > 12) {
@@ -150,66 +149,92 @@ function ddg_spice_airlines (api_result) {
         // Add leading zeroes.
         minutes = minutes < 10 ? "0" + minutes : minutes;
 
-        return date + ", " + hours + ":" + minutes + " " + suffix;
+        return hours + ":" + minutes + " " + suffix;
     });
 
     // Check if the airplane is on-time or delayed.
-    var onTime = function() {
-        var scheduledDeparture = getDateFromString(flight[0].ScheduledGateDepartureDate);
-        var scheduledArrival = getDateFromString(flight[0].ScheduledGateArrivalDate);
+    var onTime = function(flight, departureDate, arrivalDate) {
+        var scheduledDeparture = getDateFromString(flight.ScheduledGateDepartureDate);
+        var scheduledArrival = getDateFromString(flight.ScheduledGateArrivalDate);
 
-        var deltaDepart = departureDate - scheduledDeparture;
-        var deltaArrive = arrivalDate - scheduledArrival;
-        if(flight.StatusCode === "A") {
+        var deltaDepart = new Date(departureDate) - scheduledDeparture;
+        var deltaArrive = new Date(arrivalDate) - scheduledArrival;
+        if(flight.StatusCode === "A" || flight.StatusCode === "S") {
             if(MILLIS_PER_MIN * 5 < deltaDepart && MILLIS_PER_MIN * 5 < deltaArrive) {
-                return "Delayed";
+                return ["Delayed", false];
             } else {
-                return "On-time";
+                return ["On Time", true];
             }
         }
-        return STATUS[flight.StatusCode];
+        return [STATUS[flight.StatusCode], true];
     };
+
+    Handlebars.registerHelper("status", function(flight, departureDate, arrivalDate) {
+	var result = onTime(flight, departureDate, arrivalDate);
+	var ok_class = result[1] ? "tile__ok" : "tile__not";
+	return '<div class="' + ok_class + '">' + result[0] + '</div>'; 
+    });
 
     // array of flights 
     var results = [];
 
     // package up the flights into the result array
-    for(var i in flight){
-        var departureDate = getDateFromString(flight[i].ActualGateDepartureDate || flight[i].EstimatedGateDepartureDate || flight[i].DepartureDate);
-        var arrivalDate = getDateFromString(flight[i].ActualGateArrivalDate || flight[i].EstimatedGateArrivalDate || flight[i].ArrivalDate);
+    for(var i = 0; i < flight.length; i++) {
+        var departureDate = getDateFromString(flight[i].ActualGateDepartureDate || 
+					      flight[i].EstimatedGateDepartureDate || 
+					      flight[i].DepartureDate).toString();
+        var arrivalDate = getDateFromString(flight[i].ActualGateArrivalDate || 
+					    flight[i].EstimatedGateArrivalDate || 
+					    flight[i].ArrivalDate).toString();
+
+	// Get the weekday and the day.
+	var dateObject = new Date(departureDate);
+
+        var date = dateObject.toDateString();
+	date = date.split(" ");
+
         var departing = {
                 airportTimezone: flight[i].DepartureAirportTimeZoneOffset,
                 airport: flight[i].Origin,
-                terminal: flight[i].DepartureTerminal || "—",
-                gate: flight[i].DepartureGate || "—",
-                isDeparted: true
+                terminal: flight[i].DepartureTerminal || "<span class='na'>N/A</span>",
+                gate: flight[i].DepartureGate || "<span class='na'>N/A</span>",
+                isDeparted: true,
+	        weekday: date[0].toUpperCase(),
+	        day: date[2]
             },
             arriving = {
                 airportTimezone: flight[i].ArrivalAirportTimeZoneOffset,
                 airport: flight[i].Destination,
-                terminal: flight[i].ArrivalTerminal || "—",
-                gate: flight[i].ArrivalGate || "—",
+                terminal: flight[i].ArrivalTerminal || "<span class='na'>N/A</span>",
+                gate: flight[i].ArrivalGate || "<span class='na'>N/A</span>",
                 isDeparted: false
             };
-        results.push({departing: departing, arriving: arriving});
+	
+        results.push({flight: flight[i], departing: departing, arriving: arriving, departureDate: departureDate, arrivalDate: arrivalDate});
     }
 
-    // Display the plug-in.
+    // Display.
+    var source = "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" +
+	flight[0].Airline.AirlineCode +
+	"&flightNumber=" +
+	flight[0].FlightNumber;
+
+    results.reverse();
+
     Spice.add({
         data: results,
-        sourceUrl       : "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" + flight[0].Airline.AirlineCode + "&flightNumber=" + flight[0].FlightNumber,
-        sourceName      : "FlightStats",
-        id       : "airlines",
+        sourceUrl: source,
+        sourceName: "FlightStats",
+        id: "airlines",
         name: "Flights",
         view: "Tiles",
         meta: {
             sourceName: 'FlightStatus',
-            sourceUrl: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" + flight[0].Airline.AirlineCode + "&flightNumber=" + flight[0].FlightNumber,
+            sourceUrl: source,
             itemType: "Flight Status for " + flight[0].Airline.Name + " " + flight[0].FlightNumber
         },
         templates : {
-            item: Spice.airlines.item,
-            detail: Spice.airlines.item
+            item: Spice.airlines.airlines
         }, 
     });
 };
