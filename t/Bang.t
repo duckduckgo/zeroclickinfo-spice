@@ -10,8 +10,8 @@ ddg_spice_test(
     '?yt' => test_spice(
         '/js/spice/bang',
         call_type => 'self',
-        caller => 'DDG::Spice::Bang
-    ),
+        caller => 'DDG::Spice::Bang'
+    )
 );
 
 done_testing;
