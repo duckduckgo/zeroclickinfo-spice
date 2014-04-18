@@ -10,7 +10,7 @@ topics 'everyday';
 code_url 'https://github.com/yzwx/zeroclickinfo-spice/blob/bang/lib/DDG/Spice/Bang.pm';
 attribution github => ['https://github.com/yzwx', 'yzwx'];
 
-triggers query_lc => qr/^\?[A-Za-z0-9.-]+$/;
+triggers query_lc => qr/^\?[A-Za-z0-9.-]+/;
 
 spice call_type => 'self';
 
