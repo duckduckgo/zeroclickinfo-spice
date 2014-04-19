@@ -44,7 +44,7 @@ function ddg_spice_timer(api_result) {
   }
 
   //parse the input if the timer was just set and start it
-  $('.btn-wrapper').on('click', '.btn.start', function(){
+  $('.btn-wrapper').on('click', '.btn.start', function(e){
     if (!started){
       var start_mins = parseInt($minute_input.val()) || 0;
       var start_secs = parseInt($second_input.val()) || 0;
@@ -53,7 +53,7 @@ function ddg_spice_timer(api_result) {
       $second_input.val('');
 
       //invalid input
-      if (!start_secs && !start_mins){
+      if ((!start_secs && !start_mins) || start_mins > 60) {
         return;
       }
       started = true;
@@ -84,6 +84,11 @@ function ddg_spice_timer(api_result) {
     clearInterval(update_int);
     started = false;
     $('.btn.pause').removeClass('pause').addClass('start').html('START');
+  });
+
+  //make sure the bang dropdown doesn't trigger
+  $('.time-input').keydown(function(event){
+    event.stopPropagation();
   });
 
   //hide the source link
