@@ -63,9 +63,10 @@
 	display: none;
 }
 
-#spice_timer input[type="text"] {
+#spice_timer .time-input {
 	width: 70px;
 	margin-top: 10px;
+	text-align: center;
 }
 
 #spice_timer #timer_input {
