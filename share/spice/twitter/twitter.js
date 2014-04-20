@@ -18,11 +18,17 @@ var ddg_spice_twitter = function(api_result) {
             sourceUrl               : "https://twitter.com/" + api_result.user,
             sourceName              : "Twitter",
         },
-        templates: {
-            detail: Spice.twitter.detail
+        normalize: function(item) {
+            return {
+                image: bigger_picture(item.profile_image),
+                title: '@' + item.user
+            };
         },
+        templates: {
+            detail: Spice.twitter.detail,
+            wrap_detail: 'basic_image_detail'
+        }
         
-        image_url                : bigger_picture(api_result.profile_image)
     });
 };
 
