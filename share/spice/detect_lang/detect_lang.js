@@ -117,9 +117,10 @@ function ddg_spice_detect_lang (api_result) {
     // Display the plug-in.
     Spice.add({
         data             : api_result.data.detections,
-        header1          : query + " (Detect Language)",
-        sourceUrl       : "http://detectlanguage.com/",
-        sourceName      : "Detect Language",
+        meta: {
+            sourceUrl       : "http://detectlanguage.com/",
+            sourceName      : "Detect Language",
+        },
         templates: {
             item: Spice.detect_lang.detect_lang,
             detail: Spice.detect_lang.detect_lang
