@@ -11,7 +11,7 @@
             name: "Chuck Norris",
             data             : api_result.value,
             meta: {
-                sourceUrl       : 'http://www.icndb.com',
+                sourceUrl       : 'http://www.icndb.com/the-jokes-2/',
                 sourceName      : 'Internet Chuck Norris Database'
             },
             templates: {
