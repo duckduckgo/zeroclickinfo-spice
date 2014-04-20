@@ -1,0 +1,17 @@
+<h5>@{{this.user}}</h5>
+
+{{#if description}}
+    <div>{{description}}</div>
+{{/if}}
+
+{{#if current_status}}
+
+<div>
+<em>Latest Tweet</em>:
+
+    {{#twitter_findLinks current_status.text current_status.entities}}
+        {{{twitter_makeLinks this}}}
+    {{/twitter_findLinks}}
+</div>
+
+{{/if}}
