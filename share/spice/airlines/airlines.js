@@ -234,7 +234,7 @@ function ddg_spice_airlines (api_result) {
             itemType: "Flight Status for " + flight[0].Airline.Name + " " + flight[0].FlightNumber
         },
         templates : {
-            item: Spice.airlines.airlines
+            item: Spice.airlines.item
         }, 
     });
 };
