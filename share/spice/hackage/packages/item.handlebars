@@ -1,0 +1,15 @@
+<h5 class="detail__title">{{name}}</h5>
+<div class="detail__desc">
+  <p class="detail__source">
+    {{#if license}}
+      {{license}}
+    {{/if}}
+    {{#if author}}
+      <span class="detail__separator"> | </span>
+      {{author}}
+    {{/if}}
+  </p>
+</div>
+<div>
+  {{description}}
+</div>
