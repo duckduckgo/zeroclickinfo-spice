@@ -1,0 +1,24 @@
+
+{{#if description}}
+    <div>{{description}}</div>
+{{/if}}
+
+{{#if current_status}}
+
+    <div>
+    <em>Latest Tweet</em>:
+
+        {{#twitter_findLinks current_status.text current_status.entities}}
+            {{{twitter_makeLinks this}}}
+        {{/twitter_findLinks}}
+    </div>
+
+    {{!  show an image }}
+    {{! #with current_status.entities}}
+    {{! #if media.[0].media_url}}
+    {{! <img src="[[imageProxy media.[0].media_url]]" title="[[media.[0].display_url]]"> }}
+    {{! /if}}
+    {{! /with}}
+    {{! it's hard to comment out embedded handlebars so I just replaced braces with brackets above }}
+
+{{/if}}
