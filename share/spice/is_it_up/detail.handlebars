@@ -1,6 +1,7 @@
 {{#if status_code}}
-  <a href='http://{{domain}}'>{{domain}}</a> seems <b>up</b>.<br>
+  <h3><a href='http://{{this.domain}}'>{{this.domain}}</a> seems <b>up</b>.</h3>
+
   It took us {{response_time}} seconds to get a <a href='/?q=http+{{response_code}}'>{{response_code}}</a> response from <a href='http://{{response_ip}}'>{{response_ip}}</a>.
 {{else}}
-  <a href='http://{{domain}}'>{{domain}}</a> seems <b> down</b>. We did not get a response from it.
+  <a href='http://{{this.domain}}'>{{this.domain}}</a> seems <b> down</b>. We did not get a response from it.
 {{/if}}

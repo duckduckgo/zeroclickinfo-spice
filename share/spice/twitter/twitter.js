@@ -11,21 +11,28 @@ var ddg_spice_twitter = function(api_result) {
 
     // Display the plugin.
     Spice.add({
+        id: 'twitter',
         data                     : api_result,
-        header1                  : "@" + api_result.user,
-        sourceUrl               : "https://twitter.com/" + api_result.user,
-        sourceName              : "Twitter",
-        templates: {
-            item: Spice.twitter.twitter,
-            detail: Spice.twitter.twitter
+        name: 'twitter',
+        meta: {
+            sourceUrl               : "https://twitter.com/" + api_result.user,
+            sourceName              : "Twitter",
         },
+        normalize: function(item) {
+            return {
+                image: bigger_picture(item.profile_image),
+                title: '@' + item.user
+            };
+        },
+        templates: {
+            detail: Spice.twitter.detail,
+            wrap_detail: 'basic_image_detail'
+        }
         
-        
-        image_url                : bigger_picture(api_result.profile_image)
     });
 };
 
-Handlebars.registerHelper("findLinks", function(text, entities, options) {
+Handlebars.registerHelper("twitter_findLinks", function(text, entities, options) {
     "use strict";
 
     // Chop the string so that we can surreptitiously insert links.
@@ -71,7 +78,7 @@ Handlebars.registerHelper("findLinks", function(text, entities, options) {
     return options.fn(twitterSplit(all_entities, [], text, text, 0, 0));
 });
 
-Handlebars.registerHelper("makeLinks", function(results) {
+Handlebars.registerHelper("twitter_makeLinks", function(results) {
     "use strict";
 
     window.r = results;
