@@ -30,7 +30,7 @@
             },
 
             templates: {
-		item: Spice.github_jobs.item
+		item_custom: Spice.github_jobs.item
             }
 	});
     };

@@ -19,7 +19,7 @@
 		};
 	    },
 	    templates: {
-		detail: Spice.lastfm_artist.lastfm_artist,
+		detail: Spice.lastfm_artist.item,
 		wrap_detail: 'basic_image_detail'
 	    }
 	});
