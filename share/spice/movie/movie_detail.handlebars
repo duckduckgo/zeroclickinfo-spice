@@ -1,0 +1,33 @@
+<div class="detail__media  detail__media--movie">
+    <img src="{{imageProxy image}}" alt="{{title}}" class="detail__media__img" />
+</div>
+<div class="detail__body  detail__body--movie">
+    <div class="detail__body__content">
+        <h5 class="detail__title"><a href='{{links.alternate}}' title="{{title}}">{{title}} {{#if year}}({{year}}){{/if}}</a></h5>
+        <div class="detail__desc">
+            <p class="detail__source">
+              {{#if rating}}
+                {{{starRating rating}}}
+              {{/if}}
+              {{#if rating}}
+                {{ratings.critics_rating}}: {{rating}}%
+                <span class="detail__separator"> | </span>
+              {{/if}}
+              {{#if runtime}}
+                <span class="detail__cooking-time">Run Time: {{time runtime}}</span>
+                <span class="detail__separator"> | </span>
+              {{/if}}
+              {{#if mpaa_rating}}
+                <span class="detail__cooking-time">{{mpaa_rating}}</span>
+              {{/if}}
+            </p>
+            <p>
+              {{ellipsis synopsis 200}}
+            </p>
+            <a href="{{links.alternate}}" class="detail__links__btn">
+                <img class="btn__icon" src="https://icons.duckduckgo.com/ip/www.rottentomatoes.com.ico" />
+                Reviews and Showtimes
+            </a>
+        </div>
+    </div>
+</div>
