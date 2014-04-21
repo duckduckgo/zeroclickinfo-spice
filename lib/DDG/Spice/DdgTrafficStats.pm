@@ -5,6 +5,7 @@ use DDG::Spice;
 name "ddg_traffic_stats";
 description "See DuckDuckGo searchtraffic stats.";
 source "DuckDuckGo";
+icon_url "https://duckduckgo.com/assets/ddg-icon-256x160.png";
 primary_example_queries "duckduckgo search traffic";
 secondary_example_queries "ddg traffic";
 # TODO
