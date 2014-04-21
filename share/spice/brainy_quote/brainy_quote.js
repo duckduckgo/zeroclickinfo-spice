@@ -12,9 +12,6 @@
 		sourceName: 'Brainy Quote',
 		sourceUrl: api_result.source_url,
 	    },
-	    normalize: function(o) {
-		return o;
-	    },
 	    templates: {
 		detail: Spice.brainy_quote.brainy_quote
 	    }
