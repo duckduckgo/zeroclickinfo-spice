@@ -1,0 +1,10 @@
+.zci--alternative_to .tile__icon {
+    float: right;
+    margin-top: 0;
+    margin-right: 0;
+}
+
+.zci--alternative_to .tile__description {
+    margin-bottom: 0.5em;
+    font-weight: inherit;
+}
