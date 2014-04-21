@@ -1,3 +1,15 @@
+(function(env) {
+    "use strict";
+
+    env.ddg_spice_hackage_packages = function(api_result) {
+	
+    };
+
+    env.ddg_spice_hackage_package_details = function(api_result) {
+	
+    };
+}(this));
+
 function ddg_spice_hackage_packages(response) {
     "use strict";
 
