@@ -58,18 +58,6 @@
 		sourceUrl: 'http://hackage.haskell.org/package/' + name,
 		sourceIcon: true
 	    },
-	    normalize: function(o) {
-		return {
-		    name: name,
-		    synopsis: o.packageDescription.synopsis,
-		    description: o.packageDescription.description,
-		    author: o.packageDescription.author,
-		    homepage: o.packageDescription.author,
-		    license: o.packageDescription.license,
-		    library: o.condLibrary,
-		    executable: o.condExecutables
-		};
-	    },
 	    templates: {
 		detail: Spice.hackage_packages.item
 	    }
