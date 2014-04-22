@@ -11,10 +11,6 @@ div.tile__body.is_hidden {
     width: 12em;
 }
 
-.zci_movie .tile--basic-image.tile--c.has-tiles--grid  {
-    width: 12em;
-}
-
 .zci--kwixer .tile--basic-image .tile__media {
     height: 17.1em;
 }
@@ -38,7 +34,6 @@ div.tile__body.is_hidden {
     color: #aaa;
 }
 
-
 .detail.detail--kwixer {
     background-color: #e5e5e5;
     border-color: #c7c7c7;
@@ -60,14 +55,6 @@ div.tile__body.is_hidden {
 
 .detail__body--kwixer .detail__source {
     padding-bottom: 1em;
-}
-
-.detail__body--kwixer .detail__source .stars {
-    margin-right: 0;
-}
-
-.detail__body--kwixer .stars--unrated .star {
-    color: #d0d0d0;
 }
 
 .detail__body--kwixer .detail__separator {
