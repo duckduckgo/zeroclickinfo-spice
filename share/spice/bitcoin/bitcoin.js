@@ -56,28 +56,28 @@
 
 	var buy = {
             formatted_price: getFormattedPrice(currency, prices.buy, prices.symbol),
-            title: "Buy"
+            title: "BUY"
 	};
 
 	var sell = {
             formatted_price: getFormattedPrice(currency, prices.sell, prices.symbol),
-            title: "Sell"
+            title: "SELL"
 	};
 
 	Spice.add({
             id: "bitcoin",
 	    name: 'Bitcoin',
-	    data: [
-		buy,
-		sell
-	    ],
+	    data: {
+		buy: buy,
+		sell: sell
+	    },
 	    meta: {
 		sourceName: "Blockchain",
 		sourceUrl: 'http://markets.blockchain.info/',
 		sourceIcon: true
 	    },
 	    templates: {
-		item: Spice.bitcoin.bitcoin
+		detail: Spice.bitcoin.bitcoin
 	    }
 	});
     };
