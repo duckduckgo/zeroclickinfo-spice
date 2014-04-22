@@ -64,37 +64,3 @@
 	});
     };
 }(this));
-
-
-// function ddg_spice_hackage_package_details(response) {
-//     "use strict";
-
-//     if (!response || !response.packageDescription) {
-//       return;
-//     }
-
-//     var pkg        = {};
-//     pkg.name       = response.packageDescription.package.pkgName,
-//     pkg.synopsis   = response.packageDescription.synopsis,
-//     pkg.author     = response.packageDescription.author,
-//     pkg.homepage   = response.packageDescription.homepage,
-//     pkg.license    = response.packageDescription.license,
-//     pkg.library    = response.condLibrary,
-//     pkg.executable = response.condExecutables;
-
-//     if (pkg.synopsis == "") {
-//       return;
-//     }
-
-//     Spice.add({
-//         data             : pkg,
-//         header1          : pkg.name + " (Hackage)",
-//         sourceUrl       : 'http://hackage.haskell.org/package/' + pkg.name,
-//         sourceName      : 'Hackage',
-//         templates: {
-//             item: Spice.hackage_packages.hackage_packages,
-//             detail: Spice.hackage_packages.hackage_packages
-//         },
-        
-//     });
-// }
