@@ -13,7 +13,7 @@
 		sourceUrl: api_result.source_url,
 	    },
 	    templates: {
-		detail: Spice.brainy_quote.brainy_quote
+		detail: Spice.brainy_quote.item
 	    }
 	});
     };
