@@ -18,6 +18,16 @@
     font-size: 35px;
 }
 
+@media screen and (max-width: 680px) {
+    .zci--bitcoin .half.bitcoin__half .price {
+	font-size: 20px;
+    }
+
+    .zci--bitcoin .half.bitcoin__half {
+	width: 44%;
+    }
+}
+
 .zci--bitcoin .zci__body {
     width: 99%;
 }
