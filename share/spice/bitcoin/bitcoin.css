@@ -31,3 +31,7 @@
 .zci--bitcoin .zci__body {
     width: 99%;
 }
+
+.bitcoin__container {
+    padding-bottom: 6px;
+}
