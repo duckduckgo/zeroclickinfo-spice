@@ -82,7 +82,7 @@ handle remainder => sub {
         $currentDay = $t->mday;
         $currentMonth = $t->month_name;
 
-	 # read parameters - do not trigger if invalid parameters are found (delimiters: - / . ' ')
+	# read parameters - do not trigger if invalid parameters are found (delimiters: - / . ' ')
   	($parameter1, $parameter2) = split (/[-\/. ]/, $_);
   	return if (!readParameters());
 	return $givenDay."_".$givenMonth;
