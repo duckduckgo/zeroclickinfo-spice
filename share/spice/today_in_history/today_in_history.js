@@ -48,7 +48,6 @@ function ddg_spice_today_in_history(api_response) {
 
     // Check and see if we have some data left over
     var remainder = clean_array.length % numPod;
-
     // Total number of objects in our pods
     var elements = numPod * podItems;
 
@@ -58,14 +57,14 @@ function ddg_spice_today_in_history(api_response) {
     var j = 0, k = 0;
     array[0] = [];
     for (var i = 0; i < elements; i++) {
-        temp = clean_array[i].split("–");
+        temp = clean_array[i].split(" – ");
 	array[j][k] = {year:temp[0], str:ignore(temp)};
 	k++;
 	if((i+1) % podItems == 0) {
             array[j][k] = {range:array[j][0].year+"-"+temp[0]};
             k = 0;
             j++;
-            array[j] = [];
+	    array[j] = [];
         }
     }
 
@@ -79,6 +78,8 @@ function ddg_spice_today_in_history(api_response) {
 	    i++;
     	}
         array[numPod][i] = {range:array[numPod][0].year+"-"+temp[0]};
+    } else {
+	array.splice((array.length-1),1);
     }
     
     Spice.render({
