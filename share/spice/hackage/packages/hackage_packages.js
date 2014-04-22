@@ -59,7 +59,7 @@
 		sourceIcon: true
 	    },
 	    templates: {
-		detail: Spice.hackage_packages.item
+		detail: Spice.hackage_packages.detail
 	    }
 	});
     };
