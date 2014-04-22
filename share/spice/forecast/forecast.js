@@ -1,7 +1,7 @@
 function ddg_spice_forecast(r) {
   "use strict";
   
-  var weatherData = {};
+  var weatherData = {}, spiceData;
   
   // Exit if we've got a bad forecast
   if(!r || !r.hourly || !r.hourly.data || !r.daily || !r.daily.data || !r.flags['ddg-location']) {
@@ -150,19 +150,40 @@ function ddg_spice_forecast(r) {
   
   // Build the list of days
   var build_daily = function(f) {
-	var dailyObj = [];
-	//$daily_container = $container.find('.fe_daily')
-    //$daily_container.empty()
-    
-	var day_strs = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+	var dailyObj = [],
+		day_strs = [],
 		today = new Date(),
 		today_i = today.getDay(),
 		month_i = today.getMonth(),
 		date_i = today.getDate(),
 		days = f.daily.data,
 		num_days = Math.max(6, days.length),
-		day;
-   
+		day,
+		temp_span,
+		max_temp_height = 65,
+		high_temp = -Infinity,
+		low_temp = Infinity;
+        
+        if (!is_mobile) {
+            day_strs = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        } else {
+            day_strs = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        }
+        
+    // find weekly high and low temps
+    for(var i = 0; i < num_days; i++) {
+        day = days[i];
+        if(day.temperatureMax > high_temp) {
+            high_temp = day.temperatureMax;
+        }
+        if(day.temperatureMin < low_temp) {
+            low_temp = day.temperatureMin;
+        }
+    }
+    // figure out the temp span now that we have highs and lows
+    temp_span = high_temp - low_temp;
+
+    // store daily values
     for(var i = 0,tmp_date; i < num_days; i++) (function(i) {
 	  dailyObj[i] = days[i];
 	  day = days[i];
@@ -174,6 +195,10 @@ function ddg_spice_forecast(r) {
       dailyObj[i].highTemp = Math.round(day.temperatureMax)+'&deg;';
       dailyObj[i].lowTemp = Math.round(day.temperatureMin)+'&deg;';
       dailyObj[i].icon = get_skycon(skycon_type(days[i].icon));
+      dailyObj[i].tempBar = {
+        height: max_temp_height * (day.temperatureMax - day.temperatureMin) / temp_span,
+        top: max_temp_height * (high_temp - day.temperatureMax) / temp_span
+      };
 	  
     })(i);
 	
@@ -215,13 +240,21 @@ function ddg_spice_forecast(r) {
   weatherData.current = build_currently(r);
   weatherData.alerts = build_alerts(r);
   weatherData.daily = build_daily(r);
+  weatherData.activeUnit = unit_labels[units].temperature;
+  
+  // structure the data differently for mobile and desktop views
+  if (is_mobile) {
+    spiceData = weatherData;
+  } else {
+    spiceData = [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]];
+  }
   
   // Render/Display
     Spice.add({
         id: 'forecast',
         name: 'Weather',
 
-        data: [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]],
+        data: spiceData,
 
         signal: "high",
 
@@ -233,10 +266,10 @@ function ddg_spice_forecast(r) {
             variableTileWidth: true
         },
 
-        view: 'Tiles',
-
         templates: {
-            item: Spice.forecast.forecast_item
+            // custom_item: Spice.forecast.forecast_item,
+            item: Spice.forecast.forecast_item,
+            detail_mobile: Spice.forecast.forecast_detail_mobile
         }
 
     });
