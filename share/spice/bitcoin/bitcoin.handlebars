@@ -1,4 +1,14 @@
-<h5 class="tile__title">{{title}}</h5>
-<div>{{formatted_price}}</div>
-
-
+<div>
+  {{#with buy}}
+    <div class="half">
+      <h5 class="title">{{title}}</h5>
+      <div class="price">{{formatted_price}}</div>
+    </div>
+  {{/with}}
+  {{#with sell}}
+    <div class="half">
+      <h5 class="title">{{title}}</h5>
+      <div class="price">{{formatted_price}}</div>
+    </div>
+  {{/with}}
+</div>
