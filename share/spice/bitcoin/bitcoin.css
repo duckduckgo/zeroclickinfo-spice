@@ -1,6 +1,6 @@
 .zci--bitcoin .half.bitcoin__half {
     vertical-align: top;
-    padding: 2.2% 2% 2.2% 4%;
+    padding: 2.2% 5% 3% 4%;
     margin: 0.5%;
     background-color: #E9E9E9;
     border-radius: 3px;
@@ -10,12 +10,25 @@
 
 .zci--bitcoin .half.bitcoin__half .title {
     font-size: 15px;
-    vertical-align: 4px;
+    position: relative;
+    top: 18px;
     padding-right: 15%;
 }
 
 .zci--bitcoin .half.bitcoin__half .price {
+    position: relative;
+    top: 6px;
     font-size: 35px;
+    float: right;
+}
+
+.zci--bitcoin .zci__more-at {
+    padding-left: 0.8em;
+}
+
+.zci--bitcoin .zci__body {
+    width: 99%;
+    padding-left: 0;
 }
 
 @media screen and (max-width: 680px) {
@@ -24,12 +37,16 @@
     }
 
     .zci--bitcoin .half.bitcoin__half {
-	width: 44%;
+	width: 48%;
     }
-}
 
-.zci--bitcoin .zci__body {
-    width: 99%;
+    .zci--bitcoin .half.bitcoin__half .title {
+	top: 9px;
+    }
+
+    .zci--bitcoin .zci__body {
+	padding-left: 0.8em;
+    }
 }
 
 .bitcoin__container {
