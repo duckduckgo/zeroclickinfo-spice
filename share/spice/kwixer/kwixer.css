@@ -2,10 +2,6 @@
     padding: 0.8em 1em;
 }
 
-div.tile__body.is_hidden {
-    display: none;
-}
-
 .zci--kwixer .tile--basic-image.tile--c {
     width: 12em;
 }
@@ -18,10 +14,6 @@ div.tile__body.is_hidden {
     min-width: 100%;
     height: 100%;
     margin-top: 0;
-}
-
-.zci--kwixer .one-line {
-    float: left;
 }
 
 .zci--kwixer .tile--basic-image .tile__title {
