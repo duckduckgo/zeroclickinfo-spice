@@ -1,6 +1,6 @@
 (function (env) {
-   env.ddg_spice_npm = function(api_result){
-        "use strict";
+    "use strict";
+    env.ddg_spice_npm = function(api_result){
 
         if (api_result.error) {
             return;
@@ -16,8 +16,8 @@
                 sourceUrl: 'http://npmjs.org/package/' + api_result.name
             },
             templates: {
-                detail: Spice.npm.item
+                detail: Spice.npm.detail
             }
         });
-   };
-})(this);
+    };
+}(this));
