@@ -90,12 +90,17 @@
 		return {
 		    image: o.ResourceImageUrl,
 		    title: o.ResourceTitle,
-		    ratingText: o.ResourceYear
+		    ratingText: o.ResourceYear + ""
 		}
 	    },
 	    templates: {
-		item: 'basic_image_item'
+		item: 'basic_image_item',
+		detail: Spice.kwixer.kwixer_detail
 	    }
 	});
     };
+
+    Handlebars.registerHelper("formatDetail", function(s) {
+	return s.split(";").join(", ");
+    });
 }(this));

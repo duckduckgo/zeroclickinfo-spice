@@ -1,26 +1,28 @@
-{{#if ResourceImageUrl}}
-    <img class="spotlight" src="/iu/?u={{ResourceImageUrl}}">
-{{/if}}
-<div class="description">
-    <h1><a href="https://kwixer.com/#/watching/movie/{{ResourceId}}">{{ResourceTitle}}</a></h1>
-    <br/>
-    {{#if ResourceYear}}
-        <span class="labelField">Released: </span><span>{{ResourceYear}}</span> 
-        <br/>
-    {{/if}}
-    {{#if ResourceDetails2}}
-    <span class="labelField">Starring: </span><span>{{formatDetail ResourceDetails2}}</span> 
-    <br/>
-    {{/if}}
-    {{#if ResourceGenre}}
-        <span class="labelField">Genres: </span><span>{{formatDetail ResourceGenre}}</span> 
-        <br/>
-    {{/if}}
-    {{#if ResourceDetails}}
-        <span class="labelField">Director: </span><span>{{formatDetail ResourceDetails}}</span> 
-        <br/>
-    {{/if}}
-    <a href="https://kwixer.com/#/watching/movie/{{ResourceId}}">More on Kwixer</a>
+<div class="detail__media  detail__media--kwixer">
+    <img src="{{imageProxy image}}" alt="{{title}}" class="detail__media__img" />
 </div>
-<div class="clear">&nbsp;</div>
-
+<div class="detail__body  detail__body--kwixer">
+    <div class="detail__body__content">
+        <h5 class="detail__title"><a href='{{title}}' title="{{title}}">{{title}} {{#if ResourceYear}}({{ResourceYear}}){{/if}}</a></h5>
+          <div class="detail__desc">
+            {{#if ResourceDetails2}}
+              <p>
+	        <b>Starring:</b> {{formatDetail ResourceDetails2}}
+              </p>
+            {{/if}}
+            {{#if ResourceDetails}}
+	      <p>
+	        <b>Director:</b> {{formatDetail ResourceDetails}}
+              </p>
+            {{/if}}
+            {{#if ResourceGenre}}
+	      <p>
+	        <b>Genres:</b> {{formatDetail ResourceGenre}}
+	      </p>
+            {{/if}}
+            <a href="https://kwixer.com/#/watching/movie/{{ResourceId}}" class="detail__links__btn">
+            Reviews
+            </a>
+          </div>
+    </div>
+</div>
