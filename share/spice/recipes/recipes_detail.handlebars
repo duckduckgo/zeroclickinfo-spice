@@ -14,7 +14,7 @@
                 {{/cuisine}}
                 {{#cookingTime}}
                     <span class="detail__separator"> | </span>
-                    <span class="detail__cooking-time">Cooking Time: {{.}} minutes</span>
+                    <span class="detail__cooking-time"><span>Cooking </span>Time: {{.}} minutes</span>
                 {{/cookingTime}}
             </p>
             {{#if ingredientDetails}}
@@ -41,10 +41,11 @@
                     </ul>
                 </div>
             {{/if}}
-            <a href="{{url}}" class="detail__links__btn">
+            <a href="{{url}}" class="detail__links__btn  view-btn--recipes">
                 <img class="btn__icon" src="{{meta.sourceIconUrl}}" />
                 View Full Recipe
             </a>
+			{{{moreAt meta.sourceUrl meta.sourceName className="detail__more-at--recipes" iconUrl=meta.sourceIconUrl}}}
         </div>
     </div>
 </div>

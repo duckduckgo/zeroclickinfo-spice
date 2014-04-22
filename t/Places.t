@@ -10,7 +10,8 @@ ddg_spice_test(
     'nearest primos' => test_spice(
         '/js/spice/maps/places/primos',
         call_type => 'include',
-        caller => 'DDG::Spice::Maps::Places'
+        caller => 'DDG::Spice::Maps::Places',
+	is_cached => 0,
     ),
 );
 
