@@ -1,42 +1,48 @@
-function ddg_spice_bootic (api_result) {
-    "use strict";
+(function(env) {
+    env.ddg_spice_bootic = function(api_result) {
+	
+    };
+}(this));
 
-    // check for response
-    if ($.isEmptyObject(api_result.products)) {
-        return;
-    }
+// function ddg_spice_bootic (api_result) {
+//     "use strict";
 
-    var query = (api_result.input_query ) ?
-        '?initial=1&q=' + encodeURIComponent( api_result.input_query ) :
-        '';
+//     // check for response
+//     if ($.isEmptyObject(api_result.products)) {
+//         return;
+//     }
 
-    // Create an array from the object.
-    // The Bootic API gives us a `products` object which contains everything,
-    // but it's not sorted in any order. We use the `sorted` array for that.
-    var result = [];
-    for(var i = 0; i < api_result.sorted.length; i++) {
-	result.push(api_result.products[api_result.sorted[i]]);
-    }
+//     var query = (api_result.input_query ) ?
+//         '?initial=1&q=' + encodeURIComponent( api_result.input_query ) :
+//         '';
 
-    Spice.add({
-        data             : result,
-        sourceName      : 'Bootic',
-        id       : "bootic",
-        sourceUrl       : 'http://www.bootic.com/?q=' + query,
-        templates: {
-            item: Spice.bootic.bootic
-        }
-    });
-}
+//     // Create an array from the object.
+//     // The Bootic API gives us a `products` object which contains everything,
+//     // but it's not sorted in any order. We use the `sorted` array for that.
+//     var result = [];
+//     for(var i = 0; i < api_result.sorted.length; i++) {
+// 	result.push(api_result.products[api_result.sorted[i]]);
+//     }
 
-// Forms the url for a bootic product image
-Handlebars.registerHelper ('bootic_picture', function() {
-    "use strict";
+//     Spice.add({
+//         data             : result,
+//         sourceName      : 'Bootic',
+//         id       : "bootic",
+//         sourceUrl       : 'http://www.bootic.com/?q=' + query,
+//         templates: {
+//             item: Spice.bootic.bootic
+//         }
+//     });
+// }
 
-    console.log(this);
+// // Forms the url for a bootic product image
+// Handlebars.registerHelper ('bootic_picture', function() {
+//     "use strict";
 
-    var pic_id = this.pictures[0],
-        url = pic_id.replace(/\d+x\d+/, "60x80");
+//     console.log(this);
 
-    return url;
-});
+//     var pic_id = this.pictures[0],
+//         url = pic_id.replace(/\d+x\d+/, "60x80");
+
+//     return url;
+// });
