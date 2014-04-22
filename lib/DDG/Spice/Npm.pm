@@ -19,7 +19,7 @@ spice wrap_jsonp_callback => 1;
 triggers startend => 'npm';
 
 handle remainder => sub {
-	return $_ if $_;
+	return lc $_ if $_;
 	return;
 };
 
