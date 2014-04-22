@@ -21,7 +21,7 @@
 		sourceIcon: true
 	    },
             templates: {
-		detail: Spice.flash_version.item,
+		detail: Spice.flash_version.flash_version_detail,
             }
 	});
     };
