@@ -15,7 +15,7 @@ function ddg_spice_rand_word(api_result) {
 	    sourceIcon: true
         },
         templates: {
-            detail: Spice.rand_word.rand_word
+            detail: Spice.rand_word.detail
         },
     });
 }
