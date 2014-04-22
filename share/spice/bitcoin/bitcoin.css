@@ -1,17 +1,23 @@
-.zci--bitcoin .half {
+.zci--bitcoin .half.bitcoin__half {
     vertical-align: top;
     padding: 2.2% 2% 2.2% 4%;
     margin: 0.5%;
-    background-color: #F5F5F5;
+    background-color: #E9E9E9;
     border-radius: 3px;
+    width: 49%;
+    float: left;
 }
 
-.zci--bitcoin .half .title {
+.zci--bitcoin .half.bitcoin__half .title {
     font-size: 15px;
     vertical-align: 4px;
-    padding-right: 15%
+    padding-right: 15%;
 }
 
-.zci--bitcoin .half .price {
+.zci--bitcoin .half.bitcoin__half .price {
     font-size: 35px;
+}
+
+.zci--bitcoin .zci__body {
+    width: 99%;
 }
