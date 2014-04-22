@@ -2,7 +2,6 @@
     "use strict";
 
     env.ddg_spice_movie = function(api_result) {
-	console.log(api_result);
 	Spice.add({
 	    id: 'movie',
 	    name: 'Movies',
@@ -41,26 +40,27 @@
 		]
 	    }
 	});
-
-	// Convert minutes to hr. min. format.
-	// e.g. {{time 90}} will return 1 hr. 30 min.
-	Handlebars.registerHelper("time", function(runtime) {
-	    var hour = 0,
-                minute = 0;
-
-	    if(runtime) {
-		if(runtime >= 60) {
-		    hour = Math.floor(runtime / 60);
-		    minute = runtime - (hour * 60);
-		} else {
-		    minute = runtime;
-		}
-		hour = hour + ' hr ';
-		minute += ' min';
-		return hour + minute;
-	    }
-	});
     };
+
+    // Convert minutes to hr. min. format.
+    // e.g. {{time 90}} will return 1 hr. 30 min.
+    Handlebars.registerHelper("time", function(runtime) {
+	var hour = 0,
+        minute = 0;
+	
+	if(runtime) {
+	    if(runtime >= 60) {
+		hour = Math.floor(runtime / 60);
+		minute = runtime - (hour * 60);
+	    } else {
+		minute = runtime;
+	    }
+	    hour = hour + ' hr ';
+	    minute += ' min';
+	    return hour + minute;
+	}
+    });
+
 }(this));
 
 // function ddg_spice_movie (api_result) {
