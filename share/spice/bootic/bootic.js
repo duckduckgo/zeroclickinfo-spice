@@ -30,6 +30,7 @@
 		picture = "http://static.bootic.com/_pictures/" + picture;
 
 		return {
+		    rating: "Unrated",
 		    parentId: o.id,
 		    url: "http://bootic.com" + o.url,
 		    img: picture,
