@@ -4,27 +4,111 @@ function ddg_spice_today_in_history(api_response) {
     if (!api_response) {
         return;
     }
-
-    var item = $( $.parseXML(api_response) ).find('item');
-
-    if (!item) {
-        return;
+    
+    // Extract our query	
+    var script = $('[src*="/js/spice/today_in_history/"]')[0],
+    source = $(script).attr('src'),
+    query = source.match(/today_in_history\/([^\/]+)/)[1];
+    query = query.replace("_", " ");    
+    // Removes invalid entries from sentence array
+    Array.prototype.clean = function() {
+        for (var i = 0; i < this.length; i++) {
+            if (!this[i] || this[i].contains("<!--")) {         
+                this.splice(i, 1);
+                i--;
+            }
+        }
+        return this;
+    };
+ 
+    // In case our string contains multiple instances of given delimiter i.e. '-'
+    function ignore (temp) {
+    	var ourString = "";
+    	for(var i = 1; i < temp.length; i++)
+    	{
+	    ourString = ourString + temp[i];
+    	}
+    	return ourString;
     }
 
-    var title = item.find('title').text();
-    var link  = item.find('link').text();
-    var text  = item.find('description').text();
+    var item = $( $.parseXML(api_response) ).find('extract');
+    var clean_array = item.text().split("== Events ==")[1].split("== Births ==")[0].split("\n").clean();
+    //  This is the same as extracting the text blob like:    	
+    //  var temp_a = item.text().split("== Events ==");
+    //  var temp_b = temp_a[1].split("== Births ==");
+    //  var temp_c = temp_b[0].split("\n");	
+    //  var clean_array = temp_c.clean();
 
-    if (!title || !link || !text) {
-        return;
+
+    // The number of array to contain data
+    var	numPod = Math.ceil(clean_array.length/5);	
+
+    // The number of objects in each array
+    var podItems = Math.floor(clean_array.length/numPod);
+
+    // Check and see if we have some data left over
+    var remainder = clean_array.length % numPod;
+
+    // Total number of objects in our pods
+    var elements = numPod * podItems;
+
+    // Initialize variables and fit objects into arrays (pods)
+    var temp;
+    var array = [];
+    var j = 0, k = 0;
+    array[0] = [];
+    for (var i = 0; i < elements; i++) {
+        temp = clean_array[i].split("–");
+	array[j][k] = {year:temp[0], str:ignore(temp)};
+	k++;
+	if((i+1) % podItems == 0) {
+            array[j][k] = {range:array[j][0].year+"-"+temp[0]};
+            k = 0;
+            j++;
+            array[j] = [];
+        }
     }
 
+    // If we have some leftover objects, create another pod and put remaining objects in it
+    if (remainder != 0) {
+        var i = 0;
+	array[numPod] = [];
+        for(var num = elements; num < clean_array.length; num++) {
+            temp = clean_array[num].split("–");
+            array[numPod][i] = {year:temp[0], str:ignore(temp)};
+	    i++;
+    	}
+        array[numPod][i] = {range:array[numPod][0].year+"-"+temp[0]};
+    }
+    
     Spice.render({
-        data             : text,
-        header1          : title + ' (Today in History)',
-        source_url       : link,
-        source_name      : 'History.com',
-        template_normal  : 'today_in_history',
-        force_big_header : true
-    });
+        data              : array,
+        source_name       : "Wikipedia",
+        source_url        : "http://en.wikipedia.org/wiki/" + query,
+        spice_name        : 'today_in_history',
+        template_frame    : "carousel",
+        header1           : "History timeline: " + query,
+        template_options  : {
+            items: array,
+            template_item: 'today_in_history',
+            template_detail: 'today_in_history_details',
+            li_height:  20,
+        },
+        force_no_fold     : true,
+        force_big_header  : true
+    });   
 }
+
+// Return range values
+Handlebars.registerHelper('conv', function(arr) {
+        return arr[arr.length-1].range;
+});
+
+// Return year and event string
+Handlebars.registerHelper('fetchdata', function(arr) {
+    var result = "";
+    for(var i = 0; i < arr.length-1; i++) {
+	result = result + "<b>" + arr[i].year + "</b> - " + arr[i].str + "</br>";
+    }
+    return new Handlebars.SafeString(result);
+});
