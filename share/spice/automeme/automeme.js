@@ -10,7 +10,7 @@
         Spice.add({
             id: 'automeme',
             name: 'Automeme',
-            data: api_result,
+            data: {meme: api_result[0]}, //currently can't pass an array or string to data
             meta: {
                 // itemType: 'Automeme',
                 sourceName: 'Autome.me',
