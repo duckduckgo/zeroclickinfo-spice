@@ -12,7 +12,6 @@
             name: 'Automeme',
             data: {meme: api_result[0]}, //currently can't pass an array or string to data
             meta: {
-                // itemType: 'Automeme',
                 sourceName: 'Autome.me',
                 sourceUrl: 'http://autome.me/',
             },
