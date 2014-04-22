@@ -90,7 +90,8 @@
 		return {
 		    image: o.ResourceImageUrl,
 		    title: o.ResourceTitle,
-		    ratingText: o.ResourceYear + ""
+		    ratingText: o.ResourceYear + "",
+		    rating: "Unrated"
 		}
 	    },
 	    templates: {
