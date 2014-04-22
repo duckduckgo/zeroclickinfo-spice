@@ -15,10 +15,12 @@
         Spice.add({
             id: "meta_cpan",
             name: "MetaCPAN",
-            data: api_response,
+            data: [{response: api_response}],
             meta: {
                 sourceName: "MetaCPAN",
-                sourceUrl: 'https://metacpan.org/' + link
+                sourceUrl: 'https://metacpan.org/' + link,
+                list: ['abstract','author','version','description'],
+                concat: '340'
             },
             templates: {
                 detail: Spice.meta_cpan.detail
