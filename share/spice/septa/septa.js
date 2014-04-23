@@ -15,15 +15,18 @@ function ddg_spice_septa(api_result) {
     var to      = parts[5];
 
     Spice.add({
-        data              : api_result,
-        sourceName       : 'SEPTA',
-        sourceUrl        : 'http://www.septa.org/schedules/',
+	id: 'septa',
+	name: 'SEPTA',
+        data: api_result,
+	meta: {
+            sourceName: 'SEPTA',
+            sourceUrl: 'http://www.septa.org/schedules/',
+	    sourceIcon: true,
+	    itemType: 'septa'
+	},
         templates: {
-            item: Spice.septa.septa,
-            detail: Spice.septa.septa
-        },
-        header1           : 'Trains from ' + from + ' to ' + to,
-        force_favicon_url : 'http://www.septa.org/site/images/favicon.ico'
+            item: Spice.septa.item
+        }
     });
 };
 
@@ -31,12 +34,12 @@ Handlebars.registerHelper ('delay', function(delay) {
     "use strict";
 
     if (delay == "On time") {
-        return "";
+        return "On time";
     }
     if (delay == "Suspended") {
-        return " (Suspended) ";
+        return "Suspended";
     }
     var parts = delay.split(" ");
     var delay = parts[0] + " minute" + (parts[0] > 1 ? "s" : "") + " late";
-    return " (" + delay + ")";
+    return delay;
 });
