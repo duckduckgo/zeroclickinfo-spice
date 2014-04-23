@@ -11,31 +11,46 @@
             name: 'Coupon Mountain',
             data: api_result.coupon,
             meta: {
-                searchTerm: api_result.keyword ? encodeURIComponent(api_result.keyword) : null,
-                itemType: api_result.keyword ? api_result.keyword + ' (CouponMountain)' : 'Coupon Search (CouponMountain)',
+                searchTerm: api_result.keyword,
+                itemType: 'Coupons',
                 sourceName: 'CouponMountain',
-                sourceUrl: 'http://www.couponmountain.com/search.php?searchtext='+ keyword
+                sourceUrl: 'http://www.couponmountain.com/search.php?searchtext='+ api_result.keyword
+            },
+            normalize: function(o){
+                return {
+                    image: o.iconUrl,
+                    title: o.desc,
+                    ratingText: o.merName, 
+                    rating: 'Unrated',
+                }
             },
             templates: {
-                item: Spice.coupon_mountain.item,
+                item: 'basic_image_item',
                 detail: Spice.coupon_mountain.detail,
             }
+            // sort_fields: {
+            //     merName: function(a,b) {
+            //         return a.merName > b.merName;
+            //     }
+            // }
         });
 
-        // Manually trigger our callback function,
-        // item_callback doesn't fire for single result
+        // Manually trigger highlight for single result
         if (api_result.count === 1) {
             highlight_code();
         }
-    };
 
-    // highlight coupon code on detail area opening
-    function highlight_code () {
-        var coupon_code = $('#coupon_code');
-        coupon_code.click(function() {
-            coupon_code.focus().select();
-        }).click();
-    }
+        // highlight coupon code text
+        function highlight_code () {
+            var coupon_code = $('.zci--coupon_mountain input.tag');
+            
+            coupon_code.click(function() {
+                coupon_code.focus().select();
+            });
+
+            coupon_code.click();
+        }
+    };
 
     Spice.registerHelper('check_expiry', function(string, options) {
         'use strict';

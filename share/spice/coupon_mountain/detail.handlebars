@@ -1,14 +1,22 @@
-<div id="coupon_preview">
-    <div class="coupon_code">
-        <div>Use code: </div>
-        <input id="coupon_code" class="button" readonly="readonly" value="{{code}}">
-    </div>
-    
-    <div class="coupon_info">
-        {{merName}}
-        <a class="coupon_description" href="{{displayURL}}">{{{stripExpiry desc}}}</a>
+<div class="detail__media  detail__media--pr">
+    <img class="detail__media__img" src="{{imageProxy iconUrl}}">
+</div>
+<div class="detail__body  detail__body--pr">
+    <div class="detail__body__content">
+
+        <a href="{{displayURL}}">
+            <h5 class="detail__title detail__tile--pr">{{merName}}</h5>
+            <p class="detail__subtitle">
+                <span class="detail__expiry">{{{stripExpiry desc}}}</span>
+            </p>
+        </a>
+
         {{#check_expiry expire}}
-            <div class="coupon_expdate">{{dateString expire}}</div>
+            <p class="detail__desc">{{dateString expire}}</p>
         {{/check_expiry}}
+                
+        <span class="detail__callout--pr">
+            <span>Use code: </span><input class="tag" readonly="true" value="{{code}}">
+        </span>
     </div>
 </div>
