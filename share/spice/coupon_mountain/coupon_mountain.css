@@ -1,55 +1,15 @@
-.zci--coupon_mountain.tile--basic-image img {
-    max-width: 95% !important;
+.zci--coupon_mountain input.tag {
+	-webkit-user-select: text;
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
 }
 
-.zci--coupon_mountain #coupon_preview {
-    overflow: hidden;
+.zci--coupon_mountain .tile--basic-image .tile__media {
+    height: 5em;
 }
 
-.zci--coupon_mountain div.inline {
-    display: inline-block;
-}
-
-.zci--coupon_mountain .coupon_info {
-    overflow: hidden;   
-}
-
-.zci--coupon_mountain .coupon_code {
-    color: #808080;
-    float: left;
-    margin-right: 20px;
-    text-align: center;
-}
-
-.zci--coupon_mountain .coupon_expdate {
-    color: gray;
-}
-
-.zci--coupon_mountain .coupon_description {
-    display: block;
-    padding-top: 3px;
-}
-
-.zci--coupon_mountain .clear {
-    clear: both;
-}
-
-.zci--coupon_mountain .button {
-    display: inline-block;
-    border-radius: 3px;
-    padding: 3px;
-    vertical-align: text-bottom;
-    background: #EEE;
-    border: 1px solid #DDD;
-    color: black;
-    min-width: 100px;
-    text-align: center;
-}
-
-.zci--coupon_mountain .button:hover {
-    background-image: none !important;
-    background-color: #f7f7f7;
-    border: 1px solid #80b5ff;
-    cursor: pointer;
-    text-decoration: none;
+.zci--coupon_mountain .tile--basic-image .tile__media__img {
+    margin-top: 0;
 }
