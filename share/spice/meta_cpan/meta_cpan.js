@@ -15,16 +15,45 @@
         Spice.add({
             id: "meta_cpan",
             name: "MetaCPAN",
-            data: [{response: api_response}],
+            data: {response: api_response, list: ['Abstract','Author','Version','Description']},
             meta: {
                 sourceName: "MetaCPAN",
                 sourceUrl: 'https://metacpan.org/' + link,
-                list: ['abstract','author','version','description'],
-                concat: '340'
+            },
+
+            normalize : function(item) {
+                var desc = item.response.pod;
+                return {
+                    'Author': item.response.author || null,
+                    'Description': ((desc.length > 340) ? desc.slice(0, 340) + ' ...' : null),
+                    'Version': item.response.version || null,
+                    'Abstract': item.response.abstract || null
+                };
             },
             templates: {
-                detail: Spice.meta_cpan.detail
+                detail: DDG.templates.table_detail,
             }
         });
     }
 }(this));
+
+// we need a helper to access the parent context
+// to get the results from the normalize function
+Handlebars.registerHelper('getNormalize', function(val) {
+    for(entry in val){
+        if(entry == this){
+            return val[entry];
+        }
+    }
+});
+
+// check to see if the normalize function returned 
+// an entry (not null) for a given value
+Handlebars.registerHelper('checkNormalize', function(val) {
+    for(entry in val){
+        if(entry == this && val[entry]){
+            return true;
+        }
+    }
+    return false;
+});
