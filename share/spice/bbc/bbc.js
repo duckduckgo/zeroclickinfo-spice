@@ -58,11 +58,14 @@
 		    title: o.programme.display_titles.title,
 		    ratingText: time(o),
 		    image: image(o),
-		    rating: "Unrated"
+		    rating: "Unrated",
+		    duration: duration(o),
+		    programme_url: programme_url(o)
 		};
 	    },
 	    templates: {
-		item: 'basic_image_item'
+		item: 'basic_image_item',
+		detail: Spice.bbc.detail 
 	    }
 	});
     };
@@ -86,16 +89,16 @@
     }
 
     //Find the duration of a programme and return it
-    Handlebars.registerHelper("duration", function() {
+    function duration(o) {
 	var pluralise = function(n) {
             return n > 1 ? "s" : "";
 	};
-	var dur = this.duration,
+	var dur = o.duration,
             hours = Math.floor(dur / (60 * 60));
 
 	dur -= hours * 60 * 60;
 	var minutes = Math.floor(dur / 60);
-	this.duration -= minutes * 60;
+	o.duration -= minutes * 60;
 	if (hours > 0 && minutes > 0) {
             return hours + " hour"+pluralise(hours)+", "+minutes+" min"+pluralise(minutes);
 	} else if (hours > 0 && minutes == 0) {
@@ -103,16 +106,16 @@
 	} else {
             return minutes+" min"+pluralise(minutes);
 	}
-    });
+    }
 
     // Find the series URL and return it, or if it is not part of a series return the normal url
-    Handlebars.registerHelper("programme_url", function() {
-	var programme = this.programme;
+    function programme_url(o) {
+	var programme = o.programme;
 	while(programme.programme != null && programme.programme.pid != null) {
             programme = programme.programme;
 	}
 	return "http://bbc.co.uk/" + (programme.pid == null ? "" : "programmes/"+programme.pid);
-    });
+    }
 
 
     // Find the programme image and return it
