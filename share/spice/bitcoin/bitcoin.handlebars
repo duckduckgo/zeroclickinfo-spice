@@ -1,2 +1,14 @@
-<span class="title">{{title}}</span> <span class="price">{{formatted_price}}</span>
-
+<div class="clearfix bitcoin__container">
+  {{#with buy}}
+    <div class="half bitcoin__half">
+      <span class="title">{{title}}</span>
+      <span class="price">{{formatted_price}}</span>
+    </div>
+  {{/with}}
+  {{#with sell}}
+    <div class="half bitcoin__half">
+      <span class="title">{{title}}</span>
+      <span class="price">{{formatted_price}}</span>
+    </div>
+  {{/with}}
+</div>
