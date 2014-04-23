@@ -18,16 +18,15 @@ function ddg_spice_xkcd_display(api_result) {
     
     Spice.add({
 		id: 'xkcd',
-		data             : api_result,
+		data: api_result,
 		name: 'XKCD',
-		// header1          : api_result.safe_title + " (xkcd)",
-		sourceUrl       : 'http://xkcd.com/' + api_result.num,
-		sourceName      : 'xkcd',
 		meta: {
+            sourceUrl       : 'http://xkcd.com/' + api_result.num,
+            sourceName      : 'xkcd',
+            sourceIcon      : true
 		},
 		templates: {
-			item: Spice.xkcd_display.item,
-			detail: Spice.xkcd_display.item
+			detail: Spice.xkcd_display.detail
 		},
     });
   });
