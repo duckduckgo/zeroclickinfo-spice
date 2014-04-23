@@ -12,6 +12,10 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::HackerNews'
     ),
+    'hn postgresql' => test_spice(
+        '/js/spice/hacker_news/postgresql',
+        caller    => 'DDG::Spice::HackerNews',
+    ),
 );
 
 done_testing;

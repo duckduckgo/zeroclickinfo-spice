@@ -6,7 +6,6 @@ env.ddg_spice_quixey = function(api_result) {
 
     var q = api_result.q.replace(/\s/g, '+');
 
-
     var category_regexp = new RegExp([
             "action",
             "adventure",
@@ -209,6 +208,8 @@ env.ddg_spice_quixey = function(api_result) {
 // format a price
 // p is expected to be a number
 function qprice(p) {
+    "use strict";
+
     if (p == 0) {    // == type coercion is ok here
         return "FREE";
     }
@@ -219,6 +220,8 @@ function qprice(p) {
 // template helper for price formatting
 // {{price x}}
 Handlebars.registerHelper("qprice", function(obj) {
+    "use strict";
+
     return qprice(obj);
 });
 
@@ -228,7 +231,7 @@ var quixey_image = function(image_url) {
 }
 
 var make_icon_url = function(item) {
-    var domain = "d1z22zla46lb9g.cloudfront.net",
+    var domain = quixey_image_domain,
         icon_url = item.icon_url;
 
     if (!icon_url) {
@@ -251,23 +254,6 @@ var make_icon_url = function(item) {
     // return "/iu/?u=http://" + domain + item.icon_url.match(/\/image\/.+/)[0] + "&f=1";
     return "http://" + domain + icon_url.match(/\/image\/.+/)[0];
 };
-
-
-Handlebars.registerHelper("toHTTP", function(icon_url, platforms) {
-    var domain = "d1z22zla46lb9g.cloudfront.net";
-
-    // Get the image server that the icon_url in platforms is pointing to.
-    // It's not ideal, but the link to the app's image still has to redirect
-    // and it redirects to HTTPS. What we want is an HTTP link (for speed).
-    if(platforms && platforms.length > 0 && platforms[0].icon_url) {
-    domain = platforms[0].icon_url.match(/https?:\/\/([^\/]+)/)[1];
-    }
-
-    // Replace the domain in our icon_url to the one that we got from
-    // the platforms array.
-    icon_url = icon_url.match(/\/image\/.+/)[0];
-    return "http://" + domain + icon_url;
-});
 
 
 // template helper to format a price range
@@ -306,6 +292,8 @@ Handlebars.registerHelper("pricerange", function() {
 // template helper to replace iphone and ipod icons with
 // smaller 'Apple' icons
 Handlebars.registerHelper("platform_icon", function(icon_url) {
+    "use strict";
+
     if (this.id === 2004 || this.id === 2015) {
         return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
     }
@@ -316,6 +304,8 @@ Handlebars.registerHelper("platform_icon", function(icon_url) {
 
 // template helper that returns and unifies platform names
 Handlebars.registerHelper("platform_name", function() {
+    "use strict";
+
     var name;
     var platforms = this.platforms;
 
@@ -337,11 +327,5 @@ Handlebars.registerHelper("platform_name", function() {
 
     return name;
 });
-
-// template helper to give url for star icon
-Handlebars.registerHelper("quixey_star", function() {
-    return DDG.get_asset_path("quixey", "star.png").replace("//", "/");
-});
-
 
 })(this);

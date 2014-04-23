@@ -1,0 +1,48 @@
+var x = {
+    flight: {
+        DepartureTerminal: "8",
+        TailNumber: "N717AN",
+        DepartureAirportTimeZoneOffset: "-4",
+        FlightNumber: "104",
+        Status: "Scheduled",
+        DepartureDate: "2014-04-10T20:40:00.000",
+        ScheduledGateDepartureDate: "2014-04-10T20:40:00.000",
+        ScheduledAirTime: "343",
+        ScheduledBlockTime: "440",
+        Origin: {
+            FAACode: "JFK",
+            AirportCode: "JFK",
+            IATACode: "JFK",
+            ICAOCode: "KJFK",
+            Name: "John F. Kennedy International Airport"
+        },
+        ScheduledRunwayDepartureDate: "2014-04-10T20:46:00.000",
+        ArrivalAirportTimeZoneOffset: "1",
+        ScheduledGateArrivalDate: "2014-04-11T09:00:00.000",
+        PublishedArrivalDate: "2014-04-11T09:00:00.000",
+        Airline: {
+            IATACode: "AA",
+            ICAOCode: "AAL",
+            Name: "American Airlines",
+            AirlineCode: "AA"
+        },
+        ArrivalDate: "2014-04-11T09:00:00.000",
+        DepartureGate: "B8",
+        Destination: {
+            AirportCode: "LHR",
+            IATACode: "LHR",
+            ICAOCode: "EGLL",
+            Name: "London Heathrow Airport"
+        },
+        ScheduledRunwayArrivalDate: "2014-04-11T07:29:00.000",
+        PublishedDepartureDate: "2014-04-10T20:40:00.000",
+        StatusCode: "S",
+        EstimatedGateArrivalDate: "2014-04-11T09:00:00.000",
+        ArrivalTerminal: "3",
+        FlightHistoryId: "360047153",
+        CreatorCode: "I",
+        ScheduledAircraftType: "77W",
+        EstimatedGateDepartureDate: "2014-04-10T20:40:00.000"
+    }
+};
+

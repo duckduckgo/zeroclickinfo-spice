@@ -1,7 +1,15 @@
-.more-links {
-    float: left; padding-right: 5px; padding-top: 2px; width: 16px; height: 16px;
+.zci--gravatar .more-links {
+    float: left; 
+    padding-right: 5px; 
+    padding-top: 2px; 
+    width: 16px; 
+    height: 16px;
 }
 
-.more-links-anchor:hover {
+.zci--gravatar .detail__media {
+    height: 6em;
+}
+
+.zci--gravatar .more-links-anchor:hover {
     text-decoration: none;
 }

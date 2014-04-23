@@ -3,11 +3,11 @@
 
     env.ddg_spice_in_theaters = function(api_result) {
 	// Exit if we don't find any movies or if we see an error.
-	if(api_result.error || !api_result.movies || api_result.movies.length === 0) {
+	if(api_result.error) {
             return;
 	}
 
-	Spice.add({
+ 	Spice.add({
 	    id: 'in_theaters',
 	    name: 'Now Showing',
 	    data: api_result.movies,
@@ -16,21 +16,22 @@
 		sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
 		sourceIcon: true,
 		total: api_result.movies,
-		itemType: 'Now Showing'
+		itemType: 'Movies'
 	    },
 	    normalize: function(o) {
-		// The critic's score ranges from 0 to 100, but the helper function starRating
-		// expects a range between 0 to 5.
-		o.ratings.normalized = o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0;
-		o.ratings.runtime = o.ratings.runtime >= 0 ? o.ratings.runtime : 0;
-
-		return o;
+		return { 
+		    rating: o.ratings.critics_score >= 0 ? o.ratings.critics_score / 20 : 0,
+		    image: o.posters.detailed
+		};
 	    },
 	    templates: {
-		item: Spice.in_theaters.in_theaters,
+		item: 'basic_image_item',
 		detail: Spice.in_theaters.in_theaters_detail
 	    }
 	});
+
+	var in_theaters = Spice.getDOM('in_theaters');
+	$(in_theaters).find('.tile__body').addClass('is_hidden');
     }
 
     // Convert minutes to hr. min. format.
@@ -52,4 +53,3 @@
 	}
     });
 }(this));
-

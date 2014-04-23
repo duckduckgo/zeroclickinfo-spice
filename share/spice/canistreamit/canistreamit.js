@@ -9,17 +9,20 @@ function ddg_spice_canistreamit (api_result) {
 	return;
     }
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
         header1          : api_result[0].title + " (Can I Stream.it)",
-        force_big_header : true,
-        source_name      : "Can I Stream.it?",
+        
+        sourceName      : "Can I Stream.it?",
         image_url        : "/iu/?u=" + api_result[0].image,
-        source_url       : api_result[0].links.shortUrl,
-        template_normal  : "canistreamit",
-        template_small   : "canistreamit_small",
+        sourceUrl       : api_result[0].links.shortUrl,
+        templates: {
+            item: Spice.canistreamit.canistreamit,
+            detail: Spice.canistreamit.canistreamit
+        },
+        
         image_width      : 70,
-        force_no_fold    : true
+        
     });
 };
 

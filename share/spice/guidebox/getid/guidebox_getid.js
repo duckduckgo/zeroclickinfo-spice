@@ -1,7 +1,9 @@
 function ddg_spice_guidebox_getid (api_result) {
     "use strict";
 
-    if (!api_result.results) return;
+    if (!api_result.results) {
+      return;
+    }
 
     var SKIP_ARRAY = ["online","tv","episode","episodes","free","guidebox","watch","full"],
         results = api_result.results.result,
@@ -41,20 +43,33 @@ function ddg_spice_guidebox_getid (api_result) {
 }
 
 function ddg_spice_guidebox_lastshows (api_result) {
+    "use strict";
 
     var metadata = ddg_spice_guidebox_getid.metadata;
 
-    Spice.render({
-        data                     : api_result,
+    function toArray(obj) {
+	var result = [];
+	if($.isArray(obj)) {
+	    return obj;
+	} else {
+	    $.each(obj, function(key, value) {
+		result[key] = value;
+	    });
+	    return result;
+	}
+    }
+
+    Spice.add({
+        data                     : toArray(api_result.results.result),
         header1                  : metadata.res_title + " (TV  - " + metadata.network + ")",
-        source_name              : "Guidebox",
-        source_url               : metadata.more,
-        template_frame           : "carousel",
-        spice_name               : "guidebox",
-        template_options         : { 
+        sourceName              : "Guidebox",
+        sourceUrl               : metadata.more,
+        view: "Tiles",
+        id               : "guidebox",
+        templates         : { 
             items                : api_result.results.result,
-            template_item        : "guidebox_getid",
-            template_detail      : "guidebox_getid_details",
+            item: Spice.guidebox_getid.guidebox_getid,
+            detail: Spice.guidebox_getid.guidebox_getid_details,
             li_width             : 120,
             li_height            : 105
         }
@@ -62,6 +77,8 @@ function ddg_spice_guidebox_lastshows (api_result) {
 };
 
 Handlebars.registerHelper("checkSeason", function(season_number, episode_number, options) {
+    "use strict";
+
     if(season_number !== "0") {
 	return options.fn({
 	    season_number: season_number, 
@@ -71,10 +88,14 @@ Handlebars.registerHelper("checkSeason", function(season_number, episode_number,
 });
 
 Handlebars.registerHelper("getQuery", function() {
+    "use strict";
+
     return ddg_spice_guidebox_getid.metadata.query;
 });
 
 Handlebars.registerHelper("getTitle", function() {
+    "use strict";
+
     return ddg_spice_guidebox_getid.metadata.res_title;
 });
 
@@ -89,6 +110,7 @@ Handlebars.registerHelper("getDate", function(first_aired) {
 });
 
 Handlebars.registerHelper("pluralize", function(string, options) { 
+    "use strict";
     
     if (options.hash && options.hash.singular && options.hash.plural){
         var arr = string.split("|");
@@ -98,10 +120,13 @@ Handlebars.registerHelper("pluralize", function(string, options) {
 });
 
 Handlebars.registerHelper("split", function(string) { 
+    "use strict";
+    
     return string.replace(/^\||\|$/g, "").replace(/\|/g, ", ");
 });
 
 Handlebars.registerHelper("creators", function(options) {
+    "use strict";
     
     if (this.writers.length || this.directors.length){
         return options.fn(this)
@@ -110,5 +135,7 @@ Handlebars.registerHelper("creators", function(options) {
 });
 
 Handlebars.registerHelper("get_network", function(options) {  
+    "use strict";
+
     return ddg_spice_guidebox_getid.metadata.network;
 });

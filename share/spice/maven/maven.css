@@ -1,13 +1,13 @@
-#spice_maven table {
+.zci--maven table {
     width:100%;
     margin:5px;
 }
 
-#spice_maven tr {
+.zci--maven tr {
     border-bottom:1px solid #efefef;
 }
 
-#spice_maven th {
+.zci--maven th {
     vertical-align:bottom;
     text-align:left;
     font-size:83.3%;
@@ -15,7 +15,7 @@
     padding-left:3px;
 }
 
-#spice_maven td {
+.zci--maven td {
     padding:2px;
     max-width:250px;
 }

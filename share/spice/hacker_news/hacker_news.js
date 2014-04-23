@@ -5,7 +5,7 @@
 	var script = $('[src*="/js/spice/hacker_news/"]')[0];
 	var source = $(script).attr("src");
 	var query = source.match(/hacker_news\/([^\/]+)/)[1];
-	var source_url = 'https://hn.algolia.com/#!/story/forever/0/' + query;
+	var sourceUrl = 'https://hn.algolia.com/#!/story/forever/0/' + query;
     
 	if(!api_result || !api_result.hits || api_result.hits.length === 0) {
 	    return;
@@ -19,7 +19,7 @@
 
             meta: {
 		sourceName: 'Hacker News',
-		sourceUrl: source_url,
+		sourceUrl: sourceUrl,
 		sourceIcon: true,
 		total: api_result.hits,
 		itemType: 'Hacker News',
@@ -40,7 +40,7 @@
             },
 
             templates: {
-		item: Spice.hacker_news.hacker_news
+		item_custom: Spice.hacker_news.item
             }
 /*
             relevancy: {

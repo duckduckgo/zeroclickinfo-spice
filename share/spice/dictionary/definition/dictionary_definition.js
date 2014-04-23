@@ -16,7 +16,6 @@
 
 nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
 
-
 var ddg_spice_dictionary = {
 
     path: "/js/spice/dictionary",
@@ -56,13 +55,13 @@ var ddg_spice_dictionary = {
                 word: word,
                 plural_form: this.plural_form,
                 definitions: definitions,
-                source_name: "Wordnik",
-                source_url : "http://www.wordnik.com/words/" + word
+                sourceName: "Wordnik",
+                sourceUrl : "http://www.wordnik.com/words/" + word
             },
 
             relevancy: {   
                 primary: [
-                    { key: 'word', min_length: -1, strict: false }
+                    { key: 'word', min_length: word.length, strict: false }
                 ]
             },
 

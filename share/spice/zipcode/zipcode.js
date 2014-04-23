@@ -30,7 +30,9 @@ function ddg_spice_zipcode (api_result) {
 
     for (var i = 0; i < names.length ; i++) {
         var name = place[names[i]];
-        if (name.length && header.indexOf(name) === -1) header.push(name);
+        if (name.length && header.indexOf(name) === -1) {
+            header.push(name);
+        }
     };
 
     header.push(place.country);
@@ -41,14 +43,17 @@ function ddg_spice_zipcode (api_result) {
     var longitude = place.centroid.longitude;
 
     // Display the Spice plugin.
-    Spice.render({
+    Spice.add({
         data              : api_result,
         header1           : header_string,
-        force_big_header  : true,
-        source_name       : "MapQuest",
-        source_url        : "http://mapq.st/map?q=" + encodeURIComponent(latitude + "," + longitude),
-        template_normal   : "zipcode",
-        force_no_fold     : true
+        
+        sourceName       : "MapQuest",
+        sourceUrl        : "http://mapq.st/map?q=" + encodeURIComponent(latitude + "," + longitude),
+        templates: {
+            item: Spice.zipcode.zipcode,
+            detail: Spice.zipcode.zipcode
+        },
+        
     });
 };
 
@@ -84,7 +89,9 @@ Handlebars.registerHelper("checkZipcode", function(options) {
         name    = this.zip,
         country = this.relevantPlace["country attrs"].code;
 
-    if(locs.length === 1) return;
+    if(locs.length === 1) {
+        return;
+    }
 
     locs = locs.sort(function(a, b) {
         return a.country > b.country ? 1 : -1;

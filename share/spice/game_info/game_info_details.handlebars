@@ -1,0 +1,15 @@
+<span class="heading"><a href="{{site_detail_url}}" class="name">{{name}}</a></span><br>
+{{#if platforms}}
+<span class="field">Platforms:</span>
+{{#platform_summary platforms}}{{#if site_detail_url}}<a href="{{site_detail_url}}">{{/if}}{{name}}{{#if site_detail_url}}</a>{{/if}}{{/platform_summary}}
+<br>
+{{/if}}
+{{#if original_game_rating}}
+<span class="field">Age Rating:</span>
+{{age_rating}}
+<br>
+{{/if}}
+{{#if original_release_date}}
+<span class="field">Release Date:</span> {{release_date}}<br>
+{{/if}}
+<span class="description">{{{condense deck maxlen="350" fuzz="30"}}}</span>

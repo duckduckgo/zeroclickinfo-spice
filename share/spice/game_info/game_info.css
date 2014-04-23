@@ -1,0 +1,17 @@
+.zci--game_info .field {
+	color: gray;
+}
+.zci--game_info .header {
+    font-size: 95%;
+}
+.zci--game_info .title {
+	padding-top: 3px;
+	display: inline-block;
+}
+.zci--game_info .name {
+	color: #444;
+}
+.zci--game_info .thumbnail {
+	height: 80px !important;
+	max-width: 98px;
+}

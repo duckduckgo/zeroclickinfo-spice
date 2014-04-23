@@ -22,6 +22,10 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Aur'
     ),
+    'archlinux package 9base-git' => test_spice(
+        '/js/spice/aur/9base-git',
+        caller    => 'DDG::Spice::Aur',
+    ),
 );
 
 done_testing;

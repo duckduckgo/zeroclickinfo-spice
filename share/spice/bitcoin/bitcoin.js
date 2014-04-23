@@ -1,4 +1,5 @@
 function ddg_spice_bitcoin(api_result) {
+    "use strict"
 
     if (!api_result) {
         return;
@@ -58,27 +59,32 @@ function ddg_spice_bitcoin(api_result) {
 
     var buy = {
         formatted_price: getFormattedPrice(currency, prices.buy, prices.symbol),
-        title: "Buy"
+        title: "BUY"
     };
 
     var sell = {
         formatted_price: getFormattedPrice(currency, prices.sell, prices.symbol),
-        title: "Sell"
+        title: "SELL"
     };
 
-    Spice.render({
+    Spice.add({
         header1           : "Bitcoin Exchange Prices (" + currency + ")" ,
-        source_name       : "Blockchain",
-        spice_name        : "bitcoin",
-        source_url        : 'http://markets.blockchain.info/',
+        sourceName       : "Blockchain",
+        id        : "bitcoin",
+        sourceUrl        : 'http://markets.blockchain.info/',
         force_favicon_url : "http://blockchain.info/favicon.ico",
 
         template_frame   : "twopane",
-        template_options : {
+        templates : {
             left : { template: "bitcoin", data: buy },
             right : { template: "bitcoin", data: sell }
         },
-        force_no_fold    : true,
-        force_big_header : true
+        
+        
     });
+
+    // Adjust the box margins--can't do this in css
+    $("#zero_click_wrapper2 #zero_click_abstract").attr("style", 
+							"padding-left: 2px !important;" +
+							"margin-left: 2px !important;");
 }
