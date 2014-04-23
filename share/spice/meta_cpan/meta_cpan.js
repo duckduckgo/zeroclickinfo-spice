@@ -37,23 +37,18 @@
     }
 }(this));
 
-// we need a helper to access the parent context
-// to get the results from the normalize function
-Handlebars.registerHelper('getNormalize', function(val) {
-    for(entry in val){
-        if(entry == this){
-            return val[entry];
-        }
-    }
-});
 
-// check to see if the normalize function returned 
-// an entry (not null) for a given value
-Handlebars.registerHelper('checkNormalize', function(val) {
-    for(entry in val){
-        if(entry == this && val[entry]){
-            return true;
+Handlebars.registerHelper('table-each', function(list, data) {
+    var return_string = "";
+
+    // list is the list of display names sent along with the api data
+    for(item in list){
+        // check to see if normalize returned something, i.e. not null
+        // and add it to the table
+        if(data[list[item]]){
+        return_string += '<tr><td style="text-align: right; vertical-align: top; padding-right: 10px; font-weight: bold">'
+            + list[item] + '</td><td>' + data[list[item]] + '</td></tr>';
         }
     }
-    return false;
+    return return_string;
 });
