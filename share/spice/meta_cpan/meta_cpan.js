@@ -36,28 +36,3 @@
         });
     }
 }(this));
-
-
-Handlebars.registerHelper("table-each", function(context, data, options) {
-        console.log("context: %o", context);
-        console.log("data: %o", data);
-        console.log("options: %o", options);
-
-        if (!context) return "";
-
-        console.log("each helper: options.hash: %o", options.hash);
-
-        var from = +options.hash.from || 0,
-        to = +options.hash.to || context.length,
-        result = "";
-
-        if (to > context.length) to = context.length;
-        if (from < 0) from = 0;
-
-        for(var i = from; i < to; i++) {
-            result += options.fn(context[i]);
-
-        }
-        console.log(result);
-        return result
-});
