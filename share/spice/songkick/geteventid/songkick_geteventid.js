@@ -8,6 +8,8 @@
     var metadata = {};
     env.ddg_spice_songkick_geteventid = function(api_result) {
 
+	console.log(api_result);
+
 	if(!api_result || !api_result.resultsPage || !api_result.resultsPage.results) {
 	    return;
 	}
@@ -28,6 +30,8 @@
 	    metro_area: considered_location.metroArea.displayName
 	};
 	
+
+	console.log("LOG");
 	$.getScript("/js/spice/songkick/events/" + metro_area_id);
     };
 
@@ -63,8 +67,6 @@
 	    normalize: function(o) {
 		if(o.performance.length > 0 && o.venue.displayName !== "Unknown venue") {
 		    return {
-			city: metadata.city,
-			metro_area: metadata.metro_area,
 			artist: o.performance[0].displayName,
 			venue: o.venue.displayName,
 			start: {
@@ -78,16 +80,6 @@
 	    },
 	    templates: {
 		item: Spice.songkick_geteventid.item
-	    },
-	    relevancy: {
-		skip_words: [
-		    'concert',
-		    'concerts'
-		],
-		primary: [
-		    { key: 'city' },
-		    { key: 'metro_area' }
-		]
 	    }
 	});
     };
