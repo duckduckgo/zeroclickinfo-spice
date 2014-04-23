@@ -62,7 +62,7 @@
 	    },
 	    normalize: function(o) {
 		if(o.performance.length > 0 && o.venue.displayName !== "Unknown venue") {
-		    var a = {
+		    return {
 			city: metadata.city,
 			metro_area: metadata.metro_area,
 			artist: o.performance[0].displayName,
@@ -72,8 +72,6 @@
 			    time: twelve_hour(o.start.time)
 			}
 		    };
-
-		    return a;
 		}
 
 		return null;
