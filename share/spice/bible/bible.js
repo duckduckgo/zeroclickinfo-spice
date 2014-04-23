@@ -19,9 +19,7 @@
             },
             templates: {
                 detail: Spice.bible.detail
-            },
-            
-            force_favicon_url : 'http://bible.org/sites/bible.org/files/borg6_favicon.ico'
+            }
         });
     }
 }(this));
