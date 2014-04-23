@@ -1,20 +1,83 @@
-.tile--c.tile--movie {
-	width: 12em;
+.zci--movie.tile--basic-image .tile__body {
+    padding: 0.8em 1em;
+    font-family: "ProximaNova";
 }
 
-.tile--movie .stars {
-	float: right;
+div.tile__body.is_hidden {
+    display: none;
 }
 
-.tile--movie .tile__media {
-	height: 14em;
+.zci--movie .tile--basic-image.tile--c {
+    width: 12em;
 }
 
-.tile--movie .tile__media__img {
-	width: 100%;
+.zci_movie .tile--basic-image.tile--c.has-tiles--grid  {
+    width: 12em;
+}
+
+.zci--movie .tile--basic-image .tile__media {
+    height: 17.1em;
+}
+
+.zci--movie .tile--basic-image .tile__media__img {
+    min-width: 100%;
+    height: 100%;
+    margin-top: 0;
+}
+
+.zci--movie .one-line {
+    float: left;
+}
+
+.zci--movie .tile--basic-image .tile__title {
+    height: 2.5em;
 }
 
 .tile--movie .tile__source,
 .tile--movie:hover .tile__source {
     color: #aaa;
+}
+
+.detail.detail--movie {
+    background-color: #e5e5e5;
+    border-color: #c7c7c7;
+}
+
+.detail__media.detail__media--movie {
+    width: 30%;
+    margin-right: 1em;
+    text-align: center;
+}
+
+.tileview--grid .detail__media--movie {
+    text-align: center;
+}
+
+.detail__body--movie .detail__title {
+    padding: 0;
+}
+
+.detail__body--movie .detail__source {
+    padding-bottom: 1em;
+}
+
+.detail__body--movie .detail__source .stars {
+    margin-right: 0;
+}
+
+.detail__body--movie .stars--unrated .star {
+    color: #d0d0d0;
+}
+
+.detail__body--movie .detail__separator {
+    padding: 0 5px;
+    color: #c5c5c5;
+}
+
+.detail__body--movie .detail__links__btn {
+    margin-top: 1em;
+}
+
+.detail__media--movie .detail__media__img {
+    height: 90%;
 }

@@ -1,0 +1,29 @@
+<div class="detail__media  detail__media--kwixer">
+    <img src="{{imageProxy image}}" alt="{{title}}" class="detail__media__img" />
+</div>
+<div class="detail__body  detail__body--kwixer">
+    <div class="detail__body__content">
+        <h5 class="detail__title"><a href='{{title}}' title="{{title}}">{{title}} {{#if ResourceYear}}({{ResourceYear}}){{/if}}</a></h5>
+          <div class="detail__desc">
+            {{#if ResourceDetails2}}
+              <p>
+	        <b>Starring:</b> {{formatDetail ResourceDetails2}}
+              </p>
+            {{/if}}
+            {{#if ResourceDetails}}
+	      <p>
+	        <b>Director:</b> {{formatDetail ResourceDetails}}
+              </p>
+            {{/if}}
+            {{#if ResourceGenre}}
+	      <p>
+	        <b>Genres:</b> {{formatDetail ResourceGenre}}
+	      </p>
+            {{/if}}
+            <a href="https://kwixer.com/#/watching/movie/{{ResourceId}}" class="detail__links__btn">
+            <img class="btn__icon" src="https://icons.duckduckgo.com/ip/www.kwixer.com.ico">
+            Reviews
+            </a>
+          </div>
+    </div>
+</div>

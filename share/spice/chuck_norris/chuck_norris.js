@@ -1,12 +1,23 @@
-function ddg_spice_chuck_norris(api_result) {
-    if (api_result.type !== 'success') return;
+(function(env) {    
+    env.ddg_spice_chuck_norris = function(api_result) {
+        "use strict";
 
-    Spice.render({
-        data             : api_result.value,
-        source_url       : 'http://www.icndb.com',
-        source_name      : 'Internet Chuck Norris Database',
-        template_normal  : 'chuck_norris',
-        force_no_icon    : true
-    });
-}
+        if (api_result.type !== 'success') {
+          return;
+        }
 
+        Spice.add({
+            id: "chuck_norris",
+            name: "Chuck Norris",
+            data             : api_result.value,
+            meta: {
+                sourceUrl       : 'http://www.icndb.com/the-jokes-2/',
+                sourceName      : 'Internet Chuck Norris Database'
+            },
+            templates: {
+                detail: Spice.chuck_norris.detail
+            },
+            
+        });
+    }
+}(this));

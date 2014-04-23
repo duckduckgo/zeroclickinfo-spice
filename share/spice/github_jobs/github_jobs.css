@@ -2,3 +2,7 @@
 	color: #aaa;
 	padding-bottom: 1em;
 }
+
+.tile--github-jobs .tile__date {
+    color: #878787;
+}

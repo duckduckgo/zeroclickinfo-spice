@@ -1,0 +1,127 @@
+.zci--stopwatch .btn {
+	height: 75px;
+	width: 75px;
+	border-radius: 37.5px;
+	text-align: center;
+	line-height: 75px;
+	border: 1px solid black;
+	font-size: 13px;
+	font-weight: bold;
+	background-color: #fff;
+	margin-left: 5px;
+	margin-right: 5px;
+	outline: none; /*remove the blue outline in chrome/opera*/
+}
+
+/*remove the dashed line in FF/IE*/
+.zci--stopwatch .btn::-moz-focus-inner {
+	border: 0;
+}
+	
+.zci--stopwatch .btn.start {
+	border-color: #20b84c;
+	background-color: #20b84c;
+	color: white;
+}
+
+.zci--stopwatch .btn.stop {
+	border-color: #ff3908;
+	background-color: #ff3908;
+	color: white;
+}
+
+.zci--stopwatch .btn[disabled] {
+	color: #b4b4b4;
+	border-color: #b4b4b4;
+}
+
+.zci--stopwatch .spice-pane {
+	width: 45%; height: 100%;
+	line-height: 50px;
+	background-color: #f5f5f5;
+	display: inline-block;
+	padding: 2%;
+	border-radius: 2px;
+}
+
+.zci--stopwatch .spice-pane-right {
+	float: right;
+}
+
+.zci--stopwatch .pane-block {
+	height: 50px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.zci--stopwatch .label {
+	padding-left: 5%;
+	font-size: 13px;
+	vertical-align: 4px;
+	font-weight: 400;
+}
+
+.zci--stopwatch .btn-wrapper {
+	margin-top: 37px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.zci--stopwatch #lap_btn {
+	float: right;
+}
+
+.zci--stopwatch .time {
+	float: right;
+	margin-right: 10%;
+	font-size: 40px;
+}
+
+.zci--stopwatch #total_time {
+	font-weight: 400;
+}
+
+.zci--stopwatch #current_time {
+	font-weight: 300;
+}
+
+.zci--stopwatch .hidden {
+	display: none;
+}
+
+.zci--stopwatch table {
+	width: 100%;
+	background-color: #fafafa;
+	border-collapse: collapse;
+}
+
+.zci--stopwatch td {
+	text-align: center;
+	border-top: 1px solid #ccc;
+}
+
+.zci--stopwatch th {
+	color: #999;
+	font-weight: normal;
+	text-align: center;
+}
+
+.zci--stopwatch .lap-num {
+	font-size: 13px;
+}
+
+.zci--stopwatch .lap-time {
+	font-size: 16px;
+}
+
+/*stack the big time divs if the screen is too narrow*/
+@media screen and (max-width: 850px) {
+	#spice_stopwatch .pane-block {height: 100px;}
+	#spice_stopwatch .spice-pane {width: 96%; height: 45%; float: none;}
+	#spice_stopwatch .spice-pane-right {margin-top: 5px;}
+	#spice_stopwatch .btn-wrapper {margin-top: 52px;}
+}
+
+@media screen and (max-width: 320px){
+	#spice_stopwatch .btn {margin-right: 2px; margin-left: 2px;}
+}

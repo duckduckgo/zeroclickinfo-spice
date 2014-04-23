@@ -1,4 +1,5 @@
 var ddg_spice_twitter = function(api_result) {
+    "use strict";
 
     if(!api_result || (!api_result.current_status && !api_result.description)) {
         return;
@@ -9,19 +10,31 @@ var ddg_spice_twitter = function(api_result) {
     }
 
     // Display the plugin.
-    Spice.render({
+    Spice.add({
+        id: 'twitter',
         data                     : api_result,
-        header1                  : "@" + api_result.user,
-        source_url               : "https://twitter.com/" + api_result.user,
-        source_name              : "Twitter",
-        template_normal          : "twitter",
-        force_big_header         : true,
-        force_no_fold            : true,
-        image_url                : bigger_picture(api_result.profile_image)
+        name: 'twitter',
+        meta: {
+            sourceUrl               : "https://twitter.com/" + api_result.user,
+            sourceName              : "Twitter",
+        },
+        normalize: function(item) {
+            return {
+                image: bigger_picture(item.profile_image),
+                title: '@' + item.user
+            };
+        },
+        templates: {
+            detail: Spice.twitter.detail,
+            wrap_detail: 'basic_image_detail'
+        }
+        
     });
 };
 
-Handlebars.registerHelper("findLinks", function(text, entities, options) {
+Handlebars.registerHelper("twitter_findLinks", function(text, entities, options) {
+    "use strict";
+
     // Chop the string so that we can surreptitiously insert links.
     var twitterSplit = function(twitter, result, final_text, original, start_index, i) {
         if(twitter.length === i || twitter.length === 0) {
@@ -65,7 +78,9 @@ Handlebars.registerHelper("findLinks", function(text, entities, options) {
     return options.fn(twitterSplit(all_entities, [], text, text, 0, 0));
 });
 
-Handlebars.registerHelper("makeLinks", function(results) {
+Handlebars.registerHelper("twitter_makeLinks", function(results) {
+    "use strict";
+
     window.r = results;
 
     var createLink = function(href, inner) {
