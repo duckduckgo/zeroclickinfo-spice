@@ -1,33 +1,31 @@
-.zci--bbc li.ddgc_item img {
-	max-width: 100% !important;
-	max-height: 68px !important;
+.zci--bbc.tile--basic-image .tile__body {
+    padding: 0.8em 1em;
+    font-family: "ProximaNova";
 }
 
-.zci--bbc .title {
-	margin: 0 !important;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	word-wrap: break-word;
+.zci--bbc .tile--basic-image.tile--c {
+    width: 20em;
 }
 
-.zci--bbc .button {
-  background: none repeat scroll 0 0 #FEFEFE;
-  border: 1px solid #BBBBBB;
-  border-radius: 3px;
-  color: #000000;
-  display: inline-block;
-  margin-right: 10px;
-  padding: 3px 9px;
+.zci--bbc .tile--basic-image.tile--c.has-tiles--grid  {
+    width: 12em;
 }
 
-.zci--guidebox .button:hover {
-  border: 1px solid #80b5ff;
-  cursor: pointer;
-  text-decoration: none;
+.zci--bbc .tile--basic-image .tile__media {
+    height: 11.1em;
 }
 
-.zci--bbc .initial_broadcast{
-	font-size: 13px;
-	color: #808080;
+.zci--bbc .tile--basic-image .tile__media__img {
+    min-width: 100%;
+    height: 100%;
+    margin-top: 0;
+}
+
+.zci--bbc .tile--basic-image .tile__title {
+    height: 2.5em;
+}
+
+.tile--bbc .tile__source,
+.tile--bbc:hover .tile__source {
+    color: #aaa;
 }
