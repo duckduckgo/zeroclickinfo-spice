@@ -40,10 +40,6 @@ function ddg_spice_recipes(res) {
                 var searchTermContainsRecipe = rq.match(/recipe/i),
                     len = item.ingredients.length;
 
-                if(searchTermContainsRecipe){
-                    m.showIngredientsOnTile = true;
-                }
-
                 m.ingredientString = item.ingredients.join(", ");
                 m.ingredientDetails = item.ingredients.map(function(ingredient,i) {
                     var refinedTerm = (searchTermContainsRecipe) ? query.replace(/ recipe/i,' ' + ingredient + ' recipe') : query + ' ' + ingredient,
@@ -62,9 +58,7 @@ function ddg_spice_recipes(res) {
                 });
 
                 // normalization: description for item, ingredientString for custom detail template
-                if (m.showIngredientsOnTile) {
-                    m.description = m.ingredientString;
-                }
+                m.description = m.ingredientString;
             }
 
             m.flavors = sortAndFormatFlavors(m.flavors);
