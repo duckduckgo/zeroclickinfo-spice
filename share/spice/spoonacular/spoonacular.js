@@ -18,6 +18,7 @@ function ddg_spice_spoonacular (api_result) {
         template_frame: "carousel",
         template_options: {
             template_item: "spoonacular",
+            template_detail: "spoonacular_detail",
             items: api_result
         }
     });  
