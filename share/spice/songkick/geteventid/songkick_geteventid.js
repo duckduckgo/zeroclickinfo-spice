@@ -83,6 +83,10 @@
 		skip_words: [
 		    'concert',
 		    'concerts'
+		],
+		primary: [
+		    { key: 'city' },
+		    { key: 'metro_area' }
 		]
 	    }
 	});
