@@ -38,17 +38,26 @@
 }(this));
 
 
-Handlebars.registerHelper('table-each', function(list, data) {
-    var return_string = "";
+Handlebars.registerHelper("table-each", function(context, data, options) {
+        console.log("context: %o", context);
+        console.log("data: %o", data);
+        console.log("options: %o", options);
 
-    // list is the list of display names sent along with the api data
-    for(item in list){
-        // check to see if normalize returned something, i.e. not null
-        // and add it to the table
-        if(data[list[item]]){
-        return_string += '<tr><td style="text-align: right; vertical-align: top; padding-right: 10px; font-weight: bold">'
-            + list[item] + '</td><td>' + data[list[item]] + '</td></tr>';
+        if (!context) return "";
+
+        console.log("each helper: options.hash: %o", options.hash);
+
+        var from = +options.hash.from || 0,
+        to = +options.hash.to || context.length,
+        result = "";
+
+        if (to > context.length) to = context.length;
+        if (from < 0) from = 0;
+
+        for(var i = from; i < to; i++) {
+            result += options.fn(context[i]);
+
         }
-    }
-    return return_string;
+        console.log(result);
+        return result
 });
