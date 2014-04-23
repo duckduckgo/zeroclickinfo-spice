@@ -21,8 +21,8 @@ function ddg_spice_septa(api_result) {
 	meta: {
             sourceName: 'SEPTA',
             sourceUrl: 'http://www.septa.org/schedules/',
-	    sourceIcon: true,
-	    itemType: 'septa'
+	    sourceIconUrl: 'http://septa.org/site/images/favicon.ico',
+	    itemType: 'trains'
 	},
         templates: {
             item: Spice.septa.item
