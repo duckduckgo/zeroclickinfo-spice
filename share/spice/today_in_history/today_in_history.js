@@ -21,16 +21,6 @@ function ddg_spice_today_in_history(api_response) {
         return this;
     };
  
-    // In case our string contains multiple instances of given delimiter i.e. '-'
-    function ignore (temp) {
-    	var ourString = "";
-    	for(var i = 1; i < temp.length; i++)
-    	{
-	    ourString = ourString + temp[i];
-    	}
-    	return ourString;
-    }
-
     var item = $( $.parseXML(api_response) ).find('extract');
     var clean_array = item.text().split("== Events ==")[1].split("== Births ==")[0].split("\n").clean();
     //  This is the same as extracting the text blob like:    	
@@ -48,36 +38,37 @@ function ddg_spice_today_in_history(api_response) {
 
     // Check and see if we have some data left over
     var remainder = clean_array.length % numPod;
+
     // Total number of objects in our pods
     var elements = numPod * podItems;
 
     // Initialize variables and fit objects into arrays (pods)
-    var temp;
+    var temp;	//temp array to hold year and string values (delimited by -)
     var array = [];
-    var j = 0, k = 0;
+    var pod = 0, podObject = 0;
     array[0] = [];
     for (var i = 0; i < elements; i++) {
         temp = clean_array[i].split(" – ");
-	array[j][k] = {year:temp[0], str:ignore(temp)};
-	k++;
+	array[pod][podObject] = {year:temp[0], str:temp.slice(1)};
+	podObject++;
 	if((i+1) % podItems == 0) {
-            array[j][k] = {range:array[j][0].year+"-"+temp[0]};
-            k = 0;
-            j++;
-	    array[j] = [];
+            array[pod][podObject] = {range:array[pod][0].year+"-"+temp[0]};
+            podObject = 0;
+            pod++;
+	    array[pod] = [];
         }
     }
 
     // If we have some leftover objects, create another pod and put remaining objects in it
     if (remainder != 0) {
-        var i = 0;
+        var podObject = 0;
 	array[numPod] = [];
         for(var num = elements; num < clean_array.length; num++) {
             temp = clean_array[num].split("–");
-            array[numPod][i] = {year:temp[0], str:ignore(temp)};
-	    i++;
+            array[numPod][podObject] = {year:temp[0], str:temp.slice(1)};
+	    podObject++;
     	}
-        array[numPod][i] = {range:array[numPod][0].year+"-"+temp[0]};
+        array[numPod][podObject] = {range:array[numPod][0].year+"-"+temp[0]};
     } else {
 	array.splice((array.length-1),1);
     }
@@ -101,7 +92,7 @@ function ddg_spice_today_in_history(api_response) {
 }
 
 // Return range values
-Handlebars.registerHelper('conv', function(arr) {
+Handlebars.registerHelper('fetchrange', function(arr) {
         return arr[arr.length-1].range;
 });
 
