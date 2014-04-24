@@ -8,3 +8,21 @@
     overflow: hidden;
 }
 */
+
+.tile__body {
+
+	height: 125px;
+}
+
+.tile__name {
+	font-weight: bold;
+}
+
+.tile__updated {
+	padding-top: 2em;
+	padding-bottom: 2em;
+}
+
+.tile__owner {
+	font-size: 0.9em;
+}
