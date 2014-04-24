@@ -65,7 +65,7 @@ function ddg_spice_amazon(api_result) {
 
             templates: {
                 item: 'products_item',
-                detail: 'products_detail',
+                detail: DDG.templates.products_detail,
                 item_detail: 'products_item_detail'
             }
         });
