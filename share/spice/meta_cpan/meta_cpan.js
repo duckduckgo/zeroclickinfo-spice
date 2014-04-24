@@ -31,7 +31,7 @@
                 };
             },
             templates: {
-                detail: DDG.templates.table_detail,
+                detail: DDG.templates.record_detail,
             }
         });
     }
