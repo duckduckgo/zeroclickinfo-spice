@@ -6,6 +6,10 @@
     border-bottom: 1px solid #dedede;
 }
 
+.zci--dns .zci__table__tr:last-of-type {
+    border-bottom: none;
+}
+
 .zci--dns .zci__table__tr th {
     vertical-align: bottom;
     text-align: left;

@@ -25,9 +25,9 @@
             name: 'DNS Records',
             data: api_result.response,
             meta: {
+                itemType: 'DNS Records',
                 sourceUrl: 'http://www.viewdns.info/dnsrecord/?domain=' + api_result.query.domain,
-                sourceName: 'ViewDNS',
-                sourceIconUrl: 'http://viewdns.info/favicon.ico'
+                sourceName: 'ViewDNS'
             },
             templates: {
                 detail: Spice.dns.detail
