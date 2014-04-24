@@ -8,7 +8,8 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
 	    itemType: 'stopwatch'
 	},
 	templates: {
-	    detail_custom: Spice.stopwatch.stopwatch
+	    detail: Spice.stopwatch.stopwatch,
+	    wrap_detail: 'base_detail'
 	}
     });
 
