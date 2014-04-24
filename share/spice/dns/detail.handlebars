@@ -1,0 +1,20 @@
+<table class="zci__table">
+    <tr class="zci__table__tr">
+        <th>name</th>
+        <th>ttl</th>
+        <th>class</th>
+        <th>type</th>
+        <th>priority</th>
+        <th>data</th>
+    </tr>
+    {{#each records}}
+    <tr class="zci__table__tr">
+        <td>{{name}}</td>
+        <td>{{ttl}}</td>
+        <td>{{class}}</td>
+        <td>{{type}}</td>
+        <td>{{priority}}</td>
+        <td>{{data}}</td>
+    </tr>
+    {{/each}}
+</table>
