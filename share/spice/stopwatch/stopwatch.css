@@ -1,4 +1,9 @@
-.zci--stopwatch .btn {
+#stopwatch_container {
+    width: 42em;
+    margin-left: 6.5em;
+}
+
+.zci--stopwatch .stopwatch__btn {
 	height: 75px;
 	width: 75px;
 	border-radius: 37.5px;
@@ -14,23 +19,23 @@
 }
 
 /*remove the dashed line in FF/IE*/
-.zci--stopwatch .btn::-moz-focus-inner {
+.zci--stopwatch .stopwatch__btn::-moz-focus-inner {
 	border: 0;
 }
 	
-.zci--stopwatch .btn.start {
+.zci--stopwatch .stopwatch__btn.start {
 	border-color: #20b84c;
 	background-color: #20b84c;
 	color: white;
 }
 
-.zci--stopwatch .btn.stop {
+.zci--stopwatch .stopwatch__btn.stop {
 	border-color: #ff3908;
 	background-color: #ff3908;
 	color: white;
 }
 
-.zci--stopwatch .btn[disabled] {
+.zci--stopwatch .stopwatch__btn[disabled] {
 	color: #b4b4b4;
 	border-color: #b4b4b4;
 }
@@ -38,7 +43,7 @@
 .zci--stopwatch .spice-pane {
 	width: 45%; height: 100%;
 	line-height: 50px;
-	background-color: #f5f5f5;
+	background-color: #E9E9E9;
 	display: inline-block;
 	padding: 2%;
 	border-radius: 2px;
@@ -49,9 +54,9 @@
 }
 
 .zci--stopwatch .pane-block {
-	height: 50px;
 	margin-left: 5px;
 	margin-right: 5px;
+	margin-bottom: 10px;
 }
 
 .zci--stopwatch .label {
@@ -61,13 +66,13 @@
 	font-weight: 400;
 }
 
-.zci--stopwatch .btn-wrapper {
+.zci--stopwatch .stopwatch__btn-wrapper {
 	margin-top: 37px;
 	margin-bottom: 10px;
 	width: 100%;
 }
 
-.zci--stopwatch #lap_btn {
+.zci--stopwatch #lap_stopwatch__btn {
 	float: right;
 }
 
@@ -116,12 +121,12 @@
 
 /*stack the big time divs if the screen is too narrow*/
 @media screen and (max-width: 850px) {
-	#spice_stopwatch .pane-block {height: 100px;}
-	#spice_stopwatch .spice-pane {width: 96%; height: 45%; float: none;}
-	#spice_stopwatch .spice-pane-right {margin-top: 5px;}
-	#spice_stopwatch .btn-wrapper {margin-top: 52px;}
+	.zci--stopwatch .pane-block {height: 100px;}
+	.zci--stopwatch .spice-pane {width: 96%; height: 45%; float: none;}
+	.zci--stopwatch .spice-pane-right {margin-top: 5px;}
+	.zci--stopwatch .stopwatch__btn-wrapper {margin-top: 52px;}
 }
 
 @media screen and (max-width: 320px){
-	#spice_stopwatch .btn {margin-right: 2px; margin-left: 2px;}
+	.zci--stopwatch .stopwatch__btn {margin-right: 2px; margin-left: 2px;}
 }
