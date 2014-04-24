@@ -241,6 +241,7 @@ function ddg_spice_forecast(r) {
   weatherData.alerts = build_alerts(r);
   weatherData.daily = build_daily(r);
   weatherData.activeUnit = unit_labels[units].temperature;
+  weatherData.city = r.flags['ddg-location'];
   
   // structure the data differently for mobile and desktop views
   if (is_mobile) {
