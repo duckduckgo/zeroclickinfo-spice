@@ -1,7 +1,10 @@
-    <i>Name</i>: {{name}}
-    <br>
-    <i>Owner</i>: <a href="https://github.com/{{owner}}">{{owner}}</a>
-    <br>
-    {{#if description}}<i>Description</i>: {{description}}<br>{{/if}}
-    <i>Activity</i>: last updated {{last_pushed}}, {{watchers}} watching, {{forks}} <a href="{{url}}/network">forks</a> and {{open_issues}} <a href="{{url}}/issues">issues</a>
-    <br>
+<div class="tile tile--c data-link="{{url}}">
+	<div class="tile__body">
+		<p class="tile__name">{{name}}</p>
+		<div class="tile__owner">
+			<i>Owner: </i><a href="https://github.com/{{owner}}">{{owner}}</a>
+		</div>
+		<p>{{{ellipsis description 68}}}</p>
+		<span class="tile__updated">{{watchers}} <i>&middot; Updated </>{{last_pushed}} </span>
+	</div>
+</div>
