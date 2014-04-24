@@ -11,11 +11,12 @@
 
 .tile__body {
 
-	height: 125px;
+	height: 128px;
 }
 
 .tile__name {
 	font-weight: bold;
+	font-size: 1.03em;
 }
 
 .tile__updated {
@@ -24,5 +25,11 @@
 }
 
 .tile__owner {
-	font-size: 0.9em;
+	font-size: 0.95em;
+}
+
+.star.starIcon {
+	font-size: 0.99em;
+	padding-bottom: 0.25px;
+	padding-left: 0.25em;
 }
