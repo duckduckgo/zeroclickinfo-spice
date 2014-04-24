@@ -1,0 +1,22 @@
+<div class="detail__media  detail__media--bbc">
+    <img src="{{imageProxy image}}" alt="{{title}}" class="detail__media__img" />
+</div>
+<div class="detail__body  detail__body--movie">
+    <div class="detail__body__content">
+        <h5 class="detail__title"><a href='{{programme_url}}' title="{{title}}">{{title}}</a></h5>
+        <div class="detail__desc">
+            <p class="detail__source">
+              Run Time: {{duration}}
+            </p>
+            <p>
+              {{ellipsis programme.short_synopsis 200}}
+            </p>
+            {{#if programme.is_available_mediaset_pc_sd}}
+              <a href="http://www.bbc.co.uk/iplayer/episode/{{programme.pid}}" class="detail__links__btn">
+                <img class="btn__icon" src="https://icons.duckduckgo.com/ip/www.bbc.com.ico" />
+                Watch
+              </a>
+            {{/if}}
+        </div>
+    </div>
+</div>
