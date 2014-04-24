@@ -15,7 +15,7 @@ function ddg_spice_timer(api_result) {
     return s;
   }
 
-  var time_left, last_update, update_int
+  var time_left, last_update, update_int,
       started = false,
       $minute_input = $('#minute_input'),
       $second_input = $('#second_input'),
@@ -53,9 +53,11 @@ function ddg_spice_timer(api_result) {
       $second_input.val('');
 
       //invalid input
-      if ((!start_secs && !start_mins) || start_mins > 60) {
+      if (!start_secs && !start_mins) {
         return;
       }
+			if (start_mins > 59) start_mins = 59;
+			if (start_secs > 59) start_secs = 59;
       started = true;
       time_left = start_mins * (60*1000) + start_secs*1000;
     }
