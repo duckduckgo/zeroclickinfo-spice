@@ -1,4 +1,2 @@
-<div id="{{id}}">
-    <img src="/iu/?u={{chooseImage artwork_url user.avatar_url}}">
-    <span>{{{condense title maxlen="25"}}}</span>
-</div>
+<h5 class="tile__title">{{ellipsis title 30}}</h5>
+<img src="{{imageProxy user.avatar_url}}">
