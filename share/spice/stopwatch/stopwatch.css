@@ -1,6 +1,5 @@
 #stopwatch_container {
-    width: 42em;
-    margin-left: 6.5em;
+    width: 100%;
 }
 
 .zci--stopwatch .stopwatch__btn {
@@ -16,6 +15,10 @@
 	margin-left: 5px;
 	margin-right: 5px;
 	outline: none; /*remove the blue outline in chrome/opera*/
+}
+
+.zci--stopwatch .stopwatch__left {
+    float: right;
 }
 
 /*remove the dashed line in FF/IE*/
@@ -57,6 +60,7 @@
 	margin-left: 5px;
 	margin-right: 5px;
 	margin-bottom: 10px;
+	font-family: sans-serif;
 }
 
 .zci--stopwatch .label {
@@ -98,6 +102,8 @@
 	width: 100%;
 	background-color: #fafafa;
 	border-collapse: collapse;
+	margin-top: 10px;
+	font-family: sans-serif;
 }
 
 .zci--stopwatch td {
@@ -120,13 +126,22 @@
 }
 
 /*stack the big time divs if the screen is too narrow*/
-@media screen and (max-width: 850px) {
-	.zci--stopwatch .pane-block {height: 100px;}
-	.zci--stopwatch .spice-pane {width: 96%; height: 45%; float: none;}
-	.zci--stopwatch .spice-pane-right {margin-top: 5px;}
-	.zci--stopwatch .stopwatch__btn-wrapper {margin-top: 52px;}
+@media screen and (max-width: 700px) {
+    #stopwatch_container {
+	width: 93%;
+    }
+
+    .zci--stopwatch .spice-pane {
+	width: 100%;
+    }
+
+    .zci--stopwatch .spice-pane-right {
+	float: none;
+	width: 100%;
+	margin-top: 5px;
+    }
 }
 
 @media screen and (max-width: 320px){
-	.zci--stopwatch .stopwatch__btn {margin-right: 2px; margin-left: 2px;}
+
 }
