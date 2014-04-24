@@ -173,7 +173,8 @@ function ddg_spice_recipes(res) {
 
         templates: {
             item: 'basic_image_item',
-            detail_custom: Spice.recipes.recipes_detail
+            detail: Spice.recipes.recipes_detail,
+            wrap_detail: 'base_detail'
         }
 
     });
