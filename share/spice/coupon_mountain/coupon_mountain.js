@@ -20,13 +20,14 @@
                 return {
                     image: o.iconUrl,
                     title: o.desc,
-                    ratingText: o.merName, 
-                    rating: 'Unrated',
+                    ratingText: o.merName,
+                    rating: 'Unrated'
                 }
             },
             templates: {
                 item: 'basic_image_item',
                 detail: Spice.coupon_mountain.detail,
+                wrap_detail: 'basic_image_detail',
             }
             // sort_fields: {
             //     merName: function(a,b) {
