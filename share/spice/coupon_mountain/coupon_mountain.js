@@ -19,16 +19,21 @@
             normalize: function(o){
                 return {
                     image: o.iconUrl,
+                    img: o.iconUrl,
                     title: o.desc,
+                    heading: o.desc,
                     ratingText: o.merName,
-                    rating: 'Unrated'
+                    rating: "unrated",
                 }
             },
+            template_group: 'products_simple',
+
             templates: {
-                item: 'basic_image_item',
-                detail: Spice.coupon_mountain.detail,
-                wrap_detail: 'basic_image_detail',
+                options: {
+                    products_buy: Spice.coupon_mountain.buy
+                }
             }
+
             // sort_fields: {
             //     merName: function(a,b) {
             //         return a.merName > b.merName;
