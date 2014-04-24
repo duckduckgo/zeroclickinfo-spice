@@ -1,10 +1,16 @@
 function ddg_spice_stopwatch(api_result) { //api_result should be removed in production
-  Spice.render({
-    header1          : "Stopwatch",
-    template_normal  : 'stopwatch',
-    force_big_header : true,
-    force_no_fold    : true
-  });
+    Spice.add({
+	id: 'stopwatch',
+	name: 'Stopwatch',
+	data: {},
+	meta: {
+	    sourceName: 'Stopwatch',
+	    itemType: 'stopwatch'
+	},
+	templates: {
+	    detail_custom: Spice.stopwatch.stopwatch
+	}
+    });
 
   var running = false,
       start_time = null,
@@ -60,7 +66,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
   }
 
   //when we click the start button, we save the time we started and start updating it
-  $('.btn-wrapper').on('click', '.btn.start', function(){
+  $('.btn-wrapper').on('click', '.stopwatch__btn.start', function(){
     if (running) return;
     running = true;
     start_time = new Date().getTime();
@@ -73,7 +79,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
   });
 
   //stop the stopwatch and save the time in case we start it again
-  $('.btn-wrapper').on('click', '.btn.stop', function(){
+  $('.btn-wrapper').on('click', '.stopwatch__btn.stop', function(){
     if (!running) return;
     //add a lap (useful for people who want to stop and get a split at the same time)
     old_time = addLap();
@@ -96,7 +102,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     $split_list.find('tbody').children().remove();
     clearInterval(interval_id);
 
-    $('.btn.stop').removeClass('stop').addClass('start').html('START');
+    $('.stopwatch__btn.stop').removeClass('stop').addClass('start').html('START');
     $(this).prop('disabled', true);
     $split_list.addClass('hidden');
   });
