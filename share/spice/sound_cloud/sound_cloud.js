@@ -17,7 +17,14 @@
 		itemType: 'Tracks'
 	    },
 	    templates: {
-		item: Spice.sound_cloud.sound_cloud
+		item: 'basic_image_item'
+	    },
+	    normalize: function(o) {
+		return {
+		    image: o.user.avatar_url,
+		    rating: "Unrated",
+		    ratingText: ''
+		};
 	    }
 	});
     };
