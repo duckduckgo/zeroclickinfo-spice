@@ -84,7 +84,7 @@ function ddg_spice_today_in_history(api_response) {
             items: array,
             template_item: 'today_in_history',
             template_detail: 'today_in_history_details',
-            li_height:  20,
+            li_height:  25,
         },
         force_no_fold     : true,
         force_big_header  : true
@@ -93,14 +93,14 @@ function ddg_spice_today_in_history(api_response) {
 
 // Return range values
 Handlebars.registerHelper('fetchrange', function(arr) {
-        return arr[arr.length-1].range;
+        return new Handlebars.SafeString('<span class="range">' + arr[arr.length-1].range + '</span>');
 });
 
 // Return year and event string
 Handlebars.registerHelper('fetchdata', function(arr) {
     var result = "";
     for(var i = 0; i < arr.length-1; i++) {
-	result = result + "<b>" + arr[i].year + "</b> - " + arr[i].str + "</br>";
+	result = result + '<span class="year">' + arr[i].year + '</span> - ' + '<span class="event">' + arr[i].str + '</span></br>';
     }
     return new Handlebars.SafeString(result);
 });
