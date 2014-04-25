@@ -3,7 +3,7 @@
 
     env.ddg_spice_coupon_mountain = function(api_result) {
         if (api_result.count < 1) {
-            return;
+            return; // Spice.failed('coupon_mountain');
         }
 
         Spice.add({
@@ -30,7 +30,7 @@
 
             templates: {
                 options: {
-                    products_buy: Spice.coupon_mountain.buy
+                    buy: Spice.coupon_mountain.buy
                 }
             }
 
