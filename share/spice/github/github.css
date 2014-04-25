@@ -8,28 +8,37 @@
     overflow: hidden;
 }
 */
-
-.tile__body {
-
-	height: 128px;
+.zci--github .tile__body {
+	height: 130px;
 }
 
-.tile__name {
+.zci--github .tile__name {
 	font-weight: bold;
-	font-size: 1.03em;
+	font-size: 1.25em;
 }
 
-.tile__updated {
-	padding-top: 2em;
-	padding-bottom: 2em;
+.zci--github .tile__updated {
+
 }
 
-.tile__owner {
+.zci--github .tile__owner {
 	font-size: 0.95em;
 }
 
-.star.starIcon {
-	font-size: 0.99em;
-	padding-bottom: 0.25px;
-	padding-left: 0.25em;
+.zci--github .star.starIcon {
+	font-size: 1.3em;
+	position: relative;
+	padding-right: -0.04em;
+}
+
+.zci--github .tile__update__info{
+	position: absolute;
+	bottom: 0.5em;
+	font-size: 0.9em;
+}
+
+@media screen and (max-width: 30em){
+	.zci--github .tile__body {
+	height: 145px;
+}
 }
