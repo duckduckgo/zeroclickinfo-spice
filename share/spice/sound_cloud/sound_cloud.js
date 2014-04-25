@@ -21,12 +21,28 @@
 	    },
 	    normalize: function(o) {
 		var image = o.artwork_url || o.user.avatar_url;
-		image = image.replace(/large\.jpg/, "t200x200.jpg");
+		// Check if it's using the default image. Skip if it is.
+		if(/default_avatar_large/.test(image)) {
+		    return null;
+		} else {
+		    // Get the larger image for our IA.
+		    image = image.replace(/large\.jpg/, "t200x200.jpg");
+		}
+
+		// Blacklist some adult results.
+		var skip_id = {
+		    80320921: true, 
+		    75349402: true
+		};
+		if(skip_id[o.id]) {
+		    return null;
+		}
 
 		return {
 		    image: image,
 		    rating: "Unrated",
-		    ratingText: ''
+		    ratingText: '',
+		    link: o.permalink_url
 		};
 	    }
 	});
