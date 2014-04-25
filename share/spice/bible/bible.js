@@ -3,7 +3,7 @@
     env.ddg_spice_bible = function(api_result) {
         
         // Validity check
-        if (!api.result || !api_result.length){
+        if (!api_result || !api_result.length){
             return;
         } 
 
