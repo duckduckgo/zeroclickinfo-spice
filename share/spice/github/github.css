@@ -13,29 +13,32 @@
 }
 
 .zci--github .tile__name {
+	position: relative;
+	top: -0.75em;
 	font-weight: bold;
 	font-size: 1.25em;
 }
 
-.zci--github .tile__updated {
-
-}
-
 .zci--github .tile__owner {
+	position: absolute;
 	font-size: 0.95em;
+	color: #888;
+	top: 2.2em;
 }
 
 .zci--github .star.starIcon {
 	font-size: 1.3em;
 	position: relative;
 	padding-right: -0.04em;
-	bottom: 0.15em;
+	bottom: 0.12em;
 }
 
 .zci--github .tile__update__info{
 	position: absolute;
-	bottom: 0.5em;
+	bottom: 0.75em;
+	padding-right:1em;
 	font-size: 0.9em;
+	color: #888;
 }
 
 @media screen and (max-width: 600px){
@@ -46,6 +49,6 @@
 
 @media screen and (max-width: 400px){
 	.zci--github .tile__body {
-	height: 150px;
+	height: 155px;
 	}
 }
