@@ -1,9 +1,11 @@
 (function(env) {
+    "use strict";
     env.ddg_spice_bible = function(api_result) {
-        "use strict";
-
+        
         // Validity check
-        if (!api_result.length) return;
+        if (!api.result || !api_result.length){
+            return;
+        } 
 
         var result = api_result[0];
         var header = result.bookname + ' ' + result.chapter + ':' + result.verse;
