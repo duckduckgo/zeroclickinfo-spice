@@ -1,6 +1,7 @@
-(function(env) {    
+(function(env) {
+    "use strict";    
     env.ddg_spice_github = function(api_result) {
-        "use strict";
+        
 
         if (!api_result || !api_result.meta.status === 200) {
           return;
