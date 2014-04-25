@@ -9,7 +9,7 @@
 }
 */
 .zci--github .tile__body {
-	height: 130px;
+	height: 140px;
 }
 
 .zci--github .tile__name {
@@ -29,6 +29,7 @@
 	font-size: 1.3em;
 	position: relative;
 	padding-right: -0.04em;
+	bottom: 0.15em;
 }
 
 .zci--github .tile__update__info{
@@ -37,8 +38,14 @@
 	font-size: 0.9em;
 }
 
-@media screen and (max-width: 30em){
+@media screen and (max-width: 600px){
 	.zci--github .tile__body {
 	height: 145px;
+	}
 }
+
+@media screen and (max-width: 400px){
+	.zci--github .tile__body {
+	height: 150px;
+	}
 }
