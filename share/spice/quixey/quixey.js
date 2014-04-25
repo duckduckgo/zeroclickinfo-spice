@@ -53,7 +53,7 @@ env.ddg_spice_quixey = function(api_result) {
         ].join("|"), "i");
 
     Spice.add({
-        id: 'quixey',
+        id: 'apps',
         name: 'Apps',
 
         data: api_result.results,   //relevants,
@@ -75,8 +75,10 @@ env.ddg_spice_quixey = function(api_result) {
         normalize : function(item) {
 
             // relevancy pre-filter: skip ones that have less than three reviews
-            if (!item.rating_count || item.rating_count < 3)
+            if (item.rating_count && item.rating_count < 3)
                 return null;
+
+            // ignoring the case where rating_count is null
 
             var icon_url = make_icon_url(item), screenshot; 
 
@@ -92,10 +94,8 @@ env.ddg_spice_quixey = function(api_result) {
                 'img':           icon_url,
                 'title':         item.name,
                 'heading':       item.name,
-                'ratingData':    {
-                                   stars: item.rating,
-                                   reviews: item.rating_count
-                               },
+                'rating':        item.rating,
+                'reviewCount':   item.rating_count || '',
                 'url_review':    item.dir_url,
                 'price':         pricerange(item),
                 'abstract':      item.short_desc || "",
@@ -179,6 +179,7 @@ env.ddg_spice_quixey = function(api_result) {
             'rating': //Spice.rating_comparator('rating', 'rating_count')
                 function(a,b) {
                     var rank = function(r,count) {  // will be moved up
+                        if (!count) count = 1;  // rating_count is sometimes null
                         return r*r*r*count/5;
                     };
                     return rank(a.rating,a.rating_count) > rank(b.rating, b.rating_count) ? -1: 1;
