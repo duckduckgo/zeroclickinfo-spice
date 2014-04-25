@@ -1,0 +1,11 @@
+<a href="{{displayURL}}">
+    <p>{{{stripExpiry desc}}}</p>
+</a>
+
+{{#check_expiry expire}}
+    <p>{{dateString expire}}</p>
+{{/check_expiry}}
+
+<p>
+    Use code: <input class="tag" readonly="true" value="{{code}}">
+</p>
