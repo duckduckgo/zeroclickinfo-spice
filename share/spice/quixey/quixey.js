@@ -53,10 +53,10 @@ env.ddg_spice_quixey = function(api_result) {
         ].join("|"), "i");
 
     Spice.add({
-        id: 'quixey',
+        id: 'apps',
         name: 'Apps',
 
-        data: api_result.results,   //relevants,
+        data: api_result.results,
 
         meta: {
             // count is now computed by Spice
@@ -100,8 +100,8 @@ env.ddg_spice_quixey = function(api_result) {
                 'img':           icon_url,
                 'title':         item.name,
                 'heading':       item.name,
-                rating: item.rating,
-                reviewCount: item.rating_count || '',
+                'rating':        item.rating,
+                'reviewCount':   item.rating_count || '',
                 'url_review':    item.dir_url,
                 'price':         pricerange(item),
                 'abstract':      item.short_desc || "",
@@ -195,7 +195,13 @@ env.ddg_spice_quixey = function(api_result) {
         // sort_default: { <sorttype>:<field>, <sorttype>:<field>, ... }
         sort_default: { 'category': 'rating' },
 
-        template_group: 'products'
+        template_group: 'products',
+
+        templates: {
+            options: {
+                buy: Spice.quixey.buy
+            }
+        }
 
     });
 
