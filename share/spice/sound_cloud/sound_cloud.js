@@ -42,7 +42,8 @@
 		    image: image,
 		    rating: "Unrated",
 		    ratingText: '',
-		    link: o.permalink_url
+		    link: o.permalink_url,
+		    description: ''
 		};
 	    }
 	});
