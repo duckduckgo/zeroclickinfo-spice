@@ -20,8 +20,11 @@
 		item: 'basic_image_item'
 	    },
 	    normalize: function(o) {
+		var image = o.artwork_url || o.user.avatar_url;
+		image = image.replace(/large\.jpg/, "t200x200.jpg");
+
 		return {
-		    image: o.user.avatar_url,
+		    image: image,
 		    rating: "Unrated",
 		    ratingText: ''
 		};
