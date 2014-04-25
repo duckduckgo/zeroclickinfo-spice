@@ -51,8 +51,6 @@ function ddg_spice_amazon(api_result) {
             data: items,
 
             meta: {
-                count: items.length,
-                total: items.length,
                 itemType: 'Products',
                 sourceName: 'Amazon',
                 sourceUrl: api_result.more_at,
