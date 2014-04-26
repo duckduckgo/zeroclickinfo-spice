@@ -9,6 +9,8 @@
 }
 */
 .zci--github .tile__body {
+	position: relative;
+	left: -0.2em;
 	height: 140px;
 }
 
@@ -20,35 +22,34 @@
 }
 
 .zci--github .tile__owner {
-	position: absolute;
+	position: relative;
 	font-size: 0.95em;
 	color: #888;
-	top: 2.2em;
+	top: -1.2em;
+}
+
+.zci--github .tile__discreption {
+	position: relative;
+	top: -1.1em;
 }
 
 .zci--github .star.starIcon {
 	font-size: 1.3em;
 	position: relative;
-	padding-right: -0.04em;
-	bottom: 0.12em;
+	padding-right: -0.045em;
+	bottom: 0.13em;
 }
 
 .zci--github .tile__update__info{
 	position: absolute;
-	bottom: 0.75em;
+	bottom: 0.5em;
 	padding-right:1em;
 	font-size: 0.9em;
 	color: #888;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 850px){
 	.zci--github .tile__body {
-	height: 145px;
-	}
-}
-
-@media screen and (max-width: 400px){
-	.zci--github .tile__body {
-	height: 155px;
+	height: 160px;
 	}
 }
