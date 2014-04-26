@@ -8,10 +8,9 @@
             data: api_result.Items,
             meta: {
                 searchTerm: api_result.Name,
-                itemType: 'Alternatives ',
+                itemType: 'Alternatives',
                 sourceUrl: 'http://alternativeto.net/',
                 sourceName: 'AlternativeTo',
-                sourceIcon: true
             },
             templates: {
                 item: Spice.alternative_to.item,
