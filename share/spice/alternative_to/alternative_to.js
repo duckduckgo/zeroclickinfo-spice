@@ -10,16 +10,20 @@
                 searchTerm: api_result.Name,
                 itemType: 'Alternatives',
                 sourceUrl: 'http://alternativeto.net/',
-                sourceName: 'AlternativeTo',
+                sourceName: 'AlternativeTo'
+            },
+            normalize: function(o) {
+                return {
+                    ShortDescription: DDG.strip_html(o.ShortDescription)
+                };
             },
             templates: {
-                item: Spice.alternative_to.item,
+                item: Spice.alternative_to.item
             }
         });
     };
 
     Handlebars.registerHelper("getPlatform", function (platforms) {
-
         return (platforms.length > 1) ? "Multiplatform" : platforms[0];
     });
 
