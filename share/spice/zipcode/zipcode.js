@@ -1,133 +1,61 @@
 function ddg_spice_zipcode (api_result) {
-    "use strict";
 
     // Check errors.
-    if(!api_result || !api_result.places || api_result.places.total === 0) {
+    if(!api_result || !api_result.places || !api_result.places.place || !api_result.places.place.length) {
         return;
     }
+
+    // load mapbox.js:
+    nrj('/js/mapbox/mapbox-1.5.2.js', 1);
+    nrc('/js/mapbox/mapbox-1.5.2.css', 1);
 
     // Get the original query zipcode and country name
-    var query,
-        script  = $("[src*='js/spice/zipcode']")[0],
+    var script  = $("[src*='js/spice/zipcode']")[0],
         source  = $(script).attr("src"),
-        matches = source.match(/\/([^\/]+)\/(\w+)$/);
+        matches = source.match(/\/([^\/]+)\/(\w+)$/),
+        searchZip = matches[1],
+        searchCountry = matches[2],
+        foundMatch = 0;
 
-    // expose the zipcode and country from the query
-    api_result.zip = matches[1];
-    api_result.country = matches[2];
+    var spiceAdd = function() {
+        if (!window['L']) { return setTimeout(spiceAdd,100); }
 
-    // Get the right result based on the query
-    var place = zipcode_getCountry(api_result, matches);
+        // Display the Spice plugin.
+        Spice.add({
 
-    api_result.relevantPlace = place;
+            id: 'zipcode',
+            name: 'Zip Code',
+            data: api_result.places.place,
+            view: 'Map',
+            model: 'Location',
 
-    // Make sure we have a relevant result
-    if (!place) return;
+            normalize: function(item) {
+                var zip = item.name.replace(/\s+/, "");
 
-    // Get location
-    var names = ["locality1", "admin2", "admin1"],
-        header = [];
+                if (!foundMatch && zip === searchZip && (searchCountry === 'ZZ' || item['country attrs'].code === searchCountry)) {
+                    var ne = item.boundingBox.northEast,
+                        sw = item.boundingBox.southWest,
+                        polygon = [
+                            [ne.longitude,ne.latitude],
+                            [ne.longitude,sw.latitude],
+                            [sw.longitude,sw.latitude],
+                            [sw.longitude,ne.latitude]
+                        ];
 
-    for (var i = 0; i < names.length ; i++) {
-        var name = place[names[i]];
-        if (name.length && header.indexOf(name) === -1) {
-            header.push(name);
-        }
+                    foundMatch = true;
+
+                    return {
+                        name: zip,
+                        address: [item.admin2,item.admin1].join(", "),
+                        coordinates: item.centroid,
+                        polygonPoints: polygon
+                    };
+                }
+
+                return null;
+            }
+        });
     };
 
-    header.push(place.country);
-    var header_string = header.join(", ");
-
-    // Get latlong coords for "more at" link
-    var latitude = place.centroid.latitude;
-    var longitude = place.centroid.longitude;
-
-    // Display the Spice plugin.
-    Spice.add({
-        data              : api_result,
-        header1           : header_string,
-        
-        sourceName       : "MapQuest",
-        sourceUrl        : "http://mapq.st/map?q=" + encodeURIComponent(latitude + "," + longitude),
-        templates: {
-            item: Spice.zipcode.zipcode,
-            detail: Spice.zipcode.zipcode
-        },
-        
-    });
+    spiceAdd();
 };
-
-// If a country was specified in the query
-// select the result which returned for the
-// given country or return null if no match
-function zipcode_getCountry (result, matches) {
-
-    var zip     = result.zip,
-        country = result.country,
-        locs    = result.places.place;
-
-    for (var i = 0; i < locs.length; i++) {
-
-        var current = locs[i];
-        var resName = current.name.replace(/\s+/, "");
-
-        // check if zipcodes match and either countries match OR no country specified
-        if (resName === zip && ( country === "ZZ" || current["country attrs"].code === country )){
-            return locs[i];
-        };
-    };
-    return null;
-};
-
-// Filter the zipcodes.
-// Only get the ones which are actually equal to the query.
-Handlebars.registerHelper("checkZipcode", function(options) {
-    "use strict";
-
-    var result  = [],
-        locs    = this.places.place,
-        name    = this.zip,
-        country = this.relevantPlace["country attrs"].code;
-
-    if(locs.length === 1) {
-        return;
-    }
-
-    locs = locs.sort(function(a, b) {
-        return a.country > b.country ? 1 : -1;
-    });
-
-    for(var i = 1; i < locs.length; i += 1) {
-        if(locs[i].name === name &&
-            locs[i]["country attrs"].code !== country ) {
-            result.push(locs[i]);
-        }
-    }
-
-    if(result.length === 0) {
-        return;
-    }
-
-    result = options.fn(result);
-
-    if(result.replace(/\s+/, "") !== "") {
-        return "Postal code " + name + " in other countries: " + result;
-    }
-});
-
-Handlebars.registerHelper("bigbox", function(northEast, southWest) {
-    var boxpad = (northEast.latitude - southWest.latitude) * 0.25;
-
-    return [[northEast.latitude + boxpad, southWest.longitude],
-            [southWest.latitude - boxpad, northEast.longitude]].join();
-});
-
-Handlebars.registerHelper("coordString", function(northEast, southWest) {
-    var box = [[southWest.latitude, southWest.longitude].join(),
-               [northEast.latitude, southWest.longitude].join(),
-               [northEast.latitude, northEast.longitude].join(),
-               [southWest.latitude, northEast.longitude].join(),
-               [southWest.latitude, southWest.longitude].join()];
-
-    return box.join(",");
-});
