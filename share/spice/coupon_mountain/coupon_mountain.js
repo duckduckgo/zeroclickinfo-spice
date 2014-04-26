@@ -1,9 +1,10 @@
 (function(env){
     'use strict';
 
+
     env.ddg_spice_coupon_mountain = function(api_result) {
         if (api_result.count < 1) {
-            return; // Spice.failed('coupon_mountain');
+            return Spice.failed('coupon_mountain');
         }
 
         Spice.add({

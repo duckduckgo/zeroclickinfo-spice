@@ -78,20 +78,15 @@ env.ddg_spice_quixey = function(api_result) {
             if (item.rating_count && item.rating_count < 3) {
                 return null;
             }
-            if (!item.rating_count) {
-                console.log("ignoring null item.rating_count");
-            }
+
+            // ignoring the case where rating_count is null
 
             var icon_url = make_icon_url(item), screenshot; 
-
-            console.log("icon_url: '%s'", icon_url);
 
             if (!icon_url)
                 return null;
 
             screenshot = DDG.getProperty(item, 'editions.0.screenshots.0.image_url');
-
-            console.log("screenshot: %o", screenshot);
 
             if (!screenshot)
                 return null;
