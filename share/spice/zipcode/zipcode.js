@@ -1,13 +1,13 @@
+// load mapbox.js:
+nrj('/js/mapbox/mapbox-1.5.2.js', 1);
+nrc('/js/mapbox/mapbox-1.5.2.css', 1);
+
 function ddg_spice_zipcode (api_result) {
 
     // Check errors.
     if(!api_result || !api_result.places || !api_result.places.place || !api_result.places.place.length) {
         return;
     }
-
-    // load mapbox.js:
-    nrj('/js/mapbox/mapbox-1.5.2.js', 1);
-    nrc('/js/mapbox/mapbox-1.5.2.css', 1);
 
     // Get the original query zipcode and country name
     var script  = $("[src*='js/spice/zipcode']")[0],
