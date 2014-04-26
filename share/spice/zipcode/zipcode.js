@@ -6,7 +6,7 @@ function ddg_spice_zipcode (api_result) {
 
     // Check errors.
     if(!api_result || !api_result.places || !api_result.places.place || !api_result.places.place.length) {
-        return;
+        return Spice.failed('maps'); // should be zipcode, but backend is sending maps signal right now
     }
 
     // Get the original query zipcode and country name
@@ -25,7 +25,7 @@ function ddg_spice_zipcode (api_result) {
 
             id: 'zipcode',
             name: 'Zip Code',
-            from: 'maps',
+            from: 'maps', // shouldn't have to do this, backend is sending maps signal, not zipcode
             data: api_result.places.place,
             view: 'Map',
             model: 'Location',
