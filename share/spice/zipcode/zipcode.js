@@ -25,6 +25,7 @@ function ddg_spice_zipcode (api_result) {
 
             id: 'zipcode',
             name: 'Zip Code',
+            from: 'maps',
             data: api_result.places.place,
             view: 'Map',
             model: 'Location',
