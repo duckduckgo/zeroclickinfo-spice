@@ -268,7 +268,6 @@ function ddg_spice_forecast(r) {
         },
 
         templates: {
-            // custom_item: Spice.forecast.forecast_item,
             item_custom: Spice.forecast.forecast_item,
             detail_mobile: Spice.forecast.forecast_detail_mobile
         }
