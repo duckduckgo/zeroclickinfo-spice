@@ -12,9 +12,9 @@
                 sourceUrl: 'http://alternativeto.net/',
                 sourceName: 'AlternativeTo'
             },
-            normalize: function(o) {
+            normalize: function(item) {
                 return {
-                    ShortDescription: DDG.strip_html(o.ShortDescription)
+                    ShortDescription: DDG.strip_html(item.ShortDescription)
                 };
             },
             templates: {
