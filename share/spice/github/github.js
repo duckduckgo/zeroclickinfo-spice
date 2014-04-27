@@ -11,7 +11,7 @@
 
         var results = api_result.data.repositories;
 
-        // temp size limit - relevancy block should handle this later
+        // TODO: temp size limit - relevancy block should handle this later
         if (results.length > 30)
             results = results.splice(0,30);
 
@@ -20,12 +20,13 @@
             name: "GitHub",
             data: results,
             meta: {
-                itemType: "Git repositories",
+                itemType: "Git Repositories",
                 sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
                 sourceName: 'GitHub'
             },
             templates: {
-                item: Spice.github.item
+                item: Spice.github.item,
+                wrap_item: 'base_item'
             }
         });
     }
