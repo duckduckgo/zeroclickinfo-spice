@@ -2,12 +2,12 @@
     "use strict";
 
     env.ddg_spice_bootic = function(api_result) {
-        if($.isEmptyObject(api_result.products)) {
+        if ($.isEmptyObject(api_result.products)) {
             return;
         }
 
         var query = api_result.input_query ? 
-        '?initial=1&q=' + encodeURIComponent(api_result.input_query) : '';
+            '?initial=1&q=' + encodeURIComponent(api_result.input_query) : '';
 
         // TODO: Use sorting block for this!
         var result = [];
@@ -49,4 +49,3 @@
         });
     };
 }(this));
-
