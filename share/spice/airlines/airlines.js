@@ -231,10 +231,11 @@ function ddg_spice_airlines (api_result) {
         meta: {
             sourceName: 'FlightStatus',
             sourceUrl: source,
-            itemType: "Flight Status for " + flight[0].Airline.Name + " " + flight[0].FlightNumber
+            itemType: "Flight Status for " + DDG.capitalizeWords(flight[0].Airline.Name) + " " + flight[0].FlightNumber
         },
         templates : {
-            item: Spice.airlines.item
+            item: Spice.airlines.item,
+            wrap_item: 'base_item'
         }, 
     });
 };
