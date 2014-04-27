@@ -43,7 +43,7 @@
             templates: {
                 item: 'products_item',
                 options: {
-                    rating: false
+                    rating:false
                 }
             }
         });
