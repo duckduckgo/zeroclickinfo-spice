@@ -7,11 +7,13 @@
     
     env.ddg_spice_songkick_geteventid = function(api_result) {
 
-        var totalEntries = DDG.getProperty(api_result, 'resultsPage.results.totalEntries'),
+	env.a = api_result;
+
+        var totalEntries = DDG.getProperty(api_result, 'resultsPage.totalEntries'),
             location = DDG.getProperty(api_result, 'resultsPage.results.location'),
             considered_location = DDG.getProperty(api_result, 'resultsPage.results.location.0')
 
-        if( !(totalEntries.length && location.length)) {
+        if(!(totalEntries && location.length)) {
             return;
         }
 
