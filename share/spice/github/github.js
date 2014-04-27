@@ -1,6 +1,7 @@
-(function(env) {    
+(function(env) {
+    "use strict";    
     env.ddg_spice_github = function(api_result) {
-        "use strict";
+        
 
         if (!api_result || !api_result.meta.status === 200) {
           return;
@@ -15,6 +16,8 @@
         if (results.length > 30)
             results = results.splice(0,30);
 
+        sort_by_watchers(results);
+
         Spice.add({
             id: "github",
             name: "GitHub",
@@ -26,10 +29,19 @@
             },
             templates: {
                 item: Spice.github.item,
-                wrap_item: 'base_item'
+                wrap_item: 'base_item'      // TODO: make a template group
             }
         });
     }
+
+    function sort_by_watchers(array){
+        return array.sort(function(a, b){
+             var x = a.watchers;
+             var y = b.watchers;
+             return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+         });
+    }
+
 }(this));
 
 // Make sure we display only three items.
