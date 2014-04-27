@@ -3,35 +3,33 @@
 
     env.ddg_spice_congress = function(api_result) {
     
-    if (!api_result || !api_result.results || api_result.results.length === 0) {
-        return;
-    }
-
-    var state = api_result.results[0].state_name;
-    var chamber = api_result.results[0].chamber;
-
-    // sort by district for House members
-    if(chamber == 'house')
-        api_result.results = sortDistrict(api_result.results);
-
-    Spice.add({
-        id: 'congress',
-        name: 'Congress',
-        data: api_result.results,
-
-        meta: {
-            sourceName: 'govtrack.us',
-            total: api_result.results.length,
-            sourceUrl: "https://www.govtrack.us/congress/members/"+state,
-            itemType: 'U.S. ' + DDG.capitalize(chamber) + ' ' + '(' + state + ')'
-        },
-
-        templates: {
-            item: Spice.congress.item
+        if (!api_result || !api_result.results || api_result.results.length === 0) {
+            return;
         }
 
-    });
-    
+        var state = api_result.results[0].state_name,
+            chamber = api_result.results[0].chamber;
+
+        // sort by district for House members
+        // TODO: Use sorting block
+        if(chamber == 'house')
+            api_result.results = sortDistrict(api_result.results);
+
+        Spice.add({
+            id: 'congress',
+            name: 'Congress',
+            data: api_result.results,
+            meta: {
+                sourceName: 'govtrack.us',
+                sourceUrl: "https://www.govtrack.us/congress/members/"+state,
+                itemType: 'U.S. ' + DDG.capitalize(chamber) + ' Congressmen',
+                secondaryText: state + " State"
+            },
+            templates: {
+                item: Spice.congress.item,
+                wrap_item: 'base_item'
+            }
+        });
    };
 
     // Sort based on house member's district
