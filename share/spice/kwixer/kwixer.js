@@ -47,7 +47,7 @@
 
         var query = DDG.get_query(),
             finalArray = [],
-            remainder = $.trim(query.toLowerCase().replace(skip_re, "")),
+            remainder = $.trim(query.replace(skip_re, "")),
             remainderArray = remainder.split(" ");
 
         for(var i = 0; i < api_result.length; i++) {
