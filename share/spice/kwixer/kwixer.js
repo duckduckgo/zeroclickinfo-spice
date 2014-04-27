@@ -47,7 +47,7 @@
 
         var query = DDG.get_query(),
             finalArray = [],
-            remainder = query.toLowerCase().replace(skip_re, "").trim(),
+            remainder = $.trim(query.toLowerCase().replace(skip_re, "")),
             remainderArray = remainder.split(" ");
 
         for(var i = 0; i < api_result.length; i++) {
@@ -87,8 +87,7 @@
                 return {
                     image: item.ResourceImageUrl,
                     title: item.ResourceTitle,
-                    ratingText: item.ResourceYear.toString(),
-                    rating: "unrated"
+                    ratingText: item.ResourceYear.toString()
                 }
             },
             templates: {
@@ -99,6 +98,6 @@
     };
 
     Handlebars.registerHelper("formatDetail", function(s) {
-        return s.replace(';', ', ');
+        return s.replace(/;/g, ', ');
     });
 }(this));
