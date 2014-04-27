@@ -23,15 +23,15 @@
                     img: o.iconUrl,
                     title: o.desc,
                     heading: o.desc,
-                    ratingText: o.merName,
-                    rating: "unrated",
+                    ratingText: o.merName
                 }
             },
             template_group: 'products_simple',
-
             templates: {
                 options: {
-                    buy: Spice.coupon_mountain.buy
+                    buy: Spice.coupon_mountain.buy,
+                    brandAndPrice: false,
+                    rating: false
                 }
             }
 
@@ -43,36 +43,31 @@
         });
 
         // Manually trigger highlight for single result
-        if (api_result.count === 1) {
-            highlight_code();
-        }
+        // if (api_result.count === 1) {
+        //     highlight_code();
+        // }
 
-        // highlight coupon code text
-        function highlight_code () {
-            var coupon_code = $('.zci--coupon_mountain input.tag');
-            
-            coupon_code.click(function() {
-                coupon_code.focus().select();
-            });
-
-            coupon_code.click();
-        }
+        // // highlight coupon code text
+        // function highlight_code () {
+        //     var coupon_code = $('.zci--coupon_mountain input.tag');
+        //     coupon_code.click(function() {
+        //         coupon_code.focus().select();
+        //     });
+        //     coupon_code.click();
+        // }
     };
 
     Spice.registerHelper('check_expiry', function(string, options) {
-        'use strict';
 
         // 3333-03-03 mean coupon has no expiry date
         if (string && string != '3333-03-03'){
             return options.fn(this);
         } else {
-           return;
+            return;
         }
     });
 
     Spice.registerHelper('dateString', function(string) {
-        'use strict';
-
         var date = DDG.getDateFromString(string),
             months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
 
@@ -80,8 +75,6 @@
     });
 
     Spice.registerHelper('stripExpiry', function(string) {
-        'use strict';
-
         return string.replace(/(offer|good through|expires|ends|valid \w+) .+$/i, '');
     });
 
