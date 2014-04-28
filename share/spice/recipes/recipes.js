@@ -6,11 +6,6 @@ function ddg_spice_recipes(res) {
     // delete for spice
     // if(!res.matches || !res.matches.length){ return; }
 
-    // var normalizeData = function(matches){
-    //     var normalized = [];
-
-        //for(var i=0,m; m=matches[i]; i++){
-
     var normalize = function(item) {
 
             // skip any results that don't have images:
@@ -18,12 +13,12 @@ function ddg_spice_recipes(res) {
                 return null;
             }
 
-            var m = { };    //$.extend({}, item);
+            var m = { };
 
             /* item */
 
             m.title = item.recipeName.replace(/ recipe/i,"");
-            m.url = "http://www.yummly.com/recipe/" + m.id;
+            m.url = "http://www.yummly.com/recipe/" + item.id;
 
             m.image = item.imageUrlsBySize['250'];
             m.ratingText = item.sourceDisplayName;
@@ -33,7 +28,7 @@ function ddg_spice_recipes(res) {
             m.cuisine = item.attributes && item.attributes.cuisine && item.attributes.cuisine[0];
 
             if(item.totalTimeInSeconds){
-                m.cookingTime = m.totalTimeInSeconds / 60;
+                m.cookingTime = item.totalTimeInSeconds / 60;
             }
 
             if(item.ingredients && item.ingredients.length){
@@ -61,18 +56,9 @@ function ddg_spice_recipes(res) {
                 m.description = m.ingredientString;
             }
 
-            m.flavors = sortAndFormatFlavors(m.flavors);
+            m.flavors = sortAndFormatFlavors(item.flavors);
 
             return m;
-
-            // normalized.push(m);
-        // }
-
-        // sort by rating:
-        // return normalized.sort(function(a,b){
-        //     return (a.rating > b.rating) ? -1 : 1;
-        // });
-    // }
 
     }; // normalize()
 
@@ -171,10 +157,16 @@ function ddg_spice_recipes(res) {
         },
         */
 
+        template_group: 'products_simple',
+
         templates: {
-            item: 'basic_image_item',
             detail: Spice.recipes.recipes_detail,
-            wrap_detail: 'base_detail'
+            item_detail: Spice.recipes.recipes_detail,
+
+            options: {
+                brand: true,
+                rating: true
+            }
         }
 
     });
