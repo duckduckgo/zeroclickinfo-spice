@@ -76,8 +76,11 @@
 		sourceUrl: 'http://markets.blockchain.info/',
 		sourceIcon: true
 	    },
+	    template_group: 'info',
 	    templates: {
-		detail: Spice.bitcoin.bitcoin
+		options: {
+		    content: Spice.bitcoin.content
+		}
 	    }
 	});
     };
