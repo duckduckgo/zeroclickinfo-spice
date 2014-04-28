@@ -15,18 +15,19 @@
         Spice.add({
             id: "meta_cpan",
             name: "MetaCPAN",
-            data: {
-                abstract: api_result.abstract,
-                author: api_result.author,
-                version: api_result.version,
-                description: api_result.description,
-                record_keys: ['abstract','author','version','description']},
+            data: api_result,
             meta: {
                 sourceName: "MetaCPAN",
                 sourceUrl: 'https://metacpan.org/' + link
             },
             templates: {
                 detail: DDG.templates.record
+            },
+            normalize: function(item){
+                return{
+                    description: ((item.description.length > 500) ? item.description.slice(0, 500) + ' ...' : null),
+                    record_keys: ['abstract','author','version','description']
+                };
             }
         });
     }
