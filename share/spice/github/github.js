@@ -18,6 +18,9 @@
 
         sort_by_watchers(results);
 
+	console.log("Hello");
+	console.log(results);
+
         Spice.add({
             id: "github",
             name: "GitHub",
@@ -27,9 +30,11 @@
                 sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
                 sourceName: 'GitHub'
             },
+	    template_group: 'base',
             templates: {
-                item: Spice.github.item,
-                wrap_item: 'base_item'      // TODO: make a template group
+		options: {
+		    content: Spice.github.content
+		}
             }
         });
     }
@@ -45,10 +50,10 @@
 }(this));
 
 // Make sure we display only three items.
-Handlebars.registerHelper("last_pushed", function(){
+Handlebars.registerHelper("last_pushed", function(pushed) {
     "use strict";
 
-    var last_pushed = Math.floor((new Date() - new Date(this.pushed)) / (1000*60*60*24));
+    var last_pushed = Math.floor((new Date() - new Date(pushed)) / (1000*60*60*24));
 
     var years_ago = Math.floor(last_pushed / 365);
     if (years_ago >= 1) {
