@@ -46,10 +46,12 @@ function ddg_spice_gravatar (api_result) {
                 title         : getName(api_result.entry[0])
             };
         },
-        template_group: 'basic',
+        template_group: 'info',
 
         templates: {
-            detail: Spice.gravatar.detail
+	    options: {
+		content: Spice.gravatar.content
+	    }
         },
 
         force_favicon_url : 'http://gravatar.com/favicon.ico'
