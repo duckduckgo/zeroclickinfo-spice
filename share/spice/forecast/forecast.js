@@ -97,8 +97,8 @@ function ddg_spice_forecast(r) {
 		currentObj = {};
     
 	currentObj.isCurrent = 1;
-    // If the next-hour summary is interesting enough, use that instead
-    if(f.minutely && !f.minutely.summary.match(/ for the hour\.$/)) {
+    // If the next-hour summary is interesting enough (and we're not on mobile), use that instead
+    if(!is_mobile && f.minutely && !f.minutely.summary.match(/ for the hour\.$/)) {
       current_summary = f.minutely.summary;
     }
     
