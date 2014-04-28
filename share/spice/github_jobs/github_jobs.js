@@ -1,6 +1,7 @@
 (function(env) {
+    "use strict";
+
     env.ddg_spice_github_jobs = function(api_result) {
-	"use strict";
 
 	if (api_result.length == 0) {
 	    return;
@@ -26,7 +27,7 @@
 		sourceUrl: sourceUrl,
 		sourceName: 'GitHub',
 		sourceIcon: true,
-		itemType: 'GitHub Jobs'
+		itemType: 'Jobs'
             },
 
             templates: {

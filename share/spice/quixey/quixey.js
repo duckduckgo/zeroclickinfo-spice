@@ -56,7 +56,7 @@ env.ddg_spice_quixey = function(api_result) {
         id: 'apps',
         name: 'Apps',
 
-        data: api_result.results,   //relevants,
+        data: api_result.results,
 
         meta: {
             // count is now computed by Spice
@@ -75,8 +75,9 @@ env.ddg_spice_quixey = function(api_result) {
         normalize : function(item) {
 
             // relevancy pre-filter: skip ones that have less than three reviews
-            if (item.rating_count && item.rating_count < 3)
+            if (item.rating_count && item.rating_count < 3) {
                 return null;
+            }
 
             // ignoring the case where rating_count is null
 
@@ -159,13 +160,6 @@ env.ddg_spice_quixey = function(api_result) {
                 { key: 'short_desc', strict: false }
             ],
 
-            // secondary:  [
-            //     { key: 'short_desc' },
-            //     { key: 'name' },
-            //     { key: 'custom.features.category' },
-            //     { required: 'icon_url' }
-            // ],
-
             // field for de-duplication
             // currently single value, could be differentiated by type
             // eg { 'category': 'name', 'primary': 'id' }
@@ -196,12 +190,14 @@ env.ddg_spice_quixey = function(api_result) {
         // sort_default: { <sorttype>:<field>, <sorttype>:<field>, ... }
         sort_default: { 'category': 'rating' },
 
+        template_group: 'products',
+
         templates: {
-            item: 'products_item',
-            item_variant: 'short',
-            detail: 'products_detail',
-            item_detail: 'products_item_detail'
+            options: {
+                buy: Spice.quixey.buy
+            }
         }
+
     });
 
 }
