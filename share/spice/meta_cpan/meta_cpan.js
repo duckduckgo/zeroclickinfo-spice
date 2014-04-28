@@ -25,7 +25,7 @@
             },
             normalize: function(item){
                 return{
-                    description: ((item.description.length > 500) ? item.description.slice(0, 500) + ' ...' : null),
+                    description: ((item.description.length > 350) ? item.description.slice(0, 350) + ' ...' : null),
                     record_keys: ['abstract','author','version','description']
                 };
             }
