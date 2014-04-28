@@ -6,6 +6,7 @@
             id: 'lastfm_artist',
             name: 'Last.fm',
             data: api_result.artist,
+            signal: 'high',
             meta: {
                 sourceName: 'Last.fm',
                 sourceUrl: api_result.artist.url
@@ -23,9 +24,6 @@
                 options: {
                     moreAt: true
                 }
-                // detail: Spice.lastfm_artist.detail
-                // detail: 'basic_
-                // wrap_detail: 'basic_image_detail'
             }
         });
 
