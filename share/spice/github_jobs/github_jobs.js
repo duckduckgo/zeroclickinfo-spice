@@ -29,9 +29,11 @@
 		sourceIcon: true,
 		itemType: 'Jobs'
             },
-
+	    template_group: 'base',
             templates: {
-		item_custom: Spice.github_jobs.item
+		options: {
+		    content: Spice.github_jobs.content
+		}
             }
 	});
     };
