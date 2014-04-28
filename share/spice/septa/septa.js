@@ -24,8 +24,11 @@ function ddg_spice_septa(api_result) {
 	    sourceIconUrl: 'http://septa.org/site/images/favicon.ico',
 	    itemType: 'trains'
 	},
+	template_group: 'base',
         templates: {
-            item: Spice.septa.item
+	    options: {
+		content: Spice.septa.content
+	    }
         }
     });
 };
