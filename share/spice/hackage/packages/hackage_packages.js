@@ -52,14 +52,17 @@
 	Spice.add({
 	    id: 'hackage',
 	    name: 'Haskell Packages',
-	    data: api_result,
+	    data: api_result.packageDescription,
 	    meta: {
 		sourceName: 'Hackage',
 		sourceUrl: 'http://hackage.haskell.org/package/' + name,
 		sourceIcon: true
 	    },
+	    template_group: 'info',
 	    templates: {
-		detail: Spice.hackage_packages.detail
+		options: {
+		    content: Spice.hackage_packages.content
+		}
 	    }
 	});
     };
