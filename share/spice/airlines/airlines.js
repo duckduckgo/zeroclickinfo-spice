@@ -233,6 +233,11 @@ function ddg_spice_airlines (api_result) {
             sourceUrl: source,
             itemType: "Flight Status for " + DDG.capitalizeWords(flight[0].Airline.Name) + " " + flight[0].FlightNumber
         },
+	normalize: function(item) {
+	    return {
+		url: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" + item.flight.Airline.AirlineCode + "&flightNumber=" + item.flight.FlightNumber
+	    }
+	},
 	template_group: 'base',
         templates : {
 	    options: {
