@@ -140,6 +140,10 @@
 	padding-left: 0;
 }
 
+.is-mobile .fe_current-wrap--mob {
+    margin-top: -0.5em;
+}
+
 .fe_current-wrap--mob .fe_currently {
 	margin: -0.5em;
 	height: 14.25em;
