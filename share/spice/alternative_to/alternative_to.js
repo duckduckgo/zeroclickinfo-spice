@@ -6,22 +6,24 @@
             id: 'alternative_to',
             name: 'Alternative Software',
             data: api_result.Items,
+            signal: 'high',
             meta: {
                 searchTerm: api_result.Name,
                 itemType: 'Alternatives',
                 sourceUrl: 'http://alternativeto.net/',
                 sourceName: 'AlternativeTo'
             },
-            normalize: function(o) {
+            normalize: function(item) {
                 return {
-                    ShortDescription: DDG.strip_html(o.ShortDescription)
+                    ShortDescription: DDG.strip_html(item.ShortDescription),
+                    url: item.Url
                 };
             },
-	    template_group: 'base',
+            template_group: 'base',
             templates: {
-		options: {
-		    content: Spice.alternative_to.content
-		}
+                options: {
+                    content: Spice.alternative_to.content
+                }
             }
         });
     };
