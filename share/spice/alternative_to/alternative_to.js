@@ -6,25 +6,32 @@
             id: 'alternative_to',
             name: 'Alternative Software',
             data: api_result.Items,
+            signal: 'high',
             meta: {
                 searchTerm: api_result.Name,
                 itemType: 'Alternatives',
                 sourceUrl: 'http://alternativeto.net/',
                 sourceName: 'AlternativeTo'
             },
-            normalize: function(o) {
+            normalize: function(item) {
                 return {
-                    ShortDescription: DDG.strip_html(o.ShortDescription)
+                    ShortDescription: DDG.strip_html(DDG.strip_href(item.ShortDescription)),
+                    url: item.Url
                 };
             },
+            template_group: 'base',
             templates: {
-                item: Spice.alternative_to.item,    // temporary
-                wrap_item: 'base_item'
+                options: {
+                    content: Spice.alternative_to.content
+                }
             }
         });
     };
 
     Handlebars.registerHelper("getPlatform", function (platforms) {
+	if(!platforms) {
+	    return "";
+	}
         return (platforms.length > 1) ? "Multiplatform" : platforms[0];
     });
 

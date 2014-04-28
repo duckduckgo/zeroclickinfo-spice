@@ -1,17 +1,17 @@
     {{#if govtrack_id}}
         <a href="https://www.govtrack.us/congress/members/{{govtrack_id}}">
     {{else}}
-        <a href="/?q={{congress_get_name}}">
+        <a href="/?q={{congress_get_name title first_name last_name}}">
     {{/if}}
 
-    {{congress_get_name}} </a> ({{congress_get_party}})
+    {{congress_get_name title first_name last_name}} </a> ({{congress_get_party party}})
     <br>
     {{#if district}}
         District: {{district}}{{#if term_end}} - {{/if}}
     {{/if}}
     
     {{#if term_end}}
-        {{congress_get_date}}
+        {{congress_get_date term_end}}
     {{/if}}
  	<br>
      {{#if phone}}
