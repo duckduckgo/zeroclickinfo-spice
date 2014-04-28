@@ -1,55 +1,13 @@
-/*
-.zci--github span {
-    display: block;
-    max-width: 100%;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    white-space: nowrap;
-    overflow: hidden;
-}
-*/
 .zci--github .tile__body {
-	position: relative;
-	left: -0.2em;
-	height: 140px;
+    height: 12em;
 }
 
-.zci--github .tile__name {
-	position: relative;
-	top: -0.75em;
-	font-weight: bold;
-	font-size: 1.25em;
-}
-
-.zci--github .tile__owner {
-	position: relative;
-	font-size: 0.95em;
-	color: #888;
-	top: -1.2em;
-}
-
-.zci--github .tile__discreption {
-	position: relative;
-	top: -1.1em;
+.zci--github .tile__update__info {
+    color: #999;
+    position: absolute;
+    bottom: 0.5em;
 }
 
 .zci--github .star.starIcon {
-	font-size: 1.3em;
-	position: relative;
-	padding-right: -0.045em;
-	bottom: 0.13em;
-}
-
-.zci--github .tile__update__info{
-	position: absolute;
-	bottom: 0.5em;
-	padding-right:1em;
-	font-size: 0.9em;
-	color: #888;
-}
-
-@media screen and (max-width: 850px){
-	.zci--github .tile__body {
-	height: 160px;
-	}
+    margin-top: -5px;
 }
