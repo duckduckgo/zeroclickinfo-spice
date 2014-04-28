@@ -52,7 +52,6 @@ Handlebars helpers
 // Creates a full name for a given representative
 Handlebars.registerHelper ('congress_get_name', function(title, first_name, last_name) {
     "use strict";
-    console.log("get_name", title, first_name, last_name);
     return (title ? title + '. ' : '')
             + (first_name ? first_name + ' ' : '')
             //+ (middle_name ? middle_name + ' ' : '')
@@ -62,7 +61,6 @@ Handlebars.registerHelper ('congress_get_name', function(title, first_name, last
 // return the next election year
 Handlebars.registerHelper ('congress_get_date', function(term_end) {
     "use strict";
-    console.log("get_date", term_end);
     if(term_end)
         return "Next Election " + term_end.substring(0,4);
     return null;
@@ -71,7 +69,6 @@ Handlebars.registerHelper ('congress_get_date', function(term_end) {
 // return the party
 Handlebars.registerHelper ('congress_get_party', function(party) {
     "use strict";
-    console.log("get_party", party);
     if(party){
         switch(party){
             case "D":
