@@ -25,9 +25,11 @@
                 itemType: 'U.S. ' + DDG.capitalize(chamber) + ' Congressmen',
                 secondaryText: state + " State"
             },
+	    template_group: 'base',
             templates: {
-                item: Spice.congress.item,
-                wrap_item: 'base_item'
+		options: {
+                    content: Spice.congress.content
+		}
             }
         });
    };
@@ -48,27 +50,30 @@ Handlebars helpers
 *******************************/
 
 // Creates a full name for a given representative
-Handlebars.registerHelper ('congress_get_name', function() {
+Handlebars.registerHelper ('congress_get_name', function(title, first_name, last_name) {
     "use strict";
-    return (this.title ? this.title + '. ' : '')
-            + (this.first_name ? this.first_name + ' ' : '')
-            //+ (this.middle_name ? this.middle_name + ' ' : '')
-            + (this.last_name ? this.last_name : '');
+    console.log("get_name", title, first_name, last_name);
+    return (title ? title + '. ' : '')
+            + (first_name ? first_name + ' ' : '')
+            //+ (middle_name ? middle_name + ' ' : '')
+            + (last_name ? last_name : '');
 });
 
 // return the next election year
-Handlebars.registerHelper ('congress_get_date', function() {
+Handlebars.registerHelper ('congress_get_date', function(term_end) {
     "use strict";
-    if(this.term_end)
-        return "Next Election " + this.term_end.substring(0,4);
+    console.log("get_date", term_end);
+    if(term_end)
+        return "Next Election " + term_end.substring(0,4);
     return null;
 });
 
 // return the party
-Handlebars.registerHelper ('congress_get_party', function() {
+Handlebars.registerHelper ('congress_get_party', function(party) {
     "use strict";
-    if(this.party){
-        switch(this.party){
+    console.log("get_party", party);
+    if(party){
+        switch(party){
             case "D":
                 return "Democrat";
             case "R":
