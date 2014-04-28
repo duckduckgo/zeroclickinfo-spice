@@ -18,7 +18,7 @@ function ddg_spice_recipes(res) {
             /* item */
 
             m.title = item.recipeName.replace(/ recipe/i,"");
-            m.url = "http://www.yummly.com/recipe/" + m.id;
+            m.url = "http://www.yummly.com/recipe/" + item.id;
 
             m.image = item.imageUrlsBySize['250'];
             m.ratingText = item.sourceDisplayName;
@@ -28,7 +28,7 @@ function ddg_spice_recipes(res) {
             m.cuisine = item.attributes && item.attributes.cuisine && item.attributes.cuisine[0];
 
             if(item.totalTimeInSeconds){
-                m.cookingTime = m.totalTimeInSeconds / 60;
+                m.cookingTime = item.totalTimeInSeconds / 60;
             }
 
             if(item.ingredients && item.ingredients.length){
