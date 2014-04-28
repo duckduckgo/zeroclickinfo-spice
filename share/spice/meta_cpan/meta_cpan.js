@@ -15,10 +15,15 @@
         Spice.add({
             id: "meta_cpan",
             name: "MetaCPAN",
-            data: {record_values : api_result, record_keys: ['abstract','author','version','description']},
+            data: {
+                abstract: api_result.abstract,
+                author: api_result.author,
+                version: api_result.version,
+                description: api_result.description,
+                record_keys: ['abstract','author','version','description']},
             meta: {
                 sourceName: "MetaCPAN",
-                sourceUrl: 'https://metacpan.org/' + link,
+                sourceUrl: 'https://metacpan.org/' + link
             },
             templates: {
                 detail: DDG.templates.record
