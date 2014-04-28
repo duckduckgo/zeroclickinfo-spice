@@ -17,14 +17,19 @@
                     ShortDescription: DDG.strip_html(o.ShortDescription)
                 };
             },
+	    template_group: 'base',
             templates: {
-                item: Spice.alternative_to.item,    // temporary
-                wrap_item: 'base_item'
+		options: {
+		    content: Spice.alternative_to.content
+		}
             }
         });
     };
 
     Handlebars.registerHelper("getPlatform", function (platforms) {
+	if(!platforms) {
+	    return "";
+	}
         return (platforms.length > 1) ? "Multiplatform" : platforms[0];
     });
 
