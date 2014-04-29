@@ -14,7 +14,7 @@ topics "everyday", "travel";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Forecast.pm";
 
 
-my @triggers = ('forecast', 'forcast', 'weather', 'temp', 'temperature');
+my @triggers = ('forecast', 'forcast', 'weather', 'temp', 'temperature', 'meteo');
 triggers startend => @triggers;
 
 spice from => '([^/]*)/?([^/]*)';
@@ -25,8 +25,8 @@ spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=
 spice is_cached => 1;
 spice proxy_cache_valid => "200 30m";
 
-my $no_location_qr = qr/fore?cast|report|weather|temp(?:erature)/;
-my $weather_qr = qr/(?:(?:weather|temp(?:erature|)|fore?cast)(?: fore?cast| report| today| tomm?orr?ow| this week|))+/;
+my $no_location_qr = qr/fore?cast|report|meteo|weather|temp(?:erature)/;
+my $weather_qr = qr/(?:(?:weather|temp(?:erature|)|fore?cast|meteo)(?: fore?cast| report| today| tomm?orr?ow| this week| monday| tuesday|  wednesday| thursday| friday| saturday| sunday| lundi| mardi| mercredi| jeudi| vendredi| samedi| dimanche| demain|))+/;
 
 handle query_lc => sub {
     my $location = '';
@@ -57,7 +57,7 @@ handle query_lc => sub {
     return if /football|golf|soccer|tennis|basketball|hockey|nba|ncaa|nfl|nhl/;
 
     # has other terms
-    return if (/(^site\:)|http|(\.(org|com|net))/);
+    return if (/(^site\:)|http|(\.(org|com|net))|underground/);
 
     # Don't cache generic queries due to
     # variations in the users location.
