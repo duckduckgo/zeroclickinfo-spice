@@ -124,16 +124,18 @@ function ddg_spice_detect_lang (api_result) {
     // Display the plug-in.
     Spice.add({
         id: 'detect_lang',
-        data             : { first: d0, second: d1 },
+        data: { first: d0, second: d1 },
         name: "Detected Language",
         meta: {
             sourceUrl       : "http://detectlanguage.com/",
             sourceName      : "Detect Language",
         },
+        template_group: 'info',
         templates: {
-            item: Spice.detect_lang.detect_lang,
-            detail: Spice.detect_lang.detect_lang
-        },
+            options: {
+                content: Spice.detect_lang.content
+                }
+            }
         
     });
 };
