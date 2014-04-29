@@ -97,8 +97,8 @@ function ddg_spice_forecast(r) {
 		currentObj = {};
     
 	currentObj.isCurrent = 1;
-    // If the next-hour summary is interesting enough, use that instead
-    if(f.minutely && !f.minutely.summary.match(/ for the hour\.$/)) {
+    // If the next-hour summary is interesting enough (and we're not on mobile), use that instead
+    if(!is_mobile && f.minutely && !f.minutely.summary.match(/ for the hour\.$/)) {
       current_summary = f.minutely.summary;
     }
     
@@ -241,7 +241,16 @@ function ddg_spice_forecast(r) {
   weatherData.alerts = build_alerts(r);
   weatherData.daily = build_daily(r);
   weatherData.activeUnit = unit_labels[units].temperature;
-  
+  weatherData.city = r.flags['ddg-location'];
+
+  // build the header text:
+  weatherData.header = weatherData.city ? 'Weather for ' + weatherData.city : 'Weather';
+
+  // if there's alerts add them to the end:
+  if (weatherData.alerts) {
+      weatherData.header += ' ' + weatherData.alerts;
+  }
+
   // structure the data differently for mobile and desktop views
   if (is_mobile) {
     spiceData = weatherData;
@@ -259,7 +268,7 @@ function ddg_spice_forecast(r) {
         signal: "high",
 
         meta: {
-            heading: r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] + weatherData.alerts : 'Weather' + weatherData.alerts,
+            heading: weatherData.header,
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
             sourceName: 'Forecast.io',
             altMeta: 'Temperatures in '+unit_labels[units].temperature+'&deg;',
@@ -267,7 +276,6 @@ function ddg_spice_forecast(r) {
         },
 
         templates: {
-            // custom_item: Spice.forecast.forecast_item,
             item_custom: Spice.forecast.forecast_item,
             detail_mobile: Spice.forecast.forecast_detail_mobile
         }

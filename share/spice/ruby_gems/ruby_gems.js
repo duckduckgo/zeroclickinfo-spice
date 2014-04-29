@@ -23,7 +23,7 @@
                 itemType: decodeURIComponent(query) + " (RubyGems)",
             },
             templates:{
-                item: Spice.ruby_gems.item
+                item_custom: Spice.ruby_gems.item
             }
         });
     }

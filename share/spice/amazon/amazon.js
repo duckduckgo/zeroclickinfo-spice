@@ -3,7 +3,7 @@ function ddg_spice_amazon(api_result) {
 
     if (!api_result || !api_result.results ||
 	!api_result.results.length || api_result.results.length == 0) {
-	return;
+	return; // Spice.failed('amazon');
     }
 
     var items = api_result.results;
@@ -20,10 +20,6 @@ function ddg_spice_amazon(api_result) {
                 this.rating = RegExp.$1 + "." + RegExp.$2;
             }
             this.reviewCount = r.reviews;
-
-            // add the products_buy template
-            // TODO: this is hacky, can it combine with the Spice.templates?
-            this.products_buy = 'products_amazon_buy';
 
             // decrement the numLeft and
             // see if all have returned yet:
@@ -55,18 +51,18 @@ function ddg_spice_amazon(api_result) {
             data: items,
 
             meta: {
-                count: items.length,
-                total: items.length,
                 itemType: 'Products',
                 sourceName: 'Amazon',
                 sourceUrl: api_result.more_at,
                 sourceIcon: true
             },
 
+            template_group: 'products',
+
             templates: {
-                item: 'products_item',
-                detail: 'products_detail',
-                item_detail: 'products_item_detail'
+                options: {
+                    buy: 'products_amazon_buy'
+                }
             }
         });
     });

@@ -199,6 +199,14 @@
 		left: 1em;
 	}
 
+/* single item detail */
+
+.zci__main--detail .detail__media--recipe,
+.zci__main--detail .detail__body--recipe {
+    height: 16em;
+    line-height: 16em;
+}
+
 /* landscape/super-small mode */
 @media only screen and (max-height: 400px) {
 	.detail__ingredients {

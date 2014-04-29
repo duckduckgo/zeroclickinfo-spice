@@ -20,8 +20,11 @@
 		sourceUrl: 'https://get.adobe.com/flashplayer/',
 		sourceIcon: true
 	    },
+	    template_group: 'info',
             templates: {
-		detail: Spice.flash_version.detail,
+		options: {
+		    content: Spice.flash_version.content
+		}
             }
 	});
     };

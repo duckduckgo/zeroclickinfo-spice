@@ -3,35 +3,35 @@
 
     env.ddg_spice_congress = function(api_result) {
     
-    if (!api_result || !api_result.results || api_result.results.length === 0) {
-        return;
-    }
-
-    var state = api_result.results[0].state_name;
-    var chamber = api_result.results[0].chamber;
-
-    // sort by district for House members
-    if(chamber == 'house')
-        api_result.results = sortDistrict(api_result.results);
-
-    Spice.add({
-        id: 'congress',
-        name: 'Congress',
-        data: api_result.results,
-
-        meta: {
-            sourceName: 'govtrack.us',
-            total: api_result.results.length,
-            sourceUrl: "https://www.govtrack.us/congress/members/"+state,
-            itemType: 'U.S. ' + DDG.capitalize(chamber) + ' ' + '(' + state + ')'
-        },
-
-        templates: {
-            item: Spice.congress.item
+        if (!api_result || !api_result.results || api_result.results.length === 0) {
+            return;
         }
 
-    });
-    
+        var state = api_result.results[0].state_name,
+            chamber = api_result.results[0].chamber;
+
+        // sort by district for House members
+        // TODO: Use sorting block
+        if(chamber == 'house')
+            api_result.results = sortDistrict(api_result.results);
+
+        Spice.add({
+            id: 'congress',
+            name: 'Congress',
+            data: api_result.results,
+            meta: {
+                sourceName: 'govtrack.us',
+                sourceUrl: "https://www.govtrack.us/congress/members/"+state,
+                itemType: 'U.S. ' + DDG.capitalize(chamber) + ' Congressmen',
+                secondaryText: state + " State"
+            },
+	    template_group: 'base',
+            templates: {
+		options: {
+                    content: Spice.congress.content
+		}
+            }
+        });
    };
 
     // Sort based on house member's district
@@ -50,27 +50,27 @@ Handlebars helpers
 *******************************/
 
 // Creates a full name for a given representative
-Handlebars.registerHelper ('congress_get_name', function() {
+Handlebars.registerHelper ('congress_get_name', function(title, first_name, last_name) {
     "use strict";
-    return (this.title ? this.title + '. ' : '')
-            + (this.first_name ? this.first_name + ' ' : '')
-            //+ (this.middle_name ? this.middle_name + ' ' : '')
-            + (this.last_name ? this.last_name : '');
+    return (title ? title + '. ' : '')
+            + (first_name ? first_name + ' ' : '')
+            //+ (middle_name ? middle_name + ' ' : '')
+            + (last_name ? last_name : '');
 });
 
 // return the next election year
-Handlebars.registerHelper ('congress_get_date', function() {
+Handlebars.registerHelper ('congress_get_date', function(term_end) {
     "use strict";
-    if(this.term_end)
-        return "Next Election " + this.term_end.substring(0,4);
+    if(term_end)
+        return "Next Election " + term_end.substring(0,4);
     return null;
 });
 
 // return the party
-Handlebars.registerHelper ('congress_get_party', function() {
+Handlebars.registerHelper ('congress_get_party', function(party) {
     "use strict";
-    if(this.party){
-        switch(this.party){
+    if(party){
+        switch(party){
             case "D":
                 return "Democrat";
             case "R":
