@@ -7,9 +7,9 @@ function ddg_spice_code_search(response) {
 	if (!data || data.length === 0) {
         return;
     }
-    result = data[0];
+    var result = data[0];
 
-    lines = [];
+    var lines = [];
     for(var i in result.lines) {
         lines.push([i, result.lines[i]]);
     }
@@ -30,15 +30,20 @@ function ddg_spice_code_search(response) {
     }
 
     Spice.add({
+        id: 'code_search',
+        name: "Code Search",
         data             : { 'lines' : code },
-        header1          : result.filename + ' in ' + result.name + ' (search[code])',
-        sourceUrl       : 'http://searchco.de/?q='
-                            + encodeURIComponent(query)
-                            + '&cs=true',
-        sourceName      : 'search[code]',
-        templates: {
-            item: Spice.code_search.code_search,
-            detail: Spice.code_search.code_search
+        meta: {
+            sourceUrl       : 'http://searchco.de/?q='
+                                + encodeURIComponent(query)
+                                + '&cs=true',
+            sourceName      : 'search[code]',
         },
+        template_group: 'info',
+        templates: {
+            options: {
+                content: Spice.code_search.content
+            }
+        }
     });
 }
