@@ -18,9 +18,6 @@
 
         sort_by_watchers(results);
 
-	console.log("Hello");
-	console.log(results);
-
         Spice.add({
             id: "github",
             name: "GitHub",
@@ -30,12 +27,18 @@
                 sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
                 sourceName: 'GitHub'
             },
-	    template_group: 'base',
+	    template_group: 'text',
             templates: {
 		options: {
-		    content: Spice.github.content
+		    footer: Spice.github.footer
 		}
             },
+	    normalize: function(item) {
+		return {
+		    title: item.name,
+		    subtitle: item.owner + "/" + item.name
+		};
+	    },
 	    relevancy: {
 		primary: [
 		    { key: 'description', match: /.+/, strict: false } // Reject things without a description.
