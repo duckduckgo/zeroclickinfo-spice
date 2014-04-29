@@ -3,7 +3,7 @@
         "use strict";
 
         if (!(api_result && api_result.author && api_result.version)) {
-            return;
+            return Spice.failed('meta_cpan');
         }
 
         var query = DDG.get_query().replace(/\s*(metacpan|meta cpan|cpanm?)\s*/i, '').replace(/-/g, '::');
