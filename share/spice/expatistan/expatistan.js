@@ -14,8 +14,8 @@
                 sourceUrl: api_result.source_url,
                 sourceName: 'Expatistan'
             },
-            template_group: 'info',
             templates: {
+                group: 'info',
                 options: {
                     content: Spice.expatistan.content
                 }
