@@ -34,9 +34,9 @@ function ddg_spice_news(apiResult) {
     // Check if the title is relevant to the query.
     var goodStories = [];
     for(var i = 0, story; story = apiResult[i]; i++) {
-    // strip bold from story titles.
+	// strip bold from story titles.
         story.title = story.title.replace(/<b>|<\/b>|:/g, "");
-        if(DDG.isRelevant(story.title, skip, 3)) {
+        if(DDG.isRelevant(story.title, skip)) {
             getSource(story);
             goodStories.push(story);
         }
