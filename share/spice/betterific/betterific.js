@@ -45,8 +45,11 @@
                 sourceUrl: encodeURI('http://betterific.com/search/' + api_result.q),
                 sourceName: 'betterific'
             },
+            template_group: 'info',
             templates: {
-                detail: Spice.betterific.detail
+                options: {
+                    content: Spice.betterific.content
+                }
             }
         });
     }
