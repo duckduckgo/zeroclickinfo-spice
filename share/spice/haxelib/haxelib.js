@@ -11,12 +11,15 @@
             name: "Haxelib",
             data: response.info,
             meta: {
-                itemType: response.info.name + " ("+response.info.curversion+") by " + response.info.owner,
+                sourceIconUrl   : 'http://haxe.org/img/haxe2/favicon.ico',
                 sourceUrl       : 'http://lib.haxe.org/p/' + encodeURIComponent(response.info.name),
-                sourceName      : 'Haxelib',
+                sourceName      : 'Haxelib'
             },
+            template_group: 'info',
             templates: {
-                detail: Spice.haxelib.detail
+                options: {
+                    content: Spice.haxelib.content
+                }
             }
         });
     }
