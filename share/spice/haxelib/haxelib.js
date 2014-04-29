@@ -14,9 +14,13 @@
                 itemType: response.info.name + " ("+response.info.curversion+") by " + response.info.owner,
                 sourceUrl       : 'http://lib.haxe.org/p/' + encodeURIComponent(response.info.name),
                 sourceName      : 'Haxelib',
+                sourceIcon      : true
             },
+            template_group: 'info',
             templates: {
-                detail: Spice.haxelib.detail
+                options: {
+                    content: Spice.haxelib.content
+                }
             }
         });
     }
