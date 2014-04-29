@@ -16,12 +16,14 @@
             name: "Expand URL",
             data: api_response,
             meta: {
-                itemType: "Expand Link (LongURL)",
                 sourceUrl: "http://longurl.org/expand?url=" + encodeURIComponent(query),
                 sourceName: "LongURL"
             },
+            template_group: 'info',
             templates: {
-                detail: Spice.expand_url.detail
+                options: {
+                    content: Spice.expand_url.content
+                }
             }
         });
     }
