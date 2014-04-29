@@ -39,46 +39,47 @@ function ddg_spice_octopart (api_result) {
     // }
 
     Spice.add({
-        id: "octopart",
+        id: 'octopart',
         name: 'Parts',
-        view: "Tiles",
         data: api_result.results,
-
-        templates: {
-            item:   'products_item',
-            detail: 'products_item_detail'
-        },
+        signal: 'high',
 
         meta: {
-            // total: api_result.results.length,
-            // itemType: 'showing n of m results',
+            itemType: 'Parts',
             sourceName: 'Octopart',
 			sourceUrl : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q,
-            // sourceLogo: {
-            //     url: DDG.get_asset_path('quixey','quixey_logo.png'),
-            //     width: '45',
-            //     height: '12'
-            // }
         },
 
         normalize: function(item) {
+            var img = DDG.getProperty(item, "item.images.0.url_55px");
+
             return {
                 brand: item.item.manufacturer.displayname,
                 price: item.item.avg_price[1] + ' ' + item.item.avg_price[0].toFixed(2),
-                img:   DDG.getProperty(item, "item.images.0.url_55px"),
-                img_m: this.img,
-				url_review: item.item.detail_url,
+                img: img,
+                img_m: img,
+				// url_review: item.item.detail_url,
+				url: item.item.detail_url,
                 title: DDG.strip_html(item.item.mpn),
                 heading: DDG.strip_html(item.highlight)
             };
-        }
+        },
 
+        templates: {
+            group: 'products',
+            item_detail: null,
+            detail: null,
+            wrap_detail: null,
+            options: {
+                rating: false
+            }
+        }
         
     });
 };
 
-Handlebars.registerHelper("toFixed", function(number) {
-    "use strict";
+// Handlebars.registerHelper("toFixed", function(number) {
+//     "use strict";
 
-    return number.toFixed(2);
-});
+//     return number.toFixed(2);
+// });
