@@ -242,7 +242,15 @@ function ddg_spice_forecast(r) {
   weatherData.daily = build_daily(r);
   weatherData.activeUnit = unit_labels[units].temperature;
   weatherData.city = r.flags['ddg-location'];
-  
+
+  // build the header text:
+  weatherData.header = weatherData.city ? 'Weather for ' + weatherData.city : 'Weather';
+
+  // if there's alerts add them to the end:
+  if (weatherData.alerts) {
+      weatherData.header += ' ' + weatherData.alerts;
+  }
+
   // structure the data differently for mobile and desktop views
   if (is_mobile) {
     spiceData = weatherData;
@@ -260,7 +268,7 @@ function ddg_spice_forecast(r) {
         signal: "high",
 
         meta: {
-            heading: r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] + weatherData.alerts : 'Weather' + weatherData.alerts,
+            heading: weatherData.header,
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
             sourceName: 'Forecast.io',
             altMeta: 'Temperatures in '+unit_labels[units].temperature+'&deg;',
