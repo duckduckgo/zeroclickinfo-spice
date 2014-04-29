@@ -19,8 +19,8 @@
                     url: item.Url
                 };
             },
-            template_group: 'base',
             templates: {
+				group: 'base',
                 options: {
                     content: Spice.alternative_to.content
                 }
