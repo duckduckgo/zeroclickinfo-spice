@@ -25,12 +25,17 @@ function ddg_spice_rhymes ( api_result ) {
 		data       : { words: words },
 		id         : "rhymes",
         name       : "Rhymes",
-        sourceUrl  : 'http://rhymebrain.com/en/What_rhymes_with_' +
-                       encodeURIComponent(query),
-        sourceName : 'RhymeBrain',
+        meta: {
+            sourceUrl  : 'http://rhymebrain.com/en/What_rhymes_with_' +
+                           encodeURIComponent(query),
+            sourceName : 'RhymeBrain',
+            sourceIcon: true
+        },
         templates  : {
-            item: Spice.rhymes.item,
-            detail: Spice.rhymes.item
+            group: 'info',
+            options: {
+                content: Spice.rhymes.item
+            }
         }
     });
 }
