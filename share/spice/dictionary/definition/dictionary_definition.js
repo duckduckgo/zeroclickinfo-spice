@@ -47,6 +47,10 @@ var ddg_spice_dictionary = {
     render: function(definitions) {
         var word = definitions[0].word;
 
+        console.log("word: '%s'", word);
+
+        var q = DDG.get_query();
+
         Spice.add({
             id: 'definition',
             name: 'Definition',
@@ -54,19 +58,25 @@ var ddg_spice_dictionary = {
             data: {
                 word: word,
                 plural_form: this.plural_form,
-                definitions: definitions,
+                definitions: definitions
+            },
+
+            meta: {
                 sourceName: "Wordnik",
                 sourceUrl : "http://www.wordnik.com/words/" + word
             },
 
-            relevancy: {   
-                primary: [
-                    { key: 'word', min_length: word.length, strict: false }
-                ]
-            },
+            // relevancy: {   
+            //     primary: [
+            //         { key: 'word', min_length: word.length, strict: false }
+            //     ]
+            // },
 
             templates: {
-                detail: Spice.dictionary_definition.dictionary_definition
+                group: 'info',
+                options: {
+                    content: Spice.dictionary_definition.dictionary_definition
+                }
             }
         });
 
@@ -86,7 +96,7 @@ var ddg_spice_dictionary = {
     definition: function(api_result) {
         "use strict";
 
-        if (!api_result || !api_result.length) { return; }
+        if (!api_result || !api_result.length) { return Spice.failed('dictionary_definition'); }
 
         // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript.
         // If cache was set to false, it would be calling /js/spice/dictionary/definition/hello?_=12345
