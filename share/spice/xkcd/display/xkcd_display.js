@@ -25,9 +25,12 @@ function ddg_spice_xkcd_display(api_result) {
             sourceName      : 'xkcd',
             sourceIcon      : true
 		},
-		templates: {
-			detail: Spice.xkcd_display.detail
-		},
+    template_group: 'base',
+    templates: {
+      options: {
+        content: Spice.xkcd_display.content
+                }
+            }
     });
   });
 }
