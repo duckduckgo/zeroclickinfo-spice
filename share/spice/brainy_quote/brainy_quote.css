@@ -11,3 +11,12 @@
     font-size: 4em;
     margin-top: -24px;
 }
+
+.brainy__attribution {
+    color: #D4D4D4;
+    float: right;
+}
+
+zci--brainy_quote .zci__content.chomp {
+    max-height: none;
+}
