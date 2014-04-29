@@ -19,8 +19,8 @@
                     url: item.Url
                 };
             },
-            template_group: 'base',
             templates: {
+                group: 'base',
                 options: {
                     content: Spice.alternative_to.content
                 }
@@ -29,9 +29,6 @@
     };
 
     Handlebars.registerHelper("getPlatform", function (platforms) {
-	if(!platforms) {
-	    return "";
-	}
         return (platforms.length > 1) ? "Multiplatform" : platforms[0];
     });
 
