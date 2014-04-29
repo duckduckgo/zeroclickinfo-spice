@@ -1,0 +1,13 @@
+.brainy__quote {
+    quotes: "“" "”" "‘" "’";
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+.brainy__quote:before {
+    color: #D4D4D4;
+    content: open-quote;
+    float: left;
+    font-size: 4em;
+    margin-top: -24px;
+}
