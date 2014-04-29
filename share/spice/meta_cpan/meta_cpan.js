@@ -23,7 +23,7 @@
             templates: {
                 group: 'info',
                 options: {
-                    content: DDG.templates.record
+                    content: 'record'
                 }
             },
             normalize: function(item){
