@@ -35,7 +35,12 @@
 		options: {
 		    content: Spice.github.content
 		}
-            }
+            },
+	    relevancy: {
+		primary: [
+		    { key: 'description', match: /.+/, strict: false } // Reject things without a description.
+		]
+	    }
         });
     }
 
