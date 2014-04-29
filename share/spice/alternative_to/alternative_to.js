@@ -29,9 +29,6 @@
     };
 
     Handlebars.registerHelper("getPlatform", function (platforms) {
-	if(!platforms) {
-	    return "";
-	}
         return (platforms.length > 1) ? "Multiplatform" : platforms[0];
     });
 
