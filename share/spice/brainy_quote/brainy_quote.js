@@ -15,14 +15,14 @@
 	    signal: 'high',
 	    normalize: function(item) {
 		return {
-		    person: item.header1.replace(/ quote$/, "")
+		    person: item.header1.replace(/ quote$/, ""),
+		    url: item.source_url
 		};
 	    },
 	    template_group: 'info',
 	    templates: {
 		options: {
-		    content: Spice.brainy_quote.content,
-		    moreAt: false
+		    content: Spice.brainy_quote.content
 		}
 	    }
 	});
