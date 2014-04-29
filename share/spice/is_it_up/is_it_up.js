@@ -3,7 +3,7 @@
         "use strict";
 
         if(!api_result){
-            return;
+            return Spice.failed('is_it_up');
         }
 
         api_result['status_code'] = (api_result['status_code'] === 1);
@@ -12,12 +12,18 @@
             id: 'is_it_up',
             name: 'Domain status',
             data: api_result,
+            signal: 'high',
             meta: {
                 sourceUrl: 'http://isitup.org/' + api_result['domain'],
-                sourceName: 'Is it up?'
+                sourceName: 'Is it up?',
+                sourceIcon: true
             },
+            template_group: 'info',
             templates: {
-                detail: Spice.is_it_up.detail
+                group: 'info',
+                options: {
+                    content: Spice.is_it_up.detail
+                }
             }
         });
     }
