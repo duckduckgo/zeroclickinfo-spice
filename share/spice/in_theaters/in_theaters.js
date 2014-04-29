@@ -11,6 +11,7 @@
             id: 'in_theaters',
             name: 'Now Showing',
             data: api_result.movies,
+	    signal: 'high',
             meta: {
                 sourceName: 'Rotten Tomatoes',
                 sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
