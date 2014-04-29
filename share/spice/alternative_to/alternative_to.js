@@ -20,7 +20,7 @@
                 };
             },
             templates: {
-				group: 'base',
+                group: 'base',
                 options: {
                     content: Spice.alternative_to.content
                 }
