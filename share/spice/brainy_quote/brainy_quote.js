@@ -6,11 +6,11 @@
 
 	Spice.add({
 	    id: 'brainy_quote',
-	    name: 'Quote',
+	    name: 'Quotations',
 	    data: api_result,
 	    meta: {
 		sourceName: 'Brainy Quote',
-		sourceUrl: api_result.source_url,
+		sourceUrl: api_result.source_url
 	    },
 	    template_group: 'info',
 	    templates: {
