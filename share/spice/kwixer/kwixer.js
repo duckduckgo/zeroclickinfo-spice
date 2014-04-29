@@ -92,7 +92,10 @@
             },
             templates: {
                 item: 'basic_image_item',
-                detail: Spice.kwixer.kwixer_detail
+                detail: Spice.kwixer.kwixer_detail,
+		options: {
+		    rating: false
+		}
             }
         });
     };
