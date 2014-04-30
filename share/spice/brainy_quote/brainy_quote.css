@@ -1,5 +1,5 @@
 .brainy__quote {
-    quotes: "“" "”" "‘" "’";
+    quotes: "“" "”";
     font-size: 1.5em;
     font-weight: 300;
 }
@@ -9,5 +9,28 @@
     content: open-quote;
     float: left;
     font-size: 4em;
-    margin-top: -24px;
+    margin-top: -0.25em;
+}
+
+.brainy__quote:after {
+    color: #D4D4D4;
+    content: close-quote;
+    font-size: 4em;
+    line-height: 0;
+    position: relative;
+    top: 0.5em;
+}
+
+.brainy__attribution {
+    color: #999;
+    float: right;
+}
+
+.zci--brainy_quote .zci__content.chomp {
+    max-height: none;
+    margin-bottom: 0;
+}
+
+.zci--brainy_quote .zci__body.zci__body--info {
+    padding-left: 0.25em;
 }
