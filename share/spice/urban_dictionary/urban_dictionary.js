@@ -12,21 +12,26 @@
     }
 
     var word       = response.list[0].word;
-    var definition = response.list[0].definition.replace(/(\r?\n)+/gi, '<br/>');
 
     Spice.add({
       id: "urban_dictionary",
       name: "Urban Dictionary",
-      data: { 
-        definition: definition,
-        itemType: word + " (Urban Dictionary)",
-      },
+      data: response.list[0],
       meta: {
-        sourceUrl       : 'http://www.urbandictionary.com/define.php?term=' + word,
-        sourceName      : 'Urban Dictionary'
+        sourceUrl: 'http://www.urbandictionary.com/define.php?term=' + word,
+        sourceName: 'Urban Dictionary'
       },
       templates: {
-        detail: Spice.urban_dictionary.detail
+        group: 'info',
+        options: {
+          content: 'record'
+        }
+      },
+      normalize : function(item){
+        return{
+          definition: item.definition.replace(/(\r?\n)+/gi, '<br/>'),
+          record_keys: ['word', 'definition', 'example'] 
+        };
       }
     });
   }

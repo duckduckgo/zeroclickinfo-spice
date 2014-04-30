@@ -25,8 +25,8 @@ function ddg_spice_xkcd_display(api_result) {
             sourceName      : 'xkcd',
             sourceIcon      : true
 		},
-    template_group: 'base',
     templates: {
+      group: 'base',
       options: {
         content: Spice.xkcd_display.content
                 }

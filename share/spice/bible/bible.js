@@ -18,8 +18,8 @@
                 sourceUrl: 'http://bible.org/',
                 sourceIconUrl: 'http://bible.org/sites/bible.org/files/borg6_favicon.ico'
             },
-            template_group: 'info',
             templates: {
+                group: 'info',
                 options: {
                     content: Spice.bible.content
                 }
