@@ -28,7 +28,8 @@ function ddg_spice_xkcd_display(api_result) {
     templates: {
       group: 'base',
       options: {
-        content: Spice.xkcd_display.content
+        content: Spice.xkcd_display.content,
+        moreAt: true
                 }
             }
     });
