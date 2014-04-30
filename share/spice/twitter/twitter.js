@@ -27,7 +27,7 @@ var ddg_spice_twitter = function(api_result) {
         templates: {
 	    group: 'info',
 	    options: {
-		content: Spice.twitter.detail
+		content: Spice.twitter.content
 	    }
         }
         
