@@ -20,12 +20,16 @@
             name: "PLOS",
             data: api_result.response.docs,
             meta: {
-                itemType: decodeURIComponent(query) + ' (PLOS)',
+                itemType: "Papers",
                 sourceName: "PLOS",
                 sourceUrl: 'http://www.plosone.org/search/advanced?unformattedQuery=' + query
             }, 
             templates: {
-                item: Spice.plos.item
+                group: 'base',
+                options: {
+                    content: Spice.plos.item,
+                    detail: false
+                }
              }
         });
     }
