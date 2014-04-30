@@ -3,7 +3,7 @@
         "use strict";
 
         if (!api_result.betterifs || !api_result.tags || !api_result.users) {
-            return;
+            return Spice.failed('betterific');
         }
 
         var kinds = ['betterifs', 'tags', 'users'],

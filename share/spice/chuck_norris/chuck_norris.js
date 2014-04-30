@@ -3,7 +3,7 @@
     env.ddg_spice_chuck_norris = function(api_result) {
 
         if (!api_result || api_result.type !== 'success') {
-          return;
+          return Spice.failed('chuck_norris');
         }
 
         Spice.add({

@@ -3,7 +3,7 @@
         "use strict";
 
         if ( (!api_result) || ("200" !== api_result.result_code)) {
-    	return;
+    	   return Spice.failed('word_map');
         }
 
         Spice.add({

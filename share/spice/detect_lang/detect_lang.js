@@ -3,7 +3,7 @@ function ddg_spice_detect_lang (api_result) {
 
     // Check for any errors.
     if(!api_result || !api_result.data || !api_result.data.detections || api_result.data.detections.length === 0) {
-        return;
+        return Spice.failed('detect_lang');
     }
 
     var query = "";

@@ -2,7 +2,7 @@ function ddg_spice_xkcd_display(api_result) {
   "use strict";
 
   if (!api_result.img || !api_result.alt) {
-    return;
+    return Spice.failed('xkcd');
   }
 
   //calls our endpoint to get the number of the latest comic

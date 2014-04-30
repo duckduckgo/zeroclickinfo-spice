@@ -5,7 +5,7 @@ function ddg_spice_code_search(response) {
     var data  = response.results;
 
 	if (!data || data.length === 0) {
-        return;
+        return Spice.failed('code_search');
     }
     var result = data[0];
 

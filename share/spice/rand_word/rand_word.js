@@ -3,7 +3,7 @@
     env.ddg_spice_rand_word = function(api_result) {
 
         if (!api_result || !api_result.word) {
-            return;
+            return Spice.failed('rand_word');
         }
 
         Spice.add({

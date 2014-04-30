@@ -4,7 +4,7 @@
 
         // Validity check
         if (!api_result || !api_result.length){
-            return;
+            return Spice.failed('bible');
         }
 
         var result = api_result[0];
