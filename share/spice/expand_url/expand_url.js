@@ -7,7 +7,7 @@
 
         // Check if there are any errors.
         if (!api_response["long-url"] || api_response["long-url"] === query) {
-            return;
+            return Spice.failed('expand_url');
         }
 
         // Display the plug-in.

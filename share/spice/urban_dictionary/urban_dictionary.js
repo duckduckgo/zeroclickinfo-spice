@@ -8,7 +8,7 @@
 
     if (!(response && response.result_type === "exact"
           && response.list && response.list[0])) {
-        return;
+        return Spice.failed('urban_dictionary');
     }
 
     var word       = response.list[0].word;

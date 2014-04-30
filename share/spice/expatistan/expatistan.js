@@ -3,7 +3,7 @@
         "use strict";
 
         if(!api_result || api_result.status !== 'OK') {
-            return;
+            return Spice.failed('expatistan');
         }
 
         Spice.add({
