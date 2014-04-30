@@ -22,15 +22,16 @@
         sourceName: 'Urban Dictionary'
       },
       templates: {
-        group: 'info',
+        group: 'base',
         options: {
-          content: 'record'
+          content: 'record',
+          moreAt: true
         }
       },
       normalize : function(item){
         return{
-          definition: item.definition.replace(/(\r?\n)+/gi, '<br/>'),
-          record_keys: ['word', 'definition', 'example'] 
+          definition: item.definition.replace(/(\r?\n)+/gi, ''),
+          record_keys: ['word', 'definition', 'example'],
         };
       }
     });
