@@ -1,7 +1,3 @@
-.zci--github .tile__body {
-    height: 12em;
-}
-
 .zci--github .tile__update__info {
     color: #999;
     position: absolute;
@@ -10,4 +6,12 @@
 
 .zci--github .star.starIcon {
     margin-top: -5px;
+}
+
+.zci--github .tile__title__sub {
+    text-transform: none;
+}
+
+.zci--github .tile__body {
+    height: 14em;
 }
