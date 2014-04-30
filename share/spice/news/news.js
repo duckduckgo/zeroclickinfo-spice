@@ -63,6 +63,6 @@ function ddg_spice_news(apiResult) {
             }
         });
     } else {
-	DDG.duckbar.failed('news');
+	Spice.failed('news');
     }
 }
