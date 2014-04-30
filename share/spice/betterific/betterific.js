@@ -3,7 +3,7 @@
         "use strict";
 
         if (!api_result.betterifs || !api_result.tags || !api_result.users) {
-            return;
+            return Spice.failed('betterific');
         }
 
         var kinds = ['betterifs', 'tags', 'users'],
@@ -45,8 +45,8 @@
                 sourceUrl: encodeURI('http://betterific.com/search/' + api_result.q),
                 sourceName: 'betterific'
             },
-            template_group: 'info',
             templates: {
+                group: 'info',
                 options: {
                     content: Spice.betterific.content
                 }

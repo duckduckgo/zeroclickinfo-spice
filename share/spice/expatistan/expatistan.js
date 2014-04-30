@@ -3,7 +3,7 @@
         "use strict";
 
         if(!api_result || api_result.status !== 'OK') {
-            return;
+            return Spice.failed('expatistan');
         }
 
         Spice.add({
@@ -14,8 +14,8 @@
                 sourceUrl: api_result.source_url,
                 sourceName: 'Expatistan'
             },
-            template_group: 'info',
             templates: {
+                group: 'info',
                 options: {
                     content: Spice.expatistan.content
                 }
