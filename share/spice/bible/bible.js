@@ -1,25 +1,30 @@
-function ddg_spice_bible(api_result) {
+(function(env) {
     "use strict";
-
-    // Validity check
-    if (!api_result.length) return;
-
-    var result = api_result[0];
-    var header = result.bookname + ' ' + result.chapter + ':' + result.verse;
-
-    Spice.add({
-        data              : result,
-        header1           : header + ' (Bible Verse)',
-        sourceName       : 'Bible.org',
-        sourceUrl        : 'http://bible.org/',
-        templates: {
-            item: Spice.bible.bible,
-            detail: Spice.bible.bible
-        },
+    env.ddg_spice_bible = function(api_result) {
         
-        force_favicon_url : 'http://bible.org/sites/bible.org/files/borg6_favicon.ico'
-    });
-}
+        // Validity check
+        if (!api_result || !api_result.length){
+            return;
+        } 
+
+        var result = api_result[0];
+        var header = result.bookname + ' ' + result.chapter + ':' + result.verse;
+
+        Spice.add({
+            id: 'bible',
+            name: 'Bible',
+            data: result,
+            meta : {
+                itemType: header + ' (Bible Verse)',
+                sourceName: 'Bible.org',
+                sourceUrl: 'http://bible.org/'
+            },
+            templates: {
+                detail: Spice.bible.detail
+            }
+        });
+    }
+}(this));
 
 
 /*******************************
@@ -27,7 +32,7 @@ function ddg_spice_bible(api_result) {
   *******************************/
 
 // Creates an anchor linking to a result's commments
-Handlebars.registerHelper ('cleanText', function(text) {
+Handlebars.registerHelper ('bible-cleanText', function(text) {
     "use strict";
 
     // Link to be removed.
