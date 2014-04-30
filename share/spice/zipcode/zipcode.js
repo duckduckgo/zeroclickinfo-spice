@@ -49,7 +49,7 @@ function ddg_spice_zipcode (api_result) {
                         name: zip,
                         address: [item.admin2,item.admin1].join(", "),
                         coordinates: item.centroid,
-                        polygonPoints: polygon
+//                        polygonPoints: polygon
                     };
                 }
 
