@@ -53,7 +53,10 @@
                 return null;
             },
             templates: {
-                item: Spice.songkick_geteventid.item
+		group: 'base',
+		options: {
+		    content: Spice.songkick_geteventid.content
+		}
             }
         });
     };
