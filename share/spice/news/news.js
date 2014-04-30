@@ -44,8 +44,8 @@ function ddg_spice_news(apiResult) {
 
     var searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim();
 
-    // If we found some good stories, display them.
-    if(goodStories.length > 0) {
+    // If we found a few good stories, display them.
+    if(goodStories.length >= 3) {
         Spice.add({
             id: 'news',
             name: 'News',
@@ -62,5 +62,7 @@ function ddg_spice_news(apiResult) {
                 item: 'news_item'
             }
         });
+    } else {
+	Spice.failed('news');
     }
 }
