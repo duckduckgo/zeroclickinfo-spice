@@ -7,7 +7,7 @@
 
         // Check if there are any errors.
         if (!api_response["long-url"] || api_response["long-url"] === query) {
-            return;
+            return Spice.failed('expand_url');
         }
 
         // Display the plug-in.
@@ -19,8 +19,8 @@
                 sourceUrl: "http://longurl.org/expand?url=" + encodeURIComponent(query),
                 sourceName: "LongURL"
             },
-            template_group: 'info',
             templates: {
+                group: 'info',
                 options: {
                     content: Spice.expand_url.content
                 }

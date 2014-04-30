@@ -3,7 +3,7 @@ function ddg_spice_detect_lang (api_result) {
 
     // Check for any errors.
     if(!api_result || !api_result.data || !api_result.data.detections || api_result.data.detections.length === 0) {
-        return;
+        return Spice.failed('detect_lang');
     }
 
     var query = "";
@@ -124,16 +124,18 @@ function ddg_spice_detect_lang (api_result) {
     // Display the plug-in.
     Spice.add({
         id: 'detect_lang',
-        data             : { first: d0, second: d1 },
+        data: { first: d0, second: d1 },
         name: "Detected Language",
         meta: {
             sourceUrl       : "http://detectlanguage.com/",
             sourceName      : "Detect Language",
         },
         templates: {
-            item: Spice.detect_lang.detect_lang,
-            detail: Spice.detect_lang.detect_lang
-        },
+            group: 'info',
+            options: {
+                content: Spice.detect_lang.content
+                }
+            }
         
     });
 };
