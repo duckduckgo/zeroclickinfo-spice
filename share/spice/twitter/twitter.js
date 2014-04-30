@@ -25,8 +25,10 @@ var ddg_spice_twitter = function(api_result) {
             };
         },
         templates: {
-            detail: Spice.twitter.detail,
-            wrap_detail: 'basic_image_detail'
+	    group: 'info',
+	    options: {
+		content: Spice.twitter.detail
+	    }
         }
         
     });
