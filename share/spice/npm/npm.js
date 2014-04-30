@@ -3,7 +3,7 @@
     env.ddg_spice_npm = function(api_result){
 
         if (api_result.error) {
-            return;
+            return Spice.failed('npm');
         }
 
         Spice.add({
@@ -11,7 +11,6 @@
             name: "NPM",
             data: api_result,
             meta: {
-                itemType: api_result.name + ' (' + api_result.version + ')',
                 sourceName: "npmjs.org",
                 sourceUrl: 'http://npmjs.org/package/' + api_result.name
             },
