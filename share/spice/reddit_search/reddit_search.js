@@ -52,12 +52,15 @@
             meta: {
                 itemType: header,
                 sourceUrl: source,
+                sourceIcon: true,
                 sourceName: 'Reddit',
-                total: results.length
             },
             templates: {
-                item: Spice.reddit_search.item,
-                detail:Spice.reddit_search.item
+                group: 'base',
+                options: {
+                    content: Spice.reddit_search.item,
+                    detail:false
+                }
             }
         });
     };
