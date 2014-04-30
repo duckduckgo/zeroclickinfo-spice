@@ -14,7 +14,7 @@ function ddg_spice_news(apiResult) {
     ];
 
     // Some sources need to be set by us.
-    var getSource = function(story) {
+    var setSourceOnStory = function(story) {
         switch(story.syndicate) {
         case "Topsy":
             story.source = story.author || "Topsy";
@@ -37,7 +37,7 @@ function ddg_spice_news(apiResult) {
 	// strip bold from story titles.
         story.title = story.title.replace(/<b>|<\/b>|:/g, "");
         if(DDG.isRelevant(story.title, skip)) {
-            getSource(story);
+            setSourceOnStory(story);
             goodStories.push(story);
         }
     }
