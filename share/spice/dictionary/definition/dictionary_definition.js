@@ -73,7 +73,7 @@ var ddg_spice_dictionary = {
             // },
 
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
                     content: Spice.dictionary_definition.dictionary_definition
                 }
