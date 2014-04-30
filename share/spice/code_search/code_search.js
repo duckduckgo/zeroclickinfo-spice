@@ -39,8 +39,8 @@ function ddg_spice_code_search(response) {
                                 + '&cs=true',
             sourceName      : 'search[code]',
         },
-        template_group: 'info',
         templates: {
+            group: 'info',
             options: {
                 content: Spice.code_search.content
             }

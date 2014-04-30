@@ -45,8 +45,8 @@
                 sourceUrl: encodeURI('http://betterific.com/search/' + api_result.q),
                 sourceName: 'betterific'
             },
-            template_group: 'info',
             templates: {
+                group: 'info',
                 options: {
                     content: Spice.betterific.content
                 }

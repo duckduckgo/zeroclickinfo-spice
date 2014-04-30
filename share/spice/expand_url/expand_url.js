@@ -19,8 +19,8 @@
                 sourceUrl: "http://longurl.org/expand?url=" + encodeURIComponent(query),
                 sourceName: "LongURL"
             },
-            template_group: 'info',
             templates: {
+                group: 'info',
                 options: {
                     content: Spice.expand_url.content
                 }

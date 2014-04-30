@@ -130,8 +130,8 @@ function ddg_spice_detect_lang (api_result) {
             sourceUrl       : "http://detectlanguage.com/",
             sourceName      : "Detect Language",
         },
-        template_group: 'info',
         templates: {
+            group: 'info',
             options: {
                 content: Spice.detect_lang.content
                 }

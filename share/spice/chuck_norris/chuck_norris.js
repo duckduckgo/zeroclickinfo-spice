@@ -1,8 +1,8 @@
-(function(env) {    
+(function(env) {
+    "use strict";    
     env.ddg_spice_chuck_norris = function(api_result) {
-        "use strict";
 
-        if (api_result.type !== 'success') {
+        if (!api_result || api_result.type !== 'success') {
           return;
         }
 
@@ -15,9 +15,11 @@
                 sourceName      : 'Internet Chuck Norris Database'
             },
             templates: {
-                detail: Spice.chuck_norris.detail
-            },
-            
+                group: 'info',
+                options: {
+                    content: Spice.chuck_norris.content
+                }
+            }
         });
     }
 }(this));
