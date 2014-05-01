@@ -2,7 +2,7 @@ function ddg_spice_google_plus (api_result) {
     "use strict";
 
     if(!api_result || !api_result.items || api_result.items.length === 0) {
-        return Spice.fail("googleplus");
+        return Spice.failed("googleplus");
     }
 
     Spice.add({
