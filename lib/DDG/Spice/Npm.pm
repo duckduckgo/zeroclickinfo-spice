@@ -13,10 +13,10 @@ category "programming";
 attribution github  => ['https://github.com/remixz', 'remixz'],
             twitter => ['https://twitter.com/zachbruggeman', 'zachbruggeman'];
 
+triggers startend => 'npm';
+
 spice to => 'http://registry.npmjs.org/$1/latest';
 spice wrap_jsonp_callback => 1;
-
-triggers startend => 'npm';
 
 handle remainder => sub {
 	return lc $_ if $_;
