@@ -21,8 +21,7 @@ function ddg_spice_mass_on_time (api_result) {
 	  type = query_details.type.charAt(0).toUpperCase() + query_details.type.slice(1) + "s";
 	}
 
-	//Add the location string
-	return type + " near " + query_details.address.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
+	return type;
     };
 
     //Parishes return different info than events, so a different template is in order for those
@@ -52,12 +51,12 @@ function ddg_spice_mass_on_time (api_result) {
 
     Spice.render({
 	id: 'mass',
-	data              : results,
+	data: results,
 	name: "Mass On Time",
 	meta: {
-	    itemType: "Mass",
-	    sourceName       : "Mass On Time",
-	    sourceUrl        : 'http://massontime.com/nearest/' + details.type +
+	    itemType: generate_header(details),
+	    sourceName: "Mass On Time",
+	    sourceUrl: 'http://massontime.com/nearest/' + details.type +
 			       "/25?lat=" + details.location.lat + "&lng=" + details.location.lng
 	},
 	normalize: function(o) {
