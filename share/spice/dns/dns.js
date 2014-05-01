@@ -8,8 +8,6 @@
             return Spice.failed('dns');
         }
 
-        env.global = api_result.response.records;
-
         api_result.response.records.sort(function(a, b) {
             if (a.type < b.type) 
               return -1 
