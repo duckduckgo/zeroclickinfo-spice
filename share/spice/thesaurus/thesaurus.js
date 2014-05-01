@@ -3,7 +3,7 @@
         "use strict";
 
         if (!api_result){
-            return;
+            return Spice.failed("thesaurus");
         }
 
         // Get the query and the mode (trigger words)
@@ -62,7 +62,8 @@
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.thesaurus.content
+                    content: Spice.thesaurus.content,
+                    moreAt: true
                 }
             }
         });
