@@ -1,36 +1,37 @@
 (function(env){
-    'use strict'
+    'use strict';
     
     env.ddg_spice_dns = function(api_result) {
 
-        if (!api_result
-                || !api_result.response
-                || !api_result.response.records
-                || api_result.response.records < 1) {
-            return;
+        var records = DDG.getProperty(api_result, 'response.records');
+        if (!records.length) {
+            return Spice.failed('dns');
         }
 
-        api_result.response.records =
-            api_result.response.records.sort(
-                function(a, b) {
-                    if (a.type == b.type) {
-                        return parseInt(a.priority) > parseInt(b.priority)
-                    } else {
-                      return a.type > b.type;
-                    }
-                });
+        env.global = api_result.response.records;
+
+        api_result.response.records.sort(function(a, b) {
+            if (a.type < b.type) 
+              return -1 
+            if (a.type > b.type)
+              return 1
+            return parseInt(a.priority) - parseInt(b.priority);
+        });
 
         Spice.add({
             id: 'dns',
             name: 'DNS Records',
             data: api_result.response,
             meta: {
-                itemType: 'DNS Records',
                 sourceUrl: 'http://www.viewdns.info/dnsrecord/?domain=' + api_result.query.domain,
                 sourceName: 'ViewDNS'
             },
             templates: {
-                detail: Spice.dns.detail
+                group: 'base',
+                options: {
+                    content: Spice.dns.content,
+                    moreAt: true
+                }
             }
         });
     };
