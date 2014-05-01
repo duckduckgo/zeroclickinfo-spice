@@ -23,7 +23,17 @@
                 itemType: decodeURIComponent(query) + " (RubyGems)",
             },
             templates:{
-                item_custom: Spice.ruby_gems.item
+                group: 'text',
+                options: {
+                    content: Spice.ruby_gems.item
+                }
+            },
+            normalize : function(item){
+                return{
+                    title: item.name,
+                    url: item.project_uri,
+                    description: item.info
+                }
             }
         });
     }
