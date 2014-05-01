@@ -2,8 +2,8 @@
     env.ddg_spice_ruby_gems = function(api_result) {
         "use strict";
         
-        if (api_result.length === 0) {
-            return;
+        if (!api_result api_result.length === 0) {
+            return Spice.failed("ruby_gems");
         }
 
         // Get the original query.
@@ -25,7 +25,7 @@
             templates:{
                 group: 'text',
                 options: {
-                    content: Spice.ruby_gems.item
+                    content: Spice.ruby_gems.content
                 }
             },
             normalize : function(item){
