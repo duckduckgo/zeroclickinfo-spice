@@ -16,12 +16,12 @@ function ddg_spice_google_plus (api_result) {
         },
         templates: {
             group: 'products_simple',
+	    item_detail: false,
             detail: false
         },
-        normalize : function(item){
-            // change image size and https -> http
+        normalize : function(item) {
             var image = item.image.url.replace(/sz=50$/, "sz=200");
-            return{
+            return {
                 image : image.replace(/^https/, "http"),
                 title: item.displayName
             };
