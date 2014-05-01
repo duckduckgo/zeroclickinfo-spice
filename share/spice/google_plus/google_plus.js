@@ -12,10 +12,11 @@ function ddg_spice_google_plus (api_result) {
         meta: {
             sourceName : 'Google+',
             sourceUrl : 'http://plus.google.com',
+            itemType: "Google+ Profile" + (api_result.items.length > 1 ? 's' : '')
         },
         templates: {
             group: 'base',
-            detail: null,
+            detail: false,
             options: {
                 content: Spice.google_plus.content
             }
