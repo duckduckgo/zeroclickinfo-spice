@@ -24,7 +24,7 @@
             },
             templates:{
                 group: 'text',
-                detail: false,
+                detail: false
             },
             normalize : function(item){
                 return{
