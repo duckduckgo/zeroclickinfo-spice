@@ -27,9 +27,9 @@
             },
 	    template_group: 'base',
             templates: {
-		options: {
+		          options: {
                     content: Spice.congress.content
-		}
+		          }
             }
         });
    };
@@ -63,22 +63,6 @@ Handlebars.registerHelper ('congress_get_date', function(term_end) {
     "use strict";
     if(term_end)
         return "Next Election " + term_end.substring(0,4);
-    return null;
-});
-
-// return the party
-Handlebars.registerHelper ('congress_get_party', function(party) {
-    "use strict";
-    if(party){
-        switch(party){
-            case "D":
-                return "Democrat";
-            case "R":
-                return "Republican";
-            case "I":
-                return "Independent";
-        }
-    }
     return null;
 });
 

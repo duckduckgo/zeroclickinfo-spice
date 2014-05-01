@@ -1,3 +1,7 @@
 .zci--congress .congress_link {
     color: #888;
 }
+
+.zci--congress .tile__body {
+	height: 130px;
+}
