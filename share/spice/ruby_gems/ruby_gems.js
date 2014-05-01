@@ -20,10 +20,11 @@
                 sourceUrl: 'http://rubygems.org/search?utf8=%E2%9C%93&query=' + encodeURIComponent(query),
                 sourceName: 'RubyGems',
                 total: api_result.length,
-                itemType: decodeURIComponent(query) + " (RubyGems)",
+                itemType: "Ruby Gems",
             },
             templates:{
-                group: 'text'
+                group: 'text',
+                detail: null,
             },
             normalize : function(item){
                 return{
