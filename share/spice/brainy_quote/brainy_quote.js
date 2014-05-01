@@ -19,10 +19,11 @@
 		    url: item.source_url
 		};
 	    },
-	    template_group: 'info',
 	    templates: {
+		group: 'base',
 		options: {
-		    content: Spice.brainy_quote.content
+		    content: Spice.brainy_quote.content,
+		    moreAt: true
 		}
 	    }
 	});
