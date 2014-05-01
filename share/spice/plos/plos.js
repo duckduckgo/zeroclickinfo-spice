@@ -32,7 +32,7 @@
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.plos.item,
+                    content: Spice.plos.item
                 },
 		detail: false,
 		item_detail: false
