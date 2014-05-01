@@ -13,3 +13,8 @@
 .zci--dns .zci__table__tr td {
     padding: 2px 0;
 }
+
+.zci--dns .zci__table__tr th,
+.zci--dns .zci__table__tr td {
+	padding-right: 2px;
+}
