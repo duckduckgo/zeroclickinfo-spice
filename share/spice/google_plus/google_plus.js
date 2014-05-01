@@ -2,20 +2,25 @@ function ddg_spice_google_plus (api_result) {
     "use strict";
 
     if(!api_result || !api_result.items || api_result.items.length === 0) {
-        return;
+        return Spice.fail("googleplus");
     }
 
     Spice.add({
+        id: 'googleplus',
+        name: 'Google Plus',
         data: api_result.items,
-        sourceName : 'Google+',
-        sourceUrl : 'http://plus.google.com',
-        header1 : "Google+ Users",
-        id: "google_plus",
-        view: "Tiles",
-        templates: {
-            item: Spice.google_plus.google_plus
+        meta: {
+            sourceName : 'Google+',
+            sourceUrl : 'http://plus.google.com',
+            header1 : "Google+ Users"
         },
-        
+        templates: {
+            group: 'base',
+            detail: null,
+            options: {
+                content: Spice.google_plus.content
+            }
+        }
     });
 };
 
