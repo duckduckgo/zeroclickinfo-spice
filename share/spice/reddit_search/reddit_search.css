@@ -1,4 +1,4 @@
-.reddit__search--comments a {
+..zci--reddit_search reddit__search--comments a {
     color: #999;
 }
 
@@ -13,4 +13,9 @@
 .zci--reddit_search .tile__footer {
     position: absolute;
     bottom: 0.5em;
+}
+
+.zci--reddit_search .tile__title__sub {
+    position: absolute;
+    bottom: 3.1em;
 }
