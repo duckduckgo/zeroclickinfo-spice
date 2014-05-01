@@ -1,0 +1,14 @@
+.zci--googleplus .tile{
+    height: 12.5em;
+    width: 12.5em;
+}
+
+.zci--googleplus .tile--basic-image .tile__media {
+    height: 80%;
+}
+
+.zci--googleplus .tile--basic-image .tile__media__img {
+    margin-top: -5%;
+    min-width: 100%;
+}
+
