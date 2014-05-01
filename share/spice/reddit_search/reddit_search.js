@@ -50,15 +50,23 @@
             name: "Reddit",
             data: results,
             meta: {
-                itemType: header,
+                itemType: "posts",
                 sourceUrl: source,
                 sourceIcon: true,
                 sourceName: 'Reddit',
             },
+	    normalize: function(item) {
+		var a = {
+		    url: "http://www.reddit.com" + item.data.permalink,
+		    title: item.data.title,
+		    subtitle: item.data.num_comments + " comments"
+		};
+		return a;
+	    },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
-                    content: Spice.reddit_search.item,
+		    footer: Spice.reddit_search.footer
                 },
 		detail: false
             }
