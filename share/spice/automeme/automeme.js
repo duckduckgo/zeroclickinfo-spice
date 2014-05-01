@@ -1,18 +1,27 @@
-function ddg_spice_automeme ( api_result ) {
-    "use strict";
-    
-    if (api_result.length) {
+(function(env) {
+    'use strict';
+
+    env.ddg_spice_automeme = function(api_result) {
+
+        if (!(api_result && api_result.length)) {
+            return Spice.failed('automeme');
+        }
 
         Spice.add({
-            data              : {meme : api_result[0]},
-            
-            sourceName       : "Automeme",
-            sourceUrl        : 'http://autome.me/',
+            id: 'automeme',
+            name: 'Automeme',
+            data: { meme: api_result[0] },
+            meta: {
+                sourceName: 'Autome.me',
+                sourceUrl: 'http://autome.me/'
+            },
             templates: {
-                item: Spice.automeme.automeme,
-                detail: Spice.automeme.automeme
+                group: 'base',
+                options: {
+                    content: Spice.automeme.content,
+                    moreAt: true
+                }
             }
-            
         });
     }
-}
+})(this);
