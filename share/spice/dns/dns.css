@@ -1,5 +1,4 @@
 .zci--dns .zci__table {
-    width: 100%;
     margin-bottom: 2px;
 }
 
@@ -11,11 +10,6 @@
     border-bottom: none;
 }
 
-.zci--dns .zci__table__tr th {
-    padding-left: 3px;
-}
-
 .zci--dns .zci__table__tr td {
-    padding: 2px 3px;
-    max-width: 250px;
+    padding: 2px 0;
 }
