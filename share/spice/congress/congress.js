@@ -4,7 +4,7 @@
     env.ddg_spice_congress = function(api_result) {
     
         if (!api_result || !api_result.results || api_result.results.length === 0) {
-            return;
+            return Spice.failed("congress");
         }
 
         var state = api_result.results[0].state_name,
@@ -25,9 +25,10 @@
                 itemType: 'U.S. ' + DDG.capitalize(chamber) + ' Congressmen',
                 secondaryText: state + " State"
             },
-	    template_group: 'base',
             templates: {
-		          options: {
+                group: 'base',
+                detail: null,
+                options: {
                     content: Spice.congress.content
 		          }
             }
