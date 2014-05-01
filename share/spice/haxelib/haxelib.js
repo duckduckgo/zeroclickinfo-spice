@@ -15,10 +15,11 @@
                 sourceUrl       : 'http://lib.haxe.org/p/' + encodeURIComponent(response.info.name),
                 sourceName      : 'Haxelib'
             },
-            template_group: 'info',
             templates: {
+		group: 'base',
                 options: {
-                    content: Spice.haxelib.content
+                    content: Spice.haxelib.content,
+		    moreAt: true
                 }
             }
         });
