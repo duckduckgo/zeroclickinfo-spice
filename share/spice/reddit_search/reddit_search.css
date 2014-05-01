@@ -1,7 +1,21 @@
-.zci--reddit_search .spice2list_item span{
-	display: block;
-	max-width: 100%;
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-	white-space: nowrap;
+..zci--reddit_search reddit__search--comments a {
+    color: #999;
+}
+
+.zci--reddit_search .tile__title {
+    margin-bottom: 0;
+}
+
+.zci--reddit_search .tile__body {
+    height: 10em;
+}
+
+.zci--reddit_search .tile__footer {
+    position: absolute;
+    bottom: 0.5em;
+}
+
+.zci--reddit_search .tile__title__sub {
+    position: absolute;
+    bottom: 3.1em;
 }

@@ -36,31 +36,30 @@
         query = query.replace(/^\s*(\/?r\/\w+|reddit|subreddit\s*\w+)\s+/, "");
         header = query + ' ' + header;
 
-        var source = "http://www.reddit.com/r/";
-        if (restrict_sr) {
-            source += subreddit.replace(/\/?r\//, "")
-                    + '/search?q=' + query
-                    + '&restrict_sr=on&sort=relevance';
-        } else {
-            source += '/search?q=' + query;
-        }
-
         Spice.add({
             id: "reddit_search",
             name: "Reddit",
             data: results,
             meta: {
-                itemType: header,
-                sourceUrl: source,
+                itemType: "posts",
+                sourceUrl: "http://www.reddit.com/r/search/search?q=" + query,
                 sourceIcon: true,
                 sourceName: 'Reddit',
             },
+	    normalize: function(item) {
+		var a = {
+		    url: "http://www.reddit.com" + item.data.permalink,
+		    title: item.data.title,
+		    subtitle: item.data.num_comments + " comments"
+		};
+		return a;
+	    },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
-                    content: Spice.reddit_search.item,
-                    detail:false
-                }
+		    footer: Spice.reddit_search.footer
+                },
+		detail: false
             }
         });
     };
