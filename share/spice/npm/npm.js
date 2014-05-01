@@ -15,7 +15,11 @@
                 sourceUrl: 'http://npmjs.org/package/' + api_result.name
             },
             templates: {
-                detail: Spice.npm.detail
+		group: 'base',
+		options: {
+                    content: Spice.npm.detail
+		},
+		moreAt: true
             }
         });
     };
