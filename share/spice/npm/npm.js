@@ -16,7 +16,7 @@
             },
             templates: {
                 group: 'base',
-                options:{
+                options: {
                     content: Spice.npm.content,
                     moreAt: true
                 }

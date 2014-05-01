@@ -58,10 +58,11 @@
 		sourceUrl: 'http://hackage.haskell.org/package/' + name,
 		sourceIcon: true
 	    },
-	    template_group: 'info',
 	    templates: {
+		group: 'base',
 		options: {
-		    content: Spice.hackage_packages.content
+		    content: Spice.hackage_packages.content,
+		    moreAt: true
 		}
 	    }
 	});

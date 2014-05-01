@@ -16,9 +16,10 @@
                 sourceIcon: true
             },
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
-                    content: Spice.rand_word.content
+                    content: Spice.rand_word.content,
+		    moreAt: true
                 }
             }
         });

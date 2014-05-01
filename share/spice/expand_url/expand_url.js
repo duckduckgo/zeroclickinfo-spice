@@ -20,9 +20,10 @@
                 sourceName: "LongURL"
             },
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
-                    content: Spice.expand_url.content
+                    content: Spice.expand_url.content,
+		    moreAt: true
                 }
             }
         });

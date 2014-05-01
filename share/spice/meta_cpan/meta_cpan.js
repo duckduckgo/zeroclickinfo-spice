@@ -21,9 +21,10 @@
                 sourceUrl: 'https://metacpan.org/' + link
             },
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
-                    content: 'record'
+                    content: 'record',
+		    moreAt: true
                 }
             },
             normalize: function(item){

@@ -19,9 +19,10 @@
                 sourceIconUrl: 'http://bible.org/sites/bible.org/files/borg6_favicon.ico'
             },
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
-                    content: Spice.bible.content
+                    content: Spice.bible.content,
+		    moreAt: true
                 }
             },
             normalize: function(item){
