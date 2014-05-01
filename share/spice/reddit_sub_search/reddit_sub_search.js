@@ -22,7 +22,11 @@
                 sourceName: 'Reddit'
             },
             templates: {
-                detail: Spice.reddit_sub_search.detail
+		group: 'base',
+		options: {
+                    content: Spice.reddit_sub_search.detail,
+		    moreAt: true
+		}
             }   
         });
     }
