@@ -56,12 +56,14 @@
             name: 'Thesaurus',
             data:  api_result,
             meta: {
-                itemType:  header + " (Big Huge)",
                 sourceName:  'Big Huge Thesaurus',
                 sourceUrl:  'http://words.bighugelabs.com/' + query,
             },
             templates: {
-                detail: Spice.thesaurus.detail
+                group: 'base',
+                options: {
+                    content: Spice.thesaurus.content
+                }
             }
         });
     }
@@ -70,7 +72,6 @@
 // Determine which results to show.
 Handlebars.registerHelper("thesaurus_checkWords", function(options) {
     "use strict";
-
     var results = [],
         mode = this.mode;
 
