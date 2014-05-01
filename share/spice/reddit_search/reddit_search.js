@@ -36,22 +36,13 @@
         query = query.replace(/^\s*(\/?r\/\w+|reddit|subreddit\s*\w+)\s+/, "");
         header = query + ' ' + header;
 
-        var source = "http://www.reddit.com/r/";
-        if (restrict_sr) {
-            source += subreddit.replace(/\/?r\//, "")
-                    + '/search?q=' + query
-                    + '&restrict_sr=on&sort=relevance';
-        } else {
-            source += '/search?q=' + query;
-        }
-
         Spice.add({
             id: "reddit_search",
             name: "Reddit",
             data: results,
             meta: {
                 itemType: "posts",
-                sourceUrl: source,
+                sourceUrl: "http://www.reddit.com/r/search/search?q=" + query,
                 sourceIcon: true,
                 sourceName: 'Reddit',
             },
