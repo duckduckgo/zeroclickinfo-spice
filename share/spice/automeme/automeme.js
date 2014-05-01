@@ -4,19 +4,23 @@
     env.ddg_spice_automeme = function(api_result) {
 
         if (!api_result.length) {
-            return;
+            return Spice.failed('automeme')
         }
 
         Spice.add({
             id: 'automeme',
             name: 'Automeme',
-            data: {meme: api_result[0]}, //currently can't pass an array or string to data
+            data: { meme: api_result[0] },
             meta: {
                 sourceName: 'Autome.me',
                 sourceUrl: 'http://autome.me/',
             },
             templates: {
-                detail: Spice.automeme.detail
+                group: 'base',
+                options: {
+                    content: Spice.automeme.content,
+                    moreAt: true
+                }
             }
         });
     }
