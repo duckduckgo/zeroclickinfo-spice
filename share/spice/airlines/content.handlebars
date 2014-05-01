@@ -13,12 +13,12 @@
   </div>
 </div>
 <div class="half">
-  <div class="tile__schedule">Scheduled Departure: {{airline_time departing.isDeparted arrivalDate departureDate}}</div>
+  <div class="tile__schedule">Scheduled Departure: {{airline_time departing.isDeparted scheduledArrivalDate scheduledDepartureDate}}</div>
   <div class="tile__time">{{airline_time departing.isDeparted arrivalDate departureDate}}</div>
   <div>Gate {{{departing.gate}}} - Terminal {{{departing.terminal}}}</div>
 </div>
 <div class="half">
-  <div class="tile__schedule">Scheduled Arrival: {{airline_time arriving.isDeparted arrivalDate departureDate}}</div>
+  <div class="tile__schedule">Scheduled Arrival: {{airline_time arriving.isDeparted scheduledArrivalDate scheduledDepartureDate}}</div>
   <div class="tile__time">{{airline_time arriving.isDeparted arrivalDate departureDate}}</div>
   <div>Gate {{{arriving.gate}}} - Terminal {{{arriving.terminal}}}</div>
 </div>
