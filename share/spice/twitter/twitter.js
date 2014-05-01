@@ -9,24 +9,31 @@ var ddg_spice_twitter = function(api_result) {
         return image.replace(/_normal\./, "_bigger.");
     }
 
+    var infobox = api_result.current_status ? Spice.twitter.infobox : false;
+
     // Display the plugin.
     Spice.add({
         id: 'twitter',
         data                     : api_result,
         name: 'twitter',
-        meta: {
+	signal: 'high',
+	meta: {
             sourceUrl               : "https://twitter.com/" + api_result.user,
             sourceName              : "Twitter",
         },
         normalize: function(item) {
             return {
                 image: bigger_picture(item.profile_image),
-                title: '@' + item.user
+                title: '@' + item.user,
+		infoboxTitle: 'Latest Tweet'
             };
         },
         templates: {
-            detail: Spice.twitter.detail,
-            wrap_detail: 'basic_image_detail'
+	    group: 'info',
+	    options: {
+		content: Spice.twitter.content,
+		infobox: Spice.twitter.infobox
+	    }
         }
         
     });
