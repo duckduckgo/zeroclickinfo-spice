@@ -15,17 +15,15 @@ function ddg_spice_google_plus (api_result) {
             itemType: "Google+ Profile" + (api_result.items.length > 1 ? 's' : '')
         },
         templates: {
-            group: 'base',
-            detail: false,
-            options: {
-                content: Spice.google_plus.content
-            }
+            group: 'products_simple',
+            detail: false
         },
         normalize : function(item){
             // change image size and https -> http
-            var image = item.image.url.replace(/sz=50$/, "sz=100");
+            var image = item.image.url.replace(/sz=50$/, "sz=200");
             return{
-                image : image.replace(/^https/, "http")
+                image : image.replace(/^https/, "http"),
+                title: item.displayName
             };
         }
     });
