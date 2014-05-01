@@ -7,7 +7,7 @@ function ddg_spice_google_plus (api_result) {
 
     Spice.add({
         id: 'googleplus',
-        name: 'Google Plus',
+        name: 'Google+',
         data: api_result.items,
         meta: {
             sourceName : 'Google+',
