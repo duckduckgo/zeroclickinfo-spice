@@ -23,7 +23,8 @@
                 group: 'base',
                 options: {
                     content: Spice.alternative_to.content
-                }
+                },
+		detail: false
             }
         });
     };

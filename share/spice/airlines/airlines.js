@@ -187,6 +187,10 @@ function ddg_spice_airlines (api_result) {
 					    flight[i].EstimatedGateArrivalDate || 
 					    flight[i].ArrivalDate).toString();
 
+	var scheduledDepartureDate = getDateFromString(flight[i].ScheduledGateDepartureDate).toString();
+	var scheduledArrivalDate = getDateFromString(flight[i].ScheduledGateArrivalDate).toString();
+
+
 	// Get the weekday and the day.
 	var dateObject = new Date(departureDate);
 
@@ -210,7 +214,15 @@ function ddg_spice_airlines (api_result) {
                 isDeparted: false
             };
 	
-        results.push({flight: flight[i], departing: departing, arriving: arriving, departureDate: departureDate, arrivalDate: arrivalDate});
+        results.push({
+	    flight: flight[i], 
+	    departing: departing, 
+	    arriving: arriving, 
+	    departureDate: departureDate, 
+	    arrivalDate: arrivalDate,
+	    scheduledDepartureDate: scheduledDepartureDate,
+	    scheduledArrivalDate: scheduledArrivalDate
+	});
     }
 
     // Display.

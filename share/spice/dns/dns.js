@@ -1,34 +1,36 @@
-function ddg_spice_dns(api_result) {
-    "use strict";
+(function(env){
+    'use strict';
+    
+    env.ddg_spice_dns = function(api_result) {
 
-    if (!api_result
-            || !api_result.response
-            || !api_result.response.records
-            || api_result.response.records < 1) {
-        return;
-    }
+        var records = DDG.getProperty(api_result, 'response.records');
+        if (!records.length) {
+            return Spice.failed('dns');
+        }
 
-    api_result.response.records =
-        api_result.response.records.sort(
-            function(a, b) {
-                if (a.type == b.type) {
-                    return parseInt(a.priority) > parseInt(b.priority)
-                } else {
-                  return a.type > b.type;
+        api_result.response.records.sort(function(a, b) {
+            if (a.type < b.type) 
+              return -1 
+            if (a.type > b.type)
+              return 1
+            return parseInt(a.priority) - parseInt(b.priority);
+        });
+
+        Spice.add({
+            id: 'dns',
+            name: 'DNS Records',
+            data: api_result.response,
+            meta: {
+                sourceUrl: 'http://www.viewdns.info/dnsrecord/?domain=' + api_result.query.domain,
+                sourceName: 'ViewDNS'
+            },
+            templates: {
+                group: 'base',
+                options: {
+                    content: Spice.dns.content,
+                    moreAt: true
                 }
-            });
-
-    Spice.add({
-        data              : api_result.response,
-        //header1         : api_result.query.domain + ' (ViewDNS)',
-        sourceUrl        : 'http://www.viewdns.info/dnsrecord/?domain='
-                            + api_result.query.domain,
-        sourceName       : 'ViewDNS',
-        templates: {
-            item: Spice.dns.dns,
-            detail: Spice.dns.dns
-        },
-        force_favicon_url : 'http://viewdns.info/favicon.ico',
-        
-    });
-}
+            }
+        });
+    };
+})(this);
