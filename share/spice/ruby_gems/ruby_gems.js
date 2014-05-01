@@ -2,7 +2,7 @@
     env.ddg_spice_ruby_gems = function(api_result) {
         "use strict";
         
-        if (!api_result api_result.length === 0) {
+        if (!api_result || api_result.length === 0) {
             return Spice.failed("ruby_gems");
         }
 
@@ -23,10 +23,7 @@
                 itemType: decodeURIComponent(query) + " (RubyGems)",
             },
             templates:{
-                group: 'text',
-                options: {
-                    content: Spice.ruby_gems.content
-                }
+                group: 'text'
             },
             normalize : function(item){
                 return{
