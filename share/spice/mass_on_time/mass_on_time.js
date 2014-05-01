@@ -51,22 +51,26 @@ function ddg_spice_mass_on_time (api_result) {
     if (results.length < 1) return;
 
     Spice.render({
-	data              : api_result,
-	header1           : generate_header(details),
-	source_name       : "Mass On Time",
-	spice_name        : 'mass_on_time',
-	source_url        : 'http://massontime.com/nearest/' + details.type +
-	  "/25?lat=" + details.location.lat + "&lng=" + details.location.lng,
-	template_frame   : 'list',
-	template_options : {
-            items: results,
-            show: 3,
-            max:  10,
-            template_item: pick_item_template(details)
+	id: 'mass',
+	data              : results,
+	name: "Mass On Time",
+	meta: {
+	    itemType: "Mass",
+	    sourceName       : "Mass On Time",
+	    sourceUrl        : 'http://massontime.com/nearest/' + details.type +
+			       "/25?lat=" + details.location.lat + "&lng=" + details.location.lng
 	},
-	force_no_fold     : true,
-	force_big_header  : true,
-	force_favicon_url : 'http://massontime.com/favicon.ico'
+	normalize: function(o) {
+	    return {
+		title: o.churchname
+	    };
+	},
+	templates: {
+	    group: 'base',
+	    options: {
+		content: Spice.mass_on_time.mass_on_time
+	    }
+	}
     });
 }
 
