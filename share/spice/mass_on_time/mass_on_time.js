@@ -59,16 +59,18 @@ function ddg_spice_mass_on_time (api_result) {
 	    sourceUrl: 'http://massontime.com/nearest/' + details.type +
 			       "/25?lat=" + details.location.lat + "&lng=" + details.location.lng
 	},
-	normalize: function(o) {
+	normalize: function(item) {
 	    return {
-		title: o.churchname
+		title: item.churchname,
+		url: item.webaddress
 	    };
 	},
 	templates: {
 	    group: 'base',
 	    options: {
 		content: Spice.mass_on_time.mass_on_time
-	    }
+	    },
+	    detail: false
 	}
     });
 }
