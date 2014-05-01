@@ -27,14 +27,15 @@ function ddg_spice_rhymes ( api_result ) {
         name       : "Rhymes",
         meta: {
             sourceUrl  : 'http://rhymebrain.com/en/What_rhymes_with_' +
-                           encodeURIComponent(query),
+                           encodeURIComponent(query) + '.html',
             sourceName : 'RhymeBrain',
             sourceIcon: true
         },
         templates  : {
-            group: 'info',
+            group: 'base',
             options: {
-                content: Spice.rhymes.item
+                content: Spice.rhymes.item,
+		moreAt: true
             }
         }
     });
