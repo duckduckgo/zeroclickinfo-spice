@@ -46,7 +46,8 @@
                         start: {
                             date: item.start.date,
                             time: twelve_hour(item.start.time)
-                        }
+                        },
+			url: item.uri
                     };
                 }
 
@@ -56,7 +57,8 @@
 		group: 'base',
 		options: {
 		    content: Spice.songkick_geteventid.content
-		}
+		},
+		detail: false
             }
         });
     };
