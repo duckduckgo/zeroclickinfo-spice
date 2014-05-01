@@ -20,16 +20,13 @@ function ddg_spice_google_plus (api_result) {
             options: {
                 content: Spice.google_plus.content
             }
+        },
+        normalize : function(item){
+            // change image size and https -> http
+            var image = item.image.url.replace(/sz=50$/, "sz=100");
+            return{
+                image : image.replace(/^https/, "http")
+            };
         }
     });
 };
-
-Handlebars.registerHelper("changeURL", function(image) {
-    "use strict";
-
-    // Make the icon a little bigger.
-    image = image.replace(/sz=50$/, "sz=100");
-
-    // Change HTTPS to HTTP.
-    return image.replace(/^https/, "http");
-});
