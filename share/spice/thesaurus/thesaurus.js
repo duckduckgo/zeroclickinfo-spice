@@ -3,7 +3,7 @@
         "use strict";
 
         if (!api_result){
-            return;
+            return Spice.failed("thesaurus");
         }
 
         // Get the query and the mode (trigger words)
@@ -56,12 +56,15 @@
             name: 'Thesaurus',
             data:  api_result,
             meta: {
-                itemType:  header + " (Big Huge)",
                 sourceName:  'Big Huge Thesaurus',
                 sourceUrl:  'http://words.bighugelabs.com/' + query,
             },
             templates: {
-                detail: Spice.thesaurus.detail
+                group: 'base',
+                options: {
+                    content: Spice.thesaurus.content,
+                    moreAt: true
+                }
             }
         });
     }
@@ -70,7 +73,6 @@
 // Determine which results to show.
 Handlebars.registerHelper("thesaurus_checkWords", function(options) {
     "use strict";
-
     var results = [],
         mode = this.mode;
 
