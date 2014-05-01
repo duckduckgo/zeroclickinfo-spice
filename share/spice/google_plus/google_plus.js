@@ -12,7 +12,6 @@ function ddg_spice_google_plus (api_result) {
         meta: {
             sourceName : 'Google+',
             sourceUrl : 'http://plus.google.com',
-            header1 : "Google+ Users"
         },
         templates: {
             group: 'base',
