@@ -131,11 +131,12 @@ function ddg_spice_detect_lang (api_result) {
             sourceName      : "Detect Language",
         },
         templates: {
-            group: 'info',
+            group: 'base',
             options: {
-                content: Spice.detect_lang.content
-                }
+                content: Spice.detect_lang.content,
+		moreAt: true
             }
+        }
         
     });
 };

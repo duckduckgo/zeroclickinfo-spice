@@ -15,9 +15,10 @@
                 sourceName: 'Expatistan'
             },
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
-                    content: Spice.expatistan.content
+                    content: Spice.expatistan.content,
+		    moreAt: true
                 }
             }
         });

@@ -15,9 +15,10 @@
                 sourceName      : 'Internet Chuck Norris Database'
             },
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
-                    content: Spice.chuck_norris.content
+                    content: Spice.chuck_norris.content,
+		    moreAt: true
                 }
             }
         });
