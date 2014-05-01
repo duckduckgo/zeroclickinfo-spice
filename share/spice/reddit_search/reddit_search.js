@@ -59,8 +59,8 @@
                 group: 'base',
                 options: {
                     content: Spice.reddit_search.item,
-                    detail:false
-                }
+                },
+		detail: false
             }
         });
     };

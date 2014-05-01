@@ -1,7 +1,3 @@
-.zci--reddit_search .spice2list_item span{
-	display: block;
-	max-width: 100%;
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-	white-space: nowrap;
+.reddit__search--comments a {
+    color: #999;
 }
