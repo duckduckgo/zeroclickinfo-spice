@@ -27,9 +27,9 @@ function ddg_spice_mass_on_time (api_result) {
     //Parishes return different info than events, so a different template is in order for those
     var pick_item_template = function (query_details) {
 	if (query_details.type == "parish") {
-	  return "mass_on_time_church";
+	  return Spice.mass_on_time.parish;
 	} else {
-	  return "mass_on_time";
+	  return Spice.mass_on_time.events;
 	}
     };
 
@@ -68,7 +68,7 @@ function ddg_spice_mass_on_time (api_result) {
 	templates: {
 	    group: 'base',
 	    options: {
-		content: Spice.mass_on_time.mass_on_time
+		content: pick_item_template(details)
 	    },
 	    detail: false
 	}
