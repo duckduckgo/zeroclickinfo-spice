@@ -12,15 +12,27 @@
         Spice.add({
             id: 'code_search',
             name: "Code Search",
-            data: api_result.results[0],
+            data: api_result.results[0].lines,
             meta: {
                 sourceUrl: 'http://searchco.de/?q=' + query + '&cs=true',
                 sourceName: 'search[code]'
             },
+            normalize: function(item){
+
+                var keys = [];
+
+                $.each(item, function(k, v){
+                    keys.push(k)
+                });
+
+                return{
+                    record_keys: keys
+                };
+            },
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.code_search.content,
+                    content: 'record',
                     moreAt: true
                 }
             }
