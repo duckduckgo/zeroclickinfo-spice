@@ -17,3 +17,12 @@
     font-weight: 400;
     height: 2.5em;
 }
+
+.zci--googleplus .tile {
+    width: 13.4em;
+    height: 17.2em;
+}
+
+.zci--googleplus .has-tiles--grid .tile {
+    width: 13.4em;
+}
