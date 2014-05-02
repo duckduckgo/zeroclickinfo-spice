@@ -20,7 +20,7 @@ function ddg_spice_google_plus (api_result) {
             detail: false
         },
         normalize : function(item) {
-            var image = item.image.url.replace(/sz=50$/, "sz=200");
+            var image = item.image.url.replace(/sz=50$/, "sz=100");
             return {
                 image : image.replace(/^https/, "http"),
                 title: item.displayName

@@ -1,7 +1,18 @@
 .zci--googleplus .tile--basic-image .tile__media {
-    height: 17em;
+    height: 12em;
 }
 
 .zci--googleplus .tile--basic-image .tile__media__img {
-    margin-top: 0;
+    margin-top: 2em;
+    border-radius: 100%;
+}
+
+.zci--googleplus .tile--basic-image .tile__media__img {
+    min-width: 0;
+}
+
+.zci--googleplus .tile--basic-image .tile__title {
+    text-align: center;
+    font-size: 1.6em;
+    font-weight: 400;
 }
