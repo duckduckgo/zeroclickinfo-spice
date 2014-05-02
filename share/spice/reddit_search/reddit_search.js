@@ -59,7 +59,8 @@
                 options: {
 		    footer: Spice.reddit_search.footer
                 },
-		detail: false
+		detail: false,
+		item_detail: false
             }
         });
     };
