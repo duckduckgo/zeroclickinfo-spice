@@ -1,0 +1,23 @@
+.zci--twitter .twitter--user {
+    color: #999;
+}
+
+.zci--twitter .twitter--basic {
+    height: 6em;
+    clear: both;
+}
+
+.zci--twitter .twitter--image {
+    float: left;
+    margin-right: 1.1em;
+}
+
+.zci--twitter .twitter--description {
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+    -webkit-font-smoothing: antialiased;
+}
+
+.zci--twitter .twitter--misc {
+    padding-top: 0.7em;
+}
