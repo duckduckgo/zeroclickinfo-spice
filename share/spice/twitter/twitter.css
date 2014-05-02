@@ -1,10 +1,13 @@
-.zci--twitter .twitter--user {
-    color: #999;
-}
-
 .zci--twitter .twitter--basic {
     height: 6em;
     clear: both;
+    margin-top: 0.5em;
+    margin-bottom: 0.3em;
+    margin-left: -0.2em;
+}
+
+.zci--twitter .twitter--basic a { 
+    color: #888;
 }
 
 .zci--twitter .twitter--image {
@@ -13,11 +16,20 @@
 }
 
 .zci--twitter .twitter--description {
-    font-size: 1.1em;
-    margin-bottom: 0.5em;
+    font-size: 1.3em;
+    margin-bottom: 0.75em;
     -webkit-font-smoothing: antialiased;
+    line-height: 1.2em;
 }
 
 .zci--twitter .twitter--misc {
     padding-top: 0.7em;
+}
+
+.zci--twitter .zcm__sep {
+    margin: 0 0.3em;
+}
+
+.zci--twitter .twitter--more {
+    color: #888;
 }
