@@ -1,13 +1,17 @@
-<div>
-  <img src="{{imageProxy image}}" class="circle">
-  <div>{{name}} @{{user}}</div>
-  {{#if location}}
-    <div>{{location}}</div>
-  {{/if}}
-  {{#if display_url}}
-    <a href="{{expanded_url}}">{{display_url}}</a>
-  {{/if}}
+<div class="twitter--basic">
+  <div class="twitter--image--wrap">
+    <img src="{{imageProxy image}}" class="circle twitter--image">
+  </div>
+  <div class="twitter--misc">
+    <div>{{name}} <span class="twitter--user">@{{user}}</span></div>
+    {{#if location}}
+      <div>{{location}}</div>
+    {{/if}}
+    {{#if display_url}}
+      <a href="{{expanded_url}}">{{display_url}}</a>
+    {{/if}}
+  </div>
 </div> 
 {{#if description}}
-  <div>{{description}}</div>
+  <div class="twitter--description">{{description}}</div>
 {{/if}}
