@@ -33,7 +33,6 @@ var ddg_spice_twitter = function(api_result) {
 
             return {
                 image: bigger_picture(item.profile_image),
-                title: item.name || '@' + item.user,
 		infoboxTitle: 'Latest Tweet',
 		display_url: urls[0],
 		expanded_url: urls[1]
