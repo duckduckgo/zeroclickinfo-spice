@@ -3,10 +3,14 @@
     <img src="{{imageProxy image}}" class="circle twitter--image">
   </div>
   <div class="twitter--misc">
-    <div>{{name}} <span class="twitter--user">@{{user}}</span></div>
+    <div>{{name}}</div>
+      <div class="twitter--more">
+        <span class="twitter--user">@{{user}}</span>
     {{#if location}}
-      <div>{{location}}</div>
+        <span class="zcm__sep"></span>
+        {{location}}
     {{/if}}
+      </div>
     {{#if display_url}}
       <a href="{{expanded_url}}">{{display_url}}</a>
     {{/if}}
