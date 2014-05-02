@@ -1,5 +1,10 @@
 {{#if description}}
     <div>{{description}}</div>
 {{/if}}
-
+{{#if location}}
+      <div>{{location}}</div>
+{{/if}}
+{{#if display_url}}
+  <a href="{{expanded_url}}">{{display_url}}</a>
+{{/if}}
 
