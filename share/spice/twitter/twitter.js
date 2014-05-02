@@ -39,10 +39,11 @@ var ddg_spice_twitter = function(api_result) {
             };
         },
         templates: {
-	    group: 'info',
+	    group: 'base',
 	    options: {
 		content: Spice.twitter.content,
-		infobox: Spice.twitter.infobox
+		infobox: Spice.twitter.infobox,
+		moreAt: true
 	    }
         }
         
