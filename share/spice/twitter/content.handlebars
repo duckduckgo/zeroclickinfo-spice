@@ -1,13 +1,9 @@
 {{#if description}}
     <div>{{description}}</div>
 {{/if}}
-
-
-    {{!  show an image }}
-    {{! #with current_status.entities}}
-    {{! #if media.[0].media_url}}
-    {{! <img src="[[imageProxy media.[0].media_url]]" title="[[media.[0].display_url]]"> }}
-    {{! /if}}
-    {{! /with}}
-    {{! it's hard to comment out embedded handlebars so I just replaced braces with brackets above }}
+{{#with current_status.entities}}
+    {{#if media.[0].media_url}}
+        <img src="{{{imageProxy media.[0].media_url}}}" title="{{media.[0].display_url}}">
+    {{/if}}
+{{/with}}
 
