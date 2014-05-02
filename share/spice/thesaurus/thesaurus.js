@@ -25,17 +25,12 @@
             "thesaurus" : "syn"
         };
 
-        // Create the header.
-        var header = "Thesaurus";
-        if(shorthand[mode] === "syn") {
-            header = "Synonyms of " + query;
-        } else if(shorthand[mode] === "ant") {
-            header = "Antonyms of " + query;
-        } else if(shorthand[mode] === "rel") {
-            header = "Related to " + query;
-        } else if(shorthand[mode] === "sim") {
-            header = "Similar to " + query;
-        }
+        var headers = {
+            "syn" : "Synonyms of ",
+            "ant" : "Antonyms of ",
+            "rel" : "Related to ",
+            "sim" : "Similar to "
+        };
 
         // Check if the mode exists.
         var how_many = 0;
@@ -45,7 +40,7 @@
             }
         }
         if(how_many === 0) {
-            return;
+            return Spice.failed('theasaurus');
         }
 
         api_result.mode = shorthand[mode];
@@ -55,6 +50,24 @@
             id: 'thesaurus',
             name: 'Thesaurus',
             data:  api_result,
+            normalize: function(item){
+                var res = {
+                    headerText: headers[item.mode] || 'Thesaurus: ',
+                    query: query,
+                    results: []
+                };
+
+                for(var parts_of_speech in item) {
+                    if(item.hasOwnProperty(parts_of_speech) && item[parts_of_speech][item.mode]) {
+                        res.results.push({
+                            heading : parts_of_speech.charAt(0).toUpperCase() + parts_of_speech.slice(1),
+                            words   : item[parts_of_speech][item.mode].splice(0, 10).join(", ")
+                        });
+                    }
+                }
+
+                return res;
+            },
             meta: {
                 sourceName:  'Big Huge Thesaurus',
                 sourceUrl:  'http://words.bighugelabs.com/' + query,
@@ -69,21 +82,3 @@
         });
     }
 }(this));
-
-// Determine which results to show.
-Handlebars.registerHelper("thesaurus_checkWords", function(options) {
-    "use strict";
-    var results = [],
-        mode = this.mode;
-
-    for(var parts_of_speech in this) {
-        if(this.hasOwnProperty(parts_of_speech) && this[parts_of_speech][mode]) {
-            results.push({
-                heading : parts_of_speech.charAt(0).toUpperCase() + parts_of_speech.slice(1),
-                words   : this[parts_of_speech][mode].splice(0, 10).join(", ")
-            });
-        }
-    }
-
-    return options.fn(results);
-});
