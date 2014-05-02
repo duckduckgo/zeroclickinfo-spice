@@ -24,7 +24,8 @@
                 options: {
                     content: Spice.alternative_to.content
                 },
-		detail: false
+		detail: false,
+		item_detail: false
             }
         });
     };
