@@ -64,10 +64,20 @@
 }
 
 #spice_timer .time-input {
-	width: 70px;
+	width: 80px;
 	margin-top: 10px;
+	margin-right: 2px;
+	margin-left: 2px;
 	text-align: center;
+	background-color:#ebebeb;
+	color: #393939;
+	border-radius: 2px;
+	border: 0;
 }
+
+#spice_timer .time-input::-moz-placeholder {color:#bbb;}
+#spice_timer .time-input::-webkit-input-placeholder {color:#bbb;}
+#spice_timer .time-input:-ms-input-placeholder {color:#bbb;}
 
 #spice_timer #timer_input {
 	font-size: 40px;
