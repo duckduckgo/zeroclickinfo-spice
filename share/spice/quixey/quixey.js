@@ -96,7 +96,7 @@ env.ddg_spice_quixey = function(api_result) {
                 'title':         item.name,
                 'heading':       item.name,
                 'rating':        item.rating,
-                'reviewCount':   DDG.getProperty(item, "editions.0.custom.features.allversions_rating_count"),
+                'reviewCount':   DDG.getProperty(item, "editions.0.custom.features.allversions_rating_count") || DDG.getProperty(item, "editions.0.custom.features.rating_count"),
                 'url_review':    item.dir_url,
                 'price':         pricerange(item),
                 'abstract':      item.short_desc || "",
