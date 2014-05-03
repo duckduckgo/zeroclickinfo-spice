@@ -25,12 +25,18 @@
                 itemType: 'U.S. ' + DDG.capitalize(chamber) + ' Congressmen',
                 secondaryText: state + " State"
             },
+	    normalize: function(item) {
+		return {
+		    url: "https://www.govtrack.us/congress/members/" + item.govtrack_id
+		};
+	    },
             templates: {
                 group: 'base',
-                detail: null,
+                detail: false,
+		info_detail: false,
                 options: {
                     content: Spice.congress.content
-		          }
+		}
             }
         });
    };
