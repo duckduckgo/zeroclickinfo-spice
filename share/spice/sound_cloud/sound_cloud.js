@@ -134,6 +134,11 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
                 // update the UI
                 this._curItem.$html.removeClass('is-paused');
                 this._curItem.$action.text('►');
+                this._curItem.$time.text('');
+                this._curItem.$loadProgress.removeClass('gt50');
+                this._curItem.$playProgress.removeClass('gt50');
+                this._updateProgress(this._curItem.$loadProgressFill,0);
+                this._updateProgress(this._curItem.$playProgressFill,0);
 
                 // free up resources:
                 this._curItem.sound.destruct();
