@@ -134,7 +134,11 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
                 // update the UI
                 this._curItem.$html.removeClass('is-paused');
                 this._curItem.$action.text('►');
-                this._curItem.$time.text('');
+
+                // don't want to clear the 'Stream Unavailable text, only the -0:00 time:
+                if (!this._curItem.$html.hasClass('is-unavailable')) {
+                    this._curItem.$time.text('');
+                }
                 this._curItem.$loadProgress.removeClass('gt50');
                 this._curItem.$playProgress.removeClass('gt50');
                 this._updateProgress(this._curItem.$loadProgressFill,0);
