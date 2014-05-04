@@ -256,7 +256,7 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
                 return {
                     image: image,
                     usingWaveformImage: usingWaveformImage,
-                    hearts: o.favoritings_count,
+                    hearts: o.favoritings_count || 0,
                     duration: o.duration,
                     link: o.permalink_url,
                     title: o.title,
