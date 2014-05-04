@@ -18,6 +18,17 @@
     margin-top: 0;
 }
 
+.tile--basic-image.tile--soundcloud .tile__media.using-waveform {
+    background-color: #f97a29;
+    background-image: -webkit-linear-gradient(top, #f97a29, #fb3c07); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+    background-image: linear-gradient(to bottom, #f97a29, #fb3c07); /* Chrome 26, Firefox 16+, IE 10+, Opera */
+}
+
+.tile--basic-image.tile--soundcloud .tile__media.using-waveform .tile__media__img {
+    height: 100%;
+    max-width: none;
+}
+
 .tile--basic-image.tile--soundcloud .tile__title {
     font-size: 1.0em;
     height: 2.4em;
