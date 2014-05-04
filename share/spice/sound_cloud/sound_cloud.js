@@ -39,8 +39,13 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
         init: function() {
             var self = this;
 
+            // don't init more than once:
+            if (this._ready) { return; }
+
+            // make sure the lib is loaded and in memory,
+            // otherwise poll for it until it is:
             if (!window["SoundManager"]) { 
-                return setTimeout(this.init.bind(this),25);
+                return setTimeout(this.init.bind(this),50);
             }
 
             window.soundManager = new SoundManager();
