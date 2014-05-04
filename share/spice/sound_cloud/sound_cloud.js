@@ -236,7 +236,9 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
                     image = image.replace(/large\.jpg/, "t200x200.jpg");
                 }
 
-                if (skip_ids[o.id]) {
+                // skip items that can't be streamed or explicit id's we
+                // want to skip for adult content:
+                if (!o.stream_url || skip_ids[o.id]) {
                     return;
                 }
 
