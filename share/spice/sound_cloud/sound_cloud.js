@@ -218,18 +218,20 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
                 item_custom: Spice.sound_cloud.item
             },
             normalize: function(o) {
-                var image = o.artwork_url || o.user.avatar_url;
+                var image = o.artwork_url || o.user.avatar_url,
+                    usingWaveformImage = 0;
 
-                // Check if it's using the default image. Skip if it is.
+                // Check if it's using the default avatar, if
+                // so switch to waveform and set the flag
                 if (/default_avatar_large/.test(image)) {
-                    return;
+                    image = o.waveform_url;
+                    usingWaveformImage = 1;
                 } else {
                     // Get the larger image for our IA.
                     image = image.replace(/large\.jpg/, "t200x200.jpg");
                 }
 
-                // if not streamable || is blocked,  skip them:
-                if (!o.streamable || skip_ids[o.id]) {
+                if (skip_ids[o.id]) {
                     return;
                 }
 
@@ -237,6 +239,7 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
 
                 return {
                     image: image,
+                    usingWaveformImage: usingWaveformImage,
                     hearts: o.favoritings_count,
                     duration: o.duration,
                     link: o.permalink_url,
