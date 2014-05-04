@@ -96,7 +96,7 @@ var ddg_spice_dictionary = {
     definition: function(api_result) {
         "use strict";
 
-        if (!api_result || !api_result.length) { return Spice.failed('dictionary_definition'); }
+        if (!api_result || !api_result.length) { return Spice.failed('definition'); }
 
         // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript.
         // If cache was set to false, it would be calling /js/spice/dictionary/definition/hello?_=12345
