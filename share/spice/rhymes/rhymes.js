@@ -5,7 +5,7 @@ function ddg_spice_rhymes (api_result) {
                 .replace(/^(what|rhymes?( with| for)?) |\?/gi, "");
 
     if (!api_result.length) {
-        return;
+        return Spice.failed('rhymes');
     }
     
     var words = [], count=0;
