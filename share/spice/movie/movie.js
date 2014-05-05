@@ -18,8 +18,10 @@
                 };
             },
             templates: {
-                item: 'basic_image_item',
-                detail: Spice.movie.movie_detail
+		group: 'products_simple',
+		wrap_detail: false,
+		item_detail: false,
+                detail: Spice.movie.detail
             },
             relevancy: {
                 skip_words: [
@@ -39,6 +41,8 @@
                 ]
             }
         });
+
+	Spice.getDOM('movie').find('.tile__body').addClass('is_hidden');
     };
 
     // Convert minutes to hr. min. format.
