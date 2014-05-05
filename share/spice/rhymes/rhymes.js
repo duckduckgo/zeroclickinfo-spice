@@ -25,7 +25,7 @@ function ddg_spice_rhymes (api_result) {
     }
 
     Spice.add({
-	data       : { words: words },
+	data       : { words: words, query: DDG.capitalize(query) },
 	id         : "rhymes",
         name       : "Rhymes",
         meta: {
