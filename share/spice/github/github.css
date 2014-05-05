@@ -10,6 +10,7 @@
 
 .zci--github .tile__title__sub {
     text-transform: none;
+    color: #999;
 }
 
 .zci--github .tile__body {
