@@ -95,4 +95,5 @@ div.tile__body.is_hidden {
     height: 16px;
     display: inline-block;
     vertical-align: text-bottom;
+    background: transparent no-repeat;
 }
