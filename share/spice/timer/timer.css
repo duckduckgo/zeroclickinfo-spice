@@ -92,6 +92,44 @@
 	margin: 0 auto;
 }
 
+#spice_timer .done-modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(128,128,128,0.4);
+	z-index: 9999;
+}
+
+#spice_timer .done-modal > div {
+	width: 300px;
+	border-radius: 3px;
+	position: relative;
+	margin: 10% auto;
+	background-color: #fff;
+	padding: 30px 10px;
+}
+
+#spice_timer .done-modal h2 {
+	display: block;
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 2em;
+}
+
+#spice_timer .done-modal button {
+	display: block;
+	margin: 0 auto;
+	width: 80px;
+	padding: 3px 0;
+	border: 0;
+	border-radius: 2px;
+	background-color: #61AD48;
+	color: white;
+}
+
 /*stack the big time divs if the screen is too narrow*/
 @media screen and (max-width: 420px) {
 	#spice_timer .spice-pane {width: 96%; height: 50px; float: none;}

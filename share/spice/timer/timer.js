@@ -21,6 +21,7 @@ function ddg_spice_timer(api_result) {
       $second_input = $('#second_input'),
       $timer = $('#timer'),
       $reset_btn = $('#reset_btn');
+      $done_modal = $('#done_modal');
 
   //go from a time in ms to human-readable
   function formatTime(t){
@@ -35,7 +36,7 @@ function ddg_spice_timer(api_result) {
     if (time_left <= 0){
       clearInterval(update_int);
       $timer.html('00:00');
-      alert('Timer finished');
+      $done_modal.show();
       //TODO: Sound?
     } else {
       $timer.html(formatTime(time_left));
@@ -56,7 +57,10 @@ function ddg_spice_timer(api_result) {
       if (!start_secs && !start_mins) {
         return;
       }
-			if (start_mins > 59) start_mins = 59;
+			if (start_mins > 99) {
+        start_mins = 99;
+        start_secs = 59;
+      }
 			if (start_secs > 59) start_secs = 59;
       started = true;
       time_left = start_mins * (60*1000) + start_secs*1000;
@@ -78,15 +82,23 @@ function ddg_spice_timer(api_result) {
     $(this).removeClass('pause').addClass('start').html('START');
   });
 
-  //reset everything
-  $reset_btn.click(function(){
+  function resetTimer(){
     $(this).prop('disabled', true);
     $('#timer_input').removeClass('hidden');
     $('#timer_display').addClass('hidden');
     clearInterval(update_int);
     started = false;
     $('.btn.pause').removeClass('pause').addClass('start').html('START');
-  });
+  }
+
+  //reset everything
+  $reset_btn.click(resetTimer);
+
+  //dismiss the modal and reset when "OK" is pressed
+  $('#done_ok_btn').click(function(){
+    $done_modal.hide();
+    resetTimer();
+  })
 
   //make sure the bang dropdown doesn't trigger
   $('.time-input').keydown(function(event){
