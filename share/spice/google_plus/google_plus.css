@@ -1,0 +1,33 @@
+.zci--googleplus .tile--basic-image .tile__media {
+    height: 12em;
+}
+
+.zci--googleplus .tile--basic-image .tile__media__img {
+    margin-top: 1.6em;
+    border-radius: 100%;
+}
+
+.zci--googleplus .tile--basic-image .tile__media__img {
+    min-width: 0;
+}
+
+.zci--googleplus .tile--basic-image .tile__title {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 400;
+    height: 2.5em;
+}
+
+.zci--googleplus .tile {
+    width: 12.4em;
+    height: 17.2em;
+}
+
+.zci--googleplus .has-tiles--grid .tile {
+    width: 13.4em;
+}
+
+.zci--googleplus .tile--basic-image .tile__body {
+    padding: .3em 1em;
+}
+

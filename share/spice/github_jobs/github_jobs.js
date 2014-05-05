@@ -34,7 +34,8 @@
 		options: {
 		    content: Spice.github_jobs.content
 		},
-		detail: false
+		detail: false,
+		item_detail: false
             }
 	});
     };
