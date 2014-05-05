@@ -10,7 +10,7 @@
               {{{starRating rating}}}
             {{/if}}
             {{#if ratings.critics_score}}
-              <span class="tomato--icon" style="background: transparent url('{{icon_url}}') no-repeat -312px -160px; background-position: {{icon_image}}"></span>
+              <span class="{{icon_class}}" style="background: transparent url('{{icon_url}}') no-repeat -312px -160px; background-position: {{icon_image}}"></span>
               {{ratings.critics_rating}}: {{ratings.critics_score}}%
               <span class="detail__separator"> | </span>
             {{/if}}
