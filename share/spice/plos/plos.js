@@ -24,12 +24,18 @@
                 sourceName: "PLOS",
                 sourceUrl: 'http://www.plosone.org/search/advanced?unformattedQuery=' + query
             }, 
+	    normalize: function(item) {
+		return {
+		    url: "http://dx.doi.org/" + item.id
+		};
+	    },
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.plos.item,
-                    detail: false
-                }
+                    content: Spice.plos.item
+                },
+		detail: false,
+		item_detail: false
              }
         });
     }

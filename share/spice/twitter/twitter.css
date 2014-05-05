@@ -1,3 +1,35 @@
-.zci--twitter .zci__aux {
-    min-width: 30%;
+.zci--twitter .twitter--basic {
+    height: 6em;
+    clear: both;
+    margin-top: 0.25em;
+    margin-bottom: 0.3em;
+    margin-left: -0.2em;
+}
+
+.zci--twitter .twitter--basic a { 
+    color: #888;
+}
+
+.zci--twitter .twitter--image {
+    float: left;
+    margin-right: 1.1em;
+}
+
+.zci--twitter .twitter--description {
+    font-size: 1.3em;
+    margin-bottom: 0.75em;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.2em;
+}
+
+.zci--twitter .twitter--misc {
+    padding-top: 0.7em;
+}
+
+.zci--twitter .zcm__sep {
+    margin: 0 0.3em;
+}
+
+.zci--twitter .twitter--more {
+    color: #888;
 }

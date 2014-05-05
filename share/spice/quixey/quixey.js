@@ -96,7 +96,7 @@ env.ddg_spice_quixey = function(api_result) {
                 'title':         item.name,
                 'heading':       item.name,
                 'rating':        item.rating,
-                'reviewCount':   item.rating_count || '',
+                'reviewCount':   DDG.getProperty(item, "editions.0.custom.features.allversions_rating_count") || DDG.getProperty(item, "editions.0.custom.features.rating_count"),
                 'url_review':    item.dir_url,
                 'price':         pricerange(item),
                 'abstract':      item.short_desc || "",
@@ -176,7 +176,9 @@ env.ddg_spice_quixey = function(api_result) {
                         if (!count) count = 1;  // rating_count is sometimes null
                         return r*r*r*count/5;
                     };
-                    return rank(a.rating,a.rating_count) > rank(b.rating, b.rating_count) ? -1: 1;
+
+                    // using normalized values
+                    return rank(a.rating,a.reviewCount ) > rank(b.rating,b.reviewCount ) ? -1: 1;
                 }
             // 'platform': function(a,b) { } ,
             // 'name':

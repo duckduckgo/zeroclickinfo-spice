@@ -11,6 +11,13 @@ var ddg_spice_twitter = function(api_result) {
 
     var infobox = api_result.current_status ? Spice.twitter.infobox : false;
 
+    function getURL(item) {
+	var expanded_url = DDG.getProperty(item, 'entities.url.urls.0.expanded_url');
+	var display_url = DDG.getProperty(item, 'entities.url.urls.0.display_url');
+
+	return [display_url, expanded_url];
+    }
+
     // Display the plugin.
     Spice.add({
         id: 'twitter',
@@ -22,17 +29,21 @@ var ddg_spice_twitter = function(api_result) {
             sourceName              : "Twitter",
         },
         normalize: function(item) {
+	    var urls = getURL(item);
+
             return {
                 image: bigger_picture(item.profile_image),
-                title: '@' + item.user,
-		infoboxTitle: 'Latest Tweet'
+		infoboxTitle: 'Latest Tweet',
+		display_url: urls[0],
+		expanded_url: urls[1]
             };
         },
         templates: {
-	    group: 'info',
+	    group: 'base',
 	    options: {
 		content: Spice.twitter.content,
-		infobox: Spice.twitter.infobox
+		infobox: Spice.twitter.infobox,
+		moreAt: true
 	    }
         }
         

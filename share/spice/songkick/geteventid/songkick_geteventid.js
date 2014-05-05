@@ -58,7 +58,8 @@
 		options: {
 		    content: Spice.songkick_geteventid.content
 		},
-		detail: false
+		detail: false,
+		item_detail: false
             }
         });
     };
