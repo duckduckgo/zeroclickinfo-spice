@@ -128,7 +128,7 @@ function ddg_spice_recipes(res) {
             detailClass: 'detail--i',
 
             // TODO: the following metadata will be injected by spice
-            sourceIconUrl: DDG.get_asset_path('recipes','yummly.com.ico'),
+            sourceIconUrl: "https://" + window.location.hostname + '/' + DDG.get_asset_path('recipes','yummly.com.ico'), // temp fix for pb
             sourceUrl: moreUrl,
             sourceName: 'Yummly'
         },
