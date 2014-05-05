@@ -11,7 +11,8 @@
 }
 
 .tile--basic-image.tile--soundcloud .tile__media {
-    height: 14em;
+    padding-bottom: 100%;
+    height: 0;
 }
 
 .tile--basic-image.tile--soundcloud .tile__media__img {
