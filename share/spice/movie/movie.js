@@ -12,9 +12,19 @@
                 itemType: 'Movies'
             },
             normalize: function(item) {
+		var position;
+		if(item.ratings.critics_rating === "Fresh" || item.ratings.critics_rating === "Certified Fresh") {
+		    position = "-256px -144px";
+		} else if(item.ratings.critics_rating === "Rotten") {
+		    position = "-272px -144px"; 
+		}
+
                 return {
                     rating: Math.max(item.ratings.critics_score / 20, 0),
-                    image: item.posters.detailed
+                    image: item.posters.detailed,
+		    icon_url: DDG.get_asset_path('movie','icons-v2.png'),
+		    icon_image: position,
+		    icon_class: position ? 'tomato--icon' : ""
                 };
             },
             templates: {
@@ -42,6 +52,8 @@
             }
         });
 
+	// Make sure we hide the title and ratings.
+	// It looks nice to show only the poster of the movie.
 	Spice.getDOM('movie').find('.tile__body').addClass('is_hidden');
     };
 
