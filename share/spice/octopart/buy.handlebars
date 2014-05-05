@@ -1,0 +1,20 @@
+{{#if description}}
+    <div>Details: {{description}}</div>
+{{/if}}
+{{#if item.market_status}}
+    <div>Market Status: {{item.market_status}}</div>
+{{/if}}
+{{#if price}}
+    <div>Average Price: ${{price}}</div>
+{{/if}}
+<br>
+{{#if datasheet}}
+    <a href="{{{datasheet}}}" class="btn">Datasheet</a>
+{{/if}}
+{{#if url}}
+    <a href="{{{url}}}" class="btn">
+    <img class="btn__icon" src="{{meta.sourceIconUrl}}">Buy at Octopart
+    </a>
+{{/if}}
+
+
