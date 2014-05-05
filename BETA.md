@@ -164,8 +164,8 @@ You can test these on the new version of DuckPAN.
 
 7) Try queries that trigger spice instant answers, e.g.:
 
-- thailand beaches images
-- alternative to google
-- duckduckgo apps
+- [thailand beaches images](https://next.duckduckgo.com/?q=thailand+beaches+images)
+- [alternative to google](https://next.duckduckgo.com/?q=alternative+to+google)
+- [duckduckgo apps](https://next.duckduckgo.com/?q=duckduckgo+apps)
 
 The new Spice documentation is a work in progress, and you can find it here: https://github.com/duckduckgo/duckduckgo-documentation/tree/beta
