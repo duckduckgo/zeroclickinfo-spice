@@ -20,9 +20,10 @@
             },
             template_group: 'info',
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
-                    content: Spice.is_it_up.detail
+                    content: Spice.is_it_up.detail,
+		    moreAt: true
                 }
             }
         });
