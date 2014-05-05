@@ -47,8 +47,7 @@ function ddg_spice_octopart (api_result) {
         meta: {
             itemType: 'Parts',
             sourceName: 'Octopart',
-			sourceUrl : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q,
-            sourceIconUrl: 'http://octopart.com/favicon.ico'
+			sourceUrl : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q
         },
         normalize: function(item) {
             var img = DDG.getProperty(item, "item.images.0.url_90px");
