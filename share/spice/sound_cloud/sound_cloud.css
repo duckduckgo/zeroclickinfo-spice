@@ -159,9 +159,11 @@
     bottom: 1em;
     left: 0;
     width: 100%;
+    margin-left: -.15em; /* moving to the left slightly because the '-' always makes it look skewed right */
 }
 
 .is-unavailable .audio-controls__time {
     color: #ccc;
     font-size: .9em;
+    margin-left: 0;
 }
