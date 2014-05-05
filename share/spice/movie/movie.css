@@ -81,3 +81,18 @@ div.tile__body.is_hidden {
 .detail__media--movie .detail__media__img {
     height: 90%;
 }
+
+.zci--movie .rotten {
+    background-position: -272px -144px;
+}
+
+.zci--movie .fresh {
+    background-position: -256px -144px;
+}
+
+.zci--movie .tomato--icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
