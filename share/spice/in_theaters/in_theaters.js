@@ -19,14 +19,21 @@
                 itemType: 'Movies'
             },
             normalize: function(item) {
+		var fresh = "-256px -144px";
+		var rotten = "-272px -144px";
                 return { 
                     rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
-                    image: item.posters.detailed
+                    image: item.posters.detailed,
+		    icon_url: DDG.get_asset_path('in_theaters','icons-v2.png'),
+		    icon_image: rotten,
+		 
                 };
             },
             templates: {
-                item: 'basic_image_item',
-                detail: Spice.in_theaters.in_theaters_detail
+		group: 'products_simple',
+                wrap_detail: false,
+		item_detail: false,
+                detail: Spice.in_theaters.detail
             }
         });
 

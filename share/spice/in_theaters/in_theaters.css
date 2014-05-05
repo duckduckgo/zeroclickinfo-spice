@@ -77,3 +77,20 @@ div.tile__body.is_hidden {
 .detail__media--movie .detail__media__img {
     height: 90%;
 }
+
+.zci--in_theaters .rotten {
+    background-position: -272px -144px;
+}
+
+.zci--in_theaters .fresh {
+    background-position: -256px -144px;
+}
+
+.zci--in_theaters .tomato--icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    position: relative;
+    top: -2px;
+}
