@@ -1,6 +1,10 @@
 (function(env) {
     "use strict";
 
+    if (!api_result || !api_result.Items) {
+        return Spice.failed('alternative_to');
+    }
+
     env.ddg_spice_alternative_to = function(api_result) {
         Spice.add({
             id: 'alternative_to',

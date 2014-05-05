@@ -11,7 +11,7 @@ function ddg_spice_airlines (api_result) {
 
     // Check if we have anything returned.
     if(!api_result || !api_result.flight) {
-        return;
+        return Spice.failed('airlines');
     }
 
     var MILLIS_PER_MIN = 60000;
