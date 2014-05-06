@@ -70,8 +70,7 @@ function ddg_spice_octopart (api_result) {
             group: 'products',
             options: {
                 rating: false,
-                buy: Spice.octopart.buy,
-                variant: 'wide'     // ???
+                buy: Spice.octopart.buy
             }
         }
         
