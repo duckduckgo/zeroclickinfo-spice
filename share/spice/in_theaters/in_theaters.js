@@ -28,7 +28,7 @@
                 item: 'basic_image_item',
                 detail: Spice.in_theaters.in_theaters_detail,
                 options: {
-                    tileClass: ' '
+                    tileClass: 'tile--b--i--mov  tile--c--n'
                 }
             }
         });
