@@ -93,10 +93,10 @@
             templates: {
                 item: 'basic_image_item',
                 detail: Spice.kwixer.kwixer_detail,
-		options: {
-		    rating: false,
-            tileClass: ' '
-		}
+                options: {
+                    rating: false,
+                    tileClass: 'tile--b--i--mov  tile--c--n'
+                }
             }
         });
     };

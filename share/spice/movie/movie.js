@@ -21,7 +21,7 @@
                 item: 'basic_image_item',
                 detail: Spice.movie.movie_detail,
                 options: {
-                    tileClass: ' '
+                    tileClass: 'tile--b--i--mov  tile--c--n'
                 }
             },
             relevancy: {
