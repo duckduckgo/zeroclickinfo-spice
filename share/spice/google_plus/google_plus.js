@@ -16,6 +16,7 @@ function ddg_spice_google_plus (api_result) {
         },
         templates: {
             group: 'products_simple',
+            
 	    item_detail: false,
             detail: false
         },
