@@ -71,7 +71,7 @@ function ddg_spice_octopart (api_result) {
             options: {
                 rating: false,
                 buy: Spice.octopart.buy,
-                tileClass: ' '
+                variant: 'wide'     // ???
             }
         }
         

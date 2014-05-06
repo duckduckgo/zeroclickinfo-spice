@@ -95,7 +95,7 @@
                 detail: Spice.kwixer.kwixer_detail,
                 options: {
                     rating: false,
-                    tileClass: 'tile--b--i--mov  tile--c--n'
+                    variant: 'poster'
                 }
             }
         });

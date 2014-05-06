@@ -19,7 +19,7 @@ function ddg_spice_google_plus (api_result) {
             item_detail: false,
             detail: false,
             options: {
-                tileClass: 'tile--c--n'
+                variant: 'narrow'
             }
         },
         normalize : function(item) {
