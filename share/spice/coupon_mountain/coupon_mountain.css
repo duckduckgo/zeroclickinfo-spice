@@ -6,10 +6,10 @@
 	user-select: text;
 }
 
-.zci--coupon_mountain .tile--basic-image .tile__media {
+.tile--coupon_mountain .tile__media {
     height: 5em;
 }
 
-.zci--coupon_mountain .tile--basic-image .tile__media__img {
+.tile--coupon_mountain .tile__media__img {
     margin-top: 0;
 }
