@@ -1,12 +1,4 @@
-.zci--octopart .tile {
-    width: 15.4em;
-}
-
-.zci--octopart .has-tiles--grid .tile {
-    width: 15.4em;
-}
-
-.zci--octopart .btn__datasheet{
+.zci--octopart .btn__datasheet {
 	margin-right: 2px;
 	background-color: #e5e5e5;
 }
