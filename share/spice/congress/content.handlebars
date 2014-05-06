@@ -1,4 +1,9 @@
+    {{#if image}}
+        <img src="{{imageProxy image}}">
+    {{/if}}
+    <br>
     {{#if govtrack_id}}
+
         <a href="https://www.govtrack.us/congress/members/{{govtrack_id}}">
     {{else}}
         <a href="/?q={{congress_get_name title first_name last_name}}">
@@ -27,4 +32,3 @@
     {{#if facebook_id}}
         <a class="congress_link" href="https://www.facebook.com/{{facebook_id}}">Facebook</a>
     {{/if}}
-    <br>

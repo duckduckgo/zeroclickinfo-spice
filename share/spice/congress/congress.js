@@ -27,16 +27,17 @@
             },
 	    normalize: function(item) {
 		return {
-		    url: "https://www.govtrack.us/congress/members/" + item.govtrack_id
+		    url: "https://www.govtrack.us/congress/members/" + item.govtrack_id,
+            image: "https://www.govtrack.us/data/photos/"+item.govtrack_id+"-200px.jpeg",
+            title: (item.title ? item.title + '. ' : '') + 
+                    (item.first_name ? item.first_name + ' ' : '')+ 
+                    (item.last_name ? item.last_name : '')
 		};
 	    },
             templates: {
-                group: 'base',
+                group: 'products_simple',
                 detail: false,
-		info_detail: false,
-                options: {
-                    content: Spice.congress.content
-		}
+                item_detail: false
             }
         });
    };
