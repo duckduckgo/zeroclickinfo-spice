@@ -19,7 +19,10 @@
             },
             templates: {
                 item: 'basic_image_item',
-                detail: Spice.movie.movie_detail
+                detail: Spice.movie.movie_detail,
+                options: {
+                    tileClass: ' '
+                }
             },
             relevancy: {
                 skip_words: [

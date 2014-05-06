@@ -253,7 +253,8 @@ function ddg_spice_airlines (api_result) {
 	template_group: 'base',
         templates : {
 	    options: {
-		content: Spice.airlines.content
+		content: Spice.airlines.content,
+        tileClass: 'tile--c--xw'
 	    }
         }, 
     });
