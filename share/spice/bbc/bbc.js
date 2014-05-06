@@ -63,7 +63,10 @@
             },
             templates: {
                 item: 'basic_image_item',
-                detail: Spice.bbc.detail 
+                detail: Spice.bbc.detail,
+                options: {
+                    tileClass: 'tile--c--w'
+                }
             }
         });
     };

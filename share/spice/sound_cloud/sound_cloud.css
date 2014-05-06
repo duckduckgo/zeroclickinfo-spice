@@ -1,7 +1,3 @@
-.zci--soundcloud .tile--basic-image .tile__media {
+.tile--soundcloud  .tile__media {
     height: 18.5em;
-}
-
-.zci--soundcloud .tile--basic-image .tile__media__img {
-    margin-top: 0;
 }
