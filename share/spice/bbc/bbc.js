@@ -65,7 +65,7 @@
                 item: 'basic_image_item',
                 detail: Spice.bbc.detail,
                 options: {
-                    tileClass: 'tile--c--w'
+                    tileClass: 'tile--vid  tile--c'
                 }
             }
         });
