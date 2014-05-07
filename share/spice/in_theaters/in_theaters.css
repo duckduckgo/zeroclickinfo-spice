@@ -64,3 +64,11 @@
 .detail__media--movie .detail__media__img {
     height: 90%;
 }
+
+.zci--in_theaters .tomato--icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    background: transparent no-repeat;
+}
