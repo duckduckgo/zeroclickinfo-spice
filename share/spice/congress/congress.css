@@ -2,10 +2,6 @@
     color: #888;
 }
 
-.zci--congress .tile__body {
-	height: 7.5em;
-}
-
 .zci--congress .tile--basic-image .tile__media {
     height: 14em;
 }
@@ -26,14 +22,15 @@
 }
 
 .zci--congress .tile {
-    width: 12.4em;
+    width: 11.4em;
     height: 18.2em;
 }
 
 .zci--congress .has-tiles--grid .tile {
-    width: 13.4em;
+    width: 11.4em;
 }
 
 .zci--congress .tile--basic-image .tile__body {
     padding: .3em 1em;
+
 }
