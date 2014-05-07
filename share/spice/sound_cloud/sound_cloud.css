@@ -1,4 +1,4 @@
-.tile--basic-image.tile--soundcloud {
+.tile--soundcloud {
     width: 14em;
 }
 
@@ -10,27 +10,27 @@
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
-.tile--basic-image.tile--soundcloud .tile__media {
+.tile--soundcloud .tile__media {
     padding-bottom: 100%;
     height: 0;
 }
+	.tile--soundcloud .tile__media__img {
+		max-width: none;
+		height: 100%;
+		position: absolute;
+		margin: auto;
+		right: 0;
+		left: 0;
+		top: 0;
+	}
 
-.tile--basic-image.tile--soundcloud .tile__media__img {
-    margin-top: 0;
-}
-
-.tile--basic-image.tile--soundcloud .tile__media.using-waveform {
+.tile--soundcloud .tile__media.using-waveform {
     background-color: #f97a29;
     background-image: -webkit-linear-gradient(top, #f97a29, #fb3c07); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
     background-image: linear-gradient(to bottom, #f97a29, #fb3c07); /* Chrome 26, Firefox 16+, IE 10+, Opera */
 }
 
-.tile--basic-image.tile--soundcloud .tile__media.using-waveform .tile__media__img {
-    height: 100%;
-    max-width: none;
-}
-
-.tile--basic-image.tile--soundcloud .tile__title {
+.tile--soundcloud .tile__title {
     font-size: 1.0em;
     height: 2.4em;
     line-height: 1.3em;
@@ -41,7 +41,7 @@
     color: #383838;
 }
 
-.tile--basic-image.tile--soundcloud .tile__description {
+.tile--soundcloud .tile__description {
     height: auto;
     margin-bottom: 0;
     margin-top: 1em;
