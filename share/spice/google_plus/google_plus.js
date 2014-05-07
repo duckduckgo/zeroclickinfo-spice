@@ -15,9 +15,12 @@ function ddg_spice_google_plus (api_result) {
             itemType: "Google+ Profile" + (api_result.items.length > 1 ? 's' : '')
         },
         templates: {
-            group: 'products_simple',
-	    item_detail: false,
-            detail: false
+            group: 'products_simple',            
+            item_detail: false,
+            detail: false,
+            options: {
+                variant: 'narrow'
+            }
         },
         normalize : function(item) {
             var image = item.image.url.replace(/sz=50$/, "sz=100");

@@ -1,25 +1,12 @@
-.zci--movie.tile--basic-image .tile__body {
-    padding: 0.8em 1em;
-    font-family: "ProximaNova";
-}
-
-div.tile__body.is_hidden {
-    display: none;
-}
-
-.zci--movie .tile--basic-image.tile--c {
+.tile--movie  {
     width: 12em;
 }
 
-.zci_movie .tile--basic-image.tile--c.has-tiles--grid  {
-    width: 12em;
-}
-
-.zci--movie .tile--basic-image .tile__media {
+.tile--movie .tile__media {
     height: 17.1em;
 }
 
-.zci--movie .tile--basic-image .tile__media__img {
+.tile--movie .tile__media__img {
     min-width: 100%;
     height: 100%;
     margin-top: 0;
@@ -29,7 +16,7 @@ div.tile__body.is_hidden {
     float: left;
 }
 
-.zci--movie .tile--basic-image .tile__title {
+.tile--movie .tile__title {
     height: 2.5em;
 }
 
