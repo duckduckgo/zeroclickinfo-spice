@@ -1,7 +1,13 @@
 (function(env) {
     "use strict";
 
+
     env.ddg_spice_movie = function(api_result) {
+
+        if (!api_result) {
+            return Spice.failed('movie');
+        }
+
         Spice.add({
             id: 'movie',
             name: 'Movies',
@@ -46,7 +52,7 @@
 
     // Convert minutes to hr. min. format.
     // e.g. {{time 90}} will return 1 hr. 30 min.
-    Handlebars.registerHelper("time", function(runtime) {
+    Handlebars.registerHelper("movie_time", function(runtime) {
         var hours = '',
             minutes = runtime;
 

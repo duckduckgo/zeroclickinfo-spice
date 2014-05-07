@@ -1,7 +1,7 @@
 (function(env) {
     env.ddg_spice_brainy_quote = function(api_result) {
 	if(api_result.error || api_result.author) {
-	    return;
+	    return Spice.failed('brainy_quote');
 	}
 
 	Spice.add({

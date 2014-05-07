@@ -5,7 +5,7 @@ function ddg_spice_search_code(api_response) {
     var data = api_response.results;
 
     if(!data.length || data.length === 0) {
-        return;
+        return Spice.failed('search_code');
     }
 
     var result;
@@ -18,7 +18,7 @@ function ddg_spice_search_code(api_response) {
     }
 
     if (!result) {
-        return;
+        return Spice.failed('search_code');
     }
 
     function formatName(result) {

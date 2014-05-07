@@ -3,7 +3,7 @@ function ddg_spice_khan_academy ( api_result ) {
 
     // check for response
     if ( $.isEmptyObject(api_result.feed.entry) ) {
-        return;
+        return Spice.failed('khan_academy');
     }
 
     var query = DDG.get_query().replace(/khan(\sacademy)?|videos?/g, "").trim();
