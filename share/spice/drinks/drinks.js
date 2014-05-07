@@ -8,6 +8,7 @@ function ddg_spice_drinks(api_result) {
     api_result[0].isArray = $.isArray(api_result[0].ingredients);
 
     Spice.add({
+        id: 'drinks',
         data: api_result[0],
 	name: "Drinks",
 	meta: {

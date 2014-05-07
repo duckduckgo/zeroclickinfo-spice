@@ -5,7 +5,7 @@
     env.ddg_spice_movie = function(api_result) {
 
         if (!api_result) {
-            return Spice.failed('movies');
+            return Spice.failed('movie');
         }
 
         Spice.add({
