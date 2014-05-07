@@ -2,8 +2,8 @@ function ddg_spice_amazon(api_result) {
     "use strict";
 
     if (!api_result || !api_result.results ||
-	!api_result.results.length || api_result.results.length == 0) {
-	return Spice.failed('amazon');
+            !api_result.results.length || api_result.results.length == 0) {
+        return Spice.failed('products');
     }
 
     var items = api_result.results;
