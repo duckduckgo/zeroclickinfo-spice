@@ -1,0 +1,31 @@
+<div class="tile  tile--c  tile--basic-image  tile--soundcloud">
+    <div class="tile__media  {{#if usingWaveformImage}}using-waveform{{/if}}">
+        <img class="tile__media__img" src="{{imageProxy image}}" />
+        <div class="audio-controls">
+            <div class="audio-controls__progress">
+                <div class="audio-controls__progress-loading">
+                    <span class="rotated-fill"></span>
+                    <span class="full-fill"></span>
+                </div>
+                <div class="audio-controls__progress-playback">
+                    <span class="rotated-fill"></span>
+                    <span class="full-fill"></span>
+                </div>
+            </div>
+            <span class="audio-controls__action  ddgsi">►</span>
+            <span class="audio-controls__time"></span>
+        </div>
+    </div>
+    <div class="tile__body">
+        <a class="tile__title" href="{{link}}" title="{{title}}">{{ellipsis title 45}}</a>
+        <div class="tile__description">
+            <span class="tile__hearts  pull-left">
+                <span class="ddgsi">♥</span>
+                {{numFormat hearts}}
+            </span>
+            <span class="tile__duration  pull-right">
+                {{durationFormat duration}}
+            </span>
+        </div>
+    </div>
+</div>

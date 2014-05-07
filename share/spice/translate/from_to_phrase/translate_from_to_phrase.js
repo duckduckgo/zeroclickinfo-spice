@@ -1,6 +1,8 @@
 function ddg_spice_translate_from_to_phrase (api_result) {
 
-    if (!api_result.matches.length) return;
+    if (!api_result.matches.length) {
+        return Spice.failed('translate_from_to_phrase');
+    }
 
     var params = get_params("from_to");
 

@@ -43,14 +43,14 @@
 	}
 	else if (params.length > 1) {
             // Just allow the currency as a parameter
-            return;
+            return Spice.failed('bitcoin');
 	} else {
             currency = $.trim(params[0].toUpperCase());
             prices = api_result[currency];
 
             if (!prices) {
 		// Is not a valid currency
-		return;
+		return Spice.failed('bitcoin');
             }
 	}        
 

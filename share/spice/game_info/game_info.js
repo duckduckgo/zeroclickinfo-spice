@@ -2,7 +2,7 @@ function ddg_spice_game_info(api_result) {
     "use strict";
 
     if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0) {
-        return;
+        return Spice.failed('game_info');
     }
     var ignore = ["video", "game", "games", "giantbomb"];
     var games = api_result.results;
