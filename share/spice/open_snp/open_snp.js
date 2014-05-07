@@ -2,7 +2,7 @@ ddg_spice_open_snp = function(api_result) {
     "use strict";
 
     if (!api_result.snp) {
-        return;
+        return Spice.failed('open_snp');
     }
     api_result = api_result.snp;
 

@@ -2,11 +2,12 @@ function ddg_spice_canistreamit (api_result) {
     "use strict";
 
     if(!api_result || api_result.length === 0) {
-        return;
+        return Spice.failed('canistreamit');
     }
 
+    // TODO: relevancy block
     if(!DDG.isRelevant(api_result[0].title, ["stream", "watch", "streaming", "can", "i", "how", "where", "find", "to"], 3)) {
-	return;
+        return Spice.failed('canistreamit');
     }
 
     Spice.add({

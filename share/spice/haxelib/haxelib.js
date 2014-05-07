@@ -3,7 +3,7 @@
         "use strict";
 
         if((!response || response.err)) {
-    	   return; 
+    	   return Spice.failed('haxelib'); 
         }
 
         Spice.add({

@@ -1,7 +1,13 @@
 (function(env) {
     "use strict";
 
+
     env.ddg_spice_movie = function(api_result) {
+
+        if (!api_result) {
+            return Spice.failed('movie');
+        }
+
         Spice.add({
             id: 'movie',
             name: 'Movies',
@@ -31,7 +37,10 @@
 		group: 'products_simple',
 		wrap_detail: false,
 		item_detail: false,
-                detail: Spice.movie.detail
+                detail: Spice.movie.detail,
+                options: {
+                    variant: 'poster'
+                }
             },
             relevancy: {
                 skip_words: [
@@ -54,12 +63,12 @@
 
 	// Make sure we hide the title and ratings.
 	// It looks nice to show only the poster of the movie.
-	Spice.getDOM('movie').find('.tile__body').addClass('is_hidden');
+	Spice.getDOM('movie').find('.tile__body').hide();
     };
 
     // Convert minutes to hr. min. format.
     // e.g. {{time 90}} will return 1 hr. 30 min.
-    Handlebars.registerHelper("time", function(runtime) {
+    Handlebars.registerHelper("movie_time", function(runtime) {
         var hours = '',
             minutes = runtime;
 

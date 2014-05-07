@@ -3,8 +3,8 @@
 
     env.ddg_spice_in_theaters = function(api_result) {
 
-        if(api_result.error) {
-            return;
+        if (!api_result || api_result.error) {
+            return Spice.failed('in_theaters');
         }
 
         Spice.add({
@@ -26,11 +26,14 @@
             },
             templates: {
                 item: 'basic_image_item',
-                detail: Spice.in_theaters.in_theaters_detail
+                detail: Spice.in_theaters.in_theaters_detail,
+                options: {
+                    variant: 'poster'
+                }
             }
         });
 
-        Spice.getDOM('in_theaters').find('.tile__body').addClass('is_hidden');
+        Spice.getDOM('in_theaters').find('.tile__body').addClass('is-hidden');
     }
 
     // Convert minutes to hr. min. format.
