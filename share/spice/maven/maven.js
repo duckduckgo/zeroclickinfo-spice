@@ -3,7 +3,7 @@ function ddg_spice_maven(api_result) {
 
     if (api_result.responseHeader.status
         || api_result.response.numFound == 0) {
-        return;
+        return Spice.failed('maven');
     }
     
     Spice.add({

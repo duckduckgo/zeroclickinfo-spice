@@ -3,7 +3,7 @@ function ddg_spice_book(api_result) {
 
     // Return if no book is returned 
     if (!api_result || api_result.books.length == 0) {
-	return;
+	return Spice.failed('book');
     }
 
     // Get the query without the trigger words.
@@ -43,7 +43,7 @@ function ddg_spice_book(api_result) {
 
     // Exit immediately if we didn't find a relevant item.
     if (!data) {
-	return;
+        return Spice.failed('book');
     }
 
     // If the item that we got doesn't have the critic_reviews array,
