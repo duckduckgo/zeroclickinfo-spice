@@ -8,13 +8,18 @@
             return Spice.failed('movie');
         }
 
+	// Get original query.
+        var script = $('[src*="/js/spice/movie/"]')[0],
+            source = $(script).attr("src"),
+            query = source.match(/movie\/([^\/]+)/)[1];
+
         Spice.add({
             id: 'movie',
             name: 'Movies',
             data: api_result.movies,
             meta: {
                 sourceName: 'Rotten Tomatoes',
-                sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
+                sourceUrl: 'https://www.rottentomatoes.com/search/?search=' + query,
                 itemType: 'Movies'
             },
             normalize: function(item) {
