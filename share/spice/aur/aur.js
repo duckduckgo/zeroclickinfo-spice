@@ -2,7 +2,7 @@ function ddg_spice_aur(response) {
     "use strict";
 
     if (response.type === 'error' || !response.results || response.results.length === 0) {
-        return;
+        return Spice.failed('aur');
     }
 
     var query = DDG.get_query().replace(/(aur|archlinux package|arch package|arch linux package)/, "");

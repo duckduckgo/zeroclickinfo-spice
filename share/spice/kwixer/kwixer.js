@@ -4,7 +4,7 @@
     env.ddg_spice_kwixer = function(api_result) {
         
         if(!api_result || !api_result.length === 0) {
-            return;
+            return Spice.failed('kwixer');
         }
 
         var skip_re = new RegExp([
@@ -71,7 +71,7 @@
         }
 
         if (finalArray.length === 0) {
-            return;
+            return Spice.failed('kwixer');
         }
 
         Spice.add({
@@ -93,9 +93,10 @@
             templates: {
                 item: 'basic_image_item',
                 detail: Spice.kwixer.kwixer_detail,
-		options: {
-		    rating: false
-		}
+                options: {
+                    rating: false,
+                    variant: 'poster'
+                }
             }
         });
     };

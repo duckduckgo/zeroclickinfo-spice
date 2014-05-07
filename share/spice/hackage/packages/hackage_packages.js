@@ -45,7 +45,7 @@
     env.ddg_spice_hackage_package_details = function(api_result) {
 
 	if(!api_result || !api_result.packageDescription) {
-	    return;
+	    return Spice.failed('hackage');
 	}
 	
 	var name = api_result.packageDescription.package.pkgName;

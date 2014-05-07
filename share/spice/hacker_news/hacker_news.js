@@ -8,7 +8,7 @@
             sourceUrl = 'https://hn.algolia.com/#!/story/forever/0/' + query;
 
         if(!api_result || !api_result.hits || api_result.hits.length === 0) {
-            return;
+            return Spice.failed('hacker_news');
         }
 
         Spice.add({
