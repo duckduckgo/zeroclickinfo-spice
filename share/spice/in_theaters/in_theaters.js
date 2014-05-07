@@ -19,14 +19,25 @@
                 itemType: 'Movies'
             },
             normalize: function(item) {
+		var position;
+		if(item.ratings.critics_rating === "Fresh" || item.ratings.critics_rating === "Certified Fresh") {
+		    position = "-256px -144px";
+		} else if(item.ratings.critics_rating === "Rotten") {
+		    position = "-272px -144px"; 
+		}
                 return { 
                     rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
-                    image: item.posters.detailed
+                    image: item.posters.detailed,
+		    icon_url: DDG.get_asset_path('in_theaters','icons-v2.png'),
+		    icon_image: position,
+		    icon_class: position ? 'tomato--icon' : ""
                 };
             },
             templates: {
-                item: 'basic_image_item',
-                detail: Spice.in_theaters.in_theaters_detail,
+		group: 'products_simple',
+                wrap_detail: false,
+		item_detail: false,
+                detail: Spice.in_theaters.detail,
                 options: {
                     variant: 'poster'
                 }
