@@ -2,7 +2,7 @@ function ddg_spice_steam_db(api_result) {
     "use strict";
 
     if(!api_result || !api_result.success) {
-	return;
+	return Spice.failed('steam_db');
     }
 
     // Get the original query.
@@ -21,7 +21,7 @@ function ddg_spice_steam_db(api_result) {
     }
 
     if(results.length === 0) {
-	return;
+        return Spice.failed('steam_db');
     }
 
     // This displays the Spice instant answer.

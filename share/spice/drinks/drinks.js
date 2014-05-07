@@ -2,7 +2,7 @@ function ddg_spice_drinks(api_result) {
     "use strict";
 
     if(!api_result || api_result.length === 0 || !api_result[0].name) {
-        return;
+        return Spice.failed('drinks');
     }
 
     api_result[0].isArray = $.isArray(api_result[0].ingredients);

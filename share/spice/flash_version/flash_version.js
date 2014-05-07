@@ -4,7 +4,7 @@
     env.ddg_spice_flash_version = function() {
 
 	if(!FlashDetect) {
-	    return;
+	    return Spice.failed('flash_version');
 	}
 
 	// Display the plugin.

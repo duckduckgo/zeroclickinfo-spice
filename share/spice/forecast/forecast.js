@@ -5,7 +5,7 @@ function ddg_spice_forecast(r) {
   
   // Exit if we've got a bad forecast
   if(!r || !r.hourly || !r.hourly.data || !r.daily || !r.daily.data || !r.flags['ddg-location']) {
-    return;
+    return Spice.failed('forecast');
   }
 
   // Get the query.
@@ -26,7 +26,7 @@ function ddg_spice_forecast(r) {
   // Exit if it's not the current location that we're looking for,
   // not the area code, e.g., 07871, and if it's not relevant.
   if(!current_location && !(/\d/).test(query) && !relevant_location) {
-    return;
+    return Spice.failed('forecast');
   }
   
   // Set up some stuff we'll need

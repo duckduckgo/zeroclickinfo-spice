@@ -3,8 +3,8 @@
 
     env.ddg_spice_in_theaters = function(api_result) {
 
-        if(api_result.error) {
-            return;
+        if (!api_result || api_result.error) {
+            return Spice.failed('in_theaters');
         }
 
         Spice.add({

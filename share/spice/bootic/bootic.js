@@ -3,7 +3,7 @@
 
     env.ddg_spice_bootic = function(api_result) {
         if ($.isEmptyObject(api_result.products)) {
-            return;
+            return Spice.failed('bootic');
         }
 
         var query = api_result.input_query ? 
