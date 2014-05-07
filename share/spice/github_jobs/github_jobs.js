@@ -4,7 +4,7 @@
     env.ddg_spice_github_jobs = function(api_result) {
 
 	if (api_result.length == 0) {
-	    return;
+	    return Spice.failed('github_jobs');
 	}
 
 	var jobs = api_result;

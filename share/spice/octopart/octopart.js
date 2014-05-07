@@ -1,11 +1,9 @@
 function ddg_spice_octopart (api_result) {
     "use strict";
 
-    console.log(api_result);
-
-    // if(!api_result || !api_result.results || api_result.results.length === 0) {
-    //     return;
-    // }
+    if(!api_result || !api_result.results || api_result.results.length === 0) {
+        return Spice.failed('octopart');
+    }
 
     // var results = [],
     //     isRelevant,

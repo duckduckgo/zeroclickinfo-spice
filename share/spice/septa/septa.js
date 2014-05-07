@@ -5,7 +5,7 @@ function ddg_spice_septa(api_result) {
             !api_result[0].orig_line ||
             !api_result[0].orig_departure_time ||
             !api_result[0].orig_delay) {
-        return;
+        return Spice.failed('septa');
     }
 
     var script  = $("[src*='js/spice/septa/']")[0];
