@@ -13,7 +13,7 @@ function ddg_spice_gravatar (api_result) {
 
     // Check for errors.
     if(!api_result || !api_result.entry || api_result.entry.length === 0) {
-        return;
+        return Spice.failed('gravatar');
     }
 
     // Get the name of the user (if available).

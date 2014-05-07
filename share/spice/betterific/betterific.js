@@ -14,13 +14,15 @@
             kind = kinds[i];
 
             if (!api_result[kind] || !api_result[kind][kind]) {
-                return;
+                return Spice.failed('betterific');
             }
             
             s += api_result[kind][kind].length;
         }
         
-        if (s == 0) return;
+        if (s == 0) {
+            return Spice.failed('betterific');
+        }
         
         // Since we show 1 entity by default, subtract 1 here.
         api_result.cnt_more = s - 1;
@@ -31,7 +33,9 @@
             
             if ((obj_length = api_result[kind][kind].length) > 0) {
                 for (var j=obj_length; j>0; j--) {
-                    if (!api_result[kind][kind][j-1].id) return;
+                    if (!api_result[kind][kind][j-1].id) {
+                        return Spice.failed('betterific');
+                    }
                 }
             }
         }

@@ -3,7 +3,7 @@ function ddg_spice_amazon(api_result) {
 
     if (!api_result || !api_result.results ||
 	!api_result.results.length || api_result.results.length == 0) {
-	return; // Spice.failed('amazon');
+	return Spice.failed('amazon');
     }
 
     var items = api_result.results;

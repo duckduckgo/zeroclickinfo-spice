@@ -2,7 +2,7 @@ function ddg_spice_imdb(api_result) {
     "use strict";
 
     if (!api_result.api_result == 'True') {
-        return;
+        return Spice.failed("imdb");
     }
 
     Spice.add({

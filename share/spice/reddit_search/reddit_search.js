@@ -3,7 +3,7 @@
         "use strict";
 
         if(!api_result || !api_result.data || !api_result.data.children || api_result.data.children.length === 0) {
-            return;
+            return Spice.failed('reddit');
         }
 
         // Check if we have search results. If we do, remove items with over_18 set to true.
@@ -20,7 +20,7 @@
 
         // Check if we still have results after filtering.
         if(results.length === 0) {
-            return;
+            return Spice.failed('reddit');
         }
         
         var query = DDG.get_query();
