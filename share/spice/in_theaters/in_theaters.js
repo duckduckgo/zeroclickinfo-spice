@@ -26,11 +26,14 @@
             },
             templates: {
                 item: 'basic_image_item',
-                detail: Spice.in_theaters.in_theaters_detail
+                detail: Spice.in_theaters.in_theaters_detail,
+                options: {
+                    variant: 'poster'
+                }
             }
         });
 
-        Spice.getDOM('in_theaters').find('.tile__body').addClass('is_hidden');
+        Spice.getDOM('in_theaters').find('.tile__body').addClass('is-hidden');
     }
 
     // Convert minutes to hr. min. format.

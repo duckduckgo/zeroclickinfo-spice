@@ -1,22 +1,18 @@
-.zci--kwixer.tile--basic-image .tile__body {
-    padding: 0.8em 1em;
-}
-
-.zci--kwixer .tile--basic-image.tile--c {
+.tile--kwixer  {
     width: 12em;
 }
 
-.zci--kwixer .tile--basic-image .tile__media {
+.tile--kwixer .tile__media {
     height: 17.1em;
 }
 
-.zci--kwixer .tile--basic-image .tile__media__img {
+.tile--kwixer .tile__media__img {
     min-width: 100%;
     height: 100%;
     margin-top: 0;
 }
 
-.zci--kwixer .tile--basic-image .tile__title {
+.tile--kwixer .tile__title {
     height: 2.5em;
 }
 

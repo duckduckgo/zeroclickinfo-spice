@@ -93,9 +93,10 @@
             templates: {
                 item: 'basic_image_item',
                 detail: Spice.kwixer.kwixer_detail,
-		options: {
-		    rating: false
-		}
+                options: {
+                    rating: false,
+                    variant: 'poster'
+                }
             }
         });
     };

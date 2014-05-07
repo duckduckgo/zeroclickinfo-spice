@@ -1,26 +1,4 @@
-.zci--bbc.tile--basic-image .tile__body {
-    padding: 0.8em 1em;
-}
-
-.zci--bbc .tile--basic-image.tile--c {
-    width: 20em;
-}
-
-.zci--bbc .tile--basic-image.tile--c.has-tiles--grid  {
-    width: 12em;
-}
-
-.zci--bbc .tile--basic-image .tile__media {
-    height: 11.1em;
-}
-
-.zci--bbc .tile--basic-image .tile__media__img {
-    min-width: 100%;
-    height: 100%;
-    margin-top: 0;
-}
-
-.zci--bbc .tile--basic-image .tile__title {
+.tile--bbc .tile__title {
     height: 2.5em;
 }
 
