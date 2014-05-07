@@ -5,7 +5,7 @@
   <div class="twitter--misc">
     <div>{{name}}</div>
       <div class="twitter--more">
-        <span class="twitter--user">@{{user}}</span>
+        <span class="twitter--user"><a href="https://twitter.com/{{user}}">@{{user}}</a></span>
     {{#if location}}
         <span class="zcm__sep"></span>
         {{location}}
@@ -17,5 +17,7 @@
   </div>
 </div> 
 {{#if description}}
-  <div class="twitter--description">{{description}}</div>
+  {{#twitter_findLinks description entities.description}}
+    <div class="twitter--description">{{{twitter_makeLinks this}}}</div>
+  {{/twitter_findLinks}}
 {{/if}}
