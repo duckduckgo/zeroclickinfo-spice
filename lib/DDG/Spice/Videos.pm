@@ -14,7 +14,10 @@ attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
 
 spice to => 'https://127.0.0.1/v.js?q=$1&n=20&callback={{callback}}';
 
-triggers any => 
+# 2014.05.07 (caine): moving to startend until
+# we are invariably required to do entity extraction
+# 'batman video games' shouldn't trigger this module
+triggers startend => 
     'video', 
     'videos', 
     'youtube',  
