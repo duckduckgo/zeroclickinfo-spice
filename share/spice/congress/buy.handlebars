@@ -1,0 +1,20 @@
+    {{#if term_end}}
+        {{congress_get_date term_end}}
+    {{/if}}
+ 	<br>
+     {{#if phone}}
+       Phone: {{phone}}
+    {{/if}}
+
+     <br>
+     {{#if contact_form}}
+        <a class="congress_link" href="{{contact_form}}">Contact Form</a>
+     {{/if}}
+     <br>
+    {{#if twitter_id}}
+        <a class="congress_link" href="https://www.twitter.com/{{twitter_id}}">@{{twitter_id}}</a>{{#if facebook_id}},{{/if}}
+    {{/if}}
+
+    {{#if facebook_id}}
+        <a class="congress_link" href="https://www.facebook.com/{{facebook_id}}">Facebook</a>
+    {{/if}}
