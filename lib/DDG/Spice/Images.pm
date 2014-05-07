@@ -6,6 +6,11 @@ use String::Trim;
 
 spice to => 'https://127.0.0.1/i.js?q=$1&o=json&cb={{callback}}';
 
+my %skip = map { $_ => 0 } (
+    'google image',
+    'google images',
+);
+
 # Order matters for strip_qr.
 my @any = (
     'images',
@@ -43,14 +48,15 @@ triggers startend =>
     ;
 
 handle query_lc => sub {
-
     my $query = $_;
+
+    return if exists( $skip{$query} );
 
     $query =~ s/\s*$strip_qr//;
     $query = trim $query;
 
-#    warn $strip_qr;
-#    warn $query;
+    #warn $strip_qr;
+    #warn $query;
 
     return $query;
     return;
