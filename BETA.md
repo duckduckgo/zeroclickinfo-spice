@@ -65,6 +65,7 @@ These have been converted and are in good shape.
 - `ruby_gems`
 - `septa` needs visual redesign
 - `songkick_artists`
+- `sound_cloud`
 - `stopwatch`
 - `urban_dictionary`
 - `xkcd_display`
@@ -90,7 +91,6 @@ This is a great place to start helping!
 - `open_snp`
 - `plos`
 - `rhymes` visual tweaks - style after `dictionary_definition` (text detail template)
-- `sound_cloud` tab events
 - `thesaurus` needs to be styled after dictionary (text detail template)
 - `twitter` needs more api data from backend
 
