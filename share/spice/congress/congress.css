@@ -2,35 +2,20 @@
     color: #888;
 }
 
-.zci--congress .tile--basic-image .tile__media {
-    height: 14em;
+.zci--congress .tile--pr{
+	width: 10em;
+	height: 17em;
 }
 
-.zci--congress .tile--basic-image .tile__media__img {
-    margin-top: 0em;
+.zci--congress .tile--pr .tile__body{
+	height: 4em;
 }
 
-.zci--congress .tile--basic-image .tile__media__img {
-    min-width: 0;
+.zci--congress .has-tiles--grid .tile--pr{
+	width: 10em;
+	height: 17em;
 }
 
-.zci--congress .tile--basic-image .tile__title {
-    text-align: center;
-    font-size: 1.4em;
-    font-weight: 400;
-    height: 2.5em;
-}
-
-.zci--congress .tile {
-    width: 11.4em;
-    height: 18.2em;
-}
-
-.zci--congress .has-tiles--grid .tile {
-    width: 11.4em;
-}
-
-.zci--congress .tile--basic-image .tile__body {
-    padding: .3em 1em;
-
+.zci--congress .tile__media--pr .tile__media__img {
+	max-height: 125%;
 }
