@@ -40,14 +40,13 @@
                 url: "https://www.govtrack.us/congress/members/" + item.govtrack_id,
                 img: image,
                 img_m: image,
-                image: image,
-                price: (item.district ? "District: "+item.district : ''),            
-                heading: name + (item.district ? "<br> District: "+item.district : ''),
+                image: image,            
+                heading: name,
                 title: name
             };
         },
             templates: {
-                group: 'products_simple',
+                group: 'products',
                 options: {
                     buy: Spice.congress.buy,
                     rating: false
