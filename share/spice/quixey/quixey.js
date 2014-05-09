@@ -196,7 +196,8 @@ env.ddg_spice_quixey = function(api_result) {
 
         templates: {
             options: {
-                buy: Spice.quixey.buy
+                buy: Spice.quixey.buy,
+                variant: 'narrow'
             }
         }
 
