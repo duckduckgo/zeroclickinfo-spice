@@ -63,7 +63,7 @@ env.ddg_spice_quixey = function(api_result) {
 
     // pre-sort results array based on exact matches
     // helps with super ambigous queries like 'Facebook'
-    if (q && api_result && api_result.results && api_result.results.length) {
+    if (api_result && api_result.results && api_result.results.length) {
 	var qLower = DDG.get_query().toLowerCase(),
 	exactMatch,
 	boosted = $.map(api_result.results, function( app, i ) {
@@ -86,6 +86,8 @@ env.ddg_spice_quixey = function(api_result) {
 	for (var i=boosted.length-1,app; app=boosted[i]; i--) {
 	    api_result.results.unshift(app);
 	}
+    } else {
+	return Spice.failed('apps');
     }
 
     Spice.add({
