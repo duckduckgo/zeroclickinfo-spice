@@ -36,13 +36,29 @@
             var name = (item.title ? item.title + '. ' : '') 
                         + (item.first_name ? item.first_name + ' ' : '') 
                         + (item.last_name ? item.last_name : '');
+
+            var party;
+
+            switch(item.party){
+                case "D":
+                    party = "Democrat";
+                    break;
+                case "R":
+                    party = "Republican";
+                    break;
+                case "I":
+                    party = "Independent";
+                    break     
+            }
+
             return {
                 url: "https://www.govtrack.us/congress/members/" + item.govtrack_id,
                 img: image,
                 img_m: image,
                 image: image,            
                 heading: name,
-                title: name
+                title: name,
+                party: party
             };
         },
             templates: {
