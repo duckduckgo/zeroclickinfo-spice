@@ -1,21 +1,12 @@
-.zci--congress .congress_link {
-    color: #888;
-}
-
-.zci--congress .tile--pr{
+.tile--congress{
 	width: 10em;
 	height: 17em;
 }
 
-.zci--congress .tile--pr .tile__body{
-	height: 4em;
-}
-
-.zci--congress .has-tiles--grid .tile--pr{
-	width: 10em;
-	height: 17em;
-}
-
-.zci--congress .tile__media--pr .tile__media__img {
+.tile--congress .tile__media--pr .tile__media__img {
 	max-height: 125%;
+}
+
+.tile--congress .tile__body {
+	height:5em;
 }
