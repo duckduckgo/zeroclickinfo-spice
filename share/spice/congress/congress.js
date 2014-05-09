@@ -65,7 +65,8 @@
                 group: 'products',
                 options: {
                     buy: Spice.congress.buy,
-                    rating: false
+                    rating: false,
+                    variant: 'narrow'
                 }
             }
         });
