@@ -26,9 +26,9 @@ triggers startend =>
 
 my %skip = map { $_ => 0 } (
     'calendar',
-    'authy remove account'
-    'www'
-    'yt'
+    'authy remove account',
+    'www',
+    'yt',
     '18+'
 );
 
