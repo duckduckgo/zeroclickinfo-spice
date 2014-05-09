@@ -24,8 +24,16 @@ triggers startend =>
 #    'vimeo',
     ;
 
+my %skip = map { $_ => 0 } (
+    'calendar',
+    'authy remove account'
+    'www'
+    'yt'
+    '18+'
+);
+
 handle remainder => sub {
-    return $_ if $_;
+    return $_ if $_ && !exists $skip{lc $_};
     return;
 };
 
