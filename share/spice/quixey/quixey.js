@@ -6,51 +6,89 @@ env.ddg_spice_quixey = function(api_result) {
 
     var q = api_result.q.replace(/\s/g, '+');
 
-    var category_regexp = new RegExp([
-            "action",
-            "adventure",
-            "arcade",
-            "board",
-            "business",
-            "casino",
-            // "calculator",
-            "design",
-            "developer tools",
-            "dice",
-            "education",
-            "educational",
-            "entertainment",
-            "family",
-            "finance",
-            "fitness",
-            "graphics and design",
-            "graphics",
-            "health and fitness",
-            "health",
-            "kids",
-            "lifestyle",
-            "map",
-            "medical",
-            "music",
-            "navigation",
-            "networking",
-            "news",
-            "photography",
-            "productivity",
-            "puzzle",
-            "racing",
-            "role playing",
-            "simulation",
-            "social networking",
-            "social",
-            "sports",
-            "strategy",
-            "travel",
-            "trivia",
-            "utilities",
-            "video",
-            "weather"
-        ].join("|"), "i");
+
+    var categories = [
+        "action",
+        "adventure",
+        "arcade",
+        "board",
+        "business",
+        "casino",
+        // "calculator",
+        "design",
+        "developer tools",
+        "dice",
+        "education",
+        "educational",
+        "entertainment",
+        "family",
+        "finance",
+        "fitness",
+        "graphics and design",
+        "graphics",
+        "health and fitness",
+        "health",
+        "kids",
+        "lifestyle",
+        "map",
+        "medical",
+        "music",
+        "navigation",
+        "networking",
+        "news",
+        "photography",
+        "productivity",
+        "puzzle",
+        "racing",
+        "role playing",
+        "simulation",
+        "social networking",
+        "social",
+        "sports",
+        "strategy",
+        "travel",
+        "trivia",
+        "utilities",
+        "video",
+        "weather"
+    ],
+
+    // force startend to prevent categories
+    // from doing silly stuff on queries like
+    // 'yahoo news digest'
+    category_alt_start = categories.join('|^'),
+    category_alt_end = categories.join('$|'),
+    category_trigger_regexp = new RegExp('^'+category_alt_start+'|'+category_alt_end+'$', 'i'),
+    category_match_regexp = new RegExp(categories.join('|'), 'i');
+
+    // pre-sort results array based on exact matches
+    // helps with super ambigous queries like 'Facebook'
+    if (api_result && api_result.results && api_result.results.length) {
+	var qLower = DDG.get_query().toLowerCase(),
+	exactMatch,
+	boosted = $.map(api_result.results, function( app, i ) {
+	    // app name or developer exact matches
+	    // only allow one exactMatch since it's
+	    // going to be rank 0.
+	    if (!exactMatch && app.name && app.name.toLowerCase() === qLower) {
+		exactMatch = app;
+	    } else if (app.developer && app.developer.name && app.developer.name.toLowerCase() === qLower) {
+		return app;
+	    }
+	});
+
+	if (exactMatch) {
+	    boosted.unshift(exactMatch);
+	}
+	//console.log('boosted results: %o', boosted);
+
+	// unzip
+	for (var i=boosted.length-1,app; app=boosted[i]; i--) {
+	    api_result.results.unshift(app);
+	}
+    } else {
+	return Spice.failed('apps');
+    }
 
     Spice.add({
         id: 'apps',
@@ -110,7 +148,7 @@ env.ddg_spice_quixey = function(api_result) {
         },
 
         relevancy: {
-            type: DDG.get_query().match(category_regexp) ? "category" : "primary",
+            type: DDG.get_query().match(category_trigger_regexp) ? "category" : "primary",
 
             skip_words: [
                 "android",
@@ -151,13 +189,12 @@ env.ddg_spice_quixey = function(api_result) {
                 { required: 'icon_url' },
                 { key: 'short_desc' },
                 { key: 'name' },
-                { key: 'custom.features.category', match: category_regexp, strict:false }    // strict means this key has to contain a category phrase or we reject
+                { key: 'custom.features.category', match: category_match_regexp, strict:false }    // strict means this key has to contain a category phrase or we reject
             ],
 
             primary: [
                 { required: 'icon_url' }, // would like to add  alt: 'platforms.0.icon_url'
-                { key: 'name' },
-                { key: 'short_desc', strict: false }
+                { key: 'name', strict: false },
             ],
 
             // field for de-duplication
