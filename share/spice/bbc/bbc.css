@@ -1,5 +1,6 @@
 .tile--bbc .tile__title {
-    height: 2.5em;
+    height: 1.4em;
+    font-size: 1.4em;
 }
 
 .tile--bbc .tile__source,
