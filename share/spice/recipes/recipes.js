@@ -136,7 +136,7 @@ function ddg_spice_recipes(res) {
         normalize: normalize,
 
         sort_fields: {rating: function(a,b){
-            return (a.rating < b.rating);
+            return (a.rating > b.rating) ? -1 : 1;
         }},
         sort_default: 'rating',
 
