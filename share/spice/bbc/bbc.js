@@ -53,21 +53,27 @@
                 itemType: 'Programmes'
             },
             normalize: function(item) {
+                var subtitle = item.programme.display_titles.subtitle;
                 return {
                     title: item.programme.display_titles.title,
+                    heading: item.programme.display_titles.title + (subtitle ? ' - ' + subtitle : ''),
+                    description: item.programme.short_synopsis,
+                    abstract: item.programme.short_synopsis,
                     ratingText: time(item),
                     image: image(item, false),
-                    big_image: image(item, true),
+                    img: image(item, true),
                     rating: "Unrated",
-                    duration: duration(item),
-                    programme_url: programme_url(item)
+                    brand: 'Run Time: '+duration(item),
+                    url: programme_url(item)
                 };
             },
             templates: {
-                item: 'basic_image_item',
-                detail: Spice.bbc.detail,
+                group: 'products_simple',
                 options: {
-                    variant: "video"
+                    variant: "video",
+                    buy: Spice.bbc.buy,
+                    brandAndPrice: false,
+                    rating: false
                 }
             }
         });
@@ -91,7 +97,7 @@
         return standard_time(start) + " - " + standard_time(end);
     }
 
-    //Find the duration of a programme and return it
+    // Find the duration of a programme and return it
     function duration(item) {
         var pluralise = function(n) {
             return n > 1 ? "s" : "";
@@ -126,21 +132,4 @@
         var size = big ? (is_mobile ? "304x171" : "512x288") : "224x126"; // note: they accept any 16:9 size
         return "http://ichef.bbci.co.uk/images/ic/"+size+"/" + (item.programme.image ? item.programme.image.pid :  "legacy/episode/"+item.programme.pid) + ".jpg";
     }
-
-    // Check if original air date is before today
-    Handlebars.registerHelper("checkAirDate", function(options) {
-        var d = new Date(this.programme.first_broadcast_date),
-            now = new Date();
-
-        return (d < now) ? options.fn(this) : false;
-    });
-
-    // Find the programme's initial broadcast date/time and return it
-    Handlebars.registerHelper("initial_broadcast", function() {
-        var aired = DDG.getDateFromString(this.programme.first_broadcast_date),
-            days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-            months = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
-
-        return days[aired.getDay()] + ", " + months[aired.getMonth()] + " " + aired.getDate() + ", " + aired.getFullYear();
-    });
 }(this));
