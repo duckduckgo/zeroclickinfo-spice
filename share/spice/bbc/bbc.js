@@ -46,6 +46,7 @@
             id: 'bbc',
             name: 'BBC Shows',
             data: programmes,
+            signal: 'high',
             meta: {
                 sourceName: 'BBC',
                 sourceUrl: 'http://www.bbc.co.uk',
