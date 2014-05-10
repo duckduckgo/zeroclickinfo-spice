@@ -59,7 +59,7 @@
                     heading: item.programme.display_titles.title + (subtitle ? ' - ' + subtitle : ''),
                     description: item.programme.short_synopsis,
                     abstract: item.programme.short_synopsis,
-                    ratingText: time(item),
+                    ratingText: start_end(item),
                     image: image(item, false),
                     img: image(item, true),
                     rating: "Unrated",
@@ -78,23 +78,21 @@
             }
         });
     };
-
+    // Format a given time
+    function format_time(time) {
+        var hour = time.getHours() % 12,
+            ampm = hour < 12 ? "AM" : "PM";
+        if(hour == 0) {
+            hour = 12;
+        }
+        var min = ((time.getMinutes() > 9) ? time.getMinutes() : "0" + time.getMinutes());
+        return hour + ":" + min + (time.getHours() > 12 ? "PM" : "AM");
+    }
     // Find the start and end of a programme and format appropriately
-    function time(item) {
+    function start_end(item) {
         var start = new Date(item.start),
             end = new Date(item.end);
-
-        function standard_time(time) {
-            var hour = time.getHours() % 12,
-                ampm = hour < 12 ? "AM" : "PM";
-            if(hour == 0) {
-                hour = 12;
-            }
-            var min = ((time.getMinutes() > 9) ? time.getMinutes() : "0" + time.getMinutes());
-            return hour + ":" + min + (time.getHours() > 12 ? "PM" : "AM");
-        }
-
-        return standard_time(start) + " - " + standard_time(end);
+        return format_time(start) + " - " + format_time(end);
     }
 
     // Find the duration of a programme and return it
