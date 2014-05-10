@@ -17,65 +17,48 @@
                 sourceName: 'CouponMountain',
                 sourceUrl: 'http://www.couponmountain.com/search.php?searchtext='+ api_result.keyword
             },
-            normalize: function(o){
+            normalize: function(item){
                 return {
-                    image: o.iconUrl,
-                    img: o.iconUrl,
-                    title: o.desc,
-                    heading: o.desc,
-                    ratingText: o.merName
+                    image: item.iconUrl,
+                    img: item.iconUrl,
+                    title: item.name,
+                    heading: item.desc,
+                    ratingText: item.merName,
+                    abstract: getExpiry(item.expire)
                 }
             },
             template_group: 'products_simple',
             templates: {
                 options: {
                     buy: Spice.coupon_mountain.buy,
-                    brandAndPrice: false,
-                    rating: false
+                    variant: 'narrow'
                 }
-            }
-
-            // sort_fields: {
-            //     merName: function(a,b) {
-            //         return a.merName > b.merName;
-            //     }
-            // }
+            },
+            sort_fields: {
+                merName: function(a,b) {
+                    return (a.merName < b.merName) ? -1 : 1;
+                }
+            },
+            sort_default: 'merName'
         });
-
-        // Manually trigger highlight for single result
-        // if (api_result.count === 1) {
-        //     highlight_code();
-        // }
-
-        // // highlight coupon code text
-        // function highlight_code () {
-        //     var coupon_code = $('.zci--coupon_mountain input.tag');
-        //     coupon_code.click(function() {
-        //         coupon_code.focus().select();
-        //     });
-        //     coupon_code.click();
-        // }
     };
 
-    Spice.registerHelper('check_expiry', function(string, options) {
+    function getExpiry (dateString) {
 
-        // 3333-03-03 mean coupon has no expiry date
-        if (string && string != '3333-03-03'){
-            return options.fn(this);
-        } else {
-            return;
+        // 3333-03-03 means coupon has no expiry date
+        if (!dateString || dateString === '3333-03-03'){
+            return null;
         }
-    });
 
-    Spice.registerHelper('dateString', function(string) {
-        var date = DDG.getDateFromString(string),
-            months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
+        var months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'],
+            date = DDG.getDateFromString(dateString);
 
-        return 'Expires ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
-    });
+        return 'Expires: ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
 
-    Spice.registerHelper('stripExpiry', function(string) {
-        return string.replace(/(offer|good through|expires|ends|valid \w+) .+$/i, '');
-    });
+    };
+
+    // function stripExpiry (string) {
+    //     return string.replace(/(offer|good through|expires|ends|valid \w+) .+$/i, '');
+    // };
 
 })(this);
