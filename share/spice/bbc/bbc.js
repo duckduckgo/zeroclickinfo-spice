@@ -78,6 +78,7 @@
             }
         });
     };
+    
     // Format a given time
     function format_time(time) {
         var hour = time.getHours() % 12,
@@ -88,6 +89,7 @@
         var min = ((time.getMinutes() > 9) ? time.getMinutes() : "0" + time.getMinutes());
         return hour + ":" + min + (time.getHours() > 12 ? "PM" : "AM");
     }
+
     // Find the start and end of a programme and format appropriately
     function start_end(item) {
         var start = new Date(item.start),
