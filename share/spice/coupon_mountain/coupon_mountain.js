@@ -1,7 +1,6 @@
 (function(env){
     'use strict';
 
-
     env.ddg_spice_coupon_mountain = function(api_result) {
         if (api_result.count < 1) {
             return Spice.failed('coupon_mountain');
@@ -22,7 +21,7 @@
                     image: item.iconUrl,
                     img: item.iconUrl,
                     title: item.name,
-                    heading: item.desc,
+                    heading: stripExpiry(item.desc),
                     ratingText: item.merName,
                     abstract: getExpiry(item.expire)
                 }
@@ -31,7 +30,6 @@
             templates: {
                 options: {
                     buy: Spice.coupon_mountain.buy,
-                    variant: 'narrow'
                 }
             },
             sort_fields: {
@@ -54,11 +52,10 @@
             date = DDG.getDateFromString(dateString);
 
         return 'Expires: ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
-
     };
 
-    // function stripExpiry (string) {
-    //     return string.replace(/(offer|good through|expires|ends|valid \w+) .+$/i, '');
-    // };
+    function stripExpiry (string) {
+        return string.replace(/ (hurry, )?(offer|good through|expires|ends|valid \w+) .+$/i, '');
+    };
 
 })(this);
