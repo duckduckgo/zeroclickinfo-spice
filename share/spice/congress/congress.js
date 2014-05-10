@@ -41,7 +41,7 @@
 
             switch(item.party){
                 case "D":
-                    party = "Democrat";
+                    party = "Democratic";
                     break;
                 case "R":
                     party = "Republican";
