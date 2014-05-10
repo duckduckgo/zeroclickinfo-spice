@@ -135,13 +135,10 @@ function ddg_spice_recipes(res) {
 
         normalize: normalize,
 
-        sort: {
-            rating: function(a,b) {
-                return (a.rating > b.rating) ? -1 : 1;
-            },
-        },
-
-        default_sort: 'rating',
+        sort_fields: {rating: function(a,b){
+            return (a.rating < b.rating);
+        }},
+        sort_default: 'rating',
 
         /*
         relevancy: {
