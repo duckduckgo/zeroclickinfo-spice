@@ -15,23 +15,7 @@
             fulldate = new Date(date),
             date_round = 1000 * 60 * 60 * 24,
             inPast = +fulldate < Math.floor(+now / date_round)*date_round,
-            header_date,
-            header_service_type,
-            re = /today|tomorrow|yesterday|tonight|last/,
-            match;
-
-        if (re.test(query)){
-            match = query.match(re)[0];
-            header_date = match.charAt(0).toUpperCase() + match.slice(1);
-            
-            re = /\b(night|evening)\b/
-            if (re.test(query)){
-                match = query.match(re)[0];
-                header_date += " " + match.charAt(0).toUpperCase() + match.slice(1);
-            }
-        } else {
-            header_date = "Today";
-        }
+            service_type = api_result.schedule.service.type == "radio" ? "Radio" : "TV";
 
         for (var i=0; i<broadcasts.length; i++) {
             var end = new Date(broadcasts[i].end);
@@ -39,8 +23,6 @@
                 programmes.push(broadcasts[i]);
             }
         }
-
-        header_service_type = api_result.schedule.service.type == "radio" ? "Radio" : "TV";
 
         Spice.add({
             id: 'bbc',
@@ -50,7 +32,7 @@
             meta: {
                 sourceName: 'BBC',
                 sourceUrl: 'http://www.bbc.co.uk',
-                itemType: 'Programmes'
+                itemType: service_type + ' Programmes'
             },
             normalize: function(item) {
                 var subtitle = item.programme.display_titles.subtitle;
@@ -78,7 +60,7 @@
             }
         });
     };
-    
+
     // Format a given time
     function format_time(time) {
         var hour = time.getHours() % 12,
