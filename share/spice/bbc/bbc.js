@@ -56,7 +56,8 @@
                 return {
                     title: item.programme.display_titles.title,
                     ratingText: time(item),
-                    image: image(item),
+                    image: image(item, false),
+                    big_image: image(item, true),
                     rating: "Unrated",
                     duration: duration(item),
                     programme_url: programme_url(item)
@@ -121,8 +122,9 @@
 
 
     // Find the programme image and return it
-    function image(item) {
-        return "http://ichef.bbci.co.uk/images/ic/272x153/" + (item.programme.image ? item.programme.image.pid :  "legacy/episode/"+item.programme.pid) + ".jpg";
+    function image(item, big) {
+        var size = big ? (is_mobile ? "304x171" : "512x288") : "224x126"; // note: they accept any 16:9 size
+        return "http://ichef.bbci.co.uk/images/ic/"+size+"/" + (item.programme.image ? item.programme.image.pid :  "legacy/episode/"+item.programme.pid) + ".jpg";
     }
 
     // Check if original air date is before today
