@@ -14,9 +14,10 @@
         if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0) {
             return Spice.failed('video_games');
         }
-        var skip_words = ["video", "game", "games", "giantbomb"];
-        var games = api_result.results;
-        var query = api_result.query;
+        var skip_words = ["video", "game", "games", "giantbomb"],
+            games = api_result.results,
+            query = api_result.query;
+            
         Spice.add({
             id: "video_games",
             name: "Video Games",
@@ -64,9 +65,9 @@
 
     // Find the release date for a game
     function release_date(game) {
-        var release = game.original_release_date.split(" ")[0];
-        var parts = release.split("-");
-        var date = new Date(parts[0], parts[1] - 1, parts[2]);
+        var release = game.original_release_date.split(" ")[0],
+            parts = release.split("-"),
+            date = new Date(parts[0], parts[1] - 1, parts[2]);
         return date_info.day[date.getDay()] + " " + DDG.getOrdinal(date.getDate()) + " " + date_info.month[date.getMonth()] + " " + date.getFullYear();
     };
 })(this);
