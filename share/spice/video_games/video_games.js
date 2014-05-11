@@ -1,8 +1,8 @@
-function ddg_spice_game_info(api_result) {
+function ddg_spice_video_games(api_result) {
     "use strict";
 
     if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0) {
-        return Spice.failed('game_info');
+        return Spice.failed('video_games');
     }
     var ignore = ["video", "game", "games", "giantbomb"];
     var games = api_result.results;
@@ -26,13 +26,13 @@ function ddg_spice_game_info(api_result) {
     Spice.add({
         data                     : api_result,
         sourceUrl               : "http://www.giantbomb.com/search/?q="+encodeURI(query),
-        id               : "game_info",
+        id               : "video_games",
         sourceName              : "GiantBomb",
         view: "Tiles",
         templates         : {
             items                : games,
-            item: Spice.game_info.game_info,
-            detail: Spice.game_info.game_info_details,
+            item: Spice.video_games.video_game,
+            detail: Spice.video_games.video_game_detail,
             // gets called in the event of a single result
             single_item_handler  : function(obj) {
                 var data = obj.data.results[0];

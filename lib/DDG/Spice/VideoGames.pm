@@ -1,9 +1,9 @@
-package DDG::Spice::GameInfo;
+package DDG::Spice::VideoGames;
 
 use DDG::Spice;
 primary_example_queries "homesick video game";
 description "See information about a video game";
-name "GameInfo";
+name "VideoGames";
 icon_url "/i/www.giantbomb.ico";
 source "GiantBomb";
 topics "gaming";

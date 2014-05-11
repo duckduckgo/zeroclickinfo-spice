@@ -68,6 +68,7 @@ These have been converted and are in good shape.
 - `sound_cloud`
 - `stopwatch`
 - `urban_dictionary`
+- `video_games`
 - `xkcd_display`
 
 ## In Process
@@ -94,7 +95,6 @@ This is a great place to start helping!
 - `thesaurus` needs to be styled after dictionary (text detail template)
 - `twitter` needs more api data from backend
 
-
 ## Needs work
 
 These IAs need some thought, more design work, or reconfiguration to bring them
@@ -120,7 +120,6 @@ We will likely want to work with you in their conversion.
 - `canistreamit`
 - `editor`
 - `espn`
-- `game_info`
 - `hayoo`
 - `hq_temp`
 - `imdb`

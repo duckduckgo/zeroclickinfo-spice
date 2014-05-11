@@ -6,20 +6,20 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-    [qw( DDG::Spice::GameInfo )],
+    [qw( DDG::Spice::VideoGames )],
     'video game homesick' => test_spice(
-        '/js/spice/game_info/homesick',
+        '/js/spice/video_games/homesick',
         call_type => 'include',
-        caller => 'DDG::Spice::GameInfo',
+        caller => 'DDG::Spice::VideoGames',
     ),
     'unreal video games' => test_spice(
-        '/js/spice/game_info/unreal',
+        '/js/spice/video_games/unreal',
         call_type => 'include',
-        caller => 'DDG::Spice::GameInfo',
+        caller => 'DDG::Spice::VideoGames',
     ),
     'homesick video game' => test_spice(
-        '/js/spice/game_info/homesick',
-        caller    => 'DDG::Spice::GameInfo',
+        '/js/spice/video_games/homesick',
+        caller    => 'DDG::Spice::VideoGames',
     ),
 );
 

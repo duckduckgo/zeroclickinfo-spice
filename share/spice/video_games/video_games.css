@@ -1,17 +1,17 @@
-.zci--game_info .field {
+.zci--video_games .field {
 	color: gray;
 }
-.zci--game_info .header {
+.zci--video_games .header {
     font-size: 95%;
 }
-.zci--game_info .title {
+.zci--video_games .title {
 	padding-top: 3px;
 	display: inline-block;
 }
-.zci--game_info .name {
+.zci--video_games .name {
 	color: #444;
 }
-.zci--game_info .thumbnail {
+.zci--video_games .thumbnail {
 	height: 80px !important;
 	max-width: 98px;
 }
