@@ -5,21 +5,9 @@
         if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0) {
             return Spice.failed('video_games');
         }
-        var ignore = ["video", "game", "games", "giantbomb"];
+        var skip_words = ["video", "game", "games", "giantbomb"];
         var games = api_result.results;
         var query = api_result.query;
-        // filter irrelevant or incomplete games
-        games = $.grep(games, function(data, ind) {
-            return data.name != null && data.image !== null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
-        });
-        // sort them by the number of reviews, which is pretty much how 'controversial' they are
-        games = games.sort(function(a, b) {
-            return b.number_of_user_reviews - a.number_of_user_reviews;
-        });
-        // quit if there aren't any relevant games
-        if(games.length == 0) {
-            return;
-        }
         Spice.add({
             id: "video_games",
             name: "Video Games",
@@ -38,6 +26,17 @@
                     img: item.image.small_url,
                     image: item.image.small_url
                 }; 
+            },
+            relevancy: {
+                type: "primary",
+                skip_words: skip_words,
+                primary: [
+                    { required: "image.small_url" },
+                    { key: "deck" },
+                    { key: "name" },
+                    { key: "aliases" }
+                ],
+                dup: "name"
             },
             templates: {
                 group: "products_simple",
