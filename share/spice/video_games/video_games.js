@@ -34,7 +34,8 @@
                     heading: item.name + '(' + release_date(item) + ')',
                     abstract: item.deck,
                     img: item.image.small_url,
-                    image: item.image.small_url
+                    image: item.image.small_url,
+                    url: item.site_detail_url
                 }; 
             },
             relevancy: {
