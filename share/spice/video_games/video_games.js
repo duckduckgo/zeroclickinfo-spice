@@ -52,11 +52,8 @@
             }
         });
     }
-    /**
-     * release_date
-     *
-     * Find the release date for a game
-     */
+    
+    // Find the release date for a game
     function release_date(game) {
         var date_info = {
             month: [
