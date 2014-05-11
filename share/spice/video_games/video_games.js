@@ -14,7 +14,7 @@
         if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0) {
             return Spice.failed('video_games');
         }
-        var skip_words = ["video", "game", "games", "giantbomb"],
+        var skip_words = ["video game", "video games", "game", "games", "giantbomb"],
             games = api_result.results,
             query = api_result.query;
             
@@ -22,6 +22,7 @@
             id: "video_games",
             name: "Video Games",
             data: api_result.results,
+            signal: DDG.get_query().indexOf("video game") == -1 ? "low" : "high",
             meta: {
                 searchTerm: query,
                 itemType: "Video Games",
