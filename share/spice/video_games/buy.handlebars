@@ -1,8 +1,10 @@
 {{#if platforms}}
-    Available On:  
-    {{#each platforms}}
-        <a href="{{{site_detail_url}}}" class="btn">
-            {{name}}
-        </a>
-    {{/each}}
+    <span class="detail__callout">
+        Available On:  
+        {{#each platforms}}
+            <a href="{{{site_detail_url}}}" class="btn">
+                {{name}}
+            </a>
+        {{/each}}
+    </span>
 {{/if}}
