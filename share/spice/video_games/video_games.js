@@ -21,24 +21,32 @@
             return;
         }
         Spice.add({
-            data                     : api_result,
-            sourceUrl               : "http://www.giantbomb.com/search/?q="+encodeURI(query),
-            id               : "video_games",
-            sourceName              : "GiantBomb",
-            view: "Tiles",
-            templates         : {
-                items                : games,
-                item: Spice.video_games.video_game,
-                detail: Spice.video_games.video_game_detail,
-                // gets called in the event of a single result
-                single_item_handler  : function(obj) {
-                    var data = obj.data.results[0];
-                    // set the header
-                    obj.header1 = data.name + " (Game Info)";
-                    // set the image
-                    obj.image_url = data.image.icon_url;
-                    // set the source
-                    obj.sourceUrl = data.site_detail_url;
+            id: "video_games",
+            name: "Video Games",
+            data: api_result.results,
+            meta: {
+                searchTerm: query,
+                itemType: "Video Games",
+                sourceUrl: "http://www.giantbomb.com/search/?q="+encodeURI(query),
+                sourceName: "GiantBomb"
+            },
+            normalize: function(item) {
+                return {
+                    title: item.name,
+                    heading: item.name,
+                    abstract: item.deck,
+                    img: item.image.small_url,
+                    image: item.image.small_url
+                }; 
+            },
+            templates: {
+                group: "products_simple",
+                options: {
+                    buy: Spice.video_games.buy,
+                    brandAndPrice: false,
+                    rating: false,
+                    variant: "poster",
+                    moreAt: true
                 }
             }
         });
