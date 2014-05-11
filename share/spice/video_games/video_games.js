@@ -71,30 +71,4 @@
         var date = new Date(parts[0], parts[1] - 1, parts[2]);
         return date_info.day[date.getDay()] + " " + DDG.getOrdinal(date.getDate()) + " " + date_info.month[date.getMonth()] + " " + date.getFullYear();
     };
-
-    /** 
-     * age_rating
-     *
-     * Summarise the game's age rating
-     */
-    Handlebars.registerHelper("age_rating", function() {
-        var rating = "";
-        var ratings = this.original_game_rating;
-        // they are in the form PEGI: 3,...
-        for(var i = 0; i < ratings.length; i++) {
-            var parts = ratings[i].name.split(": ");
-            if(parts.length == 2) {
-                switch(parts[0]) {
-                    case "PEGI":
-                        rating = parts[1] + (rating.length > 0 ? " / "+rating : "");
-                        break;
-                    case "ESRB":
-                        rating = (rating.length > 0 ? rating+" / " : "") + parts[1];
-                        break;
-                    default:
-                }
-            }
-        }
-        return (rating.length == 0) ? "N/A" : rating;
-    });
 })(this);
