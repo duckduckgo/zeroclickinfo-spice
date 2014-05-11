@@ -31,7 +31,6 @@
             },
             normalize: function(item) {
                 return {
-                    title: item.name,
                     heading: item.name + '( Release Date: ' + release_date(item) + ')',
                     abstract: item.deck,
                     img: item.image.small_url,
@@ -54,12 +53,15 @@
             },
             templates: {
                 group: "products_simple",
+                wrap_detail: false,
+                item_detail: false,
                 options: {
                     buy: Spice.video_games.buy,
                     variant: "poster"
                 }
             }
         });
+        Spice.getDOM('video_games').find('.tile__body').addClass('is-hidden');
     }
 
     // Find the release date for a game
