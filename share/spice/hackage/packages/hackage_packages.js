@@ -51,7 +51,7 @@
 	var name = api_result.packageDescription.package.pkgName;
 	Spice.add({
 	    id: 'hackage',
-	    name: 'Haskell Packages',
+	    name: 'Software',
 	    data: api_result.packageDescription,
 	    meta: {
 		sourceName: 'Hackage',

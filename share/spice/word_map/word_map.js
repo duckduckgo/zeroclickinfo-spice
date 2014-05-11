@@ -8,7 +8,7 @@
 
         Spice.add({
             id: 'word_map',
-            name: 'Word Map',
+            name: 'Answer',
             data: api_result,
             meta: {
                 sourceUrl: 'http://levelpump.com/graph-dictionary.php?mailLink=' + encodeURIComponent(api_result.encrypt_entry) + '&from=ddg',

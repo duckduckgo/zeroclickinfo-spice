@@ -14,7 +14,7 @@
 		raw: FlashDetect.raw
 	    },
 	    id: 'flash_version',
-	    name: 'Flash Version',
+	    name: 'Software',
 	    meta: {
 		sourceName: 'Adobe',
 		sourceUrl: 'https://get.adobe.com/flashplayer/',

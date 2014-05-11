@@ -8,7 +8,7 @@
 
         Spice.add({
             id: "chuck_norris",
-            name: "Chuck Norris",
+            name: "Answer",
             data             : api_result.value,
             meta: {
                 sourceUrl       : 'http://www.icndb.com/the-jokes-2/',

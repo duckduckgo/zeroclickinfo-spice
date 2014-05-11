@@ -24,7 +24,7 @@ function ddg_spice_zipcode (api_result) {
         Spice.add({
 
             id: 'zipcode',
-            name: 'Zip Code',
+            name: 'Places',
             from: 'maps', // shouldn't have to do this, backend is sending maps signal, not zipcode
             data: api_result.places.place,
             view: 'Map',

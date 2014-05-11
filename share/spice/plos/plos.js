@@ -17,7 +17,7 @@
 
         Spice.add({
             id: "plos",
-            name: "PLOS",
+            name: "Science",
             data: api_result.response.docs,
             meta: {
                 itemType: "Papers",

@@ -14,7 +14,7 @@
 
         Spice.add({
             id: "reddit_sub_search",
-            name: "Reddit",
+            name: "Social",
             data: api_response.data,
             meta: {
                 itemType: api_response.data.display_name + " (SubReddit)",
