@@ -6,11 +6,7 @@ function ddg_spice_video_games(api_result) {
     }
     var ignore = ["video", "game", "games", "giantbomb"];
     var games = api_result.results;
-    var query = DDG.get_query();
-    $.each(ignore, function(ind, phrase) {
-        query = query.replace(phrase, "");
-    });
-    query = $.trim(query);
+    var query = api_result.query;
     // filter irrelevant or incomplete games
     games = $.grep(games, function(data, ind) {
         return data.name != null && data.image !== null && data.image.thumb_url != null && (DDG.isRelevant(data.name, ignore) || (data.aliases != null && DDG.isRelevant(data.aliases, ignore)));
