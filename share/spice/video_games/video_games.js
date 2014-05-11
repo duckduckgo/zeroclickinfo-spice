@@ -21,7 +21,7 @@
             normalize: function(item) {
                 return {
                     title: item.name,
-                    heading: item.name,
+                    heading: item.name + '(' + release_date(item) + ')',
                     abstract: item.deck,
                     img: item.image.small_url,
                     image: item.image.small_url
@@ -32,6 +32,8 @@
                 skip_words: skip_words,
                 primary: [
                     { required: "image.small_url" },
+                    { required: "original_release_date" },
+                    { required: "platforms" },
                     { key: "deck" },
                     { key: "name" },
                     { key: "aliases" }
@@ -55,7 +57,7 @@
      *
      * Find the release date for a game
      */
-    Handlebars.registerHelper("release_date", function() {
+    function release_date(game) {
         var date_info = {
             month: [
                 "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
@@ -64,24 +66,11 @@
                 "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
             ]
         };
-        var release = this.original_release_date.split(" ")[0];
+        var release = game.original_release_date.split(" ")[0];
         var parts = release.split("-");
         var date = new Date(parts[0], parts[1] - 1, parts[2]);
         return date_info.day[date.getDay()] + " " + DDG.getOrdinal(date.getDate()) + " " + date_info.month[date.getMonth()] + " " + date.getFullYear();
-    });
-    /** 
-     * platform_summary
-     *
-     * Summarise the platforms a game is available on
-     */
-    Handlebars.registerHelper("platform_summary", function(platforms, options) {
-        options.hash.sep = ", ";
-        options.hash.conj = " and ";
-        if(platforms.length > 4) {
-            platforms = [platforms[0], platforms[1], platforms[2], {name: (platforms.length - 3) + " more"}]
-        }
-        return Handlebars.helpers.concat(platforms, options);
-    });
+    };
 
     /** 
      * age_rating
