@@ -4,8 +4,7 @@ var quixey_image_domain = "d1z22zla46lb9g.cloudfront.net";
 // spice callback function
 env.ddg_spice_quixey = function(api_result) {
 
-    var q = api_result.q.replace(/\s/g, '+');
-
+    var qLower = api_result.q.toLowerCase();
 
     var categories = [
         "action",
@@ -59,13 +58,12 @@ env.ddg_spice_quixey = function(api_result) {
     category_alt_start = categories.join('|^'),
     category_alt_end = categories.join('$|'),
     category_trigger_regexp = new RegExp('^'+category_alt_start+'|'+category_alt_end+'$', 'i'),
-    category_match_regexp = new RegExp(categories.join('|'), 'i');
+    category_match_regexp = new RegExp(qLower.match(category_trigger_regexp), 'i');
 
     // pre-sort results array based on exact matches
     // helps with super ambigous queries like 'Facebook'
     if (api_result && api_result.results && api_result.results.length) {
-	var qLower = DDG.get_query().toLowerCase(),
-	exactMatch,
+	var exactMatch,
 	boosted = $.map(api_result.results, function( app, i ) {
 	    // app name or developer exact matches
 	    // only allow one exactMatch since it's
@@ -102,7 +100,7 @@ env.ddg_spice_quixey = function(api_result) {
             total: api_result.results.length,
             itemType: 'Apps',
             sourceName: 'Quixey',
-            sourceUrl: 'https://www.quixey.com/search?q=' + q,
+            sourceUrl: 'https://www.quixey.com/search?q=' + encodeURIComponent(qLower),
             sourceLogo: {
                 url: DDG.get_asset_path('quixey','quixey_logo.png'),
                 width: '45',
@@ -148,7 +146,7 @@ env.ddg_spice_quixey = function(api_result) {
         },
 
         relevancy: {
-            type: DDG.get_query().match(category_trigger_regexp) ? "category" : "primary",
+            type: qLower.match(category_trigger_regexp) ? "category" : "primary",
 
             skip_words: [
                 "android",
@@ -189,7 +187,7 @@ env.ddg_spice_quixey = function(api_result) {
                 { required: 'icon_url' },
                 { key: 'short_desc' },
                 { key: 'name' },
-                { key: 'custom.features.category', match: category_match_regexp, strict:false }    // strict means this key has to contain a category phrase or we reject
+                { key: 'custom.features.category', match: category_match_regexp, strict:false } // strict means this key has to contain a category phrase or we reject
             ],
 
             primary: [
