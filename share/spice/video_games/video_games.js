@@ -32,7 +32,7 @@
             normalize: function(item) {
                 return {
                     title: item.name,
-                    heading: item.name + '(' + release_date(item) + ')',
+                    heading: item.name + '( Release Date: ' + release_date(item) + ')',
                     abstract: item.deck,
                     img: item.image.small_url,
                     image: item.image.small_url,
