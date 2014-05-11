@@ -56,10 +56,7 @@
                 group: "products_simple",
                 options: {
                     buy: Spice.video_games.buy,
-                    brandAndPrice: false,
-                    rating: false,
-                    variant: "poster",
-                    moreAt: true
+                    variant: "poster"
                 }
             }
         });
