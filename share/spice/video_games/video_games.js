@@ -1,6 +1,15 @@
 (function(env) {
     "use strict";
     
+    var date_info = {
+        month: [
+            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+        ],
+        day: [
+            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+        ]
+    };
+
     env.ddg_spice_video_games = function(api_result) {
         if(!$.isPlainObject(api_result) || api_result.error !== "OK" || !$.isArray(api_result.results) || api_result.results.length === 0) {
             return Spice.failed('video_games');
@@ -52,17 +61,9 @@
             }
         });
     }
-    
+
     // Find the release date for a game
     function release_date(game) {
-        var date_info = {
-            month: [
-                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-            ],
-            day: [
-                "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-            ]
-        };
         var release = game.original_release_date.split(" ")[0];
         var parts = release.split("-");
         var date = new Date(parts[0], parts[1] - 1, parts[2]);
