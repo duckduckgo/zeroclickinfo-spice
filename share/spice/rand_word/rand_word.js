@@ -9,7 +9,7 @@
         Spice.add({
     	    id: "rand_word",
             data: api_result,
-            name: "Random Word",
+            name: "Answer",
             meta: {
                 sourceUrl: 'http://wordnik.com',
                 sourceName: 'Wordnik',

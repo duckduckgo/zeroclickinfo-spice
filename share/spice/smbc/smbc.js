@@ -7,6 +7,7 @@ function ddg_spice_smbc(api_result) {
 
     Spice.add({
         data             : api_result,
+        name: 'Comics',
         header1          : api_result.items[0].title + " (SMBC)",
         sourceUrl       : api_result.url,
         sourceName      : 'SMBC',

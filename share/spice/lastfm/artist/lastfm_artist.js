@@ -4,7 +4,7 @@
     env.ddg_spice_lastfm_artist_all = function(api_result) {
         Spice.add({
             id: 'lastfm_artist',
-            name: 'Last.fm',
+            name: 'Music',
             data: api_result.artist,
             signal: 'high',
             meta: {

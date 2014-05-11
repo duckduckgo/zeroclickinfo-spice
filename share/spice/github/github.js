@@ -20,7 +20,7 @@
 
         Spice.add({
             id: "github",
-            name: "GitHub",
+            name: "Software",
             data: results,
             meta: {
                 itemType: "Git Repositories",

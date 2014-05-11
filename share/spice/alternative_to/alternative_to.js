@@ -10,7 +10,7 @@
 
         Spice.add({
             id: 'alternative_to',
-            name: 'Alternative Software',
+            name: 'Software',
             data: api_result.Items,
             signal: 'high',
             meta: {

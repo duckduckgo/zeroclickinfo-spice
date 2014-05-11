@@ -8,7 +8,7 @@
 
         Spice.add({
             id: 'haxelib',
-            name: "Haxelib",
+            name: "Software",
             data: response.info,
             meta: {
                 sourceIconUrl   : 'http://haxe.org/img/haxe2/favicon.ico',

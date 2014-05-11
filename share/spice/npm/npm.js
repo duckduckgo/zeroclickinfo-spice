@@ -8,7 +8,7 @@
 
         Spice.add({
             id: "npm",
-            name: "NPM",
+            name: "Software",
             data: api_result,
             meta: {
                 sourceName: "npmjs.org",

@@ -17,7 +17,7 @@
 
         Spice.add({
             id: 'bootic',
-            name: 'Bootic',
+            name: 'Products',
             data: result,
             meta: {
                 sourceName: 'Bootic',
