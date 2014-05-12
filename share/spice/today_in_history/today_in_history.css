@@ -1,0 +1,25 @@
+.range {
+    color:black;
+    font-size:medium;
+    text-align: center;
+}
+
+.year {
+    color:red;
+    font-weight:bold;
+    padding-right:1cm;
+}
+
+.timevent {
+    padding-left:1cm;
+}
+
+.divider {
+    border-right: 2px solid gray;
+}
+
+.tableposition
+{
+    position:relative;
+    top:20px;
+}
