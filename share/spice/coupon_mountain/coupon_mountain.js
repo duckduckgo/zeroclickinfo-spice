@@ -39,7 +39,9 @@
                     return (a.merName < b.merName) ? -1 : 1;
                 }
             },
-            sort_default: 'merName'
+            sort_default: 'merName',
+            onItemSelected: highlightCode,
+            onShow: highlightCode //auto select the coupon code for a single-item result
         });
     };
 
@@ -58,6 +60,20 @@
 
     function stripExpiry (string) {
         return string.replace(/ (hurry, )?(offer|good through|expires|ends|valid \w+) .+$/i, '');
+    };
+
+    // Highlight coupon code text
+    function highlightCode () {
+
+        var couponCode = $('.zci--coupon_mountain input.tag');
+
+        if (couponCode) {
+            couponCode.click(function() {
+                couponCode.focus().select();
+             });
+        }
+ 
+        couponCode.click();
     };
 
 })(this);
