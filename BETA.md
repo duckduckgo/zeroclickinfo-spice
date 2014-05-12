@@ -168,4 +168,4 @@ You can test these on the new version of DuckPAN.
 - [alternative to google](https://next.duckduckgo.com/?q=alternative+to+google)
 - [duckduckgo apps](https://next.duckduckgo.com/?q=duckduckgo+apps)
 
-The new Spice documentation is a work in progress, and you can find it here: https://duck.co/duckduckhack
+The new Spice documentation is a work in progress, and you can find it here: https://duck.co/duckduckhack/spice_overview
