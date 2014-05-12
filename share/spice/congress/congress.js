@@ -10,10 +10,16 @@
         var state = api_result.results[0].state_name,
             chamber = api_result.results[0].chamber;
 
+        var itemType;    
         // sort by district for House members
         // TODO: Use sorting block
-        if(chamber == 'house')
+        if(chamber == 'house') {
             api_result.results = sortDistrict(api_result.results);
+            itemType =  'U.S. ' + DDG.capitalize(chamber) + ' Representatives from ' + state;
+        }
+        else{
+            itemType =  'U.S. ' + 'Senators from ' + state;
+        }
 
         Spice.add({
             id: 'congress',
@@ -22,21 +28,46 @@
             meta: {
                 sourceName: 'govtrack.us',
                 sourceUrl: "https://www.govtrack.us/congress/members/"+state,
-                itemType: 'U.S. ' + DDG.capitalize(chamber) + ' Congressmen',
-                secondaryText: state + " State"
+                itemType: itemType
             },
-	    normalize: function(item) {
-		return {
-		    url: "https://www.govtrack.us/congress/members/" + item.govtrack_id
-		};
-	    },
+        normalize: function(item) {
+            var image = "https://www.govtrack.us/data/photos/"+item.govtrack_id+"-200px.jpeg";
+
+            var name = (item.title ? item.title + '. ' : '') 
+                        + (item.first_name ? item.first_name + ' ' : '') 
+                        + (item.last_name ? item.last_name : '');
+
+            var party;
+
+            switch(item.party){
+                case "D":
+                    party = "Democratic";
+                    break;
+                case "R":
+                    party = "Republican";
+                    break;
+                case "I":
+                    party = "Independent";
+                    break     
+            }
+
+            return {
+                url: "https://www.govtrack.us/congress/members/" + item.govtrack_id,
+                img: image,
+                img_m: image,
+                image: image,            
+                heading: name,
+                title: name,
+                party: party
+            };
+        },
             templates: {
-                group: 'base',
-                detail: false,
-		info_detail: false,
+                group: 'products',
                 options: {
-                    content: Spice.congress.content
-		}
+                    buy: Spice.congress.buy,
+                    rating: false,
+                    variant: 'narrow'
+                }
             }
         });
    };
