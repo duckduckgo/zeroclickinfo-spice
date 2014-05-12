@@ -73,9 +73,10 @@
                 sourceUrl:  'http://words.bighugelabs.com/' + query,
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
                     content: Spice.thesaurus.content,
+		    title_content: Spice.thesaurus.title_content,
                     moreAt: true
                 }
             }
