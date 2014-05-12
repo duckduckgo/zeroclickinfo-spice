@@ -52,7 +52,7 @@ function ddg_spice_mass_on_time (api_result) {
     Spice.render({
 	id: 'mass',
 	data: results,
-	name: "Mass On Time",
+	name: "Parishes",
 	meta: {
 	    itemType: generate_header(details),
 	    sourceName: "Mass On Time",
