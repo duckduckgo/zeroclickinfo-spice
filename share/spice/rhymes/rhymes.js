@@ -24,18 +24,23 @@ function ddg_spice_rhymes (api_result) {
 	return;
     }
 
+    var title = DDG.capitalize(query.toLowerCase());
     Spice.add({
-	data       : { words: words, query: DDG.capitalize(query) },
-	id         : "rhymes",
-        name       : "Rhymes",
+	data: { 
+	    words: words, 
+	    query: title,
+	    title: "Rhymes with: " + title
+	},
+	id: "rhymes",
+        name: "Rhymes",
         meta: {
-            sourceUrl  : 'http://rhymebrain.com/en/What_rhymes_with_' +
+            sourceUrl: 'http://rhymebrain.com/en/What_rhymes_with_' +
                            encodeURIComponent(query) + '.html',
-            sourceName : 'RhymeBrain',
+            sourceName: 'RhymeBrain',
             sourceIcon: true
         },
-        templates  : {
-            group: 'base',
+        templates: {
+            group: 'text',
             options: {
                 content: Spice.rhymes.item,
 		moreAt: true
