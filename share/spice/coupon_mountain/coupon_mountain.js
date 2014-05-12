@@ -22,14 +22,16 @@
                     img: item.iconUrl,
                     title: item.name,
                     heading: stripExpiry(item.desc),
-                    ratingText: item.merName,
+                    price: item.merName,
                     abstract: getExpiry(item.expire)
                 }
             },
-            template_group: 'products_simple',
             templates: {
+                group: 'products',
                 options: {
                     buy: Spice.coupon_mountain.buy,
+                    brand: false,
+                    rating: false
                 }
             },
             sort_fields: {
