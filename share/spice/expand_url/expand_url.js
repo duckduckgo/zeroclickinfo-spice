@@ -15,7 +15,7 @@
         // Display the plug-in.
         Spice.add({
             id: "expand_url",
-            name: "Expand URL",
+            name: "Answer",
             data: api_response,
             meta: {
                 sourceUrl: "http://longurl.org/expand?url=" + query,

@@ -15,7 +15,7 @@
 
     Spice.add({
       id: "urban_dictionary",
-      name: "Urban Dictionary",
+      name: "Dictionary",
       data: response.list[0],
       meta: {
         sourceUrl: 'http://www.urbandictionary.com/define.php?term=' + word,

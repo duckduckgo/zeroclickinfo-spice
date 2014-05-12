@@ -28,7 +28,7 @@ function nrio (api_result) {
     // Display the spice plug-in.
     Spice.add({
         id: 'snow',
-        name: 'Is It Snowing?',
+        name: 'Answer',
 
         data: api_result,
 

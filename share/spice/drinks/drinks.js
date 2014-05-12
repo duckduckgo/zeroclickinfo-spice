@@ -10,7 +10,7 @@ function ddg_spice_drinks(api_result) {
     Spice.add({
         id: 'drinks',
         data: api_result[0],
-	name: "Drinks",
+	name: "Recipes",
 	meta: {
             sourceUrl: api_result[0].url,
             sourceName: 'Drink Project'

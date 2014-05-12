@@ -125,7 +125,7 @@ function ddg_spice_detect_lang (api_result) {
     Spice.add({
         id: 'detect_lang',
         data: { first: d0, second: d1 },
-        name: "Detected Language",
+        name: "Answer",
         meta: {
             sourceUrl       : "http://detectlanguage.com/",
             sourceName      : "Detect Language",

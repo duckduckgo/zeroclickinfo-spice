@@ -9,7 +9,7 @@
 
         Spice.add({
             id: 'automeme',
-            name: 'Automeme',
+            name: 'Answer',
             data: { meme: api_result[0] },
             meta: {
                 sourceName: 'Autome.me',

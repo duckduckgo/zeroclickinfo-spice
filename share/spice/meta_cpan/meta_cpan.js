@@ -14,7 +14,7 @@
 
         Spice.add({
             id: "meta_cpan",
-            name: "MetaCPAN",
+            name: "Software",
             data: api_result,
             meta: {
                 sourceName: "MetaCPAN",

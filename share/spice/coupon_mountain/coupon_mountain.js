@@ -9,7 +9,7 @@
 
         Spice.add({
             id: 'coupon_mountain',
-            name: 'Coupon Mountain',
+            name: 'Coupons',
             data: api_result.coupon,
             meta: {
                 searchTerm: api_result.keyword,

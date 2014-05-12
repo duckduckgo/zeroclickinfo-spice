@@ -44,7 +44,7 @@
 
         Spice.add({
             id: 'bbc',
-            name: 'BBC Shows',
+            name: 'TV',
             data: programmes,
             meta: {
                 sourceName: 'BBC',

@@ -38,7 +38,7 @@
 
         Spice.add({
             id: "reddit_search",
-            name: "Reddit",
+            name: "Social",
             data: results,
             meta: {
                 itemType: "posts",
