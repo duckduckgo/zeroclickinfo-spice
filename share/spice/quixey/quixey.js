@@ -4,6 +4,10 @@ var quixey_image_domain = "d1z22zla46lb9g.cloudfront.net";
 // spice callback function
 env.ddg_spice_quixey = function(api_result) {
 
+    if (!(api_result && api_result.results && api_result.results.length)) {
+        return Spice.failed('apps');
+    }
+
     var qLower = api_result.q.toLowerCase();
 
     var categories = [
@@ -60,34 +64,6 @@ env.ddg_spice_quixey = function(api_result) {
     category_trigger_regexp = new RegExp('^'+category_alt_start+'|'+category_alt_end+'$', 'i'),
     category_match_regexp = new RegExp(qLower.match(category_trigger_regexp), 'i');
 
-    // pre-sort results array based on exact matches
-    // helps with super ambigous queries like 'Facebook'
-    if (api_result && api_result.results && api_result.results.length) {
-	var exactMatch,
-	boosted = $.map(api_result.results, function( app, i ) {
-	    // app name or developer exact matches
-	    // only allow one exactMatch since it's
-	    // going to be rank 0.
-	    if (!exactMatch && app.name && app.name.toLowerCase() === qLower) {
-		exactMatch = app;
-	    } else if (app.developer && app.developer.name && app.developer.name.toLowerCase() === qLower) {
-		return app;
-	    }
-	});
-
-	if (exactMatch) {
-	    boosted.unshift(exactMatch);
-	}
-	//console.log('boosted results: %o', boosted);
-
-	// unzip
-	for (var i=boosted.length-1,app; app=boosted[i]; i--) {
-	    api_result.results.unshift(app);
-	}
-    } else {
-	return Spice.failed('apps');
-    }
-
     Spice.add({
         id: 'apps',
         name: 'Apps',
@@ -126,6 +102,12 @@ env.ddg_spice_quixey = function(api_result) {
 
             if (!screenshot)
                 return null;
+
+            if (item.name && item.name.toLowerCase() === qLower) {
+                item.exactMatch = true;
+            } else if (item.developer && item.developer.name && item.developer.name.toLowerCase() === qLower) {
+                item.boost = true;
+            }
 
             return {
                 'img':           icon_url,
