@@ -2,7 +2,9 @@
 
 This repository contains all the Spice instant answers. If you are developing a Spice instant answer you will need to fork this repository.
 
-**If you would like to contribute to DuckDuckHack, please start by reading the [DuckDuckHack Documentation](https://dukgo.com/duckduckhack/ddh-intro).**
+### Note
+
+If you're new here, we're actively converting the instant answers here to fit the [next version](https://next.duckduckgo.com/) of DuckDuckGo in a branch called [bttf](https://github.com/duckduckgo/zeroclickinfo-spice/tree/bttf). If you interested in helping out, a list of TODO's and further details are available [here](https://github.com/duckduckgo/zeroclickinfo-spice/blob/bttf/BETA.md).
 
 ------
 
