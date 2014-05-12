@@ -10,7 +10,7 @@
 
         Spice.add({
             id: 'is_it_up',
-            name: 'Domain status',
+            name: 'Answer',
             data: api_result,
             signal: 'high',
             meta: {

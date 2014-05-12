@@ -42,7 +42,7 @@
         
         Spice.add({
             id: "betterific",
-            name: "Betterific",
+            name: "Answer",
             data: api_result,
             meta: {
                 itemType: api_result.q + ' (Betterific)',

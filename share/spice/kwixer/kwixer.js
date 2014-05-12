@@ -76,7 +76,7 @@
 
         Spice.add({
             id: 'kwixer',
-            name: 'Movie Actors',
+            name: 'Movies',
             data: finalArray,
             meta: {
                 sourceName: 'Kwixer',

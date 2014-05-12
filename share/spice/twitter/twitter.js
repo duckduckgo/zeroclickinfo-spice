@@ -22,7 +22,7 @@ var ddg_spice_twitter = function(api_result) {
     Spice.add({
         id: 'twitter',
         data                     : api_result,
-        name: 'twitter',
+        name: 'Social',
 	signal: 'high',
 	meta: {
             sourceUrl               : "https://twitter.com/" + api_result.user,

@@ -19,7 +19,7 @@ function ddg_spice_xkcd_display(api_result) {
     Spice.add({
 		id: 'xkcd',
 		data: api_result,
-		name: 'XKCD',
+		name: 'Comics',
 		meta: {
             sourceUrl       : 'http://xkcd.com/' + api_result.num,
             sourceName      : 'xkcd',

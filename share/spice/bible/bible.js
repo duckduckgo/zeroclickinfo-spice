@@ -11,7 +11,7 @@
  
         Spice.add({
             id: 'bible',
-            name: 'Bible',
+            name: 'Answer',
             data: result,
             meta: {
                 sourceName: 'Bible.org',

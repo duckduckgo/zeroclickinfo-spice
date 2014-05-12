@@ -12,10 +12,10 @@ function ddg_spice_forvo (api_result) {
     // Display the Spice plug-in.
     Spice.add({
         data             : api_result,
-        header1          : "Pronunciations (Forvo)",
+        name             : "Pronunciation",
         sourceUrl       : "http://www.forvo.com/search/" + query,
         sourceName      : "Forvo",
-        id       : "forvo",
+        id              : "forvo",
         template_frame   : "list",
         templates : {
             items         : api_result.items, //list,

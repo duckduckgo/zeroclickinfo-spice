@@ -9,13 +9,12 @@ function ddg_spice_aur(response) {
 
     Spice.add({
         data             : response.results,
-        header1          : response.results[0].Name + " (AUR)",
+        // header1          : response.results[0].Name + " (AUR)",
         sourceUrl       : 'https://aur.archlinux.org/packages/?O=0&K=' + query,
         sourceName      : 'ArchLinux User Repository',
+        name: 'Software',
         id       : 'aur',
-        template_frame   : "list",
         templates : {
-            items: response.results,
             item: Spice.aur.aur // will use this also for a single item
         },
         

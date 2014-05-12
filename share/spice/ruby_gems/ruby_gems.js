@@ -14,7 +14,7 @@
         // Display the instant answer.
         Spice.add({
             id: "rubygems",
-            name: "RubyGems",
+            name: "Software",
             data: api_result,
             meta: {
                 sourceUrl: 'http://rubygems.org/search?utf8=%E2%9C%93&query=' + encodeURIComponent(query),

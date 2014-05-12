@@ -10,7 +10,7 @@
 
 	  Spice.add({
 	  	id: 'hayoo',
-	  	name: 'Hayoo',
+	  	name: 'Software',
 	  	data: results.functions[0],
 	  	meta: {
 	  		itmeType: query + ' (Hayoo!)',

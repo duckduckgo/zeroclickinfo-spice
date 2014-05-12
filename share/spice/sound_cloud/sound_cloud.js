@@ -220,7 +220,7 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
     env.ddg_spice_sound_cloud = function(api_result) {
         Spice.add({
             id: 'soundcloud',
-            name: 'SoundCloud',
+            name: 'Audio',
             data: api_result,
             meta: {
                 sourceName: 'SoundCloud',

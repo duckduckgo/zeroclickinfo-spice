@@ -8,7 +8,7 @@
 
         Spice.add({
             id: "expatistan",
-            name: "Expatistan",
+            name: "Answer",
             data: api_result,
             meta: {
                 sourceUrl: api_result.source_url,
