@@ -21,16 +21,15 @@ function ddg_spice_mass_on_time (api_result) {
 	  type = query_details.type.charAt(0).toUpperCase() + query_details.type.slice(1) + "s";
 	}
 
-	//Add the location string
-	return type + " near " + query_details.address.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ return p1+p2.toUpperCase(); });
+	return type;
     };
 
     //Parishes return different info than events, so a different template is in order for those
     var pick_item_template = function (query_details) {
 	if (query_details.type == "parish") {
-	  return "mass_on_time_church";
+	  return Spice.mass_on_time.parish;
 	} else {
-	  return "mass_on_time";
+	  return Spice.mass_on_time.events;
 	}
     };
 
@@ -51,22 +50,28 @@ function ddg_spice_mass_on_time (api_result) {
     if (results.length < 1) return;
 
     Spice.render({
-	data              : api_result,
-	header1           : generate_header(details),
-	source_name       : "Mass On Time",
-	spice_name        : 'mass_on_time',
-	source_url        : 'http://massontime.com/nearest/' + details.type +
-	  "/25?lat=" + details.location.lat + "&lng=" + details.location.lng,
-	template_frame   : 'list',
-	template_options : {
-            items: results,
-            show: 3,
-            max:  10,
-            template_item: pick_item_template(details)
+	id: 'mass',
+	data: results,
+	name: "Mass On Time",
+	meta: {
+	    itemType: generate_header(details),
+	    sourceName: "Mass On Time",
+	    sourceUrl: 'http://massontime.com/nearest/' + details.type +
+			       "/25?lat=" + details.location.lat + "&lng=" + details.location.lng
 	},
-	force_no_fold     : true,
-	force_big_header  : true,
-	force_favicon_url : 'http://massontime.com/favicon.ico'
+	normalize: function(item) {
+	    return {
+		title: item.churchname,
+		url: item.webaddress
+	    };
+	},
+	templates: {
+	    group: 'base',
+	    options: {
+		content: pick_item_template(details)
+	    },
+	    detail: false
+	}
     });
 }
 
