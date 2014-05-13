@@ -9,6 +9,10 @@ spice to => 'https://127.0.0.1/i.js?q=$1&o=json&cb={{callback}}';
 my %skip = map { $_ => 0 } (
     'google image',
     'google images',
+    'images images',
+    'image images',
+    'image image',
+    'image images',
 );
 
 # Order matters for strip_qr.
