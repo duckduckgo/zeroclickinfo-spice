@@ -1,24 +1,19 @@
-// load mapbox.js:
-nrj('/js/mapbox/mapbox-1.6.2.js', 1);
-nrc('/js/mapbox/mapbox-1.6.2.css', 1);
+DDG.require('maps',function(){
+    ddg_spice_zipcode = function(api_result) {
 
-function ddg_spice_zipcode (api_result) {
+        // Check errors.
+        if(!api_result || !api_result.places || !api_result.places.place || !api_result.places.place.length) {
+            return Spice.failed('maps'); // should be zipcode, but backend is sending maps signal right now
+        }
 
-    // Check errors.
-    if(!api_result || !api_result.places || !api_result.places.place || !api_result.places.place.length) {
-        return Spice.failed('maps'); // should be zipcode, but backend is sending maps signal right now
-    }
+        // Get the original query zipcode and country name
+        var script  = $("[src*='js/spice/zipcode']")[0],
+            source  = $(script).attr("src"),
+            matches = source.match(/\/([^\/]+)\/(\w+)$/),
+            searchZip = matches[1],
+            searchCountry = matches[2],
+            foundMatch = 0;
 
-    // Get the original query zipcode and country name
-    var script  = $("[src*='js/spice/zipcode']")[0],
-        source  = $(script).attr("src"),
-        matches = source.match(/\/([^\/]+)\/(\w+)$/),
-        searchZip = matches[1],
-        searchCountry = matches[2],
-        foundMatch = 0;
-
-    var spiceAdd = function() {
-        if (!window['L']) { return setTimeout(spiceAdd,100); }
 
         // Display the Spice plugin.
         Spice.add({
@@ -49,14 +44,12 @@ function ddg_spice_zipcode (api_result) {
                         name: zip,
                         address: [item.admin2,item.admin1].join(", "),
                         coordinates: item.centroid,
-//                        polygonPoints: polygon
+                        // polygonPoints: polygon
                     };
                 }
 
                 return null;
             }
         });
-    };
-
-    spiceAdd();
-};
+    }
+});
