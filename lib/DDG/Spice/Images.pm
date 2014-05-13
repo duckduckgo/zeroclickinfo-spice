@@ -11,6 +11,8 @@ my %skip = map { $_ => 0 } (
     'google images',
     'images images',
     'image images',
+    'image image',
+    'image images',
 );
 
 # Order matters for strip_qr.
