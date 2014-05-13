@@ -10,7 +10,7 @@ use DDG::Request;
 use DateTime;
 use DateTime::TimeZone;
 
-my $loc  = test_location("de");
+my $loc  = test_location("us");
 my $t = DateTime->now;
 $t->set_time_zone($loc->time_zone);
 my $day = $t->mday;
