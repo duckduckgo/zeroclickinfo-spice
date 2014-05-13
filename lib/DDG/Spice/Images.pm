@@ -52,7 +52,7 @@ handle query_lc => sub {
 
     return if exists( $skip{$query} );
 
-    $query =~ s/\s*$strip_qr//;
+    $query =~ s/\s*$strip_qr\b//;
     $query = trim $query;
 
     #warn $strip_qr;
