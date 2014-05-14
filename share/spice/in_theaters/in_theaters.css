@@ -25,50 +25,14 @@
     color: #999;
 }
 
-.detail.detail--in_theaters {
-    background-color: #e5e5e5;
-    border-color: #c7c7c7;
-}
-
-.detail__media.detail__media--in_theaters {
-    width: 30%;
-    margin-right: 1em;
-    text-align: center;
-}
-
-.tileview--grid .detail__media--in_theaters {
-    text-align: center;
-}
-
-.detail__body--in_theaters .detail__title {
-    padding: 0;
-}
-
-.detail__body--in_theaters .detail__source {
-    padding-bottom: 1em;
-}
-
-.detail__body--in_theaters .detail__source .stars {
-    margin-right: 0;
-}
-
-.detail__body--in_theaters .detail__separator {
-    padding: 0 5px;
-    color: #c5c5c5;
-}
-
-.detail__body--in_theaters .detail__links__btn {
-    margin-top: 1em;
-}
-
-.detail__media--movie .detail__media__img {
-    height: 90%;
-}
-
 .zci--in_theaters .tomato--icon {
     width: 16px;
     height: 16px;
     display: inline-block;
     vertical-align: text-bottom;
     background: transparent no-repeat;
+}
+
+.zci--in_theaters .btn.btn--primary {
+    margin-top: 1em;
 }
