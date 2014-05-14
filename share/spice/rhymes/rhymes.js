@@ -28,8 +28,7 @@ function ddg_spice_rhymes (api_result) {
     Spice.add({
 	data: { 
 	    words: words, 
-	    query: title,
-	    title: "Rhymes with: " + title
+	    query: title
 	},
 	id: "rhymes",
         name: "Rhymes",
