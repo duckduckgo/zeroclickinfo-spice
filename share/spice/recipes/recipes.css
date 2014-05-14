@@ -186,8 +186,23 @@
 
 .zci__main--detail .detail__media--recipe,
 .zci__main--detail .detail__body--recipe {
-    height: 16em;
-    line-height: 16em;
+    height: 10em;
+    line-height: 10em;
+}
+
+.is-mobile .zci__main--detail .detail__media--recipe,
+.is-mobile .zci__main--detail .detail__body--recipe {
+    height: 14em;
+    line-height 14em;
+}
+
+.zci__main--detail .detail__media--recipe {
+    right: auto;
+    width: 10em;
+}
+
+.zci__main--detail .detail__flavors {
+    display: none;
 }
 
 /* landscape/super-small mode */
