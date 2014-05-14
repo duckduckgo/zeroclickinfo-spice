@@ -39,6 +39,7 @@
             },
             templates: {
 		group: 'products_simple',
+		detail: 'products_item_detail',
                 options: {
                     variant: 'poster',
 		    subtitle_content: Spice.in_theaters.subtitle_content,
