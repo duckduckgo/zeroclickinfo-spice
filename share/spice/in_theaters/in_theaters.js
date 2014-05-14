@@ -9,7 +9,7 @@
 
         Spice.add({
             id: 'in_theaters',
-            name: 'Now Showing',
+            name: 'Movies',
             data: api_result.movies,
 	    signal: 'high',
             meta: {
