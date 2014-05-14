@@ -23,7 +23,8 @@
                     title: item.name,
                     heading: stripExpiry(item.desc),
                     price: item.merName,
-                    abstract: getExpiry(item.expire)
+                    abstract: getExpiry(item.expire),
+                    url: item.displayURL || item.merUrl
                 }
             },
             templates: {
@@ -72,8 +73,6 @@
                 couponCode.focus().select();
              });
         }
- 
-        couponCode.click();
     };
 
 })(this);
