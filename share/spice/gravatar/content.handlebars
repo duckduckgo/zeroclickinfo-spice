@@ -1,10 +1,10 @@
 <div>
     {{#with entry.[0]}}
-            {{#getEmail emails}}
+            {{#Gravatar_getEmail emails}}
                 <div>
                     Email: <a href="mailto:{{value}}">{{value}}</a>
                 </div>
-            {{/getEmail}}
+            {{/Gravatar_getEmail}}
             {{#if aboutMe}}
                 <div>
                     About: {{{condense aboutMe maxlen="60"}}}
@@ -19,12 +19,12 @@
                 <div>
                     {{#each accounts}}
                         <a href="{{url}}" title="{{display}}" class="more-links-anchor">
-                            <img class="more-links" src="https://icons.duckduckgo.com/i/{{checkDomain domain}}.ico">
+                            <img class="more-links" src="https://icons.duckduckgo.com/i/{{Gravatar_checkDomain domain}}.ico">
                         </a>
                     {{/each}}
                 </div>
             {{/if}}
-            {{#fallbackInfo emails aboutMe currentLocation accounts this}}
+            {{#Gravatar_fallbackInfo emails aboutMe currentLocation accounts this}}
                 <div>
                     Link to this profile: <a href="{{profileUrl}}" title="{{profileUrl}}">{{profileUrl}}</a>
                 </div>
@@ -36,6 +36,6 @@
                     <a href="http://en.gravatar.com/{{requestHash}}.vcf">VCF</a> ·
                     <a href="http://en.gravatar.com/{{requestHash}}.qr">QR</a>
                 </div>
-            {{/fallbackInfo}}
+            {{/Gravatar_fallbackInfo}}
     {{/with}}
 </div>

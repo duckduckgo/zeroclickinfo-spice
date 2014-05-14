@@ -33,7 +33,7 @@ function ddg_spice_leak_db(api_result){
     });
 }
 
-Handlebars.registerHelper('list', function(hash, skip, options) {
+Handlebars.registerHelper('LeakDB_list', function(hash, skip, options) {
     "use strict";
 
     delete hash[skip];

@@ -40,7 +40,7 @@
 	});
     };
 
-    Handlebars.registerHelper("formatDate", function(created_at) {
+    Handlebars.registerHelper("GitHubJobs_formatDate", function(created_at) {
 	var date = new Date(created_at);
 	var months = ["January", "February", "March", "April", "May", "June", "July", 
 		      "August", "September", "October", "November", "December"];

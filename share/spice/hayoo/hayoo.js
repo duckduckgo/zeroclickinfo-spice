@@ -24,7 +24,7 @@
 	}
 }(this));
 
-Handlebars.registerHelper("strip_anchor", function(text) {
+Handlebars.registerHelper("Hayoo_strip_anchor", function(text) {
   "use strict";
 
   return text.replace(/<\/?(a|code|strong)[^>]*>/g, "");
