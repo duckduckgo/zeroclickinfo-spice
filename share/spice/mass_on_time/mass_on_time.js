@@ -80,7 +80,7 @@ function ddg_spice_mass_on_time (api_result) {
    */
 
 //Event types are returns as integers. This converts them to their string reps.
-Handlebars.registerHelper( "format_eventtypeid", function (eventtypeid) {
+Handlebars.registerHelper( "MassOnTime_format_eventtypeid", function (eventtypeid) {
         var event_type_name = {
 	  1 : "Adoration",
 	  2 : "Confession",
@@ -93,11 +93,11 @@ Handlebars.registerHelper( "format_eventtypeid", function (eventtypeid) {
 	return event_type_name[eventtypeid] || "Service";
 });
 
-Handlebars.registerHelper( "backup_link", function (webaddress, parish_id) {
+Handlebars.registerHelper( "MassOnTime_backup_link", function (webaddress, parish_id) {
         return "http://massontime.com/parish/" + parish_id;
 });
 
-Handlebars.registerHelper( "format_parish_address", function (address, city, province) {
+Handlebars.registerHelper( "MassOnTime_format_parish_address", function (address, city, province) {
 	if (address && city && province) {
           return address + ", " + city + ", " + province;
         } else if (address && city) {

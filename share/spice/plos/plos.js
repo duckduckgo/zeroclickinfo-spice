@@ -42,7 +42,7 @@
 }(this));
 
 // Convert full publication date to year only.
-Handlebars.registerHelper('year', function(pubdate) {
+Handlebars.registerHelper('PLOS_year', function(pubdate) {
     "use strict";
 
     var year = pubdate.substr(0, 4);

@@ -59,7 +59,7 @@ function ddg_spice_gravatar (api_result) {
 }
 
 // Find the primary e-mail.
-Handlebars.registerHelper("getEmail", function(emails, options) {
+Handlebars.registerHelper("Gravatar_getEmail", function(emails, options) {
     "use strict";
 
     // Check if the variable exists.
@@ -76,7 +76,7 @@ Handlebars.registerHelper("getEmail", function(emails, options) {
 });
 
 // If we don't have any information to display, just show this.
-Handlebars.registerHelper("fallbackInfo", function(emails, aboutMe, currentLocation, accounts, context, options) {
+Handlebars.registerHelper("Gravatar_fallbackInfo", function(emails, aboutMe, currentLocation, accounts, context, options) {
     "use strict";
 
     if(!emails && !aboutMe && !currentLocation && !accounts) {
@@ -85,7 +85,7 @@ Handlebars.registerHelper("fallbackInfo", function(emails, aboutMe, currentLocat
 });
 
 // This is for favicons that don't work.
-Handlebars.registerHelper("checkDomain", function(domain) {
+Handlebars.registerHelper("Gravatar_checkDomain", function(domain) {
     "use strict";
 
     if(domain === "plus.google.com") {
