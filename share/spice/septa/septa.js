@@ -33,7 +33,7 @@ function ddg_spice_septa(api_result) {
     });
 };
 
-Handlebars.registerHelper ('delay', function(delay) {
+Handlebars.registerHelper ('SEPTA_delay', function(delay) {
     "use strict";
 
     if (delay == "On time") {

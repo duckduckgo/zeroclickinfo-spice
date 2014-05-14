@@ -37,7 +37,7 @@ function ddg_spice_xkcd_display(api_result) {
 }
 
 //gets the number for the previous comic
-Handlebars.registerHelper("previousNum", function(num, options) {
+Handlebars.registerHelper("xkcd_previousNum", function(num, options) {
     "use strict";
 
     if(num > 1) {
@@ -46,7 +46,7 @@ Handlebars.registerHelper("previousNum", function(num, options) {
 });
 
 //gets the number for the next comic 
-Handlebars.registerHelper("nextNum", function(num, options) {
+Handlebars.registerHelper("xkcd_nextNum", function(num, options) {
     "use strict";
 
     return options.fn({num: num + 1});
