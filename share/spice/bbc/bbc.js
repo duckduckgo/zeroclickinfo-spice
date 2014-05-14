@@ -125,7 +125,7 @@
     }
 
     // Check if original air date is before today
-    Handlebars.registerHelper("checkAirDate", function(options) {
+    Handlebars.registerHelper("BBC_checkAirDate", function(options) {
         var d = new Date(this.programme.first_broadcast_date),
             now = new Date();
 
@@ -133,7 +133,7 @@
     });
 
     // Find the programme's initial broadcast date/time and return it
-    Handlebars.registerHelper("initial_broadcast", function() {
+    Handlebars.registerHelper("BBC_initial_broadcast", function() {
         var aired = DDG.getDateFromString(this.programme.first_broadcast_date),
             days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
             months = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];

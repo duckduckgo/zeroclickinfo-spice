@@ -57,7 +57,7 @@
         // }
     };
 
-    Spice.registerHelper('check_expiry', function(string, options) {
+    Spice.registerHelper('CouponMountain_check_expiry', function(string, options) {
 
         // 3333-03-03 mean coupon has no expiry date
         if (string && string != '3333-03-03'){
@@ -67,14 +67,14 @@
         }
     });
 
-    Spice.registerHelper('dateString', function(string) {
+    Spice.registerHelper('CouponMountain_dateString', function(string) {
         var date = DDG.getDateFromString(string),
             months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
 
         return 'Expires ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
     });
 
-    Spice.registerHelper('stripExpiry', function(string) {
+    Spice.registerHelper('CouponMountain_stripExpiry', function(string) {
         return string.replace(/(offer|good through|expires|ends|valid \w+) .+$/i, '');
     });
 

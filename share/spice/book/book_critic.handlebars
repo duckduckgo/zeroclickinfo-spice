@@ -1,4 +1,4 @@
 {{#if critic_review}}
   <span>&ldquo;{{#stripHTML critic_review.snippet}}{{condense this maxlen="300"}}{{/stripHTML}}&rdquo;</span>
-  <div id="critic-link"> - <a href={{critic_review.review_link}}>{{critic_review.source}}</a> {{#if critic_review.review_date}}({{prettyDate critic_review.review_date}}) {{/if}}</div>
+  <div id="critic-link"> - <a href={{critic_review.review_link}}>{{critic_review.source}}</a> {{#if critic_review.review_date}}({{Book_prettyDate critic_review.review_date}}) {{/if}}</div>
 {{/if}}

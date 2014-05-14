@@ -277,7 +277,7 @@ ddg_spice_dictionary_audio = ddg_spice_dictionary.audio.bind(ddg_spice_dictionar
 
 
 // We should shorten the part of speech before displaying the definition.
-Spice.registerHelper("formatPartOfSpeech", function(text) {
+Spice.registerHelper("Dictionary_formatPartOfSpeech", function(text) {
     "use strict";
 
     return ddg_spice_dictionary.parts_of_speech[text] || text;
@@ -285,7 +285,7 @@ Spice.registerHelper("formatPartOfSpeech", function(text) {
 
 // Make sure we replace xref to an anchor tag.
 // <xref> comes from the Wordnik API.
-Spice.registerHelper("formatDefinition", function(text) {
+Spice.registerHelper("Dictionary_formatDefinition", function(text) {
     "use strict";
 
     // Replace the xref tag with an anchor tag.

@@ -58,7 +58,7 @@
 }(this));
 
 // Make sure we display only three items.
-Handlebars.registerHelper("last_pushed", function(pushed) {
+Handlebars.registerHelper("GitHub_last_pushed", function(pushed) {
     "use strict";
 
     var last_pushed = Math.floor((new Date() - new Date(pushed)) / (1000*60*60*24));

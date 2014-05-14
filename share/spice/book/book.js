@@ -105,7 +105,7 @@ function ddg_spice_book(api_result) {
     });
 }
 
-Handlebars.registerHelper("prettyDate", function(date) {
+Handlebars.registerHelper("Book_prettyDate", function(date) {
     "use strict";
 
     if(date) {
