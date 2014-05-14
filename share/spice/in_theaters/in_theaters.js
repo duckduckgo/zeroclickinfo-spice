@@ -30,16 +30,20 @@
                     image: item.posters.detailed,
 		    icon_url: DDG.get_asset_path('in_theaters','icons-v2.png'),
 		    icon_image: position,
-		    icon_class: position ? 'tomato--icon' : ""
+		    icon_class: position ? 'tomato--icon' : "",
+		    abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
+		    heading: item.title,
+		    img_m: item.posters.detailed,
+		    url: item.links.alternate
                 };
             },
             templates: {
 		group: 'products_simple',
-                wrap_detail: false,
-		item_detail: false,
-                detail: Spice.in_theaters.detail,
                 options: {
-                    variant: 'poster'
+                    variant: 'poster',
+		    subtitle_content: Spice.in_theaters.subtitle_content,
+		    rating: true,
+		    buy: Spice.in_theaters.buy
                 }
             }
         });
