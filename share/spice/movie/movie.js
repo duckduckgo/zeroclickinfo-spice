@@ -47,7 +47,6 @@
                 options: {
                     variant: 'poster',
 		    subtitle_content: Spice.movie.subtitle_content,
-		    rating: true,
 		    buy: Spice.movie.buy
                 }
             },
