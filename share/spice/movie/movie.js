@@ -36,7 +36,7 @@
 		    icon_url: DDG.get_asset_path('movie','icons-v2.png'),
 		    icon_image: position,
 		    icon_class: position ? 'tomato--icon' : "",
-		    abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
+		    abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
 		    heading: item.title,
 		    img_m: item.posters.detailed,
 		    url: item.links.alternate
