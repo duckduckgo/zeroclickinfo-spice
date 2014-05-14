@@ -1,7 +1,6 @@
 (function(env) {
     "use strict";
 
-
     env.ddg_spice_alternative_to = function(api_result) {
 
         if (!api_result || !api_result.Items) {
@@ -36,7 +35,7 @@
         });
     };
 
-    Handlebars.registerHelper("getPlatform", function (platforms) {
+    Handlebars.registerHelper("AlternativeTo_getPlatform", function (platforms) {
         return (platforms.length > 1) ? "Multiplatform" : platforms[0];
     });
 

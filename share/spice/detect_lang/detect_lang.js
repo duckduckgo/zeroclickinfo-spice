@@ -141,7 +141,7 @@ function ddg_spice_detect_lang (api_result) {
     });
 };
 
-Handlebars.registerHelper("toPercent", function(confidence) {
+Handlebars.registerHelper("DetectLang_toPercent", function(confidence) {
     "use strict";
     var percentage = Math.round(confidence * 100);
     return (percentage > 100 ? 100 : percentage) + "% sure";

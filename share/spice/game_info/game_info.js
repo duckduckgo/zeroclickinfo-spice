@@ -51,7 +51,7 @@ function ddg_spice_game_info(api_result) {
  *
  * Find the release date for a game
  */
-Handlebars.registerHelper("release_date", function() {
+Handlebars.registerHelper("GameInfo_release_date", function() {
     "use strict";
 
     var date_info = {
@@ -72,7 +72,7 @@ Handlebars.registerHelper("release_date", function() {
  *
  * Summarise the platforms a game is available on
  */
-Handlebars.registerHelper("platform_summary", function(platforms, options) {
+Handlebars.registerHelper("GameInfo_platform_summary", function(platforms, options) {
     "use strict";
 
     options.hash.sep = ", ";
@@ -88,7 +88,7 @@ Handlebars.registerHelper("platform_summary", function(platforms, options) {
  *
  * Summarise the game's age rating
  */
-Handlebars.registerHelper("age_rating", function() {
+Handlebars.registerHelper("GameInfo_age_rating", function() {
     "use strict";
 
     var rating = "";
