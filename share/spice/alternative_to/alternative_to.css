@@ -7,4 +7,9 @@
 .zci--alternative_to .tile__description {
     margin-bottom: 0.5em;
     font-weight: inherit;
+    height: 5.4em;
+}
+
+.zci--alternative_to .tile__body {
+    height: 13em;
 }
