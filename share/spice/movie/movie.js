@@ -35,16 +35,20 @@
                     image: item.posters.detailed,
 		    icon_url: DDG.get_asset_path('movie','icons-v2.png'),
 		    icon_image: position,
-		    icon_class: position ? 'tomato--icon' : ""
+		    icon_class: position ? 'tomato--icon' : "",
+		    abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
+		    heading: item.title,
+		    img_m: item.posters.detailed,
+		    url: item.links.alternate
                 };
             },
             templates: {
 		group: 'products_simple',
-		wrap_detail: false,
-		item_detail: false,
-                detail: Spice.movie.detail,
                 options: {
-                    variant: 'poster'
+                    variant: 'poster',
+		    subtitle_content: Spice.movie.subtitle_content,
+		    rating: true,
+		    buy: Spice.movie.buy
                 }
             },
             relevancy: {
@@ -73,7 +77,7 @@
 
     // Convert minutes to hr. min. format.
     // e.g. {{time 90}} will return 1 hr. 30 min.
-    Handlebars.registerHelper("movie_time", function(runtime) {
+    Handlebars.registerHelper("time", function(runtime) {
         var hours = '',
             minutes = runtime;
 
@@ -84,5 +88,4 @@
 
         return hours + (minutes > 0 ? minutes + ' min.' : '');
     });
-
 }(this));
