@@ -236,7 +236,7 @@ function qprice(p) {
 
 // template helper for price formatting
 // {{price x}}
-Handlebars.registerHelper("qprice", function(obj) {
+Handlebars.registerHelper("Quixey_qprice", function(obj) {
     "use strict";
 
     return qprice(obj);
@@ -302,13 +302,13 @@ var pricerange = function(item) {
     return range;
 };
 
-Handlebars.registerHelper("pricerange", function() {
+Handlebars.registerHelper("Quixey_pricerange", function() {
     return pricerange(this);
 });
 
 // template helper to replace iphone and ipod icons with
 // smaller 'Apple' icons
-Handlebars.registerHelper("platform_icon", function(icon_url) {
+Handlebars.registerHelper("Quixey_platform_icon", function(icon_url) {
     "use strict";
 
     if (this.id === 2004 || this.id === 2015) {
@@ -320,7 +320,7 @@ Handlebars.registerHelper("platform_icon", function(icon_url) {
 });
 
 // template helper that returns and unifies platform names
-Handlebars.registerHelper("platform_name", function() {
+Handlebars.registerHelper("Quixey_platform_name", function() {
     "use strict";
 
     var name;
