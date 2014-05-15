@@ -40,8 +40,6 @@ function ddg_spice_rhymes (api_result) {
         },
         templates: {
             group: 'text',
-            detail: false,
-            item_detail: false,
             options: {
                 content: Spice.rhymes.content,
 		moreAt: true
