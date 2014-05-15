@@ -19,13 +19,13 @@ function ddg_spice_drinks(api_result) {
 	    return {
 		description: item.procedure,
 		title: item.name,
-		infoboxTitle: 'Ingredients'
+		auxTitle: 'Ingredients'
 	    };
 	},
         templates: {
 	    group: 'info',
 	    options: {
-		infobox: Spice.drinks.infobox
+		aux: Spice.drinks.aux
 	    }
         }
     });
