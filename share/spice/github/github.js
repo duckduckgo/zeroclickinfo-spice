@@ -30,6 +30,7 @@
 	    template_group: 'text',
             templates: {
                 detail: false,
+                item_detail: false,
 		options: {
 		    footer: Spice.github.footer
 		}
