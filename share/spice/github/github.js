@@ -29,8 +29,9 @@
             },
 	    template_group: 'text',
             templates: {
+                detail: false,
 		options: {
-		    footer: Spice.github.footer
+		    footer: Spice.github.footer,
 		}
             },
 	    normalize: function(item) {
