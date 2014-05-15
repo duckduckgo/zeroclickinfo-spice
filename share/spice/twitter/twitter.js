@@ -33,7 +33,6 @@ var ddg_spice_twitter = function(api_result) {
 
             return {
                 image: bigger_picture(item.profile_image),
-		infoboxTitle: 'Latest Tweet',
 		display_url: urls[0],
 		expanded_url: urls[1]
             };
@@ -42,7 +41,6 @@ var ddg_spice_twitter = function(api_result) {
 	    group: 'base',
 	    options: {
 		content: Spice.twitter.content,
-		infobox: Spice.twitter.infobox,
 		moreAt: true
 	    }
         }
