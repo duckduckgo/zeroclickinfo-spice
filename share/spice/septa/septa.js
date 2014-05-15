@@ -16,7 +16,7 @@ function ddg_spice_septa(api_result) {
 
     Spice.add({
 	id: 'septa',
-	name: 'Places',
+	name: 'Trains',
         data: api_result,
 	meta: {
             sourceName: 'SEPTA',
