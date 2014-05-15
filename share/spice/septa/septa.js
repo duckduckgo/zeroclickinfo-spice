@@ -16,16 +16,23 @@ function ddg_spice_septa(api_result) {
 
     Spice.add({
 	id: 'septa',
-	name: 'Places',
+	name: 'Trains',
         data: api_result,
 	meta: {
             sourceName: 'SEPTA',
-            sourceUrl: 'http://www.septa.org/schedules/',
+            sourceUrl: 'http://www.septa.org/schedules/rail/index.html',
 	    sourceIconUrl: 'http://septa.org/site/images/favicon.ico',
 	    itemType: 'trains'
 	},
-	template_group: 'base',
+	normalize: function(item) {
+	    return {
+		url: 'http://www.septa.org/schedules/rail/index.html'
+	    };
+	},
         templates: {
+	    group: 'base',
+	    detail: false,
+	    item_detail: false,
 	    options: {
 		content: Spice.septa.content
 	    }

@@ -1,12 +1,15 @@
-.zci--coupon_mountain input.tag {
+.tile--coupon_mountain .tile__media {
+	padding-top: 1em;
+	height: 5em;
+}
+
+.detail--coupon_mountain input.tag {
 	-webkit-user-select: text;
 	-khtml-user-select: text;
 	-moz-user-select: text;
 	-ms-user-select: text;
 	user-select: text;
-}
-
-.tile--coupon_mountain .tile__media {
-	padding-top: 1em;
-	height: 5em;
+	line-height: 1.5;
+	font-size: 1.25em;
+    vertical-align: baseline;
 }

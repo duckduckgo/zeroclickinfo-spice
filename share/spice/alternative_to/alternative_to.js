@@ -21,16 +21,17 @@
             normalize: function(item) {
                 return {
                     ShortDescription: DDG.strip_html(DDG.strip_href(item.ShortDescription)),
-                    url: item.Url
+                    url: item.Url,
+		    icon: item.IconUrl,
+		    title: item.Name,
+		    description: item.ShortDescription
                 };
             },
             templates: {
-                group: 'base',
-                options: {
-                    content: Spice.alternative_to.content
-                },
-		detail: false,
-		item_detail: false
+                group: 'icon',
+		options: {
+		    footer: Spice.alternative_to.footer
+		}
             }
         });
     };
