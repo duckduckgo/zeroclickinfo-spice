@@ -25,7 +25,7 @@ function ddg_spice_drinks(api_result) {
         templates: {
 	    group: 'info',
 	    options: {
-		aux: Spice.drinks.infobox
+		aux: Spice.drinks.aux
 	    }
         }
     });
