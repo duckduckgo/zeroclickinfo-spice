@@ -74,8 +74,6 @@
             },
             templates: {
                 group: 'text',
-                detail: false,
-                item_detail: false,
                 options: {
                     content: Spice.thesaurus.content,
 		    title_content: Spice.thesaurus.title_content,
