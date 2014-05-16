@@ -43,7 +43,7 @@ DDG.require('maps',function(){
                     return {
                         name: zip,
                         address: [item.admin2,item.admin1].join(", "),
-                        coordinates: item.centroid,
+                        coordinates: item.centroid
                         // polygonPoints: polygon
                     };
                 }
