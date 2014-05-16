@@ -1,9 +1,12 @@
-<img src="/iu/?u={{img}}" class="img_zero_click_big" title="{{alt}}" alt="{{title}}">
-{{#xkcd_previousNum num}}
-	<br><a href="/?q=xkcd+{{num}}">Prev</a>
-{{/xkcd_previousNum}}
-{{#if has_next}}
-	{{#xkcd_nextNum num}}
-		<a id="xkcd-next-link" href="/?q=xkcd+{{num}}">Next</a>
-	{{/xkcd_nextNum}}
-{{/if}}
+<div class="xkcd--container">
+  <img src="/iu/?u={{img}}" title="{{alt}}" alt="{{title}}" class="xkcd--img">
+  {{#xkcd_previousNum num}}
+    <br>
+    <a href="/?q=xkcd+{{num}}" class="btn btn--primary">Prev</a>
+  {{/xkcd_previousNum}}
+  {{#if has_next}}
+    {{#xkcd_nextNum num}}
+      <a href="/?q=xkcd+{{num}}" class="xkcd-next-link btn btn--primary">Next</a>
+    {{/xkcd_nextNum}}
+  {{/if}}
+</div>
