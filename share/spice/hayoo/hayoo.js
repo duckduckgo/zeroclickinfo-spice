@@ -18,7 +18,10 @@
 		    sourceName: 'Hackage'
 		},
 		templates: {
-	            detail: Spice.hayoo.detail
+		    group: 'base',
+		    options: {
+			content: Spice.hayoo.detail 
+		    }
 	        }    
 	  });
 	}
