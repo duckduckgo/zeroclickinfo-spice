@@ -29,6 +29,8 @@
             },
             templates: {
                 group: 'icon',
+		detail: false,
+		item_detail: false,
 		options: {
 		    footer: Spice.alternative_to.footer
 		}
