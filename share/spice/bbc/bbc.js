@@ -56,16 +56,21 @@
                     title: item.programme.display_titles.title,
                     ratingText: time(item),
                     image: image(item),
+		    img_m: image(item),
+		    heading: item.programme.display_titles.title,
                     rating: "Unrated",
                     duration: duration(item),
-                    programme_url: programme_url(item)
+                    programme_url: programme_url(item),
+		    abstract: item.programme.short_synopsis
                 };
             },
             templates: {
-                item: 'basic_image_item',
-                detail: Spice.bbc.detail,
+		group: 'products_simple',
+                detail: 'products_item_detail',
                 options: {
-                    variant: "video"
+                    variant: "video",
+		    buy: Spice.bbc.buy,
+		    subtitle_content: Spice.bbc.subtitle_content
                 }
             }
         });
