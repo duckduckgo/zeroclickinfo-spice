@@ -47,18 +47,18 @@
     };
 
     function getExpiry (dateString) {
-
         // 3333-03-03 means coupon has no expiry date
         if (!dateString || dateString === '3333-03-03'){
             return null;
         }
+    }
 
     Spice.registerHelper('CouponMountain_dateString', function(string) {
         var months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'],
             date = DDG.getDateFromString(dateString);
 
         return 'Expires: ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
-    };
+    });
 
     function stripExpiry (string) {
         return string.replace(/ (hurry, )?(offer|good through|expires|ends|valid \w+) .+$/i, '');
