@@ -1,7 +1,7 @@
 <div class="xkcd--container">
   <img src="/iu/?u={{img}}" title="{{alt}}" alt="{{title}}" class="xkcd--img">
+  <div class="xkcd--buttons">
   {{#xkcd_previousNum num}}
-    <br>
     <a href="/?q=xkcd+{{num}}" class="btn btn--primary">Prev</a>
   {{/xkcd_previousNum}}
   {{#if has_next}}
@@ -9,4 +9,5 @@
       <a href="/?q=xkcd+{{num}}" class="xkcd-next-link btn btn--primary">Next</a>
     {{/xkcd_nextNum}}
   {{/if}}
+  </div>
 </div>

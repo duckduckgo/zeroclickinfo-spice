@@ -11,3 +11,7 @@
 .zci--xkcd .xkcd--img {
     display: block;
 }
+
+.zci--xkcd .xkcd--buttons {
+    margin-top: 0.5em;
+}
