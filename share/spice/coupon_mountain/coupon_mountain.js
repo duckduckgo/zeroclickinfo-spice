@@ -32,7 +32,8 @@
                 options: {
                     buy: Spice.coupon_mountain.buy,
                     brand: false,
-                    rating: false
+                    rating: false,
+		    price: true
                 }
             },
             sort_fields: {
