@@ -1,4 +1,17 @@
-#xkcd-next-link {
-	float:right; 
-	margin-right:20px;
+.zci--xkcd .xkcd-next-link {
+    float: right; 
+}
+
+.zci--xkcd .xkcd--container {
+    display: inline-block;
+    margin-bottom: 0.5em;
+    
+}
+
+.zci--xkcd .xkcd--img {
+    display: block;
+}
+
+.zci--xkcd .xkcd--buttons {
+    margin-top: 0.5em;
 }
