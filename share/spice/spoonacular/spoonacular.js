@@ -39,6 +39,27 @@ Handlebars.registerHelper("makeImage", function(id, image) {
 });
 
 /*
+ * Format ranking values.
+ */
+Handlebars.registerHelper("format", function(rankingValue) {
+    "use strict";
+
+    // get non number content
+    var text = rankingValue.match(/[^0-9]+/gi)[0];
+    var number = rankingValue.replace(text,'')
+
+    var r = new Number(number).toLocaleString('en');
+
+    if (text == '$') {
+        r = text+r;
+    } else {
+        r = r+' '+text;
+    }
+    
+    return r;
+});
+
+/*
  * Get the image of the badge.
  */
 Handlebars.registerHelper("badge", function(type) {
