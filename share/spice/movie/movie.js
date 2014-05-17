@@ -43,7 +43,7 @@
                 };
             },
             templates: {
-		group: 'products_simple',
+		group: 'media',
 		detail: 'products_item_detail',
                 options: {
                     variant: 'poster',
