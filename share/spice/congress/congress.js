@@ -67,7 +67,8 @@
                     buy: Spice.congress.buy,
                     rating: false,
                     variant: 'narrow',
-                    priceAndBrand: false
+		    price: false,
+		    brand: false
                 }
             }
         });
