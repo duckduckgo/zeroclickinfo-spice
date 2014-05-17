@@ -13,7 +13,7 @@
 
         Spice.add({
             id: 'hacker_news',
-            name: 'News',
+            name: 'Social',
             data: api_result.hits,
             meta: {
                 sourceName: 'HN Search',
