@@ -56,6 +56,7 @@
                     title: item.programme.display_titles.title,
                     ratingText: time(item),
                     image: image(item),
+                    img: image(item),
 		    img_m: image(item),
 		    heading: item.programme.display_titles.title,
                     rating: "Unrated",
@@ -66,7 +67,8 @@
             },
             templates: {
 		group: 'media',
-                detail: 'products_item_detail',
+                detail: 'products_detail',
+                item_detail: 'products_item_detail',
                 options: {
                     variant: "video",
 		    buy: Spice.bbc.buy,
