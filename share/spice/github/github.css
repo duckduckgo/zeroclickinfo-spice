@@ -1,12 +1,16 @@
-.zci--github .star.starIcon {
+.tile--github .star.starIcon {
     margin-top: -5px;
 }
 
-.zci--github .tile__title__sub {
+.tile--github .tile__title__sub {
     text-transform: none;
     color: #999;
 }
 
-.zci--github .tile__body {
+.tile--github .tile__body {
     height: 14em;
+}
+
+.tile--github .tile__content {
+    height: 6.4em;
 }
