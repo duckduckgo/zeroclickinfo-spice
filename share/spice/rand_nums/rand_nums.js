@@ -2,6 +2,10 @@
     "use strict";
     env.ddg_spice_rand_nums = function(api_result) {
     
+        if(!api_result){
+            return Spice.failed("rand_nums");
+        }
+        
         var min;
         var max;
 
