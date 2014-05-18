@@ -215,13 +215,20 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
         }
     };
 
-
-
     env.ddg_spice_sound_cloud = function(api_result) {
+
+        var resultThreshold = 3;
+        var filteredResults = [];
+
+        for(var item in api_result){
+            if(api_result[item].favoritings_count > resultThreshold)
+                filteredResults.push(api_result[item]);
+        }
+
         Spice.add({
             id: 'soundcloud',
             name: 'Audio',
-            data: api_result,
+            data: filteredResults,
             meta: {
                 sourceName: 'SoundCloud',
                 sourceUrl: 'https://soundcloud.com/search?q=' + query,
