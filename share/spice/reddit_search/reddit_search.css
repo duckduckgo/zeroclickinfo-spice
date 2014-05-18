@@ -1,20 +1,24 @@
-..zci--reddit_search reddit__search--comments a {
+..tile--reddit_search reddit__search--comments a {
     color: #999;
 }
 
-.zci--reddit_search .tile__title {
+.tile--reddit_search .tile__title {
     margin-bottom: 0;
 }
 
-.zci--reddit_search .tile__body {
+.tile--reddit_search .tile__body {
     height: 10em;
 }
 
-.zci--reddit_search .tile__footer {
+.tile--reddit_search .tile__footer {
     bottom: 0.5em;
 }
 
-.zci--reddit_search .tile__title__sub {
+.tile--reddit_search .tile__title__sub {
     position: absolute;
     bottom: 3.1em;
+}
+
+.tile--reddit_search .tile__content {
+    height: 3em;
 }

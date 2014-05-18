@@ -27,8 +27,8 @@
                 sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
                 sourceName: 'GitHub'
             },
-	    template_group: 'text',
             templates: {
+		group: 'text',
                 detail: false,
                 item_detail: false,
 		options: {
