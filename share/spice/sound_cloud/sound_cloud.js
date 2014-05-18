@@ -229,6 +229,10 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
                 filteredResults.push(api_result[item]);
         }
 
+        if(filteredResults.lenght == 0){
+            return Spice.failed("Sound Cloud");
+        }
+
         Spice.add({
             id: 'soundcloud',
             name: 'Audio',
