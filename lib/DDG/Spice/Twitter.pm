@@ -12,7 +12,7 @@ category "time_sensitive";
 attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
             twitter => ["https://twitter.com/duckduckgo", "duckduckgo"];
 
-spice to => 'https://duckduckgo.com/tw.js?user=$1&callback={{callback}}&current=1';
+spice to => 'https://127.0.0.1/tw.js?user=$1&callback={{callback}}&current=1';
 triggers query => qr/^(?:twitter\s)?@([a-z0-9_]+)$|^twitter\s([a-z0-9_]+)$/i;
 
 handle matches => sub { 
