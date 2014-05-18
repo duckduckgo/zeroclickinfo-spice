@@ -2,7 +2,7 @@ package DDG::Spice::Maps::Directions;
 
 use DDG::Spice;
 
-spice to => 'https://duckduckgo.com/directions/$1,$2,$3,$4';
+spice to => 'https://127.0.0.1/directions/$1,$2,$3,$4';
 spice is_cached => 0;
 spice proxy_cache_valid => "418 1d";
 
