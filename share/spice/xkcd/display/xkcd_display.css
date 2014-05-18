@@ -5,7 +5,7 @@
 .zci--xkcd .xkcd--container {
     display: inline-block;
     margin-bottom: 0.5em;
-    
+    max-width: 100%;
 }
 
 .zci--xkcd .xkcd--img {
