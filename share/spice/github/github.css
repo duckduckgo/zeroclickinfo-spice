@@ -14,3 +14,7 @@
 .tile--github .tile__content {
     height: 6.4em;
 }
+
+.is-mobile .tile--github .tile__content {
+    height: 7em;
+}
