@@ -1,3 +1,8 @@
-.zci--plos .tile__body {
+.tile--plos .tile__body {
 	height: 115px;
+}
+
+.is-mobile .tile--plos .tile__body{
+	font-size: 1.0em;
+	height: 155px;
 }
