@@ -20,7 +20,8 @@
 		templates: {
 		    group: 'base',
 		    options: {
-			content: Spice.hayoo.detail 
+			content: Spice.hayoo.detail,
+			moreAt: true
 		    }
 	        }    
 	  });
