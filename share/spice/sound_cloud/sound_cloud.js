@@ -29,10 +29,6 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
      * across tabs/spices.
      */
     var player = {
-        // queue up commands to run once
-        // sound manager is ready:
-        _onReady: [],
-
         // flipped to 1 on ready:
         _ready: 0,
 
@@ -40,7 +36,7 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
             var self = this;
 
             // don't init more than once:
-            if (this._ready) { return; }
+            if (window.soundManager || this._ready) { return; }
 
             // make sure the lib is loaded and in memory,
             // otherwise poll for it until it is:
@@ -61,18 +57,12 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
             });
             soundManager.beginDelayedInit();
             soundManager.onready(function() {
-                for (var i=0,evt; evt=self._onReady[i]; i++) {
-                    self[evt[0]](evt[1]);
-                }
                 self._ready = 1;
-                self._onReady = [];
             });
         },
 
         play: function(item) {
-            if (!this._ready) {
-                return this._onReady.push(['play',item]);
-            }
+            if (!this._ready) { return; }
 
             // if a different item is playing, stop it:
             if (this._curItem && this._curItem.id !== item.id) {
@@ -110,9 +100,7 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
         },
 
         pause: function(item) {
-            if (!this._ready) {
-                return this._onReady.push(['pause',item]);
-            }
+            if (!this._ready) { return; }
 
             if (this._curItem && item && this._curItem.id === item.id && item.sound) {
                 item.sound.pause();
@@ -124,9 +112,7 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
         },
 
         stop: function() {
-            if (!this._ready) {
-                return this._onReady.push(['stop']);
-            }
+            if (!this._ready) { return; }
 
             soundManager.stopAll();
 
