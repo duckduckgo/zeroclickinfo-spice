@@ -14,7 +14,7 @@
 // ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
 
 
-nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
+// nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
 
 var ddg_spice_dictionary = {
 
@@ -88,7 +88,7 @@ var ddg_spice_dictionary = {
 
         // Call the Wordnik API to display the pronunciation text and the audio.
         $.getScript(this.path + "/pronunciation/" + word);
-        $.getScript(this.path + "/audio/" + word);
+        // $.getScript(this.path + "/audio/" + word);
     },
 
     definition: function(api_result) {
