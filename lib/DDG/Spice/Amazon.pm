@@ -14,7 +14,10 @@ my @pluralize_triggers = ('product');
 my @triggers = (@source_triggers, @pluralize_triggers, map { $_.'s' } @pluralize_triggers);
 
 # set triggers
-triggers startend => @triggers;
+#triggers startend => @triggers;
+
+# 2014.05.19 (ct): deep spice.
+triggers start => '///***never trigger***///';
 
 handle remainder => sub {
     return "$_" if $_;
