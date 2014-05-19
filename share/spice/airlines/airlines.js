@@ -231,7 +231,18 @@ function ddg_spice_airlines (api_result) {
 	"&flightNumber=" +
 	flight[0].FlightNumber;
 
-    results.reverse();
+    results.sort(function(a, b) {
+	a = +new Date(a.departureDate);
+	b = +new Date(b.departureDate);
+
+	if(a < b) {
+	    return -1;
+	} else if(a > b) {
+	    return 1;
+	}
+
+	return 0;
+    });
 
     Spice.add({
         data: results,
