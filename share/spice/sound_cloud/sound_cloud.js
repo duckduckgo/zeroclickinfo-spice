@@ -215,9 +215,12 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
         }
     };
 
-
-
     env.ddg_spice_sound_cloud = function(api_result) {
+
+        if(!api_result){
+            return Spice.failed("sound_cloud");
+        }
+
         Spice.add({
             id: 'soundcloud',
             name: 'Audio',
@@ -232,6 +235,14 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
                 item_custom: Spice.sound_cloud.item
             },
             normalize: function(o) {
+
+                var resultThreshold = 4;
+
+                // skip items with a low favorite count
+                if(o.favoritings_count < resultThreshold){
+                    return;
+                }
+
                 var image = o.artwork_url || o.user.avatar_url,
                     usingWaveformImage = 0;
 
