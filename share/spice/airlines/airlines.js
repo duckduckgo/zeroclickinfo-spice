@@ -265,8 +265,9 @@ function ddg_spice_airlines (api_result) {
 	},
 	template_group: 'base',
         templates : {
+	    detail: false,
 	    options: {
-            content: Spice.airlines.content,
+		content: Spice.airlines.content,
                 variant: 'xwide'
             }
         }, 

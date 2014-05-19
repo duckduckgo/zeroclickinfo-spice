@@ -48,3 +48,7 @@
 .zci--airlines .na {
     color: #999;
 }
+
+.is-mobile .tile--airlines {
+    width: 100%;
+}
