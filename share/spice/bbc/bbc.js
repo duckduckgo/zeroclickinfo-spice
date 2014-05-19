@@ -61,7 +61,7 @@
 		    heading: item.programme.display_titles.title,
                     rating: "Unrated",
                     duration: duration(item),
-                    programme_url: programme_url(item),
+                    url: programme_url(item),
 		    abstract: item.programme.short_synopsis
                 };
             },
