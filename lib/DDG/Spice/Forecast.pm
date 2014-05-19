@@ -59,6 +59,11 @@ handle query_lc => sub {
     # has other terms
     return if (/(^site\:)|http|(\.(org|com|net))|underground/);
 
+    # color temperature
+    if (/temp(era?ture)?/) {
+        return if /\bcolou?r\b|[0-9]+\s*[kK]/;
+    }
+
     # Don't cache generic queries due to
     # variations in the users location.
     if ($location) {
