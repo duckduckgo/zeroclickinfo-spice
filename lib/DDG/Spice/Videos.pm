@@ -12,7 +12,7 @@ attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
             twitter => ["https://twitter.com/duckduckgo", "duckduckgo"];
 
 
-spice to => 'https://127.0.0.1/v.js?q=$1&n=20&callback={{callback}}';
+spice to => 'https://duckduckgo.com/v.js?q=$1&n=20&callback={{callback}}';
 
 # 2014.05.07 (caine): moving to startend until
 # we are invariably required to do entity extraction
