@@ -253,6 +253,7 @@ function ddg_spice_airlines (api_result) {
         name: "Flights",
         view: "Tiles",
         meta: {
+	    minItemsForModeSwitch: 3,
             sourceName: 'FlightStatus',
             sourceUrl: source,
             itemType: "Flight Status for " + DDG.capitalizeWords(flight[0].Airline.Name) + " " + flight[0].FlightNumber
