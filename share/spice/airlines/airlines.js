@@ -231,7 +231,19 @@ function ddg_spice_airlines (api_result) {
 	"&flightNumber=" +
 	flight[0].FlightNumber;
 
-    results.reverse();
+    // Sort the items based on the departureDate.
+    results.sort(function(a, b) {
+	a = +new Date(a.departureDate);
+	b = +new Date(b.departureDate);
+
+	if(a < b) {
+	    return -1;
+	} else if(a > b) {
+	    return 1;
+	}
+
+	return 0;
+    });
 
     Spice.add({
         data: results,
@@ -241,6 +253,7 @@ function ddg_spice_airlines (api_result) {
         name: "Flights",
         view: "Tiles",
         meta: {
+	    minItemsForModeSwitch: 3,
             sourceName: 'FlightStatus',
             sourceUrl: source,
             itemType: "Flight Status for " + DDG.capitalizeWords(flight[0].Airline.Name) + " " + flight[0].FlightNumber
@@ -252,8 +265,9 @@ function ddg_spice_airlines (api_result) {
 	},
 	template_group: 'base',
         templates : {
+	    detail: false,
 	    options: {
-            content: Spice.airlines.content,
+		content: Spice.airlines.content,
                 variant: 'xwide'
             }
         }, 
