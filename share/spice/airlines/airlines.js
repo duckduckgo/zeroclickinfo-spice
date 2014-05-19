@@ -231,6 +231,7 @@ function ddg_spice_airlines (api_result) {
 	"&flightNumber=" +
 	flight[0].FlightNumber;
 
+    // Sort the items based on the departureDate.
     results.sort(function(a, b) {
 	a = +new Date(a.departureDate);
 	b = +new Date(b.departureDate);
