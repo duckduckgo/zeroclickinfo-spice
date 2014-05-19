@@ -218,25 +218,13 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
     env.ddg_spice_sound_cloud = function(api_result) {
 
         if(!api_result){
-            return Spice.failed("Sound Cloud");
-        }
-
-        var resultThreshold = 3;
-        var filteredResults = [];
-
-        for(var item in api_result){
-            if(api_result[item].favoritings_count > resultThreshold)
-                filteredResults.push(api_result[item]);
-        }
-
-        if(filteredResults.lenght == 0){
-            return Spice.failed("Sound Cloud");
+            return Spice.failed("soundcloud");
         }
 
         Spice.add({
             id: 'soundcloud',
             name: 'Audio',
-            data: filteredResults,
+            data: api_result,
             meta: {
                 sourceName: 'SoundCloud',
                 sourceUrl: 'https://soundcloud.com/search?q=' + query,
@@ -247,6 +235,14 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", 1);
                 item_custom: Spice.sound_cloud.item
             },
             normalize: function(o) {
+
+                var resultThreshold = 4;
+
+                // skip items with a low favorite count
+                if(o.favoritings_count < resultThreshold){
+                    return;
+                }
+
                 var image = o.artwork_url || o.user.avatar_url,
                     usingWaveformImage = 0;
 
