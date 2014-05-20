@@ -13,9 +13,6 @@
 // ddg_spice_dictionary_audio - gets the audio file.
 // ddg_spice_dictionary_reference - handles plural words. (Improve on this in the future.)
 
-
-// nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
-
 var ddg_spice_dictionary = {
 
     path: "/js/spice/dictionary",
@@ -88,7 +85,7 @@ var ddg_spice_dictionary = {
 
         // Call the Wordnik API to display the pronunciation text and the audio.
         $.getScript(this.path + "/pronunciation/" + word);
-        // $.getScript(this.path + "/audio/" + word);
+        $.getScript(this.path + "/audio/" + word);
     },
 
     definition: function(api_result) {
@@ -159,9 +156,7 @@ var ddg_spice_dictionary = {
 
         if (!api_result || !api_result.length) { return; }
 
-        var is_failed = false,
-            is_loaded = false,
-            url = api_result[0].fileUrl, // default to the first audio file
+        var url = api_result[0].fileUrl, // default to the first audio file
             $play_button = this.$el.find(".zci__def__audio");
 
         // Try to find the audio url that was created by Macmillan (it usually sounds better).
@@ -171,6 +166,8 @@ var ddg_spice_dictionary = {
             }
         }
 
+        $play_button.addClass('is-showing');
+
         $play_button.press = function(){ 
             this.addClass('is-playing');
             this.is_pressed = true; 
@@ -179,72 +176,45 @@ var ddg_spice_dictionary = {
         $play_button.depress = function(){ 
             this.removeClass('is-playing');
             this.is_pressed = false;
+            this.text('►');
         }
 
-        // Play the sound when the icon is clicked. Do not let the user play
-        // without window.soundManager.
+        $play_button.error = function(){
+            this.depress();
+            this.addClass('is-failed');
+            this.removeClass('ddgsi');
+            this.text('Audio Unavailable');
+        }
+
         $play_button.click(function() {
-            if(is_failed) {
-                $play_button.press();
-                setTimeout($play_button.depress, 1000);
-            } else if(!$play_button.is_pressed && is_loaded) {
-                $play_button.press();
-                soundManager.play("dictionary-sound");
-            }
-        });
+            $play_button.addClass('is-loading');
+            $play_button.text('');
 
-        // Check if soundManager was already loaded. If not, we should load it.
-        // See http://www.schillmania.com/projects/soundmanager2/demo/template/sm2_defer-example.html
-        window.SM2_DEFER = true;
+            // don't load the audio resources until they click the button:
+            DDG.require('audio',function(player) {
 
-        // Initialize the soundManager object.
-        window.soundManager = new SoundManager();
-        soundManager.url = "/soundmanager2/swf/";
-        soundManager.flashVersion = 9;
-        soundManager.useFlashBlock = false;
-        soundManager.useHTML5Audio = false;
-        soundManager.useFastPolling = true;
-        soundManager.useHighPerformance = true;
-        soundManager.multiShotEvents = true;
-        soundManager.ontimeout(function() {
-            is_failed = true;
-            $play_button.depress();
-        });
-        soundManager.beginDelayedInit();
+                if (player && player.ready) {
+                    player.play("dictionary-sound",url,{
+                        autoPlay: true,
+                        onfinish: function(){
+                            $play_button.depress();
+                        },
+                        onload: function(success){
+                            $play_button.removeClass('is-loading');
 
-        // when it's ready, load the sound:
-        soundManager.onready(function(){
-            var sound = soundManager.createSound({
-                id: "dictionary-sound",
-                url: "/audio/?u=" + url,
-                onfinish: function() {
-                    $play_button.depress();
-                    soundManager.stopAll();
-                },
-                ontimeout: function() {
-                    is_failed = true;
-                    $play_button.depress();
-                },
-                whileplaying: function() {
-                    // We add this just in case onfinish doesn't fire.
-                    if(this.position === this.durationEstimate) {
-                        soundManager.stopAll();
-                        $play_button.depress();
-                    }
-                },
-                onload: function(success){
-                    if(!success){ return; }
-
-                    is_loaded = true;
-
-                    // Set icon.
-                    $play_button.html("▶");
-                    $play_button.addClass('is-loaded');
+                            if (!success) {
+                                $play_button.error();
+                            } else {
+                                $play_button.press();
+                            }
+                        }
+                    });
+                } else {
+                    $play_button.error();
                 }
             });
-
-            sound.load();
         });
+
     }
 }
 
