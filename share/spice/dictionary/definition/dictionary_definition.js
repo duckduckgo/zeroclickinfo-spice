@@ -157,7 +157,18 @@ var ddg_spice_dictionary = {
         if (!api_result || !api_result.length) { return; }
 
         var url = api_result[0].fileUrl, // default to the first audio file
-            $play_button = this.$el.find(".zci__def__audio");
+            $play_button = this.$el.find(".zci__def__audio"),
+            $error = this.$el.find('.zci__def__audio--error'),
+            onError = function() {
+                onFinished();
+                $play_button.removeClass('is-showing');
+                $error.text('Audio Unavailable');
+                $error.addClass('is-showing');
+            },
+            onFinished = function() {
+                $play_button.removeClass('is-playing');
+                $play_button.text('►');
+            };
 
         // Try to find the audio url that was created by Macmillan (it usually sounds better).
         for (var i=0,r; r=api_result[i]; i++) {
@@ -168,50 +179,29 @@ var ddg_spice_dictionary = {
 
         $play_button.addClass('is-showing');
 
-        $play_button.press = function(){ 
-            this.addClass('is-playing');
-            this.is_pressed = true; 
-        };
-
-        $play_button.depress = function(){ 
-            this.removeClass('is-playing');
-            this.is_pressed = false;
-            this.text('►');
-        }
-
-        $play_button.error = function(){
-            this.depress();
-            this.addClass('is-failed');
-            this.removeClass('ddgsi');
-            this.text('Audio Unavailable');
-        }
-
         $play_button.click(function() {
             $play_button.addClass('is-loading');
             $play_button.text('');
 
             // don't load the audio resources until they click the button:
             DDG.require('audio',function(player) {
-
-                if (player && player.ready) {
-                    player.play("dictionary-sound",url,{
-                        autoPlay: true,
-                        onfinish: function(){
-                            $play_button.depress();
-                        },
-                        onload: function(success){
-                            $play_button.removeClass('is-loading');
-
-                            if (!success) {
-                                $play_button.error();
-                            } else {
-                                $play_button.press();
-                            }
-                        }
-                    });
-                } else {
-                    $play_button.error();
+                if (!player || !player.ready) {
+                    return onError();
                 }
+
+                player.play("dictionary-sound",url,{
+                    autoPlay: true,
+                    onload: function(success){
+                        if (!success) {
+                            onError();
+                        }
+                    },
+                    onplay: function() {
+                        $play_button.removeClass('is-loading');
+                        $play_button.addClass('is-playing');
+                    },
+                    onfinish: onFinished,
+                });
             });
         });
 
