@@ -1,24 +1,22 @@
 function ddg_spice_gifs(res) {
     if(!res || !res.data || !res.data.length){ return; }
 
-    var searchTerm = DDG.get_query().replace(/gif+/i,'').trim();
-
-    var items = res.data.map(function(item){
-        return {
-            h: item.images.original.url,
-            j: item.images.original.url,
-            u: item.url,
-            ih: item.images.original.height,
-            iw: item.images.original.width
-        }
-    });
+    var searchTerm = DDG.get_query().replace(/gifs?/i,'').trim();
 
     Spice.add({
         id: 'gifs',
         name: 'Gifs',
 
-        data: items,
-
+        data: res.data,
+	normalize: function(item) {
+	    return {
+		h: item.images.original.url,
+		j: item.images.original.url,
+		u: item.url,
+		ih: item.images.original.height,
+		iw: item.images.original.width
+	    };
+	},
         meta: {
             sourceName: 'Giphy',
             sourceUrl: 'http://giphy.com/search/' + searchTerm,
