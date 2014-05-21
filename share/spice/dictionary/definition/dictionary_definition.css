@@ -60,13 +60,13 @@
     transform: scale(.8);
 }
 
-.zci__def__audio.is-failed:hover,
-.zci__def__audio.is-failed {
-    background: none;
-    width: auto;
-    height: auto;
-    cursor: inherit;
+.zci__def__audio--error {
+    display: none;
     color: #aaa;
     font-style: italic;
+    font-size: .5em;
 }
 
+.zci__def__audio--error.is-showing {
+    display: inline;
+}
