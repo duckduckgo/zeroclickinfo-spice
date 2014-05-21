@@ -15,16 +15,12 @@
 
         var keys = [];
 
-        for(var key in api_result.hashes){
-            keys.push(key);
-        }
-
         console.log(api_result.hashes);
         console.log(keys);
         
         Spice.add({
             id: 'leak_db',
-            name: 'Leak_db',
+            name: 'Leakdb',
             data: api_result.hashes,
             meta: {
                 sourceUrl: 'http://leakdb.abusix.com/?q='+ encodeURIComponent(query),
@@ -38,6 +34,9 @@
                 }
             },
             normalize: function(item){
+                for(var key in api_result.hashes){
+                  keys.push(key);
+                }
                 return{
                     record_keys: keys
                 };
