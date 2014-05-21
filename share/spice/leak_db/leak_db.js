@@ -1,11 +1,9 @@
 (function(env){
+    "use strict";
     env.ddg_spice_leak_db = function(api_result){
-        "use strict";
 
-        if (!api_result 
-            || !api_result.found
-            || !api_result.hashes) {
-            return;
+        if (!api_result || !api_result.found || !api_result.hashes) {
+            return Spice.failed('leak_db');
         }
 
         var query = DDG.get_query()
@@ -15,11 +13,12 @@
 
         api_result.hashes = api_result.hashes[0];
 
-        var keys = []
+        var keys = [];
 
         for(var key in api_result.hashes){
             keys.push(key);
         }
+
         console.log(api_result.hashes);
         console.log(keys);
         
@@ -28,10 +27,8 @@
             name: 'Leak_db',
             data: api_result,
             meta: {
-                sourceUrl       : 'http://leakdb.abusix.com/?q='
-                                + encodeURIComponent(query),
-                sourceName      : 'leakdb.abusix.com',
-
+                sourceUrl: 'http://leakdb.abusix.com/?q='+ encodeURIComponent(query),
+                sourceName: 'leakdb.abusix.com',
             },
             templates: {
                 group: 'base',
