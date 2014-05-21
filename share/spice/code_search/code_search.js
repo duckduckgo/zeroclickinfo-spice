@@ -15,7 +15,7 @@
             data: api_result.results[0].lines,
             meta: {
                 sourceUrl: 'http://searchco.de/?q=' + query + '&cs=true',
-                sourceName: 'search[code]'
+                sourceName: 'searchcode'
             },
             normalize: function(item){
 
