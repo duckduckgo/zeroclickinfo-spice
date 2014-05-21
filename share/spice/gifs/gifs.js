@@ -19,7 +19,7 @@ function ddg_spice_gifs(res) {
 	},
         meta: {
             sourceName: 'Giphy',
-            sourceUrl: 'http://giphy.com/search/' + searchTerm,
+            sourceUrl: 'http://giphy.com/search/' + encodeURIComponent(searchTerm),
             sourceIcon: true,
             count: res.pagination.count,
             total: res.pagination.total_count,
