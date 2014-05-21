@@ -25,7 +25,7 @@
         Spice.add({
             id: 'leak_db',
             name: 'Leak_db',
-            data: api_result,
+            data: api_result.hashes,
             meta: {
                 sourceUrl: 'http://leakdb.abusix.com/?q='+ encodeURIComponent(query),
                 sourceName: 'leakdb.abusix.com',
