@@ -15,9 +15,9 @@ triggers any => "gifs", "gif";
 spice to => 'http://api.giphy.com/v1/gifs/search?q=$1&api_key=dc6zaTOxFJmzC';
 spice wrap_jsonp_callback => 1;
 
-handle query_lc => sub {
-	return $_ if $_;
-	return;
+handle remainder => sub {
+    return $_ if $_;
+    return;
 };
 
 1;
