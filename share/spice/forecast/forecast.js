@@ -21,13 +21,13 @@ function ddg_spice_forecast(r) {
 
   // Pass flags['ddg-location'] to DDG.stringsRelevant to check
   // if the result is relevant to our query.
-  var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'].toLowerCase(), query, undefined, 2);
+  /*var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'].toLowerCase(), query, undefined, 2);
 
   // Exit if it's not the current location that we're looking for,
   // not the area code, e.g., 07871, and if it's not relevant.
   if(!current_location && !(/\d/).test(query) && !relevant_location) {
     return Spice.failed('forecast');
-  }
+  }*/
   
   // Set up some stuff we'll need
   var //$container = $('#zci-forecast'),  // #spice_forecast'
