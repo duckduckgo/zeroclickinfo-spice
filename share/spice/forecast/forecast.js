@@ -16,18 +16,18 @@ function ddg_spice_forecast(r) {
   var source = $(script).attr('src');
   var matches = source.match(/forecast\/([^\/]+)\/?(.*)/);
   var query = matches[1];
-  var current_location = matches[2];
-  query = decodeURIComponent(query);
+  // var current_location = matches[2];
+  // query = decodeURIComponent(query);
 
-  // Pass flags['ddg-location'] to DDG.stringsRelevant to check
-  // if the result is relevant to our query.
-  var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'].toLowerCase(), query, undefined, 2);
+  // // Pass flags['ddg-location'] to DDG.stringsRelevant to check
+  // // if the result is relevant to our query.
+  // var relevant_location = true || DDG.stringsRelevant(r.flags['ddg-location'].toLowerCase(), query, undefined, 2);
 
-  // Exit if it's not the current location that we're looking for,
-  // not the area code, e.g., 07871, and if it's not relevant.
-  if(!current_location && !(/\d/).test(query) && !relevant_location) {
-    return Spice.failed('forecast');
-  }
+  // // Exit if it's not the current location that we're looking for,
+  // // not the area code, e.g., 07871, and if it's not relevant.
+  // if(!current_location && !(/\d/).test(query) && !relevant_location) {
+  //   return Spice.failed('forecast');
+  // }
   
   // Set up some stuff we'll need
   var //$container = $('#zci-forecast'),  // #spice_forecast'
