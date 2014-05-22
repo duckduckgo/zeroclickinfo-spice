@@ -160,7 +160,6 @@ var ddg_spice_dictionary = {
             $play_button = this.$el.find(".zci__def__audio"),
             $error = this.$el.find('.zci__def__audio--error'),
             onError = function() {
-                onFinished();
                 $play_button.removeClass('is-showing');
                 $error.text('Audio Unavailable');
                 $error.addClass('is-showing');
@@ -176,6 +175,9 @@ var ddg_spice_dictionary = {
                 url = r.fileUrl;
             }
         }
+
+        // convert to https if it's http:
+        url = url.replace(/http:/,'https:');
 
         $play_button.addClass('is-showing');
 
