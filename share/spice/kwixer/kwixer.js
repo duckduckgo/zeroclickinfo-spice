@@ -104,6 +104,8 @@
                 }
             }
         });
+
+	Spice.getDOM('kwixer').find('.tile__body').hide();
     };
 
     Handlebars.registerHelper("formatDetail", function(s) {
