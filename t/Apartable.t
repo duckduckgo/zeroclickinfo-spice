@@ -5,17 +5,8 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
-my %q = (
-  "new york apartments"               => "bbcthree/$today",
-);
-
-ddg_spice_test(
-  [qw( DDG::Spice::Apartable::City)],
-  map {
-    $_ => test_spice( '/js/spice/apartable/city/'.$q{$_},
-    caller => 'DDG::Spice::Apartable',
-    is_cached => 0 )
-  } keys %q,
-);
+use_ok('DDG::Spice::Apartable::City');
+use_ok('DDG::Spice::Apartable::CityState');
+use_ok('DDG::Spice::Apartable::ZipCode');
 
 done_testing;

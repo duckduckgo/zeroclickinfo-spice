@@ -2,15 +2,14 @@ package DDG::Spice::Apartable::City;
 
 use DDG::Spice;
 
-primary_example_queries "apartments {city}";
-secondary_example_queries "{city} apartments";
+primary_example_queries "apartments {city}", "{city} apartments";
 description "Search apartments by the city";
 name "Apartable::City";
-icon_url "/i/apartable.com.ico";
+icon_url "http://apartable.com/favicon.ico";
 source "Apartable::City";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Apartable/City.pm";
 category "random";
-attribution github => ['https://github.com/roman-yerin','Roman Yerin'];
+attribution github => ['https://github.com/roman-yerin','Roman Yerin'], web => ['http://apartable.com','Apartable.com'];
 
 spice to => 'http://apartable.com/search.json?city=$1';
 spice wrap_jsonp_callback => 1;
