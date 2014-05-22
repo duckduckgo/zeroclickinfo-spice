@@ -64,7 +64,7 @@
             templates: {
                 group: 'products',
                 options: {
-                    buy: Spice.congress.buy,
+                    button: Spice.congress.button,
                     rating: false,
                     variant: 'narrow',
 		    price: false,

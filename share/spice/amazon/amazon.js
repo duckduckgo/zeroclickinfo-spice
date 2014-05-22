@@ -61,7 +61,7 @@ function ddg_spice_amazon(api_result) {
 
             templates: {
                 options: {
-                    buy: 'products_amazon_buy'
+                    button: 'products_amazon_buy'
                 }
             }
         });
