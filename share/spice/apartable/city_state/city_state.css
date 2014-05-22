@@ -1,0 +1,24 @@
+#spice_apartable li.ddgc_item img {
+	max-width: 100% !important;
+	max-height: 68px !important;
+}
+
+#spice_apartable .title {
+	margin: 0 !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: break-word;
+}
+
+#spice_apartable .button {
+  background: none repeat scroll 0 0 #FEFEFE;
+  border: 1px solid #BBBBBB;
+  border-radius: 3px;
+  color: #000000;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 3px 9px;
+}
+
+
