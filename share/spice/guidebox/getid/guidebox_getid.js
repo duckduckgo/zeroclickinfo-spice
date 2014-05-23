@@ -69,7 +69,7 @@
             meta: {
                 sourceName: "Guidebox",
                 sourceUrl: metadata.more,
-                itemType: 'Programs'
+                itemType: 'episodes of ' + metadata.res_title
             },
             templates: {
                 group: 'media',
