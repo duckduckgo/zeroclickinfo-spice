@@ -171,7 +171,7 @@ var ddg_spice_dictionary = {
 
         // Try to find the audio url that was created by Macmillan (it usually sounds better).
         for (var i=0,r; r=api_result[i]; i++) {
-            if (r.createdBy === "macmillan" && url === "") {
+            if (r.createdBy === "macmillan") {
                 url = r.fileUrl;
             }
         }
