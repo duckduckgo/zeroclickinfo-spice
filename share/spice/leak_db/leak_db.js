@@ -12,15 +12,10 @@
                         query : api_result.type + ' hash';
 
         api_result.hashes = api_result.hashes[0];
-
-        var keys = [];
-
-        console.log(api_result.hashes);
-        console.log(keys);
         
         Spice.add({
             id: 'leak_db',
-            name: 'Leakdb',
+            name: 'Leaks',
             data: api_result.hashes,
             meta: {
                 sourceUrl: 'http://leakdb.abusix.com/?q='+ encodeURIComponent(query),
@@ -32,15 +27,7 @@
                     content: 'record',
                     moreAt: true
                 }
-            },
-            normalize: function(item){
-                for(var key in api_result.hashes){
-                  keys.push(key);
-                }
-                return{
-                    record_keys: keys
-                };
-            }  
+            }
         });
     }
 }(this));
