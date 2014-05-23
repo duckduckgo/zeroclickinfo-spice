@@ -176,9 +176,6 @@ var ddg_spice_dictionary = {
             }
         }
 
-        // convert to https if it's http:
-        url = url.replace(/http:/,'https:');
-
         $play_button.addClass('is-showing');
 
         $play_button.click(function() {
