@@ -9,7 +9,7 @@ source "Giphy";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Gifs.pm";
 attribution github => ['https://github.com/bsstoner','bsstoner'];
 
-triggers any => "gifs", "gif";
+triggers any => "gifs", "gif", "giphy";
 
 # TODO: this is their beta/trial key, need to contact them if we want to srsly use:
 spice to => 'http://api.giphy.com/v1/gifs/search?q=$1&api_key=dc6zaTOxFJmzC';
