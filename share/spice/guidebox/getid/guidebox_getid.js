@@ -3,7 +3,7 @@
     env.ddg_spice_guidebox_getid = function(api_result) {
 
         if (!api_result.results) {
-          return;
+          return Spice.failed('guidebox');
         }
 
         var SKIP_ARRAY = ["online","tv","episode","episodes","free","guidebox","watch","full"],
@@ -46,6 +46,10 @@
     env.ddg_spice_guidebox_lastshows = function (api_result) {
         "use strict";
 
+        if(!api_result){
+            return Spice.failed('guidebox');
+        }
+
         var metadata = ddg_spice_guidebox_getid.metadata;
 
         function toArray(obj) {
@@ -59,8 +63,6 @@
     	    return result;
     	}
         }
-
-        console.log(api_result);
 
         Spice.add({
             id: 'guidebox',
