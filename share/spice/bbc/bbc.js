@@ -71,7 +71,7 @@
                 item_detail: 'products_item_detail',
                 options: {
                     variant: "video",
-		    buy: Spice.bbc.buy,
+		    button: Spice.bbc.button,
 		    subtitle_content: Spice.bbc.subtitle_content
                 }
             }

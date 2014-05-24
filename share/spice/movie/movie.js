@@ -48,7 +48,7 @@
                 options: {
                     variant: 'poster',
 		    subtitle_content: Spice.movie.subtitle_content,
-		    buy: Spice.movie.buy
+		    button: Spice.movie.button
                 }
             },
             relevancy: {

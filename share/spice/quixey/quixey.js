@@ -213,7 +213,7 @@ env.ddg_spice_quixey = function(api_result) {
 
         templates: {
             options: {
-                buy: Spice.quixey.buy,
+                button: Spice.quixey.button,
                 variant: 'narrow'
             }
         }

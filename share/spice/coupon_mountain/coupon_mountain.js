@@ -30,7 +30,7 @@
             templates: {
                 group: 'products',
                 options: {
-                    buy: Spice.coupon_mountain.buy,
+                    button: Spice.coupon_mountain.button,
                     brand: false,
                     rating: false,
 		    price: true
