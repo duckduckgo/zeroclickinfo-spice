@@ -1,12 +1,7 @@
-.detail--guidebox .button {
-  background: #fefefe;
-  margin-right: 4px
-}
-
 .detail--guidebox .red {
-  color: #B57367
+  color: #B57367;
 }
 
 .detail--guidebox .small {
-  font-size: 13px;
+  font-size: 0.98em;
 }

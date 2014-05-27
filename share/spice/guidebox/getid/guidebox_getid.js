@@ -2,13 +2,12 @@
     "use strict";   
     env.ddg_spice_guidebox_getid = function(api_result) {
 
-        if (!api_result.results) {
+        if (!api_result || !api_result.results) {
           return Spice.failed('guidebox');
         }
 
         var SKIP_ARRAY = ["online","tv","episode","episodes","free","guidebox","watch","full"],
-            results = api_result.results.result,
-            relevant;
+        results = api_result.results.result, relevant;
 
         // Check which show is relevant to our query.
         $.each(results, function(key, result) {
@@ -19,7 +18,7 @@
 
         // Exit if we didn't find anything relevant.
         if (!relevant) {
-    	return;
+            return;
         }
 
         // Prevent jQuery from appending "_={timestamp}" in our url.
@@ -27,16 +26,10 @@
             cache: true
         });
 
-        var script = $('[src*="/js/spice/guidebox/getid/"]')[0],
-            source = decodeURIComponent($(script).attr("src")),
-            matched = source.match(/\/js\/spice\/guidebox\/getid\/([a-zA-Z0-9\s]+)/),
-            query  = matched[1];
-
         var metadata = {
             res_title : relevant.title,
             network   : relevant.network,
-            more      : relevant.url,
-            query     : query,
+            more      : relevant.url
         };
         
         ddg_spice_guidebox_getid.metadata = metadata;
@@ -44,7 +37,6 @@
     }
 
     env.ddg_spice_guidebox_lastshows = function (api_result) {
-        "use strict";
 
         if(!api_result){
             return Spice.failed('guidebox');
@@ -53,15 +45,15 @@
         var metadata = ddg_spice_guidebox_getid.metadata;
 
         function toArray(obj) {
-    	var result = [];
-    	if($.isArray(obj)) {
-    	    return obj;
-    	} else {
-    	    $.each(obj, function(key, value) {
-    		result[key] = value;
-    	    });
-    	    return result;
-    	}
+            var result = [];
+            if($.isArray(obj)) {
+                return obj;
+            } else {
+                $.each(obj, function(key, value) {
+                    result[key] = value;
+                });
+                return result;
+            }
         }
 
         Spice.add({
@@ -88,35 +80,33 @@
                     img: item.thumbnail_400x225,
                     title: item.episode_name,
                     ratingText: 'season '+ item.season_number + ' #'+ item.episode_number,
-                    heading: item.episode_name
+                    heading: item.episode_name,
+                    url: item.smart_url
                 }
             }
         });
     };
 
     Handlebars.registerHelper("guideBox_checkSeason", function(season_number, episode_number, options) {
-        "use strict";
 
         if(season_number !== "0") {
-    	return options.fn({
-    	    season_number: season_number, 
-    	    episode_number: episode_number
-    	});
+            return options.fn({
+                season_number: season_number, 
+                episode_number: episode_number
+            });
         }
     });
 
     Handlebars.registerHelper("guideBox_getDate", function(first_aired) {
-        "use strict";
 
         var aired = DDG.getDateFromString(first_aired),
-            days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
-            months = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
+        days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+        months = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
 
         return days[aired.getDay()] + ", " + months[aired.getMonth()] + " " + aired.getDate() + ", " + aired.getFullYear()
     });
 
     Handlebars.registerHelper("guideBox_getNetwork", function(options) {  
-        "use strict";
 
         return ddg_spice_guidebox_getid.metadata.network;
     });
