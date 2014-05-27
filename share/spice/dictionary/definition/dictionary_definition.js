@@ -142,6 +142,11 @@ var ddg_spice_dictionary = {
             }
         }
 
+         
+        // Sometimes a word gets '||' at the beginning.
+        // This removes that for us.
+        hyphenated_word = hyphenated_word.replace(/^‖/, '');
+        
         // Replace the, rather lame, non-hyphenated version of the word.
         this.$el.find(".zci__def__word").text(hyphenated_word);
     },
