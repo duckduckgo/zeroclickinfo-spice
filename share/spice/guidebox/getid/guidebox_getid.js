@@ -79,7 +79,7 @@
                     image: item.thumbnail_304x171,
                     img: item.thumbnail_400x225,
                     title: item.episode_name,
-                    ratingText: 'season '+ item.season_number + ' #'+ item.episode_number,
+                    ratingText: 'Season '+ item.season_number + ' #'+ item.episode_number,
                     heading: item.episode_name,
                     url: item.smart_url
                 }
