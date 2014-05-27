@@ -121,7 +121,14 @@
     
     // The separator that we get from the API is `;`, but it looks better with
     // commas.
-    Handlebars.registerHelper("formatDetail", function(s) {
-        return s.replace(/;/g, ', ');
+    Handlebars.registerHelper("formatDetail", function(str) {
+        var list = str.split(/;/g);
+        
+        // We need to make each actor into a link, too, so that we can click on their names.
+        for(var i = 0; i < list.length; i++) {
+            list[i] = "<a href='/?q=" + encodeURIComponent(list[i]) + "'>" + list[i] + "</a>";
+        }
+        
+        return list.join(", ");
     });
 }(this));
