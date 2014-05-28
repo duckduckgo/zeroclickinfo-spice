@@ -16,7 +16,7 @@
     Spice.add({
       id: "urban_dictionary",
       name: "Dictionary",
-      data: response.list[0],
+      data: {record_data: response.list[0]},
       meta: {
         sourceUrl: 'http://www.urbandictionary.com/define.php?term=' + word,
         sourceName: 'Urban Dictionary'
@@ -29,8 +29,9 @@
         }
       },
       normalize : function(item){
+
         return{
-          definition: item.definition.replace(/(\r?\n)+/gi, ''),
+          definition: item.record_data.definition.replace(/(\r?\n)+/gi, ''),
           record_keys: ['word', 'definition', 'example'],
         };
       }

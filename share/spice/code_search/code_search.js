@@ -12,7 +12,7 @@
         Spice.add({
             id: 'code_search',
             name: "Software",
-            data: api_result.results[0].lines,
+            data: {record_data: api_result.results[0].lines},
             meta: {
                 sourceUrl: 'http://searchco.de/?q=' + query + '&cs=true',
                 sourceName: 'search[code]'
@@ -21,7 +21,7 @@
 
                 var keys = [];
 
-                $.each(item, function(k, v){
+                $.each(item.record_data, function(k, v){
                     keys.push(k)
                 });
 

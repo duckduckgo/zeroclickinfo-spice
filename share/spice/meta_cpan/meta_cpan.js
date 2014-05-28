@@ -15,7 +15,7 @@
         Spice.add({
             id: "meta_cpan",
             name: "Software",
-            data: api_result,
+            data: {record_data: api_result},
             meta: {
                 sourceName: "MetaCPAN",
                 sourceUrl: 'https://metacpan.org/' + link
