@@ -7,24 +7,36 @@
             return Spice.failed("congress");
         }
 
-        var state = api_result.results[0].state_name,
-            chamber = api_result.results[0].chamber;
+        var query = getChamber(DDG.get_query().toLowerCase());
 
-        var itemType;    
-        // sort by district for House members
-        // TODO: Use sorting block
+        // location search returns a list of both senate and house members
+        // figure out which the user searched for and push those member
+        // to the result array.
+        var results = [];
+        for(var e in api_result.results){
+            if(api_result.results[e].chamber == query){
+                results.push(api_result.results[e]);
+            }
+        }
+
+        var state = api_result.results[0].state_name,
+        chamber = api_result.results[0].chamber;
+
+        var itemType;  
+
         if(chamber == 'house') {
-            api_result.results = sortDistrict(api_result.results);
+            results = sortDistrict(results);
             itemType =  'U.S. ' + DDG.capitalize(chamber) + ' Representatives from ' + state;
         }
         else{
             itemType =  'U.S. ' + 'Senators from ' + state;
         }
 
+
         Spice.add({
             id: 'congress',
             name: 'Congress',
-            data: api_result.results,
+            data: results,
             meta: {
                 sourceName: 'govtrack.us',
                 sourceUrl: "https://www.govtrack.us/congress/members/"+state,
@@ -67,8 +79,8 @@
                     buy: Spice.congress.buy,
                     rating: false,
                     variant: 'narrow',
-		    price: false,
-		    brand: false
+            price: false,
+            brand: false
                 }
             }
         });
@@ -82,6 +94,17 @@
             return ((x < y) ? -1 : ((x > y) ? 1 : 0));
         });
     }
+
+        // return the chamber from the search query
+    function getChamber(string){
+        //matches senate, senator
+        if(string.indexOf("senat") != -1)
+            return 'senate';
+        // matches rep, represenative(s), and house
+        if(string.indexOf("rep") !== -1 || string.indexOf("house") != -1)
+            return 'house';
+    }
+
 }(this));
 
 
