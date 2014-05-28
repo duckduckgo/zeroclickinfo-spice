@@ -29,7 +29,10 @@
                 itemType: 'Tracks'
             },
             templates: {
-                item_custom: 'audio_item'
+                item_custom: 'audio_item',
+                options: {
+                    footer: Spice.sound_cloud.footer
+                }
             },
             view: 'Audio',
             model: 'Audio',
