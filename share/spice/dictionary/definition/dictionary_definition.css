@@ -13,17 +13,24 @@
 
 .zci__def__audio {
     display: none;
-    font-size: 0.3em;
+    font-size: 0.5em;
     text-align: center;
     vertical-align: middle;
     background: #979797;
     color: #fafafa;
-    width: 2em;
-    height: 2em;
-    border-radius: 2.4em;
-    padding: .3em 0 0 .3em;
-    line-height: 2em;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 1.8em;
+    line-height: 1.8em;
     cursor: pointer;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
 }
 
 .zci__def__audio:hover {
@@ -31,11 +38,35 @@
     color: #fff;
 }
 
-.zci__def__audio.is-loaded {
+.zci__def__audio.is-showing {
     display: inline-block;
+    line-height: 1.8em;
+}
+
+.zci__def__audio.is-loading {
+    background: #c9481c;
+    -webkit-transform: scale(.5);
+    -moz-transform: scale(.5);
+    -0-transform: scale(.5);
+    transform: scale(.5);
 }
 
 .zci__def__audio.is-playing:hover,
 .zci__def__audio.is-playing {
     background: #60ae50;
+    -webkit-transform: scale(.8);
+    -moz-transform: scale(.8);
+    -o-transform: scale(.8);
+    transform: scale(.8);
+}
+
+.zci__def__audio--error {
+    display: none;
+    color: #aaa;
+    font-style: italic;
+    font-size: .5em;
+}
+
+.zci__def__audio--error.is-showing {
+    display: inline;
 }
