@@ -11,7 +11,7 @@ ddg_spice_test(
         '/js/spice/bitcoin_balance/17x23dNjXJLzGMev6R63uyRhMWP1VHawKc',
         call_type => 'include',
         caller => 'DDG::Spice::BitcoinBalance',
-        is_cached => 0, 
+        proxy_cache_valid => "418 1d", 
     ),
 );
 
