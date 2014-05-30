@@ -1,0 +1,8 @@
+.zci--meta_cpan .record__cell__key {
+    text-align: left;
+    padding-right: 0.9em;
+}
+
+.zci--meta_cpan .record__cell__key:after {
+    content: ":";
+}
