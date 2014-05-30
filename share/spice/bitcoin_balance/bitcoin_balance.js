@@ -8,7 +8,7 @@
         
         Spice.add({
             id: "bitcoinBalance",
-            name: "Bitcoin Address Balance",
+            name: "Bitcoin Address",
             data: {
                 balance: api_result.balance / 100000000
                 //The balance field on the API returns satoshis, so we divide by 100000000 to convert to BTC.
@@ -18,7 +18,7 @@
                 sourceUrl: "http://chain.com"
             },
             templates: {
-                group: 'text',
+                group: 'info',
                 options:{
                     content: Spice.bitcoin_balance.content,
                     moreAt: true
