@@ -1,46 +1,64 @@
 .zci--bitcoinbalance .balance-wrapper {
-    margin-bottom:12px;
     overflow: auto;
+    padding-bottom: 6px;
 }
 
 .zci--bitcoinbalance .balance-box {
-    display:block;
     float: left;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    max-width: 100%;
-    padding:20px 20px 17px 20px; 
-    background: white;
+    background-color: #E9E9E9;
     border-radius:3px;
+    padding: 2% 22px 3% 22px;
 }
 
-.zci--bitcoinbalance .bitcoin-logo {
-    position: absolute;
-    height: 44px;
-    width: 44px;
+.zci--bitcoinbalance .btc-title {
+    position: relative;
+    float: left;
+    top: 18px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding-right: 40px;
+    font-size: 15px;
 }
 
-.zci--bitcoinbalance .balance {
-    margin-left: 54px;
-    word-break: break-word;
-    font-size:35px;
-    font-weight:100;
+.zci--bitcoinbalance .btc-balance {
+    position: relative;
+    float: right;
+    top: 5px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-size: 35px;
+}
+
+@media screen and (max-width: 568px) {
+    
+    .zci--bitcoinbalance .zci__body {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+    
+    .zci--bitcoinbalance .balance-wrapper {
+        padding-bottom: 0;
+    }
+    
+    .zci--bitcoinbalance .balance-box {
+        width: 100%;
+        padding: 2% 5% 3% 5%;
+    }
 }
 
 @media screen and (max-width: 480px) {
-    
-    .zci--bitcoinbalance .balance-box {
-        padding:20px; 
+    .zci--bitcoinbalance .btc-title {
+       top: 5px;
     }
     
-    .zci--bitcoinbalance .bitcoin-logo {
-        height: 35px;
-        width: 35px;
-    }
-    
-    .zci--bitcoinbalance .balance {
-        margin-left: 44px;
-        font-size: 26px;
+    .zci--bitcoinbalance .btc-balance {
+        top: 3px;
+        font-size: 20px;
     }
 }
