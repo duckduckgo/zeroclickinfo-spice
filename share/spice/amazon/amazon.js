@@ -8,25 +8,18 @@ function ddg_spice_amazon(api_result) {
 
     var items = api_result.results;
 
-    // TODO: this is obviously not ideal, just ported over
-    // what was in permenant.js. It loads ratings data for each item,
-    // the render the spice plugin:
-    var loadRatingsData = function(items,fn){
-        var numLeft = items.length;
-
+    var loadRatingsData = function(){
         var onGotRatingsData = function(r,s,x){
-
             if (r.stars.match(/stars-(\d)-(\d)/)) {
                 this.rating = RegExp.$1 + "." + RegExp.$2;
             }
             this.reviewCount = r.reviews;
 
-            // decrement the numLeft and
-            // see if all have returned yet:
-            numLeft--;
-            if(!numLeft){
-                // if done, call the callback:
-                fn();
+            if (this.$html) {
+                var $ratingsWrapper = this.$html.find('.tile__rating');
+                if ($ratingsWrapper && $ratingsWrapper.length) {
+                    $ratingsWrapper.html( Handlebars.helpers.starsAndReviews(this.rating, this.reviewCount, this.url_review, true) );
+                }
             }
         }
 
@@ -41,29 +34,32 @@ function ddg_spice_amazon(api_result) {
         }
     };
 
-    // loading ratings data for all the items
-    // then render the spice:
-    loadRatingsData(items,function(){
-        Spice.add({
-            id: 'products',
-            name: 'Products',
+    Spice.add({
+        id: 'products',
+        name: 'Products',
 
-            data: items,
+        data: items,
 
-            meta: {
-                itemType: 'Products',
-                sourceName: 'Amazon',
-                sourceUrl: api_result.more_at,
-                sourceIcon: true
-            },
+        meta: {
+            itemType: 'Products',
+            sourceName: 'Amazon',
+            sourceUrl: api_result.more_at,
+            sourceIcon: true
+        },
 
-            template_group: 'products',
+        template_group: 'products',
 
-            templates: {
-                options: {
-                    buy: 'products_amazon_buy'
-                }
+        templates: {
+            options: {
+                buy: 'products_amazon_buy'
             }
-        });
+        },
+
+        // wait until after tab is shown to make
+        // the individual ajax requests to get ratings data. Allows
+        // products to get to show() asap so we have fewer fallbacks:
+        onShow: function() {
+            loadRatingsData();
+        }
     });
 }
