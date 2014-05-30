@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_bitcoin_balance = function(api_result){
 
-        if (api_result.error) {
+        if (!api_result || api_result.error) {
             return Spice.failed('bitcoin_balance');
         }
         
