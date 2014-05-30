@@ -1,4 +1,7 @@
-function ddg_spice_apartable_city (api_result){
+(function(env){
+  "use strict";
+
+  env.ddg_spice_apartable_city = function (api_result){
       if (api_result.error) {
           return Spice.failed('apartable_city');
       }
@@ -14,3 +17,5 @@ function ddg_spice_apartable_city (api_result){
     },
   });
 };
+
+}(this));

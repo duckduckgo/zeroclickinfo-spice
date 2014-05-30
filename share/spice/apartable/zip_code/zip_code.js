@@ -1,4 +1,6 @@
-function ddg_spice_apartable_zip_code (api_result){
+(function(env){
+  "use strict";
+  env.ddg_spice_apartable_zip_code = function(api_result){
 
       if (api_result.error) {
           return Spice.failed('apartable_city_state');
@@ -15,3 +17,4 @@ function ddg_spice_apartable_zip_code (api_result){
     },
   });
 };
+}(this));
