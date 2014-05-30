@@ -25,7 +25,7 @@ spice to => 'https://{{ENV{BITCOIN_BALANCE_SPICE_APIKEY}}}@api.chain.com/v1/bitc
 
 spice wrap_jsonp_callback => 1;
 
-spice is_cached => 0;
+spice proxy_cache_valid => "418 1d";
 
 handle query_raw => sub {
     return $_;
