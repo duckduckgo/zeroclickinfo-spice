@@ -41,7 +41,7 @@ Please place an 'X' where appropriate.
 
 ```
 [X] Added metadata and attribution information
-[] Wrote test file and added to t/ directory
+[X] Wrote test file and added to t/ directory
 [X] Verified that instant answer adheres to design guidelines(https://github.com/duckduckgo/duckduckgo-documentation/blob/master/duckduckhack/styleguides/design_styleguide.md)
 [X] Tested cross-browser compatability
 
