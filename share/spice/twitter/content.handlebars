@@ -1,0 +1,23 @@
+<div class="twitter--basic">
+  <div class="twitter--image--wrap">
+    <img src="{{imageProxy image}}" class="circle twitter--image">
+  </div>
+  <div class="twitter--misc">
+    <div>{{name}}</div>
+      <div class="twitter--more">
+        <span class="twitter--user"><a href="https://twitter.com/{{user}}">@{{user}}</a></span>
+    {{#if location}}
+        <span class="zcm__sep"></span>
+        {{location}}
+    {{/if}}
+      </div>
+    {{#if display_url}}
+      <a href="{{expanded_url}}">{{display_url}}</a>
+    {{/if}}
+  </div>
+</div> 
+{{#if description}}
+  {{#twitter_findLinks description entities.description}}
+    <div class="twitter--description">{{{twitter_makeLinks this}}}</div>
+  {{/twitter_findLinks}}
+{{/if}}

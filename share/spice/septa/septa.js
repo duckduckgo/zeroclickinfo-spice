@@ -5,7 +5,7 @@ function ddg_spice_septa(api_result) {
             !api_result[0].orig_line ||
             !api_result[0].orig_departure_time ||
             !api_result[0].orig_delay) {
-        return;
+        return Spice.failed('septa');
     }
 
     var script  = $("[src*='js/spice/septa/']")[0];
@@ -14,26 +14,42 @@ function ddg_spice_septa(api_result) {
     var from    = parts[4];
     var to      = parts[5];
 
-    Spice.render({
-        data              : api_result,
-        source_name       : 'SEPTA',
-        source_url        : 'http://www.septa.org/schedules/',
-        template_normal   : 'septa',
-        header1           : 'Trains from ' + from + ' to ' + to,
-        force_favicon_url : 'http://www.septa.org/site/images/favicon.ico'
+    Spice.add({
+	id: 'septa',
+	name: 'Trains',
+        data: api_result,
+	meta: {
+            sourceName: 'SEPTA',
+            sourceUrl: 'http://www.septa.org/schedules/rail/index.html',
+	    sourceIconUrl: 'http://septa.org/site/images/favicon.ico',
+	    itemType: 'trains'
+	},
+	normalize: function(item) {
+	    return {
+		url: 'http://www.septa.org/schedules/rail/index.html'
+	    };
+	},
+        templates: {
+	    group: 'base',
+	    detail: false,
+	    item_detail: false,
+	    options: {
+		content: Spice.septa.content
+	    }
+        }
     });
 };
 
-Handlebars.registerHelper ('delay', function(delay) {
+Handlebars.registerHelper ('SEPTA_delay', function(delay) {
     "use strict";
 
     if (delay == "On time") {
-        return "";
+        return "On time";
     }
     if (delay == "Suspended") {
-        return " (Suspended) ";
+        return "Suspended";
     }
     var parts = delay.split(" ");
     var delay = parts[0] + " minute" + (parts[0] > 1 ? "s" : "") + " late";
-    return " (" + delay + ")";
+    return delay;
 });

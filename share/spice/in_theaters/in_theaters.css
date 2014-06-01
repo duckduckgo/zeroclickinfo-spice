@@ -1,13 +1,34 @@
-#spice_in_theaters .spice_in_theaters_metadata {
-    color: rgb(119, 119, 119);
-    font-size: 90%;
+.tile--in_theaters {
+    width: 12em;
 }
 
-#spice_in_theaters li.ddgc_item img {
-    max-height: 120px !important;
-    max-width: none !important;
+.tile--in_theaters .tile__media__img {
+    min-width: 100%;
+    height: 100%;
+    margin-top: 0;
 }
 
-#spice_in_theaters li.ddgc_item {
-    height: 165px;
+.zci--in_theaters .one-line {
+    float: left;
+}
+
+.tile--in_theaters .tile__title {
+    height: 2.5em;
+}
+
+.tile--in_theaters .tile__source,
+.tile--in_theaters.highlight .tile__source {
+    color: #999;
+}
+
+.zci--in_theaters .tomato--icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    background: transparent no-repeat;
+}
+
+.zci--in_theaters .btn.btn--primary {
+    margin-top: 1em;
 }

@@ -1,4 +1,21 @@
-#spice_alternative_to .rd_key {
-    color: #777777;
-    font-style: italic;
+.tile--alternative_to .tile__icon {
+    float: right;
+    margin-top: 0;
+    margin-right: 0;
+}
+
+.tile--alternative_to .tile__body {
+    height: 13em;
+}
+
+.tile--alternative_to .tile__footer {
+    bottom: 0.6em;
+}
+
+.tile--alternative_to .tile__content {
+    height: 6em;
+}
+
+.is-mobile .tile--alternative_to .tile__content {
+    height: 6.8em;
 }

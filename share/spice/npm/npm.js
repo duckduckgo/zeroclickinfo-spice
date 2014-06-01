@@ -1,17 +1,26 @@
-function ddg_spice_npm (api_result) {
-  "use strict";
+(function (env) {
+    "use strict";
+    env.ddg_spice_npm = function(api_result){
 
-  if (api_result.error) {
-    return;
-  }
+        if (api_result.error) {
+            return Spice.failed('npm');
+        }
 
-  Spice.render({
-    data              : api_result,
-    force_big_header  : true,
-    header1           : api_result.name + ' (' + api_result.version + ')',
-    source_name       : "npmjs.org", // More at ...
-    source_url        : 'http://npmjs.org/package/' + api_result.name,
-    template_normal   : 'npm',
-    template_small    : 'npm'
-  });
-}
+        Spice.add({
+            id: "npm",
+            name: "Software",
+            data: api_result,
+            meta: {
+                sourceName: "npmjs.org",
+                sourceUrl: 'http://npmjs.org/package/' + api_result.name
+            },
+            templates: {
+                group: 'base',
+                options: {
+                    content: Spice.npm.content,
+                    moreAt: true
+                }
+            }
+        });
+    };
+}(this));
