@@ -16,13 +16,21 @@ attribution github  => ['https://github.com/tigre-bleu', 'tigre-bleu'],
 
 triggers startend => 
     'bike',
+    'bikes',
     'bicycle',
+    'bicycles',
     'shared bicycle',
+    'shared bicycles',
     'shared bike',
+    'shared bikes',
     'self-service bicycle',
+    'self-service bicycles',
     'self-service bike',
+    'self-service bikes',
     'bike service',
-    'bicycle service';
+    'bikes service',
+    'bicycle service',
+    'bicycles service';
 
 spice to => 'https://api.jcdecaux.com/vls/v1/contracts?apiKey={{ENV{DDG_SPICE_JCDECAUX_APIKEY}}}';
 spice wrap_jsonp_callback => 1;

@@ -25,14 +25,21 @@
 
                 skip_words: [
                     "bike",
+                    "bikes",
                     "bicycle",
+                    "bicycles",
                     "bycycle",
+                    "bycycles",
                     "self-service",
                     "shared",
                     "service",
+                    "services",
                     "city",
+                    "cities",
                     "station",
-                    "town"
+                    "stations",
+                    "town",
+                    "towns"
                 ],
 
                 primary: [
