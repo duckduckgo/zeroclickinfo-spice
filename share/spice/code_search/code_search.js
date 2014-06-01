@@ -12,7 +12,9 @@
         Spice.add({
             id: 'code_search',
             name: "Software",
-            data: api_result.results[0].lines,
+            data: {
+                record_data: api_result.results[0].lines
+            },
             meta: {
                 sourceUrl: 'http://searchco.de/?q=' + query + '&cs=true',
                 sourceName: 'searchcode'
