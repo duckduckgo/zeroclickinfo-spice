@@ -27,8 +27,6 @@
     },
     templates: {
       group: 'products',
-      item : 'products_item',
-      item_detail : 'products_item_detail',
       options     : {
         rating  : false,
         ratingText: false

@@ -18,6 +18,10 @@ spice wrap_jsonp_callback => 1;
 triggers end => "apartments";
 
 handle remainder => sub {
+    # I need 3 parameters for API call which I fetch with the following regexp:
+    # 1) The whole query
+    # 2) The city name
+    # 3) The state abbreviation
     return $1,$2,$3 if $_=~/(([^,]+)\s*,\s*([A-Z]{2}))/;
     return;
 };
