@@ -1,0 +1,10 @@
+.zci--apod .content {
+	padding: 0 0 0 200px;
+	position: relative; 
+}
+
+.zci--apod .content img {
+	left: 0;
+	position: absolute;
+	top: 0;
+}
