@@ -1,40 +1,78 @@
-function ddg_spice_congress(api_result) {
+(function(env) {
     "use strict";
 
-    if (!api_result || !api_result.results || api_result.results.length === 0) {
-        return;
-    }
+    env.ddg_spice_congress = function(api_result) {
     
-    var state = api_result.results[0].state_name;
-    var chamber = api_result.results[0].chamber;
+        if (!api_result || !api_result.results || api_result.results.length === 0) {
+            return Spice.failed("congress");
+        }
 
-    // sort by district for House members
-    if(chamber == 'house')
-        api_result.results = sortDistrict(api_result.results);
+        var state = api_result.results[0].state_name,
+            chamber = api_result.results[0].chamber;
 
-    Spice.render({
-        data             : api_result.results,
-        header1          : 'Members of the U.S. ' + capitalize(chamber) + ' ' + '(' + state + ')',
-        source_url       : "https://www.govtrack.us/congress/members/"+state,
-        source_name      : 'govtrack.us',
+        var itemType;    
+        // sort by district for House members
+        // TODO: Use sorting block
+        if(chamber == 'house') {
+            api_result.results = sortDistrict(api_result.results);
+            itemType =  'U.S. ' + DDG.capitalize(chamber) + ' Representatives from ' + state;
+        }
+        else{
+            itemType =  'U.S. ' + 'Senators from ' + state;
+        }
 
-        template_frame   : 'list',
-        template_options: {
-            items: api_result.results, 
-            template_item: "congress",
-            show: 3,
-            type: 'ul'
+        Spice.add({
+            id: 'congress',
+            name: 'Congress',
+            data: api_result.results,
+            meta: {
+                sourceName: 'govtrack.us',
+                sourceUrl: "https://www.govtrack.us/congress/members/"+state,
+                itemType: itemType
+            },
+        normalize: function(item) {
+            var image = "https://www.govtrack.us/data/photos/"+item.govtrack_id+"-200px.jpeg";
+
+            var name = (item.title ? item.title + '. ' : '') 
+                        + (item.first_name ? item.first_name + ' ' : '') 
+                        + (item.last_name ? item.last_name : '');
+
+            var party;
+
+            switch(item.party){
+                case "D":
+                    party = "Democratic";
+                    break;
+                case "R":
+                    party = "Republican";
+                    break;
+                case "I":
+                    party = "Independent";
+                    break     
+            }
+
+            return {
+                url: "https://www.govtrack.us/congress/members/" + item.govtrack_id,
+                img: image,
+                img_m: image,
+                image: image,            
+                heading: name,
+                title: name,
+                party: party
+            };
         },
-
-        force_big_header : true,
-        force_no_fold    : true,
-        spice_name       : "congress"
-    });
-
-    //capitalize the chamber name
-    function capitalize(string){
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+            templates: {
+                group: 'products',
+                options: {
+                    buy: Spice.congress.buy,
+                    rating: false,
+                    variant: 'narrow',
+		    price: false,
+		    brand: false
+                }
+            }
+        });
+   };
 
     // Sort based on house member's district
     function sortDistrict(array){
@@ -44,42 +82,27 @@ function ddg_spice_congress(api_result) {
             return ((x < y) ? -1 : ((x > y) ? 1 : 0));
         });
     }
+}(this));
 
-}
 
 /*******************************
-  Handlebars helpers
-  *******************************/
+Handlebars helpers
+*******************************/
 
 // Creates a full name for a given representative
-Handlebars.registerHelper ('get_name', function() {
+Handlebars.registerHelper ('congress_get_name', function(title, first_name, last_name) {
     "use strict";
-    return (this.title ? this.title + '. ' : '')
-            + (this.first_name ? this.first_name + ' ' : '') 
-            //+ (this.middle_name ? this.middle_name + ' ' : '') 
-            + (this.last_name ? this.last_name : '');
+    return (title ? title + '. ' : '')
+            + (first_name ? first_name + ' ' : '')
+            //+ (middle_name ? middle_name + ' ' : '')
+            + (last_name ? last_name : '');
 });
 
 // return the next election year
-Handlebars.registerHelper ('get_date', function() {
+Handlebars.registerHelper ('congress_get_date', function(term_end) {
     "use strict";
-    if(this.term_end)           
-        return "Next Election " + this.term_end.substring(0,4);
+    if(term_end)
+        return "Next Election " + term_end.substring(0,4);
     return null;
 });
 
-// return the party
-Handlebars.registerHelper ('get_party', function() {
-    "use strict";
-    if(this.party){
-        switch(this.party){
-            case "D":
-                return "Democrat";
-            case "R":
-                return "Republican";
-            case "I":
-                return "Independent";
-        }
-    }
-    return null;
-});

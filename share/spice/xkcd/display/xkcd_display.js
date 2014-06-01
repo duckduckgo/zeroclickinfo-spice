@@ -2,7 +2,7 @@ function ddg_spice_xkcd_display(api_result) {
   "use strict";
 
   if (!api_result.img || !api_result.alt) {
-    return;
+    return Spice.failed('xkcd');
   }
 
   //calls our endpoint to get the number of the latest comic
@@ -13,23 +13,31 @@ function ddg_spice_xkcd_display(api_result) {
 
     // Add exception for comic 1335.
     if(api_result.num === 1335) {
-	api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
+		api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
     }
     
-    Spice.render({
-      data             : api_result,
-      header1          : api_result.safe_title + " (xkcd)",
-      source_url       : 'http://xkcd.com/' + api_result.num,
-      source_name      : 'xkcd',
-      template_normal  : 'xkcd_display',
-      force_big_header : true,
-      force_no_fold    : true
+    Spice.add({
+		id: 'xkcd',
+		data: api_result,
+		name: 'Comics',
+		meta: {
+            sourceUrl       : 'http://xkcd.com/' + api_result.num,
+            sourceName      : 'xkcd',
+            sourceIcon      : true
+		},
+    templates: {
+      group: 'base',
+      options: {
+        content: Spice.xkcd_display.content,
+        moreAt: true
+                }
+            }
     });
   });
 }
 
 //gets the number for the previous comic
-Handlebars.registerHelper("previousNum", function(num, options) {
+Handlebars.registerHelper("xkcd_previousNum", function(num, options) {
     "use strict";
 
     if(num > 1) {
@@ -38,7 +46,7 @@ Handlebars.registerHelper("previousNum", function(num, options) {
 });
 
 //gets the number for the next comic 
-Handlebars.registerHelper("nextNum", function(num, options) {
+Handlebars.registerHelper("xkcd_nextNum", function(num, options) {
     "use strict";
 
     return options.fn({num: num + 1});

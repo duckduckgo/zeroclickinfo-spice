@@ -1,94 +1,107 @@
-function ddg_spice_kwixer(api_response) {
-    if (!api_response || api_response.length ===0 ) return;
+(function(env) {
+    "use strict";
 
-    var skipArray = [
-    'new movies with','new movies featuring','new movies starring',
-    'new movie with','new movie featuring','new movie starring',
-    'newest movies with','newest movies featuring','newest movies starring',
-    'newest movie with','newest movie featuring','newest movie starring',
-    'new films with','new films starring','new films featuring',
-    'new film with','new film starring','new film featuring',
-    'newest films with','newest films starring','newest films featuring',
-    'newest film with','newest film starring','newest film featuring',
-    'movie with','movies with', 'movies starring','film with','films with','films starring','film starring','movies featuring','films featuring','movies with the',' the '];
-    var finalArray = [];
-    var itemsToInsertAtTheEnd = [];
-    var ddg_spice_kwixer_query = DDG.get_query();
-    var remainder = ddg_spice_kwixer_query.toLowerCase();
-    
-    for (var i = 0; i < skipArray.length; i++)
-    {
-        remainder = remainder.replace(skipArray[i],"");
-    }
-    remainder = remainder.replace(/^\s+|\s+$/g, '');
+    env.ddg_spice_kwixer = function(api_result) {
+        
+        if(!api_result || !api_result.length === 0) {
+            return Spice.failed('kwixer');
+        }
 
-    if(remainder.length <= 2)
-        return;
+        var skip_re = new RegExp([
+            'new movies with',
+            'new movies featuring',
+            'new movies starring',
+            'new movie with',
+            'new movie featuring',
+            'new movie starring',
+            'newest movies with',
+            'newest movies featuring',
+            'newest movies starring',
+            'newest movie with',
+            'newest movie featuring',
+            'newest movie starring',
+            'new films with',
+            'new films starring',
+            'new films featuring',
+            'new film with',
+            'new film starring',
+            'new film featuring',
+            'newest films with',
+            'newest films starring',
+            'newest films featuring',
+            'newest film with',
+            'newest film starring',
+            'newest film featuring',
+            'movie with',
+            'movies with',
+            'movies starring',
+            'film with',
+            'films with',
+            'films starring',
+            'film starring',
+            'movies featuring',
+            'films featuring',
+            'movies with the',
+            ' the '
+        ].join("|"), "ig");
 
-    var remainderArray = remainder.split(" ");
-    //checks if the result is relevant.
-    //if the item doesn't have an image sets the default image and puts it in the end
-    //replaces large with medium images for faster loading
-    for(var index in api_response)
-    {
-        if(api_response.hasOwnProperty(index))
-        {
-            var item = api_response[index];
-            var isRelevant = false;
-            var actors = item.ResourceDetails2.toLowerCase();
-            for (var i = 0; i < remainderArray.length; i++)
-            {
-                //just checking if there's one match or not, the api is already intelligent enough to ignore "and" etc..
-                //we need to match actors for now, because the API's default search searches also by general context.
-                if(actors.indexOf( remainderArray[i]) != -1)
-                {
+        var query = DDG.get_query(),
+            finalArray = [],
+            remainder = $.trim(query.replace(skip_re, "")),
+            remainderArray = remainder.split(" ");
+
+        for(var i = 0; i < api_result.length; i++) {
+            var item = api_result[i],
+                isRelevant = false,
+                actors = item.ResourceDetails2.toLowerCase();
+
+            for(var j = 0; j < remainderArray.length; j++) {
+                if(actors.indexOf(remainderArray[j]) !== -1) {
                     isRelevant = true;
                     break;
                 }
             }
-            if(isRelevant)
-            {
-                if(!item.ResourceImageUrl || item.ResourceImageUrl.length === 0 || (item.ResourceImageUrl.indexOf(".jpeg") == -1 && item.ResourceImageUrl.indexOf(".jpg") == -1 && item.ResourceImageUrl.indexOf(".png") == -1))
-                {
-                    item.ResourceImageUrl= "https://kwix.blob.core.windows.net/icons/icon-watching-vanilla.png";
-                    itemsToInsertAtTheEnd.push(item);
-                }
-                else
-                {
-                    item.ResourceImageUrl = item.ResourceImageUrl.replace("large_", "medium_");
-                    finalArray.push(item);
-                }
+
+            if(isRelevant && item.ResourceImageUrl &&
+                    item.ResourceImageUrl.length &&
+                    (/jpe?g|png/i).test(item.ResourceImageUrl)) {
+                item.ResourceImageUrl = item.ResourceImageUrl.replace("large_", "medium_");
+                finalArray.push(item);
             }
         }
-    }
-    if(itemsToInsertAtTheEnd.length > 0)
-    {
-        finalArray = finalArray.concat(itemsToInsertAtTheEnd);
-    }
 
-    if (!finalArray || finalArray.length ===0 ) return;
+        if (finalArray.length === 0) {
+            return Spice.failed('kwixer');
+        }
 
-    Spice.render({
-        header1                  : ddg_spice_kwixer_query + ' (Kwixer)',
-        source_url               : "https://www.kwixer.com/#/explore?category=movie&query=" + DDG.get_query_encoded() ,
-        source_name              : 'Kwixer',
-        force_big_header         : true,
-        force_favicon_domain     : 'www.kwixer.com',
-        force_favicon_url        : 'https://kwixer.com/favicon.ico',
-        template_frame           : 'carousel',
-        spice_name               : 'kwixer',
-        template_options         : {
-            template_detail          : 'kwixer_detail',
-            template_item            : 'kwixer',
-            items                    : finalArray,
-            li_height                : 155
-        },
-        force_no_fold            : true
+        Spice.add({
+            id: 'kwixer',
+            name: 'Movies',
+            data: finalArray,
+            meta: {
+                sourceName: 'Kwixer',
+                sourceUrl: "https://www.kwixer.com/#/explore?category=movie&query=" + DDG.get_query_encoded(),
+                itemType: "Movies"
+            },
+            normalize: function(item) {
+                return {
+                    image: item.ResourceImageUrl,
+                    title: item.ResourceTitle,
+                    ratingText: item.ResourceYear.toString()
+                }
+            },
+            templates: {
+                item: 'basic_image_item',
+                detail: Spice.kwixer.kwixer_detail,
+                options: {
+                    rating: false,
+                    variant: 'poster'
+                }
+            }
+        });
+    };
+
+    Handlebars.registerHelper("formatDetail", function(s) {
+        return s.replace(/;/g, ', ');
     });
-}
-
-Handlebars.registerHelper("formatDetail", function (detail) {
-    if(detail)
-        detail = detail.replace(/;/g,", ");
-    return detail;
-});
+}(this));

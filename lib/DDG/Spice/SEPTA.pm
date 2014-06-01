@@ -22,6 +22,8 @@ triggers any => "next train", "train times", "train schedule", "septa";
 
 spice from => '(.*)/(.*)';
 
+spice proxy_cache_valid => "418 1d";
+
 handle query_lc => sub {
     s/\s+septa|septa\s+//;
     /(?:next trains?|train times|train schedule)?(?: from| to)? (.+) (to|from) (.+)/;

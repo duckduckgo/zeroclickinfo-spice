@@ -13,7 +13,7 @@ function ddg_spice_gravatar (api_result) {
 
     // Check for errors.
     if(!api_result || !api_result.entry || api_result.entry.length === 0) {
-        return;
+        return Spice.failed('gravatar');
     }
 
     // Get the name of the user (if available).
@@ -31,20 +31,35 @@ function ddg_spice_gravatar (api_result) {
     };
 
     // Display the spice plugin.
-    Spice.render({
+    Spice.add({
         data              : api_result,
-        header1           : getName(api_result.entry[0]) + " (Gravatar)",
-        force_big_header  : true,
-        source_name       : "Gravatar",
-        source_url        : api_result.entry[0].profileUrl,
-        image_url         : api_result.entry[0].thumbnailUrl + ".png",
-        template_normal   : "gravatar",
+		id: "gravatar",
+        name: "Avatar",
+        
+        meta: {
+            sourceName       : "Gravatar",
+            sourceUrl        : api_result.entry[0].profileUrl
+        },
+        normalize: function() {
+            return {
+                image         : api_result.entry[0].thumbnailUrl + ".png",
+                title         : getName(api_result.entry[0])
+            };
+        },
+        template_group: 'info',
+
+        templates: {
+	    options: {
+		content: Spice.gravatar.content
+	    }
+        },
+
         force_favicon_url : 'http://gravatar.com/favicon.ico'
     });
 }
 
 // Find the primary e-mail.
-Handlebars.registerHelper("getEmail", function(emails, options) {
+Handlebars.registerHelper("Gravatar_getEmail", function(emails, options) {
     "use strict";
 
     // Check if the variable exists.
@@ -61,7 +76,7 @@ Handlebars.registerHelper("getEmail", function(emails, options) {
 });
 
 // If we don't have any information to display, just show this.
-Handlebars.registerHelper("fallbackInfo", function(emails, aboutMe, currentLocation, accounts, context, options) {
+Handlebars.registerHelper("Gravatar_fallbackInfo", function(emails, aboutMe, currentLocation, accounts, context, options) {
     "use strict";
 
     if(!emails && !aboutMe && !currentLocation && !accounts) {
@@ -70,7 +85,7 @@ Handlebars.registerHelper("fallbackInfo", function(emails, aboutMe, currentLocat
 });
 
 // This is for favicons that don't work.
-Handlebars.registerHelper("checkDomain", function(domain) {
+Handlebars.registerHelper("Gravatar_checkDomain", function(domain) {
     "use strict";
 
     if(domain === "plus.google.com") {

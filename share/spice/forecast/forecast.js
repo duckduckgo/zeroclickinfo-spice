@@ -1,9 +1,11 @@
 function ddg_spice_forecast(r) {
   "use strict";
-
+  
+  var weatherData = {}, spiceData;
+  
   // Exit if we've got a bad forecast
   if(!r || !r.hourly || !r.hourly.data || !r.daily || !r.daily.data || !r.flags['ddg-location']) {
-    return;
+    return Spice.failed('forecast');
   }
 
   // Get the query.
@@ -19,27 +21,17 @@ function ddg_spice_forecast(r) {
 
   // Pass flags['ddg-location'] to DDG.stringsRelevant to check
   // if the result is relevant to our query.
-  var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'], query, undefined, 2);
+  /*var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'].toLowerCase(), query, undefined, 2);
 
   // Exit if it's not the current location that we're looking for,
   // not the area code, e.g., 07871, and if it's not relevant.
   if(!current_location && !(/\d/).test(query) && !relevant_location) {
-    return;
-  }
-
-  // Render the container elements
-  Spice.render({
-    data             : {},
-    header1          : r.flags['ddg-location'] ? 'Weather for '+r.flags['ddg-location'] : 'Weather',
-    source_url       : 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
-    source_name      : 'Forecast.io',
-    template_normal  : 'forecast',
-    force_big_header : true,
-    force_no_fold    : true,
-  });
+    return Spice.failed('forecast');
+  }*/
   
   // Set up some stuff we'll need
-  var $container = $('#spice_forecast'),
+  var //$container = $('#zci-forecast'),  // #spice_forecast'
+      units = (r.flags && r.flags.units) || 'us',
       unit_labels = {
         'us': {speed: 'mph', temperature: 'F'},
         'si': {speed: 'm/s', temperature: 'C'},
@@ -56,17 +48,21 @@ function ddg_spice_forecast(r) {
   }
 
   // Skycons (static version of these: http://darkskyapp.github.io/skycons/)
-  var set_skycons = function(elem_id, type) {
-    var $elem = $('#'+elem_id),
-        $img = $('<img />').attr('id', $elem.attr('id'))
-                           .attr('class', $elem.attr('class'))
-                           .attr('src', '/iu/?u=http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif') // DDG
-                           .css({
-                              'width': $elem.width(),
-                              'height': $elem.height()
-                            });
+  // var set_skycons = function(elem_id, type) {
+  //   var $elem = $('#'+elem_id),
+  //       $img = $('<img />').attr('id', $elem.attr('id'))
+  //                          .attr('class', $elem.attr('class'))
+  //                          .attr('src', '/iu/?u=http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif') // DDG
+  //                          .css({
+  //                             'width': $elem.width(),
+  //                             'height': $elem.height()
+  //                           })
     
-    $elem.replaceWith($img);
+  //   $elem.replaceWith($img)
+  // };
+  
+  var get_skycon = function(type) {
+	return 'http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif';
   };
   
   var available_skycon_icons = [
@@ -96,10 +92,13 @@ function ddg_spice_forecast(r) {
     var now = new Date().getTime() / 1000,
         hourly = f.hourly.data,
         current_summary = f.currently.summary,
-        speed_units = unit_labels[units].speed;
+        speed_units = unit_labels[units].speed,
+		feel_str,
+		currentObj = {};
     
-    // If the next-hour summary is interesting enough, use that instead
-    if(f.minutely && !f.minutely.summary.match(/ for the hour\.$/)) {
+	currentObj.isCurrent = 1;
+    // If the next-hour summary is interesting enough (and we're not on mobile), use that instead
+    if(!is_mobile && f.minutely && !f.minutely.summary.match(/ for the hour\.$/)) {
       current_summary = f.minutely.summary;
     }
     
@@ -114,135 +113,117 @@ function ddg_spice_forecast(r) {
       break;
     }
     
-    var temp_str = '<span class="fe_temp_str">'+Math.round(f.currently.temperature)+'&deg;</span><span class="fe_temp_unit">'+unit_labels[units].temperature+'</span>';
-    if(temp_direction > 0) {
-      temp_str += ' <span class="fe_dir">and rising</span>';
-    } else if(temp_direction < 0) {
-      temp_str += ' <span class="fe_dir">and falling</span>';
-    }
-    if(f.currently.apparentTemperature) {
-      temp_str += ' <span class="fe_feelslike">Feels like '+Math.round(f.currently.apparentTemperature)+'&deg;'+'</span>';
-    }
-    $container.find('.fe_currently .fe_temp').html(temp_str);
+    var temp_str = '<span class="fe_temp_str">'+Math.round(f.currently.temperature)+'&deg;</span>'
+	/*
+    if(temp_direction > 0)
+      temp_str += ' <span class="fe_dir">and rising</span>'
+    else if(temp_direction < 0)
+      temp_str += ' <span class="fe_dir">and falling</span>'
+    */
+    if(f.currently.apparentTemperature)
+      feel_str = 'Feels like '+Math.round(f.currently.apparentTemperature)+'&deg;'
     
-    if(current_summary.length > 45) {
-      $container.find('.fe_currently .fe_summary').addClass('fe_small');
-    } else {
-      $container.find('.fe_currently .fe_summary').removeClass('fe_small');
-    }
-    $container.find('.fe_currently .fe_summary').html(current_summary);
+	currentObj.temp = temp_str;
+	currentObj.feelslike = feel_str;
     
+    if(current_summary.length > 45)
+      currentObj.summaryClass = 'fe_small';
+	else currentObj.summaryClass = '';
+    
+    currentObj.summary = current_summary;
+	
     if(f.currently.windSpeed) {
       var wind_speed = Math.round(f.currently.windSpeed);
       
-      if(wind_speed != 0 && f.currently.windBearing) {
-        wind_speed += ' '+speed_units+' ('+wind_bearing_to_str(f.currently.windBearing)+')';
-      } else {
-        wind_speed += ' '+speed_units;
-      }
-      $container.find('.fe_currently .fe_wind').html('Wind: '+wind_speed);
+      if(wind_speed != 0 && f.currently.windBearing)
+        wind_speed += ' '+speed_units+' ('+wind_bearing_to_str(f.currently.windBearing)+')'
+      else
+        wind_speed += ' '+speed_units
+      
+      currentObj.wind = 'Wind: '+wind_speed;
     }
     
-    setTimeout(function() {
-      set_skycons('fe_current_icon', skycon_type(f.currently.icon));
-    }, 0);
-  };
+    currentObj.icon = get_skycon(skycon_type(f.currently.icon));
+	
+	return currentObj;
+  }
   
   // Build the list of days
   var build_daily = function(f) {
-    var $daily_container = $container.find('.fe_daily');
-    $daily_container.empty();
-    
-    var $day_template = $(
-        '<div class="fe_day"> \
-          <span class="fe_label">MON</span> \
-          <canvas class="fe_icon" /> \
-          <div class="fe_temp_bar"> \
-            <span class="fe_high_temp">72&deg;</span> \
-            <span class="fe_low_temp">50&deg;</span> \
-          </div> \
-        </div>'),
-        day_strs = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        today_i = new Date().getDay(),
-        days = f.daily.data,
-        num_days = Math.max(6, days.length),
-        day, $day;
-    
-    // First, find weekly high and low temps, for scaling
-    var high_temp = -Infinity,
-        low_temp = Infinity;
-    
+	var dailyObj = [],
+		day_strs = [],
+		today = new Date(),
+		today_i = today.getDay(),
+		month_i = today.getMonth(),
+		date_i = today.getDate(),
+		days = f.daily.data,
+		num_days = Math.max(6, days.length),
+		day,
+		temp_span,
+		max_temp_height = 65,
+		high_temp = -Infinity,
+		low_temp = Infinity;
+        
+        if (!is_mobile) {
+            day_strs = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        } else {
+            day_strs = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        }
+        
+    // find weekly high and low temps
     for(var i = 0; i < num_days; i++) {
-      day = days[i];
-      if(day.temperatureMax > high_temp) {
-        high_temp = day.temperatureMax;
-      }
-      if(day.temperatureMin < low_temp) {
-        low_temp = day.temperatureMin;
-      }
+        day = days[i];
+        if(day.temperatureMax > high_temp) {
+            high_temp = day.temperatureMax;
+        }
+        if(day.temperatureMin < low_temp) {
+            low_temp = day.temperatureMin;
+        }
     }
-    
-    // Now create each day element
-    var max_temp_height = 82,
-        temp_span = high_temp - low_temp,
-        temp_height, temp_top;
-    
-    for(var i = 0; i < num_days; i++) (function(i) {
-      $day = $day_template.clone();
-      day = days[i];
-      
-      temp_height = max_temp_height * (day.temperatureMax - day.temperatureMin) / temp_span;
-      temp_top = max_temp_height * (high_temp - day.temperatureMax) / temp_span;
-      
-      $day.find('.fe_label').html(i == 0 ? 'Today' : day_strs[(today_i+i)%7]);
-      $day.find('.fe_high_temp').html(Math.round(day.temperatureMax)+'&deg;');
-      $day.find('.fe_low_temp').html(Math.round(day.temperatureMin)+'&deg;');
-      
-      $day.find('.fe_temp_bar').css({
-        'height': temp_height,
-        'top': temp_top
-      });
-      
-      $day.find('.fe_icon').attr('id', 'fe_day_icon'+i);
-      setTimeout(function(){
-        set_skycons('fe_day_icon'+i, skycon_type(days[i].icon));
-      }, 0);
+    // figure out the temp span now that we have highs and lows
+    temp_span = high_temp - low_temp;
 
-      if(day.temperatureMax && day.temperatureMin) { 
-        $day.appendTo($daily_container);
-      }
+    // store daily values
+    for(var i = 0,tmp_date; i < num_days; i++) (function(i) {
+	  dailyObj[i] = days[i];
+	  day = days[i];
+      
+      tmp_date = new Date();
+	  tmp_date.setDate(date_i+i);
+	  dailyObj[i].date = tmp_date.toDateString().substr(4,6);
+      dailyObj[i].day = i == 0 ? 'Today' : day_strs[(today_i+i)%7];
+      dailyObj[i].highTemp = Math.round(day.temperatureMax)+'&deg;';
+      dailyObj[i].lowTemp = Math.round(day.temperatureMin)+'&deg;';
+      dailyObj[i].icon = get_skycon(skycon_type(days[i].icon));
+      dailyObj[i].tempBar = {
+        height: max_temp_height * (day.temperatureMax - day.temperatureMin) / temp_span,
+        top: max_temp_height * (high_temp - day.temperatureMax) / temp_span
+      };
+	  
     })(i);
-  };
+	
+	return dailyObj;
+  }
   
   // Build any weather alerts or warnings
-  var build_alerts = function(f) {
-    var $alert = $container.find('.fe_alert').empty();
-    
+  var build_alerts = function(f) {    
     if(!f.alerts || !f.alerts.length) {
-      $alert.hide();
-      return;
+      return "";
     }
     
     var alert_message;
     for(var i = 0; i < f.alerts.length; i++) {
-      if(f.alerts[i].title.match(/Special Weather Statement/i) ||
+      if (f.alerts[i].title.match(/Special Weather Statement/i) ||
          f.alerts[i].title.match(/Advisory/i) ||
-         f.alerts[i].title.match(/Statement/i)) {
+         f.alerts[i].title.match(/Statement/i))
         continue;
-      }
       
       alert_message = f.alerts[i];
       break;
     }
 
-    if(!alert_message) {
-      return;
-    }
-    
-    $('<a target="_blank"></a>').html('<span class="fe_icon">&#9873;</span> '+alert_message.title).attr('href', alert_message.uri).appendTo($alert);
-    
-    $container.addClass('alert')
-    $alert.show()
+    if(alert_message)
+      return '<a href="'+alert_message.uri+'" class="fe_alert" target="_blank"><span class="fe_icon--flag">&#9873;</span> '+alert_message.title+'</a>';
   }
 
   function build_temp_switch(current_unit){
@@ -256,57 +237,48 @@ function ddg_spice_forecast(r) {
   }
   
   // Go!
-  build_currently(r)
-  build_daily(r)
-  build_alerts(r)
-  build_temp_switch(unit_labels[units].temperature);
+  weatherData.current = build_currently(r);
+  weatherData.alerts = build_alerts(r);
+  weatherData.daily = build_daily(r);
+  weatherData.activeUnit = unit_labels[units].temperature;
+  weatherData.city = r.flags['ddg-location'];
 
-  var other_unit = unit_labels[units].temperature === 'F' ? 'C' : 'F';
+  // build the header text:
+  weatherData.header = weatherData.city ? 'Weather for ' + weatherData.city : 'Weather';
 
-  var convertTemp = function(unit, d){
-    if (unit === 'C') {
-      return (d-32)*(5/9);
-    } else if (unit === 'F') {
-      return d*(9/5) + 32;
-    }
+  // if there's alerts add them to the end:
+  if (weatherData.alerts) {
+      weatherData.header += ' ' + weatherData.alerts;
   }
 
-  //when we press the small button, switch the temperature units
-  $('#fe_temp_switch').click(function(){
-    //initialize the temperatures with the API data
-    var temps = {};
-    temps.current = r.currently.temperature;
-    temps.feelslike = r.currently.apparentTemperature;
-    temps.daily = $.map(r.daily.data, function(e){
-      return {'tempMin': e.temperatureMin, 'tempMax': e.temperatureMax};
+  // structure the data differently for mobile and desktop views
+  if (is_mobile) {
+    spiceData = weatherData;
+  } else {
+    spiceData = [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]];
+  }
+  
+  // Render/Display
+    Spice.add({
+        id: 'forecast',
+        name: 'Weather',
+
+        data: spiceData,
+
+        signal: "high",
+
+        meta: {
+            heading: weatherData.header,
+            sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
+            sourceName: 'Forecast.io',
+            altMeta: 'Temperatures in '+unit_labels[units].temperature+'&deg;',
+            variableTileWidth: true
+        },
+
+        templates: {
+            item_custom: Spice.forecast.forecast_item,
+            detail_mobile: Spice.forecast.forecast_detail_mobile
+        }
+
     });
-
-    //if they want the units that aren't by the API, calculate the new temps
-    if (other_unit !== unit_labels[units].temperature) {
-      temps.current = convertTemp(other_unit, temps.current);
-      temps.feelslike = convertTemp(other_unit, temps.feelslike);
-      temps.daily = $.map(temps.daily, function(e){
-        var tempMin = convertTemp(other_unit, e.tempMin),
-            tempMax = convertTemp(other_unit, e.tempMax);
-        return {'tempMin': tempMin, 'tempMax': tempMax};
-      });
-    } 
-    //insert the new temps in the html
-    var $fe_currently = $('.fe_currently');
-    $fe_currently.find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
-    $fe_currently.find('.fe_temp_unit').html(other_unit);
-    $fe_currently.find('.fe_feelslike').html('Feels like '+Math.round(temps.feelslike)+'&deg;');
-
-    $('.fe_temp_bar').each(function(i){
-      var day = temps.daily[i],
-          $this = $(this);
-
-      $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
-      $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
-    })
-
-    //switch the units on the button
-    build_temp_switch(other_unit);
-    other_unit = (other_unit === 'F') ? 'C' : 'F';
-  });
 }

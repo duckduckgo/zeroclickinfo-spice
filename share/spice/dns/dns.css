@@ -1,22 +1,20 @@
-#spice_dns table {
-    /* border:1px solid #d0d0d0; */
-    width:100%;
-    margin:5px;
+.zci--dns .zci__table {
+    margin-bottom: 2px;
 }
 
-#spice_dns tr {
-    border-bottom:1px solid #efefef;
+.zci--dns .zci__table__tr {
+    border-bottom: 1px solid #dedede;
 }
 
-#spice_dns th {
-    vertical-align:bottom;
-    text-align:left;
-    font-size:83.3%;
-    font-style:italic;
-    padding-left:3px;
+.zci--dns .zci__table__tr:last-of-type {
+    border-bottom: none;
 }
 
-#spice_dns td {
-    padding:2px;
-    max-width:250px;
+.zci--dns .zci__table__tr td {
+    padding: 2px 0;
+}
+
+.zci--dns .zci__table__tr th,
+.zci--dns .zci__table__tr td {
+	padding-right: 2px;
 }

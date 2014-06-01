@@ -1,7 +1,7 @@
-#spice_zanran .hide {
+.zci--zanran .hide {
   display: none;
 }
 
-#spice_zanran  hr.horizontal_line {
+.zci--zanran  hr.horizontal_line {
   margin: 5px 0;
 }

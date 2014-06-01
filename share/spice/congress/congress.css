@@ -1,3 +1,12 @@
-#spice_congress .link {
-    color: #888;
+.tile--congress{
+	width: 10em;
+	height: 17em;
+}
+
+.tile--congress .tile__media--pr .tile__media__img {
+	max-height: 125%;
+}
+
+.tile--congress .tile__body {
+	height:5em;
 }

@@ -14,17 +14,16 @@ ddg_spice_test(
     ),
     'new york senators' => test_spice(
         '/js/spice/congress/senate/NY',
-        caller    => 'DDG::Spice::Congress',
+        caller => 'DDG::Spice::Congress',
     ),
     'florida representatives' => test_spice(
         '/js/spice/congress/house/FL',
-        caller    => 'DDG::Spice::Congress',
+        caller => 'DDG::Spice::Congress',
     ),
     'house california' => test_spice(
         '/js/spice/congress/house/CA',
-        caller    => 'DDG::Spice::Congress',
+        caller => 'DDG::Spice::Congress',
     ),
 );
 
 done_testing;
-

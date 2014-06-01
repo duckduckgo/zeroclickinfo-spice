@@ -1,67 +1,80 @@
-function ddg_spice_coupon_mountain (api_result) {
-  "use strict";
+(function(env){
+    'use strict';
 
-	if (api_result.count < 1) {
-    return;
-  }
+    env.ddg_spice_coupon_mountain = function(api_result) {
+        if (api_result.count < 1) {
+            return Spice.failed('coupon_mountain');
+        }
 
-	var header = api_result.keyword
-			? api_result.keyword + " (CouponMountain)"
-			: "Coupon Search (CouponMountain)",
-		keyword = encodeURIComponent(api_result.keyword);
+        Spice.add({
+            id: 'coupon_mountain',
+            name: 'Coupons',
+            data: api_result.coupon,
+            meta: {
+                searchTerm: api_result.keyword,
+                itemType: 'Coupons',
+                sourceName: 'CouponMountain',
+                sourceUrl: 'http://www.couponmountain.com/search.php?searchtext='+ api_result.keyword
+            },
+            normalize: function(item){
+                return {
+                    image: item.iconUrl,
+                    img: item.iconUrl,
+                    title: item.name,
+                    heading: stripExpiry(item.desc),
+                    price: item.merName,
+                    abstract: getExpiry(item.expire),
+                    url: item.displayURL || item.merUrl
+                }
+            },
+            templates: {
+                group: 'products',
+                options: {
+                    buy: Spice.coupon_mountain.buy,
+                    brand: false,
+                    rating: false,
+		    price: true
+                }
+            },
+            sort_fields: {
+                merName: function(a,b) {
+                    return (a.merName < b.merName) ? -1 : 1;
+                }
+            },
+            sort_default: 'merName',
+            onItemSelected: highlightCode,
+            onShow: highlightCode //auto select the coupon code for a single-item result
+        });
+    };
 
-	Spice.render({
-		data                     : api_result,
-		spice_name               : "coupon_mountain",
-		source_name              : 'CouponMountain',
-		source_url               : 'http://www.couponmountain.com/search.php?searchtext='+ keyword,
-		header1                  : header,
-		template_frame           : "carousel",
-		more_icon_offset         : "-3px",
-		template_options         : {
-			items                : api_result.coupon,
-			template_item        : "coupon_mountain",
-			template_detail      : "coupon_mountain_detail",
-			li_width             : 150
-		},
-		item_callback            : highlight_code
-	});
+    function getExpiry (dateString) {
+        // 3333-03-03 means coupon has no expiry date
+        if (!dateString || dateString === '3333-03-03'){
+            return null;
+        }
+    }
 
-	// highlight coupon code on detail area opening
-	function highlight_code () {
-		var coupon_code = $("#coupon_code");
-		coupon_code.click(function() {
-			coupon_code.focus().select();
-		}).click();
-	}
+    Spice.registerHelper('CouponMountain_dateString', function(string) {
+        var months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'],
+            date = DDG.getDateFromString(dateString);
 
-	// Manually trigger our callback function,
-	// item_callback doesn't fire for single result
-	if (api_result.count === 1) {
-    highlight_code();
-  }
-}
+        return 'Expires: ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+    });
 
-Handlebars.registerHelper("check_expiry", function(string, options) {
-  "use strict";
+    function stripExpiry (string) {
+        return string.replace(/ (hurry, )?(offer|good through|expires|ends|valid \w+) .+$/i, '');
+    };
 
-	if (string && string != "3333-03-03"){
-		return options.fn(this);
-	} else {
-		return;
-	}
-});
+    // Highlight coupon code text
+    function highlightCode () {
 
-Handlebars.registerHelper("dateString", function(string) {
-  "use strict";
+        var couponCode = $('.zci--coupon_mountain input.tag');
 
-	var date = DDG.getDateFromString(string),
-		months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
-	return "Expires " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
-});
+        if (couponCode) {
+            couponCode.click(function() {
+                couponCode.focus().select();
+             });
+        }
+    };
 
-Handlebars.registerHelper("stripExpiry", function(string) {
-  "use strict";
-
-	return string.replace(/(offer|good through|expires|ends|valid \w+) .+$/i, "");
-});
+})(this);
