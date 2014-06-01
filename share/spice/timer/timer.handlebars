@@ -1,0 +1,20 @@
+<div id="timer_container">
+	<div class="spice-pane" id="timer_input">
+		<input type="text" placeholder="mm" id="minute_input" class="time-input">:<input type="text" placeholder="ss" id="second_input" class="time-input">
+	</div>
+	<div class="spice-pane hidden" id="timer_display">
+		<span class="time" id="timer">00:00</span>
+	</div>
+	<div class="spice-pane spice-pane-right">
+		<div class="btn-wrapper">
+			<button class="btn start">START</button>
+			<button class="btn" id="reset_btn" disabled>RESET</button>
+		</div>
+	</div>
+	<div class="done-modal" id="done_modal">
+		<div>
+			<h2>Time's Up!</h2>
+			<button id="done_ok_btn">OK</button>
+		</div>
+	</div>
+</div>
