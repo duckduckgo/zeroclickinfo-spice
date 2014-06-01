@@ -31,9 +31,9 @@
       item_detail : 'products_item_detail',
       options     : {
         rating  : false,
-        ratingText: false,
+        ratingText: false
       }
-    },
+    }
   });
 };
 }(this));
