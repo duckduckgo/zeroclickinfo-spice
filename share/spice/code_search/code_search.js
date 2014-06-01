@@ -23,7 +23,7 @@
 
                 var keys = [];
 
-                $.each(item, function(k, v){
+                $.each(item.record_data, function(k, v){
                     keys.push(k)
                 });
 
