@@ -12,23 +12,23 @@
         Spice.add({
             id: "forvo",
             name: "Pronounciation",
-            data: api_result.items,
+            data: api_result.items[0],
             meta: {
-                sourceUrl: "http://www.forvo.com/search/" + query,
                 sourceName: "Forvo",
                 itemType: "Words"
             },
             templates: {
-                item_custon: 'audio_item'
+                group: 'base',
+                options: {
+                    content: Spice.forvo.detail,
+                },
             },
             view: 'Audio',
             model: 'Audio',
             normalize: function(item) {
                 return {
-                    streamURL: '/audio?u='+item.standard_pronunciation.pathogg,
+                    streamURL: '/audio?u='+item.standard_pronunciation.pathmp3,
                     title: item.original,
-                    // placeholder image
-                    image: 'http://placekitten.com.s3.amazonaws.com/homepage-samples/200/140.jpg',
                     url: "http://www.forvo.com/search/" + query
                 };
             }
