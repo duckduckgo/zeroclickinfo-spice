@@ -181,6 +181,9 @@ var ddg_spice_dictionary = {
             }
         }
 
+		// Audio URL should go to DDG's proxy server for privacy reasons.
+		url = '/audio?u=' + url;
+            
         $play_button.addClass('is-showing');
 
         $play_button.click(function() {
