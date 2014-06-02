@@ -10,12 +10,12 @@
             id: "bitcoinBalance",
             name: "Bitcoin Address",
             data: {
-                balance: api_result.balance / 100000000
+                balance: api_result.balance / 100000000.0
                 //The balance field on the API returns satoshis, so we divide by 100000000 to convert to BTC.
             },
             meta: {
                 sourceName: "Chain.com",
-                sourceUrl: "http://chain.com"
+                sourceUrl: "https://chain.com/bitcoin/addresses/" + api_result.hash
             },
             templates: {
                 group: 'info',
