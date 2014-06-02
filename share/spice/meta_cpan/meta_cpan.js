@@ -15,7 +15,10 @@
         Spice.add({
             id: "meta_cpan",
             name: "Software",
-            data: api_result,
+            data: {
+                record_data: api_result,
+                record_keys: ['abstract','author','version','description']
+            },
             meta: {
                 sourceName: "MetaCPAN",
                 sourceUrl: 'https://metacpan.org/' + link
@@ -26,11 +29,6 @@
                     content: 'record',
 		    moreAt: true
                 }
-            },
-            normalize: function(item){
-                return{
-                    record_keys: ['abstract','author','version','description']
-                };
             }
         });
     }
