@@ -16,7 +16,8 @@
             id: "meta_cpan",
             name: "Software",
             data: {
-                record_data: api_result
+                record_data: api_result,
+                record_keys: ['abstract','author','version','description']
             },
             meta: {
                 sourceName: "MetaCPAN",
@@ -28,11 +29,6 @@
                     content: 'record',
 		    moreAt: true
                 }
-            },
-            normalize: function(item){
-                return{
-                    record_keys: ['abstract','author','version','description']
-                };
             }
         });
     }

@@ -9,27 +9,22 @@
 
         var query = encodeURIComponent(api_result.query);
 
+        var keys = [];
+
+        $.each(api_result.results[0].lines, function(k, v){
+            keys.push(k)
+        });
+
         Spice.add({
             id: 'code_search',
             name: "Software",
             data: {
-                record_data: api_result.results[0].lines
+                record_data: api_result.results[0].lines,
+                record_keys: keys
             },
             meta: {
                 sourceUrl: 'http://searchco.de/?q=' + query + '&cs=true',
                 sourceName: 'searchcode'
-            },
-            normalize: function(item){
-
-                var keys = [];
-
-                $.each(item.record_data, function(k, v){
-                    keys.push(k)
-                });
-
-                return{
-                    record_keys: keys
-                };
             },
             templates: {
                 group: 'base',
