@@ -1,4 +1,4 @@
-#spice_timer .btn {
+.zci--timer .timer__btn {
 	height: 75px;
 	width: 75px;
 	border-radius: 37.5px;
@@ -14,28 +14,28 @@
 }
 
 /*remove the dashed line in FF/IE*/
-#spice_timer .btn::-moz-focus-inner {
+.zci--timer .timer__btn::-moz-focus-inner {
 	border: 0;
 }
 	
-#spice_timer .btn.start {
+.zci--timer .timer__btn.timer__start {
 	border-color: #20b84c;
 	background-color: #20b84c;
 	color: white;
 }
 
-#spice_timer .btn.pause {
+.zci--timer .timer__btn.timer__pause {
 	border-color: #ff3908;
 	background-color: #ff3908;
 	color: white;
 }
 
-#spice_timer .btn[disabled] {
+.zci--timer .timer__btn[disabled] {
 	color: #b4b4b4;
 	border-color: #b4b4b4;
 }
 
-#spice_timer .spice-pane {
+.zci--timer .spice-pane {
 	width: 45%; height: 100%;
 	line-height: 65px;
 	display: inline-block;
@@ -44,55 +44,59 @@
 	text-align: center;
 }
 
-#spice_timer .spice-pane-right {
+.zci--timer .spice-pane-right {
 	float: right;
 }
 
-#spice_timer .pane-block {
+.zci--timer .pane-block {
 	height: 100px;
 	margin-left: 5px;
 	margin-right: 5px;
 }
 
-#spice_timer .time {
+.zci--timer .time {
 	text-align: center;
 	font-size: 40px;
+	line-height: 75px;
 }
 
-#spice_timer .hidden {
+.zci--timer .timer__hidden {
 	display: none;
 }
 
-#spice_timer .time-input {
-	width: 80px;
-	margin-top: 10px;
+.zci--timer .timer__time-input {
+	width: 40%;
+	height: 100%;
+	margin-top: 15px;
 	margin-right: 2px;
 	margin-left: 2px;
 	text-align: center;
-	background-color:#ebebeb;
+	background-color: #fff;
 	color: #393939;
 	border-radius: 2px;
 	border: 0;
+	line-height: 100%;
+	font-size: 1em;
 }
 
-#spice_timer .time-input::-moz-placeholder {color:#bbb;}
-#spice_timer .time-input::-webkit-input-placeholder {color:#bbb;}
-#spice_timer .time-input:-ms-input-placeholder {color:#bbb;}
+.zci--timer .timer__time-input::-moz-placeholder {color:#bbb;}
+.zci--timer .timer__time-input::-webkit-input-placeholder {color:#bbb;}
+.zci--timer .timer__time-input:-ms-input-placeholder {color:#bbb;}
 
-#spice_timer #timer_input {
-	font-size: 40px;
+.zci--timer #timer_input {
+	font-size: 2.5em;
 }
 
-#spice_timer .btn-wrapper {
+.zci--timer .btn-wrapper {
 	float: right;
 }
 
-#spice_timer #timer_container {
+.zci--timer #timer_container {
 	max-width: 500px;
 	margin: 0 auto;
 }
 
-#spice_timer .done-modal {
+.zci--timer .timer__done-modal {
 	display: none;
 	position: fixed;
 	top: 0;
@@ -103,7 +107,7 @@
 	z-index: 9999;
 }
 
-#spice_timer .done-modal > div {
+.zci--timer .timer__done-modal > div {
 	width: 300px;
 	border-radius: 3px;
 	position: relative;
@@ -112,14 +116,14 @@
 	padding: 30px 10px;
 }
 
-#spice_timer .done-modal h2 {
+.zci--timer .timer__done-modal h2 {
 	display: block;
 	text-align: center;
 	margin-bottom: 30px;
 	font-size: 2em;
 }
 
-#spice_timer .done-modal button {
+.zci--timer .timer__done-modal button {
 	display: block;
 	margin: 0 auto;
 	width: 80px;
@@ -131,14 +135,21 @@
 }
 
 /*stack the big time divs if the screen is too narrow*/
-@media screen and (max-width: 420px) {
-	#spice_timer .spice-pane {width: 96%; height: 50px; float: none;}
-	#spice_timer .spice-pane-right {margin-top: 5px;}
-	#spice_timer .btn-wrapper {float:none;}
-	#spice_timer input[type="text"] {margin-top: 0px}
-	#spice_timer #timer_container {height:170px;}
+@media screen and (max-device-width: 420px) {
+	.zci--timer .spice-pane {width: 96%; height: 50px; float: none;}
+	.zci--timer .spice-pane-right {margin-top: 5px;}
+	.zci--timer .btn-wrapper {float:none;}
+	.zci--timer #timer_container {height:170px;}
+	.zci--timer .timer__time-input {width: 25%; height: 80%; margin-top: 0px}
+	.zci--timer .timer__done-modal > div {margin: 20% auto;}
 }
 
-@media screen and (max-width: 320px){
-	#spice_timer .btn {margin-right: 2px; margin-left: 2px;}
+@media screen and (max-device-width: 320px){
+	.zci--timer .timer__btn {margin-right: 2px; margin-left: 2px;}
+}
+
+/*tablets*/
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px){
+	.zci--timer .timer__time-input {width: 25%; margin-top: 10px;}
+	.zci--timer .timer__done-modal > div {margin: 20% auto;}
 }
