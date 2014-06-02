@@ -17,7 +17,8 @@
       id: "urban_dictionary",
       name: "Dictionary",
       data: {
-        record_data: response.list[0]
+        record_data: response.list[0],
+        record_keys: ['word', 'definition', 'example']
       },
       meta: {
         sourceUrl: 'http://www.urbandictionary.com/define.php?term=' + word,
@@ -32,8 +33,7 @@
       },
       normalize : function(item){
         return{
-          definition: item.record_data.definition.replace(/(\r?\n)+/gi, ''),
-          record_keys: ['word', 'definition', 'example'],
+          definition: item.record_data.definition.replace(/(\r?\n)+/gi, '')
         };
       }
     });
