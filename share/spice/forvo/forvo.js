@@ -12,13 +12,15 @@
         Spice.add({
             id: "forvo",
             name: "Pronounciation",
-            data: api_result.items[0],
+            data: api_result.items,
             meta: {
                 sourceName: "Forvo",
                 itemType: "Words"
             },
             templates: {
                 group: 'base',
+                detail: false,
+                wrap_detail: false,
                 options: {
                     content: Spice.forvo.detail,
                 },
@@ -28,8 +30,7 @@
             normalize: function(item) {
                 return {
                     streamURL: '/audio?u='+item.standard_pronunciation.pathmp3,
-                    title: item.original,
-                    url: "http://www.forvo.com/search/" + query
+                    title: item.original
                 };
             }
         });
