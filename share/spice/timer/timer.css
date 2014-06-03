@@ -135,9 +135,9 @@
 }
 
 /*stack the big time divs if the screen is too narrow*/
-@media screen and (max-device-width: 420px) {
+@media screen and (max-width: 420px) {
 	.zci--timer .spice-pane {width: 96%; height: 50px; float: none;}
-	.zci--timer .spice-pane-right {margin-top: 5px;}
+	.zci--timer .spice-pane-right {margin-top: 15px;}
 	.zci--timer .btn-wrapper {float:none;}
 	.zci--timer #timer_container {height:170px;}
 	.zci--timer .timer__time-input {width: 25%; height: 80%; margin-top: 0px}
