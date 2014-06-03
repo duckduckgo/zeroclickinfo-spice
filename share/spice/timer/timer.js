@@ -54,7 +54,7 @@
     }
 
     //parse the input if the timer was just set and start it
-    $('.btn-wrapper').on('click', '.timer__btn.start', function(e){
+    $('.btn-wrapper').on('click', '.timer__btn.timer__start', function(e){
       if (!started){
         var start_mins = parseInt($minute_input.val()) || 0;
         var start_secs = parseInt($second_input.val()) || 0;
@@ -86,7 +86,7 @@
     });
 
     //pause the timer
-    $('.btn-wrapper').on('click', '.timer__btn.pause', function(){
+    $('.btn-wrapper').on('click', '.timer__btn.timer__pause', function(){
       clearInterval(update_int);
       $(this).removeClass('timer__pause').addClass('timer__start').html('START');
     });
@@ -97,7 +97,7 @@
       $('#timer_display').addClass('timer__hidden');
       clearInterval(update_int);
       started = false;
-      $('.timer__btn.pause').removeClass('timer__pause').addClass('timer__start').html('START');
+      $('.timer__btn.timer__pause').removeClass('timer__pause').addClass('timer__start').html('START');
       $reset_btn.prop('disabled', true);
     }
 
