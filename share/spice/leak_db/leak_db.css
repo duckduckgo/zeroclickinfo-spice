@@ -4,6 +4,10 @@
     word-wrap: break-word;
 }
 
+.record .record__cell__key {
+    padding: 2px;
+}
+
 .is-mobile .record .record__cell__value {
     max-width: 150px;
 }
