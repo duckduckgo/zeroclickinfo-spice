@@ -18,10 +18,11 @@
     vertical-align: middle;
     background: #979797;
     color: #fafafa;
-    width: 1.8em;
-    height: 1.8em;
+    width: 1em;
+    height: 1em;
     border-radius: 1.8em;
-    line-height: 1.8em;
+    line-height: 1em;
+    padding: .4em;
     cursor: pointer;
     -webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
@@ -40,7 +41,6 @@
 
 .zci__def__audio.is-showing {
     display: inline-block;
-    line-height: 1.8em;
 }
 
 .zci__def__audio.is-loading {
