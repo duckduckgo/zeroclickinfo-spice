@@ -1,22 +1,9 @@
-.zci--leak_db table {
-    /* border:1px solid #d0d0d0; */
-    width:100%;
-    margin:5px;
+.record .record__cell__value {
+    padding: 2px;
+    max-width: 500px;
+    word-wrap: break-word;
 }
 
-.zci--leak_db tr {
-    border-bottom:1px solid #efefef;
-}
-
-.zci--leak_db th {
-    vertical-align:bottom;
-    text-align:left;
-    font-size:83.3%;
-    font-style:italic;
-    padding-left:3px;
-}
-
-.zci--leak_db td {
-    padding:2px;
-    max-width:250px;
+.is-mobile .record .record__cell__value {
+    max-width: 150px;
 }
