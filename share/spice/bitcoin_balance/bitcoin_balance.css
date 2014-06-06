@@ -34,6 +34,10 @@
     font-size: 35px;
 }
 
+.zci--bitcoinbalance .zci__more-at__icon {
+  padding-right: 0.45em;
+}
+
 @media screen and (max-width: 568px) {
     
     .zci--bitcoinbalance .zci__body {
