@@ -4,33 +4,6 @@
     margin-top: 0;
 }
 
-.tile--kwixer .tile__title {
-    height: 2.5em;
-}
-
-.detail.detail--kwixer {
-    background-color: #e5e5e5;
-    border-color: #c7c7c7;
-}
-
-.detail__media.detail__media--kwixer {
-    width: 30%;
-    margin-right: 1em;
-    text-align: center;
-}
-
-.detail__body--kwixer .detail__title {
-    padding: 0;
-}
-
-.detail__body--kwixer .detail__source {
-    padding-bottom: 1em;
-}
-
-.detail__body--kwixer .detail__links__btn {
+.zci--kwixer .btn.btn--primary {
     margin-top: 1em;
-}
-
-.detail__media--kwixer .detail__media__img {
-    height: 90%;
 }
