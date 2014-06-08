@@ -261,7 +261,7 @@ function ddg_spice_forecast(r) {
             heading: weatherData.header,
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
             sourceName: 'Forecast.io',
-            altMeta: '<a id="fe_temp_switch">Temperatures in '+unit_labels[units].temperature+'&deg;</a>',
+            altMeta: '<a id="fe_temp_switch">Temperatures in &deg;'+unit_labels[units].temperature+'</a>',
             variableTileWidth: true
         },
 
@@ -303,27 +303,38 @@ function ddg_spice_forecast(r) {
       });
     }
     //insert the new temps in the html
-    $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
+    var $link = $(this);
+    if (is_mobile){
+      $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
+      $('.fe_day--bar').each(function(i){
+        var day = temps.daily[i],
+            $this = $(this);
 
-    $('.fe_day').each(function(i){
-      var day = temps.daily[i],
-          $this = $(this);
+        $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
+        $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
+      });
+      $link.html('&deg;' + other_unit);
+    } else {
+      $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
+      $('.fe_day').each(function(i){
+        var day = temps.daily[i],
+            $this = $(this);
 
-      $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
-      $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
-    });
+        $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
+        $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
+      });
+      $link.html('Temperatures in &deg;' + other_unit);
+    }
 
-    //switch the units on the button
-    $(this).html('Temperatures in ' + other_unit +'&deg;');
     other_unit = (other_unit === 'F') ? 'C' : 'F';
   });
 
   $('#fe_temp_switch').hover(function(){
     var current_unit = other_unit === 'F' ? 'C' : 'F';
-    $(this).html('Temperatures in ' + current_unit + '&deg; (switch to ' + other_unit + '&deg;)');
+    $(this).html('Temperatures in &deg;' + current_unit + ' (switch to &deg;' + other_unit + ')');
   },
   function(){
     var current_unit = other_unit === 'F' ? 'C' : 'F';
-    $(this).html('Temperatures in ' + current_unit + '&deg;');
+    $(this).html('Temperatures in &deg;' + current_unit);
   });
 }
