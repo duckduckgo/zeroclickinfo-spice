@@ -49,7 +49,7 @@ var ddg_spice_dictionary = {
         Spice.add({
             id: 'definition',
             name: 'Definition',
-
+            signal: 'high',
             data: {
                 word: word,
                 plural_form: this.plural_form,
