@@ -247,7 +247,10 @@ function ddg_spice_forecast(r) {
   } else {
     spiceData = [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]];
   }
-  
+
+  var other_unit = unit_labels[units].temperature === 'F' ? 'C' : 'F';
+  var altMeta = '<a id="fe_temp_switch"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a>';
+
   // Render/Display
     Spice.add({
         id: 'forecast',
@@ -261,7 +264,7 @@ function ddg_spice_forecast(r) {
             heading: weatherData.header,
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
             sourceName: 'Forecast.io',
-            altMeta: '<a id="fe_temp_switch">Temperatures in &deg;'+unit_labels[units].temperature+'</a>',
+            altMeta: altMeta,
             variableTileWidth: true
         },
 
@@ -272,8 +275,6 @@ function ddg_spice_forecast(r) {
 
     });
 
-  var other_unit = unit_labels[units].temperature === 'F' ? 'C' : 'F';
-
   var convertTemp = function(unit, d){
     if (unit === 'C') {
       return (d-32)*(5/9);
@@ -281,6 +282,18 @@ function ddg_spice_forecast(r) {
       return d*(9/5) + 32;
     }
   }
+
+  var updateTempSwitch = function(other_unit){
+    if (other_unit === "F"){
+      $('#fe_fahrenheit').removeClass('gray').addClass('bold');
+      $('#fe_celsius').removeClass('bold').addClass('gray');
+    } else {
+      $('#fe_celsius').removeClass('gray').addClass('bold');
+      $('#fe_fahrenheit').removeClass('bold').addClass('gray');
+    }
+  }
+
+  updateTempSwitch(unit_labels[units].temperature);
 
   //when we press the small button, switch the temperature units
   $('#fe_temp_switch').click(function(){
@@ -313,7 +326,6 @@ function ddg_spice_forecast(r) {
         $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
         $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
       });
-      $link.html('&deg;' + other_unit);
     } else {
       $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
       $('.fe_day').each(function(i){
@@ -323,18 +335,9 @@ function ddg_spice_forecast(r) {
         $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
         $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
       });
-      $link.html('Temperatures in &deg;' + other_unit);
     }
 
+    updateTempSwitch(other_unit);
     other_unit = (other_unit === 'F') ? 'C' : 'F';
-  });
-
-  $('#fe_temp_switch').hover(function(){
-    var current_unit = other_unit === 'F' ? 'C' : 'F';
-    $(this).html('Temperatures in &deg;' + current_unit + ' (switch to &deg;' + other_unit + ')');
-  },
-  function(){
-    var current_unit = other_unit === 'F' ? 'C' : 'F';
-    $(this).html('Temperatures in &deg;' + current_unit);
   });
 }
