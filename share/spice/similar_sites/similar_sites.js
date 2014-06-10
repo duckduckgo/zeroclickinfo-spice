@@ -1,22 +1,22 @@
 (function(env) {
 
-env.ddg_spice_similar_web = function(api_result) {
+env.ddg_spice_similar_sites = function(api_result) {
 
-    var script = $('[src*="/js/spice/similar_web/"]')[0],
+    var script = $('[src*="/js/spice/similar_sites/"]')[0],
             source = $(script).attr("src"),
-            query = source.match(/similar_web\/([^\/]+)/)[1];
+            query = source.match(/similar_sites\/([^\/]+)/)[1];
 
     Spice.add({
-        id: "SimilarWeb",
-        name: "SimilarWeb",
+        id: "SimilarSites",
+        name: "SimilarSites",
 
         data: api_results.SimilarSites,
 
         meta: {
             total: api_results.SimilarSites.length,
-            sourceName: 'SimilarWeb',
+            sourceName: 'SimilarSites',
             sourceUrl: 'http://www.similarsites.com/site/' + query,
-            itemType: 'Similar Webs'
+            itemType: 'Similar Sites'
         },
 
         normalize = function(item){
