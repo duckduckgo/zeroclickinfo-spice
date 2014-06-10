@@ -1,0 +1,51 @@
+<div class="detail__media  detail__media--recipe">
+    <img src="{{imageProxy image}}" alt="{{recipeName}}" class="detail__media__img" />
+</div>
+<div class="detail__body  detail__body--recipe">
+    <div class="detail__body__content">
+        <h5 class="detail__title"><a href='{{url}}' title="{{title}}">{{recipeName}}</a></h5>
+        <div class="detail__desc">
+            <p class="detail__source">
+                {{sourceDisplayName}}
+                {{{starRating rating}}}
+                {{#cuisine}}
+                    <span class="detail__separator"> | </span>
+                    <span class="detail__cuisine">Cuisine: {{.}}</span>
+                {{/cuisine}}
+                {{#cookingTime}}
+                    <span class="detail__separator"> | </span>
+                    <span class="detail__cooking-time"><span>Cooking </span>Time: {{.}} minutes</span>
+                {{/cookingTime}}
+            </p>
+            {{#if ingredientDetails}}
+                <div class="detail__ingredients">
+                    Ingredients: 
+                    <ul>
+                        {{#ingredientDetails}}
+                            <li><a href="{{url}}">{{displayName}}</a></li>
+                        {{/ingredientDetails}}
+                    </ul>
+                </div>
+            {{/if}}
+            {{#if flavors}}
+                <div class="detail__flavors">
+                    <ul>
+                        {{#flavors}}
+                            <li>
+                                <a class="detail__flavors__name" href="{{url}}">{{name}}</a>
+                                <div class="detail__flavors__strength">
+                                    <span style="width:{{strength}}%;"></span>
+                                </div>
+                            </li>
+                        {{/flavors}}
+                    </ul>
+                </div>
+            {{/if}}
+            <a href="{{url}}" class="detail__links__btn  view-btn--recipes">
+                <img class="btn__icon" src="{{meta.sourceIconUrl}}" />
+                View Full Recipe
+            </a>
+			{{{moreAt meta.sourceUrl meta.sourceName className="detail__more-at--recipes" iconUrl=meta.sourceIconUrl}}}
+        </div>
+    </div>
+</div>

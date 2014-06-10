@@ -1,26 +1,45 @@
-function ddg_spice_alternative_to(api_result) {
+(function(env) {
     "use strict";
 
-    if(!api_result || !api_result.Items || api_result.Items.length === 0) {
-        return;
-    }
+    env.ddg_spice_alternative_to = function(api_result) {
 
-    Spice.render({
-        data                     : api_result,
-        source_name              : 'AlternativeTo',
-        source_url               : api_result.Url,
-        spice_name               : 'alternative_to',
-        more_icon_offset         : '-2px',
-        template_frame           : "carousel",
-        template_options         : {
-            items                : api_result.Items,
-            template_item        : "alternative_to",
-            template_detail      : "alternative_to_details",
-            li_height            : 65,
-            single_item_handler  : function(obj) {            // gets called in the event of a single result
-                obj.header1 = obj.data.Items[0].Name;         // set the header
-                obj.image_url = obj.data.Items[0].IconUrl;    // set the image
+        if (!api_result || !api_result.Items) {
+            return Spice.failed('alternative_to');
+        }
+
+        Spice.add({
+            id: 'alternative_to',
+            name: 'Software',
+            data: api_result.Items,
+            signal: 'high',
+            meta: {
+                searchTerm: api_result.Name,
+                itemType: 'Alternatives',
+                sourceUrl: 'http://alternativeto.net/',
+                sourceName: 'AlternativeTo'
+            },
+            normalize: function(item) {
+                return {
+                    ShortDescription: DDG.strip_html(DDG.strip_href(item.ShortDescription)),
+                    url: item.Url,
+		    icon: item.IconUrl,
+		    title: item.Name,
+		    description: item.ShortDescription
+                };
+            },
+            templates: {
+                group: 'icon',
+		detail: false,
+		item_detail: false,
+		options: {
+		    footer: Spice.alternative_to.footer
+		}
             }
-        },
+        });
+    };
+
+    Handlebars.registerHelper("AlternativeTo_getPlatform", function (platforms) {
+        return (platforms.length > 1) ? "Multiplatform" : platforms[0];
     });
-}
+
+}(this)); 

@@ -8,23 +8,24 @@ secondary_example_queries "florida representatives", "house california";
 description "Shows congress by state";
 name "Congress";
 icon_url "/i/topics.nytimes.com.ico";
-source "The New York Times";
+source "Sunlight Foundation";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Congress.pm";
 topics "special_interest", "trivia";
 category "facts";
-attribution web =>   ['http://kevinschaul.com','Kevin Schaul'],
-            email => ['kevin.schaul@gmail.com','Kevin Schaul'];
+attribution web => ['http://kevinschaul.com','Kevin Schaul','http://www.transistor.io', 'Jason Dorweiler'],
+            email => ['kevin.schaul@gmail.com','Kevin Schaul','jason@transistor.io', 'Jason Dorweiler'];
 
-spice to => 'http://api.nytimes.com/svc/politics/v3/us/legislative/congress/112/$1/members.json?state=$2&api-key={{ENV{DDG_SPICE_CONGRESS_APIKEY}}}';
+spice to => 'https://congress.api.sunlightfoundation.com/legislators?apikey={{ENV{DDG_SPICE_CONGRESS_APIKEY}}}&chamber=$1&state=$2&per_page=all';
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 
 spice wrap_jsonp_callback => 1;
 
-triggers startend => 'senate', 'senators', 'representatives', 'reps', 'house', 'representative';
+triggers startend => 'senate', 'senators', 'senator', 'representatives', 'reps', 'house', 'representative';
 sub rtrim($);
 
 handle query_lc => sub {
+
     my (%states) = (
         'alabama' => 'al',
         'al' => 'al',
@@ -129,7 +130,7 @@ handle query_lc => sub {
     );
 
     # Matches against special variable `$_`, which contains query
-    my ($state1, $chamber, $state2) = /^(.*)(?:\s)*(senate|senators|representatives|representative|reps|house)(?:\s)*(.*)$/g;
+    my ($state1, $chamber, $state2) = /^(.*)(?:\s)*(senate|senators|senator|representatives|representative|reps|house)(?:\s)*(.*)$/g;
 
     my ($state);
 
@@ -147,6 +148,7 @@ handle query_lc => sub {
     my (%chambers) = (
         "senators" => "senate",
         "senate" => "senate",
+        "senator" => "senate",
         "reps" => "house",
         "representatives" => "house",
         "representative" => "house",
@@ -154,8 +156,8 @@ handle query_lc => sub {
     );
 
     $chamber = $chambers{$chamber};
-
-    return $chamber, $state if ($chamber && $state);
+    # state needs to be uppercase for Sunlight API
+    return $chamber, uc $state if ($chamber && $state);
     return;
 };
 

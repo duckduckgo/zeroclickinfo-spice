@@ -2,7 +2,7 @@ function ddg_spice_steam_db(api_result) {
     "use strict";
 
     if(!api_result || !api_result.success) {
-	return;
+	return Spice.failed('steam_db');
     }
 
     // Get the original query.
@@ -21,23 +21,23 @@ function ddg_spice_steam_db(api_result) {
     }
 
     if(results.length === 0) {
-	return;
+        return Spice.failed('steam_db');
     }
 
     // This displays the Spice instant answer.
-    Spice.render({
+    Spice.add({
 	data              : results,
-	source_name       : "steamdb.info",
-	source_url        : "http://steamdb.info/search/?a=app&type=1&q=" + query,
-	spice_name        : 'steam_db',
+	sourceName       : "steamdb.info",
+	sourceUrl        : "http://steamdb.info/search/?a=app&type=1&q=" + query,
+	id        : 'steam_db',
 	template_frame    : "list",
 	header1           : decodeURIComponent(query) + " (SteamDB)",
-	template_options  : {
+	templates  : {
 	    items: results,
 	    show: 3,
 	    max: 10,
-	    template_item: 'steam_db'
+	    item: Spice.steam_db.steam_db
 	},
-	force_no_fold     : true
+	
     });
 };

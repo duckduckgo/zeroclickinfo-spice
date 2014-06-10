@@ -1,0 +1,20 @@
+<div class=".zci--drinks">
+
+{{name}}
+
+<h5>Directions:</h5>
+<div>{{{condense procedure maxlen="170"}}}</div>
+
+<h5>Ingredients:</h5>
+<ul>
+    {{#if isArray}}
+        {{#each ingredients}}
+            <li>{{this}}</li>
+        {{/each}}
+    {{else}}
+        {{#keys ingredients}}
+            <li>{{value}}</li>
+        {{/keys}}
+    {{/if}}
+</ul>
+</div>

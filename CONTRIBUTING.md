@@ -1,6 +1,19 @@
 # Contributing to the **Spice** repository
 
-At DuckDuckGo, we truly appreciate our community members taking the time to contribute to our open-source repositories. In an effort to ensure contributions are easy for you to make and for us to manage, we have written some guidelines that we ask our contributors to follow so that we can handle pull requests in a timely manner with as little friction as possible.
+
+At DuckDuckGo, we truly appreciate our community members taking the time to
+contribute to our open-source repositories. In an effort to ensure
+contributions are easy for you to make and for us to manage, we have written
+some guidelines that we ask our contributors to follow so that we can handle
+pull requests in a timely manner with as little friction as possible.
+
+### BETA
+
+The new version of DuckDuckGo has launched public beta!
+See the [what's new](https://github.com/duckduckgo/zeroclickinfo-spice/blob/bttf/BETA.md) for the current status and how you can contribute
+to converting the Spice Instant Answers to the new API !
+
+<hr>
 
 ## Getting Started
 

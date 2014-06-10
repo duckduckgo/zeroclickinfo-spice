@@ -1,4 +1,4 @@
-#spice_gravatar .more-links {
+.zci--gravatar .more-links {
     float: left; 
     padding-right: 5px; 
     padding-top: 2px; 
@@ -6,6 +6,10 @@
     height: 16px;
 }
 
-#spice_gravatar .more-links-anchor:hover {
+.zci--gravatar .detail__media {
+    height: 6em;
+}
+
+.zci--gravatar .more-links-anchor:hover {
     text-decoration: none;
 }

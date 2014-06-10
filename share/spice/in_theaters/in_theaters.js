@@ -1,109 +1,68 @@
-function ddg_spice_in_theaters (api_result) {
+(function(env) {
     "use strict";
 
-    // Exit if we don't find any movies or if we see an error.
-    if(api_result.error || !api_result.movies || api_result.movies.length === 0) {
-        return;
-    }
+    env.ddg_spice_in_theaters = function(api_result) {
 
-    // Get the original query.
-    // We're going to pass this to the header.
-    var matched, result, query = "";
-    $("script").each(function() {
-        matched = $(this).attr("src");
-        if(matched) {
-            result = matched.match(/\/js\/spice\/in_theaters\/([^\/]+)/);
-            if(result) {
-                query = result[1];
-            }
+        if (!api_result || api_result.error) {
+            return Spice.failed('in_theaters');
         }
-    });
 
-    var header = "";
-    if(query === "opening") {
-        header = "Opening Movies";
-    } else {
-        header = "Currently in Theaters";
+        Spice.add({
+            id: 'in_theaters',
+            name: 'Movies',
+            data: api_result.movies,
+	    signal: 'high',
+            meta: {
+                sourceName: 'Rotten Tomatoes',
+                sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
+                total: api_result.movies,
+                itemType: 'Movies'
+            },
+            normalize: function(item) {
+		var position;
+		if(item.ratings.critics_rating === "Fresh" || item.ratings.critics_rating === "Certified Fresh") {
+		    position = "-256px -144px";
+		} else if(item.ratings.critics_rating === "Rotten") {
+		    position = "-272px -144px"; 
+		}
+                return { 
+                    rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
+                    image: item.posters.detailed,
+		    icon_url: DDG.get_asset_path('in_theaters','icons-v2.png'),
+		    icon_image: position,
+		    icon_class: position ? 'tomato--icon' : "",
+		    abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
+		    heading: item.title,
+		    img_m: item.posters.detailed,
+		    url: item.links.alternate
+                };
+            },
+            templates: {
+		group: 'media',
+		detail: 'products_item_detail',
+                options: {
+                    variant: 'poster',
+		    subtitle_content: Spice.in_theaters.subtitle_content,
+		    rating: false,
+		    buy: Spice.in_theaters.buy
+                }
+            }
+        });
+
+        Spice.getDOM('in_theaters').find('.tile__body').addClass('is-hidden');
     }
 
-    Spice.render({
-        header1                  : header,
-        source_url               : "http://www.rottentomatoes.com/",
-        source_name              : "Rotten Tomatoes",
-        spice_name               : "in_theaters",
-        force_big_header         : true,
-        template_frame           : "carousel",
-        template_options         : {
-            items           : api_result.movies,
-            template_detail : "in_theaters_details",
-            li_height : 155
-        },
-        force_no_fold            : true
-    });
-};
+    // Convert minutes to hr. min. format.
+    // e.g. {{time 90}} will return 1 hr. 30 min.
+    Handlebars.registerHelper("InTheaters_time", function(runtime) {
+        var hours = '',
+            minutes = runtime;
 
-// Convert minutes to hr. min. format.
-// e.g. {{time 90}} will return 1 hr. 30 min.
-Handlebars.registerHelper("time", function(runtime) {
-    "use strict";
-
-    var hour = 0,
-        minute = 0;
-
-    if(runtime) {
         if(runtime >= 60) {
-            hour = Math.floor(runtime / 60);
-            minute = runtime - (hour * 60);
-        } else {
-            minute = runtime;
-        }
-        hour = hour + 'hr. ';
-        minute += 'min.';
-        return hour + minute;
-    }
-});
-
-// Guarantee that we're only going to show five movies.
-Handlebars.registerHelper("list", function(items, options) {
-    "use strict";
-
-    var out = "";
-    for(var i = 0; i < items.length && i < 5; i += 1) {
-        out += options.fn(items[i]);
-    }
-    return out;
-});
-
-Handlebars.registerHelper("star_rating", function(score) {
-    "use strict";
-
-        var r = (score / 20) - 1,
-            s = "";
-
-        if (r > 0) {
-            for (var i = 0; i < r; i++) {
-                s += "&#9733;";
-            }
+            hours = Math.floor(runtime / 60) + ' hr. ';
+            minutes = (runtime % 60);
         }
 
-        if (s.length === 0) {
-            s = "";
-        }
-
-        return s;
-});
-
-Handlebars.registerHelper("checkRating", function(critics_rating) {
-    "use strict";
-
-    return critics_rating || "No Rating";
-});
-
-Handlebars.registerHelper("checkScore", function(critics_score) {
-    "use strict";
-
-    if(critics_score === -1) {
-        return "";
-    }
-    return ": " + critics_score + "%";
-})
+        return hours + (minutes > 0 ? minutes + ' min.' : '');
+    });
+}(this));

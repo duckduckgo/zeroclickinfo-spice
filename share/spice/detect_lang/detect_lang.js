@@ -3,7 +3,7 @@ function ddg_spice_detect_lang (api_result) {
 
     // Check for any errors.
     if(!api_result || !api_result.data || !api_result.data.detections || api_result.data.detections.length === 0) {
-        return;
+        return Spice.failed('detect_lang');
     }
 
     var query = "";
@@ -114,18 +114,35 @@ function ddg_spice_detect_lang (api_result) {
         return;
     }
 
+    var d0 = api_result.data.detections[0],
+        d1 = null;
+
+    if (api_result.data.detections.length > 1) {
+        d1 = api_result.data.detections[1];
+    }
+
     // Display the plug-in.
-    Spice.render({
-        data             : api_result.data.detections,
-        header1          : query + " (Detect Language)",
-        source_url       : "http://detectlanguage.com/",
-        source_name      : "Detect Language",
-        template_normal  : "detect_lang",
-        force_big_header : true
+    Spice.add({
+        id: 'detect_lang',
+        data: { first: d0, second: d1 },
+        name: "Answer",
+        meta: {
+            sourceUrl       : "http://detectlanguage.com/",
+            sourceName      : "Detect Language",
+        },
+	signal: 'high',
+        templates: {
+            group: 'base',
+            options: {
+                content: Spice.detect_lang.content,
+		moreAt: true
+            }
+        }
+        
     });
 };
 
-Handlebars.registerHelper("toPercent", function(confidence) {
+Handlebars.registerHelper("DetectLang_toPercent", function(confidence) {
     "use strict";
     var percentage = Math.round(confidence * 100);
     return (percentage > 100 ? 100 : percentage) + "% sure";

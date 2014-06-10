@@ -2,19 +2,22 @@ function ddg_spice_imdb(api_result) {
     "use strict";
 
     if (!api_result.api_result == 'True') {
-        return;
+        return Spice.failed("imdb");
     }
 
-    Spice.render({
+    Spice.add({
         data              : api_result,
         header1           : api_result.Title + ' (IMDb)',
-        source_url        : 'http://www.imdb.com/title/'
+        sourceUrl        : 'http://www.imdb.com/title/'
             + api_result.imdbID,
-        source_name       : 'IMDb',
-        template_normal   : 'imdb',
-        force_big_header  : true,
-        force_space_after : true,
-        force_no_fold     : true,
+        sourceName       : 'IMDb',
+        templates: {
+            item: Spice.imdb.imdb,
+            detail: Spice.imdb.imdb
+        },
+        
+        
+        
     });
 }
 
