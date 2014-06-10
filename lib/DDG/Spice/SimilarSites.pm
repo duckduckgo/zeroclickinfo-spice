@@ -1,12 +1,12 @@
-package DDG::Spice::SimilarWeb;
+package DDG::Spice::SimilarSites;
 
 use DDG::Spice;
 
 primary_example_queries "similar sites to facebook.com", "similar to youtube.com";
 secondary_example_queries "", "";
 description "Search for similar websites";
-name "SimilarWeb search";
-source "SimilarWeb";
+name "SimilarSites search";
+source "SimilarSites";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SimilarWeb.pm";
 icon_url "/i/www.similarweb.com.ico";
 category "entertainment";
