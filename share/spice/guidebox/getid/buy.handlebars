@@ -1,13 +1,16 @@
 <div>
   <p>
-    <a class="btn btn--primary" href="{{smart_url}}">Watch Now</a>
-      {{{episode_name}}} (Season {{season_number}}, #{{episode_number}})
-    {{#unless is_free_web}} <span class="red">Paid Content</span>{{/unless}}
+    <a class="btn btn--primary guidebox--btn--detail" href="{{smart_url}}">Watch Now</a>
+    (Season {{season_number}}, #{{episode_number}})
+    {{#unless is_free_web}} <span class="red ">Paid Content</span>{{/unless}}
   </p>
 
-  <p>
-    {{overview}}
+  <p class="guidebox--desc">
+	{{ellipsis overview 500}}
   </p>
-    
-  <i class="small grey">Originally aired {{guideBox_getDate first_aired}} on {{network}}</i>
+  <p class="guidebox--desc--mobile">
+	{{ellipsis overview 150}}
+  </p>
+  <i class="small grey guidebox--aired">Originally aired {{guideBox_getDate first_aired}} on {{network}}</i>
 </div>
+<span><a class="btn btn--primary" href="{{smart_url}}">{{{lp smart_url "Watch Now"}}}</a></span>
