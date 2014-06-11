@@ -41,6 +41,8 @@
                 return Spice.failed('guidebox');
             }
 
+        console.log(toArray(api_result.results.result));
+
             Spice.add({
                 id: 'guidebox',
                 name: 'TV',
@@ -60,6 +62,7 @@
                     }
                 },
                 normalize: function(item){
+                    console.log(item);
                     return {
                         image: item.thumbnail_304x171,
                         img: item.thumbnail_400x225,
@@ -72,8 +75,7 @@
                 },
                 relevancy: {
                     primary: [
-                        {required: 'season_number'},
-                        {required: 'episode_number'}
+                        {required: 'episode_name'},
                     ]
                 }
             });
