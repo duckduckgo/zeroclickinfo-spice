@@ -1,14 +1,13 @@
-(function(env) {
+!function(env) {
     "use strict";
-
     env.ddg_spice_lastfm_artist_all = function(api_result) {
         Spice.add({
-            id: 'lastfm_artist',
-            name: 'Music',
+            id: "lastfm_artist",
+            name: "Music",
             data: api_result.artist,
-            signal: 'high',
+            signal: "high",
             meta: {
-                sourceName: 'Last.fm',
+                sourceName: "Last.fm",
                 sourceUrl: api_result.artist.url
             },
             normalize: function(item) {
@@ -18,28 +17,22 @@
                     title: item.name
                 };
             },
-            template_group: 'info',
-
+            template_group: "info",
             templates: {
                 options: {
-                    moreAt: true
+                    moreAt: !0
                 }
             }
-        });
-
-        $.ajaxSetup({ cache: true });
-        // Should be more accurate than the name.
+        }), $.ajaxSetup({
+            cache: !0
+        }), // Should be more accurate than the name.
         $.getScript("/js/spice/lastfm/artist_tracks/" + api_result.artist.name);
-    };
-
-    env.ddg_spice_lastfm_artist_tracks = function(api_result) {
+    }, env.ddg_spice_lastfm_artist_tracks = function(api_result) {
         var songs = [];
         // TODO: Use a template for this
-        for(var i = 0; i < api_result.toptracks.track.length; i++) {
+        for (var i = 0; i < api_result.toptracks.track.length; i++) {
             songs.push("<a href='" + api_result.toptracks.track[i].url + "'>" + api_result.toptracks.track[i].name + "</a>");
         }
-
-        songs.splice(3);
-        $(".detail__songs").html("Top Tracks: " + songs.join(", "));
+        songs.splice(3), $(".detail__songs").html("Top Tracks: " + songs.join(", "));
     };
-}(this));
+}(this);

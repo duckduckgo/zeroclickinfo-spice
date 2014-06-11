@@ -1,68 +1,49 @@
 function ddg_spice_news(apiResult) {
     "use strict";
-
     // Words that we have to skip in DDG.isRelevant.
-    var skip = [
-        "news",
-        "headline",
-        "headlines",
-        "latest",
-        "breaking",
-        "update",
-        "s:d",
-        "sort:date"
-    ];
-
+    var skip = [ "news", "headline", "headlines", "latest", "breaking", "update", "s:d", "sort:date" ];
     // Some sources need to be set by us.
     var setSourceOnStory = function(story) {
-        switch(story.syndicate) {
-        case "Topsy":
+        switch (story.syndicate) {
+          case "Topsy":
             story.source = story.author || "Topsy";
             break;
-        case "NewsCred":
-            if(story.source) {
-                if(story.author) {
+
+          case "NewsCred":
+            if (story.source) {
+                if (story.author) {
                     story.source = story.source + " by " + story.author;
                 }
             } else {
                 story.source = "NewsCred";
             }
-            break;
         }
     };
-
     // Check if the title is relevant to the query.
     var goodStories = [];
-    for(var i = 0, story; story = apiResult[i]; i++) {
-	// strip bold from story titles.
-        story.title = story.title.replace(/<b>|<\/b>|:/g, "");
-        if(DDG.isRelevant(story.title, skip)) {
-            setSourceOnStory(story);
-            goodStories.push(story);
+    for (var i = 0, story; story = apiResult[i]; i++) {
+        if (// strip bold from story titles.
+        story.title = story.title.replace(/<b>|<\/b>|:/g, ""), DDG.isRelevant(story.title, skip)) {
+            setSourceOnStory(story), goodStories.push(story);
         }
     }
-
-    var searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim();
-
+    var searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, "").trim();
     // If we found a few good stories, display them.
-    if(goodStories.length >= 3) {
+    if (goodStories.length >= 3) {
         Spice.add({
-            id: 'news',
-            name: 'News',
-
+            id: "news",
+            name: "News",
             data: goodStories,
-
             meta: {
                 count: goodStories.length,
                 searchTerm: searchTerm,
-                itemType: 'News articles'
+                itemType: "News articles"
             },
-
             templates: {
-                item: 'news_item'
+                item: "news_item"
             }
         });
     } else {
-	Spice.failed('news');
+        Spice.failed("news");
     }
 }
