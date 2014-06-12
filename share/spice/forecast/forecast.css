@@ -186,6 +186,7 @@
 	overflow-x: auto;
 	min-height: 150px;
 	-webkit-overflow-scrolling: touch;
+	margin-bottom: -1em;
 }
 	.fe_day--bar {
 		text-align: center;
