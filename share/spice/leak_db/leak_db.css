@@ -1,11 +1,17 @@
+.zci__body .zci__more-at{
+	padding-top: 1em;
+}
 .record .record__cell__value {
     padding: 2px;
     max-width: 500px;
     word-wrap: break-word;
+    padding: 0.4em;
+    padding-left: 0.8em;
 }
 
 .record .record__cell__key {
-    padding: 2px;
+    padding: 0.4em;
+    padding-left: 0;
 }
 
 .is-mobile .record .record__cell__value {
@@ -13,11 +19,12 @@
 }
 
 .record .record__body{
-    width:100%;
+    width: 100%;
 }
 
 .is-mobile .record .record__cell__key {
-    max-width: 30px;
+    max-width: 40px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
