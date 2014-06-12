@@ -11,3 +11,13 @@
 .is-mobile .record .record__cell__value {
     max-width: 150px;
 }
+
+.record .record__body{
+    width:100%;
+}
+
+.is-mobile .record .record__cell__key {
+    max-width: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
