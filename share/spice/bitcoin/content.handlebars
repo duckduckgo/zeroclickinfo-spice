@@ -1,14 +1,18 @@
-<div class="clearfix bitcoin__container">
+<div class="bitcoin  clearfix">
   {{#with buy}}
-    <div class="half bitcoin__half">
-      <span class="title">{{title}}</span>
-      <span class="price">{{formatted_price}}</span>
+    <div class="half  half--screen-s">
+      <div class="bitcoin__blk  clearfix">
+        <span class="bitcoin__title">{{title}}</span>
+        <span class="bitcoin__price">{{formatted_price}}</span>
+      </div>
     </div>
   {{/with}}
   {{#with sell}}
-    <div class="half bitcoin__half">
-      <span class="title">{{title}}</span>
-      <span class="price">{{formatted_price}}</span>
+    <div class="half  half--screen-s">
+      <div class="bitcoin__blk  clearfix">
+        <span class="bitcoin__title">{{title}}</span>
+        <span class="bitcoin__price">{{formatted_price}}</span>
+      </div>
     </div>
   {{/with}}
 </div>
