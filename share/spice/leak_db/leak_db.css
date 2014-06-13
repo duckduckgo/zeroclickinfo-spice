@@ -23,7 +23,7 @@
 }
 
 .is-mobile .record .record__cell__key {
-    max-width: 40px;
+    max-width: 50px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
