@@ -30,23 +30,40 @@
         $second_input = $('#second_input'),
         $timer = $('#timer'),
         $reset_btn = $('#reset_btn'),
-        $done_modal = $('#done_modal');
+        $done_modal = $('#done_modal'),
+        soundUrl = '/share/spice/timer/alarm.mp3';
 
     //go from a time in ms to human-readable
     function formatTime(t){
+      var hours = Math.floor(t / (1000*60*60));
+      t = t % (1000*60*60);
       var mins = Math.floor(t / (1000*60));
       t = t % (1000*60);
       var secs = Math.floor(t / 1000);
+      if (hours > 0) return padZeros(hours, 2) + ":" + padZeros(mins, 2) + ":" + padZeros(secs, 2);
       return padZeros(mins, 2) + ":" + padZeros(secs, 2);
     }
 
+    //play the alarm sound
+    function playLoopingSound(){
+      DDG.require('audio', function(player){
+        function loop(){
+          player.play('alarm-sound', soundUrl, {autoPlay: true, onfinish: loop}); //play the sound
+        }
+        loop();
+        $('#done_ok_btn').click(function(){player.stop('alarm-sound')}); //stop it when the modal is dismissed
+      });
+    }
+
+    //called every tenth of a second (for accuracy purposes)
+    //pop up the modal and play the sound if done
     function updateTimer(){
       time_left -= new Date().getTime() - last_update;
       if (time_left <= 0){
         clearInterval(update_int);
         $timer.html('00:00');
         $done_modal.show();
-        //TODO: Sound?
+        playLoopingSound();
       } else {
         $timer.html(formatTime(time_left));
         last_update = new Date().getTime();
@@ -66,8 +83,8 @@
         if (!start_secs && !start_mins) {
           return;
         }
-        if (start_mins > 99) {
-          start_mins = 99;
+        if (start_mins > 999) {
+          start_mins = 999;
           start_secs = 59;
         }
         if (start_secs > 59) start_secs = 59;
@@ -76,6 +93,7 @@
       }
 
       last_update = new Date().getTime();
+      updateTimer();
       update_int = setInterval(updateTimer, 100);
 
       $('#timer_input').addClass('timer__hidden');
@@ -122,5 +140,13 @@
       $('#zero_click_wrapper2 #zero_click_abstract').attr('style',
         'padding: 0 !important; margin: 4px 0 0 0 !important');
     }
+
+    //called when input is inserted, forcing numeric input
+    function numericOnly(){
+      this.value = this.value.replace(/\D/g, '');
+    }
+
+    $('#minute_input').keyup(numericOnly).change(numericOnly).click(numericOnly);
+    $('#second_input').keyup(numericOnly).change(numericOnly).click(numericOnly);
   }
 }(this));
