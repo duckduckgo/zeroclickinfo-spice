@@ -1,4 +1,9 @@
-.zci--octopart .btn__datasheet {
+.detail--octopart .btn__datasheet {
 	margin-right: 2px;
 	background-color: #e5e5e5;
+}
+
+.is-mobile .detail--octopart .detail__body__content{
+    position: absolute;
+    bottom: 4em
 }
