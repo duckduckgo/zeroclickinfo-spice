@@ -27,12 +27,15 @@ my @triggers = ('new movies with','new movies featuring','new movies starring',
 				'newest films with','newest films starring','newest films featuring',
 				'newest film with','newest film starring','newest film featuring',
 	'movie with','movies with', 'movies starring','film with','films with','films starring','film starring','movies featuring','films featuring',
-	#'movies directed by','movies directed', 'directed movies', 'director','film director','film by',
-	#'films by','films directed by',
-	#'actor','actress',
+    'movies by','movies directed by','movies director', 
+    'movie by','movie directed by','movie director',  
+	'films by','films directed by','films director',
+    'film by','film directed by','film director',
+    'director',
+	'actor','actress',
 	'kwixer');
 triggers start => @triggers;
-triggers end => ('actor','actress');
+triggers end => ('actor','actress', 'director');
 handle query => sub {
 	return $_ if $_;
   	return;
