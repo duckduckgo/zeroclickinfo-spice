@@ -1,4 +1,4 @@
-(function(env) {    
+(function(env) {
     env.ddg_spice_thesaurus = function(api_result) {
         "use strict";
 
@@ -40,7 +40,7 @@
             }
         }
         if(how_many === 0) {
-            return Spice.failed('theasaurus');
+            return Spice.failed('thesaurus');
         }
 
         api_result.mode = shorthand[mode];
