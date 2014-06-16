@@ -15,7 +15,7 @@
             meta: {
                 searchTerm: api_result.Name,
                 itemType: 'Alternatives',
-                sourceUrl: 'http://alternativeto.net/',
+                sourceUrl: api_result.Url,
                 sourceName: 'AlternativeTo'
             },
             normalize: function(item) {
