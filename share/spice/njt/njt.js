@@ -41,7 +41,7 @@
 			data: sorted,
 			meta: {
 				heading: "Commuter Trains from " + api_result.origin + " to " + api_result.destination,
-				sourceUrl: "http://www.njtransit.com",
+				sourceUrl: "http://www.njtransit.com/sf/sf_servlet.srv?hdnPageAction=TrainTo",
 				sourceName: "NJ Transit"
 			},
 			templates: {
@@ -51,7 +51,7 @@
 			},
 			normalize: function(item){
 				return {
-					title: format_time(item.departure_time),
+					title: format_time(item.departure_time) + " (" + item.train + ")",
 					subtitle: item.line,
 					description: "Arrives " + format_time(item.arrival_time)
 				};
