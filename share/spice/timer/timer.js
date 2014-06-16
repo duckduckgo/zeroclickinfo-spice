@@ -31,7 +31,7 @@
         $timer = $('#timer'),
         $reset_btn = $('#reset_btn'),
         $done_modal = $('#done_modal'),
-        soundUrl = '/share/spice/timer/alarm.mp3';
+        soundUrl = DDG.get_asset_path('timer', 'alarm.mp3');
 
     //go from a time in ms to human-readable
     function formatTime(t){
@@ -146,7 +146,15 @@
       this.value = this.value.replace(/\D/g, '');
     }
 
-    $('#minute_input').keyup(numericOnly).change(numericOnly).click(numericOnly);
-    $('#second_input').keyup(numericOnly).change(numericOnly).click(numericOnly);
+    //reject typing any keys that aren't numbers
+    function typeNumericOnly(e){
+      if (e.shiftKey === true){
+        return (e.which == 9);
+      }
+      return !(e.which > 57 || e.which == 32) || (e.which >= 96 && e.which <= 105); //numpad
+    }
+
+    $('#minute_input').keydown(typeNumericOnly).change(numericOnly).click(numericOnly);
+    $('#second_input').keydown(typeNumericOnly).change(numericOnly).click(numericOnly);
   }
 }(this));
