@@ -1,6 +1,6 @@
-(function(env){    
+(function(env){
+    "use strict";    
     env.ddg_spice_guidebox_getid = function(api_result) {
-        "use strict";
 
         if (!api_result || !api_result.results) {
           return Spice.failed('guidebox');
@@ -41,8 +41,6 @@
                 return Spice.failed('guidebox');
             }
 
-        console.log(toArray(api_result.results.result));
-
             Spice.add({
                 id: 'guidebox',
                 name: 'TV',
@@ -62,7 +60,6 @@
                     }
                 },
                 normalize: function(item){
-                    console.log(item);
                     return {
                         image: item.thumbnail_304x171,
                         img: item.thumbnail_400x225,
@@ -76,11 +73,12 @@
                 relevancy: {
                     primary: [
                         {required: 'episode_name'},
+                        {required: 'season_number'}
                     ]
                 }
             });
         });
-}
+    }
 
     function toArray(obj) {
         var result = [];
