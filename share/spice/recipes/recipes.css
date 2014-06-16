@@ -5,10 +5,6 @@
     padding-bottom: 0;
     margin-bottom: 0;
 }
-	.is-mobile .tile--recipes .tile__title {
-		height: 2.7em;
-	}
-
 
 .tile--recipes .tile__media {
     height: 9.5em;
