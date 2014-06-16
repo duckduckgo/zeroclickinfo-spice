@@ -1,13 +1,13 @@
 .detail--guidebox .red {
-  color: #B57367;
+    color: #B57367;
 }
 
 .detail--guidebox .small {
-  font-size: 0.98em;
+    font-size: 0.98em;
 }
 
 .detail--guidebox .guidebox--btn--mobile{
-	display: none;
+    display: none;
 }
 
 .is-mobile .detail__tile--pr{
@@ -16,28 +16,29 @@
 }
 
 .detail--guidebox .guidebox--desc--mobile{
-	display: none;
-}
-
-.is-mobile .detail--guidebox .guidebox--btn--detail{
-	display: none;
-}
-
-.is-mobile .detail--guidebox .guidebox--btn--mobile{
-	display: block;
-    position: fixed;
+    display: none;
 }
 
 .is-mobile .detail--guidebox .guidebox--aired{
-	display: none;
+    display: none;
+}
+
+.is-mobile .detail--guidebox .guidebox--btn--detail{
+    display: none;
+}
+
+.is-mobile .detail--guidebox .guidebox--btn--mobile{
+    display: block;
+    position: absolute;
+    bottom: 1em;
 }
 
 .is-mobile .detail--guidebox .guidebox--desc{
-	display: none;
+  display: none;
 }
 
 .is-mobile .detail--guidebox .guidebox--desc--mobile{
-	display: block;
+    display: block;
     padding-bottom: 1em;
     height: 5.5em;
 }
