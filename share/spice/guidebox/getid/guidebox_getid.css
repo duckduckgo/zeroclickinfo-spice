@@ -1,48 +1,21 @@
 .detail--guidebox .red {
-    color: #B57367;
+    color:  #c9481c;
 }
 
 .detail--guidebox .small {
     font-size: 0.98em;
 }
 
-.detail--guidebox .guidebox--btn--mobile{
-    display: none;
-}
-
-.is-mobile .detail__tile--pr{
-    height:1em;
-    padding-bottom:1.5em;
-}
-
-.detail--guidebox .guidebox--desc--mobile{
-    display: none;
+.detail--guidebox .guidebox--aired{
+    padding-bottom:0.5em;
 }
 
 .is-mobile .detail--guidebox .guidebox--aired{
     display: none;
 }
 
-.is-mobile .detail--guidebox .guidebox--btn--detail{
-    display: none;
-}
-
-.is-mobile .detail--guidebox .guidebox--btn--mobile{
+.is-mobile .detail--guidebox .btn--primary{
     display: block;
     position: absolute;
     bottom: 1em;
-}
-
-.is-mobile .detail--guidebox .guidebox--desc{
-  display: none;
-}
-
-.is-mobile .detail--guidebox .guidebox--desc--mobile{
-    display: block;
-    padding-bottom: 1em;
-    height: 5.5em;
-}
-
-.is-mobile .detail--guidebox .detail__desc{
-    display: none;
 }

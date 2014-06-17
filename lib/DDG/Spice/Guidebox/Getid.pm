@@ -20,6 +20,10 @@ spice to => 'http://api-public.guidebox.com/v1.3/json/{{ENV{DDG_SPICE_GUIDEBOX_A
 
 spice wrap_jsonp_callback => 1;
 
+my %skip = map { $_ => 0 } (
+    'watchmen'
+);
+
 handle remainder => sub {
     if ($loc->country_name eq "United States" || $loc->country_name eq "Canada"){
         
@@ -38,7 +42,8 @@ handle remainder => sub {
         } else {
             $show = $_;
         }
-        return $show if $show;
+
+        return $show if $show && !exists $skip{lc $show};
     }
     return;
 };
