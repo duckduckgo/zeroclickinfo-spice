@@ -14,6 +14,7 @@
 
         // Format the title to title case (sometimes the received response has inconsistent formatting)
         api_result[response_envelope].title = api_result[response_envelope].title.toTitleCase();
+        api_result[response_envelope].publishers[0].name = api_result[response_envelope].publishers[0].name.toTitleCase();
 
         Spice.add({
             id: "isbn",
