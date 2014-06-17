@@ -3,17 +3,21 @@ package DDG::Spice::Domains;
 
 use DDG::Spice;
 
+# regexes for parsing URLs
 my $tlds_qr = qr/com|co|org|ac|ac.uk|in/;
-my $url_qr = qr/^(?:http:\/\/)?(?:www\.)?(.*?)\.($tlds_qr)$/;
+my $url_qr = qr/(?:http:\/\/)?(?:www\.)?([^\s]*?)\.($tlds_qr)/;
 
-# trigger when query contains only a URL
-triggers query_raw => $url_qr;
+# additional keywords that trigger this spice
+my $whois_keywords_qr = qr/whois|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns/i;
 
-# TODO: add other triggers into the qr above, such as 'whois', 'domain', 'available', 'is available'
+# trigger this spice when:
+# - query contains only a URL
+# - query starts or end with any of the whois keywords
+triggers query_raw =>
+    qr/^$url_qr$/,
+    qr/^$whois_keywords_qr|$whois_keywords_qr$/;
 
-my $api_user = 'USERNAME_HERE';
-my $api_pwd = 'PWD_HERE';
-spice to => 'https://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username=' . $api_user . '&password=' . $api_pwd;
+spice to => 'https://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_DOMAINS_USERNAME}}}&password={{ENV{DDG_SPICE_DOMAINS_PASSWORD}}}';
 
 handle  sub {
     my ($query) = @_;
@@ -22,7 +26,7 @@ handle  sub {
     # parse the URL into its parts
     my ($domain, $tld) = $query =~ $url_qr; 
     
-    warn $domain . '', "\t", $tld . '';
+    warn $domain || '', "\t", $tld || '';
 
     # skip if no domain or tld
     return if !defined $domain || $domain eq '' || !defined $tld || $tld eq '';
