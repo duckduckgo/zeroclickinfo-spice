@@ -11,11 +11,16 @@
 }
 
 .tile--njt .njt__allaboard {
-	background-color: #ffdb00;
+	background-color: #ffc946;
+}
+
+.tile--njt .njt__boarding {
+	background-color: #60ae50;
+	color: #fff;
 }
 
 .tile--njt .njt__cancelled {
-	background-color: #cc0000;
+	background-color: #e34c2d;
 	color: #fff;
 }
 
