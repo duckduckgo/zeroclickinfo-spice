@@ -41,19 +41,28 @@
 			data: sorted,
 			meta: {
 				heading: "Commuter Trains from " + api_result.origin + " to " + api_result.destination,
-				sourceUrl: "http://www.njtransit.com/sf/sf_servlet.srv?hdnPageAction=TrainTo",
+				sourceUrl: api_result.url,
 				sourceName: "NJ Transit"
 			},
 			templates: {
 				group: 'text',
 				detail: false,
-				item_detail: false
+				item_detail: false,
+				options: {
+					footer: Spice.njt.footer
+				}
 			},
 			normalize: function(item){
+				var status_class = "";
+				if (!item.status) {item.status = "On Time";}
+				if (item.status === "Cancelled") {status_class = "njt__cancelled";}
+				else if (item.status == "All Aboard") {status_class = "njt__allaboard";}
 				return {
+					url: api_result.url,
 					title: format_time(item.departure_time) + " (" + item.train + ")",
 					subtitle: item.line,
-					description: "Arrives " + format_time(item.arrival_time)
+					description: "Arrives " + format_time(item.arrival_time),
+					status_class: status_class
 				};
 			}
 		});

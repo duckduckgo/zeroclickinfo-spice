@@ -1,0 +1,24 @@
+.tile--njt .njt__badge {
+	background-color: #e0e0e0;
+	height: 20px;
+	border-radius: 20px;
+	padding: 0 10px;
+	float: left;
+}
+
+.tile--njt .tile__footer {
+	margin-top: 5px;
+}
+
+.tile--njt .njt__allaboard {
+	background-color: #ffdb00;
+}
+
+.tile--njt .njt__cancelled {
+	background-color: #cc0000;
+	color: #fff;
+}
+
+.tile--njt .tile__body {
+	padding-bottom: 1em !important;
+}
