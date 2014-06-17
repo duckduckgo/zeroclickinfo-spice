@@ -19,8 +19,8 @@ triggers startend => 'isbn', 'isbn number';
 spice to => 'https://openlibrary.org/api/books?bibkeys=ISBN:$1&callback={{callback}}&format=javascript&jscmd=data';
 
 handle remainder => sub {
-    $_ =~ s/\s//; # remove all whitespace
-    $_ =~ s/-//; # remove '-'
+    $_ =~ s/\s//g; # remove all whitespace
+    $_ =~ s/-//g; # remove '-'
 
     return $_ if (/^\d{9}$|^\d{10}$|^\d{13}$/); # only number strings of length 9 or 10 or 13
     return;

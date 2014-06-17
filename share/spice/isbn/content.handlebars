@@ -1,16 +1,20 @@
+{{#if cover.small}}
 <div>
-	<img class="book-cover" href="{{url}}" src="{{cover.small}}">
+	<img class="book-cover" src="{{cover.small}}">
 </div>
+{{/if}}
 <div>
 	<span class="title">
-		{title}}
+		{{title}}
 	</span>
 </div>
 <div>
 	<span class="details">
-		{{authors.[0].name}} &middot; {{publishers.[0].name}} ({{publish_date}})
+		{{authors.[0].name}} {{#if publishers.[0].name}}&middot; {{publishers.[0].name}}{{/if}}{{#if publish_date}} ({{publish_date}}){{/if}}
 	</span>
 </div>
+{{#if url}}
 <a class="zci__more-at" href="{{url}}">
 	More at Open Library
 </a>
+{{/if}}
