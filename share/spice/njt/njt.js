@@ -57,6 +57,7 @@
 				if (!item.status) {item.status = "On Time";}
 				if (item.status === "Cancelled") {status_class = "njt__cancelled";}
 				else if (item.status == "All Aboard") {status_class = "njt__allaboard";}
+				else if (item.status == "Boarding" || item.status == "Stand By") {status_class = "njt__boarding";}
 				return {
 					url: api_result.url,
 					title: format_time(item.departure_time) + " (" + item.train + ")",
