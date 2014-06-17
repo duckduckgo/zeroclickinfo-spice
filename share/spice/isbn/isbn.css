@@ -1,0 +1,16 @@
+.zci--isbn .book-cover {
+	float:left;
+	display:inline;
+	padding-top:0.25em;
+	padding-right:1em;
+	outline:none;
+}
+
+.zci--isbn .title {
+	font-size: 1.2em;
+	font-weight:300;
+}
+
+.zci--isbn .details {
+	font-weight:300;
+}
