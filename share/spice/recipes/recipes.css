@@ -1,14 +1,8 @@
 .tile--recipes .tile__title {
-    font-size: 1.3em;
     font-weight: 600;
-    height: 1.3em;
     padding-bottom: 0;
     margin-bottom: 0;
 }
-	.is-mobile .tile--recipes .tile__title {
-		height: 2.7em;
-	}
-
 
 .tile--recipes .tile__media {
     height: 9.5em;
