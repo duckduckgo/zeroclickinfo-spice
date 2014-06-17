@@ -57,15 +57,19 @@
                     options: {
                         variant: "video",
                         detailVariant: 'light',
+                        price: true,
                         buy: Spice.guidebox_getid.buy
                     }
                 },
                 normalize: function(item){
-                    var subtitle = "(Season "+ item.season_number+ ", #" + item.episode_number+")"
+                    var subtitle = "(Season "+ item.season_number+ ", #" + item.episode_number+")";
 
                     var abstract_length = (isMobile ? 175 : 500);
 
-                    var abstract = Handlebars.helpers.ellipsis(item.overview, abstract_length)
+                    var abstract = Handlebars.helpers.ellipsis(item.overview, abstract_length);
+
+                    var aired = "Originally aired "+ Handlebars.helpers.guideBox_getDate(item.first_aired)
+                                + " on "+ metadata.network;
                     
                     return {
                         image: item.thumbnail_304x171,
@@ -75,8 +79,8 @@
                         ratingText: subtitle,
                         heading: item.episode_name + subtitle,
                         url: item.smart_url,
-                        network: metadata.network,
-                        abstract: abstract
+                        abstract: abstract,
+                        price: aired + (item.is_free_web ? '' : ', Paid Content')
                     }
                 },
                 relevancy: {
