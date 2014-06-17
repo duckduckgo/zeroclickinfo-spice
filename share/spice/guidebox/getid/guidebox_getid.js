@@ -41,6 +41,8 @@
                 return Spice.failed('guidebox');
             }
 
+            var isMobile = $('.is-mobile').length;
+
             Spice.add({
                 id: 'guidebox',
                 name: 'TV',
@@ -52,22 +54,29 @@
                 },
                 templates: {
                     group: 'media',
-                    detail: 'products_detail',
-                    item_detail: 'products_item_detail',
                     options: {
                         variant: "video",
+                        detailVariant: 'light',
                         buy: Spice.guidebox_getid.buy
                     }
                 },
                 normalize: function(item){
+                    var subtitle = "(Season "+ item.season_number+ ", #" + item.episode_number+")"
+
+                    var abstract_length = (isMobile ? 175 : 500);
+
+                    var abstract = Handlebars.helpers.ellipsis(item.overview, abstract_length)
+                    
                     return {
                         image: item.thumbnail_304x171,
+                        subtitle_content: subtitle,
                         img: item.thumbnail_400x225,
-                        title: item.episode_name,
-                        ratingText: 'Season '+ item.season_number + ' #'+ item.episode_number,
-                        heading: item.episode_name,
+                        title: item.episode_name, 
+                        ratingText: subtitle,
+                        heading: item.episode_name + subtitle,
                         url: item.smart_url,
-                        network: metadata.network
+                        network: metadata.network,
+                        abstract: abstract
                     }
                 },
                 relevancy: {
