@@ -1,16 +1,10 @@
-.detail--guidebox .red {
-    color:  #c9481c;
+.detail--guidebox .price{
+    font-size: 0.9em;
+    color: #777777;
+    font-weight: normal;
 }
 
-.detail--guidebox .small {
-    font-size: 0.98em;
-}
-
-.detail--guidebox .guidebox--aired{
-    padding-bottom:0.5em;
-}
-
-.is-mobile .detail--guidebox .guidebox--aired{
+.is-mobile .detail--guidebox .price{
     display: none;
 }
 
