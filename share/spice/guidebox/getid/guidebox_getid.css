@@ -1,3 +1,7 @@
+.zci__more-at__icon{
+    padding-bottom: 0.3em;
+}
+
 .detail--guidebox .price{
     position: relative;
     top: -0.5em;
@@ -6,24 +10,30 @@
     font-weight: normal;
 }
 
+.detail--guidebox .paid{
+    color: #c9481c;
+    font-weight: bold;
+}
+
 .is-mobile .detail--guidebox .price{
     display: none;
 }
 
 .is-mobile .detail--guidebox .btn--primary{
-    display: block;
     position: absolute;
-    bottom: 1em;
+    bottom: 1.1em;
 }
 
 .detail--guidebox .detail__body--pr{
-	border-left: 0px;
+    border-left: 0px;
 }
 
 .detail--guidebox .detail__desc{
-    padding-bottom: 1em;
+    padding-bottom: 1.3em;
 }
 
-.detail--guidebox .btn--primary .paid{
-    color: #c9481c;
+.is-mobile .detail--guidebox  .paid{
+    position: absolute;
+    padding-left: 7.5em;
+    bottom: 1.8em;
 }
