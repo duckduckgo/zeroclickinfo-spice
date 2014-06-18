@@ -1,17 +1,14 @@
 .zci__body .zci__more-at{
-	padding-top: 1em;
+    padding-top: 1em;
 }
 .record .record__cell__value {
-    padding: 2px;
     max-width: 500px;
     word-wrap: break-word;
     padding: 0.4em;
-    padding-left: 0.8em;
 }
 
 .record .record__cell__key {
     padding: 0.4em;
-    padding-left: 0;
 }
 
 .is-mobile .record .record__cell__value {
@@ -28,3 +25,6 @@
     text-overflow: ellipsis;
 }
 
+.record tr.record__row:nth-child(odd) {
+    background-color: rgba(150,150,150, .15);
+}
