@@ -1,4 +1,6 @@
 .detail--guidebox .price{
+    position: relative;
+    top: -0.5em;
     font-size: 0.9em;
     color: #777777;
     font-weight: normal;
@@ -12,4 +14,16 @@
     display: block;
     position: absolute;
     bottom: 1em;
+}
+
+.detail--guidebox .detail__body--pr{
+	border-left: 0px;
+}
+
+.detail--guidebox .detail__desc{
+    padding-bottom: 1em;
+}
+
+.detail--guidebox .btn--primary .paid{
+    color: #c9481c;
 }
