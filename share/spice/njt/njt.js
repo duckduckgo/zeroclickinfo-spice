@@ -31,6 +31,17 @@
 			return hour*60 + minute;
 		}
 
+		function delayed(item){
+			var match = new RegExp(/In (\d+) Min/).exec(item.status);
+			if (match && match.length > 1){
+				var mins = parseInt(match[1]);
+				var now = new Date();
+				var nmins = now.getMinutes(); var nhours = now.getHours();
+				return timeToInt(item.departure_time) < nhours*60 + nmins + mins;
+			}
+			return false;
+		}
+
 		var sorted = api_result.routes.sort(function(a, b){
 			return timeToInt(a.departure_time) - timeToInt(b.departure_time);
 		});
@@ -56,6 +67,7 @@
 				var status_class = "";
 				if (!item.status) {item.status = "On Time";}
 				if (item.status === "Cancelled") {status_class = "njt__cancelled";}
+				else if (item.status == "Delayed" || delayed(item)) {status_class = "njt__delayed";}
 				else if (item.status == "All Aboard") {status_class = "njt__allaboard";}
 				else if (item.status == "Boarding" || item.status == "Stand By") {status_class = "njt__boarding";}
 				return {
