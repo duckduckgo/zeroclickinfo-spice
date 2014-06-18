@@ -10,8 +10,13 @@
 	margin-top: 5px;
 }
 
-.tile--njt .njt__allaboard {
+.tile--njt .njt__delayed {
 	background-color: #ffc946;
+}
+
+.tile--njt .njt__allaboard {
+	color: #fff;
+	background-color: #666;
 }
 
 .tile--njt .njt__boarding {
