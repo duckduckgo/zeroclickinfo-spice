@@ -18,15 +18,13 @@
                 sourceName: 'Is it up?',
                 sourceIcon: true
             },
-            template_group: 'info',
             templates: {
-                group: 'base',
+                group: 'info',
                 options: {
                     content: Spice.is_it_up.detail,
-		    moreAt: true
+                    moreAt: true
                 }
             }
         });
     }
 }(this));
-
