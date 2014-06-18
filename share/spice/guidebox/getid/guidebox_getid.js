@@ -56,16 +56,15 @@
                     group: 'media',
                     options: {
                         variant: "video",
-                        detailVariant: 'light',
                         price: true,
                         buy: Spice.guidebox_getid.buy
                     }
                 },
                 normalize: function(item){
-                    var subtitle = "(Season "+ item.season_number+ ", #" + item.episode_number+")";
+                    var subtitle_tile = "Season "+ item.season_number+ ", #" + item.episode_number;
+                    var subtitle_detail = "(Season "+ item.season_number+ ", #" + item.episode_number+")";
 
                     var abstract_length = (isMobile ? 175 : 500);
-
                     var abstract = Handlebars.helpers.ellipsis(item.overview, abstract_length);
 
                     var aired = "Originally aired "+ Handlebars.helpers.guideBox_getDate(item.first_aired)
@@ -73,20 +72,20 @@
                     
                     return {
                         image: item.thumbnail_304x171,
-                        subtitle_content: subtitle,
                         img: item.thumbnail_400x225,
                         title: item.episode_name, 
-                        ratingText: subtitle,
-                        heading: item.episode_name + subtitle,
+                        ratingText: subtitle_tile,
+                        heading: item.episode_name + subtitle_detail,
                         url: item.smart_url,
                         abstract: abstract,
-                        price: aired + (item.is_free_web ? '' : ', Paid Content')
+                        price: aired
                     }
                 },
                 relevancy: {
                     primary: [
                         {required: 'episode_name'},
-                        {required: 'season_number'}
+                        {required: 'season_number'},
+                        {required: 'overview'}
                     ]
                 }
             });
