@@ -3,8 +3,10 @@ package DDG::Spice::Domains;
 
 use DDG::Spice;
 
-# regexes for parsing URLs
-my $tlds_qr = qr/com|co|org|ac|ac.uk|in/;
+# regex for allowed TLDS (grabbed from main DDG code, in /lib/DDG/Util/Constants.pm)
+my $tlds_qr = qr/(?:c(?:o(?:m|op)?|at?|[iykgdmnxruhcfzvl])|o(?:rg|m)|n(?:et?|a(?:me)?|[ucgozrfpil])|e(?:d?u|[gechstr])|i(?:n(?:t|fo)?|[stqldroem])|m(?:o(?:bi)?|u(?:seum)?|i?l|[mcyvtsqhaerngxzfpwkd])|g(?:ov|[glqeriabtshdfmuywnp])|b(?:iz?|[drovfhtaywmzjsgbenl])|t(?:r(?:avel)?|[ncmfzdvkopthjwg]|e?l)|k[iemygznhwrp]|s[jtvberindlucygkhaozm]|u[gymszka]|h[nmutkr]|r[owesu]|d[kmzoej]|a(?:e(?:ro)?|r(?:pa)?|[qofiumsgzlwcnxdt])|p(?:ro?|[sgnthfymakwle])|v[aegiucn]|l[sayuvikcbrt]|j(?:o(?:bs)?|[mep])|w[fs]|z[amw]|f[rijkom]|y[eut]|qa)/i;
+
+# regex for parsing URLs
 my $url_qr = qr/(?:http:\/\/)?(?:www\.)?([^\s]*?)\.($tlds_qr)/;
 
 # additional keywords that trigger this spice
