@@ -32,8 +32,12 @@
     padding-bottom: 1.3em;
 }
 
-.is-mobile .detail--guidebox  .paid{
+.is-mobile .detail--guidebox .paid{
     position: absolute;
     padding-left: 7.5em;
     bottom: 1.8em;
+}
+
+.detail--guidebox .btn--primary{
+    margin-right: 0.75em;
 }
