@@ -8,7 +8,7 @@ my $tlds_qr = qr/com|co|org|ac|ac.uk|in/;
 my $url_qr = qr/(?:http:\/\/)?(?:www\.)?([^\s]*?)\.($tlds_qr)/;
 
 # additional keywords that trigger this spice
-my $whois_keywords_qr = qr/whois|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns/i;
+my $whois_keywords_qr = qr/whois|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns|(?:how\sto\s|)buy/i;
 
 # trigger this spice when:
 # - query contains only a URL
@@ -26,8 +26,6 @@ handle  sub {
     # parse the URL into its parts
     my ($domain, $tld) = $query =~ $url_qr; 
     
-    warn $domain || '', "\t", $tld || '';
-
     # skip if no domain or tld
     return if !defined $domain || $domain eq '' || !defined $tld || $tld eq '';
 
