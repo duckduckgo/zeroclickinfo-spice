@@ -17,13 +17,27 @@ spice to => 'http://njt-api.appspot.com/times/$1';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
+my @stops = share('stops.txt')->slurp;
+
+sub is_stop {
+	foreach my $stop (@stops){
+		return 1 if index(lc $stop, lc $_[0]) > -1;
+	}
+	return;
+};
+
 triggers any => "next train", "train times", "train schedule", "njt", "nj transit", "new jersey transit";
 
 handle remainder => sub {
 	/(?:from |to )?(.+) (to|from) (.+)/;
-	my $orig = join "-", map { lc } split /\s+/, $1;
-	my $dest = join "-", map { lc } split /\s+/, $3;
-	return $2 eq 'to' ? ($orig, $dest) : ($dest, $orig);
+	my $orig = $1;
+	my $dest = $3;
+	if (is_stop($orig) and is_stop($dest)){
+		my $orig = join "-", map { lc } split /\s+/, $orig;
+		my $dest = join "-", map { lc } split /\s+/, $dest;
+		return $2 eq 'to' ? ($orig, $dest) : ($dest, $orig);
+	}
+	return;
 };
 
 1;
