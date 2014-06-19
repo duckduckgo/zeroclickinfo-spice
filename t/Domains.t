@@ -23,14 +23,26 @@ ddg_spice_test(
     # A naked domain with a subdomain that's not 'www' should not trigger.
     'blah.duckduckgo.com' => undef,
 
+    # Whois keywords with a subdomain that's not 'www' should trigger.
+    'whois blah.duckduckgo.com' => expected_output_for('duckduckgo.com'),
+
     # A naked domain with an unknown tld should not trigger.
     'blah.duckduckgo.wtflmao' => undef,
+
+    # Whois keywords with an unknown tld should not trigger.
+    'whois blah.duckduckgo.wtflmao' => undef,
 
     # A naked domain with a port should not trigger.
     'duckduckgo.com:8000' => undef,
 
+    # Whois keywords with a port should trigger.
+    'whois duckduckgo.com:8000' => expected_output_for('duckduckgo.com'),
+
     # A naked domain with a resource path should not trigger.
     'duckduckgo.com/about' => undef,
+
+    # Whois keywords with a resource path should trigger.
+    'whoisduckduckgo.com/about' => expected_output_for('duckduckgo.com'),
 
      # A domain preceeded by 'http://' should trigger.
     'http://duckduckgo.com' => expected_output_for('duckduckgo.com'),
