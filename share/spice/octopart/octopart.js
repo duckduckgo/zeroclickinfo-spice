@@ -36,12 +36,14 @@ function ddg_spice_octopart (api_result) {
     //     return;
     // }
 
+    var isMobile = $('.is-mobile').length;
+
     Spice.add({
         id: 'octopart',
         name: 'Parts',
         data: api_result.results,
         signal: 'high',
-
+ 
         meta: {
             itemType: 'Parts',
             sourceName: 'Octopart',
@@ -49,17 +51,20 @@ function ddg_spice_octopart (api_result) {
         },
         normalize: function(item) {
             var img = DDG.getProperty(item, "item.images.0.url_90px");
+            var desc_length = 60;
+            var description = (isMobile ? 
+                Handlebars.helpers.ellipsis(DDG.strip_html(item.item.short_description), desc_length) :
+                DDG.strip_html(item.item.short_description));
 
             return {
                 brand: item.item.manufacturer.displayname,
                 price: item.item.avg_price[1] + ' ' + item.item.avg_price[0].toFixed(2),
                 img: img,
                 img_m: img,
-				// url_review: item.item.detail_url,
 				url: item.item.detail_url,
                 title: DDG.strip_html(item.item.mpn).toUpperCase(),
                 heading: DDG.strip_html(item.item.mpn).toUpperCase(),
-                description: DDG.strip_html(item.item.short_description),
+                description: description,
                 datasheet: item.item.datasheets[0].url
             };
         },
