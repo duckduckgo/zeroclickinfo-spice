@@ -1,5 +1,7 @@
 package DDG::Spice::Domains;
-# ABSTRACT: Returns an internet domain's availability and whois information.
+
+# ABSTRACT:
+# Returns an internet domain's availability and whois information.
 
 use DDG::Spice;
 
@@ -35,7 +37,7 @@ handle  sub {
     return if $domain =~ /\./;
 
     # return the domain + the tld, with a period in between
-    return "$domain.$tld";
+    return lc "$domain.$tld";
 };
 
 1;

@@ -17,6 +17,9 @@ ddg_spice_test(
     # A naked domain with 'www' should trigger.
     'http://www.duckduckgo.com' => expected_output_for('duckduckgo.com'),
 
+     # Domains should be lowercased
+    'dUcKdUcKgO.cOm' => expected_output_for('duckduckgo.com'),
+
     # A naked domain with a subdomain that's not 'www' should not trigger.
     'blah.duckduckgo.com' => undef,
 
@@ -57,6 +60,9 @@ ddg_spice_test(
     'who owns duckduckgo.com' => expected_output_for('duckduckgo.com'),
     'buy duckduckgo.com' => expected_output_for('duckduckgo.com'),
     'how to buy duckduckgo.com' => expected_output_for('duckduckgo.com'),
+
+    # whois keywords should be case insensitive
+    'hOw To bUy duckduckgo.com' => expected_output_for('duckduckgo.com'),
 
     # whois keywords after a url should trigger
     'duckduckgo.com whois' => expected_output_for('duckduckgo.com'),
