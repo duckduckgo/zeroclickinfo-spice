@@ -27,11 +27,11 @@
 
 	// decide which template to show, if any
 	if(is_avail) {
-	    // always show result when domain is available
-	    show_result(api_result, Spice.domains.available);
+	    // show message saying the domain is available
+	    show_available(api_result);
 	} else if(is_whois_allowed) {
-	    // if domain is not available, show whois only for designated 'whois' queries
-	    show_result(api_result, Spice.domains.whois);
+	    // show whois info for the domain
+	    show_whois(api_result);
 	} else {
 	    // by default, show nothing
 	}
@@ -58,29 +58,48 @@
 
 	// show whois results except when the query contains only the domain
 	// and no other keywords, which we test by looking for spaces in the query.
-	return /\s/.test(query);
+	return /\s/.test(query.trim());
     };
 
-    // Show the result using the template specified.
-    var show_result = function(api_result, template) {
-
-	// bring data we need to top level of the object
-	api_result = {
-	    domainName: api_result.domainName,
-	    registrantName: api_result.registrant && api_result.registrant.name,
-	    contactEmail: api_result.contactEmail,
-	    updatedDate: api_result.updatedDate,
-	    expirationDate: api_result.expiresDate,
-	};
-
-	// trim times from end of date strings
-	api_result.updatedDate = api_result.updatedDate && api_result.updatedDate.replace(/^(.*)?T(.*)?$/, '$1');
-	api_result.expirationDate = api_result.expirationDate && api_result.expirationDate.replace(/^(.*)?T(.*)?$/, '$1');
-		
+    // Show message saying that the domain is available.
+    var show_available = function(api_result) {
 	Spice.add({
             id: "domains",
             name: "Domains",
             data: api_result,
+            meta: {
+                sourceName: "WhoisAPI",
+                sourceUrl:
+		    'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
+		    + api_result.domainName
+		    + '&outputFormat=json'
+            },
+            templates: {
+		group: 'base',
+		options:{
+                    content: Spice.domains.available,
+		    moreAt: true
+		}
+	    }
+        });
+    };
+
+    // Show whois info for the domain using the 'record' template.
+    var show_whois = function(api_result) {
+
+	// build the key/value hash for the record template
+	var recordData =  {
+	    'Domain name': api_result.domainName,
+	    'Registered to': api_result.registrant && api_result.registrant.name,
+	    'Email': api_result.contactEmail,
+	    'Last updated': api_result.updatedDate && api_result.updatedDate.replace(/^(.*)?T(.*)?$/, '$1'), //trim time from the end
+	    'Expires': api_result.expiresDate && api_result.expiresDate.replace(/^(.*)?T(.*)?$/, '$1'), //trim time from the end
+	};
+
+	Spice.add({
+            id: "domains",
+            name: "Domains",
+            data: { 'record_data': recordData },
             meta: {
                 sourceName: "WhoisAPI",
                 sourceUrl:
@@ -92,7 +111,7 @@
             templates: {
             	group: 'base',
 		options:{
-                    content: template,
+                    content: 'record',
 		    moreAt: true
 		}
 	    }
