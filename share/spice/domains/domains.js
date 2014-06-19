@@ -68,11 +68,8 @@
             name: "Domains",
             data: api_result,
             meta: {
-                sourceName: "WhoisAPI",
-                sourceUrl:
-		    'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
-		    + api_result.domainName
-		    + '&outputFormat=json'
+                sourceName: "Domainr",
+                sourceUrl: 'https://domai.nr/' + api_result.domainName
             },
             templates: {
 		group: 'base',
@@ -101,12 +98,8 @@
             name: "Domains",
             data: { 'record_data': recordData },
             meta: {
-                sourceName: "WhoisAPI",
-                sourceUrl:
-		    'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
-		    + api_result.domainName
-		    + '&outputFormat=json'
-                	
+                sourceName: "Domainr",
+                sourceUrl: 'https://domai.nr/' + api_result.domainName
             },
             templates: {
             	group: 'base',
