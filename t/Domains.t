@@ -42,7 +42,7 @@ ddg_spice_test(
     'duckduckgo.com/about' => undef,
 
     # Whois keywords with a resource path should trigger.
-    'whoisduckduckgo.com/about' => expected_output_for('duckduckgo.com'),
+    'whois duckduckgo.com/about' => expected_output_for('duckduckgo.com'),
 
      # A domain preceeded by 'http://' should trigger.
     'http://duckduckgo.com' => expected_output_for('duckduckgo.com'),
