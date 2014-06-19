@@ -3,8 +3,6 @@
     background-color: #e5e5e5;
 }
 
-.is-mobile .detail--octopart .detail__body__content{
-    position: absolute;
-    margin-right: 1.6em;
-    bottom: 4em;
+.is-mobile .detail--octopart .detail__body.detail__body--pr {
+    padding-top: 1em;
 }
