@@ -22,7 +22,9 @@ triggers query_raw =>
     qr/^$url_qr$/,
     qr/^$whois_keywords_qr|$whois_keywords_qr$/;
 
-spice to => 'https://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_DOMAINS_USERNAME}}}&password={{ENV{DDG_SPICE_DOMAINS_PASSWORD}}}';
+# API call details for WhoAPI (https://whoapi.com/)
+spice to => 'http://api.whoapi.com/?domain=$1&r=whois&apikey={{ENV{DDG_SPICE_DOMAINS_WHOAPI_KEY}}}';
+spice wrap_jsonp_callback => 1;
 
 handle  sub {
     my ($query) = @_;
