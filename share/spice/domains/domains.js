@@ -74,8 +74,7 @@
             templates: {
 		group: 'base',
 		options:{
-                    content: Spice.domains.available,
-		    moreAt: true
+                    content: Spice.domains.available
 		}
 	    }
         });
