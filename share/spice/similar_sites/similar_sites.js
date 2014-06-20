@@ -11,7 +11,7 @@
         }
 
         Spice.add({
-            id: "SimilarSites",
+            id: "similar_sites",
             name: "Similar Sites",
 
             data: api_result.SimilarSites,
@@ -27,13 +27,15 @@
                 return {
                     title: item.Url,
                     url: "http://" + item.Url,
-                    rating: item.Score*100
+                    rating: item.Score*100,
+                    icon: "http://icons.duckduckgo.com/ip/" + item.Url + ".ico",
                 };
             },
 
             templates: {
-                group: 'products_simple',
+                group: 'icon',
                 options: {
+                        footer: Spice.similar_sites.rating,
                         rating: true,
                     }
             }
