@@ -13,7 +13,7 @@ category "time_sensitive";
 attribution twitter => 'mattr555',
             github => ['https://github.com/mattr555/', 'Matt Ramina'];
 
-spice to => 'http://njt-api.appspot.com/times/$1';
+spice to => 'http://njt-api.appspot.com/njt/times/$1';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
@@ -29,7 +29,7 @@ sub is_stop {
 triggers any => "next train", "train times", "train schedule", "njt", "nj transit", "new jersey transit";
 
 handle remainder => sub {
-	/(?:from |to )?(.+) (to|from) (.+)/;
+	return unless /(?:from |to )?(.+) (to|from) (.+)/;
 	my $orig = $1;
 	my $dest = $3;
 	if (is_stop($orig) and is_stop($dest)){
