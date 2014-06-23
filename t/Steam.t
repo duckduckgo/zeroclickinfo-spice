@@ -4,9 +4,6 @@ use strict;
 use warnings;
 use Test::More;
 use DDG::Test::Spice;
-use LWP::Simple;
-use JSON::XS;
-use URI::Escape;
 
 ddg_spice_test(
     [qw(
