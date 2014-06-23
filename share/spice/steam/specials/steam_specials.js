@@ -1,18 +1,37 @@
-(function (env) {
+(function(env) {
+    "use strict";
 
-env.ddg_spice_steam_specials = function(api_result) {
-    if (!api_result) {
-	return Spice.failed('specials');
-    }
-    // Extract our query        
-    var script = $('[src*="/js/spice/steam/specials"]')[0];
-    var source = $(script).attr('src');
-    var query = decodeURIComponent(source.match(/\/js\/spice\/steam\/specials\/([^\/]+)/)[1]);
-    var gameids = query.split(",");
-    var results = [];
-    var j = 0
-    var genre = [];
-    for(var i = 0; i < gameids.length; i++) {
+    // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript.
+    // If cache was set to false, it would be calling /js/spice/hackage/packages/hello?_=12345
+    // and that's something that we don't want.
+    $.ajaxSetup({ cache: true });
+
+    // Fetch our json and pass to getScript
+    var queryexec
+    env.ddg_spice_steam_specials = function(api_result) {
+        if(!api_result) {
+	    return Spice.failed('specials')  
+	}
+	var idarray = api_result.tabs.viewall.items;
+	queryexec = encodeURIComponent((idarray.map(function(elem){return elem.id;}).join(",")));
+	$.getScript("/js/spice/steam/list_specials/" + queryexec);
+    };
+
+    
+    env.ddg_spice_steam_list_specials = function(api_result) {
+        if (!api_result) {
+	    return Spice.failed('specials');
+        }
+    
+    	var query = decodeURIComponent(queryexec)
+    	// Extract our query
+    	var gameids = query.split(",");
+    	var results = [];
+    	var j = 0
+    	var genre = [];
+
+	// Organize data to display
+    	for(var i = 0; i < gameids.length; i++) {
 	        if(api_result[gameids[i]].success == true) {
 			results.push(api_result[gameids[i]].data.price_overview)
 			results[j].url = "http://store.steampowered.com/app/"+api_result[gameids[i]].data.steam_appid;
@@ -33,7 +52,7 @@ env.ddg_spice_steam_specials = function(api_result) {
 			j++
 		}
     }
-Spice.add({
+	Spice.add({
             id: "specials",
             name: "Steam Specials",
             data: results,
@@ -51,19 +70,19 @@ Spice.add({
             },
         });
 };
-Handlebars.registerHelper('convertToDollars', function(cents) {
+    Handlebars.registerHelper('convertToDollars', function(cents) {
 	var dollars = cents/100;
     	return dollars;
 });
 
-Handlebars.registerHelper('booleval', function(boolevaluate) {
+    Handlebars.registerHelper('booleval', function(boolevaluate) {
 	if(boolevaluate == true) {
 		return "Yes" ;
 	} else {
 		return "No";
 	}
 });
-Handlebars.registerHelper('coloreval', function(number) {
+    Handlebars.registerHelper('coloreval', function(number) {
 	if(!number) {
 		return;
 	} else if(number > 75) {
@@ -74,5 +93,4 @@ Handlebars.registerHelper('coloreval', function(number) {
 		return "red";
 	}
 });
-} (this));
-
+}(this));
