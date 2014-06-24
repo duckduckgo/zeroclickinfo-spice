@@ -35,16 +35,16 @@
 		    position = "-272px -144px"; 
 		}
 
-                var image = item.posters.detailed;
+                var image = toDetail(item.posters.detailed);
                 return {
                     rating: Math.max(item.ratings.critics_score / 20, 0),
-                    image: toDetail(image),
+                    image: image,
 		    icon_url: DDG.get_asset_path('movie','icons-v2.png'),
 		    icon_image: position,
 		    icon_class: position ? 'tomato--icon' : "",
 		    abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
 		    heading: item.title,
-		    img_m: toDetail(image),
+		    img_m: image,
 		    url: item.links.alternate
                 };
             },
