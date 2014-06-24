@@ -1,6 +1,11 @@
 (function(env) {
     "use strict";
 
+    // A change in the Rotten Tomatoes API returns images that end in _tmb.
+    // This changes this to _det.
+    function toDetail(img) {
+        return img.replace(/tmb\.jpg$/, "det.jpg");
+    }
 
     env.ddg_spice_movie = function(api_result) {
 
@@ -30,15 +35,16 @@
 		    position = "-272px -144px"; 
 		}
 
+                var image = item.posters.detailed;
                 return {
                     rating: Math.max(item.ratings.critics_score / 20, 0),
-                    image: item.posters.detailed,
+                    image: toDetail(image),
 		    icon_url: DDG.get_asset_path('movie','icons-v2.png'),
 		    icon_image: position,
 		    icon_class: position ? 'tomato--icon' : "",
 		    abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
 		    heading: item.title,
-		    img_m: item.posters.detailed,
+		    img_m: toDetail(image),
 		    url: item.links.alternate
                 };
             },
@@ -65,7 +71,7 @@
                 ],
                 primary: [
                     { key: 'title' },
-                    { key: 'posters.detailed', match: /_det\.jpg$/, strict: false }
+                    { key: 'posters.detailed', match: /\.jpg$/, strict: false }
                 ]
             }
         });
