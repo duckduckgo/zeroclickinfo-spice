@@ -75,4 +75,5 @@
 }
 .is-mobile .zci--bitcoin .zci__body {
 	padding-left: 0.25em;
+	padding-right: 0;
 }
