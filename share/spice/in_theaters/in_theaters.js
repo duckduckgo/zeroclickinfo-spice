@@ -1,6 +1,10 @@
 (function(env) {
     "use strict";
 
+    function toDetail(img) {
+        return img.replace(/tmb\.jpg$/, "det.jpg");
+    }
+    
     env.ddg_spice_in_theaters = function(api_result) {
 
         if (!api_result || api_result.error) {
@@ -25,15 +29,17 @@
 		} else if(item.ratings.critics_rating === "Rotten") {
 		    position = "-272px -144px"; 
 		}
+                
+                var image = toDetail(item.posters.detailed)
                 return { 
                     rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
-                    image: item.posters.detailed,
+                    image: image,
 		    icon_url: DDG.get_asset_path('in_theaters','icons-v2.png'),
 		    icon_image: position,
 		    icon_class: position ? 'tomato--icon' : "",
 		    abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
 		    heading: item.title,
-		    img_m: item.posters.detailed,
+		    img_m: image,
 		    url: item.links.alternate
                 };
             },
