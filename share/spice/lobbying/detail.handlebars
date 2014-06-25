@@ -1,0 +1,18 @@
+<table>
+    <th class="lobbying--head">
+        <tr class="lobbying--row">
+            <td class="lobbying--name">Name</td>
+            <td class="lobbying--type">Type</td>
+            <td class="lobbying--given">Total Given</td>
+            <td class="lobbying--recv">Total Received</td>
+        </tr>
+    </th>
+    {{#each this}}
+        <tr class="lobbying--row">
+            <td class="lobbying--name">{{name}}</td>
+            <td class="lobbying--type">{{type}}</td>
+            <td class="lobbying--given">{{total_given}}</td>
+            <td class="lobbying--recv">{{total_received}}</td>
+        </tr>
+    {{/each}}
+</table>
