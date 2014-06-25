@@ -21,13 +21,14 @@
             },
             meta: {
                 sourceUrl: 'http://leakdb.abusix.com/?q='+ encodeURIComponent(query),
-                sourceName: 'leakdb.abusix.com',
+                sourceName: 'leakdb.abusix.com'
             },
             templates: {
                 group: 'base',
                 options:{
                     content: 'record',
-                    moreAt: true
+                    moreAt: true,
+                    rowHighlight: true
                 }
             }
         });
