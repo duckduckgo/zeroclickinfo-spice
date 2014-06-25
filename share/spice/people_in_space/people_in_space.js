@@ -2,20 +2,20 @@
     "use strict";
     env.ddg_spice_people_in_space = function(api_result){
 
-        if (!api_result) {
+        if (!api_result || api_result.number === undefined) {
           return Spice.failed('people_in_space');
         }
 
-        var ps = api_result["people"];
-        for (var i in ps) {
-            if (ps[i]["country"] == "usa") {    //make USA all uppercase
-                ps[i]["country"] = "USA";
-            } else {                            //first letter uppercase
-                ps[i]["country"] = ps[i]["country"][0].toUpperCase() + ps[i]["country"].substring(1)
+        var people = api_result["people"];
+        for (var i in people) {
+            if (people[i]["country"] == "usa") {    //make USA all uppercase
+                people[i]["country"] = "USA";
+            } else {                                //first letter uppercase
+                people[i]["country"] = people[i]["country"][0].toUpperCase() + people[i]["country"].substring(1)
             }
         }
 
-        ps = ps.sort(function(a, b){
+        people = people.sort(function(a, b){
             var a_lastname = a["name"].split(" ").reverse()[0]
             var b_lastname = b["name"].split(" ").reverse()[0]
             return a_lastname < b_lastname ? -1 : (a_lastname > b_lastname ? 1 : 0);
