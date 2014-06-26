@@ -5,7 +5,7 @@
     var is_debug = false;
 
     // spice callback function
-    env.ddg_spice_domains = function(api_output) {
+    env.ddg_spice_whois = function(api_output) {
         // for debugging
         if(is_debug) console.log('api_output:', api_output);
 
@@ -14,7 +14,7 @@
 	if (!api_output || api_output.error || !api_output.WhoisRecord) {
 	    if(is_debug) console.log("Error with whois API. api_output:", api_output || 'undefined');
 
-	    return Spice.failed('domains');
+	    return Spice.failed('whois');
 	}
 
 	// normalize the api output
@@ -123,8 +123,8 @@
 	console.log('api result in show_available', api_output);
 
 	Spice.add({
-            id: "domains",
-            name: "Domains",
+            id: "whois",
+            name: "Whois",
             data: api_output,
             meta: {
                 sourceName: "Whois API",
@@ -135,7 +135,7 @@
             templates: {
 		group: 'base',
 		options:{
-                    content: Spice.domains.available,
+                    content: Spice.whois.available,
 		    moreAt: true
 		}
 	    }
@@ -146,8 +146,8 @@
     var show_whois = function(api_output) {
 
 	Spice.add({
-            id: "domains",
-            name: "Domains",
+            id: "whois",
+            name: "Whois",
             data: {
 		'record_data': api_output, 
 		'record_keys': ['Registered to', 'Email', 'Last updated', 'Expires']

@@ -1,4 +1,4 @@
-package DDG::Spice::Domains;
+package DDG::Spice::Whois;
 # ABSTRACT: Returns an internet domain's availability and whois information.
 
 use DDG::Spice;
@@ -27,7 +27,7 @@ triggers query_raw =>
     qr/^$whois_keywords_qr|$whois_keywords_qr$/;
 
 # API call details for Whois API (http://www.whoisxmlapi.com/)
-spice to => 'https://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_DOMAINS_USERNAME}}}&password={{ENV{DDG_SPICE_DOMAINS_PASSWORD}}}';
+spice to => 'https://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_WHOIS_USERNAME}}}&password={{ENV{DDG_SPICE_WHOIS_PASSWORD}}}';
 
 handle sub {
     my ($query) = @_;
