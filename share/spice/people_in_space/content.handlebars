@@ -1,6 +1,0 @@
-{{#if number}}
-	There are {{plural number singular="person" plural="people"}} in space right now:
-	{{#concat people sep="," conj=" and "}}<a href="{{this.bio}}">{{this.title}} {{this.name}} ({{this.country}})</a>{{/concat}}
-{{else}}
-	There are no humans in space right now.
-{{/if}}
