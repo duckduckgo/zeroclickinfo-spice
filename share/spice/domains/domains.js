@@ -1,37 +1,31 @@
 (function (env) {
     "use strict";
 
-    // flag for debugging output
-    var is_debug = true;
+    // turns on/off debugging output
+    var is_debug = false;
 
-    env.ddg_spice_domains = function(api_result) {
+    // spice callback function
+    env.ddg_spice_domains = function(api_output) {
         // for debugging
-        if(is_debug) console.log('api_result:', api_result);
+        if(is_debug) console.log('api_output:', api_output);
 
-	// Check for API error and exit early (with error message when in debug mode)
-        if (!api_result || api_result.status != 0) {
-	    if(is_debug && api_result) {
-		console.log('Domains API failed with status code ' + api_result.status + (api_result.status_desc ? ' (' + api_result.status_desc + ')' : '') + '.');
-		console.log(' -> for more info on status codes, see: https://whoapi.com/api-documentation.html#statuscodes');
-		console.log(' -> raw api output:', api_result);
-		console.log(' ');
-	    }
+	// Check for API error and exit early if found
+	// (with error message when in debug mode)
+	if (!api_output || api_output.error || !api_output.WhoisRecord) {
+	    if(is_debug) console.log("Error with whois API. api_output:", api_output || 'undefined');
 
-            return Spice.failed('domains');
-        }
-
-	// get the original query
-	var query = DDG.get_query();
+	    return Spice.failed('domains');
+	}
 
 	// normalize the api output
-	api_result = normalize_api_output(api_result, query);
+	api_output = normalize_api_output(api_output);
 
         // is the domain available?
-	var is_avail = is_domain_available(api_result);
+	var is_avail = is_domain_available(api_output);
 
 	// if the domain isn't available, do we want to show
 	// whois information?
-	var is_whois_allowed = is_whois_query(query);
+	var is_whois_allowed = is_whois_query(DDG.get_query());
 
 	// for debugging
 	if(is_debug) console.log("is_avail:", is_avail, "is_whois_allowed:", is_whois_allowed);
@@ -39,10 +33,10 @@
 	// decide which template to show, if any
 	if(is_avail) {
 	    // show message saying the domain is available
-	    show_available(api_result);
+	    show_available(api_output);
 	} else if(is_whois_allowed) {
 	    // show whois info for the domain
-	    show_whois(api_result);
+	    show_whois(api_output);
 	} else {
 	    // by default, show nothing
 	}
@@ -51,8 +45,8 @@
 
     // Returns whether the domain is available,
     // based on the API result that was returned.
-    var is_domain_available = function(api_result) {
-	return !api_result['registered'];
+    var is_domain_available = function(api_output) {
+	return !api_output['registered'];
     };
 
     // Returns whether we should show whois data if this
@@ -63,36 +57,46 @@
 	if(is_debug) console.log('in is_whois_query, query =', query); 
 
 	// show whois results except when the query contains only the domain
-	// and no other keywords, which we test by looking for spaces in the query.
+	// and no other keywords, which we test by looking for a space in the query.
 	return /\s/.test(query.trim());
     };
 
-    var normalize_api_output = function(api_output, query) {
+    var normalize_api_output = function(api_output) {
 
-	// initialize the new output object
+	// initialize the output object
 	var normalized =  {
-	    // used but not displayed
+	    // these fields are not displayed, but are used internally
 	    'domainName': '',
 	    'registered': false,
 
-	    // displayed, hence the capitalization and spaces
+	    // these fields are displayed (hence the user-friendly capitalization and spaces)
 	    'Registered to': '',
 	    'Email': '',
 	    'Last updated': '',
 	    'Expires': ''
 	};
+	
+	// get the domain name
+	normalized['domainName'] = api_output.WhoisRecord.domainName;
 
-	// add domain to the API result, since WhoAPI doesn't add it automatically
-	// TODO: Need to parse the URL from this, b/c it's the fulll query
-	normalized['domainName'] = query;
-	normalized['registered'] = api_output['registered'];
+	// store whether the domain is registered
+	normalized['registered'] = !!api_output.WhoisRecord.registrant;
 
-	normalized['Registered to'] = get_first_by_key(api_output['contacts'], 'name');
-	normalized['Email'] = get_first_by_key(api_output['contacts'], 'email');
+	// get contact name and email from the registrant,
+	// and falling back to the admin and technical contacts
+	var contacts = [
+	    api_output.WhoisRecord.registrant,
+	    api_output.WhoisRecord.administrativeContact,
+	    api_output.WhoisRecord.technicalContact
+	];  
+	normalized['Registered to'] = get_first_by_key(contacts, 'name');
+	normalized['Email'] = get_first_by_key(contacts, 'email');
 
-	// trim so dates ares shown without times
-	normalized['Last updated'] = api_output['date_updated'] && api_output['date_updated'].replace(/^(.*)?\s(.*)?$/, '$1');
-	normalized['Expires'] = api_output['date_expires'] && api_output['date_expires'].replace(/^(.*)?\s(.*)?$/, '$1');
+	// trim dates so they are shown without times
+	normalized['Last updated'] = api_output.WhoisRecord.updatedDate
+	                                 && api_output.WhoisRecord.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1');
+	normalized['Expires'] = api_output.WhoisRecord.expiresDate
+	                            && api_output.WhoisRecord.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1');
 
 	return normalized;
     };
@@ -115,39 +119,44 @@
     }
 
     // Show message saying that the domain is available.
-    var show_available = function(api_result) {
-	console.log('api result in show_available', api_result);
+    var show_available = function(api_output) {
+	console.log('api result in show_available', api_output);
 
 	Spice.add({
             id: "domains",
             name: "Domains",
-            data: api_result,
+            data: api_output,
             meta: {
-                sourceName: "WhoAPI",
-                sourceUrl: 'https://whoapi.com/' // TODO: Ask if there's a GET url for user-friendly whois output (instead of ugly json output)
+                sourceName: "Whois API",
+                sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
+		    + api_output.domainName
+		    + '&outputFormat=json'
             },
             templates: {
 		group: 'base',
 		options:{
-                    content: Spice.domains.available
+                    content: Spice.domains.available,
+		    moreAt: true
 		}
 	    }
         });
     };
 
     // Show whois info for the domain using the 'record' template.
-    var show_whois = function(api_result) {
+    var show_whois = function(api_output) {
 
 	Spice.add({
             id: "domains",
             name: "Domains",
             data: {
-		'record_data': api_result, 
+		'record_data': api_output, 
 		'record_keys': ['Registered to', 'Email', 'Last updated', 'Expires']
 	    },
             meta: {
-                sourceName: "WhoAPI",
-                sourceUrl: 'https://whoapi.com/' // TODO: Ask if there's a GET url for user-friendly whois output (instead of ugly json output)
+                sourceName: "Whois API",
+                sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
+		    + api_output.domainName
+		    + '&outputFormat=json'
             },
             templates: {
             	group: 'base',
