@@ -4,11 +4,13 @@
     // flag for debugging output
     var is_debug = true;
 
+    // spice callback function
     env.ddg_spice_domains = function(api_output) {
         // for debugging
         if(is_debug) console.log('api_output:', api_output);
 
-	// Check for API error and exit early (with error message when in debug mode)
+	// Check for API error and exit early if found
+	// (with error message when in debug mode)
 	if (!api_output || api_output.error || !api_output.WhoisRecord) {
 	    if(is_debug) console.log("Error with whois API. api_output:", api_output || 'undefined');
 
@@ -55,7 +57,7 @@
 	if(is_debug) console.log('in is_whois_query, query =', query); 
 
 	// show whois results except when the query contains only the domain
-	// and no other keywords, which we test by looking for spaces in the query.
+	// and no other keywords, which we test by looking for a space in the query.
 	return /\s/.test(query.trim());
     };
 
@@ -63,11 +65,11 @@
 
 	// initialize the output object
 	var normalized =  {
-	    // these fields will not be displayed, but are used internally
+	    // these fields are not displayed, but are used internally
 	    'domainName': '',
 	    'registered': false,
 
-	    // these fields will displayed, hence the capitalization and spaces
+	    // these fields are displayed (hence the user-friendly capitalization and spaces)
 	    'Registered to': '',
 	    'Email': '',
 	    'Last updated': '',
@@ -77,7 +79,7 @@
 	// get the domain name
 	normalized['domainName'] = api_output.WhoisRecord.domainName;
 
-	// set the registered flag
+	// store whether the domain is registered
 	normalized['registered'] = !!api_output.WhoisRecord.registrant;
 
 	// get contact name and email from the registrant,
