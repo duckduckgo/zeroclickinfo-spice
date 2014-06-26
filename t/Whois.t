@@ -9,7 +9,7 @@ use DDG::Test::Spice;
 ddg_spice_test(
 
     # This is the name of the Spice that will be loaded to test.
-    [ 'DDG::Spice::Domains' ],
+    [ 'DDG::Spice::Whois' ],
 
      # A naked domain should trigger.
     'duckduckgo.com' => expected_output_for('duckduckgo.com'),
@@ -115,9 +115,9 @@ sub expected_output_for {
 
     # return the output we expect for the spice test
     return test_spice(
-        '/js/spice/domains/' . $domain_expected,
+        '/js/spice/whois/' . $domain_expected,
         call_type => 'include',
-        caller => 'DDG::Spice::Domains',
+        caller => 'DDG::Spice::Whois',
     );
 }
 
