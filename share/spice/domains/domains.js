@@ -9,29 +9,21 @@
         if(is_debug) console.log('api_result:', api_result);
 
 	// Check for API error and exit early (with error message when in debug mode)
-        if (!api_result || api_result.status != 0) {
-	    if(is_debug && api_result) {
-		console.log('Domains API failed with status code ' + api_result.status + (api_result.status_desc ? ' (' + api_result.status_desc + ')' : '') + '.');
-		console.log(' -> for more info on status codes, see: https://whoapi.com/api-documentation.html#statuscodes');
-		console.log(' -> raw api output:', api_result);
-		console.log(' ');
-	    }
+	if (!api_result || api_result.error || !api_result.WhoisRecord) {
+	    if(is_debug) console.log("Error with whois API. api_result:", api_result || 'undefined');
 
-            return Spice.failed('domains');
-        }
-
-	// get the original query
-	var query = DDG.get_query();
+	    return Spice.failed('domains');
+	}
 
 	// normalize the api output
-	api_result = normalize_api_output(api_result, query);
+	api_result = normalize_api_output(api_result);
 
         // is the domain available?
 	var is_avail = is_domain_available(api_result);
 
 	// if the domain isn't available, do we want to show
 	// whois information?
-	var is_whois_allowed = is_whois_query(query);
+	var is_whois_allowed = is_whois_query(DDG.get_query());
 
 	// for debugging
 	if(is_debug) console.log("is_avail:", is_avail, "is_whois_allowed:", is_whois_allowed);
@@ -67,32 +59,42 @@
 	return /\s/.test(query.trim());
     };
 
-    var normalize_api_output = function(api_output, query) {
+    var normalize_api_output = function(api_output) {
 
-	// initialize the new output object
+	// initialize the output object
 	var normalized =  {
-	    // used but not displayed
+	    // these fields will not be displayed, but are used internally
 	    'domainName': '',
 	    'registered': false,
 
-	    // displayed, hence the capitalization and spaces
+	    // these fields will displayed, hence the capitalization and spaces
 	    'Registered to': '',
 	    'Email': '',
 	    'Last updated': '',
 	    'Expires': ''
 	};
+	
+	// get the domain name
+	normalized['domainName'] = api_output.WhoisRecord.domainName;
 
-	// add domain to the API result, since WhoAPI doesn't add it automatically
-	// TODO: Need to parse the URL from this, b/c it's the fulll query
-	normalized['domainName'] = query;
-	normalized['registered'] = api_output['registered'];
+	// set the registered flag
+	normalized['registered'] = !!api_output.WhoisRecord.registrant;
 
-	normalized['Registered to'] = get_first_by_key(api_output['contacts'], 'name');
-	normalized['Email'] = get_first_by_key(api_output['contacts'], 'email');
+	// get contact name and email from the registrant,
+	// and falling back to the admin and technical contacts
+	var contacts = [
+	    api_output.WhoisRecord.registrant,
+	    api_output.WhoisRecord.administrativeContact,
+	    api_output.WhoisRecord.technicalContact
+	];  
+	normalized['Registered to'] = get_first_by_key(contacts, 'name');
+	normalized['Email'] = get_first_by_key(contacts, 'email');
 
-	// trim so dates ares shown without times
-	normalized['Last updated'] = api_output['date_updated'] && api_output['date_updated'].replace(/^(.*)?\s(.*)?$/, '$1');
-	normalized['Expires'] = api_output['date_expires'] && api_output['date_expires'].replace(/^(.*)?\s(.*)?$/, '$1');
+	// trim dates so they are shown without times
+	normalized['Last updated'] = api_output.WhoisRecord.updatedDate
+	                                 && api_output.WhoisRecord.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1');
+	normalized['Expires'] = api_output.WhoisRecord.expiresDate
+	                            && api_output.WhoisRecord.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1');
 
 	return normalized;
     };
@@ -123,13 +125,16 @@
             name: "Domains",
             data: api_result,
             meta: {
-                sourceName: "WhoAPI",
-                sourceUrl: 'https://whoapi.com/' // TODO: Ask if there's a GET url for user-friendly whois output (instead of ugly json output)
+                sourceName: "Whois API",
+                sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
+		    + api_result.domainName
+		    + '&outputFormat=json'
             },
             templates: {
 		group: 'base',
 		options:{
-                    content: Spice.domains.available
+                    content: Spice.domains.available,
+		    moreAt: true
 		}
 	    }
         });
@@ -146,8 +151,10 @@
 		'record_keys': ['Registered to', 'Email', 'Last updated', 'Expires']
 	    },
             meta: {
-                sourceName: "WhoAPI",
-                sourceUrl: 'https://whoapi.com/' // TODO: Ask if there's a GET url for user-friendly whois output (instead of ugly json output)
+                sourceName: "Whois API",
+                sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
+		    + api_result.domainName
+		    + '&outputFormat=json'
             },
             templates: {
             	group: 'base',

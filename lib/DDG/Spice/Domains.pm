@@ -23,10 +23,9 @@ triggers query_raw =>
     qr/^$whois_keywords_qr|$whois_keywords_qr$/;
 
 # API call details for WhoAPI (https://whoapi.com/)
-spice to => 'http://api.whoapi.com/?domain=$1&r=whois&apikey={{ENV{DDG_SPICE_DOMAINS_WHOAPI_KEY}}}';
-spice wrap_jsonp_callback => 1;
+spice to => 'https://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_DOMAINS_USERNAME}}}&password={{ENV{DDG_SPICE_DOMAINS_PASSWORD}}}';
 
-handle  sub {
+handle sub {
     my ($query) = @_;
     return if !$query; # do not trigger this spice if the query is blank
 
