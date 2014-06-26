@@ -4,22 +4,22 @@
     // flag for debugging output
     var is_debug = true;
 
-    env.ddg_spice_domains = function(api_result) {
+    env.ddg_spice_domains = function(api_output) {
         // for debugging
-        if(is_debug) console.log('api_result:', api_result);
+        if(is_debug) console.log('api_output:', api_output);
 
 	// Check for API error and exit early (with error message when in debug mode)
-	if (!api_result || api_result.error || !api_result.WhoisRecord) {
-	    if(is_debug) console.log("Error with whois API. api_result:", api_result || 'undefined');
+	if (!api_output || api_output.error || !api_output.WhoisRecord) {
+	    if(is_debug) console.log("Error with whois API. api_output:", api_output || 'undefined');
 
 	    return Spice.failed('domains');
 	}
 
 	// normalize the api output
-	api_result = normalize_api_output(api_result);
+	api_output = normalize_api_output(api_output);
 
         // is the domain available?
-	var is_avail = is_domain_available(api_result);
+	var is_avail = is_domain_available(api_output);
 
 	// if the domain isn't available, do we want to show
 	// whois information?
@@ -31,10 +31,10 @@
 	// decide which template to show, if any
 	if(is_avail) {
 	    // show message saying the domain is available
-	    show_available(api_result);
+	    show_available(api_output);
 	} else if(is_whois_allowed) {
 	    // show whois info for the domain
-	    show_whois(api_result);
+	    show_whois(api_output);
 	} else {
 	    // by default, show nothing
 	}
@@ -43,8 +43,8 @@
 
     // Returns whether the domain is available,
     // based on the API result that was returned.
-    var is_domain_available = function(api_result) {
-	return !api_result['registered'];
+    var is_domain_available = function(api_output) {
+	return !api_output['registered'];
     };
 
     // Returns whether we should show whois data if this
@@ -117,17 +117,17 @@
     }
 
     // Show message saying that the domain is available.
-    var show_available = function(api_result) {
-	console.log('api result in show_available', api_result);
+    var show_available = function(api_output) {
+	console.log('api result in show_available', api_output);
 
 	Spice.add({
             id: "domains",
             name: "Domains",
-            data: api_result,
+            data: api_output,
             meta: {
                 sourceName: "Whois API",
                 sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
-		    + api_result.domainName
+		    + api_output.domainName
 		    + '&outputFormat=json'
             },
             templates: {
@@ -141,19 +141,19 @@
     };
 
     // Show whois info for the domain using the 'record' template.
-    var show_whois = function(api_result) {
+    var show_whois = function(api_output) {
 
 	Spice.add({
             id: "domains",
             name: "Domains",
             data: {
-		'record_data': api_result, 
+		'record_data': api_output, 
 		'record_keys': ['Registered to', 'Email', 'Last updated', 'Expires']
 	    },
             meta: {
                 sourceName: "Whois API",
                 sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
-		    + api_result.domainName
+		    + api_output.domainName
 		    + '&outputFormat=json'
             },
             templates: {
