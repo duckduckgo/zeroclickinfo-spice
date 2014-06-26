@@ -1,8 +1,8 @@
 (function (env) {
     "use strict";
 
-    // flag for debugging output
-    var is_debug = true;
+    // turns on/off debugging output
+    var is_debug = false;
 
     // spice callback function
     env.ddg_spice_domains = function(api_output) {
