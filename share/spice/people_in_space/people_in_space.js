@@ -7,11 +7,29 @@
         }
 
         var today = new Date();
+        var codes = {
+            "canada":"ca",
+            "china":"cn",
+            "denmark":"dk",
+            "france":"fr",
+            "germany":"de",
+            "italy":"it",
+            "japan":"jp",
+            "netherlands":"nl",
+            "russia":"ru",
+            "spain":"sp",
+            "sweden":"se",
+            "uk":"uk",
+            "usa":"us"};
 
         var people = api_result["people"];
         for (var i in people) {
-            if (people[i]["country"] == "usa") {    //make USA all uppercase
-                people[i]["country"] = "USA";
+            //add 2-letter country code
+            people[i]["country_code"] = codes[people[i]["country"]];
+
+            //adjust case of country name
+            if (people[i]["country"].match("uk|usa")) {    //make USA and UK all uppercase
+                people[i]["country"] = people[i]["country"].toUpperCase();
             } else {                                //first letter uppercase
                 people[i]["country"] = people[i]["country"][0].toUpperCase() + people[i]["country"].substring(1)
             }
@@ -45,6 +63,8 @@
             },
             templates: {
                 group: "text",
+                detail: false,
+                item_detail: false,
                 options:{
                     footer: Spice.people_in_space.footer,
                     moreAt: true
