@@ -1,0 +1,13 @@
+.tile--people_in_space .tile__icon {
+    float: right;
+    margin-top: 0;
+    margin-right: 0;
+    width: 20px;
+    height: 20px;
+    align-content: inherit;
+    background-color: #e8e8e8;
+}
+
+.tile--people_in_space .tile__body {
+    height: 9.5em;
+}
