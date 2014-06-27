@@ -37,6 +37,9 @@
             //compute number of days in space
             var elapsed = today - (new Date(people[i]["launchdate"]));
             people[i]["elapsed"] = Math.floor(elapsed / 86400000);  // 1000ms * 60s * 60m * 24h
+
+            //rename title because it conflicts with template
+            people[i]["position"] = people[i]["title"];
         }
 
         people = people.sort(function(a, b){
@@ -50,19 +53,19 @@
             name: "Answer",
             data: api_result.people,
             meta: {
+                itemType: "People",
                 sourceName: "www.howmanypeopleareinspacerightnow.com",
                 sourceUrl: "http://www.howmanypeopleareinspacerightnow.com/"
             },
             normalize: function(item) {
-                var a = {
+                return {
                     url: item.bio,
                     title: item.name,
-                    subtitle: item.title
+                    icon: item.country_code
                 };
-                return a;
             },
             templates: {
-                group: "text",
+                group: "icon",
                 detail: false,
                 item_detail: false,
                 options:{
