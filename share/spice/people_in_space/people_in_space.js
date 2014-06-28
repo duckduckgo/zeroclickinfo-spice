@@ -40,7 +40,8 @@
             people[i]["elapsed"] = Math.floor(elapsed / 86400000);  // 1000ms * 60s * 60m * 24h
 
             //format launchdate per locale
-            people[i]["launchdate"] = launchdate.toLocaleDateString("", {year: "numeric", month: "short", day: "numeric"});
+            //people[i]["launchdate"] = launchdate.toLocaleDateString("", {year: "numeric", month: "short", day: "numeric"});
+            people[i]["launchdate"] = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."][launchdate.getMonth()] + " " + launchdate.getDate() + ", " + launchdate.getFullYear();
 
             //rename title because it conflicts with template
             people[i]["position"] = people[i]["title"];
@@ -65,8 +66,7 @@
                 return {
                     url: item.bio,
                     title: item.name,
-                    //icon: item.country_code
-                    icon: "https://duckduckgo.com/assets/flags/flags-20px.png"
+                    icon: "https://duckduckgo.com/assets/flags/20/" + item.country_code + ".png"
                 };
             },
             templates: {
