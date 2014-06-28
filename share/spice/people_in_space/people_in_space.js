@@ -53,23 +53,25 @@
             return a_lastname < b_lastname ? -1 : (a_lastname > b_lastname ? 1 : 0);
         });
 
-        Spice.add({
+        var o = {
             id: "people_in_space",
             name: "Answer",
-            data: api_result.people,
             meta: {
                 itemType: "People",
                 sourceName: "www.howmanypeopleareinspacerightnow.com",
                 sourceUrl: "http://www.howmanypeopleareinspacerightnow.com/"
-            },
-            normalize: function(item) {
+            }
+        };
+        if (people.length > 0) {
+            o.data = api_result.people;
+            o.normalize = function(item) {
                 return {
                     url: item.bio,
                     title: item.name,
                     icon: "https://duckduckgo.com/assets/flags/20/" + item.country_code + ".png"
                 };
-            },
-            templates: {
+            };
+            o.templates = {
                 group: "icon",
                 detail: false,
                 item_detail: false,
@@ -77,7 +79,18 @@
                     footer: Spice.people_in_space.footer,
                     moreAt: true
                 }
-            }
-        });
+            };
+        } else {
+            o.data = api_result;
+            o.templates = {
+                group: "text",
+                options:{
+                    content: Spice.people_in_space.content,
+                    moreAt: true
+                }
+            };
+        }
+
+        Spice.add(o);
     }
 }(this));
