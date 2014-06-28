@@ -16,7 +16,7 @@ attribution github => ["https://github.com/killerfish", "Usman Raza"],
 
 triggers startend => "steam special", "steam specials", "steam store", "steam offers", "steam offer";
 spice to => 'http://store.steampowered.com/api/getappsincategory?category=cat_specials$1';
-
+spice proxy_cache_valid => "200 1hr";
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
