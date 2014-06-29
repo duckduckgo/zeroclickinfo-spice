@@ -8,7 +8,7 @@
 
         Spice.add({
             id: "iplookup",
-            name: "Software",
+            name: "Answer",
             data: api_result,
             meta: {
                 sourceName: "RobTex.com",
