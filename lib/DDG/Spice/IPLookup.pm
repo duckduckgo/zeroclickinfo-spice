@@ -6,7 +6,11 @@ use DDG::Spice;
 primary_example_queries "reverse dns 8.8.8.8";
 description "Shows reverse DNS information about an IP";
 name "IPLookup";
+category 'computing_tools';
 topics "sysadmin";
+
+attribution github => ['https://github.com/mintsoft', 'mintsoft'],
+			   web => 'http://www.robtex.com/';
 
 triggers startend => 'reverse dns', 'dns', 'reverse', 'whois';
 
