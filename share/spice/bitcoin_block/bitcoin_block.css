@@ -1,0 +1,5 @@
+.zci--bitcoin_block .js-infobox-tile .info__value {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-left: 20px;
+}
