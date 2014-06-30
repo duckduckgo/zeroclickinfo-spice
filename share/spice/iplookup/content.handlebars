@@ -1,6 +1,6 @@
 <div>
 	{{#each famlist from="0" to="1"}}
-	<div class='text--primary'><a href='{{this}}'>{{this}}</a> is the most known host on this IP</div>
+	<div class='text--primary'><a href='http://{{this}}'>{{this}}</a> is the most known host on this IP</div>
 	{{/each}}
 	<div class='text--secondary'>Owned by: <span class='text--primary'>{{shortwho}} - {{shortloc}}</span></div>
 	{{#if blacklists}}
