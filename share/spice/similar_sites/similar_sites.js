@@ -34,6 +34,8 @@
 
             templates: {
                 group: 'icon',
+                detail: false,
+                item_detail: false,
                 options: {
                         footer: Spice.similar_sites.rating,
                         rating: true,
