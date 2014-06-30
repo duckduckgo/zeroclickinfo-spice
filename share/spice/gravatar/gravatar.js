@@ -80,4 +80,4 @@
         }
         return domain;
     });
-}());
+}(this));
