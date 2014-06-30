@@ -8,10 +8,6 @@
     height: 13em;
 }
 
-.tile--alternative_to .tile__footer {
-    bottom: 0.6em;
-}
-
 .tile--alternative_to .tile__content {
     height: 6em;
 }
