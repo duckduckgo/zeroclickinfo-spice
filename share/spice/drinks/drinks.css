@@ -14,3 +14,12 @@
 	padding-left: 0px;
 	padding-top: 0px;
 }
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 800px) {
+	.zci--drinks h5:not(:first-child), .zci--drinks ul {
+        display: none;
+    }
+}
+
