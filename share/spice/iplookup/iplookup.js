@@ -9,9 +9,9 @@
         Spice.add({
             id: "iplookup",
             name: "Answer",
-            data: api_result,
+            data: api_result.ddg,
             meta: {
-                sourceName: "RobTex.com",
+                sourceName: "RobTex",
                 sourceUrl: 'https://www.robtex.com/ip/'
             },
             templates: {
