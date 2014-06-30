@@ -4,7 +4,7 @@
     // A change in the Rotten Tomatoes API returns images that end in _tmb.
     // This changes this to _det.
     function toDetail(img) {
-        return img.replace(/tmb\.jpg$/, "det.jpg");
+        return img.replace(/tmb\.(jpg|png)/, "det.$1");
     }
     
     env.ddg_spice_in_theaters = function(api_result) {
