@@ -19,3 +19,14 @@
 .is-mobile .tile--alternative_to .tile__content {
     height: 6.8em;
 }
+
+.tile--alternative_to .tile__footer {
+    height: auto;
+    margin-bottom: 0;
+    color: #aaa;
+    line-height: 1em;
+}
+
+.zci--alternative_to .tile__hearts .ddgsi {
+   vertical-align: top;
+}
