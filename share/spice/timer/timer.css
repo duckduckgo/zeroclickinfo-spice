@@ -1,0 +1,6 @@
+#timer_container {
+    width: 100%;
+}
+#timer_container input {
+    width: 3em;
+}
