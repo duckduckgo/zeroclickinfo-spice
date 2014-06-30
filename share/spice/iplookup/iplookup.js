@@ -12,7 +12,7 @@
             data: api_result.ddg,
             meta: {
                 sourceName: "RobTex",
-                sourceUrl: 'https://www.robtex.com/ip/'
+                sourceUrl: api_result.ddg.lnk
             },
             templates: {
                 group: 'info',
