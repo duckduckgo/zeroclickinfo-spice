@@ -20,7 +20,7 @@
     }
 
     if(!item) {
-	return Spice.failed('today_in_history');
+        return Spice.failed('today_in_history');
     }
 
     var data_array = item.split("== Events ==\n")[1].split("\n\n\n== Births ==\n")[0].split("\n");
@@ -50,28 +50,28 @@
     array[0] = [];
     for (var i = 0; i < elements; i++) {
         temp = data_array[i].split(" – ");
-	array[pod][podObject] = {year:temp[0], str:(temp.slice(1)).join(" ")};
-	podObject++;
-	if((i+1) % podItems == 0) {
+        array[pod][podObject] = {year:temp[0], str:(temp.slice(1)).join(" ")};
+        podObject++;
+        if((i+1) % podItems == 0) {
             array[pod][podObject] = {range:array[pod][0].year+" - "+temp[0]};
             podObject = 0;
             pod++;
-	    array[pod] = [];
+            array[pod] = [];
         }
     }
 
     // If we have some leftover objects, create another pod and put remaining objects in it
     if (remainder != 0) {
         var podObject = 0;
-	array[numPod] = [];
+        array[numPod] = [];
         for(var num = elements; num < data_array.length; num++) {
             temp = data_array[num].split("–");
             array[numPod][podObject] = {year:temp[0], str:(temp.slice(1)).join(" ")};
-	    podObject++;
-    	}
+            podObject++;
+        }
         array[numPod][podObject] = {range:array[numPod][0].year+" - "+temp[0]};
     } else {
-	array.splice((array.length-1),1);
+        array.splice((array.length-1),1);
     }
 
     Spice.add({
@@ -79,14 +79,14 @@
             name: "History Today ("+ ourquery+")",
             data: array,
             meta: {
-		itemType: "Timelines",
+                itemType: "Timelines",
                 sourceUrl: 'http://en.wikipedia.org/wiki/'+ ourquery,
                 sourceName: 'Wikipedia'
             },
-	    templates: {
-            	group: 'base',
+            templates: {
+                group: 'base',
                 detail: Spice.today_in_history.details,
-		options: {
+                options: {
                     content: Spice.today_in_history.content
                 }
             },
