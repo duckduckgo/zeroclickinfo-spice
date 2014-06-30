@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_iplookup = function(api_result){
 
-        if (api_result.error) {
+        if (!api_result || api_result.error) {
             return Spice.failed('iplookup');
         }
 
@@ -17,7 +17,7 @@
             templates: {
                 group: 'info',
                 options: {
-                    content: Spice.iplookup.content,
+                    content: Spice.iplookup.content
                 }
             }
         });
