@@ -20,7 +20,7 @@ handle matches => sub {
     if($1) {
 	return $1;
     } elsif ($2) {
-	return $2 unless ($2 =~ m/^api$/i || $2 =~ m/^developer$/i) ;
+	return $2 unless ($2 =~ m/^apis?$/i || $2 =~ m/^developers?$/i) ;
     }
     return;
 };
