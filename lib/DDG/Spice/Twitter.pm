@@ -10,18 +10,18 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday", "social";
 category "time_sensitive";
 attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
-            twitter => ["https://twitter.com/duckduckgo", "duckduckgo"];
+            twitter => ["https://twitter.com/duckduckgo", "duckduckgo"],
+            github => ["https://github.com/ecounysis/", "Eric Christensen"];
 
 spice to => 'https://duckduckgo.com/tw.js?user=$1&callback={{callback}}&current=1';
 triggers query => qr/^(?:twitter\s)?@([a-z0-9_]+)$|^twitter\s([a-z0-9_]+)$/i;
 
 handle matches => sub { 
     if($1) {
-        return $1;
-    } elsif($2) {
-        return $2;
+	return $1;
+    } elsif ($2) {
+	return $2 unless ($2 =~ m/^apis?$/i || $2 =~ m/^developers?$/i) ;
     }
-
     return;
 };
 
