@@ -1,4 +1,13 @@
 <div>
 	<div class='text--primary'>{{shortfam}}</div>
-	<div class='text--secondary'>Owned by: <span class=''>{{shortwho}} - {{shortloc}}</span></div>
+	<div class='text--secondary'>Owned by: <span class='text--primary'>{{shortwho}} - {{shortloc}}</span></div>
+	{{#if blacklists}}
+		<div class='text--secondary'>Blacklists:</div>
+			<ul class='blacklists'>
+				{{#each blacklists}}
+					<li class='text--primary'>{{this}}</li>
+				{{/each}}
+			</ul>
+		</div>
+	{{/if}}
 </div>
