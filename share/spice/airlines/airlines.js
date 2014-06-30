@@ -1,4 +1,21 @@
 (function(env) {
+
+    // define some static globals
+    // used in callback and helpers
+    var MILLIS_PER_MIN = 60000,
+        MILLIS_PER_HOUR = MILLIS_PER_MIN * 60,
+        STATUS = {
+            "S": "Scheduled",
+            "A": "In the air",
+            "U": "Unknown status",
+            "R": "Redirected flight",
+            "L": "Landed",
+            "D": "Diverted",
+            "C": "Cancelled",
+            "NO": "Not Operational",
+            "DN": "Data Needed"
+        };
+
     env.ddg_spice_airlines = function(api_result) {
         "use strict";
 
@@ -6,21 +23,7 @@
         if (!api_result || !api_result.flight) {
             return Spice.failed('airlines');
         }
-
-        var MILLIS_PER_MIN = 60000,
-            MILLIS_PER_HOUR = MILLIS_PER_MIN * 60,
-            STATUS = {
-                "S": "Scheduled",
-                "A": "In the air",
-                "U": "Unknown status",
-                "R": "Redirected flight",
-                "L": "Landed",
-                "D": "Diverted",
-                "C": "Cancelled",
-                "NO": "Not Operational",
-                "DN": "Data Needed"
-            };
-
+ 
         // Check if flight is an array or not.
         var flight = [];
         if (!($.isArray(api_result.flight))) {
