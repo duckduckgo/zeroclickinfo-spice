@@ -55,7 +55,7 @@
             name: "Answer",
             meta: {
                 itemType: "People",
-                sourceName: "www.howmanypeopleareinspacerightnow.com",
+                sourceName: "How Many People Are In Space Right Now?",
                 sourceUrl: "http://www.howmanypeopleareinspacerightnow.com/"
             }
         };
