@@ -3,11 +3,12 @@
 }
 
 .tile--reddit_search .tile__title {
-    margin-bottom: 0;
+    margin-bottom: 1em;
+    height: 5em;
 }
 
 .tile--reddit_search .tile__body {
-    height: 10em;
+    height: 15em;
 }
 
 .tile--reddit_search .tile__footer {
