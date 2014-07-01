@@ -21,6 +21,8 @@
             "sweden":"se",
             "uk":"uk",
             "usa":"us"};
+        var months = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."];
+
 
         var people = api_result["people"];
         for (var i in people) {
@@ -34,7 +36,7 @@
 
             //format launchdate per locale
             //people[i]["launchdate"] = launchdate.toLocaleDateString("", {year: "numeric", month: "short", day: "numeric"});
-            people[i]["launchdate"] = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."][launchdate.getMonth()] + " " + launchdate.getDate() + ", " + launchdate.getFullYear();
+            people[i]["launchdate"] = months[launchdate.getMonth()] + " " + launchdate.getDate() + ", " + launchdate.getFullYear();
 
             //rename title because it conflicts with template
             people[i]["position"] = people[i]["title"];
