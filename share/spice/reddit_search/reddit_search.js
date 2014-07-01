@@ -47,10 +47,42 @@
                 sourceName: 'Reddit',
             },
 	    normalize: function(item) {
+        var timeFromNow = function() {
+            var datePost = new Date(item.data.created_utc * 1000);
+            var dateNow = new Date();
+            var stringDate = "";
+            if (datePost.getUTCFullYear() < dateNow.getUTCFullYear()) {
+                var years = (dateNow.getUTCFullYear() - datePost.getUTCFullYear());
+                stringDate = years + " year";
+                if (years > 1) {
+                    stringDate += "s";
+                }
+                stringDate += " ago";
+            } 
+            else if (datePost.getUTCMonth() < dateNow.getUTCMonth()) {
+                var months = (dateNow.getUTCMonth() - datePost.getUTCMonth());
+                stringDate = months + " month";
+                if (months > 1) {
+                    stringDate += "s";
+                }
+                stringDate += " ago";
+            } 
+            else if (datePost.getUTCDate() < dateNow.getUTCDate()) {
+                var days = (dateNow.getUTCDate() - datePost.getUTCDate());
+                stringDate = days + " day";
+                if (days > 1) {
+                    stringDate += "s";
+                } 
+                stringDate += " ago";
+            } else {
+                stringDate = "today";
+            }
+            return stringDate;
+        }
 		var a = {
 		    url: "http://www.reddit.com" + item.data.permalink,
-		    title: item.data.title,
-		    subtitle: item.data.num_comments + " comments"
+		    title: (item.data.title).replace(/&amp;/g, '&'),
+            subtitle: timeFromNow() + " on " + item.data.subreddit
 		};
 		return a;
 	    },
