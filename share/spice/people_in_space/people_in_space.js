@@ -48,6 +48,8 @@
             return a_lastname < b_lastname ? -1 : (a_lastname > b_lastname ? 1 : 0);
         });
 
+        //The icon template group won't show anything if there are zero items, but we want to show "no one is in space" in that case
+        //So we'll build an object conditionally with either "icon" or "text" template groups, and then call Spice.add()
         var o = {
             id: "people_in_space",
             name: "Answer",
