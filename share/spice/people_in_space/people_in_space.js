@@ -25,6 +25,12 @@
 
 
         var people = api_result["people"];
+
+        people = people.sort(function(a, b){
+            //Sort by launch date. The dates are YYYY-MM-DD, so we can just use alpha sort.
+            return a.launchdate < b.launchdate ? -1 : (a.launchdate > b.launchdate ? 1 : 0);
+        });
+
         for (var i in people) {
             //add 2-letter country code
             people[i]["country_code"] = codes[people[i]["country"]];
@@ -41,12 +47,6 @@
             //rename title because it conflicts with template
             people[i]["position"] = people[i]["title"];
         }
-
-        people = people.sort(function(a, b){
-            var a_lastname = a["name"].split(" ").reverse()[0]
-            var b_lastname = b["name"].split(" ").reverse()[0]
-            return a_lastname < b_lastname ? -1 : (a_lastname > b_lastname ? 1 : 0);
-        });
 
         //The icon template group won't show anything if there are zero items, but we want to show "no one is in space" in that case
         //So we'll build an object conditionally with either "icon" or "text" template groups, and then call Spice.add()
