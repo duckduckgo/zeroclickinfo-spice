@@ -7,7 +7,7 @@
         }
 
         var today = new Date();
-        var codes = {
+        var codes = {       //We'll need these to map the full names returned by the source to the two-letter codes used by the DDG flag images
             "canada":"ca",
             "china":"cn",
             "denmark":"dk",
