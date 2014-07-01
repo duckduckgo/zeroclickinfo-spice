@@ -63,7 +63,7 @@
             }
         };
         if (people.length > 0) {
-            o.data = api_result.people;
+            o.data = people;
             o.normalize = function(item) {
                 return {
                     url: item.bio,
