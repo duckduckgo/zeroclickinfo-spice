@@ -27,13 +27,6 @@
             //add 2-letter country code
             people[i]["country_code"] = codes[people[i]["country"]];
 
-            //adjust case of country name
-            if (people[i]["country"].match("uk|usa")) {    //make USA and UK all uppercase
-                people[i]["country"] = people[i]["country"].toUpperCase();
-            } else {                                //first letter uppercase
-                people[i]["country"] = people[i]["country"][0].toUpperCase() + people[i]["country"].substring(1)
-            }
-
             //compute number of days in space
             var launchdate = new Date(people[i]["launchdate"]);
             var elapsed = today - launchdate;
