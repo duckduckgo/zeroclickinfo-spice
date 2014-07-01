@@ -6,8 +6,6 @@
             return Spice.failed('is_it_up');
         }
 
-        api_result['status_code'] = (api_result['status_code'] === 1);
-
         Spice.add({
             id: 'is_it_up',
             name: 'Answer',
@@ -18,15 +16,13 @@
                 sourceName: 'Is it up?',
                 sourceIcon: true
             },
-            template_group: 'info',
             templates: {
                 group: 'base',
                 options: {
                     content: Spice.is_it_up.detail,
-		    moreAt: true
+                    moreAt: true
                 }
             }
         });
     }
 }(this));
-
