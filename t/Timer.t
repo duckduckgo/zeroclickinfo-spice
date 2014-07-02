@@ -23,6 +23,12 @@ ddg_spice_test(
             call_type => 'include', #should be 'self' in real code
             caller => 'DDG::Spice::Timer'
         ),
+    'timer online' =>
+        test_spice(
+            '/js/spice/timer/',
+            call_type => 'include', #should be 'self' in real code
+            caller => 'DDG::Spice::Timer'
+        ),
 );
 
 done_testing;
