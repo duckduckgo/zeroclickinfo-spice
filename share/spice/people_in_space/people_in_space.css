@@ -2,9 +2,11 @@
     float: right;
     margin-top: 0;
     margin-right: 0;
+    margin-left: 0.75em;
     width: 20px;
     height: 20px;
     padding: 6px;
+    border-radius: 2px;
     background-color: #e8e8e8;
 }
 
