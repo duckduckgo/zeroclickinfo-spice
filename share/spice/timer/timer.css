@@ -36,7 +36,8 @@
 }
 
 .zci--timer .spice-pane {
-    width: 45%; height: 100%;
+    width: 45%;
+    height: 100%;
     line-height: 65px;
     display: inline-block;
     padding: 2%;
@@ -86,6 +87,7 @@
 }
 .zci--timer .timer__time-input::-webkit-input-placeholder {
     color: #bbb;
+    padding-top: 4px;
 }
 .zci--timer .timer__time-input:-ms-input-placeholder {
     color: #bbb;
@@ -143,21 +145,51 @@
 }
 
 /*stack the big time divs if the screen is too narrow*/
-@media screen and (max-width: 420px) {
-    .zci--timer .spice-pane {width: 96%; height: 50px; float: none;}
-    .zci--timer .spice-pane-right {margin-top: 15px;}
-    .zci--timer .btn-wrapper {float:none;}
-    .zci--timer #timer_container {height:170px;}
-    .zci--timer .timer__time-input {width: 25%; height: 80%; margin-top: 0px}
-    .zci--timer .timer__done-modal > div {margin: 20% auto;}
+@media screen and (max-width: 520px) {
+    .zci--timer .spice-pane {
+        width: 96%;
+        height: 50px;
+        float: none;
+    }
+
+    .zci--timer .spice-pane-right {
+        margin-top: 15px;
+    }
+
+    .zci--timer .btn-wrapper {
+        float: none;
+    }
+
+    .zci--timer #timer_container {
+        height: 170px;
+    }
+
+    .zci--timer .timer__time-input {
+        width: 25%;
+        height: 80%;
+        margin-top: 0px
+    }
+
+    .zci--timer .timer__done-modal > div {
+        margin: 20% auto;
+    }
 }
 
 @media screen and (max-device-width: 320px){
-    .zci--timer .timer__btn {margin-right: 2px; margin-left: 2px;}
+    .zci--timer .timer__btn {
+        margin-right: 2px;
+        margin-left: 2px;
+    }
 }
 
 /*tablets*/
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px){
-    .zci--timer .timer__time-input {width: 25%; margin-top: 10px;}
-    .zci--timer .timer__done-modal > div {margin: 20% auto;}
+    .zci--timer .timer__time-input {
+        width: 25%;
+        margin-top: 10px;
+    }
+
+    .zci--timer .timer__done-modal > div {
+        margin: 20% auto;
+    }
 }
