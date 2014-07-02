@@ -5,28 +5,33 @@ function ddg_spice_drinks(api_result) {
         return Spice.failed('drinks');
     }
 
-    api_result[0].isArray = $.isArray(api_result[0].ingredients);
-
     Spice.add({
         id: 'drinks',
         data: api_result[0],
-	name: "Recipes",
-	meta: {
+        name: "Recipes",
+        meta: {
             sourceUrl: api_result[0].url,
             sourceName: 'Drink Project'
-	},
-	normalize: function(item) {
-	    return {
-		description: item.procedure,
-		title: item.name,
-		auxTitle: 'Ingredients'
-	    };
-	},
+        },
+        normalize: function(item) {
+            var infoboxData = [{
+                heading: 'Ingredients:'
+            }];
+
+            for (var key in item.ingredients) {
+                infoboxData.push({
+                    label: item.ingredients[key]
+                });
+            }
+
+            return {
+                description: item.procedure,
+                title: item.name,
+                infoboxData: infoboxData
+            };
+        },
         templates: {
-	    group: 'info',
-	    options: {
-		aux: Spice.drinks.aux
-	    }
+            group: 'info'
         }
     });
 }
