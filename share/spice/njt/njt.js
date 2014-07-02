@@ -1,12 +1,12 @@
 (function (env){
     "use strict";
     env.ddg_spice_njt = function(api_result){
-        if (api_result.failed){
+        if (!api_result || api_result.failed){
             return Spice.failed('njt');
         }
 
         var sorted = api_result.routes.sort(function(a, b){
-            return timeToInt(a.departure_time) - timeToInt(b.departure_time);
+            return timeInMins(a.departure_time) - timeInMins(b.departure_time);
         });
 
         Spice.add({
@@ -52,10 +52,11 @@
         return s;
     }
 
+    //takes a time string from format 14:05:00 and converts it to human-readable (2:05 PM)
     function format_time(t){
-        var hour = parseInt(t.split(':')[0]);
-        var minute = parseInt(t.split(':')[1]);
-        var ampm = (hour >= 24) ? 'AM' : (hour >= 12) ? 'PM' : 'AM';
+        var hour = parseInt(t.split(':')[0]),
+            minute = parseInt(t.split(':')[1]),
+            ampm = (hour >= 24) ? 'AM' : (hour >= 12) ? 'PM' : 'AM';
         if (hour > 24){
             hour -= 24;
         } else if (hour > 12) {
@@ -64,19 +65,20 @@
         return hour + ':' + padZeros(minute, 2) + ' ' + ampm;
     }
 
-    function timeToInt(t){
-        var hour = parseInt(t.split(':')[0]);
-        var minute = parseInt(t.split(':')[1]);
+    function timeInMins(t){
+        var hour = parseInt(t.split(':')[0]),
+            minute = parseInt(t.split(':')[1]);
         return hour*60 + minute;
     }
 
     function delayed(item){
         var match = new RegExp(/In (\d+) Min/).exec(item.status);
         if (match && match.length > 1){
-            var mins = parseInt(match[1]);
-            var now = new Date();
-            var nmins = now.getMinutes(); var nhours = now.getHours();
-            return timeToInt(item.departure_time) < nhours*60 + nmins + mins;
+            var mins = parseInt(match[1]),
+                now = new Date(),
+                nmins = now.getMinutes(),
+                nhours = now.getHours();
+            return timeInMins(item.departure_time) < nhours*60 + nmins + mins;
         }
         return false;
     }
