@@ -1,48 +1,43 @@
-.zci--guidebox li.ddgc_item img {
-  max-width: 100% !important;
-  max-height: 68px !important;
+.zci__more-at__icon{
+    padding-bottom: 0.3em;
 }
 
-.zci--guidebox div.image_wrap {
+.detail--guidebox .price{
     position: relative;
+    top: -0.5em;
+    font-size: 0.9em;
+    color: #777777;
+    font-weight: normal;
 }
 
-.zci--guidebox .gb_info {
-  white-space: nowrap;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  margin: 0px !important
+.detail--guidebox .paid{
+    color: #c9481c;
+    font-weight: bold;
 }
 
-.zci--guidebox .button {
-  display: inline-block;
-  border-radius: 3px;
-  padding: 3px 9px;
-  background: #fefefe;
-  border: 1px solid #bbb;
-  color: black;
-  margin-right: 10px;
+.is-mobile .detail--guidebox .price{
+    display: none;
 }
 
-.zci--guidebox .button:hover {
-  border: 1px solid #80b5ff;
-  cursor: pointer;
-  text-decoration: none;
+.is-mobile .detail--guidebox .btn--primary{
+    position: absolute;
+    bottom: 1.1em;
 }
 
-.zci--guidebox #ddgc_detail p {
-  margin-bottom: 10px;
+.detail--guidebox .detail__body--pr{
+    border-left: 0px;
 }
 
-.zci--guidebox .grey {
-  color: grey;
+.detail--guidebox .detail__desc{
+    padding-bottom: 1.3em;
 }
 
-.zci--guidebox .red {
-  color: #B57367
+.is-mobile .detail--guidebox .paid{
+    position: absolute;
+    padding-left: 7.5em;
+    bottom: 1.8em;
 }
 
-.zci--guidebox .small {
-  font-size: 13px;
+.detail--guidebox .btn--primary{
+    margin-right: 0.75em;
 }

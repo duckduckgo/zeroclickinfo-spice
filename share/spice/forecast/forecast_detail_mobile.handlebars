@@ -1,6 +1,6 @@
 <div class="tile--s  fe_current-wrap--mob">
 	<div class="fe_currently {{#if alerts}}alert{{/if}}">
-		<span class="fe_meta"><a id="fe_temp_switch"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a><span class="fe_sep">|</span>{{{moreAt meta.sourceUrl meta.sourceName className="fe_more-at" noIcon="1"}}}</span>
+		<span class="fe_meta"><a id="fe_temp_switch"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a><span class="fe_sep">|</span><a href="{{meta.sourceUrl}}" class="fe_more-at">{{meta.sourceName}}</a></span>
 		<h5 class="fe_label"><a href="{{{meta.sourceUrl}}}">{{city}}</a></h5>
 		<div class="fe_current-wrap">
 		{{#with current}}

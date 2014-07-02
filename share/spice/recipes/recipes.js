@@ -156,17 +156,14 @@ function ddg_spice_recipes(res) {
         },
         */
 
-        template_group: 'products_simple',
-
         templates: {
+            group: 'products_simple',
             detail: Spice.recipes.recipes_detail,
             item_detail: Spice.recipes.recipes_detail,
-
             options: {
                 brand: true,
                 rating: true
             }
         }
-
     });
 }

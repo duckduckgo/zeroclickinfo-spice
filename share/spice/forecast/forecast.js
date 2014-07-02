@@ -275,6 +275,7 @@ function ddg_spice_forecast(r) {
 
     });
 
+  //convert temperature to specified unit
   var convertTemp = function(unit, d){
     if (unit === 'C') {
       return (d-32)*(5/9);
@@ -283,8 +284,9 @@ function ddg_spice_forecast(r) {
     }
   }
 
-  var updateTempSwitch = function(other_unit){
-    if (other_unit === "F"){
+  //update the style of the F/C (make one bold and the other grayed out)
+  var updateTempSwitch = function(new_unit){
+    if (new_unit === "F"){
       $('#fe_fahrenheit').removeClass('gray').addClass('bold');
       $('#fe_celsius').removeClass('bold').addClass('gray');
     } else {
@@ -298,12 +300,13 @@ function ddg_spice_forecast(r) {
   //when we press the small button, switch the temperature units
   $('#fe_temp_switch').click(function(){
     //initialize the temperatures with the API data
-    var temps = {};
-    temps.current = r.currently.temperature;
-    temps.feelslike = r.currently.apparentTemperature;
-    temps.daily = $.map(r.daily.data, function(e){
-      return {'tempMin': e.temperatureMin, 'tempMax': e.temperatureMax};
-    });
+    var temps = {
+      current: r.currently.temperature,
+      feelslike: r.currently.apparentTemperature,
+      daily: $.map(r.daily.data, function(e){
+        return {'tempMin': e.temperatureMin, 'tempMax': e.temperatureMax};
+      })
+    };
 
     //if they want the units that aren't by the API, calculate the new temps
     if (other_unit !== unit_labels[units].temperature) {
