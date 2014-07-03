@@ -145,7 +145,7 @@
 }
 
 /*stack the big time divs if the screen is too narrow*/
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 420px) {
     .zci--timer .spice-pane {
         width: 96%;
         height: 50px;
@@ -165,13 +165,20 @@
     }
 
     .zci--timer .timer__time-input {
-        width: 25%;
         height: 80%;
-        margin-top: 0px
     }
 
     .zci--timer .timer__done-modal > div {
         margin: 20% auto;
+    }
+}
+
+/*horizontal iPhone*/
+@media screen and (max-width: 640px){
+    .zci--timer .timer__time-input {
+        width: 25%;
+        font-size: .85em;
+        margin-top: 0;
     }
 }
 
