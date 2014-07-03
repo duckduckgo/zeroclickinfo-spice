@@ -1,0 +1,12 @@
+.zci__body .bitcoin-address .qr-code-wrapper {
+  float:left;
+  margin-right: 10px;
+}
+
+.zci__body .bitcoin-address .address-title {
+  font-size:1.38em;
+}
+
+.zci__body .bitcoin-address .address-hash {
+  font-size:0.9em;
+}
