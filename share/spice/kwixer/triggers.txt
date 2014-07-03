@@ -22,10 +22,13 @@ newest films featuring
 newest film with
 newest film starring
 newest film featuring
-movie with,movies with
+movie with
+movies with
 movies starring
-film with,films with
-films starring,film starring
+film with
+films with
+films starring
+film starring
 movies featuring
 films featuring
 movies by
