@@ -10,6 +10,7 @@
     margin-left: 5px;
     margin-right: 5px;
     outline: none; /*remove the blue outline in chrome/opera*/
+    background: none;
 }
 
 /*remove the dashed line in FF/IE*/
