@@ -47,7 +47,7 @@ function ddg_spice_octopart (api_result) {
         meta: {
             itemType: 'Parts',
             sourceName: 'Octopart',
-			sourceUrl : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q
+            sourceUrl : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q
         },
         normalize: function(item) {
             var img = DDG.getProperty(item, "item.images.0.url_90px");
@@ -61,7 +61,7 @@ function ddg_spice_octopart (api_result) {
                 price: item.item.avg_price[1] + ' ' + item.item.avg_price[0].toFixed(2),
                 img: img,
                 img_m: img,
-				url: item.item.detail_url,
+                url: item.item.detail_url,
                 title: DDG.strip_html(item.item.mpn).toUpperCase(),
                 heading: DDG.strip_html(item.item.mpn).toUpperCase(),
                 description: description,

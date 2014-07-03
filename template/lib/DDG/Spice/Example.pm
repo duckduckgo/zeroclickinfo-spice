@@ -24,11 +24,11 @@ triggers any => "triggerWord", "trigger phrase";
 # Handle statement
 handle remainder => sub {
 
-	# optional - regex guard
-	# return unless qr/^\w+/;
+    # optional - regex guard
+    # return unless qr/^\w+/;
 
-	return $_ if $_;
-	return;
+    return $_ if $_;
+    return;
 };
 
 1;

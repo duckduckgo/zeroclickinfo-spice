@@ -18,7 +18,7 @@
                 group: 'base',
                 options: {
                     content: Spice.expatistan.content,
-		    moreAt: true
+            moreAt: true
                 }
             }
         });

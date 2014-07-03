@@ -19,11 +19,11 @@ triggers query_lc => qr#^(?:subreddit|/?r/)\s*(\w+)$|^(\w+)\s+subreddit$#i;
 spice to => 'http://www.reddit.com/r/$1/about.json?jsonp=ddg_spice_reddit';
 
 handle matches => sub {
-	if($1) {
-		return $1;
-	} elsif($2) {
-		return $2;
-	}
+    if($1) {
+        return $1;
+    } elsif($2) {
+        return $2;
+    }
     return;
 };
 

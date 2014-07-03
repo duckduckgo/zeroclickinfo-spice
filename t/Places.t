@@ -11,7 +11,7 @@ ddg_spice_test(
         '/js/spice/maps/places/primos',
         call_type => 'include',
         caller => 'DDG::Spice::Maps::Places',
-	is_cached => 0,
+    is_cached => 0,
     ),
 );
 

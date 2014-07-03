@@ -21,7 +21,7 @@ triggers any => "random word";
 
 handle remainder => sub {
     if ($_ =~ /^([0-9]+\-[0-9]+)$/) {
-    	 return $1;
+         return $1;
     } else {
         return '0-100';
     }

@@ -26,8 +26,8 @@ Handlebars.registerHelper('runtime', function(){
     "use strict";
 
     return (movie.runtime !== 'N/A') ?
-    	'' :
-    	this.Runtime.replace(/\s/g, '').replace('min', 'm');
+        '' :
+        this.Runtime.replace(/\s/g, '').replace('min', 'm');
 });
 
 
@@ -63,12 +63,12 @@ Handlebars.registerHelper("rating_adjective", function() {
     // Is it released?
     if ( released > currentDate || this.Year > currentDate.getFullYear() ){
         return 'an upcoming ';
-	}
+    }
 
-	return ( this.Rated === "R" ||
-		this.Rated === "M" || 
-		this.Rated === "NC-17" ||
-		this.Rated === "N/A" ) ?  "an" :"a";
+    return ( this.Rated === "R" ||
+        this.Rated === "M" || 
+        this.Rated === "NC-17" ||
+        this.Rated === "N/A" ) ?  "an" :"a";
 });
 
 
@@ -98,7 +98,7 @@ Handlebars.registerHelper('result_type', function(){
     "use strict";
 
     if (this.Type !== "N/A") {
-	return this.Type;
+    return this.Type;
     }
     return "title"; //eg, Goodbye Miami (2013) is an unrated title starring...
 });
@@ -119,17 +119,17 @@ Handlebars.registerHelper('actors_and_director', function(){
     "use strict";
 
     if (this.Actors !== 'N/A' && this.Director !== 'N/A') {
-	   return "starring " + this.Actors +
+       return "starring " + this.Actors +
               " and directed by " + this.Director;
     }
 
     else if (this.Actors !== 'N/A'){
         var actors = replaceLast(this.Actors, ',', ' and ');
-	return "starring " + actors;
+    return "starring " + actors;
     }
 
     else if (this.Director !== 'N/A') {
-    	return "directed by " + this.Director;
+        return "directed by " + this.Director;
     }
 
     else {
@@ -142,7 +142,7 @@ Handlebars.registerHelper('plot', function(){
     "use strict";
 
     if (this.Plot !== 'N/A') {
-    	return this.Plot;
+        return this.Plot;
     }
 
     return '';

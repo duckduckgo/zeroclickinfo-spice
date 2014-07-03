@@ -37,7 +37,7 @@ function ddg_spice_forecast(r) {
         'si': {speed: 'm/s', temperature: 'C'},
         'ca': {speed: 'km/h', temperature: 'C'},
         'uk': {speed: 'mph', temperature: 'C'},
-	'uk2': {speed: 'mph', temperature: 'C'}
+    'uk2': {speed: 'mph', temperature: 'C'}
       },
       units = r.flags && r.flags.units;
 
@@ -62,7 +62,7 @@ function ddg_spice_forecast(r) {
   // };
   
   var get_skycon = function(type) {
-	return 'http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif';
+    return 'http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif';
   };
   
   var available_skycon_icons = [
@@ -93,10 +93,10 @@ function ddg_spice_forecast(r) {
         hourly = f.hourly.data,
         current_summary = f.currently.summary,
         speed_units = unit_labels[units].speed,
-		feel_str,
-		currentObj = {};
+        feel_str,
+        currentObj = {};
     
-	currentObj.isCurrent = 1;
+    currentObj.isCurrent = 1;
     // If the next-hour summary is interesting enough (and we're not on mobile), use that instead
     if(!is_mobile && f.minutely && !f.minutely.summary.match(/ for the hour\.$/)) {
       current_summary = f.minutely.summary;
@@ -114,7 +114,7 @@ function ddg_spice_forecast(r) {
     }
     
     var temp_str = '<span class="fe_temp_str">'+Math.round(f.currently.temperature)+'&deg;</span>'
-	/*
+    /*
     if(temp_direction > 0)
       temp_str += ' <span class="fe_dir">and rising</span>'
     else if(temp_direction < 0)
@@ -123,15 +123,15 @@ function ddg_spice_forecast(r) {
     if(f.currently.apparentTemperature)
       feel_str = 'Feels like '+Math.round(f.currently.apparentTemperature)+'&deg;'
     
-	currentObj.temp = temp_str;
-	currentObj.feelslike = feel_str;
+    currentObj.temp = temp_str;
+    currentObj.feelslike = feel_str;
     
     if(current_summary.length > 45)
       currentObj.summaryClass = 'fe_small';
-	else currentObj.summaryClass = '';
+    else currentObj.summaryClass = '';
     
     currentObj.summary = current_summary;
-	
+    
     if(f.currently.windSpeed) {
       var wind_speed = Math.round(f.currently.windSpeed);
       
@@ -144,25 +144,25 @@ function ddg_spice_forecast(r) {
     }
     
     currentObj.icon = get_skycon(skycon_type(f.currently.icon));
-	
-	return currentObj;
+    
+    return currentObj;
   }
   
   // Build the list of days
   var build_daily = function(f) {
-	var dailyObj = [],
-		day_strs = [],
-		today = new Date(),
-		today_i = today.getDay(),
-		month_i = today.getMonth(),
-		date_i = today.getDate(),
-		days = f.daily.data,
-		num_days = Math.max(6, days.length),
-		day,
-		temp_span,
-		max_temp_height = 65,
-		high_temp = -Infinity,
-		low_temp = Infinity;
+    var dailyObj = [],
+        day_strs = [],
+        today = new Date(),
+        today_i = today.getDay(),
+        month_i = today.getMonth(),
+        date_i = today.getDate(),
+        days = f.daily.data,
+        num_days = Math.max(6, days.length),
+        day,
+        temp_span,
+        max_temp_height = 65,
+        high_temp = -Infinity,
+        low_temp = Infinity;
         
         if (!is_mobile) {
             day_strs = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -185,12 +185,12 @@ function ddg_spice_forecast(r) {
 
     // store daily values
     for(var i = 0,tmp_date; i < num_days; i++) (function(i) {
-	  dailyObj[i] = days[i];
-	  day = days[i];
+      dailyObj[i] = days[i];
+      day = days[i];
       
       tmp_date = new Date();
-	  tmp_date.setDate(date_i+i);
-	  dailyObj[i].date = tmp_date.toDateString().substr(4,6);
+      tmp_date.setDate(date_i+i);
+      dailyObj[i].date = tmp_date.toDateString().substr(4,6);
       dailyObj[i].day = i == 0 ? 'Today' : day_strs[(today_i+i)%7];
       dailyObj[i].highTemp = Math.round(day.temperatureMax)+'&deg;';
       dailyObj[i].lowTemp = Math.round(day.temperatureMin)+'&deg;';
@@ -199,10 +199,10 @@ function ddg_spice_forecast(r) {
         height: max_temp_height * (day.temperatureMax - day.temperatureMin) / temp_span,
         top: max_temp_height * (high_temp - day.temperatureMax) / temp_span
       };
-	  
+      
     })(i);
-	
-	return dailyObj;
+    
+    return dailyObj;
   }
   
   // Build any weather alerts or warnings

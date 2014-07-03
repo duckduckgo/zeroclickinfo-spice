@@ -12,25 +12,25 @@ function ddg_spice_rhymes (api_result) {
     
     for(var i=0, l = api_result.length; i<l; i++) {
         var word = api_result[i];
-	
+    
         if (word.score === 300 && !word.flags.match(/a/)) {
             words.push(word);
-	    if (++count > 15)
-		break;
+        if (++count > 15)
+        break;
         }
     }
 
     if(words.length === 0) {
-	return;
+    return;
     }
 
     var title = DDG.capitalize(query.toLowerCase());
     Spice.add({
-	data: { 
-	    words: words, 
-	    query: title
-	},
-	id: "rhymes",
+    data: { 
+        words: words, 
+        query: title
+    },
+    id: "rhymes",
         name: "Rhymes",
         meta: {
             sourceUrl: 'http://rhymebrain.com/en/What_rhymes_with_' +
@@ -42,7 +42,7 @@ function ddg_spice_rhymes (api_result) {
             group: 'text',
             options: {
                 content: Spice.rhymes.content,
-		moreAt: true
+        moreAt: true
             }
         }
     });

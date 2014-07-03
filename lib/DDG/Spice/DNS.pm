@@ -62,7 +62,7 @@ handle query_lc => sub {
     my $record = defined $2 ? $2 : 'any';
     return if not defined $2 and not defined $1
         and not (defined $3 and defined $4);
-	return uc $record, $_ if is_domain $_;
+    return uc $record, $_ if is_domain $_;
     return;
 };
 

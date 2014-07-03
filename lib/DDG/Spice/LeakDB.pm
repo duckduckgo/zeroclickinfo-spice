@@ -12,8 +12,8 @@ topics 'geek', 'sysadmin', 'cryptography';
 icon_url 'https://leakdb.abusix.com/images/favicon.ico';
 code_url 'https://github.com/brutalhonesty/zeroclickinfo-spice/blob/master/lib/DDG/Spice/HashMe.pm';
 attribution github => ['https://github.com/brutalhonesty', 'Adam Schodde'],
-	twitter => ['https://twitter.com/listeninme', 'listeninme'],
-	email => ['sparky1010[at]gmail.com', 'Adam Schodde'];
+    twitter => ['https://twitter.com/listeninme', 'listeninme'],
+    email => ['sparky1010[at]gmail.com', 'Adam Schodde'];
 status 'enabled';
 
 triggers startend => 'hashme', 'leakdb';
@@ -22,8 +22,8 @@ spice wrap_jsonp_callback => 1;
 
 handle remainder_lc => sub{
     s/^(hashme|leakdb)\s+|\s+(hashme|leakdb)$//g;
-	return $_ if $_ ne '';
-	return;
+    return $_ if $_ ne '';
+    return;
 };
 
 1;

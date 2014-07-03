@@ -34,7 +34,7 @@ function ddg_spice_news(apiResult) {
     // Check if the title is relevant to the query.
     var goodStories = [];
     for(var i = 0, story; story = apiResult[i]; i++) {
-	// strip bold from story titles.
+    // strip bold from story titles.
         story.title = story.title.replace(/<b>|<\/b>|:/g, "");
         if(DDG.isRelevant(story.title, skip)) {
             setSourceOnStory(story);
@@ -63,6 +63,6 @@ function ddg_spice_news(apiResult) {
             }
         });
     } else {
-	Spice.failed('news');
+    Spice.failed('news');
     }
 }

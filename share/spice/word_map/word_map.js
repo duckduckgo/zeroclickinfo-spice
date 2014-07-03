@@ -3,7 +3,7 @@
         "use strict";
 
         if ( (!api_result) || ("200" !== api_result.result_code)) {
-    	   return Spice.failed('word_map');
+           return Spice.failed('word_map');
         }
 
         Spice.add({
@@ -19,7 +19,7 @@
                 group: 'base',
                 options: {
                     content: Spice.word_map.content,
-		    moreAt: true
+            moreAt: true
                 }
             }
         });

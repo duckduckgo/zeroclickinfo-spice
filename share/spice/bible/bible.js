@@ -22,7 +22,7 @@
                 group: 'base',
                 options: {
                     content: Spice.bible.content,
-		    moreAt: true
+            moreAt: true
                 }
             },
             normalize: function(item){

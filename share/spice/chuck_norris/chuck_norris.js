@@ -18,7 +18,7 @@
                 group: 'base',
                 options: {
                     content: Spice.chuck_norris.content,
-		    moreAt: true
+            moreAt: true
                 }
             }
         });

@@ -12,7 +12,7 @@ topics "programming";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SearchCode.pm";
 icon_url "/i/searchco.de.ico";
 attribution twitter => ["https://twitter.com/boyter", "boyter"],
-			github => ["https://github.com/boyter", "Ben Boyter"];
+            github => ["https://github.com/boyter", "Ben Boyter"];
 
 # known bad queries
 my %skip_queries = map { $_ => undef } (
@@ -32,20 +32,20 @@ $words =~ s/\n//g;
 handle query_raw => sub {
         return if exists $skip_queries{lc($_)};
 
-	# don't trigger on:
-	# app (for Quixey)
-	# code/example (for CodeSearch)
-	# jobs (for Github jobs)
-	return if m/(^|\s+)(app|code|example|jobs)(\s+|$)/ig;
+    # don't trigger on:
+    # app (for Quixey)
+    # code/example (for CodeSearch)
+    # jobs (for Github jobs)
+    return if m/(^|\s+)(app|code|example|jobs)(\s+|$)/ig;
 
-	# make sure there is more to the
-	# query besides the trigger itself
-	if (m/$words/i){
-		my $query = $_;
-		s/$words//ig;
-		return $query if length $_ > 1;
-	}
-	return;
+    # make sure there is more to the
+    # query besides the trigger itself
+    if (m/$words/i){
+        my $query = $_;
+        s/$words//ig;
+        return $query if length $_ > 1;
+    }
+    return;
 };
 
 1;
