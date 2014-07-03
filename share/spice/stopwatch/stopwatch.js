@@ -105,6 +105,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
 
     $('.stopwatch__btn.stop').removeClass('stop').addClass('start').html('START');
     $(this).prop('disabled', true);
+    $lap_btn.prop('disabled', true);
     $split_list.addClass('hidden');
   });
 
