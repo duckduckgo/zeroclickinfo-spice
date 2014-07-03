@@ -46,21 +46,21 @@
                 sourceIcon: true,
                 sourceName: 'Reddit',
             },
-	    normalize: function(item) {
-		var a = {
-		    url: "http://www.reddit.com" + item.data.permalink,
-		    title: item.data.title,
-		    subtitle: item.data.num_comments + " comments"
-		};
-		return a;
-	    },
+        normalize: function(item) {
+        var a = {
+            url: "http://www.reddit.com" + item.data.permalink,
+            title: item.data.title,
+            subtitle: item.data.num_comments + " comments"
+        };
+        return a;
+        },
             templates: {
                 group: 'text',
                 options: {
-		    footer: Spice.reddit_search.footer
+            footer: Spice.reddit_search.footer
                 },
-		detail: false,
-		item_detail: false
+        detail: false,
+        item_detail: false
             }
         });
     };

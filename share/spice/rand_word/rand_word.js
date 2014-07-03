@@ -7,7 +7,7 @@
         }
 
         Spice.add({
-    	    id: "rand_word",
+            id: "rand_word",
             data: api_result,
             name: "Answer",
             meta: {
@@ -19,7 +19,7 @@
                 group: 'base',
                 options: {
                     content: Spice.rand_word.content,
-		    moreAt: true
+            moreAt: true
                 }
             }
         });

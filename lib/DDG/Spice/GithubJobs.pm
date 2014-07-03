@@ -30,7 +30,7 @@ handle query_lc => sub {
             return '-'.$2;
         }
     }
-	return;
+    return;
 };
 
 1;

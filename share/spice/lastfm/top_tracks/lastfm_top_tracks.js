@@ -5,15 +5,15 @@ function ddg_spice_lastfm_top_tracks(api_result) {
         sourceName      : "Last.fm",
         sourceUrl       : "http://www.last.fm/charts/tracks/top",
 
-	id       : "lastfm_top_tracks",
-	template_frame   : "list",
-	templates : {
-	    items: api_result.toptracks.track,
-	    item: Spice.lastfm_top_tracks.lastfm_top_tracks,
-	    show: 3,
-	    max: 10,
-	    type: "ul"
-	},
+    id       : "lastfm_top_tracks",
+    template_frame   : "list",
+    templates : {
+        items: api_result.toptracks.track,
+        item: Spice.lastfm_top_tracks.lastfm_top_tracks,
+        show: 3,
+        max: 10,
+        type: "ul"
+    },
 
         
         

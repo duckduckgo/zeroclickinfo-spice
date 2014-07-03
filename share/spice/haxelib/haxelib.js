@@ -3,7 +3,7 @@
         "use strict";
 
         if((!response || response.err)) {
-    	   return Spice.failed('haxelib'); 
+           return Spice.failed('haxelib'); 
         }
 
         Spice.add({
@@ -16,10 +16,10 @@
                 sourceName      : 'Haxelib'
             },
             templates: {
-		group: 'base',
+        group: 'base',
                 options: {
                     content: Spice.haxelib.content,
-		    moreAt: true
+            moreAt: true
                 }
             }
         });

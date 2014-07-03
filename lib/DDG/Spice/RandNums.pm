@@ -23,13 +23,13 @@ triggers query_lc => qr/^(?:rand|random) (?:numbers?|nums?)(?: (\-?[0-9]+)\s*(?:
 handle matches => sub {
     my ($min, $max) = @_;
 
-	$min = 1   unless defined $min;
-	$max = 100 unless defined $max;
+    $min = 1   unless defined $min;
+    $max = 100 unless defined $max;
 
-	$min = -1000000000 if $min < -1000000000;
-	$max =  1000000000 if $max >  1000000000;
+    $min = -1000000000 if $min < -1000000000;
+    $max =  1000000000 if $max >  1000000000;
 
-	return $max, $min if $min >= $max;
+    return $max, $min if $min >= $max;
     return $min, $max;
 };
 

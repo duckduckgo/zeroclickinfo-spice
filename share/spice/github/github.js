@@ -28,24 +28,24 @@
                 sourceName: 'GitHub'
             },
             templates: {
-		group: 'text',
+        group: 'text',
                 detail: false,
                 item_detail: false,
-		options: {
-		    footer: Spice.github.footer
-		}
+        options: {
+            footer: Spice.github.footer
+        }
             },
-	    normalize: function(item) {
-		return {
-		    title: item.name,
-		    subtitle: item.owner + "/" + item.name
-		};
-	    },
-	    relevancy: {
-		primary: [
-		    { key: 'description', match: /.+/, strict: false } // Reject things without a description.
-		]
-	    }
+        normalize: function(item) {
+        return {
+            title: item.name,
+            subtitle: item.owner + "/" + item.name
+        };
+        },
+        relevancy: {
+        primary: [
+            { key: 'description', match: /.+/, strict: false } // Reject things without a description.
+        ]
+        }
         });
     }
 

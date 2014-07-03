@@ -23,8 +23,8 @@ handle remainder => sub {
   # If the query isn't blank, then use it for the API query.
   return $_ if length($_) > 0;
 
-	return '' if $_ eq '';
-	return;
+    return '' if $_ eq '';
+    return;
 };
 
 1;

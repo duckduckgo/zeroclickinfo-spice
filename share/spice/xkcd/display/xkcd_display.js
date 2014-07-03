@@ -13,18 +13,18 @@ function ddg_spice_xkcd_display(api_result) {
 
     // Add exception for comic 1335.
     if(api_result.num === 1335) {
-		api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
+        api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
     }
     
     Spice.add({
-		id: 'xkcd',
-		data: api_result,
-		name: 'Comics',
-		meta: {
+        id: 'xkcd',
+        data: api_result,
+        name: 'Comics',
+        meta: {
             sourceUrl       : 'http://xkcd.com/' + api_result.num,
             sourceName      : 'xkcd',
             sourceIcon      : true
-		},
+        },
     templates: {
       group: 'base',
       options: {

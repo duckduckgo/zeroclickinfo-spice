@@ -3,7 +3,7 @@ function ddg_spice_book(api_result) {
 
     // Return if no book is returned 
     if (!api_result || api_result.books.length == 0) {
-	return Spice.failed('book');
+    return Spice.failed('book');
     }
 
     // Get the query without the trigger words.
@@ -21,23 +21,23 @@ function ddg_spice_book(api_result) {
     // Select the book to display from the returned books.
     var data;
     for (var i = 0; i < api_result.books.length; i++) {
-	var title = api_result.books[i].title || "";
-	var sub_title = api_result.books[i].sub_title || "";
-	var author = api_result.books[i].author || "";
+    var title = api_result.books[i].title || "";
+    var sub_title = api_result.books[i].sub_title || "";
+    var author = api_result.books[i].author || "";
 
-	// Check relevancy of the item.
-	// 1. Check if we have reviews (rated or unrated is fine).
-	// 2. Check if the title + sub_title is relevant to the query.
-	// 3. Check if the title is relevant to the query.
-	// 4. Check if the title + author is relevant to the query.
-	// 5. Check if the title + sub_title + author is relevant to the query.
-	if((api_result.books[i].review_count || api_result.books[i].unrated_review_count) && 
-	   (DDG.stringsRelevant(title + " " + sub_title, decoded_query, [], 3, true) ||
-	    DDG.stringsRelevant(title, decoded_query, [], 3, true) ||
-	    DDG.stringsRelevant(title + " " + author, decoded_query, [], 3, true) ||
-	    DDG.stringsRelevant(title + " " + sub_title + " " + author, decoded_query, [], 3, true))) {
+    // Check relevancy of the item.
+    // 1. Check if we have reviews (rated or unrated is fine).
+    // 2. Check if the title + sub_title is relevant to the query.
+    // 3. Check if the title is relevant to the query.
+    // 4. Check if the title + author is relevant to the query.
+    // 5. Check if the title + sub_title + author is relevant to the query.
+    if((api_result.books[i].review_count || api_result.books[i].unrated_review_count) && 
+       (DDG.stringsRelevant(title + " " + sub_title, decoded_query, [], 3, true) ||
+        DDG.stringsRelevant(title, decoded_query, [], 3, true) ||
+        DDG.stringsRelevant(title + " " + author, decoded_query, [], 3, true) ||
+        DDG.stringsRelevant(title + " " + sub_title + " " + author, decoded_query, [], 3, true))) {
             data = api_result.books[i];
-	    break;
+        break;
         }
     }
 
@@ -50,8 +50,8 @@ function ddg_spice_book(api_result) {
     // we copy over the unrated_reviews. This makes it easier to use the templates because 
     // we're only using one variable.
     if(data.review_count === 0) {
-	data.critic_reviews = data.unrated_critic_reviews;
-	data.review_count = data.unrated_review_count;
+    data.critic_reviews = data.unrated_critic_reviews;
+    data.review_count = data.unrated_review_count;
     }
     
     // Get only the year of release date for header 
@@ -60,9 +60,9 @@ function ddg_spice_book(api_result) {
     // Filter critic reviews that have really short critic reviews.
     var critic_reviews = [];
     for(var i = 0; i < data.critic_reviews.length; i++) {
-	if(data.critic_reviews[i].snippet.length > 10) {
-	    critic_reviews.push(data.critic_reviews[i]);
-	}
+    if(data.critic_reviews[i].snippet.length > 10) {
+        critic_reviews.push(data.critic_reviews[i]);
+    }
     }
     data.critic_reviews = critic_reviews;
     
@@ -73,13 +73,13 @@ function ddg_spice_book(api_result) {
     // It doesn't add a colon if the subtitle begins with anything other
     // than letters or numbers, e.g., a parenthesis.
     var formatSub = function(sub_title) {
-	if(sub_title && sub_title.length > 0) {
-	    if(sub_title.match(/^[a-z0-9]/i)) {
-		return ": " + sub_title;
-	    }
-	    return " " + sub_title;
-	}
-	return "";
+    if(sub_title && sub_title.length > 0) {
+        if(sub_title.match(/^[a-z0-9]/i)) {
+        return ": " + sub_title;
+        }
+        return " " + sub_title;
+    }
+    return "";
     };
 
     var header = data.title = data.title + formatSub(data.sub_title);
@@ -91,17 +91,17 @@ function ddg_spice_book(api_result) {
          header1           : header + " (Book Reviews)",
          sourceName       : "idreambooks.com", // More at ...
          sourceUrl        :  data.detail_link,
-	 id        : "book",
-	 template_frame    : "twopane",
-	 templates  : {
-	     left: {
-		 template: "book"
-	     },
-	     right: {
-		 template: "book_critic"
-	     }
-	 },
-	 
+     id        : "book",
+     template_frame    : "twopane",
+     templates  : {
+         left: {
+         template: "book"
+         },
+         right: {
+         template: "book_critic"
+         }
+     },
+     
     });
 }
 
@@ -109,14 +109,14 @@ Handlebars.registerHelper("Book_prettyDate", function(date) {
     "use strict";
 
     if(date) {
-	date = date.split("-")
-	var d = new Date(date[0], date[1]-1, date[2]);
-	if (d && !isNaN(d.getTime())) {
+    date = date.split("-")
+    var d = new Date(date[0], date[1]-1, date[2]);
+    if (d && !isNaN(d.getTime())) {
             var m_names = ["Jan", "Feb", "Mar",  "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             var curr_date = d.getDate();
             var curr_month = d.getMonth();
             var curr_year = d.getFullYear();
             return m_names[curr_month] + " " + curr_date + ", " + curr_year;
-	}
+    }
     }
 });

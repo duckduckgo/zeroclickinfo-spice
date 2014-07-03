@@ -76,9 +76,9 @@ ddg_spice_test(
         is_cached => 0
     ),
     'weather for Troy, NY' => test_spice(
-    	'/js/spice/forecast/troy%2C%20ny',
-    	call_type => 'include',
-    	caller => 'DDG::Spice::Forecast',
+        '/js/spice/forecast/troy%2C%20ny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Forecast',
         is_cached => 1
     ),
     'forecast for Troy, NY' => test_spice(
@@ -100,29 +100,29 @@ ddg_spice_test(
         is_cached => 1
     ),
     'Philadelphia weather' => test_spice(
-    	'/js/spice/forecast/philadelphia',
-    	call_type => 'include',
-    	caller => 'DDG::Spice::Forecast',
+        '/js/spice/forecast/philadelphia',
+        call_type => 'include',
+        caller => 'DDG::Spice::Forecast',
         is_cached => 1
     ),
     'Philadelphia weather forecast' => test_spice(
-    	'/js/spice/forecast/philadelphia',
-    	call_type => 'include',
-    	caller => 'DDG::Spice::Forecast',
+        '/js/spice/forecast/philadelphia',
+        call_type => 'include',
+        caller => 'DDG::Spice::Forecast',
         is_cached => 1
     ),
 
 # Disabling since I made the trigger a startend. (caine)
 #    'Philadelphia weather this week' => test_spice(
-#    	'/js/spice/forecast/philadelphia',
-#    	call_type => 'include',
-#    	caller => 'DDG::Spice::Forecast',
+#       '/js/spice/forecast/philadelphia',
+#       call_type => 'include',
+#       caller => 'DDG::Spice::Forecast',
 #        is_cached => 1
 #    ),
 #    'what is the weather in new york' => test_spice(
-#    	'/js/spice/forecast/new%20york',
-#    	call_type => 'include',
-#    	caller => 'DDG::Spice::Forecast',
+#       '/js/spice/forecast/new%20york',
+#       call_type => 'include',
+#       caller => 'DDG::Spice::Forecast',
 #        is_cached => 1
 #    ),
 );

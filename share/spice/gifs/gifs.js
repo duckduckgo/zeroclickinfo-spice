@@ -8,15 +8,15 @@ function ddg_spice_gifs(res) {
         name: 'Gifs',
 
         data: res.data,
-	normalize: function(item) {
-	    return {
-		h: item.images.fixed_height_still.url,
-		j: item.images.fixed_height.url,
-		u: item.url,
-		ih: item.images.fixed_height.height,
-		iw: item.images.fixed_height.width
-	    };
-	},
+    normalize: function(item) {
+        return {
+        h: item.images.fixed_height_still.url,
+        j: item.images.fixed_height.url,
+        u: item.url,
+        ih: item.images.fixed_height.height,
+        iw: item.images.fixed_height.width
+        };
+    },
         meta: {
             sourceName: 'Giphy',
             sourceUrl: 'http://giphy.com/search/' + encodeURIComponent(searchTerm),

@@ -15,27 +15,27 @@ function ddg_spice_septa(api_result) {
     var to      = parts[5];
 
     Spice.add({
-	id: 'septa',
-	name: 'Trains',
+    id: 'septa',
+    name: 'Trains',
         data: api_result,
-	meta: {
+    meta: {
             sourceName: 'SEPTA',
             sourceUrl: 'http://www.septa.org/schedules/rail/index.html',
-	    sourceIconUrl: 'http://septa.org/site/images/favicon.ico',
-	    itemType: 'trains'
-	},
-	normalize: function(item) {
-	    return {
-		url: 'http://www.septa.org/schedules/rail/index.html'
-	    };
-	},
+        sourceIconUrl: 'http://septa.org/site/images/favicon.ico',
+        itemType: 'trains'
+    },
+    normalize: function(item) {
+        return {
+        url: 'http://www.septa.org/schedules/rail/index.html'
+        };
+    },
         templates: {
-	    group: 'base',
-	    detail: false,
-	    item_detail: false,
-	    options: {
-		content: Spice.septa.content
-	    }
+        group: 'base',
+        detail: false,
+        item_detail: false,
+        options: {
+        content: Spice.septa.content
+        }
         }
     });
 };

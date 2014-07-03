@@ -19,8 +19,8 @@ my @triggers = share("triggers.txt")->slurp;
 triggers startend => @triggers;
 
 handle remainder => sub {
-	return $_ if $_;
-	return;
+    return $_ if $_;
+    return;
 };
 
 1;

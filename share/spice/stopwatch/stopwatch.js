@@ -1,16 +1,16 @@
 function ddg_spice_stopwatch(api_result) { //api_result should be removed in production
     Spice.add({
-	id: 'stopwatch',
-	name: 'Stopwatch',
-	data: {},
-	meta: {
-	    sourceName: 'Stopwatch',
-	    itemType: 'stopwatch'
-	},
-	templates: {
-	    detail: Spice.stopwatch.stopwatch,
-	    wrap_detail: 'base_detail'
-	}
+    id: 'stopwatch',
+    name: 'Stopwatch',
+    data: {},
+    meta: {
+        sourceName: 'Stopwatch',
+        itemType: 'stopwatch'
+    },
+    templates: {
+        detail: Spice.stopwatch.stopwatch,
+        wrap_detail: 'base_detail'
+    }
     });
 
   var running = false,

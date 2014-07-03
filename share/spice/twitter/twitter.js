@@ -12,10 +12,10 @@ var ddg_spice_twitter = function(api_result) {
     var infobox = api_result.current_status ? Spice.twitter.infobox : false;
 
     function getURL(item) {
-	var expanded_url = DDG.getProperty(item, 'entities.url.urls.0.expanded_url');
-	var display_url = DDG.getProperty(item, 'entities.url.urls.0.display_url');
+    var expanded_url = DDG.getProperty(item, 'entities.url.urls.0.expanded_url');
+    var display_url = DDG.getProperty(item, 'entities.url.urls.0.display_url');
 
-	return [display_url, expanded_url];
+    return [display_url, expanded_url];
     }
 
     // Display the plugin.
@@ -23,26 +23,26 @@ var ddg_spice_twitter = function(api_result) {
         id: 'twitter',
         data                     : api_result,
         name: 'Social',
-	signal: 'high',
-	meta: {
+    signal: 'high',
+    meta: {
             sourceUrl               : "https://twitter.com/" + api_result.user,
             sourceName              : "Twitter",
         },
         normalize: function(item) {
-	    var urls = getURL(item);
+        var urls = getURL(item);
 
             return {
                 image: bigger_picture(item.profile_image),
-		display_url: urls[0],
-		expanded_url: urls[1]
+        display_url: urls[0],
+        expanded_url: urls[1]
             };
         },
         templates: {
-	    group: 'base',
-	    options: {
-		content: Spice.twitter.content,
-		moreAt: true
-	    }
+        group: 'base',
+        options: {
+        content: Spice.twitter.content,
+        moreAt: true
+        }
         }
         
     });

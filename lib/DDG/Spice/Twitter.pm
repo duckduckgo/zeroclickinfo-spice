@@ -19,15 +19,15 @@ triggers query => qr/^(?:twitter\s)?@([a-z0-9_]+)$|^twitter\s([a-z0-9_]+)$/i;
 
 # Possibly add skip words to a file for slurping?
 my $skip = join "|", ("apis?",
-		      "developers?",
-		      "users?",
-		      "search(es)?");
+              "developers?",
+              "users?",
+              "search(es)?");
 
 handle matches => sub { 
     if ($1) {
-	return $1;
+    return $1;
     } elsif ($2) {
-	return $2 unless ($2 =~ m/^($skip)$/i)
+    return $2 unless ($2 =~ m/^($skip)$/i)
     }
     return;
 }; 

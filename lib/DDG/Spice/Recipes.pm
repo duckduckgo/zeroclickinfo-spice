@@ -16,20 +16,20 @@ triggers any => ('recipe', 'recipes', keys(%ingredients));
 spice to => 'http://api.yummly.com/v1/api/recipes?q=$1&requirePictures=true&maxResult=35&_app_id={{ENV{DDG_SPICE_YUMMLY_APPID}}}&_app_key={{ENV{DDG_SPICE_YUMMLY_APIKEY}}}&callback={{callback}}';
 
 handle query_lc => sub {
-	if ($_ =~ s/recipes?//g) {
-		return trim($_);
-	}
+    if ($_ =~ s/recipes?//g) {
+        return trim($_);
+    }
 
-	my $ingredient_count = 0;
-	my $non_ingredient_count = 0;
-	my @words = split(/\s/, $_);
+    my $ingredient_count = 0;
+    my $non_ingredient_count = 0;
+    my @words = split(/\s/, $_);
 
-	foreach my $word (@words) {
-		exists $ingredients{$word} ? $ingredient_count++ : $non_ingredient_count++;
-	};
+    foreach my $word (@words) {
+        exists $ingredients{$word} ? $ingredient_count++ : $non_ingredient_count++;
+    };
 
-	return $_ if $ingredient_count > 0 && $non_ingredient_count < $ingredient_count;
-	return;
+    return $_ if $ingredient_count > 0 && $non_ingredient_count < $ingredient_count;
+    return;
 };
 
 1;

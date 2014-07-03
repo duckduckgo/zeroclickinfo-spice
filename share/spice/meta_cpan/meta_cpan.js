@@ -27,7 +27,7 @@
                 group: 'base',
                 options: {
                     content: 'record',
-		    moreAt: true
+            moreAt: true
                 }
             }
         });

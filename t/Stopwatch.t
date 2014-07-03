@@ -16,7 +16,7 @@ ddg_spice_test(
             call_type => 'self', #should be 'self' in real code
             caller => 'DDG::Spice::Stopwatch'
         ),
-	'blahblah stopwatch' => undef,
+    'blahblah stopwatch' => undef,
     'online stop watch' =>
         test_spice(
             '',

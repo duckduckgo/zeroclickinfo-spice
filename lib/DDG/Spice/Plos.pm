@@ -12,8 +12,8 @@ topics 'science';
 icon_url 'http://www.plosone.org/images/favicon.ico';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Plos.pm';
 attribution twitter => 'nelas',
-			github => ['nelas', 'Bruno C. Vellutini'],
-			web => ['http://organelas.com/', 'organelas.com'];
+            github => ['nelas', 'Bruno C. Vellutini'],
+            web => ['http://organelas.com/', 'organelas.com'];
 
 triggers startend => 'plos', 'plos one', 'plosone', 'public library of science', 'plos journal', 'plos publications';
 

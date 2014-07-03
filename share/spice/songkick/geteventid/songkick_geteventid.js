@@ -47,19 +47,19 @@
                             date: item.start.date,
                             time: twelve_hour(item.start.time)
                         },
-			url: item.uri
+            url: item.uri
                     };
                 }
 
                 return null;
             },
             templates: {
-		group: 'base',
-		options: {
-		    content: Spice.songkick_geteventid.content
-		},
-		detail: false,
-		item_detail: false
+        group: 'base',
+        options: {
+            content: Spice.songkick_geteventid.content
+        },
+        detail: false,
+        item_detail: false
             }
         });
     };

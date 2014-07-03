@@ -22,19 +22,19 @@ function ddg_spice_espn_process_stats(ddg_spice_espn_player) {
     // player's sport
     switch (ddg_spice_espn_player.sport) {
         case 'baseball':
-	    ddg_spice_espn_player = new BaseballPlayer(ddg_spice_espn_player);
+        ddg_spice_espn_player = new BaseballPlayer(ddg_spice_espn_player);
         break;
         case 'basketball':
-	    ddg_spice_espn_player = new BasketballPlayer(ddg_spice_espn_player);
+        ddg_spice_espn_player = new BasketballPlayer(ddg_spice_espn_player);
         break;
         case 'football':
-	    ddg_spice_espn_player = new FootballPlayer(ddg_spice_espn_player);
-	break;
+        ddg_spice_espn_player = new FootballPlayer(ddg_spice_espn_player);
+    break;
         case 'hockey':
-	    ddg_spice_espn_player = new HockeyPlayer(ddg_spice_espn_player);
+        ddg_spice_espn_player = new HockeyPlayer(ddg_spice_espn_player);
         break;
 
-	// Currently disabled cases...
+    // Currently disabled cases...
         case 'tennis':
             ddg_spice_espn_player.rank        = ddg_spice_espn_player.stats.year.rank;
             ddg_spice_espn_player.matchesWon  = ddg_spice_espn_player.stats.year.singlesMatchesWon;
@@ -124,23 +124,23 @@ function ddg_spice_espn(api_result) {
     /*var statCount = 0;
     var usefulStats = 0;
     for (var stat in ddg_spice_espn_player.stats) {
-	// make sure the key comes from the object
-	// and not the prototype...
-	if (ddg_spice_espn_player.stats.hasOwnProperty(stat)) {
-	    statCount++;
-	    // stats set to 0 aren't really useful
-	    if (ddg_spice_espn_player.stats[stat] > 0) {
-		usefulStats++;
-	    }
-	}
+    // make sure the key comes from the object
+    // and not the prototype...
+    if (ddg_spice_espn_player.stats.hasOwnProperty(stat)) {
+        statCount++;
+        // stats set to 0 aren't really useful
+        if (ddg_spice_espn_player.stats[stat] > 0) {
+        usefulStats++;
+        }
+    }
     }
     console.log('statcount: '+statCount, 'useful stat count: '+usefulStats);
     if (statCount > 0) {
-	var usefulStatRat = usefulStats / statCount;
-	console.log("useful stat ratio: "+usefulStatRat);
+    var usefulStatRat = usefulStats / statCount;
+    console.log("useful stat ratio: "+usefulStatRat);
     } else {
-	console.log('no useful stats at all...');
-	ddg_spice_espn_player.stats = false;
+    console.log('no useful stats at all...');
+    ddg_spice_espn_player.stats = false;
     }*/
 
     ddg_spice_espn_bind();
@@ -164,7 +164,7 @@ function ddg_spice_espn_team(api_result) {
 
     ddg_spice_espn_player.record = (record.wins?record.wins:0)+'-'+(record.losses?record.losses:0);
     if (record.ties) {
-	ddg_spice_espn_player.record += '-'+record.ties;
+    ddg_spice_espn_player.record += '-'+record.ties;
     }
 
     ddg_spice_espn_bind();
@@ -178,7 +178,7 @@ function ddg_spice_espn_events(api_result) {
         var eventDate = new Date(events[i].date);
         if (eventDate.getTime() > new Date().getTime() - 24*60*60*1000) {
             continue;
-	}
+    }
         eventDate.setMonth(eventDate.getMonth()+1);
 
         if (!events[i].competitions[0]) continue;
@@ -247,7 +247,7 @@ function ddg_spice_espn_bind() {
             item: Spice.espn_.espn_,
             detail: Spice.espn_.espn_
         } + ddg_spice_espn_player.sport,
-	force_favicon_url: 'http://espn.go.com/favicon.ico',
+    force_favicon_url: 'http://espn.go.com/favicon.ico',
         
         
     });
@@ -398,8 +398,8 @@ function BaseballPlayer(player) {
         player.innings = stats.fullInnings ? stats.fullInnings : 0;
 
         player.WHIP = player.innings && player.innings > 0 &&
-	    player.walks != undefined || player.runsAgainst != undefined ?
-	    ((player.walks + player.runsAgainst) / player.innings).toFixed(2) : 0;
+        player.walks != undefined || player.runsAgainst != undefined ?
+        ((player.walks + player.runsAgainst) / player.innings).toFixed(2) : 0;
 
         break;
     case 'catcher':

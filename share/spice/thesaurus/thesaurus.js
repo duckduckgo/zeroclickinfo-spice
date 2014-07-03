@@ -76,7 +76,7 @@
                 group: 'text',
                 options: {
                     content: Spice.thesaurus.content,
-		    title_content: Spice.thesaurus.title_content,
+            title_content: Spice.thesaurus.title_content,
                     moreAt: true
                 }
             }

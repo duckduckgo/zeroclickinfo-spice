@@ -22,18 +22,18 @@
                 return {
                     ShortDescription: DDG.strip_html(DDG.strip_href(item.ShortDescription)),
                     url: item.Url,
-		    icon: item.IconUrl,
-		    title: item.Name,
-		    description: item.ShortDescription
+            icon: item.IconUrl,
+            title: item.Name,
+            description: item.ShortDescription
                 };
             },
             templates: {
                 group: 'icon',
-		detail: false,
-		item_detail: false,
-		options: {
-		    footer: Spice.alternative_to.footer
-		}
+        detail: false,
+        item_detail: false,
+        options: {
+            footer: Spice.alternative_to.footer
+        }
             }
         });
     };

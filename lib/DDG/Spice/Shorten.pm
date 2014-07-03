@@ -19,10 +19,10 @@ spice to => 'http://is.gd/create.php?format=json&url=$1&callback={{callback}}';
 triggers any => 'shorten', 'shorten url', 'short url', 'url shorten';
 
 handle remainder => sub {
-	my ($longUri) = shift;
+    my ($longUri) = shift;
 
     return $longUri if $longUri;
-	return;
+    return;
 };
 
 1;
