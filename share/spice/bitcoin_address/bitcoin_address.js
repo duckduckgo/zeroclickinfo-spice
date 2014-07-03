@@ -8,17 +8,6 @@
 
         var address = api_result.data;
 
-        var formatDate = function(d) {
-            var year = d.getFullYear();
-            var month = d.getMonth() + 1;
-            var day = d.getDay();
-            var hours = d.getHours();
-            var minutes = d.getMinutes();
-            var seconds = d.getSeconds();
-
-            return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds; 
-        };
-
         var formatBtc = function(amount) {
             return (amount / 100000000.0)+" BTC"
         };
@@ -28,7 +17,7 @@
             name: "Bitcoin Address",
             data: address,
             meta: {
-                sourceName: "biteasy.com",
+                sourceName: "biteasy",
                 sourceUrl: "https://www.biteasy.com/blockchain/addresses/" + address.address
             },
             normalize: function(item) {
