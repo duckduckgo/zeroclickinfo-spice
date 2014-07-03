@@ -225,16 +225,6 @@ function ddg_spice_forecast(r) {
     if(alert_message)
       return '<a href="'+alert_message.uri+'" class="fe_alert" target="_blank"><span class="fe_icon--flag">&#9873;</span> '+alert_message.title+'</a>';
   }
-
-  function build_temp_switch(current_unit){
-    if (current_unit === 'F'){
-      $('#fe_celsius').addClass('fe_gray').removeClass('fe_selected');
-      $('#fe_fahrenheit').removeClass('fe_gray').addClass('fe_selected');
-    } else if (current_unit === 'C'){
-      $('#fe_fahrenheit').addClass('fe_gray').removeClass('fe_selected');
-      $('#fe_celsius').removeClass('fe_gray').addClass('fe_selected');
-    }
-  }
   
   // Go!
   weatherData.current = build_currently(r);
@@ -257,7 +247,10 @@ function ddg_spice_forecast(r) {
   } else {
     spiceData = [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]];
   }
-  
+
+  var other_unit = unit_labels[units].temperature === 'F' ? 'C' : 'F';
+  var altMeta = '<a id="fe_temp_switch"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a>';
+
   // Render/Display
     Spice.add({
         id: 'forecast',
@@ -271,7 +264,7 @@ function ddg_spice_forecast(r) {
             heading: weatherData.header,
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
             sourceName: 'Forecast.io',
-            altMeta: 'Temperatures in '+unit_labels[units].temperature+'&deg;',
+            altMeta: altMeta,
             variableTileWidth: true
         },
 
@@ -281,4 +274,73 @@ function ddg_spice_forecast(r) {
         }
 
     });
+
+  //convert temperature to specified unit
+  var convertTemp = function(unit, d){
+    if (unit === 'C') {
+      return (d-32)*(5/9);
+    } else if (unit === 'F') {
+      return d*(9/5) + 32;
+    }
+  }
+
+  //update the style of the F/C (make one bold and the other grayed out)
+  var updateTempSwitch = function(new_unit){
+    if (new_unit === "F"){
+      $('#fe_fahrenheit').removeClass('gray').addClass('bold');
+      $('#fe_celsius').removeClass('bold').addClass('gray');
+    } else {
+      $('#fe_celsius').removeClass('gray').addClass('bold');
+      $('#fe_fahrenheit').removeClass('bold').addClass('gray');
+    }
+  }
+
+  updateTempSwitch(unit_labels[units].temperature);
+
+  //when we press the small button, switch the temperature units
+  $('#fe_temp_switch').click(function(){
+    //initialize the temperatures with the API data
+    var temps = {
+      current: r.currently.temperature,
+      feelslike: r.currently.apparentTemperature,
+      daily: $.map(r.daily.data, function(e){
+        return {'tempMin': e.temperatureMin, 'tempMax': e.temperatureMax};
+      })
+    };
+
+    //if they want the units that aren't by the API, calculate the new temps
+    if (other_unit !== unit_labels[units].temperature) {
+      temps.current = convertTemp(other_unit, temps.current);
+      temps.feelslike = convertTemp(other_unit, temps.feelslike);
+      temps.daily = $.map(temps.daily, function(e){
+        var tempMin = convertTemp(other_unit, e.tempMin),
+            tempMax = convertTemp(other_unit, e.tempMax);
+        return {'tempMin': tempMin, 'tempMax': tempMax};
+      });
+    }
+    //insert the new temps in the html
+    var $link = $(this);
+    if (is_mobile){
+      $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
+      $('.fe_day--bar').each(function(i){
+        var day = temps.daily[i],
+            $this = $(this);
+
+        $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
+        $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
+      });
+    } else {
+      $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
+      $('.fe_day').each(function(i){
+        var day = temps.daily[i],
+            $this = $(this);
+
+        $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
+        $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
+      });
+    }
+
+    updateTempSwitch(other_unit);
+    other_unit = (other_unit === 'F') ? 'C' : 'F';
+  });
 }
