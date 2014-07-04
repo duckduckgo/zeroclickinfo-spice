@@ -46,11 +46,18 @@
                 sourceIcon: true,
                 sourceName: 'Reddit'
             },
-	    normalize: function(item) {
+        normalize: function(item) {
+
+        // Return a string saying how much time ago the post was created
         var timeFromNow = function() {
+
+            // Obtain post creation date in milliseconds
             var datePost = new Date(item.data.created_utc * 1000);
             var dateNow = new Date();
             var stringDate = "";
+
+            // If creation year is different from current year
+            // set the returned value to the number of years in between
             if (datePost.getUTCFullYear() < dateNow.getUTCFullYear()) {
                 var years = (dateNow.getUTCFullYear() - datePost.getUTCFullYear());
                 stringDate = years + " year";
@@ -58,7 +65,10 @@
                     stringDate += "s";
                 }
                 stringDate += " ago";
-            } 
+            }
+
+            // Else, if creation month preceeds the current,
+            // set the returned value to the number of months in between
             else if (datePost.getUTCMonth() < dateNow.getUTCMonth()) {
                 var months = (dateNow.getUTCMonth() - datePost.getUTCMonth());
                 stringDate = months + " month";
@@ -66,36 +76,41 @@
                     stringDate += "s";
                 }
                 stringDate += " ago";
-            } 
+            }
+
+            // Else, if creation day preceeds the current,
+            // set the returned value to the number of days in between
             else if (datePost.getUTCDate() < dateNow.getUTCDate()) {
                 var days = (dateNow.getUTCDate() - datePost.getUTCDate());
                 stringDate = days + " day";
                 if (days > 1) {
                     stringDate += "s";
-                } 
+                }
                 stringDate += " ago";
             } else {
+
+                // Creation date of the post is equal to the current, so it has been created today
                 stringDate = "today";
             }
             return stringDate;
         }
-		var a = {
-		    url: "http://www.reddit.com" + item.data.permalink,
-		    title: (item.data.title).replace(/&amp;/g, '&'),
+        var a = {
+            url: "http://www.reddit.com" + item.data.permalink,
+            title: (item.data.title).replace(/&amp;/g, '&'),
             subtitle: timeFromNow() + " on " + item.data.subreddit,
             iconArrow: {
                 url: DDG.get_asset_path('reddit_search','arrow_up.png')
             }
-		};
-		return a;
-	    },
+        };
+        return a;
+        },
             templates: {
                 group: 'text',
                 options: {
-		    footer: Spice.reddit_search.footer
+            footer: Spice.reddit_search.footer
                 },
-		detail: false,
-		item_detail: false
+        detail: false,
+        item_detail: false
             }
         });
     };
