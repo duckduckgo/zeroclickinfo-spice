@@ -12,7 +12,7 @@ topics "sysadmin";
 attribution github => ['https://github.com/mintsoft', 'mintsoft'],
                web => 'http://www.robtex.com/';
 
-triggers startend => 'reverse dns', 'dns', 'reverse', 'whois';
+triggers startend => 'reverse dns', 'reverse ip', 'dns', 'reverse', 'whois';
 
 spice to => 'https://www.robtex.com/ext/xapiq/?q=$1&filter=none&s=wip,asip,ddg&r=json';
 spice wrap_jsonp_callback => 1;
