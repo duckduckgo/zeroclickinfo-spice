@@ -4,11 +4,13 @@
 		if (!api_result || api_result.length === 0) {
 			return Spice.failed('trakt');
 		}
-		var SKIP_REGEX = / *(tv|show) */g;
-		var DEFAULT_IMAGE_REGEX = /^(?!.*http:\/\/slurm.trakt.us\/images\/(poster-dark|fanart-dark|banner)\.jpg).*$/;
-		var SKIP_ARRAY = ["tv", "show"];
-		var query = DDG.get_query().replace(SKIP_REGEX, "");
+		var SKIP_REGEX = / *(tv|show) */g,
+			DEFAULT_IMAGE_REGEX = /^(?!.*http:\/\/slurm.trakt.us\/images\/(poster-dark|fanart-dark|banner)\.jpg).*$/,
+			SKIP_ARRAY = ["tv", "show"],
+			query = DDG.get_query().replace(SKIP_REGEX, "");
+
 		api_result = api_result.slice(0, 12);
+		
 		$.each(api_result, function(ind, item) {
 			var s = item.ratings.loved - item.ratings.hated;
 			var order = Math.log(Math.max(Math.abs(s), 1)) / Math.LN10;
