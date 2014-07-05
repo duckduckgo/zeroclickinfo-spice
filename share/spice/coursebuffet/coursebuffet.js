@@ -10,6 +10,7 @@
       name: 'Online Courses',
       data: api_result["courses"],
       meta: {
+        itemType: "Courses",
         sourceName: "CourseBuffet",
         sourceUrl: "http://www.coursebuffet.com"+api_result["more_link"]
       },
