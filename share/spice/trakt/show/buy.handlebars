@@ -1,0 +1,15 @@
+{{#if ended}}
+Was available on
+{{else}}
+Watch
+{{/if}}
+{{#if is_daily}}
+	daily at {{air_time}}
+{{else}}
+	{{#if air_day}}
+		{{air_day}}s at {{air_time}}
+	{{/if}}
+{{/if}} on
+<span class="btn btn--primary">
+	{{network}}
+</span>

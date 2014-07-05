@@ -1,0 +1,12 @@
+{{#if ratings}}
+  <span class="{{icon_class}}" style="background-image: url('{{icon_url}}'); background-position: {{icon_image}}"></span>
+  {{ratings.percentage}}%
+  <span class="detail__separator"> | </span>
+{{/if}}
+{{#if runtime}}
+  <span class="detail__cooking-time">Run Time: {{time runtime}}</span>
+  <span class="detail__separator"> | </span>
+{{/if}}
+{{#if certification}}
+  <span class="detail__cooking-time">{{certification}}</span>
+{{/if}}
