@@ -32,18 +32,22 @@ foreach my $title (@title_list) {
 
 triggers query_lc => qr/\s*/;
 
+sub cbtrim { my $s = shift; $s =~ s/^\s+|\s+$//g; return $s };
+
 handle query_lc => sub {
 
   # MOOC provider specific search returns courses for the specified provider
   $_ =~ /(coursera|edx|udacity|saylor|novoed|futurelearn|iversity|open2study|openuped)/;
   if ($&) {
-    return "provider", $&, "$` $'";
+    my $q = "$` $'";
+    return "provider", $&, cbtrim($q);
   }
 
   # generic course search
   $_ =~ /course/;
   if ($&) {
-    return "standard","courses", "$` $'";
+    my $q = "$` $'";
+    return "standard","courses", cbtrim($q);
   }
 
   my $query = $_;
