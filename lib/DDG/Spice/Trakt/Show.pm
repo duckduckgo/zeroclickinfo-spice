@@ -2,7 +2,7 @@ package DDG::Spice::Trakt::Show;
 
 use DDG::Spice;
 
-primary_example_queries "when is adventure time on";
+primary_example_queries "prison tv shows";
 description "TV Show information";
 name "Trakt shows";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Trakt/Show.pm";
