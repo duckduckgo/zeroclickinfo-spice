@@ -11,13 +11,14 @@ topics "everyday", "entertainment", "social";
 category "entertainment";
 attribution github => ['https://github.com/TomBebbington','Tom Bebbington'];
 
-triggers startend => "tv show";
+triggers startend => "tv show", "tv shows", "trending on tv";
 
-spice to => 'http://api.trakt.tv/search/shows.json/{{ENV{DDG_SPICE_TRAKT_APIKEY}}}?query=$1&limit=12&callback={{callback}}';
+spice from => '([^/]+)/([^/]+)/([^/]+)';
+spice to => 'http://api.trakt.tv/$1/$2.json/{{ENV{DDG_SPICE_TRAKT_APIKEY}}}?limit=12&callback={{callback}}&query=$3';
 
 handle remainder => sub {
-    return $_ if $_;
-    return;
+    return "shows", "trending", "nil" if $_ =~/trending|best/ or $_ eq '';
+    return "search", "shows", $_;
 };
 
 1;

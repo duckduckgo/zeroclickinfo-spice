@@ -8,6 +8,13 @@
 		var DEFAULT_IMAGE_REGEX = /^(?!.*http:\/\/slurm.trakt.us\/images\/(poster-dark|fanart-dark|banner)\.jpg).*$/;
 		var SKIP_ARRAY = ["tv", "show"];
 		var query = DDG.get_query().replace(SKIP_REGEX, "");
+		api_result = api_result.slice(0, 12);
+		$.each(api_result, function(ind, item) {
+			var s = item.ratings.loved - item.ratings.hated;
+			var order = Math.log(Math.max(Math.abs(s), 1)) / Math.LN10;
+			var sign = s > 0 ? 1 : s < 0 ? -1 : 0;
+			item.hotness = sign * order;
+		});
 		Spice.add({
 			id: 'trakt',
 			name: 'TV',
@@ -38,6 +45,7 @@
 			},
 			relevancy: {
 				skip_words: SKIP_ARRAY,
+				dup: "title",
 				primary: [{
 					key: 'title',
 					strict: true
@@ -50,7 +58,13 @@
 					match: DEFAULT_IMAGE_REGEX,
 					strict: false
 				}]
-			}
+			},
+			sort_fields: {
+				rating: function(a, b) {
+					return a.hotness < b.hotness ? 1 : -1;
+				}
+			},
+			sort_default: "rating"
 		});
 		// Make sure we hide the title and ratings.
 		// It looks nice to show only the poster of the movie.
