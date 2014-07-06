@@ -139,7 +139,7 @@
 }
 
 .zci--stopwatch .lap-time.lap-total {
-    padding-right: 2.25em;
+    padding-right: 2.75em;
 }
 
 /*stack the big time divs if the screen is too narrow*/
@@ -156,5 +156,9 @@
 
     .zci--stopwatch .zci__body {
         padding-right: 1em;
+    }
+
+    .zci--stopwatch .lap-time {
+        padding-right: 1em !important;
     }
 }

@@ -59,7 +59,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     var current_time = updateStopwatch();
     var current_lap = current_time - last_lap;
     $split_list.prepend('<tr><td class="lap-num">' + lap_num + '</td><td class="lap-time lap-total">' +
-      formatTime(current_lap) + '</td><td class="lap-time">' + $total_time.html() + '</td></tr>');
+      $total_time.html() + '</td><td class="lap-time">' + formatTime(current_lap) + '</td></tr>');
     $split_list.removeClass('hidden');
     last_lap = current_time;
     lap_num++;
