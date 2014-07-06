@@ -24,7 +24,7 @@
 			meta: {
 				sourceName: "Trakt",
 				sourceUrl: "http://trakt.tv/search/shows?q="+encodeURIComponent(query),
-				itemType: 'TV Episode'
+				itemType: 'TV Episodes'
 			},
 			templates: {
 				group: 'media',
