@@ -2,7 +2,7 @@ package DDG::Spice::Trakt::Episode;
 
 use DDG::Spice;
 
-primary_example_queries "lemonhope tv episodes";
+primary_example_queries "stephen fry on tv";
 description "TV Episode information";
 name "Trakt episodes";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Trakt/Episode.pm";
