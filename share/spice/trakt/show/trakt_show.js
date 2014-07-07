@@ -11,7 +11,8 @@
 		var SKIP_REGEX = / *(tv|show) */g,
 			DEFAULT_IMAGE_REGEX = /^(?!.*http:\/\/slurm.trakt.us\/images\/(poster-dark|fanart-dark|banner)\.jpg).*$/,
 			SKIP_ARRAY = ["tv", "show"],
-			query = DDG.get_query().replace(SKIP_REGEX, "");
+			query = DDG.get_query().replace(SKIP_REGEX, ""),
+			isMobile = $('.is-mobile').length;
 
 		api_result = api_result.slice(0, 12);
 		
@@ -46,7 +47,7 @@
 					title: item.title,
 					heading: item.title + " (" + item.year + ")",
 					url: item.url,
-					abstract:  Handlebars.helpers.ellipsis(item.overview, 200),
+					abstract:  Handlebars.helpers.ellipsis(item.overview, isMobile ? 175 : 500)
 				};
 			},
 			relevancy: {
