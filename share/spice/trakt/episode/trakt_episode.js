@@ -44,7 +44,7 @@
 					image: item.episode.images.screen || item.show.images.fanart,
 					img: item.episode.images.fanart || item.episode.images.screen || item.episode.images.poster || item.show.images.fanart || item.show.images.poster,
 					title: item.episode.title + " - " + item.show.title,
-					heading: item.episode.title + "(" + item.show.title + ")",
+					heading: item.episode.title + "(" + item.show.title.split("(")[0] + ")",
 					url: item.episode.url,
 					abstract:  Handlebars.helpers.ellipsis(item.episode.overview, 200),
 				};
