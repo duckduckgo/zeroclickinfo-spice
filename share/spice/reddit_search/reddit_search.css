@@ -3,7 +3,7 @@
 }
 
 .tile--reddit_search .tile__title {
-    margin-bottom: 1em;
+    margin-bottom: 0.25em;
     height: 5em;
 }
 
@@ -12,12 +12,11 @@
 }
 
 .tile--reddit_search .tile__footer {
-    bottom: 0.5em;
+    margin-bottom: 0.5em;
 }
 
-.tile--reddit_search .tile__title__sub {
-    position: absolute;
-    bottom: 2.1em;
+.tile--reddit_search .tile__footer .sub-title {
+    margin-bottom: 0.25em;
 }
 
 .tile--reddit_search .tile__content {
