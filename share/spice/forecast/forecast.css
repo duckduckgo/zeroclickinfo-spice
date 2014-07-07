@@ -248,3 +248,11 @@
 #fe_temp_switch .bold {
 	font-weight: bold;
 }
+
+.dark-header #fe_temp_switch {
+	color: #dadada;
+}
+
+.dark-header #fe_temp_switch .gray {
+	color: #696969;
+}
