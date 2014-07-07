@@ -6,7 +6,7 @@
         }
 
         var sorted = api_result.routes.sort(function(a, b){
-            return timeInMins(a.departure_time) - timeInMins(b.departure_time);
+            return actualDepartureTime(a) - actualDepartureTime(b);
         });
 
         Spice.add({
@@ -34,8 +34,8 @@
 
                 if (!item.status) item.status = "On Time";
                 return {
-                    departure_time: actualDepartureTime(item),
-                    arrival_time: format_time(timeInMins(item.arrival_time)),
+                    departure_time: format_time(actualDepartureTime(item)),
+                    arrival_time: format_time(actualArrivalTime(item)),
                     status: actualStatus(item),
                     line: item.line.replace('Line', ''),
                     cancelled: item.status === "Cancelled",
@@ -44,6 +44,8 @@
             }
         });
     };
+
+    var delayed_regex = new RegExp(/In (\d+) Min/);
 
     function padZeros(n, len){
         var s = n.toString();
@@ -74,7 +76,7 @@
 
     //find how many minutes the train is delayed
     function delayedMins(item){
-        var match = new RegExp(/In (\d+) Min/).exec(item.status);
+        var match = delayed_regex.exec(item.status);
         if (match && match.length > 1){
             var mins = parseInt(match[1]),
                 now = new Date(),
@@ -86,7 +88,11 @@
     }
 
     function actualDepartureTime(item){
-        return format_time(timeInMins(item.departure_time) + delayedMins(item));
+        return timeInMins(item.departure_time) + delayedMins(item);
+    }
+
+    function actualArrivalTime(item){
+        return timeInMins(item.arrival_time) + delayedMins(item);
     }
 
     function actualStatus(item){
@@ -94,7 +100,7 @@
             return 'Delayed from ' + format_time(timeInMins(item.departure_time));
         }
         if (item.status === "Boarding") {
-            return 'Now Boarding'
+            return 'Now Boarding';
         }
         var match = new RegExp(/In (\d+) Min/).exec(item.status);
         if (match && match.length > 1){
