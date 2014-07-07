@@ -44,7 +44,7 @@
 					image: item.images.poster,
 					img: item.images.fanart || item.images.poster,
 					title: item.title,
-					heading: item.title + "(" + item.year + ")",
+					heading: item.title + " (" + item.year + ")",
 					url: item.url,
 					abstract:  Handlebars.helpers.ellipsis(item.overview, 200),
 				};
