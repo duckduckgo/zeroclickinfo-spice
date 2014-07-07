@@ -73,4 +73,12 @@
 			sort_default: "rating"
 		});
 	};
+	// Return the full name of this episode
+	Handlebars.registerHelper('full_name', function(season, episode) {
+		if(season === 0) {
+			return "Special " + episode;
+		} else {
+			return "Season " + season + ", Episode " + episode;
+		}
+	});
 }(this));
