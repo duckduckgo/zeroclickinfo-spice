@@ -97,7 +97,7 @@
         var a = {
             url: "http://www.reddit.com" + item.data.permalink,
             title: (item.data.title).replace(/&amp;/g, '&'),
-            subtitle: timeFromNow() + " on " + item.data.subreddit,
+            subTitle: timeFromNow() + " on " + item.data.subreddit,
             iconArrow: {
                 url: DDG.get_asset_path('reddit_search','arrow_up.png')
             }
