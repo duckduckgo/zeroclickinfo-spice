@@ -21,7 +21,6 @@
 			var signed = sign(s);
 			item.hotness = signed * order;
 		});
-		console.log(api_result);
 		Spice.add({
 			id: 'trakt',
 			name: 'TV',
