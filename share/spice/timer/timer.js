@@ -30,6 +30,7 @@
             $second_input = $('#second_input'),
             $timer = $('#timer'),
             $reset_btn = $('#reset_btn'),
+            $startstop_btn = $('#startstop_btn'),
             $done_modal = $('#done_modal'),
             soundUrl = DDG.get_asset_path('timer', 'alarm.mp3');
 
@@ -41,7 +42,7 @@
             var mins = Math.floor(t / 60);
             t = t % 60;
             var secs = Math.floor(t);
-            if (hours > 0) return padZeros(hours, 2) + ":" + padZeros(mins, 2) + ":" + padZeros(secs, 2);
+            if (hours > 0) return hours + ":" + padZeros(mins, 2) + ":" + padZeros(secs, 2);
             return padZeros(mins, 2) + ":" + padZeros(secs, 2);
         }
 
@@ -71,8 +72,7 @@
             }
         }
 
-        //parse the input if the timer was just set and start it
-        $('.btn-wrapper').on('click', '.timer__btn.timer__start', function(e){
+        function startTimer(e){
             if (!started){
                 var start_mins = parseInt($minute_input.val()) || 0;
                 var start_secs = parseInt($second_input.val()) || 0;
@@ -101,23 +101,26 @@
             $('#timer_display').removeClass('timer__hidden');
             $reset_btn.prop('disabled', false);
 
-            $(this).removeClass('timer__start').addClass('timer__pause').html('PAUSE');
-        });
+            $startstop_btn.removeClass('timer__start').addClass('timer__pause').html('PAUSE');
+        }
+
+        //parse the input if the timer was just set and start it
+        $('.btn-wrapper').on('click', '.timer__btn.timer__start', startTimer);
 
         //pause the timer
         $('.btn-wrapper').on('click', '.timer__btn.timer__pause', function(){
             clearInterval(update_int);
-            $(this).removeClass('timer__pause').addClass('timer__start').html('START');
+            $startstop_btn.removeClass('timer__pause').addClass('timer__start').html('START');
         });
 
         function resetTimer(){
-            $(this).prop('disabled', true);
             $('#timer_input').removeClass('timer__hidden');
             $('#timer_display').addClass('timer__hidden');
             clearInterval(update_int);
             started = false;
             $('.timer__btn.timer__pause').removeClass('timer__pause').addClass('timer__start').html('START');
             $reset_btn.prop('disabled', true);
+            $startstop_btn.prop('disabled', true);
         }
 
         //reset everything
@@ -128,19 +131,25 @@
             $done_modal.hide();
             resetTimer();
         })
-
-        //make sure the bang dropdown doesn't trigger
+        
         $('.timer__time-input').keydown(function(event){
+            //make sure the bang dropdown doesn't trigger
             event.stopPropagation();
+
+            //start the timer if they hit enter
+            if (event.which == 13) startTimer(event);
+
+            //enable/disable the start button
+            //(timeout is because the value doesn't get updated immediately)
+            setTimeout(function(){
+                if ($minute_input.val() || $second_input.val()){
+                    $startstop_btn.prop('disabled', false);
+                } else {
+                    $startstop_btn.prop('disabled', true);
+                }
+            }, 1);
+            
         });
-
-        //hide the source link
-        if ($('#spice_timer').length){
-            $('#zero_click_more_at_wrap').hide();
-
-            $('#zero_click_wrapper2 #zero_click_abstract').attr('style',
-                'padding: 0 !important; margin: 4px 0 0 0 !important');
-        }
 
         //called when input is inserted, forcing numeric input
         function numericOnly(){
@@ -155,7 +164,6 @@
             return !(e.which > 57 || e.which == 32) || (e.which >= 96 && e.which <= 105); //numpad
         }
 
-        $('#minute_input').keydown(typeNumericOnly).change(numericOnly).click(numericOnly);
-        $('#second_input').keydown(typeNumericOnly).change(numericOnly).click(numericOnly);
+        $('.timer__time-input').keydown(typeNumericOnly).change(numericOnly).click(numericOnly);
     }
 }(this));
