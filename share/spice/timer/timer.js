@@ -24,6 +24,30 @@
             return s;
         }
 
+        function parseQueryForTime(){
+            var q = DDG.get_query().replace('timer', '').replace('online', ''),
+                regex = new RegExp(/(\d+) ?(min|sec|h)/),
+                time = 0;
+
+            console.log(q);
+            console.log(regex.exec(q));
+
+            while (true){
+                var match = regex.exec(q);
+                if (match){
+                    var val = parseInt(match[1]),
+                        unit = match[2];
+                    if (unit === 'h') time += val*60*60;
+                    else if (unit === 'min') time += val*60;
+                    else if (unit === 'sec') time += val;
+                    q = q.replace(match[0], '');
+                } else {
+                    break;
+                }
+            }
+            return time;
+        }
+
         var time_left, last_update, update_int,
             started = false,
             $minute_input = $('#minute_input'),
@@ -32,7 +56,16 @@
             $reset_btn = $('#reset_btn'),
             $startstop_btn = $('#startstop_btn'),
             $done_modal = $('#done_modal'),
-            soundUrl = DDG.get_asset_path('timer', 'alarm.mp3');
+            soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
+            enteredTime = parseQueryForTime();
+
+        if (enteredTime) {
+            if (Math.floor(enteredTime / 60) > 0) {
+                $minute_input.val(Math.floor(enteredTime / 60));
+            }
+            $second_input.val(enteredTime % 60);
+            $startstop_btn.prop('disabled', false);
+        }
 
         //go from a time in ms to human-readable
         function formatTime(t){
@@ -72,7 +105,7 @@
             }
         }
 
-        function startTimer(e){
+        function startTimer(){
             if (!started){
                 var start_mins = parseInt($minute_input.val()) || 0;
                 var start_secs = parseInt($second_input.val()) || 0;
@@ -137,7 +170,7 @@
             event.stopPropagation();
 
             //start the timer if they hit enter
-            if (event.which == 13) startTimer(event);
+            if (event.which == 13) startTimer();
 
             //enable/disable the start button
             //(timeout is because the value doesn't get updated immediately)
