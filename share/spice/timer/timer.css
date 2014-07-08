@@ -35,6 +35,12 @@
     border-color: #b4b4b4;
 }
 
+.zci--timer .timer__btn.timer__start[disabled] {
+    color: #ccc;
+    border-color: #62cd81;
+    background-color: #62cd81;
+}
+
 .zci--timer .spice-pane {
     width: 45%;
     height: 100%;
@@ -169,7 +175,8 @@
     }
 
     .zci--timer .timer__done-modal > div {
-        margin: 20% auto;
+        margin: 40% auto;
+        width: 80%;
     }
 }
 
@@ -179,6 +186,10 @@
         width: 25%;
         font-size: .85em;
         margin-top: 0;
+    }
+
+    .zci--timer .timer__done-modal > div {
+        margin: 30% auto;
     }
 }
 
