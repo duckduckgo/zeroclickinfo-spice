@@ -4,7 +4,8 @@
 
 .tile--njt .njt__time {
 	font-size: 2.3em;
-	color: #292929;
+	color: #333;
+	font-weight: 300;
 }
 
 .tile--njt .njt__details {
@@ -28,7 +29,7 @@
 }
 
 .tile--njt .njt__status {
-	color: #595959;
+	color: #666;
 	margin-top: 6px;
 }
 
