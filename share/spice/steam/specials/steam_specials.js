@@ -13,7 +13,7 @@
             return Spice.failed('specials');  
         }
         var idarray = api_result.tabs.viewall.items;
-        queryexec = encodeURIComponent((idarray.map(function(elem){return elem.id;}).join(",")));
+        queryexec = encodeURIComponent(($.map(idarray,function(elem){return elem.id;}).join(",")));
         $.getScript("/js/spice/steam/list_specials/" + queryexec);
     };
 
