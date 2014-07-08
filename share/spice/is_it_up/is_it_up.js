@@ -10,7 +10,7 @@
 
         Spice.add({
             id: 'is_it_up',
-            name: 'Answer',
+            name: 'Is it up',
             data: api_result,
             signal: 'high',
             meta: {
@@ -23,7 +23,7 @@
                 group: 'base',
                 options: {
                     content: Spice.is_it_up.detail,
-		    moreAt: true
+            moreAt: true
                 }
             }
         });
