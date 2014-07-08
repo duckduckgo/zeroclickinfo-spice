@@ -16,10 +16,6 @@
     vertical-align:middle;
 }
 
-.zci--specials .discount {
-    color: red;
-}
-
 .zci--specials .detail__content {
     padding:0px;
     position:relative;
@@ -64,4 +60,12 @@
 
 .detail__media.detail__media--specials{
     width: 30%;
+}
+
+.zci--specials .key__color {
+    color:#2F82C2;
+}
+
+.zci--specials .discount {
+    color:#C9481C;
 }
