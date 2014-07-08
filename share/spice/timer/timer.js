@@ -4,6 +4,7 @@
         Spice.add({
             id: "timer",
             name: "Timer",
+            signal: "high",
             data: {},
             meta: {
                 sourceName: "Timer",
@@ -171,17 +172,15 @@
 
             //start the timer if they hit enter
             if (event.which == 13) startTimer();
+        });
 
-            //enable/disable the start button
-            //(timeout is because the value doesn't get updated immediately)
-            setTimeout(function(){
-                if ($minute_input.val() || $second_input.val()){
-                    $startstop_btn.prop('disabled', false);
-                } else {
-                    $startstop_btn.prop('disabled', true);
-                }
-            }, 1);
-            
+        $('.timer__time-input').keyup(function(){
+            //enable the button if a number was entered
+            if ($minute_input.val() || $second_input.val()){
+                $startstop_btn.prop('disabled', false);
+            } else {
+                $startstop_btn.prop('disabled', true);
+            }
         });
 
         //called when input is inserted, forcing numeric input
@@ -200,3 +199,5 @@
         $('.timer__time-input').keydown(typeNumericOnly).change(numericOnly).click(numericOnly);
     }
 }(this));
+
+ddg_spice_timer();
