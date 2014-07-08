@@ -177,11 +177,6 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Kwixer'
     ),
-    'ron howard director' => test_spice(
-        '/js/spice/kwixer/ron%20howard%20director',
-        call_type => 'include',
-        caller => 'DDG::Spice::Kwixer'
-    ),
 );
 
 done_testing;
