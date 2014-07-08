@@ -10,7 +10,7 @@
     var queryexec
     env.ddg_spice_steam_specials = function(api_result) {
         if(!api_result) {
-            return Spice.failed('specials')  
+            return Spice.failed('specials');  
         }
         var idarray = api_result.tabs.viewall.items;
         queryexec = encodeURIComponent((idarray.map(function(elem){return elem.id;}).join(",")));
@@ -22,37 +22,46 @@
         if (!api_result) {
             return Spice.failed('specials');
         }
-    
-        var query = decodeURIComponent(queryexec)
+        
+        if(!queryexec) {
+            return Spice.failed('specials');
+        }
+   
+        var query = decodeURIComponent(queryexec);
     	
         // Extract our query
         var gameids = query.split(",");
         var results = [];
-        var j = 0
+        var j = 0;
         var genre = [];
 
         // Organize data to display
         for(var i = 0; i < gameids.length; i++) {
-            if(api_result[gameids[i]].success == true) {
-                results.push(api_result[gameids[i]].data.price_overview)
+            if(api_result[gameids[i]].success == true) { //successfully fetched information on game
+                results.push(api_result[gameids[i]].data.price_overview);
                 results[j].url = "http://store.steampowered.com/app/"+api_result[gameids[i]].data.steam_appid;
-                results[j].name = api_result[gameids[i]].data.name
-                results[j].image = api_result[gameids[i]].data.header_image
+                results[j].name = api_result[gameids[i]].data.name;
+                results[j].image = api_result[gameids[i]].data.header_image;
                 if(api_result[gameids[i]].data.metacritic) {
-                    results[j].metacritic = api_result[gameids[i]].data.metacritic	
+                    results[j].metacritic = api_result[gameids[i]].data.metacritic;
                 } 
                 if(api_result[gameids[i]].data.genres) {
                     $.each(api_result[gameids[i]].data.genres, function(index, value) {
-                        genre.push(value.description)
+                        genre.push(value.description);
                     });
-                    results[j].genre = genre.join(", ")
+                    results[j].genre = genre.join(", ");
                 }
-                results[j].platforms = api_result[gameids[i]].data.platforms
-                results[j].ss = (api_result[gameids[i]].data.screenshots).slice(0,4)
-                genre = []
-                j++
+                results[j].platforms = api_result[gameids[i]].data.platforms;
+                results[j].ss = (api_result[gameids[i]].data.screenshots).slice(0,4);
+                genre = [];
+                j++;
         }
     }
+
+    if(!results) {
+        return Spice.failed('specials');
+    }
+
     Spice.add({
         id: "specials",
         name: "Steam Specials",
