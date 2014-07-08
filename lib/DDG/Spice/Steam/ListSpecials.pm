@@ -12,10 +12,9 @@ triggers any => "///***never trigger***///";
 
 spice wrap_jsonp_callback => 1;
 
-my ($decoded, $idmap);
-
 handle remainder => sub {
-        return;
+        return $_ if $_;
+	return;
 };
 
 1;
