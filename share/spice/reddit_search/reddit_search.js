@@ -51,15 +51,27 @@
         // Return a string saying how much time ago the post was created
         var timeFromNow = function() {
 
-            // Obtain post creation date in milliseconds
-            var datePost = new Date(item.data.created_utc * 1000);
+            // Convert post creation date to milliseconds and get exact time of creation
+            var datePost = new Date(item.data.created * 1000);
             var dateNow = new Date();
+
+            // Get how many milliseconds from now the post was created
+            var datePostMillisec = dateNow.getTime() - datePost.getTime();
+
+            var yearMillisec = 31540000000; // Milliseconds in a year
+            var monthMillisec = 2628000000;  // Milliseconds in a month
+            var dayMillisec = 86400000;  // Milliseconds in a day
+
+            // Get how many years, months and days from now the post was created
+            var yearsFromNow = datePostMillisec / yearMillisec;
+            var monthsFromNow = datePostMillisec / monthMillisec;
+            var daysFromNow = datePostMillisec / dayMillisec;
             var stringDate = "";
 
-            // If creation year is different from current year
+            // If the post was created more than one year ago,
             // set the returned value to the number of years in between
-            if (datePost.getUTCFullYear() < dateNow.getUTCFullYear()) {
-                var years = (dateNow.getUTCFullYear() - datePost.getUTCFullYear());
+            if (yearsFromNow > 1) {
+                var years = Math.floor(yearsFromNow);
                 stringDate = years + " year";
                 if (years > 1) {
                     stringDate += "s";
@@ -67,10 +79,10 @@
                 stringDate += " ago";
             }
 
-            // Else, if creation month preceeds the current,
+            // Else, if the post was created more than one month ago,
             // set the returned value to the number of months in between
-            else if (datePost.getUTCMonth() < dateNow.getUTCMonth()) {
-                var months = (dateNow.getUTCMonth() - datePost.getUTCMonth());
+            else if (monthsFromNow > 1) {
+                var months = Math.floor(monthsFromNow);
                 stringDate = months + " month";
                 if (months > 1) {
                     stringDate += "s";
@@ -78,10 +90,10 @@
                 stringDate += " ago";
             }
 
-            // Else, if creation day preceeds the current,
+            // Else, if the post was created more than one day ago,
             // set the returned value to the number of days in between
-            else if (datePost.getUTCDate() < dateNow.getUTCDate()) {
-                var days = (dateNow.getUTCDate() - datePost.getUTCDate());
+            else if (daysFromNow > 1) {
+                var days = Math.floor(daysFromNow);
                 stringDate = days + " day";
                 if (days > 1) {
                     stringDate += "s";
