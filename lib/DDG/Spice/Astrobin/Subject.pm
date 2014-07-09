@@ -15,7 +15,7 @@ attribution github => ["https://github.com/killerfish", "Usman Raza"],
             twitter => ["https://twitter.com/f1shie", "Usman Raza"];
 
 triggers start => "astrophoto", "astrophotography", "astronomy pictures";
-spice to => 'http://www.astrobin.com/api/v1/image/?title__icontains=$1&api_key=4700a6eb2e4738230adc35f695e407bca0ec399c&api_secret=3560d096f280e38d1a94e12b0d4063f943954f03&format=json';
+spice to => 'http://www.astrobin.com/api/v1/image/?title__icontains=$1&api_key={{ENV{DDG_SPICE_ASTROBIN_APIKEY}}}&api_secret={{ENV{DDG_SPICE_ASTROBIN_APISECRET}}}&format=json';
 
 spice wrap_jsonp_callback => 1;
 
