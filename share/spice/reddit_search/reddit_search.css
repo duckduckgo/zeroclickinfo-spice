@@ -3,20 +3,21 @@
 }
 
 .tile--reddit_search .tile__title {
-    margin-bottom: 0.3em;
+    margin-bottom: 0.7em;
     height: 4.6em;
     font-size: 1.5em;
     line-height: 1.15em;
     font-weight: 400;
     color: #333;
+    text-overflow: clip;
 }
 
 .tile--reddit_search .tile__body {
-    height: 15em;
+    height: 14em;
 }
 
 .tile--reddit_search .tile__footer {
-    margin-bottom: 0.5em;
+    margin-bottom: 0;
 }
 
 .tile--reddit_search .tile__footer .sub-title {
@@ -25,5 +26,5 @@
 }
 
 .tile--reddit_search .tile__content {
-    height: 2.8em;
+    height: 1.5em;
 }
