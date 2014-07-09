@@ -36,9 +36,9 @@
 }
 
 .zci--timer .timer__btn.timer__start[disabled] {
-    color: #ccc;
-    border-color: #62cd81;
-    background-color: #62cd81;
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #f2f2f2;
 }
 
 .zci--timer .spice-pane {
