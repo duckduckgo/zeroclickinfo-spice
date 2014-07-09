@@ -116,7 +116,7 @@
 
 .zci--stopwatch td {
     text-align: center;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid rgba(155,155,155,.15);
 }
 
 .zci--stopwatch th {
