@@ -1,15 +1,7 @@
 <div>
-    <div>
-        Description: {{description}}
-    </div>
-   {{#if imaging_cameras}}
-       <div>
-           Imaging Camera: {{imaging_cameras}}
-       </div>
-   {{/if}}
-   {{#if imaging_telescopes}}
-       <div>
-           Imaging Telescope: {{imaging_telescopes}}
-       </div>
-   {{/if}}
+IMAGE
+    {{#if imaging_telescopes}}
+        IMAGING:TELE{{imaging_telescopes}}
+    {{/if}}
 </div>
+    
