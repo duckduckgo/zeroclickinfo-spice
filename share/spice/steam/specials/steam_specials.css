@@ -1,0 +1,71 @@
+.zci--specials .content {
+    font-weight:bold;
+    text-align:center;
+}
+
+.zci--specials .detail__separator {
+    padding: 0 5px;
+    color: #c5c5c5;
+}
+
+.zci--specials .metascorebox {
+    display:inline-block;   
+    overflow: hidden;
+    width: 50px; 
+    height: 50px;
+    vertical-align:middle;
+}
+
+.zci--specials .detail__content {
+    padding:0px;
+    position:relative;
+    top:0px;
+    left:0px
+}
+
+.zci--specials .metascorebox__content {
+    font-family: 'Open Sans';
+    color:white;
+    text-align:center;
+    vertical-align:middle;
+    line-height:50px;
+    font-weight:800;
+}
+
+.zci--specials .metascore__text {
+    display: inline-block;
+    vertical-align:middle;
+    padding-right:1em;
+    font-weight: bold;
+}
+
+.zci--specials .metascore__container {
+    display: inline-block;
+    padding-left:1em;
+    vertical-align:15%;
+    border-left:solid #7A7A99;
+}
+
+.zci--specials .game__title {
+    display: inline-block;
+    padding-right:1em;
+}
+
+.zci--specials .screenshots {
+    overflow:hidden;
+    float:left;
+    padding-right:2em;
+    padding-bottom:2em;
+}
+
+.detail__media.detail__media--specials{
+    width: 30%;
+}
+
+.zci--specials .key__color {
+    color:#2F82C2;
+}
+
+.zci--specials .discount {
+    color:#C9481C;
+}
