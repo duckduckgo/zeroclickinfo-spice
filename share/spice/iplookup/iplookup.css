@@ -5,7 +5,9 @@ ul.blacklists
     padding-left: 2em;
 }
 
-iplookup_domain_name 
+.iplookup_domain_name 
 {
 	font-size: 2em;
+	margin-bottom: 0;
+	
 }
