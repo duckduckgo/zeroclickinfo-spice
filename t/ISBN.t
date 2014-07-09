@@ -53,7 +53,7 @@ ddg_spice_test(
     ),
     # not triggered (because remainder length is not 10 or 13)
     'isbn lookup 42' => undef,
-    # not triggered (because remainder is not purely a number)
+    # not triggered (because remainder after cleanup is not purely a number)
     'isbn lookup Germany 7-1 Brazil' => undef,
 );
 
