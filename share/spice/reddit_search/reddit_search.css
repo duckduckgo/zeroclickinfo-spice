@@ -3,8 +3,12 @@
 }
 
 .tile--reddit_search .tile__title {
-    margin-bottom: 0.25em;
-    height: 5em;
+    margin-bottom: 0.3em;
+    height: 4.6em;
+    font-size: 1.5em;
+    line-height: 1.15em;
+    font-weight: 400;
+    color: #333;
 }
 
 .tile--reddit_search .tile__body {
@@ -17,8 +21,9 @@
 
 .tile--reddit_search .tile__footer .sub-title {
     margin-bottom: 0.25em;
+    color: #aaa;
 }
 
 .tile--reddit_search .tile__content {
-    height: 3em;
+    height: 2.8em;
 }
