@@ -19,23 +19,25 @@
 		if(!item.title) {
 		    item.title = "M31"
 		}
-		console.log(item.url_thumb);
+		console.log(item.url_regular);
                 return {
-		    image: item.url_thumb,
+		    image: item.url_regular,
                     img_m: item.url_regular,
-                    title: item.title,
+                    img: item.url_regular,
                     heading: item.title,
 		    url: item.url_thumb,
                 };
             },
-            templates: {
+	     templates: {
                 group: 'media',
 		options: {
-			content: Spice.astrobin_subject.content,
-			buy: Spice.astrobin_subject.buy,
-                }
-	    },
+			subtitle_content: Spice.astrobin_subject.content,
+			buy: Spice.astrobin_subject.buy
+		}
+            }
+	
 		
         });
+Spice.getDOM('astrosubject').find('.tile__body').addClass('is-hidden');
 };
 }(this));
