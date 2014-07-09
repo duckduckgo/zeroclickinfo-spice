@@ -24,16 +24,16 @@
         var months = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."];
 
 
-        var people = api_result["people"];
+        var people = api_result.people;
 
         people = people.sort(function(a, b){
             //Sort by launch date. The dates are YYYY-MM-DD, so we can just use alpha sort.
             return a.launchdate < b.launchdate ? -1 : (a.launchdate > b.launchdate ? 1 : 0);
         });
 
-        for (var i in people) {
+        for (var i = 0; i < people.length; i++) {
             //add 2-letter country code
-            people[i]["country_code"] = codes[people[i]["country"]];
+            people[i].country_code = codes[people[i].country];
 
             //compute number of days in space
             var launchyear = people[i].launchdate.substring(0, 4);
@@ -42,14 +42,14 @@
             var launchdate = new Date(launchyear, launchmonth, launchday, 0, 0, 0, 0);
 
             var elapsed = today - launchdate;
-            people[i]["elapsed"] = Math.floor(elapsed / 86400000);  // 1000ms * 60s * 60m * 24h
+            people[i].elapsed = Math.floor(elapsed / 86400000);  // 1000ms * 60s * 60m * 24h
 
             //format launchdate per locale
             //people[i]["launchdate"] = launchdate.toLocaleDateString("", {year: "numeric", month: "short", day: "numeric"});
-            people[i]["launchdate"] = months[launchdate.getMonth()] + " " + launchdate.getDate() + ", " + launchdate.getFullYear();
+            people[i].launchdate = months[launchdate.getMonth()] + " " + launchdate.getDate() + ", " + launchdate.getFullYear();
 
             //rename title because it conflicts with template
-            people[i]["position"] = people[i]["title"];
+            people[i].position = people[i].title;
         }
 
         //The icon template group won't show anything if there are zero items, but we want to show "no one is in space" in that case
@@ -58,7 +58,7 @@
             id: "people_in_space",
             name: "Answer",
             meta: {
-                itemType: (api_result.number == 1 ? "Person" : "People"),
+                itemType: (api_result.number === 1 ? "Person" : "People"),
                 sourceName: "How Many People Are In Space Right Now?",
                 sourceUrl: "http://www.howmanypeopleareinspacerightnow.com/"
             }
@@ -93,5 +93,5 @@
         }
 
         Spice.add(o);
-    }
+    };
 }(this));
