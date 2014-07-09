@@ -1,7 +1,13 @@
 <div>
-IMAGE
-    {{#if imaging_telescopes}}
-        IMAGING:TELE{{imaging_telescopes}}
+    {{#if description}}
+        Description: {{description}} <br>
     {{/if}}
+    {{#if imaging_telescopes}}
+        Imaging telescopes: {{imaging_telescopes}} <br>
+    {{/if}}
+    {{#if imaging_cameras}}
+        Imaging cameras: {{imaging_cameras}} <br>
+    {{/if}}
+    View: <a href='{{url_hd}}'>High Definition</a>
 </div>
     

@@ -11,8 +11,8 @@
         if(!api_result) {
             return Spice.failed('apod');  
         }
-        var idarray = api_result.objects[0].image.split("/");
-        $.getScript("/js/spice/astrobin/fetch_id/" + idarray[4]);
+        var getimageid = api_result.objects[0].image.split("/");
+        $.getScript("/js/spice/astrobin/fetch_id/" + getimageid[4]);
     };
 
     
@@ -37,16 +37,16 @@
                 var boxData;
                 if (item.imaging_telescopes || item.imaging_cameras) {
                     boxData = [{heading: 'Imaging Info:'}];
-                        if(item.imaging_telescopes) {
-                            boxData.push({
-                                label: "Telescopes: " + item.imaging_telescopes
-                            });
-                        }
-                        if(item.imaging_cameras) {
-                            boxData.push({
-                                label: "Cameras: " + item.imaging_cameras
-                            });
-                        }
+                    if(item.imaging_telescopes) {
+                        boxData.push({
+                            label: "Telescopes: " + item.imaging_telescopes
+                        });
+                    }
+                    if(item.imaging_cameras) {
+                        boxData.push({
+                            label: "Cameras: " + item.imaging_cameras
+                        });
+                    }
                 }
                 return {
                     image: item.url_regular,
