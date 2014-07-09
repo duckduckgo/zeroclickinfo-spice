@@ -2,9 +2,10 @@
     "use strict";
 
     env.ddg_spice_astrobin_subject = function(api_result) {
-        if (!api_result) {
+        if (!api_result || (api_result.objects.length < 1)) {
             return Spice.failed('astrosubject');
         }
+
     
         Spice.add({
             id: "astrosubject",
