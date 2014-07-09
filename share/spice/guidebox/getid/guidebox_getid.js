@@ -60,7 +60,14 @@
                         buy: Spice.guidebox_getid.buy
                     }
                 },
-                normalize: function(item){
+                normalize: function(item) {
+                    // We have to check if the required properties exist before we do anything.
+                    // Returning null skips the item and prevents it from getting displayed.
+                    if(!DDG.getProperty(item, 'episode_name') || !DDG.getProperty(item, 'season_number') || 
+                       !DDG.getProperty(item, 'overview')) {
+                        return null;
+                    }
+                    
                     var subtitle_tile = "Season "+ item.season_number+ ", #" + item.episode_number;
                     var subtitle_detail = "(Season "+ item.season_number+ ", #" + item.episode_number+")";
 
@@ -81,13 +88,13 @@
                         price: aired
                     }
                 },
-                relevancy: {
-                    primary: [
-                        {required: 'episode_name'},
-                        {required: 'season_number'},
-                        {required: 'overview'}
-                    ]
-                }
+//                 relevancy: {
+//                     primary: [
+//                         {required: 'episode_name'},
+//                         {required: 'season_number'},
+//                         {required: 'overview'}
+//                     ]
+//                }
             });
         });
     }
