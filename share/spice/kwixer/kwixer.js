@@ -40,7 +40,7 @@
                     heading: item.ResourceTitle,
                     ratingText: item.ResourceYear,
                     url: "https://kwixer.com/#/watching/movie/" + item.ResourceId
-                }
+                };
             },
             templates: {
                 group: 'media',
