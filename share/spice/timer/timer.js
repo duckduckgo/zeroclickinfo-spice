@@ -1,3 +1,8 @@
+/*
+Audio file is Notification Up 2 by FoolBoyMedia (http://www.freesound.org/people/FoolBoyMedia/sounds/234523/)
+License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
+*/
+
 (function (env) {
     "use strict";
     env.ddg_spice_timer = function(api_result) {
@@ -57,7 +62,7 @@
             $reset_btn = $('#reset_btn'),
             $startstop_btn = $('#startstop_btn'),
             $done_modal = $('#done_modal'),
-            soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
+            soundUrl = DDG.get_asset_path('timer', 'alarm.wav'),
             enteredTime = parseQueryForTime();
 
         if (enteredTime) {
