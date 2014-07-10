@@ -24,7 +24,12 @@ my $is_debug = 0;
 my $tlds_qr = qr/(?:c(?:o(?:m|op)?|at?|[iykgdmnxruhcfzvl])|o(?:rg|m)|n(?:et?|a(?:me)?|[ucgozrfpil])|e(?:d?u|[gechstr])|i(?:n(?:t|fo)?|[stqldroem])|m(?:o(?:bi)?|u(?:seum)?|i?l|[mcyvtsqhaerngxzfpwkd])|g(?:ov|[glqeriabtshdfmuywnp])|b(?:iz?|[drovfhtaywmzjsgbenl])|t(?:r(?:avel)?|[ncmfzdvkopthjwg]|e?l)|k[iemygznhwrp]|s[jtvberindlucygkhaozm]|u[gymszka]|h[nmutkr]|r[owesu]|d[kmzoej]|a(?:e(?:ro)?|r(?:pa)?|[qofiumsgzlwcnxdt])|p(?:ro?|[sgnthfymakwle])|v[aegiucn]|l[sayuvikcbrt]|j(?:o(?:bs)?|[mep])|w[fs]|z[amw]|f[rijkom]|y[eut]|qa)/i;
 
 # regex for parsing URLs
-my $url_qr = qr/(?:http:\/\/)?([^\s\.]*\.)*([^\s\.]*?)\.($tlds_qr)(\:?[0-9]{1,4})?([^\s]*)/;
+my $url_qr = qr/(?:http:\/\/)?    # require http
+                ([^\s\.]*\.)*     # capture any subdomains
+                ([^\s\.]*?)       # capture the domain
+                \.($tlds_qr)      # capture the tld
+                (\:?[0-9]{1,4})?  # look for a port, such as L3000
+                ([^\s]*)/x;       # look for an extended path
 
 # additional keywords that trigger this spice
 my $whois_keywords_qr = qr/whois|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns|(?:how\sto\s|)buy/i;
