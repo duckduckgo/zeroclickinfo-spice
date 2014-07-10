@@ -187,9 +187,11 @@
         font-size: .85em;
         margin-top: 0;
     }
+}
 
+@media screen and (min-width: 420px) and (max-width: 640px) {
     .zci--timer .timer__done-modal > div {
-        margin: 30% auto;
+        margin: 25% auto;
     }
 }
 
