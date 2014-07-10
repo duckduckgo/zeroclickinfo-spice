@@ -32,13 +32,13 @@
                             { required: 'url'},
                             { required: 'title'}
                         ]
-                    }
+                    },
                     img             :   DDG.getProperty(item, "cover.medium"),
                     heading         :   main_title, 
                     publisher       :   toTitleCase(DDG.getProperty(item, "publishers.0.name")),
                     year            :   /\d{4}/.exec(DDG.getProperty(item, "publish_date")), // get only the year
                     pages           :   DDG.getProperty(item, "number_of_pages"),
-                    url             :   DDG.getProperty(item, "url"),
+                    url             :   DDG.getProperty(item, "url")
                 };
             },
 
