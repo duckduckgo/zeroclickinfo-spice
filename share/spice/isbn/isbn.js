@@ -7,7 +7,7 @@
         }
 
         api_result = api_result[Object.keys(api_result)[0]]; // Strip off envelope
-        
+
         Spice.add({
             id: 'isbn',
             name: 'Book',
@@ -19,19 +19,26 @@
                 sourceName: 'Open Library',
                 sourceUrl: api_result.url
             },
-
+            
             normalize: function (item) {
-                var main_title = toTitleCase(item.title); // fail if not present
+                var main_title = toTitleCase(DDG.getProperty(item, "title"));
                 if (DDG.getProperty(item, "authors.0.name")) {
                     main_title += "(" + item.authors[0].name +")";
                 }
                 return {
-                    img             :   DDG.getProperty(item.cover, "medium"),
+                    relevancy: {
+                        primary: [
+                            { required: 'publishers[0].name'},
+                            { required: 'url'},
+                            { required: 'title'}
+                        ]
+                    }
+                    img             :   DDG.getProperty(item, "cover.medium"),
                     heading         :   main_title, 
-                    publisher       :   toTitleCase(item.publishers[0].name), // fail if not present
+                    publisher       :   toTitleCase(DDG.getProperty(item, "publishers.0.name")),
                     year            :   /\d{4}/.exec(DDG.getProperty(item, "publish_date")), // get only the year
                     pages           :   DDG.getProperty(item, "number_of_pages"),
-                    url             :   item.url // fail if not present
+                    url             :   DDG.getProperty(item, "url"),
                 };
             },
 
