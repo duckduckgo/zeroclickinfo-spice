@@ -10,6 +10,7 @@
     font-weight: 400;
     color: #333;
     text-overflow: clip;
+    -webkit-line-clamp: 4;
 }
 
 .tile--reddit_search .tile__body {
