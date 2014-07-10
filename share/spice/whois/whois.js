@@ -108,9 +108,15 @@
 
 	// find the first object in the array that has a non-empty value at the key
 	var first = null;
-	arr.forEach( function(obj) {
-	    if(obj && typeof obj[key] !== 'undefined' && obj[key] !== '') {
-		if(!first) first = obj[key];
+	$.each(arr, function(index, obj) {
+	    // get the value at the specified key
+	    // (which could be undefined)
+	    var value = obj && obj[key];
+
+	    // update the first var if the value is truthy
+	    // and first hasn't already been found
+	    if(!first && value) {
+		first = value;
 	    }
 	});
 
@@ -120,7 +126,7 @@
 
     // Show message saying that the domain is available.
     var show_available = function(api_output) {
-	console.log('api result in show_available', api_output);
+	if(is_debug) console.log('api result in show_available', api_output);
 
 	Spice.add({
             id: "whois",
