@@ -27,9 +27,9 @@ my $tlds_qr = qr/(?:c(?:o(?:m|op)?|at?|[iykgdmnxruhcfzvl])|o(?:rg|m)|n(?:et?|a(?
 my $url_qr = qr/(?:http:\/\/)?    # require http
                 ([^\s\.]*\.)*     # capture any subdomains
                 ([^\s\.]*?)       # capture the domain
-                \.($tlds_qr)      # capture the tld
-                (\:?[0-9]{1,4})?  # look for a port, such as L3000
-                ([^\s]*)/x;       # look for an extended path
+                \.($tlds_qr)      # capture the tld, such as .com
+                (\:?[0-9]{1,4})?  # look for a port, such as :3000
+                ([^\s]*)/x;       # look for an extended path, such as /pages/about.htm
 
 # additional keywords that trigger this spice
 my $whois_keywords_qr = qr/whois|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns|(?:how\sto\s|)buy/i;
