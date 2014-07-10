@@ -36,9 +36,10 @@
             people[i].country_code = codes[people[i].country];
 
             //compute number of days in space
-            var launchyear = people[i].launchdate.substring(0, 4);
-            var launchmonth = people[i].launchdate.substring(5, 7) - 1; //subtract 1 because month is zero-indexed
-            var launchday = people[i].launchdate.substring(8, 10);
+            var launchdate = people[i].launchdate.split("-");
+            var launchyear = launchdate[0];
+            var launchmonth = launchdate[1] - 1; //subtract 1 because month is zero-indexed
+            var launchday = launchdate[2];
             var launchdate = new Date(launchyear, launchmonth, launchday, 0, 0, 0, 0);
 
             var elapsed = today - launchdate;
