@@ -44,23 +44,85 @@
                 itemType: "posts",
                 sourceUrl: "http://www.reddit.com/r/search/search?q=" + query,
                 sourceIcon: true,
-                sourceName: 'Reddit',
+                sourceName: 'Reddit'
             },
-	    normalize: function(item) {
-		var a = {
-		    url: "http://www.reddit.com" + item.data.permalink,
-		    title: item.data.title,
-		    subtitle: item.data.num_comments + " comments"
-		};
-		return a;
-	    },
+        normalize: function(item) {
+
+        // Return a string saying how much time ago the post was created
+        var timeFromNow = function() {
+
+            // Convert post creation date to milliseconds and get exact time of creation
+            var datePost = new Date(item.data.created * 1000);
+            var dateNow = new Date();
+
+            // Get how many milliseconds from now the post was created
+            var datePostMillisec = dateNow.getTime() - datePost.getTime();
+
+            var yearMillisec = 31540000000; // Milliseconds in a year
+            var monthMillisec = 2628000000;  // Milliseconds in a month
+            var dayMillisec = 86400000;  // Milliseconds in a day
+
+            // Get how many years, months and days from now the post was created
+            var yearsFromNow = datePostMillisec / yearMillisec;
+            var monthsFromNow = datePostMillisec / monthMillisec;
+            var daysFromNow = datePostMillisec / dayMillisec;
+            var stringDate = "";
+
+            // If the post was created more than one year ago,
+            // set the returned value to the number of years in between
+            if (yearsFromNow > 1) {
+                var years = Math.floor(yearsFromNow);
+                stringDate = years + " year";
+                if (years > 1) {
+                    stringDate += "s";
+                }
+                stringDate += " ago";
+            }
+
+            // Else, if the post was created more than one month ago,
+            // set the returned value to the number of months in between
+            else if (monthsFromNow > 1) {
+                var months = Math.floor(monthsFromNow);
+                stringDate = months + " month";
+                if (months > 1) {
+                    stringDate += "s";
+                }
+                stringDate += " ago";
+            }
+
+            // Else, if the post was created more than one day ago,
+            // set the returned value to the number of days in between
+            else if (daysFromNow > 1) {
+                var days = Math.floor(daysFromNow);
+                stringDate = days + " day";
+                if (days > 1) {
+                    stringDate += "s";
+                }
+                stringDate += " ago";
+            } else {
+
+                // Creation date of the post is equal to the current, so it has been created today
+                stringDate = "today";
+            }
+            return stringDate;
+        }
+        var a = {
+            url: "http://www.reddit.com" + item.data.permalink,
+            title: (item.data.title).replace(/&amp;/g, '&'),
+            subTitle: timeFromNow() + " on " + item.data.subreddit,
+            iconArrow: {
+                url: DDG.get_asset_path('reddit_search','arrow_up.png')
+            }
+        };
+        return a;
+        },
             templates: {
                 group: 'text',
                 options: {
-		    footer: Spice.reddit_search.footer
+            footer: Spice.reddit_search.footer
                 },
-		detail: false,
-		item_detail: false
+        detail: false,
+        item_detail: false
             }
         });
     };
