@@ -121,54 +121,52 @@
 	return first;
     }
 
-    // Show message saying that the domain is available.
-    var show_available = function(api_output) {
-	if(is_debug) console.log('api result in show_available', api_output);
-
-	Spice.add({
+    // Data that's shared between the two Spice.add calls.
+    var get_shared_spice_data = function(api_output) {
+	return {
             id: "whois",
             name: "Whois",
-            data: api_output,
             meta: {
-                sourceName: "Whois API",
-                sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
+		sourceName: "Whois API",
+		sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
 		    + api_output.domainName
 		    + '&outputFormat=json'
             },
             templates: {
 		group: 'base',
 		options:{
-                    content: Spice.whois.available,
 		    moreAt: true
 		}
 	    }
-        });
+	};
+    };
+
+    // Show message saying that the domain is available.
+    var show_available = function(api_output) {
+	if(is_debug) console.log('api result in show_available', api_output);
+
+	var shared_spice_data = get_shared_spice_data(api_output);
+
+	// add the attributes specific to this template
+        shared_spice_data.data = api_output;
+	shared_spice_data.templates.options.content = Spice.whois.available;
+
+	Spice.add(shared_spice_data);
     };
 
     // Show whois info for the domain using the 'record' template.
     var show_whois = function(api_output) {
 
-	Spice.add({
-            id: "whois",
-            name: "Whois",
-            data: {
-		'record_data': api_output, 
-		'record_keys': ['Registered to', 'Email', 'Last updated', 'Expires']
-	    },
-            meta: {
-                sourceName: "Whois API",
-                sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
-		    + api_output.domainName
-		    + '&outputFormat=json'
-            },
-            templates: {
-            	group: 'base',
-		options:{
-                    content: 'record',
-		    moreAt: true
-		}
-	    }
-        });
+	var shared_spice_data = get_shared_spice_data(api_output);
+
+	// add the attributes specific to this template
+	shared_spice_data.data = {
+	    'record_data': api_output,
+	    'record_keys': ['Registered to', 'Email', 'Last updated', 'Expires']
+	};
+	shared_spice_data.templates.options.content = 'record';
+
+	Spice.add(shared_spice_data);
     };
 
     
