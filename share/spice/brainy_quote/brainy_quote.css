@@ -8,23 +8,6 @@
     font-weight: 300;
 }
 
-.brainy__quote:before {
-    color: #D4D4D4;
-    content: open-quote;
-    float: left;
-    font-size: 4em;
-    margin-top: -0.25em;
-}
-
-.brainy__quote:after {
-    color: #D4D4D4;
-    content: close-quote;
-    font-size: 4em;
-    line-height: 0;
-    position: relative;
-    top: 0.5em;
-}
-
 .brainy__attribution {
     color: #999;
     float: right;
