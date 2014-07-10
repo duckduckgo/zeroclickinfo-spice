@@ -1,15 +1,38 @@
 .tile--coupon_mountain .tile__media {
-	padding-top: 1em;
-	height: 5em;
+    padding-top: 0.5em;
+    height: 2.5em;
 }
 
 .detail--coupon_mountain input.tag {
-	-webkit-user-select: text;
-	-khtml-user-select: text;
-	-moz-user-select: text;
-	-ms-user-select: text;
-	user-select: text;
-	line-height: 1.5;
-	font-size: 1.25em;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    line-height: 1.5;
+    font-size: 1.25em;
     vertical-align: baseline;
+}
+
+.tile--coupon_mountain .tile__media img,
+.tile--coupon_mountain .tile__media,
+.tile--coupon_mountain.tile--c {
+    width: 11em !important;
+}
+
+.tile--coupon_mountain .tile__title {
+    font-size: 1.15em;
+    white-space: pre-wrap !important;
+    text-overflow: clip !important;
+    height: 2.5em !important;
+    margin-top: 0.5em;
+}
+
+.tile--coupon_mountain .tile--pr__sub {
+    margin-top: 0.5em;
+    color: #aaa;
+}
+
+.tile--coupon_mountain .tile__body {
+    padding: 0.5em;
 }
