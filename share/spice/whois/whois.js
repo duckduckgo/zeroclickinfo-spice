@@ -63,43 +63,40 @@
 
     var normalize_api_output = function(api_output) {
 
-	// initialize the output object
-	var normalized =  {
-	    // these fields are not displayed, but are used internally
-	    'domainName': '',
-	    'registered': false,
-
-	    // these fields are displayed (hence the user-friendly capitalization and spaces)
-	    'Registered to': '',
-	    'Email': '',
-	    'Last updated': '',
-	    'Expires': ''
-	};
-	
-	// get the domain name
-	normalized['domainName'] = api_output.WhoisRecord.domainName;
-
-	// store whether the domain is registered
-	normalized['registered'] = !!api_output.WhoisRecord.registrant;
-
-	// get contact name and email from the registrant,
-	// and falling back to the admin and technical contacts
+	// store the domain's various contacts in an array.
+	//
+	// we'll iterate through this array in order, using
+	// info from the first contact that contains the field we want.
 	var contacts = [
 	    api_output.WhoisRecord.registrant,
 	    api_output.WhoisRecord.administrativeContact,
 	    api_output.WhoisRecord.technicalContact
 	];  
-	normalized['Registered to'] = get_first_by_key(contacts, 'name');
-	normalized['Email'] = get_first_by_key(contacts, 'email');
 
-	// trim dates so they are shown without times
-	normalized['Last updated'] = api_output.WhoisRecord.updatedDate
-	                                 && api_output.WhoisRecord.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1');
-	normalized['Expires'] = api_output.WhoisRecord.expiresDate
-	                            && api_output.WhoisRecord.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1');
+	// return the normalized output as a hash
+	return {
 
-	return normalized;
-    };
+	    // these first fields are not displayed
+	    // (hence the camelCase, which the user will not see)
+
+	    'domainName': api_output.WhoisRecord.domainName,
+	    'registered': !!api_output.WhoisRecord.registrant, // boolean flag
+
+	    // the remaining fields are displayed
+	    // (hence the user-friendly capitalization and spaces)
+
+	    'Registered to': get_first_by_key(contacts, 'name'),
+	    'Email': get_first_by_key(contacts, 'email'),
+
+	    // trim dates so they are shown without times
+	    'Last updated': api_output.WhoisRecord.updatedDate
+	                    && api_output.WhoisRecord.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1'),
+
+	    'Expires': api_output.WhoisRecord.expiresDate
+	               && api_output.WhoisRecord.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
+
+	};
+    }
 
     // Searches an array of objects for the first value
     // at the specified key.
