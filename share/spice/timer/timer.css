@@ -11,6 +11,7 @@
     margin-right: 5px;
     outline: none; /*remove the blue outline in chrome/opera*/
     background: none;
+    cursor: pointer;
 }
 
 /*remove the dashed line in FF/IE*/
@@ -33,6 +34,7 @@
 .zci--timer .timer__btn[disabled] {
     color: #b4b4b4;
     border-color: #b4b4b4;
+    cursor: default;
 }
 
 .zci--timer .timer__btn.timer__start[disabled] {
@@ -127,7 +129,7 @@
     width: 300px;
     border-radius: 3px;
     position: relative;
-    margin: 10% auto;
+    margin: 150px auto;
     background-color: #fff;
     padding: 30px 10px;
 }
@@ -148,6 +150,7 @@
     border-radius: 2px;
     background-color: #61AD48;
     color: white;
+    cursor: pointer;
 }
 
 /*stack the big time divs if the screen is too narrow*/
@@ -175,7 +178,6 @@
     }
 
     .zci--timer .timer__done-modal > div {
-        margin: 40% auto;
         width: 80%;
     }
 }
@@ -191,7 +193,7 @@
 
 @media screen and (min-width: 420px) and (max-width: 640px) {
     .zci--timer .timer__done-modal > div {
-        margin: 25% auto;
+        margin: 105px auto;
     }
 }
 
@@ -207,9 +209,5 @@
     .zci--timer .timer__time-input {
         width: 25%;
         margin-top: 10px;
-    }
-
-    .zci--timer .timer__done-modal > div {
-        margin: 20% auto;
     }
 }
