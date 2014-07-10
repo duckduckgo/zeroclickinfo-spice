@@ -130,7 +130,7 @@
 		sourceName: "Whois API",
 		sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
 		    + api_output.domainName
-		    + '&outputFormat=json'
+		    + '&outputFormat=json&target=raw'
             },
             templates: {
 		group: 'base',
