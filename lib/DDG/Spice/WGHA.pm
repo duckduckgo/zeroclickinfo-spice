@@ -24,8 +24,7 @@ spice proxy_cache_valid => "200 1h";
 
 handle query_lc => sub {
   my $input = $_;
-  # return if $loc->country_code ne 'DE';
-  # print $loc->city;
+  return if $loc->country_code ne 'DE';
   map { return $input if $input =~ s/(^|\s)$_(\s|$)// and $input ne '' } @triggers;
   return;
 };
