@@ -30,7 +30,7 @@
 }
 
 .zci--in_theaters h5.detail__title.detail__tile--pr {
-    padding-bottom: 1.13em;
+    padding-bottom: 0;
 }
 
 .zci--in_theaters .detail__subtitle {
@@ -46,6 +46,8 @@
 
 .zci--in_theaters .in_theaters--runtime {
     font-size: 0.9em;
+    position: relative;
+    top: 1.5em;
 }
 
 .zci--in_theaters .in_theaters--critics_score {
@@ -57,5 +59,5 @@
 }
 
 .zci--in_theaters .copyright {
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
