@@ -51,3 +51,11 @@
 .zci--in_theaters .in_theaters--critics_score {
     display: block;
 }
+
+.zci--in_theaters .detail__subtitle sup {
+    font-size: 0.5em;
+}
+
+.zci--in_theaters .copyright {
+    font-size: 0.8em;
+}
