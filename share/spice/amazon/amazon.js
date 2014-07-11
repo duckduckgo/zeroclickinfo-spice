@@ -47,7 +47,7 @@
                     // memory ref to the tile dom, and re-renders the stars/renders block of html
                     // now that we have updated ratings data:
                     if (this.$html) {
-                        var $ratingsWrapper = this.$html.find('.tile__rating');
+                        var $ratingsWrapper = this.$html.find('.tile__rating,.detail__rating');
                         if ($ratingsWrapper && $ratingsWrapper.length) {
                             $ratingsWrapper.html(Handlebars.helpers.starsAndReviews(this.rating, this.reviewCount, this.url_review, true));
                         }
