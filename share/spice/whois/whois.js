@@ -58,7 +58,7 @@
 
 	// show whois results except when the query contains only the domain
 	// and no other keywords, which we test by looking for a space in the query.
-	return /\s/.test(query.trim());
+	return /\s/.test($.trim(query));
     };
 
     var normalize_api_output = function(api_output) {
