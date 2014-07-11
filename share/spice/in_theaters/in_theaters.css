@@ -39,10 +39,18 @@
     padding-bottom: 1.5em;
 }
 
+    .is-mobile .zci--in_theaters .detail__subtitle {
+        padding-bottom: 0.5em;
+    }
+
 .zci--in_theaters p.detail__desc {
     padding-top: 0;
     padding-bottom: 1.65em;
 }
+
+    .is-mobile .zci--in_theaters p.detail__desc {
+        padding-bottom: 0.2em;
+    }
 
 .zci--in_theaters .in_theaters--runtime {
     font-size: 0.9em;
@@ -50,8 +58,22 @@
     top: 1.5em;
 }
 
+    .is-mobile .zci--in_theaters .in_theaters--runtime {
+        top: 0.5em;
+    }
+
 .zci--in_theaters .in_theaters--critics_score {
     display: block;
+    font-size: 1.3em;
+    font-weight: 300;
+}
+
+.zci--in_theaters .in_theaters--critics_score img {
+    vertical-align: middle;
+    height: 40px;
+    width: 40px;
+    margin-top: -0.1em;
+    margin-bottom: -0.3em;
 }
 
 .zci--in_theaters .detail__subtitle sup {
