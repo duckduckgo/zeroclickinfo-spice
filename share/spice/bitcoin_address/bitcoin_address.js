@@ -15,37 +15,30 @@
         Spice.add({
             id: "bitcoin_address",
             name: "Bitcoin Address",
-            data: address,
+            data: {
+                record_data: {
+                    "Current Balance": formatBtc(address.balance),
+                    "Total Received": formatBtc(address.total_received),
+                    "Total Sent": formatBtc(address.total_sent),
+                    "Hash160": address.hash160
+                }
+            },
             meta: {
-                sourceName: "biteasy",
+                sourceName: "Biteasy",
                 sourceUrl: "https://www.biteasy.com/blockchain/addresses/" + address.address
             },
             normalize: function(item) {
-                var infoboxData = [{
-                    heading: 'Address Info'
-                },{
-                    label: "Current Balance",
-                    value: formatBtc(address.balance)
-                },{
-                    label: "Total Received",
-                    value: formatBtc(address.total_received)
-                },{
-                    label: "Total Sent",
-                    value: formatBtc(address.total_sent)
-                },{
-                    label: "Hash 160",
-                    value: address.hash160
-                }];
-
                 return {
-                    infoboxData: infoboxData
+                    image: 'https://www.biteasy.com/blockchain/addresses/'+address.address+'/qrcode.jpeg',
+                    img_m: 'https://www.biteasy.com/blockchain/addresses/'+address.address+'/qrcode.jpeg'
                 };
             },
             templates: {
-                group: 'base',
+                group: 'info',
                 options:{
-                    content: Spice.bitcoin_address.content,
-                    moreAt: true
+                    content: 'record',
+                    item: 'basic_image_item',
+                    rowHighlight: true
                 }
             }
         });

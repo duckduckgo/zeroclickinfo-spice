@@ -22,57 +22,34 @@
         var formatBtc = function(amount) {
             return (amount / 100000000.0)+" BTC"
         };
-
-        var transactionDescription = 
-            "A transaction is a signed section of data that is broadcast"+
-            " to the network and collected into blocks. It typically "+
-            "references previous transaction(s) and dedicates a certain"+
-            " number of bitcoins from it to one or more new public key(s)"+
-            " (Bitcoin address). It is not encrypted (nothing in Bitcoin "+
-            "is encrypted).";
         
         Spice.add({
             id: "bitcoin_transaction",
             name: "Bitcoin Transaction",
-            data: transaction,
+            data: {
+                record_data: {
+                    "Hash": transaction.hash,
+                    "Date Time": formatDate(new Date(transaction.created_at)),
+                    "Confirmations": transaction.confirmations,
+                    "Size": (transaction.size/1024.0).toFixed(2)+" KB",
+                    "Total Input": (transaction.inputs_value / 100000000.0)+" BTC",
+                    "Total Output": (transaction.outputs_value / 100000000.0)+" BTC",
+                    "Coinbase": transaction.is_coinbase ? 'Yes' : 'No',
+                    "Fee": formatBtc(transaction.fee),
+                    "BTC Transacted": (transaction.transacted_value / 100000000.0)+" BTC"
+                }
+            },
             meta: {
-                sourceName: "biteasy.com",
+                sourceName: "Biteasy",
                 sourceUrl: "https://www.biteasy.com/blockchain/transactions/" + transaction.hash
             },
-            normalize: function(item) {
-                var infoboxData = [{
-                    heading: 'Transaction Info'
-                },{
-                    label: "Confirmations",
-                    value: transaction.confirmations
-                },{
-                    label: "Date Time",
-                    value: formatDate(new Date(transaction.created_at))
-                },{
-                    label: "Coinbase",
-                    value: transaction.is_coinbase ? 'Yes' : 'No'
-                },{
-                    label: "Size",
-                    value: (transaction.size/1024.0).toFixed(2)+" KB"
-                },{
-                    label: "Total Input",
-                    value: formatBtc(transaction.inputs_value)
-                },{
-                    label: "Total Output",
-                    value: formatBtc(transaction.outputs_value)
-                },{
-                    label: "Fee",
-                    value: formatBtc(transaction.fee)
-                }];
-
-                return {
-                    description: transactionDescription,
-                    title: 'Bitcoin Transaction ('+transaction.confirmations+' confirmations)',
-                    infoboxData: infoboxData
-                };
-            },
             templates: {
-                group: 'info'
+                group: 'base',
+                options: {
+                    content: 'record',
+                    moreAt: true,
+                    rowHighlight: true
+                }
             }
         });
     };
