@@ -42,8 +42,15 @@ my $whois_keywords_qr = qr/whois|lookup|(?:is\s|)domain|(?:is\s|)available|regis
 # narrow this spice's query space.
 #
 triggers query_raw =>
-    qr/^$url_qr$/,
-    qr/^$whois_keywords_qr|$whois_keywords_qr$/;
+    # allow the naked url with leading and trailing spaces
+    qr/^\s*$url_qr\s*$/,
+
+    # allow the whois keywords at the beginning or end of the string
+    # with leading or trailing spaces.
+    #
+    # if at the end of the string, allow a trailing question mark.
+    qr/^\s*$whois_keywords_qr
+          |$whois_keywords_qr[?]?\s*$/x;
 
 # API call details for Whois API (http://www.whoisxmlapi.com/)
 spice to => 'http://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_WHOIS_USERNAME}}}&password={{ENV{DDG_SPICE_WHOIS_PASSWORD}}}';
@@ -51,6 +58,13 @@ spice to => 'http://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&o
 handle sub {
     my ($query) = @_;
     return if !$query; # do not trigger this spice if the query is blank
+
+    # trim any leading and trailing spaces
+    $query = trim($query);
+
+    # remove any trailing question marks, which are allowed
+    # but can disrupt the regexs
+    $query =~ s/\?$//;
 
     # parse the URL into its parts
     my ($subdomains, $domain, $tld, $port, $resource_path) = $query =~ $url_qr; 

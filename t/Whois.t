@@ -76,6 +76,12 @@ ddg_spice_test(
     # whois keywords should be case insensitive
     'hOw To bUy duckduckgo.com' => expected_output_for('duckduckgo.com'),
 
+    # leading and trailing spaces should be allowed
+    '    how to buy duckduckgo.com      ' => expected_output_for('duckduckgo.com'),
+
+    # a trailing question mark should be allowed
+    'is duckduckgo.com available?' => expected_output_for('duckduckgo.com'),
+
     # whois keywords after a url should trigger
     'duckduckgo.com whois' => expected_output_for('duckduckgo.com'),
     'duckduckgo.com lookup' => expected_output_for('duckduckgo.com'),
