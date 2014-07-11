@@ -17,7 +17,6 @@ ddg_spice_test(
         '/js/spice/wgha/heute%20ab%20in%20frankfurt',
         call_type => 'include',
         caller => 'DDG::Spice::WGHA',
-        is_cached => 0,
     ),
     DDG::Request->new(
         query_raw => "was geht in berlin",
@@ -25,7 +24,6 @@ ddg_spice_test(
     ) => test_spice(
         '/js/spice/wgha/in%20berlin',
         caller    => 'DDG::Spice::WGHA',
-        is_cached => 0,
     ),
 );
 
