@@ -1,5 +1,6 @@
 /*
-Audio file is Notification Up 2 by FoolBoyMedia (http://www.freesound.org/people/FoolBoyMedia/sounds/234523/)
+Audio file is Notification Up II by FoolBoyMedia (http://www.freesound.org/people/FoolBoyMedia/sounds/234563/)
+Used with permission.
 License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 */
 
@@ -34,9 +35,6 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             var q = DDG.get_query().replace('timer', '').replace('online', ''),
                 regex = new RegExp(/(\d+) ?(min|sec|h)/),
                 time = 0;
-
-            console.log(q);
-            console.log(regex.exec(q));
 
             while (true){
                 var match = regex.exec(q);
