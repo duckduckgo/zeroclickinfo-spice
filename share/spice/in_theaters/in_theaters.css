@@ -43,3 +43,11 @@
     padding-top: 0;
     padding-bottom: 1.65em;
 }
+
+.zci--in_theaters .in_theaters--runtime {
+    font-size: 0.9em;
+}
+
+.zci--in_theaters .in_theaters--critics_score {
+    display: block;
+}
