@@ -29,6 +29,17 @@
     background: transparent no-repeat;
 }
 
-.zci--in_theaters .btn.btn--primary {
-    margin-top: 1em;
+.zci--in_theaters h5.detail__title.detail__tile--pr {
+    padding-bottom: 1.13em;
+}
+
+.zci--in_theaters .detail__subtitle {
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 1.5em;
+}
+
+.zci--in_theaters p.detail__desc {
+    padding-top: 0;
+    padding-bottom: 1.65em;
 }
