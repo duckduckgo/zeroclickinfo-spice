@@ -7,7 +7,7 @@
     // spice callback function
     env.ddg_spice_whois = function(api_result) {
         // for debugging
-        if(is_debug) console.log('api_result:', api_result);
+        if(is_debug) console.log('in start of JS, api_result =', api_result);
 
 	// Check for API error and exit early if found
 	// (with error message when in debug mode)
@@ -21,7 +21,7 @@
 	api_result = normalize_api_result(api_result);
 
         // is the domain available?
-	var is_avail = is_domain_available(api_result);
+	var is_avail = api_result.available;
 
 	// if the domain isn't available, do we want to show
 	// whois information?
@@ -43,34 +43,34 @@
 
     };
 
-    // Returns whether the domain is available,
-    // based on the API result that was returned.
-    var is_domain_available = function(api_result) {
-	return !api_result['registered'];
-    };
-
     // Returns whether we should show whois data if this
     // domain is not available.
     var is_whois_query = function(query) {
-
-	// for debugging
-	if(is_debug) console.log('in is_whois_query, query =', query); 
-
 	// show whois results except when the query contains only the domain
 	// and no other keywords, which we test by looking for a space in the query.
 	return /\s/.test($.trim(query));
     };
 
+    // parse the api response into a standard format
     var normalize_api_result = function(api_result) {
+
+	// use only the 'WhoisRecord' portion, because that's where
+	// all the data is stored.
+	api_result = api_result.WhoisRecord;
+
+	// sometimes the data is nested inside the 'registryData' object
+	if(api_result.registryData && api_result.registryData.registrant) {
+	    api_result = api_result.registryData;
+	}
 
 	// store the domain's various contacts in an array.
 	//
 	// we'll iterate through this array in order, using
 	// info from the first contact that contains the field we want.
 	var contacts = [
-	    api_result.WhoisRecord.registrant,
-	    api_result.WhoisRecord.administrativeContact,
-	    api_result.WhoisRecord.technicalContact
+	    api_result.registrant,
+	    api_result.administrativeContact,
+	    api_result.technicalContact
 	];  
 
 	// return the normalized output as a hash
@@ -79,8 +79,8 @@
 	    // these first fields are not displayed
 	    // (hence the camelCase, which the user will not see)
 
-	    'domainName': api_result.WhoisRecord.domainName,
-	    'registered': !!api_result.WhoisRecord.registrant, // boolean flag
+	    'domainName': api_result.domainName,
+	    'available': is_domain_available(api_result),
 
 	    // the remaining fields are displayed
 	    // (hence the user-friendly capitalization and spaces)
@@ -89,14 +89,19 @@
 	    'Email': get_first_by_key(contacts, 'email'),
 
 	    // trim dates so they are shown without times
-	    'Last updated': api_result.WhoisRecord.updatedDate
-	                    && api_result.WhoisRecord.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1'),
+	    'Last updated': api_result.updatedDate
+	                    && api_result.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1'),
 
-	    'Expires': api_result.WhoisRecord.expiresDate
-	               && api_result.WhoisRecord.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
+	    'Expires': api_result.expiresDate
+	               && api_result.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
 
 	};
     }
+
+    // Returns whether the domain is registered to someone, based on the API result.
+    var is_domain_available = function(api_result) {
+	return !api_result.registrant;
+    };
 
     // Searches an array of objects for the first value
     // at the specified key.
@@ -143,8 +148,6 @@
 
     // Show message saying that the domain is available.
     var show_available = function(api_result) {
-	if(is_debug) console.log('api result in show_available', api_result);
-
 	var shared_spice_data = get_shared_spice_data(api_result);
 
 	// add the attributes specific to this template
@@ -156,7 +159,6 @@
 
     // Show whois info for the domain using the 'record' template.
     var show_whois = function(api_result) {
-
 	var shared_spice_data = get_shared_spice_data(api_result);
 
 	// add the attributes specific to this template
