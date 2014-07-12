@@ -1,6 +1,11 @@
 .zci--specials .content {
-    font-weight:bold;
     text-align:center;
+    color: #383838;
+    font-weight: 600;
+    height: 2em;
+    margin-bottom: 0.4em;
+    margin-top: 0.2em;
+    padding: 0;
 }
 
 .zci--specials .detail__separator {
@@ -68,4 +73,8 @@
 
 .zci--specials .discount {
     color:#C9481C;
+}
+
+.zci--specials .tile__body {
+    padding: 0em;
 }
