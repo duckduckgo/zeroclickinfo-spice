@@ -15,9 +15,13 @@
                 sourceUrl: "http://www.coursebuffet.com"+api_result["more_link"]
             },
             normalize: function(item) {
+                name = item.name;
+                if (item.name.length > 50) {
+                    name = item.name.substr(0, 50) + "...";
+                };
                 return {
-                    title: item.name,
-                    subtitle: item.cb_sub_level_display + " / " + item.offeredvia,
+                    title: name,
+                    subtitle: item.show_professors,
                     url: "http://www.coursebuffet.com"+item.create_new_link
                 };
             },
@@ -26,7 +30,8 @@
                 detail: false,
                 item_detail: false,
                 options: {
-                    moreAt: true
+                    moreAt: true,
+                    footer: Spice.coursebuffet.footer
                 }
             }
         });
