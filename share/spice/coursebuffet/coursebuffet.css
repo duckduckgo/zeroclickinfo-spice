@@ -3,12 +3,9 @@
   text-transform: none;
   color: #999;
 }
-.tile--coursebuffet {
-  width: 24em !important;
-}
 .tile--coursebuffet .tile__title {
-  height: 4em;
+  height: 5em;
 }
 .tile--coursebuffet .tile__body {
-  height: 9em;
+  height: 12em;
 }
