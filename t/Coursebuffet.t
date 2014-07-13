@@ -16,12 +16,7 @@ ddg_spice_test(
         '/js/spice/coursebuffet/provider/udacity/computer%20science',
         call_type => 'include',
         caller => 'DDG::Spice::Coursebuffet'
-    ),
-    'introduction to computer science' => test_spice(
-        '/js/spice/coursebuffet/title/courses/Introduction%20to%20Computer%20Science',
-        call_type => 'include',
-        caller => 'DDG::Spice::Coursebuffet'
-    ),
+    )
 );
 
 done_testing;
