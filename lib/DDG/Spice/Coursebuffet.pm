@@ -23,43 +23,27 @@ attribution web => ["http://www.coursebuffet.com", "Pradyumna Dandwate"],
             twitter => ["coursebuffet"],
             github  => ["rubydubee", "Pradyumna Dandwate"];
 
-my @title_list = share('course_titles.txt')->slurp;
-my @course_titles = ();
-foreach my $title (@title_list) {
-  chomp $title;
-  push(@course_titles, $title);
-}
+my @triggers = ("course","courses","coursera","edx","udacity","saylor","novoed","futurelearn","iversity","open2study","openuped");
 
-triggers query_lc => qr/\s*/;
+triggers any => @triggers;
 
 sub cbtrim { my $s = shift; $s =~ s/^\s+|\s+$//g; return $s };
 
 handle query_lc => sub {
 
-  # MOOC provider specific search returns courses for the specified provider
-  $_ =~ /(coursera|edx|udacity|saylor|novoed|futurelearn|iversity|open2study|openuped)/;
-  if ($&) {
-    my $q = "$` $'";
-    return "provider", $&, cbtrim($q);
-  }
+    # MOOC provider specific search returns courses for the specified provider
+    $_ =~ /(coursera|edx|udacity|saylor|novoed|futurelearn|iversity|open2study|openuped)/;
+    if ($&) {
+        my $q = "$` $'";
+        return "provider", $&, cbtrim($q);
+    }
 
-  # generic course search
-  $_ =~ /course/;
-  if ($&) {
-    my $q = "$` $'";
-    return "standard","courses", cbtrim($q);
-  }
-
-  my $query = $_;
-
-  # exact title match returns similar courses(but from different MOOC provider or university) as well
-  my @matches = grep { /^$query$/i } @course_titles;
-  
-  if(@matches) {
-    return "title", "courses" ,$matches[0];
-  } else {
-    return;
-  }
+    # generic course search
+    $_ =~ /course/;
+    if ($&) {
+        my $q = "$` $'";
+        return "standard","courses", cbtrim($q);
+    }
 
 };
 
