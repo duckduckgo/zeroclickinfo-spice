@@ -1,12 +1,7 @@
-.js-infobox-tile .info__value {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  padding-left: 20px;
-}
-
 .zci--bitcoin_block .zci__body .zci__more-at{
     padding-top: 1em;
 }
+
 .zci--bitcoin_block .record .record__cell__value {
     word-wrap: break-word;
     padding: 0.4em;
