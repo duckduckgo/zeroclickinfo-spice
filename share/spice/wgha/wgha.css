@@ -1,8 +1,20 @@
-.tile--wgha .tile__location {
-	color: #aaa;
-	padding-bottom: 1em;
+.tile--wgha .tile__title {
+    text-transform: none;
 }
 
-.tile--wgha .tile__date {
-    color: #878787;
+.tile--wgha .tile__title__sub {
+    text-transform: none;
+    color: #999;
+}
+
+.tile--wgha .tile__body {
+    height: 14em;
+}
+
+.tile--wgha .tile__content {
+    height: 6.4em;
+}
+
+.is-mobile .tile--wgha .tile__content {
+    height: 7em;
 }

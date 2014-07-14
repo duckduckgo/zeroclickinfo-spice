@@ -22,14 +22,14 @@
       sourceIcon: true,
       itemType: 'Events'
     },
-    template_group: 'base',
     templates: {
-      options: {
-        content: Spice.wgha.content
-      },
+      group: 'text',
       detail: false,
-      item_detail: false
-    }
+      item_detail: false,
+      options: {
+        footer: Spice.wgha.footer
+      },
+    },
   });
  };
 
@@ -39,7 +39,7 @@
    var pattern = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/;
    var match = pattern.exec(created_at);
    date = new Date(match[1], match[2]-1, match[3], match[4], match[5], match[6]);
-  }
-  return date.getUTCDate() + "." + date.getUTCMonth() + "." + date.getUTCFullYear() +" ab " + date.getUTCHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes() + "Uhr";
+ }
+ return date.getUTCDate() + "." + date.getUTCMonth() + "." + date.getUTCFullYear() +" ab " + date.getUTCHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes() + "Uhr";
 });
 }(this));
