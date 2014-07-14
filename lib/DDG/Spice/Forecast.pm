@@ -62,6 +62,7 @@ handle query_lc => sub {
     # color temperature
     if (/temp(era?ture)?/) {
         return if /\bcolou?r\b|[0-9]+\s*[kK]/;
+        return if /critical temp(era?ture)?/;
     }
 
     # Don't cache generic queries due to
