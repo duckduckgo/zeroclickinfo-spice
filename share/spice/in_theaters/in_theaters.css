@@ -44,7 +44,6 @@
     }
 
 .zci--in_theaters p.detail__desc {
-    padding-top: 0;
     padding-bottom: 1.65em;
 }
 
@@ -59,7 +58,7 @@
 }
 
     .is-mobile .zci--in_theaters .in_theaters--runtime {
-        top: 0.5em;
+        top: 1em;
     }
 
 .zci--in_theaters .in_theaters--critics_score {
@@ -95,3 +94,9 @@
     .is-mobile .zci--in_theaters .detail__body.detail__body--pr {
         padding-left: 1.8em;
     }
+
+
+.is-mobile .zci--in_theaters .btn.btn--primary {
+    position: absolute;
+    bottom: 1em;
+}
