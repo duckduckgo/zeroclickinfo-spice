@@ -83,3 +83,15 @@
 .zci--in_theaters .copyright {
     font-size: 0.9em;
 }
+
+.zci--in_theaters .detail__media.detail__media--pr {
+    width: 30%;
+}
+
+.zci--in_theaters .detail__body.detail__body--pr {
+    padding-left: 0;
+}
+
+    .is-mobile .zci--in_theaters .detail__body.detail__body--pr {
+        padding-left: 1.8em;
+    }
