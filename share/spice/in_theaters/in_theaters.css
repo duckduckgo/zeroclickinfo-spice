@@ -86,6 +86,7 @@
 
 .zci--in_theaters .detail__media.detail__media--pr {
     width: 30%;
+    margin-right: 0;
 }
 
 .zci--in_theaters .detail__body.detail__body--pr {
