@@ -71,12 +71,8 @@
 .zci--in_theaters .in_theaters--critics_score img {
     margin-top: -0.1em;
     margin-bottom: -0.3em;
-}
-
-.zci--in_theaters .in_theaters--critics_score img.is_retina {
-    height: 40px;
-    width: 40px;
-    vertical-align: middle;
+    height: 24px;
+    width: 24px;
 }
 
 .zci--in_theaters .detail__subtitle sup {
