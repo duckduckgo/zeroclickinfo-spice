@@ -1,9 +1,3 @@
-.js-infobox-tile .info__value {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  padding-left: 20px;
-}
-
 .zci--bitcoin_transaction .zci__body .zci__more-at{
     padding-top: 1em;
 }
