@@ -11,7 +11,11 @@
         // The filename is the same as the critics_rating, but
         // lowercased and with spaces converted to dashes.
         critics_rating = critics_rating.toLowerCase().replace(/ /, '-');
-        return DDG.get_asset_path('in_theaters', critics_rating + '.retina.png');
+        if(is_retina) {
+            return DDG.get_asset_path('in_theaters', critics_rating + '.retina.png');
+        } else {
+            return DDG.get_asset_path('in_theaters', critics_rating + '.png');
+        }
     }
     
     env.ddg_spice_in_theaters = function(api_result) {
@@ -41,7 +45,8 @@
                     abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
                     heading: item.title,
                     img_m: image,
-                    url: item.links.alternate
+                    url: item.links.alternate,
+                    is_retina: is_retina ? "is_retina" : "no_retina"
                 };
             },
             templates: {

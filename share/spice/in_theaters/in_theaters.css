@@ -69,11 +69,14 @@
 }
 
 .zci--in_theaters .in_theaters--critics_score img {
-    vertical-align: middle;
-    height: 40px;
-    width: 40px;
     margin-top: -0.1em;
     margin-bottom: -0.3em;
+}
+
+.zci--in_theaters .in_theaters--critics_score img.is_retina {
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
 }
 
 .zci--in_theaters .detail__subtitle sup {
