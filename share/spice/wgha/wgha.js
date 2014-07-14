@@ -3,7 +3,7 @@
 
   env.ddg_spice_wgha = function(api_result) {
 
-   if (api_result.length == 0) {
+   if (!(api_result && api_result.length)) {
      return Spice.failed('wgha');
    }
 
