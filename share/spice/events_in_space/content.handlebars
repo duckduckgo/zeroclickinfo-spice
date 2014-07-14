@@ -1,0 +1,10 @@
+Upcoming space events:
+<ul>
+{{#each data}}
+{{#if this.date2}}
+<li>{{this.date1}} to {{this.date2}} – {{{this.text}}}</li>
+{{else}}
+<li>{{this.date1}} – {{{this.text}}}</li>
+{{/if}}
+{{/each}}
+</ul>
