@@ -1,12 +1,12 @@
-.record__cell__key {
+.zci--whois {
+    padding-bottom: 1.5em !important;
+    padding-top: 1.5em !important;
+}
+
+.zci--whois .record__cell__key {
     padding-right: 32px;
 }
 
-.zci__more-at {
+.zci--whois .zci__more-at {
     padding-top: 1em;
-}
-
-.zci.is-active {
-    padding-bottom: 1.5em;
-    padding-top: 1.5em;
 }

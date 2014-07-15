@@ -2,7 +2,7 @@
     "use strict";
 
     // turns on/off debugging output
-    var is_debug = false;
+    var is_debug = true;
 
     // spice callback function
     env.ddg_spice_whois = function(api_result) {
