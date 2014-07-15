@@ -12,8 +12,8 @@ topics "food_and_drink";
 category "entertainment";
 attribution github => ['https://github.com/mutilator','mutilator'];
 
-triggers any => "mix", "mixing", "make", "making";
-triggers startend => "drink", "ingredients";
+triggers any => "mix", "make";
+triggers startend => "drink", "ingredients", "mixing", "making";
 
 spice to => 'http://drinkproject.com/api/?type=json&name=$1&callback={{callback}}';
 
