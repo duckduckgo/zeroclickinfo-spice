@@ -60,7 +60,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             $reset_btn = $('#reset_btn'),
             $startstop_btn = $('#startstop_btn'),
             $done_modal = $('#done_modal'),
-            soundUrl = DDG.get_asset_path('timer', 'alarm.wav'),
+            soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
             enteredTime = parseQueryForTime();
 
         if (enteredTime) {
