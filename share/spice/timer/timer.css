@@ -77,7 +77,7 @@
 .zci--timer .timer__time-input {
     width: 40%;
     height: 100%;
-    margin-top: 20px;
+    margin-top: 15px;
     margin-right: 2px;
     margin-left: 2px;
     text-align: center;
@@ -112,6 +112,10 @@
 .zci--timer #timer_container {
     max-width: 500px;
     margin: 0 auto;
+} 
+
+.zci--timer #timer_display {
+    padding-bottom: 0;
 }
 
 .zci--timer .timer__done-modal {
