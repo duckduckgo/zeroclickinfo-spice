@@ -20,6 +20,8 @@
 	// normalize the api output
 	api_result = normalize_api_result(api_result);
 
+	if(is_debug) console.log('normalized api_result:', api_result);
+
         // is the domain available?
 	var is_avail = api_result.available;
 
@@ -59,7 +61,10 @@
 	api_result = api_result.WhoisRecord;
 
 	// sometimes the data is nested inside the 'registryData' object
-	if(api_result.registryData && api_result.registryData.registrant) {
+	if(!api_result.createdDate
+	   && api_result.registryData
+	   && api_result.registryData.createdDate) {
+
 	    api_result = api_result.registryData;
 	}
 
@@ -84,23 +89,24 @@
 
 	    // the remaining fields are displayed
 	    // (hence the user-friendly capitalization and spaces)
-
+	    'Status': is_domain_available(api_result) ? 'Available' : 'Registered',
 	    'Registered to': get_first_by_key(contacts, 'name'),
 	    'Email': get_first_by_key(contacts, 'email'),
 
 	    // trim dates so they are shown without times
+	    // (if no time was found, the replace() call will return undef,
+	    //  so we need to fallback to the original string)
 	    'Last updated': api_result.updatedDate
-	                    && api_result.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1'),
+	        && api_result.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1'),
 
 	    'Expires': api_result.expiresDate
-	               && api_result.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
-
+	        && api_result.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
 	};
     }
 
     // Returns whether the domain is registered to someone, based on the API result.
     var is_domain_available = function(api_result) {
-	return !api_result.registrant;
+	return api_result.dataError && api_result.dataError === 'MISSING_WHOIS_DATA';
     };
 
     // Searches an array of objects for the first value
@@ -164,7 +170,7 @@
 	// add the attributes specific to this template
 	shared_spice_data.data = {
 	    'record_data': api_result,
-	    'record_keys': ['Registered to', 'Email', 'Last updated', 'Expires']
+	    'record_keys': ['Status', 'Registered to', 'Email', 'Last updated', 'Expires']
 	};
 	shared_spice_data.templates.options.content = 'record';
 
