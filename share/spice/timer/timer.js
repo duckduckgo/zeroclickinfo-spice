@@ -19,6 +19,12 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             templates: {
                 detail: Spice.timer.timer,
                 wrap_detail: 'base_detail'
+            },
+            //wait for the spice to load before displaying things
+            //this makes sure the divs display at the right time so the layout doesn't break
+            onShow: function(){
+                $('#timer_buttons').css('display', 'inline-block');
+                $('#timer_input').css('display', 'inline-block');
             }
         });
 
@@ -208,14 +214,6 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         }
 
         $('.timer__time-input').keydown(typeNumericOnly).change(numericOnly).click(numericOnly);
-
-        //wait for the document to load before displaying things
-        //this makes sure the divs display at the right time so the layout doesn't break
-        //this fixes #959
-        $(document).ready(function(){
-            $('#timer_buttons').css('display', 'inline-block');
-            $timer_input.css('display', 'inline-block');
-        });
     }
 }(this));
 
