@@ -18,9 +18,12 @@
             },
             normalize: function(item){
                 var getDiscount = function() {
-                    var regex = /.[0-9]+%?\s/i;
+                    var regex = /.[0-9]+%?/i;
                     var result = regex.exec(item.name);
-                    return result.join('');
+                    if (result) {
+                        return result.join('');
+                    }
+                    return '';
                 }
                 var stripSymbol = function(string) {
                     return string.replace(/[^0-9]/i, '');
@@ -28,7 +31,10 @@
                 var getSymbol = function(string) {
                     var regex = /[^0-9\s]/i;
                     var result = regex.exec(string);
-                    return result.join('');
+                    if (result) {
+                        return result.join('');
+                    }
+                    return '';
                 }
                 return {
                     image: item.iconUrl,
@@ -49,7 +55,7 @@
                     brand: false,
                     rating: false,
                     price: true,
-                    content: Spice.coupon_mountain.coupon_mountain,
+                    content: Spice.coupon_mountain.content,
                     detailVariant: 'light'
                 }
             },
