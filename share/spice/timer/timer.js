@@ -57,6 +57,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             $minute_input = $('#minute_input'),
             $second_input = $('#second_input'),
             $timer = $('#timer'),
+            $timer_input = $('#timer_input'),
+            $timer_display = $('#timer_display'),
             $reset_btn = $('#reset_btn'),
             $startstop_btn = $('#startstop_btn'),
             $done_modal = $('#done_modal'),
@@ -134,8 +136,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             updateTimer();
             update_int = setInterval(updateTimer, 100);
 
-            $('#timer_input').addClass('timer__hidden');
-            $('#timer_display').removeClass('timer__hidden');
+            $timer_input.hide();
+            $timer_display.css('display', 'inline-block');
             $reset_btn.prop('disabled', false);
 
             $startstop_btn.removeClass('timer__start').addClass('timer__pause').html('PAUSE');
@@ -151,8 +153,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         });
 
         function resetTimer(){
-            $('#timer_input').removeClass('timer__hidden');
-            $('#timer_display').addClass('timer__hidden');
+            $timer_display.hide();
+            $timer_input.css('display', 'inline-block');
             clearInterval(update_int);
             started = false;
             $('.timer__btn.timer__pause').removeClass('timer__pause').addClass('timer__start').html('START');
@@ -200,6 +202,14 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         }
 
         $('.timer__time-input').keydown(typeNumericOnly).change(numericOnly).click(numericOnly);
+
+        //wait for the document to load before displaying things
+        //this makes sure the divs display at the right time so the layout doesn't break
+        //this fixes #959
+        $(document).ready(function(){
+            $('#timer_buttons').css('display', 'inline-block');
+            $timer_input.css('display', 'inline-block');
+        });
     }
 }(this));
 
