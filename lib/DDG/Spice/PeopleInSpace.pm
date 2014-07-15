@@ -12,7 +12,10 @@ topics "science", "geek", "trivia";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/PeopleInSpace.pm";
 attribution github  => ["elebow", "Eddie Lebow"];
 
-triggers any => 'people in space', 'humans in space', 'people in orbit', 'humans in orbit';
+triggers any => "people in space", "people in orbit", "people are in space", "people are in orbit",
+    "humans in space", "humans in orbit", "humans are in space", "humans are in orbit",
+    "astronauts in space", "astronauts in orbit", "astronauts are in space", "astronauts are in orbit",
+    "cosmonauts in space", "cosmonauts in orbit", "cosmonauts are in space", "cosmonauts are in orbit";
 
 spice to => 'http://www.howmanypeopleareinspacerightnow.com/space.json';
 spice wrap_jsonp_callback => 1;
