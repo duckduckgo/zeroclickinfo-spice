@@ -17,7 +17,7 @@ my @triggers = (@source_triggers, @pluralize_triggers, map { $_.'s' } @pluralize
 #triggers startend => @triggers;
 
 # 2014.05.19 (ct): deep spice.
-triggers start => '///***never trigger***///';
+triggers start => 'amazon';
 
 handle remainder => sub {
     return "$_" if $_;
