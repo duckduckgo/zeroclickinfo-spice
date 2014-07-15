@@ -59,9 +59,10 @@ handle query_lc => sub {
     # has other terms
     return if (/(^site\:)|http|(\.(org|com|net))|underground/);
 
-    # color temperature
+    # color temperature && critical temperature
     if (/temp(era?ture)?/) {
         return if /\bcolou?r\b|[0-9]+\s*[kK]/;
+        return if /critical temp(era?ture)?/;
     }
 
     # Don't cache generic queries due to
