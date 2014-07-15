@@ -1,15 +1,99 @@
-.tile--coupon_mountain .tile__media {
-	padding-top: 1em;
-	height: 5em;
+.zci--coupon_mountain .tile--coupon_mountain {
+    height: 15em;
+    padding: 0.5em;
+    text-align: center;
+    width: 12em;
 }
 
-.detail--coupon_mountain input.tag {
-	-webkit-user-select: text;
-	-khtml-user-select: text;
-	-moz-user-select: text;
-	-ms-user-select: text;
-	user-select: text;
-	line-height: 1.5;
-	font-size: 1.25em;
-    vertical-align: baseline;
+.tile--coupon_mountain .tile__media {
+    margin-top: 1em;
+    height: 2.5em;
+    vertical-align: middle;
+}
+
+.zci--coupon_mountain .tile__title {
+    font-size: 2.5em;
+    text-align: center;
+    height: 1em !important;
+    margin-top: 0.1em;
+    /*float: left;*/
+    line-height: 1;
+    vertical-align: top;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    display:inline-block !important;
+    position: absolute;
+}
+
+.zci--coupon_mountain h3 {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.zci--coupon_mountain .decoration {
+    vertical-align: top;
+    text-align: left;
+    margin-left: 0.1em;
+    font-size: 0.3em;
+    font-weight: 400;
+    display:inline-block !important;
+    position: absolute;
+}
+
+.zci--coupon_mountain .fix {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.zci--coupon_mountain .container {
+    position: relative;
+    height: 4.8em;
+    margin-top: 4em;
+    overflow: hidden;
+    margin-bottom: 0.8em;
+    text-align: center;
+    width: 100%;
+}
+
+.zci--coupon_mountain .sub_container {
+    position: absolute;
+    height: 2.7em;
+    width: 100%;
+    top: 1.6em;
+    display:table;
+    text-align: center;
+}
+
+.zci--coupon_mountain .tile__sub {
+    height: 2.7em;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    -webkit-line-clamp: 2;
+    vertical-align:middle;
+    text-align: center;
+    display: table-cell;
+    font-size: 1.25em;
+}
+
+.zci--coupon_mountain .tile__body {
+    padding: 0.5em;
+}
+
+.zci--coupon_mountain .divider {
+    position: relative;
+    background-color: #ddd;
+    border: 0;
+    height: 1px;
+    width: 100%;
+    top: 0;
+}
+
+.zci--coupon_mountain .divider.first {
+    top: 5em;
 }

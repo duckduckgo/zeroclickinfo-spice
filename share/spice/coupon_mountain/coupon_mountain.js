@@ -17,10 +17,31 @@
                 sourceUrl: 'http://www.couponmountain.com/search.php?searchtext='+ api_result.keyword
             },
             normalize: function(item){
+                var getDiscount = function() {
+                    var regex = /.[0-9]+%?/i;
+                    var result = regex.exec(item.name);
+                    if (result) {
+                        return result.join('');
+                    }
+                    return '';
+                }
+                var stripSymbol = function(string) {
+                    return string.replace(/[^0-9]/i, '');
+                }
+                var getSymbol = function(string) {
+                    var regex = /[^0-9\s]/i;
+                    var result = regex.exec(string);
+                    if (result) {
+                        return result.join('');
+                    }
+                    return '';
+                }
                 return {
                     image: item.iconUrl,
                     img: item.iconUrl,
-                    title: item.name,
+                    title: stripSymbol(getDiscount()),
+                    description: item.name,
+                    symbol: getSymbol(getDiscount()),
                     heading: stripExpiry(item.desc),
                     price: item.merName,
                     abstract: getExpiry(item.expire),
@@ -28,12 +49,13 @@
                 }
             },
             templates: {
-                group: 'products',
+                group: 'base',
                 options: {
-                    buy: Spice.coupon_mountain.buy,
+                    detail: Spice.coupon_mountain.buy,
                     brand: false,
                     rating: false,
                     price: true,
+                    content: Spice.coupon_mountain.content,
                     detailVariant: 'light'
                 }
             },
