@@ -12,18 +12,34 @@ topics "food_and_drink";
 category "entertainment";
 attribution github => ['https://github.com/mutilator','mutilator'];
 
-triggers any => "drink", "make", "mix", "recipe", "ingredients";
-triggers start => "mixing", "making";
+triggers any => "mix", "mixing", "make", "making";
+triggers startend => "drink", "ingredients";
 
 spice to => 'http://drinkproject.com/api/?type=json&name=$1&callback={{callback}}';
 
-
 handle query_lc => sub {
-    if (/^((((making|mixing)+|(how\sto\s(make|mix)+)+)+(\s(a|an|the)*)*)|(mixed\s+)*drink(\s+(recipe|mix))*)+\s+(.+)$/) {
-            return $12 if $12;
+
+    my $drink;
+
+    # enforce "drink" to be in queries with
+    # "make" or "making"
+    # too ambiguous otherwise
+    # e.g. "making a rails 4 backend"
+    if (/^(?:how to make|making) an? (.+)/){
+    	$drink = $1;
+        return unless $drink =~ /\bdrink\b/;
+    } elsif (/^(?:how to mix|mixing) an? (.+)/){
+    	$drink = $1;
+    } elsif (/^ingredients for an? (.+)|(.+) ingredients/){
+	$drink = $1||$2;
+    } elsif (/^(.+) drink$|^drink (.+)$/){
+        $drink = $1;
     }
-    if (/^(.+)\s+(drink|mixed)\s(drink|mix|recipe|ingredients)$/) {
-            return $1 if $1;
+    
+    if ($drink){
+    	$drink =~ s/drink//g;
+    	$drink =~ s/^\s+|\s+$//g;
+	return $drink;
     }
     return;
 };
