@@ -21,6 +21,8 @@ spice proxy_cache_valid => "418 1d";
 #(the triggers are similar to SEPTA's)
 my @stops = share('stops.txt')->slurp;
 
+#check if the stop name is in the list of stops
+#(using the same matching algorithm as the backend)
 sub is_stop {
 	foreach my $stop (@stops){
 		return 1 if index(lc $stop, lc $_[0]) > -1;
