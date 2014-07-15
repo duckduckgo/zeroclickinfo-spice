@@ -47,7 +47,7 @@
     width: 45%;
     height: 100%;
     line-height: 65px;
-    display: inline-block;
+    display: none; /* we'll display the divs in javascript */
     padding: 2%;
     border-radius: 2px;
     text-align: center;
@@ -68,10 +68,6 @@
     text-align: center;
     font-size: 40px;
     line-height: 75px;
-}
-
-.zci--timer .timer__hidden {
-    display: none;
 }
 
 .zci--timer .timer__time-input {
