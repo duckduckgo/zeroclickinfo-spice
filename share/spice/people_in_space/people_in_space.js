@@ -70,7 +70,7 @@
                 return {
                     url: item.bio,
                     title: item.name,
-                    icon: "https://duckduckgo.com/assets/flags/20/" + item.country_code + ".png"
+                    icon: DDG.settings.region.getSmallIconURL(item.country_code)
                 };
             };
             o.templates = {
