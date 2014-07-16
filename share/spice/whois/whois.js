@@ -2,25 +2,26 @@
     "use strict";
 
     // turns on/off debugging output
-    var is_debug = true;
+    var is_debug = false;
 
     // spice callback function
-    env.ddg_spice_whois = function(api_result) {
+    env.ddg_spice_whois = function(raw_api_result) {
+
         // for debugging
-        if(is_debug) console.log('in start of JS, api_result =', api_result);
+        if(is_debug) console.log('in start of JS, raw_api_result:', raw_api_result);
+
+	// normalize the api output
+	var api_result = normalize_api_result(raw_api_result);
+
+	if(is_debug) console.log('normalized api_result:', api_result || 'empty');
 
 	// Check for API error and exit early if found
 	// (with error message when in debug mode)
-	if (!api_result || api_result.error || !api_result.WhoisRecord) {
-	    if(is_debug) console.log("Error with whois API. api_result:", api_result || 'undefined');
+	if (!api_result) {
+	    if(is_debug) console.log('Error with whois API. raw_api_result:', raw_api_result || 'empty', ', normalized api_result:', api_result || 'empty');
 
 	    return Spice.failed('whois');
 	}
-
-	// normalize the api output
-	api_result = normalize_api_result(api_result);
-
-	if(is_debug) console.log('normalized api_result:', api_result);
 
         // is the domain available?
 	var is_avail = api_result.available;
@@ -56,6 +57,9 @@
     // parse the api response into a standard format
     var normalize_api_result = function(api_result) {
 
+	// return nothing if no api_result, if error, or if WhoisRecord object is missing
+	if(!api_result || api_result.error || !api_result.WhoisRecord) return;
+
 	// use only the 'WhoisRecord' portion, because that's where
 	// all the data is stored.
 	api_result = api_result.WhoisRecord;
@@ -79,7 +83,7 @@
 	];  
 
 	// return the normalized output as a hash
-	return {
+	var normalized = {
 
 	    // these first fields are not displayed
 	    // (hence the camelCase, which the user will not see)
@@ -89,6 +93,7 @@
 
 	    // the remaining fields are displayed
 	    // (hence the user-friendly capitalization and spaces)
+
 	    'Status': is_domain_available(api_result) ? 'Available' : 'Registered',
 	    'Registered to': get_first_by_key(contacts, 'name'),
 	    'Email': get_first_by_key(contacts, 'email'),
@@ -102,6 +107,16 @@
 	    'Expires': api_result.expiresDate
 	        && api_result.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
 	};
+
+	// return nothing if all key whois data is missing
+	if( !normalized['Registered to']
+	    && !normalized['Email']
+	    && !normalized['Last updated']
+	    && !normalized['Expires']) {
+	    return;
+	}
+
+	return normalized;
     }
 
     // Returns whether the domain is registered to someone, based on the API result.
@@ -112,10 +127,10 @@
     // Searches an array of objects for the first value
     // at the specified key.
     var get_first_by_key = function(arr, key) {
-	if(!arr || arr.length == 0) return null;
+	if(!arr || arr.length == 0) return;
 
 	// find the first object in the array that has a non-empty value at the key
-	var first = null;
+	var first;
 	$.each(arr, function(index, obj) {
 	    // get the value at the specified key
 	    // (which could be undefined)
@@ -128,7 +143,7 @@
 	    }
 	});
 
-	// return first, which could still be null
+	// return first, which could still be empty
 	return first;
     }
 
