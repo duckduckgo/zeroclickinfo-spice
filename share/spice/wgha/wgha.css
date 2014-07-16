@@ -1,6 +1,6 @@
 .tile--wgha .tile__title {
     text-transform: none;
-    height: 3.5em;
+    height: 4em;
 }
 
 .tile--wgha .tile__title__sub {
@@ -9,13 +9,9 @@
 }
 
 .tile--wgha .tile__body {
-    height: 12.5em;
+    height: 13.8em;
 }
 
 .tile--wgha .tile__content {
-    height: 3.4em;
-}
-
-.is-mobile .tile--wgha .tile__content {
-    height: 7em;
+    height: 3.7em;
 }
