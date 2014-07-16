@@ -19,12 +19,12 @@ triggers any => "space events",
 "upcoming launches",
 "upcoming space launches",
 "launch schedule",
-"NASA schedule",
-"NASA calendar",
-"NASA events",
-"ESA schedule",
-"ESA calendar",
-"ESA events";
+"nasa schedule",
+"nasa calendar",
+"nasa events",
+"esa schedule",
+"esa calendar",
+"esa events";
 
 spice to => "http://www2.jpl.nasa.gov/calendar/index.html";
 spice wrap_string_callback => 1;
