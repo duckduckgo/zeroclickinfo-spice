@@ -23,7 +23,6 @@ spice to => 'http://www.wasgehtheuteab.de/duckduckgo/events.json?q=$1&callback={
 spice proxy_cache_valid => "200 1h";
 
 handle query_lc => sub {
-  return if $loc->country_code ne 'DE';
   return $_;
 };
 
