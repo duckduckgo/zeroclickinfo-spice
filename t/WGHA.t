@@ -14,7 +14,7 @@ ddg_spice_test(
         query_raw => "was geht heute ab in frankfurt",
         location => test_location("de")
     ) => test_spice(
-        '/js/spice/wgha/heute%20ab%20in%20frankfurt',
+        '/js/spice/wgha/was%20geht%20heute%20ab%20in%20frankfurt',
         call_type => 'include',
         caller => 'DDG::Spice::WGHA',
     ),
@@ -22,7 +22,7 @@ ddg_spice_test(
         query_raw => "was geht in berlin",
         location => test_location("de")
     ) => test_spice(
-        '/js/spice/wgha/in%20berlin',
+        '/js/spice/wgha/was%20geht%20in%20berlin',
         caller    => 'DDG::Spice::WGHA',
     ),
 );
