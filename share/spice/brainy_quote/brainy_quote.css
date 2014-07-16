@@ -8,9 +8,17 @@
     font-weight: 300;
 }
 
+.brainy__quote:before {
+    color: #D4D4D4;
+    content: open-quote;
+    float: left;
+    font-size: 4em;
+    margin-top: -0.25em;
+}
+
 .brainy__attribution {
     color: #999;
-    float: right;
+    float: left;
 }
 
 .zci--brainy_quote .zci__content.chomp {
