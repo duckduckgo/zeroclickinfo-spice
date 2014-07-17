@@ -5,6 +5,7 @@
 .zci--bitcoin_block .record .record__cell__value {
     word-wrap: break-word;
     padding: 0.4em;
+    text-overflow: ellipsis;
 }
 
 .zci--bitcoin_block .record .record__cell__key {
