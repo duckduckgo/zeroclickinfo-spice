@@ -29,7 +29,7 @@
                     "Height": block.height.toString(),
                     "Solved At": formatDate(new Date(block.solved_at)),
                     "Hash": block.hash,
-                    "Previous Block": block.previous_block,
+                    "Previous Block": (genesisHash === block.hash ? 'N/A' : block.previous_block),
                     "Merkle root": block.merkle_root,
                     "Version": block.version,
                     "Size": (block.size/1024.0).toFixed(2)+" KB",
