@@ -83,18 +83,8 @@
 }
 
 .zci--movie .detail__media.detail__media--pr {
-    width: 30%;
     margin-right: 0;
 }
-
-.zci--movie .detail__body.detail__body--pr {
-    padding-left: 0;
-}
-
-    .is-mobile .zci--movie .detail__body.detail__body--pr {
-        padding-left: 1.8em;
-    }
-
 
 .is-mobile .zci--movie .btn.btn--primary {
     position: absolute;

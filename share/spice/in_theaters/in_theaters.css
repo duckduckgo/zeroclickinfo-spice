@@ -83,18 +83,8 @@
 }
 
 .zci--in_theaters .detail__media.detail__media--pr {
-    width: 30%;
     margin-right: 0;
 }
-
-.zci--in_theaters .detail__body.detail__body--pr {
-    padding-left: 0;
-}
-
-    .is-mobile .zci--in_theaters .detail__body.detail__body--pr {
-        padding-left: 1.8em;
-    }
-
 
 .is-mobile .zci--in_theaters .btn.btn--primary {
     position: absolute;
