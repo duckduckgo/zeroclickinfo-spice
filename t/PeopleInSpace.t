@@ -97,7 +97,48 @@ ddg_spice_test(
         '/js/spice/people_in_space/1',
         call_type => 'include',
         caller => 'DDG::Spice::PeopleInSpace'
-    )
+    ),
+    'who\'s in space' => test_spice(
+        '/js/spice/people_in_space/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::PeopleInSpace'
+    ),
+    'who\'s in orbit' => test_spice(
+        '/js/spice/people_in_space/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::PeopleInSpace'
+    ),
+    'who is in space' => test_spice(
+        '/js/spice/people_in_space/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::PeopleInSpace'
+    ),
+    'who is in orbit' => test_spice(
+        '/js/spice/people_in_space/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::PeopleInSpace'
+    ),
+    'anyone in space' => test_spice(
+        '/js/spice/people_in_space/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::PeopleInSpace'
+    ),
+    'anyone in orbit' => test_spice(
+        '/js/spice/people_in_space/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::PeopleInSpace'
+    ),
+    'whose in space' => test_spice(
+        '/js/spice/people_in_space/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::PeopleInSpace'
+    ),
+    'whose in orbit' => test_spice(
+        '/js/spice/people_in_space/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::PeopleInSpace'
+    ),
+    'Lost in Space' => undef
 );
 
 done_testing;
