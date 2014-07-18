@@ -15,7 +15,9 @@ attribution github  => ["elebow", "Eddie Lebow"];
 triggers any => "people in space", "people in orbit", "people are in space", "people are in orbit",
     "humans in space", "humans in orbit", "humans are in space", "humans are in orbit",
     "astronauts in space", "astronauts in orbit", "astronauts are in space", "astronauts are in orbit",
-    "cosmonauts in space", "cosmonauts in orbit", "cosmonauts are in space", "cosmonauts are in orbit";
+    "cosmonauts in space", "cosmonauts in orbit", "cosmonauts are in space", "cosmonauts are in orbit",
+    "who's in space", "who's in orbit", "who is in space", "who is in orbit", "anyone in space", "anyone in orbit",
+    "whose in space", "whose in orbit";
 
 spice to => 'http://www.howmanypeopleareinspacerightnow.com/space.json';
 spice wrap_jsonp_callback => 1;
