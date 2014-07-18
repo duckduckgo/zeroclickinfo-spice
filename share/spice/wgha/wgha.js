@@ -35,7 +35,7 @@
 
  Handlebars.registerHelper("WGHA_formatDate", function(created_at) {
   var date = new Date(created_at);
-  if (date == null) {
+  if (isNaN(date)) {
    var pattern = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/;
    var match = pattern.exec(created_at);
    date = new Date(match[1], parseInt(match[2])-1, match[3], match[4], match[5], match[6]);
