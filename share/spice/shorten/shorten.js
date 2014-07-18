@@ -13,16 +13,20 @@ function ddg_spice_shorten(api_result) {
     }
 
     Spice.add({
-        data             : api_result,
-        header1          : "Shortened Link (is.gd)",
-        sourceUrl       : "http://is.gd/",
-        sourceName      : "is.gd",
-        templates: {
-            item: Spice.shorten.shorten,
-            detail: Spice.shorten.shorten
+        id: 'shorten',
+        data: api_result,
+        header1: "Shortened Link (is.gd)",
+        meta: {
+            sourceUrl : "http://is.gd/",
+            sourceName : "is.gd",
         },
-        
-        favicon_style    : "inline"
+        templates: {
+            group: 'base',
+            options: {
+                content: Spice.shorten.shorten
+            }
+        },
+        favicon_style : "inline"
     });
 
     // If we displayed an input box, make sure we focus on it.
