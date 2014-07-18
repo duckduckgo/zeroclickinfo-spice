@@ -22,7 +22,7 @@ my @triggers = ("was geht", "wasgeht", "party", "parties", "partys", "feiern",
 
 triggers any => @triggers;
 
-spice to => 'http://www.wasgehtheuteab.de/duckduckgo/events.json?q=$1&callback={{callback}}&api_key={{ENV{DDG_SPICE_WGHA_APIKEY}}}';
+spice to => 'http://ddg.wasgehtheuteab.de/duckduckgo/events.json?q=$1&callback={{callback}}&api_key={{ENV{DDG_SPICE_WGHA_APIKEY}}}';
 spice proxy_cache_valid => "200 60m";
 
 handle query_lc => sub {
