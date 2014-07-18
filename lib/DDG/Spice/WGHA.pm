@@ -28,7 +28,7 @@ spice proxy_cache_valid => "200 60m";
 handle query_lc => sub {
   return $_ if $loc->country_code eq 'DE';
 
-  if ($_ =~ /berlin|darmstadt|dresden|düsseldorf|frankfurt|freiburg|hamburg|hannover|kassel|köln|leipzig|mainz|mannheim|münchen|stuttgart/) {
+  if ($_ =~ /berlin|darmstadt|dresden|düsseldorf|duesseldorf|frankfurt|freiburg|hamburg|hannover|kassel|köln|koeln|leipzig|mainz|mannheim|münchen|muenchen|stuttgart/) {
     return $_;
   }
   return;
