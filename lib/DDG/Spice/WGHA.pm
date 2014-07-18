@@ -1,4 +1,6 @@
+use utf8;
 package DDG::Spice::WGHA;
+
 # ABSTRACT: Search for events on was geht heute ab.de.
 
 use DDG::Spice;
