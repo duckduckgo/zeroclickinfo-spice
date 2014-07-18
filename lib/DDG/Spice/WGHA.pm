@@ -10,8 +10,8 @@ name "WGHA Events";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/WGHA.pm";
 topics "entertainment", "special_interest";
 category  "entertainment";
-attribution web => ['http://www.wgha.de','Samuel Goebert'],
-            email => ['http://www.wgha.de','Samuel Goebert'];
+attribution web =>   ['http://www.wasgehtheuteab.de','Samuel Goebert'],
+            email => ['http://www.wasgehtheuteab.de','Samuel Goebert'];
 
 my @triggers = ( "was geht", "wasgeht", "party", "parties", "partys", "feiern",
   "aus gehen", "ausgehen", "nachtleben", "weg gehen", "weggehen", "tanzen",
