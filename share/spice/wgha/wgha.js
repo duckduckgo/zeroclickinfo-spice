@@ -26,7 +26,7 @@
                 detail: false,
                 item_detail: false,
                 options: {
-                footer: Spice.wgha.footer
+                    footer: Spice.wgha.footer
             },
         },
     }
