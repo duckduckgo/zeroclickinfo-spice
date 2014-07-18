@@ -13,9 +13,10 @@ category  "entertainment";
 attribution web =>   ['http://www.wasgehtheuteab.de','Samuel Goebert'],
             email => ['http://www.wasgehtheuteab.de','Samuel Goebert'];
 
-my @triggers = ( "was geht", "wasgeht", "party", "parties", "partys", "feiern",
-  "aus gehen", "ausgehen", "nachtleben", "weg gehen", "weggehen", "tanzen",
-  "club", "clubs", "disco", "event", "events", "veranstaltung" );
+my @triggers = ("was geht", "wasgeht", "party", "parties", "partys", "feiern",
+                "abfeiern", "aus gehen", "ausgehen", "nachtleben", "weg gehen",
+                "weggehen", "tanzen", "club", "clubs", "disco", "event",
+                "events", "veranstaltung", "veranstaltungen" );
 
 triggers any => @triggers;
 
