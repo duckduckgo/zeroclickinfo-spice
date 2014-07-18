@@ -6,6 +6,9 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
 (function (env) {
     "use strict";
+
+    var started = false;
+
     env.ddg_spice_timer = function(api_result) {
         Spice.add({
             id: "timer",
@@ -23,8 +26,10 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             //wait for the spice to load before displaying things
             //this makes sure the divs display at the right time so the layout doesn't break
             onShow: function(){
+                if (!started){
+                    $('#timer_input').css('display', 'inline-block');
+                }
                 $('#timer_buttons').css('display', 'inline-block');
-                $('#timer_input').css('display', 'inline-block');
             }
         });
 
@@ -59,7 +64,6 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         }
 
         var time_left, last_update, update_int,
-            started = false,
             $minute_input = $('#minute_input'),
             $second_input = $('#second_input'),
             $timer = $('#timer'),
