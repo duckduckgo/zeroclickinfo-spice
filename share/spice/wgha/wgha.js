@@ -34,12 +34,12 @@
  };
 
  Handlebars.registerHelper("WGHA_formatDate", function(created_at) {
-  var date = new Date(created_at);
-  if (isNaN(date)) {
    var pattern = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/;
    var match = pattern.exec(created_at);
-   date = new Date(match[1], parseInt(match[2])-1, match[3], match[4], match[5], match[6]);
- }
- return date.getUTCDate() + "." + (date.getUTCMonth() + 1) + "." + date.getUTCFullYear() +" ab " + date.getUTCHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes() + "Uhr";
-});
+   if(match != null) {
+   var event_date = new Date(match[1], parseInt(match[2])-1, match[3], match[4], match[5], match[6]);
+   return event_date.getUTCDate() + "." + (event_date.getUTCMonth() + 1) + "." + event_date.getUTCFullYear() +" ab " + event_date.getUTCHours() + ":" + (event_date.getMinutes()<10?'0':'') + event_date.getMinutes() + "Uhr";
+ } else {return;}
+
+ });
 }(this));
