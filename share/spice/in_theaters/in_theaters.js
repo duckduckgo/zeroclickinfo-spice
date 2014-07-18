@@ -11,7 +11,31 @@
         if(!api_result || api_result.error) {
             return Spice.failed('in_theaters');
         }
-    
+
+        var mod_api_result = [];
+        var filter_rating;
+        var query_array = DDG.get_query().toLowerCase().split(" ");
+        var ratings = ["r","pg-13","pg","g"];
+
+        // Check whether our query contains any rating
+        $.each(ratings, function(index, value) {
+            if(($.inArray(value, query_array)) !== -1) {
+                filter_rating = value;
+            }
+        });
+
+        // If rating found in query, filter data given rating
+        if(filter_rating) {
+            $.each(api_result.movies, function(index, value) {
+            if(value.mpaa_rating.toLowerCase() === filter_rating) {
+                mod_api_result.push(value);
+            }
+        });
+            if(mod_api_result.length > 0) {
+                api_result.movies = mod_api_result;
+            }
+        }
+
         Spice.add({
             id: 'in_theaters',
             name: 'Movies',
