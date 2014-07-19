@@ -3,7 +3,7 @@
     env.ddg_spice_shorten = function (api_result) {
         // Exit immediately if we find an error message.
         if (!api_result || !api_result.shorturl || api_result.errorcode) {
-            return;
+            return Spice.failed('shorten');
         }
 
         // Check if it is a mobile browser (needs work). This was inspired by is.gd.
@@ -29,7 +29,7 @@
         });
 
         // If we displayed an input box, make sure we focus on it.
-        var url = $('input#shorten-url');
+        var url = $('.zci--shorten input.tag');
         url.click(function() {
             url.focus().select();
         }).click();
