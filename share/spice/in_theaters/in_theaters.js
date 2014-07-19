@@ -15,12 +15,16 @@
         var mod_api_result = [];
         var filter_rating;
         var query_array = DDG.get_query().toLowerCase().split(" ");
-        var ratings = ["r","pg-13","pg","g"];
+        var ratings = ["r","pg-13","pg","g","pg13","unrated"];
 
         // Check whether our query contains any rating
         $.each(ratings, function(index, value) {
             if(($.inArray(value, query_array)) !== -1) {
-                filter_rating = value;
+                if(value === "pg13") {
+                    filter_rating = "pg-13";
+                } else {
+                    filter_rating = value;
+                }
             }
         });
 
@@ -31,7 +35,7 @@
                 mod_api_result.push(value);
             }
         });
-            if(mod_api_result.length > 0) {
+            if(mod_api_result.length) {
                 api_result.movies = mod_api_result;
             }
         }
