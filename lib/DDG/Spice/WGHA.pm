@@ -17,8 +17,8 @@ attribution web =>   ['http://www.wasgehtheuteab.de','Samuel Goebert'],
 
 my @triggers = ("was geht", "wasgeht", "party", "parties", "partys", "feiern",
                 "abfeiern", "aus gehen", "ausgehen", "nachtleben", "weg gehen",
-                "weggehen", "tanzen", "club", "clubs", "disco", "event",
-                "events", "veranstaltung", "veranstaltungen" );
+                "weggehen", "tanz", "tanzen", "club", "clubs", "disco", "event",
+                "events", "veranstaltung", "veranstaltungen", "fest" );
 
 triggers any => @triggers;
 
