@@ -8,8 +8,6 @@
             sourceUrl = 'https://hn.algolia.com/#!/story/forever/0/' + query,
             now = Math.floor(new Date().getTime() / 1000);
 
-        console.log(api_result);
-
         if(!api_result || !api_result.hits || api_result.hits.length === 0) {
             return Spice.failed('hacker_news');
         }
@@ -62,6 +60,7 @@
         });
     }
 
+    //get a relative duration ("3 days ago") from a difference between two Unix timestamps
     function fuzzyDate(delta){
         var MINUTE = 60,
             HOUR = 60 * MINUTE,
@@ -70,20 +69,20 @@
             YEAR = 365 * MONTH;
 
         if (delta < 45*MINUTE){
-            return Math.ceil(delta / MINUTE) + " minutes ago";
+            return Math.round(delta / MINUTE) + " minutes ago";
         } else if (delta < 90*MINUTE) {
             return 'an hour ago';
         } else if (delta < 24*HOUR){
-            return Math.ceil(delta / HOUR) + " hours ago";
+            return Math.round(delta / HOUR) + " hours ago";
         } else if (delta < 48*HOUR){
             return 'yesterday';
         } else if (delta < 30*DAY){
-            return Math.ceil(delta / DAY) + " days ago";
+            return Math.round(delta / DAY) + " days ago";
         } else if (delta < 12*MONTH){
-            var months = Math.ceil(delta / MONTH);
+            var months = Math.round(delta / MONTH);
             return (months === 1) ? 'a month ago' : months + " months ago";
         } else {
-            var years = Math.ceil(delta / YEAR);
+            var years = Math.round(delta / YEAR);
             return (years === 1) ? 'a year ago' : years + " years ago";
         }
     }
