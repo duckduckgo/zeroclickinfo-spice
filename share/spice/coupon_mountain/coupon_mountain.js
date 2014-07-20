@@ -17,6 +17,7 @@
                 sourceUrl: 'http://www.couponmountain.com/search.php?searchtext='+ api_result.keyword
             },
             normalize: function(item){
+                // Get the discount from the description
                 var getDiscount = function() {
                     var regex = /.[0-9]+%?/i;
                     var result = regex.exec(item.name);
@@ -25,9 +26,13 @@
                     }
                     return '';
                 }
+
+                // Return discount string without symbols
                 var stripSymbol = function(string) {
                     return string.replace(/[^0-9]/i, '');
                 }
+
+                // Get symbol in the discount
                 var getSymbol = function(string) {
                     var regex = /[^0-9\s]/i;
                     var result = regex.exec(string);
@@ -50,8 +55,8 @@
             },
             templates: {
                 group: 'base',
+                detail: Spice.coupon_mountain.buy,
                 options: {
-                    detail: Spice.coupon_mountain.buy,
                     brand: false,
                     rating: false,
                     price: true,

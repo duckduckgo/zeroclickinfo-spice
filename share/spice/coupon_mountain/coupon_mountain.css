@@ -1,3 +1,7 @@
+.zci--coupon_mountain {
+    height: 20em;
+}
+
 .zci--coupon_mountain .tile--coupon_mountain {
     height: 15em;
     padding: 0.5em;
@@ -96,4 +100,14 @@
 
 .zci--coupon_mountain .divider.first {
     top: 5em;
+}
+
+.zci--coupon_mountain .zci__detail,
+.zci--coupon_mountain .detail__pane,
+.zci--coupon_mountain .detail__wrap {
+    height: 15em;
+}
+
+.zci--coupon_mountain .zci__detail {
+    top: 200px !important;
 }
