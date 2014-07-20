@@ -39,3 +39,12 @@
 .zci--brainy_quote .zci__body.zci__body--info {
     padding-left: 0.25em;
 }
+
+.is-mobile .brainy__quote:before {
+    display: none;
+}
+
+.is-mobile .brainy__quote--container {
+    margin-left: 0px;
+    margin-bottom: 0.5em;
+}
