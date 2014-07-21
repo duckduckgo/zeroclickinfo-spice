@@ -27,17 +27,20 @@
                 return {
                     title: item.title,
                     url: (item.url) ? item.url : 'https://news.ycombinator.com/item?id=' + item.objectID,
+                    subTitle: fuzzyDate(now - item.created_at_i),
                     points: item.points || 0,
-                    pointsLabel: (item.points == 1) ? 'Point' : 'Points',
                     num_comments: item.num_comments || 0,
-                    commentsLabel: (item.num_comments == 1) ? 'Comment' : 'Comments',
-                    domain: 'news.ycombinator.com',
-                    date: fuzzyDate(now - item.created_at_i),
+                    arrowUrl: DDG.get_asset_path('reddit_search','arrow_up.png'),
                     id: item.objectID
                 };
             },
             templates: {
-                item_custom: Spice.hacker_news.item
+                group: 'text',
+                options: {
+                    footer: Spice.hacker_news.footer
+                },
+                detail: false,
+                item_detail: false
             },
             sort_fields: {
                 score: function(a, b){
@@ -48,15 +51,6 @@
                 }
             },
             sort_default: 'score'
-            /*
-            relevancy: {
-                skip_words: [ 'hacker', 'news', 'hn', 'hackernews', 'news.yc', 'news.ycombinator.com', 'hn search', 'search' ],
-                primary: [
-                    { required: 'title' },
-                    { key: 'title', strict: false}
-                ]
-            },
-            */
         });
     }
 
@@ -66,7 +60,7 @@
             HOUR = 60 * MINUTE,
             DAY = 24 * HOUR,
             MONTH = 30 * DAY,
-            YEAR = 365 * MONTH;
+            YEAR = 12 * MONTH;
 
         if (delta < 45*MINUTE){
             return Math.round(delta / MINUTE) + " minutes ago";
