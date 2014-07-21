@@ -27,10 +27,11 @@
                 item_detail: false,
                 options: {
                     footer: Spice.wgha.footer
+                },
             },
-        },
-    }
-);};
+        }
+    );
+};
 
 Handlebars.registerHelper("WGHA_formatDate", function(created_at) {
     var pattern = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/;
