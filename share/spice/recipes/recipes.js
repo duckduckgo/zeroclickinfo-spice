@@ -128,7 +128,7 @@ function ddg_spice_recipes(res) {
             detailClass: 'detail--i',
 
             // TODO: the following metadata will be injected by spice
-            sourceIconUrl: "https://" + window.location.hostname + '/' + DDG.get_asset_path('recipes','yummly.com.ico'), // temp fix for pb
+            sourceIconUrl: DDG.get_asset_path('recipes','yummly.com.ico'), // temp fix for pb
             sourceUrl: moreUrl,
             sourceName: 'Yummly'
         },
@@ -156,17 +156,14 @@ function ddg_spice_recipes(res) {
         },
         */
 
-        template_group: 'products_simple',
-
         templates: {
+            group: 'products_simple',
             detail: Spice.recipes.recipes_detail,
             item_detail: Spice.recipes.recipes_detail,
-
             options: {
                 brand: true,
                 rating: true
             }
         }
-
     });
 }

@@ -58,8 +58,8 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     if (!running) return;
     var current_time = updateStopwatch();
     var current_lap = current_time - last_lap;
-    $split_list.prepend('<tr><td class="lap-num">' + lap_num + '</td><td class="lap-time">' + formatTime(current_lap) + 
-      '</td><td class="lap-time">' + $total_time.html() + '</td></tr>');
+    $split_list.prepend('<tr><td class="lap-num">' + lap_num + '</td><td class="lap-time lap-total">' +
+      $total_time.html() + '</td><td class="lap-time">' + formatTime(current_lap) + '</td></tr>');
     $split_list.removeClass('hidden');
     last_lap = current_time;
     lap_num++;
@@ -105,6 +105,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
 
     $('.stopwatch__btn.stop').removeClass('stop').addClass('start').html('START');
     $(this).prop('disabled', true);
+    $lap_btn.prop('disabled', true);
     $split_list.addClass('hidden');
   });
 

@@ -1,19 +1,20 @@
 (function(env) {
     "use strict"
 
-    var SOUNDCLOUD_CLIENT_ID = 'df14a65559c0e555d9f9fd950c2d5b17',
-        script = $('[src*="/js/spice/sound_cloud/"]')[0],
-        source = $(script).attr("src"),
-        query = source.match(/sound_cloud\/([^\/]*)/)[1],
-
-        // Blacklist some adult results.
-        skip_ids = {
-            80320921: 1, 
-            75349402: 1
-        };
-
     env.ddg_spice_sound_cloud = function(api_result) {
 
+        var SOUNDCLOUD_CLIENT_ID = 'df14a65559c0e555d9f9fd950c2d5b17',
+            script = $('[src*="/js/spice/sound_cloud/"]')[0],
+            source = $(script).attr("src"),
+            query = source.match(/sound_cloud\/([^\/]*)/)[1],
+
+            // Blacklist some adult results.
+            skip_ids = {
+                80320921: 1, 
+                75349402: 1
+            };
+
+        
         if(!api_result){
             return Spice.failed("sound_cloud");
         }
