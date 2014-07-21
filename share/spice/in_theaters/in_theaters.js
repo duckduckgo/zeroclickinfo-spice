@@ -4,7 +4,18 @@
     // A change in the Rotten Tomatoes API returns images that end in _tmb.
     // This changes this to _det.
     function toDetail(img) {
-        return img.replace(/tmb\.jpg$/, "det.jpg");
+        return img.replace(/tmb\.(jpg|png)/, "det.$1");
+    }
+    
+    function get_image(critics_rating) {
+        // The filename is the same as the critics_rating, but
+        // lowercased and with spaces converted to dashes.
+        critics_rating = critics_rating.toLowerCase().replace(/ /, '-');
+        if(is_retina) {
+            return DDG.get_asset_path('in_theaters', critics_rating + '.retina.png');
+        } else {
+            return DDG.get_asset_path('in_theaters', critics_rating + '.png');
+        }
     }
     
     env.ddg_spice_in_theaters = function(api_result) {
@@ -24,27 +35,18 @@
                 itemType: 'Movies'
             },
             normalize: function(item) {
-                var position;
-                
-                // We add these so that we can position the Rotten Tomatoes images.
-                if(item.ratings.critics_rating === "Fresh" || item.ratings.critics_rating === "Certified Fresh") {
-                    position = "-256px -144px";
-                } else if(item.ratings.critics_rating === "Rotten") {
-                    position = "-272px -144px";
-                }
                 
                 // Modify the image from _tmb.jpg to _det.jpg
                 var image = toDetail(item.posters.detailed)
                 return {
                     rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
                     image: image,
-                    icon_url: DDG.get_asset_path('in_theaters', 'icons-v2.png'),
-                    icon_image: position,
-                    icon_class: position ? 'tomato--icon' : "",
+                    icon_image: get_image(item.ratings.critics_rating),
                     abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
                     heading: item.title,
                     img_m: image,
-                    url: item.links.alternate
+                    url: item.links.alternate,
+                    is_retina: is_retina ? "is_retina" : "no_retina"
                 };
             },
             templates: {

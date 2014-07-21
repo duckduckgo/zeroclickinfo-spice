@@ -111,6 +111,18 @@ ddg_spice_test(
     	caller => 'DDG::Spice::Forecast',
         is_cached => 1
     ),
+    'shipping forecast' => undef,
+    'weather forecast bbc' => undef,
+    'bbc weather forecast' => undef,
+    '"location" forecast' => undef,
+    'financial forecast' => undef,
+    'market forecast' => undef,
+    'gold forecast' => undef,
+    'nba forecast' => undef,
+    'soccer game weather' => undef,
+    'weather underground.com' => undef,
+    'color temperature' => undef,
+    'ising model critical temperature' => undef,
 
 # Disabling since I made the trigger a startend. (caine)
 #    'Philadelphia weather this week' => test_spice(

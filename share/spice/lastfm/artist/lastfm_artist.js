@@ -18,9 +18,8 @@
                     title: item.name
                 };
             },
-            template_group: 'info',
-
             templates: {
+                group: 'info',
                 options: {
                     moreAt: true
                 }
