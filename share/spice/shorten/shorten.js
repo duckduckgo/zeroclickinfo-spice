@@ -6,12 +6,6 @@
             return Spice.failed('shorten');
         }
 
-        // Check if it is a mobile browser (needs work). This was inspired by is.gd.
-        api_result.mobile = false;
-        if(window.navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)) {
-            api_result.mobile = true;
-        }
-
         Spice.add({
             id: 'shorten',
             data: api_result,
@@ -34,4 +28,4 @@
             url.focus().select();
         }).click();
     }
-}(this))
+}(this));
