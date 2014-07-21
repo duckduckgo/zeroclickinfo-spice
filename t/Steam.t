@@ -18,6 +18,10 @@ ddg_spice_test(
         "/js/spice/steam/specials/",
         caller => 'DDG::Spice::Steam::Specials'
     ),
+    
+    # Do not trigger on these queries
+    'steam iron' => undef,
+    'steam press' => undef,
 );
 
 done_testing;

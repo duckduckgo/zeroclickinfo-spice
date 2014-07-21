@@ -2,7 +2,7 @@
     "use strict";
 
     // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript.
-    // If cache was set to false, it would be calling /js/spice/hackage/packages/hello?_=12345
+    // If cache was set to false, it would be calling /js/spice/steam/list_specials/hello?_=12345
     // and that's something that we don't want.
     $.ajaxSetup({ cache: true });
 
@@ -12,21 +12,21 @@
         if(!api_result) {
             return Spice.failed('specials');  
         }
-        var idarray = api_result.tabs.viewall.items;
-        queryexec = encodeURIComponent(($.map(idarray,function(elem){return elem.id;}).join(",")));
+
+        var idarray = api_result.specials.items;
+        queryexec = encodeURIComponent(($.map(idarray, function(elem) {
+                return elem.id;
+        }).join(",")));
+
         $.getScript("/js/spice/steam/list_specials/" + queryexec);
     };
 
-    
+
     env.ddg_spice_steam_list_specials = function(api_result) {
         if (!api_result) {
             return Spice.failed('specials');
         }
-        
-        if(!queryexec) {
-            return Spice.failed('specials');
-        }
-   
+
         var query = decodeURIComponent(queryexec);
     	
         // Extract our query
@@ -55,31 +55,32 @@
                 results[j].ss = (api_result[gameids[i]].data.screenshots).slice(0,4);
                 genre = [];
                 j++;
-        }
-    }
-
-    if(!results) {
-        return Spice.failed('specials');
-    }
-
-    Spice.add({
-        id: "specials",
-        name: "Steam Specials",
-        data: results,
-        meta: {
-            itemType: "Specials",
-            sourceUrl: 'http://store.steampowered.com/search/?specials=1',
-            sourceName: 'Steam'
-        },
-        templates: {
-            group: 'base',
-            detail: Spice.steam_specials.detail,
-            options: {
-                content: Spice.steam_specials.content
             }
-        },
-    });
-};
+        }
+
+        if(!results) {
+            return Spice.failed('specials');
+        }
+
+        Spice.add({
+            id: "specials",
+            name: "Steam Specials",
+            data: results,
+            meta: {
+                itemType: "Specials",
+                sourceUrl: 'http://store.steampowered.com/search/?specials=1',
+                sourceName: 'Steam'
+            },
+            templates: {
+                group: 'base',
+                detail: Spice.steam_specials.detail,
+                options: {
+                    content: Spice.steam_specials.content
+                }
+            },
+        });
+    };
+
     Handlebars.registerHelper('convertToDollars', function(cents) {
         var dollars = cents/100;
         return dollars;
@@ -87,11 +88,12 @@
 
     Handlebars.registerHelper('booleval', function(boolevaluate) {
         if(boolevaluate == true) {
-            return "Yes" ;
+            return "Yes";
         } else {
             return "No";
         }
     });
+
     Handlebars.registerHelper('coloreval', function(number) {
         if(!number) {
             return;
