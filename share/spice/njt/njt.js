@@ -5,21 +5,22 @@
             return Spice.failed('njt');
         }
 
-        var sorted = api_result.routes.sort(function(a, b){
-            return actualDepartureTime(a) - actualDepartureTime(b);
-        });
-
         Spice.add({
             id: 'njt',
             name: 'NJ Transit',
-            data: sorted,
+            data: api_result.routes,
             meta: {
                 heading: api_result.origin + " to " + api_result.destination,
                 sourceUrl: api_result.url,
                 sourceName: "NJ Transit"
             },
             templates: {
-                item_custom: Spice.njt.train_item
+                group: 'base',
+                detail: false,
+                item_detail: false,
+                options: {
+                    content: Spice.njt.train_item
+                }
             },
             normalize: function(item) {
                 var now = timeInMins(api_result.now),
@@ -40,6 +41,15 @@
                     cancelled: item.status === "Cancelled",
                     status_class: delayedMins(item, now) > 0 ? "njt__delayed" : classes[item.status]
                 };
+            },
+            sort_fields: {
+                time: function(a, b) {
+                    return actualDepartureTime(a) - actualDepartureTime(b);
+                }
+            },
+            sort_default: 'time',
+            onShow: function(){
+                $('.njt__cancelled').parents('.tile__body').addClass('njt__cancelled-tile');
             }
         });
     };

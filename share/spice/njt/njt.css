@@ -57,13 +57,13 @@
     background-color: #e34c2d;
 }
 
-.tile--njt.njt__cancelled-tile {
+.tile--njt .njt__cancelled-tile {
     background-color: #fafafa;
     border-color: #fafafa;
 }
 
-.tile--njt.njt__cancelled-tile .njt__time, 
-.tile--njt.njt__cancelled-tile .njt__details,
-.tile--njt.njt__cancelled-tile .njt__status {
+.tile--njt .njt__cancelled-tile .njt__time,
+.tile--njt .njt__cancelled-tile .njt__details,
+.tile--njt .njt__cancelled-tile .njt__status {
     color: #ccc;
 }
