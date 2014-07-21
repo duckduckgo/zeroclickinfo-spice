@@ -13,7 +13,7 @@
 
         // Display the instant answer.
         Spice.add({
-            id: "rubygems",
+            id: "ruby_gems",
             name: "Software",
             data: api_result,
             meta: {
