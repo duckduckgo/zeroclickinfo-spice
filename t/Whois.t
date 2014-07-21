@@ -97,17 +97,26 @@ ddg_spice_test(
 
     # whois keywords without a url should not trigger
     'whois' => undef,
+    'whois tom cruise' => undef,
     'lookup' => undef,
+    "lookup someone's phone number" => undef,
     'domain' => undef,
+    'eminent domain' => undef,
     'is domain' => undef,
     'available' => undef,
+    'fios available' => undef,
     'is available' => undef,
+    'is water available' => undef,
     'register' => undef,
+    'register to vote' => undef,
     'owner' => undef,
-    'owner' => undef,
+    'owner of seattle mariners' => undef,
     'who owns' => undef,
+    'who owns 20 Paoli Pike' => undef,
     'buy' => undef,
+    'buy stocks online' => undef,
     'how to buy' => undef,
+    'how to buy a TV' => undef,
 
 );
 
