@@ -1,0 +1,40 @@
+{{#if isMain}}
+
+	{{#if isPair}}
+		<div class="tile tile--s"   data-link="{{xeUrl}}">	
+			<div class="xe_main_convert" style="min-width:20em;  height:110px;">
+				<img class="xe_flag_img xe_left" src="http://s.xe.com/v2/themes/xe/images/flags/big/{{lower fromCurrencySymbol}}.png" class="flag" width="{{flagWidth}}px" height="{{flagHeight}}px" alt="Flag of {{fromCurrencySymbol}}" /></img>
+				<img class="xe_flag_img" src="http://s.xe.com/v2/themes/xe/images/flags/big/{{lower toCurrencySymbol}}.png" class="flag" width="{{flagWidth}}px" height="{{flagHeight}}px" alt="Flag of {{toCurrencySymbol}}" /></img>
+				<span class="xe_amount" style="font-size:{{amountFontSize}}em;  color:black">{{{amount}}} {{fromCurrencySymbol}} = {{convertedAmount}} {{toCurrencySymbol}}</span>
+				<span class="xe_chart_link">View  Chart</span>
+				<span class="xe_main_convert_rate" >{{rate}}</span>
+			</div>	
+		</div>	
+
+	{{else}}
+	<div class="tile tile--s"   data-link="{{xeUrl}}">
+		<div class="xe_main_convert" style="min-width:20em;  height:110px;">
+			<img class="xe_flag_img left" src="http://s.xe.com/v2/themes/xe/images/flags/big/{{lower fromCurrencySymbol}}.png" class="flag" width="{{flagWidth}}px" height="{{flagHeight}}px" alt="Flag of {{fromCurrencySymbol}}" /></img>
+			<span class="xe_amount" style="font-size:{{amountFontSize}}em;  color:black">{{{amount}}} {{fromCurrencySymbol}} </span>
+			<span class="xe_chart_link">View  Chart</span>
+			<span class="xe_main_convert_rate">{{rate}}</span>
+		</div>
+	</div>
+	{{/if}}
+	
+{{else}}	
+	<div class="tile tile--s" data-link="{{xeUrl}}">
+	
+		<div class="xe_top_convert" style="width:{{minWidth}}em; height:110px;">
+			<img class="xe_flag_img" src="http://s.xe.com/v2/themes/xe/images/flags/big/{{lower toCurrencySymbol}}.png" class="flag" width="{{flagWidth}}px" height="{{flagHeight}}px" alt="Flag of {{toCurrencySymbol}}" /></img>
+			<span class="xe_amount" style="font-size:{{amountFontSize}}em;">{{convertedAmount}}</span>
+			<span class="xe_symbol"> {{toCurrencySymbol}}</span>	
+			<span class="xe_top_convert_rate">{{rate}}</span>
+		</div>
+
+	</div>
+{{/if}}
+
+
+
+
