@@ -28,18 +28,6 @@
             }
         });
 
-        // If rating found in query, filter data given rating
-        if(filter_rating) {
-            $.each(api_result.movies, function(index, value) {
-            if(value.mpaa_rating.toLowerCase() === filter_rating) {
-                mod_api_result.push(value);
-            }
-        });
-            if(mod_api_result.length) {
-                api_result.movies = mod_api_result;
-            }
-        }
-
         Spice.add({
             id: 'in_theaters',
             name: 'Movies',
@@ -52,6 +40,10 @@
                 itemType: 'Movies'
             },
             normalize: function(item) {
+                if (filter_rating && item.mpaa_rating.toLowerCase() !== filter_rating) {
+                    return null;
+                }
+
                 var position;
                 
                 // We add these so that we can position the Rotten Tomatoes images.
@@ -88,7 +80,9 @@
         });
 
         // Hide the bottom text so that the poster occupies the whole tile.
-        Spice.getDOM('in_theaters').find('.tile__body').addClass('is-hidden');
+        if(typeof Spice.getDOM('in_theaters') !== 'undefined') {
+            Spice.getDOM('in_theaters').find('.tile__body').addClass('is-hidden');
+        }
     }
     
     // Convert minutes to hr. min. format.
