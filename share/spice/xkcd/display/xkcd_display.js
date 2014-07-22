@@ -31,7 +31,14 @@ function ddg_spice_xkcd_display(api_result) {
         content: Spice.xkcd_display.content,
         moreAt: true
                 }
-            }
+    },
+    onShow: function(){
+      if ($('.xkcd--explain-link').length === 0){
+        var explainLink = '<a class="xkcd--explain-link" href="http://www.explainxkcd.com/wiki/index.php/' +
+          api_result.num + '">Explain</a>';
+        $('.zci--xkcd .zci__body').append(explainLink);
+      }
+    }
     });
   });
 }
