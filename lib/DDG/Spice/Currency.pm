@@ -10,7 +10,7 @@ description "Currency Convertor provided by XE.com";
 name "Currency";
 source "XE.com";
 icon_url "/i/xe.com.ico";
-code_url "https://github.com/XenonLab/blob/master/lib/DDG/Spice/Currency.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Currency.pm";
 category "finance";
 topics "economy_and_finance", "geography", "travel", "everyday";
 attribution web => ['http://www.xe.com'];
