@@ -20,16 +20,17 @@
                 sourceName: 'HN Search',
                 sourceUrl: sourceUrl,
                 total: api_result.hits,
-                itemType: 'Hacker News',
+                itemType: (api_result.hits.length === 1) ? 'Hacker News submission' : 'Hacker News submissions',
                 searchTerm: decodeURIComponent(query)
             },
             normalize: function(item) {
                 return {
                     title: item.title,
                     url: (item.url) ? item.url : 'https://news.ycombinator.com/item?id=' + item.objectID,
-                    subTitle: fuzzyDate(now - item.created_at_i),
+                    description: fuzzyDate(now - item.created_at_i),
                     points: item.points || 0,
                     num_comments: item.num_comments || 0,
+                    post_domain: extractDomain(item.url),
                     arrowUrl: DDG.get_asset_path('reddit_search','arrow_up.png'),
                     id: item.objectID
                 };
@@ -79,5 +80,13 @@
             var years = Math.round(delta / YEAR);
             return (years === 1) ? 'a year ago' : years + " years ago";
         }
+    }
+
+    var domainRe = new RegExp(/:\/\/([^\/]+)\/?/);
+
+    //extract the domain from a url
+    function extractDomain(url){
+        if (url) return domainRe.exec(url)[1].replace('www.', '');
+        return 'news.ycombinator.com';
     }
 }(this));
