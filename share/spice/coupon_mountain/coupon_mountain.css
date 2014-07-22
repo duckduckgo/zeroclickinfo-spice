@@ -103,11 +103,32 @@
 }
 
 .zci--coupon_mountain .zci__detail,
-.zci--coupon_mountain .detail__pane,
-.zci--coupon_mountain .detail__wrap {
+.zci--coupon_mountain .detail__pane {
     height: 15em;
+    overflow: hidden;
+}
+
+.zci--coupon_mountain .detail__wrap{
+    height: 10em;
+}
+
+.zci--coupon_mountain .detail__callout {
+    height: 3em;
 }
 
 .zci--coupon_mountain .zci__detail {
-    top: 200px !important;
+    top: 10em !important;
+}
+
+.zci--coupon_mountain .detail__controls {
+    top: 12em;
+}
+
+.zci--coupon_mountain .detail__body__content {
+    vertical-align: middle;
+}
+
+.zci--coupon_mountain .detail__media {
+    vertical-align: middle;
+    height: 14em;
 }
