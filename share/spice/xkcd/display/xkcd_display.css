@@ -3,9 +3,10 @@
 }
 
 .zci--xkcd .xkcd--container {
-    display: block;
+    display: inline-block;
     margin-bottom: 0.5em;
     max-width: 100%;
+    float: left;
 }
 
 .zci--xkcd .xkcd--img {
@@ -18,6 +19,15 @@
 
 .zci--xkcd .zci__more-at {
 	display: inline-block;
+	float: left;
+	clear: both;
+}
+
+.zci--xkcd .xkcd--explain-link {
+	display: block;
+	float: left;
+	padding-top: .15em;
+	padding-left: .25em;
 }
 
 .zci--xkcd .xkcd--explain-link:before {
