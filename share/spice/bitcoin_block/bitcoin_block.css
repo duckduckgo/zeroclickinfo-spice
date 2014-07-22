@@ -1,4 +1,8 @@
-.zci--bitcoin_block .zci__body .zci__more-at{
+.zci--bitcoin_block .zci__main.zci__main--detail {
+    max-width: 50em;
+}
+
+.zci--bitcoin_block .zci__body .zci__more-at {
     padding-top: 1em;
 }
 
@@ -10,7 +14,7 @@
 
 .zci--bitcoin_block .record .record__cell__key {
     padding: 0.4em;
-    width: 150px;
+    width: 115px;
 }
 
 .is-mobile .zci--bitcoin_block .record .record__cell__value {
@@ -19,6 +23,7 @@
 
 .zci--bitcoin_block .record .record__body{
     width: 100%;
+    table-layout: fixed;
 }
 
 .is-mobile .zci--bitcoin_block .record .record__cell__key {
