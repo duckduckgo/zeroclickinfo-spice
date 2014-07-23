@@ -22,6 +22,16 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::BitcoinBlock',
     ),
+    'bitcoin block 000000000000000040cd080615718eb68f00a0138706e7afd4068f3e08d4ca20' => test_spice(
+        '/js/spice/bitcoin_block/000000000000000040cd080615718eb68f00a0138706e7afd4068f3e08d4ca20',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitcoinBlock',
+    ),
+    'btc block 000000000000000040cd080615718eb68f00a0138706e7afd4068f3e08d4ca20' => test_spice(
+        '/js/spice/bitcoin_block/000000000000000040cd080615718eb68f00a0138706e7afd4068f3e08d4ca20',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitcoinBlock',
+    ),
     '00000009839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048' => undef,
     '00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048 something' => undef,
     'something 00000000839a8e6886ab5951d76f411475428afc90947ee320161bbf18eb6048' => undef

@@ -1,5 +1,10 @@
 (function (env) {
     "use strict";
+
+    var formatBtc = function(amount) {
+        return (amount / 100000000.0)+" BTC"
+    };
+        
     env.ddg_spice_bitcoin_address = function(api_result) {
 
         if (!api_result || api_result.status !== 200) {
@@ -7,10 +12,6 @@
         }
 
         var address = api_result.data;
-
-        var formatBtc = function(amount) {
-            return (amount / 100000000.0)+" BTC"
-        };
         
         Spice.add({
             id: "bitcoin_address",
