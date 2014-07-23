@@ -1,0 +1,224 @@
+.tile--recipes .tile__title {
+    font-weight: 600;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.tile--recipes .tile__media {
+    height: 9.5em;
+}
+	.is-mobile .tile--recipes .tile__media {
+		height: 7.5em;
+	}
+
+.tile--recipes .tile__media__img {
+    margin-top: -20%;
+    min-width: 100%;
+}
+
+.tile--recipes .tile__source,
+.tile--recipes.highlight .tile__source {
+    color: #999;
+}
+
+.detail__media.detail__media--recipe {
+    width: 30%;
+    margin-right: 1em;
+    text-align: center;
+}
+	.is-mobile .detail--recipes .detail__media.detail__media--recipe {
+		line-height: initial;
+		width: 125px;
+		max-height: 125px;
+		float: right;
+		top: 2em;
+	}
+	.is-mobile .detail--recipes .detail__media__img {
+		position: static;
+	}
+	.is-mobile .detail--recipes .detail__body.detail__body--recipe {
+		margin-top: 1em;
+		position: static;
+		overflow: visible;
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	
+	.is-mobile .detail--recipes .detail__body__content {
+		padding-right: 0;
+		display: inherit;
+	}
+
+.tileview--grid .detail__media--recipe {
+    text-align: center;
+}
+
+.is-mobile.detail--recipes {
+	background-color: #f2f2f2;
+}
+
+.detail__body--recipe .detail__title {
+    padding: 0;
+}
+	.is-mobile .detail--recipes  .detail__title {
+		margin-bottom: 1em;
+		min-height: 2.7em;
+	}
+
+.detail__body--recipe .detail__source {
+    padding-bottom: 1em;
+}
+	.is-mobile .detail--recipes .detail__source {
+		min-height: 2.5em;
+	}
+
+.detail--recipes .detail__source .stars {
+    margin-right: 0;
+}
+	.is-mobile .detail--recipes .stars {
+		display: block;
+	}
+
+.detail--recipes .stars--unrated .star {
+    color: #d0d0d0;
+}
+
+.detail__body--recipe .detail__separator {
+    padding: 0 5px;
+    color: #c5c5c5;
+}
+	.is-mobile .detail  .detail__body--recipe .detail__separator {
+		display: none;
+	}
+
+.detail__cuisine {
+    text-transform: capitalize;
+}
+	.is-mobile .detail--recipes .detail__cuisine,
+	.is-mobile .detail--recipes .detail__cooking-time {
+		display: block;
+	}
+		.is-mobile .detail--recipes .detail__cooking-time span {
+			/* hide 'Cooking' text */
+			display: none;
+		}
+	
+.detail__ingredients {
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+	.is-mobile .detail--recipes .detail__ingredients {
+		padding-top: 1em;
+		clear: both;
+	}
+
+.detail__ingredients ul {
+    display: inline;
+}
+
+.detail__ingredients li {
+    display: inline;
+}
+
+.detail__ingredients,
+.detail__flavors__name {
+    text-transform: capitalize;
+}
+
+.detail__flavors {
+    width: 70%;
+}
+	.is-mobile .detail--recipes .detail__flavors {
+		width: 100%;
+	}
+
+.detail__flavors__name {
+    display: inline-block;
+    width: 9%;
+    min-width: 4em;
+    text-align: left;
+}
+
+.detail__flavors__strength {
+    display: inline-block;
+    width: 40%;
+}
+
+.detail__flavors__strength span {
+    display: inline-block;
+    height: 0.4em;
+    background: #f0624d;
+    vertical-align: middle;
+    border-radius: 2em;
+}
+
+.detail__links__btn.view-btn--recipes {
+    margin-top: 1em;
+}
+	.is-mobile .detail--recipes .view-btn--recipes {
+		padding-right: 1.5em;
+		padding-left: 1.5em;
+		position: absolute;
+		bottom: 4em;
+		left: 1em;
+	}
+		.is-mobile .detail--recipes .view-btn--recipes .btn__icon {
+			display: none;
+		}
+
+.detail__more-at--recipes {
+	display: none;
+}
+	.is-mobile .detail--recipes .detail__more-at--recipes {
+		display: block;
+		position: absolute;
+		top: 1.25em;
+		left: 1em;
+	}
+
+/* single item detail */
+
+.zci__main--detail .detail__media--recipe {
+    height: 10em;
+    line-height: 10em;
+}
+
+.zci__main--detail .detail__body--recipe {
+    height: auto;
+    border-top: none;
+    padding-right: 0;
+    padding-left: 0.5em;
+}
+
+.is-mobile .zci__main--detail .detail__media--recipe {
+    height: 8em;
+    width: 8em;
+    line-height: 8em;
+}
+
+.is-mobile .zci__main--detail .detail__body--recipe .detail__body__content {
+    padding-right: 0;
+}
+
+.zci__main--detail .detail__media--recipe {
+    right: auto;
+    width: 10em;
+}
+
+.zci__main--detail .detail__flavors {
+    display: none;
+}
+
+/* landscape/super-small mode */
+@media only screen and (max-height: 400px) {
+	.detail__ingredients {
+		display: none;
+	}
+	.is-mobile .detail--recipes .detail__media.detail__media--recipe {
+		margin-left: 0;
+		float: left;
+	}
+	.is-mobile .detail--recipes .view-btn--recipes {
+		bottom: 0.75em;
+	}
+}

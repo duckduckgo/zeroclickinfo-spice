@@ -12,6 +12,10 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Imdb'
     ),
+    'IMDb shawshank redemption' => test_spice(
+        '/js/spice/imdb/shawshank%20redemption',
+        caller    => 'DDG::Spice::Imdb',
+    ),
 );
 
 done_testing;

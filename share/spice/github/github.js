@@ -1,34 +1,69 @@
-function ddg_spice_github(api_result) {
-    var query = DDG.get_query()
-                .replace(/^\s*github\s+/, "");
+(function(env) {
+    "use strict";    
+    env.ddg_spice_github = function(api_result) {
+        
 
-    var results = api_result.data.repositories;
-    if (results.length == 0) return;
+        if (!api_result || !api_result.meta.status === 200) {
+          return;
+        }
 
-    Spice.render({
-        data             : api_result,
-        header1          : query + " (GitHub)",
-        source_url       : 'http://www.github.com/search?q=' +  encodeURIComponent(query),
-        source_name      : 'GitHub',
-        spice_name       : 'github',
-        template_frame   : 'list',
-        template_options: {
-            items: results,
-            template_item: "github_item",
-            single_template: "github",
-            show: 3,
-            max: 10,
-            type: 'ul'
-        },
-        force_big_header : true,
-        force_no_fold    : true
-    });
-}
+        var query = DDG.get_query()
+                    .replace(/^\s*github\s+/, "");
+
+        var results = api_result.data.repositories;
+
+        // TODO: temp size limit - relevancy block should handle this later
+        if (results.length > 30)
+            results = results.splice(0,30);
+
+        sort_by_watchers(results);
+
+        Spice.add({
+            id: "github",
+            name: "Software",
+            data: results,
+            meta: {
+                itemType: "Git Repositories",
+                sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
+                sourceName: 'GitHub'
+            },
+            templates: {
+		group: 'text',
+                detail: false,
+                item_detail: false,
+		options: {
+		    footer: Spice.github.footer
+		}
+            },
+	    normalize: function(item) {
+		return {
+		    title: item.name,
+		    subtitle: item.owner + "/" + item.name
+		};
+	    },
+	    relevancy: {
+		primary: [
+		    { key: 'description', match: /.+/, strict: false } // Reject things without a description.
+		]
+	    }
+        });
+    }
+
+    function sort_by_watchers(array){
+        return array.sort(function(a, b){
+             var x = a.watchers;
+             var y = b.watchers;
+             return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+         });
+    }
+
+}(this));
 
 // Make sure we display only three items.
-Handlebars.registerHelper("last_pushed", function(){
+Handlebars.registerHelper("GitHub_last_pushed", function(pushed) {
+    "use strict";
 
-    var last_pushed = Math.floor((new Date() - new Date(this.pushed)) / (1000*60*60*24));
+    var last_pushed = Math.floor((new Date() - new Date(pushed)) / (1000*60*60*24));
 
     var years_ago = Math.floor(last_pushed / 365);
     if (years_ago >= 1) {

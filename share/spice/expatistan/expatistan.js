@@ -1,12 +1,26 @@
-function ddg_spice_expatistan(api_result) {
-    if(!api_result || api_result.status !== 'OK') {
-        return;
-    }
+(function(env){
+    env.ddg_spice_expatistan = function(api_result) {
+        "use strict";
 
-    Spice.render({
-        data             : api_result,
-        source_url       : api_result.source_url,
-        source_name      : 'Expatistan',
-        template_normal  : 'expatistan'
-    });
-}
+        if(!api_result || api_result.status !== 'OK') {
+            return Spice.failed('expatistan');
+        }
+
+        Spice.add({
+            id: "expatistan",
+            name: "Answer",
+            data: api_result,
+            meta: {
+                sourceUrl: api_result.source_url,
+                sourceName: 'Expatistan'
+            },
+            templates: {
+                group: 'base',
+                options: {
+                    content: Spice.expatistan.content,
+		    moreAt: true
+                }
+            }
+        });
+    }
+}(this));

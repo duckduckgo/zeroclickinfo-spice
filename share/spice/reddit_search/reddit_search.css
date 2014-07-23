@@ -1,7 +1,31 @@
-#spice_reddit_search .spice2list_item span{
-	display: block;
-	max-width: 100%;
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-	white-space: nowrap;
+..tile--reddit_search reddit__search--comments a {
+    color: #999;
+}
+
+.tile--reddit_search .tile__title {
+    margin-bottom: 0.7em;
+    height: 4.6em;
+    font-size: 1.5em;
+    line-height: 1.15em;
+    font-weight: 400;
+    color: #333;
+    text-overflow: clip;
+    -webkit-line-clamp: 4;
+}
+
+.tile--reddit_search .tile__body {
+    height: 14em;
+}
+
+.tile--reddit_search .tile__footer {
+    margin-bottom: 0;
+}
+
+.tile--reddit_search .tile__footer .sub-title {
+    margin-bottom: 0.25em;
+    color: #aaa;
+}
+
+.tile--reddit_search .tile__content {
+    height: 1.5em;
 }

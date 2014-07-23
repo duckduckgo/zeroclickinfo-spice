@@ -1,55 +1,138 @@
-// Description:
-// Shows the departure and arrival times of an airplane.
-//
-// Dependencies:
-// Requires jQuery.
-//
-// Commands:
-// american airlines 102 - will show details about the flight.
+(function(env) {
 
-function ddg_spice_airlines (api_result) {
-    "use strict";
+    // define some static globals
+    // used in callback and helpers
+    var MILLIS_PER_MIN = 60000,
+        MILLIS_PER_HOUR = MILLIS_PER_MIN * 60,
+        STATUS = {
+            "S": "Scheduled",
+            "A": "In the air",
+            "U": "Unknown status",
+            "R": "Redirected flight",
+            "L": "Landed",
+            "D": "Diverted",
+            "C": "Cancelled",
+            "NO": "Not Operational",
+            "DN": "Data Needed"
+        };
 
-    // Check if we have anything returned.
-    if(!api_result || !api_result.flight) {
-        return;
-    }
+    env.ddg_spice_airlines = function(api_result) {
+        "use strict";
 
-    var MILLIS_PER_MIN = 60000;
-    var MILLIS_PER_HOUR = MILLIS_PER_MIN * 60;
-    var STATUS = {
-        "S": "Scheduled",
-        "A": "In the air",
-        "U": "Unknown status",
-        "R": "Redirected flight",
-        "L": "Landed",
-        "D": "Diverted",
-        "C": "Cancelled",
-        "NO": "Not Operational",
-        "DN": "Data Needed"
+        // Check if we have anything returned.
+        if (!api_result || !api_result.flight) {
+            return Spice.failed('airlines');
+        }
+ 
+        // Check if flight is an array or not.
+        var flight = [];
+        if (!($.isArray(api_result.flight))) {
+            flight = [api_result.flight];
+        } else {
+            flight = api_result.flight;
+        }
+
+        // array of flights 
+        var results = [];
+
+        // package up the flights into the result array
+        for (var i = 0; i < flight.length; i++) {
+            var departureDate = DDG.getDateFromString(flight[i].ActualGateDepartureDate ||
+                flight[i].EstimatedGateDepartureDate ||
+                flight[i].DepartureDate).toString();
+            var arrivalDate = DDG.getDateFromString(flight[i].ActualGateArrivalDate ||
+                flight[i].EstimatedGateArrivalDate ||
+                flight[i].ArrivalDate).toString();
+
+            var scheduledDepartureDate = DDG.getDateFromString(flight[i].ScheduledGateDepartureDate).toString();
+            var scheduledArrivalDate = DDG.getDateFromString(flight[i].ScheduledGateArrivalDate).toString();
+
+
+            // Get the weekday and the day.
+            var dateObject = new Date(departureDate);
+
+            var date = dateObject.toDateString();
+            date = date.split(" ");
+
+            var departing = {
+                airportTimezone: flight[i].DepartureAirportTimeZoneOffset,
+                airport: flight[i].Origin,
+                terminal: flight[i].DepartureTerminal || "<span class='na'>N/A</span>",
+                gate: flight[i].DepartureGate || "<span class='na'>N/A</span>",
+                isDeparted: true,
+                weekday: date[0].toUpperCase(),
+                day: date[2]
+            },
+                arriving = {
+                    airportTimezone: flight[i].ArrivalAirportTimeZoneOffset,
+                    airport: flight[i].Destination,
+                    terminal: flight[i].ArrivalTerminal || "<span class='na'>N/A</span>",
+                    gate: flight[i].ArrivalGate || "<span class='na'>N/A</span>",
+                    isDeparted: false
+                };
+
+            results.push({
+                flight: flight[i],
+                departing: departing,
+                arriving: arriving,
+                departureDate: departureDate,
+                arrivalDate: arrivalDate,
+                scheduledDepartureDate: scheduledDepartureDate,
+                scheduledArrivalDate: scheduledArrivalDate
+            });
+        }
+
+        // Display.
+        var source = "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" +
+            flight[0].Airline.AirlineCode +
+            "&flightNumber=" +
+            flight[0].FlightNumber;
+
+        // Sort the items based on the departureDate.
+        results.sort(function(a, b) {
+            a = +new Date(a.departureDate);
+            b = +new Date(b.departureDate);
+
+            if (a < b) {
+                return -1;
+            } else if (a > b) {
+                return 1;
+            }
+
+            return 0;
+        });
+
+        Spice.add({
+            data: results,
+            id: "airlines",
+            name: "Flights",
+            meta: {
+                minItemsForModeSwitch: 3,
+                sourceName: 'FlightStatus',
+                sourceUrl: source,
+                itemType: "Flight Status for " + DDG.capitalizeWords(flight[0].Airline.Name) + " " + flight[0].FlightNumber
+            },
+            normalize: function(item) {
+                return {
+                    url: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" +
+                        item.flight.Airline.AirlineCode +
+                        "&flightNumber=" +
+                        item.flight.FlightNumber
+                }
+            },
+            templates: {
+                group: 'base',
+                detail: false,
+                options: {
+                    content: Spice.airlines.content,
+                    variant: 'xwide'
+                }
+            },
+        });
     };
-
-    // Check if flight is an array or not.
-    var flight = api_result.flight;
-    if($.isArray(flight)) {
-        flight = flight[0];
-    }
-
-    // Parse string, and return the date (either arrival or departure date).
-    var getDateFromString = function(date) {
-        date = date.match(/([\d]{4})\-([\d]{2})\-([\d]{2})T([\d]{2}):([\d]{2}):([\d]{2})/);
-        var now = new Date();
-        var milliseconds = Date.UTC(date[1], date[2] - 1, date[3], date[4], date[5], date[6]) +
-                                (now.getTimezoneOffset() * MILLIS_PER_MIN);
-        return new Date(milliseconds);
-    };
-
-    // Pre-compute the departure and arrival dates.
-    var departureDate = getDateFromString(flight.ActualGateDepartureDate || flight.EstimatedGateDepartureDate || flight.DepartureDate);
-    var arrivalDate = getDateFromString(flight.ActualGateArrivalDate || flight.EstimatedGateArrivalDate || flight.ArrivalDate);
 
     // Compute the difference between now and the time of departure or arrival.
-    var relativeTime = function(date, airportOffset) {
+    function relativeTime(date, airportOffset) {
         // This is the time of departure or arrival (not sure why we're getting the difference).
         date = date.getTime() - (date.getTimezoneOffset() * MILLIS_PER_MIN);
 
@@ -60,10 +143,10 @@ function ddg_spice_airlines (api_result) {
     };
 
     // Convert the time from milliseconds to hours and minutes.
-    var toTime = function(delta) {
-        var time = "";
-        var hours = Math.floor(Math.abs(delta / MILLIS_PER_HOUR));
-        var minutes = Math.floor(Math.abs((delta % MILLIS_PER_HOUR) / MILLIS_PER_MIN));
+    function toTime(delta) {
+        var time = "",
+            hours = Math.floor(Math.abs(delta / MILLIS_PER_HOUR)),
+            minutes = Math.floor(Math.abs((delta % MILLIS_PER_HOUR) / MILLIS_PER_MIN));
 
         if (0 < hours) {
             time += hours + " hrs ";
@@ -116,8 +199,8 @@ function ddg_spice_airlines (api_result) {
             dateObject = departureDate;
         }
 
-        var delta = relativeTime(dateObject, airportOffset);
-        var time = toTime(delta);
+        var delta = relativeTime(dateObject, airportOffset),
+            time = toTime(delta);
 
         return time;
     });
@@ -127,23 +210,20 @@ function ddg_spice_airlines (api_result) {
     });
 
     // Add the date and time or departure or arrival.
-    Handlebars.registerHelper("airline_time", function(isDeparture) {
-        var dateObject = arrivalDate;
+    Handlebars.registerHelper("airline_time", function(isDeparture, arrivalDate, departureDate) {
+        var dateObject = new Date(arrivalDate);
         if(isDeparture) {
-            dateObject = departureDate;
+            dateObject = new Date(departureDate);
         }
 
-        var hours = dateObject.getHours();
-        var minutes = dateObject.getMinutes();
+        var hours = dateObject.getHours(),
+            minutes = dateObject.getMinutes(),
+            date = dateObject.toDateString();
 
-        var date = dateObject.toDateString();
         date = date.substring(0, date.lastIndexOf(" "));
 
         // AM or PM?
-        var suffix = "a.m.";
-        if(hours >= 12) {
-            suffix = "p.m.";
-        }
+        var suffix = (hours >= 12) ? "PM" : "AM";
 
         // Convert to 12-hour time.
         if(hours > 12) {
@@ -155,53 +235,29 @@ function ddg_spice_airlines (api_result) {
         // Add leading zeroes.
         minutes = minutes < 10 ? "0" + minutes : minutes;
 
-        return date + ", " + hours + ":" + minutes + " " + suffix;
+        return hours + ":" + minutes + " " + suffix;
     });
 
     // Check if the airplane is on-time or delayed.
-    var onTime = function() {
-        var scheduledDeparture = getDateFromString(flight.ScheduledGateDepartureDate);
-        var scheduledArrival = getDateFromString(flight.ScheduledGateArrivalDate);
+    function onTime(flight, departureDate, arrivalDate) {
+        var scheduledDeparture = DDG.getDateFromString(flight.ScheduledGateDepartureDate),
+            scheduledArrival = DDG.getDateFromString(flight.ScheduledGateArrivalDate),
+            deltaDepart = new Date(departureDate) - scheduledDeparture,
+            deltaArrive = new Date(arrivalDate) - scheduledArrival;
 
-        var deltaDepart = departureDate - scheduledDeparture;
-        var deltaArrive = arrivalDate - scheduledArrival;
-        if(flight.StatusCode === "A") {
-            if(MILLIS_PER_MIN * 5 < deltaDepart && MILLIS_PER_MIN * 5 < deltaArrive) {
-                return "Delayed";
+        if (flight.StatusCode === "A" || flight.StatusCode === "S") {
+            if (MILLIS_PER_MIN * 5 < deltaDepart && MILLIS_PER_MIN * 5 < deltaArrive) {
+                return ["Delayed", false];
             } else {
-                return "On-time";
+                return ["On Time", true];
             }
         }
-        return STATUS[flight.StatusCode];
+        return [STATUS[flight.StatusCode], true];
     };
 
-    var departing = {
-            airportTimezone: flight.DepartureAirportTimeZoneOffset,
-            airport: flight.Origin,
-            terminal: flight.DepartureTerminal || "—",
-            gate: flight.DepartureGate || "—",
-            isDeparted: true
-        },
-        arriving = {
-            airportTimezone: flight.ArrivalAirportTimeZoneOffset,
-            airport: flight.Destination,
-            terminal: flight.ArrivalTerminal || "—",
-            gate: flight.ArrivalGate || "—",
-            isDeparted: false
-        };
-
-    // Display the plug-in.
-    Spice.render({
-        header1          : onTime() + ": Flight Status for " + flight.Airline.Name + " " + flight.FlightNumber,
-        source_url       : "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?&airlineCode=" + flight.Airline.AirlineCode + "&flightNumber=" + flight.FlightNumber,
-        source_name      : "FlightStats",
-        spice_name       : "airlines",
-        template_frame   : "twopane",
-        template_options : {
-            left : { template: "airlines", data: departing },
-            right : { template: "airlines", data: arriving },
-        },
-        force_no_fold    : true,
-        force_big_header : true
+    Handlebars.registerHelper("status", function(flight, departureDate, arrivalDate) {
+        var result = onTime(flight, departureDate, arrivalDate),
+            ok_class = result[1] ? "tile__ok" : "tile__not";
+        return '<div class="' + ok_class + '">' + result[0] + '</div>';
     });
-};
+}(this))

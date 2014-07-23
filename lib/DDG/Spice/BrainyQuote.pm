@@ -20,8 +20,14 @@ spice to => 'http://www.brainyquote.com/api/ddg?q=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-	return $_ if $_;
-	return;
+    # Convert queries such as J.R.R. Tolkien to J. R. R. Tolkien.
+    # We're doing this because the first one is rejected by BrainyQuote.
+    if(/^\w\.\w/) {
+	s/\./\. /g;
+    }
+
+    return $_ if $_;
+    return;
 };
 
 1;

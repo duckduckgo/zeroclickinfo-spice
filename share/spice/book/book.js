@@ -1,7 +1,9 @@
 function ddg_spice_book(api_result) {     
+    "use strict";
+
     // Return if no book is returned 
     if (!api_result || api_result.books.length == 0) {
-	return;
+	return Spice.failed('book');
     }
 
     // Get the query without the trigger words.
@@ -41,7 +43,7 @@ function ddg_spice_book(api_result) {
 
     // Exit immediately if we didn't find a relevant item.
     if (!data) {
-	return;
+        return Spice.failed('book');
     }
 
     // If the item that we got doesn't have the critic_reviews array,
@@ -83,15 +85,15 @@ function ddg_spice_book(api_result) {
     var header = data.title = data.title + formatSub(data.sub_title);
     header = Handlebars.helpers.condense(header, {hash: {maxlen: 35}});
 
-    Spice.render({
+    Spice.add({
          data              : data,
-         force_big_header  : true,
+         
          header1           : header + " (Book Reviews)",
-         source_name       : "idreambooks.com", // More at ...
-         source_url        :  data.detail_link,
-	 spice_name        : "book",
+         sourceName       : "idreambooks.com", // More at ...
+         sourceUrl        :  data.detail_link,
+	 id        : "book",
 	 template_frame    : "twopane",
-	 template_options  : {
+	 templates  : {
 	     left: {
 		 template: "book"
 	     },
@@ -99,11 +101,13 @@ function ddg_spice_book(api_result) {
 		 template: "book_critic"
 	     }
 	 },
-	 force_no_fold     : true
+	 
     });
 }
 
-Handlebars.registerHelper("prettyDate", function(date) {
+Handlebars.registerHelper("Book_prettyDate", function(date) {
+    "use strict";
+
     if(date) {
 	date = date.split("-")
 	var d = new Date(date[0], date[1]-1, date[2]);
