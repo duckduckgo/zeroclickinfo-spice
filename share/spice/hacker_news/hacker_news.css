@@ -17,7 +17,7 @@
     margin-bottom: 0;
 }
 
-.tile--hacker_news .tile__footer .tile__date {
+.tile--hacker_news .tile__footer .tile__domain {
     margin-bottom: 0.25em;
     color: #aaa;
 }
