@@ -111,6 +111,12 @@ ddg_spice_test(
     	caller => 'DDG::Spice::Forecast',
         is_cached => 1
     ),
+    'weather stockholm' => test_spice(
+    	'/js/spice/forecast/stockholm',
+    	call_type => 'include',
+    	caller => 'DDG::Spice::Forecast',
+        is_cached => 1
+    ),
     'shipping forecast' => undef,
     'weather forecast bbc' => undef,
     'bbc weather forecast' => undef,
