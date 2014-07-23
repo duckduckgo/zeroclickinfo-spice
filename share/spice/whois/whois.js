@@ -67,7 +67,7 @@
 	// sometimes the data is nested inside the 'registryData' object
 	if(!api_result.createdDate
 	   && api_result.registryData
-	   && api_result.registryData.createdDate) {
+	   && (api_result.registryData.createdDate || api_result.registryData.expiresDate) ){
 
 	    api_result = api_result.registryData;
 	}
