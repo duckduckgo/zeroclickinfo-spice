@@ -26,10 +26,6 @@
 .zci--xkcd .xkcd--explain-link {
 	display: block;
 	float: left;
-	padding-top: .15em;
+	padding-top: .25em;
 	padding-left: .25em;
-}
-
-.zci--xkcd .xkcd--explain-link:before {
-	content: " · ";
 }

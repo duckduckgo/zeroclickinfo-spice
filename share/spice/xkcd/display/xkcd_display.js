@@ -36,8 +36,8 @@
                     //we can't change the "more at" link in handlebars, so add the explainxkcd.com link
                     //on initial page load.
                     if ($('.xkcd--explain-link').length === 0){
-                        var explainLink = '<a class="xkcd--explain-link" href="http://www.explainxkcd.com/wiki/index.php/' +
-                            api_result.num + '">Explain</a>';
+                        var explainLink = '<a class="xkcd--explain-link zci__more-at--info" href="http://www.explainxkcd.com/wiki/index.php/' +
+                            api_result.num + '"> <span class="zcm__sep"></span> Explain</a>';
                         $('.zci--xkcd .zci__body').append(explainLink);
                     }
                 }
