@@ -1,0 +1,23 @@
+<span class="copyright">
+    Rotten Tomatoes<sup>&#169;</sup> Score
+</span>
+
+{{#if ratings.critics_score}}
+  <span class="in_theaters--critics_score">
+      <img src="{{icon_image}}" class="{{is_retina}}">
+      {{ratings.critics_score}}% {{ratings.critics_rating}}
+  </span>
+{{/if}}
+
+<span class="in_theaters--runtime">
+  {{#if runtime}}
+    <span>Run Time: {{InTheaters_time runtime}}</span>
+  {{/if}}
+  {{#and runtime mpaa_rating}}
+    <span class="detail__separator"> | </span>
+  {{/and}}
+  {{#if mpaa_rating}}
+    <span>{{mpaa_rating}}</span>
+  {{/if}}
+</span>
+

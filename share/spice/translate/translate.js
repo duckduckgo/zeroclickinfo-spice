@@ -1,4 +1,5 @@
 function get_params(name, api_result) {
+    "use strict";
 
     var regex = {
         "from_to" : /^translate (.*?)(?: from ([a-z]+))?(?: to ([a-z]+))?$/,
@@ -74,37 +75,49 @@ function get_params(name, api_result) {
 }
 
 function ddg_spice_translate_from_to (api_result) {
+    "use strict";
 
-    if (api_result.Error) return;
+    if (api_result.Error) {
+        return;
+    }
 
     var params = get_params("from_to"),
         endpoint;
 
 
-    Spice.render({
+    Spice.add({
         data             :  api_result,
         header1          :  params.to + ' translations for ' + params.phrase,
-        source_name      :  'wordreference.com',
-        source_url       :  'https://wordreference.com/' + params.from_to + '/' + params.phrase,
-        template_normal  :  'translate_from_to',
-        force_big_header :  true
+        sourceName      :  'wordreference.com',
+        sourceUrl       :  'https://wordreference.com/' + params.from_to + '/' + params.phrase,
+        templates: {
+            item: Spice.translate_from_to.translate_from_to,
+            detail: Spice.translate_from_to.translate_from_to
+        },
+        
     });
 }
 
 function ddg_spice_translate_from_to_phrase (api_result) {
+    "use strict";
 
-    if (!api_result.matches.length) return;
+    if (!api_result.matches.length) {
+        return;
+    }
 
     var params = get_params("from_to");
 
-    Spice.render({
+    Spice.add({
         data:               api_result,
         header1 :           params.to + ' translations for ' + params.phrase,
-        source_name :       'MyMemory',
-        source_url :        'http://mymemory.translated.net/s.php?q=' + params.phrase +
+        sourceName :       'MyMemory',
+        sourceUrl :        'http://mymemory.translated.net/s.php?q=' + params.phrase +
                             '&sl=' + params.from + '&tl=' + params.to ,
-        force_big_header :  true,
-        template_normal  :  'translate_from_to_phrase',
+        
+        templates: {
+            item: Spice.translate_from_to_phrase.translate_from_to_phrase,
+            detail: Spice.translate_from_to_phrase.translate_from_to_phrase
+        },
 
     });
 }

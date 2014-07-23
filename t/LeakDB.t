@@ -24,6 +24,14 @@ ddg_spice_test(
     ),
     'leakdb' => undef,
     'hashme' => undef,
+    'leakdb 21232f297a57a5a743894a0e4a801fc3' => test_spice(
+        '/js/spice/leak_db/21232f297a57a5a743894a0e4a801fc3',
+        caller    => 'DDG::Spice::LeakDB',
+    ),
+    'hashme admin' => test_spice(
+        '/js/spice/leak_db/admin',
+        caller    => 'DDG::Spice::LeakDB',
+    ),
 );
 
 done_testing;

@@ -2,21 +2,40 @@
 // "urban dictionary cool" or "urban dictionary ROTFL."
 
 // Note: This plugin can display adult content and profanity.
+(function(env) {
+  env.ddg_spice_urban_dictionary = function(response) {
+    "use strict";
 
-function ddg_spice_urban_dictionary(response) {
-	if (!(response || response.response.result_type === "exact"
-            || response.list || response.list[0]))
-        return;
+    if (!(response && response.result_type === "exact"
+          && response.list && response.list[0])) {
+        return Spice.failed('urban_dictionary');
+    }
 
     var word       = response.list[0].word;
-	var definition = response.list[0].definition.replace(/(\r?\n)+/gi, '<br>');
 
-    Spice.render({
-        data             : { 'definition' : definition },
-        header1          : word + " (Urban Dictionary)",
-        source_url       : 'http://www.urbandictionary.com/define.php?term=' + word,
-        source_name      : 'Urban Dictionary',
-        template_normal  : 'urban_dictionary',
-        force_big_header : true,
+    Spice.add({
+      id: "urban_dictionary",
+      name: "Dictionary",
+      data: {
+        record_data: response.list[0],
+        record_keys: ['word', 'definition', 'example']
+      },
+      meta: {
+        sourceUrl: 'http://www.urbandictionary.com/define.php?term=' + word,
+        sourceName: 'Urban Dictionary'
+      },
+      templates: {
+        group: 'base',
+        options: {
+          content: 'record',
+          moreAt: true
+        }
+      },
+      normalize : function(item){
+        return{
+          definition: item.record_data.definition.replace(/(\r?\n)+/gi, '')
+        };
+      }
     });
-}
+  }
+}(this));

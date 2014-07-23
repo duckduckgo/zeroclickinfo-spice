@@ -5,7 +5,7 @@ use DDG::Spice;
 name "SteamDB";
 source "SteamDB";
 description "Get matching games from SteamDB";
-primary_example_queries "steam team fortress";
+primary_example_queries "steamdb team fortress";
 category "special";
 topics "gaming";
 icon_url "/i/store.steampowered.com.ico";

@@ -12,6 +12,10 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::RedditSearch'
     ),
+    'reddit baking' => test_spice(
+        '/js/spice/reddit_search/baking',
+        caller    => 'DDG::Spice::RedditSearch',
+    ),
 );
 
 done_testing;

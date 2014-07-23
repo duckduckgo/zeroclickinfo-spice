@@ -1,0 +1,11 @@
+.zci--code_search .record__body {
+	font-family: Consolas, Menlo, Monaco, monospace;
+}
+
+.zci--code_search .record__cell__value {
+	white-space: pre;
+}
+
+.zci--code_search .record {
+    overflow-x: scroll;
+}

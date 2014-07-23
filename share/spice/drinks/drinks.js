@@ -2,26 +2,36 @@ function ddg_spice_drinks(api_result) {
     "use strict";
 
     if(!api_result || api_result.length === 0 || !api_result[0].name) {
-        return;
+        return Spice.failed('drinks');
     }
 
-    if($.isArray(api_result[0].ingredients)) {
-        api_result[0].isArray = true;
-    } else {
-        api_result[0].isArray = false;
-    }
-
-    Spice.render({
-        data             : api_result[0],
-        header1          : api_result[0].name + " (The Drink Project)",
-        source_url       : api_result[0].url,
-        source_name      : 'The Drink Project',
-        spice_name       : 'drinks',
-        template_frame   : "twopane",
-        template_options: {
-            left  : { template: "drinks" },
-            right : { template: "drinks_ingredients" },
+    Spice.add({
+        id: 'drinks',
+        data: api_result[0],
+        name: "Recipes",
+        meta: {
+            sourceUrl: api_result[0].url,
+            sourceName: 'Drink Project'
         },
-        force_no_fold    : false
+        normalize: function(item) {
+            var infoboxData = [{
+                heading: 'Ingredients:'
+            }];
+
+            for (var key in item.ingredients) {
+                infoboxData.push({
+                    label: item.ingredients[key]
+                });
+            }
+
+            return {
+                description: item.procedure,
+                title: item.name,
+                infoboxData: infoboxData
+            };
+        },
+        templates: {
+            group: 'info'
+        }
     });
 }

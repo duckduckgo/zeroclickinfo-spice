@@ -43,6 +43,7 @@ triggers start => (
 	"related to", 
 	"words like", 
 	"word like", 
+	"words related to",
 	"words similar to",
 	"more words like"
 );
