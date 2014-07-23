@@ -188,6 +188,7 @@
 	    'record_keys': ['Status', 'Registered to', 'Email', 'Last updated', 'Expires']
 	};
 	shared_spice_data.templates.options.content = 'record';
+	shared_spice_data.templates.options.keySpacing = true;
 
 	Spice.add(shared_spice_data);
     };
