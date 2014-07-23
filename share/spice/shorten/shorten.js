@@ -9,7 +9,7 @@
         Spice.add({
             id: 'shorten',
             data: api_result,
-            name: 'Shortened Link (is.gd)',
+            name: 'Shortened Link',
             meta: {
                 sourceUrl : 'http://is.gd/',
                 sourceName : 'is.gd',
