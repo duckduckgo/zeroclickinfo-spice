@@ -25,6 +25,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::BitcoinAddress',
         proxy_cache_valid => "418 1d", 
     ),
+    'bitcoin address 1J6EZsQLTppftPTbqYbbRDYFJMW5Ex3Bqi' => test_spice(
+        '/js/spice/bitcoin_address/1J6EZsQLTppftPTbqYbbRDYFJMW5Ex3Bqi',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitcoinAddress',
+        proxy_cache_valid => "418 1d", 
+    ),
+    'btc address 1J6EZsQLTppftPTbqYbbRDYFJMW5Ex3Bqi' => test_spice(
+        '/js/spice/bitcoin_address/1J6EZsQLTppftPTbqYbbRDYFJMW5Ex3Bqi',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitcoinAddress',
+        proxy_cache_valid => "418 1d", 
+    ),
     'mBiteasym3p5E4soZq8So6NjkjYugEnz2X' => undef,
     'aBiteasym3p5E4soZq8So6NjkjYugEnz2X' => undef,
     '1Biteasym3p5E4soZq8So6NjkjYugEnz2X something' => undef,

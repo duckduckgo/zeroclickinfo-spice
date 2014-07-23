@@ -1,5 +1,17 @@
 (function (env) {
     "use strict";
+
+    var formatDate = function(d) {
+        var year = d.getFullYear();
+        var month = d.getMonth() + 1;
+        var day = d.getDay();
+        var hours = d.getHours();
+        var minutes = d.getMinutes();
+        var seconds = d.getSeconds();
+
+        return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds; 
+    };
+        
     env.ddg_spice_bitcoin_block = function(api_result) {
 
         if (!api_result || api_result.status !== 200) {
@@ -7,17 +19,6 @@
         }
 
         var block = api_result.data;
-
-        var formatDate = function(d) {
-            var year = d.getFullYear();
-            var month = d.getMonth() + 1;
-            var day = d.getDay();
-            var hours = d.getHours();
-            var minutes = d.getMinutes();
-            var seconds = d.getSeconds();
-
-            return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds; 
-        };
 
         var genesisHash = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f";
         

@@ -25,6 +25,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::BitcoinTransaction',
         proxy_cache_valid => "418 1d", 
     ),
+    'bitcoin transaction b6f952bcb5e0f2da3726f7ecc1101afcc18248229ea57abcca7e2542f323ae7d' => test_spice(
+        '/js/spice/bitcoin_transaction/b6f952bcb5e0f2da3726f7ecc1101afcc18248229ea57abcca7e2542f323ae7d',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitcoinTransaction',
+        proxy_cache_valid => "418 1d", 
+    ),
+    'btc transaction b6f952bcb5e0f2da3726f7ecc1101afcc18248229ea57abcca7e2542f323ae7d' => test_spice(
+        '/js/spice/bitcoin_transaction/b6f952bcb5e0f2da3726f7ecc1101afcc18248229ea57abcca7e2542f323ae7d',
+        call_type => 'include',
+        caller => 'DDG::Spice::BitcoinTransaction',
+        proxy_cache_valid => "418 1d", 
+    ),
     '3a0e7ed03bb6d35b7e0108e1efa26a89ef9955a3945bc8f66c84d0d96f53bb1' => undef,
     '3a0e7ed03bb6d35b7e0108e1efa26a89ef9955a3945bc8f66c84d0d96f53bb1f something' => undef,
     'something 3a0e7ed03bb6d35b7e0108e1efa26a89ef9955a3945bc8f66c84d0d96f53bb1f' => undef
