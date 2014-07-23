@@ -44,25 +44,25 @@ handle query_lc => sub {
     
     # bbc
     # shipping forecast, bbc forecast, bbc weather forecast etc.
-    return if /(shipping\s+fore?cast)|((weather|fore?cast)\sbbc$)|(^bbc\s.*(weather|fore?cast))|(\s+bbc\s+)/;
+    return if /\b(shipping\s+fore?cast)|((weather|fore?cast)\sbbc$)|(^bbc\s.*(weather|fore?cast))|(\s+bbc\s+)\b/;
 
     # has quotes
     return if /(%22)|\"/;
 
     # has financialish terms
-    return if /financ(e|ial)|market|bond|treasury|pension|fund|t-?bill|stock|government|strateg(y|ies)|analytics|market|fore?cast(ing|or|er)/;
-    return if /(gold|silver|oil|naturalgas|palladium|platinum|copper|lead|zinc|tin|aluminium|aluminum|nickel|cobalt|molybdenum|polypropylene|ethanol).*(fore?cast)/;
+    return if /\b(financ(e|ial)|market|bond|treasury|pension|fund|t-?bill|stock|government|strateg(y|ies)|analytics|market|fore?cast(ing|or|er))\b/;
+    return if /\b(gold|silver|oil|naturalgas|palladium|platinum|copper|lead|zinc|tin|aluminium|aluminum|nickel|cobalt|molybdenum|polypropylene|ethanol)\b.*(fore?cast)/;
 
     # sports
-    return if /football|golf|soccer|tennis|basketball|hockey|nba|ncaa|nfl|nhl/;
+    return if /\b(football|golf|soccer|tennis|basketball|hockey|nba|ncaa|nfl|nhl)\b/;
 
     # has other terms
-    return if (/(^site\:)|http|(\.(org|com|net))|underground/);
+    return if (/\b((^site\:)|http|(\.(org|com|net))|underground)\b/);
 
     # color temperature && critical temperature
-    if (/temp(era?ture)?/) {
-        return if /\bcolou?r\b|[0-9]+\s*[kK]/;
-        return if /critical temp(era?ture)?/;
+    if (/\btemp(era?ture)?\b/) {
+        return if /\b(colou?r|[0-9]+\s*[kK])\b/;
+        return if /\bcritical temp(era?ture)?\b/;
     }
 
     # Don't cache generic queries due to
