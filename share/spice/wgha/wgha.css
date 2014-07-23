@@ -1,6 +1,8 @@
 .tile--wgha .tile__title {
-    text-transform: none;
     height: 4em;
+    font-size:1.35em;
+    font-weight: normal;
+    line-height: 1.15;
 }
 
 .tile--wgha .tile__title__sub {
