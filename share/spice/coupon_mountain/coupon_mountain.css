@@ -1,9 +1,9 @@
 .zci--coupon_mountain {
-    height: 20em;
+    height: 250px;
 }
 
 .zci--coupon_mountain .tile--coupon_mountain {
-    height: 15em;
+    height: 192px;
     padding: 0.5em;
     text-align: center;
     width: 12em;
@@ -108,7 +108,7 @@
     overflow: hidden;
 }
 
-.zci--coupon_mountain .detail__wrap{
+.zci--coupon_mountain .detail__wrap {
     height: 10em;
 }
 
@@ -117,18 +117,28 @@
 }
 
 .zci--coupon_mountain .zci__detail {
-    top: 10em !important;
+    margin-top: 0 !important;
 }
 
 .zci--coupon_mountain .detail__controls {
-    top: 12em;
+    top: 175px;
+}
+
+.zci--coupon_mountain .detail__body--pr {
+    display: table;
+    position: absolute;
+    width:70%;
+    height: 130%;
+    left: 50em;
 }
 
 .zci--coupon_mountain .detail__body__content {
+    vertical-align: middle !important;
+    display: table-cell;
     vertical-align: middle;
 }
 
 .zci--coupon_mountain .detail__media {
     vertical-align: middle;
-    height: 14em;
+    height: 100%;
 }
