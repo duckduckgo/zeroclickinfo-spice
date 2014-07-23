@@ -40,10 +40,6 @@
     padding-left: 0.25em;
 }
 
-.is-mobile .brainy__quote:before {
-    display: none;
-}
-
 .is-mobile .brainy__quote--container {
     margin-left: 0px;
     margin-bottom: 0.5em;
