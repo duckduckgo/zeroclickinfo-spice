@@ -44,3 +44,12 @@
     margin-left: 0px;
     margin-bottom: 0.5em;
 }
+
+.is-mobile .zci--brainy_quote .zci__more-at {
+    margin-left: 40px;
+
+}
+
+.is-mobile .zci--brainy_quote .brainy__attribution {
+    margin-left: 40px;
+}
