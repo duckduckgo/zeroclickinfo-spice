@@ -1,5 +1,21 @@
 (function (env) {
     "use strict";
+
+    var formatDate = function(d) {
+        var year = d.getFullYear();
+        var month = d.getMonth() + 1;
+        var day = d.getDay();
+        var hours = d.getHours();
+        var minutes = d.getMinutes();
+        var seconds = d.getSeconds();
+
+        return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds; 
+    };
+
+    var formatBtc = function(amount) {
+        return (amount / 100000000.0)+" BTC";
+    };
+
     env.ddg_spice_bitcoin_transaction = function(api_result) {
 
         if (!api_result || api_result.status !== 200) {
@@ -7,21 +23,6 @@
         }
 
         var transaction = api_result.data;
-
-        var formatDate = function(d) {
-            var year = d.getFullYear();
-            var month = d.getMonth() + 1;
-            var day = d.getDay();
-            var hours = d.getHours();
-            var minutes = d.getMinutes();
-            var seconds = d.getSeconds();
-
-            return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds; 
-        };
-
-        var formatBtc = function(amount) {
-            return (amount / 100000000.0)+" BTC"
-        };
         
         Spice.add({
             id: "bitcoin_transaction",
