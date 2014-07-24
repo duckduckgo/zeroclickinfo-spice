@@ -26,7 +26,11 @@
 }
 
 .tile--hacker_news .tile__content,
-.tile--hacker_news .tile__footer {
+.tile--hacker_news .tile__domain {
     color: #888;
+}
+
+.tile--hacker_news .tile__score {
+    color: #333;
 }
 

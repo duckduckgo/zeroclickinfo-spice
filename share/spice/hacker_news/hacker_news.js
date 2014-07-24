@@ -31,7 +31,7 @@
                     points: item.points || 0,
                     num_comments: item.num_comments || 0,
                     post_domain: extractDomain(item.url),
-                    arrowUrl: DDG.get_asset_path('reddit_search','arrow_up.png'),
+                    arrowUrl: DDG.get_asset_path('hacker_news','arrow_up.png'),
                     id: item.objectID
                 };
             },
