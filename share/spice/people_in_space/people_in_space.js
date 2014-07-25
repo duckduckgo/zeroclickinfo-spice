@@ -26,11 +26,6 @@
 
         var people = api_result.people;
 
-        people = people.sort(function(a, b){
-            //Sort by launch date. The dates are YYYY-MM-DD, so we can just use alpha sort.
-            return a.launchdate < b.launchdate ? -1 : (a.launchdate > b.launchdate ? 1 : 0);
-        });
-
         for (var i = 0; i < people.length; i++) {
             //add 2-letter country code
             people[i].country_code = codes[people[i].country];
@@ -73,6 +68,13 @@
                     icon: DDG.settings.region.getSmallIconURL(item.country_code)
                 };
             };
+            o.sort_fields = {
+                launchdate: function(a, b) {
+                    //The dates are YYYY-MM-DD strings, so we can just use alpha sort.
+                    return a.launchdate < b.launchdate ? -1 : (a.launchdate > b.launchdate ? 1 : 0);
+                }
+            }
+            o.sort_default = "launchdate";
             o.templates = {
                 group: "icon",
                 detail: false,
