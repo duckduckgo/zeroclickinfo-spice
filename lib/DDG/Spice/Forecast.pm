@@ -44,7 +44,7 @@ handle query_lc => sub {
     
     # bbc
     # shipping forecast, bbc forecast, bbc weather forecast etc.
-    return if /\b(shipping\s+fore?cast)|((weather|fore?cast)\sbbc$)|(^bbc\s.*(weather|fore?cast))|(\s+bbc\s+)\b/;
+    return if /\b((shipping\s+fore?cast)|((weather|fore?cast)\sbbc$)|(^bbc\s.*(weather|fore?cast))|(\s+bbc\s+))\b/;
 
     # has quotes
     return if /(%22)|\"/;
