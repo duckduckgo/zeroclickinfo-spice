@@ -27,7 +27,7 @@
             data: api_result,
             meta: {
                 itemType: "Astrophoto",
-                sourceName: "Astrobin",
+                sourceName: "AstroBin",
                 sourceUrl: "http://www.astrobin.com"
             },
             normalize: function(item) {

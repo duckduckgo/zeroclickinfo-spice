@@ -14,7 +14,7 @@
             meta: {
                 itemType: "Astrophotos",
                 sourceUrl: 'http://www.astrobin.com',
-                sourceName: 'Astrobin'
+                sourceName: 'AstroBin'
             },
             normalize: function(item) {
                 return {
