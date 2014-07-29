@@ -1,5 +1,6 @@
 .brainy__quote--container {
     overflow: hidden;
+    margin-left: -2.8em;
 }
 
 .brainy__quote {
@@ -8,26 +9,26 @@
     font-weight: 300;
 }
 
+.zci--brainy_quote .zci__body {
+    margin-left: -2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 2.8em;
+}
+
 .brainy__quote:before {
     color: #D4D4D4;
     content: open-quote;
     float: left;
     font-size: 4em;
     margin-top: -0.25em;
-}
-
-.brainy__quote:after {
-    color: #D4D4D4;
-    content: close-quote;
-    font-size: 4em;
-    line-height: 0;
-    position: relative;
-    top: 0.5em;
+    margin-right: 0.1em;
 }
 
 .brainy__attribution {
     color: #999;
-    float: right;
+    float: left;
+    margin-top: 5px;
 }
 
 .zci--brainy_quote .zci__content.chomp {
@@ -37,4 +38,18 @@
 
 .zci--brainy_quote .zci__body.zci__body--info {
     padding-left: 0.25em;
+}
+
+.is-mobile .brainy__quote--container {
+    margin-left: 0px;
+    margin-bottom: 0.5em;
+}
+
+.is-mobile .zci--brainy_quote .zci__more-at {
+    margin-left: 40px;
+
+}
+
+.is-mobile .zci--brainy_quote .brainy__attribution {
+    margin-left: 40px;
 }
