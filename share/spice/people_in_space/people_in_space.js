@@ -60,7 +60,7 @@
             name: "Answer",
             meta: {
                 itemType: (api_result.number === 1 ? "Person" : "People"),
-                sourceName: "How Many People Are In Space Right Now?",
+                sourceName: "People In Space",
                 sourceUrl: "http://www.howmanypeopleareinspacerightnow.com/"
             }
         };
