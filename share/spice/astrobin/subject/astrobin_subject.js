@@ -21,7 +21,7 @@
                     image: item.url_regular,
                     img_m: item.url_regular,
                     heading: item.title,
-                    url: item.url_regular,
+                    url: item.url_regular
                 };
             },
             templates: {
