@@ -19,10 +19,18 @@
 
 .tile--hacker_news .tile__footer .tile__domain {
     margin-bottom: 0.25em;
-    color: #aaa;
 }
 
 .tile--hacker_news .tile__content {
     height: 1.5em;
+}
+
+.tile--hacker_news .tile__content,
+.tile--hacker_news .tile__domain {
+    color: #888;
+}
+
+.tile--hacker_news .tile__score {
+    color: #333;
 }
 
