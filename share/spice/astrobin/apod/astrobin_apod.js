@@ -28,7 +28,7 @@
             meta: {
                 itemType: "Astrophoto",
                 sourceName: "Astrobin",
-                sourceUrl: api_result.url_hd 
+                sourceUrl: "http://www.astrobin.com"
             },
             normalize: function(item) {
                 if(!item.title) {
@@ -49,13 +49,14 @@
                     }
                 }
                 return {
-                    image: item.url_regular,
+                    image: item.url_duckduckgo,
                     title: item.title,
-                    infoboxData: boxData,
+                    url: item.url_hd,
+                    infoboxData: boxData
                 };
             },
             templates: {
-                group: 'info',
+                group: 'info'
             },
         });
     };
