@@ -18,7 +18,7 @@
             },
             normalize: function(item) {
                 return {
-                    image: item.url_regular,
+                    image: item.url_duckduckgo,
                     img_m: item.url_regular,
                     heading: item.title,
                     url: item.url_regular
