@@ -40,8 +40,9 @@
     vertical-align: top;
     text-align: left;
     margin-left: 0.1em;
-    font-size: 0.3em;
-    font-weight: 400;
+    font-size: 0.4em;
+    margin-top: 0.23em;
+    font-weight: 500;
     display:inline-block !important;
     position: absolute;
 }
