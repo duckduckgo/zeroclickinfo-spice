@@ -20,7 +20,7 @@ spice to => 'http://is.gd/create.php?format=json&url=$1%3A%2F%2F$2&callback={{ca
 triggers any => 'shorten', 'shorten url', 'short url', 'url shorten';
 
 handle remainder => sub {
-    m|(https?)(?:://)?(.+)| =~ shift;
+    m|(https?)?(?:://)?(.+)| =~ shift;
     return (defined $1 ? $1 : 'http'), $2 if defined $2;
     return;
 };
