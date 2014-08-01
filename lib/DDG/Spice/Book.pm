@@ -9,7 +9,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 category "reference";
 topics "entertainment", "everyday";
 
-spice to => 'http://idreambooks.com/api/books/reviews.json?api_key={{ENV{DDG_SPICE_BOOK_APIKEY}}}&bpq=10&q=$1';
+spice to => 'http://idreambooks.com/api/books/reviews.json?api_key=6ddd49633a8809eadb42a28f160bb25a1f24254d&bpq=10&q=$1';
 
 triggers startend => "idreambooks", "book reviews", "book review";
 

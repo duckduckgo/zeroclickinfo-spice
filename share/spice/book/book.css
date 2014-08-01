@@ -1,29 +1,16 @@
-.zci--book .spice_pane_left {
-    width: 40%;
-    display: inline-block;
+.zci--book .tile--book {
+    width: 25em;
 }
 
-.zci--book .spice_pane_right {
-    width: 50%;
-    display: inline-block;
-    vertical-align: top;
-    border-left: 1px solid rgba(0,0,0,0.1);
-    padding-left: 10px;
-}
-
-.zci--book .book_data_item {
-    display: inline-block;
-    padding-right: 6px;
-    color: gray;
-}
-
-.zci--book #critic-link {
+.zci--book .tile__media img {
     float: right;
+    margin: 0.5em;
 }
 
-.zci--book #book-rating-visual {
-    display: inline;
-    width: 21px;
-    vertical-align: -12%;
+.zci--book .tile__title  {
+    text-overflow: clip !important;
 }
 
+.zci--book .tile__media {
+    height: 50px;
+}
