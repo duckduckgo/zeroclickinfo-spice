@@ -16,7 +16,7 @@ attribution github => ['https://github.com/danjarvis','Dan Jarvis'],
             twitter => ['http://twitter.com/danjarvis','danjarvis'];
 
 spice from => '([^/]+)/(.*)';
-spice to => 'http://is.gd/create.php?format=json&url=$1://$2&callback={{callback}}';
+spice to => 'http://is.gd/create.php?format=json&url=$1%3A%2F%2F$2&callback={{callback}}';
 triggers any => 'shorten', 'shorten url', 'short url', 'url shorten';
 
 handle remainder => sub {
