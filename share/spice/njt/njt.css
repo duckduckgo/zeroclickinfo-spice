@@ -1,5 +1,6 @@
 .tile--njt {
     text-align: center;
+    width: 12em !important;
 }
 
 .tile--njt .njt__time {
@@ -30,7 +31,8 @@
 
 .tile--njt .njt__status {
     color: #666;
-    margin-top: 6px;
+    margin-top: 10px;
+    margin-bottom: 2px;
 }
 
 .tile--njt .njt__badge {
