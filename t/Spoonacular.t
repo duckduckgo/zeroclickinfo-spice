@@ -27,7 +27,7 @@ ddg_spice_test(
     ),
 );
 
-# intentionally failing tests, these queries must NOT trigger the plugin
+#  these queries must NOT trigger the plugin
 
 my @q = (
   "car dealer",

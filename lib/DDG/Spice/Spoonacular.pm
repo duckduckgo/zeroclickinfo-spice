@@ -18,7 +18,7 @@ attribution github  => ['https://github.com/ddsky', 'ddsky'],
             web =>   ['http://spoonacular.com','spoonacular'],
             email => ['david@spoonacular.com','David Urbansky'];
 
-spice to => 'http://46.4.89.232:8080/recipes/searchFromApp?query=$1&number=18&username={{ENV{DDG_SPICE_SPOONACULAR_APIKEY}}}';
+spice to => 'http://webknox.com:8080/recipes/searchFromApp?query=$1&number=18&username={{ENV{DDG_SPICE_SPOONACULAR_APIKEY}}}';
 
 spice wrap_jsonp_callback => 1;
 

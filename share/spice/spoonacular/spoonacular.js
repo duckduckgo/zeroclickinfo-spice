@@ -14,7 +14,6 @@
             meta: {
                 sourceName: 'spoonacular',
                 itemType: 'Recipes',
-                // FIXME local icon
                 sourceIconUrl: 'http://spoonacular.com/favicon.ico',
                 sourceUrl: 'http://spoonacular.com/' + encodeURIComponent(searchTerm.replace(/ /g,'-'))
             },
@@ -30,14 +29,7 @@
                     aux: false
                 }
             }
-
-            /*templates: {
-                group: 'base',
-                options: {
-                    content: Spice.spoonacular.spoonacular_detail,
-                    moreAt: true
-                }
-            }*/
+          
         });
     };
 
@@ -145,6 +137,7 @@
     Handlebars.registerHelper("recipeLink", function(id, title) {
         "use strict";
 
+        // modify the title to spoonacular's title format (unlike encodeURI, some characters will simply be dropped)
         var safeTitle = title.replace(/\'/g,'').replace(/\"/g,'').replace(/&/g,'').replace(/\?/g,'').replace(/ /g,'-');
 
         return "http://spoonacular.com/"+safeTitle+"-"+id;
@@ -177,72 +170,3 @@
     });
 
 }(this));
-
-
-/*function ddg_spice_spoonacular(res) {
-
-    var query = DDG.get_query(),
-        query_encoded = DDG.get_query_encoded();
-
-    var searchContainedRecipe = query_encoded.match(/recipe/i),
-        searchTerm = query.replace(/recipes|recipe/i,'').trim(),
-        moreUrl = 'http://spoonacular.com/' + searchTerm;
-
-    Spice.add({
-        id: 'recipes',
-        name: 'Recipes',
-
-        data: res,
-
-        trump: true, 
-
-        meta: {
-            total: res.length,
-            searchTerm: searchTerm,
-            itemType: 'Recipes',
-            detailBg: 'image',
-            detailClass: 'detail--i',
-            // FIXME local icon
-            sourceIconUrl: 'http://spoonacular.com/favicon.ico',
-            sourceUrl: moreUrl,
-            sourceName: 'spoonacular'
-        },
-
-        normalize: res,
-
-        sort_fields: {
-            rating: function(a,b){
-                return (a.rating > b.rating) ? -1 : 1;
-            }
-        },
-        sort_default: 'rating',
-
-        
-        relevancy: {
-
-            skip_words: [ "recipes", "recipe", "ingredient", "ingredients" ],
-
-            primary: [
-                { key: 'recipeName' },
-                { key: 'attributes.cuisine.0' },
-                { key: 'ingredients' }
-            ]
-
-        },
-        
-
-        template_group: 'products_simple',
-
-        templates: {
-            detail: Spice.spoonacular.spoonacular_detail,
-            item_detail: Spice.spoonacular.spoonacular_detail,
-
-            options: {
-                brand: true,
-                rating: true
-            }
-        }
-
-    });
-}
-*/
