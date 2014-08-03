@@ -1,11 +1,13 @@
 
-.tile--coursebuffet .tile__title__sub {
-  text-transform: none;
-  color: #999;
-}
 .tile--coursebuffet .tile__title {
-  height: 5em;
+  height: 4em;
+  -webkit-line-clamp: 3;
 }
+
 .tile--coursebuffet .tile__body {
-  height: 12em;
+    height: 13.5em;
+}
+
+.tile--coursebuffet .tile__content {
+    height: 3.5em;
 }
