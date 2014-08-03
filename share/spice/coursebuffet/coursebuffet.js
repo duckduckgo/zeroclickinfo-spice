@@ -21,7 +21,7 @@
                 };
                 return {
                     title: name,
-                    subtitle: item.show_professors,
+                    description: item.show_professors,
                     url: "http://www.coursebuffet.com"+item.create_new_link
                 };
             },
