@@ -6,9 +6,7 @@
         <h5 class="detail__title"><a href="{{{recipeLink id title}}}" title="{{title}}">{{title}}</a></h5>
         <div class="detail__desc">
             <p class="detail__source">
-                {{#ifCond aggregateLikes '>' 1}}
-                    <span>{{{formatLikes aggregateLikes}}} people like this recipe from {{author}}</span>
-                {{/ifCond}}                
+                <span>{{plural aggregateLikes singular="person likes" plural="people like"}} this recipe from {{author}}</span>                
             </p>
 
         <div>This recipe can be cooked in <b>{{{tipsAndScores.score_time_text}}}</b>.</div>
