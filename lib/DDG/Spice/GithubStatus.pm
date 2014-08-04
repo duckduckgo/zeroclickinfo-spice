@@ -14,7 +14,7 @@ attribution github => ['https://github.com/Feral2k','Logan Garcia'],
 
 triggers startend => 'github';
 
-spice to => 'https://status.github.com/api/status.json?callback={{callback}}';
+spice to => 'https://status.github.com/api/last-message.json?callback={{callback}}';
 
 
 handle remainder => sub {
