@@ -31,9 +31,10 @@ p.detail__source span {
 .tile--spoonacular .tile__media {
     height: 9.5em;
 }
-  .is-mobile .tile--spoonacular .tile__media {
+
+.is-mobile .tile--spoonacular .tile__media {
     height: 7.5em;
-  }
+}
 
 .tile--spoonacular .tile__media__img {
     min-width: 100%;
@@ -44,28 +45,31 @@ p.detail__source span {
     margin-right: 1em;
     text-align: center;
 }
-  .is-mobile .detail--spoonacular .detail__media.detail__media--spoonacularrecipe {
+
+.is-mobile .detail--spoonacular .detail__media.detail__media--spoonacularrecipe {
     line-height: initial;
     width: 125px;
     max-height: 125px;
     float: right;
     top: 2em;
-  }
-  .is-mobile .detail--spoonacular .detail__media__img {
+}
+
+.is-mobile .detail--spoonacular .detail__media__img {
     position: static;
-  }
-  .is-mobile .detail--spoonacular .detail__body.detail__body--spoonacularrecipe {
+}
+
+.is-mobile .detail--spoonacular .detail__body.detail__body--spoonacularrecipe {
     margin-top: 1em;
     position: static;
     overflow: visible;
     padding-left: 1em;
     padding-right: 1em;
-  }
+}
   
-  .is-mobile .detail--spoonacular .detail__body__content {
+.is-mobile .detail--spoonacular .detail__body__content {
     padding-right: 0;
     display: inherit;
-  }
+}
 
 .tileview--grid .detail__media--spoonacularrecipe {
     text-align: center;
@@ -74,17 +78,19 @@ p.detail__source span {
 .detail__body--spoonacularrecipe .detail__title {
     padding: 0;
 }
-  .is-mobile .detail--spoonacular  .detail__title {
+
+.is-mobile .detail--spoonacular  .detail__title {
     margin-bottom: 1em;
     min-height: 2.7em;
-  }
+}
 
 .detail__body--spoonacularrecipe .detail__source {
     padding-bottom: 1em;
 }
-  .is-mobile .detail--spoonacular .detail__source {
+
+.is-mobile .detail--spoonacular .detail__source {
     min-height: 2.5em;
-  }
+}
 
 .detail--spoonacular .detail__source {
     margin-right: 0;
