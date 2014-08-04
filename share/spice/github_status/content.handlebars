@@ -1,6 +1,6 @@
-<h3>
-   The status of GitHub is {{status}}.
-</h3>
-<h6>
-   Updated {{description}}
-</h6>
+{{#ifCond status "good"}}
+    <h3>The status of GitHub is good.</h3>
+{{else}}
+    <h3>{{body}}</h3>
+{{/ifCond}}
+<h6>Updated {{description}}</h6>
