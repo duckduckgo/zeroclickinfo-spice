@@ -1,6 +1,13 @@
-{{#ifCond status "good"}}
-    <h3>The status of GitHub is good.</h3>
-{{else}}
-    <h3>{{body}}</h3>
-{{/ifCond}}
-<h6>Updated {{description}}</h6>
+<h3>
+  {{#ifCond status "good"}}
+    The status of GitHub is <span class="good">{{status}}</span>.
+  {{else}}
+    {{#ifCond status "minor"}}
+      GitHub is experiencing <span class="minor">{{status}}</span> issues.
+    {{else}}
+      GitHub is experiencing <span class="major">{{status}}</span> issues.
+    {{/ifCond}}
+    <h6>{{body}}</h6>
+  {{/ifCond}}
+</h3>
+<div>Updated {{description}}</div>
