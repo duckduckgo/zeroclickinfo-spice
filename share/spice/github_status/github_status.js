@@ -31,11 +31,10 @@
         });
     }
 
-    Handlebars.registerHelper('ifCond', function(v1, v2, options) {
-        if (v1 == v2) {
+    Spice.registerHelper("GithubStatus_ifCond", function(v1, v2, options) {
+        if (v1 === v2) {
             return options.fn(this);
-        }
-        else {
+        } else {
             return options.inverse(this);
         } 
     });
