@@ -1,15 +1,15 @@
-<h3 class="header">
+<h3 class="ghstatus--header">
   {{#GithubStatus_ifCond status "good"}}
-    The status of GitHub is <span class="good">{{status}}</span>.
+    The status of GitHub is <span class="ghstatus--good">{{status}}</span>.
   {{else}}
     {{#GithubStatus_ifCond status "minor"}}
-      GitHub is experiencing <span class="minor">{{status}}</span> issues.
+      GitHub is experiencing <span class="ghstatus--minor">{{status}}</span> issues.
     {{else}}
-      GitHub is experiencing <span class="major">{{status}}</span> issues.
+      GitHub is experiencing <span class="ghstatus--major">{{status}}</span> issues.
     {{/GithubStatus_ifCond}}
   {{/GithubStatus_ifCond}}
-  <h6 class="message">{{body}}</h6>
+  <h6 class="ghstatus--message">{{body}}</h6>
 </h3>
-<div class="update">
+<div class="ghstatus--update">
   Updated {{description}}
 </div>
