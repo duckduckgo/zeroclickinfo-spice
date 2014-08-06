@@ -1,9 +1,20 @@
-.good {
+.zci--github_status .header {
+}
+
+.zci--github_status .good {
     color: #008000;
 }
-.minor {
+
+.zci--github_status .minor {
     color: #eea43e;
 }
-.major {
+
+.zci--github_status .major {
     color: #e34c2d;
+}
+
+.zci--github_status .message {
+}
+
+.zci--github_status .update {
 }
