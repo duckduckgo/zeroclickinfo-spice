@@ -1,4 +1,8 @@
 .zci--github_status .ghstatus--header {
+    color: #555;
+    font-size: 1.75em;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .zci--github_status .ghstatus--good {
@@ -14,7 +18,15 @@
 }
 
 .zci--github_status .ghstatus--message {
+    color: #777;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .zci--github_status .ghstatus--update {
+    color: #999;
+    font-size: 1em;
+    padding-bottom: 0.75em;
 }
