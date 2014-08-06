@@ -70,7 +70,7 @@ var ddg_spice_dictionary = {
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.dictionary_definition.dictionary_definition
+                    content: Spice.dictionary_definition.content
                 }
             }
         });
