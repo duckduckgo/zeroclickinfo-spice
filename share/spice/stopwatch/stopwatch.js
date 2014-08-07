@@ -1,16 +1,22 @@
 function ddg_spice_stopwatch(api_result) { //api_result should be removed in production
     Spice.add({
-	id: 'stopwatch',
-	name: 'Stopwatch',
-	data: {},
-	meta: {
-	    sourceName: 'Stopwatch',
-	    itemType: 'stopwatch'
-	},
-	templates: {
-	    detail: Spice.stopwatch.stopwatch,
-	    wrap_detail: 'base_detail'
-	}
+        id: 'stopwatch',
+        name: 'Stopwatch',
+        data: {},
+        meta: {
+            sourceName: 'Stopwatch',
+            itemType: 'stopwatch'
+        },
+        templates: {
+            detail: Spice.stopwatch.stopwatch,
+            wrap_detail: 'base_detail'
+        },
+        onShow: function() {
+            // Wait for the spice to load before displaying things
+            // This makes sure the divs display at the right time so the layout doesn't break
+            $(".zci--stopwatch .spice-pane-right").css("display", "inline-block");
+            $(".zci--stopwatch .stopwatch__left").css("display", "inline");
+        }
     });
 
   var running = false,
