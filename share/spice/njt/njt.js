@@ -5,6 +5,8 @@
             return Spice.failed('njt');
         }
 
+        var now = timeInMins(api_result.now);
+
         Spice.add({
             id: 'njt',
             name: 'NJ Transit',
@@ -23,8 +25,7 @@
                 }
             },
             normalize: function(item) {
-                var now = timeInMins(api_result.now),
-                    classes = {
+                var classes = {
                         "Cancelled": "njt__cancelled",
                         "Delayed": "njt__delayed",
                         "All Aboard": "njt__allaboard",
@@ -44,7 +45,7 @@
             },
             sort_fields: {
                 time: function(a, b) {
-                    return actualDepartureTime(a) - actualDepartureTime(b);
+                    return actualDepartureTime(a, now) - actualDepartureTime(b, now);
                 }
             },
             sort_default: 'time',
@@ -80,8 +81,9 @@
     //converts a time string (like 14:05) and converts it to integer minutes
     function timeInMins(t) {
         var hour = parseInt(t.split(':')[0]),
-            minute = parseInt(t.split(':')[1]);
-        return hour*60 + minute;
+            minute = parseInt(t.split(':')[1]),
+            ampm = (t.indexOf('PM') > -1 && hour !== 12) ? 60*12 : 0;
+        return hour*60 + minute + ampm;
     }
 
     //find how many minutes the train is delayed
