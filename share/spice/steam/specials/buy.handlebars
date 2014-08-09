@@ -1,0 +1,14 @@
+    <div class="detail__content">
+        <p>
+            {{#if genre}}
+                <span class="key__color">Genre:</span> {{genre}} <br>
+                    <span class="key__color">Supported Platforms: </span>Windows: {{booleval platforms.windows}}  
+                <span class="detail__separator"> | </span>
+                    Mac: {{booleval platforms.mac}}    
+                <span class="detail__separator"> | </span>
+                    Linux: {{booleval platforms.linux}} <br>  
+            {{/if}}
+        </p>
+    </div>
+<a href="{{url}}" class="btn btn--primary">Steam Page</a>
+
