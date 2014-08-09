@@ -7,12 +7,6 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Bitcoin )],
-    'bitcoin' => test_spice(
-        '/js/spice/bitcoin/',
-        call_type => 'include',
-        caller => 'DDG::Spice::Bitcoin',
-        
-    ),
     'bit coin eur' => test_spice(
         '/js/spice/bitcoin/eur',
         call_type => 'include',
