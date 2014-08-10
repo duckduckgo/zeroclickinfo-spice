@@ -11,14 +11,19 @@ icon_url "/i/www.rottentomatoes.com.ico";
 topics "entertainment", "everyday";
 category "entertainment";
 attribution github => ['https://github.com/moollaza','Zaahir Moolla'],
-           twitter => ['https://twitter.com/zmoolla','zmoolla'];
+           twitter => ['https://twitter.com/zmoolla','zmoolla'],
+            github => ['https://github.com/ehsan','ehsan'];
 
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&q=$1&page_limit=50&page=1&callback={{callback}}';
 
 # It's important that 'movie info' precede 'movie' so that the handler
 # encounters it first and removes both words, rather than encountering 'movie'
 # first in the list, removing it, and leaving the word 'info.'
-my @triggers = ( 'movie info', 'movie', 'film', 'rt', 'rotten tomatoes', 'rating', 'ratings', 'rotten' );
+my @triggers = ( 'movie info', 'movie', 'film', 'rt', 'rotten tomatoes', 'rating', 'ratings', 'rotten',
+                 'release date', 'runtime', 'run time', 'running time', 'length', 'hours', 'how long is',
+                 'how long', 'cast of', 'cast', 'casting', 'actors in', 'actor in', 'actors', 'actor',
+                 'actress in', 'actress', 'plot of', 'plot', 'premise of', 'premise', 'synopsis of',
+                 'synopsis', 'overview of', 'overview', 'summary of', 'summary', 'spoiler for', 'spoiler' );
 
 triggers startend => @triggers;
 
