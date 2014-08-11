@@ -30,6 +30,16 @@ ddg_spice_test(
     # You should include more test cases here. Try to think of ways that your
     # instant answer might break, and add them here to ensure they won't. Here are is
     # another that is tested for this Spice.
+    'victoria line tfl' => test_spice(
+        '/js/spice/tfl_status/victoria',
+        call_type => 'include',
+        caller => 'DDG::Spice::TflStatus',
+    ),
+    'hammersmith & city line tfl' => test_spice(
+        '/js/spice/tfl_status/hammersmith-city',
+        call_type => 'include',
+        caller => 'DDG::Spice::TflStatus',
+    ),
     'hammersmith & city line status' => test_spice(
         '/js/spice/tfl_status/hammersmith-city',
         call_type => 'include',
@@ -37,6 +47,11 @@ ddg_spice_test(
     ),
     'hammersmith and city line status' => test_spice(
         '/js/spice/tfl_status/hammersmith-city',
+        call_type => 'include',
+        caller => 'DDG::Spice::TflStatus',
+    ),
+    'waterloo & city line tfl' => test_spice(
+        '/js/spice/tfl_status/waterloo-city',
         call_type => 'include',
         caller => 'DDG::Spice::TflStatus',
     ),
