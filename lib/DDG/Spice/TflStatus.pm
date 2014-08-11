@@ -20,13 +20,13 @@ triggers end => 'line status';
 
 handle remainder => sub {
 	
-	if (lc($_) =~ "overground") {
+	if (lc($_) =~ /overground/) {
 		return "london-overground";
 	}
-	elsif (lc($_) =~ "hammersmith.*?") {
+	elsif (lc($_) =~ /hammersmith.*?/) {
 		return "hammersmith-city";
 	}
-	elsif (lc($_) =~ "waterloo.*?") {
+	elsif (lc($_) =~ /waterloo.*?/) {
 		return "waterloo-city";
 	}
 
