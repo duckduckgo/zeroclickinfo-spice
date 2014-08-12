@@ -28,7 +28,7 @@
                 var classes = {
                         "Cancelled": "njt__cancelled",
                         "Delayed": "njt__delayed",
-                        "All Aboard": "njt__allaboard",
+                        "All Aboard": "njt__boarding",
                         "Boarding": "njt__boarding",
                         "Stand By": "njt__boarding"
                     };
@@ -45,7 +45,11 @@
             },
             sort_fields: {
                 time: function(a, b) {
-                    return actualDepartureTime(a, now) - actualDepartureTime(b, now);
+                    var c = actualDepartureTime(a, now),
+                        d = actualDepartureTime(b, now);
+                    c = (c + 5 < now) ? c + 24*60 : c; //push times from the next day to the end of the list
+                    d = (d + 5 < now) ? d + 24*60 : d;
+                    return c - d;
                 }
             },
             sort_default: 'time',
@@ -75,14 +79,22 @@
         } else if (hour > 12) {
             hour -= 12;
         }
+        if (hour === 0){
+            hour = 12;
+        }
         return hour + ':' + padZeros(minute, 2) + ' ' + ampm;
     }
 
-    //converts a time string (like 14:05) and converts it to integer minutes
+    //converts a time string (like 14:05 or 2:05 PM) to integer minutes
     function timeInMins(t) {
         var hour = parseInt(t.split(':')[0]),
             minute = parseInt(t.split(':')[1]),
-            ampm = (t.indexOf('PM') > -1 && hour !== 12) ? 60*12 : 0;
+            ampm = 0;
+        if (t.indexOf('PM') > -1 && hour !== 12) {
+            ampm = 60*12;
+        } else if (t.indexOf('AM') > -1 && hour === 12) {
+            ampm = -60*12;
+        }
         return hour*60 + minute + ampm;
     }
 
