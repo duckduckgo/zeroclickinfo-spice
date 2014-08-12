@@ -31,8 +31,8 @@
         });
     }
 
-    Spice.registerHelper("GithubStatus_ifCond", function(v1, v2, options) {
-        if (v1 === v2) {
+    Spice.registerHelper("GithubStatus_ifCond", function(string1, string2, options) {
+        if (string1 === string2) {
             return options.fn(this);
         } else {
             return options.inverse(this);
