@@ -6,7 +6,7 @@ package DDG::Spice::WGHA;
 use DDG::Spice;
 
 primary_example_queries "was geht in frankfurt";
-secondary_example_queries "party in berlin";
+secondary_example_queries "wasgeht in berlin";
 description "Events in Germany";
 name "WGHA Events";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/WGHA.pm";
