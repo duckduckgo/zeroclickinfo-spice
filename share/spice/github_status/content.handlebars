@@ -1,4 +1,5 @@
 <h3 class="ghstatus--header text--primary">
+  {{! checks if the status is either good, minor, or major }}
   {{#GithubStatus_ifCond status "good"}}
     The status of GitHub is <span class="ghstatus--good">{{status}}</span>.
   {{else}}
