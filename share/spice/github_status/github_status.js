@@ -1,12 +1,13 @@
 (function (env) {
     "use strict";
     env.ddg_spice_github_status = function(api_result) {
-        var d = Math.floor(new Date(api_result.created_on).getTime() / 1000),
-            now = Math.floor(new Date().getTime() / 1000);
         
         if (api_result.error) {
             return Spice.failed('github_status');
         }
+
+        var d = Math.floor(new Date(api_result.created_on).getTime() / 1000),
+            now = Math.floor(new Date().getTime() / 1000);
 
         Spice.add({
             id: "github_status",
