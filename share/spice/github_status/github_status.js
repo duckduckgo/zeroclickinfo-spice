@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_github_status = function(api_result) {
         
-        if (api_result.error) {
+        if (!api_result) {
             return Spice.failed('github_status');
         }
 
