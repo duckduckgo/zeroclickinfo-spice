@@ -16,7 +16,7 @@ attribution github => [ 'https://github.com/edmlo', 'osu'],
 
 triggers startend => ("tor relay", "onion relay");
 
-spice to => 'https://onionoo.torproject.org/details?fields=nickname,fingerprint,consensus_weight,or_addresses,last_seen,running,hibernating,flags,advertised_bandwidth,contact,famility&limit=2&type=relay&search=$1';
+spice to => 'https://onionoo.torproject.org/details?fields=nickname,fingerprint,consensus_weight,or_addresses,last_seen,running,hibernating,flags,advertised_bandwidth,contact&limit=2&type=relay&search=$1';
 
 spice wrap_jsonp_callback => 1;
 
