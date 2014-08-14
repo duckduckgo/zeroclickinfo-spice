@@ -1,17 +1,30 @@
-function ddg_spice_<: $lia_name :> (api_result) {
+(function (env) {
+    "use strict";
+    env.ddg_spice_npm = function(api_result){
 
-	// Verify API response contains results
-	if (!api_result.length) return;
+	// Validate the response
+        if (api_result.error) {
+            return Spice.failed('<: $lia_name :>');
+        }
 
-	// Render spice instant answer
-	Spice.render({
-
-		//define Spice.render properties here:
-		data              : api_result,
-		force_big_header  : true,
-		header1           : "Header Text",
-		source_name 	  : "Name for More at link",
-		source_url        : "http://website.com",
-		template_normal   : "<: $lia_name :>"
-   });
-};
+	// Render the response
+        Spice.add({
+            id: "<: $lia_name :>",
+            
+            // Customize these properties
+            name: "AnswerBar title",
+            data: api_result,
+            meta: {
+                sourceName: "Example.com",
+                sourceUrl: 'http://example.com/url/to/details/' + api_result.name
+            },
+            templates: {
+                group: 'your-template-groups',
+                options: {
+                    content: Spice.npm.content,
+                    moreAt: true
+                }
+            }
+        });
+    };
+}(this));
