@@ -8,8 +8,8 @@
 
         // TODO: support for bridges as well
         var query       = DDG.get_query()
-                            .replace(/^\s*tor relay\s+/, "")
-                            .replace(/^\s*onion relay\s+/, ""),
+                            .replace(/\s*tor relay\s*/, "")
+                            .replace(/\s*onion relay\s*/, ""),
             result      = api_response,
             data        = {
                             record_data : {

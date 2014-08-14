@@ -22,8 +22,8 @@ spice wrap_jsonp_callback => 1;
 
 # TODO: query_lc instead of remainder to support relay AND bridge search.
 handle query_lc => sub {
-    s/^tor relay\s+|\s+tor relay$//;
-    s/^onion relay\s+|\s+onion relay$//;
+    s/^tor relay\s*|\s*tor relay$//;
+    s/^onion relay\s*|\s*onion relay$//;
     return $_ if $_;
 };
 
