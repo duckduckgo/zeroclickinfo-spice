@@ -28,11 +28,11 @@
             data.record_data    = {};
             for (var prop in result.relays[0]) {
                 if(typeof(result.relays[0][prop]) === 'object')
-                    data.record_data[prop] = result.relays[0][prop].join(', ');
+                    data.record_data[prop.replace("_"," ")] = result.relays[0][prop].join(', ');
                 if(typeof(result.relays[0][prop]) !== 'string')
-                    data.record_data[prop] = result.relays[0][prop].toString();
+                    data.record_data[prop.replace("_"," ")] = result.relays[0][prop].toString();
                 else
-                    data.record_data[prop] = result.relays[0][prop];
+                    data.record_data[prop.replace("_"," ")] = result.relays[0][prop];
             }
         }
 
