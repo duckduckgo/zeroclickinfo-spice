@@ -13,7 +13,7 @@
             result      = api_response,
             data        = {
                             record_data : {
-                              'Error' :'To many results. Visit the link below to see them all.'
+                              'To many results' :'Visit the link below to see them all.'
                             }
                           },
             sourceUrl   = 'https://globe.torproject.org/#/search/query=' + encodeURIComponent(query);
