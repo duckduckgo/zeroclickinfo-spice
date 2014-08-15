@@ -26,7 +26,6 @@
                 };
 
             // Parse the api_response.relays[0] structure to fit on the 'record' template
-            data.record_data = {};
             for (var prop in api_response.relays[0]) {
                 if (prop === "last_seen")
                     data.record_data[prop.replace("_", " ")] = toTime(api_response.relays[0][prop]);
