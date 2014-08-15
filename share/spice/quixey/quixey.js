@@ -311,8 +311,7 @@
             return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
         }
 
-        // return "/iu/?u=" + icon_url + "&f=1";
-        return icon_url;
+        return "/iu/?u=" + icon_url + "&f=1";
     });
 
     // template helper that returns and unifies platform names
