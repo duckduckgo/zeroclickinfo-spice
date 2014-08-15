@@ -25,15 +25,15 @@
                     record_data : {}
                 };
 
-            // Parse the result.relays[0] structure to fit on the 'record' template
-            data.record_data    = {};
-            for (var prop in result.relays[0]) {
-                if(typeof(result.relays[0][prop]) === 'object')
-                    data.record_data[prop.replace("_"," ")] = result.relays[0][prop].join(', ');
-                if(typeof(result.relays[0][prop]) !== 'string')
-                    data.record_data[prop.replace("_"," ")] = result.relays[0][prop].toString();
+            // Parse the api_response.relays[0] structure to fit on the 'record' template
+            data.record_data = {};
+            for (var prop in api_response.relays[0]) {
+                if (typeof(api_response.relays[0][prop]) === 'object')
+                    data.record_data[prop.replace("_", " ")] = api_response.relays[0][prop].join(', ');
+                else if (typeof(api_response.relays[0][prop]) !== 'string')
+                    data.record_data[prop.replace("_", " ")] = api_response.relays[0][prop].toString();
                 else
-                    data.record_data[prop.replace("_"," ")] = result.relays[0][prop];
+                    data.record_data[prop.replace("_", " ")] = api_response.relays[0][prop];
             }
         }
 
