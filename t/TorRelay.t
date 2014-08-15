@@ -46,6 +46,7 @@ ddg_spice_test(
         call_type => 'include',
         # caller
         caller => 'DDG::Spice::TorRelay',
+    )
 );
 
 # This function call is expected by Test::More. It makes sure the program
