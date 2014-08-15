@@ -2,27 +2,28 @@
     "use strict";
     env.ddg_spice_tor_relay = function(api_response) {
 
-        if (!api_response) {
+        if (!api_response || !api_response.relays.length) {
             return Spice.failed('tor_relay');
         }
 
         // TODO: support for bridges as well
-        var query       = DDG.get_query()
-                            .replace(/\s*tor relay\s*/, "")
-                            .replace(/\s*onion relay\s*/, ""),
-            result      = api_response,
-            data        = {
-                            record_data : {
-                              'To many results' :'Visit the link below to see them all.'
-                            }
-                          },
-            sourceUrl   = 'https://globe.torproject.org/#/search/query=' + encodeURIComponent(query);
+        var query = DDG.get_query()
+                    .replace(/\s*tor relay\s*/, "")
+                    .replace(/\s*onion relay\s*/, "");
 
-        if (result.relays.length === 0) {
-            return Spice.failed('tor_relay');
+        if (api_response.relays.length > 1) {
+            var sourceUrl = 'https://globe.torproject.org/#/search/query=' + encodeURIComponent(query),
+                data = {
+                    record_data: {
+                        'To many results' : 'Visit the link below to see them all.'
+                    }
+                };
         }
-        else if(result.relays.length === 1) {
-            var sourceUrl       = 'https://globe.torproject.org/#/relay/' + encodeURIComponent(result.relays[0].fingerprint);
+        else {
+            var sourceUrl = 'https://globe.torproject.org/#/relay/' + encodeURIComponent(api_response.relays[0].fingerprint),
+                data = {
+                    record_data : {}
+                };
 
             // Parse the result.relays[0] structure to fit on the 'record' template
             data.record_data    = {};
@@ -37,19 +38,19 @@
         }
 
         Spice.add({
-            id          : 'tor_relay',
-            name        : 'Tor Relay Status',
-            data        : data,
-            meta: {
-                sourceUrl   : sourceUrl,
-                sourceName  : 'Globe'
+            id : 'tor_relay',
+            name : 'Tor Relay Status',
+            data : data,
+            meta : {
+                sourceUrl : sourceUrl,
+                sourceName : 'Globe'
             },
             templates: {
-                group   : 'base',
+                group : 'base',
                 options : {
-                    content         : 'record',
-                    rowHighlight    : false,
-                    moreAt          : true
+                    content : 'record',
+                    rowHighlight : false,
+                    moreAt : true
                 }
             },
         });
