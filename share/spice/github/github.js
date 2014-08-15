@@ -16,8 +16,6 @@
         if (results.length > 30)
             results = results.splice(0,30);
 
-        sort_by_watchers(results);
-
         Spice.add({
             id: "github",
             name: "Software",
@@ -45,18 +43,17 @@
 		primary: [
 		    { key: 'description', match: /.+/, strict: false } // Reject things without a description.
 		]
-	    }
+	    },
+            sort_fields: {
+                watchers: function(a, b) {
+                    var x = a.watchers;
+                    var y = b.watchers;
+                    return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+                }
+            },
+            sort_default: 'watchers'
         });
     }
-
-    function sort_by_watchers(array){
-        return array.sort(function(a, b){
-             var x = a.watchers;
-             var y = b.watchers;
-             return ((x < y) ? 1 : ((x > y) ? -1 : 0));
-         });
-    }
-
 }(this));
 
 // Make sure we display only three items.
