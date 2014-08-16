@@ -22,8 +22,7 @@ triggers start => "bitcoin exchange in", "bitcoin in", "btc to";
 triggers startend => "bitcoin", "bit coin", "bitcoin exchange", "bit coin exchange", "bitcoin exchange rate", "bit coin exchange rate", "btc", "bitcoin price";
 
 handle remainder => sub {
-    return $_ if $_;
-    return;
+    return $_;
 };
 
 1;
