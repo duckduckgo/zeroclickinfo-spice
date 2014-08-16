@@ -9,6 +9,13 @@
         var d = Math.floor(new Date(api_result.created_on).getTime() / 1000),
             now = Math.floor(new Date().getTime() / 1000);
 
+        //adds fallback for browsers that don't support Date instantiation by string
+        if (typeof d !== 'undefined') {
+            var timestamp = relativeDate(now - d);
+        } else {
+            var timestamp = api_result.created_on;
+        }
+
         Spice.add({
             id: "github_status",
             name: "Status",
@@ -19,7 +26,7 @@
             },
             normalize: function(item) {
                 return {
-                    description: relativeDate(now - d)
+                    description: timestamp
                 };
             },
             templates: {
