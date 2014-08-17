@@ -5,33 +5,30 @@
         if (!api_result || (api_result.objects.length < 1)) {
             return Spice.failed('astrosubject');
         }
+        
+        var script = $('[src*="/js/spice/astrobin/subject"]')[0],
+        source = $(script).attr("src"),
+        query = source.match(/subject\/([^\/]+)/)[1];
 
-    
         Spice.add({
             id: "astrosubject",
             name: "Astrophotos",
             data: api_result.objects,
             meta: {
                 itemType: "Astrophotos",
-                sourceUrl: 'http://www.astrobin.com',
+                sourceUrl: 'http://www.astrobin.com/search/?q=' + query + '&search_type=0&license=0&telescope_type=any&camera_type=any',
                 sourceName: 'AstroBin'
             },
             normalize: function(item) {
                 return {
-                    image: item.url_duckduckgo,
-                    img_m: item.url_regular,
-                    heading: item.title,
-                    url: item.url_regular
+                    h: item.url_regular,
+                    j: item.url_real,
+                    u: "http://www.astrobin.com/" + item.id,
+                    ih: item.h,
+                    iw: item.w
                 };
             },
-            templates: {
-                group: 'media',
-                options: {
-                    subtitle_content: Spice.astrobin_subject.content,
-                    buy: Spice.astrobin_subject.buy
-                }
-            }
+            view: 'Images'
         });
-    Spice.getDOM('astrosubject').find('.tile__body').addClass('is-hidden');
     };
 }(this));
