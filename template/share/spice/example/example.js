@@ -1,6 +1,6 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_npm = function(api_result){
+    env.ddg_spice_<: $lia_name :> = function(api_result){
 
         // Validate the response
         if (api_result.error) {
@@ -21,7 +21,7 @@
             templates: {
                 group: 'your-template-groups',
                 options: {
-                    content: Spice.npm.content,
+                    content: Spice.<: $lia_name :>.content,
                     moreAt: true
                 }
             }
