@@ -2,12 +2,12 @@
     "use strict";
     env.ddg_spice_npm = function(api_result){
 
-	// Validate the response
+        // Validate the response
         if (api_result.error) {
             return Spice.failed('<: $lia_name :>');
         }
-
-	// Render the response
+        
+        // Render the response
         Spice.add({
             id: "<: $lia_name :>",
             
