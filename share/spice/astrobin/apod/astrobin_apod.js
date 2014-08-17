@@ -59,7 +59,7 @@
                 return {
                     image: item.url_duckduckgo,
                     title: item.title,
-                    url: item.url_hd,
+                    url: item.url_real,
                     infoboxData: boxData
                 };
             },
