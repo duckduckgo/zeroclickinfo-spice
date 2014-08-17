@@ -20,7 +20,7 @@
         if (!api_result) {
             return Spice.failed('apod');
         }
-	
+
         Spice.add({
             id: "apod",
             name: "Astrophoto of the Day",
@@ -28,7 +28,7 @@
             meta: {
                 itemType: "Astrophoto",
                 sourceName: "AstroBin",
-                sourceUrl: "http://www.astrobin.com"
+                sourceUrl: "http://www.astrobin.com/" + api_result.id
             },
             normalize: function(item) {
                 if(!item.title) {
@@ -37,6 +37,14 @@
                 var boxData;
                 if (item.imaging_telescopes || item.imaging_cameras) {
                     boxData = [{heading: 'Imaging Info:'}];
+                    boxData.push({
+                        label: "Size: " + item.w + " x " + item.h
+                    });
+                    if(item.subjects) {
+                        boxData.push({
+                            label: "Subjects: " + item.subjects
+                        });
+                    }
                     if(item.imaging_telescopes) {
                         boxData.push({
                             label: "Telescopes: " + item.imaging_telescopes
