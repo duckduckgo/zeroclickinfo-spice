@@ -209,15 +209,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             this.value = this.value.replace(/\D/g, '');
         }
 
-        //reject typing any keys that aren't numbers
-        function typeNumericOnly(e){
-            if (e.shiftKey === true){
-                return (e.which == 9);
-            }
-            return !(e.which > 57 || e.which == 32) || (e.which >= 96 && e.which <= 105); //numpad
-        }
-
-        $('.timer__time-input').keydown(typeNumericOnly).change(numericOnly).click(numericOnly);
+        $('.timer__time-input').keyup(numericOnly).change(numericOnly).click(numericOnly);
     }
 }(this));
 
