@@ -19,7 +19,7 @@
                 sourceUrl: 'http://example.com/url/to/details/' + api_result.name
             },
             templates: {
-                group: 'your-template-groups',
+                group: 'your-template-group',
                 options: {
                     content: Spice.<: $lia_name :>.content,
                     moreAt: true
