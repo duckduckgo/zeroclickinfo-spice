@@ -6,15 +6,8 @@
             return Spice.failed('github_status');
         }
 
-        var d = Math.floor(new Date(api_result.created_on).getTime() / 1000),
+        var d = Math.floor((DDG.getDateFromString(api_result.created_on)).getTime() / 1000),
             now = Math.floor(new Date().getTime() / 1000);
-
-        //adds fallback for browsers that don't support Date instantiation by string
-        if (typeof d !== 'undefined') {
-            var timestamp = relativeDate(now - d);
-        } else {
-            var timestamp = api_result.created_on;
-        }
 
         Spice.add({
             id: "github_status",
@@ -26,7 +19,7 @@
             },
             normalize: function(item) {
                 return {
-                    description: timestamp
+                    description: relativeDate(now - d)
                 };
             },
             templates: {
