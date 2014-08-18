@@ -136,6 +136,7 @@
 
 .zci--timer .timer__done-modal h2 {
     display: block;
+    color: #666;
     text-align: center;
     margin-bottom: 30px;
     font-size: 2em;
@@ -151,6 +152,25 @@
     background-color: #61AD48;
     color: white;
     cursor: pointer;
+}
+
+/*dark theme*/
+.dark-header .zci--timer #reset_btn {
+    color: #ccc;
+    border-color: #ccc;
+}
+
+.dark-header .zci--timer #reset_btn[disabled],
+.dark-header .zci--timer .timer__btn.timer__start[disabled] {
+    color: #484848;
+    border-color: #484848;
+    background: none;
+}
+
+.dark-header .zci--timer .timer__time-input {
+    background: none;
+    border: 1px solid #999;
+    color: white;
 }
 
 /*stack the big time divs if the screen is too narrow*/
