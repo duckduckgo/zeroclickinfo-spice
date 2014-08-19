@@ -1,0 +1,15 @@
+<div class="njt__time">{{departure_time}}</div>
+<div class="njt__details">
+    {{#if cancelled}}N/A{{else}}Arrives {{arrival_time}}{{/if}}<br/>
+    {{line}}<br/>
+    Train {{train}}
+</div>
+<div class="njt__status-sep">
+    <div class="njt__sep-line"></div>
+    <div class="njt__badge {{status_class}}"></div>
+    <div class="njt__sep-line"></div>
+</div>
+<div class="njt__status">
+    <div class="one-line">{{status}}</div>
+    <div class="one-line">{{#if track}} Track {{track}}{{else}}&nbsp;{{/if}}</div>
+</div>
