@@ -1,0 +1,67 @@
+.tile--njt {
+    text-align: center;
+    width: 13em !important;
+}
+
+.tile--njt .njt__time {
+    font-size: 2.3em;
+    color: #333;
+    font-weight: 300;
+}
+
+.tile--njt .njt__details {
+    color: #999;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.tile--njt .njt__status-sep {
+    height: 12px;
+}
+
+.tile--njt .njt__sep-line {
+    background-color: #e1e1e1;
+    height: 1px;
+    width: 30px;
+    margin-bottom: 6px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.tile--njt .njt__status {
+    color: #666;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
+.tile--njt .njt__badge {
+    background-color: #e0e0e0;
+    height: 12px;
+    border-radius: 6px;
+    padding: 0 6px;
+    display: inline-block;
+}
+
+.tile--njt .njt__delayed {
+    background-color: #eea43e;
+}
+
+.tile--njt .njt__boarding {
+    background-color: #60ae50;
+}
+
+.tile--njt .njt__cancelled {
+    background-color: #e34c2d;
+}
+
+.tile--njt .njt__cancelled-tile {
+    background-color: #fafafa;
+    border-color: #fafafa;
+}
+
+.tile--njt .njt__cancelled-tile .njt__time,
+.tile--njt .njt__cancelled-tile .njt__details,
+.tile--njt .njt__cancelled-tile .njt__status {
+    color: #bbb;
+}
