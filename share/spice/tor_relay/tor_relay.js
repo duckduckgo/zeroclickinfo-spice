@@ -75,11 +75,7 @@
             time += minutes + " mins ";
         }
 
-        if (delta === 0) {
-            return "now";
-        } else {
-            return time + "ago";
-        }
+        return ((delta === 0) ? "now" : time + "ago");
     };
 
 }(this));
