@@ -27,14 +27,15 @@
 
             // Parse the api_response.relays[0] structure to fit on the 'record' template
             for (var prop in api_response.relays[0]) {
-                if (prop === "last_seen")
+                if (prop === "last_seen") {
                     data.record_data[prop.replace("_", " ")] = toTime(api_response.relays[0][prop]);
-                else if (typeof(api_response.relays[0][prop]) === 'object')
+                } else if (typeof(api_response.relays[0][prop]) === 'object') {
                     data.record_data[prop.replace("_", " ")] = api_response.relays[0][prop].join(', ');
-                else if (typeof(api_response.relays[0][prop]) !== 'string')
+                } else if (typeof(api_response.relays[0][prop]) !== 'string') {
                     data.record_data[prop.replace("_", " ")] = api_response.relays[0][prop].toString();
-                else
+                } else {
                     data.record_data[prop.replace("_", " ")] = api_response.relays[0][prop];
+                }
             }
         }
 
