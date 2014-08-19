@@ -25,7 +25,8 @@
                     j: item.url_real,
                     u: "http://www.astrobin.com/" + item.id,
                     ih: item.h,
-                    iw: item.w
+                    iw: item.w,
+                    i: item.title
                 };
             },
             view: 'Images'
