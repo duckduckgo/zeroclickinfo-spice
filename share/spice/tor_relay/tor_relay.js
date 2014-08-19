@@ -15,7 +15,7 @@
             var sourceUrl = 'https://globe.torproject.org/#/search/query=' + encodeURIComponent(query),
                 data = {
                     record_data: {
-                        'To many results' : 'Visit the link below to see them all.'
+                        'Too many results' : 'Visit the link below to see them all.'
                     }
                 };
         }
