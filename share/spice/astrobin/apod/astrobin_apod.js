@@ -40,17 +40,17 @@
                     boxData.push({
                         label: "Size: " + item.w + " x " + item.h
                     });
-                    if(item.subjects) {
+                    if(item.subjects.length) {
                         boxData.push({
                             label: "Subjects: " + item.subjects
                         });
                     }
-                    if(item.imaging_telescopes) {
+                    if(item.imaging_telescopes.length) {
                         boxData.push({
                             label: "Telescopes: " + item.imaging_telescopes
                         });
                     }
-                    if(item.imaging_cameras) {
+                    if(item.imaging_cameras.length) {
                         boxData.push({
                             label: "Cameras: " + item.imaging_cameras
                         });
