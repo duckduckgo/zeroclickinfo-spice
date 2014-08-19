@@ -26,24 +26,24 @@
                 sourceName: 'GitHub'
             },
             templates: {
-		group: 'text',
-                detail: false,
-                item_detail: false,
-		options: {
-		    footer: Spice.github.footer
-		}
+            group: 'text',
+                    detail: false,
+                    item_detail: false,
+                    options: {
+                        footer: Spice.github.footer
+                    }
+                },
+            normalize: function(item) {
+                return {
+                    title: item.name,
+                    subtitle: item.owner + "/" + item.name
+                };
             },
-	    normalize: function(item) {
-		return {
-		    title: item.name,
-		    subtitle: item.owner + "/" + item.name
-		};
-	    },
-	    relevancy: {
-		primary: [
-		    { key: 'description', match: /.+/, strict: false } // Reject things without a description.
-		]
-	    },
+            relevancy: {
+                primary: [
+                    { key: 'description', match: /.+/, strict: false } // Reject things without a description.
+                ]
+            },
             sort_fields: {
                 watchers: function(a, b) {
                     var x = a.watchers;
