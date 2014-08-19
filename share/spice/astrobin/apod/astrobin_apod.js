@@ -25,6 +25,7 @@
             id: "apod",
             name: "Astrophoto of the Day",
             data: api_result,
+            signal: 'high',
             meta: {
                 itemType: "Astrophoto",
                 sourceName: "AstroBin",
