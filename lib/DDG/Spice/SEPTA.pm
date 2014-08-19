@@ -17,21 +17,36 @@ attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
             twitter => ['https://twitter.com/mattr555', 'mattr555'];
 
 spice to => 'http://www3.septa.org/hackathon/NextToArrive/$1/$2/5/';
-
+spice from => '(.*)/(.*)';
 spice wrap_jsonp_callback => 1;
+spice proxy_cache_valid => "418 1d";
 
 triggers any => "next train", "train times", "train schedule", "septa";
 
-spice from => '(.*)/(.*)';
+my @stops = share('stops.txt')->slurp;
 
-spice proxy_cache_valid => "418 1d";
+sub normalize_stop {
+    my @matches = ();  #list of stop matches
+    foreach my $stop (@stops){
+        return $stop if (lc $_[0]) eq (lc $stop);  #if they're exactly equal, return the stop
+        push(@matches, $stop) if index(lc $stop, lc $_[0]) > -1;  #if the stop name contains the input, add it to matches
+    }
+    return $matches[0] if scalar(@matches) == 1;  #if we have one match, return it
+    return;  #if we have no matches or too many, then we don't know the stop :(
+}
 
-handle query_lc => sub {
-    s/\s+septa|septa\s+//;
-    /(?:next trains?|train times|train schedule)?(?: from| to)? (.+) (to|from) (.+)/;
-    my $curr = join " ", map { ucfirst } split /\s+/, $1;
-    my $dest = join " ", map { ucfirst } split /\s+/, $3;
-    return ($2 eq 'to' ? ($curr, $dest) : ($dest, $curr));
+handle remainder => sub {
+    return unless /(?:from |to )?(.+) (to|from) (.+)/;
+    my $curr = normalize_stop($1);
+    my $tofrom = $2;
+    my $dest = normalize_stop($3);
+    
+    if ($curr && $dest) {
+        $curr =~ s/[\x0A\x0D]//g;
+        $dest =~ s/[\x0A\x0D]//g;
+        return ($tofrom eq 'to' ? ($curr, $dest) : ($dest, $curr));
+    }
+    return;
 };
 
 1;
