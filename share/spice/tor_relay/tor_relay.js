@@ -59,10 +59,11 @@
 
     // Convert the relative time between dateStr and now to hours and minutes
     function toTime(dateStr) {
+        dateStr = dateStr.replace(" ", "T");
         var MILLIS_PER_MIN = 60000,
             MILLIS_PER_HOUR = MILLIS_PER_MIN * 60,
             time = "",
-            delta = new Date().getTime() - new Date(dateStr).getTime(),
+            delta = new Date().getTime() - DDG.getDateFromString(dateStr).getTime(),
             hours = Math.floor(Math.abs(delta / MILLIS_PER_HOUR)),
             minutes = Math.floor(Math.abs((delta % MILLIS_PER_HOUR) / MILLIS_PER_MIN));
 
