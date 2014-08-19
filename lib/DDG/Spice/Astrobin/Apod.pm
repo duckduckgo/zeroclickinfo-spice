@@ -14,12 +14,12 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["https://github.com/killerfish", "Usman Raza"],
             twitter => ["https://twitter.com/f1shie", "Usman Raza"];
 
-triggers start => "apod", "astronomy image of day", "astronomy picture of day", "astronomy picture of the day", "astronomy image of the day", "astrobin image";
+triggers start => "apod", "astronomy image of day", "astronomy picture of day", "astronomy picture of the day", "astronomy image of the day", "astronomy photo of the day", "astronomy photo of day";
 spice to => 'http://www.astrobin.com/api/v1/imageoftheday/?limit=1&api_key={{ENV{DDG_SPICE_ASTROBIN_APIKEY}}}&api_secret={{ENV{DDG_SPICE_ASTROBIN_APISECRET}}}&format=json$1';
 spice proxy_cache_valid => "200 60m";
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-	return '';
+        return '';
 };	
 1;

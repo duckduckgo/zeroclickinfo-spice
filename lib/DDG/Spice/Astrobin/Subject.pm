@@ -14,13 +14,13 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["https://github.com/killerfish", "Usman Raza"],
             twitter => ["https://twitter.com/f1shie", "Usman Raza"];
 
-triggers start => "astrophoto", "astrophotography", "astronomy pictures", "astrobin", "astronomy picture";
+triggers start => "astrophoto", "astrophotography", "astronomy pictures", "astronomy picture", "astronomy picture of", "astronomy image of", "astronomy pictures of", "astronomy images of";
 spice to => 'http://www.astrobin.com/api/v1/image/?title__icontains=$1&api_key={{ENV{DDG_SPICE_ASTROBIN_APIKEY}}}&api_secret={{ENV{DDG_SPICE_ASTROBIN_APISECRET}}}&format=json';
 
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-	return $_ if $_;
-	return;
+        return $_ if $_;
+        return;
 };	
 1;
