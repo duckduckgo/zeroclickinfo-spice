@@ -17,8 +17,12 @@ spice to => 'https://aur.archlinux.org/rpc.php?type=search&arg=$1&callback={{cal
 triggers any => "aur", "archlinux package", "arch package", "arch linux package";
 
 handle remainder => sub {
-    s/^for //;
-    return $_;
+    my $remainder = $_;
+
+    return unless $remainder;
+
+    $remainder =~ s/^for\s//;
+    return $remainder;
 };
 
 1;

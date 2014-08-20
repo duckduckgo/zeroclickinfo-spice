@@ -28,7 +28,8 @@ triggers startend => (
 
 
 handle remainder => sub {
-    return lc $_;
+    return lc($_) if $_;
+    return;
 };
 
 1;

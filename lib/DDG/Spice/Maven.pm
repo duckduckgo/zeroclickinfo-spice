@@ -24,7 +24,8 @@ spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid   => "418 1d";
 
 handle remainder => sub {
-    return $_;
+    return $_ if $_;
+    return;
 };
 
 1;

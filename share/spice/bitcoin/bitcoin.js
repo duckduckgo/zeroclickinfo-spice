@@ -64,6 +64,7 @@
         Spice.add({
             id: "bitcoin",
             name: 'Answer',
+            signal: 'high',
             data: {
                 buy: buy,
                 sell: sell
