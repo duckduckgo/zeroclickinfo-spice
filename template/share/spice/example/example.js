@@ -1,8 +1,8 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_npm = function(api_result){
+    env.ddg_spice_<: $lia_name :> = function(api_result){
 
-        // Validate the response
+        // Validate the response (customize for your Spice)
         if (api_result.error) {
             return Spice.failed('<: $lia_name :>');
         }
@@ -19,9 +19,9 @@
                 sourceUrl: 'http://example.com/url/to/details/' + api_result.name
             },
             templates: {
-                group: 'your-template-groups',
+                group: 'your-template-group',
                 options: {
-                    content: Spice.npm.content,
+                    content: Spice.<: $lia_name :>.content,
                     moreAt: true
                 }
             }
