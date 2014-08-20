@@ -117,9 +117,7 @@
     Handlebars.registerHelper("formatLikes", function(likes) {
         "use strict";
 
-        var r = new Number(likes).toLocaleString('en');
-        
-        return r;
+        return new Number(likes).toLocaleString('en');
     });
 
     /*
