@@ -25,11 +25,18 @@ triggers any => "next train", "train times", "train schedule", "septa";
 
 my @stops = share('stops.txt')->slurp;
 
+sub trim_crlf($) {
+    my $string = shift;
+    $string =~ s/[\x0A\x0D]//g;
+    return $string;
+}
+
 sub normalize_stop {
     my @matches = ();  #list of stop matches
     foreach my $stop (@stops){
-        return $stop if (lc $_[0]) eq (lc $stop);  #if they're exactly equal, return the stop
-        push(@matches, $stop) if index(lc $stop, lc $_[0]) > -1;  #if the stop name contains the input, add it to matches
+        my $s = trim_crlf($stop);
+        return $s if (lc $_[0]) eq (lc $s);  #if they're exactly equal, return the stop
+        push(@matches, $s) if index(lc $s, lc $_[0]) > -1;  #if the stop name contains the input, add it to matches
     }
     return $matches[0] if scalar(@matches) == 1;  #if we have one match, return it
     return;  #if we have no matches or too many, then we don't know the stop :(
@@ -42,8 +49,6 @@ handle remainder => sub {
     my $dest = normalize_stop($3);
     
     if ($curr && $dest) {
-        $curr =~ s/[\x0A\x0D]//g;
-        $dest =~ s/[\x0A\x0D]//g;
         return ($tofrom eq 'to' ? ($curr, $dest) : ($dest, $curr));
     }
     return;
