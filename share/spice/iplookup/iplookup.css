@@ -5,9 +5,10 @@ ul.blacklists
     padding-top: 0.2em;
 }
 
-.iplookup_domain_name 
+.zci h1.iplookup_domain_name 
 {
-	font-size: 2em;
+	font-size: 1.5em;
+	font-weight: 500;
 	margin-bottom: 0;
 }
 
