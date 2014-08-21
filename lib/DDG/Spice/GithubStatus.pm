@@ -15,6 +15,7 @@ attribution github => ['https://github.com/Feral2k','Logan Garcia'],
 triggers startend => 'github';
 
 spice to => 'https://status.github.com/api/last-message.json?callback={{callback}}';
+spice proxy_cache_valid => "418 1d";
 
 
 handle remainder => sub {
