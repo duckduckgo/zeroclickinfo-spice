@@ -33,11 +33,7 @@
     }
 
     Spice.registerHelper("GithubStatus_ifCond", function(string1, string2, options) {
-        if (string1 === string2) {
-            return options.fn(this);
-        } else {
-            return options.inverse(this);
-        } 
+        return ((string1 === string2) ? options.fn(this) : options.inverse(this));
     });
 
     function relativeDate(delta) {
