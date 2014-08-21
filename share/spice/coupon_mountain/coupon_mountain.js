@@ -62,6 +62,7 @@
                     rating: false,
                     price: true,
                     content: Spice.coupon_mountain.content,
+                    subtitle_content: Spice.coupon_mountain.buy,
                     detailVariant: 'light'
                 }
             },
