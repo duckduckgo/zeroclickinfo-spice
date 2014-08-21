@@ -31,12 +31,13 @@ sub trim_crlf($) {
     return $string;
 }
 
+@stops = map { trim_crlf($_) } @stops;
+
 sub normalize_stop {
     my @matches = ();  #list of stop matches
     foreach my $stop (@stops){
-        my $s = trim_crlf($stop);
-        return $s if (lc $_[0]) eq (lc $s);  #if they're exactly equal, return the stop
-        push(@matches, $s) if index(lc $s, lc $_[0]) > -1;  #if the stop name contains the input, add it to matches
+        return $stop if (lc $_[0]) eq (lc $stop);  #if they're exactly equal, return the stop
+        push(@matches, $stop) if index(lc $stop, lc $_[0]) > -1;  #if the stop name contains the input, add it to matches
     }
     return $matches[0] if scalar(@matches) == 1;  #if we have one match, return it
     return;  #if we have no matches or too many, then we don't know the stop :(
