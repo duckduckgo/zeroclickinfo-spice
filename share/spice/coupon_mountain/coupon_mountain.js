@@ -55,7 +55,8 @@
             },
             templates: {
                 group: 'base',
-                detail: Spice.coupon_mountain.buy,
+                detail: 'products_detail',
+                item_detail: 'products_item_detail',
                 options: {
                     brand: false,
                     rating: false,

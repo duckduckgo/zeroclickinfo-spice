@@ -1,7 +1,3 @@
-.zci--coupon_mountain {
-    height: 250px;
-}
-
 .zci--coupon_mountain .tile--coupon_mountain {
     height: 192px;
     padding: 0.5em;
@@ -101,45 +97,4 @@
 
 .zci--coupon_mountain .divider.first {
     top: 5em;
-}
-
-.zci--coupon_mountain .zci__detail,
-.zci--coupon_mountain .detail__pane {
-    height: 15em;
-    overflow: hidden;
-}
-
-.zci--coupon_mountain .detail__wrap {
-    height: 10em;
-}
-
-.zci--coupon_mountain .detail__callout {
-    height: 3em;
-}
-
-.zci--coupon_mountain .zci__detail {
-    margin-top: 0 !important;
-}
-
-.zci--coupon_mountain .detail__controls {
-    top: 175px;
-}
-
-.zci--coupon_mountain .detail__body--pr {
-    display: table;
-    position: absolute;
-    width:70%;
-    height: 130%;
-    left: 50em;
-}
-
-.zci--coupon_mountain .detail__body__content {
-    vertical-align: middle !important;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.zci--coupon_mountain .detail__media {
-    vertical-align: middle;
-    height: 100%;
 }
