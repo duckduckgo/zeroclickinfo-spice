@@ -98,3 +98,8 @@
 .zci--coupon_mountain .divider.first {
     top: 5em;
 }
+
+.zci--coupon_mountain .tag {
+    height: 1.5em;
+    line-height: 1.5em;
+}
