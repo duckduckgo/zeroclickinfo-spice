@@ -1,0 +1,23 @@
+<h5>
+{{#if name.length}}
+    {{{name}}}
+{{else}}
+    {{{ndc11}}}
+{{/if}}
+</h5>
+
+<img src="{{imageUrl}}" alt="Image for NDC: {{{ndc11}}}"/>
+
+<div><strong>Labeler:</strong> {{{labeler}}}</div>
+
+{{#if name.length}}
+    <div><strong>Name:</strong> {{{name}}}</div>
+{{/if}}
+
+<div><strong>NDC-11:</strong> {{{ndc11}}}</div>
+
+{{#if splSetId}}
+    <div><strong>Product Labelling and Prescribing Information:</strong> <a href="http://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid={{{splSetId}}}" target="_blank">{{{splSetId}}}</a></div>
+{{/if}}
+
+<div><strong>Attribution:</strong> {{{attribution}}}</div>
