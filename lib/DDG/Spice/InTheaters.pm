@@ -22,7 +22,7 @@ spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?
 # Uses $loc so needs to not cache back end.
 spice is_cached => 0;
 
-spice proxy_cache_valid => "418 1d";
+spice proxy_cache_valid => "200 1d";
 
 my %movies = (
 	'movies now showing' => 1,
