@@ -47,9 +47,18 @@
             sort_fields: {
                 time: function(a, b) {
                     var c = actualDepartureTime(a, now),
-                        d = actualDepartureTime(b, now);
+                        d = actualDepartureTime(b, now),
+                        boarding_statuses = ['All Aboard', 'Boarding', 'Stand By'];
                     c = (c + 5 < now) ? c + 24*60 : c; //push times from the next day to the end of the list
                     d = (d + 5 < now) ? d + 24*60 : d;
+                    //when a delayed train gets to the station, the scheduled time is displayed,
+                    //so normally it would go at the end of the list (because it looks like it is from the next day).
+                    //of course, we want boarding trains to go to the front.
+                    if (boarding_statuses.indexOf(a.status) > -1){
+                        return -1;
+                    } else if (boarding_statuses.indexOf(b.status) > -1){
+                        return 1;
+                    }
                     return c - d;
                 }
             },
