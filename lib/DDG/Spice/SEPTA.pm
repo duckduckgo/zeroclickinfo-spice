@@ -25,6 +25,7 @@ triggers any => "next train", "train times", "train schedule", "septa";
 
 my @stops = share('stops.txt')->slurp;
 
+#remove \r and \n from the lines that were slurped in
 sub trim_crlf($) {
     my $string = shift;
     $string =~ s/[\x0A\x0D]//g;
@@ -33,6 +34,8 @@ sub trim_crlf($) {
 
 @stops = map { trim_crlf($_) } @stops;
 
+#find a stop from a partial name (e.g. converts "30th street" -> "30th Street Station")
+#names sourced from GTFS at njt-api.appspot.com/septa/stops
 sub normalize_stop {
     my @matches = ();  #list of stop matches
     foreach my $stop (@stops){
@@ -50,6 +53,7 @@ handle remainder => sub {
     my $dest = normalize_stop($3);
     
     if ($curr && $dest) {
+        #put the stops in the right order (for queries like "septa paoli from strafford")
         return ($tofrom eq 'to' ? ($curr, $dest) : ($dest, $curr));
     }
     return;
