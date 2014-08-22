@@ -3,6 +3,10 @@
     width: 13em !important;
 }
 
+.is-mobile .tile--njt {
+    width: 12.25em !important;
+}
+
 .tile--njt .njt__time {
     font-size: 2.3em;
     color: #333;
