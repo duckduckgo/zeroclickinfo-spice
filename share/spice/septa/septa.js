@@ -2,7 +2,8 @@
     "use strict";
     env.ddg_spice_septa = function(api_result){
 
-        if (api_result.length < 1 ||
+        if (!api_result ||
+                api_result.length < 1 ||
                 !api_result[0].orig_line ||
                 !api_result[0].orig_departure_time ||
                 !api_result[0].orig_delay) {
@@ -10,7 +11,7 @@
         }
 
         var script = $("[src*='js/spice/septa/']")[0],
-            source = unescape($(script).attr("src")),
+            source = decodeURI($(script).attr("src")),
             parts = source.split('/'),
             from = parts[4],
             to = parts[5],
