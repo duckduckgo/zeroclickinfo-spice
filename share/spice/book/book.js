@@ -81,19 +81,42 @@
                 var header = item.title = item.title + formatSub(item.sub_title);
                 header = Handlebars.helpers.condense(header, {
                     hash: {
-                        maxlen: 35
+                        maxlen: 38
                     }
                 });
 
                 // Pick a random critic review out of all the reviews returned
                 item.critic_review = item.critic_reviews[Math.floor(Math.random() * item.critic_reviews.length)];
 
+                var infoboxData = [{
+                    label: 'Author',
+                    value: item.author
+                }, {
+                    label: 'Genre',
+                    value: item.genre
+                }, {
+                    label: 'Pages',
+                    value: item.pages
+                }, {
+                    label: 'Release Date',
+                    value: item.release_date
+                }, {
+                    label: 'Total Rating',
+                    value: item.rating + '%'
+                }, {
+                    label: 'Reviews',
+                    value: item.review_count
+                }];
+
                 var a = {
-                    title: item.title,
+                    title: header,
                     rating: Math.floor(item.rating / 20),
                     image: item.critic_review.smiley_or_sad,
                     description: item.critic_review.snippet,
-                    ratingText: item.review_count + " Reviews"
+                    source: item.critic_review.source,
+                    reviewLink: item.critic_review.review_link,
+                    ratingText: item.review_count + " Reviews",
+                    infoboxData: infoboxData
                 };
                 return a;
             },
@@ -101,9 +124,9 @@
             templates: {
                 group: 'info',
                 options: {
-                    description: true
-                },
-                detail: false
+                    description: true,
+                    content: Spice.book.book
+                }
             }
 
         });

@@ -14,3 +14,11 @@
 .zci--book .tile__media {
     height: 50px;
 }
+
+.zci--book .source {
+    color: #333;
+}
+
+/*.zci--book .description {
+    color: #aaa;
+}*/
