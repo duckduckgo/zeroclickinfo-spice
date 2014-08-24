@@ -50,7 +50,7 @@ handle query_lc => sub {
     return if /(%22)|\"/;
 
     # has financialish terms
-    return if /\b(financ(e|ial)|market|bond|treasury|pension|fund|t-?bill|stock|government|strateg(y|ies)|analytics|market|fore?cast(ing|or|er))\b/;
+    return if /\b(sales|financ(e|ial)|market|bond|treasury|pension|fund|t-?bill|stock|government|strateg(y|ies)|analytics|market|fore?cast(ing|or|er))\b/;
     return if /\b(gold|silver|oil|naturalgas|palladium|platinum|copper|lead|zinc|tin|aluminium|aluminum|nickel|cobalt|molybdenum|polypropylene|ethanol)\b.*(fore?cast)/;
 
     # sports
@@ -59,10 +59,11 @@ handle query_lc => sub {
     # has other terms
     return if (/\b((^site\:)|http|(\.(org|com|net))|underground)\b/);
 
-    # color temperature && critical temperature
+    # color temperature && critical temperature && operating temperature
     if (/\btemp(era?ture)?\b/) {
         return if /\b(colou?r|[0-9]+\s*[kK])\b/;
         return if /\bcritical temp(era?ture)?\b/;
+        return if /\boperating temp(era?ture)?\b/;
     }
 
     # Don't cache generic queries due to
