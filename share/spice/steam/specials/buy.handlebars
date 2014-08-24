@@ -1,14 +1,16 @@
-    <div class="detail__content">
-        <p>
-            {{#if genre}}
-                <span class="key__color">Genre:</span> {{genre}} <br>
-                    <span class="key__color">Supported Platforms: </span>Windows: {{booleval platforms.windows}}  
-                <span class="detail__separator"> | </span>
-                    Mac: {{booleval platforms.mac}}    
-                <span class="detail__separator"> | </span>
-                    Linux: {{booleval platforms.linux}} <br>  
-            {{/if}}
-        </p>
-    </div>
-<a href="{{url}}" class="btn btn--primary">Steam Page</a>
-
+Originial price: {{original_price}} <br>
+Savings: {{discount}} <br>
+{{#if rating}}
+    Metascore: {{rating}} <br>
+{{/if}}
+{{#if genre}}
+    Genre: {{genre}} <br>
+    Supported Platforms: Windows: {{booleval platforms.windows}}  
+    <span class="detail__separator"> | </span>
+        Mac: {{booleval platforms.mac}}    
+    <span class="detail__separator"> | </span>
+        Linux: {{booleval platforms.linux}} <br>
+{{/if}}
+<a href="{{url}}" class="btn btn--primary">
+    Steam Page
+</a>
