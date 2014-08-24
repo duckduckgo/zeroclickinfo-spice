@@ -96,7 +96,7 @@
                 minItemsForModeSwitch: 3,
                 sourceName: 'FlightStatus',
                 sourceUrl: source,
-                itemType: "Flight Status for " + DDG.capitalizeWords(flight[0].Airline.Name) + " " + flight[0].FlightNumber
+                itemType: "Flights"
             },
             normalize: function(item) {
                 return {
