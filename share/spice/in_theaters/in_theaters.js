@@ -8,6 +8,9 @@
     }
     
     function get_image(critics_rating) {
+        if(!critics_rating) {
+            return;
+        }
         // The filename is the same as the critics_rating, but
         // lowercased and with spaces converted to dashes.
         critics_rating = critics_rating.toLowerCase().replace(/ /, '-');
