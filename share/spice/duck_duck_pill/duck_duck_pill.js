@@ -14,6 +14,13 @@
                 sourceName: "C3PI RxImageAccess RESTful API",
                 sourceUrl: "http://rximage.nlm.nih.gov/"
             },
+            /*
+             * Decided not to use a template group because
+             * this project needed more flexibility than what
+             * the predefined groups provided. basic_image_item
+             * works well for items, but flexibility of 
+             * base_detail was necessary for details.
+             */
             templates: {
                 item: 'basic_image_item',
                 detail: 'base_detail',
@@ -30,6 +37,10 @@
             normalize: function(item) {
                 return {
                     image: item.imageUrl,
+                    /*
+                     * National Drug Code (NDC) is an 11-digit, segmented,
+                     * unique product identifier: http://en.wikipedia.org/wiki/National_Drug_Code
+                     */
                     title: item.ndc11
                 };
             } 
