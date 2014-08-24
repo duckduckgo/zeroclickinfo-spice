@@ -8,6 +8,7 @@
             return Spice.failed('gravatar');
         }
 
+
         // Display the spice plugin.
         Spice.add({
             data: api_result,
@@ -55,8 +56,14 @@
     }
 
     Handlebars.registerHelper("showLinks", function() {
-        $('.expanded_social').removeClass("hidden").addClass("visible");
-        $('.condensed_social').removeClass("visible").addClass("hidden");
+        var moreLinks = {
+            "show": function() {
+                $('.expanded_social').removeClass("hidden").addClass("visible");
+                $('.condensed_social').removeClass("visible").addClass("hidden");
+            }
+        };
+        return new Handlebars.SafeString("(" +
+            moreLinks.show.toString().replace(/\"/g, "'") + ")()");
     });
 
     // Find the primary e-mail.
@@ -89,10 +96,9 @@
         if(domain === "yelp.com") {
             return "Yelp";
         }
-        if (domain.match(/.*wordpress.*/i)) {
+        if(domain.match(/.*wordpress.*/i)) {
             return "Wordpress";
-        }
-        else {
+        } else {
             var capitalized = domain.substr(0, 1).toUpperCase();
             var lowercase = domain.substr(1, domain.length).replace(".com", "").toLowerCase();
             return capitalized + lowercase;
