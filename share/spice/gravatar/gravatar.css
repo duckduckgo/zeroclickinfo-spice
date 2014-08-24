@@ -1,15 +1,50 @@
-.zci--gravatar .more-links {
-    float: left; 
-    padding-right: 5px; 
-    padding-top: 2px; 
-    width: 16px; 
-    height: 16px;
-}
-
-.zci--gravatar .detail__media {
+.zci--gravatar .gravatar--basic {
     height: 6em;
+    clear: both;
+    margin-top: 0.25em;
+    margin-bottom: 0.3em;
+    margin-left: -0.2em;
 }
 
-.zci--gravatar .more-links-anchor:hover {
-    text-decoration: none;
+.zci--gravatar .gravatar--basic a { 
+    color: #888;
+}
+
+.zci--gravatar .gravatar--image {
+    float: left;
+    margin-right: 1.1em;
+    width: 68px;
+    height: 68px;
+}
+
+.zci--gravatar .gravatar--description {
+    font-size: 1.3em;
+    margin-bottom: 0.75em;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.2em;
+}
+
+.zci--gravatar .gravatar--misc {
+    padding-top: 0.5em;
+}
+
+.zci--gravatar .zcm__sep {
+    margin: 0 0.3em;
+}
+
+.zci--gravatar .gravatar--more {
+    color: #888;
+}
+
+.zci--gravatar .caret_down {
+    vertical-align: middle;
+}
+
+.zci--gravatar .hidden,
+.zci--gravatar .zcm__sep:last-child {
+    display: none;
+}
+
+.zci--gravatar .visible {
+    display: visible;
 }
