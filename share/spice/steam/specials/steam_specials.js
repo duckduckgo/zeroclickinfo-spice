@@ -98,7 +98,7 @@
         });
     };
     
-    Handlebars.registerHelper('booleval', function(boolevaluate) {
+    Spice.registerHelper('steamspecial_booleval', function(boolevaluate) {
         if(boolevaluate == true) {
             return "Yes";
         } else {
