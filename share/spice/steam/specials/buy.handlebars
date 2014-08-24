@@ -5,11 +5,11 @@ Savings: {{discount}} <br>
 {{/if}}
 {{#if genre}}
     Genre: {{genre}} <br>
-    Supported Platforms: Windows: {{booleval platforms.windows}}  
+    Supported Platforms: Windows: {{steamspecial_booleval platforms.windows}}  
     <span class="detail__separator"> | </span>
-        Mac: {{booleval platforms.mac}}    
+        Mac: {{steamspecial_booleval platforms.mac}}    
     <span class="detail__separator"> | </span>
-        Linux: {{booleval platforms.linux}} <br>
+        Linux: {{steamspecial_booleval platforms.linux}} <br>
 {{/if}}
 <a href="{{url}}" class="btn btn--primary">
     Steam Page
