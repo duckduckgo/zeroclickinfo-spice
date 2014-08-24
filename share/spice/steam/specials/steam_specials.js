@@ -5,9 +5,9 @@
     // If cache was set to false, it would be calling /js/spice/steam/list_specials/hello?_=12345
     // and that's something that we don't want.
     $.ajaxSetup({ cache: true });
-
+    var queryexec;
+    
     // Fetch our json and pass to getScript
-    var queryexec
     env.ddg_spice_steam_specials = function(api_result) {
         if(!api_result) {
             return Spice.failed('specials');  
@@ -17,10 +17,8 @@
         queryexec = encodeURIComponent(($.map(idarray, function(elem) {
                 return elem.id;
         }).join(",")));
-
         $.getScript("/js/spice/steam/list_specials/" + queryexec);
     };
-
 
     env.ddg_spice_steam_list_specials = function(api_result) {
         if (!api_result) {
@@ -40,7 +38,7 @@
             if(api_result[gameids[i]].success == true) { //successfully fetched information on game
                 results.push(api_result[gameids[i]].data.price_overview);
                 results[j].url = "http://store.steampowered.com/app/"+api_result[gameids[i]].data.steam_appid;
-                results[j].dev = api_result[gameids[i]].data.developers;
+                results[j].dev = api_result[gameids[i]].data.developers[0];
                 results[j].name = api_result[gameids[i]].data.name;
                 results[j].image = api_result[gameids[i]].data.header_image;
                 if(api_result[gameids[i]].data.metacritic) {
@@ -53,12 +51,13 @@
                     results[j].genre = genre.join(", ");
                 }
                 results[j].platforms = api_result[gameids[i]].data.platforms;
-                results[j].ss = (api_result[gameids[i]].data.screenshots).slice(0,4);
+                //results[j].ss = (api_result[gameids[i]].data.screenshots).slice(0,4); //screenshots maybe used in future
                 genre = [];
                 j++;
             }
         }
-
+        
+        // Return if not able to retrieve information for any game
         if(!results) {
             return Spice.failed('specials');
         }
@@ -73,60 +72,37 @@
                 sourceName: 'Steam'
             },
             normalize: function(item) {
-                if (!item.metacritic) {
-                     item.metacritic = 0;
-                }
                 return {
                     image: item.image,
-                    title: item.name,
                     img: item.image,
                     heading: item.name,
                     url: item.url,
-                    price: "$" + (item.final/100),
+                    price: "USD $" + (item.final/100),
                     brand: item.dev,
-                    rating: (item.metacritic/20),
-                    //reviewCount: item.metacritic
+                    rating: item.metacritic,
+                    original_price: "USD $" + (item.initial/100),
+                    discount: item.discount_percent + "%"
                 };
             },
             templates: {
-             //   group: 'products',
-                item: 'products_item',
-                detail: 'products_detail',
-                item_detail: 'products_item_detail',
-                wrap_detail: 'base_detail',
+                group: 'products',
                 options: {
                     buy: Spice.steam_specials.buy,
-                    price: true,
-                    brand: true,
-                    rating: true,
-                    abstract:false
+                    detailVariant: 'light',
+                    rating: false
                 }
             },
+            onShow: function() {
+                Spice.getDOM('specials').find(".tile__body").hide();
+            }
         });
     };
-
-    Handlebars.registerHelper('convertToDollars', function(cents) {
-        var dollars = cents/100;
-        return dollars;
-    });
-
+    
     Handlebars.registerHelper('booleval', function(boolevaluate) {
         if(boolevaluate == true) {
             return "Yes";
         } else {
             return "No";
-        }
-    });
-
-    Handlebars.registerHelper('coloreval', function(number) {
-        if(!number) {
-            return;
-        } else if(number > 75) {
-            return "LimeGreen";
-        } else if(number > 49 && number < 75) {
-            return "gold";
-        } else {
-            return "red";
         }
     });
 }(this));

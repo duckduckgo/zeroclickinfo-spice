@@ -1,4 +1,16 @@
-.zci--specials .discount {
-    color:#C9481C;
+.zci--specials .tile__media__img {
+    height: 100%;
 }
-
+.zci--specials .tile__media .tile__media__img {
+    max-height: 100%;
+}
+.zci--specials .tile__media {
+    height: 9.3em;
+}
+.zci--specials p {
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+.zci--specials .btn.btn--primary {
+    margin-top: 1em;
+}
