@@ -10,25 +10,25 @@ description "Currency Convertor provided by XE.com";
 name "Currency";
 source "XE.com";
 icon_url "/i/xe.com.ico";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Currency.pm";
+code_url "https://github.com/XenonLab/blob/master/lib/DDG/Spice/Currency.pm";
 category "finance";
 topics "economy_and_finance", "geography", "travel", "everyday";
 attribution web => ['http://www.xe.com'];
-            
+                                                
 
 my $curr ="";
 my @currTriggers;
 my @currencies = share('currencylist.txt')->slurp;
 my %currHash = ();
 foreach my $currency (@currencies){
-	chomp($currency);
-	my @currency = split(/,/,$currency);
-	push(@currTriggers, @currency);
-	push(@{$currHash{$currency[0]}},@currency);
+    chomp($currency);
+    my @currency = split(/,/,$currency);
+    push(@currTriggers, @currency);
+    push(@{$currHash{$currency[0]}},@currency);
 }
-foreach my $items (@currTriggers) {	
-	$curr .= $items;
-	$curr .= "\|";
+foreach my $items (@currTriggers) { 
+    $curr .= $items;
+    $curr .= "\|";
 }
 
 triggers any => ('currency', 'currencies', @currTriggers);
@@ -41,62 +41,67 @@ spice proxy_cache_valid => "200 5m";
 
 
 handle  query_lc => sub {
-	
-	sub getCode{
-		my $input= shift;
-		foreach my $key(keys %currHash){
-			my @currValues = @{$currHash{$key}};
-			foreach my $value(@currValues){
-				if($input eq $value){
-					return $key;
-				}
-			}
-		}
-	}
+    
+    sub getCode{
+        my $input= shift;
+        foreach my $key(keys %currHash){
+            my @currValues = @{$currHash{$key}};
+            foreach my $value(@currValues){
+                if($input eq $value){
+                    return $key;
+                }
+            }
+        }
+    }
 
-	sub checkCurrencyCode{
-		my($amount, $from, $to) = @_;
-		return $amount, getCode($from)||"usd", getCode($to)||"cad";
-	}
+    sub checkCurrencyCode{
+        my($amount, $from, $to) = @_;
+        return $amount, getCode($from)||"usd", getCode($to)||"cad";
+    }
 
 
-	if ($_ =~ s/\bcurrency\b|\bwhats\b|\bconvert\b|\bis\b|\bto\b|\bequals\b|\bequal\b|\bin\b|\?|\=|\~|\-//g){
-		trim($_);
-	}
-	
+    if ($_ =~ s/\bcurrency\b|\bwhats\b|\bconvert\b|\bis\b|\bto\b|\bequals\b|\bequal\b|\bin\b|\?|\=|\~|\-//g){
+        trim($_);
+    }
+    
 
-	my $amountReg = "\\d+(?:\.\\d+)?";
+    my $amountReg = "\\d+(?:\.\\d+)?";
 
-	my $ws = "?:\\s*";
+    my $ws = "?:\\s*";
 
-	#400 cad
-	if(/^($amountReg)($ws)($curr)$/){
-		return checkCurrencyCode($1,$2,$2);
-	}
-	#400 usd cad 
-	elsif(/^($amountReg)($ws)($curr)($ws)($curr)/){
-		return checkCurrencyCode($1, $2, $3);
-	}
-	#cad 400 usd
-	elsif(/^($curr)($ws)($amountReg)($ws)($curr)/){
-		return checkCurrencyCode($2, $3, $1);
-	}
-	#cad usd 400 
-	elsif(/^($curr)($ws)($curr)($ws)($amountReg)/){
-		return checkCurrencyCode($3, $1, $2);
-	}
-	#cad
-	elsif(/^($curr)$/){
-		return checkCurrencyCode("1",$1,$1);
-	}
-	#cad usd
-	elsif(/^($curr)($ws)($curr)/){
-		return checkCurrencyCode("1",$1,$2);
-	}
-	
-	
-	return;
-	
-	
+    #400 cad
+    if(/^($amountReg)($ws)($curr)$/){
+        return checkCurrencyCode($1,$2,$2);
+    }
+    #400 usd 10 cad 
+    elsif(/^($amountReg)($ws)($curr)($ws)($amountReg)($ws)($curr)$/){
+        return checkCurrencyCode($1, $2, $4);
+    }
+    #400 usd cad 
+    elsif(/^($amountReg)($ws)($curr)($ws)($curr)$/){
+        return checkCurrencyCode($1, $2, $3);
+    }
+    #cad 400 euro
+    elsif(/^($curr)($ws)($amountReg)($ws)($curr)$/){
+        return checkCurrencyCode($2, $3, $1);
+    
+    }
+    #cad usd 400 
+    elsif(/^($curr)($ws)($curr)($ws)($amountReg)$/){
+        return checkCurrencyCode($3, $1, $2);
+    }
+    #cad
+    elsif(/^($curr)$/){
+        return checkCurrencyCode("1",$1,$1);
+    }
+    #cad usd
+    elsif(/^($curr)($ws)($curr)$/){
+        return checkCurrencyCode("1",$1,$2);
+    }
+    
+    
+    return;
+    
+    
 };
 1;
