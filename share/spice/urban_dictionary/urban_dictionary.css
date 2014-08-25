@@ -1,0 +1,9 @@
+.zci--urban_dictionary .zci__urban__word {
+    font-weight: 600;
+}
+
+.zci--urban_dictionary .ud_example {
+    margin-bottom: 0.5em;
+    height: 2.6em;
+    overflow-y: hidden;
+}
