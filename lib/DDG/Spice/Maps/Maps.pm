@@ -6,7 +6,18 @@ spice to => 'http://open.mapquestapi.com/nominatim/v1/search?format=json&json_ca
 spice is_cached => 0;
 spice proxy_cache_valid => "418 1d";
 
-my %generic_map_queries = map {$_ => 0} ('map', 'maps', 'current location');
+my %generic_map_queries = map {$_ => 0} (
+    'map',
+    'maps',
+    'current location',
+
+    'google maps',
+    'bing maps',
+    'open street maps',
+    'open street map',
+    'openstreet map',
+    'openstreet maps',
+);
 
 triggers any => keys(%generic_map_queries);
 
