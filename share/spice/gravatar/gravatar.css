@@ -48,3 +48,23 @@
 .zci--gravatar .visible {
     display: visible;
 }
+
+@media only screen
+and (max-device-width : 480px) {
+
+    .zci--gravatar .gravatar--misc {
+        font-size: 0.85em;
+    }
+    
+    .zci--gravatar .expanded_social {
+        -webkit-line-clamp: 2;
+        height: 2.5em;
+        max-height: 2.5em;
+        overflow-y: hidden;
+        text-overflow: clip;
+    }
+    
+    .zci--gravatar .gravatar--description {
+        font-size: 1.15em;
+    }
+}
