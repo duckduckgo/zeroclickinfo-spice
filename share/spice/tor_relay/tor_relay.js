@@ -6,7 +6,6 @@
             return Spice.failed('tor_relay');
         }
 
-        // TODO: support for bridges as well
         var query = DDG.get_query()
                     .replace(/\s*tor relay\s*/, "")
                     .replace(/\s*onion relay\s*/, "");
