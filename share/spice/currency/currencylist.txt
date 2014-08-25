@@ -1,4 +1,3 @@
-#@xe.com
 aed,emirati dirham,united arab emirates dirham,
 afn,afghan afghani,afghanistan afghani,
 all,albanian lek,albania lek,
