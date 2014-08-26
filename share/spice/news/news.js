@@ -36,9 +36,36 @@ function ddg_spice_news(apiResult) {
     for(var i = 0, story; story = apiResult[i]; i++) {
 	// strip bold from story titles.
         story.title = story.title.replace(/<b>|<\/b>|:/g, "");
-        if(DDG.isRelevant(story.title, skip)) {
+        if (DDG.isRelevant(story.title, skip)) {
             setSourceOnStory(story);
             goodStories.push(story);
+        }
+
+        // news relevancy for entities. story need only contain one word from
+        // each entity to be good. bypasses the relevancy check. strict indexof check though.
+        else if (typeof DDG.news_entities !== 'undefined' && DDG.news_entities.length > 0) {
+            var story_ok = 1;
+            var tmp_story_title = story.title.toLowerCase();
+            for (var j = 0, entity; entity = DDG.news_entities[j]; j++) {
+                var entity_ok = 0;
+                var entity_words = entity.split(" ");
+                for (var k = 0, entity_word; entity_word = entity_words[k]; k++) {
+                    if (tmp_story_title.indexOf(entity_word) !== -1) {
+                        entity_ok = 1;
+                        break;
+                    }
+                }
+
+                if (!entity_ok) {
+                    story_ok = 0;
+                    break;
+                }
+            }
+
+            if (story_ok === 1) {
+                setSourceOnStory(story);
+                goodStories.push(story);
+            }
         }
     }
 
