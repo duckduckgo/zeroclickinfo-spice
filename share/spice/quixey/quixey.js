@@ -298,10 +298,6 @@
         return range;
     };
 
-    Handlebars.registerHelper("Quixey_pricerange", function() {
-        return pricerange(this);
-    });
-
     // template helper to replace iphone and ipod icons with
     // smaller 'Apple' icons
     Handlebars.registerHelper("Quixey_platform_icon", function(icon_url) {
