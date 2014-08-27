@@ -1,10 +1,10 @@
-.tile--septa {
+.zci--septa .tile--septa {
     text-align: center;
-    width: 13em !important;
+    width: 13em;
 }
 
-.is-mobile .tile--septa {
-    width: 12.25em !important;
+.is-mobile .zci--septa .tile--septa {
+    width: 12.25em;
 }
 
 .tile--septa .septa__time {
