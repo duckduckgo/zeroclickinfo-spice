@@ -31,6 +31,18 @@ function ddg_spice_news(apiResult) {
         }
     };
 
+    var entityWords = [];
+    if (typeof Spice.news.entities !== 'undefined' && Spice.news.entities.length > 0) {
+        for (var j = 0, entity; entity = Spice.news.entities[j]; j++) {
+            var tmpEntityWords = entity.split(" ");
+            for (var k = 0, entityWord; entityWord = tmpEntityWords[k]; k++) {
+                if (entityWord.length > 3) {
+                    entityWords.push(entityWord);
+                }
+            }
+        }
+    }
+
     // Check if the title is relevant to the query.
     var goodStories = [];
     for(var i = 0, story; story = apiResult[i]; i++) {
@@ -44,24 +56,21 @@ function ddg_spice_news(apiResult) {
         // additional news relevancy for entities. story need only
         // contain one word from one entity to be good. strict indexof
         // check though.
-        else if (typeof Spice.news.entities !== 'undefined' && Spice.news.entities.length > 0) {
+        else if (entityWords.length > 0) {
             var storyOk = 0;
             var tmpStoryTitle = story.title.toLowerCase();
 
-            for (var j = 0, entity; entity = Spice.news.entities[j]; j++) {
-                var entityWords = entity.split(" ");
-                for (var k = 0, entityWord; entityWord = entityWords[k]; k++) {
-                    if (tmpStoryTitle.indexOf(entityWord) !== -1) {
-                        storyOk = 1;
-                        break;
-                    }
-                }
-
-                if (storyOk) {
-                    setSourceOnStory(story);
-                    goodStories.push(story);
+            for (var k = 0, entityWord; entityWord = entityWords[k]; k++) {
+                if (tmpStoryTitle.indexOf(entityWord) !== -1) {
+                    storyOk = 1;
                     break;
                 }
+            }
+
+            if (storyOk) {
+                setSourceOnStory(story);
+                goodStories.push(story);
+                break;
             }
         }
     }
