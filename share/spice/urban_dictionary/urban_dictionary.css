@@ -19,6 +19,7 @@
     -webkit-border-radius: 45px;
     -o-border-radius: 45px;
     -moz-border-radius: 45px;
+    -khtml-border-radius: 45px;
     border-radius: 45px;
     float: left;
     text-align: center;
