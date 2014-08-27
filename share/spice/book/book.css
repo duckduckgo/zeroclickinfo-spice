@@ -2,23 +2,67 @@
     width: 25em;
 }
 
-.zci--book .tile__media img {
-    float: right;
-    margin: 0.5em;
+.zci--book .zci__header {
+    width: 20.5em;
 }
 
 .zci--book .tile__title  {
     text-overflow: clip !important;
 }
 
-.zci--book .tile__media {
-    height: 50px;
-}
-
-.zci--book .source {
+.zci--book .description {
+    font-weight: 600;
     color: #333;
 }
 
-/*.zci--book .description {
-    color: #aaa;
-}*/
+.zci--book .source,
+.zci--book .sources_recommending {
+    color: #999;
+}
+
+.zci--book .zci__content {
+    margin-top: -0.5em;
+}
+
+.zci--book .subtitle {
+    padding-left: 0.1em;
+    margin-bottom: 0.6em;
+    font-weight: 600;
+}
+
+.zci--book .subtitle,
+.zci--book .zci__header {
+    color: #28ADE7;
+}
+
+.zci--book .recommended_by {
+    font-weight: 600;
+}
+
+.zci--book .recommend_line {
+    margin-top: 0.6em;
+}
+
+.zci--book .chomp {
+    max-height: 9em;
+    overflow: visible;
+}
+
+.zci--book .zci__img-wrap--info {
+    float: right;
+    padding: 0px;
+    margin: 0px;
+    line-height: 3.2;
+    height: 3em;
+    left: -12em;
+}
+
+.zci--book .rating {
+    float: right;
+    line-height: 1;
+    font-size: 2em;
+    margin-top: -0.47em;
+    margin-right: 2.5em;
+    vertical-align: top;
+    color: #0099CB;
+}
