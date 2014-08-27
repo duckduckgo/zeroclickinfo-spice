@@ -28,16 +28,25 @@
                 }
             },
             normalize: function(item) {
+
+                var infoboxData = [{
+                    heading: 'Related Words:'
+                }];
+
+                for(var key in response.tags) {
+                    infoboxData.push({
+                        label: response.tags[key]
+                    });
+                }
+
                 return {
-                    definition: item.definition.replace(/(\r?\n)+/gi, ' ')
+                    definition: item.definition.replace(/(\r?\n)+/gi, ' '),
+                    infoboxData: infoboxData
                 };
             }
         });
-
-        // Call the Wordnik API to get the audio.
-        $.getScript(dictionary_path + "/audio/" + word);
     }
-    
+
     Handlebars.registerHelper("UD_example", function(example) {
         var exampleList = example.replace(/(\r?\n)+/gi, '</div><div class="example">')
         return new Handlebars.SafeString('<div class="example">' + exampleList + '</div>');
