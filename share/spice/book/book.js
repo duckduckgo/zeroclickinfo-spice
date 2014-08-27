@@ -3,7 +3,7 @@
     env.ddg_spice_book = function(api_result) {
 
         // Return if no book is returned
-        if(api_result.error) {
+        if(!api_result || api_result.error) {
             return Spice.failed('book');
         }
 
