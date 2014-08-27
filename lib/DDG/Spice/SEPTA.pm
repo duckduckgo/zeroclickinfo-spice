@@ -39,7 +39,7 @@ sub map_aliases($) {
 }
 
 @stops = map { trim_crlf($_) } @stops;
-@alias_list = map { trim_crlf($_) } @alias_list; 
+@alias_list = map { trim_crlf($_) } @alias_list;
 my %aliases = map { map_aliases($_) } @alias_list;
 
 #find a stop from a partial name (e.g. converts "30th street" -> "30th Street Station")

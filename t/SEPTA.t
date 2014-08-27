@@ -7,7 +7,7 @@ use DDG::Test::Spice;
 
 my %queries = (
     'villanova' => 'paoli',
-    'university city' => '49th street',
+    'university city' => '49th st',
 );
 
 my %tests = map {(
@@ -35,6 +35,11 @@ ddg_spice_test(
         %tests,
         'septa thorndale to 30th' => test_spice(  #test station guessing
             '/js/spice/septa/Thorndale/30th%20Street%20Station',
+            call_type => 'include',
+            caller => 'DDG::Spice::SEPTA'
+        ),
+        'septa drexel to 49th street' => test_spice(
+            '/js/spice/septa/University%20City/49th%20St',
             call_type => 'include',
             caller => 'DDG::Spice::SEPTA'
         ),
