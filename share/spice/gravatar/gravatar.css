@@ -1,9 +1,7 @@
 .zci--gravatar .gravatar--basic {
     height: 6em;
     clear: both;
-    margin-top: 0.25em;
-    margin-bottom: 0.3em;
-    margin-left: -0.2em;
+    margin: 0.25em 0 0.3em -0.2em
 }
 
 .zci--gravatar .gravatar--basic a { 
@@ -55,7 +53,7 @@ and (max-device-width : 480px) {
     .zci--gravatar .gravatar--misc {
         font-size: 0.85em;
     }
-    
+
     .zci--gravatar .expanded_social {
         -webkit-line-clamp: 2;
         height: 2.5em;
@@ -63,7 +61,7 @@ and (max-device-width : 480px) {
         overflow-y: hidden;
         text-overflow: clip;
     }
-    
+
     .zci--gravatar .gravatar--description {
         font-size: 1.15em;
     }
