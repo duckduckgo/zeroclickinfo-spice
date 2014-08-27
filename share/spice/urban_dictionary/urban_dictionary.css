@@ -9,15 +9,22 @@
 }
 
 .zci--urban_dictionary .zci__aux .tile--info div.info {
-    width: auto;
-    padding-left: 1em;
-    padding-right: 1em;
-    margin: 1% 5% 0 0;
+    width: wrap-content;
+    min-width: 4em;
+    padding: auto;
+    margin: 1.5% 5% 0 0;
+    display: inline-block;
     vertical-align: middle;
     background-color: #ddd;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    -webkit-border-radius: 45px;
+    -o-border-radius: 45px;
+    -moz-border-radius: 45px;
+    border-radius: 45px;
     float: left;
+    text-align: center;
+}
+
+.zci--urban_dictionary .zci__aux .tile--info div.info .info__label {
+    margin: 0 1em;
+    white-space: nowrap;
 }
