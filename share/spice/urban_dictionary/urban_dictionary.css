@@ -7,3 +7,17 @@
     height: 2.6em;
     overflow-y: hidden;
 }
+
+.zci--urban_dictionary .zci__aux .tile--info div.info {
+    width: auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin: 1% 5% 0 0;
+    vertical-align: middle;
+    background-color: #ddd;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    float: left;
+}
