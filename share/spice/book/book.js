@@ -78,6 +78,17 @@
                     return "";
                 };
 
+                // Get three critics which recommend the book
+                var recommendedBy = [];
+                for(var key in item.critic_reviews) {
+                    if(item.critic_reviews[key].pos_or_neg == "Positive" && recommendedBy.length < 3) {
+                        recommendedBy.push(item.critic_reviews[key].source);
+                    }
+                    else if (recommendedBy.length >= 3) {
+                        break;
+                    }
+                }
+
                 var header = item.title = item.title + formatSub(item.sub_title);
                 header = Handlebars.helpers.condense(header, {
                     hash: {
@@ -88,7 +99,7 @@
                 // Pick a random critic review out of all the reviews returned
                 item.critic_review = item.critic_reviews[Math.floor(Math.random() * item.critic_reviews.length)];
 
-                var infoboxData = [{
+                /*var infoboxData = [{
                     label: 'Author',
                     value: item.author
                 }, {
@@ -106,17 +117,16 @@
                 }, {
                     label: 'Reviews',
                     value: item.review_count
-                }];
+                }];*/
 
                 var a = {
                     title: header,
-                    rating: Math.floor(item.rating / 20),
-                    image: item.critic_review.smiley_or_sad,
+                    image: item.to_read_or_not,
                     description: item.critic_review.snippet,
                     source: item.critic_review.source,
-                    reviewLink: item.critic_review.review_link,
                     ratingText: item.review_count + " Reviews",
-                    infoboxData: infoboxData
+                    recommendedBy: recommendedBy.join(", "),
+                    rating: item.rating + "%"
                 };
                 return a;
             },
