@@ -24,6 +24,7 @@ spice proxy_cache_valid => "418 1d";
 triggers any => "next train", "train times", "train schedule", "septa";
 
 my @stops = share('stops.txt')->slurp;
+my @alias_list = share('aliases.txt')->slurp;
 
 #remove \r and \n from the lines that were slurped in
 sub trim_crlf($) {
@@ -32,15 +33,24 @@ sub trim_crlf($) {
     return $string;
 }
 
+sub map_aliases($) {
+    /(.+);(.+)/;
+    return lc $1, $2;
+}
+
 @stops = map { trim_crlf($_) } @stops;
+@alias_list = map { trim_crlf($_) } @alias_list; 
+my %aliases = map { map_aliases($_) } @alias_list;
 
 #find a stop from a partial name (e.g. converts "30th street" -> "30th Street Station")
 #names sourced from GTFS at njt-api.appspot.com/septa/stops
 sub normalize_stop {
     my @matches = ();  #list of stop matches
+    my $in = lc $_[0];
+    return $aliases{$in} if exists $aliases{$in}; #check our alias list
     foreach my $stop (@stops){
-        return $stop if (lc $_[0]) eq (lc $stop);  #if they're exactly equal, return the stop
-        push(@matches, $stop) if index(lc $stop, lc $_[0]) > -1;  #if the stop name contains the input, add it to matches
+        return $stop if ($in) eq (lc $stop);  #if they're exactly equal, return the stop
+        push(@matches, $stop) if index(lc $stop, $in) > -1;  #if the stop name contains the input, add it to matches
     }
     return $matches[0] if scalar(@matches) == 1;  #if we have one match, return it
     return;  #if we have no matches or too many, then we don't know the stop :(
