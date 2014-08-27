@@ -32,7 +32,7 @@ function ddg_spice_news(apiResult) {
     };
 
     var entityWords = [];
-    if (typeof Spice.news.entities !== 'undefined' && Spice.news.entities.length > 0) {
+    if (Spice.news && Spice.news.entities && Spice.news.entities.length) {
         for (var j = 0, entity; entity = Spice.news.entities[j]; j++) {
             var tmpEntityWords = entity.split(" ");
             for (var k = 0, entityWord; entityWord = tmpEntityWords[k]; k++) {
