@@ -41,49 +41,27 @@ function ddg_spice_news(apiResult) {
             goodStories.push(story);
         }
 
-        // news relevancy for entities. story need only contain one
-        // word from each entity (and the rest of the query words) to
-        // be good. bypasses the relevancy check. strict indexof check
-        // though.
-        else if (typeof DDG.news_entities !== 'undefined' && DDG.news_entities.length > 0) {
-            var seen_words = {};
-            var story_ok = 1;
-            var tmp_story_title = story.title.toLowerCase();
+        // additional news relevancy for entities. story need only
+        // contain one word from one entity to be good. strict indexof
+        // check though.
+        else if (typeof Spice.news.entities !== 'undefined' && Spice.news.entities.length > 0) {
+            var storyOk = 0;
+            var tmpStoryTitle = story.title.toLowerCase();
 
-            // entity check.
-            for (var j = 0, entity; entity = DDG.news_entities[j]; j++) {
-                var entity_ok = 0;
-                var entity_words = entity.split(" ");
-                for (var k = 0, entity_word; entity_word = entity_words[k]; k++) {
-                    seen_words[entity_word] = 1;
-                    if (tmp_story_title.indexOf(entity_word) !== -1) {
-                        entity_ok = 1;
+            for (var j = 0, entity; entity = Spice.news.entities[j]; j++) {
+                var entityWords = entity.split(" ");
+                for (var k = 0, entityWord; entityWord = entityWords[k]; k++) {
+                    if (tmpStoryTitle.indexOf(entityWord) !== -1) {
+                        storyOk = 1;
                         break;
                     }
                 }
 
-                if (!entity_ok) {
-                    story_ok = 0;
+                if (storyOk) {
+                    setSourceOnStory(story);
+                    goodStories.push(story);
                     break;
                 }
-            }
-
-            // rest of the query check
-            var query_words = DDG.get_query().toLowerCase().split(" ");
-            for (var j = 0, query_word; query_word = query_words[j]; j++) {
-                // skip for entity words
-                if (seen_words[query_word]) continue;
-
-                if (tmp_story_title.indexOf(query_word) === -1) {
-                    story_ok = 0;
-                    break;
-                }
-                seen_words[query_word] = 1;
-            }
-
-            if (story_ok === 1) {
-                setSourceOnStory(story);
-                goodStories.push(story);
             }
         }
     }
