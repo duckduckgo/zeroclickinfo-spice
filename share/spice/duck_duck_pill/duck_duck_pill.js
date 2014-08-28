@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_duck_duck_pill = function(api_result){
 
-        if (api_result.error || api_result.replyStatus.totalImageCount < 1) {
+        if (!api_result || api_result.error || !api_result.replyStatus || !api_result.replyStatus.totalImageCount || api_result.replyStatus.totalImageCount < 1) {
             return Spice.failed('duck_duck_pill');
         }
 
