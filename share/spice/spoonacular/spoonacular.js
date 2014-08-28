@@ -14,8 +14,8 @@
             meta: {
                 sourceName: 'spoonacular',
                 itemType: 'Recipes',
-                sourceIconUrl: 'http://spoonacular.com/favicon.ico',
-                sourceUrl: 'http://spoonacular.com/' + encodeURIComponent(searchTerm.replace(/ /g,'-'))
+                sourceIconUrl: 'https://spoonacular.com/favicon.ico',
+                sourceUrl: 'https://spoonacular.com/' + encodeURIComponent(searchTerm.replace(/ /g,'-'))
             },
 
             template_group: 'info',
@@ -39,7 +39,7 @@
     Handlebars.registerHelper("makeImage", function(id, image) {
         "use strict";
 
-        var url = "http://webknox.com/recipeImages/"+id+"-240x150";
+        var url = "https://webknox.com/recipeImages/"+id+"-240x150";
 
         // get the file ending
         var ending = image.match(/\..{2,4}$/)[0];
@@ -53,7 +53,7 @@
     Handlebars.registerHelper("makeBigImage", function(id, image) {
         "use strict";
 
-        var url = "http://webknox.com/recipeImages/"+id+"-312x231";
+        var url = "https://webknox.com/recipeImages/"+id+"-312x231";
 
         // get the file ending
         var ending = image.match(/\..{2,4}$/)[0];
@@ -138,7 +138,7 @@
         // modify the title to spoonacular's title format (unlike encodeURI, some characters will simply be dropped)
         var safeTitle = title.replace(/\'/g,'').replace(/\"/g,'').replace(/&/g,'').replace(/\?/g,'').replace(/ /g,'-');
 
-        return "http://spoonacular.com/"+safeTitle+"-"+id;
+        return "https://spoonacular.com/"+safeTitle+"-"+id;
     });
 
     /*
