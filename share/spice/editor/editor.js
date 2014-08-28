@@ -1,51 +1,66 @@
-function ddg_spice_editor() {    
+(function(env) {
+    "use strict";
 
-    var script = $('[src*="/js/spice/editor/"]')[0];
-    var source = $(script).attr("src");
-    var language = source.match(/editor\/([^\/]+)/)[1];
+    env.ddg_spice_editor = function(api_result) {
 
-    nrj("share/spice/editor/ace.js");
+        var script = $('[src*="/js/spice/editor/"]')[0];
+        var source = $(script).attr("src");
+        var language = source.match(/editor\/([^\/]+)/)[1];
 
-    window.aceScriptLoaded = function() {
+        nrj("share/spice/editor/ace.js");
 
-        var editor_id = "ace-editor";
+        window.aceScriptLoaded = function() {
 
-        var editor = ace.edit(editor_id);    
-        editor.setTheme("ace/theme/eclipse");
-        editor.getSession().setMode("ace/mode/" + language);
+            var editor_id = "ace-editor";
 
-        $("#" + editor_id).height("400px");
+            var editor = ace.edit(editor_id);
+            editor.setTheme("ace/theme/eclipse");
+            editor.getSession().setMode("ace/mode/" + language);
 
-        // Adjust the box margins--can't do this in css
-        var style = "padding-left: 0px !important; margin-left: 0px !important;" +
-                    "padding-top: 0px !important; margin-top: 0px !important;";
-        $("#zero_click_wrapper2 #zero_click_abstract").attr("style", style);
+            $("#" + editor_id).height("400px");
 
-        // Stop DDG keybindings, when editor has focus
-        $("#" + editor_id).keydown(function(e) {            
-            e.stopPropagation();
+            // Adjust the box margins--can't do this in css
+            var style = "padding-left: 0px !important; margin-left: 0px !important;" +
+                "padding-top: 0px !important; margin-top: 0px !important;";
+            $("#zero_click_wrapper2 #zero_click_abstract").attr("style", style);
+
+            // Stop DDG keybindings, when editor has focus
+            $("#" + editor_id).keydown(function(e) {
+                e.stopPropagation();
+            });
+        }
+
+        Spice.add({
+            id: 'editor',
+            name: 'Editor',
+            data: api_result,
+            meta: {
+                sourceName: "Ace",
+                sourceUrl: "http://ace.c9.io/"
+            },
+            normalize: function(item) {
+
+                function formatLanguageName(language) {
+                    var languageNames = {
+                        "javascript": "JavaScript",
+                        "python": "Python"
+                    };
+
+                    return languageNames[language.toLowerCase()];
+                }
+
+                var a = {
+                    title: formatLanguageName(language) + " Editor"
+                };
+
+                return a;
+            },
+            templates: {
+                group: 'base',
+                options: {
+                    content: Spice.editor.editor
+                }
+            },
         });
-    }    
-
-    function formatLanguageName(language) {
-
-        var languageNames = {
-            "javascript": "JavaScript",
-            "python": "Python"
-        };
-
-        return languageNames[language.toLowerCase()];
-    }
-    
-    Spice.add({
-        header1          :  formatLanguageName(language) + " Editor",
-        sourceName      : "Ace",
-        sourceUrl       : "http://ace.c9.io/",
-        templates: {
-            item: Spice.editor.editor,
-            detail: Spice.editor.editor
-        },
-        
-        
-    });
-}
+    };
+}(this));
