@@ -14,11 +14,13 @@
             id: 'products',
             name: 'Products',
             data: items,
+            allowMultipleCalls: true,
             meta: {
                 itemType: 'Products',
                 sourceName: 'Amazon',
                 sourceUrl: api_result.more_at,
-                sourceIcon: true
+                sourceIcon: true,
+                next: api_result.next
             },
             templates: {
                 group: 'products',
