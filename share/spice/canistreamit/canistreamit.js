@@ -22,7 +22,7 @@
             },
             normalize: function(item) {
                 var a = {
-                    title: api_result[0].title + " (Can I Stream.it)",
+                    title: api_result[0].title,
                     image: api_result[0].image,
                     actors: api_result[0].actors,
                     links: api_result[0].links,
