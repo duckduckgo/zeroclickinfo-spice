@@ -3,12 +3,16 @@
 30th Street;30th Street Station
 49th St.;49th St
 49th Street;49th St
+Airport;Airport Terminal A
 Allen Ln;Allen Lane
 Allen Ln.;Allen Lane
 Chelten Ave;Chelten Avenue
 Chelten Ave.;Chelten Avenue
 Chester;Chester TC
 Chester Transit Center;Chester TC
+Churchman's Crossing;Churchmans Crossing
+Clifton;Clifton-Aldan
+Clifton Aldan;Clifton-Aldan
 Eastwick;Eastwick Station
 Elm St.;Elm St
 Elm Street;Elm St
@@ -22,26 +26,49 @@ Highland Avenue;Highland Ave
 Holmesburg;Holmesburg Jct
 Holmesburg Junction;Holmesburg Jct
 Jenkintown;Jenkintown-Wyncote
+Jenkintown Wyncote;Jenkintown-Wyncote
 Main St.;Main St
 Main Street;Main St
 Market East Station;Market East
+Moylan;Moylan-Rose Valley
+Rose Valley;Moylan-Rose Valley
 Mt. Airy;Mt Airy
 Mount Airy;Mt Airy
 Norristown;Norristown TC
 Norristown Transit Center;Norristown TC
+North Broad.;North Broad St
 North Broad St.;North Broad St
 North Broad Street;North Broad St
-North Broad;North Broad St
+Queen Ln.;Queen Lane
+Queen Ln;Queen Lane
 St Davids;St. Davids
 Saint Davids;St. Davids
+St David's;St. Davids
+Saint David's;St. Davids
 St Martins;St. Martins
 Saint Martins;St. Martins
+St Martin's;St. Martins
+Saint Martin's;St. Martins
 Suburban;Suburban Station
 Temple;Temple U
 Temple Univ;Temple U
 Temple Univ.;Temple U
 Temple University;Temple U
 Drexel;University City
+Drexel Univ;University City
+Drexel Univ.;University City
+Drexel University;University City
 Penn;University City
+UPenn;University City
+U of Pennsylvania;University City
+Univ Pennsylvania;University City
+Univ. Pennsylvania;University City
+Univ of Pennsylvania;University City
+Univ. of Pennsylvania;University City
+University of Pennsylvania;University City
+Washington Ln;Washington Lane
+Washington Ln.;Washington Lane
 Wayne Junction;Wayne Jct
+Wayne;Wayne Station
+Wynnefield Ave;Wynnefield Avenue
 Wynnefield Ave.;Wynnefield Avenue
