@@ -1,0 +1,11 @@
+<div>
+    {{#list this.results 0 5}}{{/list}}
+</div>
+
+{{#if show_more}}
+    <span id="show_more" onclick="document.getElementById('hidden').style.display='block'; 
+                                  document.getElementById('show_more').style.display='none';">Show more</span>
+    <div id="hidden">
+        {{#list this.results 5 0}}{{/list}}
+    </div>
+{{/if}}

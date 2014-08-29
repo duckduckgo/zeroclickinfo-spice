@@ -3,3 +3,11 @@
     margin-top: 0;
     margin-right: 0;
 }
+
+.zci--similar_sites #hidden {
+    display: none;
+}
+
+.zci--similar_sites li {
+    margin-left: 30px;
+}
