@@ -1,10 +1,10 @@
-.tile--njt {
+.zci--njt .tile--njt {
     text-align: center;
-    width: 13em !important;
+    width: 13em;
 }
 
-.is-mobile .tile--njt {
-    width: 12.25em !important;
+.is-mobile .zci--njt .tile--njt {
+    width: 12.25em;
 }
 
 .tile--njt .njt__time {
@@ -68,4 +68,8 @@
 .tile--njt .njt__cancelled-tile .njt__details,
 .tile--njt .njt__cancelled-tile .njt__status {
     color: #bbb;
+}
+
+.tile--njt .njt__no-track {
+    color: #aaa;
 }
