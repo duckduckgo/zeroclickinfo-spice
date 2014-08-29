@@ -16,7 +16,7 @@
             },
             normalize: function(item) {
                 name = item.name;
-                if (item.name.length > 50) {
+                if (name.length > 50) {
                     name = item.name.substr(0, 50) + "...";
                 };
                 return {
