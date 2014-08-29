@@ -8,7 +8,7 @@ description "Search for similar websites";
 name "SimilarSites search";
 source "SimilarSites";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SimilarWeb.pm";
-icon_url "/i/www.similarweb.com.ico";
+icon_url "/i/www.similarsitesearch.com.ico";
 category "entertainment";
 topics "everyday", "special_interest";
 attribution github => ['https://github.com/Adman', 'Adman'],
@@ -16,7 +16,7 @@ attribution github => ['https://github.com/Adman', 'Adman'],
 
 triggers startend => "similar sites to", "similar web to", "sites like", "websites like", "webs like", "pages like";
 
-spice to => 'http://api.similarweb.com/Site/$1/v2/SimilarSites?Format=JSON&UserKey=95de551d83b0f5cbb658c8d1d669dd3a';
+spice to => 'http://www.similarsitesearch.com/api/similar/$1';
 
 spice wrap_jsonp_callback => 1;
 
