@@ -14,7 +14,7 @@ spice to => 'http://api.seatgeek.com/2/events?performers.slug=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-    $_ =~ s/^(:?(upcoming\s*)?(concert)|(concerts))|((live)\s*(:?(show)|(shows))?)$//gi;
+    $_ =~ s/^(:?(upcoming\s*)?(concerts?))|((live)\s*(:?(show)|(shows))?)$//gi;
     $_ = shift;
     $_ =~ s/^\s+//;
     $_ =~ s/\s+$//;
