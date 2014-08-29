@@ -7,7 +7,7 @@
         }
 
         var query = DDG.get_query();
-        var clean_query = query.replace(/((upcoming\s)?((concert)|(concerts)))|(live(\s(show)|(shows))?)/, '').trim();
+        var clean_query = query.replace(/((upcoming\s)?(concerts?))|(live(\s(shows?))?)/, '').trim();
 
         var months = {
             '0': 'Jan',
@@ -44,6 +44,8 @@
                 //sourceUrl: api_result.events[0].performers[0].url
             },
             normalize: function(item) {
+                var artist = capitalize(clean_query);
+
                 function capitalize(string) {
                     var splitted = string.split(" ");
                     for(var i = 0; i < splitted.length; i++) {
@@ -67,13 +69,30 @@
                     return week_day + " " + month + " " + day;
                 }
 
+                function getPerformers(performers) {
+                    var chosen = [];
+                    var slug = clean_query.replace(/\s/g, "-");
+                    for(var key in performers) {
+                        if(chosen.length < 2 && performers[key].slug != slug) {
+                            chosen.push({
+                                'name': performers[key].name
+                            });
+                        } else if(chosen.length >= 2) {
+                            break;
+                        }
+                    }
+
+                    return chosen;
+                }
+
                 var a = {
                     link: item.url,
                     //title: capitalize(clean_query) + " at " + item.venue.name,
-                    artist: capitalize(clean_query) + " live at:",
+                    artist: artist,
+                    performers: getPerformers(item.performers),
                     title: item.short_title,
                     place: item.venue.name,
-                    city:  item.venue.city + ", " + item.venue.country,
+                    city: item.venue.city + ", " + item.venue.country,
                     date: formatDate(item.datetime_local), //+ " " + item.venue.timezone + " Time",
                     rating: item.score
                 };
