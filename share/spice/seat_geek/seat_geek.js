@@ -41,11 +41,13 @@
             meta: {
                 sourceName: "seatgeek.com",
                 sourceUrl: "https://seatgeek.com/search?search=" + clean_query
-                //sourceUrl: api_result.events[0].performers[0].url
             },
             normalize: function(item) {
                 var artist = capitalize(clean_query);
 
+                // Capitalize the name of the band/artist searched for;
+                // if the name is composed by multiple words, capitalize
+                // all of them
                 function capitalize(string) {
                     var splitted = string.split(" ");
                     for(var i = 0; i < splitted.length; i++) {
@@ -62,13 +64,12 @@
                     var week_day = days[date.getDay()];
                     var day = date.getDate();
                     var month = months[date.getMonth()];
-                    //var year = date.getFullYear();
-                    //var hour = date.getHours();
-                    //var minutes = date.getMinutes();
 
                     return week_day + " " + month + " " + day;
                 }
 
+                // Get two performers (if available) other than
+                // the one searched for
                 function getPerformers(performers) {
                     var chosen = [];
                     var slug = clean_query.replace(/\s/g, "-");
@@ -87,13 +88,12 @@
 
                 var a = {
                     link: item.url,
-                    //title: capitalize(clean_query) + " at " + item.venue.name,
                     artist: artist,
                     performers: getPerformers(item.performers),
                     title: item.short_title,
                     place: item.venue.name,
                     city: item.venue.city + ", " + item.venue.country,
-                    date: formatDate(item.datetime_local), //+ " " + item.venue.timezone + " Time",
+                    date: formatDate(item.datetime_local),
                     rating: item.score
                 };
                 return a;

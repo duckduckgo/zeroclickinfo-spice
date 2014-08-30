@@ -1,6 +1,21 @@
 <div class="zci--seat_geek">
-<div class="tile--seat_geek">
-<div class="date">{{date}}</div>
-<div class="place">{{place}} • {{city}}</div>
-<p>Performers: <b class="artist">{{artist}}</b> {{#if performers}}{{#each performers}} • {{name}}{{/each}}{{/if}}</p>
-</div></div>
+    <div class="tile--seat_geek">
+        <div class="date">
+            {{date}}
+        </div>
+        <div class="place">
+            {{place}} • {{city}}
+        </div>
+        <p>
+            Performers: 
+            <span class="artist">
+                {{artist}}
+            </span> 
+            {{#if performers}}
+                {{#each performers}}
+                    • {{name}}
+                {{/each}}
+            {{/if}}
+        </p>
+    </div>
+</div>

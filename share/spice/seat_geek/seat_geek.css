@@ -1,8 +1,19 @@
 .zci--seat_geek h3,
-.zci--seat_geek h4,
 .zci--seat_geek .footer_artist,
 .zci--seat_geek p {
     color: #333;
+}
+
+.zci--seat_geek h3,
+.zci--seat_geek .footer_content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.zci--seat_geek h3 {
+    line-height: 1.5em;
+    font-weight: 500;
 }
 
 .zci--seat_geek .date,
@@ -12,22 +23,17 @@
     line-height: 1.25em;
 }
 
-.zci--seat_geek h3,
-.zci--seat_geek h4 {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.85em;
+.zci--seat_geek .date {
+    padding-top: 0.5em;
 }
 
-.zci--seat_geek h3 {
-    font-weight: 500;
+.zci--seat_geek .place {
+    padding-bottom: 0.5em;
 }
 
 .zci--seat_geek .zci__main--tiles > .tile--seat_geek,
 .zci--seat_geek .zci__main--tiles > .tile--seat_geek.is-selected {
-    width: 20em;
-    /*text-align: center;*/
+    width: 18em;
 }
 
 .zci--seat_geek .tile__title,
@@ -35,18 +41,26 @@
     display: none !important;
 }
 
+.zci--seat_geek .tile__body.has-foot {
+    padding-bottom: 1.5em;
+}
+
 .zci--seat_geek .tile__title__sub {
     font-size: 0.7em;
 }
 
+.zci--seat_geek .tileview.has-open-detail .tile-wrap {
+    margin-bottom: 10.5rem;
+}
+
 .zci--seat_geek .footer_date {
-    font-size: 2em;
+    font-size: 1.85em;
     font-weight: 500;
 }
 
 .zci--seat_geek .footer_artist {
     font-size: 1.25em;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .zci--seat_geek .footer_content {
@@ -57,6 +71,10 @@
     line-height: 1em;
 }
 
+.zci--seat_geek .zci__main--detail .zci__more-at {
+    margin-bottom: 0.7em;
+}
+
 .zci--seat_geek .detail,
 .zci--seat_geek .detail__wrap,
 .zci--seat_geek .detail__pane {
@@ -65,8 +83,4 @@
 
 .zci--seat_geek .detail {
     bottom: -12.5rem;
-}
-
-.zci--seat_geek .tileview.has-open-detail .tile-wrap {
-    margin-bottom: 10.5rem;
 }
