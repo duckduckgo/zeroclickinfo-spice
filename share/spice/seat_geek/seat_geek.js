@@ -25,13 +25,13 @@
         };
 
         var days = {
-            '0': 'Monday',
-            '1': 'Tuesday',
-            '2': 'Wednesday',
-            '3': 'Thursday',
-            '4': 'Friday',
-            '5': 'Saturday',
-            '6': 'Sunday'
+            '0': 'Sunday',
+            '1': 'Monday',
+            '2': 'Tuesday',
+            '3': 'Wednesday',
+            '4': 'Thursday',
+            '5': 'Friday',
+            '6': 'Saturday'
         };
 
         Spice.add({
@@ -60,6 +60,12 @@
                 }
 
                 function formatDate(date) {
+                    // IE 8 and Safari don't support the yyyy-mm-dd date format,
+                    // but they support mm/dd/yyyy
+                    date = date.replace(/T.*/, '');
+                    var remix_date = date.split("-");
+                    date = remix_date[1] + "/" + remix_date[2] + "/" + remix_date[0];
+
                     date = new Date(date);
                     var week_day = days[date.getDay()];
                     var day = date.getDate();
@@ -68,17 +74,17 @@
                     return week_day + " " + month + " " + day;
                 }
 
-                // Get two performers (if available) other than
+                // Get max two performers (if available) other than
                 // the one searched for
                 function getPerformers(performers) {
                     var chosen = [];
                     var slug = clean_query.replace(/\s/g, "-");
                     for(var key in performers) {
-                        if(chosen.length < 2 && performers[key].slug != slug) {
+                        if(chosen.length < 2 && performers[key].slug !== slug) {
                             chosen.push({
                                 'name': performers[key].name
                             });
-                        } else if(chosen.length >= 2) {
+                        } else if (chosen.length >= 2) {
                             break;
                         }
                     }
@@ -108,4 +114,20 @@
             }
         });
     };
+
+    // Returns a string with the names of the other performers
+    Spice.registerHelper('spice_print_performers', function(performers) {
+        var string = '';
+        if (performers) {
+            for (var key in performers) {
+                if (performers[key].name) {
+                string += ' • ' + performers[key].name;
+                }
+            }
+
+            return string;
+        }
+
+        return null;
+    });
 }(this));
