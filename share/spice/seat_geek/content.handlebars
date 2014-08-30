@@ -10,12 +10,8 @@
             Performers: 
             <span class="artist">
                 {{artist}}
-            </span> 
-            {{#if performers}}
-                {{#each performers}}
-                    • {{name}}
-                {{/each}}
-            {{/if}}
+            </span>
+            {{spice_print_performers performers}}
         </p>
     </div>
 </div>

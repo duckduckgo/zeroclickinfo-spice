@@ -78,9 +78,13 @@
 .zci--seat_geek .detail,
 .zci--seat_geek .detail__wrap,
 .zci--seat_geek .detail__pane {
-    height: 12.5rem;
+    height: 12.5em;
 }
 
 .zci--seat_geek .detail {
-    bottom: -12.5rem;
+    bottom: -11.5em;
+}
+
+.zci--seat_geek .tileview.has-open-detail {
+    height: 23.3em\0/;
 }
