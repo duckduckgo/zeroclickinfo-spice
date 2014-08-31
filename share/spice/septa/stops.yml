@@ -8,9 +8,17 @@
   - 49th Street
 Airport Terminal A:
   - Airport
-Airport Terminal B: ~
-Airport Terminal C-D: ~
-Airport Terminal E-F: ~
+  - Airport A
+Airport Terminal B:
+  - Airport B
+Airport Terminal C-D:
+  - Airport C
+  - Airport D
+  - Airport Terminal D
+Airport Terminal E-F:
+  - Airport E
+  - Airport F
+  - Airport Terminal F
 Allegheny: ~
 Allen Lane:
   - Allen Ln
@@ -176,6 +184,8 @@ St. Martins:
 Stenton: ~
 Strafford: ~
 Suburban Station:
+  - Center
+  - Center City
   - Suburban
 Swarthmore: ~
 Tacony: ~
