@@ -19,47 +19,76 @@
     function getQueryParams() {
         var script = $('[src*="/js/spice/bitcoin/"]')[0],
             source = $(script).attr("src"),
-            query = source.match(/bitcoin\/([^\/]*)/)[1];
+            query = source.match(/bitcoin\/([^\/]+)(?:\/(.+))?/);
 
-        query = $.trim(decodeURIComponent(query));
-        if (!query) {
-            return [];
+        if (query[2]) {
+            return query.slice(1);
+        } else {
+            return [query[1]];
         }
-
-        return query.split(/\s+/g);
     }
 
     env.ddg_spice_bitcoin = function(api_result) {
         var DEFAULT_CURRENCY = "USD",
             params = getQueryParams(),
-            prices = null,
-            currency = null;
+            currency = params[0].toUpperCase(),
+            prices = api_result[currency],
+            query = DDG.get_query().toLowerCase(),
+            buy, sell;
 
-        if (params.length == 0) {
-            currency = DEFAULT_CURRENCY;
-            prices = api_result[currency];
-        } else if (params.length > 1) {
+        if (params.length > 2 || params.length < 1) {
             // Just allow the currency as a parameter
             return Spice.failed('bitcoin');
-        } else {
-            currency = $.trim(params[0].toUpperCase());
-            prices = api_result[currency];
+        } else if (params.length === 2) {
+            //query is "x btc in yyy" or "x yyy in btc"
+            var xbtc_regex = new RegExp(/.+ (?:btc|bitcoin) (?:in|to) (.{3})/),
+                xyyy_regex = new RegExp(/.+ (.{3}) (?:in|to) (?:btc|bitcoin)/);
 
+            if (xbtc_regex.exec(query)) {
+                var to = prices.buy * +params[1];
+
+                buy = {
+                    formatted_price: getFormattedPrice('BTC', +params[1], '฿'),
+                    title: "FROM"
+                }
+
+                sell = {
+                    formatted_price: getFormattedPrice(currency, to, prices.symbol),
+                    title: "TO"
+                }
+            } else if (xyyy_regex.exec(query)) {
+                var to = +params[1] / prices.buy;
+
+                buy = {
+                    formatted_price: getFormattedPrice(currency, +params[1], prices.symbol),
+                    title: "FROM"
+                }
+
+                sell = {
+                    formatted_price: getFormattedPrice('BTC', to, '฿'),
+                    title: "TO"
+                }
+            } else {
+                return Spice.failed('bitcoin');
+            }
+        } else {
+            //query like "btc in usd" or "bitcoin exchange in dkk"
             if (!prices) {
                 // Is not a valid currency
                 return Spice.failed('bitcoin');
             }
+
+            buy = {
+                formatted_price: getFormattedPrice(currency, prices.buy, prices.symbol),
+                title: "BUY"
+            };
+
+            sell = {
+                formatted_price: getFormattedPrice(currency, prices.sell, prices.symbol),
+                title: "SELL"
+            };
         }
 
-        var buy = {
-            formatted_price: getFormattedPrice(currency, prices.buy, prices.symbol),
-            title: "BUY"
-        };
-
-        var sell = {
-            formatted_price: getFormattedPrice(currency, prices.sell, prices.symbol),
-            title: "SELL"
-        };
 
         Spice.add({
             id: "bitcoin",
