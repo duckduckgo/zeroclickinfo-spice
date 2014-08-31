@@ -6,12 +6,19 @@
         <div class="place">
             {{place}} • {{city}}
         </div>
-        <p>
+        <p class="text--primary performers">
             Performers: 
             <span class="artist">
                 {{artist}}
             </span>
             {{spice_print_performers performers}}
         </p>
+        <p class="text--primary price">
+            {{#if price}}
+                FROM ${{price}}
+            {{/if}}
+        </p>
+        <div class="clear"></div>
+        <span class="detail__callout--pr"><a href="{{url}}" class="btn btn--primary">SeatGeek page</a></span>
     </div>
 </div>

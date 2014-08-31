@@ -3,7 +3,7 @@ package DDG::Spice::SeatGeek;
 
 use DDG::Spice;
 
-primary_example_queries "live show new york mets";
+primary_example_queries "live show weezer", "upcoming concerts in flames";
 description "Upcoming concerts from SeatGeek";
 name "SeatGeek";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SeatGeek.pm";
@@ -18,6 +18,7 @@ spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
     $_ =~ s/^(:?(upcoming\s*)?(concerts?))|((live)\s*(:?(shows?))?)$//gi;
+    $_ =~ tr/[A-Z]/[a-z]/;
     $_ = shift;
     $_ =~ s/^\s+//;
     $_ =~ s/\s+$//;
