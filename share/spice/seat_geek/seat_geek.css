@@ -1,6 +1,5 @@
 .zci--seat_geek h3,
-.zci--seat_geek .footer_artist,
-.zci--seat_geek p {
+.zci--seat_geek .footer_artist {
     color: #333;
 }
 
@@ -12,8 +11,23 @@
 }
 
 .zci--seat_geek h3 {
-    line-height: 1.5em;
+    line-height: 1.35em;
     font-weight: 500;
+}
+
+.zci--seat_geek .price {
+    float: right;
+    font-size: 1.35em;
+    padding-bottom: 0;
+    line-height: 0.65;
+}
+
+.zci--seat_geek .performers {
+    float: left;
+}
+
+.zci--seat_geek .clear {
+    clear: both;
 }
 
 .zci--seat_geek .date,
@@ -24,11 +38,11 @@
 }
 
 .zci--seat_geek .date {
-    padding-top: 0.5em;
+    padding-top: 0.25em;
 }
 
 .zci--seat_geek .place {
-    padding-bottom: 0.5em;
+    padding-bottom: 0.25em;
 }
 
 .zci--seat_geek .zci__main--tiles > .tile--seat_geek,
@@ -67,24 +81,31 @@
     font-size: 1em;
 }
 
-.zci--seat_geek .detail--seat_geek .zci__more-at {
-    line-height: 1em;
-}
-
-.zci--seat_geek .zci__main--detail .zci__more-at {
-    margin-bottom: 0.7em;
-}
-
 .zci--seat_geek .detail,
 .zci--seat_geek .detail__wrap,
 .zci--seat_geek .detail__pane {
-    height: 12.5em;
+    height: 13em;
 }
 
 .zci--seat_geek .detail {
-    bottom: -11.5em;
+    bottom: -12.5em;
+}
+
+/* Target everything but IE 6-8 */
+:root *> .zci--seat_geek .tileview.has-open-detail {
+    height: 23.5em;
 }
 
 .zci--seat_geek .tileview.has-open-detail {
-    height: 23.3em\0/;
+    height: 23.85em;
+}
+
+/* Target only Firefox */
+.zci--seat_geek .tileview.has-open-detail,  x:-moz-any-link, x:default {
+    height: 24em !important;
+}
+
+.zci--seat_geek .detail__callout--pr {
+    line-height: 2em;
+    margin-top: 0.5em;
 }

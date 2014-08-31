@@ -43,20 +43,30 @@
                 sourceUrl: "https://seatgeek.com/search?search=" + clean_query
             },
             normalize: function(item) {
-                var artist = capitalize(clean_query);
+                var artist = capitalizedAcronym(clean_query);
 
                 // Capitalize the name of the band/artist searched for;
                 // if the name is composed by multiple words, capitalize
-                // all of them
-                function capitalize(string) {
+                // all of them; if the name is too long, return the acronym
+                function capitalizedAcronym(string) {
                     var splitted = string.split(" ");
-                    for(var i = 0; i < splitted.length; i++) {
-                        var upper = splitted[i].substr(0, 1).toUpperCase();
-                        var lower = splitted[i].substr(1, splitted[i].length).toLowerCase();
-                        splitted[i] = upper + lower;
-                    }
+                    if(string.length < 18) {
+                        for(var i = 0; i < splitted.length; i++) {
+                            var upper = splitted[i].substr(0, 1).toUpperCase();
+                            var lower = splitted[i].substr(1, splitted[i].length).toLowerCase();
+                            splitted[i] = upper + lower;
+                        }
 
-                    return splitted.join(" ");
+                        return splitted.join(" ");
+                    } else {
+                        var acronym = '';
+                        for (var i = 0; i < splitted.length; i++) {
+                            var upper = splitted[i].substr(0, 1).toUpperCase() + '.';
+                            acronym += upper;
+                        }
+
+                        return acronym;
+                    }
                 }
 
                 function formatDate(date) {
@@ -84,7 +94,7 @@
                             chosen.push({
                                 'name': performers[key].name
                             });
-                        } else if (chosen.length >= 2) {
+                        } else if(chosen.length >= 2) {
                             break;
                         }
                     }
@@ -93,7 +103,8 @@
                 }
 
                 var a = {
-                    link: item.url,
+                    url: item.url,
+                    price: item.stats.lowest_price,
                     artist: artist,
                     performers: getPerformers(item.performers),
                     title: item.short_title,
@@ -109,7 +120,7 @@
                 options: {
                     content: Spice.seat_geek.content,
                     footer: Spice.seat_geek.footer,
-                    moreAt: true
+                    moreAt: false
                 }
             }
         });
@@ -118,10 +129,10 @@
     // Returns a string with the names of the other performers
     Spice.registerHelper('spice_print_performers', function(performers) {
         var string = '';
-        if (performers) {
-            for (var key in performers) {
-                if (performers[key].name) {
-                string += ' • ' + performers[key].name;
+        if(performers) {
+            for(var key in performers) {
+                if(performers[key].name) {
+                    string += ' • ' + performers[key].name;
                 }
             }
 
