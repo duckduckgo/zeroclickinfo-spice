@@ -36,6 +36,7 @@
                 return {
                     departure_time: format_time(actualDepartureTime(item)),
                     arrival_time: format_time(actualArrivalTime(item)),
+                    line: item.orig_line.replace(' Line', '') + ' Line',
                     url: 'http://www.septa.org/schedules/rail/index.html',
                     status:  actualStatus(item),
                     status_class: delayedMins(item.orig_delay) > 0 ? 'septa__delayed' : classes[item.orig_delay],
