@@ -27,15 +27,18 @@ triggers startend => "bitcoin", "bit coin", "bitcoin exchange", "bit coin exchan
 
 handle remainder => sub {
     my $query = $_;
-    my $currency = "usd"; #default to usd
+    my $currency = $query eq "" ? "usd" : ""; #default to usd (for queries like "bitcoin")
+    #find the currency that they want to convert with
     for my $curr (@currencies) {
         if (index($query, $curr) > -1){
             $currency = $curr;
             last;
         }
     }
+    #extract a value
     $query =~ /([\d\.]+)/;
-    return ($currency, $1);
+    return ($currency, $1) if $currency;
+    return;
 };
 
 1;

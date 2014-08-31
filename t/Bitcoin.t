@@ -39,10 +39,11 @@ ddg_spice_test(
         '/js/spice/bitcoin/usd/5',
         caller    => 'DDG::Spice::Bitcoin',
     ),
-    '250 dkk in btc' => test_spice(
+    '250 dkk to btc' => test_spice(
         '/js/spice/bitcoin/dkk/250',
         caller    => 'DDG::Spice::Bitcoin'
     ),
+    '5 btc to abc' => undef
 );
 
 done_testing;
