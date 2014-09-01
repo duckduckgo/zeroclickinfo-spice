@@ -65,8 +65,9 @@ handle remainder => sub {
     return unless /(?:from )?(.+)/;
 
     my $curr = normalize_stop($1);
+    return $curr if $curr;
 
-    return $curr;
+    return;
 };
 
 1;
