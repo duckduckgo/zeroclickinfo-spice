@@ -20,7 +20,18 @@
                         trip.direction_name = direction.direction_name;
 
                         var dep =  new Date(trip.sch_dep_dt*1000);
-                        trip.departs = padZeros(dep.getHours(), 2) + ":" + padZeros(dep.getMinutes(), 2);
+                        var hours = dep.getHours();
+                        var ampm;
+                        if (hours > 12) {
+                            hours -= 12;
+                            ampm = "pm";
+                        } else {
+                            if (hours === 0) {
+                                hours = 12;
+                            }
+                            ampm = "am";
+                        }
+                        trip.departs = hours + ":" + padZeros(dep.getMinutes(), 2) + " " + ampm;
 
                         trips.push(trip);
                     }
