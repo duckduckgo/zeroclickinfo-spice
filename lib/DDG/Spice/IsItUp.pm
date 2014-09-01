@@ -2,7 +2,7 @@ package DDG::Spice::IsItUp;
 
 use DDG::Spice;
 
-primary_example_queries "is duckduckgo.com up?";
+primary_example_queries "is duckduckgo.com up";
 secondary_example_queries "is wolframalpha.com working?";
 description "Shows a website's status";
 name "IsItUp";
