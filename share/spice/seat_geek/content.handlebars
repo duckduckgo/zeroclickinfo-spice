@@ -13,11 +13,11 @@
             </span>
             {{spice_print_performers performers}}
         </p>
-        <p class="text--primary price">
-            {{#if price}}
+        {{#if price}}
+            <p class="text--primary price">
                 FROM ${{price}}
-            {{/if}}
-        </p>
+            </p>
+        {{/if}}
         <div class="clear"></div>
         <span class="detail__callout--pr"><a href="{{url}}" class="btn btn--primary">SeatGeek page</a></span>
     </div>
