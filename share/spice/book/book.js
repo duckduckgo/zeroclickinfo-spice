@@ -99,26 +99,6 @@
                 // Pick a random critic review out of all the reviews returned
                 item.critic_review = item.critic_reviews[Math.floor(Math.random() * item.critic_reviews.length)];
 
-                /*var infoboxData = [{
-                    label: 'Author',
-                    value: item.author
-                }, {
-                    label: 'Genre',
-                    value: item.genre
-                }, {
-                    label: 'Pages',
-                    value: item.pages
-                }, {
-                    label: 'Release Date',
-                    value: item.release_date
-                }, {
-                    label: 'Total Rating',
-                    value: item.rating + '%'
-                }, {
-                    label: 'Reviews',
-                    value: item.review_count
-                }];*/
-
                 var a = {
                     title: header,
                     image: item.to_read_or_not,

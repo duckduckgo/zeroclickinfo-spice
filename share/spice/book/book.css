@@ -11,7 +11,7 @@
 }
 
 .zci--book .description {
-    font-weight: 600;
+    font-weight: 400;
     color: #333;
 }
 
@@ -27,20 +27,21 @@
 .zci--book .subtitle {
     padding-left: 0.1em;
     margin-bottom: 0.6em;
-    font-weight: 600;
+    color: #888;
 }
 
-.zci--book .subtitle,
 .zci--book .zci__header {
-    color: #28ADE7;
+    color: #333;
 }
 
-.zci--book .recommended_by {
+.zci--book .recommended_by,
+.zci--book .rating {
     font-weight: 600;
 }
 
+.zci--book .description,
 .zci--book .recommend_line {
-    margin-top: 0.6em;
+    margin-top: 0.85em;
 }
 
 .zci--book .chomp {
@@ -65,4 +66,13 @@
     margin-right: 2.5em;
     vertical-align: top;
     color: #0099CB;
+}
+
+.zci--book .zci__img-wrap+.zci__body {
+    padding-left: 0.75em;
+}
+
+.zci--book .zci__img-wrap + .zci__body--info,
+.zci--book .zci__more-at--info {
+    padding-bottom: 0.35em;
 }
