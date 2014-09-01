@@ -14,7 +14,13 @@
             var editor_id = "ace-editor";
 
             var editor = ace.edit(editor_id);
-            editor.setTheme("ace/theme/eclipse");
+
+            if ($(".dark-header").length) {
+                editor.setTheme("ace/theme/monokai");
+            } else {
+                editor.setTheme("ace/theme/eclipse");
+            }
+
             editor.getSession().setMode("ace/mode/" + language);
 
             $("#" + editor_id).height("400px");
@@ -49,11 +55,9 @@
                     return languageNames[language.toLowerCase()];
                 }
 
-                var a = {
+                return {
                     title: formatLanguageName(language) + " Editor"
                 };
-
-                return a;
             },
             templates: {
                 group: 'base',
