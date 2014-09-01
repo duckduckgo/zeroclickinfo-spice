@@ -20,7 +20,7 @@ attribution twitter => 'mattr555',
 spice to => 'http://realtime.mbta.com/developer/api/v2/predictionsbystop?api_key=wX9NwuHnZU2ToO7GmGR9uw&stop=$1&format=jsonp&jsonpcallback={{callback}}';   #FIXME that's the demo API key
 spice proxy_cache_valid => '418 1d';
 
-triggers any => 'mbta', 'next train', 'train from', 'train times', 'train schedule';
+triggers any => 'mbta', 'next train', 'train leaving', 'trains leaving', 'train from', 'train times', 'train schedule';
 
 my %stops = yaml_to_stops(scalar share('stops.yml')->slurp);
 
@@ -62,7 +62,7 @@ sub normalize_stop {
 }
 
 handle remainder => sub {
-    return unless /(?:from )?(.+)/;
+    return unless /(?:.*from )?(.+)/;
 
     my $curr = normalize_stop($1);
     return $curr if $curr;
