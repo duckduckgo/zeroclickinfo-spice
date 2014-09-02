@@ -1,8 +1,8 @@
-(function(env){
+(function(env) {
     'use strict';
 
     env.ddg_spice_coupon_mountain = function(api_result) {
-        if (api_result.count < 1) {
+        if (!DDG.getProperty(api_result, 'count')) {
             return Spice.failed('coupon_mountain');
         }
 
@@ -14,13 +14,39 @@
                 searchTerm: api_result.keyword,
                 itemType: 'Coupons',
                 sourceName: 'CouponMountain',
-                sourceUrl: 'http://www.couponmountain.com/search.php?searchtext='+ api_result.keyword
+                sourceUrl: 'http://www.couponmountain.com/search.php?searchtext=' + api_result.keyword
             },
-            normalize: function(item){
+            normalize: function(item) {
+                // Get the discount from the description
+                var getDiscount = function() {
+                    var regex = /.[0-9]+%?/i;
+                    var result = regex.exec(item.name);
+                    if(result) {
+                        return result.join('');
+                    }
+                    return '';
+                }
+
+                // Return discount string without symbols
+                var stripSymbol = function(string) {
+                    return string.replace(/[^0-9]/i, '');
+                }
+
+                // Get symbol in the discount
+                var getSymbol = function(string) {
+                    var regex = /[^0-9\s]/i;
+                    var result = regex.exec(string);
+                    if(result) {
+                        return result.join('');
+                    }
+                    return '';
+                }
                 return {
                     image: item.iconUrl,
                     img: item.iconUrl,
-                    title: item.name,
+                    title: stripSymbol(getDiscount()),
+                    description: item.name,
+                    symbol: getSymbol(getDiscount()),
                     heading: stripExpiry(item.desc),
                     price: item.merName,
                     abstract: getExpiry(item.expire),
@@ -28,18 +54,21 @@
                 }
             },
             templates: {
-                group: 'products',
+                group: 'base',
+                detail: 'products_detail',
+                item_detail: 'products_item_detail',
                 options: {
-                    buy: Spice.coupon_mountain.buy,
                     brand: false,
                     rating: false,
                     price: true,
+                    content: Spice.coupon_mountain.content,
+                    subtitle_content: Spice.coupon_mountain.buy,
                     detailVariant: 'light'
                 }
             },
             sort_fields: {
-                merName: function(a,b) {
-                    return (a.merName < b.merName) ? -1 : 1;
+                merName: function(a, b) {
+                    return(a.merName < b.merName) ? -1 : 1;
                 }
             },
             sort_default: 'merName',
@@ -48,33 +77,34 @@
         });
     };
 
-    function getExpiry (dateString) {
+    function getExpiry(dateString) {
         // 3333-03-03 means coupon has no expiry date
-        if (!dateString || dateString === '3333-03-03'){
+        if(!dateString || dateString === '3333-03-03') {
             return null;
         }
     }
 
     Spice.registerHelper('CouponMountain_dateString', function(string) {
-        var months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'],
+        var months = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'],
             date = DDG.getDateFromString(dateString);
 
         return 'Expires: ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
     });
 
-    function stripExpiry (string) {
+    function stripExpiry(string) {
         return string.replace(/ (hurry, )?(offer|good through|expires|ends|valid \w+) .+$/i, '');
     };
 
     // Highlight coupon code text
-    function highlightCode () {
+
+    function highlightCode() {
 
         var couponCode = $('.zci--coupon_mountain input.tag');
 
-        if (couponCode) {
+        if(couponCode) {
             couponCode.click(function() {
                 couponCode.focus().select();
-             });
+            });
         }
     };
 
