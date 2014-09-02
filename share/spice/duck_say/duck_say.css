@@ -1,0 +1,26 @@
+.zci--ducksay {
+    max-height: none !important;
+}
+.zci--ducksay.ducksay-phone,
+.zci--ducksay.ducksay-tablet {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .zci--ducksay {
+        display: none;
+    }
+    .zci--ducksay.ducksay-tablet {
+        display: block;
+    }
+}
+
+@media (max-width: 450px) {
+    .zci--ducksay,
+    .zci--ducksay.ducksay-tablet {
+        display: none;
+    }
+    .zci--ducksay.ducksay-phone {
+        display: block;
+    }
+}
