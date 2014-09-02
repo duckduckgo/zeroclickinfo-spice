@@ -94,9 +94,9 @@ handle sub {
     # trying to nav to the URL they typed.
     #
     return if $is_naked_domain
-	&& ( (defined $subdomains && $subdomains !~ /^www.$/)
-	     || (defined $port && $port ne '')
-	     || (defined $resource_path && $resource_path ne ''));
+        && ( (defined $subdomains && $subdomains !~ /^www.$/)
+             || (defined $port && $port ne '')
+             || (defined $resource_path && $resource_path ne ''));
 
     # return the combined domain + tld (after adding a period in between)
     return lc "$domain.$tld";
