@@ -12,7 +12,7 @@ topics "sysadmin";
 attribution github => ['https://github.com/mintsoft', 'mintsoft'],
                web => 'http://www.robtex.com/';
 
-triggers startend => 'reverse dns', 'reverse ip', 'dns', 'reverse', 'whois';
+triggers startend => 'reverse dns', 'reverse ip', 'dns', 'whois';
 
 spice to => 'https://www.robtex.com/ext/xapiq/?q=$1&filter=none&s=wip,asip,ddg&r=json';
 spice wrap_jsonp_callback => 1;
@@ -20,15 +20,17 @@ spice wrap_jsonp_callback => 1;
 sub is_ip($)
 {
     my ($ip) = @_;
-    return 0 unless $ip =~ /([0-9]{1,3}\.){3}([0-9]{1,3})/;
+    return undef unless $ip =~ /^([0-9]{1,3}\.){3}([0-9]{1,3})$/;
     my @octlets = split /\./, $ip;
     for (@octlets) {
-        return 0 if int($_) > 255 || int($_) < 0;
+        return undef if int($_) > 255 || int($_) < 0;
     }
-    return 1;
+    return $ip;
 }
 
 handle remainder => sub {
+    s/for|of|lookup//;
+    s/\s//;
     return $_ if is_ip($_);
     return;
 };
