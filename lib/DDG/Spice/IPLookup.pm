@@ -17,7 +17,7 @@ triggers startend => 'reverse dns', 'reverse ip', 'dns', 'whois';
 spice to => 'https://www.robtex.com/ext/xapiq/?q=$1&filter=none&s=wip,asip,ddg&r=json';
 spice wrap_jsonp_callback => 1;
 
-sub is_ip($)
+sub is_ipv4($)
 {
     my ($ip) = @_;
     return undef unless $ip =~ /^([0-9]{1,3}\.){3}([0-9]{1,3})$/;
@@ -25,13 +25,20 @@ sub is_ip($)
     for (@octlets) {
         return undef if int($_) > 255 || int($_) < 0;
     }
-    return $ip;
+    return 1;
+}
+
+sub is_ipv6($)
+{
+    my ($ip) = @_;
+    return undef unless $ip =~ /^[0-9a-fA-F]{4}(:[0-9a-fA-F]{4}){7}$/;
+    return 1;
 }
 
 handle remainder => sub {
     s/for|of|lookup//;
     s/\s//;
-    return $_ if is_ip($_);
+    return $_ if (is_ipv4($_) || is_ipv6($_));
     return;
 };
 

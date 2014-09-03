@@ -50,8 +50,13 @@ ddg_spice_test(
     'reverse dns 256.8.8.8' => undef,
     'reverse dns a.b.c.d' => undef,
     'reverse dns duckduckgo.com' => undef,
-    'reverse dns for a.b.c.d' => undef
-
+    'reverse dns for a.b.c.d' => undef,
+    'reverse dns for 2607:f0d0:1002:0051:0000:0000:0000:0004' => test_spice(
+        '/js/spice/iplookup/2607%3Af0d0%3A1002%3A0051%3A0000%3A0000%3A0000%3A0004',
+        call_type => 'include',
+        caller => 'DDG::Spice::IPLookup',
+    ),
 );
 
 done_testing;
+
