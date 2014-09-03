@@ -70,6 +70,31 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::TflStatus',
     ),
+    'overground line london' => test_spice(
+        '/js/spice/tfl_status/london-overground',
+        call_type => 'include',
+        caller => 'DDG::Spice::TflStatus',
+    ),
+    'victoria line underground' => test_spice(
+        '/js/spice/tfl_status/victoria',
+        call_type => 'include',
+        caller => 'DDG::Spice::TflStatus',
+    ),
+    'circle line london underground' => test_spice(
+        '/js/spice/tfl_status/circle',
+        call_type => 'include',
+        caller => 'DDG::Spice::TflStatus',
+    ),
+    'district line london tube' => test_spice(
+        '/js/spice/tfl_status/district',
+        call_type => 'include',
+        caller => 'DDG::Spice::TflStatus',
+    ),
+    'jubilee line tube' => test_spice(
+        '/js/spice/tfl_status/jubilee',
+        call_type => 'include',
+        caller => 'DDG::Spice::TflStatus',
+    ),
 );
 
 # This function call is expected by Test::More. It makes sure the program
