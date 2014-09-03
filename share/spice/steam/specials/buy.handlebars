@@ -4,13 +4,19 @@ Savings: {{discount}} <br>
     Metascore: {{rating}} <br>
 {{/if}}
 {{#if genre}}
-    Genre: {{genre}} <br>
-    Supported Platforms: Windows: {{steamspecial_booleval platforms.windows}}  
-    <span class="detail__separator"> | </span>
-        Mac: {{steamspecial_booleval platforms.mac}}    
-    <span class="detail__separator"> | </span>
-        Linux: {{steamspecial_booleval platforms.linux}} <br>
+    Genre: {{genre}}
+{{/if}} <br>
+Supported Platforms: 
+{{#if platforms.windows}}  
+    Windows  
 {{/if}}
+{{#if platforms.mac}}
+    <span class="detail__separator"> | </span> Mac
+{{/if}}
+{{#if platforms.linux}}    
+    <span class="detail__separator"> | </span> Linux
+{{/if}}
+<br>
 <a href="{{url}}" class="btn btn--primary">
-    Steam Page
+    More at Steam
 </a>

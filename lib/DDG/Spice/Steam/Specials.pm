@@ -15,7 +15,7 @@ attribution github => ["https://github.com/killerfish", "Usman Raza"],
             twitter => ["https://twitter.com/f1shie", "Usman Raza"];
 
 triggers startend => "steam special", "steam specials", "steam store", "steam offers", "steam offer";
-spice to => 'http://store.steampowered.com/api/featuredcategories$1';
+spice to => 'http://store.steampowered.com/api/featuredcategories';
 spice proxy_cache_valid => "200 60m";
 spice wrap_jsonp_callback => 1;
 
