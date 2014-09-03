@@ -23,7 +23,7 @@
                 .replace(/([^\n])\n([^\n|$])/g, '$1 $2');
             var moreAt = true;
             var meta = {
-                sourceName: 'reddit.com',
+                sourceName: 'reddit.com/r/jokes',
                 sourceUrl: 'http://www.reddit.com' + joke.permalink
             };
         } else {
