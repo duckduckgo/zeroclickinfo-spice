@@ -1,26 +1,25 @@
-.zci--ducksay {
+.zci--ducksay pre {
     max-height: none !important;
 }
-.zci--ducksay.ducksay-phone,
-.zci--ducksay.ducksay-tablet {
+.zci--ducksay .ducksay__phone,
+.zci--ducksay .ducksay__tablet {
     display: none;
 }
 
 @media (max-width: 600px) {
-    .zci--ducksay {
+    .zci--ducksay pre {
         display: none;
     }
-    .zci--ducksay.ducksay-tablet {
+    .zci--ducksay .ducksay__tablet {
         display: block;
     }
 }
 
 @media (max-width: 450px) {
-    .zci--ducksay,
-    .zci--ducksay.ducksay-tablet {
+    .zci--ducksay .ducksay__tablet {
         display: none;
     }
-    .zci--ducksay.ducksay-phone {
+    .zci--ducksay .ducksay__phone {
         display: block;
     }
 }
