@@ -19,19 +19,20 @@ spice wrap_jsonp_callback => 1;
 triggers end => 'line status', 'line tfl';
 
 handle remainder => sub {
-	
-	if (lc($_) =~ /overground/) {
-		return "london-overground";
-	}
-	elsif (lc($_) =~ /hammersmith.*?/) {
-		return "hammersmith-city";
-	}
-	elsif (lc($_) =~ /waterloo.*?/) {
-		return "waterloo-city";
-	}
 
-	return $_ if $_;
-	return;
+    return '' if $_ eq '';
+
+    if (lc($_) =~ /overground/) {
+        return "london-overground";
+    }
+    elsif (lc($_) =~ /hammersmith.*?/) {
+        return "hammersmith-city";
+    }
+    elsif (lc($_) =~ /waterloo.*?/) {
+        return "waterloo-city";
+    }
+    
+    return $_;
 };
 
 1;
