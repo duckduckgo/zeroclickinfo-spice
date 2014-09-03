@@ -56,6 +56,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::IPLookup',
     ),
+    'ip lookup for 5.6.7.8' => test_spice(
+        '/js/spice/iplookup/5.6.7.8',
+        call_type => 'include',
+        caller => 'DDG::Spice::IPLookup'
+    ),
 );
 
 done_testing;
