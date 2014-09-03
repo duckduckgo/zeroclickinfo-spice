@@ -6,6 +6,7 @@ name 'DuckSay';
 description 'Like cowsay, but with ducks';
 primary_example_queries 'ducksay';
 secondary_example_queries 'ducksay quack quack quack!';
+source 'Reddit /r/jokes';
 category 'entertainment';
 topics 'geek', 'words_and_games', 'entertainment';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/DuckSay.pm';
