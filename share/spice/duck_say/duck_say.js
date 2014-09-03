@@ -65,26 +65,25 @@
         
         var lines = [];
         var line;
-        var s = text;
         var match = {
             newlines: RegExp('^(.{0,width})\\n'.replace('width', width)),
             lastword: RegExp('^(.{0,width})(\\s|$)'.replace('width', width))
         };
-
+        
         // Wrap text by width
-        while (s) {
+        while (text) {
             // Split at newlines
-            if (line = match.newlines.exec(s)){
-                s = s.substring(line[0].length);
+            if (line = match.newlines.exec(text)){
+                text = text.substring(line[0].length);
                 lines.push(line[1]);
             // Split at the last word in line
-            } else if (line = match.lastword.exec(s)) {
-                s = s.substring(line[0].length);
+            } else if (line = match.lastword.exec(text)) {
+                text = text.substring(line[0].length);
                 lines.push(line[1]);
             // Split at max width
             } else {
-                line = s.substring(0, width);
-                s = s.substring(width);
+                line = text.substring(0, width);
+                text = text.substring(width);
                 lines.push(line);
             }
         }
@@ -93,7 +92,7 @@
         var bubble = '.' + Array(width + 3).join('-') + '.\n';
         
         // Pad text & add borders
-        lines.forEach(function(line) {
+        $.each(lines, function(i, line) {
             line = line + Array(width - line.length + 1).join(' ');
             bubble += '| ' + line + ' |\n';
         });
