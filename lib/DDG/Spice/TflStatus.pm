@@ -17,7 +17,7 @@ spice to => 'https://api.tfl.gov.uk/Line/$1/Status?app_id=4b57df3f&app_key=a3b15
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
-triggers end => 'line status', 'line tfl';
+triggers end => 'line status', 'line tfl', 'line london', 'line underground', 'line london underground', 'line london tube', 'line tube';
 
 handle remainder => sub {
 
