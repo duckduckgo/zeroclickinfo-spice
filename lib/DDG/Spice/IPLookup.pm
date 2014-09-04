@@ -2,6 +2,7 @@ package DDG::Spice::IPLookup;
 # ABSTRACT: Returns information about an IP address
 
 use DDG::Spice;
+use Regexp::IPv6 qw($IPv6_re);
 
 primary_example_queries "reverse dns 8.8.8.8";
 description "Shows reverse DNS information about an IP";
@@ -28,17 +29,10 @@ sub is_ipv4($)
     return 1;
 }
 
-sub is_ipv6($)
-{
-    my ($ip) = @_;
-    return undef unless $ip =~ /^[0-9a-fA-F]{4}(:[0-9a-fA-F]{4}){7}$/;
-    return 1;
-}
-
 handle remainder => sub {
     s/for|of|lookup//;
     s/\s//;
-    return $_ if (is_ipv4($_) || is_ipv6($_));
+    return $_ if (is_ipv4($_) || /^$IPv6_re$/);
     return;
 };
 
