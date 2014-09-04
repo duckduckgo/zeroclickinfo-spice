@@ -14,6 +14,7 @@ attribution github => ['https://github.com/csytan', 'Chris Tan'];
 
 triggers start => 'ducksay';
 
+spice is_unsafe => 1;
 spice to => 'http://www.reddit.com/r/Jokes/search.json?q=selftext%3Aduck&restrict_sr=on&sort=hot&t=all&jsonp={{callback}}';
 
 handle remainder => sub {
