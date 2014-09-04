@@ -10,6 +10,7 @@ Four Corners / Geneva:
   - Four Corners/Geneva
   - Four Corners /Geneva
   - Four Corners/ Geneva
+  - Four Corners-Geneva
 Newmarket:
 Abington:
 Anderson/ Woburn:
@@ -18,6 +19,7 @@ Anderson/ Woburn:
   - Anderson/Woburn
   - Anderson /Woburn
   - Anderson / Woburn
+  - Anderson-Woburn
 Andover:
 Ashland:
 Attleboro:
@@ -37,6 +39,7 @@ Brandeis/ Roberts:
   - Brandeis/Roberts
   - Brandeis /Roberts
   - Brandeis / Roberts
+  - Brandeis-Roberts
 Bridgewater:
 Brockton:
 Campello:
@@ -70,6 +73,7 @@ Forge Park / 495:
   - Forge Park/495
   - Forge Park /495
   - Forge Park/ 495
+  - Forge Park-495
 Framingham:
 Franklin:
 Gloucester:
@@ -83,6 +87,7 @@ Hamilton/ Wenham:
   - Hamilton/Wenham
   - Hamilton /Wenham
   - Hamilton / Wenham
+  - Hamilton-Wenham
 Hanson:
 Hastings:
 Haverhill:
@@ -94,6 +99,7 @@ Holbrook/ Randolph:
   - Holbrook/Randolph
   - Holbrook /Randolph
   - Holbrook / Randolph
+  - Holbrook-Randolph
 Hyde Park:
 Ipswich:
 Islington:
@@ -102,15 +108,21 @@ JFK/UMASS:
   - UMASS
   - JFK /UMASS
   - JFK/ UMASS
+  - JFK-UMASS
 Kendal Green:
 Kingston:
 Lawrence:
 Lincoln:
 Littleton / Rte 495:
   - Littleton
+  - Littleton/495
+  - Littleton /495
+  - Littleton/ 495
+  - Littleton-495
   - Littleton/Rte 495
   - Littleton /Rte 495
   - Littleton/ Rte 495
+  - Littleton-Rte 495
 Lowell:
 Lynn:
 Malden Center:
@@ -126,6 +138,7 @@ Middleborough/ Lakeville:
   - Middleborough/Lakeville
   - Middleborough /Lakeville
   - Middleborough / Lakeville
+  - Middleborough-Lakeville
 Mishawum:
 Montello:
 Montserrat:
@@ -186,12 +199,14 @@ River Works / GE Employees Only:
   - River Works/GE
   - River Works /GE
   - River Works/ GE
+  - River Works-GE
 Rockport:
 Roslindale Village:
 Route 128:
+  - 128
   - Rt 128
-  - Rt. 28
-  - Rte 28
+  - Rt. 128
+  - Rte 128
 Rowley:
 Ruggles:
 Salem:
@@ -259,6 +274,9 @@ Weymouth Landing/ East Braintree:
   - Weymouth Landing / E Braintree
   - Weymouth Landing / E. Braintree
   - Weymouth Landing / East Braintree
+  - Weymouth Landing-East Braintree
+  - Weymouth Landing-E. Braintree
+  - Weymouth Landing-E Braintree
 Whitman:
 Wilmington:
 Winchester Center:
@@ -283,6 +301,10 @@ Worcester / Union Station:
   - Worcester/ Union Sta
   - Worcester/ Union Sta.
   - Worcester/ Union Station
+  - Worcester-Union Station
+  - Worcester-Union Sta
+  - Worcester-Union Sta.
+  - Worcester-Union
 Wyoming Hill:
 Yawkey:
 TF Green Airport:
