@@ -13,7 +13,7 @@
                     {{#if accounts.[0]}}
                         {{#with accounts.[0]}}
                             <a href="{{url}}" title="{{display}}" class="more-links-anchor">
-                                {{Gravatar_checkDomain domain}}
+                                {{Gravatar_formatDomain domain}}
                             </a>
                             <span class="zcm__sep"></span>
                         {{/with}}
@@ -21,7 +21,7 @@
                     {{#if accounts.[1]}}
                         {{#with accounts.[1]}}
                             <a href="{{url}}" title="{{display}}" class="more-links-anchor">
-                                 {{Gravatar_checkDomain domain}}
+                                 {{Gravatar_formatDomain domain}}
                             </a>
                         {{/with}}
                     {{/if}}
@@ -33,7 +33,7 @@
                 <div class="expanded_social hidden">
                     {{#each accounts}}
                             <a href="{{url}}" title="{{display}}" class="more-links-anchor">
-                                {{Gravatar_checkDomain domain}}
+                                {{Gravatar_formatDomain domain}}
                             </a>
                             <span class="zcm__sep"></span>
                     {{/each}}
@@ -55,5 +55,5 @@
     {{/Gravatar_fallbackInfo}}
 </div>
 {{#if aboutMe}}
-     <div class="gravatar--description">{{{aboutMe}}}</div>
+     <div class="gravatar--description">{{{condense aboutMe maxlen="210"}}}</div>
 {{/if}}
