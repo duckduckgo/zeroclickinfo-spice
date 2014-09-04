@@ -18,7 +18,7 @@
                 .replace(/([^\n])\n([^\n|$])/g, '$1 $2');
             var moreAt = true;
             var meta = {
-                sourceName: 'reddit.com/r/jokes',
+                sourceName: 'Reddit /r/jokes',
                 sourceUrl: 'http://www.reddit.com' + joke.permalink
             };
         } else {
