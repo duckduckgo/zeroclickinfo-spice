@@ -5,6 +5,14 @@
             return Spice.failed('mbta');
         }
 
+        var query = DDG.get_query();    //is the user interested in inbound, outbound, or both?
+        var inbound = (query.indexOf("inbound") > -1);
+        var outbound = (query.indexOf("outbound") > -1);
+        if (!inbound && !outbound) {    //if neither is specified, show both
+            outbound = true;
+            inbound = true;
+        }
+
         //The trips that serve a stop are organized by mode (subway, bus, etc). We'll put them in a single array.
         var trips = []
         for (var i = 0; i < api_result.mode.length; i++) {
@@ -13,6 +21,9 @@
                 var route = mode.route[ii];
                 for (var iii = 0; iii < route.direction.length; iii++) {
                     var direction = route.direction[iii];
+                    if ((direction.direction_name === "Inbound" && !inbound) || (direction.direction_name === "Outbound" && !outbound)) {
+                        continue;
+                    }
                     for (var iv = 0; iv < direction.trip.length; iv++) {
                         var trip = direction.trip[iv];
                         trip.mode_name = mode.mode_name; //add these so we don't lose them when we denormalize

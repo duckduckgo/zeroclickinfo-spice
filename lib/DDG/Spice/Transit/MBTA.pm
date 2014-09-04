@@ -62,7 +62,8 @@ sub normalize_stop {
 }
 
 handle remainder => sub {
-    return unless /(?:.*from )?(.+)/;
+    s/\b(?:inbound|outbound)\b//g;    #this is handled in the JavaScript, so just strip it here
+    return unless /(?:.*from\s+)?(.+)/;
 
     my $curr = normalize_stop($1);
     return $curr if $curr;

@@ -17,6 +17,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Transit::MBTA'
     ),
+    "outbound MBTA train from Worcester" => test_spice(     #strip outbound
+        '/js/spice/transit/mbta/Worcester%20%2F%20Union%20Station',
+        call_type => 'include',
+        caller => 'DDG::Spice::Transit::MBTA'
+    ),
     "MBTA trains leaving from Plymouth" => test_spice(   #primary_example_query
         '/js/spice/transit/mbta/Plymouth',
         call_type => 'include',
