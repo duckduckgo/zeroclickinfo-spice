@@ -20,10 +20,5 @@
     margin-top: 0;
     margin-bottom: 0;
     padding-top: 0;
-    padding-bottom: 0;
-}
-
-.zci--github_status .ghstatus--update {
-    font-size: 1em;
     padding-bottom: 0.75em;
 }
