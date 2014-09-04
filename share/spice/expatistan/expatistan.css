@@ -32,4 +32,8 @@ and (max-device-width : 480px) {
     .zci--expatistan p {
         font-size: 0.85em;
     }
+
+    .zci--expatistan .zci__more-at {
+        margin-bottom: 0.6em;
+    }
 }
