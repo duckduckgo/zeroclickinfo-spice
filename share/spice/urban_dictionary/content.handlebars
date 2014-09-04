@@ -1,12 +1,13 @@
 <h3>
     {{#if word}}
         <span class="zci__urban__word">{{word}}</span>
-        <span class="zci__urban__pronunciation"></span>
     {{/if}}
 </h3>
 <p class="ud_definition">
     {{definition}}
 </p>
 <div class="ud_example">
-    {{UD_example example}}
+    {{#each example}}
+        <div class="example">{{this}}</div>
+    {{/each}}
 </div>
