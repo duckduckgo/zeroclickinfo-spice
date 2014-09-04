@@ -37,11 +37,16 @@
                     moreAt: true
                 }
             },
+            onShow: function() {
+                $(".zci--gravatar .more").click(function() {
+                    $('.expanded_social').removeClass("hidden").addClass("visible");
+                    $('.condensed_social').removeClass("visible").addClass("hidden");
+                });
+            },
         });
     };
 
     // Get the name of the user (if available).
-
     function getName(entry) {
         if(!entry.name || !entry.displayName) {
             return;
@@ -54,17 +59,6 @@
         }
         return entry.displayName;
     }
-
-    Handlebars.registerHelper("showLinks", function() {
-        var moreLinks = {
-            "show": function() {
-                $('.expanded_social').removeClass("hidden").addClass("visible");
-                $('.condensed_social').removeClass("visible").addClass("hidden");
-            }
-        };
-        return new Handlebars.SafeString("(" +
-            moreLinks.show.toString().replace(/\"/g, "'") + ")()");
-    });
 
     // Find the primary e-mail.
     Handlebars.registerHelper("Gravatar_getEmail", function(emails, options) {
