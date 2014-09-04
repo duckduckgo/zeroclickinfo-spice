@@ -28,27 +28,22 @@
                 }
             },
             normalize: function(item) {
-
                 var infoboxData = [{
                     heading: 'Related Words:'
                 }];
 
-                for(var key in response.tags) {
+                for(var i = 0; i < response.tags.length; i++) {
                     infoboxData.push({
-                        label: response.tags[key]
+                        label: response.tags[i]
                     });
                 }
 
                 return {
                     definition: item.definition.replace(/(\r?\n)+/gi, ' '),
+                    example: item.example.split(/\r?\n/),
                     infoboxData: infoboxData
                 };
             }
         });
     }
-
-    Handlebars.registerHelper("UD_example", function(example) {
-        var exampleList = example.replace(/(\r?\n)+/gi, '</div><div class="example">')
-        return new Handlebars.SafeString('<div class="example">' + exampleList + '</div>');
-    });
 }(this));
