@@ -61,6 +61,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::IPLookup'
     ),
+    'reverse dns for fe80::200:f8ff:fe21:67cf' => test_spice(
+        '/js/spice/iplookup/fe80%3A%3A200%3Af8ff%3Afe21%3A67cf',
+        call_type => 'include',
+        caller => 'DDG::Spice::IPLookup',
+    ),
 );
 
 done_testing;
