@@ -10,13 +10,14 @@
     background-clip: padding-box;
 }
 .zci--duck_say .duck_say__pre {
-    display: inline;
     white-space: pre-wrap;
     white-space: -moz-pre-wrap;
     white-space: -pre-wrap;
     white-space: -o-pre-wrap;    
 }
-
+.zci--duck_say .duck_say__bowtie {
+    color: rgb(70, 154, 40);
+}
 
 .zci--duck_say .duck_say--phone,
 .zci--duck_say .duck_say--tablet {
