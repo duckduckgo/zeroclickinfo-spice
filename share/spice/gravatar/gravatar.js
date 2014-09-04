@@ -82,20 +82,15 @@
         }
     });
 
-    // This is for favicons that don't work.
-    Handlebars.registerHelper("Gravatar_checkDomain", function(domain) {
+    // Return the name of the domain, capitalized and without the ".com" part
+    Handlebars.registerHelper("Gravatar_formatDomain", function(domain) {
         if(domain === "plus.google.com") {
             return "Google+";
-        }
-        if(domain === "yelp.com") {
-            return "Yelp";
         }
         if(domain.match(/.*wordpress.*/i)) {
             return "Wordpress";
         } else {
-            var capitalized = domain.substr(0, 1).toUpperCase();
-            var lowercase = domain.substr(1, domain.length).replace(".com", "").toLowerCase();
-            return capitalized + lowercase;
+            return DDG.capitalize(domain).replace(".com", "");
         }
     });
 }(this));
