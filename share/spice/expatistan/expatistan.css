@@ -19,6 +19,10 @@
     color: #999;
 }
 
+.zci--expatistan .zci__more-at {
+    margin-bottom: 0.9em;
+}
+
 @media only screen
 and (max-device-width : 480px) {
     .zci--expatistan h5 {
