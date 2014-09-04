@@ -12,11 +12,13 @@ ddg_spice_test(
     'ducksay' => test_spice(
         '/js/spice/duck_say/',
         call_type => 'include',
+        is_unsafe => 1,
         caller => 'DDG::Spice::DuckSay'
     ),
     'ducksay hello world!' => test_spice(
         'hello world!',
         call_type => 'self',
+        is_unsafe => 1,
         caller => 'DDG::Spice::DuckSay'
     )
 );
