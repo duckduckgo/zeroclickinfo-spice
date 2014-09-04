@@ -19,6 +19,11 @@
                 options: {
                     content: Spice.iplookup.content
                 }
+            },
+            relevancy: {
+                primary: [{
+                	required: 'shortwho'
+                }]
             }
         });
     };
