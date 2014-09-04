@@ -21,10 +21,24 @@
                 sourceIconUrl: 'http://gravatar.com/favicon.ico'
             },
             normalize: function() {
+                // Get the name of the user.
+                function getName(entry) {
+                    if(!entry.name || !entry.displayName) {
+                        var splitted = api_result.entry[0].profileUrl.split("/");
+                        return splitted[splitted.length - 1];
+                    }
+
+                    if(entry.name.formatted) {
+                        return entry.name.formatted;
+                    } else if(entry.name.givenName && entry.name.familyName) {
+                        return entry.name.givenName + " " + entry.name.familyName;
+                    }
+                    return entry.displayName;
+                }
+
                 return {
                     image: api_result.entry[0].thumbnailUrl + ".png",
                     title: getName(api_result.entry[0]),
-                    profileURL: api_result.entry[0].profileUrl,
                     currentLocation: api_result.entry[0].currentLocation,
                     accounts: api_result.entry[0].accounts,
                     aboutMe: api_result.entry[0].aboutMe
@@ -45,20 +59,6 @@
             },
         });
     };
-
-    // Get the name of the user (if available).
-    function getName(entry) {
-        if(!entry.name || !entry.displayName) {
-            return;
-        }
-
-        if(entry.name.formatted) {
-            return entry.name.formatted;
-        } else if(entry.name.givenName && entry.name.familyName) {
-            return entry.name.givenName + " " + entry.name.familyName;
-        }
-        return entry.displayName;
-    }
 
     // Find the primary e-mail.
     Handlebars.registerHelper("Gravatar_getEmail", function(emails, options) {
