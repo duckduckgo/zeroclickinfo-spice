@@ -38,7 +38,11 @@
     vertical-align: middle;
 }
 
-.zci--gravatar .hidden,
+.zci--gravatar .hidden{
+    display: none;
+}
+
+/* Separate rules because IE 8 does not support pseudo-classes */
 .zci--gravatar .zcm__sep:last-child {
     display: none;
 }
