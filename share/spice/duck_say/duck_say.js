@@ -10,12 +10,7 @@
             // Get a random duck joke from reddit
             var jokes = $.map(
                 api_result.data.children,
-                function(item) {
-                    var title = item.data.title.toLowerCase();
-                    if (title.indexOf('nsfw') === -1) {
-                        return item.data;
-                    }
-                });
+                function(item) { return item.data; });
             var joke = jokes[Math.floor(Math.random() * jokes.length)];
             
             // Newline wranging for reddit's markdown
@@ -27,7 +22,7 @@
                 sourceUrl: 'http://www.reddit.com' + joke.permalink
             };
         } else {
-            var text = DDG.get_query().replace(/\s*ducksay\s*/, '');
+            var text = DDG.get_query().replace('ducksay ', '');
             var moreAt = false;
             var meta = {};
         }
@@ -36,9 +31,9 @@
             id: 'duck_say',
             name: 'DuckSay',
             data: {
-                text: ducksay(text, 65),
-                text_tablet: ducksay(text, 45),
-                text_phone: ducksay(text, 30)
+                text: bubble(text, 65),
+                text_tablet: bubble(text, 45),
+                text_phone: bubble(text, 30)
             },
             meta: meta,
             templates: {
@@ -52,17 +47,8 @@
     };
 
 
-    function ducksay(text, width) {
-        var duck = 
-        '      \\         ⌒\n' +
-        '       \\   ___/ • )\n' +
-        '          \'---,  /\n' +
-        '              ▷.◁____/")\n' +
-        '              \\   \\)  /\n' +
-        '               \\_____/\n' +
-        '                 _|_|\n';
+    function bubble(text, width) {
         width = Math.min(text.length, width || 40);
-        
         var lines = [];
         var line;
         var match = {
@@ -99,7 +85,7 @@
         
         // Bottom of bubble
         bubble += '\'' + Array(width + 3).join('-') + '\'\n';
-        return bubble + duck;
+        return bubble;
     }
 }(this));
 

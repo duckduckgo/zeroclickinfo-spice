@@ -1,25 +1,44 @@
-.zci--ducksay pre {
-    max-height: none !important;
+.zci--duck_say .duck_say__body {
+    border: 1px solid #dbdbdb;
+    padding: 0.55em 0;
+    padding-left: 0.5em;
+    margin: 0.5em 0;
+    color: #393939;
+    background-color: #eaeaea;
+    font-family: Consolas, Menlo, Monaco, monospace;
+    border-radius: 0.25em;
+    background-clip: padding-box;
 }
-.zci--ducksay .ducksay__phone,
-.zci--ducksay .ducksay__tablet {
+.zci--duck_say .duck_say__pre {
+    display: inline;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;    
+}
+
+
+.zci--duck_say .duck_say--phone,
+.zci--duck_say .duck_say--tablet {
     display: none;
 }
 
 @media (max-width: 600px) {
-    .zci--ducksay pre {
+    .zci--duck_say .duck_say--monitor {
         display: none;
     }
-    .zci--ducksay .ducksay__tablet {
+    .zci--duck_say .duck_say--tablet {
         display: block;
     }
 }
 
 @media (max-width: 450px) {
-    .zci--ducksay .ducksay__tablet {
+    .zci--duck_say .duck_say--tablet {
         display: none;
     }
-    .zci--ducksay .ducksay__phone {
+    .zci--duck_say .duck_say--phone {
         display: block;
     }
 }
+
+
