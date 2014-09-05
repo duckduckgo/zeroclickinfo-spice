@@ -34,3 +34,8 @@
 .zci--urban_dictionary .zci__aux .tile--info div.info .info__label a {
     color: #666;
 }
+
+.zci--urban_dictionary .zci__more-at__icon {
+    width: 16px;
+    height: 16px;
+}
