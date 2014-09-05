@@ -50,7 +50,7 @@
                     return {
                         name: ingredient,
                         displayName: displayName,
-                        url: '?q=' + refinedTerm.replace(/ /g,'+')
+                        url: '?q=' + encodeURIComponent(refinedTerm)
                     }
                 });
 
