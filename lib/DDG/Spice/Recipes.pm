@@ -5,7 +5,7 @@ use DDG::Spice;
 use Text::Trim;
 
 primary_example_queries 'tofu ginger recipe';
-description 'Search for Recipes';
+description 'Search for recipes';
 name 'Recipes';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Recipes.pm';
 
