@@ -8,7 +8,7 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::Bitcoin )],
     'bitcoin' => test_spice(
-        '/js/spice/bitcoin/',
+        '/js/spice/bitcoin/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Bitcoin',
     ),
@@ -35,6 +35,15 @@ ddg_spice_test(
         '/js/spice/bitcoin/cny',
         caller    => 'DDG::Spice::Bitcoin',
     ),
+    '5 btc in usd' => test_spice(
+        '/js/spice/bitcoin/usd/5',
+        caller    => 'DDG::Spice::Bitcoin',
+    ),
+    '250 dkk to btc' => test_spice(
+        '/js/spice/bitcoin/dkk/250',
+        caller    => 'DDG::Spice::Bitcoin'
+    ),
+    '5 btc to abc' => undef
 );
 
 done_testing;

@@ -18,11 +18,27 @@ spice to => 'http://blockchain.info/ticker';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
-triggers start => "bitcoin exchange in", "bitcoin in", "btc to";
+my @currencies = ("usd", "jpy", "cny", "sgd", "hkd", "cad", "nzd", "aud", "clp", "gbp", "dkk",
+    "sek", "isk", "chf", "brl", "eur", "rub", "pln", "thb", "krw", "twd");
+
+triggers start => "bitcoin exchange in";
+triggers any => "to btc", "btc to", "in btc", "btc in", "bitcoin in", "in bitcoin";
 triggers startend => "bitcoin", "bit coin", "bitcoin exchange", "bit coin exchange", "bitcoin exchange rate", "bit coin exchange rate", "btc", "bitcoin price";
 
 handle remainder => sub {
-    return $_;
+    my $query = $_;
+    my $currency = $query eq "" ? "usd" : ""; #default to usd (for queries like "bitcoin")
+    #find the currency that they want to convert with
+    for my $curr (@currencies) {
+        if (index($query, $curr) > -1){
+            $currency = $curr;
+            last;
+        }
+    }
+    #extract a value
+    $query =~ /([\d\.]+)/;
+    return ($currency, $1) if $currency;
+    return;
 };
 
 1;
