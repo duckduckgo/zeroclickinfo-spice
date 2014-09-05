@@ -15,7 +15,7 @@
                 {{/each}}
             </div>
             <a href="http://www.urbandictionary.com/define.php?term={{word}}" class="zci__more-at">
-                <img width="16" height="16" class="zci__more-at__icon" src="//icons.duckduckgo.com/ip2/www.urbandictionary.com.ico">
+                <img class="zci__more-at__icon" src="//icons.duckduckgo.com/ip2/www.urbandictionary.com.ico">
                 More at Urban Dictionary
             </a>
         </div>
@@ -26,7 +26,9 @@
         <h6 class="info  info--head">Related Words:</h6>
         {{#each infobox}}
             <div class="info">
-                <span class="info__label"><a href="http://www.urbandictionary.com/define.php?term={{label}}">{{label}}</a></span>
+                <span class="info__label">
+                    <a href="http://www.urbandictionary.com/define.php?term={{label}}">{{label}}</a>
+                </span>
                 <span class="info__value"></span>
             </div>
         {{/each}}
