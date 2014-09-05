@@ -1,4 +1,5 @@
 package DDG::Spice::Recipes;
+# ABSTRACT: Search for recipes on yummly.com
 
 use DDG::Spice;
 use Text::Trim;
