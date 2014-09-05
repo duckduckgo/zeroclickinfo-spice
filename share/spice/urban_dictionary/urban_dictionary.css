@@ -30,3 +30,7 @@
     padding-left: 0.5em;
     white-space: nowrap;
 }
+
+.zci--urban_dictionary .zci__aux .tile--info div.info .info__label a {
+    color: #666;
+}

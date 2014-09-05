@@ -22,15 +22,13 @@
             },
             templates: {
                 group: 'base',
+                detail: Spice.urban_dictionary.detail,
                 options: {
-                    content: Spice.urban_dictionary.content,
                     moreAt: true
                 }
             },
             normalize: function(item) {
-                var infoboxData = [{
-                    heading: 'Related Words:'
-                }];
+                var infoboxData = [];
 
                 for(var i = 0; i < response.tags.length; i++) {
                     infoboxData.push({
@@ -41,7 +39,7 @@
                 return {
                     definition: item.definition.replace(/(\r?\n)+/gi, ' '),
                     example: item.example.split(/\r?\n/),
-                    infoboxData: infoboxData
+                    infobox: infoboxData
                 };
             }
         });
