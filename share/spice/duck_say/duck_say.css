@@ -10,10 +10,7 @@
     background-clip: padding-box;
 }
 .zci--duck_say .duck_say__pre {
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;    
+    white-space: pre;
 }
 .zci--duck_say .duck_say__bowtie {
     color: rgb(70, 154, 40);

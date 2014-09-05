@@ -31,8 +31,8 @@
             id: 'duck_say',
             name: 'DuckSay',
             data: {
-                text: bubble(text, 65),
-                text_tablet: bubble(text, 45),
+                text: bubble(text, 60),
+                text_tablet: bubble(text, 40),
                 text_phone: bubble(text, 30)
             },
             meta: meta,
