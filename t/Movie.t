@@ -25,6 +25,14 @@ ddg_spice_test(
         '/js/spice/movie/indie%20game',
         caller    => 'DDG::Spice::Movie',
     ),
+    'actor in her' => test_spice(
+        '/js/spice/movie/her',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'synopsis of her' => test_spice(
+        '/js/spice/movie/her',
+        caller    => 'DDG::Spice::Movie',
+    ),
 );
 
 done_testing;
