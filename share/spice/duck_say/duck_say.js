@@ -22,7 +22,9 @@
                 sourceUrl: 'http://www.reddit.com' + joke.permalink
             };
         } else {
-            var text = DDG.get_query().replace('ducksay ', '');
+            var text = DDG.get_query()
+                .replace(/^ducksay /, '')
+                .replace(/^daxsays /, '');
             var moreAt = false;
             var meta = {};
         }
