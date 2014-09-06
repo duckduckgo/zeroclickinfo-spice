@@ -115,7 +115,7 @@ and (max-device-width : 599px) {
     }
 
     .zci--book .zci__img-wrap--info {
-        left: -4.8em;
+        left: -5em;
         height: 35px !important;
         line-height: 2 !important;
         top: 0.25em;
@@ -127,7 +127,7 @@ and (max-device-width : 599px) {
 
     .zci--book .rating {
         font-size: 1.65em;
-        margin-right: -1.15em;
+        margin-right: -0.8em;
     }
 
     .zci--book .zci__body {
