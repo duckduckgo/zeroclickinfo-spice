@@ -23,7 +23,7 @@
             data: api_result.books,
             meta: {
                 sourceName: "idreambooks.com", // More at ...
-                sourceUrl: api_result.books.detail_link
+                sourceUrl: api_result.books[0].detail_link
             },
 
             normalize: function(item) {
@@ -103,6 +103,7 @@
                     title: header,
                     image: item.to_read_or_not,
                     description: item.critic_review.snippet,
+                    url: item.detail_link,
                     source: item.critic_review.source,
                     recommendedBy: recommendedBy.join(", "),
                     rating: item.rating + "%"
