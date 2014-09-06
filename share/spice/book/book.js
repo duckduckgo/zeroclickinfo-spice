@@ -53,7 +53,7 @@
                     item.review_count = item.unrated_review_count;
                 }
 
-                // Get only the year of release date for header 
+                // Get only the year of release date for header
                 item.release_year = (item.release_date || "").match(/^\d{4}/);
 
                 // Filter critic reviews that have really short critic reviews.
@@ -99,7 +99,7 @@
                 // Pick a random critic review out of all the reviews returned
                 item.critic_review = item.critic_reviews[Math.floor(Math.random() * item.critic_reviews.length)];
 
-                var a = {
+                return {
                     title: header,
                     image: item.to_read_or_not,
                     description: item.critic_review.snippet,
@@ -108,7 +108,6 @@
                     recommendedBy: recommendedBy.join(", "),
                     rating: item.rating + "%"
                 };
-                return a;
             },
 
             templates: {
@@ -119,14 +118,6 @@
                 }
             }
 
-        });
-
-        Handlebars.registerHelper("Book_prettyDate", function(date) {
-            "use strict";
-
-            if(date) {
-                return DDG.getDateFromString(date);
-            }
         });
     }
 }(this));
