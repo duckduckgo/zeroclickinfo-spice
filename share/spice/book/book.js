@@ -104,7 +104,6 @@
                     image: item.to_read_or_not,
                     description: item.critic_review.snippet,
                     source: item.critic_review.source,
-                    ratingText: item.review_count + " Reviews",
                     recommendedBy: recommendedBy.join(", "),
                     rating: item.rating + "%"
                 };
