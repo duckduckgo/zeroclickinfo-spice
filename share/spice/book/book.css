@@ -68,6 +68,10 @@
     color: #0099CB;
 }
 
+.zci--book .clear {
+    clear: both;
+}
+
 .zci--book .zci__img-wrap+.zci__body {
     padding-left: 0.75em;
 }
@@ -75,4 +79,58 @@
 .zci--book .zci__img-wrap + .zci__body--info,
 .zci--book .zci__more-at--info {
     padding-bottom: 0.35em;
+}
+
+@media only screen
+and (max-device-width : 479px) {
+    .zci--book .zci__header {
+        font-size: 1.2em;
+    }
+
+    .zci--book .zci__content {
+        font-size: 0.9em;
+    }
+
+    .zci--book .zci__img-wrap--info,
+    .zci--book .rating  {
+        display: none;
+    }
+
+    .zci--book .zci__body {
+        margin-top: -0.4em;
+    }
+
+    .zci--book .description {
+        max-height: 4em;
+        overflow: hidden;
+    }
+}
+
+
+@media only screen
+and (min-device-width : 480px)
+and (max-device-width : 599px) {
+    .zci--book .zci__header {
+        font-size: 1.3em;
+    }
+
+    .zci--book .zci__img-wrap--info {
+        left: -4.8em;
+        height: 35px !important;
+        line-height: 2 !important;
+        top: 0.25em;
+    }
+
+    .zci--book .zci__img {
+        width: 35px;
+    }
+
+    .zci--book .rating {
+        font-size: 1.65em;
+        margin-right: -1.15em;
+    }
+
+    .zci--book .zci__body {
+        margin-top: -0.5em;
+    }
 }
