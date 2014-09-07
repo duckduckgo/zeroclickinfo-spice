@@ -52,9 +52,7 @@
                     var splitted = string.split(" ");
                     if(string.length < 18) {
                         for(var i = 0; i < splitted.length; i++) {
-                            var upper = splitted[i].substr(0, 1).toUpperCase();
-                            var lower = splitted[i].substr(1, splitted[i].length).toLowerCase();
-                            splitted[i] = upper + lower;
+                            splitted[i] = DDG.capitalize(splitted[i]);
                         }
 
                         return splitted.join(" ");
