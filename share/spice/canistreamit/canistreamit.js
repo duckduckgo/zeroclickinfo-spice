@@ -21,16 +21,15 @@
                 sourceUrl: api_result[0].links.shortUrl
             },
             normalize: function(item) {
-                var a = {
+                return {
                     title: api_result[0].title,
                     image: api_result[0].image,
+                    url: api_result[0].links.shortUrl,
                     actors: api_result[0].actors,
                     links: api_result[0].links,
                     affiliates: api_result[0].affiliates
 
                 };
-
-                return a;
             },
             templates: {
                 group: 'info',
