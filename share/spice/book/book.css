@@ -82,20 +82,31 @@
 }
 
 @media only screen
-and (max-device-width : 479px) {
+and (max-device-width : 599px) {
     .zci--book,
     .zci--book .cw {
-        height: 18.2em !important;
+        height: 18.15em !important;
     }
 
+    .zci--book .zci__links--info {
+        top: 13.8em;
+    }
+
+    .zci--book .zci__body {
+        margin-top: 0.22em;
+    }
+}
+
+@media only screen
+and (max-device-width : 479px) {
     .zci--book .zci__header {
         font-size: 1.2em;
         width: 10.25em;
         line-height: 1.15;
     }
 
-    .zci--book .zci__links--info {
-        top: 13.85em;
+    .zci--book .description {
+        margin-top: 0.8em;
     }
 
     .zci--book .subtitle {
@@ -107,7 +118,7 @@ and (max-device-width : 479px) {
     }
 
     .zci--book .zci__img-wrap--info {
-        left: -4.8em;
+        left: -4.58em;
         height: 30px !important;
         line-height: 2 !important;
         top: 0.65em;
@@ -115,16 +126,12 @@ and (max-device-width : 479px) {
 
     .zci--book .rating {
         font-size: 1.88em;
-        margin-right: 0.35em;
+        margin-right: 0.15em;
         margin-top: -0.85em;
     }
 
     .zci--book .zci__img {
         width: 35px;
-    }
-
-    .zci--book .zci__body {
-        margin-top: 0.22em;
     }
 
     .zci--book .description {
@@ -155,9 +162,5 @@ and (max-device-width : 599px) {
     .zci--book .rating {
         font-size: 1.65em;
         margin-right: -0.8em;
-    }
-
-    .zci--book .zci__body {
-        margin-top: -0.5em;
     }
 }
