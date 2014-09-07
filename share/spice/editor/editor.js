@@ -9,17 +9,30 @@
 
         nrj("share/spice/editor/ace.js");
 
+        // Function referenced in ace.js
         window.aceScriptLoaded = function() {
 
             var editor_id = "ace-editor";
 
             var editor = ace.edit(editor_id);
 
+            // Set theme based on DDG theme
             if ($(".dark-header").length) {
                 editor.setTheme("ace/theme/monokai");
             } else {
                 editor.setTheme("ace/theme/eclipse");
             }
+
+            // If the user changes DDG theme, change the editor theme too
+            $(".nav-menu__theme--default").click(function(e) {
+                editor.setTheme("ace/theme/eclipse");
+                e.stopPropagation();
+            });
+
+            $(".nav-menu__theme--d").click(function(e) {
+                editor.setTheme("ace/theme/monokai");
+                e.stopPropagation();
+            });
 
             editor.getSession().setMode("ace/mode/" + language);
 
