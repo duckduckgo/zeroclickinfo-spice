@@ -8,10 +8,9 @@
         </div>
         <p class="text--primary performers">
             Performers: 
-            <span class="artist">
-                {{artist}}
-            </span>
-            {{spice_print_performers performers}}
+            {{#concat performers sep="•" conj="•"}}
+                {{this}}
+            {{/concat}}
         </p>
         {{#if price}}
             <p class="text--primary price">

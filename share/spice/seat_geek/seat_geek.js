@@ -85,14 +85,12 @@
                 // Get max two performers (if available) other than
                 // the one searched for
                 function getPerformers(performers) {
-                    var chosen = [];
+                    var chosen = [artist];
                     var slug = clean_query.replace(/\s/g, "-");
-                    for(var key in performers) {
-                        if(chosen.length < 2 && performers[key].slug !== slug) {
-                            chosen.push({
-                                'name': performers[key].name
-                            });
-                        } else if(chosen.length >= 2) {
+                    for(var i = 0; i < performers.length; i++) {
+                        if(chosen.length < 3 && performers[i].slug !== slug) {
+                            chosen.push(performers[i].name);
+                        } else if(chosen.length >= 3) {
                             break;
                         }
                     }
@@ -123,20 +121,4 @@
             }
         });
     };
-
-    // Returns a string with the names of the other performers
-    Spice.registerHelper('spice_print_performers', function(performers) {
-        var string = '';
-        if(performers) {
-            for(var key in performers) {
-                if(performers[key].name) {
-                    string += ' • ' + performers[key].name;
-                }
-            }
-
-            return string;
-        }
-
-        return null;
-    });
 }(this));
