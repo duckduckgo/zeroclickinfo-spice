@@ -1,4 +1,6 @@
-function ddg_spice_recipes(res) {
+(function(env) {
+    "use strict";
+    env.ddg_spice_recipes = function (res) {
 
     var query = DDG.get_query(),
         query_encoded = DDG.get_query_encoded();
@@ -48,7 +50,7 @@ function ddg_spice_recipes(res) {
                     return {
                         name: ingredient,
                         displayName: displayName,
-                        url: '?q=' + refinedTerm.replace(/ /g,'+')
+                        url: '?q=' + encodeURIComponent(refinedTerm)
                     }
                 });
 
@@ -166,4 +168,5 @@ function ddg_spice_recipes(res) {
             }
         }
     });
-}
+};
+}(this));

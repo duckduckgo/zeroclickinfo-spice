@@ -8,7 +8,7 @@ use utf8;
 
 ddg_spice_test(
     [qw( DDG::Spice::IsItUp )],
-    'is duckduckgo.com up?' => test_spice(
+    'is duckduckgo.com up' => test_spice(
         '/js/spice/is_it_up/duckduckgo.com',
         call_type => 'include',
         caller => 'DDG::Spice::IsItUp',
@@ -18,11 +18,22 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::IsItUp',
     ),
-    'is http://duckduckgo.com online?' => test_spice(
+    'is http://duckduckgo.com online' => test_spice(
         '/js/spice/is_it_up/duckduckgo.com',
         call_type => 'include',
         caller => 'DDG::Spice::IsItUp',
     ),
+    'http://duckduckgo.com status???????????' => test_spice(
+        '/js/spice/is_it_up/duckduckgo.com',
+        call_type => 'include',
+        caller => 'DDG::Spice::IsItUp',
+    ),
+    'is http://duckduckgo.com down?' => test_spice(
+        '/js/spice/is_it_up/duckduckgo.com',
+        call_type => 'include',
+        caller => 'DDG::Spice::IsItUp',
+    ),
+    'schema.org update time' => undef,
     # unfortunately, the isitup.com api does not
     # currently support unicode or ssl
     'is føtex.dk up?' => undef,

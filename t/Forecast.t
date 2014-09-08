@@ -136,6 +136,7 @@ ddg_spice_test(
     'weather underground.com' => undef,
     'color temperature' => undef,
     'ising model critical temperature' => undef,
+    'weather map' => undef,
 
 # Disabling since I made the trigger a startend. (caine)
 #    'Philadelphia weather this week' => test_spice(
