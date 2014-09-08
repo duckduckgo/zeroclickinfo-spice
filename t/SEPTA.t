@@ -44,6 +44,7 @@ ddg_spice_test(
             caller => 'DDG::Spice::SEPTA'
         ),
         'next train from a station that doesnt exist to another' => undef,
+        'septa blahblah from villanova to paoli' => undef,
         'septa rail map' => undef
     )
 );

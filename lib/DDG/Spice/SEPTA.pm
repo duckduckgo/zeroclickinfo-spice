@@ -67,7 +67,7 @@ sub normalize_stop {
 }
 
 handle remainder => sub {
-    return unless /(?:from |to )?(.+) (to|from) (.+)/;
+    return unless /^(?:from |to )?(.+) (to|from) (.+)$/;
     my $curr = normalize_stop($1);
     my $tofrom = $2;
     my $dest = normalize_stop($3);
