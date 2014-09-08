@@ -1,7 +1,7 @@
 {
    "topic" : [
+      "special interest",
       "finance",
-      "other / special interest",
       "productivity"
    ],
    "perl_module" : "DDG::Spice::Airlines",

@@ -1,7 +1,7 @@
 {
    "topic" : [
-      "music",
-      "language"
+      "language",
+      "music"
    ],
    "perl_module" : "DDG::Spice::Thesaurus",
    "icon_url" : null,

@@ -1,8 +1,8 @@
 {
    "topic" : [
-      "productivity",
       "movies & tv",
-      "social networking"
+      "social networking",
+      "productivity"
    ],
    "perl_module" : "DDG::Spice::Guidebox::Getid",
    "icon_url" : "/i/www.guidebox.com.ico",

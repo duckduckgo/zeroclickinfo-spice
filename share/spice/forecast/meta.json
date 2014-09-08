@@ -1,7 +1,7 @@
 {
    "topic" : [
-      "productivity",
-      "other / special interest"
+      "special interest",
+      "productivity"
    ],
    "perl_module" : "DDG::Spice::Forecast",
    "icon_url" : null,

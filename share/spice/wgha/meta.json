@@ -1,7 +1,7 @@
 {
    "topic" : [
       "movies & tv",
-      "other / special interest"
+      "special interest"
    ],
    "perl_module" : "DDG::Spice::WGHA",
    "icon_url" : null,

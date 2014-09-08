@@ -1,7 +1,7 @@
 {
    "topic" : [
-      "other / special interest",
-      "social networking"
+      "social networking",
+      "special interest"
    ],
    "perl_module" : "DDG::Spice::Gravatar",
    "icon_url" : null,

@@ -1,7 +1,7 @@
 {
    "topic" : [
-      "productivity",
-      "language"
+      "language",
+      "productivity"
    ],
    "perl_module" : "DDG::Spice::DetectLang",
    "icon_url" : "/i/detectlanguage.com.ico",

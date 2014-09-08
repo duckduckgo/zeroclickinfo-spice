@@ -1,8 +1,7 @@
 {
    "topic" : [
       "math & science",
-      "other / special interest",
-      "other / special interest"
+      "special interest"
    ],
    "perl_module" : "DDG::Spice::PeopleInSpace",
    "icon_url" : null,

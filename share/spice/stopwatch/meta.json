@@ -1,8 +1,8 @@
 {
    "topic" : [
-      "productivity",
+      "language",
       "math & science",
-      "language"
+      "productivity"
    ],
    "perl_module" : "DDG::Spice::Stopwatch",
    "icon_url" : null,
