@@ -19,8 +19,7 @@ spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{
 # It's important that 'movie info' precede 'movie' so that the handler
 # encounters it first and removes both words, rather than encountering 'movie'
 # first in the list, removing it, and leaving the word 'info.'
-my @triggers = ( 'movie info', 'movie', 'film', 'rt', 'rotten tomatoes', 'rating', 'ratings', 'rotten' );
-
+my @triggers = ( 'movie info', 'rotten tomatoes');
 triggers startend => @triggers;
 
 handle query_lc => sub {
