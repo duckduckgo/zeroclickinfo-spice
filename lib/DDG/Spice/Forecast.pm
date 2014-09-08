@@ -57,7 +57,7 @@ handle query_lc => sub {
     return if /\b(football|golf|soccer|tennis|basketball|hockey|nba|ncaa|nfl|nhl)\b/;
 
     # has other terms
-    return if (/\b((^site\:)|http|(\.(org|com|net))|underground|map)\b/);
+    return if (/\b((^site\:)|http|(\.(org|com|net))|underground|map|app)s?\b/);
 
     # color temperature && critical temperature && operating temperature
     if (/\btemp(era?ture)?\b/) {
