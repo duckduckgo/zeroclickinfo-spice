@@ -29,7 +29,7 @@ handle query_lc => sub {
         exists $ingredients{$word} ? $ingredient_count++ : $non_ingredient_count++;
     };
 
-    return $_ if $ingredient_count > 0 && $non_ingredient_count < $ingredient_count;
+    return $_ if $ingredient_count > 1 && $non_ingredient_count < $ingredient_count;
     return;
 };
 
