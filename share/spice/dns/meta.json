@@ -1,5 +1,7 @@
 {
-   "topic" : [],
+   "topic" : [
+      "special interest"
+   ],
    "perl_module" : "DDG::Spice::DNS",
    "icon_url" : null,
    "status" : "live",

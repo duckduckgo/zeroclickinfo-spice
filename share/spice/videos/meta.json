@@ -1,7 +1,7 @@
 {
    "topic" : [
-      "productivity",
-      "movies & tv"
+      "movies & tv",
+      "productivity"
    ],
    "perl_module" : "DDG::Spice::Videos",
    "icon_url" : null,

@@ -1,7 +1,7 @@
 {
    "topic" : [
-      "productivity",
-      "social networking"
+      "social networking",
+      "productivity"
    ],
    "perl_module" : "DDG::Spice::GooglePlus",
    "icon_url" : null,

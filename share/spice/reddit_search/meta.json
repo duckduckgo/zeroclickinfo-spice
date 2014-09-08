@@ -1,7 +1,7 @@
 {
    "topic" : [
-      "other / special interest",
-      "social networking"
+      "social networking",
+      "special interest"
    ],
    "perl_module" : "DDG::Spice::RedditSearch",
    "icon_url" : "/i/www.reddit.com.ico",
