@@ -18,7 +18,7 @@ spice to => 'https://api.github.com/legacy/repos/search/$1?callback={{callback}}
 
 handle query_lc => sub {
     s/^github\s+|\s+github$//;
-    return $_ unless /^jobs|jobs$/;
+    return $_ unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
     return;
 };
 

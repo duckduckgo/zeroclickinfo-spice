@@ -1,0 +1,25 @@
+.zci--github_status .ghstatus--header {
+    font-size: 1.5em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.zci--github_status .ghstatus--good {
+    color: #519444;
+}
+
+.zci--github_status .ghstatus--minor {
+    color: #eea43e;
+}
+
+.zci--github_status .ghstatus--major {
+    color: #e34c2d;
+}
+
+.zci--github_status .ghstatus--message {
+    font-size: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0.75em;
+}
