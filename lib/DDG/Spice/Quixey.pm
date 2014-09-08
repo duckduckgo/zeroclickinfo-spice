@@ -41,6 +41,8 @@ my %platform_ids = (
 
 my @triggers = keys %platform_ids;
 my @extraTriggers = qw(quixey app apps);
+my $skip_re = qr/(?:release date)/i; # Things which indicate different intent.
+
 push(@triggers, @extraTriggers);
 
 triggers any => @triggers;
@@ -56,6 +58,8 @@ handle query_parts => sub {
 	my $full_query = join(" ", @_);
 	my $restriction;
 	my $max_price = 999999;
+
+	return if ($full_query =~ $skip_re);
 
 	# set price to $0 if "free" is in the query
 	$max_price = 0 if ($full_query =~ s/\bfree\b//ig);
