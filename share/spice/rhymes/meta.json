@@ -1,8 +1,8 @@
 {
    "topic" : [
-      "language",
+      "productivity",
       "music",
-      "productivity"
+      "language"
    ],
    "perl_module" : "DDG::Spice::Rhymes",
    "icon_url" : "/i/rhymebrain.com.ico",

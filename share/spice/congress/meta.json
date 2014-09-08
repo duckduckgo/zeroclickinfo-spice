@@ -1,6 +1,7 @@
 {
    "topic" : [
-      "special interest"
+      "other / special interest",
+      "other / special interest"
    ],
    "perl_module" : "DDG::Spice::Congress",
    "icon_url" : "/i/topics.nytimes.com.ico",

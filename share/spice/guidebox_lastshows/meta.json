@@ -1,7 +1,5 @@
 {
-   "topic" : [
-      "special interest"
-   ],
+   "topic" : [],
    "perl_module" : "DDG::Spice::Guidebox::Lastshows",
    "icon_url" : null,
    "status" : "live",
