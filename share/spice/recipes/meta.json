@@ -1,7 +1,5 @@
 {
-   "topic" : [
-      "special interest"
-   ],
+   "topic" : [],
    "perl_module" : "DDG::Spice::Recipes",
    "icon_url" : null,
    "status" : "live",

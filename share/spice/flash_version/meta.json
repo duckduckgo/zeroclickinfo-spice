@@ -1,7 +1,7 @@
 {
    "topic" : [
-      "code & hacking",
-      "productivity"
+      "productivity",
+      "code & hacking"
    ],
    "perl_module" : "DDG::Spice::FlashVersion",
    "icon_url" : null,

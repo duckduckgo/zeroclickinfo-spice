@@ -1,7 +1,7 @@
 {
    "topic" : [
-      "code & hacking",
-      "productivity"
+      "productivity",
+      "code & hacking"
    ],
    "perl_module" : "DDG::Spice::AlternativeTo",
    "icon_url" : "/i/alternativeto.net.ico",

@@ -1,7 +1,7 @@
 {
    "topic" : [
-      "code & hacking",
-      "special interest"
+      "other / special interest",
+      "code & hacking"
    ],
    "perl_module" : "DDG::Spice::IsItUp",
    "icon_url" : "/i/isitup.org.ico",
