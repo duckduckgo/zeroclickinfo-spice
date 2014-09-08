@@ -1,0 +1,23 @@
+{
+   "topic" : [
+      "movies & tv",
+      "other / special interest"
+   ],
+   "perl_module" : "DDG::Spice::WGHA",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "WGHA",
+   "example_query" : "was geht in frankfurt",
+   "other_queries" : [
+      "wasgeht in berlin"
+   ],
+   "description" : "Events in Germany",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "wgha",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/WGHA.pm",
+      "t/WGHA.t"
+   ]
+}

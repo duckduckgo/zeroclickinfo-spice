@@ -1,0 +1,22 @@
+{
+   "topic" : [
+      "productivity"
+   ],
+   "perl_module" : "DDG::Spice::Snow",
+   "icon_url" : "/icon16.png",
+   "status" : "live",
+   "name" : "Snow",
+   "example_query" : "is it snowing?",
+   "other_queries" : [
+      "is it snowing in New York City?"
+   ],
+   "description" : "Check weather conditions at your location",
+   "repo" : "spice",
+   "src_name" : "Is it snowing yet?",
+   "id" : "snow",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Snow.pm",
+      "t/Snow.t"
+   ]
+}

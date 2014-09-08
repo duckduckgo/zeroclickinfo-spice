@@ -1,0 +1,24 @@
+{
+   "topic" : [
+      "finance",
+      "other / special interest",
+      "productivity"
+   ],
+   "perl_module" : "DDG::Spice::Airlines",
+   "icon_url" : "/i/flightaware.com.ico",
+   "status" : "live",
+   "name" : "Airlines",
+   "example_query" : "AA 102",
+   "other_queries" : [
+      "Delta 3684"
+   ],
+   "description" : "Flight information",
+   "repo" : "spice",
+   "src_name" : "FlightAware",
+   "id" : "airlines",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Airlines.pm",
+      "t/Airlines.t"
+   ]
+}

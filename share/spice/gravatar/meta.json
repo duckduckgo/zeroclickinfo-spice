@@ -1,0 +1,23 @@
+{
+   "topic" : [
+      "other / special interest",
+      "social networking"
+   ],
+   "perl_module" : "DDG::Spice::Gravatar",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "Gravatar",
+   "example_query" : "gravatar gravatar@duckduckgo.com",
+   "other_queries" : [
+      "gravatar duckduckhack"
+   ],
+   "description" : "Gravatar profile",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "gravatar",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Gravatar.pm",
+      "t/Gravatar.t"
+   ]
+}

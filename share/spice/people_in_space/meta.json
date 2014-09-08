@@ -1,0 +1,24 @@
+{
+   "topic" : [
+      "math & science",
+      "other / special interest",
+      "other / special interest"
+   ],
+   "perl_module" : "DDG::Spice::PeopleInSpace",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "PeopleInSpace",
+   "example_query" : "people in space",
+   "other_queries" : [
+      "number of humans in orbit right now"
+   ],
+   "description" : "Number of humans currently in space",
+   "repo" : "spice",
+   "src_name" : "www.howmanypeopleareinspacerightnow.com",
+   "id" : "people_in_space",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/PeopleInSpace.pm",
+      "t/PeopleInSpace.t"
+   ]
+}

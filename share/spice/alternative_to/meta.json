@@ -1,0 +1,24 @@
+{
+   "topic" : [
+      "productivity",
+      "code & hacking"
+   ],
+   "perl_module" : "DDG::Spice::AlternativeTo",
+   "icon_url" : "/i/alternativeto.net.ico",
+   "status" : "live",
+   "name" : "AlternativeTo",
+   "example_query" : "alternative to notepad",
+   "other_queries" : [
+      "alternative to photoshop for mac",
+      "free alternative to spotify for windows"
+   ],
+   "description" : "Find software alternatives",
+   "repo" : "spice",
+   "src_name" : "AlternativeTo",
+   "id" : "alternative_to",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/AlternativeTo.pm",
+      "t/AlternativeTo.t"
+   ]
+}

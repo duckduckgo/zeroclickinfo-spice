@@ -1,0 +1,24 @@
+{
+   "topic" : [
+      "music",
+      "language"
+   ],
+   "perl_module" : "DDG::Spice::Thesaurus",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "Thesaurus",
+   "example_query" : "synonyms for person",
+   "other_queries" : [
+      "similar words to miniature",
+      "thesaurus awesome"
+   ],
+   "description" : "Related words",
+   "repo" : "spice",
+   "src_name" : "Big Huge Labs",
+   "id" : "thesaurus",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Thesaurus.pm",
+      "t/Thesaurus.t"
+   ]
+}

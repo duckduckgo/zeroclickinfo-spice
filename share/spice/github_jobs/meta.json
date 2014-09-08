@@ -1,0 +1,23 @@
+{
+   "topic" : [
+      "code & hacking",
+      "other / special interest"
+   ],
+   "perl_module" : "DDG::Spice::GithubJobs",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "GithubJobs",
+   "example_query" : "javascript jobs",
+   "other_queries" : [
+      "perl jobs in san francisco"
+   ],
+   "description" : "Github jobs",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "github_jobs",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/GithubJobs.pm",
+      "t/GithubJobs.t"
+   ]
+}

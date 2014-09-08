@@ -1,0 +1,20 @@
+{
+   "topic" : [
+      "code & hacking",
+      "code & hacking"
+   ],
+   "perl_module" : "DDG::Spice::Github",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "Github",
+   "example_query" : "github zeroclickinfo",
+   "description" : "Github info",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "github",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Github.pm",
+      "t/Github.t"
+   ]
+}

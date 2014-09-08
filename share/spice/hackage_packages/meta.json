@@ -1,0 +1,19 @@
+{
+   "topic" : [
+      "code & hacking"
+   ],
+   "perl_module" : "DDG::Spice::Hackage::Packages",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "Hackage",
+   "example_query" : "hackage containers",
+   "description" : "Haskell packages",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "hackage_packages",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Hackage/Packages.pm",
+      "t/Hackage.t"
+   ]
+}

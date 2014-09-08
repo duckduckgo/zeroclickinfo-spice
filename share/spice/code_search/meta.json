@@ -1,0 +1,20 @@
+{
+   "topic" : [
+      "code & hacking",
+      "code & hacking"
+   ],
+   "perl_module" : "DDG::Spice::CodeSearch",
+   "icon_url" : "/i/searchco.de.ico",
+   "status" : "live",
+   "name" : "CodeSearch",
+   "example_query" : "javascript console.log example",
+   "description" : "Code search",
+   "repo" : "spice",
+   "src_name" : "search[code]",
+   "id" : "code_search",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/CodeSearch.pm",
+      "t/CodeSearch.t"
+   ]
+}

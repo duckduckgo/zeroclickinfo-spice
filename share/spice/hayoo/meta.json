@@ -1,0 +1,20 @@
+{
+   "topic" : [
+      "code & hacking",
+      "code & hacking"
+   ],
+   "perl_module" : "DDG::Spice::Hayoo",
+   "icon_url" : "/i/hackage.haskell.org.ico",
+   "status" : "live",
+   "name" : "Hayoo",
+   "example_query" : "hayoo Prelude.map",
+   "description" : "Search Haskell APIs",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "hayoo",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Hayoo.pm",
+      "t/Hayoo.t"
+   ]
+}

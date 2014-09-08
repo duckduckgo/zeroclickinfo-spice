@@ -1,0 +1,22 @@
+{
+   "topic" : [
+      "social networking"
+   ],
+   "perl_module" : "DDG::Spice::ExpandURL",
+   "icon_url" : "/i/longurl.org.ico",
+   "status" : "live",
+   "name" : "ExpandURL",
+   "example_query" : "http://bit.ly/a",
+   "other_queries" : [
+      "expand bit.ly/lolcatz"
+   ],
+   "description" : "Expand shortened URLs using LongURL.org",
+   "repo" : "spice",
+   "src_name" : "LongURL",
+   "id" : "expand_url",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/ExpandURL.pm",
+      "t/ExpandURL.t"
+   ]
+}

@@ -1,0 +1,20 @@
+{
+   "topic" : [
+      "code & hacking",
+      "code & hacking"
+   ],
+   "perl_module" : "DDG::Spice::MetaCPAN",
+   "icon_url" : "/i/metacpan.org.ico",
+   "status" : "live",
+   "name" : "MetaCPAN",
+   "example_query" : "metacpan WWW::DuckDuckGo",
+   "description" : "Searches CPAN modules",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "meta_cpan",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/MetaCPAN.pm",
+      "t/MetaCPAN.t"
+   ]
+}

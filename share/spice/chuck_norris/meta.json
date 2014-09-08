@@ -1,0 +1,22 @@
+{
+   "topic" : [
+      "other / special interest"
+   ],
+   "perl_module" : "DDG::Spice::ChuckNorris",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "ChuckNorris",
+   "example_query" : "chuck norris facts",
+   "other_queries" : [
+      "chuck norris jokes"
+   ],
+   "description" : "Chuck Norris facts",
+   "repo" : "spice",
+   "src_name" : "Chuck Norris Database",
+   "id" : "chuck_norris",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/ChuckNorris.pm",
+      "t/ChuckNorris.t"
+   ]
+}
