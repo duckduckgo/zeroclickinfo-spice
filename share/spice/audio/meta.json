@@ -1,0 +1,16 @@
+{
+   "topic" : [],
+   "perl_module" : "DDG::Spice::Dictionary::Audio",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "Dictionary",
+   "description" : null,
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "audio",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Dictionary/Audio.pm",
+      "t/Dictionary.t"
+   ]
+}

@@ -1,0 +1,23 @@
+{
+   "topic" : [
+      "math & science"
+   ],
+   "perl_module" : "DDG::Spice::Plos",
+   "icon_url" : "http://www.plosone.org/images/favicon.ico",
+   "status" : "live",
+   "name" : "Plos",
+   "example_query" : "plos dinosaurs",
+   "other_queries" : [
+      "plos dinosaurs title:metabolism",
+      "plos echinoderm evolution"
+   ],
+   "description" : "Search research articles of PLOS journals",
+   "repo" : "spice",
+   "src_name" : "PLOS",
+   "id" : "plos",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Plos.pm",
+      "t/Plos.t"
+   ]
+}

@@ -1,0 +1,23 @@
+{
+   "topic" : [
+      "food & drink"
+   ],
+   "perl_module" : "DDG::Spice::Drinks",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "Drinks",
+   "example_query" : "how to mix a tom collins",
+   "other_queries" : [
+      "mixing 007",
+      "how to make a 1.21 gigawatts"
+   ],
+   "description" : "Bartending info",
+   "repo" : "spice",
+   "src_name" : "Drink Project",
+   "id" : "drinks",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Drinks.pm",
+      "t/Drinks.t"
+   ]
+}

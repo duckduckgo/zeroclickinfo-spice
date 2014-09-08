@@ -1,0 +1,23 @@
+{
+   "topic" : [
+      "finance"
+   ],
+   "perl_module" : "DDG::Spice::BitcoinBlock",
+   "icon_url" : "https://www.biteasy.com/favicon.ico",
+   "status" : "live",
+   "name" : "BitcoinBlock",
+   "example_query" : "000000000000000000935d5053d80266447a6cc180e488bbb85675ca61cddfe7",
+   "other_queries" : [
+      "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
+      "000000000000000040cd080615718eb68f00a0138706e7afd4068f3e08d4ca20"
+   ],
+   "description" : "Display information about a Bitcoin block",
+   "repo" : "spice",
+   "src_name" : "https://api.biteasy.com",
+   "id" : "bitcoin_block",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/BitcoinBlock.pm",
+      "t/BitcoinBlock.t"
+   ]
+}

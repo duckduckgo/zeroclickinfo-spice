@@ -1,0 +1,20 @@
+{
+   "topic" : [
+      "code & hacking",
+      "social networking"
+   ],
+   "perl_module" : "DDG::Spice::HackerNews",
+   "icon_url" : "/i/www.hnsearch.com.ico",
+   "status" : "live",
+   "name" : "HackerNews",
+   "example_query" : "hn postgresql",
+   "description" : "Search the Hacker News database for related stories/comments",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "hacker_news",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/HackerNews.pm",
+      "t/HackerNews.t"
+   ]
+}

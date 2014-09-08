@@ -1,0 +1,23 @@
+{
+   "topic" : [
+      "other / special interest"
+   ],
+   "perl_module" : "DDG::Spice::UrbanDictionary",
+   "icon_url" : "/i/urbandictionary.com.ico",
+   "status" : "live",
+   "name" : "UrbanDictionary",
+   "example_query" : "urban dictionary ROTFL",
+   "other_queries" : [
+      "ud OMG",
+      "ud ASD"
+   ],
+   "description" : "Lookup UrbanDictionary definitions",
+   "repo" : "spice",
+   "src_name" : "UrbanDictionary",
+   "id" : "urban_dictionary",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/UrbanDictionary.pm",
+      "t/UrbanDictionary.t"
+   ]
+}

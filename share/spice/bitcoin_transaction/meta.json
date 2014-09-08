@@ -1,0 +1,23 @@
+{
+   "topic" : [
+      "finance"
+   ],
+   "perl_module" : "DDG::Spice::BitcoinTransaction",
+   "icon_url" : "https://www.biteasy.com/favicon.ico",
+   "status" : "live",
+   "name" : "BitcoinTransaction",
+   "example_query" : "0e40627940d835d7154dcce33d6755f7ec40c7cc9e88d86291a971567bcd7ea7",
+   "other_queries" : [
+      "b1956e97661f91ab020f97dff96b8043602dcbdc23d0825f790b521221bef1f5",
+      "b6f952bcb5e0f2da3726f7ecc1101afcc18248229ea57abcca7e2542f323ae7d"
+   ],
+   "description" : "Display information about a Bitcoin Transaction",
+   "repo" : "spice",
+   "src_name" : "https://api.biteasy.com",
+   "id" : "bitcoin_transaction",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/BitcoinTransaction.pm",
+      "t/BitcoinTransaction.t"
+   ]
+}

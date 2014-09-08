@@ -1,0 +1,26 @@
+{
+   "topic" : [
+      "movies & tv",
+      "music"
+   ],
+   "perl_module" : "DDG::Spice::Lastfm::Artist",
+   "icon_url" : "/i/www.last.fm.ico",
+   "status" : "live",
+   "name" : "Lastfm",
+   "example_query" : "ben folds five artist",
+   "other_queries" : [
+      "kanye west rapper",
+      "bands similar to incubus",
+      "weezer band",
+      "musicians similar to lady gaga"
+   ],
+   "description" : "Musician information",
+   "repo" : "spice",
+   "src_name" : "Last.fm",
+   "id" : "lastfm_artist",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Lastfm/Artist.pm",
+      "t/Lastfm.t"
+   ]
+}

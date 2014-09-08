@@ -1,0 +1,16 @@
+{
+   "topic" : [],
+   "perl_module" : "DDG::Spice::Xkcd::Latest",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "Xkcd",
+   "description" : null,
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "xkcd",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Xkcd/Latest.pm",
+      "t/Xkcd.t"
+   ]
+}

@@ -1,0 +1,23 @@
+{
+   "topic" : [
+      "language",
+      "productivity"
+   ],
+   "perl_module" : "DDG::Spice::RandWord",
+   "icon_url" : "/i/wordnik.com.ico",
+   "status" : "live",
+   "name" : "RandWord",
+   "example_query" : "random word",
+   "other_queries" : [
+      "random word 5-10"
+   ],
+   "description" : "Generates a random word",
+   "repo" : "spice",
+   "src_name" : "WordNik",
+   "id" : "rand_word",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/RandWord.pm",
+      "t/RandWord.t"
+   ]
+}

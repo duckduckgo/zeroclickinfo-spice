@@ -1,0 +1,20 @@
+{
+   "topic" : [],
+   "perl_module" : "DDG::Spice::DNS",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "DNS",
+   "example_query" : "MX records duckduckgo.com",
+   "other_queries" : [
+      "dns records duckduckgo.com"
+   ],
+   "description" : "IP address of domain",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "dns",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/DNS.pm",
+      "t/DNS.t"
+   ]
+}

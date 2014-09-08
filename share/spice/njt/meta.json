@@ -1,0 +1,22 @@
+{
+   "topic" : [
+      "productivity"
+   ],
+   "perl_module" : "DDG::Spice::NJT",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "NJT",
+   "example_query" : "next train from Metropark to New York Penn",
+   "other_queries" : [
+      "train times to Trenton from Secaucus"
+   ],
+   "description" : "Lookup the next NJ Transit train going your way",
+   "repo" : "spice",
+   "src_name" : "NJT",
+   "id" : "njt",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/NJT.pm",
+      "t/NJT.t"
+   ]
+}

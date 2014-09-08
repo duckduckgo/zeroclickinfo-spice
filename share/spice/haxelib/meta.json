@@ -1,0 +1,19 @@
+{
+   "topic" : [
+      "code & hacking"
+   ],
+   "perl_module" : "DDG::Spice::Haxelib",
+   "icon_url" : "/i/www.haxe.org.ico",
+   "status" : "live",
+   "name" : "Haxelib",
+   "example_query" : "haxelib openfl",
+   "description" : "Lookup packages from the Haxe libraries",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "haxelib",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Haxelib.pm",
+      "t/Haxelib.t"
+   ]
+}

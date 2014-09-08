@@ -1,0 +1,23 @@
+{
+   "topic" : [
+      "productivity"
+   ],
+   "perl_module" : "DDG::Spice::News",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "News",
+   "example_query" : "duckduckgo news",
+   "other_queries" : [
+      "obama news",
+      "government shutdown news"
+   ],
+   "description" : "Shows the current news about a topic.",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "news",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/News.pm",
+      "t/News.t"
+   ]
+}

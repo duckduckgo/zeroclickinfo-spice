@@ -1,0 +1,20 @@
+{
+   "topic" : [
+      "other / special interest",
+      "social networking"
+   ],
+   "perl_module" : "DDG::Spice::RedditSearch",
+   "icon_url" : "/i/www.reddit.com.ico",
+   "status" : "live",
+   "name" : "RedditSearch",
+   "example_query" : "reddit baking",
+   "description" : "Search Reddit posts",
+   "repo" : "spice",
+   "src_name" : "Reddit",
+   "id" : "reddit_search",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/RedditSearch.pm",
+      "t/RedditSearch.t"
+   ]
+}

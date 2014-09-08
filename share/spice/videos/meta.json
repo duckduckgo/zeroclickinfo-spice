@@ -1,0 +1,24 @@
+{
+   "topic" : [
+      "productivity",
+      "movies & tv"
+   ],
+   "perl_module" : "DDG::Spice::Videos",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "Videos",
+   "example_query" : "ted education video",
+   "other_queries" : [
+      "wong fu videos",
+      "coffee videos"
+   ],
+   "description" : "Shows videos from around the web.",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "videos",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/Videos.pm",
+      "t/Videos.t"
+   ]
+}

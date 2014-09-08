@@ -1,0 +1,19 @@
+{
+   "topic" : [
+      "code & hacking"
+   ],
+   "perl_module" : "DDG::Spice::RubyGems",
+   "icon_url" : null,
+   "status" : "live",
+   "name" : "RubyGems",
+   "example_query" : "rubygems cucumber",
+   "description" : "Returns a list of matching ruby packages in rubygems.org",
+   "repo" : "spice",
+   "src_name" : null,
+   "id" : "ruby_gems",
+   "dev_milestone" : "live",
+   "code" : [
+      "lib/DDG/Spice/RubyGems.pm",
+      "t/RubyGems.t"
+   ]
+}
