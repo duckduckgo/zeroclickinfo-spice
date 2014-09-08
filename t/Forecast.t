@@ -137,6 +137,9 @@ ddg_spice_test(
     'color temperature' => undef,
     'ising model critical temperature' => undef,
     'weather map' => undef,
+    'weather maps' => undef,
+    'weather app' => undef,
+    'weather apps' => undef,
 
 # Disabling since I made the trigger a startend. (caine)
 #    'Philadelphia weather this week' => test_spice(
