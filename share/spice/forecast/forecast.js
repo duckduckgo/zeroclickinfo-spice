@@ -248,7 +248,6 @@ function ddg_spice_forecast(r) {
     spiceData = [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]];
   }
 
-  var other_unit = unit_labels[units].temperature === 'F' ? 'C' : 'F';
   var altMeta = '<a id="fe_temp_switch"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a>';
 
   // Render/Display
@@ -293,12 +292,23 @@ function ddg_spice_forecast(r) {
       $('#fe_celsius').removeClass('gray').addClass('bold');
       $('#fe_fahrenheit').removeClass('bold').addClass('gray');
     }
+    set_preferred_unit(new_unit);
   }
 
-  updateTempSwitch(unit_labels[units].temperature);
-
   //when we press the small button, switch the temperature units
-  $('#fe_temp_switch').click(function(){
+  $('#fe_temp_switch').click(function(e){
+    var clicked_unit;
+    if ($(e.target).attr('id').search(/celsius/) >= 0) {
+      clicked_unit = 'C';
+    } else if ($(e.target).attr('id').search(/fahrenheit/) >= 0) {
+      clicked_unit = 'F';
+    }
+    var current_unit;
+    if ($('#fe_celsius').hasClass('bold')) {
+      current_unit = 'C';
+    } else if ($('#fe_fahrenheit').hasClass('bold')) {
+      current_unit = 'F';
+    }
     //initialize the temperatures with the API data
     var temps = {
       current: r.currently.temperature,
@@ -309,12 +319,12 @@ function ddg_spice_forecast(r) {
     };
 
     //if they want the units that aren't by the API, calculate the new temps
-    if (other_unit !== unit_labels[units].temperature) {
-      temps.current = convertTemp(other_unit, temps.current);
-      temps.feelslike = convertTemp(other_unit, temps.feelslike);
+    if (clicked_unit !== unit_labels[units].temperature) {
+      temps.current = convertTemp(clicked_unit, temps.current);
+      temps.feelslike = convertTemp(clicked_unit, temps.feelslike);
       temps.daily = $.map(temps.daily, function(e){
-        var tempMin = convertTemp(other_unit, e.tempMin),
-            tempMax = convertTemp(other_unit, e.tempMax);
+        var tempMin = convertTemp(clicked_unit, e.tempMin),
+            tempMax = convertTemp(clicked_unit, e.tempMax);
         return {'tempMin': tempMin, 'tempMax': tempMax};
       });
     }
@@ -340,7 +350,33 @@ function ddg_spice_forecast(r) {
       });
     }
 
-    updateTempSwitch(other_unit);
-    other_unit = (other_unit === 'F') ? 'C' : 'F';
+    updateTempSwitch(clicked_unit);
   });
+
+  // Show the user's preferred temperature scale.
+  var ddg_forecast_preferred_unit_key = '_DDG_forecast_preferred_unit';
+  // Taken from
+  //   http://diveintohtml5.info/storage.html
+  var supports_html5_storage = function() {
+    'use strict';
+    try {
+      return 'localStorage' in window && window['localStorage'] !== null;
+    } catch (e) {
+      return false;
+    }
+  };
+  var set_preferred_unit = function(unit) {
+    'use strict';
+    if (supports_html5_storage()) {
+      localStorage[ddg_forecast_preferred_unit_key] = unit;
+    }
+  };
+  if (supports_html5_storage() && typeof(localStorage[ddg_forecast_preferred_unit_key]) === 'undefined') {
+    set_preferred_unit(unit_labels[units].temperature);
+  }
+  if (supports_html5_storage()) {
+    $('#fe_' + ((localStorage[ddg_forecast_preferred_unit_key] === 'F') ? 'fahrenheit' : 'celsius')).click();
+  } else {
+    $('#fe_' + ((unit_labels[units].temperature === 'F') ? 'fahrenheit' : 'celsius')).click();
+  }
 }
