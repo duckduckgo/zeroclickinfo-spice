@@ -1,10 +1,9 @@
 .zci--duck_say .duck_say__body {
-    border: 1px solid #dbdbdb;
+    border: 1px solid rgba(150,150,150,.3);
     padding: 0.55em 0;
     padding-left: 0.5em;
     margin: 0.5em 0;
-    color: #393939;
-    background-color: #eaeaea;
+    background-color: rgba(150,150,150,.15);
     font-family: Consolas, Menlo, Monaco, monospace;
     border-radius: 0.25em;
     background-clip: padding-box;
