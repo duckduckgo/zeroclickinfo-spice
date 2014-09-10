@@ -1,29 +1,40 @@
-<h5>
-    {{#if name.length}}
-        {{{name}}}
-    {{else}}
-        {{{ndc11}}}
-    {{/if}}
-</h5>
-
 <img src="{{imageUrl}}" alt="Image for NDC: {{{ndc11}}}"/>
 
-<div>
-    <strong>Labeler:</strong> {{{labeler}}}
-</div>
+<h5>Labeler</h5>
 
-{{#if name.length}}
-    <div>
-        <strong>NDC-11:</strong> {{{ndc11}}}
-    </div>
+<p>
+    {{{labeler}}}
+</p>
+
+{{#if active}}
+    <h5>Active Ingredients</h5>
+
+    <p>
+        {{active}}
+    </p>
+{{/if}}
+
+{{#if inactive}}
+    <h5>Inactive Ingredients</h5>
+
+    <p>
+        {{inactive}}
+    </p>
 {{/if}}
 
 {{#if splSetId}}
-    <div>
-        <strong>Product Labelling and Prescribing Information:</strong> <a href="https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid={{{splSetId}}}" target="_blank">{{{splSetId}}}</a>
-    </div>
+    <h5>Product Labelling and Prescribing Information</h5>
+    <p>
+        <a href="https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid={{{splSetId}}}" target="_blank">More information for this drug is available at DailyMed.</a>
+    </p>
 {{/if}}
 
-<div>
-    <strong>Attribution:</strong> {{{attribution}}}
-</div>
+<h5>Attribution</h5>
+
+<p>
+    {{{attribution}}}
+</p>
+
+<p>
+    Images supplied by the National Library of Medicine (NLM) Office of High Performance Computing and Communications (OHPCC) have been supported by the American Recovery and Reinvestment Act of 2009 (ARRA) and through NIH intramural funding approved by the NLM Board of Scientific Counselors.
+</p>

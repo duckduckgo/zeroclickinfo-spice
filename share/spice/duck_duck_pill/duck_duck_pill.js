@@ -1,5 +1,24 @@
 (function (env) {
     "use strict";
+
+    // Concatenate Ingredients
+    function concatIngredients(ingredients) {
+        var concatted = '';
+
+        // Protect against the chance ingredients aren't part of the API result
+        if (ingredients !== null && (typeof ingredients !== 'undefined')) {
+            for (var i = 0; i < ingredients.length; i++) {
+                concatted += ingredients[i] + ", ";
+            }
+
+            if (concatted.length > 0) {
+                concatted = concatted.substring(0, concatted.length - 2);
+            }
+        }
+
+        return concatted;
+    }
+
     env.ddg_spice_duck_duck_pill = function(api_result){
 
         if (!api_result || api_result.error || !api_result.replyStatus || !api_result.replyStatus.totalImageCount || api_result.replyStatus.totalImageCount < 1) {
@@ -14,35 +33,35 @@
                 sourceName: "C3PI RxImageAccess RESTful API",
                 sourceUrl: "http://rximage.nlm.nih.gov/"
             },
-            /*
-             * Decided not to use a template group because
-             * this project needed more flexibility than what
-             * the predefined groups provided. basic_image_item
-             * works well for items, but flexibility of 
-             * base_detail was necessary for details.
-             */
             templates: {
-                item: 'basic_image_item',
-                detail: 'base_detail',
-                options:{
-                    content: Spice.duck_duck_pill.duck_duck_pill_details,
-                    moreAt: true,
+                group: 'media',
+                options: {
                     price: false,
-                    brand: false,
-                    priceAndBrand: false,
                     rating: false,
-                    ratingText: false
+                    brand: false,
+                    buy: Spice.duck_duck_pill.duck_duck_pill_details
                 }
             },
             normalize: function(item) {
+                var heading  = item.ndc11,
+                    active   = concatIngredients(item.ingredients.active),
+                    inactive = concatIngredients(item.ingredients.inactive);
+
+                // Not all items will have a name (drug name),
+                // so when it's available use it, otherwise the
+                // ndc-11 will suffice.
+                if (item.name) {
+                    heading = item.name;
+                }
+
                 return {
                     image: item.imageUrl,
-                    /*
-                     * National Drug Code (NDC) is an 11-digit, segmented,
-                     * unique product identifier: http://en.wikipedia.org/wiki/National_Drug_Code
-                     */
-                    title: item.ndc11
-                };
+                    abstract: item.ndc11,
+                    heading: heading,
+                    title: item.ndc11,
+                    active: active,
+                    inactive: inactive
+                }
             } 
         });
     };

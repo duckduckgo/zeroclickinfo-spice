@@ -14,7 +14,7 @@ attribution web => ['http://www.medicosconsultants.com', 'Medicos Consultants, L
 
 triggers start => 'pill';
 
-spice to => 'http://rximage.nlm.nih.gov/api/rximage/1/rxbase?resolution=600&parse=$1';
+spice to => 'http://rximage.nlm.nih.gov/api/rximage/1/rxbase?resolution=600&includeIngredients=true&parse=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
