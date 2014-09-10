@@ -12,7 +12,7 @@ topics "everyday", "entertainment";
 attribution github => ["https://github.com/sighmon", "Simon Loffler"],
             twitter => ["https://twitter.com/sighmon", "sighmon"];
 
-triggers startend => "newint";
+triggers startend => ("newint", "new internationalist magazine", "new internationalist");
 
 spice to => 'https://digital.newint.com.au/issues.json?utf8=✓&query=$1';
 spice wrap_jsonp_callback => 1;
