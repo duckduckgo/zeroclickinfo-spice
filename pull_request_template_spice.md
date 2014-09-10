@@ -31,6 +31,8 @@ Using this template will help us better understand your Instant Answer and assis
 
 **Are you having any problems? Do you need our help with anything?**
 
+**What are the terms of the API? Can we use it on DuckDuckGo? Do we have to pay for it?**
+
 **\*\*Note:** Please attach a screenshot for new instant answer pull requests, and for pull requests which modify the look/design of existing instant answers.
 
 ## Checklist
