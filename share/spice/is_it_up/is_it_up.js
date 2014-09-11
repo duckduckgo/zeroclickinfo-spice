@@ -5,7 +5,7 @@
         if(!api_result){
             return Spice.failed('is_it_up');
         }
-
+        
         Spice.add({
             id: 'is_it_up',
             name: 'Answer',
@@ -25,4 +25,12 @@
             }
         });
     }
+    
+    Handlebars.registerHelper ('if_value', function(a, b, options) {
+        if (a == b) {
+            return options.fn(this);
+        } else {
+            return options.inverse(this);
+        }   
+    });
 }(this));
