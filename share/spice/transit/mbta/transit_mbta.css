@@ -1,3 +1,7 @@
+.zci--mbta .tile {
+    min-width: 15em;
+}
+
 .zci--mbta .tile--mbta {
     text-align: center;
     width: 13em;

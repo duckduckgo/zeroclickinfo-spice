@@ -32,6 +32,7 @@
                         trip.mode_name = mode.mode_name; //add these so we don't lose them when we denormalize
                         trip.route_name = route.route_name;
                         trip.direction_name = direction.direction_name;
+                        trip.train_num = trip.trip_name.split(" ")[0];
 
                         var dep =  new Date(trip.sch_dep_dt*1000);
                         var hours = dep.getHours();
