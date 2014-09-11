@@ -3,10 +3,6 @@
     width: 13em;
 }
 
-.is-mobile .zci--septa .tile--septa {
-    width: 12.25em;
-}
-
 .tile--septa .septa__time {
     font-size: 2.3em;
     color: #333;
