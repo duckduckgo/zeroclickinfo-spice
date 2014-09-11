@@ -17,6 +17,9 @@
         var trips = []
         for (var i = 0; i < api_result.mode.length; i++) {
             var mode = api_result.mode[i];
+            if (mode.mode_name !== "Commuter Rail") {   //skip anything other than rail
+                continue
+            }
             for (var ii = 0; ii < mode.route.length; ii++) {
                 var route = mode.route[ii];
                 for (var iii = 0; iii < route.direction.length; iii++) {
