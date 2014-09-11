@@ -5,7 +5,7 @@
         if(!api_result){
             return Spice.failed('is_it_up');
         }
-        
+
         Spice.add({
             id: 'is_it_up',
             name: 'Answer',
