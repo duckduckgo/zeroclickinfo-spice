@@ -108,8 +108,15 @@
                     item.boost = true;
                 }
 
+                // This converts URLs that start with HTTP to HTTPS.
+                // We need to use this for the images because they currently redirect two
+                // times. Jumping straight to HTTPS would reduce that to one.
+                function toHTTPS(url) {
+                    return url.replace(/^http:/, "https:");
+                }
+                
                 return {
-                    'img':           icon_url,
+                    'img':           toHTTPS(icon_url),
                     'title':         item.name,
                     'heading':       item.name,
                     'rating':        item.rating,
