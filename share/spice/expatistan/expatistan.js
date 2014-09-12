@@ -46,11 +46,4 @@
             }
         });
     }
-
-    // Used on the values of firstLine and secondLine,
-    // which contain html tags
-    Handlebars.registerHelper("SafeString", function(string) {
-        return new Handlebars.SafeString(string);
-    });
-
 }(this));
