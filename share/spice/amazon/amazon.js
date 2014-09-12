@@ -15,6 +15,7 @@
             name: 'Products',
             data: items,
             allowMultipleCalls: true,
+            model: 'Product',
             meta: {
                 itemType: 'Products',
                 sourceName: 'Amazon',
