@@ -1,0 +1,41 @@
+.zci--urban_dictionary .zci__urban__word {
+    font-weight: 600;
+}
+
+.zci--urban_dictionary .ud_example {
+    margin-bottom: 0.5em;
+    height: 2.6em;
+    overflow-y: hidden;
+}
+
+.zci--urban_dictionary .zci__aux .tile--info div.info {
+    width: wrap-content;
+    min-width: 3em;
+    padding: auto;
+    margin: 1.3% 5% 0 0;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #ddd;
+    -webkit-border-radius: 45px;
+    -o-border-radius: 45px;
+    -moz-border-radius: 45px;
+    -khtml-border-radius: 45px;
+    border-radius: 45px;
+    float: left;
+    text-align: center;
+}
+
+.zci--urban_dictionary .zci__aux .tile--info div.info .info__label {
+    margin: 0 0.5em;
+    padding-left: 0.5em;
+    white-space: nowrap;
+}
+
+.zci--urban_dictionary .zci__aux .tile--info div.info .info__label a {
+    color: #666;
+}
+
+.zci--urban_dictionary .zci__more-at__icon {
+    width: 16px;
+    height: 16px;
+}
