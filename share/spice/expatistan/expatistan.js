@@ -17,25 +17,25 @@
             normalize: function(item) {
                 // Split abstract in order to get
                 // two separate strings and modify the first
-                var regex = /of\s[0-9]+\s/;
-                var regex2 = /\s[0-9]+\s/;
+                if (!api_result.abstract) {
+                    return null;
+                }
 
-                var lines = api_result.abstract.split(regex);
-                var cost = api_result.abstract.match(regex2);
+                var lines = api_result.abstract.split(/of\s[0-9]+\s/);
+                var cost = api_result.abstract.match(/\s[0-9]+\s/);
 
                 var firstLine = '';
                 var secondLine = '';
-                if(lines.length === 2 && cost.length >= 1) {
+                if (lines.length === 2 && cost.length >= 1) {
                     firstLine = lines[0].replace(' has a', '') + ' =' + cost[0];
                     secondLine = lines[1];
                 }
 
-                var a = {
+                return {
                     api_result: api_result,
                     firstLine: firstLine,
                     secondLine: secondLine
-                }
-                return a;
+                };
             },
             templates: {
                 group: 'base',
