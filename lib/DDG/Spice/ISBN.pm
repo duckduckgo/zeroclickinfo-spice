@@ -19,6 +19,7 @@ attribution github  =>      ["https://github.com/nishanths/", "Nishanth Shanmugh
 
 triggers startend   =>      'isbn', 'isbn number', 'isbn lookup';
 spice to            =>      'https://bttf.duckduckgo.com/m.js?q=$1&cb={{callback}}';
+spice is_cached     =>      1;
 
 handle remainder => sub {
     $_ =~ s/[\s-]//g;                       # remove all whitespace and hyphens
