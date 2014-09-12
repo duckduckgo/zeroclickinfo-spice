@@ -23,7 +23,7 @@
     }
     
     env.ddg_spice_movie = function(api_result) {
-        if(!api_result) {
+        if(!api_result || !api_result.movies || !api_result.movies.length) {
             return Spice.failed('movie');
         }
         
@@ -79,7 +79,10 @@
         
         // Make sure we hide the title and ratings.
         // It looks nice to show only the poster of the movie.
-        Spice.getDOM('movie').find('.tile__body').hide();
+        var $dom = Spice.getDOM('movie')
+        if ($dom && $dom.length) {
+            $dom.find('.tile__body').hide();
+        }
     };
     
     // Convert minutes to hr. min. format.
