@@ -10,6 +10,7 @@
     font-size: 1.5em;
     margin-bottom: 0;
     padding-bottom: 0;
+    padding-top: 0;
     color: #333;
 }
 
@@ -20,13 +21,14 @@
 }
 
 .zci--expatistan .zci__more-at {
-    margin-bottom: 0.9em;
+    margin-bottom: 0.1em;
 }
 
 @media only screen
 and (max-device-width : 480px) {
     .zci--expatistan h5 {
         font-size: 1.15em;
+        padding-top: 0.05em;
     }
 
     .zci--expatistan p {
@@ -34,6 +36,6 @@ and (max-device-width : 480px) {
     }
 
     .zci--expatistan .zci__more-at {
-        margin-bottom: 0.6em;
+        margin-bottom: 0;
     }
 }
