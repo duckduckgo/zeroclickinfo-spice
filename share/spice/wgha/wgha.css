@@ -3,6 +3,7 @@
     font-size:1.35em;
     font-weight: normal;
     line-height: 1.15;
+    -webkit-line-clamp: 4;
 }
 
 .tile--wgha .tile__title__sub {

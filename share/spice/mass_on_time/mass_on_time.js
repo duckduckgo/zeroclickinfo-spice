@@ -49,7 +49,7 @@ function ddg_spice_mass_on_time (api_result) {
 
     if (results.length < 1) return;
 
-    Spice.render({
+    Spice.add({
 	id: 'mass',
 	data: results,
 	name: "Parishes",
