@@ -1,9 +1,15 @@
 /*@zci--currency.com*/
-.zci--currency-flag-img{
+.zci--currency-chart-link{
+    color: #005aa7;
+}
+
+/*single currency input layout*/
+.zci--currency-sc-img,
+.zci--currency-tc-img{
     position: absolute;
     right:0;
     top:0;
-    height:24px;
+    height:32px;
     width: 32px;
 }
 
@@ -13,40 +19,93 @@
     top:0;
 }
 
-.zci--currency-top-convert, .zci--currency-main-convert {
+.zci--currency-tc, .zci--currency-sc {
     position: relative;
     text-align: center;
     line-height: 2em;
 }
 
-.zci--currency-top-convert >.zci--currency-amount{
+.zci--currency-tc-amount{
     color: #7B7B7B;
     display:block;
     line-height: 77px;  
     padding-top: 24px;
 }
-.zci--currency-main-convert > .zci--currency-amount{
+.zci--currency-sc-amount{
     color: #000000;
     display:block;
     line-height: 36px;  
     padding-top: 40px;
 }
 
-.zci--currency-top-convert-rate{   
+.zci--currency-tc-rate{   
     color: #b2b2b2;
     display: block; 
 }
-.zci--currency-main-convert-rate{
+.zci--currency-sc-rate{
     display: block; 
 }
 
-.zci--currency-chart-link{
-    color: #005aa7;
+/*pair currencty input view*/
+.zci--currency-pc{
+     margin-left: 1em;
+     float: left;
+}
+
+.zci--currency-pc-row1{
+    line-height: 6em;
+}
+
+.zci--currency-pc-row2{
+    margin: -1em auto 1em auto;
+    text-align: center;  
+}
+
+.zci--currency-pc img{
+     height:36px; 
+     vertical-align: top;
+     margin: 1.5em  0.5em 0 0;
+}
+
+.zci--currency-pc-amount{
+    color:#000;
+    font-size: 2.2em;
+    padding: 0 0.1em;
+}
+
+.zci--currency-pc-rate{ 
+     vertical-align: top;
+}
+
+.zci--currency-pc-symbol{
+    display: inline-block;
+    font-size: 0.87em;
+    vertical-align: top;
+    margin-top:-0.5em;
+}
+
+.zci--currency-pc-bar{
+   font-size: 2.2em;  
+   margin: 0 1em;
+}
+
+.zci--currency-pc-dot{
+    display: inline-block;
+    font-size: 2em;
+    vertical-align: top;
+    margin-top:-0.3em;
+    padding: 0 0.1em;
+}
+
+.zci--currency-pc-equal{
+    font-size:2em;  
+    margin:0 0.5em;
 }
 
 
 /*mobile stylesheet*/
-.zci--currency-main-conv-mobile{
+/*main currency*/
+.zci--currency-mc-mobile{
     width: 100%;
     text-align: center;
     color: #535353;
@@ -54,7 +113,7 @@
     background-color: #ffffff;
     padding-bottom: 15px;
 }
-.zci--currency-input{
+.zci--currency-input-mobile{
     font-size: 1.5em;
     font-weight: 600;
     color: #000000;
@@ -62,58 +121,57 @@
     display: block;
 }
 
-.zci--currency-rate{
+.zci--currency-rate-mobile{
     padding-top: 0.5em;
     color: #000000;
     display: block;
-
 }
-.zci--currency-hb-col1{
+
+.zci--currency-hb-col1-mobile{
     float: left;
     font-weight: 600;
 
 }
-.zci--currency-hb-col2{
+.zci--currency-hb-col2-mobile{
     float: right;
 }
-.zci--currency-line{
+.zci--currency-line-mobile{
     border-bottom: 2px solid #f0f0f0;
     width: 50%;
     margin: 0 auto;
 }
-.zci--currency-timestamp{
+.zci--currency-timestamp-mobile{
     padding-top: 0.5em;
     font-size: 0.8em;
     text-align: center; 
 }
 
-
-.zci--currency-tc-col1{
+/*top currency*/
+.zci--currency-tc-col1-mobile{
     float:left;
     color: #535353;
 }
 
-.zci--currency-tc-col2{
+.zci--currency-tc-col2-mobile{
     float: right;
     color: #535353;
 }
-.zci--currency-tc-row1{
+.zci--currency-tc-row1-mobile{
     display: block;
     height: 1.6em;
     font-weight: bold;
 }
-.zci--currency-tc-row2{
+.zci--currency-tc-row2-mobile{
     display: block; 
     height: 1.6em;
     letter-spacing: -0.4px;
 }
 
-.zci--currency-tc{
+.zci--currency-tc-mobile{
     width: 100%;
     border-bottom: 2px solid #f0f0f0;
     background-color: #ffffff;
     padding: 5px 10px;
-
 }
 
 

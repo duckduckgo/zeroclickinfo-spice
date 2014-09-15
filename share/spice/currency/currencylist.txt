@@ -166,6 +166,5 @@ xpf,cfp franc,
 xpt,platinum ounce,platinum,
 yer,yemeni rial,yemen rial,
 zar,south african rand,south africa rand,
-zmk,zambian kwacha,zambia kwacha,
-zmw,zambian kwacha,zambia kwacha
+zmk,zmw,zambian kwacha,zambia kwacha,
 zwd,zimbabwean dollar,zimbabwe dollar,
