@@ -10,7 +10,7 @@ description "Currency Convertor provided by XE.com";
 name "Currency";
 source "XE.com";
 icon_url "/i/xe.com.ico";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Currency.pm";
+code_url "https://github.com/XenonLab/blob/master/lib/DDG/Spice/Currency.pm";
 category "finance";
 topics "economy_and_finance", "geography", "travel", "everyday";
 attribution web => ['http://www.xe.com'];
@@ -39,35 +39,33 @@ spice wrap_jsonp_callback => 1;
 spice is_cached => 0;
 spice proxy_cache_valid => "200 5m";
 
-
-handle  query_lc => sub {
-    
-    sub getCode{
-        my $input= shift;
-        foreach my $key(keys %currHash){
-            my @currValues = @{$currHash{$key}};
-            foreach my $value(@currValues){
-                if($input eq $value){
-                    return $key;
-                }
+sub getCode{
+    my $input= shift;
+    foreach my $key(keys %currHash){
+        my @currValues = @{$currHash{$key}};
+        foreach my $value(@currValues){
+            if($input eq $value){
+                return $key;
             }
         }
     }
+}
 
-    sub checkCurrencyCode{
-        my($amount, $from, $to) = @_;
-        return $amount, getCode($from)||"usd", getCode($to)||"cad";
-    }
+sub checkCurrencyCode{
+    my($amount, $from, $to) = @_;
+    return $amount, getCode($from)||"usd", getCode($to)||"cad";
+}
+
+my $amountReg = "\\d+(?:\.\\d+)?";
+
+my $ws = "?:\\s*";
 
 
+handle  query_lc => sub {
+    
     if ($_ =~ s/\bcurrency\b|\bwhats\b|\bconvert\b|\bis\b|\bto\b|\bequals\b|\bequal\b|\bin\b|\?|\=|\~|\-//g){
         trim($_);
     }
-    
-
-    my $amountReg = "\\d+(?:\.\\d+)?";
-
-    my $ws = "?:\\s*";
 
     #400 cad
     if(/^($amountReg)($ws)($curr)$/){

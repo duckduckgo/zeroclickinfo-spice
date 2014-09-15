@@ -29,11 +29,11 @@
              mainConv["to-currency-symbol"] = topCovs[0]["to-currency-symbol"];
              mainConv["conversion-rate"] = topCovs[0]["conversion-rate"];
              results.push(mainConv);
-              
+                 for(var i = 0; i < topCovs.length; i++) {
+                        results.push(topCovs[i]);
+               }
      }
-     for(var i = 0; i < topCovs.length; i++) {
-               results.push(topCovs[i]);
-      }
+    
 
      //meta variable
      var xeTimeFreq =mainConv["rate-utc-timestamp"].match(/\b\d{4}[-.]\d{2}[-.]\d{2}\s\d{2}\:\d{2}\b/);
@@ -80,10 +80,11 @@
             amount:item["from-amount"],
             convertedAmount: item["converted-amount"],
             rate: item["conversion-rate"],
+            inverseRate: item["conversion-inverse"],
             xeUrl: 'http://www.xe.com/currencycharts/?from='+ item["from-currency-symbol"]+'&to='+ item["to-currency-symbol"],     
-            fromFlag: 'http://s.xe.com/v2/themes/xe/images/flags/big/'+ item["from-currency-symbol"].toString().toLowerCase()+'.png',
-            toFlag: 'http://s.xe.com/v2/themes/xe/images/flags/big/'+item["to-currency-symbol"].toString().toLowerCase()+'.png',
-            currencyName:item["to-currency-name"]
+            fromFlag: 'http://s.xe.com/v2/themes/xe/images/flags/circle/'+ item["from-currency-symbol"].toString().toLowerCase()+'.png',
+            toFlag: 'http://s.xe.com/v2/themes/xe/images/flags/circle/'+item["to-currency-symbol"].toString().toLowerCase()+'.png',
+          currencyName:item["to-currency-name"]
             };
         },
       

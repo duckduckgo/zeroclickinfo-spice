@@ -1,30 +1,43 @@
 {{#if isPair}}
-         <div class="tile tile--s" data-link="{{xeUrl}}">
-            <div class="zci--currency-main-convert" style="min-width:20em; height:115px;">
-                <img class="zci--currency-flag-img zci--currency-left" src="{{{imageProxy fromFlag}}}" alt="Flag of {{fromCurrencySymbol}}" /></img>
-                <img class="zci--currency-flag-img" src="{{imageProxy toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}" /></img>
-                <span class="zci--currency-amount" style="font-size:{{amountFontSize rate}}em;">{{amount}} {{fromCurrencySymbol}} = {{convertedAmount}} {{toCurrencySymbol}}</span>
+    <div  class="zci--currency-pc" data-link="{{xeUrl}}">
+          <div class="zci--currency-pc-row1">
+               <img  src="{{{imageProxy fromFlag}}}" alt="Flag of {{fromCurrencySymbol}}" /></img>
+               <span class="zci--currency-pc-amount"> {{amountRound amount}}</span>
+               <div  class="zci--currency-pc-symbol">{{fromCurrencySymbol}} </div>
+                <span class="zci--currency-pc-equal">=</span>          
+                <img  src="{{imageProxy toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}" /></img>
+                <span class="zci--currency-pc-amount">  {{amountRound convertedAmount}}</span>
+                <div class="zci--currency-pc-symbol"> {{toCurrencySymbol}} </div>         
+            </div>
+            <div class="zci--currency-pc-row2">
                 <span class="zci--currency-chart-link">View  Chart</span>
-                <span class="zci--currency-main-convert-rate" >{{rate}}</span>
-            </div>  
-    </div>
+             </div>
+         </div>   
+       <div class="zci--currency-pc-row1">
+          <span class="zci--currency-pc-bar">|</span>
+          <span class="zci--currency-pc-rate">{{rate}}</span>
+          <div class="zci--currency-pc-dot">.</div>
+          <span class="zci--currency-pc-rate">{{inverseRate}}</span> 
+      </div>    
+     
+         
 
 {{else}}{{#if isSingle}}
      <div class="tile tile--s" data-link="{{xeUrl}}">
-        <div class="zci--currency-main-convert"  style="min-width:15em; height:115px;">
-            <img class="zci--currency-flag-img zci--currency-left" src="{{imageProxy fromFlag}}" alt="Flag of {{fromCurrencySymbol}}" /></img>
-            <span class="zci--currency-amount" style="font-size:{{amountFontSize amount}}em;">{{amount}} {{fromCurrencySymbol}} </span>
+        <div class="zci--currency-sc"  style="min-width:15em; height:115px;">
+            <img class="zci--currency-sc-img zci--currency-left" src="{{imageProxy fromFlag}}" alt="Flag of {{fromCurrencySymbol}}" /></img>
+            <span class="zci--currency-sc-amount" style="font-size:{{amountFontSize amount}}em;">{{amount}} {{fromCurrencySymbol}} </span>
             <span class="zci--currency-chart-link">View  Chart</span>
-            <span class="zci--currency-main-convert-rate">{{rate}}</span>
+            <span class="zci--currency-sc-rate">{{rate}}</span>
         </div>
        </div>
 {{else}}    
      <div class="tile tile--s" data-link="{{xeUrl}}">
-        <div class="zci--currency-top-convert" style="min-width:13em; height:115px;">
-            <img class="zci--currency-flag-img" src="{{imageProxy toFlag}}" alt="Flag of {{toCurrencySymbol}}" /></img>
-            <span class="zci--currency-amount" style="font-size:{{amountFontSize convertedAmount}}em;">{{amountRound convertedAmount}}</span>
+        <div class="zci--currency-tc" style="min-width:13em; height:115px;">
+            <img class="zci--currency-tc-img" src="{{imageProxy toFlag}}" alt="Flag of {{toCurrencySymbol}}" /></img>
+            <span class="zci--currency-tc-amount" style="font-size:{{amountFontSize convertedAmount}}em;">{{amountRound convertedAmount}}</span>
             <span class="zci--currency-left"> {{toCurrencySymbol}}</span>    
-            <span class="zci--currency-top-convert-rate">{{rate}}</span>
+            <span class="zci--currency-tc-rate">{{rate}}</span>
         </div>
     </div>
   
