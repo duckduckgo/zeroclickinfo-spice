@@ -38,11 +38,12 @@
                         if(sourceParts.length > 0){
                             //iterate through all the source parts
                             for(var k=0; k < sourceParts.length; k++){
-                                var sp = sourceParts[k];
+                                var sp = sourceParts[k],
+                                    currPrice = sp.Prices.resaleList[0].price;
 								
                                 //do an exhaustive search for least price
-                                if(sp.Prices.resaleList[0].price < leastPrice){
-                                    leastPrice = sp.Prices.resaleList[0].price;
+                                if(currPrice >0 && currPrice < leastPrice){
+                                    leastPrice = currPrice;
                                 }
                                 
                                 //find the max quantity available
@@ -68,6 +69,11 @@
                 //put a link just in case
                 if(partLink===''){
                   	partLink = searchLink;
+                }
+                
+                //could not find pricing
+                if(leastPrice===999999999){
+                    leastPrice=0.0;
                 }
                  
                 //if the price is 0, lets not display anything

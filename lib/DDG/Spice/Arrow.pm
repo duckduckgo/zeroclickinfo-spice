@@ -17,7 +17,7 @@ triggers startend => 'part', 'arrow';
 # QA url = api-qa.arrowelect.com
 # Production url = api.arrow.com
 
-spice to => 'http://api-qa.arrowelect.com/itemservice/v1/en/search/token?login=duckduckgo&apikey={{ENV{DDG_SPICE_ARROW_APIKEY}}}&search_token=$1&callbackfn={{callback}}';
+spice to => 'http://api.arrow.com/itemservice/v1/en/search/token?login=duckduckgo&apikey={{ENV{DDG_SPICE_ARROW_APIKEY}}}&search_token=$1&callbackfn={{callback}}';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
