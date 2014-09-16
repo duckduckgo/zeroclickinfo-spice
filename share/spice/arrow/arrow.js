@@ -79,7 +79,7 @@
                 //if the price is 0, lets not display anything
                 var displayPrice='';
                 
-                //most likely the price will be in USD
+                //USD is now forced
                 //is this $ sign safe?
                 if(leastPrice > 0.0){
                     displayPrice='$'+leastPrice.toFixed(4);
@@ -96,6 +96,8 @@
                              datasheetLink=item.resources[r2].uri;
                          }else if(ttype==='img_lg'){
 						 	imgLink=item.resources[r2].uri;
+                             //hack for spaces in the img url
+                            imgLink = imgLink.replace(/\s/g, '%20');
                          }
                      }
                  }
