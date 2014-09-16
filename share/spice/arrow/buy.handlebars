@@ -1,0 +1,25 @@
+<ul class="list-unstyled">
+    {{#if description}}
+    	<li>Details: {{description}}</li>
+    {{/if}}
+    {{#if price}}
+        <li>From: {{price}}</li>
+    {{/if}}
+    {{#if qty}}
+        <li>Available: {{qty}}</li>
+    {{/if}}
+</ul>
+
+{{#if datasheet}}
+    <a href="{{{datasheet}}}" class="btn btn--default">Datasheet</a>
+{{/if}}
+
+{{#if price}}
+    <a href="{{{url}}}" class="btn btn--primary">
+    Buy at parts.arrow.com
+    </a>
+{{else}}
+	<a href="{{{url}}}" class="btn btn--secondary">
+    See other options at parts.arrow.com
+    </a>
+{{/if}}
