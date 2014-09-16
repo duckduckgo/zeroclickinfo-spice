@@ -4,13 +4,17 @@
         
 
         if (!api_result || !api_result.meta.status === 200) {
-          return;
+          return Spice.failed('github');
         }
 
         var query = DDG.get_query()
                     .replace(/^\s*github\s+/, "");
 
         var results = api_result.data.repositories;
+
+        if (!results) {
+            return Spice.failed('github');
+        }
 
         // TODO: temp size limit - relevancy block should handle this later
         if (results.length > 30)
