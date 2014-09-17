@@ -15,7 +15,7 @@ icon_url "/i/www.quixey.com.ico";
 category "entertainment";
 topics "everyday", "special_interest";
 attribution github => ['https://github.com/duckduckgo', 'DuckDuckGo'],
-			twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
+            twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
 
 # Variable Definitions
 my %custom_ids = (2005 => 75675980, 2004 => 78989893);
@@ -58,7 +58,7 @@ handle query_parts => sub {
         my $full_query = join(" ", @_);
         my $restriction;
         my $max_price = 999999;
-	
+
         return if ($full_query =~ $skip_re);
 
         # set price to $0 if "free" is in the query
@@ -103,7 +103,7 @@ handle query_parts => sub {
                         return $full_query, $platforms_encoded, $max_price, $custom_ids{ $restriction };
                 } else {
                         return $full_query, $platforms_encoded, $max_price, "2414062669";
-		}
+                }
         } else {
                 my @full_platforms = uniq({sort => 1}, values %platform_ids);
 
