@@ -18,7 +18,7 @@ attribution github  =>      ["https://github.com/nishanths/", "Nishanth Shanmugh
             web     =>      ["http://nishanths.github.io/", "Nishanth Shanmugham"];
 
 triggers startend   =>      'isbn', 'isbn number', 'isbn lookup';
-spice to            =>      'https://bttf.duckduckgo.com/m.js?q=$1&cb={{callback}}';
+spice to            =>      'https://duckduckgo.com/m.js?q=$1&cb={{callback}}';
 spice is_cached     =>      1;
 
 handle remainder => sub {
