@@ -19,15 +19,15 @@
         return concatted;
     }
 
-    env.ddg_spice_duck_duck_pill = function(api_result){
+    env.ddg_spice_rx_info = function(api_result){
 
         if (!api_result || api_result.error || !api_result.replyStatus || !api_result.replyStatus.totalImageCount || api_result.replyStatus.totalImageCount < 1) {
-            return Spice.failed('duck_duck_pill');
+            return Spice.failed('rx_info');
         }
 
         Spice.add({
-            id: "duck_duck_pill",
-            name: "DuckDuckPill",
+            id: "rx_info",
+            name: "RxInfo",
             data: api_result.nlmRxImages,
             meta: {
                 sourceName: "C3PI RxImageAccess RESTful API",
@@ -39,7 +39,7 @@
                     price: false,
                     rating: false,
                     brand: false,
-                    buy: Spice.duck_duck_pill.duck_duck_pill_details
+                    buy: Spice.rx_info.rx_info
                 }
             },
             normalize: function(item) {
