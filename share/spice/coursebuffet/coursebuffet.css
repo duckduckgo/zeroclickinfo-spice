@@ -1,0 +1,13 @@
+
+.tile--coursebuffet .tile__title {
+  height: 4em;
+  -webkit-line-clamp: 3;
+}
+
+.tile--coursebuffet .tile__body {
+    height: 13.5em;
+}
+
+.tile--coursebuffet .tile__content {
+    height: 3.5em;
+}
