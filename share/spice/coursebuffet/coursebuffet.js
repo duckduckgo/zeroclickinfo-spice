@@ -33,6 +33,25 @@
                     moreAt: true,
                     footer: Spice.coursebuffet.footer
                 }
+            },
+            relevancy: {
+                type: 'primary',
+                skip_words: [
+                    'course',
+                    'courses',
+                    'coursera',
+                    'edx',
+                    'udacity',
+                    'saylor',
+                    'novoed',
+                    'futurelearn',
+                    'iversity',
+                    'open2study',
+                    'openuped'
+                ],
+                primary: [
+                    { key: 'name', strict: false }
+                ]
             }
         });
     };
