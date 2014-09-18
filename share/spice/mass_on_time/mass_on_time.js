@@ -41,7 +41,7 @@ function ddg_spice_mass_on_time (api_result) {
     var results = [];
     for(var i = api_result.results.length - 1; i >= 0; i--) {
         var result = api_result.results[i];
-	
+
         // Check if it's the current location. If it is, don't check the relevancy.
         if (result.address !== null && result.address !== "" && 
             (/current$/.test(source) || DDG.stringsRelevant(details.address, result.city))) {
