@@ -1,6 +1,7 @@
 package DDG::Spice::Coursebuffet;
 
 use DDG::Spice;
+use Text::Trim;
 
 spice to => 'http://www.coursebuffet.com/ddg/$1/$2';
 spice from => '(.*?)/(.*)';
@@ -23,28 +24,33 @@ attribution web => ["http://www.coursebuffet.com", "Pradyumna Dandwate"],
             twitter => ["coursebuffet"],
             github  => ["rubydubee", "Pradyumna Dandwate"];
 
-my @triggers = ("course","courses","coursera","edx","udacity","saylor","novoed","futurelearn","iversity","open2study","openuped");
+my @providers = (
+    'coursera',
+    'edx',
+    'udacity',
+    'saylor',
+    'novoed',
+    'futurelearn',
+    'iversity',
+    'open2study',
+    'openuped'
+);
+my $providers_str = join('|', @providers);
 
-triggers any => @triggers;
-
-sub cbtrim { my $s = shift; $s =~ s/^\s+|\s+$//g; return $s };
+triggers any => 'course', 'courses', @providers;
 
 handle query_lc => sub {
-
     # MOOC provider specific search returns courses for the specified provider
-    $_ =~ /(coursera|edx|udacity|saylor|novoed|futurelearn|iversity|open2study|openuped)/;
-    if ($&) {
-        my $q = "$` $'";
-        return "provider", $&, cbtrim($q);
+    if (/($providers_str)/) {
+        return "provider", $1, trim("$` $'");
     }
 
-    # generic course search
-    $_ =~ /course/;
-    if ($&) {
-        my $q = "$` $'";
-        return "standard","courses", cbtrim($q);
+    # Generic course search
+    if (/\bcourse\b/) {
+        return "standard", "courses", trim("$` $'");
     }
 
+    return;
 };
 
 1;
