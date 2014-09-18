@@ -37,7 +37,7 @@ my @providers = (
 );
 my $providers_str = join('|', @providers);
 
-triggers any => 'course', 'courses', @providers;
+triggers any => 'online course', 'online courses', @providers;
 
 handle query_lc => sub {
     # MOOC provider specific search returns courses for the specified provider
@@ -46,7 +46,7 @@ handle query_lc => sub {
     }
 
     # Generic course search
-    if (/\bcourse\b/) {
+    if (/\bonline courses?\b/) {
         return "standard", "courses", trim("$` $'");
     }
 
