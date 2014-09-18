@@ -108,3 +108,24 @@ Handlebars.registerHelper( "MassOnTime_format_parish_address", function (address
 	  return "";
 	}
 });
+
+Handlebars.registerHelper( "MassOnTime_format_12h_start", function (starttime) {
+    if (starttime) {
+        var start = new Date(starttime);
+        var meridian = 'am';
+        var hours = start.getHours();
+        if (hours >= 12) {
+            meridian = 'pm'
+            if (hours > 12) {
+                hours = hours % 12;
+            }
+        }
+        var minutes = start.getMinutes().toString();
+        if (minutes.length === 1) {
+            minutes = '0'+minutes;
+        }
+        return hours.toString()+':'+minutes+meridian;
+    } else {
+        return "";
+    }
+});
