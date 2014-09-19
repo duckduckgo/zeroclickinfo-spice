@@ -42,6 +42,10 @@ ddg_spice_test(
         '/js/spice/is_it_up/wolframalpha.com',
         caller    => 'DDG::Spice::IsItUp',
     ),
+    'is https://twitch.tv up??' => test_spice(
+        '/js/spice/is_it_up/twitch.tv',
+        caller    => 'DDG::Spice::IsItUp',
+    ),
 );
 
 done_testing;

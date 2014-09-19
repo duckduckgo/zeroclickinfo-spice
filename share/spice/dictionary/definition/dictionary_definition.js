@@ -72,6 +72,16 @@ var ddg_spice_dictionary = {
                 options: {
                     content: Spice.dictionary_definition.content
                 }
+            },
+
+            onShow: function() {
+                // on mobile devices, this loads the audio resources when the IA is shown.
+                // otherwise the loading of the audio resources is deferred until the user clicks
+                // the button and loading things and waiting for them to load takes to long and
+                // the mobile browsers won't let us auto-play the audio after that:
+                if (is_mobile_device) {
+                    DDG.require('audio', function(){});
+                }
             }
         });
 
