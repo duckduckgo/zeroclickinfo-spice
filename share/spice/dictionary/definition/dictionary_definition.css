@@ -2,6 +2,10 @@
     margin-bottom: 0.25em;
 }
 
+.zci--definition .zci__def__definition {
+    overflow: hidden;
+}
+
 .zci--definition .zci__more-at {
     padding-bottom: 0.37em;
 }
@@ -21,3 +25,4 @@
     float: left;
     margin-right: 1.85em;
 }
+
