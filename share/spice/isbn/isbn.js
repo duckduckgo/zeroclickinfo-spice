@@ -1,19 +1,18 @@
-(function(env) {
+(function (env) {
     "use strict";
+    env.ddg_spice_isbn = function (api_result) {
 
-    env.ddg_spice_amazon = function(api_result) {
-
-        if (!api_result || !api_result.results || !api_result.results.length || api_result.results.length == 0) {
-            return Spice.failed('products');
+        if (!api_result || api_result.error || !api_result.results ||
+            !api_result.results.length || api_result.results.length == 0) {
+            return Spice.failed('isbn');
         }
 
-        var items = api_result.results,
-            loadedRatingsData = false;
-
+        var items = api_result.results;
+        
         Spice.add({
-            id: 'products',
-            name: 'Products',
-            data: items,
+            id: 'isbn',
+            name: 'Books',
+            data: items[0],
             allowMultipleCalls: true,
             model: 'Product',
             meta: {
@@ -58,5 +57,5 @@
                 item.loadedRatings = true;
             }
         });
-    }
+    };
 }(this));

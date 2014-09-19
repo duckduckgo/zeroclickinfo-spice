@@ -1,4 +1,4 @@
-(function(env){
+(function(env) {
     env.ddg_spice_expatistan = function(api_result) {
         "use strict";
 
@@ -14,11 +14,34 @@
                 sourceUrl: api_result.source_url,
                 sourceName: 'Expatistan'
             },
+            normalize: function(item) {
+                // Split abstract in order to get
+                // two separate strings and modify the first
+                if (!api_result.abstract) {
+                    return null;
+                }
+
+                var lines = api_result.abstract.split(/of\s[0-9]+\s/);
+                var cost = api_result.abstract.match(/\s[0-9]+\s/);
+
+                var firstLine = '';
+                var secondLine = '';
+                if (lines.length === 2 && cost.length >= 1) {
+                    firstLine = lines[0].replace(' has a', '') + ' =' + cost[0];
+                    secondLine = lines[1];
+                }
+
+                return {
+                    api_result: api_result,
+                    firstLine: firstLine,
+                    secondLine: secondLine
+                };
+            },
             templates: {
                 group: 'base',
                 options: {
                     content: Spice.expatistan.content,
-		    moreAt: true
+                    moreAt: true
                 }
             }
         });
