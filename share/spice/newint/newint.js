@@ -22,6 +22,7 @@
                 return {
                     release_date: month_names[DDG.getDateFromString(item.release).getMonth()] + " " + DDG.getDateFromString(item.release).getFullYear(),
                     img: item.cover.thumb2x.url,
+                    img_m: item.cover.thumb2x.url,
                     price: item.price ? item.price : "AUD$7.50",
                     heading: item.title,
                     brand: "New Internationalist",
