@@ -39,8 +39,9 @@
             name: "Concerts",
             data: api_result.events,
             meta: {
-                sourceName: "seatgeek.com",
-                sourceUrl: "https://seatgeek.com/search?search=" + clean_query
+                sourceName: "SeatGeek",
+                sourceUrl: "https://seatgeek.com/search?search=" + clean_query,
+                sourceIconUrl: "https://seatgeek.com/favicon.ico"
             },
             normalize: function(item) {
                 var artist = capitalizedAcronym(clean_query);

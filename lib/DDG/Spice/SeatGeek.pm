@@ -17,11 +17,15 @@ spice to => 'http://api.seatgeek.com/2/events?performers.slug=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
+    # Removes triggers from the query
     $_ =~ s/^(:?(upcoming\s*)?(concerts?))|((live)\s*(:?(shows?))?)$//gi;
+    # Converts the query to lowercase
     $_ =~ tr/[A-Z]/[a-z]/;
-    $_ = shift;
+    # Removes spaces from the beginning of the query
     $_ =~ s/^\s+//;
+    # Removes spaces from the end of the query
     $_ =~ s/\s+$//;
+    # Replaces spaces between words with dashes
     $_ =~ s/\s/\-/g;
     return $_ if $_;
     return;
