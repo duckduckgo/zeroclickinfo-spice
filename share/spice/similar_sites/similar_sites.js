@@ -37,15 +37,6 @@
                 itemType: 'Similar Sites'
             },
 
-            /*normalize : function(item){
-                return {
-                    title: item.Url,
-                    url: "http://" + item.Url,
-                    rating: item.Score*100,
-                    icon: "http://icons.duckduckgo.com/ip/" + item.Url + ".ico",
-                };
-            },*/
-
             templates: {
                 group: 'base',
                 options: {
