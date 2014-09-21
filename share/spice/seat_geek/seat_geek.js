@@ -101,11 +101,13 @@
 
                 var a = {
                     url: item.url,
-                    price: item.stats.lowest_price,
+                    price: item.stats.lowest_price? "$" + item.stats.lowest_price : "",
                     artist: artist,
                     performers: getPerformers(item.performers),
+                    heading: item.short_title,
                     title: item.short_title,
                     place: item.venue.name,
+                    img: item.performers[0].images.small,
                     city: item.venue.city + ", " + item.venue.country,
                     date: formatDate(item.datetime_local),
                     rating: item.score
@@ -113,11 +115,13 @@
                 return a;
             },
             templates: {
-                group: 'text',
+                group: 'products',
+                item: Spice.seat_geek.item,
                 options: {
-                    content: Spice.seat_geek.content,
-                    footer: Spice.seat_geek.footer,
-                    moreAt: false
+                    subtitle_content: Spice.seat_geek.content,
+                    buy: Spice.seat_geek.buy,
+                    moreAt: true,
+                    rating: false
                 }
             }
         });
