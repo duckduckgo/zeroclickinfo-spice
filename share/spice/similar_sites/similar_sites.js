@@ -61,8 +61,8 @@
             to = Object.keys(items).length;
 
         for(var i = from; i < to; i++) {
-            //out += "<img src='http://icons.duckduckgo.com/ip/" + items["r" + i].replace("http://", "")  + ".ico'/>"
-            out += "<a href='" + items["r" + i] + "'><li style='list-style-image:url(http://icons.duckduckgo.com/ip/" + items["r" + i].replace("http://", "")  + ".ico);'>" + items["r" + i] + "</li></a>";
+            out += "<img src='http://icons.duckduckgo.com/ip/" + items["r" + i].replace("http://", "")  + ".ico' width='16px' height='16px'/>"
+            out += "<a href='" + items["r" + i] + "'>" + items["r" + i] + "</a><br/>";
         }
 
         return out + "</ul>";

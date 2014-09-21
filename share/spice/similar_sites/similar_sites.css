@@ -9,5 +9,5 @@
 }
 
 .zci--similar_sites li {
-    margin-left: 30px;
+    list-style-position: inside;
 }
