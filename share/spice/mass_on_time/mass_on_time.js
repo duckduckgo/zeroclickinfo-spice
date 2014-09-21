@@ -111,9 +111,9 @@ Handlebars.registerHelper("MassOnTime_format_parish_address", function (address,
     }
 });
 
-Handlebars.registerHelper( "MassOnTime_format_12h_start", function (starttime) {
-    if (starttime) {
-        var start = new Date(starttime);
+Handlebars.registerHelper( "MassOnTime_format_12h_start", function (utc_starttime) {
+    if (utc_starttime) {
+        var start = DDG.getDateFromString(utc_starttime);
         var meridian = 'am';
         var hours = start.getHours();
         if (hours >= 12) {
