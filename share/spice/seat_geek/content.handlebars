@@ -1,23 +1,13 @@
-<div class="zci--seat_geek">
-    <div class="tile--seat_geek">
-        <div class="date">
-            {{date}}
-        </div>
-        <div class="place">
-            {{place}} • {{city}}
-        </div>
-        <p class="text--primary performers">
-            Performers: 
-            {{#concat performers sep="•" conj="•"}}
-                {{this}}
-            {{/concat}}
-        </p>
-        {{#if price}}
-            <p class="text--primary price">
-                FROM ${{price}}
-            </p>
-        {{/if}}
-        <div class="clear"></div>
-        <span class="detail__callout--pr"><a href="{{url}}" class="btn btn--primary">More at SeatGeek</a></span>
-    </div>
+<div class="date">
+    {{date}}
 </div>
+<div class="place">
+    {{place}} • {{city}}
+</div>
+<p class="text--primary performers">
+    Performers: 
+    {{#concat performers sep="•" conj="•"}}
+        {{this}}
+    {{/concat}}
+</p>
+<div class="clear"></div>

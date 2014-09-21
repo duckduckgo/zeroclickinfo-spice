@@ -1,10 +1,11 @@
 .zci--seat_geek h3,
-.zci--seat_geek .footer_artist {
+.zci--seat_geek .seat_geek-artist {
     color: #333;
 }
 
 .zci--seat_geek h3,
-.zci--seat_geek .footer_content {
+.zci--seat_geek .footer_content,
+.zci--seat_geek h5.detail__title {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -72,7 +73,7 @@
     font-weight: 500;
 }
 
-.zci--seat_geek .footer_artist {
+.zci--seat_geek .seat_geek-artist {
     font-size: 1.25em;
     font-weight: 500;
 }
@@ -84,28 +85,36 @@
 .zci--seat_geek .detail,
 .zci--seat_geek .detail__wrap,
 .zci--seat_geek .detail__pane {
-    height: 13em;
+    height: 16em;
+}
+
+.zci--seat_geek .detail__pane {
+    line-height: 14em;
 }
 
 .zci--seat_geek .detail {
-    bottom: -12.5em;
+    bottom: -15.8em;
 }
 
 /* Target everything but IE 6-8 */
 :root *> .zci--seat_geek .tileview.has-open-detail {
-    height: 23.5em;
+    height: 26.6em;
 }
 
 .zci--seat_geek .tileview.has-open-detail {
-    height: 23.85em;
+    height: 27em;
 }
 
 /* Target only Firefox */
 .zci--seat_geek .tileview.has-open-detail,  x:-moz-any-link, x:default {
-    height: 24em !important;
+    height: 27.05em !important;
 }
 
 .zci--seat_geek .detail__callout--pr {
     line-height: 2em;
-    margin-top: 0.5em;
+    margin-top: 0;
+}
+
+.zci--seat_geek p.detail__desc {
+    display: none;
 }
