@@ -8,6 +8,14 @@
     display: none;
 }
 
+.zci--similar_sites #show_more:hover {
+    cursor: pointer;
+}
+
+.zci--similar_sites #show_less:hover {
+    cursor: pointer;
+}
+
 .zci--similar_sites li {
     list-style-position: inside;
 }
