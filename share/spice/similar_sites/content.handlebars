@@ -3,9 +3,12 @@
 </div>
 
 {{#if show_more}}
-    <span id="show_more" onclick="document.getElementById('hidden').style.display='block'; 
-                                  document.getElementById('show_more').style.display='none';">Show more</span>
+    <span id="show_more" onclick="document.getElementById('hidden').style.display='block';
+                                  document.getElementById('show_more').style.display='none';">Show more ({{show_more_count}})</span>
     <div id="hidden">
         {{#list this.results 5 0}}{{/list}}
+
+        <span id="show_less" onclick="document.getElementById('hidden').style.display='none';
+                                    document.getElementById('show_more').style.display='block';">Show less</span>
     </div>
 {{/if}}
