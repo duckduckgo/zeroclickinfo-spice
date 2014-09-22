@@ -32,6 +32,9 @@ Using this template will help us better understand your Instant Answer and assis
 **Are you having any problems? Do you need our help with anything?**
 
 
+**What are the terms of use for the API? Will DuckDuckGo need specific authorization (e.g. an API key)? Are there any costs associated with API usage?**
+
+
 **Where did you hear about DuckDuckHack? (For first time contributors)**
 
 
