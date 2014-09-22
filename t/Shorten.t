@@ -35,7 +35,17 @@ ddg_spice_test(
         caller => 'DDG::Spice::Shorten',
     ),
     'https://www.duckduckgo.com/about.html shorten' => test_spice(
+        '/js/spice/shorten/https/www.duckduckgo.com%2Fabout.html',
+        call_type => 'include',
+        caller    => 'DDG::Spice::Shorten'
+    ),
+    'shorten url of http://www.duckduckgo.com/about.html' => test_spice(
         '/js/spice/shorten/http/www.duckduckgo.com%2Fabout.html',
+        call_type => 'include',
+        caller    => 'DDG::Spice::Shorten'
+    ),
+    'short url for https://www.duckduckgo.com/about.html' => test_spice(
+        '/js/spice/shorten/https/www.duckduckgo.com%2Fabout.html',
         call_type => 'include',
         caller    => 'DDG::Spice::Shorten'
     ),

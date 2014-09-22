@@ -19,8 +19,10 @@ spice from => '([^/]+)/(.*)';
 spice to => 'http://is.gd/create.php?format=json&url=$1%3A%2F%2F$2&callback={{callback}}';
 triggers any => 'shorten', 'shorten url', 'short url', 'url shorten';
 
+my %connector_words = map { $_ => 1 } qw(for of);
+
 handle remainder => sub {
-    my @query_words = split /\s+/;
+    my @query_words =  grep { !$connector_words{$_} } split /\s+/;
     my $q           = shift @query_words;
     return if (@query_words);    # We should only work for a single 'word' in the query.
     $q =~ m|(?<schema>https?)?(?:://)?(?<loc>.+)|;
