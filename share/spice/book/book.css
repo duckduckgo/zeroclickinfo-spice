@@ -82,7 +82,7 @@
 }
 
 @media only screen
-and (max-device-width : 599px) {
+and (max-width : 599px) {
     .zci--book,
     .zci--book .cw {
         height: 18.15em !important;
@@ -98,7 +98,7 @@ and (max-device-width : 599px) {
 }
 
 @media only screen
-and (max-device-width : 479px) {
+and (max-width : 479px) {
     .zci--book .zci__header {
         font-size: 1.2em;
         width: 10.25em;
@@ -142,8 +142,8 @@ and (max-device-width : 479px) {
 
 
 @media only screen
-and (min-device-width : 480px)
-and (max-device-width : 599px) {
+and (min-width : 480px)
+and (max-width : 599px) {
     .zci--book .zci__header {
         font-size: 1.3em;
     }
