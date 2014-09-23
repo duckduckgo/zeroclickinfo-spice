@@ -16,16 +16,14 @@ triggers startend => 'upcoming concert', 'upcoming concerts', 'concert', 'concer
 spice to => 'http://api.seatgeek.com/2/events?performers.slug=$1';
 spice wrap_jsonp_callback => 1;
 
-handle remainder => sub {
+handle remainder_lc => sub {
     # Removes triggers from the query
     $_ =~ s/^(:?(upcoming\s*)?(concerts?))|((live)\s*(:?(shows?))?)$//gi;
-    # Converts the query to lowercase
-    $_ =~ tr/[A-Z]/[a-z]/;
     # Removes spaces from the beginning of the query
     $_ =~ s/^\s+//;
     # Removes spaces from the end of the query
     $_ =~ s/\s+$//;
-    # Replaces spaces between words with dashes
+    # Replaces spaces between words with dashes, because the API requires it
     $_ =~ s/\s/\-/g;
     return $_ if $_;
     return;
