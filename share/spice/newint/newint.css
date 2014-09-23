@@ -1,3 +1,18 @@
 .zci--newint .editor {
     font-weight: bold;
 }
+
+@media only screen
+and (max-device-width : 480px) {
+
+    .zci--newint .editors-letter {
+        max-height: 3.1em;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .zci--newint .magazine-information {
+        display: none;
+    }
+
+}
