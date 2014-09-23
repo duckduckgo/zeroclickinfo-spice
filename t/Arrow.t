@@ -7,7 +7,7 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Arrow )],
-    'part bav99' => test_spice(
+    'arrow bav99' => test_spice(
         '/js/spice/arrow/bav99',
         call_type => 'include',
         caller => 'DDG::Spice::Arrow'
