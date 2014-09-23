@@ -8,9 +8,9 @@ use DDG::Spice;
 #Attribution
 primary_example_queries "first example query", "second example query";
 secondary_example_queries "optional -- demonstrate any additional triggers";
-description "<: $ia_desc :>";
+description "Succinct explanation of what this instant answer does";
 name "<: $ia_name :>";
-icon_url "/i/<: $ia_domain :>.ico";
+icon_url "";
 source "";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/<: $ia_name :>.pm";
 category "";
@@ -20,9 +20,6 @@ attribution github => ["https://github.com/", ""],
 
 # Triggers
 triggers any => "triggerWord", "trigger phrase";
-
-# API location
-spice to => 'http://<: $ia_domain :>/api/location/';
 
 # Handle statement
 handle remainder => sub {
