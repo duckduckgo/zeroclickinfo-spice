@@ -16,15 +16,15 @@
             data: api_result,
             meta: {
                 sourceName: "Example.com",
-                sourceUrl: 'http://<: $ia_domain :>/details/' + api_result.name
+                sourceUrl: 'http://example.com/url/to/details/' + api_result.name
             },
             templates: {
-                group: '<: $ia_group :>',
+                group: 'your-template-group',
                 options: {
                     content: Spice.<: $lia_name :>.content,
                     moreAt: true
                 }
-            <: $ia_rel :>
+            }
         });
     };
 }(this));
