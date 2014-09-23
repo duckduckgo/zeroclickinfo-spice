@@ -6,7 +6,7 @@
 and (max-device-width : 480px) {
 
     .zci--newint .editors-letter {
-        max-height: 3.1em;
+        max-height: 3.4em;
         overflow-y: hidden;
         text-overflow: ellipsis;
     }
