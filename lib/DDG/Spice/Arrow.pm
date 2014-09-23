@@ -3,7 +3,7 @@ package DDG::Spice::Arrow;
 
 use DDG::Spice;
 
-primary_example_queries "part bav99";
+primary_example_queries "arrow bav99";
 secondary_example_queries "arrow lm324n";
 description "Shows pricing/availability for part searches";
 name "Arrow";
@@ -12,7 +12,8 @@ category "special";
 icon_url "/i/parts.arrow.com.ico";
 attribution github  => ['https://github.com/macgngsta', 'macgngsta'];
 
-triggers startend => 'part', 'arrow';
+#removed the part trigger
+triggers startend => 'arrow';
 
 # QA url = api-qa.arrowelect.com
 # Production url = api.arrow.com

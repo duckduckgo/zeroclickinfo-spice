@@ -1,30 +1,9 @@
-/* pulled from bootstrap 3.1.1 */
-
-.zci--arrow ul,
-.zci--arrow ol {
-  margin-top: 0;
-  margin-bottom: 10px;
+//changed to octopart css
+.zci--arrow .btn__datasheet {
+    margin-right: 2px;
+    background-color: #e5e5e5;
 }
 
-.zci--arrow ul ul,
-.zci--arrow ol ul,
-.zci--arrow ul ol,
-.zci--arrow ol ol {
-  margin-bottom: 0;
-}
-
-.zci--arrow .list-unstyled {
-  padding-left: 0;
-  list-style: none;
-}
-
-.zci--arrow .list-inline {
-  padding-left: 0;
-  margin-left: -5px;
-  list-style: none;
-}
-.zci--arrow .list-inline > li {
-  display: inline-block;
-  padding-right: 5px;
-  padding-left: 5px;
+.is-mobile .zci--octopart .detail__body.detail__body--pr {
+    padding-top: 1em;
 }

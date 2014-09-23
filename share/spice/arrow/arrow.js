@@ -85,7 +85,8 @@
                     displayPrice='$'+leastPrice.toFixed(4);
                 }
                 
-                var imgLink='',
+                //return null if no img
+                var imgLink=null,
                     datasheetLink='';
                  
                 //find the image + datasheet links
@@ -131,6 +132,13 @@
                 itemType: "Parts",
                 sourceName: "parts.arrow.com",
                 sourceUrl: searchLink
+            },
+            relevancy: {
+                skip_words: ['arrow', 'part'],
+                primary: [{
+                    key: 'partNum',
+                    strict: true
+                }]
             },
             templates: {
                 group: 'products',
