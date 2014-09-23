@@ -7,32 +7,11 @@
         }
 
         var query = DDG.get_query();
-        var clean_query = query.replace(/((upcoming\s)?(concerts?))|(live(\s(shows?))?)/, '').trim();
+        var clean_query = query.replace(/((upcoming\s)?(concerts?))|(live(\s(shows?))?)/, '').trim().toLowerCase();
 
-        var months = {
-            '0': 'Jan',
-            '1': 'Feb',
-            '2': 'Mar',
-            '3': 'Apr',
-            '4': 'May',
-            '5': 'June',
-            '6': 'July',
-            '7': 'Aug',
-            '8': 'Sept',
-            '9': 'Oct',
-            '10': 'Nov',
-            '11': 'Dec'
-        };
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
-        var days = {
-            '0': 'Sunday',
-            '1': 'Monday',
-            '2': 'Tuesday',
-            '3': 'Wednesday',
-            '4': 'Thursday',
-            '5': 'Friday',
-            '6': 'Saturday'
-        };
+        var days = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         Spice.add({
             id: "seat_geek",
@@ -59,7 +38,7 @@
                         return splitted.join(" ");
                     } else {
                         var acronym = '';
-                        for (var i = 0; i < splitted.length; i++) {
+                        for(var i = 0; i < splitted.length; i++) {
                             var upper = splitted[i].substr(0, 1).toUpperCase() + '.';
                             acronym += upper;
                         }
@@ -78,7 +57,7 @@
                     date = new Date(date);
                     var week_day = days[date.getDay()];
                     var day = date.getDate();
-                    var month = months[date.getMonth()];
+                    var month = months[parseInt(date.getMonth())];
 
                     return week_day + " " + month + " " + day;
                 }
@@ -101,7 +80,7 @@
 
                 var a = {
                     url: item.url,
-                    price: item.stats.lowest_price? "$" + item.stats.lowest_price : "",
+                    price: item.stats.lowest_price ? "$" + item.stats.lowest_price : "",
                     artist: artist,
                     performers: getPerformers(item.performers),
                     heading: item.short_title,

@@ -16,13 +16,6 @@
     font-weight: 500;
 }
 
-.zci--seat_geek .price {
-    float: right;
-    font-size: 1.35em;
-    padding-bottom: 0;
-    line-height: 0.65;
-}
-
 .zci--seat_geek .performers {
     float: left;
 }
