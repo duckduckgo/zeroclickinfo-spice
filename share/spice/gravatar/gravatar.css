@@ -54,10 +54,6 @@
 @media only screen
 and (max-device-width : 480px) {
 
-    .zci--gravatar .gravatar--misc {
-        font-size: 0.85em;
-    }
-
     .zci--gravatar .expanded_social {
         -webkit-line-clamp: 2;
         height: 2.5em;
@@ -67,6 +63,8 @@ and (max-device-width : 480px) {
     }
 
     .zci--gravatar .gravatar--description {
-        font-size: 1.15em;
+        max-height: 5em;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
     }
 }
