@@ -23,11 +23,16 @@ handle remainder => sub {
     return unless ($_);
 
     my ($q, $c);
+
+    # Did the user query for holidays in a specific country?
     if (/\s+in\s+(.*)$/p) {
         ($q, $c) = (${^PREMATCH}, $1);
     } else {
         ($q, $c) = ($_, $loc->country_name);
     }
+
+    # Kill eventual slashes to avoid misbehaviour of the `spice from'
+    # regular expression.
     $q =~ s/\///g;
     $c =~ s/\///g;
 
