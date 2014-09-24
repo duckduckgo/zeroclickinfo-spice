@@ -22,7 +22,6 @@ handle remainder => sub {
     if ($_ ne '') {
         # Skip calling reddit's API if text is given
         spice call_type => 'self';
-        call;
     }
     return $_;
 };

@@ -48,7 +48,6 @@
         });
     };
 
-
     function bubble(text, width) {
         width = Math.min(text.length, width || 40);
         var lines = [];
@@ -91,5 +90,4 @@
     }
 }(this));
 
-
-
+ddg_spice_duck_say();
