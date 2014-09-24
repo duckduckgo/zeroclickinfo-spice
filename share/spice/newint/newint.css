@@ -22,7 +22,7 @@ and (max-device-width: 480px) and (orientation: portrait) {
 
     .zci--newint .more-information {
         position: absolute;
-        bottom: 1.25em;
+        bottom: 1.05em;
     }
 
 }
