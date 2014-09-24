@@ -8,14 +8,19 @@
             }
 
             // Get a random duck joke from reddit
-            var jokes = $.map(
-                api_result.data.children,
-                function(item) { return item.data; });
+            var jokes = $.map(api_result.data.children, function(item) {
+                return item.data;
+            });
             var joke = jokes[Math.floor(Math.random() * jokes.length)];
             
             // Newline wranging for reddit's markdown
             var text = joke.selftext
                 .replace(/([^\n])\n([^\n|$])/g, '$1 $2');
+            
+            // Append the title of the joke.
+            // We append it because some of the elements of the joke are in the title.
+            text = joke.title + '\n\n' + text;
+            
             var moreAt = true;
             var meta = {
                 sourceName: 'Reddit /r/jokes',
