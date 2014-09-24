@@ -1,0 +1,82 @@
+{{#if betterifs.betterifs}}
+    <div class="kind-wrapper">
+        Wouldn't it be better if...
+        <div class="betterifs collapsible open">
+          <ul>
+            {{#each betterifs.betterifs}}
+                <li>
+                  <span class="betterif-name">
+                    <a href="http://betterific.com/{{dashedS user.username}}/{{dashedS name}}/{{id}}" class="name-text" title="Wouldn't it be better if {{name}}">{{condense name maxlen="90"}}</a>
+                  </span>
+                  <span class="stats block-stats">
+                    <small>
+                      [{{plural upvotes_count singular="upvote" plural="upvotes" delimeter=","}}]
+                      ({{#with this.user}}by <a href="http://betterific.com/innovator/{{dashedS username}}/{{id}}" title="See more great ideas from {{first_name}} {{last_name}} at http://betterific.com">{{first_name}} {{last_name}}</a>{{/with}})
+                    </small>
+                  </span>
+                  <span class="clear-both">&nbsp;</span>
+                </li>
+            {{/each}}
+          </ul>
+        </div>
+    </div>
+    <hr>
+{{/if}}
+
+{{#if tags.tags}}
+    {{#if betterifs.betterifs}}
+    {{/if}}
+    <div class="kind-wrapper">
+        Tags
+        <div class="tags collapsible{{#unless betterifs.betterifs}} open{{/unless}}">
+            <ul>
+                {{#each tags.tags}}
+                    <li>
+                      <span class="tag-name">
+                        <a href="http://betterific.com/{{dashedS name}}/{{id}}" title="See more great ideas about {{name}} at http://betterific.com">{{name}}</a>
+                      </span>
+                      <span class="stats">
+                        <small>
+                          [{{plural betterifs_count singular="betterif" plural="betterifs" delimeter=","}},
+                           {{plural followers_count singular="follower" plural="followers" delimeter=","}}]
+                        </small>
+                      </span>
+                      <span class="clear-both">&nbsp;</span>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <hr>
+{{/if}}
+{{#if users.users}}
+    {{#if betterifs.betterifs}}        
+    {{else}}
+        {{#if tags.tags}}        
+        {{/if}}
+    {{/if}}
+    
+    <div class="kind-wrapper">
+        Users
+        <div class="users collapsible{{#unless betterifs.betterifs}}{{#unless tags.tags}} open{{/unless}}{{/unless}}">
+            <ul>
+                {{#each users.users}}
+                    <li>
+                      <span class="user-username">
+                        <a href="http://betterific.com/innovator/{{dashedS username}}/{{id}}" title="See great ideas by {{first_name}} {{last_name}} at http://betterific.com">{{first_name}} {{last_name}}</a>
+                      </span>
+                      <span class="stats">
+                        <small>
+                          [{{plural betterifs_count singular="betterif" plural="betterifs" delimeter=","}},
+                           {{plural followers_count singular="follower" plural="followers" delimeter=","}},
+                           {{plural upvotes_given_count singular="upvote" plural="upvotes" delimeter=","}} given,
+                           {{plural upvotes_received_count singular="upvote" plural="upvotes" delimeter=","}} received]
+                        </small>
+                      </span>
+                      <span class="clear-both">&nbsp;</span>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+{{/if}}

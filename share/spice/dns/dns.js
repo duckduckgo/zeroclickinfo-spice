@@ -1,26 +1,36 @@
-function ddg_spice_dns(api_result) {
-    if (!api_result
-            || !api_result.response
-            || !api_result.response.records
-            || api_result.response.records < 1) return;
+(function(env){
+    'use strict';
+    
+    env.ddg_spice_dns = function(api_result) {
 
-    api_result.response.records =
-        api_result.response.records.sort(
-            function(a, b) {
-                if (a.type == b.type)
-                    return parseInt(a.priority) > parseInt(b.priority)
-                else
-                  return a.type > b.type;
-            });
+        var records = DDG.getProperty(api_result, 'response.records');
+        if (!records.length) {
+            return Spice.failed('dns');
+        }
 
-    Spice.render({
-        data              : api_result.response,
-        //header1         : api_result.query.domain + ' (ViewDNS)',
-        source_url        : 'http://www.viewdns.info/dnsrecord/?domain='
-                            + api_result.query.domain,
-        source_name       : 'ViewDNS',
-        template_normal   : 'dns',
-        force_favicon_url : 'http://viewdns.info/favicon.ico',
-        force_no_fold     : true
-    });
-}
+        api_result.response.records.sort(function(a, b) {
+            if (a.type < b.type) 
+              return -1 
+            if (a.type > b.type)
+              return 1
+            return parseInt(a.priority) - parseInt(b.priority);
+        });
+
+        Spice.add({
+            id: 'dns',
+            name: 'Answer',
+            data: api_result.response,
+            meta: {
+                sourceUrl: 'http://www.viewdns.info/dnsrecord/?domain=' + api_result.query.domain,
+                sourceName: 'ViewDNS'
+            },
+            templates: {
+                group: 'base',
+                options: {
+                    content: Spice.dns.content,
+                    moreAt: true
+                }
+            }
+        });
+    };
+})(this);

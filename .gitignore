@@ -2,5 +2,7 @@ DDG-*
 .build
 *.sw*
 *~
+*.bak
 *#
 .jshintrc
+.DS_Store

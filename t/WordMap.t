@@ -12,6 +12,14 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::WordMap',
     ),
+    'similar to sound' => test_spice(
+        '/js/spice/word_map/sound',
+        caller    => 'DDG::Spice::WordMap',
+    ),
+    'words like sound' => test_spice(
+        '/js/spice/word_map/sound',
+        caller    => 'DDG::Spice::WordMap',
+    ),
 );
 
 done_testing;

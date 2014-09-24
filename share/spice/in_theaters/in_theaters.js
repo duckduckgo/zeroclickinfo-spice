@@ -1,98 +1,112 @@
-function ddg_spice_in_theaters (api_result) {
-
-    // Exit if we don't find any movies or if we see an error.
-    if(api_result.error || !api_result.movies || api_result.movies.length === 0) {
-        return;
+(function(env) {
+    "use strict";
+    
+    // A change in the Rotten Tomatoes API returns images that end in _tmb.
+    // This changes this to _det.
+    function toDetail(img) {
+        return img.replace(/tmb\.(jpg|png)/, "det.$1");
     }
-
-    // Get the original query.
-    // We're going to pass this to the header.
-    var matched, result, query = "";
-    $("script").each(function() {
-        matched = $(this).attr("src");
-        if(matched) {
-            result = matched.match(/\/js\/spice\/in_theaters\/([^\/]+)/);
-            if(result) {
-                query = result[1];
-            }
+    
+    function get_image(critics_rating) {
+        if(!critics_rating) {
+            return;
         }
-    });
-
-    var header = "";
-    if(query === "opening") {
-        header = "Opening Movies";
-    } else {
-        header = "Currently in Theaters";
-    }
-
-    Spice.render({
-        header1                  : header,
-        source_url               : "http://www.rottentomatoes.com/",
-        source_name              : "Rotten Tomatoes",
-        spice_name               : "in_theaters",
-        force_big_header         : true,
-        template_frame           : "carousel",
-        template_options         : {
-            items           : api_result.movies,
-            template_detail : "in_theaters_details",
-            li_height : 155
-        },
-        force_no_fold            : true
-    });
-};
-
-// Convert minutes to hr. min. format.
-// e.g. {{time 90}} will return 1 hr. 30 min.
-Handlebars.registerHelper("time", function(runtime) {
-    var hour = 0,
-        minute = 0;
-
-    if(runtime) {
-        if(runtime >= 60) {
-            hour = Math.floor(runtime / 60);
-            minute = runtime - (hour * 60);
+        // The filename is the same as the critics_rating, but
+        // lowercased and with spaces converted to dashes.
+        critics_rating = critics_rating.toLowerCase().replace(/ /, '-');
+        if(is_retina) {
+            return DDG.get_asset_path('in_theaters', critics_rating + '.retina.png');
         } else {
-            minute = runtime;
+            return DDG.get_asset_path('in_theaters', critics_rating + '.png');
         }
-        hour = hour + 'hr. ';
-        minute += 'min.';
-        return hour + minute;
     }
-});
+    
+    env.ddg_spice_in_theaters = function(api_result) {
+        if(!api_result || api_result.error) {
+            return Spice.failed('in_theaters');
+        }
 
-// Guarantee that we're only going to show five movies.
-Handlebars.registerHelper("list", function(items, options) {
-    var out = "";
-    for(var i = 0; i < items.length && i < 5; i += 1) {
-        out += options.fn(items[i]);
-    }
-    return out;
-});
+        var mod_api_result = [];
+        var filter_rating;
+        var query_array = DDG.get_query().toLowerCase().split(" ");
+        var ratings = ["r","pg-13","pg","g","pg13","unrated"];
 
-Handlebars.registerHelper("star_rating", function(score) {
-        var r = (score / 20) - 1,
-            s = "";
-
-        if (r > 0) {
-            for (var i = 0; i < r; i++) {
-                s += "&#9733;";
+        // Check whether our query contains any rating
+        $.each(ratings, function(index, value) {
+            if(($.inArray(value, query_array)) !== -1) {
+                if(value === "pg13") {
+                    filter_rating = "pg-13";
+                } else {
+                    filter_rating = value;
+                }
             }
+        });
+
+        Spice.add({
+            id: 'in_theaters',
+            name: 'Movies',
+            data: api_result.movies,
+            signal: 'high',
+            meta: {
+                sourceName: 'Rotten Tomatoes',
+                sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
+                total: api_result.movies,
+                itemType: 'Movies'
+            },
+            normalize: function(item) {
+                if (filter_rating && item.mpaa_rating.toLowerCase() !== filter_rating) {
+                    return null;
+                }
+
+                var position;
+                
+                // We add these so that we can position the Rotten Tomatoes images.
+                if(item.ratings.critics_rating === "Fresh" || item.ratings.critics_rating === "Certified Fresh") {
+                    position = "-256px -144px";
+                } else if(item.ratings.critics_rating === "Rotten") {
+                    position = "-272px -144px";
+                }
+                
+                // Modify the image from _tmb.jpg to _det.jpg
+                var image = toDetail(item.posters.detailed)
+                return {
+                    rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
+                    image: image,
+                    icon_image: get_image(item.ratings.critics_rating),
+                    abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
+                    heading: item.title,
+                    img_m: image,
+                    url: item.links.alternate,
+                    is_retina: is_retina ? "is_retina" : "no_retina"
+                };
+            },
+            templates: {
+                group: 'media',
+                detail: 'products_item_detail',
+                options: {
+                    variant: 'poster',
+                    subtitle_content: Spice.in_theaters.subtitle_content,
+                    rating: false,
+                    buy: Spice.in_theaters.buy
+                }
+            }
+        });
+
+        // Hide the bottom text so that the poster occupies the whole tile.
+        if(typeof Spice.getDOM('in_theaters') !== 'undefined') {
+            Spice.getDOM('in_theaters').find('.tile__body').addClass('is-hidden');
         }
-
-        if (s.length === 0) {
-            s = "";
-        }
-
-        return s;
-});
-
-Handlebars.registerHelper("checkRating", function(critics_rating) {
-    return critics_rating || "No Rating";
-});
-
-Handlebars.registerHelper("checkScore", function(critics_score) {
-    if(critics_score === -1) {
-        return "";
     }
-    return ": " + critics_score + "%";
-})
+    
+    // Convert minutes to hr. min. format.
+    // e.g. {{time 90}} will return 1 hr. 30 min.
+    Handlebars.registerHelper("InTheaters_time", function(runtime) {
+        var hours = '',
+            minutes = runtime;
+        if(runtime >= 60) {
+            hours = Math.floor(runtime / 60) + ' hr. ';
+            minutes = (runtime % 60);
+        }
+        return hours + (minutes > 0 ? minutes + ' min.' : '');
+    });
+}(this));

@@ -12,10 +12,9 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::RubyGems'
     ),
-    'ruby xml' => test_spice(
-        '/js/spice/ruby_gems/xml',
-        call_type => 'include',
-        caller => 'DDG::Spice::RubyGems'
+    'rubygems cucumber' => test_spice(
+        '/js/spice/ruby_gems/cucumber',
+        caller    => 'DDG::Spice::RubyGems',
     ),
 );
 

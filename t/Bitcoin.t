@@ -11,7 +11,6 @@ ddg_spice_test(
         '/js/spice/bitcoin/',
         call_type => 'include',
         caller => 'DDG::Spice::Bitcoin',
-        
     ),
     'bit coin eur' => test_spice(
         '/js/spice/bitcoin/eur',
@@ -27,6 +26,14 @@ ddg_spice_test(
         '/js/spice/bitcoin/pln',
         call_type => 'include',
         caller => 'DDG::Spice::Bitcoin',      
+    ),
+    'bitcoin eur' => test_spice(
+        '/js/spice/bitcoin/eur',
+        caller    => 'DDG::Spice::Bitcoin',
+    ),
+    'bitcoin cny' => test_spice(
+        '/js/spice/bitcoin/cny',
+        caller    => 'DDG::Spice::Bitcoin',
     ),
 );
 

@@ -1,4 +1,6 @@
 function ddg_spice_zanran(api_result) {
+    "use strict";
+
     if(!api_result || !api_result.results || api_result.results.length === 0) {
         return;
     }
@@ -10,15 +12,18 @@ function ddg_spice_zanran(api_result) {
         return "";
     };
 
-    Spice.render({
+    Spice.add({
         data             : api_result,
         header1          : DDG.get_query() + " (Zanran)",
-        source_url       : api_result.more,
-        source_name      : 'Zanran',
-        template_normal  : 'zanran',
+        sourceUrl       : api_result.more,
+        sourceName      : 'Zanran',
+        templates: {
+            item: Spice.zanran.zanran,
+            detail: Spice.zanran.zanran
+        },
         image_url        : checkImage(api_result.results[0].preview_image),
-        force_big_header : true,
-        force_no_fold    : true
+        
+        
     });
 
     $("a.show-hide").click(function() {
@@ -38,6 +43,8 @@ function ddg_spice_zanran(api_result) {
 };
 
 Handlebars.registerHelper("preview_link", function() {
+    "use strict";
+
     var s = this.preview_url;
     return (s.indexOf("zanran")) ? this.preview_url : "http://zanran.com" + this.preview_url;
 });

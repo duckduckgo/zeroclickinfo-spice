@@ -1,105 +1,99 @@
-function ddg_spice_movie (api_result) {
+(function(env) {
     "use strict";
-
-    if (api_result.total === 0) {
-        return;
+    
+    // A change in the Rotten Tomatoes API returns images that end in _tmb.
+    // This changes this to _det.
+    function toDetail(img) {
+        return img.replace(/tmb\.(jpg|png)/, "det.$1");
     }
-
-    var ignore = ["movie", "film", "rotten", "rating", "rt", "tomatoes", "release date"];
-    var result, max_score = 0;
-
-    // Assign a ranking value for the movie. This isn't a complete sorting value though
-    // also we are blindling assuming these values exist
-    var score = function(m) {
-        var s = m.ratings.critics_score * m.ratings.audience_score;
-        if (s > max_score) max_score = s;
-        // If any above are undefined, s is undefined.
-        return s;
-    };
-
-    // returns the more relevant of the two movies
-    var better = function(currentbest, next) {
-        // If score() returns undefined, this is false, so we're still OK.
-        return (score(next) > score(currentbest) &&
-                (next.year > currentbest.year) &&
-                DDG.isRelevant(next.title, ignore)) ? next : currentbest;
-    };
-
-    result = DDG_bestResult(api_result.movies, better);
-
-    // Favor the first result if the max score is within 1% of the score for the first result.
-    if (result !== api_result.movies[0] && Math.abs(score(api_result.movies[0]) - max_score) / max_score < 0.1) {
-        result = api_result.movies[0];
-    }
-
-    // Check if the movie that we have is relevant enough.
-    if(!DDG.isRelevant(result.title, ignore)) {
-        return;
-    }
-
-    var checkYear = function(year) {
-        if(year) {
-            return " (" + year + ")";
+    
+    function get_image(critics_rating) {
+        if(!critics_rating) {
+            return;
         }
-        return "";
-    };
-
-    if ((result.synopsis && result.synopsis.length) ||
-        (result.critics_consensus && result.critics_consensus.length)) {
-        result.hasContent = true;
+        
+        // The filename is the same as the critics_rating, but
+        // lowercased and with spaces converted to dashes.
+        critics_rating = critics_rating.toLowerCase().replace(/ /, '-');
+        if(is_retina) {
+            return DDG.get_asset_path('in_theaters', critics_rating + '.retina.png');
+        } else {
+            return DDG.get_asset_path('in_theaters', critics_rating + '.png');
+        }
     }
-
-    Spice.render({
-        data: result,
-        source_name: 'Rotten Tomatoes',
-        template_normal: "movie",
-        template_small: "movie_small",
-        force_no_fold: 1,
-        source_url: result.links.alternate,
-        header1: result.title + checkYear(result.year),
-        image_url: result.posters.thumbnail.indexOf("poster_default.gif") === -1 ? result.posters.thumbnail : ""
+    
+    env.ddg_spice_movie = function(api_result) {
+        if(!api_result || !api_result.movies || !api_result.movies.length) {
+            return Spice.failed('movie');
+        }
+        
+        // Get original query.
+        var script = $('[src*="/js/spice/movie/"]')[0],
+            source = $(script).attr("src"),
+            query = source.match(/movie\/([^\/]+)/)[1];
+        
+        Spice.add({
+            id: 'movie',
+            name: 'Movies',
+            data: api_result.movies,
+            meta: {
+                sourceName: 'Rotten Tomatoes',
+                sourceUrl: 'https://www.rottentomatoes.com/search/?search=' + query,
+                itemType: 'Movies'
+            },
+            normalize: function(item) {
+                
+                // Modify the image from _tmb.jpg to _det.jpg
+                var image = toDetail(item.posters.detailed);
+                return {
+                    rating: Math.max(item.ratings.critics_score / 20, 0),
+                    image: image,
+                    icon_image: get_image(item.ratings.critics_rating),
+                    abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
+                    heading: item.title,
+                    img_m: image,
+                    url: item.links.alternate,
+                    is_retina: is_retina ? "is_retina" : "no_retina"
+                };
+            },
+            templates: {
+                group: 'media',
+                detail: 'products_item_detail',
+                options: {
+                    variant: 'poster',
+                    subtitle_content: Spice.movie.subtitle_content,
+                    buy: Spice.movie.buy
+                }
+            },
+            relevancy: {
+                skip_words: ['movie', 'info', 'film', 'rt', 'rotten', 'tomatoes', 'rating', 'ratings', 'rotten'],
+                primary: [{
+                    key: 'title'
+                }, {
+                    key: 'posters.detailed',
+                    match: /\.jpg$/,
+                    strict: false
+                }]
+            }
+        });
+        
+        // Make sure we hide the title and ratings.
+        // It looks nice to show only the poster of the movie.
+        var $dom = Spice.getDOM('movie')
+        if ($dom && $dom.length) {
+            $dom.find('.tile__body').hide();
+        }
+    };
+    
+    // Convert minutes to hr. min. format.
+    // e.g. {{time 90}} will return 1 hr. 30 min.
+    Handlebars.registerHelper("time", function(runtime) {
+        var hours = '',
+            minutes = runtime;
+        if(runtime >= 60) {
+            hours = Math.floor(runtime / 60) + ' hr. ';
+            minutes = (runtime % 60);
+        }
+        return hours + (minutes > 0 ? minutes + ' min.' : '');
     });
-}
-
-/*
- * rating_adjective
- *
- * help make the description of the movie gramatically correct
- * used in reference to the rating of the movie, as in
- *   'an' R rated movie, or
- *   'a'  PG rated movie
- */
-Handlebars.registerHelper("rating_adjective", function() {
-    "use strict";
-
-    return (this.mpaa_rating === "R" ||
-            this.mpaa_rating === "NC-17" ||
-            this.mpaa_rating === "Unrated") ?  "an" :"a";
-});
-
-/* star rating */
-Handlebars.registerHelper("star_rating", function(score) {
-    "use strict";
-
-    var r = (score / 20) - 1;
-    var s = "";
-
-    if (r > 0) {
-        for (var i = 0; i < r; i++) {
-            s += "&#9733;";
-        }
-    }
-
-    if (s.length === 0) {
-        s = "0 Stars";
-    }
-
-    return s;
-});
-
-/* date format */
-Handlebars.registerHelper("date_string", function(string) {
-    var date = DDG.getDateFromString(string),
-        months = [ 'Jan.','Feb.','Mar.','Apr.','May','Jun.','Jul.','Aug.','Sep.','Oct.','Nov.','Dec.'];
-    return months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
-});
+}(this));

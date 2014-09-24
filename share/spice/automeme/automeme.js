@@ -1,14 +1,27 @@
-function ddg_spice_automeme ( api_result ) {
-	
-	if (api_result.length) {
+(function(env) {
+    'use strict';
 
-		Spice.render({
-			data              : {meme : api_result[0]},
-			force_big_header  : false,
-			source_name       : "Automeme",
-			source_url        : 'http://autome.me/',
-			template_normal   : 'automeme',
-			template_small    : 'automeme'
-		});
-	}
-}
+    env.ddg_spice_automeme = function(api_result) {
+
+        if (!(api_result && api_result.length)) {
+            return Spice.failed('automeme');
+        }
+
+        Spice.add({
+            id: 'automeme',
+            name: 'Answer',
+            data: { meme: api_result[0] },
+            meta: {
+                sourceName: 'Autome.me',
+                sourceUrl: 'http://autome.me/'
+            },
+            templates: {
+                group: 'base',
+                options: {
+                    content: Spice.automeme.content,
+                    moreAt: true
+                }
+            }
+        });
+    }
+})(this);

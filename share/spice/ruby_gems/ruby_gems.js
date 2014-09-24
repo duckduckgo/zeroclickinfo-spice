@@ -1,23 +1,39 @@
-function ddg_spice_ruby_gems(api_result) {
-    
-    if (api_result.length === 0) return;
+(function(env) {    
+    env.ddg_spice_ruby_gems = function(api_result) {
+        "use strict";
+        
+        if (!api_result || api_result.length === 0) {
+            return Spice.failed("ruby_gems");
+        }
 
-    var query = DDG.get_query()
-    query = query.replace(/\s*(?:(?:ruby(?:gems?)?)|(?:gems?))\s*/i, '');
+        // Get the original query.
+        var script = $('[src*="/js/spice/ruby_gems/"]')[0];
+        var source = $(script).attr("src");
+        var query = source.match(/ruby_gems\/([^\/]*)/)[1];
 
-    Spice.render({
-        data             : api_result,
-        header1          : query + " (RubyGems)",
-        source_url       : 'http://rubygems.org/search?utf8=%E2%9C%93&query=' + encodeURIComponent(query),
-        source_name      : 'RubyGems',
-        spice_name       : 'ruby_gems',
-        template_frame   : 'list',
-        template_options : {
-            items: api_result,
-            show: 5,
-            template_item: 'ruby_gems'
-        },
-        force_no_fold    : true,
-        force_big_header : true
-    });
-}
+        // Display the instant answer.
+        Spice.add({
+            id: "ruby_gems",
+            name: "Software",
+            data: api_result,
+            meta: {
+                sourceUrl: 'http://rubygems.org/search?utf8=%E2%9C%93&query=' + encodeURIComponent(query),
+                sourceName: 'RubyGems',
+                total: api_result.length,
+                itemType: "gems",
+            },
+            templates:{
+                group: 'text',
+                detail: false,
+		item_detail: false
+            },
+            normalize : function(item){
+                return{
+                    title: item.name,
+                    url: item.project_uri,
+                    description: item.info
+                }
+            }
+        });
+    }
+}(this));
