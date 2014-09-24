@@ -1,6 +1,19 @@
 # Contributing to the **Spice** repository
 
-At DuckDuckGo, we truly appreciate our community members taking the time to contribute to our open-source repositories. In an effort to ensure contributions are easy for you to make and for us to manage, we have written some guidelines that we ask our contributors to follow so that we can handle pull requests in a timely manner with as little friction as possible.
+
+At DuckDuckGo, we truly appreciate our community members taking the time to
+contribute to our open-source repositories. In an effort to ensure
+contributions are easy for you to make and for us to manage, we have written
+some guidelines that we ask our contributors to follow so that we can handle
+pull requests in a timely manner with as little friction as possible.
+
+### BETA
+
+The new version of DuckDuckGo has launched public beta!
+See the [what's new](https://github.com/duckduckgo/zeroclickinfo-spice/blob/bttf/BETA.md) for the current status and how you can contribute
+to converting the Spice Instant Answers to the new API !
+
+<hr>
 
 ## Getting Started
 
@@ -67,4 +80,4 @@ If you're submitting a **pull request** (bugfix/addition):
 4. Add your info to the instant answer so we can give you credit for it on the [Goodies page](https://duckduckgo.com/goodies). You'll see your name or handle on the live site!
 Check out the [Metadata documentation](https://dukgo.com/duckduckhack/metadata) for detailed instructions on how to include your name and links.
 
-5. Go into GitHub and submit a [pull request!](http://help.github.com/send-pull-requests/) to the **Spice** repository, making sure to use the **Spice** repository's **[Pull Request Template](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/spice_pr_template.md)**. This will let us know about your changes and start the conversation about integrating it into the live code.
+5. Go into GitHub and submit a [pull request!](http://help.github.com/send-pull-requests/) to the **Spice** repository, making sure to use the **Spice** repository's **[Pull Request Template](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/pull_request_template_spice.md)**. This will let us know about your changes and start the conversation about integrating it into the live code.

@@ -1,114 +1,122 @@
-function ddg_spice_guidebox_getid (api_result) {
-    "use strict";
+(function(env){
+    "use strict";    
+    env.ddg_spice_guidebox_getid = function(api_result) {
 
-    if (!api_result.results) return;
-
-    var SKIP_ARRAY = ["online","tv","episode","episodes","free","guidebox","watch","full"],
-        results = api_result.results.result,
-        relevant;
-
-    // Check which show is relevant to our query.
-    $.each(results, function(key, result) {
-        if (DDG.isRelevant(result.title, SKIP_ARRAY, 3) && !relevant) {
-            relevant = result;
+        if (!api_result || !api_result.results) {
+          return Spice.failed('guidebox');
         }
-    });
 
-    // Exit if we didn't find anything relevant.
-    if (!relevant) {
-	return;
+        var SKIP_ARRAY = ["online","tv","episode","episodes","free","guidebox","watch","full"],
+            results = api_result.results.result, 
+            relevant;
+
+        // Check which show is relevant to our query.
+        $.each(results, function(key, result) {
+            if (DDG.isRelevant(result.title, SKIP_ARRAY, 3) && !relevant) {
+                relevant = result;
+            }
+        });
+
+        // Exit if we didn't find anything relevant.
+        if (!relevant) {
+            return;
+        }
+
+        // Prevent jQuery from appending "_={timestamp}" in our url.
+        $.ajaxSetup({
+            cache: true
+        });
+
+        var metadata = {
+            res_title : relevant.title,
+            network : relevant.network,
+            more : relevant.url
+        };
+
+        var url = '/js/spice/guidebox/lastshows/series/' + relevant.id;
+
+        $.getJSON(url, function(api_result) {
+            
+            if(!api_result){
+                return Spice.failed('guidebox');
+            }
+
+            var isMobile = $('.is-mobile').length;
+
+            Spice.add({
+                id: 'guidebox',
+                name: 'TV',
+                data: toArray(api_result.results.result),
+                meta: {
+                    sourceName: "Guidebox",
+                    sourceUrl: metadata.more,
+                    itemType: 'episodes of ' + metadata.res_title
+                },
+                templates: {
+                    group: 'media',
+                    options: {
+                        variant: "video",
+                        price: true,
+                        buy: Spice.guidebox_getid.buy
+                    }
+                },
+                normalize: function(item) {
+                    // We have to check if the required properties exist before we do anything.
+                    // Returning null skips the item and prevents it from getting displayed.
+                    if(!DDG.getProperty(item, 'episode_name') || !DDG.getProperty(item, 'season_number') || 
+                       !DDG.getProperty(item, 'overview')) {
+                        return null;
+                    }
+                    
+                    var subtitle_tile = "Season "+ item.season_number+ ", #" + item.episode_number;
+                    var subtitle_detail = "(Season "+ item.season_number+ ", #" + item.episode_number+")";
+
+                    var abstract_length = (isMobile ? 175 : 500);
+                    var abstract = Handlebars.helpers.ellipsis(item.overview, abstract_length);
+
+                    var aired = "Originally aired "+ Handlebars.helpers.guideBox_getDate(item.first_aired)
+                                + " on "+ metadata.network;
+                    
+                    return {
+                        image: item.thumbnail_304x171,
+                        img: item.thumbnail_400x225,
+                        title: item.episode_name, 
+                        ratingText: subtitle_tile,
+                        heading: item.episode_name + subtitle_detail,
+                        url: item.smart_url,
+                        abstract: abstract,
+                        price: aired
+                    }
+                },
+//                 relevancy: {
+//                     primary: [
+//                         {required: 'episode_name'},
+//                         {required: 'season_number'},
+//                         {required: 'overview'}
+//                     ]
+//                }
+            });
+        });
     }
 
-    // Prevent jQuery from appending "_={timestamp}" in our url.
-    $.ajaxSetup({
-        cache: true
-    });
-
-    var script = $('[src*="/js/spice/guidebox/getid/"]')[0],
-        source = decodeURIComponent($(script).attr("src")),
-        matched = source.match(/\/js\/spice\/guidebox\/getid\/([a-zA-Z0-9\s]+)/),
-        query  = matched[1];
-
-    var metadata = {
-        res_title : relevant.title,
-        network   : relevant.network,
-        more      : relevant.url,
-        query     : query,
-    };
-    
-    ddg_spice_guidebox_getid.metadata = metadata;
-    $.getScript("/js/spice/guidebox/lastshows/series/" + relevant.id);
-}
-
-function ddg_spice_guidebox_lastshows (api_result) {
-
-    var metadata = ddg_spice_guidebox_getid.metadata;
-
-    Spice.render({
-        data                     : api_result,
-        header1                  : metadata.res_title + " (TV  - " + metadata.network + ")",
-        source_name              : "Guidebox",
-        source_url               : metadata.more,
-        template_frame           : "carousel",
-        spice_name               : "guidebox",
-        template_options         : { 
-            items                : api_result.results.result,
-            template_item        : "guidebox_getid",
-            template_detail      : "guidebox_getid_details",
-            li_width             : 120,
-            li_height            : 105
+    function toArray(obj) {
+        var result = [];
+        if($.isArray(obj)) {
+            return obj;
+        } else {
+            $.each(obj, function(key, value) {
+                result[key] = value;
+            });
+            return result;
         }
-    });
-};
-
-Handlebars.registerHelper("checkSeason", function(season_number, episode_number, options) {
-    if(season_number !== "0") {
-	return options.fn({
-	    season_number: season_number, 
-	    episode_number: episode_number
-	});
     }
-});
 
-Handlebars.registerHelper("getQuery", function() {
-    return ddg_spice_guidebox_getid.metadata.query;
-});
+    Handlebars.registerHelper("guideBox_getDate", function(first_aired) {
 
-Handlebars.registerHelper("getTitle", function() {
-    return ddg_spice_guidebox_getid.metadata.res_title;
-});
-
-Handlebars.registerHelper("getDate", function(first_aired) {
-    "use strict";
-
-    var aired = DDG.getDateFromString(first_aired),
+        var aired = DDG.getDateFromString(first_aired),
         days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
         months = [ 'January','February','March','April','May','June','July','August','September','October','November','December'];
 
-    return days[aired.getDay()] + ", " + months[aired.getMonth()] + " " + aired.getDate() + ", " + aired.getFullYear()
-});
-
-Handlebars.registerHelper("pluralize", function(string, options) { 
-    
-    if (options.hash && options.hash.singular && options.hash.plural){
-        var arr = string.split("|");
-        return arr.length > 1 ? options.hash.plural : options.hash.singular
-    }
-    return "";
-});
-
-Handlebars.registerHelper("split", function(string) { 
-    return string.replace(/^\||\|$/g, "").replace(/\|/g, ", ");
-});
-
-Handlebars.registerHelper("creators", function(options) {
-    
-    if (this.writers.length || this.directors.length){
-        return options.fn(this)
-    }
-    return "";
-});
-
-Handlebars.registerHelper("get_network", function(options) {  
-    return ddg_spice_guidebox_getid.metadata.network;
-});
+        return days[aired.getDay()] + ", " + months[aired.getMonth()] + " " + aired.getDate() + ", " + aired.getFullYear()
+    });
+}(this));

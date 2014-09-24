@@ -1,0 +1,17 @@
+<h3>
+    {{#if plural_form}}
+        <span class="zci__def__word">{{plural_form}}</span><span class="zci__def__plural"> is the plural form of {{word}}</span>
+    {{else}}
+        <span class="zci__def__word">{{word}}</span>
+    {{/if}}
+    <span class="zci__def__pronunciation"></span>
+</h3>
+<ul>
+{{#definitions}}
+    <li>
+        <div class="zci__def__part-of-speech">{{Dictionary_formatPartOfSpeech partOfSpeech}}</div>
+        <div class="zci__def__definition">{{{Dictionary_formatDefinition text}}}</div>
+    </li>
+{{/definitions}}
+</ul>
+{{{moreAt meta.sourceUrl meta.sourceName}}}

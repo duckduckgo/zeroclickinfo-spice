@@ -1,30 +1,31 @@
-function ddg_spice_shorten(api_result) {
+(function(env) {
     "use strict";
+    env.ddg_spice_shorten = function (api_result) {
+        // Exit immediately if we find an error message.
+        if (!api_result || !api_result.shorturl || api_result.errorcode) {
+            return Spice.failed('shorten');
+        }
 
-    // Exit immediately if we find an error message.
-    if (!api_result || !api_result.shorturl || api_result.errorcode) {
-        return;
+        Spice.add({
+            id: 'shorten',
+            data: api_result,
+            name: 'Shortened Link',
+            meta: {
+                sourceUrl : 'http://is.gd/',
+                sourceName : 'is.gd',
+            },
+            templates: {
+                group: 'text',
+                options: {
+                    content: Spice.shorten.shorten
+                }
+            },
+        });
+
+        // If we displayed an input box, make sure we focus on it.
+        var url = $('.zci--shorten input.tag');
+        url.click(function() {
+            url.focus().select();
+        }).click();
     }
-
-    // Check if it is a mobile browser (needs work). This was inspired by is.gd.
-    api_result.mobile = false;
-    if(window.navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)) {
-        api_result.mobile = true;
-    }
-
-    Spice.render({
-        data             : api_result,
-        header1          : "Shortened Link (is.gd)",
-        source_url       : "http://is.gd/",
-        source_name      : "is.gd",
-        template_normal  : "shorten",
-        force_big_header : true,
-        favicon_style    : "inline"
-    });
-
-    // If we displayed an input box, make sure we focus on it.
-    var url = $("input#shorten-url");
-    url.click(function() {
-        url.focus().select();
-    }).click();
-}
+}(this));

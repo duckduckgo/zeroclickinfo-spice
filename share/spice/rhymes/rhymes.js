@@ -1,34 +1,49 @@
-function ddg_spice_rhymes ( api_result ) {
+function ddg_spice_rhymes (api_result) {
+    "use strict";
+
     var query = DDG.get_query()
                 .replace(/^(what|rhymes?( with| for)?) |\?/gi, "");
 
     if (!api_result.length) {
-        return;
+        return Spice.failed('rhymes');
     }
-
-    Spice.render({
-        data             : api_result,
-        header1          : query + " (Rhymes)",
-        source_url       : 'http://rhymebrain.com/en/What_rhymes_with_' +
-                            encodeURIComponent(query),
-        source_name      : 'RhymeBrain',
-        template_normal  : 'rhymes',
-        force_big_header : true
-    });
-}
-
-// Randomly selects rhyming words from the
-// list returned by the RhymeBrain API
-Handlebars.registerHelper('selectRhymes', function(options) {
-    var words = [];
-
-    for (var i = 0; i < this.length && i < 15; i++) {
-        var word = this[i];
-
+    
+    var words = [], count=0;
+    
+    for(var i=0, l = api_result.length; i<l; i++) {
+        var word = api_result[i];
+	
         if (word.score === 300 && !word.flags.match(/a/)) {
             words.push(word);
+	    if (++count > 15)
+		break;
         }
     }
 
-    return options.fn(words);
-});
+    if(words.length === 0) {
+	return;
+    }
+
+    var title = DDG.capitalize(query.toLowerCase());
+    Spice.add({
+	data: { 
+	    words: words, 
+	    query: title
+	},
+	id: "rhymes",
+        name: "Rhymes",
+        meta: {
+            sourceUrl: 'http://rhymebrain.com/en/What_rhymes_with_' +
+                           encodeURIComponent(query) + '.html',
+            sourceName: 'RhymeBrain',
+            sourceIcon: true
+        },
+        templates: {
+            group: 'text',
+            options: {
+                content: Spice.rhymes.content,
+		moreAt: true
+            }
+        }
+    });
+}

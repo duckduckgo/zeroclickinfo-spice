@@ -33,6 +33,14 @@ ddg_spice_test(
         caller => 'DDG::Spice::Rhymes',
     ),
     'rhymes' => undef,
+    'go rhymes with' => test_spice(
+        '/js/spice/rhymes/go',
+        caller    => 'DDG::Spice::Rhymes',
+    ),
+    'words that rhyme with smile' => test_spice(
+        '/js/spice/rhymes/smile',
+        caller    => 'DDG::Spice::Rhymes',
+    ),
 );
 
 done_testing;

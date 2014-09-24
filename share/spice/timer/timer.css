@@ -1,0 +1,233 @@
+.zci--timer .timer__btn {
+    height: 75px;
+    width: 75px;
+    border-radius: 37.5px;
+    text-align: center;
+    line-height: 75px;
+    border: 1px solid black;
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+    outline: none; /*remove the blue outline in chrome/opera*/
+    background: none;
+    cursor: pointer;
+}
+
+/*remove the dashed line in FF/IE*/
+.zci--timer .timer__btn::-moz-focus-inner {
+    border: 0;
+}
+    
+.zci--timer .timer__btn.timer__start {
+    border-color: #20b84c;
+    background-color: #20b84c;
+    color: white;
+}
+
+.zci--timer .timer__btn.timer__pause {
+    border-color: #ff3908;
+    background-color: #ff3908;
+    color: white;
+}
+
+.zci--timer .timer__btn[disabled] {
+    color: #b4b4b4;
+    border-color: #b4b4b4;
+    cursor: default;
+}
+
+.zci--timer .timer__btn.timer__start[disabled] {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #f2f2f2;
+}
+
+.zci--timer .spice-pane {
+    width: 45%;
+    height: 100%;
+    line-height: 65px;
+    display: none; /* we'll display the divs in javascript */
+    padding: 2%;
+    border-radius: 2px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.zci--timer .spice-pane-right {
+    float: right;
+}
+
+.zci--timer .pane-block {
+    height: 100px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.zci--timer .time {
+    text-align: center;
+    font-size: 40px;
+    line-height: 75px;
+}
+
+.zci--timer .timer__time-input {
+    width: 40%;
+    height: 100%;
+    margin-top: 15px;
+    margin-right: 2px;
+    margin-left: 2px;
+    text-align: center;
+    background-color: #fff;
+    color: #393939;
+    border-radius: 2px;
+    border: 0;
+    line-height: 100%;
+    font-size: 1em;
+    outline: none;
+}
+
+.zci--timer .timer__time-input::-moz-placeholder {
+    color: #bbb;
+}
+.zci--timer .timer__time-input::-webkit-input-placeholder {
+    color: #bbb;
+    padding-top: 4px;
+}
+.zci--timer .timer__time-input:-ms-input-placeholder {
+    color: #bbb;
+}
+
+.zci--timer #timer_input {
+    font-size: 2.5em;
+}
+
+.zci--timer .btn-wrapper {
+    float: right;
+}
+
+.zci--timer #timer_container {
+    max-width: 500px;
+    margin: 0 auto;
+} 
+
+.zci--timer #timer_display {
+    padding-bottom: 0;
+}
+
+.zci--timer .timer__done-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(128,128,128,0.4);
+    z-index: 9999;
+}
+
+.zci--timer .timer__done-modal > div {
+    width: 300px;
+    border-radius: 3px;
+    position: relative;
+    margin: 127px auto;
+    background-color: #fff;
+    padding: 30px 10px;
+}
+
+.zci--timer .timer__done-modal h2 {
+    display: block;
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.zci--timer .timer__done-modal button {
+    display: block;
+    margin: 0 auto;
+    width: 80px;
+    padding: 3px 0;
+    border: 0;
+    border-radius: 2px;
+    background-color: #61AD48;
+    color: white;
+    cursor: pointer;
+}
+
+/*dark theme*/
+.dark-header .zci--timer #reset_btn {
+    color: #ccc;
+    border-color: #ccc;
+}
+
+.dark-header .zci--timer #reset_btn[disabled],
+.dark-header .zci--timer .timer__btn.timer__start[disabled] {
+    color: #484848;
+    border-color: #484848;
+    background: none;
+}
+
+.dark-header .zci--timer .timer__time-input {
+    background: none;
+    border: 1px solid #999;
+    color: white;
+}
+
+/*stack the big time divs if the screen is too narrow*/
+@media screen and (max-width: 420px) {
+    .zci--timer .spice-pane {
+        width: 96%;
+        height: 50px;
+        float: none;
+    }
+
+    .zci--timer .spice-pane-right {
+        margin-top: 15px;
+    }
+
+    .zci--timer .btn-wrapper {
+        float: none;
+    }
+
+    .zci--timer #timer_container {
+        height: 170px;
+    }
+
+    .zci--timer .timer__time-input {
+        height: 80%;
+    }
+
+    .zci--timer .timer__done-modal > div {
+        width: 80%;
+    }
+}
+
+/*horizontal iPhone*/
+@media screen and (max-width: 640px){
+    .zci--timer .timer__time-input {
+        width: 25%;
+        font-size: .85em;
+        margin-top: 0;
+    }
+}
+
+@media screen and (min-width: 420px) and (max-width: 640px) {
+    .zci--timer .timer__done-modal > div {
+        margin: 105px auto;
+    }
+}
+
+@media screen and (max-device-width: 320px){
+    .zci--timer .timer__btn {
+        margin-right: 2px;
+        margin-left: 2px;
+    }
+}
+
+/*tablets*/
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px){
+    .zci--timer .timer__time-input {
+        width: 25%;
+        margin-top: 10px;
+    }
+}

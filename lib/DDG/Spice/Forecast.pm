@@ -14,9 +14,10 @@ topics "everyday", "travel";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Forecast.pm";
 
 
-my @triggers = ('forecast', 'forcast', 'weather', 'temp', 'temperature');
-triggers any => @triggers;
+my @triggers = ('forecast', 'forcast', 'weather', 'temp', 'temperature', 'meteo');
+triggers startend => @triggers;
 
+spice from => '([^/]*)/?([^/]*)';
 spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
 
 # cache DDG Rewrite for 24 hours and
@@ -24,8 +25,8 @@ spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=
 spice is_cached => 1;
 spice proxy_cache_valid => "200 30m";
 
-my $no_location_qr = qr/fore?cast|report|weather|temp(?:erature)/;
-my $weather_qr = qr/(?:(?:weather|temp(?:erature|)|fore?cast)(?: fore?cast| report| today| tomm?orr?ow| this week|))+/;
+my $no_location_qr = qr/fore?cast|report|meteo|weather|temp(?:erature)/;
+my $weather_qr = qr/(?:(?:weather|temp(?:erature|)|fore?cast|meteo)(?: fore?cast| report| today| tomm?orr?ow| this week| monday| tuesday|  wednesday| thursday| friday| saturday| sunday| lundi| mardi| mercredi| jeudi| vendredi| samedi| dimanche| demain|))+/;
 
 handle query_lc => sub {
     my $location = '';
@@ -43,20 +44,27 @@ handle query_lc => sub {
     
     # bbc
     # shipping forecast, bbc forecast, bbc weather forecast etc.
-    return if /(shipping\s+fore?cast)|((weather|fore?cast)\sbbc$)|(^bbc\s.*(weather|fore?cast))|(\s+bbc\s+)/;
+    return if /\b((shipping\s+fore?cast)|((weather|fore?cast)\sbbc$)|(^bbc\s.*(weather|fore?cast))|(\s+bbc\s+))\b/;
 
     # has quotes
     return if /(%22)|\"/;
 
     # has financialish terms
-    return if /financ(e|ial)|market|bond|treasury|pension|fund|t-?bill|stock|government|strateg(y|ies)|analytics|market|fore?cast(ing|or|er)/;
-    return if /(gold|silver|oil|naturalgas|palladium|platinum|copper|lead|zinc|tin|aluminium|aluminum|nickel|cobalt|molybdenum|polypropylene|ethanol).*(fore?cast)/;
+    return if /\b(sales|financ(e|ial)|market|bond|treasury|pension|fund|t-?bill|stock|government|strateg(y|ies)|analytics|market|fore?cast(ing|or|er))\b/;
+    return if /\b(gold|silver|oil|naturalgas|palladium|platinum|copper|lead|zinc|tin|aluminium|aluminum|nickel|cobalt|molybdenum|polypropylene|ethanol)\b.*(fore?cast)/;
 
     # sports
-    return if /football|golf|soccer|tennis|basketball|hockey|nba|ncaa|nfl|nhl/;
+    return if /\b(football|golf|soccer|tennis|basketball|hockey|nba|ncaa|nfl|nhl)\b/;
 
     # has other terms
-    return if (/(^site\:)|http|(\.(org|com|net))/);
+    return if (/\b((^site\:)|http|(\.(org|com|net))|underground|map|app)s?\b/);
+
+    # color temperature && critical temperature && operating temperature
+    if (/\btemp(era?ture)?\b/) {
+        return if /\b(colou?r|[0-9]+\s*[kK])\b/;
+        return if /\bcritical temp(era?ture)?\b/;
+        return if /\boperating temp(era?ture)?\b/;
+    }
 
     # Don't cache generic queries due to
     # variations in the users location.

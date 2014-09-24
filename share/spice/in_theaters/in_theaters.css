@@ -1,13 +1,91 @@
-#spice_in_theaters .spice_in_theaters_metadata {
-    color: rgb(119, 119, 119);
-    font-size: 90%;
+.tile--in_theaters {
+    width: 12em;
 }
 
-#spice_in_theaters li.ddgc_item img {
-    max-height: 120px !important;
-    max-width: none !important;
+.tile--in_theaters .tile__media__img {
+    min-width: 100%;
+    height: 100%;
+    margin-top: 0;
 }
 
-#spice_in_theaters li.ddgc_item {
-    height: 165px;
+.zci--in_theaters .one-line {
+    float: left;
+}
+
+.tile--in_theaters .tile__title {
+    height: 2.5em;
+}
+
+.tile--in_theaters .tile__source,
+.tile--in_theaters.highlight .tile__source {
+    color: #999;
+}
+
+.zci--in_theaters .tomato--icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    background: transparent no-repeat;
+}
+
+.zci--in_theaters h5.detail__title.detail__tile--pr {
+    padding-bottom: 0;
+}
+
+.zci--in_theaters .detail__subtitle {
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 1.5em;
+}
+
+    .is-mobile .zci--in_theaters .detail__subtitle {
+        padding-bottom: 0.5em;
+    }
+
+.zci--in_theaters p.detail__desc {
+    padding-bottom: 1.65em;
+}
+
+    .is-mobile .zci--in_theaters p.detail__desc {
+        padding-bottom: 0.2em;
+    }
+
+.zci--in_theaters .in_theaters--runtime {
+    font-size: 0.9em;
+    position: relative;
+    top: 1.5em;
+}
+
+    .is-mobile .zci--in_theaters .in_theaters--runtime {
+        top: 1em;
+    }
+
+.zci--in_theaters .in_theaters--critics_score {
+    display: block;
+    font-size: 1.3em;
+}
+
+.zci--in_theaters .in_theaters--critics_score img {
+    margin-top: -0.1em;
+    margin-bottom: -0.3em;
+    height: 24px;
+    width: 24px;
+}
+
+.zci--in_theaters .detail__subtitle sup {
+    font-size: 0.5em;
+}
+
+.zci--in_theaters .copyright {
+    font-size: 0.9em;
+}
+
+.zci--in_theaters .detail__media.detail__media--pr {
+    margin-right: 0;
+}
+
+.is-mobile .zci--in_theaters .btn.btn--primary {
+    position: absolute;
+    bottom: 1em;
 }

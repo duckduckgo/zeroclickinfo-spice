@@ -1,29 +1,33 @@
 function ddg_spice_google_plus (api_result) {
+    "use strict";
 
     if(!api_result || !api_result.items || api_result.items.length === 0) {
-        return;
+        return Spice.failed("googleplus");
     }
 
-    Spice.render({
-        data: api_result,
-        source_name : 'Google+',
-        source_url : 'http://plus.google.com',
-        header1 : "Google+ Users",
-        spice_name: "google_plus",
-        template_frame: "carousel",
-        template_options: {
-            items: api_result.items,
-            template_item: "google_plus"
+    Spice.add({
+        id: 'googleplus',
+        name: 'Social',
+        data: api_result.items,
+        meta: {
+            sourceName : 'Google+',
+            sourceUrl : 'http://plus.google.com',
+            itemType: "Google+ Profile" + (api_result.items.length > 1 ? 's' : '')
         },
-        force_no_fold : 1
+        templates: {
+            group: 'products_simple',            
+            item_detail: false,
+            detail: false,
+            options: {
+                variant: 'narrow'
+            }
+        },
+        normalize : function(item) {
+            var image = item.image.url.replace(/sz=50$/, "sz=100");
+            return {
+                image : image.replace(/^https/, "http"),
+                title: item.displayName
+            };
+        }
     });
 };
-
-Handlebars.registerHelper("changeURL", function(image) {
-    // Make the icon a little bigger.
-    image = image.replace(/sz=50$/, "sz=100");
-
-    // Change HTTPS to HTTP.
-    return image.replace(/^https/, "http");
-});
-

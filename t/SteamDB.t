@@ -12,6 +12,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::SteamDB'
     ),
+    'steamdb team fortress' => test_spice(
+        '/js/spice/steam_db/team%20fortress',
+        call_type => 'include',
+        caller => 'DDG::Spice::SteamDB'
+    ),
 );
 
 done_testing;

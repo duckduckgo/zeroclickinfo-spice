@@ -16,7 +16,15 @@ ddg_spice_test(
     	'/js/spice/airlines/AA/102',
     	call_type => 'include',
     	caller => 'DDG::Spice::Airlines',
-    )
+    ),
+    'AA 102' => test_spice(
+        '/js/spice/airlines/AA/102',
+        caller    => 'DDG::Spice::Airlines',
+    ),
+    'Delta 3684' => test_spice(
+        '/js/spice/airlines/DL/3684',
+        caller    => 'DDG::Spice::Airlines',
+    ),
 );
 
 done_testing;

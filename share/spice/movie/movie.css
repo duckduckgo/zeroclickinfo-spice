@@ -1,30 +1,91 @@
-#movie_data_box {
-    display:block;
-    padding:2px;
+.tile--movie  {
+    width: 12em;
 }
 
-#movie_data_box.half-width {
-    width:40%;
-    float:left;
-    border-right:1px solid rgba(0,0,0,0.1);
-    margin-right:10px;
+.tile--movie .tile__media__img {
+    min-width: 100%;
+    height: 100%;
+    margin-top: 0;
 }
 
-.movie_critics_rating {
-    color:gray;
+.zci--movie .one-line {
+    float: left;
 }
 
-.movie_star_rating {
-    color:gold;
-    text-shadow: 1px 1px black, 0px 1px black
+.tile--movie .tile__title {
+    height: 2.5em;
 }
 
-.movie_data_item {
-    display:inline-block;
-    padding-right:6px;
-    color:gray;
+.tile--movie .tile__source,
+.tile--movie:hover .tile__source {
+    color: #aaa;
 }
 
-.movie_data_description {
-    font-size:smaller;
+.zci--movie .tomato--icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    background: transparent no-repeat;
+}
+
+.zci--movie h5.detail__title.detail__tile--pr {
+    padding-bottom: 0;
+}
+
+.zci--movie .detail__subtitle {
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 1.5em;
+}
+
+    .is-mobile .zci--movie .detail__subtitle {
+        padding-bottom: 0.5em;
+    }
+
+.zci--movie p.detail__desc {
+    padding-bottom: 1.65em;
+}
+
+    .is-mobile .zci--movie p.detail__desc {
+        padding-bottom: 0.2em;
+    }
+
+.zci--movie .movie--runtime {
+    font-size: 0.9em;
+    position: relative;
+    top: 1.5em;
+}
+
+    .is-mobile .zci--movie .movie--runtime {
+        top: 1em;
+    }
+
+.zci--movie .movie--critics_score {
+    display: block;
+    font-size: 1.3em;
+}
+
+.zci--movie .movie--critics_score img {
+    margin-top: -0.1em;
+    margin-bottom: -0.3em;
+    height: 24px;
+    width: 24px;
+}
+
+.zci--movie .detail__subtitle sup {
+    font-size: 0.5em;
+}
+
+.zci--movie .copyright {
+    font-size: 0.9em;
+}
+
+.zci--movie .detail__media.detail__media--pr {
+    margin-right: 0;
+}
+
+.is-mobile .zci--movie .btn.btn--primary {
+    position: absolute;
+    bottom: 1em;
 }
