@@ -27,8 +27,15 @@ handle remainder => sub {
     # Did the user query for holidays in a specific country?
     if (/\s+in\s+(.*)$/p) {
         ($q, $c) = (${^PREMATCH}, $1);
-    } else {
+
+    # No - check the country the user is currently in.
+    } elsif ($loc && $loc->country_name) {
         ($q, $c) = ($_, $loc->country_name);
+
+    # Fallback to US if no country can be determined, that's the
+    # country that has best holiday coverage.
+    } else {
+        ($q, $c) = ($_, 'us');
     }
 
     # Kill eventual slashes to avoid misbehaviour of the `spice from'
