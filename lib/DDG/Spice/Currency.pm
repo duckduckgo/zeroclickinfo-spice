@@ -24,11 +24,8 @@ foreach my $currency (@currencies){
     chomp($currency);
     my @currency = split(/,/,$currency);
     push(@currTriggers, @currency);
-    push(@{$currHash{$currency[0]}},@currency);
-}
-foreach my $items (@currTriggers) { 
-    $curr .= $items;
-    $curr .= "\|";
+    $curr = join('|', @currTriggers);
+    $currHash{$currency[0]} = \@currency;
 }
 
 triggers any => ('currency', 'currencies', @currTriggers);

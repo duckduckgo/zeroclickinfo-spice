@@ -7,7 +7,7 @@
 
     //do more checks
     if(!api_result || !api_result.conversion || !api_result.topConversions || !api_result.conversion.length || api_result.conversion.length===0 || !api_result.topConversions.length || api_result.topConversions.length===0) {
-        Spice.failed('xe_currency');
+        Spice.failed('currency');
     }
 
 
@@ -36,27 +36,27 @@
     
 
      //meta variable
-     var xeTimeFreq =mainConv["rate-utc-timestamp"].match(/\b\d{4}[-.]\d{2}[-.]\d{2}\s\d{2}\:\d{2}\b/);
-     var xeTime = mainConv["rate-frequency"].match(/[^\s]+/).toString().toLowerCase();
+    var timestr = mainConv["rate-utc-timestamp"].split(/\s+/);
+    var xeDate = timestr[0];
+    var xeTime = timestr[1].match(/\d{2}\:\d{2}\b/);
+
      var liveUrl = 'http://www.xe.com/currencyconverter/convert/?Amount=1&From='+ mainConv["from-currency-symbol"]+'&To='+  mainConv["to-currency-symbol"];
     
-     //if is mobile passing the value to mainConv
-     if(is_mobile){
-        mainConv.timeString= xeTimeFreq;
-        mainConv.timeFreq=xeTime;
-        mainConv.liveUrl= liveUrl;
-     }
 
     var switch_template = function() {
        return ((is_mobile)? Spice.currency.currency_item_mobile : Spice.currency.currency_item);
     };
 
     var switch_heading = function(){
-        return ((is_mobile)? '' :   '<a href="http://www.xe.com">XE.com </a>'+ xeTime +  ' mid-market rate ' +': '+ xeTimeFreq + ' UTC');
+        return  (' Mid-Market Rates ' +': '+ xeDate + ' at ' + xeTime + ' UTC');
     };
 
     var switch_alMeta = function(){
-        return ((is_mobile)? '' :  '<a href="' +  liveUrl +  '">View live rates</a>');
+        return ((mainConv.isPair)? '' :  '<a href="' +  liveUrl +  '">View live rates</a>');
+    };
+
+    var switch_sourceName = function(){
+        return ((mainConv.isPair)? '' :  'XE.com');
     };
 
 
@@ -68,10 +68,9 @@
         meta             : {
             heading:  switch_heading(),
             sourceUrl    : "http://www.xe.com",
-            sourceName   : 'XE.com',
+            sourceName   : switch_sourceName(),
             altMeta:  switch_alMeta(),
             variableTileWidth: true,
- 
         },
         normalize: function(item) {
           return {
@@ -84,7 +83,10 @@
             xeUrl: 'http://www.xe.com/currencycharts/?from='+ item["from-currency-symbol"]+'&to='+ item["to-currency-symbol"],     
             fromFlag: 'http://s.xe.com/v2/themes/xe/images/flags/circle/'+ item["from-currency-symbol"].toString().toLowerCase()+'.png',
             toFlag: 'http://s.xe.com/v2/themes/xe/images/flags/circle/'+item["to-currency-symbol"].toString().toLowerCase()+'.png',
-          currencyName:item["to-currency-name"]
+            currencyName:item["to-currency-name"],
+            liveUrl: liveUrl,
+            xeTime : xeTime,
+            xeDate : xeDate,
             };
         },
       
