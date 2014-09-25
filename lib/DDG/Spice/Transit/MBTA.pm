@@ -17,7 +17,7 @@ attribution twitter => 'mattr555',
             github => ['https://github.com/mattr555/', 'Matt Ramina'],
             github => ['elebow', 'Eddie Lebow'];
 
-spice to => 'http://realtime.mbta.com/developer/api/v2/predictionsbystop?api_key=wX9NwuHnZU2ToO7GmGR9uw&stop=$1&format=jsonp&jsonpcallback={{callback}}';   #FIXME that's the demo API key
+spice to => 'http://realtime.mbta.com/developer/api/v2/predictionsbystop?api_key={{ENV{DDG_SPICE_MBTA_APIKEY}}}&stop=$1&format=jsonp&jsonpcallback={{callback}}';
 spice proxy_cache_valid => '418 1d';
 
 triggers any => 'mbta', 'next train', 'train leaving', 'trains leaving', 'train from', 'train times', 'train schedule';
