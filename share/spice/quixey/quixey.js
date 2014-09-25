@@ -108,8 +108,15 @@
                     item.boost = true;
                 }
 
+                // This converts URLs that start with HTTP to HTTPS.
+                // We need to use this for the images because they currently redirect two
+                // times. Jumping straight to HTTPS would reduce that to one.
+                function toHTTPS(url) {
+                    return url.replace(/^http:/, "https:");
+                }
+                
                 return {
-                    'img':           icon_url,
+                    'img':           toHTTPS(icon_url),
                     'title':         item.name,
                     'heading':       item.name,
                     'rating':        item.rating,
@@ -298,10 +305,6 @@
         return range;
     };
 
-    Handlebars.registerHelper("Quixey_pricerange", function() {
-        return pricerange(this);
-    });
-
     // template helper to replace iphone and ipod icons with
     // smaller 'Apple' icons
     Handlebars.registerHelper("Quixey_platform_icon", function(icon_url) {
@@ -311,8 +314,7 @@
             return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
         }
 
-        // return "/iu/?u=" + icon_url + "&f=1";
-        return icon_url;
+        return "/iu/?u=" + icon_url + "&f=1";
     });
 
     // template helper that returns and unifies platform names

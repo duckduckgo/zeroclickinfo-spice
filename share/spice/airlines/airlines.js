@@ -88,20 +88,6 @@
             "&flightNumber=" +
             flight[0].FlightNumber;
 
-        // Sort the items based on the departureDate.
-        results.sort(function(a, b) {
-            a = +new Date(a.departureDate);
-            b = +new Date(b.departureDate);
-
-            if (a < b) {
-                return -1;
-            } else if (a > b) {
-                return 1;
-            }
-
-            return 0;
-        });
-
         Spice.add({
             data: results,
             id: "airlines",
@@ -110,7 +96,7 @@
                 minItemsForModeSwitch: 3,
                 sourceName: 'FlightStatus',
                 sourceUrl: source,
-                itemType: "Flight Status for " + DDG.capitalizeWords(flight[0].Airline.Name) + " " + flight[0].FlightNumber
+                itemType: DDG.capitalizeWords(flight[0].Airline.Name) + " Flights"
             },
             normalize: function(item) {
                 return {
@@ -120,6 +106,14 @@
                         item.flight.FlightNumber
                 }
             },
+            sort_fields: {
+                departureDate: function(a, b) {
+                    a = +new Date(a.departureDate);
+                    b = +new Date(b.departureDate);
+                    return ((a < b) ? -1 : (a > b ? 1 : 0));
+                }
+            },
+            sort_default: 'departureDate',
             templates: {
                 group: 'base',
                 detail: false,

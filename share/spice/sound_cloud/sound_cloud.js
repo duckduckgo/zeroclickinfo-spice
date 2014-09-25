@@ -39,13 +39,6 @@
             model: 'Audio',
             normalize: function(o) {
 
-                var favoriteThreshold = 4;
-
-                // skip items with a low favorite count
-                if(o.favoritings_count < favoriteThreshold){
-                    return;
-                }
-
                 var image = o.artwork_url || o.user.avatar_url,
                     usingWaveformImage = 0;
 

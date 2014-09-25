@@ -6,6 +6,9 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
 (function (env) {
     "use strict";
+
+    var started = false;
+
     env.ddg_spice_timer = function(api_result) {
         Spice.add({
             id: "timer",
@@ -19,6 +22,14 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             templates: {
                 detail: Spice.timer.timer,
                 wrap_detail: 'base_detail'
+            },
+            //wait for the spice to load before displaying things
+            //this makes sure the divs display at the right time so the layout doesn't break
+            onShow: function(){
+                if (!started){
+                    $('#timer_input').css('display', 'inline-block');
+                }
+                $('#timer_buttons').css('display', 'inline-block');
             }
         });
 
@@ -53,7 +64,6 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         }
 
         var time_left, last_update, update_int,
-            started = false,
             $minute_input = $('#minute_input'),
             $second_input = $('#second_input'),
             $timer = $('#timer'),
@@ -63,13 +73,15 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             $startstop_btn = $('#startstop_btn'),
             $done_modal = $('#done_modal'),
             soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
-            enteredTime = parseQueryForTime();
+            enteredTime = parseQueryForTime(),
+            oldTitle = document.title;
 
+        //enter the time from the query into the boxes
         if (enteredTime) {
             if (Math.floor(enteredTime / 60) > 0) {
                 $minute_input.val(Math.floor(enteredTime / 60));
             }
-            $second_input.val(enteredTime % 60);
+            $second_input.val(padZeros(enteredTime % 60, 2));
             $startstop_btn.prop('disabled', false);
         }
 
@@ -105,8 +117,11 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 $timer.html('00:00');
                 $done_modal.show();
                 playLoopingSound();
+                document.title = '[Done!] - ' + oldTitle;
             } else {
                 $timer.html(formatTime(time_left));
+                //put the time left in the title (so people can switch tabs)
+                document.title = '[' + formatTime(time_left) + '] - ' + oldTitle;
                 last_update = new Date().getTime();
             }
         }
@@ -160,6 +175,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             $('.timer__btn.timer__pause').removeClass('timer__pause').addClass('timer__start').html('START');
             $reset_btn.prop('disabled', true);
             $startstop_btn.prop('disabled', true);
+            document.title = oldTitle;
         }
 
         //reset everything
@@ -193,23 +209,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             this.value = this.value.replace(/\D/g, '');
         }
 
-        //reject typing any keys that aren't numbers
-        function typeNumericOnly(e){
-            if (e.shiftKey === true){
-                return (e.which == 9);
-            }
-            return !(e.which > 57 || e.which == 32) || (e.which >= 96 && e.which <= 105); //numpad
-        }
-
-        $('.timer__time-input').keydown(typeNumericOnly).change(numericOnly).click(numericOnly);
-
-        //wait for the document to load before displaying things
-        //this makes sure the divs display at the right time so the layout doesn't break
-        //this fixes #959
-        $(document).ready(function(){
-            $('#timer_buttons').css('display', 'inline-block');
-            $timer_input.css('display', 'inline-block');
-        });
+        $('.timer__time-input').keyup(numericOnly).change(numericOnly).click(numericOnly);
     }
 }(this));
 

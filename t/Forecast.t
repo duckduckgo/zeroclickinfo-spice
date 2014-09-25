@@ -111,6 +111,19 @@ ddg_spice_test(
     	caller => 'DDG::Spice::Forecast',
         is_cached => 1
     ),
+    # Added test to ensure our financial (and other)
+    # regexes don't create false negatives
+    #
+    # "weather stockholm" was failing because
+    # "m/stock/" was true when we meant
+    # "m/\bstock\b" in the case of
+    # "blackberry stock forecast"
+    'weather stockholm' => test_spice(
+    	'/js/spice/forecast/stockholm',
+    	call_type => 'include',
+    	caller => 'DDG::Spice::Forecast',
+        is_cached => 1
+    ),
     'shipping forecast' => undef,
     'weather forecast bbc' => undef,
     'bbc weather forecast' => undef,
@@ -123,6 +136,10 @@ ddg_spice_test(
     'weather underground.com' => undef,
     'color temperature' => undef,
     'ising model critical temperature' => undef,
+    'weather map' => undef,
+    'weather maps' => undef,
+    'weather app' => undef,
+    'weather apps' => undef,
 
 # Disabling since I made the trigger a startend. (caine)
 #    'Philadelphia weather this week' => test_spice(

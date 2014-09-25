@@ -158,7 +158,10 @@ my @q = (
   "ipone cracked screen",
   "windows 8 license",
   "windows 8 skype keeps closing",
-  "apple ios 5 musicplayer tutorial"
+  "apple ios 5 musicplayer tutorial",
+  "trainyard app release date",
+  "google glass apps",
+  "glassware apps",
 );
 
 ddg_spice_test(

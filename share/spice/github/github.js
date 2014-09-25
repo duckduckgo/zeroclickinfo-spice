@@ -4,7 +4,7 @@
         
 
         if (!api_result || !api_result.meta.status === 200) {
-          return;
+          return Spice.failed('github');
         }
 
         var query = DDG.get_query()
@@ -12,11 +12,13 @@
 
         var results = api_result.data.repositories;
 
+        if (!results) {
+            return Spice.failed('github');
+        }
+
         // TODO: temp size limit - relevancy block should handle this later
         if (results.length > 30)
             results = results.splice(0,30);
-
-        sort_by_watchers(results);
 
         Spice.add({
             id: "github",
@@ -28,35 +30,34 @@
                 sourceName: 'GitHub'
             },
             templates: {
-		group: 'text',
-                detail: false,
-                item_detail: false,
-		options: {
-		    footer: Spice.github.footer
-		}
+            group: 'text',
+                    detail: false,
+                    item_detail: false,
+                    options: {
+                        footer: Spice.github.footer
+                    }
+                },
+            normalize: function(item) {
+                return {
+                    title: item.name,
+                    subtitle: item.owner + "/" + item.name
+                };
             },
-	    normalize: function(item) {
-		return {
-		    title: item.name,
-		    subtitle: item.owner + "/" + item.name
-		};
-	    },
-	    relevancy: {
-		primary: [
-		    { key: 'description', match: /.+/, strict: false } // Reject things without a description.
-		]
-	    }
+            relevancy: {
+                primary: [
+                    { key: 'description', match: /.+/, strict: false } // Reject things without a description.
+                ]
+            },
+            sort_fields: {
+                watchers: function(a, b) {
+                    var x = a.watchers;
+                    var y = b.watchers;
+                    return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+                }
+            },
+            sort_default: 'watchers'
         });
     }
-
-    function sort_by_watchers(array){
-        return array.sort(function(a, b){
-             var x = a.watchers;
-             var y = b.watchers;
-             return ((x < y) ? 1 : ((x > y) ? -1 : 0));
-         });
-    }
-
 }(this));
 
 // Make sure we display only three items.
