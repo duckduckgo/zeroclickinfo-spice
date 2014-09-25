@@ -93,6 +93,10 @@
         bubble += '\'' + Array(width + 3).join('-') + '\'\n';
         return bubble;
     }
+    
+    // Check if there's an argument to ducksay.
+    // If there is, just call the function right away.
+    if(/^(ducksay|daxsays) .+/.test(DDG.get_query())) {
+        ddg_spice_duck_say();
+    }
 }(this));
-
-ddg_spice_duck_say();
