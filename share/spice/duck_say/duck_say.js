@@ -99,4 +99,5 @@
     if(/^(ducksay|daxsays) .+/.test(DDG.get_query())) {
         ddg_spice_duck_say();
     }
+    
 }(this));
