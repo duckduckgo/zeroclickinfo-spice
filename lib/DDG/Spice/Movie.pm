@@ -11,7 +11,8 @@ icon_url "/i/www.rottentomatoes.com.ico";
 topics "entertainment", "everyday";
 category "entertainment";
 attribution github => ['https://github.com/moollaza','Zaahir Moolla'],
-           twitter => ['https://twitter.com/zmoolla','zmoolla'];
+           twitter => ['https://twitter.com/zmoolla','zmoolla'],
+            github => ['https://github.com/ehsan','ehsan'];
 
 spice proxy_cache_valid => "200 7d";
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&q=$1&page_limit=50&page=1&callback={{callback}}';
@@ -19,10 +20,12 @@ spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{
 # It's important that 'movie info' precede 'movie' so that the handler
 # encounters it first and removes both words, rather than encountering 'movie'
 # first in the list, removing it, and leaving the word 'info.'
+my @triggers = ( 'movie info', 'movie', 'movies', 'film', 'rt', 'rotten tomatoes', 
+                 'rating', 'ratings', 'rotten', 'release date', 'runtime', 'run time',
+                 'running time', 'length', 'cast of', 'cast', 'casting', 'actors in', 
+                 'actor in', 'actors', 'actor', 'actress in', 'actress', 'premise of', 
+                 'premise', 'synopsis of', 'synopsis', 'overview of', 'overview', 'summary of', 'summary');
 
-# This spice will usually be triggered by deep triggers,
-# with a few extra triggers that deep might miss.
-my @triggers = ( 'rotten tomatoes', 'rotten');
 triggers startend => @triggers;
 
 handle query_lc => sub {
