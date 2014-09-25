@@ -22,9 +22,8 @@ spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{
 # first in the list, removing it, and leaving the word 'info.'
 my @triggers = ( 'movie info', 'movie', 'movies', 'film', 'rt', 'rotten tomatoes', 
                  'rating', 'ratings', 'rotten', 'release date', 'runtime', 'run time',
-                 'running time', 'length', 'cast of', 'cast', 'casting', 'actors in', 
-                 'actor in', 'actors', 'actor', 'actress in', 'actress', 'premise of', 
-                 'premise', 'synopsis of', 'synopsis', 'overview of', 'overview', 'summary of', 'summary');
+                 'running time', 'cast of', 'cast', 'casting', 'actors in', 
+                 'actor in', 'actors', 'actor', 'actress in', 'actress' );
 
 triggers startend => @triggers;
 
