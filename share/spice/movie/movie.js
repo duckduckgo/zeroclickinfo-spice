@@ -66,7 +66,10 @@
                 }
             },
             relevancy: {
-                skip_words: ['movie', 'info', 'film', 'rt', 'rotten', 'tomatoes', 'rating', 'ratings', 'rotten'],
+                skip_words: ['movies', 'movie', 'info', 'film', 'rt', 'rotten', 'tomatoes', 
+                             'rating', 'ratings', 'rotten', 'release date', 'runtime', 'run time', 
+                             'running time', 'cast of', 'cast', 'casting', 'actors in', 
+                             'actor in', 'actors', 'actor', 'actress in', 'actress'],
                 primary: [{
                     key: 'title'
                 }, {
