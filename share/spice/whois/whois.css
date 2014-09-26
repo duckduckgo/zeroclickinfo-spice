@@ -1,0 +1,11 @@
+
+@media (max-width: 600px) {
+    .zci--whois table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .zci--whois table td {
+        word-wrap: break-word;
+    }
+}
