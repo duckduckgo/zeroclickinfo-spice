@@ -1,0 +1,22 @@
+Originial price: {{original_price}} <br>
+Savings: {{discount}} <br>
+{{#if rating}}
+    Metascore: {{rating}} <br>
+{{/if}}
+{{#if genre}}
+    Genre: {{genre}}
+{{/if}} <br>
+Supported Platforms: 
+{{#if platforms.windows}}  
+    Windows  
+{{/if}}
+{{#if platforms.mac}}
+    <span class="detail__separator"> | </span> Mac
+{{/if}}
+{{#if platforms.linux}}    
+    <span class="detail__separator"> | </span> Linux
+{{/if}}
+<br>
+<a href="{{url}}" class="btn btn--primary">
+    More at Steam
+</a>
