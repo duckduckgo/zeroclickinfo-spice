@@ -26,7 +26,7 @@
         }
 
         var query = decodeURIComponent(queryexec);
-    	
+    
         // Extract our query
         var gameids = query.split(",");
         var results = [];
@@ -87,12 +87,13 @@
                 return {
                     image: item.image,
                     img: item.image,
+                    img_m: item.image,
                     heading: item.name,
                     url: item.url,
-                    price: "USD $" + (item.final/100),  
+                    price: "$" + (item.final/100),  
                     brand: item.dev,
                     rating: item.metacritic,
-                    original_price: "USD $" + (item.initial/100),
+                    original_price: "$" + (item.initial/100),
                     discount: item.discount_percent + "%"
                 };
             },
@@ -102,9 +103,6 @@
                     buy: Spice.steam_specials.buy,
                     rating: false
                 }
-            },
-            onShow: function() {
-                Spice.getDOM('specials').find(".tile__body").hide();
             }
         });
     };
