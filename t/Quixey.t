@@ -162,6 +162,8 @@ my @q = (
   "trainyard app release date",
   "google glass apps",
   "glassware apps",
+  "OSX Alarm clock",
+  "osx apps"
 );
 
 ddg_spice_test(
