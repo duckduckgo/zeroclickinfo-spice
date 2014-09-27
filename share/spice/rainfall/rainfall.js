@@ -6,11 +6,10 @@
         if (!api_result) {
             return Spice.failed('rainfall');
         }
-        
+        console.log(api_result);
         var annualData = {
-            //round two decimal places
-            pr: Math.round(api_result[0].annualData * 100) / 100,
-            text: "Average precipitation in depth (mm per year)"
+            pr: api_result[1][0].value,
+            country: api_result[1][0].country.value,
         };
         
         Spice.add({
