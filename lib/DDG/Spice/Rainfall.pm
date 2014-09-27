@@ -4,6 +4,7 @@ package DDG::Spice::Rainfall;
 use DDG::Spice;
 
 primary_example_queries "rainfall australia";
+secondary_example_queries "australia annual rainfall";
 description "Shows annual rainfall";
 name "Rainfall";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Rainfall.pm";
