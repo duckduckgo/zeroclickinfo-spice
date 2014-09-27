@@ -8,6 +8,7 @@
         }
 
         var state = api_result.results[0].state_name,
+            state_code = api_result.results[0].state,
             chamber = api_result.results[0].chamber;
 
         var itemType;    
@@ -23,7 +24,7 @@
             data: api_result.results,
             meta: {
                 sourceName: 'govtrack.us',
-                sourceUrl: "https://www.govtrack.us/congress/members/"+state,
+                sourceUrl: "https://www.govtrack.us/congress/members/" + state_code,
                 itemType: itemType
             },
             normalize: function(item) {
