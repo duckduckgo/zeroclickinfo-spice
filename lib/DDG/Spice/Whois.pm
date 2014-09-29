@@ -57,7 +57,7 @@ triggers query_raw =>
 # API call details for Whois API (http://www.whoisxmlapi.com/)
 spice to => 'http://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_WHOIS_USERNAME}}}&password={{ENV{DDG_SPICE_WHOIS_PASSWORD}}}';
 
-handle sub {
+handle query_lc => sub {
     my ($query) = @_;
     return if !$query; # do not trigger this spice if the query is blank
 
