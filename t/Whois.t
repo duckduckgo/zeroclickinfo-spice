@@ -11,49 +11,72 @@ ddg_spice_test(
     # This is the name of the Spice that will be loaded to test.
     [ 'DDG::Spice::Whois' ],
 
-     # A naked domain should trigger.
-    'duckduckgo.com' => expected_output_for('duckduckgo.com'),
+    # 2014.09.29 - Removed naked domain triggering.
+    #
+    # A naked domain should trigger.
+    #'duckduckgo.com' => expected_output_for('duckduckgo.com'),
 
+    # A naked domain should NOT trigger.
+    'duckduckgo.com' => undef,
+
+    # 2014.09.29 - Removed naked domain triggering.
+    #
     # A naked domain with 'www' should trigger.
-    'http://www.duckduckgo.com' => expected_output_for('duckduckgo.com'),
+    #'http://www.duckduckgo.com' => expected_output_for('duckduckgo.com'),
 
-     # Domains should be lowercased
-    'dUcKdUcKgO.cOm' => expected_output_for('duckduckgo.com'),
+    # 2014.09.29 - Removed naked domain triggering.
+    #
+    # Domains should be lowercased
+    #'dUcKdUcKgO.cOm' => expected_output_for('duckduckgo.com'),
 
+    # 2014.09.29 - Removed naked domain triggering.
+    #
     # A naked domain with a subdomain that's not 'www' should not trigger.
-    'blah.duckduckgo.com' => undef,
+    #'blah.duckduckgo.com' => undef,
 
     # Whois keywords with a subdomain that's not 'www' should trigger.
     'whois blah.duckduckgo.com' => expected_output_for('duckduckgo.com'),
 
+    # 2014.09.29 - Removed naked domain triggering.
+    #
     # A naked domain with an unknown tld should not trigger.
-    'blah.duckduckgo.wtflmao' => undef,
+    #'blah.duckduckgo.wtflmao' => undef,
 
     # Whois keywords with an unknown tld should not trigger.
     'whois blah.duckduckgo.wtflmao' => undef,
 
+    # 2014.09.29 - Removed naked domain triggering.
+    #
     # A naked domain with a port should not trigger.
-    'duckduckgo.com:8000' => undef,
+    #'duckduckgo.com:8000' => undef,
 
     # Whois keywords with a port should trigger.
     'whois duckduckgo.com:8000' => expected_output_for('duckduckgo.com'),
 
+    # 2014.09.29 - Removed naked domain triggering.
+    #
     # A naked domain with a resource path should not trigger.
-    'duckduckgo.com/about' => undef,
+    #'duckduckgo.com/about' => undef,
 
     # Whois keywords with a resource path should trigger.
     'whois duckduckgo.com/about' => expected_output_for('duckduckgo.com'),
 
-     # A domain preceeded by 'http://' should trigger.
-    'http://duckduckgo.com' => expected_output_for('duckduckgo.com'),
+    # 2014.09.29 - Removed naked domain triggering.
+    #
+    # A domain preceeded by 'http://' should trigger.
+    #'http://duckduckgo.com' => expected_output_for('duckduckgo.com'),
 
-     # A domain preceeded by 'http://' and 'www' should trigger.
-    'http://www.duckduckgo.com' => expected_output_for('duckduckgo.com'),
+    # 2014.09.29 - Removed naked domain triggering.
+    #
+    # A domain preceeded by 'http://' and 'www' should trigger.
+    #'http://www.duckduckgo.com' => expected_output_for('duckduckgo.com'),
 
-     # A domain preceeded by 'http://' and a subdomain that's not 'www' should not trigger.
-    'http://blah.duckduckgo.com' => undef,
+    # 2014.09.29 - Removed naked domain triggering.
+    #
+    # A domain preceeded by 'http://' and a subdomain that's not 'www' should not trigger.
+    #'http://blah.duckduckgo.com' => undef,
 
-     # A random keyword before the domain should not trigger
+    # A random keyword before the domain should not trigger
     'blah duckduckgo.com' => undef,
 
      # A random keyword after the domain should not trigger
