@@ -10,7 +10,10 @@
         Spice.add({
             id: 'alternative_to',
             name: 'Software',
-            data: api_result.Items,
+            data: $.map(api_result.Items, function(o, idx) {
+              o.ShortDescription = DDG.strip_html(o.ShortDescription);
+              return o;
+            }),
             signal: 'high',
             meta: {
                 searchTerm: api_result.Name,
