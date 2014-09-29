@@ -34,7 +34,7 @@ my $url_qr = qr/(?:http:\/\/)?    # require http
 # additional keywords that trigger this spice
 my $whois_keywords_qr = qr/whois|who\sis|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns|(?:how\sto\s|)buy/i;
 
-# trigger this spice when either the query starts or end.
+# trigger this spice when either the query starts or ends
 # with any of the whois keywords.
 #
 # note that there are additional guards in the handle() function that
