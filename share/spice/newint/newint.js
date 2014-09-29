@@ -12,7 +12,7 @@
             data: api_result,
             meta: {
                 itemType: "New Internationalist magazines",
-                sourceName: "digital.newint.com.au",
+                sourceName: "New Internationalist",
                 sourceUrl: 'https://digital.newint.com.au/issues'
             },
             normalize: function(item){
