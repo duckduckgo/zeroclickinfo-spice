@@ -1,40 +1,41 @@
-<img src="{{imageUrl}}" alt="Image for NDC: {{{ndc11}}}"/>
+<div class="detail__media  detail__media--rx_info">
+    <img src="{{imageUrl}}" alt="Image for NDC: {{{ndc11}}}" class="detail__media__img"/>
+</div>
+<div class="detail__body  detail__body--rx_info">
+    <div class="detail__body__content">
+        <h5 class="detail__title">
+            {{#if splSetId}}
+                <a href="https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid={{{splSetId}}}" target="_blank">
+            {{/if}}
+            {{heading}} [{{labeler}}]
+            {{#if splSetId}}
+                </a>
+            {{/if}}
+        </h5>
+        <div class="detail__desc">
+            {{#if active}}
+                <h5>Active Ingredients</h5>
 
-<h5>Labeler</h5>
+                <div>
+                    {{active}}
+                </div>
+            {{/if}}
 
-<p>
-    {{{labeler}}}
-</p>
+            {{#if inactive}}
+                <h5>Inactive Ingredients</h5>
 
-{{#if active}}
-    <h5>Active Ingredients</h5>
+                <div>
+                    {{inactive}}
+                </div>
+            {{/if}}
+            <h5>Attribution</h5>
+            <div>
+                {{{attribution}}}
+            </div>
 
-    <p>
-        {{active}}
-    </p>
-{{/if}}
-
-{{#if inactive}}
-    <h5>Inactive Ingredients</h5>
-
-    <p>
-        {{inactive}}
-    </p>
-{{/if}}
-
-{{#if splSetId}}
-    <h5>Product Labelling and Prescribing Information</h5>
-    <p>
-        <a href="https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid={{{splSetId}}}" target="_blank">More information for this drug is available at DailyMed.</a>
-    </p>
-{{/if}}
-
-<h5>Attribution</h5>
-
-<p>
-    {{{attribution}}}
-</p>
-
-<p>
-    Images supplied by the National Library of Medicine (NLM) Office of High Performance Computing and Communications (OHPCC) have been supported by the American Recovery and Reinvestment Act of 2009 (ARRA) and through NIH intramural funding approved by the NLM Board of Scientific Counselors.
-</p>
+            <!--<div>
+                Images supplied by the National Library of Medicine (NLM) Office of High Performance Computing and Communications (OHPCC) have been supported by the American Recovery and Reinvestment Act of 2009 (ARRA) and through NIH intramural funding approved by the NLM Board of Scientific Counselors.
+            </div>-->
+        </div>
+    </div>
+</div>

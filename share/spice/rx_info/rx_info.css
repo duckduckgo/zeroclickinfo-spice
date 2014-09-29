@@ -1,0 +1,9 @@
+.tile--rx_info img {
+    margin-top: -20px;
+}
+
+.detail__media.detail__media--rx_info {
+    width: 30%;
+    margin-right: 1em;
+    text-align: center;
+}
