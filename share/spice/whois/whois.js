@@ -49,9 +49,13 @@
     // Returns whether we should show whois data if this
     // domain is not available.
     var is_whois_query = function(query) {
-        // show whois results except when the query contains only the domain
-        // and no other keywords, which we test by looking for a space in the query.
+
+        // show whois results unless the query is a naked domain
+        // (i.e. contains only the domain and no other keywords).
+        //
+        // we test for naked domains by looking for a space in the query.
         return /\s/.test($.trim(query));
+
     };
 
     // parse the api response into a standard format
@@ -108,8 +112,9 @@
                 && api_result.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
         };
 
-        // return nothing if all key whois data is missing
-        if( !normalized['Registered to']
+        // return nothing if domain has an owner but is missing all key whois data
+        if( !normalized['available']
+            && !normalized['Registered to']
             && !normalized['Email']
             && !normalized['Last updated']
             && !normalized['Expires']) {
@@ -154,7 +159,7 @@
             name: "Whois",
             meta: {
                 sourceName: "Whois API",
-                sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
+                sourceUrl: 'https://www.whoisxmlapi.com/#whoisserver/WhoisService?domainName='
                     + api_result.domainName
                     + '&outputFormat=json&target=raw'
             },
