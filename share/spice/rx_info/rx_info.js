@@ -34,12 +34,12 @@
                 sourceUrl: "http://rximage.nlm.nih.gov/"
             },
             templates: {
-                group: 'media',
+                group: 'products_simple',
+                detail: Spice.rx_info.rx_info,
+                item_detail: Spice.rx_info.rx_info,
                 options: {
-                    price: false,
-                    rating: false,
                     brand: false,
-                    buy: Spice.rx_info.rx_info
+                    rating: false
                 }
             },
             normalize: function(item) {
@@ -58,7 +58,8 @@
                     image: item.imageUrl,
                     abstract: item.ndc11,
                     heading: heading,
-                    title: item.ndc11,
+                    title: heading,
+                    ratingText: item.ndc11,
                     active: active,
                     inactive: inactive
                 }
