@@ -18,7 +18,7 @@
 
         Spice.add({
             id: 'dns',
-            name: 'Answer',
+            name: api_result.query.domain,
             data: api_result.response,
             meta: {
                 sourceUrl: 'http://www.viewdns.info/dnsrecord/?domain=' + api_result.query.domain,

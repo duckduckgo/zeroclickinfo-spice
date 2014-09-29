@@ -13,8 +13,15 @@
 .zci--dns .zci__table__tr td {
     padding: 2px 0;
 }
+    .is-mobile .zci--dns .zci__table__tr td {
+        font-size: 75%;
+    }
 
 .zci--dns .zci__table__tr th,
 .zci--dns .zci__table__tr td {
-	padding-right: 2px;
+    padding-right: 15px;
 }
+    .is-mobile .zci--dns .zci__table__tr th,
+    .zci--dns .zci__table__tr td {
+        padding-right: 10px;
+    }
