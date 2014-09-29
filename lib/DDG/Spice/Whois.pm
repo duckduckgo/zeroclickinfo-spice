@@ -32,18 +32,20 @@ my $url_qr = qr/(?:http:\/\/)?    # require http
                 ([^\s]*)/x;       # look for an extended path, such as /pages/about.htm
 
 # additional keywords that trigger this spice
-my $whois_keywords_qr = qr/whois|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns|(?:how\sto\s|)buy/i;
+my $whois_keywords_qr = qr/whois|who\sis|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns|(?:how\sto\s|)buy/i;
 
-# trigger this spice when either:
-# - query contains only a URL
-# - query contains starts or end with any of the whois keywords
+# trigger this spice when either the query starts or end.
+# with any of the whois keywords.
 #
 # note that there are additional guards in the handle() function that
 # narrow this spice's query space.
 #
 triggers query_raw =>
+    # 2014.09.29 - Removed naked domain triggers to reduce API calls,
+    #              because these are mostly navigational queries.
+    #
     # allow the naked url with leading and trailing spaces
-    qr/^\s*$url_qr\s*$/,
+    #qr/^\s*$url_qr\s*$/,
 
     # allow the whois keywords at the beginning or end of the string
     # with leading or trailing spaces.
@@ -75,12 +77,16 @@ handle sub {
     # get the non-URL text from the query by combining the text before and after the match
     my $non_url_text = $` . $'; #' <-- closing tick added for syntax highlighting
 
+    # REMOVED 2014.09.29 (see naked domain note above)
+    #
     # is the string a naked domain, i.e. is there any text besides the domain?
-    my $is_naked_domain = trim($non_url_text) eq '';
+    #my $is_naked_domain = trim($non_url_text) eq '';
 
     # skip if we're missing a domain or a tld
     return if !defined $domain || $domain eq '' || !defined $tld || $tld eq '';
 
+    # REMOVED 2014.09.29 (see naked domain note above)
+    #
     # skip if we have naked domain that contains a non-www subdomain, a port or a resource_path.
     # e.g. continue: 'http://duckduckgo.com' is allowed
     #      skip: 'http://blog.duckduckgo.com'
@@ -93,10 +99,10 @@ handle sub {
     # this signals to us that the user wants a whois result, and isn't just
     # trying to nav to the URL they typed.
     #
-    return if $is_naked_domain
-        && ( (defined $subdomains && $subdomains !~ /^www.$/)
-             || (defined $port && $port ne '')
-             || (defined $resource_path && $resource_path ne ''));
+    #return if $is_naked_domain
+    #    && ( (defined $subdomains && $subdomains !~ /^www.$/)
+    #         || (defined $port && $port ne '')
+    #         || (defined $resource_path && $resource_path ne ''));
 
     # return the combined domain + tld (after adding a period in between)
     return lc "$domain.$tld";
