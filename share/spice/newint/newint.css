@@ -1,0 +1,28 @@
+.zci--newint .editor {
+    font-weight: bold;
+}
+
+@media only screen
+and (max-device-width: 480px) {
+
+    .zci--newint .editors-letter {
+        max-height: 3.4em;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .zci--newint .magazine-information {
+        display: none;
+    }
+
+}
+
+@media only screen
+and (max-device-width: 480px) and (orientation: portrait) {
+
+    .zci--newint .more-information {
+        position: absolute;
+        bottom: 1.05em;
+    }
+
+}
