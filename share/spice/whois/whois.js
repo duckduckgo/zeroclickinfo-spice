@@ -122,7 +122,7 @@
 
         // return nothing if domain has an owner but is missing all key whois data
         if( !normalized['available']
-	    && !normalized['Registered to']
+            && !normalized['Registered to']
             && !normalized['Email']
             && !normalized['Last updated']
             && !normalized['Expires']) {
@@ -167,7 +167,7 @@
             name: "Whois",
             meta: {
                 sourceName: "Whois API",
-		sourceUrl: 'https://www.whoisxmlapi.com/#whoisserver/WhoisService?domainName='
+                sourceUrl: 'https://www.whoisxmlapi.com/#whoisserver/WhoisService?domainName='
                     + api_result.domainName
                     + '&outputFormat=json&target=raw'
             },
