@@ -51,9 +51,9 @@
     var is_whois_query = function(query) {
 
         // show whois results unless the query is a naked domain
-	// (i.e. contains only the domain and no other keywords).
-	//
-	// we test for naked domains by looking for a space in the query.
+        // (i.e. contains only the domain and no other keywords).
+        //
+        // we test for naked domains by looking for a space in the query.
         return /\s/.test($.trim(query));
 
     };
