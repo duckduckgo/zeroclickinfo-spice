@@ -49,9 +49,21 @@
     // Returns whether we should show whois data if this
     // domain is not available.
     var is_whois_query = function(query) {
+	/*
+	   2014.09.29 - Now always returns true, since we no longer trigger
+	                on naked domains
+
+	                Previously, when we were triggering on naked domains,
+	                this function returned false for naked domain queries
+	                and true otherwise. We didn't want to show whois info
+	                for naked domains because they were usually navigational.
+
         // show whois results except when the query contains only the domain
         // and no other keywords, which we test by looking for a space in the query.
         return /\s/.test($.trim(query));
+	*/
+
+	return true;
     };
 
     // parse the api response into a standard format
@@ -108,8 +120,9 @@
                 && api_result.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
         };
 
-        // return nothing if all key whois data is missing
-        if( !normalized['Registered to']
+        // return nothing if domain has an owner but is missing all key whois data
+        if( !normalized['available']
+	    && !normalized['Registered to']
             && !normalized['Email']
             && !normalized['Last updated']
             && !normalized['Expires']) {
@@ -154,7 +167,7 @@
             name: "Whois",
             meta: {
                 sourceName: "Whois API",
-                sourceUrl: 'http://www.whoisxmlapi.com/whois-api-doc.php#whoisserver/WhoisService?rid=2&domainName='
+		sourceUrl: 'https://www.whoisxmlapi.com/#whoisserver/WhoisService?domainName='
                     + api_result.domainName
                     + '&outputFormat=json&target=raw'
             },
