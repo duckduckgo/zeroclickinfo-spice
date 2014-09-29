@@ -49,21 +49,13 @@
     // Returns whether we should show whois data if this
     // domain is not available.
     var is_whois_query = function(query) {
-	/*
-	   2014.09.29 - Now always returns true, since we no longer trigger
-	                on naked domains
 
-	                Previously, when we were triggering on naked domains,
-	                this function returned false for naked domain queries
-	                and true otherwise. We didn't want to show whois info
-	                for naked domains because they were usually navigational.
-
-        // show whois results except when the query contains only the domain
-        // and no other keywords, which we test by looking for a space in the query.
+        // show whois results unless the query is a naked domain
+	// (i.e. contains only the domain and no other keywords).
+	//
+	// we test for naked domains by looking for a space in the query.
         return /\s/.test($.trim(query));
-	*/
 
-	return true;
     };
 
     // parse the api response into a standard format
