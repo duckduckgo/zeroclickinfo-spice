@@ -5,6 +5,9 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
+zci answer_type => "<: $lia_name :>";
+zci is_cached   => 1;
+
 ddg_spice_test(
     [qw( DDG::Spice::<: $ia_name :>)],
     'example query' => test_spice(
