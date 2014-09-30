@@ -17,6 +17,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Rainfall',      
     ),
+    'rainfall United States of America' => test_spice(
+        '/js/spice/rainfall/USA',
+        call_type => 'include',
+        caller => 'DDG::Spice::Rainfall',      
+    ),
     'rainfall Ireland' => test_spice(
         '/js/spice/rainfall/IRL',
         call_type => 'include',

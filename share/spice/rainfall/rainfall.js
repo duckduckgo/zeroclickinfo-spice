@@ -8,16 +8,16 @@
 
         var annualData = {
             pr: api_result[1][0].value,
-            country: api_result[1][0].country.value,
+            country: api_result[1][0].country.value
         };
-        
+
         Spice.add({
             id: "rainfall",
             name: "Weather",
             data:  annualData,
             meta: {
-                sourceName: "worldbank.org",
-                sourceUrl: 'http://data.worldbank.org/country/' + api_result[1][0].country.value + '#cp_cc'
+                sourceName: "data.worldbank.org",
+                sourceUrl: 'http://data.worldbank.org/country/' + annualData.country.replace(/ /g,"-").toLowerCase() + '#cp_cc'
             },
             templates: {
                 group: 'base',
