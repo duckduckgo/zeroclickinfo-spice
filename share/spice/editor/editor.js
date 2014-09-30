@@ -1,51 +1,77 @@
-function ddg_spice_editor() {    
+function ddg_spice_editor(api_result) {
 
     var script = $('[src*="/js/spice/editor/"]')[0];
     var source = $(script).attr("src");
     var language = source.match(/editor\/([^\/]+)/)[1];
 
-    nrj("share/spice/editor/ace.js");
+    nrj(DDG.get_asset_path('editor', 'ace.js'));
 
-    window.aceScriptLoaded = function() {
+        // Function referenced in ace.js
+        window.aceScriptLoaded = function() {
 
-        var editor_id = "ace-editor";
+            var editor_id = "ace-editor";
 
-        var editor = ace.edit(editor_id);    
-        editor.setTheme("ace/theme/eclipse");
-        editor.getSession().setMode("ace/mode/" + language);
+            var editor = ace.edit(editor_id);
 
-        $("#" + editor_id).height("400px");
+            // Set theme based on DDG theme
+            if ($(".dark-header").length) {
+                editor.setTheme("ace/theme/monokai");
+            } else {
+                editor.setTheme("ace/theme/eclipse");
+            }
 
-        // Adjust the box margins--can't do this in css
-        var style = "padding-left: 0px !important; margin-left: 0px !important;" +
-                    "padding-top: 0px !important; margin-top: 0px !important;";
-        $("#zero_click_wrapper2 #zero_click_abstract").attr("style", style);
+            // Listen for clicks on the default theme button and change editor theme accordingly
+            $(".nav-menu__theme--default").click(function(e) {
+                editor.setTheme("ace/theme/eclipse");
+                e.stopPropagation();
+            });
 
-        // Stop DDG keybindings, when editor has focus
-        $("#" + editor_id).keydown(function(e) {            
-            e.stopPropagation();
-        });
-    }    
+            // Listen for clicks on the dark theme button and change editor theme accordingly
+            $(".nav-menu__theme--d").click(function(e) {
+                editor.setTheme("ace/theme/monokai");
+                e.stopPropagation();
+            });
 
-    function formatLanguageName(language) {
+            editor.getSession().setMode("ace/mode/" + language);
 
-        var languageNames = {
-            "javascript": "JavaScript",
-            "python": "Python"
-        };
+            $("#" + editor_id).height("400px");
 
-        return languageNames[language.toLowerCase()];
-    }
-    
+            // Stop DDG keybindings, when editor has focus
+            $("#" + editor_id).keydown(function(e) {
+                e.stopPropagation();
+            });
+        }
+
     Spice.add({
-        header1          :  formatLanguageName(language) + " Editor",
-        sourceName      : "Ace",
-        sourceUrl       : "http://ace.c9.io/",
-        templates: {
-            item: Spice.editor.editor,
-            detail: Spice.editor.editor
+        id: 'editor',
+        name: 'Editor',
+        data: api_result,
+        meta: {
+            sourceName: "Ace",
+            sourceUrl: "http://ace.c9.io/"
         },
-        
-        
+        normalize: function(item) {
+
+            function formatLanguageName(language) {
+                var languageNames = {
+                    "javascript": "JavaScript",
+                    "python": "Python"
+                };
+
+                return languageNames[language.toLowerCase()];
+            }
+
+            return {
+                title: formatLanguageName(language) + " Editor"
+            };
+        },
+        templates: {
+            group: 'base',
+            options: {
+                content: Spice.editor.editor
+            }
+        },
     });
-}
+};
+
+ddg_spice_editor();
