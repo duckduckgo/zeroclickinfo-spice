@@ -1,8 +1,6 @@
 function ddg_spice_editor(api_result) {
 
-    var script = $('[src*="/js/spice/editor/"]')[0];
-    var source = $(script).attr("src");
-    var language = source.match(/editor\/([^\/]+)/)[1];
+    var language = DDG.get_query().match(/javascript|python/)[0];
        
     Spice.add({
         id: 'editor',
@@ -32,6 +30,8 @@ function ddg_spice_editor(api_result) {
                 content: Spice.editor.editor
             }
         },
+        // The `ace` object looks for an element that has ID of `ace-editor`.
+        // The `onShow` function triggers when the element is already on the page.
         onShow: function() {
             var editor_id = "ace-editor";
             var editor = ace.edit(editor_id);
@@ -71,6 +71,6 @@ $.ajaxSetup({
     cache: true
 });
 
-$.getScript("http://cdn.jsdelivr.net/ace/1.1.7/min/ace.js", function() {
+$.getScript("/js/ace/ace.js", function() {
    ddg_spice_editor(); 
 });
