@@ -3,14 +3,37 @@ function ddg_spice_editor(api_result) {
     var script = $('[src*="/js/spice/editor/"]')[0];
     var source = $(script).attr("src");
     var language = source.match(/editor\/([^\/]+)/)[1];
+       
+    Spice.add({
+        id: 'editor',
+        name: 'Editor',
+        data: api_result,
+        meta: {
+            sourceName: "Ace",
+            sourceUrl: "http://ace.c9.io/"
+        },
+        normalize: function(item) {
+            function formatLanguageName(language) {
+                var languageNames = {
+                    "javascript": "JavaScript",
+                    "python": "Python"
+                };
 
-    nrj(DDG.get_asset_path('editor', 'ace.js'));
+                return languageNames[language.toLowerCase()];
+            }
 
-        // Function referenced in ace.js
-        window.aceScriptLoaded = function() {
-
+            return {
+                title: formatLanguageName(language) + " Editor"
+            };
+        },
+        templates: {
+            group: 'base',
+            options: {
+                content: Spice.editor.editor
+            }
+        },
+        onShow: function() {
             var editor_id = "ace-editor";
-
             var editor = ace.edit(editor_id);
 
             // Set theme based on DDG theme
@@ -41,37 +64,13 @@ function ddg_spice_editor(api_result) {
                 e.stopPropagation();
             });
         }
-
-    Spice.add({
-        id: 'editor',
-        name: 'Editor',
-        data: api_result,
-        meta: {
-            sourceName: "Ace",
-            sourceUrl: "http://ace.c9.io/"
-        },
-        normalize: function(item) {
-
-            function formatLanguageName(language) {
-                var languageNames = {
-                    "javascript": "JavaScript",
-                    "python": "Python"
-                };
-
-                return languageNames[language.toLowerCase()];
-            }
-
-            return {
-                title: formatLanguageName(language) + " Editor"
-            };
-        },
-        templates: {
-            group: 'base',
-            options: {
-                content: Spice.editor.editor
-            }
-        },
     });
 };
 
-ddg_spice_editor();
+$.ajaxSetup({
+    cache: true
+});
+
+$.getScript("http://cdn.jsdelivr.net/ace/1.1.7/min/ace.js", function() {
+   ddg_spice_editor(); 
+});
