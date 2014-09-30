@@ -25,13 +25,16 @@
             return Spice.failed('rx_info');
         }
 
+        var sourceName = "C3PI RxImageAccess RESTful API",
+            sourceUrl  = "http://rximage.nlm.nih.gov/";
+
         Spice.add({
             id: "rx_info",
             name: "RxInfo",
             data: api_result.nlmRxImages,
             meta: {
-                sourceName: "C3PI RxImageAccess RESTful API",
-                sourceUrl: "http://rximage.nlm.nih.gov/"
+                sourceName: sourceName,
+                sourceUrl:  sourceUrl
             },
             templates: {
                 group: 'products_simple',
