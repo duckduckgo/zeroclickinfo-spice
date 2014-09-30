@@ -1,11 +1,11 @@
-function ddg_spice_editor(api_result) {
+function ddg_spice_editor() {
 
     var language = DDG.get_query().match(/javascript|python/)[0];
        
     Spice.add({
         id: 'editor',
         name: 'Editor',
-        data: api_result,
+        data: {},
         meta: {
             sourceName: "Ace",
             sourceUrl: "http://ace.c9.io/"
@@ -35,6 +35,9 @@ function ddg_spice_editor(api_result) {
         onShow: function() {
             var editor_id = "ace-editor";
             var editor = ace.edit(editor_id);
+
+            // Tell Ace where the themes and modes are.
+            ace.config.set("basePath", "/js/ace/");
 
             // Set theme based on DDG theme
             if ($(".dark-header").length) {
