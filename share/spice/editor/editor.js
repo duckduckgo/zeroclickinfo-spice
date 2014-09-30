@@ -1,28 +1,26 @@
 function ddg_spice_editor() {
 
-    var language = DDG.get_query().match(/javascript|python/)[0];
+    // Get the language from the query.
+    var language = DDG.get_query().match(/javascript|python/i)[0].toLowerCase();
+
+    function formatLanguageName(language) {
+        var languageNames = {
+            "javascript": "JavaScript",
+            "python": "Python"
+        };
+        
+        return languageNames[language.toLowerCase()];
+    }
        
     Spice.add({
         id: 'editor',
         name: 'Editor',
-        data: {},
+        data: {
+            title: formatLanguageName(language) + " Editor"
+        },
         meta: {
             sourceName: "Ace",
             sourceUrl: "http://ace.c9.io/"
-        },
-        normalize: function(item) {
-            function formatLanguageName(language) {
-                var languageNames = {
-                    "javascript": "JavaScript",
-                    "python": "Python"
-                };
-
-                return languageNames[language.toLowerCase()];
-            }
-
-            return {
-                title: formatLanguageName(language) + " Editor"
-            };
         },
         templates: {
             group: 'base',
@@ -70,10 +68,8 @@ function ddg_spice_editor() {
     });
 };
 
-$.ajaxSetup({
-    cache: true
-});
-
+// Load ace.js
+// Make sure to call ddg_spice_editor when ace.js loads.
 $.getScript("/js/ace/ace.js", function() {
    ddg_spice_editor(); 
 });
