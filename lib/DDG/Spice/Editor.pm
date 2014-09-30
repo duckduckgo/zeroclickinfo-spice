@@ -26,8 +26,8 @@ my %supported_languages = map { $_ => 1 } @supported_languages;
 handle remainder => sub {
 
     foreach my $param (0, 1) {
-        my $lan = $_[$param];        
-        if ($lan && exists($supported_languages{$lan})) {
+        my $lan = $_[$param];
+        if ($lan && exists($supported_languages{lc $lan})) {
             return $lan;
         }
     }
