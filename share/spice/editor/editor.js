@@ -69,7 +69,10 @@ function ddg_spice_editor() {
 };
 
 // Load ace.js
-// Make sure to call ddg_spice_editor when ace.js loads.
-$.getScript("/js/ace/ace.js", function() {
-   ddg_spice_editor(); 
-});
+// Ace is a bit buggy on mobile at the moment, so we don't want to display it there.
+if(!is_mobile) {
+    // Make sure to call ddg_spice_editor when ace.js loads.
+    $.getScript("/js/ace/ace.js", function() {
+        ddg_spice_editor(); 
+    });
+}
