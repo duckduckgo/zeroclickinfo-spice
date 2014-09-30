@@ -5,18 +5,21 @@ package DDG::Spice::<: $ia_name :>;
 
 use DDG::Spice;
 
-#Attribution
+zci answer_type => "<: $lia_name :>";
+zci is_cached   => 1;
+
+# Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
+name "<: $ia_name :>";
+source "";
+icon_url "";
+description "Succinct explanation of what this instant answer does";
 primary_example_queries "first example query", "second example query";
 secondary_example_queries "optional -- demonstrate any additional triggers";
-description "Succinct explanation of what this instant answer does";
-name "<: $ia_name :>";
-icon_url "";
-source "";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/<: $ia_name :>.pm";
 category "";
 topics "";
-attribution github => ["https://github.com/", ""],
-            twitter => ["https://twitter.com/", ""];
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/<: $ia_name :>.pm";
+attribution github => ["GitHubAccount", "Friendly Name"],
+            twitter => "twitterhandle",
 
 # Triggers
 triggers any => "triggerWord", "trigger phrase";
@@ -27,8 +30,9 @@ handle remainder => sub {
 	# optional - regex guard
 	# return unless qr/^\w+/;
 
-	return $_ if $_;
-	return;
+	return unless $_; # Guard against "no answer"
+
+	return $_;
 };
 
 1;
