@@ -7,7 +7,7 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw(DDG::Spice::Astrobin::Apod DDG::Spice::Astrobin::Subject)],
-    'apod' => test_spice(
+    'astronomy picture of the day' => test_spice(
         '/js/spice/astrobin/apod/',
         call_type => 'include',
         caller => 'DDG::Spice::Astrobin::Apod',
@@ -16,6 +16,11 @@ ddg_spice_test(
         '/js/spice/astrobin/subject/spica',
         call_type => 'include',
         caller => 'DDG::Spice::Astrobin::Subject',
+    ),
+    'astrophoto image daily' => test_spice(
+        '/js/spice/astrobin/apod/',
+        call_type => 'include',
+        caller => 'DDG::Spice::Astrobin::Apod',
     ),
 );
 

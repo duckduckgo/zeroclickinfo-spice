@@ -20,6 +20,7 @@ spice to => 'http://www.astrobin.com/api/v1/image/?title__icontains=$1&api_key={
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
+	return if /(image|photo|picture)?s?\s*(of|of the)?\s*(day|today|daily)$/i;
         return $_ if $_;
         return;
 };	
