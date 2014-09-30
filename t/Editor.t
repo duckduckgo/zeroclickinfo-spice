@@ -27,6 +27,11 @@ ddg_spice_test(
         call_type => 'self',
         caller => 'DDG::Spice::Editor',
     ),
+    'editor JavaScript' => test_spice(
+        'JavaScript',
+        call_type => 'self',
+        caller => 'DDG::Spice::Editor',
+    ),
     'editor' => undef,
     'editor ruby' => undef,    
 );
