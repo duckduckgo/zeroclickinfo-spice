@@ -5,12 +5,8 @@
     <div class='text--primary iplookup_owner'>Owner: {{shortwho}}</div>
     <div class='text--secondary iplookup_location'>{{shortloc}}</div>
     {{#if blacklists}}
-        <div class='text--secondary iplookup_blacklist'>Blacklists:
-            <ul class='blacklists text--secondary'>
-                {{#each blacklists}}
-                    <li>{{this}}</li>
-                {{/each}}
-            </ul>
+        <div class='text--secondary iplookup_blacklist'>Blacklists: 
+            {{#each blacklists}} List: {{this}}; this is filler text to force ellipses to display.{{/each}}
         </div>
     {{/if}}
 </div>
