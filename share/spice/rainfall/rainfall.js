@@ -7,7 +7,7 @@
         }
 
         var annualData = {
-            pr: api_result[1][0].value,
+            precipitation: api_result[1][0].value,
             country: api_result[1][0].country.value
         };
 
@@ -20,7 +20,7 @@
                 sourceUrl: 'http://data.worldbank.org/country/' + annualData.country.replace(/ /g,"-").toLowerCase() + '#cp_cc'
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
                     content: Spice.rainfall.content,
                     moreAt: true
