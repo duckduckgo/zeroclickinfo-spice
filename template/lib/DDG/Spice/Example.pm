@@ -5,8 +5,7 @@ package DDG::Spice::<: $ia_name :>;
 
 use DDG::Spice;
 
-zci answer_type => "<: $lia_name :>";
-zci is_cached   => 1;
+spice is_cached => 1;
 
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name "<: $ia_name :>";
