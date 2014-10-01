@@ -23,7 +23,7 @@
 
         Spice.add({
             id: "apod",
-            name: "Astrophoto of the Day",
+            name: "Astronomy",
             data: api_result,
             signal: 'high',
             meta: {
@@ -61,7 +61,8 @@
                     image: item.url_duckduckgo,
                     title: item.title,
                     url: item.url_real,
-                    infoboxData: boxData
+                    infoboxData: boxData,
+                    description: DDG.strip_html(DDG.strip_href(item.description))
                 };
             },
             templates: {

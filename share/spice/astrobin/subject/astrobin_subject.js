@@ -12,10 +12,10 @@
 
         Spice.add({
             id: "astrosubject",
-            name: "Astrophotos",
+            name: "Astronomy",
             data: api_result.objects,
             meta: {
-                itemType: "Astrophotos",
+                itemType: "Images",
                 sourceUrl: 'http://www.astrobin.com/search/?q=' + query + '&search_type=0&license=0&telescope_type=any&camera_type=any',
                 sourceName: 'AstroBin'
             },
