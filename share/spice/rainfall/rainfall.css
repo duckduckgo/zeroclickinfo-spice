@@ -21,7 +21,7 @@
 }
 
 .zci--rainfall .zci__more-at {
-    margin-bottom: 0.1em;
+    padding-top: 0em;
 }
 
 @media only screen
@@ -37,5 +37,6 @@ and (max-device-width : 480px) {
 
     .zci--rainfall .zci__more-at {
         margin-bottom: 0;
+        padding-top: 0em;
     }
 }
