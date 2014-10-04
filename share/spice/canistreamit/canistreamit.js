@@ -21,13 +21,28 @@
                 sourceUrl: api_result[0].links.shortUrl
             },
             normalize: function(item) {
+                var infoboxData = [{
+                    heading: 'Viewing Options'
+                }];
+
+                var affiliates = api_result[0].affiliates;
+                for(var key in affiliates) {
+                    if(affiliates[key].price !== "") {
+                        infoboxData.push({
+                            label: affiliates[key].friendlyName.replace(/ Rental$/, ""),
+                            value: "$" + affiliates[key].price
+                        });
+                    }
+                }
+
                 return {
                     title: api_result[0].title,
+                    subtitle: api_result[0].actors,
                     image: api_result[0].image,
                     url: api_result[0].links.shortUrl,
-                    actors: api_result[0].actors,
+                    description: api_result[0].description,
                     links: api_result[0].links,
-                    affiliates: api_result[0].affiliates
+                    infoboxData: infoboxData
 
                 };
             },
@@ -41,21 +56,6 @@
         });
     };
 
-    Handlebars.registerHelper("createLinks", function(affiliates) {
-        "use strict";
-
-        var hasOwn = Object.prototype.hasOwnProperty,
-            results = [];
-
-        for(var index in affiliates) {
-            if(hasOwn.call(affiliates, index) && affiliates[index].price !== "") {
-                affiliates[index].friendlyName = affiliates[index].friendlyName.replace(/ Rental$/, "");
-                results.push(new Handlebars.SafeString(' <a href="' + affiliates[index].url + '">' + affiliates[index].friendlyName + '</a>'));
-            }
-        }
-        return results;
-    });
-
     Handlebars.registerHelper("createMore", function(links) {
         "use strict";
 
@@ -67,8 +67,7 @@
                 friendlyName = "Rotten Tomatoes";
             } else if(index == "imdb") {
                 friendlyName = "IMDB";
-            }
-            else {
+            } else {
                 break;
             }
 
