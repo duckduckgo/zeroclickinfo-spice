@@ -15,8 +15,8 @@
     color: #333;
 }
 
-.zci--book .source,
-.zci--book .sources_recommending {
+.zci--book .source a,
+.zci--book .sources_recommending a {
     color: #999;
 }
 
@@ -79,6 +79,10 @@
 .zci--book .zci__img-wrap + .zci__body--info,
 .zci--book .zci__more-at--info {
     padding-bottom: 0.35em;
+}
+
+.zci--book .sources_recommending:last-child .conj {
+    display: none;
 }
 
 @media only screen

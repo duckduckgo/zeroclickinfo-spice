@@ -82,7 +82,10 @@
                 var recommendedBy = [];
                 for(var key in item.critic_reviews) {
                     if(item.critic_reviews[key].pos_or_neg == "Positive" && recommendedBy.length < 3) {
-                        recommendedBy.push(item.critic_reviews[key].source);
+                        recommendedBy.push({
+                            'recommendedSource' : item.critic_reviews[key].source,
+                            'link' : item.critic_reviews[key].review_link
+                        });
                     }
                     else if (recommendedBy.length >= 3) {
                         break;
@@ -102,10 +105,11 @@
                 return {
                     title: header,
                     image: item.to_read_or_not,
-                    description: item.critic_review.snippet,
+                    description: item.critic_review.snippet.replace(/\.\s\.\s\./g, "..."),
                     url: item.detail_link,
                     source: item.critic_review.source,
-                    recommendedBy: recommendedBy.join(", "),
+                    sourceLink: item.critic_review.review_link,
+                    recommendedBy: recommendedBy,
                     rating: item.rating + "%"
                 };
             },
