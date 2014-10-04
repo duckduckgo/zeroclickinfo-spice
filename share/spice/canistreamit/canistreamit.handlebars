@@ -1,10 +1,6 @@
-<div class="starring">
-    <strong>Starring</strong>
-        {{actors}}.
-</div>
+<span class="sub">{{subtitle}}</span>
 <div>
-    <strong>Available on</strong>
-        {{#createLinks affiliates}}{{/createLinks}}
+    {{condense description maxlen="200"}}
 </div>
 <div>
     <strong>Reviews:</strong>
