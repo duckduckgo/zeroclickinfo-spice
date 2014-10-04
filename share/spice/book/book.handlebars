@@ -5,10 +5,17 @@
     <div>
         <div class="description">{{{ellipsis description 170}}}</div>
         <div class="source">
-            <i>-{{source}}</i>
+            <a href="{{sourceLink}}"><i>-{{source}}</i></a>
         </div>
         <div class="recommend_line">
-            <span class="recommended_by">Recommended by: </span><span class="sources_recommending">{{recommendedBy}}</span>
+            <span class="recommended_by">Recommended by: </span>
+            {{#each recommendedBy}}
+                <span class="sources_recommending">
+                    <a href="{{this.link}}">
+                        {{this.recommendedSource}}<span class="conj">,</span>
+                    </a>
+                </span>
+            {{/each}}
         </div>
     </div>
 </div>
