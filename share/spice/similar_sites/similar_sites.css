@@ -19,3 +19,7 @@
 .zci--similar_sites li {
     list-style-position: inside;
 }
+
+.zci--similar_sites a {
+    color: #3B3B3B;
+}
