@@ -21,8 +21,8 @@
             name: "Weather",
             data:  annualData,
             meta: {
-                sourceName: "data.worldbank.org",
-                sourceUrl: 'http://data.worldbank.org/country/' + annualData.country.replace(/ /g,"-").toLowerCase() + '#cp_cc'
+                sourceName: "worldbank.org",
+                sourceUrl: 'http://data.worldbank.org/country/' + api_result[1][0].country.value.replace(/\,|\./g,"").replace(/ /g,"-").replace(/Dem/g,"democratic").replace(/Rep/g,"republic").toLowerCase() //Clean returned country name for moreAt URL
             },
             templates: {
                 group: 'text',
