@@ -12,7 +12,7 @@ topics "everyday", "special_interest";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RxInfo.pm";
 attribution web => ['http://www.medicosconsultants.com', 'Medicos Consultants, LLC'];
 
-triggers start => 'pill', 'rxinfo';
+triggers start => 'pill', 'rxinfo', 'capsule', 'tablet', 'softgel', 'caplets';
 
 spice to => 'http://rximage.nlm.nih.gov/api/rximage/1/rxbase?resolution=300&includeIngredients=true&parse=$1';
 spice wrap_jsonp_callback => 1;
