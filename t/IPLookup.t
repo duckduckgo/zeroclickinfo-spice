@@ -66,6 +66,14 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::IPLookup',
     ),
+    '5.6.7.8' => test_spice(
+        '/js/spice/iplookup/5.6.7.8',
+        call_type => 'include',
+        caller => 'DDG::Spice::IPLookup'
+    ),
+    '1.2.3.4/24' => undef,
+    '1.2.3.4 255.255.0.0' => undef,
+    '1.2.3.4/255.255.0.0' => undef,
 );
 
 done_testing;
