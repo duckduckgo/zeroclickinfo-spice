@@ -8,7 +8,6 @@ use DDG::Test::Spice;
 use_ok('DDG::Spice::Zanran');
 
 spice call_type => 'include';
-spice answer_type => 'zanran';
 spice caller => 'DDG::Spice::Zanran';
 
 
