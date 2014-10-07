@@ -72,7 +72,7 @@ handle query_lc => sub {
     my ($subdomains, $domain, $tld, $port, $resource_path) = $query =~ $url_qr; 
 
     # debugging output
-    warn 'query: ', $query, "\t", 'sub: ', $subdomains || '', "\t", 'domain: ', $domain || '', "\t", 'tld: ', $tld || '', "\t", 'port: ', $port || '', "\t", 'resource path: ', $resource_path || '' if $is_debug;
+    # warn 'query: ', $query, "\t", 'sub: ', $subdomains || '', "\t", 'domain: ', $domain || '', "\t", 'tld: ', $tld || '', "\t", 'port: ', $port || '', "\t", 'resource path: ', $resource_path || '' if $is_debug;
 
     # get the non-URL text from the query by combining the text before and after the match
     my $non_url_text = $` . $'; #' <-- closing tick added for syntax highlighting

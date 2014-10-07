@@ -1,9 +1,15 @@
 .zci--definition ul {
     margin-bottom: 0.25em;
+    display: table;
+}
+
+.zci--definition ul li {
+    display: table-row;
 }
 
 .zci--definition .zci__def__definition {
     overflow: hidden;
+    display: table-cell;
 }
 
 .zci--definition .zci__more-at {
@@ -21,7 +27,8 @@
 
 .zci__def__part-of-speech {
     font-style: italic;
-    float: left;
-    margin-right: 1em;
+    padding-right: 1em;
+    display: table-cell;
+    min-width: 1em;
 }
 
