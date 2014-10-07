@@ -22,7 +22,7 @@
             data:  annualData,
             meta: {
                 sourceName: "worldbank.org",
-                sourceUrl: 'http://data.worldbank.org/country/' + api_result[1][0].country.value.replace(/\,|\./g,"").replace(/ /g,"-").replace(/Dem/g,"democratic").replace(/Rep/g,"republic").toLowerCase() //Clean returned country name for moreAt URL
+                sourceUrl: 'http://data.worldbank.org/country/' + api_result[1][0].country.value.replace(/\,|\./g,"").replace(/ /g,"-").replace(/Dem/g,"democratic").replace(/Rep/g,"republic").toLowerCase() //Clean returned country name
             },
             templates: {
                 group: 'text',
