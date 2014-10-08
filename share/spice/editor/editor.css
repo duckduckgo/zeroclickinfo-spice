@@ -9,6 +9,7 @@
 
 .zci--editor .ace-monokai .ace_gutter {
     background-color: #292929;
+    color: white;
 }
 
 .zci--editor .ace-monokai {
