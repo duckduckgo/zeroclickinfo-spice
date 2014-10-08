@@ -62,7 +62,7 @@
                     title: item.title,
                     url: item.url_real,
                     infoboxData: boxData,
-                    description: DDG.strip_html(DDG.strip_href(item.description))
+                    description: DDG.strip_html(item.description)
                 };
             },
             templates: {
