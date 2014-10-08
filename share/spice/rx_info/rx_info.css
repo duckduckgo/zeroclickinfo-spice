@@ -16,6 +16,14 @@
     color: #888888;
 }
 
+.detail__ingredients__title--rx_info {
+    font-size: 1.15em;
+}
+
+.detail__ingredients__snippet--rx_info {
+    color: #666666;
+}
+
 .detail__desc__attribution__title--rx_info,
 .detail__desc__attribution--rx_info {
     color: #999999;
