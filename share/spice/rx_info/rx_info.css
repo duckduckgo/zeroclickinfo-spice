@@ -8,6 +8,14 @@
     text-align: center;
 }
 
+.detail__title--rx_info {
+    padding-bottom: 0;
+}
+
+.detail__labeler--rx_info {
+    color: #888888;
+}
+
 .detail__desc__attribution__title--rx_info,
 .detail__desc__attribution--rx_info {
     color: #999999;
