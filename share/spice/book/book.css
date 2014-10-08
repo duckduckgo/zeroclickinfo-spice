@@ -1,29 +1,203 @@
-.zci--book .spice_pane_left {
-    width: 40%;
-    display: inline-block;
+.zci--book .tile--book {
+    width: 25em;
 }
 
-.zci--book .spice_pane_right {
-    width: 50%;
-    display: inline-block;
-    vertical-align: top;
-    border-left: 1px solid rgba(0,0,0,0.1);
-    padding-left: 10px;
+.zci--book .zci__header {
+    width: 20.5em;
 }
 
-.zci--book .book_data_item {
-    display: inline-block;
-    padding-right: 6px;
-    color: gray;
+.zci--book .tile__title {
+    text-overflow: clip !important;
 }
 
-.zci--book #critic-link {
+.zci--book .description {
+    font-weight: 400;
+    color: #333;
+}
+
+.zci--book .source a, .zci--book .sources_recommending a {
+    color: #999;
+}
+
+.zci--book .zci__content {
+    margin-top: -0.5em;
+}
+
+.zci--book .subtitle {
+    padding-left: 0.1em;
+    margin-bottom: 0.6em;
+    color: #888;
+}
+
+.zci--book .zci__header {
+    color: #333;
+}
+
+.zci--book .recommended_by, .zci--book .rating {
+    font-weight: 600;
+}
+
+.zci--book .description, .zci--book .recommend_line {
+    margin-top: 0.85em;
+}
+
+.zci--book .recommend_line {
+    height: 1.2em;
+    overflow-y: hidden;
+}
+
+.zci--book .chomp {
+    max-height: 9em;
+    overflow: visible;
+}
+
+.zci--book .zci__img-wrap--info {
     float: right;
+    padding: 0px;
+    margin: 0px;
+    line-height: 3.2;
+    height: 3em;
+    left: -12em;
 }
 
-.zci--book #book-rating-visual {
-    display: inline;
-    width: 21px;
-    vertical-align: -12%;
+.zci--book .rating {
+    float: right;
+    line-height: 1;
+    font-size: 2em;
+    margin-top: -0.47em;
+    margin-right: 2.5em;
+    vertical-align: top;
+    color: #0099CB;
 }
 
+.zci--book .clear {
+    clear: both;
+}
+
+.zci--book .zci__img-wrap+.zci__body {
+    padding-left: 0.75em;
+}
+
+.zci--book .zci__img-wrap + .zci__body--info, .zci--book .zci__more-at--info {
+    padding-bottom: 0.35em;
+}
+
+.zci--book .sources_recommending:last-child .conj {
+    display: none;
+}
+
+@media only screen and (max-width : 599px) {
+    .zci--book, .zci--book .cw {
+        height: 18.2em !important;
+    }
+
+    .zci--book .zci__links--info {
+        margin-top: 1em;
+    }
+
+    .zci--book .zci__body {
+        margin-top: 0.22em;
+    }
+
+    .zci--book .zci__img-wrap--info {
+        height: 35px !important;
+        line-height: 2 !important;
+        left: -5em;
+    }
+
+    .zci--book .zci__img {
+        width: 35px;
+    }
+
+    .zci--book .zci__img-wrap--info {
+        top: 0.25em;
+    }
+
+    .zci--book .rating {
+        margin-right: -1em;
+    }
+}
+
+@media only screen
+and (min-width : 480px)
+and (max-width : 599px) {
+
+    .zci--book .rating {
+        margin-top: -0.68em;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+    .zci--book .zci__header {
+        width: 10.25em;
+    }
+
+    .zci--book .rating {
+        margin-top: -0.85em;
+    }
+
+    .zci--book .description {
+        max-height: 4em;
+        overflow: hidden;
+    }
+}
+
+@media only screen
+and (min-width : 335px)
+and (max-width : 480px) {
+    .zci--book .zci__img-wrap--info {
+        top: 1.75em;
+    }
+}
+
+@media only screen and (max-width : 335px) {
+    .zci--book .zci__img {
+        width: 28px;
+    }
+
+    .zci--book .zci__img-wrap--info {
+        left: -4em;
+        top: 2.1em;
+    }
+
+    .zci--book .rating {
+        font-size: 1.5em;
+        margin-top: -0.77em;
+    }
+}
+
+@media only screen and (max-width : 325px) {
+    .zci--book .sources_recommending:nth-child(3) .conj {
+        display: none;
+    }
+}
+
+.is-mobile .zci--book .rating {
+    margin-top: -0.67em;
+}
+
+.is-mobile .zci--book .zci__header {
+    width: 10.25em;
+    line-height: 1.15;
+}
+
+.is-mobile .zci--book .description {
+    margin-top: 0.8em;
+}
+
+.is-mobile .zci--book .subtitle {
+    line-height: 2em;
+}
+
+.is-mobile .zci--book .zci__img-wrap--info {
+    top: 1.3em;
+}
+
+.is-mobile .zci--book .rating {
+    margin-right: 0;
+}
+
+.is-mobile .zci--book .description {
+    max-height: 4em;
+    overflow: hidden;
+}
