@@ -17,17 +17,17 @@
 
         <div class="detail__desc">
             {{#if active}}
-                <h5>Active Ingredients</h5>
+                <h5 class="detail__ingredients__title--rx_info">Active Ingredients</h5>
 
-                <div>
+                <div class="detail__ingredients__snippet--rx_info">
                     {{active}}
                 </div>
             {{/if}}
 
             {{#if inactive}}
-                <h5>Inactive Ingredients</h5>
+                <h5 class="detail__ingredients__title--rx_info">Inactive Ingredients</h5>
 
-                <div>
+                <div class="detail__ingredients__snippet--rx_info">
                     {{inactive}}
                 </div>
             {{/if}}
