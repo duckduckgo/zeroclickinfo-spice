@@ -35,6 +35,9 @@ function ddg_spice_editor() {
             var editor_id = "ace-editor";
             var editor = ace.edit(editor_id);
 
+            // Remove margin.
+            editor.setShowPrintMargin(false);
+
             // Tell Ace where the themes and modes are.
             ace.config.set("basePath", "/js/ace/");
 
