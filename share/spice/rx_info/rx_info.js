@@ -64,7 +64,8 @@
                     title: heading,
                     ratingText: item.ndc11,
                     active: active,
-                    inactive: inactive
+                    inactive: inactive,
+                    proxyImageUrl: "https://images.duckduckgo.com/iu/?u=" + encodeURIComponent(item.imageUrl) + "&f=1"
                 }
             } 
         });
