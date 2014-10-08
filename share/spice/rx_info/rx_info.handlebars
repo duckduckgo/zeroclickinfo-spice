@@ -3,15 +3,18 @@
 </div>
 <div class="detail__body  detail__body--rx_info">
     <div class="detail__body__content">
-        <h5 class="detail__title">
+        <h5 class="detail__title detail__title--rx_info">
             {{#if splSetId}}
                 <a href="https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid={{{splSetId}}}" target="_blank">
             {{/if}}
-            {{heading}} [{{labeler}}]
+            {{heading}}
             {{#if splSetId}}
                 </a>
             {{/if}}
         </h5>
+
+        <div class="detail__labeler--rx_info">{{labeler}}</div>
+
         <div class="detail__desc">
             {{#if active}}
                 <h5>Active Ingredients</h5>
