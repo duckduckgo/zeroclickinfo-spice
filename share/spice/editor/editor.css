@@ -1,0 +1,20 @@
+.zci--editor .ace_editor {
+    height: 20em;
+}
+
+.zci--editor .ace-eclipse .ace_gutter {
+    background-color: #f2f2f2;
+    border-right: 1px solid #d0d0d0;
+}
+
+.zci--editor .ace-monokai .ace_gutter {
+    background-color: #292929;
+}
+
+.zci--editor .ace-monokai {
+    background-color: #1f1f1f;
+}
+
+.zci--editor .ace-monokai .ace_marker-layer .ace_active-line {
+    background: #3d3d3d;
+}
