@@ -23,9 +23,10 @@ function ddg_spice_editor() {
             sourceUrl: "http://ace.c9.io/"
         },
         templates: {
-            group: 'base',
+            // group: 'base',
+            detail: Spice.editor.editor,
             options: {
-                content: Spice.editor.editor
+                // content: Spice.editor.editor
             }
         },
         // The `ace` object looks for an element that has ID of `ace-editor`.
@@ -57,8 +58,6 @@ function ddg_spice_editor() {
             });
 
             editor.getSession().setMode("ace/mode/" + language);
-
-            $("#" + editor_id).height("400px");
 
             // Stop DDG keybindings, when editor has focus
             $("#" + editor_id).keydown(function(e) {
