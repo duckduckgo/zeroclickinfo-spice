@@ -13,6 +13,10 @@
 }
 
 .zci--definition .zci__more-at {
+	display: inline-block;
+}
+
+.zci__def__links {
     padding-bottom: 0.37em;
 }
 
