@@ -1,0 +1,50 @@
+{{#if isPair}}
+    <div class="zci--currency-pc" data-link="{{xeUrl}}">
+        <img  src="{{{imageProxy fromFlag}}}" alt="Flag of {{fromCurrencySymbol}}" /></img>
+        <span class="zci--currency-pc-amount"> {{amountRound amount}}</span>
+        <div  class="zci--currency-pc-symbol">{{fromCurrencySymbol}} </div>
+        <span class="zci--currency-pc-equal">=</span>          
+        <img  src="{{imageProxy toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}" /></img>
+        <span class="zci--currency-pc-amount">  {{amountRound convertedAmount}}</span>
+        <div class="zci--currency-pc-symbol"> {{toCurrencySymbol}} </div>         
+    </div>   
+    <div class="zci--currency-pc-ratesinfo">
+        <div>{{rate}}</div>
+        <div>{{inverseRate}}</div> 
+    </div>  
+
+    <div class="zci--currency-pc-link">
+        <a href="http://www.xe.com/"><span class="zci--currency-favicon"></span> More at xe.com</a>
+        <span class="zci--currency-pc-bar">|</span>
+        <a href="{{xeUrl}}">View chart</a>
+        <span class="zci--currency-pc-bar">|</span>
+        <a href="{{liveUrl}}">View live rates</a>
+    </div>  
+     
+         
+
+{{else}}{{#if isSingle}}
+     <div class="tile tile--s" data-link="{{xeUrl}}">
+        <div class="zci--currency-sc"  style="min-width:15em; height:115px;">
+            <img class="zci--currency-sc-img zci--currency-left" src="{{imageProxy fromFlag}}" alt="Flag of {{fromCurrencySymbol}}" /></img>
+            <span class="zci--currency-sc-amount" style="font-size:{{amountFontSize amount}}em;">{{amount}} {{fromCurrencySymbol}} </span>
+            <span class="zci--currency-chart-link">View  Chart</span>
+            <span class="zci--currency-sc-rate">{{rate}}</span>
+        </div>
+       </div>
+{{else}}    
+     <div class="tile tile--s" data-link="{{xeUrl}}">
+        <div class="zci--currency-tc" style="min-width:13em; height:115px;">
+            <img class="zci--currency-tc-img" src="{{imageProxy toFlag}}" alt="Flag of {{toCurrencySymbol}}" /></img>
+            <span class="zci--currency-tc-amount" style="font-size:{{amountFontSize convertedAmount}}em;">{{amountRound convertedAmount}}</span>
+            <span class="zci--currency-left"> {{toCurrencySymbol}}</span>    
+            <span class="zci--currency-tc-rate">{{rate}}</span>
+        </div>
+    </div>
+  
+{{/if}}
+{{/if}}
+
+
+
+
