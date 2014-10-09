@@ -1,8 +1,17 @@
-<span class="sub">{{subtitle}}</span>
-<div>
-    {{condense description maxlen="200"}}
-</div>
-<div>
-    <strong>Reviews:</strong>
-        {{#createMore links}}{{/createMore}}
+<span class="sub">{{sub}}</span>
+<div class="content">
+    {{#if description}}
+        <div class="desc">
+            {{condense description maxlen="250"}}
+        </div>
+    {{/if}}
+        <div class="actors">
+            <span class="starring">Starring: </span>
+            {{actors}}.
+        </div>
+    {{#unless description}}
+        <div class "reviews">
+            Reviews on <a href="links.rottentomatoes">Rotten Tomatoes</a> and <a href="links.imdb">IMDb</a>.
+        </div>
+    {{/unless}}
 </div>

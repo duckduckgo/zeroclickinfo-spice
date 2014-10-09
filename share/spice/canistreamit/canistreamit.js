@@ -30,14 +30,15 @@
                     if(affiliates[key].price !== "") {
                         infoboxData.push({
                             label: affiliates[key].friendlyName.replace(/ Rental$/, ""),
-                            value: "$" + affiliates[key].price
+                            value: "Rent $" + affiliates[key].price
                         });
                     }
                 }
 
                 return {
                     title: api_result[0].title,
-                    subtitle: api_result[0].actors,
+                    sub: api_result[0].year,
+                    actors: api_result[0].actors,
                     image: api_result[0].image,
                     url: api_result[0].links.shortUrl,
                     description: api_result[0].description,
