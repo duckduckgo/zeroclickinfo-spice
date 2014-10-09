@@ -8,22 +8,27 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::Rainfall )],
     'rainfall Australia' => test_spice(
-        '/js/spice/rainfall/AUS',
+        '/js/spice/rainfall/AUS/2012%3A2012',
+        call_type => 'include',
+        caller => 'DDG::Spice::Rainfall',      
+    ),
+    'rainfall in the united states of america' => test_spice(
+        '/js/spice/rainfall/USA/2012%3A2012',
         call_type => 'include',
         caller => 'DDG::Spice::Rainfall',      
     ),
     'rainfall aUstralia' => test_spice(
-        '/js/spice/rainfall/AUS',
+        '/js/spice/rainfall/AUS/2012%3A2012',
         call_type => 'include',
         caller => 'DDG::Spice::Rainfall',      
     ),
     'rainfall United States of America' => test_spice(
-        '/js/spice/rainfall/USA',
+        '/js/spice/rainfall/USA/2012%3A2012',
         call_type => 'include',
         caller => 'DDG::Spice::Rainfall',      
     ),
     'rainfall Ireland' => test_spice(
-        '/js/spice/rainfall/IRL',
+        '/js/spice/rainfall/IRL/2012%3A2012',
         call_type => 'include',
         caller => 'DDG::Spice::Rainfall',      
     ),

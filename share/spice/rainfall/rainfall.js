@@ -5,12 +5,12 @@
        if (!api_result || !api_result[1][0].value) {
             return Spice.failed('rainfall');
         }
-        
+                
         // Retrieve search query and extract country, uppercase first letters.
         var query_country = DDG.get_query()
                 .toLowerCase().replace(/in|for|annual|the|rainfall|'/gi, "").trim().replace(/\b[a-z](?=[a-z]{2})/g, function(letter) {
                 return letter.toUpperCase(); } );
-       
+               
         var annualData = {
             precipitation: api_result[1][0].value, // Precipitation in millimeters 
             country: query_country
