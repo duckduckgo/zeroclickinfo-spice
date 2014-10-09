@@ -2,14 +2,17 @@
     "use strict";
     env.ddg_spice_rainfall = function(api_result){
 
+       // Ensure API returns a vaild result including precipitation value
        if (!api_result || !api_result[1][0].value) {
             return Spice.failed('rainfall');
         }
-                
-        // Retrieve search query and extract country, uppercase first letters.
-        var query_country = DDG.get_query()
-                .toLowerCase().replace(/in|for|annual|the|rainfall|'/gi, "").trim().replace(/\b[a-z](?=[a-z]{2})/g, function(letter) {
-                return letter.toUpperCase(); } );
+
+        var script = $('[src*="/js/spice/rainfall/"]')[0],
+             source = $(script).attr("src"),
+             query = source.match(/rainfall\/([^\/]+)\/([^\/]+)\/([^\/]+)/);
+        
+        //Extract country name from query and fix URL Encoding
+        var query_country = query[3].replace(/%20/g," ");
                
         var annualData = {
             precipitation: api_result[1][0].value, // Precipitation in millimeters 
