@@ -17,7 +17,7 @@ attribution github => ['https://github.com/jmg','Juan Manuel García'],
             email => ['jmg.utn@gmail.com','Juan Manuel García'];
 
 
-triggers startend => 'web editor', 'online editor', 'syntax highlighter', 'syntax highlighting', 'code viewer';
+triggers startend => 'web editor', 'online editor', 'syntax highlighter', 'syntax highlighting', 'code viewer', 'scratchpad', 'scratch pad';
 spice call_type => 'self';
 
 my @supported_languages = ("javascript", "python");
