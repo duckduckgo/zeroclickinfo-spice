@@ -1,0 +1,54 @@
+.tile--flights  {
+    width: 37em;
+}
+
+.zci--flights .tile__schedule {
+    color: #878787;
+    font-size: 12px;
+}
+
+.zci--flights .tile__time {
+    font-size: 2em;
+}
+
+.zci--flights .tile__heading {
+    margin-bottom: 1em;
+}
+
+.zci--flights .tile__location {
+    font-size: 2em;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.zci--flights .tile__ok {
+    color: #60AB5D;
+}
+
+.zci--flights .tile__not {
+    color: #C14316;
+}
+
+.zci--flights .tile__date {
+    color: #B3B3B3;
+    float: right;
+    text-align: center;
+    font-weight: 600;
+}
+
+.zci--flights .tile__week {
+    font-size: 12px;
+}
+
+.zci--flights .tile__day {
+    line-height: 12px;
+    font-size: 1.5em;
+}
+
+.zci--flights .na {
+    color: #999;
+}
+
+.is-mobile .tile--flights {
+    width: 100%;
+}
