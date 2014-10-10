@@ -69,7 +69,7 @@
                     inverseRate: item["conversion-inverse"],
                     xeUrl: 'http://www.xe.com/currencycharts/?from=' + item["from-currency-symbol"] + '&to=' + item["to-currency-symbol"],
                     fromFlag: 'http://s.xe.com/v2/themes/xe/images/flags/circle/' + item["from-currency-symbol"].toString().toLowerCase() + '.png',
-                    toFlag: 'http://s.xe.com/v2/themes/xe/images/flags/circle/' + item["to-currency-symbol"].toString().toLowerCase() + '.png',
+                    toFlag: "https://ddh5.duckduckgo.com/32/" + item["to-currency-symbol"].toString() + '.png',
                     currencyName: item["to-currency-name"],
                     liveUrl: liveUrl,
                     xeTime: xeTime,
