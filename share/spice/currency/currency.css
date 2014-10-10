@@ -55,6 +55,13 @@
     float: left;
 }
 
+/* Hide the extra information when the screen gets too small. */
+@media only screen and (max-width : 570px) {
+    .zci--currency-pc-ratesinfo {
+        display: none;
+    }
+}
+
 .zci--currency-pc img {
      height:32px; 
      margin-top: 1em;
