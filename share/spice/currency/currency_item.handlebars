@@ -1,10 +1,12 @@
 {{#if isPair}}
+    <div class="text--secondary">Mid-Market Rates: {{xeDate}} at {{xeTime}} UTC</div>
+
     <div class="zci--currency-pc" data-link="{{xeUrl}}">
-        <img  src="{{{imageProxy fromFlag}}}" alt="Flag of {{fromCurrencySymbol}}">
+        <img  src="{{fromFlag}}" alt="Flag of {{fromCurrencySymbol}}">
         <span class="zci--currency-pc-amount text--primary">{{amountRound amount}}</span>
         <div  class="zci--currency-pc-symbol">{{fromCurrencySymbol}}</div>
         <span class="zci--currency-pc-equal">=</span>          
-        <img  src="{{imageProxy toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}">
+        <img  src="{{toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}">
         <span class="zci--currency-pc-amount text--primary">{{amountRound convertedAmount}}</span>
         <div class="zci--currency-pc-symbol">{{toCurrencySymbol}}</div>         
     </div>
