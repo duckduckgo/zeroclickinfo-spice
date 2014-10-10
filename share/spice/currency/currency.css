@@ -104,7 +104,7 @@
 }
 
 .zci--currency-favicon{
-    background-image: url('http://xe.com/favicon.ico'); 
+    background-image: url('https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fxe.com%2Ffavicon.ico');
     background-repeat: no-repeat;
     display: inline-block;   
     width: 18px;
@@ -112,9 +112,6 @@
     vertical-align: -2px;
     padding-right: 5px;
 }
-
-
-
 
 /*mobile stylesheet*/
 /*main currency*/
