@@ -37,10 +37,6 @@
             return((is_mobile) ? Spice.currency.currency_item_mobile : Spice.currency.currency_item);
         };
         
-        var switch_heading = function() {
-            return(' Mid-Market Rates ' + ': ' + xeDate + ' at ' + xeTime + ' UTC');
-        };
-        
         var switch_alMeta = function() {
             return((mainConv.isPair) ? '' : '<a href="' + liveUrl + '">View live rates</a>');
         };
@@ -54,10 +50,8 @@
             name: 'Currency',
             data: results,
             meta: {
-                heading: switch_heading(),
                 sourceUrl: "http://www.xe.com",
-                sourceName: "xe.com",
-                sourceIcon: true
+                sourceName: "xe.com"
             },
             normalize: function(item) {
                 return {
