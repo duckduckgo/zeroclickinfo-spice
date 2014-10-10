@@ -68,9 +68,8 @@
         meta             : {
             heading:  switch_heading(),
             sourceUrl    : "http://www.xe.com",
-            sourceName   : switch_sourceName(),
-            altMeta:  switch_alMeta(),
-            variableTileWidth: true,
+            sourceName   : "xe.com",
+            sourceIcon: true
         },
         normalize: function(item) {
           return {
@@ -91,7 +90,11 @@
         },
       
       templates : {
-         item:  switch_template(),
+          group: 'base',
+          options: {
+              content: switch_template(),
+              moreAt: true
+          }
         }
 
     });

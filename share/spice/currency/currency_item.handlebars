@@ -12,15 +12,9 @@
     <div class="zci--currency-pc-ratesinfo">
         <div>{{rate}}</div>
         <div>{{inverseRate}}</div> 
-    </div>  
-
-    <div class="zci--currency-pc-link">
-        <a href="http://www.xe.com/"><span class="zci--currency-favicon"></span> More at xe.com</a>
-        <span class="zci--currency-pc-bar">|</span>
-        <a href="{{xeUrl}}">View chart</a>
-        <span class="zci--currency-pc-bar">|</span>
-        <a href="{{liveUrl}}">View live rates</a>
     </div>
+
+    <div class="clear"></div>
 {{else}}
     {{#if isSingle}}
      <div class="tile tile--s" data-link="{{xeUrl}}">
