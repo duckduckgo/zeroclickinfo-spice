@@ -1,6 +1,6 @@
 (function (env){
     "use strict";
-    env.ddg_spice_njt = function(api_result) {
+    env.ddg_spice_transit_njt = function(api_result) {
         if (!api_result || api_result.failed){
             return Spice.failed('njt');
         }
@@ -21,7 +21,7 @@
                 detail: false,
                 item_detail: false,
                 options: {
-                    content: Spice.njt.train_item
+                    content: Spice.transit_njt.train_item
                 }
             },
             normalize: function(item) {
