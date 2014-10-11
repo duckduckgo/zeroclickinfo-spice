@@ -1,8 +1,19 @@
-<span class="sub">{{sub}}</span>
+<div class="sub tile__tx tile__rating one-line">
+    <span>{{sub}}</span>
+    <span class="detail__separator"> | </span>
+    <span class="stars  stars--{{rating}}">
+        <i class="star  stars__1"></i>
+        <i class="star  stars__2"></i>
+        <i class="star  stars__3"></i>
+        <i class="star  stars__4"></i>
+        <i class="star  stars__5"></i>
+    </span>
+    <span class="percentage">{{percentage}}</span>
+</div>
 <div class="content">
     {{#if description}}
         <div class="desc">
-            {{condense description maxlen="250"}}
+            {{condense description maxlen="200"}}
         </div>
     {{/if}}
         <div class="actors">
