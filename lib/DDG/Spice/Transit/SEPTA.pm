@@ -1,4 +1,4 @@
-package DDG::Spice::SEPTA;
+package DDG::Spice::Transit::SEPTA;
 
 use DDG::Spice;
 use YAML qw ( Load );
@@ -8,7 +8,7 @@ secondary_example_queries "train times to paoli from Villanova";
 description "Lookup the next SEPTA train going your way";
 name "SEPTA";
 source "SEPTA";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SEPTA.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Transit/SEPTA.pm";
 topics "everyday";
 category "time_sensitive";
 attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],

@@ -1,6 +1,6 @@
 (function(env){
     "use strict";
-    env.ddg_spice_septa = function(api_result){
+    env.ddg_spice_transit_septa = function(api_result){
 
         if (!api_result ||
                 api_result.length < 1 ||
@@ -10,11 +10,11 @@
             return Spice.failed('septa');
         }
 
-        var script = $("[src*='js/spice/septa/']")[0],
+        var script = $("[src*='js/spice/transit/septa/']")[0],
             source = decodeURI($(script).attr("src")),
             parts = source.split('/'),
-            from = parts[4],
-            to = parts[5],
+            from = parts[5],
+            to = parts[6],
             now = timeInMins(new Date().toTimeString());
 
         Spice.add({
@@ -49,7 +49,7 @@
                 detail: false,
                 item_detail: false,
                 options: {
-                    content: Spice.septa.train_item
+                    content: Spice.transit_septa.train_item
                 }
             },
             sort_fields: {
