@@ -1,0 +1,20 @@
+.zci--path .tile--path {
+    text-align: center;
+    width: 13em;
+}
+
+.is-mobile .zci--path .tile--path {
+    width: 12.25em;
+}
+
+.tile--path .path__time {
+    font-size: 2.3em;
+    color: #333;
+    font-weight: 300;
+}
+
+.tile--path .path__details {
+    color: #999;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
