@@ -6,6 +6,8 @@
     padding: 30px;
     position: relative;
     overflow: hidden;
+    margin-top: -7px;
+    padding: 37px 0 30px;
 }
 
 .spice-snow h1 {
@@ -16,8 +18,6 @@
 }
 
 .spice-snow.is-snowing {
-    margin-top: -7px;
-    padding: 37px 0 30px;
     background: #0C0F2B;
     color: #fff;
 }
