@@ -32,7 +32,7 @@
                 }
                 return {
                     title: DDG.strip_html(firstLine),
-                    ourContent: secondLine
+                    ourContent: DDG.strip_html(secondLine)
                 };
             },
             templates: {
