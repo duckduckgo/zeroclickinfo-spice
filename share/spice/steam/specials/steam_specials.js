@@ -83,7 +83,6 @@
                 sourceName: 'Steam'
             },
             normalize: function(item) {
-                console.log(item.dev);
                 return {
                     image: item.image,
                     img: item.image,
