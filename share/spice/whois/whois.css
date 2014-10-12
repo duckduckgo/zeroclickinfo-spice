@@ -9,3 +9,7 @@
         word-wrap: break-word;
     }
 }
+
+.zci--whois .zci__more-at {
+    padding-top: 0.75em;
+}
