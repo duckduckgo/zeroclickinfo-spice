@@ -3,7 +3,7 @@ function nrio (api_result) {
 
     // Check for errors.
     if(!api_result || api_result.error || !api_result.location) {
-        Spice.failed('snow');
+        return Spice.failed('snow');
     }
 
     // Get only the city.
