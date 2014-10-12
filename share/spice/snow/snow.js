@@ -3,7 +3,7 @@ function nrio (api_result) {
 
     // Check for errors.
     if(!api_result || api_result.error || !api_result.location) {
-        return;
+        Spice.failed('snow');
     }
 
     // Get only the city.
@@ -14,14 +14,14 @@ function nrio (api_result) {
         return api_result.location;
     }
 
-    if(DDG.get_query().match(/make|let/i)){
+    if(DDG.get_query().match(/make|let/i)) {
         api_result.answer = 'Snow!';
         api_result.location = 'The North Pole';
         api_result.forecast = 'It may not be snowing outside, but it is in here!';
         api_result.is_snowing = true;
     }
 
-    if(api_result.answer && api_result.answer.match(/yes/i)){
+    if(api_result.answer && api_result.answer.match(/yes/i)) {
         api_result.is_snowing = true;
     }
 
@@ -29,21 +29,18 @@ function nrio (api_result) {
     Spice.add({
         id: 'snow',
         name: 'Answer',
-
         data: api_result,
-
         meta: {
             sourceName: "isitsnowingyet.org",
             sourceUrl: "http://isitsnowingyet.org/check?q=" + api_result.location,
         },
-
         templates: {
             detail: Spice.snow.snow
         }
     });
 
-    // add the snoflakes, if it's snowing
-    if(!api_result.is_snowing){ return; }
+    // add the snowflakes, if it's snowing
+    if(!api_result.is_snowing) { return; }
 
     var $dom = Spice.getDOM('snow').find('.spice-snow');
 
@@ -61,8 +58,8 @@ function nrio (api_result) {
     var absMax = 200;
     var flakeCount = 0;
 
-    function makeItSnow(){
-        var detectSize = function (){
+    function makeItSnow() {
+        var detectSize = function () {
             ww = $dom.width();
             wh = $dom.height();
             maxw = ww + 300;
@@ -74,7 +71,7 @@ function nrio (api_result) {
 
         $(window).resize(detectSize);
 
-        if (!$dom.css('textShadow')){
+        if (!$dom.css('textShadow')) {
             textShadowSupport = false;
         }
 
@@ -89,7 +86,7 @@ function nrio (api_result) {
         setInterval(move, 50);
     }
 
-    function addFlake(initial){
+    function addFlake(initial) {
         flakeCount++;
         
         var sizes = [{
@@ -140,7 +137,7 @@ function nrio (api_result) {
             zIndex: 9999
         });
         
-        if (textShadowSupport){
+        if (textShadowSupport) {
             $nowflake.css('textIndent', '-9999px');
         }
         
@@ -148,8 +145,8 @@ function nrio (api_result) {
         var i = sizes.length;
         var v = 0;
         
-        while (i--){
-            if (r < sizes[i].r){
+        while (i--) {
+            if (r < sizes[i].r) {
                 v = sizes[i].v;
                 $nowflake.css(sizes[i].css);
                 break;
@@ -159,7 +156,7 @@ function nrio (api_result) {
         var x = (-300 + Math.floor(Math.random() * (ww + 300)));
         var y = 0;
 
-        if (typeof initial == 'undefined' || !initial){
+        if (typeof initial == 'undefined' || !initial) {
             y = -300;
         } else {
             y = (-300 + Math.floor(Math.random() * (wh + 300)));
@@ -178,11 +175,11 @@ function nrio (api_result) {
         $dom.append($nowflake);
     }
     
-    function move(){
-        if (Math.random() > 0.8){
+    function move() {
+        if (Math.random() > 0.8) {
             xv += -1 + Math.random() * 2;
             
-            if (Math.abs(xv) > 3){
+            if (Math.abs(xv) > 3) {
                 xv = 3 * (xv / Math.abs(xv));
             }
         }
@@ -192,14 +189,14 @@ function nrio (api_result) {
         var diffTime = newTime - prevTime;
         prevTime = newTime;
         
-        if (diffTime < 55 && flakeCount < absMax){
+        if (diffTime < 55 && flakeCount < absMax) {
             addFlake();
         } else if (diffTime > 150) {
             $('span.winternetz:first').remove();
             flakeCount--;
         }
         
-        $('span.winternetz').each(function (){
+        $('span.winternetz').each(function () {
             var x = $(this).data('x');
             var y = $(this).data('y');
             var v = $(this).data('v');
@@ -211,13 +208,13 @@ function nrio (api_result) {
             x += -half_v + Math.round(Math.random() * v);
             
             // because flakes are rotating, the origin could be +/- the size of the flake offset
-            if (x > maxw){
+            if (x > maxw) {
                 x = -300;
             } else if (x < minw) {
                 x = ww;
             }
             
-            if (y > maxh){
+            if (y > maxh) {
                 $(this).remove();
                 flakeCount--;
                 addFlake();
@@ -231,7 +228,7 @@ function nrio (api_result) {
                 });
                 
                 // only spin biggest three flake sizes
-                if (v >= 6){
+                if (v >= 6) {
                     $(this).animate({rotate: '+=' + half_v + 'deg'}, 0);
                 }
             }
