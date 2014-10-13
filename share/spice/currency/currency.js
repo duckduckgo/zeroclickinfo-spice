@@ -13,10 +13,6 @@
         var mainConv = api_result.conversion;
         var topCovs = api_result.topConversions;
         var templates = {};
-        
-        var switch_template = function() {
-            return is_mobile ? Spice.currency.currency_item_mobile : Spice.currency.currency_item;
-        };
 
         if(mainConv["from-currency-symbol"] !== mainConv["to-currency-symbol"]) {
             // Flag the input to get different output
@@ -27,7 +23,7 @@
             templates = {
                 group: 'base',
                 options: {
-                    content: switch_template(),
+                    content: Spice.currency.currency_item,
                     moreAt: true
                 }
             };
@@ -65,7 +61,8 @@
             data: results,
             meta: {
                 sourceUrl: "http://www.xe.com",
-                sourceName: "xe.com"
+                sourceName: "xe.com",
+                sourceIconUrl: "http://www.xe.com/favicon.ico"
             },
             normalize: function(item) {
                 return {
