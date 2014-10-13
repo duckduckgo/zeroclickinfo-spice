@@ -3,7 +3,9 @@
     
     env.ddg_spice_currency = function(api_result) {
 
-        if(!api_result || !api_result.conversion || !api_result.topConversions || !api_result.conversion.length || api_result.conversion.length === 0 || !api_result.topConversions.length || api_result.topConversions.length === 0) {
+        if(!api_result || !api_result.conversion || !api_result.topConversions || 
+           !api_result.conversion.length || api_result.conversion.length === 0 || 
+           !api_result.topConversions.length || api_result.topConversions.length === 0) {
             Spice.failed('currency');
         }
         
@@ -25,7 +27,8 @@
             templates = {
                 group: 'base',
                 options: {
-                    content: switch_template()
+                    content: switch_template(),
+                    moreAt: true
                 }
             };
         } else {
