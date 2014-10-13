@@ -60,7 +60,7 @@
                 return {
                     image: item.url_duckduckgo,
                     title: item.title,
-                    url: item.url_real,
+                    url: "http://www.astrobin.com/" + item.id,
                     infoboxData: boxData,
                     description: DDG.strip_html(DDG.strip_href(item.description))
                 };
