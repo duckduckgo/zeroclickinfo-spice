@@ -2,7 +2,7 @@
     "use strict";
     
     env.ddg_spice_currency = function(api_result) {
-        //do more checks
+
         if(!api_result || !api_result.conversion || !api_result.topConversions || !api_result.conversion.length || api_result.conversion.length === 0 || !api_result.topConversions.length || api_result.topConversions.length === 0) {
             Spice.failed('currency');
         }
@@ -10,40 +10,51 @@
         var results = [];
         var mainConv = api_result.conversion;
         var topCovs = api_result.topConversions;
+        var templates = {};
         
-        if(mainConv["from-currency-symbol"] != mainConv["to-currency-symbol"]) {
-            //flag the input to get different output
-            //if is pair get paris tile layout
+        var switch_template = function() {
+            return is_mobile ? Spice.currency.currency_item_mobile : Spice.currency.currency_item;
+        };
+
+        if(mainConv["from-currency-symbol"] !== mainConv["to-currency-symbol"]) {
+            // Flag the input to get different output
+            // if is pair get paris tile layout
             mainConv.isPair = true;
             results.push(mainConv);
+            
+            templates = {
+                group: 'base',
+                options: {
+                    content: switch_template()
+                }
+            };
         } else {
-            //if is one input currency get single tile ouput
-            mainConv.isSingle = true;
             mainConv["to-currency-symbol"] = topCovs[0]["to-currency-symbol"];
             mainConv["conversion-rate"] = topCovs[0]["conversion-rate"];
             results.push(mainConv);
+            
             for(var i = 0; i < topCovs.length; i++) {
                 results.push(topCovs[i]);
             }
+            
+            templates = {
+                group: 'products_simple',            
+                item_detail: false,
+                detail: false,
+                options: {
+                    variant: 'narrow'
+                }
+            };
         }
         
-        //meta variable
         var timestr = mainConv["rate-utc-timestamp"].split(/\s+/);
         var xeDate = timestr[0];
         var xeTime = timestr[1].match(/\d{2}\:\d{2}\b/);
         var liveUrl = 'http://www.xe.com/currencyconverter/convert/?Amount=1&From=' + mainConv["from-currency-symbol"] + '&To=' + mainConv["to-currency-symbol"];
         
-        var switch_template = function() {
-            return((is_mobile) ? Spice.currency.currency_item_mobile : Spice.currency.currency_item);
-        };
-        
-        var switch_alMeta = function() {
-            return((mainConv.isPair) ? '' : '<a href="' + liveUrl + '">View live rates</a>');
-        };
-        
-        var switch_sourceName = function() {
-            return((mainConv.isPair) ? '' : 'XE.com');
-        };
+        function currency_image(symbol) {
+            return "https://ddh5.duckduckgo.com/assets/currency/32/" + symbol + ".png";
+        }
         
         Spice.add({
             id: 'currency',
@@ -62,21 +73,15 @@
                     rate: item["conversion-rate"],
                     inverseRate: item["conversion-inverse"],
                     xeUrl: 'http://www.xe.com/currencycharts/?from=' + item["from-currency-symbol"] + '&to=' + item["to-currency-symbol"],
-                    fromFlag: "https://ddh5.duckduckgo.com/assets/currency/32/" + item["from-currency-symbol"].toString() + '.png',
-                    toFlag: "https://ddh5.duckduckgo.com/assets/currency/32/" + item["to-currency-symbol"].toString() + '.png',
+                    fromFlag: currency_image(item["from-currency-symbol"]),
+                    toFlag: currency_image(item["to-currency-symbol"]),
                     currencyName: item["to-currency-name"],
                     liveUrl: liveUrl,
                     xeTime: xeTime,
                     xeDate: xeDate
                 };
             },
-            templates: {
-                group: 'base',
-                options: {
-                    content: switch_template(),
-                    moreAt: true
-                }
-            }
+            templates: templates
         });
     };
     
