@@ -1,31 +1,27 @@
 {{#if isPair}}
     <div class="text--secondary">Mid-Market Rates: {{xeDate}} at {{xeTime}} UTC</div>
 
-    <div class="zci--currency-pc" data-link="{{xeUrl}}">
-        <img  src="{{fromFlag}}" alt="Flag of {{fromCurrencySymbol}}">
-        <span class="zci--currency-pc-amount text--primary">{{amountRound amount}}</span>
-        <div  class="zci--currency-pc-symbol">{{fromCurrencySymbol}}</div>
-        <span class="zci--currency-pc-equal">=</span>          
-        <img  src="{{toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}">
-        <span class="zci--currency-pc-amount text--primary">{{amountRound convertedAmount}}</span>
-        <div class="zci--currency-pc-symbol">{{toCurrencySymbol}}</div>         
+    <div class="zci--currency-result" data-link="{{xeUrl}}">
+        <img src="{{fromFlag}}" alt="Flag of {{fromCurrencySymbol}}">
+        <span class="zci--currency-amount text--primary">{{amountRound amount}}</span>
+        <div class="zci--currency-symbol">{{fromCurrencySymbol}}</div>
+        <span class="zci--currency-equal">=</span>          
+        <img src="{{toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}">
+        <span class="zci--currency-amount text--primary">{{amountRound convertedAmount}}</span>
+        <div class="zci--currency-symbol">{{toCurrencySymbol}}</div>         
     </div>
     
-    <div class="zci--currency-pc-ratesinfo">
+    <div class="zci--currency-ratesinfo">
         <div>{{rate}}</div>
         <div>{{inverseRate}}</div> 
     </div>
 
     <div class="clear"></div>
 {{else}}
-     <div class="tile tile--s" data-link="{{xeUrl}}">
-        <div class="zci--currency-sc"  style="min-width:15em; height:115px;">
-            <img class="zci--currency-sc-img zci--currency-left" src="{{imageProxy fromFlag}}" alt="Flag of {{fromCurrencySymbol}}">
-            <span class="zci--currency-sc-amount" style="font-size:{{amountFontSize amount}}em;">{{amount}} {{fromCurrencySymbol}} </span>
-            <span class="zci--currency-chart-link">View Chart</span>
-            <span class="zci--currency-sc-rate">{{rate}}</span>
-        </div>
-       </div>
+    <img src="{{toFlag}}" alt="Flag of {{fromCurrencySymbol}}">
+    <div class="zci--currency-tile-symbol">{{toCurrencySymbol}}</div>
+    <div class="zci--currency-tile-amount">{{amountRound convertedAmount}}</div>
+    <div class="zci--currency-tile-rate">{{rate}}</div>
 {{/if}}
 
 

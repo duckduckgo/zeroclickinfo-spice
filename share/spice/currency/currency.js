@@ -18,32 +18,11 @@
             // Flag the input to get different output
             // if is pair get paris tile layout
             mainConv.isPair = true;
-            results.push(mainConv);
-            
-            templates = {
-                group: 'base',
-                options: {
-                    content: Spice.currency.currency_item,
-                    moreAt: true
-                }
-            };
+            results = [mainConv];
         } else {
-            mainConv["to-currency-symbol"] = topCovs[0]["to-currency-symbol"];
-            mainConv["conversion-rate"] = topCovs[0]["conversion-rate"];
-            results.push(mainConv);
-            
             for(var i = 0; i < topCovs.length; i++) {
                 results.push(topCovs[i]);
             }
-            
-            templates = {
-                group: 'products_simple',            
-                item_detail: false,
-                detail: false,
-                options: {
-                    variant: 'narrow'
-                }
-            };
         }
         
         var timestr = mainConv["rate-utc-timestamp"].split(/\s+/);
@@ -81,7 +60,14 @@
                     xeDate: xeDate
                 };
             },
-            templates: templates
+            templates: {
+                group: 'base',
+                options: {
+                    content: Spice.currency.currency_item,
+                    moreAt: true,
+                    variant: "narrow"
+                }
+            }
         });
     };
     
