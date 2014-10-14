@@ -1,6 +1,40 @@
 (function(env) {
     "use strict";
     
+    function resizeIA() {
+        function toExponent(n) {
+            return n.toPrecision(3).replace(/e\+(.+)/, " × 10<sup>$1</sup>");
+        }
+
+        var result = $(".zci--currency-result"),
+            rates = $(".zci--currency-ratesinfo"),
+            main = $(".zci--currency .zci__main"),
+            body = $(".zci--currency .zci__body"),
+            extra = main.outerWidth() - body.outerWidth();
+
+        // Check if the contents don't fit anymore.
+        if(result.outerWidth() + rates.outerWidth() + extra > body.outerWidth()) {
+            // Check if the results alone will fit in.
+            if(result.outerWidth() + extra < body.outerWidth()) {
+                rates.hide();
+            // This means that the result alone won't fit.
+            } else {
+                var amount = $(".zci--currency-first-part .zci--currency-amount");
+                var original = toExponent(+amount.data("original"));
+                amount.html(original);
+
+                amount = $(".zci--currency-second-part .zci--currency-amount");
+                original = toExponent(+amount.data("original"))
+                amount.html(original);
+            }
+        } else {
+            rates.show();
+        }
+        
+        console.log(result.outerWidth() + rates.outerWidth() + extra, body.outerWidth());
+        console.log(result.outerWidth() + extra, body.outerWidth())
+    }
+    
     env.ddg_spice_currency = function(api_result) {
 
         if(!api_result || !api_result.conversion || !api_result.topConversions || 
@@ -37,6 +71,12 @@
             return "https://ddh5.duckduckgo.com/assets/currency/32/" + symbol + ".png";
         }
         
+        function numberWithCommas(x) {
+            var parts = x.toString().split(".");
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return parts.join(".");
+        }
+        
         Spice.add({
             id: 'currency',
             name: 'Currency',
@@ -51,8 +91,8 @@
                 return {
                     fromCurrencySymbol: item["from-currency-symbol"],
                     toCurrencySymbol: item["to-currency-symbol"],
-                    amount: item["from-amount"],
-                    convertedAmount: item["converted-amount"],
+                    amount: numberWithCommas(+item["from-amount"]),
+                    convertedAmount: numberWithCommas(+item["converted-amount"]),
                     rate: item["conversion-rate"],
                     inverseRate: item["conversion-inverse"],
                     xeUrl: 'http://www.xe.com/currencycharts/?from=' + item["from-currency-symbol"] + '&to=' + item["to-currency-symbol"],
@@ -65,12 +105,11 @@
                 };
             },
             templates: {
-                group: 'base',
-                options: {
-                    content: Spice.currency.currency_item,
-                    moreAt: true,
-                    variant: "narrow"
-                }
+                detail: Spice.currency.currency_item
+            },
+            onShow: function() {
+                resizeIA();
+                $(window).resize(resizeIA);
             }
         });
     };
@@ -82,7 +121,6 @@
 
     //round top 10 currency results if number length over 10 
     Handlebars.registerHelper("amountRound", function(amount) {
-        var round = Math.round(amount * 100) / 100;
-        return((round.toString().length > 10) ? round.toPrecision(8) : round);
+        return amount;
     });
 }(this));

@@ -35,6 +35,15 @@
 
 /* Single view */
 
+.zci--currency sup {
+    top: -1em;
+    font-size: 0.5em;
+}
+
+.zci--currency section {
+    display: inline-block;
+}
+
 .zci--currency-result {
      margin: 0.75em 1.5em 0.5em 0em;
      line-height: 3em;
@@ -46,13 +55,6 @@
     margin-top: 1.5em;
     padding-left: 2em;
     float: left;
-}
-
-/* Hide the extra information when the screen gets too small. */
-@media only screen and (max-width : 570px) {
-    .zci--currency-ratesinfo {
-        display: none;
-    }
 }
 
 .zci--currency-result img {
@@ -102,3 +104,8 @@
     font-size: 1em;
 }
 
+@media only screen and (max-width : 500px) {
+    .zci--currency .zci--currency-ratesinfo {
+        display: none;
+    }
+}
