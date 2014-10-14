@@ -27,6 +27,9 @@
     width: 9em;
 }
 
+.is-mobile .zci--currency-tile-content {
+    width: inherit;
+}
 
 .zci--currency-result {
      margin: 0.75em 1.5em 0.5em 0em;
