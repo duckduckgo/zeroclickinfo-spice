@@ -1,43 +1,23 @@
 (function(env) {
     "use strict";
     
-    function resizeIA() {
-        function toExponent(n) {
-            return n.toPrecision(3).replace(/e\+(.+)/, " × 10<sup>$1</sup>");
-        }
-
+    function resizeIA() {        
+        // Initialize the variables.
         var result = $(".zci--currency-result"),
             rates = $(".zci--currency-ratesinfo"),
             main = $(".zci--currency .zci__main"),
             body = $(".zci--currency .zci__body"),
             extra = main.outerWidth() - body.outerWidth();
-
-        function grabOriginal() {
-            var amount = $(".zci--currency-first-part .zci--currency-amount");
-            var original = toExponent(+amount.data("original"));
-            amount.html(original);
-
-            amount = $(".zci--currency-second-part .zci--currency-amount");
-            original = toExponent(+amount.data("original"))
-            amount.html(original);
-        }
         
-        // Check if the contents don't fit anymore.
-        if(result.outerWidth() + rates.outerWidth() + extra > body.outerWidth()) {
-            // Check if the results alone will fit in.
-            if(result.outerWidth() + extra < body.outerWidth()) {
-                rates.hide();
-            // This means that the result alone won't fit.
-            } else {
-                grabOriginal();
-            }
+        // Check if the elements are still too big.
+        function isBig() {
+            return result.outerWidth() + rates.outerWidth() + extra > body.outerWidth();
+        }
+
+        if(isBig()) {
+            rates.hide();
         } else {
             rates.show();
-        }
-        
-        // If there are two lines, make sure that we're in exponent form.
-        if(result.height() > 100) {
-            grabOriginal();
         }
     }
     
@@ -94,6 +74,10 @@
                 itemType: "Currencies"
             },
             normalize: function(item) {
+                if(!DDG.isNumber(+item["from-amount"]) || !DDG.isNumber(+item["converted-amount"])) {
+                    return null;
+                }
+                
                 return {
                     fromCurrencySymbol: item["from-currency-symbol"],
                     toCurrencySymbol: item["to-currency-symbol"],
@@ -114,7 +98,7 @@
                 detail: Spice.currency.currency_item
             },
             onShow: function() {
-                resizeIA();
+                setTimeout(resizeIA, 0);
                 $(window).resize(resizeIA);
             }
         });

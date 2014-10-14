@@ -133,3 +133,11 @@
         font-size: 0.5em;
     }
 }
+
+.zci--currency-first-part {
+    white-space: nowrap;
+}
+
+.zci--currency-second-part {
+    white-space: nowrap;
+}
