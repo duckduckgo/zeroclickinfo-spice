@@ -6,7 +6,7 @@ primary_example_queries "AA 102";
 secondary_example_queries "Delta 3684";
 description "Flight information";
 name "Flight Info";
-icon_url "/i/www.flightstats.com.ico";
+icon_url "/i/flightstats.com.ico";
 source "FlightStats";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Airlines.pm";
 topics "economy_and_finance", "travel", "everyday";
