@@ -109,3 +109,27 @@
         display: none;
     }
 }
+
+@media only screen and (max-width : 600px) {
+    .zci--currency .zci--currency-result {
+        font-size: 0.8em;
+    }
+}
+
+@media only screen and (max-width : 470px) {
+    .zci--currency .zci--currency-result {
+        font-size: 0.7em;
+    }
+}
+
+@media only screen and (max-width : 435px) {
+    .zci--currency .zci--currency-result {
+        font-size: 0.6em;
+    }
+}
+
+@media only screen and (max-width : 375px) {
+    .zci--currency .zci--currency-result {
+        font-size: 0.5em;
+    }
+}
