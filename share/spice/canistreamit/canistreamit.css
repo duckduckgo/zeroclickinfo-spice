@@ -1,13 +1,18 @@
 .zci--canistreamit .zci__header {
-    font-size: 1.5em;
+    font-size: 1.6em;
 }
 
 .zci--canistreamit .zci__content.chomp {
-    margin-top: -0.5em;
+    margin-top: -0.25em;
 }
 
 .zci--canistreamit .sub {
     color: #999;
+}
+
+.zci--canistreamit .star {
+    margin-right: -4px;
+    margin-top: 0.05em;
 }
 
 .zci--canistreamit .content {
