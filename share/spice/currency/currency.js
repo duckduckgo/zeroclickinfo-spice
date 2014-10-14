@@ -41,7 +41,8 @@
             meta: {
                 sourceUrl: "http://www.xe.com",
                 sourceName: "xe.com",
-                sourceIconUrl: "http://www.xe.com/favicon.ico"
+                sourceIconUrl: "http://www.xe.com/favicon.ico",
+                itemType: "Currencies"
             },
             normalize: function(item) {
                 return {
