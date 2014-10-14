@@ -12,6 +12,16 @@
             body = $(".zci--currency .zci__body"),
             extra = main.outerWidth() - body.outerWidth();
 
+        function grabOriginal() {
+            var amount = $(".zci--currency-first-part .zci--currency-amount");
+            var original = toExponent(+amount.data("original"));
+            amount.html(original);
+
+            amount = $(".zci--currency-second-part .zci--currency-amount");
+            original = toExponent(+amount.data("original"))
+            amount.html(original);
+        }
+        
         // Check if the contents don't fit anymore.
         if(result.outerWidth() + rates.outerWidth() + extra > body.outerWidth()) {
             // Check if the results alone will fit in.
@@ -19,20 +29,16 @@
                 rates.hide();
             // This means that the result alone won't fit.
             } else {
-                var amount = $(".zci--currency-first-part .zci--currency-amount");
-                var original = toExponent(+amount.data("original"));
-                amount.html(original);
-
-                amount = $(".zci--currency-second-part .zci--currency-amount");
-                original = toExponent(+amount.data("original"))
-                amount.html(original);
+                grabOriginal();
             }
         } else {
             rates.show();
         }
         
-        console.log(result.outerWidth() + rates.outerWidth() + extra, body.outerWidth());
-        console.log(result.outerWidth() + extra, body.outerWidth())
+        // If there are two lines, make sure that we're in exponent form.
+        if(result.height() > 100) {
+            grabOriginal();
+        }
     }
     
     env.ddg_spice_currency = function(api_result) {
