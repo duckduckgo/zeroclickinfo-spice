@@ -20,6 +20,11 @@
 
 .zci--currency-tile-rate {
     color: #888;
+    height: 2em;
+}
+
+.zci--currency-tile-content {
+    width: 9em;
 }
 
 
