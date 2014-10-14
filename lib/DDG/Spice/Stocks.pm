@@ -13,6 +13,7 @@ triggers startend => 'stock';
 
 spice to => 'http://ycharts.com/quotes/$1';
 spice wrap_jsonp_callback => 1;
+spice proxy_cache_valid => "418 1d";
 
 handle remainder => sub {
     # needs to be uppercase when it goes to charts api:
