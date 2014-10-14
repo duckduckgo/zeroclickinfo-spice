@@ -20,6 +20,9 @@
             mainConv.isPair = true;
             results = [mainConv];
         } else {
+            // Exit early for now to disable tile view.
+            return; 
+            
             for(var i = 0; i < topCovs.length; i++) {
                 results.push(topCovs[i]);
             }

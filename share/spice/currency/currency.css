@@ -1,3 +1,5 @@
+/* Tile view */
+
 .zci--currency .tile__media {
     text-align: center;
 }
@@ -30,6 +32,8 @@
 .is-mobile .zci--currency-tile-content {
     width: inherit;
 }
+
+/* Single view */
 
 .zci--currency-result {
      margin: 0.75em 1.5em 0.5em 0em;
