@@ -51,29 +51,78 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # Queries with no space between the number and the currency.
     '100cad' => test_spice(
         '/js/spice/currency/100/cad/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # Queries with no space between the formatted number and the currency.
+    '100,000cad' => test_spice(
+        '/js/spice/currency/100000/cad/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # Query with everything smushed together.
     '200cadusd' => test_spice(
         '/js/spice/currency/200/cad/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # Queries that have "convert" in them.
     'convert 200 cad into usd' => test_spice(
         '/js/spice/currency/200/cad/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # Queries with "vs" or "versus" in them.
+    'usd vs eur' => test_spice(
+        '/js/spice/currency/1/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # Numbers with commas in them.
+    'convert 2,000 cad into usd' => test_spice(
+        '/js/spice/currency/2000/cad/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # Numbers with commas and decimal points.
+    'convert 2,000.19 cad into usd' => test_spice(
+        '/js/spice/currency/2000.19/cad/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # Numbers using the european formatting.
+    'convert 2.000,19 cad into usd' => test_spice(
+        '/js/spice/currency/2000.19/cad/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    # Numbers with with ambiguous formatting.
+    'convert 2,000.1.9 cad into usd' => undef,
+    # Other types of conversion
     'convert 10 f to c' => undef,
+    # Ambiguous queries.
     '100cny 40usd' => undef,
-    'cny jpy 400' => undef,
     '10 euro to 10 jpy' => undef,
+    
+    # Things that should probably work but it doesn't at the moment.
+    'cny jpy 400' => undef,
     '499 cny = ? usd' => undef,
+    'convert religion' => undef,
+    'what is a cow' => undef,
+    'usda' => undef,
+    'usda loans' => undef,
+    #'euro 2016' => undef,
 );
 
 done_testing;
