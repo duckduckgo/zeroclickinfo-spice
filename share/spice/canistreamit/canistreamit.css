@@ -17,7 +17,7 @@
 
 .zci--canistreamit .content {
     margin-top: 0.5em;
-    margin-bottom: 0.3em;
+    margin-bottom: 0;
 }
 
 .zci--canistreamit .zci__img {
@@ -26,4 +26,13 @@
 
 .zci--canistreamit .actors {
     margin-top: 0.25em;
+}
+
+.zci--canistreamit .zci__img-wrap+.zci__body--info {
+    padding-top: 0.068em;
+}
+
+.zci--canistreamit .zci__img-wrap {
+    top: 0;
+    vertical-align: middle;
 }

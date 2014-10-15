@@ -38,7 +38,7 @@
                 return {
                     title: api_result[0].title,
                     sub: api_result[0].year,
-                    rating: Math.ceil(api_result[0].rating),
+                    rating: api_result[0].rating,
                     percentage: parseInt((api_result[0].rating/5)*100) + "%",
                     actors: api_result[0].actors,
                     image: api_result[0].image,
