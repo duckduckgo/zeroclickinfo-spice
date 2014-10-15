@@ -3,12 +3,19 @@
     font-size: 0.5em;
 }
 
-.zci--currency section {
+.zci--currency-first-part {
     display: inline-block;
+    margin-right: 1em;
+}
+
+.zci--currency-second-part {
+    display: inline-block;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 .zci--currency-result {
-    margin: 0.75em 1.5em 0.5em 0em;
+    margin: 0.75em 0em 0.5em 0em;
     line-height: 3em;
     display: inline-block;
 }
@@ -54,8 +61,7 @@
 }
 
 .zci--currency-equal {
-    font-size:2em;  
-    margin:0 0.5em;
+    font-size: 2em;
 }
 
 .zci--currency-link {
