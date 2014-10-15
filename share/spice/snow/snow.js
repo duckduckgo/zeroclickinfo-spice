@@ -34,15 +34,28 @@ function nrio (api_result) {
             sourceName: "isitsnowingyet.org",
             sourceUrl: "http://isitsnowingyet.org/check?q=" + api_result.location,
         },
+        normalize: function(item) {
+            return {
+                title: item.answer
+            };
+        },
         templates: {
-            detail: Spice.snow.snow
+            group: 'text',
+            options: {
+                content: Spice.snow.content,
+                moreAt: true
+            }
         }
     });
 
     // add the snowflakes, if it's snowing
     if(!api_result.is_snowing) { return; }
-
-    var $dom = Spice.getDOM('snow').find('.spice-snow');
+    
+    var $dom = Spice.getDOM('snow');
+    $dom.css({
+        background: '#0C0F2B',
+        color: '#fff'
+    });
 
     // TODO: Contact this guy and make sure he's cool with us using it:
     // http://www.zachstronaut.com/posts/2009/12/21/happy-xmas-winternet.html
