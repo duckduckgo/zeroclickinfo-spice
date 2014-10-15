@@ -28,6 +28,10 @@
     padding-left: 2em;
     display: inline-block;
 }
+    
+    .ie8 .zci--currency-ratesinfo {
+        margin-left: 2em;
+    }
 
 .zci--currency-result img {
     height:32px; 
@@ -54,9 +58,13 @@
 }
 
 .zci--currency-equal {
-    font-size:2em;  
-    margin:0 0.5em;
+    font-size: 2em;  
+    margin: 0 0.5em;
 }
+    .ie8 .zci--currency-equal {
+        margin-right: 0.5em;
+        margin-left: 1.5em;
+    }
 
 .zci--currency-link {
     clear: both;
@@ -86,6 +94,8 @@
         font-size: 0.9em;
     }
 }
+
+/* These are used for the mobile template. */
 
 .is-mobile .zci--currency-amount {
     font-size: 2.2em;
