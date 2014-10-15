@@ -189,7 +189,8 @@
                 };
             },
             templates: {
-                detail: Spice.currency.detail
+                detail: Spice.currency.detail,
+                detail_mobile: Spice.currency.detail_mobile
             },
             onShow: function() {
                 $(document).ready(resizeContainer);
