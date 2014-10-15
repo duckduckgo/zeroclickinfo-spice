@@ -45,22 +45,36 @@
 }
 
 .zci--currency-result {
-     margin: 0.75em 1.5em 0.5em 0em;
-     line-height: 3em;
-     float: left;
+    margin: 0.75em 1.5em 0.5em 0em;
+    line-height: 3em;
+    display: inline-block;
+}
+
+.zci--currency-group {
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.zci--currency-second-part {
+    white-space: nowrap;
 }
 
 .zci--currency-ratesinfo {
     border-left: 1px solid #d0d0d0;
     margin-top: 1.5em;
     padding-left: 2em;
-    float: left;
+    display: inline-block;
 }
 
 .zci--currency-result img {
-     height:32px; 
-     margin-top: 1em;
-     vertical-align: -4px;
+    height:32px; 
+    margin-top: 1em;
+    vertical-align: -4px;
+    width: 32px;
+}
+
+.zci--currency-container {
+    height: 5em;
 }
 
 .zci--currency-amount {
@@ -104,40 +118,8 @@
     font-size: 1em;
 }
 
-@media only screen and (max-width : 500px) {
-    .zci--currency .zci--currency-ratesinfo {
-        display: none;
-    }
-}
-
 @media only screen and (max-width : 600px) {
-    .zci--currency .zci--currency-result {
-        font-size: 0.8em;
+    .zci--currency-result {
+        font-size: 0.9em;
     }
-}
-
-@media only screen and (max-width : 470px) {
-    .zci--currency .zci--currency-result {
-        font-size: 0.7em;
-    }
-}
-
-@media only screen and (max-width : 435px) {
-    .zci--currency .zci--currency-result {
-        font-size: 0.6em;
-    }
-}
-
-@media only screen and (max-width : 375px) {
-    .zci--currency .zci--currency-result {
-        font-size: 0.5em;
-    }
-}
-
-.zci--currency-first-part {
-    white-space: nowrap;
-}
-
-.zci--currency-second-part {
-    white-space: nowrap;
 }

@@ -3,21 +3,29 @@
         <div class="zci__body">
             <div class="text--secondary">Mid-Market Rates: {{xeDate}} at {{xeTime}} UTC</div>
 
-            <div class="zci--currency-result" data-link="{{xeUrl}}">
-                <section class="zci--currency-first-part">
-                    <img src="{{fromFlag}}" alt="Flag of {{fromCurrencySymbol}}">&nbsp;<span class="zci--currency-amount text--primary" data-original="{{from-amount}}" data-processed="{{amount}}">{{amount}}</span>&nbsp;<span class="zci--currency-symbol">{{fromCurrencySymbol}}</span>
-                </section>
-                
-                <span class="zci--currency-equal">=</span>
-                
-                <section class="zci--currency-second-part">
-                    <img src="{{toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}">&nbsp;<span class="zci--currency-amount text--primary" data-original="{{converted-amount}}" data-processed="{{convertedAmount}}">{{convertedAmount}}</span>&nbsp;<span class="zci--currency-symbol">{{toCurrencySymbol}}</span>
-                </section>
-            </div>
+            <div class="zci--currency-container">
+                <div class="zci--currency-result" data-link="{{xeUrl}}">
+                    <div class="zci--currency-group">
+                        <section class="zci--currency-first-part">
+                            <img src="{{fromFlag}}" alt="Flag of {{fromCurrencySymbol}}">
+                            <span class="zci--currency-amount text--primary" data-original="{{from-amount}}" data-processed="{{amount}}">{{amount}}</span>
+                            <span class="zci--currency-symbol">{{fromCurrencySymbol}}</span>
+                        </section>
 
-            <div class="zci--currency-ratesinfo">
-                <div>{{rate}}</div>
-                <div>{{inverseRate}}</div> 
+                        <span class="zci--currency-equal">=</span>
+                    </div>
+
+                    <section class="zci--currency-second-part">
+                        <img src="{{toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}">
+                        <span class="zci--currency-amount text--primary" data-original="{{converted-amount}}" data-processed="{{convertedAmount}}">{{convertedAmount}}</span>
+                        <span class="zci--currency-symbol">{{toCurrencySymbol}}</span>
+                    </section>
+                </div>
+
+                <div class="zci--currency-ratesinfo">
+                    <div>{{rate}}</div>
+                    <div>{{inverseRate}}</div> 
+                </div>
             </div>
 
             <div class="clear"></div>
