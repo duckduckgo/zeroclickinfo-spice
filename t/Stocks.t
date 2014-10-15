@@ -6,8 +6,8 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-	['DDG::Spice::Stocks'],
-	'aapl stock' => test_spice(
+	[qw( DDG::Spice::Stocks )],
+	'AAPL stock quote' => test_spice(
 		'/js/spice/stocks/AAPL',
 		call_type => 'include',
 		caller => 'DDG::Spice::Stocks',
