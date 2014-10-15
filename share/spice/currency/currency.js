@@ -1,23 +1,13 @@
 (function(env) {
     "use strict";
     
-    function resizeIA() {        
-        // Initialize the variables.
-        var result = $(".zci--currency-result"),
-            rates = $(".zci--currency-ratesinfo"),
-            main = $(".zci--currency .zci__main"),
-            body = $(".zci--currency .zci__body"),
-            extra = main.outerWidth() - body.outerWidth();
+    function resizeContainer() {        
+        var resultHeight = $(".zci--currency-result").outerHeight();
         
-        // Check if the elements are still too big.
-        function isBig() {
-            return result.outerWidth() + rates.outerWidth() + extra > body.outerWidth();
-        }
-
-        if(isBig()) {
-            rates.hide();
+        if(resultHeight > 60) {
+            $(".zci--currency-container").css("height", "9em");
         } else {
-            rates.show();
+            $(".zci--currency-container").css("height", "5em");
         }
     }
     
@@ -98,8 +88,8 @@
                 detail: Spice.currency.currency_item
             },
             onShow: function() {
-                setTimeout(resizeIA, 0);
-                $(window).resize(resizeIA);
+                $(document).ready(resizeContainer);
+                $(window).resize(resizeContainer);
             }
         });
     };
