@@ -193,8 +193,10 @@
                 detail_mobile: Spice.currency.detail_mobile
             },
             onShow: function() {
-                $(document).ready(resizeContainer);
-                $(window).resize(resizeContainer);
+                if(!is_mobile) {
+                    $(window).load(resizeContainer);
+                    $(window).resize(resizeContainer);
+                }
             }
         });
     };
