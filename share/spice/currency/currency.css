@@ -154,6 +154,7 @@
     float: left;
     line-height: 1em;
     padding-left: 0.5em;
+    padding-top: 0.1em;
 }
 
 .is-mobile .zci--currency-ratesinfo-mobile .horizontal {
