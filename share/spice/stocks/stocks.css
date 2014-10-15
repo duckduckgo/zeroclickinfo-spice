@@ -1,8 +1,7 @@
 .zci h1.stocks__header {
     font-size: 1.4em;
     line-height: 1.2em;
-    font-weight: 300;
-    margin-bottom: 0;
+    font-weight: 400;
 }
 .stocks__sub.zci__header__sub {
     font-weight: 300;
@@ -23,14 +22,11 @@
 }
 .stocks__change-sep.detail__sep {
     margin: 0;
-    height: .75em;
+    height: .78em;
 }
 .stocks__quote-up .stocks__change,
 .stocks__quote-up .stocks__change-pct {
     color: #60ae50;
-}
-.stocks__quote-up .stocks__change-sep {
-    border-color: #60ae50;
 }
 .stocks__quote-up .stocks__change:before {
     content: '';
@@ -48,9 +44,6 @@
 .stocks__quote-down .stocks__change,
 .stocks__quote-down .stocks__change-pct {
     color: #c9481c;
-}
-.stocks__quote-down .stocks__change-sep {
-    border-color: #c9481c;
 }
 .stocks__quote-down .stocks__change:before {
     content: '';
