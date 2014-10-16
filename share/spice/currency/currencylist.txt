@@ -41,7 +41,7 @@ dzd,algerian dinar,algeria dinar,
 egp,egyptian pound,egypt pound
 ern,eritrea nakfa
 etb,ethiopian birr,ethiopia birr,
-eur,euro,
+eur,euro,euros,
 fjd,fijian dollar,fiji dollar,
 fkp,falkland island pound,
 gbp,british pound,united kingdom pound,
