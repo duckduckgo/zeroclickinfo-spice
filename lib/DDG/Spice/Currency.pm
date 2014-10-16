@@ -37,7 +37,7 @@ my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is
 my $number_re = number_style_regex();
 
 # This regexp is responsible for actually processing the query and capturing the important parts.
-my $guard = qr/^$question_prefix($number_re*)\s?($currency_qr)(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?$/i;
+my $guard = qr/^$question_prefix($number_re*)\s?($currency_qr)(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?\??$/i;
 
 triggers query_lc => qr/$currency_qr/;
 
