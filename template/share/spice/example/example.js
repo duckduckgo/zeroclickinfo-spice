@@ -6,11 +6,11 @@
         if (api_result.error) {
             return Spice.failed('<: $lia_name :>');
         }
-        
+
         // Render the response
         Spice.add({
             id: "<: $lia_name :>",
-            
+
             // Customize these properties
             name: "AnswerBar title",
             data: api_result,
