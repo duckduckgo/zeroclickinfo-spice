@@ -77,7 +77,7 @@
                 return DDG.get_asset_path('currency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
             }
             
-            symbol = symbol.slice(0, 2).toLowerCase();
+            symbol = symbol.slice(0, 2);
             symbol = symbol in currency2country_translate ? currency2country_translate[symbol] : symbol;
             return DDG.settings.region.getLargeIconURL(symbol);
         }
