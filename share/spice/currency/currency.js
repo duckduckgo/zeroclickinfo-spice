@@ -2,7 +2,7 @@
     "use strict";
     
     // Currencies that we don't have flags for.
-    var currency2country = {
+    var currency2country_extra = {
         "xaf": true,
         "xag": true,
         "xau": true,
@@ -12,7 +12,14 @@
         "xof": true,
         "xpd": true,
         "xpf": true,
-        "xpt": true
+        "xpt": true,
+        "ggp": true,
+        "jep": true,
+        "sar": true
+    };
+    
+    var currency2country_translate = {
+        'gb': 'uk'
     };
     
     // Resize the size of the outer container if the content of the inner container
@@ -64,10 +71,13 @@
         // Get the flag image.
         function currency_image(symbol) {
             symbol = symbol.toLowerCase();
-            if(symbol in currency2country) {
+            if(symbol in currency2country_extra) {
                 return DDG.get_asset_path('currency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
             }
-            return DDG.settings.region.getLargeIconURL(symbol.slice(0, 2).toLowerCase());
+            
+            symbol = symbol.slice(0, 2).toLowerCase();
+            symbol = symbol in currency2country_translate ? currency2country_translate[symbol] : symbol;
+            return DDG.settings.region.getLargeIconURL(symbol);
         }
         
         // Add commas to the numbers for display.
