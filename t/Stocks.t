@@ -7,7 +7,7 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
 	[qw( DDG::Spice::Stocks )],
-	'AAPL stock quote' => test_spice(
+	'stock quote AAPL' => test_spice(
 		'/js/spice/stocks/AAPL',
 		call_type => 'include',
 		caller => 'DDG::Spice::Stocks',
