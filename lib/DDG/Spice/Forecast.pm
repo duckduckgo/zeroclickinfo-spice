@@ -13,12 +13,40 @@ secondary_example_queries "weather 12180";
 topics "everyday", "travel";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Forecast.pm";
 
+my @temperatures = qw(temp temperature);
+my @connectors   = qw(in for at);
+my @descriptors  = qw(current);
 
-my @triggers = ('forecast', 'forcast', 'weather', 'temp', 'temperature', 'meteo');
+my @temps_triggers;
+
+foreach my $temp (@temperatures) {
+    foreach my $conn (@connectors) {
+        push @temps_triggers, $temp . ' ' . $conn;    # temperature for, temp at
+        foreach my $desc (@descriptors) {
+            push @temps_triggers, join(' ', $desc, $temp, $conn), $desc . ' ' . $temp;    # current temperature in; current temp
+        }
+    }
+}
+
+my @forecast_words = qw(forecast forcast weather);
+my @triggers = (@forecast_words, @temps_triggers);
 triggers startend => @triggers;
 
 spice from => '([^/]*)/?([^/]*)';
 spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
+
+my @bbc_words     = qw(bbc shipping);
+my @finance_words = qw(sales finance financial market bond treasure pension fund tbill t-bill stock government strategy strategies analytics market);
+my @commodities_words = (
+    'gold',     'silver', 'oil',    'naturalgas', 'natural gas',   'palladium',
+    'platinum', 'copper', 'lead',   'zinc',       'tin',           'aluminium',
+    'aluminum', 'nickel', 'cobalt', 'molybdenum', 'polypropylene', 'ethanol'
+);
+my @sports_words = map { ($_, $_ . ' game', $_ . ' match') } qw(football golf soccer tennis basketball hockey nba ncaa nfl nhl cricket);
+
+my $skip_words = join('|', @bbc_words, @finance_words, @commodities_words, @sports_words);
+my $forecasts = join('|', @forecast_words);
+my $skip_forecasts_re = qr/(?:\b(?:$skip_words)\s+(?:$forecasts)\b)|(?:\b(?:$forecasts)\s+(?:$skip_words)\b)/;
 
 # cache DDG Rewrite for 24 hours and
 # API responses with return code 200 for 30 minutes
@@ -41,20 +69,12 @@ handle query_lc => sub {
 
     # 10/29/2013 russell double check for things we don't want
     $location = trim $location if $location;
-    
-    # bbc
-    # shipping forecast, bbc forecast, bbc weather forecast etc.
-    return if /\b((shipping\s+fore?cast)|((weather|fore?cast)\sbbc$)|(^bbc\s.*(weather|fore?cast))|(\s+bbc\s+))\b/;
 
     # has quotes
     return if /(%22)|\"/;
 
-    # has financialish terms
-    return if /\b(sales|financ(e|ial)|market|bond|treasury|pension|fund|t-?bill|stock|government|strateg(y|ies)|analytics|market|fore?cast(ing|or|er))\b/;
-    return if /\b(gold|silver|oil|naturalgas|palladium|platinum|copper|lead|zinc|tin|aluminium|aluminum|nickel|cobalt|molybdenum|polypropylene|ethanol)\b.*(fore?cast)/;
-
-    # sports
-    return if /\b(football|golf|soccer|tennis|basketball|hockey|nba|ncaa|nfl|nhl)\b/;
+    # has defined forecast/weather skip
+    return if /$skip_forecasts_re/;
 
     # has other terms
     return if (/\b((^site\:)|http|(\.(org|com|net))|underground|map|app)s?\b/);

@@ -124,6 +124,19 @@ ddg_spice_test(
     	caller => 'DDG::Spice::Forecast',
         is_cached => 1
     ),
+    'temperature in stockholm' => test_spice(
+    	'/js/spice/forecast/stockholm',
+    	call_type => 'include',
+    	caller => 'DDG::Spice::Forecast',
+        is_cached => 1
+    ),
+    'current temp stockholm' => test_spice(
+    	'/js/spice/forecast/stockholm',
+    	call_type => 'include',
+    	caller => 'DDG::Spice::Forecast',
+        is_cached => 1
+    ),
+    'temperature stockholm' => undef,
     'shipping forecast' => undef,
     'weather forecast bbc' => undef,
     'bbc weather forecast' => undef,
@@ -140,6 +153,9 @@ ddg_spice_test(
     'weather maps' => undef,
     'weather app' => undef,
     'weather apps' => undef,
+    'temperature conversion chart' => undef,
+    'temperature pork done'        => undef,
+    'temperature iron melts'       => undef,
 
 # Disabling since I made the trigger a startend. (caine)
 #    'Philadelphia weather this week' => test_spice(
