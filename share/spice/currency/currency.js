@@ -1,6 +1,8 @@
 (function(env) {
     "use strict";
     
+    // Resize the size of the outer container if the content of the inner container
+    // overflows.
     function resizeContainer() {        
         var resultHeight = $(".zci--currency-result").outerHeight();
         
@@ -13,6 +15,7 @@
     
     env.ddg_spice_currency = function(api_result) {
 
+        // Check if there are any errors in the response.
         if(!api_result || !api_result.conversion || !api_result.topConversions || 
            !api_result.conversion.length || api_result.conversion.length === 0 || 
            !api_result.topConversions.length || api_result.topConversions.length === 0) {
@@ -38,15 +41,18 @@
             }
         }
         
+        // Format the time and date.
         var timestr = mainConv["rate-utc-timestamp"].split(/\s+/);
         var xeDate = timestr[0];
         var xeTime = timestr[1].match(/\d{2}\:\d{2}\b/);
         var liveUrl = 'http://www.xe.com/currencyconverter/convert/?Amount=1&From=' + mainConv["from-currency-symbol"] + '&To=' + mainConv["to-currency-symbol"];
         
+        // Get the flag image.
         function currency_image(symbol) {
             return "https://ddh5.duckduckgo.com/assets/currency/32/" + symbol + ".png";
         }
         
+        // Add commas to the numbers for display.
         function numberWithCommas(x) {
             var parts = x.toString().split(".");
             parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -64,6 +70,7 @@
                 itemType: "Currencies"
             },
             normalize: function(item) {
+                // Return null if the results aren't numbers.
                 if(!DDG.isNumber(+item["from-amount"]) || !DDG.isNumber(+item["converted-amount"])) {
                     return null;
                 }
@@ -89,6 +96,8 @@
                 detail_mobile: Spice.currency.detail_mobile
             },
             onShow: function() {
+                // The desktop template depends on a JS function that manages the
+                // size of the container.
                 if(!is_mobile) {
                     $(window).load(resizeContainer);
                     $(window).resize(resizeContainer);
