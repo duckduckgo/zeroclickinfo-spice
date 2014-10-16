@@ -1,6 +1,20 @@
 (function(env) {
     "use strict";
     
+    var currency2country = {
+        "eur": true,
+        "xaf": true,
+        "xag": true,
+        "xau": true,
+        "xbt": true,
+        "xcd": true,
+        "xdr": true,
+        "xof": true,
+        "xpd": true,
+        "xpf": true,
+        "xpt": true
+    };
+    
     // Resize the size of the outer container if the content of the inner container
     // overflows.
     function resizeContainer() {        
@@ -49,7 +63,10 @@
         
         // Get the flag image.
         function currency_image(symbol) {
-            return "https://ddh5.duckduckgo.com/assets/currency/32/" + symbol + ".png";
+            if(symbol in currency2country) {
+                return DDG.get_asset_path('currency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
+            }
+            return DDG.settings.region.getLargeIconURL(symbol.slice(0, 2).toLowerCase());
         }
         
         // Add commas to the numbers for display.
