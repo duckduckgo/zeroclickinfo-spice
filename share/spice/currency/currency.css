@@ -23,6 +23,7 @@
     }
 
     .is-mobile .zci--currency-second-part img {
+        height: 32px;
         vertical-align: middle;
         border: 0.2em solid #d0d0d0;
         border-radius: 50%;
@@ -34,6 +35,7 @@
     }
 
     .is-mobile .zci--currency-first-part img {
+        height: 32px;
         vertical-align: middle;
         border: 0.2em solid #d0d0d0;
         border-radius: 50%;
@@ -52,7 +54,7 @@
     }
 
 .zci--currency-result img {
-    height:32px; 
+    height: 32px; 
     margin-top: 1em;
     vertical-align: -2px;
     width: 32px;
