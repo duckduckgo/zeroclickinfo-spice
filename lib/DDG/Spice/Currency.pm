@@ -85,7 +85,14 @@ sub checkCurrencyCode {
         return;
     }
     
-    return $normalized_number, getCode($from) || "usd", getCode($to) || $default_to;
+    $from = getCode($from) || "usd";
+    $to = getCode($to) || $default_to;
+    # Return early if we get a query like "usd to usd".
+    if($from eq $to) {
+        return;
+    }
+    
+    return $normalized_number, $from, $to;
 }
 
 handle query_lc => sub {
