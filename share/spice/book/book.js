@@ -110,7 +110,7 @@
                     source: item.critic_review.source,
                     sourceLink: item.critic_review.review_link,
                     recommendedBy: recommendedBy,
-                    rating: item.rating + "%"
+                    rating: item.rating
                 };
             },
 
