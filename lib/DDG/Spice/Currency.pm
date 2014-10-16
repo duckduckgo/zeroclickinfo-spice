@@ -16,7 +16,8 @@ code_url "https://github.com/XenonLab/blob/master/lib/DDG/Spice/Currency.pm";
 category "finance";
 topics "economy_and_finance", "geography", "travel", "everyday";
 attribution web => ['http://www.xe.com'];
-                                                
+
+# Get all the valid currencies from a text file.
 my @currTriggers;
 my @currencies = share('currencylist.txt')->slurp;
 my %currHash = ();
@@ -28,8 +29,8 @@ foreach my $currency (@currencies){
     $currHash{$currency[0]} = \@currency;
 }
 
+# Define the regexes here.
 my $currency_qr = join('|', @currTriggers);
-
 my $into_qr = qr/\s(?:en|in|to|in ?to|to)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
@@ -77,13 +78,20 @@ sub checkCurrencyCode {
     # If the user types in 10 eur, it should default to usd.
     my $default_to = getCode($from) eq "usd" ? "eur" : "usd"; 
     
-    return $styler->for_computation($amount), getCode($from) || "usd", getCode($to) || $default_to;
+    my $normalized_number = $styler->for_computation($amount);
+    
+    # There are cases where people type in "2016 euro" or "1999 php", so we don't want to trigger on those queries.
+    if($normalized_number >= 1900 && $normalized_number < 2100 && (length($from) == 0 || length($to) == 0)) {
+        return;
+    }
+    
+    return $normalized_number, getCode($from) || "usd", getCode($to) || $default_to;
 }
 
 handle query_lc => sub {
     if(/$guard/) {
         my ($amount, $from, $alt_amount, $to) = ($1, $2, $3, $4 || '');
-        
+
         # If two amounts are available, exit early. It's ambiguous.
         # We use the length function to check if it's an empty string or not.
         if(length($amount) && length($alt_amount)) {

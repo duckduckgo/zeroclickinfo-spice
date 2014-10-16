@@ -114,7 +114,6 @@ ddg_spice_test(
     # Ambiguous queries.
     '100cny 40usd' => undef,
     '10 euro to 10 jpy' => undef,
-    
     # Things that should probably work but it doesn't at the moment.
     'cny jpy 400' => undef,
     '499 cny = ? usd' => undef,
@@ -122,7 +121,8 @@ ddg_spice_test(
     'what is a cow' => undef,
     'usda' => undef,
     'usda loans' => undef,
-    #'euro 2016' => undef,
+    # We don't want to trigger on date-looking things.
+    'euro 2016' => undef,
 );
 
 done_testing;
