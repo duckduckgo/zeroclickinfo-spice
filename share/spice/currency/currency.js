@@ -1,8 +1,8 @@
 (function(env) {
     "use strict";
     
+    // Currencies that we don't have flags for.
     var currency2country = {
-        "eur": true,
         "xaf": true,
         "xag": true,
         "xau": true,
@@ -63,6 +63,7 @@
         
         // Get the flag image.
         function currency_image(symbol) {
+            symbol = symbol.toLowerCase();
             if(symbol in currency2country) {
                 return DDG.get_asset_path('currency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
             }
