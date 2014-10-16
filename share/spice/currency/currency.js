@@ -18,6 +18,8 @@
         "sar": true
     };
     
+    // Some naming exceptions. For example, "gbp" doesn't map to the "gb" asset.
+    // We need this hash so that we know that "gbp" will get the "uk" asset.
     var currency2country_translate = {
         'gb': 'uk'
     };
