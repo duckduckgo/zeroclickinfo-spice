@@ -107,6 +107,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    'what is 10 php in usd?' => test_spice(
+        '/js/spice/currency/10/php/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
     # Other types of conversion
