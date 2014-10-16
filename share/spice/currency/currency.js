@@ -6,7 +6,7 @@
     function resizeContainer() {        
         var resultHeight = $(".zci--currency-result").outerHeight();
         
-        if(resultHeight > 60) {
+        if(resultHeight > 65) {
             $(".zci--currency-container").css("height", "9em");
         } else {
             $(".zci--currency-container").css("height", "5em");
