@@ -1,6 +1,8 @@
 <div class="zci--book">
     <div class="subtitle">by {{author}}
-    <span class="rating">{{rating}}</span></div>
+    {{#if rating}}
+        <span class="rating">{{rating}}%</span></div>
+    {{/if}}
     <div class="clear"></div>
     <div>
         <div class="description">{{{ellipsis description 170}}}</div>
