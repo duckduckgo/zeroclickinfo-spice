@@ -77,7 +77,8 @@
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.bitcoin.content
+                    content: Spice.bitcoin.content,
+                    moreAt: true
                 }
             }
         });
