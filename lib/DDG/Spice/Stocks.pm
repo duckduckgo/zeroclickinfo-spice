@@ -13,7 +13,7 @@ category "finance";
 # trigger is intentionally very specific, should trigger from internal view/deep triggers.
 # It's only here because I couldn't get the /js/stocks/ location to end up in generated nginx conf
 # unless I had at least some kind of trigger defined.
-triggers end => 'stock quote';
+triggers start => 'stock quote';
 
 spice to => 'http://ycharts.com/quotes/$1';
 spice wrap_jsonp_callback => 1;
