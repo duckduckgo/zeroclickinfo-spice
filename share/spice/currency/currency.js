@@ -135,14 +135,4 @@
             }
         });
     };
-    
-    //change font size if number lenght over 10
-    Handlebars.registerHelper("amountFontSize", function(amount) {
-        return((amount.toString().length > 10) ? 1.5 : 2);
-    });
-
-    //round top 10 currency results if number length over 10 
-    Handlebars.registerHelper("amountRound", function(amount) {
-        return amount;
-    });
 }(this));
