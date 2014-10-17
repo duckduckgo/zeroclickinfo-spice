@@ -14,7 +14,7 @@ attribution github  => ['https://github.com/chrisjwilsoncom', 'chrisjwilsoncom']
 
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
-spice to => 'https://api.xmltime.com/timeservice?accesskey=SSXwafuNGc&secretkey={{ENV{DDG_SPICE_TIME_APIKEY}}}&out=js&prettyprint=1&callback={{callback}}&query=Amsterdam&time=1&tz=0&verbosetime=0';
+spice to => 'https://api.xmltime.com/timeservice?accesskey=SSXwafuNGc&secretkey={{ENV{DDG_SPICE_TIME_APIKEY}}}&out=js&prettyprint=1&callback={{callback}}&query=$1&time=1&tz=0&verbosetime=0';
 
 # Triggers
 triggers any => "time", "what time is it in", "time in";
