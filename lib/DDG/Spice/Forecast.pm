@@ -29,7 +29,7 @@ foreach my $temp (@temperatures) {
 }
 
 my @forecast_words = qw(forecast forcast weather);
-my @triggers = (@forecast_words, @temps_triggers);
+my @triggers = (@forecast_words, @temps_triggers, 'meteo');
 triggers startend => @triggers;
 
 spice from => '([^/]*)/?([^/]*)';

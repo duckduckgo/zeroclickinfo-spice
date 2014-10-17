@@ -136,6 +136,12 @@ ddg_spice_test(
     	caller => 'DDG::Spice::Forecast',
         is_cached => 1
     ),
+    'meteo paris' => test_spice(
+    	'/js/spice/forecast/paris',
+    	call_type => 'include',
+    	caller => 'DDG::Spice::Forecast',
+        is_cached => 1
+    ),
     'temperature stockholm' => undef,
     'shipping forecast' => undef,
     'weather forecast bbc' => undef,
