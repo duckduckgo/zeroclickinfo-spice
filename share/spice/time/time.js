@@ -6,15 +6,18 @@
             return Spice.failed('time');
         }
         
+        nrj("share/spice/time/moment.min.js");
+
         var timeData = {
-            isoTime = api_result.locations[0].time.iso,
-            place = api_result.locations[0].geo.name
+            time: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
+            date: final_date,
+            place: api_result.locations[0].geo.name + ", " + api_result.locations[0].geo.country.name
         }
         
         Spice.add({
-            id: "Time",
+            id: "time",
             name: "Time",
-            data:  api_result,
+            data:  timeData,
             meta: {
                 sourceName: "Example.com",
                 sourceUrl: 'http://example.com' 
