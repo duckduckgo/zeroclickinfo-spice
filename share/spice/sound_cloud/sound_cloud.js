@@ -16,7 +16,9 @@
 
         
         if(!api_result){
-            return Spice.failed("sound_cloud");
+            Spice.failed("audio");
+            Spice.failed("sound_cloud");
+            return;
         }
 
         Spice.add({
