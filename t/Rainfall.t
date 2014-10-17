@@ -34,7 +34,7 @@ ddg_spice_test(
     ),
     
     'rainfall USA' => test_spice(
-        '/js/spice/rainfall/IRL/2012%3A2012/Ireland',
+        '/js/spice/rainfall/USA/2012%3A2012/United%20States',
         call_type => 'include',
         caller => 'DDG::Spice::Rainfall',      
     ),
