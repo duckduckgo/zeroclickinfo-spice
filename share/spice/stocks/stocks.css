@@ -7,6 +7,10 @@
     font-weight: 300;
     padding-left: 0;
     font-size: .95em;
+    text-transform: none;
+}
+.stocks__symbol {
+    font-weight: 400;
 }
 
 .stocks__quotes {
