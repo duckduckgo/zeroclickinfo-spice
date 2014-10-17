@@ -6,8 +6,8 @@ with 'DDG::SpiceRole::NumberStyler';
 
 use Text::Trim;
 
-primary_example_queries "convert 499 usd to cad", "499 GBP = ? JPY";
-secondary_example_queries "cad to usd?", "cny?";
+primary_example_queries "convert 499 usd to cad";
+secondary_example_queries "cad to usd", "cny?";
 description "Currency Convertor provided by XE.com";
 name "Currency";
 source "XE.com";
