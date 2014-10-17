@@ -1,0 +1,34 @@
+<div class="market-rates text--secondary">{{xeDate}} at {{xeTime}} UTC</div>
+
+<div class="zci__metabar__more-at">
+    <a href="http://www.xe.com/currencyconverter/convert/?Amount={{from-amount}}&From={{fromCurrencySymbol}}&To={{toCurrencySymbol}}" class="zci__more-at"><img width="16" height="16" class="zci__more-at__icon" src="//images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.xe.com%2Ffavicon.ico&amp;f=1">xe.com
+    </a>
+</div>
+
+<div class="clear"></div>
+
+<div class="tile--s">
+    <div class="zci--currency-first-part">
+        <img src="{{fromFlag}}" alt="Flag of {{fromCurrencySymbol}}">
+        <span class="zci--currency-symbol">{{fromCurrencySymbol}}</span>
+        <div class="zci--currency-amount" data-original="{{from-amount}}" data-processed="{{amount}}">{{amount}}</div>
+    </div>
+    
+    <div class="zci--currency-equal">
+        <span class="horizontal"></span>
+        <span class="equal">=</span>
+        <span class="horizontal"></span>
+    </div>
+    
+    <div class="zci--currency-second-part">
+        <img src="{{toFlag}}" alt="Flag of {{toCurrencySymbol}}">
+        <span class="zci--currency-symbol">{{toCurrencySymbol}}</span>
+        <div class="zci--currency-amount" data-original="{{converted-amount}}" data-processed="{{convertedAmount}}">{{convertedAmount}}</div>
+    </div>
+</div>
+
+<div class="zci--currency-ratesinfo-mobile text--secondary">
+    <div>{{rate}}</div>
+    <span class="horizontal"></span>
+    <div>{{inverseRate}}</div> 
+</div>
