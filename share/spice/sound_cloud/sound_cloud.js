@@ -16,13 +16,11 @@
 
         
         if(!api_result){
-            Spice.failed("audio");
-            Spice.failed("sound_cloud");
-            return;
+            return Spice.failed("audio");
         }
 
         Spice.add({
-            id: 'soundcloud',
+            id: 'audio',
             name: 'Audio',
             data: api_result,
             meta: {
