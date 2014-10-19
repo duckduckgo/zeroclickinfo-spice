@@ -23,12 +23,13 @@ attribution github  =>      ["https://github.com/nishanths/", "Nishanth Shanmugh
 spice to            =>      'https://duckduckgo.com/m.js?q=$1&cb={{callback}}';
 spice is_cached     =>      1;
 
-triggers query_raw => qr/[0-9\s-]{10,}/;    # Look for at least 10 digits, spaces and dashes in a row;
+# Look for at least 9 digits, spaces and dashes in a row, possibly ending with an X.
+triggers query_raw => qr/[0-9\s-]{10,}[Xx]?/;
 
-my %skip_words = map { $_ => 1 } qw( isbn number lookup );    # Appreciate if they tried to give us more context.
+my %skip_words = map { uc $_ => 1 } qw( isbn number lookup );    # Appreciate if they tried to give us more context.
 
-handle query_lc => sub {
-    my $query_cleaned = join '', (grep { defined $_ && !$skip_words{$_} } split /[\s-]/);
+handle query_raw => sub {
+    my $query_cleaned = join '', (grep { !$skip_words{$_} } map { uc $_ } grep { defined } split /[\s-]/);
 
     return unless (looks_like_isbn($query_cleaned));
 
@@ -38,21 +39,20 @@ handle query_lc => sub {
 sub looks_like_isbn {
     my $number = shift;
 
-    return unless ($number =~ /^(?:\d{10}|\d{13})$/);    # All ISBNs contain 10 or 13 digits
+    return unless ($number =~ /^(?:\d{10}|\d{13}|\d{9}X)$/);    # All ISBNs contain 10 or 13 digits, or 9 digits, plus an X
 
     my @nums        = split //, $number;
-    my $check_digit = pop @nums;                         # Last digit is the check digit
-    my $count       = 0;                                 # Using pre-increment.
+    my $check_digit = pop @nums;                                # Last digit is the check digit
+    $check_digit = 10 if ($check_digit eq 'X');                 # ISBN-10 is mod 11, this can be X for 10.
+    my $count = 0;                                              # Using pre-increment.
     my $checksum;
     if (scalar @nums == 12) {
         # ISBN-13: (10 - (Even-place digits * 3 + odd odd-place digits)) mod 10
-        $checksum = (10 - sum map { (++$count % 2) ? $_ : $_ * 3 } @nums) % 10;
+        $checksum = ((10 - sum map { (++$count % 2) ? $_ : $_ * 3 } @nums) % 10) % 10;
     } else {
         # ISBN-10: (digit * 11 - place) % 11
-        $checksum = 11 - (sum map { (11 - ++$count) * $_ } @nums) % 11;
+        $checksum = (11 - (sum map { (11 - ++$count) * $_ } @nums) % 11) % 11;
     }
-
-    $checksum = $checksum % 10;                          # Considering the above 10 to 0, basically;
 
     return $checksum == $check_digit;
 }

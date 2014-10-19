@@ -77,6 +77,15 @@ ddg_spice_test(
         caller => 'DDG::Spice::ISBN',
         is_cached => 1
     ),
+    # ISBN-10 with X, nee 10, as the check digit
+    '0-8044-2957-X' => test_spice(
+        '/js/spice/isbn/080442957X',
+        call_type => 'include',
+        caller => 'DDG::Spice::ISBN',
+        is_cached => 1
+    ),
+    # Mistyped ISBN-10 with X
+    '0-8044-2967-X' => undef,
     # Mistyped ISBN-13
     '978-0876339601' => undef,
     # Mistyped ISBN-10
