@@ -67,7 +67,7 @@
             var item = api_result.hits[i].fields;
 
             portions.push({
-                id: portions.length - 1,
+                id: i,
                 name: item.item_name,
                 amount: item[measurementInfo.id]
             });
