@@ -7,39 +7,38 @@
         }
 
         var fieldToTerms = {
-                nf_calories_from_fat: ['calories from fat','cals from fat','fat calories'],
-                nf_total_fat: ['fat'],
-                nf_saturated_fat: ['saturated fat'],
-                nf_monounsaturated_fat: ['monounsaturated fat'],
-                nf_polyunsaturated_fat: ['polyunsaturated fat'],
-                nf_trans_fatty_acid: ['trans fat','trans-fat','trans fatty acid'],
-                nf_cholesterol: ['cholesterol'],
-                nf_sodium: ['sodium'],
-                nf_total_carbohydrate: ['carbohydrates','carbs'],
-                nf_dietary_fiber: ['fiber','dietary fiber'],
-                nf_sugars: ['sugar'],
-                nf_protein: ['protein'],
-                nf_vitamin_a_dv: ['vitamin a'],
-                nf_vitamin_c_dv: ['vitamin c'],
-                nf_calcium_dv: ['calcium','ca'],
-                nf_iron_dv: ['iron','fe'],
-                nf_calories: ['calories','cals']
+                nf_calories: { terms: ['calories','cals'], uom: 'Calories' },
+                nf_calories_from_fat: { terms: ['calories from fat','cals from fat','fat calories'], uom: 'Calories' },
+                nf_total_fat: { terms: ['fat'], uom: 'g' },
+                nf_saturated_fat: { terms: ['saturated fat'], uom: 'g' },
+                nf_monounsaturated_fat: { terms: ['monounsaturated fat'], uom: 'g' },
+                nf_polyunsaturated_fat: { terms: ['polyunsaturated fat'], uom: 'g' },
+                nf_trans_fatty_acid: { terms: ['trans fat','trans-fat','trans fatty acid'], uom: 'g' },
+                nf_cholesterol: { terms: ['cholesterol'], uom: 'mg' },
+                nf_sodium: { terms: ['sodium'], uom: 'mg' },
+                nf_total_carbohydrate: { terms: ['carbohydrates','carbs'], uom: 'g' },
+                nf_dietary_fiber: { terms: ['fiber','dietary fiber'], uom: 'g' },
+                nf_sugars: { terms: ['sugar'], uom: 'g' },
+                nf_protein: { terms: ['protein'], uom: 'g' },
+                nf_vitamin_a_dv: { terms: ['vitamin a'], uom: '% Daily Value' },
+                nf_vitamin_c_dv: { terms: ['vitamin c'], uom: '% Daily Value' },
+                nf_calcium_dv: { terms: ['calcium','ca'], uom: '% Daily Value' },
+                nf_iron_dv: { terms: ['iron','fe'], uom: '% Daily Value' }
             },
 
             stripRegex1 = /^(how|what)?('s | is | are | many | much )?(the )?(total | amount of )?/,
             stripRegex2 = /^\s?(are | contained )?(there )?(in )?(a |an )?/,
 
             getMeasurementInfo = function(searchTerm) {
-                var field, terms, term, i, bestMatch;
+                var field, fieldInfo, term, i, bestMatch;
                 for (field in fieldToTerms) {
-                    terms = fieldToTerms[field];
-                    for (i = 0; i < terms.length; i++) {
-                        term = terms[i];
+                    fieldInfo = fieldToTerms[field];
+                    for (i = 0; i < fieldInfo.terms.length; i++) {
+                        term = fieldInfo.terms[i];
                         if (searchTerm.match(term) && (!bestMatch || bestMatch.term.length < term.length)) {
                             bestMatch = {
                                 term: term,
-                                // first term in array is canonical to show on UI:
-                                name: terms[0],
+                                name: fieldInfo.uom,
                                 id: field
                             };
                         }
@@ -50,7 +49,7 @@
             },
 
             // search term w/o any beginning text
-            tmpTerm = DDG.get_query().replace(stripRegex1, ''),
+            tmpTerm = DDG.get_query().toLowerCase().replace(stripRegex1, ''),
 
             measurementInfo = getMeasurementInfo(tmpTerm);
 
