@@ -1,17 +1,15 @@
 (function (env) {
     'use strict';
-    env.ddg_spice_nutrition = function(api_result){
+    env.ddg_spice_nutrition = function(api_result) {
 
         if (!api_result || !api_result.hits || !api_result.hits.length) {
             return Spice.failed('nutrition');
         }
 
-        var nutritionFnBound = false,
-
-            fieldToTerms = {
+        var fieldToTerms = {
                 nf_calories_from_fat: ['calories from fat','cals from fat','fat calories'],
                 nf_total_fat: ['fat'],
-                nf_saturated_fat: [],
+                nf_saturated_fat: ['saturated fat'],
                 nf_monounsaturated_fat: ['monounsaturated fat'],
                 nf_polyunsaturated_fat: ['polyunsaturated fat'],
                 nf_trans_fatty_acid: ['trans fat','trans-fat','trans fatty acid'],
@@ -31,13 +29,14 @@
             stripRegex1 = /^(how|what)?('s | is | are | many | much )?(the )?(total | amount of )?/,
             stripRegex2 = /^\s?(are | contained )?(there )?(in )?(a |an )?/,
 
-            getMeasurementInfo = function(searchTerm){
-                for (var field in fieldToTerms) {
-                    var terms = fieldToTerms[field];
-                    for (var i=0; i<terms.length; i++) {
-                        var term = ' ' + terms[i] + ' ';
-                        if (searchTerm.match(term)) {
-                            return {
+            getMeasurementInfo = function(searchTerm) {
+                var field, terms, term, i, bestMatch;
+                for (field in fieldToTerms) {
+                    terms = fieldToTerms[field];
+                    for (i = 0; i < terms.length; i++) {
+                        term = terms[i];
+                        if (searchTerm.match(term) && (!bestMatch || bestMatch.term.length < term.length)) {
+                            bestMatch = {
                                 term: term,
                                 // first term in array is canonical to show on UI:
                                 name: terms[0],
@@ -47,48 +46,45 @@
                     }
                 }
 
-                return {};
+                return bestMatch;
             },
 
             // search term w/o any beginning text
-            tmpTerm = DDG.get_query().replace(stripRegex1,'');
+            tmpTerm = DDG.get_query().replace(stripRegex1, ''),
 
-            measurementInfo = getMeasurementInfo(tmpTerm),
+            measurementInfo = getMeasurementInfo(tmpTerm);
 
-            // will hold the measurement name (i.e. calories)
-            measurementName = measurementInfo.name,
-
-            // the field id to find the amount in the api results:
-            measurementId = measurementInfo.id;
-
-        if (!measurementId) { return Spice.fail('nutrition'); }
+        if (!measurementInfo) { return Spice.failed('nutrition'); }
 
        // figure out the food item (what should be left):
-        var foodItem = tmpTerm.replace(measurementInfo.term,'').replace(stripRegex2, ''),
+        var foodItem = tmpTerm.replace(measurementInfo.term, '').replace(stripRegex2, ''),
 
-            portions = api_result.hits.map(function(item, idx){
-                return {
-                    id: idx,
-                    name: item.item_name,
-                    amount: item.fields[measurementId]
-                }
-            }),
+            portions = [],
 
             // dom refs that will get assigned onShow:
-            $el, $amount, $portion,
+            $el, $amount, $portion;
 
+        for (var i=0; i<api_result.hits.length; i++) {
+            var item = api_result.hits[i].fields;
+
+            portions.push({
+                id: portions.length - 1,
+                name: item.item_name,
+                amount: item[measurementInfo.id]
+            });
+        };
 
         Spice.add({
             id: 'nutrition',
             name: 'Nutrition',
             data: {
                 measurementName: measurementInfo.name,
-                portitions: portitions.length > 1 && portitions,
-                currentPortion: portitions[0]
+                portions: portions.length > 1 && portions,
+                currentPortion: portions[0]
             },
             meta: {
                 sourceName: 'Nutritionix',
-                sourceUrl: 'http://nutritionix.com/search?q=' + itemName
+                sourceUrl: 'http://nutritionix.com/search?q=' + foodItem
             },
             templates: {
                 group: 'base',
@@ -101,10 +97,10 @@
                 // bind to the drop down (if not already bound)
                 if (!$el && portions.length > 1) {
                     $el = Spice.getDOM('nutrition');
-                    $amount $el.find('nutrition__amount');
-                    $portion = $el.find('nutrition__portion__dropdown');
+                    $amount = $el.find('.nutrition__amount');
+                    $portion = $el.find('.nutrition__portion__dropdown');
 
-                    $portion.change(function(){
+                    $portion.change(function() {
                         var portionId = $portion.val();
                         $amount.text(portions[portionId].amount);
                     });
