@@ -4,8 +4,8 @@
 </h1>
 {{#if portions}}
     <div class="nutrition__portion  frm__select">
-        <select>
-            {{#each portion}}
+        <select class="nutrition__portion__dropdown">
+            {{#each portions}}
                 <option value="{{id}}">{{name}}</option>
             {{/each}}
         </select>
