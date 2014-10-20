@@ -10,9 +10,9 @@ icon_url "/i/nutritionix.com.ico";
 topics "food_and_drink";
 category "food";
 
-my $attribute_regex = qr/(?:(?:(?:c(?:a(?:l(?:ories(?: from fat)?|cium|s)|rb(?:ohydrate)?s)|holesterol)|p(?:olyunsaturated fat|rotein)|trans(?: fat(?:ty acid)?|-fat)|s(?:aturated fat|odium|ugar)|monounsaturated fat|dietary fiber|f(?:iber|at)|vitamin [ac]|iron)))/;
+my $attribute_regex = qr/(?^:(?^:(?:c(?:a(?:l(?:ories(?: from fat)?|cium|s)|rb(?:ohydrate)?s)|holesterol)|p(?:olyunsaturated fat|rotein)|trans(?: fat(?:ty acid)?|-fat)|s(?:aturated fat|odium|ugar)|monounsaturated fat|dietary fiber|f(?:iber|at)|vitamin [ac]|kcals|iron)))/;
 
-triggers any => 'cals','calories','fiber','dietary fiber','fat','trans-fat','trans fat','trans fatty acid','calories from fat','saturated fat','monosaturated fat','polyunsaturated fat','cholesterol','sodium','sugar','protein','carbs','carbohydrates','vitamin c','vitamin a','calcium','iron';
+triggers any => 'kcals', 'cals','calories','fiber','dietary fiber','fat','trans-fat','trans fat','trans fatty acid','calories from fat','saturated fat','monosaturated fat','polyunsaturated fat','cholesterol','sodium','sugar','protein','carbs','carbohydrates','vitamin c','vitamin a','calcium','iron';
 
 # brand_id is hard coded to USDA for now. Eventually could support searches across brands (i.e. packaged goods or restaurants, but requires multiple
 # calls to their API so waiting for now):
