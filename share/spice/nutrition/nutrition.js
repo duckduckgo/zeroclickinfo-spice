@@ -7,8 +7,8 @@
         }
 
         var fieldToTerms = {
-                nf_calories: { terms: ['calories','cals'], uom: 'Calories' },
-                nf_calories_from_fat: { terms: ['calories from fat','cals from fat','fat calories'], uom: 'Calories' },
+                nf_calories: { terms: ['calories','cals'], label: 'Calories' },
+                nf_calories_from_fat: { terms: ['calories from fat','cals from fat','fat calories'], label: 'Calories' },
                 nf_total_fat: { terms: ['fat'], uom: 'g' },
                 nf_saturated_fat: { terms: ['saturated fat'], uom: 'g' },
                 nf_monounsaturated_fat: { terms: ['monounsaturated fat'], uom: 'g' },
@@ -20,10 +20,10 @@
                 nf_dietary_fiber: { terms: ['fiber','dietary fiber'], uom: 'g' },
                 nf_sugars: { terms: ['sugar'], uom: 'g' },
                 nf_protein: { terms: ['protein'], uom: 'g' },
-                nf_vitamin_a_dv: { terms: ['vitamin a'], uom: '% Daily Value' },
-                nf_vitamin_c_dv: { terms: ['vitamin c'], uom: '% Daily Value' },
-                nf_calcium_dv: { terms: ['calcium','ca'], uom: '% Daily Value' },
-                nf_iron_dv: { terms: ['iron','fe'], uom: '% Daily Value' }
+                nf_vitamin_a_dv: { terms: ['vitamin a'], uom: '%', label:'Daily Value' },
+                nf_vitamin_c_dv: { terms: ['vitamin c'], uom: '%', label: 'Daily Value' },
+                nf_calcium_dv: { terms: ['calcium','ca'], uom: '%', label: 'Daily Value' },
+                nf_iron_dv: { terms: ['iron','fe'], uom: '%', label: 'Daily Value' }
             },
 
             stripRegex1 = /^(how|what)?('s | is | are | many | much )?(the )?(total | amount of )?/,
@@ -38,7 +38,8 @@
                         if (searchTerm.match(term) && (!bestMatch || bestMatch.term.length < term.length)) {
                             bestMatch = {
                                 term: term,
-                                name: fieldInfo.uom,
+                                uom: fieldInfo.uom,
+								label: fieldInfo.label,
                                 id: field
                             };
                         }
@@ -77,7 +78,8 @@
             id: 'nutrition',
             name: 'Nutrition',
             data: {
-                measurementName: measurementInfo.name,
+                uom: measurementInfo.uom,
+				label: measurementInfo.label,
                 portions: portions.length > 1 && portions,
                 currentPortion: portions[0]
             },
@@ -101,7 +103,7 @@
 
                     $portion.change(function() {
                         var portionId = $portion.val();
-                        $amount.text(portions[portionId].amount);
+                        $amount.text(portions[portionId].amount + (measurementInfo.uom || ''));
                     });
                 }
             }
