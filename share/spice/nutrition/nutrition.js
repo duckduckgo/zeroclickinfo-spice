@@ -22,9 +22,11 @@
                 nf_protein: { terms: ['protein'], uom: 'g' },
                 nf_vitamin_a_dv: { terms: ['vitamin a'], uom: '%', label:'Daily Value' },
                 nf_vitamin_c_dv: { terms: ['vitamin c'], uom: '%', label: 'Daily Value' },
-                nf_calcium_dv: { terms: ['calcium','ca'], uom: '%', label: 'Daily Value' },
-                nf_iron_dv: { terms: ['iron','fe'], uom: '%', label: 'Daily Value' }
+                nf_calcium_dv: { terms: ['calcium'], uom: '%', label: 'Daily Value' },
+                nf_iron_dv: { terms: ['iron'], uom: '%', label: 'Daily Value' }
             },
+
+			skipWords = ['calories', 'saturated', 'vitamin', 'calcium', 'fiber', 'carbs', 'carbohydrates', 'monounsaturated', 'polyunsaturated', 'sodium', 'protein', 'sugar', 'fatty', 'trans', 'trans-fat'],
 
             stripRegex1 = /^(how|what)?('s | is | are | many | much )?(the )?(total | amount of )?/,
             stripRegex2 = /^\s?(are | contained )?(there )?(in )?(a |an )?/,
@@ -67,12 +69,17 @@
         for (var i=0; i<api_result.hits.length; i++) {
             var item = api_result.hits[i].fields;
 
-            portions.push({
-                id: i,
-                name: item.item_name,
-                amount: item[measurementInfo.id]
-            });
+			if (DDG.isRelevant(item.item_name, skipWords)) {
+				portions.push({
+					id: i,
+					name: item.item_name,
+					amount: item[measurementInfo.id]
+				});
+			}
         };
+
+		// if no portions are relevant, then bail:
+		if (!portions.length) { return Spice.failed('nutrition'); }
 
         Spice.add({
             id: 'nutrition',
