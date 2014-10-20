@@ -26,7 +26,7 @@
                 nf_iron_dv: { terms: ['iron'], uom: '%', label: 'Daily Value' }
             },
 
-			skipWords = ['calories', 'saturated', 'vitamin', 'calcium', 'fiber', 'carbs', 'carbohydrates', 'monounsaturated', 'polyunsaturated', 'sodium', 'protein', 'sugar', 'fatty', 'trans', 'trans-fat'],
+			skipWords = ['calories', 'saturated', 'vitamin', 'calcium', 'fiber', 'carbs', 'carbohydrates', 'monounsaturated', 'polyunsaturated', 'sodium', 'protein', 'sugar', 'fatty', 'trans', 'trans-fat', 'kcals'],
 
             stripRegex1 = /^(how|what)?('s | is | are | many | much )?(the )?(total | amount of )?/,
             stripRegex2 = /^\s?(are | contained )?(there )?(in )?(a |an )?/,
