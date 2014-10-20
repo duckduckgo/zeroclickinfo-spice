@@ -30,15 +30,13 @@
                     firstLine = lines[0].replace(' has a', '') + ' =' + cost[0];
                     secondLine = lines[1];
                 }
-
                 return {
-                    api_result: api_result,
-                    firstLine: firstLine,
-                    secondLine: secondLine
+                    title: DDG.strip_html(firstLine),
+                    ourContent: DDG.strip_html(secondLine)
                 };
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
                     content: Spice.expatistan.content,
                     moreAt: true
