@@ -7,9 +7,7 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-    [
-        'DDG::Spice::ISBN'
-    ],
+    [ 'DDG::Spice::ISBN' ],
     # "isbn" trigger
     'isbn 0330287001' => test_spice(
         '/js/spice/isbn/0330287001',
@@ -51,6 +49,54 @@ ddg_spice_test(
         caller => 'DDG::Spice::ISBN',
         is_cached => 1
     ),
+    # Traction book ISBN-10
+    '0976339609' => test_spice(
+        '/js/spice/isbn/0976339609',
+        call_type => 'include',
+        caller => 'DDG::Spice::ISBN',
+        is_cached => 1
+    ),
+    # Extra dashes and spaces in ISBN-10
+    '0--976     339--6-09' => test_spice(
+        '/js/spice/isbn/0976339609',
+        call_type => 'include',
+        caller => 'DDG::Spice::ISBN',
+        is_cached => 1
+    ),
+    # Traction book ISBN-13
+    '978-0976339601' => test_spice(
+        '/js/spice/isbn/9780976339601',
+        call_type => 'include',
+        caller => 'DDG::Spice::ISBN',
+        is_cached => 1
+    ),
+    # Extra dashes and spaces in ISBN 13
+    '978--09763 3960--1' => test_spice(
+        '/js/spice/isbn/9780976339601',
+        call_type => 'include',
+        caller => 'DDG::Spice::ISBN',
+        is_cached => 1
+    ),
+    # ISBN-10 with X, nee 10, as the check digit
+    '0-8044-2957-X' => test_spice(
+        '/js/spice/isbn/080442957X',
+        call_type => 'include',
+        caller => 'DDG::Spice::ISBN',
+        is_cached => 1
+    ),
+    # Same thing, all compressed.
+    '080442957X' => test_spice(
+        '/js/spice/isbn/080442957X',
+        call_type => 'include',
+        caller => 'DDG::Spice::ISBN',
+        is_cached => 1
+    ),
+    # Mistyped ISBN-10 with X
+    '0-8044-2967-X' => undef,
+    # Mistyped ISBN-13
+    '978-0876339601' => undef,
+    # Mistyped ISBN-10
+    '0976333609' => undef,
     # not triggered (because remainder length is not 10 or 13)
     'isbn lookup 42' => undef,
     # not triggered (because remainder after cleanup is not purely a number)
