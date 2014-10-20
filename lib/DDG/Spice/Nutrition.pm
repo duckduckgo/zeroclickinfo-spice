@@ -12,7 +12,7 @@ category "food";
 
 my $attribute_regex = qr/(?:(?:(?:c(?:a(?:l(?:ories(?: from fat)?|cium|s)|rb(?:ohydrate)?s)|holesterol)|p(?:olyunsaturated fat|rotein)|trans(?: fat(?:ty acid)?|-fat)|s(?:aturated fat|odium|ugar)|monounsaturated fat|dietary fiber|f(?:iber|at)|vitamin [ac]|iron)))/;
 
-triggers query_lc => $attribute_regex;
+triggers any => 'cals','calories','fiber','dietary fiber','fat','trans-fat','trans fat','trans fatty acid','calories from fat','saturated fat','monosaturated fat','polyunsaturated fat','cholesterol','sodium','sugar','protein','carbs','carbohydrates','vitamin c','vitamin a','calcium','iron';
 
 # brand_id is hard coded to USDA for now. Eventually could support searches across brands (i.e. packaged goods or restaurants, but requires multiple
 # calls to their API so waiting for now):
@@ -20,13 +20,10 @@ spice to => 'http://api.nutritionix.com/v1_1/search/$1?results=0%3A20&brand_id=5
 spice wrap_jsonp_callback => 1;
 
 handle query_lc => sub {
-    my $food_item = '';
-
-    if (/^(?:how|what)?(?:'s | is | are | many | much )?(?:the )?(?:total | amount of )?$attribute_regex\s?(?:are | contained )?(?:there )?(?:in )?(?:a |an )?(.*)/) {
-        $food_item = $1;
+    if (/^(?:how|what)?\s?(?:'s |is |are |many |much )?(?:the |there )?(?:total |amount of |number of )?$attribute_regex\s?(?:are |contained |is )?(?:there )?(?:in )?(?:a |an )?(.+?)(?:\?)?$/) {
+		return $1 if $1;
     }
 
-    return $food_item if $food_item;
     return;
 };
 
