@@ -186,6 +186,7 @@
 	overflow-x: auto;
 	min-height: 150px;
 	-webkit-overflow-scrolling: touch;
+	margin-bottom: -0.5em;
 }
 	.fe_day--bar {
 		text-align: center;
@@ -233,3 +234,25 @@
 	.fe_temp_bar .fe_low_temp {
 		bottom: -1.5em;
 	}
+
+#fe_temp_switch {
+	text-decoration: none;
+	color: #535353;
+	cursor: pointer;
+}
+
+#fe_temp_switch .gray {
+	color: #b2b2b2;
+}
+
+#fe_temp_switch .bold {
+	font-weight: bold;
+}
+
+.dark-header #fe_temp_switch {
+	color: #dadada;
+}
+
+.dark-header #fe_temp_switch .gray {
+	color: #696969;
+}

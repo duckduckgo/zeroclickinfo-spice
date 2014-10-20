@@ -58,7 +58,8 @@ var ddg_spice_dictionary = {
 
             meta: {
                 sourceName: "Wordnik",
-                sourceUrl : "http://www.wordnik.com/words/" + word
+                sourceUrl : "http://www.wordnik.com/words/" + word,
+                attributionText: definitions[0].attributionText
             },
 
             // relevancy: {   
@@ -70,7 +71,17 @@ var ddg_spice_dictionary = {
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.dictionary_definition.dictionary_definition
+                    content: Spice.dictionary_definition.content
+                }
+            },
+
+            onShow: function() {
+                // on mobile devices, this loads the audio resources when the IA is shown.
+                // otherwise the loading of the audio resources is deferred until the user clicks
+                // the button and loading things and waiting for them to load takes to long and
+                // the mobile browsers won't let us auto-play the audio after that:
+                if (is_mobile_device) {
+                    DDG.require('audio', function(){});
                 }
             }
         });
@@ -161,18 +172,7 @@ var ddg_spice_dictionary = {
 
         if (!api_result || !api_result.length) { return; }
 
-        var url = api_result[0].fileUrl, // default to the first audio file
-            $play_button = this.$el.find(".zci__def__audio"),
-            $error = this.$el.find('.zci__def__audio--error'),
-            onError = function() {
-                $play_button.removeClass('is-showing');
-                $error.text('Audio Unavailable');
-                $error.addClass('is-showing');
-            },
-            onFinished = function() {
-                $play_button.removeClass('is-playing');
-                $play_button.text('►');
-            };
+        var url = api_result[0].fileUrl; // default to the first audio file
 
         // Try to find the audio url that was created by Macmillan (it usually sounds better).
         for (var i=0,r; r=api_result[i]; i++) {
@@ -183,35 +183,11 @@ var ddg_spice_dictionary = {
 
         // Audio URL should go to DDG's proxy server for privacy reasons.
         url = '/audio/?u=' + url;
-            
-        $play_button.addClass('is-showing');
 
-        $play_button.click(function() {
-            $play_button.addClass('is-loading');
-            $play_button.text('');
-
-            // don't load the audio resources until they click the button:
-            DDG.require('audio',function(player) {
-                if (!player || !player.ready) {
-                    return onError();
-                }
-
-                player.play("dictionary-sound",url,{
-                    autoPlay: true,
-                    onload: function(success){
-                        if (!success) {
-                            onError();
-                        }
-                    },
-                    onplay: function() {
-                        $play_button.removeClass('is-loading');
-                        $play_button.addClass('is-playing');
-                    },
-                    onfinish: onFinished,
-                });
-            });
+        this.playBtn = new DDG.Views.PlayButton({
+            url: url,
+            after: this.$el.find('.zci__def__pronunciation')
         });
-
     }
 }
 

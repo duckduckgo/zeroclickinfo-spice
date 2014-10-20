@@ -15,25 +15,24 @@
             meta: {
                 searchTerm: api_result.Name,
                 itemType: 'Alternatives',
-                sourceUrl: 'http://alternativeto.net/',
+                sourceUrl: api_result.Url,
                 sourceName: 'AlternativeTo'
             },
             normalize: function(item) {
                 return {
-                    ShortDescription: DDG.strip_html(DDG.strip_href(item.ShortDescription)),
+                    description: DDG.strip_html(DDG.strip_href(item.ShortDescription)),
                     url: item.Url,
-		    icon: item.IconUrl,
-		    title: item.Name,
-		    description: item.ShortDescription
+                    icon: item.IconUrl,
+                    title: item.Name,
                 };
             },
             templates: {
                 group: 'icon',
-		detail: false,
-		item_detail: false,
-		options: {
-		    footer: Spice.alternative_to.footer
-		}
+                detail: false,
+                item_detail: false,
+                options: {
+                    footer: Spice.alternative_to.footer
+                }
             }
         });
     };

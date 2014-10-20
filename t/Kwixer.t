@@ -152,6 +152,31 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Kwixer'
     ),
+    'movies directed by ron howard' => test_spice(
+        '/js/spice/kwixer/movies%20directed%20by%20ron%20howard',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'films by ron howard' => test_spice(
+        '/js/spice/kwixer/films%20by%20ron%20howard',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'movie directed by ron howard' => test_spice(
+        '/js/spice/kwixer/movie%20directed%20by%20ron%20howard',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'film directed by ron howard' => test_spice(
+        '/js/spice/kwixer/film%20directed%20by%20ron%20howard',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'film director ron howard' => test_spice(
+        '/js/spice/kwixer/film%20director%20ron%20howard',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
 );
 
 done_testing;

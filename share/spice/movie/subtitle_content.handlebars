@@ -1,12 +1,22 @@
-{{#if rating}}
-  <span class="{{icon_class}}" style="background-image: url('{{icon_url}}'); background-position: {{icon_image}}"></span>
-  {{ratings.critics_rating}}: {{ratings.critics_score}}%
-  <span class="detail__separator"> | </span>
+{{#if ratings.critics_rating}}
+  <span class="copyright">
+      Rotten Tomatoes<sup>&#169;</sup> Score
+  </span>
+
+  <span class="movie--critics_score text--primary">
+      <img src="{{icon_image}}" class="{{is_retina}}">
+      {{ratings.critics_score}}% {{ratings.critics_rating}}
+  </span>
 {{/if}}
-{{#if runtime}}
-  <span class="detail__cooking-time">Run Time: {{time runtime}}</span>
-  <span class="detail__separator"> | </span>
-{{/if}}
-{{#if mpaa_rating}}
-  <span class="detail__cooking-time">{{mpaa_rating}}</span>
-{{/if}}
+
+<span class="movie--runtime">
+  {{#if runtime}}
+    <span>Run Time: {{time runtime}}</span>
+  {{/if}}
+  {{#and runtime mpaa_rating}}
+    <span class="detail__separator"> | </span>
+  {{/and}}
+  {{#if mpaa_rating}}
+    <span>{{mpaa_rating}}</span>
+  {{/if}}
+</span>

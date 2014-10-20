@@ -1,23 +1,27 @@
-.zci--bitcoin .half.bitcoin__half {
+.zci--bitcoin .bitcoin {
+    padding-bottom: 0;
+}
+
+.zci--bitcoin .bitcoin__blk {
     vertical-align: top;
-    padding: 2.2% 5% 3% 4%;
-    margin: 0.5%;
+    padding: 1em 7%;
+    margin: 0.25em 0;
     background-color: #E9E9E9;
+    background-color: rgba(150,150,150,0.1);
     border-radius: 3px;
-    width: 49%;
-    float: left;
+	line-height: 50px;
+}
+.zci--bitcoin .bitcoin__title,
+.zci--bitcoin .bitcoin__price  {
+	vertical-align: middle;
+	display: inline-block;
 }
 
-.zci--bitcoin .half.bitcoin__half .title {
-    font-size: 15px;
-    position: relative;
-    top: 18px;
-    padding-right: 15%;
+.zci--bitcoin .bitcoin__title {
+	font-size: 15px;
 }
 
-.zci--bitcoin .half.bitcoin__half .price {
-    position: relative;
-    top: 6px;
+.zci--bitcoin .bitcoin__price {
     font-size: 35px;
     float: right;
 }
@@ -27,28 +31,49 @@
 }
 
 .zci--bitcoin .zci__body {
-    width: 99%;
     padding-left: 0;
 }
 
 @media screen and (max-width: 680px) {
-    .zci--bitcoin .half.bitcoin__half .price {
-	font-size: 20px;
-    }
-
-    .zci--bitcoin .half.bitcoin__half {
-	width: 48%;
-    }
-
-    .zci--bitcoin .half.bitcoin__half .title {
-	top: 9px;
+	.zci--bitcoin .bitcoin {
+		margin-left: -0.5em;
+		margin-right: 0.5em;
+	}
+	.zci--bitcoin .bitcoin__wdt {
+		padding-left: 0.5em;
+	}
+	.zci--bitcoin .bitcoin__blk {
+		line-height: 24px;
+	}
+	.zci--bitcoin .bitcoin__price {
+	font-size: 24px;
     }
 
     .zci--bitcoin .zci__body {
 	padding-left: 0.8em;
     }
 }
-
-.bitcoin__container {
-    padding-bottom: 6px;
+@media screen and (max-width: 460px) {
+	.zci--bitcoin .bitcoin__blk {
+		line-height: 1;
+	}
+	.zci--bitcoin .bitcoin__price {
+		float: none;
+		display: block;
+		text-align: left;
+	}
+	.zci--bitcoin .bitcoin__title {
+		top: 0;
+		display: block;
+		font-size: 13px;
+    }
+}
+@media screen and (max-width: 380px) {
+	.zci--bitcoin .bitcoin__price {
+		font-size: 21px;
+	}
+}
+.is-mobile .zci--bitcoin .zci__body {
+	padding-left: 0.5em;
+	padding-right: 0;
 }

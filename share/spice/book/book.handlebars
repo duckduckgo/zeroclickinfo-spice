@@ -1,17 +1,25 @@
-<div><span class="book_data_item">Title: </span>{{title}}</div>
-
-{{#if author}}
-  <div><span class="book_data_item">Author:</span>{{author}}</div>
-{{/if}}   
-
-{{#if genre}}
-  <div><span class="book_data_item">Genre: </span>{{genre}}</div>
-{{/if}}
-
-{{#if rating}}
-  <div title="based on {{review_count}} critic reviews"><span class="book_data_item">Critic Rating:</span>
-  <img id="book-rating-visual" src="{{to_read_or_not}}"><span class="book_critic_rating"> {{rating}}% </span></div>
-{{/if}}
-
+<div class="zci--book">
+    <div class="subtitle">by {{author}}
+    {{#if rating}}
+        <span class="rating">{{rating}}%</span></div>
+    {{/if}}
+    <div class="clear"></div>
+    <div>
+        <div class="description">{{{ellipsis description 170}}}</div>
+        <div class="source">
+            <a href="{{sourceLink}}"><i>-{{source}}</i></a>
+        </div>
+        <div class="recommend_line">
+            <span class="recommended_by">Recommended by: </span>
+            {{#each recommendedBy}}
+                <span class="sources_recommending">
+                    <a href="{{this.link}}">
+                        {{this.recommendedSource}}<span class="conj">,</span>
+                    </a>
+                </span>
+            {{/each}}
+        </div>
+    </div>
+</div>
 
 

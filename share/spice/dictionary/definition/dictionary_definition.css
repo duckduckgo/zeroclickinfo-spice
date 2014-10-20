@@ -1,3 +1,25 @@
+.zci--definition ul {
+    margin-bottom: 0.25em;
+    display: table;
+}
+
+.zci--definition ul li {
+    display: table-row;
+}
+
+.zci--definition .zci__def__definition {
+    overflow: hidden;
+    display: table-cell;
+}
+
+.zci--definition .zci__more-at {
+	display: inline-block;
+}
+
+.zci__def__links {
+    padding-bottom: 0.37em;
+}
+
 .zci__def__word {
     font-weight: 600;
 }
@@ -9,64 +31,8 @@
 
 .zci__def__part-of-speech {
     font-style: italic;
+    padding-right: 1em;
+    display: table-cell;
+    min-width: 1em;
 }
 
-.zci__def__audio {
-    display: none;
-    font-size: 0.5em;
-    text-align: center;
-    vertical-align: middle;
-    background: #979797;
-    color: #fafafa;
-    width: 1em;
-    height: 1em;
-    border-radius: 1.8em;
-    line-height: 1em;
-    padding: .4em;
-    cursor: pointer;
-    -webkit-transition: all 0.2s linear;
-    -moz-transition: all 0.2s linear;
-    -o-transition: all 0.2s linear;
-    transition: all 0.2s linear;
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1);
-}
-
-.zci__def__audio:hover {
-    background: #a7a7a7;
-    color: #fff;
-}
-
-.zci__def__audio.is-showing {
-    display: inline-block;
-}
-
-.zci__def__audio.is-loading {
-    background: #c9481c;
-    -webkit-transform: scale(.5);
-    -moz-transform: scale(.5);
-    -0-transform: scale(.5);
-    transform: scale(.5);
-}
-
-.zci__def__audio.is-playing:hover,
-.zci__def__audio.is-playing {
-    background: #60ae50;
-    -webkit-transform: scale(.8);
-    -moz-transform: scale(.8);
-    -o-transform: scale(.8);
-    transform: scale(.8);
-}
-
-.zci__def__audio--error {
-    display: none;
-    color: #aaa;
-    font-style: italic;
-    font-size: .5em;
-}
-
-.zci__def__audio--error.is-showing {
-    display: inline;
-}

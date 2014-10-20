@@ -16,10 +16,9 @@ category "software";
 attribution github => ['https://github.com/jmg','Juan Manuel García'],
             email => ['jmg.utn@gmail.com','Juan Manuel García'];
 
-spice to => 'http://httpbin.org/get';
-spice wrap_jsonp_callback => 1;
 
-triggers startend => "editor";
+triggers startend => 'web editor', 'online editor', 'syntax highlighter', 'syntax highlighting', 'code viewer', 'scratchpad', 'scratch pad';
+spice call_type => 'self';
 
 my @supported_languages = ("javascript", "python");
 my %supported_languages = map { $_ => 1 } @supported_languages;
@@ -27,12 +26,11 @@ my %supported_languages = map { $_ => 1 } @supported_languages;
 handle remainder => sub {
 
     foreach my $param (0, 1) {
-
-        my $lan = $_[$param];        
-        if ($lan && exists($supported_languages{$lan})) {
+        my $lan = $_[$param];
+        if ($lan && exists($supported_languages{lc $lan})) {
             return $lan;
         }
-    }    
+    }
 
     return;
 };

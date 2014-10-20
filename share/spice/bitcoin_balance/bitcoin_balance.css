@@ -8,9 +8,10 @@
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    background-color: #E9E9E9;
+    background-color: rgba(150,150,150,.15);
     border-radius:3px;
     padding: 2% 22px 3% 22px;
+    
 }
 
 .zci--bitcoinbalance .btc-title {

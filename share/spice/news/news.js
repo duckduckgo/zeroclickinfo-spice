@@ -31,14 +31,47 @@ function ddg_spice_news(apiResult) {
         }
     };
 
+    var entityWords = [];
+    if (Spice.news && Spice.news.entities && Spice.news.entities.length) {
+        for (var j = 0, entity; entity = Spice.news.entities[j]; j++) {
+            var tmpEntityWords = entity.split(" ");
+            for (var k = 0, entityWord; entityWord = tmpEntityWords[k]; k++) {
+                if (entityWord.length > 3) {
+                    entityWords.push(entityWord);
+                }
+            }
+        }
+    }
+
     // Check if the title is relevant to the query.
     var goodStories = [];
     for(var i = 0, story; story = apiResult[i]; i++) {
 	// strip bold from story titles.
         story.title = story.title.replace(/<b>|<\/b>|:/g, "");
-        if(DDG.isRelevant(story.title, skip)) {
+        if (DDG.isRelevant(story.title, skip)) {
             setSourceOnStory(story);
             goodStories.push(story);
+        }
+
+        // additional news relevancy for entities. story need only
+        // contain one word from one entity to be good. strict indexof
+        // check though.
+        else if (entityWords.length > 0) {
+            var storyOk = 0;
+            var tmpStoryTitle = story.title.toLowerCase();
+
+            for (var k = 0, entityWord; entityWord = entityWords[k]; k++) {
+                if (tmpStoryTitle.indexOf(entityWord) !== -1) {
+                    storyOk = 1;
+                    break;
+                }
+            }
+
+            if (storyOk) {
+                setSourceOnStory(story);
+                goodStories.push(story);
+                break;
+            }
         }
     }
 

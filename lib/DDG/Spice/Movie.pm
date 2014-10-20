@@ -13,13 +13,16 @@ category "entertainment";
 attribution github => ['https://github.com/moollaza','Zaahir Moolla'],
            twitter => ['https://twitter.com/zmoolla','zmoolla'];
 
+spice proxy_cache_valid => "200 7d";
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&q=$1&page_limit=50&page=1&callback={{callback}}';
 
 # It's important that 'movie info' precede 'movie' so that the handler
 # encounters it first and removes both words, rather than encountering 'movie'
 # first in the list, removing it, and leaving the word 'info.'
-my @triggers = ( 'movie info', 'movie', 'film', 'rt', 'rotten tomatoes', 'rating', 'ratings', 'rotten' );
 
+# This spice will usually be triggered by deep triggers,
+# with a few extra triggers that deep might miss.
+my @triggers = ( 'rotten tomatoes', 'rotten');
 triggers startend => @triggers;
 
 handle query_lc => sub {

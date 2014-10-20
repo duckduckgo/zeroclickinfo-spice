@@ -4,75 +4,15 @@
     // We attach this anonymous function to the global object `env`
     // so that it's accessible everywhere.
     env.ddg_spice_kwixer = function(api_result) {
-        
         // Check if there is anything in the `api_result` before doing anything.
         if(!api_result || !api_result.length === 0) {
             return Spice.failed('kwixer');
         }
-        
-        // We're going to use this to only get the actor from the original query.
-        var skip_re = new RegExp(
-            [
-             'new movies with', 
-             'new movies featuring', 
-             'new movies starring', 
-             'new movie with', 
-             'new movie featuring', 
-             'new movie starring', 
-             'newest movies with', 
-             'newest movies featuring', 
-             'newest movies starring', 
-             'newest movie with', 
-             'newest movie featuring', 
-             'newest movie starring', 
-             'new films with', 
-             'new films starring', 
-             'new films featuring', 
-             'new film with', 
-             'new film starring', 
-             'new film featuring', 
-             'newest films with', 
-             'newest films starring', 
-             'newest films featuring', 
-             'newest film with', 
-             'newest film starring', 
-             'newest film featuring', 
-             'movie with', 
-             'movies with', 
-             'movies starring', 
-             'film with', 
-             'films with', 
-             'films starring', 
-             'film starring', 
-             'movies featuring', 
-             'films featuring', 
-             'movies with the', 
-             ' the '
-            ].join("|"), "ig");
-        
-        var query = DDG.get_query(),
-            finalArray = [],
-            remainder = $.trim(query.replace(skip_re, "")),
-            remainderArray = remainder.split(" ");
-        
-        // We need to go through each item in the array
-        // and check if we got relevant results.
+        var finalArray=[];
+		// Filter out items with bad images or with default images.
         for(var i = 0; i < api_result.length; i++) {
-            var item = api_result[i],
-                isRelevant = false,
-                actors = item.ResourceDetails2.toLowerCase();
-            
-            // The method for checking which actors are relevant is pretty simple,
-            // and it might need some some updating because it's too naive.
-            for(var j = 0; j < remainderArray.length; j++) {
-                if(actors.indexOf(remainderArray[j]) !== -1) {
-                    isRelevant = true;
-                    break;
-                }
-            }
-
-            // Filter out items with bad images or with default images.
-            if(isRelevant && item.ResourceImageUrl && item.ResourceImageUrl.length && (/jpe?g|png/i).test(item.ResourceImageUrl)) {
+            var item = api_result[i];    
+            if(item.ResourceImageUrl && item.ResourceImageUrl.length && (/jpe?g|png/i).test(item.ResourceImageUrl)) {
                 finalArray.push(item);
             }
         }
@@ -81,7 +21,7 @@
         if(finalArray.length === 0) {
             return Spice.failed('kwixer');
         }
-        
+
         // Display our Spice.
         Spice.add({
             id: 'kwixer',
@@ -89,7 +29,7 @@
             data: finalArray,
             meta: {
                 sourceName: 'Kwixer',
-                sourceUrl: "https://www.kwixer.com/#/explore?category=movie&query=" + DDG.get_query_encoded(),
+                sourceUrl: "https://www.kwixer.com/#/public?query=" + DDG.get_query_encoded(),
                 itemType: "Movies"
             },
             normalize: function(item) {
@@ -100,7 +40,7 @@
                     heading: item.ResourceTitle,
                     ratingText: item.ResourceYear,
                     url: "https://kwixer.com/#/watching/movie/" + item.ResourceId
-                }
+                };
             },
             templates: {
                 group: 'media',

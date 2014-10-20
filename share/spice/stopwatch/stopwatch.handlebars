@@ -4,23 +4,17 @@
       <span class="label">TOTAL:</span>
       <span class="time" id="total_time">00:00.00</span>
     </div>
-    <div class="spice-pane spice-pane-right">
+    <div class="spice-pane spice-pane-right" style="display: none;">
       <span class="label">LAP:</span>
       <span class="time" id="current_time">00:00.00</span>
     </div>
   </div>
   <div class="btn-wrapper">
     <button class="stopwatch__btn start">START</button>
-    <div class="stopwatch__left">
+    <div class="stopwatch__left" style="display: none;">
       <button class="stopwatch__btn" id="reset_btn" disabled>RESET</button>
       <button class="stopwatch__btn" id="lap_btn" disabled>LAP</button>
     </div>
   </div>
-  <table id="split_list" class="hidden">
-    <thead><tr>
-      <th></th>
-      <th>Lap</th>
-      <th>Total</th>
-    </tr></thead>
-  </table>
+  <table id="split_list" class="hidden"></table>
 </div>

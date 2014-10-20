@@ -1,0 +1,15 @@
+<h1 class="stocks__header  zci__header">
+    <a href="{{url}}" title="{{urlTitle}}">
+        {{name}}
+    </a>
+</h1>
+<div class="stocks__sub  zci__header__sub">
+    <span class="stocks__symbol">{{symbol}}</span>
+    <span>as of {{quote_date}}</span>
+</div>
+<div class="stocks__quotes  stocks__quote-{{quoteChangeDir}}">
+    <span class="stocks__quote text--primary">{{quote}}</span>
+    <span class="stocks__change">{{change}}</span>
+    <span class="stocks__change-sep  detail__sep"></span>
+    <span class="stocks__change-pct">{{change_percent}}</span>
+</div>

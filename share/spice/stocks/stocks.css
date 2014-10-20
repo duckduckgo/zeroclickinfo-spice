@@ -1,0 +1,62 @@
+.zci h1.stocks__header {
+    font-size: 1.4em;
+    line-height: 1.2em;
+    font-weight: 400;
+}
+.stocks__sub.zci__header__sub {
+    font-weight: 300;
+    padding-left: 0;
+    font-size: .95em;
+    text-transform: none;
+}
+.stocks__symbol {
+    font-weight: 400;
+}
+
+.stocks__quotes {
+    font-size: 1.5em;
+    margin-bottom: .25em;
+}
+.stocks__quote,
+.stocks__change {
+    font-weight: 600;
+}
+.stocks__change-pct {
+    font-weight: 300;
+}
+.stocks__change-sep.detail__sep {
+    margin: 0;
+    height: .78em;
+}
+.stocks__quote-up .stocks__change,
+.stocks__quote-up .stocks__change-pct {
+    color: #60ae50;
+}
+.stocks__quote-up .stocks__change:before {
+    content: '';
+    border: 3px solid transparent;
+    border-bottom-color: #60ae50;
+    border-top-width: 0px;
+    border-bottom-width: 5px;
+    height: 5px;
+    line-height: 5px;
+    margin-right: .25em;
+    display: inline-block;
+    position: relative;
+    top: -5px;
+}
+.stocks__quote-down .stocks__change,
+.stocks__quote-down .stocks__change-pct {
+    color: #c9481c;
+}
+.stocks__quote-down .stocks__change:before {
+    content: '';
+    border: 3px solid transparent;
+    border-top-color: #c9481c;
+    border-top-width: 5px;
+    border-bottom-width: 0px;
+    height: 5px;
+    line-height: 5px;
+    margin-right: .25em;
+    display: inline-block;
+}

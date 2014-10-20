@@ -1,7 +1,9 @@
-<span class="tile__hearts  pull-left">
-    <span class="ddgsi">♥</span>
-    {{numFormat hearts}}
-</span>
+{{#if hearts}}
+    <span class="tile__count  pull-left">
+        <span class="tile__count__icon">♥</span>
+        {{numFormat hearts}}
+    </span>
+{{/if}}
 <span class="tile__duration  pull-right">
     {{durationFormat duration}}
 </span>
