@@ -14,25 +14,25 @@ my %queries = (
 
 my %tests = map {(
     "next train from $_ to $queries{$_}" => test_spice(
-        '/js/spice/njt/'
+        '/js/spice/transit/njt/'
         . (join '-', map { lc } split /\s+/, $_)
         . '/'
         . (join '-', map { lc } split /\s+/, $queries{$_}),
         call_type => 'include',
-        caller => 'DDG::Spice::NJT'
+        caller => 'DDG::Spice::Transit::NJT'
     ),
     "next train to $_ from $queries{$_}" => test_spice(
-        '/js/spice/njt/'
+        '/js/spice/transit/njt/'
         . (join '-', map { lc } split /\s+/, $queries{$_})
         . '/'
         . (join '-', map { lc } split /\s+/, $_),
         call_type => 'include',
-        caller => 'DDG::Spice::NJT'
+        caller => 'DDG::Spice::Transit::NJT'
     ),
 )} keys %queries;
 
 ddg_spice_test(
-    [qw( DDG::Spice::NJT )],
+    [qw( DDG::Spice::Transit::NJT )],
     (
         %tests,
         'next train from a station that doesnt exist to another' => undef,
