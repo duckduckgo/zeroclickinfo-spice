@@ -1,4 +1,4 @@
-package DDG::Spice::NJT;
+package DDG::Spice::Transit::NJT;
 
 use DDG::Spice;
 
@@ -7,7 +7,7 @@ secondary_example_queries "train times to Trenton from Secaucus";
 description "Lookup the next NJ Transit train going your way";
 name "NJT";
 source "NJT";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/NJT.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Transit/NJT.pm";
 topics "everyday";
 category "time_sensitive";
 attribution twitter => 'mattr555',
