@@ -84,6 +84,13 @@ ddg_spice_test(
         caller => 'DDG::Spice::ISBN',
         is_cached => 1
     ),
+    # Same thing, all compressed.
+    '080442957X' => test_spice(
+        '/js/spice/isbn/080442957X',
+        call_type => 'include',
+        caller => 'DDG::Spice::ISBN',
+        is_cached => 1
+    ),
     # Mistyped ISBN-10 with X
     '0-8044-2967-X' => undef,
     # Mistyped ISBN-13
