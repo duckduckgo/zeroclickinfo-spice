@@ -14,11 +14,13 @@ icon_url "";
 description "Succinct explanation of what this instant answer does";
 primary_example_queries "first example query", "second example query";
 secondary_example_queries "optional -- demonstrate any additional triggers";
-category "";
-topics "";
+# Uncomment and complete: https://duck.co/duckduckhack/metadata#category
+# category "";
+# Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
+# topics "";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/<: $ia_path :>/<: $ia_name :>.pm";
 attribution github => ["GitHubAccount", "Friendly Name"],
-            twitter => "twitterhandle",
+            twitter => "twitterhandle";
 
 # Triggers
 triggers any => "triggerWord", "trigger phrase";
@@ -26,12 +28,12 @@ triggers any => "triggerWord", "trigger phrase";
 # Handle statement
 handle remainder => sub {
 
-	# optional - regex guard
-	# return unless qr/^\w+/;
+    # optional - regex guard
+    # return unless qr/^\w+/;
 
-	return unless $_; # Guard against "no answer"
+    return unless $_;    # Guard against "no answer"
 
-	return $_;
+    return $_;
 };
 
 1;
