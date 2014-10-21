@@ -73,7 +73,9 @@
             if (DDG.stringsRelevant(item.item_name, foodItem) && regex.test(item.item_name)) {
 
                 // if there's already portitions in the array, and the item isn't
-                // found until after the first comma, don't show it:
+                // found until after the first comma, don't show it.
+                // This handles cases where things like "Baby Food, banana flavored" come back
+                // from the api when searching for just "banana".
                 if (portions.length) {
                     var splitPortionName = item.item_name.split(','),
                         firstStr = splitPortionName[0];
