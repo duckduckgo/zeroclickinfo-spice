@@ -26,10 +26,12 @@
                 nf_iron_dv: { terms: ['iron'], uom: '%', label: 'Daily Value' }
             },
 
-			skipWords = ['calories', 'saturated', 'vitamin', 'calcium', 'fiber', 'carbs', 'carbohydrates', 'monounsaturated', 'polyunsaturated', 'sodium', 'protein', 'sugar', 'fatty', 'trans', 'trans-fat', 'kcals'],
+            script = $('[src*="/js/spice/nutrition/"]')[0],
+            source = $(script).attr('src'),
+            matches = source.match(/nutrition\/([^\/]+)\/?(.*)/),
+            foodItem = decodeURIComponent(matches[1]),
 
-            stripRegex1 = /^(how|what)?('s | is | are | many | much )?(the )?(total | amount of )?/,
-            stripRegex2 = /^\s?(are | contained )?(there )?(in )?(a |an )?/,
+            stripRegex = /^(how|what)?('s | is | are | many | much )?(the )?(total | amount of )?/,
 
             getMeasurementInfo = function(searchTerm) {
                 var field, fieldInfo, term, i, bestMatch;
@@ -41,7 +43,7 @@
                             bestMatch = {
                                 term: term,
                                 uom: fieldInfo.uom,
-								label: fieldInfo.label,
+                                label: fieldInfo.label,
                                 id: field
                             };
                         }
@@ -52,16 +54,14 @@
             },
 
             // search term w/o any beginning text
-            tmpTerm = DDG.get_query().toLowerCase().replace(stripRegex1, ''),
+            tmpTerm = DDG.get_query().toLowerCase().replace(stripRegex, ''),
 
             measurementInfo = getMeasurementInfo(tmpTerm);
 
-        if (!measurementInfo) { return Spice.failed('nutrition'); }
+        if (!measurementInfo || !foodItem) { return Spice.failed('nutrition'); }
 
-       // figure out the food item (what should be left):
-        var foodItem = tmpTerm.replace(measurementInfo.term, '').replace(stripRegex2, ''),
-
-            portions = [],
+            // figure out the food item (what should be left):
+        var portions = [],
 
             // dom refs that will get assigned onShow:
             $el, $amount, $portion;
@@ -69,24 +69,24 @@
         for (var i=0; i<api_result.hits.length; i++) {
             var item = api_result.hits[i].fields;
 
-			if (DDG.isRelevant(item.item_name, skipWords)) {
-				portions.push({
-					id: i,
-					name: item.item_name,
-					amount: item[measurementInfo.id]
-				});
-			}
+            if (DDG.stringsRelevant(item.item_name, foodItem) && new RegExp(foodItem, 'i').test(item.item_name)) {
+                portions.push({
+                    id: i,
+                    name: item.item_name,
+                    amount: item[measurementInfo.id]
+                });
+            }
         };
 
-		// if no portions are relevant, then bail:
-		if (!portions.length) { return Spice.failed('nutrition'); }
+        // if no portions are relevant, then bail:
+        if (!portions.length) { return Spice.failed('nutrition'); }
 
         Spice.add({
             id: 'nutrition',
             name: 'Nutrition',
             data: {
                 uom: measurementInfo.uom,
-				label: measurementInfo.label,
+                label: measurementInfo.label,
                 portions: portions.length > 1 && portions,
                 currentPortion: portions[0]
             },
