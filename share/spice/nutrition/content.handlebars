@@ -1,0 +1,19 @@
+<h1 class="nutrition__header  zci__header">
+    <span class="nutrition__amount">{{currentPortion.amount}}{{uom}}</span>
+	{{#if label}}
+    	<span class="nutrition__measurement">{{label}}</span>
+	{{/if}}
+</h1>
+{{#if portions}}
+    <div class="nutrition__portion  frm__select">
+        <select class="nutrition__portion__dropdown">
+            {{#each portions}}
+                <option value="{{id}}">{{name}}</option>
+            {{/each}}
+        </select>
+    </div>
+{{else}}
+    {{#if currentPortion}}
+        <div class="nutrition__portion">{{currentPortion.name}}</div>
+    {{/if}}
+{{/if}}
