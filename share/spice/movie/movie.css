@@ -51,13 +51,19 @@
         padding-bottom: 0.2em;
     }
 
-.zci--movie .movie--runtime {
+.zci--movie .movie--runtime,
+.zci--movie .movie--cast {
     font-size: 0.9em;
     position: relative;
     top: 1.5em;
 }
 
-    .is-mobile .zci--movie .movie--runtime {
+.zci--movie .movie--cast {
+    display: block;
+}
+
+    .is-mobile .zci--movie .movie--runtime,
+    .is-mobile .zci--movie .movie--cast {
         top: 1em;
     }
 

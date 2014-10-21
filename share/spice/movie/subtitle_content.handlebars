@@ -19,4 +19,29 @@
   {{#if mpaa_rating}}
     <span>{{mpaa_rating}}</span>
   {{/if}}
+  {{#and mpaa_rating year}}
+    <span class="detail__separator"> | </span>
+  {{/and}}
+  {{#if year}}
+    <span>{{year}}</span>
+  {{/if}}
+</span>
+
+<span class="movie--cast">
+  {{#if abridged_cast}}
+    Cast:
+    {{#with abridged_cast.[0]}}
+      {{name}}
+      {{#if characters}}
+        <em>as {{characters.[0]}}</em>
+      {{/if}}
+    {{/with}}
+    {{#each abridged_cast from="1"}}
+      <span class="detail__separator"> | </span>
+      {{name}}
+      {{#if characters}}
+        <em>as {{characters.[0]}}</em>
+      {{/if}}
+    {{/each}}
+  {{/if}}
 </span>

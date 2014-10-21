@@ -51,13 +51,19 @@
         padding-bottom: 0.2em;
     }
 
-.zci--in_theaters .in_theaters--runtime {
+.zci--in_theaters .in_theaters--runtime,
+.zci--in_theaters .in_theaters--cast {
     font-size: 0.9em;
     position: relative;
     top: 1.5em;
 }
 
-    .is-mobile .zci--in_theaters .in_theaters--runtime {
+.zci--in_theaters .in_theaters--cast {
+    display: block;
+}
+
+    .is-mobile .zci--in_theaters .in_theaters--runtime,
+    .is-mobile .zci--in_theaters .in_theaters--cast {
         top: 1em;
     }
 
