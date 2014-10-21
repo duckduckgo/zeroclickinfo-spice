@@ -1,8 +1,11 @@
 .nutrition__header.zci__header {
-	font-size: 1.75em;
-	font-weight: normal;
+    font-size: 1.75em;
+    font-weight: normal;
+}
+.nutrition__porition {
+    margin-bottom: .5em;
 }
 .nutrition__portion.frm__select {
     margin-bottom: .5em;
-	margin-left: -2px;
+    margin-left: -2px;
 }
