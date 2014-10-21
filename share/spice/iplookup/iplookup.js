@@ -15,9 +15,10 @@
                 sourceUrl: api_result.ddg.lnk
             },
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
-                    content: Spice.iplookup.content
+                    content: Spice.iplookup.content,
+                    moreAt: true
                 }
             },
             relevancy: {
