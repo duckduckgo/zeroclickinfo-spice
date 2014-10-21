@@ -68,7 +68,7 @@ isk,icelandic krona,iceland krona,
 jep,jersey pound,jersey pound,
 jmd,jamaican dollar,jamaica dollar,
 jod,jordanian dinar,jordan dinar,
-jpy,japanese yen,japan yen,
+jpy,japanese yen,japan yen,yen
 kes,kenyan shilling,kenya shilling,
 kgs,kyrgyzstani som,kyrgyzstan som,
 khr,cambodian riel,cambodia riel,
