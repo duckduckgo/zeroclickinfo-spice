@@ -54,7 +54,8 @@
 
         for(var i = from; i < to; i++) {
             out += "<img src='http://icons.duckduckgo.com/ip/" + items["r" + i].replace("http://", "")  + ".ico' width='16px' height='16px'/>"
-            out += "<a href='" + items["r" + i] + "'> " + items["r" + i] + "</a><br/>";
+            out += "<a href='" + items["r" + i] + "'> " + items["r" + i] + "</a>";
+            out += "<hr />"
         }
 
         return out + "</ul>";

@@ -23,3 +23,8 @@
 .zci--similar_sites a {
     color: #3B3B3B;
 }
+
+.zci--similar_sites hr {
+    border-top: 1px solid #ccc;
+    margin-top: 1px;
+}
