@@ -68,20 +68,20 @@
 
         for (var i=0; i<api_result.hits.length; i++) {
             var item = api_result.hits[i].fields,
-				regex = new RegExp(foodItem, 'i');
+                regex = new RegExp(foodItem, 'i');
 
             if (DDG.stringsRelevant(item.item_name, foodItem) && regex.test(item.item_name)) {
 
-				// if there's already portitions in the array, and the item isn't
-				// found until after the first comma, don't show it:
-				if (portions.length) {
-					var splitPortionName = item.item_name.split(','),
-						firstStr = splitPortionName[0];
+                // if there's already portitions in the array, and the item isn't
+                // found until after the first comma, don't show it:
+                if (portions.length) {
+                    var splitPortionName = item.item_name.split(','),
+                        firstStr = splitPortionName[0];
 
-					if (!regex.test(firstStr)) {
-						continue;
-					}
-				}
+                    if (!regex.test(firstStr)) {
+                        continue;
+                    }
+                }
 
                 portions.push({
                     id: i,
