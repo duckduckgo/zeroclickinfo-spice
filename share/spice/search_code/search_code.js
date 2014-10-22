@@ -41,7 +41,7 @@ function ddg_spice_search_code(api_response) {
     Spice.add({
         data             : result,
         header1          : formatName(result),
-        sourceUrl       : 'http://searchco.de/?q=' + query,
+        sourceUrl       : 'https://searchcode.com/?q=' + query,
         sourceName      : 'search[code]',
         templates: {
             item: Spice.search_code.search_code,
