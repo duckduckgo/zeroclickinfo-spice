@@ -31,8 +31,9 @@ handle remainder_lc => sub {
     $countryName = shift;
     $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3); # Return alpha-3 country code 
     $countryName = code2country($countryCode, LOCALE_CODE_ALPHA_3); # Return country name from country code
-     
+    
     # Check if the country string has a comma, split the string and only include the first element
+    return unless defined $countryName;
     if (index($countryName, ',') != -1) {
         ($countryName) = split(',', $countryName);
     }
