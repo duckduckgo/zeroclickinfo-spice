@@ -70,7 +70,7 @@
             var item = api_result.hits[i].fields,
                 regex = new RegExp(foodItem, 'i');
 
-            if (DDG.stringsRelevant(item.item_name, foodItem) && regex.test(item.item_name)) {
+            if (DDG.stringsRelevant(item.item_name, foodItem, [], 3) && regex.test(item.item_name)) {
 
                 // if there's already portitions in the array, and the item isn't
                 // found until after the first comma, don't show it.
