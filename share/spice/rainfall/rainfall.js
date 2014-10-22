@@ -12,10 +12,13 @@
              query = source.match(/rainfall\/([^\/]+)\/([^\/]+)\/([^\/]+)/);
         
         //Extract country name from query and fix URL Encoding
-        var query_country = query[3].replace(/%20/g," ");
-               
+        var query_country = decodeURIComponent(query[3]);
+                
+        //Clean returned country name
+        var URL_country = api_result[1][0].country.value.replace(/\,|\./g,"").replace(/ /g,"-").replace(/Dem/g,"democratic").replace(/Rep/g,"republic").toLowerCase();
+        
         var annualData = {
-            precipitation: api_result[1][0].value, // Precipitation in millimeters 
+            precipitation: api_result[1][0].value, 
             country: query_country
         };
 
@@ -25,7 +28,7 @@
             data:  annualData,
             meta: {
                 sourceName: "worldbank.org",
-                sourceUrl: 'http://data.worldbank.org/country/' + api_result[1][0].country.value.replace(/\,|\./g,"").replace(/ /g,"-").replace(/Dem/g,"democratic").replace(/Rep/g,"republic").toLowerCase() //Clean returned country name
+                sourceUrl: 'http://data.worldbank.org/country/' + URL_country
             },
             templates: {
                 group: 'text',
