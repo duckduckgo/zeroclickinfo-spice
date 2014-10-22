@@ -27,14 +27,15 @@ my @reportingDates = (2012,2017,2022,2027,2032);
 
 handle remainder_lc => sub {
     my ($validDate, $countryName, $countryCode);
-   
     return if ($_ eq '');
-
     $countryName = shift;
-    
-    $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3); # Return alpha-3 country code using Locale::Country
-    
-    $countryName = code2country($countryCode, LOCALE_CODE_ALPHA_3); # Now we have the countryCode ensure the country name is correct
+    $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3); # Return alpha-3 country code 
+    $countryName = code2country($countryCode, LOCALE_CODE_ALPHA_3); # Return country name from country code
+     
+    # Check if the country string has a comma, split the string and only include the first element
+    if (index($countryName, ',') != -1) {
+        ($countryName) = split(',', $countryName);
+    }
      
     # Loop to check valid reporting dates against current date
     foreach my $date (@reportingDates){
@@ -42,7 +43,6 @@ handle remainder_lc => sub {
           $validDate = join(':', $date,$date);
          }
     }      
-    
     # Ensure variables are defined before returning a result
     return unless (defined $countryCode and defined $validDate and defined $countryName);
     return uc $countryCode, $validDate, $countryName;
