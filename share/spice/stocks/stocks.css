@@ -2,6 +2,7 @@
     font-size: 1.4em;
     line-height: 1.2em;
     font-weight: 400;
+    margin-bottom: .25em;
 }
 .stocks__sub.zci__header__sub {
     font-weight: 300;
@@ -15,7 +16,6 @@
 
 .stocks__quotes {
     font-size: 1.5em;
-    margin-bottom: .25em;
 }
 .stocks__quote,
 .stocks__change {
