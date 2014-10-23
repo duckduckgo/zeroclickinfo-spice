@@ -69,7 +69,6 @@
 
     .is-mobile .zci--currency-amount {
         font-size: 2.2em;
-        vertical-align: text-top;
     }
 
     .is-mobile .large .zci--currency-amount {
@@ -103,6 +102,7 @@
 
     .is-mobile .small .zci--currency-symbol-small {
         display: initial;
+        vertical-align: top;
     }
 
     .is-mobile .large .zci--currency-symbol-large {
