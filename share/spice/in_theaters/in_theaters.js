@@ -75,6 +75,7 @@
                     icon_image: get_image(item.ratings.critics_rating),
                     abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
                     heading: item.title,
+                    img: image,
                     img_m: image,
                     url: item.links.alternate,
                     is_retina: is_retina ? "is_retina" : "no_retina"
@@ -82,7 +83,6 @@
             },
             templates: {
                 group: 'media',
-                detail: 'products_item_detail',
                 options: {
                     variant: 'poster',
                     subtitle_content: Spice.in_theaters.subtitle_content,
