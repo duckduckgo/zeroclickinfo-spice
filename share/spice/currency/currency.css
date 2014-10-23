@@ -170,6 +170,7 @@
 .is-mobile .tile--s {
     padding-left: 0;
     padding-right: 0;
+    color: inherit;
 }
 
 .is-mobile .zci--currency .zci__metabar__more-at {
