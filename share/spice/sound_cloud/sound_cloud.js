@@ -20,6 +20,12 @@
         }
 
         Spice.add({
+            // ID needs to be in sync
+            // with any signal coming
+            // from the backend.
+            // Soundcloud is a part
+            // of audio like Amazon
+            // is a part of products.
             id: 'audio',
             name: 'Audio',
             data: api_result,
