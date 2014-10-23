@@ -83,10 +83,14 @@
         }
         
         // Add commas to the numbers for display.
-        function numberWithCommas(x) {
-            var parts = x.toString().split(".");
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            return parts.join(".");
+        function formatNumber(x) {
+            // Check if the number has a decimal point.
+            // If it does, only show the first two digits after the decimal place.
+            if(/\./.test(x.toString())) {
+                x = x.toFixed(2);   
+            }
+        
+            return DDG.commifyNumber(x);
         }
         
         Spice.add({
@@ -108,8 +112,8 @@
                 return {
                     fromCurrencySymbol: item["from-currency-symbol"],
                     toCurrencySymbol: item["to-currency-symbol"],
-                    amount: numberWithCommas(+item["from-amount"]),
-                    convertedAmount: numberWithCommas(+item["converted-amount"]),
+                    amount: formatNumber(+item["from-amount"]),
+                    convertedAmount: formatNumber(+item["converted-amount"]),
                     rate: item["conversion-rate"],
                     inverseRate: item["conversion-inverse"],
                     xeUrl: 'http://www.xe.com/currencycharts/?from=' + item["from-currency-symbol"] + '&to=' + item["to-currency-symbol"],
