@@ -58,7 +58,6 @@
             },
             templates: {
                 group: 'media',
-                detail: 'products_item_detail',
                 options: {
                     variant: 'poster',
                     subtitle_content: Spice.movie.subtitle_content,
