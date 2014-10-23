@@ -26,13 +26,21 @@
     
     // Resize the size of the outer container if the content of the inner container
     // overflows.
-    function resizeContainer() {        
+    function resize() {        
         var resultHeight = $(".zci--currency-result").outerHeight();
         
         if(resultHeight > 65) {
             $(".zci--currency-container").css("height", "9em");
         } else {
             $(".zci--currency-container").css("height", "5em");
+        }
+    }
+    
+    function resizeMobile() {
+        var tileHeight = $(".zci--currency .tile--s").outerHeight();
+
+        if(tileHeight > 141) {
+            console.log("asdfasdfasdfasdfas!");
         }
     }
     
@@ -133,8 +141,11 @@
                 // The desktop template depends on a JS function that manages the
                 // size of the container.
                 if(!is_mobile) {
-                    $(window).load(resizeContainer);
-                    $(window).resize(resizeContainer);
+                    $(window).load(resize);
+                    $(window).resize(resize);
+                } else {
+                    $(window).load(resizeMobile);
+                    $(window).resize(resizeMobile);
                 }
             }
         });
