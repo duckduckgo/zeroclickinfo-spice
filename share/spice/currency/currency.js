@@ -40,7 +40,9 @@
         var tileHeight = $(".zci--currency .tile--s").outerHeight();
 
         if(tileHeight > 141) {
-            console.log("asdfasdfasdfasdfas!");
+            $(".zci--currency .tile--s").addClass("large").removeClass("small");
+        } else {
+            $(".zci--currency .tile--s").addClass("small").removeClass("large");
         }
     }
     
