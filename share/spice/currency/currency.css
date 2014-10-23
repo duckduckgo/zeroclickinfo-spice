@@ -22,24 +22,20 @@
         white-space: inherit;
     }
 
-    .is-mobile .zci--currency-second-part img {
-        height: 32px;
-        vertical-align: bottom;
-        border: 0.2em solid #d0d0d0;
-        border-radius: 50%;
-        background-color: #d0d0d0;
-    }
-
     .is-mobile .zci--currency-first-part {
         text-align: center;
     }
 
-    .is-mobile .zci--currency-first-part img {
+    .is-mobile .zci--currency .tile--s img {
         height: 32px;
         vertical-align: bottom;
         border: 0.2em solid #d0d0d0;
         border-radius: 50%;
         background-color: #d0d0d0;
+    }
+
+    .is-mobile .zci--currency .tile--s.large img {
+        vertical-align: middle;
     }
 
 .zci--currency-ratesinfo {
@@ -76,6 +72,10 @@
         vertical-align: text-top;
     }
 
+    .is-mobile .large .zci--currency-amount {
+        display: block;
+    }
+
 .zci--currency-symbol {
     display: inline-block;
     font-size: 0.8em;
@@ -87,6 +87,30 @@
         font-weight: 300;
         vertical-align: middle;
     }
+
+    .is-mobile .zci--currency-symbol-large {
+        font-size: 1.2em;
+        padding-left: 0.3em;
+    }
+
+    .is-mobile .zci--currency-symbol-small {
+        display: none;
+    }
+
+    .is-mobile .zci--currency-symbol-large {
+        display: none;
+    }
+
+    .is-mobile .small .zci--currency-symbol-small {
+        display: initial;
+    }
+
+    .is-mobile .large .zci--currency-symbol-large {
+        display: initial;
+    }
+
+
+
 
 .zci--currency-equal {
     font-size: 2em;  
