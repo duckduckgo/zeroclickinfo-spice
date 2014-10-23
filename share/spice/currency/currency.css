@@ -122,7 +122,7 @@
     }
 
     .is-mobile .zci--currency-equal .horizontal {
-        border-bottom: 1px solid #d0d0d0;
+        border-bottom: 1px solid #dfdfdf;
         display: inline-block;
         width: 41%;
         vertical-align: 0.35em;
@@ -170,6 +170,8 @@
 .is-mobile .tile--s {
     padding-left: 0;
     padding-right: 0;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
     color: inherit;
 }
 
@@ -189,7 +191,7 @@
 }
 
 .is-mobile .zci--currency-ratesinfo-mobile .horizontal {
-    border-bottom: 1px solid #d0d0d0;
+    border-bottom: 1px solid #ddd;
     display: inline-block;
     width: 84.5%;
     vertical-align: 0.35em;

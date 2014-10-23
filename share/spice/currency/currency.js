@@ -36,10 +36,11 @@
         }
     }
     
+    // Change the look of the mobile view if the content overflows.
     function resizeMobile() {
         var tileHeight = $(".zci--currency .tile--s").outerHeight();
 
-        if(tileHeight > 141) {
+        if(tileHeight > 155) {
             $(".zci--currency .tile--s").addClass("large").removeClass("small");
         } else {
             $(".zci--currency .tile--s").addClass("small").removeClass("large");
