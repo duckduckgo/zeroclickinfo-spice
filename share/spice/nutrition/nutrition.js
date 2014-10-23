@@ -86,7 +86,7 @@
                 }
 
                 portions.push({
-                    id: i,
+                    id: portions.length,
                     name: item.item_name,
                     amount: item[measurementInfo.id]
                 });
