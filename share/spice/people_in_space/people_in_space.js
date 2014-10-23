@@ -87,7 +87,7 @@
         } else {
             o.data = api_result;
             o.templates = {
-                group: "text",
+                group: "base",
                 options:{
                     content: Spice.people_in_space.content,
                     moreAt: true
