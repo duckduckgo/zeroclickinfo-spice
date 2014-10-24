@@ -7,33 +7,21 @@
         }
         
     var timeString = DDG.getDateFromString(api_result.locations[0].time.iso),
-        offset = api_result.locations[0].time.timezone.offset.replace(/0|:/g, ""),
-        placeName = api_result.locations[0].geo.name,
-        country = api_result.locations[0].geo.country.name,
         day = timeString.getDay(),
         month = timeString.getMonth(),
         year = timeString.getFullYear(),         
         months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December'),
         days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
-                 
-        
-        function startTime(timeString) {
-            setInterval( function(){
-                timeString.setTime(timeString.getTime()+1000);
-                $("#time").html(timeString.toLocaleTimeString());
-            }, 1000);
-        }
-
         
        var dateTime = {
-           time: timeString.toLocaleTimeString(),
+           time: timeString.toLocaleTimeString().replace(/:\d+ /, ' '),
            dayName: days[day],
            day: day,
            monthName: months[month],
            year: year,
-           offset: offset,
-           placeName: placeName,
-           country: country
+           offset: api_result.locations[0].time.timezone.offset.replace(/0|:/g, ""),
+           placeName: api_result.locations[0].geo.name,
+           country: api_result.locations[0].geo.country.name
         }
         
         Spice.add({
@@ -50,12 +38,7 @@
                     content: Spice.time.content,
                     moreAt: true
                 }
-                },
-                
-                onShow: function() {
-                    startTime(timeString);
-                }
-                
+                }        
             
         });      
     };
