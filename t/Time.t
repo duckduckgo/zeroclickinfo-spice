@@ -10,7 +10,7 @@ ddg_spice_test(
     'time Amsterdam' => test_spice(
         '/js/spice/time/Amsterdam',
         call_type => 'include',
-        caller => 'DDG::Spice:Time'
+        caller => 'DDG::Spice::Time'
     )
 );
 
