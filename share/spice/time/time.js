@@ -2,26 +2,45 @@
     "use strict";
     env.ddg_spice_time = function(api_result){
 
-       if (!api_result) {
+       if (!api_result || !api_result.locations.length) {
             return Spice.failed('time');
         }
         
-       $.ajaxSetup({'cache':true});
-       $.getScript("/share/spice/time/moment.min.js", function() {
-          var ISOTime = api_result.locations[0].time.iso;
-          var data = moment(ISOTime).zone(ISOTime); //phase the time and zone
-           var timeData = {
-            time: data,
-            place: api_result.locations[0].geo.name + ", " + api_result.locations[0].geo.country.name
+    var timeString = DDG.getDateFromString(api_result.locations[0].time.iso),
+        offset = api_result.locations[0].time.timezone.offset,
+        place = api_result.locations[0].geo.name + ", " + api_result.locations[0].geo.country.name,
+        day = timeString.getDay(),
+        month = timeString.getMonth(),
+        year = timeString.getFullYear(),         
+        months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December'),
+        days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+                 
+        
+        function startTime(timeString) {
+            setInterval( function(){
+                timeString.setTime(timeString.getTime()+1000);
+                $("#time").html(timeString.toLocaleTimeString());
+            }, 1000);
+        }
+
+        
+       var dateTime = {
+           time: timeString.toLocaleTimeString(),
+           dayName: days[day],
+           day: day,
+           monthName: months[month],
+           year: year,
+           offset: offset,
+           place: place
         }
         
         Spice.add({
             id: "time",
             name: "Time",
-            data:  timeData,
+            data:  dateTime,
             meta: {
-                sourceName: "Example.com",
-                sourceUrl: 'http://example.com' 
+                sourceName: "timeanddate.com",
+                sourceUrl: 'http://timeanddate.com' 
             },
             templates: {
                 group: 'text',
@@ -29,11 +48,13 @@
                     content: Spice.time.content,
                     moreAt: true
                 }
-            }
-        });
-        });
-
-           
-      
+                },
+                
+                onShow: function() {
+                    startTime(timeString);
+                }
+                
+            
+        });      
     };
 }(this));
