@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Time)],
-    'example query' => test_spice(
-        '/js/spice/time/query',
+    'time Amsterdam' => test_spice(
+        '/js/spice/time/Amsterdam',
         call_type => 'include',
         caller => 'DDG::Spice:Time'
     )

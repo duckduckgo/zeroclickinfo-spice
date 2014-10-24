@@ -1,0 +1,14 @@
+.zci--time h5 {
+    font-size: xx-large;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+    color: #333;
+}
+.zci--time p {
+    margin-top: 0;
+    padding-top: 0;
+    color: #999;
+    font-size:medium;
+    line-height: 0.5;
+}
