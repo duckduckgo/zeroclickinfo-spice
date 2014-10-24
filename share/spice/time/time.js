@@ -8,7 +8,8 @@
         
     var timeString = DDG.getDateFromString(api_result.locations[0].time.iso),
         offset = api_result.locations[0].time.timezone.offset.replace(/0|:/g, ""),
-        place = api_result.locations[0].geo.name + ", " + api_result.locations[0].geo.country.name,
+        placeName = api_result.locations[0].geo.name,
+        country = api_result.locations[0].geo.country.name,
         day = timeString.getDay(),
         month = timeString.getMonth(),
         year = timeString.getFullYear(),         
@@ -31,7 +32,8 @@
            monthName: months[month],
            year: year,
            offset: offset,
-           place: place
+           placeName: placeName,
+           country: country
         }
         
         Spice.add({
