@@ -38,10 +38,10 @@
                 // 4. Check if the title + author is relevant to the query.
                 // 5. Check if the title + sub_title + author is relevant to the query.
                 if(!((item.review_count || item.unrated_review_count) &&
-                    (DDG.stringsRelevant(title + " " + sub_title, decoded_query, [], 3, true) ||
-                        DDG.stringsRelevant(title, decoded_query, [], 3, true) ||
-                        DDG.stringsRelevant(title + " " + author, decoded_query, [], 3, true) ||
-                        DDG.stringsRelevant(title + " " + sub_title + " " + author, decoded_query, [], 3, true)))) {
+                    (DDG.stringsRelevant(title + " " + sub_title, decoded_query, [], 3) ||
+                        DDG.stringsRelevant(title, decoded_query, [], 3) ||
+                        DDG.stringsRelevant(title + " " + author, decoded_query, [], 3) ||
+                        DDG.stringsRelevant(title + " " + sub_title + " " + author, decoded_query, [], 3)))) {
                     return null;
                 }
 
