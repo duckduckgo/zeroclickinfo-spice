@@ -11,6 +11,7 @@ topics "everyday";
 category "geography";
 attribution github  => ['https://github.com/chrisjwilsoncom', 'chrisjwilsoncom'];
 
+spice is_cached => 0;
 spice to => 'http://api.xmltime.com/timeservice?accesskey=SSXwafuNGc&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_APIKEY}}}&out=js&prettyprint=1&callback={{callback}}&query=$1&time=1&tz=1&verbosetime=1';
 
 triggers any => "time", "what time is it in", "time in";
