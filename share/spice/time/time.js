@@ -33,7 +33,7 @@
                 sourceUrl: 'http://timeanddate.com' 
             },
             templates: {
-                group: 'text',
+                group: 'base',
                 options: {
                     content: Spice.time.content,
                     moreAt: true
