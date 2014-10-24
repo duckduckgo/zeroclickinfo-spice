@@ -1,5 +1,4 @@
 package DDG::Spice::Time;
-
 use DDG::Spice;
 
 primary_example_queries "time Melbourne", "time Australia", "time birmingham";
