@@ -82,10 +82,18 @@
 }
 
 .zci--in_theaters .detail__media.detail__media--pr {
-    margin-right: 0;
+    max-width: 180px;
+}
+
+.zci--in_theaters .detail__media--pr--s .detail__media__img {
+    max-height: 180px;
 }
 
 .is-mobile .zci--in_theaters .btn.btn--primary {
     position: absolute;
     bottom: 1em;
+}
+
+.is-mobile .zci--in_theaters .detail .detail__media--pr {
+    max-width: 100%;
 }

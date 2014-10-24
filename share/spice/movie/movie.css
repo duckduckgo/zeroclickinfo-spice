@@ -81,11 +81,19 @@
     font-size: 0.9em;
 }
 
-.zci--movie .detail__media.detail__media--pr {
-    margin-right: 0;
+.zci--movie .detail .detail__media--pr {
+    max-width: 180px;
+}
+
+.zci--movie .detail__media--pr--s .detail__media__img {
+    max-height: 180px;
 }
 
 .is-mobile .zci--movie .btn.btn--primary {
     position: absolute;
     bottom: 1em;
+}
+
+.is-mobile .zci--movie .detail .detail__media--pr {
+    max-width: 100%;
 }
