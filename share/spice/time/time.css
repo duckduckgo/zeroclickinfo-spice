@@ -1,14 +1,27 @@
-.zci--time h5 {
-    font-size: xx-large;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    padding-top: 0;
-    color: #333;
-}
 .zci--time p {
     margin-top: 0;
     padding-top: 0;
     color: #999;
     font-size:medium;
-    line-height: 0.5;
+}
+
+.zci--time .time {
+    font-size: 54px;
+    color: #333;
+    padding-right: 10px;
+    float: left;
+    
+}
+
+.zci--time .time_date {
+    font-size: 20px;
+    margin-top: 8px;
+    color: #818181;
+    padding-left: 10px;
+    border-left: solid 1px #ccc;
+    float: left;
+}
+
+.dark-header .zci--time .time {
+       color: #e6e6e6;
 }

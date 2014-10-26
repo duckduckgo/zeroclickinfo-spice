@@ -5,6 +5,8 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
+spice is_cached => 0;
+
 ddg_spice_test(
     [qw( DDG::Spice::Time)],
     'time Amsterdam' => test_spice(
