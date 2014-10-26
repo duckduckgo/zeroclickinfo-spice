@@ -18,12 +18,8 @@
             hours: (hours % 12) || 12,
             minutes: minutes<10 ? '0'+minutes : minutes,
             amPM: hours >= 12 ? "PM" : "AM"
-          }
         }
-
-        
-        //Add leading to getMinutes value
-        function pad(n){return n<10 ? '0'+n : n}
+        }
 
         var dateTime = {
             time: toPrettyTime(dateObj),
