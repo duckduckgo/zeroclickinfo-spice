@@ -3,8 +3,10 @@
     width: 13em;
 }
 
-.is-mobile .zci--path .tile--path {
-    width: 12.25em;
+@media screen and (max-device-width: 640px) and (orientation: portrait){
+	.is-mobile .zci--path .tile--path {
+	    width: 48%;
+	}
 }
 
 .tile--path .path__time {
