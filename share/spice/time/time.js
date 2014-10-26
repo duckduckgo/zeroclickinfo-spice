@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_time = function(api_result) {
 
-        if (!api_result || !api_result.locations.length) {
+        if (!api_result || api_result.info == "No matches") {
             return Spice.failed('time');
         }
 
