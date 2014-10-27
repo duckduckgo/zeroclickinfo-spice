@@ -1,3 +1,38 @@
-.zci--canistreamit div em {
-    font-style: italic;
+.zci--canistreamit .zci__header {
+    font-size: 1.6em;
+}
+
+.zci--canistreamit .zci__content.chomp {
+    margin-top: -0.25em;
+}
+
+.zci--canistreamit .sub {
+    color: #999;
+}
+
+.zci--canistreamit .star {
+    margin-right: -4px;
+    margin-top: 0.05em;
+}
+
+.zci--canistreamit .content {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+
+.zci--canistreamit .zci__img {
+    max-height: 150px;
+}
+
+.zci--canistreamit .actors {
+    margin-top: 0.25em;
+}
+
+.zci--canistreamit .zci__img-wrap+.zci__body--info {
+    padding-top: 0.068em;
+}
+
+.zci--canistreamit .zci__img-wrap {
+    top: 0;
+    vertical-align: middle;
 }
