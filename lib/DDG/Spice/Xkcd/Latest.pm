@@ -4,7 +4,7 @@ package DDG::Spice::Xkcd::Latest;
 
 use DDG::Spice;
 
-attribution twitter => ['mattr555'],
+attribution twitter => ['https://twitter.com/mattr555', 'mattr555'],
             github => ['https://github.com/mattr555', 'Matt Ramina'];
 
 spice to => 'http://xkcd.com/info.0.json';
