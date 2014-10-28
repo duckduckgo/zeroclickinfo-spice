@@ -1,6 +1,25 @@
 (function(env){
     "use strict";
 
+    function getParameter(query, trigger){
+        var regex, result;
+        regex = new RegExp("(?:" + trigger + ")\\s*[=:]?\\s*(\\d+(?:[.,]\\d+)?)");
+        //(?:trigger)\s?[=:]?\s? => matches the name of the formula, following by optional whitespace, = or :, whitespace
+        //(\d+(?:[.,]\d+)?) => matches the number, as integer or float
+
+        result = query.match(regex);
+        if(result === null) return null; //no match
+        result = result[1].replace(",", "."); //stores the result as string and replace commas with points
+        result = parseFloat(result);
+
+        return result;
+    }
+
+    function format(number){
+        //maximal three decimal places
+        return parseFloat(number.toFixed(3));
+    }
+
     function bindHoverPair(pair){
         function enter(){
             pair[0].addClass("hover");
@@ -61,7 +80,11 @@
                 [0, 0],
                 [1, 1],
                 [2, 2]
-            ]
+            ],
+            getParameter: function(query){
+                return getParameter(query, 'a|length|size');
+            },
+            parameterName: "a"
         }
     };
 
@@ -85,19 +108,26 @@
             return;
         }
 
-        data.formulas = shapes[shape].formulas;
-        data.svg = shapes[shape].svg;
-        pairs = shapes[shape].pairs;
+        shape = shapes[shape];
+
+        data.formulas = shape.formulas;
+        data.svg = shape.svg;
+        pairs = shape.pairs;
+        data.parameter = shape.getParameter(query);
+        data.parameterName = shape.parameterName;
 
         for(i = 0, l = data.formulas.length; i < l; ++i){
             data.formulas[i].symbol = formulas[data.formulas[i].name];
             data.formulas[i].name = DDG.capitalize(data.formulas[i].name);
+            if(data.parameter !== null)
+                data.formulas[i].result = format(data.formulas[i].calc(data.parameter));
         }
 
         // Display the plugin.
         Spice.add({
             data: data,
             id: "geometry",
+            name: "Geometry",
             templates: {
                 group: "base",
                 options: {

@@ -8,6 +8,9 @@
         {{/if}}
     </div>
     {{/each}}
+    {{#if parameter}}
+        <small>Assuming {{parameterName}} = {{parameter}}</small>
+    {{/if}}
 </div>
 <svg id="zci--geometry-svg" viewBox="-5 -5 170 130" style="display: none">
     {{#each svg}}
