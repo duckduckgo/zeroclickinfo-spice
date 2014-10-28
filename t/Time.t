@@ -5,7 +5,7 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
-spice is_cached => 0;
+spice proxy_cache_valid => "418 1d";
 
 ddg_spice_test(
     [qw( DDG::Spice::Time)],
@@ -25,7 +25,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Time'
     ),
      'time Birmingham, AL' => test_spice(
-        '/js/spice/time/Birmingham%2C%20AL',
+        '/js/spice/time/Birmingham%20AL',
         call_type => 'include',
         caller => 'DDG::Spice::Time'
     ),
