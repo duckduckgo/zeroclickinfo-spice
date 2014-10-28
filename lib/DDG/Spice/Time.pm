@@ -16,7 +16,7 @@ spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_A
 
 triggers any => "time", "what time is it in", "time in";
 
-handle remainder => sub {
+handle remainder_lc => sub {
     my $q = shift;
     $q =~ s/,//g;
     return unless $q;
