@@ -25,8 +25,8 @@
             return Spice.failed('rx_info');
         }
 
-        var sourceName = "C3PI RxImageAccess RESTful API",
-            sourceUrl  = "http://rximage.nlm.nih.gov/";
+        var sourceName = "More at DailyMed",
+            sourceUrl  = "http://dailymed.nlm.nih.gov/";
 
         Spice.add({
             id: "rx_info",
