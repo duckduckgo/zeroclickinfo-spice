@@ -32,13 +32,12 @@
                 }
                 return {
                     title: DDG.strip_html(firstLine),
-                    ourContent: DDG.strip_html(secondLine)
+                    subtitle: DDG.strip_html(secondLine)
                 };
             },
             templates: {
                 group: 'text',
                 options: {
-                    content: Spice.expatistan.content,
                     moreAt: true
                 }
             }
