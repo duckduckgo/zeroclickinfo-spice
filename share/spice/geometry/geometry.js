@@ -57,8 +57,11 @@
     }
 
     var formulas = {
+        volume: "V",
         area: "A",
+        surface: "A",
         perimeter: "u",
+        circumference: "u",
         diagonal: "e"
     };
 
@@ -99,7 +102,7 @@
                 [2, 2]
             ],
             getParameter: function(query){
-                return [getParameter(query, "a|length|size")];
+                return getParameter(query, "a|length|size");
             },
             parameterNames: ["a"]
         },
@@ -139,8 +142,7 @@
                 [2, 2]
             ],
             getParameter: function(query){
-                var p;
-                p = getParameter(query, "length|size", 1);
+                var p = getParameter(query, "length|size", 1);
                 if(p !== null)
                     return p;
 
@@ -153,6 +155,212 @@
                 return null;
             },
             parameterNames: ["a", "b"]
+        },
+        "equilateral triangle": {
+            formulas: [{
+                name: "area",
+                html: "(a<sup>2</sup>*&radic;3)/4",
+                calc: function(a){
+                    return a / 4 * Math.sqrt(3);
+                }
+            }, {
+                name: "perimeter",
+                html: "3a",
+                calc: function(a){
+                    return a * 3;
+                }
+            }],
+            svg: [{
+                path: "M 70,0 l 70,120 h -140 z",
+                class: "fill"
+            }, {
+                path: "M 70,0 l 70,120 m -140,0 l 70,-120 m 70,120 h -140",
+                class: "stroke"
+            }],
+            pairs: [
+                [0, 0],
+                [1, 1]
+            ],
+            getParameter: function(query){
+                return getParameter(query, "a|length|size");
+            },
+            parameterNames: ["a"]
+        },
+        circle: {
+            formulas: [{
+                name: "area",
+                html: "&pi;r<sup>2</sup>",
+                calc: function(r){
+                    return Math.PI * r * r;
+                }
+            }, {
+                name: "circumference",
+                html: "2&pi;r",
+                calc: function(r){
+                    return 2 * Math.PI * r;
+                }
+            }],
+            svg: [{
+                path: "M 0,60 a 25 25 0 0 0 120,0 a 25 25 0 0 0 -120,0",
+                class: "fill"
+            }, {
+                path: "M 0,60 a 25 25 0 0 0 120,0 a 25 25 0 0 0 -120,0",
+                class: "stroke"
+            }],
+            pairs: [
+                [0, 0],
+                [1, 1]
+            ],
+            getParameter: function(query){
+                var r = getParameter(query, "radius|r");
+                if(r !== null) return r;
+                r = getParameter(query, "diameter|d");
+                if(r !== null) return r / 2;
+                return null;
+            },
+            parameterNames: ["r"]
+        },
+        cube: {
+            formulas: [{
+                name: "volume",
+                html: "a<sup>3</sup>",
+                calc: function(a){
+                    return a * a * a;
+                }
+            }, {
+                name: "surface",
+                html: "6a<sup>2</sup>",
+                calc: function(a){
+                        return 6 * a * a;
+                }
+            }, {
+                name: "diagonal",
+                html: "a&radic;3",
+                calc: function(a){
+                    return a * Math.sqrt(3);
+                }
+            }],
+            svg: [{
+                path: "M 0,120 v -80 l 40,-40 h 80 v 80 l -40 40 z",
+                class: "fill"
+            }, {
+                path: "M 0,120 l 40,-40 v -80 v 80 h 80",
+                class: "stroke backface"
+            }, {
+                path: "M 0,40 l 120,40",
+                class: "stroke special"
+            }, {
+                path: "M 0,120 v -80 l 40,-40 h 80 v 80 l -40 40 z",
+                class: "fill"
+            }, {
+                path: "M 0,40 h 80 v 80 h -80 v -80 l 40,-40 h 80 v 80 l -40,40 v -80 l 40,-40",
+                class: "stroke"
+            }],
+            pairs: [
+                [1, 0],
+                [2, 2],
+                [0, 3]
+            ],
+            getParameter: function(query){
+                return getParameter(query, "a|length|size");
+            },
+            parameterNames: ["a"]
+        },
+        cuboid: {
+            formulas: [{
+                name: "volume",
+                html: "abc",
+                calc: function(a, b, c){
+                    return a * b * c;
+                }
+            }, {
+                name: "surface",
+                html: "2(ab + ac + bc)",
+                calc: function(a, b, c){
+                    return 2 * (a * b + a * c + b * c);
+                }
+            }, {
+                name: "diagonal",
+                html: "&radic;(a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup>)",
+                calc: function(a, b, c){
+                    return Math.sqrt(a * a + b * b + c * c);
+                }
+            }],
+            svg: [{
+                path: "M 0,120 v -80 l 40,-40 h 120 v 80 l -40 40 z",
+                class: "fill"
+            }, {
+                path: "M 0,120 l 40,-40 v -80 v 80 h 120",
+                class: "stroke backface"
+            }, {
+                path: "M 0,40 l 160,40",
+                class: "stroke special"
+            }, {
+                path: "M 0,120 v -80 l 40,-40 h 120 v 80 l -40 40 z",
+                class: "fill"
+            }, {
+                path: "M 0,40 h 120 v 80 h -120 v -80 l 40,-40 h 120 v 80 l -40,40 v -80 l 40,-40",
+                class: "stroke"
+            }],
+            pairs: [
+                [1, 0],
+                [2, 2],
+                [0, 3]
+            ],
+            getParameter: function(query){
+                var p = getParameter(query, "length|size", 2);
+                if(p !== null) return p;
+
+                p = [
+                    getParameter(query, "a"),
+                    getParameter(query, "b"),
+                    getParameter(query, "c")
+                ];
+                if(p[0] !== null && p[1] !== null && p[2] !== null)
+                    return p;
+                return null;
+            },
+            parameterNames: ["a", "b", "c"]
+        },
+        sphere : {
+            formulas: [{
+                name: "volume",
+                html: "4/3&pi;r<sup>3</sup>",
+                calc: function(r){
+                    return 4 / 3 * Math.PI * r * r * r;
+                }
+            }, {
+                name: "surface",
+                html: "4&pi;r<sup>2</sup>",
+                calc: function(r){
+                    return 4 * Math.PI * r * r;
+                }
+            }],
+            svg: [{
+                path: "M 0,60 a 25 25 0 0 0 120,0 a 25 25 0 0 0 -120,0",
+                class: "fill"
+            }, {
+                path: "M 0,60 a 30 10 0 0 1 120,0",
+                class: "stroke backface"
+            }, {
+                path: "M 0,60 a 25 25 0 0 0 120,0 a 25 25 0 0 0 -120,0",
+                class: "fill"
+            }, {
+                path: "M 0,60 a 30 10 0 1 0 120,0 a 25 25 0 0 0 -120,0 a 25 25 0 0 0 120,0",
+                class: "stroke"
+            }],
+            pairs: [
+                [0, 2],
+                [1, 0]
+            ],
+            getParameter: function(query){
+                var r = getParameter(query, "radius|r");
+                if(r !== null) return r;
+                r = getParameter(query, "diameter|d");
+                if(r !== null) return r / 2;
+                return null;
+            },
+            parameterNames: ["r"]
         }
     };
 
@@ -184,6 +392,8 @@
         data.svg = shape.svg;
         pairs = shape.pairs;
         parameter = shape.getParameter(query);
+        if(isNumber(parameter)) //force array
+            parameter = [parameter];
 
         for(i = 0, l = data.formulas.length; i < l; ++i){
             data.formulas[i].symbol = formulas[data.formulas[i].name];
