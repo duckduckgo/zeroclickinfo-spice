@@ -94,6 +94,7 @@
             data = {},
             pairs,
             i, l,
+            j, k,
             got = false;
 
         for(shape in shapes){
@@ -121,6 +122,19 @@
             data.formulas[i].name = DDG.capitalize(data.formulas[i].name);
             if(data.parameter !== null)
                 data.formulas[i].result = format(data.formulas[i].calc(data.parameter));
+            if(query.match(data.formulas[i].name, "i")){
+                //cleanup formulas
+                data.formulas = [data.formulas[i]];
+                //cleanup pairs
+                for(j = 0, k = pairs.length; j < k; ++j){
+                    //find the right pair
+                    if(pairs[j][0] === i){
+                        pairs = [[0, pairs[j][1]]];
+                        break;
+                    }
+                }
+                break;
+            }
         }
 
         // Display the plugin.
