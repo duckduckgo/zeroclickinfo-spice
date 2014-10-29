@@ -25,3 +25,18 @@
 .dark-header .zci--time .time {
        color: #e6e6e6;
 }
+
+@media (max-width: 406px) {
+  .zci--time .time_date {
+   border-left: none;
+   padding-left: 0px;
+  }
+}
+
+@media (max-width: 244px) {
+  .zci--time .time {
+     font-size: 50px;
+  }
+}
+
+
