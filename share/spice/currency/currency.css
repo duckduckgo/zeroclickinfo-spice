@@ -22,24 +22,20 @@
         white-space: inherit;
     }
 
-    .is-mobile .zci--currency-second-part img {
-        height: 32px;
-        vertical-align: middle;
-        border: 0.2em solid #d0d0d0;
-        border-radius: 50%;
-        background-color: #d0d0d0;
-    }
-
     .is-mobile .zci--currency-first-part {
         text-align: center;
     }
 
-    .is-mobile .zci--currency-first-part img {
+    .is-mobile .zci--currency .tile--s img {
         height: 32px;
-        vertical-align: middle;
+        vertical-align: top;
         border: 0.2em solid #d0d0d0;
         border-radius: 50%;
         background-color: #d0d0d0;
+    }
+
+    .is-mobile .zci--currency .tile--s.large img {
+        vertical-align: middle;
     }
 
 .zci--currency-ratesinfo {
@@ -73,7 +69,10 @@
 
     .is-mobile .zci--currency-amount {
         font-size: 2.2em;
-        padding-top: 0.3em;
+    }
+
+    .is-mobile .large .zci--currency-amount {
+        display: block;
     }
 
 .zci--currency-symbol {
@@ -83,11 +82,35 @@
 }
 
     .is-mobile .zci--currency-symbol {
-        font-size: 1.2em;
+        font-size: 1em;
         font-weight: 300;
-        padding-left: 0.3em;
-        vertical-align: middle;
     }
+
+    .is-mobile .zci--currency-symbol-large {
+        font-size: 1.2em;
+        padding-left: 0.3em;
+    }
+
+    .is-mobile .zci--currency-symbol-small {
+        display: none;
+    }
+
+    .is-mobile .zci--currency-symbol-large {
+        display: none;
+    }
+
+    .is-mobile .small .zci--currency-symbol-small {
+        display: initial;
+        vertical-align: top;
+        line-height: 27px;
+    }
+
+    .is-mobile .large .zci--currency-symbol-large {
+        display: initial;
+    }
+
+
+
 
 .zci--currency-equal {
     font-size: 2em;  
@@ -99,7 +122,7 @@
     }
 
     .is-mobile .zci--currency-equal .horizontal {
-        border-bottom: 1px solid #d0d0d0;
+        border-bottom: 1px solid #dfdfdf;
         display: inline-block;
         width: 41%;
         vertical-align: 0.35em;
@@ -147,6 +170,9 @@
 .is-mobile .tile--s {
     padding-left: 0;
     padding-right: 0;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    color: inherit;
 }
 
 .is-mobile .zci--currency .zci__metabar__more-at {
@@ -159,13 +185,13 @@
 
 .is-mobile .zci--currency .market-rates {
     float: left;
-    line-height: 1em;
+    line-height: 1.3em;
     padding-left: 0.5em;
     padding-top: 0.1em;
 }
 
 .is-mobile .zci--currency-ratesinfo-mobile .horizontal {
-    border-bottom: 1px solid #d0d0d0;
+    border-bottom: 1px solid #ddd;
     display: inline-block;
     width: 84.5%;
     vertical-align: 0.35em;

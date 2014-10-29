@@ -26,13 +26,24 @@
     
     // Resize the size of the outer container if the content of the inner container
     // overflows.
-    function resizeContainer() {        
+    function resize() {        
         var resultHeight = $(".zci--currency-result").outerHeight();
         
         if(resultHeight > 65) {
             $(".zci--currency-container").css("height", "9em");
         } else {
             $(".zci--currency-container").css("height", "5em");
+        }
+    }
+    
+    // Change the look of the mobile view if the content overflows.
+    function resizeMobile() {
+        var tileHeight = $(".zci--currency .tile--s").outerHeight();
+
+        if(tileHeight > 155) {
+            $(".zci--currency .tile--s").addClass("large").removeClass("small");
+        } else {
+            $(".zci--currency .tile--s").addClass("small").removeClass("large");
         }
     }
     
@@ -83,10 +94,14 @@
         }
         
         // Add commas to the numbers for display.
-        function numberWithCommas(x) {
-            var parts = x.toString().split(".");
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            return parts.join(".");
+        function formatNumber(x) {
+            // Check if the number has a decimal point.
+            // If it does, only show the first two digits after the decimal place.
+            if(/\./.test(x.toString())) {
+                x = x.toFixed(2);   
+            }
+        
+            return DDG.commifyNumber(x);
         }
         
         Spice.add({
@@ -108,8 +123,8 @@
                 return {
                     fromCurrencySymbol: item["from-currency-symbol"],
                     toCurrencySymbol: item["to-currency-symbol"],
-                    amount: numberWithCommas(+item["from-amount"]),
-                    convertedAmount: numberWithCommas(+item["converted-amount"]),
+                    amount: formatNumber(+item["from-amount"]),
+                    convertedAmount: formatNumber(+item["converted-amount"]),
                     rate: item["conversion-rate"],
                     inverseRate: item["conversion-inverse"],
                     xeUrl: 'http://www.xe.com/currencycharts/?from=' + item["from-currency-symbol"] + '&to=' + item["to-currency-symbol"],
@@ -129,8 +144,11 @@
                 // The desktop template depends on a JS function that manages the
                 // size of the container.
                 if(!is_mobile) {
-                    $(window).load(resizeContainer);
-                    $(window).resize(resizeContainer);
+                    $(window).load(resize);
+                    $(window).resize(resize);
+                } else {
+                    $(window).load(resizeMobile);
+                    $(window).resize(resizeMobile);
                 }
             }
         });
