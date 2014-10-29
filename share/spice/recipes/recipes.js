@@ -20,7 +20,7 @@
             /* item */
 
             m.title = item.recipeName.replace(/ recipe/i,"");
-            m.url = "http://www.yummly.com/recipe/" + item.id;
+            m.url = "http://www.yummly.com/recipe/" + item.id + '?prm-v1';
 
             m.image = item.imageUrlsBySize['250'];
             m.ratingText = item.sourceDisplayName;
@@ -111,7 +111,7 @@
 
         searchContainedRecipe = !!(query_encoded.match(/recipe/i)),
         searchTerm = query.replace(/recipes|recipe/i,'').trim(),
-        moreUrl = res.attribution.url + '?q=' + searchTerm; // should replace trigger word or use the same logic that is used for the api call
+        moreUrl = res.attribution.url + '?q=' + searchTerm + '&prm-v1'; // should replace trigger word or use the same logic that is used for the api call
 
     Spice.add({
         id: 'recipes',
