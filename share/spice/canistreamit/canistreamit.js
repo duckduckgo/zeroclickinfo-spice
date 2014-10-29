@@ -22,7 +22,7 @@
             },
             normalize: function(item) {
                 var infoboxData = [{
-                    heading: 'Viewing Options'
+                    heading: 'Streaming Options'
                 }];
 
                 var affiliates = api_result[0].affiliates;
@@ -30,7 +30,8 @@
                     if(affiliates[key].price !== "") {
                         infoboxData.push({
                             label: affiliates[key].friendlyName.replace(/ Rental$/, ""),
-                            value: "Rent $" + affiliates[key].price
+                            value: "Rent $" + affiliates[key].price,
+                            url: affiliates[key].url
                         });
                     }
                 }
