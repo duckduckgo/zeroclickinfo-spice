@@ -38,13 +38,15 @@
                         inner(0, choose);
                     };
                 // Get out ASAP once we find a hit.
-                while (!hitit && picks++ <= props.length) {
+                while (!hitit && picks <= props.length) {
                     combos(picks, function(c) {
                         // Normalize a string for the generated combination;
+                        console.log(c.join(' ').split(' ').sort().join(' ') + " == " + query)
                         if (c.join(' ').split(' ').sort().join(' ') == query) {
                             hitit = true;
                         }
                     });;
+                    picks++;
                 }
                 return hitit;
             },
@@ -52,10 +54,12 @@
             chosen;
 
         // Get out ASAP once we find a hit.
-        while (!chosen && index++ < api.locations.length) {
+        while (!chosen && index < api.locations.length) {
             if (combo_check(api.locations[index])) {
                 chosen = api.locations[index];
             }
+            index++;
+             
         }
         if (typeof chosen === 'undefined') {
             chosen = api.locations[0]
