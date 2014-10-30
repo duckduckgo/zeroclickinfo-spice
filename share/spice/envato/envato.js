@@ -52,7 +52,7 @@
 						duration = (~~x[0] * 60) + ~~x[1]
 						break;
 					case 3:
-						duration = (~~x[0] * 3600) + (~~x[0] * 60) + ~~x[1]
+						duration = (~~x[0] * 3600) + (~~x[1] * 60) + ~~x[2]
 						break;
 				}
 
