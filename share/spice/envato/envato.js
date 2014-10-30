@@ -2,8 +2,10 @@
 	'use strict';
 
 	env.ddg_spice_envato = function(api){
+		var has = api.hasOwnProperty('search'),
+			fail = !api || !has || (has && !api.search.length);
 
-		if (!api) return Spice.failed('envato');
+		if (fail) return Spice.failed('envato');
 
 		Spice.add({
 			id: 'envato',
