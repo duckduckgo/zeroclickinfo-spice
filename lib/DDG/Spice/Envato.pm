@@ -23,15 +23,14 @@ spice from => '([^\/]+)/([^\/]+)';
 spice to => 'http://marketplace.envato.com/api/edge/search:$1,,$2.json';
 
 handle query_lc => sub {
-	my $query = lc $_;
 	my $triggers = join '|', @triggers;
-	my $platform = $1 if $query =~ /($triggers)/;
+	my $platform = $1 if $_ =~ /($triggers)/;
 
 	if ($platform){
-		$query =~ s/[^\s\w]|$platform|\s+and|\s+or|or\s+|and\s+//g;
-		$query =~ s/^\s+|\s+$//;
+		s/[^\s\w]|$platform|\s+and|\s+or|or\s+|and\s+//g;
+		s/^\s+|\s+$//;
 
-		my @arr = join '|', split ' ', $query;
+		my @arr = join '|', split ' ', $_;
 
 		return $platform, @arr;
 	}
