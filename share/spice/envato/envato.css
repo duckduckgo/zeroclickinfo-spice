@@ -1,0 +1,9 @@
+.zci--envato .tile--audio .tile__media {
+	padding-bottom:130px;
+}
+
+.zci--envato .tile--audio .tile__media__img {
+	height:80px;
+	top:50%;
+	margin-top:-40px;
+}
