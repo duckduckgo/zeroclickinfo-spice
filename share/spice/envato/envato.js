@@ -3,8 +3,6 @@
 
 	env.ddg_spice_envato = function(api){
 
-		console.log(api)
-
 		if (!api) return Spice.failed('envato');
 
 		Spice.add({
