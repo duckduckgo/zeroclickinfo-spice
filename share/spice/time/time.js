@@ -41,7 +41,6 @@
                 while (!hitit && picks <= props.length) {
                     combos(picks, function(c) {
                         // Normalize a string for the generated combination;
-                        console.log(c.join(' ').split(' ').sort().join(' ') + " == " + query)
                         if (c.join(' ').split(' ').sort().join(' ') == query) {
                             hitit = true;
                         }
