@@ -63,7 +63,7 @@
 					title: item.description,
 					url: item.url,
 					streamURL: info.preview_url,
-					price: info.cost
+					price: info.cost.replace('.00', '')
 				}
 			}
 
