@@ -15,7 +15,7 @@ icon_url "/i/xe.com.ico";
 code_url "https://github.com/XenonLab/blob/master/lib/DDG/Spice/Currency.pm";
 category "finance";
 topics "economy_and_finance", "geography", "travel", "everyday";
-attribution web => ['http://www.xe.com'];
+attribution web => 'http://www.xe.com';
 
 # Get all the valid currencies from a text file.
 my @currTriggers;
