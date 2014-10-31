@@ -1,7 +1,7 @@
 package DDG::Spice::Envato;
 use DDG::Spice;
 
-my @triggers = qw(themeforest codecanyon videohive audiojungle graphicriver photodune 3docean activeden);
+my @triggers = qw(themeforest codecanyon videohive audiojungle graphicriver 3docean activeden);
 triggers any => @triggers;
 
 primary_example_queries 'themeforest responsive portfolio';

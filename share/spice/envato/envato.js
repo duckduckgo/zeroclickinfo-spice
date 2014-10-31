@@ -8,7 +8,7 @@
 		if (fail) return Spice.failed('envato');
 
 		var query = DDG.get_query(),
-			markets = ['themeforest', 'codecanyon', 'videohive', 'audiojungle', 'graphicriver', 'photodune', '3docean', 'activeden'],
+			markets = ['themeforest', 'codecanyon', 'videohive', 'audiojungle', 'graphicriver', '3docean', 'activeden'],
 			spice = {
 				id: 'envato',
 				name: 'Envato Marketplace',
