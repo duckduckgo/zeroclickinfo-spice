@@ -28,11 +28,16 @@ handle query_lc => sub {
     my $platform = $1 if $_ =~ /($triggers)/;
 
     if ($platform){
-        # remove trigger name, remove or/and words, remove everything that is not a space or a word character, trim a query
-        s/[^\s\w]|$platform|\s+and|\s+or|or\s+|and\s+|^\s+|\s+$//g;
+        # remove trigger name, remove or/and words, remove everything that is not a space or a word character
+        s/[^\s\w]|$platform|\s+and|\s+or|or\s+|and\s+//g;
 
+        # trim a query
+        s/^\s+|\s+$//g;
+        
         # replace spaces with |
         s/\s+/|/g;
+
+        print $_;
 
         return $platform, $_;
     }
