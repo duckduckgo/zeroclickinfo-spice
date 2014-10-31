@@ -1,0 +1,19 @@
+<div class="tile  tile--b--i  tile--c  has-detail  tile--spoonacular  opt--t-xxs" data-link="{{{recipeLink id title}}}">
+	<div class="tile__media  tile__media--b-i">
+		<img src="/iu/?u={{{makeImage id image}}}" alt="{{title}}" class="tile__media__img">
+		{{#if rankingValue}}
+			<span>{{{format rankingValue}}}</span>
+		{{/if}}
+	</div>
+	<div class="tile__body  tile__body--b-i">
+	  <h6 class="tile__title  tile__title--b-i">{{title}}</h6>
+                
+		<div class="tile__rating  one-line">
+            
+           	{{#iterateBadges badges}}
+				<img src="{{{badge this}}}" class="badge" alt="{{{this}}}" title="{{{this}}}" />
+			{{/iterateBadges}}
+                        
+		</div>
+	</div>
+</div>

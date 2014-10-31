@@ -1,0 +1,23 @@
+<div class="detail__media  detail__media--spoonacularrecipe">
+    <img src="/iu/?u={{makeBigImage id image}}" alt="{{title}}" class="detail__media__img" />
+</div>
+<div class="detail__body  detail__body--spoonacularrecipe">
+    <div class="detail__body__content">
+        <h5 class="detail__title"><a href="{{{recipeLink id title}}}" title="{{title}}">{{title}}</a></h5>
+        <div class="detail__desc">
+            <p class="detail__source">
+                <span>{{plural aggregateLikes singular="person likes" plural="people like"}} this recipe from {{author}}</span>                
+            </p>
+
+        <div>This recipe can be cooked in <b>{{{tipsAndScores.score_time_text}}}</b>.</div>
+        <div>The cost of this recipe is approximately <b>{{{tipsAndScores.score_price_text}}}</b>.</div>
+        <div>One serving covers about <b>{{{tipsAndScores.score_healthiness_text}}}</b>.</div>
+
+            <a href="{{{recipeLink id title}}}" class="detail__links__btn view-btn--spoonacular">
+                <img class="btn__icon" src="{{meta.sourceIconUrl}}" />
+                View Full Recipe
+            </a>
+			{{{moreAt meta.sourceUrl meta.sourceName className="detail__more-at--spoonacular" iconUrl=meta.sourceIconUrl}}}
+        </div>
+    </div>
+</div>
