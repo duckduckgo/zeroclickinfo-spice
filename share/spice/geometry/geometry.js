@@ -435,19 +435,22 @@
                 options: {
                     content: Spice.geometry.content
                 }
+            },
+            onShow: function(){
+                var formulaNodes = $("#zci--geometry-formulas").children(),
+                    svg = $("#zci--geometry-svg"),
+                    svgNodes = svg.children(),
+                    content = svg.parent();
+
+                for(i = 0, l = pairs.length; i < l; ++i)
+                    bindHoverPair([formulaNodes[pairs[i][0]], svgNodes[pairs[i][1]]]);
+
+                $(window).load(function(){
+                    console.log("retzguih");
+                    svg.height(content.height());
+                    svg.show();
+                });
             }
-        });
-        var content = Spice.getDOM("geometry"),
-            formulaNodes = $("#zci--geometry-formulas", content).children(),
-            svg = $("#zci--geometry-svg", content),
-            svgNodes = svg.children();
-
-        for(i = 0, l = pairs.length; i < l; ++i)
-            bindHoverPair([formulaNodes[pairs[i][0]], svgNodes[pairs[i][1]]]);
-
-        $(window).load(function(){
-            svg.height(content.height());
-            svg.show();
         });
     };
 }(this));
