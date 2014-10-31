@@ -4,6 +4,8 @@ use DDG::Spice;
 my @triggers = qw(themeforest codecanyon videohive audiojungle graphicriver 3docean activeden);
 triggers any => @triggers;
 
+my $triggers = join '|', @triggers;
+
 primary_example_queries 'themeforest responsive portfolio';
 secondary_example_queries 'audiojungle happy electronic';
 
@@ -15,27 +17,27 @@ category 'programming';
 topics qw(programming geek web_design music);
 
 attribution github => ['https://github.com/mobily','Marcin Dziewulski'], 
-			twitter => ['http://twitter.com/marcinmobily', 'marcinmobily'],
-			web => ['http://www.mobily.pl', 'Marcin Dziewulski'];
+            twitter => ['http://twitter.com/marcinmobily', 'marcinmobily'],
+            web => ['http://www.mobily.pl', 'Marcin Dziewulski'];
 
 spice wrap_jsonp_callback => 1;
 spice from => '([^\/]+)/([^\/]+)';
 spice to => 'http://marketplace.envato.com/api/edge/search:$1,,$2.json';
 
 handle query_lc => sub {
-	my $triggers = join '|', @triggers;
-	my $platform = $1 if $_ =~ /($triggers)/;
+    my $platform = $1 if $_ =~ /($triggers)/;
 
-	if ($platform){
-		s/[^\s\w]|$platform|\s+and|\s+or|or\s+|and\s+//g;
-		s/^\s+|\s+$//;
+    if ($platform){
+        # remove trigger name, remove or/and words, remove everything that is not a space or a word character, trim a query
+        s/[^\s\w]|$platform|\s+and|\s+or|or\s+|and\s+|^\s+|\s+$//g;
 
-		my @arr = join '|', split ' ', $_;
+        # replace spaces with |
+        s/\s+/|/g;
 
-		return $platform, @arr;
-	}
+        return $platform, $_;
+    }
 
-	return 
+    return 
 };
 
 1;
