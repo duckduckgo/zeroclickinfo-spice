@@ -13,7 +13,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Rainfall',      
     ),
     'rainfall in the united states of america' => test_spice(
-        '/js/spice/rainfall/USA/2012%3A2012/United%20States',
+        '/js/spice/rainfall/USA/2012%3A2012/The%20United%20States',
         call_type => 'include',
         caller => 'DDG::Spice::Rainfall',      
     ),
@@ -23,7 +23,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Rainfall',      
     ),
     'rainfall United States of America' => test_spice(
-        '/js/spice/rainfall/USA/2012%3A2012/United%20States',
+        '/js/spice/rainfall/USA/2012%3A2012/The%20United%20States',
         call_type => 'include',
         caller => 'DDG::Spice::Rainfall',      
     ),
@@ -34,7 +34,7 @@ ddg_spice_test(
     ),
     
     'rainfall USA' => test_spice(
-        '/js/spice/rainfall/USA/2012%3A2012/United%20States',
+        '/js/spice/rainfall/USA/2012%3A2012/The%20United%20States',
         call_type => 'include',
         caller => 'DDG::Spice::Rainfall',      
     ),
