@@ -1,0 +1,42 @@
+.zci--time p {
+    margin-top: 0;
+    padding-top: 0;
+    color: #999;
+    font-size:medium;
+}
+
+.zci--time .time {
+    font-size: 54px;
+    color: #333;
+    padding-right: 10px;
+    float: left;
+    
+}
+
+.zci--time .time_date {
+    font-size: 20px;
+    margin-top: 8px;
+    color: #818181;
+    padding-left: 10px;
+    border-left: solid 1px #ccc;
+    float: left;
+}
+
+.dark-header .zci--time .time {
+       color: #e6e6e6;
+}
+
+@media (max-width: 406px) {
+  .zci--time .time_date {
+   border-left: none;
+   padding-left: 0px;
+  }
+}
+
+@media (max-width: 244px) {
+  .zci--time .time {
+     font-size: 50px;
+  }
+}
+
+
