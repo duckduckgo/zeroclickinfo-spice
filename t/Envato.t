@@ -42,11 +42,6 @@ ddg_spice_test(
 		call_type => 'include',
 		caller => 'DDG::Spice::Envato'
 	),
-	'photodune animals' => test_spice(
-		'/js/spice/envato/photodune/animals',
-		call_type => 'include',
-		caller => 'DDG::Spice::Envato'
-	),
 	'creative modern portfolio' => undef
 );
 
