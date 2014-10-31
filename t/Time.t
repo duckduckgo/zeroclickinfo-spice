@@ -10,12 +10,12 @@ spice proxy_cache_valid => "418 1d";
 ddg_spice_test(
     [qw( DDG::Spice::Time)],
     'time Amsterdam' => test_spice(
-        '/js/spice/time/amsterdam',
+        '/js/spice/time/amsterdam%20netherlands',
         call_type => 'include',
         caller => 'DDG::Spice::Time'
     ),
     'time Netherlands' => test_spice(
-        '/js/spice/time/netherlands',
+        '/js/spice/time/amsterdam%20netherlands',
         call_type => 'include',
         caller => 'DDG::Spice::Time'
     ),
@@ -30,10 +30,20 @@ ddg_spice_test(
         caller => 'DDG::Spice::Time'
     ),
      'time Canada' => test_spice(
-        '/js/spice/time/canada',
+        '/js/spice/time/ottawa%20canada',
         call_type => 'include',
         caller => 'DDG::Spice::Time'
-    )
+    ),
+     'time in London' => test_spice(
+        '/js/spice/time/london%20united%20kingdom',
+        call_type => 'include',
+        caller => 'DDG::Spice::Time'
+    ),
+     'time in kingston' => test_spice(
+        '/js/spice/time/kingston%20jamaica',
+        call_type => 'include',
+        caller => 'DDG::Spice::Time'
+    ),
 );
 
 done_testing;
