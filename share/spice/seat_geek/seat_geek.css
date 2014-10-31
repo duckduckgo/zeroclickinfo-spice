@@ -1,113 +1,45 @@
-.zci--seat_geek h3,
-.zci--seat_geek .seat_geek-artist {
-    color: #333;
-}
-
-.zci--seat_geek h3,
-.zci--seat_geek .footer_content,
-.zci--seat_geek h5.detail__title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .zci--seat_geek h3 {
-    line-height: 1.35em;
-    font-weight: 500;
+    line-height: 1.15;
+    font-weight: 600;
+    color: #333;
+    padding-top: 0;
+    padding-bottom: 0.15em !important;
 }
 
-.zci--seat_geek .performers {
+.zci--seat_geek .header_container {
+    height: 8.5em;
+}
+
+.zci--seat_geek .price {
+    margin-top: 1.1em;
+    font-weight: 600;
+    color: #333;
+    height: 1em;
     float: left;
 }
 
-.zci--seat_geek .clear {
-    clear: both;
-}
-
-.zci--seat_geek .date,
-.zci--seat_geek .place,
-.zci--seat_geek .footer_content {
-    color: #999;
-    line-height: 1.25em;
-}
-
-.zci--seat_geek .date {
-    padding-top: 0.25em;
-}
-
-.zci--seat_geek .place {
-    padding-bottom: 0.25em;
-}
-
-.zci--seat_geek .zci__main--tiles > .tile--seat_geek,
-.zci--seat_geek .zci__main--tiles > .tile--seat_geek.is-selected {
-    width: 18em;
-}
-
-.zci--seat_geek .tile__title,
-.zci--seat_geek .tile__content {
-    display: none !important;
-}
-
 .zci--seat_geek .tile__body.has-foot {
-    padding-bottom: 1.5em;
+    padding-bottom: 1em;
 }
 
 .zci--seat_geek .tile__title__sub {
     font-size: 0.7em;
 }
 
-.zci--seat_geek .tileview.has-open-detail .tile-wrap {
-    margin-bottom: 10.5rem;
+.zci--seat_geek .date {
+    float: right;
+    border: 1px solid #ddd;
+    padding: 0.6em 0.9em;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: -1.5em;
 }
 
-.zci--seat_geek .footer_date {
-    font-size: 1.85em;
-    font-weight: 500;
-}
-
-.zci--seat_geek .seat_geek-artist {
-    font-size: 1.25em;
-    font-weight: 500;
-}
-
-.zci--seat_geek .footer_content {
-    font-size: 1em;
-}
-
-.zci--seat_geek .detail,
-.zci--seat_geek .detail__wrap,
-.zci--seat_geek .detail__pane {
-    height: 16em;
-}
-
-.zci--seat_geek .detail__pane {
-    line-height: 14em;
-}
-
-.zci--seat_geek .detail {
-    bottom: -15.8em;
-}
-
-/* Target everything but IE 6-8 */
-:root *> .zci--seat_geek .tileview.has-open-detail {
-    height: 26.6em;
-}
-
-.zci--seat_geek .tileview.has-open-detail {
-    height: 27em;
-}
-
-/* Target only Firefox */
-.zci--seat_geek .tileview.has-open-detail,  x:-moz-any-link, x:default {
-    height: 27.05em !important;
-}
-
-.zci--seat_geek .detail__callout--pr {
-    line-height: 2em;
-    margin-top: 0;
-}
-
-.zci--seat_geek p.detail__desc {
-    display: none;
+.zci--seat_geek .day {
+    font-size: 1.7em;
+    line-height: 0.8;
 }

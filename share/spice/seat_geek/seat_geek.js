@@ -11,7 +11,7 @@
 
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
-        var days = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         Spice.add({
             id: "seat_geek",
@@ -28,6 +28,7 @@
                 // Capitalize the name of the band/artist searched for;
                 // if the name is composed by multiple words, capitalize
                 // all of them; if the name is too long, return the acronym
+
                 function capitalizedAcronym(string) {
                     var splitted = string.split(" ");
                     if(string.length < 18) {
@@ -47,7 +48,7 @@
                     }
                 }
 
-                function formatDate(date) {
+                function getDate(date) {
                     // IE 8 and Safari don't support the yyyy-mm-dd date format,
                     // but they support mm/dd/yyyy
                     date = date.replace(/T.*/, '');
@@ -55,41 +56,59 @@
                     date = remix_date[1] + "/" + remix_date[2] + "/" + remix_date[0];
 
                     date = new Date(date);
-                    var week_day = days[date.getDay()];
-                    var day = date.getDate();
-                    var month = months[parseInt(date.getMonth())];
-
-                    return week_day + " " + month + " " + day;
+                    return date;
                 }
 
-                // Get max two performers (if available) other than
+                function getMonth(date) {
+                    var month = months[parseInt(date.getMonth())];
+                    return month.toUpperCase();
+                }
+
+                function getDay(date) {
+                    var day = date.getDate();
+                    return day;
+                }
+
+                // Get number of performers, excluding
                 // the one searched for
-                function getPerformers(performers) {
-                    var chosen = [artist];
+
+                function getNumPerformers(performers) {
+                    var how_many = 0;
                     var slug = clean_query.replace(/\s/g, "-");
                     for(var i = 0; i < performers.length; i++) {
-                        if(chosen.length < 3 && performers[i].slug !== slug) {
-                            chosen.push(performers[i].name);
-                        } else if(chosen.length >= 3) {
-                            break;
+                        if(performers[i].slug !== slug) {
+                            how_many++;
                         }
                     }
 
-                    return chosen;
+                    if(how_many > 1) {
+                        return how_many;
+                    }
+
+                    return;
+                }
+
+                function getPrice(lowest, highest) {
+                    var price = "";
+
+                    if(lowest && highest) {
+                        price = "$" + lowest + " - $" + highest;
+                    }
+
+                    return price;
                 }
 
                 var a = {
                     url: item.url,
-                    price: item.stats.lowest_price ? "$" + item.stats.lowest_price : "",
+                    price: getPrice(item.stats.lowest_price, item.stats.highest_price),
                     artist: artist,
-                    performers: getPerformers(item.performers),
-                    heading: item.short_title,
+                    num_performers: getNumPerformers(item.performers),
                     title: item.short_title,
                     place: item.venue.name,
                     img: item.performers[0].images.small,
                     city: item.venue.city + ", " + item.venue.country,
-                    date: formatDate(item.datetime_local),
-                    rating: item.score
+                    month: getMonth(getDate(item.datetime_local)),
+                    day: getDay(getDate(item.datetime_local))
                 };
                 return a;
             },
@@ -97,8 +116,6 @@
                 group: 'products',
                 item: Spice.seat_geek.item,
                 options: {
-                    subtitle_content: Spice.seat_geek.content,
-                    buy: Spice.seat_geek.buy,
                     moreAt: true,
                     rating: false
                 }
