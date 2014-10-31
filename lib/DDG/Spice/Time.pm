@@ -18,7 +18,7 @@ triggers any => "time", "what time is it in", "time in";
 
 handle remainder_lc => sub {
     my $q = shift;
-    $q =~ s/,//g;
+    $q =~ s/,|\?|now//g;
     return unless $q;
     return $q;
 };
