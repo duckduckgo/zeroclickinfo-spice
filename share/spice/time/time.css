@@ -1,8 +1,6 @@
 .zci--time p {
     margin-top: 0;
     padding-top: 0;
-    color: #999;
-    font-size:medium;
 }
 
 .zci--time .time {
@@ -10,16 +8,21 @@
     color: #333;
     padding-right: 10px;
     float: left;
-    
+    padding-right: 0.5em;
+    font-weight: 300;
 }
 
 .zci--time .time_date {
-    font-size: 20px;
     margin-top: 8px;
-    color: #818181;
-    padding-left: 10px;
-    border-left: solid 1px #ccc;
+    color: #888;
+    border-left: solid 1px #d0d0d0;
     float: left;
+    font-weight: 300;
+    font-size: 1.25em;
+    margin-top: 0.85em;
+    padding-left: 1.4em;
+    height: 2.2em;
+    line-height: 1.25;
 }
 
 .dark-header .zci--time .time {
@@ -28,9 +31,16 @@
 
 @media (max-width: 406px) {
   .zci--time .time_date {
-   border-left: none;
-   padding-left: 0px;
+      border-left: none;
+      padding-left: 0;
+      margin-top: 0;
+      margin-bottom: 1em;
   }
+}
+
+.is-mobile .zci--time .time_date {
+    border-left: none;
+    padding-left: 0;
 }
 
 @media (max-width: 244px) {
@@ -38,5 +48,3 @@
      font-size: 50px;
   }
 }
-
-
