@@ -3,10 +3,12 @@
     overflow: hidden;
     padding: 20px 0 20px;
 }
-.zci--snow .zci__more-at {
-    padding-top: 0.75em;
-}
+
 .zci--snow h3 {
     font-size: 2em;
     font-weight: 900;
+}
+
+.zci--snow .zci__header {
+    color: inherit;
 }
