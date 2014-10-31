@@ -1,0 +1,40 @@
+<div class="detail__media  detail__media--rx_info">
+    <img src="{{proxyImageUrl}}" alt="Image for NDC: {{{ndc11}}}" class="detail__media__img"/>
+</div>
+<div class="detail__body  detail__body--rx_info">
+    <div class="detail__body__content">
+        <h5 class="detail__title detail__title--rx_info">
+            {{#if splSetId}}
+                <a href="https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid={{{splSetId}}}" target="_blank">
+            {{/if}}
+            {{heading}}
+            {{#if splSetId}}
+                </a>
+            {{/if}}
+        </h5>
+
+        <div class="detail__labeler--rx_info">{{labeler}}</div>
+
+        <div class="detail__desc">
+            {{#if active}}
+                <h5 class="detail__ingredients__title--rx_info">Active Ingredients</h5>
+
+                <div class="detail__ingredients__snippet--rx_info">
+                    {{active}}
+                </div>
+            {{/if}}
+
+            {{#if inactive}}
+                <h5 class="detail__ingredients__title--rx_info">Inactive Ingredients</h5>
+
+                <div class="detail__ingredients__snippet--rx_info">
+                    {{inactive}}
+                </div>
+            {{/if}}
+
+            <h6 class="detail__desc__attribution--rx_info">
+                Image Source: <a href="http://rximage.nlm.nih.gov/" target="_blank">National Library of Medicine Office of High Performance Computing and Communications</a>
+            </h6>
+        </div>
+    </div>
+</div>
