@@ -15,31 +15,33 @@
                 var hitit = false,
                     picks = 1, // Start with combinations of length 1
                     // The properities we want to use in our comparisons to check for matches.
-                    props = [loc.geo.name, loc.geo.country.id, loc.geo.state, loc.geo.country.name].filter(function(v, i, a) {
-                        return (typeof v === 'undefined') ? false : true;
-                    }).map(function(v, i, a) {
-                        return v.toLowerCase();
-                    }), // Normalized down.
+                    props = [loc.geo.name, loc.geo.country.id, loc.geo.state, loc.geo.country.name],
                     // Generic function for generating combinations from an array.
-                    combos = function(choose, cb) {
-                        var n = props.length;
+                    combos = function(p, choose, cb) {
+                        var n = p.length;
                         var c = [];
                         var inner = function(start, choose_) {
                             if (choose_ == 0) {
                                 cb(c);
                             } else {
                                 for (var i = start; i <= n - choose_; ++i) {
-                                    c.push(props[i]);
+                                    c.push(p[i]);
                                     inner(i + 1, choose_ - 1);
                                     c.pop();
                                 }
                             }
                         }
                         inner(0, choose);
-                    };
+                    },
+                    normalized_props = [];
+                    for (var i = 0; i < props.length; i++) {
+                        if( typeof props[i] !== 'undefined') {
+                            normalized_props.push(props[i].toLowerCase());
+                        }
+                    }
                 // Get out ASAP once we find a hit.
-                while (!hitit && picks <= props.length) {
-                    combos(picks, function(c) {
+                while (!hitit && picks <= normalized_props.length) {
+                    combos(normalized_props, picks, function(c) {
                         // Normalize a string for the generated combination;
                         if (c.join(' ').split(' ').sort().join(' ') == query) {
                             hitit = true;
@@ -58,7 +60,6 @@
                 chosen = api.locations[index];
             }
             index++;
-             
         }
         if (typeof chosen === 'undefined') {
             chosen = api.locations[0]
