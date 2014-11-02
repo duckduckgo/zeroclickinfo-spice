@@ -4,8 +4,8 @@ package DDG::Spice::ISSLocation;
 use DDG::Spice;
 
 triggers any => "iss location", "iss position";
-
 spice to => 'http://api.open-notify.org/iss-now.json?callback={{callback}}';
+
 
 handle remainder => sub {
     return $_ if $_;
