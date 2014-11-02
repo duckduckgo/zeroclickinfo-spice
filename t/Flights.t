@@ -20,47 +20,54 @@ my ($second, $minute, $hour, $dayOfMonth,
 #
 # can we convert the date portion of the comparison string to regex, using 
 # something like this:
-# qr\/js\/spice\/flights\/CPA\/LAX\/HKG\/[0-9]{4}\/([0-9]{1}|[0-9]{2})\/([0-9]{1}|[0-9]{2})\/([0-9]{1}|[0-9]{2})/;
+# qr\/js/spice/flights/route/CPA/LAX/HKG/LAX/HKG\/[0-9]{4}\/([0-9]{1}|[0-9]{2})\/([0-9]{1}|[0-9]{2})\/([0-9]{1}|[0-9]{2})/;
 
 ddg_spice_test(
 
-    [qw( DDG::Spice::Flights )],
+    [qw( DDG::Spice::Flights::Route )],
     
     # --- these queries should trigger the IA
 
     # standard query
     'Cathay Pacific Los Angeles to Hong Kong' => test_spice(
-        "/js/spice/flights/CPA/LAX/HKG/$year/$month/$dayOfMonth/$hour",
+        "/js/spice/flights/route/CPA/LAX/HKG/LAX/HKG/$year/$month/$dayOfMonth/$hour",
         call_type => 'include',
-        caller => 'DDG::Spice::Flights',
+        caller => 'DDG::Spice::Flights::Route',
     ),
 
     # standard query
     'Jetblue Boston to Los Angeles' => test_spice(
-        "/js/spice/flights/JBU/BOS/LAX/$year/$month/$dayOfMonth/$hour",
+        "/js/spice/flights/route/JBU/BOS/LAX/BOS/LAX/$year/$month/$dayOfMonth/$hour",
         call_type => 'include',
-        caller => 'DDG::Spice::Flights',
+        caller => 'DDG::Spice::Flights::Route',
+    ),
+
+    # standard query by airport code
+    'Jetblue BOS to LAX' => test_spice(
+        "/js/spice/flights/route/JBU/BOS/LAX/BOS/LAX/$year/$month/$dayOfMonth/$hour",
+        call_type => 'include',
+        caller => 'DDG::Spice::Flights::Route',
     ),
 
     # query with airline at the end
-    'Boston to Paris Aer Lingus' => test_spice(
-        "/js/spice/flights/EIN/BOS/PAR/$year/$month/$dayOfMonth/$hour",
+    'Newark to Paris United' => test_spice(
+        "/js/spice/flights/route/UAL%2CUBD/EWR/CDG%2CORY%2CBVA/EWR/CDG/$year/$month/$dayOfMonth/$hour",
         call_type => 'include',
-        caller => 'DDG::Spice::Flights',
+        caller => 'DDG::Spice::Flights::Route',
     ),
 
+    # query by airport code with airline at the end
+    'BOS to LAX Aer Lingus' => test_spice(
+        "/js/spice/flights/route/EIN/BOS/LAX/BOS/LAX/$year/$month/$dayOfMonth/$hour",
+        call_type => 'include',
+        caller => 'DDG::Spice::Flights::Route',
+    ),
+    
     # query that generates multiple potential airline matches
     'American Boston to Los Angeles' => test_spice(
-        "/js/spice/flights/AAL%2CALC/BOS/LAX/$year/$month/$dayOfMonth/$hour",
+        "/js/spice/flights/route/AAL%2CALC/BOS/LAX/BOS/LAX/$year/$month/$dayOfMonth/$hour",
         call_type => 'include',
-        caller => 'DDG::Spice::Flights',
-    ),
-
-    # query with multiple white spaces
-    'Jetblue     Boston     to   Los     Angeles' => test_spice(
-        "/js/spice/flights/JBU/BOS/LAX/$year/$month/$dayOfMonth/$hour",
-        call_type => 'include',
-        caller => 'DDG::Spice::Flights',
+        caller => 'DDG::Spice::Flights::Route',
     ),    
     
     # --- these queries should not trigger the IA
