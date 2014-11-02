@@ -1,0 +1,695 @@
+LHR,LHR,EGLL,1,London,London Heathrow Airport
+MSP,MSP,KMSP,1,Minneapolis,Minneapolis St  Paul International Airport
+IND,IND,KIND,1,Indianapolis,Indianapolis International Airport
+LAS,LAS,KLAS,1,Las Vegas,McCarran International Airport
+BWI,BWI,KBWI,1,Baltimore,Baltimore Wash International Thurgood Marshall Airport
+MEM,MEM,KMEM,1,Memphis,Memphis International Airport
+LAX,LAX,KLAX,1,Los Angeles,Los Angeles International Airport
+SZX,SZX,ZGSZ,1,Shenzhen,Shenzhen Bao an International Airport
+CDG,CDG,LFPG,1,Paris,Charles de Gaulle Airport
+JFK,JFK,KJFK,1,New York,John F  Kennedy International Airport
+SDF,SDF,KSDF,1,Louisville,Louisville International Airport
+LGA,LGA,KLGA,1,New York,LaGuardia Airport
+EWR,EWR,KEWR,1,Newark,Newark Liberty International Airport
+SFO,SFO,KSFO,1,San Francisco,San Francisco International Airport
+KUL,KUL,WMKK,1,Kuala Lumpur,Kuala Lumpur International Airport
+FLL,FLL,KFLL,1,Fort Lauderdale,Fort Lauderdale Hollywood International Airport
+MIA,MIA,KMIA,1,Miami,Miami International Airport
+MNL,MNL,RPLL,1,Manila,Ninoy Aquino International Airport
+DXB,DXB,OMDB,1,Dubai,Dubai Airport
+TPA,TPA,KTPA,1,Tampa,Tampa International Airport
+CVG,CVG,KCVG,1,Cincinnati,Cincinnati Northern Kentucky Airport
+SLC,SLC,KSLC,1,Salt Lake City,Salt Lake City International Airport
+TXL,TXL,EDDT,1,Berlin,Tegel Airport
+PHX,PHX,KPHX,1,Phoenix,Phoenix Sky Harbor International Airport
+ORY,ORY,LFPO,1,Paris,Paris Orly Airport
+IAD,IAD,KIAD,1,Washington,Washington Dulles International Airport
+SAN,SAN,KSAN,1,San Diego,San Diego International Airport
+PHL,PHL,KPHL,1,Philadelphia,Philadelphia International Airport
+OSL,OSL,ENGM,1,Oslo,Oslo Airport Gardermoen
+ICN,ICN,RKSI,1,Seoul,Incheon International Airport
+HOU,HOU,KHOU,1,Houston,William P  Hobby Airport
+HNL,HNL,PHNL,1,Honolulu,Honolulu International Airport
+IAH,IAH,KIAH,1,Houston,George Bush Intercontinental Airport
+VIE,VIE,LOWW,1,Vienna,Vienna International Airport
+TPE,TPE,RCTP,1,Taipei,Taiwan Taoyuan International Airport
+ARN,ARN,ESSA,1,Stockholm,Stockholm Arlanda Airport
+LGW,LGW,EGKK,1,London,London Gatwick Airport
+BCN,BCN,LEBL,1,Barcelona,Barcelona El Prat Airport
+OAI,OAI,OAIX,1,Bagram,Logistics Support Area Anaconda
+DTW,DTW,KDTW,1,Detroit,Detroit Metropolitan Wayne County Airport
+SVO,SVO,UUEE,1,Moscow,Sheremetyevo International Airport
+SIN,SIN,WSSS,1,Singapore,Changi International Airport
+DFW,DFW,KDFW,1,Dallas,Dallas Fort Worth International Airport
+CKG,CKG,ZUCK,1,Chongqing,Chongqing Airport
+PEK,PEK,ZBAA,1,Beijing,Beijing Capital International Airport
+XMN,XMN,ZSAM,1,Xiamen,Xiamen Gaoqi International Airport
+HGH,HGH,ZSHC,1,Hangzhou,Hangzhou Xiaoshan International Airport
+SHA,SHA,ZSSS,1,Shanghai,Shanghai Hongqiao International Airport
+XIY,XIY,ZLXY,1,Xian,Xianyang Airport
+KMG,KMG,ZPPP,1,Kunming,Kunming Changshui International Airport
+PVG,PVG,ZSPD,1,Shanghai,Shanghai Pudong International Airport
+CLE,CLE,KCLE,1,Cleveland,Cleveland Hopkins International Airport
+CLT,CLT,KCLT,1,Charlotte,Charlotte Douglas International Airport
+HND,HND,RJTT,1,Tokyo,Haneda Airport
+GRU,GRU,SBGR,1,Sao Paulo,Sao Paulo Guarulhos International Airport
+NRT,NRT,RJAA,1,Tokyo,Narita International Airport
+ANC,ANC,PANC,1,Anchorage,Ted Stevens Anchorage International Airport
+STL,STL,KSTL,1,Saint Louis,Lambert St  Louis International Airport
+FCO,FCO,LIRF,1,Rome,Leonardo da Vinci Fiumicino Airport
+BOS,BOS,KBOS,1,Boston,Logan International Airport
+YYZ,YYZ,CYYZ,1,Toronto,Pearson International Airport
+AMS,AMS,EHAM,1,Amsterdam,Amsterdam Airport Schiphol
+CTU,CTU,ZUUU,1,Chengdu,Chengdu Shuangliu International Airport
+DME,DME,UUDD,1,Moscow,Moscow Domodedovo Airport
+BNE,BNE,YBBN,1,Brisbane,Brisbane Airport
+CAN,CAN,ZGGG,1,Guangzhou,Guangzhou Baiyun International Airport
+CGH,CGH,SBSP,1,Sao Paulo,Sao Paulo Congonhas Airport
+ORD,ORD,KORD,1,Chicago,O Hare International Airport
+DUS,DUS,EDDL,1,Dusseldorf,Dusseldorf International Airport
+ZRH,ZRH,LSZH,1,Zurich,Zurich Airport
+BKK,BKK,VTBS,1,Bangkok,Suvarnabhumi Airport
+OAK,OAK,KOAK,1,Oakland,Metropolitan Oakland International Airport
+YYC,YYC,CYYC,1,Calgary,Calgary International Airport
+DOH,DOH,OTHH,1,Doha,Hamad International Airport
+DEN,DEN,KDEN,1,Denver,Denver International Airport
+YVR,YVR,CYVR,1,Vancouver,Vancouver International Airport
+MDW,MDW,KMDW,1,Chicago,Chicago Midway International Airport
+HKG,HKG,VHHH,1,Hong Kong,Hong Kong International Airport
+JNB,JNB,FAOR,1,Johannesburg,OR Tambo International Airport
+MCO,MCO,KMCO,1,Orlando,Orlando International Airport
+FUK,FUK,RJFF,1,Fukuoka,Fukuoka Airport
+SEA,SEA,KSEA,1,Seattle,Seattle Tacoma International Airport
+FRA,FRA,EDDF,1,Frankfurt,Frankfurt am Main Airport
+DEL,DEL,VIDP,1,Delhi,Indira Gandhi International Airport
+BOG,BOG,SKBO,1,Bogota,El Dorado International Airport
+ATL,ATL,KATL,1,Atlanta,Hartsfield Jackson Atlanta International Airport
+DCA,DCA,KDCA,1,Washington,Ronald Reagan National Airport
+MUC,MUC,EDDM,1,Munich,Franz Josef Strauss Airport
+BOM,BOM,VABB,1,Mumbai,Chhatrapati Shivaji International Airport
+MAD,MAD,LEMD,1,Madrid,Adolfo Suarez Madrid Barajas Airport
+MAN,MAN,EGCC,1,Manchester,Manchester Airport
+MEX,MEX,MMMX,1,Mexico City,Benito Juarez International Airport
+YUL,YUL,CYUL,1,Montreal,Montreal Pierre Elliott Trudeau International Airport
+IST,IST,LTBA,1,Istanbul,Istanbul Ataturk Airport
+CPH,CPH,EKCH,1,Copenhagen,Copenhagen Airport
+HEL,HEL,EFHK,1,Helsinki,Helsinki Vantaa Airport
+SYD,SYD,YSSY,1,Sydney,Sydney  Kingsford Smith  Airport
+PDX,PDX,KPDX,1,Portland,Portland International Airport
+BRU,BRU,EBBR,1,Brussels,Brussels Airport
+CGK,CGK,WIII,1,Jakarta,Soekarno Hatta International Airport
+MEL,MEL,YMML,1,Melbourne,Tullamarine Airport
+BUD,BUD,LHBP,2,Budapest,Budapest Ferenc Liszt International Airport
+DMM,DMM,OEDF,2,Dammam,King Fahad International Airport
+NKG,NKG,ZSNJ,2,Nanking,Nanjing Lukou International Airport
+CGN,CGN,EDDK,2,Cologne,Cologne Bonn Airport
+BAH,BAH,OBBI,2,Bahrain,Bahrain International Airport
+KBP,KBP,UKBB,2,Kiev Kyiv,Boryspil International Airport
+HYD,HYD,VOHS,2,Hyderabad,Rajiv Gandhi International Airport
+GDL,GDL,MMGL,2,Guadalajara,Don Miguel Hidal Y Costilla International Airport
+GEG,GEG,KGEG,2,Spokane,Spokane International Airport
+SDJ,SDJ,RJSS,2,Sendai,Sendai Airport
+BEY,BEY,OLBA,2,Beirut,Beirut Rafic Hariri International Airport
+CAI,CAI,HECA,2,Cairo,Cairo International Airport
+AKL,AKL,NZAA,2,Auckland,Auckland Airport
+EDI,EDI,EGPH,2,Edinburgh,Edinburgh Airport
+SZB,SZB,WMSA,2,Kuala Lumpur,Sultan Abdul Aziz Shah Airport
+DPS,DPS,WADD,2,Denpasar,Ngurah Rai International Airport
+CWB,CWB,SBCT,2,Curitiba,Afonso Pena International Airport
+PER,PER,YPPH,2,Perth,Perth Airport
+ABQ,ABQ,KABQ,2,Albuquerque,Albuquerque International Sunport
+JED,JED,OEJN,2,Jeddah,King Abdulaziz International Airport
+LIS,LIS,LPPT,2,Lisbon,Lisbon Portela Airport
+VKO,VKO,UUWW,2,Moscow,Vnukovo Airport
+RGN,RGN,VYYY,2,Mingaladon,Yangon International Airport
+GOT,GOT,ESGG,2,Gothenburg,Goteborg Landvetter Airport
+MSY,MSY,KMSY,2,New Orleans,Louis Armstrong New Orleans International Airport
+EOH,EOH,SKMD,2,Medellin,Enrique Olaya Herrera Airport
+BLR,BLR,VOBL,2,Bangalore,Bengaluru International Airport
+BGO,BGO,ENBR,2,Bergen,Flesland Airport
+LTN,LTN,EGGW,2,London,London Luton Airport
+BMA,BMA,ESSB,2,Stockholm,Bromma Airport
+BKI,BKI,WBKK,2,Kota Kinabalu,Kota Kinabalu International Airport
+SHJ,SHJ,OMSJ,2,Sharjah,Sharjah International Airport
+KWL,KWL,ZGKL,2,Guilin,Guilin Liangjiang International Airport
+SYR,SYR,KSYR,2,Syracuse,Hancock International Airport
+ONT,ONT,KONT,2,Ontario,LA Ontario International Airport
+GLA,GLA,EGPF,2,Glasgow,Glasgow International Airport
+SCL,SCL,SCEL,2,Santiago,Arturo Merino Benitez Airport
+AGP,AGP,LEMG,2,Malaga,Malaga Airport
+BET,BET,PABE,2,Bethel,Bethel Airport
+SDU,SDU,SBRJ,2,Rio De Janeiro,Santos Dumont Airport
+CCS,CCS,SVMI,2,Caracas,Simon Bolivar Airport
+AEP,AEP,SABE,2,Buenos Aires,Jorge Newbery Airport
+AUH,AUH,OMAA,2,Abu Dhabi,Abu Dhabi International Airport
+KWI,KWI,OKBK,2,Kuwait,Kuwait International Airport
+YEG,YEG,CYEG,2,Edmonton,Edmonton International Airport
+BHX,BHX,EGBB,2,Birmingham,Birmingham International Airport
+VCE,VCE,LIPZ,2,Venice,Venice Marco Polo Airport
+PUS,PUS,RKPK,2,Busan,Gimhae International Airport
+ALB,ALB,KALB,2,Albany,Albany International Airport
+THR,THR,OIII,2,Tehran,Mehrabad International Airport
+SNA,SNA,KSNA,2,Santa Ana,John Wayne Airport
+BPN,BPN,WALL,2,Balikpapan,Sultan Aji Muhamad Sulaiman Airport
+WLG,WLG,NZWN,2,Wellington,Wellington International Airport
+ACK,ACK,KACK,2,Nantucket,Nantucket Memorial Airport
+RIX,RIX,EVRA,2,Riga,Riga International Airport
+PIT,PIT,KPIT,2,Pittsburgh,Pittsburgh International Airport
+PEN,PEN,WMKP,2,Penang,Penang International Airport
+RSW,RSW,KRSW,2,Fort Myers,Southwest Florida International Airport
+BNA,BNA,KBNA,2,Nashville,Nashville International Airport
+PBI,PBI,KPBI,2,West Palm Beach,West Palm Beach International Airport
+KIX,KIX,RJBB,2,Osaka,Kansai International Airport
+HAM,HAM,EDDH,2,Hamburg,Hamburg Airport
+ADL,ADL,YPAD,2,Adelaide,Adelaide Airport
+POA,POA,SBPA,2,Porto Alegre,Salgado Filho International Airport
+CEB,CEB,RPVM,2,Cebu City,Mactan Cebu International Airport
+BUR,BUR,KBUR,2,Burbank,Bob Hope Airport
+LUX,LUX,ELLX,2,Luxembourg,Luxembourg Airport
+TLV,TLV,LLBG,2,Tel Aviv Yafo,Ben Gurion International Airport
+MRS,MRS,LFML,2,Marseille,Marseille Airport
+CCU,CCU,VECC,2,Kolkata,Netaji Subhas Chandra Bose Airport
+OGG,OGG,PHOG,2,Kahului,Kahului Airport
+LIM,LIM,SPIM,2,Lima,J Chavez International Airport
+CPT,CPT,FACT,2,Cape Town,Cape Town International Airport
+PTY,PTY,MPTO,2,Panama City,Tocumen International Airport
+GMP,GMP,RKSS,2,Seoul,Gimpo International Airport
+ADB,ADB,LTBJ,2,Izmir,Izmir Adnan Menderes Airport
+OMA,OMA,KOMA,2,Omaha,Eppley Airfield
+NAS,NAS,MYNN,2,Nassau,Lynden Pindling International Airport
+UPG,UPG,WAAA,2,Ujung Pandang,Sultan Hasanuddin International Airport
+CMH,CMH,KCMH,2,Columbus,Port Columbus International Airport
+OKC,OKC,KOKC,2,Oklahoma City,Will Rogers World Airport
+DUB,DUB,EIDW,2,Dublin,Dublin Airport
+STR,STR,EDDS,2,Stuttgart,Stuttgart Airport
+ESB,ESB,LTAC,2,Ankara,Esenboga Airport
+DMK,DMK,VTBD,2,Bangkok,Don Muang International Airport
+HAJ,HAJ,EDDV,2,Hanover,Hanover Airport
+TUL,TUL,KTUL,2,Tulsa,Tulsa International Airport
+XQC,XQC,ORBD,2,Balad,Balad Airbase
+WNZ,WNZ,ZSWZ,2,Wenzhou,Wenzhou Longwan International Airport
+YOW,YOW,CYOW,2,Ottawa,Ottawa Macdonald Cartier International Airport
+TNA,TNA,ZSJN,2,Jinan,Jinan Yaoqiang International Airport
+SJW,SJW,ZBSJ,2,Shijiazhuang,Shijiazhuang Daguocun Airport
+HAK,HAK,ZJHK,2,Haikou,Haikou Airport
+TYN,TYN,ZBYN,2,Taiyuan,Taiyuan Wusu International Airport
+CGQ,CGQ,ZYCC,2,Changchun,Changchun Longjia International Airport
+HRB,HRB,ZYHB,2,Harbin,Harbin Airport
+TSN,TSN,ZBTJ,2,Tianjin,Tianjin Binhai International Airport
+NNG,NNG,ZGNN,2,Nanning,Nanning Airport
+KWE,KWE,ZUGY,2,Guiyang,Guiyang Longdongbao International Airport
+PRG,PRG,LKPR,2,Prague,Vaclav Havel Airport Prague
+HKT,HKT,VTSP,2,Phuket,Phuket International Airport
+MKE,MKE,KMKE,2,Milwaukee,General Mitchell International Airport
+PMI,PMI,LEPA,2,Palma Mallorca,Palma de Mallorca Airport
+PVD,PVD,KPVD,2,Providence,Theodore Francis Green Memorial State Airport
+DLC,DLC,ZYTL,2,Dalian,Dalian Zhoushuizi International Airport
+WUH,WUH,ZHHH,2,Wuhan,Wuhan Airport
+CSX,CSX,ZGHA,2,Changsha,Changsha Huanghua Airport
+CGO,CGO,ZHCC,2,Zhengzhou,Zhengzhou Xinzheng Airport
+FOC,FOC,ZSFZ,2,Fuzhou,Changle International Airport
+URC,URC,ZWWW,2,Urumqi,Urumqi Airport
+TAO,TAO,ZSQD,2,Qingdao,Qingdao Airport
+NGO,NGO,RJGG,2,Nagoya,Chubu Centrair International Airport
+CTS,CTS,RJCC,2,Sapporo,New Chitose Airport
+DAC,DAC,VGHS,2,Dhaka,Hazrat Shahjalal International Airport
+CHS,CHS,KCHS,2,Charleston,Charleston International Airport
+BZE,BZE,MZBZ,2,Belize City,Philip S W  Goldson International Airport
+HET,HET,ZBHH,2,Hohhot,Hohhot Baita International Airport
+KHN,KHN,ZSCN,2,Nanchang,Nanchang Changbei International Airport
+NCE,NCE,LFMN,2,Nice,Cote D Azur Airport
+SJU,SJU,TJSJ,2,San Juan,Luis Munoz Marin International Airport
+KNO,KNO,WIMM,2,Kuala Namu,Kuala Namu International Airport
+SHE,SHE,ZYTX,2,Shenyang,Shenyang Taoxian International Airport
+ABZ,ABZ,EGPD,2,Aberdeen,Aberdeen International Airport
+SUS,SUS,KSUS,2,Saint Louis,Spirit of St  Louis Airport
+BSB,BSB,SBBR,2,Brasilia,Brasilia International Airport
+SUB,SUB,WARR,2,Surabaya,Juanda International Airport
+SYX,SYX,ZJSY,2,Sanya,Sanya Phoenix International Airport
+LOS,LOS,DNMM,2,Lagos,Murtala Muhammed Airport
+LCY,LCY,EGLC,2,London,London City Airport
+MCI,MCI,KMCI,2,Kansas City,Kansas City International Airport
+LYS,LYS,LFLL,2,Lyon,Lyon Saint Exupery International Airport
+BHM,BHM,KBHM,2,Birmingham,Birmingham Shuttlesworth International Airport
+YHZ,YHZ,CYHZ,2,Halifax,Halifax Stanfield International Airport
+KOJ,KOJ,RJFK,2,Kagoshima,Kagoshima Airport
+CMB,CMB,VCBI,2,Colombo,Bandaranaike International Airport
+GIG,GIG,SBGL,2,Rio De Janeiro,Galeao Antonio Carlos Jobim International Airport
+AUS,AUS,KAUS,2,Austin,Austin Bergstrom International Airport
+CJU,CJU,RKPC,2,Jeju,Jeju International Airport
+SVX,SVX,USSS,2,Yekaterinburg,Koltsovo International Airport
+GVA,GVA,LSGG,2,Geneva,Geneve Cointrin Airport
+OKA,OKA,ROAH,2,Okinawa,Naha Airport
+CUN,CUN,MMUN,2,Cancun,Cancun International Airport
+DAL,DAL,KDAL,2,Dallas,Dallas Love Field
+YTZ,YTZ,CYTZ,2,Toronto,Toronto City Centre Airport
+VCP,VCP,SBKP,2,Campinas,Viracopos Airport
+SVG,SVG,ENZV,2,Stavanger,Stavanger Airport Sola
+BUF,BUF,KBUF,2,Buffalo,Buffalo Niagara International Airport
+YQB,YQB,CYQB,2,Quebec,Quebec City Jean Lesage International Airport
+ALG,ALG,DAAG,2,Algiers,Houari Boumediene Airport
+HAN,HAN,VVNB,2,Hanoi,Noi Bai International Airport
+REC,REC,SBRF,2,Recife,Guararapes Gilberto Freyre International Airport
+YWG,YWG,CYWG,2,Winnipeg,Winnipeg James Armstrong Richardson International Airport
+ALC,ALC,LEAL,2,Alicante,Alicante Elche Airport
+SGN,SGN,VVTS,2,Ho Chi Minh City,Ho Chi Minh City Airport
+CNF,CNF,SBCF,2,Belo Horizonte,Tancredo Neves International Airport
+TLS,TLS,LFBO,2,Toulouse,Blagnac Airport
+CHC,CHC,NZCH,2,Christchurch,Christchurch International Airport
+NBO,NBO,HKJK,2,Nairobi,Jomo Kenyatta International Airport
+BRS,BRS,EGGD,2,Bristol,Bristol Airport
+BDL,BDL,KBDL,2,Hartford,Bradley International Airport
+STT,STT,TIST,2,Saint Thomas,Cyril E  King Airport
+SAW,SAW,LTFJ,2,Istanbul,Sabiha Gokcen International Airport
+MDE,MDE,SKRG,2,Medellin,Jose Maria Cordova International Airport
+DSM,DSM,KDSM,2,Des Moines,Des Moines International Airport
+AMM,AMM,OJAI,2,Amman,Queen Alia International Airport
+ROC,ROC,KROC,2,Rochester,Greater Rochester International Airport
+RUH,RUH,OERK,2,Riyadh,King Khaled International Airport
+TEB,TEB,KTEB,2,Teterboro,Teterboro Airport
+LPA,LPA,GCLP,2,Las Palmas,Gran Canaria Airport
+KTM,KTM,VNKT,2,Kathmandu,Tribhuvan International Airport
+SJC,SJC,KSJC,2,San Jose,Norman Y  Mineta San Jose International Airport
+UIO,UIO,SEQM,2,Quito,Mariscal Sucre International Airport
+SMF,SMF,KSMF,2,Sacramento,Sacramento International Airport
+LED,LED,ULLI,2,Saint Petersburg,Pulkovo Airport
+EZE,EZE,SAEZ,2,Buenos Aires,Ministro Pistarini Airport
+MAA,MAA,VOMM,2,Chennai,Chennai Airport
+TRD,TRD,ENVA,2,Trondheim,Trondheim Airport Vaernes
+BFI,BFI,KBFI,2,Seattle,Boeing Field International Airport
+ORF,ORF,KORF,2,Norfolk,Norfolk International Airport
+RIC,RIC,KRIC,2,Richmond,Richmond International Airport  Byrd Field 
+MCT,MCT,OOMS,2,Muscat,Seeb International Airport
+MTY,MTY,MMMY,2,Monterrey,Gen Mariano Escobedo Airport
+CMN,CMN,GMMN,2,Casablanca,Mohamed V International Airport
+SAT,SAT,KSAT,2,San Antonio,San Antonio International Airport
+HYA,HYA,KHYA,2,Hyannis,Barnstable Municipal Airport
+WAW,WAW,EPWA,2,Warsaw,Frederic Chopin Airport
+OTP,OTP,LROP,2,Bucharest,Otopeni International Airport
+LIN,LIN,LIML,2,Milan,Milano Linate Airport
+BLQ,BLQ,LIPE,2,Bologna,Guglielmo Marconi Airport
+BGY,BGY,LIME,2,Milan,Orio al Serio International Airport
+STN,STN,EGSS,2,London,Stansted Airport
+OPO,OPO,LPPR,2,Porto,Porto Airport
+JAX,JAX,KJAX,2,Jacksonville,Jacksonville International Airport
+SSA,SSA,SBSV,2,Salvador,Deputado Luis Eduardo Magalhaes International Airport
+ATH,ATH,LGAV,2,Athens,Eleftherios Venizelos International Airport
+RDU,RDU,KRDU,2,Raleigh Durham,Raleigh Durham International Airport
+CRL,CRL,EBCI,2,Brussels,Charleroi Brussels South Airport
+ITM,ITM,RJOO,2,Osaka,Itami Airport
+MXP,MXP,LIMC,2,Milan,Milano Malpensa Airport
+AYT,AYT,LTAI,2,Antalya,Antalya Airport
+SXM,SXM,TNCM,2,Sint Maarten,Princess Juliana International Airport
+CLO,CLO,SKCL,3,Cali,Alfonso B  Aragon Airport
+RTM,RTM,EHRD,3,Rotterdam,Rotterdam The Hague Airport
+RST,RST,KRST,3,Rochester,Rochester International Airport
+AVL,AVL,KAVL,3,Asheville,Asheville Regional Airport
+HIJ,HIJ,RJOA,3,Hiroshima,Hiroshima Airport
+DUR,DUR,FALE,3,Durban,King Shaka International Airport
+EBL,EBL,ORER,3,Erbil,Erbil International Airport
+ISP,ISP,KISP,3,Ronkonkoma,Long Island MacArthur Airport
+BIL,BIL,KBIL,3,Billings,Billings Logan International Airport
+YZV,YZV,CYZV,3,Sept Iles,Sept Iles Airport
+MYR,MYR,KMYR,3,Myrtle Beach,Myrtle Beach International Airport
+PUJ,PUJ,MDPC,3,Punta Cana,Punta Cana International Airport
+MHT,MHT,KMHT,3,Manchester,Manchester Boston Regional Airport
+EBH,EBH,DAOY,3,El Bayadh,El Bayadh Airport
+TFS,TFS,GCTS,3,Tenerife,Tenerife South Airport
+MMX,MMX,ESMS,3,Malmo,Malmo Airport
+GUM,GUM,PGUM,3,Guam,A B  Won Pat International Airport
+ABE,ABE,KABE,3,Allentown,Lehigh Valley International Airport
+GRR,GRR,KGRR,3,Grand Rapids,Gerald R  Ford International Airport
+BOO,BOO,ENBO,3,Bodo,Bodo Airport
+DAD,DAD,VVDN,3,Da Nang,Da Nang International Airport
+REP,REP,VDSR,3,Siem Reap,Siem Reap International Airport
+BOD,BOD,LFBD,3,Bordeaux,Bordeaux Airport
+IBZ,IBZ,LEIB,3,Ibiza,Ibiza Airport
+LOP,LOP,WADL,3,Praya,Lombok International Airport
+ITO,ITO,PHTO,3,Hilo,Hilo International Airport
+CHO,CHO,KCHO,3,Charlottesville,Charlottesville Albemarle Airport
+SGF,SGF,KSGF,3,Springfield,Springfield Branson National Airport
+NAT,NAT,SBNT,3,Natal,Augusto Severo Airport
+NCL,NCL,EGNT,3,Newcastle,Newcastle Airport
+SBN,SBN,KSBN,3,South Bend,South Bend Regional
+MAO,MAO,SBEG,3,Manaus,Eduardo Gomes International Airport
+PNQ,PNQ,VAPO,3,Pune,Pune Airport
+KMJ,KMJ,RJFT,3,Kumamoto,Kumamoto Airport
+BEN,BEN,HLLB,3,Benghazi,Benina International Airport
+LIH,LIH,PHLI,3,Kauai Island,Lihue Airport
+OVB,OVB,UNNT,3,Novosibirsk,Novosibirsk Tolmachevo Airport
+TLL,TLL,EETN,3,Tallinn,Tallinn Airport
+ANF,ANF,SCFA,3,Antofagasta,Cerro Moreno International Airport
+FAT,FAT,KFAT,3,Fresno,Fresno Yosemite International Airport
+GRO,GRO,LEGE,3,Girona,Girona Costa Brava Airport
+ABV,ABV,DNAA,3,Abuja,Nnamdi Azikiwe International Airport
+ORL,ORL,KORL,3,Orlando,Orlando Executive Airport
+ROA,ROA,KROA,3,Roanoke,Roanoke Blacksburg Regional Airport
+MLE,MLE,VRMM,3,Male,Male International Airport
+CTG,CTG,SKCG,3,Cartagena,Rafael Nunez International Airport
+MKK,MKK,PHMK,3,Hoolehua,Molokai Airport
+CUZ,CUZ,SPZO,3,Cuzco,Alejandro Velasco Astete International Airport
+MOB,MOB,KMOB,3,Mobile,Mobile Regional Airport
+MSN,MSN,KMSN,3,Madison,Dane County Regional Airport
+UME,UME,ESNU,3,Umea,Umea Airport
+MPH,MPH,RPWY,3,Caticlan,Boracay Airport
+MDZ,MDZ,SAME,3,Mendoza,El Plumerillo International Airport
+CIA,CIA,LIRA,3,Rome,Ciampino G  B  Pastine International Airport
+STP,STP,KSTP,3,Saint Paul,St  Paul Downtown Airport
+ICT,ICT,KICT,3,Wichita,Wichita Mid Continent Airport
+BBU,BBU,LRBS,3,Bucharest,Baneasa Airport
+JBQ,JBQ,MDJB,3,Santo Domingo,La Isabela International Airport
+GCI,GCI,EGJB,3,Guernsey,Guernsey Airport
+BRE,BRE,EDDW,3,Bremen,Bremen Airport
+TRN,TRN,LIMF,3,Turin,Turin Airport
+TRV,TRV,VOTV,3,Thiruvananthapuram,Trivandrum International Airport
+GDN,GDN,EPGD,3,Gdansk,Gdansk Lech Walesa Airport
+MLI,MLI,KMLI,3,Moline,Quad City International Airport
+LBB,LBB,KLBB,3,Lubbock,Lubbock Preston Smith International Airport
+SPN,SPN,PGSN,3,Saipan,Saipan International Airport
+SAH,SAH,OYSN,3,Sana a,Sana a International Airport
+VQS,VQS,TJVQ,3,Vieques,Antonio Rivera Rodriguez Airport
+PLS,PLS,MBPV,3,Providenciales,Providenciales International Airport
+PSP,PSP,KPSP,3,Palm Springs,Palm Springs International Airport
+MAF,MAF,KMAF,3,Midland Odessa,Midland International Airport
+TZX,TZX,LTCG,3,Trabzon,Trabzon Airport
+RAO,RAO,SBRP,3,Ribeirao Preto,Dr  Leite Lopes State Airport
+CNX,CNX,VTCC,3,Chiang Mai,Chiang Mai International Airport
+BTV,BTV,KBTV,3,Burlington,Burlington International Airport
+LKO,LKO,VILK,3,Lucknow,Chaudhary Charan Singh International Airport
+CNS,CNS,YBCS,3,Cairns,Cairns Airport
+AHB,AHB,OEAB,3,Abha,Abha Regional Airport
+SOU,SOU,EGHI,3,Southampton,Southampton Airport
+LIL,LIL,LFQQ,3,Lille,Lille Airport
+AAL,AAL,EKYT,3,Aalborg,Aalborg Airport
+JNU,JNU,PAJN,3,Juneau,Juneau International Airport
+LLA,LLA,ESPA,3,Lulea,Lulea Airport
+YTS,YTS,CYTS,3,Timmins,Timmins Victor M  Power Airport
+CAG,CAG,LIEE,3,Cagliari,Cagliari Elmas Airport
+PFO,PFO,LCPH,3,Paphos,Paphos International Airport
+NAN,NAN,NFFN,3,Nadi,Nadi International Airport
+HAV,HAV,MUHA,3,Havana,Jose Marti International Airport
+VLC,VLC,LEVC,3,Valencia,Valencia Airport
+SKG,SKG,LGTS,3,Thessaloniki,Thessaloniki International Airport
+ZNZ,ZNZ,HTZA,3,Zanzibar,Zanzibar International Airport
+MDL,MDL,VYCZ,3,Mandalay,Mandalay International Airport
+LIRI,QSR,LIRI,3,Salerno,Salerno Costa d Amalfi Airport
+TFN,TFN,GCXO,3,Tenerife,Tenerife North Airport
+POS,POS,TTPP,3,Port Of Spain,Piarco International Airport
+LEX,LEX,KLEX,3,Lexington,Blue Grass Airport
+MVY,MVY,KMVY,3,Martha s Vineyard,Martha s Vineyard Airport
+FSD,FSD,KFSD,3,Sioux Falls,Sioux Falls Regional Airport  Joe Foss Field 
+LAD,LAD,FNLU,3,Luanda,Quatro de Fevereiro Airport
+EMA,EMA,EGNX,3,Leicestershire,East Midlands Airport
+ADQ,ADQ,PADQ,3,Kodiak,Kodiak Benny Benson State Airport
+MID,MID,MMMD,3,Merida,Manuel Crescencio Rejon International Airport
+MAR,MAR,SVMC,3,Maracaibo,La Chinita Airport
+VNO,VNO,EYVI,3,Vilnius,Vilnius International Airport
+TYS,TYS,KTYS,3,Knoxville,McGhee Tyson Airport
+YQT,YQT,CYQT,3,Thunder Bay,Thunder Bay International Airport
+DVO,DVO,RPMD,3,Davao,Francisco Bangoy Intl Airport
+HDY,HDY,VTSS,3,Hat Yai,Hat Yai International Airport
+KTN,KTN,PAKT,3,Ketchikan,Ketchikan International Airport
+YDF,YDF,CYDF,3,Deer Lake,Deer Lake Regional Airport
+BDJ,BDJ,WRBB,3,Banjarmasin,Syamsudin Noor International Airport
+TUS,TUS,KTUS,3,Tucson,Tucson International Airport
+PNK,PNK,WIOO,3,Pontianak,Supadio International Airport
+ENA,ENA,PAEN,3,Kenai,Kenai Municipal Airport
+TRF,TRF,ENTO,3,Oslo,Torp Sandefjord Airport
+JAN,JAN,KJAN,3,Jackson,Jackson Evers International Airport
+SJD,SJD,MMSD,3,San Jose Cabo,Los Cabos International Airport
+PDG,PDG,WIPT,3,Padang,Minangkabau International Airport
+AQP,AQP,SPQU,3,Arequipa,Rodriguez Ballon International Airport
+SLZ,SLZ,SBSL,3,Sao Luiz,Marechal Cunha Machado International Airport
+SXR,SXR,VISR,3,Srinagar,Srinagar International Airport
+UFA,UFA,UWUU,3,Ufa,Ufa International Airport
+PIA,PIA,KPIA,3,Peoria,Peoria International Airport
+AXT,AXT,RJSK,3,Akita,Akita Airport
+ALA,ALA,UAAA,3,Almaty,Almaty Airport
+YYJ,YYJ,CYYJ,3,Victoria,Victoria International Airport
+CGR,CGR,SBCG,3,Campo Grande,Campo Grande International Airport
+YMM,YMM,CYMM,3,Fort McMurray,Fort McMurray International Airport
+DPA,DPA,KDPA,3,Chicago,DuPage Airport
+YSB,YSB,CYSB,3,Sudbury,Sudbury Airport
+BGI,BGI,TBPB,3,Bridgetown,Grantley Adams International Airport
+MCZ,MCZ,SBMO,3,Maceio,Maceio Zumbi dos Palmares International Airport
+AMD,AMD,VAAH,3,Ahmedabad,Ahmedabad Airport
+APA,APA,KAPA,3,Denver,Centennial Airport
+PMO,PMO,LICJ,3,Palermo,Falcone Borsellino Airport
+KOA,KOA,PHKO,3,Kailua Kona,Kona International Airport at Keahole
+MES,MES,WIMK,3,Medan,Polonia Airport
+BLL,BLL,EKBI,3,Billund,Billund Airport
+ILM,ILM,KILM,3,Wilmington,Wilmington International Airport
+BJX,BJX,MMLO,3,Leon Guanajuato,Guanajuato International Airport
+LIT,LIT,KLIT,3,Little Rock,Bill and Hillary Clinton National Airport
+KTW,KTW,EPKT,3,Katowice,Katowice International Airport
+SAL,SAL,MSLP,3,San Salvador,El Salvador International Airport
+CUL,CUL,MMCL,3,Culiacan,Culiacan International Airport
+TSE,TSE,UACC,3,Astana,Astana International Airport
+RAK,RAK,GMMX,3,Marrakech,Menara Airport
+YLW,YLW,CYLW,3,Kelowna,Kelowna International Airport
+DRW,DRW,YPDN,3,Darwin,Darwin International Airport
+LST,LST,YMLT,3,Launceston,Launceston Airport
+LGK,LGK,WMKL,3,Langkawi,Langkawi International Airport
+KRR,KRR,URKK,3,Krasnodar,Krasnodar International Airport
+PLU,PLU,SBBH,3,Belo Horizonte,Belo Horizonte Airport
+LPL,LPL,EGGP,3,Liverpool,Liverpool John Lennon Airport
+ZAG,ZAG,LDZA,3,Zagreb,Zagreb International Airport
+MFR,MFR,KMFR,3,Medford,Rogue Valley International Medford Airport
+NUE,NUE,EDDN,3,Nuremberg,Nuremberg Airport
+SWA,SWA,ZGOW,3,Jieyang,Jieyang Chaoshan Airport
+ZUH,ZUH,ZGSD,3,Zhuhai,Zhuhai Jinwan Airport
+CAK,CAK,KCAK,3,Akron,Akron Canton Airport
+MLA,MLA,LMML,3,Malta,Malta International Airport
+BVA,BVA,LFOB,3,Paris,Beauvais Tille Airport
+ECP,ECP,KECP,3,Panama City,Northwest Florida Beaches International Airport
+BEG,BEG,LYBE,3,Belgrade,Belgrad Nikola Tesla Airport
+UZC,UZC,LYUE,3,Uzice,Ponikve Airport
+NGQ,NGQ,ZUAL,3,Shi Quan He,Ngari Gunsa Ali Kunsha Airport
+LHW,LHW,ZLAN,3,Lanzhou,Lanzhou Airport
+BAV,BAV,ZBOW,3,Baotou,Baotou Airport
+INC,INC,ZLIC,3,Yinchuan,Yinchuan Hedong International Airport
+BJY,BJY,LYBT,3,Belgrade,Batajnica Airbase
+NGB,NGB,ZSNB,3,Ningbo,Ningbo Airport
+XNN,XNN,ZLXN,3,Xining,Xining Airport
+HFE,HFE,ZSOF,3,Hefei,Hefei Xinqiao Airport
+CTA,CTA,LICC,3,Catania,Catania Fontanarossa Airport
+KRK,KRK,EPKK,3,Krakow,J  Paul II International Airport Krakow Balice
+YYT,YYT,CYYT,3,St  John s,St  John s International Airport
+PNS,PNS,KPNS,3,Pensacola,Pensacola International Airport
+CZX,CZX,ZSCG,3,Changzhou,Changzhou Airport
+FAR,FAR,KFAR,3,Fargo,Hector International Airport
+DAY,DAY,KDAY,3,Dayton,James M  Cox Dayton International Airport
+GRB,GRB,KGRB,3,Green Bay,Austin Straubel International Airport
+HBA,HBA,YMHB,3,Hobart,Hobart International Airport
+KMQ,KMQ,RJNK,3,Komatsu,Komatsu Airport
+OIT,OIT,RJFO,3,Oita,Oita Airport
+KKJ,KKJ,RJFR,3,Kitakyushu,Kitakyushu Airport
+KMI,KMI,RJFM,3,Miyazaki,Miyazaki Airport
+RNO,RNO,KRNO,3,Reno,Reno Tahoe International Airport
+ELP,ELP,KELP,3,El Paso,El Paso International Airport
+GSO,GSO,KGSO,3,Greensboro High Point,Piedmont Triad International Airport
+FAI,FAI,PAFA,3,Fairbanks,Fairbanks International Airport
+BOI,BOI,KBOI,3,Boise,Boise Air Terminal  Gowen Field 
+YIP,YIP,KYIP,3,Detroit,Willow Run Airport
+PKU,PKU,WIBB,3,Pekanbaru,Sultan Syarif Kasim II International Airport
+MKC,MKC,KMKC,3,Kansas City,Charles B  Wheeler Downtown Airport
+IKT,IKT,UIII,3,Irkutsk,Irkutsk International Airport
+GFK,GFK,KGFK,3,Grand Forks,Grand Forks International Airport
+YUM,YUM,KNYL,3,Yuma,Yuma International Airport
+KGL,KGL,HRYR,3,Kigali,Kigali International Airport
+BLA,BLA,SVBC,3,Barcelona,General Jose Antonio Anzoategui International Airport
+PSA,PSA,LIRP,3,Pisa,Pisa International Airport
+SRG,SRG,WIIS,3,Semarang,Achmad Yani International Airport
+LAN,LAN,KLAN,3,Lansing,Capital Region International Airport
+AER,AER,URSS,3,Adler Sochi,Sochi International Airport
+GUA,GUA,MGGT,3,Guatemala City,La Aurora International Airport
+CCJ,CCJ,VOCL,3,Kozhikode,Calicut International Airport
+GOI,GOI,VAGO,3,Goa,Dabolim Airport
+WUX,WUX,ZSWX,3,Wuxi,Wuxi Sunan International Airport
+BAQ,BAQ,SKBQ,3,Barranquilla,E Cortissoz Airport
+EBB,EBB,HUEN,3,Entebbe,Entebbe International Airport
+WRO,WRO,EPWR,3,Wroclaw,Wroclaw Airport
+LBA,LBA,EGNM,3,Leeds,Leeds Bradford International Airport
+BRI,BRI,LIBD,3,Bari,Palese Airport
+OOL,OOL,YBCG,3,Coolangatta  Gold Coast ,Gold Coast Airport
+WMX,WMX,WAJW,3,Wamena,Wamena Airport
+MSQ,MSQ,UMMS,3,Minsk,Minsk National Airport
+PDK,PDK,KPDK,3,Atlanta,DeKalb Peachtree Airport
+LWM,LWM,KLWM,3,Lawrence,Lawrence Municipal Airport
+YPA,YPA,CYPA,3,Prince Albert,Prince Albert Airport
+MYY,MYY,WBGR,3,Miri,Miri Airport
+YNT,YNT,ZSYT,3,Yantai,Yantai Laishan International Airport
+FAO,FAO,LPFR,3,Faro,Faro Airport
+JOG,JOG,WIIJ,3,Yogyakarta,Adisutjipto International Airport
+HMO,HMO,MMHO,3,Hermosillo,Gen Pesqueira Garcia Airport
+SVQ,SVQ,LEZL,3,Sevilla,Seville Airport
+LGB,LGB,KLGB,3,Long Beach,Long Beach Airport
+MED,MED,OEMA,3,Madinah,Prince Mohammad Bin Abdulaziz International Airport
+PTP,PTP,TFFR,3,Abymes,Pointe a Pitre International Airport
+KHI,KHI,OPKC,3,Karachi,Jinnah International Airport
+RDM,RDM,KRDM,3,Redmond,Roberts Field Redmond Municipal Airport
+VIX,VIX,SBVT,3,Vitoria,Eurico de Aguiar Salles Airport
+XNA,XNA,KXNA,3,Bentonville,Northwest Arkansas Regional Airport
+KEF,KEF,BIKF,3,Reykjavik,Keflavik International Airport
+SBH,SBH,TFFJ,3,Saint Barthelemy,St  Barthelemy Airport
+SAP,SAP,MHLM,3,San Pedro Sula,Ramon Villeda Morales International Airport
+KRS,KRS,ENCN,3,Kristiansand,Kjevik Airport
+CGP,CGP,VGEG,3,Chittagong,Shah Amanat International Airport
+ROV,ROV,URRR,3,Rostov,Rostov Airport
+NTE,NTE,LFRS,3,Nantes,Nantes Atlantique Airport
+COK,COK,VOCI,3,Kochi,Cochin International Airport
+YQM,YQM,CYQM,3,Moncton,Greater Moncton International Airport
+ISG,ISG,ROIG,3,Ishigaki,Painushima Ishigaki Airport
+YXE,YXE,CYXE,3,Saskatoon,Saskatoon International Airport
+HEH,HEH,VYHH,3,Heho,Heho Airport
+FRU,FRU,UAFM,3,Bishkek,Manas International Airport
+KLO,KLO,RPVK,3,Kalibo,Kalibo International Airport
+EUG,EUG,KEUG,3,Eugene,Eugene Airport
+COS,COS,KCOS,3,Colorado Springs,Colorado Springs Airport
+IOM,IOM,EGNS,3,Isle Of Man,Isle of Man Airport
+TOS,TOS,ENTC,3,Tromso,Tromso Langnes Airport
+NTL,NTL,YWLM,3,Newcastle,Newcastle Airport
+EVN,EVN,UDYZ,3,Yerevan,Zvartnots International Airport
+KZN,KZN,UWKD,3,Kazan,Kazan International Airport
+PNH,PNH,VDPP,3,Phnom Penh,Phnom Penh International Airport
+DLA,DLA,FKKD,3,Douala,Douala Airport
+CUU,CUU,MMCU,3,Chihuahua,Gen Fierro Villalobos Airport
+ADS,ADS,KADS,3,Dallas,Addison Airport
+SXB,SXB,LFST,3,Strasbourg,Strasbourg Airport
+BDO,BDO,WICC,3,Bandung,Husein Sastranegara Airport
+TAS,TAS,UTTT,3,Tashkent,Yuzhny Airport
+VTE,VTE,VLVT,3,Vientiane,Wattay International Airport
+MVD,MVD,SUMU,3,Montevideo,Carrasco International Airport
+CBB,CBB,SLCB,3,Cochabamba,J Wilsterman Airport
+SAV,SAV,KSAV,3,Savannah,Savannah Hilton Head Airport
+PLZ,PLZ,FAPE,3,Port Elizabeth,Port Elizabeth International Airport
+JAI,JAI,VIJP,3,Jaipur,Jaipur Airport
+YKS,YKS,UEEE,3,Yakutsk,Yakutsk Airport
+TSV,TSV,YBTL,3,Townsville,Townsville Airport
+LEJ,LEJ,EDDP,3,Leipzig Halle,Leipzig Halle Airport
+STX,STX,TISX,3,Saint Croix,Henry E  Rohlsen Airport
+BKL,BKL,KBKL,3,Cleveland,Burke Lakefront Airport
+YHM,YHM,CYHM,3,Hamilton,Hamilton Airport
+AMA,AMA,KAMA,3,Amarillo,Rick Husband Amarillo International Airport
+GAU,GAU,VEGT,3,Guwahati,Lokpriya Gopinath Bordoloi International Airport
+KHH,KHH,RCKH,3,Kaohsiung,Kaohsiung International Airport
+IKA,IKA,OIIE,3,Tehran,Imam Khomeini International Airport
+CRW,CRW,KCRW,3,Charleston,Yeager Airport
+MRV,MRV,URMM,3,Mineralnye Vody,Mineralnye Vody Airport
+MPL,MPL,LFMT,3,Montpellier,Mediterranee Airport
+BTH,BTH,WIKB,3,Batam,Hang Nadim Airport
+CRP,CRP,KCRP,3,Corpus Christi,Corpus Christi International Airport
+FTY,FTY,KFTY,3,Atlanta,Fulton County Airport
+BCD,BCD,RPVB,3,Bacolod,Bacolod Silay International Airport
+OTZ,OTZ,PAOT,3,Kotzebue,Ralph Wien Memorial Airport
+KBL,KBL,OAKB,3,Kabul,Kabul International Airport
+VER,VER,MMVR,3,Veracruz,Veracruz International Airport
+DRS,DRS,EDDC,3,Dresden,Dresden International Airport
+NGS,NGS,RJFU,3,Nagasaki,Nagasaki Airport
+BTR,BTR,KBTR,3,Baton Rouge,Baton Rouge Metropolitan Airport
+MFM,MFM,VMMC,3,Macau,Macau International Airport
+SDQ,SDQ,MDSD,3,Santo Domingo,Las Americas International Airport
+HPN,HPN,KHPN,3,Westchester County,Westchester County Airport
+SSH,SSH,HESH,3,Sharm el Sheikh,Sharm El Sheikh Airport
+MBJ,MBJ,MKJS,3,Montego Bay,Sangster International Airport
+ILO,ILO,RPVI,3,Iloilo,Mandurriao Airport
+LHE,LHE,OPLA,3,Lahore,Allama Iqbal International Airport
+KBR,KBR,WMKC,3,Kota Bharu,Sultan Ismail Petra Airport
+DAR,DAR,HTDA,3,Dar Es Salaam,Julius Nyerere International Airport
+TIP,TIP,HLLT,3,Tripoli,Tripoli International Airport
+YQR,YQR,CYQR,3,Regina,Regina International Airport
+SHV,SHV,KSHV,3,Shreveport,Shreveport Regional Airport
+ADD,ADD,HAAB,3,Addis Ababa,Addis Ababa Bole International Airport
+EIN,EIN,EHEH,3,Eindhoven,Eindhoven Airport
+MRY,MRY,KMRY,3,Monterey,Monterey Regional Airport
+FLR,FLR,LIRQ,3,Florence,Firenze Peretola Airport
+NRN,NRN,EDLV,3,Dusseldorf,Weeze Airport
+LUA,LUA,VNLK,3,Lukla,Lukla Airport
+MDC,MDC,WAMM,3,Manado,Sam Ratulangi International Airport
+GSP,GSP,KGSP,3,Greenville,Greenville Spartanburg International Airport
+NYO,NYO,ESKN,3,Stockholm,Stockholm Skavsta Airport
+YXL,YXL,CYXL,3,Sioux Lookout,Sioux Lookout Airport
+IEV,IEV,UKKK,3,Kiev,Kyiv International Airport
+CHA,CHA,KCHA,3,Chattanooga,Chattanooga Airport
+DJJ,DJJ,WAJJ,3,Jayapura,Sentani Airport
+TLH,TLH,KTLH,3,Tallahassee,Tallahassee Regional Airport
+MPM,MPM,FQMA,3,Maputo,Maputo International Airport
+CAE,CAE,KCAE,3,Columbia,Columbia Metropolitan Airport
+SJO,SJO,MROC,3,San Jose,Juan Santamaria International Airport
+CXH,CXH,CYHC,3,Vancouver,Coal Harbour Sea Plane Base
+LCK,LCK,KLCK,3,Columbus,Rickenbacker International Airport
+SZG,SZG,LOWS,3,Salzburg,W  A  Mozart Salzburg Airport
+TSA,TSA,RCSS,3,Taipei,Taipei Songshan Airport
+CID,CID,KCID,3,Cedar Rapids,The Eastern Iowa Airport
+BFS,BFS,EGAA,3,Belfast,Belfast International Airport
+ACE,ACE,GCRR,3,Lanzarote,Lanzarote Airport
+ANU,ANU,TAPA,3,Antigua,V C  Bird International Airport
+FOR,FOR,SBFZ,3,Fortaleza,Pinto Martins Airport
+YTH,YTH,CYTH,3,Thompson,Thompson Airport
+POM,POM,AYPY,3,Port Moresby,Jacksons International Airport
+DKR,DKR,GOOY,3,Dakar,Leopold Sedar Senghor International Airport
+MAH,MAH,LEMH,3,Menorca,Menorca Airport
+PLM,PLM,WIPP,3,Palembang,Sultan Mahmud Badaruddin II Airport
+TUN,TUN,DTTA,3,Tunis,Tunis Carthage International Airport
+VSA,VSA,MMVA,3,Villahermosa,Carlos Rovirosa Perez International Airport
+JER,JER,EGJJ,3,Jersey,Jersey Airport
+BIO,BIO,LEBB,3,Bilbao,Bilbao Airport
+SYZ,SYZ,OISS,3,Shiraz,Shiraz International Airport
+CGB,CGB,SBCY,3,Cuiaba,Marechal Rondon International Airport
+PWM,PWM,KPWM,3,Portland,Portland International Jetport
+KJA,KJA,UNKL,3,Krasnojarsk,Yemelyanovo Airport
+LCA,LCA,LCLK,3,Larnaca,Larnaca International Airport
+FLN,FLN,SBFL,3,Florianopolis,Hercilio Luz International Airport
+KUF,KUF,UWWW,3,Samara,Kurumoch International Airport
+SBA,SBA,KSBA,3,Santa Barbara,Santa Barbara Municipal Airport
+LUN,LUN,FLLS,3,Lusaka,Kenneth Kaunda International Airport
+PMV,PMV,SVMG,3,Porlamar,Santiago Marino International Airport
+AUA,AUA,TNCA,3,Aruba,Reina Beatrix International Airport
+ISB,ISB,OPRN,3,Islamabad,Benazir Bhutto International Airport
+TIA,TIA,LATI,3,Tirana,Tirana International Airport
+EYW,EYW,KEYW,3,Key West,Key West International Airport
+LPB,LPB,SLLP,3,La Paz,El Alto International Airport
+MBA,MBA,HKMO,3,Mombasa,Moi International Airport
+LJU,LJU,LJLJ,3,Ljubljana,Ljubljana Joze Pucnik Airport
+PHC,PHC,DNPO,3,Port Harcourt,Port Harcourt International Airport
+CUR,CUR,TNCC,3,Curacao,Curacao International Airport
+GYN,GYN,SBGO,3,Goiania,Santa Genoveva Airport
+MYJ,MYJ,RJOM,3,Matsuyama,Matsuyama Airport
+KIJ,KIJ,RJSN,3,Niigata,Niigata Airport
+TIJ,TIJ,MMTJ,3,Tijuana,Tijuana Airport
+FWA,FWA,KFWA,3,Fort Wayne,Fort Wayne International Airport
+NSN,NSN,NZNS,3,Nelson,Nelson Airport
+AFW,AFW,KAFW,3,Fort Worth,Fort Worth Alliance Airport
+KRT,KRT,HSSS,3,Khartoum,Khartoum International Airport
+YYR,YYR,CYYR,3,Goose Bay,Goose Bay Airport
+SXF,SXF,EDDB,3,Berlin,Schonefeld Airport
+OME,OME,PAOM,3,Nome,Nome Airport
+UKB,UKB,RJBE,3,Kobe,Kobe Airport
+YZF,YZF,CYZF,3,Yellowknife,Yellowknife Airport
+BWN,BWN,WBSB,3,Bandar Seri Begawan,Brunei International Airport
+SOF,SOF,LBSF,3,Sofia,Sofia Airport
+VRN,VRN,LIPX,3,Verona,Verona Villafranca Airport
+ADA,ADA,LTAF,3,Adana,Adana Airport
+COR,COR,SACO,3,Cordoba,Ingeniero Aeronautico Ambrosio L V  Taravella International Airport
+BHD,BHD,EGAC,3,Belfast,Belfast City Airport
+FUE,FUE,GCFV,3,Puerto del Rosario,Fuerteventura Airport
+YWK,YWK,CYWK,3,Wabush,Wabush Airport
+JRO,JRO,HTKJ,3,Kilimanjaro,Kilimanjaro International Airport
+MDT,MDT,KMDT,3,Middletown,Harrisburg International Airport
+HSV,HSV,KHSV,3,Huntsville,Huntsville International Airport
+CBR,CBR,YSCB,3,Canberra,Canberra Airport
+ACC,ACC,DGAA,3,Accra,Kotoka International Airport
+JHB,JHB,WMKJ,3,Johor Bharu,Senai Airport
+NAP,NAP,LIRN,3,Naples,Naples International Airport
+RYG,RYG,ENRY,3,Rygge,Moss Rygge Airport
+TJM,TJM,USTR,3,Tyumen,Roshchino International Airport
+MHD,MHD,OIMM,3,Mashad,Mashhad International Airport 
+KCH,KCH,WBGG,3,Kuching,Kuching Airport
+GJT,GJT,KGJT,3,Grand Junction,Grand Junction Regional Airport
+GRZ,GRZ,LOWG,3,Graz,Graz Airport
+VVI,VVI,SLVR,3,Santa Cruz,Viru Viru International Airport
+BEL,BEL,SBBE,3,Belem,Val De Cans International Airport
+EIS,EIS,TUPJ,3,Beef Island,Terrance B  Lettsome International Airport
+MRU,MRU,FIMP,3,Mauritius,Sir Seewoosagur Ramgoolam International Airport
+HHN,HHN,EDFH,3,Hahn,Frankfurt   Hahn Airport
+GYE,GYE,SEGU,3,Guayaquil,Jose Joaquin de Olmedo Airport
