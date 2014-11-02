@@ -1,6 +1,6 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_iss_location = function(api_result){
+    env.ddg_spice_isslocation = function(api_result){
 
         if (api_result.message !== "success") {
             return Spice.failed('iss_location');
@@ -12,12 +12,12 @@
             data: api_result,
             meta: {
                 sourceName: "open-notify.org",
-                sourceUrl: 'http://api.open-notify.org/iss-now.json'
+                sourceUrl: 'http://open-notify.org'
             },
             templates: {
                 group: 'base',
                 options:{
-                    content: Spice.iss_location.content,
+                    content: Spice.isslocation.content,
                     moreAt: true
                 }
             }
