@@ -14,7 +14,8 @@
                 name: 'Envato Marketplace',
                 data: api.search,
                 normalize: function(item){
-                    var info = item.item_info;
+                    var info = item.item_info, 
+                        sales_count = 'sale'+(+info.sales == 1 ? '' : 's');
 
                     return {
                         url: item.url,
@@ -23,7 +24,7 @@
                         brand: info.user,
                         img: info.thumbnail,
                         heading: item.description,
-                        reviewCount: info.sales
+                        reviewCount: info.sales+' '+sales_count
                     }
                 },
                 templates: {
@@ -31,7 +32,6 @@
                     detail: false,
                     item_detail: false,
                     options: {
-                        buy: Spice.envato.buy,
                         brand: true,
                         rating: true,
                         price: true
@@ -42,7 +42,7 @@
 
 
         // if audiojungle then switch to audio layout
-        
+
         if (marketplace && marketplace[0] == 'audiojungle'){
             spice.normalize = function(item){
                 var info = item.item_info, duration = 0, x = info.length.split(':')
@@ -55,13 +55,15 @@
                         duration = (+x[0] * 60) + +x[1]
                         break;
                     case 3:
-                        duration = (+x[0] * 3600) + (+x[1] * 60) + (+x[2])
+                        duration = (+x[0] * 3600) + (+x[1] * 60) + +x[2]
                         break;
                 }
 
                 return {
+                    user: info.user,
+                    rating: info.rating_decimal,
+                    sales: item.sales,
                     image: info.thumbnail,
-                    hearts: info.sales,
                     duration: duration*1000,
                     title: item.description,
                     url: item.url,
@@ -79,6 +81,10 @@
 
             spice.view = spice.model = 'Audio'
         }
+
+        Handlebars.registerHelper('formatSales', function(sales){
+            return sales+' sale'+(+sales == 1 ? '' : 's');
+        });
 
         Spice.add(spice);
     }
