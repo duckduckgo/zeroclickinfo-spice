@@ -2,9 +2,9 @@
     "use strict";
     
     // A change in the Rotten Tomatoes API returns images that end in _tmb.
-    // This changes this to _det.
+    // This changes this to _det or _org.
     function toDetail(img) {
-        return img.replace(/tmb\.(jpg|png)/, "det.$1");
+        return img.replace(/tmb\.(jpg|png)/, (DDG.is3x ? "org.$1" : "det.$1"));
     }
     
     function get_image(critics_rating) {
@@ -14,11 +14,7 @@
         // The filename is the same as the critics_rating, but
         // lowercased and with spaces converted to dashes.
         critics_rating = critics_rating.toLowerCase().replace(/ /, '-');
-        if(is_retina) {
-            return DDG.get_asset_path('in_theaters', critics_rating + '.retina.png');
-        } else {
-            return DDG.get_asset_path('in_theaters', critics_rating + '.png');
-        }
+        return DDG.get_asset_path('in_theaters', critics_rating + ((DDG.is3x || DDG.is2x) ? '.retina.png' : '.png'));
     }
     
     env.ddg_spice_in_theaters = function(api_result) {
@@ -78,7 +74,7 @@
                     img: image,
                     img_m: image,
                     url: item.links.alternate,
-                    is_retina: is_retina ? "is_retina" : "no_retina"
+                    is_retina: ((DDG.is3x || DDG.is2x) ? 'is_retina' : 'no_retina')
                 };
             },
             templates: {
