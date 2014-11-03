@@ -1,9 +1,52 @@
 .zci--envato .tile--audio .tile__media {
-	padding-bottom:130px;
+    padding-bottom: 130px;
 }
 
 .zci--envato .tile--audio .tile__media__img {
-	height:80px;
-	top:50%;
-	margin-top:-40px;
+    height: 80px;
+    top: 50%;
+    margin-top: -40px;
+}
+
+.zci--envato .tile--audio .tile__body {
+    padding-top: .75em;
+    padding-bottom: .75em;
+}
+
+.zci--envato .tile--audio .tile__duration {
+    position: absolute;
+    top: .75em;
+    right: .8em;
+}
+
+.zci--envato .review-count {
+    display: block;
+    margin-top: 2px;
+}
+
+.zci--envato .tile-wrap .tile .tile__tx {
+    height: auto;
+}
+
+.zci--envato .tile-wrap .tile .tile__tx .tile--pr__brand {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.zci--envato .tile-wrap .tile .tile__tx .tile__sep {
+    display: none;
+}
+
+.zci--envato .tile-wrap .tile .tile__tx .tile--pr__price {
+    position: absolute;
+    bottom: .4rem;
+    right: .8em;
+}
+
+.zci--envato .tile-wrap .tile.tile--audio .tile__tx .tile--pr__price {
+    bottom:.75em;
+}
+
+.zci--envato .tile-wrap .tile__title {
+    font-size: 1.1667em;
 }

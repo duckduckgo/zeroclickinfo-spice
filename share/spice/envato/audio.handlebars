@@ -1,6 +1,11 @@
-<span class="tile__pr__price pull-left">
-    ${{price}}
-</span>
-<span class="tile__duration pull-right">
+<div class="tile__tx tile--pr__sub one-line">
+    <span class="tile--pr__price  price">${{price}}</span>    
+    <span class="tile--pr__brand">by {{user}}</span>
+</div>
+<div class="tile__tx tile__rating one-line">
+    {{{starRating rating}}}
+    <span class="review-count">{{formatSales sales}}</span>
+</div>
+<div class="tile__duration">
     {{durationFormat duration}}
-</span>
+</div>
