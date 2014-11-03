@@ -4,7 +4,7 @@
     // A change in the Rotten Tomatoes API returns images that end in _tmb.
     // This changes this to _det or _org.
     function toDetail(img) {
-        return img.replace(/tmb\.(jpg|png)/, (DDG.is3x ? "org.$1" : "det.$1"));
+        return img.replace(/tmb\.(jpg|png)/, "det.$1");
     }
     
     function get_image(critics_rating) {
