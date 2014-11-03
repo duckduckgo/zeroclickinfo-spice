@@ -395,11 +395,15 @@
         if(isNumber(parameter)) //force array
             parameter = [parameter];
 
+        //loop through all formulas of this shape
         for(i = 0, l = data.formulas.length; i < l; ++i){
+            //get the formula symbol and format the name
             data.formulas[i].symbol = formulas[data.formulas[i].name];
             data.formulas[i].name = DDG.capitalize(data.formulas[i].name);
+            //calc the formula if parameter(s) is / are defined
             if(data.parameter !== null)
                 data.formulas[i].result = format(data.formulas[i].calc.apply(0, parameter));
+            //if the formula is in the search string, print only this formula
             if(query.match(data.formulas[i].name, "i")){
                 //cleanup formulas
                 data.formulas = [data.formulas[i]];
@@ -415,6 +419,7 @@
             }
         }
 
+        //if parameter(s) is / are defined print their values
         if(parameter !== null){
             data.parameter = [];
             for(i = 0, l = parameter.length; i < l; ++i){
@@ -445,8 +450,8 @@
                 for(i = 0, l = pairs.length; i < l; ++i)
                     bindHoverPair([formulaNodes[pairs[i][0]], svgNodes[pairs[i][1]]]);
 
+                //wait for stylesheet
                 $(window).load(function(){
-                    console.log("retzguih");
                     svg.height(content.height());
                     svg.show();
                 });
