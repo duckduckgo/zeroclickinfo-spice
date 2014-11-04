@@ -64,11 +64,9 @@
         if(mainConv["from-currency-symbol"] !== mainConv["to-currency-symbol"]) {
             // Flag the input to get different output
             // if is pair get paris tile layout
-            mainConv.isPair = true;
             results = [mainConv];
         } else {
-            // Exit early for now to disable tile view.
-            return; 
+            results.push(mainConv);
             
             for(var i = 0; i < topCovs.length; i++) {
                 results.push(topCovs[i]);
@@ -104,6 +102,8 @@
             return DDG.commifyNumber(x);
         }
         
+        console.log(results);
+        
         Spice.add({
             id: 'currency',
             name: 'Currency',
@@ -138,7 +138,8 @@
             },
             templates: {
                 detail: Spice.currency.detail,
-                detail_mobile: Spice.currency.detail_mobile
+                detail_mobile: Spice.currency.detail_mobile,
+                item: Spice.currency.item
             },
             onShow: function() {
                 // The desktop template depends on a JS function that manages the
