@@ -101,7 +101,14 @@ sub checkCurrencyCode {
     # If we don't get a currency to convert to, e.g., the user types in "usd"
     # we set them to be the same thing. This will trigger our tile view.
     if($to eq '') {
-        $to = $from;
+        if($normalized_number == 1) {
+            $to = $from;
+        } else {
+            # This should probably depend on the user's location.
+            # For example, if I was in the Philippines, I would expect "10 usd" to mean "10 usd to php"
+            # But this would mean mapping currencies to countries.
+            $to = $from eq 'usd' ? 'eur' : 'usd';
+        }
     }
     
     return $normalized_number, $from, $to;
