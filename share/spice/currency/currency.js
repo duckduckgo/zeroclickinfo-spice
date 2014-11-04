@@ -102,7 +102,16 @@
             return DDG.commifyNumber(x);
         }
         
-        console.log(results);
+        var templateObj = {
+            detail: Spice.currency.detail,
+            detail_mobile: Spice.currency.detail_mobile,
+            item: Spice.currency.item,
+            item_detail: false
+        };
+        
+        if(results.length > 1) {
+            templateObj.detail = false;
+        }
         
         Spice.add({
             id: 'currency',
@@ -136,11 +145,7 @@
                     xeDate: xeDate
                 };
             },
-            templates: {
-                detail: Spice.currency.detail,
-                detail_mobile: Spice.currency.detail_mobile,
-                item: Spice.currency.item
-            },
+            templates: templateObj,
             onShow: function() {
                 // The desktop template depends on a JS function that manages the
                 // size of the container.

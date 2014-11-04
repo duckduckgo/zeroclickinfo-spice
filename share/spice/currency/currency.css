@@ -1,9 +1,9 @@
 /* Tile view */
 
 .zci--currency .tile--s .tile__view {
-    width: 11em;
     text-align: center;
     color: #000;
+    min-width: 11em;
 }
 
 .zci--currency .tile--s img {
