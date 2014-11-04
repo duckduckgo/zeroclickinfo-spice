@@ -66,6 +66,9 @@
             // if is pair get paris tile layout
             results = [mainConv];
         } else {
+            // Mark which item is the first one.
+            // Since HandlebarsJS (with the way we use them) is unaware of the current index.
+            mainConv.initial = true;
             results.push(mainConv);
             
             for(var i = 0; i < topCovs.length; i++) {

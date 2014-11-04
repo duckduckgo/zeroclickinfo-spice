@@ -30,6 +30,10 @@
     margin-top: 0.6em;
 }
 
+.zci--currency .tile--s .currency--rate.rate--gray {
+    color: #888;
+}
+
 /* Desktop view */
 
 .zci--currency section {
@@ -198,7 +202,7 @@
     color: inherit;
 }
 
-.is-mobile .zci--currency .zci__metabar__more-at {
+.is-mobile .zci--currency .zci__metabar__more-at.custom {
     line-height: inherit;
 }
 
