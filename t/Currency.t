@@ -16,7 +16,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     '400 euro' => test_spice(
-        '/js/spice/currency/400/eur/eur',
+        '/js/spice/currency/400/eur/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
@@ -53,14 +53,14 @@ ddg_spice_test(
     ),
     # Queries with no space between the number and the currency.
     '100cad' => test_spice(
-        '/js/spice/currency/100/cad/cad',
+        '/js/spice/currency/100/cad/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
     # Queries with no space between the formatted number and the currency.
     '100,000cad' => test_spice(
-        '/js/spice/currency/100000/cad/cad',
+        '/js/spice/currency/100000/cad/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0

@@ -112,6 +112,7 @@
             item_detail: false
         };
         
+        // We need to disable the detail view when we're showing the tiles.
         if(results.length > 1) {
             templateObj.detail = false;
         }
@@ -124,7 +125,7 @@
                 sourceUrl: "http://www.xe.com",
                 sourceName: "xe.com",
                 sourceIconUrl: "http://www.xe.com/favicon.ico",
-                itemType: "Currencies"
+                itemType: "Conversions"
             },
             normalize: function(item) {
                 // Return null if the results aren't numbers.
