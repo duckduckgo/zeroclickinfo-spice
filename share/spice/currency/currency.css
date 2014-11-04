@@ -1,9 +1,12 @@
 /* Tile view */
 
+.zci--currency .tile--c {
+    width: 13em;
+}
+
 .zci--currency .tile--s.tile--c {
     text-align: center;
     color: #000;
-    width: 13em;
 }
 
 .zci--currency .tile--s img {
@@ -19,7 +22,7 @@
 }
 
 .zci--currency .tile--s .currency--amount {
-    font-size: 2.5em;
+    font-size: 2.2em;
     font-weight: 600;
 }
 
