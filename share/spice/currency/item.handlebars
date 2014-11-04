@@ -1,8 +1,8 @@
 <div class="tile tile--s tile--c" data-link="{{xeUrl}}">
     <div class="tile__view">
-        <img src="{{toFlag}}" alt="Flag of {{fromCurrencySymbol}}">
+        <img src="{{toFlag}}" alt="Flag of {{toCurrencySymbol}}">
         <div class="currency--symbol">{{toCurrencySymbol}}</div>
         <div class="currency--amount">{{convertedAmount}}</div>
-        <div class="currency--rate">{{rate}}</div>
+        <div class="currency--rate {{#unless initial}}rate--gray{{/unless}}">{{#if initial}}{{currencyName}}{{else}}{{rate}}{{/if}}</div>
     </div>
 </div>
