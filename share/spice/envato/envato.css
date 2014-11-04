@@ -20,8 +20,23 @@
 
 .zci--envato .tile--audio .tile__duration {
     position: absolute;
-    top: .75em;
+    top: 7.25em;
     right: .8em;
+}
+
+.zci--envato .audio-controls__time {
+    right: .8em;
+}
+
+.zci--envato .tile__rating {
+    margin-bottom: 0;
+    position: absolute;
+    left: 1em;
+    bottom: .5em;
+}
+
+.zci--envato .tile--audio.is-selected .tile__duration {
+    display: none;
 }
 
 .zci--envato .review-count {
@@ -37,11 +52,12 @@
 .zci--envato .tile-wrap .tile {
     width: 17em;
     font-size: .87em;
+    min-height: 17.8em;
 }
 
 .zci--envato .tile-wrap .tile__title {
     margin-bottom: .2em;
-    height: 2.5em;
+    height: auto;
     line-height: 1.25em;
 }
 
