@@ -1,9 +1,9 @@
 /* Tile view */
 
-.zci--currency .tile--s .tile__view {
+.zci--currency .tile--s.tile--c {
     text-align: center;
     color: #000;
-    min-width: 11em;
+    width: 13em;
 }
 
 .zci--currency .tile--s img {
@@ -26,6 +26,8 @@
 .zci--currency .tile--s .currency--rate {
     margin-top: 0.6em;
 }
+
+/* Desktop view */
 
 .zci--currency section {
     display: inline-block;
@@ -130,9 +132,6 @@
         display: initial;
     }
 
-
-
-
 .zci--currency-equal {
     font-size: 2em;  
     margin: 0 0.5em;
@@ -186,7 +185,7 @@
     }
 }
 
-/* These are used for the mobile template. */
+/* Mobile view */
 
 .is-mobile .tile--s {
     padding-left: 0;
