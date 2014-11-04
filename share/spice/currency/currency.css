@@ -1,3 +1,32 @@
+/* Tile view */
+
+.zci--currency .tile--s .tile__view {
+    width: 11em;
+    text-align: center;
+    color: #000;
+}
+
+.zci--currency .tile--s img {
+    height: 32px;
+    vertical-align: top;
+    border: 0.2em solid #d0d0d0;
+    border-radius: 50%;
+    background-color: #d0d0d0;
+}
+
+.zci--currency .tile--s .currency--symbol {
+    margin-top: 1em;
+}
+
+.zci--currency .tile--s .currency--amount {
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+.zci--currency .tile--s .currency--rate {
+    margin-top: 0.6em;
+}
+
 .zci--currency section {
     display: inline-block;
 }
@@ -24,14 +53,6 @@
 
     .is-mobile .zci--currency-first-part {
         text-align: center;
-    }
-
-    .is-mobile .zci--currency .tile--s img {
-        height: 32px;
-        vertical-align: top;
-        border: 0.2em solid #d0d0d0;
-        border-radius: 50%;
-        background-color: #d0d0d0;
     }
 
     .is-mobile .zci--currency .tile--s.large img {
