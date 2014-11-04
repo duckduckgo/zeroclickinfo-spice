@@ -32,7 +32,7 @@ handle query_lc => sub {
         s/[^\s\w]|$platform|\s+and|\s+or|or\s+|and\s+//g;
         
         # trim a query
-        s/^\s+|\s+$//;
+        s/^\s+|\s+$//g;
 
         # replace spaces with |
         s/\s+/|/g;
