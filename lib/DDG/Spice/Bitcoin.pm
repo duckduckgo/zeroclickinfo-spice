@@ -1,5 +1,6 @@
 package DDG::Spice::Bitcoin;
 
+use utf8;
 use DDG::Spice;
 
 primary_example_queries "bitcoin";
