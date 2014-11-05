@@ -24,10 +24,14 @@
             <div class="price">{{price}}</div>
             <div class="date">
                 <div class="month">
-                    {{month}}
+                    {{#if month}}
+                        {{month}}
+                    {{/if}}
                 </div>
                 <div class="day">
-                    {{day}}
+                    {{#if day}}
+                        {{day}}
+                    {{/if}}
                 </div>
             </div>
         </div>
