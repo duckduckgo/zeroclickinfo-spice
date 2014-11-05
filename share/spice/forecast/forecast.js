@@ -249,7 +249,7 @@ function ddg_spice_forecast(r) {
   }
 
   var other_unit = unit_labels[units].temperature === 'F' ? 'C' : 'F';
-  var altMeta = '<a id="fe_temp_switch"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a>';
+  var altMeta = '<a id="fe_temp_switch" class="tx-clr--dk2"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a>';
 
   // Render/Display
     Spice.add({
@@ -287,11 +287,11 @@ function ddg_spice_forecast(r) {
   //update the style of the F/C (make one bold and the other grayed out)
   var updateTempSwitch = function(new_unit){
     if (new_unit === "F"){
-      $('#fe_fahrenheit').removeClass('gray').addClass('bold');
-      $('#fe_celsius').removeClass('bold').addClass('gray');
+      $('#fe_fahrenheit').removeClass('tx-clr--lt3').addClass('is-active');
+      $('#fe_celsius').removeClass('is-active').addClass('tx-clr--lt3');
     } else {
-      $('#fe_celsius').removeClass('gray').addClass('bold');
-      $('#fe_fahrenheit').removeClass('bold').addClass('gray');
+      $('#fe_celsius').removeClass('tx-clr--lt3').addClass('is-active');
+      $('#fe_fahrenheit').removeClass('is-active').addClass('tx-clr--lt3');
     }
   }
 
