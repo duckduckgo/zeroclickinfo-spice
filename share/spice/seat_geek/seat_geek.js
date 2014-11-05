@@ -49,24 +49,36 @@
                 }
 
                 function getDate(date) {
-                    // IE 8 and Safari don't support the yyyy-mm-dd date format,
-                    // but they support mm/dd/yyyy
-                    date = date.replace(/T.*/, '');
-                    var remix_date = date.split("-");
-                    date = remix_date[1] + "/" + remix_date[2] + "/" + remix_date[0];
+                    if(date) {
+                        // IE 8 and Safari don't support the yyyy-mm-dd date format,
+                        // but they support mm/dd/yyyy
+                        date = date.replace(/T.*/, '');
+                        var remix_date = date.split("-");
+                        date = remix_date[1] + "/" + remix_date[2] + "/" + remix_date[0];
 
-                    date = new Date(date);
-                    return date;
+                        date = new Date(date);
+                        return date;
+                    }
+
+                    return;
                 }
 
                 function getMonth(date) {
-                    var month = months[parseInt(date.getMonth())];
-                    return month.toUpperCase();
+                    if(date) {
+                        var month = months[parseInt(date.getMonth())];
+                        return month.toUpperCase();
+                    }
+
+                    return;
                 }
 
                 function getDay(date) {
-                    var day = date.getDate();
-                    return day;
+                    if(date) {
+                        var day = date.getDate();
+                        return day;
+                    }
+
+                    return;
                 }
 
                 // Get number of performers, excluding
