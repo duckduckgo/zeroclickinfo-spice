@@ -1,5 +1,24 @@
 /* Tile view */
 
+.zci--currency .btn--container {
+    position: relative;
+    display: none;
+}
+
+.zci--currency .btn--container .ddgsi {
+    position: absolute;
+    top: -0.6em;
+    left: 4.2em;
+}
+
+.zci--currency .btn--container a:hover {
+    color: inherit;
+}
+
+.zci--currency .highlight .btn--container {
+    display: inline;
+}
+
 .zci--currency .tile--c {
     width: 13em;
     height: 12.5em;
