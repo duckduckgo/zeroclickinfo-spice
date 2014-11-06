@@ -13,10 +13,9 @@
     padding-bottom: 0px;
     padding-top: 0;
     font-size: 16px;
-    color: #666;
 }
 
-.zci--currency .btn--container a:hover {
+.zci--currency .btn--container .ddgsi a:hover {
     color: inherit;
 }
 
@@ -31,7 +30,6 @@
 
 .zci--currency .tile--s.tile--c {
     text-align: center;
-    color: #000;
     padding-top: 1.4em;
 }
 
@@ -42,6 +40,7 @@
     border-radius: 50%;
 }
 
+    /* Don't show the border on IE 8 because it doesn't support border-radius. */
     .ie8 .zci--currency .tile--s img {
         border: none;
     }
@@ -57,10 +56,6 @@
 
 .zci--currency .tile--s .currency--rate {
     margin-top: 0.6em;
-}
-
-.zci--currency .tile--s .currency--rate.rate--gray {
-    color: #888;
 }
 
 /* Desktop view */
@@ -120,7 +115,6 @@
 }
 
 .zci--currency-amount {
-    color:#000;
     font-size: 2.7em;
     font-weight: bold;
     padding: 0 0.1em 0 0.2em;
