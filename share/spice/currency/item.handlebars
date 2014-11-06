@@ -5,7 +5,7 @@
         </span>
         <img src="{{toFlag}}" alt="Flag of {{toCurrencySymbol}}">
         <div class="currency--symbol">{{toCurrencySymbol}}</div>
-        <div class="currency--amount">{{convertedAmount}}</div>
-        <div class="currency--rate {{#unless initial}}rate--gray{{/unless}}">{{#if initial}}{{currencyName}}{{else}}{{rate}}{{/if}}</div>
+        <div class="currency--amount one-line">{{convertedAmount}}</div>
+        <div class="one-line currency--rate {{#unless initial}}rate--gray{{/unless}}">{{#if initial}}{{currencyName}}{{else}}{{rate}}{{/if}}</div>
     </div>
 </div>

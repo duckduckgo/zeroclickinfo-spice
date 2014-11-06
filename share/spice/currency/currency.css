@@ -7,9 +7,19 @@
 
 .zci--currency .btn--container .ddgsi {
     position: absolute;
-    top: -0.6em;
-    left: 4.2em;
+    top: -0.8em;
+    left: 3.8em;
+    padding-right: 7px;
+    padding-left: 7px;
+    padding-bottom: 0px;
+    padding-top: 0;
+    font-size: 16px;
+    color: #666;
 }
+
+    .ie8 .zci--currency .btn--container .ddgsi {
+        top: -2em;
+    }
 
 .zci--currency .btn--container a:hover {
     color: inherit;
@@ -27,6 +37,7 @@
 .zci--currency .tile--s.tile--c {
     text-align: center;
     color: #000;
+    padding-top: 1.4em;
 }
 
 .zci--currency .tile--s img {
@@ -34,11 +45,14 @@
     vertical-align: top;
     border: 0.2em solid #d0d0d0;
     border-radius: 50%;
-    background-color: #d0d0d0;
 }
 
+    .ie8 .zci--currency .tile--s img {
+        border: none;
+    }
+
 .zci--currency .tile--s .currency--symbol {
-    margin-top: 1em;
+    margin-top: 0.6em;
 }
 
 .zci--currency .tile--s .currency--amount {
