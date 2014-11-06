@@ -5,7 +5,6 @@
 .fe_currently,
 .fe_day {
 	height: 16em;
-	color: #818181;
 }
 
 .fe_currently {
@@ -72,7 +71,6 @@
 	.fe_sep { 
 		padding: 0 0.25em;
 		display: inline-block;
-		color: #dadada; 
 	}
 	
 	.fe_label,
@@ -83,12 +81,6 @@
 	.fe_date {
 		font-size: 1em;
 	}
-	
-	.fe_label,
-	.fe_high_temp,
-	.fe_temp  {
-		color: #333;
-	}
 
     .fe_label a, .fe_label a:visited {
 		color: inherit;
@@ -97,7 +89,6 @@
 	/*h1*/.fe_low_temp,
 	.fe_date {
 		margin-top: -0.25em;
-		color: #b2b2b2;
 	}
 		.fe_label + .fe_date {
 			margin-top: -0.5em;
@@ -110,6 +101,7 @@
 	}
 		.fe_currently .fe_topline:after {
 			border-bottom: 1px solid #e7e7e7;
+			border-bottom-color: rgba(100,100,100,0.25);
 			position: absolute;
 			display: block;
 			margin: 0 auto;
@@ -158,6 +150,7 @@
 }
 	.fe_current-wrap--mob .fe_currently .fe_topline:after {
 		border-bottom-color: #aeaeae;
+		border-bottom-color: rgba(100,100,100,0.25);
 	}
 	
 	.fe_current-wrap--mob .fe_bottom {
@@ -166,7 +159,6 @@
 
 .fe_meta {
 	padding-top: 0.125em;
-	color: #696969;
 	float: right;
 }
 	.fe_meta .fe_sep {
@@ -200,7 +192,6 @@
 			text-transform: uppercase;
 			text-align: center;
 			font-size: 0.9em;
-			color: #696969;
 		}
 
 .fe_icon--bar {
@@ -212,7 +203,6 @@
 
 .fe_temp_bar {
 	border-radius: 2em;
-	background-color: #333;
 	margin: 0 auto 3em;
 	white-space: nowrap;
 	position: relative;
@@ -237,22 +227,9 @@
 
 #fe_temp_switch {
 	text-decoration: none;
-	color: #535353;
 	cursor: pointer;
 }
 
-#fe_temp_switch .gray {
-	color: #b2b2b2;
-}
-
-#fe_temp_switch .bold {
+#fe_temp_switch .is-active {
 	font-weight: bold;
-}
-
-.dark-header #fe_temp_switch {
-	color: #dadada;
-}
-
-.dark-header #fe_temp_switch .gray {
-	color: #696969;
 }
