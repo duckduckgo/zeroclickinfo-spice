@@ -21,6 +21,10 @@
         top: -2em;
     }
 
+    .ie9 .zci--currency .btn--container .ddgsi {
+        top: -2.3em;
+    }
+
 .zci--currency .btn--container a:hover {
     color: inherit;
 }
