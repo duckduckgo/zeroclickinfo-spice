@@ -1,14 +1,13 @@
 /* Tile view */
 
 .zci--currency .btn--container {
-    position: relative;
+    position: absolute;
     display: none;
+    top: 0.4em;
+    right: 0.5em;
 }
 
 .zci--currency .btn--container .ddgsi {
-    position: absolute;
-    top: -0.8em;
-    left: 3.8em;
     padding-right: 7px;
     padding-left: 7px;
     padding-bottom: 0px;
@@ -16,14 +15,6 @@
     font-size: 16px;
     color: #666;
 }
-
-    .ie8 .zci--currency .btn--container .ddgsi {
-        top: -2em;
-    }
-
-    .ie9 .zci--currency .btn--container .ddgsi {
-        top: -2.3em;
-    }
 
 .zci--currency .btn--container a:hover {
     color: inherit;
