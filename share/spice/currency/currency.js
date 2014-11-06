@@ -115,6 +115,7 @@
         // We need to disable the detail view when we're showing the tiles.
         if(results.length > 1) {
             templateObj.detail = false;
+            templateObj.detail_mobile = false;
         }
         
         Spice.add({
