@@ -155,10 +155,10 @@
                 // The desktop template depends on a JS function that manages the
                 // size of the container.
                 if(!is_mobile) {
-                    $(window).load(resize);
+                    $(window).on('load', resize);
                     $(window).resize(resize);
                 } else {
-                    $(window).load(resizeMobile);
+                    $(window).on('load', resizeMobile);
                     $(window).resize(resizeMobile);
                 }
             }
