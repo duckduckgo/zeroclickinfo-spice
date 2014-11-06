@@ -2,7 +2,7 @@
     "use strict";
     
     // A change in the Rotten Tomatoes API returns images that end in _tmb.
-    // This changes this to _det or _org.
+    // This changes this to _det.
     function toDetail(img) {
         return img.replace(/tmb\.(jpg|png)/, "det.$1");
     }
