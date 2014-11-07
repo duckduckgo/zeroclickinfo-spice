@@ -1,7 +1,6 @@
 .zci--seat_geek h3 {
     line-height: 1.15;
     font-weight: 600;
-    color: #333;
     padding-top: 0;
     padding-bottom: 0.15em !important;
 }
@@ -12,7 +11,6 @@
 
 .zci--seat_geek .price {
     font-weight: 600;
-    color: #333;
 }
 
 .zci--seat_geek .price,
