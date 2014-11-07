@@ -21,7 +21,11 @@
             </div>
         </div>
         <div class="tile__footer">
-            <div class="price">{{price}}</div>
+            {{#if price}}
+                <div class="price">{{price}}</div>
+            {{else}}
+                <div class="noprice">Price N/A</div>
+            {{/if}}
             <div class="date">
                 <div class="month">
                     {{#if month}}

@@ -101,7 +101,7 @@
                 }
 
                 function getPrice(lowest, highest) {
-                    var price = "_";
+                    var price = "";
 
                     if(lowest && highest) {
                         price = "$" + lowest + " - $" + highest;
