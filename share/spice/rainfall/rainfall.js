@@ -17,26 +17,30 @@
         //Clean returned country name
         var URL_country = api_result[1][0].country.value.replace(/\,|\./g,"").replace(/ /g,"-").replace(/Dem/g,"democratic").replace(/Rep/g,"republic").toLowerCase();
         
-        var annualData = {
-            precipitation: api_result[1][0].value, 
-            country: query_country
-        };
+        var precipitation = api_result[1][0].value,
+            country = query_country;
+ 
 
         Spice.add({
             id: "rainfall",
             name: "Weather",
-            data:  annualData,
+            data: query_country,
             meta: {
                 sourceName: "worldbank.org",
                 sourceUrl: 'http://data.worldbank.org/country/' + URL_country
             },
+            normalize: function(item) {
+                return {
+                    title: "Annual Rainfall for "+country+" is "+precipitation+"mm",
+                    subtitle: "Average annual rainfall in millimeters"
+                };
+            },
             templates: {
                 group: 'text',
                 options: {
-                    content: Spice.rainfall.content,
                     moreAt: true
                 }
             }
         });
-    };
+    }
 }(this));
