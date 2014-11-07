@@ -1,0 +1,45 @@
+.zci--seat_geek h3 {
+    line-height: 1.15;
+    font-weight: 600;
+    color: #333;
+    padding-top: 0;
+    padding-bottom: 0.15em !important;
+}
+
+.zci--seat_geek .header_container {
+    height: 8.5em;
+}
+
+.zci--seat_geek .price {
+    margin-top: 1.1em;
+    font-weight: 600;
+    color: #333;
+    height: 1em;
+    float: left;
+}
+
+.zci--seat_geek .tile__body.has-foot {
+    padding-bottom: 1em;
+}
+
+.zci--seat_geek .tile__title__sub {
+    font-size: 0.7em;
+}
+
+.zci--seat_geek .date {
+    float: right;
+    border: 1px solid #ddd;
+    padding: 0.6em 0.9em;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: -1.5em;
+}
+
+.zci--seat_geek .day {
+    font-size: 1.7em;
+    line-height: 0.8;
+}
