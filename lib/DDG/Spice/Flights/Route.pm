@@ -127,6 +127,22 @@ sub identifyCodes {
 		# [airport code][to][airport code][airline]
 		return (join(",", @airlineCodes), [$otherCity], [$groupA]) 
 			if @airlineCodes and !$leftQuery and exists $citiesByCode{$otherCity} and exists $citiesByCode{$groupA};		 
+
+		# [airline][airport code][to][city]
+		return (join(",", @airlineCodes), [$groupB], $citiesByName{$otherCity})
+			if @airlineCodes and $leftQuery and exists $citiesByCode{$groupB} and exists $citiesByName{$otherCity}; 
+		
+		# [airline][city][to][airport code]
+		return (join(",", @airlineCodes), $citiesByName{$groupB}, [$otherCity])
+			if @airlineCodes and $leftQuery and exists $citiesByName{$groupB} and exists $citiesByCode{$otherCity};
+			
+		# [airport code][to][city][airline]
+		return (join(",", @airlineCodes), [$otherCity], $citiesByName{$groupA}) 
+			if @airlineCodes and !$leftQuery and exists $citiesByCode{$otherCity} and exists $citiesByName{$groupA};
+
+		# [city][to][airport code][airline]
+		return (join(",", @airlineCodes), $citiesByName{$otherCity}, [$groupA])
+			if @airlineCodes and !$leftQuery and exists $citiesByName{$otherCity} and exists $citiesByCode{$groupA};
 	}
 	
 	return;

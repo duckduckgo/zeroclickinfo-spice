@@ -69,7 +69,32 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Flights::Route',
     ),    
+
+    # query by mixed city/airport code
+    'Jetblue Boston to JFK' => test_spice(
+        "/js/spice/flights/route/JBU/BOS/JFK/BOS/JFK/$year/$month/$dayOfMonth/$hour",
+        call_type => 'include',
+        caller => 'DDG::Spice::Flights::Route',
+    ),    
     
+    'Jetblue JFK to Boston' => test_spice(
+        "/js/spice/flights/route/JBU/JFK/BOS/JFK/BOS/$year/$month/$dayOfMonth/$hour",
+        call_type => 'include',
+        caller => 'DDG::Spice::Flights::Route',
+    ),    
+    
+    'Boston to JFK Jetblue' => test_spice(
+        "/js/spice/flights/route/JBU/BOS/JFK/BOS/JFK/$year/$month/$dayOfMonth/$hour",
+        call_type => 'include',
+        caller => 'DDG::Spice::Flights::Route',
+    ),    
+    
+    'JFK to Boston Jetblue' => test_spice(
+        "/js/spice/flights/route/JBU/JFK/BOS/JFK/BOS/$year/$month/$dayOfMonth/$hour",
+        call_type => 'include',
+        caller => 'DDG::Spice::Flights::Route',
+    ),    
+        
     # --- these queries should not trigger the IA
     
     # without "to", we cannot determine the source and destination

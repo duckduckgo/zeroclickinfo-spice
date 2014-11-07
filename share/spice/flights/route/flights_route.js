@@ -6,6 +6,21 @@ var ddg_spice_flights = {
     // store the user's potential airline codes
     queriedAirlines: null,
 
+    // define some static variables for callback and helpers
+    MILLIS_PER_MIN: 60000,
+    MILLIS_PER_HOUR: this.MILLIS_PER_MIN * 60,
+    STATUS: {
+        "S": "Scheduled",
+        "A": "In the air",
+        "U": "Unknown status",
+        "R": "Redirected flight",
+        "L": "Landed",
+        "D": "Diverted",
+        "C": "Cancelled",
+        "NO": "Not Operational",
+        "DN": "Data Needed"
+    },
+
 
     // this function parses the initial query and sends out additional queries
     // as necessary for cities with multiple airports
@@ -49,7 +64,6 @@ var ddg_spice_flights = {
         }
         
         this.display(api_result);
-        
     },
     
     
@@ -218,8 +232,36 @@ var ddg_spice_flights = {
                 }
             },
         });
-    }
+    },
     
+
+    // Compute the difference between now and the time of departure or arrival.
+    relativeTime: function relativeTime(date, airportOffset) {
+        // This is the time of departure or arrival (not sure why we're getting the difference).
+        date = date.getTime() - (date.getTimezoneOffset() * this.MILLIS_PER_MIN);
+
+        // This is the current time at the airport (in milliseconds).
+        var now = new Date().getTime() + (airportOffset * this.MILLIS_PER_HOUR);
+
+        return date - now;
+    },
+    
+    
+    // Check if the airplane is on-time or delayed.
+    onTime: function onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
+    
+        var deltaDepart = new Date(departureDate) - scheduledDeparture,
+            deltaArrive = new Date(arrivalDate) - scheduledArrival;
+
+        if (flight.status === "A" || flight.status === "S") {
+            if (this.MILLIS_PER_MIN * 5 < deltaDepart && this.MILLIS_PER_MIN * 5 < deltaArrive) {
+                return ["Delayed", false];
+            } else {
+                return ["On Time", true];
+            }
+        }
+        return [this.STATUS[flight.status], true];
+    }
 }
 
 //--- make the appropriate DDG spice functions globally available
@@ -231,85 +273,14 @@ ddg_spice_flights_route = ddg_spice_flights.route.bind(ddg_spice_flights);
 ddg_spice_flights_route_helper = ddg_spice_flights.route_helper.bind(ddg_spice_flights);
 
 
-//--- The remaining code formats output for the front-end. Most of this code was directly
-//--- copied from the "airlines" Spice
-
-// define some static variables for callback and helpers
-var MILLIS_PER_MIN = 60000,
-    MILLIS_PER_HOUR = MILLIS_PER_MIN * 60,
-    STATUS = {
-        "S": "Scheduled",
-        "A": "In the air",
-        "U": "Unknown status",
-        "R": "Redirected flight",
-        "L": "Landed",
-        "D": "Diverted",
-        "C": "Cancelled",
-        "NO": "Not Operational",
-        "DN": "Data Needed"
-    };
-
-
-// Compute the difference between now and the time of departure or arrival.
-function relativeTime(date, airportOffset) {
-    // This is the time of departure or arrival (not sure why we're getting the difference).
-    date = date.getTime() - (date.getTimezoneOffset() * MILLIS_PER_MIN);
-
-    // This is the current time at the airport (in milliseconds).
-    var now = new Date().getTime() + (airportOffset * MILLIS_PER_HOUR);
-
-    return date - now;
-};
-
-
-// Convert the time from milliseconds to hours and minutes.
-function toTime(delta) {
-    var time = "",
-        hours = Math.floor(Math.abs(delta / MILLIS_PER_HOUR)),
-        minutes = Math.floor(Math.abs((delta % MILLIS_PER_HOUR) / MILLIS_PER_MIN));
-
-    if (0 < hours) {
-        time += hours + " hrs ";
-    }
-    if (0 < minutes) {
-        time += minutes + " mins ";
-    }
-
-    if(delta === 0) {
-        return "now";
-    } else if(delta > 0) {
-        return "in " + time;
-    } else {
-        return time + "ago";
-    }
-};
-
-
-// Check if the airplane is on-time or delayed.
-function onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
-    
-    var deltaDepart = new Date(departureDate) - scheduledDeparture,
-        deltaArrive = new Date(arrivalDate) - scheduledArrival;
-
-    if (flight.status === "A" || flight.status === "S") {
-        if (MILLIS_PER_MIN * 5 < deltaDepart && MILLIS_PER_MIN * 5 < deltaArrive) {
-            return ["Delayed", false];
-        } else {
-            return ["On Time", true];
-        }
-    }
-    return [STATUS[flight.status], true];
-};
-
-
 // Check when the plane will depart (or if it has departed).
-Handlebars.registerHelper("airline_status", function(airportOffset, isDeparture) {
+Spice.registerHelper("airline_status", function(airportOffset, isDeparture) {
     var dateObject = arrivalDate;
     if(isDeparture) {
         dateObject = departureDate;
     }
 
-    var delta = relativeTime(dateObject, airportOffset);
+    var delta = ddg_spice_flights.relativeTime(dateObject, airportOffset);
 
     if(isDeparture) {
         if(delta === 0) {
@@ -332,7 +303,7 @@ Handlebars.registerHelper("airline_status", function(airportOffset, isDeparture)
 
 
 // Add the date and time or departure or arrival.
-Handlebars.registerHelper("airline_time", function(isDeparture, arrivalDate, departureDate) {
+Spice.registerHelper("airline_time", function(isDeparture, arrivalDate, departureDate) {
     var dateObject = new Date(arrivalDate);
     if(isDeparture) {
         dateObject = new Date(departureDate);
@@ -364,8 +335,8 @@ Handlebars.registerHelper("airline_time", function(isDeparture, arrivalDate, dep
 });
 
 
-Handlebars.registerHelper("status", function(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
-    var result = onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival),
+Spice.registerHelper("status", function(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
+    var result = ddg_spice_flights.onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival),
         ok_class = result[1] ? "tile__ok" : "tile__not";
     return '<div class="' + ok_class + '">' + result[0] + '</div>';
 });
