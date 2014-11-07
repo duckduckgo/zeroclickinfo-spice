@@ -12,7 +12,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday";
 category "geography";
 attribution github  => ['https://github.com/chrisjwilsoncom', 'chrisjwilsoncom'];
-triggers any => "rainfall", "rainfall in", "annual rainfall", "annual rainfall in", "average rainfall", "average annual rainfall";
+triggers any => "rainfall", "rainfall in", "annual rainfall", "annual rainfall in", "average rainfall", "average annual rainfall", "average rainfall in";
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 spice to => 'http://api.worldbank.org/countries/$1/indicators/AG.LND.PRCP.MM?&date=$2&format=json';
