@@ -2,6 +2,10 @@
     "use strict";
     env.ddg_spice_recipes = function (res) {
 
+    if (!res) {
+        return Spice.failed('recipes');
+    }
+
     var query = DDG.get_query(),
         query_encoded = DDG.get_query_encoded();
 
