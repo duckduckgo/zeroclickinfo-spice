@@ -33,16 +33,34 @@
     padding-top: 1.4em;
 }
 
+.zci--currency .tile--s .currency--border {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    background-color: rgba(50,50,50, .2);
+}
+
+.is-mobile .zci--currency .tile--s .currency--border {
+    display: none;
+}
+
 .zci--currency .tile--s img {
     height: 32px;
     vertical-align: top;
-    border: 0.2em solid #d0d0d0;
-    border-radius: 50%;
+    z-index: 2;
+    position: relative;
 }
 
-    /* Don't show the border on IE 8 because it doesn't support border-radius. */
-    .ie8 .zci--currency .tile--s img {
-        border: none;
+    .is-mobile .zci--currency .tile--s img {
+        border: 0.2em solid rgba(50,50,50, .2);
+        border-radius: 50%;
     }
 
 .zci--currency .tile--s .currency--symbol {
@@ -88,7 +106,11 @@
         text-align: center;
     }
 
-    .is-mobile .zci--currency .tile--s.large img {
+    .is-mobile .zci--currency .tile--s.large .zci--currency-first-part img {
+        vertical-align: middle;
+    }
+
+    .is-mobile .zci--currency .tile--s.large .zci--currency-second-part img {
         vertical-align: middle;
     }
 
