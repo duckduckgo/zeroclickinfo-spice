@@ -1,0 +1,43 @@
+<div class="tile  tile--c tile--seat_geek" data-link="{{url}}">
+    <div class="tile__body has-foot">
+        <div class="header_container">
+            <h3>
+                {{condense title maxlen="43"}}
+            </h3>
+            <div class="seat_geek-artist">
+                {{#if num_performers}}
+                    {{artist}} and {{num_performers}} others
+                {{/if}}
+            </div>
+        </div>
+        <div class="tile__content">
+            <div class="one-line">
+            <div class="where">
+                {{condense place maxlen="30"}}
+            </div>
+            <div class="where">
+                {{condense city maxlen="30"}}
+            </div>
+            </div>
+        </div>
+        <div class="tile__footer">
+            {{#if price}}
+                <div class="price">{{price}}</div>
+            {{else}}
+                <div class="noprice">Price N/A</div>
+            {{/if}}
+            <div class="date">
+                <div class="month">
+                    {{#if month}}
+                        {{month}}
+                    {{/if}}
+                </div>
+                <div class="day">
+                    {{#if day}}
+                        {{day}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
