@@ -12,7 +12,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday";
 category "geography";
 attribution github  => ['https://github.com/chrisjwilsoncom', 'chrisjwilsoncom'];
-triggers any => "rainfall", "rainfall in", "annual rainfall", "annual rainfall in";
+triggers any => "rainfall", "rainfall in", "annual rainfall", "annual rainfall in", "average rainfall", "average annual rainfall";
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 spice to => 'http://api.worldbank.org/countries/$1/indicators/AG.LND.PRCP.MM?&date=$2&format=json';
@@ -41,8 +41,7 @@ Locale::Country::rename_country('vi' => 'the US Virgin Islands');
 
 
 # Current date and time
-my @localT = localtime;
-my $curYear = $localT[5] + 1900;
+my $curYear = (localtime)[5] + 1900;
 
 # Vaild reporting dates for AG.LND.PRCP.MM indicator (every 5 years)
 my @reportingDates = (2012,2017,2022,2027,2032);
@@ -50,14 +49,20 @@ my @reportingDates = (2012,2017,2022,2027,2032);
 handle remainder_lc => sub {
     my ($validDate, $countryName, $countryCode, $countryCodeTwo);
     return if ($_ eq '');
+    
     $countryName = shift;
     $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3); # Return alpha-3 country code 
-    $countryCodeTwo = country2code($countryName, LOCALE_CODE_ALPHA_2); # Return alpha-2 country code 
     
-    $countryName = code2country($countryCodeTwo, LOCALE_CODE_ALPHA_2); # Return country name from country code alpha-2
+    if($countryCode) {
+        $countryName = code2country(country2code($countryName, LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
+    } else {
+        $countryName = code2country(country2code(code2country($countryName, LOCALE_CODE_ALPHA_3), LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
+        $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3);
+    }
+  
+    return unless defined $countryName;
     
     # Check if the country string has a comma, split the string and only include the first element
-    return unless defined $countryName;
     if (index($countryName, ',') != -1) {
         ($countryName) = split(',', $countryName);
     }

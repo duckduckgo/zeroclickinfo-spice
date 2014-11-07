@@ -22,6 +22,16 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Rainfall',      
     ),
+    'rainfall aus' => test_spice(
+        '/js/spice/rainfall/AUS/2012%3A2012/Australia',
+        call_type => 'include',
+        caller => 'DDG::Spice::Rainfall',      
+    ),
+    'rainfall bol' => test_spice(
+        '/js/spice/rainfall/BOL/2012%3A2012/Bolivia',
+        call_type => 'include',
+        caller => 'DDG::Spice::Rainfall',      
+    ),
     'rainfall United States of America' => test_spice(
         '/js/spice/rainfall/USA/2012%3A2012/The%20United%20States',
         call_type => 'include',
