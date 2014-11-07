@@ -54,9 +54,9 @@ handle remainder_lc => sub {
     $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3); # Return alpha-3 country code 
     
     if($countryCode) {
-        $countryName = code2country($countryCode, LOCALE_CODE_ALPHA_3);
+        $countryName = code2country(country2code($countryName, LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
     } else {
-        $countryName = code2country($countryName, LOCALE_CODE_ALPHA_3);
+        $countryName = code2country(country2code(code2country($countryName, LOCALE_CODE_ALPHA_3), LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
         $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3);
     }
   
