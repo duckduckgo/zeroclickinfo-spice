@@ -101,7 +101,7 @@
                 }
 
                 function getPrice(lowest, highest) {
-                    var price = "_";
+                    var price = "Price N/A";
 
                     if(lowest && highest) {
                         price = "$" + lowest + " - $" + highest;
@@ -110,7 +110,7 @@
                     return price;
                 }
 
-                var a = {
+                return {
                     url: item.url,
                     price: getPrice(item.stats.lowest_price, item.stats.highest_price),
                     artist: artist,
@@ -122,11 +122,12 @@
                     month: getMonth(getDate(item.datetime_local)),
                     day: getDay(getDate(item.datetime_local))
                 };
-                return a;
             },
             templates: {
                 group: 'products',
                 item: Spice.seat_geek.item,
+                detail: false,
+                item_detail: false,
                 options: {
                     moreAt: true,
                     rating: false
