@@ -11,9 +11,13 @@
 }
 
 .zci--seat_geek .price {
-    margin-top: 1.1em;
     font-weight: 600;
     color: #333;
+}
+
+.zci--seat_geek .price,
+.zci--seat_geek .noprice {
+    margin-top: 1.1em;
     height: 1em;
     float: left;
 }
