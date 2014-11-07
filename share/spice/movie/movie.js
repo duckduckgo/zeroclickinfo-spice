@@ -15,11 +15,7 @@
         // The filename is the same as the critics_rating, but
         // lowercased and with spaces converted to dashes.
         critics_rating = critics_rating.toLowerCase().replace(/ /, '-');
-        if(is_retina) {
-            return DDG.get_asset_path('in_theaters', critics_rating + '.retina.png');
-        } else {
-            return DDG.get_asset_path('in_theaters', critics_rating + '.png');
-        }
+        return DDG.get_asset_path('in_theaters', critics_rating + ((DDG.is3x || DDG.is2x) ? '.retina.png' : '.png'));
     }
     
     env.ddg_spice_movie = function(api_result) {
