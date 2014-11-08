@@ -20,7 +20,8 @@
             meta: {
                 sourceName: "SeatGeek",
                 sourceUrl: "https://seatgeek.com/search?search=" + clean_query,
-                sourceIconUrl: "https://seatgeek.com/favicon.ico"
+                sourceIconUrl: "https://seatgeek.com/favicon.ico",
+                itemType: "Upcoming Concerts"
             },
             normalize: function(item) {
                 var artist = capitalizedAcronym(clean_query);
