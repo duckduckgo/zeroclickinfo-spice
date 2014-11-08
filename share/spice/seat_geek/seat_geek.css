@@ -57,3 +57,14 @@
     font-size: 1.1em;
 }
 
+.zci--seat_geek .where.place {
+    width: 11em;
+}
+
+.zci--seat_geek .where.city {
+    width: 9em;
+}
+
+    .is-mobile .zci--seat_geek .where.city {
+        width: 7em;
+    }
