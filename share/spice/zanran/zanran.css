@@ -1,7 +1,24 @@
-.zci--zanran .hide {
-  display: none;
+.tile--zanran .tile__icon {
+    float: right;
+    margin-top: 0;
+    margin-right: 0;
 }
 
-.zci--zanran  hr.horizontal_line {
-  margin: 5px 0;
+.tile--zanran .tile__body {
+    height: 13em;
+}
+
+.tile--zanran .tile__content {
+    height: 6em;
+}
+
+.is-mobile .tile--zanran .tile__content {
+    height: 6.8em;
+}
+
+.tile--zanran .tile__footer {
+    height: auto;
+    margin-bottom: 0;
+    color: #aaa;
+    line-height: 1em;
 }
