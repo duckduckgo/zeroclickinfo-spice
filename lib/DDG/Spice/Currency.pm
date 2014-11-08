@@ -120,6 +120,20 @@ sub checkCurrencyCode {
 }
 
 handle query_lc => sub {
+
+    if(/(\p{Currency_Symbol})/g) {
+    my @c = $_;
+    my $count = @c;
+    print $count;
+    if($count > 1) {
+        print $currencyCodes{ord($c[0])};
+        print $currencyCodes{ord($c[1])};
+    } else {
+        print $currencyCodes{ord($c[0])};
+    }
+        s/(\p{Currency_Symbol})/replacement/g;
+    }
+
     if(/$guard/) {
         my ($amount, $from, $alt_amount, $to) = ($1, $2, $3, $4 || '');
 
