@@ -35,7 +35,7 @@ foreach my $currency (@currencies){
 my $currency_qr = join('|', @currTriggers);
 my $into_qr = qr/\s(?:en|in|to|in ?to|to)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
-my $question_prefix = qr/(?:\p{Currency_Symbol}|convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
+my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
 my $number_re = number_style_regex();
 
 # This regexp is responsible for actually processing the query and capturing the important parts.
