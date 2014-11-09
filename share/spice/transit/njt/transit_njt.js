@@ -10,6 +10,7 @@
         Spice.add({
             id: 'njt',
             name: 'NJ Transit',
+            signal: 'high',
             data: api_result.routes,
             meta: {
                 heading: api_result.origin + " to " + api_result.destination,
