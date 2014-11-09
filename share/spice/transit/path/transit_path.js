@@ -8,6 +8,7 @@
         Spice.add({
             id: 'path',
             name: 'PATH',
+            signal: 'high',
             data: api_result.routes,
             meta: {
                 heading: api_result.origin + " to " + api_result.destination,
