@@ -1,6 +1,6 @@
 function ddg_spice_forecast(r) {
   "use strict";
-  
+
   var weatherData = {}, spiceData;
   
   // Exit if we've got a bad forecast
@@ -37,7 +37,7 @@ function ddg_spice_forecast(r) {
         'si': {speed: 'm/s', temperature: 'C'},
         'ca': {speed: 'km/h', temperature: 'C'},
         'uk': {speed: 'mph', temperature: 'C'},
-	'uk2': {speed: 'mph', temperature: 'C'}
+        'uk2': {speed: 'mph', temperature: 'C'}
       },
       units = r.flags && r.flags.units;
 
@@ -57,14 +57,13 @@ function ddg_spice_forecast(r) {
   //                             'width': $elem.width(),
   //                             'height': $elem.height()
   //                           })
-    
   //   $elem.replaceWith($img)
   // };
-  
+
   var get_skycon = function(type) {
-	return 'http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif';
+    return 'http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif';
   };
-  
+
   var available_skycon_icons = [
     'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy', 'partly_cloudy_day',
     'partly_cloudy_night', 'clear_day', 'clear_night'
@@ -80,7 +79,7 @@ function ddg_spice_forecast(r) {
     }
     return icon;
   };
-  
+
   // Convert a wind bearing in degrees to a string
   var wind_bearing_to_str = function(bearing) {
     var wind_i = Math.round(bearing / 45);
@@ -93,15 +92,15 @@ function ddg_spice_forecast(r) {
         hourly = f.hourly.data,
         current_summary = f.currently.summary,
         speed_units = unit_labels[units].speed,
-		feel_str,
-		currentObj = {};
-    
-	currentObj.isCurrent = 1;
+        feel_str,
+        currentObj = {};
+
+    currentObj.isCurrent = 1;
     // If the next-hour summary is interesting enough (and we're not on mobile), use that instead
     if(!is_mobile && f.minutely && !f.minutely.summary.match(/ for the hour\.$/)) {
       current_summary = f.minutely.summary;
     }
-    
+
     // Find the first hourly point in the future, so we can figure out
     // if the temperature is rising or falling
     var temp_direction = 0;
@@ -112,64 +111,67 @@ function ddg_spice_forecast(r) {
       temp_direction = (hourly[i].temperature > f.currently.temperature) ? 1 : -1;
       break;
     }
-    
+
     var temp_str = '<span class="fe_temp_str">'+Math.round(f.currently.temperature)+'&deg;</span>'
-	/*
+    /*
     if(temp_direction > 0)
       temp_str += ' <span class="fe_dir">and rising</span>'
     else if(temp_direction < 0)
       temp_str += ' <span class="fe_dir">and falling</span>'
     */
-    if(f.currently.apparentTemperature)
+    if(f.currently.apparentTemperature) {
       feel_str = 'Feels like '+Math.round(f.currently.apparentTemperature)+'&deg;'
-    
-	currentObj.temp = temp_str;
-	currentObj.feelslike = feel_str;
-    
-    if(current_summary.length > 45)
+    }
+
+    currentObj.temp = temp_str;
+    currentObj.feelslike = feel_str;
+
+    if(current_summary.length > 45) {
       currentObj.summaryClass = 'fe_small';
-	else currentObj.summaryClass = '';
-    
+    } else {
+      currentObj.summaryClass = '';
+    }
+
     currentObj.summary = current_summary;
-	
+
     if(f.currently.windSpeed) {
       var wind_speed = Math.round(f.currently.windSpeed);
-      
-      if(wind_speed != 0 && f.currently.windBearing)
+
+      if(wind_speed != 0 && f.currently.windBearing) {
         wind_speed += ' '+speed_units+' ('+wind_bearing_to_str(f.currently.windBearing)+')'
-      else
+      } else {
         wind_speed += ' '+speed_units
-      
+      }
       currentObj.wind = 'Wind: '+wind_speed;
     }
-    
+
     currentObj.icon = get_skycon(skycon_type(f.currently.icon));
-	
-	return currentObj;
+
+    return currentObj;
   }
-  
+
   // Build the list of days
   var build_daily = function(f) {
-	var dailyObj = [],
-		day_strs = [],
-		today = new Date(),
-		today_i = today.getDay(),
-		month_i = today.getMonth(),
-		date_i = today.getDate(),
-		days = f.daily.data,
-		num_days = Math.max(6, days.length),
-		day,
-		temp_span,
-		max_temp_height = 65,
-		high_temp = -Infinity,
-		low_temp = Infinity;
-        
+    var dailyObj = [],
+        day_strs = [],
+        today = new Date(),
+        today_i = today.getDay(),
+        month_i = today.getMonth(),
+        date_i = today.getDate(),
+        days = f.daily.data,
+        num_days = Math.max(6, days.length),
+        day,
+        temp_span,
+        max_temp_height = 65,
+        high_temp = -Infinity,
+        low_temp = Infinity;
+
         if (!is_mobile) {
             day_strs = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         } else {
             day_strs = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
         }
-        
+
     // find weekly high and low temps
     for(var i = 0; i < num_days; i++) {
         day = days[i];
@@ -185,12 +187,12 @@ function ddg_spice_forecast(r) {
 
     // store daily values
     for(var i = 0,tmp_date; i < num_days; i++) (function(i) {
-	  dailyObj[i] = days[i];
-	  day = days[i];
-      
+      dailyObj[i] = days[i];
+      day = days[i];
+
       tmp_date = new Date();
-	  tmp_date.setDate(date_i+i);
-	  dailyObj[i].date = tmp_date.toDateString().substr(4,6);
+      tmp_date.setDate(date_i+i);
+      dailyObj[i].date = tmp_date.toDateString().substr(4,6);
       dailyObj[i].day = i == 0 ? 'Today' : day_strs[(today_i+i)%7];
       dailyObj[i].highTemp = Math.round(day.temperatureMax)+'&deg;';
       dailyObj[i].lowTemp = Math.round(day.temperatureMin)+'&deg;';
@@ -199,25 +201,25 @@ function ddg_spice_forecast(r) {
         height: max_temp_height * (day.temperatureMax - day.temperatureMin) / temp_span,
         top: max_temp_height * (high_temp - day.temperatureMax) / temp_span
       };
-	  
+
     })(i);
-	
-	return dailyObj;
+
+    return dailyObj;
   }
-  
+
   // Build any weather alerts or warnings
   var build_alerts = function(f) {    
     if(!f.alerts || !f.alerts.length) {
       return "";
     }
-    
+
     var alert_message;
     for(var i = 0; i < f.alerts.length; i++) {
       if (f.alerts[i].title.match(/Special Weather Statement/i) ||
          f.alerts[i].title.match(/Advisory/i) ||
          f.alerts[i].title.match(/Statement/i))
         continue;
-      
+
       alert_message = f.alerts[i];
       break;
     }
@@ -248,8 +250,8 @@ function ddg_spice_forecast(r) {
     spiceData = [weatherData.current, weatherData.daily[0], weatherData.daily[1], weatherData.daily[2], weatherData.daily[3], weatherData.daily[4], weatherData.daily[5], weatherData.daily[6]];
   }
 
-  var other_unit = unit_labels[units].temperature === 'F' ? 'C' : 'F';
-  var altMeta = '<a id="fe_temp_switch" class="tx-clr--dk2"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a>';
+  var uom = unit_labels[units].temperature === 'F' ? 'F' : 'C',
+      altMeta = '<a id="fe_temp_switch" class="tx-clr--dk2"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a>';
 
   // Render/Display
     Spice.add({
@@ -295,10 +297,7 @@ function ddg_spice_forecast(r) {
     }
   }
 
-  updateTempSwitch(unit_labels[units].temperature);
-
-  //when we press the small button, switch the temperature units
-  $('#fe_temp_switch').click(function(){
+  var updateUnitOfMeasure = function() {
     //initialize the temperatures with the API data
     var temps = {
       current: r.currently.temperature,
@@ -309,12 +308,12 @@ function ddg_spice_forecast(r) {
     };
 
     //if they want the units that aren't by the API, calculate the new temps
-    if (other_unit !== unit_labels[units].temperature) {
-      temps.current = convertTemp(other_unit, temps.current);
-      temps.feelslike = convertTemp(other_unit, temps.feelslike);
+    if (uom !== unit_labels[units].temperature) {
+      temps.current = convertTemp(uom, temps.current);
+      temps.feelslike = convertTemp(uom, temps.feelslike);
       temps.daily = $.map(temps.daily, function(e){
-        var tempMin = convertTemp(other_unit, e.tempMin),
-            tempMax = convertTemp(other_unit, e.tempMax);
+        var tempMin = convertTemp(uom, e.tempMin),
+            tempMax = convertTemp(uom, e.tempMax);
         return {'tempMin': tempMin, 'tempMax': tempMax};
       });
     }
@@ -340,7 +339,24 @@ function ddg_spice_forecast(r) {
       });
     }
 
-    updateTempSwitch(other_unit);
-    other_unit = (other_unit === 'F') ? 'C' : 'F';
+    updateTempSwitch(uom);
+  }
+
+  // if the metric setting is enabled and the API returned temps in F, switch to 'C':
+  if (!DDG.settings.isDefault('kaj') && uom === 'F') {
+      uom = 'C';
+      updateUnitOfMeasure();
+  } else {
+      updateTempSwitch(uom);
+  }
+
+  //when we press the small button, switch the temperature units
+  $('#fe_temp_switch').click( function() {
+      uom = uom === 'F' ? 'C' : 'F';
+
+      updateUnitOfMeasure()
+
+      // update the setting so we remember this choice going forward:
+      DDG.settings.set('kaj', uom === 'C' ? '1' : '-1', { saveToCloud: true });
   });
 }
