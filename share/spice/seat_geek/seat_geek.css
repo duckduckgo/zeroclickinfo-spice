@@ -57,11 +57,8 @@
     font-size: 1.1em;
 }
 
+.zci--seat_geek .where.city,
 .zci--seat_geek .where.place {
-    width: 10em;
-}
-
-.zci--seat_geek .where.city {
     width: 9.3em;
 }
 
