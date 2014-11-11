@@ -23,13 +23,13 @@
                 meta: {
                     sourceUrl: 'http://xkcd.com/' + api_result.num,
                     sourceName: 'xkcd',
-                    sourceIcon: true
+                    sourceIcon: true,
+                    explainLink: "http://www.explainxkcd.com/wiki/index.php/" + api_result.num
                 },
                 templates: {
                     group: 'base',
                     options: {
-                        content: Spice.xkcd_display.content,
-                        moreAt: true
+                        content: Spice.xkcd_display.content
                     }
                 },
                 onShow: function(){
