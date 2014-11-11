@@ -119,7 +119,7 @@
                     title: item.short_title,
                     place: item.venue.name,
                     img: item.performers[0].images.small,
-                    city: item.venue.city + ", " + item.venue.country,
+                    city: item.venue.display_location,
                     month: getMonth(getDate(item.datetime_local)),
                     day: getDay(getDate(item.datetime_local))
                 };
