@@ -39,6 +39,7 @@
                             normalized_props.push(props[i].toLowerCase());
                         }
                     }
+                
                 // Get out ASAP once we find a hit.
                 while (!hitit && picks <= normalized_props.length) {
                     combos(normalized_props, picks, function(c) {
@@ -86,7 +87,7 @@
             day: dateObj.getDate(),
             monthName: months[dateObj.getMonth()],
             year: dateObj.getFullYear(),
-            placeName: chosen.geo.name,
+            placeName: chosen.geo.state ? (chosen.geo.name + ", " + chosen.geo.state) : chosen.geo.name,
             offset: chosen.time.timezone.offset.replace(/0|:/g, ""),
             zone: chosen.time.timezone.zonename,
             country: chosen.geo.country.name
