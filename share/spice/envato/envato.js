@@ -67,7 +67,7 @@
                     duration: duration*1000,
                     title: item.description,
                     url: item.url,
-                    streamURL: info.preview_url,
+                    streamURL: '/audio/?u=' + info.preview_url,
                     price: info.cost.replace('.00', '')
                 }
             }
