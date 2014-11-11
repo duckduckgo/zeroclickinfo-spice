@@ -345,8 +345,6 @@ function ddg_spice_forecast(r) {
   // if the metric setting is enabled and the API returned temps in F, switch to 'C':
   if (!DDG.settings.isDefault('kaj')) {
       uom = DDG.settings.get('kaj') === 'm' ? 'C' : 'F';
-      console.log(DDG.settings.get('kaj'));
-      console.log("preferred UOM: ", uom);
       updateUnitOfMeasure();
   } else {
       updateTempSwitch(uom);
