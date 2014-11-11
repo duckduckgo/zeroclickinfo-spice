@@ -97,6 +97,7 @@
             id: "time",
             name: "Time",
             data: dateTime,
+            signal: 'high',
             meta: {
                 sourceName: "timeanddate.com",
                 sourceUrl: 'http://www.timeanddate.com/worldclock/city.html?n=' + chosen.id
