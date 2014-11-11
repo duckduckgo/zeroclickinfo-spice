@@ -7,17 +7,11 @@ contributions are easy for you to make and for us to manage, we have written
 some guidelines that we ask our contributors to follow so that we can handle
 pull requests in a timely manner with as little friction as possible.
 
-### BETA
-
-The new version of DuckDuckGo has launched public beta!
-See the [what's new](https://github.com/duckduckgo/zeroclickinfo-spice/blob/bttf/BETA.md) for the current status and how you can contribute
-to converting the Spice Instant Answers to the new API !
-
-<hr>
 
 ## Getting Started
 
 Before you can do anything, you first need a [GitHub account](https://github.com/signup/free). This is required because we use GitHub to handle all incoming *Pull Requests* (code modifications) and *Issues* (bug reports) which cannot be made without a GitHub account.
+
 
 ## Submitting a **Bug** or **Suggestion**
 
@@ -30,6 +24,7 @@ Before you can do anything, you first need a [GitHub account](https://github.com
 
 If you're submitting a **pull request** (bugfix/addition):
 - Fork the **Spice** repository on GitHub
+
 
 ## Making Changes
 
@@ -47,9 +42,10 @@ If you're submitting a **pull request** (bugfix/addition):
   <bad_commit_example>
   ```
 
-- Make sure you have added the necessary tests for your changes
+- Make sure you have added the necessary tests for your changes (e.g. when modifying the triggers, update the test to show it works as expected)
 - Run `dzil test` (executes all tests in t/) to ensure nothing else was accidentally broken
 - If your change affects an instant answer, remember to add yourself to the Metadata attribution list in the appropriate `.pm` file
+
 
 ## Submitting Changes
 
