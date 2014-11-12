@@ -22,7 +22,7 @@
                 return {
                     description: item.short_title,
                     url: item.final_url,
-                    icon: "//icons.duckduckgo.com/ip2/www.acrobat.com.ico",
+                    icon: DDG.get_asset_path('zanran','pdf.ico'),
                     title: item.site_name,
                     date: item.date
                 };
