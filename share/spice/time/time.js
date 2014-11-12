@@ -10,60 +10,13 @@
             source = $(script).attr("src"),
             // Query is normalized as we'll normalize the generated strings.
             query = decodeURIComponent(source.match(/time\/([^\/]+)/)[1]).toLowerCase().split(' ').sort().join(' '),
-            // This generates the strings form the location results and decides if they match
-            combo_check = function(loc) {
-                var hitit = false,
-                    picks = 1, // Start with combinations of length 1
-                    // The properities we want to use in our comparisons to check for matches.
-                    props = [loc.geo.name, loc.geo.country.id, loc.geo.state, loc.geo.country.name],
-                    // Generic function for generating combinations from an array.
-                    combos = function(p, choose, cb) {
-                        var n = p.length;
-                        var c = [];
-                        var inner = function(start, choose_) {
-                            if (choose_ == 0) {
-                                cb(c);
-                            } else {
-                                for (var i = start; i <= n - choose_; ++i) {
-                                    c.push(p[i]);
-                                    inner(i + 1, choose_ - 1);
-                                    c.pop();
-                                }
-                            }
-                        }
-                        inner(0, choose);
-                    },
-                    normalized_props = [];
-                    for (var i = 0; i < props.length; i++) {
-                        if( typeof props[i] !== 'undefined') {
-                            normalized_props.push(props[i].toLowerCase());
-                        }
-                    }
-                
-                // Get out ASAP once we find a hit.
-                while (!hitit && picks <= normalized_props.length) {
-                    combos(normalized_props, picks, function(c) {
-                        // Normalize a string for the generated combination;
-                        if (c.join(' ').split(' ').sort().join(' ') == query) {
-                            hitit = true;
-                        }
-                    });;
-                    picks++;
-                }
-                return hitit;
-            },
-            index = 0,
             chosen;
-
-        // Get out ASAP once we find a hit.
-        while (!chosen && index < api.locations.length) {
-            if (combo_check(api.locations[index])) {
-                chosen = api.locations[index];
+        
+        for(var i = 0; i < api.locations.length; i++) {
+            if(DDG.stringsRelevant(query, api.locations[i].geo.name + " " + api.locations[i].geo.country.name)) {
+                chosen = api.locations[i];
+                break;
             }
-            index++;
-        }
-        if (typeof chosen === 'undefined') {
-            chosen = api.locations[0]
         }
 
         var dateObj = DDG.getDateFromString(chosen.time.iso),
