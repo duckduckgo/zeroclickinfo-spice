@@ -15,6 +15,7 @@ attribution github => ['https://github.com/mintsoft', 'mintsoft'],
 
 my $trig = qr#(?:ip lookup)|(?:iplookup)|(?:reverse (?:dns|ip)(?: lookup)?)|(?:dns)|(?:whois)#i;
 my $IPv4_re = qr/(?:[0-9]{1,3}\.){3}(?:[0-9]{1,3})/;
+my $priv_guard = qr/(^127\.0\.0\.1)|(^10\.)|(^172\.1[6-9]\.)|(^172\.2[0-9]\.)|(^172\.3[0-1]\.)|(^192\.168\.)|(^::1$|^fc|^fd)/;
 
 my $regex = qr/^(?:$trig (?:of|for|on)?[ ]?)?($IPv4_re|$IPv6_re)(?: $trig)?$/;
 triggers query_raw => $regex;
@@ -35,6 +36,7 @@ sub is_ipv4($)
 
 handle query_raw => sub {
     my $ip = $1;
+    return if $ip =~ /$priv_guard/;
     return $ip if (is_ipv4($ip) || $ip =~ /^$IPv6_re$/);
     return;
 };
