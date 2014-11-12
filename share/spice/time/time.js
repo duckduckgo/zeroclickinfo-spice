@@ -18,6 +18,11 @@
                 break;
             }
         }
+        
+        // If there isn't a place, return immediately.
+        if(!chosen) {
+            return;
+        }
 
         var dateObj = DDG.getDateFromString(chosen.time.iso),
             months = ['January', 'February', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December'],
