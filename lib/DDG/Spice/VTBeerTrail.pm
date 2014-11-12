@@ -10,7 +10,7 @@ icon_url "/i/vtbeertrail.com.ico";
 description "Helping Craft Beer Fans Find Breweries in Vermont";
 
 primary_example_queries "vermont breweries";
-secondary_example_queries "vt breweries", "vermont beer", "vt beer", "vermont beer map", "vt beer map", "vermont beer guide", "vt beer guide";
+secondary_example_queries "vt breweries", "vermont beer", "vt beer", "vermont beer map", "vt beer map", "vermont beer guide", "vt beer guide", "vermont beer trail", "vt beer trail";
 
 category "food";
 topics "travel", "food_and_drink";
