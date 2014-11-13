@@ -349,29 +349,17 @@ function ddg_spice_forecast(r) {
     }
 
     //insert the new temps in the html
-    if (is_mobile){
-      $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
-      $('.fe_day--bar').each(function(i){
-        var day = temps.daily[i],
-            $this = $(this);
-
-        $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
-        $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
-      });
-      $('.fe_currently').find('.fe_wind').html('Wind: ' + Math.round(temps.wind) + ' ' + wind_uom + 
-        ' ('+wind_bearing_to_str(r.currently.windBearing)+')');
-    } else {
-      $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
-      $('.fe_day').each(function(i){
-        var day = temps.daily[i],
-            $this = $(this);
-
-        $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
-        $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
-      });
-      $('.fe_currently').find('.fe_wind').html('Wind: ' + Math.round(temps.wind) + ' ' + wind_uom + 
-        ' ('+wind_bearing_to_str(r.currently.windBearing)+')');
-    }
+    var day_class = is_mobile ? '.fe_day--bar' : '.fe_day';
+    
+    $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
+    $(day_class).each(function(i){
+      var day = temps.daily[i],
+          $this = $(this);
+      $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
+      $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
+    });
+    $('.fe_currently').find('.fe_wind').html('Wind: ' + Math.round(temps.wind) + ' ' + wind_uom + 
+      ' ('+wind_bearing_to_str(r.currently.windBearing)+')');
 
     updateTempSwitch(uom);
   }
