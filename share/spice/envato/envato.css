@@ -93,3 +93,43 @@
 .zci--envato .tile-wrap .tile__title {
     font-size: 1.1667em;
 }
+
+.zci--envato .tileview--grid .tile--c--n {
+    width:12%;
+}
+
+@media screen and (max-width: 1600px) {
+    .zci--envato .tileview--grid .tile--c--n {
+        width: 13.75%;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .zci--envato .tileview--grid .tile--c--n {
+        width: 16.1%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .zci--envato .tileview--grid .tile--c--n {
+        width: 23.95%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .zci--envato .tileview--grid .tile--c--n {
+        width: 32.2%;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .zci--envato .tileview--grid .tile--c--n {
+        width: 48.5%;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .zci--envato .tileview--grid .tile--c--n {
+        width: 98%;
+    }
+}
