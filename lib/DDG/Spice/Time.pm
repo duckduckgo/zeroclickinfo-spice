@@ -16,14 +16,18 @@ attribution github  => ['https://github.com/chrisjwilsoncom', 'chrisjwilsoncom']
 spice proxy_cache_valid => "418 1d";
 spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&out=js&prettyprint=1&callback={{callback}}&query=$1&time=1&tz=1&verbosetime=1';
 
-triggers start => "time in", "what time is it in", "current time", "current time in", "local time", "local time in";
+triggers start => "time";
 
 my $capitals = Load(scalar share("capitals.yml")->slurp);
 
-handle remainder_lc => sub {
-    my $q = shift;
-    $q =~ s/,|\?|now|right now//g;
-    return unless $q;
+handle query_lc => sub {
+	my $q = shift;
+
+	return unless $q =~ m/(what'?s?)?(\s?is)?(\s?the)?(\s?current)?(\s?local)?time(\s?is it\s?)?(\s(in|of|for))\s+(?<loc>.+)/;
+	$q = $+{loc};
+	$q =~ s/(^\s+|\s+$)//g;
+	$q =~ s/,//g;
+	return unless $q;
 
     if (my $caps = $capitals->{$q}) {
         # These are internally sorted by population, so assume they want the big one for now.
