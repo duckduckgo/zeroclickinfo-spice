@@ -1,14 +1,14 @@
 <div class="tile  tile--c tile--seat_geek" data-link="{{url}}">
     <div class="tile__body has-foot">
         <div class="header_container">
-            <h3 class="tx-clr--dk">
-                {{condense title maxlen="43"}}
-            </h3>
-            <div class="seat_geek-artist one-line tx-clr--lt">
+            <h4 class="tx-clr--dk tile__title media__body has_sub">
+                {{title}}
+            </h4>
+            <span class="tile__title__sub">
                 {{#if num_performers}}
-                    {{artist}} and {{num_performers}} others
+                {{artist}} and {{num_performers}} others
                 {{/if}}
-            </div>
+            </span>
         </div>
         <div class="tile__content">
             <div class="one-line tx-clr--lt">

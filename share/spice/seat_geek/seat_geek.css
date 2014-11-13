@@ -7,6 +7,14 @@
     font-size: 1.5em;
 }
 
+.zci--seat_geek .tile--seat_geek {
+    height: 15.8em;
+}
+
+    .is-mobile .zci--seat_geek .tile--seat_geek {
+        height: inherit;
+    }
+
 .zci--seat_geek .header_container {
     height: 8em;
 }
@@ -27,8 +35,12 @@
     padding: 1.1em;
 }
 
-.zci--seat_geek .tile__title__sub {
-    font-size: 0.7em;
+.zci--seat_geek .header_container .tile__title {
+    height: 3.7em;
+    margin-bottom: 0;
+    /* Adding ellipsis on Webkit-based engines. */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
 }
 
 .zci--seat_geek .date {
