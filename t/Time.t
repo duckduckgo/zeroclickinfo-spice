@@ -15,26 +15,29 @@ my @kingston_town = (
 
 ddg_spice_test(
     [qw( DDG::Spice::Time)],
-    'time in Amsterdam' => test_spice(
-        '/js/spice/time/amsterdam%20netherlands',
+    # Primary examples
+    'time in Melbourne' => test_spice(
+        '/js/spice/time/melbourne',
         call_type => 'include',
         caller    => 'DDG::Spice::Time'
     ),
-    'time for Netherlands' => test_spice(
-        '/js/spice/time/amsterdam%20netherlands',
+    'time for Australia' => test_spice(
+        '/js/spice/time/canberra%20australia',
         call_type => 'include',
         caller    => 'DDG::Spice::Time'
     ),
-    'time in Birmingham' => test_spice(
+    # Secondary examples
+    'what time is it in Melbourne' => test_spice(
+        '/js/spice/time/melbourne',
+        call_type => 'include',
+        caller    => 'DDG::Spice::Time'
+    ),
+    'what is the time in Birmingham' => test_spice(
         '/js/spice/time/birmingham',
         call_type => 'include',
         caller    => 'DDG::Spice::Time'
     ),
-    'time of Birmingham, AL' => test_spice(
-        '/js/spice/time/birmingham%20al',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Time'
-    ),
+    # Additional queries
     'time in Canada' => test_spice(
         '/js/spice/time/ottawa%20canada',
         call_type => 'include',
@@ -50,6 +53,7 @@ ddg_spice_test(
         call_type => 'include',
         caller    => 'DDG::Spice::Time'
     ),
+    # Different form, same result.
     'time in kingston'                         => test_spice(@kingston_town),
     'current time in kingston'                 => test_spice(@kingston_town),
     'local time in kingston'                   => test_spice(@kingston_town),
@@ -60,11 +64,12 @@ ddg_spice_test(
     'whats the current local time in kingston' => test_spice(@kingston_town),
     'local time for kingston'                  => test_spice(@kingston_town),
     'local time of kingston'                   => test_spice(@kingston_town),
-    'curent time in kingston'                  => undef,
-    'current local time'                       => undef,
-    'time and space museum'                    => undef,
-    'time complexity of qsort'                 => undef,
-    'running time of titanic'                  => undef,
+    # Intentionally ignored
+    'curent time in kingston'  => undef,
+    'current local time'       => undef,
+    'time and space museum'    => undef,
+    'time complexity of qsort' => undef,
+    'running time of titanic'  => undef,
 );
 
 done_testing;
