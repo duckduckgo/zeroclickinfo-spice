@@ -10,6 +10,11 @@
     height: 8em;
 }
 
+/* IE causes one-line to break when word-break is set to something. */
+.zci--seat_geek .tile__body {
+    word-break: normal;
+}
+
 .zci--seat_geek .price {
     font-weight: 600;
 }
