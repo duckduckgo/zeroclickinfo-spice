@@ -1,14 +1,5 @@
-.zci--seat_geek h3 {
-    line-height: 1.15;
-    font-weight: 400;
-    padding-top: 0;
-    padding-bottom: 0.15em !important;
-    margin-top: -0.1em;
-    font-size: 1.5em;
-}
-
 .zci--seat_geek .tile--seat_geek {
-    height: 15.8em;
+    height: 15.6em;
 }
 
     .is-mobile .zci--seat_geek .tile--seat_geek {
@@ -25,7 +16,7 @@
 
 .zci--seat_geek .price,
 .zci--seat_geek .noprice {
-    margin-top: 1.1em;
+    margin-top: 1em;
     height: 1.1em;
     float: left;
     font-size: 1.1em;
