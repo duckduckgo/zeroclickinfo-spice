@@ -64,7 +64,29 @@
         var portions = [],
 
             // dom refs that will get assigned onShow:
-            $el, $amount, $portion;
+            $el, $amount, $portion,
+            
+            // show function
+            _onShow = function() {
+                // bind to the drop down (if not already bound)
+                if ((!$el || !$el[0]) && portions.length > 1) {
+                    $el = Spice.getDOM('nutrition');
+                    // check to see if the DOM has rendered
+                    if (!$el[0]) {
+                        // bail out, try again in 300ms
+                        setTimeout(_onShow,300);
+                        return false;
+                    }
+                    
+                    $amount = $el.find('.nutrition__amount');
+                    $portion = $el.find('.nutrition__portion__dropdown');
+
+                    $portion.change(function() {
+                        var portionId = $portion.val();
+                        $amount.text(portions[portionId].amount + (measurementInfo.uom || ''));
+                    });
+                }
+            };
 
         for (var i=0; i<api_result.hits.length; i++) {
             var item = api_result.hits[i].fields,
@@ -116,19 +138,7 @@
                     moreAt: true
                 }
             },
-            onShow: function() {
-                // bind to the drop down (if not already bound)
-                if (!$el && portions.length > 1) {
-                    $el = Spice.getDOM('nutrition');
-                    $amount = $el.find('.nutrition__amount');
-                    $portion = $el.find('.nutrition__portion__dropdown');
-
-                    $portion.change(function() {
-                        var portionId = $portion.val();
-                        $amount.text(portions[portionId].amount + (measurementInfo.uom || ''));
-                    });
-                }
-            }
+            onShow: _onShow
         });
     };
 }(this));
