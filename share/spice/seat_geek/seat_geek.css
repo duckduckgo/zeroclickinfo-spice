@@ -32,11 +32,12 @@
 }
 
 .zci--seat_geek .header_container .tile__title {
-    height: 3.7em;
+    height: 3.8em;
     margin-bottom: 0;
     /* Adding ellipsis on Webkit-based engines. */
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    font-weight: 400;
 }
 
 .zci--seat_geek .date {
