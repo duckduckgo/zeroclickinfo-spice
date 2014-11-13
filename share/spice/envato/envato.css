@@ -94,42 +94,47 @@
     font-size: 1.1667em;
 }
 
-.zci--envato .tileview--grid .tile--c--n {
+.zci--envato .tileview--grid .tile-wrap .tile {
     width:12%;
+    margin-left: .25%;
+    margin-right: .25%;
 }
 
 @media screen and (max-width: 1600px) {
-    .zci--envato .tileview--grid .tile--c--n {
+    .zci--envato .tileview--grid .tile-wrap .tile {
         width: 13.75%;
+
     }
 }
 
 @media screen and (max-width: 1280px) {
-    .zci--envato .tileview--grid .tile--c--n {
+    .zci--envato .tileview--grid .tile-wrap .tile {
         width: 16.1%;
     }
 }
 
 @media screen and (max-width: 1024px) {
-    .zci--envato .tileview--grid .tile--c--n {
+    .zci--envato .tileview--grid .tile-wrap .tile {
         width: 23.95%;
+        margin-left: .5%;
+        margin-right: .5%;
     }
 }
 
 @media screen and (max-width: 800px) {
-    .zci--envato .tileview--grid .tile--c--n {
+    .zci--envato .tileview--grid .tile-wrap .tile {
         width: 32.2%;
     }
 }
 
 @media screen and (max-width: 640px) {
-    .zci--envato .tileview--grid .tile--c--n {
+    .zci--envato .tileview--grid .tile-wrap .tile {
         width: 48.5%;
     }
 }
 
 @media screen and (max-width: 479px) {
-    .zci--envato .tileview--grid .tile--c--n {
+    .zci--envato .tileview--grid .tile-wrap .tile {
         width: 98%;
     }
 }
