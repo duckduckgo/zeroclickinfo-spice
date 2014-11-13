@@ -12,10 +12,10 @@
         Spice.add({
             
             id: "vt_beer_trail",
-            name: "Craft Beer Tourism",
+            name: "VT Beer Trail",
             data: api_result,
             meta: {
-                sourceName: "VT Beer Trail",
+                sourceName: "vtbeertrail.com",
                 sourceUrl: 'http://www.vtbeertrail.com',
                 primaryText: "The Amazing Craft Brewers of Vermont",
                 secondaryText: "Discover"
