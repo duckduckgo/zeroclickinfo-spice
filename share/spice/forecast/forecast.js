@@ -287,11 +287,12 @@ function ddg_spice_forecast(r) {
   }
 
   var convertSpeed = function(from, to, val){
+    // http://en.wikipedia.org/wiki/Miles_per_hour#Conversions
     var conversionFactors = {
-      'mph-m/s': 0.45,
-      'm/s-mph': 2.24,
+      'mph-m/s': 0.4471,
+      'm/s-mph': 2.237,
       'mph-km/h': 1.609,
-      'km/h-mph': 0.62,
+      'km/h-mph': 0.6214
     };
 
     return val * conversionFactors[from + '-' + to];
