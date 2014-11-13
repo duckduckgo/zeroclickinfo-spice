@@ -105,7 +105,7 @@
                     var price = "";
 
                     if(lowest && highest) {
-                        price = "$" + lowest + " - $" + highest;
+                        price = "$" + lowest + "+";
                     }
 
                     return price;
