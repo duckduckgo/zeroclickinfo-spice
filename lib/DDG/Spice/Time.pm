@@ -3,7 +3,7 @@ use DDG::Spice;
 
 use YAML::XS qw( Load );
 
-primary_example_queries "time Melbourne", "time Australia", "time birmingham";
+primary_example_queries "time in Melbourne", "time for Australia";
 secondary_example_queries "what time is it in Melbourne", "what is the time in Birmingham";
 description "Provides the local time of country, city or state searched";
 name "Time";
