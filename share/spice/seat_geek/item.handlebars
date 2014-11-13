@@ -1,17 +1,17 @@
 <div class="tile  tile--c tile--seat_geek" data-link="{{url}}">
     <div class="tile__body has-foot">
         <div class="header_container">
-            <h3 class="tx-clr--dk">
-                {{condense title maxlen="43"}}
-            </h3>
-            <div class="seat_geek-artist one-line">
+            <h4 class="tx-clr--dk tile__title media__body has_sub">
+                {{title}}
+            </h4>
+            <span class="tile__title__sub">
                 {{#if num_performers}}
-                    {{artist}} and {{num_performers}} others
+                {{artist}} and {{num_performers}} others
                 {{/if}}
-            </div>
+            </span>
         </div>
         <div class="tile__content">
-            <div class="one-line">
+            <div class="tx-clr--lt">
             <div class="where place one-line">
                 {{place}}
             </div>
@@ -24,7 +24,7 @@
             {{#if price}}
                 <div class="price tx-clr--dk">{{price}}</div>
             {{else}}
-                <div class="noprice">Price N/A</div>
+                <div class="noprice tx-clr--lt">Price N/A</div>
             {{/if}}
             <div class="date">
                 <div class="month">

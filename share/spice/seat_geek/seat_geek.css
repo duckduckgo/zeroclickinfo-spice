@@ -1,14 +1,18 @@
-.zci--seat_geek h3 {
-    line-height: 1.15;
-    font-weight: 400;
-    padding-top: 0;
-    padding-bottom: 0.15em !important;
-    margin-top: -0.1em;
-    font-size: 1.5em;
+.zci--seat_geek .tile--seat_geek {
+    height: 15.6em;
 }
+
+    .is-mobile .zci--seat_geek .tile--seat_geek {
+        height: inherit;
+    }
 
 .zci--seat_geek .header_container {
     height: 8em;
+}
+
+/* IE causes one-line to break when word-break is set to something. */
+.zci--seat_geek .tile__body {
+    word-break: initial;
 }
 
 .zci--seat_geek .price {
@@ -17,18 +21,23 @@
 
 .zci--seat_geek .price,
 .zci--seat_geek .noprice {
-    margin-top: 1.1em;
+    margin-top: 1em;
     height: 1.1em;
     float: left;
     font-size: 1.1em;
 }
 
 .zci--seat_geek .tile__body.has-foot {
-    padding: 1.1em;
+    padding: 1em;
 }
 
-.zci--seat_geek .tile__title__sub {
-    font-size: 0.7em;
+.zci--seat_geek .header_container .tile__title {
+    height: 3.8em;
+    margin-bottom: 0;
+    /* Adding ellipsis on Webkit-based engines. */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    font-weight: 400;
 }
 
 .zci--seat_geek .date {
@@ -55,6 +64,7 @@
 
 .zci--seat_geek .where {
     font-size: 1.1em;
+    height: 1.4em;
 }
 
 .zci--seat_geek .where.city,
