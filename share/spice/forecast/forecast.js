@@ -286,6 +286,18 @@ function ddg_spice_forecast(r) {
     }
   }
 
+  var convertSpeed = function(from, to, val){
+    // http://en.wikipedia.org/wiki/Miles_per_hour#Conversions
+    var conversionFactors = {
+      'mph-m/s': 0.4471,
+      'm/s-mph': 2.237,
+      'mph-km/h': 1.609,
+      'km/h-mph': 0.6214
+    };
+
+    return val * conversionFactors[from + '-' + to];
+  }
+
   //update the style of the F/C (make one bold and the other grayed out)
   var updateTempSwitch = function(new_unit){
     if (new_unit === "F"){
@@ -304,10 +316,11 @@ function ddg_spice_forecast(r) {
       feelslike: r.currently.apparentTemperature,
       daily: $.map(r.daily.data, function(e){
         return {'tempMin': e.temperatureMin, 'tempMax': e.temperatureMax};
-      })
+      }),
+      wind: r.currently.windSpeed
     };
 
-    //if they want the units that aren't by the API, calculate the new temps
+    //if they want the units that aren't given by the API, calculate the new temps
     if (uom !== unit_labels[units].temperature) {
       temps.current = convertTemp(uom, temps.current);
       temps.feelslike = convertTemp(uom, temps.feelslike);
@@ -317,27 +330,37 @@ function ddg_spice_forecast(r) {
         return {'tempMin': tempMin, 'tempMax': tempMax};
       });
     }
-    //insert the new temps in the html
-    var $link = $(this);
-    if (is_mobile){
-      $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
-      $('.fe_day--bar').each(function(i){
-        var day = temps.daily[i],
-            $this = $(this);
+ 
+    //decide which wind speed unit they want
+    var given_wind_uom = unit_labels[units].speed,
+        wind_uom;
 
-        $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
-        $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
-      });
+    if (uom === 'F'){
+      wind_uom = 'mph';
+    } else if (given_wind_uom === 'mph'){
+      //when the user switches from a given F -> C, we assume they want m/s
+      //TODO: make this smarter somehow
+      wind_uom = 'm/s';
     } else {
-      $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
-      $('.fe_day').each(function(i){
-        var day = temps.daily[i],
-            $this = $(this);
-
-        $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
-        $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
-      });
+      wind_uom = given_wind_uom;
     }
+
+    if (wind_uom !== given_wind_uom){
+      temps.wind = convertSpeed(given_wind_uom, wind_uom, temps.wind);
+    }
+
+    //insert the new temps in the html
+    var day_class = is_mobile ? '.fe_day--bar' : '.fe_day';
+    
+    $('.fe_currently').find('.fe_temp_str').html(Math.round(temps.current) + '&deg;');
+    $(day_class).each(function(i){
+      var day = temps.daily[i],
+          $this = $(this);
+      $this.find('.fe_high_temp').html(Math.round(day.tempMax) + '&deg;');
+      $this.find('.fe_low_temp').html(Math.round(day.tempMin) + '&deg;');
+    });
+    $('.fe_currently').find('.fe_wind').html('Wind: ' + Math.round(temps.wind) + ' ' + wind_uom + 
+      ' ('+wind_bearing_to_str(r.currently.windBearing)+')');
 
     updateTempSwitch(uom);
   }
