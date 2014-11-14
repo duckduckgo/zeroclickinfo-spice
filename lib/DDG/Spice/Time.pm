@@ -3,7 +3,7 @@ use DDG::Spice;
 
 use YAML::XS qw( Load );
 
-primary_example_queries "time Melbourne", "time Australia", "time birmingham";
+primary_example_queries "time in Melbourne", "time for Australia";
 secondary_example_queries "what time is it in Melbourne", "what is the time in Birmingham";
 description "Provides the local time of country, city or state searched";
 name "Time";
@@ -16,13 +16,19 @@ attribution github  => ['https://github.com/chrisjwilsoncom', 'chrisjwilsoncom']
 spice proxy_cache_valid => "418 1d";
 spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&out=js&prettyprint=1&callback={{callback}}&query=$1&time=1&tz=1&verbosetime=1';
 
-triggers start => "time in", "what time is it in", "current time", "current time in", "local time", "local time in";
+triggers any => "time";
 
 my $capitals = Load(scalar share("capitals.yml")->slurp);
 
-handle remainder_lc => sub {
+my $place_connector = join '|', qw(in of for at);
+
+handle query_lc => sub {
     my $q = shift;
-    $q =~ s/,|\?|now|right now//g;
+
+    return unless $q =~ m/^(what'?s?|is|the|current|local|\s)*time(?:is|it|\s)*(?:\b$place_connector\b)\s+(?<loc>[^\?]+)[\?]?$/;
+    $q = $+{loc};
+    $q =~ s/(^\s+|\s+$)//g;
+    $q =~ s/,//g;
     return unless $q;
 
     if (my $caps = $capitals->{$q}) {
