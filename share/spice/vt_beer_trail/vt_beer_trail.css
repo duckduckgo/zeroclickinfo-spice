@@ -1,3 +1,16 @@
-.tile--vt_beer_trail .tile__description .opt {
+/* Styles For Tiles */
+
+.tile--vt_beer_trail .tile__description.opt {
     display: block !important;
+    margin-bottom: 0px;
 }
+
+.tile--vt_beer_trail .tile__media--b-i {
+    height: 11em
+}
+
+.tile--vt_beer_trail .tile__media__img {
+    margin-top: 1em;
+}
+
+/* Styles For Detail */
