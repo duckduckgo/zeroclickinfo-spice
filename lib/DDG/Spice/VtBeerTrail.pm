@@ -6,7 +6,7 @@ use DDG::Spice;
 # Meta Stuff: https://duck.co/duckduckhack/metadata
 name "VtBeerTrail";
 # source "vtbeertrail.com";
-# icon_url "/i/vtbeertrail.com.ico";
+icon_url "/i/vtbeertrail.com.ico";
 description "Helping Craft Beer Fans Find Breweries in Vermont";
 
 primary_example_queries "vermont breweries";

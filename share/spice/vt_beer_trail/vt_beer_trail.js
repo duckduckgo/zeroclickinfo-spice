@@ -8,12 +8,9 @@
             return Spice.failed('vt_beer_trail');
         }
         
-        var brewerImage = function image(item) {
-            return 'http://vtbeertrail.com/' + item.vba100;
-        };
-        var brewerLocation = function location(item) {
-            return item.city + ',' + item.statestate;
-        };
+//         var brewerLocation = function location(item) {
+//             return item.city + ',' + item.statestate;
+//         };
         
         // Render the response
         Spice.add({
@@ -24,16 +21,17 @@
             meta: {
                 sourceName: "VT Beer Trail",
                 sourceUrl: 'http://www.vtbeertrail.com',
-                sourceIconUrl: DDG.get_asset_path('vt_beer_trail','vtbeertrail.com.ico'),
+                sourceIcon: true,
+//                 sourceIconUrl: DDG.get_asset_path('vt_beer_trail','vtbeertrail.com.ico'),
                 searchTerm: 'Vermont',
                 itemType: 'Breweries'
                 
             },
             normalize: function(item) {
                 return {
-                    image: brewerImage,
+                    image: 'http://vtbeertrail.com/' + item.vba100,
                     title: item.name,
-                    description: brewerLocation
+                    description: item.city + ', ' + item.state
                 };
             },
             templates: {
@@ -43,9 +41,11 @@
                 //detail: 'basic_info_detail', //Spice.vt_beer_trail.vt_beer_trail_detail references custom template vt_beer_trail_detail.handlebars
                 //detail_mobile - optional for devices
                 options: {
+                    description: true,
                     moreAt: true,
                     aux: false,
-                    description: true
+                    rating: false,
+                    rating_text: false
                 }
             }
         });
