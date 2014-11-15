@@ -15,7 +15,7 @@ secondary_example_queries "vt breweries", "vermont beer", "vt beer", "vermont be
 category "food";
 topics "travel", "food_and_drink";
 
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/VTBeerTrail.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/VtBeerTrail.pm";
 
 attribution web => ['http://www.moosedog.io', 'Robin Hoover'],
             github => ['https://github.com/rhoover', 'Robin Hoover'],
