@@ -8,6 +8,13 @@
             return Spice.failed('vt_beer_trail');
         }
         
+        var brewerImage = function image(item) {
+            return 'http://vtbeertrail.com/' + item.vba100;
+        };
+        var brewerLocation = function location(item) {
+            return item.city + ',' + item.statestate;
+        };
+        
         // Render the response
         Spice.add({
             
@@ -15,24 +22,32 @@
             name: "VT Beer Trail",
             data: api_result,
             meta: {
-                sourceName: "vtbeertrail.com",
+                sourceName: "VT Beer Trail",
                 sourceUrl: 'http://www.vtbeertrail.com',
-                primaryText: "The Amazing Craft Brewers of Vermont",
-                secondaryText: "Discover"
+                sourceIconUrl: DDG.get_asset_path('vt_beer_trail','vtbeertrail.com.ico'),
+                searchTerm: 'Vermont',
+                itemType: 'Breweries'
+                
+            },
+            normalize: function(item) {
+                return {
+                    image: brewerImage,
+                    title: item.name,
+                    description: brewerLocation
+                };
             },
             templates: {
-                //Same as group: 'info
-                item: 'basic_image_item', //Spice.vt_beer_trail.vt_beer_trail_item references custom template vt_beer_trail_item.handlebars
+                group: 'info',
+                //item: 'basic_image_item', //Spice.vt_beer_trail.vt_beer_trail_item references custom template vt_beer_trail_item.handlebars
                 //item_mobile - optional for devices
-                detail: 'basic_info_detail', //Spice.vt_beer_trail.vt_beer_trail_detail references custom template vt_beer_trail_detail.handlebars
+                //detail: 'basic_info_detail', //Spice.vt_beer_trail.vt_beer_trail_detail references custom template vt_beer_trail_detail.handlebars
                 //detail_mobile - optional for devices
                 options: {
                     moreAt: true,
                     aux: false,
-                    variant: 'wide'
+                    description: true
                 }
-            },
-            sort_default: 'selector'
+            }
         });
     };
 }(this));

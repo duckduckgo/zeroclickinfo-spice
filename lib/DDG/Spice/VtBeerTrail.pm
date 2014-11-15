@@ -1,12 +1,12 @@
-package DDG::Spice::VTBeerTrail;
+package DDG::Spice::VtBeerTrail;
 # ABSTRACT: Returns a presentaion of Vermont breweries for travel and destination purposes.
 
 use DDG::Spice;
 
 # Meta Stuff: https://duck.co/duckduckhack/metadata
-name "VTBeerTrail";
-source "vtbeertrail.com";
-icon_url "/i/vtbeertrail.com.ico";
+name "VtBeerTrail";
+# source "vtbeertrail.com";
+# icon_url "/i/vtbeertrail.com.ico";
 description "Helping Craft Beer Fans Find Breweries in Vermont";
 
 primary_example_queries "vermont breweries";
@@ -23,13 +23,14 @@ attribution web => ['http://www.moosedog.io', 'Robin Hoover'],
 
 # Perl Stuff
 triggers start => 'vermont', 'vt';
-triggers any => 'beer', 'breweries', 'beer trail';
+triggers any => 'beer', 'breweries', 'beer trail', 'beer map';
 
 spice to => 'http://vtbeertrail.com/data/vtbrewers.json';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-	return lc $_ if $_;
+	# return lc $_ if $_;
+	return $_ if $_;
 	return;
 };
 
