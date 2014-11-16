@@ -18,8 +18,7 @@
             meta: {
                 sourceName: "VT Beer Trail",
                 sourceUrl: 'http://www.vtbeertrail.com',
-                sourceIcon: true,
-                //sourceIconUrl: DDG.get_asset_path('vt_beer_trail','vt_beer_trail.com.ico'),
+                sourceIconUrl: DDG.get_asset_path('vt_beer_trail','vt_beer_trail.com.ico'),
                 searchTerm: 'Vermont',
                 itemType: 'Breweries'
                 
@@ -30,7 +29,10 @@
                     image: 'http://vtbeertrail.com/' + item.vba100,
                     title: item.name,
                     description: item.city + ', ' + item.state,
-                    social: DDG.get_asset_path('vt_beer_trail', 'vt_beer_trail_social_sprite.png')
+                    faceIcon: 'http://vtbeertrail.com/images/social/facebook.png',
+                    twitIcon: 'http://vtbeertrail.com/images/social/twitter.png',
+                    googleIcon: 'http://vtbeertrail.com/images/social/google.png',
+                    urlIcon: 'http://vtbeertrail.com/images/social/site.png',
                 };
             },
             
@@ -62,7 +64,7 @@
             }
         }); //end add
         
-        //generates display:none for rating element in tiles
+        //generates display:none for rating element in tiles, which despite setting false still exists
         var $dom = Spice.getDOM('vt_beer_trail');
         if ($dom && $dom.length) {
             $dom.find('.tile__tx').hide();

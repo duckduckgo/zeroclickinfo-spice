@@ -6,11 +6,11 @@
 }
 
 .tile--vt_beer_trail .tile__media--b-i {
-    height: 11em
+    height: 11rem
 }
 
 .tile--vt_beer_trail .tile__media__img {
-    margin-top: 1em;
+    margin-top: 1rem;
 }
 
 /* Styles For Detail */
@@ -28,27 +28,26 @@
 .detail--vt_beer_trail .detail__pane--info {
     float: left;
     width: 30%;
+    margin-right: 3em;
 }
 
 .detail--vt_beer_trail .detail__pane--address {
-    margin-top: 1em;
+    margin-top: 1rem;
     padding: 0px;
 }
 
 .detail--vt_beer_trail .detail__pane--social {
-    margin-top: 1em;
+    margin-top: 1rem;
+    max-height: 50px;
     line-height: 48px;
 }
 
-.detail--vt_beer_trail .detail__pane--social--icon {
-    min-height:48px;
-    min-width: 48px;
-    border: .1em solid rgba(55, 55, 55, 0.1);
-    
+.detail--vt_beer_trail .detail__pane--social--link {
     display: inline-block;
-    margin-right: .5rem;
-    opacity: .5;
-/*     border: .1em solid transparent; */
+    max-height:48px;
+    max-width: 48px;
+    margin-right: .5em;
+    border: .1em solid rgba(55, 55, 55, 0.1);
     border-radius: .25em;
     -moz-transition: background-color 0.3s ease-in, border 0.3s ease-in;
     -o-transition: background-color 0.3s ease-in, border 0.3s ease-in;
@@ -56,19 +55,16 @@
     transition: background-color 0.3s ease-in, border 0.3s ease-in;
 }
 
-.detail--vt_beer_trail .detail__pane--social--icon:last-of-type {
+.detail--vt_beer_trail .detail__pane--social--link:last-of-type {
     margin-right: 0px;
 }
 
-.detail--vt_beer_trail .detail__pane--social--icon:hover {
+.detail--vt_beer_trail .detail__pane--social--link:hover {
     background-color: rgb(209, 209, 209);
     border: 0.1em solid rgba(55, 55, 55, 0.4);
 }
 
-//add background url here
-
-.detail--vt_beer_trail .detail__pane--social--facebook {
-    background-position: 0 0;
-    height: 48px;
-    width: 48px;
+/* TODO figure out how to get a sprite into a background-image: url() property */
+.detail--vt_beer_trail .detail__pane--social--icon {
+    opacity: 0.5;
 }
