@@ -38,11 +38,11 @@ handle query_lc => sub {
         return $1, 'similar';
     }
     #Queries like "weezer band"
-    if(m{(\S+(?:\s+\S+)*)\s+(?:$synonyms)}) {
+    if(m{(\S+(?:\s+\S+)*)\s+(?:$synonyms)$}) {
         return $1, 'all';
     }
     #Queries like "artist kanye west"
-    if(m{(?:$synonyms)\s+(\S+(?:\s+\S+)*)}) {
+    if(m{^(?:$synonyms)\s+(\S+(?:\s+\S+)*)}) {
         return $1, 'all';
     }
     return;
