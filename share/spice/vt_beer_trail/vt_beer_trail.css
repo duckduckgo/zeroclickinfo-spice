@@ -14,3 +14,61 @@
 }
 
 /* Styles For Detail */
+
+.detail--vt_beer_trail .detail__pane--img {
+    float: left;
+    width: 15%;
+    margin-right: 3em;
+}
+
+.detail--vt_beer_trail .detail__pane--header {
+    line-height: 24px;
+}
+
+.detail--vt_beer_trail .detail__pane--info {
+    float: left;
+    width: 30%;
+}
+
+.detail--vt_beer_trail .detail__pane--address {
+    margin-top: 1em;
+    padding: 0px;
+}
+
+.detail--vt_beer_trail .detail__pane--social {
+    margin-top: 1em;
+    line-height: 48px;
+}
+
+.detail--vt_beer_trail .detail__pane--social--icon {
+    min-height:48px;
+    min-width: 48px;
+    border: .1em solid rgba(55, 55, 55, 0.1);
+    
+    display: inline-block;
+    margin-right: .5rem;
+    opacity: .5;
+/*     border: .1em solid transparent; */
+    border-radius: .25em;
+    -moz-transition: background-color 0.3s ease-in, border 0.3s ease-in;
+    -o-transition: background-color 0.3s ease-in, border 0.3s ease-in;
+    -webkit-transition: background-color 0.3s ease-in, border 0.3s ease-in;
+    transition: background-color 0.3s ease-in, border 0.3s ease-in;
+}
+
+.detail--vt_beer_trail .detail__pane--social--icon:last-of-type {
+    margin-right: 0px;
+}
+
+.detail--vt_beer_trail .detail__pane--social--icon:hover {
+    background-color: rgb(209, 209, 209);
+    border: 0.1em solid rgba(55, 55, 55, 0.4);
+}
+
+//add background url here
+
+.detail--vt_beer_trail .detail__pane--social--facebook {
+    background-position: 0 0;
+    height: 48px;
+    width: 48px;
+}

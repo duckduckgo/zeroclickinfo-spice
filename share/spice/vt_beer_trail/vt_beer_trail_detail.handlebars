@@ -1,0 +1,23 @@
+
+<img src="{{imageProxy image}}" alt="{{name}} Logo" class="detail__pane--img" />
+
+<h3 class="detail__pane--header">{{name}}</h3>
+
+<div class="detail__pane--info">
+    <p class="detail__pane--address">{{address}}</p>
+    <p class="detail__pane--address">{{description}}, {{zip}}</p>
+    <div class="detail__pane--social">
+        {{#if url}}
+            <a href="{{url}}" target="_blank" class="detail__pane--social--icon"><span class="detail__pane--social--site"></span></a>
+        {{/if}}
+        {{#if twitter}}
+            <a href="{{twitter}}" target="_blank" class="detail__pane--social--icon"><span class="detail__pane--social--twitter"></span></a>
+        {{/if}}
+        {{#if facebook}}
+            <a href="{{facebook}}" target="_blank" class="detail__pane--social--icon"><span class="detail__pane--social--facebook"></span></a>
+        {{/if}}
+        {{#if googleplus}}
+            <a href="{{googleplus}}" target="_blank" class="detail__pane--social--icon"><span class="detail__pane--social--googleplus"></span></a>
+        {{/if}}
+    </div>
+</div>

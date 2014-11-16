@@ -4,7 +4,7 @@
     env.ddg_spice_vt_beer_trail = function(api_result) {
         
         // Validate the response 
-        if (!api_result || api_result.length === 0) {
+        if (!api_result || !api_result.length) {
             return Spice.failed('vt_beer_trail');
         }
         
@@ -19,6 +19,7 @@
                 sourceName: "VT Beer Trail",
                 sourceUrl: 'http://www.vtbeertrail.com',
                 sourceIcon: true,
+                //sourceIconUrl: DDG.get_asset_path('vt_beer_trail','vt_beer_trail.com.ico'),
                 searchTerm: 'Vermont',
                 itemType: 'Breweries'
                 
@@ -28,7 +29,8 @@
                 return {
                     image: 'http://vtbeertrail.com/' + item.vba100,
                     title: item.name,
-                    description: item.city + ', ' + item.state
+                    description: item.city + ', ' + item.state,
+                    social: DDG.get_asset_path('vt_beer_trail', 'vt_beer_trail_social_sprite.png')
                 };
             },
             
@@ -43,7 +45,7 @@
                 group: 'info',
                 //item: 'basic_image_item', //Spice.vt_beer_trail.vt_beer_trail_item references custom template vt_beer_trail_item.handlebars
                 //item_mobile - optional for devices
-                //detail: 'basic_info_detail', //Spice.vt_beer_trail.vt_beer_trail_detail references custom template vt_beer_trail_detail.handlebars
+                detail: Spice.vt_beer_trail.vt_beer_trail_detail, //aka: vt_beer_trail_detail.handlebars
                 //detail_mobile - optional for devices
                 options: {
                     description: true,
@@ -52,7 +54,19 @@
                     rating: false,
                     rating_text: false
                 }
+            },
+            onItemSelected: function(item) {
+                var lat = item.latitude;
+                var lon = item.longitude;
+                console.log(lat,lon);
             }
-        });
-    };
+        }); //end add
+        
+        //generates display:none for rating element in tiles
+        var $dom = Spice.getDOM('vt_beer_trail');
+        if ($dom && $dom.length) {
+            $dom.find('.tile__tx').hide();
+        }
+        
+    }; //end env
 }(this));
