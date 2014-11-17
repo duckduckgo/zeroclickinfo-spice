@@ -29,10 +29,12 @@
                     image: 'http://vtbeertrail.com/' + item.vba100,
                     title: item.name,
                     description: item.city + ', ' + item.state,
+                    // Bring in the icons
                     faceIcon: 'http://vtbeertrail.com/images/social/facebook.png',
                     twitIcon: 'http://vtbeertrail.com/images/social/twitter.png',
                     googleIcon: 'http://vtbeertrail.com/images/social/google.png',
                     urlIcon: 'http://vtbeertrail.com/images/social/site.png',
+                    //Cheesy Map Solution
                     mapImage: 'http://open.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd%7Cluurn9ut2u%2Caw%3Do5-9wz0qf&center='+ item.latitude + ','+ item.longitude + '&zoom=10&size=400,200&pcenter='+ item.latitude + ','+ item.longitude
                 };
             },
@@ -46,10 +48,7 @@
             
             templates: {
                 group: 'info',
-                //item: 'basic_image_item', //Spice.vt_beer_trail.vt_beer_trail_item references custom template vt_beer_trail_item.handlebars
-                //item_mobile - optional for devices
                 detail: Spice.vt_beer_trail.vt_beer_trail_detail, //aka: vt_beer_trail_detail.handlebars
-                //detail_mobile - optional for devices
                 options: {
                     description: true,
                     moreAt: true,
@@ -57,11 +56,6 @@
                     rating: false,
                     rating_text: false
                 }
-            },
-            onItemSelected: function(item) {
-                var lat = item.latitude;
-                var lon = item.longitude;
-                console.log(lat,lon);
             }
         }); //end add
         

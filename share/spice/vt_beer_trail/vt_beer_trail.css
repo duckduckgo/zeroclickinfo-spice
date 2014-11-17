@@ -49,9 +49,10 @@
     margin-right: .5em;
     border: .1em solid rgba(55, 55, 55, 0.1);
     border-radius: .25em;
-    -moz-transition: background-color 0.3s ease-in, border 0.3s ease-in;
+/*     No vendor prefixes per DDG Style Guide */
+/*     -moz-transition: background-color 0.3s ease-in, border 0.3s ease-in;
     -o-transition: background-color 0.3s ease-in, border 0.3s ease-in;
-    -webkit-transition: background-color 0.3s ease-in, border 0.3s ease-in;
+    -webkit-transition: background-color 0.3s ease-in, border 0.3s ease-in; */
     transition: background-color 0.3s ease-in, border 0.3s ease-in;
 }
 
