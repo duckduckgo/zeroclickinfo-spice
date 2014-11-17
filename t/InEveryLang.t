@@ -15,17 +15,17 @@ ddg_spice_test(
     'Hello, World! in C++' => test_spice(
         '/js/spice/in_every_lang/hello-world',
         call_type => 'include',
-        caller => 'DDG::Spice:InEveryLang'
+        caller => 'DDG::Spice::InEveryLang'
     ),
     'FizzBuzz in Swift' => test_spice(
         '/js/spice/in_every_lang/fizz-buzz',
         call_type => 'include',
-        caller => 'DDG::Spice:InEveryLang'
+        caller => 'DDG::Spice::InEveryLang'
     ),
     'Fizz Buzz in Swift' => test_spice(
         '/js/spice/in_every_lang/fizz-buzz',
         call_type => 'include',
-        caller => 'DDG::Spice:InEveryLang'
+        caller => 'DDG::Spice::InEveryLang'
     ),
     # Try to include some examples of queries on which it might
     # appear that your answer will trigger, but does not.
