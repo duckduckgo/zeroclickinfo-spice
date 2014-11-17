@@ -68,3 +68,9 @@
 .detail--vt_beer_trail .detail__pane--social--icon {
     opacity: 0.5;
 }
+
+.detail--vt_beer_trail .detail__pane--map {
+    float: left;
+    width: 400px;
+    height: 200px;
+}
