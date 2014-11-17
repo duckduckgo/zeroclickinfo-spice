@@ -3,7 +3,7 @@ package DDG::Spice::InEveryLang;
 
 use DDG::Spice;
 
-primary_example_queries "Hello World in C";
+primary_example_queries "Fizz Buzz in C";
 description "Shows a code puzzle example";
 name "InEveryLang";
 source "ineverylang.com";
@@ -13,21 +13,19 @@ category "programming";
 attribution github  => ['https://github.com/josephwegner', 'josephwegner'],
             twitter => ['https://www.twitter.com/Joe_Wegner', 'Joe_Wegner'];
 
-triggers query_lc => qr/(hello,? world)\!?|(fizz ?buzz)|(quine)|(fibonacci sequence)|(binary search)/;
+triggers query_lc => qr/(fizz ?buzz)|(quine)|(fibonacci sequence)|(binary search)/;
 
 spice to => 'http://www.ineverylang.com/$1.json';
 spice wrap_jsonp_callback => 1;
 
 handle matches => sub {
-  if ($1) {
-    return 'hello-world'
-  } elsif($2) {
+  if($1) {
     return 'fizz-buzz';
-  } elsif($3) {
+  } elsif($2) {
     return 'quine';
-  } elsif ($4) {
+  } elsif ($3) {
     return 'fibonacci-sequence';
-  } elsif ($5) {
+  } elsif ($4) {
     return 'binary-search';
   } else {
     return;
