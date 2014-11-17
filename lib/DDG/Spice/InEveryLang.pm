@@ -13,7 +13,7 @@ category "programming";
 attribution github  => ['https://github.com/josephwegner', 'josephwegner'],
             twitter => ['https://www.twitter.com/Joe_Wegner', 'Joe_Wegner'];
 
-triggers query_lc => qr/(hello,? world)\!?|(fizz ?buzz)|(quine)|(fibonacci sequqnce)|(binary search)/;
+triggers query_lc => qr/(hello,? world)\!?|(fizz ?buzz)|(quine)|(fibonacci sequence)|(binary search)/;
 
 spice to => 'http://www.ineverylang.com/$1.json';
 spice wrap_jsonp_callback => 1;
@@ -26,7 +26,7 @@ handle matches => sub {
   } elsif($3) {
     return 'quine';
   } elsif ($4) {
-    return 'fibonacci sequence';
+    return 'fibonacci-sequence';
   } elsif ($5) {
     return 'binary-search';
   } else {
