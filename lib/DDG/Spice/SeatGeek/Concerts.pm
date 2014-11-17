@@ -5,7 +5,7 @@ use DDG::Spice;
 
 primary_example_queries "live show weezer", "upcoming concerts in flames";
 description "Upcoming concerts from SeatGeek";
-name "SeatGeek";
+name "SeatGeek Concerts";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SeatGeek.pm";
 category "entertainment";
 topics "entertainment", "music";
