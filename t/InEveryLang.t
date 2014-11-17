@@ -12,8 +12,8 @@ ddg_spice_test(
     # At a minimum, be sure to include tests for all:
     # - primary_example_queries
     # - secondary_example_queries
-    'Hello, World! in C++' => test_spice(
-        '/js/spice/in_every_lang/hello-world',
+    'Quine in C++' => test_spice(
+        '/js/spice/in_every_lang/quine',
         call_type => 'include',
         caller => 'DDG::Spice::InEveryLang'
     ),
