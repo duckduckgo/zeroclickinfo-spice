@@ -13,7 +13,7 @@ primary_example_queries "vermont breweries";
 secondary_example_queries "vt breweries", "vermont beer", "vt beer", "vermont beer map", "vt beer map", "vermont beer guide", "vt beer guide", "vermont beer trail", "vt beer trail";
 
 category "food";
-topics "travel", "food_and_drink";
+topics "travel", "food_and_drink", "special_interest";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/VtBeerTrail.pm";
 
@@ -22,7 +22,7 @@ attribution web => ['http://www.moosedog.io', 'Robin Hoover'],
             twitter => ['https://twitter.com/robinhoover', 'Robin Hoover'];
 
 # Perl Stuff
-triggers start => 'vermont', 'vt';
+triggers startend => 'vermont', 'vt';
 triggers any => 'beer', 'breweries', 'beer trail', 'beer map';
 
 spice to => 'http://vtbeertrail.com/data/vtbrewers.json';
