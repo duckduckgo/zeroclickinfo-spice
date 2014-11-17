@@ -76,7 +76,7 @@ sub checkCurrencyCode {
     # Choose the default currency.
     # If the user types in 10 usd, it should default to eur.
     # If the user types in 10 eur, it should default to usd.
-    my $default_to = getCode($from) eq "usd" ? "eur" : "usd"; 
+    # my $default_to = getCode($from) eq "usd" ? "eur" : "usd"; 
     
     my $normalized_number = $styler->for_computation($amount);
     
@@ -85,11 +85,30 @@ sub checkCurrencyCode {
         return;
     }
     
-    $from = getCode($from) || "usd";
-    $to = getCode($to) || $default_to;
+    $from = getCode($from) || '';
+    $to = getCode($to) || '';
+    
     # Return early if we get a query like "usd to usd".
     if($from eq $to) {
         return;
+    }
+    
+    # Return early if we don't get a currency to convert from.
+    if($from eq '') {
+        return;
+    }
+    
+    # If we don't get a currency to convert to, e.g., the user types in "usd"
+    # we set them to be the same thing. This will trigger our tile view.
+    if($to eq '') {
+        if($normalized_number == 1) {
+            $to = $from;
+        } else {
+            # This should probably depend on the user's location.
+            # For example, if I was in the Philippines, I would expect "10 usd" to mean "10 usd to php"
+            # But this would mean mapping currencies to countries.
+            $to = $from eq 'usd' ? 'eur' : 'usd';
+        }
     }
     
     return $normalized_number, $from, $to;

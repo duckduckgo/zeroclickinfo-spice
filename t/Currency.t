@@ -10,7 +10,7 @@ ddg_spice_test(
         'DDG::Spice::Currency'
     ],
     'canada dollar' => test_spice(
-        '/js/spice/currency/1/cad/usd',
+        '/js/spice/currency/1/cad/cad',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
