@@ -135,7 +135,20 @@
 
 @media screen and (max-width: 480px) {
     .zci--envato .tileview--grid .tile-wrap .tile .review-count {
-        display: none;
+        position: absolute;
+        bottom: 2em;
+        left: 0;
+        margin: 0;
+    }
+
+    .zci--envato .tile-wrap .tile__title {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }  
+
+    .zci--envato .tile-wrap .tile .tile__tx {
+        overflow: visible;
     }
 }
 
