@@ -133,8 +133,13 @@
     }
 }
 
-@media screen and (max-width: 479px) {
-    .zci--envato .tileview--grid .tile-wrap .tile {
-        width: 98%;
+@media screen and (max-width: 480px) {
+    .zci--envato .tileview--grid .tile-wrap .tile .review-count {
+        display: none;
     }
+}
+
+.is-mobile .zci--envato .has-tiles--grid .tile--m {
+    width: auto;
+    min-height: 0;
 }
