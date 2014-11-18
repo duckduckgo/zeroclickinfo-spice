@@ -1,0 +1,18 @@
+<h3 class="ghstatus--header text--primary">
+  {{! checks if the status is either good, minor, or major }}
+  {{#TravisStatus_ifCond status.indicator "none"}}
+    The status of Travis CI is <span class="tcistatus--none">{{status.indicator}}</span>.
+  {{else}}
+    {{#TravisStatus_ifCond status.indicator "minor"}}
+      Travis CI is experiencing <span class="tcistatus--minor">{{status.indicator}}</span> issues.
+    {{else}}
+      Travis CI is experiencing <span class="tcistatus--major">{{status.indicator}}</span> issues.
+    {{/TravisStatus_ifCond}}
+  {{/TravisStatus_ifCond}}
+  <h6 class="tcistatus--message text--secondary">{{description}}</h6>
+  {{#TravisStatus_iterateOver components}}
+    <div class="tcistatus-component tcistatus--{{status}}">
+      {{name}}
+    </div>
+  {{/TravisStatus_iterateOver}}
+</h3>

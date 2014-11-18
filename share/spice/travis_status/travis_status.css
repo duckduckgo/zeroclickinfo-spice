@@ -1,0 +1,51 @@
+.zci--travis_status .tcistatus--header {
+    font-size: 1.5em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.zci--travis_status .tcistatus--good {
+    color: #519444;
+}
+
+.zci--travis_status .tcistatus--minor {
+    color: #eea43e;
+}
+
+.zci--travis_status .tcistatus--major {
+    color: #e34c2d;
+}
+
+.zci--travis_status .tcistatus--message {
+    font-size: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0.75em;
+}
+
+.zci--travis_status .tcistatus-component:before {
+  content: '';
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  position: relative;
+  top: .2em;
+}
+
+.zci--travis_status .tcistatus--operational:before {
+  background-color: #519444;
+}
+
+.zci--travis_status .tcistatus--degraded_performance:before {
+  background-color: #eea43e;
+}
+
+.zci--travis_status .tcistatus--partial_outage:before {
+  background-color: #e34c2d;
+}
+
+.zci--travis_status .tcistatus--major_outage:before {
+  background-color: #e34c2d;
+}
