@@ -84,7 +84,7 @@ triggers startend => @triggers;
 sub identifyCodes {
 
     my ($query, $leftQuery, $otherCity) = @_;
-
+   
     # split query into individual words
     # at least two words are required (1 for the airline and 1 for the city)
     my @query = split(/\s+/, $query);
@@ -151,8 +151,8 @@ sub identifyCodes {
     return;
 }
 
-handle query_lc => sub {
-
+handle query_clean => sub {
+    
     # query must be in the form [airline][city][to][city] or [city][to][city][airline]
     my @query = split(/\s+to\s+/, $_);
     return if scalar(@query) != 2;

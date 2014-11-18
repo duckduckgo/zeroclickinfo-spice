@@ -23,7 +23,7 @@ API_KEY = os.environ.get('DDG_SPICE_FLIGHTS_APIKEY')
 # the Python regex doesn't seem to group characters together as expected...
 # use this hack to remove multiple spaces
 def cleanName(sName):
-    sName = re.sub('([^a-zA-Z.])', ' ', sName)
+    sName = re.sub('([^a-zA-Z\s])', '', sName)
     sName = re.sub('\s+', ' ', sName)
     return sName
 
