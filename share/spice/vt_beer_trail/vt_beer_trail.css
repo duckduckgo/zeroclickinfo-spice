@@ -44,15 +44,12 @@
 
 .detail--vt_beer_trail .detail__pane--social--link {
     display: inline-block;
-    max-height:48px;
-    max-width: 48px;
-    margin-right: .5em;
-    border: .1em solid rgba(55, 55, 55, 0.1);
-    border-radius: .25em;
-/*     No vendor prefixes per DDG Style Guide */
-/*     -moz-transition: background-color 0.3s ease-in, border 0.3s ease-in;
-    -o-transition: background-color 0.3s ease-in, border 0.3s ease-in;
-    -webkit-transition: background-color 0.3s ease-in, border 0.3s ease-in; */
+    height:40px;
+    width: 40px;
+    margin-right: 1em;
+    border: .1em solid transparent;
+    border-radius: 50%;
+    /*No vendor prefixes per DDG Style Guide */
     transition: background-color 0.3s ease-in, border 0.3s ease-in;
 }
 

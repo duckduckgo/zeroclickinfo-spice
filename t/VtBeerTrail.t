@@ -17,6 +17,16 @@ ddg_spice_test(
 		call_type => 'include',
 		caller => 'DDG::Spice::VtBeerTrail',
 	),
+	'beer in vermont' => test_spice(
+		'/js/spice/vt_beer_trail/in%20vermont',
+		call_type => 'include',
+		caller => 'DDG::Spice::VtBeerTrail',
+	),
+	'vermont beer trail' => test_spice(
+		'/js/spice/vt_beer_trail/beer%20trail',
+		call_type => 'include',
+		caller => 'DDG::Spice::VtBeerTrail',
+	),
 );
 
 done_testing;

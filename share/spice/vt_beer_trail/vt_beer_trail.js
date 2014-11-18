@@ -59,10 +59,10 @@
             }
         }); //end add
         
-        //generates display:none for rating element in tiles, which despite setting false still exists
+        //generates display:none for rating element in tiles
         var $dom = Spice.getDOM('vt_beer_trail');
         if ($dom && $dom.length) {
-            $dom.find('.tile__tx').hide();
+            $dom.find('.tile__tx').addClass('is-hidden');
         }
         
     }; //end env
