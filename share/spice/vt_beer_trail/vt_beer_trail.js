@@ -27,13 +27,14 @@
             normalize: function(item) {
                 return {
                     image: 'http://vtbeertrail.com/' + item.vba100,
+                    brewerImageBig: 'http://vtbeertrail.com/' + item.vba200,
                     title: item.name,
                     description: item.city + ', ' + item.state,
-                    // Bring in the icons
-                    faceIcon: 'http://vtbeertrail.com/images/social/facebook.png',
-                    twitIcon: 'http://vtbeertrail.com/images/social/twitter.png',
-                    googleIcon: 'http://vtbeertrail.com/images/social/google.png',
-                    urlIcon: 'http://vtbeertrail.com/images/social/site.png',
+                    // Bring in the icons if sprite solution is a no-go
+                    // faceIcon: 'http://vtbeertrail.com/images/social/facebook.png',
+                    // twitIcon: 'http://vtbeertrail.com/images/social/twitter.png',
+                    // googleIcon: 'http://vtbeertrail.com/images/social/google.png',
+                    // urlIcon: 'http://vtbeertrail.com/images/social/site.png',
                     //Cheesy Map Solution
                     mapImage: 'http://open.mapquestapi.com/staticmap/v4/getmap?key=Fmjtd%7Cluurn9ut2u%2Caw%3Do5-9wz0qf&center='+ item.latitude + ','+ item.longitude + '&zoom=10&size=400,200&pcenter='+ item.latitude + ','+ item.longitude
                 };

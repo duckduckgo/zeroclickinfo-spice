@@ -1,36 +1,38 @@
 
-<img src="{{imageProxy image}}" alt="{{name}} Logo" class="detail__pane--img" />
+<img src="{{imageProxy brewerImageBig}}" alt="{{name}} Logo" class="detail__pane--img" />
 
 <h3 class="detail__pane--header">{{name}}</h3>
 
 <div class="detail__pane--info">
     <p class="detail__pane--address">{{address}}</p>
     <p class="detail__pane--address">{{description}}, {{zip}}</p>
+    
     <div class="detail__pane--social">
         {{#if url}}
             <a href="{{url}}" target="_blank" class="detail__pane--social--link" title="Brewery Web Site">
-                <img src="{{imageProxy urlIcon}}" class="detail__pane--social--icon" />
+                <i class="detail__pane--icon detail__pane--icon--site"></i>
             </a>
         {{/if}}
         {{#if twitter}}
             <a href="{{twitter}}" target="_blank" class="detail__pane--social--link" title="Brewery Twitter Page">
-                <img src="{{imageProxy twitIcon}}" class="detail__pane--social--icon" />
+                <i class="detail__pane--icon detail__pane--icon--twitter"></i>
             </a>
         {{/if}}
         {{#if facebook}}
             <a href="{{facebook}}" target="_blank" class="detail__pane--social--link" title="Brewery Facebook Page">
-                <img src="{{imageProxy faceIcon}}" class="detail__pane--social--icon" />
+                <i class="detail__pane--icon detail__pane--icon--facebook"></i>
             </a>
         {{/if}}
         {{#if googleplus}}
             <a href="{{googleplus}}" target="_blank" class="detail__pane--social--link" title="Brewery GooglePlus page">
-                <img src="{{imageProxy googleIcon}}" class="detail__pane--social--icon" />
+                <i class="detail__pane--icon detail__pane--icon--google"></i>
             </a>
         {{/if}}
         <a href="{{meta.sourceUrl}}/#!/{{selector}}" target="_blank" class="detail__pane--social--link" title="Hi-Res Map & Local Resources">
-            <img src="{{meta.sourceIconUrl}}" class="detail__pane--social--icon" />
+            <i class="detail__pane--icon detail__pane--icon--vbt"></i>
         </a>
     </div>
+    
 </div>
 
 <img src="{{imageProxy mapImage}}" alt="{{name}} Location" class="detail__pane--map" title="Lo-Res Map, Gives An Idea At Least"/>

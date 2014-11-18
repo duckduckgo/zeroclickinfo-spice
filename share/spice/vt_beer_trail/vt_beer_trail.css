@@ -42,10 +42,22 @@
     line-height: 48px;
 }
 
+.detail--vt_beer_trail .detail__pane--map {
+    float: left;
+    width: 400px;
+    height: 200px;
+    margin-top: -24px;
+    padding-bottom: 24px;
+}
+
+/* Sprites. Will DDG be OK pulling in sprite image from external resource? */
+
+/* Link Wrapper */
+
 .detail--vt_beer_trail .detail__pane--social--link {
     display: inline-block;
-    height:40px;
-    width: 40px;
+    height:48px;
+    width: 48px;
     margin-right: 1em;
     border: .1em solid transparent;
     border-radius: 50%;
@@ -62,13 +74,51 @@
     border: 0.1em solid rgba(55, 55, 55, 0.4);
 }
 
-/* TODO figure out how to get a sprite into a background-image: url() property */
-.detail--vt_beer_trail .detail__pane--social--icon {
+/* .detail--vt_beer_trail .detail__pane--social--icon {
+    opacity: 0.5;
+} */
+
+.detail--vt_beer_trail .detail__pane--icon {
+    display: block;
+}
+
+/* Icon Elements */
+.detail--vt_beer_trail .detail__pane--icon--site, 
+.detail--vt_beer_trail .detail__pane--icon--twitter, 
+.detail--vt_beer_trail .detail__pane--icon--facebook, 
+.detail--vt_beer_trail .detail__pane--icon--google, 
+.detail--vt_beer_trail .detail__pane--icon--vbt {
+    background-image: url('http://vtbeertrail.com/images/social/social-sprite.png');
+    background-repeat: no-repeat;
     opacity: 0.5;
 }
 
-.detail--vt_beer_trail .detail__pane--map {
-    float: left;
-    width: 400px;
-    height: 200px;
+.detail--vt_beer_trail .detail__pane--icon--site {
+    background-position: 0px -96px;
+    height: 48px;
+    width: 48px;
+}
+
+.detail--vt_beer_trail .detail__pane--icon--twitter {
+    background-position: 0px -144px;
+    height: 48px;
+    width: 48px;
+}
+
+.detail--vt_beer_trail .detail__pane--icon--facebook {
+    background-position: 0px 0px;
+    height: 48px;
+    width: 48px;
+}
+
+.detail--vt_beer_trail .detail__pane--icon--google {
+    background-position: 0px -48px;
+    height: 48px;
+    width: 48px;
+}
+
+.detail--vt_beer_trail .detail__pane--icon--vbt {
+    background-position: 0px -192px;
+    height: 48px;
+    width: 48px;
 }
