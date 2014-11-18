@@ -51,7 +51,7 @@ ddg_spice_test(
 
     # query with airline at the end
     'Newark to Paris United' => test_spice(
-        "/js/spice/flights/route/UAL%2CUBD/EWR/CDG%2CORY%2CBVA/EWR/CDG/$year/$month/$dayOfMonth/$hour",
+        "/js/spice/flights/route/UAL%2CUBD/EWR/BVA%2CCDG%2CORY/EWR/BVA/$year/$month/$dayOfMonth/$hour",
         call_type => 'include',
         caller => 'DDG::Spice::Flights::Route',
     ),
