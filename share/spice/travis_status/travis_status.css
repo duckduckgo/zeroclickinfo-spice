@@ -27,11 +27,9 @@
 .zci--travis_status .tcistatus-component:before {
   content: '';
   display: inline-block;
-  height: 1em;
-  width: 1em;
+  height: .75em;
+  width: .75em;
   border-radius: 50%;
-  position: relative;
-  top: .2em;
 }
 
 .zci--travis_status .tcistatus--operational:before {
