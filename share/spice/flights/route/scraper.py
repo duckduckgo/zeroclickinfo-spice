@@ -4,7 +4,7 @@
 #
 # This script requires the following environment variables to be set:
 #   DDG_SPICE_FLIGHTS_API_ID: valid FlightStats API ID
-#   DDG_SPICE_FLIGHTS_API_KEY: valid FlightStats API key
+#   DDG_SPICE_FLIGHTS_APIKEY: valid FlightStats API key
 
 import urllib
 import json
@@ -17,7 +17,18 @@ AIRPORT_THRESHOLD = 3
 
 # get API userID and key
 API_ID = os.environ.get('DDG_SPICE_FLIGHTS_API_ID')
-API_KEY = os.environ.get('DDG_SPICE_FLIGHTS_API_KEY')
+API_KEY = os.environ.get('DDG_SPICE_FLIGHTS_APIKEY')
+
+
+# the Python regex doesn't seem to group characters together as expected...
+# use this hack to remove multiple spaces
+def cleanName(sName):
+    sName = re.sub('([^a-zA-Z.])', ' ', sName)
+    sName = re.sub('\s+', ' ', sName)
+    return sName
+
+
+# main function
 
 # store airlines data from the JSON response in a list
 oAirlines = []
@@ -37,13 +48,18 @@ except IOError as error:
 # each line represents one airline with the following format: [icao code, airline name]
 log = open('airlines.csv', 'w')
 
+vUnsortedAirlines = []
 for airline in oAirlines[0]['airlines']:
+    if 'icao' in airline:
+        vUnsortedAirlines.append(airline)
+
+for airline in sorted(vUnsortedAirlines, key=lambda x: x['icao']):
 
     # insert guards to check data returned from FlightStats because some entries are missing fields
     # and other entries are simply empty
     try:
         if (len(airline['icao']) > 0 and len(airline['name']) > 0):
-            log.write('%s,%s\n' % (airline['icao'], re.sub('[^a-zA-Z]', ' ', airline['name'])))
+            log.write('%s,%s\n' % (airline['icao'], cleanName(airline['name'])))
 
     except KeyError:
         pass
@@ -65,28 +81,30 @@ except IOError as error:
     print("Could not update the list of active airports: %s", error)
 
 # write JSON data to 'cities.csv' in the shared folder
-# each line contains one airport with the following format: [fs, iata, icao, classification, city, airport name]
+# each line contains one airport with the following format: [iata, icao, classification, city, airport name]
 log = open('cities.csv', 'w')
 
-# sort the cities so that "level 1" airports are added first
-for airport in sorted(oCities[0]['airports'], key=lambda x: x['classification']):
+vUnsortedAirports = []
+for airport in oCities[0]['airports']:
+        if 'iata' in airport:
+            vUnsortedAirports.append(airport)
+
+for airport in sorted(vUnsortedAirports, key=lambda x: x['iata']):
 
     # insert guards to check data returned from FlightStats because some entries are missing fields
     # and other entries are simply empty
     try:
         if (airport['classification'] <= AIRPORT_THRESHOLD and
-            len(airport['fs']) > 0 and
             len(airport['iata']) > 0 and
             len(airport['icao']) > 0 and
             len(airport['city']) and
             len(airport['name'])):
 
-            log.write('%s,%s,%s,%s,%s,%s\n' % (airport['fs'],
-                                               airport['iata'],
+            log.write('%s,%s,%s,%s,%s\n' % (airport['iata'],
                                                airport['icao'],
                                                airport['classification'],
-                                               re.sub('[^a-zA-Z]', ' ', airport['city']),
-                                               re.sub('[^a-zA-Z]', ' ', airport['name'])))
+                                               cleanName(airport['city']),
+                                               cleanName(airport['name'])))
 
     except KeyError:
         pass
