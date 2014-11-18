@@ -6,5 +6,3 @@ DDG-*
 *#
 .jshintrc
 .DS_Store
-share/spice/flights/.idea
-apikeys.py
