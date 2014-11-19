@@ -50,6 +50,7 @@
             templates: {
                 group: 'info',
                 detail: Spice.vt_beer_trail.vt_beer_trail_detail, //aka: vt_beer_trail_detail.handlebars
+                detail_mobile: Spice.vt_beer_trail.vt_beer_trail_detail_mobile,
                 options: {
                     description: true,
                     moreAt: true,

@@ -5,6 +5,7 @@
     margin-bottom: 0px;
 }
 
+/* A Sprite here would be cool, let's see what DDH thinks! */
 .tile--vt_beer_trail .tile__media--b-i {
     height: 11rem
 }
@@ -116,4 +117,50 @@
     background-position: 0px -192px;
     height: 48px;
     width: 48px;
+}
+
+/* Styles For Mobile */
+
+.detail--vt_beer_trail .detail__pane--img--mobile {
+    float: left;
+    width: 15%;
+    margin: 3rem 1em 0px;
+}
+
+.detail--vt_beer_trail .detail__pane--header--mobile {
+    line-height: 24px;
+    float: right;
+    width: 70%;
+    margin-top: 3rem;
+}
+
+.detail--vt_beer_trail .detail__pane--info--mobile {
+    float: left;
+    margin: 0px 1em;
+}
+
+/* How TODO different for Android & IOS */
+.detail--vt_beer_trail .detail__pane--address--mobile {
+    margin-top: 0px;
+    padding: 0px 0px 0px 1em;
+}
+
+/* How TODO different for Android & IOS */
+.detail--vt_beer_trail .detail__pane--social--link--mobile {
+    display: inline-block;
+    margin-right: .25em;
+    height:48px;
+    width: 48px;
+    border: .1em solid transparent;
+    border-radius: 50%;
+    /*No vendor prefixes per DDG Style Guide */
+    transition: background-color 0.3s ease-in, border 0.3s ease-in;
+}
+
+.detail--vt_beer_trail .detail__pane--map--mobile {
+    float: left;
+    width: 400px;
+    height: 200px;
+    margin: 1rem 1em 0;
+    padding-bottom: 24px;
 }
