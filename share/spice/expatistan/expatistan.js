@@ -33,7 +33,7 @@
                     secondLine = lines[1];
                 }              
 
-                if(!cost) firstLine = lines[0].replace(/\./, "");   
+                if(!cost) firstLine = api_result.abstract.replace(/\./, "");   
                 
                 return {
                     title: DDG.strip_html(firstLine),
