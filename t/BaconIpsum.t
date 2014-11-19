@@ -9,7 +9,7 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::BaconIpsum)],
-    # can't predict, output is Random
+
     'baconipsum 6' => test_spice(
         '/js/spice/bacon_ipsum/6',
         call_type => 'include',
