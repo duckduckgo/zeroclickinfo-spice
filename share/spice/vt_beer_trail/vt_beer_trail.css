@@ -5,7 +5,7 @@
     margin-bottom: 0px;
 }
 
-/* A Sprite here would be cool, let's see what DDH thinks! */
+/* A Sprite here for the logos in the tiles would be cool, let's see what DDH thinks! */
 .zci--vt_beer_trail .tile__media--b-i {
     height: 11rem
 }
@@ -70,10 +70,6 @@
     background-color: rgb(209, 209, 209);
     border: 0.1em solid rgba(55, 55, 55, 0.4);
 }
-
-/* .detail--vt_beer_trail .detail__pane--social--icon {
-    opacity: 0.5;
-} */
 
 .zci--vt_beer_trail .detail__pane--icon {
     display: block;
