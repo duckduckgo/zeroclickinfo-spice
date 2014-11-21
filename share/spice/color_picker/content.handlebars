@@ -1,12 +1,14 @@
 <div id="color_picker_container">
-    <div id="saturation-value-picker" style="background-color: {{colors.hex}};">
+    <div id="saturation_value_picker" style="background-color: {{colors.hex}};">
         <img src="{{saturation_value_path}}" />
+        <div id="saturation_value_marker"></div>
     </div>
     <div id="hue_picker">
         <img src="{{hue_path}}" />
+        <div id="hue_marker"></div>
     </div>
     <div>
-        <div class="compound-color">
+        <div class="compound_color">
             <label for="hue_input">H:</label>
             <input id="hue_input" type="text" value="{{colors.hsv.hue}}" />
             <label for="saturation_input">S:</label>
@@ -14,7 +16,7 @@
             <label for="value_input">V:</label>
             <input id="value_input" type="text" value="{{colors.hsv.value}}" />
         </div>
-        <div class="compound-color">
+        <div class="compound_color">
             <label for="red_input">R:</label>
             <input id="red_input" type="text" value="{{colors.rgb.red}}" />
             <label for="green_input">G:</label>
@@ -22,7 +24,7 @@
             <label for="blue_input">B:</label>
             <input id="blue_input" type="text" value="{{colors.rgb.blue}}" />
         </div>
-        <div class="compound-color">
+        <div class="compound_color">
             <label for="cyan_input">C:</label>
             <input id="cyan_input" type="text" value="{{colors.cmyk.cyan}}" />
             <label for="magenta_input">M:</label>

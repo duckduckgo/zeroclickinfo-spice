@@ -6,8 +6,15 @@
             return Spice.failed('color_picker');
         }
         
+        var initial_color = env.ddg_space_color_picker_get_initial_color();
+        var marker_positions = env.ddg_space_color_picker_get_marker_positions(initial_color.hsv);
+        var saturation_value_path = DDG.get_asset_path('color_picker', 'assets/saturation_value_gradient.png');
+        var hue_path = DDG.get_asset_path('color_picker', 'assets/hue_gradient.png');
+        
         var data = {
-            colors: eng.ddg_space_color_picker_get_initial_color()
+            colors: initial_color,
+            saturation_value_path: saturation_value_path,
+            hue_path: hue_path
         }
 
         Spice.add({
@@ -22,6 +29,20 @@
             }
         });
     };
+    
+    env.ddg_space_color_picker_get_marker_positions = function(hsv){
+        var markers = {
+            sv: {
+                x: (hsv.saturation / 100) * 256,
+                y: (hsv.value / 100) * 256
+            },
+            h: {
+                y: (hsv.hue / 360) * 256
+            }
+        };
+        
+        
+    }
     
     env.ddg_space_color_picker_get_initial_color = function() {
         var red = Math.floor(Math.random() * 256);
@@ -56,8 +77,8 @@
         var delta = max - min;
         
         var hue = 0;
-        var saturation = (max > 0) ? (max - min) / max : 0;
-        var value = max;
+        var saturation = (max > 0) ? ((max - min) * 100) / max : 0;
+        var value = max * 100;
         if (delta > 0) {
             switch (max) {
                 case red_proportion:
