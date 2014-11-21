@@ -11,10 +11,10 @@ description "Returns the population for a specified country";
 primary_example_queries "population of russia ", "population usa";
 category "facts";
 topics "everyday";
-#code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Population.pm";
-#attribution github => ["GitHubAccount", "Friendly Name"],
-#            twitter => ["twitterhandle"],
-#            web => ["http://example.com", "Example"];
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Population.pm";
+attribution github => ["https://github.com/gregoriomartinez", "GregorioMartinez"],
+            twitter => ['http://twitter.com/gregemartinez','GregEMartinez'],
+            web => ["http://www.gmartinez.com", "Gregorio Martinez"];
 
 
 # Country alias
