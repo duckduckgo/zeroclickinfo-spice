@@ -31,7 +31,7 @@ function ddg_spice_forecast(r) {
   
   // Set up some stuff we'll need
   var //$container = $('#zci-forecast'),  // #spice_forecast'
-      iconFiletype = 'svg', //(Modernizr.svg) 'svg' : 'png'
+      iconFiletype = 'png', 
       iconPath = '/assets/weather/',
       units = (r.flags && r.flags.units) || 'us',
       unit_labels = {
@@ -47,6 +47,10 @@ function ddg_spice_forecast(r) {
   // If the API changes the r.flags or r.flags.units, it will break everything.
   if(!(units in unit_labels)) {
       units = 'us';
+  }
+  // use svg if it's supported and we need it (high pixel density)
+  if (Modernizr.svg == true && (DDG.is2x || DDG.is3x)) {
+    iconFiletype = 'svg';
   }
 
   // Skycons (static version of these: http://darkskyapp.github.io/skycons/)
