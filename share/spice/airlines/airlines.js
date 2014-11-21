@@ -117,6 +117,7 @@
             templates: {
                 group: 'base',
                 detail: false,
+                moreAt: true,
                 options: {
                     content: Spice.airlines.content,
                     variant: 'xwide'
