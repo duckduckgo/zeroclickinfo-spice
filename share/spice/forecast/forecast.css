@@ -2,6 +2,30 @@
 	TODO: Namespace everything
 */
 
+/* Primary/Alt Icons */
+.fe_icon-wrap {
+	position: relative;
+	display: inline-block;
+}
+.fe_icon,
+.fe_icon--alt {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+}
+.fe_icon {
+	display: block;
+}
+	.dark-header .fe_icon { display: none; }
+	
+.fe_icon--alt {
+	display: none;
+}
+	.dark-header .fe_icon--alt { display: block; }
+
+/* Other Styling */
 .fe_currently,
 .fe_day {
 	height: 16em;
@@ -40,15 +64,16 @@
 		font-size: 1em;
 	}
 	
-	.fe_current_icon {
-		width: 3.125em;
+	.fe_icon-wrap--current {
+		width: 80px;
+		height: 80px;
 		vertical-align: bottom;
 		margin-bottom: 0.25em;
 		margin-right: 0.25em;
 	}
-	.fe_icon {
+	.fe_icon-wrap--daily {
 		float: right;
-		width: 3.5em;
+		width: 40px;
 	}
 	/*h1*/.fe_temp {
 		display: inline-block;
@@ -194,8 +219,7 @@
 			font-size: 0.9em;
 		}
 
-.fe_icon--bar {
-	display: inline-block;
+.fe_icon-wrap--bar {
 	margin-top: 2px;
 	height: 26px;
 	width: 26px;
