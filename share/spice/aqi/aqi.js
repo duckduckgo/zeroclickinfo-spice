@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_aqi = function(api_result) {
         if (api_result.error) {
-            return Spce.failed('aqi');
+            return Spice.failed('aqi');
         }
 
         Spice.add({
@@ -14,10 +14,15 @@
                 sourceUrl: 'http://www.airnowapi.org/CurrentObservationsByZip/query'
             },
             templates: {
-                group: 'base',
-                options:{
-                    content: Spice.aqi.content,
-                    moreAt: true
+                group: 'text',
+                detail: false,
+		            item_detail: false
+            },
+            normalize : function(item){
+                return{
+                    title: item.ParameterName + ": " + item.AQI + " (" + item.Category.Name + ")",
+                    subtitle: item.ReportingArea + ", " + item.StateCode,
+                    description: item.DateObserved + ", " + item.HourObserved + ":00 " + item.LocalTimeZone
                 }
             }
         })
