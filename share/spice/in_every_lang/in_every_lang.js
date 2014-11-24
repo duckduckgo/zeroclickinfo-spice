@@ -1,3 +1,5 @@
+"use strict";
+
 (function (env) {
     // Take the ineverylang.com standard language strings, and translate them into some more readable search query terms
     var language_translations = {
@@ -20,7 +22,6 @@
       "Swift": ["swift"]
     };
 
-    "use strict";
     env.ddg_spice_in_every_lang = function(api_results){
       var query = DDG.get_query().toLowerCase();
 
