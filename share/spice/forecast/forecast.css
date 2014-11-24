@@ -42,23 +42,26 @@
 
 .fe_current-wrap {
 	display: inline-block;
-	margin-top: 1.5em;
+	margin-top: 1.25em;
 	max-width: 100%;
 }
-.fe_top {
+.fe_current__top {
 	font-size: 2em;
 }
-.fe_bottom {
+.fe_current__bottom {
 	font-size: 1.1em;
 	text-align: center;
-	margin-top: 0.5em;
+	position: absolute;
+	bottom: 1.25em;
+	left: 1.25em;
+	right: 1.25em;
 }
 	.fe_summary h6,
-	.fe_bottom h6 {
+	.fe_current__bottom h6 {
 		font-weight: normal !important;
 		padding-bottom: 0;
 	}
-	.fe_bottom h6 {
+	.fe_current__bottom h6 {
 		font-size: 1.15em;
 	}
 	.fe_summary h6 {
@@ -66,8 +69,8 @@
 	}
 	
 	.fe_icon-wrap--current {
-		width: 80px;
-		height: 80px;
+		width: 64px;
+		height: 64px;
 		vertical-align: bottom;
 		margin-bottom: 0.25em;
 		margin-right: 0.25em;
@@ -81,6 +84,7 @@
 		line-height: 1.1;
 		margin-bottom: 0 !important;
 		margin-right: -.25em;
+		font-size: 2.5em;
 	}
 	
 	.fe_temp_corner {
@@ -89,6 +93,7 @@
 		bottom: 0;
 		right: 0;
 		padding-right: 1em;
+		font-size: 0.9em;
 	}
 		.fe_temp_corner h1 { 
 			margin-bottom: 0 !important; 
@@ -121,8 +126,8 @@
 		}
 		
 	.fe_currently .fe_topline {
-		margin-bottom: 0.25em;
-		padding-bottom: 0.25em;
+		margin-bottom: 0.29em;
+		padding-bottom: 0.3em;
 		position: relative;
 	}
 		.fe_currently .fe_topline:after {
