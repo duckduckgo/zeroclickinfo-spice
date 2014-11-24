@@ -13,12 +13,13 @@ category "programming";
 attribution github  => ['https://github.com/josephwegner', 'josephwegner'],
             twitter => ['https://www.twitter.com/Joe_Wegner', 'Joe_Wegner'];
 
-triggers query_lc => qr/(fizz ?buzz)|(quine)|(fibonacci sequence)|(binary search)/;
+triggers startend => "fizz buzz", "fizzbuzz", "quine", "fiboniacci sequence", "binary search";
 
 spice to => 'http://www.ineverylang.com/$1.json';
 spice wrap_jsonp_callback => 1;
 
-handle matches => sub {
+handle query_lc => sub {
+  $_ =~ m/(fizz ?buzz)|(quine)|(fibonacci sequence)|(binary search)/;
   if($1) {
     return 'fizz-buzz';
   } elsif($2) {
