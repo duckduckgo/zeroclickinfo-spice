@@ -1,6 +1,5 @@
-"use strict";
-
 (function (env) {
+    "use strict";
     // Take the ineverylang.com standard language strings, and translate them into some more readable search query terms
     var language_translations = {
       "C": [" c"],
