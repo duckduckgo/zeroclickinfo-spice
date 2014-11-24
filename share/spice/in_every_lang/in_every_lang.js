@@ -51,6 +51,7 @@
 
       // Use the searched for language - if not, just use the first language returned
       var solution = selectedLanguage ? api_results[selectedLanguage] : api_results[Object.keys(api_results)[0]];
+      var solutionUrl = selectedLanguage ? solution.url : "http://www.ineverylang.com/"+solution.puzzle.puzzleDir;
 
       Spice.add({
           id: "in_every_lang",
@@ -58,7 +59,7 @@
           data: solution,
           meta: {
               sourceName: "ineverylang.com",
-              sourceUrl: 'http://www.ineverylang.com/'+solution.puzzle.puzzleDir // puzzleDir matches the ineverylang.com path structure
+              sourceUrl: solutionUrl
           },
           
           normalize: function(item) {
