@@ -4,13 +4,13 @@
 		<h5 class="fe_label"><a href="{{{meta.sourceUrl}}}">{{city}}</a></h5>
 		<div class="fe_current-wrap">
 		{{#with current}}
-			<div class="fe_top">
+			<div class="fe_current__top">
 			  <span class="fe_icon-wrap  fe_icon-wrap--current">
 				{{{forecast_icon icon size="80px"}}}
 			  </span>
 			  <h1 class="fe_temp  tx-clr--dk">{{{temp}}}</h1>
 			</div>
-			<div class="fe_bottom">
+			<div class="fe_current__bottom">
 				{{#if summary}}<h6 class="fe_topline"><span class="fe_summary {{summaryClass}}">{{{summary}}}</span></h6>{{/if}}
 				{{#if wind}}<h6 class="fe_wind">{{{wind}}}</h6>{{/if}}
 			</div>
