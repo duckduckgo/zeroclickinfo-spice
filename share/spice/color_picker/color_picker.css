@@ -1,0 +1,65 @@
+#color_picker_container {
+}
+
+#color_picker_container .left {
+    float: left;
+}
+
+#color_picker_container #saturation_value_picker {
+    width: 256px;
+    height: 256px;
+}
+
+#color_picker_container #hue_picker {
+    width: 32px;
+    height: 256px;
+    margin-left: 16px;
+}
+
+#color_picker_container #color_inputs {
+    height: 128px;
+    margin-left: 16px;
+}
+
+#color_picker_container .compound_color {
+    float: left;
+    margin: 0 5px;
+    width: 64px;
+}
+
+#color_picker_container .compound_color .color_component {
+    float: right;
+}
+
+#color_picker_container .compound_color .color_component input {
+    width: 32px;
+}
+
+#color_picker_container .simple_color {
+    margin: 0 5px;
+    clear: left;
+}
+
+#color_picker_container .simple_color input {
+    width: 64px;
+}
+
+#color_picker_container #sample {
+    height: 128px;
+    width: 256px;
+    margin-left: 16px;
+}
+
+#color_picker_container #saturation_value_marker {
+    height: 5px;
+    width: 5px;
+    position: absolute;
+    border: solid 2px;
+}
+
+#color_picker_container #hue_marker {
+    height: 5px;
+    width: 28px;
+    position: absolute;
+    border: solid 2px;
+}

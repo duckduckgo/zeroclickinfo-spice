@@ -1,42 +1,65 @@
 <div id="color_picker_container">
-    <div id="saturation_value_picker" style="background-color: {{colors.hex}};">
+    <div id="saturation_value_picker" class="left" style="background-color: {{colors.hex_hue}};">
         <img src="{{saturation_value_path}}" />
-        <div id="saturation_value_marker"></div>
+        <div id="saturation_value_marker" style="top: {{markers.saturation_value.y}}; left: {{markers.saturation_value.x}}"></div>
     </div>
-    <div id="hue_picker">
+    <div id="hue_picker" class="left">
         <img src="{{hue_path}}" />
-        <div id="hue_marker"></div>
+        <div id="hue_marker" style="top: {{markers.hue.y}}"></div>
     </div>
-    <div>
-        <div class="compound_color">
-            <label for="hue_input">H:</label>
-            <input id="hue_input" type="text" value="{{colors.hsv.hue}}" />
-            <label for="saturation_input">S:</label>
-            <input id="saturation_input" type="text" value="{{colors.hsv.saturation}}" />
-            <label for="value_input">V:</label>
-            <input id="value_input" type="text" value="{{colors.hsv.value}}" />
+    <div class="left"> 
+        <div id="color_inputs">
+            <div class="compound_color">
+                <div class="color_component">
+                    <label for="hue_input">H:</label>
+                    <input id="hue_input" type="text" value="{{colors.hsv.hue}}" />
+                </div>
+                <div class="color_component">
+                    <label for="saturation_input">S:</label>
+                    <input id="saturation_input" type="text" value="{{colors.hsv.saturation}}" />
+                </div>
+                <div class="color_component">
+                    <label for="value_input">V:</label>
+                    <input id="value_input" type="text" value="{{colors.hsv.value}}" />
+                </div>
+            </div>
+            <div class="compound_color">
+                <div class="color_component">
+                    <label for="red_input">R:</label>
+                    <input id="red_input" type="text" value="{{colors.rgb.red}}" />
+                </div>
+                <div class="color_component">
+                    <label for="green_input">G:</label>
+                    <input id="green_input" type="text" value="{{colors.rgb.green}}" />
+                </div>
+                <div class="color_component">
+                    <label for="blue_input">B:</label>
+                    <input id="blue_input" type="text" value="{{colors.rgb.blue}}" />
+                </div>
+            </div>
+            <div class="compound_color">
+                <div class="color_component">
+                    <label for="cyan_input">C:</label>
+                    <input id="cyan_input" type="text" value="{{colors.cmyk.cyan}}" />
+                </div>
+                <div class="color_component">
+                    <label for="magenta_input">M:</label>
+                    <input id="magenta_input" type="text" value="{{colors.cmyk.magenta}}" />
+                </div>
+                <div class="color_component">
+                    <label for="yellow_input">Y:</label>
+                    <input id="yellow_input" type="text" value="{{colors.cmyk.yellow}}" />
+                </div>
+                <div class="color_component">
+                    <label for="black_input">K:</label>
+                    <input id="black_input" type="text" value="{{colors.cmyk.black}}" />
+                </div>
+            </div>
+            <div class="simple_color">
+                <label for="hex_input">Hex:</label>
+                <input id="hex_input" type="text" value="{{colors.hex}}" />
+            </div>
         </div>
-        <div class="compound_color">
-            <label for="red_input">R:</label>
-            <input id="red_input" type="text" value="{{colors.rgb.red}}" />
-            <label for="green_input">G:</label>
-            <input id="green_input" type="text" value="{{colors.rgb.green}}" />
-            <label for="blue_input">B:</label>
-            <input id="blue_input" type="text" value="{{colors.rgb.blue}}" />
-        </div>
-        <div class="compound_color">
-            <label for="cyan_input">C:</label>
-            <input id="cyan_input" type="text" value="{{colors.cmyk.cyan}}" />
-            <label for="magenta_input">M:</label>
-            <input id="magenta_input" type="text" value="{{colors.cmyk.magenta}}" />
-            <label for="yellow_input">Y:</label>
-            <input id="yellow_input" type="text" value="{{colors.cmyk.yellow}}" />
-            <label for="black_input">K:</label>
-            <input id="black_input" type="text" value="{{colors.cmyk.black}}" />
-        </div>
-        <div>
-            <label for="hex_input">Hex:</label>
-            <input id="hex_input" type="text" value="{{colors.hex}}" />
-        </div>
+        <div id="sample" style="background-color: {{colors.hex}}"></div>
     </div>
 </div>
