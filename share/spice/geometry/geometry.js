@@ -442,6 +442,8 @@
                 }
             },
             onShow: function(){
+                if(!Modernizr.svg) return;
+
                 var formulaNodes = $("#zci--geometry-formulas").children(),
                     svg = $("#zci--geometry-svg"),
                     svgNodes = svg.children(),
@@ -459,3 +461,5 @@
         });
     };
 }(this));
+
+ddg_spice_geometry();
