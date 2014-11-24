@@ -19,12 +19,12 @@
                 content: pageContent
             },
             meta: {
-                sourceName: 'http://baconipsum.com/',
+                sourceName: 'http://baconipsum.com/'
             },
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.bacon_ipsum.content,
+                    content: Spice.bacon_ipsum.content
                 }
             }
         });
