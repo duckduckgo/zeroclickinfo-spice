@@ -24,6 +24,7 @@
 
     env.ddg_spice_in_every_lang = function(api_results){
       var query = DDG.get_query().toLowerCase();
+      var lang;
 
       // Try to find which language the query is looking for
       for(lang in api_results) {
@@ -54,9 +55,11 @@
       var solution = selectedLanguage ? api_results[selectedLanguage] : api_results[Object.keys(api_results)[0]];
       var solutionUrl = selectedLanguage ? solution.url : "http://www.ineverylang.com/"+solution.puzzle.puzzleDir;
 
+      var cleanLanguageName = solution.language.replace("++", "pp");
+
       Spice.add({
           id: "in_every_lang",
-          name: solution.language+" Solution",
+          name: cleanLanguageName+" Solution",
           data: solution,
           meta: {
               sourceName: "ineverylang.com",
