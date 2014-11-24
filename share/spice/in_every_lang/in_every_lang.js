@@ -58,7 +58,7 @@
           data: solution,
           meta: {
               sourceName: "ineverylang.com",
-              sourceUrl: 'http://ineverylang.com/'+solution.puzzle.puzzleDir // puzzleDir matches the ineverylang.com path structure
+              sourceUrl: 'http://www.ineverylang.com/'+solution.puzzle.puzzleDir // puzzleDir matches the ineverylang.com path structure
           },
           
           normalize: function(item) {
