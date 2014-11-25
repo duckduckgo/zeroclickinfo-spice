@@ -12,7 +12,6 @@
 
         //the object at position 1 in api_response contains an yearwise list of values
         var indicatorValuesByYear = api_response[1];
-        console.log(indicatorValuesByYear);
         
         //check if indicatorValuesByYear is an array
         if(Object.prototype.toString.call( indicatorValuesByYear ) !== '[object Array]'){
@@ -24,10 +23,11 @@
         var indicatorData = null;
 
         $.each(indicatorValuesByYear,function(index,indicator){
-            console.log(indicator.value)
-            //better way to validate ?
+
             if(indicator.value != null && indicator.country !== null && indicator.date !== null && indicator.indicator !== null){
-                indicatorData = indicator
+                indicatorData = indicator;
+                return false; //break
+
             }
         });
 
@@ -64,8 +64,7 @@
     env.ddg_spice_economic_indicators = function(api_response){
 
         var indicatorData = getDataFromAPIResponse(api_response);
-        console.log(indicatorData);
-        // Validate the response (customize for your Spice)
+
         if ( indicatorData === null || indicatorData === undefined ) {
             return Spice.failed('economic_indicators');
         }
