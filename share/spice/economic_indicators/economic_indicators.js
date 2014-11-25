@@ -33,7 +33,16 @@
 
         if(indicatorData !== null && indicatorData !== undefined){
 
-            if(indicatorData.indicator.value.match(/GDP/gi)){
+            // if the indicator is per capita income
+            if(indicatorData.indicator.value.match(/per capita/gi)){
+                  indicatorData.value = indicatorData.value + " USD";
+            }
+            //else if indicatos is growth rate
+            else if(indicatorData.indicator.value.match(/growth/gi)){
+                  indicatorData.value = parseFloat(indicatorData.value).toFixed(2) + " %";
+            }
+            // else if the indicator is GDP
+            else if(indicatorData.indicator.value.match(/GDP/gi)){
                   var indicatorValue = parseFloat(indicatorData.value);
                   if(indicatorValue /1000000000000 > 1){
                     indicatorValue = (indicatorValue/1000000000000).toFixed(2) + " Trillion USD";
@@ -47,12 +56,8 @@
                   }
                   indicatorData.value = indicatorValue;
             }
-            if(indicatorData.indicator.value.match(/growth/gi)){
-                  indicatorData.value = indicatorData.value + " %";
-            }
-            if(indicatorData.indicator.value.match(/per capita/gi)){
-                  indicatorData.value = indicatorData.value + " USD";
-            }
+
+            
         }
 
         return indicatorData;

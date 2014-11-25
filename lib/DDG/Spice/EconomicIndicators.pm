@@ -1,7 +1,11 @@
 package DDG::Spice::EconomicIndicators;
-# ABSTRACT: Write an abstract here
-# Start at https://duck.co/duckduckhack/spice_overview if you are new
-# to instant answer development
+# ABSTRACT: 
+# Instant answer for economic indicators for different countries
+# The indicators considered are
+#   a) Gross Domestic Product
+#   b) Annual Growth Rate
+#   c) Per Capita Income
+# All data used in this instant answer comes form World Bank(http://data.worldbank.org)
 
 use DDG::Spice;
 use Time::Piece;
@@ -11,31 +15,29 @@ spice is_cached => 1;
 
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name "EconomicIndicators";
-source "";
-description "Succinct explanation of what this instant answer does";
-primary_example_queries "first example query", "second example query";
-secondary_example_queries "optional -- demonstrate any additional triggers";
-# Uncomment and complete: https://duck.co/duckduckhack/metadata#category
-# category "";
-# Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
-# topics "";
+source "http://data.worldbank.org";
+description "Gives information about economic indicators of a country( Gross Domestic Product, Per Capita Income, Growth Rate)";
+primary_example_queries "gdp of india", "china per capita income","india growth rate";
+category "finance";
+topics "economy_and_finance";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/EconomicIndicators.pm";
-attribution github => ["GitHubAccount", "Friendly Name"],
-            twitter => "twitterhandle";
+attribution github => ["gauravtiwari5050", "Gaurav Tiwari"];
 
 # Triggers
 triggers any => "gdp", "gross domestic product","growth rate","per capita income";
 
 #the world bank api requires date range in years
-#we will use the current year, and two previous year
+#we will use the current year, and three previous years
 spice to => 'http://api.worldbank.org/countries/$1?per_page=10&date='.localtime->add_years(-3)->year.':'.localtime->year.'&format=json';
 
 
 spice wrap_jsonp_callback => 1;
 
+#read the mapping of country names to country codes from country_codes.json
 my $country_codes = share('country_codes.json')->slurp;
 $country_codes = decode_json($country_codes);
 
+#data_sources.json contains details about api endpoints for different economic indicators
 my $data_sources = share('data_sources.json')->slurp;
 $data_sources = decode_json($data_sources);
 
@@ -49,7 +51,7 @@ handle query_clean => sub {
 
 
 	my $data_source_id = ""; #holds the data source id (gdp or per_capita_income or growth_rate or something else)
-    my $data_source; #holds the data source read from file share/data_sources.json
+    my $data_source; #holds the data source read from file data_sources.json
 
     #select the data_source based on the type of economic inicator requested in the query
     if (/gdp/ or /gross domestic product/) {
@@ -65,6 +67,7 @@ handle query_clean => sub {
     return unless $data_source_id and $data_source;
 
     #get the indicator id
+    #Example indicator_id NY.GDP.MKTP.CD - for Gross Domestic Product
     my $indicator_id = $data_source->{'indicator_id'};
     return unless $indicator_id;
 
@@ -82,7 +85,6 @@ handle query_clean => sub {
     return unless $country_code;
     
     #return placeholder for the api
-    print "returning " . $country_code."/indicators/".$indicator_id;
     return $country_code."/indicators/".$indicator_id;
 
     
