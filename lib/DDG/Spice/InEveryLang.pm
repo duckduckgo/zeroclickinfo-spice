@@ -8,7 +8,6 @@ my $json = JSON->new;
 my $languages_raw = share('languages.json')->slurp;
 my $languages = $json->decode($languages_raw);
 
-my @language_translations = ();
 my @language_regexps = ();
 for( @{$languages->{languages}} ) {
   my $language = $_->{language};
