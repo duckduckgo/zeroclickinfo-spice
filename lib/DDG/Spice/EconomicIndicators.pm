@@ -50,7 +50,7 @@ $alias_lookup = decode_json($alias_lookup);
 handle query_clean => sub {
 
 
-	my $data_source_id = ""; #holds the data source id (gdp or per_capita_income or growth_rate or something else)
+    my $data_source_id = ""; #holds the data source id (gdp or per_capita_income or growth_rate or something else)
     my $data_source; #holds the data source read from file data_sources.json
 
     #select the data_source based on the type of economic inicator requested in the query
@@ -78,8 +78,8 @@ handle query_clean => sub {
     # only the name of the country should be left in the string at this point
     my $country_key = $alias_lookup->{$_} || $_;
 
-	#get the country code
-	my $country_code = $country_codes->{$country_key};
+    #get the country code
+    my $country_code = $country_codes->{$country_key};
 
     # return if the string is not one of the countries
     return unless $country_code;
