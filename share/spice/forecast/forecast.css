@@ -42,7 +42,7 @@
 
 .fe_current-wrap {
 	display: inline-block;
-	margin-top: 1.25em;
+	margin-top: 0.75em;
 	max-width: 100%;
 }
 .fe_current__top {
@@ -56,6 +56,11 @@
 	left: 1.25em;
 	right: 1.25em;
 }
+	.fe_summary {
+		overflow: hidden;
+		max-height: 2.6em;
+		display: block;
+	}
 	.fe_summary h6,
 	.fe_current__bottom h6 {
 		font-weight: normal !important;
