@@ -30,7 +30,7 @@
     },
     {
       "language": "MATLAB",
-      "triggers": ["mat"]
+      "triggers": ["matlab"]
     },
     {
       "language": "Objective-C",
@@ -50,7 +50,7 @@
     },
     {
       "language": "R",
-      "triggers": [" r"]
+      "triggers": [" r$"]
     },
     {
       "language": "Ruby",
