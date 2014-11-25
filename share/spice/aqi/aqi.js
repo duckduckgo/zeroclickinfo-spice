@@ -5,18 +5,21 @@
             return Spice.failed('aqi');
         }
 
+        var query = DDG.get_query();
+        var zip = query.match(/\d{5}/);
+
         Spice.add({
             id: "aqi",
             name: "AQI",
             data: api_result,
             meta: {
                 sourceName: "airnowapi.org",
-                sourceUrl: 'http://www.airnowapi.org/CurrentObservationsByZip/query'
+                sourceUrl: 'http://www.airnow.gov/?action=airnow.local_city&zipcode=' + zip
             },
             templates: {
                 group: 'text',
                 detail: false,
-		            item_detail: false
+                item_detail: false
             },
             normalize : function(item){
                 return{
