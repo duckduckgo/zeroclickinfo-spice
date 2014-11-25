@@ -2,7 +2,6 @@ package DDG::Spice::Aqi;
 # ABSTRACT: Returns the current air quality index (AQI) read from airnow.gov for a given zip code within the US.
 
 use DDG::Spice;
-use Scalar::Util qw(looks_like_number);
 
 name "AQI";
 description "Get current air quality indices";
@@ -21,9 +20,9 @@ spice to => 'http://www.airnowapi.org/aq/observation/zipCode/current/?format=app
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-    #remainder is ok if it is a 5 digit number
-    return $_ if ($_ && looks_like_number($_) && 9999 < $_ && $_ < 100000);
-    return;
+     my $query = shift;
+     return unless $query =~ qr/^\d{5}$/; #check if the entire remainder string is a 5 digits number;
+     return $query; # we know it exists, it's a number and it has 5 digits;
 };
 
 1;
