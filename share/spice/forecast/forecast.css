@@ -69,11 +69,11 @@
 	}
 	
 	.fe_icon-wrap--current {
-		width: 64px;
-		height: 64px;
+		width: 80px;
+		height: 80px;
 		vertical-align: bottom;
-		margin-bottom: 0.25em;
-		margin-right: 0.25em;
+		margin-bottom: 0;
+		margin-right: 0.35em;
 	}
 	.fe_icon-wrap--daily {
 		float: right;
@@ -155,13 +155,6 @@
 /* 
 	Mobile-Specific Objects
 */
-/* ewww */
-.is-mobile .zci--forecast .zci__body {
-	margin-bottom: -1.5em;
-	margin-top: -2em;
-	padding-top: 1px;
-	padding-left: 0;
-}
 
 .is-mobile .fe_current-wrap--mob {
     margin-top: -0.5em;
@@ -169,7 +162,8 @@
 
 .fe_current-wrap--mob .fe_currently {
 	margin: -0.5em;
-	height: 14.25em;
+	min-height: 14.25em;
+	height: auto;
 	width: auto;
 }
 .fe_current-wrap--mob .fe_current-wrap {
@@ -184,7 +178,10 @@
 		border-bottom-color: rgba(100,100,100,0.25);
 	}
 	
-	.fe_current-wrap--mob .fe_bottom {
+	.fe_current-wrap--mob .fe_current__bottom {
+		margin-top: 1.25em;
+		margin-bottom: 1em;
+		position: static;
 		font-size: 1em;
 	}
 
