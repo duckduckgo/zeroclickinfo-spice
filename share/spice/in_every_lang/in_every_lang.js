@@ -54,11 +54,9 @@
       var solution = selectedLanguage ? api_results[selectedLanguage] : api_results[Object.keys(api_results)[0]];
       var solutionUrl = selectedLanguage ? solution.url : "http://www.ineverylang.com/"+solution.puzzle.puzzleDir;
 
-      var cleanLanguageName = solution.language.replace("++", "pp");
-
       Spice.add({
           id: "in_every_lang",
-          name: cleanLanguageName+" Solution",
+          name: "Code Snippet",
           data: solution,
           meta: {
               sourceName: "ineverylang.com",
