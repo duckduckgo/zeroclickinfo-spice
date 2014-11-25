@@ -31,14 +31,14 @@
           
           normalize: function(item) {
               return {
-                  title: solution.title
+                  heading: solution.puzzle.name+" ("+selectedLanguage || Object.key(api_results)[0]+")",
+                  abstract: solution.code
               }  
           },
 
           templates: {
-              group: 'base',
+              detail: 'nlp',
               options: {
-                  content: Spice.in_every_lang.content,
                   moreAt: true
               }
           }
