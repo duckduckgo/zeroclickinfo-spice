@@ -13,16 +13,21 @@ ddg_spice_test(
     # - primary_example_queries
     # - secondary_example_queries
     'Quine in C++' => test_spice(
-        '/js/spice/in_every_lang/quine',
+        '/js/spice/in_every_lang/quine/C%2B%2B',
         call_type => 'include',
         caller => 'DDG::Spice::InEveryLang'
     ),
     'FizzBuzz in Swift' => test_spice(
-        '/js/spice/in_every_lang/fizz-buzz',
+        '/js/spice/in_every_lang/fizz-buzz/Swift',
         call_type => 'include',
         caller => 'DDG::Spice::InEveryLang'
     ),
     'Fizz Buzz in Swift' => test_spice(
+        '/js/spice/in_every_lang/fizz-buzz/Swift',
+        call_type => 'include',
+        caller => 'DDG::Spice::InEveryLang'
+    ),
+    'Fizz Buzz' => test_spice(
         '/js/spice/in_every_lang/fizz-buzz',
         call_type => 'include',
         caller => 'DDG::Spice::InEveryLang'
