@@ -31,7 +31,7 @@ category "programming";
 attribution github  => ['https://github.com/josephwegner', 'josephwegner'],
             twitter => ['https://www.twitter.com/Joe_Wegner', 'Joe_Wegner'];
 
-triggers startend => "fizz buzz", "fizzbuzz", "quine", "fiboniacci sequence", "binary search";
+triggers startend => "fizz buzz", "fizzbuzz", "quine", "fibonacci sequence", "binary search";
 
 spice to => 'http://www.ineverylang.com/$1.json';
 spice from => '(^[^\/]+)';
