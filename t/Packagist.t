@@ -23,13 +23,7 @@ ddg_spice_test(
         '/js/spice/packagist/laravel',
         call_type => 'include',
         caller    => 'DDG::Spice::Packagist',
-    ),
-    'packagist' => test_spice(
-        '/js/spice/packagist/',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Packagist',
-    ),
+    )
 );
 
 done_testing;
-
