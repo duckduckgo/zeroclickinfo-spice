@@ -62,4 +62,16 @@
         </div>
         <div id="sample" style="background-color: {{colors.hex}}"></div>
     </div>
+    <div id="palette" class="left">
+        <label for="palette_select">Palette:</label>
+        <select id="palette_select">
+            <option value="adjacent" selected="true">Adjacent</option>
+            <option value="triad">Triad</option>
+            <option value="tetrad">Tetrad</option>
+        </select>
+        <div id="palette_sample_0" class="palette_sample" style="background-color: {{colors.palette.[0]}}"></div>
+        <div id="palette_sample_1" class="palette_sample" style="background-color: {{colors.palette.[1]}}"></div>
+        <div id="palette_sample_2" class="palette_sample" style="background-color: {{colors.palette.[2]}}"></div>
+        <div id="palette_sample_3" class="palette_sample" style="background-color: {{colors.palette.[3]}}"></div>
+    </div>
 </div>
