@@ -32,7 +32,7 @@
                     normalize: function(item) {
                             return {
                                 title: solution.puzzle.prettyName,
-                                subtitle: selectedLanguage || Object.key(api_results)[0] 
+                                subtitle: selectedLanguage || Object.keys(api_results)[0] 
                             }    
                     },
 
