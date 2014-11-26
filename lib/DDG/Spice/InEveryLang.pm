@@ -20,8 +20,6 @@ for( @{$languages->{languages}} ) {
 my $language_finder = join("|", @language_regexps);
 $language_finder =~ s/\+/\\+/g;
 
-print $language_finder."\n";
-
 primary_example_queries "Fizz Buzz in C";
 description "Shows a code puzzle example";
 name "InEveryLang";
