@@ -15,7 +15,7 @@
             if(matches.length && typeof(api_results[query]) !== "undefined") {
                 selectedLanguage = query;
             } else {
-              return false;
+              return Spice.failed('in_every_lang');
             }
 
             // Use the searched for language - if not, just use the first language returned
