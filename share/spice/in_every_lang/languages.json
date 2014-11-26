@@ -10,7 +10,7 @@
     },
     {
       "language": "C",
-      "triggers": [" c$"]
+      "triggers": ["c"]
     },
     {
       "language": "Erlang",
@@ -22,7 +22,7 @@
     },
     {
       "language": "Java",
-      "triggers": ["java$"]
+      "triggers": ["java"]
     },
     {
       "language": "Javascript",
@@ -50,7 +50,7 @@
     },
     {
       "language": "R",
-      "triggers": [" r$"]
+      "triggers": ["r"]
     },
     {
       "language": "Ruby",
