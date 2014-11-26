@@ -81,7 +81,7 @@
                 }
             }, {
                 name: "diagonal",
-                html: "a&radic;2",
+                html: "a&radic;<span class='root'>2</span>",
                 calc: function(a){
                     return a * Math.SQRT2;
                 }
@@ -121,7 +121,7 @@
                 }
             }, {
                 name: "diagonal",
-                html: "&radic;a<sup>2</sup>+b<sup>2</sup>",
+                html: "&radic;<span class='root'>a<sup>2</sup>+b<sup>2</sup></span>",
                 calc: function(a, b){
                     return Math.sqrt(a * a + b * b);
                 }
@@ -159,7 +159,7 @@
         "equilateral triangle": {
             formulas: [{
                 name: "area",
-                html: "(a<sup>2</sup>*&radic;3)/4",
+                html: "(a<sup>2</sup>*&radic;<span class='root'>3</span>)/4",
                 calc: function(a){
                     return a / 4 * Math.sqrt(3);
                 }
@@ -235,7 +235,7 @@
                 }
             }, {
                 name: "diagonal",
-                html: "a&radic;3",
+                html: "a&radic;<span class='root'>3</span>",
                 calc: function(a){
                     return a * Math.sqrt(3);
                 }
@@ -281,7 +281,7 @@
                 }
             }, {
                 name: "diagonal",
-                html: "&radic;(a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup>)",
+                html: "&radic;<span class='root'>a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup></span>",
                 calc: function(a, b, c){
                     return Math.sqrt(a * a + b * b + c * c);
                 }
