@@ -27,13 +27,12 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::InEveryLang'
     ),
-    'Fizz Buzz' => test_spice(
-        '/js/spice/in_every_lang/fizz-buzz',
-        call_type => 'include',
-        caller => 'DDG::Spice::InEveryLang'
-    ),
     # Try to include some examples of queries on which it might
     # appear that your answer will trigger, but does not.
+    'Fizz Buzz' => undef,
+    'Fizz Buzz in AFakeLanguage' => undef,
+    'what is Fizz Buzz' => undef,
+    'Fizz Buzz example' => undef,
     'code puzzles' => undef,
     'c# katas' => undef,
     'Hello in C' => undef
