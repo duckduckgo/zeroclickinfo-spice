@@ -11,14 +11,16 @@
                 var query = decodeURIComponent(matches[1]);
             }
 
-            var selectedLanguage = false;
+            var selectedLanguage;
             if(matches.length && typeof(api_results[query]) !== "undefined") {
                 selectedLanguage = query;
+            } else {
+              return false;
             }
 
             // Use the searched for language - if not, just use the first language returned
-            var solution = selectedLanguage ? api_results[selectedLanguage] : api_results[Object.keys(api_results)[0]];
-            var solutionUrl = selectedLanguage ? solution.url : "http://www.ineverylang.com/"+solution.puzzle.puzzleDir;
+            var solution = api_results[selectedLanguage];
+            var solutionUrl = solution.url;
 
             Spice.add({
                     id: "in_every_lang",
@@ -32,7 +34,7 @@
                     normalize: function(item) {
                             return {
                                 title: solution.puzzle.prettyName,
-                                subtitle: selectedLanguage || Object.keys(api_results)[0] 
+                                subtitle: selectedLanguage 
                             }    
                     },
 

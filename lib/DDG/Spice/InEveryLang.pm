@@ -63,7 +63,7 @@ handle query_lc => sub {
         $language =~ s/dash/\-/g;
         return $puzzle, $language;
     } else {
-        return $puzzle
+        return;
     }
     
 
