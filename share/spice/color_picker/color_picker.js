@@ -2,6 +2,7 @@
     "use strict";
     env.ddg_spice_color_picker = function(){
 
+        var palette_type = 'adjacent';
         var initial_color = get_initial_color();
         var saturation_value_path = DDG.get_asset_path('color_picker', 'assets/saturation_value_gradient.png');
         var hue_path = DDG.get_asset_path('color_picker', 'assets/hue_gradient.png');
@@ -63,6 +64,11 @@
             hue = to_bounded_integer(hue, 0, 359);
 
             update_all_from_hsv(hue, saturation, value);
+        }
+
+        function palette_change(event) {
+            palette_type = $('#color_picker_container #palette_select').val();
+            update_palette();
         }
 
         function red_change(event) {
@@ -233,13 +239,15 @@
             var cmyk = convert_rgb_to_cmyk(rgb.red, rgb.green, rgb.blue);
             var hex = convert_rgb_to_hex(rgb.red, rgb.green, rgb.blue);
             var hex_hue = convert_hsv_to_hex(hue, 100, 100);
+            var palette = generate_palette(hsv, palette_type);
 
             var colors = {
                 rgb: rgb,
                 hsv: hsv,
                 cmyk: cmyk,
                 hex: hex,
-                hex_hue: hex_hue
+                hex_hue: hex_hue,
+                palette: palette
             };
 
             return colors;
@@ -255,6 +263,7 @@
             var cmyk = convert_rgb_to_cmyk(red, green, blue);
             var hex = convert_rgb_to_hex(red, green, blue);
             var hex_hue = convert_hsv_to_hex(hsv.hue, 100, 100);
+            var palette = generate_palette(hsv, palette_type);
 
             var colors = {
                 rgb: rgb,
@@ -278,6 +287,7 @@
             var hsv = convert_rgb_to_hsv(rgb.red, rgb.green, rgb.blue);
             var hex = convert_rgb_to_hex(rgb.red, rgb.green, rgb.blue);
             var hex_hue = convert_hsv_to_hex(hsv.hue, 100, 100);
+            var palette = generate_palette(hsv, palette_type);
 
             var colors = {
                 rgb: rgb,
@@ -288,6 +298,44 @@
             };
 
             return colors;
+        }
+
+        function generate_palette(hsv, type) {
+            var hue = [];
+            var saturation = [];
+            var value = [];
+
+            switch (type) {
+                case 'triad':
+                    hue = [(hsv.hue + 210) % 360, (hsv.hue + 150) % 360, (hsv.hue + 180) % 360];
+                    saturation = [hsv.saturation, hsv.saturation, hsv.saturation];
+                    value = [hsv.value, hsv.value, hsv.value];
+                    break;
+                case 'tetrad':
+                    hue = [(hsv.hue + 30) % 360, (hsv.hue + 180) % 360, (hsv.hue + 210) % 360];
+                    saturation = [hsv.saturation, hsv.saturation, hsv.saturation];
+                    value = [hsv.value, hsv.value, hsv.value];
+                    break;
+                case 'adjacent': //fall through
+                default:
+                    hue = [(hsv.hue + 30) % 360, (hsv.hue + 330) % 360, (hsv.hue + 180) % 360];
+                    saturation = [hsv.saturation, hsv.saturation, hsv.saturation];
+                    value = [hsv.value, hsv.value, hsv.value];
+                    break;
+            }
+
+            var palette = [];
+            for (var i = 0; i < hue.length; i++)
+                palette.push(convert_hsv_to_hex(hue[i], saturation[i], value[i]));
+            while (palette.length < 4)
+                palette.push('transparent');
+
+            return palette;
+        }
+
+        function update_palette() {
+            currentColor.palette = generate_palette(currentColor.hsv, palette_type);
+            update_all();
         }
 
         function update_all() {
@@ -309,6 +357,9 @@
             $('#saturation_value_marker').css('top', markers.saturation_value.y);
             $('#saturation_value_marker').css('left', markers.saturation_value.x);
             $('#hue_marker').css('top', markers.hue.y);
+
+            for (var i = 0; i < 4; i++)
+                $('#color_picker_container #palette_sample_' + i).css('background-color', currentColor.palette[i]);
         }
 
         function convert_hsv_to_rgb(hue, saturation, value) {
@@ -504,6 +555,9 @@
                 $('#color_picker_container #yellow_input').change(yellow_change);
                 $('#color_picker_container #black_input').change(black_change);
                 $('#color_picker_container #hex_input').change(hex_change);
+
+                $('#color_picker_container #palette_select').change(palette_change);
+
                 update_all();
             }
         });

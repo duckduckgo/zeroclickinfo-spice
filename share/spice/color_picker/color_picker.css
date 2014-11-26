@@ -46,7 +46,7 @@
 
 #color_picker_container #sample {
     height: 128px;
-    width: 256px;
+    width: 200px;
     margin-left: 16px;
 }
 
@@ -62,4 +62,14 @@
     width: 28px;
     position: absolute;
     border: solid 2px;
+}
+
+#color_picker_container #palette {
+    margin-left: 16px;
+}
+
+#color_picker_container .palette_sample {
+    margin: 5px;
+    height: 75px;
+    width: 120px;
 }
