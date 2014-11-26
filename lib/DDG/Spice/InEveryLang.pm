@@ -2,7 +2,7 @@ package DDG::Spice::InEveryLang;
 # ABSTRACT: Returns code examples for popular coding puzzles
 
 use DDG::Spice;
-use JSON qw( );
+use JSON;
 
 my $json = JSON->new;
 my $languages_raw = share('languages.json')->slurp;
@@ -14,12 +14,13 @@ for( @{$languages->{languages}} ) {
     $language =~ s/\#/sharp/g;
     $language =~ s/\+/plus/g;
     $language =~ s/\-/dash/g;
-    push(@language_regexps, "(?<".$language.">".join("|", @{ $_->{triggers} }).")");
+    push(@language_regexps, "(?<".$language.">(?<![\\w\#\\+])(".join("|", @{ $_->{triggers} }).")(?![\\w\#\\+]))");
 }
 
 my $language_finder = join("|", @language_regexps);
 $language_finder =~ s/\+/\\+/g;
 
+print $language_finder."\n";
 
 primary_example_queries "Fizz Buzz in C";
 description "Shows a code puzzle example";
