@@ -1,34 +1,20 @@
-.tile--packagist .ddgsi-arrow-down.downloadIcon {
-    vertical-align: middle;
-    display: inline-block;
-    font-style: normal;
-    position: relative;
-    margin-right: -1px;
-    margin-left: 5px;
-    margin-top: -10px;
-    font-size: 1.158em;
-    color: #d0d0d0;
-    height: 1em;
-    width: 1em;
-}
-
-.tile--packagist .star.starIcon {
-    margin-top: -5px;
-}
-
 .tile--packagist .tile__title__sub {
     text-transform: none;
-    color: #999;
 }
 
 .tile--packagist .tile__body {
-    height: 14em;
+    height: 13.5em;
 }
 
 .tile--packagist .tile__content {
-    height: 6.4em;
+    height: 6em;
 }
 
-.is-mobile .tile--packagist .tile__content {
-    height: 7em;
+.tile--packagist .tile__footer {
+    color: #aaa;
+    line-height: 1em;
+}
+
+.tile--packagist .tile__footer .ddgsi {
+    vertical-align: top;
 }
