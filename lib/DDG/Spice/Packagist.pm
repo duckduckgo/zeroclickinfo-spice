@@ -19,7 +19,7 @@ attribution github => ["https://github.com/somus", "Somasundaram Ayyappan"],
             twitter => ["https://twitter.com/_somu_", "Somasundaram Ayyappan"];
 
 # Triggers
-triggers startend => 'packagist', 'composer package', 'composer packages' 'php composer', 'composer install';
+triggers startend => 'packagist', 'composer package', 'composer packages', 'php composer', 'composer install';
 
 spice to => 'https://packagist.org/search.json?q=$1';
 spice wrap_jsonp_callback => 1;
