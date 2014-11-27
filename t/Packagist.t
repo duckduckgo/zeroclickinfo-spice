@@ -14,7 +14,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Packagist'
     ),
-    'composer laravel' => test_spice(
+    'composer package laravel' => test_spice(
         '/js/spice/packagist/laravel',
         call_type => 'include',
         caller    => 'DDG::Spice::Packagist',
