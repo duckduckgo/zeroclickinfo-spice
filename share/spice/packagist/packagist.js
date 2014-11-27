@@ -27,13 +27,18 @@
             templates:{
                 group: 'text',
                 detail: false,
-		        item_detail: false
+		        item_detail: false,
+                options: {
+                    footer: Spice.packagist.footer
+                }
             },
             normalize : function(item){
                 return{
                     title: item.name,
                     url: item.url,
-                    description: item.description
+                    description: item.description,
+                    faves: item.favers,
+                    downloads: item.downloads
                 }
             }
         });
