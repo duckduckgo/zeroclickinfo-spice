@@ -32,14 +32,11 @@
                     footer: Spice.packagist.footer
                 }
             },
-            normalize : function(item){
-                return{
+            normalize: function(item) {
+                return {
                     title: item.name,
-                    url: item.url,
-                    description: item.description,
-                    faves: item.favers,
-                    downloads: item.downloads
-                }
+                    downloads: item.downloads.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                };
             }
         });
     };
