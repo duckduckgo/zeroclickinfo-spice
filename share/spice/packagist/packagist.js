@@ -19,7 +19,7 @@
             data: api_result.results,
             meta: {
                 sourceName: "packagist.org",
-                sourceUrl: 'http://packagist.org/search.json?q=' + encodeURIComponent(query),
+                sourceUrl: 'http://packagist.org/search?q=' + encodeURIComponent(query),
                 sourceIconUrl: 'http://packagist.org/favicon.ico',
                 total: api_result.total,
                 itemType: "packages"
