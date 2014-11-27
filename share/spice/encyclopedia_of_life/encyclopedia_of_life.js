@@ -17,14 +17,15 @@
                 sourceUrl: "http://eol.org/"
             },
             templates: {
-                group: "text",
+                group: "media",
                 detail: false,
-                item_detail: false,
+                item_detail: false
             },
             normalize: function (item) {
                 return {
+                    image: "http://www.taxondata.steveglick.net/images.php?id=" + item.id,
                     title: item.title,
-                    subtitle: item.id
+                    url: item.link
                 };
             }
         })
