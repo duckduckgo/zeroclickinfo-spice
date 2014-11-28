@@ -10,7 +10,8 @@ primary_example_queries "people in space", "number of humans in orbit right now"
 category "facts";
 topics "science", "geek", "trivia";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/PeopleInSpace.pm";
-attribution github  => ["elebow", "Eddie Lebow"];
+attribution github  => ["elebow", "Eddie Lebow"],
+            github  => ["neosilky", "Daniel Lockyer"];
 
 #python3 << EEE
 #for n in ["people", "humans", "astronauts", "cosmonauts"]:
