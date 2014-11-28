@@ -20,7 +20,7 @@ my ($second, $minute, $hour, $dayOfMonth,
 #
 # can we convert the date portion of the comparison string to regex, using 
 # something like this:
-# qr\/js/spice/flights/route/CPA/LAX/HKG/LAX/HKG\/[0-9]{4}\/([0-9]{1}|[0-9]{2})\/([0-9]{1}|[0-9]{2})\/([0-9]{1}|[0-9]{2})/;
+# qr/\/js\/spice\/flights\/route\/CPA\/LAX\/HKG\/LAX\/HKG\/[0-9]{4}\/([0-9]{1}|[0-9]{2})\/([0-9]{1}|[0-9]{2})\/([0-9]{1}|[0-9]{2})/;
 
 ddg_spice_test(
 
@@ -29,22 +29,22 @@ ddg_spice_test(
     # --- these queries should trigger the IA
 
     # standard query
-    'Cathay Pacific Los Angeles to Hong Kong' => test_spice(
-        "/js/spice/flights/route/CPA/LAX/HKG/LAX/HKG/$year/$month/$dayOfMonth/$hour",
+    'Cathay Pacific Los Angeles to Hong Kong     Airport' => test_spice(
+        "/js/spice/flights/route/CPA/LAX/HKG/LAX/HKG/$year/$month/$dayOfMonth/$hour/los%2Bangeles/hong%2Bkong",
         call_type => 'include',
         caller => 'DDG::Spice::Flights::Route',
     ),
 
     # standard query
     'Jetblue Boston to Los Angeles' => test_spice(
-        "/js/spice/flights/route/JBU/BOS/LAX/BOS/LAX/$year/$month/$dayOfMonth/$hour",
+        "/js/spice/flights/route/JBU/BOS/LAX/BOS/LAX/$year/$month/$dayOfMonth/$hour/boston/los%2Bangeles",
         call_type => 'include',
         caller => 'DDG::Spice::Flights::Route',
     ),
 
     # standard query by airport code
     'Jetblue BOS to LAX' => test_spice(
-        "/js/spice/flights/route/JBU/BOS/LAX/BOS/LAX/$year/$month/$dayOfMonth/$hour",
+        "/js/spice/flights/route/JBU/BOS/LAX/BOS/LAX/$year/$month/$dayOfMonth/$hour/bos/lax",
         call_type => 'include',
         caller => 'DDG::Spice::Flights::Route',
     ),
@@ -58,7 +58,7 @@ ddg_spice_test(
 
     # query by airport code with airline at the end
     'BOS to LAX Aer Lingus' => test_spice(
-        "/js/spice/flights/route/EIN/BOS/LAX/BOS/LAX/$year/$month/$dayOfMonth/$hour",
+        "/js/spice/flights/route/EIN/BOS/LAX/BOS/LAX/$year/$month/$dayOfMonth/$hour/bos/lax",
         call_type => 'include',
         caller => 'DDG::Spice::Flights::Route',
     ),
@@ -72,29 +72,41 @@ ddg_spice_test(
 
     # query by mixed city/airport code
     'Jetblue Boston to JFK' => test_spice(
-        "/js/spice/flights/route/JBU/BOS/JFK/BOS/JFK/$year/$month/$dayOfMonth/$hour",
+        "/js/spice/flights/route/JBU/BOS/JFK/BOS/JFK/$year/$month/$dayOfMonth/$hour/boston/jfk",
         call_type => 'include',
         caller => 'DDG::Spice::Flights::Route',
     ),    
     
     'Jetblue JFK to Boston' => test_spice(
-        "/js/spice/flights/route/JBU/JFK/BOS/JFK/BOS/$year/$month/$dayOfMonth/$hour",
+        "/js/spice/flights/route/JBU/JFK/BOS/JFK/BOS/$year/$month/$dayOfMonth/$hour/jfk/boston",
         call_type => 'include',
         caller => 'DDG::Spice::Flights::Route',
     ),    
     
     'Boston to JFK Jetblue' => test_spice(
-        "/js/spice/flights/route/JBU/BOS/JFK/BOS/JFK/$year/$month/$dayOfMonth/$hour",
+        "/js/spice/flights/route/JBU/BOS/JFK/BOS/JFK/$year/$month/$dayOfMonth/$hour/boston/jfk",
         call_type => 'include',
         caller => 'DDG::Spice::Flights::Route',
     ),    
     
     'JFK to Boston Jetblue' => test_spice(
-        "/js/spice/flights/route/JBU/JFK/BOS/JFK/BOS/$year/$month/$dayOfMonth/$hour",
+        "/js/spice/flights/route/JBU/JFK/BOS/JFK/BOS/$year/$month/$dayOfMonth/$hour/jfk/boston",
         call_type => 'include',
-        caller => 'DDG::Spice::Flights::Route',
+        caller => 'DDG::Spice::Flights::Route',    
     ),    
-        
+
+    'Delta Dallas-Fort Worth International Airport to LAX' => test_spice(
+        "/js/spice/flights/route/DAL/DFW/LAX/DFW/LAX/$year/$month/$dayOfMonth/$hour/dallas%2Bfort%2Bworth/lax",
+        call_type => 'include',
+        caller => 'DDG::Spice::Flights::Route'
+    ),    
+          
+    'delta dallas fort worth to lax' => test_spice(
+        "/js/spice/flights/route/DAL/DFW/LAX/DFW/LAX/$year/$month/$dayOfMonth/$hour/dallas%2Bfort%2Bworth/lax",
+        call_type => 'include',
+        caller => 'DDG::Spice::Flights::Route'
+    ),    
+          
     # --- these queries should not trigger the IA
     
     # without "to", we cannot determine the source and destination

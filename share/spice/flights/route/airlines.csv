@@ -40,7 +40,7 @@ AEY,Air Italy
 AFG,Ariana Afghan Airlines
 AFL,Aeroflot
 AFR,Air France
-AFU,Afrinat International
+AFU,Afrinat
 AFW,Africa World Airlines
 AGO,Angola Air Charter
 AGU,Angara Airlines
@@ -62,7 +62,7 @@ AJD,Vista Georgia
 AJI,Ameristar Jet Charter
 AJK,Allied Air
 AJM,Air Jamaica
-AJT,Amerijet International
+AJT,Amerijet
 AJX,Air Japan
 AKK,Aklak Air
 AKL,Air Kiribati
@@ -113,7 +113,7 @@ AUA,Austrian
 AUB,Augsburg Airways
 AUI,UIA
 AUK,Auric Air
-AUL,Nordavia Regional Airlines
+AUL,Nordavia Airlines
 AUR,Aurigny Air Services
 AUT,Austral
 AVA,AVIANCA
@@ -133,7 +133,7 @@ AXK,African Express Airways
 AXL,Anguilla Air Services
 AXM,AirAsia
 AYD,AB Aviation
-AYE,Yunnan YingAn Airlines
+AYE,Yunnan Ying An Airlines
 AYG,Yangon Airways
 AYL,Alpine Air
 AZA,Alitalia
@@ -164,7 +164,7 @@ BEL,Brussels Airlines
 BER,Air Berlin
 BEZ,Kingfisher Air Service
 BFL,Buffalo Airways
-BGA,Airbus Transport International
+BGA,Airbus Transport
 BGH,BH Air
 BGM,Ak Bars Aero
 BGY,Bingo Airways
@@ -174,7 +174,7 @@ BHP,Belair Airlines
 BHS,Bahamasair
 BID,BinAir
 BIE,Air Mediterranee
-BIH,British International
+BIH,British
 BIS,Sky Bishkek
 BJK,Atlantic Airlines
 BKA,Bankair
@@ -185,10 +185,10 @@ BLS,Bearskin Airlines
 BLX,TUIfly Nordic
 BMJ,Bemidji Aviation
 BML,Bismillah Airlines
-BMR,bmi Regional
+BMR,bmi
 BMS,Blue Air
 BNC,Sundance Air
-BON,BH Airlines
+BON,B H Airlines
 BOS,OpenSkies
 BOT,Air Botswana
 BOV,BoA
@@ -202,8 +202,8 @@ BRJ,Bora Jet
 BRP,AeroBratsk
 BRQ,Buraq Air
 BRU,Belavia
-BRX,Braathens Regional
-BSK,Miami Air International
+BRX,Braathens
+BSK,Miami Air
 BTI,Air Baltic
 BTK,Batik Air
 BTN,Tashi Air
@@ -213,12 +213,12 @@ BVI,BVI Airways
 BVN,Baron Aviation Services
 BVT,Berjaya Air
 BWA,Caribbean Airlines
-BZH,HOPBRIT AIR
+BZH,HOP BRIT AIR
 CAD,Cardig Air
 CAI,Corendon Air
 CAL,China Airlines
-CAO,Air China Cargo 
-CAV,Calm Air International
+CAO,Air China Cargo
+CAV,Calm Air
 CAW,Comair
 CAY,Cayman Airways
 CBJ,Beijing Capital Airlines
@@ -233,7 +233,7 @@ CFA,China Flying Dragon Aviation
 CFE,BA CityFlyer
 CFG,Condor
 CFS,Empire Airlines
-CGD,Charlotte NC Air National Guard
+CGD,Charlotte NC Air Guard
 CGK,Click Airways
 CHB,West Air China
 CHH,Hainan Airlines
@@ -270,8 +270,8 @@ CPZ,Compass Airlines
 CQH,Spring Airlines
 CQN,Chongqing Airlines
 CRA,Cronos Airlines
-CRC,CamairCo
-CRK,Hong Kong Airlines 
+CRC,Camair Co
+CRK,Hong Kong Airlines
 CRL,Corsair
 CRN,Aerocaribbean
 CRQ,Air Creebec
@@ -341,14 +341,14 @@ DYA,Dynamic Airways
 EAA,Air Bishkek
 EAB,Eagle Atlantic Airlines
 EAG,Eagle Airways
-EAK,EuroAsia Air
+EAK,Euro Asia Air
 EAQ,Eastern Australia
 ECO,EcoJet
 EDW,Edelweiss Air
 EFY,EasyFly
 EGU,Eagle Air
 EHN,East Horizon Airlines
-EIA,Evergreen International
+EIA,Evergreen
 EIN,Aer Lingus
 EJA,NetJets Aviation
 EJM,Executive Jet Management
@@ -412,7 +412,7 @@ FJI,Fiji Airways
 FLG,Endeavor Air
 FLI,Atlantic Airways
 FLX,Flight Express
-FLY,IFly
+FLY,I Fly
 FNA,Norlandair
 FOX,Fly Ghana
 FPO,Europe Airpost
@@ -422,7 +422,7 @@ FRN,FirstNation Airways
 FTA,Frontier Flying Service
 FTZ,Fastjet
 FWI,Air Caraibes
-FWL,Florida West International Airways
+FWL,Florida West Airways
 FXI,Air Iceland
 FXR,Foxair
 FXT,FlexFlight
@@ -439,16 +439,16 @@ GBG,Global Jet
 GBQ,Gambia Bird
 GCR,Tianjin Airlines
 GDC,Grand China Air
-GEC,Lufthansa Cargo 
+GEC,Lufthansa Cargo
 GES,Gestair
 GFA,Gulf Air
 GFG,Sky Georgia
 GGN,Air Georgian
 GHN,Air Ghana
 GHT,Ghadames Air
-GHY,German Sky Airlines 
+GHY,German Sky Airlines
 GIA,Garuda Indonesia
-GIL,Georgian International Airlines
+GIL,Georgian Airlines
 GJS,GoJet Airlines
 GLA,Great Lakes Airlines
 GLG,AeroGal
@@ -482,7 +482,7 @@ HBH,Hebei Airlines
 HCC,Holidays Czech Airlines
 HCV,Halcyonair
 HDA,Dragonair
-HER,HexAir
+HER,Hex Air
 HFY,Hi Fly
 HHN,Hahn Air
 HKA,Superior Aviation
@@ -506,14 +506,14 @@ IAR,Iliamna Air Taxi
 IAW,Iraqi Airways
 IBB,Binter Canarias
 IBE,Iberia
-IBK,Norwegian Air International
+IBK,Norwegian Air
 IBS,Iberia Express
 IBT,Ibertrans Aerea
 IBX,IBEX Airlines
 ICE,Icelandair
 ICL,CAL Cargo Airlines
 ICV,Cargolux Italia
-IFA,FAI rentajet
+IFA,FAI rent a jet
 IFL,IFL Group
 IFT,Interflight
 IGA,Sky Taxi
@@ -552,7 +552,7 @@ JAI,Jet Airways India
 JAL,JAL
 JAT,Air Serbia
 JAV,Jordan Aviation
-JBA,Helijet International
+JBA,Helijet
 JBR,Central Connect Airlines
 JBU,JetBlue Airways
 JBW,Jubba Airways Kenya
@@ -561,7 +561,7 @@ JEX,JAL Express
 JIA,PSA Airlines
 JJA,Jeju Air
 JJP,Jetstar Japan
-JLJ,JAir
+JLJ,J Air
 JLL,JetKonnect
 JLX,Jet Link Express
 JNA,Jin Air
@@ -603,7 +603,7 @@ KLC,KLM Cityhopper
 KLM,KLM
 KMA,Komiaviatrans
 KMF,Kam Air
-KMI,KMile Air
+KMI,K Mile Air
 KNA,Kunming Airlines
 KND,Kan Air
 KNE,flynas
@@ -633,7 +633,7 @@ LBT,Nouvelair Tunisie
 LBY,Belle Air
 LCB,LC Peru
 LCG,Lignes Aeriennes Congolaises
-LCI,Lao Central Airlines 
+LCI,Lao Central Airlines
 LCO,LAN Cargo
 LDE,LADE
 LER,LASER Airlines
@@ -650,7 +650,7 @@ LLC,Small Planet Airlines
 LLM,Yamal Airlines
 LLP,Small Planet Airlines Polska
 LLR,Alliance Air
-LLY,Lets Fly
+LLY,Let s Fly
 LMU,AlMasria
 LNE,Lan Ecuador
 LNI,Lion Air
@@ -663,7 +663,7 @@ LOT,LOT Polish Airlines
 LPE,Lan Peru
 LPV,Air Alps Aviation
 LRC,LACSA
-LRS,SANSA Regional
+LRS,SANSA
 LTD,Southern Airways Express
 LTM,Thai Lion Air
 LTR,Lufttransport
@@ -680,7 +680,7 @@ LZB,Bulgaria Air
 MAA,MasAir
 MAC,Air Arabia Maroc
 MAF,Aerolineas MAS
-MAI,Mauritania Airlines International
+MAI,Mauritania Airlines
 MAL,Morningstar Air Express
 MAS,Malaysia Airlines
 MAU,Air Mauritius
@@ -713,7 +713,7 @@ MKU,Island Air
 MLA,Mile Air
 MLD,Air Moldova
 MLR,Mihin Lanka
-MMA,Myanmar Airways International
+MMA,Myanmar Airways
 MMD,Air Alsie
 MML,Hunnu Air
 MMZ,euroAtlantic Airways
@@ -722,7 +722,7 @@ MNB,MNG Airlines
 MNG,Aero Mongolia
 MNL,MiniLiner
 MNO,Mango
-MNT,FlyMontserrat 
+MNT,FlyMontserrat
 MNU,Elite Airways
 MON,Monarch Airlines
 MOV,VIM Airlines
@@ -738,7 +738,7 @@ MSC,Air Cairo
 MSI,Motor Sich Airlines
 MSL,Marsland Aviation
 MSR,EgyptAir
-MTL,RAFAvia
+MTL,RAF Avia
 MTN,Mountain Air Cargo
 MUL,Mokulele Airlines
 MVI,Harrods Aviation
@@ -758,7 +758,7 @@ NAY,NAYSA
 NCA,NCA Nippon Cargo Airlines
 NCB,North Cariboo Air
 NCH,Chanchangi Airlines
-NCR,National Airlines
+NCR,Airlines
 NCT,NokScoot
 NEA,New England Airlines
 NEF,Barents AirLink
@@ -787,16 +787,16 @@ NRR,Nature Air
 NSE,SATENA
 NSO,Aerolineas Sosa
 NTH,Hokkaido Air System
-NTJ,NextJet 
+NTJ,NextJet
 NVD,JSC Avion Express
 NVQ,Novoair
 NVR,Novair
 NWG,AirWing
-NWL,NorthWright Airways
+NWL,North Wright Airways
 NYL,Mid Airlines
 NYT,Yeti Airlines
 NZM,Mount Cook Airlines
-OAE,Omni Air International
+OAE,Omni Air
 OAL,Olympic Air
 OAN,Aerospace One
 OAW,Helvetic Airways
@@ -820,7 +820,7 @@ ORC,Oriental Air Bridge
 OTJ,Ten Airways
 OTL,South Airlines
 OVA,Aeronova
-OZW,Virgin Australia Regional
+OZW,Virgin Australia
 PAC,Polar Air Cargo
 PAG,Perimeter Aviation
 PAL,Philippine Airlines
@@ -841,7 +841,7 @@ PFZ,Proflight Zambia
 PGA,Portugalia Airlines
 PGT,Pegasus
 PHB,Phoebus Apollo Aviation
-PIA,Pakistan International Airlines
+PIA,Pakistan Airlines
 PIC,Jetstar Pacific
 PJS,Jet Aviation
 PLM,Pullmantur Air
@@ -874,7 +874,7 @@ QTR,Qatar Airways
 QUE,Gouvernement Du Quebec
 QXE,Horizon Air
 RAC,Ryukyu Air Commuter
-RAE,HOPREGIONAL
+RAE,HOP
 RAM,Royal Air Maroc
 RAX,Royal Air Charter
 RBA,Royal Brunei Airlines
@@ -895,7 +895,7 @@ RJA,Royal Jordanian
 RJD,Rotana Jet
 RKA,Polar Airlines
 RKM,RAK Airways
-RLA,HOPAIRLINAIR
+RLA,HOP AIRLINAIR
 RLB,RUS Aviation
 RLK,Air Nelson
 RLR,AirNow
@@ -914,7 +914,7 @@ RPK,Royal Airlines
 RSC,Canarias Airlines
 RSE,SNAS Aviation
 RSI,Air Sunshine
-RSR,AeroService
+RSR,Aero Service
 RSY,iFly Airlines
 RTM,Trans AM
 RUC,Rutaca Airlines
@@ -923,14 +923,14 @@ RVL,Air Vallee
 RVP,Aero Vip Portugal
 RWD,RwandAir
 RWZ,Red Wings
-RXA,Rex Regional Express 
+RXA,Rex Express
 RYA,Ryan Air
-RYN,Ryan International Airlines
+RYN,Ryan Airlines
 RYR,Ryanair
 RZA,Royal Zimbabwe Airlines
 RZO,SATA Internacional
 SAA,South African Airways
-SAI,Shaheen Air International
+SAI,Shaheen Air
 SAS,SAS
 SAT,SATA Air Acores
 SAW,Cham Wings Airlines
@@ -972,7 +972,7 @@ SKL,Skycharter
 SKP,Skytrans
 SKQ,LabCorp
 SKU,Sky Airline
-SKV,Sky Regional
+SKV,Sky
 SKW,SkyWest Airlines
 SKY,Skymark Airlines
 SLC,SALSA d Haiti
@@ -993,7 +993,7 @@ SNM,Servizi Aerei
 SOL,Solomon Airlines
 SOO,Southern Air
 SOV,Saravia
-SPM,Air SaintPierre
+SPM,Air Saint Pierre
 SPN,Sepahan Airlines
 SPR,Provincial Airlines
 SPW,Speedwings
@@ -1013,7 +1013,7 @@ SUA,Silesia Air
 SUB,Suburban Air Freight
 SUD,Sudan Airways
 SUF,Fiji Link
-SUS,SunAir
+SUS,Sun Air
 SVA,Saudia
 SVR,Ural Airlines
 SVW,Global Jet Luxembourg
@@ -1058,7 +1058,7 @@ TGO,Transport Canada
 TGU,TAG
 TGW,Tigerair Singapore
 TGZ,Georgian Airways
-THA,Thai Airways International
+THA,Thai Airways
 THD,Thai Smile
 THE,Toumai Air
 THT,Air Tahiti Nui
@@ -1072,7 +1072,7 @@ TLB,Atlantique Air Assistance
 TLG,InvestAvia
 TLK,Starlink Aviation
 TMA,TMA Cargo
-TMG,TriMG Intra Asia Airlines
+TMG,Tri MG Intra Asia Airlines
 TMN,Tasman Cargo Airlines
 TNA,TransAsia Airways
 TNM,Tiara Air Aruba
@@ -1100,7 +1100,7 @@ TTW,Tigerair Taiwan
 TUA,Turkmenistan Airlines
 TUD,Yute Air Alaska
 TUI,TUIfly
-TUP,AviastarTU
+TUP,Aviastar TU
 TUS,ABSA
 TUX,TunisAir Express
 TUY,LTA
@@ -1110,8 +1110,8 @@ TVP,Travel Service Polska
 TVQ,Travel Service Slovakia
 TVR,Tavrey Air Company
 TVS,SmartWings
-TWB,TWay Air
-TWG,AirTaxi Europe
+TWB,T Way Air
+TWG,Air Taxi Europe
 TWI,Tailwind
 TWJ,Twinjet Aviation
 TWN,Avialeasing
@@ -1124,7 +1124,7 @@ UAL,United Airlines
 UBA,Myanma Airways
 UBD,United Airways BD
 UCA,CommutAir
-UCR,AeroCharter
+UCR,Aero Charter
 UDN,Dniproavia
 UEA,Chengdu Airlines
 UGB,Air Uganda
@@ -1138,8 +1138,8 @@ UPS,UPS
 URG,Air Urga
 USC,AirNet
 UTA,UTair
-UTN,UTairUkraine
-UTX,UTairExpress
+UTN,UTair Ukraine
+UTX,UTair Express
 UTY,Alliance Airlines
 UVA,Universal Airways
 UZB,Uzbekistan Airways
@@ -1149,8 +1149,8 @@ VAR,VECA
 VAS,Atran
 VBW,Air Burkina
 VCV,Conviasa
-VDA,VolgaDnepr
-VEC,Vensecar International
+VDA,Volga Dnepr
+VEC,Vensecar
 VES,Vieques Air Link
 VFC,VASCO
 VGO,NewGen Airways
@@ -1177,7 +1177,7 @@ VPA,DanubeWings
 VPB,Veteran Air
 VQI,Flyme
 VRD,Virgin America
-VRE,Air Cote DIvoire
+VRE,Air Cote D Ivoire
 VRR,VIA Rail Canada
 VSR,Aviostart
 VSV,SCAT Airlines
@@ -1191,7 +1191,7 @@ VVC,VivaColombia
 WAE,Western Air Express
 WAF,Air Flamenco
 WAU,Wizz Air Ukraine
-WAV,Warbelows Air Ventures
+WAV,Warbelow s Air Ventures
 WBR,Air Choice One
 WDA,Wimbi Dira
 WDL,WDL Aviation

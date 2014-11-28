@@ -19,13 +19,11 @@ AIRPORT_THRESHOLD = 3
 API_ID = os.environ.get('DDG_SPICE_FLIGHTS_API_ID')
 API_KEY = os.environ.get('DDG_SPICE_FLIGHTS_APIKEY')
 
-
-# the Python regex doesn't seem to group characters together as expected...
-# use this hack to remove multiple spaces
 def cleanName(sName):
-    sName = re.sub('([^a-zA-Z\s])', '', sName)
-    sName = re.sub('\s+', ' ', sName)
-    return sName
+    sName = re.sub(r'\b(airport|national|international|intl|regional)\b', '', sName, flags=re.IGNORECASE)
+    sName = re.sub(r'\.', '', sName)
+    sName = re.sub(r'[^a-zA-Z]+', ' ', sName)
+    return sName.strip()
 
 
 # main function
