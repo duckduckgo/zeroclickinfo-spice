@@ -5,8 +5,10 @@
         path: "/js/spice/flights",
         id: 'route',
 
-        // store the user's potential airline codes
+        // store the user's airline and city search information
         queriedAirlines: null,
+        sourceCity: null,
+        destinationCity: null,
 
         // define some static variables for callback and helpers
         MILLIS_PER_MIN: 60000,
@@ -36,11 +38,13 @@
             // and for filtering results by airline
             var script = $('[src*="/js/spice/flights/route/"]')[0],
                 source = $(script).attr("src"),
-                match  = source.match(/\/js\/spice\/flights\/route\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)/),
+                match  = source.match(/\/js\/spice\/flights\/route\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)/),
                 queriedSrcAirports = match[2].split('%2C'),
                 queriedDstAirports = match[3].split('%2C');
-        
+
             this.queriedAirlines = match[1].split('%2C');
+            this.sourceCity = match[10].replace('%2B', "+");
+            this.destinationCity = match[11].replace('%2B', "+");                       
 
             // create all remaining source/destination pairs that have not yet been polled for
             for (var srcCounter = 0; srcCounter < queriedSrcAirports.length; srcCounter++) {
@@ -184,6 +188,7 @@
                         results.push({
                             flight: flight[i],
                             airlineName: dictFlightStats[carrierCodes[carriersIndex].fsCode].name,
+                            airlineCode: carrierCodes[carriersIndex].fsCode,
                             flightNumber: carrierCodes[carriersIndex].flightNumber,
                             departing: departing,
                             arriving: arriving,
@@ -208,13 +213,24 @@
                 name: "Route",
                 meta: {
                     minItemsForModeSwitch: 3,
-                    sourceName: 'FlightStatus',
-                    sourceUrl: "http://www.flightstats.com/",
+                    sourceName: 'FlightStats',
+                    sourceUrl: "http://www.flightstats.com/go/FlightStatus/flightStatusByRoute.do?"
+                        + "departure=" + this.sourceCity
+                        + "&arrival=" + this.destinationCity,
                     itemType: results.length === 1 ? "flight" : "flights by departure time" 
                 },
                 normalize: function(item) {
+                
+                    console.log(item.departureDate);
+                    
                     return {
-                        url: "http://www.flightstats.com/"
+                        url: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?"
+                            + "airlineCode=" + item.airlineCode 
+                            + "&flightNumber=" + item.flightNumber
+                            + "&departureDate=" 
+                            + item.departureDate.getFullYear() + "-"
+                            + (item.departureDate.getMonth() + 1) + "-"
+                            + item.departureDate.getDate()
                     }
                 },
                 sort_fields: {

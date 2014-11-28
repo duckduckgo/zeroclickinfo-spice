@@ -16,10 +16,10 @@ attribution github => ["https://github.com/tommytommytommy", 'tommytommytommy'];
 # cache responses for 5 minutes
 spice proxy_cache_valid => "200 304 5m";
 
-spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';          
+spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';          
 spice to => 'http://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/route/status/$4/$5/arr/$6/$7/$8?hourOfDay=$9&utc=true&appId={{ENV{DDG_SPICE_FLIGHTS_API_ID}}}&appKey={{ENV{DDG_SPICE_FLIGHTS_APIKEY}}}&callback={{callback}}';
 
-my @triggers = [];
+my @triggers = ('airport', 'international', 'national', 'intl', 'regional');
 
 # get the list of cities and their IATA airport codes
 my (%citiesByName, %citiesByCode);
@@ -43,13 +43,30 @@ foreach my $line (share('cities.csv')->slurp) {
 
     # map airport codes to city names
     $citiesByCode{$airportCode} = $cityName;
-    
+
     # store both the city name and airport code as triggers
     push(@triggers, ($cityName, $airportCode)); 
+
+    # remove common words from the airport name and add as a new key
+    # that maps to the same airport code if the stripped airport name and the city name
+    # are not identical
+    my $strippedAirportName = lc($line[4]);
+    
+    if ($strippedAirportName ne $cityName) {
+        if (exists $citiesByName{$strippedAirportName}) {
+            push($citiesByName{$strippedAirportName}, $airportCode);
+        } else {
+            $citiesByName{$strippedAirportName} = [$airportCode];
+        }
+        
+        push(@triggers, $strippedAirportName); 
+    }
+        
 }
 
 # get the list of airlines and their ICAO codes
 my %airlines = ();
+
 foreach my $line (share('airlines.csv')->slurp) {
 
     # remove \n
@@ -75,6 +92,8 @@ triggers startend => @triggers;
 #   [0] array, ICAO airline codes
 #   [1] array, originating IATA airport codes
 #   [2] array, destination IATA airport codes
+#   [3] source city
+#   [4] destination city
 #
 # ICAO codes are supposed to be unique, while IATA codes do not have to be.
 # As the ICAO codes are only used internally, mapping airlines to their ICAO codes
@@ -116,42 +135,49 @@ sub identifyCodes {
         }
         
         # [airline][city][to][city]
-        return (join(",", @airlineCodes), $citiesByName{$groupB}, $citiesByName{$otherCity}) 
+        return (join(",", @airlineCodes), $citiesByName{$groupB}, $citiesByName{$otherCity}, $groupB, $otherCity) 
             if @airlineCodes and $leftQuery and exists $citiesByName{$groupB} and exists $citiesByName{$otherCity};
 
         # [city][to][city][airline]
-        return (join(",", @airlineCodes), $citiesByName{$otherCity}, $citiesByName{$groupA}) 
+        return (join(",", @airlineCodes), $citiesByName{$otherCity}, $citiesByName{$groupA}, $otherCity, $groupA) 
             if @airlineCodes and !$leftQuery and exists $citiesByName{$otherCity} and exists $citiesByName{$groupA};
 
         # [airline][airport code][to][airport code]
-        return (join(",", @airlineCodes), [$groupB], [$otherCity]) 
+        return (join(",", @airlineCodes), [$groupB], [$otherCity], $groupB, $otherCity) 
             if @airlineCodes and $leftQuery and exists $citiesByCode{$groupB} and exists $citiesByCode{$otherCity};
         
         # [airport code][to][airport code][airline]
-        return (join(",", @airlineCodes), [$otherCity], [$groupA]) 
+        return (join(",", @airlineCodes), [$otherCity], [$groupA], $otherCity, $groupA) 
             if @airlineCodes and !$leftQuery and exists $citiesByCode{$otherCity} and exists $citiesByCode{$groupA};         
 
         # [airline][airport code][to][city]
-        return (join(",", @airlineCodes), [$groupB], $citiesByName{$otherCity})
+        return (join(",", @airlineCodes), [$groupB], $citiesByName{$otherCity}, $groupB, $otherCity)
             if @airlineCodes and $leftQuery and exists $citiesByCode{$groupB} and exists $citiesByName{$otherCity}; 
         
         # [airline][city][to][airport code]
-        return (join(",", @airlineCodes), $citiesByName{$groupB}, [$otherCity])
+        return (join(",", @airlineCodes), $citiesByName{$groupB}, [$otherCity], $groupB, $otherCity)
             if @airlineCodes and $leftQuery and exists $citiesByName{$groupB} and exists $citiesByCode{$otherCity};
             
         # [airport code][to][city][airline]
-        return (join(",", @airlineCodes), [$otherCity], $citiesByName{$groupA}) 
+        return (join(",", @airlineCodes), [$otherCity], $citiesByName{$groupA}, $otherCity, $groupA) 
             if @airlineCodes and !$leftQuery and exists $citiesByCode{$otherCity} and exists $citiesByName{$groupA};
 
         # [city][to][airport code][airline]
-        return (join(",", @airlineCodes), $citiesByName{$otherCity}, [$groupA])
+        return (join(",", @airlineCodes), $citiesByName{$otherCity}, [$groupA], $otherCity, $groupA)
             if @airlineCodes and !$leftQuery and exists $citiesByName{$otherCity} and exists $citiesByCode{$groupA};
     }
     
     return;
 }
 
-handle query_clean => sub {
+handle query_lc => sub {
+    
+    # clean up input; strip periods and common words, 
+    # replace all other non-letters with a space, strip trailing spaces
+    s/\b(airport|national|international|intl|regional)\b//g;
+    s/\.//g;
+    s/[^a-z]+/ /g;
+    s/\s+$//g;
     
     # query must be in the form [airline][city][to][city] or [city][to][city][airline]
     my @query = split(/\s+to\s+/, $_);
@@ -177,11 +203,19 @@ handle query_clean => sub {
 
     return unless @flightCodes;
 
+    # prepare strings for "more information at" links
+    my $sourceCity = $flightCodes[3];
+    my $destinationCity = $flightCodes[4];
+    $sourceCity =~ s/\s+/+/g;
+    $destinationCity =~ s/\s+/+/g;    
+
     return ($flightCodes[0], 
             join(",", map(uc, @{$flightCodes[1]})),
             join(",", map(uc, @{$flightCodes[2]})),
             uc($flightCodes[1][0]), uc($flightCodes[2][0]), 
-            $year, $month, $dayOfMonth, $hour);
+            $year, $month, $dayOfMonth, $hour,
+            $sourceCity, $destinationCity
+            );
     
 };
 
