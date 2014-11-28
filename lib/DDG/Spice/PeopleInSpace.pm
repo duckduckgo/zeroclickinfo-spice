@@ -29,7 +29,7 @@ triggers any => "people in space", "people are in space", "people who are in spa
     "who's in space", "who's in orbit", "who is in space", "who is in orbit", "anyone in space", "anyone in orbit",
     "whose in space", "whose in orbit";
 
-spice to => 'http://www.howmanypeopleareinspacerightnow.com/space.json';
+spice to => 'http://www.howmanypeopleareinspacerightnow.com/peopleinspace.json';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
