@@ -1,13 +1,11 @@
 <div>
     {{#each famlist from="0" to="1"}}
-    <h1 class='text--primary iplookup_domain_name zci__header--detail'><a href='http://{{this}}'>{{this}}</a></h1>
+    <h1 class="zci__header"><a href='http://{{this}}'>{{this}}</a></h1>
     {{/each}}
-    <div class='text--primary iplookup_owner'>Owner: {{shortwho}}
+    <div class='zci__subheader'>Owner: {{shortwho}}
     {{#if shortloc}}<span class='text--secondary iplookup_location'>({{shortloc}})</span>{{/if}}
-    </div>
     {{#if blacklists}}
-        <div class='text--secondary iplookup_blacklist'>Blacklists: 
             {{#concat blacklists sep=", " conj=" and "}}{{this}}{{/concat}}
-        </div>
     {{/if}}
+    </div>
 </div>
