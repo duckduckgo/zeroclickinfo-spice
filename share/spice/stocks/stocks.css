@@ -1,38 +1,38 @@
-.zci h1.zci--stocks--header {
+.zci h1.stocks__header {
     font-size: 1.4em;
     line-height: 1.2em;
     font-weight: 400;
     margin-bottom: .25em;
 }
-.zci--stocks--sub.zci__header__sub {
+.stocks__sub.zci__header__sub {
     font-weight: 300;
     padding-left: 0;
     font-size: .95em;
     text-transform: none;
 }
-.zci--stocks--symbol {
+.stocks__symbol {
     font-weight: 400;
 }
 
-.zci--stocks--quotes {
+.stocks__quotes {
     font-size: 1.5em;
 }
-.zci--stocks--quote,
-.zci--stocks--change {
+.stocks__quote,
+.stocks__change {
     font-weight: 600;
 }
-.zci--stocks--change-pct {
+.stocks__change-pct {
     font-weight: 300;
 }
-.zci--stocks--change-sep.detail__sep {
+.stocks__change-sep.detail__sep {
     margin: 0;
     height: .78em;
 }
-.zci--stocks--quote-up .zci--stocks--change,
-.zci--stocks--quote-up .zci--stocks--change-pct {
+.stocks__quote-up .stocks__change,
+.stocks__quote-up .stocks__change-pct {
     color: #60ae50;
 }
-.zci--stocks--quote-up .zci--stocks--change:before {
+.stocks__quote-up .stocks__change:before {
     content: '';
     border: 3px solid transparent;
     border-bottom-color: #60ae50;
@@ -45,11 +45,11 @@
     position: relative;
     top: -5px;
 }
-.zci--stocks--quote-down .zci--stocks--change,
-.zci--stocks--quote-down .zci--stocks--change-pct {
+.stocks__quote-down .stocks__change,
+.stocks__quote-down .stocks__change-pct {
     color: #c9481c;
 }
-.zci--stocks--quote-down .zci--stocks--change:before {
+.stocks__quote-down .stocks__change:before {
     content: '';
     border: 3px solid transparent;
     border-top-color: #c9481c;

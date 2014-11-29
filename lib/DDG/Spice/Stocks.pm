@@ -9,8 +9,6 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 icon_url "/i/ycharts.com.ico";
 topics "economy_and_finance";
 category "finance";
-attribution twitter => ["https://twitter.com/DanielLockyer", "Daniel Lockyer"],
-            github  => ["https://github.com/neosilky","Daniel Lockyer"];
 
 # trigger is intentionally very specific, should trigger from internal view/deep triggers.
 # It's only here because I couldn't get the /js/stocks/ location to end up in generated nginx conf
