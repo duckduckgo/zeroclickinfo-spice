@@ -7,27 +7,20 @@
         }
 
         var today = new Date();
-        var codes = {       //We'll need these to map the full names returned by the source to the two-letter codes used by the DDG flag images
-            "canada":"ca",
-            "china":"cn",
-            "denmark":"dk",
-            "france":"fr",
-            "germany":"de",
-            "italy":"it",
-            "japan":"jp",
-            "netherlands":"nl",
-            "russia":"ru",
-            "spain":"sp",
-            "sweden":"se",
-            "uk":"uk",
-            "usa":"us"};
-        var months = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."];
 
+<<<<<<< HEAD
         var people = api_result.people;
 
         for (var i = 0; i < people.length; i++) {
             //add 2-letter country code
             people[i].country_code = codes[people[i].country.toLowerCase()];
+=======
+        var months = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."];
+
+        var people = api_result.people;
+
+        for (var i = 0; i < people.length; i++) {
+>>>>>>> People In Space: Use New Template Group. Display Bio Information.
 
             //compute number of days in space
             var launchdate = people[i].launchdate.split("-");
@@ -60,11 +53,14 @@
         };
         if (people.length > 0) {
             o.data = people;
+            console.log(people);
             o.normalize = function(item) {
                 return {
-                    url: item.bio,
-                    title: item.name,
-                    icon: DDG.settings.region.getSmallIconURL(item.country_code)
+                    url: item.biolink,
+                    heading: item.name,
+                    img: item.biophoto,
+                    img_m: item.biophoto,
+                    abstract: item.bio
                 };
             };
             o.sort_fields = {
@@ -74,21 +70,21 @@
                 }
             }
             o.sort_default = "launchdate";
-            o.templates = {
-                group: "icon",
-                detail: false,
-                item_detail: false,
-                options:{
-                    footer: Spice.people_in_space.footer,
-                    moreAt: true
+           o.templates = {
+                group: 'products',
+                options: {
+                    buy: Spice.people_in_space.content,
+                    rating: false,
+		            price: false,
+		            brand: false
                 }
-            };
+            }
         } else {
             o.data = api_result;
             o.templates = {
                 group: "base",
                 options:{
-                    content: Spice.people_in_space.content,
+                    content: Spice.people_in_space.none,
                     moreAt: true
                 }
             };
