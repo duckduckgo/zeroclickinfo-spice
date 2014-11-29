@@ -10,14 +10,7 @@ primary_example_queries "people in space", "number of humans in orbit right now"
 category "facts";
 topics "science", "geek", "trivia";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/PeopleInSpace.pm";
-attribution github  => ["elebow", "Eddie Lebow"],
-            github  => ["neosilky", "Daniel Lockyer"];
-
-#python3 << EEE
-#for n in ["people", "humans", "astronauts", "cosmonauts"]:
-#	for p in ["space", "orbit"]:
-#		print('"%s in %s", "%s are in %s", "%s who are in %s",' % (n, p, n, p, n, p))
-#EEE
+attribution github  => ["elebow", "Eddie Lebow"];
 
 triggers any => "people in space", "people are in space", "people who are in space",
     "people in orbit", "people are in orbit", "people who are in orbit",
