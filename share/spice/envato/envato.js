@@ -45,7 +45,7 @@
 
         if (marketplace && marketplace[0] == 'audiojungle'){
             spice.normalize = function(item){
-                var info = item.item_info, duration = 0, x = info.length.split(':')
+                var info = item.item_info, duration = 0, x = info.length_audio.split(':')
 
                 switch (x.length){
                     case 1:
