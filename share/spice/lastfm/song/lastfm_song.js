@@ -24,36 +24,41 @@ ddg_spice_lastfm_song = function(api_result) {
         "listen",
         "to"
     ];
+
     // Display the plug-in.
-    if(DDG.isRelevant(api_result.track.name + " " + api_result.track.artist.name, skip)) {
-        Spice.add({
-            id: 'lastfm_song',
-            name: 'Music',
-            data: api_result.track,
-            meta: {
-                sourceName: 'Last.fm',
-                sourceUrl: api_result.track.url,
-                sourceIconUrl: 'http://cdn.last.fm/flatness/favicon.2.ico'
-            },
-            normalize: function(item) {
-                var duration = 	item.duration/1000;
-                var seconds = duration % 60;
-                if (seconds < 10) {
-                    seconds = "0" + seconds;
-                }
-                return {
-                    title: item.name + " (" + Math.floor(duration / 60) + ":" + seconds + ")"
-                };
-            },
-            templates: {
-                group: 'info',
-                options: {
-                    content: Spice.lastfm_song.content,
-                    moreAt: true
-                }
+    Spice.add({
+        id: 'lastfm_song',
+        name: 'Music',
+        data: api_result.track,
+        meta: {
+            sourceName: 'Last.fm',
+            sourceUrl: api_result.track.url,
+            sourceIconUrl: 'http://cdn.last.fm/flatness/favicon.2.ico'
+        },
+        normalize: function(item) {
+            var duration = 	item.duration/1000;
+            var seconds = duration % 60;
+            if (seconds < 10) {
+                seconds = "0" + seconds;
             }
-        });
-    }
+            return {
+                title: item.name + " (" + Math.floor(duration / 60) + ":" + seconds + ")"
+            };
+        },
+        relevancy: {
+            skip_words : skip,
+            primary: [
+                { key: 'name' }, { key: 'artist.name' }
+            ]
+        },
+        templates: {
+            group: 'info',
+            options: {
+                content: Spice.lastfm_song.content,
+                moreAt: true
+            }
+        }
+    });
 };
 
 // Add links to other websites.
