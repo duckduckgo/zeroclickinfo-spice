@@ -1,6 +1,6 @@
 function ddg_spice_lastfm_song(api_result) {
     "use strict";
-console.log(api_result)
+
     // Check if it is an empty string.
     var checkString = function(string) {
         string = string.replace(/\s+/, "");
@@ -10,7 +10,7 @@ console.log(api_result)
     // Exit if we find an error.
     if(!api_result || !api_result.track || !api_result.track.artist || checkString(api_result.track.name) || !api_result.track.mbid ||
         checkString(api_result.track.artist.name)) {
-        return;
+        return Spice.failed('lastfm_song');
     }
 
     var skip = [
@@ -24,7 +24,6 @@ console.log(api_result)
         "listen",
         "to"
     ];
-
     // Display the plug-in.
     if(DDG.isRelevant(api_result.track.name + " " + api_result.track.artist.name, skip)) {
         Spice.add({
@@ -43,7 +42,7 @@ console.log(api_result)
                     seconds = "0" + seconds;
                 }
                 return {
-                    title: item.name + " (" + Math.floor(duration / 60) + ":" + seconds + ")", 
+                    title: item.name + " (" + Math.floor(duration / 60) + ":" + seconds + ")"
                 };
             },
             templates: {
@@ -72,7 +71,5 @@ Handlebars.registerHelper("listen", function(artist, song, options) {
     }
 
     var first = result.slice(0, result.length);
-    first = first.join(", ");
-
-    return first + ".";
+    return first.join(", ");
 });
