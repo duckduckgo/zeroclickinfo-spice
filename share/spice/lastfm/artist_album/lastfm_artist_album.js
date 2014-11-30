@@ -28,7 +28,8 @@ ddg_spice_lastfm_artist_album = function(api_result) {
                 return {
                     img: item.image[2]["#text"],
                     heading: item.name,
-                    url: item.url
+                    url: item.url,
+                    price: "▶  " + DDG.commifyNumber(item.playcount)
                 };
             },
             templates: {

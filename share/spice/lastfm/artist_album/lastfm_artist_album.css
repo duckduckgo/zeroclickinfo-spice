@@ -3,14 +3,11 @@
 }
 
 .zci--lastfm_artist_album .tile__title {
-    text-align: center;
+    height: 1.25em;
     margin-bottom: 0 !important;
+    white-space: nowrap;
 }
 
-.zci--lastfm_artist_album .tile--pr__sub {
-    height: 0;
-    margin-bottom: 0;
-}
 .zci--lastfm_artist_album .tile__media--pr .tile__media__img {
     width: 80%;
 }
