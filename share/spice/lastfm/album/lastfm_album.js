@@ -35,10 +35,7 @@ ddg_spice_lastfm_album = function(api_result) {
                     item.wiki = {summary : item.artist};
                 }
 
-                var releasedate;
-                if (item.releasedate) {
-                    releasedate = item.releasedate.split(',');
-                }
+                var releasedate = item.releasedate.split(',');
 
                 var boxData;
                 if (item.tracks && item.tracks.track && item.tracks.track.length > 0) {
