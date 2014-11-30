@@ -1,4 +1,10 @@
-function ddg_spice_lastfm_artist_album (api_result) {
+ddg_spice_lastfm_artist_album = function(api_result) {
+    
+    // Don't do anything if we find an error.
+    if(api_result.error || !api_result.topalbums || !api_result.topalbums.album || api_result.topalbums.album.length === 0) {
+        Spice.failed('lastfm_artist_album');
+    }
+    
     var skip = [
         "albums",
         "records",
@@ -6,31 +12,34 @@ function ddg_spice_lastfm_artist_album (api_result) {
         "cds"
     ];
 
-    // Don't do anything if we find an error.
-    if(api_result.error || !api_result.topalbums || !api_result.topalbums.album || api_result.topalbums.album.length === 0) {
-        return;
-    }
-
     var artist = api_result.topalbums.album[0].artist.name;
     if (DDG.isRelevant(artist, skip)) {
         Spice.add({
-            data              : api_result,
-            header1           : "Albums from " + artist,
-            sourceName       : "Last.fm",
-            sourceUrl        : "http://www.last.fm/search?q=" + artist + "&type=album",
-
-	    id        : "lastfm_artist_album",
-            template_frame    : "list",
-            templates  : {
-                items: api_result.topalbums.album,
-                item: Spice.lastfm_artist_album.lastfm_artist_album,
-                show: 3,
-                max: 10,
-                type: "ul"
+            id: 'lastfm_artist_album',
+            name: 'Albums by ' + artist,
+            data: api_result.topalbums.album,
+            meta: {
+                itemType: 'Albums',
+                sourceName: 'Last.fm',
+                sourceUrl: 'http://www.last.fm/search?q=' + artist + '&type=album',
+                sourceIconUrl: 'http://cdn.last.fm/flatness/favicon.2.ico'
             },
-
-            
-            
+            normalize: function(item) {
+                return {
+                    img: item.image[2]["#text"],
+                    heading: item.name,
+                    url: item.url
+                };
+            },
+            templates: {
+                group: 'products',
+                detail: false,
+                item_detail: false,
+                options: {
+                    moreAt: true,
+                    rating: false
+                }
+            }
         });
     }
 };
