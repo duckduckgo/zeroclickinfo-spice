@@ -10,7 +10,7 @@
         
         Spice.add ({
             id: "encyclopedia_of_life",
-            name: "Animals",
+            name: "Encyclopedia of Life",
             data: results,
             meta: {
                 sourceName: "Encyclopedia of Life",
@@ -22,9 +22,10 @@
                 item_detail: false
             },
             normalize: function (item) {
+                //Return data for display
                 return {
                     image: "http://www.taxondata.steveglick.net/images.php?id=" + item.id,
-                    title: item.title,
+                    title: item.name,
                     url: item.link
                 };
             }
