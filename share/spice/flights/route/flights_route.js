@@ -48,7 +48,7 @@
 
             // create all remaining source/destination pairs that have not yet been polled for
             for (var srcCounter = 0; srcCounter < queriedSrcAirports.length; srcCounter++) {
-        
+   
                 for (var dstCounter = 0; dstCounter < queriedDstAirports.length; dstCounter++) {
                 
                     // skip the first pair because the initial spice-to already
@@ -78,7 +78,7 @@
         route_helper: function(api_result) {
             "use strict";
         
-             // Check if we have anything returned.
+            // Check if we have anything returned.
             if (!api_result || !api_result.flightStatuses) {
                 return;
             }
@@ -91,14 +91,19 @@
         // "airlines" spice
         display: function(api_result) {
             
+            // Check if we have anything returned.
+            if (!api_result || !api_result.flightStatuses || !api_result.appendix.airlines) {
+                return;
+            }
+                        
             // Create dictionaries to convert FlightStat codes to ICAO codes/airline names
             var dictFlightStats = [];
-            for (var dictIndex = 0; dictIndex < api_result.appendix.airlines.length; dictIndex++) {
-                dictFlightStats[api_result.appendix.airlines[dictIndex].fs] = {
-                    "icao": api_result.appendix.airlines[dictIndex].icao,
-                    "name": api_result.appendix.airlines[dictIndex].name
-                };
-            }
+            $.each(api_result.appendix.airlines, function(index, value) {
+                    dictFlightStats[value.fs] = {
+                        "icao": value.icao,
+                        "name": value.name
+                    };                
+            });
                 
             // Check if flight is an array or not.
             var flight = [];
@@ -116,12 +121,17 @@
                    
                 // compile all airline and codeshare codes for each returned flight
                 var carrierCodes = [{"fsCode": flight[i].carrierFsCode, "flightNumber": flight[i].flightNumber}];
+                
                 if (flight[i].codeshares) {
-                    for (var codeShareIndex = 0; codeShareIndex < flight[i].codeshares.length; codeShareIndex++) {
-                        carrierCodes.push(flight[i].codeshares[codeShareIndex]);
-                    }
+                
+                    $.each(flight[i].codeshares, function(codeShareIndex, flightCodeShare) {
+                        carrierCodes.push(flightCodeShare);
+                    });
+                
                 }
             
+                // this loop iterates through all codeshared codes for the current flight result
+                // once we find a matching carrier code, we break out of this loop
                 for (var carriersIndex = 0; carriersIndex < carrierCodes.length; carriersIndex++) {
                            
                     if (this.queriedAirlines.indexOf(dictFlightStats[carrierCodes[carriersIndex].fsCode].icao) !== -1) {
@@ -221,8 +231,6 @@
                 },
                 normalize: function(item) {
                 
-                    console.log(item.departureDate);
-                    
                     return {
                         url: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?"
                             + "airlineCode=" + item.airlineCode 
