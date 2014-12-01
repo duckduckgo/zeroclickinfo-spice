@@ -10,9 +10,4 @@
     {{/TravisStatus_ifCond}}
   {{/TravisStatus_ifCond}}
   <h6 class="tcistatus--message text--secondary">{{description}}</h6>
-  {{#TravisStatus_iterateOver components}}
-    <div class="tcistatus-component tcistatus--{{status}}">
-      {{name}}
-    </div>
-  {{/TravisStatus_iterateOver}}
 </h3>

@@ -26,12 +26,4 @@
     Spice.registerHelper("TravisStatus_ifCond", function(string1, string2, options) {
         return ((string1 === string2) ? options.fn(this) : options.inverse(this));
     });
-
-    Spice.registerHelper("TravisStatus_iterateOver", function(list, block) {
-      var result = '';
-      for(var i=0,max=list.length; i<max; i++) {
-        result += block.fn(list[i]);
-      }
-      return result;
-    });
 }(this));
