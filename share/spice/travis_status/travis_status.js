@@ -11,7 +11,7 @@
             data: api_result,
             meta: {
                 sourceName: api_result.page.name,
-                sourceUrl: api_result.page.url,
+                sourceUrl: api_result.page.url
             },
             templates: {
                 group: 'base',
