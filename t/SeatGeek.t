@@ -50,11 +50,11 @@ ddg_spice_test(
         caller => 'DDG::Spice::SeatGeek::Concerts',
     ),
     'in flames concert' => test_spice(
-        '/js/spice/seat_geek_concerts/in-flames',
+        '/js/spice/seat_geek/concerts/in-flames',
         caller => 'DDG::Spice::SeatGeek::Concerts',
     ),
     'upcoming matches milan' => test_spice(
-        '/js/spice/seat_geek_sports/milan',
+        '/js/spice/seat_geek/sports/milan',
         caller => 'DDG::Spice::SeatGeek::Sports'
     ),
     'events uefa' => test_spice(
