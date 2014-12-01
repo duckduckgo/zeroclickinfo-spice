@@ -11,13 +11,13 @@ category "entertainment";
 topics "entertainment";
 attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'];
 
-triggers startend => 'upcoming matches', 'events', 'event', 'upcoming match';
+triggers startend => 'upcoming matches', 'events', 'event', 'upcoming match', 'matches', 'sports', 'schedule';
 
 spice to => 'http://api.seatgeek.com/2/events?q=$1&taxonomies.name=sports&callback={{callback}}';
 
 handle remainder_lc => sub {
     # Removes triggers from the query
-    $_ =~ s/^(:?(upcoming\s*)?(match(es)?))|(events?)$//gi;
+    $_ =~ s/^(:?(upcoming\s*)?(match(es)?))|(events?)|(sports)|(schedule)$//gi;
     # Removes spaces from the beginning of the query
     $_ =~ s/^\s+//;
     # Removes spaces from the end of the query
