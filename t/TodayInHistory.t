@@ -22,8 +22,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::TodayInHistory',
         is_cached => 0
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
+
     'bad example query' => undef,
 );
 
