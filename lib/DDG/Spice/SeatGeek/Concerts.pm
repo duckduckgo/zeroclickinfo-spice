@@ -13,8 +13,7 @@ attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlast
 
 triggers startend => 'upcoming concert', 'upcoming concerts', 'concert', 'concerts', 'live', 'live show', 'live shows';
 
-spice to => 'http://api.seatgeek.com/2/events?performers.slug=$1&taxonomies.name=concert';
-spice wrap_jsonp_callback => 1;
+spice to => 'http://api.seatgeek.com/2/events?performers.slug=$1&taxonomies.name=concert&callback={{callback}}';
 
 handle remainder_lc => sub {
     # Removes triggers from the query
