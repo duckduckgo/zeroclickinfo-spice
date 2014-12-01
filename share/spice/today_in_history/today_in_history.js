@@ -1,33 +1,40 @@
-function ddg_spice_today_in_history(api_response) {
+(function (env) {
     "use strict";
+    env.ddg_spice_today_in_history = function(api_result){
 
-    if (!api_response) {
-        return Spice.failed('today_in_history');
-    }
+        if (api_result.error) {
+            return Spice.failed('today_in_history');
+        }
 
-    var item = $( $.parseXML(api_response) ).find('item');
+        var count = 0;
 
-    if (!item) {
-        return Spice.failed('today_in_history');
-    }
+        for (var i in api_result.data.Events)
+            count++;
 
-    var title = item.find('title').text();
-    var link  = item.find('link').text();
-    var text  = item.find('description').text();
+        var rand = Math.floor(Math.random() * count);
 
-    if (!title || !link || !text) {
-        return Spice.failed('today_in_history');
-    }
+        var year = api_result.data.Events[rand].year;
+        var text = api_result.data.Events[rand].text;
 
-    Spice.add({
-        data             : text,
-        header1          : title + ' (Today in History)',
-        sourceUrl       : link,
-        sourceName      : 'History.com',
-        templates: {
-            item: Spice.today_in_history.today_in_history,
-            detail: Spice.today_in_history.today_in_history
-        },
-        
-    });
-}
+
+        Spice.add({
+            id: "today_in_history",
+            name: "Today In History",
+            data: {
+                text: text,
+                year: year
+            },
+            meta: {
+                sourceName: "http://wikipedia.com/",
+                sourceUrl: api_result.url
+            },
+            templates: {
+                group: 'base',
+                options: {
+                    content: Spice.today_in_history.content,
+                    moreAt: true
+                }
+            }
+        });
+    };
+}(this));

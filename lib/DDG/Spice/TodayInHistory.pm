@@ -2,32 +2,29 @@ package DDG::Spice::TodayInHistory;
 
 use DDG::Spice;
 
-name 'Today In History';
-description 'this day in history';
-source 'History.com';
-primary_example_queries 'today in history';
-secondary_example_queries 'this day in history';
-category 'facts';
-topics 'everyday', 'special_interest';
-icon_url 'http://www.history.com/favicon.ico';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TodayInHistory.pm';
-attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
-            github => [ 'https://github.com/duckduckgo', 'duckduckgo'],
-            twitter => ['http://twitter.com/duckduckgo', 'duckduckgo'];
+spice is_cached => 0;
 
-triggers startend => (
-    'today in history',
-    'todays in history',
-    'this day in history',
-);
+name "TodayInHistory";
 
-spice to => 'http://www.history.com/this-day-in-history/rss';
+description "Returns a random event happened the current day in history";
+primary_example_queries "today in history", "this day in history";
 
-spice wrap_string_callback => 1;
+category "facts";
+topics "everyday", "social";
 
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TodayInHistory.pm";
+attribution github => ["https://github.com/puskin94", "puskin"];
+
+triggers startend => 'today in history', 'this day in history';
+
+spice to => 'http://history.muffinlabs.com/date';
+spice wrap_jsonp_callback => 1;
+
+# Handle statement
 handle remainder => sub {
-	return '' if $_ eq '';
-	return;
+
+    return $_ if $_;
+    return $_;
 };
 
 1;
