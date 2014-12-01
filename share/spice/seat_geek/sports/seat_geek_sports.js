@@ -7,7 +7,7 @@
         }
 
         var query = DDG.get_query();
-        var clean_query = query.replace(/((upcoming\s)?(match(es)?))|(events?)|(schedule)/, '').trim().toLowerCase();
+        var clean_query = query.replace(/((upcoming\s)?(match(es)?))|(events?)|(schedule)|(sports)/, '').trim().toLowerCase();
 
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
