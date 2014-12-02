@@ -1,7 +1,24 @@
 .tile--people_in_space {
-    height: 12.5em;
+    width: 12.4em;
+    height: 17.2em;
 }
 
-.info--people_in_space {
-    white-space: pre-line;
+.tile--people_in_space .tile__media {
+    height: 12em;
+}
+
+.tile--people_in_space  .tile__media__img {
+    margin-top: 1.6em;
+    border-radius: 100%;
+}
+
+.tile--people_in_space .tile__body {
+    padding: .3em 1em;
+}
+
+.tile--people_in_space  .tile__title {
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: 400;
+    height: 2.5em;
 }
