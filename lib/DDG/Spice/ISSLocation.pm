@@ -16,6 +16,7 @@ attribution github => ['https://github.com/rishiag','Rishi Agarwal'],
 
 triggers any => "iss location", "iss position";
 spice to => 'http://api.open-notify.org/iss-now.json?callback={{callback}}';
+spice proxy_cache_valid => "418 1d";
 
 handle remainder => sub {
     return $_ if $_;
