@@ -5,13 +5,12 @@
         if (!api_result || api_result.error) {
             return Spice.failed('iplookup');
         }
-                
-        var location,
-            blacklists
+        
+        // Assign relevent API information to title_info, subtitle_info for use in the normalize function
+        var location;
         api_result.ddg.shortloc ? location=" ("+api_result.ddg.shortloc+")" : location="";
-        api_result.ddg.blacklists ? blacklists="Blacklists: <br>"+api_result.ddg.blacklists : blacklists="";
         var title_info = api_result.ddg.famlist[0],
-            subtitle_info = "Owner: " + api_result.ddg.shortwho + location + blacklists
+            subtitle_info = "Owner: " + api_result.ddg.shortwho + location
 
         Spice.add({
             id: "iplookup",
@@ -21,18 +20,18 @@
                 sourceName: "RobTex",
                 sourceUrl: api_result.ddg.lnk
             },
+            templates: {
+                group: 'text',
+                options: {
+                    content: Spice.iplookup.content,
+                    moreAt: true
+                }
+            },
             normalize: function(item) {
                 return {
                     title: title_info,
                     subtitle: subtitle_info
                 };
-            },
-            templates: {
-                group: 'text',
-                options: {
-                    //content: Spice.iplookup.content,
-                    moreAt: true
-                }
             },
             relevancy: {
                 primary: [{
