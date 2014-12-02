@@ -6,6 +6,14 @@
             return Spice.failed('iplookup');
         }
         
+        //Check if query is looking for reverse IP information fail if none is found.
+        var query = DDG.get_query();
+        if (query.match(/reverse|dns/)){
+            if(!api_result.ddg.famlist[0]) {
+                return Spice.failed('iplookup');
+            }
+        }
+                
         // Assign relevent API information to title_info, subtitle_info for use in the normalize function
         var location;
         api_result.ddg.shortloc ? location=" ("+api_result.ddg.shortloc+")" : location="";
