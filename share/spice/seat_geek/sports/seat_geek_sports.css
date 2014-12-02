@@ -1,11 +1,12 @@
 .zci--seat_geek_sports .header_container {
-    height: 7em;
+    height: 3.35em;
+    width: 62%;
     overflow: hidden;
-    margin-bottom: 1em;
+    margin-bottom: 0;
 }
 
 .zci--seat_geek_sports .price {
-    font-weight: 600;
+    float: right;
 }
 
 .zci--seat_geek_sports .header_container img {
@@ -32,4 +33,21 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
+}
+
+.zci--seat_geek_sports .tile__title {
+    line-height: 1.15em;
+}
+
+.zci--seat_geek_sports .tile__footer {
+    color: #333;
+}
+
+.zci--seat_geek_sports .where {
+    color: #888;
+    margin: 0.9em 0;
+}
+
+.zci--seat_geek_sports .tile__body {
+    padding: 0.75em 1em;
 }

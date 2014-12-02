@@ -1,33 +1,28 @@
-<div class="tile  tile--c tile--seat_geek" data-link="{{url}}">
-    <div class="tile__body has-foot">
-        <div class="header_container">
-        <img src="{{img}}" />
-            <h3 class="tx-clr--dk">
-                {{condense title maxlen="43"}}
-            </h3>
-        </div>
-        <div class="tile__content">
-            <div class="date">
-                {{#if month}}
-                    {{month}}
-                {{/if}}
-                {{#if day}}
-                    {{day}}
-                {{/if}}
-                {{#if year}}
-                    , {{year}}
-                {{/if}}
-            </div>
-            <div class="where city one-line">
-                {{city}}
-            </div>
-        </div>
-        <div class="tile__footer">
-            {{#if price}}
-                <div class="price tx-clr--dk">{{price}}</div>
-            {{else}}
-                <div class="noprice">Price N/A</div>
-            {{/if}}
-        </div>
+<div class="header_container">
+     <h4 class="tx-clr--dk tile__title media__body has_sub">
+         {{title}}
+     </h4>
+</div>
+<div class="where one-line">
+    <div class="place-line">
+        {{place}}
+    </div>
+    <div class="city-line">
+        {{city}}
+    </div>
+</div>
+<div class="tile__footer one-line">
+   {{#if price}}
+       <div class="price tx-clr--dk">{{price}}</div>
+   {{else}}
+       <div class="noprice tx-clr--lt">Price N/A</div>
+   {{/if}}
+   <div class="date">
+        {{#if month}}
+            {{month}}
+        {{/if}}
+        {{#if day}}
+            {{day}}
+        {{/if}}
     </div>
 </div>
