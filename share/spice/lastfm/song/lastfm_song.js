@@ -1,65 +1,68 @@
-ddg_spice_lastfm_song = function(api_result) {
+(function (env) {
     "use strict";
 
-    // Check if it is an empty string.
-    var checkString = function(string) {
-        string = string.replace(/\s+/, "");
-        return string === "";
-    };
+    env.ddg_spice_lastfm_song = function(api_result) {
 
-    // Exit if we find an error.
-    if(!api_result || !api_result.track || !api_result.track.artist || checkString(api_result.track.name) || !api_result.track.mbid ||
-        checkString(api_result.track.artist.name)) {
-        return Spice.failed('lastfm_song');
-    }
+        // Check if it is an empty string.
+        var checkString = function(string) {
+            string = string.replace(/\s+/, "");
+            return string === "";
+        };
 
-    var skip = [
-        "by",
-        "track",
-        "tracks",
-        "song",
-        "songs",
-        "music",
-        "from",
-        "listen",
-        "to"
-    ];
-
-    // Display the plug-in.
-    Spice.add({
-        id: 'lastfm_song',
-        name: 'Music',
-        data: api_result.track,
-        meta: {
-            sourceName: 'Last.fm',
-            sourceUrl: api_result.track.url,
-            sourceIconUrl: 'http://cdn.last.fm/flatness/favicon.2.ico'
-        },
-        normalize: function(item) {
-            var duration = 	item.duration/1000;
-            var seconds = duration % 60;
-            if (seconds < 10) {
-                seconds = "0" + seconds;
-            }
-            return {
-                title: item.name + " (" + Math.floor(duration / 60) + ":" + seconds + ")"
-            };
-        },
-        relevancy: {
-            skip_words : skip,
-            primary: [
-                { key: 'name' }, { key: 'artist.name' }
-            ]
-        },
-        templates: {
-            group: 'info',
-            options: {
-                content: Spice.lastfm_song.content,
-                moreAt: true
-            }
+        // Exit if we find an error.
+        if(!api_result || !api_result.track || !api_result.track.artist || checkString(api_result.track.name) || !api_result.track.mbid ||
+            checkString(api_result.track.artist.name)) {
+            return Spice.failed('lastfm_song');
         }
-    });
-};
+
+        var skip = [
+            "by",
+            "track",
+            "tracks",
+            "song",
+            "songs",
+            "music",
+            "from",
+            "listen",
+            "to"
+        ];
+
+        // Display the plug-in.
+        Spice.add({
+            id: 'lastfm_song',
+            name: 'Music',
+            data: api_result.track,
+            meta: {
+                sourceName: 'Last.fm',
+                sourceUrl: api_result.track.url,
+                sourceIconUrl: 'http://cdn.last.fm/flatness/favicon.2.ico'
+            },
+            normalize: function(item) {
+                var duration = 	item.duration/1000;
+                var seconds = duration % 60;
+                if (seconds < 10) {
+                    seconds = "0" + seconds;
+                }
+                return {
+                    title: item.name + " (" + Math.floor(duration / 60) + ":" + seconds + ")"
+                };
+            },
+            relevancy: {
+                skip_words : skip,
+                primary: [
+                    { key: 'name' }, { key: 'artist.name' }
+                ]
+            },
+            templates: {
+                group: 'info',
+                options: {
+                    content: Spice.lastfm_song.content,
+                    moreAt: true
+                }
+            }
+        });
+    };
+}(this));
 
 // Add links to other websites.
 Handlebars.registerHelper("listen", function(artist, song, options) {
