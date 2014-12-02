@@ -57,8 +57,8 @@
             o.normalize = function(item) {
                 return {
                     url: item.biolink,
-                    heading: item.name,
-                    img: item.biophoto,
+                    title: item.name,
+                    image: item.biophoto,
                     img_m: item.biophoto,
                     abstract: item.bio
                 };
@@ -71,12 +71,11 @@
             }
             o.sort_default = "launchdate";
            o.templates = {
-                group: 'products',
+                group: 'products_simple',            
+                item_detail: false,
+                detail: false,
                 options: {
-                    buy: Spice.people_in_space.content,
-                    rating: false,
-		            price: false,
-		            brand: false
+                    variant: 'narrow'
                 }
             }
         } else {
