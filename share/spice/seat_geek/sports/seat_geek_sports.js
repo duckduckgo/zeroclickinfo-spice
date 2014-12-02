@@ -9,7 +9,7 @@
         var query = DDG.get_query();
         var clean_query = query.replace(/((upcoming\s)?(match(es)?))|(events?)|(schedule)|(sports)/, '').trim().toLowerCase();
 
-        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
         Spice.add({
             id: "seat_geek_sports",
@@ -58,7 +58,14 @@
                 function getDay(date) {
                     if(date) {
                         var day = date.getDate();
-                        return day;
+                        var suffix = "";
+                        switch (day) {
+                            case 1: suffix = "st"; break;
+                            case 2: suffix = "nd"; break;
+                            case 3: suffix = "rd"; break;
+                            default: suffix = "th"; break;
+                        }
+                        return day + suffix;
                     }
 
                     return;
@@ -96,22 +103,22 @@
 
                 return {
                     url: item.url,
-                    price: getPrice(item.stats.lowest_price, item.stats.highest_price),
+                    price: "$" + item.stats.lowest_price + "+",
                     title: performer.name,
-                    place: item.venue.name,
-                    img: performer.image,
-                    city: "@ " + item.venue.city + ", " + item.venue.country,
+                    place: "@ " + item.venue.name,
+                    icon: performer.image,
+                    city: item.venue.city + ", " + item.venue.country,
                     month: getMonth(getDate(item.datetime_local)),
                     day: getDay(getDate(item.datetime_local)),
                     year: getYear(getDate(item.datetime_local))
                 };
             },
             templates: {
-                group: 'products',
-                item: Spice.seat_geek_sports.item,
+                group: 'base',
                 detail: false,
                 item_detail: false,
                 options: {
+                    content: Spice.seat_geek_sports.item,
                     moreAt: true,
                     rating: false
                 }
