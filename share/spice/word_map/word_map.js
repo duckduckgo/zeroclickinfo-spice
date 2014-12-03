@@ -16,10 +16,10 @@
                 sourceIconUrl: 'http://icons.duckduckgo.com/ip/www.levelpump.com.ico'
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
                     content: Spice.word_map.content,
-		    moreAt: true
+		            moreAt: true
                 }
             }
         });
