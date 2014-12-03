@@ -15,11 +15,16 @@
                 sourceName: 'Levelpump',
                 sourceIconUrl: 'http://icons.duckduckgo.com/ip/www.levelpump.com.ico'
             },
+            normalize: function(item) {
+                return {
+                    title: "Related to " + api_result.entry
+                };
+            },
             templates: {
                 group: 'text',
                 options: {
                     content: Spice.word_map.content,
-		            moreAt: true
+                    moreAt: true
                 }
             }
         });
