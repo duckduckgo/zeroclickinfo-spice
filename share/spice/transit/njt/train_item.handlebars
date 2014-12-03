@@ -10,7 +10,7 @@
     <div class="njt__sep-line"></div>
 </div>
 <div class="njt__status">
-    <div class="one-line">{{status}}</div>
+    <div class="one-line {{#if bold_status_text}}njt__bold-status{{/if}}">{{status}}</div>
     {{#if track}}
         <div class="one-line">Track {{track}}</div>
     {{else}}
