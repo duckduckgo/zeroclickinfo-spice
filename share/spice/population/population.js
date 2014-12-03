@@ -33,8 +33,8 @@
             },
            normalize: function(item) {
                 return {
-                    title: "The population of " + query_country + " is " + population,
-                    subtitle: "The popluation as of " + lastUpdated
+                    title: population,
+                    subtitle: query_country + " - Population as of " + lastUpdated
                 };
             },
             templates: {
