@@ -8,8 +8,6 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::Population)],
 
-primary_example_queries "population of russia ", "population usa";
-
     'population of russia' => test_spice(
         '/js/spice/population/RUS/the%20Russian%20Federation',
         call_type => 'include',
