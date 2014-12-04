@@ -6,9 +6,8 @@ spice is_cached => 1;
 
 
 name "Launchbug";
-description "Succinct explanation of what this instant answer does";
-primary_example_queries "first example query", "second example query";
-secondary_example_queries "optional -- demonstrate any additional triggers";
+description "Returns infos about a given bug-id on Launchpad.com";
+primary_example_queries "launchbug 7", "launchbug 2983";
 category "programming";
 topics "programming";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Launchbug.pm";
