@@ -1,0 +1,13 @@
+.tile--fedora_project_package_db .tile__title__sub{
+    text-transform:none;
+    color:#999;
+}
+.tile--fedora_project_package_db .tile__body{
+    height:14em;
+}
+.tile--fedora_project_package_db .tile__content{
+    height:6.4em;
+}
+.is-mobile .tile--fedora_project_package_db .tile__content{
+    height:7em;
+}
