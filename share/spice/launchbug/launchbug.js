@@ -2,12 +2,9 @@
     "use strict";
     env.ddg_spice_launchbug = function(api_result){
 
-        // Validate the response (customize for your Spice)
         if (api_result.error) {
             return Spice.failed('launchbug');
         }
-
-        //var date_created = api_result.date_created.substring(0,10);
 
         var infoboxItems = {
             id: "Bug Id",
@@ -31,7 +28,6 @@
             }
         });
 
-        // Render the response
         Spice.add({
             id: "launchbug",
             name: "About this Bug ...",
