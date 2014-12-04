@@ -6,7 +6,7 @@ spice is_cached => 1;
 
 
 name "Launchbug";
-description "Returns infos about a given bug-id on Launchpad.com";
+description "Returns infos about a given bug-id on Launchpad.net";
 primary_example_queries "launchbug 7", "launchbug 2983";
 category "programming";
 topics "programming";
