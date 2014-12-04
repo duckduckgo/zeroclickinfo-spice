@@ -6,7 +6,7 @@ use DDG::Spice;
 name "Apod";
 source "http://www.astrobin.com";
 description "Get astronomy image of day";
-primary_example_queries "astronomy picture of the day";
+primary_example_queries "astronomy picture of the day", "apod";
 category "special";
 topics "special_interest";
 icon_url "http://www.astrobin.com/media/static/favicon.ico";
