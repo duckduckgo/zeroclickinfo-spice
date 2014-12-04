@@ -4,7 +4,7 @@
     padding-bottom: 0;
 }
 
-.zci--travis_status .tcistatus--good {
+.zci--travis_status .tcistatus--none {
     color: #519444;
 }
 
@@ -22,28 +22,4 @@
     margin-bottom: 0;
     padding-top: 0;
     padding-bottom: 0.75em;
-}
-
-.zci--travis_status .tcistatus-component:before {
-  content: '';
-  display: inline-block;
-  height: .75em;
-  width: .75em;
-  border-radius: 50%;
-}
-
-.zci--travis_status .tcistatus--operational:before {
-  background-color: #519444;
-}
-
-.zci--travis_status .tcistatus--degraded_performance:before {
-  background-color: #eea43e;
-}
-
-.zci--travis_status .tcistatus--partial_outage:before {
-  background-color: #e34c2d;
-}
-
-.zci--travis_status .tcistatus--major_outage:before {
-  background-color: #e34c2d;
 }
