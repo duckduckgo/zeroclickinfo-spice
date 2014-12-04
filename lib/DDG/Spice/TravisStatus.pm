@@ -12,7 +12,7 @@ category "programming";
 attribution github => ['https://github.com/josephwegner','Joe Wegner'],
             twitter => ['https://www.twitter.com/Joe_Wegner','Joe_Wegner'];
 
-triggers startend => 'travis';
+triggers startend => 'travis', 'travis ci', 'travis continuous integration';
 
 spice to => 'http://status.travis-ci.com/index.json';
 spice wrap_jsonp_callback => 1;
