@@ -9,16 +9,17 @@
         var script = $('[src*="/js/spice/time/"]')[0],
             source = $(script).attr("src"),
             // Query is normalized as we'll normalize the generated strings.
-            query = decodeURIComponent(source.match(/time\/([^\/]+)/)[1]).toLowerCase().split(' ').sort().join(' '),
+            query = decodeURIComponent(source.match(/time\/([^\/]+)/)[1]).toLowerCase(),
             chosen;
-        
+
         for(var i = 0; i < api.locations.length; i++) {
-            if(DDG.stringsRelevant(query, api.locations[i].geo.name + " " + api.locations[i].geo.country.name)) {
+            if(DDG.stringsRelevant(query, api.locations[i].geo.name + " " + api.locations[i].geo.country.name) ||
+               DDG.stringsRelevant(query, api.locations[i].geo.name)) {
                 chosen = api.locations[i];
                 break;
             }
         }
-        
+
         // If there isn't a place, return immediately.
         if(!chosen) {
             return;
