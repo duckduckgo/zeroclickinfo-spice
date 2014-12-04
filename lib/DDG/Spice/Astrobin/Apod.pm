@@ -9,7 +9,7 @@ description "Get astronomy image of day";
 primary_example_queries "astronomy picture of the day";
 category "special";
 topics "special_interest";
-icon_url "http://www.astrobin.com/favicon.ico";
+icon_url "http://www.astrobin.com/media/static/favicon.ico";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Apod/Apod.pm";
 attribution github => ["https://github.com/killerfish", "Usman Raza"],
             twitter => ["https://twitter.com/f1shie", "Usman Raza"];
