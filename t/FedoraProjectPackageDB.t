@@ -5,33 +5,29 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
-spice is_cached => 1;
+my $caller   = 'DDG::Spice::FedoraProjectPackageDB';
+my @triggers = qw(yum redhat fedora centos);
+my $call     = '/js/spice/fedora_project_package_db/';
 
 ddg_spice_test(
-    [qw( DDG::Spice::FedoraProjectPackageDB)],
+    [$caller],
+    create_tests( 'mc', 'mc*' ),
 
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/yum/query',
-        call_type => 'include',
-        caller    => 'DDG::Spice:Yum'
-    ),
-
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    # 'bad example query' => undef,
 );
 
+sub create_tests {
+    my @queries = @_;
+
+    my @tests;
+
+    for my $query (@queries) {
+        for my $trigger (@triggers) {
+            push @tests, "$trigger $query" => test_spice( $call . $query, caller => $caller, call_type => 'include' );
+        }
+    }
+
+    return @tests;
+}
+
 done_testing;
-## -----SOURCE FILTER LOG BEGIN-----
-## 
-## PerlCritic policy violations:
-## ┌──────┬──────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-## │ Sev. │ Lines                │ Policy                                                                                                         │
-## ╞══════╪══════════════════════╪════════════════════════════════════════════════════════════════════════════════════════════════════════════════╡
-## │    2 │ 1                    │ Modules::RequireVersionVar - No package-scoped "$VERSION" variable found                                       │
-## └──────┴──────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-## 
-## -----SOURCE FILTER LOG END-----
