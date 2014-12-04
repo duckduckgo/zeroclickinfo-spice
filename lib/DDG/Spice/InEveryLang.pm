@@ -68,7 +68,7 @@ handle query_lc => sub {
         $language =~ s/dash/\-/g;
 
         $_ =~ s/$raw_language//;
-        $_ =~ s/in|example|solutions|code|help|bug|\s//g;
+        $_ =~ s/in|examples?|solutions?|code|help|bugs?|\s//g;
 
         if (length($_) == 0) {
           return $puzzle, $language;
