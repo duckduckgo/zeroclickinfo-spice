@@ -55,10 +55,9 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                     if (unit === 'h') time += val*60*60;
                     else if (unit === 'min') time += val*60;
                     else if (unit === 'sec') {
-                        val = val.toString().replace('.', ''); // second can't contains decimals
+                        val = Math.round(val);
                         time += val;
                     }
-
                     q = q.replace(match[0], '');
                 } else {
                     break;
