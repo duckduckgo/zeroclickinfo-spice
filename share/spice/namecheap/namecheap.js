@@ -33,7 +33,7 @@
 
         Spice.add({
             id               : 'namecheap',
-            name             : 'Namecheap domain name',
+            name             : 'Namecheap',
             data             : data,
             header1          : domainName + ' (Namecheap domain name)',
             meta             : {
