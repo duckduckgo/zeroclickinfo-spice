@@ -67,6 +67,8 @@ handle query_lc => sub {
         $language =~ s/plus/\+/g;
         $language =~ s/dash/\-/g;
 
+        $raw_language =~ s/\+/\\\+/g;
+
         $_ =~ s/$raw_language//;
         $_ =~ s/in|examples?|solutions?|code|help|bugs?|\s//g;
 
