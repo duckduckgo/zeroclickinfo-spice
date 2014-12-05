@@ -10,6 +10,7 @@ source "The World Bank";
 icon_url "http://data.worldbank.org/profiles/datafinder/themes/datum/favicon.ico";
 description "Returns the population for a specified country";
 primary_example_queries "population of russia ", "population usa";
+secondary_example_queries "what is the population of china", "pop of spain";
 category "facts";
 topics "everyday";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Population.pm";
