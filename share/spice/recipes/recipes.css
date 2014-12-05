@@ -238,15 +238,15 @@
     .is-mobile .detail--recipes .detail__media.detail__media--recipe {
         margin-left: 0;
         float: none;
-        width: 25%;
+        width: 30%;
     }
 		.is-mobile .detail--recipes .detail__media__img {
 			position: absolute;
 			bottom: 6em;
 		}
 	.is-mobile .detail--recipes .detail__body.detail__body--recipe {
-		left: 25%;
-		width: 75%;
+		left: 30%;
+		width: 70%;
 		padding-left: 2em;
 	}
 	.is-mobile .detail--recipes .detail__content--recipe {
