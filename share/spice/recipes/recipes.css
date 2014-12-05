@@ -27,9 +27,10 @@
     text-align: center;
 }
     .is-mobile .detail--recipes .detail__media.detail__media--recipe {
+        margin-left: 0.5em;
         line-height: initial;
-        width: 125px;
-        max-height: 125px;
+        width: 8.65em;
+        max-height: 8.65em;
         float: right;
         top: 2em;
     }
@@ -37,11 +38,20 @@
         position: static;
     }
     .is-mobile .detail--recipes .detail__body.detail__body--recipe {
-        margin-top: 1em;
+        margin-top: 0;
         position: static;
         overflow: visible;
         padding-left: 1em;
         padding-right: 1em;
+    }
+    
+    .is-mobile .detail--recipes .detail__content--recipe {
+        position: absolute;
+        left: 1.1em;
+        right: 1em;
+        top: 15em;
+        bottom: 4em;
+        overflow: auto;
     }
 
     .is-mobile .detail--recipes .detail__body__content {
@@ -61,15 +71,25 @@
     padding: 0;
 }
     .is-mobile .detail--recipes  .detail__title {
-        margin-bottom: 1em;
+        margin-bottom: 0.1em;
         min-height: 2.7em;
+        max-height: 4.8em;
+        overflow: hidden;
+        /* Experimental Line-Clamping, don't try this at home */
+        text-overflow: ellipsis;
+        text-overflow: -o-ellipsis-lastline;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
     }
 
 .detail__body--recipe .detail__source {
     padding-bottom: 1em;
 }
     .is-mobile .detail--recipes .detail__source {
-        min-height: 2.5em;
+        max-height: 5em;
+        padding-bottom: 0;
+        overflow: hidden;
     }
 
 .detail--recipes .detail__source .stars {
@@ -130,6 +150,7 @@
 }
     .is-mobile .detail--recipes .detail__flavors {
         width: 100%;
+        padding-top: 0.5em;
     }
 
 .detail__flavors__name {
@@ -216,9 +237,23 @@
     }
     .is-mobile .detail--recipes .detail__media.detail__media--recipe {
         margin-left: 0;
-        float: left;
+        float: none;
+        width: 25%;
     }
+		.is-mobile .detail--recipes .detail__media__img {
+			position: absolute;
+			bottom: 6em;
+		}
+	.is-mobile .detail--recipes .detail__body.detail__body--recipe {
+		left: 25%;
+		width: 75%;
+		padding-left: 2em;
+	}
+	.is-mobile .detail--recipes .detail__content--recipe {
+		position: static;
+	}
     .is-mobile .detail--recipes .view-btn--recipes {
         bottom: 0.75em;
     }
+
 }
