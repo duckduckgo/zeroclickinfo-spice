@@ -249,6 +249,9 @@
 		width: 70%;
 		padding-left: 2em;
 	}
+	.is-mobile .detail--recipes .detail__title {
+		min-height: 1.35em;
+	}
 	.is-mobile .detail--recipes .detail__content--recipe {
 		position: static;
 	}
