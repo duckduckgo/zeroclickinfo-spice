@@ -12,8 +12,6 @@ my $call     = '/js/spice/fedora_project_package_db/';
 ddg_spice_test(
     [$caller],
     create_tests('mc'),
-
-    # 'bad example query' => undef,
 );
 
 sub create_tests {
@@ -31,13 +29,3 @@ sub create_tests {
 }
 
 done_testing;
-## -----SOURCE FILTER LOG BEGIN-----
-## 
-## PerlCritic policy violations:
-## ┌──────┬──────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
-## │ Sev. │ Lines                │ Policy                                                                                                         │
-## ╞══════╪══════════════════════╪════════════════════════════════════════════════════════════════════════════════════════════════════════════════╡
-## │    2 │ 1                    │ Modules::RequireVersionVar - No package-scoped "$VERSION" variable found                                       │
-## └──────┴──────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-## 
-## -----SOURCE FILTER LOG END-----

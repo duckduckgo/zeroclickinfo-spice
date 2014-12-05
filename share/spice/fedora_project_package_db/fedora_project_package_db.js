@@ -9,7 +9,7 @@
         }
 
         // limit results to first 30 entries
-        // if (api_result.packages.length > 30) api_result.packages = api_result.packages.splice(0, 30);
+        if (api_result.packages.length > 30) api_result.packages = api_result.packages.splice(0, 30);
 
         // get search query
         var query = DDG.get_query().replace(/^.+?\s/, "").replace(/\*+$/, "") + "*";
