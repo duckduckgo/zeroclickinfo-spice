@@ -35,7 +35,6 @@
             id               : 'namecheap',
             name             : 'Namecheap',
             data             : data,
-            header1          : domainName + ' (Namecheap domain name)',
             meta             : {
                 sourceName       : 'Namecheap',
                 sourceUrl        : "https://www.namecheap.com/domains/registration/results.aspx?domain=" + domainName
