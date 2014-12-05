@@ -27,7 +27,7 @@ spice to                  => 'https://admin.fedoraproject.org/pkgdb/api/packages
 spice wrap_jsonp_callback => 1;
 
 # Handle statement
-handle remainder => sub {
+handle remainder_lc => sub {
     return unless $_;
 
     return $_;
