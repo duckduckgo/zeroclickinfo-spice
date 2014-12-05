@@ -1,3 +1,4 @@
+
 package DDG::Spice::Population;
 # ABSTRACT: Returns the population of a specified country
 
@@ -38,39 +39,51 @@ Locale::Country::rename_country('va' => 'the Holy See (Vatican City State)');
 Locale::Country::rename_country('vg' => 'the British Virgin Islands');
 Locale::Country::rename_country('vi' => 'the US Virgin Islands');
 
-# Triggers
-triggers startend => 'population', 'population of';
+
+my $population_qr = qr/(?:population|pop\.?)/;
+my $question_qr = qr/(?:what\sis\sthe\s)?/;
+my $of_qr = qr/of/;
+my $remainder_qr = qr/(.*)/;
+
+my $guard = qr/^$question_qr($population_qr)\s(?:of)?\s?$remainder_qr/;
+
+
+triggers query_lc => qr/$population_qr/;
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 spice to => 'http://api.worldbank.org/countries/$1/indicators/SP.POP.TOTL?per_page=2&MRV=1&format=json';
 spice wrap_jsonp_callback => 1;
 
-handle remainder => sub {
-    my ($countryName, $countryCode);
-    return if ($_ eq '');
-    
-    $countryName = shift;
+handle query_lc => sub {
 
-    # Return alpha-3 country code 
-    $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3);
-    
-    if($countryCode) {
-        $countryName = code2country(country2code($countryName, LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
-    } else {
-        $countryName = code2country(country2code(code2country($countryName, LOCALE_CODE_ALPHA_3), LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
+    if (/$guard/) {
+        my ($countryName, $countryCode);
+        return if ($_ eq '');
+
+        $countryName = $2;
+
+        # Return alpha-3 country code 
         $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3);
+        
+        if($countryCode) {
+            $countryName = code2country(country2code($countryName, LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
+        } else {
+            $countryName = code2country(country2code(code2country($countryName, LOCALE_CODE_ALPHA_3), LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
+            $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3);
+        }
+      
+        return unless defined $countryName;
+        
+        # Check if the country string has a comma, split the string and only include the first element
+        if (index($countryName, ',') != -1) {
+            ($countryName) = split(',', $countryName);
+        }
+         
+        # Ensure variables are defined before returning a result
+        return unless (defined $countryCode and defined $countryName);
+        return uc $countryCode, $countryName;
     }
-  
-    return unless defined $countryName;
-    
-    # Check if the country string has a comma, split the string and only include the first element
-    if (index($countryName, ',') != -1) {
-        ($countryName) = split(',', $countryName);
-    }
-     
-    # Ensure variables are defined before returning a result
-    return unless (defined $countryCode and defined $countryName);
-    return uc $countryCode, $countryName;
+    return;
     
 };
 1;
