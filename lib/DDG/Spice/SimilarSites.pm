@@ -22,7 +22,7 @@ spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
     # remove whitespace
-    s/^\s+|\s+$//;
+    s/^\s+|\s+$//g;
     return $_ if $_;
 };
 
