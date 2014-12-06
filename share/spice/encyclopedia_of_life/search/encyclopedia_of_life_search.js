@@ -3,10 +3,10 @@
     
     env.ddg_spice_encyclopedia_of_life_search = function (api_result) {
         if (!api_result) {
-            return Spice.failed('encyclopedia_of_life');
+            return Spice.failed('encyclopedia_of_life_search');
         }
         
-        var results = api_result.results;
+        var results = api_result.results.splice(0,15);
         
         // Set the global configs to synchronous 
         $.ajaxSetup({
@@ -28,6 +28,7 @@
                 var image_url;
                 var common_name;
                 var description;
+                
                 //Get more details about the species
                 $.getJSON('/js/spice/encyclopedia_of_life/details/' + item.id, function(data) {
                     //Get image and description
