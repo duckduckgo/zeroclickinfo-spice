@@ -16,15 +16,10 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::IndianRailPnrStatus',
         is_cached => 1
-    )#,
-    # This test fails when run "prove -Ilib t/IndianRailPnrStatus.t". Don't know why. 
-    # Works fine when on duckpan server. That's why commented for now. 
-    #'pnr' => test_spice(
-     #   '/js/spice/indian_rail_pnr_status/',
-      #  call_type => 'include',
-       # caller => 'DDG::Spice::IndianRailPnrStatus',
-       # is_cached => 1
-   # ),
+    ),
+    'pnr' => undef,
+    'pnr abcd' => undef,
+    'pnr 123456' => undef,
 );
 
 
