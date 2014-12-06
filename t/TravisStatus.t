@@ -17,6 +17,21 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::TravisStatus'
     ),
+    'is travis up' => test_spice(
+        '/js/spice/travis_status/is%20up',
+        call_type => 'include',
+        caller => 'DDG::Spice::TravisStatus'
+    ),
+    'is travis up?' => test_spice(
+        '/js/spice/travis_status/is%20up%3F',
+        call_type => 'include',
+        caller => 'DDG::Spice::TravisStatus'
+    ),
+    'travis ci status' => test_spice(
+        '/js/spice/travis_status/status',
+        call_type => 'include',
+        caller => 'DDG::Spice::TravisStatus'
+    ),
     'travis' => undef
 );
 
