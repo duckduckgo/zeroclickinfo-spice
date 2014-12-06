@@ -1,3 +1,17 @@
 <div>
     {{#list this.results 0 5}}{{/list}}
+
+    <div class="roller"></div>
+
+    <div id="hidden">
+        {{#list this.results 6 0}}{{/list}}
+        <div class="roller"></div>
+        <span id="show_less" onclick="document.getElementById('hidden').style.display='none';
+                                      document.getElementById('show_more').style.display='block';"><strong>-</strong> Show less</span>
+    </div>
+
+    <div>
+        <span id="show_more" onclick="document.getElementById('hidden').style.display='block';
+                                      document.getElementById('show_more').style.display='none';"><strong>+</strong> Show more</span>
+    </div>
 </div>

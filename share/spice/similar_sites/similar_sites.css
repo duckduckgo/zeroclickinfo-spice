@@ -1,11 +1,6 @@
-.tile--similar_sites .tile__icon {
-    float: right;
-    margin-top: 0;
-    margin-right: 0;
-}
-
 .zci--similar_sites #hidden {
     display: none;
+    margin-top: 3px;
 }
 
 .zci--similar_sites #show_more:hover {
@@ -25,7 +20,7 @@
     margin-left: 10px;
 }
 
-.zci--similar_sites hr {
+.zci--similar_sites .roller {
     border-top: 1px solid #ccc;
-    margin-top: 1px;
+    margin-top: 5px;
 }
