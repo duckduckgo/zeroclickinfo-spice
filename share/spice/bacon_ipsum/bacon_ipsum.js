@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_bacon_ipsum = function(api_result){
 
-        
+
         if (api_result.error) {
             return Spice.failed('bacon_ipsum');
         }
@@ -16,13 +16,16 @@
             id: 'bacon_ipsum',
             name: 'Bacon Says...',
             data: {
-                content: pageContent
+                content: pageContent,
+                title: "Bacon Ipsum",
+                subtitle: "Randomly generated text"
             },
             meta: {
-                sourceName: 'http://baconipsum.com/'
+                sourceName: 'Bacon Ipsum',
+                sourceUrl: 'http://baconipsum.com/'
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
                     content: Spice.bacon_ipsum.content
                 }
