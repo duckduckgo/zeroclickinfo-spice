@@ -14,7 +14,8 @@ topics "entertainment";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Tvmaze/Show.pm";
 attribution github => ["https://github.com/tvdavid", "tvdavid"], twitter => "tvmaze";
 
-triggers end => 'tv show', 'tv', 'show', 'series';
+triggers startend => 'tv', 'tv show', 'tv series', 'series';
+triggers end => 'show';
 
 spice to => 'http://api.tvmaze.com/instantsearch/shows?q=$1';
 spice wrap_jsonp_callback => 1;
