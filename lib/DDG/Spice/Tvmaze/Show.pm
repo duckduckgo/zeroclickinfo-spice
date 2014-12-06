@@ -2,7 +2,9 @@ package DDG::Spice::Tvmaze::Show;
 
 use DDG::Spice;
 
+# generic tv show information won't change very often, cache it for a day
 spice is_cached => 1;
+spice proxy_cache_valid => "200 301 302 404 1d";
 
 name "TVmaze";
 source "TVmaze";
