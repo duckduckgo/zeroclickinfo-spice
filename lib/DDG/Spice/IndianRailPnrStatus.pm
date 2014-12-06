@@ -10,7 +10,7 @@ topics "travel";
 attribution github => ['https://github.com/jee1mr','Jeevan M R'],
             twitter => ['https://twitter.com/jee1mr','Jeevan M R'];
 
-triggers start => 'pnr';
+triggers startend => 'pnr', 'pnr status', 'pnr number', 'pnr lookup';
 spice to => 'http://api.erail.in/pnr?key=e9d415f5-1029-4bac-b6e2-b3561b1f4214&pnr=$1';
 spice wrap_jsonp_callback => 1;
 spice is_cached => 1;
