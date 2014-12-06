@@ -15,11 +15,10 @@
         }
                 
         // Assign relevent API information to title_info, subtitle_info for use in the normalize function
-        var location;
-        api_result.ddg.shortloc ? location=" ("+api_result.ddg.shortloc+")" : location="";
-        var title_info = api_result.ddg.famlist[0],
-            subtitle_info = "Owner: " + api_result.ddg.shortwho + location
-
+        var location = api_result.ddg.shortloc ? " ("+api_result.ddg.shortloc+")" : "",
+            title_info = api_result.ddg.famlist[0],
+            subtitle_info = "Owner: " + api_result.ddg.shortwho + location;
+        
         Spice.add({
             id: "iplookup",
             name: "Answer",
