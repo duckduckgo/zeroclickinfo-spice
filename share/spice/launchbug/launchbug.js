@@ -2,14 +2,24 @@
     "use strict";
     env.ddg_spice_launchbug = function(api_result){
 
-        if (api_result.error) {
+        if (!api_result || api_result.error) {
             return Spice.failed('launchbug');
         }
+
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        dateObj = DDG.getDateFromString(api_result.date_created),
+        CreDate = [months[dateObj.getMonth()], dateObj.getDate(), dateObj.getFullYear()];
+
+        var uptObj = DDG.getDateFromString(api_result.date_last_updated),
+        UptDate = [months[uptObj.getMonth()], uptObj.getDate(), uptObj.getFullYear()];
+
+        var msgObj = DDG.getDateFromString(api_result.date_last_message),
+        MsgDate = [months[msgObj.getMonth()], msgObj.getDate(), msgObj.getFullYear()];
+
 
         var infoboxItems = {
             id: "Bug Id",
             can_expire: "Expires",
-            title: "Title",
             information_type: "Type",
             message_count: "Comments on this Bug",
             heat: "Heat"
@@ -28,9 +38,13 @@
             }
         });
 
+        infoboxData.push({label: "Date Created", value: CreDate.join(' ')});
+        infoboxData.push({label: "Last Update", value: UptDate.join(' ')});
+        infoboxData.push({label: "Last Message", value: MsgDate.join(' ')});
+
         Spice.add({
             id: "launchbug",
-            name: "About this Bug ...",
+            name: "Launchpad",
             data: api_result,
             meta: {
                 sourceName: "Launchpad.com",
@@ -39,11 +53,13 @@
             normalize: function(item) {
                 return {
                     title: item.title,
+                    subtitle: 'LaunchBug #' + item.id,
+                    description: item.description,
                     infoboxData: infoboxData
                 };
             },
             templates: {
-                group: 'info',
+                group: 'text',
                 options: {
                     content: Spice.launchbug.content,
                     moreAt: true
