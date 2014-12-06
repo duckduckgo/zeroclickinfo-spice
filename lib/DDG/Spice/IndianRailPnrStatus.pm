@@ -2,8 +2,6 @@ package DDG::Spice::IndianRailPnrStatus;
 # ABSTRACT: Returns the current booking status for a valid PNR number under Indian Railways
 
 use DDG::Spice;
-use POSIX;
-use Scalar::Util qw(looks_like_number);
 
 primary_example_queries "pnr 0123456789";
 description "Shows the current booking status for a valid PNR number under Indian Railways";
@@ -18,7 +16,7 @@ spice wrap_jsonp_callback => 1;
 spice is_cached => 1;
 
 handle remainder => sub {
-    return $_ if(length($_)==10 && looks_like_number($_));
+    return $_ if($_ =~ /^\d{10}$/)                 # Checks if it's a 10 digit number
     return;
 };
 
