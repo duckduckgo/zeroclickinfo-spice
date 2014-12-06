@@ -1,1 +1,7 @@
-The next episode is called <b>{{ _embedded.nextepisode.name }}</b> and will air on <b>{{ _embedded.nextepisode.airdate }}</b>.
+The next episode is called <b>{{ _embedded.nextepisode.name }}</b> and will
+{{#if webChannel}}
+be released
+{{else}}
+air
+{{/if}}
+on <b>{{ _embedded.nextepisode.airdate }}</b>.
