@@ -31,7 +31,8 @@
                         "Delayed": "njt__delayed",
                         "All Aboard": "njt__boarding",
                         "Boarding": "njt__boarding",
-                        "Stand By": "njt__boarding"
+                        "Stand By": "njt__boarding",
+                        "On Time": "njt__boarding"
                     };
 
                 if (!item.status) item.status = "On Time";
@@ -42,6 +43,7 @@
                     line: item.line.replace('Line', ''),
                     cancelled: item.status === "Cancelled",
                     status_class: delayedMins(item, now) > 0 ? "njt__delayed" : classes[item.status],
+                    bold_status_text: item.status === "Boarding" || item.status === "All Aboard",
                     url: 'http://dv.njtransit.com/mobile/train_stops.aspx?train=' + item.train
                 };
             },
