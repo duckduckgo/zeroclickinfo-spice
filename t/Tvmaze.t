@@ -19,6 +19,12 @@ my $nextepisode = test_spice(
 	caller => 'DDG::Spice::Tvmaze::Nextepisode'
 );
 
+my $previousepisode = test_spice(
+	'/js/spice/tvmaze/previousepisode/game%20of%20thrones',
+	call_type => 'include',
+	caller => 'DDG::Spice::Tvmaze::Previousepisode'
+);
+
 ddg_spice_test(
     [qw( DDG::Spice::Tvmaze::Show)],
     
@@ -73,6 +79,40 @@ ddg_spice_test(
     'episode next'					=> undef,
     'upcoming episode'				=> undef,
     'episode upcoming'				=> undef,
+    'episode in game of thrones'	=> undef,
+);
+
+ddg_spice_test(
+    [qw( DDG::Spice::Tvmaze::Previousepisode)],
+    
+    # core queries
+    'game of thrones previous episode'		=> $previousepisode,
+    'game of thrones last episode'		    => $previousepisode,
+    'game of thrones latest episode'		=> $previousepisode,
+    'game of thrones previous airdate'		=> $previousepisode,
+    'previous episode game of thrones' 		=> $previousepisode,
+    'previous airdate game of thrones'		=> $previousepisode,
+    'previous episode for game of thrones'	=> $previousepisode,
+    'last episode game of thrones'		    => $previousepisode,
+    'last game of thrones episode'			=> $previousepisode,
+    'latest game of thrones episode'		=> $previousepisode,
+    
+    # with extra text
+    'when was the last game of thrones episode?'		=> $previousepisode,
+    'when did the previous game of thrones episode air'	=> $previousepisode,
+    'when was the latest episode for game of thrones'	=> $previousepisode,
+    'what is the last airdate from game of thrones'		=> $previousepisode,
+    
+    # non matches
+    'game of thrones'				=> undef,
+    'episode'						=> undef,
+    'airdate'						=> undef,
+    'previous airdate'				=> undef,
+    'previous episode'				=> undef,
+    'episode previous'				=> undef,
+    'last episode'				    => undef,
+    'latest episode'                => undef,
+    'episode latest'				=> undef,
     'episode in game of thrones'	=> undef,
 );
 
