@@ -1,9 +1,3 @@
-.zci--travis_status .tcistatus--header {
-    font-size: 1.5em;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
 .zci--travis_status .tcistatus--none {
     color: #519444;
 }
@@ -14,12 +8,4 @@
 
 .zci--travis_status .tcistatus--major {
     color: #e34c2d;
-}
-
-.zci--travis_status .tcistatus--message {
-    font-size: 1em;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0.75em;
 }
