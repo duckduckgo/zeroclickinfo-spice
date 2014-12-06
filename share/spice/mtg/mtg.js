@@ -39,9 +39,9 @@
         Spice.add({
             id: "mtg",
             name: "Magic The Gathering",
-            data: api_result,
+            data: api_result[0],
             meta: {
-                sourceUrl: "http://www.mtgdb.info/cards/" + api_result.id,
+                sourceUrl: "http://www.mtgdb.info/cards/" + api_result[0].id,
                 sourceName: "M:tgDb"
             },
             normalize: function(item) {
