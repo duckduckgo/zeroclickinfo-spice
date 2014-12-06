@@ -11,10 +11,10 @@
             name: "PNR Enquiry",
             data: api_result,
             templates: {
-                group: 'base',
+                group: 'text',
                 options:{
                     content: Spice.indian_rail_pnr_status.content,
-                    moreAt: false
+                    moreAt: true
                 }
             }
         });
