@@ -2,7 +2,9 @@ package DDG::Spice::Tvmaze::Nextepisode;
 
 use DDG::Spice;
 
+# the next episode will change the moment an episode has aired, so cache it for just one hour
 spice is_cached => 1;
+spice proxy_cache_valid => "200 301 302 404 1h";
 
 name "TVmaze";
 source "TVmaze";
