@@ -22,10 +22,8 @@ spice wrap_jsonp_callback => 1;
 handle remainder => sub {
 
     my $num = shift;
-    return unless $num;
-    return unless $num =~ qr/^\d+$/;
+    return unless $num && $num =~ qr/^\d+$/;
     return $num;
-    return $_;
 
 };
 
