@@ -3,7 +3,7 @@ package DDG::Spice::BaconIpsum;
 
 use DDG::Spice;
 
-spice proxy_cache_valid => 0;
+spice proxy_cache_valid => "418 1d";
 
 name "BaconIpsum";
 description "This Spice returns a number of BaconIpsum paragraphs";
@@ -17,11 +17,12 @@ triggers startend => "baconipsum" , "bacon ipsum";
 spice to => 'http://baconipsum.com/api/?callback={{callback}}&type=all-meat&paras=$1';
 
 handle remainder => sub {
-	my $num = shift;
-	return unless $num;
-	return unless $num =~ qr/^\d+$/; 
-	return $num;
+    my $num = shift;
+    return unless $num;
+    return unless $num =~ qr/^\d+$/;
+    return $num;
     return $_;
 };
 
 1;
+
