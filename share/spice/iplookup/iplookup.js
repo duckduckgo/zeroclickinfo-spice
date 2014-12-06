@@ -30,7 +30,7 @@
             templates: {
                 group: 'text',
                 options: {
-                    content: Spice.iplookup.content,
+                    content: api_result.ddg.blacklists.length ? Spice.iplookup.content : null,
                     moreAt: true
                 }
             },
