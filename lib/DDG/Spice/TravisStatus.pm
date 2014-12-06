@@ -14,7 +14,7 @@ attribution github => ['https://github.com/josephwegner','Joe Wegner'],
 
 triggers any => 'travis', 'travis ci', 'travis continuous integration';
 
-spice to => 'http://status.travis-ci.com/index.json';
+spice to => 'http://www.traviscistatus.com/index.json';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {

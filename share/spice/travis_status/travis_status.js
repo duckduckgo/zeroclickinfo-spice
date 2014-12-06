@@ -21,9 +21,13 @@
                 }
             }
         });
-    }
+    } 
 
     Spice.registerHelper("TravisStatus_ifCond", function(string1, string2, options) {
         return ((string1 === string2) ? options.fn(this) : options.inverse(this));
+    });
+
+    Spice.registerHelper("TravisStatus_ifNotEmpty", function(string, options) {
+        return ((typeof(string) !== "undefined" && string !== '') ? options.fn(this) : options.inverse(this));
     });
 }(this));
