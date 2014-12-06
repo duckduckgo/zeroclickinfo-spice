@@ -16,7 +16,7 @@ triggers startend => ['timer', 'countdown'];
 spice call_type => 'self';
 
 handle remainder => sub {
-    return unless /(online|\d+ ?(min(utes?)?|sec(onds?)?|hours?|hr) ?)+/ || $_ eq '';
+    return unless /(online|\d+ ?(m(in(utes?)?)?|s(ec(onds?)?)?|(h(ours)?)?|hr) ?)+/ || $_ eq '';
     return '';
 };
 
