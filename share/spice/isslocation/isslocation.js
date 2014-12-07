@@ -5,23 +5,30 @@
         if (api_result.message !== "success") {
             return Spice.failed('isslocation');
         }
-        api_result.iss_position.latitude = (Math.round(api_result.iss_position.latitude * 100) / 100).toFixed(2);
-        api_result.iss_position.longitude = (Math.round(api_result.iss_position.longitude * 100) / 100).toFixed(2);
-        
+        var issLatitude = (Math.round(api_result.iss_position.latitude * 100) / 100).toFixed(2);
+        var issLongitude = (Math.round(api_result.iss_position.longitude * 100) / 100).toFixed(2);
+
         Spice.add({
             id: "isslocation",
             name: "ISSLocation",
-            data: api_result,
+            model: 'Location',
+            view: 'Map',
+            data: [{
+                display_name: "International Space Station",
+                name: "International Space Station",
+                lat: issLatitude,
+                lon: issLongitude
+            }],
             meta: {
                 sourceName: "open-notify.org",
                 sourceUrdl: 'http://open-notify.org'
             },
-            templates: {
-                group: 'base',
-                options: {
-                    content: Spice.isslocation.content,
-                    moreAt: true
-                }
+            normalize: function(item) {
+                
+                return {
+                    lat: issLatitude,
+                    lon: issLongitude
+                };
             }
         });
     };
