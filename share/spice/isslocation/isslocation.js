@@ -11,7 +11,8 @@
         Spice.add({
             id: "isslocation",
             name: "ISSLocation",
-            model: 'Location',
+            model: 'Place',
+
             view: 'Map',
             data: [{
                 display_name: "International Space Station",
