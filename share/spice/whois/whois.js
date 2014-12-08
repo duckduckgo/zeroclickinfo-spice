@@ -2,7 +2,7 @@
     "use strict";
 
     // turns on/off debugging output
-    var is_debug = false;
+    var is_debug = true;
 
     // spice callback function
     env.ddg_spice_whois = function(raw_api_result) {
@@ -59,6 +59,7 @@
     };
     
     var prettifyTimestamp = function(timestamp) {
+        if(!timestamp) { return; }
         var dateObj = DDG.getDateFromString(timestamp),
             day = dateObj.getDate(),
             month = dateObj.getMonth()+1,
@@ -95,6 +96,13 @@
             api_result.administrativeContact,
             api_result.technicalContact
         ];  
+        
+        // only use hostNames if the domain is registered. check the result contains nameserver hostnames. create 'nameservers' string
+        if(!is_domain_available(api_result)) {
+        if(api_result.nameServers.hostNames[1] && api_result.nameServers.hostNames[2]) {
+            var nameservers = [api_result.nameServers.hostNames[1].toLowerCase(),api_result.nameServers.hostNames[2].toLowerCase()].join(' ');
+        }
+        }
 
         // return the normalized output as a hash
         var normalized = {
@@ -115,7 +123,11 @@
             // format timestamps
             
             'Last updated': prettifyTimestamp(api_result.updatedDate),
-            'Expires': prettifyTimestamp(api_result.expiresDate)
+            'Expires': prettifyTimestamp(api_result.expiresDate),
+            
+            // return nameservers
+            
+            'Name Servers': nameservers
         };
 
         // return nothing if domain has an owner but is missing all key whois data
@@ -123,7 +135,8 @@
             && !normalized['Registered to']
             && !normalized['Email']
             && !normalized['Last updated']
-            && !normalized['Expires']) {
+            && !normalized['Expires']
+            && !normalized['Name Servers']) {
             return;
         }
 
@@ -196,7 +209,7 @@
         // add the attributes specific to this template
         shared_spice_data.data = {
             'record_data': api_result,
-            'record_keys': ['Status', 'Registered to', 'Email', 'Last updated', 'Expires']
+            'record_keys': ['Status', 'Registered to', 'Email', 'Last updated', 'Expires', 'Name Servers']
         };
         shared_spice_data.templates.options.content = 'record';
         shared_spice_data.templates.options.keySpacing = true;
