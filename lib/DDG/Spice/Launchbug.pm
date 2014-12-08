@@ -13,7 +13,7 @@ topics "programming";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Launchbug.pm";
 attribution github => ["https://github.com/puskin94/", "puskin"];
 
-triggers query_raw => qr/^\(?LP\: \#?(\d+)\)?/;
+triggers query_raw => qr/^\(?LP\: \#?(\d+)\)?$/;
 spice to => 'https://api.launchpad.net/devel/bugs/$1?ws.accept=application%2Fjson';
 spice wrap_jsonp_callback => 1;
 
@@ -21,7 +21,7 @@ spice wrap_jsonp_callback => 1;
 handle query_raw => sub {
 
     my $num = $1;
-    return unless $num && $num =~ qr/^\d+$/;
+    return unless $num && $num =~ /^\d+$/;
     return $num;
 
 };
