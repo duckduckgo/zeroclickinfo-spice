@@ -3,14 +3,13 @@
 
     env.ddg_spice_population = function(api_result){
 
-        var result = api_result[1][0],
-            population = result.value;
-
-        if (api_result.error || !population) {
+        if (!api_result || !api_result[1][0].value) {
             return Spice.failed('population');
         }
 
-        var countryName = result.country.value,
+        var result = api_result[1][0],
+            population  = result.value,
+            countryName = result.country.value,
             lastUpdated = result.date;
 
         var script = $('[src*="/js/spice/population/"]')[0],
