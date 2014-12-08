@@ -57,7 +57,17 @@
         return /\s/.test($.trim(query));
 
     };
-
+    
+    var prettifyTimestamp = function(timestamp) {
+        var dateObj = DDG.getDateFromString(timestamp),
+            day = dateObj.getDate(),
+            month = dateObj.getMonth()+1,
+            year = dateObj.getFullYear();
+        if(day<10) {day='0'+day};
+        if(month<10) {month='0'+month};
+        return year+'-'+month+'-'+day;
+    }
+    
     // parse the api response into a standard format
     var normalize_api_result = function(api_result) {
 
@@ -105,11 +115,14 @@
             // trim dates so they are shown without times
             // (if no time was found, the replace() call will return undef,
             //  so we need to fallback to the original string)
-            'Last updated': api_result.updatedDate
-                && api_result.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1'),
+            //  dateObj = DDG.getDateFromString(chosen.time.iso),
+            //'Last updated': DDG.getDateFromString(api_result.updatedDate)
+            
+            'Last updated': prettifyTimestamp(api_result.updatedDate),
+                //&& api_result.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1'),
 
-            'Expires': api_result.expiresDate
-                && api_result.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
+            'Expires': prettifyTimestamp(api_result.expiresDate)
+                //&& api_result.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
         };
 
         // return nothing if domain has an owner but is missing all key whois data
