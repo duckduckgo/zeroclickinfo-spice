@@ -24,21 +24,21 @@ Locale::Country::add_country_alias("Lao People's Democratic Republic"  => "Laos"
 Locale::Country::add_country_alias('Russian Federation'   => 'Russia');
 
 # Country rename
-Locale::Country::rename_country('ae' => 'the United Arab Emirates');
-Locale::Country::rename_country('do' => 'the Dominican Republic');
-Locale::Country::rename_country('gb' => 'the United Kingdom');
-Locale::Country::rename_country('kr' => "the Republic of Korea");                    
-Locale::Country::rename_country('kp' => "the Democratic People's Republic of Korea"); 
-Locale::Country::rename_country('ky' => 'the Cayman Islands');
-Locale::Country::rename_country('mp' => 'the Northern Mariana Islands');
-Locale::Country::rename_country('nl' => 'the Netherlands');
-Locale::Country::rename_country('ph' => 'the Philippines');
-Locale::Country::rename_country('ru' => 'the Russian Federation');
+Locale::Country::rename_country('ae' => 'The United Arab Emirates');
+Locale::Country::rename_country('do' => 'The Dominican Republic');
+Locale::Country::rename_country('gb' => 'The United Kingdom');
+Locale::Country::rename_country('kr' => "The Republic of Korea");                    
+Locale::Country::rename_country('kp' => "The Democratic People's Republic of Korea"); 
+Locale::Country::rename_country('ky' => 'The Cayman Islands');
+Locale::Country::rename_country('mp' => 'The Northern Mariana Islands');
+Locale::Country::rename_country('nl' => 'The Netherlands');
+Locale::Country::rename_country('ph' => 'The Philippines');
+Locale::Country::rename_country('ru' => 'Russia');
 Locale::Country::rename_country('tw' => 'Taiwan');
-Locale::Country::rename_country('us' => 'the United States');
-Locale::Country::rename_country('va' => 'the Holy See (Vatican City State)');
-Locale::Country::rename_country('vg' => 'the British Virgin Islands');
-Locale::Country::rename_country('vi' => 'the US Virgin Islands');
+Locale::Country::rename_country('us' => 'The United States');
+Locale::Country::rename_country('va' => 'The Holy See (Vatican City State)');
+Locale::Country::rename_country('vg' => 'The British Virgin Islands');
+Locale::Country::rename_country('vi' => 'The US Virgin Islands');
 
 
 my $population_qr = qr/(?:population|pop\.?)/;
