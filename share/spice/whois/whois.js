@@ -174,7 +174,7 @@
                 sourceName: "Whois API",
                 sourceUrl: 'https://www.whoisxmlapi.com/#whoisserver/WhoisService?domainName='
                     + api_result.domainName
-                    + '&outputFormat=json&target=raw'
+                    + '&target=raw'
             },
             templates: {
                 group: 'base',
