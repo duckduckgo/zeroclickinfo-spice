@@ -112,17 +112,10 @@
             'Registered to': get_first_by_key(contacts, 'name'),
             'Email': get_first_by_key(contacts, 'email'),
 
-            // trim dates so they are shown without times
-            // (if no time was found, the replace() call will return undef,
-            //  so we need to fallback to the original string)
-            //  dateObj = DDG.getDateFromString(chosen.time.iso),
-            //'Last updated': DDG.getDateFromString(api_result.updatedDate)
+            // format timestamps
             
             'Last updated': prettifyTimestamp(api_result.updatedDate),
-                //&& api_result.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1'),
-
             'Expires': prettifyTimestamp(api_result.expiresDate)
-                //&& api_result.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
         };
 
         // return nothing if domain has an owner but is missing all key whois data
