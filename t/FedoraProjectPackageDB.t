@@ -10,22 +10,11 @@ my @triggers = qw(yum redhat fedora centos);
 my $call     = '/js/spice/fedora_project_package_db/';
 
 ddg_spice_test(
-    [$caller],
-    create_tests('mc'),
+    ['DDG::Spice::FedoraProjectPackageDB'],
+    'yum mc'              => test_spice( '/js/spice/fedora_project_package_db/mc', caller => 'DDG::Spice::FedoraProjectPackageDB', call_type => 'include', is_cached => 1 ),
+    'redhat package mc'   => test_spice( '/js/spice/fedora_project_package_db/mc', caller => 'DDG::Spice::FedoraProjectPackageDB', call_type => 'include', is_cached => 1 ),
+    'mc fedora package'   => test_spice( '/js/spice/fedora_project_package_db/mc', caller => 'DDG::Spice::FedoraProjectPackageDB', call_type => 'include', is_cached => 1 ),
+    'centos package htop' => test_spice( '/js/spice/fedora_project_package_db/mc', caller => 'DDG::Spice::FedoraProjectPackageDB', call_type => 'include', is_cached => 1 ),
 );
-
-sub create_tests {
-    my @queries = @_;
-
-    my @tests;
-
-    for my $query (@queries) {
-        for my $trigger (@triggers) {
-            push @tests, "$trigger $query" => test_spice( $call . $query, caller => $caller, call_type => 'include' );
-        }
-    }
-
-    return @tests;
-}
 
 done_testing;
