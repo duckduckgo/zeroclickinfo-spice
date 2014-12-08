@@ -1,0 +1,35 @@
+.zci--aqi .aqi--header {
+    font-size: 1.5em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.zci--aqi .aqi--good {
+    background-color: #00de1d;
+    color: #000000
+}
+
+.zci--aqi .aqi--moderate {
+    background-color: #faff00;
+    color: #000000
+}
+
+.zci--aqi .aqi--usg {
+    background-color: #ff6600;
+    color: #000000
+}
+
+.zci--aqi .aqi--unhealthy {
+    background-color: #ff0000;
+    color: #ffffff
+}
+
+.zci--aqi .aqi--very_unhealty {
+    background-color: #ad0051;
+    color: #ffffff
+}
+
+.zci--aqi .aqi--hazardous {
+    background-color: #91001d;
+    color: #ffffff
+}
