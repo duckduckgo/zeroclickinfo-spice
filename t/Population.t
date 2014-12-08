@@ -8,13 +8,13 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::Population)],
 
-    'population of russia' => test_spice(
-        '/js/spice/population/RUS/the%20Russian%20Federation',
+    'population of brazil' => test_spice(
+        '/js/spice/population/BRA/Brazil',
         call_type => 'include',
         caller => 'DDG::Spice::Population'
     ),
-    'population usa' => test_spice(
-        '/js/spice/population/USA/the%20United%20States',
+    'population mexico' => test_spice(
+        '/js/spice/population/MEX/Mexico',
         call_type => 'include',
         caller => 'DDG::Spice::Population'   
     ),
