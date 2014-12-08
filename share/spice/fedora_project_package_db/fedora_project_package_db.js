@@ -8,9 +8,6 @@
             return Spice.failed('fedora_project_package_db');
         }
 
-        // limit results to first 30 entries
-        if (api_result.packages.length > 30) api_result.packages = api_result.packages.splice(0, 30);
-
         // get search query
         var query = DDG.get_query().replace(/^.+?\s/, "").replace(/\*+$/, "") + "*";
 
@@ -31,19 +28,12 @@
                 }
             },
             normalize: function (item) {
-                var res = {
+                return {
                     url: "https://admin.fedoraproject.org/pkgdb/package/" + item.name,
                     title: item.name,
-                    subtitle: item.summary,
-                    description: item.description,
+                    subtitle: item.description ? item.summary : "",
+                    description: item.description || item.summary
                 };
-
-                if (!res.description) {
-                    res.description = item.summary;
-                    res.subtitle = "";
-                }
-
-                return res;
             }
         });
     };
