@@ -29,7 +29,7 @@
       return avail;
     }
 
-    if (data.error) {
+    if (!data || data.error) {
       return Spice.failed('products');
     }
 
