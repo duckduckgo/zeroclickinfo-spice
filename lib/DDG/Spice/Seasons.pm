@@ -2,7 +2,6 @@ package DDG::Spice::Seasons;
 # ABSTRACT: Return dates for the start of given seasons, solstices, equinoctes
 
 use DDG::Spice;
-use YAML::XS qw( Load );
 
 name "Seasons";
 description "Provides dates for the start of given seasons, solstices, equinoctes";
@@ -24,7 +23,7 @@ spice to => 'https://api.xmltime.com/holidays?accesskey={{ENV{DDG_SPICE_TIME_AND
 spice is_cached => 0;
 
 # Handle statement
-handle remainder => sub {
+handle remainder_lc => sub {
     use constant SPRING => 'spring';
     use constant SUMMER => 'summer';
     use constant AUTUMN => 'autumn';
@@ -61,10 +60,11 @@ handle remainder => sub {
     if (/(\d{4})/) {
         $year = $1;
     } else {
-        my $tmp;
-        ($tmp, $tmp, $tmp, $tmp, $tmp, $year, $tmp, $tmp, $tmp) = localtime(time);
-        $year += 1900;
+        $year = (localtime(time))[5] + 1900;
     }
+
+    # Make sure all required parameters are set
+    return unless (defined $year and defined $country and defined $season);
 
     # Season is not required for the API call, but used in the frontend
     return $year, $country, $season;
