@@ -47,7 +47,7 @@
 #color_picker_container #sample {
     height: 128px;
     width: 200px;
-    margin-left: 16px;
+    margin-left: 32px;
 }
 
 #color_picker_container #saturation_value_marker {

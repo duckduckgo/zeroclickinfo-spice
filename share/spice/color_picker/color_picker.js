@@ -2,6 +2,10 @@
     "use strict";
     env.ddg_spice_color_picker = function(){
 
+        var local_dom = {
+            initialized: false
+        };
+
         var palette_type = 'adjacent';
         var initial_color = get_initial_color();
         var saturation_value_path = DDG.get_asset_path('color_picker', 'assets/saturation_value_gradient.png');
@@ -14,12 +18,6 @@
             hue_path: 'http://chrisharrill.com/images/hue_gradient.png',
             markers: markers
         }
-
-        var templateObj = {
-            detail: Spice.color_picker.content,
-            item: Spice.color_picker.content,
-            item_detail: false
-        };
 
         var currentColor = initial_color;
         var saturation_value_mousedown = false;
@@ -339,27 +337,28 @@
         }
 
         function update_all() {
-            $('#red_input').val(currentColor.rgb.red);
-            $('#green_input').val(currentColor.rgb.green);
-            $('#blue_input').val(currentColor.rgb.blue);
-            $('#hue_input').val(currentColor.hsv.hue);
-            $('#saturation_input').val(currentColor.hsv.saturation);
-            $('#value_input').val(currentColor.hsv.value);
-            $('#cyan_input').val(currentColor.cmyk.cyan);
-            $('#magenta_input').val(currentColor.cmyk.magenta);
-            $('#yellow_input').val(currentColor.cmyk.yellow);
-            $('#black_input').val(currentColor.cmyk.black);
-            $('#hex_input').val(currentColor.hex);
+            local_dom.$red_input.val(currentColor.rgb.red);
+            local_dom.$green_input.val(currentColor.rgb.green);
+            local_dom.$blue_input.val(currentColor.rgb.blue);
+            local_dom.$hue_input.val(currentColor.hsv.hue);
+            local_dom.$saturation_input.val(currentColor.hsv.saturation);
+            local_dom.$value_input.val(currentColor.hsv.value);
+            local_dom.$cyan_input.val(currentColor.cmyk.cyan);
+            local_dom.$magenta_input.val(currentColor.cmyk.magenta);
+            local_dom.$yellow_input.val(currentColor.cmyk.yellow);
+            local_dom.$black_input.val(currentColor.cmyk.black);
+            local_dom.$hex_input.val(currentColor.hex);
 
-            $('#saturation_value_picker').css('background-color', currentColor.hex_hue);
-            $('#sample').css('background-color', currentColor.hex);
+            local_dom.$saturation_value_picker.css('background-color', currentColor.hex_hue);
+            local_dom.$sample.css('background-color', currentColor.hex);
 
-            $('#saturation_value_marker').css('top', markers.saturation_value.y);
-            $('#saturation_value_marker').css('left', markers.saturation_value.x);
-            $('#hue_marker').css('top', markers.hue.y);
+            local_dom.$saturation_value_marker.css('top', markers.saturation_value.y);
+            local_dom.$saturation_value_marker.css('left', markers.saturation_value.x);
+            local_dom.$hue_marker.css('top', markers.hue.y);
 
-            for (var i = 0; i < 4; i++)
-                $('#color_picker_container #palette_sample_' + i).css('background-color', currentColor.palette[i]);
+            local_dom.$palette_sample.each(function(i) {
+                $(this).css('background-color', currentColor.palette[i]);
+            });
         }
 
         function convert_hsv_to_rgb(hue, saturation, value) {
@@ -526,38 +525,73 @@
             return String(int_value) === str;
         }
 
+        function initialize_local_dom() {
+            //The container of this instant answer will be the root for all other elements.
+            var $root = $('#color_picker_container');
+
+            //Find all of the elements of interest within the instant answer.
+            local_dom = {
+                $saturation_value_picker: $root.find('#saturation_value_picker'),
+                $hue_picker: $root.find('#hue_picker'),
+                $red_input: $root.find('#red_input'),
+                $red_input: $root.find('#red_input'),
+                $green_input: $root.find('#green_input'),
+                $blue_input: $root.find('#blue_input'),
+                $hue_input: $root.find('#hue_input'),
+                $saturation_input: $root.find('#saturation_input'),
+                $value_input: $root.find('#value_input'),
+                $cyan_input: $root.find('#cyan_input'),
+                $magenta_input: $root.find('#magenta_input'),
+                $yellow_input: $root.find('#yellow_input'),
+                $black_input: $root.find('#black_input'),
+                $hex_input: $root.find('#hex_input'),
+                $palette_select: $root.find('#palette_select'),
+                $sample: $root.find('#sample'),
+                $saturation_value_marker: $root.find('#saturation_value_marker'),
+                $hue_marker: $root.find('#hue_marker'),
+                $palette_sample: $root.find('.palette_sample'),
+                initialized: true
+            }
+
+            //Event Handling
+            //TODO: explain why all of this is necessary
+            local_dom.$saturation_value_picker.click(saturation_value_clicked);
+            local_dom.$saturation_value_picker.on('dragstart', function(event) { event.preventDefault();});
+            local_dom.$saturation_value_picker.mousedown(function(event) { saturation_value_mousedown = true; });
+            local_dom.$saturation_value_picker.mousemove(function(event) { if (saturation_value_mousedown) saturation_value_clicked(event); });
+            local_dom.$hue_picker.click(hue_clicked);
+            local_dom.$hue_picker.on('dragstart', function(event) { event.preventDefault();});
+            local_dom.$hue_picker.mousedown(function(event) { hue_mousedown = true; });
+            local_dom.$hue_picker.mousemove(function(event) { if (hue_mousedown) hue_clicked(event); });
+            $root.mouseup(function(event) { saturation_value_mousedown = false; hue_mousedown = false; });
+            $root.focusout(function(event) { saturation_value_mousedown = false; hue_mousedown = false; });
+            local_dom.$red_input.change(red_change);
+            local_dom.$green_input.change(green_change);
+            local_dom.$blue_input.change(blue_change);
+            local_dom.$hue_input.change(hue_change);
+            local_dom.$saturation_input.change(saturation_change);
+            local_dom.$value_input.change(value_change);
+            local_dom.$cyan_input.change(cyan_change);
+            local_dom.$magenta_input.change(magenta_change);
+            local_dom.$yellow_input.change(yellow_change);
+            local_dom.$black_input.change(black_change);
+            local_dom.$hex_input.change(hex_change);
+            local_dom.$palette_select.change(palette_change);
+        }
+
         Spice.add({
             id: "color_picker",
             name: "ColorPicker",
             data: data,
             meta: {},
-            templates: templateObj,
+            templates: {
+                detail: Spice.color_picker.content,
+                item: Spice.color_picker.content,
+                item_detail: false
+            },
             onShow: function() {
-                $('#color_picker_container #saturation_value_picker').click(saturation_value_clicked);
-                $('#color_picker_container #saturation_value_picker').on('dragstart', function(event) { event.preventDefault();});
-                $('#color_picker_container #saturation_value_picker').mousedown(function(event) { saturation_value_mousedown = true; });
-                $('#color_picker_container #saturation_value_picker').mousemove(function(event) { if (saturation_value_mousedown) saturation_value_clicked(event); });
-                $('#color_picker_container #hue_picker').click(hue_clicked);
-                $('#color_picker_container #hue_picker').on('dragstart', function(event) { event.preventDefault();});
-                $('#color_picker_container #hue_picker').mousedown(function(event) { hue_mousedown = true; });
-                $('#color_picker_container #hue_picker').mousemove(function(event) { if (hue_mousedown) hue_clicked(event); });
-                $('#color_picker_container').mouseup(function(event) { saturation_value_mousedown = false; hue_mousedown = false; });
-                $('#color_picker_container').focusout(function(event) { saturation_value_mousedown = false; hue_mousedown = false; });
-
-                $('#color_picker_container #red_input').change(red_change);
-                $('#color_picker_container #green_input').change(green_change);
-                $('#color_picker_container #blue_input').change(blue_change);
-                $('#color_picker_container #hue_input').change(hue_change);
-                $('#color_picker_container #saturation_input').change(saturation_change);
-                $('#color_picker_container #value_input').change(value_change);
-                $('#color_picker_container #cyan_input').change(cyan_change);
-                $('#color_picker_container #magenta_input').change(magenta_change);
-                $('#color_picker_container #yellow_input').change(yellow_change);
-                $('#color_picker_container #black_input').change(black_change);
-                $('#color_picker_container #hex_input').change(hex_change);
-
-                $('#color_picker_container #palette_select').change(palette_change);
-
+                if (!local_dom.initialized)
+                    initialize_local_dom();
                 update_all();
             }
         });
