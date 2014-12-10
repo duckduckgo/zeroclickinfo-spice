@@ -16,7 +16,7 @@ attribution web => ['http://www.steveglick.net', 'Steve Glick'],
 spice to => 'http://eol.org/api/search/$1.json?callback={{callback}}';
 triggers startend => 'animal', 'plant';
 
-handle remainder => sub {
+handle remainder_lc => sub {
     return $_ if $_;
     return;
 };
