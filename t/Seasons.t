@@ -12,8 +12,7 @@ use DDG::Request;
 my $tmp;
 my $year;
 
-($tmp, $tmp, $tmp, $tmp, $tmp, $year, $tmp, $tmp, $tmp) = localtime(time);
-$year += 1900;
+$year = (localtime(time))[5] + 1900;
 
 ddg_spice_test(
     [ 'DDG::Spice::Seasons' ],
@@ -24,7 +23,8 @@ ddg_spice_test(
     ) => test_spice(
         '/js/spice/seasons/2016/de/spring',
         call_type => 'include',
-        caller => 'DDG::Spice::Seasons'
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 0
     ),
 
     DDG::Request->new(
@@ -33,7 +33,8 @@ ddg_spice_test(
     ) => test_spice(
         '/js/spice/seasons/2011/us/spring',
         call_type => 'include',
-        caller => 'DDG::Spice::Seasons'
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 0
     ),
 
     DDG::Request->new(
@@ -42,25 +43,36 @@ ddg_spice_test(
     ) => test_spice(
         '/js/spice/seasons/' . $year . '/us/autumn',
         call_type => 'include',
-        caller => 'DDG::Spice::Seasons'
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 0
     ),
 
     "summer solstice" => test_spice(
         '/js/spice/seasons/' . $year . '/us/summer',
         call_type => 'include',
-        caller => 'DDG::Spice::Seasons'
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 0
     ),
 
     "2017 summer solstice" => test_spice(
         '/js/spice/seasons/2017/us/summer',
         call_type => 'include',
-        caller => 'DDG::Spice::Seasons'
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 0
     ),
 
     "summer equinox" => test_spice(
         '/js/spice/seasons/' . $year . '/us/summer',
         call_type => 'include',
-        caller => 'DDG::Spice::Seasons'
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 0
+    ),
+
+    "Summer equinox" => test_spice(
+        '/js/spice/seasons/' . $year . '/us/summer',
+        call_type => 'include',
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 0
     ),
 
     "first day" => undef,
