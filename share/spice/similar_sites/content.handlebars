@@ -1,17 +1,32 @@
-<div>
+<div id="container">
     {{#list this.results 0 5}}{{/list}}
 
-    <div class="roller"></div>
+    <div id="result_roller" class="roller"></div>
 
     <div id="hidden">
         {{#list this.results 6 0}}{{/list}}
         <div class="roller"></div>
-        <span id="show_less" onclick="document.getElementById('hidden').style.display='none';
-                                      document.getElementById('show_more').style.display='block';"><strong>-</strong> Show less</span>
+
+        <div class="more_info">
+            <span id="show_less" onclick="document.getElementById('hidden').style.display='none';
+                                          document.getElementById('visible').style.display='block';
+                                          document.getElementById('result_roller').style.display='block';"><strong>-</strong> Show less</span>
+            <span class="vertical_roller"></span>
+            <span class="more_at">
+                <img src="http://icons.duckduckgo.com/ip/www.similarsitesearch.com.ico" width="16px" height="16px"></img>
+                <a href="http://www.similarsitesearch.com/alternatives-to/{{more_at}}">More at SimilarSiteSearch</a>
+            </span>
+        </div>
     </div>
 
-    <div>
+    <div id="visible" class="more_info">
         <span id="show_more" onclick="document.getElementById('hidden').style.display='block';
-                                      document.getElementById('show_more').style.display='none';"><strong>+</strong> Show more</span>
+                                      document.getElementById('visible').style.display='none';
+                                      document.getElementById('result_roller').style.display='none';"><strong>+</strong> Show more</span>
+        <span class="vertical_roller"></span>
+        <span class="more_at">
+            <img src="http://icons.duckduckgo.com/ip/www.similarsitesearch.com.ico" width="16px" height="16px"></img>
+            <a href="http://www.similarsitesearch.com/alternatives-to/{{more_at}}">More at SimilarSiteSearch</a>
+        </span>
     </div>
 </div>
