@@ -1,6 +1,5 @@
 .zci--similar_sites #hidden {
     display: none;
-    margin-top: 3px;
 }
 
 .zci--similar_sites #show_more:hover {
@@ -11,11 +10,7 @@
     cursor: pointer;
 }
 
-.zci--similar_sites li {
-    list-style-position: inside;
-}
-
-.zci--similar_sites a {
+.zci--similar_sites #container a {
     color: #3B3B3B;
     margin-left: 10px;
 }
@@ -23,4 +18,26 @@
 .zci--similar_sites .roller {
     border-top: 1px solid #ccc;
     margin-top: 5px;
+}
+
+.zci--similar_sites #container {
+    line-height: 25px;
+    font-size: 16px;
+}
+
+.zci--similar_sites .vertical_roller {
+    border-left: 1px solid #ccc;
+    margin-left: 15px;
+}
+
+.zci--similar_sites .more_info {
+    margin-top: 10px;
+}
+
+.zci--similar_sites .more_at a {
+    color: #666 !important;
+}
+
+.zci--similar_sites .more_at {
+    margin-left: 15px;
 }
