@@ -26,7 +26,8 @@
                 results: api_result,
                 num: num,
                 show_more: show_more,
-                show_more_count: num-5
+                show_more_count: num-5,
+                more_at: query
             },
 
             meta: {
