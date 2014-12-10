@@ -2,31 +2,36 @@
     "use strict";
     env.ddg_spice_color_picker = function(){
 
-        //Acts as a cache of this instant answer's DOM.
-        //Because the DOM isn't necessarily ready at this point, this all gets initialized later.
+        //Acts as a cache of this instant answer's DOM. Because the DOM isn't necessarily ready at
+        //  this point, this all gets initialized later.
         var local_dom = {
             initialized: false
         };
 
+        //Maintains currently selected palette type so that it doesn't have to be read from
+        //  $palette_select on every update.
         var palette_type = 'adjacent';
+
+        //Maintains the current color in all supported formats.
         var current_color = get_initial_color();
-        var saturation_value_path = DDG.get_asset_path('color_picker', 'assets/saturation_value_gradient.png');
-        var hue_path = DDG.get_asset_path('color_picker', 'assets/hue_gradient.png');
+
+        //Holds coordinate positions for the selection markers in the hue and saturation/value
+        //  pickers.
         var markers = get_marker_positions(current_color.hsv);
+
+        //Indicates whether the user is currently dragging the mouse in the hue and saturation/value
+        //  pickers.
         var saturation_value_mousedown = false;
         var hue_mousedown = false;
-        
-        var data = {
-            colors: current_color,
-            saturation_value_path: 'http://chrisharrill.com/images/saturation_value_gradient.png',
-            hue_path: 'http://chrisharrill.com/images/hue_gradient.png',
-            markers: markers
-        };
 
+        //TODO: use the real image paths
         Spice.add({
             id: "color_picker",
             name: "ColorPicker",
-            data: data,
+            data: {
+                saturation_value_path: 'http://chrisharrill.com/images/saturation_value_gradient.png',//DDG.get_asset_path('color_picker', 'assets/saturation_value_gradient.png'),
+                hue_path: 'http://chrisharrill.com/images/hue_gradient.png'//DDG.get_asset_path('color_picker', 'assets/hue_gradient.png')
+            },
             meta: {},
             templates: {
                 detail: Spice.color_picker.content,
@@ -34,24 +39,47 @@
                 item_detail: false
             },
             onShow: function() {
+                //The DOM cache was not initialized when it was created. The DOM should be ready
+                // here, so we can initialize now.
                 if (!local_dom.initialized)
                     initialize_local_dom();
                 update_all();
             }
         });
 
+        /* UTILITY FUNCTIONS */
+
+        //Converts a given string value to an integer, which is forced between the given bounds. If
+        //  the input string is not a valid number, it is treated as 0.
         function to_bounded_integer(value, lower_bound, upper_bound) {
-            return Math.round(to_bounded_number(value, lower_bound, upper_bound));
+            var num = Math.round(Number(value));
+            if (isNaN(num))
+                num = 0;
+
+            if (num < lower_bound)
+                num = Math.ceil(lower_bound);
+            if (num > upper_bound)
+                num = Math.floor(upper_bound);
+
+            return num
         }
 
+        //Converts a given string value to a number, which is forced between the given bounds. If
+        //  the input string is not a valid number, it is treated as 0.
         function to_bounded_number(value, lower_bound, upper_bound) {
-            var num = ~~Number(value);//TODO: this actually forces an integer
+            var num = Number(value);
+            if (isNaN(num))
+                num = 0;
+
             if (num < lower_bound)
                 num = lower_bound;
             if (num > upper_bound)
                 num = upper_bound;
-            return num;
+
+            return num
         }
+
+        /* EVENT HANDLERS */
 
         function saturation_value_clicked() {
             var offset = $('#color_picker_container #saturation_value_picker').offset();
