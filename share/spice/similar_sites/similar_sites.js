@@ -48,13 +48,15 @@
 
     Handlebars.registerHelper('list', function(items, from, to) {
         var out = "";
+        var link;
 
         if (to === 0)
             to = Object.keys(items).length;
 
         for(var i = from; i < to; i++) {
-            out += "<img src='http://icons.duckduckgo.com/ip/" + items["r" + i].replace("http://", "")  + ".ico' width='16px' height='16px'/>"
-            out += "<a href='" + items["r" + i] + "'> " + items["r" + i].replace("http://", "") + "</a>";
+            link = items["r" + i].replace("http://", "").replace("/", "");
+            out += "<img src='http://icons.duckduckgo.com/ip/" + link + ".ico' width='16px' height='16px'/>"
+            out += "<a href='" + items["r" + i] + "'> " + link + "</a>";
             out += "<br />";
         }
 
