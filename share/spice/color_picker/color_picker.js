@@ -23,6 +23,23 @@
             markers: markers
         };
 
+        Spice.add({
+            id: "color_picker",
+            name: "ColorPicker",
+            data: data,
+            meta: {},
+            templates: {
+                detail: Spice.color_picker.content,
+                item: Spice.color_picker.content,
+                item_detail: false
+            },
+            onShow: function() {
+                if (!local_dom.initialized)
+                    initialize_local_dom();
+                update_all();
+            }
+        });
+
         function to_bounded_integer(value, lower_bound, upper_bound) {
             return Math.round(to_bounded_number(value, lower_bound, upper_bound));
         }
@@ -568,22 +585,5 @@
             local_dom.$hex_input.change(hex_change);
             local_dom.$palette_select.change(palette_change);
         }
-
-        Spice.add({
-            id: "color_picker",
-            name: "ColorPicker",
-            data: data,
-            meta: {},
-            templates: {
-                detail: Spice.color_picker.content,
-                item: Spice.color_picker.content,
-                item_detail: false
-            },
-            onShow: function() {
-                if (!local_dom.initialized)
-                    initialize_local_dom();
-                update_all();
-            }
-        });
     };
 }(this));
