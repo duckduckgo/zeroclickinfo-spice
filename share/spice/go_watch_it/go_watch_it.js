@@ -33,11 +33,11 @@
       return Spice.failed('GoWatchIt');
     }
 
-    var movie = data.search.movies[0]
-    var show  = data.search.shows[0]
+    var movie = data.search.movies[0],
+        show  = data.search.shows[0],
+        watchable;
 
     // If both movie and show exist, select movie.
-    var watchable;
     if (movie && show) {
       watchable = movie;
     } else {
