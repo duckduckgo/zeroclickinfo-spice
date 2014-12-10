@@ -82,7 +82,7 @@
         /* EVENT HANDLERS */
 
         function saturation_value_clicked() {
-            var offset = $('#color_picker_container #saturation_value_picker').offset();
+            var offset = local_dom.$saturation_value_picker.offset();
             var x = event.pageX - offset.left;
             var y = event.pageY - offset.top;
 
@@ -97,7 +97,7 @@
         }
 
         function hue_clicked() {
-            var offset = $('#color_picker_container #hue_picker').offset();
+            var offset = local_dom.$hue_picker.offset();
             var y = event.pageY - offset.top;
 
             var hue = Math.floor((y / 256) * 360);
@@ -110,12 +110,12 @@
         }
 
         function palette_change() {
-            palette_type = $('#color_picker_container #palette_select').val();
+            palette_type = local_dom.$palette_select.val();
             update_palette();
         }
 
         function red_change() {
-            var red = $('#color_picker_container #red_input').val();
+            var red = local_dom.$red_input.val();
             var green = current_color.rgb.green;
             var blue = current_color.rgb.blue;
 
@@ -126,7 +126,7 @@
 
         function green_change() {
             var red = current_color.rgb.red;
-            var green = $('#color_picker_container #green_input').val();
+            var green = local_dom.$green_input.val();
             var blue = current_color.rgb.blue;
 
             green = to_bounded_integer(green, 0, 255);
@@ -137,7 +137,7 @@
         function blue_change() {
             var red = current_color.rgb.red;
             var green = current_color.rgb.green;
-            var blue = $('#color_picker_container #blue_input').val();
+            var blue = local_dom.$blue_input.val();
 
             blue = to_bounded_integer(blue, 0, 255);
             
@@ -145,7 +145,7 @@
         }
 
         function hue_change() {
-            var hue = $('#color_picker_container #hue_input').val();
+            var hue = local_dom.$hue_input.val();
             var saturation = current_color.hsv.saturation;
             var value = current_color.hsv.value;
 
@@ -156,7 +156,7 @@
 
         function saturation_change() {
             var hue = current_color.hsv.hue;
-            var saturation = $('#color_picker_container #saturation_input').val();
+            var saturation = local_dom.$saturation_input.val();
             var value = current_color.hsv.value;
 
             saturation = to_bounded_integer(saturation, 0, 100);
@@ -167,7 +167,7 @@
         function value_change() {
             var hue = current_color.hsv.hue;
             var saturation = current_color.hsv.saturation;
-            var value = $('#color_picker_container #value_input').val();
+            var value = local_dom.$value_input.val();
 
             value = to_bounded_integer(value, 0, 100);
             
@@ -175,7 +175,7 @@
         }
 
         function cyan_change() {
-            var cyan = $('#color_picker_container #cyan_input').val();
+            var cyan = local_dom.$cyan_input.val();
             var magenta = current_color.cmyk.magenta;
             var yellow = current_color.cmyk.yellow;
             var black = current_color.cmyk.black;
@@ -187,7 +187,7 @@
 
         function magenta_change() {
             var cyan = current_color.cmyk.cyan;
-            var magenta = $('#color_picker_container #magenta_input').val();
+            var magenta = local_dom.$magenta_input.val();
             var yellow = current_color.cmyk.yellow;
             var black = current_color.cmyk.black;
 
@@ -199,7 +199,7 @@
         function yellow_change() {
             var cyan = current_color.cmyk.cyan;
             var magenta = current_color.cmyk.magenta;
-            var yellow = $('#color_picker_container #yellow_input').val();
+            var yellow = local_dom.$yellow_input.val();
             var black = current_color.cmyk.black;
 
             yellow = to_bounded_number(yellow, 0, 100);
@@ -211,7 +211,7 @@
             var cyan = current_color.cmyk.cyan;
             var magenta = current_color.cmyk.magenta;
             var yellow = current_color.cmyk.yellow;
-            var black = $('#color_picker_container #black_input').val();
+            var black = local_dom.$black_input.val();
 
             black = to_bounded_number(black, 0, 100);
             
@@ -219,7 +219,7 @@
         }
 
         function hex_change() {
-            var hex = $('#color_picker_container #hex_input').val();
+            var hex = local_dom.$hex_input.val();
 
             if (hex.charAt(0) === '#') hex = hex.substring(1);
             if (/^[0-9a-f]+$/i.test(hex)) {
