@@ -50,6 +50,11 @@
                     }
                 });
                 
+                //Check if necessary data is available
+                if (!image_url || !description || description.length < 170) {
+                    return null;
+                }
+                
                 //Return data for display
                 return {
                     title: common_name,
@@ -59,7 +64,7 @@
                     img_m: image_url,
                     heading: common_name,
                     abstract: description
-                };
+                };   
             }
         })
     }
