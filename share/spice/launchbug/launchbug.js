@@ -10,13 +10,6 @@
         dateObj = DDG.getDateFromString(api_result.date_created),
         CreDate = [months[dateObj.getMonth()], dateObj.getDate(), dateObj.getFullYear()];
 
-        var uptObj = DDG.getDateFromString(api_result.date_last_updated),
-        UptDate = [months[uptObj.getMonth()], uptObj.getDate(), uptObj.getFullYear()];
-
-        var msgObj = DDG.getDateFromString(api_result.date_last_message),
-        MsgDate = [months[msgObj.getMonth()], msgObj.getDate(), msgObj.getFullYear()];
-
-
         var infoboxItems = {
             id: "Bug Id",
             can_expire: "Expires",
@@ -39,8 +32,7 @@
         });
 
         infoboxData.push({label: "Date Created", value: CreDate.join(' ')});
-        infoboxData.push({label: "Last Update", value: UptDate.join(' ')});
-        infoboxData.push({label: "Last Message", value: MsgDate.join(' ')});
+
 
         Spice.add({
             id: "launchbug",
@@ -68,3 +60,4 @@
         });
     };
 }(this));
+
