@@ -30,7 +30,7 @@
     }
 
     if (!data || data.error) {
-      return Spice.failed('products');
+      return Spice.failed('GoWatchIt');
     }
 
     var movie = data.search.movies[0]
