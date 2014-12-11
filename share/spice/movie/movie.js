@@ -28,6 +28,20 @@
             source = $(script).attr("src"),
             query = source.match(/movie\/([^\/]+)/)[1];
         
+        //Check if the query contains a year
+        var year = decodeURIComponent(query).match(/\d{4}/gm), 
+            singleResult = [];
+        
+        if(year) {
+        $.each(api_result.movies, function(key, result) {
+        //Check movie year against searched year
+           if(result.year == year) {
+                singleResult.push(result);
+           }
+        });
+            if(singleResult.length>0) {api_result.movies = singleResult;}
+        }
+        
         Spice.add({
             id: 'movie',
             name: 'Movies',
@@ -38,7 +52,6 @@
                 itemType: 'Movies'
             },
             normalize: function(item) {
-                
                 // Modify the image from _tmb.jpg to _det.jpg
                 var image = toDetail(item.posters.detailed);
                 return {
