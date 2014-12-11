@@ -79,15 +79,24 @@
             return num
         }
 
+        //Finds the coordinates of a mouse or touch event relative to an element.
+        function get_real_coordinates(event, $element) {
+            var offset = local_dom.$saturation_value_picker.offset();
+            var coordinates = {
+                x: event.pageX - offset.left,
+                y: event.pageY - offset.top
+            };
+            return coordinates;
+        }
+
         /* EVENT HANDLERS */
 
         function saturation_value_clicked() {
-            var offset = local_dom.$saturation_value_picker.offset();
-            var x = event.pageX - offset.left;
-            var y = event.pageY - offset.top;
+            var coordinates = get_real_coordinates(event, local_dom.$saturation_value_picker);
 
-            var saturation = Math.floor((x / 256) * 100);
-            var value = Math.floor(((256 - y) / 256) * 100);
+            //Use the coordinates of the mouse/touch event to calculate the new saturation/value
+            var saturation = Math.floor((coordinates.x / 256) * 100);
+            var value = Math.floor(((256 - coordinates.y) / 256) * 100);
             var hue = current_color.hsv.hue;
 
             saturation = to_bounded_integer(saturation, 0, 100);
@@ -97,21 +106,16 @@
         }
 
         function hue_clicked() {
-            var offset = local_dom.$hue_picker.offset();
-            var y = event.pageY - offset.top;
+            var coordinates = get_real_coordinates(event, local_dom.$hue_picker);
 
-            var hue = Math.floor((y / 256) * 360);
+            //Use the coordinates of the mouse/touch event to calculate the new hue
+            var hue = Math.floor((coordinates.y / 256) * 360);
             var saturation = current_color.hsv.saturation;
             var value = current_color.hsv.value;
 
             hue = to_bounded_integer(hue, 0, 359);
 
             update_all_from_hsv(hue, saturation, value);
-        }
-
-        function palette_change() {
-            palette_type = local_dom.$palette_select.val();
-            update_palette();
         }
 
         function red_change() {
@@ -221,6 +225,11 @@
         function hex_change() {
             var hex = local_dom.$hex_input.val();
 
+            //There are a few ways a new hex string could look and still be valid. It may more may
+            //  not start with a '#' character, and it may contain some combination of uppercase and
+            //  lowercase letters. It can also contain either three or six hex numerals. Any other
+            //  number and the string is either too long, or ambiguous (e.g. #abc -> #0a0b0c, but
+            //  #abcd -> #0a0bcd or #a0bcd and so on).
             if (hex.charAt(0) === '#') hex = hex.substring(1);
             if (/^[0-9a-f]+$/i.test(hex)) {
                 if (hex.length === 3)
@@ -231,6 +240,11 @@
                     update_all_from_hex(current_color.hex.substring(1));
             } else
                 update_all_from_hex(current_color.hex.substring(1));
+        }
+
+        function palette_change() {
+            palette_type = local_dom.$palette_select.val();
+            update_palette();
         }
 
         function get_marker_positions(hsv) {
