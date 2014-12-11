@@ -1,0 +1,44 @@
+.tile--go_watch_it {
+  height: 175px;
+}
+
+.tile--go_watch_it .tile__body .image-holder {
+  text-align: center;
+}
+
+.tile--go_watch_it .tile__body .image-holder img {
+  width: 130px;
+}
+
+.tile--go_watch_it .tile__body .data {
+  color: black;
+}
+
+.tile--go_watch_it .tile__body .data span.price {
+  font-weight: bold;
+  font-size: 14pt;
+}
+
+.tile--go_watch_it .tile__body .data .left {
+  float: left;
+  padding-left: 25px;
+}
+
+.tile--go_watch_it .tile__body .data .right {
+  float: right;
+  padding-right: 25px;
+}
+
+.tile--go_watch_it .tile__body .data .single {
+  text-align: center;
+}
+
+.tile--go_watch_it .tile__body .gwi-footer {
+  text-align: center;
+  margin-top: 10px;
+  color: gray;
+}
+
+.tile--go_watch_it .tile__body .gwi-footer.double {
+  margin-top: 50px;
+}
