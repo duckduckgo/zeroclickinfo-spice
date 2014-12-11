@@ -589,7 +589,13 @@
             };
 
             //Event Handling
-            //TODO: explain why all of this is necessary
+
+            //For the hue and saturation/value pickers, there are a few things we need to do. First,
+            //  we need to listen for click events so that a user can click anywhere in the picker
+            //  to immediate jump to that color. We also need to allow the user to drag the mouse
+            //  around in the pickers, so we need to keep the browser from using the default drag
+            //  action on images. Then we respond to mousemove events if the mouse was already down
+            //  on the picker the same way we respond to a click.
             local_dom.$saturation_value_picker.click(saturation_value_clicked);
             local_dom.$saturation_value_picker.on('dragstart', function() { event.preventDefault();});
             local_dom.$saturation_value_picker.mousedown(function() { saturation_value_mousedown = true; });
@@ -600,6 +606,12 @@
             local_dom.$hue_picker.mousemove(function() { if (hue_mousedown) hue_clicked(); });
             $root.mouseup(function() { saturation_value_mousedown = false; hue_mousedown = false; });
             $root.focusout(function() { saturation_value_mousedown = false; hue_mousedown = false; });
+
+            //Also need to listen for touchmove events for touch-enabled devices.
+            local_dom.$saturation_value_picker.on('touchmove', function() { saturation_value_clicked(); event.preventDefault(); });
+            local_dom.$hue_picker.on('touchmove', function() { hue_clicked(); event.preventDefault(); });
+
+            //Listen for changes to any of the text inputs
             local_dom.$red_input.change(red_change);
             local_dom.$green_input.change(green_change);
             local_dom.$blue_input.change(blue_change);
@@ -611,6 +623,8 @@
             local_dom.$yellow_input.change(yellow_change);
             local_dom.$black_input.change(black_change);
             local_dom.$hex_input.change(hex_change);
+
+            //Listen to changes to the selected palette type
             local_dom.$palette_select.change(palette_change);
         }
     };
