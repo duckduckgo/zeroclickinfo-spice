@@ -124,7 +124,7 @@
     // Returns whether the domain is registered to someone, based on the API result.
     function is_domain_available(api_result) {
         return api_result.dataError && api_result.dataError === 'MISSING_WHOIS_DATA';
-    };
+    }
 
     // Searches an array of objects for the first value
     // at the specified key.
@@ -178,7 +178,7 @@
         shared_spice_data.templates.options.content = Spice.whois.available;
 
         Spice.add(shared_spice_data);
-    };
+    }
 
     // Show whois info for the domain using the 'record' template.
     function show_whois(api_result) {
