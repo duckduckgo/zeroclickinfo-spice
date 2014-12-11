@@ -1,15 +1,20 @@
-
-@media (max-width: 600px) {
-    .zci--whois table {
-        table-layout: fixed;
-        width: 100%;
-    }
-
-    .zci--whois table td {
-        word-wrap: break-word;
-    }
+.zci--whois span {
+    display: block;
 }
 
-.zci--whois .zci__more-at {
-    padding-top: 0.75em;
+.zci--whois dl {
+    display: block;
+    overflow: hidden;
+}
+
+.zci--whois dt {
+    clear: left;
+    float: left;
+    font-weight: bold;
+    padding-right: 32px;
+    width: 100px;
+}
+
+.zci--whois dd {
+    float: left;
 }
