@@ -19,7 +19,7 @@
     function getAlertAvailability(watchable) {
       var avail = {
         provider_format_logos: {
-          dark: 'https://s3.amazonaws.com/gowatchit/partner_logos/gowatchit_logo_white_bars.jpg'
+          dark: 'https://images.duckduckgo.com/iu/?u=https://s3.amazonaws.com/gowatchit/partner_logos/gowatchit_logo_white_bars.jpg'
         },
         buy_line: watchable.title,
         format_line: "Set Alerts",
