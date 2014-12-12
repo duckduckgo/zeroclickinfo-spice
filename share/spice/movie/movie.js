@@ -34,8 +34,8 @@
         
         if(year) {
         $.each(api_result.movies, function(key, result) {
-        //Check movie year against searched year
-           if(result.year == year) {
+        //Check movie year and title against query
+           if(result.year == year && decodeURIComponent(query).replace(/\d{4}/,'').trim() == result.title.toLowerCase()) {
                 singleResult.push(result);
            }
         });
