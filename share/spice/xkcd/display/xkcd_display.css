@@ -26,6 +26,5 @@
 .zci--xkcd .xkcd--explain-link {
 	display: block;
 	float: left;
-	padding-top: .25em;
-	padding-left: .25em;
+	color: #888;
 }

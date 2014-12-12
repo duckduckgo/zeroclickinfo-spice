@@ -23,22 +23,13 @@
                 meta: {
                     sourceUrl: 'http://xkcd.com/' + api_result.num,
                     sourceName: 'xkcd',
-                    sourceIcon: true
+                    sourceIcon: true,
+                    explainLink: "http://www.explainxkcd.com/wiki/index.php/" + api_result.num
                 },
                 templates: {
                     group: 'base',
                     options: {
-                        content: Spice.xkcd_display.content,
-                        moreAt: true
-                    }
-                },
-                onShow: function(){
-                    //we can't change the "more at" link in handlebars, so add the explainxkcd.com link
-                    //on initial page load.
-                    if ($('.xkcd--explain-link').length === 0){
-                        var explainLink = '<a class="xkcd--explain-link zci__more-at--info" href="http://www.explainxkcd.com/wiki/index.php/' +
-                            api_result.num + '"> <span class="zcm__sep"></span> Explain</a>';
-                        $('.zci--xkcd .zci__body').append(explainLink);
+                        content: Spice.xkcd_display.content
                     }
                 }
             });
