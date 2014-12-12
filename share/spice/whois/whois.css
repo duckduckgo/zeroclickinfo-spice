@@ -5,16 +5,20 @@
 .zci--whois dl {
     display: block;
     overflow: hidden;
+    padding: 0 0 5px 132px;
+    position: relative;
+    top: -5px;
 }
 
 .zci--whois dt {
     clear: left;
     float: left;
     font-weight: bold;
-    padding-right: 32px;
-    width: 100px;
+    margin: 5px 0 0 -132px;
 }
 
 .zci--whois dd {
-    float: left;
+    margin: 5px 0 0 -132px;
+    padding-left: 132px;
+    width: 100%;
 }
