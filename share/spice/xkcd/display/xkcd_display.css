@@ -1,7 +1,3 @@
-.zci--xkcd .xkcd-next-link {
-    float: right; 
-}
-
 .zci--xkcd .xkcd--container {
     display: inline-block;
     margin-bottom: 0.5em;
@@ -15,17 +11,18 @@
 
 .zci--xkcd .xkcd--buttons {
     margin-top: 0.5em;
+    text-align: center;
 }
 
-.zci--xkcd .zci__more-at {
-	display: inline-block;
-	float: left;
-	clear: both;
+.zci--xkcd .xkcd--buttons a {
+    display: inline-block;
 }
 
-.zci--xkcd .xkcd--explain-link {
-	display: block;
-	float: left;
-	padding-top: .25em;
-	padding-left: .25em;
+/* Float explain/next link to the right*/
+.zci--xkcd .xkcd--buttons a:last-of-type {
+    float: right;
+}
+
+.zci--xkcd .xkcd--prev {
+    float: left;
 }
