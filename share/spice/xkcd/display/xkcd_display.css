@@ -1,12 +1,12 @@
 .zci--xkcd .xkcd--container {
-    display: inline-block;
     margin-bottom: 0.5em;
     max-width: 100%;
-    float: left;
+    padding-right: 0.5em;
 }
 
 .zci--xkcd .xkcd--img {
     display: block;
+    margin: 0 auto;
 }
 
 .zci--xkcd .xkcd--buttons {
@@ -18,11 +18,12 @@
     display: inline-block;
 }
 
-/* Float explain/next link to the right*/
-.zci--xkcd .xkcd--buttons a:last-of-type {
-    float: right;
+/* Float prev/explain link to the left */
+.zci--xkcd .xkcd--buttons a:first-of-type {
+    float: left;
 }
 
-.zci--xkcd .xkcd--prev {
-    float: left;
+/* Float explain/next link to the right */
+.zci--xkcd .xkcd--buttons a:last-of-type {
+    float: right;
 }
