@@ -4,14 +4,14 @@
 
   <div class="xkcd--buttons">
     {{#xkcd_previousNum num}}
-      <a href="/?q=xkcd+{{num}}" class="btn btn--primary xkcd--prev">Prev</a>
+      <a href="/?q=xkcd+{{num}}" class="btn btn--primary">Prev</a>
     {{/xkcd_previousNum}}
 
-    <a href="http://www.explainxkcd.com/wiki/index.php/{{api_result.num}}" class="btn xkcd--explain">Explain</a>
+    <a href="http://www.explainxkcd.com/wiki/index.php/{{api_result.num}}" class="btn">Explain</a>
 
     {{#if has_next}}
       {{#xkcd_nextNum num}}
-        <a href="/?q=xkcd+{{num}}" class="btn btn--primary xkcd--next">Next</a>
+        <a href="/?q=xkcd+{{num}}" class="btn btn--primary">Next</a>
       {{/xkcd_nextNum}}
     {{/if}}
   </div>
