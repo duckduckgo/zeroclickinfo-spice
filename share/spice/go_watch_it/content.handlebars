@@ -4,48 +4,48 @@
 
 <div class='data'>
 
-  {{#go_watch_it_ifHasBothBuyAndRent buy_line rent_line }}
+  {{#gwi_ifHasBothBuyAndRent buy_line rent_line }}
     <div class="left">
-      Rent from<br><span class='price'>{{go_watch_it_price rent_line}}</span>
+      Rent from<br><span class='price'>{{gwi_price rent_line}}</span>
     </div>
 
     <div class="right">
-      Buy from<br><span class='price'>{{go_watch_it_price buy_line}}</span>
+      Buy from<br><span class='price'>{{gwi_price buy_line}}</span>
     </div>
   {{else}}
 
-    {{#go_watch_it_ifExists buy_line }}
+    {{#gwi_ifExists buy_line }}
 
-      {{#go_watch_it_ifHasPrice buy_line}}
+      {{#gwi_ifHasPrice buy_line}}
         <div class="single">
-          Buy from<br><span class='price'>{{go_watch_it_price buy_line}}</span>
+          Buy from<br><span class='price'>{{gwi_price buy_line}}</span>
         </div>
       {{else}}
         <div class="single">
           <span class="price">{{buy_line}}</span>
         </div>
-      {{/go_watch_it_ifHasPrice}}
+      {{/gwi_ifHasPrice}}
 
     {{else}}
 
-      {{#go_watch_it_ifExists rent_line}}
+      {{#gwi_ifExists rent_line}}
 
-        {{#go_watch_it_ifHasPrice rent_line}}
+        {{#gwi_ifHasPrice rent_line}}
           <div class="single">
-            Rent from<br><span class='price'>{{go_watch_it_price rent_line}}</span>
+            Rent from<br><span class='price'>{{gwi_price rent_line}}</span>
           </div>
         {{else}}
           <div class="single">
             <span class="price">{{rent_line}}</span>
           </div>
-        {{/go_watch_it_ifHasPrice}}
-      {{/go_watch_it_ifExists}}
-    {{/go_watch_it_ifExists}}
+        {{/gwi_ifHasPrice}}
+      {{/gwi_ifExists}}
+    {{/gwi_ifExists}}
 
-  {{/go_watch_it_ifHasBothBuyAndRent}}
+  {{/gwi_ifHasBothBuyAndRent}}
 
 </div>
 
-<div class="{{go_watch_it_footerClass buy_line rent_line}}">
+<div class="{{gwi_footerClass buy_line rent_line}}">
   {{format_line}}
 </div>
