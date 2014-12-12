@@ -72,7 +72,7 @@
 }(this));
 
 // Check to see if both buy_line and rent_line are present.
-Spice.registerHelper("go_watch_it_ifHasBothBuyAndRent", function(buy_line, rent_line, options) {
+Spice.registerHelper("gwi_ifHasBothBuyAndRent", function(buy_line, rent_line, options) {
   if (buy_line && buy_line != "" && rent_line && rent_line != "") {
     return options.fn(this);
   } else {
@@ -81,7 +81,7 @@ Spice.registerHelper("go_watch_it_ifHasBothBuyAndRent", function(buy_line, rent_
 });
 
 // Check to see if a value is present.
-Spice.registerHelper("go_watch_it_ifExists", function(buy_line, options) {
+Spice.registerHelper("gwi_ifExists", function(buy_line, options) {
   if (buy_line && buy_line != "") {
     return options.fn(this);
   } else {
@@ -92,7 +92,7 @@ Spice.registerHelper("go_watch_it_ifExists", function(buy_line, options) {
 // Check to see if the buy_line/rent_line includes a price.
 // This is because some provider formats (like Netflix) have
 // 'Included with Subscription' in their buy line.
-Spice.registerHelper("go_watch_it_ifHasPrice", function(line, options) {
+Spice.registerHelper("gwi_ifHasPrice", function(line, options) {
   if (line.split("$").length > 1) {
     return options.fn(this);
   } else {
@@ -102,14 +102,14 @@ Spice.registerHelper("go_watch_it_ifHasPrice", function(line, options) {
 
 
 // Grab dollar amount from 'Rent from $X.XX' string.
-Spice.registerHelper("go_watch_it_price", function(line, options) {
+Spice.registerHelper("gwi_price", function(line, options) {
   var strings = line.split("$")
   return "$" + strings[strings.length - 1]
 });
 
 // Get the class for the footer element based on whether or not both the buy_line
 // and rent_line are present.
-Spice.registerHelper("go_watch_it_footerClass", function(buy_line, rent_line, options) {
+Spice.registerHelper("gwi_footerClass", function(buy_line, rent_line, options) {
   var klass = 'gwi-footer';
   if (buy_line && buy_line != '' && rent_line && rent_line != '') {
     klass += ' double';
