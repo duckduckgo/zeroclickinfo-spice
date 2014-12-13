@@ -46,6 +46,7 @@
 
 #color_picker_container #sample {
     height: 128px;
+    margin-bottom: 10px;
     width: 200px;
     margin-left: 32px;
 }
