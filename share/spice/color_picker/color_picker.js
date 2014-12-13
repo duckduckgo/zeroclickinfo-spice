@@ -412,6 +412,14 @@
 
             local_dom.$saturation_value_picker.css('background-color', current_color.hex_hue);
             local_dom.$sample.css('background-color', current_color.hex);
+            local_dom.$sample.text(current_color.hex);
+            if (current_color.hsv.value < 70) {
+                local_dom.$sample.addClass('dark');
+                local_dom.$sample.removeClass('light');
+            } else {
+                local_dom.$sample.addClass('light');
+                local_dom.$sample.removeClass('dark');
+            }
 
             local_dom.$saturation_value_marker.css('top', markers.saturation_value.y);
             local_dom.$saturation_value_marker.css('left', markers.saturation_value.x);
@@ -419,6 +427,14 @@
 
             local_dom.$palette_sample.each(function(i) {
                 $(this).css('background-color', current_color.palette[i]);
+                $(this).text(current_color.palette[i]);
+                if (current_color.hsv.value < 70) {
+                    $(this).addClass('dark');
+                    $(this).removeClass('light');
+                } else {
+                    $(this).addClass('light');
+                    $(this).removeClass('dark');
+                }
             });
         }
 
