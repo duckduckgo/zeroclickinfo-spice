@@ -74,3 +74,16 @@
     height: 75px;
     width: 120px;
 }
+
+#color_picker_container .dark {
+    color: white;
+}
+
+#color_picker_container .light {
+    color: black;
+}
+
+#color_picker_container .sample {
+    text-align: center;
+    
+}
