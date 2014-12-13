@@ -247,6 +247,8 @@
             update_palette();
         }
 
+        //Calculates the correct positions for the draggable markers in the hue and saturation/value
+        //  pickers, relative to the picker.
         function get_marker_positions(hsv) {
             var markers = {
                 hue: {
@@ -386,8 +388,6 @@
             var palette = [];
             for (var i = 0; i < hue.length; i++)
                 palette.push(convert_hsv_to_hex(hue[i], saturation[i], value[i]));
-            while (palette.length < 4)
-                palette.push('transparent');
 
             return palette;
         }
