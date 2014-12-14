@@ -63,7 +63,9 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                     break;
                 }
             }
-            return time;
+            if (time <= 3660957) { // 3660957 == 999.99h999.9m999s
+                return time;
+            }
         }
 
         var time_left, last_update, update_int,
