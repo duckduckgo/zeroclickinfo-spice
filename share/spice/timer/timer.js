@@ -43,18 +43,21 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         }
 
         function parseQueryForTime(){
-            var q = DDG.get_query().replace('timer', '').replace('online', ''),
-                regex = new RegExp(/(\d+) ?(min|sec|h)/),
+            var q = DDG.get_query().replace('timer', '').replace('online', '').replace('s','sec').replace('m','min'),
+                regex = new RegExp(/([\d]+\.?[\d]*) ?(min|sec|h)/),
                 time = 0;
 
             while (true){
                 var match = regex.exec(q);
                 if (match){
-                    var val = parseInt(match[1]),
-                        unit = match[2];
+                    var val = parseFloat(match[1]),
+                    unit = match[2];
                     if (unit === 'h') time += val*60*60;
                     else if (unit === 'min') time += val*60;
-                    else if (unit === 'sec') time += val;
+                    else if (unit === 'sec') {
+                        val = Math.round(val);
+                        time += val;
+                    }
                     q = q.replace(match[0], '');
                 } else {
                     break;
@@ -186,7 +189,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             $done_modal.hide();
             resetTimer();
         })
-        
+
         $('.timer__time-input').keydown(function(event){
             //make sure the bang dropdown doesn't trigger
             event.stopPropagation();

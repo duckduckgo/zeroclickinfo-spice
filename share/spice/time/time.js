@@ -9,23 +9,24 @@
         var script = $('[src*="/js/spice/time/"]')[0],
             source = $(script).attr("src"),
             // Query is normalized as we'll normalize the generated strings.
-            query = decodeURIComponent(source.match(/time\/([^\/]+)/)[1]).toLowerCase().split(' ').sort().join(' '),
+            query = decodeURIComponent(source.match(/time\/([^\/]+)/)[1]).toLowerCase(),
             chosen;
-        
+
         for(var i = 0; i < api.locations.length; i++) {
-            if(DDG.stringsRelevant(query, api.locations[i].geo.name + " " + api.locations[i].geo.country.name)) {
+            if(DDG.stringsRelevant(query, api.locations[i].geo.name + " " + api.locations[i].geo.country.name) ||
+               DDG.stringsRelevant(query, api.locations[i].geo.name)) {
                 chosen = api.locations[i];
                 break;
             }
         }
-        
+
         // If there isn't a place, return immediately.
         if(!chosen) {
             return;
         }
 
         var dateObj = DDG.getDateFromString(chosen.time.iso),
-            months = ['January', 'February', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December'],
+            months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         //Convert 24 hour time to 12 hour time
