@@ -31,6 +31,8 @@ function ddg_spice_forecast(r) {
   
   // Set up some stuff we'll need
   var //$container = $('#zci-forecast'),  // #spice_forecast'
+      iconFiletype = 'png', 
+      iconPath = '/assets/weather/',
       units = (r.flags && r.flags.units) || 'us',
       unit_labels = {
         'us': {speed: 'mph', temperature: 'F'},
@@ -46,6 +48,10 @@ function ddg_spice_forecast(r) {
   if(!(units in unit_labels)) {
       units = 'us';
   }
+  // use svg if it's supported and we need it (high pixel density)
+  if (Modernizr.svg == true && (DDG.is2x || DDG.is3x)) {
+    iconFiletype = 'svg';
+  }
 
   // Skycons (static version of these: http://darkskyapp.github.io/skycons/)
   // var set_skycons = function(elem_id, type) {
@@ -60,31 +66,27 @@ function ddg_spice_forecast(r) {
   //   $elem.replaceWith($img)
   // };
 
-  var get_skycon = function(type) {
-    return 'http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif';
-  };
-
-  var available_skycon_icons = [
-    'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy', 'partly_cloudy_day',
-    'partly_cloudy_night', 'clear_day', 'clear_night'
+  var availableIcons = [
+    'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy', 'partly-cloudy-day',
+    'partly-cloudy-night', 'clear-day', 'clear-night', 'hail', 'thunderstorm', 'tornado'
   ];
 
-  var skycon_type = function(icon) {
-    if (icon === 'hail') {
-      icon = 'sleet';
-    }
-    icon = icon.replace(/-/g, '_');
-    if ($.inArray(icon, available_skycon_icons) === -1) {
+  var getIcon = function(type) {
+    return { 'icon': type, 'path': iconPath, 'file': iconFiletype }
+  }
+  
+  var getIconType = function(icon) {
+    if ($.inArray(icon, availableIcons) === -1) {
       icon = 'cloudy';
     }
     return icon;
-  };
+  }
 
   // Convert a wind bearing in degrees to a string
   var wind_bearing_to_str = function(bearing) {
     var wind_i = Math.round(bearing / 45);
     return ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'][wind_i];
-  };
+  }
   
   // Build the current conditions
   var build_currently = function(f) {
@@ -145,7 +147,7 @@ function ddg_spice_forecast(r) {
       currentObj.wind = 'Wind: '+wind_speed;
     }
 
-    currentObj.icon = get_skycon(skycon_type(f.currently.icon));
+    currentObj.icon = getIcon(getIconType(f.currently.icon));
 
     return currentObj;
   }
@@ -196,7 +198,7 @@ function ddg_spice_forecast(r) {
       dailyObj[i].day = i == 0 ? 'Today' : day_strs[(today_i+i)%7];
       dailyObj[i].highTemp = Math.round(day.temperatureMax)+'&deg;';
       dailyObj[i].lowTemp = Math.round(day.temperatureMin)+'&deg;';
-      dailyObj[i].icon = get_skycon(skycon_type(days[i].icon));
+      dailyObj[i].icon = getIcon(getIconType(days[i].icon));
       dailyObj[i].tempBar = {
         height: max_temp_height * (day.temperatureMax - day.temperatureMin) / temp_span,
         top: max_temp_height * (high_temp - day.temperatureMax) / temp_span
@@ -254,6 +256,12 @@ function ddg_spice_forecast(r) {
       altMeta = '<a id="fe_temp_switch" class="tx-clr--dk2"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a>';
 
   // Render/Display
+    Spice.registerHelper("forecast_icon", function(obj, options) {
+      obj.size = options && options.hash && options.hash.size || "40px";
+
+      return DDG.exec_template(Spice.forecast.forecast_icons,obj);
+    });
+    
     Spice.add({
         id: 'forecast',
         name: 'Weather',

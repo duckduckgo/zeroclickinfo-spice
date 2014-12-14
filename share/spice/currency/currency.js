@@ -64,11 +64,12 @@
         if(mainConv["from-currency-symbol"] !== mainConv["to-currency-symbol"]) {
             // Flag the input to get different output
             // if is pair get paris tile layout
-            mainConv.isPair = true;
             results = [mainConv];
         } else {
-            // Exit early for now to disable tile view.
-            return; 
+            // Mark which item is the first one.
+            // Since HandlebarsJS (with the way we use them) is unaware of the current index.
+            mainConv.initial = true;
+            results.push(mainConv);
             
             for(var i = 0; i < topCovs.length; i++) {
                 results.push(topCovs[i]);
@@ -104,6 +105,19 @@
             return DDG.commifyNumber(x);
         }
         
+        var templateObj = {
+            detail: Spice.currency.detail,
+            detail_mobile: Spice.currency.detail_mobile,
+            item: Spice.currency.item,
+            item_detail: false
+        };
+        
+        // We need to disable the detail view when we're showing the tiles.
+        if(results.length > 1) {
+            templateObj.detail = false;
+            templateObj.detail_mobile = false;
+        }
+        
         Spice.add({
             id: 'currency',
             name: 'Currency',
@@ -112,7 +126,7 @@
                 sourceUrl: "http://www.xe.com",
                 sourceName: "xe.com",
                 sourceIconUrl: "http://www.xe.com/favicon.ico",
-                itemType: "Currencies"
+                itemType: "Conversions"
             },
             normalize: function(item) {
                 // Return null if the results aren't numbers.
@@ -136,18 +150,15 @@
                     xeDate: xeDate
                 };
             },
-            templates: {
-                detail: Spice.currency.detail,
-                detail_mobile: Spice.currency.detail_mobile
-            },
+            templates: templateObj,
             onShow: function() {
                 // The desktop template depends on a JS function that manages the
                 // size of the container.
                 if(!is_mobile) {
-                    $(window).load(resize);
+                    $(window).on('load', resize);
                     $(window).resize(resize);
                 } else {
-                    $(window).load(resizeMobile);
+                    $(window).on('load', resizeMobile);
                     $(window).resize(resizeMobile);
                 }
             }

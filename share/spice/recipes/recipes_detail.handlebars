@@ -17,6 +17,7 @@
                     <span class="detail__cooking-time"><span>Cooking </span>Time: {{.}} minutes</span>
                 {{/cookingTime}}
             </p>
+            <div class="detail__content--recipe">
             {{#if ingredientDetails}}
                 <div class="detail__ingredients">
                     Ingredients: 
@@ -41,6 +42,7 @@
                     </ul>
                 </div>
             {{/if}}
+            </div>
             <a href="{{url}}" class="detail__links__btn  view-btn--recipes">
                 <img class="btn__icon" src="{{meta.sourceIconUrl}}" />
                 View Full Recipe

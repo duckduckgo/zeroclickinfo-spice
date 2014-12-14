@@ -23,12 +23,11 @@
             "usa":"us"};
         var months = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."];
 
-
         var people = api_result.people;
 
         for (var i = 0; i < people.length; i++) {
             //add 2-letter country code
-            people[i].country_code = codes[people[i].country];
+            people[i].country_code = codes[people[i].country.toLowerCase()];
 
             //compute number of days in space
             var launchdate = people[i].launchdate.split("-");

@@ -1,3 +1,83 @@
+/* Tile view */
+
+.zci--currency .btn--container {
+    position: absolute;
+    display: none;
+    top: 0.4em;
+    right: 0.5em;
+}
+
+.zci--currency .btn--container .ddgsi {
+    padding-right: 7px;
+    padding-left: 7px;
+    padding-bottom: 0px;
+    padding-top: 0;
+    font-size: 16px;
+}
+
+.zci--currency .btn--container .ddgsi a:hover {
+    color: inherit;
+}
+
+.zci--currency .highlight .btn--container {
+    display: inline;
+}
+
+.zci--currency .tile--c {
+    width: 13em;
+    height: 12.5em;
+}
+
+.zci--currency .tile--s.tile--c {
+    text-align: center;
+    padding-top: 1.4em;
+}
+
+.zci--currency .tile--s .currency--border {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    background-color: rgba(50,50,50, .2);
+}
+
+.is-mobile .zci--currency .tile--s .currency--border {
+    display: none;
+}
+
+.zci--currency .tile--s img {
+    height: 32px;
+    vertical-align: top;
+    z-index: 2;
+    position: relative;
+}
+
+    .is-mobile .zci--currency .tile--s img {
+        border: 0.2em solid rgba(50,50,50, .2);
+        border-radius: 50%;
+    }
+
+.zci--currency .tile--s .currency--symbol {
+    margin-top: 0.6em;
+}
+
+.zci--currency .tile--s .currency--amount {
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+.zci--currency .tile--s .currency--rate {
+    margin-top: 0.6em;
+}
+
+/* Desktop view */
+
 .zci--currency section {
     display: inline-block;
 }
@@ -26,15 +106,11 @@
         text-align: center;
     }
 
-    .is-mobile .zci--currency .tile--s img {
-        height: 32px;
-        vertical-align: top;
-        border: 0.2em solid #d0d0d0;
-        border-radius: 50%;
-        background-color: #d0d0d0;
+    .is-mobile .zci--currency .tile--s.large .zci--currency-first-part img {
+        vertical-align: middle;
     }
 
-    .is-mobile .zci--currency .tile--s.large img {
+    .is-mobile .zci--currency .tile--s.large .zci--currency-second-part img {
         vertical-align: middle;
     }
 
@@ -61,7 +137,6 @@
 }
 
 .zci--currency-amount {
-    color:#000;
     font-size: 2.7em;
     font-weight: bold;
     padding: 0 0.1em 0 0.2em;
@@ -109,9 +184,6 @@
         display: initial;
     }
 
-
-
-
 .zci--currency-equal {
     font-size: 2em;  
     margin: 0 0.5em;
@@ -124,7 +196,7 @@
     .is-mobile .zci--currency-equal .horizontal {
         border-bottom: 1px solid #dfdfdf;
         display: inline-block;
-        width: 41%;
+        width: 39.8%;
         vertical-align: 0.35em;
     }
 
@@ -165,7 +237,7 @@
     }
 }
 
-/* These are used for the mobile template. */
+/* Mobile view */
 
 .is-mobile .tile--s {
     padding-left: 0;
@@ -175,7 +247,7 @@
     color: inherit;
 }
 
-.is-mobile .zci--currency .zci__metabar__more-at {
+.is-mobile .zci--currency .zci__metabar__more-at.custom {
     line-height: inherit;
 }
 
