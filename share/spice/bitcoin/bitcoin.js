@@ -35,6 +35,10 @@
             prices = null,
             currency = null;
 
+        if(!api_result) {
+            return Spice.failed('bitcoin');
+        }
+        
         if (params.length == 0) {
             currency = DEFAULT_CURRENCY;
             prices = api_result[currency];
