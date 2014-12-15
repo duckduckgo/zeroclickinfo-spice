@@ -184,10 +184,16 @@
     function show_whois(api_result) {
         var shared_spice_data = get_shared_spice_data(api_result);
 
-        // add the attributes specific to this template
-        shared_spice_data.data = api_result;
-        shared_spice_data.templates.options.keySpacing = true;
-        shared_spice_data.templates.options.content = Spice.whois.whois;
+        // use internal 'record' template
+        shared_spice_data.templates.options = {
+            content: 'record',
+            rowHighlight: true,
+            keySpacing: true
+        };
+        shared_spice_data.data = {
+            'record_data': api_result,
+            'record_keys': ['Status', 'Registered to', 'Email', 'Last updated', 'Expires']
+        };
 
         Spice.add(shared_spice_data);
     }

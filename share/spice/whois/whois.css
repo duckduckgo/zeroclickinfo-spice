@@ -1,24 +1,26 @@
-.zci--whois span {
-    display: block;
+@media (max-width: 600px) {
+    .zci--whois table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .zci--whois table td {
+        word-wrap: break-word;
+    }
+
+    .zci--whois .record td.record__cell__key {
+        width: 100px;
+    }
 }
 
-.zci--whois dl {
-    display: block;
-    overflow: hidden;
-    padding: 0 0 5px 132px;
-    position: relative;
-    top: -5px;
+.zci--whois .zci__more-at {
+    padding-top: 0.75em;
 }
 
-.zci--whois dt {
-    clear: left;
-    float: left;
-    font-weight: bold;
-    margin: 5px 0 0 -132px;
+.zci--whois .record td {
+    padding: 0.4em;
 }
 
-.zci--whois dd {
-    margin: 5px 0 0 -132px;
-    padding-left: 132px;
-    width: 100%;
+.zci--whois .record .record__cell__key {
+    width: 150px;
 }
