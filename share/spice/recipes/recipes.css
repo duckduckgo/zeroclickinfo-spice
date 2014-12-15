@@ -165,10 +165,10 @@
     width: 40%;
 }
 
+/* background color applied via template to this element */
 .detail__flavors__strength span {
     display: inline-block;
     height: 0.4em;
-    background: #f0624d;
     vertical-align: middle;
     border-radius: 2em;
 }
