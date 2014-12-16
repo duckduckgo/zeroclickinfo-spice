@@ -45,9 +45,15 @@
             templates: {
                 group: 'text',
                 options: {
-                    content: Spice.seasons.content,
                     moreAt: true
                 }
+            },
+
+            normalize: function(item){
+                return {
+                    title: result.date,
+                    subtitle: result.event + " in " + result.location
+                };
             }
         });
     };
