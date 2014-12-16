@@ -2,7 +2,8 @@ package DDG::Spice::Whois;
 # ABSTRACT: Returns an internet domain's availability and whois information.
 
 use DDG::Spice;
-
+use Data::Validate::Domain qw(is_domain);
+ 
 # Metadata for this spice
 name 'Whois';
 source 'Whois API';
@@ -60,52 +61,17 @@ spice to => 'http://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&o
 handle query_lc => sub {
     my ($query) = @_;
     return if !$query; # do not trigger this spice if the query is blank
-
+    
+    # strip keywords and http(s)
+    $query =~ s/https?:\/\/|$whois_keywords_qr|\?//g;
+     
     # trim any leading and trailing spaces
-    $query = trim($query);
+    $query =~ s/^\s+|\s+$//;
+    
+    
+    return unless defined $query;
 
-    # remove any trailing question marks, which are allowed
-    # but can disrupt the regexs
-    $query =~ s/\?$//;
-
-    # parse the URL into its parts
-    my ($subdomains, $domain, $tld, $port, $resource_path) = $query =~ $url_qr; 
-
-    # debugging output
-    # warn 'query: ', $query, "\t", 'sub: ', $subdomains || '', "\t", 'domain: ', $domain || '', "\t", 'tld: ', $tld || '', "\t", 'port: ', $port || '', "\t", 'resource path: ', $resource_path || '' if $is_debug;
-
-    # get the non-URL text from the query by combining the text before and after the match
-    my $non_url_text = $` . $'; #' <-- closing tick added for syntax highlighting
-
-    # REMOVED 2014.09.29 (see naked domain note above)
-    #
-    # is the string a naked domain, i.e. is there any text besides the domain?
-    #my $is_naked_domain = trim($non_url_text) eq '';
-
-    # skip if we're missing a domain or a tld
-    return if !defined $domain || $domain eq '' || !defined $tld || $tld eq '';
-
-    # REMOVED 2014.09.29 (see naked domain note above)
-    #
-    # skip if we have naked domain that contains a non-www subdomain, a port or a resource_path.
-    # e.g. continue: 'http://duckduckgo.com' is allowed
-    #      skip: 'http://blog.duckduckgo.com'
-    #      skip: 'http://duckduckgo.com:8080'
-    #      skip:  'http://blog.duckduckgo.com/hello.html'
-    #
-    # note that if the user includes a whois keyword to any of these,
-    # such as 'whois http://blog.duckduckgo.com', they we continue.
-    #
-    # this signals to us that the user wants a whois result, and isn't just
-    # trying to nav to the URL they typed.
-    #
-    #return if $is_naked_domain
-    #    && ( (defined $subdomains && $subdomains !~ /^www.$/)
-    #         || (defined $port && $port ne '')
-    #         || (defined $resource_path && $resource_path ne ''));
-
-    # return the combined domain + tld (after adding a period in between)
-    return lc "$domain.$tld";
+    return lc $query if is_domain $query;
 };
 
 # Returns a string with leading and trailing spaces removed.
