@@ -13,7 +13,7 @@
         var script = $('[src*="/js/spice/seasons/"]')[0];
         var source = $(script).attr("src");
         var query = source.match(/seasons\/[0-9]{4}\/[a-zA-Z]{2}\/([a-z]+)/)[1];
-        var season = [ "spring", "summer", "autumn", "winter" ].indexOf(query);
+        var season = $.inArray(query, [ "spring", "summer", "autumn", "winter" ]);
 
         // Somehow we got an unknown season, bail out
         if (season < 0) {
