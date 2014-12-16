@@ -10,6 +10,7 @@
             id: "zanran",
             name: "Answer",
             data: api_result.results,
+            signal: "medium",
             meta: {
                 sourceName: "Zanran",
                 sourceUrl: api_result.more,
