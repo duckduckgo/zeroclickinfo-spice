@@ -32,8 +32,8 @@
             id: "color_picker",
             name: "ColorPicker",
             data: {
-                saturation_value_path: 'http://chrisharrill.com/images/saturation_value_gradient.png',//DDG.get_asset_path('color_picker', 'assets/saturation_value_gradient.png'),
-                hue_path: 'http://chrisharrill.com/images/hue_gradient.png'//DDG.get_asset_path('color_picker', 'assets/hue_gradient.png')
+                saturation_value_path: DDG.get_asset_path('color_picker', 'assets/saturation_value_gradient.png'),
+                hue_path: DDG.get_asset_path('color_picker', 'assets/hue_gradient.png')
             },
             meta: {},
             templates: {
