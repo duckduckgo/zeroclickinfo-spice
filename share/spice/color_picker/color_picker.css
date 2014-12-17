@@ -8,12 +8,14 @@
 #color_picker_container #saturation_value_picker {
     width: 256px;
     height: 256px;
+    margin-bottom: 16px;
 }
 
 #color_picker_container #hue_picker {
     width: 32px;
     height: 256px;
     margin-left: 16px;
+    margin-bottom: 16px;
 }
 
 #color_picker_container #color_inputs {
@@ -85,5 +87,5 @@
 
 #color_picker_container .sample {
     text-align: center;
-    
+
 }
