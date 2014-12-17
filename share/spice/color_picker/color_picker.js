@@ -24,6 +24,9 @@
         var saturation_value_mousedown = false;
         var hue_mousedown = false;
 
+        //Prevent duplicate touch/mouse events
+        var mouse_and_touch_locked = false;
+
         //TODO: use the real image paths
         Spice.add({
             id: "color_picker",
@@ -89,9 +92,25 @@
             return coordinates;
         }
 
+        function mouse_and_touch_handler(callback) {
+            return function(e) {
+                    if (!mouse_and_touch_locked) {
+                        mouse_and_touch_locked = true;
+                        setTimeout(function() {mouse_and_touch_locked = false;}, 0);
+                        if (e.changedTouches && e.changedTouches.length > 0) {
+                            callback(e.changedTouches[0]);
+                        } else if (e.targetTouches && e.targetTouches.length > 0) {
+                            callback(e.targetTouches[0])
+                        } else {
+                            callback(e);
+                        }
+                    }
+            };
+        }
+
         /* EVENT HANDLERS */
 
-        function saturation_value_clicked() {
+        function saturation_value_clicked(event) {
             var coordinates = get_real_coordinates(event, local_dom.$saturation_value_picker);
 
             //Use the coordinates of the mouse/touch event to calculate the new saturation/value
@@ -105,7 +124,7 @@
             update_all_from_hsv(hue, saturation, value);
         }
 
-        function hue_clicked() {
+        function hue_clicked(event) {
             var coordinates = get_real_coordinates(event, local_dom.$hue_picker);
 
             //Use the coordinates of the mouse/touch event to calculate the new hue
@@ -626,20 +645,27 @@
             //  around in the pickers, so we need to keep the browser from using the default drag
             //  action on images. Then we respond to mousemove events if the mouse was already down
             //  on the picker the same way we respond to a click.
-            local_dom.$saturation_value_picker.click(saturation_value_clicked);
-            local_dom.$saturation_value_picker.on('dragstart', function() { event.preventDefault();});
-            local_dom.$saturation_value_picker.mousedown(function() { saturation_value_mousedown = true; });
-            local_dom.$saturation_value_picker.mousemove(function() { if (saturation_value_mousedown) saturation_value_clicked(); });
-            local_dom.$hue_picker.click(hue_clicked);
-            local_dom.$hue_picker.on('dragstart', function() { event.preventDefault();});
-            local_dom.$hue_picker.mousedown(function() { hue_mousedown = true; });
-            local_dom.$hue_picker.mousemove(function() { if (hue_mousedown) hue_clicked(); });
+            local_dom.$saturation_value_picker.click(mouse_and_touch_handler(saturation_value_clicked));
+            local_dom.$saturation_value_picker.on('dragstart', function(event) {event.preventDefault();});
+            local_dom.$saturation_value_picker.mousedown(mouse_and_touch_handler(function(event) { saturation_value_mousedown = true; }));
+            local_dom.$saturation_value_picker.mousemove(mouse_and_touch_handler(function(event) { if (saturation_value_mousedown) saturation_value_clicked(event); }));
+
+            local_dom.$hue_picker.click(mouse_and_touch_handler(hue_clicked));
+            local_dom.$hue_picker.on('dragstart', function(event) {event.preventDefault();});
+            local_dom.$hue_picker.mousedown(mouse_and_touch_handler(function(event) { hue_mousedown = true; }));
+            local_dom.$hue_picker.mousemove(mouse_and_touch_handler(function(event) { if (hue_mousedown) hue_clicked(event); }));
+
             $root.mouseup(function() { saturation_value_mousedown = false; hue_mousedown = false; });
             $root.focusout(function() { saturation_value_mousedown = false; hue_mousedown = false; });
 
-            //Also need to listen for touchmove events for touch-enabled devices.
-            local_dom.$saturation_value_picker.on('touchmove', function() { saturation_value_clicked(); event.preventDefault(); });
-            local_dom.$hue_picker.on('touchmove', function() { hue_clicked(); event.preventDefault(); });
+            //Also need to listen for touch events for touch-enabled devices.
+            local_dom.$saturation_value_picker[0].addEventListener('touchstart', mouse_and_touch_handler(saturation_value_clicked), false);
+            local_dom.$saturation_value_picker.on('touchmove', function(event) {event.preventDefault();});
+            local_dom.$saturation_value_picker[0].addEventListener('touchmove', mouse_and_touch_handler(saturation_value_clicked), false);
+
+            local_dom.$hue_picker[0].addEventListener('touchstart', mouse_and_touch_handler(hue_clicked), false);
+            local_dom.$hue_picker.on('touchmove', function(event) {event.preventDefault();});
+            local_dom.$hue_picker[0].addEventListener('touchmove', mouse_and_touch_handler(hue_clicked), false);
 
             //Listen for changes to any of the text inputs
             local_dom.$red_input.change(red_change);
