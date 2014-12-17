@@ -109,7 +109,3 @@ Spice.registerHelper("gwi_footerClass", function(buy_line, rent_line, options) {
 
     return klass;
 });
-
-Spice.registerHelper('gwi_imageProxy', function(options) {
-    return "https://images.duckduckgo.com/iu/?u=";
-});
