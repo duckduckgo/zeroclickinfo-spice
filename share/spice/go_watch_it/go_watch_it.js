@@ -23,11 +23,11 @@
         return avail;
     }
 
-    env.ddg_spice_go_watch_it = function(data) {
-        function getUrl(watchable) {
-            return 'http://gowatchit.com' + (watchable.url ? watchable.url : "");
-        }
+    function getUrl(watchable) {
+        return 'http://gowatchit.com' + (watchable.url ? watchable.url : "");
+    }
 
+    env.ddg_spice_go_watch_it = function(data) {
         if (!data || data.error || data.search.movies.length === 0 && data.search.shows.length === 0) {
             return Spice.failed('go_watch_it');
         }
