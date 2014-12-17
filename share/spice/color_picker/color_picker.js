@@ -64,7 +64,7 @@
             if (num > upper_bound)
                 num = Math.floor(upper_bound);
 
-            return num
+            return num;
         }
 
         //Converts a given string value to a number, which is forced between the given bounds. If
@@ -79,12 +79,12 @@
             if (num > upper_bound)
                 num = upper_bound;
 
-            return num
+            return num;
         }
 
         //Finds the coordinates of a mouse or touch event relative to an element.
         function get_real_coordinates(event, $element) {
-            var offset = local_dom.$saturation_value_picker.offset();
+            var offset = $element.offset();
             var coordinates = {
                 x: event.pageX - offset.left,
                 y: event.pageY - offset.top
@@ -92,15 +92,20 @@
             return coordinates;
         }
 
+        //Creates a single handler that can be user for both mouse and touch events.
         function mouse_and_touch_handler(callback) {
             return function(e) {
                     if (!mouse_and_touch_locked) {
+                        //Certain actions will result in both a mouse and touch event being fired.
+                        //  In these cases, the combination of the lock and timeout below will keep
+                        //  both events from being processed.
                         mouse_and_touch_locked = true;
                         setTimeout(function() {mouse_and_touch_locked = false;}, 0);
+
                         if (e.changedTouches && e.changedTouches.length > 0) {
                             callback(e.changedTouches[0]);
                         } else if (e.targetTouches && e.targetTouches.length > 0) {
-                            callback(e.targetTouches[0])
+                            callback(e.targetTouches[0]);
                         } else {
                             callback(e);
                         }
@@ -444,6 +449,7 @@
             local_dom.$saturation_value_marker.css('left', markers.saturation_value.x);
             local_dom.$hue_marker.css('top', markers.hue.y);
 
+            //Change the color of the text in the samples to make sure it is legible.
             local_dom.$palette_sample.each(function(i) {
                 $(this).css('background-color', current_color.palette[i]);
                 $(this).text(current_color.palette[i]);
@@ -456,6 +462,8 @@
                 }
             });
         }
+
+        /* CONVERSIONS */
 
         function convert_hsv_to_rgb(hue, saturation, value) {
             var c = (value / 100) * (saturation / 100);
@@ -647,12 +655,12 @@
             //  on the picker the same way we respond to a click.
             local_dom.$saturation_value_picker.click(mouse_and_touch_handler(saturation_value_clicked));
             local_dom.$saturation_value_picker.on('dragstart', function(event) {event.preventDefault();});
-            local_dom.$saturation_value_picker.mousedown(mouse_and_touch_handler(function(event) { saturation_value_mousedown = true; }));
+            local_dom.$saturation_value_picker.mousedown(mouse_and_touch_handler(function() { saturation_value_mousedown = true; }));
             local_dom.$saturation_value_picker.mousemove(mouse_and_touch_handler(function(event) { if (saturation_value_mousedown) saturation_value_clicked(event); }));
 
             local_dom.$hue_picker.click(mouse_and_touch_handler(hue_clicked));
             local_dom.$hue_picker.on('dragstart', function(event) {event.preventDefault();});
-            local_dom.$hue_picker.mousedown(mouse_and_touch_handler(function(event) { hue_mousedown = true; }));
+            local_dom.$hue_picker.mousedown(mouse_and_touch_handler(function() { hue_mousedown = true; }));
             local_dom.$hue_picker.mousemove(mouse_and_touch_handler(function(event) { if (hue_mousedown) hue_clicked(event); }));
 
             $root.mouseup(function() { saturation_value_mousedown = false; hue_mousedown = false; });
