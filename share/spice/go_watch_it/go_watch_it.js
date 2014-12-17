@@ -1,30 +1,31 @@
 (function (env) {
     "use strict";
+
+    function getName(watchable) {
+        var name = "Watch " + watchable.title;
+        if (!watchable.url) {
+            name += " (TV)"
+        }
+        name += " ("+watchable.year+")";
+
+        return name;
+    }
+
+    function getAlertAvailability(watchable) {
+        var avail = {
+            provider_format_logos: {
+                dark: 'http://s3.amazonaws.com/gowatchit/partner_logos/gowatchit_logo_white_bars.jpg'
+            },
+            buy_line: watchable.title,
+            format_line: "Set Alerts",
+            watch_now_url: getUrl(watchable)
+        }
+        return avail;
+    }
+
     env.ddg_spice_go_watch_it = function(data) {
         function getUrl(watchable) {
             return 'http://gowatchit.com' + (watchable.url ? watchable.url : "");
-        }
-
-        function getName(watchable) {
-            var name = "Watch " + watchable.title;
-            if (!watchable.url) {
-                name += " (TV)"
-            }
-            name += " ("+watchable.year+")";
-
-            return name;
-        }
-
-        function getAlertAvailability(watchable) {
-            var avail = {
-                provider_format_logos: {
-                    dark: 'http://s3.amazonaws.com/gowatchit/partner_logos/gowatchit_logo_white_bars.jpg'
-                },
-                buy_line: watchable.title,
-                format_line: "Set Alerts",
-                watch_now_url: getUrl(watchable)
-            }
-            return avail;
         }
 
         if (!data || data.error || data.search.movies.length === 0 && data.search.shows.length === 0) {
