@@ -16,7 +16,7 @@ spice wrap_jsonp_callback => 1;
 spice is_cached => 1;
 
 handle remainder => sub {
-    return $_ if($_ =~ /^\d{10}$/);                 # Checks if it's a 10 digit number
+    return $_ if $_ && $_ =~ /^\d{10}$/;                 # Checks if it's a 10 digit number
     return;
 };
 
