@@ -20,6 +20,7 @@ triggers any => "solstice", "equinox";
 
 spice from => "(.+)/(.+)/.*";
 spice to => 'https://api.xmltime.com/holidays?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&callback={{callback}}&country=$2&year=$1&types=seasons';
+
 spice is_cached => 0;
 
 # Handle statement
@@ -28,6 +29,10 @@ handle remainder_lc => sub {
     use constant SUMMER => 'summer';
     use constant AUTUMN => 'autumn';
     use constant WINTER => 'winter';
+
+    # Note: In 2014, Timeanddate.com API returned results for 1695 through 2290. 319 years into past, 76 years into future.
+    use constant YEARS_INTO_FUTURE => 276;
+    use constant API_EPOCH => 1965;
 
     # Common season aliases
     my %seasons = (
@@ -56,17 +61,22 @@ handle remainder_lc => sub {
 
     # Detect year
     my $year;
+    my $current_year = (localtime(time))[5] + 1900;
 
     if (/(\d{4})/) {
         $year = $1;
     } else {
-        $year = (localtime(time))[5] + 1900;
+        $year = $current_year;
     }
+
+    # Keep year within API limits
+    return unless (defined $year and $year >= API_EPOCH and $year <= ($current_year + YEARS_INTO_FUTURE));
 
     # Make sure all required parameters are set
     return unless (defined $year and defined $country and defined $season);
 
     # Season is not required for the API call, but used in the frontend
+    #$country = "ro";
     return $year, $country, $season;
 
 };
