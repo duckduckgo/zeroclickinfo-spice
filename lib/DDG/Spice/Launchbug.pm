@@ -7,7 +7,7 @@ spice is_cached => 1;
 
 name "Launchbug";
 description "Returns infos about a given bug-id on Launchpad.net";
-primary_example_queries "LP: 7", "LP: #2983", "(LP: #1234)";
+primary_example_queries "LP: 7", "LP: #2983", "(LP: #1234)", "launchbug 23", "bugid 234";
 category "programming";
 topics "programming";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Launchbug.pm";
@@ -20,9 +20,8 @@ spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
 
-    my $num = $_;
-    return unless $num && $num =~ /^\d+$/;
-    return $num;
+    return unless $_ && $_ =~ qr/^\#?(\d+)$/;
+    return $1;
 
 };
 
