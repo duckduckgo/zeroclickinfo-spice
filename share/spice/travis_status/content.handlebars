@@ -1,4 +1,4 @@
-<h3 class="zci__header text--primary">
+<h3 class="zci__header">
   {{! checks if the status is either good, minor, or major }}
   {{#TravisStatus_ifCond status.indicator "none"}}
     The status of Travis CI is <span class="tcistatus--none">good</span>.
@@ -9,7 +9,7 @@
       Travis CI is experiencing <span class="tcistatus--major">{{status.indicator}}</span> issues.
     {{/TravisStatus_ifCond}}
   {{/TravisStatus_ifCond}}
-  {{#TravisStatus_ifNotEmpty description }}
-    <h6 class="zci__subheader text--secondary">{{description}}</h6>
+  {{#TravisStatus_ifNotEmpty status.description }}
+    <h6 class="zci__subheader">{{status.description}}</h6>
   {{/TravisStatus_ifNotEmpty}}
 </h3>
