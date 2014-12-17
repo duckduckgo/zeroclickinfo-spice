@@ -1,16 +1,6 @@
 (function (env) {
     "use strict";
 
-    function getName(watchable) {
-        var name = "Watch " + watchable.title;
-        if (!watchable.url) {
-            name += " (TV)"
-        }
-        name += " ("+watchable.year+")";
-
-        return name;
-    }
-
     function getAlertAvailability(watchable) {
         var avail = {
             provider_format_logos: {
@@ -40,7 +30,7 @@
 
         Spice.add({
             id: "go_watch_it",
-            name: getName(watchable),
+            name: "How to Watch",
             data: watchable.availabilities,
             meta: {
                 sourceName: 'gowatchit.com',
