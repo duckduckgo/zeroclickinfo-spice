@@ -29,7 +29,7 @@
         }
 
         if (!data || data.error || data.search.movies.length === 0 && data.search.shows.length === 0) {
-            return Spice.failed('GoWatchIt');
+            return Spice.failed('go_watch_it');
         }
 
         var movie = data.search.movies[0],
