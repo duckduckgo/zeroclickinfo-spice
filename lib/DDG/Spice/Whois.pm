@@ -3,6 +3,7 @@ package DDG::Spice::Whois;
 
 use DDG::Spice;
 use Data::Validate::Domain qw(is_domain);
+use Regexp::Common qw/net/;
  
 # Metadata for this spice
 name 'Whois';
@@ -62,12 +63,14 @@ handle query_lc => sub {
     my ($query) = @_;
     return if !$query; # do not trigger this spice if the query is blank
     
+my $interesting;
     # strip keywords and http(s)
     $query =~ s/https?:\/\/|$whois_keywords_qr|\?//g;
-     
+        
+    #my @matches = $query =~ m/($RE{net}{domain}{-nospace})/g;
+
     # trim any leading and trailing spaces
     $query =~ s/^\s+|\s+$//;
-    
     
     return unless defined $query;
 
