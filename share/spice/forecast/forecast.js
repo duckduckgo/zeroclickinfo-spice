@@ -404,13 +404,14 @@ function ddg_spice_forecast(r) {
         updateTempSwitch(uom);
     }
 
-    //when we press the small button, switch the temperature units
-    $('.fe_temp_switch').click( function() {
+    function tempSwitchClick() {
         uom = uom === 'F' ? 'C' : 'F';
-
-        updateUnitOfMeasure()
+        updateUnitOfMeasure();
 
         // update the setting so we remember this choice going forward:
         DDG.settings.set('kaj', uom === 'C' ? 'm' : 'u', { saveToCloud: true });
-    });
+    }
+
+    // when we press the small button, switch the temperature units
+    $('.fe_temp_switch').click(tempSwitchClick);
 }
