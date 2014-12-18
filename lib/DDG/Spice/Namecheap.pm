@@ -23,8 +23,14 @@ my @query_list = (
     DomainList => '$1',                                    # argument to method
 );
 
-my $query_url = "$namecheap_endpoint?". join('&', pairmap { "$a=$b" } @query_list );
-spice to => "https://duckduckgo.com/x.js?u=$query_url";
+my $query_url = uri_escape("$namecheap_endpoint?") . join( uri_escape('&'), pairmap {
+	# the param must always be escaped
+	my $param = uri_escape("$a=");
+	# the value must not be escaped if it is part of the environment or argument
+	my $val = $b;
+	"$param$val";
+	} @query_list );
+spice to => "https://duckduckgo.com/x.js?u=" . $query_url;
 
 spice wrap_jsonp_callback => 1;
 
