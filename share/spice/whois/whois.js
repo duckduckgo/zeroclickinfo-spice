@@ -6,8 +6,18 @@
         return Spice.failed('whois');
     }
 
-    // all the data is stored.
+    // get the search query
+    var script = $('[src*="/js/spice/whois/"]')[0],
+        source = $(script).attr("src"),
+        query = source.replace('/js/spice/whois/','')
+
+    // all the data is stored in WhoisRecord
     api_result = api_result.WhoisRecord;
+
+    // fail if the domain name the api returns does not match the searched domain
+    if(api_result.domainName != query) {
+        return Spice.failed('whois');
+    }
 
     // decide which template to show show_available or show_whois
     (is_domain_available(api_result)) ? show_available(api_result) : show_whois(api_result);
