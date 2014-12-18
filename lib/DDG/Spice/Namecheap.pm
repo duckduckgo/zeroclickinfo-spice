@@ -49,7 +49,7 @@ attribution github => ["tejas-manohar", "Tejas Manohar"],
             twitter => "tejasmanohar";
 
 # Triggers
-triggers any => "namecheap";
+triggers startend => "namecheap";
 
 my $domain_part_regex = qr|
                           (?:http://)?       # HTTP protocol scheme part [optional]
