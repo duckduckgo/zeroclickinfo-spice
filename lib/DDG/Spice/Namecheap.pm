@@ -26,7 +26,7 @@ my @query_list = (
 my $query_url = "$namecheap_endpoint?". join('&', pairmap { "$a=$b" } @query_list );
 spice to => "https://duckduckgo.com/x.js?u=$query_url";
 
-spice wrap_string_callback => 1;
+spice wrap_jsonp_callback => 1;
 
 # Metadata for this spice
 name "Namecheap DNS";
