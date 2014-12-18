@@ -48,15 +48,14 @@ spice to => 'http://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&o
 
 handle query_lc => sub {
     my ($query) = @_;
-    return if !$query; # do not trigger this spice if the query is blank
     
     # strip keywords and http(s)
     $query =~ s/https?:\/\/|$whois_keywords_qr|\?//g;
 
     # trim any leading and trailing spaces
     $query =~ s/^\s+|\s+$//;
-
-    print $query;  
+    
+    return if !$query; # do not trigger this spice if the query is blank
     
     return unless defined $query;
 
