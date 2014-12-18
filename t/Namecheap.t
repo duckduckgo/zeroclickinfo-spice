@@ -5,7 +5,7 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
-spice is_cached => 0;
+spice is_cached => 1;
 
 
 ddg_spice_test(
