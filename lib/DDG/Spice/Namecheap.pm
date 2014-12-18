@@ -24,7 +24,7 @@ my @query_list = (
 );
 
 my $query_url = "$namecheap_endpoint?". join('&', pairmap { "$a=$b" } @query_list );
-spice to => $query_url;
+spice to => "https://duckduckgo.com/x.js?u=$query_url";
 
 spice wrap_string_callback => 1;
 
