@@ -101,12 +101,12 @@
     function prettifyTimestamp(timestamp) {
         if(!timestamp) { return; }
         var dateObj = DDG.getDateFromString(timestamp),
+            monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             day = dateObj.getDate(),
-            month = dateObj.getMonth()+1,
+            month = monthArr[dateObj.getMonth()+1],
             year = dateObj.getFullYear();
         if(day<10) {day='0'+day};
-        if(month<10) {month='0'+month};
-        return year+'-'+month+'-'+day;
+        return month + " " + day + ", " + year;
     }
 
     // Searches an array of objects for the first value
