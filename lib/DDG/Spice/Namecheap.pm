@@ -8,7 +8,7 @@ use List::Util qw(pairmap);
 spice is_cached => 0; # do not cache query
 
 
-my $namecheap_endpoint = $ENV{DDG_SPICE_NAMECHEAP_ENDPOINT} || 'https://api.namecheap.com/xml.response';
+my $namecheap_endpoint = 'http://api.namecheap.com/xml.response';
 
 # environment variables:
 # DDG_SPICE_NAMECHEAP_USERNAME : Namecheap API username
