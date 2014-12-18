@@ -4,6 +4,7 @@ package DDG::Spice::Namecheap;
 use DDG::Spice;
 use Data::Validate::Domain qw(is_domain);
 use List::Util qw(pairmap);
+use URI::Escape;
 
 spice is_cached => 0; # do not cache query
 
