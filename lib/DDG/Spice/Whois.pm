@@ -2,8 +2,8 @@ package DDG::Spice::Whois;
 # ABSTRACT: Returns an internet domain's availability and whois information.
 
 use DDG::Spice;
-use Data::Validate::Domain qw(is_domain);
- 
+use Domain::PublicSuffix;
+
 # Metadata for this spice
 name 'Whois';
 source 'Whois API';
@@ -15,27 +15,13 @@ topics 'computing', 'geek', 'programming', 'sysadmin';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Whois.pm';
 
 attribution twitter => 'bjennelle',
-            github => ["b1ake", 'Blake Jennelle'];
-
-# turns on/off debugging output
-my $is_debug = 0;
+            github => ["b1ake", 'Blake Jennelle'],
+            github => ["chrisjwilsoncom", 'Chris Wilson']; 
 
 # additional keywords that trigger this spice
 my $whois_keywords_qr = qr/whois|who\sis|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns|(?:how\sto\s|)buy/i;
 
-# trigger this spice when the query starts or ends
-# with any of the whois keywords.
-#
-# note that there are additional guards in the handle() function that
-# narrow this spice's query space.
-#
 triggers query_raw =>
-    # 2014.09.29 - Removed naked domain triggers to reduce API calls,
-    #              because these are mostly navigational queries.
-    #
-    # allow the naked url with leading and trailing spaces
-    #qr/^\s*$url_qr\s*$/,
-
     # allow the whois keywords at the beginning or end of the string
     # with leading or trailing spaces.
     #
@@ -47,18 +33,42 @@ triggers query_raw =>
 spice to => 'http://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_WHOIS_USERNAME}}}&password={{ENV{DDG_SPICE_WHOIS_PASSWORD}}}';
 
 handle query_lc => sub {
-    my ($query) = @_;
-    
+
+    my $domain;
+    my $suffix = Domain::PublicSuffix->new();
+
     # strip keywords and http(s)
-    $query =~ s/https?:\/\/|$whois_keywords_qr|\?//g;
+    s/https?:\/\/|$whois_keywords_qr|\?//g;
 
     # trim any leading and trailing spaces
-    $query =~ s/^\s+|\s+$//;
-    
-    return if !$query; # do not trigger this spice if the query is blank
-    
-    return unless defined $query;
+    s/^\s+|\s+$//g;
 
-    return lc $query if is_domain $query;
+    s/\:?[0-9]{1,4}?//g; # look for a port, such as :3000
+
+    # if we have /about.html or other remove it
+    if(m/\//) {
+        s|[^/]+$||;
+        s/\/$//g;
+    }
+
+    #print $query;
+    return if !$_; # do not trigger this spice if the query is blank
+
+    # if we have spaces in our query loop through and find the domain name
+    if ( /\s/ ) {
+        my @queryArray = split(' ', $_);
+        foreach my $domain (@queryArray) {  
+            if($suffix->get_root_domain($domain)) {
+                return $suffix->get_root_domain($domain); 
+            }
+        }
+    }
+
+    $domain = $suffix->get_root_domain($_);
+
+    return if !$domain;
+    
+    return $domain;
+
 };
 1;
