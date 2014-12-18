@@ -92,11 +92,10 @@
         Spice.add(shared_spice_data);
     };
 }
-
     //Returns whether the domain is registered to someone, based on the API result.
     function is_domain_available(api_result) {
         return api_result.dataError && api_result.dataError === 'MISSING_WHOIS_DATA';
-    };
+    }
 
     //Converts timestamp into local time using getDateFromString
     function prettifyTimestamp(timestamp) {
@@ -117,7 +116,9 @@
         var first;
         $.each(arr, function(index, obj) {
             var value = obj && obj[key];
-            if(!first && value) {
+            // update the first var if the value is truthy
+            // and first hasn't already been found
+            if (!first && value) {
                 first = value;
             }
         });
@@ -127,10 +128,10 @@
     // Data that's shared between the two Spice.add calls.
     function get_shared_spice_data(api_result) {
         return {
-            id: "whois",
-            name: "Whois",
+            id: 'whois',
+            name: 'Whois',
             meta: {
-                sourceName: "Whois API",
+                sourceName: 'Whois API',
                 sourceUrl: 'https://www.whoisxmlapi.com/#whoisserver/WhoisService?domainName='
                     + api_result.domainName
                     + '&target=raw'
