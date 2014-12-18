@@ -17,7 +17,7 @@
             return Spice.failed('namecheap');
         }
 
-        /* extract data from XML attributes */
+        /* extract data from JSON */
         var available = item.Available;
         var domainName = item.Domain;
 
