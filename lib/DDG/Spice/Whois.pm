@@ -3,7 +3,6 @@ package DDG::Spice::Whois;
 
 use DDG::Spice;
 use Data::Validate::Domain qw(is_domain);
-use Regexp::Common qw/net/;
  
 # Metadata for this spice
 name 'Whois';
@@ -18,20 +17,8 @@ code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution twitter => 'bjennelle',
             github => ["b1ake", 'Blake Jennelle'];
 
-
 # turns on/off debugging output
 my $is_debug = 0;
-
-# regex for allowed TLDS (grabbed from DDG core repo, in /lib/DDG/Util/Constants.pm)
-my $tlds_qr = qr/(?:c(?:o(?:m|op)?|at?|[iykgdmnxruhcfzvl])|o(?:rg|m)|n(?:et?|a(?:me)?|[ucgozrfpil])|e(?:d?u|[gechstr])|i(?:n(?:t|fo)?|[stqldroem])|m(?:o(?:bi)?|u(?:seum)?|i?l|[mcyvtsqhaerngxzfpwkd])|g(?:ov|[glqeriabtshdfmuywnp])|b(?:iz?|[drovfhtaywmzjsgbenl])|t(?:r(?:avel)?|[ncmfzdvkopthjwg]|e?l)|k[iemygznhwrp]|s[jtvberindlucygkhaozm]|u[gymszka]|h[nmutkr]|r[owesu]|d[kmzoej]|a(?:e(?:ro)?|r(?:pa)?|[qofiumsgzlwcnxdt])|p(?:ro?|[sgnthfymakwle])|v[aegiucn]|l[sayuvikcbrt]|j(?:o(?:bs)?|[mep])|w[fs]|z[amw]|f[rijkom]|y[eut]|qa)/i;
-
-# regex for parsing URLs
-my $url_qr = qr/(?:http:\/\/)?    # require http
-                ([^\s\.]*\.)*     # capture any subdomains
-                ([^\s\.]*?)       # capture the domain
-                \.($tlds_qr)      # capture the tld, such as .com
-                (\:?[0-9]{1,4})?  # look for a port, such as :3000
-                ([^\s]*)/x;       # look for an extended path, such as /pages/about.htm
 
 # additional keywords that trigger this spice
 my $whois_keywords_qr = qr/whois|who\sis|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns|(?:how\sto\s|)buy/i;
@@ -63,25 +50,16 @@ handle query_lc => sub {
     my ($query) = @_;
     return if !$query; # do not trigger this spice if the query is blank
     
-my $interesting;
     # strip keywords and http(s)
     $query =~ s/https?:\/\/|$whois_keywords_qr|\?//g;
-        
-    #my @matches = $query =~ m/($RE{net}{domain}{-nospace})/g;
 
     # trim any leading and trailing spaces
     $query =~ s/^\s+|\s+$//;
+
+    print $query;  
     
     return unless defined $query;
 
     return lc $query if is_domain $query;
 };
-
-# Returns a string with leading and trailing spaces removed.
-sub trim {
-    my ($str) = @_;
-    $str =~ s/^\s*(.*)?\s*$/$1/;
-    return $str;
-}
-
 1;
