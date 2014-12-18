@@ -9,7 +9,8 @@
             return Spice.failed('namecheap');
         }
 
-        var item = $( $.parseXML(api_result) ).find('DomainCheckResult');
+        var item = api_result.ApiResponse.CommandResponse.DomainCheckResult;
+
 
         if (!item) {
             if(is_debug) console.log('Parsed response does not contain DomainCheckResult');/*DEBUG*/
@@ -17,8 +18,8 @@
         }
 
         /* extract data from XML attributes */
-        var available = item.attr('Available');
-        var domainName = item.attr('Domain');
+        var available = item.Available;
+        var domainName = item.Domain;
 
         if ( !available || !domainName ) {
             if(is_debug) console.log('DomainCheckResult does not return availability');/*DEBUG*/
