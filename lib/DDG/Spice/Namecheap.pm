@@ -6,7 +6,7 @@ use Data::Validate::Domain qw(is_domain);
 use List::Util qw(pairmap);
 use URI::Escape;
 
-spice is_cached => 0; # do not cache query
+spice proxy_cache_valid => '418 1d';
 
 
 my $namecheap_endpoint = 'http://api.namecheap.com/xml.response';
