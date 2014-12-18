@@ -40,8 +40,14 @@
                 sourceName       : 'Namecheap',
                 sourceUrl        : "https://www.namecheap.com/domains/registration/results.aspx?domain=" + domainName
             },
+            normalize: function(item) {
+                return {
+                    title: item.domainName,
+                    subtitle: "Namecheap Domain Search"
+                };
+            },
             templates: {
-                group: 'base',
+                group: 'text',
                 options:{
                     content: Spice.namecheap.namecheap,
                     moreAt: true
