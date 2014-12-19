@@ -3,6 +3,7 @@ package DDG::Spice::Whois;
 
 use DDG::Spice;
 use Domain::PublicSuffix;
+use Text::Trim;
 
 # Metadata for this spice
 name 'Whois';
@@ -34,7 +35,7 @@ handle query_lc => sub {
     my $publicSuffix = Domain::PublicSuffix->new();
     
     s/https?:\/\/|$whois_keywords_qr|\?//g; # strip keywords and http(s)
-    s/^\s+|\s+$//g; # trim any leading and trailing spaces
+    trim($_); # trim any leading and trailing spaces
     s/\:?[0-9]{1,4}?//g; # look for a port, such as :3000
     if(m/\//) { 
         s|[^/]+$||; # if we have /about.html or other remove it
@@ -42,16 +43,6 @@ handle query_lc => sub {
     }
 
     return if !$_; # do not trigger this spice if the query is blank
-    
-    # if we have spaces in our query loop through and find the domain name
-    if ( /\s/ ) {
-        my @queryArray = split(' ', $_);
-        foreach my $domain (@queryArray) {  
-            if($publicSuffix->get_root_domain($domain)) {   # retrun only a valid domain name
-                return $publicSuffix->get_root_domain($domain); # return the root domain
-            }
-        }
-    }    
 
     $domain = $publicSuffix->get_root_domain($_); # get the root domain assuming we have that left in our query
     return if !$domain;

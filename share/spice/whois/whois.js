@@ -18,11 +18,13 @@
     if(api_result.domainName != query) {
         return Spice.failed('whois');
     }
-
+    
     // decide which template to show show_available or show_whois
-    (is_domain_available(api_result)) ? show_available(api_result) : show_whois(api_result);
+    (is_domain_available(api_result)) ? show_available(api_result) : show_whois(api_result);  
+}
 
-    // show message saying that the domain is available.
+
+ // show message saying that the domain is available.
     function show_available(api_result) {
         var shared_spice_data = get_shared_spice_data(api_result);
         // add the attributes specific to this template
@@ -101,7 +103,7 @@
 
         Spice.add(shared_spice_data);
     };
-}
+
     //Returns whether the domain is registered to someone, based on the API result.
     function is_domain_available(api_result) {
         return api_result.dataError && api_result.dataError === 'MISSING_WHOIS_DATA';
@@ -149,7 +151,7 @@
             normalize: function(item) {
                 return {
                     title: api_result.domainName,
-                    subtitle: (!is_domain_available(api_result)) ? "Whois Lookup" : null
+                    subtitle: (is_domain_available(api_result)) ? null : "Whois Lookup"
                 };
             },
             templates: {
