@@ -5,55 +5,81 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 */
 
 (function (env) {
-    "use strict";
+    'use strict';
 
     var started = false;
 
     env.ddg_spice_timer = function(api_result) {
+        
+        //prevent flash of unstyled content if spice shows before css loads
+        $('link').each(eachStylesheet);
+        
+        function eachStylesheet() {
+            if (this.href.indexOf('timer.css') > -1) {
+                $(this).load(removeHiddenAttr);
+                return false;
+            }
+        }
+        
+        function removeHiddenAttr() {
+            $('#timer_container').removeAttr('hidden');
+        }
+
+        function onShow() {
+            if (!started) {
+                $('#timer_input').css('display', 'inline-block');
+            }
+            $('#timer_buttons').css('display', 'inline-block');
+        }
+
         Spice.add({
-            id: "timer",
-            name: "Timer",
-            signal: "high",
+            id: 'timer',
+            name: 'Timer',
+            signal: 'high',
             data: {},
             meta: {
-                sourceName: "Timer",
-                itemType: "timer"
+                sourceName: 'Timer',
+                itemType: 'timer'
             },
             templates: {
                 detail: Spice.timer.timer,
                 wrap_detail: 'base_detail'
             },
+
             //wait for the spice to load before displaying things
             //this makes sure the divs display at the right time so the layout doesn't break
-            onShow: function(){
-                if (!started){
-                    $('#timer_input').css('display', 'inline-block');
-                }
-                $('#timer_buttons').css('display', 'inline-block');
-            }
+            onShow: onShow
         });
+        
 
         //add zeros to the end of the number
-        function padZeros(n, len){
+        function padZeros(n, len) {
             var s = n.toString();
-            while (s.length < len){
+            while (s.length < len) {
                 s = '0' + s;
             }
             return s;
         }
 
-        function parseQueryForTime(){
+        function parseQueryForTime() {
             var q = DDG.get_query().replace('timer', '').replace('online', '').replace('s','sec').replace('m','min'),
                 regex = new RegExp(/([\d]+\.?[\d]*) ?(min|sec|h)/),
-                time = 0;
+                time = 0,
+                match,
+                val,
+                unit;
 
-            while (true){
-                var match = regex.exec(q);
-                if (match){
-                    var val = parseFloat(match[1]),
+            while (true) {
+                match = regex.exec(q);
+                if (match) {
+                    val = parseFloat(match[1]),
                     unit = match[2];
-                    if (unit === 'h') time += val*60*60;
-                    else if (unit === 'min') time += val*60;
+                    if (unit === 'h') {
+                        time += val * 60 * 60;
+                    }
+                    else if (unit === 'min') {
+                        time += val * 60;
+                    }
                     else if (unit === 'sec') {
                         val = Math.round(val);
                         time += val;
@@ -89,33 +115,44 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         }
 
         //go from a time in ms to human-readable
-        function formatTime(t){
-            t = Math.ceil(t/1000);
-            var hours = Math.floor(t / (60*60));
-            t = t % (60*60);
-            var mins = Math.floor(t / 60);
+        function formatTime(t) {
+            var hours, mins, secs;
+            t = Math.ceil(t / 1000);
+            hours = Math.floor(t / (60 * 60));
+            t = t % (60 * 60);
+            mins = Math.floor(t / 60);
             t = t % 60;
-            var secs = Math.floor(t);
-            if (hours > 0) return hours + ":" + padZeros(mins, 2) + ":" + padZeros(secs, 2);
-            return padZeros(mins, 2) + ":" + padZeros(secs, 2);
+            secs = Math.floor(t);
+            if (hours > 0) {
+                return hours + ':' + padZeros(mins, 2) + ':' + padZeros(secs, 2);
+            }
+            return padZeros(mins, 2) + ':' + padZeros(secs, 2);
         }
 
         //play the alarm sound
-        function playLoopingSound(){
-            DDG.require('audio', function(player){
-                function loop(){
-                    player.play('alarm-sound', soundUrl, {autoPlay: true, onfinish: loop}); //play the sound
+        function playLoopingSound() {
+            function requirePlayer(player) {
+                function loop() {
+                    //play the sound
+                    player.play('alarm-sound', soundUrl, {
+                        autoPlay: true,
+                        onfinish: loop
+                    });
+                }
+                function stop() {
+                    player.stop('alarm-sound');
                 }
                 loop();
-                $('#done_ok_btn').click(function(){player.stop('alarm-sound')}); //stop it when the modal is dismissed
-            });
+                $('#done_ok_btn').click(stop); //stop it when the modal is dismissed
+            }
+            DDG.require('audio', requirePlayer);
         }
 
         //called every tenth of a second (for accuracy purposes)
         //pop up the modal and play the sound if done
-        function updateTimer(){
+        function updateTimer() {
             time_left -= new Date().getTime() - last_update;
-            if (time_left <= 0){
+            if (time_left <= 0) {
                 clearInterval(update_int);
                 $timer.html('00:00');
                 $done_modal.show();
@@ -129,10 +166,12 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             }
         }
 
-        function startTimer(){
-            if (!started){
-                var start_mins = parseInt($minute_input.val()) || 0;
-                var start_secs = parseInt($second_input.val()) || 0;
+        function startTimer() {
+            var start_mins, start_secs;
+            
+            if (!started) {
+                start_mins = parseInt($minute_input.val()) || 0;
+                start_secs = parseInt($second_input.val()) || 0;
 
                 $minute_input.val('');
                 $second_input.val('');
@@ -145,9 +184,11 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                     start_mins = 999;
                     start_secs = 59;
                 }
-                if (start_secs > 59) start_secs = 59;
+                if (start_secs > 59) {
+                    start_secs = 59;
+                }
                 started = true;
-                time_left = start_mins * (60*1000) + start_secs*1000;
+                time_left = start_mins * (60 * 1000) + start_secs * 1000;
             }
 
             last_update = new Date().getTime();
@@ -163,14 +204,16 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
         //parse the input if the timer was just set and start it
         $('.btn-wrapper').on('click', '.timer__btn.timer__start', startTimer);
-
-        //pause the timer
-        $('.btn-wrapper').on('click', '.timer__btn.timer__pause', function(){
+        
+        function pauseTimer() {
             clearInterval(update_int);
             $startstop_btn.removeClass('timer__pause').addClass('timer__start').html('START');
-        });
+        }
 
-        function resetTimer(){
+        //pause the timer
+        $('.btn-wrapper').on('click', '.timer__btn.timer__pause', pauseTimer);
+
+        function resetTimer() {
             $timer_display.hide();
             $timer_input.css('display', 'inline-block');
             clearInterval(update_int);
@@ -184,32 +227,45 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         //reset everything
         $reset_btn.click(resetTimer);
 
-        //dismiss the modal and reset when "OK" is pressed
-        $('#done_ok_btn').click(function(){
+        function dismissModal() {
             $done_modal.hide();
             resetTimer();
-        })
+        }
 
-        $('.timer__time-input').keydown(function(event){
+        //dismiss the modal and reset when "OK" is pressed
+        $('#done_ok_btn').click(dismissModal);
+
+        function inputKeydown(event) {
             //make sure the bang dropdown doesn't trigger
             event.stopPropagation();
 
             //start the timer if they hit enter
-            if (event.which == 13) startTimer();
-        });
+            if (event.which == 13) {
+                startTimer();
+            }
+        }
 
-        $('.timer__time-input').keyup(function(){
+        $('.timer__time-input').keydown(inputKeydown);
+
+        function inputKeyup() {
             //enable the button if a number was entered
-            if ($minute_input.val() || $second_input.val()){
+            if ($minute_input.val() || $second_input.val()) {
                 $startstop_btn.prop('disabled', false);
             } else {
                 $startstop_btn.prop('disabled', true);
             }
-        });
+        }
+        
+        $('.timer__time-input').keyup(inputKeyup);
 
         //called when input is inserted, forcing numeric input
-        function numericOnly(){
-            this.value = this.value.replace(/\D/g, '');
+        function numericOnly() {
+            var oldval = this.value,
+                newval = this.value.replace(/\D/g, '');
+
+            if (oldval !== newval) {
+                this.value = newval;
+            }
         }
 
         $('.timer__time-input').keyup(numericOnly).change(numericOnly).click(numericOnly);

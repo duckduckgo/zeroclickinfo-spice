@@ -1,3 +1,7 @@
+.zci--timer #timer_container[hidden] {
+    display: none;
+}
+
 .zci--timer .timer__btn {
     height: 75px;
     width: 75px;
