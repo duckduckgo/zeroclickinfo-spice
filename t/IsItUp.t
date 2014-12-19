@@ -38,8 +38,8 @@ ddg_spice_test(
     # currently support unicode or ssl
     'is føtex.dk up?' => undef,
     'is https://føtex.dk up?' => undef,
-    'is wolframalpha.com working?' => test_spice(
-        '/js/spice/is_it_up/wolframalpha.com',
+    'is reddit.com working?' => test_spice(
+        '/js/spice/is_it_up/reddit.com',
         caller    => 'DDG::Spice::IsItUp',
     ),
     'is https://twitch.tv up??' => test_spice(

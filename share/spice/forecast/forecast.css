@@ -171,6 +171,7 @@
 
 .zci--forecast .fe_day .fe_summary {
     margin-top: 1em;
+    max-height: 5.4em;
 }
 
 .zci--forecast .fe_alert {
