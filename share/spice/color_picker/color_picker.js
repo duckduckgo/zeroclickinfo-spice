@@ -21,8 +21,8 @@
 
         //Indicates whether the user is currently dragging the mouse in the hue and saturation/value
         //  pickers.
-        var saturation_value_mousedown = false;
-        var hue_mousedown = false;
+        var saturation_value_mousedown = false,
+            hue_mousedown = false;
 
         //Prevent duplicate touch/mouse events
         var mouse_and_touch_locked = false;
@@ -84,32 +84,32 @@
 
         //Finds the coordinates of a mouse or touch event relative to an element.
         function get_real_coordinates(event, $element) {
-            var offset = $element.offset();
-            var coordinates = {
-                x: event.pageX - offset.left,
-                y: event.pageY - offset.top
-            };
+            var offset = $element.offset(),
+                coordinates = {
+                    x: event.pageX - offset.left,
+                    y: event.pageY - offset.top
+                };
             return coordinates;
         }
 
         //Creates a single handler that can be user for both mouse and touch events.
         function mouse_and_touch_handler(callback) {
             return function(e) {
-                    if (!mouse_and_touch_locked) {
-                        //Certain actions will result in both a mouse and touch event being fired.
-                        //  In these cases, the combination of the lock and timeout below will keep
-                        //  both events from being processed.
-                        mouse_and_touch_locked = true;
-                        setTimeout(function() {mouse_and_touch_locked = false;}, 0);
+                if (!mouse_and_touch_locked) {
+                    //Certain actions will result in both a mouse and touch event being fired.
+                    //  In these cases, the combination of the lock and timeout below will keep
+                    //  both events from being processed.
+                    mouse_and_touch_locked = true;
+                    setTimeout(function() {mouse_and_touch_locked = false;}, 0);
 
-                        if (e.changedTouches && e.changedTouches.length > 0) {
-                            callback(e.changedTouches[0]);
-                        } else if (e.targetTouches && e.targetTouches.length > 0) {
-                            callback(e.targetTouches[0]);
-                        } else {
-                            callback(e);
-                        }
+                    if (e.changedTouches && e.changedTouches.length > 0) {
+                        callback(e.changedTouches[0]);
+                    } else if (e.targetTouches && e.targetTouches.length > 0) {
+                        callback(e.targetTouches[0]);
+                    } else {
+                        callback(e);
                     }
+                }
             };
         }
 
@@ -119,9 +119,9 @@
             var coordinates = get_real_coordinates(event, local_dom.$saturation_value_picker);
 
             //Use the coordinates of the mouse/touch event to calculate the new saturation/value
-            var saturation = Math.floor((coordinates.x / 256) * 100);
-            var value = Math.floor(((256 - coordinates.y) / 256) * 100);
-            var hue = current_color.hsv.hue;
+            var saturation = Math.floor((coordinates.x / 256) * 100),
+                value = Math.floor(((256 - coordinates.y) / 256) * 100),
+                hue = current_color.hsv.hue;
 
             saturation = to_bounded_integer(saturation, 0, 100);
             value = to_bounded_integer(value, 0, 100);
@@ -133,9 +133,9 @@
             var coordinates = get_real_coordinates(event, local_dom.$hue_picker);
 
             //Use the coordinates of the mouse/touch event to calculate the new hue
-            var hue = Math.floor((coordinates.y / 256) * 360);
-            var saturation = current_color.hsv.saturation;
-            var value = current_color.hsv.value;
+            var hue = Math.floor((coordinates.y / 256) * 360),
+                saturation = current_color.hsv.saturation,
+                value = current_color.hsv.value;
 
             hue = to_bounded_integer(hue, 0, 359);
 
@@ -143,9 +143,9 @@
         }
 
         function red_change() {
-            var red = local_dom.$red_input.val();
-            var green = current_color.rgb.green;
-            var blue = current_color.rgb.blue;
+            var red = local_dom.$red_input.val(),
+                green = current_color.rgb.green,
+                blue = current_color.rgb.blue;
 
             red = to_bounded_integer(red, 0, 255);
 
@@ -153,9 +153,9 @@
         }
 
         function green_change() {
-            var red = current_color.rgb.red;
-            var green = local_dom.$green_input.val();
-            var blue = current_color.rgb.blue;
+            var red = current_color.rgb.red,
+                green = local_dom.$green_input.val(),
+                blue = current_color.rgb.blue;
 
             green = to_bounded_integer(green, 0, 255);
             
@@ -163,9 +163,9 @@
         }
 
         function blue_change() {
-            var red = current_color.rgb.red;
-            var green = current_color.rgb.green;
-            var blue = local_dom.$blue_input.val();
+            var red = current_color.rgb.red,
+                green = current_color.rgb.green,
+                blue = local_dom.$blue_input.val();
 
             blue = to_bounded_integer(blue, 0, 255);
             
@@ -173,9 +173,9 @@
         }
 
         function hue_change() {
-            var hue = local_dom.$hue_input.val();
-            var saturation = current_color.hsv.saturation;
-            var value = current_color.hsv.value;
+            var hue = local_dom.$hue_input.val(),
+                saturation = current_color.hsv.saturation,
+                value = current_color.hsv.value;
 
             hue = to_bounded_integer(hue, 0, 359);
             
@@ -183,9 +183,9 @@
         }
 
         function saturation_change() {
-            var hue = current_color.hsv.hue;
-            var saturation = local_dom.$saturation_input.val();
-            var value = current_color.hsv.value;
+            var hue = current_color.hsv.hue,
+                saturation = local_dom.$saturation_input.val(),
+                value = current_color.hsv.value;
 
             saturation = to_bounded_integer(saturation, 0, 100);
 
@@ -193,9 +193,9 @@
         }
 
         function value_change() {
-            var hue = current_color.hsv.hue;
-            var saturation = current_color.hsv.saturation;
-            var value = local_dom.$value_input.val();
+            var hue = current_color.hsv.hue,
+                saturation = current_color.hsv.saturation,
+                value = local_dom.$value_input.val();
 
             value = to_bounded_integer(value, 0, 100);
             
@@ -203,10 +203,10 @@
         }
 
         function cyan_change() {
-            var cyan = local_dom.$cyan_input.val();
-            var magenta = current_color.cmyk.magenta;
-            var yellow = current_color.cmyk.yellow;
-            var black = current_color.cmyk.black;
+            var cyan = local_dom.$cyan_input.val(),
+                magenta = current_color.cmyk.magenta,
+                yellow = current_color.cmyk.yellow,
+                black = current_color.cmyk.black;
 
             cyan = to_bounded_number(cyan, 0, 100);
             
@@ -214,10 +214,10 @@
         }
 
         function magenta_change() {
-            var cyan = current_color.cmyk.cyan;
-            var magenta = local_dom.$magenta_input.val();
-            var yellow = current_color.cmyk.yellow;
-            var black = current_color.cmyk.black;
+            var cyan = current_color.cmyk.cyan,
+                magenta = local_dom.$magenta_input.val(),
+                yellow = current_color.cmyk.yellow,
+                black = current_color.cmyk.black;
 
             magenta = to_bounded_number(magenta, 0, 100);
             
@@ -225,10 +225,10 @@
         }
 
         function yellow_change() {
-            var cyan = current_color.cmyk.cyan;
-            var magenta = current_color.cmyk.magenta;
-            var yellow = local_dom.$yellow_input.val();
-            var black = current_color.cmyk.black;
+            var cyan = current_color.cmyk.cyan,
+                magenta = current_color.cmyk.magenta,
+                yellow = local_dom.$yellow_input.val(),
+                black = current_color.cmyk.black;
 
             yellow = to_bounded_number(yellow, 0, 100);
             
@@ -236,10 +236,10 @@
         }
 
         function black_change() {
-            var cyan = current_color.cmyk.cyan;
-            var magenta = current_color.cmyk.magenta;
-            var yellow = current_color.cmyk.yellow;
-            var black = local_dom.$black_input.val();
+            var cyan = current_color.cmyk.cyan,
+                magenta = current_color.cmyk.magenta,
+                yellow = current_color.cmyk.yellow,
+                black = local_dom.$black_input.val();
 
             black = to_bounded_number(black, 0, 100);
             
@@ -314,81 +314,79 @@
 
         function get_all_colors_from_hsv(hue, saturation, value) {
             var hsv = {
-                hue: hue,
-                saturation: saturation,
-                value: value
-            };
-            var rgb = convert_hsv_to_rgb(hue, saturation, value);
-            var cmyk = convert_rgb_to_cmyk(rgb.red, rgb.green, rgb.blue);
-            var hex = convert_rgb_to_hex(rgb.red, rgb.green, rgb.blue);
-            var hex_hue = convert_hsv_to_hex(hue, 100, 100);
-            var palette = generate_palette(hsv, palette_type);
-
-            var colors = {
-                rgb: rgb,
-                hsv: hsv,
-                cmyk: cmyk,
-                hex: hex,
-                hex_hue: hex_hue,
-                palette: palette
-            };
+                    hue: hue,
+                    saturation: saturation,
+                    value: value
+                },
+                rgb = convert_hsv_to_rgb(hue, saturation, value),
+                cmyk = convert_rgb_to_cmyk(rgb.red, rgb.green, rgb.blue),
+                hex = convert_rgb_to_hex(rgb.red, rgb.green, rgb.blue),
+                hex_hue = convert_hsv_to_hex(hue, 100, 100),
+                palette = generate_palette(hsv, palette_type),
+                colors = {
+                    rgb: rgb,
+                    hsv: hsv,
+                    cmyk: cmyk,
+                    hex: hex,
+                    hex_hue: hex_hue,
+                    palette: palette
+                };
 
             return colors;
         }
 
         function get_all_colors_from_rgb(red, green, blue) {
             var rgb = {
-                red: red,
-                green: green,
-                blue: blue
-            };
-            var hsv = convert_rgb_to_hsv(red, green, blue);
-            var cmyk = convert_rgb_to_cmyk(red, green, blue);
-            var hex = convert_rgb_to_hex(red, green, blue);
-            var hex_hue = convert_hsv_to_hex(hsv.hue, 100, 100);
-            var palette = generate_palette(hsv, palette_type);
-
-            var colors = {
-                rgb: rgb,
-                hsv: hsv,
-                cmyk: cmyk,
-                hex: hex,
-                hex_hue: hex_hue,
-                palette: palette
-            };
+                    red: red,
+                    green: green,
+                    blue: blue
+                },
+                hsv = convert_rgb_to_hsv(red, green, blue),
+                cmyk = convert_rgb_to_cmyk(red, green, blue),
+                hex = convert_rgb_to_hex(red, green, blue),
+                hex_hue = convert_hsv_to_hex(hsv.hue, 100, 100),
+                palette = generate_palette(hsv, palette_type),
+                colors = {
+                    rgb: rgb,
+                    hsv: hsv,
+                    cmyk: cmyk,
+                    hex: hex,
+                    hex_hue: hex_hue,
+                    palette: palette
+                };
 
             return colors;
         }
 
         function get_all_colors_from_cmyk(cyan, magenta, yellow, black) {
             var cmyk = {
-                cyan: cyan,
-                magenta: magenta,
-                yellow: yellow,
-                black: black
-            };
-            var rgb = convert_cmyk_to_rgb(cyan, magenta, yellow, black);
-            var hsv = convert_rgb_to_hsv(rgb.red, rgb.green, rgb.blue);
-            var hex = convert_rgb_to_hex(rgb.red, rgb.green, rgb.blue);
-            var hex_hue = convert_hsv_to_hex(hsv.hue, 100, 100);
-            var palette = generate_palette(hsv, palette_type);
-
-            var colors = {
-                rgb: rgb,
-                hsv: hsv,
-                cmyk: cmyk,
-                hex: hex,
-                hex_hue: hex_hue,
-                palette: palette
-            };
+                    cyan: cyan,
+                    magenta: magenta,
+                    yellow: yellow,
+                    black: black
+                },
+                rgb = convert_cmyk_to_rgb(cyan, magenta, yellow, black),
+                hsv = convert_rgb_to_hsv(rgb.red, rgb.green, rgb.blue),
+                hex = convert_rgb_to_hex(rgb.red, rgb.green, rgb.blue),
+                hex_hue = convert_hsv_to_hex(hsv.hue, 100, 100),
+                palette = generate_palette(hsv, palette_type),
+                colors = {
+                    rgb: rgb,
+                    hsv: hsv,
+                    cmyk: cmyk,
+                    hex: hex,
+                    hex_hue: hex_hue,
+                    palette: palette
+                };
 
             return colors;
         }
 
         function generate_palette(hsv, type) {
-            var hue = [];
-            var saturation = [];
-            var value = [];
+            var hue = [],
+                saturation = [],
+                value = [],
+                palette = [];
 
             switch (type) {
                 case 'triad':
@@ -409,7 +407,6 @@
                     break;
             }
 
-            var palette = [];
             for (var i = 0; i < hue.length; i++)
                 palette.push(convert_hsv_to_hex(hue[i], saturation[i], value[i]));
 
@@ -466,11 +463,14 @@
         /* CONVERSIONS */
 
         function convert_hsv_to_rgb(hue, saturation, value) {
-            var c = (value / 100) * (saturation / 100);
-            var x = c * (1 - Math.abs(((hue / 60) % 2) - 1));
-            var m = (value / 100) - c;
+            var c = (value / 100) * (saturation / 100),
+                x = c * (1 - Math.abs(((hue / 60) % 2) - 1)),
+                m = (value / 100) - c,
+                
+                red = 0,
+                green = 0,
+                blue = 0;
 
-            var red = 0, green = 0, blue = 0;
             switch (true) {
                 case 0 <= hue && hue < 60:
                     red = c; green = x; blue = 0;
@@ -500,21 +500,23 @@
                 green: green,
                 blue: blue
             };
+
             return rgb;
         }
 
         function convert_rgb_to_hsv(red, green, blue){
-            var red_proportion = red / 255;
-            var green_proportion = green / 255;
-            var blue_proportion = blue / 255;
+            var red_proportion = red / 255,
+                green_proportion = green / 255,
+                blue_proportion = blue / 255,
             
-            var min = Math.min(red_proportion, Math.min(green_proportion, blue_proportion));
-            var max = Math.max(red_proportion, Math.max(green_proportion, blue_proportion));
-            var delta = max - min;
+                min = Math.min(red_proportion, Math.min(green_proportion, blue_proportion)),
+                max = Math.max(red_proportion, Math.max(green_proportion, blue_proportion)),
+                delta = max - min,
             
-            var hue = 0;
-            var saturation = (max > 0) ? Math.round(((max - min) * 100) / max) : 0;
-            var value = Math.round(max * 100);
+                hue = 0,
+                saturation = (max > 0) ? Math.round(((max - min) * 100) / max) : 0,
+                value = Math.round(max * 100);
+
             if (delta > 0) {
                 switch (max) {
                     case red_proportion:
@@ -540,31 +542,34 @@
         }
 
         function convert_rgb_to_cmyk(red, green, blue){
-            var red_proportion = red / 255;
-            var green_proportion = green / 255;
-            var blue_proportion = blue / 255;
+            var red_proportion = red / 255,
+                green_proportion = green / 255,
+                blue_proportion = blue / 255,
             
-            var black = 1 - Math.max(red_proportion, Math.max(green_proportion, blue_proportion));
-            var cyan = (black < 1) ? ((1 - red_proportion - black) / (1 - black)) : 0;
-            var magenta = (black < 1) ? ((1 - green_proportion - black) / (1 - black)) : 0;
-            var yellow = (black < 1) ? ((1 - blue_proportion - black) / (1 - black)) : 0;
+                black = 1 - Math.max(red_proportion, Math.max(green_proportion, blue_proportion)),
+                cyan = (black < 1) ? ((1 - red_proportion - black) / (1 - black)) : 0,
+                magenta = (black < 1) ? ((1 - green_proportion - black) / (1 - black)) : 0,
+                yellow = (black < 1) ? ((1 - blue_proportion - black) / (1 - black)) : 0,
             
-            return {
-                black: (100 * black).toFixed(1),
-                cyan: (100 * cyan).toFixed(1),
-                magenta: (100 * magenta).toFixed(1),
-                yellow: (100 * yellow).toFixed(1)
-            };
+                cmyk= {
+                    black: (100 * black).toFixed(1),
+                    cyan: (100 * cyan).toFixed(1),
+                    magenta: (100 * magenta).toFixed(1),
+                    yellow: (100 * yellow).toFixed(1)
+                };
+
+            return cmyk;
         }
     
         function convert_rgb_to_hex(red, green, blue){
-            var red_string = red.toString(16);
+            var red_string = red.toString(16),
+                green_string = green.toString(16),
+                blue_string = blue.toString(16);
+
             if (red_string.length < 2)
                 red_string = '0' + red_string;
-            var green_string = green.toString(16);
             if (green_string.length < 2)
                 green_string = '0' + green_string;
-            var blue_string = blue.toString(16);
             if (blue_string.length < 2)
                 blue_string = '0' + blue_string;
             
@@ -572,48 +577,51 @@
         }
 
         function convert_hsv_to_hex(hue, saturation, value) {
-            var rgb = convert_hsv_to_rgb(hue, saturation, value);
-            var hex = convert_rgb_to_hex(rgb.red, rgb.green, rgb.blue);
+            var rgb = convert_hsv_to_rgb(hue, saturation, value),
+                hex = convert_rgb_to_hex(rgb.red, rgb.green, rgb.blue);
+
             return hex;
         }
 
         function convert_hex_to_rgb(hex) {
-            var red = parseInt(hex.substring(0,2), 16);
-            var green = parseInt(hex.substring(2,4), 16);
-            var blue = parseInt(hex.substring(4,6), 16);
+            var red = parseInt(hex.substring(0,2), 16),
+                green = parseInt(hex.substring(2,4), 16),
+                blue = parseInt(hex.substring(4,6), 16),
 
-            var rgb = {
-                red: red,
-                green: green,
-                blue: blue
-            };
+                rgb = {
+                    red: red,
+                    green: green,
+                    blue: blue
+                };
+
             return rgb;
         }
 
         function convert_cmyk_to_rgb(cyan, magenta, yellow, black) {
-            var c = cyan / 100;
-            var m = magenta / 100;
-            var y = yellow / 100;
-            var k = black / 100;
+            var c = cyan / 100,
+                m = magenta / 100,
+                y = yellow / 100,
+                k = black / 100,
 
-            var red = Math.round(255 * (1 - c) * (1 - k));
-            var green = Math.round(255 * (1 - m) * (1 - k));
-            var blue = Math.round(255 * (1 - y) * (1 - k));
+                red = Math.round(255 * (1 - c) * (1 - k)),
+                green = Math.round(255 * (1 - m) * (1 - k)),
+                blue = Math.round(255 * (1 - y) * (1 - k)),
 
-            var rgb = {
-                red: red,
-                green: green,
-                blue: blue
-            };
+                rgb = {
+                    red: red,
+                    green: green,
+                    blue: blue
+                };
+
             return rgb;
         }
     
         function get_initial_color() {
-            var hue = Math.floor(Math.random() * 100);
-            var saturation = Math.floor(Math.random() * 100);
-            var value = Math.floor(Math.random() * 100);
+            var hue = Math.floor(Math.random() * 100),
+                saturation = Math.floor(Math.random() * 100),
+                value = Math.floor(Math.random() * 100),
 
-            var colors = get_all_colors_from_hsv(hue, saturation, value);
+                colors = get_all_colors_from_hsv(hue, saturation, value);
 
             return colors;
         }
