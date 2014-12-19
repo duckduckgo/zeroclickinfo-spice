@@ -26,13 +26,13 @@
 .zci--timer .timer__btn.timer__start {
     border-color: #20b84c;
     background-color: #20b84c;
-    color: white;
+    color: #fff;
 }
 
 .zci--timer .timer__btn.timer__pause {
     border-color: #ff3908;
     background-color: #ff3908;
-    color: white;
+    color: #fff;
 }
 
 .zci--timer .timer__btn[disabled] {
@@ -154,7 +154,7 @@
     border: 0;
     border-radius: 2px;
     background-color: #61AD48;
-    color: white;
+    color: #fff;
     cursor: pointer;
 }
 
@@ -174,7 +174,7 @@
 .dark-header .zci--timer .timer__time-input {
     background: none;
     border: 1px solid #999;
-    color: white;
+    color: #fff;
 }
 
 /*stack the big time divs if the screen is too narrow*/
