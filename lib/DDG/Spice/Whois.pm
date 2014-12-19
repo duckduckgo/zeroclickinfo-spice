@@ -21,13 +21,9 @@ attribution twitter => 'bjennelle',
 # additional keywords that trigger this spice
 my $whois_keywords_qr = qr/whois|who\sis|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns|(?:how\sto\s|)buy/i;
 
-triggers query_raw =>
-    # allow the whois keywords at the beginning or end of the string
-    # with leading or trailing spaces.
-    #
-    # if at the end of the string, allow a trailing question mark.
-    qr/^\s*$whois_keywords_qr
-          |$whois_keywords_qr[?]?\s*$/x;
+# allow the whois keywords at the beginning or end of the string with leading or trailing spaces.
+# if at the end of the string, allow a trailing question mark.
+triggers query_raw =>qr/^\s*$whois_keywords_qr|$whois_keywords_qr[?]?\s*$/x;
 
 # API call details for Whois API (http://www.whoisxmlapi.com/)
 spice to => 'http://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_WHOIS_USERNAME}}}&password={{ENV{DDG_SPICE_WHOIS_PASSWORD}}}';
@@ -35,39 +31,30 @@ spice to => 'http://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&o
 handle query_lc => sub {
 
     my $domain;
-    my $suffix = Domain::PublicSuffix->new();
-
-    # strip keywords and http(s)
-    s/https?:\/\/|$whois_keywords_qr|\?//g;
-
-    # trim any leading and trailing spaces
-    s/^\s+|\s+$//g;
-
+    my $publicSuffix = Domain::PublicSuffix->new();
+    
+    s/https?:\/\/|$whois_keywords_qr|\?//g; # strip keywords and http(s)
+    s/^\s+|\s+$//g; # trim any leading and trailing spaces
     s/\:?[0-9]{1,4}?//g; # look for a port, such as :3000
-
-    # if we have /about.html or other remove it
-    if(m/\//) {
-        s|[^/]+$||;
-        s/\/$//g;
+    if(m/\//) { 
+        s|[^/]+$||; # if we have /about.html or other remove it
+        s/\/$//g; # remove the left over slash
     }
 
-    #print $query;
     return if !$_; # do not trigger this spice if the query is blank
-
+    
     # if we have spaces in our query loop through and find the domain name
     if ( /\s/ ) {
         my @queryArray = split(' ', $_);
         foreach my $domain (@queryArray) {  
-            if($suffix->get_root_domain($domain)) {
-                return $suffix->get_root_domain($domain); 
+            if($publicSuffix->get_root_domain($domain)) {   # retrun only a valid domain name
+                return $publicSuffix->get_root_domain($domain); # return the root domain
             }
         }
-    }
+    }    
 
-    $domain = $suffix->get_root_domain($_);
-
+    $domain = $publicSuffix->get_root_domain($_); # get the root domain assuming we have that left in our query
     return if !$domain;
-    
     return $domain;
 
 };
