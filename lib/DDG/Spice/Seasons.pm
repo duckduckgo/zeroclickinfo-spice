@@ -21,6 +21,7 @@ triggers any => "solstice", "equinox";
 spice from => "(.+)/(.+)/.*";
 spice to => 'https://api.xmltime.com/holidays?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&callback={{callback}}&country=$2&year=$1&types=seasons';
 
+spice proxy_cache_valid => "418 30d";
 spice is_cached => 0;
 
 # Handle statement
