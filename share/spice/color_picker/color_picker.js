@@ -13,7 +13,7 @@
         var palette_type = 'adjacent';
 
         //Maintains the current color in all supported formats.
-        var current_color = get_initial_color();
+        var current_color = get_initial_color(DDG.get_query());
 
         //Holds coordinate positions for the selection markers in the hue and saturation/value
         //  pickers.
@@ -466,7 +466,7 @@
             var c = (value / 100) * (saturation / 100),
                 x = c * (1 - Math.abs(((hue / 60) % 2) - 1)),
                 m = (value / 100) - c,
-                
+
                 red = 0,
                 green = 0,
                 blue = 0;
@@ -616,14 +616,78 @@
             return rgb;
         }
     
-        function get_initial_color() {
-            var hue = Math.floor(Math.random() * 100),
+        //Generates a a color to use when the IA is first loaded. It first checks the query to find
+        //  a specified color. If no color was specified, one is randomly generated.
+        function get_initial_color(query) {
+            var query_color = parse_color_from_query(query);
+            if (query_color !== null)
+                return query_color;
+
+            var hue = Math.floor(Math.random() * 360),
                 saturation = Math.floor(Math.random() * 100),
                 value = Math.floor(Math.random() * 100),
 
                 colors = get_all_colors_from_hsv(hue, saturation, value);
 
             return colors;
+        }
+
+        //Searches the query for a color. Returns null if no color was specified in the query.
+        function parse_color_from_query(query) {
+            //This will take the query string, remove the first two words (e.g. 'color picker'), and
+            //  format it for later processing. The result will have all spaces, and parentheses
+            //  replaced with commas such that there will only be one comma between any text.
+            //  For example, HSV(1, 2, 3) becomes hsv,1,2,3
+            var possible_color_query = query.split(/[\s,()]+/).slice(2).filter(function(el) { return el.length > 0; }).join(',').toLowerCase();
+            if (possible_color_query.length === 0)
+                return null;
+
+            switch (true) {
+                case possible_color_query.lastIndexOf('rgb', 0) === 0:
+                    var rgb_nums = possible_color_query.split(',').slice(1);
+                    if (rgb_nums.length < 3)
+                        return null;
+                    var red = to_bounded_integer(rgb_nums[0], 0, 255),
+                        green = to_bounded_integer(rgb_nums[1], 0, 255),
+                        blue = to_bounded_integer(rgb_nums[2], 0, 255),
+                        colors = get_all_colors_from_rgb(red, green, blue);
+                    return colors;
+                case possible_color_query.lastIndexOf('hsv', 0) === 0:
+                    var hsv_nums = possible_color_query.split(',').slice(1);
+                    if (hsv_nums.length < 3)
+                        return null;
+                    var hue = to_bounded_integer(hsv_nums[0], 0, 360),
+                        saturation = to_bounded_integer(hsv_nums[1], 0, 100),
+                        value = to_bounded_integer(hsv_nums[2], 0, 100),
+                        colors = get_all_colors_from_hsv(hue, saturation, value);
+                    return colors;
+                case possible_color_query.lastIndexOf('cmyk', 0) === 0:
+                    var cmyk_nums = possible_color_query.split(',').slice(1);
+                    if (cmyk_nums.length < 4)
+                        return null;
+                    var cyan = to_bounded_number(cmyk_nums[0], 0, 100),
+                        magenta = to_bounded_number(cmyk_nums[1], 0, 100),
+                        yellow = to_bounded_number(cmyk_nums[2], 0, 100),
+                        black = to_bounded_number(cmyk_nums[3], 0, 100),
+                        colors = get_all_colors_from_cmyk(cyan, magenta, yellow, black);
+                    return colors;
+                case possible_color_query.lastIndexOf('#', 0) === 0:
+                    var hex = possible_color_query.substring(1);
+                    if (/^[0-9a-f]+$/i.test(hex)) {
+                        if (hex.length === 3)
+                            hex = '0' + hex.charAt(0) + '0' + hex.charAt(1) + '0' + hex.charAt(2);
+                        if (hex.length === 6) {
+                            var rgb = convert_hex_to_rgb(hex),
+                                colors = get_all_colors_from_rgb(rgb.red, rgb.green, rgb.blue);
+                            return colors;
+                        }
+                    }
+                    break;
+                default:
+                    return null;
+            }
+
+            return null;
         }
 
         function initialize_local_dom() {
