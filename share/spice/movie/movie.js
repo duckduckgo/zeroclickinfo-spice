@@ -26,20 +26,25 @@
         // Get original query.
         var script = $('[src*="/js/spice/movie/"]')[0],
             source = $(script).attr("src"),
-            query = source.match(/movie\/([^\/]+)/)[1];
+            query = decodeURIComponent(source.match(/movie\/([^\/]+)/)[1]);
         
         //Check if the query contains a year
-        var year = decodeURIComponent(query).match(/\d{4}/gm), 
+        var year = query.match(/\d{4}/),
             singleResult = [];
-        
+
+        //Ensure year is vaild between 1900 - current year + 5
+        year = (year >= 1900 && year <= new Date().getFullYear()+5) ? year : null;
+
         if(year) {
+        ///Check movie year and title against query
         $.each(api_result.movies, function(key, result) {
-        //Check movie year and title against query
-           if(result.year == year && decodeURIComponent(query).replace(/\d{4}/,'').trim() == result.title.toLowerCase()) {
+        if(!result.title.match(/\d{4}/)) { // don't run this check if the movie title contains a date
+           if(result.year == year && query.replace(year,'').trim() == result.title.toLowerCase()) {
                 singleResult.push(result);
            }
+        }
         });
-            if(singleResult.length>0) {api_result.movies = singleResult;}
+            if(singleResult.length>0) {api_result.movies = singleResult;} // return a single result if we have an exact match
         }
         
         Spice.add({
