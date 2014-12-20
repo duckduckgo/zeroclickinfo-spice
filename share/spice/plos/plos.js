@@ -3,7 +3,7 @@
         "use strict";
 
         if (!api_result) {
-            return Spice.failed('mass_on_time');
+            return Spice.failed('plos');
         }
 
         // Grab number of results.
