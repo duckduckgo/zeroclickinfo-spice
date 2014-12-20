@@ -3,6 +3,10 @@ nrj("soundmanager2/script/soundmanager2-nodebug-jsmin.js", true);
 function ddg_spice_forvo (api_result) {
     "use strict";
 
+    if (!api_result) {
+        return Spice.failed('forvo');
+    }
+
     if (api_result.attributes.total < 1) return;
 
     var script = $('[src*="/js/spice/forvo/"]')[0];
