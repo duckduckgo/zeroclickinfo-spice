@@ -2,6 +2,10 @@
     env.ddg_spice_plos = function(api_result) {
         "use strict";
 
+        if (!api_result) {
+            return Spice.failed('mass_on_time');
+        }
+
         // Grab number of results.
         var numFound = api_result.response.numFound;
 
