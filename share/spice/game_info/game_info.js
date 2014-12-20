@@ -1,7 +1,7 @@
 function ddg_spice_game_info(api_result) {
     "use strict";
 
-    if(!api_result || api_result.error !== "OK" || api_result.results.length === 0) {
+    if(!api_result || api_result.error !== "OK" || $.isArray(api_result.results) || api_result.results.length === 0 ) {
         return Spice.failed('game_info');
     }
     
