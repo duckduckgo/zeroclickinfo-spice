@@ -1,4 +1,4 @@
-package DDG::Spice::FedoraProjectPackageDB;    ## no critic qw(Modules::RequireVersionVar)
+package DDG::Spice::FedoraProjectPackageDB;
 
 # ABSTRACT: Show a summary of the searched Fedora project yum packages.
 
@@ -13,9 +13,7 @@ secondary_example_queries 'fedora package gcc*', 'htop redhat package';
 category 'software';
 topics 'sysadmin';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/FedoraProjectPackageDB.pm';
-attribution
-  github  => [ 'https://github.com/zdm', 'zdm' ],
-  twitter => q{};
+attribution github => [ 'https://github.com/zdm', 'zdm' ];
 
 # Triggers
 triggers startend => 'yum', 'yum package', 'redhat package', 'fedora package', 'centos package';
