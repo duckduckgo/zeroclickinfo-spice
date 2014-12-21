@@ -8,6 +8,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
     "use strict";
 
     var started = false;
+    var MAX_TIME = 60039;
 
     env.ddg_spice_timer = function(api_result) {
         Spice.add({
@@ -63,11 +64,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                     break;
                 }
             }
-            if (time <= 3660957) { // 3660957 == 999.99h999.9m999s
-                return time;
-            } else {
-                return 3660957;
-            }
+
+            return (time <= MAX_TIME) ? time : MAX_TIME;
         }
 
         var time_left, last_update, update_int,
