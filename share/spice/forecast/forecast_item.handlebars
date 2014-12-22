@@ -1,13 +1,13 @@
 <div class="tile tile--s" data-link="{{meta.sourceUrl}}">
     {{#if isCurrent}}
-    <div class="fe_currently text--secondary{{#if alerts}}  alert{{/if}}">
+    <div class="fe_currently text--secondary{{#if alerts}} alert{{/if}}">
 		<h5 class="fe_label text--primary"><a href="{{{meta.sourceUrl}}}">Right Now:</a></h5>
 		<div class="fe_current-wrap">
 			<div class="fe_current__top">
                 <span class="fe_icon-wrap fe_icon-wrap--current">
                     {{{forecast_icon icon size="80px"}}}
                 </span>
-                <h1 class="fe_temp tx-clr--dk">{{{temp}}}</h1>
+                <h1 class="fe_temp tx-clr--dk"><span class="fe_temp_str">{{{temp}}}&deg;</span></h1>
 			</div>
 			<div class="fe_current__bottom">
 				{{#if summary}}<h6 class="fe_topline"><span class="fe_summary {{summaryClass}}">{{{summary}}}</span></h6>{{/if}}
