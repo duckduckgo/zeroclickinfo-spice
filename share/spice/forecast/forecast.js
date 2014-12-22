@@ -36,7 +36,7 @@
                 'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy', 'partly-cloudy-day',
                 'partly-cloudy-night', 'clear-day', 'clear-night', 'hail', 'thunderstorm', 'tornado'
             ],
-            uom = unit_labels[units].temperature === 'F' ? 'F' : 'C';
+            uom = unit_labels[units].temperature === 'F' ? 'F' : 'C',
             altMeta = '<a class="fe_temp_switch tx-clr--dk2"><span id="fe_fahrenheit">&deg;F</span> / <span id="fe_celsius">&deg;C</span></a>';
 
         // Skycons (static version of these: http://darkskyapp.github.io/skycons/)
