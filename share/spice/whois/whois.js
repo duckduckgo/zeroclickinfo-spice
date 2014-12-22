@@ -23,19 +23,24 @@
     (is_domain_available(api_result)) ? show_available(api_result) : show_whois(api_result);  
 }
 
-
  // show message saying that the domain is available.
     function show_available(api_result) {
-        var shared_spice_data = get_shared_spice_data(api_result);
-        // add the attributes specific to this template
-        shared_spice_data.data = api_result;
+        var shared_spice_data = get_shared_spice_data(api_result),
+        templateData = {
+            'domainRegistrars': {
+                "Domainr": "https://domainr.com/",
+                "NameCheap": "https://www.namecheap.com/domains/registration/results.aspx?domain=", 
+                "101domain": "https://www.101domain.com/domain-availability-search.htm?q="
+                },
+            'domainName': api_result.domainName
+            }
+        shared_spice_data.data = templateData;
         shared_spice_data.templates.options.content = Spice.whois.available;
         Spice.add(shared_spice_data);
     };
 
     // show whois info for the domain using the 'record' template.
     function show_whois(api_result) {
-
         var shared_spice_data = get_shared_spice_data(api_result),
             nameServers,
             nsObj,
@@ -100,7 +105,6 @@
         };
         shared_spice_data.templates.options.content = 'record';
         shared_spice_data.templates.options.keySpacing = true;
-
         Spice.add(shared_spice_data);
     };
 
