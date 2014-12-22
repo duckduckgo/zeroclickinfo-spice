@@ -19,22 +19,17 @@ attribution twitter => 'bjennelle',
             github => ["b1ake", 'Blake Jennelle'],
             github => ["chrisjwilsoncom", 'Chris Wilson']; 
 
-# additional keywords that trigger this spice
-my $whois_keywords_qr = qr/whois|who\sis|lookup|(?:is\s|)domain|(?:is\s|)available|register|owner(?:\sof|)|who\sowns|(?:how\sto\s|)buy/i;
-
-# allow the whois keywords at the beginning or end of the string with leading or trailing spaces.
-# if at the end of the string, allow a trailing question mark.
-triggers query_raw =>qr/^\s*$whois_keywords_qr|$whois_keywords_qr[?]?\s*$/x;
+triggers any => "whois", "lookup", "domain", "is domain", "available", "is available", "register", "owner", "owner of", "who owns", "buy", "how to buy";
 
 # API call details for Whois API (http://www.whoisxmlapi.com/)
 spice to => 'http://www.whoisxmlapi.com/whoisserver/WhoisService?domainName=$1&outputFormat=JSON&callback={{callback}}&username={{ENV{DDG_SPICE_WHOIS_USERNAME}}}&password={{ENV{DDG_SPICE_WHOIS_PASSWORD}}}';
 
-handle query_lc => sub {
+handle remainder_lc => sub {
 
     my $domain;
     my $publicSuffix = Domain::PublicSuffix->new();
     
-    s/https?:\/\/|$whois_keywords_qr|\?//g; # strip keywords and http(s)
+    s/https?:\/\/|\?//g; # strip keywords and http(s)
     trim($_); # trim any leading and trailing spaces
     s/\:?[0-9]{1,4}?//g; # look for a port, such as :3000
     if(m/\//) { 
