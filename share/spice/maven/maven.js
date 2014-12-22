@@ -5,17 +5,19 @@ function ddg_spice_maven(api_result) {
         return Spice.failed('maven');
     }
 
+    var searchQuery = api_result.responseHeader.params.q;
+
     Spice.add({
         id: "maven",
         name: "Software",
         data: api_result,
         meta: {
             sourceName: "maven.org",
-            sourceUrl: 'http://search.maven.org/#search%7Cga%7C1%7C' + encodeURIComponent(api_result.responseHeader.params.q),
+            sourceUrl: 'http://search.maven.org/#search%7Cga%7C1%7C' + encodeURIComponent(searchQuery),
         },
         normalize: function(item) {
             return {
-                title: api_result.responseHeader.params.q + " (Maven Central Repository)"
+                title: searchQuery + " (Maven Central Repository)"
             }  
         },
         templates: {
