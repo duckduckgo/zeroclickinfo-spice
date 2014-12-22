@@ -1,5 +1,5 @@
 .tile--go_watch_it {
-  height: 175px;
+  height: 185px;
 }
 
 .tile--go_watch_it .tile__body .image-holder {
@@ -11,6 +11,7 @@
 }
 
 .tile--go_watch_it .tile__body .data {
+  height: 60px;
   color: black;
 }
 
@@ -36,9 +37,9 @@
 .tile--go_watch_it .tile__body .gwi-footer {
   text-align: center;
   margin-top: 10px;
-  color: gray;
+  color: #888;
 }
 
 .tile--go_watch_it .tile__body .gwi-footer.double {
-  margin-top: 50px;
+  /*margin-top: 50px;*/
 }
