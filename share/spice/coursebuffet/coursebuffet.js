@@ -20,18 +20,22 @@
                     name = item.name.substr(0, 50) + "...";
                 };
                 return {
-                    title: name,
+                    heading: name,
                     description: item.show_professors,
-                    url: "http://www.coursebuffet.com"+item.create_new_link
+                    url: "http://www.coursebuffet.com"+item.create_new_link,
+                    img: "http://www.coursebuffet.com"+item.course_image,
+                    price: item.cb_sub_level_display,
+                    brand: item.offeredvia
                 };
             },
             templates: {
-                group: 'text',
+                item: 'products_item',
                 detail: false,
                 item_detail: false,
                 options: {
                     moreAt: true,
-                    footer: Spice.coursebuffet.footer
+                    rating: false
+//                     footer: Spice.coursebuffet.footer
                 }
             }
 //             relevancy: {
