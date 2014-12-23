@@ -7,7 +7,7 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Coursebuffet )],
-    'computer science course' => test_spice(
+    'computer science online course' => test_spice(
         '/js/spice/coursebuffet/standard/courses/computer%20science',
         call_type => 'include',
         caller => 'DDG::Spice::Coursebuffet'
