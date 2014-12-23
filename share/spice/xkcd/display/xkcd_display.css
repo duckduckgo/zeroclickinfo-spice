@@ -11,10 +11,11 @@
 
 .zci--xkcd .xkcd--img {
     display: block;
+    margin: 0.75em 0px;
 }
 
 .zci--xkcd .xkcd--buttons {
-    margin-top: 0.5em;
+    margin: 0.5em 0px;
 }
 
 .zci--xkcd .zci__more-at {
@@ -26,6 +27,10 @@
 .zci--xkcd .xkcd--explain-link {
 	display: block;
 	float: left;
-	padding-top: .25em;
 	padding-left: .25em;
+}
+
+.zci__subheader.xkcd--date {
+    color: grey;
+    padding-top: 0.1em;
 }
