@@ -17,19 +17,21 @@
 
 .tile--go_watch_it .tile__body .data span.price {
   font-weight: bold;
-  font-size: 14pt;
+  font-size: 15pt;
 }
 
 .tile--go_watch_it .tile__body .data .left {
   float: left;
   padding-left: 25px;
-  padding-right: 16px;
+  padding-right: 14px;
   border-right: 1px solid #ddd;
+  text-align: right;
 }
 
 .tile--go_watch_it .tile__body .data .right {
   float: right;
   padding-right: 25px;
+  text-align: left;
 }
 
 .tile--go_watch_it .tile__body .data .single {
