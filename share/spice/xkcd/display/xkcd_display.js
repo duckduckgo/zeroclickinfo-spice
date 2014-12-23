@@ -15,6 +15,43 @@
             if(api_result.num === 1335) {
                 api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
             }
+            
+            if(api_result.month === "1") {
+                api_result.month='January';
+            }
+            else if(api_result.month === "2") {
+                api_result.month='February';
+            }
+            else if(api_result.month === "3") {
+                api_result.month='March';
+            }
+            else if(api_result.month === "4") {
+                api_result.month='April';
+            }
+            else if(api_result.month === "5") {
+                api_result.month='May';
+            }
+            else if(api_result.month === "6") {
+                api_result.month='June';
+            }
+            else if(api_result.month === "7") {
+                api_result.month='July';
+            }
+            else if(api_result.month === "8") {
+                api_result.month='August';
+            }
+            else if(api_result.month === "9") {
+                api_result.month='September';
+            }
+            else if(api_result.month === "10") {
+                api_result.month='October';
+            }
+            else if(api_result.month === "11") {
+                api_result.month='November';
+            }
+            else if(api_result.month === "12") {
+                api_result.month='December';
+            }
     
             Spice.add({
                 id: 'xkcd',
