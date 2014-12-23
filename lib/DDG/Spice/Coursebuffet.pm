@@ -7,7 +7,7 @@ spice to => 'http://www.coursebuffet.com/ddg/$1/$2';
 spice from => '(.*?)/(.*)';
 spice wrap_jsonp_callback => 1;
 
-primary_example_queries "computer science course";
+primary_example_queries "computer science online course";
 secondary_example_queries "computer science coursera";
 description "Course catalog for online learning!";
 name "CourseBuffet";
