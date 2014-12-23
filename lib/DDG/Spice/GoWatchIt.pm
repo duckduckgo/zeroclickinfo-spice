@@ -25,6 +25,8 @@ spice wrap_jsonp_callback => 1;
 handle remainder => sub {
   return if !$_;
 
+  $_ = lc $_; # Make sure everything is lower case.
+
   $_ =~ s/$killwords//g; # remove killwords
   $_ =~ s/^\s+|\s+$//g; # strip leading and trailing spaces
 
