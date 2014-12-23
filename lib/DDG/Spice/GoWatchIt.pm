@@ -12,14 +12,23 @@ attribution github  => ['https://github.com/plexusent', 'GoWatchIt.com'],
             web     => ['http://gowatchit.com'],
             twitter => ['gowatchit', 'GoWatchIt.com'];
 
-triggers startend => 'watch', 'stream', 'watch online', 'on demand', 'watch now', 'stream online', 'buy movie', 'rent movie';
+my @triggers = ('watch', 'stream', 'watch online', 'on demand', 'watch now', 'stream online', 'buy movie', 'rent movie');
+my @killwords = ('movie', 'show', 'tv', 'online', 'stream');
+
+my $killwords = join '|', @killwords;
+
+triggers startend => @triggers;
 
 spice to => 'http://gowatchit.com/api/v3/search?term=$1&full_meta=true&api_key={{ENV{DDG_SPICE_GOWATCHIT_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-    return $_ if $_;
-    return;
+  return if !$_;
+
+  $_ =~ s/$killwords//g; # remove killwords
+  $_ =~ s/^\s+|\s+$//g; # strip leading and trailing spaces
+
+  return $_;
 };
 
 1;
