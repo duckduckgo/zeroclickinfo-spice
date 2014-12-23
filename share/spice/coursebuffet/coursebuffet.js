@@ -4,7 +4,7 @@
         if (api_result == null || api_result["error"]) {
             return Spice.failed('coursebuffet');
         };
-
+        
         Spice.add({
             id: 'coursebuffet',
             name: 'Online Courses',
@@ -33,26 +33,26 @@
                     moreAt: true,
                     footer: Spice.coursebuffet.footer
                 }
-            },
-            relevancy: {
-                type: 'primary',
-                skip_words: [
-                    'course',
-                    'courses',
-                    'coursera',
-                    'edx',
-                    'udacity',
-                    'saylor',
-                    'novoed',
-                    'futurelearn',
-                    'iversity',
-                    'open2study',
-                    'openuped'
-                ],
-                primary: [
-                    { key: 'name', strict: false }
-                ]
             }
+//             relevancy: {
+//                 type: 'primary',
+//                 skip_words: [
+//                     'course',
+//                     'courses',
+//                     'coursera',
+//                     'edx',
+//                     'udacity',
+//                     'saylor',
+//                     'novoed',
+//                     'futurelearn',
+//                     'iversity',
+//                     'open2study',
+//                     'openuped'
+//                 ],
+//                 primary: [
+//                     { key: 'name', strict: false }
+//                 ]
+//             }
         });
     };
 }(this));
