@@ -1,5 +1,5 @@
 
-.tile--coursebuffet .tile__title {
+/* .tile--coursebuffet .tile__title {
   height: 4em;
   -webkit-line-clamp: 3;
 }
@@ -10,4 +10,9 @@
 
 .tile--coursebuffet .tile__content {
     height: 3.5em;
+}
+ */
+
+.tile--coursebuffet {
+    max-height: 17.5em;
 }
