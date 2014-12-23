@@ -23,6 +23,8 @@
 .tile--go_watch_it .tile__body .data .left {
   float: left;
   padding-left: 25px;
+  padding-right: 16px;
+  border-right: 1px solid #ddd;
 }
 
 .tile--go_watch_it .tile__body .data .right {
