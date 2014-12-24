@@ -8,7 +8,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
     "use strict";
 
     var started = false;
-    var MAX_TIME = 60039;
+    var MAX_TIME = 59999; // => 999m59s
 
     env.ddg_spice_timer = function(api_result) {
         Spice.add({
