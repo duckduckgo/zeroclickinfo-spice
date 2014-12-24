@@ -17,7 +17,8 @@ function ddg_spice_maven(api_result) {
         },
         normalize: function(item) {
             return {
-                title: searchQuery + " (Maven Central Repository)"
+                title: searchQuery,
+                subtitle: "Maven Central Repository"
             }  
         },
         templates: {
