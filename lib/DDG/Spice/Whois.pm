@@ -29,13 +29,21 @@ handle remainder_lc => sub {
     my $domain;
     my $publicSuffix = Domain::PublicSuffix->new();
     
-    s/https?:\/\/|\?//g; # strip keywords and http(s)
-    trim($_); # trim any leading and trailing spaces
-    s/\:?[0-9]{1,4}?//g; # look for a port, such as :3000
+    s/https?:\/\/|\?//g; # strip keywords and http(s) and question mark
+    s/\:?[0-9]{1,4}?//g; # strip ports, such as :3000
+
+    if ( /\s/ ) { 
+        s/\bis\b|\bfor\b//g # if space, strip additional words
+    }
+
     if(m/\//) { 
         s|[^/]+$||; # if we have /about.html or other remove it
         s/\/$//g; # remove the left over slash
     }
+
+    trim($_); # trim any leading and trailing spaces
+
+    if ( /\s/ ) { return; } # do not trigger if the query still contains spaces
 
     return if !$_; # do not trigger this spice if the query is blank
 
