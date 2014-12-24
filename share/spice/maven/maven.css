@@ -1,21 +1,16 @@
-.zci--maven table {
-    width:100%;
-    margin:5px;
-}
-
 .zci--maven tr {
-    border-bottom:1px solid #efefef;
+    border-bottom: 1px solid #dedede;
 }
 
-.zci--maven th {
-    vertical-align:bottom;
-    text-align:left;
-    font-size:83.3%;
-    font-style:italic;
-    padding-left:3px;
+.zci--maven tr:last-of-type {
+    border-bottom: none;
 }
 
 .zci--maven td {
-    padding:2px;
-    max-width:250px;
+    padding:2px 0;
+}
+
+.zci--maven th,
+.zci--maven td {
+    padding-right: 15px;
 }
