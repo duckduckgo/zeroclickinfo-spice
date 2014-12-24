@@ -7,7 +7,7 @@
         }
 
         Spice.add({
-            id: "tvmaze",
+            id: "tvmaze_nextepisode",
             name: "TV Shows",
             data: api_result,
             meta: {
