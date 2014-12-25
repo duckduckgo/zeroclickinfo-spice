@@ -19,23 +19,27 @@
                 if (name.length > 50) {
                     name = item.name.substr(0, 50) + "...";
                 };
+                var professors = "Instructors: ";
+                if(item.show_professors==null || item.show_professors.length==0) {
+                    professors = professors + "Not available";
+                }
+                else {
+                    professors = professors + item.show_professors;
+                };
                 return {
-                    heading: name,
-                    description: item.show_professors,
+                    title: name,
+                    description: professors,
                     url: "http://www.coursebuffet.com"+item.create_new_link,
-                    img: "http://www.coursebuffet.com"+item.course_image,
-                    price: item.cb_sub_level_display,
-                    brand: item.offeredvia
+                    image: "http://www.coursebuffet.com"+item.course_image,
+//                     rating: item.cb_sub_level_display,
+                    ratingText: item.offeredvia
                 };
             },
             templates: {
-                item: 'products_item',
-                detail: false,
-                item_detail: false,
+                item: 'basic_image_item',
                 options: {
                     moreAt: true,
                     rating: false
-//                     footer: Spice.coursebuffet.footer
                 }
             }
 //             relevancy: {
