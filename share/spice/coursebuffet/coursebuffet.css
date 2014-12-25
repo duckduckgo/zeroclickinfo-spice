@@ -1,18 +1,11 @@
-
-/* .tile--coursebuffet .tile__title {
-  height: 4em;
-  -webkit-line-clamp: 3;
+.tile--coursebuffet .tile__title {
+    -webkit-line-clamp: 2 !important;
+    white-space: normal !important;
+    height: 2.5em !important;
 }
 
-.tile--coursebuffet .tile__body {
-    height: 13.5em;
-}
-
-.tile--coursebuffet .tile__content {
-    height: 3.5em;
-}
- */
-
-.tile--coursebuffet {
-    max-height: 17.5em;
+.tile--coursebuffet .tile__rating .tile__source {
+    width: 100% !important;
+    overflow: visible;
+    white-space: normal;
 }
