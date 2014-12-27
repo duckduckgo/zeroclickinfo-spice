@@ -12,10 +12,16 @@
 .zci--xkcd .xkcd--buttons {
     margin-top: 0.5em;
     text-align: center;
+    height: 28px;
 }
 
 .zci--xkcd .xkcd--buttons a {
     display: inline-block;
+}
+
+.zci--xkcd .xkcd--buttons .tile-nav--sm {
+    font-size: 12px;
+    text-decoration: none;
 }
 
 /* Float prev/explain link to the left */
