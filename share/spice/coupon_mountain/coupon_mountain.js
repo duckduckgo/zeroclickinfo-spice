@@ -2,7 +2,7 @@
     'use strict';
 
     env.ddg_spice_coupon_mountain = function(api_result) {
-        if (api_result.count < 1) {
+        if (!api_result || api_result.count < 1) {
             return Spice.failed('coupon_mountain');
         }
 
