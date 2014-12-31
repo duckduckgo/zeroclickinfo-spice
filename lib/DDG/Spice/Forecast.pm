@@ -1,7 +1,5 @@
 package DDG::Spice::Forecast;
 
-use Data::Dumper;
-
 use DDG::Spice;
 use Text::Trim;
 
