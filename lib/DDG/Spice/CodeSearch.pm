@@ -4,7 +4,7 @@ use DDG::Spice;
 
 triggers startend => "code", "example";
 
-spice to => 'http://searchco.de/api/jsonp_codesearch_I/?q=$1&callback={{callback}}';
+spice to => 'https://searchco.de/api/jsonp_codesearch_I/?q=$1&callback={{callback}}';
 
 primary_example_queries "javascript console.log example";
 description "Code search";
