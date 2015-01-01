@@ -6,8 +6,12 @@
     margin-left: -0.2em;
 }
 
-.zci--twitter .twitter--basic a { 
+.zci--twitter .twitter--basic a.twitter--more { 
     color: #888;
+}
+
+.zci--twitter .twitter--basic a.twitter--more:hover { 
+    color: #4495d4;
 }
 
 .zci--twitter .twitter--image {
