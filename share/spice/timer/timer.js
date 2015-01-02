@@ -18,10 +18,19 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 tries = 0;
 
             function findTimerCss() {
+                var el = $('link[href$="timer.css"]')[0];
                 tries++;
-                if ($('link[href$="timer.css"]')[0]) {
+              
+                if (el) {
                     clearInterval(interval);
-                    removeHiddenAttr();
+                    if (el.sheet) {
+                        //already loaded, no need for 'load' event
+                        removeHiddenAttr();
+                    }
+                    else {
+                        //not yet loaded, attach a 'load' event
+                        $(el).load(removeHiddenAttr);
+                    }
                 }
               
                 //give up after 30 seconds
