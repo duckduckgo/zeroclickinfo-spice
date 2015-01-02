@@ -16,6 +16,7 @@
 
 .zci--twitter .twitter--image {
     float: left;
+    padding-top: 0.3em;
     margin-right: 1.1em;
     width: 68px;
     height: 68px;
