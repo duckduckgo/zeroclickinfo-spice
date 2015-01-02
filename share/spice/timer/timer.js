@@ -13,7 +13,25 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
     env.ddg_spice_timer = function(api_result) {
         
         //prevent flash of unstyled content if spice shows before css loads
-        $('link[href$="timer.css"]').load(removeHiddenAttr);
+        function waitForCss() {
+            var interval = setInterval(findTimerCss, 10),
+                tries = 0;
+
+            function findTimerCss() {
+                tries++;
+                if ($('link[href$="timer.css"]')[0]) {
+                    clearInterval(interval);
+                    removeHiddenAttr();
+                }
+              
+                //give up after 30 seconds
+                else if (tries > 3000) {
+                    clearInterval(interval);
+                }
+            }
+        }
+      
+        waitForCss();
         
         function removeHiddenAttr() {
             $('#timer_container').removeAttr('hidden');
