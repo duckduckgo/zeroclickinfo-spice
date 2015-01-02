@@ -1,4 +1,36 @@
-.zci--keybase .zci__content--info {
-	font-family: Courier;
-	white-space: pre-line;
+.zci--keybase .keybase--basic {
+    clear: both;
+    margin-top: 0.25em;
+    margin-bottom: 0.3em;
+    margin-left: -0.2em;
+}
+
+.zci--keybase .keybase--basic a {
+    color: #888;
+}
+
+.zci--keybase .keybase--image {
+    float: left;
+    margin-right: 1.1em;
+    width: 68px;
+    height: 68px;
+}
+
+.zci--keybase .keybase--description {
+    font-size: 1.3em;
+    margin-bottom: 0.75em;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.2em;
+}
+
+.zci--keybase .keybase--misc {
+    padding-top: 0.5em;
+}
+
+.zci--keybase .zcm__sep {
+    margin: 0 0.3em;
+}
+
+.zci--keybase .keybase--more {
+    color: #888;
 }

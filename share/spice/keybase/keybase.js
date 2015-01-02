@@ -1,32 +1,46 @@
 (function (env) {
-    "use strict";
+    'use strict';
     env.ddg_spice_keybase = function(api_result){
 
-        if (api_result.error) {
+        if (api_result.error || !api_result || api_result.them[0] == null) {
             return Spice.failed('keybase');
         }
 
         var user = api_result.them[0];
 
         Spice.add({
-            id: "keybase",
-            name: "Keybase",
+            id: 'keybase',
+            name: 'Keybase',
             data: user,
             meta: {
-                sourceName: "keybase.io",
+                sourceName: 'keybase.io',
                 sourceUrl: 'https://keybase.io/' + user.basics.username
             },
             templates: {
-                group: 'info',
-                detail: 'basic_info_detail',
+                group: 'base',
+                options: {
+                    content: Spice.keybase.content,
+                    moreAt: true,
+                }
             },
-            normalize: function(item) {
-                return {
-                    image: user.pictures ? user.pictures.primary.url : 'https://keybase.io/images/no_photo.png',
-                    title: user.profile.full_name,
-                    description: user.public_keys.primary.bundle,
-                };
-            }
         });
     };
 }(this));
+
+Handlebars.registerHelper('keybase_key_fingerprint', function(fingerprint) {
+    'use strict';
+
+    var output = '';
+
+    if (fingerprint.length != 40 || !fingerprint) {
+        return output;
+    }
+
+    var pos = fingerprint.length - 16;
+
+    for (pos; pos < fingerprint.length; pos += 4) {
+        output += fingerprint.substring(pos, pos + 4).toUpperCase() + ' ';
+    }
+
+    return output;
+});
