@@ -10,10 +10,11 @@ spice to => 'https://keybase.io/_/api/1.0/user/lookup.json?usernames=$1';
 
 name 'Keybase';
 icon_url 'https://keybase.io/favicon.ico';
-description 'Show PGP public key';
+description 'Shows user information from keybase.io.';
 category 'computing_tools';
 topics 'cryptography';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Keybase.pm';
+primary_example_queries 'keybase mwolny', 'keybase jeresig';
 
 triggers startend => "keybase";
 

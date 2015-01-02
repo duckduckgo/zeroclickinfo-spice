@@ -1,0 +1,30 @@
+<div class="keybase--basic">
+  <div class="keybase--image--wrap">
+    {{#if pictures.primary.url}}
+    <img src="{{imageProxy pictures.primary.url}}" class="circle keybase--image">
+    {{else}}
+    <img src="{{imageProxy 'https://keybase.io/images/no_photo.png'}}" class="circle keybase--image">
+    {{/if}}
+  </div>
+  <div class="keybase--misc">
+    <div>{{profile.full_name}}</div>
+      <div class="keybase--more">
+        <span class="keybase--user"><a href="https://keybase.io/{{basics.username}}">keybase.io/{{basics.username}}</a></span>
+      </div>
+      <div class="keybase--more">
+    {{#if profile.location}}
+        <span class="keybase--user">{{profile.location}}</span>
+    {{/if}}
+      </div>
+    {{#if public_keys.primary.key_fingerprint}}
+        <span class="keybase--user">
+            <a href="https://keybase.io/{{basics.username}}/key.asc">{{keybase_key_fingerprint public_keys.primary.key_fingerprint}}</a>
+        </span>
+    {{/if}}
+    </div>
+  </div>
+</div>
+{{#if profile.bio}}
+<div class="keybase--description">{{profile.bio}}</div>
+{{/if}}
+
