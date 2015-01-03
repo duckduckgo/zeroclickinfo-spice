@@ -6,20 +6,44 @@
             return Spice.failed("tor_node");
         }
 
-        var node, type, data = {};
-        if (api_result.relays.length != 0) {
-            node = api_result.relays[0];
-            data["Type"] = "Relay";
-            data["Fingerprint"] = node.fingerprint;
+        // Collect together and classify the nodes.
+        var i, node, nodes = [];
+        for (i = 0; i < api_result.relays.length; i++) {
+            node = api_result.relays[i];
+            node.type = "Relay";
+            nodes.push(node);
         }
-        else if (api_result.bridges.length != 0) {
-            node = api_result.bridges[0];
-            data["Type"] = "Bridge";
-            data["Hashed Fingerprint"] = node.hashed_fingerprint;
+        for (i = 0; i < api_result.bridges.length; i++) {
+            node = api_result.bridges[i];
+            node.type = "Bridge";
+            nodes.push(node);
         }
-        else {
+
+        // We use different templates for different situations.
+        if (nodes.length === 0) {
             return Spice.failed("tor_node");
         }
+        if (nodes.length === 1) {
+            single_result(nodes[0]);
+        }
+        else {
+            multiple_results(nodes);
+        }
+    };
+
+    function single_result(node) {
+        var fp, data = {};
+
+        if (node.type === "Relay") {
+            fp = node.fingerprint;
+            data["Fingerprint"] = fp;
+        }
+        else {
+            fp = node.hashed_fingerprint;
+            data["Hashed Fingerprint"] = fp;
+        }
+
+        data["Type"] = node.type;
 
         if (node.nickname && node.nickname !== "Unnamed")
             data["Nickname"] = node.nickname;
@@ -49,7 +73,7 @@
             },
             meta: {
                 sourceName: "Tor Atlas",
-                sourceUrl: "https://atlas.torproject.org/#details/" + node.fingerprint
+                sourceUrl: "https://atlas.torproject.org/#details/" + fp
             },
             templates: {
                 group: "base",
@@ -60,5 +84,10 @@
                 }
             }
         });
-    };
+    }
+
+    function multiple_results(nodes) {
+        // Unimplemented.
+        return Spice.failed("tor_node");
+    }
 }(this));
