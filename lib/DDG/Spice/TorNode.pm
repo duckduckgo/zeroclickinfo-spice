@@ -30,28 +30,46 @@ triggers startend => "tor node",
                      "tor bridge", "tor bridge node";
 
 spice is_cached           => 0;
-spice to                  => 'https://onionoo.torproject.org/details?search=$1&limit=1&order=-consensus_weight';
+spice from                => '^([^/]+)/([0-9]+)$';
+spice to                  => 'https://onionoo.torproject.org/details?search=$1&limit=$2&order=-consensus_weight';
 spice wrap_jsonp_callback => 1;
 
-my $IPv4_re = qr/(?:[0-9]{1,3}\.){3}(?:[0-9]{1,3})/;
-my $SHA1_re = qr/[0-9a-f]{40}/i;
+my $IPv4_1_re = qr/(?:[0-9]{1,3}\.){3}(?:[0-9]{1,3})/;    # Matches full IPv4 addresses.
+my $IPv4_X_re = qr/(?:[0-9]{1,3}\.){1,2}(?:[0-9]{1,3})?/; # Matches partial IPv4 addresses.
+my $SHA1_re   = qr/[0-9a-f]{40}/i;                        # Matches bare and hased fingerprints.
+my $Nick_re   = qr/[0-9a-z]{1,19}/i;                      # Matches node nicknames.
 
-sub is_ipv4($)
-{
-    my ($ip) = @_;
-    return undef unless $ip =~ qr/^$IPv4_re$/;
+sub is_ipv4 {
+    my ($ip, $re) = @_;
+    return undef unless $ip =~ qr/^$re$/;
+
     my @octlets = split(/\./, $ip);
     for (@octlets) {
         return undef if int($_) < 0 || int($_) > 255;
     }
+
     return 1;
 }
 
 handle remainder => sub {
+    # We require some kind of identifier to search for.
     return unless $_;
-    return unless $_ =~ m|^[.:0-9a-f]+$|i;
-    return unless (is_ipv4($_) || $_ =~ /^$SHA1_re$/ || $_ =~ /^$IPv6_re$/);
-    return $_;
+
+    # Ensure that only valid characters are in the identifier.
+    return unless $_ =~ m/[.:0-9a-z]+/i;
+
+    # If it matches a full, unique identifier...
+    if (is_ipv4($_, $IPv4_1_re) || $_ =~ /^$SHA1_re$/ || $_ =~ /^$IPv6_re$/) {
+        return $_, 1;
+    }
+
+    # Otherwise we're doing a full-text or IP prefix search with an arbitrary limit.
+    if (is_ipv4($_, $IPv4_X_re) || $_ =~ /^$Nick_re$/) {
+        return $_, 25;
+    }
+
+    # The remainder was not recognized as an identifier.
+    return;
 };
 
 1;
