@@ -28,6 +28,8 @@ triggers startend => @triggers;
 
 my $langs = join("|", @triggers);
 
+spice to => 'https://api.github.com/search/repositories?q=$1&callback={{callback}}';
+
 # Handle statement
 handle query_lc => sub {
 
@@ -35,7 +37,7 @@ handle query_lc => sub {
 
     # optional - regex guard
     # return unless qr/^\w+/;
-    my $lang = m/^\b$langs\b|\b$langs\b$/;
+    my $lang = $query =~ /^$langs\b/;
     $query =~ s/^\b$langs\b|\b$langs\b$//;
     #return unless $_;    # Guard against "no answer"
 
