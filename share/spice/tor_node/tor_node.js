@@ -48,6 +48,8 @@
             node.flags = node.flags.join(", ");
             node.first_seen_relative = timeFromNow(node.first_seen);
             node.last_seen_relative = timeFromNow(node.last_seen);
+            node.first_seen = prettifyTimestamp(node.first_seen);
+            node.last_seen = prettifyTimestamp(node.last_seen);
         }
 
         // Filter out the trigger from the query.
@@ -94,6 +96,25 @@
         };
 
         return mapping[cc] ? mapping[cc] : cc;
+    }
+
+    // Based on function in whois spice.
+    function prettifyTimestamp(timestamp) {
+        if (!timestamp) {
+            return;
+        }
+
+        var dateObj = DDG.getDateFromString(timestamp),
+            monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            day = dateObj.getDate(),
+            month = monthArr[dateObj.getMonth() + 1],
+            year = dateObj.getFullYear();
+
+        if (day < 10) {
+            day = "0" + day
+        };
+
+        return month + " " + day + ", " + year;
     }
 
     // Based on funciton in reddit_search spice.
