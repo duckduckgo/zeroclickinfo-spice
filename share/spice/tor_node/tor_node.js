@@ -40,6 +40,9 @@
             }));
 
             // Make various fields more friendly.
+            if (node.contact) {
+                node.contact = node.contact.replace(/mailto:/g, "");
+            }
             node.country_icon = DDG.settings.region.getXSmallIconURL(getCountryCode(node.country));
             node.status = node.running ? "Online" : "Offline";
             node.flags = node.flags.join(", ");
