@@ -1,0 +1,52 @@
+.zci--today_in_history .tile--c {
+    width: 15em;
+}
+
+.zci-today_in_history .tile__body {
+    height: 14em;
+}
+
+.zci--today_in_history .circle_p {
+    display: inline-block;
+    text-align: center;
+    width: 1.5em;
+    border: 1px solid #f7f7f7;
+    font-size: 1.25em;
+    float: right;
+}
+
+.zci--today_in_history .title_year {
+    float:left;
+}
+
+.zci--today_in_history .string {
+    clear:both;
+    overflow: hidden;
+    height: 8.4em;
+    line-height: 1.2em;
+    color: #888;
+}
+
+.zci--today_in_history .year {
+    padding-bottom: 2em;
+}
+
+.zci--today_in_history .ddgsi-plus.special:before {
+    font-family: "ddg-serp-icons" !important;
+    content: "−";
+    font-weight: 600;
+}
+
+.zci--today_in_history .colchange {
+    color: #333;
+}
+
+/* Stalled since we have no filter implementation
+.zci--today_in_history .filters {
+    font-size: 0.9em;
+    color:#888;
+    padding-right:1.5em;
+    padding-top:0.25em;
+    padding-left:1.5em;
+    float:right;
+}*/
