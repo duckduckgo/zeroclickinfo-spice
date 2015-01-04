@@ -1,0 +1,34 @@
+.zci--tor_node div {
+    line-height: normal;
+}
+
+.zci--tor_node img {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    height: 16px;
+}
+
+.zci--tor_node .Online {
+    color: #0f0;
+}
+
+.zci--tor_node .Offline {
+    color: #f00;
+}
+
+.tile--tor_node .tile__body {
+    height: 10em;
+}
+
+.tile--tor_node .tile__title {
+    font-family: "Courier New", Courier, monospace;
+}
+
+.tile--tor_node .tile__content {
+    height: 0;
+}
+
+.tile--tor_node .tile__footer {
+    margin-bottom: 0;
+}

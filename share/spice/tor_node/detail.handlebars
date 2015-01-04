@@ -1,0 +1,46 @@
+<div class="tor_node">
+  <h3><a href="https://atlas.torproject.org/#details/{{ref}}" class="name">{{ref}}</a></h3>
+  <h4>{{nickname}}</h4>
+  <table class="record__body">
+    <tbody>
+      <tr class="record__row record__highlight">
+        <td class="record__cell__key">Type:</td>
+        <td class="record__cell__value">{{{type}}}</td>
+      </tr>
+      {{#if contact}}
+      <tr class="record__row record__highlight">
+        <td class="record__cell__key">Contact:</td>
+        <td class="record__cell__value">{{{contact}}}</td>
+      </tr>
+      {{/if}}
+      {{#if addrs}}
+      <tr class="record__row record__highlight">
+        <td class="record__cell__key">IPs:</td>
+        <td class="record__cell__value">{{#concat addrs sep="," conj="and"}} {{this}} {{/concat}}</td>
+      </tr>
+      {{/if}}
+      {{#if country_name}}
+      <tr class="record__row record__highlight">
+        <td class="record__cell__key">Country:</td>
+        <td class="record__cell__value"><img src="{{country_icon}}"/>&nbsp;{{{country_name}}}</td>
+      </tr>
+      {{/if}}
+      <tr class="record__row record__highlight">
+        <td class="record__cell__key">Status:</td>
+        <td class="record__cell__value"><span class="{{status}}">{{{status}}}</span></td>
+      </tr>
+      <tr class="record__row record__highlight">
+        <td class="record__cell__key">First Seen:</td>
+        <td class="record__cell__value">{{{first_seen}}}</td>
+      </tr>
+      <tr class="record__row record__highlight">
+        <td class="record__cell__key">Last Seen:</td>
+        <td class="record__cell__value">{{{last_seen}}}</td>
+      </tr>
+      <tr class="record__row record__highlight">
+        <td class="record__cell__key">Flags:</td>
+        <td class="record__cell__value">{{{flags}}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

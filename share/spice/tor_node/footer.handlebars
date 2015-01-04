@@ -1,0 +1,8 @@
+<div class="one-line">
+  {{#if running}}
+  <div class="one-line">First seen {{first_seen_relative}}</div>
+  {{else}}
+  <div class="one-line">Last seen {{last_seen_relative}}</div>
+  {{/if}}
+  <img src="{{country_icon}}"> {{country_name}} &middot; <span class="{{status}}">{{{status}}}</span>
+</div>
