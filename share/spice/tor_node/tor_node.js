@@ -117,7 +117,7 @@
         return month + " " + day + ", " + year;
     }
 
-    // Based on funciton in reddit_search spice.
+    // Based on function in reddit_search spice.
     function timeFromNow(timestamp) {
        // Scaling factors for various time periods.
        var yearMillisec   = 31540000000;
@@ -181,7 +181,7 @@
            stringDate += " ago";
        }
 
-       // Finally, the node wsa seen today.
+       // Finally, the node was seen today.
        else {
            stringDate = "today";
        }
