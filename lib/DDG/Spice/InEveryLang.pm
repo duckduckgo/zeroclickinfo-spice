@@ -41,12 +41,16 @@ handle query_lc => sub {
     my $puzzle;
     if($1) {
         $puzzle = 'fizz-buzz';
+        $_ =~ s/fizz ?buzz//;
     } elsif($2) {
         $puzzle = 'quine';
+        $_ =~ s/quine//;
     } elsif ($3) {
         $puzzle = 'fibonacci-sequence';
+        $_ =~ s/fibonacci sequence//;
     } elsif ($4) {
         $puzzle = 'binary-search';
+        $_ =~ s/binary search//;
     } else {
         return;
     }
@@ -57,10 +61,22 @@ handle query_lc => sub {
 
     if($languages_length > 0) {
         my $language = pop(@languages);
+        my $raw_language = $+{$language};
+
         $language =~ s/sharp/\#/g;
         $language =~ s/plus/\+/g;
         $language =~ s/dash/\-/g;
-        return $puzzle, $language;
+
+        $raw_language =~ s/\+/\\\+/g;
+
+        $_ =~ s/$raw_language//;
+        $_ =~ s/in|examples?|solutions?|code|help|bugs?|\s//g;
+
+        if (length($_) == 0) {
+          return $puzzle, $language;
+        } else {
+          return;
+        }
     } else {
         return;
     }

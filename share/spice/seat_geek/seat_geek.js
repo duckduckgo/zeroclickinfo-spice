@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_seat_geek = function(api_result) {
 
-        if(api_result.error || !api_result || api_result.events.length === 0) {
+        if(!api_result || api_result.error || api_result.events.length === 0) {
             return Spice.failed('seat_geek');
         }
 
