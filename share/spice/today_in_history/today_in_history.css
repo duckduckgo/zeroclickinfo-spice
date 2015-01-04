@@ -1,0 +1,26 @@
+.zci--today_in_history .range {
+    color:black;
+    font-size:medium;
+    text-align: center;
+}
+
+.zci--today_in_history .year {
+    color:red;
+    font-weight:bold;
+    padding-right:1cm;
+}
+
+.zci--today_in_history .timevent {
+    padding-left:1cm;
+}
+
+.zci--today_in_history .divider {
+    border-right: 2px solid gray;
+}
+
+.zci--today_in_history .tableposition
+{
+    position:relative;
+    top:20px;
+}
+
