@@ -12,17 +12,22 @@
             id: "github_languages",
 
             // Customize these properties
-            name: "AnswerBar title",
-            data: api_result,
+            name: "GitHub Language Search",
+            data: api_result.data.items,
             meta: {
-                sourceName: "Example.com",
-                sourceUrl: 'http://example.com/url/to/details/' + api_result.name
+                sourceName: "GitHub",
+                sourceUrl: 'https://github.com'
             },
-            templates: {
-                group: 'your-template-group',
-                options: {
-                    content: Spice.github_languages.content,
-                    moreAt: true
+            templates:{
+                group: 'text',
+                detail: false,
+		        item_detail: false
+            },
+            normalize : function(item){
+                return{
+                    title: item.name,
+                    url: item.html_url,
+                    description: item.description
                 }
             }
         });

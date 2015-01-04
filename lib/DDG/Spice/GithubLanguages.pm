@@ -26,15 +26,20 @@ attribution github => ["GitHubAccount", "Friendly Name"],
 my @triggers = share("triggers.txt")->slurp;
 triggers startend => @triggers;
 
+my $langs = join("|", @triggers);
+
 # Handle statement
-handle remainder => sub {
+handle query_lc => sub {
+
+    my $query = $_;
 
     # optional - regex guard
     # return unless qr/^\w+/;
+    my $lang = m/^\b$langs\b|\b$langs\b$/;
+    $query =~ s/^\b$langs\b|\b$langs\b$//;
+    #return unless $_;    # Guard against "no answer"
 
-    return unless $_;    # Guard against "no answer"
-
-    return $_;
+    return "$query language:$lang";
 };
 
 1;
