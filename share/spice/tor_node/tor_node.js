@@ -41,7 +41,6 @@
 
             // Make various fields more friendly.
             node.country_icon = DDG.settings.region.getXSmallIconURL(getCountryCode(node.country));
-            console.log(node.country_icon);
             node.status = node.running ? "Online" : "Offline";
             node.flags = node.flags.join(", ");
             node.first_seen_relative = timeFromNow(node.first_seen);
