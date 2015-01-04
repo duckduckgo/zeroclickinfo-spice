@@ -89,14 +89,14 @@ ddg_spice_test(
     ($min_year - 1) . " summer solstice" => undef,
 
     $min_year . " summer solstice" => test_spice(
-        '/js/spice/seasons/1965/us/summer',
+        '/js/spice/seasons/' . $min_year . '/us/summer',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
         is_cached => 0
     ),
 
     $max_year . " summer solstice" => test_spice(
-        '/js/spice/seasons/2290/us/summer',
+        '/js/spice/seasons/' . $max_year . '/us/summer',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
         is_cached => 0
