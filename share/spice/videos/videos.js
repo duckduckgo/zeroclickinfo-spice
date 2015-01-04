@@ -1,5 +1,9 @@
 function ddg_spice_videos(apiResult) {
 
+    if (!apiResult || !apiResult.results || !apiResult.results.length) {
+        return Spice.failed('videos');
+    }
+
     Spice.add({
         id: 'videos',
         name: 'Videos',
