@@ -1,0 +1,314 @@
+actionscript
+c
+c#
+c++
+clojure
+coffeescript
+common lisp
+css
+diff
+emacs lisp
+erlang
+haskell
+html
+javascript
+java
+lua
+objective-c
+perl
+php
+python
+ruby
+scala
+scheme
+sql
+abap
+ada
+agda
+ags script
+alloy
+ant build system
+antlr
+apacheconf
+apex
+apl
+applescript
+arc
+arduino
+asciidoc
+asp
+aspectj
+assembly
+ats
+augeas
+autohotkey
+autoit
+awk
+batchfile
+befunge
+bison
+blitzbasic
+blitzmax
+bluespec
+boo
+brainfuck
+brightscript
+bro
+c-objdump
+c2hs haskell
+cap'n proto
+ceylon
+chapel
+chuck
+cirru
+clean
+clips
+cmake
+cobol
+coldfusion
+coldfusion cfc
+component pascal
+coq
+cpp-objdump
+creole
+crystal
+cucumber
+cuda
+cycript
+cython
+d
+d-objdump
+darcs patch
+dart
+dm
+dockerfile
+dogescript
+dylan
+e
+eagle
+ec
+ecere projects
+ecl
+edn
+eiffel
+elixir
+elm
+emberscript
+f#
+factor
+fancy
+fantom
+fish
+flux
+forth
+fortran
+frege
+g-code
+game maker language
+gams
+gap
+gas
+gdscript
+genshi
+gentoo ebuild
+gentoo eclass
+gettext catalog
+glsl
+glyph
+gnuplot
+go
+golo
+gosu
+grace
+grammatical framework
+graph modeling language
+graphviz (dot)
+groff
+groovy
+groovy server pages
+hack
+haml
+handlebars
+harbour
+haxe
+html+django
+http
+hy
+idl
+idris
+igor pro
+inform 7
+ini
+inno setup
+io
+ioke
+irc log
+isabelle
+j
+jade
+java server pages
+json
+json5
+jsoniq
+jsonld
+julia
+kit
+kotlin
+krl
+labview
+lasso
+latte
+less
+lfe
+lilypond
+liquid
+literate agda
+literate coffeescript
+literate haskell
+livescript
+llvm
+logos
+logtalk
+lolcode
+lookml
+lsl
+m
+makefile
+mako
+markdown
+mask
+mathematica
+matlab
+maven pom
+max
+mediawiki
+mercury
+minid
+mirah
+monkey
+moocode
+moonscript
+mtml
+mupad
+myghty
+nemerle
+nesc
+netlogo
+nginx
+nimrod
+ninja
+nit
+nix
+nsis
+nu
+numpy
+objdump
+objective-c++
+objective-j
+ocaml
+omgrofl
+ooc
+opa
+opal
+opencl
+openedge abl
+openscad
+org
+ox
+oxygene
+pan
+papyrus
+parrot
+parrot assembly
+parrot internal representation
+pascal
+pawn
+perl6
+piglatin
+pike
+pod
+pogoscript
+postscript
+powershell
+processing
+prolog
+propeller spin
+protocol buffer
+puppet
+pure data
+purescript
+python traceback
+qmake
+qml
+r
+racket
+ragel in ruby host
+raw token data
+rdoc
+realbasic
+rebol
+red
+redcode
+restructuredtext
+rhtml
+rmarkdown
+robotframework
+rouge
+rust
+sage
+sas
+sass
+scaml
+scilab
+scss
+self
+shell
+shellsession
+shen
+slash
+slim
+smalltalk
+smarty
+sourcepawn
+sqf
+squirrel
+standard ml
+stata
+ston
+stylus
+supercollider
+swift
+systemverilog
+tcl
+tcsh
+tea
+tex
+textile
+thrift
+toml
+turing
+twig
+txl
+typescript
+unified parallel c
+unrealscript
+vala
+vcl
+verilog
+vhdl
+viml
+visual basic
+volt
+wisp
+xbase
+xc
+xml
+xojo
+xproc
+xquery
+xs
+xslt
+xtend
+yaml
+zephir
+zimpl
