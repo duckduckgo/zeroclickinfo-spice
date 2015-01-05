@@ -2,10 +2,15 @@
     "use strict";
     env.ddg_spice_github_languages = function(api_result){
 
-        // Validate the response (customize for your Spice)
-        if (api_result.error) {
-            return Spice.failed('github_languages');
+        if (!api_result || !api_result.meta.status === 200) {
+          return Spice.failed('github');
         }
+
+        var sourceUrl = api_result.meta.Link[0][0].
+            replace(/api.github.com\/search\/repositories/, "github.com/search").
+            replace("&callback=ddg_spice_github_languages", "").
+            replace("&page=2", "&p=2");
+        
 
         // Render the response
         Spice.add({
@@ -16,16 +21,20 @@
             data: api_result.data.items,
             meta: {
                 sourceName: "GitHub",
-                sourceUrl: 'https://github.com'
+                sourceUrl: sourceUrl,
             },
             templates:{
                 group: 'text',
                 detail: false,
-		        item_detail: false
+		        item_detail: false,
+                options: {
+                        footer: Spice.github_languages.footer
+                    }
             },
             normalize : function(item){
                 return{
                     title: item.name,
+                    subtitle: item.full_name,
                     url: item.html_url,
                     description: item.description
                 }
@@ -33,3 +42,22 @@
         });
     };
 }(this));
+
+Handlebars.registerHelper("GitHub_last_pushed", function(pushed) {
+    "use strict";
+
+    var last_pushed = Math.floor((new Date() - new Date(pushed)) / (1000*60*60*24));
+
+    var years_ago = Math.floor(last_pushed / 365);
+    if (years_ago >= 1) {
+        last_pushed = years_ago + " year" + (years_ago == 1 ? "" : "s") + " ago";
+    } else if (last_pushed == 0) {
+        last_pushed = "today";
+    } else if (last_pushed == 1) {
+        last_pushed = "yesterday";
+    } else {
+        last_pushed = last_pushed + " day" + (last_pushed == 1 ? "" : "s") + " ago";
+    }
+
+    return last_pushed;
+});

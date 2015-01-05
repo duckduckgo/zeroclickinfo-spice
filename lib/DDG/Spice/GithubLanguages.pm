@@ -9,39 +9,39 @@ spice is_cached => 1;
 
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name "GithubLanguages";
-source "";
+source "GitHub";
 icon_url "https://github.com/favicon.ico";
-description "Succinct explanation of what this instant answer does";
-primary_example_queries "first example query", "second example query";
-secondary_example_queries "optional -- demonstrate any additional triggers";
+description "Github search by language";
+primary_example_queries "javascript redis", "mongodb javascript";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#category
-# category "";
+category "programming";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
-# topics "";
+topics "programming";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GithubLanguages.pm";
-attribution github => ["GitHubAccount", "Friendly Name"],
-            twitter => "twitterhandle";
+attribution github => ["https://github.com/joerussbowman", "Joe Bowman"],
+            twitter => "joerussbowman";
 
 # Triggers
 my @triggers = share("triggers.txt")->slurp;
 triggers startend => @triggers;
 
+chomp(@triggers);
 my $langs = join("|", @triggers);
 
-spice to => 'https://api.github.com/search/repositories?q=$1&callback={{callback}}';
+spice to => 'https://api.github.com/search/repositories?q=$1&sort=stars&callback={{callback}}';
 
 # Handle statement
 handle query_lc => sub {
 
     my $query = $_;
+    my $l = ""; 
+    if ($query =~ /^($langs)\b/ || $query =~ /\b($langs)$/) {
+        $l = $1;
+    } 
+    
+    $query =~ s/^($langs)\b|(\b$langs)$//;
 
-    # optional - regex guard
-    # return unless qr/^\w+/;
-    my $lang = $query =~ /^$langs\b/;
-    $query =~ s/^\b$langs\b|\b$langs\b$//;
-    #return unless $_;    # Guard against "no answer"
-
-    return "$query language:$lang";
+    return "$query language:$l";
 };
 
 1;

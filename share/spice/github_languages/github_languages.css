@@ -1,0 +1,20 @@
+.tile--github_languages .star.starIcon {
+    margin-top: -5px;
+}
+
+.tile--github_languages .tile__title__sub {
+    text-transform: none;
+    color: #999;
+}
+
+.tile--github_languages .tile__body {
+    height: 14em;
+}
+
+.tile--github_languages .tile__content {
+    height: 6.4em;
+}
+
+.is-mobile_languages .tile--github .tile__content {
+    height: 7em;
+}
