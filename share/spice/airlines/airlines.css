@@ -1,61 +1,61 @@
-.tile--route  {
+.tile--airlines  {
     width: 37em;
 }
 
-.zci--route .tile__schedule {
+.zci--airlines .tile__schedule {
     color: #878787;
     font-size: 12px;
 }
 
-.zci--route .tile__time {
+.zci--airlines .tile__time {
     font-size: 2em;
 }
 
-.zci--route .tile__heading {
+.zci--airlines .tile__heading {
     margin-bottom: 1em;
 }
 
-.zci--route .tile__flightID {
+.zci--airlines .tile__flightID {
     font-size: 2em;
     padding-bottom: 0;
     padding-top: 0;
 }
 
-.zci--route .tile__airports {
+.zci--airlines .tile__airports {
     font-size: 1.5em;
     padding-bottom: 0;
     padding-top: 0;
     margin-top: -0.2em;
 }
 
-.zci--route .tile__ok {
+.zci--airlines .tile__ok {
     color: #60AB5D;
 }
 
-.zci--route .tile__not {
+.zci--airlines .tile__not {
     color: #C14316;
 }
 
-.zci--route .tile__date {
+.zci--airlines .tile__date {
     color: #B3B3B3;
     float: right;
     text-align: center;
     font-weight: 600;
 }
 
-.zci--route .tile__week {
+.zci--airlines .tile__week {
     font-size: 12px;
 }
 
-.zci--route .tile__day {
+.zci--airlines .tile__day {
     line-height: 12px;
     font-size: 1.5em;
 }
 
-.zci--route .na {
+.zci--airlines .na {
     color: #999;
 }
 
-.is-mobile .tile--route {
+.is-mobile .tile--airlines {
     width: 100%;
 }

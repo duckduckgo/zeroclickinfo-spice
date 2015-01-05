@@ -2,7 +2,7 @@
     "use strict";
 
     env.ddg_spice_bootic = function(api_result) {
-        if ($.isEmptyObject(api_result.products)) {
+        if (!api_result || $.isEmptyObject(api_result.products)) {
             return Spice.failed('bootic');
         }
 
