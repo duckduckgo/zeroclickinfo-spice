@@ -24,7 +24,7 @@
             },
             meta: {
                 sourceUrl: 'https://searchcode.com/?q=' + query + '&cs=true',
-                sourceIconUrl: 'https://searchcode.com/static/favicon.ico'
+                sourceIconUrl: 'https://searchcode.com/static/favicon.ico',
                 sourceName: 'searchcode'
             },
             templates: {
