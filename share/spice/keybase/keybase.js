@@ -20,9 +20,9 @@
                 group: 'base',
                 options: {
                     content: Spice.keybase.content,
-                    moreAt: true,
+                    moreAt: true
                 }
-            },
+            }
         });
     };
 }(this));
