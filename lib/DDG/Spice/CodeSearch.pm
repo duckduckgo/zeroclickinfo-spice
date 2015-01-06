@@ -15,7 +15,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "sysadmin", "programming";
 category "programming";
 attribution github => ['https://github.com/boyter','Ben Boyter'],
-           twitter => ['http://twitter.com/boyter','boyter'];
+           twitter => ['http://twitter.com/boyter','Ben Boyter'];
 
 my $languages = join "|", share('languages.txt')->slurp;
 
