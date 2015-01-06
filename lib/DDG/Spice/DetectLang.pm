@@ -12,7 +12,7 @@ source "Detect Language";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/DetectLang.pm";
 topics "everyday", "words_and_games";
 category "language";
-attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
+attribution github  => ['https://github.com/ghedo', 'Alessandro Ghedini'],
             web     => ['http://ghedini.me', 'Alessandro Ghedini'];
 
 spice to   => 'http://ws.detectlanguage.com/0.2/detect?q=$1&key={{ENV{DDG_SPICE_DETECTLANGUAGE_APIKEY}}}';
