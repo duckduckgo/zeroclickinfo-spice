@@ -18,11 +18,13 @@ spice to => 'http://baconipsum.com/api/?callback={{callback}}&type=all-meat&para
 
 handle remainder => sub {
     my $num = shift;
-    return unless $num;
-    return unless $num =~ qr/^\d+$/;
+
+    if (!($num)) {
+        $num = 1;
+    }
+    return unless $num && $num =~ qr/^\d+$/;
     return $num;
     return $_;
 };
 
 1;
-
