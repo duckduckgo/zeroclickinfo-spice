@@ -3,7 +3,7 @@
     env.ddg_spice_bacon_ipsum = function(api_result){
 
 
-        if (api_result.error) {
+        if (!api_result || api_result.error) {
             return Spice.failed('bacon_ipsum');
         }
 
