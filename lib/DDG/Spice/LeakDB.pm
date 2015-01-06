@@ -12,7 +12,7 @@ topics 'geek', 'sysadmin', 'cryptography';
 icon_url 'https://leakdb.abusix.com/images/favicon.ico';
 code_url 'https://github.com/brutalhonesty/zeroclickinfo-spice/blob/master/lib/DDG/Spice/HashMe.pm';
 attribution github => ['https://github.com/brutalhonesty', 'Adam Schodde'],
-	twitter => ['https://twitter.com/listeninme', 'listeninme'],
+	twitter => ['https://twitter.com/listeninme', 'Adam Schodde'],
 	email => ['sparky1010[at]gmail.com', 'Adam Schodde'];
 status 'enabled';
 
