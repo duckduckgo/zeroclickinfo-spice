@@ -9,7 +9,7 @@
 
         var pageContent = '';
         for (var i in api_result) {
-            pageContent += api_result[i];
+            pageContent += "<p>" + api_result[i] + "</p>";
         }
 
         Spice.add({
