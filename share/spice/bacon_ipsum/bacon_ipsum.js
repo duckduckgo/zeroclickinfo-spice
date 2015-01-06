@@ -14,7 +14,7 @@
 
         Spice.add({
             id: 'bacon_ipsum',
-            name: 'Bacon Says...',
+            name: 'Bacon Ipsum',
             data: {
                 content: pageContent,
                 title: "Bacon Ipsum",
