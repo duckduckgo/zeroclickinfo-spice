@@ -60,7 +60,7 @@
                                 + queriedSrcAirports[srcCounter] + "/" 
                                 + queriedDstAirports[dstCounter] + "/arr/"
                                 + match[6] + "/" + match[7] + "/" + match[8] + 
-                                "?hourOfDay=" + match[9]);    
+                                "/" + match[9]);    
                 }        
             }
 
