@@ -24,6 +24,10 @@
             "NO": "Not Operational",
             "DN": "Data Needed"
         },
+        MONTH: [
+        	"Jan.", "Feb.", "March", "April", "May", "June",
+        	"July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec." 
+        ],
 
 
         // this function parses the initial query and sends out additional queries
@@ -60,7 +64,7 @@
                                 + queriedSrcAirports[srcCounter] + "/" 
                                 + queriedDstAirports[dstCounter] + "/arr/"
                                 + match[6] + "/" + match[7] + "/" + match[8] + 
-                                "?hourOfDay=" + match[9]);    
+                                "/" + match[9]);    
                 }        
             }
 
@@ -355,7 +359,7 @@
         minutes = minutes < 10 ? "0" + minutes : minutes;
 
         if ((arrivalDate.getDate() != departureDate.getDate()) && (!isDeparture)) {
-            return hours + ":" + minutes + " " + suffix + " (" + (dateObject.getMonth()+1) + "/" + dateObject.getDate() + ")";
+            return hours + ":" + minutes + " " + suffix + " (" + ddg_spice_flights.MONTH[dateObject.getMonth()] + " " + dateObject.getDate() + ")";
         } else
             return hours + ":" + minutes + " " + suffix;
     });
