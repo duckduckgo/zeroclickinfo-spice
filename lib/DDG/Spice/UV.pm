@@ -11,7 +11,7 @@ spice is_cached => 1;
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name "UV Index";
 source "EPA - United States Environmental Protection Agency";
-icon_url "";
+#icon_url "";
 description "Display the UV Index for a given location in the US";
 primary_example_queries "uv", "uv index";
 secondary_example_queries "optional -- demonstrate any additional triggers";
@@ -21,20 +21,25 @@ category "location_aware";
 topics "everyday", "travel", "geography";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/UV.pm";
 attribution github => ["https://github.com/Bjoern", "Bjoern Guenzel"],
-            twitter => "https://twitter.com/fractality", "Bjoern Guenzel";
-
-spice from => '([^/]*)/?([^/]*)';
-spice to => 'http://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/CITY/$1/STATE/$2/JSON'
+            twitter => ["https://twitter.com/fractality", "Bjoern Guenzel"];
 
 # Triggers
-triggers any => "uv";
+#my @triggers = ('uv');
+#triggers startend => @triggers;
+triggers startend => 'uv';
+
+spice from => '([^/]*)/?([^/]*)';
+spice to => 'http://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/CITY/$1/STATE/$2/JSON';
+
+spice wrap_jsonp_callback => 1;
 
 # Handle statement
 handle remainder => sub {
     #atm only works with automatically detected location of user
-    return unless $loc
+#    return unless false;
+    return unless $loc;
     #and only if location is in the US
-    return unless $loc->country_code eq 'US'
+    return unless $loc->country_code eq 'US';
 
     return $loc->city, $loc->region;
 };
