@@ -11,7 +11,7 @@ icon_url "/i/www.rottentomatoes.com.ico";
 topics "entertainment", "everyday";
 category "entertainment";
 attribution github => ['https://github.com/moollaza','Zaahir Moolla'],
-           twitter => ['https://twitter.com/zmoolla','zmoolla'];
+           twitter => ['https://twitter.com/zmoolla','Zaahir Moolla'];
 
 spice proxy_cache_valid => "200 7d";
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&q=$1&page_limit=50&page=1&callback={{callback}}';

@@ -10,7 +10,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday", "social";
 category "time_sensitive";
 attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
-    twitter => ["https://twitter.com/duckduckgo", "duckduckgo"],
+    twitter => ["https://twitter.com/duckduckgo", "DuckDuckGo"],
     github => ["https://github.com/ecounysis/", "Eric Christensen"],
     twitter => ["https://twitter.com/ecounysis", "Eric Christensen"],
     github => ["https://github.com/laouji/", "Crimson Thompson"],

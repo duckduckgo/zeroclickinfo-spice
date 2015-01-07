@@ -10,7 +10,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday";
 category "time_sensitive";
 attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
-            twitter => ["https://twitter.com/duckduckgo", "duckduckgo"];
+            twitter => ["https://twitter.com/duckduckgo", "DuckDuckGo"];
 
 triggers startend => "news";
 spice to => 'https://duckduckgo.com/news.js?q=$1&cb={{callback}}';
