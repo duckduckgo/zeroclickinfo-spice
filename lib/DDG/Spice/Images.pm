@@ -4,6 +4,9 @@ use DDG::Spice;
 
 use String::Trim;
 
+primary_example_queries "tilt shift images";
+secondary_example_queries "thailand beach images";
+
 spice to => 'https://duckduckgo.com/i.js?q=$1&o=json&cb={{callback}}';
 
 my %skip = map { $_ => 0 } (
