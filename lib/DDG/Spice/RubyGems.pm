@@ -8,7 +8,7 @@ primary_example_queries 'rubygems cucumber';
 topics 'programming';
 category 'programming';
 attribution github => ['https://github.com/koosha--', 'koosha--'],
-            twitter => ['https://twitter.com/_koosha_', '_koosha--'];
+            twitter => ['https://twitter.com/_koosha_', 'koosha--'];
 
 triggers startend => 'rubygem', 'rubygems', 'ruby gems', 'ruby gem', 'gem install', 'gem';
 spice to => 'http://rubygems.org/api/v1/search.json?query=$1&callback={{callback}}';
