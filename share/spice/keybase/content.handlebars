@@ -7,7 +7,7 @@
     {{/if}}
   </div>
   <div class="keybase--misc">
-    <div>{{profile.full_name}}</div>
+    <h1 class="zci__header">{{profile.full_name}}</h1>
       <div class="keybase--more">
     {{#if profile.location}}
         <span class="keybase--user">{{profile.location}}</span>
@@ -19,9 +19,7 @@
         </span>
     {{/if}}
     </div>
-  </div>
 </div>
 {{#if profile.bio}}
-<div class="keybase--description">{{profile.bio}}</div>
+<div class="zci__content">{{profile.bio}}</div>
 {{/if}}
-
