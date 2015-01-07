@@ -13,7 +13,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "special_interest", "trivia";
 category "facts";
 attribution web => ['http://kevinschaul.com','Kevin Schaul'],
-            email => ['kevin.schaul@gmail.com','Kevin Schaul',
+            email => ['kevin.schaul@gmail.com','Kevin Schaul'],
             email => ['jason@transistor.io', 'Jason Dorweiler'],
             web => ['www.transistor.io', 'Jason Dorweiler'];
 
