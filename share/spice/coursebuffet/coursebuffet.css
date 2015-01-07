@@ -3,9 +3,3 @@
     white-space: normal !important;
     height: 2.5em !important;
 }
-
-.tile--coursebuffet .tile__rating .tile__source {
-    width: 100% !important;
-    overflow: visible;
-    white-space: normal;
-}
