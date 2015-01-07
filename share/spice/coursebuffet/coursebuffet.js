@@ -36,10 +36,12 @@
                 };
             },
             templates: {
-                item: 'basic_image_item',
+                group: "media",
+                item_detail: false,
+                detail: false,
                 options: {
-                    moreAt: true,
-                    rating: false
+                    variant: 'video',
+                    moreAt: true
                 }
             }
 //             relevancy: {
