@@ -1,5 +1,4 @@
 .tile--coursebuffet .tile__title {
-    -webkit-line-clamp: 2 !important;
     white-space: normal !important;
     height: 2.5em !important;
 }
