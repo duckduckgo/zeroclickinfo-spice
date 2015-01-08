@@ -12,7 +12,7 @@ spice is_cached => 1;
 name "UV Index";
 source "EPA - United States Environmental Protection Agency";
 #icon_url "";
-description "Display the UV Index for a given location in the US";
+description "Display the UV Index for the user's location location in the US";
 primary_example_queries "uv", "uv index";
 #secondary_example_queries "optional -- demonstrate any additional triggers";
 # see https://duck.co/duckduckhack/metadata#category
@@ -21,7 +21,8 @@ category "location_aware";
 topics "everyday", "travel", "geography";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/UV.pm";
 attribution github => ["https://github.com/Bjoern", "Bjoern Guenzel"],
-            twitter => ["https://twitter.com/fractality", "Bjoern Guenzel"];
+            twitter => ["https://twitter.com/fractality", "Fractality"],
+            web => ["http://blinker.net", "Bjoern's Blog"];
 
 # Triggers
 triggers startend => 'uv';
