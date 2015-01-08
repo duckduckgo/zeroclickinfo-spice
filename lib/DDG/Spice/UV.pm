@@ -1,8 +1,6 @@
 package DDG::Spice::UV;
 # Use the web service provided by EPA to display the UV Index for locations in the US.
 # The web service is described here: http://www.epa.gov/enviro/facts/services.html#uvindex
-# Start at https://duck.co/duckduckhack/spice_overview if you are new
-# to instant answer development
 
 use DDG::Spice;
 
@@ -12,7 +10,7 @@ spice is_cached => 1;
 name "UV Index";
 source "EPA - United States Environmental Protection Agency";
 #icon_url "";
-description "Display the UV Index for the user's location location in the US";
+description "Display the UV Index for the user's location in the US";
 primary_example_queries "uv", "uv index";
 #secondary_example_queries "optional -- demonstrate any additional triggers";
 # see https://duck.co/duckduckhack/metadata#category
