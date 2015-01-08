@@ -4,13 +4,9 @@
 
         // Validate the response (customize for your Spice)
         if (!api_result || api_result.error || !api_result.length || api_result.length != 1) {
-            console.log("failed, result: ");
-            console.log(api_result);
             return Spice.failed('uv');
         }
 
-        console.log(api_result);
-  
         //extract city and date from first result
         var result = api_result[0];
         
@@ -19,10 +15,14 @@
      
         var uvIndex = parseInt(result.UV_INDEX,10);
         
-        //var imagePath = DDG.get_asset_path('uv', 'B_fill_UV'+uvIndex+'.gif');
+        var uvIndexName = uvIndex+"";
         
-        console.log("city: "+city+", state: "+state+", uvIndex: "+uvIndex);
-            
+        //display 11+ for values >= 11
+        if(uvIndex >= 11){
+            uvIndex = 11;
+            uvIndexName = "11+";
+        }
+  
         // Render the response
         // Note: images provided by http://www.who.int/uv/intersunprogramme/activities/uv_index/en/index2.html
         Spice.add({
@@ -33,24 +33,25 @@
             data: {
                 city: city,
                 state: state,
-                uvIndex: uvIndex
+                uvIndex: uvIndex,
+                uvIndexName: uvIndexName
             },
             meta: {
-                sourceName: "www.epa.gov"
-                //sourceUrl: 'http://example.com/url/to/details/' + api_result.name
+                sourceName: "EPA",
+                sourceUrl: 'http://www.epa.gov/enviro/facts/uv/uv_descriptions.html'
             },
             normalize: function(item) {
                 return {
                     description: item.city+", "+item.state,
-                    image: DDG.get_asset_path('uv', 'B_fill_UV'+item.uvIndex+'.gif'),
-                    title: "UV Index "+item.uvIndex
+                    image: DDG.get_asset_path('uv', 'A_UV'+item.uvIndex+'.gif'),
+                    title: "UV Index "+item.uvIndexName
                 };
             },
             templates: {
                 group: 'info',
                 options: {
                     content: Spice.uv.content,
-                    moreAt: false
+                    moreAt: true
                 }
             }
         });
