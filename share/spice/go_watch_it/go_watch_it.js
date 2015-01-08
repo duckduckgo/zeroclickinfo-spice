@@ -17,13 +17,13 @@
         return 'http://gowatchit.com' + (watchable.url ? watchable.url : "");
     }
 
-    env.ddg_spice_go_watch_it = function(data) {
-        if (!data || data.error || data.search.movies.length === 0 && data.search.shows.length === 0) {
+    env.ddg_spice_go_watch_it = function(api_result) {
+        if (!api_result || api_result.error || api_result.search.movies.length === 0 && api_result.search.shows.length === 0) {
             return Spice.failed('go_watch_it');
         }
 
-        var movie = data.search.movies[0],
-            show  = data.search.shows[0],
+        var movie = api_result.search.movies[0],
+            show  = api_result.search.shows[0],
             watchable = movie || show;
 
         watchable.availabilities.push(getAlertAvailability(watchable));
