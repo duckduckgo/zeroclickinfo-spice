@@ -29,7 +29,12 @@ attribution github => ["https://github.com/Bjoern", "Bjoern Guenzel"],
 triggers startend => 'uv';
 
 spice from => '([^/]*)/?([^/]*)';
-spice to => 'http://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/CITY/$1/STATE/$2/JSON';
+
+#hourly data - for the next version...
+#spice to => 'http://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/CITY/$1/STATE/$2/JSON';
+
+#daily data - just one value for the day...
+spice to => 'http://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVDAILY/CITY/$1/STATE/$2/JSON';
 
 spice wrap_jsonp_callback => 1;
 
