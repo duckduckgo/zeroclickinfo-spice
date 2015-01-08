@@ -7,7 +7,7 @@ source "GoWatchIt.com";
 description "Find out where to watch your favorite movies and shows!";
 category "entertainment";
 topics "entertainment";
-code_url "https://github.com/plexusent/zeroclickinfo-spice/blob/gwi/lib/DDG/Spice/GoWatchIt.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GoWatchIt.pm";
 attribution github  => ['https://github.com/plexusent', 'GoWatchIt.com'],
             web     => ['http://gowatchit.com'],
             twitter => ['gowatchit', 'GoWatchIt.com'];
