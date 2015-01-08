@@ -35,7 +35,7 @@
             meta: {
                 sourceName: 'gowatchit.com',
                 sourceUrl: getUrl(watchable),
-                itemType: 'Availabilities',
+                itemType: 'Availabilities'
             },
             normalize: function(item) {
                 return {
