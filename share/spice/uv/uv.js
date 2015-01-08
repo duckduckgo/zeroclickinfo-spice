@@ -3,19 +3,17 @@
     env.ddg_spice_uv = function(api_result){
 
         // Validate the response (customize for your Spice)
-        if (!api_result || api_result.error || !api_result.length || api_result.length != 1) {
+        if (!api_result || api_result.error || !api_result.length || api_result.length !== 1) {
             return Spice.failed('uv');
         }
 
         //extract city and date from first result
         var result = api_result[0];
         
-        var city = DDG.capitalizeWords(result.CITY.toLowerCase());
-        var state = result.STATE;
-     
-        var uvIndex = parseInt(result.UV_INDEX,10);
-        
-        var uvIndexName = uvIndex+"";
+        var city = DDG.capitalizeWords(result.CITY.toLowerCase()),
+            state = result.STATE,
+            uvIndex = parseInt(result.UV_INDEX,10),
+            uvIndexName = uvIndex+"";
         
         //display 11+ for values >= 11
         if(uvIndex >= 11){
