@@ -23,7 +23,8 @@
                 record_keys: keys
             },
             meta: {
-                sourceUrl: 'http://searchco.de/?q=' + query + '&cs=true',
+                sourceUrl: 'https://searchcode.com/?q=' + query + '&cs=true',
+                sourceIconUrl: 'https://searchcode.com/static/favicon.ico',
                 sourceName: 'searchcode'
             },
             templates: {

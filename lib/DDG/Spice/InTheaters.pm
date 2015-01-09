@@ -12,7 +12,7 @@ icon_url "/i/www.rottentomatoes.com.ico";
 topics "entertainment";
 category "entertainment";
 attribution github => ['https://github.com/jagtalon','jagtalon'],
-            twitter => ['http://twitter.com/juantalon','juantalon'];
+            twitter => ['http://twitter.com/juantalon','jagtalon'];
 
 my $rating = '(?:g\s*|pg\s*|r\s*)?';
 triggers any => 'movie', 'movies', 'theaters', 'theatres', 'showing', 'something', 'watch', 'opening', 'see';

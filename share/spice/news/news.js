@@ -70,7 +70,6 @@ function ddg_spice_news(apiResult) {
             if (storyOk) {
                 setSourceOnStory(story);
                 goodStories.push(story);
-                break;
             }
         }
     }

@@ -4,7 +4,7 @@ use utf8;
 use DDG::Spice;
 
 primary_example_queries "detect language こんにちは";
-secondary_example_queries "what language is como estas";
+secondary_example_queries "what language is cómo estás";
 description "Detects the language";
 name "Detect Language";
 icon_url "/i/detectlanguage.com.ico";
@@ -12,7 +12,7 @@ source "Detect Language";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/DetectLang.pm";
 topics "everyday", "words_and_games";
 category "language";
-attribution github  => ['https://github.com/ghedo', 'ghedo'      ],
+attribution github  => ['https://github.com/ghedo', 'Alessandro Ghedini'],
             web     => ['http://ghedini.me', 'Alessandro Ghedini'];
 
 spice to   => 'http://ws.detectlanguage.com/0.2/detect?q=$1&key={{ENV{DDG_SPICE_DETECTLANGUAGE_APIKEY}}}';
