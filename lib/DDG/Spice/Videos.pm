@@ -4,7 +4,7 @@ use DDG::Spice;
 
 primary_example_queries "gopro videos";
 secondary_example_queries "jimmy fallon videos";
-description "Shows videos from around the web.";
+description "Video search.";
 name "Video";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Video.pm";
 topics "everyday", "entertainment";
