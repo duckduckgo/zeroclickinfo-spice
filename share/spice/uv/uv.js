@@ -13,6 +13,8 @@
         var city = DDG.capitalizeWords(result.CITY.toLowerCase()),
             state = result.STATE,
             uvIndex = parseInt(result.UV_INDEX,10);
+        
+        uvIndex = Math.min(11,uvIndex);//display 11+ for higher values
   
         // Render the response
         // Note: images provided by http://www.who.int/uv/intersunprogramme/activities/uv_index/en/index2.html
