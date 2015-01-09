@@ -1,5 +1,8 @@
 function ddg_spice_mass_on_time (api_result) {
-    if (api_result.error) return;
+
+    if (!api_result || api_result.error) {
+        return Spice.failed('mass_on_time');
+    }
 
     var details = api_result['query-details'];
 

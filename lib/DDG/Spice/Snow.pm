@@ -12,8 +12,8 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday";
 category "facts";
 attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
-            github => [ 'https://github.com/duckduckgo', 'duckduckgo'],
-            twitter => ['http://twitter.com/duckduckgo', 'duckduckgo'];
+            github => [ 'https://github.com/duckduckgo', 'DuckDuckGo'],
+            twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
 
 spice to => 'http://isitsnowingyet.org/api/check/$1/key/{{ENV{DDG_SPICE_SNOW_APIKEY}}}';
 

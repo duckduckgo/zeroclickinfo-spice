@@ -1,12 +1,7 @@
-.zci--xkcd .xkcd-next-link {
-    float: right; 
-}
-
 .zci--xkcd .xkcd--container {
-    display: inline-block;
     margin-bottom: 0.5em;
     max-width: 100%;
-    float: left;
+    padding-right: 0.5em;
 }
 
 .zci--xkcd .xkcd--img {
@@ -15,22 +10,30 @@
 }
 
 .zci--xkcd .xkcd--buttons {
-    margin: 0.5em 0px;
+    margin-top: 0.5em;
+    text-align: center;
+    height: 28px;
 }
 
-.zci--xkcd .zci__more-at {
-	display: inline-block;
-	float: left;
-	clear: both;
-}
-
-.zci--xkcd .xkcd--explain-link {
-	display: block;
-	float: left;
-	padding-left: .25em;
+.zci--xkcd .xkcd--buttons a {
+    display: inline-block;
 }
 
 .zci__subheader.xkcd--date {
     color: grey;
     padding-top: 0.1em;
+}
+.zci--xkcd .xkcd--buttons .tile-nav--sm {
+    font-size: 12px;
+    text-decoration: none;
+}
+
+/* Float prev/explain link to the left */
+.zci--xkcd .xkcd--buttons a:first-of-type {
+    float: left;
+}
+
+/* Float explain/next link to the right */
+.zci--xkcd .xkcd--buttons a:last-of-type {
+    float: right;
 }
