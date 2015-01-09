@@ -26,6 +26,17 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::UV'
     ),
+    'current uv index' => test_spice(
+        '/js/spice/uv/Phoenixville/PA',
+        call_type => 'include',
+        caller => 'DDG::Spice::UV'
+    ),
+    'current uv index ?' => test_spice(
+        '/js/spice/uv/Phoenixville/PA',
+        call_type => 'include',
+        caller => 'DDG::Spice::UV'
+    ),
+    'uv acronym' => undef,
     #only locations in the US are covered atm
     DDG::Request->new(
         query_raw => "uv",

@@ -23,7 +23,7 @@ attribution github => ["https://github.com/Bjoern", "Bjoern Guenzel"],
             web => ["http://blinker.net", "Bjoern's Blog"];
 
 # Triggers
-triggers startend => 'uv';
+triggers startend => 'uv', 'uv index', 'current uv index';
 
 spice from => '([^/]*)/?([^/]*)';
 
@@ -40,8 +40,16 @@ spice wrap_jsonp_callback => 1;
 
 # Handle statement
 handle remainder => sub {
+
+    #remove question marks
+    s/\?//g;
+    
+    return if $_;
+
     #atm only works with automatically detected location of user
     return unless $loc;
+    return unless (defined $loc->city and defined $loc->region);
+    
     #and only if location is in the US
     return unless $loc->country_code eq 'US';
 

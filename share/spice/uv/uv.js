@@ -12,14 +12,7 @@
         
         var city = DDG.capitalizeWords(result.CITY.toLowerCase()),
             state = result.STATE,
-            uvIndex = parseInt(result.UV_INDEX,10),
-            uvIndexName = uvIndex+"";
-        
-        //display 11+ for values >= 11
-        if(uvIndex >= 11){
-            uvIndex = 11;
-            uvIndexName = "11+";
-        }
+            uvIndex = parseInt(result.UV_INDEX,10);
   
         // Render the response
         // Note: images provided by http://www.who.int/uv/intersunprogramme/activities/uv_index/en/index2.html
@@ -31,8 +24,7 @@
             data: {
                 city: city,
                 state: state,
-                uvIndex: uvIndex,
-                uvIndexName: uvIndexName
+                uvIndex: uvIndex
             },
             meta: {
                 sourceName: "EPA",
@@ -42,13 +34,12 @@
                 return {
                     description: item.city+", "+item.state,
                     image: DDG.get_asset_path('uv', 'A_UV'+item.uvIndex+'.gif'),
-                    title: "UV Index "+item.uvIndexName
+                    title: "UV Index "+(item.uvIndex >= 11 ? "11+" : item.uvIndex)
                 };
             },
             templates: {
                 group: 'info',
                 options: {
-                    content: Spice.uv.content,
                     moreAt: true
                 }
             }
