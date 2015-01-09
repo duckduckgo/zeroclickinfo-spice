@@ -2,11 +2,11 @@
     'use strict';
     env.ddg_spice_keybase = function(api_result){
 
-        if (api_result.error || !api_result || api_result.them[0] == null) {
+        if (api_result.error || !api_result || api_result.them == null) {
             return Spice.failed('keybase');
         }
 
-        var user = api_result.them[0];
+        var user = api_result.them;
 
         Spice.add({
             id: 'keybase',
