@@ -3,7 +3,7 @@
 
     env.ddg_spice_code_search = function (api_result) {
 
-        if (!api_result.results.length === 0) {
+        if (!api_result || !api_result.results.length === 0) {
             return Spice.failed('code_search');
         }
 
