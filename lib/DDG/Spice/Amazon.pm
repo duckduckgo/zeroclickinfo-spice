@@ -2,9 +2,14 @@ package DDG::Spice::Amazon;
 
 use DDG::Spice;
 
-primary_example_queries "shoes";
-description "Shows Amazon products";
+primary_example_queries "ipad 2", "men's watch";
+secondary_example_queries "amazon ray bradbury";
+description "Search for available products.";
 name "Products";
+attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
+            twitter => ["https://twitter.com/duckduckgo", "DuckDuckGo"];
+topics "everyday";
+category "special";
 
 spice to => 'https://duckduckgo.com/m.js?q=$1&cb=ddg_spice_amazon';
 
