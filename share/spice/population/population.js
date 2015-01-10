@@ -20,8 +20,6 @@
         var query_country = decodeURIComponent(query[2]);
         var URL_country = countryName.replace(/\,|\./g,"").replace(/ /g,"-").replace(/Dem/g,"democratic").replace(/Rep/g,"republic").toLowerCase();
         
-        population = population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
         Spice.add({
             id: "population",
             name: "Population",
@@ -32,7 +30,7 @@
             },
            normalize: function(item) {
                 return {
-                    title: population,
+                    title: DDG.commifyNumber(population),
                     subtitle: query_country + " - Population as of " + lastUpdated
                 };
             },
