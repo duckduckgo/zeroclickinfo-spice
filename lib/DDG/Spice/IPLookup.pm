@@ -12,7 +12,7 @@ topics "sysadmin";
 
 attribution github => ['https://github.com/mintsoft', 'mintsoft'],
             github => ['https://github.com/chrisjwilsoncom', 'chrisjwilsoncom'],
-               web => 'http://www.robtex.com/';
+               web => ['http://www.robtex.com/', 'robtex.com'];
 
 my $trig = qr#(?:ip lookup)|(?:iplookup)|(?:reverse (?:dns|ip)(?: lookup)?)|(?:dns)|(?:whois)#i;
 my $IPv4_re = qr/(?:[0-9]{1,3}\.){3}(?:[0-9]{1,3})/;
