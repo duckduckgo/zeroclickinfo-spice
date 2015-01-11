@@ -28,18 +28,34 @@
                 sourceName: "PLOS",
                 sourceUrl: 'http://www.plosone.org/search/advanced?unformattedQuery=' + query
             }, 
-	    normalize: function(item) {
-		return {
-		    url: "http://dx.doi.org/" + item.id
-		};
-	    },
+            normalize: function(item) {
+                var authors = item.author_display || [];
+                var subtitle = authors.length ? authors.join(", ") : "";
+
+                //strip html from title
+                var tmp = document.createElement('DIV');
+                tmp.innerHTML = item.title_display;
+                var title = tmp.textContent || tmp.innerText || '';
+
+                var journalName = item.journal ? item.journal + ' ' : '';
+                var issueNumber = item.issue ? 'Issue ' + item.issue : '';
+
+                return {
+                    url: "http://dx.doi.org/" + item.id,
+                    title: title,
+                    subtitle: subtitle,
+                    description: title,
+                    issue: journalName + issueNumber,
+                    publicationDate: item.publication_date,
+                };
+            },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
-                    content: Spice.plos.item
+                    footer: Spice.plos.footer,
                 },
-		detail: false,
-		item_detail: false
+                detail: false,
+                item_detail: false
              }
         });
     }
@@ -48,7 +64,9 @@
 // Convert full publication date to year only.
 Handlebars.registerHelper('PLOS_year', function(pubdate) {
     "use strict";
-
-    var year = pubdate.substr(0, 4);
-    return year;
+    if (pubdate && pubdate.length > 0) {
+        var year = pubdate.substr(0, 4);
+        return year;
+    }
+    return '';
 });
