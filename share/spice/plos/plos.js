@@ -15,9 +15,9 @@
         }
 
         // Get query, exclude the trigger, and exclude preceding/trailing white space.
-        var script = $('[src*="/js/spice/plos/"]')[0];
-        var source = $(script).attr("src");
-        var query = source.match(/plos\/([^\/]+)/)[1];
+        var script = $('[src*="/js/spice/plos/"]')[0],
+          source = $(script).attr("src"),
+          query = source.match(/plos\/([^\/]+)/)[1];
 
         Spice.add({
             id: "plos",
@@ -29,16 +29,11 @@
                 sourceUrl: 'http://www.plosone.org/search/advanced?unformattedQuery=' + query
             }, 
             normalize: function(item) {
-                var authors = item.author_display || [];
-                var subtitle = authors.length ? authors.join(", ") : "";
-
-                //strip html from title
-                var tmp = document.createElement('DIV');
-                tmp.innerHTML = item.title_display;
-                var title = tmp.textContent || tmp.innerText || '';
-
-                var journalName = item.journal ? item.journal + ' ' : '';
-                var issueNumber = item.issue ? 'Issue ' + item.issue : '';
+                var authors = item.author_display || [],
+                  subtitle = authors.length ? authors.join(", ") : "",
+                  title = DDG.strip_html(item.title_display),
+                  journalName = item.journal ? item.journal + ' ' : '',
+                  issueNumber = item.issue ? 'Issue ' + item.issue : '';
 
                 return {
                     url: "http://dx.doi.org/" + item.id,
