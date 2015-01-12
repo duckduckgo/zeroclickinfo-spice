@@ -2,11 +2,21 @@
     'use strict';
     env.ddg_spice_keybase = function(api_result){
 
-        if (api_result.error || !api_result || api_result.them == null) {
+        if (api_result.error || !api_result) {
             return Spice.failed('keybase');
         }
 
-        var user = api_result.them;
+        var user;
+
+        if (api_result.them.constructor == Array) {
+            user = api_result.them[0];
+        } else {
+            user = api_result.them;
+        }
+
+        if (user == null) {
+            return Spice.failed('keybase');
+        }
 
         Spice.add({
             id: 'keybase',
@@ -22,7 +32,8 @@
                     content: Spice.keybase.content,
                     moreAt: true
                 }
-            }
+            },
+            signal: 'high'
         });
     };
 }(this));
