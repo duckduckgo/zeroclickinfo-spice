@@ -12,7 +12,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "social";
 category "computing_tools";
 attribution github => ['https://github.com/adman','Adman'],
-           twitter => ['http://twitter.com/adman_X','adman_X'];
+           twitter => ['http://twitter.com/adman_X','Adman'];
 
 triggers start => "http", "https", "expand", "expandurl", "unshorten";
 
