@@ -33,7 +33,16 @@ handle query_lc => sub {
     } 
     
     $query =~ s/^($langs)\b|\b($langs)$//;
-
+    
+    # make sure there is an actual query, and not just a language term search
+    for ($query) {
+        s/^\s*//; 
+        s/\s*$//;
+        if ($_ eq "") {
+            return;
+        }
+    }
+    
     return "$query language:\"$l\"";
 };
 
