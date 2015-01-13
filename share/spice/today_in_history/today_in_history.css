@@ -22,13 +22,14 @@
 .zci--today_in_history .string {
     clear:both;
     overflow: hidden;
-    height: 8.4em;
-    line-height: 1.2em;
-    color: #888;
+    height: 9em;
+    line-height: 1.3em;
+    color: #aaa;
 }
 
 .zci--today_in_history .year {
-    padding-bottom: 2em;
+    margin-top: -0.4em;
+    margin-bottom: 1.5em;
 }
 
 .zci--today_in_history .ddgsi-plus.special:before {
@@ -39,6 +40,10 @@
 
 .zci--today_in_history .colchange {
     color: #333;
+}
+
+.zci--today_in_history .t-m { 
+    font-size: 1.1em; 
 }
 
 /* Stalled since we have no filter implementation
