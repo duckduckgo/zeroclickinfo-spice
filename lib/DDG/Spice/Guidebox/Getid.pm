@@ -10,7 +10,7 @@ icon_url "/i/www.guidebox.com.ico";
 topics "everyday", "entertainment", "social";
 category "entertainment";
 attribution github => ['https://github.com/adman','Adman'],
-            twitter => ['http://twitter.com/adman_X','adman_X'];
+            twitter => ['http://twitter.com/adman_X','Adman'];
 
 triggers startend => "guidebox";
 triggers start => "watch", "stream", "full episodes of", "full free episodes of", "free episodes of", "episodes of", "where to watch";
