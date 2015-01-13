@@ -2,7 +2,7 @@
     'use strict';
     env.ddg_spice_keybase = function(api_result){
 
-        if (api_result.error || !api_result) {
+        if (!api_result || api_result.error) {
             return Spice.failed('keybase');
         }
 
