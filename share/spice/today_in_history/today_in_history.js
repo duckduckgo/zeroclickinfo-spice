@@ -50,10 +50,10 @@
         
         Spice.add({
             id: "today_in_history",
-            name: "History Today ("+ ourquery+")",
+            name: "Today in History",
             data: array,
             meta: {
-                itemType: "Historical Events",
+                itemType: "historical events for " + ourquery,
                 sourceUrl: 'http://en.wikipedia.org/wiki/'+ ourquery,
                 sourceName: 'Wikipedia'
             },
@@ -70,20 +70,19 @@
                 var selector = Spice.getDOM("today_in_history").find(".string.t-m");
                 selector.each(function() {
                       if ($(this)[0].scrollHeight > $(this).innerHeight()) {
-                          $(this).parent().children(".year").append('<div id="circ" class="circle circle_p ddgsi ddgsi-plus"></div>').click(function() {
-                              var text = $(this).parent().children("#event");
-                              $(this).children("#circ").toggleClass('special');
-                              var pxi = $(this).parent().children("#event")[0].scrollHeight /  $(this).parent().children("#event").innerHeight();
-                              if($(this).children("#circ").hasClass('special')) {
+                   //       $(this).parent().children(".year").append('<div id="circ" class="circle circle_p ddgsi ddgsi-plus"></div>').click(function() {
+                   //           var text = $(this).parent().children("#event");
+                   //           $(this).children("#circ").toggleClass('special');
+                              var pxi = $(this).parent().children("#today_in_history_event")[0].scrollHeight /  $(this).parent().children("#today_in_history_event").innerHeight();
+                   //           if($(this).children("#circ").hasClass('special')) {
                                   $(this).parent().parent().css( "width", (pxi * 15) + "em");
-                              }
-                              else {
-                                  $(this).parent().parent().css( "width", "15em" );
-                              }
-                          });
+                   //           }
+                   //           else {
+                   //               $(this).parent().parent().css( "width", "15em" );
+                   //           }
+                         // });
                       }
                 });
-
              // Deferred this part till we get filters done
              // Spice.getDOM("today_in_history").find(".zci__metabar__primary-text.js-metabar-primary").append('<div class="filters">Events <span style="font-size:0.8em">▼</span>  |</div><span class="filters">| Oldest First <span style="font-size:0.8em;">▼</span>  |</span><span class="filters">All Time Periods <span style="font-size:0.8em;">▼</span></span>');
             }
@@ -98,6 +97,13 @@
                 var link = parsed_value.shift();
 
                 return '<a class="colchange" href="' + link + '"> ' + (parsed_value.length ? parsed_value.join('|') : link) + '</a>';
+            })
+
+            .replace(/\*?\s*\{\{(.*?)\}\}/g, function (m, l) { // internal link or image
+                var parsed_value = l.replace(/\|/,"_");
+                var text = l.replace(/\|/," ")
+
+                return '<a class="colchange" href="' + parsed_value + '"> ' + text + '</a>';
             })
         
             .replace(/'''(.*?)'''/g, function (m, l) {
