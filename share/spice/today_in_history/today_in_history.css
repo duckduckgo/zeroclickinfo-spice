@@ -46,6 +46,10 @@
     font-size: 1.1em; 
 }
 
+.zci--today_in_history .colchange:hover {
+    text-decoration:underline;
+}
+
 /* Stalled since we have no filter implementation
 .zci--today_in_history .filters {
     font-size: 0.9em;
