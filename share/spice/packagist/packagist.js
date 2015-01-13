@@ -35,7 +35,7 @@
             normalize: function(item) {
                 return {
                     title: item.name,
-                    downloads: item.downloads.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    downloads: DDG.commifyNumber(item.downloads)
                 };
             }
         });
