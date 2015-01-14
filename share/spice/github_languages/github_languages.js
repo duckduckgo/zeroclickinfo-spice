@@ -24,7 +24,7 @@
             data: api_result.data.items,
             meta: {
                 sourceName: "GitHub",
-                sourceUrl: sourceUrl,
+                sourceUrl: sourceUrl
             },
             templates:{
                 group: 'text',
