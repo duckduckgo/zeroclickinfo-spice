@@ -18,12 +18,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::SeatGeek::Concerts'
     ),
     'weezer live shows' => test_spice(
-        '/js/spice/seat_geek/concerts_concerts/weezer',
+        '/js/spice/seat_geek/concerts/weezer',
         call_type => 'include',
         caller => 'DDG::Spice::SeatGeek::Concerts'
     ),
     'live shows weezer' => test_spice(
-        '/js/spice/seat_geek/concerts_concerts/weezer',
+        '/js/spice/seat_geek/concerts/weezer',
         call_type => 'include',
         caller => 'DDG::Spice::SeatGeek::Concerts'
     ),
