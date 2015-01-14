@@ -16,8 +16,6 @@ triggers startend => 'upcoming concert', 'upcoming concerts', 'concert', 'concer
 spice to => 'http://api.seatgeek.com/2/events?performers.slug=$1&taxonomies.name=concert&callback={{callback}}';
 
 handle remainder_lc => sub {
-    # Removes triggers from the query
-    $_ =~ s/^(:?(upcoming\s*)?(concerts?))|((live)\s*(:?(shows?))?)$//gi;
     # Removes spaces from the beginning of the query
     $_ =~ s/^\s+//;
     # Removes spaces from the end of the query
