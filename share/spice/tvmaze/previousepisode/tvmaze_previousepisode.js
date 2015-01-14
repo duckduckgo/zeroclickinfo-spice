@@ -2,7 +2,7 @@
     "use strict";
 
     env.ddg_spice_tvmaze_previousepisode = function(api_result){
-        if (!api_result._embedded) {
+        if (!api_result || !api_result._embedded) {
             return Spice.failed('tvmaze');
         }
 

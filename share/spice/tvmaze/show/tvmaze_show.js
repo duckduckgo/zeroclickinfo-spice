@@ -2,7 +2,7 @@
     "use strict";
 
     env.ddg_spice_tvmaze_show = function(api_result){
-        if (!api_result.id) {
+        if (!api_result || !api_result.id) {
             return Spice.failed('tvmaze');
         }
 
