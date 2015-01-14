@@ -7,7 +7,7 @@
         }
 
         var query = DDG.get_query();
-        var clean_query = query.replace(/((upcoming\s)?(concerts?))|(live(\s(shows?))?)/, '').trim().toLowerCase();
+        var clean_query = $.trim(query.replace(/((upcoming\s)?(concerts?))|(live(\s(shows?))?)/, '').toLowerCase());
 
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
