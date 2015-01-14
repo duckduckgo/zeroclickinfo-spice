@@ -12,8 +12,8 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday";
 category "time_sensitive";
 attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
-            github => [ 'https://github.com/duckduckgo', 'duckduckgo'],
-            twitter => ['http://twitter.com/duckduckgo', 'duckduckgo'],
+            github => [ 'https://github.com/duckduckgo', 'DuckDuckGo'],
+            twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'],
             github => ['https://github.com/mattr555', 'mattr555'],
             twitter => ['https://twitter.com/mattr555', 'mattr555'];
 
