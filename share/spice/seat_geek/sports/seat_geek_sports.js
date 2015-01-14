@@ -83,7 +83,9 @@
                         return performer;
                     } else {
                         for(var i = 0; i < performers.length; i++) {
-                            if(performers[i].name === clean_query || performers[i].short_name === clean_query) {
+                            // If available, return the opponent team/performer
+                            if(performers[i].name.toLowerCase() !== clean_query && performers[i].short_name.toLowerCase() !== clean_query) {
+                                performers[i].name = "vs. " + performers[i].name;
                                 return performers[i];
                             }
                         }
