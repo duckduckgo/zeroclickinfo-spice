@@ -12,8 +12,8 @@ category "entertainment";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SoundCloud.pm";
 attribution web => ['http://jordanscales.com', 'Jordan Scales'],
             email => ['scalesjordan@gmail.com', 'Jordan Scales'],
-            github => ['http://github.com/jdan', 'jdan'],
-            twitter => ['http://twitter.com/jdan', 'jdan'];
+            github => ['http://github.com/jdan', 'Jordan Scales'],
+            twitter => ['http://twitter.com/jdan', 'Jordan Scales'];
 
 spice to => 'http://api.soundcloud.com/tracks.json?client_id={{ENV{DDG_SPICE_SOUNDCLOUD_APIKEY}}}&q=$1&limit=35&callback={{callback}}&filter=streamable';
 

@@ -19,6 +19,11 @@
     display: inline-block;
 }
 
+.zci__subheader.xkcd--date {
+    color: grey;
+    padding: 0.1em 0 0.75em 0;
+}
+
 .zci--xkcd .xkcd--buttons .tile-nav--sm {
     font-size: 12px;
     text-decoration: none;
