@@ -15,9 +15,9 @@
         }
 
         // Get query, exclude the trigger, and exclude preceding/trailing white space.
-        var script = $('[src*="/js/spice/plos/"]')[0];
-        var source = $(script).attr("src");
-        var query = source.match(/plos\/([^\/]+)/)[1];
+        var script = $('[src*="/js/spice/plos/"]')[0],
+          source = $(script).attr("src"),
+          query = source.match(/plos\/([^\/]+)/)[1];
 
         Spice.add({
             id: "plos",
@@ -28,18 +28,29 @@
                 sourceName: "PLOS",
                 sourceUrl: 'http://www.plosone.org/search/advanced?unformattedQuery=' + query
             }, 
-	    normalize: function(item) {
-		return {
-		    url: "http://dx.doi.org/" + item.id
-		};
-	    },
+            normalize: function(item) {
+                var authors = item.author_display || [],
+                  subtitle = authors.length ? authors.join(", ") : "",
+                  title = DDG.strip_html(item.title_display),
+                  journalName = item.journal ? item.journal + ' ' : '',
+                  issueNumber = item.issue ? 'Issue ' + item.issue : '';
+
+                return {
+                    url: "http://dx.doi.org/" + item.id,
+                    title: title,
+                    subtitle: subtitle,
+                    description: title,
+                    issue: journalName + issueNumber,
+                    publicationDate: item.publication_date,
+                };
+            },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
-                    content: Spice.plos.item
+                    footer: Spice.plos.footer,
                 },
-		detail: false,
-		item_detail: false
+                detail: false,
+                item_detail: false
              }
         });
     }
@@ -48,7 +59,9 @@
 // Convert full publication date to year only.
 Handlebars.registerHelper('PLOS_year', function(pubdate) {
     "use strict";
-
-    var year = pubdate.substr(0, 4);
-    return year;
+    if (pubdate && pubdate.length > 0) {
+        var year = pubdate.substr(0, 4);
+        return year;
+    }
+    return '';
 });
