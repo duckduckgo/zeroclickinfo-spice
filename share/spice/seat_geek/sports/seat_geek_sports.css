@@ -19,6 +19,9 @@
     -webkit-border-radius: 100%;
     -o-border-radius: 100%;
 }
+.is-mobile .zci--seat_geek_sports .header_container .container-wrapper {
+    margin-top: -3.76em;
+}
 .zci--seat_geek_sports .header_container .container-wrapper .logo-container {
     display: table-cell;
     vertical-align: middle;
