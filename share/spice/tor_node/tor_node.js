@@ -10,12 +10,14 @@
         var i, node, nodes = [];
         for (i = 0; i < api_result.relays.length; i++) {
             node = api_result.relays[i];
+            node.ref_name = "Fingerprint";
             node.ref = node.fingerprint;
             node.type = "Relay";
             nodes.push(node);
         }
         for (i = 0; i < api_result.bridges.length; i++) {
             node = api_result.bridges[i];
+            node.ref_name = "Hashed Fingerprint";
             node.ref = node.hashed_fingerprint;
             node.type = "Bridge";
             nodes.push(node);
@@ -24,66 +26,94 @@
             return Spice.failed("tor_node");
         }
 
-        // Process each node.
-        for (i = 0; i < nodes.length; i++) {
-            // Bundle together all IPs used by a node.
-            node = nodes[i];
-            node.addrs = node.or_addresses;
-            if (node.exit_addresses) {
-                node.addrs.concat(node.exit_addresses);
-            }
-            if (node.dir_address) {
-                node.addrs.push(node.dir_address);
-            }
-            node.addrs = $.unique($.map(node.addrs, function(addr) {
-                return addr.replace(/:[0-9]+$/, "");
-            }));
-
-            // Make various fields more friendly.
-            if (node.contact) {
-                node.contact = node.contact.replace(/mailto:/g, "");
-            }
-            node.country_icon = DDG.settings.region.getXSmallIconURL(getCountryCode(node.country));
-            node.status = node.running ? "Online" : "Offline";
-            node.flags = node.flags.join(", ");
-            node.first_seen_relative = timeFromNow(node.first_seen);
-            node.last_seen_relative = timeFromNow(node.last_seen);
-            node.first_seen = prettifyTimestamp(node.first_seen);
-            node.last_seen = prettifyTimestamp(node.last_seen);
-        }
-
         // Filter out the trigger from the query.
         var words = DDG.get_query().split(" ");
         var query = (words[0] =~ /tor|onion/i) ? words.pop() : words.shift();
 
+        // Give a name to the result type.
+        var type = (nodes.length === 1) ? "Tor Node" : "Tor Nodes";
+
         Spice.add({
             id: "tor_node",
-            name: "Tor Node",
+            name: type,
             data: nodes,
             meta: {
+                itemType: type.toLowerCase(),
                 sourceName: "Tor Atlas",
                 sourceUrl: "https://atlas.torproject.org/#search/" + query
             },
             templates: {
                 group: "text",
-                detail: Spice.tor_node.detail,
+                detail: "record",
                 options: {
                     footer: Spice.tor_node.footer,
+                    rowHighlight: true,
                     moreAt: true
                 }
             },
             normalize: function(node) {
-                if (!node.nickname || node.nickname === "Unnamed") {
-                    node.nickname = "Unnamed " + node.type;
+                var subtitle = node.nickname;
+                if (!subtitle || subtitle === "Unnamed") {
+                    subtitle = "Unnamed " + node.type;
                 }
 
-                var data = {
-                    url: "https://atlas.torproject.org/#details/" + node.ref,
-                    title: node.ref,
-                    subtitle: node.nickname
-                };
+                var data = {};
 
-                return data;
+                data["Type"] = node.type;
+                data[node.ref_name] = node.ref;
+
+                if (node.nickname && node.nickname !== "Unnamed") {
+                    data["Nickname"] = node.nickname;
+                }
+
+                if (node.contact) {
+                    node.contact = node.contact.replace(/mailto:/g, "");
+                    data["Contact"] = node.contact;
+                }
+
+                // Bundle together all IPs used by a node.
+                node.addrs = node.or_addresses;
+                if (node.exit_addresses) {
+                    node.addrs.concat(node.exit_addresses);
+                }
+                if (node.dir_address) {
+                    node.addrs.push(node.dir_address);
+                }
+                node.addrs = $.unique($.map(node.addrs, function(addr) {
+                    return addr.replace(/:[0-9]+$/, "");
+                }));
+                if (node.addrs.length === 1) {
+                    data["IP"] = node.addrs[0];
+                }
+                else {
+                    data["IPs"] = node.addrs.join(", ");
+                }
+
+                // Handle the node's locale.
+                node.country_icon = DDG.settings.region.getXSmallIconURL(getCountryCode(node.country));
+                if (node.country_name) {
+                    data["Country"] = node.country_name;
+                }
+
+                // Handle the node's uptime history.
+                node.first_seen_relative = timeFromNow(node.first_seen);
+                node.last_seen_relative = timeFromNow(node.last_seen);
+                data["First Seen"] = prettifyTimestamp(node.first_seen);
+                data["Last Seen"] = prettifyTimestamp(node.last_seen);
+
+                // Handle the node's current state.
+                node.status = node.running ? "Online" : "Offline";
+                data["Status"] = node.status;
+
+                data["Flags"] = node.flags.join(", ");
+
+                return {
+                    record_data: data,
+                    title: node.ref,
+                    subtitle: subtitle,
+                    icon: node.country_icon,
+                    url: "https://atlas.torproject.org/#details/" + node.ref
+                };
             }
         });
     };
