@@ -44,8 +44,8 @@
             },
             templates: {
                 group: "text",
-                detail: "record",
                 options: {
+                    content: "record",
                     footer: Spice.tor_node.footer,
                     rowHighlight: true,
                     moreAt: true
