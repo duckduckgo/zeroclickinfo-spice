@@ -4,25 +4,23 @@
     overflow: hidden;
     margin-bottom: 0;
 }
-
 .zci--seat_geek_sports .price {
     float: right;
 }
-
 .zci--seat_geek_sports .header_container img {
-    width: 100%;
+    width: 50%;
+    float: right;
+    margin-top: -5em;
+    margin-right: -4.6em;
 }
-
 .zci--seat_geek_sports .tile__body.has-foot {
     padding: 0;
     text-align: center;
     padding-bottom: 1em;
 }
-
 .zci--seat_geek_sports .tile__content {
     margin-bottom: 0.7em;
 }
-
 .zci--seat_geek_sports .header_container h3 {
     position: absolute;
     width: 8em;
@@ -34,20 +32,16 @@
     margin-left: auto;
     margin-right: auto;
 }
-
 .zci--seat_geek_sports .tile__title {
     line-height: 1.15em;
 }
-
 .zci--seat_geek_sports .tile__footer {
     color: #333;
 }
-
 .zci--seat_geek_sports .where {
     color: #888;
     margin: 0.9em 0;
 }
-
 .zci--seat_geek_sports .tile__body {
     padding: 0.75em 1em;
 }
