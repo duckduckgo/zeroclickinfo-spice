@@ -7,8 +7,9 @@
 .zci--seat_geek_sports .price {
     float: right;
 }
-.zci--seat_geek_sports .header_container img {
+.zci--seat_geek_sports .header_container .logo-container {
     width: 35px;
+    height: 35px;
     float: right;
     margin-top: -4.25em;
     border: 1px solid #ddd;
