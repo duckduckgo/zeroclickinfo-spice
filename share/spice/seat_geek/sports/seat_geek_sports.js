@@ -66,7 +66,7 @@
 
                 // Return a logo for this performer if available
                 function getLogo(performer, taxonomies) {
-                    performer = performer.toLowerCase().replace("vs. ", "").replace(/\s/g, "_");
+                    performer = performer.toLowerCase().replace(/\s/g, "_");
                     for(var i = 0; i < taxonomies.length; i++) {
                         if(taxonomies[i].name === "mlb" || taxonomies[i].name === "nba" || taxonomies[i].name === "nfl" || taxonomies[i].name === "nhl") {
                             return DDG.get_asset_path('seat_geek/sports', 'assets/' + taxonomies[i].name + '/' + performer.replace("vs. ", "") + '.gif ');
@@ -97,7 +97,6 @@
                         for(var i = 0; i < performers.length; i++) {
                             // If available, return the opponent team/performer
                             if(performers[i].name.toLowerCase() !== clean_query && performers[i].short_name.toLowerCase() !== clean_query) {
-                                performers[i].name = "vs. " + performers[i].name;
                                 return performers[i];
                             }
                         }
