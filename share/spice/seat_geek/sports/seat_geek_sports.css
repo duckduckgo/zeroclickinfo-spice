@@ -1,6 +1,6 @@
 .zci--seat_geek_sports .header_container {
     height: 3.35em;
-    width: 62%;
+    width: 100%;
     overflow: hidden;
     margin-bottom: 0;
 }
@@ -8,10 +8,9 @@
     float: right;
 }
 .zci--seat_geek_sports .header_container img {
-    width: 50%;
+    width: 35px;
     float: right;
-    margin-top: -5em;
-    margin-right: -4.6em;
+    margin-top: -4.25em;
 }
 .zci--seat_geek_sports .tile__body.has-foot {
     padding: 0;
@@ -21,18 +20,8 @@
 .zci--seat_geek_sports .tile__content {
     margin-bottom: 0.7em;
 }
-.zci--seat_geek_sports .header_container h3 {
-    position: absolute;
-    width: 8em;
-    color: #fff;
-    margin-top: -65%;
-    word-wrap: normal;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-}
 .zci--seat_geek_sports .tile__title {
+    width: 62%;
     line-height: 1.15em;
 }
 .zci--seat_geek_sports .tile__footer {
