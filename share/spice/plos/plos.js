@@ -41,13 +41,13 @@
                     subtitle: subtitle,
                     description: title,
                     issue: journalName + issueNumber,
-                    publicationDate: item.publication_date,
+                    publicationDate: item.publication_date
                 };
             },
             templates: {
                 group: 'text',
                 options: {
-                    footer: Spice.plos.footer,
+                    footer: Spice.plos.footer
                 },
                 detail: false,
                 item_detail: false
