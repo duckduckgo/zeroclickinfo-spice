@@ -64,6 +64,17 @@
                     return;
                 }
 
+                // Return a logo for this performer if available
+                function getLogo(performer, taxonomies) {
+                    for(var i = 0; i < taxonomies.length; i++) {
+                        if(taxonomies[i].name === "mlb" || taxonomies[i].name === "nba" || taxonomies[i].name === "nfl" || taxonomies[i].name === "nhl") {
+                            return DDG.get_asset_path('seat_geek', 'sports/assets/' + taxonomies[i].name + '/' + performer + '.gif ');
+                        }
+                    }
+
+                    return '';
+                }
+
                 function getPrice(lowest, highest) {
                     var price = "";
 
@@ -75,8 +86,8 @@
                 }
 
                 // Find the performer queried for,
-                // or return the first of the list if it's not
-                // specified in the query
+                // or return the first of the list
+                // if not specified in the query
                 function getPerformer(performers) {
                     var performer = performers[0];
                     if(performers.length === 1) {
@@ -101,7 +112,7 @@
                     price: "$" + item.stats.lowest_price + "+",
                     title: performer.name,
                     place: "@ " + item.venue.name,
-                    icon: performer.image,
+                    logo: getLogo(performer.name, item.taxonomies),
                     city: item.venue.city + ", " + item.venue.country,
                     month: getMonth(getDate(item.datetime_local)),
                     day: getDay(getDate(item.datetime_local)),
