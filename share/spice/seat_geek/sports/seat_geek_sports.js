@@ -113,7 +113,7 @@
                     title: performer.name,
                     place: "@ " + item.venue.name,
                     logo: getLogo(performer.name, item.taxonomies),
-                    city: item.venue.city + ", " + item.venue.country,
+                    city: item.venue.display_location,
                     month: getMonth(getDate(item.datetime_local)),
                     day: getDay(getDate(item.datetime_local)),
                     year: getYear(getDate(item.datetime_local))
