@@ -16,6 +16,7 @@
             name: "Sports",
             data: api_result.events,
             meta: {
+                searchTerm: clean_query,
                 sourceName: "SeatGeek",
                 sourceUrl: "https://seatgeek.com/search?search=" + clean_query,
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",

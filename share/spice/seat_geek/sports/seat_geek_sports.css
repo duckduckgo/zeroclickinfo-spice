@@ -35,6 +35,9 @@
     color: #888;
     margin: 0.9em 0;
 }
+.zci--seat_geek_sports .js-metabar-itemtype {
+    text-transform: lowercase;
+}
 .zci--seat_geek_sports .tile__body {
     padding: 0.75em 1em;
 }
