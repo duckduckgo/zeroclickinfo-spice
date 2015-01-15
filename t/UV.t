@@ -13,9 +13,6 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::UV)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
     'uv' => test_spice(
         '/js/spice/uv/Phoenixville/PA',
         call_type => 'include',
@@ -50,8 +47,6 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::UV',
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
     'ultraviolet' => undef,
 );
 
