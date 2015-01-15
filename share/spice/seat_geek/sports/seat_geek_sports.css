@@ -11,9 +11,11 @@
     width: 35px;
     float: right;
     margin-top: -4.25em;
-    -webkit-text-stroke: 1px #ddd;
-    /* IE 8 and IE 9 support: */
-    text-shadow: -1px -1px 0 #ddd, 1px -1px 0 #ddd, -1px 1px 0 #ddd, 1px 1px 0 #ddd;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -o-border-radius: 100%;
 }
 .zci--seat_geek_sports .tile__body.has-foot {
     padding: 0;
