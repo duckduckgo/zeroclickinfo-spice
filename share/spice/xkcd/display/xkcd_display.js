@@ -16,7 +16,10 @@
             if(api_result.num === 1335) {
                 api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
             }
-
+            
+            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            api_result.month = months[parseInt(api_result.month)-1];
+    
             Spice.add({
                 id: 'xkcd',
                 data: api_result,
@@ -35,6 +38,11 @@
                 }
             });
         });
+        
+        if(is_mobile) {
+            document.getElementsByClassName("xkcd--date")[0].style.display='none';
+        }
+        
     }
 
     //gets the number for the previous comic
