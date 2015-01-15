@@ -19,6 +19,7 @@
 
 .tile--tor_node .tile__body {
     height: 10em;
+    word-wrap: normal;
 }
 
 .tile--tor_node .tile__title {
