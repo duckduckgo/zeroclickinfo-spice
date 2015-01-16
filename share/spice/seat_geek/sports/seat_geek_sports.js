@@ -110,7 +110,7 @@
 
                 return {
                     url: item.url,
-                    price: "$" + item.stats.lowest_price + "+",
+                    price: item.stats.lowest_price,
                     title: performer.name,
                     place: "@ " + item.venue.name,
                     logo: getLogo(performer.name, item.taxonomies),
