@@ -32,6 +32,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::TravisStatus'
     ),
+    'travisci status' => test_spice(
+        '/js/spice/travis_status/status',
+        call_type => 'include',
+        caller => 'DDG::Spice::TravisStatus'
+    ),
     'travis' => undef
 );
 
