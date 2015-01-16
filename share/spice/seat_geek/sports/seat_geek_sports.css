@@ -42,7 +42,6 @@
 .zci--seat_geek_sports .tile__title {
     font-size: 1.357em;
     line-height: 1.11;
-    padding-right: 40px;
 }
 .zci--seat_geek_sports .tile__title-container {
     height: 3em;
@@ -55,7 +54,7 @@
 }
 .zci--seat_geek_sports .where {
     color: #888;
-    margin: 0.9em 0;
+    margin: 0.7em 0 0.9em;
 }
 .zci--seat_geek_sports .js-metabar-itemtype {
     text-transform: lowercase;
