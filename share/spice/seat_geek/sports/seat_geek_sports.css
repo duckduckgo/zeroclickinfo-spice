@@ -4,7 +4,8 @@
     overflow: hidden;
     margin-bottom: 0;
 }
-.zci--seat_geek_sports .price {
+.zci--seat_geek_sports .price,
+.zci--seat_geek_sports .noprice {
     float: right;
 }
 .zci--seat_geek_sports .header_container .container-wrapper {
