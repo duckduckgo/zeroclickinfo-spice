@@ -13,7 +13,7 @@
     display: table;
     width: 41px;
     height: 41px;
-    margin-top: -4.25em;
+    margin-top: -3em;
     border: 1px solid #ddd;
     border-radius: 100%;
     -moz-border-radius: 100%;
@@ -21,7 +21,7 @@
     -o-border-radius: 100%;
 }
 .is-mobile .zci--seat_geek_sports .header_container .container-wrapper {
-    margin-top: -3.76em;
+    margin-top: -1.76em;
 }
 .zci--seat_geek_sports .header_container .container-wrapper .logo-container {
     display: table-cell;
@@ -43,6 +43,12 @@
     font-size: 1.357em;
     line-height: 1.11;
     padding-right: 40px;
+}
+.zci--seat_geek_sports .tile__title-container {
+    height: 3em;
+    vertical-align: middle;
+    overflow: hidden;
+    width: 10.8em;
 }
 .zci--seat_geek_sports .tile__footer {
     color: #333;
