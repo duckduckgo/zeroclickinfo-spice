@@ -29,4 +29,11 @@
             }
         });
     };
+    
+    Handlebars.registerHelper("tvmaze_dateformat", function (date) {
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var dateObj = new Date(date);
+        
+        return months[dateObj.getMonth()] + " " + dateObj.getDate() + ", " + dateObj.getFullYear();
+    });
 }(this));
