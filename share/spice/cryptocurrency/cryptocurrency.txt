@@ -1,0 +1,4 @@
+usd,us dollar,united states dollar,american dollar,america dollar,dollar,dollars,bucks,buck
+btc,bitcoin,bit coin
+ftc,feathercoin,feather coin
+ltc,litecoin,lite coin
