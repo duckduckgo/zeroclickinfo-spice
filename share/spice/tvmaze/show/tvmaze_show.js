@@ -26,12 +26,17 @@
                     {
                         label: 'Show Status',
                         value: item.status
-                    },
-                    {
-                        label: 'Premiered on',
-                        value: item.premiered
                     }
                 ];
+                
+                if (item.premiered) {
+                    infoboxData.push(
+                        {
+                            label: 'Premiered on',
+                            value: dateformat(item.premiered)
+                        }
+                    );
+                }
 
                 if (item.network) {
                     infoboxData.push(
@@ -76,5 +81,12 @@
                 }
             }
         });
+        
+        function dateformat(date) {
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var dateObj = new Date(date);
+            
+            return months[dateObj.getMonth()] + " " + dateObj.getDate() + ", " + dateObj.getFullYear();
+        }
     };
 }(this));
