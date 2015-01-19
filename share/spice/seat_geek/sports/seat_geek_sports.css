@@ -20,9 +20,6 @@
     -webkit-border-radius: 100%;
     -o-border-radius: 100%;
 }
-.is-mobile .zci--seat_geek_sports .header_container .container-wrapper {
-    margin-top: -1.76em;
-}
 .zci--seat_geek_sports .header_container .container-wrapper .logo-container {
     display: table-cell;
     vertical-align: middle;
@@ -47,7 +44,7 @@
     height: 3em;
     vertical-align: middle;
     overflow: hidden;
-    width: 10.8em;
+    width: 65%;
 }
 .zci--seat_geek_sports .tile__footer {
     color: #333;
