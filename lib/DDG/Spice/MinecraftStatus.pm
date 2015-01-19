@@ -1,4 +1,4 @@
-package DDG::Spice::PeopleInSpace;
+package DDG::Spice::MinecraftStatus;
 # ABSTRACT: Returns the status of Minecraft
 
 use DDG::Spice;
