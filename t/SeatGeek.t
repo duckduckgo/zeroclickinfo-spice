@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use Test::More;
 use DDG::Test::Spice;
+use DDG::Test::Location;
+use DDG::Request;
 
 ddg_spice_test(
     [qw( DDG::Spice::SeatGeek::EventsByArtist )],
@@ -100,6 +102,26 @@ ddg_spice_test(
         '/js/spice/seat_geek/events_by_city/new-york',
         call_type => 'include',
         caller => 'DDG::Spice::SeatGeek::EventsByCity'
+    ),
+);
+
+ddg_spice_test(
+    [qw( DDG::Spice::SeatGeek::EventsNearMe )],
+    DDG::Request->new(
+        query_raw => "live shows in my area",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/seat_geek/events_near_me/51.2000/6.4333',
+        call_type => 'include',
+        caller => 'DDG::Spice::SeatGeek::EventsNearMe',
+    ),
+    DDG::Request->new(
+        query_raw => "upcoming concerts in my area",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/seat_geek/events_near_me/51.2000/6.4333',
+        call_type => 'include',
+        caller => 'DDG::Spice::SeatGeek::EventsNearMe',
     ),
 );
 
