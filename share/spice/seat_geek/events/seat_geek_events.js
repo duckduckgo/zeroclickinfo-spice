@@ -6,12 +6,9 @@
             return Spice.failed('seat_geek');
         }
 
-        var query = DDG.get_query();
-        var clean_query = query.replace(/((upcoming\s)?(concerts?))|(live(\s(shows?))?)/, '').trim().toLowerCase();
-
-        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-
-        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var query = DDG.get_query(),
+            clean_query = query.replace(/((upcoming\s)?(concerts?))|(live(\s(shows?))?)/, '').trim().toLowerCase(),
+            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
         Spice.add({
             id: "seat_geek",
@@ -24,111 +21,47 @@
                 itemType: "Upcoming Concerts"
             },
             normalize: function(item) {
-                var artist = capitalizedAcronym(clean_query);
+                var date = DDG.getDateFromString(item.datetime_local),
+                    dateString = date.getDate() + " " + months[date.getMonth()] + ", " + date.getFullYear(),
+                    priceString = "",
+                    performersString = "",
+                    longDescription = "";
 
-                // Capitalize the name of the band/artist searched for;
-                // if the name is composed by multiple words, capitalize
-                // all of them; if the name is too long, return the acronym
-
-                function capitalizedAcronym(string) {
-                    var splitted = string.split(" ");
-                    if(string.length < 18) {
-                        for(var i = 0; i < splitted.length; i++) {
-                            splitted[i] = DDG.capitalize(splitted[i]);
-                        }
-
-                        return splitted.join(" ");
-                    } else {
-                        var acronym = '';
-                        for(var i = 0; i < splitted.length; i++) {
-                            var upper = splitted[i].substr(0, 1).toUpperCase() + '.';
-                            acronym += upper;
-                        }
-
-                        return acronym;
-                    }
+                // SeatGeek only seems to offer prices on US shows
+                // so assume price is in dollars
+                if (item.stats.lowest_price) {
+                    priceString += "from $" + item.stats.lowest_price;
                 }
 
-                function getDate(date) {
-                    if(date) {
-                        // IE 8 and Safari don't support the yyyy-mm-dd date format,
-                        // but they support mm/dd/yyyy
-                        date = date.replace(/T.*/, '');
-                        var remix_date = date.split("-");
-                        date = remix_date[1] + "/" + remix_date[2] + "/" + remix_date[0];
+                // more than three performers probably means it's a long list
+                // so let's go into a bit more detal
+                if (item.performers.length > 3) {
+                    performersString = $.map(item.performers, function (performer) {
+                        return performer.name;
+                    }).join(", ");
 
-                        date = new Date(date);
-                        return date;
-                    }
-
-                    return;
+                    performersString = "<p>Playing are: " + performersString + ".</p>";
                 }
 
-                function getMonth(date) {
-                    if(date) {
-                        var month = months[parseInt(date.getMonth())];
-                        return month.toUpperCase();
-                    }
-
-                    return;
-                }
-
-                function getDay(date) {
-                    if(date) {
-                        var day = date.getDate();
-                        return day;
-                    }
-
-                    return;
-                }
-
-                // Get number of performers, excluding
-                // the one searched for
-
-                function getNumPerformers(performers) {
-                    var how_many = 0;
-                    var slug = clean_query.replace(/\s/g, "-");
-                    for(var i = 0; i < performers.length; i++) {
-                        if(performers[i].slug !== slug) {
-                            how_many++;
-                        }
-                    }
-
-                    if(how_many > 1) {
-                        return how_many;
-                    }
-
-                    return;
-                }
-
-                function getPrice(lowest, highest) {
-                    var price = "";
-
-                    if(lowest && highest) {
-                        price = "$" + lowest + "+";
-                    }
-
-                    return price;
-                }
+                longDescription = "<p>" + item.venue.name + ", " + item.venue.display_location + " on " + dateString + "</p>"
+                    + performersString;
 
                 return {
-                    url: item.url,
-                    price: getPrice(item.stats.lowest_price, item.stats.highest_price),
-                    artist: artist,
-                    num_performers: getNumPerformers(item.performers),
+                    url: item.link,
+                    img_m: item.performers[0].image,
+                    img: item.performers[0].image,
                     title: item.short_title,
-                    place: item.venue.name,
-                    img: item.performers[0].images.small,
-                    city: item.venue.display_location,
-                    month: getMonth(getDate(item.datetime_local)),
-                    day: getDay(getDate(item.datetime_local))
+                    description: item.venue.name + ", " + item.venue.display_location,
+                    subtitle: dateString,
+                    heading: item.title,
+                    price: priceString,
+                    abstract: longDescription
                 };
             },
             templates: {
                 group: 'products',
-                item: Spice.seat_geek_events.item,
-                detail: false,
-                item_detail: false,
+                item: 'text_item',
+                detail: 'products_item_detail',
                 options: {
                     moreAt: true,
                     rating: false
