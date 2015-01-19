@@ -9,16 +9,19 @@ name "SeatGeek Events By Venue";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SeatGeek/EventsByVenue.pm";
 category "entertainment";
 topics "entertainment", "music";
-attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'];
+attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
+    github => ['https://github.com/andrey-p','Andrey Pissantchev'];
 
 triggers start => 'upcoming concerts at',
     'concerts at',
     'live at',
     'live shows at',
-    'shows at';
+    'shows at',
+    'gigs at';
 
-spice to => 'http://api.seatgeek.com/2/events?venue.slug=$1';
-spice wrap_jsonp_callback => 1;
+spice proxy_cache_valid => "200 304 12h";
+
+spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&venue.slug=$1&callback={{callback}}';
 
 handle remainder_lc => sub {
     # Replaces spaces between words with dashes, because the API requires it

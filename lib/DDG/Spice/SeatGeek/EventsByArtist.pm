@@ -9,16 +9,25 @@ name "SeatGeek Events By Artist";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SeatGeek/EventsByArtist.pm";
 category "entertainment";
 topics "entertainment", "music";
-attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'];
+attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
+    github => ['https://github.com/andrey-p','Andrey Pissantchev'];
 
-triggers startend => 'upcoming concert', 'upcoming concerts', 'concert', 'concerts', 'live', 'live show', 'live shows';
+triggers startend => 'upcoming concert',
+    'upcoming concerts',
+    'concert',
+    'concerts',
+    'live',
+    'live show',
+    'live shows',
+    'gigs';
 
-spice to => 'http://api.seatgeek.com/2/events?performers.slug=$1';
-spice wrap_jsonp_callback => 1;
+spice proxy_cache_valid => "200 304 12h";
+
+spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&performers.slug=$1&callback={{callback}}';
 
 handle remainder_lc => sub {
     # Removes triggers from the query
-    $_ =~ s/^(:?(upcoming\s*)?(concerts?))|((live)\s*(:?(shows?))?)$//gi;
+    $_ =~ s/^(:?(upcoming\s*)?(concerts?))|((live)\s*(:?(shows?))?)|(gigs)$//gi;
 
     # If query starts with any of these assume it's one of the other queries
     return if ($_ =~ /^(in |at |near me)/);

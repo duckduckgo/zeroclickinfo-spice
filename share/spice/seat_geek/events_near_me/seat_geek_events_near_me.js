@@ -6,9 +6,7 @@
             return Spice.failed('seat_geek');
         }
 
-        var query = DDG.get_query(),
-            clean_query = query.replace(/((upcoming\s)?(concerts?))|(live(\s(shows?))?)/, '').trim().toLowerCase(),
-            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
         Spice.add({
             id: "seat_geek",
@@ -16,7 +14,8 @@
             data: api_result.events,
             meta: {
                 sourceName: "SeatGeek",
-                sourceUrl: "https://seatgeek.com/search?search=" + clean_query,
+                // just looking for "concerts" seems to return results near you
+                sourceUrl: "https://seatgeek.com/search?search=concert",
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
                 itemType: "Upcoming Concerts"
             },

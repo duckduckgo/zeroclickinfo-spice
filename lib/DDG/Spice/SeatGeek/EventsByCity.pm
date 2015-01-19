@@ -9,16 +9,19 @@ name "SeatGeek Events By City";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SeatGeek/EventsByCity.pm";
 category "entertainment";
 topics "entertainment", "music";
-attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'];
+attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
+    github => ['https://github.com/andrey-p','Andrey Pissantchev'];
 
 triggers start => 'upcoming concerts in',
     'concerts in',
     'live in',
     'live shows in',
-    'shows in';
+    'shows in',
+    'gigs in';
 
-spice to => 'http://api.seatgeek.com/2/events?venue.city=$1';
-spice wrap_jsonp_callback => 1;
+spice proxy_cache_valid => "200 304 12h";
+
+spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&venue.city=$1&callback={{callback}}';
 
 handle remainder_lc => sub {
     # Return if this is a geolocation search
