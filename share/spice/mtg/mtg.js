@@ -2,7 +2,8 @@
     "use strict";
     env.ddg_spice_mtg = function(api_result){
 
-        if (api_result.error) {
+        
+        if (!api_result || api_result.error) {
             return Spice.failed('mtg');
         }
 
