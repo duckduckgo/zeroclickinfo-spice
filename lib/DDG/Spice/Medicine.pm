@@ -1,39 +1,42 @@
 package DDG::Spice::Medicine;
-# ABSTRACT: Write an abstract here
-# Start at https://duck.co/duckduckhack/spice_overview if you are new
-# to instant answer development
+# Details about medicine from the database of myHealthbox.eu
 
 use DDG::Spice;
 
 spice is_cached => 1;
 
-# Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name "Medicine";
-source "";
-icon_url "";
+source "myHealthbox";
+#icon_url "";
 description "Succinct explanation of what this instant answer does";
-primary_example_queries "first example query", "second example query";
+primary_example_queries "aspirin dosage", "aspirin information leaflet";
 secondary_example_queries "optional -- demonstrate any additional triggers";
-# Uncomment and complete: https://duck.co/duckduckhack/metadata#category
-# category "";
-# Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
-# topics "";
+category "facts";
+topics "science", "everyday";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Medicine.pm";
 attribution github => ["GitHubAccount", "Friendly Name"],
             twitter => "twitterhandle";
 
-# Triggers
-triggers any => "triggerWord", "trigger phrase";
+triggers startend => "information leaflet", "insert", "technical document", "dosage", "posology", "side effects", "contraindications", "active ingredients";
+
+spice from => '([^/]*)/?([^/]*)/?([^/]*)';#epxect medicine name/country_code/language
+
+spice to => 'http://test.myhealthbox.eu/api/1.0/medicines/search?q=$1&country=$2&limit=5';
+
+spice wrap_jsonp_callback => 1;
 
 # Handle statement
 handle remainder => sub {
+    #remove question marks and 'for'
+    s/\? |for|//g;
 
-    # optional - regex guard
-    # return unless qr/^\w+/;
+    #return unless $_;    # Guard against empty query
 
-    return unless $_;    # Guard against "no answer"
-
-    return $_;
+    my $country_code = $loc ? $loc->country_code : '';
+    
+    my $language = 'en';
+    
+    return $_, $country_code, $language;
 };
 
 1;
