@@ -3,7 +3,7 @@ package DDG::Spice::SeatGeek::EventsByArtist;
 
 use DDG::Spice;
 
-primary_example_queries "live show weezer", "upcoming concerts in flames";
+primary_example_queries "live show weezer", "upcoming concerts bjork";
 description "Upcoming concerts from SeatGeek";
 name "SeatGeek Events By Artist";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SeatGeek/EventsByArtist.pm";
@@ -19,6 +19,10 @@ spice wrap_jsonp_callback => 1;
 handle remainder_lc => sub {
     # Removes triggers from the query
     $_ =~ s/^(:?(upcoming\s*)?(concerts?))|((live)\s*(:?(shows?))?)$//gi;
+
+    # If query starts with any of these assume it's one of the other queries
+    return if ($_ =~ /^(in |at )/);
+
     # Removes spaces from the beginning of the query
     $_ =~ s/^\s+//;
     # Removes spaces from the end of the query

@@ -6,52 +6,100 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-    [qw( DDG::Spice::SeatGeek::Events )],
+    [qw( DDG::Spice::SeatGeek::EventsByArtist )],
     'live show weezer' => test_spice(
-        '/js/spice/seat_geek/events/weezer',
+        '/js/spice/seat_geek/events_by_artist/weezer',
         call_type => 'include',
-        caller => 'DDG::Spice::SeatGeek::Events'
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist'
     ),
     'weezer live show' => test_spice(
-        '/js/spice/seat_geek/events/weezer',
+        '/js/spice/seat_geek/events_by_artist/weezer',
         call_type => 'include',
-        caller => 'DDG::Spice::SeatGeek::Events'
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist'
     ),
     'weezer live shows' => test_spice(
-        '/js/spice/seat_geek/events/weezer',
+        '/js/spice/seat_geek/events_by_artist/weezer',
         call_type => 'include',
-        caller => 'DDG::Spice::SeatGeek::Events'
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist'
     ),
     'live shows weezer' => test_spice(
-        '/js/spice/seat_geek/events/weezer',
+        '/js/spice/seat_geek/events_by_artist/weezer',
         call_type => 'include',
-        caller => 'DDG::Spice::SeatGeek::Events'
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist'
     ),
     'live weezer' => test_spice(
-        '/js/spice/seat_geek/events/weezer',
+        '/js/spice/seat_geek/events_by_artist/weezer',
         call_type => 'include',
-        caller => 'DDG::Spice::SeatGeek::Events'
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist'
     ),
     'weezer live' => test_spice(
-        '/js/spice/seat_geek/events/weezer',
+        '/js/spice/seat_geek/events_by_artist/weezer',
         call_type => 'include',
-        caller => 'DDG::Spice::SeatGeek::Events'
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist'
     ),
-    'upcoming concerts in flames' => test_spice(
-        '/js/spice/seat_geek/events/in-flames',
-        caller => 'DDG::Spice::SeatGeek::Events',
+    'upcoming concerts beastie boys' => test_spice(
+        '/js/spice/seat_geek/events_by_artist/beastie-boys',
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist',
     ),
-    'In Flames upcoming concerts' => test_spice(
-        '/js/spice/seat_geek/events/in-flames',
-        caller => 'DDG::Spice::SeatGeek::Events',
+    'Beastie Boys upcoming concerts' => test_spice(
+        '/js/spice/seat_geek/events_by_artist/beastie-boys',
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist',
     ),
-    'concert in flames' => test_spice(
-        '/js/spice/seat_geek/events/in-flames',
-        caller => 'DDG::Spice::SeatGeek::Events',
+    'concert beastie boys' => test_spice(
+        '/js/spice/seat_geek/events_by_artist/beastie-boys',
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist',
     ),
-    'in flames concert' => test_spice(
-        '/js/spice/seat_geek/events/in-flames',
-        caller => 'DDG::Spice::SeatGeek::Events',
+    'beastie boys concert' => test_spice(
+        '/js/spice/seat_geek/events_by_artist/beastie-boys',
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist',
+    ),
+);
+
+ddg_spice_test(
+    [qw( DDG::Spice::SeatGeek::EventsByVenue )],
+    'live shows at cafe oto' => test_spice(
+        '/js/spice/seat_geek/events_by_venue/cafe-oto',
+        call_type => 'include',
+        caller => 'DDG::Spice::SeatGeek::EventsByVenue'
+    ),
+    'shows at cafe oto' => test_spice(
+        '/js/spice/seat_geek/events_by_venue/cafe-oto',
+        call_type => 'include',
+        caller => 'DDG::Spice::SeatGeek::EventsByVenue'
+    ),
+    'concerts at cafe oto' => test_spice(
+        '/js/spice/seat_geek/events_by_venue/cafe-oto',
+        call_type => 'include',
+        caller => 'DDG::Spice::SeatGeek::EventsByVenue'
+    ),
+    'upcoming concerts at cafe oto' => test_spice(
+        '/js/spice/seat_geek/events_by_venue/cafe-oto',
+        call_type => 'include',
+        caller => 'DDG::Spice::SeatGeek::EventsByVenue'
+    ),
+);
+
+ddg_spice_test(
+    [qw( DDG::Spice::SeatGeek::EventsByCity )],
+    'live shows in london' => test_spice(
+        '/js/spice/seat_geek/events_by_city/london',
+        call_type => 'include',
+        caller => 'DDG::Spice::SeatGeek::EventsByCity'
+    ),
+    'shows in new york' => test_spice(
+        '/js/spice/seat_geek/events_by_city/new-york',
+        call_type => 'include',
+        caller => 'DDG::Spice::SeatGeek::EventsByCity'
+    ),
+    'concerts in new york' => test_spice(
+        '/js/spice/seat_geek/events_by_city/new-york',
+        call_type => 'include',
+        caller => 'DDG::Spice::SeatGeek::EventsByCity'
+    ),
+    'upcoming concerts in new york' => test_spice(
+        '/js/spice/seat_geek/events_by_city/new-york',
+        call_type => 'include',
+        caller => 'DDG::Spice::SeatGeek::EventsByCity'
     ),
 );
 
