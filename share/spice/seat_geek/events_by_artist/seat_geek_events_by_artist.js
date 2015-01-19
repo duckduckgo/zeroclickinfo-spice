@@ -1,6 +1,6 @@
 (function(env) {
     "use strict";
-    env.ddg_spice_seat_geek_events = function(api_result) {
+    env.ddg_spice_seat_geek_events_by_artist = function(api_result) {
 
         if(!api_result || api_result.error || api_result.events.length === 0) {
             return Spice.failed('seat_geek');
