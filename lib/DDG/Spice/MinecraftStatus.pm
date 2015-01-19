@@ -4,7 +4,7 @@ package DDG::Spice::MinecraftStatus;
 use DDG::Spice;
 
 name "Minecraft Status";
-source "mojang.com";
+source "help.mojang.com";
 description "Gives the current status of Minecraft";
 primary_example_queries "is minecraft down", "why is minecraft not working";
 category 'special';
