@@ -27,10 +27,10 @@
                 return {
                     title: item.title,
                     url: (item.url) ? item.url : 'https://news.ycombinator.com/item?id=' + item.objectID,
-                    description: fuzzyDate(now - item.created_at_i),
                     points: item.points || 0,
                     num_comments: item.num_comments || 0,
                     post_domain: extractDomain(item.url),
+                    date_from: fuzzyDate(now - item.created_at_i),
                     arrowUrl: DDG.get_asset_path('hacker_news','arrow_up.png'),
                     id: item.objectID
                 };
@@ -38,7 +38,12 @@
             templates: {
                 group: 'text',
                 options: {
-                    footer: Spice.hacker_news.footer
+                    footer: Spice.hacker_news.footer,
+                    //variant: "basic2",
+                    variants: {
+                        title: "h1",
+                        footer: "3"
+                    }
                 },
                 detail: false,
                 item_detail: false
