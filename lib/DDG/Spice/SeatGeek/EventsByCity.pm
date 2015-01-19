@@ -21,6 +21,9 @@ spice to => 'http://api.seatgeek.com/2/events?venue.city=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder_lc => sub {
+    # Return if this is a geolocation search
+    return if $_ =~ "^my area";
+
     # Replaces spaces between words with dashes, because the API requires it
     $_ =~ s/\s/\-/g;
     return $_ if $_;

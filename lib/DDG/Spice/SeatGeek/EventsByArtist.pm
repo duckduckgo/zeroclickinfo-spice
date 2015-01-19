@@ -21,7 +21,7 @@ handle remainder_lc => sub {
     $_ =~ s/^(:?(upcoming\s*)?(concerts?))|((live)\s*(:?(shows?))?)$//gi;
 
     # If query starts with any of these assume it's one of the other queries
-    return if ($_ =~ /^(in |at )/);
+    return if ($_ =~ /^(in |at |near me)/);
 
     # Removes spaces from the beginning of the query
     $_ =~ s/^\s+//;
