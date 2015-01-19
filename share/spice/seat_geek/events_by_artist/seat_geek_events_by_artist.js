@@ -22,45 +22,20 @@
             normalize: function(item) {
                 var date = DDG.getDateFromString(item.datetime_local),
                     dateString = date.getDate() + " " + months[date.getMonth()] + ", " + date.getFullYear(),
-                    priceString = "",
-                    performersString = "",
-                    longDescription = "";
-
-                // SeatGeek only seems to offer prices on US shows
-                // so assume price is in dollars
-                if (item.stats.lowest_price) {
-                    priceString += "from $" + item.stats.lowest_price;
-                }
-
-                // more than three performers probably means it's a long list
-                // so let's go into a bit more detal
-                if (item.performers.length > 3) {
-                    performersString = $.map(item.performers, function (performer) {
-                        return performer.name;
-                    }).join(", ");
-
-                    performersString = "<p>Playing are: " + performersString + ".</p>";
-                }
-
-                longDescription = "<p>" + item.venue.name + ", " + item.venue.display_location + " on " + dateString + "</p>"
-                    + performersString;
+                    description = item.venue.name + ", " + item.venue.display_location;
 
                 return {
                     url: item.link,
-                    img_m: item.performers[0].image,
-                    img: item.performers[0].image,
                     title: item.short_title,
-                    description: item.venue.name + ", " + item.venue.display_location,
-                    subtitle: dateString,
-                    heading: item.title,
-                    price: priceString,
-                    abstract: longDescription
+                    description: description,
+                    subtitle: dateString
                 };
             },
             templates: {
                 group: 'products',
                 item: 'text_item',
-                detail: 'products_item_detail',
+                detail: false,
+                item_detail: false,
                 options: {
                     moreAt: true,
                     rating: false
