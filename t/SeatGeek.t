@@ -114,6 +114,7 @@ ddg_spice_test(
         '/js/spice/seat_geek/events_near_me/51.2000/6.4333',
         call_type => 'include',
         caller => 'DDG::Spice::SeatGeek::EventsNearMe',
+        is_cached => 0
     ),
     DDG::Request->new(
         query_raw => "upcoming concerts in my area",
@@ -122,6 +123,7 @@ ddg_spice_test(
         '/js/spice/seat_geek/events_near_me/51.2000/6.4333',
         call_type => 'include',
         caller => 'DDG::Spice::SeatGeek::EventsNearMe',
+        is_cached => 0
     ),
 );
 

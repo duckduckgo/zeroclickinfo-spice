@@ -7,7 +7,6 @@
         }
 
         var query = DDG.get_query(),
-            clean_query = query.replace(/((upcoming\s)?(concerts?))|(live(\s(shows?))?)/, '').trim().toLowerCase(),
             months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
         Spice.add({
@@ -16,7 +15,7 @@
             data: api_result.events,
             meta: {
                 sourceName: "SeatGeek",
-                sourceUrl: "https://seatgeek.com/search?search=" + clean_query,
+                sourceUrl: "https://seatgeek.com/search?search=" + query,
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
                 itemType: "Upcoming Concerts"
             },
