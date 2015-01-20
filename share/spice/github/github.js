@@ -30,11 +30,12 @@
                 sourceName: 'GitHub'
             },
             templates: {
-            group: 'text',
+                    group: 'text',
                     detail: false,
                     item_detail: false,
                     options: {
-                        footer: Spice.github.footer
+                        footer: Spice.github.footer,
+                        variant: 'basic4'
                     }
                 },
             normalize: function(item) {

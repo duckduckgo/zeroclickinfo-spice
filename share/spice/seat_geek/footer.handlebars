@@ -1,0 +1,25 @@
+<div class="tx-clr--lt">
+	<div class="where place one-line">
+		{{place}}
+	</div>
+	<div class="where city one-line">
+		{{city}}
+	</div>
+	{{#if price}}
+		<div class="price tx-clr--dk">{{price}}</div>
+	{{else}}
+		<div class="noprice tx-clr--lt">Price N/A</div>
+	{{/if}}
+	<div class="date">
+		<div class="month">
+			{{#if month}}
+				{{month}}
+			{{/if}}
+		</div>
+		<div class="day">
+			{{#if day}}
+				{{day}}
+			{{/if}}
+		</div>
+	</div>
+</div>
