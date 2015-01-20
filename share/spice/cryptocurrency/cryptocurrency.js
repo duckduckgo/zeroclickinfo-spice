@@ -9,13 +9,9 @@
     "use strict";
     env.ddg_spice_cryptocurrency = function(api_result){
 
-        if (api_result.error) {
+        if (!api_result) {
             return Spice.failed('cryptocurrency');
-            console.log("Error!")
-        }
-        
-        console.log("Not Error!");
-        console.log(api_result.markets[0]);
+        } 
         
         Handlebars.registerHelper('json', function(context) {
              return JSON.stringify(context);
@@ -27,10 +23,10 @@
         Spice.add({
             id: "cryptocurrency",
             name: "Cryptocurrency Conversion",
-            data: api_result.markets[0],
+            data: api_result_wrapper,
             meta: {
-                sourceName: "coinmarketcap.northpole.ro",
-                sourceUrl: 'http://coinmarketcap.northpole.ro'
+                sourceName: "cryptonator.com",
+                sourceUrl: 'https://www.cryptonator.com'
             },
             templates: {
                 group: 'base',
