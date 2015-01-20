@@ -1,0 +1,7 @@
+.zci--mtg .cardImg {
+    overflow: hidden;
+    position: absolute;
+    right:-50%;
+    top:0%;
+    width:200px;
+}
