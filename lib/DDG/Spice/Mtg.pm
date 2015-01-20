@@ -10,7 +10,7 @@ primary_example_queries "mtg nullify", "mtg Boros Reckoner";
 
 category "entertainment";
 topics "entertainment", "gaming";
-code_url "https://github.com/puskin94/zeroclickinfo-spice/blob/mtg/lib/DDG/Spice/Mtg.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/mtg/lib/DDG/Spice/Mtg.pm";
 attribution github => ["https://github.com/puskin94", "puskin"];
 
 triggers start => 'mtg', 'magic', 'magic card', 'magic the gathering';
