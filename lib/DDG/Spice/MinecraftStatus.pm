@@ -17,7 +17,7 @@ attribution
 
 triggers any => 'why is minecraft down', 'minecraft status', 'mcstatus';
 
-spice to => 'http://status.mojang.com/check';
+spice to => 'http://direct.thedestruc7i0n.ca/mcstatusraw';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
