@@ -1,0 +1,37 @@
+<div class="cw">
+    <div class="zci__main  zci__main--detail">
+        <div class="zci__body">
+            <h3>
+                {{#if word}}
+                    <span class="zci__urban__word">{{word}}</span>
+                {{/if}}
+            </h3>
+            <p class="ud_definition">
+                {{definition}}
+            </p>
+            <div class="ud_example">
+                {{#each example}}
+                    <div class="example">{{this}}</div>
+                {{/each}}
+            </div>
+            <a href="http://www.urbandictionary.com/define.php?term={{word}}" class="zci__more-at">
+                <img class="zci__more-at__icon" src="//icons.duckduckgo.com/ip2/www.urbandictionary.com.ico">
+                More at Urban Dictionary
+            </a>
+        </div>
+    </div>
+</div>
+<div class="zci__aux">
+    <div class="tile  tile--info  js-infobox-tile">
+        <h6 class="info  info--head">Related Words:</h6>
+        {{#each infobox}}
+            <div class="info">
+                <span class="info__label">
+                    <a href="http://www.urbandictionary.com/define.php?term={{label}}">{{label}}</a>
+                </span>
+                <span class="info__value"></span>
+            </div>
+        {{/each}}
+        <div class="tile__expand  tile--info__expand   js-tile-expand"></div>
+    </div>
+</div>

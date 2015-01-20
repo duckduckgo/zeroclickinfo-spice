@@ -1,0 +1,14 @@
+<table>
+<tr>
+    <th>groupID</th>
+    <th>artifactId</th>
+    <th>version</th>
+</tr>
+{{#each response.docs}}
+    <tr>
+        <td><a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22{{g}}%22">{{g}}</a></td>
+        <td><a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22{{g}}%22%20AND%20a%3A%22{{a}}%22">{{a}}</a></td>
+        <td><a href="http://search.maven.org/#artifactdetails%7C{{g}}%7C{{a}}%7C{{latestVersion}}%7Cjar">{{latestVersion}}</a></td>
+    </tr>
+{{/each}}
+</table>
