@@ -1,0 +1,29 @@
+<div>
+    {{#with album}}
+        <div>
+            <em>Artist:</em>
+            {{artist}}
+        </div>
+        {{#cleanDate releasedate}}
+            <div>
+                <em>Release Date:</em>
+                {{date}}
+            </div>
+        {{/cleanDate}}
+        {{#checkTracks tracks}}
+            <div>
+                <em>Songs:</em>
+                {{#list track}}<a href="{{this.url}}">{{this.name}}</a>{{/list}}
+            </div>
+        {{/checkTracks}}
+        {{#checkWiki wiki}}
+            <div>
+                <span id="some"><em>Description:</em> {{snippet summary "some"}}</span>
+                <a id="expand" href="javascript:;">
+                    <span>More...</span>
+                </a>
+                <span id="all"><em>Description:</em> {{snippet summary "all"}}</span>
+            </div>
+        {{/checkWiki}}
+    {{/with}}
+</div>

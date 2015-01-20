@@ -1,0 +1,34 @@
+ul.blacklists 
+{
+    margin: 0;
+    padding: 0;
+    padding-top: 0.2em;
+}
+
+.zci h1.iplookup_domain_name 
+{
+	font-size: 1.5em;
+	font-weight: 500;
+	margin-bottom: 0;
+}
+
+.iplookup_owner
+{
+	font-size: 1.3em;
+	font-weight: 300;
+}
+
+.zci__more-at--info img 
+{
+	padding-right: 0.4em;
+}
+
+.iplookup_blacklist
+{
+	margin-top: 0.5em;
+}
+
+.iplookup_location, .iplookup_blacklist 
+{
+	margin-bottom: 0.5em;
+}
