@@ -13,7 +13,7 @@ attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlast
 
 triggers startend => 'upcoming matches', 'events', 'event', 'upcoming match', 'matches', 'sports', 'schedule';
 
-spice to => 'http://api.seatgeek.com/2/events?q=$1&taxonomies.name=sports&callback={{callback}}';
+spice to => 'http://api.seatgeek.com/2/events?q=$1&taxonomies.name=sports&per_page=50&callback={{callback}}';
 
 handle remainder_lc => sub {
     # Removes spaces from the beginning of the query
