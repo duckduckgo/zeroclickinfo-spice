@@ -1,0 +1,25 @@
+.zci--minecraft_status .mcstatus--header {
+    font-size: 1.5em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.zci--minecraft_status .mcstatus--good {
+    color: #4b9e4d;
+}
+
+.zci--minecraft_status .mcstatus--shaky {
+    color: #f1a031;
+}
+
+.zci--minecraft_status .mcstatus--down {
+    color: #de5833;
+}
+
+.zci--minecraft_status .mcstatus--message {
+    font-size: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0.75em;
+}

@@ -6,7 +6,7 @@ use DDG::Spice;
 name "Minecraft Status";
 source "help.mojang.com";
 description "Gives the current status of Minecraft";
-primary_example_queries "is minecraft down", "why is minecraft not working";
+primary_example_queries "is minecraft down", "minecraft status";
 category 'special';
 topics 'words_and_games';
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/MinecraftStatus.pm";
