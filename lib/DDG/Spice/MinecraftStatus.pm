@@ -14,13 +14,17 @@ attribution web     => ['https://thedestruc7i0n.ca', "Colin D'Souza"],
 			twitter => ['https://www.twitter.com/TheDestruc7i0n',"Colin D'Souza"],
     		github  => ['destruc7i0n', "Colin D'Souza"];
 
-triggers any => 'why is minecraft down', 'minecraft status', 'mcstatus';
+triggers any => 'minecraft', 'mcstatus', 'mc';
 
 spice to => 'http://direct.thedestruc7i0n.ca/mcstatusraw';
 spice wrap_jsonp_callback => 1;
 
+spice is_cached => 1;
+spice proxy_cache_valid => "200 5m";
+
 handle remainder => sub {
-    return 1;
+	return $_ if /^(is\s*)?(system)?\s*(status|up|down)\??$/i;
+    return;
 };
 
 1;
