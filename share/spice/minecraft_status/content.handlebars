@@ -1,0 +1,13 @@
+<h3 class="mcstatus--header text--primary">
+  {{! checks if the status is either good, shaky, or down }}
+  {{#MinecraftStatus_ifCond status "good"}}
+    The status of Minecraft is <span class="mcstatus--good">{{status}}</span>.
+  {{else}}
+    {{#MinecraftStatus_ifCond status "shaky"}}
+      The status of Minecraft is <span class="mcstatus--shaky">{{status}}</span>.
+    {{else}}
+      Minecraft is currently <span class="mcstatus--down">{{status}}</span>.
+    {{/MinecraftStatus_ifCond}}
+  {{/MinecraftStatus_ifCond}}
+  <h6 class="mcstatus--message text--secondary">{{message}}</h6>
+</h3>
