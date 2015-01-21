@@ -5,36 +5,44 @@
 
 .zci--seat_geek .price,
 .zci--seat_geek .noprice {
-    margin-top: 1em;
+    margin-top: 1.75em;
     height: 1.1em;
     float: left;
-    font-size: 1.1em;
 }
 
 .zci--seat_geek .date {
-    float: right;
     border: 1px solid #ddd;
-    padding: 0.7em 0.9em;
+    
     border-radius: 50%;
     -moz-border-radius: 50%;
     -o-border-radius: 50%;
     -webkit-border-radius: 50%;
     text-align: center;
     font-size: 0.9em;
-    margin-top: -1.5em;
+    padding: 0;
+    
+    position: absolute;
+    bottom: 1em;
+    right: 0;
+    
+    width: 4em;
+    height: 4em;
+    line-height: 1;
 }
+    .zci--seat_geek .month {
+        padding-top: 1em;
+    }
 
-.zci--seat_geek .day {
-    font-size: 1.6em;
-    line-height: 0.8;
-}
+    .zci--seat_geek .day {
+        font-size: 1.6em;
+        line-height: 0.8;
+    }
 
 .zci--seat_geek .seat_geek-artist {
     font-size: 1.1em;
 }
 
 .zci--seat_geek .where {
-    font-size: 1.1em;
     height: 1.4em;
 }
 

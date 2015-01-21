@@ -143,7 +143,7 @@
                     rating: false,
                     footer: Spice.seat_geek.footer,
                     variants: {
-                        title: '3',
+                        title: '3b',
                         footer: '4'
                     }
                 }
