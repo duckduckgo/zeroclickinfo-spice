@@ -1,4 +1,22 @@
-<span>{{name}}</span>
-<a href="http://some.url/profile/data1">
-   <img src="/iu/?u=Place a image url here">
+<h6 class="tile__title tile__title--medicine">{{title}}</h6>
+{{#if activeIngredient}}
+<p>Active Ingredient: {{activeIngredient}}
+</p>
+{{/if}}
+{{#if manufacturer}}
+<p>Manufacturer: {{manufacturer}}
+</p>
+{{/if}}
+{{#if dosage}}
+<p>Dosage: {{dosage}}
+</p>
+{{/if}}
+{{#if pharmaceuticalForm}}
+<p>Pharmaceutical Form: {{pharmaceuticalForm}}
+</p>
+{{/if}}
+<p>
+<a href="{{url}}">
+   more at myHealthbox.eu
 </a>
+</p>

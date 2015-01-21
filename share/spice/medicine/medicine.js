@@ -28,20 +28,23 @@
             normalize: function(item) {
                 return {
                     title: item.medicineName,
-                    subtitle: "something long and even longer",
-                    //title_content: "another title",
-                    description: "Active ingredient: "+item.active_ingredient
-                    //url: 'http://test.myhealthbox.eu/'+item.languageCode+'/medicine/'+ item.medicineId
+                    activeIngredient: item.active_ingredient,
+                    manufacturer: item.mah,
+                    dosage: item.dosage,
+                    pharmaceuticalForm: item.pharmaceutical_form,
+                    url: 'http://test.myhealthbox.eu/'+item.languageCode+'/medicine/'+ item.medicineId
                 };
             },
             templates: {
-                group: 'text',
-                detail: false,
-                item_detail: false
+                //group: 'text,
+                item: 'base_item',
+                //detail: false,
+                //item_detail: false
                 //item_detail: false,
-                //options: {
-                   //variant: 'poster'
-                //}
+                options: {
+                    content: Spice.medicine.medicine
+                    //variant: 'wide'
+                }
             }
         });
     };
