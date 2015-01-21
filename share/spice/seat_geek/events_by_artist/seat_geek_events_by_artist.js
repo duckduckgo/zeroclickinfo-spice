@@ -3,7 +3,7 @@
     env.ddg_spice_seat_geek_events_by_artist = function(api_result) {
 
         if(!api_result || api_result.error || api_result.events.length === 0) {
-            return Spice.failed('seat_geek');
+            return Spice.failed('seat_geek_events_by_artist');
         }
 
         var query = DDG.get_query(),
@@ -12,7 +12,7 @@
             days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         Spice.add({
-            id: "seat_geek",
+            id: "seat_geek_events_by_artist",
             name: "Concerts",
             data: api_result.events,
             meta: {

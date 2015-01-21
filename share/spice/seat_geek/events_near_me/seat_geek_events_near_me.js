@@ -3,14 +3,14 @@
     env.ddg_spice_seat_geek_events_near_me = function(api_result) {
 
         if(!api_result || api_result.error || api_result.events.length === 0) {
-            return Spice.failed('seat_geek');
+            return Spice.failed('seat_geek_events_near_me');
         }
 
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
             days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         Spice.add({
-            id: "seat_geek",
+            id: "seat_geek_events_near_me",
             name: "Concerts",
             data: api_result.events,
             meta: {
