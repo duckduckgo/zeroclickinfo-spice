@@ -11,7 +11,7 @@
                     .replace(/^\s*github\s+/, "");
 
         var results = api_result.data.repositories;
-
+        
         if (!results) {
             return Spice.failed('github');
         }
