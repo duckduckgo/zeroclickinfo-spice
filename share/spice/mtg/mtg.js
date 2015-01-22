@@ -31,7 +31,6 @@
         $.each(infoboxItems, function(key, value){
             if (api_result[0][key]){
                 infoboxData.push({
-                    url: "http://www.mtgdb.info/cards/" + api_result[0].id,
                     label: value,
                     value: api_result[0][key]
                 });
@@ -49,6 +48,7 @@
             normalize: function(item) {
                 return {
                     title: item.name,
+                    url: "http://www.mtgdb.info/cards/" + api_result[0].id,
                     image:  "http://api.mtgdb.info/content/card_images/" + item.id + ".jpeg",
                     infoboxData: infoboxData
                 };

@@ -5,7 +5,7 @@ package DDG::Spice::Mtg;
 use DDG::Spice;
 
 name "Mtg Card Search";
-description "mtg <card name> Returns infos on the Magic The Gathering Card";
+description "Returns information about Magic The Gathering Cards";
 primary_example_queries "mtg nullify", "mtg Boros Reckoner";
 
 category "entertainment";
