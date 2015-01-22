@@ -5,6 +5,23 @@
         if (!api_result || api_result.number === undefined) {
           return Spice.failed('people_in_space');
         }
+        
+        var today = new Date();
+        var codes = {       //We'll need these to map the full names returned by the source to the two-letter codes used by the DDG flag images
+            "canada":"ca",
+            "china":"cn",
+            "denmark":"dk",
+            "france":"fr",
+            "germany":"de",
+            "italy":"it",
+            "japan":"jp",
+            "netherlands":"nl",
+            "russia":"ru",
+            "spain":"sp",
+            "sweden":"se",
+            "uk":"uk",
+            "usa":"us"};
+        var months = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."];
 
         var people = api_result.people;
 
