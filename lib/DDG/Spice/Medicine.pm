@@ -19,24 +19,22 @@ attribution github => ["GitHubAccount", "Friendly Name"],
 
 triggers startend => "information leaflet", "insert", "technical document", "dosage", "posology", "side effects", "contraindications", "active ingredients";
 
-spice from => '([^/]*)/?([^/]*)/?([^/]*)';#epxect medicine name/country_code/language
+spice from => '([^/]*)/?([^/]*)';#expect medicine name/country_code
 
 spice to => 'http://test.myhealthbox.eu/api/1.0/medicines/search?q=$1&country=$2&limit=5';
 
 spice wrap_jsonp_callback => 1;
 
 # Handle statement
-handle remainder => sub {
+handle query_lc => sub {
     #remove question marks and 'for'
     s/\? |for|//g;
 
-    #return unless $_;    # Guard against empty query
+    return unless $_;    # Guard against empty query
 
     my $country_code = $loc ? $loc->country_code : '';
     
-    my $language = 'en';
-    
-    return $_, $country_code, $language;
+    return $_, $country_code;
 };
 
 1;
