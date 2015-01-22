@@ -13,7 +13,7 @@ topics "entertainment", "gaming";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/mtg/lib/DDG/Spice/Mtg.pm";
 attribution github => ["https://github.com/puskin94", "puskin"];
 
-triggers start => 'mtg', 'magic', 'magic card', 'magic the gathering';
+triggers start => 'mtg', 'magic card', 'magic cards', 'magic the gathering';
 spice to => 'http://api.mtgdb.info/cards/$1';
 spice wrap_jsonp_callback => 1;
 
