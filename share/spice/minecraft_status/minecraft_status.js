@@ -11,14 +11,15 @@
             name: "Status",
             data: api_result,
             meta: {
-                sourceName: "Mojang",
+                sourceName: "Mojang Support",
                 sourceUrl: "https://help.mojang.com/",
+                sourceIconUrl: "https://help.mojang.com/customer/portal/theme_attachments/15570?cb=1387305064636"
             },
             templates: {
                 group: 'base',
                 options:{
                     content: Spice.minecraft_status.content,
-                    moreAt: false
+                    moreAt: true
                 }
             }
         });
