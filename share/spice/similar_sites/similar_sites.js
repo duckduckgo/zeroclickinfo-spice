@@ -66,8 +66,10 @@
         for(var i = from; i < to; i++) {
             link = items["r" + i].replace("http://", "")
                                  .replace("https://", "");
-            if (link.endsWith('/'))
+            if (link.slice(-1) == '/') {
                 link = link.slice(0, -1);
+                link = link.replace('www.', '');
+            }
 
             out += "<div>"
                 +  "<img src='http://icons.duckduckgo.com/ip/" + link + ".ico'"
