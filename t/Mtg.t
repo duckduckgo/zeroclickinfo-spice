@@ -17,7 +17,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Mtg',
         is_cached => 1
     ),
-    'magic Boros Reckoner' => test_spice(
+    'magic card Boros Reckoner' => test_spice(
         '/js/spice/mtg/Boros%20Reckoner',
         call_type => 'include',
         caller => 'DDG::Spice::Mtg',
