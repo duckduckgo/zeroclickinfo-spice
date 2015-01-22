@@ -119,7 +119,11 @@
             templates: {
                 group: 'text',
                 options: {
-            footer: Spice.reddit_search.footer
+                    footer: Spice.reddit_search.footer,
+                    variants: {
+                        title: "3a",
+                        footer: "2"
+                    }
                 },
         detail: false,
         item_detail: false
