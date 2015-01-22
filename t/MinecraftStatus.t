@@ -20,7 +20,7 @@ ddg_spice_test(
     'is minecraft up' => test_spice(
         '/js/spice/minecraft_status/is%20up',
         call_type => "include", 
-        caller => "DDG::Spice::MinecraftStatus"
+        caller => "DDG::Spice::MinecraftStatus",
         "/js/spice/is_it_up/minecraft.com",
         call_type => "include",
         caller => "DDG::Spice::IsItUp"
