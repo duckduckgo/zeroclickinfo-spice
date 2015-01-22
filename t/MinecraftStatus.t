@@ -17,7 +17,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::MinecraftStatus'
     ),
-    'mcstatus' => undef;
+    'mcstatus' => undef
 );
 
 done_testing;
