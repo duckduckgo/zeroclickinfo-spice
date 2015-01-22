@@ -31,6 +31,7 @@
         $.each(infoboxItems, function(key, value){
             if (api_result[0][key]){
                 infoboxData.push({
+                    url: "http://www.mtgdb.info/cards/" + api_result[0].id,
                     label: value,
                     value: api_result[0][key]
                 });
