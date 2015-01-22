@@ -48,7 +48,7 @@
             normalize: function(item) {
                 return {
                     title: item.name,
-                    url: "http://www.mtgdb.info/cards/" + api_result[0].id,
+                    url: "http://www.mtgdb.info/cards/" + item.id,
                     image:  "http://api.mtgdb.info/content/card_images/" + item.id + ".jpeg",
                     infoboxData: infoboxData
                 };
