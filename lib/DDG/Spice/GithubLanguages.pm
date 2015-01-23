@@ -31,7 +31,8 @@ handle query_lc => sub {
     # structuring the search this way gives the first langauge specified
     # precedence. So have 'python javascript' passes the query
     # 'javascript language:python' to github.
-    if ($query =~ /^["']*($langs)\b/ || $query =~ /\b($langs)["']*$/) {
+    #if ($query =~ /^["']*($langs)\b/ || $query =~ /\b($langs)["']*$/) {
+    if (/^["' ]*($langs)\b/ || /\b($langs)["' ]*$/) {
         $l = $1;
     } 
     
