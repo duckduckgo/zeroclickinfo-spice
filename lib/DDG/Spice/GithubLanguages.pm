@@ -28,6 +28,9 @@ handle query_lc => sub {
 
     my $query = $_;
     my $l; 
+    # structuring the search this way gives the first langauge specified
+    # precedence. So have 'python javascript' passes the query
+    # 'javascript language:python' to github.
     if ($query =~ /^["']*($langs)\b/ || $query =~ /\b($langs)["']*$/) {
         $l = $1;
     } 
@@ -43,6 +46,9 @@ handle query_lc => sub {
         }
     }
     
+    # These is no separate language parameter for the query to 
+    # Github. You specify language as a part of the raw query string
+    # passed to the api like on the web form interface. 
     return "${query} language:\"${l}\"";
 };
 

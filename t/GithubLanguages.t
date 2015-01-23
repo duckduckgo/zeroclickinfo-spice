@@ -7,13 +7,13 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::GithubLanguages)],
-    'javascript redis' => test_spice(
-        '/js/spice/github_languages/%20redis%20language%3Ajavascript',
+    'javascript test' => test_spice(
+        '/js/spice/github_languages/test%20language%3A%22javascript%22',
         call_type => 'include',
         caller => 'DDG::Spice::GithubLanguages'
     ),
-    'redis javascript' => test_spice(
-        '/js/spice/github_languages/redis%20%20language%3Ajavascript',
+    'test javascript' => test_spice(
+        '/js/spice/github_languages/test%20language%3A%22javascript%22',
         call_type => 'include',
         caller => 'DDG::Spice::GithubLanguages'
     ),
