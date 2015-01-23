@@ -40,7 +40,7 @@
 }
 
 .is-mobile .zci--movie .detail__subtitle {
-    padding-bottom: 5.5em;
+    position: relative;
 }
 
 .zci--movie p.detail__desc {
@@ -93,22 +93,11 @@
     overflow: visible;
 }
 
-.is-mobile .zci--movie .detail .detail__media--pr {
-    max-width: 100%;
-}
-
-.is-mobile .detail__body--pr--s--pri {
-    padding-bottom: 10em;
-}
-
 .is-mobile .detail__body--pr--s--sec {
     margin-top: 1.5em;
 }
 
-@media (max-width: 354px) {
-.is-mobile .zci--movie .detail__subtitle {
-    padding-bottom: 4em;
+.is-mobile .detail__body--pr--s--pri {
+    min-height: 165px;
+    padding-bottom: 0em
 }
-}
-
-
