@@ -11,9 +11,9 @@ category 'special';
 topics 'words_and_games';
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/MinecraftStatus.pm";
 attribution 
-    web     => ['https://thedestruc7i0n.ca', "Colin D'Souza"],
-    twitter => ['https://www.twitter.com/TheDestruc7i0n',"Colin D'Souza"],
-    github  => ['destruc7i0n', "Colin D'Souza"];
+    web     => ['https://thedestruc7i0n.ca', "destruc7i0n"],
+    twitter => ['https://www.twitter.com/TheDestruc7i0n',"destruc7i0n"],
+    github  => ['destruc7i0n', "destruc7i0n"];
 
 triggers any => 'minecraft', 'mcstatus', 'mc', 'mine craft';
 
