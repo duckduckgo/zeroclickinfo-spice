@@ -29,4 +29,3 @@
         return ((string1 === string2) ? options.fn(this) : options.inverse(this));
     });
 }(this));
-
