@@ -1,37 +1,37 @@
-.zci--seat_geek .tile--seat_geek {
+.zci--seat_geek_events_by_venue .tile--seat_geek {
     height: 15.6em;
 }
 
-    .is-mobile .zci--seat_geek .tile--seat_geek {
+    .is-mobile .zci--seat_geek_events_by_venue .tile--seat_geek {
         height: inherit;
     }
 
-.zci--seat_geek .header_container {
+.zci--seat_geek_events_by_venue .header_container {
     height: 8em;
 }
 
 /* IE causes one-line to break when word-break is set to something. */
-.zci--seat_geek .tile__body {
+.zci--seat_geek_events_by_venue .tile__body {
     word-break: initial;
 }
 
-.zci--seat_geek .price {
+.zci--seat_geek_events_by_venue .price {
     font-weight: 600;
 }
 
-.zci--seat_geek .price,
-.zci--seat_geek .noprice {
+.zci--seat_geek_events_by_venue .price,
+.zci--seat_geek_events_by_venue .noprice {
     margin-top: 1em;
     height: 1.1em;
     float: left;
     font-size: 1.1em;
 }
 
-.zci--seat_geek .tile__body.has-foot {
+.zci--seat_geek_events_by_venue .tile__body.has-foot {
     padding: 1em;
 }
 
-.zci--seat_geek .header_container .tile__title {
+.zci--seat_geek_events_by_venue .header_container .tile__title {
     height: 3.8em;
     margin-bottom: 0;
     /* Adding ellipsis on Webkit-based engines. */
@@ -40,7 +40,7 @@
     font-weight: 400;
 }
 
-.zci--seat_geek .date {
+.zci--seat_geek_events_by_venue .date {
     float: right;
     border: 1px solid #ddd;
     padding: 0.7em 0.9em;
@@ -53,25 +53,25 @@
     margin-top: -1.5em;
 }
 
-.zci--seat_geek .day {
+.zci--seat_geek_events_by_venue .day {
     font-size: 1.6em;
     line-height: 0.8;
 }
 
-.zci--seat_geek .seat_geek-artist {
+.zci--seat_geek_events_by_venue .seat_geek-artist {
     font-size: 1.1em;
 }
 
-.zci--seat_geek .where {
+.zci--seat_geek_events_by_venue .where {
     font-size: 1.1em;
     height: 1.4em;
 }
 
-.zci--seat_geek .where.city,
-.zci--seat_geek .where.place {
+.zci--seat_geek_events_by_venue .where.city,
+.zci--seat_geek_events_by_venue .where.place {
     width: 9.3em;
 }
 
-    .is-mobile .zci--seat_geek .where.city {
+    .is-mobile .zci--seat_geek_events_by_venue .where.city {
         width: 7em;
     }
