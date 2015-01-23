@@ -11,20 +11,20 @@ category 'special';
 topics 'words_and_games';
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/MinecraftStatus.pm";
 attribution 
-	web     => ['https://thedestruc7i0n.ca', "Colin D'Souza"],
-	twitter => ['https://www.twitter.com/TheDestruc7i0n',"Colin D'Souza"],
-	github  => ['destruc7i0n', "Colin D'Souza"];
+    web     => ['https://thedestruc7i0n.ca', "Colin D'Souza"],
+    twitter => ['https://www.twitter.com/TheDestruc7i0n',"Colin D'Souza"],
+    github  => ['destruc7i0n', "Colin D'Souza"];
 
 triggers any => 'minecraft', 'mcstatus', 'mc', 'mine craft';
 
-spice to => 'http://direct.thedestruc7i0n.ca/mcstatusraw/';
+spice to => 'http://mcstatusraw.thedestruc7i0n.ca/';
 spice wrap_jsonp_callback => 1;
 
 spice is_cached => 1;
 spice proxy_cache_valid => "200 5m";
 
 handle remainder => sub {
-	return $_ if /^(is\s*)?(system)?\s*(status|up|down)\??$/i;
+    return $_ if /^(is\s*)?(system)?\s*(status|up|down)\??$/i;
     return;
 };
 
