@@ -48,7 +48,7 @@
 }
 
 .is-mobile .zci--movie p.detail__desc {
-    padding-bottom: 1.5em;
+    padding-bottom: 5em;    
 }
 
 .zci--movie .movie--runtime {
@@ -100,4 +100,17 @@
 .is-mobile .detail__body--pr--s--pri {
     min-height: 165px;
     padding-bottom: 0em
+}
+
+.is-mobile .zci--movie .detail .detail__media--pr {
+    max-width: 100%;
+}
+
+.is-mobile .zci--movie .btn.btn--primary {
+    position: absolute;
+    bottom: 1em;
+}
+
+.is-mobile .zci.is-active {
+    padding-bottom: 0em;
 }
