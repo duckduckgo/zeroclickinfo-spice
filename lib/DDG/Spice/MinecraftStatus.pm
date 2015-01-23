@@ -15,9 +15,9 @@ attribution
 	twitter => ['https://www.twitter.com/TheDestruc7i0n',"Colin D'Souza"],
 	github  => ['destruc7i0n', "Colin D'Souza"];
 
-triggers any => 'minecraft', 'mcstatus', 'mc';
+triggers any => 'minecraft', 'mcstatus', 'mc', 'mine craft';
 
-spice to => 'http://direct.thedestruc7i0n.ca/mcstatusraw';
+spice to => 'http://direct.thedestruc7i0n.ca/mcstatusraw/';
 spice wrap_jsonp_callback => 1;
 
 spice is_cached => 1;
