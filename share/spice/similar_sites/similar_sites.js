@@ -6,7 +6,7 @@
                 source = $(script).attr("src"),
                 query = source.match(/similar_sites\/([^\/]+)/)[1];
 
-        if(!api_result || !api_result.num === 0) {
+        if(!api_result || api_result.num === 0) {
             return Spice.failed('similar_sites');
         }
 
