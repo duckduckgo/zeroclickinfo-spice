@@ -7,7 +7,6 @@
 }
 
 .zci--similar_sites #container a {
-    color: #3B3B3B;
     margin-left: 5px;
     vertical-align: middle;
 }
@@ -33,10 +32,6 @@
 
 .zci--similar_sites #more_info {
     margin-top: 10px;
-}
-
-.zci--similar_sites #more_at a {
-    color: #666 !important;
 }
 
 .zci--similar_sites #more_at {

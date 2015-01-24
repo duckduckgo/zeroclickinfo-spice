@@ -74,7 +74,9 @@
             out += "<div>"
                 +  "<img src='https://icons.duckduckgo.com/ip/" + link + ".ico'"
                 +  " width='16px' height='16px' />"
-                +  "<a href='" + items["r" + i] + "'>" + link + "</a>"
+                +  "<a class='tx-clr--dk' href='" 
+                +       items["r" + i] + "'>" + link 
+                +  "</a>"
                 +  "</div>"
         }
 
