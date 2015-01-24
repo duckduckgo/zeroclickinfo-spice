@@ -9,10 +9,16 @@
         // There's a next linkpage link provided by the api, this converts it
         // to a link to the next page on the actual github search, so by clicking
         // More on Github you automatically get taken to the next page of results
-        var sourceUrl = api_result.meta.Link[0][0].
-            replace(/api.github.com\/search\/repositories/, "github.com/search").
-            replace("&callback=ddg_spice_github_languages", "").
-            replace("&page=2", "&p=2");
+        if (api_result.meta.Link) {
+            var sourceUrl = api_result.meta.Link[0][0].
+                replace(/api.github.com\/search\/repositories/, "github.com/search").
+                replace("&callback=ddg_spice_github_languages", "").
+                replace("&page=2", "&p=2");
+        } else {
+            // Github doesn't include that Link tag if there's only a single page of results.
+            // I don't see a way to grab the query at all, so just send them to GitHub.
+            var sourceUrl = "https://github.com/"
+        }
         
 
         // Render the response
