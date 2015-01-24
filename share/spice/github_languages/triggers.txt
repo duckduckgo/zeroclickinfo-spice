@@ -1,11 +1,11 @@
 actionscript
-c
 c#
 c++
 clojure
 coffeescript
 common lisp
 css
+c
 diff
 emacs lisp
 erlang
@@ -36,8 +36,8 @@ applescript
 arc
 arduino
 asciidoc
-asp
 aspectj
+asp
 assembly
 ats
 augeas
@@ -76,7 +76,6 @@ cucumber
 cuda
 cycript
 cython
-d
 d-objdump
 darcs patch
 dart
@@ -84,11 +83,12 @@ dm
 dockerfile
 dogescript
 dylan
+d
 e
 eagle
-ec
 ecere projects
 ecl
+ec
 edn
 eiffel
 elixir
@@ -116,16 +116,16 @@ gettext catalog
 glsl
 glyph
 gnuplot
-go
 golo
 gosu
+go
 grace
 grammatical framework
 graph modeling language
 graphviz (dot)
 groff
-groovy
 groovy server pages
+groovy
 hack
 haml
 handlebars
@@ -140,18 +140,18 @@ igor pro
 inform 7
 ini
 inno setup
-io
 ioke
+io
 irc log
 isabelle
-j
 jade
 java server pages
-json
 json5
 jsoniq
 jsonld
+json
 julia
+j
 kit
 kotlin
 krl
@@ -172,7 +172,6 @@ logtalk
 lolcode
 lookml
 lsl
-m
 makefile
 mako
 markdown
@@ -191,6 +190,7 @@ moonscript
 mtml
 mupad
 myghty
+m
 nemerle
 nesc
 netlogo
@@ -214,13 +214,13 @@ opencl
 openedge abl
 openscad
 org
-ox
 oxygene
+ox
 pan
 papyrus
-parrot
 parrot assembly
 parrot internal representation
+parrot
 pascal
 pawn
 perl6
@@ -238,23 +238,24 @@ puppet
 pure data
 purescript
 python traceback
+python
 qmake
 qml
-r
 racket
 ragel in ruby host
 raw token data
 rdoc
 realbasic
 rebol
-red
 redcode
+red
 restructuredtext
 rhtml
 rmarkdown
 robotframework
 rouge
 rust
+r
 sage
 sas
 sass
@@ -262,8 +263,8 @@ scaml
 scilab
 scss
 self
-shell
 shellsession
+shell
 shen
 slash
 slim
@@ -282,8 +283,8 @@ systemverilog
 tcl
 tcsh
 tea
-tex
 textile
+tex
 thrift
 toml
 turing
@@ -306,8 +307,8 @@ xml
 xojo
 xproc
 xquery
-xs
 xslt
+xs
 xtend
 yaml
 zephir
