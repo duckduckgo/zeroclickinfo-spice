@@ -28,10 +28,12 @@ my $number_re = number_style_regex();
 
 my $guard = qr/^$question_prefix($number_re*)\s?($currency_qr)(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?\??$/i;
 
-# https://www.cryptonator.com/api/secondaries?primary=BTC
-# https://www.cryptonator.com/api/ticker/btc-usd
+# http://www.cryptonator.com/api/secondaries?primary=BTC
+# http://www.cryptonator.com/api/ticker/ltc-ftc
 
 triggers query_lc => qr/$currency_qr/;
+
+# triggers any => "///***never_trigger***///";
 
 
 spice from => '([^/]+)/([^/]+)/([^/]*)';
@@ -63,6 +65,11 @@ handle query_lc => sub {
 
     if (/$guard/) {
         my ($amount, $from, $alt_amount, $to) = ($1, $2, $3, $4 || '');
+        
+        # Exit early if two amounts are given
+        if(length($amount) && length($alt_amount)) {
+            return;
+        }
         
         # If both currencies are available, use the ticker endpoint
         if (length($from) && length($to)) {
