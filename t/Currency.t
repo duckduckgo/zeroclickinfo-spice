@@ -113,6 +113,19 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    # Using plural forms of currency
+    'what is 19 hk dollars in thai bahts?' => test_spice(
+        '/js/spice/currency/19/hkd/thb',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '66 british pounds to rupees' => test_spice(
+        '/js/spice/currency/66/gbp/inr',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
     # Other types of conversion
