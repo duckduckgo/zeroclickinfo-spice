@@ -83,8 +83,8 @@
             'title': api_result.domainName,
             'Registered to': get_first_by_key(contacts, 'name'),
             'Email': get_first_by_key(contacts, 'email'),           
-            'Last updated': prettifyTimestamp(api_result.updatedDate),
-            'Expires': prettifyTimestamp(api_result.expiresDate),
+            'Last Updated': prettifyTimestamp(api_result.updatedDate),
+            'Expires On': prettifyTimestamp(api_result.expiresDate),
             'Registrar': api_result.registrarName,
             'Name Servers': nameServers
         };
@@ -92,8 +92,8 @@
         // return nothing if we're missing all key whois data
         if(!normalized['Registered to']
             && !normalized['Email']
-            && !normalized['Last updated']
-            && !normalized['Expires']
+            && !normalized['Last Updated']
+            && !normalized['Expires On']
             && !normalized['Name Servers']) {
             return;
         }
@@ -101,7 +101,7 @@
         // add the attributes specific to this template
         shared_spice_data.data = {
             'record_data': normalized,
-            'record_keys': ['Registered to', 'Email', 'Last updated', 'Expires', 'Registrar', 'Name Servers']
+            'record_keys': ['Registered to', 'Email', 'Last Updated', 'Expires On', 'Registrar', 'Name Servers']
         };
         shared_spice_data.templates.options.content = 'record';
         shared_spice_data.templates.options.keySpacing = true;
@@ -154,8 +154,7 @@
             },
             normalize: function(item) {
                 return {
-                    title: api_result.domainName,
-                    subtitle: (is_domain_available(api_result)) ? null : "Whois Lookup"
+                    title: api_result.domainName
                 };
             },
             templates: {

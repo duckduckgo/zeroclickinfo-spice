@@ -30,11 +30,11 @@
 }
 
 /* Float prev/explain link to the left */
-.zci--xkcd .xkcd--buttons a:first-of-type {
+.zci--xkcd .xkcd--buttons .tile-nav--sm--prev {
     float: left;
 }
 
 /* Float explain/next link to the right */
-.zci--xkcd .xkcd--buttons a:last-of-type {
+.zci--xkcd .xkcd--buttons .tile-nav--sm--next {
     float: right;
 }
