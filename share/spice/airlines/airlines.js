@@ -94,7 +94,7 @@
             name: "Flights",
             meta: {
                 minItemsForModeSwitch: 3,
-                sourceName: 'FlightStatus',
+                sourceName: 'FlightStats',
                 sourceUrl: source,
                 itemType: DDG.capitalizeWords(flight[0].Airline.Name) + " Flights"
             },

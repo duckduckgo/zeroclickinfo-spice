@@ -76,7 +76,17 @@ ddg_spice_test(
         '/js/spice/nutrition/spam',
         call_type => 'include',
         caller => 'DDG::Spice::Nutrition',
-    )
+    ),
+    'tofu calories' => test_spice(
+        '/js/spice/nutrition/tofu',
+        call_type => 'include',
+        caller => 'DDG::Spice::Nutrition',
+    ),
+    'tofu how much protein' => test_spice(
+        '/js/spice/nutrition/tofu',
+        call_type => 'include',
+        caller => 'DDG::Spice::Nutrition',
+    ),
 );
 
 done_testing;

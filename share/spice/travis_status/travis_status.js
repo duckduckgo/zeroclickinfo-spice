@@ -25,9 +25,11 @@
             id: "travis_status",
             name: "Status",
             data: relevantDetails,
+            signal: 'high',
             meta: {
                 sourceName: api_result.page.name,
-                sourceUrl: api_result.page.url
+                sourceUrl: api_result.page.url,
+                sourceIconUrl: "https://icons.duckduckgo.com/ip2/docs.travis-ci.com.ico"
             },
             templates: {
                 group: 'base',
