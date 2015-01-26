@@ -17,9 +17,6 @@
             normalize: function(item){
                 var infoboxData = [
                     {
-                        heading: 'Show Information'
-                    },
-                    {
                         label: 'Show Type',
                         value: item.type
                     },
