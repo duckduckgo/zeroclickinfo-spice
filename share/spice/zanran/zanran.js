@@ -33,10 +33,10 @@
                 detail: false,
                 item_detail: false,
                 options: {
-                    footer: Spice.zanran.footer,
-                    variants: {
-                        snippet: "lg"
-                    }
+                    footer: Spice.zanran.footer
+                },
+                variants: {
+                    snippet: "large"
                 }
             }
         });
