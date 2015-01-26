@@ -23,7 +23,7 @@
         if (!api_result || !api_result.flight) {
             return Spice.failed('airlines');
         }
- 
+        
         // Check if flight is an array or not.
         var flight = [];
         if (!($.isArray(api_result.flight))) {
@@ -73,6 +73,8 @@
 
             results.push({
                 flight: flight[i],
+                airlineName: flight[i].Airline.Name,
+                flightNumber: flight[i].FlightNumber,
                 departing: departing,
                 arriving: arriving,
                 departureDate: departureDate,
