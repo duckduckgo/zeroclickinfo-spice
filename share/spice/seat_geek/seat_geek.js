@@ -141,11 +141,11 @@
                 options: {
                     moreAt: true,
                     rating: false,
-                    footer: Spice.seat_geek.footer,
-                    variants: {
-                        title: '3b',
-                        footer: '4'
-                    }
+                    footer: Spice.seat_geek.footer
+                },
+                variants: {
+                    title: '3line-small',
+                    footer: '4line'
                 }
             }
         });

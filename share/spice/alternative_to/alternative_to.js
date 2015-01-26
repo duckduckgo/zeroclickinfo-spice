@@ -32,9 +32,9 @@
                 item_detail: false,
                 options: {
                     footer: Spice.alternative_to.footer,
-                    variants: {
-                        snippet: "lg"
-                    }
+                },
+                variants: {
+                    snippet: "large"
                 }
             }
         });

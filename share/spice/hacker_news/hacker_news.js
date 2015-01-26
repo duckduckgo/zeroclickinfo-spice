@@ -40,13 +40,13 @@
                 options: {
                     footer: Spice.hacker_news.footer,
                     //variant: "basic2",
-                    variants: {
-                        title: "h1",
-                        footer: "3"
-                    }
                 },
                 detail: false,
-                item_detail: false
+                item_detail: false,
+                variants: {
+                    title: "3line-small",
+                    footer: "3line"
+                }
             },
             sort_fields: {
                 score: function(a, b){
