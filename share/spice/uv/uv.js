@@ -19,29 +19,29 @@
                         +"cover the body with a long-sleeve shirt and trousers, wear a very broad hat, "
                         +"and avoid the sun from three hours before until three hours after solar noon.";
         
-            //uv index risks and descriptions taken from http://en.wikipedia.org/wiki/Ultraviolet_index#How_to_use_the_index
-            if(uvIndex < 3){
-                risk = "low";
-                riskTitle = "Low Danger";
-                protection = "Wear sunglasses on bright days; use sunscreen if there is snow on the ground, "
-                            +"which reflects UV radiation, or if you have particularly fair skin.";
-            } else if(uvIndex < 6){
-                risk = "moderate";
-                riskTitle = "Moderate Risk";
-                protection = "Take precautions, such as covering up, if you will be outside. Stay in shade near midday when the sun is strongest.";
-            } else if (uvIndex < 8){
-                risk = "high";
-                riskTitle = "High Risk";
-                protection = "Cover the body with sun protective clothing, use SPF 30+ sunscreen, wear a wide-brim hat, "
-                            +"reduce time in the sun within three hours of solar noon, and wear sunglasses.";
-            } else if (uvIndex < 11){
-                risk = "veryhigh";
-                riskTitle = "Very High Risk";
-                protection = "Take all precautions: Wear sunglasses and use SPF 30+ sunscreen, cover the body with a long-sleeve shirt and trousers, "
-                            +"wear a very broad hat, and avoid the sun from three hours before until three hours after solar noon.";
-            }
+        //uv index risks and descriptions taken from http://en.wikipedia.org/wiki/Ultraviolet_index#How_to_use_the_index
+        if(uvIndex < 3){
+            risk = "low";
+            riskTitle = "Low Danger";
+            protection = "Wear sunglasses on bright days; use sunscreen if there is snow on the ground, "
+                        +"which reflects UV radiation, or if you have particularly fair skin.";
+        } else if(uvIndex < 6){
+            risk = "moderate";
+            riskTitle = "Moderate Risk";
+            protection = "Take precautions, such as covering up, if you will be outside. Stay in shade near midday when the sun is strongest.";
+        } else if (uvIndex < 8){
+            risk = "high";
+            riskTitle = "High Risk";
+            protection = "Cover the body with sun protective clothing, use SPF 30+ sunscreen, wear a wide-brim hat, "
+                        +"reduce time in the sun within three hours of solar noon, and wear sunglasses.";
+        } else if (uvIndex < 11){
+            risk = "veryhigh";
+            riskTitle = "Very High Risk";
+            protection = "Take all precautions: Wear sunglasses and use SPF 30+ sunscreen, cover the body with a long-sleeve shirt and trousers, "
+                        +"wear a very broad hat, and avoid the sun from three hours before until three hours after solar noon.";
+        }
         
-        //uvIndex = Math.min(11,uvIndex);//display 11+ for higher values
+        uvIndex = uvIndex >= 11 ? 11 : uvIndex;//not sure if uvIndex is defined for values > 11. Usually 11+ is displayed, we stick to 11
  
         // Render the response
         Spice.add({
