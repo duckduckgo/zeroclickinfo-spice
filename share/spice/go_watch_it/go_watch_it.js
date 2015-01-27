@@ -33,6 +33,11 @@
 
         watchable.availabilities.push(getAlertAvailability(watchable));
 
+        var streaming_providers = {
+            "YouTube": 1,
+            "Google Play": 1
+        };
+        
         Spice.add({
             id: "go_watch_it",
             name: "How to Watch",
@@ -43,6 +48,10 @@
                 itemType: 'Availabilities'
             },
             normalize: function(item) {
+                if(item.provider_name in streaming_providers) {
+                    item.buy_line = "Available for Streaming";
+                }
+                
                 return {
                     url: item.watch_now_url
                 }
@@ -59,7 +68,7 @@
 
     // Check to see if both buy_line and rent_line are present.
     Spice.registerHelper("gwi_ifHasBothBuyAndRent", function(buy_line, rent_line, options) {
-        if (buy_line && buy_line != "" && rent_line && rent_line != "") {
+        if (buy_line && buy_line !== "" && rent_line && rent_line !== "") {
             return options.fn(this);
         } else {
             return options.inverse(this);
@@ -68,7 +77,7 @@
 
     // Check to see if a value is present.
     Spice.registerHelper("gwi_ifExists", function(buy_line, options) {
-        if (buy_line && buy_line != "") {
+        if (buy_line && buy_line !== "") {
             return options.fn(this);
         } else {
             return options.inverse(this);
