@@ -66,18 +66,19 @@
         });
     };
 
+    Spice.registerHelper("buyOrRent", function(buy_line, rent_line, options) {
+        if(buy_line && buy_line !== "") {
+            this.line = buy_line;
+            return options.fn(this);
+        }
+        
+        this.line = rent_line;
+        return options.fn(this);
+    });
+    
     // Check to see if both buy_line and rent_line are present.
     Spice.registerHelper("gwi_ifHasBothBuyAndRent", function(buy_line, rent_line, options) {
         if (buy_line && buy_line !== "" && rent_line && rent_line !== "") {
-            return options.fn(this);
-        } else {
-            return options.inverse(this);
-        }
-    });
-
-    // Check to see if a value is present.
-    Spice.registerHelper("gwi_ifExists", function(buy_line, options) {
-        if (buy_line && buy_line !== "") {
             return options.fn(this);
         } else {
             return options.inverse(this);
