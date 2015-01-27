@@ -1,18 +1,6 @@
 (function (env) {
     "use strict";
 
-    function getAlertAvailability(watchable) {
-        var avail = {
-            provider_format_logos: {
-                dark: 'http://s3.amazonaws.com/gowatchit/partner_logos/gowatchit_logo_white_bars.jpg'
-            },
-            buy_line: watchable.title,
-            format_line: "Set Alerts",
-            watch_now_url: getUrl(watchable)
-        }
-        return avail;
-    }
-
     function getUrl(watchable) {
         return 'http://gowatchit.com' + (watchable.url ? watchable.url : "");
     }
@@ -30,8 +18,6 @@
         var movie = api_result.search.movies[0],
             show  = api_result.search.shows[0],
             watchable = movie || show;
-
-        watchable.availabilities.push(getAlertAvailability(watchable));
 
         var streaming_providers = {
             "YouTube": 1,
