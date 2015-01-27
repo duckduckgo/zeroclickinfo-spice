@@ -47,3 +47,7 @@
 .tile--go_watch_it .tile__body .gwi-footer.double {
   /*margin-top: 50px;*/
 }
+
+.tile--go_watch_it .tile__body span.price.gwi-price--subscription {
+    font-size: 16px;
+}

@@ -18,13 +18,15 @@
     }
 
     env.ddg_spice_go_watch_it = function(api_result) {
-        
+        // Check if the data that we get is sane.        
         if (!api_result || api_result.error || !DDG.getProperty(api_result, 'search.movies') || 
             !DDG.getProperty(api_result, 'search.shows') || api_result.search.movies.length === 0 && 
             api_result.search.shows.length === 0) {
             return Spice.failed('go_watch_it');
         }
 
+        // Get the first result.
+        // This probably shouldn't be the way to do it, but it works for now.
         var movie = api_result.search.movies[0],
             show  = api_result.search.shows[0],
             watchable = movie || show;
