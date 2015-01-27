@@ -36,8 +36,8 @@
                 };
             },
             templates: {
-                //group: 'text,
-                item: 'base_item',
+                group: 'base',
+                //item: 'base_item',
                 //detail: false,
                 //item_detail: false
                 //item_detail: false,

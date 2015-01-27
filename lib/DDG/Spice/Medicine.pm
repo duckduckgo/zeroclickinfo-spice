@@ -17,7 +17,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["GitHubAccount", "Friendly Name"],
             twitter => "twitterhandle";
 
-triggers startend => "information leaflet", "insert", "technical document", "dosage", "posology", "side effects", "contraindications", "active ingredients";
+triggers startend => "information leaflet", "leaflet", "insert", "technical document", "dosage", "posology", "side effects", "contraindications", "active ingredients";
 
 spice from => '([^/]*)/?([^/]*)';#expect medicine name/country_code
 
@@ -27,8 +27,8 @@ spice wrap_jsonp_callback => 1;
 
 # Handle statement
 handle query_lc => sub {
-    #remove question marks and 'for'
-    s/\? |for|//g;
+    #remove question marks
+    s/\?//g;
 
     return unless $_;    # Guard against empty query
 
