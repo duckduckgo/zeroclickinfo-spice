@@ -43,7 +43,7 @@
             name: "How to Watch",
             data: watchable.availabilities,
             meta: {
-                sourceName: 'gowatchit.com',
+                sourceName: 'GoWatchIt',
                 sourceUrl: getUrl(watchable),
                 itemType: 'Availabilities'
             },
