@@ -28,12 +28,18 @@
             source = $(script).attr("src"),
             query = decodeURIComponent(source.match(/movie\/([^\/]+)/)[1]);
         
+        //Remove parenthesis to match: Movie Name (2014)
+        if (query.match(/\(.+?\)/g)) { 
+            query = query.replace(/\(|\)/g, ''); 
+        }
+
         //Check if the query contains a year
         var year = query.match(/\d{4}/),
             singleResult = [];
 
         //Ensure year is vaild between 1900 - current year + 5
         year = (year >= 1900 && year <= new Date().getFullYear()+5) ? year : null;
+
 
         if(year) {
         ///Check movie year and title against query
