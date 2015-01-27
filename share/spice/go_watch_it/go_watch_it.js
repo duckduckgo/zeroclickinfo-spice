@@ -48,8 +48,16 @@
                 itemType: 'Availabilities'
             },
             normalize: function(item) {
-                if(item.provider_name in streaming_providers) {
+                // If the provider is in this hash, it means that they provide 
+                // streaming if they don't buy or sell stuff.
+                if(item.provider_name in streaming_providers && 
+                   item.buy_line === "" && item.rent_line === "") {
                     item.buy_line = "Available for Streaming";
+                }
+                
+                // Change the format line to match the other tiles.
+                if(item.format_line === "DVD & Blu-ray") {
+                    item.format_line = "DVD / Blu-ray";
                 }
                 
                 return {
