@@ -1,0 +1,22 @@
+.zci--path .tile--path {
+    text-align: center;
+    width: 13em;
+}
+
+@media screen and (max-device-width: 640px) and (orientation: portrait){
+	.is-mobile .zci--path .tile--path {
+	    width: 48%;
+	}
+}
+
+.tile--path .path__time {
+    font-size: 2.3em;
+    color: #333;
+    font-weight: 300;
+}
+
+.tile--path .path__details {
+    color: #999;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

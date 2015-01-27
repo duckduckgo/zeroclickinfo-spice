@@ -2,10 +2,34 @@
 	TODO: Namespace everything
 */
 
+/* Primary/Alt Icons */
+.fe_icon-wrap {
+	position: relative;
+	display: inline-block;
+}
+.fe_icon,
+.fe_icon--alt {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+}
+.fe_icon {
+	display: block;
+}
+	.dark-header .fe_icon { display: none; }
+	
+.fe_icon--alt {
+	display: none;
+	opacity: 0.81;
+}
+	.dark-header .fe_icon--alt { display: block; }
+
+/* Other Styling */
 .fe_currently,
 .fe_day {
 	height: 16em;
-	color: #818181;
 }
 
 .fe_currently {
@@ -18,44 +42,54 @@
 
 .fe_current-wrap {
 	display: inline-block;
-	margin-top: 1.5em;
+	margin-top: 0.75em;
 	max-width: 100%;
 }
-.fe_top {
+.fe_current__top {
 	font-size: 2em;
 }
-.fe_bottom {
+.fe_current__bottom {
 	font-size: 1.1em;
 	text-align: center;
-	margin-top: 0.5em;
+	position: absolute;
+	bottom: 1.25em;
+	left: 1.25em;
+	right: 1.25em;
 }
+	.fe_summary {
+		overflow: hidden;
+		max-height: 2.6em;
+		display: block;
+	}
 	.fe_summary h6,
-	.fe_bottom h6 {
+	.fe_current__bottom h6 {
 		font-weight: normal !important;
 		padding-bottom: 0;
 	}
-	.fe_bottom h6 {
+	.fe_current__bottom h6 {
 		font-size: 1.15em;
 	}
 	.fe_summary h6 {
 		font-size: 1em;
 	}
 	
-	.fe_current_icon {
-		width: 3.125em;
+	.fe_icon-wrap--current {
+		width: 80px;
+		height: 80px;
 		vertical-align: bottom;
-		margin-bottom: 0.25em;
-		margin-right: 0.25em;
+		margin-bottom: 0;
+		margin-right: 0.35em;
 	}
-	.fe_icon {
+	.fe_icon-wrap--daily {
 		float: right;
-		width: 3.5em;
+		width: 40px;
 	}
 	/*h1*/.fe_temp {
 		display: inline-block;
 		line-height: 1.1;
 		margin-bottom: 0 !important;
 		margin-right: -.25em;
+		font-size: 2.5em;
 	}
 	
 	.fe_temp_corner {
@@ -64,6 +98,7 @@
 		bottom: 0;
 		right: 0;
 		padding-right: 1em;
+		font-size: 0.9em;
 	}
 		.fe_temp_corner h1 { 
 			margin-bottom: 0 !important; 
@@ -72,7 +107,6 @@
 	.fe_sep { 
 		padding: 0 0.25em;
 		display: inline-block;
-		color: #dadada; 
 	}
 	
 	.fe_label,
@@ -83,12 +117,6 @@
 	.fe_date {
 		font-size: 1em;
 	}
-	
-	.fe_label,
-	.fe_high_temp,
-	.fe_temp  {
-		color: #333;
-	}
 
     .fe_label a, .fe_label a:visited {
 		color: inherit;
@@ -97,19 +125,19 @@
 	/*h1*/.fe_low_temp,
 	.fe_date {
 		margin-top: -0.25em;
-		color: #b2b2b2;
 	}
 		.fe_label + .fe_date {
 			margin-top: -0.5em;
 		}
 		
 	.fe_currently .fe_topline {
-		margin-bottom: 0.25em;
-		padding-bottom: 0.25em;
+		margin-bottom: 0.29em;
+		padding-bottom: 0.3em;
 		position: relative;
 	}
 		.fe_currently .fe_topline:after {
 			border-bottom: 1px solid #e7e7e7;
+			border-bottom-color: rgba(100,100,100,0.25);
 			position: absolute;
 			display: block;
 			margin: 0 auto;
@@ -123,6 +151,7 @@
 	
 	.fe_day .fe_summary {
 		margin-top: 1em;
+		max-height: 5.4em;
 	}
 	
 	.fe_alert {
@@ -132,13 +161,6 @@
 /* 
 	Mobile-Specific Objects
 */
-/* ewww */
-.is-mobile .zci--forecast .zci__body {
-	margin-bottom: -1.5em;
-	margin-top: -2em;
-	padding-top: 1px;
-	padding-left: 0;
-}
 
 .is-mobile .fe_current-wrap--mob {
     margin-top: -0.5em;
@@ -146,7 +168,8 @@
 
 .fe_current-wrap--mob .fe_currently {
 	margin: -0.5em;
-	height: 14.25em;
+	min-height: 14.25em;
+	height: auto;
 	width: auto;
 }
 .fe_current-wrap--mob .fe_current-wrap {
@@ -158,15 +181,18 @@
 }
 	.fe_current-wrap--mob .fe_currently .fe_topline:after {
 		border-bottom-color: #aeaeae;
+		border-bottom-color: rgba(100,100,100,0.25);
 	}
 	
-	.fe_current-wrap--mob .fe_bottom {
+	.fe_current-wrap--mob .fe_current__bottom {
+		margin-top: 1.25em;
+		margin-bottom: 1em;
+		position: static;
 		font-size: 1em;
 	}
 
 .fe_meta {
 	padding-top: 0.125em;
-	color: #696969;
 	float: right;
 }
 	.fe_meta .fe_sep {
@@ -200,11 +226,9 @@
 			text-transform: uppercase;
 			text-align: center;
 			font-size: 0.9em;
-			color: #696969;
 		}
 
-.fe_icon--bar {
-	display: inline-block;
+.fe_icon-wrap--bar {
 	margin-top: 2px;
 	height: 26px;
 	width: 26px;
@@ -212,7 +236,6 @@
 
 .fe_temp_bar {
 	border-radius: 2em;
-	background-color: #333;
 	margin: 0 auto 3em;
 	white-space: nowrap;
 	position: relative;
@@ -237,22 +260,9 @@
 
 #fe_temp_switch {
 	text-decoration: none;
-	color: #535353;
 	cursor: pointer;
 }
 
-#fe_temp_switch .gray {
-	color: #b2b2b2;
-}
-
-#fe_temp_switch .bold {
+#fe_temp_switch .is-active {
 	font-weight: bold;
-}
-
-.dark-header #fe_temp_switch {
-	color: #dadada;
-}
-
-.dark-header #fe_temp_switch .gray {
-	color: #696969;
 }

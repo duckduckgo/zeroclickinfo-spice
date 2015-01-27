@@ -9,7 +9,8 @@
             signal: 'high',
             meta: {
                 sourceName: 'Last.fm',
-                sourceUrl: api_result.artist.url
+                sourceUrl: api_result.artist.url,
+                sourceIconUrl: 'http://cdn.last.fm/flatness/favicon.2.ico'
             },
             normalize: function(item) {
                 return {

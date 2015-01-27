@@ -23,12 +23,11 @@
             "usa":"us"};
         var months = ["Jan.","Feb.","Mar.","Apr.","May","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."];
 
-
         var people = api_result.people;
 
         for (var i = 0; i < people.length; i++) {
             //add 2-letter country code
-            people[i].country_code = codes[people[i].country];
+            people[i].country_code = codes[people[i].country.toLowerCase()];
 
             //compute number of days in space
             var launchdate = people[i].launchdate.split("-");
@@ -63,7 +62,7 @@
             o.data = people;
             o.normalize = function(item) {
                 return {
-                    url: item.bio,
+                    url: item.biolink,
                     title: item.name,
                     icon: DDG.settings.region.getSmallIconURL(item.country_code)
                 };
@@ -87,7 +86,7 @@
         } else {
             o.data = api_result;
             o.templates = {
-                group: "text",
+                group: "base",
                 options:{
                     content: Spice.people_in_space.content,
                     moreAt: true

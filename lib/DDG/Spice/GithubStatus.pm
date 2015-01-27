@@ -19,7 +19,7 @@ spice proxy_cache_valid => "418 1d";
 
 
 handle remainder => sub {
-    return $_ if ($_ =~ m/^status$/i);
+    return $_ if /^(system)?\s*status$/i;
     return;
 };
 

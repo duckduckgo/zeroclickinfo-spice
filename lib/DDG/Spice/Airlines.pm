@@ -6,14 +6,14 @@ primary_example_queries "AA 102";
 secondary_example_queries "Delta 3684";
 description "Flight information";
 name "Flight Info";
-icon_url "/i/flightaware.com.ico";
-source "FlightAware";
+icon_url "/i/flightstats.com.ico";
+source "FlightStats";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Airlines.pm";
 topics "economy_and_finance", "travel", "everyday";
 category "time_sensitive";
 attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
-            github => [ 'https://github.com/duckduckgo', 'duckduckgo'],
-            twitter => ['http://twitter.com/duckduckgo', 'duckduckgo'];
+            github => [ 'https://github.com/duckduckgo', 'DuckDuckGo'],
+            twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
 
 spice to => 'https://duckduckgo.com/flights.js?airline=$1&flightno=$2&callback={{callback}}';
 spice from => '(.*?)/(.*)';

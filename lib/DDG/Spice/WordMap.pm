@@ -12,7 +12,7 @@ topics 		"words_and_games", "everyday";
 code_url 	"https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/WordMap.pm";
 icon_url 	"/i/www.twinword.com.ico";
 attribution web 	=> ['http://twinword.com','Twinword Inc.'],
-            twitter => ['http://twitter.com/levelpump', '@levelpump'],
+            twitter => ['http://twitter.com/levelpump', 'Twinword Inc.'],
             email 	=> ['feedback@twinword.com','Twinword Inc.'];
 
 spice to => 'http://duckduckgo.twinword.com/api/v2/context/user/duckduckgo/?entry=$1&api_key={{ENV{DDG_SPICE_WORDMAP_APIKEY}}}';

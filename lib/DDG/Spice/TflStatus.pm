@@ -13,7 +13,7 @@ category "time_sensitive";
 attribution github  => ['https://github.com/idlem1nd', 'Tim Williams'],
             twitter => ['https://twitter.com/tim_wllms', 'Tim Williams'];
 
-spice to => 'https://api.tfl.gov.uk/Line/$1/Status?app_id=4b57df3f&app_key=a3b1543277303ffaff1c3122044a6653';
+spice to => 'https://api.tfl.gov.uk/Line/$1/Status?app_id=4b57df3f&app_key={{ENV{DDG_SPICE_TFLSTATUS_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
