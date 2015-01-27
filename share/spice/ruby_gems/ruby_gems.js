@@ -19,6 +19,7 @@
             meta: {
                 sourceUrl: 'http://rubygems.org/search?utf8=%E2%9C%93&query=' + encodeURIComponent(query),
                 sourceName: 'RubyGems',
+                sourceIconUrl: 'http://rubygems.org/favicon.ico',
                 total: api_result.length,
                 itemType: "gems",
             },

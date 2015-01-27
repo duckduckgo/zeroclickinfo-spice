@@ -24,23 +24,25 @@
                 var lines = api_result.abstract.split(/of\s[0-9]+\s/);
                 var cost = api_result.abstract.match(/\s[0-9]+\s/);
 
+              
                 var firstLine = '';
                 var secondLine = '';
+                
                 if (lines.length === 2 && cost.length >= 1) {
                     firstLine = lines[0].replace(' has a', '') + ' =' + cost[0];
                     secondLine = lines[1];
-                }
+                }              
 
+                if(!cost) firstLine = api_result.abstract.replace(/\./, "");   
+                
                 return {
-                    api_result: api_result,
-                    firstLine: firstLine,
-                    secondLine: secondLine
+                    title: DDG.strip_html(firstLine),
+                    subtitle: DDG.strip_html(secondLine)
                 };
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
-                    content: Spice.expatistan.content,
                     moreAt: true
                 }
             }

@@ -3,8 +3,7 @@
     
     env.ddg_spice_dns = function(api_result) {
 
-        var records = DDG.getProperty(api_result, 'response.records');
-        if (!records.length) {
+        if (!api_result || !DDG.getProperty(api_result, 'response.records').length) {
             return Spice.failed('dns');
         }
 
@@ -18,7 +17,7 @@
 
         Spice.add({
             id: 'dns',
-            name: 'Answer',
+            name: "Answer",
             data: api_result.response,
             meta: {
                 sourceUrl: 'http://www.viewdns.info/dnsrecord/?domain=' + api_result.query.domain,

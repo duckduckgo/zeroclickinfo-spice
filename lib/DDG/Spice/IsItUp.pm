@@ -3,7 +3,7 @@ package DDG::Spice::IsItUp;
 use DDG::Spice;
 
 primary_example_queries "is duckduckgo.com up";
-secondary_example_queries "is wolframalpha.com working?";
+secondary_example_queries "is reddit.com working?";
 description "Shows a website's status";
 name "IsItUp";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/IsItUp.pm";

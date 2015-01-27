@@ -11,7 +11,7 @@
             name: "Software",
             data: response.info,
             meta: {
-                sourceIconUrl   : 'http://haxe.org/img/haxe2/favicon.ico',
+                sourceIconUrl   : 'http://haxe.org/favicon.ico',
                 sourceUrl       : 'http://lib.haxe.org/p/' + encodeURIComponent(response.info.name),
                 sourceName      : 'Haxelib'
             },

@@ -41,7 +41,7 @@ my %platform_ids = (
 
 my @triggers = keys %platform_ids;
 my @extraTriggers = qw(quixey app apps);
-my $skip_re = qr/(?:release date|google glass|glassware)/i; # Things which indicate different intent.
+my $skip_re = qr/(?:release date|google glass|glassware|osx)/i; # Things which indicate different intent.
 
 push(@triggers, @extraTriggers);
 

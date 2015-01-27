@@ -19,7 +19,7 @@
                 sourceUrl: "https://chain.com/bitcoin/addresses/" + api_result.hash
             },
             templates: {
-                group: 'info',
+                group: 'base',
                 options:{
                     content: Spice.bitcoin_balance.content,
                     moreAt: true

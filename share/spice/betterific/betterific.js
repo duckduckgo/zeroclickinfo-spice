@@ -50,7 +50,7 @@
                 sourceName: 'betterific'
             },
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
                     content: Spice.betterific.content
                 }

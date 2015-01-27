@@ -15,11 +15,7 @@
         // The filename is the same as the critics_rating, but
         // lowercased and with spaces converted to dashes.
         critics_rating = critics_rating.toLowerCase().replace(/ /, '-');
-        if(is_retina) {
-            return DDG.get_asset_path('in_theaters', critics_rating + '.retina.png');
-        } else {
-            return DDG.get_asset_path('in_theaters', critics_rating + '.png');
-        }
+        return DDG.get_asset_path('in_theaters', critics_rating + ((DDG.is3x || DDG.is2x) ? '.retina.png' : '.png'));
     }
     
     env.ddg_spice_movie = function(api_result) {
@@ -51,6 +47,7 @@
                     icon_image: get_image(item.ratings.critics_rating),
                     abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
                     heading: item.title,
+                    img: image,
                     img_m: image,
                     url: item.links.alternate,
                     is_retina: is_retina ? "is_retina" : "no_retina"
@@ -58,7 +55,6 @@
             },
             templates: {
                 group: 'media',
-                detail: 'products_item_detail',
                 options: {
                     variant: 'poster',
                     subtitle_content: Spice.movie.subtitle_content,

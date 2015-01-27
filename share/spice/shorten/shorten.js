@@ -15,9 +15,10 @@
                 sourceName : 'is.gd',
             },
             templates: {
-                group: 'text',
+                group: 'base',
                 options: {
-                    content: Spice.shorten.shorten
+                    content: Spice.shorten.shorten,
+                    moreAt: true
                 }
             },
         });

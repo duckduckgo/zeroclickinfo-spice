@@ -16,8 +16,8 @@ category "finance";
 icon_url "https://www.biteasy.com/favicon.ico";
 
 attribution github => ['https://github.com/biteasy','biteasy.com'],
-            email => ['support@biteasy.com','info@biteasy.com'],
-            twitter => "biteasy",
+            email => ['support@biteasy.com','biteasy.com'],
+            twitter => ["biteasy", 'biteasy.com'],
             web => ['https://biteasy.com','biteasy.com'];
             
 triggers query_raw => qr/^(?:bitcoin address|btc address)?\s*([13][1-9A-HJ-NP-Za-km-z]{26,33})$/;
