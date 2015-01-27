@@ -1,0 +1,31 @@
+<div class="zci--hearthstone--ia">
+    
+    <div class="zci--hearthstone--left">
+        <img class="zci--hearthstone--card" src="{{image}}"/>
+    </div>
+    
+    <div class="zci--hearthstone--right">
+        <h5>{{name}}</h5>
+        <p>{{rarity}} {{type}} for {{hero}}</p>
+        <p>
+            <span>Cost: <b>{{cost}}</b> <image class="zci--hearthstone--icon" src="http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/8/8b/Mana_icon.png"/></span>
+            
+            {{#if attack}}
+            <span> - Attack: <b>{{attack}}</b> <image class="zci--hearthstone--icon" src="http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/f/fe/Attack_icon.png"/></span>
+            {{/if}}
+            
+            {{#if health}}
+            <span> - Health: <b>{{health}}</b> <image class="zci--hearthstone--icon" src="http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/1/17/Health_icon.png"/></span>
+            {{/if}}
+        </p>
+        
+        {{#if description}}
+        <p>{{{description}}}</p>
+        {{/if}}
+        
+        {{#if flavor}}
+        <p><i>{{{flavor}}}</i></p>
+        {{/if}}
+    </div>
+</div>
+
