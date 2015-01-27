@@ -37,13 +37,8 @@
             },
             templates: {
                 group: 'base',
-                //item: 'base_item',
-                //detail: false,
-                //item_detail: false
-                //item_detail: false,
                 options: {
                     content: Spice.medicine.medicine
-                    //variant: 'wide'
                 }
             }
         });
