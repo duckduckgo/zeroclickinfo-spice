@@ -8,11 +8,11 @@
     color: #4b9e4d;
 }
 
-.zci--minecraft_status .mcstatus--shaky {
+.zci--minecraft_status .mcstatus--minor {
     color: #f1a031;
 }
 
-.zci--minecraft_status .mcstatus--down {
+.zci--minecraft_status .mcstatus--major {
     color: #de5833;
 }
 

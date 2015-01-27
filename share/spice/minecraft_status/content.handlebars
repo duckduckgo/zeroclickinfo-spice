@@ -1,16 +1,13 @@
 <h3 class="mcstatus--header text--primary">
-  {{! checks if the status is either good, shaky, or down }}
+  {{! checks if the status is either good, minor, or major }}
   {{#MinecraftStatus_ifCond status "good"}}
     The status of Minecraft is <span class="mcstatus--good">{{status}}</span>.
   {{else}}
-    {{#MinecraftStatus_ifCond status "shaky"}}
-      The status of Minecraft is <span class="mcstatus--shaky">{{status}}</span>.
+    {{#MinecraftStatus_ifCond status "minor"}}
+      Minecraft is experiencing <span class="mcstatus--minor">{{status}}</span> issues.
     {{else}}
-      Minecraft is currently <span class="mcstatus--down">{{status}}</span>.
+      Minecraft is experiencing <span class="mcstatus--major">{{status}}</span> issues.
     {{/MinecraftStatus_ifCond}}
   {{/MinecraftStatus_ifCond}}
   <h6 class="mcstatus--message text--secondary">{{message}}</h6>
-  <span class="mcstatus--good">UP: </span>{{up}}<br />
-  <span class="mcstatus--shaky">SHAKY: </span>{{shaky}}<br />
-  <span class="mcstatus--down">DOWN: </span>{{down}}<br />
 </h3>
