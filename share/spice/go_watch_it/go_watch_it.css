@@ -47,6 +47,10 @@
     font-size: 16px;
 }
 
+.zci--go_watch_it .zci__metabar__primary-text {
+    text-transform: capitalize;
+}
+
 .tile--go_watch_it .tile__body .gwi--container {
     overflow: auto;
     padding-left: 15%;
