@@ -20,13 +20,18 @@
             watchable = movie || show;
         
         var title = watchable.title;
-
+        
+        // Check the relevancy of the title and be strict about it.
+        var skipArray = ["watch", "stream", "demand", "now", "online", "buy", "rent", "movie", "show", "tv"];
+        if(!DDG.isRelevant(title, skipArray, undefined, true)) {
+            return Spice.failed('go_watch_it');
+        }
+        
         var streaming_providers = {
             "YouTube": 1,
             "Google Play": 1
         };
         
-
         Spice.add({
             id: "go_watch_it",
             name: "How to Watch",
