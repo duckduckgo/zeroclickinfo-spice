@@ -23,6 +23,19 @@
                 itemType: "upcoming events"
             },
             normalize: function(item) {
+                // Check relevancy of the item.
+                // First check if the query matches one of the performers names
+                // If it doesn't, and it's not even relevant to the event title, skip this item
+                var relevant = false;
+                for(var i = 0; i < item.performers.length; i++) {
+                    if(DDG.stringsRelevant(item.performers[i].name.toLowerCase(), clean_query, [], 3, true) || DDG.stringsRelevant(item.performers[i].short_name.toLowerCase(), clean_query, [], 3, true)) {
+                        relevant = true;
+                    }
+                }
+                if(!DDG.stringsRelevant(item.short_title, clean_query, [], 3, true) && !relevant) {
+                    return null;
+                }
+
                 function getDate(date) {
                     if(date) {
                         // IE 8 and Safari don't support the yyyy-mm-dd date format,
@@ -66,6 +79,7 @@
                 }
 
                 // Return a logo for this performer if available
+
                 function getLogo(performer, taxonomies) {
                     performer = performer.toLowerCase().replace(/\s/g, "_");
                     for(var i = 0; i < taxonomies.length; i++) {
@@ -90,6 +104,7 @@
                 // Find the performer queried for,
                 // or return the first of the list
                 // if not specified in the query
+
                 function getPerformer(performers) {
                     var performer = performers[0];
                     if(performers.length === 1) {
