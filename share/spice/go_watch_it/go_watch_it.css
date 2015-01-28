@@ -51,3 +51,21 @@
     overflow: auto;
     padding-left: 15%;
 }
+
+    .is-mobile .tile--go_watch_it .tile__body .gwi--container {
+        padding-left: 10%;
+    }
+
+    @media (max-width: 355px) {
+        .is-mobile .tile--go_watch_it .tile__body .gwi--container {
+            padding-left: 4%;
+        }
+        
+        .is-mobile .tile--go_watch_it .tile__body .data .left {
+            padding-right: 5%;
+        }
+        
+        .tile--go_watch_it .tile__body .data .right {
+             padding-left: 5%;   
+        }
+    }
