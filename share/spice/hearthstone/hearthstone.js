@@ -33,7 +33,7 @@
                 }];
                 
                 // Is collectible
-                api_result.Is_collectible = (api_result.Is_collectible ? "Yes":"No");
+                api_result.Is_collectible = (api_result.Is_collectible === "t" ? "Yes":"No");
                 
                 // Hero
                 if(api_result.Has_class === "Any") {
