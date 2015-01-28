@@ -1,16 +1,3 @@
-.zci--hearthstone--card {
-    max-height:150px;   
-}
-
-.zci--hearthstone--left {
-    float: left;
-    margin-bottom: 16px;
-}
-
-.zci--hearthstone--right {
-    margin-left: 130px;
-}
-
 .zci--hearthstone--icon {
     vertical-align: middle;
 }

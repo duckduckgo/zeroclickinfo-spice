@@ -19,8 +19,20 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Hearthstone'
     ),
-    'hearthstone' => undef
+    'leeroy hearthstone' => test_spice(
+        '/js/spice/hearthstone/leeroy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Hearthstone'
+    ),
+    'hearthstone mirror' => test_spice(
+        '/js/spice/hearthstone/mirror',
+        call_type => 'include',
+        caller => 'DDG::Spice::Hearthstone'
+    ),
+    'hearthstone' => undef,
+    'hearthstone heroes of warcraft' => undef,
+    'hearthstone wood stoves' => undef,
+    'hearthstone mage deck' => undef
 );
 
 done_testing;
-

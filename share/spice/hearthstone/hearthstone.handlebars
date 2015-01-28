@@ -1,51 +1,21 @@
-<div class="zci--hearthstone--ia">
-    
-    {{#if image}}
-    <div class="zci--hearthstone--left">
-        <img class="zci--hearthstone--card" src="{{imageProxy image}}"/>
-    </div>
-    
-    <div class="zci--hearthstone--right">
-    {{else}}
-    <div class="zci--hearthstone--standalone">
+<p>
+    {{#if cost}}
+    <span>Cost: <b>{{cost}}</b> <image class="zci--hearthstone--icon" src="{{imageProxy 'http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/8/8b/Mana_icon.png'}}"/></span>
     {{/if}}
-        <h5>{{name}}</h5>
-        
-        <p>
-            {{#if rarity}}
-            <span>{{rarity}} </span>
-            {{/if}}
-            
-            {{#if type}}
-            <span>{{type}} </span>
-            {{/if}}
-            
-            {{#if hero}}
-            <span>for {{hero}}</span>
-            {{/if}}
-        </p>
-        
-        <p>
-            {{#if cost}}
-            <span>Cost: <b>{{cost}}</b> <image class="zci--hearthstone--icon" src="{{imageProxy 'http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/8/8b/Mana_icon.png'}}"/></span>
-            {{/if}}
-            
-            {{#if attack}}
-            <span> - Attack: <b>{{attack}}</b> <image class="zci--hearthstone--icon" src="{{imageProxy 'http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/f/fe/Attack_icon.png'}}"/></span>
-            {{/if}}
-            
-            {{#if health}}
-            <span> - Health: <b>{{health}}</b> <image class="zci--hearthstone--icon" src="{{imageProxy 'http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/1/17/Health_icon.png'}}"/></span>
-            {{/if}}
-        </p>
-        
-        {{#if description}}
-        <p>{{{description}}}</p>
-        {{/if}}
-        
-        {{#if flavor}}
-        <p><i>{{{flavor}}}</i></p>
-        {{/if}}
-    </div>
-</div>
 
+    {{#if attack}}
+    <span> - Attack: <b>{{attack}}</b> <image class="zci--hearthstone--icon" src="{{imageProxy 'http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/f/fe/Attack_icon.png'}}"/></span>
+    {{/if}}
+
+    {{#if health}}
+    <span> - Health: <b>{{health}}</b> <image class="zci--hearthstone--icon" src="{{imageProxy 'http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/1/17/Health_icon.png'}}"/></span>
+    {{/if}}
+    
+    {{#if card_description}}
+    <br/>{{{card_description}}}
+    {{/if}}
+    
+    {{#if flavor}}
+    <br/><i>{{{flavor}}}</i>
+    {{/if}}
+</p>

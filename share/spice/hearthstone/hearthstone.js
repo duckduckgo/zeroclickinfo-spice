@@ -7,45 +7,86 @@
             return Spice.failed('hearthstone');
         }
         
-        // Card Data
-        // May (but very unlikely) return <undefined> values for : image_url, Has_card_type, Has_rarity,
-        // Has_class, Has_mana_cost
-        var card = {
-            page: api_result.page,
-            image: api_result.image_url,
-            name: api_result.Has_name,
-            type: api_result.Has_card_type,
-            rarity: api_result.Has_rarity,
-            hero: api_result.Has_class,
-            cost: api_result.Has_mana_cost,
-            attack: api_result.Has_attack, // <undefined> for cards other than minions
-            health: api_result.Has_health, // <undefined> for cards other than minions
-            description: api_result.Has_description, // may be <undefined>
-            flavor: api_result.Has_flavor_text // may be <undefined>
+        // Infobox Labels
+        var infoboxItems = {
+            Has_card_type: "Type",
+            Has_class: "Playable by",
+            Has_rarity: "Rarity",
+            Is_part_of_set: "Set",
+            Is_collectible: "Collectible"
         };
-        
-        // Don't forget to add {{#if attack}} ... {{/if}} conditionnals in view template
-        
-        // Card Hero
-        if(card.hero === "Any") {
-            card.hero = "Any Hero";
-        }
-        
         
         // Render the response
         Spice.add({
             id: "hearthstone",
             name: "Hearthstone",
-            data: card,
+            data: api_result,
             meta: {
                 sourceName: "Hearthstone Gamepedia Wiki",
-                sourceUrl: "http://hearthstone.gamepedia.com/" + card.page
+                sourceUrl: "http://hearthstone.gamepedia.com/" + api_result.page
+            },
+            normalize: function(item) {
+                
+                // Infobox Heading
+                var infoboxData = [{
+                    heading: 'Card Details'
+                }];
+                
+                // Is collectible
+                api_result.Is_collectible = (api_result.Is_collectible ? "Yes":"No");
+                
+                // Hero
+                if(api_result.Has_class === "Any") {
+                    api_result.Has_class = "Any Hero";
+                }
+                
+                // InfoBox data
+                $.each(infoboxItems, function(key, value){
+                    if (api_result[key]){
+                        infoboxData.push({
+                            label: value,
+                            value: api_result[key]
+                        });
+                    }
+                });
+                
+                // Normalized data
+                var card = {
+                    title: item.Has_name,
+                    url: "http://hearthstone.gamepedia.com/" + item.page,
+                    image: item.image_url,
+                    infoboxData: infoboxData,
+                    cost: item.Has_mana_cost
+                };
+                
+                // Optionnal fields
+                
+                // Attack
+                if(item.Has_attack) {
+                    card.attack = item.Has_attack;
+                }
+                
+                // Health
+                if(item.Has_health) {
+                    card.health = item.Has_health;
+                }
+                
+                // Description
+                if(item.Has_description) {
+                    card.card_description = item.Has_description;
+                }
+                
+                // Flavor text
+                if(item.Has_flavor_text) {
+                    card.flavor = item.Has_flavor_text;
+                }
+                
+                return card;
             },
             templates: {
-                group: 'base',
+                group: 'info',
                 options: {
-                    content: Spice.hearthstone.hearthstone,
-                    moreAt: true
+                    content: Spice.hearthstone.hearthstone
                 }
             }
         });
