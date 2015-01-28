@@ -17,7 +17,7 @@ attribution github => ['https://github.com/jagtalon','jagtalon'],
 my $rating = '(?:g\s*|pg\s*|r\s*)?';
 triggers any => 'movie', 'movies', 'theaters', 'theatres', 'showing', 'something', 'watch', 'opening', 'see';
 spice from => '(.*?)/(.*)';
-spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?country=$2&apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&callback={{callback}}&page_limit=12&limit=12';
+spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?country=$2&apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&callback={{callback}}&page_limit=30&limit=30';
 
 # Uses $loc so needs to not cache back end.
 spice is_cached => 0;
