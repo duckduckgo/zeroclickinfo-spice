@@ -23,8 +23,7 @@
 
 .tile--go_watch_it .tile__body .data .left {
   float: left;
-  padding-left: 25px;
-  padding-right: 14px;
+  padding-right: 10%;
   border-right: 1px solid #ddd;
   text-align: right;
 }
@@ -32,7 +31,7 @@
 .tile--go_watch_it .tile__body .data .right {
   float: left;
   text-align: center;
-  padding-left: 14px;
+  padding-left: 10%;
 }
 
 .tile--go_watch_it .tile__body .data .single {
@@ -46,4 +45,9 @@
 
 .tile--go_watch_it .tile__body span.price.gwi-price--subscription {
     font-size: 16px;
+}
+
+.tile--go_watch_it .tile__body .gwi--container {
+    overflow: auto;
+    padding-left: 15%;
 }

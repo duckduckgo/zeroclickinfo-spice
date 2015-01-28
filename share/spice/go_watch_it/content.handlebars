@@ -5,12 +5,14 @@
 <div class='data'>
 
   {{#gwi_ifHasBothBuyAndRent buy_line rent_line }}
-    <div class="left">
-      Rent from<br><span class='price tx-clr--dk'>{{gwi_price rent_line}}</span>
-    </div>
+    <div class="gwi--container">
+        <div class="left">
+            Rent from<br><span class='price tx-clr--dk'>{{gwi_price rent_line}}</span>
+        </div>
 
-    <div class="right">
-      Buy from<br><span class='price tx-clr--dk'>{{gwi_price buy_line}}</span>
+        <div class="right">
+            Buy from<br><span class='price tx-clr--dk'>{{gwi_price buy_line}}</span>
+        </div>
     </div>
   {{else}}
     {{#buyOrRent buy_line rent_line}}
