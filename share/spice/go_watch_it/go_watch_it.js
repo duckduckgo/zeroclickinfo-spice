@@ -18,12 +18,15 @@
         var movie = api_result.search.movies[0],
             show  = api_result.search.shows[0],
             watchable = movie || show;
+        
+        var title = watchable.title;
 
         var streaming_providers = {
             "YouTube": 1,
             "Google Play": 1
         };
         
+
         Spice.add({
             id: "go_watch_it",
             name: "How to Watch",
@@ -31,7 +34,7 @@
             meta: {
                 sourceName: 'GoWatchIt',
                 sourceUrl: getUrl(watchable),
-                itemType: 'Availabilities'
+                itemType: 'Availabilities ' + title
             },
             normalize: function(item) {
                 // If the provider is in this hash, it means that they provide 
