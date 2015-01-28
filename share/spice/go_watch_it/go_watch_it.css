@@ -28,9 +28,9 @@
 }
 
 .tile--go_watch_it .tile__body .data .right {
-  float: right;
-  padding-right: 25px;
-  text-align: left;
+  float: left;
+  text-align: center;
+  padding-left: 14px;
 }
 
 .tile--go_watch_it .tile__body .data .single {
