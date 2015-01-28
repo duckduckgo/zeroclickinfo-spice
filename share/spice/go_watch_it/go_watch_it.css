@@ -12,6 +12,7 @@
 
 .tile--go_watch_it .tile__body .data {
   height: 60px;
+  margin-top: 0.25em;
 }
 
 .tile--go_watch_it .tile__body .data span.price {
@@ -39,11 +40,7 @@
 
 .tile--go_watch_it .tile__body .gwi-footer {
   text-align: center;
-  margin-top: 10px;
-}
-
-.tile--go_watch_it .tile__body .gwi-footer.double {
-  /*margin-top: 50px;*/
+  margin-top: 0.5em;
 }
 
 .tile--go_watch_it .tile__body span.price.gwi-price--subscription {
