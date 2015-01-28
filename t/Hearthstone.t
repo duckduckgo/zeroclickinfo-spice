@@ -19,7 +19,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Hearthstone'
     ),
-    'hearthstone' => undef,
+    'hearthstone' => undef
 );
 
 done_testing;
