@@ -1,3 +1,4 @@
 .zci--hearthstone--icon {
-    vertical-align: middle;
+    position: relative;
+    top: 3px;
 }
