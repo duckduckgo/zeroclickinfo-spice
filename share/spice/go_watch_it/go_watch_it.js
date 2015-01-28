@@ -34,7 +34,7 @@
             meta: {
                 sourceName: 'GoWatchIt',
                 sourceUrl: getUrl(watchable),
-                itemType: 'Providers for title
+                itemType: 'Providers for ' + title 
             },
             normalize: function(item) {
                 // If the provider is in this hash, it means that they provide 
