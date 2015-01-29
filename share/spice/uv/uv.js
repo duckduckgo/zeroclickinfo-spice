@@ -9,7 +9,7 @@
 
         //extract city and date from first result
         var result = api_result[0];
-        
+
         var city = DDG.capitalizeWords(result.CITY.toLowerCase()),
             state = result.STATE,
             uvIndex = parseInt(result.UV_INDEX,10),
@@ -40,9 +40,7 @@
             protection = "Take all precautions: Wear sunglasses and use SPF 30+ sunscreen, cover the body with a long-sleeve shirt and trousers, "
                         +"wear a very broad hat, and avoid the sun from three hours before until three hours after solar noon.";
         }
-        
-        uvIndex = uvIndex >= 11 ? 11 : uvIndex;//not sure if uvIndex is defined for values > 11. Usually 11+ is displayed, we stick to 11
- 
+
         // Render the response
         Spice.add({
             id: "uv",
@@ -52,7 +50,7 @@
             data: {
                 city: city,
                 state: state,
-                uvIndex: uvIndex,
+                uvIndexName: result.UV_INDEX,
                 risk: risk,
                 riskTitle: riskTitle,
                 protection: protection
