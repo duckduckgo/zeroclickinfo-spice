@@ -25,6 +25,7 @@
             id: "travis_status",
             name: "Status",
             data: relevantDetails,
+            signal: 'high',
             meta: {
                 sourceName: api_result.page.name,
                 sourceUrl: api_result.page.url,
