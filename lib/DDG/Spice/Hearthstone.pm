@@ -16,6 +16,7 @@ code_url "https://github.com/Akryum/zeroclickinfo-spice/blob/master/lib/DDG/Spic
 attribution github => ["https://github.com/Akryum", "Akryum"],
             twitter => "Akryum";
 
+
 # Triggers
 triggers startend => "hearthstone";
 
@@ -23,17 +24,22 @@ spice to => 'http://bytevortex.net/hearthstone.php?search=$1';
 
 spice wrap_jsonp_callback => 1;
 
+# Keyword blacklist
+my $keyword_guard = qr/game|instruction|stoves|warcraft|deck|forum|wiki|reddit/;
+
 # Handle statement
 handle remainder => sub {
-
-    return unless $_;    # Guard against "no answer"
+    
+    # Guard against "no answer"
+    return unless $_;
     
     # Keyword Blacklist
-    if(/(game|instruction|stoves|warcraft|deck|forum|wiki)/) {
-        return;
-    }
+    return if (/$keyword_guard/);
     
-    return $_;
+    # Regex guard
+    return $_ if (/^([a-z0-9':!\/,.-]+\s*)+$/i);
+    
+    return;
 };
 
 1;
