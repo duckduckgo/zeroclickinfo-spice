@@ -32,7 +32,9 @@ ddg_spice_test(
     'hearthstone' => undef,
     'hearthstone heroes of warcraft' => undef,
     'hearthstone wood stoves' => undef,
-    'hearthstone mage deck' => undef
+    'hearthstone mage deck' => undef,
+    'hearthstone tide_caller' => undef,
+    'hearthstone tidecaller $' => undef
 );
 
 done_testing;
