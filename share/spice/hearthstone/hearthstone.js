@@ -54,12 +54,16 @@
                 var card = {
                     title: item.Has_name,
                     url: "http://hearthstone.gamepedia.com/" + item.page,
-                    image: item.image_url,
                     infoboxData: infoboxData,
                     cost: item.Has_mana_cost
                 };
                 
                 // Optionnal fields
+                 
+                // Image
+                if(item.image_url) {
+                    card.image = item.image_url;
+                }
                 
                 // Attack
                 if(item.Has_attack) {

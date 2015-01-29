@@ -12,7 +12,7 @@ description "Get a preview of any Hearthstone card.";
 primary_example_queries "hearthstone leeroy jenkins", "hearthstone leeroy", "leeroy hearthstone", "hearthstone mirror";
 category "entertainment";
 topics "gaming";
-code_url "https://github.com/Akryum/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Hearthstone.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Hearthstone.pm";
 attribution github => ["https://github.com/Akryum", "Akryum"],
             twitter => "Akryum";
 
@@ -37,6 +37,8 @@ handle remainder => sub {
     return if (/$keyword_guard/);
     
     # Regex guard
+    # Allows string similar to any Hearthstone card name: multiple words separated by spaces, commas or dashes.
+    # The card name may also have dots, double dots, slashes or an exclamation mark (Those Blizzard devs).
     return $_ if (/^([a-z0-9':!\/,.-]+\s*)+$/i);
     
     return;
