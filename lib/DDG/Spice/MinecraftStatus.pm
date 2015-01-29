@@ -24,7 +24,7 @@ spice is_cached => 1;
 spice proxy_cache_valid => "200 5m";
 
 handle remainder => sub {
-    return $_ if /^(is\s*)?(system)?\s*(status|up|down)\??$/i;
+    return $_ if /^(is\s*)?(system)?\s*(status|up|down)\?*$/i;
     return;
 };
 
