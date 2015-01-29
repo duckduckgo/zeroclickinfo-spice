@@ -13,7 +13,6 @@ attribution github => ['https://github.com/jee1mr','Jeevan M R'],
 triggers startend => 'pnr', 'pnr status', 'pnr number', 'pnr lookup';
 spice to => 'http://api.erail.in/pnr?key={{ENV{DDG_SPICE_PNR_STATUS_APIKEY}}}&pnr=$1';
 spice wrap_jsonp_callback => 1;
-spice is_cached => 1;
 
 handle remainder => sub {
     return $_ if $_ && $_ =~ /^\d{10}$/;                 # Checks if it's a 10 digit number
