@@ -46,10 +46,10 @@
                     
                     if ($("#hidden").css('display') == 'none'){
                         $("#hidden").css('display', 'block');
-                        $("#show_more").html("<strong>-</strong> Show Less");
+                        $("#show_more").html("Show Less");
                     } else {
                         $("#hidden").css('display', 'none');
-                        $("#show_more").html("<strong>+</strong> Show More");
+                        $("#show_more").html("Show More");
                     }
                 });
             }
