@@ -9,12 +9,12 @@ name "Twitter";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Twitter.pm";
 topics "everyday", "social";
 category "time_sensitive";
-attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
-    twitter => ["https://twitter.com/duckduckgo", "DuckDuckGo"],
-    github => ["https://github.com/ecounysis/", "Eric Christensen"],
-    twitter => ["https://twitter.com/ecounysis", "Eric Christensen"],
-    github => ["https://github.com/laouji/", "Crimson Thompson"],
-    twitter => ["https://twitter.com/laouji", "Crimson Thompson"];
+attribution github  => ["https://github.com/duckduckgo/", "DuckDuckGo"],
+            twitter => ["https://twitter.com/duckduckgo", "DuckDuckGo"],
+            github  => ["https://github.com/ecounysis/", "Eric Christensen"],
+            twitter => ["https://twitter.com/ecounysis", "Eric Christensen"],
+            github  => ["https://github.com/laouji/", "Crimson Thompson"],
+            twitter => ["https://twitter.com/laouji", "Crimson Thompson"];
 
 spice to => 'https://duckduckgo.com/tw.js?user=$1&callback={{callback}}&current=1';
 triggers query => qr/^(?:twitter\s)?@([a-z0-9_]+)$|^twitter\s([a-z0-9_]+)$/i;
