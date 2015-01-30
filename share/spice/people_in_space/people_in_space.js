@@ -51,7 +51,7 @@
             id: "people_in_space",
             name: "Answer",
             meta: {
-                itemType: (api_result.number === 1 ? "Person" : "People"),
+                itemType: (api_result.number === 1 ? "Person in Space" : "People in Space"),
                 sourceName: "People in Space",
                 sourceUrl: "http://www.howmanypeopleareinspacerightnow.com/"
             }
