@@ -24,10 +24,22 @@
 
 .info--people_in_space > ul {
     float:left;
-    margin:0 5px;
 }
+
+.info--people_in_space .right {
+    margin-left: 1em;
+}
+
+.info--people_in_space h5 {
+    color: #000;
+}
+
 .callout--people_in_space {
     color: #888;
     clear: left;
     margin-top: 1em;
+}
+
+.callout--people_in_space .btn {
+    color: #888;
 }

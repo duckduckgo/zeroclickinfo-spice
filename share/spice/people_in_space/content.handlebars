@@ -1,18 +1,20 @@
 <div class="info--people_in_space">
+<h5>{{title}}</h5>
+<p>{{info}}</p>
 <ul>
     <li>Position</li>
     <li>Country</li>
     <li>Launch Date</li>
     {{#if twitter}}
-	<li>Twitter</li>
+		<li>Twitter</li>
 	{{/if}}
 </ul>
-<ul>
+<ul class="right">
 	<li>{{position}}</li>
 	<li>{{country}}</li>
 	<li>{{launchdate}}</li>
 	{{#if twitter}}
-  	<li><a href="https://twitter.com/{{twitter}}">@{{twitter}}</a></li>
+  		<li><a href="https://twitter.com/{{twitter}}">@{{twitter}}</a></li>
   	{{/if}}
 </ul>
 </div>
