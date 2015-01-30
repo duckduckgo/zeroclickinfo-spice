@@ -20,4 +20,14 @@
     font-size: 1.4em;
     font-weight: 400;
     height: 2.5em;
-}''
+}
+
+.info--people_in_space > ul {
+    float:left;
+    margin:0 5px;
+}
+.callout--people_in_space {
+    color: #888;
+    clear: left;
+    margin-top: 1em;
+}

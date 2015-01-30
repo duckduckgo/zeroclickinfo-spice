@@ -66,7 +66,8 @@
                     image: item.biophoto,
                     img: item.biophoto,
                     img_m: item.biophoto,
-                    abstract: item.bio
+                    abstract: item.bio,
+                    twitter: item.twitter.replace(/https?:\/\/twitter.com\//,'')
                 };
             };
             o.sort_fields = {
