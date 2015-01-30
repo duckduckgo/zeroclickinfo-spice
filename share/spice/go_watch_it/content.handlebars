@@ -1,0 +1,35 @@
+<div class='image-holder'>
+  <img src="{{imageProxy provider_format_logos.dark}}" alt="{{provider_format_name}}" class="gwi-icon"/>
+  <img src="{{imageProxy provider_format_logos.light}}" alt="{{provider_format_name}}" class="gwi-icon--alt"/>
+</div>
+
+<div class='data'>
+
+  {{#gwi_ifHasBothBuyAndRent buy_line rent_line }}
+    <div class="gwi--container">
+        <div class="left half">
+            Rent from<br><span class='price tx-clr--dk'>{{gwi_price rent_line}}</span>
+        </div>
+
+        <div class="right half">
+            Buy from<br><span class='price tx-clr--dk'>{{gwi_price buy_line}}</span>
+        </div>
+    </div>
+  {{else}}
+    {{#buyOrRent buy_line rent_line}}
+        {{#gwi_ifHasPrice buy_line}}
+            <div class="single">
+                Buy from<br><span class='price tx-clr--dk'>{{gwi_price buy_line}}</span>
+            </div>
+        {{else}}
+            <div class="single">
+                <span class="price gwi-price--subscription tx-clr--dk">{{buy_line}}</span>
+            </div>
+        {{/gwi_ifHasPrice}}        
+    {{/buyOrRent}}
+  {{/gwi_ifHasBothBuyAndRent}}
+</div>
+
+<div class="{{gwi_footerClass buy_line rent_line}} tx-clr--lt one-line">
+  {{format_line}}
+</div>
