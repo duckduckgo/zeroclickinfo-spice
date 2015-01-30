@@ -104,7 +104,7 @@
         
         Spice.add({
             id: "go_watch_it",
-            name: "How to Watch",
+            name: "Watch",
             data: watchable.availabilities,
             meta: {
                 sourceName: 'GoWatchIt',
@@ -144,9 +144,9 @@
                 }
                 
                 // Replace the icon if we can.
-                if(item.provider_format_id in provider_icons) {
-                    item.provider_format_logos = provider_icons[item.provider_format_id];
-                }
+//                 if(item.provider_format_id in provider_icons) {
+//                     item.provider_format_logos = provider_icons[item.provider_format_id];
+//                 }
                 
                 return {
                     url: item.watch_now_url
