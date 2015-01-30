@@ -3,8 +3,11 @@ package DDG::Spice::Hearthstone;
 
 use DDG::Spice;
 
+# Caching
 spice is_cached => 1;
+spice proxy_cache_valid => "200 4d";
 
+#Metadata
 name "Hearthstone Card Search";
 source "Bytevortex (Gamepedia Proxy)";
 icon_url "http://eu.battle.net/hearthstone/static/images/icons/favicon.ico";
@@ -16,12 +19,13 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["https://github.com/Akryum", "Akryum"],
             twitter => "Akryum";
 
-
 # Triggers
 triggers startend => "hearthstone";
 
+# Target URL
 spice to => 'http://bytevortex.net/hearthstone.php?search=$1';
 
+# JS Callback
 spice wrap_jsonp_callback => 1;
 
 # Keyword blacklist
