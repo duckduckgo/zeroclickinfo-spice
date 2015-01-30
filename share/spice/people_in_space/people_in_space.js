@@ -66,7 +66,7 @@
                     image: item.biophoto,
                     img: item.biophoto,
                     img_m: item.biophoto,
-                    abstract: item.bio,
+                    info: item.bio,
                     twitter: item.twitter.replace(/https?:\/\/twitter.com\//,'')
                 };
             };
