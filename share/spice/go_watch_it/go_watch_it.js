@@ -109,7 +109,7 @@
             meta: {
                 sourceName: 'GoWatchIt',
                 sourceUrl: getUrl(watchable),
-                itemType: 'Providers for ' + title 
+                itemType: 'Providers for ' + title + " (" + watchable.year + ")" 
             },
             normalize: function(item) {
                 if(item.provider_format_id in skip_providers) {
