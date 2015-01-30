@@ -31,7 +31,7 @@ handle remainder_lc => sub {
     # If query starts with any of these assume it's one of the other queries
     return if ($_ =~ /^(in |at |near me)/);
 
-    # Removes spaces from the start and beginning of the query
+    # Removes spaces from the beginning and end of the query
     $_ = trim($_);
 
     # Replaces spaces between words with dashes, because the API requires it
