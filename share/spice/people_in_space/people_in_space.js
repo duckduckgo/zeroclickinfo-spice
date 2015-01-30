@@ -64,6 +64,7 @@
                     url: item.biolink,
                     title: item.name,
                     image: item.biophoto,
+                    img: item.biophoto,
                     img_m: item.biophoto,
                     abstract: item.bio
                 };
@@ -77,9 +78,9 @@
             o.sort_default = "launchdate";
            o.templates = {
                 group: 'products_simple',            
-                item_detail: false,
-                detail: false,
+                detail: true,
                 options: {
+                    buy: Spice.people_in_space.content,
                     variant: 'narrow'
                 }
             }
