@@ -17,22 +17,28 @@
 
 .tile--go_watch_it .tile__body .data span.price {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.5em;
   font-weight: 400;
 }
 
 .tile--go_watch_it .tile__body .data .left {
   float: left;
-  padding-right: 10%;
   border-right: 1px solid #ddd;
-  text-align: right;
+  text-align: center;
 }
 
+    .is-mobile .tile--go_watch_it .tile__body .data .left {
+        width: 50%;   
+    }
+
 .tile--go_watch_it .tile__body .data .right {
-  float: left;
+  float: right;
   text-align: center;
-  padding-left: 10%;
 }
+
+    .is-mobile .tile--go_watch_it .tile__body .data .right {
+         width: 50%;   
+    }
 
 .tile--go_watch_it .tile__body .data .single {
   text-align: center;
@@ -55,27 +61,10 @@
 
 .tile--go_watch_it .tile__body .gwi--container {
     overflow: auto;
-    padding-left: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
-
-    .is-mobile .tile--go_watch_it .tile__body .gwi--container {
-        padding-left: 10%;
-    }
-
-    @media (max-width: 355px) {
-        .is-mobile .tile--go_watch_it .tile__body .gwi--container {
-            padding-left: 4%;
-        }
-        
-        .is-mobile .tile--go_watch_it .tile__body .data .left {
-            padding-right: 5%;
-        }
-        
-        .tile--go_watch_it .tile__body .data .right {
-             padding-left: 5%;   
-        }
-    }
-
 
 .tile--go_watch_it .tile__body .gwi-icon {
     display: inline-block;
