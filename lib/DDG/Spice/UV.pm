@@ -36,8 +36,8 @@ spice wrap_jsonp_callback => 1;
 # Handle statement
 handle remainder => sub {
 
-    #remove question marks
-    s/\?//g;
+    #remove question marks, "what is" questions
+    s/\?|what|is|the|\s|current//gi;
     
     return if $_;
 
