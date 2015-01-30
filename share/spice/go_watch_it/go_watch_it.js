@@ -36,7 +36,8 @@
             "YouTube": 1,
             "Google Play": 1,
             "Disney Movies Anywhere": 1,
-            "Target Ticket": 1
+            "Target Ticket": 1,
+            "Hulu": 1
         };
         
         var purchase_providers = {
@@ -83,6 +84,10 @@
             76: {
                 dark: DDG.get_asset_path('go_watch_it', 'disney.png'),
                 light: DDG.get_asset_path('go_watch_it', 'disney-alt.png')
+            },
+            21: {
+                dark: DDG.get_asset_path('go_watch_it', 'hulu.png'),
+                light: DDG.get_asset_path('go_watch_it', 'hulu.png')
             }
         };
         
