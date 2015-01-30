@@ -1,6 +1,5 @@
-.tile--go_watch_it.tile--c {
-  height: 185px;
-  width: 15em;
+.tile.tile--b.tile--c--n.tile--go_watch_it {
+    height: 15em;
 }
 
 .tile--go_watch_it .tile__body .image-holder {
@@ -8,12 +7,14 @@
 }
 
 .tile--go_watch_it .tile__body .image-holder img {
-  width: 130px;
+  padding-top: 0.5em;
+  padding-bottom: 1.8em;
+  width: 145px;
 }
 
 .tile--go_watch_it .tile__body .data {
   height: 60px;
-  margin-top: 0.25em;
+  margin-top: 0.1em;
 }
 
 .tile--go_watch_it .tile__body .data span.price {
@@ -24,13 +25,18 @@
 
 .tile--go_watch_it .tile__body .data .left {
   float: left;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid rgba(150,150,150, .2);
   text-align: center;
 }
 
     .is-mobile .tile--go_watch_it .tile__body .data .left {
         width: 50%;   
     }
+
+/*     .zci--go_watch_it .tileview--grid .data .left {
+        width: 100%;
+        border-right: none;
+    } */
 
 .tile--go_watch_it .tile__body .data .right {
   float: right;
@@ -40,6 +46,10 @@
     .is-mobile .tile--go_watch_it .tile__body .data .right {
          width: 50%;   
     }
+
+/*     .zci--go_watch_it .tileview--grid .data .right {
+        width: 100%;
+    } */
 
 .tile--go_watch_it .tile__body .data .single {
   text-align: center;
@@ -53,7 +63,7 @@
 .tile--go_watch_it .tile__body span.price.gwi-price--subscription {
     font-size: 16px;
     display: inline-block;
-    width: 75%;
+    max-width: 9em;
 }
 
 .zci--go_watch_it .zci__metabar__primary-text {
@@ -80,3 +90,4 @@
     .dark-header .tile--go_watch_it .tile__body .gwi-icon--alt {
         display: inline-block;
     }
+
