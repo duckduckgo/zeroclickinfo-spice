@@ -98,6 +98,10 @@
             46: 1
         };
         
+        // We use this variable to find duplicate Netflix items. 
+        // We'd want to merge them into one.
+        var foundNetflix = false;
+        
         Spice.add({
             id: "go_watch_it",
             name: "How to Watch",
@@ -119,6 +123,8 @@
                     item.buy_line = "Available for Streaming";
                 }
                 
+                // If the provider is in this hash, it means that they sell it 
+                // but they don't have the actual price to display.
                 if(item.provider_name in purchase_providers && 
                    item.buy_line === "" && item.rent_line === "") {
                     item.buy_line = "Available for Purchase";
@@ -127,6 +133,14 @@
                 // Change the format line to match the other tiles.
                 if(item.format_line === "DVD & Blu-ray") {
                     item.format_line = "DVD / Blu-ray";
+                }
+                
+                if(item.provider_name === "Netflix") {
+                    if(!foundNetflix) {
+                        foundNetflix = true;
+                    } else if(item.category !== "online") {
+                        return null;
+                    }
                 }
                 
                 // Replace the icon if we can.
