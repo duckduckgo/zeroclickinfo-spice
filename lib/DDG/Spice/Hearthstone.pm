@@ -7,7 +7,7 @@ use DDG::Spice;
 spice is_cached => 1;
 spice proxy_cache_valid => "200 4d";
 
-#Metadata
+# Metadata
 name "Hearthstone Card Search";
 source "Bytevortex (Gamepedia Proxy)";
 icon_url "http://eu.battle.net/hearthstone/static/images/icons/favicon.ico";
