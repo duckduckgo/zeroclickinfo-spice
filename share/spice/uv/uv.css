@@ -1,4 +1,4 @@
-.uv_indicator {
+.zci--uv .uv_indicator {
     float: left;
     width: 40px;
     height: 40px;
@@ -9,36 +9,36 @@
     text-align: center;
 }
 
-.uv_risk_low {
+.zci--uv .uv_risk_low {
     background-color: #5B9E4D;  
 }
 
-.uv_risk_moderate {
+.zci--uv .uv_risk_moderate {
     background-color: #F1A031;  
 }
 
-.uv_risk_high {
+.zci--uv .uv_risk_high {
     background-color: #E37151;  
 }
 
-.uv_risk_veryhigh {
+.zci--uv .uv_risk_veryhigh {
     background-color: #DE5833;  
 }
 
-.uv_risk_extreme {
+.zci--uv .uv_risk_extreme {
     background-color: #5454DB;  
 }
 
-.uv_header {
+.zci--uv .uv_header {
     float: left;
     padding-left: 12px;
 }
 
-h4.uv_subheader {
+.zci--uv h4.uv_subheader {
     padding-top: 0.1em;
 }
 
-.uv_description {
+.zci--uv .uv_description {
     clear: both;
     padding-top: 0.75em;
 }
