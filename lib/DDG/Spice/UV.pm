@@ -14,7 +14,7 @@ category "location_aware";
 topics "everyday", "travel", "geography";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/UV.pm";
 attribution github => ["https://github.com/Bjoern", "Bjoern Guenzel"],
-            twitter => ["https://twitter.com/fractality", "Fractality"],
+            twitter => ["https://twitter.com/fractality", "Bjoern Guenzel"],
             web => ["http://blinker.net", "Bjoern's Blog"];
 
 # Triggers
