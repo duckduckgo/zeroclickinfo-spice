@@ -67,6 +67,7 @@
                     img: item.biophoto,
                     img_m: item.biophoto,
                     info: item.bio,
+                    ratingText: item.elapsed + " days",
                     twitter: item.twitter.replace(/https?:\/\/twitter.com\//,'')
                 };
             };
@@ -79,9 +80,8 @@
             o.sort_default = "launchdate";
            o.templates = {
                 group: 'products_simple',            
-                detail: true,
                 options: {
-                    buy: Spice.people_in_space.content,
+                    subtitle_content: Spice.people_in_space.content,
                     variant: 'narrow'
                 }
             }

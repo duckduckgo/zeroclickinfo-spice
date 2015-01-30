@@ -43,3 +43,7 @@
 .callout--people_in_space .btn {
     color: #888;
 }
+
+.zci--people_in_space .tile__rating {
+    text-align: center;
+}
