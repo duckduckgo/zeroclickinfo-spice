@@ -6,11 +6,14 @@
             return Spice.failed('seat_geek_events_by_artist');
         }
 
-        var query = DDG.get_query(),
-            artistName = query.replace(/((upcoming\s)?(concerts?))|(live(\s(shows?))?)|(gigs)/, '').trim(),
-            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-            days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+         // Get the original query.
+        var script = $('[src*="/js/spice/seat_geek/events_by_artist/"]')[0],
+            source = $(script).attr("src"),
+            artistName = source.match(/events_by_artist\/([^\/]*)/)[1];
 
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            
         Spice.add({
             id: "seat_geek_events_by_artist",
             name: "Concerts",
