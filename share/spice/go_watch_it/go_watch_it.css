@@ -1,5 +1,6 @@
-.tile--go_watch_it {
+.tile--go_watch_it.tile--c {
   height: 185px;
+  width: 15em;
 }
 
 .tile--go_watch_it .tile__body .image-holder {

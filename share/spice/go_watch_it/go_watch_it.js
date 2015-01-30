@@ -37,7 +37,8 @@
             "Google Play": 1,
             "Disney Movies Anywhere": 1,
             "Target Ticket": 1,
-            "Hulu": 1
+            "Hulu": 1,
+            "Crackle": 1
         };
         
         var purchase_providers = {
@@ -45,7 +46,8 @@
             "Walmart": 1,
             "Target": 1,
             "Fandango": 1,
-            "Amazon": 1
+            "Amazon": 1,
+            "Redbox": 1
         };
         
         var provider_icons = {
@@ -126,8 +128,9 @@
                 // If the provider is in this hash, it means that they sell it 
                 // but they don't have the actual price to display.
                 if(item.provider_name in purchase_providers && 
-                   item.buy_line === "" && item.rent_line === "") {
+                   item.buy_line === "") {
                     item.buy_line = "Available for Purchase";
+                    item.rent_line = "";
                 }
                 
                 // Change the format line to match the other tiles.
