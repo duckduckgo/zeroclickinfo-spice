@@ -47,6 +47,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::UV',
     ),
+    'what is the current uv index?' => test_spice(
+        '/js/spice/uv/Phoenixville/PA',
+        call_type => 'include',
+        caller => 'DDG::Spice::UV'
+    ),
     'ultraviolet' => undef,
 );
 
