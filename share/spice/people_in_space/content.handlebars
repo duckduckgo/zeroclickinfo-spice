@@ -1,7 +1,21 @@
 <div class="info--people_in_space">
-Position: <b>{{position}}</b>
-Country: <b>{{country}}</b>
-Launch Date: <b>{{launchdate}}</b>
-Time in space: <b>{{elapsed}} days</b>
-<span class="detail__callout--pr"><a href="{{url}}" class="btn btn--primary">View Full Bio</a></span>
+<ul>
+    <li>Position</li>
+    <li>Country</li>
+    <li>Launch Date</li>
+    {{#if twitter}}
+	<li>Twitter</li>
+	{{/if}}
+</ul>
+<ul>
+	<li>{{position}}</li>
+	<li>{{country}}</li>
+	<li>{{launchdate}}</li>
+	{{#if twitter}}
+  	<li><a href="https://twitter.com/{{twitter}}">@{{twitter}}</a></li>
+  	{{/if}}
+</ul>
+</div>
+<div class="callout--people_in_space">
+	<a href="{{url}}" class="btn">View Full Bio</a>
 </div>
