@@ -2,6 +2,7 @@ package DDG::Spice::SeatGeek::EventsByArtist;
 # ABSTRACT: Returns upcoming concerts for a band/artist.
 
 use DDG::Spice;
+use Text::Trim;
 
 primary_example_queries "live show weezer", "upcoming concerts bjork";
 description "Upcoming concerts from SeatGeek";
@@ -12,7 +13,8 @@ topics "entertainment", "music";
 attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
     github => ['https://github.com/andrey-p','Andrey Pissantchev'];
 
-triggers startend => 'upcoming concert',
+triggers startend => 
+    'upcoming concert',
     'upcoming concerts',
     'concert',
     'concerts',
@@ -25,17 +27,13 @@ spice proxy_cache_valid => "200 304 12h";
 
 spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&performers.slug=$1&callback={{callback}}';
 
-handle remainder_lc => sub {
-    # Removes triggers from the query
-    $_ =~ s/^(:?(upcoming\s*)?(concerts?))|((live)\s*(:?(shows?))?)|(gigs)$//gi;
-
+handle remainder_lc => sub {  
     # If query starts with any of these assume it's one of the other queries
     return if ($_ =~ /^(in |at |near me)/);
 
-    # Removes spaces from the beginning of the query
-    $_ =~ s/^\s+//;
-    # Removes spaces from the end of the query
-    $_ =~ s/\s+$//;
+    # Removes spaces from the start and beginning of the query
+    $_ = trim($_);
+
     # Replaces spaces between words with dashes, because the API requires it
     $_ =~ s/\s/\-/g;
     return $_ if $_;

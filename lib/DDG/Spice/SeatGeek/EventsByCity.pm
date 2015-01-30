@@ -12,7 +12,9 @@ topics "entertainment", "music";
 attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
     github => ['https://github.com/andrey-p','Andrey Pissantchev'];
 
-triggers start => 'upcoming concerts in',
+triggers start => 
+    'upcoming concert in',
+    'upcoming concerts in',
     'concerts in',
     'live in',
     'live shows in',
