@@ -121,6 +121,10 @@
             23: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'vhx'),
                 light: DDG.get_asset_path('go_watch_it', path + 'vhx-alt')
+            },
+            14: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'hulu'),
+                light: DDG.get_asset_path('go_watch_it', path + 'hulu')
             }
         };
         
