@@ -28,7 +28,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "programming";
 category "programming";
 attribution github  => ['https://github.com/josephwegner', 'josephwegner'],
-            twitter => ['https://www.twitter.com/Joe_Wegner', 'Joe_Wegner'];
+            twitter => ['https://www.twitter.com/Joe_Wegner', 'josephwegner'];
 
 triggers startend => "fizz buzz", "fizzbuzz", "quine", "fibonacci sequence", "binary search";
 

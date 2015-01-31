@@ -1,0 +1,38 @@
+.zci--travis_status .tcistatus--none {
+    color: #4b9e4d;
+}
+
+.zci--travis_status .tcistatus--minor {
+    color: #f1a031;
+}
+
+.zci--travis_status .tcistatus--major {
+    color: #de5833;
+}
+
+.zci--travis_status .tcistatus--incident:first-child {
+  margin-top: 14px;
+}
+
+.zci--travis_status .tcistatus--incident-status {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.zci--travis_status .tcistatus--incident-monitoring {
+  color: #4b9e4d; 
+}
+
+.zci--travis_status .tcistatus--incident-identified {
+  color: #f1a031;
+}
+
+.zci--travis_status .tcistatus--incident-investigating {
+  color: #de5833;
+}
+
+.zci--travis_status .tcistatus--incident-message {
+  display: block;
+  font-weight: lighter;
+  padding-bottom: 4px;
+}
