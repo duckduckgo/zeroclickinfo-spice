@@ -118,6 +118,14 @@
                 dark: DDG.get_asset_path('go_watch_it', path + 'fandango'),
                 light: DDG.get_asset_path('go_watch_it', path + 'fandango')
             },
+            23: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'vhx'),
+                light: DDG.get_asset_path('go_watch_it', path + 'vhx-alt')
+            },
+            14: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'hulu'),
+                light: DDG.get_asset_path('go_watch_it', path + 'hulu')
+            }
         };
         
         var skip_providers = {
@@ -178,6 +186,8 @@
                     item.provider_format_logos = provider_icons[item.provider_format_id];
                     item.provider_format_logos.light += append;
                     item.provider_format_logos.dark += append;
+                } else {
+                    return null;
                 }
                 
                 return {
