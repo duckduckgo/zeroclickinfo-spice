@@ -20,12 +20,8 @@ handle remainder_lc => sub {
 
 	s/^github\s+|\s+github$//;
 	return unless $_;
-    return $_ unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
-   	return;
-	
-	
+	return $_ unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
 	return;
-    
 };
 
 1;

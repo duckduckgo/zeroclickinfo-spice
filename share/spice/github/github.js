@@ -10,7 +10,6 @@
         var script = $('[src*="/js/spice/github/"]')[0],
                     source = $(script).attr("src"),
                     query = source.match(/github\/([^\/]+)/)[1];
-        //console.log(query);
 
         var results = api_result.data.repositories;
 
