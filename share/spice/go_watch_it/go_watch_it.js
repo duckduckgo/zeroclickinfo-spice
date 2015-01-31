@@ -118,7 +118,7 @@
                 dark: DDG.get_asset_path('go_watch_it', path + 'fandango'),
                 light: DDG.get_asset_path('go_watch_it', path + 'fandango')
             },
-            21: {
+            23: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'vhx'),
                 light: DDG.get_asset_path('go_watch_it', path + 'vhx-alt')
             }
