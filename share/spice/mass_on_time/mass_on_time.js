@@ -105,44 +105,46 @@ function ddg_spice_mass_on_time (api_result) {
 
     if (results.length < 1) return;
 
-    Spice.add({
-        id: 'mass',
-        data: results,
-        name: 'Parishes',
-        model: 'Place',
-        view: 'Places',
-        meta: {
-            itemType: generate_header(details),
-            sourceName: "Mass On Time",
-            sourceUrl: 'http://massontime.com/nearest/' + details.type +
-                               "/25?lat=" + details.location.lat + "&lng=" + details.location.lng
-        },
-        normalize: function(item) {
-            var event_name = MassOnTime_format_eventtypeid(item.eventtypeid),
-                parish_address = MassOnTime_format_parish_address(item.address, item.city, item.province),
-                results = {
-                id: item.church_id,
-                name: item.churchname,
-                url: item.webaddress ? item.webaddress : MassOnTime_backup_link(item.church_id),
-                lon: item.lng,
-                lat: item.lat,
-                city: item.diocesename ? item.diocesename : item.city,
-                address: event_name + ' at ' + parish_address
-            };
-            
-            if (item.starttime && item.endtime) {
-                var startime_12h = MassOnTime_format_12h_time(item.starttime),
-                    endtime_12h = MassOnTime_format_12h_time(item.endtime);
-                
-                results.hours = { 
-                    Sun: startime_12h + ' - ' + endtime_12h 
+    DDG.require('maps', function() {
+        Spice.add({
+            id: 'mass',
+            data: results,
+            name: 'Parishes',
+            model: 'Place',
+            view: 'Places',
+            meta: {
+                itemType: generate_header(details),
+                sourceName: "Mass On Time",
+                sourceUrl: 'http://massontime.com/nearest/' + details.type +
+                                  "/25?lat=" + details.location.lat + "&lng=" + details.location.lng
+            },
+            normalize: function(item) {
+                var event_name = MassOnTime_format_eventtypeid(item.eventtypeid),
+                    parish_address = MassOnTime_format_parish_address(item.address, item.city, item.province),
+                    results = {
+                    id: item.church_id,
+                    name: item.churchname,
+                    url: item.webaddress ? item.webaddress : MassOnTime_backup_link(item.church_id),
+                    lon: item.lng,
+                    lat: item.lat,
+                    city: item.diocesename ? item.diocesename : item.city,
+                    address: event_name + ' at ' + parish_address
                 };
+                
+                if (item.starttime && item.endtime) {
+                    var startime_12h = MassOnTime_format_12h_time(item.starttime),
+                        endtime_12h = MassOnTime_format_12h_time(item.endtime);
+                    
+                    results.hours = { 
+                        Sun: startime_12h + ' - ' + endtime_12h 
+                    };
+                }
+              
+                return results;
+            },
+            templates: {
+                group: 'places'
             }
-           
-            return results;
-        },
-        templates: {
-            group: 'places'
-        }
+        });
     });
 }
