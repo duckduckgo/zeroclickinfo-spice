@@ -23,6 +23,7 @@ handle query_lc => sub {
     	return $_ unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
     	return;
 	}
+	
 	return;
     
 };
