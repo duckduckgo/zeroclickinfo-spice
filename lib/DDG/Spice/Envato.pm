@@ -17,7 +17,7 @@ category 'programming';
 topics qw(programming geek web_design music);
 
 attribution github => ['https://github.com/mobily','Marcin Dziewulski'], 
-            twitter => ['http://twitter.com/marcinmobily', 'marcinmobily'],
+            twitter => ['http://twitter.com/marcinmobily', 'Marcin Dziewulski'],
             web => ['http://www.mobily.pl', 'Marcin Dziewulski'];
 
 spice wrap_jsonp_callback => 1;

@@ -13,8 +13,8 @@ category "finance";
 icon_url "https://chain.com/chain32x32.ico";
 
 attribution github => ['https://github.com/chain-engineering','chain.com'],
-            email => ['hello@chain.com','hello@chain.com'],
-            twitter => "chain",
+            email => ['hello@chain.com','chain.com'],
+            twitter => ["chain", 'chain.com'],
             web => ['https://chain.com','chain.com'];
             
 triggers query_raw => qr/^[13][1-9A-HJ-NP-Za-km-z]{26,33}$/;
