@@ -17,8 +17,6 @@ spice to => 'https://api.github.com/legacy/repos/search/$1?callback={{callback}}
 spice proxy_cache_valid => '200 30d';
 
 handle remainder_lc => sub {
-
-	s/^github\s+|\s+github$//;
 	return unless $_;
 	return $_ unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
 	return;
