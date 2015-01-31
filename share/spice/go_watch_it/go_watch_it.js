@@ -178,6 +178,8 @@
                     item.provider_format_logos = provider_icons[item.provider_format_id];
                     item.provider_format_logos.light += append;
                     item.provider_format_logos.dark += append;
+                } else {
+                    return null;
                 }
                 
                 return {
