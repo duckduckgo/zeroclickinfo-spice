@@ -121,7 +121,7 @@
             21: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'vhx'),
                 light: DDG.get_asset_path('go_watch_it', path + 'vhx-alt')
-            },
+            }
         };
         
         var skip_providers = {
