@@ -17,9 +17,14 @@ spice to => 'https://api.github.com/legacy/repos/search/$1?callback={{callback}}
 spice proxy_cache_valid => '200 30d';
 
 handle query_lc => sub {
-    s/^github\s+|\s+github$//;
-    return $_ unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
-    return;
+	my $param = shift;
+	if ($param =~ /^github (.+)|(.+) github$/i) {
+		s/^github\s+|\s+github$//;
+    	return $_ unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
+    	return;
+	}
+	return;
+    
 };
 
 1;
