@@ -1,8 +1,10 @@
 <div class="one-line">
-  {{#if running}}
-  <div class="one-line">First seen {{first_seen_relative}}</div>
+  {{#if online }}
+  <span class="online">&#x25B2; {{uptime}}</span>
   {{else}}
-  <div class="one-line">Last seen {{last_seen_relative}}</div>
+  <span class="online">&#x25BC; {{downtime}}</span>
   {{/if}}
-  <img src="{{country_icon}}"> {{country_name}} &middot; <span class="{{status}}">{{{status}}}</span>
+  {{#if bandwidth}}
+  <span class="bandwidth">{{bandwidth}}</span>
+  {{/if}}
 </div>
