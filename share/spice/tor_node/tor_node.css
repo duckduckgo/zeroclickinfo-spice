@@ -2,34 +2,39 @@
     line-height: normal;
 }
 
-.zci--tor_node img {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    height: 16px;
-}
-
-.zci--tor_node .Online {
+.zci--tor_node .online {
     color: #0f0;
 }
 
-.zci--tor_node .Offline {
+.zci--tor_node .offline {
     color: #f00;
 }
 
-.tile--tor_node .tile__body {
-    height: 10em;
-    word-wrap: normal;
+.zci--tor_node .one-line .online {
+    color: #0f0;
+    float: left;
+}
+
+.zci--tor_node .one-line .offline {
+    color: #f00;
+    float: left;
+}
+
+.zci--tor_node .one-line .bandwidth {
+    float: right;
 }
 
 .tile--tor_node .tile__title {
     font-family: "Courier New", Courier, monospace;
 }
 
-.tile--tor_node .tile__content {
-    height: 0;
-}
-
-.tile--tor_node .tile__footer {
-    margin-bottom: 0;
+.tile--tor_node .tile__icon {
+    float: right;
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0.75em;
+    width: 20px;
+    height: 20px;
+    padding: 6px;
+    border-radius: 2px;
 }
