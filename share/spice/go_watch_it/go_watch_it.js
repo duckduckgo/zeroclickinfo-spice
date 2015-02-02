@@ -78,6 +78,10 @@
                 dark: DDG.get_asset_path('go_watch_it', path + 'youtube'),
                 light: DDG.get_asset_path('go_watch_it', path + 'youtube-alt')
             },
+            13: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'sundance'),
+                light: DDG.get_asset_path('go_watch_it', path + 'sundance-alt')
+            },
             18: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'googleplay'),
                 light: DDG.get_asset_path('go_watch_it', path + 'googleplay-alt')
@@ -102,9 +106,21 @@
                 dark: DDG.get_asset_path('go_watch_it', path + 'hulu'),
                 light: DDG.get_asset_path('go_watch_it', path + 'hulu')
             },
-            37: {
+            31: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'bestbuy'),
+                light: DDG.get_asset_path('go_watch_it', path + 'bestbuy')
+            },
+            32: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'walmart'),
+                light: DDG.get_asset_path('go_watch_it', path + 'walmart')
+            },
+            36: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'target'),
                 light: DDG.get_asset_path('go_watch_it', path + 'target')
+            }, 
+            37: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'targetticket'),
+                light: DDG.get_asset_path('go_watch_it', path + 'targetticket')
             },
             9: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'redbox'),
