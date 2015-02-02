@@ -19,7 +19,7 @@ attribution github => ["https://github.com/tvdavid", "tvdavid"], twitter => "tvm
 triggers startend => 'tv', 'tv show', 'tv series', 'series';
 triggers end => 'show';
 
-spice to => 'http://api.tvmaze.com/instantsearch/shows?q=$1';
+spice to => 'http://api.tvmaze.com/singlesearch/shows?q=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {

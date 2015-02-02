@@ -18,7 +18,7 @@ attribution github => ["https://github.com/tvdavid", "tvdavid"], twitter => "tvm
 
 triggers any => 'episode', 'airdate';
 
-spice to => 'http://api.tvmaze.com/instantsearch/shows?q=$1&embed=previousepisode';
+spice to => 'http://api.tvmaze.com/singlesearch/shows?q=$1&embed=previousepisode';
 spice wrap_jsonp_callback => 1;
 
 handle query_lc => sub {
