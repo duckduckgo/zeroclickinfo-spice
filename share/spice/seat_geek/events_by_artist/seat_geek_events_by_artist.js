@@ -42,7 +42,7 @@
             data: events,
             meta: {
                 sourceName: "SeatGeek",
-                sourceUrl: "https://seatgeek.com/search?search=" + query,
+                sourceUrl: "https://seatgeek.com/search?search=" + artistName,
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
                 itemType: "Upcoming Concerts"
             },
