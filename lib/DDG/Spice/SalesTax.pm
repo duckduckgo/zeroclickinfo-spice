@@ -3,6 +3,7 @@ package DDG::Spice::SalesTax;
 
 use DDG::Spice;
 use Locale::SubCountry;
+use YAML::XS qw( Load );
 
 spice is_cached => 1;
 
@@ -19,24 +20,26 @@ attribution github => ["MrChrisW", "Chris Wilson"],
             github => ['https://github.com/javathunderman', 'Thomas Denizou'];
 
 triggers any => 'sales tax for', 'sales tax', 'sales tax in';
-
-spice to => 'https://taxrates.api.avalara.com:443/postal?country=usa&postal=$1&apikey={{ENV{DDG_SPICE_SALESTAX_APIKEY}}}';
+spice from => '(.*)/(.*)';
+spice to => 'https://taxrates.api.avalara.com/postal?country=usa&postal=$1&apikey={{ENV{DDG_SPICE_SALESTAX_APIKEY}}}';
+spice wrap_jsonp_callback => 1;
 
 #Create US SubCountry object
 my $US = new Locale::SubCountry("US");
 
-my $zipcodes = Load(scalar share('statetozip.yml')->slurp); 
+#State to Zip Code
+my $zipcodes = Load(scalar share('zipcodes.yml')->slurp); 
 
 # Handle statement
 handle remainder => sub {
 	my ($query,$state,$zip); #Define vars
 	s/^what is (the)?//g; # strip common words
 	$query = $_;
-    return unless $query;    # Guard against "no answer"
+    return unless $query; # Guard against "no answer"
     # Washington D.C is a district and is not supported by the SubCountry package.
     if($query =~ m/\b(washington\s(dc|d\.c))\b/i) {
         $state = "Washington D.C";
-        $zip = zipcodes($state);
+        $zip = $zipcodes->{$state};
     } else {
         # $US->full_name returns the full state name based on the ISO3166 code 
         $state = $US->full_name($query); # Check for state using ISO code (PA)
@@ -44,10 +47,12 @@ handle remainder => sub {
             $state = $US->full_name($US->code($query)); # If state is "unknown" search for code using full state name (Pennsylvania)
         }
     }
-    $zip = zipcodes($state);
+    $zip = $zipcodes->{$state}; # state name=> zip code
+
+    # error checking
     return if $state eq "unknown";
-    return unless $state;
-    return $state, $zip;
+	return unless (defined $state and defined $zip); 
+    return $zip, $state; # return result
 };
 
 1;
