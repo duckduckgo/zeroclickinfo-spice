@@ -19,27 +19,35 @@ attribution github => ["MrChrisW", "Chris Wilson"],
             github => ['https://github.com/javathunderman', 'Thomas Denizou'];
 
 triggers any => 'sales tax for', 'sales tax', 'sales tax in';
-#Example
-#https://taxrates.api.avalara.com:443/address?street=435+Ericksen+Ave+NE&city=Bainbridge%20Island&state=WA&postal=98110&apikey={{ENV{DDG_SPICE_SALESTAX_APIKEY}}}
-spice to => 'https://taxrates.api.avalara.com:443/address?state=$1&apikey={{ENV{DDG_SPICE_SALESTAX_APIKEY}}}';
+
+spice to => 'https://taxrates.api.avalara.com:443/postal?country=usa&postal=$1&apikey={{ENV{DDG_SPICE_SALESTAX_APIKEY}}}';
 
 #Create US SubCountry object
 my $US = new Locale::SubCountry("US");
 
+my $zipcodes = Load(scalar share('statetozip.yml')->slurp); 
+
 # Handle statement
 handle remainder => sub {
-	my ($query,$state); #Define vars
+	my ($query,$state,$zip); #Define vars
 	s/^what is (the)?//g; # strip common words
 	$query = $_;
     return unless $query;    # Guard against "no answer"
-    # $US->full_name returns the full state name based on the ISO3166 code 
-    $state = $US->full_name($query); # Check for state using ISO code (PA)
-    if($state eq "unknown") {
-        $state = $US->full_name($US->code($query)); # If state is "unknown" search for code using full state name (Pennsylvania)
-	}
+    # Washington D.C is a district and is not supported by the SubCountry package.
+    if($query =~ m/\b(washington\s(dc|d\.c))\b/i) {
+        $state = "Washington D.C";
+        $zip = zipcodes($state);
+    } else {
+        # $US->full_name returns the full state name based on the ISO3166 code 
+        $state = $US->full_name($query); # Check for state using ISO code (PA)
+        if($state eq "unknown") {
+            $state = $US->full_name($US->code($query)); # If state is "unknown" search for code using full state name (Pennsylvania)
+        }
+    }
+    $zip = zipcodes($state);
     return if $state eq "unknown";
     return unless $state;
-    return $state;
+    return $state, $zip;
 };
 
 1;
