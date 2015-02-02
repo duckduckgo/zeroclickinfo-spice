@@ -12,7 +12,7 @@
                     query = source.match(/github\/([^\/]+)/)[1];
 
         var results = api_result.data.repositories;
-
+        
         if (!results) {
             return Spice.failed('github');
         }
