@@ -12,12 +12,34 @@
             artistName = source.match(/events_by_artist\/([^\/]*)/)[1];
 
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-            days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            events;
             
+        // sometimes we get false positives from the SeatGeek API
+        // where for example sports games get displayed instead of concerts
+        //
+        // filtering out events whose performers don't have genres
+        // seems to be a way to guard against that
+        events = $.grep(api_result.events, function (item) {
+            if (item.performers && item.performers.length > 0) {
+                for (var i = 0; i < item.performers.length; i++) {
+                    if (item.performers[i].genres) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        });
+
+        if (events.length === 0) {
+            return Spice.failed('seat_geek_events_by_artist');
+        }
+
         Spice.add({
             id: "seat_geek_events_by_artist",
             name: "Concerts",
-            data: api_result.events,
+            data: events,
             meta: {
                 sourceName: "SeatGeek",
                 sourceUrl: "https://seatgeek.com/search?search=" + query,
