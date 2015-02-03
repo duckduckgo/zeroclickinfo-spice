@@ -17,7 +17,7 @@ triggers start => ['time'];
 spice call_type => 'self';
 
 handle remainder => sub {
-    return unless /(online|\d+ ?(m(in(utes?)?)?|s(ec(onds?)?)?|(h(ours)?)?|hr) ?)+/ || $_ eq '';
+    return unless /(\d+ ?(m(in(utes?)?)?|s(ec(onds?)?)?|h(ours)?|hr)|online)/ || $_ eq '';
     return '';
 };
 
