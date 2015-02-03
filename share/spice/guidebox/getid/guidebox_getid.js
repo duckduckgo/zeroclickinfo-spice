@@ -67,6 +67,9 @@
                        !DDG.getProperty(item, 'overview')) {
                         return null;
                     }
+
+                    var network;
+                    metadata.network ? network = " on "+ metadata.network : network = "";
                     
                     var subtitle_tile = "Season "+ item.season_number+ ", #" + item.episode_number;
                     var subtitle_detail = "(Season "+ item.season_number+ ", #" + item.episode_number+")";
@@ -75,7 +78,7 @@
                     var abstract = Handlebars.helpers.ellipsis(item.overview, abstract_length);
 
                     var aired = "Originally aired "+ Handlebars.helpers.guideBox_getDate(item.first_aired)
-                                + " on "+ metadata.network;
+                                + network;
                     
                     return {
                         image: item.thumbnail_304x171,
