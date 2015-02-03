@@ -7,7 +7,7 @@
      {{#if logo}}
         <div class="container-wrapper">
             <div class="logo-container">
-                <img src="{{logo}}" />
+                <img src="{{logo}}" onError="$(this).parent().parent().hide();"/>
             </div>
         </div>
      {{/if}}
