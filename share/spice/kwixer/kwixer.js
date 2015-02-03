@@ -48,8 +48,10 @@
                 item: 'basic_image_item',
                 options: {
                     rating: false,
-                    variant: 'poster',
                     buy: Spice.kwixer.buy
+                },
+                variants {
+                    tile: 'poster'
                 }
             }
         });

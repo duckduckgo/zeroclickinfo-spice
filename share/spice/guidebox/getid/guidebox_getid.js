@@ -55,9 +55,11 @@
                 templates: {
                     group: 'media',
                     options: {
-                        variant: "video",
                         price: true,
                         buy: Spice.guidebox_getid.buy
+                    },
+                    variants: {
+                        tile: "video"
                     }
                 },
                 normalize: function(item) {

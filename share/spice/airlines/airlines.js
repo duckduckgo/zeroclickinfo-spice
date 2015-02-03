@@ -119,8 +119,10 @@
                 detail: false,
                 moreAt: true,
                 options: {
-                    content: Spice.airlines.content,
-                    variant: 'xwide'
+                    content: Spice.airlines.content
+                },
+                variants: {
+                    tile: 'xwide'
                 }
             },
         });
