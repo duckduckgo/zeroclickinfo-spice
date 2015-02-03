@@ -39,7 +39,7 @@
             name: "Launchpad",
             data: api_result,
             meta: {
-                sourceName: "Launchpad.com",
+                sourceName: "Launchpad",
                 sourceUrl: api_result.web_link
             },
             normalize: function(item) {
