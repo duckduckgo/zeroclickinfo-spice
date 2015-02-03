@@ -1,0 +1,74 @@
+.zci--get_events .tile--get_events {
+    height: 15.6em;
+}
+
+    .is-mobile  .zci--get_events .tile--get_events {
+        height: inherit;
+    }
+
+.zci--get_events .header_container {
+    height: 8em;
+}
+
+/* IE causes one-line to break when word-break is set to something. */
+.zci--get_events .tile__body {
+    word-break: initial;
+}
+
+.zci--get_events .price {
+    font-weight: 600;
+}
+
+.zci--get_events .price,
+.zci--get_events .noprice {
+    margin-top: 1em;
+    height: 1.1em;
+    float: left;
+    font-size: 1.1em;
+}
+
+.zci--get_events .tile__body.has-foot {
+    padding: 1em;
+}
+
+.zci--get_events .header_container .tile__title {
+    height: 3.8em;
+    margin-bottom: 0;
+    /* Adding ellipsis on Webkit-based engines. */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    font-weight: 400;
+}
+
+.zci--get_events .date {
+    float: right;
+    border: 1px solid #ddd;
+    padding: 0.7em 0.9em;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: -1.5em;
+}
+
+.zci--get_events .day {
+    font-size: 1.6em;
+    line-height: 0.8;
+}
+
+
+.zci--get_events .where {
+    font-size: 1.1em;
+    height: 1.4em;
+}
+
+.zci--get_events .where.place {
+    width: 9.3em; 
+}
+
+    .is-mobile .zci--get_events .where.place {
+        width: 7em;
+    }
+
