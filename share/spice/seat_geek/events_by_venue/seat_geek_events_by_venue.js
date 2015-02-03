@@ -8,34 +8,12 @@
 
         var query = DDG.get_query(),
             months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-            days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-            events;
-
-        // sometimes we get false positives from the SeatGeek API
-        // where for example sports games get displayed instead of concerts
-        //
-        // filtering out events whose performers don't have genres
-        // seems to be a way to guard against that
-        events = $.grep(api_result.events, function (item) {
-            if (item.performers && item.performers.length > 0) {
-                for (var i = 0; i < item.performers.length; i++) {
-                    if (item.performers[i].genres) {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        });
-
-        if (events.length === 0) {
-            return Spice.failed('seat_geek_events_by_venue');
-        }
+            days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         Spice.add({
             id: "seat_geek_events_by_venue",
             name: "Concerts",
-            data: events,
+            data: api_result.events,
             meta: {
                 sourceName: "SeatGeek",
                 sourceUrl: "https://seatgeek.com/search?search=" + query,
@@ -44,7 +22,21 @@
             },
             normalize: function(item) {
                 var artistName = item.performers[0].short_name,
-                    artistDisplayName = capitalizedAcronym(artistName);
+                    artistDisplayName = capitalizedAcronym(artistName),
+                    performersWithGenres;
+
+                // sometimes we get false positives from the SeatGeek API
+                // where for example sports games get displayed instead of concerts
+                //
+                // filtering out events whose performers don't have genres
+                // seems to be a way to guard against that
+                performersWithGenres = $.grep(item.performers, function (performer) {
+                  return !!performer.genres;
+                });
+
+                if (performersWithGenres.length === 0) {
+                  return null;
+                }
 
                 // Capitalize the name of the band/artist searched for;
                 // if the name is composed by multiple words, capitalize
