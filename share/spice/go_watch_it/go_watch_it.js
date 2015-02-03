@@ -198,8 +198,10 @@
             templates: {
                 item: 'base_item',
                 options: {
-                    content: Spice.go_watch_it.content,
-                    variant: 'narrow'
+                    content: Spice.go_watch_it.content
+                },
+                variants: {
+                    tile: 'narrow'
                 }
             }
         });
