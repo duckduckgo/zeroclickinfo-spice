@@ -24,16 +24,41 @@
             },
             normalize: function(item) {
                 // Check relevancy of the item.
-                // First check if the query matches one of the performers names
-                // If it doesn't, and it's not even relevant to the event title, skip this item
+                // First check if the query matches one of the performers names;
+                // if it doesn't, and it's not even relevant to the event title,
+                // check relevancy on the taxonomies. If this fails too, return null
                 var relevant = false;
+                var performer;
+                var both_performers = [];
+                var title;
                 for(var i = 0; i < item.performers.length; i++) {
                     if(DDG.stringsRelevant(item.performers[i].name.toLowerCase(), clean_query, [], 3, true) || DDG.stringsRelevant(item.performers[i].short_name.toLowerCase(), clean_query, [], 3, true)) {
                         relevant = true;
+                    } else {
+                        performer = item.performers[i];
                     }
+
+                    both_performers.push(item.performers[i].short_name);
                 }
-                if(!DDG.stringsRelevant(item.short_title, clean_query, [], 3, true) && !relevant) {
-                    return null;
+
+                if(!relevant) {
+                    if(DDG.stringsRelevant(item.short_title, clean_query, [], 3, true)) {
+                        relevant = true;
+                    } else {
+                        for(var i = 0; i < item.taxonomies.length; i++) {
+                            if(DDG.stringsRelevant(item.taxonomies[i].name.toLowerCase(), clean_query, [], 3, true)) {
+                                relevant = true;
+                            }
+                        }
+                    }
+
+                    if(!relevant) {
+                        return null;
+                    } else {
+                        title = both_performers.join(" vs ");
+                    }
+                } else {
+                    title = performer.name;
                 }
 
                 function getDate(date) {
@@ -79,7 +104,6 @@
                 }
 
                 // Return a logo for this performer if available
-
                 function getLogo(performer, taxonomies) {
                     performer = performer.toLowerCase().replace(/\s/g, "_");
                     for(var i = 0; i < taxonomies.length; i++) {
@@ -101,32 +125,10 @@
                     return price;
                 }
 
-                // Find the performer queried for,
-                // or return the first of the list
-                // if not specified in the query
-
-                function getPerformer(performers) {
-                    var performer = performers[0];
-                    if(performers.length === 1) {
-                        return performer;
-                    } else {
-                        for(var i = 0; i < performers.length; i++) {
-                            // If available, return the opponent team/performer
-                            if(performers[i].name.toLowerCase() !== clean_query && performers[i].short_name.toLowerCase() !== clean_query) {
-                                return performers[i];
-                            }
-                        }
-
-                        return performer;
-                    }
-                }
-
-                var performer = getPerformer(item.performers);
-
                 return {
                     url: item.url,
                     price: item.stats.lowest_price,
-                    title: performer.name,
+                    title: title,
                     place: "@ " + item.venue.name,
                     logo: getLogo(performer.name, item.taxonomies),
                     city: item.venue.display_location,
