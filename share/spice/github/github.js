@@ -34,8 +34,10 @@
                     detail: false,
                     item_detail: false,
                     options: {
-                        footer: Spice.github.footer,
-                        variant: 'basic4'
+                        footer: Spice.github.footer
+                    },
+                    variants: {
+                        tile: 'basic4'
                     }
                 },
             normalize: function(item) {

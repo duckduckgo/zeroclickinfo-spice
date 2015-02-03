@@ -80,10 +80,12 @@
             templates: {
                 group: 'media',
                 options: {
-                    variant: 'poster',
                     subtitle_content: Spice.in_theaters.subtitle_content,
                     rating: false,
                     buy: Spice.in_theaters.buy
+                },
+                variants {
+                    tile: 'poster'
                 }
             }
         });

@@ -257,8 +257,10 @@
                     group: 'base',
                     detail: false,
                     options: {
-                        content: Spice.flights_route.content,
-                        variant: 'xwide'
+                        content: Spice.flights_route.content
+                    }
+                    variants: {
+                        tile: 'xwide'
                     }
                 },
             });

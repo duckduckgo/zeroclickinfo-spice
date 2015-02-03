@@ -38,8 +38,7 @@
             templates: {
                 group: 'text',
                 options: {
-                    footer: Spice.hacker_news.footer,
-                    //variant: "basic2",
+                    footer: Spice.hacker_news.footer
                 },
                 detail: false,
                 item_detail: false,
