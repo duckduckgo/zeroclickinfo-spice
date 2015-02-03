@@ -14,19 +14,27 @@
             query = source.match(/sales_tax\/([^\/]+)\/([^\/]+)/);
 
         // Declare vars
-        var stateName = query[2],
+        var stateName = decodeURIComponent(query[2]),
             apiObjectName,
             taxRate,
-            titleResult
+            titleResult,
+            statNameTmp
 
         // The API can return multiple rate results
         // Loop through results:
         // If the state name returned matches that of the state searched use the rate value
         for (var i = 0; i < api_result.rates.length; i++) {
-            apiObjectName = api_result.rates[i].name;
-            if(apiObjectName.toLowerCase() == stateName.toLowerCase() ) {
+            //Lowercase state names
+            apiObjectName = api_result.rates[i].name.toLowerCase();
+            statNameTmp = stateName.toLowerCase();
+            
+            if(apiObjectName == statNameTmp) {
                taxRate = api_result.rates[i].rate;
+            // workaround washington d.c = district of columbia
+            } else if(apiObjectName == "district of columbia" && statNameTmp == "washington d.c") {
+                taxRate = api_result.rates[i].rate;
             }
+
         }
 
         // Fail if we have no rate (edge case)
@@ -45,7 +53,7 @@
         Spice.add({
             id: "sales_tax",
             name: "Answer",
-            data: api_result,
+            data: titleResult,
             meta: {
                 sourceName: "avalara.com",
                 sourceUrl: 'http://salestax.avalara.com'
