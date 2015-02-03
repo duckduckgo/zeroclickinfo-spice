@@ -5,8 +5,6 @@ use DDG::Spice;
 use Locale::SubCountry;
 use YAML::XS qw( Load );
 
-spice is_cached => 1;
-
 name "SalesTax";
 source "http://taxratesapi.avalara.com/";
 description 'Returns the sales tax of the specified state or territory in the United States';
@@ -31,22 +29,22 @@ my $US = new Locale::SubCountry("US");
 my $zipcodes = Load(scalar share('zipcodes.yml')->slurp); 
 
 # Handle statement
-handle remainder => sub {
-    my ($query,$state,$zip); #Define vars
+handle remainder_lc => sub {
+    my ($state,$zip); #Define vars
     s/^what is (the)?//g; # strip common words
-    $query = $_;
-    return unless $query; # Guard against "no answer"
+    return unless $_; # Guard against "no answer"
+
     # Washington D.C is a district and is not supported by the SubCountry package.
-    if($query =~ m/\b(washington\s(dc|d\.c))\b/i) {
+    if(m/\b(washington\s(dc|d\.c))\b/i) {
         $state = "Washington D.C";
-        $zip = $zipcodes->{$state};
     } else {
         # $US->full_name returns the full state name based on the ISO3166 code 
-        $state = $US->full_name($query); # Check for state using ISO code (PA)
+        $state = $US->full_name($_); # Check for state using ISO code (PA)
         if($state eq "unknown") {
-            $state = $US->full_name($US->code($query)); # If state is "unknown" search for code using full state name (Pennsylvania)
+            $state = $US->full_name($US->code($_)); # If state is "unknown" search for code using full state name (Pennsylvania)
         }
     }
+
     $zip = $zipcodes->{$state}; # state name=> zip code
 
     # error checking
