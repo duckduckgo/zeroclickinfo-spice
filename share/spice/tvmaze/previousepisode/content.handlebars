@@ -1,7 +1,7 @@
-The previous episode is called <b>{{ _embedded.previousepisode.name }}</b> and
+The previous episode is called <span class="text--primary">{{ _embedded.previousepisode.name }}</span> and
 {{#if webChannel}}
 was released
 {{else}}
 aired
 {{/if}}
-on <b>{{ tvmaze_dateformat _embedded.previousepisode.airdate }}</b> at {{ _embedded.previousepisode.airtime }}.
+on <span class="text--primary">{{ tvmaze_dateformat _embedded.previousepisode.airdate }}</span> at {{ _embedded.previousepisode.airtime }}.
