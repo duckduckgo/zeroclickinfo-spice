@@ -55,6 +55,10 @@ ddg_spice_test(
         '/js/spice/seat_geek/events_by_artist/beastie-boys',
         caller => 'DDG::Spice::SeatGeek::EventsByArtist',
     ),
+    'upcoming beastie boys concert' => test_spice(
+        '/js/spice/seat_geek/events_by_artist/beastie-boys',
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist',
+    ),
 );
 
 ddg_spice_test(
