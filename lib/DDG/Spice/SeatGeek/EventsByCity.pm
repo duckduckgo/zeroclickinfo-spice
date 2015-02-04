@@ -23,7 +23,7 @@ triggers start =>
 
 spice proxy_cache_valid => "200 304 12h";
 
-spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&venue.city=$1&callback={{callback}}';
+spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=20&venue.city=$1&callback={{callback}}';
 
 handle remainder_lc => sub {
     # Return if this is a geolocation search

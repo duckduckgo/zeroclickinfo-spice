@@ -24,7 +24,7 @@ triggers start =>
 spice proxy_cache_valid => "418 1d";
 spice is_cached => 0;
 
-spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&lat=$1&lon=$2&range=50mi&&callback={{callback}}';
+spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=20&lat=$1&lon=$2&range=50mi&&callback={{callback}}';
 spice from => '([\-0-9.]+)/([\-0-9.]+)';
 
 handle remainder_lc => sub {

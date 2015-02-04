@@ -43,7 +43,6 @@
 .zci--seat_geek_events_by_city .date {
     float: right;
     border: 1px solid #ddd;
-    padding: 0.7em 0.9em;
     border-radius: 50%;
     -moz-border-radius: 50%;
     -o-border-radius: 50%;
@@ -51,6 +50,9 @@
     text-align: center;
     font-size: 0.9em;
     margin-top: -1.5em;
+    width: 4em;
+    height: 3.3em;
+    padding-top: 0.7em;
 }
 
 .zci--seat_geek_events_by_city .day {
