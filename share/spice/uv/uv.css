@@ -1,8 +1,14 @@
+.zci__header {
+  font-size: 1.214em;
+  margin-top: 2px;
+}
+
 .zci--uv .uv_indicator {
     float: left;
+    font-size: 2.143em;
     width: 40px;
     height: 40px;
-    line-height: 40px;
+    line-height: 1.4;
     color: #fffdfb;
     border-radius: 2px;
     font-size: 22px;
@@ -39,6 +45,7 @@
 }
 
 .zci--uv .uv_description {
+    font-size: 1.214em;
     clear: both;
     padding-top: 0.75em;
 }
