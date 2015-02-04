@@ -1,21 +1,9 @@
-<p>
-    {{#if cost}}
-    <span>Cost: <b>{{cost}}</b> <image class="zci--hearthstone--icon" src="{{imageProxy 'http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/8/8b/Mana_icon.png'}}"/></span>
-    {{/if}}
-
-    {{#if attack}}
-    <span> - Attack: <b>{{attack}}</b> <image class="zci--hearthstone--icon" src="{{imageProxy 'http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/f/fe/Attack_icon.png'}}"/></span>
-    {{/if}}
-
-    {{#if health}}
-    <span> - Health: <b>{{health}}</b> <image class="zci--hearthstone--icon" src="{{imageProxy 'http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/1/17/Health_icon.png'}}"/></span>
-    {{/if}}
-    
+<div class="zci--hearthstone">
     {{#if card_description}}
-    <br/>{{{card_description}}}
+    <div class="zci--hearthstone--description">{{{card_description}}}</div>
     {{/if}}
     
     {{#if flavor}}
-    <br/><i>{{{flavor}}}</i>
+    <div class="zci--hearthstone--flavor">{{{flavor}}}</div>
     {{/if}}
-</p>
+</div>

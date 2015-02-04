@@ -11,6 +11,18 @@
         var infoboxItems = {
             Has_card_type: "Type",
             Has_class: "Playable by",
+            Has_mana_cost: {
+                label: "Cost",
+                icon: "http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/8/8b/Mana_icon.png"
+            },
+            Has_attack: {
+                label: "Attack",
+                icon: "http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/f/fe/Attack_icon.png"
+            },
+            Has_health: {
+                label: "Health",
+                icon: "http://hydra-media.cursecdn.com/hearthstone.gamepedia.com/1/17/Health_icon.png"
+            },
             Has_rarity: "Rarity",
             Is_part_of_set: "Set",
             Is_collectible: "Collectible"
@@ -41,11 +53,22 @@
                 }
                 
                 // InfoBox data
-                $.each(infoboxItems, function(key, value){
-                    if (api_result[key]){
+                $.each(infoboxItems, function(key, data) {
+                    var label,
+                        value;
+                    if (api_result[key]) {
+                        
+                        value = api_result[key];
+                        
+                        if(data.label) {
+                            label = data.label;
+                        } else {
+                            label = data;
+                        }
+                        
                         infoboxData.push({
-                            label: value,
-                            value: api_result[key]
+                            label: label,
+                            value: value
                         });
                     }
                 });
@@ -54,8 +77,7 @@
                 var card = {
                     title: item.Has_name,
                     url: "http://hearthstone.gamepedia.com/" + item.page,
-                    infoboxData: infoboxData,
-                    cost: item.Has_mana_cost
+                    infoboxData: infoboxData
                 };
                 
                 // Optionnal fields
@@ -63,16 +85,6 @@
                 // Image
                 if(item.image_url) {
                     card.image = item.image_url;
-                }
-                
-                // Attack
-                if(item.Has_attack) {
-                    card.attack = item.Has_attack;
-                }
-                
-                // Health
-                if(item.Has_health) {
-                    card.health = item.Has_health;
                 }
                 
                 // Description
