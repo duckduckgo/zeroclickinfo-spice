@@ -25,7 +25,7 @@ triggers startend =>
 
 spice proxy_cache_valid => "200 304 12h";
 
-spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&performers.slug=$1&callback={{callback}}';
+spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=20&performers.slug=$1&callback={{callback}}';
 
 handle remainder_lc => sub {  
     # If query starts with any of these assume it's one of the other queries
