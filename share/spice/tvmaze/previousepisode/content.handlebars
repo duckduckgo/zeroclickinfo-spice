@@ -1,0 +1,7 @@
+The previous episode is called <b>{{ _embedded.previousepisode.name }}</b> and
+{{#if webChannel}}
+was released
+{{else}}
+aired
+{{/if}}
+on <b>{{ tvmaze_dateformat _embedded.previousepisode.airdate }}</b> at {{ _embedded.previousepisode.airtime }}.
