@@ -29,7 +29,8 @@ ddg_spice_test(
         caller => 'DDG::Spice::Population'
     ),
     'population of Earth' => undef,
-    'population of New York, USA' => undef
+    'population of New York, USA' => undef,
+    'population of California,USA' => undef
 );
 
 done_testing;
