@@ -9,7 +9,7 @@
          // Get the original query.
         var script = $('[src*="/js/spice/seat_geek/events_by_artist/"]')[0],
             source = $(script).attr("src"),
-            artistName = source.match(/events_by_artist\/([^\/]*)/)[1];
+            artistSlug = source.match(/events_by_artist\/([^\/]*)/)[1];
 
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
             days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -20,12 +20,12 @@
             data: api_result.events,
             meta: {
                 sourceName: "SeatGeek",
-                sourceUrl: "https://seatgeek.com/search?search=" + artistName,
+                sourceUrl: "https://seatgeek.com/search?search=" + artistSlug.replace(/-/g, "+"),
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
                 itemType: "Upcoming Concerts"
             },
             normalize: function(item) {
-                var artistDisplayName = capitalizedAcronym(artistName),
+                var artistDisplayName = capitalizedAcronym(artistSlug),
                     performersWithGenres;
 
                 // sometimes we get false positives from the SeatGeek API
@@ -46,7 +46,7 @@
                 // all of them; if the name is too long, return the acronym
 
                 function capitalizedAcronym(string) {
-                    var splitted = string.split(" "),
+                    var splitted = string.split("-"),
                         i,
                         acronym,
                         upper;
@@ -106,11 +106,10 @@
 
                 function getNumPerformers(performers) {
                     var how_many = 0,
-                        slug = artistName.toLowerCase().replace(/\s/g, "-"),
                         i;
 
                     for(i = 0; i < performers.length; i++) {
-                        if(performers[i].slug !== slug) {
+                        if(performers[i].slug !== artistSlug) {
                             how_many++;
                         }
                     }

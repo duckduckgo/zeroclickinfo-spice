@@ -6,7 +6,9 @@
             return Spice.failed('seat_geek_events_by_city');
         }
 
-        var query = DDG.get_query(),
+        var script = $('[src*="/js/spice/seat_geek/events_by_city/"]')[0],
+            source = $(script).attr("src"),
+            citySlug = source.match(/events_by_city\/([^\/]*)/)[1],
             months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
             days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -16,7 +18,7 @@
             data: api_result.events,
             meta: {
                 sourceName: "SeatGeek",
-                sourceUrl: "https://seatgeek.com/search?search=" + query,
+                sourceUrl: "https://seatgeek.com/search?search=concerts+" + citySlug.replace(/-/g, "+"),
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
                 itemType: "Upcoming Concerts"
             },
