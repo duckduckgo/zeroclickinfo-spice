@@ -1,14 +1,20 @@
 <div class="header_container">
-     <div class="tile__title-container">
-         <h4 class="tx-clr--dk tile__title media__body has_sub">
-             {{title}}
-         </h4>
-    </div>
      {{#if logo}}
+       <div class="tile__title-container has_logo">
+           <h4 class="tx-clr--dk tile__title media__body has_sub">
+               {{title}}
+           </h4>
+        </div>
         <div class="container-wrapper">
             <div class="logo-container">
                 <img src="{{logo}}" onError="$(this).parent().parent().hide();"/>
             </div>
+        </div>
+     {{else}}
+       <div class="tile__title-container">
+           <h4 class="tx-clr--dk tile__title media__body has_sub">
+               {{title}}
+           </h4>
         </div>
      {{/if}}
 </div>

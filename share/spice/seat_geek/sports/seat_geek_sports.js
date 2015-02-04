@@ -39,7 +39,7 @@
                         performer = item.performers[i];
                     }
 
-                    both_performers.push(item.performers[i].short_name);
+                    both_performers.push(item.performers[i].name);
                 }
 
                 if(!relevant) {

@@ -44,6 +44,8 @@
     height: 3em;
     vertical-align: middle;
     overflow: hidden;
+}
+.zci--seat_geek_sports .tile__title-container.has_logo {
     width: 65%;
 }
 .zci--seat_geek_sports .tile__footer {
