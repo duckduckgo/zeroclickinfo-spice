@@ -31,6 +31,7 @@
                 var performer;
                 var both_performers = [];
                 var title;
+                var logo;
                 for(var i = 0; i < item.performers.length; i++) {
                     if(DDG.stringsRelevant(item.performers[i].name.toLowerCase(), clean_query, [], 3, true) || DDG.stringsRelevant(item.performers[i].short_name.toLowerCase(), clean_query, [], 3, true)) {
                         relevant = true;
@@ -59,6 +60,7 @@
                     }
                 } else {
                     title = performer.name;
+                    logo = getLogo(title, item.taxonomies);
                 }
 
                 function getDate(date) {
@@ -130,7 +132,7 @@
                     price: item.stats.lowest_price,
                     title: title,
                     place: "@ " + item.venue.name,
-                    logo: getLogo(performer.name, item.taxonomies),
+                    logo: logo,
                     city: item.venue.display_location,
                     month: getMonth(getDate(item.datetime_local)),
                     day: getDay(getDate(item.datetime_local)),
