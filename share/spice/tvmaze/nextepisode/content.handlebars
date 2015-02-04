@@ -1,0 +1,7 @@
+The next episode is called <b>{{ _embedded.nextepisode.name }}</b> and will
+{{#if webChannel}}
+be released
+{{else}}
+air
+{{/if}}
+on <b>{{ tvmaze_dateformat _embedded.nextepisode.airdate }}</b> at {{ _embedded.nextepisode.airtime }}.
