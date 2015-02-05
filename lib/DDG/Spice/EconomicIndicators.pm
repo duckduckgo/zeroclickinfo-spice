@@ -9,6 +9,7 @@ package DDG::Spice::EconomicIndicators;
 
 use DDG::Spice;
 use Time::Piece;
+use Locale::Country; 
 use JSON;
 
 spice is_cached => 1;
@@ -32,10 +33,6 @@ spice to => 'http://api.worldbank.org/countries/$1?per_page=10&date='.localtime-
 
 
 spice wrap_jsonp_callback => 1;
-
-#read the mapping of country names to country codes from country_codes.json
-my $country_codes = share('country_codes.json')->slurp;
-$country_codes = decode_json($country_codes);
 
 #data_sources.json contains details about api endpoints for different economic indicators
 my $data_sources = share('data_sources.json')->slurp;
@@ -79,7 +76,7 @@ handle query_clean => sub {
     my $country_key = $alias_lookup->{$_} || $_;
 
     #get the country code
-    my $country_code = $country_codes->{$country_key};
+    my $country_code = country2code($country_key, LOCALE_CODE_ALPHA_3);
 
     # return if the string is not one of the countries
     return unless $country_code;
