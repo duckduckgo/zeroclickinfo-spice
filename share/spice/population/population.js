@@ -25,7 +25,7 @@
             name: "Population",
             data: result,
             meta: {
-                sourceName: "worldbank.org",
+                sourceName: "World Bank",
                 sourceUrl: 'http://data.worldbank.org/country/' + URL_country,
             },
            normalize: function(item) {
