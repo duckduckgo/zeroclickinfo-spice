@@ -80,9 +80,9 @@ handle query_clean => sub {
 
     # return if the string is not one of the countries
     return unless $country_code;
-    
+
     #return placeholder for the api
-    return $country_code."/indicators/".$indicator_id;
+    return uc($country_code)."/indicators/".$indicator_id;
 
     
 };
