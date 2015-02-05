@@ -55,7 +55,7 @@
             name: "Answer",
             data: titleResult,
             meta: {
-                sourceName: "avalara.com",
+                sourceName: "Avalara",
                 sourceUrl: 'http://salestax.avalara.com'
             },
             normalize: function(item) {
