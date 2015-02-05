@@ -32,7 +32,6 @@
         });
 
         if(indicatorData !== null && indicatorData !== undefined){
-
             // if the indicator is per capita income
             if(indicatorData.indicator.value.match(/per capita/gi)){
                   indicatorData.value = indicatorData.value + " USD";
@@ -56,16 +55,10 @@
                   }
                   indicatorData.value = indicatorValue;
             }
-
-            
         }
-
         return indicatorData;
-
-
-
-
     }
+
     env.ddg_spice_economic_indicators = function(api_response){
 
         var indicatorData = getDataFromAPIResponse(api_response);
@@ -77,7 +70,6 @@
         // Render the response
         Spice.add({
             id: "economic_indicators",
-
             // Customize these properties
             name: "Economic Indicator",
             data: indicatorData,
