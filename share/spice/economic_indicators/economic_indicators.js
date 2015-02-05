@@ -53,7 +53,7 @@
                 sourceUrl: 'http://data.worldbank.org/indicator/' + indicatorData.indicator.id
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
                     content: Spice.economic_indicators.content,
                     moreAt: true
