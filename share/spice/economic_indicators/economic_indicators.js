@@ -77,7 +77,6 @@
                         indicatorValue = (indicatorValue/1000000000000).toFixed(2) + " Trillion USD";
                       } else if(indicatorValue/1000000000 > 1){
                         indicatorValue = (indicatorValue/1000000000).toFixed(2) + " Billion USD";
-                        indicatorValue = sprintf("%.3f ",indicatorValue/1000000000);
                       } else if(indicatorValue/1000000 > 1){
                         indicatorValue = (indicatorValue/1000000).toFixed(2) + " Million USD";
                       } else {
