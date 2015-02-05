@@ -31,7 +31,7 @@
             name: "Code Snippet",
             data: solution,
             meta: {
-                sourceName: "ineverylang.com",
+                sourceName: "In Every Language",
                 sourceUrl: solutionUrl
             },
 

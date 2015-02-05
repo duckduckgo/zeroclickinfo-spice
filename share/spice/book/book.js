@@ -22,7 +22,7 @@
             name: 'Books',
             data: api_result.books,
             meta: {
-                sourceName: "idreambooks.com", // More at ...
+                sourceName: "iDreamBooks", // More at ...
                 sourceUrl: api_result.books[0].detail_link
             },
 
