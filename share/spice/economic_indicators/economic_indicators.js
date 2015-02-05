@@ -6,7 +6,7 @@
             return null;
         }
         //the root object of api response must be an array of length 2
-        if (Object.prototype.toString.call( api_response ) !== '[object Array]' || api_response.length != 2){
+        if ( !$.isArray(api_response) || api_response.length != 2){
             return null;
         }
 
@@ -14,7 +14,7 @@
         var indicatorValuesByYear = api_response[1];
         
         //check if indicatorValuesByYear is an array
-        if(Object.prototype.toString.call( indicatorValuesByYear ) !== '[object Array]'){
+        if( !$.isArray(indicatorValuesByYear) ){
             return null;
         }
 
