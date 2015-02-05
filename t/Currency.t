@@ -142,6 +142,9 @@ ddg_spice_test(
     'usda loans' => undef,
     # We don't want to trigger on date-looking things.
     'euro 2016' => undef,
+    # Doesn't trigger with ficticious currencies
+    '2 british houses to australian dollars' => undef,
+    'what is 1 euro in canadian donuts' => undef,
 );
 
 done_testing;
