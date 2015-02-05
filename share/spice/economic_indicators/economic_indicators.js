@@ -31,31 +31,6 @@
             }
         });
 
-        if(indicatorData !== null && indicatorData !== undefined){
-            // if the indicator is per capita income
-            if(indicatorData.indicator.value.match(/per capita/gi)){
-                  indicatorData.value = indicatorData.value + " USD";
-            }
-            //else if indicatos is growth rate
-            else if(indicatorData.indicator.value.match(/growth/gi)){
-                  indicatorData.value = parseFloat(indicatorData.value).toFixed(2) + " %";
-            }
-            // else if the indicator is GDP
-            else if(indicatorData.indicator.value.match(/GDP/gi)){
-                  var indicatorValue = parseFloat(indicatorData.value);
-                  if(indicatorValue /1000000000000 > 1){
-                    indicatorValue = (indicatorValue/1000000000000).toFixed(2) + " Trillion USD";
-                  } else if(indicatorValue/1000000000 > 1){
-                    indicatorValue = (indicatorValue/1000000000).toFixed(2) + " Billion USD";
-                    indicatorValue = sprintf("%.3f ",indicatorValue/1000000000);
-                  } else if(indicatorValue/1000000 > 1){
-                    indicatorValue = (indicatorValue/1000000).toFixed(2) + " Million USD";
-                  } else {
-                    indicatorValue = indicatorValue.toFixed(2) + " USD";
-                  }
-                  indicatorData.value = indicatorValue;
-            }
-        }
         return indicatorData;
     }
 
@@ -82,6 +57,35 @@
                 options: {
                     content: Spice.economic_indicators.content,
                     moreAt: true
+                }
+            },
+            normalize: function(indicatorData){
+                
+                var indicatorValue = "";
+                // if the indicator is per capita income
+                if(indicatorData.indicator.value.match(/per capita/gi)){
+                      indicatorValue = indicatorData.value + " USD";
+                }
+                //else if indicator is growth rate
+                else if(indicatorData.indicator.value.match(/growth/gi)){
+                      indicatorValue = parseFloat(indicatorData.value).toFixed(2) + " %";
+                }
+                // else if the indicator is GDP
+                else if(indicatorData.indicator.value.match(/GDP/gi)){
+                      var indicatorValue = parseFloat(indicatorData.value);
+                      if(indicatorValue /1000000000000 > 1){
+                        indicatorValue = (indicatorValue/1000000000000).toFixed(2) + " Trillion USD";
+                      } else if(indicatorValue/1000000000 > 1){
+                        indicatorValue = (indicatorValue/1000000000).toFixed(2) + " Billion USD";
+                        indicatorValue = sprintf("%.3f ",indicatorValue/1000000000);
+                      } else if(indicatorValue/1000000 > 1){
+                        indicatorValue = (indicatorValue/1000000).toFixed(2) + " Million USD";
+                      } else {
+                        indicatorValue = indicatorValue.toFixed(2) + " USD";
+                      }
+                }
+                return {
+                    value : indicatorValue 
                 }
             }
         });
