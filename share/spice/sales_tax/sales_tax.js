@@ -48,7 +48,11 @@
         } else {
             titleResult = "Sales tax for "+stateName+" is "+taxRate+"%";
         }
-        
+
+        // Fix for sourceUrl washington d.c => washington-dc
+        // clean stateName for use as sourceUrl
+        stateName = stateName.replace(/\./,"").replace(/\s/,"-").toLowerCase();
+
         // Display
         Spice.add({
             id: "sales_tax",
@@ -56,7 +60,7 @@
             data: titleResult,
             meta: {
                 sourceName: "Avalara",
-                sourceUrl: 'http://www.taxrates.com/state-rates/' + stateName.toLowerCase()
+                sourceUrl: 'http://www.taxrates.com/state-rates/' + stateName
             },
             normalize: function(item) {
                 return {
