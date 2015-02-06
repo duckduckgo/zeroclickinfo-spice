@@ -74,7 +74,7 @@
                     var subtitle_tile = "Season "+ item.season_number+ ", #" + item.episode_number;
                     var subtitle_detail = "(Season "+ item.season_number+ ", #" + item.episode_number+")";
 
-                    var abstract_length = (isMobile ? 175 : 500);
+                    var abstract_length = (isMobile ? 175 : 200);
                     var abstract = Handlebars.helpers.ellipsis(item.overview, abstract_length);
 
                     var aired = "Originally aired "+ Handlebars.helpers.guideBox_getDate(item.first_aired)
