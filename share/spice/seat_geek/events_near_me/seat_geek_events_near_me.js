@@ -1,47 +1,64 @@
 (function(env) {
     "use strict";
-    env.ddg_spice_seat_geek = function(api_result) {
+    env.ddg_spice_seat_geek_events_near_me = function(api_result) {
 
         if(!api_result || api_result.error || api_result.events.length === 0) {
-            return Spice.failed('seat_geek');
+            return Spice.failed('seat_geek_events_near_me');
         }
 
-        var query = DDG.get_query();
-        var clean_query = query.replace(/((upcoming\s)?(concerts?))|(live(\s(shows?))?)/, '').trim().toLowerCase();
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-
-        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         Spice.add({
-            id: "seat_geek",
+            id: "seat_geek_events_near_me",
             name: "Concerts",
             data: api_result.events,
             meta: {
                 sourceName: "SeatGeek",
-                sourceUrl: "https://seatgeek.com/search?search=" + clean_query,
+                // just looking for "concerts" seems to return results near you
+                sourceUrl: "https://seatgeek.com/search?search=concert",
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
                 itemType: "Upcoming Concerts"
             },
             normalize: function(item) {
-                var artist = capitalizedAcronym(clean_query);
+                var artistName = item.performers[0].short_name,
+                    artistDisplayName = capitalizedAcronym(artistName),
+                    performersWithGenres;
+
+                // sometimes we get false positives from the SeatGeek API
+                // where for example sports games get displayed instead of concerts
+                //
+                // filtering out events whose performers don't have genres
+                // seems to be a way to guard against that
+                performersWithGenres = $.grep(item.performers, function (performer) {
+                  return !!performer.genres;
+                });
+
+                if (performersWithGenres.length === 0) {
+                  return null;
+                }
 
                 // Capitalize the name of the band/artist searched for;
                 // if the name is composed by multiple words, capitalize
                 // all of them; if the name is too long, return the acronym
 
                 function capitalizedAcronym(string) {
-                    var splitted = string.split(" ");
+                    var splitted = string.split(" "),
+                        i,
+                        acronym,
+                        upper;
+
                     if(string.length < 18) {
-                        for(var i = 0; i < splitted.length; i++) {
+                        for(i = 0; i < splitted.length; i++) {
                             splitted[i] = DDG.capitalize(splitted[i]);
                         }
 
                         return splitted.join(" ");
                     } else {
-                        var acronym = '';
-                        for(var i = 0; i < splitted.length; i++) {
-                            var upper = splitted[i].substr(0, 1).toUpperCase() + '.';
+                        acronym = '';
+                        for(i = 0; i < splitted.length; i++) {
+                            upper = splitted[i].substr(0, 1).toUpperCase() + '.';
                             acronym += upper;
                         }
 
@@ -86,9 +103,11 @@
                 // the one searched for
 
                 function getNumPerformers(performers) {
-                    var how_many = 0;
-                    var slug = clean_query.replace(/\s/g, "-");
-                    for(var i = 0; i < performers.length; i++) {
+                    var how_many = 0,
+                        slug = artistName.toLowerCase().replace(/\s/g, "-"),
+                        i;
+
+                    for(i = 0; i < performers.length; i++) {
                         if(performers[i].slug !== slug) {
                             how_many++;
                         }
@@ -114,7 +133,7 @@
                 return {
                     url: item.url,
                     price: getPrice(item.stats.lowest_price, item.stats.highest_price),
-                    artist: artist,
+                    artist: artistDisplayName,
                     num_performers: getNumPerformers(item.performers),
                     title: item.short_title,
                     place: item.venue.name,
@@ -126,7 +145,7 @@
             },
             templates: {
                 group: 'products',
-                item: Spice.seat_geek.item,
+                item: Spice.seat_geek_events_near_me.item,
                 detail: false,
                 item_detail: false,
                 options: {
