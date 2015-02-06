@@ -55,7 +55,6 @@
             templates: {
                 group: 'text',
                 options: {
-                    content: Spice.economic_indicators.content,
                     moreAt: true
                 }
             },
@@ -84,7 +83,8 @@
                       }
                 }
                 return {
-                    value : indicatorValue 
+                    title : indicatorValue,
+                    subtitle : DDG.getProperty(indicatorData,'country.value') + ", " + DDG.getProperty(indicatorData,'indicator.value') + ", " + DDG.getProperty(indicatorData,'date') 
                 }
             }
         });
