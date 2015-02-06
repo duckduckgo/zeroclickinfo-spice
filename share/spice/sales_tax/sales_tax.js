@@ -56,7 +56,7 @@
             data: titleResult,
             meta: {
                 sourceName: "Avalara",
-                sourceUrl: 'http://salestax.avalara.com'
+                sourceUrl: 'http://www.taxrates.com/state-rates/' + stateName.toLowerCase()
             },
             normalize: function(item) {
                 return {
