@@ -11,7 +11,7 @@
             name: "Software",
             data: api_result,
             meta: {
-                sourceName: "npmjs.org",
+                sourceName: "npmjs",
                 sourceUrl: 'http://npmjs.org/package/' + api_result.name
             },
             
