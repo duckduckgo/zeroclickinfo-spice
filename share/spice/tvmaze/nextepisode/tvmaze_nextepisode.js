@@ -11,7 +11,7 @@
             name: "TV Shows",
             data: api_result,
             meta: {
-                sourceName: "TVmaze.com",
+                sourceName: "TVmaze",
                 sourceUrl: api_result._embedded.nextepisode.url
             },
             normalize: function(item){
