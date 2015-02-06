@@ -84,7 +84,7 @@
                     rating: false,
                     buy: Spice.in_theaters.buy
                 },
-                variants {
+                variants: {
                     tile: 'poster'
                 }
             }

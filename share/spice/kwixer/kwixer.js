@@ -50,7 +50,7 @@
                     rating: false,
                     buy: Spice.kwixer.buy
                 },
-                variants {
+                variants: {
                     tile: 'poster'
                 }
             }

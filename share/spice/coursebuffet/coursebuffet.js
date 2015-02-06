@@ -41,7 +41,7 @@
                 detail: false,
                 options: {
                     moreAt: true
-                }
+                },
                 variants: {
                     tile: 'video'
                 }
