@@ -75,8 +75,7 @@
                         subtitle_detail = "(Season "+ item.season_number+ ", #" + item.episode_number+")",
                         abstract_length = (isMobile ? 175 : 200),
                         abstract = Handlebars.helpers.ellipsis(item.overview, abstract_length),
-                        aired = "Originally aired "+ Handlebars.helpers.guideBox_getDate(item.first_aired)
-                                + network
+                        aired = "Originally aired "+ Handlebars.helpers.guideBox_getDate(item.first_aired) + network;
                     
                     return {
                         image: item.thumbnail_304x171,
