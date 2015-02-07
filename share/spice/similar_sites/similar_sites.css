@@ -6,11 +6,6 @@
     cursor: pointer;
 }
 
-.zci--similar_sites #container a {
-    margin-left: 5px;
-    vertical-align: middle;
-}
-
 .zci--similar_sites #container img {
     vertical-align: middle;
 }
@@ -20,13 +15,30 @@
     font-size: 16px;
 }
 
+.zci--similar_sites #container div {
+    margin-bottom: 5px;
+}
+
+.zci--similar_sites #container div > a {
+    font-size: 1.357em;
+    font-weight: 300;
+    margin-left: 10px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
 .zci--similar_sites .vertical_roller {
     border-left: 1px solid #ccc;
     margin-left: 15px;
 }
 
 .zci--similar_sites #more_info {
-    margin-top: 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.zci--similar_sites #more_info span {
+    font-size: 0.82em;
 }
 
 .zci--similar_sites #more_at {
