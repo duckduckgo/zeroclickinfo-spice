@@ -14,6 +14,11 @@
                 sourceName: "TVmaze.com",
                 sourceUrl: api_result.url
             },
+            relevancy: {
+                primary: [
+                    { key: 'name' },
+                ]
+            },
             normalize: function(item){
                 var infoboxData = [
                     {
