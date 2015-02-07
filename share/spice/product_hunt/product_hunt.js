@@ -19,7 +19,7 @@
 
         Spice.add({
             id: 'producthunt',
-            name: 'Products',
+            name: 'ProductHunt',
             data: api_result.hits,
             meta: {
                 searchTerm: 'Product' + (api_result.nbHits === 1 ? '' : 's'),
@@ -45,6 +45,10 @@
                 group: 'text',
                 options: {
                     footer: Spice.product_hunt.footer
+                },
+                variants: {
+                    tileTitle: '2line-small',
+                    tileFooter: '2line'
                 },
                 detail: false,
                 item_detail: false
