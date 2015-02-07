@@ -20,14 +20,7 @@ spice to => 'http://api.wordnik.com/v4/words.json/randomWords?includePartOfSpeec
 spice proxy_cache_valid => '418 1d';
 
 # List of all trigger words
-my @triggerWords = ('noun', 'nouns', 
-                 'verb', 'verbs', 
-                 'adjective', 'adjectives', 
-                 'pronoun', 'pronouns', 
-                 'preposition', 'prepositions', 
-                 'conjunction', 'conjunctions', 
-                 'adverb', 'adverbs');
-
+my @triggerWords = map { ($_, $_."s") } qw(noun verb adjective pronoun preposition conjunction adverb);
 # List of keywords used with triggers
 my @keywords = ("random", "example");
 # Join keywords for use in regexp
