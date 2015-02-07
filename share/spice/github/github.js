@@ -11,7 +11,8 @@
                     source = $(script).attr("src"),
                     query = source.match(/github\/([^\/]+)/)[1];
 
-        var results = api_result.data.repositories;
+        //var results = api_result.data.repositories;
+        var results = api_result.data.items;
 
         if (!results) {
             return Spice.failed('github');
