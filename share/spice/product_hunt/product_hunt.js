@@ -50,5 +50,11 @@
                 item_detail: false
             }
         });
+
+        // Prevent opening item's url when clicking the "Comments" link
+        $('.tile--producthunt .tile__footer a')
+            .on('mousedown', function(e){
+                e.stopPropagation();
+            });
     };
 }(this));
