@@ -14,41 +14,6 @@ function MassOnTime_format_parish_address (address, city, province) {
     }
 };
 
-//Event types are returns as integers. This converts them to their string reps.
-function MassOnTime_format_eventtypeid (eventtypeid) {
-    var event_type_name = {
-        1 : "Adoration",
-        2 : "Confession",
-        3 : "Devotion",
-        5 : "Holy Day Mass",
-        6 : "Holy Day Mass (Vigil)",
-        7 : "Weekday Mass",
-        8 : "Weekend Mass"
-    };
-    return event_type_name[eventtypeid] || "Service";
-};
-
-function MassOnTime_format_12h_time (utc_time) {
-    if (utc_time) {
-        var start = DDG.getDateFromString(utc_time);
-        var meridian = 'am';
-        var hours = start.getHours();
-        if (hours >= 12) {
-            meridian = 'pm'
-            if (hours > 12) {
-                hours = hours % 12;
-            }
-        }
-        var minutes = start.getMinutes().toString();
-        if (minutes.length === 1) {
-            minutes = '0'+minutes;
-        }
-        return hours.toString()+':'+minutes+meridian;
-    } else {
-        return "";
-    }
-};
-
 function ddg_spice_mass_on_time (api_result) {
 
     if (!api_result || api_result.error) {
@@ -119,32 +84,56 @@ function ddg_spice_mass_on_time (api_result) {
                                   "/25?lat=" + details.location.lat + "&lng=" + details.location.lng
             },
             normalize: function(item) {
-                var event_name = MassOnTime_format_eventtypeid(item.eventtypeid),
-                    parish_address = MassOnTime_format_parish_address(item.address, item.city, item.province),
-                    results = {
+                return {
                     id: item.church_id,
                     name: item.churchname,
                     url: item.webaddress ? item.webaddress : MassOnTime_backup_link(item.church_id),
                     lon: item.lng,
                     lat: item.lat,
                     city: item.diocesename ? item.diocesename : item.city,
-                    address: event_name + ' at ' + parish_address
+                    address: MassOnTime_format_parish_address(item.address, item.city, item.province)
                 };
-                
-                if (item.starttime && item.endtime) {
-                    var startime_12h = MassOnTime_format_12h_time(item.starttime),
-                        endtime_12h = MassOnTime_format_12h_time(item.endtime);
-                    
-                    results.hours = { 
-                        Sun: startime_12h + ' - ' + endtime_12h 
-                    };
-                }
-              
-                return results;
             },
             templates: {
-                group: 'places'
+                group: 'places',
+                item: Spice.mass_on_time.item
             }
         });
     });
 }
+
+
+//Event types are returns as integers. This converts them to their string reps.
+Handlebars.registerHelper("MassOnTime_format_eventtypeid", function (eventtypeid) {
+    var event_type_name = {
+        1 : "Adoration",
+        2 : "Confession",
+        3 : "Devotion",
+        5 : "Holy Day Mass",
+        6 : "Holy Day Mass (Vigil)",
+        7 : "Weekday Mass",
+        8 : "Weekend Mass"
+    };
+    return event_type_name[eventtypeid] || "Service";
+});
+
+Handlebars.registerHelper( "MassOnTime_format_12h_start", function (utc_starttime) {
+    if (utc_starttime) {
+        var start = DDG.getDateFromString(utc_starttime);
+        var meridian = 'am';
+        var hours = start.getHours();
+        if (hours >= 12) {
+            meridian = 'pm'
+            if (hours > 12) {
+                hours = hours % 12;
+            }
+        }
+        var minutes = start.getMinutes().toString();
+        if (minutes.length === 1) {
+            minutes = '0'+minutes;
+        }
+        return hours.toString()+':'+minutes+meridian;
+    } else {
+        return "";
+    }
+});

@@ -1,0 +1,54 @@
+<div class="tile  tile--f  tile--loc  zci-mass_on_time">
+
+    <!-- Front of tile -->
+    <div class="tile--f__main  tile--loc__main">
+        <div class="tile__num">{{num}}</div>
+
+        <div class="tile__body">
+            <h6 class="tile__title">{{ellipsis name 33}}</h6>
+            <p>{{diocesename}}</p>
+            
+            <div class="tile__foot">
+                {{#if phone}}
+                <span class="tile__foot-line">{{ellipsis phone}}</span>
+                {{/if}}
+                <span class="tile__foot-line">{{MassOnTime_format_eventtypeid eventtypeid}}</span>
+                {{#if starttime}}
+                    <span class="tile__foot-line">{{MassOnTime_format_12h_start starttime}}</span>
+                {{/if}} 
+            </div>
+        </div>
+    </div>
+
+    <!-- Back of tile -->
+    <div class="tile--f__alt  tile--loc__alt">
+        <div class="tile__body  {{#and url meta.sourceName}}has-foot{{/and}}">
+
+            <h6 class="tile__title">
+                <a href="{{url}}" title="{{name}}">{{ellipsis name 33}}</a>
+            </h6>
+
+            {{#if address_lines}}
+                <a class="tile__address" href="{{directions}}">
+                    {{#each address_lines}}
+                        {{.}}<br />
+                    {{/each}}
+                </a>
+            {{else}}
+                {{#if address}}
+                    <span class="tile__address">{{ellipsis address 65}}</span>
+                {{/if}}
+            {{/if}}
+
+            {{#if phone}}
+                <a class="tile__phone" href="tel:{{phone}}">{{phone}}</a>
+            {{/if}}
+
+            {{#and url meta.sourceName}}
+                <div class="tile__foot">
+                    {{{moreAt url meta.sourceName dynamicMoreAtText=5}}}
+                </div>
+            {{/and}}
+        </div>
+    </div>
+</div>

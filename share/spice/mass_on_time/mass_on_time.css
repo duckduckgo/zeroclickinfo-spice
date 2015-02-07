@@ -1,7 +1,19 @@
-.zci--mass .mass--address {
-    color: #999;
+.is-expanded .zci-mass_on_time .tile--f__main .tile__body {
+    padding-top: 2.6em;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
 }
 
-.zci--mass .tile--mass {
-    height: 11em;
+.zci-mass_on_time .tile--f__main .tile__body {
+    padding: 0.6em 0.3em;
+}
+
+.zci-mass_on_time .tile--f__main .tile__foot {
+    padding: 0.6em 0.3em;
+    height: 4em;
+    white-space: normal;
+}
+
+.zci-mass_on_time .tile--f__main .tile__foot-line {
+    white-space: nowrap;
 }
