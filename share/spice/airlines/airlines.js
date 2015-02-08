@@ -161,47 +161,6 @@
         }
     };
 
-    // Check when the plane will depart (or if it has departed).
-    Handlebars.registerHelper("airline_status", function(airportOffset, isDeparture) {
-        var dateObject = arrivalDate;
-        if(isDeparture) {
-            dateObject = departureDate;
-        }
-
-        var delta = relativeTime(dateObject, airportOffset);
-
-        if(isDeparture) {
-            if(delta === 0) {
-                return "Departing";
-            } else if(delta > 0) {
-                return "Departs";
-            } else {
-                return "Departed";
-            }
-        } else {
-            if(delta === 0) {
-                return "Arriving";
-            } else if(delta > 0) {
-                return "Arrives";
-            } else {
-                return "Arrived";
-            }
-        }
-    });
-
-    // Compute for the relative time (e.g. 31 minutes ago).
-    Handlebars.registerHelper("relative", function(airportOffset, isDeparture) {
-        var dateObject = arrivalDate;
-        if(isDeparture) {
-            dateObject = departureDate;
-        }
-
-        var delta = relativeTime(dateObject, airportOffset),
-            time = toTime(delta);
-
-        return time;
-    });
-
     Handlebars.registerHelper("airportName", function(name) {
         return name.replace(/airport|international/ig, "");
     });
