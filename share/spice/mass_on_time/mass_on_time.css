@@ -1,7 +1,11 @@
-.is-expanded .zci-mass_on_time .tile--f__main .tile__body {
-    padding-top: 2.6em;
+.is-active .zci-mass_on_time .tile--f__main .tile__body {
+    padding-top: 0.6em;
     padding-left: 0.6em;
     padding-right: 0.6em;
+}
+
+.is-expanded .zci-mass_on_time .tile--f__main .tile__body {
+    padding-top: 2.6em;
 }
 
 .zci-mass_on_time .tile--f__main .tile__body {

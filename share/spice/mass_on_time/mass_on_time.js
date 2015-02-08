@@ -102,6 +102,9 @@ function ddg_spice_mass_on_time (api_result) {
     });
 }
 
+/*
+   ###  Handlebars Helpers ###
+*/
 
 //Event types are returns as integers. This converts them to their string reps.
 Handlebars.registerHelper("MassOnTime_format_eventtypeid", function (eventtypeid) {
