@@ -5,31 +5,31 @@
 
 <div class='data'>
 
-  {{#GoWatchIt_gwi_ifHasBothBuyAndRent buy_line rent_line }}
+  {{#gwi_ifHasBothBuyAndRent buy_line rent_line }}
     <div class="gwi--container">
         <div class="left half">
-            Rent from<br><span class='price tx-clr--dk'>{{GoWatchIt_gwi_price rent_line}}</span>
+            Rent from<br><span class='price tx-clr--dk'>{{gwi_price rent_line}}</span>
         </div>
 
         <div class="right half">
-            Buy from<br><span class='price tx-clr--dk'>{{GoWatchIt_gwi_price buy_line}}</span>
+            Buy from<br><span class='price tx-clr--dk'>{{gwi_price buy_line}}</span>
         </div>
     </div>
   {{else}}
-    {{#GoWatchIt_buyOrRent buy_line rent_line}}
+    {{#gwi_buyOrRent buy_line rent_line}}
         {{#gwi_ifHasPrice buy_line}}
             <div class="single">
-                Buy from<br><span class='price tx-clr--dk'>{{GoWatchIt_gwi_price buy_line}}</span>
+                Buy from<br><span class='price tx-clr--dk'>{{gwi_price buy_line}}</span>
             </div>
         {{else}}
             <div class="single">
                 <span class="price gwi-price--subscription tx-clr--dk">{{buy_line}}</span>
             </div>
         {{/gwi_ifHasPrice}}        
-    {{/GoWatchIt_buyOrRent}}
-  {{/GoWatchIt_gwi_ifHasBothBuyAndRent}}
+    {{/gwi_buyOrRent}}
+  {{/gwi_ifHasBothBuyAndRent}}
 </div>
 
-<div class="{{GoWatchIt_gwi_footerClass buy_line rent_line}} tx-clr--lt one-line">
+<div class="{{gwi_footerClass buy_line rent_line}} tx-clr--lt one-line">
   {{format_line}}
 </div>
