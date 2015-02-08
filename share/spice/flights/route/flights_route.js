@@ -336,7 +336,7 @@
     });
 
 
-    Spice.registerHelper("status", function(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
+    Spice.registerHelper("airline_status", function(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
         var result = ddg_spice_flights.onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival),
             ok_class = result[1] ? "tile__ok" : "tile__not";
         return '<div class="' + ok_class + '">' + result[0] + '</div>';
