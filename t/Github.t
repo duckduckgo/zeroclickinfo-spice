@@ -18,8 +18,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Github'
     ),
     
-    'github status' => undef,
-    'github' => undef
+    'github status' => undef
 );
 
 done_testing;

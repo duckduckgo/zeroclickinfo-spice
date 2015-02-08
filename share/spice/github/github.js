@@ -63,10 +63,10 @@
 }(this));
 
 // Make sure we display only three items.
-Handlebars.registerHelper("GitHub_last_pushed", function(pushed) {
+Handlebars.registerHelper("GitHub_last_pushed", function(pushed_at) {
     "use strict";
 
-    var last_pushed = Math.floor((new Date() - new Date(pushed)) / (1000*60*60*24));
+    var last_pushed = Math.floor((new Date() - new Date(pushed_at)) / (1000*60*60*24));
 
     var years_ago = Math.floor(last_pushed / 365);
     if (years_ago >= 1) {
@@ -81,3 +81,4 @@ Handlebars.registerHelper("GitHub_last_pushed", function(pushed) {
 
     return last_pushed;
 });
+

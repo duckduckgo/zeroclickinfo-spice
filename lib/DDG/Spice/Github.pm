@@ -33,35 +33,30 @@ spice proxy_cache_valid => '200 30d';
 
 handle query_lc => sub {
     s/^github\s+|\s+github$//;
+    if ($_ eq "") {
+        return;
+    }
     
     my $query = $_;
     my $l; 
-    # structuring the search this way gives the first langauge specified
-    # precedence. So have 'python javascript' passes the query
-    # 'javascript language:python' to github.
-    if (/($langs) /||/ ($langs)/ || /^($langs)/ || /($langs)$/) {
+    if (/ ($langs) /|| /^($langs) / || / ($langs)$/) {
         $l = $1;
-        $query =~ s/($langs) | ($langs)|^($langs)|($langs)$//;
+        $query =~ s/ ($langs) |^($langs) | ($langs)$//;
 
         # make sure there is an actual query, and not just a language term search
-        #for ($query) {
-        #    $query =~ s/^\s*//; 
-        #    $query =~ s/\s*$//;
-        #    if ($query eq "") {
-        #        # playing around with the main site, the live version does load
-        #        # something for just 'github bash' so go ahead and pass the query
-        #        return $_;
-        #    }
-        #}
+        for ($query) {
+            $query =~ s/^\s*//; 
+            $query =~ s/\s*$//;
+            if ($query eq "") {
+                return;
+            }
+        }
 
         # These is no separate language parameter for the query to 
         # Github. You specify language as a part of the raw query string
         # passed to the api like on the web form interface. 
-        return "${query} language:\"${l}\"";
+        return "${query} language:\"${l}\"" unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
     } 
-    
-    
-    
     
     return $_ unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
     return;
