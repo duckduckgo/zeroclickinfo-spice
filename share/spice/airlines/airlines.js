@@ -160,11 +160,7 @@
             return time + "ago";
         }
     };
-
-    Handlebars.registerHelper("airportName", function(name) {
-        return name.replace(/airport|international/ig, "");
-    });
-
+    
     // Add the date and time or departure or arrival.
     Handlebars.registerHelper("airline_time", function(isDeparture, arrivalDate, departureDate) {
         var dateObject = new Date(arrivalDate);
