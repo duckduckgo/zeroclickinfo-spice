@@ -207,7 +207,7 @@
         return [STATUS[flight.StatusCode], true];
     };
 
-    Handlebars.registerHelper("status", function(flight, departureDate, arrivalDate) {
+    Handlebars.registerHelper("airline_status", function(flight, departureDate, arrivalDate) {
         var result = onTime(flight, departureDate, arrivalDate),
             ok_class = result[1] ? "tile__ok" : "tile__not";
         return '<div class="' + ok_class + '">' + result[0] + '</div>';
