@@ -53,13 +53,17 @@ Handlebars.registerHelper("reddit_user_search_friendly_account_age", function(ti
     
     if(wholeYears>1){
         var result     = wholeYears + " years";
-    } else{
+    } else if(wholeYears === 1){
+        var result     = wholeYears + " year";
+    }else{
         var months     = now.getMonth() - created.getMonth() + (12 * (now.getFullYear() - created.getFullYear()));
         if(now.getDate() < created.getDate()){
             months--;
         }
         if(months>1){
             var result = months + " months";
+        }else if(months === 1){
+            var result = months + " month";
         }else{
             var days   = Math.floor((now.getTime()-created.getTime())/(one_day)),
             result = days + " days";
