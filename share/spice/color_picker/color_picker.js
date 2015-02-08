@@ -30,16 +30,17 @@
         //TODO: use the real image paths
         Spice.add({
             id: "color_picker",
-            name: "ColorPicker",
+            name: "Color Picker",
             data: {
-                saturation_value_path: DDG.get_asset_path('color_picker', 'assets/saturation_value_gradient.png'),
-                hue_path: DDG.get_asset_path('color_picker', 'assets/hue_gradient.png')
+                saturation_value_path: DDG.get_asset_path('color_picker', 'saturation_value_gradient.png'),
+                hue_path: DDG.get_asset_path('color_picker', 'hue_gradient.png')
             },
             meta: {},
             templates: {
                 detail: Spice.color_picker.content,
                 item: Spice.color_picker.content,
-                item_detail: false
+                item_detail: false,
+                wrap_detail: 'base_detail'
             },
             onShow: function() {
                 //The DOM cache was not initialized when it was created. The DOM should be ready
@@ -257,7 +258,7 @@
             if (hex.charAt(0) === '#') hex = hex.substring(1);
             if (/^[0-9a-f]+$/i.test(hex)) {
                 if (hex.length === 3)
-                    hex = '0' + hex.charAt(0) + '0' + hex.charAt(1) + '0' + hex.charAt(2);
+                    hex = hex.charAt(0) + hex.charAt(0) + hex.charAt(1) + hex.charAt(1) + hex.charAt(2) + hex.charAt(2);
                 if (hex.length === 6)
                     update_all_from_hex(hex);
                 else
@@ -276,11 +277,11 @@
         function get_marker_positions(hsv) {
             var markers = {
                 hue: {
-                    y: Math.round((hsv.hue / 360) * 256) + 10
+                    y: Math.round((hsv.hue / 360) * 256) //+ 10
                 },
                 saturation_value: {
-                    x: Math.round((hsv.saturation / 100) * 256) + 3,
-                    y: 256 - Math.round((hsv.value / 100) * 256) + 10
+                    x: Math.round((hsv.saturation / 100) * 256), //+ 3
+                    y: 256 - Math.round((hsv.value / 100) * 256) //+ 10
                 }
             };
 
@@ -429,18 +430,18 @@
             local_dom.$magenta_input.val(current_color.cmyk.magenta);
             local_dom.$yellow_input.val(current_color.cmyk.yellow);
             local_dom.$black_input.val(current_color.cmyk.black);
-            local_dom.$hex_input.val(current_color.hex);
+            local_dom.$hex_input.val(current_color.hex.substring(1));
 
             local_dom.$saturation_value_picker.css('background-color', current_color.hex_hue);
             local_dom.$sample.css('background-color', current_color.hex);
-            local_dom.$sample.text(current_color.hex);
-            if (current_color.hsv.value < 70) {
-                local_dom.$sample.addClass('dark');
-                local_dom.$sample.removeClass('light');
-            } else {
-                local_dom.$sample.addClass('light');
-                local_dom.$sample.removeClass('dark');
-            }
+            // local_dom.$sample.text(current_color.hex);
+            // if (current_color.hsv.value < 70) {
+            //     local_dom.$sample.addClass('dark');
+            //     local_dom.$sample.removeClass('light');
+            // } else {
+            //     local_dom.$sample.addClass('light');
+            //     local_dom.$sample.removeClass('dark');
+            // }
 
             local_dom.$saturation_value_marker.css('top', markers.saturation_value.y);
             local_dom.$saturation_value_marker.css('left', markers.saturation_value.x);
@@ -449,14 +450,18 @@
             //Change the color of the text in the samples to make sure it is legible.
             local_dom.$palette_sample.each(function(i) {
                 $(this).css('background-color', current_color.palette[i]);
-                $(this).text(current_color.palette[i]);
-                if (current_color.hsv.value < 70) {
-                    $(this).addClass('dark');
-                    $(this).removeClass('light');
-                } else {
-                    $(this).addClass('light');
-                    $(this).removeClass('dark');
-                }
+                // $(this).text(current_color.palette[i]);
+                // if (current_color.hsv.value < 70) {
+                //     $(this).addClass('dark');
+                //     $(this).removeClass('light');
+                // } else {
+                //     $(this).addClass('light');
+                //     $(this).removeClass('dark');
+                // }
+            });
+
+            local_dom.$palette_input.each(function(i) {
+                $(this).val(current_color.palette[i].substring(1));
             });
         }
 
@@ -675,7 +680,7 @@
                     var hex = possible_color_query.substring(1);
                     if (/^[0-9a-f]+$/i.test(hex)) {
                         if (hex.length === 3)
-                            hex = '0' + hex.charAt(0) + '0' + hex.charAt(1) + '0' + hex.charAt(2);
+                            hex = hex.charAt(0) + hex.charAt(0) + hex.charAt(1) + hex.charAt(1) + hex.charAt(2) + hex.charAt(2);
                         if (hex.length === 6) {
                             var rgb = convert_hex_to_rgb(hex),
                                 colors = get_all_colors_from_rgb(rgb.red, rgb.green, rgb.blue);
@@ -714,6 +719,7 @@
                 $saturation_value_marker: $root.find('#saturation_value_marker'),
                 $hue_marker: $root.find('#hue_marker'),
                 $palette_sample: $root.find('.palette_sample'),
+                $palette_input: $root.find('.palette_input'),
                 initialized: true
             };
 
