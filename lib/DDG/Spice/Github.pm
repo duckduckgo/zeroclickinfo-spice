@@ -13,7 +13,6 @@ attribution web => ['http://dylansserver.com','Dylan Lloyd'],
             email => ['dylan@dylansserver.com','Dylan Lloyd'];
 
 triggers startend => "github";
-#spice to => 'https://api.github.com/legacy/repos/search/$1?callback={{callback}}';
 
 my @triggers = share("triggers.txt")->slurp;
 triggers startend => @triggers;
@@ -24,12 +23,6 @@ my $langs = join("|", map(quotemeta, @triggers));
 spice to => 'https://api.github.com/search/repositories?q=$1&sort=stars&callback={{callback}}';
 
 spice proxy_cache_valid => '200 30d';
-
-#handle remainder_lc => sub {
-#    return unless $_;
-#    return $_ unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
-#    return;
-#};
 
 handle query_lc => sub {
     s/^github\s+|\s+github$//;
@@ -61,6 +54,4 @@ handle query_lc => sub {
     return $_ unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
     return;
 };
-
-
 1;
