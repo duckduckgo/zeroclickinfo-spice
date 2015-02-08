@@ -29,43 +29,52 @@
 Handlebars.registerHelper("reddit_user_search_timeConverter", function(timestamp){
     "use strict";
     
-  var created   = new Date(timestamp*1000);
-  var months    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var year      = created.getFullYear();
-  var month     = months[created.getMonth()];
-  var date      = created.getDate();
-  var hour      = created.getUTCHours() < 10 ? '0' + created.getUTCHours() : created.getUTCHours();
-  var min       = created.getUTCMinutes() < 10 ? '0' + created.getUTCMinutes() : created.getUTCMinutes(); 
-  var sec       = created.getUTCSeconds() < 10 ? '0' + created.getUTCSeconds() : created.getUTCSeconds();
-  var time      = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    var created   = new Date(timestamp*1000),
+        months    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+        year      = created.getFullYear(),
+        month     = months[created.getMonth()],
+        date      = created.getDate(),
+        hour      = created.getUTCHours() < 10 ? '0' + created.getUTCHours() : created.getUTCHours(),
+        min       = created.getUTCMinutes() < 10 ? '0' + created.getUTCMinutes() : created.getUTCMinutes(),
+        sec       = created.getUTCSeconds() < 10 ? '0' + created.getUTCSeconds() : created.getUTCSeconds(),
+        time      = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
     
   return time;
 });
 
 Handlebars.registerHelper("reddit_user_search_friendly_account_age", function(timestamp){
-        "use strict";
-    var created     = new Date(timestamp*1000);
-    var now         = new Date();
-    var one_day     = 1000*60*60*24;
-    var one_year    = 1000*60*60*24*365;
-    
-    var years       = (now.getTime()-created.getTime())/one_year;
-    var wholeYears  = Math.floor(years);
+    "use strict";
+    var created     = new Date(timestamp*1000),
+        now         = new Date(),
+        one_day     = 1000*60*60*24,
+        one_year    = 1000*60*60*24*365,
+        years       = (now.getTime()-created.getTime())/one_year,
+        wholeYears  = Math.floor(years);
     
     if(wholeYears>1){
-        var result     = "redditor for " + wholeYears + " years";
+        var result     = wholeYears + " years";
     } else{
         var months     = now.getMonth() - created.getMonth() + (12 * (now.getFullYear() - created.getFullYear()));
         if(now.getDate() < created.getDate()){
             months--;
         }
         if(months>1){
-            var result = "redditor for " + months + " months";
+            var result = months + " months";
         }else{
-            var days   = Math.floor((now.getTime()-created.getTime())/(one_day));
-            var result = "redditor for " + days + " days";
+            var days   = Math.floor((now.getTime()-created.getTime())/(one_day)),
+            result = days + " days";
         }
     }
+    return "redditor for " + result;
+});
 
-    return result;
+
+Handlebars.registerHelper("reddit_user_search_addCommas", function(number){
+    "use strict";
+    number += '';    
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(number)) {
+		number = number.replace(rgx, '$1' + ',' + '$2');
+	}
+	return number;
 });
