@@ -15,29 +15,28 @@
                 sourceName: 'Expatistan'
             },
             normalize: function(item) {
-                // Split abstract in order to get
-                // two separate strings and modify the first
-                if (!api_result.abstract) {
-                    return null;
+
+                // Vars
+                var city, cost, subtitle, title;
+
+                // Guard if abstract or source_url don't exist
+                if (!api_result.abstract || !api_result.source_url) {
+                    return Spice.failed('expatistan');
                 }
 
-                var lines = api_result.abstract.split(/of\s[0-9]+\s/);
-                var cost = api_result.abstract.match(/\s[0-9]+\s/);
+                // We have a comparison result return the full abstract
+                if(api_result.source_url.match(/comparison/)) {
+                    title = api_result.abstract;
+                } else {
+                // We have a single result extract the index and create a subtitle
+                    city = api_result.abstract.match(/<b>(.*?)<\/b>/g)[0];
+                    title = api_result.abstract.match(/\s[0-9]+\s/)[0];
+                    subtitle = city + " - Cost of living index (Expatistan's scale)";
+                }
 
-              
-                var firstLine = '';
-                var secondLine = '';
-                
-                if (lines.length === 2 && cost.length >= 1) {
-                    firstLine = lines[0].replace(' has a', '') + ' =' + cost[0];
-                    secondLine = lines[1];
-                }              
-
-                if(!cost) firstLine = api_result.abstract.replace(/\./, "");   
-                
                 return {
-                    title: DDG.strip_html(firstLine),
-                    subtitle: DDG.strip_html(secondLine)
+                    title: DDG.strip_html(title),
+                    subtitle: DDG.strip_html(subtitle)
                 };
             },
             templates: {
