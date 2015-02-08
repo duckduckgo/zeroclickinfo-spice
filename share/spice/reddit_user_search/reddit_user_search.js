@@ -26,7 +26,7 @@
     }
 }(this));
 
-Handlebars.registerHelper("reddit_user_search_timeConverter", function(timestamp){
+Spice.registerHelper("reddit_user_search_timeConverter", function(timestamp){
     "use strict";
     
     var created   = new Date(timestamp*1000),
@@ -42,7 +42,7 @@ Handlebars.registerHelper("reddit_user_search_timeConverter", function(timestamp
   return time;
 });
 
-Handlebars.registerHelper("reddit_user_search_friendly_account_age", function(timestamp){
+Spice.registerHelper("reddit_user_search_friendly_account_age", function(timestamp){
     "use strict";
     var created     = new Date(timestamp*1000),
         now         = new Date(),
@@ -73,7 +73,7 @@ Handlebars.registerHelper("reddit_user_search_friendly_account_age", function(ti
 });
 
 
-Handlebars.registerHelper("reddit_user_search_addCommas", function(number){
+Spice.registerHelper("reddit_user_search_addCommas", function(number){
     "use strict";
     number += '';    
 	var rgx = /(\d+)(\d{3})/;
