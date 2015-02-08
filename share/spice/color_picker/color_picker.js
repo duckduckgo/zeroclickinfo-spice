@@ -277,11 +277,11 @@
         function get_marker_positions(hsv) {
             var markers = {
                 hue: {
-                    y: Math.round((hsv.hue / 360) * 256) //+ 10
+                    y: Math.round((hsv.hue / 360) * 256)
                 },
                 saturation_value: {
-                    x: Math.round((hsv.saturation / 100) * 256), //+ 3
-                    y: 256 - Math.round((hsv.value / 100) * 256) //+ 10
+                    x: Math.round((hsv.saturation / 100) * 256),
+                    y: 256 - Math.round((hsv.value / 100) * 256)
                 }
             };
 
@@ -557,10 +557,10 @@
                 yellow = (black < 1) ? ((1 - blue_proportion - black) / (1 - black)) : 0,
             
                 cmyk= {
-                    black: (100 * black).toFixed(1),
-                    cyan: (100 * cyan).toFixed(1),
-                    magenta: (100 * magenta).toFixed(1),
-                    yellow: (100 * yellow).toFixed(1)
+                    black: (100 * black).toFixed(0),
+                    cyan: (100 * cyan).toFixed(0),
+                    magenta: (100 * magenta).toFixed(0),
+                    yellow: (100 * yellow).toFixed(0)
                 };
 
             return cmyk;
