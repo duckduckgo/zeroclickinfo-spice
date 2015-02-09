@@ -38,14 +38,12 @@ handle remainder => sub {
     # Confirm we still have something to search.
     return unless m/^\w+/;
     
-    # If we have it, include the users local time and make a default search.    
+    # If we have it, include the users local timezone and make a default search.
     if ($loc && $loc->time_zone){
-        my $time = DateTime->now();
-        $time->set_time_zone( $loc->time_zone );    
-        return $_, $time;
+        return $_, $loc->time_zone;
     }
     
-    return $_, '';
+    return $_;
 };
 
 1;
