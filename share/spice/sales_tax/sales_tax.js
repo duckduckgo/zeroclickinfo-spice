@@ -18,6 +18,7 @@
             apiObjectName,
             taxRate,
             titleResult,
+            subtitleResult,
             statNameTmp
 
         // The API can return multiple rate results
@@ -42,12 +43,9 @@
             return Spice.failed('sales_tax');
         }
 
-        // If sales tax is 0 change the response text
-        if(taxRate == 0) {
-            titleResult = stateName+" does not levy a sales tax";
-        } else {
-            titleResult = "Sales tax for "+stateName+" is "+taxRate+"%";
-        }
+        // title and subtitle
+        titleResult = taxRate+"%";
+        subtitleResult = stateName+" - "+"State Tax"
 
         // Fix for sourceUrl washington d.c => washington-dc
         // clean stateName for use as sourceUrl
@@ -65,6 +63,7 @@
             normalize: function(item) {
                 return {
                     title: titleResult,
+                    subtitle: subtitleResult
                 };
             },
             templates: {
