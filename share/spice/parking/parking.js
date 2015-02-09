@@ -87,7 +87,7 @@
             meta: {
                 type: 'Parking',
                 primaryText: 'Parking Near: ' + api_result.data.search.displayText,
-                sourceName: 'ParkingPanda.com',
+                sourceName: 'Parking Panda',
                 sourceUrl: 'https://www.parkingpanda.com/Search/?ref=duckduck&location=' + api_result.data.search.query
             },            
             normalize: normalize,            
