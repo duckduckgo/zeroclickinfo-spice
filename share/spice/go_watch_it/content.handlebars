@@ -16,7 +16,7 @@
         </div>
     </div>
   {{else}}
-    {{#buyOrRent buy_line rent_line}}
+    {{#gwi_buyOrRent buy_line rent_line}}
         {{#gwi_ifHasPrice buy_line}}
             <div class="single">
                 Buy from<br><span class='price tx-clr--dk'>{{gwi_price buy_line}}</span>
@@ -26,7 +26,7 @@
                 <span class="price gwi-price--subscription tx-clr--dk">{{buy_line}}</span>
             </div>
         {{/gwi_ifHasPrice}}        
-    {{/buyOrRent}}
+    {{/gwi_buyOrRent}}
   {{/gwi_ifHasBothBuyAndRent}}
 </div>
 

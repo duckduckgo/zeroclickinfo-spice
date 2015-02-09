@@ -221,7 +221,7 @@
         });
     };
 
-    Spice.registerHelper("buyOrRent", function(buy_line, rent_line, options) {
+    Spice.registerHelper("gwi_buyOrRent", function(buy_line, rent_line, options) {
         if(buy_line && buy_line !== "") {
             this.line = buy_line;
             return options.fn(this);

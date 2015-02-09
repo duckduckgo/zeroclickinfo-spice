@@ -3,7 +3,7 @@
 if (!Handlebars.helpers.getTerms) {
 
     // Helper to get only unique translations
-    Handlebars.registerHelper('getTerms', function(input, options){
+    Handlebars.registerHelper('translate_getTerms', function(input, options){
         var translations = [];
         var unique = {};
 
