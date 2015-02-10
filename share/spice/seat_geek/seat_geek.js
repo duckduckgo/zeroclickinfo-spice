@@ -144,8 +144,8 @@
                     footer: Spice.seat_geek.footer
                 },
                 variants: {
-                    title: '3line-small',
-                    footer: '4line'
+                    tileTitle: '3line-small',
+                    tileFooter: '4line'
                 }
             }
         });

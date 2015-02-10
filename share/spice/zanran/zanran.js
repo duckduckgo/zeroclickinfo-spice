@@ -36,7 +36,7 @@
                     footer: Spice.zanran.footer
                 },
                 variants: {
-                    snippet: "large"
+                    tileSnippet: "large"
                 }
             }
         });

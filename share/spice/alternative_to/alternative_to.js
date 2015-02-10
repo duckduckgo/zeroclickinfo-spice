@@ -34,7 +34,7 @@
                     footer: Spice.alternative_to.footer,
                 },
                 variants: {
-                    snippet: "large"
+                    tileSnippet: "large"
                 }
             }
         });
