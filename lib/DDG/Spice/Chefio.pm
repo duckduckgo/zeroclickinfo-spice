@@ -3,16 +3,14 @@ package DDG::Spice::Chefio;
 
 use DDG::Spice;
 
-primary_example_queries "cookbook underscore";
-description "Shows an NPM package";
-name "test";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Npm.pm";
-topics "sysadmin", "programming";
-category "programming";
-attribution github  => ['https://github.com/remixz', 'zachbruggeman'],
-            twitter => ['https://twitter.com/zachbruggeman', 'zachbruggeman'];
+primary_example_queries "cookbook for php";
+description "Shows an cookbook from Chef.io";
+name "chefio";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Chefio.pm";
+category "software";
+attribution github  => ['https://github.com/mirage-nl', 'Sven Thiessen'];
 
-triggers startend => 'cookbook';
+triggers startend => "cookbook for", "cookbook chef", "chef cookbook";
 
 spice to => 'https://supermarket.chef.io/api/v1/search?q=$1';
 spice wrap_jsonp_callback => 1;

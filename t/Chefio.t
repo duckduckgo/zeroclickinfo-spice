@@ -5,20 +5,18 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
-spice is_cached => 1;
-
-ddg_spice_test(
+ddg_spice_chefio(
     [qw( DDG::Spice::Chefio)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
+    'cookbook for php' => test_spice(
         '/js/spice/chefio/query',
         call_type => 'include',
         caller => 'DDG::Spice:Chefio'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
+    'chef cookbook perl' => test_spice(
+        'js/spice/chefio/query',
+        call_type => 'include',
+        caller => 'DDG:Spice:Chefio'
+    ),
     'bad example query' => undef,
 );
 

@@ -2,12 +2,12 @@
     "use strict";
     env.ddg_spice_chefio = function(api_result){
         if (!api_result || api_result.error) {
-            return Spice.failed('test');
+            return Spice.failed('chefio');
         }
 
         Spice.add({
-            id: "test",
-            name: "Software",
+            id: "chefio",
+            name: "software",
             data: api_result.items,
             meta: {
                 sourceName: "Chef.io",
