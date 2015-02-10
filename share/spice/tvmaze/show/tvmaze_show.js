@@ -3,16 +3,21 @@
 
     env.ddg_spice_tvmaze_show = function(api_result){
         if (!api_result || !api_result.id) {
-            return Spice.failed('tvmaze');
+            return Spice.failed('tvmaze_show');
         }
 
         Spice.add({
             id: "tvmaze_show",
-            name: "TV Shows",
+            name: "Entertainment",
             data: api_result,
             meta: {
                 sourceName: "TVmaze",
                 sourceUrl: api_result.url
+            },
+            relevancy: {
+                primary: [
+                    { key: 'name' },
+                ]
             },
             normalize: function(item){
                 var infoboxData = [
@@ -25,7 +30,7 @@
                         value: item.status
                     }
                 ];
-                
+
                 if (item.premiered) {
                     infoboxData.push(
                         {
@@ -78,11 +83,11 @@
                 }
             }
         });
-        
+
         function dateformat(date) {
             var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
             var dateObj = new Date(date);
-            
+
             return months[dateObj.getMonth()] + " " + dateObj.getDate() + ", " + dateObj.getFullYear();
         }
     };
