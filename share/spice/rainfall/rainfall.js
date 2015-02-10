@@ -31,8 +31,8 @@
             },
             normalize: function(item) {
                 return {
-                    title: precipitation,
-                    subtitle: country+" - Average annual rainfall in millimeters"
+                    title: precipitation+"mm",
+                    subtitle: country+" - Average annual rainfall"
                 };
             },
             templates: {
