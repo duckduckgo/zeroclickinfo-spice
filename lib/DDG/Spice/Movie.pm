@@ -2,8 +2,8 @@ package DDG::Spice::Movie;
 
 use DDG::Spice;
 
-primary_example_queries "the graduate movie";
-secondary_example_queries "jiro dreams of sushi rating", "indie game film";
+primary_example_queries "the graduate rotten tomatoes";
+secondary_example_queries "jiro dreams of sushi rotten tomatoes", "indie game rotten tomatoes";
 description "Movie information from Rotten Tomatoes";
 name "Movie";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Movie.pm";
