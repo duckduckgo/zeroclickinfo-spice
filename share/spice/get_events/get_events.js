@@ -1,11 +1,45 @@
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+function getDate(date) {
+    if (date) {
+        date = date.replace(/T.*/, '');
+        var remix_date = date.split("-");
+        date = remix_date[1] + "/" + remix_date[2] + "/" + remix_date[0];
+        
+        date = new Date(date);
+        return date;
+    }
+    return ;
+}
+
+function getMonth(date) {
+    if (date) {
+        var month = months[parseInt(date.getMonth())];
+        return month.toUpperCase();
+    }
+    return;
+}
+
+function getDay(date) {
+    if (date) {
+        var day = date.getDate();
+        return day
+    }
+    return ;
+}
+
+function buildUrl(id) {
+    return 'https://getevents.co/events/preview/'+id;
+}
+
 (function (env) {
     "use strict";
+    
     env.ddg_spice_get_events = function(api_result){
         if (api_result.error) {
             return Spice.failed('get_events');
         }
-	var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-
+        
         Spice.add({
             id: "get_events",
             name: "Events",
@@ -13,40 +47,9 @@
             meta: {
                 sourceName: "GetEvents",
                 sourceUrl: 'http://getevents.co',
-		itemType: "Upcoming Events"
+                itemType: "Upcoming Events"
             },
             normalize: function(item) {
-		function getDate(date) {
-			if (date) {
-				date = date.replace(/T.*/, '');
-				var remix_date = date.split("-");
-				date = remix_date[1] + "/" + remix_date[2] + "/" + remix_date[0];
-				
-				date = new Date(date);
-				return date; 		
-			}
-			return ;
-		}
-
-		function getMonth(date) {
-			if (date) {
-				var month = months[parseInt(date.getMonth())];
-				return month.toUpperCase();
-			}
-			return;
-		}
-
-		function getDay(date) {
-			if (date) {
-				var day = date.getDate();
-				return day
-			}
-			return ;
-		}
-                
-        function buildUrl(id) {
-            return 'https://getevents.co/events/preview/'+id;
-        }
                 return {
                     url: buildUrl(item.id),
                     title: item.name,
@@ -68,6 +71,4 @@
             }
         });
     };
-}(this));                                                                                                                                              
-                                                                                                                                                                                                                                                                                             
-                                                                                                                                                                         
+}(this));
