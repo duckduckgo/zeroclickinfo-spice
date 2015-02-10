@@ -31,7 +31,7 @@
                 // We have a single result extract the index and create a subtitle
                     city = api_result.abstract.match(/<b>(.*?)<\/b>/g)[0];
                     title = api_result.abstract.match(/\s[0-9]+\s/)[0];
-                    subtitle = city + " - Cost of living index (Expatistan's scale)";
+                    subtitle = city + " - Cost of living index";
                 }
 
                 return {
