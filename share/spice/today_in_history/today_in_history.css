@@ -15,16 +15,12 @@
     float: right;
 }
 
-.zci--today_in_history .title_year {
-    float:left;
-}
-
 .zci--today_in_history .string {
     clear:both;
     overflow: hidden;
-    height: 9em;
-    line-height: 1.3em;
-    color: #aaa;
+    height: 8.4em;
+    line-height: 1.2em;
+    color: #999;
 }
 
 .zci--today_in_history .year {
@@ -38,16 +34,8 @@
     font-weight: 600;
 }
 
-.zci--today_in_history .colchange {
-    color: #333;
-}
-
 .zci--today_in_history .t-m { 
     font-size: 1.1em; 
-}
-
-.zci--today_in_history .colchange:hover {
-    text-decoration:underline;
 }
 
 /* Stalled since we have no filter implementation
