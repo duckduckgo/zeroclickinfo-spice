@@ -33,7 +33,7 @@ attribution github  => ['https://github.com/josephwegner', 'josephwegner'],
 triggers startend => "fizz buzz", "fizzbuzz", "quine", "fibonacci sequence", "binary search";
 
 spice to => 'http://www.ineverylang.com/ddg-$1.json';
-spice from => '(^[^\/]+)';
+spice from => '(.*)/(.*)';
 
 handle query_lc => sub {
     $_ =~ m/(fizz ?buzz)|(quine)|(fibonacci sequence)|(binary search)/;
