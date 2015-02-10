@@ -25,7 +25,7 @@
             return Spice.failed('rx_info');
         }
 
-        var sourceName = "More at DailyMed",
+        var sourceName = "DailyMed",
             sourceUrl  = "http://dailymed.nlm.nih.gov/";
 
         Spice.add({
