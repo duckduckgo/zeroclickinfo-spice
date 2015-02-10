@@ -55,7 +55,8 @@
             meta: {
                 itemType: "historical events for " + ourquery,
                 sourceUrl: 'http://en.wikipedia.org/wiki/'+ ourquery,
-                sourceName: 'Wikipedia'
+                sourceName: 'Wikipedia',
+                minItemsForModeSwitch: '9999',
             },
             templates: {
                 group: 'base',
@@ -96,14 +97,38 @@
                 var parsed_value = l.split(/\|/);
                 var link = parsed_value.shift();
 
-                return '<a class="colchange" href="' + link + '"> ' + (parsed_value.length ? parsed_value.join('|') : link) + '</a>';
+                return '<a class="tx-clr--dk" href="' + link + '"> ' + (parsed_value.length ? parsed_value.join('|') : link) + '</a>';
             })
 
-            .replace(/\*?\s*\{\{(.*?)\}\}/g, function (m, l) { // internal link or image
-                var parsed_value = l.replace(/\|/,"_");
-                var text = l.replace(/\|/," ")
+            .replace(/\*?\s*\{\{(.*?)\}\}/g, function (m, l) {
+                var parsed_value = l.split(/\|/);
+                var text;
+                var link;
 
-                return '<a class="colchange" href="' + parsed_value + '"> ' + text + '</a>';
+                if (parsed_value[0] == "convert")
+                {
+                    return " " + parsed_value[1] + " " + parsed_value[2];
+                }
+                
+                if (parsed_value.length == 4) {
+                    parsed_value.splice(-1,1);
+                }
+
+                if (parsed_value.length == 2)
+                {
+                    link = parsed_value.join("_");
+                    text = parsed_value.join(" ");
+                }
+
+                if (parsed_value.length == 3)
+                {
+                    parsed_value[2] = "(" + parsed_value[2] + ")";
+                    link = parsed_value.join("_");
+                    parsed_value.splice(-1,1);
+                    text = parsed_value.join(" ");
+                }
+
+                return '<a class="tx-clr--dk" href="' + link + '"> ' + text + '</a>';
             })
         
             .replace(/'''(.*?)'''/g, function (m, l) {
