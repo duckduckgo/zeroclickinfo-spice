@@ -32,7 +32,8 @@
             data: solution,
             meta: {
                 sourceName: "In Every Language",
-                sourceUrl: solutionUrl
+                sourceUrl: solutionUrl,
+                sourceIconUrl: "http://www.ineverylang.com/favicon.ico"
             },
 
             normalize: function(item) {
