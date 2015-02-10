@@ -19,6 +19,10 @@
     color: #333;    
 }
 
+#zci-parking .tile--parking__foot{
+    color: #aaa;
+}
+
 #zci-parking .tile--parking__foot__back{
     height: 2.7em;
     text-align: center;
@@ -27,6 +31,8 @@
 #zci-parking .reserve-btn--parking{
     margin: 0;
     left: 0;
-    padding: .1em .7em;
+    padding: .1em 0;
     font-size: .95em;    
+    border: 0;
+    width: 100%;
 }
