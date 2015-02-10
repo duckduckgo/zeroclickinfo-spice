@@ -122,8 +122,8 @@
                     footer: Spice.reddit_search.footer
                 },
                 variants: {
-                    title: "3line-small",
-                    footer: "2line"
+                    tileTitle: "3line-small",
+                    tileFooter: "2line"
                 },
                 detail: false,
                 item_detail: false

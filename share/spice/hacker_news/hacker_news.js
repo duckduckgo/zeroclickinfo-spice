@@ -43,8 +43,8 @@
                 detail: false,
                 item_detail: false,
                 variants: {
-                    title: "3line-small",
-                    footer: "3line"
+                    tileTitle: "3line-small",
+                    tileFooter: "3line"
                 }
             },
             sort_fields: {

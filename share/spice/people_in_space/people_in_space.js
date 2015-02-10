@@ -83,7 +83,7 @@
                     moreAt: true
                 },
                 variants: {
-                    footer: '3line'
+                    tileFooter: '3line'
                 }
             };
         } else {
