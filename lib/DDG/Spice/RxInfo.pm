@@ -5,7 +5,7 @@ use DDG::Spice;
 
 name "RxInfo";
 source "C3PI RxImageAccess RESTful API";
-description "Search for prespection and over the counter solid dosage pharmaceutical by NDC and characteristics (shape, color, imprint).";
+description "Search for prescription and over the counter solid dosage pharmaceutical by NDC and characteristics (shape, color, imprint).";
 primary_example_queries "pill red round", "rxinfo 68180-0481-01", "pill LL blue";
 category "special";
 topics "everyday", "special_interest";
@@ -18,6 +18,11 @@ spice to => 'http://rximage.nlm.nih.gov/api/rximage/1/rxbase?resolution=300&incl
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
+    # Remove logical operators from query since they're disregarded by the API.
+    $_ =~ s/and//ig;
+    $_ =~ s/or//ig;
+    $_ =~ s/not//ig;
+
     return $_ if $_;
     return;
 };
