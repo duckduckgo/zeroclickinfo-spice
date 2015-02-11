@@ -1,9 +1,9 @@
 .tile.tile--b.tile--c--n.tile--go_watch_it {
-    height:15em
+    height: 15em;
 }
 
 .tile--go_watch_it .tile__body .image-holder {
-    text-align:center
+    text-align: center
 }
 
 .tile--go_watch_it .tile__body .image-holder img {
@@ -13,73 +13,72 @@
 }
 
 .tile--go_watch_it .tile__body .data {
-    height:60px;
-    margin-top:.1em
+    height: 60px;
+    margin-top: 0.1em
 }
 
 .tile--go_watch_it .tile__body .data span.price {
-    font-weight:700;
-    font-size:1.5em;
-    font-weight:400
+    font-weight: 700;
+    font-size: 1.5em;
 }
 
 .tile--go_watch_it .tile__body .data .left {
-    float:left;
-    border-right:1px solid rgba(150,150,150,.2);
-    text-align:center
+    float: left;
+    border-right: 1px solid rgba(150,150,150,.2);
+    text-align: center;
 }
 
 .is-mobile .tile--go_watch_it .tile__body .data .left {
-    width:50%
+    width: 50%;
 }
 
 .tile--go_watch_it .tile__body .data .right {
-    float:right;
-    text-align:center
+    float: right;
+    text-align: center;
 }
 
 .is-mobile .tile--go_watch_it .tile__body .data .right {
-    width:50%
+    width: 50%;
 }
 
 .tile--go_watch_it .tile__body .data .single {
-    text-align:center
+    text-align: center;
 }
 
 .tile--go_watch_it .tile__body .gwi-footer {
-    text-align:center;
-    margin-top:.5em
+    text-align: center;
+    margin-top: 0.5em;
 }
 
 .tile--go_watch_it .tile__body span.price.gwi-price--subscription {
-    font-size:16px;
-    display:inline-block;
-    max-width:9em
+    font-size: 16px;
+    display: inline-block;
+    max-width: 9em;
 }
 
 .zci--go_watch_it .zci__metabar__primary-text {
-    text-transform:capitalize
+    text-transform: capitalize;
 }
 
 .tile--go_watch_it .tile__body .gwi--container {
-    overflow:auto;
-    margin-left:auto;
-    margin-right:auto;
-    width:100%
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 .tile--go_watch_it .tile__body .gwi-icon {
-    display:inline-block
+    display: inline-block;
 }
 
 .dark-header .tile--go_watch_it .tile__body .gwi-icon {
-    display:none
+    display: none;
 }
 
 .tile--go_watch_it .tile__body .gwi-icon--alt {
-    display:none
+    display: nonel
 }
 
 .dark-header .tile--go_watch_it .tile__body .gwi-icon--alt {
-    display:inline-block
+    display: inline-block;
 }
