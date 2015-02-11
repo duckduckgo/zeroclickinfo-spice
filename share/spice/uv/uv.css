@@ -1,4 +1,4 @@
-.uv_header .zci__header {
+.zci--uv .uv_header .zci__header {
   font-size: 1.214em;
   margin-top: 2px;
 }
@@ -8,11 +8,16 @@
     font-size: 2.143em;
     width: 40px;
     height: 40px;
-    line-height: 1.4;
-    color: #fffdfb;
+    color: white;
     border-radius: 2px;
-    font-size: 22px;
+    font-size: 30px;
     text-align: center;
+    display: block;
+}
+
+.zci--uv .uv_indicator--value {
+    text-align: center;
+    vertical-align: middle;
 }
 
 .zci--uv .uv_risk_low {
