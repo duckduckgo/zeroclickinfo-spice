@@ -1,0 +1,103 @@
+.zci--instant_answers_index .tile__heading {
+    margin-bottom: 1em;
+ }
+
+.zci--instant_answers_index .tile__name {
+    font-size: 1.5em;
+    font-weight: 600;
+    padding-bottom: 0;
+    padding-top: 0;
+ }
+
+.zci--instant_answers_index .tile__repo {
+    font-size: 12px;
+ }
+
+.zci--instant_answers_index .tile__desc {
+    bottom: 1em;
+    font-size: 14px;
+    font-style: italic;
+    height: 20px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    top: .75em;
+    white-space: nowrap;
+ }
+
+.zci--instant_answers_index .tile__divide {
+    height 0px;
+}
+
+.zci--instant_answers_index .tile__tag {
+    border: 1px solid #c9c9c9;
+    color: #c9c9c9;
+    font-size: 11px;
+    font-weight: 600;
+    height: 11px;
+    margin-bottom: -18px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    padding-bottom: 3px;
+    text-align: center;
+    text-transform: capitalize;
+    width: 50%;
+ }
+
+
+
+.zci--instant_answers_index .tile__stamp {                /*Draws the repo stamp and displays it in the top right corner according to design from ddg index */
+    float: right;
+    font-size: 1.3em;
+    height: 20px;
+    padding: 6px;
+    text-align: center;
+    vertical-align: top;
+    width: 20px;
+ }
+
+.zci--instant_answers_index .tile__stamp::before {
+    content: "N";
+        position: relative;
+        top: 1px;
+     }
+
+.zci--instant_answers_index .tile__stamp.tile__goodies::before {
+    content: "G";
+ }
+
+.zci--instant_answers_index .tile__goodies {
+    border: 1px solid #F1A031;
+    color: #F1A031;
+ }
+
+.zci--instant_answers_index .tile__stamp.tile__spice::before {
+    content: "S";
+ }
+
+.zci--instant_answers_index .tile__spice {
+    border: 1px solid #50AF5E;
+    color: #50AF5E;
+ }
+
+.zci--instant_answers_index .tile__stamp.tile__fathead::before {
+    content: "F";
+ }
+
+.zci--instant_answers_index .tile__fathead {
+    border: 1px solid #2E7BB3;
+    color: #2E7BB3;
+ }
+
+.zci--instant_answers_index .tile__stamp.tile__longtail::before {
+    content: "L";
+ }
+
+.zci--instant_answers_index .tile__longtail {
+    border: 1px solid #81869A;
+    color: #81869A;
+ }
+
