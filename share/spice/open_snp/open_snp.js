@@ -25,7 +25,7 @@ ddg_spice_open_snp = function(api_result) {
     });
 }
 
-Handlebars.registerHelper('facts', function(facts, options) {
+Handlebars.registerHelper('OpenSNP_facts', function(facts, options) {
     "use strict";
 
     return options.fn(
@@ -40,7 +40,7 @@ Handlebars.registerHelper('facts', function(facts, options) {
     );
 });
 
-Handlebars.registerHelper('annotations', function(annotations, name, options) {
+Handlebars.registerHelper('OpenSNP_annotations', function(annotations, name, options) {
     "use strict";
 
     var mendeley = annotations.mendeley;
