@@ -290,7 +290,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             }
         }
 
-        $('.timer__time-input').keyup(numericOnly).change(numericOnly).click(numericOnly);
+        $('.timer__time-input').keyup(numericOnly).change(numericOnly).change(inputKeyup).click(numericOnly);
     }
 }(this));
 

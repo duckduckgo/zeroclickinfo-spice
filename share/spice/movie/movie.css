@@ -39,17 +39,17 @@
     padding-bottom: 1.5em;
 }
 
-    .is-mobile .zci--movie .detail__subtitle {
-        padding-bottom: 0.5em;
-    }
+.is-mobile .zci--movie .detail__subtitle {
+    position: relative;
+}
 
 .zci--movie p.detail__desc {
     padding-bottom: 1.65em;
 }
 
-    .is-mobile .zci--movie p.detail__desc {
-        padding-bottom: 0.2em;
-    }
+.is-mobile .zci--movie p.detail__desc {
+    padding-bottom: 5em;    
+}
 
 .zci--movie .movie--runtime {
     font-size: 0.9em;
@@ -57,9 +57,9 @@
     top: 1.5em;
 }
 
-    .is-mobile .zci--movie .movie--runtime {
-        top: 1em;
-    }
+.is-mobile .zci--movie .movie--runtime {
+    top: 1em;
+}
 
 .zci--movie .movie--critics_score {
     display: block;
@@ -89,11 +89,28 @@
     max-height: 180px;
 }
 
+.is-mobile .detail__media--pr--s {
+    overflow: visible;
+}
+
+.is-mobile .detail__body--pr--s--sec {
+    margin-top: 1.5em;
+}
+
+.is-mobile .detail__body--pr--s--pri {
+    min-height: 165px;
+    padding-bottom: 0em
+}
+
+.is-mobile .zci--movie .detail .detail__media--pr {
+    max-width: 100%;
+}
+
 .is-mobile .zci--movie .btn.btn--primary {
     position: absolute;
     bottom: 1em;
 }
 
-.is-mobile .zci--movie .detail .detail__media--pr {
-    max-width: 100%;
+.is-mobile .zci.is-active {
+    padding-bottom: 0em;
 }
