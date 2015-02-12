@@ -63,7 +63,8 @@
                 var indicatorValue = "";
                 // if the indicator is per capita income
                 if(indicatorData.indicator.value.match(/per capita/gi)){
-                      indicatorValue = indicatorData.value + " USD";
+                      //for seperating number by commas every three digits,uses snippet from http://stackoverflow.com/questions/1990512/add-comma-to-numbers-every-three-digits-using-jquery
+                      indicatorValue = indicatorData.value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + " USD";
                 }
                 //else if indicator is growth rate
                 else if(indicatorData.indicator.value.match(/growth/gi)){
