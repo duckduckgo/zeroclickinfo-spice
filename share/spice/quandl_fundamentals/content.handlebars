@@ -1,0 +1,18 @@
+
+<div id="quandl_fundamentals">
+    <h1 class="fundamentals_header">
+        <a href="{{url}}" title="{{urlTitle}}">
+            {{name}}
+        </a>
+    </h1>
+    <div class="fundamentals_date">
+        <span>Date of most recent value: {{to_date}}</span>
+    </div>
+    <div>
+        <div class="fundamental_values  fundamental_value-{{changeDirection}}">
+            <span class="fundamental_value">{{value}}</span>
+            <span class="fundamental_percent">{{change_percent}}%</span> 
+        </div>
+        <span class="from_date">from {{from_date}}</span>
+    </div>
+</div>
