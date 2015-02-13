@@ -135,7 +135,7 @@
                         str = ' ';
                     
                     if (num > 0) {
-                        str = artist + ' and '+ num + ' others';
+                        str = artistDisplayName + ' and '+ num + ' others';
                     }
                     return str;
                 }
