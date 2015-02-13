@@ -643,7 +643,8 @@
             //  format it for later processing. The result will have all spaces, and parentheses
             //  replaced with commas such that there will only be one comma between any text.
             //  For example, HSV(1, 2, 3) becomes hsv,1,2,3
-            var possible_color_query = query.split(/[\s,()]+/).slice(2).filter(function(el) { return el.length > 0; }).join(',').toLowerCase();
+            var possible_color_query = query.split(/[\s,()]+/).slice(2)
+            possible_color_query = $.map(possible_color_query, function(el) { if (el.length > 0) return el; }).join(',').toLowerCase();
             if (possible_color_query.length === 0)
                 return null;
 
@@ -658,7 +659,7 @@
                         colors = get_all_colors_from_rgb(red, green, blue);
                     return colors;
                 case possible_color_query.lastIndexOf('hsv', 0) === 0:
-                    var hsv_nums = possible_color_query.split(',').slice(1);
+                    var hsv_nums = possible_color_query.replace(/%/g, '').split(',').slice(1);
                     if (hsv_nums.length < 3)
                         return null;
                     var hue = to_bounded_integer(hsv_nums[0], 0, 360),
