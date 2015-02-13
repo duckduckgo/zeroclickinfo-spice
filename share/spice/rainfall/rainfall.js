@@ -26,7 +26,7 @@
             name: "Weather",
             data: query_country,
             meta: {
-                sourceName: "worldbank.org",
+                sourceName: "World Bank",
                 sourceUrl: 'http://data.worldbank.org/country/' + URL_country
             },
             normalize: function(item) {

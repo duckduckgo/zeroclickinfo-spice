@@ -31,8 +31,9 @@
             name: "Code Snippet",
             data: solution,
             meta: {
-                sourceName: "ineverylang.com",
-                sourceUrl: solutionUrl
+                sourceName: "In Every Language",
+                sourceUrl: solutionUrl,
+                sourceIconUrl: "http://www.ineverylang.com/favicon.ico"
             },
 
             normalize: function(item) {

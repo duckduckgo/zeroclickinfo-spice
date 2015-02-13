@@ -305,35 +305,6 @@
     ddg_spice_flights_route_helper = ddg_spice_flights.route_helper.bind(ddg_spice_flights);
 
 
-    // Check when the plane will depart (or if it has departed).
-    Spice.registerHelper("airline_status", function(airportOffset, isDeparture) {
-        var dateObject = arrivalDate;
-        if(isDeparture) {
-            dateObject = departureDate;
-        }
-
-        var delta = ddg_spice_flights.relativeTime(dateObject, airportOffset);
-
-        if(isDeparture) {
-            if(delta === 0) {
-                return "Departing";
-            } else if(delta > 0) {
-                return "Departs";
-            } else {
-                return "Departed";
-            }
-        } else {
-            if(delta === 0) {
-                return "Arriving";
-            } else if(delta > 0) {
-                return "Arrives";
-            } else {
-                return "Arrived";
-            }
-        }
-    });
-
-
     // Add the date and time or departure or arrival.
     Spice.registerHelper("airline_time", function(isDeparture, arrivalDate, departureDate) {
         var dateObject = new Date(arrivalDate);
@@ -367,7 +338,7 @@
     });
 
 
-    Spice.registerHelper("status", function(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
+    Spice.registerHelper("airline_status", function(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
         var result = ddg_spice_flights.onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival),
             ok_class = result[1] ? "tile__ok" : "tile__not";
         return '<div class="' + ok_class + '">' + result[0] + '</div>';
