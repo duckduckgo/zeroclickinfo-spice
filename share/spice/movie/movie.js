@@ -111,7 +111,7 @@
 
     // Convert minutes to hr. min. format.
     // e.g. {{time 90}} will return 1 hr. 30 min.
-    Handlebars.registerHelper("time", function(runtime) {
+    Handlebars.registerHelper("movie_time", function(runtime) {
         var hours = '',
             minutes = runtime;
         if (runtime >= 60) {

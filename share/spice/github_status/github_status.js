@@ -10,6 +10,7 @@
             id: "github_status",
             name: "Status",
             data: api_result,
+            signal: 'low',
             meta: {
                 sourceName: "GitHub",
                 sourceUrl: "https://status.github.com/",
