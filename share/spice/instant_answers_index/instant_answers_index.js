@@ -13,7 +13,7 @@
             data: api_result,
             meta: {
                 itemType: 'Instant Answers',
-                sourceName: "duckduckgo.co",
+                sourceName: "duck.co",
                 sourceUrl: 'https://duck.co/ia'
             },
             normalize: function(item) {                                                     //Changes "undefined" topics to empty value to allow multiple topic tags to be displayed.
