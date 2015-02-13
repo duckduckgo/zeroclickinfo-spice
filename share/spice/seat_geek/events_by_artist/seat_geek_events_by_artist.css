@@ -1,71 +1,47 @@
-.zci--seat_geek_events_by_artist .tile--seat_geek {
-    height: 15.6em;
-}
-
-    .is-mobile .zci--seat_geek_events_by_artist .tile--seat_geek {
-        height: inherit;
-    }
-
-.zci--seat_geek_events_by_artist .header_container {
-    height: 8em;
-}
-
-/* IE causes one-line to break when word-break is set to something. */
-.zci--seat_geek_events_by_artist .tile__body {
-    word-break: initial;
-}
-
 .zci--seat_geek_events_by_artist .price {
     font-weight: 600;
 }
 
 .zci--seat_geek_events_by_artist .price,
 .zci--seat_geek_events_by_artist .noprice {
-    margin-top: 1em;
+    margin-top: 1.75em;
     height: 1.1em;
     float: left;
-    font-size: 1.1em;
-}
-
-.zci--seat_geek_events_by_artist .tile__body.has-foot {
-    padding: 1em;
-}
-
-.zci--seat_geek_events_by_artist .header_container .tile__title {
-    height: 3.8em;
-    margin-bottom: 0;
-    /* Adding ellipsis on Webkit-based engines. */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    font-weight: 400;
 }
 
 .zci--seat_geek_events_by_artist .date {
-    float: right;
     border: 1px solid #ddd;
+    
     border-radius: 50%;
     -moz-border-radius: 50%;
     -o-border-radius: 50%;
     -webkit-border-radius: 50%;
     text-align: center;
     font-size: 0.9em;
-    margin-top: -1.5em;
+    padding: 0;
+    
+    position: absolute;
+    bottom: 1em;
+    right: 0;
+    
     width: 4em;
-    height: 3.3em;
-    padding-top: 0.7em;
+    height: 4em;
+    line-height: 1;
 }
+    .zci--seat_geek_events_by_artist .month {
+        padding-top: 1em;
+    }
 
-.zci--seat_geek_events_by_artist .day {
-    font-size: 1.6em;
-    line-height: 0.8;
-}
+    .zci--seat_geek_events_by_artist .day {
+        font-size: 1.6em;
+        line-height: 0.8;
+    }
 
 .zci--seat_geek_events_by_artist .seat_geek-artist {
     font-size: 1.1em;
 }
 
 .zci--seat_geek_events_by_artist .where {
-    font-size: 1.1em;
     height: 1.4em;
 }
 

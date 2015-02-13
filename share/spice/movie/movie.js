@@ -82,9 +82,11 @@
             templates: {
                 group: 'media',
                 options: {
-                    variant: 'poster',
                     subtitle_content: Spice.movie.subtitle_content,
                     buy: Spice.movie.buy
+                },
+                variants: {
+                    tile: 'poster'
                 }
             },
             relevancy: {
