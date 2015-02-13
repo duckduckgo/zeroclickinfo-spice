@@ -6,3 +6,4 @@ DDG-*
 *#
 .jshintrc
 .DS_Store
+share/spice/meta/metadata.json
