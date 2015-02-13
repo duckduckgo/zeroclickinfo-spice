@@ -17,7 +17,7 @@ code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 
 attribution twitter => ['bjennelle','Blake Jannelle'],
             github => ["b1ake", 'Blake Jennelle'],
-            github => ["chrisjwilsoncom", 'Chris Wilson']; 
+            github => ["MrChrisW", 'Chris Wilson']; 
 
 triggers any => "whois", "lookup", "domain", "is domain", "available", "is available", "register", "owner", "owner of", "who owns", "buy", "how to buy";
 
