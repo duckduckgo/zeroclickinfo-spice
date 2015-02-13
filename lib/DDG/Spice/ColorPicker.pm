@@ -11,14 +11,16 @@ topics 'everyday', 'computing', 'programming', 'special_interest', 'web_design';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/ColorPicker.pm';
 attribution web => 'chrisharrill.com',
             github => 'github.com/chrisharrill',
-            email => 'dev@chrisharrill.com';
+            email => 'dev@chrisharrill.com',
+            twitter => 'mattr555',
+            github => ['https://github.com/mattr555/', 'Matt Ramina'];
 
-triggers start => 'color picker', 'colour picker';
+triggers start => ['color picker', 'colour picker'];
 
 spice call_type => 'self';
 
 handle remainder => sub {
-    return call;
+    return '';
 };
 
 1;
