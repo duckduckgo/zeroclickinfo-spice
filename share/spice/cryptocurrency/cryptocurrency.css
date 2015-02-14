@@ -93,6 +93,12 @@
     display: inline-block;
 }
 
+.zci--currency-first-part,
+.zci--currency-equal,
+.zci--currency-second-part {
+    display: inherit;
+}
+
 .zci--currency-second-part {
     white-space: nowrap;
 }
