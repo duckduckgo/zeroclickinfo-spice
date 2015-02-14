@@ -36,7 +36,7 @@ foreach my $line (@trigger_lines) {
 }
 
 # defining our triggers
-triggers startend => @trigger_keys;
+triggers any => @trigger_keys;
 
 # to set an environmental variable:
 # duckpan env set <name> <value>
