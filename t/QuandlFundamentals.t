@@ -10,35 +10,35 @@ ddg_spice_test(
     
     # primary example
     'AAPL revenue' => test_spice(
-		'/js/spice/recipes/AAPL_REVENUE',
+		'/js/spice/quandl_fundamentals/AAPL_REVENUE',
 		call_type => 'include',
 		caller => 'DDG::Spice::QuandlFundamentals',
 	),
     
     # order of trigger word should be 
 	'sales AAPL' => test_spice(
-		'/js/spice/recipes/AAPL_REVENUE',
+		'/js/spice/quandl_fundamentals/AAPL_REVENUE',
 		call_type => 'include',
 		caller => 'DDG::Spice::QuandlFundamentals',
 	),
     
     # CAPS should not deter
 	'SALES aapl' => test_spice(
-		'/js/spice/recipes/AAPL_REVENUE',
+		'/js/spice/quandl_fundamentals/AAPL_REVENUE',
 		call_type => 'include',
 		caller => 'DDG::Spice::QuandlFundamentals',
 	),
     
     # extra words at end
 	'aapl revenues is what i want' => test_spice(
-		'/js/spice/recipes/AAPL_REVENUE',
+		'/js/spice/quandl_fundamentals/AAPL_REVENUE',
 		call_type => 'include',
 		caller => 'DDG::Spice::QuandlFundamentals',
 	),
     
     # extra words at beginning
     'i want aapl revenues' => test_spice(
-		'/js/spice/recipes/AAPL_REVENUE',
+		'/js/spice/quandl_fundamentals/AAPL_REVENUE',
 		call_type => 'include',
 		caller => 'DDG::Spice::QuandlFundamentals',
 	),
