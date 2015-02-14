@@ -1,32 +1,31 @@
-<h5 class="aqi--header text--primary">
-  {{! checks the API category}}
-  {{#AQI_ifCond Category.Name "Good"}}
-    <div class="aqi--good">
-  {{else}}
-    {{#AQI_ifCond Category.Name "Moderate"}}
-      <div class="aqi--moderate">
-    {{else}}
-      {{#AQI_ifCond Category.Name "Unhealthy for Sensitive Groups"}}
-        <div class="aqi--usg">
-      {{else}}
-        {{#AQI_ifCond Category.Name "Unhealthy"}}
-          <div class="aqi--unhealthy">
+<div class="zci__body">
+  <div class="zci__content">
+    <ul>
+      <li>
+        {{#AQI_ifCond Category.Name "Good"}}
+          <span class="status__badge good"></span>
         {{else}}
-          {{#AQI_ifCond Category.Name "Very Unhealthy"}}
-            <div class="aqi--very_unhealthy">
+          {{#AQI_ifCond Category.Name "Moderate"}}
+          <span class="status__badge moderate"></span>
           {{else}}
-            <div class="aqi--hazardous">
+            {{#AQI_ifCond Category.Name "Unhealthy for Sensitive Groups"}}
+            <span class="status__badge usg"></span>
+            {{else}}
+              {{#AQI_ifCond Category.Name "Unhealthy"}}
+              <span class="status__badge unhealty"></span>
+              {{else}}
+                {{#AQI_ifCond Category.Name "Very Unhealthy"}}
+                <span class="status__badge very_unhealty"></span>
+                {{else}}
+                <span class="status__badge hazardous"></span>
+                {{/AQI_ifCond}}
+              {{/AQI_ifCond}}
+            {{/AQI_ifCond}}
           {{/AQI_ifCond}}
         {{/AQI_ifCond}}
-      {{/AQI_ifCond}}
-    {{/AQI_ifCond}}
-  {{/AQI_ifCond}}
 
-  {{ParameterName}}: <b>{{AQI}}</b> {{Category.Name}}
-</h5>
-<div>
-  {{ReportingArea}}, {{StateCode}}
-</div>
-<div>
-  {{DateObserved}}, {{HourObserved}}:00 {{LocalTimeZone}}
+        {{ParameterName}}: <b>{{AQI}}</b> ({{Category.Name}})
+      </li>
+    </ul>
+  </div>
 </div>
