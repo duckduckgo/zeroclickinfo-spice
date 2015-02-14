@@ -6,10 +6,10 @@ use Test::More;
 use DDG::Test::Spice;
 
 my @test_args = (
-    '/js/spice/color_picker/',
+    '',
     call_type => 'self',
     caller => 'DDG::Spice::ColorPicker',
-)
+);
 
 ddg_spice_test(
     [qw( DDG::Spice::ColorPicker )],

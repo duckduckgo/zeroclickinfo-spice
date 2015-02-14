@@ -143,105 +143,39 @@
             update_all_from_hsv(hue, saturation, value);
         }
 
-        function red_change() {
+        function rgb_change() {
             var red = local_dom.$red_input.val(),
-                green = current_color.rgb.green,
-                blue = current_color.rgb.blue;
-
-            red = to_bounded_integer(red, 0, 255);
-
-            update_all_from_rgb(red, green, blue);
-        }
-
-        function green_change() {
-            var red = current_color.rgb.red,
                 green = local_dom.$green_input.val(),
-                blue = current_color.rgb.blue;
-
-            green = to_bounded_integer(green, 0, 255);
-            
-            update_all_from_rgb(red, green, blue);
-        }
-
-        function blue_change() {
-            var red = current_color.rgb.red,
-                green = current_color.rgb.green,
                 blue = local_dom.$blue_input.val();
 
+            red = to_bounded_integer(red, 0, 255);
+            green = to_bounded_integer(green, 0, 255);
             blue = to_bounded_integer(blue, 0, 255);
-            
+
             update_all_from_rgb(red, green, blue);
         }
 
-        function hue_change() {
+        function hsv_change() {
             var hue = local_dom.$hue_input.val(),
-                saturation = current_color.hsv.saturation,
-                value = current_color.hsv.value;
-
-            hue = to_bounded_integer(hue, 0, 359);
-            
-            update_all_from_hsv(hue, saturation, value);
-        }
-
-        function saturation_change() {
-            var hue = current_color.hsv.hue,
                 saturation = local_dom.$saturation_input.val(),
-                value = current_color.hsv.value;
-
-            saturation = to_bounded_integer(saturation, 0, 100);
-
-            update_all_from_hsv(hue, saturation, value);
-        }
-
-        function value_change() {
-            var hue = current_color.hsv.hue,
-                saturation = current_color.hsv.saturation,
                 value = local_dom.$value_input.val();
 
+            hue = to_bounded_integer(hue, 0, 359);
+            saturation = to_bounded_integer(saturation, 0, 100);
             value = to_bounded_integer(value, 0, 100);
-            
+
             update_all_from_hsv(hue, saturation, value);
         }
 
-        function cyan_change() {
+        function cmyk_change() {
             var cyan = local_dom.$cyan_input.val(),
-                magenta = current_color.cmyk.magenta,
-                yellow = current_color.cmyk.yellow,
-                black = current_color.cmyk.black;
-
-            cyan = to_bounded_number(cyan, 0, 100);
-            
-            update_all_from_cmyk(cyan, magenta, yellow, black);
-        }
-
-        function magenta_change() {
-            var cyan = current_color.cmyk.cyan,
                 magenta = local_dom.$magenta_input.val(),
-                yellow = current_color.cmyk.yellow,
-                black = current_color.cmyk.black;
-
-            magenta = to_bounded_number(magenta, 0, 100);
-            
-            update_all_from_cmyk(cyan, magenta, yellow, black);
-        }
-
-        function yellow_change() {
-            var cyan = current_color.cmyk.cyan,
-                magenta = current_color.cmyk.magenta,
                 yellow = local_dom.$yellow_input.val(),
-                black = current_color.cmyk.black;
-
-            yellow = to_bounded_number(yellow, 0, 100);
-            
-            update_all_from_cmyk(cyan, magenta, yellow, black);
-        }
-
-        function black_change() {
-            var cyan = current_color.cmyk.cyan,
-                magenta = current_color.cmyk.magenta,
-                yellow = current_color.cmyk.yellow,
                 black = local_dom.$black_input.val();
 
+            cyan = to_bounded_number(cyan, 0, 100);
+            magenta = to_bounded_number(magenta, 0, 100);
+            yellow = to_bounded_number(yellow, 0, 100);
             black = to_bounded_number(black, 0, 100);
             
             update_all_from_cmyk(cyan, magenta, yellow, black);
@@ -755,16 +689,16 @@
             local_dom.$hue_picker[0].addEventListener('touchmove', mouse_and_touch_handler(hue_clicked), false);
 
             //Listen for changes to any of the text inputs
-            local_dom.$red_input.change(red_change);
-            local_dom.$green_input.change(green_change);
-            local_dom.$blue_input.change(blue_change);
-            local_dom.$hue_input.change(hue_change);
-            local_dom.$saturation_input.change(saturation_change);
-            local_dom.$value_input.change(value_change);
-            local_dom.$cyan_input.change(cyan_change);
-            local_dom.$magenta_input.change(magenta_change);
-            local_dom.$yellow_input.change(yellow_change);
-            local_dom.$black_input.change(black_change);
+            local_dom.$red_input.change(rgb_change);
+            local_dom.$green_input.change(rgb_change);
+            local_dom.$blue_input.change(rgb_change);
+            local_dom.$hue_input.change(hsv_change);
+            local_dom.$saturation_input.change(hsv_change);
+            local_dom.$value_input.change(hsv_change);
+            local_dom.$cyan_input.change(cmyk_change);
+            local_dom.$magenta_input.change(cmyk_change);
+            local_dom.$yellow_input.change(cmyk_change);
+            local_dom.$black_input.change(cmyk_change);
             local_dom.$hex_input.change(hex_change);
 
             //Listen to changes to the selected palette type
