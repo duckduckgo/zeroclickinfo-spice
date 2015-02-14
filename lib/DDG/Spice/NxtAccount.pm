@@ -10,10 +10,10 @@ primary_example_queries "NXT-XXXX-XXXX-XXXX-XXXXX",
 description "Display information about an Nxt Account";
 name "Nxt Account Info";
 source "https://wallet.mynxt.info/api/0.1/";
-code_url "https://github.com/toenu23/zeroclickinfo-spice/blob/master/lib/DDG/Spice/NxtAddress.pm";
+code_url "https://github.com/toenu23/zeroclickinfo-spice/blob/master/lib/DDG/Spice/NxtAccount.pm";
 topics "economy_and_finance";
 category "finance";
-icon_url "https://mynxt.info/favicon.ico";
+icon_url "https://duckduckgo.com/i/wallet.mynxt.info.ico";
 
 attribution github => ['https://github.com/toenu23','toenu'];
             
