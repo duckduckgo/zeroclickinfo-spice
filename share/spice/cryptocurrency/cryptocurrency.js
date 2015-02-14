@@ -1,27 +1,19 @@
-/**
-* Created with DuckDuckHack.
-* User: claytonspinner
-* Date: 2014-12-11
-* Time: 04:50 AM
-* To change this template use Tools | Templates.
-*/
 (function (env) {
     "use strict";
     
-    // Currencies that we don't have flags for.
+    // Currencies that we have flags for.
     var currency2country_extra = {
-        "ltc": true,
-        "btc": true,
-        "ftc": true,
-        "doge": true,
-        "xdr": true,
-        "xof": true,
-        "xpd": true,
-        "xpf": true,
-        "xpt": true,
-        "ggp": true,
-        "jep": true,
-        "sar": true
+        "aud": true,
+        "cny": true,
+        "eur": true,
+        "gbp": true,
+        "hkd": true,
+        "jpy": true,
+        "nzd": true,
+        "pln": true,
+        "rur": true,
+        "sgd": true,
+        "usd": true
     };
     
     // Some naming exceptions. For example, "gbp" doesn't map to the "gb" asset.
@@ -66,9 +58,15 @@
             convertedAmount = 0,
             rate = "",
             inverseRate = "",
-            crpytonatorURL = "",
             timestamp = "",
-            timestr = "";
+            timestr = "",
+            cryptoDate = "",
+            cryptoTime = "";
+        
+        // If no amount was given in the query default to 1.
+        if (queryAmount === null) {
+            queryAmount = 1;
+        };
         
         // Remove console.log after development
         console.debug("The ticker:");
@@ -82,13 +80,16 @@
             console.debug("Currency pair given: showing conversion detail");
             var base = api_result.ticker.base,
                 target = api_result.ticker.target,
-                price = api_result.ticker.price;
+                price = parseFloat(api_result.ticker.price);
             results = api_result,
                 convertedAmount = queryAmount * price,
-                rate = "1 " + target + " = " + (1 / price) + " " + base,
-                inverseRate = "1 " + base + " = " + price + " " + target,
-                crpytonatorURL = "http://www.cryptonator.com/rates/#" + api_result.ticker.base,
-                timestamp = (new Date(api_result.timestamp*1000)).toString();
+                rate = "1 " + target + " = " + formatNumber((1 / price), 6) + " " + base,
+                inverseRate = "1 " + base + " = " + formatNumber(price, 6) + " " + target,
+                timestamp = (new Date(api_result.timestamp*1000)).toISOString(),
+                timestr = timestamp.split(/T+/);
+                cryptoDate = timestr[0];
+                cryptoTime = timestr[1].match(/\d{2}\:\d{2}\b/);
+            console.debug(timestamp);
                 
         } else if (typeof rows !== 'undefined') {
             console.debug("Single currency given: showing items view");
@@ -105,32 +106,48 @@
             for (var i = 0; i < rows.length; i++) {
                 var base = rows[i].currency_primary,
                     target = rows[i].currency_secondary,
-                    price = rows[i].tradeprice;
+                    price = parseFloat(rows[i].tradeprice);
                 rows[i].convertedAmount = queryAmount * price,
-                    rows[i].rate = "1 " + base + " = " + price + " " + target;
+                    rows[i].rate = "1 " + base + " = " + formatNumber(price, 6) + " " + target;
                 results.push(rows[i]);
             }
             timestamp = rows[0].created;
+            // Format the time and date.
+            timestr = timestamp.split(/\s+/);
+            cryptoDate = timestr[0];
+            cryptoTime = timestr[1].match(/\d{2}\:\d{2}\b/);
             
         } else {
             return Spice.failed('cryptocurrency');
         }
         
-        // Format the time and date.
-        timestr = timestamp.split(/\s+/);
-        var xeDate = timestr[0];
-        var xeTime = timestr[1].match(/\d{2}\:\d{2}\b/);
+        
         
         // Get the flag image.
         function currency_image(symbol) {
             symbol = symbol.toLowerCase();
-            if(symbol in currency2country_extra) {
-                return DDG.get_asset_path('currency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
+            // Most cryptocurrencies will NOT have flags associated with countries
+            // They will need to have their own flag provided for them.
+            if(!(symbol in currency2country_extra)) {
+                return DDG.get_asset_path('cryptocurrency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
             }
             
             symbol = symbol.slice(0, 2);
             symbol = symbol in currency2country_translate ? currency2country_translate[symbol] : symbol;
             return DDG.settings.region.getLargeIconURL(symbol);
+        }
+        
+        // Add commas to the numbers for display.
+        function formatNumber(x, decimalPlaces) {
+            
+            
+            // Check if the number has a decimal point.
+            // If it does, only show the first two digits after the decimal place.
+            if(/\./.test(x.toString())) {
+                x = x.toFixed(decimalPlaces);   
+            }
+        
+            return DDG.commifyNumber(x);
         }
         
         var templateObj = {
@@ -148,46 +165,47 @@
 
         Spice.add({
             id: "cryptocurrency",
-            name: "Cryptocurrency Conversion",
+            name: "Cryptocurrency",
             data: results,
             meta: {
+                sourceUrl: 'https://www.cryptonator.com',
                 sourceName: "cryptonator.com",
-                sourceUrl: 'https://www.cryptonator.com'
+                sourceIconUrl: "http://www.cryptonator.com/ui/img/favicon.png",
+                itemType: "Conversions"
             },
             normalize: function(item) {
                 if (typeof ticker !== 'undefined') {
                     return {
                         fromCurrencySymbol: item.ticker.base,
                         toCurrencySymbol: item.ticker.target,
-                        amount: queryAmount,
-                        convertedAmount: convertedAmount,
+                        amount: formatNumber(queryAmount, 2),
+                        convertedAmount: formatNumber(convertedAmount, 2),
                         rate: rate,
                         inverseRate: inverseRate,
-                        cryptonatorURL: crpytonatorURL,
+                        cryptonatorURL: "http://www.cryptonator.com/rates#" + item.ticker.base,
                         fromFlag: currency_image(item.ticker.base),
                         toFlag: currency_image(item.ticker.target),
                         currencyName: "Placeholder",
                         liveURL: "Placeholder",
-                        xeTime: xeTime,
-                        xeDate: xeDate
+                        cryptoTime: cryptoTime,
+                        cryptoDate: cryptoDate
                     };
                 }
-                console.debug("item output: \n");
-                console.debug(item);
                 return {
                     fromCurrencySymbol: item.currency_primary,
                     toCurrencySymbol: item.currency_secondary,
-                    amount: queryAmount,
-                    convertedAmount: item.convertedAmount,
+                    amount: formatNumber(queryAmount, 2),
+                    // If item is the queried currency, then display the query amount.
+                    convertedAmount: item.currency_primary === item.currency_secondary ? formatNumber(queryAmount, 6): formatNumber(item.convertedAmount, 2),
                     rate: item.rate,
                     inverseRate: inverseRate,
-                    cryptonatorURL: crpytonatorURL,
+                    cryptonatorURL: "http://www.cryptonator.com/rates#" + item.currency_secondary,
                     fromFlag: currency_image(item.currency_primary),
                     toFlag: currency_image(item.currency_secondary),
                     currencyName: "Placeholder",
                     liveUrl: "Placeholder",
-                    xeTime: xeTime,
-                    xeDate: xeDate
+                    cryptoTime: cryptoTime,
+                    cryptoDate: cryptoDate
                 };
             },
             templates: templateObj,
