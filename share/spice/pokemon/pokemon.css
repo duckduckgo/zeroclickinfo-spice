@@ -1,0 +1,15 @@
+.zci--pokemon .record__body {
+    float: left;
+    margin-right: 50px;
+}    
+
+.zci--pokemon .record__cell__key:after {
+    content: ':';
+}
+
+@media(max-width: 768px) {
+    .zci--pokemon .chomp {
+        overflow: auto;
+        padding-right: 20px;
+    }
+}

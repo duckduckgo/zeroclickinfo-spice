@@ -1,0 +1,42 @@
+<div class="record">
+    <table class="record__body">
+        <tr class="record__row">
+            <td class="record__cell__key">HP</td>
+            <td class="record__cell__value">{{hp}}</td>
+        </tr>
+        <tr class="record__row">
+            <td class="record__cell__key">Attack</td>
+            <td class="record__cell__value">{{attack}}</td>
+        </tr>
+        <tr class="record__row">
+            <td class="record__cell__key">Defense</td>
+            <td class="record__cell__value">{{defense}}</td>
+        </tr>
+        <tr class="record__row">
+            <td class="record__cell__key">Types</td>
+            <td class="record__cell__value">{{#concat types sep=", " conj=", "}}{{this}}{{/concat}}</td>
+        </tr>
+        {{#if evolutions}}
+            <tr class="record__row">
+                <td class="record__cell__key">Evolves into</td>
+                <td class="record__cell__value">
+                    <a href="?q={{evolutions.0.to}}+pokemon">{{evolutions.0.to}}</a>
+                </td>
+            </tr>
+        {{/if}}
+    </table>
+    <table class="record__body">
+        <tr class="record__row">
+            <td class="record__cell__key">Height</td>
+            <td class="record__cell__value">{{valueOrDash height}}</td>
+        </tr>
+        <tr class="record__row">
+            <td class="record__cell__key">Weight</td>
+            <td class="record__cell__value">{{valueOrDash weight}}</td>
+        </tr>
+        <tr class="record__row">
+            <td class="record__cell__key">Speed</td>
+            <td class="record__cell__value">{{valueOrDash speed}}</td>
+        </tr>
+    </table>
+</div>
