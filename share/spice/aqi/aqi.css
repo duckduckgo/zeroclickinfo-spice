@@ -1,30 +1,31 @@
-.zci--aqi .aqi--header {
-    font-size: 1.5em;
-    margin-bottom: 0;
-    padding-bottom: 0;
+.status__badge {
+    height: 12px;
+    border-radius: 6px;
+    padding: 0px 6px;
+    display: inline-block;
+    margin-right: 5px;
 }
 
-.zci--aqi .aqi--good {
-    color: #00de1d
+.status__badge.good {
+    background-color: #00de1d;
 }
 
-.zci--aqi .aqi--moderate {
+.status__badge.moderate {
     background-color: #faff00;
-    color: #000000
 }
 
-.zci--aqi .aqi--usg {
-    color: #ff6600
+.status__badge.usg {
+    background-color: #ff6600;
 }
 
-.zci--aqi .aqi--unhealthy {
-    color: #ff0000
+.status__badge.unhealty {
+    background-color: #ff0000;
 }
 
-.zci--aqi .aqi--very_unhealty {
-    color: #ad0051
+.status__badge.very_unhealthy {
+    background-color: #ad0051;
 }
 
-.zci--aqi .aqi--hazardous {
-    color: #91001d
+.status__badge.hazardous {
+    background-color: #91001d;
 }
