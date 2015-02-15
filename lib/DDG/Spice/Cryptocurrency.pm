@@ -1,9 +1,7 @@
 package DDG::Spice::Cryptocurrency;
 # ABSTRACT: Cryptocurrency converter and exchange rate lookup from www.cryptonator.com
-# Borrows heavily from the Currency Spice
 
 use DDG::Spice;
-use JSON;
 with 'DDG::SpiceRole::NumberStyler';
 
 # Get all the valid currencies from a text file.
@@ -40,11 +38,14 @@ my @excludedCurrencies = (
 # TODO 1. Add 'exchange rate, converted to' as possible match for $into_qr
 my $currency_qr = join('|', @currTriggers);
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
+my $rate_qr = qr/\s(?:rate|exchange|exchange rate|conversion)/i;
 my $into_qr = qr/\s(?:en|in|to|in ?to|to)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $number_re = number_style_regex();
+# Makes sure currency names like 42coin, 666coin, 66coin aren't treated as amounts
+my $num_space_re = qr/$number_re\s/;
 
-my $guard = qr/^$question_prefix($number_re*)\s?($currency_qr)(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?\??$/i;
+my $guard = qr/^$question_prefix($num_space_re*)\s?($currency_qr)(?:$into_qr|$vs_qr|$rate_qr|\s)?($num_space_re*)\s?($currency_qr)?\??$/i;
 
 # http://www.cryptonator.com/api/secondaries?primary=BTC
 # http://www.cryptonator.com/api/ticker/ltc-ftc
@@ -82,6 +83,7 @@ sub checkCurrencyCode {
     
     # Check if it's a valid number.
     # If it isn't, return early.
+    $amount =~ s/\s+$//;
     my $styler = number_style_for($amount);
     return unless $styler;
     
