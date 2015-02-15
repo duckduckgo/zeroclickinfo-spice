@@ -1,16 +1,22 @@
 (function (env) {
     "use strict";
 
-    env.ddg_spice_pokemon = function(api_result){
+    var ID = 'pokemon';
+
+    /**
+     *  [ Pokemon::Data ]
+     */
+    env.ddg_spice_pokemon_data = function(api_result){
+        var DESCRIPTION_ENDPOINT = '/js/spice/pokemon/description/{id}';
         var POKEAPI_SPRITE_URL = 'http://pokeapi.co/media/img/{id}.png';
         var INFOBOX_PROPS = ['hp', 'attack', 'defense', 'height', 'weight', 'speed'];
-        
+
         if (!api_result) {
             return Spice.failed('pokemon');
         }
 
         Spice.add({
-            id: 'pokemon',
+            id: ID,
             name: 'Pokedex',
             data: api_result,
             meta: {
@@ -30,15 +36,33 @@
             templates: {
                 group: 'info',
                 options: {
-                    content: Spice.pokemon.content,
+                    content: Spice.pokemon_data.content,
                     moreAt: true
                 }
             }
         });
 
+        if( api_result.descriptions.length > 0 ) {
+            fetchDescription(api_result.descriptions);
+        }
+
+        /**
+         * Chooses a random pokemon's description from the available sets
+         * and then calls the Pokemon::Description endpoint to fetch its full text
+         *
+         * @param {Array} descriptions
+         */
+        function fetchDescription(descriptions) {
+            var randIndex = Math.floor(Math.random() * descriptions.length);
+            var id = descriptions[randIndex].resource_uri.match(/(\d+)\/$/)[1];
+
+            $.getScript(DESCRIPTION_ENDPOINT.replace('{id}', id));
+        }
+
         /**
          * Returns the list of capitalized names from a collection
          *
+         * @context {item}
          * @param {Array} collection
          * @return {Array}
          */
@@ -51,6 +75,7 @@
         /**
          * Returns the list of label/value pairs to display in the Info Box
          *
+         * @context {item}
          * @return {Array}
          */
         function getInfoboxData() {
@@ -71,6 +96,7 @@
         /**
          * Returns the url of the pokemon's sprite or null if the API doesn't provide any
          *
+         * @context {item}
          * @return {String / null}
          */
         function getSprite() {
@@ -80,5 +106,14 @@
                 return null;
             }
         }
+    };
+
+    /**
+     *  [ Pokemon::Description ]
+     */
+    env.ddg_spice_pokemon_description = function(api_result){
+        var description = Handlebars.helpers.ellipsis(api_result.description, 140);
+
+        Spice.getDOM(ID).find('.pokemon__description').html(description);
     };
 }(this));

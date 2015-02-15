@@ -1,0 +1,8 @@
+.zci--pokemon .pokemon__description {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.zci--pokemon .record__cell__key:after {
+    content: ':';
+}

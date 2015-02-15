@@ -1,7 +1,0 @@
-.zci--pokemon .record__cell__key:after {
-    content: ':';
-}
-
-.zci--pokemon .record__row--evolution > td {
-    padding-top: 15px;
-}
