@@ -2,15 +2,21 @@
 
     <!-- Front of tile -->
     <div class="tile--f__main  tile--loc__main">
-        <div class="tile__num">{{num}}</div>
+        <div class="tile__head">
+            <div class="head--title">
+                <h6 class="tile__title">{{ellipsis name 33}}</h6>
+                <p>{{diocesename}}</p>
+            </div>
+            <div class="head--num">
+                <div class="number">{{num}}</div> 
+            </div>      
+        </div>
 
         <div class="tile__body">
-            <h6 class="tile__title">{{ellipsis name 33}}</h6>
-            <p>{{diocesename}}</p>
             
             <div class="tile__foot">
                 {{#if phone}}
-                <span class="tile__foot-line">{{ellipsis phone}}</span>
+                    <span class="tile__foot-line">{{ellipsis phone}}</span>
                 {{/if}}
                 <span class="tile__foot-line">{{MassOnTime_format_eventtypeid eventtypeid}}</span>
                 {{#if starttime}}

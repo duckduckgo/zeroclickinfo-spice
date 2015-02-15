@@ -8,16 +8,63 @@
     padding-top: 2.6em;
 }
 
-.zci-mass_on_time .tile--f__main .tile__body {
-    padding: 0.6em 0.3em;
+.tileview__mass-local .tile--loc {
+    width: 17em;
+}
+
+.zci-mass_on_time h6.tile__title {
+    font-size: 1.6em;
+}
+
+.zci-mass_on_time .head--title p {
+    font-size: 1.1em;
+}
+
+.zci-mass_on_time .tile--f__main {
+    padding: 1em 1em;
 }
 
 .zci-mass_on_time .tile--f__main .tile__foot {
-    padding: 0.6em 0.3em;
-    height: 4em;
+    font-size: 1.1em;
+    height: 6em;
     white-space: normal;
+    position: absolute;
+    bottom: 0;
+    padding: 0.6em 0.6em;
+}
+
+.zci-mass_on_time .tile--f__main .tile__foot span {
+    display: block;
 }
 
 .zci-mass_on_time .tile--f__main .tile__foot-line {
     white-space: nowrap;
+}
+
+.zci-mass_on_time .head--title {
+    float: left;
+    width: 11em;
+}
+
+.zci-mass_on_time .head--num {
+    border: 1px solid #ddd;
+    
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    text-align: center;
+    font-size: 0.9em;
+
+    float: right;
+
+    width: 3em;
+    height: 3em;
+    line-height: 1;
+}
+
+.zci-mass_on_time .head--num .number {
+    padding-top: 0.65em;
+    line-height: 0.6;
+    font-size: 1.6em;
 }
