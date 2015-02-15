@@ -1,4 +1,4 @@
-package DDG::Spice::Pokemon;
+package DDG::Spice::Pokemon::Data;
 # ABSTRACT: Returns pokemon data from the pokeapi API
 
 use DDG::Spice;
