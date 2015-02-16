@@ -2,6 +2,7 @@
     "use strict";
     
     // Currencies that we have flags for.
+    // These correspond to traditional currencies of countries.
     var currency2country_extra = {
         "aud": true,
         "cny": true,
@@ -25,24 +26,28 @@
     // Resize the size of the outer container if the content of the inner container
     // overflows.
     function resize() {        
-        var resultHeight = $(".zci--currency-result").outerHeight();
+        var resultHeight = $(".zci--cryptocurrency-result").outerHeight();
         
         if(resultHeight > 65) {
-            $(".zci--currency-container").css("height", "9em");
+            $(".zci--cryptocurrency-container").css("height", "9em");
         } else {
-            $(".zci--currency-container").css("height", "5em");
+            $(".zci--cryptocurrency-container").css("height", "5em");
         }
     }
     
     // Change the look of the mobile view if the content overflows.
     function resizeMobile() {
-        var tileHeight = $(".zci--currency .tile--s").outerHeight();
+        var tileHeight = $(".zci--cryptocurrency .tile--s").outerHeight();
 
         if(tileHeight > 155) {
-            $(".zci--currency .tile--s").addClass("large").removeClass("small");
+            $(".zci--cryptocurrency .tile--s").addClass("large").removeClass("small");
         } else {
-            $(".zci--currency .tile--s").addClass("small").removeClass("large");
+            $(".zci--cryptocurrency .tile--s").addClass("small").removeClass("large");
         }
+    }
+    
+    function decimalPlaces(number) {
+        return (number.toString()).replace(/^-?\d*\.?|0+$/g, '').length;
     }
     
     env.ddg_spice_cryptocurrency = function(api_result){
@@ -54,45 +59,36 @@
         var results = [],
             ticker = api_result.ticker,
             rows = api_result.rows,
-            queryAmount = DDG.get_query().match(/\d+/),
             convertedAmount = 0,
             rate = "",
             inverseRate = "",
             timestamp = "",
             timestr = "",
             cryptoDate = "",
-            cryptoTime = "";
-        
-        // If no amount was given in the query default to 1.
-        if (queryAmount === null) {
-            queryAmount = 1;
-        };
-        
-        // Remove console.log after development
-        console.debug("The ticker:");
-        console.debug(api_result.ticker);
-        console.debug("The rows:");
-        console.debug(api_result.rows);
-        console.debug("The amount:");
-        console.debug(queryAmount);
+            cryptoTime = "",
+            script = $('[src*="/js/spice/cryptocurrency/"]')[0],
+            source = $(script).attr("src");
         
         if (typeof ticker !== 'undefined') {
-            console.debug("Currency pair given: showing conversion detail");
+            // Get amount from original query
+            var query = source.match(/\/ticker\/(?:.*)\/(.+)/)[1],
+                queryAmount = parseFloat(decodeURIComponent(query));
             var base = api_result.ticker.base,
                 target = api_result.ticker.target,
                 price = parseFloat(api_result.ticker.price);
             results = api_result,
                 convertedAmount = queryAmount * price,
-                rate = "1 " + target + " = " + formatNumber((1 / price), 6) + " " + base,
-                inverseRate = "1 " + base + " = " + formatNumber(price, 6) + " " + target,
+                rate = "1 " + target + " = " + formatNumber((1 / price)) + " " + base,
+                inverseRate = "1 " + base + " = " + formatNumber(price) + " " + target,
                 timestamp = (new Date(api_result.timestamp*1000)).toISOString(),
                 timestr = timestamp.split(/T+/);
                 cryptoDate = timestr[0];
                 cryptoTime = timestr[1].match(/\d{2}\:\d{2}\b/);
-            console.debug(timestamp);
                 
         } else if (typeof rows !== 'undefined') {
-            console.debug("Single currency given: showing items view");
+            // Get amount from original query
+            var query = source.match(/\/secondaries\/(.+)\/(?:.*)/)[1],
+                queryAmount = parseFloat(decodeURIComponent(query));
             // Prepare the first item box
             var givenCurrency = {
                 created: rows[0].created,
@@ -108,7 +104,7 @@
                     target = rows[i].currency_secondary,
                     price = parseFloat(rows[i].tradeprice);
                 rows[i].convertedAmount = queryAmount * price,
-                    rows[i].rate = "1 " + base + " = " + formatNumber(price, 6) + " " + target;
+                    rows[i].rate = "1 " + base + " = " + formatNumber(price) + " " + target;
                 results.push(rows[i]);
             }
             timestamp = rows[0].created;
@@ -121,12 +117,10 @@
             return Spice.failed('cryptocurrency');
         }
         
-        
-        
         // Get the flag image.
         function currency_image(symbol) {
             symbol = symbol.toLowerCase();
-            // Most cryptocurrencies will NOT have flags associated with countries
+            // Most cryptocurrencies will not have flags associated with countries
             // They will need to have their own flag provided for them.
             if(!(symbol in currency2country_extra)) {
                 return DDG.get_asset_path('cryptocurrency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
@@ -138,15 +132,14 @@
         }
         
         // Add commas to the numbers for display.
-        function formatNumber(x, decimalPlaces) {
-            
-            
+        function formatNumber(x) {
+            console.log(x);
+            console.log(decimalPlaces(x));
+            var decimals = decimalPlaces(x) <= 4 ? decimals = decimalPlaces(x) : decimals = 4;
             // Check if the number has a decimal point.
-            // If it does, only show the first two digits after the decimal place.
             if(/\./.test(x.toString())) {
-                x = x.toFixed(decimalPlaces);   
+                x = x.toFixed(decimals);   
             }
-        
             return DDG.commifyNumber(x);
         }
         
@@ -178,8 +171,8 @@
                     return {
                         fromCurrencySymbol: item.ticker.base,
                         toCurrencySymbol: item.ticker.target,
-                        amount: formatNumber(queryAmount, 2),
-                        convertedAmount: formatNumber(convertedAmount, 2),
+                        amount: formatNumber(queryAmount),
+                        convertedAmount: formatNumber(convertedAmount),
                         rate: rate,
                         inverseRate: inverseRate,
                         cryptonatorURL: "http://www.cryptonator.com/rates#" + item.ticker.base,
@@ -194,9 +187,9 @@
                 return {
                     fromCurrencySymbol: item.currency_primary,
                     toCurrencySymbol: item.currency_secondary,
-                    amount: formatNumber(queryAmount, 2),
+                    amount: formatNumber(queryAmount),
                     // If item is the queried currency, then display the query amount.
-                    convertedAmount: item.currency_primary === item.currency_secondary ? formatNumber(queryAmount, 6): formatNumber(item.convertedAmount, 2),
+                    convertedAmount: item.currency_primary === item.currency_secondary ? formatNumber(queryAmount): formatNumber(item.convertedAmount),
                     rate: item.rate,
                     inverseRate: inverseRate,
                     cryptonatorURL: "http://www.cryptonator.com/rates#" + item.currency_secondary,

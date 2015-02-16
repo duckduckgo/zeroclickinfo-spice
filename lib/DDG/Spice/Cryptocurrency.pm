@@ -1,11 +1,24 @@
 package DDG::Spice::Cryptocurrency;
-# ABSTRACT: Cryptocurrency converter and exchange rate lookup from www.cryptonator.com
-
+# ABSTRACT: Cryptocurrency converter and exchange rate lookup provided by cryptonator.com
+# Borrows from DDG::Spice:Currency
+ 
 use DDG::Spice;
 with 'DDG::SpiceRole::NumberStyler';
 
+name "Cryptocurrency";
+source "cryptonator.com";
+icon_url "https://www.cryptonator.com/ui/img/favicon.png";
+description "Cryptocurrency converter and exchange rate lookup provided by cryptonator.com";
+primary_example_queries "convert ltc to btc", "50 ftc to btc";
+secondary_example_queries "50 ltc";
+category "conversions";
+topics "economy_and_finance";
+code_url "https://github.com/claytonspinner/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Cryptocurrency.pm";
+attribution web => ['http://cryptonator.com','cryptonator.com'],
+            github => ["https://github.com/claytonspinner", "Clayton Spinner"],
+            email => ["clayton.spinner\@gmail.com", "Clayton Spinner"];
+
 # Get all the valid currencies from a text file.
-# TODO Add script to update currency list
 my @currTriggers;
 my @currencies = share('cryptocurrencylist.txt')->slurp;
 my %currHash = ();
@@ -34,7 +47,8 @@ my @excludedCurrencies = (
     'usd',
 );
 
-# Excluded names from being used by themselves.
+# Used when a single currency is given in the query.
+# Excludes currencies with numbers for names from being used by themselves.
 # Differs from the @excludedCurrencies list because these values are not handled by another Spice.
 my @excludedSingle = (
     '2015',
@@ -45,17 +59,14 @@ my @excludedSingle = (
 );
 
 #Define regexes
-# TODO 1. Add 'exchange rate, converted to' as possible match for $into_qr
 my $currency_qr = join('|', @currTriggers);
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
 my $rate_qr = qr/\s(?:rate|exchange|exchange rate|conversion)/i;
-my $into_qr = qr/\s(?:en|in|to|in ?to|to)\s/i;
+my $into_qr = qr/\s(?:en|in|to|in ?to|to|from)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $number_re = number_style_regex();
-# Makes sure currency names like 42coin, 666coin, 66coin aren't treated as amounts
-my $num_space_re = qr/$number_re\s/;
 
-my $guard = qr/^$question_prefix($num_space_re*)\s?($currency_qr)(?:s)?(?:$into_qr|$vs_qr|$rate_qr|\s)?($num_space_re*)\s?($currency_qr)?(?:s)?\??$/i;
+my $guard = qr/^$question_prefix($number_re*?)\s?($currency_qr)(?:s)?(?:$into_qr|$vs_qr|$rate_qr|\s)?($number_re*?)\s?($currency_qr)?(?:s)?\??$/i;
 
 # http://www.cryptonator.com/api/secondaries?primary=BTC
 # http://www.cryptonator.com/api/ticker/ltc-ftc
@@ -82,8 +93,6 @@ sub getCode {
 }
 
 # This function is responsible for processing the input.
-# - Setting default values.
-# - Checking if the input number is valid.
 sub checkCurrencyCode {
     my($amount, $from, $to) = @_;
     my %excludedCurrencies = map { $_ => 1 } @excludedCurrencies;
@@ -106,10 +115,14 @@ sub checkCurrencyCode {
         return;
     }
     
+    # Check if a single currency is in @excludedSingle.
+    # This is done before standardizing the currencies, because we want to exclude searches like '42?',
+    # while processing searches like '42coin?'
     if (length($from) && !length($to) && exists($excludedSingle{$from})) {
         return;
     }
     
+    # Currency values are standardized
     $from = getCode($from) || '';
     $to = getCode($to) || '';
     
@@ -132,7 +145,7 @@ sub checkCurrencyCode {
         }
         $endpoint = 'ticker';
         $query = $from . '-' . $to;
-        $query2 = '';
+        $query2 = $normalized_number;
     }
     # For a single currency, call the secondaries endpoint
     else {
@@ -141,7 +154,7 @@ sub checkCurrencyCode {
             return;
         }
         $endpoint = 'secondaries';
-        $query = $from;
+        $query = $normalized_number;
         $query2 = $from;
     }
     return $endpoint, $query, $query2;
@@ -160,7 +173,6 @@ handle query_lc => sub {
             return checkCurrencyCode($amount, $from, $to);
         }
         # Case where the second amount is available.
-        # We switch the $from and $to here.
         elsif(length($alt_amount)) {
             return checkCurrencyCode($alt_amount, $to, $from);
         }
@@ -169,7 +181,6 @@ handle query_lc => sub {
             return checkCurrencyCode(1, $from, $to);
         }
     }
-    
     return;
 };
 
