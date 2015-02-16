@@ -8,96 +8,101 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [ 'DDG::Spice::Cryptocurrency' ],
     'lite coin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/ltc/ltc',
+        '/js/spice/cryptocurrency/secondaries/1/ltc',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     '500 ftc' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/ftc/ftc',
+        '/js/spice/cryptocurrency/secondaries/500/ftc',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     'ltc ftc' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ltc-ftc/',
+        '/js/spice/cryptocurrency/ticker/ltc-ftc/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     '500 ltc ftc' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ltc-ftc/',
+        '/js/spice/cryptocurrency/ticker/ltc-ftc/500',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     'ltc 500 ftc' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ftc-ltc/',
+        '/js/spice/cryptocurrency/ticker/ftc-ltc/500',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     '500 litecoin to ftc' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ltc-ftc/',
+        '/js/spice/cryptocurrency/ticker/ltc-ftc/500',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     '100,000 litecoin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/ltc/ltc',
+        '/js/spice/cryptocurrency/secondaries/100000/ltc',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     'litecoin vs. bitcoin' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ltc-btc/',
+        '/js/spice/cryptocurrency/ticker/ltc-btc/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     'convert litecoin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/ltc/ltc',
+        '/js/spice/cryptocurrency/secondaries/1/ltc',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     'convert litecoin to 30 ftc' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ftc-ltc/',
+        '/js/spice/cryptocurrency/ticker/ftc-ltc/30',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     'litecoin exchange rate' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/ltc/ltc',
+        '/js/spice/cryptocurrency/secondaries/1/ltc',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     'convert 10,000 kryp into jpy' => test_spice(
-        '/js/spice/cryptocurrency/ticker/kryp-jpy/',
+        '/js/spice/cryptocurrency/ticker/kryp-jpy/10000',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
     'convert 10,000.55 kryp into jpy' => test_spice(
-        '/js/spice/cryptocurrency/ticker/kryp-jpy/',
+        '/js/spice/cryptocurrency/ticker/kryp-jpy/10000.55',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
     'What is nxt in ltc?' => test_spice(
-        '/js/spice/cryptocurrency/ticker/nxt-ltc/',
+        '/js/spice/cryptocurrency/ticker/nxt-ltc/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
     
     # Plural names of coins
     'What is nxt in litecoins?' => test_spice(
-        '/js/spice/cryptocurrency/ticker/nxt-ltc/',
+        '/js/spice/cryptocurrency/ticker/nxt-ltc/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
     'Convert KimDotCoins to Litecoins?' => test_spice(
-        '/js/spice/cryptocurrency/ticker/dot-ltc/',
+        '/js/spice/cryptocurrency/ticker/dot-ltc/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
     
     # Edge cases
     '66 666coin to 66coin?' => test_spice(
-        '/js/spice/cryptocurrency/ticker/666-66/',
+        '/js/spice/cryptocurrency/ticker/666-66/66',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
     '666coin to 2015 coin?' => test_spice(
-        '/js/spice/cryptocurrency/ticker/666-2015/',
+        '/js/spice/cryptocurrency/ticker/666-2015/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
+    '666coins to 45 2015 coins' => test_spice(
+        '/js/spice/cryptocurrency/ticker/2015-666/45',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
@@ -105,12 +110,12 @@ ddg_spice_test(
     # Malformed queries
     'ltc to ltc' => undef,
     'ltc to' => undef,
-    # Numbers that should trigger spice.Numbers
+    # Numbers that shouldn't trigger spice.
     '42' => undef,
     '66' => undef,
     '666' => undef,
     '2015' => undef,
-    # Numbers with with ambiguous formatting.
+    # Numbers with ambiguous formatting.
     'convert 200,0000.1.1 ltc into btc' => undef,
     # Other types of conversion
     'convert 32 f to c' => undef,
@@ -126,6 +131,7 @@ ddg_spice_test(
     'usda loans' => undef,
     
     # Handled by the Currency Spice.
+    'usd to aud' => undef,
     'btc' => undef,
     '500 btc in usd' => undef,
     'canada dollar' => undef,

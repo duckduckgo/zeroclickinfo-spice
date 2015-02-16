@@ -1,13 +1,13 @@
 /* Tile view */
 
-.zci--currency .btn--container {
+.zci--cryptocurrency .btn--container {
     position: absolute;
     display: none;
     top: 0.4em;
     right: 0.5em;
 }
 
-.zci--currency .btn--container .ddgsi {
+.zci--cryptocurrency .btn--container .ddgsi {
     padding-right: 7px;
     padding-left: 7px;
     padding-bottom: 0px;
@@ -15,25 +15,25 @@
     font-size: 16px;
 }
 
-.zci--currency .btn--container .ddgsi a:hover {
+.zci--cryptocurrency .btn--container .ddgsi a:hover {
     color: inherit;
 }
 
-.zci--currency .highlight .btn--container {
+.zci--cryptocurrency .highlight .btn--container {
     display: inline;
 }
 
-.zci--currency .tile--c {
+.zci--cryptocurrency .tile--c {
     width: 13em;
     height: 12.5em;
 }
 
-.zci--currency .tile--s.tile--c {
+.zci--cryptocurrency .tile--s.tile--c {
     text-align: center;
     padding-top: 1.4em;
 }
 
-.zci--currency .tile--s .currency--border {
+.zci--cryptocurrency .tile--s .cryptocurrency--border {
     display: inline-block;
     width: 36px;
     height: 36px;
@@ -47,198 +47,198 @@
     background-color: rgba(50,50,50, .2);
 }
 
-.is-mobile .zci--currency .tile--s .currency--border {
+.is-mobile .zci--cryptocurrency .tile--s .cryptocurrency--border {
     display: none;
 }
 
-.zci--currency .tile--s img {
+.zci--cryptocurrency .tile--s img {
     height: 32px;
     vertical-align: top;
     z-index: 2;
     position: relative;
 }
 
-    .is-mobile .zci--currency .tile--s img {
+    .is-mobile .zci--cryptocurrency .tile--s img {
         border: 0.2em solid rgba(50,50,50, .2);
         border-radius: 50%;
     }
 
-.zci--currency .tile--s .currency--symbol {
+.zci--cryptocurrency .tile--s .cryptocurrency--symbol {
     margin-top: 0.6em;
 }
 
-.zci--currency .tile--s .currency--amount {
+.zci--cryptocurrency .tile--s .cryptocurrency--amount {
     font-size: 2.2em;
     font-weight: 600;
 }
 
-.zci--currency .tile--s .currency--rate {
+.zci--cryptocurrency .tile--s .cryptocurrency--rate {
     margin-top: 0.6em;
 }
 
 /* Desktop view */
 
-.zci--currency section {
+.zci--cryptocurrency section {
     display: inline-block;
 }
 
-.zci--currency-result {
+.zci--cryptocurrency-result {
     margin: 0.75em 1.5em 0.5em 0em;
     line-height: 3em;
     display: inline-block;
 }
 
-.zci--currency-group {
+.zci--cryptocurrency-group {
     white-space: nowrap;
     display: inline-block;
 }
 
-.zci--currency-first-part,
-.zci--currency-equal,
-.zci--currency-second-part {
+.zci--cryptocurrency-first-part,
+.zci--cryptocurrency-equal,
+.zci--cryptocurrency-second-part {
     display: inherit;
 }
 
-.zci--currency-second-part {
+.zci--cryptocurrency-second-part {
     white-space: nowrap;
 }
 
-    .is-mobile .zci--currency-second-part {
+    .is-mobile .zci--cryptocurrency-second-part {
         text-align: center;
         white-space: inherit;
     }
 
-    .is-mobile .zci--currency-first-part {
+    .is-mobile .zci--cryptocurrency-first-part {
         text-align: center;
     }
 
-    .is-mobile .zci--currency .tile--s.large .zci--currency-first-part img {
+    .is-mobile .zci--cryptocurrency .tile--s.large .zci--cryptocurrency-first-part img {
         vertical-align: middle;
     }
 
-    .is-mobile .zci--currency .tile--s.large .zci--currency-second-part img {
+    .is-mobile .zci--cryptocurrency .tile--s.large .zci--cryptocurrency-second-part img {
         vertical-align: middle;
     }
 
-.zci--currency-ratesinfo {
+.zci--cryptocurrency-ratesinfo {
     border-left: 1px solid #d0d0d0;
     margin-top: 1.5em;
     padding-left: 2em;
     display: inline-block;
 }
     
-    .ie8 .zci--currency-ratesinfo {
+    .ie8 .zci--cryptocurrency-ratesinfo {
         margin-left: 2em;
     }
 
-.zci--currency-result img {
+.zci--cryptocurrency-result img {
     height: 32px; 
     margin-top: 1em;
     vertical-align: -2px;
     width: 32px;
 }
 
-.zci--currency-container {
+.zci--cryptocurrency-container {
     height: 5em;
 }
 
-.zci--currency-amount {
+.zci--cryptocurrency-amount {
     font-size: 2.7em;
     font-weight: bold;
     padding: 0 0.1em 0 0.2em;
 }
 
-    .is-mobile .zci--currency-amount {
+    .is-mobile .zci--cryptocurrency-amount {
         font-size: 2.2em;
     }
 
-    .is-mobile .large .zci--currency-amount {
+    .is-mobile .large .zci--cryptocurrency-amount {
         display: block;
     }
 
-.zci--currency-symbol {
+.zci--cryptocurrency-symbol {
     display: inline-block;
     font-size: 0.8em;
     vertical-align: top;
 }
 
-    .is-mobile .zci--currency-symbol {
+    .is-mobile .zci--cryptocurrency-symbol {
         font-size: 1em;
         font-weight: 300;
     }
 
-    .is-mobile .zci--currency-symbol-large {
+    .is-mobile .zci--cryptocurrency-symbol-large {
         font-size: 1.2em;
         padding-left: 0.3em;
     }
 
-    .is-mobile .zci--currency-symbol-small {
+    .is-mobile .zci--cryptocurrency-symbol-small {
         display: none;
     }
 
-    .is-mobile .zci--currency-symbol-large {
+    .is-mobile .zci--cryptocurrency-symbol-large {
         display: none;
     }
 
-    .is-mobile .small .zci--currency-symbol-small {
+    .is-mobile .small .zci--cryptocurrency-symbol-small {
         display: initial;
         vertical-align: top;
         line-height: 27px;
     }
 
-    .is-mobile .large .zci--currency-symbol-large {
+    .is-mobile .large .zci--cryptocurrency-symbol-large {
         display: initial;
     }
 
-.zci--currency-equal {
+.zci--cryptocurrency-equal {
     font-size: 2em;  
     margin: 0 0.5em;
 }
-    .ie8 .zci--currency-equal {
+    .ie8 .zci--cryptocurrency-equal {
         margin-right: 0.5em;
         margin-left: 1.5em;
     }
 
-    .is-mobile .zci--currency-equal .horizontal {
+    .is-mobile .zci--cryptocurrency-equal .horizontal {
         border-bottom: 1px solid #dfdfdf;
         display: inline-block;
         width: 39.8%;
         vertical-align: 0.35em;
     }
 
-    .is-mobile .zci--currency-equal .equal {
+    .is-mobile .zci--cryptocurrency-equal .equal {
         padding: 0 0.5em 0 0.5em;
     }
 
-    .is-mobile .zci--currency-equal {
+    .is-mobile .zci--cryptocurrency-equal {
         text-align: center;
     }
 
-.zci--currency-link {
+.zci--cryptocurrency-link {
     clear: both;
     margin-left: 1em;
     margin-left: 1.3em;
     padding: 1em 0;
 }
 
-.zci--currency-bar {
+.zci--cryptocurrency-bar {
    font-size: 1.2em;  
    padding: 0 0.5em;
    vertical-align: middle;
 }
 
-.zci--currency-link a {
+.zci--cryptocurrency-link a {
     color: #888;
     font-size: 0.9em;
 }
 
-.zci--currency-link span {
+.zci--cryptocurrency-link span {
     color: #888;
     font-size: 1em;
 }
 
 @media only screen and (max-width : 600px) {
-    .zci--currency-result {
+    .zci--cryptocurrency-result {
         font-size: 0.9em;
     }
 }
@@ -253,22 +253,22 @@
     color: inherit;
 }
 
-.is-mobile .zci--currency .zci__metabar__more-at.custom {
+.is-mobile .zci--cryptocurrency .zci__metabar__more-at.custom {
     line-height: inherit;
 }
 
-.is-mobile .zci--currency-ratesinfo-mobile {
+.is-mobile .zci--cryptocurrency-ratesinfo-mobile {
     text-align: center;
 }
 
-.is-mobile .zci--currency .market-rates {
+.is-mobile .zci--cryptocurrency .market-rates {
     float: left;
     line-height: 1.3em;
     padding-left: 0.5em;
     padding-top: 0.1em;
 }
 
-.is-mobile .zci--currency-ratesinfo-mobile .horizontal {
+.is-mobile .zci--cryptocurrency-ratesinfo-mobile .horizontal {
     border-bottom: 1px solid #ddd;
     display: inline-block;
     width: 84.5%;
