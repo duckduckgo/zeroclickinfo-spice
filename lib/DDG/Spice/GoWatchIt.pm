@@ -2,6 +2,8 @@ package DDG::Spice::GoWatchIt;
 
 use DDG::Spice;
 
+primary_example_queries "watch boyhood";
+secondary_example_queries "incredible hulk on demand";
 name "GoWatchIt Search";
 source "GoWatchIt.com";
 description "Find out where to watch your favorite movies and shows!";
