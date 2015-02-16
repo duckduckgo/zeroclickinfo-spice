@@ -37,11 +37,6 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
-    '66 666' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/666/666',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency'
-    ),
     '100,000 litecoin' => test_spice(
         '/js/spice/cryptocurrency/secondaries/ltc/ltc',
         call_type => 'include',
@@ -96,18 +91,13 @@ ddg_spice_test(
     ),
     
     # Edge cases
-    '66 666coin to 66?' => test_spice(
+    '66 666coin to 66coin?' => test_spice(
         '/js/spice/cryptocurrency/ticker/666-66/',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
-    '66 666coin to 66?' => test_spice(
-        '/js/spice/cryptocurrency/ticker/666-66/',
-        call_type => 'include',
-        caller => 'DDG::Spice::Cryptocurrency',
-    ),
-    '666?' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/666/666',
+    '666coin to 2015 coin?' => test_spice(
+        '/js/spice/cryptocurrency/ticker/666-2015/',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
@@ -115,6 +105,11 @@ ddg_spice_test(
     # Malformed queries
     'ltc to ltc' => undef,
     'ltc to' => undef,
+    # Numbers that should trigger spice.Numbers
+    '42' => undef,
+    '66' => undef,
+    '666' => undef,
+    '2015' => undef,
     # Numbers with with ambiguous formatting.
     'convert 200,0000.1.1 ltc into btc' => undef,
     # Other types of conversion
