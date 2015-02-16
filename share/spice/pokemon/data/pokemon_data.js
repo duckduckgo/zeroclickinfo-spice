@@ -7,9 +7,9 @@
      *  [ Pokemon::Data ]
      */
     env.ddg_spice_pokemon_data = function(api_result){
-        var DESCRIPTION_ENDPOINT = '/js/spice/pokemon/description/{id}';
-        var POKEAPI_SPRITE_URL = 'http://pokeapi.co/media/img/{id}.png';
-        var INFOBOX_PROPS = ['hp', 'attack', 'defense', 'height', 'weight', 'speed'];
+        var DESCRIPTION_ENDPOINT = '/js/spice/pokemon/description/{id}',
+            POKEAPI_SPRITE_URL = 'http://pokeapi.co/media/img/{id}.png',
+            INFOBOX_PROPS = ['hp', 'attack', 'defense', 'height', 'weight', 'speed'];
 
         if (!api_result) {
             return Spice.failed('pokemon');
@@ -53,8 +53,8 @@
          * @param {Array} descriptions
          */
         function fetchDescription(descriptions) {
-            var randIndex = Math.floor(Math.random() * descriptions.length);
-            var id = descriptions[randIndex].resource_uri.match(/(\d+)\/$/)[1];
+            var randIndex = Math.floor(Math.random() * descriptions.length),
+                id = descriptions[randIndex].resource_uri.match(/(\d+)\/$/)[1];
 
             $.getScript(DESCRIPTION_ENDPOINT.replace('{id}', id));
         }
@@ -67,7 +67,7 @@
          * @return {Array}
          */
         function getCollectionNames(collection) {
-            return this[collection].map(function(element) {
+            return $.map(this[collection], function(element) {
                 return DDG.capitalize(element.name);
             });
         }
