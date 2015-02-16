@@ -169,6 +169,10 @@
                     return null;
                 }
                 
+                // Try to strip anything that comes before the price.
+                item.buy_line = item.buy_line.replace(/^[a-z ]+/i, "");
+                item.rent_line = item.rent_line.replace(/^[a-z ]+/i, "");
+
                 // If the provider is in this hash, it means that they provide 
                 // streaming if they don't buy or sell stuff.
                 if(item.provider_name in streaming_providers && 
