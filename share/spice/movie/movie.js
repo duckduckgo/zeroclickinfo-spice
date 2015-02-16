@@ -76,7 +76,7 @@
                     img: image,
                     img_m: image,
                     url: item.links.alternate,
-                    is_retina: is_retina ? "is_retina" : "no_retina"
+                    is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
                 };
             },
             templates: {
