@@ -1,657 +1,654 @@
-btc,bitcoin,bit coin
-ftc,feathercoin,feather coin
-ltc,litecoin,lite coin
-10k,10K,primary
-1cr,1Credit,primary
-2015,2015,primary
-42,FourtyTwoCoin,primary
-666,666coin,primary
-66,66coin,primary
-abc2,Abundance,primary
-ach,Achilles,primary
-acoin,Acoin,primary
-ags,AegisCoin,primary
-aero,Aerocoin,primary
-aevum,Aevumcoin,primary
-aid,AidBit,primary
-adn,Aidencoin,primary
-aln,Aliencoin,primary
-ali,Alipaycoin,primary
-alf,Alphacoin,primary
-am,AM,primary
-amber,AMBER Coin,primary
-amc,Americancoin,primary
-adt,Android Token,primary
-ani,Animecoin,primary
-anc,Anoncoin,primary
-apex,APEX Coin,primary
-aby,AppleBytes,primary
-apc,Applecoin,primary
-arch,Architectcoin,"primary,secondary"
-arg,Argentum,primary
-ari,Aricoin,primary
-ac,AsiaCoin,primary
-asc,AsicCoin,primary
-atp,Atomic Points,primary
-aur,Auroracoin,primary
-au,AurumCoin,primary
-aud,Australian Dollar,secondary
-boom,B. O. O. M. coin,primary
-yum,BaconBitsCoin,primary
-bncr,Bancor Coin,primary
-bsy,BanksyCoin,primary
-banx,Banx shares,primary
-bat,BatCoin,primary
-bcx,Battlecoin,primary
-bqc,BBQCoin,primary
-bcent,BCENT,primary
-bcr,BCR,primary
-bdsm,BDSM,primary
-bec,BeaoCoin,primary
-bvc,BeaverCoin,"primary,secondary"
-bee,Beecoin,primary
-beer,Beercoin,primary
-bela,Bellacoin,primary
-ben,Benjamins,primary
-bet,Betacoin,primary
-bible,Biblecoin,primary
-bils,Bilshares,primary
-bird,Birdcoin,primary
-btb,BitBar,primary
-bay,BitBay,primary
-btc,Bitcoin,"primary,secondary"
-btcs,Bitcoin Scrypt,primary
-btcd,BitcoinDark,"primary,secondary"
-bcf,BitCoinFast,primary
-xbc,BitcoinPlus,primary
-btg,BitGem,primary
-xbl,BitLionCoin,primary
-btm,Bitmark,primary
-bitr,BitReplica,primary
-bts,BitShares,primary
-pts,BitShares PTS,primary
-bits,Bitstar,primary
-swift,BitSwift,"primary,secondary"
-zny,BitZeny,primary
-bdc,Black Dragon Coin,primary
-blk,Blackcoin,"primary,secondary"
-bla,Bladecoin,"primary,secondary"
-bbtc,BlakeBitcoin,primary
-blc,Blakecoin,primary
-blz,Blazecoin,primary
-bleu,Bleu's shares,"primary,secondary"
-block,Blocknet shares,primary
-blu,BluCoin,"primary,secondary"
-blunt,BluntCoin,primary
-bns,BonusCoin,primary
-bbr,Boolberry,primary
-bost,Boostcoin,primary
-borg,Borgcoin,primary
-cap,BottleCaps,primary
-brit,BritCoin,primary
-btq,Bter,primary
-btmi,BTMI,primary
-bun,Bunnycoin,"primary,secondary"
-burst,Burst,primary
-byc,Bytecent,primary
-bcn,Bytecoin,primary
-bte,Bytecoin,primary
-cnote,C-Note,primary
-cach,CacheCoin,primary
-cage,CageCoin,"primary,secondary"
-caix,Caishen,primary
-cam,Camcoin,primary
-cdn,Canada eCoin,"primary,secondary"
-cad,Canadian Dollar,primary
-cann,CannabisCoin,"primary,secondary"
-cnd,CannabisDarkcoin,primary
-ccn,CannaCoin,primary
-cptl,CapitalCoin,primary
-capt,CAPTcoin,primary
-carb,Carboncoin,primary
-diem,CarpeDiemCoin,primary
-cash,Cash,primary
-csc,CasinoCoin,primary
-catc,CataloniaCoin,primary
-cat,Catcoin,primary
-cbr,CBR,primary
-ceti,Cetuscoin Scrypt,primary
-chc,ChainCoin,primary
-ckc,Checkcoin,"primary,secondary"
-cny,Chinese Yuan,secondary
-cnc,CHNCoin,primary
-ccc,Chococoin,primary
-cinni,CinniCoin,primary
-clam,Clams,"primary,secondary"
-water,CleanWaterCoin,primary
-xch,ClearingHouse,primary
-chash,Cleverhash,primary
-cloak,Cloakcoin,primary
-cloud,CLOUD,primary
-cdc,Cloudcoin,primary
-cfc2,CoffeeCoin v2,"primary,secondary"
-c2,Coin2,primary
-jbs,CoinmarketsCoin,primary
-con,Coino,primary
-xusd,CoinoUSD,"primary,secondary"
-csd,CoinShield,primary
-lab,Coinworkscoin,primary
-col,Colossuscoin,primary
-comm,CommunityCoin,primary
-cpn,CompuCoin,primary
-cnl,ConcealCoin,primary
-cfn,Confessioncoin,primary
-cyc,Conspiracy Coin,primary
-ctm,Continuumcoin,primary
-cool,Coolcoin,primary
-clr,Copperlark,primary
-cmc,CosmosCoin,primary
-xcp,Counterparty,primary
-crack,CrackCoin,primary
-crc,CraftCoin,primary
-craig,CraigsCoin,primary
-crd,Credits,primary
-cdt,Credits,primary
-crw,CrownCoin,primary
-cry,Cryptcoin,primary
-xcr,Crypti,primary
-buk,CryptoBuck,primary
-cesc,CryptoEscudo,"primary,secondary"
-cgb,Cryptogenic Bullion,primary
-cga,Cryptographic Anomaly,primary
-tri,Cryptographic Triangles,primary
-crt,CryptographicCoin,primary
-xcn,Cryptonite,primary
-off,CthulhuCoin,primary
-cure,Curecoin,primary
-cxc,CXC,primary
-funk,Cypherfunk,primary
-czc,CzechCrownCoin,"primary,secondary"
-cze,Czecoin,primary
-czr,CZR,primary
-drkc,DarkCash,primary
-drk,DarkCoin,"primary,secondary"
-dank,DarkKush,primary
-dpc,DarkPeer,primary
-dsb,Darkshibe,primary
-ds,DarkSwift,primary
-dt,DarkToken,primary
-dsh,Dashcoin,primary
-dtc,Datacoin,primary
-dcn,Deepcoin,"primary,secondary"
-drs,Denarius,primary
-dem,Deutsche eMark,primary
-dvc,Devcoin,primary
-dgd,DGD,primary
-dmd,Diamond,primary
-dgb,DigiByte,primary
-dtr,Digital Taler,primary
-dgc,Digitalcoin,"primary,secondary"
-dp,DigitalPrice,"primary,secondary"
-dime,Dimecoin,primary
-dio,Diode,primary
-xdq,Dirac,primary
-note,DNotes,primary
-bob,Dobbscoin,primary
-dogeb,DogeBlackCoin,primary
-doge,DogeCoin,"primary,secondary"
-doged,DogeCoinDark,"primary,secondary"
-xdp,Dogeparty,primary
-don,Donationcoin,"primary,secondary"
-dope,DopeCoin,primary
-xde,DoubleEagle,primary
-dbl,Doubloons,primary
-duck,DuckDuckCoin,primary
-xdn,DuckNote,primary
-eags,EAGS,primary
-eac,EarthCoin,primary
-ecc,ECCoin,primary
-edu,EduCoin,primary
-emc2,Einsteinium,primary
-krn,Ekrona,primary
-elc,Elacoin,primary
-volt,ElectricCoin,primary
-elt,Electron,primary
-efl,Electronic Gulden,"primary,secondary"
-elp,ElephantCoin,primary
-emd,Emerald,primary
-emc,Emercoin,primary
-enrg,Energycoin,primary
-eqx,EquinoxCoin,primary
-erm,Ermiscoin,primary
-etc,EternalCoin,primary
-euph,Euphoria,primary
-eur,Euro,"primary,secondary"
-erc,EuropeCoin,primary
-event,EventToken,primary
-excl,Exclusive Coin,primary
-exe,Execoin,primary
-exc,Extremecoin,primary
-ezc,EZcoin,primary
-fail,Failcoin,primary
-fair,Faircoin,primary
-fcn,Fantomcoin,primary
-fst,FastCoin,primary
-fck,FCK Banks coin,primary
-ftc,Feathercoin,primary
-tips,Fedoracoin,primary
-fibre,Fibre,primary
-find,FIND,primary
-ffc,FireFlyCoin,primary
-flap,Flappycoin,primary
-fldc,FLDC,primary
-flex,Flexiblecoin,primary
-flirt,Flirtcoin,primary
-flo,Florin,primary
-flt,Fluttercoin,primary
-frac,Fractalcoin,primary
-frk,Franko,primary
-frc,Freicoin,"primary,secondary"
-frsh,FreshCoin,primary
-fsc2,FSC2,primary
-fc2,Fuelcoin,primary
-fjc,FujiCoin,"primary,secondary"
-fsc,Fusioncoin,primary
-gaia,GAIA Coin,primary
-glx,Galaxycoin,primary
-gme,Gamecoin,primary
-gml,GameleagueCoin,primary
-gmc,Gamerscoin,primary
-ganja,GanjaCoin,primary
-gap,Gapcoin,primary
-gas,GAS,primary
-gcn,Gcoin,"primary,secondary"
-gemz,GEMZ,primary
-gns,Genesiscoin,primary
-ghost,Ghostcoin,primary
-gig,GIG,primary
-gimp,Gimpcoin,primary
-give,Givecoin,primary
-gdn,Global Denomination,primary
-bst,Globalboost,primary
-bsty,GlobalBoost-Y,primary
-glc,GlobalCoin,primary
-gsx,GlowShares,primary
-glyph,GlyphCoin,primary
-gold,GOLD,primary
-gld,Gold Coin,primary
-xgr,GoldReserve,primary
-gre,Goldreserve,primary
-good,Goodcoin,primary
-gp,GP,primary
-gdc,Grand Coin,primary
-grn,Granite,"primary,secondary"
-gb,GreenBacks,primary
-grc,GridCoin,primary
-grs,GroestlCoin,primary
-gxg,GroinCoin,primary
-grw,GrowthCoin,primary
-gua,Guarany,"primary,secondary"
-gue,Guerillacoin,primary
-nlg,Guldencoin,"primary,secondary"
-gun,Guncoin,"primary,secondary"
-h2o,H2O Coin,primary
-hal,Halcyon,primary
-ham,HamRadioCoin,"primary,secondary"
-hvc,Heavycoin,primary
-hex,Heisenberg,"primary,secondary"
-hlc,Hellcoin,primary
-thc,HempCoin,primary
-hz,HertzCoin,primary
-hiro,Hirocoin,primary
-hbm,HoboNickel,primary
-hkd,Hong Kong Dollar,secondary
-html5,HTMLcoin,"primary,secondary"
-huc,Huntercoin,primary
-hyper,Hyper,primary
-hyp,HyperStake,primary
-i0c,I0coin,primary
-icb,IcebergCoin,primary
-ipc,Imperialcoin,primary
-impc,Imperium Coin,"primary,secondary"
-nka,Incakoin,primary
-icg,IncogCoin,primary
-idc,Indexcoin,primary
-ifc,Infinitecoin,"primary,secondary"
-ioc,IO Coin,primary
-irl,Ireland Coin,"primary,secondary"
-iri,IridiumCoin,primary
-isr,Isracoin,primary
-ixc,iXcoin,primary
-jpc,Jackpotcoin,primary
-jpy,Japanese Yen,secondary
-jlh,jl777hodl,primary
-xjo,Joulecoin,primary
-judge,JudgeCoin,primary
-jkc,Junkcoin,primary
-karm,Karmacoin,"primary,secondary"
-kpl,Keplercoin,primary
-key,Keycoin,"primary,secondary"
-dot,KimDotCoin,primary
-kimo,KimoCoin,primary
-king,KingCoin,primary
-meow,Kittehcoin,primary
-kdc,KlondikeCoin,primary
-kore,KoreCoin,primary
-kgc,Krugercoin,primary
-ktk,KryptKoin,primary
-kryp,Kryptonite,primary
-kuma,Kumacoin,primary
-lat,Latium,primary
-leaf,Leafcoin,primary
-lgd,LegendaryCoin,primary
-lmr,LemurCoin,"primary,secondary"
-lftc,LFTC,primary
-xlb,LibertyCoin,primary
-lxc,Librexcoin,primary
-lsd,Lightspeed,primary
-limx,LimecoinX,primary
-ltb,Litebar,primary
-ltc,Litecoin,"primary,secondary"
-ltcd,LitecoinDark,"primary,secondary"
-ltcx,LitecoinX,primary
-lit,Lithium,primary
-tix,Lottery Tickets,primary
-lot,LottoCoin,primary
-lts,Lotuscoin,primary
-lqd,LQD,primary
-ltbc,LTBcoin,primary
-lk7,Lucky7Coin,primary
-lky,LuckyCoin,primary
-lyc,Lycancoin,primary
-mac,Machinecoin,primary
-xmg,Magi,"primary,secondary"
-maia,MaiaCoin,primary
-maid,MaidSafe,primary
-mal,MalibuCoin,primary
-mtc,Marinecoin,primary
-mrs,Marscoin,primary
-maryj,MaryJane the Chill,"primary,secondary"
-mst,MasterCoin,primary
-msc,MasterCoin,primary
-mvr,Mavrocoin,primary
-max,MaxCoin,"primary,secondary"
-mzc,Mazacoin,primary
-mcz,MCZ,primary
-med,Mediterraneancoin,primary
-mec,Megacoin,"primary,secondary"
-mem,Memecoin,primary
-mmc,MemoryCoin,primary
-mtlmc,Metal music coin,"primary,secondary"
-metal,MetalCoin,primary
-mgt,MGT,primary
-mea,Middle Earth Coin,primary
-mnc,MinCoin,primary
-min,Minerals,primary
-mic,MinersCoin,primary
-mn1,Mining Contract 1,primary
-mn2,Mining Contract 2,primary
-mint,Mintcoin,"primary,secondary"
-mmnxt,MMNXT,primary
-mmxiv,MMXIVcoin,primary
-mn,MN,primary
-mns1,MNS1,primary
-mob,Mobcoin,primary
-mona,Monacoin,"primary,secondary"
-xmr,Monero,"primary,secondary"
-mcn,Moneta Verde,primary
-mue,MonetaryUnit,"primary,secondary"
-moon,Mooncoin,"primary,secondary"
-moto,Motocoin,primary
-mls,MozzShare,primary
-muga,Mugatu,primary
-mwc,MultiWalletCoin,primary
-mne,Munne,primary
-mry,Murraycoin,primary
-myr,Myriadcoin,primary
-myst,MYST,primary
-nmc,Namecoin,"primary,secondary"
-nan,NanoToken,primary
-nas,NAScoin,primary
-naut,Nautiluscoin,primary
-nav,Navajo,primary
-nec,Neocoin,primary
-neos,NeosCoin,"primary,secondary"
-net,NetCoin,primary
-ntr,NeutrinoCoin,primary
-nzd,New Zealand Dollar,secondary
-nyc,NewYorkCoin,"primary,secondary"
-nfd,NFDCoin,primary
-nmb,Nimbus,"primary,secondary"
-nkt,NKT,primary
-nobl,NobleCoin,primary
-noxt,NobleNXT,primary
-node,Node,primary
-nrs,Noirbits,primary
-nrb,Noirbits,primary
-noo,NooCoin,primary
-nope,Nopecoin,primary
-nvc,Novacoin,primary
-nbt,Nubits,primary
-nsr,NuShares,primary
-nut,NutCoin,primary
-nxt,Nxt,"primary,secondary"
-nxtty,Nxttycoin,primary
-nyan,Nyancoin,primary
-nbl,Nybble,primary
-o2o,O2oCoin,primary
-obs,OBS,primary
-occ,OceanCoin,primary
-osc,Ocoin,primary
-ocupy,Ocupy,primary
-oma,OMA,primary
-omc,Omnicoin,primary
-one,Onecoin,primary
-opal,Opalcoin,primary
-opti,OptimumCoin,primary
-oc,OrangeCoin,primary
-orb,Orbitcoin,"primary,secondary"
-orca,Orcacoin,primary
-oro,Orobit,primary
-ozc,OzCoin,primary
-pac,Paccoin,"primary,secondary"
-pnd,Pandacoin,"primary,secondary"
-prt,Particle,primary
-xpy,Paycoin,"primary,secondary"
-pyc,PayCoin,primary
-ppc,Peercoin,"primary,secondary"
-ppcd,PeercoinDark,primary
-cent,Pennies,primary
-voxp,Peoples Voice,primary
-pes,Pesa,primary
-ptc,PesetaCoin,primary
-xpd,PetroDollar,primary
-phc,PHCoin,primary
-pxc,Phenixcoin,primary
-phs,Philosopherstone,primary
-pho,Photon,primary
-piggy,Piggycoin,primary
-pimp,PimpCash,"primary,secondary"
-pc,Pinkcoin,primary
-food,Plankton,primary
-plc,Polcoin,primary
-pln,Polish Zloty,secondary
-pcc,PolishCoin,"primary,secondary"
-xsp,PoolStamp,primary
-pop,Popular Coin,primary
-spuds,PotatoCoin,primary
-pot,PotCoin,"primary,secondary"
-gbp,Pound Sterling,"primary,secondary"
-pow,Powcoin,"primary,secondary"
-pxi,Prime-XI,primary
-xpm,Primecoin,"primary,secondary"
-pfc,ProfitCoin,primary
-axr,Project Axron,primary
-prc,Prospercoin,primary
-proz,ProzCoin,primary
-pseud,PseudoCoin,primary
-qbk,Qibuck,primary
-qora,Qora,primary
-qrk,Quark Coin,"primary,secondary"
-qb,Quarkbar,primary
-qtl,Quatloo,primary
-qcn,QuazarCoin,primary
-qsvl,Quicksilvercoin,primary
-quit,QUIT,primary
-xqn,Quotient,primary
-rbt,RabbitCoin,primary
-rbbt,Rabbitcoin,primary
-rzr,Razor,primary
-rbr,RBR,primary
-red,Redcoin,primary
-rdd,Reddcoin,"primary,secondary"
-rekt,REKTcoin,primary
-rms,ResumeoShares,primary
-xrc,RhinoCoin,primary
-rice,RICE,primary
-ric,Riecoin,primary
-rin,Ringo,primary
-ripo,RipoffCoin,primary
-xrp,Ripples,"primary,secondary"
-rsn,Robot Sex Nickels,primary
-rpc,RonPaulCoin,primary
-root,RootCoin,primary
-ros,Roscoin,primary
-rt2,RotoCoin,primary
-rlt,Roulettecoin,primary
-ryc,RoyalCoin,primary
-rur,Ruble,secondary
-rby,RubyCoin,primary
-rc,Russiacoin,"primary,secondary"
-sfr,SaffronCoin,primary
-stv,Sativacoin,primary
-sat2,Saturn2coin,primary
-sat,SaturnCoin,primary
-sbit,SBIT,primary
-xstc,Scattercoin,primary
-src,SecureCoin,primary
-scsy,Securitysyscoin,primary
-seed,SeedCoin,primary
-slfi,Selfiecoin,primary
-smbr,Sembro Token,primary
-xsx,ServX,primary
-sxc,Sexcoin,"primary,secondary"
-sha,SHACoin,primary
-shade,ShadeCoin,primary
-sdc,ShadowCoin,primary
-shi,SHI,primary
-shibe,ShibeCoin,primary
-shld,ShieldCoin,primary
-sc,SilkCoin,primary
-silk,SilkCoin,primary
-sgd,Singapore Dollar,secondary
-skc,Skeincoin,primary
-sleak,SleakCoin,primary
-slm,Slimcoin,primary
-slot,SLOT,primary
-sloth,Slothcoin,"primary,secondary"
-smc,SmartCoin,primary
-smly,SmileyCoin,primary
-balls,Snowballs,primary
-xbot,SocialxBot,primary
-slr,SolarCoin,"primary,secondary"
-sol,Solcoin,primary
-sole,Solecoin,primary
-song,Songcoin,primary
-ssd,SonicScrewdriver,primary
-soon,Sooncoin,primary
-svc,Sovereigncoin,primary
-spa,Spaincoin,primary
-spn,SpartanCoin,primary
-spt,Spots,primary
-spr,SpreadCoin,primary
-ssv,SSVCoin,primary
-xsi,StabilityShares,primary
-sbc,StableCoin,primary
-start,Startcoin,"primary,secondary"
-xst,StealthCoin,primary
-str,Stellar,primary
-slg,Sterlingcoin,"primary,secondary"
-stl,STLcoin,primary
-sjcx,Storjcoin X,primary
-super,Supercoin,primary
-unity,SuperNET Unity,primary
-swarm,Swarm,primary
-sync,SyncCoin,primary
-sys,Syscoin,primary
-tco,TacoCoin,primary
-tag,TagCoin,primary
-tak,Takeicoin,primary
-tek,Tekcoin,primary
-trc,Terracoin,primary
-tes,TeslaCoin,primary
-tet,Tetcoin,primary
-tlc,The Last Coin,primary
-tgc,Tigercoin,primary
-xtc,TileCoin,primary
-tmc,TimeCoin,primary
-tit,Titcoin,"primary,secondary"
-ttc,TittieCoin,primary
-top,TOP,primary
-tor,TorCoin,primary
-tpc,TPC,primary
-trl,Trollcoin,"primary,secondary"
-trk,Truckcoin,primary
-trust,TrustPlus,primary
-uci,UCI,primary
-ufo,UFOcoin,primary
-uis,UIS,"primary,secondary"
-utc,Ultracoin,primary
-ultc,Umbrella-LTC,primary
-unat,Unattainium,primary
-unb,Unbreakablecoin,primary
-unc,Union Coin,primary
-usde,Unitary Status Dollar eCoin,primary
-uvc,UniversityCoin,primary
-uno,Unobtanium,"primary,secondary"
-up,UPcoin,primary
-urod,URO Dark,primary
-uro,UroCoin,"primary,secondary"
-usd,us dollar,united states dollar,american dollar,america dollar,dollar,dollars,bucks,buck
-ucs,UseCryptos Share,primary
-util,Utilitycoin,primary
-vcoin,VCOIN,primary
-vgc,Vegascoin,primary
-vrc,Vericoin,"primary,secondary"
-vtc,Vertcoin,primary
-via,Viacoin,primary
-vdo,VidioShare,primary
-vik,Vikingcoin,primary
-vior,Viorcoin,primary
-vta,VirtaCoin,"primary,secondary"
-vmc,VirtualMiningCoin,primary
-voot,VootCoin,primary
-vpn,VPN Coin,primary
-vtr,vTorrent,primary
-wac,WacCoin,primary
-wkc,Wankcoin,"primary,secondary"
-wc,WhiteCoin,"primary,secondary"
-wlf,Wolfcoin,"primary,secondary"
-log,Woodcoin,primary
-xwt,World Trade Funds,primary
-wdc,Worldcoin,"primary,secondary"
-child,X-Children,primary
-xai,XAI,primary
-xbs,XBS,primary
-xcash,XCash,primary
-xcld,XCloudcoin,primary
-xc,Xcurrency,primary
-xdc,Xedoscoin,primary
-xnc,XenCoin,primary
-xfb,XFB,primary
-xg,XG,primary
-xpb,XPB,primary
-xpc,XPC,primary
-xtr,XTR,primary
-xwc,XWC,primary
-xxl,XXLcoin,primary
-xxx,XXXcoin,primary
-yacc,YACCoin,primary
-yac,YaCoin,primary
-ybc,Yuan Bao,primary
-zcc,ZcCoin,primary
-zed,Zedcoin,primary
-zeit,Zeitcoin,primary
-zer,ZeroVert,primary
-zet,Zetacoin,primary
-zs,Zimstake,primary
+btc,bitcoin,bit coin,
+ftc,feathercoin,feather coin,
+ltc,litecoin,lite coin,
+10k,10k,
+1cr,1credit,
+2015,2015,
+42,fourtytwocoin,
+666,666coin,
+66,66coin,
+abc2,abundance,
+ach,achilles,
+acoin,acoin,
+ags,aegiscoin,
+aero,aerocoin,
+aevum,aevumcoin,
+aid,aidbit,
+adn,aidencoin,
+aln,aliencoin,
+ali,alipaycoin,
+alf,alphacoin,
+am,am,
+amber,amber coin,
+amc,americancoin,
+adt,android token,
+ani,animecoin,
+anc,anoncoin,
+apex,apex coin,
+aby,applebytes,
+apc,applecoin,
+arch,architectcoin,
+arg,argentum,
+ari,aricoin,
+ac,asiacoin,
+asc,asiccoin,
+atp,atomic points,
+aur,auroracoin,
+au,aurumcoin,
+aud,australian dollar,
+boom,b. o. o. m. coin,
+yum,baconbitscoin,
+bncr,bancor coin,
+bsy,banksycoin,
+banx,banx shares,
+bat,batcoin,
+bcx,battlecoin,
+bqc,bbqcoin,
+bcent,bcent,
+bcr,bcr,
+bdsm,bdsm,
+bec,beaocoin,
+bvc,beavercoin,
+bee,beecoin,
+beer,beercoin,
+bela,bellacoin,
+ben,benjamins,
+bet,betacoin,
+bible,biblecoin,
+bils,bilshares,
+bird,birdcoin,
+btb,bitbar,
+bay,bitbay,
+btcs,bitcoin scrypt,
+btcd,bitcoindark,
+bcf,bitcoinfast,
+xbc,bitcoinplus,
+btg,bitgem,
+xbl,bitlioncoin,
+btm,bitmark,
+bitr,bitreplica,
+bts,bitshares,
+pts,bitshares pts,
+bits,bitstar,
+swift,bitswift,
+zny,bitzeny,
+bdc,black dragon coin,
+blk,blackcoin,
+bla,bladecoin,
+bbtc,blakebitcoin,
+blc,blakecoin,
+blz,blazecoin,
+bleu,bleu's shares,
+block,blocknet shares,
+blu,blucoin,
+blunt,bluntcoin,
+bns,bonuscoin,
+bbr,boolberry,
+bost,boostcoin,
+borg,borgcoin,
+cap,bottlecaps,
+brit,britcoin,
+btq,bter,
+btmi,btmi,
+bun,bunnycoin,
+burst,burst,
+byc,bytecent,
+bcn,bytecoin,
+bte,bytecoin,
+cnote,c-note,
+cach,cachecoin,
+cage,cagecoin,
+caix,caishen,
+cam,camcoin,
+cdn,canada ecoin,
+cad,canadian dollar,
+cann,cannabiscoin,
+cnd,cannabisdarkcoin,
+ccn,cannacoin,
+cptl,capitalcoin,
+capt,captcoin,
+carb,carboncoin,
+diem,carpediemcoin,
+cash,cash,
+csc,casinocoin,
+catc,cataloniacoin,
+cat,catcoin,
+cbr,cbr,
+ceti,cetuscoin scrypt,
+chc,chaincoin,
+ckc,checkcoin,
+cny,chinese yuan,
+cnc,chncoin,
+ccc,chococoin,
+cinni,cinnicoin,
+clam,clams,
+water,cleanwatercoin,
+xch,clearinghouse,
+chash,cleverhash,
+cloak,cloakcoin,
+cloud,cloud,
+cdc,cloudcoin,
+cfc2,coffeecoin v2,
+c2,coin2,
+jbs,coinmarketscoin,
+con,coino,
+xusd,coinousd,
+csd,coinshield,
+lab,coinworkscoin,
+col,colossuscoin,
+comm,communitycoin,
+cpn,compucoin,
+cnl,concealcoin,
+cfn,confessioncoin,
+cyc,conspiracy coin,
+ctm,continuumcoin,
+cool,coolcoin,
+clr,copperlark,
+cmc,cosmoscoin,
+xcp,counterparty,
+crack,crackcoin,
+crc,craftcoin,
+craig,craigscoin,
+crd,credits,
+cdt,credits,
+crw,crowncoin,
+cry,cryptcoin,
+xcr,crypti,
+buk,cryptobuck,
+cesc,cryptoescudo,
+cgb,cryptogenic bullion,
+cga,cryptographic anomaly,
+tri,cryptographic triangles,
+crt,cryptographiccoin,
+xcn,cryptonite,
+off,cthulhucoin,
+cure,curecoin,
+cxc,cxc,
+funk,cypherfunk,
+czc,czechcrowncoin,
+cze,czecoin,
+czr,czr,
+drkc,darkcash,
+drk,darkcoin,
+dank,darkkush,
+dpc,darkpeer,
+dsb,darkshibe,
+ds,darkswift,
+dt,darktoken,
+dsh,dashcoin,
+dtc,datacoin,
+dcn,deepcoin,
+drs,denarius,
+dem,deutsche emark,
+dvc,devcoin,
+dgd,dgd,
+dmd,diamond,
+dgb,digibyte,
+dtr,digital taler,
+dgc,digitalcoin,
+dp,digitalprice,
+dime,dimecoin,
+dio,diode,
+xdq,dirac,
+note,dnotes,
+bob,dobbscoin,
+dogeb,dogeblackcoin,
+doge,dogecoin,
+doged,dogecoindark,
+xdp,dogeparty,
+don,donationcoin,
+dope,dopecoin,
+xde,doubleeagle,
+dbl,doubloons,
+duck,duckduckcoin,
+xdn,ducknote,
+eags,eags,
+eac,earthcoin,
+ecc,eccoin,
+edu,educoin,
+emc2,einsteinium,
+krn,ekrona,
+elc,elacoin,
+volt,electriccoin,
+elt,electron,
+efl,electronic gulden,
+elp,elephantcoin,
+emd,emerald,
+emc,emercoin,
+enrg,energycoin,
+eqx,equinoxcoin,
+erm,ermiscoin,
+etc,eternalcoin,
+euph,euphoria,
+eur,euro,
+erc,europecoin,
+event,eventtoken,
+excl,exclusive coin,
+exe,execoin,
+exc,extremecoin,
+ezc,ezcoin,
+fail,failcoin,
+fair,faircoin,
+fcn,fantomcoin,
+fst,fastcoin,
+fck,fck banks coin,
+tips,fedoracoin,
+fibre,fibre,
+find,find,
+ffc,fireflycoin,
+flap,flappycoin,
+fldc,fldc,
+flex,flexiblecoin,
+flirt,flirtcoin,
+flo,florin,
+flt,fluttercoin,
+frac,fractalcoin,
+frk,franko,
+frc,freicoin,
+frsh,freshcoin,
+fsc2,fsc2,
+fc2,fuelcoin,
+fjc,fujicoin,
+fsc,fusioncoin,
+gaia,gaia coin,
+glx,galaxycoin,
+gme,gamecoin,
+gml,gameleaguecoin,
+gmc,gamerscoin,
+ganja,ganjacoin,
+gap,gapcoin,
+gas,gas,
+gcn,gcoin,
+gemz,gemz,
+gns,genesiscoin,
+ghost,ghostcoin,
+gig,gig,
+gimp,gimpcoin,
+give,givecoin,
+gdn,global denomination,
+bst,globalboost,
+bsty,globalboost-y,
+glc,globalcoin,
+gsx,glowshares,
+glyph,glyphcoin,
+gold,gold,
+gld,gold coin,
+xgr,goldreserve,
+gre,goldreserve,
+good,goodcoin,
+gp,gp,
+gdc,grand coin,
+grn,granite,
+gb,greenbacks,
+grc,gridcoin,
+grs,groestlcoin,
+gxg,groincoin,
+grw,growthcoin,
+gua,guarany,
+gue,guerillacoin,
+nlg,guldencoin,
+gun,guncoin,
+h2o,h2o coin,
+hal,halcyon,
+ham,hamradiocoin,
+hvc,heavycoin,
+hex,heisenberg,
+hlc,hellcoin,
+thc,hempcoin,
+hz,hertzcoin,
+hiro,hirocoin,
+hbm,hobonickel,
+hkd,hong kong dollar,
+html5,htmlcoin,
+huc,huntercoin,
+hyper,hyper,
+hyp,hyperstake,
+i0c,i0coin,
+icb,icebergcoin,
+ipc,imperialcoin,
+impc,imperium coin,
+nka,incakoin,
+icg,incogcoin,
+idc,indexcoin,
+ifc,infinitecoin,
+ioc,io coin,
+irl,ireland coin,
+iri,iridiumcoin,
+isr,isracoin,
+ixc,ixcoin,
+jpc,jackpotcoin,
+jpy,japanese yen,
+jlh,jl777hodl,
+xjo,joulecoin,
+judge,judgecoin,
+jkc,junkcoin,
+karm,karmacoin,
+kpl,keplercoin,
+key,keycoin,
+dot,kimdotcoin,
+kimo,kimocoin,
+king,kingcoin,
+meow,kittehcoin,
+kdc,klondikecoin,
+kore,korecoin,
+kgc,krugercoin,
+ktk,kryptkoin,
+kryp,kryptonite,
+kuma,kumacoin,
+lat,latium,
+leaf,leafcoin,
+lgd,legendarycoin,
+lmr,lemurcoin,
+lftc,lftc,
+xlb,libertycoin,
+lxc,librexcoin,
+lsd,lightspeed,
+limx,limecoinx,
+ltb,litebar,
+ltcd,litecoindark,
+ltcx,litecoinx,
+lit,lithium,
+tix,lottery tickets,
+lot,lottocoin,
+lts,lotuscoin,
+lqd,lqd,
+ltbc,ltbcoin,
+lk7,lucky7coin,
+lky,luckycoin,
+lyc,lycancoin,
+mac,machinecoin,
+xmg,magi,
+maia,maiacoin,
+maid,maidsafe,
+mal,malibucoin,
+mtc,marinecoin,
+mrs,marscoin,
+maryj,maryjane the chill,
+mst,mastercoin,
+msc,mastercoin,
+mvr,mavrocoin,
+max,maxcoin,
+mzc,mazacoin,
+mcz,mcz,
+med,mediterraneancoin,
+mec,megacoin,
+mem,memecoin,
+mmc,memorycoin,
+mtlmc,metal music coin,
+metal,metalcoin,
+mgt,mgt,
+mea,middle earth coin,
+mnc,mincoin,
+min,minerals,
+mic,minerscoin,
+mn1,mining contract 1,
+mn2,mining contract 2,
+mint,mintcoin,
+mmnxt,mmnxt,
+mmxiv,mmxivcoin,
+mn,mn,
+mns1,mns1,
+mob,mobcoin,
+mona,monacoin,
+xmr,monero,
+mcn,moneta verde,
+mue,monetaryunit,
+moon,mooncoin,
+moto,motocoin,
+mls,mozzshare,
+muga,mugatu,
+mwc,multiwalletcoin,
+mne,munne,
+mry,murraycoin,
+myr,myriadcoin,
+myst,myst,
+nmc,namecoin,
+nan,nanotoken,
+nas,nascoin,
+naut,nautiluscoin,
+nav,navajo,
+nec,neocoin,
+neos,neoscoin,
+net,netcoin,
+ntr,neutrinocoin,
+nzd,new zealand dollar,
+nyc,newyorkcoin,
+nfd,nfdcoin,
+nmb,nimbus,
+nkt,nkt,
+nobl,noblecoin,
+noxt,noblenxt,
+node,node,
+nrs,noirbits,
+nrb,noirbits,
+noo,noocoin,
+nope,nopecoin,
+nvc,novacoin,
+nbt,nubits,
+nsr,nushares,
+nut,nutcoin,
+nxt,nxt,
+nxtty,nxttycoin,
+nyan,nyancoin,
+nbl,nybble,
+o2o,o2ocoin,
+obs,obs,
+occ,oceancoin,
+osc,ocoin,
+ocupy,ocupy,
+oma,oma,
+omc,omnicoin,
+one,onecoin,
+opal,opalcoin,
+opti,optimumcoin,
+oc,orangecoin,
+orb,orbitcoin,
+orca,orcacoin,
+oro,orobit,
+ozc,ozcoin,
+pac,paccoin,
+pnd,pandacoin,
+prt,particle,
+xpy,paycoin,
+pyc,paycoin,
+ppc,peercoin,
+ppcd,peercoindark,
+cent,pennies,
+voxp,peoples voice,
+pes,pesa,
+ptc,pesetacoin,
+xpd,petrodollar,
+phc,phcoin,
+pxc,phenixcoin,
+phs,philosopherstone,
+pho,photon,
+piggy,piggycoin,
+pimp,pimpcash,
+pc,pinkcoin,
+food,plankton,
+plc,polcoin,
+pln,polish zloty,
+pcc,polishcoin,
+xsp,poolstamp,
+pop,popular coin,
+spuds,potatocoin,
+pot,potcoin,
+gbp,pound sterling,
+pow,powcoin,
+pxi,prime-xi,
+xpm,primecoin,
+pfc,profitcoin,
+axr,project axron,
+prc,prospercoin,
+proz,prozcoin,
+pseud,pseudocoin,
+qbk,qibuck,
+qora,qora,
+qrk,quark coin,
+qb,quarkbar,
+qtl,quatloo,
+qcn,quazarcoin,
+qsvl,quicksilvercoin,
+quit,quit,
+xqn,quotient,
+rbt,rabbitcoin,
+rbbt,rabbitcoin,
+rzr,razor,
+rbr,rbr,
+red,redcoin,
+rdd,reddcoin,
+rekt,rektcoin,
+rms,resumeoshares,
+xrc,rhinocoin,
+rice,rice,
+ric,riecoin,
+rin,ringo,
+ripo,ripoffcoin,
+xrp,ripples,
+rsn,robot sex nickels,
+rpc,ronpaulcoin,
+root,rootcoin,
+ros,roscoin,
+rt2,rotocoin,
+rlt,roulettecoin,
+ryc,royalcoin,
+rur,ruble,
+rby,rubycoin,
+rc,russiacoin,
+sfr,saffroncoin,
+stv,sativacoin,
+sat2,saturn2coin,
+sat,saturncoin,
+sbit,sbit,
+xstc,scattercoin,
+src,securecoin,
+scsy,securitysyscoin,
+seed,seedcoin,
+slfi,selfiecoin,
+smbr,sembro token,
+xsx,servx,
+sxc,sexcoin,
+sha,shacoin,
+shade,shadecoin,
+sdc,shadowcoin,
+shi,shi,
+shibe,shibecoin,
+shld,shieldcoin,
+sc,silkcoin,
+silk,silkcoin,
+sgd,singapore dollar,
+skc,skeincoin,
+sleak,sleakcoin,
+slm,slimcoin,
+slot,slot,
+sloth,slothcoin,
+smc,smartcoin,
+smly,smileycoin,
+balls,snowballs,
+xbot,socialxbot,
+slr,solarcoin,
+sol,solcoin,
+sole,solecoin,
+song,songcoin,
+ssd,sonicscrewdriver,
+soon,sooncoin,
+svc,sovereigncoin,
+spa,spaincoin,
+spn,spartancoin,
+spt,spots,
+spr,spreadcoin,
+ssv,ssvcoin,
+xsi,stabilityshares,
+sbc,stablecoin,
+start,startcoin,
+xst,stealthcoin,
+str,stellar,
+slg,sterlingcoin,
+stl,stlcoin,
+sjcx,storjcoin x,
+super,supercoin,
+unity,supernet unity,
+swarm,swarm,
+sync,synccoin,
+sys,syscoin,
+tco,tacocoin,
+tag,tagcoin,
+tak,takeicoin,
+tek,tekcoin,
+trc,terracoin,
+tes,teslacoin,
+tet,tetcoin,
+tlc,the last coin,
+tgc,tigercoin,
+xtc,tilecoin,
+tmc,timecoin,
+tit,titcoin,
+ttc,tittiecoin,
+top,top,
+tor,torcoin,
+tpc,tpc,
+trl,trollcoin,
+trk,truckcoin,
+trust,trustplus,
+uci,uci,
+ufo,ufocoin,
+uis,uis,
+utc,ultracoin,
+ultc,umbrella-ltc,
+unat,unattainium,
+unb,unbreakablecoin,
+unc,union coin,
+usde,unitary status dollar ecoin,
+uvc,universitycoin,
+uno,unobtanium,
+up,upcoin,
+urod,uro dark,
+uro,urocoin,
+usd,us dollar,united states dollar,american dollar,america dollar,dollar,dollars,bucks,buck,
+ucs,usecryptos share,
+util,utilitycoin,
+vcoin,vcoin,
+vgc,vegascoin,
+vrc,vericoin,
+vtc,vertcoin,
+via,viacoin,
+vdo,vidioshare,
+vik,vikingcoin,
+vior,viorcoin,
+vta,virtacoin,
+vmc,virtualminingcoin,
+voot,vootcoin,
+vpn,vpn coin,
+vtr,vtorrent,
+wac,waccoin,
+wkc,wankcoin,
+wc,whitecoin,
+wlf,wolfcoin,
+log,woodcoin,
+xwt,world trade funds,
+wdc,worldcoin,
+child,x-children,
+xai,xai,
+xbs,xbs,
+xcash,xcash,
+xcld,xcloudcoin,
+xc,xcurrency,
+xdc,xedoscoin,
+xnc,xencoin,
+xfb,xfb,
+xg,xg,
+xpb,xpb,
+xpc,xpc,
+xtr,xtr,
+xwc,xwc,
+xxl,xxlcoin,
+xxx,xxxcoin,
+yacc,yaccoin,
+yac,yacoin,
+ybc,yuan bao,
+zcc,zccoin,
+zed,zedcoin,
+zeit,zeitcoin,
+zer,zerovert,
+zet,zetacoin,
+zs,zimstake,
