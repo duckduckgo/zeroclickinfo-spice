@@ -45,7 +45,7 @@ my $number_re = number_style_regex();
 # Makes sure currency names like 42coin, 666coin, 66coin aren't treated as amounts
 my $num_space_re = qr/$number_re\s/;
 
-my $guard = qr/^$question_prefix($num_space_re*)\s?($currency_qr)(?:$into_qr|$vs_qr|$rate_qr|\s)?($num_space_re*)\s?($currency_qr)?\??$/i;
+my $guard = qr/^$question_prefix($num_space_re*)\s?($currency_qr)(?:s)?(?:$into_qr|$vs_qr|$rate_qr|\s)?($num_space_re*)\s?($currency_qr)?(?:s)?\??$/i;
 
 # http://www.cryptonator.com/api/secondaries?primary=BTC
 # http://www.cryptonator.com/api/ticker/ltc-ftc
@@ -92,7 +92,7 @@ sub checkCurrencyCode {
     # There are cases where people type in "2016 bitcoin", so we don't want to trigger on those queries.
     # The first cryptocoins appeared in 2008, so dates before that could be valid amounts.
     if($normalized_number >= 2008 && $normalized_number < 2100 && (length($from) == 0 || length($to) == 0)) {
-        return 0;
+        return;
     }
     
     $from = getCode($from) || '';
@@ -100,12 +100,12 @@ sub checkCurrencyCode {
     
     # Return early if we get a query like "btc to btc".
     if($from eq $to) {
-        return 0;
+        return;
     }
     
     # Return early if we don't get a currency to convert from.
     if($from eq '') {
-        return 0;
+        return;
     }
     
     # If both currencies are available, use the ticker endpoint
