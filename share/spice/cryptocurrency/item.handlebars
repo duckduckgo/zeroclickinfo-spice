@@ -3,10 +3,10 @@
         <span class="btn--container">
             <a class="ddgsi btn btn--lite" href="/?q={{convertedAmount}}+{{toCurrencySymbol}}">↩</a>
         </span>
-        <span class="currency--border"></span>
+        <span class="cryptocurrency--border"></span>
         <img src="{{toFlag}}" alt="Flag of {{toCurrencySymbol}}">
-        <div class="currency--symbol">{{toCurrencySymbol}}</div>
-        <div class="currency--amount one-line">{{convertedAmount}}</div>
-        <div class="one-line currency--rate {{#unless initial}}tx-clr--lt{{/unless}}">{{#if initial}}{{currencyName}}{{else}}{{rate}}{{/if}}</div>
+        <div class="cryptocurrency--symbol">{{toCurrencySymbol}}</div>
+        <div class="cryptocurrency--amount one-line">{{convertedAmount}}</div>
+        <div class="one-line cryptocurrency--rate {{#unless initial}}tx-clr--lt{{/unless}}">{{#if initial}}{{currencyName}}{{else}}{{rate}}{{/if}}</div>
     </div>
 </div>
