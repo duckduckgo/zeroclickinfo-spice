@@ -31,7 +31,17 @@ my @excludedCurrencies = (
     'pln',
     'rur',
     'sgd',
-    'usd'
+    'usd',
+);
+
+# Excluded names from being used by themselves.
+# Differs from the @excludedCurrencies list because these values are not handled by another Spice.
+my @excludedSingle = (
+    '2015',
+    '42',
+    '666',
+    '66',
+    '10k'
 );
 
 #Define regexes
@@ -76,7 +86,8 @@ sub getCode {
 # - Checking if the input number is valid.
 sub checkCurrencyCode {
     my($amount, $from, $to) = @_;
-    my %currencies = map { $_ => 1 } @excludedCurrencies;
+    my %excludedCurrencies = map { $_ => 1 } @excludedCurrencies;
+    my %excludedSingle = map { $_ => 1 } @excludedSingle;
     my $endpoint = '';
     my $query = '';
     my $query2 = '';
@@ -92,6 +103,10 @@ sub checkCurrencyCode {
     # There are cases where people type in "2016 bitcoin", so we don't want to trigger on those queries.
     # The first cryptocoins appeared in 2008, so dates before that could be valid amounts.
     if($normalized_number >= 2008 && $normalized_number < 2100 && (length($from) == 0 || length($to) == 0)) {
+        return;
+    }
+    
+    if (length($from) && !length($to) && exists($excludedSingle{$from})) {
         return;
     }
     
@@ -112,7 +127,7 @@ sub checkCurrencyCode {
     if (length($from) && length($to)) {
         # Return early if both currencies are in the excluded list
         # Allows searches like "ftc to aud" but excludes searches like "aud to usd"
-        if (exists($currencies{$from}) && exists($currencies{$from})) {
+        if (exists($excludedCurrencies{$from}) && exists($excludedCurrencies{$to})) {
             return;
         }
         $endpoint = 'ticker';
@@ -122,7 +137,7 @@ sub checkCurrencyCode {
     # For a single currency, call the secondaries endpoint
     else {
         # Return early if the single currency is in the excluded list
-        if (exists($currencies{$from})) {
+        if (exists($excludedCurrencies{$from})) {
             return;
         }
         $endpoint = 'secondaries';
