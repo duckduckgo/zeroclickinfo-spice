@@ -57,7 +57,7 @@ If you're submitting a **pull request** (bugfix/addition):
   git commit -a -m "My first instant answer that does X is ready to go!"
   ```
 
-2. Get your commit history [how you like it](http://book.git-scm.com/4_interactive_rebasing.html).
+2. Get your commit history [how you like it](http://schacon.github.io/gitbook/4_interactive_rebasing.html).
 
   ```shell
   git rebase -i origin/master
