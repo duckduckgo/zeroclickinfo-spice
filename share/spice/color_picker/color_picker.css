@@ -9,7 +9,6 @@
 #color_picker_container #saturation_value_picker {
     width: 256px;
     height: 256px;
-    margin-bottom: 16px;
     position: relative;
     border-radius: 4px;
 }
@@ -22,7 +21,6 @@
     width: 32px;
     height: 256px;
     margin-left: 16px;
-    margin-bottom: 16px;
     position: relative;
     border-radius: 4px;
 }
@@ -56,6 +54,7 @@
     border: 1px solid #bbb;
     border-radius: 4px;
     padding-left: 5px;
+    height: 20px;
 }
 
 #color_picker_container .compound_color {
@@ -101,13 +100,14 @@
 }
 
 #color_picker_container .palette_sample {
-    margin: 14px 0 5px;
+    margin: 12px 0 5px;
     height: 40px;
     width: 100%;
 }
 
 #color_picker_container .palette_input {
     width: 75px;
+    height: 18px;
     margin-left: 5px;
     background-color: #f2f2f2;
 }
@@ -139,6 +139,9 @@
 }
 
 @media screen and (max-width: 420px){
+    #color_picker_container #color__col1 {
+        padding-bottom: 20px;
+    }
     #color_picker_container #color__col2 {
         clear: both;
     }
