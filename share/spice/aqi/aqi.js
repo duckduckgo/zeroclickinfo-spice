@@ -1,37 +1,38 @@
 (function(env){
   "use strict";
   env.ddg_spice_aqi = function(api_result) {
-    if (api_result.error) {
+    if (api_result.error || !api_result) {
       return Spice.failed('aqi');
     }
 
     var query = DDG.get_query();
     var zip = query.match(/\d{5}/);
 
-    var result = api_result;
+    // Check if is array
+    var results = [];
+    if (!($.isArray(api_result))) {
+      results = [api_result];
+    } else {
+      results = api_result;
+    }
+
+    var common_info = results[0];
+    //todo: check if common info is valid for all data
 
     Spice.add({
       id: "aqi",
       name: "AQI",
-      data: result,
+      data: results,
       meta: {
         sourceName: "airnowapi.org",
-        sourceUrl: 'http://www.airnow.gov/?action=airnow.local_city&zipcode=' + zip
+        sourceUrl: 'http://www.airnow.gov/?action=airnow.local_city&zipcode=' + zip,
+        primaryText: 'Air Quality Indices for ' + common_info.ReportingArea + ', ' + common_info.StateCode,
+        secondaryText: "Data as of " + common_info.DateObserved + ", " + common_info.HourObserved + ":00 " +  common_info.LocalTimeZone,
       },
       templates: {
         group: 'text',
-        detail: false,
-        item_detail: false,
-        options:{
-            footer: Spice.aqi.content,
-            moreAt: true
-        }
-      },
-      normalize: function(item) {
-        return {
-          title: item.ReportingArea + ", " + item.StateCode,
-          subtitle: "Air Quality Index as of " + item.DateObserved + ", " + item.HourObserved + ":00 " +  item.LocalTimeZone
-        };
+        item: Spice.aqi.content,
+        item_detail: false
       }
     });
   }
