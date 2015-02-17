@@ -1,4 +1,4 @@
-package DDG::Spice::QuandlFundamentals;
+package DDG::Spice::Quandl::Fundamentals;
 
 use DDG::Spice;
 use Text::Trim;
@@ -16,7 +16,7 @@ attribution web => ["https://www.quandl.com", "Quandl"],
             twitter => "quandl";
             
 # load our trigger phrases
-my @trigger_lines = share('trigger_phrases.txt')->slurp;
+my @trigger_lines = share('fundamentals_triggers.txt')->slurp;
 # hash to associate phrases with URL codes
 my %trigger_phrases = ();
 # array to preserve the order of the trigger phrases from the text file
