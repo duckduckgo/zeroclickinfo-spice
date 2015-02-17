@@ -1,0 +1,75 @@
+/*
+    Document   : zeroclickinfo-spice/share/spice/quandl/home_values/quandl_home_values.css
+    Created on : 2015-02-17 08:25 PM
+    Author     : brianrisk
+    Description:
+    Purpose of the stylesheet follows.
+    To change this template use Tools | Templates.
+*/
+
+#quandl h1.quandl-header {
+    font-size: 1.4em;
+    line-height: 1.2em;
+    font-weight: 400;
+    margin-bottom: .25em;
+}
+
+#quandl .quandl-date {
+    font-weight: 300;
+    padding-left: 0;
+    font-size: .95em;
+    text-transform: none;
+}
+
+#quandl .quandl-values {
+    font-size: 1.5em;
+    display: inline-block;
+}
+
+#quandl .quandl-value {
+    font-weight: 600;
+}
+#quandl .quandl-percent {
+    font-weight: 300;
+}
+
+#quandl .quandl-change-up .quandl-percent{
+    color: #60ae50;
+}
+    
+/* green arrow up */
+#quandl .quandl-change-up .quandl-percent:before {
+    content: '';
+    border: 3px solid transparent;
+    border-bottom-color: #60ae50;
+    border-top-width: 0px;
+    border-bottom-width: 5px;
+    height: 5px;
+    line-height: 5px;
+    margin-right: .25em;
+    display: inline-block;
+    position: relative;
+    top: -5px;
+}
+#quandl .quandl-change-down .quandl-percent,
+#quandl .quandl-change-down {
+    color: #c9481c;
+}
+    
+/* red arrow down */
+#quandl .quandl-change-down .quandl-percent:before {
+    content: '';
+    border: 3px solid transparent;
+    border-top-color: #c9481c;
+    border-top-width: 5px;
+    border-bottom-width: 0px;
+    height: 5px;
+    line-height: 5px;
+    margin-right: .25em;
+    display: inline-block;
+}
+
+#quandl .quandl-from_date {
+    display: inline-block;
+}
+

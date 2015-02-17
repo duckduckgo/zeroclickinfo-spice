@@ -1,0 +1,20 @@
+
+<div id="quandl">
+    <h1 class="quandl-header">
+        <a href="{{url}}" title="{{urlTitle}}">
+            {{name}}
+        </a>
+    </h1>
+    <div class="quandl-date">
+        <span>Date of most recent value: {{to_date}}</span>
+    </div>
+    <div>
+        <div class="quandl-values  quandl-change-{{changeDirection}}">
+            <span class="quandl-value">{{value}}</span>
+            <span class="quandl-percent">{{change_percent}}%</span> 
+        </div>
+        <span class="quandl-from_date">from {{from_date}}</span>
+    </div>
+</div>
+
+

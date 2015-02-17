@@ -1,32 +1,32 @@
 /**
 * Created with DuckDuckHack.
 * User: brianrisk
-* Date: 2015-02-12
-* Time: 04:37 PM
+* Date: 2015-02-17
+* Time: 04:46 PM
 * To change this template use Tools | Templates.
 */
 
 
 (function (env) {
     'use strict';
-    env.ddg_spice_quandl_fundamentals = function(api_result){
+    env.ddg_spice_quandl_home_values = function(api_result){
 
         if (!api_result) {
-            return Spice.failed('quandl_fundamentals: no results');
+            return Spice.failed('quandl_home_values: no results');
         }
 
         var result = api_result;
         
         // we need two data points to get percent change
         if (result.data.length < 2) {
-            return Spice.failed('quandl_fundamentals: not enough data points');
+            return Spice.failed('quandl_home_values: not enough data points');
         }
 
-        // url is path on their domain:
-        result.url = 'https://quandl.com/SF1';
+        // url to the data set page
+        result.url = 'https://quandl.com/' + result.source_code + "/" + result.code;
 
         // add title tag for link:
-        result.urlTitle = 'View more fundamentals data at Quandl';
+        result.urlTitle = 'View more home values data at Quandl';
         
         var recentValue = result.data[0][1];
         var previousValue = result.data[1][1];
@@ -56,27 +56,31 @@
         } else if (Math.abs(value) >= Math.pow(10,6)) {
             value = Math.round(value / Math.pow(10,4)) / Math.pow(10,2);
             value = "$" + value + " million";
+        } else if (Math.abs(value) >= Math.pow(10,3)) {
+            value = Math.round(value / Math.pow(10,1)) / Math.pow(10,2);
+            value = "$" + value + " thousand";
         }
         result.value = value;
         
 
         Spice.add({
-            id: 'Quandl_fundamentals',
-            name: 'Fundamentals',
+            id: 'quandl_home_values',
+            name: 'Home Values',
             data: result,
             meta: {
                 sourceName: 'Quandl',
                 sourceUrl: result.url,
-                sourceIconUrl: DDG.get_asset_path('quandl_fundamentals','quandl32x32.png')
+                sourceIconUrl:  DDG.get_asset_path('quandl/home_values','quandl32x32.png')
             },
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.quandl_fundamentals.content,
+                    content: Spice.quandl_home_values.content,
                     moreAt: true
                 }
             }
         });
     };
 }(this));
+
 
