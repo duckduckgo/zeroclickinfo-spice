@@ -13,6 +13,10 @@ description "Compare hotel prices from multiple travel websites.";
 name "TreepHotels";
 topics "travel";
 category "physical_properties ";
+code_url "https://github.com/mirceasoaica/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TreepHotels.pm";
+attribution twitter => "mirceasoaica",
+            github  => ["mirceasoaica", "Mircea Soaica"],
+            web     => ['http://www.mirceasoaica.com', 'Mircea Soaica'];
 source "treep.io";
 icon_url "http://www.treep.io/assets/fav.png";
 status "enabled";
