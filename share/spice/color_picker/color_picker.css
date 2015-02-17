@@ -11,6 +11,11 @@
     height: 256px;
     margin-bottom: 16px;
     position: relative;
+    border-radius: 4px;
+}
+
+#color_picker_container #saturation_value_picker img {
+    border-radius: 4px;
 }
 
 #color_picker_container #hue_picker {
@@ -19,11 +24,38 @@
     margin-left: 16px;
     margin-bottom: 16px;
     position: relative;
+    border-radius: 4px;
+}
+
+#color_picker_container #hue_picker img {
+    border-radius: 4px;
+}
+
+#color_picker_container #saturation_value_marker {
+    height: 5px;
+    width: 5px;
+    position: absolute;
+    border: 1px solid white;
+    outline: 1px solid black;
+}
+
+#color_picker_container #hue_marker {
+    height: 5px;
+    width: 30px;
+    position: absolute;
+    border: 1px solid white;
+    outline: 1px solid black;
 }
 
 #color_picker_container #color_inputs {
     height: 128px;
     margin-left: 8px;
+}
+
+#color_picker_container input {
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding-left: 5px;
 }
 
 #color_picker_container .compound_color {
@@ -33,7 +65,7 @@
 
 #color_picker_container .compound_color .color_component {
     float: right;
-    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 #color_picker_container .compound_color .color_component input {
@@ -51,23 +83,12 @@
 
 #color_picker_container #sample {
     height: 100px;
-    margin-bottom: 10px;
+    margin-bottom: 13px;
     margin-left: 15px;
-    border-radius: 5px;
 }
 
-#color_picker_container #saturation_value_marker {
-    height: 5px;
-    width: 5px;
-    position: absolute;
-    border: solid 2px;
-}
-
-#color_picker_container #hue_marker {
-    height: 5px;
-    width: 28px;
-    position: absolute;
-    border: solid 2px;
+#color_picker_container .sample {
+    border-radius: 4px;
 }
 
 #color_picker_container #palette {
@@ -76,24 +97,19 @@
 }
 
 #color_picker_container #palette_select {
-    margin-left: 5px;
     width: 100px;
 }
 
 #color_picker_container .palette_sample {
-    margin: 5px;
-    height: 50px;
+    margin: 14px 0 5px;
+    height: 40px;
     width: 100%;
-    border-radius: 5px;
-}
-
-#color_picker_container #palette label {
-    margin-left: 5px;
 }
 
 #color_picker_container .palette_input {
-    width: 70px;
+    width: 75px;
     margin-left: 5px;
+    background-color: #f2f2f2;
 }
 
 #color_picker_container .dark {
@@ -141,7 +157,7 @@
     }
 
     #color_picker_container .palette_input {
-        width: 40px;
+        width: 50px;
     }
 
     #color_picker_container #palette_select {
