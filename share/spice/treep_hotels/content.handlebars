@@ -1,0 +1,33 @@
+<div class="hotels-container">
+    <h5>
+        Hotels in {{location.city}}, {{location.country}}
+    </h5>
+
+    {{#each hotels}}
+    <div class="hotel">
+        <a href="{{this.url}}" class="img">
+            <img src="{{this.image}}" onerror="this.src='http://www.treep.io/assets/images/building.png'; !" />
+        </a>
+        <p class="title">
+            <a href="{{this.url}}">
+                {{this.name}}
+            </a>
+            <span class="stars-block">
+                {{#loop this.stars}}
+                <span class="hotel-star"></span>
+                {{/loop}}
+            </span>
+        </p>
+        <p>{{this.address}}</p>
+    <!--     <p>{{this.distance}} km to city center</p> -->
+    <!--     <p class="attributes">{{this.attributes}}</p> -->
+        {{#if this.price.total}}
+        <p class="price">
+            <span class="from">From</span>
+            <span class="price">${{this.price.total}}</span>
+            <span class="from">/night</span>
+        </p>
+        {{/if}}
+    </div>
+    {{/each}}
+</div>
