@@ -37,32 +37,60 @@
         return parseFloat(number.toFixed(3));
     }
 
-    function bindHoverPair(pair){
+    function bindHoverPair(formulaNode, svgNode, color){
         function enter(){
-            pair[0].addClass("hover");
-            pair[1].each(function(){
+            formulaNode.addClass("hover");
+            //set the fill/ stroke color for svg nodes
+            svgNode.each(function(){
                 this.classList.add("hover");
             });
+            if(svgNode.is(".fill"))
+                svgNode.css("fill", color);
+            if(svgNode.is(".stroke"))
+                svgNode.css("stroke", color);
         }
         function leave(){
-            pair[0].removeClass("hover");
-            pair[1].each(function(){
+            formulaNode.removeClass("hover");
+            svgNode.each(function(){
                 this.classList.remove("hover");
             });
+            if(svgNode.is(".fill"))
+                svgNode.css("fill", "transparent");
+            if(svgNode.is(".stroke"))
+                svgNode.css("stroke", "#000");
         }
-        pair = [$(pair[0]), $(pair[1])];
+        formulaNode = $(formulaNode);
+        svgNode = $(svgNode);
 
-        pair[0].hover(enter, leave);
-        pair[1].hover(enter, leave);
+        formulaNode.hover(enter, leave);
+        svgNode.hover(enter, leave);
     }
 
     var formulas = {
-        volume: "V",
-        area: "A",
-        surface: "A",
-        perimeter: "u",
-        circumference: "u",
-        diagonal: "e"
+        volume: {
+            symbol: "V",
+            color: "#FF6745"
+        },
+        area: {
+            symbol: "A",
+            color: "#00E204"
+        },
+        surface: {
+            symbol: "A",
+            color: "#00E204"
+        },
+        perimeter: {
+            symbol: "u",
+            color: "#0095FF"
+        },
+        circumference: {
+            symbol: "u",
+            color: "#0095FF"
+        },
+        diagonal: {
+            symbol: "e",
+            color: "#FF8100"
+        }
     };
 
     var shapes = {
@@ -96,11 +124,11 @@
                 path: "M 0,0 l 120,120",
                 class: "stroke special"
             }],
-            pairs: [
-                [0, 0],
-                [1, 1],
-                [2, 2]
-            ],
+            pairs: {
+                area: [0, 0],
+                perimeter: [1, 1],
+                diagonal: [2, 2]
+            },
             getParameter: function(query){
                 return getParameter(query, "a|length|size");
             },
@@ -136,11 +164,11 @@
                 path: "M 0,0 l 160,120",
                 class: "stroke special"
             }],
-            pairs: [
-                [0, 0],
-                [1, 1],
-                [2, 2]
-            ],
+            pairs: {
+                area: [0, 0],
+                perimeter: [1, 1],
+                diagonal: [2, 2]
+            },
             getParameter: function(query){
                 var p = getParameter(query, "length|size", 1);
                 if(p !== null)
@@ -177,10 +205,10 @@
                 path: "M 70,0 l 70,120 m -140,0 l 70,-120 m 70,120 h -140",
                 class: "stroke"
             }],
-            pairs: [
-                [0, 0],
-                [1, 1]
-            ],
+            pairs: {
+                area: [0, 0],
+                perimeter: [1, 1]
+            },
             getParameter: function(query){
                 return getParameter(query, "a|length|size");
             },
@@ -207,10 +235,10 @@
                 path: "M 0,60 a 25 25 0 0 0 120,0 a 25 25 0 0 0 -120,0",
                 class: "stroke"
             }],
-            pairs: [
-                [0, 0],
-                [1, 1]
-            ],
+            pairs: {
+                area: [0, 0],
+                circumference: [1, 1]
+            },
             getParameter: function(query){
                 var r = getParameter(query, "radius|r");
                 if(r !== null) return r;
@@ -256,11 +284,11 @@
                 path: "M 0,40 h 80 v 80 h -80 v -80 l 40,-40 h 80 v 80 l -40,40 v -80 l 40,-40",
                 class: "stroke"
             }],
-            pairs: [
-                [1, 0],
-                [2, 2],
-                [0, 3]
-            ],
+            pairs: {
+                surface: [1, 0],
+                diagonal: [2, 2],
+                volume: [0, 3]
+            },
             getParameter: function(query){
                 return getParameter(query, "a|length|size");
             },
@@ -302,11 +330,11 @@
                 path: "M 0,40 h 120 v 80 h -120 v -80 l 40,-40 h 120 v 80 l -40,40 v -80 l 40,-40",
                 class: "stroke"
             }],
-            pairs: [
-                [1, 0],
-                [2, 2],
-                [0, 3]
-            ],
+            pairs: {
+                surface: [1, 0],
+                diagonal: [2, 2],
+                volume: [0, 3]
+            },
             getParameter: function(query){
                 var p = getParameter(query, "length|size", 2);
                 if(p !== null) return p;
@@ -349,10 +377,10 @@
                 path: "M 0,60 a 30 10 0 1 0 120,0 a 25 25 0 0 0 -120,0 a 25 25 0 0 0 120,0",
                 class: "stroke"
             }],
-            pairs: [
-                [0, 2],
-                [1, 0]
-            ],
+            pairs: {
+                volume: [0, 2],
+                surface: [1, 0]
+            },
             getParameter: function(query){
                 var r = getParameter(query, "radius|r");
                 if(r !== null) return r;
@@ -397,12 +425,14 @@
 
         //loop through all formulas of this shape
         for(i = 0, l = data.formulas.length; i < l; ++i){
-            //get the formula symbol and format the name
-            data.formulas[i].symbol = formulas[data.formulas[i].name];
-            data.formulas[i].name = DDG.capitalize(data.formulas[i].name);
+            //get the formula symbol, color and format the name
+            data.formulas[i].symbol = formulas[data.formulas[i].name].symbol;
+            data.formulas[i].color = formulas[data.formulas[i].name].color;
+            data.formulas[i].nameCaps = data.formulas[i].name.toUpperCase();
             //calc the formula if parameter(s) is / are defined
             if(data.parameter !== null)
                 data.formulas[i].result = format(data.formulas[i].calc.apply(0, parameter));
+
             //if the formula is in the search string, print only this formula
             if(query.match(data.formulas[i].name, "i")){
                 //cleanup formulas
@@ -449,8 +479,8 @@
                     svgNodes = svg.children(),
                     content = svg.parent();
 
-                for(i = 0, l = pairs.length; i < l; ++i)
-                    bindHoverPair([formulaNodes[pairs[i][0]], svgNodes[pairs[i][1]]]);
+                for(var i in pairs)
+                    bindHoverPair(formulaNodes[pairs[i][0]], svgNodes[pairs[i][1]], formulas[i].color);
 
                 //wait for stylesheet
                 $(window).load(function(){
