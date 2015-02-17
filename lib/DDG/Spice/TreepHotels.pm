@@ -12,7 +12,7 @@ primary_example_queries "hotels in amsterdam";
 description "Compare hotel prices from multiple travel websites.";
 name "TreepHotels";
 topics "travel";
-category "physical_properties ";
+category "physical_properties";
 code_url "https://github.com/mirceasoaica/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TreepHotels.pm";
 attribution twitter => "mirceasoaica",
             github  => ["mirceasoaica", "Mircea Soaica"],

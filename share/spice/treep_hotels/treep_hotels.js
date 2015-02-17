@@ -4,7 +4,8 @@
     env.ddg_spice_treep_hotels = function(api_result){
 
         if (api_result.error) {
-            return Spice.failed('hotels');
+            console.log(api_result);
+            return Spice.failed('treep_hotels');
         }
 
         if(api_result.hotels && api_result.hotels.length) {
