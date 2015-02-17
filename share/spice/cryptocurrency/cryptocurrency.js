@@ -72,32 +72,34 @@
         if (typeof ticker !== 'undefined') {
             // Get amount from original query
             var query = source.match(/\/ticker\/(?:.*)\/(.+)/)[1],
-                queryAmount = parseFloat(decodeURIComponent(query));
-            var base = api_result.ticker.base,
+                queryAmount = parseFloat(decodeURIComponent(query)),
+                // Calculate price, rates, and amounts
+                base = api_result.ticker.base,
                 target = api_result.ticker.target,
-                price = parseFloat(api_result.ticker.price);
-            results = api_result,
+                price = parseFloat(api_result.ticker.price),
+                results = api_result,
                 convertedAmount = queryAmount * price,
                 rate = "1 " + target + " = " + formatNumber((1 / price)) + " " + base,
                 inverseRate = "1 " + base + " = " + formatNumber(price) + " " + target,
+                // Format Time and Date
                 timestamp = (new Date(api_result.timestamp*1000)).toISOString(),
-                timestr = timestamp.split(/T+/);
-                cryptoDate = timestr[0];
+                timestr = timestamp.split(/T+/),
+                cryptoDate = timestr[0],
                 cryptoTime = timestr[1].match(/\d{2}\:\d{2}\b/);
                 
         } else if (typeof rows !== 'undefined') {
             // Get amount from original query
             var query = source.match(/\/secondaries\/(.+)\/(?:.*)/)[1],
-                queryAmount = parseFloat(decodeURIComponent(query));
-            // Prepare the first item box
-            var givenCurrency = {
-                created: rows[0].created,
-                currency_primary: rows[0].currency_primary,
-                currency_secondary: rows[0].currency_primary,
-                convertedAmount: 1,
-                currencyName: "Placeholder"
-            };
-            results.push(givenCurrency);
+                queryAmount = parseFloat(decodeURIComponent(query)),
+                // Prepare the first item box
+                givenCurrency = {
+                    created: rows[0].created,
+                    currency_primary: rows[0].currency_primary,
+                    currency_secondary: rows[0].currency_primary,
+                    convertedAmount: 1,
+                    currencyName: "Placeholder"
+                };
+                results.push(givenCurrency);
             // Add the remaining currencies
             for (var i = 0; i < rows.length; i++) {
                 var base = rows[i].currency_primary,
@@ -107,11 +109,11 @@
                     rows[i].rate = "1 " + base + " = " + formatNumber(price) + " " + target;
                 results.push(rows[i]);
             }
-            timestamp = rows[0].created;
-            // Format the time and date.
-            timestr = timestamp.split(/\s+/);
-            cryptoDate = timestr[0];
-            cryptoTime = timestr[1].match(/\d{2}\:\d{2}\b/);
+            // Format Time and Date
+            timestamp = rows[0].created,
+                timestr = timestamp.split(/\s+/),
+                cryptoDate = timestr[0],
+                cryptoTime = timestr[1].match(/\d{2}\:\d{2}\b/);
             
         } else {
             return Spice.failed('cryptocurrency');
@@ -133,8 +135,6 @@
         
         // Add commas to the numbers for display.
         function formatNumber(x) {
-            console.log(x);
-            console.log(decimalPlaces(x));
             var decimals = decimalPlaces(x) <= 4 ? decimals = decimalPlaces(x) : decimals = 4;
             // Check if the number has a decimal point.
             if(/\./.test(x.toString())) {
