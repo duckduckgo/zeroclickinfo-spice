@@ -4,6 +4,7 @@ package DDG::Spice::Pokemon::Description;
 use DDG::Spice;
 
 spice is_cached => 1;
+spice proxy_cache_valid => "200 30d";
 
 attribution github => ["AkA84"];
 
