@@ -13,14 +13,8 @@
 #zci--geometry-svg .stroke.special{
     stroke-dasharray: 5,5;
 }
-#zci--geometry-svg .stroke.hover{
-    stroke: #1168CE;
-}
 #zci--geometry-svg .stroke.special.hover{
     stroke-dasharray: none;
-}
-#zci--geometry-svg .fill.hover{
-    fill: #85B6F1;
 }
 
 #zci--geometry-formulas{
@@ -28,21 +22,32 @@
     font-size: 1.5em;
     margin-right: 10px;
 }
-#zci--geometry-formulas div.hover{
-    color: #1168CE;
+#zci--geometry-formulas .formula{
+    overflow: hidden;
+    clear: left;
 }
-#zci--geometry-formulas span:first-child{
-    min-width: 150px;
-    margin-right: 5px;
-    display: inline-block;
+#zci--geometry-formulas .formula div{
+    float: left;
+}
+#zci--geometry-formulas .dot{
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    opacity: 0.75;
+    margin: 7px 8px;
+}
+#zci--geometry-formulas .hover .dot{
+    opacity: 1;
+}
+#zci--geometry-formulas h4{
+    color: #6E6E6E;
+    font-size: 12px;
 }
 #zci--geometry-formulas .root{
     border-top: 1px solid #000;
     padding-top: 2px;
 }
-#zci--geometry-formulas div.hover .root{
-    border-top-color: #1168CE;
-}
 #zci--geometry-formulas small{
     color: #808080;
+    font-size: 0.8em;
 }
