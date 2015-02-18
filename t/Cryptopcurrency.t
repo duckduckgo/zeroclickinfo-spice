@@ -115,6 +115,10 @@ ddg_spice_test(
     '66' => undef,
     '666' => undef,
     '2015' => undef,
+    # Words or acronyms that shouldn't trigger spice.
+    'ftc?' => undef,
+    'BOOM' => undef,
+    'Sloths' => undef,
     # Numbers with ambiguous formatting.
     'convert 200,0000.1.1 ltc into btc' => undef,
     # Other types of conversion
