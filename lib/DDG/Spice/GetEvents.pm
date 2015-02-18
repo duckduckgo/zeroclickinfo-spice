@@ -14,7 +14,7 @@ topics "computing","entertainment","food_and_drink","music","science","special_i
 triggers startend => 'events near me';
                                                                                                                                                                                                                                   
 spice to => 'https://api.getevents.co/event?lat=$1&lng=$2&limit=10';
-# Extract the geo location from the result returned by the handler: two real numbers seperated by '-'.
+# Extract the geo location from the result returned by the handler: two real numbers seperated by '/'.
 spice from => '(?:([-+]?[0-9]*\.?[0-9]+)\/([-+]?[0-9]*\.?[0-9]+)|)';
 spice wrap_jsonp_callback => 1;
 spice is_cached => 1;
