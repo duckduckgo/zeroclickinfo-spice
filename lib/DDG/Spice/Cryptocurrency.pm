@@ -47,17 +47,6 @@ my @excludedCurrencies = (
     'usd',
 );
 
-# Used when a single currency is given in the query.
-# Excludes currencies with numbers for names from being used by themselves.
-# Differs from the @excludedCurrencies list because these values are not handled by another Spice.
-my @excludedSingle = (
-    '2015',
-    '42',
-    '666',
-    '66',
-    '10k'
-);
-
 #Define regexes
 my $currency_qr = join('|', @currTriggers);
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
@@ -96,7 +85,6 @@ sub getCode {
 sub checkCurrencyCode {
     my($amount, $from, $to) = @_;
     my %excludedCurrencies = map { $_ => 1 } @excludedCurrencies;
-    my %excludedSingle = map { $_ => 1 } @excludedSingle;
     my $endpoint = '';
     my $query = '';
     my $query2 = '';
@@ -112,13 +100,6 @@ sub checkCurrencyCode {
     # There are cases where people type in "2016 bitcoin", so we don't want to trigger on those queries.
     # The first cryptocoins appeared in 2008, so dates before that could be valid amounts.
     if($normalized_number >= 2008 && $normalized_number < 2100 && (length($from) == 0 || length($to) == 0)) {
-        return;
-    }
-    
-    # Check if a single currency is in @excludedSingle.
-    # This is done before standardizing the currencies, because we want to exclude searches like '42?',
-    # while processing searches like '42coin?'
-    if (length($from) && !length($to) && exists($excludedSingle{$from})) {
         return;
     }
     
@@ -166,6 +147,12 @@ handle query_lc => sub {
         
         # Exit early if two amounts are given
         if(length($amount) && length($alt_amount)) {
+            return;
+        }
+        # Case where only ticker symbol is give.
+        # Most cryptocurrency ticker symbols are already common acronyms that we don't want to trigger on them.
+        # Done before standardizing currency value: "42coin?" and "100 ftc" will trigger spice, "42" and "ftc" will not.
+        elsif (exists($currHash{$from}) && !length($to) && !length($amount)) {
             return;
         }
         # Case where the first amount is available.
