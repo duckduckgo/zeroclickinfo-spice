@@ -651,5 +651,4 @@ zed,zedcoin,zed coin,
 zeit,zeitcoin,zeit coin,
 zer,zerovert,
 zet,zetacoin,zeta coin,
-zs,zimstake,
-erl
+zs,zimstake
