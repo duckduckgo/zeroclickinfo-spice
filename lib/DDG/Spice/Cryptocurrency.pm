@@ -44,7 +44,7 @@ my @excludedCurrencies = (
     'pln',
     'rur',
     'sgd',
-    'usd',
+    'usd'
 );
 
 #Define regexes
