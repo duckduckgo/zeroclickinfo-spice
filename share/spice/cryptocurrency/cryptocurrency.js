@@ -79,8 +79,8 @@
                 price = parseFloat(api_result.ticker.price),
                 results = api_result,
                 convertedAmount = queryAmount * price,
-                rate = "1 " + target + " = " + formatNumber((1 / price)) + " " + base,
-                inverseRate = "1 " + base + " = " + formatNumber(price) + " " + target,
+                rate = "1 " + target + " = " + formatNumber((1 / price), base) + " " + base,
+                inverseRate = "1 " + base + " = " + formatNumber(price, target) + " " + target,
                 // Format Time and Date
                 timestamp = (new Date(api_result.timestamp*1000)).toISOString(),
                 timestr = timestamp.split(/T+/),
@@ -106,7 +106,7 @@
                     target = rows[i].currency_secondary,
                     price = parseFloat(rows[i].tradeprice);
                 rows[i].convertedAmount = queryAmount * price,
-                    rows[i].rate = "1 " + base + " = " + formatNumber(price) + " " + target;
+                    rows[i].rate = "1 " + base + " = " + formatNumber(price, target) + " " + target;
                 results.push(rows[i]);
             }
             // Format Time and Date
@@ -134,11 +134,17 @@
         }
         
         // Add commas to the numbers for display.
-        function formatNumber(x) {
+        function formatNumber(x, currency) {
             var decimals = decimalPlaces(x) <= 4 ? decimals = decimalPlaces(x) : decimals = 4;
+            var traditionalCurrencies = ['','cny','eur','gbp','hkd','jpy','nzd','pln','rur','sgd','usd'];
             // Check if the number has a decimal point.
             if(/\./.test(x.toString())) {
-                x = x.toFixed(decimals);   
+                // If the currency is a traditional currency, make sure to format to 2 decimal places.
+                if (traditionalCurrencies.indexOf(currency.toLowerCase()) > -1) {
+                    x = x.toFixed(2);
+                } else {
+                    x = x.toFixed(decimals);
+                }
             }
             return DDG.commifyNumber(x);
         }
@@ -171,8 +177,8 @@
                     return {
                         fromCurrencySymbol: item.ticker.base,
                         toCurrencySymbol: item.ticker.target,
-                        amount: formatNumber(queryAmount),
-                        convertedAmount: formatNumber(convertedAmount),
+                        amount: formatNumber(queryAmount, item.ticker.base),
+                        convertedAmount: formatNumber(convertedAmount, item.ticker.target),
                         rate: rate,
                         inverseRate: inverseRate,
                         cryptonatorURL: "http://www.cryptonator.com/rates#" + item.ticker.base,
@@ -187,9 +193,9 @@
                 return {
                     fromCurrencySymbol: item.currency_primary,
                     toCurrencySymbol: item.currency_secondary,
-                    amount: formatNumber(queryAmount),
+                    amount: formatNumber(queryAmount, item.currency_secondary),
                     // If item is the queried currency, then display the query amount.
-                    convertedAmount: item.currency_primary === item.currency_secondary ? formatNumber(queryAmount): formatNumber(item.convertedAmount),
+                    convertedAmount: item.currency_primary === item.currency_secondary ? formatNumber(queryAmount, item.currency_secondary): formatNumber(item.convertedAmount, item.currency_secondary),
                     rate: item.rate,
                     inverseRate: inverseRate,
                     cryptonatorURL: "http://www.cryptonator.com/rates#" + item.currency_secondary,
