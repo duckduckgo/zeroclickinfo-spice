@@ -51,9 +51,10 @@
             "Redbox": 1
         };
         
-        var append = ((DDG.is3x || DDG.is2x) ? "@2x.png" : ".png");
-        var path = "assets/";
-        var provider_icons = {
+        // For retina screen return optimized images @2x.png
+        var append = ((DDG.is3x || DDG.is2x) ? "@2x.png" : ".png"),
+            path = "assets/",
+            provider_icons = {
             1: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'netflix'),
                 light: DDG.get_asset_path('go_watch_it', path + 'netflix')
@@ -193,6 +194,7 @@
                     item.format_line = "DVD / Blu-ray";
                 }
                 
+                // Only return a single Netflix item
                 if(item.provider_name === "Netflix") {
                     if(!foundNetflix) {
                         foundNetflix = true;
