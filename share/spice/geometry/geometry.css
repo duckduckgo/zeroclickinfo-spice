@@ -1,6 +1,7 @@
 #zci--geometry-svg{
     float: left;
     fill: transparent;
+    margin-left: 50px;
 }
 #zci--geometry-svg .stroke{
     stroke: black;
@@ -23,6 +24,7 @@
     margin-right: 10px;
 }
 #zci--geometry-formulas .formula{
+    margin-bottom: 5px;
     overflow: hidden;
     clear: left;
 }
@@ -33,19 +35,20 @@
     width: 14px;
     height: 14px;
     border-radius: 7px;
-    opacity: 0.75;
-    margin: 7px 8px;
+    opacity: 0.5;
+    margin: 20px 10px;
 }
 #zci--geometry-formulas .hover .dot{
     opacity: 1;
 }
 #zci--geometry-formulas h4{
-    color: #6E6E6E;
+    color: #999;
     font-size: 12px;
+    padding-bottom: 0;
+    margin-bottom: -3px;
 }
-#zci--geometry-formulas .root{
-    border-top: 1px solid #000;
-    padding-top: 2px;
+#zci--geometry-formulas sup{
+  font-size: 0.6em;
 }
 #zci--geometry-formulas small{
     color: #808080;

@@ -69,27 +69,27 @@
     var formulas = {
         volume: {
             symbol: "V",
-            color: "#FF6745"
+            color: "#DE5833"
         },
         area: {
             symbol: "A",
-            color: "#00E204"
+            color: "#F1A031"
         },
         surface: {
             symbol: "A",
-            color: "#00E204"
+            color: "#F1A031"
         },
         perimeter: {
             symbol: "u",
-            color: "#0095FF"
+            color: "#5B9E4D"
         },
         circumference: {
             symbol: "u",
-            color: "#0095FF"
+            color: "#5B9E4D"
         },
         diagonal: {
             symbol: "e",
-            color: "#FF8100"
+            color: "#4495D4"
         }
     };
 
@@ -109,7 +109,7 @@
                 }
             }, {
                 name: "diagonal",
-                html: "a&radic;<span class='root'>2</span>",
+                html: "a&radic;2",
                 calc: function(a){
                     return a * Math.SQRT2;
                 }
@@ -149,7 +149,7 @@
                 }
             }, {
                 name: "diagonal",
-                html: "&radic;<span class='root'>a<sup>2</sup>+b<sup>2</sup></span>",
+                html: "&radic;(a<sup>2</sup>+b<sup>2</sup>)",
                 calc: function(a, b){
                     return Math.sqrt(a * a + b * b);
                 }
@@ -187,7 +187,7 @@
         "equilateral triangle": {
             formulas: [{
                 name: "area",
-                html: "(a<sup>2</sup>*&radic;<span class='root'>3</span>)/4",
+                html: "(a<sup>2</sup>*&radic;3)/4",
                 calc: function(a){
                     return a / 4 * Math.sqrt(3);
                 }
@@ -263,7 +263,7 @@
                 }
             }, {
                 name: "diagonal",
-                html: "a&radic;<span class='root'>3</span>",
+                html: "a&radic;3",
                 calc: function(a){
                     return a * Math.sqrt(3);
                 }
@@ -309,7 +309,7 @@
                 }
             }, {
                 name: "diagonal",
-                html: "&radic;<span class='root'>a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup></span>",
+                html: "&radic;(a<sup>2</sup> + b<sup>2</sup> + c<sup>2</sup>)",
                 calc: function(a, b, c){
                     return Math.sqrt(a * a + b * b + c * c);
                 }
@@ -484,7 +484,8 @@
 
                 //wait for stylesheet
                 $(window).load(function(){
-                    svg.height(content.height());
+                    //set the height of the svg to the same like the content, but 150 as maximal value
+                    svg.height(Math.min(content.height(), 150));
                     svg.show();
                 });
             }
