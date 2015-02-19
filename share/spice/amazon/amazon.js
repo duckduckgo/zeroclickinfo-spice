@@ -7,13 +7,10 @@
             return Spice.failed('products');
         }
 
-        var items = api_result.results,
-            loadedRatingsData = false;
-
         Spice.add({
             id: 'products',
             name: 'Products',
-            data: items,
+            data: api_result.results,
             allowMultipleCalls: true,
             model: 'Product',
             meta: {
