@@ -26,7 +26,7 @@ spice proxy_cache_valid => '200 30d';
 
 handle query_lc => sub {
     s/^github\s+|\s+github$//;
-    if ($_ eq "") {
+    if ($_ eq "" || m/\bjobs\b|\bstatus\b/) {
         return;
     }
     
@@ -51,7 +51,6 @@ handle query_lc => sub {
         return "${query} language:\"${l}\"" unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
     } 
     
-    return $_ unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
     return;
 };
 1;
