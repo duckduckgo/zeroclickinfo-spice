@@ -42,7 +42,7 @@ triggers any => @trigger_keys;
 # duckpan env set <name> <value>
 
 # set spice parameters
-spice to => 'http://quandl.com/api/v1/datasets/SF1/$1_MRQ.json?auth_token={{ENV{QUANDL_KEY_SF1}}}&rows=2';
+spice to => 'http://quandl.com/api/v1/datasets/SF1/$1_MRQ.json?auth_token={{ENV{DDG_SPICE_QUANDL_APIKEY}}}&rows=2';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
