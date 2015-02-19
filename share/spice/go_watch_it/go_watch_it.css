@@ -3,7 +3,7 @@
 }
 
 .tile--go_watch_it .tile__body .image-holder {
-  text-align: center;
+    text-align: center
 }
 
 .tile--go_watch_it .tile__body .image-holder img {
@@ -13,51 +13,41 @@
 }
 
 .tile--go_watch_it .tile__body .data {
-  height: 60px;
-  margin-top: 0.1em;
+    height: 60px;
+    margin-top: 0.1em
 }
 
 .tile--go_watch_it .tile__body .data span.price {
-  font-weight: bold;
-  font-size: 1.5em;
-  font-weight: 400;
+    font-weight: 700;
+    font-size: 1.5em;
 }
 
 .tile--go_watch_it .tile__body .data .left {
-  float: left;
-  border-right: 1px solid rgba(150,150,150, .2);
-  text-align: center;
+    float: left;
+    border-right: 1px solid rgba(150,150,150,.2);
+    text-align: center;
 }
 
-    .is-mobile .tile--go_watch_it .tile__body .data .left {
-        width: 50%;   
-    }
-
-/*     .zci--go_watch_it .tileview--grid .data .left {
-        width: 100%;
-        border-right: none;
-    } */
+.is-mobile .tile--go_watch_it .tile__body .data .left {
+    width: 50%;
+}
 
 .tile--go_watch_it .tile__body .data .right {
-  float: right;
-  text-align: center;
+    float: right;
+    text-align: center;
 }
 
-    .is-mobile .tile--go_watch_it .tile__body .data .right {
-         width: 50%;   
-    }
-
-/*     .zci--go_watch_it .tileview--grid .data .right {
-        width: 100%;
-    } */
+.is-mobile .tile--go_watch_it .tile__body .data .right {
+    width: 50%;
+}
 
 .tile--go_watch_it .tile__body .data .single {
-  text-align: center;
+    text-align: center;
 }
 
 .tile--go_watch_it .tile__body .gwi-footer {
-  text-align: center;
-  margin-top: 0.5em;
+    text-align: center;
+    margin-top: 0.5em;
 }
 
 .tile--go_watch_it .tile__body span.price.gwi-price--subscription {
@@ -80,14 +70,15 @@
 .tile--go_watch_it .tile__body .gwi-icon {
     display: inline-block;
 }
-    .dark-header .tile--go_watch_it .tile__body .gwi-icon {
-        display: none;
-    }
 
-.tile--go_watch_it .tile__body .gwi-icon--alt {
+.dark-header .tile--go_watch_it .tile__body .gwi-icon {
     display: none;
 }
-    .dark-header .tile--go_watch_it .tile__body .gwi-icon--alt {
-        display: inline-block;
-    }
 
+.tile--go_watch_it .tile__body .gwi-icon--alt {
+    display: nonel
+}
+
+.dark-header .tile--go_watch_it .tile__body .gwi-icon--alt {
+    display: inline-block;
+}

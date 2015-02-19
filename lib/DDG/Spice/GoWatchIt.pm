@@ -1,6 +1,7 @@
 package DDG::Spice::GoWatchIt;
 
 use DDG::Spice;
+use Text::Trim;
 
 primary_example_queries "watch boyhood";
 secondary_example_queries "incredible hulk on demand";
@@ -24,15 +25,12 @@ triggers startend => @triggers;
 spice to => 'http://gowatchit.com/api/v3/search?term=$1&full_meta=true&api_key={{ENV{DDG_SPICE_GOWATCHIT_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
-handle remainder => sub {
-  return if !$_;
+handle remainder_lc => sub {
 
-  $_ = lc $_; # Make sure everything is lower case.
-
+  return unless $_; # Guard against "no answer"
   $_ =~ s/$killwords//g; # remove killwords
-  $_ =~ s/^\s+|\s+$//g; # strip leading and trailing spaces
+  return trim($_); # trim spaces and return
 
-  return $_;
 };
 
 1;
