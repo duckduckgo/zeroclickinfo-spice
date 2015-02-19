@@ -25,21 +25,9 @@
             return Spice.failed('rx_info');
         }
 
-        // Filter irrelevant results using DDG.isRelevant.
-        var skip_words = ['pill', 'rxinfo', 'capsule', 'tablet', 'softgel', 'caplets'];
-        var results = [];
-        for(var i = 0; i < api_result.nlmRxImages.length; i++) {
-            if(DDG.isRelevant(api_result.nlmRxImages[i].name, skip_words)) {
-                results.push(api_result.nlmRxImages[i]);
-            }
-        }
-
-        if(results.length === 0) {
-            return Spice.failed('rx_info');
-        }
-
         var sourceName = "More at DailyMed",
-            sourceUrl  = "http://dailymed.nlm.nih.gov/";
+            sourceUrl  = "http://dailymed.nlm.nih.gov/",
+            skip_words = ['pill', 'rxinfo', 'capsule', 'tablet', 'softgel', 'caplets'];
 
         Spice.add({
             id: "rx_info",
@@ -80,7 +68,13 @@
                     inactive: inactive,
                     proxyImageUrl: "https://images.duckduckgo.com/iu/?u=" + encodeURIComponent(item.imageUrl) + "&f=1"
                 }
-            } 
+            },
+            relevancy: {
+                skip_words : skip_words,
+                primary: [
+                    { key: 'name' }
+                ]
+            },
         });
     };
 }(this));
