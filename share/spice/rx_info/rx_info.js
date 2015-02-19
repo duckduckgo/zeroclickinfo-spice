@@ -72,7 +72,7 @@
             relevancy: {
                 skip_words : skip_words,
                 primary: [
-                    { key: 'name' }
+                    { key: 'name' }, { key: 'ndc11' }
                 ]
             },
         });
