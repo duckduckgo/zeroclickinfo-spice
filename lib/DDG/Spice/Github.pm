@@ -2,6 +2,7 @@ package DDG::Spice::Github;
 # ABSTRACT: Search for information about GitHub repositories
 
 use DDG::Spice;
+use String::Trim;
 
 primary_example_queries "github zeroclickinfo";
 description "Github info";
@@ -37,13 +38,9 @@ handle query_lc => sub {
         $query =~ s/ ($langs) |^($langs) | ($langs)$//;
 
         # make sure there is an actual query, and not just a language term search
-        for ($query) {
-            $query =~ s/^\s*//; 
-            $query =~ s/\s*$//;
-            if ($query eq "") {
-                return;
-            }
-        }
+        trim($query);  # need to add `use String::Trim`
+        s/\s+/ /g;     # squash down multiple spaces
+        return unless length $_;
 
         # These is no separate language parameter for the query to 
         # Github. You specify language as a part of the raw query string
