@@ -22,39 +22,38 @@
 
         // Grab the correct season from api results and generate output data
         var event = api_result.holidays[season];
-        var date = DDG.getDateFromString(event.date.iso);
+        var date =  DDG.getDateFromString(event.date.iso);
 
         var result = {
           event: DDG.capitalize(event.name.toLowerCase()),
-          year: date.getFullYear(),
-          date: date.toLocaleDateString(),
-          time: date.toLocaleTimeString(),
-          past: (new Date() - date > 0) ? true : false,
+          date: date,
           location: event.country.name
         };
 
-        Spice.add({
-            id: "seasons",
-            name: "Seasons",
-            data: result,
-            meta: {
-                sourceName: "timeanddate.com",
-                sourceUrl: event.url
-            },
+        DDG.require("moment.js", function() {
+            Spice.add({
+                id: "seasons",
+                name: "Seasons",
+                data: result,
+                meta: {
+                    sourceName: "timeanddate.com",
+                    sourceUrl: event.url
+                },
 
-            templates: {
-                group: 'text',
-                options: {
-                    moreAt: true
+                templates: {
+                    group: 'text',
+                    options: {
+                        moreAt: true
+                    }
+                },
+
+                normalize: function(item){
+                    return {
+                        title: moment(result.date).format("dddd, MMMM Do, YYYY"),
+                        subtitle: result.date.getFullyear() + " " + result.event + " in " + result.location
+                    };
                 }
-            },
-
-            normalize: function(item){
-                return {
-                    title: result.date,
-                    subtitle: result.event + " in " + result.location
-                };
-            }
+            });
         });
     };
 }(this));
