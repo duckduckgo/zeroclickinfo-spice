@@ -31,7 +31,10 @@
                 detail: false,
                 item_detail: false,
                 options: {
-                    footer: Spice.alternative_to.footer
+                    footer: Spice.alternative_to.footer,
+                },
+                variants: {
+                    tileSnippet: "large"
                 }
             }
         });

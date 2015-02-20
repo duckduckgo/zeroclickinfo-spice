@@ -2,6 +2,11 @@
     "use strict";
 
     env.ddg_spice_bbc = function(api_result) {
+
+        if (!api_result) {
+            return Spice.failed('bbc');
+        }
+
         var query = DDG.get_query(),
             broadcasts = api_result.schedule.day.broadcasts,
             programmes = [],
@@ -70,9 +75,11 @@
                 detail: 'products_detail',
                 item_detail: 'products_item_detail',
                 options: {
-                    variant: "video",
                     buy: Spice.bbc.buy,
                     subtitle_content: Spice.bbc.subtitle_content
+                },
+                variants: {
+                    tile: "video"
                 }
             }
         });

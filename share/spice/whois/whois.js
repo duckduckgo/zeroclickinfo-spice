@@ -1,203 +1,168 @@
 (function (env) {
     "use strict";
+    env.ddg_spice_whois = function(api_result){
 
-    // turns on/off debugging output
-    var is_debug = false;
+    if (!api_result || api_result.error || !api_result.WhoisRecord) {
+        return Spice.failed('whois');
+    }
 
-    // spice callback function
-    env.ddg_spice_whois = function(raw_api_result) {
+    // get the search query
+    var script = $('[src*="/js/spice/whois/"]')[0],
+        source = $(script).attr("src"),
+        query = source.replace('/js/spice/whois/','')
 
-        // for debugging
-        if(is_debug) console.log('in start of JS, raw_api_result:', raw_api_result);
+    // all the data is stored in WhoisRecord
+    api_result = api_result.WhoisRecord;
 
-        // normalize the api output
-        var api_result = normalize_api_result(raw_api_result);
+    // fail if the domain name the api returns does not match the searched domain
+    if(api_result.domainName != query) {
+        return Spice.failed('whois');
+    }
+    
+    // decide which template to show show_available or show_whois
+    (is_domain_available(api_result)) ? show_available(api_result) : show_whois(api_result);  
+}
 
-        if(is_debug) console.log('normalized api_result:', api_result || 'empty');
-
-        // Check for API error and exit early if found
-        // (with error message when in debug mode)
-        if (!api_result) {
-            if(is_debug) console.log('Error with whois API. raw_api_result:', raw_api_result || 'empty', ', normalized api_result:', api_result || 'empty');
-
-            return Spice.failed('whois');
-        }
-
-        // is the domain available?
-        var is_avail = api_result.available;
-
-        // if the domain isn't available, do we want to show
-        // whois information?
-        var is_whois_allowed = is_whois_query(DDG.get_query());
-
-        // for debugging
-        if(is_debug) console.log("is_avail:", is_avail, "is_whois_allowed:", is_whois_allowed);
-
-        // decide which template to show, if any
-        if(is_avail) {
-            // show message saying the domain is available
-            show_available(api_result);
-        } else if(is_whois_allowed) {
-            // show whois info for the domain
-            show_whois(api_result);
-        } else {
-            // by default, show nothing
-        }
-
+ // show message saying that the domain is available.
+    function show_available(api_result) {
+        var shared_spice_data = get_shared_spice_data(api_result),
+        templateData = {
+            'domainRegistrars': {
+                "Domainr": "https://domainr.com/",
+                "NameCheap": "https://www.namecheap.com/domains/registration/results.aspx?domain=", 
+                "101domain": "https://www.101domain.com/domain-availability-search.htm?q="
+                },
+            'domainName': api_result.domainName
+            }
+        shared_spice_data.data = templateData;
+        shared_spice_data.templates.options.content = Spice.whois.available;
+        Spice.add(shared_spice_data);
     };
 
-    // Returns whether we should show whois data if this
-    // domain is not available.
-    var is_whois_query = function(query) {
-
-        // show whois results unless the query is a naked domain
-        // (i.e. contains only the domain and no other keywords).
-        //
-        // we test for naked domains by looking for a space in the query.
-        return /\s/.test($.trim(query));
-
-    };
-
-    // parse the api response into a standard format
-    var normalize_api_result = function(api_result) {
-
-        // return nothing if no api_result, if error, or if WhoisRecord object is missing
-        if(!api_result || api_result.error || !api_result.WhoisRecord) return;
-
-        // use only the 'WhoisRecord' portion, because that's where
-        // all the data is stored.
-        api_result = api_result.WhoisRecord;
-
-        // sometimes the data is nested inside the 'registryData' object
-        if(!api_result.createdDate
-           && api_result.registryData
-           && (api_result.registryData.createdDate || api_result.registryData.expiresDate) ){
-
-            api_result = api_result.registryData;
-        }
+    // show whois info for the domain using the 'record' template.
+    function show_whois(api_result) {
+        var shared_spice_data = get_shared_spice_data(api_result),
+            nameServers,
+            nsObj,
+            normalized
 
         // store the domain's various contacts in an array.
-        //
         // we'll iterate through this array in order, using
         // info from the first contact that contains the field we want.
         var contacts = [
             api_result.registrant,
             api_result.administrativeContact,
-            api_result.technicalContact
-        ];  
+            api_result.technicalContact,
+            api_result.registryData.registrant,
+            api_result.registryData.technicalContact,
+            api_result.registryData.administrativeContact
+        ];
 
-        // return the normalized output as a hash
-        var normalized = {
+        // find the nameservers
+        if(api_result.nameServers) {
+            nsObj = api_result.nameServers;
+        } else if(api_result.registryData.nameServers) {
+            nsObj = api_result.registryData.nameServers;
+        }
 
-            // these first fields are not displayed
-            // (hence the camelCase, which the user will not see)
+        // check we have 2 nameserver hostnames
+        if(nsObj && nsObj.hostNames[0] && nsObj.hostNames[1]) {
+            var nameServers = [nsObj.hostNames[0].toLowerCase(),nsObj.hostNames[1].toLowerCase()].join(' ');
+        }
 
-            'domainName': api_result.domainName,
-            'available': is_domain_available(api_result),
+        // find updatedDate and expiresDate in registryData 
+        if(!api_result.updatedDate && !api_result.expiresDate) {
+            if(api_result.registryData.updatedDateNormalized && api_result.registryData.expiresDateNormalized) {
+                api_result.updatedDate = api_result.registryData.updatedDateNormalized;
+                api_result.expiresDate = api_result.registryData.expiresDateNormalized;
+            }
+        }
 
-            // the remaining fields are displayed
-            // (hence the user-friendly capitalization and spaces)
-
-            'Status': is_domain_available(api_result) ? 'Available' : 'Registered',
+        // organize the data
+        normalized = {
+            'title': api_result.domainName,
             'Registered to': get_first_by_key(contacts, 'name'),
-            'Email': get_first_by_key(contacts, 'email'),
-
-            // trim dates so they are shown without times
-            // (if no time was found, the replace() call will return undef,
-            //  so we need to fallback to the original string)
-            'Last updated': api_result.updatedDate
-                && api_result.updatedDate.replace(/^(.*)?\s(.*)?$/, '$1'),
-
-            'Expires': api_result.expiresDate
-                && api_result.expiresDate.replace(/^(.*)?\s(.*)?$/, '$1'),
+            'Email': get_first_by_key(contacts, 'email'),           
+            'Last Updated': prettifyTimestamp(api_result.updatedDate),
+            'Expires On': prettifyTimestamp(api_result.expiresDate),
+            'Registrar': api_result.registrarName,
+            'Name Servers': nameServers
         };
 
-        // return nothing if domain has an owner but is missing all key whois data
-        if( !normalized['available']
-            && !normalized['Registered to']
+        // return nothing if we're missing all key whois data
+        if(!normalized['Registered to']
             && !normalized['Email']
-            && !normalized['Last updated']
-            && !normalized['Expires']) {
+            && !normalized['Last Updated']
+            && !normalized['Expires On']
+            && !normalized['Name Servers']) {
             return;
         }
 
-        return normalized;
+        // add the attributes specific to this template
+        shared_spice_data.data = {
+            'record_data': normalized,
+            'record_keys': ['Registered to', 'Email', 'Last Updated', 'Expires On', 'Registrar', 'Name Servers']
+        };
+        shared_spice_data.templates.options.content = 'record';
+        shared_spice_data.templates.options.keySpacing = true;
+        Spice.add(shared_spice_data);
+    };
+
+    //Returns whether the domain is registered to someone, based on the API result.
+    function is_domain_available(api_result) {
+        return api_result.dataError && api_result.dataError === 'MISSING_WHOIS_DATA';
     }
 
-    // Returns whether the domain is registered to someone, based on the API result.
-    var is_domain_available = function(api_result) {
-        return api_result.dataError && api_result.dataError === 'MISSING_WHOIS_DATA';
-    };
+    //Converts timestamp into local time using getDateFromString
+    function prettifyTimestamp(timestamp) {
+        if(!timestamp) { return; }
+        var dateObj = DDG.getDateFromString(timestamp),
+            monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            day = dateObj.getDate(),
+            month = monthArr[dateObj.getMonth()+1],
+            year = dateObj.getFullYear();
+        if(day<10) {day='0'+day};
+        return month + " " + day + ", " + year;
+    }
 
     // Searches an array of objects for the first value
     // at the specified key.
-    var get_first_by_key = function(arr, key) {
+    function get_first_by_key(arr, key) {
         if(!arr || arr.length == 0) return;
-
-        // find the first object in the array that has a non-empty value at the key
         var first;
         $.each(arr, function(index, obj) {
-            // get the value at the specified key
-            // (which could be undefined)
             var value = obj && obj[key];
-
             // update the first var if the value is truthy
             // and first hasn't already been found
-            if(!first && value) {
+            if (!first && value) {
                 first = value;
             }
         });
-
-        // return first, which could still be empty
         return first;
     }
 
     // Data that's shared between the two Spice.add calls.
-    var get_shared_spice_data = function(api_result) {
+    function get_shared_spice_data(api_result) {
         return {
-            id: "whois",
-            name: "Whois",
+            id: 'whois',
+            name: 'Whois',
             meta: {
-                sourceName: "Whois API",
+                sourceName: 'Whois API',
                 sourceUrl: 'https://www.whoisxmlapi.com/#whoisserver/WhoisService?domainName='
                     + api_result.domainName
-                    + '&outputFormat=json&target=raw'
+                    + '&target=raw'
+            },
+            normalize: function(item) {
+                return {
+                    title: api_result.domainName
+                };
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options:{
                     moreAt: true
                 }
             }
         };
-    };
-
-    // Show message saying that the domain is available.
-    var show_available = function(api_result) {
-        var shared_spice_data = get_shared_spice_data(api_result);
-
-        // add the attributes specific to this template
-        shared_spice_data.data = api_result;
-        shared_spice_data.templates.options.content = Spice.whois.available;
-
-        Spice.add(shared_spice_data);
-    };
-
-    // Show whois info for the domain using the 'record' template.
-    var show_whois = function(api_result) {
-        var shared_spice_data = get_shared_spice_data(api_result);
-
-        // add the attributes specific to this template
-        shared_spice_data.data = {
-            'record_data': api_result,
-            'record_keys': ['Status', 'Registered to', 'Email', 'Last updated', 'Expires']
-        };
-        shared_spice_data.templates.options.content = 'record';
-        shared_spice_data.templates.options.keySpacing = true;
-
-        Spice.add(shared_spice_data);
-    };
-
-    
-    
+    };   
 }(this));

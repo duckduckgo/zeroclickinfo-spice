@@ -11,7 +11,8 @@ name "Rainfall";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Rainfall.pm";
 topics "everyday";
 category "geography";
-attribution github  => ['https://github.com/chrisjwilsoncom', 'chrisjwilsoncom'];
+attribution github => ["MrChrisW", "Chris Wilson"],
+            web => ["http://chrisjwilson.com", "Chris Wilson"];
 triggers any => "rainfall", "rainfall in", "annual rainfall", "annual rainfall in", "average rainfall", "average annual rainfall", "average rainfall in";
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';

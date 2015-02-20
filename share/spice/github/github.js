@@ -7,8 +7,9 @@
           return Spice.failed('github');
         }
 
-        var query = DDG.get_query()
-                    .replace(/^\s*github\s+/, "");
+        var script = $('[src*="/js/spice/github/"]')[0],
+                    source = $(script).attr("src"),
+                    query = source.match(/github\/([^\/]+)/)[1];
 
         var results = api_result.data.repositories;
 
@@ -30,11 +31,14 @@
                 sourceName: 'GitHub'
             },
             templates: {
-            group: 'text',
+                    group: 'text',
                     detail: false,
                     item_detail: false,
                     options: {
                         footer: Spice.github.footer
+                    },
+                    variants: {
+                        tile: 'basic4'
                     }
                 },
             normalize: function(item) {
