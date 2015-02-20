@@ -62,7 +62,7 @@
             o.data = people;
             o.normalize = function(item) {
                 return {
-                    url: item.bio,
+                    url: item.biolink,
                     title: item.name,
                     icon: DDG.settings.region.getSmallIconURL(item.country_code)
                 };
@@ -81,6 +81,9 @@
                 options:{
                     footer: Spice.people_in_space.footer,
                     moreAt: true
+                },
+                variants: {
+                    tileFooter: '3line'
                 }
             };
         } else {

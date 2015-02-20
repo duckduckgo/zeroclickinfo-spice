@@ -108,7 +108,7 @@ function ddg_spice_detect_lang (api_result) {
 
         return langs[language] || "";
     };
-    Handlebars.registerHelper("expandLang", expandLang);
+    Handlebars.registerHelper("DetectLang_expandLang", expandLang);
 
     if(expandLang(api_result.data.detections[0].language) === "") {
         return;

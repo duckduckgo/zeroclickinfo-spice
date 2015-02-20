@@ -26,13 +26,13 @@
             name: "Weather",
             data: query_country,
             meta: {
-                sourceName: "worldbank.org",
+                sourceName: "World Bank",
                 sourceUrl: 'http://data.worldbank.org/country/' + URL_country
             },
             normalize: function(item) {
                 return {
-                    title: "Annual Rainfall for "+country+" is "+precipitation+"mm",
-                    subtitle: "Average annual rainfall in millimeters"
+                    title: precipitation+"mm",
+                    subtitle: country+" - Average annual rainfall"
                 };
             },
             templates: {

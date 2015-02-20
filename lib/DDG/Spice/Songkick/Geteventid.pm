@@ -14,7 +14,7 @@ topics "entertainment", "everyday", "music";
 # FIXME Point to the duckduckgo repository on pull.
 code_url "https://github.com/bradcater/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Songkick/Events.pm";
 attribution github => ["https://github.com/bradcater", "Brad Cater"],
-    twitter => ["https://twitter.com/bradcater", "bradcater"];
+    twitter => ["https://twitter.com/bradcater", "Brad Cater"];
 
 triggers startend => "concert", "concerts";
 

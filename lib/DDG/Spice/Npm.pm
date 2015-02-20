@@ -10,7 +10,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 icon_url "/i/npmjs.org.ico";
 topics "sysadmin", "programming";
 category "programming";
-attribution github  => ['https://github.com/remixz', 'remixz'],
+attribution github  => ['https://github.com/remixz', 'zachbruggeman'],
             twitter => ['https://twitter.com/zachbruggeman', 'zachbruggeman'];
 
 triggers startend => 'npm';
