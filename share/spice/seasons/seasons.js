@@ -22,12 +22,13 @@
 
         // Grab the correct season from api results and generate output data
         var event = api_result.holidays[season];
-        var date =  DDG.getDateFromString(event.date.iso);
+        var date = DDG.getDateFromString(event.date.iso);
 
         var result = {
           event: DDG.capitalize(event.name.toLowerCase()),
           date: date,
-          location: event.country.name
+          location: event.country.name,
+          season: query
         };
 
         DDG.require("moment.js", function() {
@@ -50,7 +51,7 @@
                 normalize: function(item){
                     return {
                         title: moment(result.date).format("dddd, MMMM Do, YYYY"),
-                        subtitle: result.date.getFullyear() + " " + result.event + " in " + result.location
+                        subtitle: result.date.getFullYear() + " first day of " + result.season + " (" + result.event + ") in " + result.location
                     };
                 }
             });
