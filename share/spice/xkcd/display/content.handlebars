@@ -6,13 +6,13 @@
       {{#xkcd_previousNum num}}
       <a href="/?q=xkcd+{{num}}">Prev</a>
       {{/xkcd_previousNum}}
-      <span>|</span>
+      <span class="sep"></span>
 
       {{#if has_next}}
         {{#xkcd_nextNum num}}
           <a href="/?q=xkcd+{{num}}">Next</a>
         {{/xkcd_nextNum}}
-        <span>|</span>
+        <span class="sep"></span>
       {{/if}}
       <a href="http://www.explainxkcd.com/wiki/index.php/{{num}}">Explain</a>
     </div>
