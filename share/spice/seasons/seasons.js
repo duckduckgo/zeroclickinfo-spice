@@ -25,10 +25,9 @@
         var date = DDG.getDateFromString(event.date.iso);
 
         var result = {
-          event: DDG.capitalize(event.name.toLowerCase()),
           date: date,
           location: event.country.name,
-          season: query
+          season: DDG.capitalize(query)
         };
 
         DDG.require("moment.js", function() {
@@ -50,8 +49,8 @@
 
                 normalize: function(item){
                     return {
-                        title: moment(result.date).format("dddd, MMMM Do, YYYY"),
-                        subtitle: result.date.getFullYear() + " first day of " + result.season + " (" + result.event + ") in " + result.location
+                        title: moment(result.date).format("dddd, MMMM Do"),
+                        subtitle: result.location + " – First day of " + result.season + " in " + result.date.getFullYear()
                     };
                 }
             });
