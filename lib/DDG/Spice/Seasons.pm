@@ -77,7 +77,6 @@ handle remainder_lc => sub {
     return unless (defined $year and defined $country and defined $season);
 
     # Season is not required for the API call, but used in the frontend
-    #$country = "ro";
     return $year, $country, $season;
 
 };
