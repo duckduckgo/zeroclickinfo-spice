@@ -18,7 +18,7 @@
             name: "Software",
             data: api_result.results,
             meta: {
-                sourceName: "packagist.org",
+                sourceName: "Packagist",
                 sourceUrl: 'http://packagist.org/search?q=' + encodeURIComponent(query),
                 sourceIconUrl: 'http://packagist.org/favicon.ico',
                 total: api_result.total,
@@ -35,7 +35,7 @@
             normalize: function(item) {
                 return {
                     title: item.name,
-                    downloads: item.downloads.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    downloads: DDG.commifyNumber(item.downloads)
                 };
             }
         });

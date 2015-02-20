@@ -12,7 +12,7 @@ source "UrbanDictionary";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/UrbanDictionary.pm";
 topics "geek";
 category "language";
-attribution github => ['https://github.com/FiloSottile','FiloSottile'],
+attribution github => ['https://github.com/FiloSottile','Filippo Valsorda'],
             web => ['http://pytux.it','Filippo Valsorda'],
             email => ['filippo.valsorda@gmail.com','Filippo Valsorda'];
 

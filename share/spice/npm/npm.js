@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_npm = function(api_result){
 
-        if (api_result.error) {
+        if (!api_result || api_result.error) {
             return Spice.failed('npm');
         }
 
@@ -11,7 +11,7 @@
             name: "Software",
             data: api_result,
             meta: {
-                sourceName: "npmjs.org",
+                sourceName: "npmjs",
                 sourceUrl: 'http://npmjs.org/package/' + api_result.name
             },
             

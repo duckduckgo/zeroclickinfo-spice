@@ -10,7 +10,7 @@ icon_url "/i/www.hnsearch.com.ico";
 topics "programming", "social";
 category "forums";
 attribution github => ['https://github.com/adman','Adman'],
-            twitter => ['http://twitter.com/adman_X','adman_X'];
+            twitter => ['http://twitter.com/adman_X','Adman'];
 
 triggers startend => "hn", "hackernews", "hacker news", "news.yc", "news.ycombinator.com", "hn search", "hnsearch", "hacker news search", "hackernews search";
 

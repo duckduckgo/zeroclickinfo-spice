@@ -24,13 +24,13 @@ ddg_spice_test(
     'ducksay hello world!' => test_spice(
         '/js/spice/duck_say/',
         call_type => 'self',
-        is_unsafe => 1,
+        is_unsafe => 0,
         caller => 'DDG::Spice::DuckSay'
     ),
     'daxsays hello world!' => test_spice(
         '/js/spice/duck_say/',
         call_type => 'self',
-        is_unsafe => 1,
+        is_unsafe => 0,
         caller => 'DDG::Spice::DuckSay'
     )
 );
