@@ -75,9 +75,11 @@
                 detail: 'products_detail',
                 item_detail: 'products_item_detail',
                 options: {
-                    variant: "video",
                     buy: Spice.bbc.buy,
                     subtitle_content: Spice.bbc.subtitle_content
+                },
+                variants: {
+                    tile: "video"
                 }
             }
         });

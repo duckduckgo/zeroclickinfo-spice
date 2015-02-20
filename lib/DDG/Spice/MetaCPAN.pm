@@ -10,7 +10,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 icon_url "/i/metacpan.org.ico";
 topics "programming", "sysadmin";
 category "programming";
-attribution github  => ['https://github.com/ghedo', 'ghedo'],
+attribution github  => ['https://github.com/ghedo', 'Alessandro Ghedini'],
             web => ['http://ghedini.me', 'Alessandro Ghedini'],
             github  => ['https://github.com/dsteinbrunner', 'David Steinbrunner'];
 

@@ -10,7 +10,7 @@ secondary_example_queries "newint gold";
 category "reference";
 topics "everyday", "entertainment";
 attribution github => ["https://github.com/sighmon", "Simon Loffler"],
-            twitter => ["https://twitter.com/sighmon", "sighmon"];
+            twitter => ["https://twitter.com/sighmon", "Simon Loffler"];
 
 triggers startend => "newint", "new internationalist magazine", "new internationalist";
 
