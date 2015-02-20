@@ -1,55 +1,52 @@
-.zci--tor_node .online {
-    color: #4b9e4d;
-}
-
-.zci--tor_node .offline {
-    color: #f00;
-}
-
-.zci--tor_node .one-line .online {
-    color: #4b9e4d;
-    float: left;
-}
-
-.zci--tor_node .one-line .offline {
-    color: #f00;
-    float: left;
-}
-
-.zci--tor_node .one-line .bandwidth {
-    float: right;
-}
-
-.zci--tor_node .text--primary {
-    font-size: 1.5em;
-}
-
 .zci--tor_node .tile--tor_node {
-    height: 12em;
-    width: 20em;
+  margin-top: 0;
 }
 
 .zci--tor_node .tile__body.has-foot {
-    padding-bottom: 0;
+  padding-top: 0.7em;
 }
 
 .tile--tor_node .tile__title {
-    padding-top: 6px;
-    margin-bottom: 0;
+  font-size: 1.52em;
+  padding-top: 0;
+  height: auto;
 }
 
-.tile--tor_node .tile__footer {
-    margin-top: 1em;
+.tile--tor_node .tile__content {
+  font-size: 1.11em;
+  color: #999;
+  margin-top: 16px;
 }
 
 .tile--tor_node .tile__icon {
-    float: right;
-    margin-top: 0;
-    margin-right: 0;
-    margin-left: 0.75em;
-    width: 20px;
-    height: 20px;
-    padding: 6px;
-    border-radius: 2px;
-    background-color: #e8e8e8;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-top: 1px;
+
+  /* remove bg-color and padding completely */
+  background-color: transparent;
+  padding: 0;
+}
+
+.zci--tor_node .tile__foot {
+  height: 2.2em;
+}
+
+.zci--tor_node .one-line span {
+  font-size: 1.11em;
+}
+
+.zci--tor_node .one-line .online {
+  color: #5b9e4d;
+  float: left;
+}
+
+.zci--tor_node .one-line .offline {
+  color: #ff0000;
+  float: left;
+}
+
+.zci--tor_node .one-line .bandwidth {
+  color: #999;
+  float: right;
 }
