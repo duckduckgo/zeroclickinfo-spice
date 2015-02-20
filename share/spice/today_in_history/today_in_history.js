@@ -93,11 +93,20 @@
 
     Handlebars.registerHelper('wiki_text_to_html', function(string, num) {
         return new Handlebars.SafeString(string
-            .replace(/\*?\s*\[\[(.*?)\]\]/g, function (m, l) { // internal link or image
+            .replace(/\*?\s*(\S*)\[\[(.*?)\]\]([\w\'\"]*)/g, function (m, prefix, l, postfix) { // internal link or image
                 var parsed_value = l.split(/\|/);
                 var link = parsed_value.shift();
+                var text = parsed_value.length ? parsed_value : link;
+                
+                if (prefix) {
+                   text = prefix + text; 
+                }
 
-                return '<a class="tx-clr--dk" href="' + link + '"> ' + (parsed_value.length ? parsed_value.join('|') : link) + '</a>';
+                if (postfix) {
+                   text = text + postfix; 
+                }
+                
+                return ' <a class="tx-clr--dk" href="' + link + '">' + text + '</a>';
             })
 
             .replace(/\*?\s*\{\{(.*?)\}\}/g, function (m, l) {
@@ -128,7 +137,7 @@
                     text = parsed_value.join(" ");
                 }
 
-                return '<a class="tx-clr--dk" href="' + link + '"> ' + text + '</a>';
+                return ' <a class="tx-clr--dk" href="' + link + '">' + text + '</a>';
             })
         
             .replace(/'''(.*?)'''/g, function (m, l) {
