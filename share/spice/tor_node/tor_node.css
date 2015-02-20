@@ -1,9 +1,5 @@
-.zci--tor_node div {
-    line-height: normal;
-}
-
 .zci--tor_node .online {
-    color: #0f0;
+    color: #4b9e4d;
 }
 
 .zci--tor_node .offline {
@@ -11,7 +7,7 @@
 }
 
 .zci--tor_node .one-line .online {
-    color: #0f0;
+    color: #4b9e4d;
     float: left;
 }
 
@@ -24,8 +20,26 @@
     float: right;
 }
 
+.zci--tor_node .text--primary {
+    font-size: 1.5em;
+}
+
+.zci--tor_node .tile--tor_node {
+    height: 12em;
+    width: 20em;
+}
+
+.zci--tor_node .tile__body.has-foot {
+    padding-bottom: 0;
+}
+
 .tile--tor_node .tile__title {
-    font-family: "Courier New", Courier, monospace;
+    padding-top: 6px;
+    margin-bottom: 0;
+}
+
+.tile--tor_node .tile__footer {
+    margin-top: 1em;
 }
 
 .tile--tor_node .tile__icon {
@@ -37,4 +51,5 @@
     height: 20px;
     padding: 6px;
     border-radius: 2px;
+    background-color: #e8e8e8;
 }
