@@ -6,6 +6,121 @@
             return Spice.failed("tor_node");
         }
 
+        // Put together the base of the Spice.
+        var base = get_shared_spice_data(api_result);
+        if (base === null) {
+            return Spice.failed("tor_node");
+        }
+
+        // We use different templates depending on the number of nodes.
+        var spice;
+        if (base.nodes.length === 1) {
+           spice = singleNode(base);
+        }
+        else {
+           spice = multipleNodes(base);
+        }
+
+        if (spice === null) {
+            return Spice.failed("tor_node");
+        }
+
+        Spice.add(spice);
+    };
+
+    function singleNode(base) {
+        function addField(name, value) {
+            base.data.record_data[name] = value;
+            base.data.record_keys.push(name);
+        }
+
+        // Create a shortcut for the node.
+        var node = base.nodes[0];
+
+        // Prepare the object that will define this template.
+	base.data = {
+	    "record_data": {"title": node.title},
+	    "record_keys": []
+	};
+        addField(node.ref_name, node.ref);
+
+        base.normalize = function(item) {
+            return {title: item.record_data.title};
+        };
+
+        // Format contact info.
+        if (node.contact) {
+            addField("Contact", node.contact.replace(/mailto:/g, ""));
+        }
+
+        // Bundle together all IPs used by a node.
+        node.addrs = node.or_addresses;
+        if (node.exit_addresses) {
+            node.addrs.concat(node.exit_addresses);
+        }
+        if (node.dir_address) {
+            node.addrs.push(node.dir_address);
+        }
+        node.addrs = $.unique($.map(node.addrs, stripPort));
+        addField("IPs", node.addrs.join(", "));
+
+        // Handle the node's uptime history.
+        addField("First Seen", prettifyTimestamp(node.first_seen));
+        addField("Last Seen", prettifyTimestamp(node.last_seen));
+
+        // Handle the node's bandwidth.
+        if (node.bandwidth) {
+            addField("Advertised Bandwidth", node.bandwidth);
+        }
+
+        // Handle the node's bandwidth.
+        if (node.flags && node.flags.length !== 0) {
+            addField("Flags", node.flags.join(", "));
+        }
+
+        // Configure the template.
+        base.templates.group = "text";
+	base.templates.options.content = "record";
+	base.templates.options.keySpacing = true;
+        base.meta.sourceUrl = node.url;
+
+        return base;
+    }
+
+    function multipleNodes(base) {
+        base.data = base.nodes;
+        base.templates.group = "icon";
+        base.templates.detail = false;
+        base.templates.item_detail = false;
+        base.templates.options.footer = Spice.tor_node.footer;
+
+        base.normalize = function(node) {
+            // Handle the node's locale.
+            node.icon = DDG.settings.region.getSmallIconURL(getCountryCode(node.country));
+
+            // Handle the node's uptime history.
+            node.uptime = timeFromNow(node.last_restarted);
+            node.downtime = timeFromNow(node.last_seen);
+
+            // Construct the tile body text.
+            node.description = "";
+            if (node.or_addresses.length !== 0) {
+                node.description = stripPort(node.or_addresses[0]) + "\n";
+            }
+            node.description += node.ref;
+
+            return node;
+        };
+
+        return base;
+    }
+
+    // Data that's shared between the two Spice.add calls.
+    function get_shared_spice_data(api_result) {
+        // Filter out the trigger from the query.
+        var words = DDG.get_query().split(" ");
+        var query = (words[0] =~ /tor|onion/i) ? words.pop() : words.shift();
+
         // Collect together and classify the nodes.
         var i, node, nodes = [];
         for (i = 0; i < api_result.relays.length; i++) {
@@ -23,134 +138,41 @@
             nodes.push(node);
         }
         if (nodes.length === 0) {
-            return Spice.failed("tor_node");
+            return null;
         }
 
-        // Format the node's properties to be more friendly.
         for (i = 0; i < nodes.length; i++) {
             node = nodes[i];
 
-            node.url = "https://atlas.torproject.org/#details/" + node.ref;
-
-            // Ensure the node has a title.
             if (node.nickname && node.nickname !== "Unnamed") {
                 node.title = node.nickname;
             }
             else {
-                node.title = "(Unnamed)";
+                node.title = "Unnamed " + node.type;
             }
-        }
- 
-        // Filter out the trigger from the query.
-        var words = DDG.get_query().split(" ");
-        var query = (words[0] =~ /tor|onion/i) ? words.pop() : words.shift();
 
-        // We use different templates depending on the number of nodes.
-        if (nodes.length === 1) {
-            return singleNode(query, nodes[0]);
-        }
-        return multipleNodes(query, nodes);
-    };
-
-    function singleNode (query, node) {
-        Spice.add({
-            id: "tor_node",
-            name: "Answer",
-            data: node,
-            meta: {
-                itemType: "Tor " + node.type,
-                sourceName: "Tor Atlas",
-                sourceUrl: "https://atlas.torproject.org/#details/" + node.ref
-            },
-            templates: {
-                group: "text",
-                detail: Spice.tor_node.detail,
-                options: {
-                    footer: Spice.tor_node.footer,
-                    rowHighlight: true,
-                    moreAt: true
-                }
-            },
-            normalize: function(node) {
-                // Format contact info.
-                if (node.contact) {
-                    node.contact = node.contact.replace(/mailto:/g, "");
-                }
-
-                // Bundle together all IPs used by a node.
-                node.addrs = node.or_addresses;
-                if (node.exit_addresses) {
-                    node.addrs.concat(node.exit_addresses);
-                }
-                if (node.dir_address) {
-                    node.addrs.push(node.dir_address);
-                }
-                node.addrs = $.unique($.map(node.addrs, stripPort));
-
-                // Handle the node's locale.
-                node.icon = DDG.settings.region.getXSmallIconURL(getCountryCode(node.country));
-
-                // Handle the node's uptime history.
-                node.first_seen = prettifyTimestamp(node.first_seen);
-                node.last_seen = prettifyTimestamp(node.last_seen);
-
-                return node;
+            if (node.advertised_bandwidth) {
+                node.bandwidth = prettifyBitrate(node.advertised_bandwidth);
             }
-        });
-    }
 
-    function multipleNodes (query, nodes) {
-        Spice.add({
+            node.url = "https://atlas.torproject.org/#details/" + node.ref;
+        }
+
+        return {
             id: "tor_node",
-            name: "Answer",
-            data: nodes,
+            name: "Tor Node",
+            nodes: nodes,
             meta: {
-                itemType: "Tor Nodes",
                 sourceName: "Tor Atlas",
                 sourceUrl: "https://atlas.torproject.org/#search/" + query
             },
             templates: {
-                group: "icon",
-                detail: false,
-                item_detail: false,
-                options: {
-                    footer: Spice.tor_node.footer,
+                options:{
                     moreAt: true
                 }
-            },
-            normalize: function(node) {
-                var data = {};
-
-                data.title = node.title;
-                data.url = node.url;
-
-                data.description = "";
-                if (node.or_addresses !== 1) {
-                    data.description = stripPort(node.or_addresses[0]) + "\n";
-                }
-                data.description += node.ref;
-
-                // Handle the node's locale.
-                data.icon = DDG.settings.region.getSmallIconURL(getCountryCode(node.country));
-
-                // Handle the node's uptime history.
-                data.online = node.running;
-                if (data.online) {
-                    data.uptime = timeFromNow(node.last_restarted);
-                }
-                else {
-                    data.downtime = timeFromNow(node.last_seen);
-                }
-
-                // Make the bandwidth friendly.
-                if (node.advertised_bandwidth) {
-                    data.bandwidth = prettifyBitrate(node.advertised_bandwidth);
-                }
-
-                return data;
             }
-        });
-    }
+        };
+    };
 
     function stripPort(addr) {
         return addr.replace(/:[0-9]+$/, "");
