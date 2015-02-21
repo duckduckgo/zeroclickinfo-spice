@@ -10,6 +10,7 @@
             id: "zanran",
             name: "Answer",
             data: api_result.results,
+            signal: "medium",
             meta: {
                 sourceName: "Zanran",
                 sourceUrl: api_result.more,
@@ -33,6 +34,9 @@
                 item_detail: false,
                 options: {
                     footer: Spice.zanran.footer
+                },
+                variants: {
+                    tileSnippet: "large"
                 }
             }
         });

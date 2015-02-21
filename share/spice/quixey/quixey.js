@@ -218,8 +218,10 @@
             templates: {
                 group: 'products',
                 options: {
-                    buy: Spice.quixey.buy,
-                    variant: 'narrow'
+                    buy: Spice.quixey.buy
+                },
+                variants: {
+                    tile: 'narrow'
                 }
             }
         });

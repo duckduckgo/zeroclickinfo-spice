@@ -21,7 +21,7 @@
             },
             meta: {
                 sourceUrl: 'http://leakdb.abusix.com/?q='+ encodeURIComponent(query),
-                sourceName: 'leakdb.abusix.com'
+                sourceName: 'Abusix'
             },
             templates: {
                 group: 'base',

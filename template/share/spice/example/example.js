@@ -3,7 +3,7 @@
     env.ddg_spice_<: $lia_name :> = function(api_result){
 
         // Validate the response (customize for your Spice)
-        if (api_result.error) {
+        if (!api_result || api_result.error) {
             return Spice.failed('<: $lia_name :>');
         }
 

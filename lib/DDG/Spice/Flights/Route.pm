@@ -17,7 +17,7 @@ attribution github => ["https://github.com/tommytommytommy", 'tommytommytommy'];
 spice proxy_cache_valid => "200 304 5m";
 
 spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';          
-spice to => 'http://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/route/status/$4/$5/arr/$6/$7/$8?hourOfDay=$9&utc=true&appId={{ENV{DDG_SPICE_FLIGHTS_API_ID}}}&appKey={{ENV{DDG_SPICE_FLIGHTS_APIKEY}}}&callback={{callback}}';
+spice to => 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/route/status/$4/$5/arr/$6/$7/$8?hourOfDay=$9&utc=true&appId={{ENV{DDG_SPICE_FLIGHTS_API_ID}}}&appKey={{ENV{DDG_SPICE_FLIGHTS_APIKEY}}}&callback={{callback}}';
 
 my @triggers = ('airport', 'international', 'national', 'intl', 'regional');
 

@@ -9,10 +9,11 @@ spice proxy_cache_valid => "418 1d";
 spice is_cached => 0;
 
 triggers startend => (
-    'near',
     'local',
+    'near',
     'near me',
     'around',
+    'around me',
     'here',
     'locally',
     'nearby',

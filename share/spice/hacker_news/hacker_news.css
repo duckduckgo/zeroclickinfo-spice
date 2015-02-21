@@ -1,36 +1,3 @@
-.tile--hacker_news .tile__title {
-    margin-bottom: 0.7em;
-    height: 4.6em;
-    font-size: 1.5em;
-    line-height: 1.15em;
-    font-weight: 400;
-    color: #333;
-    text-overflow: clip;
-    -webkit-line-clamp: 4;
+.tile--hacker_news .tile__body.has-foot {
+	height: 14em;
 }
-
-.tile--hacker_news .tile__body {
-    height: 14em;
-}
-
-.tile--hacker_news .tile__footer {
-    margin-bottom: 0;
-}
-
-.tile--hacker_news .tile__footer .tile__domain {
-    margin-bottom: 0.25em;
-}
-
-.tile--hacker_news .tile__content {
-    height: 1.5em;
-}
-
-.tile--hacker_news .tile__content,
-.tile--hacker_news .tile__domain {
-    color: #888;
-}
-
-.tile--hacker_news .tile__score {
-    color: #333;
-}
-

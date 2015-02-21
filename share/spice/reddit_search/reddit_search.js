@@ -119,10 +119,14 @@
             templates: {
                 group: 'text',
                 options: {
-            footer: Spice.reddit_search.footer
+                    footer: Spice.reddit_search.footer
                 },
-        detail: false,
-        item_detail: false
+                variants: {
+                    tileTitle: "3line-small",
+                    tileFooter: "2line"
+                },
+                detail: false,
+                item_detail: false
             }
         });
     };
