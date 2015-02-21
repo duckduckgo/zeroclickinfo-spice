@@ -6,12 +6,12 @@
             {{#each betterifs.betterifs}}
                 <li>
                   <span class="betterif-name">
-                    <a href="http://betterific.com/{{dashedS user.username}}/{{dashedS name}}/{{id}}" class="name-text" title="Wouldn't it be better if {{name}}">{{condense name maxlen="90"}}</a>
+                    <a href="http://betterific.com/{{betterific_dashedS user.username}}/{{betterific_dashedS name}}/{{id}}" class="name-text" title="Wouldn't it be better if {{name}}">{{condense name maxlen="90"}}</a>
                   </span>
                   <span class="stats block-stats">
                     <small>
                       [{{plural upvotes_count singular="upvote" plural="upvotes" delimeter=","}}]
-                      ({{#with this.user}}by <a href="http://betterific.com/innovator/{{dashedS username}}/{{id}}" title="See more great ideas from {{first_name}} {{last_name}} at http://betterific.com">{{first_name}} {{last_name}}</a>{{/with}})
+                      ({{#with this.user}}by <a href="http://betterific.com/innovator/{{betterific_dashedS username}}/{{id}}" title="See more great ideas from {{first_name}} {{last_name}} at http://betterific.com">{{first_name}} {{last_name}}</a>{{/with}})
                     </small>
                   </span>
                   <span class="clear-both">&nbsp;</span>
@@ -33,7 +33,7 @@
                 {{#each tags.tags}}
                     <li>
                       <span class="tag-name">
-                        <a href="http://betterific.com/{{dashedS name}}/{{id}}" title="See more great ideas about {{name}} at http://betterific.com">{{name}}</a>
+                        <a href="http://betterific.com/{{betterific_dashedS name}}/{{id}}" title="See more great ideas about {{name}} at http://betterific.com">{{name}}</a>
                       </span>
                       <span class="stats">
                         <small>
@@ -63,7 +63,7 @@
                 {{#each users.users}}
                     <li>
                       <span class="user-username">
-                        <a href="http://betterific.com/innovator/{{dashedS username}}/{{id}}" title="See great ideas by {{first_name}} {{last_name}} at http://betterific.com">{{first_name}} {{last_name}}</a>
+                        <a href="http://betterific.com/innovator/{{betterific_dashedS username}}/{{id}}" title="See great ideas by {{first_name}} {{last_name}} at http://betterific.com">{{first_name}} {{last_name}}</a>
                       </span>
                       <span class="stats">
                         <small>

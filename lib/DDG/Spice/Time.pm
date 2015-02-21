@@ -11,7 +11,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 icon_url "/i/timeanddate.com.ico";
 topics "everyday";
 category "geography";
-attribution github  => ['https://github.com/chrisjwilsoncom', 'chrisjwilsoncom'];
+attribution github  => ['https://github.com/MrChrisW', 'Chris Wilson'];
 
 spice proxy_cache_valid => "418 1d";
 spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&out=js&prettyprint=1&callback={{callback}}&query=$1&time=1&tz=1&verbosetime=1';

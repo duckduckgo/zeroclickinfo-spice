@@ -4,7 +4,7 @@ use DDG::Spice;
 
 triggers startend => "code", "example";
 
-spice to => 'http://searchco.de/api/jsonp_codesearch_I/?q=$1&callback={{callback}}';
+spice to => 'https://searchcode.com/api/jsonp_codesearch_I/?q=$1&callback={{callback}}';
 
 primary_example_queries "javascript console.log example";
 description "Code search";
@@ -15,7 +15,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "sysadmin", "programming";
 category "programming";
 attribution github => ['https://github.com/boyter','Ben Boyter'],
-           twitter => ['http://twitter.com/boyter','boyter'];
+           twitter => ['http://twitter.com/boyter','Ben Boyter'];
 
 my $languages = join "|", share('languages.txt')->slurp;
 

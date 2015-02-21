@@ -1,6 +1,7 @@
 (function(env){
     "use strict";
     env.ddg_spice_xkcd_display = function(api_result){
+
         if (!api_result.img || !api_result.alt) {
             return Spice.failed('xkcd');
         }
@@ -15,6 +16,9 @@
             if(api_result.num === 1335) {
                 api_result.img = 'http://imgs.xkcd.com/comics/now/12h30m.png';
             }
+            
+            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            api_result.month = months[parseInt(api_result.month)-1];
     
             Spice.add({
                 id: 'xkcd',
@@ -31,18 +35,14 @@
                         content: Spice.xkcd_display.content,
                         moreAt: true
                     }
-                },
-                onShow: function(){
-                    //we can't change the "more at" link in handlebars, so add the explainxkcd.com link
-                    //on initial page load.
-                    if ($('.xkcd--explain-link').length === 0){
-                        var explainLink = '<a class="xkcd--explain-link zci__more-at--info" href="http://www.explainxkcd.com/wiki/index.php/' +
-                            api_result.num + '"> <span class="zcm__sep"></span> Explain</a>';
-                        $('.zci--xkcd .zci__body').append(explainLink);
-                    }
                 }
             });
         });
+        
+        if(is_mobile) {
+            document.getElementsByClassName("xkcd--date")[0].style.display='none';
+        }
+        
     }
 
     //gets the number for the previous comic
@@ -52,7 +52,7 @@
         }
     });
 
-    //gets the number for the next comic 
+    //gets the number for the next comic
     Handlebars.registerHelper("xkcd_nextNum", function(num, options) {
         return options.fn({num: num + 1});
     });

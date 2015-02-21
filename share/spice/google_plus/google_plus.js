@@ -18,8 +18,8 @@ function ddg_spice_google_plus (api_result) {
             group: 'products_simple',            
             item_detail: false,
             detail: false,
-            options: {
-                variant: 'narrow'
+            variants: {
+                tile: 'narrow'
             }
         },
         normalize : function(item) {

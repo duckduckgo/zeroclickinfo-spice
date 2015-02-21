@@ -12,7 +12,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "music", "words_and_games";
 category  "language";
 attribution github => ['https://github.com/lactose','lactose'],
-           twitter => ['http://twitter.com/hackariah','zachariah'];
+           twitter => ['http://twitter.com/hackariah','lactose'];
 
 spice from => '([^/]+)/([^/]+)';
 spice to => 'http://words.bighugelabs.com/api/2/{{ENV{DDG_SPICE_BIGHUGE_APIKEY}}}/$1/json?callback={{callback}}';

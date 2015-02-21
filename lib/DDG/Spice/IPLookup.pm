@@ -11,7 +11,8 @@ category 'computing_tools';
 topics "sysadmin";
 
 attribution github => ['https://github.com/mintsoft', 'mintsoft'],
-               web => 'http://www.robtex.com/';
+            github => ['https://github.com/MrChrisW', 'Chris Wilson'],
+               web => ['http://www.robtex.com/', 'robtex.com'];
 
 my $trig = qr#(?:ip lookup)|(?:iplookup)|(?:reverse (?:dns|ip)(?: lookup)?)|(?:dns)|(?:whois)#i;
 my $IPv4_re = qr/(?:[0-9]{1,3}\.){3}(?:[0-9]{1,3})/;

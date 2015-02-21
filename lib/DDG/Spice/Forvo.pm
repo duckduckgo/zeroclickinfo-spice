@@ -11,7 +11,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday", "words_and_games";
 category "language";
 attribution github => ['https://github.com/moollaza','Zaahir Moolla'],
-           twitter => ['https://twitter.com/zmoolla','zmoolla'];
+           twitter => ['https://twitter.com/zmoolla','Zaahir Moolla'];
 
 triggers any => "forvo", "pronounce", "pronunciation", "how to pronounce", "pronounciation of", "how do you say", "how do you pronounce", "how to say";
 

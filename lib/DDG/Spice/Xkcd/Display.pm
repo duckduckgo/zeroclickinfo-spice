@@ -10,9 +10,10 @@ secondary_example_queries "xkcd 102";
 category "special";
 topics "entertainment", "geek", "special_interest";
 icon_url "/i/xkcd.com.ico";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Xkcd.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Xkcd/Display.pm";
 attribution github => ["https://github.com/sdball", "Stephen Ball"],
-            twitter => ["https://twitter.com/StephenBallNC", "StephenBallNC"];
+            twitter => ["https://twitter.com/StephenBallNC", "Stephen Ball"],
+            github => ["https://github.com/andrey-p", "Andrey Pissantchev"];
 
 triggers startend => "xkcd";
 

@@ -1,4 +1,3 @@
-
 @media (max-width: 600px) {
     .zci--whois table {
         table-layout: fixed;
@@ -8,8 +7,26 @@
     .zci--whois table td {
         word-wrap: break-word;
     }
+
+    .zci--whois .record td.record__cell__key {
+        width: 100px;
+        border-top: solid 1px #DDD;
+        border-bottom: solid 1px #DDD;
+    }
 }
 
 .zci--whois .zci__more-at {
-    padding-top: 0.75em;
+    padding-top: 0;
+}
+
+.zci--whois .record td {
+    padding: 0.4em;
+    padding-left: 0; 
+    border-top: solid 1px #DDD;
+    border-bottom: solid 1px #DDD;
+}
+
+.zci--whois .record .record__cell__key {
+    width: 150px;
+    text-transform: capitalize;
 }

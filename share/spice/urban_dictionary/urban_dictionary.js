@@ -21,25 +21,33 @@
                 sourceName: 'Urban Dictionary'
             },
             templates: {
-                group: 'base',
-                detail: Spice.urban_dictionary.detail,
+                group: 'info',
                 options: {
-                    moreAt: true
+                    moreAt: true,
+                    content: Spice.urban_dictionary.content
                 }
             },
             normalize: function(item) {
-                var infoboxData = [];
+                if (response.tags.length) {
+                    var infoboxData = [{ heading: 'Related Terms:' }],
+                        i = 0,
+                        term;
 
-                for(var i = 0; i < response.tags.length; i++) {
-                    infoboxData.push({
-                        label: response.tags[i]
-                    });
+                    for (; term = response.tags[i]; i++) {
+                        if (term !== word) {
+                            infoboxData.push({
+                                label: DDG.capitalizeWords(term),
+                                url: window.location.origin + '/?q=ud+' + term + '&ia=dictionary' + kurl
+                            });
+                        }
+                    }
                 }
 
                 return {
+                    title: DDG.capitalizeWords(word),
                     definition: item.definition.replace(/(\r?\n)+/gi, ' '),
-                    example: item.example.split(/\r?\n/),
-                    infobox: infoboxData
+                    example: item.example,
+                    infoboxData: infoboxData
                 };
             }
         });

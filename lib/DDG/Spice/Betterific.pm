@@ -11,7 +11,7 @@ category "special";
 topics "entertainment", "everyday", "social", "special_interest";
 code_url "https://github.com/bradcater/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Betterific.pm";
 attribution github => ["https://github.com/bradcater", "Brad Cater"],
-            twitter => ["https://twitter.com/bradcater", "bradcater"];
+            twitter => ["https://twitter.com/bradcater", "Brad Cater"];
 
 triggers startend => "betterif", "better if", "betterific";
 
