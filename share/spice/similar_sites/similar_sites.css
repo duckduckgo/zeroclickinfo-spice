@@ -10,11 +10,6 @@
     vertical-align: middle;
 }
 
-.zci--similar_sites #container {
-    line-height: 25px;
-    font-size: 16px;
-}
-
 .zci--similar_sites #container div {
     margin-bottom: 5px;
 }
@@ -22,9 +17,8 @@
 .zci--similar_sites #container div > a {
     font-size: 1.357em;
     font-weight: 300;
-    margin-left: 10px;
     vertical-align: middle;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .zci--similar_sites .vertical_roller {
@@ -34,11 +28,12 @@
 
 .zci--similar_sites #more_info {
     border-top: 1px solid #ddd;
-    padding-top: 10px;
+    padding-top: 15px;
+    margin-top: 15px;
 }
 
 .zci--similar_sites #more_info span {
-    font-size: 0.82em;
+    font-size: 0.929em;
 }
 
 .zci--similar_sites #more_at {
