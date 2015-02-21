@@ -1,23 +1,13 @@
-<div class="info--people_in_space">
-<h5>{{title}}</h5>
-<p>{{info}}</p>
-<ul>
-    <li>Position</li>
-    <li>Country</li>
-    <li>Launch Date</li>
-    {{#if twitter}}
-		<li>Twitter</li>
-	{{/if}}
-</ul>
-<ul class="right">
-	<li>{{position}}</li>
-	<li>{{country}}</li>
-	<li>{{launchdate}}</li>
-	{{#if twitter}}
-  		<li><a href="https://twitter.com/{{twitter}}">@{{twitter}}</a></li>
-  	{{/if}}
-</ul>
+<div class='tile__media'>
+  <div class="image-under">
+  <img src="{{imageProxy biophoto}}" class="pis-icon"/>
+  </div>
 </div>
-<div class="callout--people_in_space">
-	<a href="{{url}}" class="btn">View Full Bio</a>
+
+<div class="image-over">
+ <img src="{{imageProxy icon}}" class="pis-icon--alt"/>
 </div>
+
+<div class="name">{{name}}</div>
+<div class="info">{{daysElapsed}} days</div>
+

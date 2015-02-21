@@ -1,49 +1,76 @@
-.tile.tile--people_in_space {
-    width: 14em;
-    height: 17em;
-    padding-top: 1.5em;
-}
-
-.tile--people_in_space .tile__media {
-    height: 11em;
-    width: 11em;
+/* tiles */
+.zci--people_in_space .tile__media {
+    height: 100px;
+    width: 100px;
     border-radius: 100%;
-    margin-bottom: 0.5em;
+    margin-bottom: 1.5em;
 }
 
-.tile--people_in_space .tile__body {
-    padding: .3em 1em;
+.zci--people_in_space .detail__pane {
+	line-height: normal;
 }
 
-.tile--people_in_space  .tile__title {
-    text-align: center;
-    font-size: 1.4em;
-    font-weight: 400;
-    height: 2.5em;
+.zci--people_in_space .tile--people_in_space {
+    height: 205px;
+    margin-bottom: 10px;
+    width: 150px;
 }
 
-.info--people_in_space > ul {
+.zci--people_in_space .name {
+	font-size: 1.33em;
+	color: #000;
+	text-align: center;
+}
+
+.zci--people_in_space .info {
+	text-align: center;
+}
+.zci--people_in_space .tile__body {
+	padding: 0;
+	padding-top: 1em;
+}
+
+.zci--people_in_space .image-under img {
+   	height: 130px;
+    width: 100px;
+}
+.zci--people_in_space .image-over img {
+    height: 32px;
+    width: 32px;
+    border: 5px solid #FFFFFF;
+	border-radius: 100%;
+}
+.zci--people_in_space .image-under {
+    position: absolute;
+}
+.zci--people_in_space .image-over {
+    position: absolute;
+    z-index: 5;
+    left: 90px;
+    top: 90px;
+}
+
+/* detail pane */
+.zci--people_in_space .details .right {
+    margin-left: 1em;
+}
+.zci--people_in_space .details h5 {
+    color: #000;
+}
+.zci--people_in_space .details > ul {
     float:left;
 }
 
-.info--people_in_space .right {
-    margin-left: 1em;
-}
-
-.info--people_in_space h5 {
-    color: #000;
-}
-
-.callout--people_in_space {
+.zci--people_in_space .callout {
     color: #888;
     clear: left;
     margin-top: 1em;
 }
 
-.callout--people_in_space .btn {
+.zci--people_in_space .callout .btn {
     color: #888;
 }
 
-.zci--people_in_space .tile__rating {
-    text-align: center;
+.zci--people_in_space .detail__media {
+    width: 19%;
 }
