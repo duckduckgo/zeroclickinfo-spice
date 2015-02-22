@@ -11,18 +11,17 @@
                 <div class="number">{{num}}</div> 
             </div>      
         </div>
+        <div class="head--clear"></div>
 
-        <div class="tile__body">
-            
-            <div class="tile__foot">
-                {{#if phone}}
-                    <span class="tile__foot-line">{{ellipsis phone}}</span>
-                {{/if}}
-                <span class="tile__foot-line">{{MassOnTime_format_eventtypeid eventtypeid}}</span>
-                {{#if starttime}}
-                    <span class="tile__foot-line">{{MassOnTime_format_12h_start starttime}}</span>
-                {{/if}} 
-            </div>
+        <div class="tile__body"></div>
+        <div class="tile__foot">
+            {{#if phone}}
+                <span class="tile__foot-line">{{ellipsis phone}}</span>
+            {{/if}}
+            <span class="tile__foot-line">{{MassOnTime_format_eventtypeid eventtypeid}}</span>
+            {{#if starttime}}
+                <span class="tile__foot-line">{{MassOnTime_format_12h_start starttime}}</span>
+            {{/if}}      
         </div>
     </div>
 

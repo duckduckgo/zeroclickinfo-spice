@@ -10,6 +10,7 @@
 
 .tileview__mass-local .tile--loc {
     width: 17em;
+    height: 12em;
 }
 
 .zci-mass_on_time h6.tile__title {
@@ -20,17 +21,15 @@
     font-size: 1.1em;
 }
 
-.zci-mass_on_time .tile--f__main {
+.zci-mass_on_time .tile--f__main .tile__head, .zci-mass_on_time .tile--f__main .tile__body {
     padding: 1em 1em;
 }
 
 .zci-mass_on_time .tile--f__main .tile__foot {
-    font-size: 1.1em;
-    height: 6em;
     white-space: normal;
-    position: absolute;
+    padding: 2.8em 0.5em;
+    vertical-align: bottom;
     bottom: 0;
-    padding: 0.6em 0.6em;
 }
 
 .zci-mass_on_time .tile--f__main .tile__foot span {
