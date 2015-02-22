@@ -1,10 +1,22 @@
-<ul>
+<table>
 {{#each aqi_measurements}}
-    <li>
+    <tr>
+      <td>
         <span class="status__badge {{aqi_circle_category Category.Name}}"></span>
-        <span class="aqi__text">
-            {{ParameterName}}: {{AQI}} {{Category.Name}}
-        </span>
-    </li>
+      </td>
+      <td>
+        <b><a href={{aqi_help_link ParameterName}}>{{ParameterName}}</a>:</b>
+      </td>
+      <td>
+        &nbsp;&nbsp;<b>{{AQI}}</b>
+      </td>
+      <td>
+        &nbsp;&nbsp;{{Category.Name}}
+      </td>
+      <td></td>
+      <td>
+        &nbsp;&nbsp;&nbsp;&nbsp;<small>(as of {{DateObserved}} {{HourObserved}}:00 {{LocalTimeZone}}</small>)
+      </td>
+    </tr>
 {{/each}}
-</ul>
+</table>
