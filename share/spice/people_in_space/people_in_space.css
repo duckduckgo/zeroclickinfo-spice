@@ -24,6 +24,9 @@
 
 .zci--people_in_space .info {
 	text-align: center;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
 .zci--people_in_space .tile__body {
 	padding: 0;
