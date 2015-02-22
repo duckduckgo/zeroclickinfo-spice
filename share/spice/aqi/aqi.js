@@ -16,26 +16,23 @@
       results = [api_result];
     }
 
-    var first_item = results[0];
-
-    var data_item = [{
-      title: 'Air Quality Indices for ' + first_item.ReportingArea + ', ' + first_item.StateCode,
-      subtitle: "Data as of " + first_item.DateObserved + ", " + first_item.HourObserved + ":00 " +  first_item.LocalTimeZone,
+    var data = {
+      common_info: results[0],
       aqi_measurements: results
-    }];
+    };
 
     Spice.add({
       id: "aqi",
       name: "AQI",
-      data: data_item,
+      data: data,
       meta: {
         sourceName: "airnowapi.org",
         sourceUrl: 'http://www.airnow.gov/?action=airnow.local_city&zipcode=' + zip,
       },
       normalize: function(item){
         return {
-          title: item.title,
-          subtitle: item.subtitle
+          title: 'Air Quality Indices for ' + item.common_info.ReportingArea + ', ' + item.common_info.StateCode,
+          //subtitle: "Data as of " + item.common_info.DateObserved + ", " + item.common_info.HourObserved + ":00 " +  item.common_info.LocalTimeZone
         };
       },
       templates: {
@@ -63,4 +60,15 @@
     else
       return "hazardous";
   });
+
+  Spice.registerHelper("aqi_help_link", function(string1, options) {
+    if (string1 == "PM2.5" || string1 == "PM10")
+      return "http://www.airnow.gov/index.cfm?action=aqibasics.particle"
+    else if (string1 == "O3")
+      return "http://www.airnow.gov/index.cfm?action=pubs.aqiguideozone"
+    else
+      return "http://www.airnow.gov/index.cfm?action=aqibasics.aqi"
+
+  });
+
 }(this));
