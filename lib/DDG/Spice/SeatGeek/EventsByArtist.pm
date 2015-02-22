@@ -1,6 +1,7 @@
 package DDG::Spice::SeatGeek::EventsByArtist;
 # ABSTRACT: Returns upcoming concerts for a band/artist.
 
+use strict;
 use DDG::Spice;
 use Text::Trim;
 

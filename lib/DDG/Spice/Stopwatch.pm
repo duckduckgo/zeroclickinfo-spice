@@ -1,5 +1,6 @@
 package DDG::Spice::Stopwatch;
 
+use strict;
 use DDG::Spice;
 
 name 'Stopwatch';

@@ -1,5 +1,6 @@
 package DDG::Spice::OpenSNP;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries 'rs7903146';

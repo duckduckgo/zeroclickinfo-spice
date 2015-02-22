@@ -1,6 +1,7 @@
 package DDG::Spice::GithubJobs;
 # ABSTRACT: Search for jobs on Github.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "javascript jobs";

@@ -1,5 +1,6 @@
 package DDG::Spice::MassOnTime;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "Catholic masses near Pittsburgh", "Catholic adoration in Washington DC";

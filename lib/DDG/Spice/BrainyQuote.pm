@@ -1,6 +1,7 @@
 package DDG::Spice::BrainyQuote;
 # ABSTRACT: Return famous quotations
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "John Kennedy quotes", "Brad Pitt quotations";

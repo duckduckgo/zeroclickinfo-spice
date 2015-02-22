@@ -1,9 +1,8 @@
-use utf8;
 package DDG::Spice::WGHA;
-
 # ABSTRACT: Search for events on was geht heute ab.de.
-
+use strict;
 use DDG::Spice;
+use utf8;
 
 primary_example_queries "was geht in frankfurt";
 secondary_example_queries "wasgeht in berlin";

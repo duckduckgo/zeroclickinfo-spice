@@ -1,5 +1,6 @@
 package DDG::Spice::Rhymes;
 
+use strict;
 use DDG::Spice;
 
 name "Rhymes";

@@ -1,7 +1,7 @@
-
 package DDG::Spice::Population;
 # ABSTRACT: Returns the population of a specified country
 
+use strict;
 use DDG::Spice;
 use Locale::Country;
 
