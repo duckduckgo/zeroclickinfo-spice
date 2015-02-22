@@ -1,6 +1,7 @@
 package DDG::Spice::Hackage::Packages;
 # ABSTRACT: Search for information about Hackage packages
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "hackage containers";

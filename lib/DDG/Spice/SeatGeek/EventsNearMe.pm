@@ -1,6 +1,7 @@
 package DDG::Spice::SeatGeek::EventsNearMe;
 # ABSTRACT: Returns upcoming concerts based on geolocation
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "live shows near me", "upcoming concerts in my area";

@@ -1,6 +1,7 @@
 package DDG::Spice::UrbanDictionary;
 # ABSTRACT: Give the Urban Dictionary definition of the search query.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "urban dictionary ROTFL";

@@ -1,5 +1,6 @@
 package DDG::Spice::IsItUp;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "is duckduckgo.com up";

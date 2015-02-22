@@ -1,6 +1,7 @@
 package DDG::Spice::Packagist;
 # ABSTRACT: Returns package information from packagist package manager's registry
 
+use strict;
 use DDG::Spice;
 
 spice is_cached => 1;

@@ -1,6 +1,7 @@
 package DDG::Spice::Keybase;
 # ABSTRACT: Gets user public key from keybase.io
 
+use strict;
 use DDG::Spice;
 
 spice is_cached => 1;

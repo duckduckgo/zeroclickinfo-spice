@@ -1,6 +1,7 @@
 package DDG::Spice::BitcoinBalance;
 # ABSTRACT: Displays the balance of a Bitcoin address from the Chain.com API.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "17x23dNjXJLzGMev6R63uyRhMWP1VHawKc", "1Gn2dRFqouUHvuWPVhriCDtP3qVQc59WHy", "3QJmV3qfvL9SuYo34YihAf3sRCW3qSinyC";

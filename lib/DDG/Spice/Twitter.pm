@@ -1,5 +1,6 @@
 package DDG::Spice::Twitter;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries '@duckduckgo';

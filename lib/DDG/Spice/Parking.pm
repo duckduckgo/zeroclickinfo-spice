@@ -1,6 +1,7 @@
 package DDG::Spice::Parking;
 # ABSTRACT: Search for parking on parkingpanda.com
 
+use strict;
 use DDG::Spice;
 use Text::Trim;
 

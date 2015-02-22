@@ -1,5 +1,6 @@
 package DDG::Spice::DuckSay;
- 
+
+use strict; 
 use DDG::Spice;
  
 name 'DuckSay';

@@ -1,5 +1,6 @@
 package DDG::Spice::Transit::PATH;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "next train from JSQ to WTC";

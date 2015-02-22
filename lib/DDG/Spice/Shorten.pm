@@ -1,6 +1,7 @@
 package DDG::Spice::Shorten;
 # ABSTRACT: Return a shortened version of a URL.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "shorten http://www.duckduckgo.com/about.html";

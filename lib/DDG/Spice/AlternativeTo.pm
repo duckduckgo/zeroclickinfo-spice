@@ -1,5 +1,6 @@
 package DDG::Spice::AlternativeTo;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "alternative to notepad";

@@ -1,6 +1,7 @@
 package DDG::Spice::Bootic;
 # ABSTRACT: Search for products on Bootic.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "bootic watches";

@@ -1,5 +1,6 @@
 package DDG::Spice::RandWord;
 
+use strict;
 use DDG::Spice;
 
 name "Random Word";
