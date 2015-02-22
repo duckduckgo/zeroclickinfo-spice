@@ -24,7 +24,7 @@ attribution github => ["GitHubAccount", "Friendly Name"],
             twitter => "twitterhandle";
 
 # API endpoint - https://duck.co/duckduckhack/spice_attributes#spice-codetocode
-spice to => 'http://example.com/search/$1?loc=$2';
+spice to => 'http://example.com/search/$1';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
 triggers any => "triggerWord", "trigger phrase";
