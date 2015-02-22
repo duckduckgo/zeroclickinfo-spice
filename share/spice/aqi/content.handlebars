@@ -1,31 +1,10 @@
-<div class="zci__body">
-  <div class="zci__content">
-    <ul>
-      <li>
-        {{#AQI_ifCond Category.Name "Good"}}
-          <span class="status__badge good"></span>
-        {{else}}
-          {{#AQI_ifCond Category.Name "Moderate"}}
-          <span class="status__badge moderate"></span>
-          {{else}}
-            {{#AQI_ifCond Category.Name "Unhealthy for Sensitive Groups"}}
-            <span class="status__badge usg"></span>
-            {{else}}
-              {{#AQI_ifCond Category.Name "Unhealthy"}}
-              <span class="status__badge unhealty"></span>
-              {{else}}
-                {{#AQI_ifCond Category.Name "Very Unhealthy"}}
-                <span class="status__badge very_unhealty"></span>
-                {{else}}
-                <span class="status__badge hazardous"></span>
-                {{/AQI_ifCond}}
-              {{/AQI_ifCond}}
-            {{/AQI_ifCond}}
-          {{/AQI_ifCond}}
-        {{/AQI_ifCond}}
-
-        {{ParameterName}}: <b>{{AQI}}</b> ({{Category.Name}})
-      </li>
-    </ul>
-  </div>
-</div>
+<ul>
+{{#each aqi_measurements}}
+    <li>
+        <span class="status__badge {{aqi_circle_category Category.Name}}"></span>
+        <span class="aqi__text">
+            {{ParameterName}}: {{AQI}} {{Category.Name}}
+        </span>
+    </li>
+{{/each}}
+</ul>
