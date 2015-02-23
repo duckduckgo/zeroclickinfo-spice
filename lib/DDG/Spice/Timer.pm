@@ -1,5 +1,6 @@
 package DDG::Spice::Timer;
 
+use strict;
 use DDG::Spice;
 
 name 'Timer';

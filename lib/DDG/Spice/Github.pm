@@ -1,6 +1,7 @@
 package DDG::Spice::Github;
 # ABSTRACT: Search for information about GitHub repositories
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "github zeroclickinfo";

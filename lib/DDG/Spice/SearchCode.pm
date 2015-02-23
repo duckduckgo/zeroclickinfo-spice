@@ -1,5 +1,6 @@
 package DDG::Spice::SearchCode;
 
+use strict;
 use DDG::Spice;
 
 name "SearchCode";

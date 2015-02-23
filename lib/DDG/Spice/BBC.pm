@@ -1,6 +1,7 @@
 package DDG::Spice::BBC;
 # ABSTRACT: BBC programme schedule
 
+use strict;
 use DDG::Spice;
 use DateTime;
 

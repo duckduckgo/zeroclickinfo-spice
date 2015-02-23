@@ -1,6 +1,7 @@
 package DDG::Spice::Congress;
 # ABSTRACT: Return current Congress members for given state.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "new york senators";

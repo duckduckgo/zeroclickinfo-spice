@@ -1,6 +1,7 @@
 package DDG::Spice::IPLookup;
 # ABSTRACT: Returns information about an IP address
 
+use strict;
 use DDG::Spice;
 use Regexp::IPv6 qw($IPv6_re);
 

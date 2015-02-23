@@ -1,5 +1,6 @@
 package DDG::Spice::HqTemp;
 
+use strict;
 use DDG::Spice;
 
 spice to => 'YOUR_URL_HERE';

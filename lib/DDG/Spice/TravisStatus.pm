@@ -1,6 +1,7 @@
 package DDG::Spice::TravisStatus;
 # ABSTRACT: Search for the current status of Travis CI.
 
+use strict;
 use DDG::Spice;
 use Text::Trim;
 

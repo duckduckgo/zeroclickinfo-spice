@@ -1,5 +1,6 @@
 package DDG::Spice::Images;
 
+use strict;
 use DDG::Spice;
 
 use String::Trim;

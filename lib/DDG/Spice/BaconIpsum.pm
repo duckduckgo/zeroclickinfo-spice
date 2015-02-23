@@ -1,6 +1,7 @@
 package DDG::Spice::BaconIpsum;
 # This Spice returns a number of BaconIpsum paragraphs
 
+use strict;
 use DDG::Spice;
 
 spice proxy_cache_valid => "418 1d";

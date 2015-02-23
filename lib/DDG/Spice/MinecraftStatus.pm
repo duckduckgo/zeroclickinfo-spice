@@ -1,6 +1,7 @@
 package DDG::Spice::MinecraftStatus;
 # ABSTRACT: Returns the status of Minecraft
 
+use strict;
 use DDG::Spice;
 
 name 'Minecraft Status';

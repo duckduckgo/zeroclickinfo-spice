@@ -1,6 +1,7 @@
 package DDG::Spice::InTheaters;
 # ABSTRACT: Show movies from Rotten Tomatoes.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "movies";

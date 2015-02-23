@@ -1,6 +1,7 @@
 package DDG::Spice::DNS;
 # ABSTRACT: Gets IP address of given domain name.
 
+use strict;
 use DDG::Spice;
 use Data::Validate::Domain qw(is_domain);
 

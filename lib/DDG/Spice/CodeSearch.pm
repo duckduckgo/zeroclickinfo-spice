@@ -1,5 +1,6 @@
 package DDG::Spice::CodeSearch;
 
+use strict;
 use DDG::Spice;
 
 triggers startend => "code", "example";
