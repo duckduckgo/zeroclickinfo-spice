@@ -81,6 +81,9 @@
                 options:{
                     footer: Spice.people_in_space.footer,
                     moreAt: true
+                },
+                variants: {
+                    tileFooter: '3line'
                 }
             };
         } else {

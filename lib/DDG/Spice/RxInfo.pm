@@ -1,6 +1,7 @@
 package DDG::Spice::RxInfo;
 # ABSTRACT: Given an NDC or physical characteristics, returns an image or images of corresponding pill(s) along with some drug information
 
+use strict;
 use DDG::Spice;
 
 name "RxInfo";

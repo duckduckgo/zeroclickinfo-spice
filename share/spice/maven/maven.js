@@ -12,7 +12,7 @@ function ddg_spice_maven(api_result) {
         name: "Software",
         data: api_result,
         meta: {
-            sourceName: "maven.org",
+            sourceName: "Maven",
             sourceUrl: 'http://search.maven.org/#search%7Cga%7C1%7C' + encodeURIComponent(searchQuery),
         },
         normalize: function(item) {

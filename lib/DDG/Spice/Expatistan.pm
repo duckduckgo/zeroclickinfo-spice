@@ -1,5 +1,6 @@
 package DDG::Spice::Expatistan;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "cost of living in Philadelphia";

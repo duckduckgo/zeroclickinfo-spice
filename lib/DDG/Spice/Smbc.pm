@@ -1,5 +1,6 @@
 package DDG::Spice::Smbc;
 
+use strict;
 use DDG::Spice;
 
 name 'smbc';

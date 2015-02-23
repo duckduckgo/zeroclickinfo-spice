@@ -1,5 +1,6 @@
 package DDG::Spice::Coursebuffet;
 
+use strict;
 use DDG::Spice;
 use Text::Trim;
 

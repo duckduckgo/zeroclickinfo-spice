@@ -1,5 +1,6 @@
 package DDG::Spice::Canistreamit;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "watch pirates of the caribbean";

@@ -1,5 +1,6 @@
 package DDG::Spice::Drinks;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "how to mix a tom collins";

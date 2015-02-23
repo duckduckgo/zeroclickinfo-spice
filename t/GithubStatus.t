@@ -17,6 +17,13 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::GithubStatus'
     ),
+    'github' => test_spice(
+        '/js/spice/github_status/github',
+        call_type => 'include',
+        caller => 'DDG::Spice::GithubStatus'
+    ),
+    'what is github' => undef,
+    'about github' => undef
 );
 
 done_testing;

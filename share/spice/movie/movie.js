@@ -76,15 +76,17 @@
                     img: image,
                     img_m: image,
                     url: item.links.alternate,
-                    is_retina: is_retina ? "is_retina" : "no_retina"
+                    is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
                 };
             },
             templates: {
                 group: 'media',
                 options: {
-                    variant: 'poster',
                     subtitle_content: Spice.movie.subtitle_content,
                     buy: Spice.movie.buy
+                },
+                variants: {
+                    tile: 'poster'
                 }
             },
             relevancy: {
@@ -109,7 +111,7 @@
 
     // Convert minutes to hr. min. format.
     // e.g. {{time 90}} will return 1 hr. 30 min.
-    Handlebars.registerHelper("time", function(runtime) {
+    Handlebars.registerHelper("movie_time", function(runtime) {
         var hours = '',
             minutes = runtime;
         if (runtime >= 60) {

@@ -1,5 +1,6 @@
 package DDG::Spice::DetectLang;
 
+use strict;
 use utf8;
 use DDG::Spice;
 

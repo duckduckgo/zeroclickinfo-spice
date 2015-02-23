@@ -1,5 +1,6 @@
 package DDG::Spice::Guidebox::Getid;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "guidebox Castle";

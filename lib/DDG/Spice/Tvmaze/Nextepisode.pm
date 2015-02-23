@@ -1,5 +1,6 @@
 package DDG::Spice::Tvmaze::Nextepisode;
 
+use strict;
 use DDG::Spice;
 
 # the next episode will change the moment an episode has aired, so cache it for just one hour

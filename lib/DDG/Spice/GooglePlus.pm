@@ -1,6 +1,7 @@
 package DDG::Spice::GooglePlus;
 # ABSTRACT: Search for Google+ users and return their bio.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "google+ duckduckgo";

@@ -1,5 +1,6 @@
 package DDG::Spice::Forecast;
 
+use strict;
 use DDG::Spice;
 use Text::Trim;
 
