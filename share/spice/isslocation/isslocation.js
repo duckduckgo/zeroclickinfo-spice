@@ -8,7 +8,7 @@
         var issLatitude = (Math.round(api_result.iss_position.latitude * 100) / 100).toFixed(2);
         var issLongitude = (Math.round(api_result.iss_position.longitude * 100) / 100).toFixed(2);
     
-        DDG.require('maps', function()
+    DDG.require('maps', function() {
         Spice.add({
             id: "isslocation",
             name: "ISSLocation",
@@ -22,6 +22,7 @@
                 lon: issLongitude
             }],
             meta: {
+                zoomlevel: 1;
                 sourceName: "open-notify.org",
                 sourceUrl: 'http://open-notify.org'
             },
