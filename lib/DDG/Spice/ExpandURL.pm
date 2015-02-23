@@ -1,6 +1,7 @@
 package DDG::Spice::ExpandURL;
 # ABSTRACT: Gives expanded url of the query
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "http://bit.ly/a", "expand bit.ly/lolcatz";

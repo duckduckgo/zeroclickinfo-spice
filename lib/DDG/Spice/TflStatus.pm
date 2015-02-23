@@ -1,6 +1,7 @@
 package DDG::Spice::TflStatus;
 # ABSTRACT: Returs the Transport for London line status from the TfL API.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "victoria line status";

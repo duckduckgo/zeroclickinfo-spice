@@ -1,5 +1,6 @@
 package DDG::Spice::Movie;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "the graduate rotten tomatoes";

@@ -1,6 +1,7 @@
 package DDG::Spice::Time;
 use DDG::Spice;
 
+use strict;
 use YAML::XS qw( Load );
 
 primary_example_queries "time in Melbourne", "time for Australia";

@@ -1,6 +1,7 @@
 package DDG::Spice::Npm;
 # ABSTRACT: Returns package information from npm package manager's registry.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "npm underscore";
