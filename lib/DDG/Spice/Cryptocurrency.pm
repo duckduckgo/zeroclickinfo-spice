@@ -14,7 +14,7 @@ secondary_example_queries "50 ltc";
 category "conversions";
 topics "economy_and_finance";
 code_url "https://github.com/claytonspinner/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Cryptocurrency.pm";
-attribution web => ['http://cryptonator.com','cryptonator.com'],
+attribution web => ['https://cryptonator.com','cryptonator.com'],
             github => ["https://github.com/claytonspinner", "Clayton Spinner"],
             email => ["clayton.spinner\@gmail.com", "Clayton Spinner"];
 
@@ -57,13 +57,13 @@ my $number_re = number_style_regex();
 
 my $guard = qr/^$question_prefix($number_re*?)\s?($currency_qr)(?:s)?(?:$into_qr|$vs_qr|$rate_qr|\s)?($number_re*?)\s?($currency_qr)?(?:s)?\??$/i;
 
-# http://www.cryptonator.com/api/secondaries?primary=BTC
-# http://www.cryptonator.com/api/ticker/ltc-ftc
+# https://www.cryptonator.com/api/secondaries?primary=BTC
+# https://www.cryptonator.com/api/ticker/ltc-ftc
 
 triggers query_lc => qr/$currency_qr/;
 
 spice from => '([^/]+)/([^/]+)/([^/]*)';
-spice to => 'http://www.cryptonator.com/api/$1/$2?primary=$3';
+spice to => 'https://www.cryptonator.com/api/$1/$2?primary=$3';
 spice wrap_jsonp_callback => 1;
 
 # This function converts things like "us dollars" to the standard "usd".
