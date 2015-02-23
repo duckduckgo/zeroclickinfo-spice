@@ -51,6 +51,8 @@
                     // Get the larger image for our IA.
                     image = image.replace(/large\.jpg/, "t200x200.jpg");
                 }
+                
+                image = image.replace(/^https/, "http");
 
                 // skip items that can't be streamed or explicit id's we
                 // want to skip for adult content:

@@ -1,7 +1,7 @@
 package DDG::Spice::FedoraProjectPackageDB;
-
 # ABSTRACT: Show a summary of the searched Fedora project yum packages.
 
+use strict;
 use DDG::Spice;
 
 name 'FedoraProjectPackageDB';

@@ -40,8 +40,10 @@
                 item_detail: false,
                 detail: false,
                 options: {
-                    variant: 'video',
                     moreAt: true
+                },
+                variants: {
+                    tile: 'video'
                 }
             }
 //             relevancy: {

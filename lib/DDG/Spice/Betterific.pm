@@ -1,5 +1,6 @@
 package DDG::Spice::Betterific;
 
+use strict;
 use DDG::Spice;
 
 name "betterific";

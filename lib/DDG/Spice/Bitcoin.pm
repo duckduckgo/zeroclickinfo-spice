@@ -1,5 +1,6 @@
 package DDG::Spice::Bitcoin;
 
+use strict;
 use utf8;
 use DDG::Spice;
 
@@ -15,7 +16,7 @@ category "conversions";
 attribution github => ['https://github.com/jmg','Juan Manuel García'],
             email => ['jmg.utn@gmail.com','Juan Manuel García'];
 
-spice to => 'http://blockchain.info/ticker';
+spice to => 'https://blockchain.info/ticker';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 

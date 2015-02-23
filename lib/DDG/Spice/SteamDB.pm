@@ -1,5 +1,6 @@
 package DDG::Spice::SteamDB;
 
+use strict;
 use DDG::Spice;
 
 name "SteamDB";

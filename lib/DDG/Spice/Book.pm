@@ -1,5 +1,6 @@
 package DDG::Spice::Book;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "book reviews moonwalking with einstein";

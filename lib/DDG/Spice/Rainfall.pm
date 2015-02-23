@@ -1,6 +1,7 @@
 package DDG::Spice::Rainfall;
 # ABSTRACT: Returns the annual rainfall (precipitation) of the country searched 
 
+use strict;
 use DDG::Spice;
 use Locale::Country; 
 

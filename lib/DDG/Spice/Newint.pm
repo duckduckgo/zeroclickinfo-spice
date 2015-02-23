@@ -1,6 +1,7 @@
 package DDG::Spice::Newint;
 # ABSTRACT: Returns a list of New Internationalist magazines.
 
+use strict;
 use DDG::Spice;
 
 name "newint";
