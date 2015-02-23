@@ -1,9 +1,10 @@
-(function (env) {
+(function(env) {
     "use strict";
-    env.ddg_spice_hearthstone = function(api_result){
-
+    
+    env.ddg_spice_hearthstone = function(api_result) {
+        
         // Validate the response
-        if (!api_result || api_result.error || !api_result.Has_name || !api_result.page) {
+        if(!api_result || api_result.error || !api_result.Has_name || !api_result.page) {
             return Spice.failed('hearthstone');
         }
         
@@ -45,7 +46,7 @@
                 }];
                 
                 // Is collectible
-                api_result.Is_collectible = (api_result.Is_collectible === "t" ? "Yes":"No");
+                api_result.Is_collectible = (api_result.Is_collectible === "t" ? "Yes" : "No");
                 
                 // Hero
                 if(api_result.Has_class === "Any") {
@@ -56,16 +57,13 @@
                 $.each(infoboxItems, function(key, data) {
                     var label,
                         value;
-                    if (api_result[key]) {
-                        
+                    if(api_result[key]) {
                         value = api_result[key];
-                        
                         if(data.label) {
                             label = data.label;
                         } else {
                             label = data;
                         }
-                        
                         infoboxData.push({
                             label: label,
                             value: value
@@ -81,7 +79,6 @@
                 };
                 
                 // Optionnal fields
-                 
                 // Image
                 if(item.image_url) {
                     card.image = item.image_url;
@@ -94,7 +91,7 @@
                 
                 // Flavor text
                 if(item.Has_flavor_text) {
-                    card.flavor = item.Has_flavor_text;
+                    card.subtitle = item.Has_flavor_text;
                 }
                 
                 return card;

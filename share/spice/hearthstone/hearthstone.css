@@ -5,12 +5,3 @@
 .zci--hearthstone i {
     font-style: normal;
 }
-
-.zci--hearthstone--icon {
-    position: relative;
-    top: 3px;
-}
-
-.zci--hearthstone--flavor {
-    font-size: 0.9em;
-}
