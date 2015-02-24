@@ -49,7 +49,7 @@
 
         Spice.add({
             id: 'bbc',
-            name: 'TV',
+            name: header_service_type,
             data: programmes,
             meta: {
                 sourceName: 'BBC',
