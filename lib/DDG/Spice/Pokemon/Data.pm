@@ -19,7 +19,7 @@ attribution github => ["AkA84"];
 # Triggers
 triggers startend => "pokemon";
 
-spice to => 'http://pokeapi.co/api/v1/pokemon/$1';
+spice to => 'http://pokeapi.co/api/v1/pokemon/$1/';
 spice wrap_jsonp_callback => 1;
 
 # Handle statement
