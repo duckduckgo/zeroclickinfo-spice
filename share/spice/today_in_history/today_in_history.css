@@ -10,13 +10,13 @@
     display: inline-block;
     text-align: center;
     width: 1.5em;
-    border: 1px solid #f7f7f7;
+    border: 1px solid rgba(50, 50, 50, .2);
     font-size: 1.25em;
     float: right;
 }
 
 .zci--today_in_history .string {
-    clear:both;
+    clear: both;
     overflow: hidden;
     height: 8.4em;
     line-height: 1.2em;
@@ -25,7 +25,11 @@
 
 .zci--today_in_history .year {
     margin-top: -0.4em;
-    margin-bottom: 1.5em;
+    margin-bottom: 3em;
+}
+
+.zci--today_in_history .year-text {
+    float: left;
 }
 
 .zci--today_in_history .ddgsi-plus.special:before {
