@@ -32,6 +32,15 @@
                     types: getCollectionNames.call(item, 'types')
                 };
             },
+            onItemShown: function() {
+                if( api_result.descriptions.length > 0 ) {
+                    fetchDescription(api_result.descriptions).done(function(api_result) {
+                        var description = Handlebars.helpers.ellipsis(api_result.description, 140);
+
+                        Spice.getDOM(ID).find('.pokemon__description').html(description);
+                    });
+                }
+            },
             templates: {
                 group: 'info',
                 options: {
@@ -40,19 +49,6 @@
                 }
             }
         });
-
-        if( api_result.descriptions.length > 0 ) {
-            fetchDescription(api_result.descriptions);
-        }
-    };
-
-    /**
-     *  [ Pokemon::Description ]
-     */
-    env.ddg_spice_pokemon_description = function(api_result){
-        var description = Handlebars.helpers.ellipsis(api_result.description, 140);
-
-        Spice.getDOM(ID).find('.pokemon__description').html(description);
     };
     
     /**
@@ -60,12 +56,13 @@
      * and then calls the Pokemon::Description endpoint to fetch its full text
      *
      * @param {Array} descriptions
+     * @return {jqXHR} the Promise object
      */
     function fetchDescription(descriptions) {
         var randIndex = Math.floor(Math.random() * descriptions.length),
             id = descriptions[randIndex].resource_uri.match(/(\d+)\/$/)[1];
-
-        $.getScript(DESCRIPTION_ENDPOINT.replace('{id}', id));
+                
+        return $.getJSON(DESCRIPTION_ENDPOINT.replace('{id}', id));
     }
 
     /**
