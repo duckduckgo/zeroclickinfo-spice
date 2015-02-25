@@ -7,25 +7,30 @@
 }
 
 .status__badge.good {
-    background-color: #00de1d;
+    background-color: #5B9E4D;
 }
 
 .status__badge.moderate {
-    background-color: #faff00;
+    background-color: #F1A031;
 }
 
 .status__badge.usg {
-    background-color: #ff6600;
+    background-color: #E37151;
 }
 
 .status__badge.unhealty {
-    background-color: #ff0000;
+    background-color: #BD4B2B;
 }
 
 .status__badge.very_unhealthy {
-    background-color: #ad0051;
+    background-color: #5D4C8B;
 }
 
 .status__badge.hazardous {
-    background-color: #91001d;
+    background-color: #413561;
 }
+
+a.help__link {
+  color: #413561;
+  text-decoration: none;
+ }
