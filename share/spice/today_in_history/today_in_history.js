@@ -71,17 +71,17 @@
                 var selector = Spice.getDOM("today_in_history").find(".string.t-m");
                 selector.each(function() {
                       if ($(this)[0].scrollHeight > $(this).innerHeight()) {
-                   //       $(this).parent().children(".year").append('<div id="circ" class="circle circle_p ddgsi ddgsi-plus"></div>').click(function() {
-                   //           var text = $(this).parent().children("#event");
-                   //           $(this).children("#circ").toggleClass('special');
+                          $(this).parent().children(".year").append('<div id="circ" class="circle circle_p ddgsi ddgsi-plus"></div>').click(function() {
+                              var text = $(this).parent().children("#event");
+                              $(this).children("#circ").toggleClass('special');
                               var pxi = $(this).parent().children("#today_in_history_event")[0].scrollHeight /  $(this).parent().children("#today_in_history_event").innerHeight();
-                   //           if($(this).children("#circ").hasClass('special')) {
+                              if($(this).children("#circ").hasClass('special')) {
                                   $(this).parent().parent().css( "width", (pxi * 15) + "em");
-                   //           }
-                   //           else {
-                   //               $(this).parent().parent().css( "width", "15em" );
-                   //           }
-                         // });
+                              }
+                              else {
+                                  $(this).parent().parent().css( "width", "15em" );
+                              }
+                          });
                       }
                 });
              // Deferred this part till we get filters done
