@@ -1,32 +1,32 @@
 <div class="detail__pane  js-detail-content">
-	<div class="detail__media  detail__media--pr">
-		<img src="{{imageProxy biophoto}}" class="detail__media__img">
+    <div class="detail__media  detail__media--pr">
+        <img src="{{imageProxy biophoto}}" class="detail__media__img">
 </div>
 
 <div class="detail__body  detail__body--pr">
-	<div class="detail__body__content">
-		<div class="details">
-			<h5>{{title}}</h5>
-			<p>{{bio}}</p>
-			<ul>
-    			<li>Position</li>
-    			<li>Country</li>
-    			<li>Launch Date</li>
-    			{{#if twitter}}
-					<li>Twitter</li>
-				{{/if}}
-			</ul>
-			<ul class="right">
-				<li>{{title}}</li>
-				<li>{{country}}</li>
-				<li>{{launchdate}}</li>
-				{{#if twitter}}
-  					<li><a href="https://twitter.com/{{twitter}}">@{{twitter}}</a></li>
-  				{{/if}}
-			</ul>
-	</div>
-		<div class="callout">
-			<a href="{{url}}" class="btn">View Full Bio</a>
-		</div>
-	</div>
+    <div class="detail__body__content">
+        <div class="details">
+            <h5>{{title}}</h5>
+            <p>{{bio}}</p>
+            <ul>
+                <li>Position</li>
+                <li>Country</li>
+                <li>Launch Date</li>
+                {{#if twitter}}
+                    <li>Twitter</li>
+                {{/if}}
+            </ul>
+            <ul class="right">
+                <li>{{title}}</li>
+                <li>{{country}}</li>
+                <li>{{launchdate}}</li>
+                {{#if twitter}}
+                    <li><a href="https://twitter.com/{{twitter}}">@{{twitter}}</a></li>
+                {{/if}}
+            </ul>
+    </div>
+        <div class="callout">
+            <a href="{{url}}" class="btn">View Full Bio</a>
+        </div>
+    </div>
 </div>

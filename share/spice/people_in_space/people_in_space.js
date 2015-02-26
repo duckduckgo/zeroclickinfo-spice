@@ -9,7 +9,7 @@
 
         if (api_result.number > 0) {
             DDG.require("moment.js", function() {
-       	        var codes = {"canada":"ca","china":"cn", "denmark":"dk", "france":"fr", "germany":"de", "italy":"it", "japan":"jp", "netherlands":"nl", "russia":"ru", "spain":"sp", "sweden":"se", "uk":"uk", "usa":"us"};
+                var codes = {"canada":"ca","china":"cn", "denmark":"dk", "france":"fr", "germany":"de", "italy":"it", "japan":"jp", "netherlands":"nl", "russia":"ru", "spain":"sp", "sweden":"se", "uk":"uk", "usa":"us"};
 
                 Spice.add({
                     id: "people_in_space",
