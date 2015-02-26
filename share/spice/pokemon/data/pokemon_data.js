@@ -32,7 +32,7 @@
                     types: getCollectionNames.call(item, 'types')
                 };
             },
-            onItemShown: function() {
+            onShow: function() {
                 if( api_result.descriptions.length > 0 ) {
                     fetchDescription(api_result.descriptions).done(function(api_result) {
                         var description = Handlebars.helpers.ellipsis(api_result.description, 140);
