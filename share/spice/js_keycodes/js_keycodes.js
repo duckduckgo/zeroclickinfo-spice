@@ -44,27 +44,31 @@
     function getKeycodeByKey(key) {
         return $.grep(keycodeLookup, function (keycodeItem) {
             return keycodeItem.key === key;
-        });
+        })[0];
     }
 
     function getKeycodeByCode(code) {
         return $.grep(keycodeLookup, function (keycodeItem) {
             return keycodeItem.code === code;
-        });
+        })[0];
     }
 
     env.ddg_spice_js_keycodes = function(api_result){
         var query = DDG.get_query(),
             key = query.replace(/js|javascript|key\s?(code)?s?/g, "").trim(),
-            data;
+            data = {},
+            $spice,
+            $table;
 
         if (key) {
-            data = getKeycodeByKey(key);
+            data.result = getKeycodeByKey(key);
 
-            if (!data) {
+            if (!data.result) {
                 return Spice.failed("js_keycodes");
             }
         }
+
+        data.codes = keycodeLookup;
 
         Spice.add({
             id: "js_keycodes",
@@ -77,6 +81,15 @@
                     content: Spice.js_keycodes.content
                 }
             }
+        });
+
+        $spice = Spice.getDOM("js_keycodes");
+        $table = $spice.find("table.all-keycodes");
+
+        $(".zci--js_keycodes .show-keycodes-btn").click(function (e) {
+            e.preventDefault();
+
+            $table.toggle();
         });
     };
 }(this));

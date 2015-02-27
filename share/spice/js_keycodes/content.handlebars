@@ -1,1 +1,12 @@
-<span>The keycode for <code>{{key}}</code> is {{code}}</span>
+<span>The keycode for <code>{{result.key}}</code> is {{result.code}}</span>
+<a class="show-keycodes-btn" href="#">Show all codes</a>
+
+{{! hidden when the page first renders }}
+<table class="all-keycodes">
+{{#each codes}}
+    <tr>
+        <td>{{key}}</td>
+        <td>{{code}}</td>
+    </tr>
+{{/each}}
+</table>
