@@ -17,7 +17,7 @@
 
         { key: 'a', code: 65 },         { key: 'b', code: 66 },         { key: 'c', code: 67 },
         { key: 'd', code: 68 },         { key: 'e', code: 69 },         { key: 'f', code: 70 },
-        { key: 'g', code: 71 },         { key: 'h', code: 73 },         { key: 'i', code: 73 },
+        { key: 'g', code: 71 },         { key: 'h', code: 72 },         { key: 'i', code: 73 },
         { key: 'j', code: 74 },         { key: 'k', code: 75 },         { key: 'l', code: 76 },
         { key: 'm', code: 77 },         { key: 'n', code: 78 },         { key: 'o', code: 79 },
         { key: 'p', code: 80 },         { key: 'q', code: 81 },         { key: 'r', code: 82 },
@@ -55,19 +55,18 @@
 
     env.ddg_spice_js_keycodes = function(api_result){
         var query = DDG.get_query(),
-            key = query.replace(/js|javascript|key\s?(code)?s?/g, "").trim(),
+            key = query.replace(/js|javascript|key\s?(code)?s?/g, "").trim().toLowerCase(),
             data = {},
             $spice,
             $table,
             $input,
             $result;
 
+        // if the query was something like "keycode tab"
+        // display the result for that
+        // otherwise we render the keycode tester
         if (key) {
             data.result = getKeycodeByKey(key);
-
-            if (!data.result) {
-                return Spice.failed("js_keycodes");
-            }
         }
 
         // grab all the codes for the keycodes table
@@ -107,7 +106,7 @@
 
         Spice.add({
             id: "js_keycodes",
-            name: "Javascript Keycode",
+            name: "Keycodes",
             data: data,
             meta: {},
             templates: {
@@ -130,11 +129,20 @@
             $table.toggle();
         });
 
+        // handle tester input
         $input.keydown(function (e) {
             var code = e.keyCode || e.which,
-                keyName = getKeycodeByCode(code).key;
+                keyCode = getKeycodeByCode(code),
+                keyName;
 
             e.preventDefault();
+
+            // in case keycode is unknown
+            if (!keyCode) {
+                return;
+            }
+
+            keyName = keyCode.key;
 
             $input.val(keyName);
             $result.html("The keycode for <code>" + keyName + "</code> is: " + code);
