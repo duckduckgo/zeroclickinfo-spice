@@ -1,17 +1,25 @@
 {{#if result}}
-<span>The keycode for <code>{{result.key}}</code> is {{result.code}}</span>
+<p class="keycode-result">The keycode for <code>{{result.key}}</code> is: {{result.code}}</p>
 {{else}}
-<span class="keycode-input-result">Test your keycode here:</span>
+<p class="keycode-result">Press a key in the textbox to check its keycode:</p>
 <input type="text" class="keycode-input"/>
 {{/if}}
-<a class="show-keycodes-btn" href="#">Show all codes</a>
+<a class="btn btn--primary show-keycodes" href="#">Show all codes</a>
 
 {{! hidden when the page first renders }}
 <table class="all-keycodes">
-{{#each codes}}
     <tr>
-        <td>{{key}}</td>
-        <td>{{code}}</td>
+        <th>Key name</th>
+        <th class="with-separator">Code</th>
+        <th>Key name</th>
+        <th class="with-separator">Code</th>
+        <th>Key name</th>
+        <th>Code</th>
     </tr>
+{{#each codes}}
+    {{#tr}}
+        <td>{{key}}</td>
+        <td {{{separator}}}>{{code}}</td>
+    {{/tr}}
 {{/each}}
 </table>

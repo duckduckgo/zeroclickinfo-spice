@@ -70,7 +70,40 @@
             }
         }
 
-        data.codes = keycodeLookup;
+        // grab all the codes for the keycodes table
+        // manually add the index as this version of handlebars
+        // doesn't support @index inside #each
+        data.codes = $.map(keycodeLookup, function (keycode, index) {
+            return {
+                key: keycode.key,
+                code: keycode.code,
+                index: index
+            };
+        });
+
+        Spice.registerHelper({
+            // output three keycodes per row
+            tr: function (options) {
+                var markup = "";
+                if (this.index % 3 === 0) {
+                    markup += "<tr>";
+                }
+
+                markup += options.fn(this);
+
+                if (this.index % 3 === 2) {
+                    markup += "</tr>";
+                }
+
+                return markup;
+            },
+            // add separator between keycodes
+            separator: function () {
+                if (this.index % 3 !== 2) {
+                    return "class='with-separator'";
+                }
+            }
+        });
 
         Spice.add({
             id: "js_keycodes",
@@ -88,9 +121,10 @@
         $spice = Spice.getDOM("js_keycodes");
         $table = $spice.find("table.all-keycodes");
         $input = $spice.find("input.keycode-input");
-        $result = $spice.find("span.keycode-input-result");
+        $result = $spice.find("p.keycode-result");
 
-        $(".zci--js_keycodes .show-keycodes-btn").click(function (e) {
+        // hide / show keycodes table
+        $(".zci--js_keycodes .show-keycodes").click(function (e) {
             e.preventDefault();
 
             $table.toggle();
@@ -103,7 +137,7 @@
             e.preventDefault();
 
             $input.val(keyName);
-            $result.html("Keycode for <code>" + keyName + "</code> is " + code);
+            $result.html("The keycode for <code>" + keyName + "</code> is: " + code);
         });
     };
 }(this));
