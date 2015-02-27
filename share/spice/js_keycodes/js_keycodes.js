@@ -58,7 +58,9 @@
             key = query.replace(/js|javascript|key\s?(code)?s?/g, "").trim(),
             data = {},
             $spice,
-            $table;
+            $table,
+            $input,
+            $result;
 
         if (key) {
             data.result = getKeycodeByKey(key);
@@ -85,11 +87,23 @@
 
         $spice = Spice.getDOM("js_keycodes");
         $table = $spice.find("table.all-keycodes");
+        $input = $spice.find("input.keycode-input");
+        $result = $spice.find("span.keycode-input-result");
 
         $(".zci--js_keycodes .show-keycodes-btn").click(function (e) {
             e.preventDefault();
 
             $table.toggle();
+        });
+
+        $input.keydown(function (e) {
+            var code = e.keyCode || e.which,
+                keyName = getKeycodeByCode(code).key;
+
+            e.preventDefault();
+
+            $input.val(keyName);
+            $result.html("Keycode for <code>" + keyName + "</code> is " + code);
         });
     };
 }(this));

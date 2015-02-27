@@ -1,4 +1,9 @@
+{{#if result}}
 <span>The keycode for <code>{{result.key}}</code> is {{result.code}}</span>
+{{else}}
+<span class="keycode-input-result">Test your keycode here:</span>
+<input type="text" class="keycode-input"/>
+{{/if}}
 <a class="show-keycodes-btn" href="#">Show all codes</a>
 
 {{! hidden when the page first renders }}
