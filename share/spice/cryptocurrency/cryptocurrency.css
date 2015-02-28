@@ -251,6 +251,7 @@
     padding-top: 1.5em;
     padding-bottom: 1.5em;
     color: inherit;
+    text-decoration: none;
 }
 
 .is-mobile .zci--cryptocurrency .zci__metabar__more-at.custom {
