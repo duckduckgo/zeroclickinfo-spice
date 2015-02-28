@@ -74,6 +74,7 @@
 #color_picker_container .simple_color {
     margin: 0 8px;
     clear: left;
+    padding-top: 6px;
 }
 
 #color_picker_container .simple_color input {
@@ -82,7 +83,7 @@
 
 #color_picker_container #sample {
     height: 100px;
-    margin-bottom: 13px;
+    margin-bottom: 10px;
     margin-left: 15px;
 }
 
@@ -97,17 +98,18 @@
 
 #color_picker_container #palette_select {
     width: 100px;
+    margin-bottom: 4px;
 }
 
 #color_picker_container .palette_sample {
-    margin: 12px 0 5px;
+    margin: 10px 0 4px;
     height: 40px;
     width: 100%;
 }
 
 #color_picker_container .palette_input {
     width: 75px;
-    height: 18px;
+    height: 20px;
     margin-left: 5px;
     background-color: #f2f2f2;
 }
@@ -155,8 +157,13 @@
         margin-left: 0;
     }
 
+    #color_picker_container .simple_color {
+        padding-top: 4px;
+    }
+
     #color_picker_container #palette {
         width: 80px;
+        margin-left: 32px;
     }
 
     #color_picker_container .palette_input {
