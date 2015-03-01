@@ -1,5 +1,6 @@
 package DDG::Spice::Guidebox::Lastshows;
 
+use strict;
 use DDG::Spice;
 
 triggers any => "///***never_trigger***///";

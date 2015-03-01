@@ -1,5 +1,6 @@
 package DDG::Spice::Flights::RouteHelper;
 
+use strict;
 use DDG::Spice;
 
 attribution github => ["https://github.com/tommytommytommy", 'tommytommytommy'];

@@ -1,6 +1,7 @@
 package DDG::Spice::Lastfm::Song;
 # ABSTRACT: Display song info.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "Payphone song by Maroon 5";

@@ -1,5 +1,6 @@
 package DDG::Spice::Stocks;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "AAPL";

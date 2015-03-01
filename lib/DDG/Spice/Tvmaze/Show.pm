@@ -1,5 +1,6 @@
 package DDG::Spice::Tvmaze::Show;
 
+use strict;
 use DDG::Spice;
 
 # generic tv show information won't change very often, cache it for a day

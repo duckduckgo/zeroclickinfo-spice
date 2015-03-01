@@ -1,5 +1,6 @@
 package DDG::Spice::RedditSearch;
 
+use strict;
 use DDG::Spice;
 
 name "Reddit Search";

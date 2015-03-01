@@ -1,6 +1,7 @@
 package DDG::Spice::Zipcode;
 # ABSTRACT: return the location and approximate area of a postal code.
 
+use strict;
 use DDG::Spice;
 use URI::Escape;
 

@@ -1,5 +1,6 @@
 package DDG::Spice::Quixey;
 
+use strict;
 use DDG::Spice;
 use JSON;
 use String::Trim;
