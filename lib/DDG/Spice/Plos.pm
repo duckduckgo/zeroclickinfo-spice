@@ -1,5 +1,6 @@
 package DDG::Spice::Plos;
 
+use strict;
 use DDG::Spice;
 
 name 'PLOS Search';

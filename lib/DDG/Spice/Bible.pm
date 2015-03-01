@@ -1,5 +1,6 @@
 package DDG::Spice::Bible;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "genesis 15:7";

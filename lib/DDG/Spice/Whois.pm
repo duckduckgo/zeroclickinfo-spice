@@ -1,6 +1,7 @@
 package DDG::Spice::Whois;
 # ABSTRACT: Returns an internet domain's availability and whois information.
 
+use strict;
 use DDG::Spice;
 use Domain::PublicSuffix;
 use Text::Trim;

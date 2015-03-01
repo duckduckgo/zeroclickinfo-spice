@@ -1,5 +1,6 @@
 package DDG::Spice::Launchbug;
 
+use strict;
 use DDG::Spice;
 
 spice is_cached => 1;

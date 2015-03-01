@@ -1,5 +1,6 @@
 package DDG::Spice::Nutrition;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "calories in a banana";

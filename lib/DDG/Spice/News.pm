@@ -1,6 +1,7 @@
 package DDG::Spice::News;
 # ABSTRACT: Show current news from different sources.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "news america", "obama news", "internet news";

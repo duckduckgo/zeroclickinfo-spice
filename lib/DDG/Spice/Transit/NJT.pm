@@ -1,5 +1,6 @@
 package DDG::Spice::Transit::NJT;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "next train from Metropark to New York Penn";

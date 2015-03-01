@@ -1,5 +1,6 @@
 package DDG::Spice::ChuckNorris;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "chuck norris facts";

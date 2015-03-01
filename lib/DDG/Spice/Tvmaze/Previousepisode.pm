@@ -1,5 +1,6 @@
 package DDG::Spice::Tvmaze::Previousepisode;
 
+use strict;
 use DDG::Spice;
 
 # the previous episode will change the moment an episode has aired, so cache it for just one hour
