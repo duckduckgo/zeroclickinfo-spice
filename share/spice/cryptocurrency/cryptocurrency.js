@@ -146,7 +146,7 @@
             return DDG.settings.region.getLargeIconURL(symbol);
         }
         
-        // Add commas to the numbers for display.
+        // Add commas to the numbers for display and formats decimals.
         function formatNumber(x, currency, limit) {
             var traditionalCurrencies = ['','cny','eur','gbp','hkd','jpy','nzd','pln','rur','sgd','usd'];
             // Check if the number has a decimal point.
