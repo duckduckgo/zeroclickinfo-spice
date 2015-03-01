@@ -3,7 +3,7 @@
     
     // Currencies that we have flags for.
     // These correspond to traditional currencies of countries.
-    var currency2country_extra = {
+    var currency2country = {
         "aud": true,
         "cny": true,
         "eur": true,
@@ -16,6 +16,15 @@
         "sgd": true,
         "usd": true
     };
+    
+    // Cryptocurrencies that we have flags for.
+    var crypto_flags = {
+        "btc": true,
+        "doge": true,
+        "drk": true,
+        "ltc": true,
+        "xrp": true
+    }
     
     // Some naming exceptions. For example, "gbp" doesn't map to the "gb" asset.
     // We need this hash so that we know that "gbp" will get the "uk" asset.
@@ -79,8 +88,8 @@
                 price = parseFloat(api_result.ticker.price),
                 results = api_result,
                 convertedAmount = queryAmount * price,
-                rate = "1 " + target + " = " + formatNumber((1 / price), base) + " " + base,
-                inverseRate = "1 " + base + " = " + formatNumber(price, target) + " " + target,
+                rate = "1 " + target + " = " + formatNumber((1 / price), base, 8) + " " + base,
+                inverseRate = "1 " + base + " = " + formatNumber(price, target, 8) + " " + target,
                 // Format Time and Date
                 timestamp = (new Date(api_result.timestamp*1000)).toISOString(),
                 timestr = timestamp.split(/T+/),
@@ -106,7 +115,7 @@
                     target = rows[i].currency_secondary,
                     price = parseFloat(rows[i].tradeprice);
                 rows[i].convertedAmount = queryAmount * price,
-                    rows[i].rate = "1 " + base + " = " + formatNumber(price, target) + " " + target;
+                    rows[i].rate = "1 " + base + " = " + formatNumber(price, target, 8) + " " + target;
                 results.push(rows[i]);
             }
             // Format Time and Date
@@ -124,7 +133,11 @@
             symbol = symbol.toLowerCase();
             // Most cryptocurrencies will not have flags associated with countries
             // They will need to have their own flag provided for them.
-            if(!(symbol in currency2country_extra)) {
+            if(!(symbol in currency2country)) {
+                if (!(symbol in crypto_flags)) {
+                    // if we don't have a specific flag, return the default png.
+                    symbol = "default";
+                }
                 return DDG.get_asset_path('cryptocurrency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
             }
             
@@ -134,19 +147,32 @@
         }
         
         // Add commas to the numbers for display.
-        function formatNumber(x, currency) {
-            var decimals = decimalPlaces(x) <= 4 ? decimals = decimalPlaces(x) : decimals = 4;
+        function formatNumber(x, currency, limit) {
             var traditionalCurrencies = ['','cny','eur','gbp','hkd','jpy','nzd','pln','rur','sgd','usd'];
             // Check if the number has a decimal point.
-            if(/\./.test(x.toString())) {
-                // If the currency is a traditional currency, make sure to format to 2 decimal places.
+            if(decimalPlaces(x) > 0) {
+                // Traditional currencies print two decimal places, cryptocurrencies up to 8.
                 if (traditionalCurrencies.indexOf(currency.toLowerCase()) > -1) {
-                    x = x.toFixed(2);
+                    x = formatDecimal(x, 2);
                 } else {
-                    x = x.toFixed(decimals);
+                    x = formatDecimal(x, limit);
                 }
             }
             return DDG.commifyNumber(x);
+        }
+        
+        // Handles cases like '0.00'
+        function formatDecimal(x, limit) {
+            var leadingZerosRegex = /(?:\.)([0]*)(?:[1-9])/g;
+            var leadingZeros = leadingZerosRegex.exec(x.toString())[1].length;
+            // If there are more leading zeros in the decimal than the limit, then increase the limit to the first non-zero number
+            if (leadingZeros >= limit) {
+                x = x.toFixed(leadingZeros + 1);
+            } else {
+                x = x.toFixed(limit);
+            }
+            // Removes trailing 0s.
+            return parseFloat(x);
         }
         
         var templateObj = {
@@ -177,8 +203,8 @@
                     return {
                         fromCurrencySymbol: item.ticker.base,
                         toCurrencySymbol: item.ticker.target,
-                        amount: formatNumber(queryAmount, item.ticker.base),
-                        convertedAmount: formatNumber(convertedAmount, item.ticker.target),
+                        amount: formatNumber(queryAmount, item.ticker.base, 8),
+                        convertedAmount: formatNumber(convertedAmount, item.ticker.target, 8),
                         rate: rate,
                         inverseRate: inverseRate,
                         cryptonatorURL: "http://www.cryptonator.com/rates#" + item.ticker.base,
@@ -193,9 +219,9 @@
                 return {
                     fromCurrencySymbol: item.currency_primary,
                     toCurrencySymbol: item.currency_secondary,
-                    amount: formatNumber(queryAmount, item.currency_secondary),
+                    amount: formatNumber(queryAmount, item.currency_secondary, 4),
                     // If item is the queried currency, then display the query amount.
-                    convertedAmount: item.currency_primary === item.currency_secondary ? formatNumber(queryAmount, item.currency_secondary): formatNumber(item.convertedAmount, item.currency_secondary),
+                    convertedAmount: item.currency_primary === item.currency_secondary ? formatNumber(queryAmount, item.currency_secondary): formatNumber(item.convertedAmount, item.currency_secondary, 4),
                     rate: item.rate,
                     inverseRate: inverseRate,
                     cryptonatorURL: "http://www.cryptonator.com/rates#" + item.currency_secondary,
