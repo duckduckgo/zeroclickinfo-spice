@@ -1,67 +1,55 @@
-.zci--seat_geek_sports .header_container {
-    height: 3.35em;
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: 0;
+.zci--seat_geek_sports .price {
+    font-weight: 600;
 }
+
 .zci--seat_geek_sports .price,
 .zci--seat_geek_sports .noprice {
-    float: right;
+    margin-top: 1.75em;
+    height: 1.1em;
+    float: left;
 }
-.zci--seat_geek_sports .header_container .container-wrapper {
-    float: right;
-    display: table;
-    width: 41px;
-    height: 41px;
-    margin-top: -3em;
+
+.zci--seat_geek_sports .date {
     border: 1px solid #ddd;
-    border-radius: 100%;
-    -moz-border-radius: 100%;
-    -webkit-border-radius: 100%;
-    -o-border-radius: 100%;
-}
-.zci--seat_geek_sports .header_container .container-wrapper .logo-container {
-    display: table-cell;
-    vertical-align: middle;
+    
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -webkit-border-radius: 50%;
     text-align: center;
-}
-.zci--seat_geek_sports .header_container .container-wrapper .logo-container img {
-    vertical-align: middle;
-}
-.zci--seat_geek_sports .tile__body.has-foot {
+    font-size: 0.9em;
     padding: 0;
-    text-align: center;
-    padding-bottom: 1em;
+    
+    position: absolute;
+    bottom: 1em;
+    right: 0;
+    
+    width: 4em;
+    height: 4em;
+    line-height: 1;
 }
-.zci--seat_geek_sports .tile__content {
-    margin-bottom: 0.7em;
+    .zci--seat_geek_sports .month {
+        padding-top: 1em;
+    }
+
+    .zci--seat_geek_sports .day {
+        font-size: 1.6em;
+        line-height: 0.8;
+    }
+
+.zci--seat_geek_sports .seat_geek-sports {
+    font-size: 1.1em;
 }
-.zci--seat_geek_sports .tile__title {
-    font-size: 1.357em;
-    line-height: 1.11;
-}
-.zci--seat_geek_sports .tile__title-container {
-    height: 3em;
-    vertical-align: middle;
-    overflow: hidden;
-}
-.zci--seat_geek_sports .tile__title-container.has_logo {
-    width: 65%;
-}
-.zci--seat_geek_sports .tile__footer {
-    color: #333;
-}
+
 .zci--seat_geek_sports .where {
-    color: #888;
-    margin: 0.7em 0 0.9em;
+    height: 1.4em;
 }
-.zci--seat_geek_sports .js-metabar-itemtype {
-    text-transform: lowercase;
+
+.zci--seat_geek_sports .where.city,
+.zci--seat_geek_sports .where.place {
+    width: 9.3em;
 }
-.zci--seat_geek_sports .tile__body {
-    padding: 0.75em 0.75em;
-}
-.zci--seat_geek_sports .tile, .tile--s, .tile--info, .tile--map {
-    font-size: 1em;
-    width: 16em;
-}
+
+    .is-mobile .zci--seat_geek_sports .where.city {
+        width: 7em;
+    }
