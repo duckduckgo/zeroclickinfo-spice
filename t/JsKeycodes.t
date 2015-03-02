@@ -9,7 +9,7 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::JsKeycodes )],
-    'keycode j' => test_spice(
+    'javascript key code j' => test_spice(
         '/js/spice/js_keycodes/',
         call_type => 'self',
         caller => 'DDG::Spice::JsKeycodes'
@@ -25,6 +25,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::JsKeycodes'
     ),
     'keycode foo' => undef,
+    'keycode tab' => undef,
     'keycodes' => undef
 );
 
