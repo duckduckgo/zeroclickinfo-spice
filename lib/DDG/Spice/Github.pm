@@ -33,7 +33,8 @@ handle query_lc => sub {
     
     my $query = $_;
     my $l; 
-    if (/\b($langs)\b/) {
+    # can't use standard \b word boundary here. It will fail for languages with characters like c++
+    if (/ ($langs) / or /^($langs) / or / ($langs)$/) {
         $l = $1;
         $query =~ s/ ($langs) |^($langs) | ($langs)$//;
 
