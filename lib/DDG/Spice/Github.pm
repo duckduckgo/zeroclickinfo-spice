@@ -33,7 +33,6 @@ handle query_lc => sub {
     
     my $query = $_;
     my $l; 
-    #if (/ ($langs) /|| /^($langs) / || / ($langs)$/) {
     if (/\b($langs)\b/) {
         $l = $1;
         $query =~ s/ ($langs) |^($langs) | ($langs)$//;
@@ -47,7 +46,9 @@ handle query_lc => sub {
         # Github. You specify language as a part of the raw query string
         # passed to the api like on the web form interface. 
         return "${query} language:\"${l}\"" unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
-    } 
+    } else {
+	return $query;
+    }
     
     return;
 };
