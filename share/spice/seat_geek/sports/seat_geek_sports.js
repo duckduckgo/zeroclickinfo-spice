@@ -105,23 +105,11 @@
                     return;
                 }
 
-                // Return a logo for this performer if available
-                function getLogo(performer, taxonomies) {
-                    performer = performer.toLowerCase().replace(/\s/g, "_");
-                    for(var i = 0; i < taxonomies.length; i++) {
-                        if(taxonomies[i].name === "mlb" || taxonomies[i].name === "nba" || taxonomies[i].name === "nfl" || taxonomies[i].name === "nhl") {
-                            return DDG.get_asset_path('seat_geek/sports', 'assets/' + taxonomies[i].name + '/' + performer.replace("vs. ", "") + '.gif ');
-                        }
-                    }
-
-                    return '';
-                }
-
                 function getPrice(lowest, highest) {
                     var price = "";
 
                     if(lowest && highest) {
-                        price = "$" + lowest + " - $" + highest;
+                        price = "$" + lowest + "+";
                     }
 
                     return price;
@@ -129,10 +117,9 @@
 
                 return {
                     url: item.url,
-                    price: item.stats.lowest_price,
+                    price: getPrice(item.stats.lowest_price, item.stats.highest_price),
                     title: title,
-                    place: "@ " + item.venue.name,
-                    logo: logo,
+                    place: item.venue.name,
                     city: item.venue.display_location,
                     month: getMonth(getDate(item.datetime_local)),
                     day: getDay(getDate(item.datetime_local)),
@@ -140,13 +127,17 @@
                 };
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 detail: false,
                 item_detail: false,
                 options: {
-                    content: Spice.seat_geek_sports.item,
+                    footer: Spice.seat_geek_sports.footer,
                     moreAt: true,
                     rating: false
+                },
+                variants: {
+                    tileTitle: '3line-small',
+                    tileFooter: '4line'
                 }
             }
         });
