@@ -3,7 +3,7 @@ package DDG::Spice::SimilarSites;
 use DDG::Spice;
 
 primary_example_queries "similar sites to facebook.com", "similar to youtube.com";
-secondary_example_queries "", "";
+secondary_example_queries "sites like twitter.com", "pages like github.com";
 description "Search for similar websites";
 name "SimilarSites search";
 source "SimilarSites";
@@ -14,7 +14,7 @@ topics "everyday", "special_interest";
 attribution github => ['https://github.com/Adman', 'Adman'],
             twitter => ['http://twitter.com/adman_X', 'adman_X'];
 
-triggers startend => "similar sites to", "similar web to", "sites like", "websites like", "webs like", "pages like";
+triggers startend => "similar sites", "similar sites to", "similar web to", "sites like", "websites like", "webs like", "pages like";
 
 spice to => 'http://www.similarsitesearch.com/api/similar/$1';
 
