@@ -5,7 +5,6 @@
         var is_debug = false;
 
         if (!api_result) {
-            if(is_debug) console.log('No API response');/*DEBUG*/
             return Spice.failed('namecheap');
         }
 
@@ -13,7 +12,6 @@
 
 
         if (!item) {
-            if(is_debug) console.log('Parsed response does not contain DomainCheckResult');/*DEBUG*/
             return Spice.failed('namecheap');
         }
 
@@ -22,7 +20,6 @@
         var domainName = item.Domain;
 
         if ( !available || !domainName ) {
-            if(is_debug) console.log('DomainCheckResult does not return availability');/*DEBUG*/
             return Spice.failed('namecheap');
         }
 
@@ -30,7 +27,6 @@
             domainAvailable: available === "true",
             domainName: domainName
         };
-        if(is_debug) console.log('data for template', data);/*DEBUG*/
 
         Spice.add({
             id               : 'namecheap',
