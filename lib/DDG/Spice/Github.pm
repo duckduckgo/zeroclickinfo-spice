@@ -33,7 +33,8 @@ handle query_lc => sub {
     
     my $query = $_;
     my $l; 
-    if (/ ($langs) /|| /^($langs) / || / ($langs)$/) {
+    #if (/ ($langs) /|| /^($langs) / || / ($langs)$/) {
+    if (/\b($langs)\b/) {
         $l = $1;
         $query =~ s/ ($langs) |^($langs) | ($langs)$//;
 
