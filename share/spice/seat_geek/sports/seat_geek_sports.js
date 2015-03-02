@@ -99,7 +99,7 @@
                 function getDay(date) {
                     if(date) {
                         var day = date.getDate();
-                        return DDG.getOrdinal(day);
+                        return day;
                     }
 
                     return;
