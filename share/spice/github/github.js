@@ -11,7 +11,6 @@
                     source = $(script).attr("src"),
                     query = source.match(/github\/([^\/]+)/)[1];
 
-        //var results = api_result.data.repositories;
         var results = api_result.data.items;
 
         if (!results) {
@@ -42,7 +41,8 @@
             normalize: function(item) {
                 return {
                     title: item.name,
-                    subtitle: item.owner + "/" + item.name
+                    subtitle: item.owner + "/" + item.name,
+		    url: item.html_url
                 };
             },
             relevancy: {
