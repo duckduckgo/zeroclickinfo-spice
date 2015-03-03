@@ -12,8 +12,11 @@ name "Indeed Jobs";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/IndeedJobs.pm";
 topics "special_interest";
 category  "reference";
-attribution github => ['https://github.com/parker','parker'],
-            twitter => ['http://twitter.com/pseidel','pseidel'];
+attribution github  => ['parker', 'Parker'],
+            twitter => ['pseidel', 'Parker'],
+            github  => ['tagawa', 'Daniel Davis'],
+            twitter => ['ourmaninjapan', 'Daniel Davis'],
+            web     => ['http://daniemon.com/', 'Daniel Davis'];
 
 triggers any => "job", "jobs";
 
@@ -21,17 +24,18 @@ spice to => 'http://api.indeed.com/ads/apisearch?publisher={{ENV{DDG_SPICE_INDEE
 spice from => '([^/]+)/(.*?)/([^/]*)';
 spice proxy_cache_valid   => "418 1d";
 
-
 handle query => sub {
     my $country = 'US';
     if($loc->country_code) {
         $country = $loc->country_code;
     }
     my $spice_location = $loc->city . ', ' . $loc->region_name;
-    if (/(?:\s*(?:i\s+|we\s+)?(?:need|want|deserve|seek|get)\s+(?:an?\s+)?)?(?:(.+)\s+)?(?:jobs?|work|employment|internship)(?:\s+(?:in|near\s+)?\s*(.+))?$/i) {
-        my $query = $1 || ' ';
-        my $location = $2 || $spice_location || ' ';
-        return $query, $location, $country;
+    if (/(?:\s*(?:i\s+|we\s+)?(?:need|want|wanna|deserve|seek|get|find)\s+(?:a\s+|an?\s+)?)?(?:(.+)\s+)?(?:jobs?|work|employment|internship)(?:\s+(?:in|near|around\s+)?\s*(.+))?$/i) {
+        if ($1 || $2) {
+            my $query = $1 || ' ';
+            my $location = $2 || $spice_location || ' ';
+            return $query, $location, $country;
+        }
     }
 	return;
 };
