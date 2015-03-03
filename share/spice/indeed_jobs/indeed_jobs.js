@@ -1,31 +1,41 @@
-function ddg_spice_indeed_jobs(api_result) {
-    if (api_result.results.length == 0) return;
+(function(env) {
+    "use strict";
     
-    var jobs = api_result.results,
-        query = DDG.get_query(),
-        q = api_result.query || '',
-        loc = api_result.location || '',
-        re = /^http:\/\/([a-z.]+)\//,
-        rematch = api_result.results[0].url.match(re),
-        www_domain = rematch ? rematch[0] : "http://www.indeed.com/";
-    Spice.render({
-        data             : api_result,
-        header1          : query + " from Indeed",
-        source_url       : www_domain + 'jobs?q='
-                            + encodeURIComponent(q)
-                            + "&l=" +  encodeURIComponent(loc),
-        source_name      : 'Indeed',
-        spice_name      : 'indeed',
+    env.ddg_spice_indeed_jobs = function(api_result) {
+        if (api_result.error || !api_result.results.length) {
+            return Spice.failed('indeed_jobs');
+        }
 
-        template_frame   : 'list',
-        template_options: {
-            items: api_result.results,
-            template_item: "indeed_jobs",
-            show: 4,
-	        max: 10,
-            type: 'ul'
-        },
-        force_big_header : true,
-        force_no_fold    : true
-    });
-}
+        var q = api_result.query || '',
+            loc = api_result.location || '',
+            re = /^http:\/\/([a-z.]+)\//,
+            rematch = api_result.results[0].url.match(re),
+            www_domain = rematch ? rematch[0] : "http://www.indeed.com/";
+        
+        Spice.add({
+            id: "indeed_jobs",
+            name: "Jobs",
+            data: api_result.results,
+            meta: {
+                sourceName: "Indeed",
+                sourceUrl: www_domain + 'jobs?q=' + encodeURIComponent(q) + '&l=' + encodeURIComponent(loc)
+            },
+            normalize: function(item) {
+                return {
+                    url: item.url,
+                    title: item.jobtitle,
+                    subtitle: item.company,
+                    description: item.formattedLocation
+                };
+            },
+            templates: {
+                group: 'text',
+                detail: false,
+                item_detail: false,
+                options: {
+                    footer: Spice.indeed_jobs.footer
+                }
+            }
+        });
+    };
+}(this));

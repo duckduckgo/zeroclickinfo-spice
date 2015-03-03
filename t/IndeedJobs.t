@@ -37,8 +37,8 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::IndeedJobs'
     ),
-    'jobs' => test_spice(
-        '/js/spice/indeed_jobs/%20/Phoenixville%2C%20Pennsylvania/US',
+    'fitness trainer job around new york' => test_spice(
+        '/js/spice/indeed_jobs/fitness%20trainer/new%20york/US',
         call_type => 'include',
         caller => 'DDG::Spice::IndeedJobs'
     ),
@@ -51,7 +51,8 @@ ddg_spice_test(
         '/js/spice/indeed_jobs/%20/Austin/US',
         call_type => 'include',
         caller => 'DDG::Spice::IndeedJobs'
-    )
+    ),
+    'jobs' => undef
 );
 
 done_testing;
