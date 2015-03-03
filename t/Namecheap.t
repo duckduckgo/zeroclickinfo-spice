@@ -15,11 +15,16 @@ ddg_spice_test(
     'namecheap http://ddg.gg/'                      => expected_output_for('ddg.gg'),
     'namecheap http://example.com'                  => expected_output_for('example.com'),
     'namecheap http://example.org'                  => expected_output_for('example.org'),
-    'namecheap http://www.example.org'              => expected_output_for('www.example.org'),
-    'namecheap http://www.example.org/'             => expected_output_for('www.example.org'),
-    'namecheap http://www.example.org/path/to/file' => expected_output_for('www.example.org'),
+    'namecheap http://moon.io'                      => expected_output_for('moon.io'),
 
     # queries which should not trigger
+    'namecheap http://www.example.org'              => undef, # subdomain is not a domain
+    'namecheap http://www.example.org/'             => undef, # subdomain is not a domain
+    'namecheap http://www.example.org/path/to/file' => undef, # subdomain is not a domain
+    'namecheap http://my.cool.domain.org'           => undef, # subdomain is not a domain
+    'namecheap http://my.cool.domain.co.uk'         => undef, # subdomain is not a domain
+    'namecheap http://jupiters.moon.io'             => undef, # subdomain is not a domain
+
     'example.com'                    => undef, # no naked domain
     'namecheap example'              => undef, # does not have a TLD
     'namecheap test.example.notatld' => undef, # not a valid TLD
