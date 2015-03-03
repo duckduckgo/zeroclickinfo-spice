@@ -38,8 +38,8 @@
             meta: {},
             templates: {
                 detail: Spice.color_picker.content,
-                item: Spice.color_picker.content,
-                item_detail: false,
+                // item: Spice.color_picker.content,
+                // item_detail: false,
                 wrap_detail: 'base_detail'
             },
             onShow: function() {
@@ -211,11 +211,11 @@
         function get_marker_positions(hsv) {
             var markers = {
                 hue: {
-                    y: Math.round((hsv.hue / 360) * 256)
+                    y: Math.round((hsv.hue / 360) * 256) - 3
                 },
                 saturation_value: {
-                    x: Math.round((hsv.saturation / 100) * 256),
-                    y: 256 - Math.round((hsv.value / 100) * 256)
+                    x: Math.round((hsv.saturation / 100) * 256) - 3,
+                    y: 256 - Math.round((hsv.value / 100) * 256) - 3
                 }
             };
 
@@ -395,7 +395,7 @@
             });
 
             local_dom.$palette_input.each(function(i) {
-                $(this).val(current_color.palette[i].substring(1));
+                $(this).text(current_color.palette[i].substring(1));
             });
         }
 
@@ -676,7 +676,7 @@
             local_dom.$hue_picker.mousedown(mouse_and_touch_handler(function() { hue_mousedown = true; }));
             local_dom.$hue_picker.mousemove(mouse_and_touch_handler(function(event) { if (hue_mousedown) hue_clicked(event); }));
 
-            $root.mouseup(function() { saturation_value_mousedown = false; hue_mousedown = false; });
+            $(document).mouseup(function() { saturation_value_mousedown = false; hue_mousedown = false; });
             $root.focusout(function() { saturation_value_mousedown = false; hue_mousedown = false; });
 
             //Also need to listen for touch events for touch-enabled devices.
@@ -706,3 +706,5 @@
         }
     };
 }(this));
+
+ddg_spice_color_picker();

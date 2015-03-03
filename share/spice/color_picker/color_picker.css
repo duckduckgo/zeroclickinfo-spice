@@ -11,6 +11,10 @@
     height: 256px;
     position: relative;
     border-radius: 4px;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #color_picker_container #saturation_value_picker img {
@@ -23,6 +27,10 @@
     margin-left: 16px;
     position: relative;
     border-radius: 4px;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #color_picker_container #hue_picker img {
@@ -108,9 +116,12 @@
 }
 
 #color_picker_container .palette_input {
+    display: inline-block;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 1px 5px;
     width: 75px;
     height: 20px;
-    margin-left: 5px;
     background-color: #f2f2f2;
 }
 
@@ -158,7 +169,7 @@
     }
 
     #color_picker_container .simple_color {
-        padding-top: 4px;
+        padding-top: 0;
     }
 
     #color_picker_container #palette {
@@ -168,6 +179,7 @@
 
     #color_picker_container .palette_input {
         width: 50px;
+        padding: 2px 5px;
     }
 
     #color_picker_container #palette_select {
