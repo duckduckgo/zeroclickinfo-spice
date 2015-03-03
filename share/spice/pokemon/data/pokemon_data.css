@@ -1,12 +1,5 @@
 .zci--pokemon .pokemon__description {
     margin-bottom: 10px;
-    quotes: "“" "”";
-}
-.zci--pokemon .pokemon__description:not(:empty):before {
-    content: open-quote;
-}
-.zci--pokemon .pokemon__description:not(:empty):after {
-    content: close-quote;
 }
 
 .zci--pokemon .record__cell__key:after {
