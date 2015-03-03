@@ -64,10 +64,14 @@ handle remainder_lc => sub {
 
     return unless defined $countryName;
 
-    # Check if the country string has a comma, split the string and only include the first element
-
+    # Check if the country string has a comma (e.g.: 'Bolivia, Plurinational
+    # State of'), or a parenthesis (e.g.: 'Bolivia (Plurinational State of)'),
+    # split the string and only include the first element
     if (index($countryName, ',') != -1) {
         ($countryName) = split(',', $countryName);
+    }
+    if (index($countryName, ' (') != -1) {
+        ($countryName) = split(' \(', $countryName);
     }
 
     # Loop to check valid reporting dates against current date
