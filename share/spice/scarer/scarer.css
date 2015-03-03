@@ -1,0 +1,57 @@
+/* Most of this CSS got copied from Timer Spice */
+.zci--scarer .scarer__modal {
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(128,128,128,0.4);
+    z-index: 9999;
+}
+
+.zci--scarer .scarer__modal > div {
+    width: 300px;
+    border-radius: 3px;
+    position: relative;
+    margin: 127px auto;
+    background-color: #fff;
+    padding: 30px 10px;
+}
+
+.zci--scarer .scarer__modal hr {
+    margin: 2em 0em;
+}
+
+.zci--scarer .scarer__modal h2 {
+    display: block;
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+@media screen and (max-width: 420px) {
+    .zci--timer .timer__done-modal > div {
+        width: 80%;
+    }
+}
+
+.zci--scarer p {
+    margin: 0em 1em;
+}
+
+.zci--scarer .scarer_btn {
+    margin: 2em 2em 1em 2em;
+    width: 80px;
+    padding: 3px 0;
+    border: 0;
+    border-radius: 2px;
+    background-color: #61AD48;
+    color: #fff;
+    cursor: pointer;
+}
+
+.zci--scarer .scarer_btn_right {
+    float: right;
+}
