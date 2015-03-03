@@ -5,6 +5,10 @@ use Data::Dumper;
 use DDG::Spice;
 use Text::Trim;
 
+use local::lib '/usr/local/ddg/lib';
+use DDG::Util::DBI;
+use DDG::Util::Geo qw( get_places );
+
 name "Forecast";
 description "Weather forecast";
 source "Forecast";
@@ -12,6 +16,8 @@ primary_example_queries "weather";
 secondary_example_queries "weather 12180";
 topics "everyday", "travel";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Forecast.pm";
+
+my $dbi = DDG::Util::DBI->instance( pgbouncer => 1 );
 
 my @temperatures = qw(temp temperature);
 my @connectors   = qw(in for at);
@@ -57,6 +63,14 @@ my $no_location_qr = qr/fore?cast|report|meteo|weather|temp(?:erature)/;
 my $weather_qr = qr/(?:(?:weather|temp(?:erature|)|fore?cast|meteo)(?: fore?cast| report| today| tomm?orr?ow| this week| monday| tuesday|  wednesday| thursday| friday| saturday| sunday| lundi| mardi| mercredi| jeudi| vendredi| samedi| dimanche| demain|))+/;
 
 handle query_lc => sub {
+
+    my $dbh = $dbi->connect;
+    my $q = $_;
+    my @locs = get_places($q, $dbh);
+    warn "WEATHER QUERY: $q";
+    warn "WEATHER PLACES:".Dumper(\@locs);
+    $dbh->disconnect;
+
     my $location = '';
 
     # Capture user defined location if it exists.
