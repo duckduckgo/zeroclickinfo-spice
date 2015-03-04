@@ -1,0 +1,42 @@
+family homes:	SINGLEFAMILYRESIDENCE
+family houses:	SINGLEFAMILYRESIDENCE
+single family:	SINGLEFAMILYRESIDENCE
+family residences:	SINGLEFAMILYRESIDENCE
+condos:	CONDOMINUM
+condominiums:	CONDOMINUM
+price per square foot:	MEDIANVALUEPERSQFT_ALLHOMES
+price per sq ft:	MEDIANVALUEPERSQFT_ALLHOMES
+ppsf:	MEDIANVALUEPERSQFT_ALLHOMES
+1 bedroom:	1BEDROOM
+one bedroom:	1BEDROOM
+2 bedroom:	2BEDROOM
+two bedroom:	2BEDROOM
+3 bedroom:	3BEDROOM
+three bedroom:	3BEDROOM
+4 bedroom:	4BEDROOM
+four bedroom:	4BEDROOM
+5 bedroom:	5BEDROOMORMORE
+five bedroom:	5BEDROOMORMORE
+2 bedrooms:	2BEDROOM
+two bedrooms:	2BEDROOM
+3 bedrooms:	3BEDROOM
+three bedrooms:	3BEDROOM
+4 bedrooms:	4BEDROOM
+four bedrooms:	4BEDROOM
+5 bedrooms:	5BEDROOMORMORE
+five bedrooms:	5BEDROOMORMORE
+bottom tier:	BOTTOMTIER
+cheap homes:	BOTTOMTIER
+cheap houses:	BOTTOMTIER
+inexpensive homes:	BOTTOMTIER
+inexpensive houses:	BOTTOMTIER
+middle tier:	MIDDLETIER
+top tier:	TOPTIER
+expensive homes:	TOPTIER
+expensive houses:	TOPTIER
+home prices:	ALLHOMES
+house prices:	ALLHOMES
+home values:	ALLHOMES
+house values:	ALLHOMES
+#homes:	ALLHOMES
+ouses:	ALLHOMES
