@@ -2,6 +2,7 @@ package DDG::Spice::Quandl::HomeValues;
 
 use DDG::Spice;
 use Text::Trim;
+use YAML::XS qw( Load );
 
 # meta data
 # Initially this is will work with zip codes, but will expand
@@ -18,25 +19,11 @@ category "finance";
 attribution web => ["https://www.quandl.com", "Quandl"],
             twitter => "quandl";
             
-# load our trigger phrases
-my @trigger_lines = share('home_values_triggers.txt')->slurp;
-# hash to associate phrases with URL codes
-my %trigger_phrases = ();
-# array to preserve the order of the trigger phrases from the text file
-my @trigger_keys;
-foreach my $line (@trigger_lines) {
-    # remove return char
-    chomp $line;
-    #only add if has value and is not a comment
-    if (length $line > 0) {
-        # split by tab
-        my @chunks = split /\t/, $line;
-        # add to our hash
-        $trigger_phrases{$chunks[0]} = $chunks[1];
-        # add to our array
-        push @trigger_keys, $chunks[0];
-    }
-}
+# hash associating triggers with indicator codes
+my $trigger_hash = Load(scalar share('home_values_triggers.yml')->slurp); 
+
+# triggers sorted by length so more specific is used first
+my @trigger_keys = sort { length $a <=> length $b } keys($trigger_hash);
 
 # defining our triggers
 triggers any => @trigger_keys;
@@ -54,20 +41,20 @@ handle sub {
     # split query phrase by spaces
     my @words = split / /, $_;
     
-    # go through each word of the query to see if it is a valid region
-    # for now, a region will only be a zip code
+    # will hold region such as "27510", "Carrboro" etc
+    # NOTE: only zip codes supported for time being
     my $region;
+    
+    # will hold the type of region such as "ZIP", "CITY" etc
+    # # NOTE: only zip codes supported for time being
     my $indicator_type;
-    foreach my $word (@words) {
-        # save region and exit loop if found
-        if (length $word == 5) {
-            if ($word =~ "\\d+") {
-                $region = $word;
-                $indicator_type = "ZIP";
-                last;
-            }
-        }
-    };
+    
+    # checking for 5-digit zip codes
+    $_ =~ m/\b(\d{5})\b/;
+    if ($1) {
+        $region = $1;
+        $indicator_type = "ZIP";
+    }
     
     # only return if we found a region in the search query
     my $query = lc $_;
@@ -76,7 +63,7 @@ handle sub {
         for my $trigger (@trigger_keys) {
             # return if the trigger phrase is in the query
             if ( $query =~ /$trigger/ ) {
-                return $indicator_type . "_" . $trigger_phrases{$trigger} . "_" . $region;
+                return $indicator_type . "_" . $trigger_hash->{$trigger} . "_" . $region;
             }
         };
     }
