@@ -2,6 +2,7 @@ package DDG::Spice::Quandl::Fundamentals;
 
 use DDG::Spice;
 use Text::Trim;
+use YAML::XS qw( Load );
 
 # meta data
 primary_example_queries "AAPL earnings";
@@ -15,25 +16,14 @@ category "finance";
 attribution web => ["https://www.quandl.com", "Quandl"],
             twitter => "quandl";
             
-# load our trigger phrases
-my @trigger_lines = share('fundamentals_triggers.txt')->slurp;
-# hash to associate phrases with URL codes
-my %trigger_phrases = ();
-# array to preserve the order of the trigger phrases from the text file
-my @trigger_keys;
-foreach my $line (@trigger_lines) {
-    # remove return char
-    chomp $line;
-    #only add if has value and is not a comment
-    if (length $line > 0) {
-        # split by tab
-        my @chunks = split /\t/, $line;
-        # add to our hash
-        $trigger_phrases{$chunks[0]} = $chunks[1];
-        # add to our array
-        push @trigger_keys, $chunks[0];
-    }
-}
+# hash associating triggers with indicator codes
+my $trigger_hash = Load(scalar share('fundamentals_triggers.yml')->slurp); 
+
+# triggers sorted by length so more specific is used first
+my @trigger_keys = sort { length $b <=> length $a } keys($trigger_hash);
+
+# load our list of tickers
+my %tickers = map { trim($_) => 0 } share('tickers.txt')->slurp;
 
 # defining our triggers
 triggers any => @trigger_keys;
@@ -50,33 +40,32 @@ handle sub {
 
     # split query phrase by spaces
     my @words = split / /, $_;
+    my $wordsSize = scalar @words;
     
-    # load our list of tickers
-    my %tickers = map { trim($_) => 0 } share('tickers.txt')->slurp;
+    # exit if query is less than two words
+    if ($wordsSize < 2) {return;}
 
-    # go through each word of the query to see if it is a valid ticker
+    # Only valid if ticker symbol is at beginning or end
     my $ticker;
-    foreach my $word (@words) {
-        my $ucword = uc $word;
-        # save ticker and exit loop if found
-        if (exists $tickers{$ucword}) {
-            $ticker = $ucword;
-            last;
-        }
-    };
+    if (exists $tickers{$words[0]}) {$ticker = uc $words[0];}
+    else {
+        if (exists $tickers{$words[$wordsSize - 1]}) {$ticker = uc $words[$wordsSize - 1];}
+    }
+
+    # exit if we do not have a valid ticker
+    return unless $ticker;
     
     # only return if we found a ticker in the search query
     my $query = lc $_;
-    if ($ticker) {
-        # iterate through trigger phrases in their file-order
-        for my $trigger (@trigger_keys) {
-            # return if the trigger phrase is in the query
-            if ( $query =~ /$trigger/ ) {
-                return $ticker . "_" . $trigger_phrases{$trigger};
-            }
-        };
-    }
     
+    # iterate through trigger phrases
+    for my $trigger (@trigger_keys) {
+        # return if the trigger phrase is in the query
+        if ( $query =~ /$trigger/ ) {
+            return $ticker . "_" . $trigger_hash->{$trigger};
+        }
+    };
+
     return;
 };
 
