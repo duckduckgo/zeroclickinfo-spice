@@ -2,9 +2,10 @@
     "use strict";
 
     var ID = 'pokemon',
+        INFOBOX_PROPS = ['hp', 'attack', 'defense', 'height', 'weight', 'speed'],
         DESCRIPTION_ENDPOINT = '/js/spice/pokemon/description/{id}',
         POKEAPI_SPRITE_URL = 'http://pokeapi.co/media/img/{id}.png',
-        INFOBOX_PROPS = ['hp', 'attack', 'defense', 'height', 'weight', 'speed'];
+        EVOLUTION_ANCHOR = '<a href="?q={name}+pokemon">{name}</a>';
 
     /**
      *  [ Pokemon::Data ]
@@ -28,14 +29,13 @@
                     title: item.name,
                     image: getSprite.call(item),
                     infoboxData: getInfoboxData.call(item),
-                    eggGroups: getCollectionNames.call(item, 'egg_groups'),
-                    types: getCollectionNames.call(item, 'types')
+                    subtitle: getCollectionNames.call(item, 'types')
                 };
             },
             onShow: function() {
                 if( api_result.descriptions.length > 0 ) {
                     fetchDescription(api_result.descriptions).done(function(api_result) {
-                        var description = Handlebars.helpers.ellipsis(api_result.description, 140);
+                        var description = Handlebars.helpers.ellipsis(api_result.description, 200);
 
                         Spice.getDOM(ID).find('.pokemon__description').html(description);
                     });
@@ -85,8 +85,24 @@
      * @return {Array}
      */
     function getInfoboxData() {
-        var infoboxData = [{ heading: 'Stats:' }];
-
+        var infoboxData = [];
+        
+        if( this.egg_groups.length > 0 ) {
+            infoboxData.push({
+                label: 'Egg groups',
+                value: getCollectionNames.call(this, 'egg_groups')
+            });
+        }
+            
+        if( this.evolutions.length > 0 ) {
+            infoboxData.push({
+                label: 'Evolves into',
+                value: new Handlebars.SafeString(EVOLUTION_ANCHOR.replace(/{name}/g, this.evolutions[0].to))
+            });
+        }
+        
+        infoboxData.push({ heading: 'Stats' });
+        
         for( var prop in this ) {
             if( INFOBOX_PROPS.indexOf(prop) !== -1 && parseInt(this[prop], 10) ) {
                 infoboxData.push({
