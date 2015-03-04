@@ -2,6 +2,14 @@
     margin-bottom: 10px;
 }
 
-.zci--pokemon .record__cell__key:after {
-    content: ':';
+.zci--pokemon .tile--info .info--head {
+    margin-top: 10px;
+}
+.zci--pokemon .tile--info .info--head:first-child {
+    margin-top: 0;     
+}
+
+.zci--pokemon .zci__header__sub {
+    display: block;
+    padding-left: 0;
 }
