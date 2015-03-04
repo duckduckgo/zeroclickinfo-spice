@@ -43,7 +43,7 @@ ddg_spice_test(
 		caller => 'DDG::Spice::Quandl::Fundamentals',
 	),
     
-    
+    'price of a coke' => undef, # No results though 'a' is the Agilent ticker
 	'aapl' => undef, # No results for a single ticker alone
     'revenue' => undef, # No results for a single indicator alone
 );

@@ -23,7 +23,7 @@ attribution web => ["https://www.quandl.com", "Quandl"],
 my $trigger_hash = Load(scalar share('home_values_triggers.yml')->slurp); 
 
 # triggers sorted by length so more specific is used first
-my @trigger_keys = sort { length $a <=> length $b } keys($trigger_hash);
+my @trigger_keys = sort { length $b <=> length $a } keys($trigger_hash);
 
 # defining our triggers
 triggers any => @trigger_keys;
