@@ -1,27 +1,24 @@
-function ddg_spice_images(apiResult) {
+Spice.images = {
 
-    if (!apiResult || !apiResult.results || !apiResult.results.length) {
-        return Spice.failed('images');
+    id: 'images',
+    name: 'Images',
+    allowMultipleCalls: true,
+    model: 'Image',
+    relevancy: {
+        dup: 'j'
+    },
+
+    isValidResponse: function(res) {
+        return res && res.results && res.results.length;
+    },
+
+    onResponse: function(res) {
+        return {
+            data: res.results,
+            meta: {
+                next: res.next,
+                searchTerm: res.query
+            }
+        };
     }
-
-    Spice.add({
-        id: 'images',
-        name: 'Images',
-
-        allowMultipleCalls: true,
-
-        data: apiResult.results,
-
-        model: 'Image',
-
-        meta: {
-            next: apiResult.next,
-            searchTerm: apiResult.query
-        },
-
-        relevancy: {
-            dup: 'j'
-        }
-    });
-
 }
