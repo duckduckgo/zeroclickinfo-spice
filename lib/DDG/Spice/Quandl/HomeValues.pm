@@ -37,16 +37,13 @@ spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
 handle sub {
-
-    # split query phrase by spaces
-    my @words = split / /, $_;
     
     # will hold region such as "27510", "Carrboro" etc
     # NOTE: only zip codes supported for time being
     my $region;
     
     # will hold the type of region such as "ZIP", "CITY" etc
-    # # NOTE: only zip codes supported for time being
+    # NOTE: only zip codes supported for time being
     my $indicator_type;
     
     # checking for 5-digit zip codes
@@ -56,17 +53,18 @@ handle sub {
         $indicator_type = "ZIP";
     }
     
+    # exit if no region defined
+    return unless ($region);
+    
     # only return if we found a region in the search query
     my $query = lc $_;
-    if ($region) {
-        # iterate through trigger phrases in their file-order
-        for my $trigger (@trigger_keys) {
-            # return if the trigger phrase is in the query
-            if ( $query =~ /$trigger/ ) {
-                return $indicator_type . "_" . $trigger_hash->{$trigger} . "_" . $region;
-            }
-        };
-    }
+    # iterate through trigger phrases in their file-order
+    for my $trigger (@trigger_keys) {
+        # return if the trigger phrase is in the query
+        if ( $query =~ /$trigger/ ) {
+            return $indicator_type . "_" . $trigger_hash->{$trigger} . "_" . $region;
+        }
+    };
     
     return;
 };
