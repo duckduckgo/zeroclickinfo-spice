@@ -9,7 +9,6 @@ use DDG::Util::SpiceConstants;
 
 spice proxy_cache_valid => '418 1d';
 
-
 my $namecheap_endpoint = 'http://api.namecheap.com/xml.response';
 
 # environment variables:
@@ -21,7 +20,7 @@ my @query_list = (
     ApiKey     => '{{ENV{DDG_SPICE_NAMECHEAP_APIKEY}}}',   # Password required used to access the API
     UserName   => '{{ENV{DDG_SPICE_NAMECHEAP_USERNAME}}}', # same as ApiUser
     Command    => 'namecheap.domains.check',               # API method
-    ClientIp   => '{{ENV{DDG_SPICE_NAMECHEAP_IP_ADDR}}}',  # End-user IP address
+    ClientIp   => '0.0.0.0',  # End-user IP address
     DomainList => '$1',                                    # argument to method
 );
 
