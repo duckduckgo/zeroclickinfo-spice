@@ -1,53 +1,53 @@
-total assets:	ASSETS
-current assets:	ASSETSC
-assets noncurrent:	ASSETSNC
-assets non-current:	ASSETSNC
-noncurrent assets:	ASSETSNC
-non-current assets:	ASSETSNC
-assets:	ASSETS
-cash:	CASHNEQ
-debt:	DEBT
-equity:	EQUITY
-liabilities:	LIABILITIES
-capital expenditure:	CAPEX
-depreciation:	DEPAMOR
-amortization:	DEPAMOR
 accretion:	DEPAMOR
-flow:	NCF
-exchange:	NCFX
-events:	EVENTS
-price:	PRICE
-dividends per share:	DPS
-dividends per basic share:	DPS
+amortization:	DEPAMOR
+assets non-current:	ASSETSNC
+assets noncurrent:	ASSETSNC
+assets:	ASSETS
+book value:	BVPS
+capital expenditure:	CAPEX
+cash:	CASHNEQ
+current assets:	ASSETSC
+current ratio:	CURRENTRATIO
+debt equity:	DE
+debt ratio:	DE
+debt:	DEBT
+depreciation:	DEPAMOR
+dilution ratio:	DILUTIONRATIO
+discontinued:	NETINCDIS
 dividends per basic common share:	DPS
-shares:	SHAREBAS
-earnings per share:	EPS
+dividends per basic share:	DPS
+dividends per share:	DPS
+earnings before tax:	EBT
 earnings per basic:	EPS
 earnings per diluted:	EPSDIL
+earnings per share:	EPS
+ebitda:	EBITDA
+ebt:	EBT
 eps:	EPS
-interest expense:	INTEXP
-net income common stock:	NETINCCMN
+equity ratio:	DE
+equity:	EQUITY
+events:	EVENTS
+exchange:	NCFX
+fcf:	FCF
+fcfps:	FCFPS
+flow:	NCF
+free cash flow per share:	FCFPS
+free cash flow:	FCF
 income:	NETINC
-discontinued:	NETINCDIS
+interest expense:	INTEXP
+liabilities:	LIABILITIES
+net income common stock:	NETINCCMN
+non-current assets:	ASSETSNC
+noncurrent assets:	ASSETSNC
 preferred dividends:	PREFDIVIS
+price to book:	PB
+price:	PRICE
 revenue:	REVENUE
 revenues:	REVENUE
 sales:	REVENUE
-weighted average shares:	SHARESWA
 shares weighted average:	SHARESWA
+shares:	SHAREBAS
 tax expense:	TAXEXP
-book value:	BVPS
-current ratio:	CURRENTRATIO
-equity ratio:	DE
-debt ratio:	DE
-debt equity:	DE
-dilution ratio:	DILUTIONRATIO
-ebitda:	EBITDA
-ebt:	EBT
-earnings before tax:	EBT
-free cash flow:	FCF
-fcf:	FCF
-free cash flow per share:	FCFPS
-fcfps:	FCFPS
-price to book:	PB
+total assets:	ASSETS
+weighted average shares:	SHARESWA
 working capital:	WORKINGCAPITAL

@@ -1,43 +1,42 @@
-
-family homes:	SINGLEFAMILYRESIDENCE
-family houses:	SINGLEFAMILYRESIDENCE
-single family:	SINGLEFAMILYRESIDENCE
-family residences:	SINGLEFAMILYRESIDENCE
-condos:	CONDOMINUM
-condominiums:	CONDOMINUM
-price per square foot:	MEDIANVALUEPERSQFT_ALLHOMES
-price per sq ft:	MEDIANVALUEPERSQFT_ALLHOMES
-ppsf:	MEDIANVALUEPERSQFT_ALLHOMES
 1 bedroom:	1BEDROOM
-one bedroom:	1BEDROOM
 2 bedroom:	2BEDROOM
-two bedroom:	2BEDROOM
-3 bedroom:	3BEDROOM
-three bedroom:	3BEDROOM
-4 bedroom:	4BEDROOM
-four bedroom:	4BEDROOM
-5 bedroom:	5BEDROOMORMORE
-five bedroom:	5BEDROOMORMORE
 2 bedrooms:	2BEDROOM
-two bedrooms:	2BEDROOM
+3 bedroom:	3BEDROOM
 3 bedrooms:	3BEDROOM
-three bedrooms:	3BEDROOM
+4 bedroom:	4BEDROOM
 4 bedrooms:	4BEDROOM
-four bedrooms:	4BEDROOM
+5 bedroom:	5BEDROOMORMORE
 5 bedrooms:	5BEDROOMORMORE
-five bedrooms:	5BEDROOMORMORE
 bottom tier:	BOTTOMTIER
 cheap homes:	BOTTOMTIER
 cheap houses:	BOTTOMTIER
+condominiums:	CONDOMINUM
+condos:	CONDOMINUM
+expensive homes:	TOPTIER
+expensive houses:	TOPTIER
+family homes:	SINGLEFAMILYRESIDENCE
+family houses:	SINGLEFAMILYRESIDENCE
+family residences:	SINGLEFAMILYRESIDENCE
+five bedroom:	5BEDROOMORMORE
+five bedrooms:	5BEDROOMORMORE
+four bedroom:	4BEDROOM
+four bedrooms:	4BEDROOM
+home prices:	ALLHOMES
+home values:	ALLHOMES
+homes:	ALLHOMES
+house prices:	ALLHOMES
+house values:	ALLHOMES
+houses:	ALLHOMES
 inexpensive homes:	BOTTOMTIER
 inexpensive houses:	BOTTOMTIER
 middle tier:	MIDDLETIER
+one bedroom:	1BEDROOM
+ppsf:	MEDIANVALUEPERSQFT_ALLHOMES
+price per sq ft:	MEDIANVALUEPERSQFT_ALLHOMES
+price per square foot:	MEDIANVALUEPERSQFT_ALLHOMES
+single family:	SINGLEFAMILYRESIDENCE
+three bedroom:	3BEDROOM
+three bedrooms:	3BEDROOM
 top tier:	TOPTIER
-expensive homes:	TOPTIER
-expensive houses:	TOPTIER
-home prices:	ALLHOMES
-house prices:	ALLHOMES
-home values:	ALLHOMES
-house values:	ALLHOMES
-homes:	ALLHOMES
-houses:	ALLHOMES
+two bedroom:	2BEDROOM
+two bedrooms:	2BEDROOM
