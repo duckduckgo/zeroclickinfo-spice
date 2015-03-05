@@ -9,7 +9,7 @@
      *  [ Pokemon::Data ]
      */
     env.ddg_spice_pokemon_data = function(api_result){
-        if (!api_result) {
+        if( !api_result ) {
             return Spice.failed('pokemon');
         }
 
@@ -31,11 +31,11 @@
                 };
             },
             onShow: function() {
-                if( api_result.descriptions.length > 0 ) {
-                    fetchDescription(api_result.descriptions).done(function(api_result) {
-                        Spice.getDOM(ID).find('.pokemon__description').html(api_result.description);
-                    });
-                }
+                fetchDescription(api_result.descriptions).done(function(api_result) {
+                    var description = api_result ? api_result.description : 'Description not available';
+
+                    Spice.getDOM(ID).find('.pokemon__description').html(description);
+                });
             },
             templates: {
                 group: 'info',
@@ -55,10 +55,14 @@
      * @return {jqXHR} the Promise object
      */
     function fetchDescription(descriptions) {
-        var randIndex = Math.floor(Math.random() * descriptions.length),
-            id = descriptions[randIndex].resource_uri.match(/(\d+)\/$/)[1];
-                
-        return $.getJSON(DESCRIPTION_ENDPOINT.replace('{id}', id));
+        if( descriptions.length > 0 ) {
+            var randIndex = Math.floor(Math.random() * descriptions.length),
+                id = descriptions[randIndex].resource_uri.match(/(\d+)\/$/)[1];
+
+            return $.getJSON(DESCRIPTION_ENDPOINT.replace('{id}', id));
+        } else {
+            return new jQuery.Deferred().resolve(null).promise();
+        }
     }
 
     /**
