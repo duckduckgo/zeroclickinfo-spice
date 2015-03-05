@@ -14,14 +14,14 @@ use DDG::Request; ddg_spice_test(
         location => test_location("de")
     ) => test_spice(
         '/js/spice/get_events/'
-        .'51.2000/6.4333',
+        .'51.2000/6.4333/Europe%2FBerlin',
         call_type => 'include',
         caller => 'DDG::Spice::GetEvents',
     ),
     # The DDG::Request is used in place of a query string, and isn't necessary to be used with every test passed to ddg_spice_test.
     'events near me' => test_spice(
-        '/js/spice/get_events/40.1246/-75.5385',
+        '/js/spice/get_events/40.1246/-75.5385/America%2FNew_York',
         call_type => 'include',
         caller => 'DDG::Spice::GetEvents',
-    ) );
+    ));
 done_testing;
