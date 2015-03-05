@@ -13,19 +13,20 @@ topics "computing","entertainment","food_and_drink","music","science","special_i
 #Triggers
 triggers startend => 'events near me';
                                                                                                                                                                                                                                   
-spice to => 'https://api.getevents.co/event?lat=$1&lng=$2&limit=10';
-# Extract the geo location from the result returned by the handler: two real numbers seperated by '/'.
-spice from => '(?:([-+]?[0-9]*\.?[0-9]+)\/([-+]?[0-9]*\.?[0-9]+)|)';
+spice to => 'https://api.getevents.co/ddg?lat=$1&lng=$2&timezone=$3' ;
+# Extract the geo location from the result returned by the handler: two real numbers seperated by '/' and after them a time zone also seperated by a '/'.
+spice from => '(?:([-+]?[0-9]*\.?[0-9]+)\/([-+]?[0-9]*\.?[0-9]+))\/(?:([a-zA-Z_]+%2F[a-zA-Z_]+))';
 spice wrap_jsonp_callback => 1;
 spice is_cached => 1;
 
 #Handle statement                                                                                                                                                                                                                                  
 handle remainder => sub {
     # Verifying that $loc and the relevant geo attributes (longitude and latitude) are valid.
-    return unless $loc && $loc->longitude && $loc->latitude;
+    return unless $loc && $loc->longitude && $loc->latitude && $loc->time_zone;
 
     my $lng = $loc->longitude;
     my $lat = $loc->latitude;
-    return $lat, $lng;
+    my $tz = $loc->time_zone;
+    return $lat, $lng, $tz;
 };
 1;

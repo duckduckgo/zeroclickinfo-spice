@@ -34,6 +34,8 @@
 
     function buildUrl(id) {
         return 'https://getevents.co/events/preview/'+id;
+        //For testing
+        // return 'https://staging.getevents.co/events/preview/'+id;
     }
     
     // callback
