@@ -5,6 +5,9 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
+# to run tests use the following command:
+# prove -Ilib t/Quandl.t
+
 ddg_spice_test(
 	[qw( DDG::Spice::Quandl::Fundamentals )],
     
