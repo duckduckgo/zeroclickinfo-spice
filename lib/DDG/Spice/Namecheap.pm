@@ -45,7 +45,7 @@ secondary_example_queries "namecheap http://example.com"; # a query that include
 category "programming";
 topics 'computing', 'geek', 'programming', 'sysadmin';
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Namecheap.pm";
-attribution github => ["tejas-manohar", "Tejas Manohar"],
+attribution github => ["tejasmanohar", "Tejas Manohar"],
             twitter => "tejasmanohar";
 
 # Triggers
