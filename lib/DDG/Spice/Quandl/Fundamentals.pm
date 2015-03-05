@@ -26,7 +26,7 @@ my @trigger_keys = sort { length $b <=> length $a } keys($trigger_hash);
 my %tickers = map { trim($_) => 0 } share('tickers.txt')->slurp;
 
 # defining our triggers
-triggers any => @trigger_keys;
+triggers startend => @trigger_keys;
 
 # to set an environmental variable:
 # duckpan env set <name> <value>
