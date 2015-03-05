@@ -29,23 +29,14 @@ ddg_spice_test(
 		caller => 'DDG::Spice::Quandl::Fundamentals',
 	),
     
-    # extra words at end
-	'aapl revenues is what i want' => test_spice(
-		'/js/spice/quandl/fundamentals/AAPL_REVENUE',
-		call_type => 'include',
-		caller => 'DDG::Spice::Quandl::Fundamentals',
-	),
+    # No results though 'a' is the Agilent ticker and 'debt' is an indicator trigger
+    'owe a debt' => undef, 
     
-    # extra words at beginning
-    'i want aapl revenues' => test_spice(
-		'/js/spice/quandl/fundamentals/AAPL_REVENUE',
-		call_type => 'include',
-		caller => 'DDG::Spice::Quandl::Fundamentals',
-	),
+    # No results for a single ticker alone
+	'aapl' => undef, 
     
-    'price of a coke' => undef, # No results though 'a' is the Agilent ticker
-	'aapl' => undef, # No results for a single ticker alone
-    'revenue' => undef, # No results for a single indicator alone
+    # No results for a single indicator alone
+    'revenue' => undef, 
 );
 
 
@@ -66,7 +57,10 @@ ddg_spice_test(
 		caller => 'DDG::Spice::Quandl::HomeValues',
 	),
     
-	'27510' => undef, # No results for a single region alone
-    'homes' => undef, # No results for a single trigger alone
+    # No results for a single region alone
+	'27510' => undef,
+    
+    # No results for a single trigger alone
+    'homes' => undef, 
 );
 done_testing;

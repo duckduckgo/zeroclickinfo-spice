@@ -39,7 +39,7 @@ spice proxy_cache_valid => "418 1d";
 handle sub {
 
     # split query phrase by spaces
-    my @words = split / /, $_;
+    my @words = split / /, lc $_;
     my $wordsSize = scalar @words;
     
     # exit if query is less than two words
@@ -54,6 +54,7 @@ handle sub {
 
     # exit if we do not have a valid ticker
     return unless $ticker;
+    
     
     # only return if we found a ticker in the search query
     my $query = lc $_;
