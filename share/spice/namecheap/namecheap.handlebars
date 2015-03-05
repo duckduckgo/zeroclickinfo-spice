@@ -1,12 +1,10 @@
 <div>
-{{#if domainAvailable}}
-    {{! The domain name can registered through Namecheap. }}
-    The domain '<strong>{{domainName}}</strong>' is available!
-    You can visit <a href="https://www.namecheap.com/domains/registration/results.aspx?domain={{domainName}}">Namecheap</a> to register the domain.
-{{else}}
-    {{! The domain name can be obtained through DomainAgents. }}
-    The domain '<strong>{{domainName}}</strong>' is not available.
-    You can visit <a href="https://domainagents.com/affiliate.php?domain={{domainName}}&code=nc" target="_blank">DomainAgents</a> to make an offer.
-{{/if}}
-<br />
+    The domain <a href="http://{{domainName}}">{{domainName}}</a>
+    {{#if domainAvailable}}
+        {{! The domain name can registered through Namecheap. }}
+         is available! <a href="https://www.namecheap.com/domains/registration/results.aspx?domain={{domainName}}">Register this domain at Namecheap</a>.
+    {{else}}
+        {{! The domain name can be obtained through DomainAgents. }}
+        is not available. <a href="https://domainagents.com/affiliate.php?domain={{domainName}}&code=nc">Make an offer to the owner at DomainAgents</a>.
+    {{/if}}
 </div>
