@@ -1,8 +1,6 @@
 (function (env) {
     "use strict";
     env.ddg_spice_namecheap = function(api_result){
-        // turns on/off debugging output
-        var is_debug = false;
 
         if (!api_result) {
             return Spice.failed('namecheap');
@@ -30,7 +28,7 @@
 
         Spice.add({
             id               : 'namecheap',
-            name             : 'Namecheap',
+            name             : 'Domain',
             data             : data,
             meta             : {
                 sourceName       : 'Namecheap',
@@ -38,8 +36,7 @@
             },
             normalize: function(item) {
                 return {
-                    title: item.domainName,
-                    subtitle: "Namecheap Domain Search"
+                    title: item.domainName
                 };
             },
             templates: {
@@ -50,5 +47,5 @@
                 }
             }
         });
-    }
+    };
 }(this));
