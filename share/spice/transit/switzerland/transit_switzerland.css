@@ -1,0 +1,54 @@
+.zci--switzerland .tile--switzerland {
+    text-align: center;
+    width: 13em;
+}
+
+@media screen and (max-device-width: 640px) and (orientation: portrait){
+	.is-mobile .zci--switzerland .tile--switzerland {
+	    width: 48%;
+	}
+}
+
+.tile--switzerland .switzerland__time {
+    font-size: 2.3em;
+    color: #333;
+    font-weight: 300;
+}
+
+.tile--switzerland .switzerland__details {
+    color: #999;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.tile--switzerland .switzerland__status-sep {
+    height: 12px;
+}
+
+.tile--switzerland .switzerland__sep-line {
+    background-color: #e1e1e1;
+    height: 1px;
+    width: 30px;
+    margin-bottom: 6px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.tile--switzerland .switzerland__status {
+    color: #666;
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
+.tile--switzerland .switzerland__badge {
+    background-color: #60AE50;
+    height: 12px;
+    border-radius: 6px;
+    padding: 0 6px;
+    display: inline-block;
+}
+
+.tile--switzerland .switzerland__delayed {
+    background-color: #eea43e;
+}

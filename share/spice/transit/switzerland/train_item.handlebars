@@ -1,0 +1,14 @@
+<div class="switzerland__time">{{departure_time}}</div>
+<div class="switzerland__details">
+    {{#if cancelled}}N/A{{else}}Arrives {{arrival_time}}{{/if}}<br/>
+    {{transfers}}<br/>
+    Platform {{platform}}
+</div>
+<div class="switzerland__status-sep">
+    <div class="switzerland__sep-line"></div>
+    <div class="switzerland__badge {{status_class}}"></div>
+    <div class="switzerland__sep-line"></div>
+</div>
+<div class="switzerland__status">
+    <div class="one-line">{{status}}</div>
+</div>
