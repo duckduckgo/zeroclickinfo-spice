@@ -158,7 +158,7 @@
                 };
             },
             templates: {
-                group: 'text',
+                group: 'list',
                 options:{
                     moreAt: true
                 }
