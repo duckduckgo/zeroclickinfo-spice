@@ -131,4 +131,24 @@ ddg_spice_test(
     ),
 );
 
+ddg_spice_test(
+    [qw( DDG::Spice::SeatGeek::Sports )],
+    'upcoming matches milan' => test_spice(
+        '/js/spice/seat_geek/sports/milan',
+        caller => 'DDG::Spice::SeatGeek::Sports'
+    ),
+    'events uefa' => test_spice(
+        '/js/spice/seat_geek/sports/uefa',
+        caller => 'DDG::Spice::SeatGeek::Sports'
+    ),
+    'tickets mba' => test_spice(
+        '/js/spice/seat_geek/sports/mba',
+        caller => 'DDG::Spice::SeatGeek::Sports'
+    ),
+    'schedule nlb' => test_spice(
+        '/js/spice/seat_geek/sports/nlb',
+        caller => 'DDG::Spice::SeatGeek::Sports'
+    ),
+);
+
 done_testing;
