@@ -86,19 +86,19 @@
      */
     function getInfoboxData() {
         var infoboxData = [{ heading: 'Info' }];
-        
-        if( this.egg_groups.length > 0 ) {
-            infoboxData.push({
-                label: 'Egg groups',
-                value: getCollectionNames.call(this, 'egg_groups').join(', ')
-            });
-        }
             
         if( this.evolutions.length > 0 ) {
             infoboxData.push({
                 label: 'Evolves into',
                 value: this.evolutions[0].to,
                 url: '?q=' + this.evolutions[0].to + '+pokemon'
+            });
+        }
+        
+        if( this.egg_groups.length > 0 ) {
+            infoboxData.push({
+                label: 'Egg groups',
+                value: getCollectionNames.call(this, 'egg_groups').join(', ')
             });
         }
         
