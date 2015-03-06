@@ -17,8 +17,13 @@ triggers startend => 'pill', 'rxinfo', 'capsule', 'tablet', 'softgel', 'caplets'
 spice to => 'http://rximage.nlm.nih.gov/api/rximage/1/rxbase?resolution=300&includeIngredients=true&parse=$1';
 spice wrap_jsonp_callback => 1;
 
+my $triggerWords = join "|", share('triggerWords.txt')->slurp(chomp => 1);
+
 handle remainder => sub {
-    return $_ if $_;
+    my $attributes = 0;
+    return unless $_;   
+    $attributes = 1 if (/$triggerWords/);
+    return $_,$attributes;
     return;
 };
 1;
