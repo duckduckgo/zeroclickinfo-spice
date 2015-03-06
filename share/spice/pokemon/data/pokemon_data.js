@@ -85,7 +85,7 @@
      * @return {Array}
      */
     function getInfoboxData() {
-        var infoboxData = [];
+        var infoboxData = [{ heading: 'Info' }];
         
         if( this.egg_groups.length > 0 ) {
             infoboxData.push({
@@ -101,8 +101,6 @@
                 url: '?q=' + this.evolutions[0].to + '+pokemon'
             });
         }
-        
-        infoboxData.push({ heading: 'Stats' });
         
         for( var prop in this ) {
             if( INFOBOX_PROPS.indexOf(prop) !== -1 && parseInt(this[prop], 10) ) {
