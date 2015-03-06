@@ -33,7 +33,7 @@
                     departure_time: format_time(item.from.departure),
                     platform: item.from.platform,
                     status: (item.from.delay) ? 'Delayed' : 'On time',
-                    status_class: (item.from.delay) ? 'septa__delayed' : '',
+                    status_class: (item.from.delay) ? 'switzerland__delayed' : '',
                     transfers: format_transfers(item.transfers),
                     url: 'http://transport.opendata.ch/examples/connections.php?from=' + from + '&to=' + to
                 }
