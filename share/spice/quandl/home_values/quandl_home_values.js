@@ -36,12 +36,12 @@
 		
         // adding in the previous date point date	
         var fromDate = new Date(result.data[1][0]);
-        var fromDateString = months[fromDate.getMonth()] + " " + fromDate.getDate() + ", " + fromDate.getFullYear();
+        var fromDateString = months[fromDate.getUTCMonth()] + " " + fromDate.getUTCDate() + ", " + fromDate.getFullYear();
         result.from_date = fromDateString;
         
         // reformatting the current data point date (to_date)
         var toDate = new Date(result.to_date);
-        var toDateString = months[toDate.getMonth()] + " " + toDate.getDate() + ", " + toDate.getFullYear();
+        var toDateString = months[toDate.getUTCMonth()] + " " + toDate.getUTCDate() + ", " + toDate.getFullYear();
         result.to_date = toDateString;
         
         // getting rounded percentage
