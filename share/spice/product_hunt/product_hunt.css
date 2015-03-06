@@ -1,0 +1,38 @@
+.tile.tile--producthunt {
+    width: 16em;
+}
+
+.tile--producthunt  .tile__body.has-foot {
+    padding-bottom: 0.7em;
+    height: 14em;
+}
+
+.tile--producthunt  .tile__title {
+    font-weight: 400;
+    margin-top: -0.2em;
+    margin-bottom: 0;
+}
+
+.tile--producthunt .tile__content {
+    height: 4em;
+    overflow: hidden;
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+
+.is-mobile .tile--producthunt .tile__content {
+    height: 4.6em;
+}
+
+.tile--producthunt .tile__domain {
+    color: #aaa;
+    margin-bottom: 0.25em;
+}
+
+.tile--producthunt .tile__votes {
+    color: #333;
+}
+
+.dark-header .tile--producthunt a {
+    color: #999;
+}
