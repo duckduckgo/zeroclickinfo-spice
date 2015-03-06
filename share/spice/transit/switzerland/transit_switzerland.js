@@ -31,6 +31,7 @@
                 return {
                     arrival_time: format_time(item.to.arrival),
                     departure_time: format_time(item.from.departure),
+                    name: item.sections[0].journey.name,
                     platform: item.from.platform,
                     status: (item.from.delay) ? 'Delayed' : 'On time',
                     status_class: (item.from.delay) ? 'switzerland__delayed' : '',
