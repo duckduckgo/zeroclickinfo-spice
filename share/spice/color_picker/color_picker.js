@@ -10,7 +10,7 @@
 
         //Maintains currently selected palette type so that it doesn't have to be read from
         //  $palette_select on every update.
-        var palette_type = 'adjacent';
+        var palette_type = 'analogous';
 
         //Maintains the current color in all supported formats.
         var current_color = get_initial_color(DDG.get_query());
@@ -334,7 +334,7 @@
                     saturation = [hsv.saturation, hsv.saturation, hsv.saturation];
                     value = [hsv.value, hsv.value, hsv.value];
                     break;
-                case 'adjacent': //fall through
+                case 'analogous': //fall through
                 default:
                     hue = [(hsv.hue + 30) % 360, (hsv.hue + 330) % 360, (hsv.hue + 180) % 360];
                     saturation = [hsv.saturation, hsv.saturation, hsv.saturation];
