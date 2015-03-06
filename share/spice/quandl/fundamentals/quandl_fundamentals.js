@@ -31,8 +31,18 @@
         var recentValue = result.data[0][1];
         var previousValue = result.data[1][1];
         
-        // adding in the previous date point date
-        result.from_date = result.data[1][0];
+        // month array to make string version of date
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		
+        // adding in the previous date point date	
+        var fromDate = new Date(result.data[1][0]);
+        var fromDateString = months[fromDate.getMonth()] + " " + fromDate.getDate() + ", " + fromDate.getFullYear();
+        result.from_date = fromDateString;
+        
+        // reformatting the current data point date (to_date)
+        var toDate = new Date(result.to_date);
+        var toDateString = months[toDate.getMonth()] + " " + toDate.getDate() + ", " + toDate.getFullYear();
+        result.to_date = toDateString;
         
         // getting rounded percentage
         var percentChange = 10000 * ((recentValue - previousValue) / Math.abs(previousValue));
