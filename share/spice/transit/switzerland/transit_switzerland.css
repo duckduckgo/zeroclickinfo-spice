@@ -24,7 +24,7 @@
 }
 
 .tile--switzerland .switzerland__sep-line {
-    background-color: #f2f2f2; /* silver */
+    background-color: #e1e1e1;
     height: 1px;
     width: 30px;
     margin-bottom: 6px;
@@ -39,7 +39,7 @@
 }
 
 .tile--switzerland .switzerland__badge {
-    background-color: #589e4d; /* green */
+    background-color: #60ae50;
     height: 12px;
     border-radius: 6px;
     padding: 0 6px;
@@ -47,5 +47,5 @@
 }
 
 .tile--switzerland .switzerland__delayed {
-    background-color: #e37151; /* red-light */
+    background-color: #eea43e;
 }
