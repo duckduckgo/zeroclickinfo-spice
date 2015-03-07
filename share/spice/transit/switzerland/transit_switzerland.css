@@ -9,6 +9,11 @@
 	}
 }
 
+.tile--switzerland .switzerland__time {
+    font-size: 2.3em;
+    font-weight: 300;
+}
+
 .tile--switzerland .switzerland__details {
     margin-top: 5px;
     margin-bottom: 10px;
