@@ -5,12 +5,10 @@
 
 .tile--septa .septa__time {
     font-size: 2.3em;
-    color: #333;
     font-weight: 300;
 }
 
 .tile--septa .septa__details {
-    color: #999;
     margin-top: 5px;
     margin-bottom: 10px;
 }
@@ -30,7 +28,6 @@
 }
 
 .tile--septa .septa__status {
-    color: #666;
     margin-top: 10px;
     margin-bottom: 2px;
 }
