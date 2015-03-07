@@ -10,7 +10,7 @@
 
         //Maintains currently selected palette type so that it doesn't have to be read from
         //  $palette_select on every update.
-        var palette_type = 'adjacent';
+        var palette_type = 'analogous';
 
         //Maintains the current color in all supported formats.
         var current_color = get_initial_color(DDG.get_query());
@@ -325,18 +325,18 @@
 
             switch (type) {
                 case 'triad':
-                    hue = [(hsv.hue + 210) % 360, (hsv.hue + 150) % 360, (hsv.hue + 180) % 360];
+                    hue = [hsv.hue, (hsv.hue + 120) % 360, (hsv.hue + 240) % 360];
                     saturation = [hsv.saturation, hsv.saturation, hsv.saturation];
                     value = [hsv.value, hsv.value, hsv.value];
                     break;
                 case 'tetrad':
-                    hue = [(hsv.hue + 30) % 360, (hsv.hue + 180) % 360, (hsv.hue + 210) % 360];
+                    hue = [(hsv.hue + 60) % 360, (hsv.hue + 180) % 360, (hsv.hue + 240) % 360];
                     saturation = [hsv.saturation, hsv.saturation, hsv.saturation];
                     value = [hsv.value, hsv.value, hsv.value];
                     break;
-                case 'adjacent': //fall through
+                case 'analogous': //fall through
                 default:
-                    hue = [(hsv.hue + 30) % 360, (hsv.hue + 330) % 360, (hsv.hue + 180) % 360];
+                    hue = [hsv.hue, (hsv.hue + 30) % 360, (hsv.hue + 330) % 360];
                     saturation = [hsv.saturation, hsv.saturation, hsv.saturation];
                     value = [hsv.value, hsv.value, hsv.value];
                     break;
