@@ -27,7 +27,13 @@
                     title: item.name,
                     image: getSprite.call(item),
                     infoboxData: getInfoboxData.call(item),
-                    subtitle: getCollectionNames.call(item, 'types').join(', ')
+                    subtitle: (function(evolutions) {
+                        if( evolutions.length > 0 ) {
+                            var html = 'Evolves into: <a href="?q={name}+pokemon">{name}</a>';
+
+                            return new Handlebars.SafeString(html.replace(/{name}/g, evolutions[0].to));
+                        }
+                    }(item.evolutions))
                 };
             },
             onShow: function() {
@@ -86,15 +92,14 @@
      */
     function getInfoboxData() {
         var infoboxData = [{ heading: 'Info' }];
-            
-        if( this.evolutions.length > 0 ) {
+
+        if( this.types.length > 0 ) {
             infoboxData.push({
-                label: 'Evolves into',
-                value: this.evolutions[0].to,
-                url: '?q=' + this.evolutions[0].to + '+pokemon'
+                label: 'Type',
+                value: getCollectionNames.call(this, 'types').join(', ')
             });
         }
-        
+
         if( this.egg_groups.length > 0 ) {
             infoboxData.push({
                 label: 'Egg groups',
