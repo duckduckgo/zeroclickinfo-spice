@@ -6,21 +6,23 @@
         return Spice.failed('whois');
     }
 
-    // get the search query
-    var script = $('[src*="/js/spice/whois/"]')[0],
-        source = $(script).attr("src"),
-        query = source.replace('/js/spice/whois/','')
+    DDG.require('moment.js', function(){       
+        // get the search query
+        var script = $('[src*="/js/spice/whois/"]')[0],
+            source = $(script).attr("src"),
+            query = source.replace('/js/spice/whois/','')
 
-    // all the data is stored in WhoisRecord
-    api_result = api_result.WhoisRecord;
+        // all the data is stored in WhoisRecord
+        api_result = api_result.WhoisRecord;
 
-    // fail if the domain name the api returns does not match the searched domain
-    if(api_result.domainName != query) {
-        return Spice.failed('whois');
-    }
-    
-    // decide which template to show show_available or show_whois
-    (is_domain_available(api_result)) ? show_available(api_result) : show_whois(api_result);  
+        // fail if the domain name the api returns does not match the searched domain
+        if(api_result.domainName != query) {
+            return Spice.failed('whois');
+        }
+        
+        // decide which template to show show_available or show_whois
+        (is_domain_available(api_result)) ? show_available(api_result) : show_whois(api_result);
+    });  
 }
 
  // show message saying that the domain is available.
@@ -113,16 +115,25 @@
         return api_result.dataError && api_result.dataError === 'MISSING_WHOIS_DATA';
     }
 
-    //Converts timestamp into local time using getDateFromString
+    //Converts timestamp into local time using moment.js
     function prettifyTimestamp(timestamp) {
         if(!timestamp) { return; }
-        var dateObj = DDG.getDateFromString(timestamp),
-            monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            day = dateObj.getDate(),
-            month = monthArr[dateObj.getMonth()+1],
-            year = dateObj.getFullYear();
-        if(day<10) {day='0'+day};
-        return month + " " + day + ", " + year;
+
+        //When using the expiresDateNormalized (example: 2020-09-14 00:00:00 UTC); need to use custom date formatting
+        //(if !api_result.updatedDate && !api_result.expiresDate) 
+
+        var customDate = moment(timestamp, "YYYY-MM-DD HH:mm:ss Z"), // formatting date: 2020-09-14 00:00:00 UTC
+            autoDate = moment(timestamp); // using auto parse
+
+        //Check which date is vaild
+        if(autoDate.isValid()) {
+            return autoDate.format("MMM MM, YYYY");
+        } else if(customDate.isValid()) {
+            return customDate.format("MMM MM, YYYY"); 
+        } else {
+            return;
+        }
+        
     }
 
     // Searches an array of objects for the first value
