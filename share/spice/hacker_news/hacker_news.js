@@ -32,8 +32,7 @@
                         num_comments: item.num_comments || 0,
                         post_domain: extractDomain(item.url),
                         date_from: moment(item.created_at_i * 1000).fromNow(),
-                        arrowUrl: DDG.get_asset_path('hacker_news','arrow_up.png'),
-                        id: item.objectID
+                        arrowUrl: DDG.get_asset_path('hacker_news','arrow_up.png')
                     };
                 },
                 templates: {
