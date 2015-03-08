@@ -127,9 +127,9 @@
 
         //Check which date is vaild
         if(autoDate.isValid()) {
-            return autoDate.format("MMM MM, YYYY");
+            return autoDate.format("MMM DD, YYYY");
         } else if(customDate.isValid()) {
-            return customDate.format("MMM MM, YYYY"); 
+            return customDate.format("MMM DD, YYYY"); 
         } else {
             return;
         }
