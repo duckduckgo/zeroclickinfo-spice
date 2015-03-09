@@ -26,6 +26,9 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Guidebox::Getid'
     ),
+    
+    'watch movies' => undef,
+    'watch series' => undef,
 );
 
 done_testing;
