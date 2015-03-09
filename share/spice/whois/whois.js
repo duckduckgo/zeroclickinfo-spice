@@ -46,7 +46,12 @@
         var shared_spice_data = get_shared_spice_data(api_result),
             nameServers,
             nsObj,
-            normalized
+            normalized;
+
+        // date formatting for moment.js
+        // normalized dates require dateUTCParse custom format
+        var dateOutputFormat = "MMM DD, YYYY",
+            dateUTCParse = "YYYY-MM-DD HH:mm:ss Z";
 
         // store the domain's various contacts in an array.
         // we'll iterate through this array in order, using
@@ -72,12 +77,14 @@
             var nameServers = [nsObj.hostNames[0].toLowerCase(),nsObj.hostNames[1].toLowerCase()].join(' ');
         }
 
-        // find updatedDate and expiresDate in registryData 
-        if(!api_result.updatedDate && !api_result.expiresDate) {
-            if(api_result.registryData.updatedDateNormalized && api_result.registryData.expiresDateNormalized) {
-                api_result.updatedDate = api_result.registryData.updatedDateNormalized;
-                api_result.expiresDate = api_result.registryData.expiresDateNormalized;
-            }
+        // find updatedDate and expiresDate in registryData
+        // use moment.js to parse dates
+        if(api_result.updatedDate && api_result.expiresDate) {
+            api_result.updatedDate = moment(api_result.updatedDate).format(dateOutputFormat);
+            api_result.expiresDate = moment(api_result.expiresDate).format(dateOutputFormat);
+        } else if(api_result.registryData.updatedDateNormalized && api_result.registryData.expiresDateNormalized) {
+            api_result.updatedDate = moment(api_result.registryData.updatedDateNormalized, dateUTCParse).format(dateOutputFormat);
+            api_result.expiresDate = moment(api_result.registryData.expiresDateNormalized, dateUTCParse).format(dateOutputFormat);
         }
 
         // organize the data
@@ -85,8 +92,8 @@
             'title': api_result.domainName,
             'Registered to': get_first_by_key(contacts, 'name'),
             'Email': get_first_by_key(contacts, 'email'),           
-            'Last Updated': prettifyTimestamp(api_result.updatedDate),
-            'Expires On': prettifyTimestamp(api_result.expiresDate),
+            'Last Updated': api_result.updatedDate,
+            'Expires On': api_result.expiresDate,
             'Registrar': api_result.registrarName,
             'Name Servers': nameServers
         };
@@ -113,27 +120,6 @@
     //Returns whether the domain is registered to someone, based on the API result.
     function is_domain_available(api_result) {
         return api_result.dataError && api_result.dataError === 'MISSING_WHOIS_DATA';
-    }
-
-    //Converts timestamp into local time using moment.js
-    function prettifyTimestamp(timestamp) {
-        if(!timestamp) { return; }
-
-        //When using the expiresDateNormalized (example: 2020-09-14 00:00:00 UTC); need to use custom date formatting
-        //(if !api_result.updatedDate && !api_result.expiresDate) 
-
-        var customDate = moment(timestamp, "YYYY-MM-DD HH:mm:ss Z"), // formatting date: 2020-09-14 00:00:00 UTC
-            autoDate = moment(timestamp); // using auto parse
-
-        //Check which date is vaild
-        if(autoDate.isValid()) {
-            return autoDate.format("MMM DD, YYYY");
-        } else if(customDate.isValid()) {
-            return customDate.format("MMM DD, YYYY"); 
-        } else {
-            return;
-        }
-        
     }
 
     // Searches an array of objects for the first value
