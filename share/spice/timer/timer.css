@@ -1,7 +1,3 @@
-.zci--timer #timer_container[hidden] {
-    display: none;
-}
-
 .zci--timer .timer__btn {
     height: 75px;
     width: 75px;
@@ -51,7 +47,6 @@
     width: 45%;
     height: 100%;
     line-height: 65px;
-    display: none; /* we'll display the divs in javascript */
     padding: 2%;
     border-radius: 2px;
     text-align: center;
@@ -101,7 +96,7 @@
     color: #bbb;
 }
 
-.zci--timer #timer_input {
+.zci--timer .timer_input {
     font-size: 2.5em;
 }
 
@@ -109,12 +104,12 @@
     float: right;
 }
 
-.zci--timer #timer_container {
+.zci--timer .timer_container {
     max-width: 500px;
     margin: 0 auto;
 } 
 
-.zci--timer #timer_display {
+.zci--timer .timer_display {
     padding-bottom: 0;
 }
 
@@ -159,12 +154,12 @@
 }
 
 /*dark theme*/
-.dark-header .zci--timer #reset_btn {
+.dark-header .zci--timer .reset_btn {
     color: #ccc;
     border-color: #ccc;
 }
 
-.dark-header .zci--timer #reset_btn[disabled],
+.dark-header .zci--timer .reset_btn[disabled],
 .dark-header .zci--timer .timer__btn.timer__start[disabled] {
     color: #484848;
     border-color: #484848;
@@ -193,7 +188,7 @@
         float: none;
     }
 
-    .zci--timer #timer_container {
+    .zci--timer .timer_container {
         height: 170px;
     }
 

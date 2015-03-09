@@ -7,50 +7,232 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 (function (env) {
     'use strict';
 
-    var started = false;
-    var MAX_TIME = 59999; // => 999m59s
+    // helper methods
+
+    // add zeros to beginning of string
+    function padZeros(n, len) {
+        var s = n.toString();
+        while (s.length < len) {
+            s = '0' + s;
+        }
+        return s;
+    }
+
+    // get time in seconds from query
+    function parseQueryForTime() {
+        var q = DDG.get_query().replace('timer', '').replace('online', '').replace('s','sec').replace('m','min'),
+            regex = new RegExp(/([\d]+\.?[\d]*) ?(min|sec|h)/),
+            time = 0,
+            match,
+            val,
+            unit;
+
+        while (true) {
+            match = regex.exec(q);
+            if (match) {
+                val = parseFloat(match[1]);
+                unit = match[2];
+                if (unit === 'h') {
+                    time += val * 60 * 60;
+                }
+                else if (unit === 'min') {
+                    time += val * 60;
+                }
+                else if (unit === 'sec') {
+                    val = Math.round(val);
+                    time += val;
+                }
+                q = q.replace(match[0], '');
+            } else {
+                break;
+            }
+        }
+
+        return (time <= MAX_TIME) ? time : MAX_TIME;
+    }
+
+    //go from a time in ms to human-readable
+    function formatTime(t) {
+        var hours, mins, secs;
+        t = Math.ceil(t / 1000);
+        hours = Math.floor(t / (60 * 60));
+        t = t % (60 * 60);
+        mins = Math.floor(t / 60);
+        t = t % 60;
+        secs = Math.floor(t);
+        if (hours > 0) {
+            return hours + ':' + padZeros(mins, 2) + ':' + padZeros(secs, 2);
+        }
+        return padZeros(mins, 2) + ':' + padZeros(secs, 2);
+    }
+
+    //play the alarm sound
+    function playLoopingSound() {
+        function requirePlayer(player) {
+            player.play('alarm-sound', soundUrl, {
+                autoPlay: true
+            });
+        }
+        DDG.require('audio', requirePlayer);
+    }
+
+    var MAX_TIME = 59999, // => 999m59s
+        soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
+        Timer;
+    
+    Timer = function (startingTime) {
+        this.running = false;
+
+        // dom setup
+        this.$element = $(Spice.timer.timer());
+
+        this.$minuteInput = this.$element.find(".minute_input");
+        this.$secondInput = this.$element.find(".second_input");
+        this.$timer = this.$element.find('.timer');
+        this.$timerInput = this.$element.find('.timer_input');
+        this.$timerDisplay = this.$element.find('.timer_display');
+        this.$resetBtn = this.$element.find('.reset_btn');
+        this.$startStopBtn = this.$element.find('.startstop_btn');
+
+        // interaction
+        this.$element.find("input").keyup(this.handleInput.bind(this));
+        this.$resetBtn.click(this.reset.bind(this));
+        this.$startStopBtn.click(this.start.bind(this));
+
+        // set starting time if it was passed
+        if (startingTime) {
+            this.setStartingTime(startingTime);
+
+            if (Math.floor(startingTime / 60) > 0) {
+                this.$minuteInput.val(Math.floor(startingTime / 60));
+            }
+            this.$secondInput.val(padZeros(startingTime % 60, 2));
+        } else {
+            this.setStartingTime(0);
+        }
+    };
+
+    $.extend(Timer.prototype, {
+        start: function () {
+            if (this.running) {
+                return this.pause();
+            }
+
+            this.running = true;
+
+            this.$timerInput.hide();
+            this.$timerDisplay.css('display', 'inline-block');
+            this.$resetBtn.prop('disabled', false);
+
+            this.$startStopBtn.removeClass('timer__start').addClass('timer__pause').html('PAUSE');
+        },
+        setStartingTime: function (startingTime) {
+            // starting time is in seconds, convert to ms
+            this.startingTime = startingTime * 1000;
+            this.timeLeft = startingTime * 1000;
+
+            // enable start button if time is > 0
+            this.$startStopBtn.prop('disabled', !startingTime);
+        },
+        getStartingTimeFromInput: function () {
+            var startMins = parseInt(this.$minuteInput.val(), 10) || 0,
+                startSecs = parseInt(this.$secondInput.val(), 10) || 0;
+
+            //invalid input
+            if (!startSecs && !startMins) {
+                return;
+            }
+            if (startMins > 999) {
+                startMins = 999;
+                startSecs = 59;
+            }
+            if (startSecs > 59) {
+                startSecs = 59;
+            }
+
+            this.setStartingTime(startMins * 60 + startSecs);
+        },
+        handleInput: function (e) {
+            //make sure the bang dropdown doesn't trigger
+            e.stopPropagation();
+
+            var keycode = e.which || e.keycode,
+                $input = $(e.currentTarget);
+
+            // replace any non-digit characters
+            $input.val($input.val().replace(/\D/g), '');
+
+            // update starting time
+            this.getStartingTimeFromInput();
+
+            // start if enter was pressed
+            if (keycode === 13) {
+                this.start();
+            }
+        },
+        update: function (timeDifference) {
+            if (!this.running) {
+                return;
+            }
+
+            this.timeLeft -= timeDifference;
+
+            if (this.timeLeft <= 0) {
+                this.stop();
+                playLoopingSound();
+            } else {
+                this.$timer.html(formatTime(this.timeLeft));
+            }
+        },
+        stop: function () {
+            this.running = false;
+            this.$timer.html('00:00');
+        },
+        reset: function () {
+            this.setStartingTime(0);
+
+            this.$timerDisplay.hide();
+            this.$timerInput.css('display', 'inline-block');
+
+            this.stop();
+
+            $('.timer__btn.timer__pause').removeClass('timer__pause').addClass('timer__start').html('START');
+
+            this.$resetBtn.prop('disabled', true);
+            this.$startStopBtn.prop('disabled', true);
+        },
+        pause: function () {
+            this.running = false;
+            this.$startStopBtn.removeClass('timer__pause').addClass('timer__start').html('START');
+        }
+    });
+
+    // TODO: changing of document title
+    // TODO: what to do with the modal? some other way of signaling that a timer's done?
 
     env.ddg_spice_timer = function(api_result) {
         
-        //prevent flash of unstyled content if spice shows before css loads
-        function waitForCss() {
-            var interval = setInterval(findTimerCss, 10),
-                tries = 0;
-
-            function findTimerCss() {
-                var el = $('link[href$="timer.css"]')[0];
-                tries++;
-              
-                if (el) {
-                    clearInterval(interval);
-                    if (el.sheet) {
-                        //already loaded, no need for 'load' event
-                        removeHiddenAttr();
-                    }
-                    else {
-                        //not yet loaded, attach a 'load' event
-                        $(el).load(removeHiddenAttr);
-                    }
-                }
-              
-                //give up after 30 seconds
-                else if (tries > 3000) {
-                    clearInterval(interval);
-                }
-            }
-        }
-      
-        waitForCss();
-        
-        function removeHiddenAttr() {
-            $('#timer_container').removeAttr('hidden');
-        }
-
         function onShow() {
-            if (!started) {
-                $('#timer_input').css('display', 'inline-block');
+            var lastUpdate = new Date().getTime(),
+                enteredTime = parseQueryForTime(),
+                oldTitle = document.title,
+                // start with one timer initially
+                firstTimer = new Timer(enteredTime),
+                timers = [firstTimer];
+
+            function updateTimers() {
+                var timeDifference = new Date().getTime() - lastUpdate;
+
+                for (var i = 0; i < timers.length; i++) {
+                    timers[i].update(timeDifference);
+                }
+
+                lastUpdate = new Date().getTime();
             }
-            $('#timer_buttons').css('display', 'inline-block');
+
+            Spice.getDOM("timer").prepend(firstTimer.$element);
+
+            setInterval(updateTimers, 100);
         }
 
         Spice.add({
@@ -63,7 +245,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 itemType: 'timer'
             },
             templates: {
-                detail: Spice.timer.timer,
+                detail: Spice.timer.timer_wrapper,
                 wrap_detail: 'base_detail'
             },
 
@@ -73,225 +255,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         });
         
 
-        //add zeros to the end of the number
-        function padZeros(n, len) {
-            var s = n.toString();
-            while (s.length < len) {
-                s = '0' + s;
-            }
-            return s;
-        }
-
-        function parseQueryForTime() {
-            var q = DDG.get_query().replace('timer', '').replace('online', '').replace('s','sec').replace('m','min'),
-                regex = new RegExp(/([\d]+\.?[\d]*) ?(min|sec|h)/),
-                time = 0,
-                match,
-                val,
-                unit;
-
-            while (true) {
-                match = regex.exec(q);
-                if (match) {
-                    val = parseFloat(match[1]),
-                    unit = match[2];
-                    if (unit === 'h') {
-                        time += val * 60 * 60;
-                    }
-                    else if (unit === 'min') {
-                        time += val * 60;
-                    }
-                    else if (unit === 'sec') {
-                        val = Math.round(val);
-                        time += val;
-                    }
-                    q = q.replace(match[0], '');
-                } else {
-                    break;
-                }
-            }
-
-            return (time <= MAX_TIME) ? time : MAX_TIME;
-        }
-
-        var time_left, last_update, update_int,
-            $minute_input = $('#minute_input'),
-            $second_input = $('#second_input'),
-            $timer = $('#timer'),
-            $timer_input = $('#timer_input'),
-            $timer_display = $('#timer_display'),
-            $reset_btn = $('#reset_btn'),
-            $startstop_btn = $('#startstop_btn'),
-            $done_modal = $('#done_modal'),
-            soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
-            enteredTime = parseQueryForTime(),
-            oldTitle = document.title;
-
-        //enter the time from the query into the boxes
-        if (enteredTime) {
-            if (Math.floor(enteredTime / 60) > 0) {
-                $minute_input.val(Math.floor(enteredTime / 60));
-            }
-            $second_input.val(padZeros(enteredTime % 60, 2));
-            $startstop_btn.prop('disabled', false);
-        }
-
-        //go from a time in ms to human-readable
-        function formatTime(t) {
-            var hours, mins, secs;
-            t = Math.ceil(t / 1000);
-            hours = Math.floor(t / (60 * 60));
-            t = t % (60 * 60);
-            mins = Math.floor(t / 60);
-            t = t % 60;
-            secs = Math.floor(t);
-            if (hours > 0) {
-                return hours + ':' + padZeros(mins, 2) + ':' + padZeros(secs, 2);
-            }
-            return padZeros(mins, 2) + ':' + padZeros(secs, 2);
-        }
-
-        //play the alarm sound
-        function playLoopingSound() {
-            function requirePlayer(player) {
-                function loop() {
-                    //play the sound
-                    player.play('alarm-sound', soundUrl, {
-                        autoPlay: true,
-                        onfinish: loop
-                    });
-                }
-                function stop() {
-                    player.stop('alarm-sound');
-                }
-                loop();
-                $('#done_ok_btn').click(stop); //stop it when the modal is dismissed
-            }
-            DDG.require('audio', requirePlayer);
-        }
-
-        //called every tenth of a second (for accuracy purposes)
-        //pop up the modal and play the sound if done
-        function updateTimer() {
-            time_left -= new Date().getTime() - last_update;
-            if (time_left <= 0) {
-                clearInterval(update_int);
-                $timer.html('00:00');
-                $done_modal.show();
-                playLoopingSound();
-                document.title = '[Done!] - ' + oldTitle;
-            } else {
-                $timer.html(formatTime(time_left));
-                //put the time left in the title (so people can switch tabs)
-                document.title = '[' + formatTime(time_left) + '] - ' + oldTitle;
-                last_update = new Date().getTime();
-            }
-        }
-
-        function startTimer() {
-            var start_mins, start_secs;
-            
-            if (!started) {
-                start_mins = parseInt($minute_input.val()) || 0;
-                start_secs = parseInt($second_input.val()) || 0;
-
-                $minute_input.val('');
-                $second_input.val('');
-
-                //invalid input
-                if (!start_secs && !start_mins) {
-                    return;
-                }
-                if (start_mins > 999) {
-                    start_mins = 999;
-                    start_secs = 59;
-                }
-                if (start_secs > 59) {
-                    start_secs = 59;
-                }
-                started = true;
-                time_left = start_mins * (60 * 1000) + start_secs * 1000;
-            }
-
-            last_update = new Date().getTime();
-            updateTimer();
-            update_int = setInterval(updateTimer, 100);
-
-            $timer_input.hide();
-            $timer_display.css('display', 'inline-block');
-            $reset_btn.prop('disabled', false);
-
-            $startstop_btn.removeClass('timer__start').addClass('timer__pause').html('PAUSE');
-        }
-
-        //parse the input if the timer was just set and start it
-        $('.btn-wrapper').on('click', '.timer__btn.timer__start', startTimer);
-        
-        function pauseTimer() {
-            clearInterval(update_int);
-            $startstop_btn.removeClass('timer__pause').addClass('timer__start').html('START');
-        }
-
-        //pause the timer
-        $('.btn-wrapper').on('click', '.timer__btn.timer__pause', pauseTimer);
-
-        function resetTimer() {
-            $timer_display.hide();
-            $timer_input.css('display', 'inline-block');
-            clearInterval(update_int);
-            started = false;
-            $('.timer__btn.timer__pause').removeClass('timer__pause').addClass('timer__start').html('START');
-            $reset_btn.prop('disabled', true);
-            $startstop_btn.prop('disabled', true);
-            document.title = oldTitle;
-        }
-
-        //reset everything
-        $reset_btn.click(resetTimer);
-
-        function dismissModal() {
-            $done_modal.hide();
-            resetTimer();
-        }
-
-        //dismiss the modal and reset when "OK" is pressed
-        $('#done_ok_btn').click(dismissModal);
-
-        function inputKeydown(event) {
-            //make sure the bang dropdown doesn't trigger
-            event.stopPropagation();
-
-            //start the timer if they hit enter
-            if (event.which == 13) {
-                startTimer();
-            }
-        }
-
-        $('.timer__time-input').keydown(inputKeydown);
-
-        function inputKeyup() {
-            //enable the button if a number was entered
-            if ($minute_input.val() || $second_input.val()) {
-                $startstop_btn.prop('disabled', false);
-            } else {
-                $startstop_btn.prop('disabled', true);
-            }
-        }
-        
-        $('.timer__time-input').keyup(inputKeyup);
-
-        //called when input is inserted, forcing numeric input
-        function numericOnly() {
-            var oldval = this.value,
-                newval = this.value.replace(/\D/g, '');
-
-            if (oldval !== newval) {
-                this.value = newval;
-            }
-        }
-
-        $('.timer__time-input').keyup(numericOnly).change(numericOnly).change(inputKeyup).click(numericOnly);
-    }
+    };
 }(this));
 
 ddg_spice_timer();
