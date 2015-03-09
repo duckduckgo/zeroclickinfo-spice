@@ -33,7 +33,7 @@ handle remainder_lc => sub {
     $_ =~ s/^upcoming\s//;
     
     # If query starts with any of these assume it's one of the other queries
-    return if ($_ =~ /^(in |at |near me)/);
+    return if ($_ =~ /^(in |at |near me|nearby)/);
 
     # Removes spaces from the beginning and end of the query
     $_ = trim($_);
