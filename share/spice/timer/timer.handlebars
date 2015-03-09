@@ -1,15 +1,28 @@
-<div class='timer_container'>
-	<div class='spice-pane' class='timer_input'>
-		<input type='text' placeholder='mm' class='timer__time-input minute_input' pattern='[0-9]*' maxlength='3'>:
-        <input type='text' placeholder='ss' class='second_input timer__time-input' pattern='[0-9]*' maxlength='2'>
-	</div>
-	<div class='spice-pane' class='timer_display'>
-		<span class='time timer'>00:00</span>
-	</div>
-	<div class='spice-pane spice-pane-right timer_buttons'>
-		<div class='btn-wrapper'>
-			<button class='timer__btn timer__start startstop_btn' disabled>START</button>
-			<button class='timer__btn reset_btn' disabled>RESET</button>
-		</div>
-	</div>
+<div class="timer_container tile">
+    <div class="play_pause">
+        <a href="">►</a>
+    </div>
+    <div class="display_container">
+        <div class="name">
+            <span class="name_display">Timer 1</span>
+            <input type="text" class="name_input" value="Timer 1"/>
+        </div>
+        <div class="time">
+            <div class="time_display">
+                <span class="hours_minutes">1:23</span>
+                <span class="seconds">45</span>
+            </div>
+            <div class="time_input">
+                <input type="text" maxlength="2" class="hours" value="01">
+                <span class="time_input_label">h</span>
+                <input type="text" maxlength="2" class="minutes" value="23">
+                <span class="time_input_label">m</span>
+                <input type="text" maxlength="2" class="seconds" value="45">
+                <span class="time_input_label">s</span>
+            </div>
+        </div>
+    </div>
+    <a href="" class="corner_btn reset">RESET</a>
+    <a href="" class="corner_btn add_minute">+1m</a>
+    <a href="" class="corner_btn close">&times;</a>
 </div>
