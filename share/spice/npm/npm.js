@@ -17,31 +17,56 @@
             normalize: function(item) {
                 var boxData = [{heading: 'Package Information:'}];
                 
-                boxData.push({
-                    label: "Author: " + item.author.name
-                });
+                if (item.author) {
+                    boxData.push({
+                        label: "Author",
+                        value: item.author.name
+                    });
+                }
+
+                if (item.homepage) {
+                    boxData.push({
+                        label: "Project Homepage",
+                        value: item.homepage
+                    });
+                }
+                
+                if (item.license) {
+                    boxData.push({
+                        label: "License",
+                        value: item.license
+                    });
+                }
+
+                if (item.repository) {
+                    boxData.push({
+                        label: "Repository",
+                        value: item.repository.url
+                    });
+                }
+                
+                if (item.engines) {
+                    boxData.push({
+                        label: "Engines",
+                        value: item.engines.node
+                    });
+                }
+                
+                if (item.dependencies) {      
+                    var dependencies = $.map(item.dependencies, function(val, key) {
+                        return key + " (" + val + ")";
+                    }).join(", ");
+
+                    boxData.push({
+                        label: "Dependencies",
+                        value: dependencies
+                    });
+                }
  
-                boxData.push({
-                    label: "Project Homepage: " + item.homepage
-                });
-
-                boxData.push({
-                    label: "Repository: " + item.repository.url
-                });
-
-                var dependencies = $.map(item.dependencies, function(val, key) {
-                    return key + " (" + val + ")";
-                }).join(", ");
-
-                boxData.push({
-                    label: "Dependencies: " + dependencies
-                });
-
                 return {
                     title: item.name + " " + item.version,
                     subtitle: item.description,
                     infoboxData: boxData,
-                    dependency: dependencies
                 }  
             },
 
