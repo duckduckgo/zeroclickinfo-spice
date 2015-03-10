@@ -12,28 +12,15 @@ secondary_example_queries "weather 12180";
 topics "everyday", "travel";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Forecast.pm";
 
-my @temperatures = qw(temp temperature);
-my @connectors   = qw(in for at);
-my @descriptors  = qw(current);
-
-my @temps_triggers;
-
-foreach my $temp (@temperatures) {
-    foreach my $conn (@connectors) {
-        push @temps_triggers, $temp . ' ' . $conn;    # temperature for, temp at
-        foreach my $desc (@descriptors) {
-            push @temps_triggers, join(' ', $desc, $temp, $conn), $desc . ' ' . $temp;    # current temperature in; current temp
-        }
-    }
-}
-
-my @forecast_words = qw(forecast forcast weather);
-my @triggers = (@forecast_words, @temps_triggers, 'meteo');
+my @forecast_words = qw(weather);
+my @triggers = (@forecast_words);
 triggers startend => @triggers;
 
 spice from => '([^/]*)/?([^/]*)';
 spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
 
+# skip synonyms for "weather" because of overtriggering
+my @weather_synonyms =qw(forecast);
 my @bbc_words     = qw(bbc shipping);
 my @finance_words = qw(sales finance financial market bond treasure pension fund tbill t-bill stock government strategy strategies analytics market);
 my @commodities_words = (
@@ -43,7 +30,7 @@ my @commodities_words = (
 );
 my @sports_words = map { ($_, $_ . ' game', $_ . ' match') } qw(football golf soccer tennis basketball hockey nba ncaa nfl nhl cricket);
 
-my $skip_words = join('|', @bbc_words, @finance_words, @commodities_words, @sports_words);
+my $skip_words = join('|', @bbc_words, @finance_words, @commodities_words, @sports_words, @weather_synonyms);
 my $forecasts = join('|', @forecast_words);
 my $skip_forecasts_re = qr/(?:\b(?:$skip_words)\s+(?:$forecasts)\b)|(?:\b(?:$forecasts)\s+(?:$skip_words)\b)/;
 
