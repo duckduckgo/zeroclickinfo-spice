@@ -13,24 +13,6 @@ my $loc = test_location('de');
 ddg_spice_test(
     ['DDG::Spice::Forecast'],
     DDG::Request->new(
-        query_raw => 'weather forecast',
-        location => $loc
-    ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
-        call_type => 'include',
-        caller => 'DDG::Spice::Forecast',
-        is_cached => 0
-    ),
-    DDG::Request->new(
-        query_raw => 'forecast',
-        location => $loc
-    ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
-        call_type => 'include',
-        caller => 'DDG::Spice::Forecast',
-        is_cached => 0
-    ),
-    DDG::Request->new(
         query_raw => 'weather',
         location => $loc
     ) => test_spice(
@@ -66,25 +48,10 @@ ddg_spice_test(
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
     ),
-    DDG::Request->new(
-        query_raw => 'forecast today',
-        location => $loc
-    ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
-        call_type => 'include',
-        caller => 'DDG::Spice::Forecast',
-        is_cached => 0
-    ),
     'weather for Troy, NY' => test_spice(
     	'/js/spice/forecast/troy%2C%20ny',
     	call_type => 'include',
     	caller => 'DDG::Spice::Forecast',
-        is_cached => 1
-    ),
-    'forecast for Troy, NY' => test_spice(
-        '/js/spice/forecast/troy%2C%20ny',
-        call_type => 'include',
-        caller => 'DDG::Spice::Forecast',
         is_cached => 1
     ),
     'weather Troy, NY' => test_spice(
@@ -93,51 +60,8 @@ ddg_spice_test(
         caller => 'DDG::Spice::Forecast',
         is_cached => 1
     ),
-    'forecast Troy, NY' => test_spice(
-        '/js/spice/forecast/troy%2C%20ny',
-        call_type => 'include',
-        caller => 'DDG::Spice::Forecast',
-        is_cached => 1
-    ),
     'Philadelphia weather' => test_spice(
     	'/js/spice/forecast/philadelphia',
-    	call_type => 'include',
-    	caller => 'DDG::Spice::Forecast',
-        is_cached => 1
-    ),
-    'Philadelphia weather forecast' => test_spice(
-    	'/js/spice/forecast/philadelphia',
-    	call_type => 'include',
-    	caller => 'DDG::Spice::Forecast',
-        is_cached => 1
-    ),
-    # Added test to ensure our financial (and other)
-    # regexes don't create false negatives
-    #
-    # "weather stockholm" was failing because
-    # "m/stock/" was true when we meant
-    # "m/\bstock\b" in the case of
-    # "blackberry stock forecast"
-    'weather stockholm' => test_spice(
-    	'/js/spice/forecast/stockholm',
-    	call_type => 'include',
-    	caller => 'DDG::Spice::Forecast',
-        is_cached => 1
-    ),
-    'temperature in stockholm' => test_spice(
-    	'/js/spice/forecast/stockholm',
-    	call_type => 'include',
-    	caller => 'DDG::Spice::Forecast',
-        is_cached => 1
-    ),
-    'current temp stockholm' => test_spice(
-    	'/js/spice/forecast/stockholm',
-    	call_type => 'include',
-    	caller => 'DDG::Spice::Forecast',
-        is_cached => 1
-    ),
-    'meteo paris' => test_spice(
-    	'/js/spice/forecast/paris',
     	call_type => 'include',
     	caller => 'DDG::Spice::Forecast',
         is_cached => 1
