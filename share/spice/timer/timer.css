@@ -1,13 +1,46 @@
 /* GENERAL */
 
+.zci--timer .zci__main {
+    max-width: 100%;
+}
+
+.zci--timer .zci__body {
+    padding-left: 0;
+}
+
 .zci--timer .timer_container {
     width: 305px;
     height: 140px;
+    display: block;
 }
 
 .zci--timer .play_pause,
+.zci--timer .timer_container,
+.zci--timer #add_timer_container,
 .zci--timer .display_container {
     float: left;
+}
+
+.zci--timer #add_timer_container {
+    display: block;
+    width: 140px;
+    height: 140px;
+    background-color: #e6e6e6;
+    border: none;
+}
+
+.zci--timer a#add_timer_btn {
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    border: 3px solid #dedede;
+    color: #626262;
+    text-decoration: none;
+    display: block;
+    margin: 10% 0 0 10%;
+    text-align: center;
+    font-size: 50px;
+    line-height: 2em;
 }
 
 /* PLAY/PAUSE BTN */
