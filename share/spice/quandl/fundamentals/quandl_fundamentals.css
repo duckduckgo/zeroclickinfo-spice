@@ -5,38 +5,38 @@
     Description: styles based on the 'Stocks' spice for visual consistency
 */
 
-#quandl h1.quandl-header {
+.quandl  h1.quandl-header {
     font-size: 1.4em;
     line-height: 1.2em;
     font-weight: 400;
-    margin-bottom: .25em;
+    margin-bottom: .5em;
 }
 
-#quandl .quandl-date {
+.quandl  .quandl-date {
     font-weight: 300;
     padding-left: 0;
     font-size: .95em;
     text-transform: none;
 }
 
-#quandl .quandl-values {
+.quandl  .quandl-values {
     font-size: 1.5em;
     display: inline-block;
 }
 
-#quandl .quandl-value {
+.quandl  .quandl-value {
     font-weight: 600;
 }
-#quandl .quandl-percent {
+.quandl  .quandl-percent {
     font-weight: 300;
 }
 
-#quandl .quandl-change-up .quandl-percent{
+.quandl  .quandl-change-up .quandl-percent{
     color: #60ae50;
 }
     
 /* green arrow up */
-#quandl .quandl-change-up .quandl-percent:before {
+.quandl  .quandl-change-up .quandl-percent:before {
     content: '';
     border: 3px solid transparent;
     border-bottom-color: #60ae50;
@@ -49,13 +49,13 @@
     position: relative;
     top: -5px;
 }
-#quandl .quandl-change-down .quandl-percent,
-#quandl .quandl-change-down {
+.quandl  .quandl-change-down .quandl-percent,
+.quandl  .quandl-change-down {
     color: #c9481c;
 }
     
 /* red arrow down */
-#quandl .quandl-change-down .quandl-percent:before {
+.quandl  .quandl-change-down .quandl-percent:before {
     content: '';
     border: 3px solid transparent;
     border-top-color: #c9481c;
@@ -67,8 +67,9 @@
     display: inline-block;
 }
 
-#quandl .quandl-from_date {
+.quandl  .quandl-from_date {
     display: inline-block;
 }
+
 
 
