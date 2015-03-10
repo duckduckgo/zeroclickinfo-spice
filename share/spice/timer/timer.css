@@ -65,6 +65,10 @@
     margin-top: -24px;
 }
 
+.zci--timer .timer_container.status_stopped .play_pause a {
+    color: #de5a2a;
+}
+
 /* TIMER NAME / TIME */
 
 .zci--timer .display_container {
