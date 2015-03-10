@@ -48,6 +48,8 @@
         var dashIndex = result.name.indexOf("-");
         var headerFirst =result.name.substring(0,dashIndex).trim();
         var headerSecond = result.name.substring(dashIndex + 1, result.name.length).trim();
+        var re = new RegExp(',', 'g');
+        headerSecond = headerSecond.replace(re, ', ');
         result.header = headerSecond;
         result.subheader = headerFirst;
         
