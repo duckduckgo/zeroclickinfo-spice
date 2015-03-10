@@ -46,12 +46,10 @@
         
         // splitting title into header and subheader
         var dashIndex = result.name.indexOf("-");
-        var header =result.name.substring(0,dashIndex);
-        header = header.trim();
-        var subheader = result.name.substring(dashIndex + 1, result.name.length);
-        subheader = subheader.trim();
-        result.header = header;
-        result.subheader = subheader;
+        var headerFirst =result.name.substring(0,dashIndex).trim();
+        var headerSecond = result.name.substring(dashIndex + 1, result.name.length).trim();
+        result.header = headerFirst;
+        result.subheader = headerSecond;
         
         // getting rounded percentage
         var percentChange = 10000 * ((recentValue - previousValue) / Math.abs(previousValue));
