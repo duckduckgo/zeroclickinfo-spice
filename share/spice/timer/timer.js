@@ -175,6 +175,11 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         handleStartStopClick: function (e) {
             e.preventDefault();
 
+            // total time hasn't been set yet - do nothing
+            if (this.totalTime === 0) {
+                return;
+            }
+
             if (this.running && !this.paused) {
                 this.pause();
             } else if (this.timeLeft === 0) {
@@ -253,6 +258,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
             this.$resetBtn.hide();
             this.$addMinuteBtn.hide();
+            this.$closeBtn.show();
 
             this.running = false;
 
@@ -292,6 +298,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         function onShow() {
             var lastUpdate = new Date().getTime(),
                 enteredTime = parseQueryForTime(),
+                $dom = Spice.getDOM("timer"),
+                $addTimerBtn = $dom.find("#add_timer_btn"),
                 oldTitle = document.title,
                 // start with one timer initially
                 firstTimer = new Timer(1, enteredTime),
@@ -318,9 +326,17 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 lastUpdate = new Date().getTime();
             }
 
-            Spice.getDOM("timer").prepend(firstTimer.$element);
+            firstTimer.$element.insertBefore($addTimerBtn.parent());
 
             setInterval(updateTimers, 100);
+
+            $addTimerBtn.click(function (e) {
+                e.preventDefault();
+
+                var timer = new Timer(timers.length + 1);
+                timer.$element.insertBefore($addTimerBtn.parent());
+                timers.push(timer);
+            });
         }
 
         Spice.add({
