@@ -51,21 +51,6 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         return (time <= MAX_TIME) ? time : MAX_TIME;
     }
 
-    //go from a time in ms to human-readable
-    function formatTime(t) {
-        var hours, mins, secs;
-        t = Math.ceil(t / 1000);
-        hours = Math.floor(t / (60 * 60));
-        t = t % (60 * 60);
-        mins = Math.floor(t / 60);
-        t = t % 60;
-        secs = Math.floor(t);
-        if (hours > 0) {
-            return hours + ':' + padZeros(mins, 2) + ':' + padZeros(secs, 2);
-        }
-        return padZeros(mins, 2) + ':' + padZeros(secs, 2);
-    }
-
     //play the alarm sound
     function playLoopingSound() {
         function requirePlayer(player) {
@@ -80,33 +65,55 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
         Timer;
     
-    Timer = function (startingTime) {
+    Timer = function (number, startingTime) {
         this.running = false;
+        this.paused = false;
+        this.name = "Timer " + number;
+        this.destroyed = false;
 
         // dom setup
         this.$element = $(Spice.timer.timer());
 
-        this.$minuteInput = this.$element.find(".minute_input");
-        this.$secondInput = this.$element.find(".second_input");
-        this.$timer = this.$element.find('.timer');
-        this.$timerInput = this.$element.find('.timer_input');
-        this.$timerDisplay = this.$element.find('.timer_display');
-        this.$resetBtn = this.$element.find('.reset_btn');
-        this.$startStopBtn = this.$element.find('.startstop_btn');
+        this.$nameDisplay = this.$element.find('.name_display');
+        this.$nameInput = this.$element.find(".name_input");
+
+        this.$timeInput = this.$element.find(".time_input");
+        this.$hourInput = this.$element.find(".time_input .hours");
+        this.$minuteInput = this.$element.find(".time_input .minutes");
+        this.$secondInput = this.$element.find(".time_input .seconds");
+
+        this.$timeDisplay = this.$element.find('.time_display');
+        this.$hoursMinutesDisplay = this.$element.find('.time_display .hours_minutes');
+        this.$secondsDisplay = this.$element.find('.time_display .seconds');
+
+        this.$resetBtn = this.$element.find('.corner_btn.reset');
+        this.$closeBtn = this.$element.find('.corner_btn.close');
+        this.$addMinuteBtn = this.$element.find('.corner_btn.add_minute');
+
+        this.$startStopBtn = this.$element.find('.play_pause a');
 
         // interaction
-        this.$element.find("input").keyup(this.handleInput.bind(this));
-        this.$resetBtn.click(this.reset.bind(this));
-        this.$startStopBtn.click(this.start.bind(this));
+        this.$nameInput.keyup(this.handleNameInput.bind(this));
+        this.$element.find(".time_input").keyup(this.handleTimeInput.bind(this));
+        this.$resetBtn.click(this.handleResetClick.bind(this));
+        this.$startStopBtn.click(this.handleStartStopClick.bind(this));
+        this.$addMinuteBtn.click(this.handleAddMinuteClick.bind(this));
+        this.$closeBtn.click(this.handleCloseClick.bind(this));
 
         // set starting time if it was passed
         if (startingTime) {
             this.setStartingTime(startingTime);
 
-            if (Math.floor(startingTime / 60) > 0) {
-                this.$minuteInput.val(Math.floor(startingTime / 60));
-            }
-            this.$secondInput.val(padZeros(startingTime % 60, 2));
+            var hours, minutes;
+
+            hours = Math.floor(startingTime / 3600);
+            startingTime %= 3600;
+            minutes = Math.floor(startingTime / 60);
+            startingTime %= 60;
+
+            this.$hourInput.val(padZeros(hours, 2));
+            this.$minuteInput.val(padZeros(minutes, 2));
+            this.$secondInput.val(padZeros(startingTime, 2));
         } else {
             this.setStartingTime(0);
         }
@@ -114,45 +121,83 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
     $.extend(Timer.prototype, {
         start: function () {
-            if (this.running) {
-                return this.pause();
+            // if this is the first time timer has started
+            // set the timer vals from the inputs
+            if (!this.running) {
+                this.getStartingTimeFromInput();
+                this.name = this.$nameInput.val();
+                this.running = true;
             }
 
-            this.running = true;
+            this.paused = false;
 
-            this.$timerInput.hide();
-            this.$timerDisplay.css('display', 'inline-block');
-            this.$resetBtn.prop('disabled', false);
+            this.$closeBtn.hide();
+            this.$timeInput.hide();
+            this.$timeDisplay.show();
+            this.$resetBtn.hide();
+            this.$addMinuteBtn.show();
 
-            this.$startStopBtn.removeClass('timer__start').addClass('timer__pause').html('PAUSE');
+            this.$startStopBtn.html('║');
         },
         setStartingTime: function (startingTime) {
             // starting time is in seconds, convert to ms
-            this.startingTime = startingTime * 1000;
+            this.totalTime = startingTime * 1000;
             this.timeLeft = startingTime * 1000;
 
             // enable start button if time is > 0
             this.$startStopBtn.prop('disabled', !startingTime);
         },
         getStartingTimeFromInput: function () {
-            var startMins = parseInt(this.$minuteInput.val(), 10) || 0,
+            var startHrs = parseInt(this.$hourInput.val(), 10) || 0,
+                startMins = parseInt(this.$minuteInput.val(), 10) || 0,
                 startSecs = parseInt(this.$secondInput.val(), 10) || 0;
 
-            //invalid input
-            if (!startSecs && !startMins) {
-                return;
-            }
-            if (startMins > 999) {
-                startMins = 999;
+            // make sure values are sane
+
+            // if over 99 hrs, set to max time possible
+            if (startHrs > 99) {
+                startHrs = 99;
+                startMins = 59;
                 startSecs = 59;
             }
+
+            // disallow more than 60 mins or secs
+            if (startMins > 59) {
+                startMins = 59;
+            }
+
             if (startSecs > 59) {
                 startSecs = 59;
             }
 
-            this.setStartingTime(startMins * 60 + startSecs);
+            this.setStartingTime(startHrs * 3600 + startMins * 60 + startSecs);
         },
-        handleInput: function (e) {
+        handleStartStopClick: function (e) {
+            e.preventDefault();
+
+            if (this.running && !this.paused) {
+                this.pause();
+            } else if (this.timeLeft === 0) {
+                this.destroy();
+            } else {
+                this.start();
+            }
+        },
+        handleNameInput: function (e) {
+            //make sure the bang dropdown doesn't trigger
+            e.stopPropagation();
+
+            var keycode = e.which || e.keycode,
+                $input = $(e.currentTarget);
+
+            // if enter, update timer name
+            if (keycode === 13) {
+                this.name = $input.val();
+                this.$nameInput.hide();
+                this.$nameDisplay.show();
+            }
+        },
+        handleTimeInput: function (e) {
             //make sure the bang dropdown doesn't trigger
             e.stopPropagation();
 
@@ -160,50 +205,82 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 $input = $(e.currentTarget);
 
             // replace any non-digit characters
-            $input.val($input.val().replace(/\D/g), '');
-
-            // update starting time
-            this.getStartingTimeFromInput();
+            $input.val($input.val().replace(/\D/g, ''));
 
             // start if enter was pressed
             if (keycode === 13) {
                 this.start();
             }
         },
+        renderTime: function () {
+            var hours, minutes, seconds;
+
+            seconds = this.timeLeft / 1000;
+
+            hours = Math.floor(seconds / 3600);
+
+            seconds %= 3600;
+
+            minutes = Math.floor(seconds / 60);
+            seconds = Math.floor(seconds % 60);
+
+            this.$hoursMinutesDisplay.html(padZeros(hours, 2) + ":" + padZeros(minutes, 2));
+            this.$secondsDisplay.html(padZeros(seconds, 2));
+        },
         update: function (timeDifference) {
-            if (!this.running) {
+            if (this.paused || !this.running) {
                 return;
             }
 
             this.timeLeft -= timeDifference;
 
             if (this.timeLeft <= 0) {
-                this.stop();
+                this.timeLeft = 0;
+                this.running = false;
                 playLoopingSound();
-            } else {
-                this.$timer.html(formatTime(this.timeLeft));
+                this.$startStopBtn.html("&times;");
             }
+
+            this.renderTime();
         },
-        stop: function () {
-            this.running = false;
-            this.$timer.html('00:00');
-        },
-        reset: function () {
+        handleResetClick: function (e) {
+            e.preventDefault();
+
             this.setStartingTime(0);
 
-            this.$timerDisplay.hide();
-            this.$timerInput.css('display', 'inline-block');
+            this.$timeDisplay.hide();
+            this.$timeInput.show();
 
-            this.stop();
+            this.$resetBtn.hide();
+            this.$addMinuteBtn.hide();
 
-            $('.timer__btn.timer__pause').removeClass('timer__pause').addClass('timer__start').html('START');
+            this.running = false;
 
-            this.$resetBtn.prop('disabled', true);
-            this.$startStopBtn.prop('disabled', true);
+            this.$startStopBtn.html('►');
+        },
+        handleAddMinuteClick: function (e) {
+            e.preventDefault();
+
+            this.timeLeft += 60 * 1000;
+            this.totalTime += 60 * 1000;
+
+            // trigger time re-render
+            // (in case it's paused)
+            this.renderTime();
+        },
+        handleCloseClick: function (e) {
+            e.preventDefault();
+
+            this.destroy();
         },
         pause: function () {
-            this.running = false;
-            this.$startStopBtn.removeClass('timer__pause').addClass('timer__start').html('START');
+            this.paused = true;
+            this.$startStopBtn.html('►');
+            this.$resetBtn.show();
+        },
+        destroy: function () {
+            this.$element.remove();
+            this.destroyed = true;
         }
     });
 
@@ -217,14 +294,25 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 enteredTime = parseQueryForTime(),
                 oldTitle = document.title,
                 // start with one timer initially
-                firstTimer = new Timer(enteredTime),
+                firstTimer = new Timer(1, enteredTime),
                 timers = [firstTimer];
 
             function updateTimers() {
                 var timeDifference = new Date().getTime() - lastUpdate;
 
+                // update all timers
                 for (var i = 0; i < timers.length; i++) {
                     timers[i].update(timeDifference);
+                }
+
+                // do a sweep for any destroyed timers
+                for (var i = 0; i < timers.length; i++) {
+                    if (timers[i].destroyed) {
+                        timers.splice(i, 1);
+                        // very very very small chance of two timers destroyed in the same loop
+                        // so just break
+                        break;
+                    }
                 }
 
                 lastUpdate = new Date().getTime();

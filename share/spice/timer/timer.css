@@ -118,10 +118,14 @@
 }
 
 .zci--timer .corner_btn.reset {
+    /* shown via js */
+    display: none;
     top: 10px;
 }
 
 .zci--timer .corner_btn.add_minute {
+    /* shown via js */
+    display: none;
     bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 50%;
@@ -137,5 +141,4 @@
 .zci--timer .corner_btn.close {
     top: 4px;
     font-size: 1.8em;
-    display: none;
 }
