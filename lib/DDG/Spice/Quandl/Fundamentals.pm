@@ -47,9 +47,10 @@ handle sub {
 
     # Only valid if ticker symbol is at beginning or end
     my $ticker;
-    if (exists $tickers{$words[0]}) {$ticker = uc $words[0];}
-    else {
-        if (exists $tickers{$words[$wordsSize - 1]}) {$ticker = uc $words[$wordsSize - 1];}
+    if (exists $tickers{$words[0]}) {
+        $ticker = uc $words[0];
+    } elsif (exists $tickers{$words[$wordsSize - 1]}) {
+       $ticker = uc $words[$wordsSize - 1];
     }
 
     # exit if we do not have a valid ticker
