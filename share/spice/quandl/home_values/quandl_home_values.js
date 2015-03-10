@@ -31,8 +31,8 @@
         var recentValue = result.data[0][1];
         var previousValue = result.data[1][1];
         
-       // month array to make string version of date
-        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        // month array to make string version of date
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 		
         // adding in the previous date point date	
         var fromDate = new Date(result.data[1][0]);
