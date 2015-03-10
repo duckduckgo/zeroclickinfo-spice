@@ -99,6 +99,10 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
         this.$startStopBtn = this.$element.find('.play_pause a');
 
+        this.$progressFill = this.$element.find('.fill');
+        this.$progressRotFill = this.$element.find('.rotated_fill');
+        this.$progressHalfFill = this.$element.find('.first_half_fill');
+
         // interaction
         this.$nameInput.keyup(this.handleNameInput.bind(this));
         this.$element.find(".time_input").keyup(this.handleTimeInput.bind(this));
@@ -224,6 +228,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 this.$closeBtn.hide();
                 this.$addMinuteBtn.show();
                 this.$startStopBtn.html("║");
+
+                this.$progressRotFill.show();
             } else if (this.$element.hasClass("status_paused")) {
                 this.$resetBtn.show();
                 this.$startStopBtn.html("►");
@@ -231,6 +237,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 this.$resetBtn.hide();
                 this.$addMinuteBtn.hide();
                 this.$startStopBtn.html("&times;");
+
+                this.$progressRotFill.hide();
             } else {
                 // initial state
                 this.$closeBtn.show();
@@ -242,6 +250,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 this.$nameDisplay.hide();
                 this.$addMinuteBtn.hide();
 
+                this.$progressRotFill.hide();
+
                 this.$startStopBtn.html("►");
             }
         },
@@ -250,6 +260,29 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
             this.$hoursMinutesDisplay.html(padZeros(time.hours, 2) + ":" + padZeros(time.minutes, 2));
             this.$secondsDisplay.html(padZeros(time.seconds, 2));
+
+            // do progress circle css rotation magic
+
+            var progress = 1 - this.timeLeftMs / this.totalTimeMs,
+                angle = 360 * progress;
+
+            // timer complete, everything goes red
+            // we don't need progress circles anymore
+            if (progress === 1) {
+                this.$progressHalfFill.hide();
+                return;
+            }
+
+            this.$progressRotFill.css("transform", "rotate(" + angle + "deg)");
+
+            // hide / display the other halves as necessary
+            if (angle > 180) {
+                this.$progressFill.css("clip", "auto");
+                this.$progressHalfFill.show();
+            } else {
+                this.$progressHalfFill.hide();
+                this.$progressFill.css("clip", "rect(0em, 7em, 7em, 3.5em)");
+            }
         },
         update: function (timeDifference) {
             if (!this.$element.hasClass("status_running")) {

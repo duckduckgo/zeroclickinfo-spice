@@ -51,6 +51,60 @@
     position: relative;
 }
 
+.zci--timer .play_pause .progress {
+    position: relative;
+    left: 1.5em;
+    top: 2em;
+    width: 6.2em;
+    height: 6.2em;
+    border: 0.4em solid #959595;
+    border-radius: 50%;
+}
+
+.zci--timer .timer_container.status_running .play_pause .progress,
+.zci--timer .timer_container.status_paused .play_pause .progress {
+    border-color: #eee;
+}
+
+.zci--timer .timer_container.status_stopped .play_pause .progress {
+    border-color: #de5a2a;
+}
+
+.zci--timer .play_pause .fill {
+    top: -0.4em;
+    left: -0.4em;
+    position: absolute;
+    width: 6.2em;
+    height: 6.2em;
+    clip: rect(0em, 7em, 7em, 3.5em);
+}
+
+/* this will be shown via JS for browsers that can handle it */
+.zci--timer .play_pause .first_half_fill,
+.zci--timer .play_pause .rotated_fill {
+    display: none;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 6.2em;
+    height: 6.2em;
+    border: 0.4em solid #4ab857;
+    border-radius: 50%;
+}
+
+.zci--timer .play_pause .rotated_fill {
+    clip: rect(0em, 3.5em, 7em, 0em);
+}
+
+.zci--timer .play_pause .first_half_fill {
+    clip: rect(0em, 7em, 7em, 3.5em);
+}
+
+.zci--timer .timer_container.status_paused .rotated_fill,
+.zci--timer .timer_container.status_paused .first_half_fill {
+    border-color: #959595;
+}
+
 .zci--timer .play_pause a {
     font-family: "ddg-serp-icons";
     color: #333;
@@ -63,6 +117,7 @@
     top: 50%;
     margin-left: -15px;
     margin-top: -24px;
+    z-index: 10;
 }
 
 .zci--timer .timer_container.status_stopped .play_pause a {
@@ -166,9 +221,6 @@
     bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    -webkit-border-radius: 50%;
     width: 3em;
     height: 3em;
     text-align: center;
