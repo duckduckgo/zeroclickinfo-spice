@@ -16,6 +16,16 @@
     padding-top: 0em;
 }
 
+.mapview-marker.mapview-marker-star,
+.mapview-marker.mapview-marker-star.has-focus {
+    background-image: url("1x.png") !important;
+    background-size: 30px 44px !important;
+
+    width: 30px !important;
+    height: 44px !important;
+    margin-left: -15px !important;
+}
+
 @media only screen
 and (max-device-width : 480px) {
     .zci--isslocation h5 {
