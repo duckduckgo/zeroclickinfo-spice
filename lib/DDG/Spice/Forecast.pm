@@ -12,21 +12,6 @@ secondary_example_queries "weather 12180";
 topics "everyday", "travel";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Forecast.pm";
 
-# my @temperatures = qw(temp temperature);
-# my @connectors   = qw(in for at);
-# my @descriptors  = qw(current);
-# 
-# my @temps_triggers;
-# 
-# foreach my $temp (@temperatures) {
-#     foreach my $conn (@connectors) {
-#         push @temps_triggers, $temp . ' ' . $conn;    # temperature for, temp at
-#         foreach my $desc (@descriptors) {
-#             push @temps_triggers, join(' ', $desc, $temp, $conn), $desc . ' ' . $temp;    # current temperature in; current temp
-#         }
-#     }
-# }
-
 my @forecast_words = qw(weather);
 my @triggers = (@forecast_words);
 triggers startend => @triggers;
