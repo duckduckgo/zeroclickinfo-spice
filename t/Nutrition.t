@@ -37,23 +37,8 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Nutrition',
     ),
-    'is there iron in turkey?' => test_spice(
-        '/js/spice/nutrition/turkey',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
-    'amount of fiber in kale' => test_spice(
-        '/js/spice/nutrition/kale',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
     'number of calories from fat in a banana' => test_spice(
         '/js/spice/nutrition/banana',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
-    'monounsaturated fat in chicken breast' => test_spice(
-        '/js/spice/nutrition/chicken%20breast',
         call_type => 'include',
         caller => 'DDG::Spice::Nutrition',
     ),
