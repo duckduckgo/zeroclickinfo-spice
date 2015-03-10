@@ -44,6 +44,15 @@
         var toDateString = months[toDate.getUTCMonth()] + " " + toDate.getUTCDate() + ", " + toDate.getFullYear();
         result.to_date = toDateString;
         
+        // splitting title into header and subheader
+        var dashIndex = result.name.indexOf("-");
+        var header =result.name.substring(0,dashIndex);
+        header = header.trim();
+        var subheader = result.name.substring(dashIndex + 1, result.name.length);
+        subheader = subheader.trim();
+        result.header = header;
+        result.subheader = subheader;
+        
         // getting rounded percentage
         var percentChange = 10000 * ((recentValue - previousValue) / Math.abs(previousValue));
         percentChange = Math.round(percentChange);
