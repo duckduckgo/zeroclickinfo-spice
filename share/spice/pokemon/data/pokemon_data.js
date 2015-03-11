@@ -26,6 +26,7 @@
                 return {
                     title: item.name,
                     image: getSprite.call(item),
+                    imageIsLogo: true,
                     infoboxData: getInfoboxData.call(item),
                     subtitle: (function(evolutions) {
                         if( evolutions.length > 0 ) {
