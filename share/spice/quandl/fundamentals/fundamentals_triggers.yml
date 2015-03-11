@@ -1,0 +1,53 @@
+accretion:	DEPAMOR
+amortization:	DEPAMOR
+assets non-current:	ASSETSNC
+assets noncurrent:	ASSETSNC
+assets:	ASSETS
+book value:	BVPS
+capital expenditure:	CAPEX
+cash:	CASHNEQ
+current assets:	ASSETSC
+current ratio:	CURRENTRATIO
+debt equity:	DE
+debt ratio:	DE
+debt:	DEBT
+depreciation:	DEPAMOR
+dilution ratio:	DILUTIONRATIO
+discontinued:	NETINCDIS
+dividends per basic common share:	DPS
+dividends per basic share:	DPS
+dividends per share:	DPS
+earnings before tax:	EBT
+earnings per basic:	EPS
+earnings per diluted:	EPSDIL
+earnings per share:	EPS
+ebitda:	EBITDA
+ebt:	EBT
+eps:	EPS
+equity ratio:	DE
+equity:	EQUITY
+events:	EVENTS
+exchange:	NCFX
+fcf:	FCF
+fcfps:	FCFPS
+flow:	NCF
+free cash flow per share:	FCFPS
+free cash flow:	FCF
+income:	NETINC
+interest expense:	INTEXP
+liabilities:	LIABILITIES
+net income common stock:	NETINCCMN
+non-current assets:	ASSETSNC
+noncurrent assets:	ASSETSNC
+preferred dividends:	PREFDIVIS
+price to book:	PB
+price:	PRICE
+revenue:	REVENUE
+revenues:	REVENUE
+sales:	REVENUE
+shares weighted average:	SHARESWA
+shares:	SHAREBAS
+tax expense:	TAXEXP
+total assets:	ASSETS
+weighted average shares:	SHARESWA
+working capital:	WORKINGCAPITAL
