@@ -6,12 +6,3 @@
     display: block;
     padding-left: 0;
 }
-
-.zci--pokemon .zci__img-wrap--info {
-    border: 1px solid #e3e3e3;
-    background: #ffffff;
-}
-
-.zci--pokemon .zci__img-wrap--info img {
-    margin: 1em;
-}
