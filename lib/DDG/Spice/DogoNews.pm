@@ -25,8 +25,9 @@ my @triggers = (
 "kids current events articles", 
 "kids current events news",
 
-"kids ela",
 "kids news", 
+"kids news article", 
+"kids news articles", 
 
 "news article for children", 
 "news article for kids", 
@@ -50,24 +51,38 @@ my @triggers = (
 
 "children's news", 
 
-"current event for kids", 
-"current event articles for kids", 
-"current events for kids", 
-"current events articles for kids", 
+"current event article",
 
-"current event for children", 
 "current event article for children", 
-"current events for children", 
-"current events articles for children", 
-
-"current event for students", 
-"current event articles for students", 
-"current events for students", 
-"current events articles for students", 
+"current event article for kids", 
+"current event article for students", 
 
 "current event articles",
-"current events", 
-"current events articles"
+
+"current event articles for children", 
+"current event articles for kids", 
+"current event articles for students", 
+
+"current event for children", 
+"current event for kids", 
+"current event for students", 
+
+"current events article for children", 
+"current events article for kids", 
+"current events article for students", 
+
+"current events articles",
+
+"current events articles for children", 
+"current events articles for kids", 
+"current events articles for students", 
+
+"current events for children", 
+"current events for kids", 
+"current events for students", 
+
+"current event",
+"current events"
 );
 triggers startend => @triggers;
 
