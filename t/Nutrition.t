@@ -17,48 +17,8 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Nutrition',
     ),
-    'protein in tilapia' => test_spice(
-        '/js/spice/nutrition/tilapia',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
-    'vitamin c in an orange' => test_spice(
-        '/js/spice/nutrition/orange',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
-    'trans-fat in a ribeye steak' => test_spice(
-        '/js/spice/nutrition/ribeye%20steak',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
-    'how many carbs in brown rice' => test_spice(
-        '/js/spice/nutrition/brown%20rice',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
     'number of calories from fat in a banana' => test_spice(
         '/js/spice/nutrition/banana',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
-    'total calcium in glass of milk' => test_spice(
-        '/js/spice/nutrition/glass%20of%20milk',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
-    'are there carbs in mashed potatoes?' => test_spice(
-        '/js/spice/nutrition/mashed%20potatoes',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
-    'how much sugar is in blueberries?' => test_spice(
-        '/js/spice/nutrition/blueberries',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
-    'saturated fat in spam' => test_spice(
-        '/js/spice/nutrition/spam',
         call_type => 'include',
         caller => 'DDG::Spice::Nutrition',
     ),
@@ -66,12 +26,7 @@ ddg_spice_test(
         '/js/spice/nutrition/tofu',
         call_type => 'include',
         caller => 'DDG::Spice::Nutrition',
-    ),
-    'tofu how much protein' => test_spice(
-        '/js/spice/nutrition/tofu',
-        call_type => 'include',
-        caller => 'DDG::Spice::Nutrition',
-    ),
+    )
 );
 
 done_testing;
