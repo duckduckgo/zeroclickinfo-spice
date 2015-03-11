@@ -17,7 +17,7 @@ attribution github => ['https://github.com/andrey-p','Andrey Pissantchev'];
 my $attribute_regex = qr/(?^:(?^:(?:c(?:a(?:l(?:ories(?: from fat)?|cium|s)|rb(?:ohydrate)?s)|holesterol)|p(?:olyunsaturated fat|rotein)|trans(?: fat(?:ty acid)?|-fat)|s(?:aturated fat|odium|ugar)|monounsaturated fat|dietary fiber|f(?:iber|at)|vitamin [ac]|kcals|iron)))/;
 my $question_regex = qr/(?:how|what)?\s?(?:'s |is |are |many |much )?(?:the |there )?(?:total |amount of |number of )?/;
 
-triggers any => 'kcals', 'cals','calories','dietary fiber','trans-fat','trans fat','trans fatty acid','calories from fat','saturated fat','monosaturated fat','polyunsaturated fat','cholesterol','sodium','sugar','protein','carbs','carbohydrates','vitamin c','vitamin a','calcium';
+triggers any => 'calories';
 
 # brand_id is hard coded to USDA for now. Eventually could support searches across brands (i.e. packaged goods or restaurants, but requires multiple
 # calls to their API so waiting for now):
