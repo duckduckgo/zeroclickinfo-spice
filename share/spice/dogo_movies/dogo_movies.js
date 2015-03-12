@@ -17,7 +17,7 @@
             data: api_result.results,
             meta: {
                 sourceName: 'DOGOmovies',
-                sourceUrl: 'http://www.dogomovies.com/search?query=' + encodeURIComponent(query),
+                sourceUrl: 'http://www.dogomovies.com/search?query=' + encodeURIComponent(query) + '&ref=ddg',
                 itemType: 'kids movies'
             },
             normalize: function(item) {
