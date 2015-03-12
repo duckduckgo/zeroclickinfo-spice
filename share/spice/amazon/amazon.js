@@ -47,7 +47,7 @@
                     if (item.$html) {
                         var $ratingsWrapper = item.$html.find('.tile__rating,.detail__rating');
                         if ($ratingsWrapper && $ratingsWrapper.length) {
-                            $ratingsWrapper.html(Handlebars.helpers.starsAndReviews(item.rating, item.reviewCount, item.url_review, true));
+                            $ratingsWrapper.html(Handlebars.helpers.starsAndReviews(item.rating, parseInt(item.reviewCount, 10), item.url_review, true));
                         }
                     }
                 });
