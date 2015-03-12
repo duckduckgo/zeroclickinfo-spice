@@ -13,7 +13,7 @@
     
         Spice.add({
             id: 'dogo_news',
-            name: 'DOGOnews',
+            name: 'Kids News',
             data: api_result.results,
             meta: {
                 sourceName: 'DOGOnews',
@@ -28,7 +28,7 @@
                     img_m: item.thumb,
                     heading: item.name,
                     rating: 'Unrated',
-                    ratingText: (item.comments_count || 0) + ' Comments',
+                    ratingText: (item.comments_count || 0) + ' comments',
                     url: item.url,
                     abstract: Handlebars.helpers.ellipsis(item.summary, 200)
                 };

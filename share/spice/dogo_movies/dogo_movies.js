@@ -13,7 +13,7 @@
 
         Spice.add({
             id: 'dogo_movies',
-            name: 'DOGOmovies',
+            name: 'Kids Movies',
             data: api_result.results,
             meta: {
                 sourceName: 'DOGOmovies',
@@ -31,14 +31,14 @@
                     img_m: thumb,
                     heading: item.name,
                     rating: rating,
-                    ratingText: rating,
+                    ratingText: (item.ratings && item.ratings.count ? item.ratings.count : 0) + ' reviews',
                     reviewCount: (item.ratings && item.ratings.count ? item.ratings.count : 0),
                     url: item.url,
                     abstract: Handlebars.helpers.ellipsis(item.summary, 200)
                 };
             },
             templates: {
-                group: 'products',
+                group: 'media',
                 options: {
                     variant: 'poster',
                     buy: Spice.dogo_movies.buy,
