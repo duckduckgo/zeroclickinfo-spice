@@ -17,7 +17,7 @@
             data: api_result.results,
             meta: {
                 sourceName: 'DOGOnews',
-                sourceUrl: 'http://www.dogonews.com/search?query=' + encodeURIComponent(query),
+                sourceUrl: 'http://www.dogonews.com/search?query=' + encodeURIComponent(query) + '&ref=ddg',
                 itemType: 'kids news articles'
             },
             normalize: function(item) {

@@ -17,7 +17,7 @@
             data: api_result.results,
             meta: {
                 sourceName: 'DOGObooks',
-                sourceUrl: 'http://www.dogobooks.com/search?query=' + encodeURIComponent(query),
+                sourceUrl: 'http://www.dogobooks.com/search?query=' + encodeURIComponent(query) + '&ref=ddg',
                 itemType: 'kids books'
             },
             normalize: function(item) {
