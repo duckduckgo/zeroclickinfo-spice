@@ -11,46 +11,23 @@ topics "entertainment", "everyday";
 category "entertainment";
 attribution github => ['https://github.com/dogomedia','DOGO Media'];
 
-my @triggers = ( 
-"dogobooks", 
-"dogo books", 
-
-"children's book", 
-"children's book review", 
-"children's book reviews", 
-"children's books", 
-
-"kids book",
-"kids book review",
-"kids book reviews", 
-"kids books",
-
-"book for children", 
-"book for kids", 
-"book kids review", 
-"book kids reviews", 
-"book review for kids", 
-"book review for children", 
-"book reviews for kids", 
-"book reviews for children", 
-
-"books for children", 
-"books for kids", 
-
-"book rating", 
-"book ratings",
-
-"book review", 
-"book reviews"
-);
-triggers startend => @triggers;
+triggers any => "dogobooks", "dogo books", "book", "books";
 
 spice to => 'http://api.dogomedia.com/api/v2/books/search.json?query=$1&api_key={{ENV{DDG_SPICE_DOGO_BOOKS_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
+    # Handles queries like 'kids books', 'books for children',
+    return $_ if $_ =~ /(kid|children)/i;
+    
+    # Handles queries like 'harry potter book reviews', 'hunger games book ratings'
+    return $_ if $_ =~ /(review|rating)/i; 
+
+    # Handles queries like 'dogobooks', 'dogo books'
+    return "popular" if $_ eq '';
+    
     return $_ if $_;
-    return "popular";
+    return;
 };
 
 1;
