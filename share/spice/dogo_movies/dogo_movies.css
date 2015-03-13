@@ -110,6 +110,12 @@
     max-width: 100%;
 }
 
+.zci--dogo_movies .btn.btn--primary {
+    background:#f7a000;
+    color:white;
+    border-bottom:none;
+}
+
 .is-mobile .zci--dogo_movies .btn.btn--primary {
     position: absolute;
     bottom: 1em;
@@ -117,4 +123,34 @@
 
 .is-mobile .zci.is-active {
     padding-bottom: 0em;
+}
+
+.zci--dogo_movies .dogo-badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.zci--dogo_movies .dogo-badge {
+  display: inline-block;
+  font-weight: bold;
+  color: #fff;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+  background-color: #999;
+}
+
+.zci--dogo_movies .dogo-badge-info {
+  background-color: #3a87ad;
+}
+
+.zci--dogo_movies .dogo-badge-success {
+  background-color: #468847;
+}
+
+.zci--dogo_movies .dogo-badge-warning {
+  background-color: #f89406;
 }
