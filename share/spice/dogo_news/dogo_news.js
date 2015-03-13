@@ -21,11 +21,12 @@
                 itemType: 'kids news articles'
             },
             normalize: function(item) {
+                var thumb = item.hi_res_thumb || item.thumb;
                 return {
                     title: item.name,
-                    image: item.thumb,
-                    img: item.thumb,
-                    img_m: item.thumb,
+                    image: thumb,
+                    img: thumb,
+                    img_m: thumb,
                     heading: item.name,
                     rating: 'Unrated',
                     ratingText: (item.comments_count || 0) + ' comments',
