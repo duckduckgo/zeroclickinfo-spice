@@ -19,8 +19,13 @@
                     return Spice.failed('upc');
                 }
 
+                var alias = (item.alias != '') ? item.alias : item.itemname;
+                var avg_price = (item.avg_price != '') ? item.avg_price : "0";
+                var rate_up = (item.rate_up != '') ? item.rate_up : "0";
+                var rate_down = (item.rate_down != '') ? item.rate_down : "0";
+
                 return {
-                    description: '"' + item.alias + '" has average price $' + item.avg_price + ', with ' + item.rate_up + ' upvotes and ' + item.rate_down + ' downvotes.',
+                    description: '"' + alias + '" has average price $' + avg_price + ', with ' + rate_up + ' upvotes and ' + rate_down + ' downvotes.',
                     title: item.itemname
                 };
             },
