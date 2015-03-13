@@ -1,5 +1,16 @@
 <img src="//cdn.dogomedia.com/assets/dogomovies-6959aaba3ab072822498c8e557a0c19a.png" alt="DOGOmovies"/>
 <p>
-    <span class="dogo-badge dogo-badge-info">{{ratings.count}} ratings</span>
+    {{{starRating ratings.score}}}<span class="dogo-badge dogo-badge-info">{{ratings.count}} ratings</span>
     <span class="dogo-badge dogo-badge-success">{{comments_count}} reviews</span>
+    <span class="movie--runtime">
+      {{#if runtime}}
+        <span>Run Time: {{time runtime}}</span>
+      {{/if}}
+      {{#and runtime mpaa}}
+        <span class="detail__separator"> | </span>
+      {{/and}}
+      {{#if mpaa}}
+        <span>{{mpaa}}</span>
+      {{/if}}
+    </span>
 </p>

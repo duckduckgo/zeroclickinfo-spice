@@ -24,7 +24,7 @@
                 var defaultThumb = '//cdn.dogomedia.com/assets/movies/poster_default-a477e7ae72341ae25e2036d6f4708f27.png';
                 var thumb = item.thumb && 0 < item.thumb.length ? item.thumb : defaultThumb;
                 var rating = (item.ratings && item.ratings.score ? item.ratings.score : 0);
-                return {
+                var itemJson = {
                     title: item.name,
                     image: thumb,
                     img: thumb,
@@ -36,6 +36,12 @@
                     url: item.url,
                     abstract: Handlebars.helpers.ellipsis(item.summary, 200)
                 };
+                
+                if (item.mpaa) {
+                    itemJson.mpaa = item.mpaa.toUpperCase();
+                }
+                
+                return itemJson;
             },
             templates: {
                 group: 'media',
@@ -47,4 +53,16 @@
             }
         });
     };
+    
+    // Convert minutes to hr. min. format.
+    // e.g. {{time 90}} will return 1 hr. 30 min.
+    Handlebars.registerHelper("time", function(runtime) {
+        var hours = '',
+            minutes = runtime;
+        if (runtime >= 60) {
+            hours = Math.floor(runtime / 60) + ' hr. ';
+            minutes = (runtime % 60);
+        }
+        return hours + (minutes > 0 ? minutes + ' min.' : '');
+    });
 }(this));
