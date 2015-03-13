@@ -11,12 +11,14 @@
             name: "Wikinews",
             data: api_result.query.categorymembers,
             meta: {
-                count: api_result.query.categorymembers.length,
-                itemType: 'Wikinews articles'
+                total: api_result.query.categorymembers.length,
+                sourceName: 'Wikinews articles',
+                sourceUrl: "https://en.wikinews.org/wiki/Main_Page",
+                itemType: "Latest Wikinews articles"
             },
             normalize: function(item) {
-                var timestamp = new Date(item.timestamp).getTime()/1000;
-                var current_timestamp = new Date().getTime()/1000;
+                var timestamp = Math.floor(new Date(item.timestamp).getTime()/1000);
+                var current_timestamp = Math.floor(new Date().getTime()/1000);
 
                 return {
                     title: item.title,
@@ -26,38 +28,46 @@
                 };
             },
             templates: {
-                item: 'text'
+                group: 'text',
+                options: {
+                    footer: Spice.wikinews.footer
+                },
+                detail: false,
+                item_detail: false,
+                variants: {
+                    tileTitle: "3line-small",
+                }
             }
         });
 
         function timeDifference(current, previous) {
 
-            var msPerMinute = 60 * 1000;
-            var msPerHour = msPerMinute * 60;
-            var msPerDay = msPerHour * 24;
-            var msPerMonth = msPerDay * 30;
-            var msPerYear = msPerDay * 365;
+            var sPerMinute = 60;
+            var sPerHour = sPerMinute * 60;
+            var sPerDay = sPerHour * 24;
+            var sPerMonth = sPerDay * 30;
+            var sPerYear = sPerDay * 365;
 
             var elapsed = current - previous;
 
-            if (elapsed < msPerMinute) {
-                 return Math.round(elapsed/1000) + ' seconds ago';
+            if (elapsed < sPerMinute) {
+                 return Math.round(elapsed) + ' seconds ago';
             }
 
-            else if (elapsed < msPerHour) {
-                 return Math.round(elapsed/msPerMinute) + ' minutes ago';
+            else if (elapsed < sPerHour) {
+                 return Math.round(elapsed/sPerMinute) + ' minutes ago';
             }
 
-            else if (elapsed < msPerDay ) {
-                 return Math.round(elapsed/msPerHour ) + ' hours ago';
+            else if (elapsed < sPerDay ) {
+                 return Math.round(elapsed/sPerHour ) + ' hours ago';
             }
 
-            else if (elapsed < msPerMonth) {
-                return Math.round(elapsed/msPerDay) + ' days ago';
+            else if (elapsed < sPerMonth) {
+                return Math.round(elapsed/sPerDay) + ' days ago';
             }
 
-            else if (elapsed < msPerYear) {
-                return Math.round(elapsed/msPerMonth) + ' months ago';
+            else if (elapsed < sPerYear) {
+                return Math.round(elapsed/sPerMonth) + ' months ago';
             }
 
             else {
