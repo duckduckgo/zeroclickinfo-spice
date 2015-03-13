@@ -79,14 +79,6 @@
     font-size: 0.5em;
 }
 
-.zci--dogo_news .detail .detail__media--pr {
-    max-width: 180px;
-}
-
-.zci--dogo_news .detail__media--pr--s .detail__media__img {
-    max-height: 180px;
-}
-
 .is-mobile .detail__media--pr--s {
     overflow: visible;
 }
