@@ -2,17 +2,19 @@ package DDG::Spice::Upc;
 
 use DDG::Spice;
 
-attribution web => ['http://dylansserver.com','Dylan Lloyd'],
-            email => ['dylan@dylansserver.com','Dylan Lloyd'];
+attribution web => ['https://bibhas.in','Bibhas Debnath'],
+            email => ['me@bibhas.in','Bibhas Debnath'];
 
-triggers any => "upc";
+triggers startend => "upc";
 
-spice to => 'http://www.upcdatabase.org/api/json/1b82dc4da0dffeb1b884661c3029da2e/$1';
+spice to => 'http://api.upcdatabase.org/json/{{ENV{DDG_SPICE_UPC_APIKEY}}}/$1';
 spice wrap_jsonp_callback => 1;
+spice is_cached => 1;
+spice proxy_cache_valid => "1d";
 
-handle query_lc => sub {
-   return unless /^(?:upc(?: (?:code|lookup))?)(\d{12})$/;
-   return $1;
+handle remainder => sub {
+    return $_ if $_ =~ /^(\d+)$/;
+    return;
 };
 
 1;
