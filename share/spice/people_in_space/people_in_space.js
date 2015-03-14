@@ -23,6 +23,7 @@
                     normalize: function(item) {
                         return {
                             daysElapsed: moment().diff(item.launchdate, 'days'),
+                            launchdate: moment(item.launchdate).format("MMM DD, YYYY"),
                             icon: DDG.settings.region.getLargeIconURL(codes[item.country.toLowerCase()]),
                             twitter: item.twitter.replace(/https?:\/\/twitter.com\//,'')
                         };
