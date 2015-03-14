@@ -3,63 +3,82 @@
     height: 100px;
     width: 100px;
     border-radius: 100%;
-    margin-bottom: 1.5em;
-}
-
-.zci--people_in_space .detail__pane {
-	line-height: normal;
+    margin-bottom: 0.5em;
 }
 
 .zci--people_in_space .tile--people_in_space {
     height: 205px;
     margin-bottom: 10px;
     width: 150px;
+    padding: 20px;
 }
 
 .zci--people_in_space .name {
-	font-size: 1.33em;
-	color: #000;
-	text-align: center;
+    color: #333;
+    font-size: 1.277em;
+    line-height: 1.2;
 }
 
 .zci--people_in_space .info {
 	text-align: center;
-    position: absolute;
+    position: inherit;
+    display: table-cell; 
+    vertical-align: middle;
+    height: 55px;
+    color: #999
     bottom: 0px;
     width: 100%;
 }
+
+.zci--people_in_space .days {
+    text-align: center;
+    display:inline-block;
+    clear: left;
+}
+
 .zci--people_in_space .tile__body {
 	padding: 0;
-	padding-top: 1em;
+	padding-top: 0;
 }
 
 .zci--people_in_space .image-under img {
    	height: 130px;
     width: 100px;
 }
+
 .zci--people_in_space .image-over img {
+    border: 3px solid #fff;
     height: 32px;
     width: 32px;
     border: 5px solid #FFFFFF;
 	border-radius: 100%;
 }
+
 .zci--people_in_space .image-under {
     position: absolute;
 }
+
 .zci--people_in_space .image-over {
     position: absolute;
     z-index: 5;
-    left: 90px;
-    top: 90px;
+    top: 86px;
+    left: 95px;
 }
 
 /* detail pane */
 .zci--people_in_space .details .right {
     margin-left: 1em;
 }
-.zci--people_in_space .details h5 {
-    color: #000;
+
+.zci--people_in_space .details {
+    line-height: 1.3em;
+    width: 50em;
 }
+
+.zci--people_in_space .details h5 {
+    color: #333;
+}
+
 .zci--people_in_space .details > ul {
     float:left;
 }
@@ -68,12 +87,23 @@
     color: #888;
     clear: left;
     margin-top: 1em;
+    line-height: 1.3em;
 }
 
 .zci--people_in_space .callout .btn {
     color: #888;
 }
 
-.zci--people_in_space .detail__media {
-    width: 19%;
+.zci--people_in_space .zci__img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.zci--people_in_space .zci__img-wrap {
+    max-width: 230px;
+    height: 285px;
+}
+
+.zci--people_in_space .zci__main-wrap {
+    padding-left: 0px;
 }
