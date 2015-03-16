@@ -29,10 +29,7 @@ handle query_lc => sub {
 	return $_ if $_;
 	return unless $_ =~ qr#^(?:subreddit|/?r/?)\s*(\w+)$|^(\w+)\s+subreddit$#i;
 
-	if ($1) {
-		return $1;
-	}
-	return $2;
+	($1) ? return $1 : return $2;
 
 };
 
