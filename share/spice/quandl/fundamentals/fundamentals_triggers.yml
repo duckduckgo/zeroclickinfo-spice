@@ -26,8 +26,6 @@ ebt:	EBT
 eps:	EPS
 equity ratio:	DE
 equity:	EQUITY
-events:	EVENTS
-exchange:	NCFX
 fcf:	FCF
 fcfps:	FCFPS
 flow:	NCF
@@ -41,7 +39,6 @@ non-current assets:	ASSETSNC
 noncurrent assets:	ASSETSNC
 preferred dividends:	PREFDIVIS
 price to book:	PB
-price:	PRICE
 revenue:	REVENUE
 revenues:	REVENUE
 sales:	REVENUE
