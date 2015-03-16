@@ -21,16 +21,8 @@ triggers startend => 'subreddit', 'r';
 spice to => 'http://www.reddit.com/r/$1/about.json?jsonp=ddg_spice_reddit';
 
 handle query_lc => sub {
-
-	$_ =~ s/^(subreddit|r)|(subreddit|r)$//i;
-	$_ =~ s/\// /g;
-	$_ =~ s/ //g;
-
-	return $_ if $_;
 	return unless $_ =~ qr#^(?:subreddit|/?r/?)\s*(\w+)$|^(\w+)\s+subreddit$#i;
-
-	($1) ? return $1 : return $2;
-
+	return ($1) ? $1 : $2;
 };
 
 1;
