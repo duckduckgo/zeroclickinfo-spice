@@ -26,17 +26,6 @@ spice proxy_cache_valid => "5m";
 spice to => 'http://en.wikinews.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:Published&format=json&cmsort=timestamp&cmdir=desc&cmprop=ids|title|timestamp&callback={{callback}}';
 
 ## Simply get the latest news published.
-## To get the latest news ON SOMETHING, we could:
-# (1) Guess its category and search for it using the same strategy.
-#     The guess part is the hard one, however. If we take it to be
-#     the input, it would work with 'sports', but not with 'sport'
-#     'soccer juventus'
-# (2) Use the 'search' suboperation instead of 'categorymembers',
-#     but then the selected news wouldn't necessarily be new news,
-#     but rather, high-ranked pages that could eclipse the real news
-#     yielding a false positive result.
-## ---------------------------------------------------------
-# https://en.wikinews.org/w/api.php?action=help
 handle remainder => sub {
     return $_ if $_;
 };
