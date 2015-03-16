@@ -16,16 +16,24 @@ attribution twitter => ["https://twitter.com/mithrandiragain","Gary Herreman"],
             github => ["https://github.com/MithrandirAgain", "Gary Herreman"],
             web => ['http://atomitware.tk/mith','Gary Herreman'];
 
-triggers query_lc => qr#^(?:subreddit|/?r/)\s*(\w+)$|^(\w+)\s+subreddit$#i;
+triggers startend => 'subreddit', 'r';
+
 spice to => 'http://www.reddit.com/r/$1/about.json?jsonp=ddg_spice_reddit';
 
-handle matches => sub {
-	if($1) {
+handle query_lc => sub {
+
+	$_ =~ s/^(subreddit|r)|(subreddit|r)$//i;
+	$_ =~ s/\// /g;
+	$_ =~ s/ //g;
+
+	return $_ if $_;
+	return unless $_ =~ qr#^(?:subreddit|/?r/?)\s*(\w+)$|^(\w+)\s+subreddit$#i;
+
+	if ($1) {
 		return $1;
-	} elsif($2) {
-		return $2;
 	}
-    return;
+	return $2;
+
 };
 
 1;
