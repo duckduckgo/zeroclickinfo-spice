@@ -24,6 +24,7 @@
                 var thumb = item.hi_res_thumb || item.thumb;
                 return {
                     title: item.name,
+                    author: item.author,
                     image: thumb,
                     img: thumb,
                     img_m: thumb,

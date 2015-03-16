@@ -21,8 +21,8 @@
                 itemType: 'kids books'
             },
             normalize: function(item) {
-                var thumb = (item.thumb ? item.thumb.replace(/SL160/, 'SL500') : null);
-                var rating = (item.ratings && item.ratings.score ? item.ratings.score : 0);
+                var thumb = (item.thumb ? item.thumb.replace(/SL160/, 'SL500') : null),
+                    rating = (item.ratings && item.ratings.score ? item.ratings.score : 0);
                 return {
                     title: item.name,
                     image: thumb,
