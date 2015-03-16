@@ -101,7 +101,6 @@ aht
 aig
 aimc
 aiq
-air
 airi
 airm
 airt
@@ -122,7 +121,6 @@ algt
 alim
 alj
 alk
-all
 allb
 alog
 alot
@@ -379,7 +377,6 @@ bll
 blmn
 blmt
 blt
-blue
 bmc
 bmi
 bmr
@@ -641,7 +638,6 @@ colb
 colm
 comm
 coo
-cool
 cop
 copy
 cosi
@@ -826,7 +822,6 @@ dnbf
 dndn
 dnkn
 dnr
-do
 door
 dorm
 dov
@@ -1336,7 +1331,6 @@ hnt
 hog
 holx
 homb
-home
 hon
 hos
 hot
@@ -1397,7 +1391,6 @@ ibm
 ibtx
 icad
 iccc
-ice
 icel
 icfi
 icon
@@ -1637,7 +1630,6 @@ linc
 line
 lion
 liox
-live
 lkq
 ll
 lll
@@ -1706,7 +1698,6 @@ lyv
 lzb
 m
 ma
-mac
 mack
 main
 mako
@@ -1844,7 +1835,6 @@ morn
 mos
 mosy
 mov
-move
 mpaa
 mpc
 mpet
@@ -2048,7 +2038,6 @@ omex
 omg
 omi
 onb
-one
 onfc
 onnn
 onp
@@ -2056,7 +2045,6 @@ ontx
 onty
 onvi
 onxx
-open
 ophc
 oplk
 optr
@@ -2175,7 +2163,6 @@ plow
 plpc
 plpm
 plt
-plus
 plxs
 plxt
 pm
@@ -2666,7 +2653,6 @@ taln
 tap
 tasr
 tast
-tax
 tayc
 tayd
 tbac
