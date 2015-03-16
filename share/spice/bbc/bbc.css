@@ -1,0 +1,8 @@
+.tile--bbc .tile__title {
+    height: 2.5em;
+}
+
+.tile--bbc .tile__source,
+.tile--bbc:hover .tile__source {
+    color: #aaa;
+}

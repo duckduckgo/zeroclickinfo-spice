@@ -1,6 +1,7 @@
 package DDG::Spice::MetaCPAN;
 # ABSTRACT: Show a summary of the searched CPAN module.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "metacpan WWW::DuckDuckGo";
@@ -10,15 +11,19 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 icon_url "/i/metacpan.org.ico";
 topics "programming", "sysadmin";
 category "programming";
-attribution github  => ['https://github.com/ghedo', 'ghedo'],
-            web => ['http://ghedini.me', 'Alessandro Ghedini'];
+attribution github  => ['https://github.com/ghedo', 'Alessandro Ghedini'],
+            web => ['http://ghedini.me', 'Alessandro Ghedini'],
+            github  => ['https://github.com/dsteinbrunner', 'David Steinbrunner'];
 
 spice to   => 'http://api.metacpan.org/v0/module/$1?callback={{callback}}';
 
 triggers startend => "cpan", "cpanm", "metacpan", "meta cpan";
 
 handle remainder => sub {
-    return $_ if $_;
+    if ($_) {
+        $_ =~ s/-/::/g;
+        return $_;
+    }
     return;
 };
 1;

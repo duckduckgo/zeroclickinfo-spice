@@ -1,21 +1,16 @@
-#spice_maven table {
-    width:100%;
-    margin:5px;
+.zci--maven tr {
+    border-bottom: 1px solid #dedede;
 }
 
-#spice_maven tr {
-    border-bottom:1px solid #efefef;
+.zci--maven tr:last-of-type {
+    border-bottom: none;
 }
 
-#spice_maven th {
-    vertical-align:bottom;
-    text-align:left;
-    font-size:83.3%;
-    font-style:italic;
-    padding-left:3px;
+.zci--maven td {
+    padding:2px 0;
 }
 
-#spice_maven td {
-    padding:2px;
-    max-width:250px;
+.zci--maven th,
+.zci--maven td {
+    padding-right: 15px;
 }

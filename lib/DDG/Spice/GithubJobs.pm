@@ -1,6 +1,7 @@
 package DDG::Spice::GithubJobs;
 # ABSTRACT: Search for jobs on Github.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "javascript jobs";
@@ -11,7 +12,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "programming", "special_interest";
 category  "programming";
 attribution github => ['https://github.com/jagtalon','jagtalon'],
-            twitter => ['http://twitter.com/juantalon','juantalon'];
+            twitter => ['http://twitter.com/juantalon','jagtalon'];
 
 triggers any => "job", "jobs";
 

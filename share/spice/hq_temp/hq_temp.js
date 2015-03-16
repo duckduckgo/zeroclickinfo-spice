@@ -1,12 +1,18 @@
 function ddg_spice_hq_temp(api_result) {
-    if (!api_result) return;
+    "use strict";
 
-    Spice.render({
+    if (!api_result) {
+        return;
+    }
+
+    Spice.add({
         data             : temperature,
         header1          : 'Temperature at ' + api_result.location,
-        source_name      : 'Roberts Nifty Temperature Reader',
-        source_url       : 'https://duckduckgo.com',
-        template_normal  : 'hq_temp',
+        sourceName      : 'Roberts Nifty Temperature Reader',
+        sourceUrl       : 'https://duckduckgo.com',
+        templates: {
+            item: Spice.hq_temp.hq_temp,
+            detail: Spice.hq_temp.hq_temp
+        },
     });
-
 }

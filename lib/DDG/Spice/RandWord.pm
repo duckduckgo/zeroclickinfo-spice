@@ -1,5 +1,6 @@
 package DDG::Spice::RandWord;
 
+use strict;
 use DDG::Spice;
 
 name "Random Word";
@@ -14,7 +15,7 @@ attribution web => ['http://dylansserver.com','Dylan Lloyd'],
             email => ['dylan@dylansserver.com','Dylan Lloyd'];
 
 spice from => '(?:([0-9]+)\-([0-9]+)|)';
-spice to => 'http://api.wordnik.com/v4/words.json/randomWord?minLength=$1&maxLength=$2&api_key={{ENV{DDG_SPICE_RANDWORD_APIKEY}}}&callback={{callback}}';
+spice to => 'http://api.wordnik.com/v4/words.json/randomWord?minLength=$1&maxLength=$2&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}';
 spice proxy_cache_valid => "418 1d";
 
 triggers any => "random word";

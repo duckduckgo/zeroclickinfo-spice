@@ -6,23 +6,23 @@ function ddg_spice_lastfm_artist_tracks (api_result) {
     }
 
     var artist = api_result.toptracks.track[0].artist.name;
-    Spice.render({
+    Spice.add({
         data              : api_result,
         header1           : "Tracks from " + artist,
-        source_name       : "Last.fm",
-        source_url        : "http://www.last.fm/search?q=" + artist + "&type=track",
+        sourceName       : "Last.fm",
+        sourceUrl        : "http://www.last.fm/search?q=" + artist + "&type=track",
 
-	spice_name        : "lastfm_artist_tracks",
+	id        : "lastfm_artist_tracks",
         template_frame    : "list",
-        template_options  : {
+        templates  : {
             items: api_result.toptracks.track,
-            template_item: "lastfm_artist_tracks",
+            item: Spice.lastfm_artist_tracks.lastfm_artist_tracks,
             show: 3,
             max: 10,
             type: "ul"
         },
 
-        force_big_header  : true,
-        force_no_fold     : true
+        
+        
     });
 };

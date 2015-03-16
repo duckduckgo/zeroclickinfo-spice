@@ -1,0 +1,25 @@
+.tile--wgha .tile__title {
+    height: 4.5em;
+    font-size:1.35em;
+    font-weight: normal;
+    line-height: 1.15;
+    -webkit-line-clamp: 4;
+}
+
+.tile--wgha .tile__title__sub {
+    text-transform: none;
+    color: #999;
+}
+
+.tile--wgha .tile__body {
+    height: 13.8em;
+    color: #888;
+}
+
+.tile--wgha .tile__content {
+    height: 1em;
+}
+
+.is-mobile .tile--wgha .tile__content{
+    height: 1.5em;
+}

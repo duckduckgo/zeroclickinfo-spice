@@ -1,8 +1,10 @@
 package DDG::Spice::Expatistan;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "cost of living in Philadelphia";
+secondary_example_queries "cost of living barcelona vs madrid";
 description "See and compare costs of living via Expatistan";
 name "Expatisan";
 icon_url "/i/www.expatistan.com.ico";

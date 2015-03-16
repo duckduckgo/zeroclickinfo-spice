@@ -1,5 +1,6 @@
 package DDG::Spice::Guidebox::Getid;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "guidebox Castle";
@@ -10,7 +11,7 @@ icon_url "/i/www.guidebox.com.ico";
 topics "everyday", "entertainment", "social";
 category "entertainment";
 attribution github => ['https://github.com/adman','Adman'],
-            twitter => ['http://twitter.com/adman_X','adman_X'];
+            twitter => ['http://twitter.com/adman_X','Adman'];
 
 triggers startend => "guidebox";
 triggers start => "watch", "stream", "full episodes of", "full free episodes of", "free episodes of", "episodes of", "where to watch";
@@ -19,6 +20,14 @@ triggers any => "full episodes", "watch free", "full free episodes", "free episo
 spice to => 'http://api-public.guidebox.com/v1.3/json/{{ENV{DDG_SPICE_GUIDEBOX_APIKEY}}}/search/title/$1';
 
 spice wrap_jsonp_callback => 1;
+
+my %skip = map { $_ => 0 } (
+    'watchmen',
+    'movie',
+    'movies',
+    'series',
+    'shows'
+);
 
 handle remainder => sub {
     if ($loc->country_name eq "United States" || $loc->country_name eq "Canada"){
@@ -38,7 +47,8 @@ handle remainder => sub {
         } else {
             $show = $_;
         }
-        return $show if $show;
+
+        return $show if $show && !exists $skip{lc $show};
     }
     return;
 };

@@ -1,12 +1,13 @@
 package DDG::Spice::TodayInHistory;
 
+use strict;
 use DDG::Spice;
 
 name 'Today In History';
 description 'this day in history';
 source 'History.com';
-primary_example_queries 'xkcd';
-secondary_example_queries 'xkcd 102';
+primary_example_queries 'today in history';
+secondary_example_queries 'this day in history';
 category 'facts';
 topics 'everyday', 'special_interest';
 icon_url 'http://www.history.com/favicon.ico';

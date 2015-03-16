@@ -1,6 +1,7 @@
 package DDG::Spice::DNS;
 # ABSTRACT: Gets IP address of given domain name.
 
+use strict;
 use DDG::Spice;
 use Data::Validate::Domain qw(is_domain);
 
@@ -15,7 +16,7 @@ name 'DNS';
 attribution github => ['https://www.github.com/OndroNR', 'Ondrej Galbavy'],
             twitter => ['https://www.twitter.com/OndroNR', 'Ondrej Galbavy'];
 
-triggers any => 'dns', 'record', 'records', 'dig';
+triggers any => 'dns', 'record', 'records', 'dig', 'nslookup';
 
 spice from => '(.*)/(.*)';
 

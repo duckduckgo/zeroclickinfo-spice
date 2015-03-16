@@ -1,6 +1,7 @@
 package DDG::Spice::GooglePlus;
 # ABSTRACT: Search for Google+ users and return their bio.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "google+ duckduckgo";
@@ -10,7 +11,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday", "social";
 category "ids";
 attribution github => ['https://github.com/jagtalon','jagtalon'],
-            twitter => ['http://twitter.com/juantalon','juantalon'];
+            twitter => ['http://twitter.com/juantalon','jagtalon'];
 
 spice to => 'https://www.googleapis.com/plus/v1/people/?query=$1&key={{ENV{DDG_SPICE_GOOGLE_PLUS_APIKEY}}}&callback={{callback}}&maxResults=12';
 spice proxy_ssl_session_reuse => "off";

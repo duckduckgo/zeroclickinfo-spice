@@ -1,3 +1,5 @@
 {{#rt "Title"}} <a href="http://www.reddit.com{{url}}">{{title}}</a>{{/rt}}
+{{#if public_description}}
 {{#rd "Description"}} {{{unescape description_html}}} {{/rd}}
+{{/if}}
 {{#rd "Subscribers"}} {{formatSubscribers subscribers}} {{/rd}}

@@ -1,6 +1,7 @@
 package DDG::Spice::Lastfm::Artist;
 # ABSTRACT: Search for musicians in Last.fm and get artists or bands similar to them.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "ben folds five artist";
@@ -38,11 +39,11 @@ handle query_lc => sub {
         return $1, 'similar';
     }
     #Queries like "weezer band"
-    if(m{(\S+(?:\s+\S+)*)\s+(?:$synonyms)}) {
+    if(m{(\S+(?:\s+\S+)*)\s+(?:$synonyms)$}) {
         return $1, 'all';
     }
     #Queries like "artist kanye west"
-    if(m{(?:$synonyms)\s+(\S+(?:\s+\S+)*)}) {
+    if(m{^(?:$synonyms)\s+(\S+(?:\s+\S+)*)}) {
         return $1, 'all';
     }
     return;

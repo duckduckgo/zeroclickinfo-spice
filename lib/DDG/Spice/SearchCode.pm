@@ -1,7 +1,7 @@
 package DDG::Spice::SearchCode;
 
+use strict;
 use DDG::Spice;
-use File::Slurp;
 
 name "SearchCode";
 description "search through APIs and open source repositories";
@@ -12,7 +12,7 @@ category "reference";
 topics "programming";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SearchCode.pm";
 icon_url "/i/searchco.de.ico";
-attribution twitter => ["https://twitter.com/boyter", "boyter"],
+attribution twitter => ["https://twitter.com/boyter", "Ben Boyter"],
 			github => ["https://github.com/boyter", "Ben Boyter"];
 
 # known bad queries

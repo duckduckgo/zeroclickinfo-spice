@@ -1,4 +1,4 @@
-#spice_betterific hr {
+.zci--betterific hr {
   background-color: #d2d2d2;
   background-color: rgba(136, 136, 136, 0.39);
   border: 0;
@@ -9,32 +9,25 @@
   text-align: left;
 }
 
-#spice_betterific .header {
-  font-size: 14px;
-}
-
-#spice_betterific .betterif-name {
+.zci--betterific .betterif-name {
   display: block;
 }
 
-#spice_betterific .tag-name,
-#spice_betterific .user-username,
-#spice_betterific .stats {
+.zci--betterific .tag-name,
+.zci--betterific .user-username,
+.zci--betterific .stats {
   display: inline-block;
 }
-#spice_betterific .block-stats {
+.zci--betterific .block-stats {
   display: block;
 }
 
-#spice_betterific .clear-both {
+.zci--betterific .clear-both {
   clear: both;
   display: block;
   height: 0px;
 }
 
-#spice_betterific .collapsible {
-  display: none;
-}
-#spice_betterific .open {
+.zci--betterific .open {
   display: block;
 }

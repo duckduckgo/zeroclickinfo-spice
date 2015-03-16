@@ -1,61 +1,127 @@
-function ddg_spice_book(api_result) {
-     
-    // return if no book is returned or if the returned book has no reviews
-    if  (api_result == null || api_result.total_results < 1 || api_result.book.critic_reviews.length == 0) return;
-      
-    // assign the book object to data
-    var data =  api_result.book;
-   
-    // function to convert date from 2012-07-20 format to Jul 20, 2012
-    var prettyDate = function(date) {
-        var d = new Date(date);
-        if (d && !isNaN(d.getTime())) {
-            var m_names = ["Jan", "Feb", "Mar",  "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            var curr_date = d.getUTCDate();
-            var curr_month = d.getUTCMonth();
-            var curr_year = d.getUTCFullYear();
-            return m_names[curr_month] + " " + curr_date + ", " + curr_year;
-        } else {
-            return null;
-        };
-    };
-    
-    // convert pulication date of reviews to pretty format
-    for (var i = 0; i < data.critic_reviews.length; i++) {
-        data.critic_reviews[i].review_date = prettyDate(data.critic_reviews[i].review_date);
+(function(env) {
+    "use strict";
+    env.ddg_spice_book = function(api_result) {
+
+        // Return if no book is returned
+        if(!api_result || api_result.error) {
+            return Spice.failed('book');
+        }
+
+        // Get the query without the trigger words.
+        // We do this because it's a bit easier to do than
+        // just passing a skip array to DDG.isRelevant or DDG.stringsRelevant.
+        // For example, we can't just skip the word book by passing ["book"]
+        // because some book titles have the word book in them such as "the graveyard book".
+        var script = $('[src*="/js/spice/book/"]')[0];
+        var source = $(script).attr("src");
+        var query = source.match(/book\/([^\/]+)/)[1];
+        var decoded_query = decodeURIComponent(query);
+
+        Spice.add({
+            id: 'book',
+            name: 'Books',
+            data: api_result.books,
+            meta: {
+                sourceName: "iDreamBooks", // More at ...
+                sourceUrl: api_result.books[0].detail_link
+            },
+
+            normalize: function(item) {
+                var title = item.title || "";
+                var sub_title = item.sub_title || "";
+                var author = item.author || "";
+
+                // Check relevancy of the item.
+                // 1. Check if we have reviews (rated or unrated is fine).
+                // 2. Check if the title + sub_title is relevant to the query.
+                // 3. Check if the title is relevant to the query.
+                // 4. Check if the title + author is relevant to the query.
+                // 5. Check if the title + sub_title + author is relevant to the query.
+                if(!((item.review_count || item.unrated_review_count) &&
+                    (DDG.stringsRelevant(title + " " + sub_title, decoded_query, [], 3) ||
+                        DDG.stringsRelevant(title, decoded_query, [], 3) ||
+                        DDG.stringsRelevant(title + " " + author, decoded_query, [], 3) ||
+                        DDG.stringsRelevant(title + " " + sub_title + " " + author, decoded_query, [], 3)))) {
+                    return null;
+                }
+
+                // If the item that we got doesn't have the critic_reviews array,
+                // we copy over the unrated_reviews. This makes it easier to use the templates because 
+                // we're only using one variable.
+                if(item.review_count === 0) {
+                    item.critic_reviews = item.unrated_critic_reviews;
+                    item.review_count = item.unrated_review_count;
+                }
+
+                // Get only the year of release date for header
+                item.release_year = (item.release_date || "").match(/^\d{4}/);
+
+                // Filter critic reviews that have really short critic reviews.
+                var critic_reviews = [];
+                for(var i = 0; i < item.critic_reviews.length; i++) {
+                    if(item.critic_reviews[i].snippet.length > 10) {
+                        critic_reviews.push(item.critic_reviews[i]);
+                    }
+                }
+                item.critic_reviews = critic_reviews;
+
+                // This function adds a colon before the subtitle.
+                // It doesn't add a colon if the subtitle begins with anything other
+                // than letters or numbers, e.g., a parenthesis.
+                var formatSub = function(sub_title) {
+                    if(sub_title && sub_title.length > 0) {
+                        if(sub_title.match(/^[a-z0-9]/i)) {
+                            return ": " + sub_title;
+                        }
+                        return " " + sub_title;
+                    }
+                    return "";
+                };
+
+                // Get three critics which recommend the book
+                var recommendedBy = [];
+                for(var key in item.critic_reviews) {
+                    if(item.critic_reviews[key].pos_or_neg == "Positive" && recommendedBy.length < 3) {
+                        recommendedBy.push({
+                            'recommendedSource' : item.critic_reviews[key].source,
+                            'link' : item.critic_reviews[key].review_link
+                        });
+                    }
+                    else if (recommendedBy.length >= 3) {
+                        break;
+                    }
+                }
+
+                var header = item.title = item.title + formatSub(item.sub_title);
+                header = Handlebars.helpers.condense(header, {
+                    hash: {
+                        maxlen: 38
+                    }
+                });
+
+                // Pick a random critic review out of all the reviews returned
+                item.critic_review = item.critic_reviews[Math.floor(Math.random() * item.critic_reviews.length)];
+
+                return {
+                    title: header,
+                    image: item.to_read_or_not,
+                    description: item.critic_review.snippet.replace(/\.\s\.\s\./g, "..."),
+                    url: item.detail_link,
+                    source: item.critic_review.source,
+                    sourceLink: item.critic_review.review_link,
+                    recommendedBy: recommendedBy,
+                    rating: item.rating
+                };
+            },
+
+            templates: {
+                group: 'info',
+                options: {
+                    description: true,
+                    content: Spice.book.book
+                }
+            }
+
+        });
     }
-    
-    // convert book publication date to pretty format
-    data.release_date = prettyDate(data.release_date);
-
-    // get only the year of release date for header 
-    data.release_year = ( data.release_date || "" ).match(/\d{4}$/);
-
-    // pick a random critic review out of all the reviews returned
-    data.critic_review = data.critic_reviews[Math.floor(Math.random() * data.critic_reviews.length)];
-
-    var header = data.title;
-    // add year of release to header
-    if (data.release_year) {
-        header += " (" + data.release_year + ")";
-    }
-
-    Spice.render({
-         data              : data,
-         force_big_header  : true,
-         header1           : header,
-         source_name       : "idreambooks.com", // More at ...
-         source_url        :  data.detail_link,
-	 spice_name        : "book",
-	 template_frame    : "twopane",
-	 template_options  : {
-	     left: {
-		 template: "book"
-	     },
-	     right: {
-		 template: "book_critic"
-	     }
-	 },
-	 force_no_fold     : true
-    });
-}
+}(this));

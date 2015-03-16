@@ -1,7 +1,70 @@
-.more-links {
-    float: left; padding-right: 5px; padding-top: 2px; width: 16px; height: 16px;
+.zci--gravatar .gravatar--basic {
+    height: 6em;
+    clear: both;
+    margin: 0.25em 0 0.3em -0.2em
 }
 
-.more-links-anchor:hover {
-    text-decoration: none;
+.zci--gravatar .gravatar--basic a { 
+    color: #888;
+}
+
+.zci--gravatar .gravatar--image {
+    float: left;
+    margin-right: 1.1em;
+    width: 68px;
+    height: 68px;
+}
+
+.zci--gravatar .gravatar--description {
+    font-size: 1.3em;
+    margin-bottom: 0.75em;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.2em;
+}
+
+.zci--gravatar .gravatar--misc {
+    padding-top: 0.5em;
+}
+
+.zci--gravatar .zcm__sep {
+    margin: 0 0.3em;
+}
+
+.zci--gravatar .gravatar--more {
+    color: #888;
+}
+
+.zci--gravatar .caret_down {
+    vertical-align: middle;
+}
+
+.zci--gravatar .hidden{
+    display: none;
+}
+
+/* Separate rules because IE 8 does not support pseudo-classes */
+.zci--gravatar .zcm__sep:last-child {
+    display: none;
+}
+
+.zci--gravatar .visible {
+    display: visible;
+}
+
+@media only screen
+and (max-device-width : 480px) {
+
+    .zci--gravatar .expanded_social {
+        -webkit-line-clamp: 2;
+        height: 2.5em;
+        max-height: 2.5em;
+        overflow-y: hidden;
+        text-overflow: clip;
+    }
+
+    .zci--gravatar .gravatar--description {
+        max-height: 5em;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
+    }
 }

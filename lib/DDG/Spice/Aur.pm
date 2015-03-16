@@ -1,5 +1,6 @@
 package DDG::Spice::Aur;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "aur powermate";
@@ -10,15 +11,19 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "programming";
 category "programming";
 attribution twitter => ['https://twitter.com/crazedpsyc', 'crazedpsyc'],
-            cpan => 'CRZEDPSYC';
+            cpan => ['CRZEDPSYC', 'crazedpsyc'];
 
 spice to => 'https://aur.archlinux.org/rpc.php?type=search&arg=$1&callback={{callback}}';
 
 triggers any => "aur", "archlinux package", "arch package", "arch linux package";
 
 handle remainder => sub {
-    s/^for //;
-    return $_;
+    my $remainder = $_;
+
+    return unless $remainder;
+
+    $remainder =~ s/^for\s//;
+    return $remainder;
 };
 
 1;

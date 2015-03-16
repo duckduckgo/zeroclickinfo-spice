@@ -42,6 +42,18 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Thesaurus'
     ),
+    'synonyms for person' => test_spice(
+        '/js/spice/thesaurus/person/synonym',
+        caller    => 'DDG::Spice::Thesaurus',
+    ),
+    'thesaurus awesome' => test_spice(
+        '/js/spice/thesaurus/awesome/synonym',
+        caller    => 'DDG::Spice::Thesaurus',
+    ),
+    'similar words to miniature' => test_spice(
+        '/js/spice/thesaurus/miniature/similar',
+        caller    => 'DDG::Spice::Thesaurus',
+    ),
 );
 
 done_testing;

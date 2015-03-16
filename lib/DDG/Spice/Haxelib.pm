@@ -1,7 +1,7 @@
 package DDG::Spice::Haxelib;
-
 # ABSTRACT: Returns library information from Haxelib's repository.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "haxelib openfl";
@@ -15,7 +15,7 @@ spice to => 'http://haxelib-json.herokuapp.com/package/$1?callback={{callback}}'
 
 attribution github => ['https://github.com/TopHattedCoder','TopHattedCoder'];
 
-triggers any => "haxelib", "haxe lib", "haxe library";
+triggers any => "haxelib", "haxe lib", "haxe library", "lib haxe", "lib.haxe", "libhaxe", "lib.haxe.org", "libhaxe.org";
 handle remainder => sub {
     return $_ if $_;
     return;

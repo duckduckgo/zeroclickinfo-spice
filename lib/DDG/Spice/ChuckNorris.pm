@@ -1,5 +1,6 @@
 package DDG::Spice::ChuckNorris;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "chuck norris facts";
@@ -11,7 +12,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "special_interest";
 category "random";
 attribution github => ['https://github.com/mr-mayank-gupta','Mayank Gupta'],
-           twitter => ['http://twitter.com/iammayankg','iammayankg'];
+           twitter => ['http://twitter.com/iammayankg','Mayank Gupta'];
 
 spice proxy_cache_valid  => "418 1d";
 spice is_unsafe => 1;

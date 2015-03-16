@@ -1,5 +1,6 @@
 package DDG::Spice::FlashVersion;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "flash version";
@@ -9,7 +10,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "everyday", "programming";
 category "software";
 attribution github => ['https://github.com/Getty','Torsten Raudssus'],
-           twitter => ['https://twitter.com/raudssus','raudssus'];
+           twitter => ['https://twitter.com/raudssus','Torsten Raudssus'];
 
 triggers startend => "flash";
 

@@ -1,5 +1,6 @@
 package DDG::Spice::AlternativeTo;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "alternative to notepad";
@@ -12,14 +13,13 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics  "everyday", "programming";
 category  "computing_tools";
 attribution github => ['https://github.com/Getty','Torsten Raudssus'],
-           twitter => ['https://twitter.com/raudssus','raudssus'];
+           twitter => ['https://twitter.com/raudssus','Torsten Raudssus'];
 
 triggers start => "free","opensource","commercial";
-triggers any => "alternative","alternatives";
+triggers any => "alternative","alternatives","alternativeto";
 
 spice from => '([^/]+)/(.*?)/([^/]*)';
-spice to => 'http://api.alternativeto.net/software/$1/?platform=$2&license=$3&count=12&callback={{callback}}';
-
+spice to => 'http://api.alternativeto.net/software/$1/?platform=$2&license=$3&count=12&callback={{callback}}&key={{ENV{DDG_SPICE_ALTERNATIVETO_APIKEY}}}';
 
 my %alternatives = (
     'google' => 'googlecom',

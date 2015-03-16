@@ -1,6 +1,7 @@
 package DDG::Spice::Gravatar;
 # ABSTRACT: Shows gravatar of a given e-mail.
 
+use strict;
 use DDG::Spice;
 use Digest::MD5 qw(md5_hex);
 
@@ -12,7 +13,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "special_interest", "social";
 category "ids";
 attribution github => ['https://github.com/adman','Adman'],
-            twitter => ['http://twitter.com/adman_X','adman_X'];
+            twitter => ['http://twitter.com/adman_X','Adman'];
 
 triggers startend => "gravatar", "avatar of", "gravatar of";
 

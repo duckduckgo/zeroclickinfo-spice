@@ -1,0 +1,21 @@
+.tile--plos .tile__title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tile--plos .tile__body {
+    height: 14em;
+}
+
+.tile--plos .tile__content {
+    height: 6.4em;
+}
+
+.tile--plos .one-line {
+    line-height: 16px;
+}
+
+.tile--plos .tile__footer img {
+    margin-top: -0.17em;
+}

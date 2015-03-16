@@ -27,14 +27,17 @@ function ddg_spice_lastfm_song(api_result) {
 
     // Display the plug-in.
     if(DDG.isRelevant(api_result.track.name + " " + api_result.track.artist.name, skip)) {
-        Spice.render({
+        Spice.add({
             data             : api_result,
             header1          : api_result.track.name,
-            source_url       : api_result.track.url,
-            source_name      : "Last.fm",
-            template_normal  : "lastfm_song",
-            force_no_fold    : true,
-            force_big_header : true
+            sourceUrl       : api_result.track.url,
+            sourceName      : "Last.fm",
+            templates: {
+            item: Spice.lastfm_song.lastfm_song,
+            detail: Spice.lastfm_song.lastfm_song
+        },
+            
+            
         });
     }
 };

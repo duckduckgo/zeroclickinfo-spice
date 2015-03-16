@@ -17,6 +17,10 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::SoundCloud',
     ),
+    'sc the new yorker' => test_spice(
+        '/js/spice/sound_cloud/the%20new%20yorker',
+        caller    => 'DDG::Spice::SoundCloud',
+    ),
 );
 
 done_testing;

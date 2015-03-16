@@ -1,0 +1,64 @@
+<div class="gravatar--basic">
+    <div class="gravatar--image--wrap">
+        <img src="{{imageProxy image}}" class="circle gravatar--image">
+    </div>
+    <div class="gravatar--misc">
+        <div>{{title}}</div>
+        <div class="gravatar--more">
+            {{#if currentLocation}}
+                <div class="one-line">
+                    {{currentLocation}}
+                </div>
+            {{/if}}
+            {{#if accounts}}
+                <div class="condensed_social visible">
+                    {{#if accounts.[0]}}
+                        {{#with accounts.[0]}}
+                            <a href="{{url}}" title="{{display}}" class="more-links-anchor">
+                                {{Gravatar_formatDomain domain}}
+                            </a>
+                            <span class="zcm__sep"></span>
+                        {{/with}}
+                    {{/if}}
+                    {{#if accounts.[1]}}
+                        {{#with accounts.[1]}}
+                            <a href="{{url}}" title="{{display}}" class="more-links-anchor">
+                                 {{Gravatar_formatDomain domain}}
+                            </a>
+                        {{/with}}
+                    {{/if}}
+                    {{#if accounts.[2]}}
+                            <span class="zcm__sep"></span>
+                            <a href="#" class="more">More <span class="caret_down">▾</span></a>
+                    {{/if}}
+                </div>
+                <div class="expanded_social hidden">
+                    {{#each accounts}}
+                            <a href="{{url}}" title="{{display}}" class="more-links-anchor">
+                                {{Gravatar_formatDomain domain}}
+                            </a>
+                            <span class="zcm__sep"></span>
+                    {{/each}}
+                </div>
+            {{/if}}
+        </div>
+    </div>
+    {{#Gravatar_fallbackInfo emails aboutMe currentLocation accounts this}}
+         <div class="gravatar--more">
+                 <div>
+                     For developers:
+                     <a href="http://en.gravatar.com/{{title}}.json">JSON</a> ·
+                     <a href="http://en.gravatar.com/{{title}}.xml">XML</a> ·
+                     <a href="http://en.gravatar.com/{{title}}.php">PHP</a> ·
+                     <a href="http://en.gravatar.com/{{title}}.vcf">VCF</a> ·
+                     <a href="http://en.gravatar.com/{{title}}.qr">QR</a>
+                </div>
+                <div class="one-line">
+                    Additional info unavailable
+                </div>
+        </div>
+    {{/Gravatar_fallbackInfo}}
+</div>
+{{#if aboutMe}}
+     <div class="gravatar--description">{{{condense aboutMe maxlen="210"}}}</div>
+{{/if}}

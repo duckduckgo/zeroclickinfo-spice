@@ -1,0 +1,3 @@
+<div>
+    This text is {{#if first.isReliable}} definitely {{else}} probably {{/if}} {{DetectLang_expandLang first.language}} ({{DetectLang_toPercent first.confidence}}){{#if second}}, but it could also be {{DetectLang_expandLang second.language}} ({{DetectLang_toPercent second.confidence}}){{/if}}.
+</div>

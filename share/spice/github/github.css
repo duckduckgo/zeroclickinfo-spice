@@ -1,7 +1,7 @@
-#spice_github_list hr.horizontal_line {
-    margin: 5px 0px;
+.tile--github .star.starIcon {
+    margin-top: -5px;
 }
 
-#gh_more_results {
-    display: none;
+.tile--github .tile__sub {
+    text-transform: none;
 }

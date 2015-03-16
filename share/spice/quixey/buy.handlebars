@@ -1,0 +1,13 @@
+<span class="detail__callout">
+{{#each editions}}
+    <a href="{{{url}}}" class="btn">
+        {{#with this.platforms.[0]}}
+        <img src="{{Quixey_platform_icon icon_url}}" class="btn__icon  platform_icon">
+        {{/with}}
+        {{Quixey_platform_name}}
+        {{#if ../hasPricerange}}
+             - {{Quixey_qprice cents}}
+        {{/if}}
+    </a>
+{{/each}}
+</span>
