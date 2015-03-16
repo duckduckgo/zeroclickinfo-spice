@@ -126,31 +126,31 @@
 }
 
 .zci--dogo_books .dogo-badge {
-  padding-left: 9px;
-  padding-right: 9px;
-  -webkit-border-radius: 9px;
-  -moz-border-radius: 9px;
-  border-radius: 9px;
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
 }
 
 .zci--dogo_books .dogo-badge {
-  display: inline-block;
-  font-weight: bold;
-  color: #fff;
-  vertical-align: baseline;
-  white-space: nowrap;
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
-  background-color: #999;
+    display: inline-block;
+    font-weight: bold;
+    color: #fff;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    background-color: #999;
 }
 
 .zci--dogo_books .dogo-badge-info {
-  background-color: #3a87ad;
+    background-color: #3a87ad;
 }
 
 .zci--dogo_books .dogo-badge-success {
-  background-color: #468847;
+    background-color: #468847;
 }
 
 .zci--dogo_books .dogo-badge-warning {
-  background-color: #f89406;
+    background-color: #f89406;
 }
