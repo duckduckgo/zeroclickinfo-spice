@@ -42,7 +42,24 @@ spice proxy_cache_valid => "200 30m";
 my $no_location_qr = qr/fore?cast|report|meteo|weather|temp(?:erature)/;
 my $weather_qr = qr/(?:(?:weather|temp(?:erature|)|fore?cast|meteo)(?: fore?cast| report| today| tomm?orr?ow| this week| monday| tuesday|  wednesday| thursday| friday| saturday| sunday| lundi| mardi| mercredi| jeudi| vendredi| samedi| dimanche| demain|))+/;
 
-handle query_lc => sub {
+handle query_nowhitespace => sub {
+
+    # 2015.03.17 tommytommytommy:
+    # This IA overtriggers because we don't have a way to check that
+    # the string following "weather" is an actual location.
+    # For now, limit this IA to only trigger when the query is "weather", and 
+    # only send the user's location string.
+    # 
+    # If the user specifies a location, for now, we will try to internally infer
+    # that location and make the appropriate upstream request. 
+    # When we have implemented places detection, we can restore the relevancy and triggering 
+    # functionality for this module by deleting the next two
+    # return lines, changing the "handle" statement back to query_nowhitespace,
+    # and running $location below through places detection
+    return if $_ ne 'weather';
+    return $loc->loc_str, 'current', {is_cached => 0};
+
+    # saving this code because we can use all of it again once places detection is functional
     my $location = '';
 
     # Capture user defined location if it exists.
