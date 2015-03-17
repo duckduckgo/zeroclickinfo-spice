@@ -25,7 +25,10 @@
                 var rate_down = (item.rate_down != '') ? item.rate_down : "0";
 
                 return {
-                    description: '"' + alias + '" has average price $' + avg_price + ', with ' + rate_up + ' upvotes and ' + rate_down + ' downvotes.',
+                    alias: alias,
+                    avg_price: avg_price,
+                    rate_up: rate_up,
+                    rate_down: rate_down,
                     title: item.itemname
                 };
             },
