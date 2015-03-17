@@ -3,13 +3,14 @@ package DDG::Spice::DogoBooks;
 use DDG::Spice;
 
 primary_example_queries "kids books";
-secondary_example_queries "smile kids book", "hunger games kids book reviews", "harry potter book kids review";
-description "Search the DOGObooks database for kids book reviews and ratings";
+secondary_example_queries "smile kids book", "hunger games books";
+description "Search for kids book reviews and ratings";
 name "DOGObooks";
 code_url "https://github.com/dogomedia/zeroclickinfo-spice/blob/master/lib/DDG/Spice/DogoBooks.pm";
 topics "entertainment", "everyday";
 category "entertainment";
-attribution github => ['https://github.com/dogomedia','DOGO Media'];
+attribution twitter => ['http://twitter.com/dogobooks','DOGObooks'],
+            github  => ['https://github.com/dogomedia','DOGO Media, Inc.'];
 
 triggers any => "dogobooks", "dogo books", "book", "books";
 

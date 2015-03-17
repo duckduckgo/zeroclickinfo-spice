@@ -2,14 +2,16 @@ package DDG::Spice::DogoNews;
 
 use DDG::Spice;
 
-primary_example_queries "kids news";
-secondary_example_queries "obama kids news", "nasa news articles for kids";
-description "Search the DOGOnews database for kids news articles and current events";
+primary_example_queries "kids news", "current events", "news for kids";
+secondary_example_queries "obama kids news", "nasa news articles", "kids science", "social studies for kids";
+description "Search for kids news articles and current events";
 name "DOGOnews";
 code_url "https://github.com/dogomedia/zeroclickinfo-spice/blob/master/lib/DDG/Spice/DogoNews.pm";
 topics "everyday", "social", "science";
 category "time_sensitive";
-attribution github => ['https://github.com/dogomedia','DOGO Media'];
+attribution twitter => ['http://twitter.com/dogonews','dogonews'],
+            faceboo
+            github  => ['https://github.com/dogomedia','DOGO Media, Inc.'];
 
 triggers any => "dogonews", "dogo news", "news", "newspaper", "current event", "current events", "article", "articles";
 triggers start => "kids", "children's", "childrens", "student's", "students";
