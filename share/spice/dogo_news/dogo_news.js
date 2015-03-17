@@ -30,7 +30,7 @@
                     img_m: thumb,
                     heading: item.name,
                     rating: 'Unrated',
-                    ratingText: (item.comments_count || 0) + ' comments',
+                    ratingText: item.comments_count + ' comments',
                     url: item.url,
                     abstract: Handlebars.helpers.ellipsis(item.summary, 200)
                 };

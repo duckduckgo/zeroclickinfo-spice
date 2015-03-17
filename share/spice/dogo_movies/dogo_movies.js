@@ -21,28 +21,19 @@
                 itemType: 'kids movies'
             },
             normalize: function(item) {
-                var defaultThumb = '//cdn.dogomedia.com/assets/movies/poster_default-a477e7ae72341ae25e2036d6f4708f27.png',
-                    thumb = (item.thumb && 0 < item.thumb.length ? item.thumb : defaultThumb),
-                    rating = (item.ratings && item.ratings.score ? item.ratings.score : 0),
-                    itemJson = {
-                        title: item.name,
-                        image: thumb,
-                        img: thumb,
-                        img_m: thumb,
-                        heading: item.name,
-                        rating: rating,
-                        ratingText: (item.ratings && item.ratings.count ? item.ratings.count : 0) + ' reviews',
-                        reviewCount: (item.ratings && item.ratings.count ? item.ratings.count : 0),
-                        url: item.url,
-                        abstract: Handlebars.helpers.ellipsis(item.summary, 200)
-                    };
-                
-                if (item.mpaa) {
-                    itemJson.mpaa = item.mpaa;
-                    itemJson.mpaaText = item.mpaa.toUpperCase();
-                }
-                
-                return itemJson;
+                var thumb = item.thumb;
+                return {
+                    title: item.name,
+                    image: thumb,
+                    img: thumb,
+                    img_m: thumb,
+                    heading: item.name,
+                    rating: item.ratings.score,
+                    ratingText: item.comments_count + ' reviews',
+                    reviewCount: item.comments_count,
+                    url: item.url,
+                    abstract: Handlebars.helpers.ellipsis(item.summary, 200)
+                };
             },
             templates: {
                 group: 'media',

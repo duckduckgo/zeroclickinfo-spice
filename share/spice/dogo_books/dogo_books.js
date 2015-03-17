@@ -21,17 +21,16 @@
                 itemType: 'kids books'
             },
             normalize: function(item) {
-                var thumb = (item.thumb ? item.thumb.replace(/SL160/, 'SL500') : null),
-                    rating = (item.ratings && item.ratings.score ? item.ratings.score : 0);
+                var thumb = item.hi_res_thumb || item.thumb;                
                 return {
                     title: item.name,
                     image: thumb,
                     img: thumb,
                     img_m: thumb,
                     heading: item.name,
-                    rating: rating,
-                    ratingText: (item.ratings && item.ratings.count ? item.ratings.count : 0) + ' reviews',
-                    reviewCount: (item.ratings && item.ratings.count ? item.ratings.count : 0),
+                    rating: item.ratings.score,
+                    ratingText: item.comments_count + ' reviews',
+                    reviewCount: item.comments_count,
                     url: item.url,
                     abstract: Handlebars.helpers.ellipsis(item.summary, 200)
                 };
