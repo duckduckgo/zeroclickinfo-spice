@@ -2,8 +2,10 @@ package DDG::Spice::Upc;
 
 use DDG::Spice;
 
-attribution web => ['https://bibhas.in','Bibhas Debnath'],
-            email => ['me@bibhas.in','Bibhas Debnath'];
+attribution
+    github => "iambibhas",
+    twitter => "bibhasdn",
+    web => "https://bibhas.in";
 
 triggers any => "upc", "upc code";
 
