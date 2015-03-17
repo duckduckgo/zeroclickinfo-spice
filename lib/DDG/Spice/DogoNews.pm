@@ -10,7 +10,7 @@ code_url "https://github.com/dogomedia/zeroclickinfo-spice/blob/master/lib/DDG/S
 topics "everyday", "social", "science";
 category "time_sensitive";
 attribution twitter => ['http://twitter.com/dogonews','dogonews'],
-            faceboo
+            facebook => ['https://www.facebook.com/pages/DOGONews/132351663495902', 'DOGOnews'],            
             github  => ['https://github.com/dogomedia','DOGO Media, Inc.'];
 
 triggers any => "dogonews", "dogo news", "news", "newspaper", "current event", "current events", "article", "articles";
