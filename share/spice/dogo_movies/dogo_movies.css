@@ -23,39 +23,27 @@
 
 .zci--dogo_movies .tile__body {
     position: absolute;
-    height: 80px;
     width: 100%;
     bottom: 0;
     background: -webkit-linear-gradient(rgba(0,0,0, 0),rgba(0,0,0, 0.7),rgba(0,0,0, 0.8)); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(rgba(0,0,0, 0),rgba(0,0,0, 0.7),rgba(0,0,0, 0.8)); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(rgba(0,0,0, 0),rgba(0,0,0, 0.7),rgba(0,0,0, 0.8)); /* For Firefox 3.6 to 15 */
     background: linear-gradient(rgba(0,0,0, 0),rgba(0,0,0, 0.7),rgba(0,0,0, 0.8)); /* Standard syntax */
-    padding-top: 20px;
+    -ms-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000,endColorstr=#CC000000);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000,endColorstr=#CC000000);
+    zoom: 1;
     text-shadow: 1px 1px 1px #000;
 }
 
-.zci--dogo_movies .tile__title {
-    margin-top:15px;
-    margin-bottom: 0.3em;
+.zci--dogo_movies .tile__title {    
     color:white;
+    margin-bottom: 0;
+    margin-top: 0.7em;
 }
 
 .zci--dogo_movies .tile__media {
     height:0;
     padding-bottom:148.333%;
-}
-
-.zci--dogo_movies .one-line {
-    float: left;
-}
-
-.tile--dogo_movies .tile__title {
-    height: 2.5em;
-}
-
-.tile--dogo_movies .tile__source,
-.tile--dogo_movies:hover .tile__source {
-    color: #aaa;
 }
 
 .zci--dogo_movies h5.detail__title.detail__tile--pr {
