@@ -52,6 +52,13 @@
                     });
                 }
                 
+                if (item.dist) {
+                    boxData.push({
+                        label: "Source",
+                        value: item.dist.tarball
+                    });
+                }
+
                 if (item.dependencies) {      
                     var dependencies = $.map(item.dependencies, function(val, key) {
                         return key + " (" + val + ")";
