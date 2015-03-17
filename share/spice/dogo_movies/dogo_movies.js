@@ -47,7 +47,7 @@
     };
     
     // Convert minutes to hr. min. format.
-    // e.g. {{time 90}} will return 1 hr. 30 min.
+    // e.g. {{dogo_movies_convert_minutes_to_hr_min 90}} will return 1 hr. 30 min.
     Handlebars.registerHelper("dogo_movies_convert_minutes_to_hr_min", function(runtime) {
         var hours = '',
             minutes = runtime;
