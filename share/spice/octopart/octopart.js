@@ -27,7 +27,7 @@
                     price: item.avg_price[1] + ' ' + item.avg_price[0].toFixed(2),
                     img: img_url,
                     img_m: img_url,
-                    url: item.octopart_url,
+                    url: item.detail_url,
                     title: DDG.strip_html(item.mpn).toUpperCase(),
                     heading: DDG.strip_html(item.mpn).toUpperCase(),
                     description: item.short_description,
