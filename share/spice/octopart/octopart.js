@@ -30,7 +30,7 @@
                     url: item.detail_url,
                     title: item.mpn,
                     heading: item.mpn,
-                    description: item.short_description,
+                    abstract: item.short_description,
                     datasheet: item.datasheets[0].url
                 };
             },
