@@ -4,6 +4,7 @@ population is female:	SP_POP_TOTL_FE_ZS
 female population:	SP_POP_TOTL_FE_ZS
 gross external debt:	DT_DOD_DECT_CD_FD
 education expenditure :	NY_ADJ_AEDU_CD
+population age:	UIS_SAP_4
 debt sector:	DP_DOD_DECT_CR_GG_CD
 gross national expenditure:	NE_DAB_TOTL_CN
 stocks traded:	CM_MKT_TRAD_CD
