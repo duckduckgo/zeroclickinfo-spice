@@ -28,8 +28,8 @@
                     img: img_url,
                     img_m: img_url,
                     url: item.detail_url,
-                    title: DDG.strip_html(item.mpn).toUpperCase(),
-                    heading: DDG.strip_html(item.mpn).toUpperCase(),
+                    title: item.mpn,
+                    heading: item.mpn,
                     description: item.short_description,
                     datasheet: item.datasheets[0].url
                 };
