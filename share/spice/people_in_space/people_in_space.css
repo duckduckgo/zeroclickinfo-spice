@@ -14,7 +14,6 @@
 }
 
 .zci--people_in_space .name {
-    color: #333;
     font-size: 1.277em;
     line-height: 1.2;
 }
@@ -25,7 +24,6 @@
     display: table-cell; 
     vertical-align: middle;
     height: 55px;
-    color: #999
     bottom: 0px;
     width: 100%;
 }
@@ -34,6 +32,7 @@
     text-align: center;
     display:inline-block;
     clear: left;
+    margin-top: 3px;
 }
 
 .zci--people_in_space .tile__body {
@@ -50,7 +49,6 @@
     border: 3px solid #fff;
     height: 32px;
     width: 32px;
-    border: 5px solid #FFFFFF;
 	border-radius: 100%;
 }
 
@@ -67,7 +65,7 @@
 
 /* detail pane */
 .zci--people_in_space .details .right {
-    margin-left: 1em;
+    margin-left: 2em
 }
 
 .zci--people_in_space .details {
@@ -75,23 +73,14 @@
     width: 50em;
 }
 
-.zci--people_in_space .details h5 {
-    color: #333;
-}
-
 .zci--people_in_space .details > ul {
     float:left;
 }
 
 .zci--people_in_space .callout {
-    color: #888;
     clear: left;
-    margin-top: 1em;
+    margin-top: 0.5em;
     line-height: 1.3em;
-}
-
-.zci--people_in_space .callout .btn {
-    color: #888;
 }
 
 .zci--people_in_space .zci__img {
