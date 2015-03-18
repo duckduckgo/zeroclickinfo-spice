@@ -3,8 +3,8 @@
         <img src="{{imageProxy biophoto}}" class="zci__img">
     </div>
     <div class="zci__body">
-        <div class="details">
-                <h5>{{title}}</h5>
+        <div class="details clearfix">
+                <h5 class="tx-clr--dk">{{name}}</h5>
                 <p>{{bio}}</p>
                 <ul>
                     <li>Position</li>
@@ -19,12 +19,12 @@
                     <li>{{country}}</li>
                     <li>{{launchdate}}</li>
                     {{#if twitter}}
-                        <li><a href="https://twitter.com/{{twitter}}">@{{twitter}}</a></li>
+                        <li><a class="tx-clr--dk2" href="https://twitter.com/{{twitter}}">@{{twitter}}</a></li>
                     {{/if}}
                 </ul>
         </div>
         <div class="callout">
-            <a href="{{url}}" class="btn">View Full Bio</a>
+            <a href="{{biolink}}" class="tx-clr--dk2 btn">View Full Bio</a>
         </div>
     </div>
 </div>
