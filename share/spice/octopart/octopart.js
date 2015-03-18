@@ -24,20 +24,22 @@
 
                 return {
                     brand: item.manufacturer.displayname,
-                    price: item.avg_price[1] + ' ' + item.avg_price[0].toFixed(2),
+                    price: item.avg_price[1] + ' $' + item.avg_price[0].toFixed(2),
                     img: img_url,
                     img_m: img_url,
                     url: item.detail_url,
                     title: item.mpn,
                     heading: item.mpn,
                     abstract: item.short_description,
-                    datasheet: item.datasheets[0].url
+                    datasheet: item.datasheets[0].url,
+                    market_status: item.market_status.replace(/^\w+: /, '') // strip out "GOOD: " from market_status
                 };
             },
             templates: {
                 group: 'products',
                 options: {
                     rating: false,
+                    subtitle_content: Spice.octopart.content,
                     buy: Spice.octopart.buy
                 },
                 variants: {

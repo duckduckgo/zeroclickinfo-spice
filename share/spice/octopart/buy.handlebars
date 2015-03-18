@@ -1,15 +1,3 @@
-{{#stripHTML}}
-    {{#if is_mobile}}
-        <div>Details: {{ellipsis description 60}}</div>
-    {{else}}
-        <div>Details: {{description}}</div>
-    {{/if}}
-{{/stripHTML}}
-
-{{#if item.market_status_v2}}
-    <div>Market Status: {{item.market_status_v2}}</div>
-{{/if}}
-<div>Average Price: ${{price}}</div>
 <br>
 <a href="{{{datasheet}}}" class="btn btn__datasheet">Datasheet</a>
 <a href="{{{item.detail_url}}}" class="btn btn--primary">Authorized Distributors</a>
