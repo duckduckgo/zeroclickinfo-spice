@@ -9,24 +9,24 @@
 
 (function (env) {
     'use strict';
-    env.ddg_spice_quandl_fundamentals = function(api_result){
+    env.ddg_spice_quandl_world_bank = function(api_result){
 
         if (!api_result) {
-            return Spice.failed('quandl_fundamentals: no results');
+            return Spice.failed('quandl_world_bank: no results');
         }
 
         var result = api_result;
         
         // we need two data points to get percent change
         if (result.data.length < 2) {
-            return Spice.failed('quandl_fundamentals: not enough data points');
+            return Spice.failed('quandl_world_bank: not enough data points');
         }
 
         // url to the data set page
         result.url = 'https://quandl.com/' + result.source_code + "/" + result.code;
 
         // add title tag for link:
-        result.urlTitle = 'View more fundamentals data at Quandl';
+        result.urlTitle = 'View more World Bank data at Quandl';
         
         var recentValue = result.data[0][1];
         var previousValue = result.data[1][1];
@@ -78,22 +78,23 @@
         
 
         Spice.add({
-            id: 'quandl_fundamentals',
-            name: 'Fundamentals',
+            id: 'quandl_world_bank',
+            name: 'World Bank',
             data: result,
             meta: {
                 sourceName: 'Quandl',
                 sourceUrl: result.url,
-                sourceIconUrl:  DDG.get_asset_path('quandl/fundamentals','quandl32x32.png')
+                sourceIconUrl:  DDG.get_asset_path('quandl/world_bank','quandl32x32.png')
             },
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.quandl_fundamentals.content,
+                    content: Spice.quandl_world_bank.content,
                     moreAt: true
                 }
             }
         });
     };
 }(this));
+
 
