@@ -23,7 +23,7 @@
                 var img_url = item.images[0].url;
 
                 return {
-                    brand: item.manufacturer.name,
+                    brand: item.manufacturer.displayname,
                     price: item.avg_price[1] + ' ' + item.avg_price[0].toFixed(2),
                     img: img_url,
                     img_m: img_url,
