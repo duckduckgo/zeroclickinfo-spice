@@ -6,8 +6,6 @@
             return Spice.failed('octopart');
         }
 
-        var isMobile = $('.is-mobile').length;
-
         Spice.add({
             id: 'octopart',
             name: 'Parts',
