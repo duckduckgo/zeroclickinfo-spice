@@ -56,11 +56,7 @@
     env.ddg_spice_js_keycodes = function(api_result){
         var query = DDG.get_query(),
             key = query.replace(/js|javascript|key\s?(code)?s?/g, "").trim().toLowerCase(),
-            data = {},
-            $spice,
-            $table,
-            $input,
-            $result;
+            data = {};
 
         // if the query was something like "keycode tab"
         // display the result for that
@@ -114,38 +110,42 @@
                 options: {
                     content: Spice.js_keycodes.content
                 }
-            }
+            },
+            onShow: onShow
         });
 
-        $spice = Spice.getDOM("js_keycodes");
-        $table = $spice.find("table.all-keycodes");
-        $input = $spice.find("input.keycode-input");
-        $result = $spice.find("p.keycode-result");
+        function onShow() {
+            var $spice = Spice.getDOM("js_keycodes"),
+                $table = $spice.find("table.all-keycodes"),
+                $input = $spice.find("input.keycode-input"),
+                $result = $spice.find("p.keycode-result");
 
-        // hide / show keycodes table
-        $(".zci--js_keycodes .show-keycodes").click(function (e) {
-            e.preventDefault();
+            // hide / show keycodes table
+            $(".zci--js_keycodes .show-keycodes").click(function (e) {
+                e.preventDefault();
 
-            $table.toggle();
-        });
+                $table.toggleClass("is-hidden");
+            });
 
-        // handle tester input
-        $input.keydown(function (e) {
-            var code = e.keyCode || e.which,
-                keyCode = getKeycodeByCode(code),
-                keyName;
+            // handle tester input
+            $input.keydown(function (e) {
+                var code = e.keyCode || e.which,
+                    keyCode = getKeycodeByCode(code),
+                    keyName;
 
-            e.preventDefault();
+                e.preventDefault();
 
-            // in case keycode is unknown
-            if (!keyCode) {
-                return;
-            }
+                // in case keycode is unknown
+                if (!keyCode) {
+                    return;
+                }
 
-            keyName = keyCode.key;
+                keyName = keyCode.key;
 
-            $input.val(keyName);
-            $result.html("The keycode for <code>" + keyName + "</code> is: " + code);
-        });
+                $input.val(keyName);
+                $result.html("The keycode for <code>" + keyName + "</code> is: " + code);
+            });
+        }
+
     };
 }(this));
