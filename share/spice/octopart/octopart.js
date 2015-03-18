@@ -47,21 +47,21 @@ function ddg_spice_octopart (api_result) {
         meta: {
             itemType: 'Parts',
             sourceName: 'Octopart',
-			sourceUrl : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q
+            sourceUrl : 'http://octopart.com/search?q=' + api_result.request.q
         },
         normalize: function(item) {
-            var img = DDG.getProperty(item, "item.images.0.url_90px");
+            var img = DDG.getProperty(item, "item.imagesets.0.small_image.url");
             var desc_length = 60;
             var description = (isMobile ? 
                 Handlebars.helpers.ellipsis(DDG.strip_html(item.item.short_description), desc_length) :
                 DDG.strip_html(item.item.short_description));
-
+            
             return {
-                brand: item.item.manufacturer.displayname,
-                price: item.item.avg_price[1] + ' ' + item.item.avg_price[0].toFixed(2),
+                brand: item.item.manufacturer.name,
+                price: item.item.avg_price_v2[1] + ' ' + item.item.avg_price_v2[0].toFixed(2),
                 img: img,
                 img_m: img,
-				url: item.item.detail_url,
+                url: item.item.octopart_url,
                 title: DDG.strip_html(item.item.mpn).toUpperCase(),
                 heading: DDG.strip_html(item.item.mpn).toUpperCase(),
                 description: description,

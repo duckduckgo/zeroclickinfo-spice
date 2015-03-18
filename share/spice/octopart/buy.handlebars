@@ -1,8 +1,8 @@
 {{#if description}}
     <div>Details: {{description}}</div>
 {{/if}}
-{{#if item.market_status}}
-    <div>Market Status: {{item.market_status}}</div>
+{{#if item.market_status_v2}}
+    <div>Market Status: {{item.market_status_v2}}</div>
 {{/if}}
 {{#if price}}
     <div>Average Price: ${{price}}</div>
@@ -11,8 +11,8 @@
 {{#if datasheet}}
     <a href="{{{datasheet}}}" class="btn btn__datasheet">Datasheet</a>
 {{/if}}
-{{#if url}}
-    <a href="{{{url}}}" class="btn btn--primary">
+{{#if item.octopart_url}}
+    <a href="{{{item.octopart_url}}}" class="btn btn--primary">
     Buy at Octopart
     </a>
 {{/if}}
