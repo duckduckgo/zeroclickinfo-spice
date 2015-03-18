@@ -21,51 +21,6 @@ ddg_spice_test(
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
     ),
-    DDG::Request->new(
-        query_raw => 'weather 12180',
-        location => $loc
-    ) => test_spice(
-        "/js/spice/forecast/12180",
-        call_type => 'include',
-        caller => 'DDG::Spice::Forecast',
-        is_cached => 1
-    ),
-    DDG::Request->new(
-        query_raw => 'weather today',
-        location => $loc
-    ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
-        call_type => 'include',
-        caller => 'DDG::Spice::Forecast',
-        is_cached => 0
-    ),
-    DDG::Request->new(
-        query_raw => 'weather tomorrow',
-        location => $loc
-    ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
-        call_type => 'include',
-        caller => 'DDG::Spice::Forecast',
-        is_cached => 0
-    ),
-    'weather for Troy, NY' => test_spice(
-    	'/js/spice/forecast/troy%2C%20ny',
-    	call_type => 'include',
-    	caller => 'DDG::Spice::Forecast',
-        is_cached => 1
-    ),
-    'weather Troy, NY' => test_spice(
-        '/js/spice/forecast/troy%2C%20ny',
-        call_type => 'include',
-        caller => 'DDG::Spice::Forecast',
-        is_cached => 1
-    ),
-    'Philadelphia weather' => test_spice(
-    	'/js/spice/forecast/philadelphia',
-    	call_type => 'include',
-    	caller => 'DDG::Spice::Forecast',
-        is_cached => 1
-    ),
     'temperature stockholm' => undef,
     'shipping forecast' => undef,
     'weather forecast bbc' => undef,
