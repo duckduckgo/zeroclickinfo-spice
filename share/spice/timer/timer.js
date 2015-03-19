@@ -84,32 +84,22 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         this.$nameDisplay = this.$element.find('.name_display');
         this.$nameInput = this.$element.find(".name_input");
 
-        this.$timeInput = this.$element.find(".time_input");
         this.$hourInput = this.$element.find(".time_input .hours");
         this.$minuteInput = this.$element.find(".time_input .minutes");
         this.$secondInput = this.$element.find(".time_input .seconds");
 
-        this.$timeDisplay = this.$element.find('.time_display');
         this.$hoursMinutesDisplay = this.$element.find('.time_display .hours_minutes');
         this.$secondsDisplay = this.$element.find('.time_display .seconds');
 
-        this.$resetBtn = this.$element.find('.corner_btn.reset');
-        this.$closeBtn = this.$element.find('.corner_btn.close');
-        this.$addMinuteBtn = this.$element.find('.corner_btn.add_minute');
-
-        this.$startStopBtn = this.$element.find('.play_pause a');
-
-        this.$progressFill = this.$element.find('.fill');
         this.$progressRotFill = this.$element.find('.rotated_fill');
-        this.$progressHalfFill = this.$element.find('.first_half_fill');
 
         // interaction
         this.$nameInput.keyup(this.handleNameInput.bind(this));
         this.$element.find(".time_input").keyup(this.handleTimeInput.bind(this));
-        this.$resetBtn.click(this.handleResetClick.bind(this));
-        this.$startStopBtn.click(this.handleStartStopClick.bind(this));
-        this.$addMinuteBtn.click(this.handleAddMinuteClick.bind(this));
-        this.$closeBtn.click(this.handleCloseClick.bind(this));
+        this.$element.find('.corner_btn.reset').click(this.handleResetClick.bind(this));
+        this.$element.find('.play_pause a').click(this.handleStartStopClick.bind(this));
+        this.$element.find('.corner_btn.add_minute').click(this.handleAddMinuteClick.bind(this));
+        this.$element.find('.corner_btn.close').click(this.handleCloseClick.bind(this));
 
         // set starting time if it was passed
         if (startingTime) {
@@ -138,7 +128,6 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
             this.$element.removeClass("status_paused").addClass("status_running");
 
-            this.hideShowButtons();
             this.renderTime();
         },
         setStartingTime: function (startingTimeSecs) {
@@ -219,40 +208,21 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 this.start();
             }
         },
-        hideShowButtons: function () {
-            // hide or show elements based on the timer's status
-            if (this.$element.hasClass("status_running")) {
-                this.$timeInput.hide();
-                this.$timeDisplay.show();
-                this.$resetBtn.hide();
-                this.$closeBtn.hide();
-                this.$addMinuteBtn.show();
-                this.$startStopBtn.html("║");
+        renderProgressCircle: function () {
+            var progress = 1 - this.timeLeftMs / this.totalTimeMs,
+                angle = 360 * progress;
 
-                this.$progressRotFill.show();
-            } else if (this.$element.hasClass("status_paused")) {
-                this.$resetBtn.show();
-                this.$startStopBtn.html("►");
-            } else if (this.$element.hasClass("status_stopped")) {
-                this.$resetBtn.hide();
-                this.$addMinuteBtn.hide();
-                this.$startStopBtn.html("&times;");
+            // timer complete, everything goes red
+            // we don't need progress circles anymore
+            if (progress === 1) {
+                return;
+            }
 
-                this.$progressRotFill.hide();
-            } else {
-                // initial state
-                this.$closeBtn.show();
-                this.$timeInput.show();
-                this.$nameInput.show();
+            this.$progressRotFill.css("transform", "rotate(" + angle + "deg)");
 
-                this.$resetBtn.hide();
-                this.$timeDisplay.hide();
-                this.$nameDisplay.hide();
-                this.$addMinuteBtn.hide();
-
-                this.$progressRotFill.hide();
-
-                this.$startStopBtn.html("►");
+            // hide / display the other halves as necessary
+            if (angle > 180) {
+                this.$element.addClass("half_complete");
             }
         },
         renderTime: function () {
@@ -261,28 +231,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             this.$hoursMinutesDisplay.html(padZeros(time.hours, 2) + ":" + padZeros(time.minutes, 2));
             this.$secondsDisplay.html(padZeros(time.seconds, 2));
 
-            // do progress circle css rotation magic
-
-            var progress = 1 - this.timeLeftMs / this.totalTimeMs,
-                angle = 360 * progress;
-
-            // timer complete, everything goes red
-            // we don't need progress circles anymore
-            if (progress === 1) {
-                this.$progressHalfFill.hide();
-                return;
-            }
-
-            this.$progressRotFill.css("transform", "rotate(" + angle + "deg)");
-
-            // hide / display the other halves as necessary
-            if (angle > 180) {
-                this.$progressFill.css("clip", "auto");
-                this.$progressHalfFill.show();
-            } else {
-                this.$progressHalfFill.hide();
-                this.$progressFill.css("clip", "rect(0em, 7em, 7em, 3.5em)");
-            }
+            this.renderProgressCircle();
         },
         update: function (timeDifference) {
             if (!this.$element.hasClass("status_running")) {
@@ -295,7 +244,6 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 this.timeLeftMs = 0;
                 playLoopingSound();
                 this.$element.removeClass("status_running").addClass("status_stopped");
-                this.hideShowButtons();
             }
 
             this.renderTime();
@@ -305,8 +253,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
             this.getStartingTimeFromInput();
 
-            this.$element.removeClass("status_running status_paused");
-            this.hideShowButtons();
+            this.$element.removeClass("status_running status_paused half_complete");
         },
         handleAddMinuteClick: function (e) {
             e.preventDefault();
@@ -325,7 +272,6 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         },
         pause: function () {
             this.$element.removeClass("status_running").addClass("status_paused");
-            this.hideShowButtons();
         },
         destroy: function () {
             this.$element.remove();

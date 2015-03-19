@@ -71,12 +71,17 @@
 }
 
 .zci--timer .play_pause .fill {
+    display: none;
     top: -0.4em;
     left: -0.4em;
     position: absolute;
     width: 6.2em;
     height: 6.2em;
     clip: rect(0em, 7em, 7em, 3.5em);
+}
+
+.zci--timer .half_complete .play_pause .fill {
+    clip: auto;
 }
 
 /* this will be shown via JS for browsers that can handle it */
@@ -98,6 +103,10 @@
 
 .zci--timer .play_pause .first_half_fill {
     clip: rect(0em, 7em, 7em, 3.5em);
+}
+
+.zci--timer .half_complete .play_pause .first_half_fill {
+    display: block;
 }
 
 .zci--timer .timer_container.status_paused .rotated_fill,
@@ -122,6 +131,20 @@
 
 .zci--timer .timer_container.status_stopped .play_pause a {
     color: #de5a2a;
+}
+
+/* button look for different timer statuses */
+
+.zci--timer .play_pause a:after {
+    content: ">";
+}
+
+.zci--timer .status_running .play_pause a:after {
+    content: "||";
+}
+
+.zci--timer .status_stopped .play_pause a:after {
+    content: "\00d7"; /* same as &times; */
 }
 
 /* TIMER NAME / TIME */
@@ -164,7 +187,6 @@
     bottom: 0.7em;
 }
 
-
 .zci--timer .name_input,
 .zci--timer .time_input {
     font-size: 1.1em;
@@ -189,7 +211,6 @@
     background: none;
     padding-top: 4px;
     border: none;
-    display: block-inline;
     width: 1.5em;
     text-align: center;
 }
@@ -210,13 +231,11 @@
 }
 
 .zci--timer .corner_btn.reset {
-    /* shown via js */
     display: none;
     top: 10px;
 }
 
 .zci--timer .corner_btn.add_minute {
-    /* shown via js */
     display: none;
     bottom: 10px;
     border: 1px solid #ddd;
@@ -230,4 +249,52 @@
 .zci--timer .corner_btn.close {
     top: 4px;
     font-size: 1.8em;
+}
+
+/* SHOW / HIDE CONTROLS BASED ON TIMER STATE */
+
+/* running */
+
+.zci--timer .status_running .corner_btn.add_minute {
+    display: inline;
+}
+
+.zci--timer .status_running .corner_btn.close,
+.zci--timer .status_running .time_input {
+    display: none;
+}
+
+.zci--timer .status_running .play_pause .fill,
+.zci--timer .status_running .play_pause .rotated_fill,
+.zci--timer .status_running .time_display {
+    display: block;
+}
+
+/* paused */
+
+.zci--timer .status_paused .corner_btn.reset,
+.zci--timer .status_paused .corner_btn.add_minute {
+    display: inline;
+}
+
+.zci--timer .status_paused .corner_btn.close,
+.zci--timer .status_paused .time_input {
+    display: none;
+}
+
+.zci--timer .status_paused .play_pause .fill,
+.zci--timer .status_paused .play_pause .rotated_fill,
+.zci--timer .status_paused .time_display {
+    display: block;
+}
+
+/* stopped */
+
+.zci--timer .status_stopped .corner_btn.close,
+.zci--timer .status_stopped .time_input {
+    display: none;
+}
+
+.zci--timer .status_stopped .time_input {
+    display: block;
 }
