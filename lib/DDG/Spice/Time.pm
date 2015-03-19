@@ -35,9 +35,8 @@ handle query_lc => sub {
     if (my $caps = $capitals->{$q}) {
         # These are internally sorted by population, so assume they want the big one for now.
         $q = string_for_search($caps->[0]);
+        return $q;
     }
-
-    return $q;
 };
 
 sub string_for_search {
