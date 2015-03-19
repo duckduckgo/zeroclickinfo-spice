@@ -46,7 +46,7 @@ handle sub {
     # find which secondary trigger was used
     my $secondary;
     for my $trigger (@secondary_keys) {
-        if ( $query =~ /$trigger/ ) {
+        if ( $query =~ /\b$trigger\b/ ) {
             $secondary = $trigger;
             last;
         }
@@ -58,7 +58,7 @@ handle sub {
     # find which primary trigger was used
     my $primary;
     for my $trigger (@primary_keys) {
-        if ( $query =~ /$trigger/ ) {
+        if ( $query =~ /\b$trigger\b/ ) {
             $primary = $trigger;
             last;
         }
