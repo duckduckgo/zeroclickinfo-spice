@@ -26,6 +26,12 @@ my $trigger_hash = Load(scalar share('home_values_triggers.yml')->slurp);
 # triggers sorted by length so more specific is used first
 my @trigger_keys = sort { length $b <=> length $a } keys($trigger_hash);
 
+# states and metro code mappings
+my $state_hash = Load(scalar share('states.yml')->slurp);
+my @state_keys = sort { length $b <=> length $a } keys($state_hash);
+my $metro_hash = Load(scalar share('metro.yml')->slurp);
+my @metro_keys = sort { length $b <=> length $a } keys($metro_hash);
+
 # defining our triggers
 triggers any => @trigger_keys;
 
@@ -39,12 +45,12 @@ spice proxy_cache_valid => "418 1d";
 
 handle sub {
 
+    my $query = lc $_;
+    
     # will hold region such as "27510", "Carrboro" etc
-    # NOTE: only zip codes supported for time being
     my $region;
 
     # will hold the type of region such as "ZIP", "CITY" etc
-    # NOTE: only zip codes supported for time being
     my $indicator_type;
 
     # checking for 5-digit zip codes
@@ -53,13 +59,33 @@ handle sub {
         $region = $1;
         $indicator_type = "ZIP";
     }
-
+    
+    # is it a metropolitan area?
+    if (! defined $region) {
+        for my $key (@metro_keys) {
+            if ( $query =~ /\b$key\b/ ) {
+                $region = $metro_hash->{$key};
+                $indicator_type = "METRO";
+                last;
+            }
+        };
+    }
+    
+    # is it a state?
+    if (! defined $region) {
+        for my $key (@state_keys) {
+            if ( $query =~ /\b$key\b/ ) {
+                $region = $state_hash->{$key};
+                $indicator_type = "STATE";
+                last;
+            }
+        };
+    }
+    
     # exit if no region defined
     return unless ($region);
-
-    # only return if we found a region in the search query
-    my $query = lc $_;
-    # iterate through trigger phrases in their file-order
+    
+    # iterate through trigger phrases
     for my $trigger (@trigger_keys) {
         # return if the trigger phrase is in the query
         if ( $query =~ /$trigger/ ) {
