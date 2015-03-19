@@ -83,4 +83,35 @@ ddg_spice_test(
     # No results for a single trigger alone
     'homes' => undef, 
 );
+
+
+ddg_spice_test(
+	[qw( DDG::Spice::Quandl::WorldBank )],
+    
+    'world population' => test_spice(
+		'/js/spice/quandl/world_bank/WLD_SP_POP_TOTL',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::WorldBank',
+	),
+    
+    'population world' => test_spice(
+		'/js/spice/quandl/world_bank/WLD_SP_POP_TOTL',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::WorldBank',
+	),
+    
+    'world female population' => test_spice(
+		'/js/spice/quandl/world_bank/WLD_SP_POP_TOTL_FE_ZS',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::WorldBank',
+	),
+   
+    # No results for a single region alone
+	'world' => undef,
+    'us' => undef,
+    
+    'population' => undef, 
+);
+
+
 done_testing;
