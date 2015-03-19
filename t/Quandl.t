@@ -46,22 +46,39 @@ ddg_spice_test(
 ddg_spice_test(
 	[qw( DDG::Spice::Quandl::HomeValues )],
     
-    # primary example
+    # primary zip example
     '11235 homes' => test_spice(
 		'/js/spice/quandl/home_values/ZIP_ALLHOMES_11235',
 		call_type => 'include',
 		caller => 'DDG::Spice::Quandl::HomeValues',
 	),
     
-    # secondary example
+    # secondary zip example
     'expensive homes 11235' => test_spice(
 		'/js/spice/quandl/home_values/ZIP_TOPTIER_11235',
 		call_type => 'include',
 		caller => 'DDG::Spice::Quandl::HomeValues',
 	),
     
+    # metro example, is not caught by 'new york' trigger
+    'new york city homes' => test_spice(
+		'/js/spice/quandl/home_values/METRO_ALLHOMES_NEWYORKNY',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::HomeValues',
+	),
+    
+    # state example
+    'new york homes' => test_spice(
+		'/js/spice/quandl/home_values/STATE_ALLHOMES_NEWYORK',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::HomeValues',
+	),
+    
+    
     # No results for a single region alone
 	'27510' => undef,
+    'new york' => undef,
+    'raleigh' => undef,
     
     # No results for a single trigger alone
     'homes' => undef, 
