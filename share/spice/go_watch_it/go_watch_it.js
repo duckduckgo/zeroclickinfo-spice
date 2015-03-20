@@ -51,9 +51,10 @@
             "Redbox": 1
         };
         
-        var append = ((DDG.is3x || DDG.is2x) ? "@2x.png" : ".png");
-        var path = "assets/";
-        var provider_icons = {
+        // For retina screen return optimized images @2x.png
+        var append = ((DDG.is3x || DDG.is2x) ? "@2x.png" : ".png"),
+            path = "assets/",
+            provider_icons = {
             1: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'netflix'),
                 light: DDG.get_asset_path('go_watch_it', path + 'netflix')
@@ -77,6 +78,10 @@
             12: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'youtube'),
                 light: DDG.get_asset_path('go_watch_it', path + 'youtube-alt')
+            },
+            13: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'sundance'),
+                light: DDG.get_asset_path('go_watch_it', path + 'sundance-alt')
             },
             18: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'googleplay'),
@@ -102,9 +107,21 @@
                 dark: DDG.get_asset_path('go_watch_it', path + 'hulu'),
                 light: DDG.get_asset_path('go_watch_it', path + 'hulu')
             },
-            37: {
+            31: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'bestbuy'),
+                light: DDG.get_asset_path('go_watch_it', path + 'bestbuy')
+            },
+            32: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'walmart'),
+                light: DDG.get_asset_path('go_watch_it', path + 'walmart')
+            },
+            36: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'target'),
                 light: DDG.get_asset_path('go_watch_it', path + 'target')
+            }, 
+            37: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'targetticket'),
+                light: DDG.get_asset_path('go_watch_it', path + 'targetticket')
             },
             9: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'redbox'),
@@ -118,6 +135,14 @@
                 dark: DDG.get_asset_path('go_watch_it', path + 'fandango'),
                 light: DDG.get_asset_path('go_watch_it', path + 'fandango')
             },
+            23: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'vhx'),
+                light: DDG.get_asset_path('go_watch_it', path + 'vhx-alt')
+            },
+            14: {
+                dark: DDG.get_asset_path('go_watch_it', path + 'hulu'),
+                light: DDG.get_asset_path('go_watch_it', path + 'hulu')
+            }
         };
         
         var skip_providers = {
@@ -145,6 +170,10 @@
                     return null;
                 }
                 
+                // Try to strip anything that comes before the price.
+                item.buy_line = item.buy_line.replace(/^[a-z ]+/i, "");
+                item.rent_line = item.rent_line.replace(/^[a-z ]+/i, "");
+
                 // If the provider is in this hash, it means that they provide 
                 // streaming if they don't buy or sell stuff.
                 if(item.provider_name in streaming_providers && 
@@ -165,6 +194,7 @@
                     item.format_line = "DVD / Blu-ray";
                 }
                 
+                // Only return a single Netflix item
                 if(item.provider_name === "Netflix") {
                     if(!foundNetflix) {
                         foundNetflix = true;
@@ -178,6 +208,8 @@
                     item.provider_format_logos = provider_icons[item.provider_format_id];
                     item.provider_format_logos.light += append;
                     item.provider_format_logos.dark += append;
+                } else {
+                    return null;
                 }
                 
                 return {
@@ -188,14 +220,16 @@
             templates: {
                 item: 'base_item',
                 options: {
-                    content: Spice.go_watch_it.content,
-                    variant: 'narrow'
+                    content: Spice.go_watch_it.content
+                },
+                variants: {
+                    tile: 'narrow'
                 }
             }
         });
     };
 
-    Spice.registerHelper("buyOrRent", function(buy_line, rent_line, options) {
+    Spice.registerHelper("gwi_buyOrRent", function(buy_line, rent_line, options) {
         if(buy_line && buy_line !== "") {
             this.line = buy_line;
             return options.fn(this);

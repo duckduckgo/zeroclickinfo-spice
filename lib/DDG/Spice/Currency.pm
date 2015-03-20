@@ -1,6 +1,7 @@
 package DDG::Spice::Currency;
 # ABSTRACT: Currency Convertor provided by XE.com
 
+use strict;
 use DDG::Spice;
 with 'DDG::SpiceRole::NumberStyler';
 
@@ -15,7 +16,9 @@ icon_url "/i/xe.com.ico";
 code_url "https://github.com/XenonLab/blob/master/lib/DDG/Spice/Currency.pm";
 category "finance";
 topics "economy_and_finance", "geography", "travel", "everyday";
-attribution web => ['http://www.xe.com', 'xe.com'];
+attribution web => ['http://www.xe.com', 'xe.com'],
+            github => ['https://github.com/laouji','Crimson Thompson'],
+            twitter => ['https://twitter.com/laouji','Crimson Thompson'];
 
 # Get all the valid currencies from a text file.
 my @currTriggers;
@@ -37,7 +40,7 @@ my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is
 my $number_re = number_style_regex();
 
 # This regexp is responsible for actually processing the query and capturing the important parts.
-my $guard = qr/^$question_prefix($number_re*)\s?($currency_qr)(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?\??$/i;
+my $guard = qr/^$question_prefix($number_re*)\s?($currency_qr)(?:s)?(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?(?:s)?\??$/i;
 
 triggers query_lc => qr/$currency_qr/;
 

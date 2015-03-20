@@ -1,5 +1,6 @@
 package DDG::Spice::Kwixer;
 
+use strict;
 use DDG::Spice;
 
 #metadata

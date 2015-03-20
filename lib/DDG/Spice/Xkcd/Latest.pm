@@ -2,6 +2,7 @@ package DDG::Spice::Xkcd::Latest;
 #ABSTRACT: gets the info on the latest xkcd comic.
 #called by display spice to decide if the 'next' link needs to be displayed
 
+use strict;
 use DDG::Spice;
 
 attribution twitter => ['https://twitter.com/mattr555', 'Matt Ramina'],

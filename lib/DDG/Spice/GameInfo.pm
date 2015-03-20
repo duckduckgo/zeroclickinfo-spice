@@ -1,5 +1,6 @@
 package DDG::Spice::GameInfo;
 
+use strict;
 use DDG::Spice;
 primary_example_queries "homesick video game";
 description "See information about a video game";

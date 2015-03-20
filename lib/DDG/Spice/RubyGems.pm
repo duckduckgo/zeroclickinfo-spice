@@ -1,5 +1,6 @@
 package DDG::Spice::RubyGems;
 
+use strict;
 use DDG::Spice;
 
 name 'RubyGems';

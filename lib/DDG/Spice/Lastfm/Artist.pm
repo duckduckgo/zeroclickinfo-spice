@@ -1,6 +1,7 @@
 package DDG::Spice::Lastfm::Artist;
 # ABSTRACT: Search for musicians in Last.fm and get artists or bands similar to them.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "ben folds five artist";

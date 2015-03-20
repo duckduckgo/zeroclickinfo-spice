@@ -1,5 +1,6 @@
 package DDG::Spice::Zanran;
 
+use strict;
 use DDG::Spice;
 
 name "Zanran";

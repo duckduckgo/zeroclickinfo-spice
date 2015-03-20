@@ -1,5 +1,6 @@
 package DDG::Spice::HackerNews;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "hn postgresql";
