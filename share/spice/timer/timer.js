@@ -7,6 +7,10 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 (function (env) {
     'use strict';
 
+    var MAX_TIME = 359999, // => 99 hrs 59 mins 59 secs
+        soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
+        Timer;
+
     // helper methods
 
     // add zeros to beginning of string
@@ -73,11 +77,14 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         DDG.require('audio', requirePlayer);
     }
 
-    var MAX_TIME = 59999, // => 999m59s
-        soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
-        Timer;
-    
     Timer = function (number, startingTime) {
+        // tells whether timer should update or not
+        this.running = false;
+
+        // tells whether the half_complete class has been added or not
+        // (this is used for styling the progress circle)
+        this.halfComplete = false;
+
         // dom setup
         this.$element = $(Spice.timer.timer());
 
@@ -95,7 +102,9 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
         // interaction
         this.$nameInput.keyup(this.handleNameInput.bind(this));
-        this.$element.find(".time_input").keyup(this.handleTimeInput.bind(this));
+        this.$element.find(".time_input input")
+            .keyup(this.handleTimeInput.bind(this))
+            .focusout(this.handleTimeFocusOut.bind(this));
         this.$element.find('.corner_btn.reset').click(this.handleResetClick.bind(this));
         this.$element.find('.play_pause a').click(this.handleStartStopClick.bind(this));
         this.$element.find('.corner_btn.add_minute').click(this.handleAddMinuteClick.bind(this));
@@ -107,9 +116,20 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
             var time = getHrsMinsSecs(startingTime);
 
-            this.$hourInput.val(padZeros(time.hours, 2));
-            this.$minuteInput.val(padZeros(time.minutes, 2));
-            this.$secondInput.val(padZeros(time.seconds, 2));
+            // prefill input fields
+
+            // if a larger value exists we want all the smaller ones to be prefilled too
+            // so 50 mins will be rendered as __:50:00
+            if (time.hours) {
+                this.$hourInput.val(padZeros(time.hours, 2));
+                this.$minuteInput.val(padZeros(time.minutes, 2));
+                this.$secondInput.val(padZeros(time.seconds, 2));
+            } else if (time.minutes) {
+                this.$minuteInput.val(padZeros(time.minutes, 2));
+                this.$secondInput.val(padZeros(time.seconds, 2));
+            } else {
+                this.$secondInput.val(padZeros(time.seconds, 2));
+            }
         } else {
             this.setStartingTime(0);
         }
@@ -126,6 +146,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 this.getStartingTimeFromInput();
             }
 
+            this.running = true;
             this.$element.removeClass("status_paused").addClass("status_running");
 
             this.renderTime();
@@ -163,7 +184,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         handleStartStopClick: function (e) {
             e.preventDefault();
 
-            // time hasn't been set yet - do nothing
+            // if time hasn't been set yet - do nothing
             if (this.totalTimeMs === 0) {
                 return;
             }
@@ -208,42 +229,59 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 this.start();
             }
         },
+        handleTimeFocusOut: function (e) {
+            var $input = $(e.currentTarget),
+                value = $input.val();
+
+            // cap the value at the highest this input can actually handle
+            if ($input.hasClass("minutes") || $input.hasClass("seconds")) {
+                value = Math.min(value, 59);
+            }
+
+            // pad with zeros
+            $input.val(padZeros(value, 2));
+        },
         renderProgressCircle: function () {
             var progress = 1 - this.timeLeftMs / this.totalTimeMs,
                 angle = 360 * progress;
 
-            // timer complete, everything goes red
-            // we don't need progress circles anymore
-            if (progress === 1) {
-                return;
+            // the progress circle consists of two clipped divs,
+            // each displaying as a half circle
+            //
+            // one of them rotates based on how much the timer's progressed
+            // the other one is stationary, and is only displayed once the timer is half complete
+
+            // the first time we reach progress over 0.5
+            // add the "half_complete" class
+            if (!this.halfComplete && progress > 0.5) {
+                this.halfComplete = true;
+                this.$element.addClass("half_complete");
             }
 
             this.$progressRotFill.css("transform", "rotate(" + angle + "deg)");
-
-            // hide / display the other halves as necessary
-            if (angle > 180) {
-                this.$element.addClass("half_complete");
-            }
         },
         renderTime: function () {
             var time = getHrsMinsSecs(this.timeLeftMs / 1000);
 
+            // update text timer
             this.$hoursMinutesDisplay.html(padZeros(time.hours, 2) + ":" + padZeros(time.minutes, 2));
             this.$secondsDisplay.html(padZeros(time.seconds, 2));
 
             this.renderProgressCircle();
         },
         update: function (timeDifference) {
-            if (!this.$element.hasClass("status_running")) {
+            if (!this.running) {
                 return;
             }
 
             this.timeLeftMs -= timeDifference;
 
+            // handle running out of time
             if (this.timeLeftMs <= 0) {
                 this.timeLeftMs = 0;
                 playLoopingSound();
                 this.$element.removeClass("status_running").addClass("status_stopped");
+                this.running = false;
             }
 
             this.renderTime();
@@ -251,8 +289,10 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         handleResetClick: function (e) {
             e.preventDefault();
 
+            // reset starting time from the original input
             this.getStartingTimeFromInput();
 
+            // remove any styling based on timer state
             this.$element.removeClass("status_running status_paused half_complete");
         },
         handleAddMinuteClick: function (e) {
@@ -260,6 +300,12 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
             this.timeLeftMs += 60 * 1000;
             this.totalTimeMs += 60 * 1000;
+
+            // if this makes the timer less than 50% complete, remove the half_complete class
+            if (1 - this.timeLeftMs / this.totalTimeMs < 0.5) {
+                this.halfComplete = false;
+                this.$element.removeClass("half_complete");
+            }
 
             // trigger time re-render
             // (in case it's paused)
@@ -271,6 +317,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             this.destroy();
         },
         pause: function () {
+            this.running = false;
             this.$element.removeClass("status_running").addClass("status_paused");
         },
         destroy: function () {
@@ -278,9 +325,6 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             this.destroyed = true;
         }
     });
-
-    // TODO: changing of document title
-    // TODO: what to do with the modal? some other way of signaling that a timer's done?
 
     env.ddg_spice_timer = function(api_result) {
         
@@ -316,11 +360,13 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 lastUpdate = new Date().getTime();
             }, 100);
 
+            // insert first timer before the add button
             firstTimer.$element.insertBefore($addTimerBtn.parent());
 
             $addTimerBtn.click(function (e) {
                 e.preventDefault();
 
+                // create new timer and insert it before the add button
                 var timer = new Timer(timers.length + 1);
                 timer.$element.insertBefore($addTimerBtn.parent());
                 timers.push(timer);
