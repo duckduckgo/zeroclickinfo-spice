@@ -1,5 +1,9 @@
 /* GENERAL */
 
+.zci--timer .cw {
+    max-width: 90em;
+}
+
 .zci--timer .zci__main {
     max-width: 100%;
 }
@@ -9,6 +13,7 @@
 }
 
 .zci--timer .timer_container {
+    position: relative;
     width: 305px;
     height: 140px;
     display: block;
@@ -30,23 +35,23 @@
 }
 
 .zci--timer a#add_timer_btn {
-    width: 75%;
-    height: 75%;
+    width: 70%;
+    height: 70%;
     border-radius: 50%;
-    border: 3px solid #dedede;
+    border: 4px solid #dedede;
     color: #626262;
     text-decoration: none;
     display: block;
     margin: 10% 0 0 10%;
     text-align: center;
-    font-size: 50px;
+    font-size: 4em;
     line-height: 2em;
 }
 
 /* PLAY/PAUSE BTN */
 
 .zci--timer .play_pause {
-    width: 40%;
+    width: 45%;
     height: 100%;
     position: relative;
 }
@@ -54,10 +59,10 @@
 .zci--timer .play_pause .progress {
     position: relative;
     left: 1.5em;
-    top: 2em;
-    width: 6.2em;
-    height: 6.2em;
-    border: 0.4em solid #959595;
+    top: 1.5em;
+    width: 7.3em;
+    height: 7.3em;
+    border: 0.35em solid #959595;
     border-radius: 50%;
 }
 
@@ -72,12 +77,12 @@
 
 .zci--timer .play_pause .fill {
     display: none;
-    top: -0.4em;
-    left: -0.4em;
+    top: -0.35em;
+    left: -0.35em;
     position: absolute;
-    width: 6.2em;
-    height: 6.2em;
-    clip: rect(0em, 7em, 7em, 3.5em);
+    width: 7.3em;
+    height: 7.3em;
+    clip: rect(0em, 8em, 8em, 4em);
 }
 
 .zci--timer .half_complete .play_pause .fill {
@@ -91,18 +96,18 @@
     top: 0;
     left: 0;
     position: absolute;
-    width: 6.2em;
-    height: 6.2em;
-    border: 0.4em solid #4ab857;
+    width: 7.3em;
+    height: 7.3em;
+    border: 0.35em solid #4ab857;
     border-radius: 50%;
 }
 
 .zci--timer .play_pause .rotated_fill {
-    clip: rect(0em, 3.5em, 7em, 0em);
+    clip: rect(0em, 4em, 8em, 0em);
 }
 
 .zci--timer .play_pause .first_half_fill {
-    clip: rect(0em, 7em, 7em, 3.5em);
+    clip: rect(0em, 8em, 8em, 4em);
 }
 
 .zci--timer .half_complete .play_pause .first_half_fill {
@@ -150,7 +155,7 @@
 /* TIMER NAME / TIME */
 
 .zci--timer .display_container {
-    width: 60%;
+    width: 55%;
     height: 100%;
 }
 
@@ -167,10 +172,17 @@
 .zci--timer .name_display {
     /* shown later on */
     display: none;
+    margin-bottom: 1.45em;
+    padding: 0.55em 0 0 0.4em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 9em;
+    white-space: nowrap;
 }
 
 .zci--timer .time_display {
     font-weight: bold;
+    margin-top: -1.2em;
     /* shown later on */
     display: none;
 }
@@ -187,15 +199,23 @@
     bottom: 0.7em;
 }
 
+.zci--timer .name_input {
+    width: 9em;
+}
+
+.zci--timer .time_input input {
+    width: 2em;
+    text-align: center;
+}
+
 .zci--timer .name_input,
-.zci--timer .time_input {
+.zci--timer .time_input input {
     font-size: 1.1em;
     font-weight: bold;
     height: 2em;
-    width: 70%;
     background-color: #f0f0f0;
     border: none;
-    padding: 3px 5px;
+    padding: 0.2em 0.4em;
     margin-bottom: 1em;
     border-radius: 2px;
     -moz-border-radius: 2px;
@@ -203,21 +223,9 @@
     -webkit-border-radius: 2px;
 }
 
-.zci--timer .time_input input,
-.zci--timer .time_input .time_input_label {
-    color: #333;
-    font-size: 1.1em;
+.zci--timer .time_input .separator {
     font-weight: bold;
-    background: none;
-    padding-top: 4px;
-    border: none;
-    width: 1.5em;
-    text-align: center;
-}
-
-.zci--timer .time_input .time_input_label {
-    right: 5px;
-    position: relative;
+    font-size: 1.2em;
 }
 
 /* RESET / ADD MINUTE / CLOSE BTNS */
@@ -225,6 +233,7 @@
 .zci--timer .corner_btn {
     color: #999;
     font-weight: bold;
+    text-decoration: none;
     position: absolute;
     right: 10px;
     font-size: 0.9em;
@@ -295,6 +304,6 @@
     display: none;
 }
 
-.zci--timer .status_stopped .time_input {
+.zci--timer .status_stopped .time_display {
     display: block;
 }
