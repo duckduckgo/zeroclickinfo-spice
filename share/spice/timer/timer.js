@@ -77,6 +77,34 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         DDG.require('audio', requirePlayer);
     }
 
+    // shake it like a timer that's just finished
+    function shakeElement($element) {
+        var initialAmount = 10,
+            swings = 7,
+            swingDuration = 100;
+
+        function shake($element, amount, swingsLeft, direction) {
+            $element.animate({ left: (direction * amount) + "px" }, swingDuration,
+                function () {
+                    // decrement values as appropriate
+                    swingsLeft--;
+                    amount /= 1.2;
+
+                    if (swingsLeft > 0) {
+                        // if there's more swings left, have a go at another one
+                        // (flipping the direction)
+                        shake($element, amount, swingsLeft, direction * -1);
+                    } else {
+                        // else swing to original position
+                        $element.animate({ left: 0 }, swingDuration);
+                    }
+                });
+        }
+
+        // let it loose
+        shake($element, initialAmount, swings, 1);
+    }
+
     Timer = function (number, startingTime) {
         // tells whether timer should update or not
         this.running = false;
@@ -280,6 +308,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             if (this.timeLeftMs <= 0) {
                 this.timeLeftMs = 0;
                 playLoopingSound();
+                shakeElement(this.$element);
                 this.$element.removeClass("status_running").addClass("status_stopped");
                 this.running = false;
             }
