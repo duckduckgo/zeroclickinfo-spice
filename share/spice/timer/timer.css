@@ -46,6 +46,7 @@
     text-align: center;
     font-size: 4em;
     line-height: 2em;
+    cursor: pointer;
 }
 
 /* PLAY/PAUSE BTN */
