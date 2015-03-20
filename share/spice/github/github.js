@@ -31,11 +31,14 @@
                 sourceName: 'GitHub'
             },
             templates: {
-            group: 'text',
+                    group: 'text',
                     detail: false,
                     item_detail: false,
                     options: {
                         footer: Spice.github.footer
+                    },
+                    variants: {
+                        tile: 'basic4'
                     }
                 },
             normalize: function(item) {

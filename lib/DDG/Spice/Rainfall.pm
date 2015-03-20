@@ -1,8 +1,9 @@
 package DDG::Spice::Rainfall;
-# ABSTRACT: Returns the annual rainfall (precipitation) of the country searched 
+# ABSTRACT: Returns the annual rainfall (precipitation) of the country searched
 
+use strict;
 use DDG::Spice;
-use Locale::Country; 
+use Locale::Country;
 
 primary_example_queries "rainfall australia";
 secondary_example_queries "australia annual rainfall";
@@ -27,8 +28,8 @@ Locale::Country::add_country_alias('Russian Federation'   => 'Russia');
 Locale::Country::rename_country('ae' => 'the United Arab Emirates');
 Locale::Country::rename_country('do' => 'the Dominican Republic');
 Locale::Country::rename_country('gb' => 'the United Kingdom');
-Locale::Country::rename_country('kr' => "the Republic of Korea");                    
-Locale::Country::rename_country('kp' => "the Democratic People's Republic of Korea"); 
+Locale::Country::rename_country('kr' => "the Republic of Korea");
+Locale::Country::rename_country('kp' => "the Democratic People's Republic of Korea");
 Locale::Country::rename_country('ky' => 'the Cayman Islands');
 Locale::Country::rename_country('mp' => 'the Northern Mariana Islands');
 Locale::Country::rename_country('nl' => 'the Netherlands');
@@ -50,33 +51,38 @@ my @reportingDates = (2012,2017,2022,2027,2032);
 handle remainder_lc => sub {
     my ($validDate, $countryName, $countryCode, $countryCodeTwo);
     return if ($_ eq '');
-    
+
     $countryName = shift;
-    $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3); # Return alpha-3 country code 
-    
+    $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3); # Return alpha-3 country code
+
     if($countryCode) {
         $countryName = code2country(country2code($countryName, LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
     } else {
         $countryName = code2country(country2code(code2country($countryName, LOCALE_CODE_ALPHA_3), LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
         $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3);
     }
-  
+
     return unless defined $countryName;
-    
-    # Check if the country string has a comma, split the string and only include the first element
+
+    # Check if the country string has a comma (e.g.: 'Bolivia, Plurinational
+    # State of'), or a parenthesis (e.g.: 'Bolivia (Plurinational State of)'),
+    # split the string and only include the first element
     if (index($countryName, ',') != -1) {
         ($countryName) = split(',', $countryName);
     }
-     
+    if (index($countryName, ' (') != -1) {
+        ($countryName) = split(' \(', $countryName);
+    }
+
     # Loop to check valid reporting dates against current date
     foreach my $date (@reportingDates){
           if($curYear >= $date) {
           $validDate = join(':', $date,$date);
          }
-    }      
+    }
     # Ensure variables are defined before returning a result
     return unless (defined $countryCode and defined $validDate and defined $countryName);
     return uc $countryCode, $validDate, $countryName;
-    
+
 };
 1;

@@ -1,6 +1,7 @@
 package DDG::Spice::BitcoinAddress;
 # ABSTRACT: Displays information about a bitcoin block using the biteasy.com API.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", 

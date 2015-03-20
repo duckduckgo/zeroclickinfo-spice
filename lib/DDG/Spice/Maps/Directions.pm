@@ -1,5 +1,6 @@
 package DDG::Spice::Maps::Directions;
 
+use strict;
 use DDG::Spice;
 
 spice to => 'https://duckduckgo.com/directions/$1,$2,$3,$4';

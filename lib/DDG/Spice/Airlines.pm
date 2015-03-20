@@ -1,5 +1,6 @@
 package DDG::Spice::Airlines;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "AA 102";

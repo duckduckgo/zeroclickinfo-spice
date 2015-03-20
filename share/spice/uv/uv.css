@@ -1,0 +1,56 @@
+.zci--uv .uv_header .zci__header {
+  font-size: 1.214em;
+  margin-top: 2px;
+}
+
+.zci--uv .uv_indicator {
+    float: left;
+    font-size: 2.143em;
+    width: 40px;
+    height: 40px;
+    color: white;
+    border-radius: 2px;
+    font-size: 30px;
+    text-align: center;
+    display: block;
+}
+
+.zci--uv .uv_indicator--value {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.zci--uv .uv_risk_low {
+    background-color: #5B9E4D;  
+}
+
+.zci--uv .uv_risk_moderate {
+    background-color: #F1A031;  
+}
+
+.zci--uv .uv_risk_high {
+    background-color: #E37151;  
+}
+
+.zci--uv .uv_risk_veryhigh {
+    background-color: #DE5833;  
+}
+
+.zci--uv .uv_risk_extreme {
+    background-color: #5454DB;  
+}
+
+.zci--uv .uv_header {
+    float: left;
+    padding-left: 12px;
+}
+
+.zci--uv h4.uv_subheader {
+    padding-top: 0.1em;
+}
+
+.zci--uv .uv_description {
+    font-size: 1.214em;
+    clear: both;
+    padding-top: 0.75em;
+}

@@ -1,5 +1,6 @@
 package DDG::Spice::Octopart;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "atmega datasheet";

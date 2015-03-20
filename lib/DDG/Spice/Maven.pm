@@ -1,6 +1,7 @@
 package DDG::Spice::Maven;
 # ABSTRACT: Search library in Maven Central Repository.
 
+use strict;
 use DDG::Spice;
 
 attribution github  => ['https://github.com/nicoulaj', 'nicoulaj'],

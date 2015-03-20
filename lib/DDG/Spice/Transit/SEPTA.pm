@@ -1,5 +1,6 @@
 package DDG::Spice::Transit::SEPTA;
 
+use strict;
 use DDG::Spice;
 use YAML qw ( Load );
 

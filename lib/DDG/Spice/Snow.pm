@@ -1,5 +1,6 @@
 package DDG::Spice::Snow;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "is it snowing?";

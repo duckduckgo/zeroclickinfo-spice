@@ -1,5 +1,6 @@
 package DDG::Spice::Videos;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "gopro videos";

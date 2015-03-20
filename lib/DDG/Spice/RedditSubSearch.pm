@@ -1,5 +1,6 @@
 package DDG::Spice::RedditSubSearch;
 
+use strict;
 use DDG::Spice;
 
 name "SubReddit Search";

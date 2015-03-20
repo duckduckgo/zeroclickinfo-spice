@@ -1,6 +1,7 @@
 package DDG::Spice::PeopleInSpace;
 # ABSTRACT: Returns the number of humans currently in space
 
+use strict;
 use DDG::Spice;
 
 name "People in Space";

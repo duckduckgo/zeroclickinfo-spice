@@ -1,5 +1,6 @@
 package DDG::Spice::Dictionary::Hyphenation;
 
+use strict;
 use DDG::Spice;
 
 attribution web => ['http://duckduckgo.com', 'DuckDuckGo'],

@@ -1,5 +1,6 @@
 package DDG::Spice::Xkcd::Display;
 
+use strict;
 use DDG::Spice;
 
 name "xkcd";
