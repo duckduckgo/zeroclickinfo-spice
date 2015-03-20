@@ -1,5 +1,11 @@
+/* add more padding between content and footer */
+.tile__body.has-foot {
+  padding-bottom: 3.4em;
+}
+
+/* make tiles slightly wider */
 .zci--tor_node .tile--tor_node {
-  margin-top: 0;
+  width: 18em;
 }
 
 .zci--tor_node .tile__body.has-foot {
