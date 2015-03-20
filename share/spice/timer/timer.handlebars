@@ -10,7 +10,7 @@
     </div>
     <div class="display_container">
         <div class="name">
-            <span class="name_display">Timer 1</span>
+            <div class="name_display">Timer 1</div>
             <input type="text" class="name_input" value="Timer 1"/>
         </div>
         <div class="time">
@@ -19,12 +19,11 @@
                 <span class="seconds">00</span>
             </div>
             <div class="time_input">
-                <input type="text" maxlength="2" class="hours" value="00">
-                <span class="time_input_label">h</span>
-                <input type="text" maxlength="2" class="minutes" value="00">
-                <span class="time_input_label">m</span>
-                <input type="text" maxlength="2" class="seconds" value="00">
-                <span class="time_input_label">s</span>
+                <input type="text" maxlength="2" class="hours" placeholder="HH">
+                <span class="separator">:</span>
+                <input type="text" maxlength="2" class="minutes" placeholder="MM">
+                <span class="separator">:</span>
+                <input type="text" maxlength="2" class="seconds" placeholder="SS">
             </div>
         </div>
     </div>
