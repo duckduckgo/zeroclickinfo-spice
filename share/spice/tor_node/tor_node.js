@@ -228,7 +228,7 @@
         var dateObj = DDG.getDateFromString(timestamp),
             monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             day = dateObj.getDate(),
-            month = monthArr[dateObj.getMonth() + 1],
+            month = monthArr[dateObj.getMonth()],
             year = dateObj.getFullYear();
 
         if (day < 10) {
