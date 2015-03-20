@@ -1,7 +1,7 @@
 package DDG::Spice::Time;
-use DDG::Spice;
 
 use strict;
+use DDG::Spice;
 use Text::Trim;
 use YAML::XS qw( Load );
 

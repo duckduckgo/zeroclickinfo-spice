@@ -1,4 +1,5 @@
 package DDG::Spice::TwitchStreams;
+
 use strict;
 use DDG::Spice;
 
