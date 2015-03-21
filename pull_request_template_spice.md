@@ -7,27 +7,39 @@ Using this template will help us better understand your Instant Answer and assis
 
 **What problem does your Instant Answer solve (Why is it better than organic links)?**
 
+
 **What is the data source for your Instant Answer? (Provide a link if possible)**
+
 
 **Why did you choose this data source?**
 
+
 **Are there any other alternative (better) data sources?**
+
 
 **What are some example queries that trigger this Instant Answer?**
 
+
 **Which communities will this Instant Answer be especially useful for? (gamers, book lovers, etc)**
+
 
 **Is this Instant Answer connected to a DuckDuckHack [Instant Answer idea](https://duck.co/ideas)?**
 
-**Which existing Instant Answers will this one supersede/overlap with?**   
+
+**Which existing Instant Answers will this one supersede/overlap with?**
+
 
 **Are you having any problems? Do you need our help with anything?**
 
+
 **What are the terms of use for the API? Will DuckDuckGo need specific authorization (e.g. an API key)? Are there any costs associated with API usage?**
+
 
 **Where did you hear about DuckDuckHack? (For first time contributors)**
 
+
 **What does the Instant Answer look like? (Provide a screenshot for new or updated Instant Answers)**
+
 
 ## Checklist
 Please place an 'X' where appropriate.
