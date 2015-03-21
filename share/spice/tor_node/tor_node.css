@@ -1,29 +1,3 @@
-/* add more padding between content and footer */
-.tile__body.has-foot {
-  padding-bottom: 3.4em;
-}
-
-/* make tiles slightly wider */
-.zci--tor_node .tile--tor_node {
-  width: 18em;
-}
-
-.zci--tor_node .tile__body.has-foot {
-  padding-top: 0.7em;
-}
-
-.tile--tor_node .tile__title {
-  font-size: 1.52em;
-  padding-top: 0;
-  height: auto;
-}
-
-.tile--tor_node .tile__content {
-  font-size: 1.11em;
-  color: #999;
-  margin-top: 16px;
-}
-
 .tile--tor_node .tile__icon {
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -34,25 +8,49 @@
   padding: 0;
 }
 
-.zci--tor_node .tile__foot {
-  height: 2.2em;
-}
-
-.zci--tor_node .one-line span {
-  font-size: 1.11em;
-}
-
-.zci--tor_node .one-line .online {
+.zci--tor_node .online {
   color: #5b9e4d;
   float: left;
 }
 
-.zci--tor_node .one-line .offline {
+.zci--tor_node .offline {
   color: #ff0000;
   float: left;
 }
 
-.zci--tor_node .one-line .bandwidth {
+.zci--tor_node .bandwidth {
   color: #999;
   float: right;
+}
+
+
+/* Record Table Styles */
+
+@media (max-width: 600px) {
+    .zci--tor_node table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .zci--tor_node table td {
+        word-wrap: break-word;
+    }
+
+    .zci--tor_node .record td.record__cell__key {
+        width: 100px;
+        border-top: solid 1px #DDD;
+        border-bottom: solid 1px #DDD;
+    }
+}
+
+.zci--tor_node .record td {
+    padding: 0.4em;
+    padding-left: 0; 
+    border-top: solid 1px #DDD;
+    border-bottom: solid 1px #DDD;
+}
+
+.zci--tor_node .record .record__cell__key {
+    width: 150px;
+    text-transform: capitalize;
 }
