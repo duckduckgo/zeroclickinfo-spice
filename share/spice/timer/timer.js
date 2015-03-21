@@ -261,6 +261,11 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             var $input = $(e.currentTarget),
                 value = $input.val();
 
+            // nothing to format if no text was entered
+            if (value.length === 0) {
+                return;
+            }
+
             // cap the value at the highest this input can actually handle
             if ($input.hasClass("minutes") || $input.hasClass("seconds")) {
                 value = Math.min(value, 59);
