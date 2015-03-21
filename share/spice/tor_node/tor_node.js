@@ -6,26 +6,94 @@
             return Spice.failed("tor_node");
         }
 
-        // Put together the base of the Spice.
-        var base = get_shared_spice_data(api_result);
-        if (base === null) {
+        // Filter out the trigger from the query.
+        var words = DDG.get_query().split(" "),
+            reg   = /tor|onion/i,
+            query = (reg.test(words[0])) ? words.pop() : words.shift();
+
+        // Collect together and classify the nodes.
+        var i, node, nodes = [];
+        for (i = 0; i < api_result.relays.length; i++) {
+            node = api_result.relays[i];
+            node.ref_name = "Fingerprint";
+            node.ref      = node.fingerprint;
+            node.type     = "Relay";
+            nodes.push(node);
+        }
+        for (i = 0; i < api_result.bridges.length; i++) {
+            node = api_result.bridges[i];
+            node.ref_name = "Hashed Fingerprint";
+            node.ref      = node.hashed_fingerprint;
+            node.type     = "Bridge";
+            nodes.push(node);
+        }
+
+        if (nodes.length === 0) {
             return Spice.failed("tor_node");
         }
 
-        // We use different templates depending on the number of nodes.
-        var spice;
-        if (base.nodes.length === 1) {
-           spice = singleNode(base);
-        }
-        else {
-           spice = multipleNodes(base);
+        for (i = 0; i < nodes.length; i++) {
+            node = nodes[i];
+
+            if (node.nickname && node.nickname !== "Unnamed") {
+                node.title = node.nickname;
+            } else {
+                node.title = "Unnamed " + node.type;
+            }
+
+            if (node.advertised_bandwidth) {
+                node.bandwidth = prettifyBitrate(node.advertised_bandwidth);
+            }
+
+            node.url = "https://atlas.torproject.org/#details/" + node.ref;
         }
 
-        if (spice === null) {
-            return Spice.failed("tor_node");
-        }
+        var spice = {
+            id: "tor_node",
+            name: "Tor Node",
+            nodes: nodes,
+            meta: {
+                sourceName: "Tor Atlas",
+                sourceUrl: "https://atlas.torproject.org/#search/" + query
+            },
+            templates: {
+                options:{
+                    moreAt: true
+                }
+            }
+        };
 
-        Spice.add(spice);
+        DDG.require('moment.js', function(){
+
+            // Configure moment.js
+            // "1 minute" instead of "a minute", etc.
+            moment.locale('en', {
+                relativeTime : {
+                    future: "in %s",
+                    past: "%s ago",
+                    s:  "seconds",
+                    m:  "1 minute",
+                    mm: "%d minutes",
+                    h:  "an hour",
+                    hh: "%d hours",
+                    d:  "1 day",
+                    dd: "%d days",
+                    M:  "1 month",
+                    MM: "%d months",
+                    y:  "1 year",
+                    yy: "%d years"
+                }
+            });
+
+            // Template choice depends on the number of nodes
+            if (nodes.length === 1) {
+                singleNode(spice)
+            } else {
+                multipleNodes(spice);
+            }
+
+            Spice.add(spice);
+        });
     };
 
     function singleNode(base) {
@@ -38,14 +106,17 @@
         var node = base.nodes[0];
 
         // Prepare the object that will define this template.
-	base.data = {
-	    "record_data": {"title": node.title},
-	    "record_keys": []
-	};
+        base.data = {
+            "record_data": {"title": node.title},
+            "record_keys": []
+        };
+
         addField(node.ref_name, node.ref);
 
         base.normalize = function(item) {
-            return {title: item.record_data.title};
+            return {
+                title: item.record_data.title
+            };
         };
 
         // Format contact info.
@@ -65,8 +136,8 @@
         addField("IPs", node.addrs.join(", "));
 
         // Handle the node's uptime history.
-        addField("First Seen", prettifyTimestamp(node.first_seen));
-        addField("Last Seen", prettifyTimestamp(node.last_seen));
+        addField("First Seen", moment(node.first_seen).format('MMM DD, YYYY'));
+        addField("Last Seen", moment(node.last_seen).format('MMM DD, YYYY'));
 
         // Handle the node's bandwidth.
         if (node.bandwidth) {
@@ -79,33 +150,47 @@
         }
 
         // Configure the template.
-        base.templates.group = "text";
-	base.templates.options.content = "record";
-	base.templates.options.keySpacing = true;
-        base.meta.sourceUrl = node.url;
+        base.templates = {
+            group: "text",
+            options: {
+                content: "record",
+                keySpacing: true
+            },
+            meta: {
+                sourceUrl: node.url
+            }
+        };
 
         return base;
     }
 
     function multipleNodes(base) {
         base.data = base.nodes;
-        base.templates.group = "icon";
-        base.templates.detail = false;
-        base.templates.item_detail = false;
-        base.templates.options.footer = Spice.tor_node.footer;
+        base.templates = {
+            group: "icon",
+            detail: false,
+            item_detail: false,
+            options: {
+                footer: Spice.tor_node.footer
+            },
+            variants: {
+                tileTitle: '1line-large',
+                tileSnippet: 'small'
+            }
+        };
 
         base.normalize = function(node) {
             // Handle the node's locale.
             node.icon = DDG.settings.region.getSmallIconURL(getCountryCode(node.country));
 
             // Handle the node's uptime history.
-            node.uptime = timeFromNow(node.last_restarted);
-            node.downtime = timeFromNow(node.last_seen);
+            node.uptime = moment(node.last_restarted).fromNow(true);
+            node.downtime = moment(node.last_seen).fromNow(true);
 
             // Construct the tile body text.
             node.description = "";
             if (node.or_addresses.length !== 0) {
-                node.description = stripPort(node.or_addresses[0]) + "\n";
+                node.subtitle = stripPort(node.or_addresses[0]);
             }
             node.description += node.ref;
 
@@ -115,72 +200,13 @@
         return base;
     }
 
-    // Data that's shared between the two Spice.add calls.
-    function get_shared_spice_data(api_result) {
-        // Filter out the trigger from the query.
-        var words = DDG.get_query().split(" ");
-        var query = (words[0] =~ /tor|onion/i) ? words.pop() : words.shift();
-
-        // Collect together and classify the nodes.
-        var i, node, nodes = [];
-        for (i = 0; i < api_result.relays.length; i++) {
-            node = api_result.relays[i];
-            node.ref_name = "Fingerprint";
-            node.ref = node.fingerprint;
-            node.type = "Relay";
-            nodes.push(node);
-        }
-        for (i = 0; i < api_result.bridges.length; i++) {
-            node = api_result.bridges[i];
-            node.ref_name = "Hashed Fingerprint";
-            node.ref = node.hashed_fingerprint;
-            node.type = "Bridge";
-            nodes.push(node);
-        }
-        if (nodes.length === 0) {
-            return null;
-        }
-
-        for (i = 0; i < nodes.length; i++) {
-            node = nodes[i];
-
-            if (node.nickname && node.nickname !== "Unnamed") {
-                node.title = node.nickname;
-            }
-            else {
-                node.title = "Unnamed " + node.type;
-            }
-
-            if (node.advertised_bandwidth) {
-                node.bandwidth = prettifyBitrate(node.advertised_bandwidth);
-            }
-
-            node.url = "https://atlas.torproject.org/#details/" + node.ref;
-        }
-
-        return {
-            id: "tor_node",
-            name: "Tor Node",
-            nodes: nodes,
-            meta: {
-                sourceName: "Tor Atlas",
-                sourceUrl: "https://atlas.torproject.org/#search/" + query
-            },
-            templates: {
-                options:{
-                    moreAt: true
-                }
-            }
-        };
-    };
-
     function stripPort(addr) {
         return addr.replace(/:[0-9]+$/, "");
     }
 
     function getCountryCode(cc) {
-        // I've seen at least one flag from Onionoo not be found due to a
-        // mismatch.
+        // I've seen at least one flag from Onionoo
+        // not be found due to a mismatch.
         var mapping = {
             gb: "uk"
         };
@@ -189,10 +215,10 @@
     }
 
     function prettifyBitrate(bitrate) {
-        var rateTiBps = 1099511627776;
-        var rateGiBps = 1073741824;
-        var rateMiBps = 1048576;
-        var rateKiBps = 1020;
+        var rateTiBps = 1099511627776,
+            rateGiBps = 1073741824,
+            rateMiBps = 1048576,
+            rateKiBps = 1020;
 
         var magnitude, letter;
         if (bitrate >= rateTiBps) {
@@ -217,69 +243,5 @@
         }
 
         return (bitrate / magnitude).toFixed(2) + " " + letter + "iB/s";
-    }
-
-    // Based on function in whois spice.
-    function prettifyTimestamp(timestamp) {
-        if (!timestamp) {
-            return;
-        }
-
-        var dateObj = DDG.getDateFromString(timestamp),
-            monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            day = dateObj.getDate(),
-            month = monthArr[dateObj.getMonth()],
-            year = dateObj.getFullYear();
-
-        if (day < 10) {
-            day = "0" + day
-        };
-
-        return month + " " + day + ", " + year;
-    }
-
-    // Based on function in reddit_search spice.
-    function timeFromNow(timestamp) {
-       // Scaling factors for various time periods.
-       var scales = [
-           ["y", 31540000000],
-           ["w", 604800000],
-           ["d", 86400000],
-           ["h", 3600000],
-           ["m", 60000]
-       ];
-
-       // Convert time node was seen to milliseconds.
-       var fields = timestamp.split(" ");
-       var dateDay = new Date(fields[0]);
-       fields = fields[1].split(":");
-       var dateSeen = new Date(
-           dateDay.getTime() +
-           fields[0] * scales[3][1] +
-           fields[1] * scales[4][1] +
-           fields[2] * 1000
-       );
-       var dateNow = new Date();
-       var durationMS = dateNow.getTime() - dateSeen.getTime();
-       var duration = new Array();
-
-       for (var i = 0; i < scales.length; i++) {
-           var suffix = scales[i][0];
-           var millis = scales[i][1];
-
-           if (durationMS < millis) {
-               continue;
-           }
-
-           var used = Math.floor(durationMS / millis);
-           duration.push(used + suffix);
-           durationMS -= used * millis;
-       }
-
-       if (duration.length === 0) {
-           return "now";
-       }
-
-       return duration.join(" ");
     }
 }(this));
