@@ -5,27 +5,21 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
+spice is_cached => 1;
+
 ddg_spice_test(
-    [qw( DDG::Spice::Aur )],
-    'aur powermate' => test_spice(
-        '/js/spice/aur/powermate',
+    [qw( DDG::Spice::Aur)],
+    # At a minimum, be sure to include tests for all:
+    # - primary_example_queries
+    # - secondary_example_queries
+    'example query' => test_spice(
+        '/js/spice/aur/query',
         call_type => 'include',
-        caller => 'DDG::Spice::Aur'
+        caller => 'DDG::Spice:Aur'
     ),
-    'archlinux package powermate' => test_spice(
-        '/js/spice/aur/powermate',
-        call_type => 'include',
-        caller => 'DDG::Spice::Aur'
-    ),
-    'arch package powermate' => test_spice(
-        '/js/spice/aur/powermate',
-        call_type => 'include',
-        caller => 'DDG::Spice::Aur'
-    ),
-    'archlinux package 9base-git' => test_spice(
-        '/js/spice/aur/9base-git',
-        caller    => 'DDG::Spice::Aur',
-    ),
+    # Try to include some examples of queries on which it might
+    # appear that your answer will trigger, but does not.
+    'bad example query' => undef,
 );
 
 done_testing;
