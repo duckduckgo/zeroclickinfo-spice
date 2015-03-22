@@ -9,26 +9,29 @@
 
         Spice.add({
             id: "deb_version",
-            name: api_result.path + " Debian Package Versions",
+            name: "Debian Package Versions (" + api_result.package + ")",
             data: api_result,
             meta: {
                 sourceName: "packages.debian.org",
-                sourceUrl: 'https://packages.debian.org/search?searchon=names&keywords=' + api_result.path
+                sourceUrl: 'https://packages.debian.org/search?searchon=names&keywords=' + api_result.package
             },
             normalize: function(result) {
                 var data = {
                     record_data: {},
-                    record_keys: ["squeeze", "squeeze-backports", "wheezy", "wheezy-backports", "jessie", "sid", "experimental"]
                 };
 
                 for (var i = result.versions.length - 1; i >= 0; i--) {
                     var version = result.versions[i];
-                    console.log(version);
 
                     for (var j = version.suites.length - 1; j >= 0; j--) {
                         data.record_data[version.suites[j]] = version.version;
                     };
                 };
+
+                if (Object.keys(data.record_data).length === 0) {
+                    return Spice.failed('deb_version');
+                }
+
                 return data;
             },
             templates: {
