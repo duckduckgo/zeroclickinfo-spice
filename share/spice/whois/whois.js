@@ -73,8 +73,10 @@
         }
 
         // check we have 2 nameserver hostnames
-        if(nsObj && nsObj.hostNames[0] && nsObj.hostNames[1]) {
-            var nameServers = [nsObj.hostNames[0].toLowerCase(),nsObj.hostNames[1].toLowerCase()].join(' ');
+        if(nsObj.hostNames) {
+            if(nsObj.hostNames.length >= 2) {
+                var nameServers = [nsObj.hostNames[0].toLowerCase(),nsObj.hostNames[1].toLowerCase()].join(' ');
+            }
         }
 
         // find updatedDate and expiresDate in registryData 
