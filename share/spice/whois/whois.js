@@ -77,14 +77,12 @@
             var nameServers = [nsObj.hostNames[0].toLowerCase(),nsObj.hostNames[1].toLowerCase()].join(' ');
         }
 
-        // find updatedDate and expiresDate in registryData
-        // use moment.js to parse dates
-        if(api_result.updatedDate && api_result.expiresDate) {
-            api_result.updatedDate = moment(api_result.updatedDate).format(dateOutputFormat);
-            api_result.expiresDate = moment(api_result.expiresDate).format(dateOutputFormat);
-        } else if(api_result.registryData.updatedDateNormalized && api_result.registryData.expiresDateNormalized) {
-            api_result.updatedDate = moment(api_result.registryData.updatedDateNormalized, dateUTCParse).format(dateOutputFormat);
-            api_result.expiresDate = moment(api_result.registryData.expiresDateNormalized, dateUTCParse).format(dateOutputFormat);
+        // find updatedDate and expiresDate in registryData 
+        if(!api_result.updatedDate && !api_result.expiresDate) {
+            if(api_result.registryData.updatedDateNormalized && api_result.registryData.expiresDateNormalized) {
+                api_result.updatedDate = api_result.registryData.updatedDateNormalized;
+                api_result.expiresDate = api_result.registryData.expiresDateNormalized;
+            }
         }
 
         // organize the data
@@ -93,8 +91,8 @@
             'Registered to': get_first_by_key(contacts, 'name'),
             'Email': get_first_by_key(contacts, 'email'),           
             'Last Updated': api_result.updatedDate,
-            'Expires On': api_result.expiresDate,
-            'Registrar': api_result.registrarName,
+            'Expires On': prettifyTimestamp(api_result.expiresDate),
+            'Registrar': prettifyTimestamp(api_result.registrarName),
             'Name Servers': nameServers
         };
 
@@ -136,6 +134,33 @@
             }
         });
         return first;
+    }
+
+    //Converts timestamp into local time using moment.js
+    function prettifyTimestamp(timestamp) {
+        if(!timestamp) { return; }
+
+        // dateDisplayFormat = Nov 21, 2022
+        // normalizedFormat matches = 0000-00-00 00:00:00 TZ
+        var dateDisplayFormat = "MMM DD, YYYY",
+            normalizedFormat = "YYYY-MM-DD HH:mm:ss Z",
+            autoDate = moment(timestamp); 
+
+        // some dates require custom date formatting
+        // check if first date is vaild
+        // if not format date using normalizedFormat
+        // if no vaild date is found return
+        if(autoDate.isValid()) {
+            return autoDate.format(dateDisplayFormat);
+        } else {
+            var customDate = moment(timestamp, normalizedFormat);
+            if(customDate.isValid()) {
+                return customDate.format(dateDisplayFormat); 
+            } else {
+                return;
+            }
+        }
+        
     }
 
     // Data that's shared between the two Spice.add calls.
