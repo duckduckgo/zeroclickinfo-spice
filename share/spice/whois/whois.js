@@ -92,9 +92,9 @@
             'title': api_result.domainName,
             'Registered to': get_first_by_key(contacts, 'name'),
             'Email': get_first_by_key(contacts, 'email'),           
-            'Last Updated': api_result.updatedDate,
+            'Last Updated': prettifyTimestamp(api_result.updatedDate),
             'Expires On': prettifyTimestamp(api_result.expiresDate),
-            'Registrar': prettifyTimestamp(api_result.registrarName),
+            'Registrar': api_result.registrarName,
             'Name Servers': nameServers
         };
 
