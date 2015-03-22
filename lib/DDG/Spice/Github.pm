@@ -16,7 +16,7 @@ attribution web => ['http://dylansserver.com','Dylan Lloyd'],
 triggers startend => "github";
 
 my @triggers = share("triggers.txt")->slurp;
-triggers startend => @triggers;
+triggers startend => "github";
 
 chomp(@triggers);
 my $langs = join("|", map(quotemeta, @triggers));
