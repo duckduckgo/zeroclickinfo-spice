@@ -10,7 +10,6 @@ diff
 emacs lisp
 erlang
 haskell
-html
 javascript
 java
 lua
@@ -146,10 +145,8 @@ irc log
 isabelle
 jade
 java server pages
-json5
 jsoniq
 jsonld
-json
 julia
 j
 kit
