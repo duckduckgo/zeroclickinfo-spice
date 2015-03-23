@@ -43,18 +43,22 @@
 
             onShow: function() {
                 var toggle = false;
-                $(".zci--similar_sites .chomp--link__icn").attr('data-content', "+");
-
+                var $icon = $(".zci--similar_sites .chomp--link__icn");
+                $icon.attr('data-content', "+");
+                
+                var $more = $(".zci--similar_sites .chomp--link__mr");
+                var $less = $(".zci--similar_sites .chomp--link__ls");
+                
                 $("#show_more").click(function() {
-                    $(".zci--similar_sites .chomp--link__mr").toggle();
-                    $(".zci--similar_sites .chomp--link__ls").toggle();
+                    $more.toggle();
+                    $less.toggle();
                     $("#hidden").toggle();
 
                     if(toggle) {
-                        $(".zci--similar_sites .chomp--link__icn").attr('data-content', "+");
+                        $icon.attr('data-content', "+");
                         toggle = false;
                     } else {
-                        $(".zci--similar_sites .chomp--link__icn").attr('data-content', "-");
+                        $icon.attr('data-content', "-");
                         toggle = true;
                     }
                 });
@@ -62,7 +66,7 @@
         });
     };
 
-    Handlebars.registerHelper('list', function(items, from, to) {
+    Handlebars.registerHelper('similar_sites_list', function(items, from, to) {
         var out = "";
         var link;
 
