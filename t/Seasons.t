@@ -40,6 +40,35 @@ ddg_spice_test(
         is_cached => 0
     ),
 
+    "summer solstice in canada" => test_spice(
+        '/js/spice/seasons/' . $year . '/ca/summer',
+        call_type => 'include',
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 0
+    ),
+
+    "summer solstice in united kingdom" => test_spice(
+        '/js/spice/seasons/' . $year . '/gb/summer',
+        call_type => 'include',
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 0
+    ),
+
+    DDG::Request->new(
+        query_raw => "vernal solstice 2011 in sweden",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/seasons/2011/se/spring',
+        call_type => 'include',
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 0
+    ),
+
+
+    "summer solstice in " => undef,
+
+    "summer solstice in blah" => undef,
+
     # Default current year
 
     DDG::Request->new(
