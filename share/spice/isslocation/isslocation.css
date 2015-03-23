@@ -18,7 +18,7 @@
 
 .mapview-marker.mapview-marker-star,
 .mapview-marker.mapview-marker-star.has-focus {
-    background-image: url("1x.png") !important;
+    background-image: url("icon.png") !important;
     background-size: 30px 44px !important;
 
     width: 30px !important;
