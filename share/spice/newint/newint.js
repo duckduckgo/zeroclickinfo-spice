@@ -19,7 +19,6 @@
                 normalize: function(item){
                     var editors_letter_strip_tags = item.editors_letter_html.replace(/<h[1-6]>(.*?)<\/h[1-6]>/g, "<p>$1. </p>");
                     editors_letter_strip_tags = editors_letter_strip_tags.replace(/<a(.*?)>(.*?)<\/a>/g, "$2");
-                    console.log('using moment');
                     return {
                         release_date: moment(item.release).format('MMMM YYYY'),
                         img: item.cover.thumb2x.url,
