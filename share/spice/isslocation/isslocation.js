@@ -23,7 +23,7 @@
                     lon: issLongitude
                 }],
                 meta: {
-                    zoomLevel: 1,
+                    zoomLevel: 3,
                     sourceName: "open-notify.org",
                     sourceUrl: 'http://open-notify.org'
                 },
