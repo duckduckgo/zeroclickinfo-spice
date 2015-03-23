@@ -1,15 +1,19 @@
 <div id="container">
-    {{#list results 0 5}}{{/list}}
+    {{#similar_sites_list results 0 5}}{{/similar_sites_list}}
 
     {{#if show_more}}
     <div id="hidden">
-        {{#list results 6 0}}{{/list}}
+        {{#similar_sites_list results 6 0}}{{/similar_sites_list}}
     </div>
     {{/if}}
 
     <div id="more_info">
         {{#if show_more}}
-            <span class="tx-clr--lt ddgsi-plus" id="show_more">Show More</span>
+            <span class="tx-clr--lt" id="show_more">
+              <i class="chomp--link__icn"></i> 
+              <span class="chomp--link__mr">Show More</span>
+              <span class="chomp--link__ls" style="display: none">Show Less</span>
+            </span>
 
             <span class="vertical_roller"></span>
         {{/if}}

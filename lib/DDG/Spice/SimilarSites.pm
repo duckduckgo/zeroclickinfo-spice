@@ -21,6 +21,8 @@ spice to => 'http://www.similarsitesearch.com/api/similar/$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
+    s/^https?:\/\///;
+
     # remove whitespace
     s/^\s+|\s+$//g;
     return $_ if $_;

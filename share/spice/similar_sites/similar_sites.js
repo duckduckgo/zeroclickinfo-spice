@@ -42,21 +42,31 @@
             },
 
             onShow: function() {
+                var toggle = false;
+                var $icon = $(".zci--similar_sites .chomp--link__icn");
+                $icon.attr('data-content', "+");
+                
+                var $more = $(".zci--similar_sites .chomp--link__mr");
+                var $less = $(".zci--similar_sites .chomp--link__ls");
+                
                 $("#show_more").click(function() {
-                    
-                    if ($("#hidden").css('display') == 'none'){
-                        $("#hidden").css('display', 'block');
-                        $("#show_more").html("Show Less");
+                    $more.toggle();
+                    $less.toggle();
+                    $("#hidden").toggle();
+
+                    if(toggle) {
+                        $icon.attr('data-content', "+");
+                        toggle = false;
                     } else {
-                        $("#hidden").css('display', 'none');
-                        $("#show_more").html("Show More");
+                        $icon.attr('data-content', "-");
+                        toggle = true;
                     }
                 });
             }
         });
     };
 
-    Handlebars.registerHelper('list', function(items, from, to) {
+    Handlebars.registerHelper('similar_sites_list', function(items, from, to) {
         var out = "";
         var link;
 
