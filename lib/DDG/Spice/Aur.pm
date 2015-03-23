@@ -25,7 +25,7 @@ attribution github => ["NateBrune", "Nate Brune"];
 spice to => 'https://aur.archlinux.org/rpc.php?type=search&arg=$1&callback={{callback}}';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers any => "Aur", "aur", "AUR";
+triggers any => "Aur";
 
 # Handle statement
 handle remainder => sub {
