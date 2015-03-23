@@ -1,6 +1,7 @@
 package DDG::Spice::WordMap;
 # ABSTRACT: Twinword Word Map Instant Answer
 
+use strict;
 use DDG::Spice;
 
 name 		"Word Map";

@@ -1,6 +1,7 @@
 package DDG::Spice::Astrobin::Apod;
 # ABSTRACT: Fetch Astronomy picture of day.
 
+use strict;
 use DDG::Spice;
 
 name "Apod";

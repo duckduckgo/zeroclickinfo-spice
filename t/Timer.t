@@ -17,6 +17,8 @@ ddg_spice_test(
         'DDG::Spice::Timer'
     ],
     'timer' => test_spice(@test_args),
+    'timer 15 mins' => test_spice(@test_args),
+    'timer 77 mins 13 secs' => test_spice(@test_args),
     'online timer' => test_spice(@test_args),
     'timer online' => test_spice(@test_args),
     '1 minute timer' => test_spice(@test_args),

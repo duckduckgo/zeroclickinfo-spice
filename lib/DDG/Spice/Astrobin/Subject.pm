@@ -1,6 +1,7 @@
 package DDG::Spice::Astrobin::Subject;
 # ABSTRACT: Retrieve images based on subject.
 
+use strict;
 use DDG::Spice;
 
 name "Astrobin Subject";

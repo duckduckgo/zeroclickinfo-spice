@@ -1,7 +1,7 @@
-
 package DDG::Spice::Population;
 # ABSTRACT: Returns the population of a specified country
 
+use strict;
 use DDG::Spice;
 use Locale::Country;
 
@@ -40,28 +40,19 @@ Locale::Country::rename_country('va' => 'The Holy See (Vatican City State)');
 Locale::Country::rename_country('vg' => 'The British Virgin Islands');
 Locale::Country::rename_country('vi' => 'The US Virgin Islands');
 
-
-my $population_qr = qr/(?:population|pop\.?)/;
-my $question_qr = qr/(?:what\sis\sthe\s)?/;
-my $of_qr = qr/of/;
-my $remainder_qr = qr/(.*)/;
-
-my $guard = qr/^$question_qr($population_qr)\s(?:of)?\s?$remainder_qr/;
-
-
-triggers query_lc => qr/$population_qr/;
+triggers any => "population", "pop";
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 spice to => 'http://api.worldbank.org/countries/$1/indicators/SP.POP.TOTL?per_page=2&MRV=1&format=json';
 spice wrap_jsonp_callback => 1;
 
 handle query_lc => sub {
-
-    if (/$guard/) {
+    if (/(?:what\sis\sthe\s)?(?:population|pop\.?)\s(?:of)?\s?(.*)|(.*)\s(?:population|pop\.?)/) {
         my ($countryName, $countryCode);
-        return if ($_ eq '');
+        return if (!$1 && !$2);
 
-        $countryName = $2;
+        $countryName = $1 if $1;
+        $countryName = $2 if $2;
 
         # Return alpha-3 country code 
         $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3);

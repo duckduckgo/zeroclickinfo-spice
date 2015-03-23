@@ -1,5 +1,6 @@
 package DDG::Spice::Bitcoin;
 
+use strict;
 use utf8;
 use DDG::Spice;
 

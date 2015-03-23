@@ -1,5 +1,6 @@
 package DDG::Spice::FlashVersion;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "flash version";

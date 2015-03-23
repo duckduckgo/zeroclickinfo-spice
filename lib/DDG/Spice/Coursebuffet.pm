@@ -1,9 +1,10 @@
 package DDG::Spice::Coursebuffet;
 
+use strict;
 use DDG::Spice;
 use Text::Trim;
 
-spice to => 'http://www.coursebuffet.com/ddg/$1/$2';
+spice to => 'https://www.coursebuffet.com/ddg/$1/$2';
 spice from => '(.*?)/(.*)';
 spice wrap_jsonp_callback => 1;
 

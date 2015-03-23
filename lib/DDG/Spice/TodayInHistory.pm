@@ -1,5 +1,6 @@
 package DDG::Spice::TodayInHistory;
 
+use strict;
 use DDG::Spice;
 
 name 'Today In History';

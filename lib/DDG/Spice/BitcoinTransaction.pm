@@ -1,6 +1,7 @@
 package DDG::Spice::BitcoinTransaction;
 # ABSTRACT: Displays information about a bitcoin transaction using the biteasy.com API.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "0e40627940d835d7154dcce33d6755f7ec40c7cc9e88d86291a971567bcd7ea7", 

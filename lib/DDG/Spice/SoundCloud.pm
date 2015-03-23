@@ -1,6 +1,6 @@
-
 package DDG::Spice::SoundCloud;
 
+use strict;
 use DDG::Spice;
 
 description "Displays audio from SoundCloud";
