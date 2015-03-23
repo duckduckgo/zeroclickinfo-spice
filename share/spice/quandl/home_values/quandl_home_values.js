@@ -12,14 +12,14 @@
     env.ddg_spice_quandl_home_values = function(api_result){
 
         if (!api_result) {
-            return Spice.failed('quandl_home_values: no results');
+            return Spice.failed('quandl_home_values');
         }
 
         var result = api_result;
         
         // we need two data points to get percent change
         if (result.data.length < 2) {
-            return Spice.failed('quandl_home_values: not enough data points');
+            return Spice.failed('quandl_home_values');
         }
 
         // url to the data set page
