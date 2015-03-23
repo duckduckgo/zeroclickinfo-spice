@@ -42,14 +42,20 @@
             },
 
             onShow: function() {
+                var toggle = false;
+                $(".zci--similar_sites .chomp--link__icn").attr('data-content', "+");
+
                 $("#show_more").click(function() {
-                    
-                    if ($("#hidden").css('display') == 'none'){
-                        $("#hidden").css('display', 'block');
-                        $("#show_more").html("Show Less");
+                    $(".zci--similar_sites .chomp--link__mr").toggle();
+                    $(".zci--similar_sites .chomp--link__ls").toggle();
+                    $("#hidden").toggle();
+
+                    if(toggle) {
+                        $(".zci--similar_sites .chomp--link__icn").attr('data-content', "+");
+                        toggle = false;
                     } else {
-                        $("#hidden").css('display', 'none');
-                        $("#show_more").html("Show More");
+                        $(".zci--similar_sites .chomp--link__icn").attr('data-content', "-");
+                        toggle = true;
                     }
                 });
             }
