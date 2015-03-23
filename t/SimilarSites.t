@@ -11,11 +11,11 @@ ddg_spice_test(
         '/js/spice/similar_sites/facebook.com',
         caller => 'DDG::Spice::SimilarSites'
     ),
-    'similar sites to github.com' => test_spice(
+    'similar sites to http://github.com' => test_spice(
         '/js/spice/similar_sites/github.com',
         caller => 'DDG::Spice::SimilarSites'
     ),
-    'websites like twitter.com' => test_spice(
+    'websites like https://twitter.com' => test_spice(
         '/js/spice/similar_sites/twitter.com',
         caller => 'DDG::Spice::SimilarSites'
     ),
