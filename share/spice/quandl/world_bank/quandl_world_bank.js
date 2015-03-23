@@ -12,14 +12,14 @@
     env.ddg_spice_quandl_world_bank = function(api_result){
 
         if (!api_result) {
-            return Spice.failed('quandl_world_bank: no results');
+            return Spice.failed('quandl_world_bank');
         }
 
         var result = api_result;
         
         // we need two data points to get percent change
         if (result.data.length < 2) {
-            return Spice.failed('quandl_world_bank: not enough data points');
+            return Spice.failed('quandl_world_bank');
         }
 
         // url to the data set page
