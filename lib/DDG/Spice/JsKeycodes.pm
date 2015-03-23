@@ -8,7 +8,7 @@ spice is_cached => 1;
 
 # Metadata
 name "Javascript Keycodes";
-source "www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes";
+source "MDN";
 description "Get the Javascript keycode for a key";
 primary_example_queries "keycode j", "javascript keycode tab";
 secondary_example_queries "javascript keycodes";

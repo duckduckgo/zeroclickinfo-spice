@@ -104,11 +104,15 @@
             id: "js_keycodes",
             name: "Keycodes",
             data: data,
-            meta: {},
+            meta: {
+                sourceName: "MDN",
+                sourceUrl: "https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode"
+            },
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.js_keycodes.content
+                    content: Spice.js_keycodes.content,
+                    moreAt: true
                 }
             },
             onShow: onShow
