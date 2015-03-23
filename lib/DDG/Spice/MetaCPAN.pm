@@ -1,6 +1,7 @@
 package DDG::Spice::MetaCPAN;
 # ABSTRACT: Show a summary of the searched CPAN module.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "metacpan WWW::DuckDuckGo";

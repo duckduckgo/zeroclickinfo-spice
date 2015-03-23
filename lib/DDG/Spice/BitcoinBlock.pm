@@ -1,6 +1,7 @@
 package DDG::Spice::BitcoinBlock;
 # ABSTRACT: Displays information about a bitcoin block using the biteasy.com API.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "000000000000000000935d5053d80266447a6cc180e488bbb85675ca61cddfe7", 

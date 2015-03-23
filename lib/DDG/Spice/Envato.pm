@@ -1,4 +1,6 @@
 package DDG::Spice::Envato;
+
+use strict;
 use DDG::Spice;
 
 my @triggers = qw(themeforest codecanyon videohive audiojungle graphicriver 3docean activeden);

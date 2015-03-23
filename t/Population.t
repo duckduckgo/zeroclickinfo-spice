@@ -28,6 +28,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Population'
     ),
+    'spain population' => test_spice(
+        '/js/spice/population/ESP/Spain',
+        call_type => 'include',
+        caller => 'DDG::Spice::Population'
+    ),
     'population of Earth' => undef,
     'population of New York, USA' => undef,
     'population of California,USA' => undef

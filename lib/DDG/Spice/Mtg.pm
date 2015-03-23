@@ -1,7 +1,7 @@
 package DDG::Spice::Mtg;
-
 # mtg <card name> Returns infos on the Magic The Gathering Card
 
+use strict;
 use DDG::Spice;
 
 name "Mtg Card Search";

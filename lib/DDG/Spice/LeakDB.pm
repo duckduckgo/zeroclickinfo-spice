@@ -1,5 +1,6 @@
 package DDG::Spice::LeakDB;
 
+use strict;
 use DDG::Spice;
 
 name 'LeakDB';

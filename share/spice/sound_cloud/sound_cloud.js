@@ -52,7 +52,7 @@
                     image = image.replace(/large\.jpg/, "t200x200.jpg");
                 }
                 
-                image = image.replace(/^https/, "http");
+                image = DDG.toHTTP(image);
 
                 // skip items that can't be streamed or explicit id's we
                 // want to skip for adult content:

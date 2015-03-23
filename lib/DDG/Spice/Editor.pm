@@ -1,5 +1,6 @@
 package DDG::Spice::Editor;
 
+use strict;
 use utf8;
 use DDG::Spice;
 use URI::Escape;

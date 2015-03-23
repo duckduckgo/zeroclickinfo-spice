@@ -12,7 +12,7 @@
             meta: {
                 itemType: "Courses",
                 sourceName: "CourseBuffet",
-                sourceUrl: "http://www.coursebuffet.com"+api_result["more_link"]
+                sourceUrl: "https://www.coursebuffet.com"+api_result["more_link"]
             },
             normalize: function(item) {
                 name = item.name;
@@ -29,8 +29,8 @@
                 return {
                     title: name,
                     description: professors,
-                    url: "http://www.coursebuffet.com"+item.create_new_link,
-                    image: "http://www.coursebuffet.com"+item.course_image,
+                    url: "https://www.coursebuffet.com"+item.create_new_link,
+                    image: "https://www.coursebuffet.com"+item.course_image,
 //                     rating: item.cb_sub_level_display,
                     ratingText: item.offeredvia
                 };
