@@ -1,3 +1,7 @@
-.zci--whois .record__cell--key {
-    width: 100px;
+.zci--whois .record__cell--value {
+	white-space: nowrap;
+}
+
+.zci--whois.has-chomp-expanded .record__cell--value {
+	white-space: normal;
 }
