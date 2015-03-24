@@ -16,14 +16,16 @@ attribution web => ["http://oyam.ca", "Mayo Jordanov"],
             github => ["mayo", "Mayo Jordanov"],
             twitter => "oyam";
 
-triggers start => "first day", "start";
-triggers any => "solstice", "equinox";
+my @seasons = qw(spring summer autumn winter fall vernal autumnal march june september december);
+my $seasons_qr = join "|", @seasons;
+
+triggers any => @seasons;
 
 spice from => "(.+)/(.+)/.*";
 spice to => 'https://api.xmltime.com/holidays?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&callback={{callback}}&country=$2&year=$1&types=seasons';
 
-spice proxy_cache_valid => "418 30d";
-spice is_cached => 0;
+spice proxy_cache_valid => "200 30d";
+spice is_cached => 1;
 
 # Seup some common country names and aliases (taken from CallingCodes.pm IA)
 Locale::Country::rename_country('ae' => 'the United Arab Emirates');
@@ -65,66 +67,58 @@ Locale::Country::add_country_alias('United States' => 'murica');
 Locale::Country::add_country_alias('Canada' => 'Canadia');
 Locale::Country::add_country_alias('Australia' => 'down under');
 
+# Note: In 2014, Timeanddate.com API returned results for 1695 through 2290. 319 years into past, 76 years into future.
+use constant {
+    YEARS_INTO_FUTURE => 276,
+    API_EPOCH => 1965
+};
+
+# Common aliases
+my %aliases = (
+    'march'     => 'spring',
+    'vernal'    => 'spring',
+    'june'      => 'summer',
+    'september' => 'autumn',
+    'fall'      => 'autumn',
+    'autumnal'  => 'autumn',
+    'december'  => 'winter'
+);
+
 # Handle statement
-handle remainder_lc => sub {
-    use constant SPRING => 'spring';
-    use constant SUMMER => 'summer';
-    use constant AUTUMN => 'autumn';
-    use constant WINTER => 'winter';
+handle query_lc => sub {
 
-    # Note: In 2014, Timeanddate.com API returned results for 1695 through 2290. 319 years into past, 76 years into future.
-    use constant YEARS_INTO_FUTURE => 276;
-    use constant API_EPOCH => 1965;
+    return unless /^(?:(?<year>\d{4}) )?(?:(?:when is the )?(?:(?:first day|start|beginning)) of )?(?<season>$seasons_qr)(?: equinox| solstice)?(?: (?<year>\d{4}))?(?: in (?<country>[\D]+))?(?: (?<year>\d{4}))?$/;
 
-    # Common season aliases
-    my %seasons = (
-        'spring' => SPRING,
-        'vernal' => SPRING,
-        'mar' => SPRING,
-
-        'summer' => SUMMER,
-        'jun' => SUMMER,
-
-        'autumn' => AUTUMN,
-        'fall' => AUTUMN,
-        'sep' => AUTUMN,
-
-        'winter' => WINTER,
-        'dec' => WINTER
-    );
-
-    # Detect season
-    my $keywords = join("|", (keys %seasons));
-    return unless /($keywords)/;
-    my $season =  $seasons{$1};
+    # Get season
+    my $season = $aliases{$+{season}} // $+{season};
 
     # Get location
     my $country;
-    
-    if (/\s(in)\s(.*)/) {
-      $country = country2code($2);
+    if ($+{country}){
+        return unless $country = country2code($+{country});
     } else {
-      $country = lc $loc->country_code;
+        $country = lc $loc->country_code;
     }
 
     # Detect year
-    my $year;
     my $current_year = (localtime(time))[5] + 1900;
-
-    if (/(\d{4})/) {
-        $year = $1;
-    } else {
-        $year = $current_year;
-    }
+    my $year = $+{year} // $current_year;
 
     # Keep year within API limits
-    return unless (defined $year and $year >= API_EPOCH and $year <= ($current_year + YEARS_INTO_FUTURE));
+    return unless (defined $year && $year >= API_EPOCH && $year <= ($current_year + YEARS_INTO_FUTURE));
 
     # Make sure all required parameters are set
-    return unless (defined $year and defined $country and defined $season);
+    return unless (defined $year && defined $country && defined $season);
+
+    my $caching = 0;
+
+    # Cache queries that specify year and country
+    if ($+{country} && $+{year}) {
+        $caching = 1;
+    }
 
     # Season is not required for the API call, but used in the frontend
-    return $year, $country, $season;
+    return $year, $country, $season, {is_cached => $caching};
 
 };
 
