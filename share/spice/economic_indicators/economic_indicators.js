@@ -85,7 +85,7 @@
                 }
                 return {
                     title : indicatorValue,
-                    subtitle : DDG.getProperty(indicatorData,'country.value') + ", " + DDG.getProperty(indicatorData,'indicator.value') + ", " + DDG.getProperty(indicatorData,'date') 
+                    subtitle : DDG.getProperty(indicatorData,'country.value') + " - " + DDG.getProperty(indicatorData,'indicator.value').replace(/ *\([^)]*\) */g, "") + " (" + DDG.getProperty(indicatorData,'date') + ")" 
                 }
             }
         });
