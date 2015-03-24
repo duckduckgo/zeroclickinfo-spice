@@ -116,7 +116,7 @@ ddg_spice_test(
 #        call_type => 'include',
 #        caller => 'DDG::Spice::TwitchStreams',
 #        proxy_cache_valid => "418 1d"
-#    ),    
+#    ),
 #    'twitch tv streaming dota 2' => test_spice(
 #        '/js/spice/twitch_streams/dota%202',
 #        call_type => 'include',
@@ -135,8 +135,8 @@ ddg_spice_test(
 #        caller => 'DDG::Spice::TwitchStreams',
 #        proxy_cache_valid => "418 1d"
 #    ),
-    'about twitch' => undef, 
-    'twitch streams' => undef, 
+    'about twitch' => undef,
+    'twitch streams' => undef,
 );
 
 done_testing;

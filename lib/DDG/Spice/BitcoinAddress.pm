@@ -4,8 +4,8 @@ package DDG::Spice::BitcoinAddress;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", 
-                        "1Biteasym3p5E4soZq8So6NjkjYugEnz2X", 
+primary_example_queries "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
+                        "1Biteasym3p5E4soZq8So6NjkjYugEnz2X",
                         "1J6EZsQLTppftPTbqYbbRDYFJMW5Ex3Bqi";
 
 description "Display information about a Bitcoin Address";
@@ -20,7 +20,7 @@ attribution github => ['https://github.com/biteasy','biteasy.com'],
             email => ['support@biteasy.com','biteasy.com'],
             twitter => ["biteasy", 'biteasy.com'],
             web => ['https://biteasy.com','biteasy.com'];
-            
+
 triggers query_raw => qr/^(?:bitcoin address|btc address)?\s*([13][1-9A-HJ-NP-Za-km-z]{26,33})$/;
 # This regular expression parses a valid Bitcoin Address
 
@@ -30,7 +30,7 @@ spice wrap_jsonp_callback => 1;
 
 spice proxy_cache_valid => "418 1d";
 
-handle query_raw => sub {    
+handle query_raw => sub {
     return $1 if $1;
     return;
 };

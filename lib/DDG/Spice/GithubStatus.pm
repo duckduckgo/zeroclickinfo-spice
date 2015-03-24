@@ -24,7 +24,7 @@ handle query_lc => sub {
     return $_ if m/^github$/; # return if only github
     s/^github//g; # strip trigger
     $_ = trim($_); # trim
-    return $_ if m/^(system)?\s*status$/i; # match (system) status 
+    return $_ if m/^(system)?\s*status$/i; # match (system) status
     return;
 };
 

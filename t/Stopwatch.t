@@ -12,7 +12,7 @@ ddg_spice_test(
     ],
     'stopwatch' =>
         test_spice(
-            '', 
+            '',
             call_type => 'self', #should be 'self' in real code
             caller => 'DDG::Spice::Stopwatch'
         ),
