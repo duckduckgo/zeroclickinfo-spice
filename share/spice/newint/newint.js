@@ -17,15 +17,13 @@
                     sourceUrl: 'https://digital.newint.com.au/issues'
                 },
                 normalize: function(item){
-                    var editors_letter_strip_tags = item.editors_letter_html.replace(/<h[1-6]>(.*?)<\/h[1-6]>/g, "<p>$1. </p>");
-                    editors_letter_strip_tags = editors_letter_strip_tags.replace(/<a(.*?)>(.*?)<\/a>/g, "$2");
                     return {
                         release_date: moment(item.release).format('MMMM YYYY'),
                         img: item.cover.thumb2x.url,
                         img_m: item.cover.thumb2x.url,
                         price: item.price ? item.price : "AUD$7.50",
                         heading: item.title,
-                        editors_letter_html: DDG.strip_html(editors_letter_strip_tags),
+                        editors_letter_html: DDG.strip_html(item.editors_letter_html),
                         brand: "New Internationalist",
                         url: "https://digital.newint.com.au/issues/" + item.id
                     };
