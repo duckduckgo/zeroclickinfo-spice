@@ -27,6 +27,7 @@ my $secondary_hash = Load(scalar share('world_bank_secondary.yml')->slurp);
 
 # array of secondary triggers
 my @secondary_keys = keys($secondary_hash);
+my $secondary_qr = join "|", @secondary_keys;
 
 # defining our triggers
 triggers startend => @primary_keys;
@@ -44,16 +45,8 @@ handle sub {
     my $query = lc $_;
     
     # find which secondary trigger was used
-    my $secondary;
-    for my $trigger (@secondary_keys) {
-        if ( $query =~ /\b$trigger\b/ ) {
-            $secondary = $trigger;
-            last;
-        }
-    };
-    
-    # exiting if no secondary trigger
-    return unless $secondary;
+    $query =~ m/\b($secondary_qr)\b/;
+    return unless my $secondary = $1;
      
     # find which primary trigger was used
     my $primary;
