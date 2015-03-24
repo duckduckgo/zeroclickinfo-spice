@@ -50,7 +50,7 @@
             data: indicatorData,
             meta: {
                 sourceName: "WorldBank",
-                sourceUrl: 'http://data.worldbank.org/indicator/' + indicatorData.indicator.id
+                sourceUrl: 'http://data.worldbank.org/country/' + indicatorData.country.value.replace(/[^\w\s]/gi, '').replace(/\W/g, '-')
             },
             templates: {
                 group: 'text',
