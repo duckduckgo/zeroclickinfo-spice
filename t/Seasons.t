@@ -43,6 +43,13 @@ ddg_spice_test(
         caller => 'DDG::Spice::Seasons',
     ),
 
+    "summer solstice in canada 2020" => test_spice(
+        '/js/spice/seasons/2020/ca/summer',
+        call_type => 'include',
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 1
+    ),
+
     "summer solstice in united kingdom" => test_spice(
         '/js/spice/seasons/' . $year . '/gb/summer',
         call_type => 'include',
@@ -59,6 +66,25 @@ ddg_spice_test(
         is_cached => 1
     ),
 
+    DDG::Request->new(
+        query_raw => "first day of spring 2011 in sweden",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/seasons/2011/se/spring',
+        call_type => 'include',
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 1
+    ),
+
+    DDG::Request->new(
+        query_raw => "first day of spring in sweden 2011",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/seasons/2011/se/spring',
+        call_type => 'include',
+        caller => 'DDG::Spice::Seasons',
+        is_cached => 1
+    ),
 
     "summer solstice in " => undef,
 
@@ -124,10 +150,9 @@ ddg_spice_test(
     # Non-matching terms
 
     "first day" => undef,
-
     "solstice and equinox" => undef,
-
     "start solstice" => undef,
+    "summer solistice in canada blah" => undef
 
 );
 

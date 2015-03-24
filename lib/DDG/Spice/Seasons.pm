@@ -87,7 +87,7 @@ my %aliases = (
 # Handle statement
 handle query_lc => sub {
 
-    return unless /^(?:(?<year>\d{4}) )?(?:(?:when is the )?(?:(?:first day|start|beginning)) of )?(?<season>$seasons_qr)(?: equinox| solstice)?(?: (?<year>\d{4}))?(?: in (?<country>[\D]+))?(?: (?<year>\d{4}))?$/;
+    return unless /^(?:(?<year>\d{4}) )?(?:(?:when is the ))?(?:(?:first day|start|beginning) of )?(?<season>$seasons_qr)(?: equinox| solstice)?(?: (?<year>\d{4}))?(?: in (?<country>[\D]+))?(?: (?<year>\d{4}))?$/;
 
     # Get season
     my $season = $aliases{$+{season}} // $+{season};
