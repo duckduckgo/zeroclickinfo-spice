@@ -14,7 +14,7 @@ icon_url "https://kwixer.com/favicon.ico";
 topics "entertainment", "special_interest";
 category "entertainment";
 attribution twitter => ['kwixerapp','Kwixer'],
-			web => ['https://www.kwixer.com','Kwixer'];
+            web => ['https://www.kwixer.com','Kwixer'];
 
 
 spice to => 'https://www.kwixer.com/api/search?filter=movie&take=40&source=ddg&lang=en&query=$1';
@@ -24,8 +24,8 @@ my @triggers = share("triggers.txt")->slurp;
 triggers start => @triggers;
 #triggers end => ('actor','actress', 'director');
 handle query => sub {
-	return $_ if $_;
-  	return;
+    return $_ if $_;
+    return;
 };
 
 1;

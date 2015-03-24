@@ -31,20 +31,20 @@ ddg_spice_test(
         '/js/spice/expatistan/cost%20of%20living%20in%20philadelphia',
         caller    => 'DDG::Spice::Expatistan',
     ),
-	'cost of living madrid vs barcelona' => test_spice(
-		'/js/spice/expatistan/cost%20of%20living%20madrid%20vs%20barcelona',
+    'cost of living madrid vs barcelona' => test_spice(
+        '/js/spice/expatistan/cost%20of%20living%20madrid%20vs%20barcelona',
         caller    => 'DDG::Spice::Expatistan',
     ),
     'cost of living comparison london vs paris' => test_spice(
-		'/js/spice/expatistan/cost%20of%20living%20comparison%20london%20vs%20paris',
+        '/js/spice/expatistan/cost%20of%20living%20comparison%20london%20vs%20paris',
         caller    => 'DDG::Spice::Expatistan',
     ),
     'cost of living difference london paris' => test_spice(
-		'/js/spice/expatistan/cost%20of%20living%20difference%20london%20paris',
+        '/js/spice/expatistan/cost%20of%20living%20difference%20london%20paris',
         caller    => 'DDG::Spice::Expatistan',
     ),
     'compare cost of living between london and paris' => test_spice(
-		'/js/spice/expatistan/compare%20cost%20of%20living%20between%20london%20and%20paris',
+        '/js/spice/expatistan/compare%20cost%20of%20living%20between%20london%20and%20paris',
         caller    => 'DDG::Spice::Expatistan',
     ),
 
