@@ -142,18 +142,21 @@
 /* button look for different timer statuses */
 
 .zci--timer .play_pause a:after {
-    content: ">";
+    content: "►";
 }
 
 .zci--timer .status_running .play_pause a:after {
-    content: "||";
+    content: "║";
     position: relative;
-    left: 3px;
-    bottom: 5px;
+    right: 1px;
+    bottom: 1px;
 }
 
 .zci--timer .status_stopped .play_pause a:after {
     content: "\00d7"; /* same as &times; */
+    position: relative;
+    right: 1px;
+    bottom: 1px;
 }
 
 /* TIMER NAME / TIME */
