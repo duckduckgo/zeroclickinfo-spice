@@ -2,15 +2,14 @@
 
 use strict;
 use warnings;
-
-# These modules are necessary for the functions we'll be running.
 use Test::More;
 use DDG::Test::Spice;
 use DDG::Test::Location;
 use DDG::Request;
 
-use DDG::Spice::Seasons;
+spice is_cached => 0;
 
+use DDG::Spice::Seasons;
 my $year = (localtime(time))[5] + 1900;
 my $min_year = DDG::Spice::Seasons::API_EPOCH;
 my $max_year = $year + DDG::Spice::Seasons::YEARS_INTO_FUTURE;
@@ -27,7 +26,6 @@ ddg_spice_test(
         '/js/spice/seasons/2016/de/spring',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
     ),
 
     DDG::Request->new(
@@ -37,21 +35,18 @@ ddg_spice_test(
         '/js/spice/seasons/2011/us/spring',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
     ),
 
     "summer solstice in canada" => test_spice(
         '/js/spice/seasons/' . $year . '/ca/summer',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
     ),
 
     "summer solstice in united kingdom" => test_spice(
         '/js/spice/seasons/' . $year . '/gb/summer',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
     ),
 
     DDG::Request->new(
@@ -61,7 +56,7 @@ ddg_spice_test(
         '/js/spice/seasons/2011/se/spring',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
+        is_cached => 1
     ),
 
 
@@ -78,7 +73,6 @@ ddg_spice_test(
         '/js/spice/seasons/' . $year . '/us/autumn',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
     ),
 
     # Different query styles
@@ -87,14 +81,12 @@ ddg_spice_test(
         '/js/spice/seasons/' . $year . '/us/summer',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
     ),
 
     "2017 summer solstice" => test_spice(
         '/js/spice/seasons/2017/us/summer',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
     ),
 
     # Query case
@@ -103,14 +95,12 @@ ddg_spice_test(
         '/js/spice/seasons/' . $year . '/us/summer',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
     ),
 
     "Summer equinox" => test_spice(
         '/js/spice/seasons/' . $year . '/us/summer',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
     ),
 
     # Limits
@@ -121,14 +111,12 @@ ddg_spice_test(
         '/js/spice/seasons/' . $min_year . '/us/summer',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
     ),
 
     $max_year . " summer solstice" => test_spice(
         '/js/spice/seasons/' . $max_year . '/us/summer',
         call_type => 'include',
         caller => 'DDG::Spice::Seasons',
-        is_cached => 0
     ),
 
     ($max_year + 1) . " summer solstice" => undef,
