@@ -16,27 +16,12 @@ my @kingston_town = (
 ddg_spice_test(
     [qw( DDG::Spice::Time)],
     # Primary examples
-    'time in Melbourne' => test_spice(
-        '/js/spice/time/melbourne',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Time'
-    ),
     'time for Australia' => test_spice(
         '/js/spice/time/canberra%20australia',
         call_type => 'include',
         caller    => 'DDG::Spice::Time'
     ),
     # Secondary examples
-    'what time is it in Melbourne' => test_spice(
-        '/js/spice/time/melbourne',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Time'
-    ),
-    'what is the time in Birmingham' => test_spice(
-        '/js/spice/time/birmingham',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Time'
-    ),
     # Additional queries
     'time in Canada' => test_spice(
         '/js/spice/time/ottawa%20canada',
@@ -45,11 +30,6 @@ ddg_spice_test(
     ),
     'time in London' => test_spice(
         '/js/spice/time/london%20united%20kingdom',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Time'
-    ),
-    'time at the Vatican' => test_spice(
-        '/js/spice/time/the%20vatican',
         call_type => 'include',
         caller    => 'DDG::Spice::Time'
     ),

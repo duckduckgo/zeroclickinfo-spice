@@ -14,7 +14,8 @@ source "BBC";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BBC.pm";
 topics "everyday";
 category "entertainment";
-attribution github => ['https://github.com/tophattedcoder','Tom Bebbington'];
+attribution github => ['https://github.com/tophattedcoder','Tom Bebbington'],
+             email => ['tim@retout.co.uk','Tim Retout'];
 
 spice to => 'http://www.bbc.co.uk/$1/programmes/schedules/$2.json';
 

@@ -1,20 +1,3 @@
-{{#if description}}
-    <div>Details: {{description}}</div>
-{{/if}}
-{{#if item.market_status}}
-    <div>Market Status: {{item.market_status}}</div>
-{{/if}}
-{{#if price}}
-    <div>Average Price: ${{price}}</div>
-{{/if}}
 <br>
-{{#if datasheet}}
-    <a href="{{{datasheet}}}" class="btn btn__datasheet">Datasheet</a>
-{{/if}}
-{{#if url}}
-    <a href="{{{url}}}" class="btn btn--primary">
-    Buy at Octopart
-    </a>
-{{/if}}
-
-
+<a href="{{{datasheet}}}" class="btn btn__datasheet">Datasheet</a>
+<a href="{{{item.octopart_url}}}" class="btn btn--primary">Authorized Distributors</a>

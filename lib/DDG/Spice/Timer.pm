@@ -13,12 +13,12 @@ attribution twitter => 'mattr555',
             github => ['https://github.com/mattr555/', 'Matt Ramina'];
 
 triggers startend => ['timer', 'countdown', 'alarm'];
-triggers start => ['time'];
+triggers start => ['time', 'timer for'];
 
 spice call_type => 'self';
 
 handle remainder => sub {
-    return unless /^( ?([\d.]+ ?(m(in(utes?)?)?|s(ec(onds?)?)?|h(ours?)?|hr)|online) ?)+$/ || $_ eq '';
+    return unless /^( ?([\d.]+ ?(m(in((ute)?s?)?)?|s(ec((ond)?s?)?)?|h(ours?)?|hr)|online) ?)+$/ || $_ eq '';
     return '';
 };
 
