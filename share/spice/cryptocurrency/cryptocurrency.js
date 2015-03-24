@@ -135,8 +135,8 @@
             // They will need to have their own flag provided for them.
             if(!(symbol in currency2country)) {
                 if (!(symbol in crypto_flags)) {
-                    // if we don't have a specific flag, return the default png.
-                    symbol = "default";
+                    // if we don't have a specific flag, return the generic png.
+                    symbol = "generic";
                 }
                 return DDG.get_asset_path('cryptocurrency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
             }
@@ -203,8 +203,8 @@
                     return {
                         fromCurrencySymbol: item.ticker.base,
                         toCurrencySymbol: item.ticker.target,
-                        amount: formatNumber(queryAmount, item.ticker.base, 8),
-                        convertedAmount: formatNumber(convertedAmount, item.ticker.target, 8),
+                        amount: formatNumber(queryAmount, item.ticker.base, 4),
+                        convertedAmount: formatNumber(convertedAmount, item.ticker.target, 4),
                         rate: rate,
                         inverseRate: inverseRate,
                         cryptonatorURL: "http://www.cryptonator.com/rates#" + item.ticker.base,
