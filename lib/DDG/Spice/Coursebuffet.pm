@@ -16,7 +16,7 @@ name "CourseBuffet";
 source "CourseBuffet";
 
 # could not find any relevant category, more like 'education'
-category "special"; 
+category "special";
 
 # We have all kinds of courses listing few of those categories here
 topics "math", "programming", "computing", "science", "web_design";

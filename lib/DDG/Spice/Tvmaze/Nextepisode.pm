@@ -25,11 +25,11 @@ spice wrap_jsonp_callback => 1;
 
 handle query_lc => sub {
     return unless $_;
-    
+
     return $4 if $_ =~ /(next|upcoming) (episode|airdate) (in|of|for|from)? ?([a-z0-9 ]+)/;
-    
+
     return $2 if $_ =~ /(next|upcoming) ([a-z0-9 ]+) episode/;
-    
+
     return $1 if $_ =~ /([a-z0-9 ]+) (next|upcoming) (episode|airdate)/;
 
     return;

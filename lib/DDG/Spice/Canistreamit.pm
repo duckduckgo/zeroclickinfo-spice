@@ -27,7 +27,7 @@ handle remainder => sub {
 
     if ($remainder =~ /episodes?/){
         return;
-    } else { 
+    } else {
         $remainder =~ s/\?//;
         $remainder =~ s/ online//i;
 

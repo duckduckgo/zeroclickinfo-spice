@@ -37,7 +37,7 @@ handle query_lc => sub {
     } elsif (/^(.+) drink$|^drink (.+)$/){
         $drink = $1;
     }
-    
+
     if ($drink){
     	$drink =~ s/drink//g;
     	$drink =~ s/^\s+|\s+$//g;

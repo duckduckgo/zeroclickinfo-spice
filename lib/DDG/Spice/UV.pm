@@ -29,7 +29,7 @@ spice from => '([^/]*)/?([^/]*)';
 #daily data - just one value for the day...
 spice to => 'http://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVDAILY/CITY/$1/STATE/$2/JSON';
 
-#UV Index might change daily, but not in the middle of the night. 
+#UV Index might change daily, but not in the middle of the night.
 spice proxy_cache_valid => "200 304 4h";
 
 spice wrap_jsonp_callback => 1;
@@ -39,13 +39,13 @@ handle remainder => sub {
 
     #remove question marks, "what is" questions
     s/\?|what|is|the|\s|current//gi;
-    
+
     return if $_;
 
     #atm only works with automatically detected location of user
     return unless $loc;
     return unless (defined $loc->city and defined $loc->region);
-    
+
     #and only if location is in the US
     return unless $loc->country_code eq 'US';
 
