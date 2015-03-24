@@ -33,7 +33,7 @@
             templates: {
                 group: 'text',
                 options: {
-                    footer: Spice.aur.aur,
+                    footer: Spice.aur.footer,
                 },
                 variants: {
                 tile: 'basic4'

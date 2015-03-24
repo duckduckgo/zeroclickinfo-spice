@@ -16,7 +16,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Aur'
     ),
-    'AUR ssh' => test_spice(
+    'Arch Package ssh' => test_spice(
         '/js/spice/aur/ssh',
         call_type => 'include',
         caller => 'DDG::Spice::Aur'

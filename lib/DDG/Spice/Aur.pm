@@ -2,7 +2,7 @@ package DDG::Spice::Aur;
 # ABSTRACT: Write an abstract here
 # Start at https://duck.co/duckduckhack/spice_overview if you are new
 # to instant answer development
-
+use strict;
 use DDG::Spice;
 
 # Caching - https://duck.co/duckduckhack/spice_advanced_backend#caching
@@ -19,23 +19,21 @@ category "software";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
 topics "computing";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Aur.pm";
-attribution github => ["NateBrune", "Nate Brune"];
+attribution twitter => 'crazedpsyc',
+                 cpan => 'CRZEDPSYC',
+                 github => ['NateBrune', 'Nate Brune'];
 
 # API endpoint - https://duck.co/duckduckhack/spice_attributes#spice-codetocode
 spice to => 'https://aur.archlinux.org/rpc.php?type=search&arg=$1&callback={{callback}}';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers any => "Aur";
+triggers any => "aur", "archlinux package", "arch package", "arch linux package";
 
 # Handle statement
 handle remainder => sub {
-
-    # optional - regex guard
-    # return unless qr/^\w+/;
-
-    return unless $_;    # Guard against "no answer"
-
-    return $_;
+    my $remainder = $_;
+    $remainder =~ s/^for\s//;
+    return unless $remainder;
 };
 
 1;
