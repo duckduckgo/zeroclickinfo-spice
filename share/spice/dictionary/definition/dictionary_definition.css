@@ -24,10 +24,6 @@
     font-weight: 600;
 }
 
-.zci__def__pronunciation,
-.zci__def__plural {
-    font-size: 0.75em;
-}
 
 .zci__def__part-of-speech {
     font-style: italic;
@@ -36,3 +32,6 @@
     min-width: 1em;
 }
 
+.zci--definition .play-btn__err{
+    margin-left: 0.75em;
+}
