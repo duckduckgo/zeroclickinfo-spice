@@ -1,4 +1,5 @@
 package DDG::Spice::Zanran;
+# ABSTRACT: Search for stastistical data
 
 use strict;
 use DDG::Spice;

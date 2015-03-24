@@ -1,4 +1,5 @@
 package DDG::Spice::Betterific;
+# ABSTRACT: Crowd-sourced innovation ideas
 
 use strict;
 use DDG::Spice;

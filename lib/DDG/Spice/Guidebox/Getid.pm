@@ -1,4 +1,5 @@
 package DDG::Spice::Guidebox::Getid;
+# ABSTRACT: Search for full free episodes of TV shows
 
 use strict;
 use DDG::Spice;

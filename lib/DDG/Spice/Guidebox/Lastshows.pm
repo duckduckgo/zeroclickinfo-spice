@@ -1,4 +1,5 @@
 package DDG::Spice::Guidebox::Lastshows;
+# ABSTRACT: Search for full free episodes for guidebox id of a TV show
 
 use strict;
 use DDG::Spice;

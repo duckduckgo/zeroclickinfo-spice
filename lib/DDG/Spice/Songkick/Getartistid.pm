@@ -1,4 +1,5 @@
 package DDG::Spice::Songkick::Getartistid;
+# ABSTRACT: Get similar artists for an artist
 
 use strict;
 use warnings;

@@ -1,4 +1,5 @@
 package DDG::Spice::Forecast;
+# ABSTRACT: Weather forecasts
 
 use strict;
 use DDG::Spice;

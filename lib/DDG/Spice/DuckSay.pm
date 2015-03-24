@@ -1,4 +1,5 @@
 package DDG::Spice::DuckSay;
+# ABSTRACT: Make the duck say something
 
 use strict; 
 use DDG::Spice;

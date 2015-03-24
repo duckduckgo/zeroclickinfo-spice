@@ -1,4 +1,5 @@
 package DDG::Spice::Tvmaze::Nextepisode;
+# ABSTRACT: Information about the next episode of TV series
 
 use strict;
 use DDG::Spice;

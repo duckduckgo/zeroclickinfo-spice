@@ -1,4 +1,5 @@
 package DDG::Spice::Nutrition;
+# ABSTRACT: Nutrition information
 
 use strict;
 use DDG::Spice;

@@ -1,4 +1,5 @@
 package DDG::Spice::Transit::SEPTA;
+# ABSTRACT: Information on next trains on SEPTA (Pennsylvania)
 
 use strict;
 use DDG::Spice;

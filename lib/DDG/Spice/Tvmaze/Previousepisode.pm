@@ -1,4 +1,5 @@
 package DDG::Spice::Tvmaze::Previousepisode;
+# ABSTRACT: Information about the previous episode of TV series
 
 use strict;
 use DDG::Spice;

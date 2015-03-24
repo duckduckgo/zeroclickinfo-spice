@@ -1,4 +1,5 @@
 package DDG::Spice::Envato;
+# ABSTRACT: Envato marketplace search
 
 use strict;
 use DDG::Spice;

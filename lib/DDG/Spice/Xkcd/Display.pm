@@ -1,4 +1,5 @@
 package DDG::Spice::Xkcd::Display;
+# ABSTRACT: Displays an xkcd comic
 
 use strict;
 use DDG::Spice;

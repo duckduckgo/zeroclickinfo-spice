@@ -1,4 +1,5 @@
 package DDG::Spice::SearchCode;
+# ABSTRACT: Searches for programming code
 
 use strict;
 use DDG::Spice;

@@ -1,4 +1,5 @@
 package DDG::Spice::Forvo;
+# ABSTRACT: Shows how to pronounce words
 
 use strict;
 use DDG::Spice;

@@ -1,4 +1,5 @@
 package DDG::Spice::Time;
+# ABSTRACT: Time zone converter
 
 use strict;
 use DDG::Spice;

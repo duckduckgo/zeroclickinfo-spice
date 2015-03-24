@@ -1,4 +1,5 @@
 package DDG::Spice::Quandl::HomeValues;
+# ABSTRACT: Home values for US zipcodes through Quandl
 
 use DDG::Spice;
 use Text::Trim;

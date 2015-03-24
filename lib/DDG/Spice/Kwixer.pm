@@ -1,4 +1,5 @@
 package DDG::Spice::Kwixer;
+# ABSTRACT: Movie search
 
 use strict;
 use DDG::Spice;
