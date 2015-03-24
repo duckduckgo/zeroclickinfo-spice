@@ -1,4 +1,5 @@
 package DDG::Spice::LeakDB;
+# ABSTRACT: Plaintext of hashes, and hashes of plaintexts
 
 use strict;
 use DDG::Spice;

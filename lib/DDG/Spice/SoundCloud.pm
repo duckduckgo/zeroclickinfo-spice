@@ -1,4 +1,5 @@
 package DDG::Spice::SoundCloud;
+# ABSTRACT: Audio file search on SoundCloud
 
 use strict;
 use DDG::Spice;

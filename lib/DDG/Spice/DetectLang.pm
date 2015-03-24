@@ -1,4 +1,5 @@
 package DDG::Spice::DetectLang;
+# ABSTRACT: Detects language of words
 
 use strict;
 use utf8;

@@ -1,4 +1,5 @@
 package DDG::Spice::Drinks;
+# ABSTRACT: Drink mixing instructions
 
 use strict;
 use DDG::Spice;

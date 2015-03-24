@@ -1,4 +1,5 @@
 package DDG::Spice::Canistreamit;
+# ABSTRACT: Stream provider movie search
 
 use strict;
 use DDG::Spice;

@@ -1,4 +1,5 @@
 package DDG::Spice::MassOnTime;
+# ABSTRACT: Get times for masses for cities
 
 use strict;
 use DDG::Spice;

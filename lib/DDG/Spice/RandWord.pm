@@ -1,4 +1,5 @@
 package DDG::Spice::RandWord;
+# ABSTRACT: Shows a random word
 
 use strict;
 use DDG::Spice;

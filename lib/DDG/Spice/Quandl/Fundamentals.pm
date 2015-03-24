@@ -1,4 +1,5 @@
 package DDG::Spice::Quandl::Fundamentals;
+# ABSTRACT: Basic stock ticker through Quandl
 
 use DDG::Spice;
 use Text::Trim;

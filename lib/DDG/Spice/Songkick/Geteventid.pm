@@ -1,4 +1,5 @@
 package DDG::Spice::Songkick::Geteventid;
+# ABSTRACT: Get concerts for an artist through Songkick
 
 use strict;
 use warnings;

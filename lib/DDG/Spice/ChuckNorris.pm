@@ -1,4 +1,5 @@
 package DDG::Spice::ChuckNorris;
+# ABSTRACT: Chuck Norris facts
 
 use strict;
 use DDG::Spice;

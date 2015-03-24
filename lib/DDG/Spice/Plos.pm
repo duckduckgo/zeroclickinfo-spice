@@ -1,4 +1,5 @@
 package DDG::Spice::Plos;
+# ABSTRACT: Search for scientific articles on PLOS ONE
 
 use strict;
 use DDG::Spice;

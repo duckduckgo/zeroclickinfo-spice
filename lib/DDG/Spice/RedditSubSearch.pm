@@ -1,4 +1,5 @@
 package DDG::Spice::RedditSubSearch;
+# ABSTRACT: Search for subreddits
 
 use strict;
 use DDG::Spice;

@@ -1,4 +1,5 @@
 package DDG::Spice::TodayInHistory;
+# ABSTRACT: Shows relevant historic events for the current day in previous years
 
 use strict;
 use DDG::Spice;

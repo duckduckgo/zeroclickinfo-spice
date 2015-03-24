@@ -1,4 +1,5 @@
 package DDG::Spice::Coursebuffet;
+# ABSTRACT: Online course search
 
 use strict;
 use DDG::Spice;

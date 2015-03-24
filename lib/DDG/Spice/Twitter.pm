@@ -1,4 +1,5 @@
 package DDG::Spice::Twitter;
+# ABSTRACT: Twitter information about a user
 
 use strict;
 use DDG::Spice;

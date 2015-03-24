@@ -1,4 +1,5 @@
 package DDG::Spice::Flights::Route;
+# ABSTRACT: Shows information on flights
 
 use strict;
 use DDG::Spice;
