@@ -27,9 +27,9 @@ my $skip = join "|", share('skipwords.txt')->slurp(chomp => 1);
 
 handle matches => sub {
     if ($1) {
-	   return $1;
+       return $1;
     } elsif ($2) {
-	   return $2 unless ($2 =~ m/^($skip)$/i)
+       return $2 unless ($2 =~ m/^($skip)$/i)
     }
     return;
 };
