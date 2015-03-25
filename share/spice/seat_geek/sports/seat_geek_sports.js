@@ -28,7 +28,7 @@
                 // if it doesn't, and it's not even relevant to the event title,
                 // check relevancy on the taxonomies. If this fails too, return null
                 var relevant = false;
-                var performer;
+                var performer = item.performers[0];
                 var both_performers = [];
                 var title;
                 for(var i = 0; i < item.performers.length; i++) {
