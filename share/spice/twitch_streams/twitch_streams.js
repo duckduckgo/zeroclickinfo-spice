@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_twitch_streams = function(api_result){
 
-        if (!api_result || api_result.error) {
+        if (!api_result || !api_result.streams || api_result.streams.length === 0 ||api_result.error) {
             return Spice.failed('twitch_streams');
         }
         
@@ -13,40 +13,18 @@
             streams = api_result.streams;
         }  
         
-        //Get query, as per documentation
+        //Get query, split into an array on space, append query to the end for moreat
         var script = $('[src*="/js/spice/twitch_streams/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/twitch_streams\/([^\/]+)/)[1],
             decodedQuery = decodeURIComponent(query);
-        //Replace spaces with +
         var moreAt = decodedQuery.replace(/ /g,"+");
-        
-        //Push results into an array for display
-        var results = [];
-        
-        for (var i = 0; i < streams.length; i++) {
-            var url = streams[i].channel.url;
-            var displayName = streams[i].channel.display_name;
-            if(streams[i].channel.logo != null){
-                var logo = streams[i].channel.logo;
-            } else {
-                var logo = 'http://static-cdn.jtvnw.net/jtv-static/404_preview-300x300.png';
-            }
-            var viewers = streams[i].viewers;
-            
-             results.push({
-                 url: url,
-                 displayName: displayName,
-                 logo: logo,
-                 viewers: viewers
-             });
-        }
         
         Spice.add({
             minItemsForModeSwitch: 3,
             id: "twitch_streams",
             name: "Twitch Streams",
-            data: results,
+            data: api_result.streams,
             meta: {
                 sourceName: "twitch.tv",
                 sourceUrl: 'http://www.twitch.tv/search?query=+' + moreAt,
@@ -62,6 +40,20 @@
                     tile: 'xwide'
                 }
             },
+            //Results could be returned as an array, so the data is normalized for the view.
+            normalize: function(stream) {
+                if(stream.channel.logo != null){
+                    var logo = stream.channel.logo;
+                } else {
+                    var logo = 'http://static-cdn.jtvnw.net/jtv-static/404_preview-300x300.png';
+                }
+                return {
+                    url: stream.channel.url,
+                    displayName: stream.channel.display_name,
+                    viewers: stream.viewers,
+                    logo: logo
+                };
+            }
         });
     };
 }(this));
