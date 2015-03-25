@@ -56,10 +56,9 @@
             },
 
             templates: {
-                group: 'text',
+                group: 'base',
                 options: {
-                    content: Spice.similar_sites.content,
-                    moreAt: true
+                    content: Spice.similar_sites.content
                 }
             },
 
