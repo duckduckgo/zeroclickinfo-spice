@@ -36,7 +36,7 @@
                     footer: Spice.aur.footer,
                 },
                 variants: {
-                tile: 'basic4'
+                    tile: 'basic4'
                 },
                 detail: false,
                 item_detail: false
