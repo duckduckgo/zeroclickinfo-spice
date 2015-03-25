@@ -20,7 +20,7 @@
             data: api_result.streams,
             meta: {
                 sourceName: "twitch.tv",
-                sourceUrl: 'http://www.twitch.tv/search?query=+' + moreAt,
+                sourceUrl: 'http://www.twitch.tv/search?query=' + moreAt,
             },
             templates: {
                 group: 'base',
