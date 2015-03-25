@@ -16,7 +16,7 @@ my @oslo_norway = (
 ddg_spice_test(
     [qw( DDG::Spice::SunRiseSet)],
     'sunset' => test_spice(
-        '/js/spice/sun_rise_set',
+        '/js/spice/sun_rise_set/',
         call_type => 'include',
         caller    => 'DDG::Spice::SunRiseSet'
     ),
