@@ -20,7 +20,7 @@ attribution github  => ['parker', 'Parker'],
 
 triggers any => "job", "jobs";
 
-spice to => 'http://api.indeed.com/ads/apisearch?publisher={{ENV{DDG_SPICE_INDEED_JOBS_PUBLISHER}}}&v=2&useragent=DuckDuckGo&userip=1.2.3.4&q=$1&l=$2&co=$3&format=json&callback={{callback}}';
+spice to => 'http://api.indeed.com/ads/apisearch?publisher={{ENV{DDG_SPICE_INDEED_APIKEY}}}&v=2&useragent=DuckDuckGo&userip=1.2.3.4&q=$1&l=$2&co=$3&format=json&callback={{callback}}';
 spice from => '([^/]+)/(.*?)/([^/]*)';
 spice proxy_cache_valid   => "418 1d";
 

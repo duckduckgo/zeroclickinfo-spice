@@ -14,7 +14,7 @@
         
         Spice.add({
             id: "indeed_jobs",
-            name: "Indeed Jobs",
+            name: "Jobs",
             data: api_result.results,
             meta: {
                 sourceName: "Indeed",
