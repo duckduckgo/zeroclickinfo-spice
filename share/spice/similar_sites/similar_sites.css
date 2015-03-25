@@ -21,20 +21,12 @@
     margin-left: 10px;
 }
 
-.zci--similar_sites .vertical_roller {
-    border-left: 1px solid rgba(150,150,150,0.2);
-    margin-left: 15px;
-}
-
 .zci--similar_sites #more_info {
     border-top: 1px solid rgba(150,150,105,0.2);
     padding-top: 15px;
     margin-top: 15px;
 }
 
-.zci--similar_sites #more_at {
-    margin-left: 15px;
-}
 
 .zci--similar_sites .chomp--link__icn:after {
     content: attr(data-content);
