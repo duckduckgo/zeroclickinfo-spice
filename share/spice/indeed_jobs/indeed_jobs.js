@@ -14,7 +14,7 @@
         
         Spice.add({
             id: "indeed_jobs",
-            name: "Jobs",
+            name: "Indeed Jobs",
             data: api_result.results,
             meta: {
                 sourceName: "Indeed",
@@ -25,7 +25,7 @@
                     url: item.url,
                     title: item.jobtitle,
                     subtitle: item.company,
-                    description: item.formattedLocation
+                    description: DDG.strip_html(item.snippet)
                 };
             },
             templates: {
@@ -34,6 +34,11 @@
                 item_detail: false,
                 options: {
                     footer: Spice.indeed_jobs.footer
+                },
+                variants: {
+                    tileTitle: '2line',
+                    tileSnippet: 'large',
+                    tileFooter: '2line'
                 }
             }
         });
