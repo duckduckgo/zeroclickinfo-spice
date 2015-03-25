@@ -42,7 +42,6 @@
                 console.log(sites);
 
                 return {
-                    title: 'Websites similar to ' + query,
                     sites: sites
                 }
             },
