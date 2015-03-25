@@ -6,8 +6,8 @@ use YAML::XS qw( Load );
 
 primary_example_queries "sunset Oslo", "sunrise Oslo";
 secondary_example_queries "Oslp sunset time", "Oslo sunrise time";
-description "Provides the sunrise/set time of country, city or state searched";
-name "Time";
+description "Provides the sunrise/sunset time of country, city or state searched";
+name "SunRiseSet";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SunRiseSet.pm";
 icon_url "/i/timeanddate.com.ico";
 topics "everyday";

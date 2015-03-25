@@ -36,19 +36,26 @@
 
         Spice.add({
             id: "sun_rise_set",
-            name: "sun_rise_set",
+            name: "Sunrise/Sunset",
             data: {
                 location: location.geo.name,
                 country: location.geo.country.name,
                 sunrise_time: sunrise_time + ' AM',
-                sunset_time: sunset_time + ' PM'
+                sunset_time: sunset_time + ' PM',
+                sunrise_image: DDG.get_asset_path('sun_rise_set', 'sunrise.svg'),
+                sunset_image: DDG.get_asset_path('sun_rise_set', 'sunset.svg'),
             },
             meta: {
                 sourceName: "timeanddate.com",
                 sourceUrl: 'http://www.timeanddate.com/worldclock/results.html?query=' + location.geo.name
             },
+            normalize: function(item) {
+                return {
+                    title: item.location,
+                };
+            },
             templates: {
-                group: 'base',
+                group: 'text',
                 options:{
                     content: Spice.sun_rise_set.content,
                     moreAt: true
