@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_twitch_streams = function(api_result){
 
-        if (!api_result || api_result.error)  {
+        if (!api_result || api_result.error) {
             return Spice.failed('twitch_streams');
         }
         
@@ -13,15 +13,13 @@
             streams = api_result.streams;
         }  
         
-        //Get query, split into an array on space, append query to the end for moreat
-        var query = DDG.get_query().split(" ");
-        var moreAt = '';
-        for (var i = 2; i < query.length; i++) {
-            moreAt = moreAt + query[i];
-            if(i != query.length - 1){
-                moreAt += '+';
-            }
-        }
+        //Get query, as per documentation
+        var script = $('[src*="/js/spice/twitch_streams/"]')[0],
+            source = $(script).attr("src"),
+            query = source.match(/twitch_streams\/([^\/]+)/)[1],
+            decodedQuery = decodeURIComponent(query);
+        //Replace spaces with +
+        var moreAt = decodedQuery.replace(/ /g,"+");
         
         //Push results into an array for display
         var results = [];
