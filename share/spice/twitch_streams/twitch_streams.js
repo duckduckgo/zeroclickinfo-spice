@@ -40,12 +40,12 @@
                     tile: 'xwide'
                 }
             },
-            //Results could be returned as an array, so the data is normalized for the view.
             normalize: function(stream) {
                 if(stream.channel.logo != null){
-                    var logo = stream.channel.logo;
+                    var logo = "https://images.duckduckgo.com/iu/?u=" + encodeURIComponent(stream.channel.logo) + "&f=1";
                 } else {
-                    var logo = 'http://static-cdn.jtvnw.net/jtv-static/404_preview-300x300.png';
+                    var defaultIcon = "http://static-cdn.jtvnw.net/jtv-static/404_preview-300x300.png";
+                    var logo = "https://images.duckduckgo.com/iu/?u=" + encodeURIComponent(defaultIcon) + "&f=1";
                 }
                 return {
                     url: stream.channel.url,
