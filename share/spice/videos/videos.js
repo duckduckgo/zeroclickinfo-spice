@@ -12,11 +12,10 @@ function ddg_spice_videos(apiResult) {
 
         data: apiResult.results,
 
-        model: 'Video',
-
         meta: {
             next: apiResult.next,
-            searchTerm: apiResult.query
+            searchTerm: apiResult.query,
+            idField: 'id'
         },
 
         relevancy: {

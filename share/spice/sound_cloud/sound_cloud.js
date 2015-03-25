@@ -27,7 +27,8 @@
                 sourceName: 'SoundCloud',
                 sourceUrl: 'https://soundcloud.com/search?q=' + query,
                 sourceIcon: true,
-                itemType: 'Tracks'
+                itemType: 'Tracks',
+                idField: 'url'
             },
             templates: {
                 item_custom: 'audio_item',
@@ -36,7 +37,6 @@
                 }
             },
             view: 'Audio',
-            model: 'Audio',
             normalize: function(o) {
 
                 var image = o.artwork_url || o.user.avatar_url,

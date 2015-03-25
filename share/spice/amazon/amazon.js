@@ -12,12 +12,12 @@
             name: 'Products',
             data: api_result.results,
             allowMultipleCalls: true,
-            model: 'Product',
             meta: {
                 itemType: 'Products',
                 sourceName: 'Amazon',
                 sourceUrl: api_result.more_at,
                 sourceIcon: true,
+                idField: ['ASIN', 'img_m', 'img'],
                 next: api_result.next
             },
             templates: {
