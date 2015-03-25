@@ -34,9 +34,9 @@
                     sites.push({
                         url: url,
                         name: url.replace("http://", "")
-                                                   .replace("https://", "")
-                                                   .replace("www.", "")
-                                                   .replace(/\/+$/g, '')
+                                 .replace("https://", "")
+                                 .replace("www.", "")
+                                 .replace(/\/+$/g, '')
                     });
                 };
 
