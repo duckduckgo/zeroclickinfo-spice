@@ -31,7 +31,6 @@
                 var performer;
                 var both_performers = [];
                 var title;
-                var logo;
                 for(var i = 0; i < item.performers.length; i++) {
                     if(DDG.stringsRelevant(item.performers[i].name.toLowerCase(), clean_query, [], 3, true) || DDG.stringsRelevant(item.performers[i].short_name.toLowerCase(), clean_query, [], 3, true)) {
                         relevant = true;
