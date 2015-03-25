@@ -60,7 +60,6 @@
                     }
                 } else {
                     title = performer.name;
-                    logo = getLogo(title, item.taxonomies);
                 }
 
                 function getDate(date) {
