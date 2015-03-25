@@ -6,19 +6,12 @@
             return Spice.failed('twitch_streams');
         }
         
-        var streams = [];
-        if (!($.isArray(api_result.streams))) {
-            streams = [api_result.streams];
-        } else {
-            streams = api_result.streams;
-        }  
-        
         //Get query, split into an array on space, append query to the end for moreat
         var script = $('[src*="/js/spice/twitch_streams/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/twitch_streams\/([^\/]+)/)[1],
-            decodedQuery = decodeURIComponent(query);
-        var moreAt = decodedQuery.replace(/ /g,"+");
+            decodedQuery = decodeURIComponent(query),
+            moreAt = decodedQuery.replace(/ /g,"+");
         
         Spice.add({
             minItemsForModeSwitch: 3,
