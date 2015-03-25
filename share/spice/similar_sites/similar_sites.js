@@ -39,7 +39,6 @@
                                                    .replace(/\/+$/g, '')
                     });
                 };
-                console.log(sites);
 
                 return {
                     sites: sites
