@@ -10,6 +10,11 @@
         var script = $('[src*="/js/spice/github/"]')[0],
                     source = $(script).attr("src"),
                     query = source.match(/github\/([^\/]+)/)[1];
+        if (/language:".*?"/.test(unescape(query))) {
+            var itemType = "Git Repositories (" + unescape(query).match(/language:"(.*?)"/)[1] + ")";
+        } else {
+            var itemType = "Git Repositories";
+        }
 
         var results = api_result.data.items;
 
@@ -26,7 +31,7 @@
             name: "Software",
             data: results,
             meta: {
-                itemType: "Git Repositories",
+                itemType: itemType,
                 sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
                 sourceName: 'GitHub'
             },
