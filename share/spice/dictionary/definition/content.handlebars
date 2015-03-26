@@ -1,14 +1,16 @@
 <h3>
-    {{#if plural_form}}
-        <span class="zci__def__word text--primary">{{plural_form}}</span>
-    {{else}}
-        <span class="zci__def__word text--primary">{{word}}</span>
-    {{/if}}
+{{#if plural_form}}
+    <span class="zci__def__word text--primary">{{plural_form}}</span>
     <span class="zci__def__pronunciation"></span>
 </h3>
 <div class="zci__subheader">
     Plural form of {{word}}
 </div>
+{{else}}
+    <span class="zci__def__word text--primary">{{word}}</span>
+</h3>
+{{/if}}
+
 <ul>
 {{#definitions}}
     <li>
@@ -18,8 +20,7 @@
 {{/definitions}}
 </ul>
 <div class="zci__def__links">
-	{{{moreAt meta.sourceUrl meta.sourceName}}}
-	<span class="zcm__sep"></span>
-	<span class="zci__def__attribution  tx-clr--lt2  t-s">{{meta.attributionText}}</span>
+    {{{moreAt meta.sourceUrl meta.sourceName}}}
+    <span class="zcm__sep"></span>
+    <span class="zci__def__attribution  tx-clr--lt2  t-s">{{meta.attributionText}}</span>
 </div>
-
