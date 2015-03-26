@@ -21,30 +21,29 @@
             meta: {
                 sourceName: "twitch.tv",
                 sourceUrl: 'http://www.twitch.tv/search?query=' + moreAt,
+                itemType: "Twitch Streams"
             },
             templates: {
                 group: 'base',
                 detail: false,
+                item_detail: false,
+                item: 'videos_item',
                 moreAt: true,
-                options: {
-                    content: Spice.twitch_streams.content,
-                },
-                variants: {
-                    tile: 'xwide'
-                }
             },
             normalize: function(stream) {
-                if(stream.channel.logo != null){
-                    var logo = "https://images.duckduckgo.com/iu/?u=" + encodeURIComponent(stream.channel.logo) + "&f=1";
+                if(stream.channel.status == null){
+                    var title = "Untitled Broadcast";
                 } else {
-                    var defaultIcon = "http://static-cdn.jtvnw.net/jtv-static/404_preview-300x300.png";
-                    var logo = "https://images.duckduckgo.com/iu/?u=" + encodeURIComponent(defaultIcon) + "&f=1";
+                    var title = stream.channel.status;
                 }
+                var title = stream.channel.display_name + ": " + stream.channel.status;
+                
                 return {
                     url: stream.channel.url,
-                    displayName: stream.channel.display_name,
-                    viewers: stream.viewers,
-                    logo: logo
+                    viewCount: stream.viewers,
+                    images: stream.preview,
+                    title: title,
+                    duration: stream.game
                 };
             }
         });
