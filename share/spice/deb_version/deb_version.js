@@ -1,9 +1,7 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_deb_version = function(api_result_str){
-        var api_result = JSON.parse(api_result_str);
-
-        if (api_result.error) {
+    env.ddg_spice_deb_version = function(api_result){
+        if (!api_result || api_result.error) {
             return Spice.failed('deb_version');
         }
 
@@ -17,7 +15,8 @@
             },
             normalize: function(result) {
                 var data = {
-                    title: 'Debian versions of "' + result.package + '"',
+                    title: result.package,
+                    subtitle: "Debian Package Versions",
                     record_data: {},
                 };
 
@@ -39,7 +38,7 @@
                 group: 'text',
                 options: {
                     content: 'record',
-                    /* optional - highlight alternate rows */
+                    rowHighlight: true,
                     moreAt: true,
                 }
             }
