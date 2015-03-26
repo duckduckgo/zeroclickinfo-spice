@@ -21,10 +21,13 @@
             meta: {
                 sourceName: "twitch.tv",
                 sourceUrl: 'http://www.twitch.tv/search?query=' + moreAt,
+                itemType: "Twitch Streams"
             },
             templates: {
                 group: 'base',
                 detail: false,
+                item_detail: false,
+                item: 'videos_item',
                 moreAt: true,
                 options: {
                     content: Spice.twitch_streams.content,
@@ -42,9 +45,10 @@
                 }
                 return {
                     url: stream.channel.url,
-                    displayName: stream.channel.display_name,
-                    viewers: stream.viewers,
-                    logo: logo
+                    viewCount: stream.viewers,
+                    images: stream.preview,
+                    title: stream.channel.status,
+                    duration: stream.game
                 };
             }
         });

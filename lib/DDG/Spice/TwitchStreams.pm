@@ -14,8 +14,8 @@ attribution github => ["https://github.com/dwaligon", "Jason O'Donnell"];
 triggers startend => 'twitch streams';
 
 #Make call to twitch api
-spice to => 'https://api.twitch.tv/kraken/search/streams?&q=$1&client_id={{ENV{DDG_SPICE_TWITCHTV_APIKEY}}}';
-spice wrap_jsonp_callback => 1;
+spice to => 'https://api.twitch.tv/kraken/search/streams?&q=$1&client_id={{ENV{DDG_SPICE_TWITCHTV_APIKEY}}}&callback={{callback}}';
+#spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
     return $_ if $_;
