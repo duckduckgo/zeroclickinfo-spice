@@ -41,7 +41,7 @@
             normalize: function(item) {
                 return {
                     title: item.name,
-                    subtitle: item.owner + "/" + item.name,
+                    subtitle: item.owner.login + "/" + item.name,
 		    url: item.html_url
                 };
             },
