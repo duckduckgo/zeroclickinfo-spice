@@ -1,0 +1,58 @@
+/* add more padding between content and footer */
+.tile__body.has-foot {
+  padding-bottom: 3.4em;
+}
+
+/* make tiles slightly wider */
+.zci--tor_node .tile--tor_node {
+  width: 18em;
+}
+
+.zci--tor_node .tile__body.has-foot {
+  padding-top: 0.7em;
+}
+
+.tile--tor_node .tile__title {
+  font-size: 1.52em;
+  padding-top: 0;
+  height: auto;
+}
+
+.tile--tor_node .tile__content {
+  font-size: 1.11em;
+  color: #999;
+  margin-top: 16px;
+}
+
+.tile--tor_node .tile__icon {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-top: 1px;
+
+  /* remove bg-color and padding completely */
+  background-color: transparent;
+  padding: 0;
+}
+
+.zci--tor_node .tile__foot {
+  height: 2.2em;
+}
+
+.zci--tor_node .one-line span {
+  font-size: 1.11em;
+}
+
+.zci--tor_node .one-line .online {
+  color: #5b9e4d;
+  float: left;
+}
+
+.zci--tor_node .one-line .offline {
+  color: #ff0000;
+  float: left;
+}
+
+.zci--tor_node .one-line .bandwidth {
+  color: #999;
+  float: right;
+}

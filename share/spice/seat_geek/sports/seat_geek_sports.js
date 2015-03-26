@@ -28,10 +28,9 @@
                 // if it doesn't, and it's not even relevant to the event title,
                 // check relevancy on the taxonomies. If this fails too, return null
                 var relevant = false;
-                var performer;
+                var performer = item.performers[0];
                 var both_performers = [];
                 var title;
-                var logo;
                 for(var i = 0; i < item.performers.length; i++) {
                     if(DDG.stringsRelevant(item.performers[i].name.toLowerCase(), clean_query, [], 3, true) || DDG.stringsRelevant(item.performers[i].short_name.toLowerCase(), clean_query, [], 3, true)) {
                         relevant = true;
@@ -60,7 +59,6 @@
                     }
                 } else {
                     title = performer.name;
-                    logo = getLogo(title, item.taxonomies);
                 }
 
                 function getDate(date) {
