@@ -22,7 +22,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Aur'
     ),
     'Arch linux package python2' => test_spice(
-        '/js/spice/aur/ssh',
+        '/js/spice/aur/python2',
         call_type => 'include',
         caller => 'DDG::Spice::Aur'
     ),
