@@ -63,20 +63,13 @@
                     $icon = $zci.find(".chomp--link__icn"),
                     $more = $zci.find(".chomp--link__mr"),
                     $less = $zci.find(".chomp--link__ls");
-                $icon.attr('data-content', "+");
 
                 $("#show_more").click(function() {
                     $more.toggle();
                     $less.toggle();
                     $("#hidden").toggle();
 
-                    if(toggle) {
-                        $icon.attr('data-content', "+");
-                        toggle = false;
-                    } else {
-                        $icon.attr('data-content', "-");
-                        toggle = true;
-                    }
+                    $icon.toggleClass("expand");
                 });
             }
         });
