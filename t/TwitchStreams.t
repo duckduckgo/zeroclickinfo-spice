@@ -16,7 +16,7 @@ ddg_spice_test(
         '/js/spice/twitch_streams/dota%202',
         call_type => 'include',
         caller => 'DDG::Spice::TwitchStreams',
-        is_cached => 1
+        is_cached => 0
     ),
 );
 
