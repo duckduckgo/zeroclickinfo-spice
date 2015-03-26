@@ -24,7 +24,7 @@ spice wrap_jsonp_callback => 1;
 
 # Handle statement
 handle remainder => sub {
-    return lc $_ if $_;
+    return lc $_ unless !$_ or $_ =~ /\s/;
     return;
 };
 
