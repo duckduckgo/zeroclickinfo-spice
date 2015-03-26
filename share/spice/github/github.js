@@ -10,8 +10,13 @@
         var script = $('[src*="/js/spice/github/"]')[0],
                     source = $(script).attr("src"),
                     query = source.match(/github\/([^\/]+)/)[1];
+        if (/language:".*?"/.test(unescape(query))) {
+            var itemType = "Git Repositories (" + unescape(query).match(/language:"(.*?)"/)[1] + ")";
+        } else {
+            var itemType = "Git Repositories";
+        }
 
-        var results = api_result.data.repositories;
+        var results = api_result.data.items;
 
         if (!results) {
             return Spice.failed('github');
@@ -26,7 +31,7 @@
             name: "Software",
             data: results,
             meta: {
-                itemType: "Git Repositories",
+                itemType: itemType,
                 sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
                 sourceName: 'GitHub'
             },
@@ -44,7 +49,8 @@
             normalize: function(item) {
                 return {
                     title: item.name,
-                    subtitle: item.owner + "/" + item.name
+                    subtitle: item.owner.login + "/" + item.name,
+		    url: item.html_url
                 };
             },
             relevancy: {
@@ -65,10 +71,10 @@
 }(this));
 
 // Make sure we display only three items.
-Handlebars.registerHelper("GitHub_last_pushed", function(pushed) {
+Handlebars.registerHelper("GitHub_last_pushed", function(pushed_at) {
     "use strict";
 
-    var last_pushed = Math.floor((new Date() - new Date(pushed)) / (1000*60*60*24));
+    var last_pushed = Math.floor((new Date() - new Date(pushed_at)) / (1000*60*60*24));
 
     var years_ago = Math.floor(last_pushed / 365);
     if (years_ago >= 1) {
@@ -83,3 +89,4 @@ Handlebars.registerHelper("GitHub_last_pushed", function(pushed) {
 
     return last_pushed;
 });
+
