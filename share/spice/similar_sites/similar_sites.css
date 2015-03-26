@@ -37,5 +37,9 @@
 }
 
 .zci--similar_sites .chomp--link__icn:after {
-    content: attr(data-content);
+    content: "\2295";
+}
+
+.zci--similar_sites .expand.chomp--link__icn:after {
+    content: "\229d";
 }
