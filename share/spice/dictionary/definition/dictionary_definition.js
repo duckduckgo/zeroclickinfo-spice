@@ -116,7 +116,7 @@ var ddg_spice_dictionary = {
 
         // If the word is plural, then we should load the definition of the word
         // in singular form. The definition of the singular word is usually more helpful.
-        if(api_result.length === 1 && singular) {
+        if(singular) {
             this.plural_form = api_result[0].word;
             $.getScript(this.path + "/reference/" + singular[1]);
         } else {
