@@ -9,7 +9,7 @@
 
         Spice.add({
             id: "deb_version",
-            name: "Debian Package Versions (" + api_result.package + ")",
+            name: "Software",
             data: api_result,
             meta: {
                 sourceName: "packages.debian.org",
@@ -17,6 +17,7 @@
             },
             normalize: function(result) {
                 var data = {
+                    title: 'Debian versions of "' + result.package + '"',
                     record_data: {},
                 };
 
@@ -35,7 +36,7 @@
                 return data;
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
                     content: 'record',
                     /* optional - highlight alternate rows */
