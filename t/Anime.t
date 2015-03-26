@@ -15,7 +15,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Anime'
     ),
     'anime Medabots' => test_spice(
-        '/js/spice/anime/medabots',
+        '/js/spice/anime/Medabots',
         call_type => 'include',
         caller => 'DDG::Spice::Anime'
     )
