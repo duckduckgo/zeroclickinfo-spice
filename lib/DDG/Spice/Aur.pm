@@ -13,7 +13,7 @@ name "Aur";
 source "aur.archlinux.org";
 icon_url "http://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Archlinux-icon-crystal-64.svg/1000px-Archlinux-icon-crystal-64.svg.png";
 description "Provides hook into Arch User Repository API";
-primary_example_queries "aur mopidy", "aur python2-twisted";
+primary_example_queries "aur mopidy", "aur python2";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#category
 category "software";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
