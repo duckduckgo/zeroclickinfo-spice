@@ -13,7 +13,7 @@ attribution twitter => 'mattr555',
             github => ['https://github.com/mattr555/', 'Matt Ramina'];
 
 triggers startend => ['timer', 'countdown', 'alarm'];
-triggers start => ['time'];
+triggers start => ['time', 'timer for'];
 
 spice call_type => 'self';
 
