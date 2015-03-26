@@ -3,7 +3,7 @@ package DDG::Spice::Github;
 
 use strict;
 use DDG::Spice;
-use String::Trim;
+use Text::Trim;
 
 primary_example_queries "github zeroclickinfo";
 description "Github info";
@@ -31,9 +31,9 @@ handle query_lc => sub {
     if ($_ eq "" || m/\bjobs\b|\bstatus\b/) {
         return;
     }
-    
+
     my $query = $_;
-    my $l; 
+    my $l;
     # can't use standard \b word boundary here. It will fail for languages with characters like c++
     if (/ ($langs) / or /^($langs) / or / ($langs)$/) {
         $l = $1;
@@ -44,14 +44,14 @@ handle query_lc => sub {
         s/\s+/ /g;     # squash down multiple spaces
         return unless length $_;
 
-        # These is no separate language parameter for the query to 
+        # These is no separate language parameter for the query to
         # Github. You specify language as a part of the raw query string
-        # passed to the api like on the web form interface. 
+        # passed to the api like on the web form interface.
         return "${query} language:\"${l}\"" unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
     } else {
-	return $query;
+	    return $query;
     }
-    
+
     return;
 };
 1;
