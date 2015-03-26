@@ -18,7 +18,6 @@ handle remainder => sub {
     $query =~ /^(?:\s)*(?<package>[a-z0-9\-]+).*$/i;
 
     my $package = trim $+{package};
-    $package =~ s/\s+/-/g;
     return $package;
 };
 
