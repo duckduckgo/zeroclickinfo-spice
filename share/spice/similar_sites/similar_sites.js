@@ -58,7 +58,6 @@
             },
 
             onShow: function() {
-                var toggle = false;
                 var $zci = $(".zci--similar_sites"),
                     $icon = $zci.find(".chomp--link__icn"),
                     $more = $zci.find(".chomp--link__mr"),
