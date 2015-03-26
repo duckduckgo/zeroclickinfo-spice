@@ -1,16 +1,26 @@
 <div id="container">
-    {{#similar_sites_list results 0 5}}{{/similar_sites_list}}
+    {{#each sites to="5"}}
+    <div>
+        <img src="https://icons.duckduckgo.com/ip/{{name}}.ico" width='16px' height='16px'>
+        <a href="{{url}}" class="tx-clr--dk">{{name}}</a>
+    </div>
+    {{/each}}
 
     {{#if show_more}}
     <div id="hidden">
-        {{#similar_sites_list results 6 0}}{{/similar_sites_list}}
+        {{#each sites from="6"}}
+        <div>
+            <img src="https://icons.duckduckgo.com/ip/{{name}}.ico" width='16px' height='16px'>
+            <a href="{{url}}" class="tx-clr--dk">{{name}}</a>
+        </div>
+        {{/each}}
     </div>
     {{/if}}
 
     <div id="more_info">
         {{#if show_more}}
             <span class="tx-clr--lt" id="show_more">
-              <i class="chomp--link__icn"></i> 
+              <i class="chomp--link__icn"></i>
               <span class="chomp--link__mr">Show More</span>
               <span class="chomp--link__ls" style="display: none">Show Less</span>
             </span>
