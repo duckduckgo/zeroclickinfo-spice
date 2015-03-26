@@ -1,0 +1,9 @@
+.record__row {
+    line-height: 25px;
+}
+.record__cell__key {
+    padding-left: 5px;
+}
+.record__cell__value {
+    padding-right: 5px;
+}
