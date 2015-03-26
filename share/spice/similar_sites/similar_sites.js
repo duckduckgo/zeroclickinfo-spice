@@ -33,10 +33,7 @@
                     var url = data.results['r' + i];
                     sites.push({
                         url: url,
-                        name: url.replace("http://", "")
-                                 .replace("https://", "")
-                                 .replace("www.", "")
-                                 .replace(/\/+$/g, '')
+                        name: url.replace(/^https?:\/\/(www\.)?|\/+$/g, "")
                     });
                 };
 
@@ -62,11 +59,11 @@
 
             onShow: function() {
                 var toggle = false;
-                var $icon = $(".zci--similar_sites .chomp--link__icn");
+                var $zci = $(".zci--similar_sites"),
+                    $icon = $zci.find(".chomp--link__icn"),
+                    $more = $zci.find(".chomp--link__mr"),
+                    $less = $zci.find(".chomp--link__ls");
                 $icon.attr('data-content', "+");
-
-                var $more = $(".zci--similar_sites .chomp--link__mr");
-                var $less = $(".zci--similar_sites .chomp--link__ls");
 
                 $("#show_more").click(function() {
                     $more.toggle();
