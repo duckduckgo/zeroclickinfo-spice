@@ -35,7 +35,7 @@ sub is_stop {
     return;
 };
 
-triggers any => "next train", "train times", "train schedule";
+triggers startend => "next train", "train times", "train schedule";
 
 handle remainder => sub {
     return unless /(?:from |to )?(.+) (to|from) (.+)/;
