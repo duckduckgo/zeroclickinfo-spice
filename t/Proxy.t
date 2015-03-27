@@ -19,8 +19,7 @@ ddg_spice_test(
         '/js/spice/proxy/1',
         call_type => 'include',
         caller => 'DDG::Spice::Proxy'
-        ),
-    'bad example query' => undef,
+    )
 );
 
 done_testing;
