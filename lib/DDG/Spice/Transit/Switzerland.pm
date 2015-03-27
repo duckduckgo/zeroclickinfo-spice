@@ -4,6 +4,7 @@ package DDG::Spice::Transit::Switzerland;
 use strict;
 use utf8;
 use DDG::Spice;
+use YAML::XS qw(Load);
 
 primary_example_queries "next train to geneva from paris";
 secondary_example_queries "train times zurich airport to basel";
@@ -24,7 +25,7 @@ spice proxy_cache_valid => "418 1d";
 
 #load a list of stops so we don't trigger this if we don't get train stops
 #(the triggers are similar to SEPTA's)
-my @stops = share('stops.txt')->slurp;
+my @stops = @{Load(scalar share('stops.yml')->slurp)};
 
 #check if the stop name is in the list of stops
 #(using the same matching algorithm as the backend)
