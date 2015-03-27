@@ -25,12 +25,12 @@ spice proxy_cache_valid => "418 1d";
 
 #load a list of stops so we don't trigger this if we don't get train stops
 #(the triggers are similar to SEPTA's)
-my @stops = @{Load(scalar share('stops.yml')->slurp)};
+my %stops = %{Load(scalar share('stops.yml')->slurp)};
 
 #check if the stop name is in the list of stops
 #(using the same matching algorithm as the backend)
 sub is_stop {
-    if (exists {map { $_ => 1 } @stops}->{$_[0]}) {
+    if (exists $stops{$_[0]}) {
         return 1;
     }
     return;
