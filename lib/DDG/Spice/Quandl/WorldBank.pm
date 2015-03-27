@@ -31,7 +31,7 @@ my @secondary_keys = keys($secondary_hash);
 my $secondary_qr = join "|", @secondary_keys;
 
 # defining our triggers
-triggers startend => @primary_keys;
+triggers any => @primary_keys;
 
 # to set an environmental variable:
 # duckpan env set <name> <value>
