@@ -21,3 +21,5 @@ extreme temperaturs:	EN_CLC_MDAT_ZS
 price index:	FP_WPI_TOTL
 wholesale price index:	FP_WPI_TOTL
 rainfall: AG_LND_PRCP_MM
+avg rainfall: AG_LND_PRCP_MM
+average rainfall: AG_LND_PRCP_MM
