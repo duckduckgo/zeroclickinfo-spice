@@ -21,6 +21,7 @@ my $primary_hash = Load(scalar share('world_bank_primary.yml')->slurp);
 
 # triggers sorted by length so more specific is used first
 my @primary_keys = sort { length $b <=> length $a } keys($primary_hash);
+my $primary_qr = join "|", @primary_keys;
 
 # hash associating secondary triggers with their codes
 my $secondary_hash = Load(scalar share('world_bank_secondary.yml')->slurp);
@@ -44,21 +45,13 @@ handle sub {
 
     my $query = lc $_;
     
-    # find which secondary trigger was used
-    $query =~ m/\b($secondary_qr)\b/;
-    return unless my $secondary = $1;
-     
     # find which primary trigger was used
-    my $primary;
-    for my $trigger (@primary_keys) {
-        if ( $query =~ /\b$trigger\b/ ) {
-            $primary = $trigger;
-            last;
-        }
-    };
+    return unless $query =~ m/\b($primary_qr)\b/;
+    my $primary = $1;
     
-    # exiting if no primary trigger (though this should not happen)
-    return unless $primary;
+    # find which secondary trigger was used
+    return unless $query =~ m/\b($secondary_qr)\b/;
+    my $secondary = $1;
     
     # returning {secondary}_{primary}
     return $secondary_hash->{$secondary} . "_" . $primary_hash->{$primary}
