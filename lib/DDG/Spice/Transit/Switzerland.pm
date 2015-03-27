@@ -30,8 +30,8 @@ my @stops = @{Load(scalar share('stops.yml')->slurp)};
 #check if the stop name is in the list of stops
 #(using the same matching algorithm as the backend)
 sub is_stop {
-    foreach my $stop (@stops){
-        return 1 if index(lc $stop, lc $_[0]) > -1;
+    if (exists {map { $_ => 1 } @stops}->{$_[0]}) {
+        return 1;
     }
     return;
 };
