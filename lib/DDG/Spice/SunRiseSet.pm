@@ -3,6 +3,7 @@ package DDG::Spice::SunRiseSet;
 
 use DDG::Spice;
 use YAML::XS qw( Load );
+use Text::Trim;
 
 primary_example_queries "sunset Oslo", "sunrise Oslo";
 secondary_example_queries "Oslp sunset time", "Oslo sunrise time";
@@ -19,21 +20,29 @@ spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_A
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "12h";
 
-triggers any => "sunset", "sunrise", "sunset in", "sunrise in";
+triggers startend => "sunset", "sunrise";
+
 my $capitals = Load(scalar share("capitals.yml")->slurp);
 
-handle remainder => sub {
-    my $q = lc $_;
+handle remainder_lc => sub {
+    my $q = $_;
 
-    $q =~ s/,/ /g;
-    $q =~ s/(^\s+|\s+$)//g;
-    $q =~ s/\s+/ /g;
+    if ($q ne '') {
+        $q =~ s/\b(what|is|today|time|in|at)+\b//g;
+        $q =~ s/(\,\s)+/ /g;
+        $q = trim $q;
+        $q = ($q eq '') ? lc $loc->city : $q;
+    } else {
+        $q = lc $loc->city;
+    }
 
     if (my $caps = $capitals->{$q}) {
-        # These are internally sorted by population, so assume they want the big one for now.
+        # These are internally sorted by population,
+        # so assume they want the big one for now.
         $q = string_for_search($caps->[0]);
         return $q;
     }
+    return;
 };
 
 sub string_for_search {
