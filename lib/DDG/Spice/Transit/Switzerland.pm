@@ -23,27 +23,19 @@ spice from => '(.*)/(.*)';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
+triggers startend => "next train", "train times", "train schedule";
+
 #load a list of stops so we don't trigger this if we don't get train stops
 #(the triggers are similar to SEPTA's)
-my %stops = %{Load(scalar share('stops.yml')->slurp)};
-
-#check if the stop name is in the list of stops
-#(using the same matching algorithm as the backend)
-sub is_stop {
-    if (exists $stops{$_[0]}) {
-        return 1;
-    }
-    return;
-};
-
-triggers startend => "next train", "train times", "train schedule";
+my $stops = Load(scalar share('stops.yml')->slurp);
 
 handle remainder => sub {
     return unless /(?:from |to )?(.+) (to|from) (.+)/;
     my $orig = $1;
     my $direction = $2;
     my $dest = $3;
-    if (is_stop($orig) and is_stop($dest)){
+    #check if the stop name is in the list of stops
+    if (exists $stops->{$orig} && exists $stops->{$dest}) {
         #lowercase the stop names found in the query and change the spaces to dashes
         my $orig = join "-", map { lc } split /\s+/, $orig;
         my $dest = join "-", map { lc } split /\s+/, $dest;
