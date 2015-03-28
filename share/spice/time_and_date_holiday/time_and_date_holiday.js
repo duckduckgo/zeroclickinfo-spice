@@ -68,7 +68,7 @@
                 },
                 meta: {
                     sourceName: 'timeanddate.com',
-                    sourceUrl: url + source
+                    sourceUrl: source
                 },
                 templates: {
                     group: 'text',
