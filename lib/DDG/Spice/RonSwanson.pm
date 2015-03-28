@@ -11,21 +11,17 @@ source "https://github.com/jamesseanwright/ron-swanson-quotes";
 icon_url "http://media.tumblr.com/tumblr_mc21ozrzP31qczjz7.png";
 description "Random Ron Swanson quote.";
 primary_example_queries "Ron Swanson", "Ron Swanson hair";
-secondary_example_queries "optional -- demonstrate any additional triggers";
 category "random";
 topics "trivia";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RonSwanson.pm";
 attribution github => ["talsraviv", "Tal Raviv"],
             twitter => "talraviv";
 
-# API endpoint - https://duck.co/duckduckhack/spice_attributes#spice-codetocode
 spice to => 'http://ron-swanson-quotes.herokuapp.com/quotes';
 spice wrap_jsonp_callback => 1;
 
-# Triggers - https://duck.co/duckduckhack/spice_triggers
 triggers startend => "ron swanson";
 
-# Handle statement
 handle remainder => sub {
     # Frontend needs no dynamic input, so returning a trivial value
     return "";
