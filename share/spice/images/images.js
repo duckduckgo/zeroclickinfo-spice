@@ -14,7 +14,7 @@ function ddg_spice_images(apiResult) {
 
         meta: {
             next: apiResult.next,
-            searchTerm: apiResult.query
+            searchTerm: apiResult.query,
             idField: 'j'
         },
 
