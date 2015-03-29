@@ -20,7 +20,7 @@
             Spice.add({
                 id: 'time_and_date_holiday',
                 name: 'Holidays',
-                data: api_result.h,
+                data: holiday,
                 normalize: function(item) {
                     var date = item.d[0];
                     var next_date = '';
