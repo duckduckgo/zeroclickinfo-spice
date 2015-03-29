@@ -15,6 +15,20 @@ ddg_spice_test(
         caller => 'DDG::Spice::TwitchStreams',
         is_cached => 0
     ),
+    'twitch streams world of warcraft' => test_spice(
+        '/js/spice/twitch_streams/world%20of%20warcraft',
+        call_type => 'include',
+        caller => 'DDG::Spice::TwitchStreams',
+        is_cached => 0
+    ),
+    'twitch streams monstercat' => test_spice(
+        '/js/spice/twitch_streams/monstercat',
+        call_type => 'include',
+        caller => 'DDG::Spice::TwitchStreams',
+        is_cached => 0
+    ),
+    'about twitch' => undef, 
+    'twitch streams' => undef, 
 );
 
 done_testing;
