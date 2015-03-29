@@ -3,6 +3,8 @@
 
     env.ddg_spice_github_jobs = function(api_result) {
 
+        console.log(api_result);
+
         if (!api_result) {
             return Spice.failed('github_jobs');
         }
@@ -16,24 +18,40 @@
 
         var sourceUrl = 'https://jobs.github.com/positions?description=' + encodeURIComponent(jobs['description']) + "&location=" + encodeURIComponent(jobs['location']);
 
-        Spice.add({
-            id: 'github_jobs',
-            name: 'Jobs',
-            data: api_result,
-            meta: {
-                sourceUrl: sourceUrl,
-                sourceName: 'GitHub',
-                sourceIcon: true,
-                itemType: 'Jobs'
-            },
-            templates: {
-                group: 'base',
-                options: {
-                    content: Spice.github_jobs.content
+        DDG.require('moment.js', function() {
+            Spice.add({
+                id: 'github_jobs',
+                name: 'Jobs',
+                data: api_result,
+                meta: {
+                    sourceUrl: sourceUrl,
+                    sourceName: 'GitHub',
+                    sourceIcon: true,
+                    itemType: 'Jobs'
                 },
-                detail: false,
-                item_detail: false
-            }
+                normalize: function(item) {
+                    return {
+                        title: item.title,
+                        subtitle: item.company,
+                        location: item.location,
+                        description: $('<div/>').html(DDG.strip_html(item.description)).text(),
+                        url: item.url,
+                        created_at: moment(item.created_at).fromNow()
+                    }
+                },
+                templates: {
+                    group: 'text',
+                    options: {
+                        footer: Spice.github_jobs.footer
+                    },
+                    variants: {
+                        tile: 'basic',
+                        tileFooter: '2line'
+                    },
+                    detail: false,
+                    item_detail: false
+                }
+            });
         });
     };
 
