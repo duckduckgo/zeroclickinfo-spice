@@ -13,19 +13,19 @@ ddg_spice_test(
         '/js/spice/twitch_streams/dota%202',
         call_type => 'include',
         caller => 'DDG::Spice::TwitchStreams',
-        is_cached => 0
+        proxy_cache_valid => "418 1d"
     ),
     'twitch streams world of warcraft' => test_spice(
         '/js/spice/twitch_streams/world%20of%20warcraft',
         call_type => 'include',
         caller => 'DDG::Spice::TwitchStreams',
-        is_cached => 0
+        proxy_cache_valid => "418 1d"
     ),
     'twitch streams monstercat' => test_spice(
         '/js/spice/twitch_streams/monstercat',
         call_type => 'include',
         caller => 'DDG::Spice::TwitchStreams',
-        is_cached => 0
+        proxy_cache_valid => "418 1d"
     ),
     'about twitch' => undef, 
     'twitch streams' => undef, 
