@@ -11,8 +11,9 @@ primary_example_queries "when is halloween", "when is constitution day in kazakh
 category "dates";
 topics "everyday";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TimeAndDateHoliday.pm";
-attribution email => 'webmaster@timeanddate.com',
-            web => ['http://www.timeanddate.com', 'timeanddate.com'];
+
+attribution github => ['https://github.com/iambibhas', 'Bibhas'],
+            twitter => ['https://twitter.com/bibhasdn', 'Bibhas D'];
 
 triggers start => 'when is';
 
