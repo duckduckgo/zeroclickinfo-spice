@@ -3,8 +3,6 @@
 
     env.ddg_spice_github_jobs = function(api_result) {
 
-        console.log(api_result);
-
         if (!api_result) {
             return Spice.failed('github_jobs');
         }
@@ -45,8 +43,8 @@
                         footer: Spice.github_jobs.footer
                     },
                     variants: {
-                        tile: 'basic',
-                        tileFooter: '2line'
+                        tile: 'basic1',
+                        tileFooter: '2line',
                     },
                     detail: false,
                     item_detail: false
