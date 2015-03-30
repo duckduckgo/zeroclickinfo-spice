@@ -30,7 +30,7 @@
                     infoboxData: getInfoboxData.call(item),
                     subtitle: (function(evolutions) {
                         if( evolutions.length > 0 ) {
-                            var html = 'Evolves into: <a href="?q={name}+pokemon">{name}</a>';
+                            var html = 'Evolves into: <a href="?q={name}+pokemon&ia=pokedex">{name}</a>';
 
                             return new Handlebars.SafeString(html.replace(/{name}/g, evolutions[0].to));
                         }

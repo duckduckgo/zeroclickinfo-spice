@@ -2,36 +2,36 @@
     "use strict";
     env.ddg_spice_whois = function(api_result){
 
-    if (!api_result || api_result.error || !api_result.WhoisRecord) {
-        return Spice.failed('whois');
-    }
-
-    DDG.require('moment.js', function(){       
-        // get the search query
-        var script = $('[src*="/js/spice/whois/"]')[0],
-            source = $(script).attr("src"),
-            query = source.replace('/js/spice/whois/','')
-
-        // all the data is stored in WhoisRecord
-        api_result = api_result.WhoisRecord;
-
-        // fail if the domain name the api returns does not match the searched domain
-        if(api_result.domainName != query) {
+        if (!api_result || api_result.error || !api_result.WhoisRecord) {
             return Spice.failed('whois');
         }
-        
-        // decide which template to show show_available or show_whois
-        (is_domain_available(api_result)) ? show_available(api_result) : show_whois(api_result);
-    });  
-}
 
- // show message saying that the domain is available.
+        DDG.require('moment.js', function(){
+            // get the search query
+            var script = $('[src*="/js/spice/whois/"]')[0],
+                source = $(script).attr("src"),
+                query = source.replace('/js/spice/whois/','')
+
+            // all the data is stored in WhoisRecord
+            api_result = api_result.WhoisRecord;
+
+            // fail if the domain name the api returns does not match the searched domain
+            if(api_result.domainName != query) {
+                return Spice.failed('whois');
+            }
+
+            // decide which template to show show_available or show_whois
+            (is_domain_available(api_result)) ? show_available(api_result) : show_whois(api_result);
+        });
+    }
+
+    // show message saying that the domain is available.
     function show_available(api_result) {
         var shared_spice_data = get_shared_spice_data(api_result),
         templateData = {
             'domainRegistrars': {
                 "Domainr": "https://domainr.com/",
-                "NameCheap": "https://www.namecheap.com/domains/registration/results.aspx?domain=", 
+                "NameCheap": "https://www.namecheap.com/domains/registration/results.aspx?domain=",
                 "101domain": "https://www.101domain.com/domain-availability-search.htm?q="
                 },
             'domainName': api_result.domainName
@@ -79,7 +79,7 @@
             }
         }
 
-        // find updatedDate and expiresDate in registryData 
+        // find updatedDate and expiresDate in registryData
         if(!api_result.updatedDate && !api_result.expiresDate) {
             if(api_result.registryData.updatedDateNormalized && api_result.registryData.expiresDateNormalized) {
                 api_result.updatedDate = api_result.registryData.updatedDateNormalized;
@@ -91,7 +91,7 @@
         normalized = {
             'title': api_result.domainName,
             'Registered to': get_first_by_key(contacts, 'name'),
-            'Email': get_first_by_key(contacts, 'email'),           
+            'Email': get_first_by_key(contacts, 'email'),
             'Last Updated': prettifyTimestamp(api_result.updatedDate),
             'Expires On': prettifyTimestamp(api_result.expiresDate),
             'Registrar': api_result.registrarName,
@@ -146,7 +146,7 @@
         // normalizedFormat matches = 0000-00-00 00:00:00 TZ
         var dateDisplayFormat = "MMM DD, YYYY",
             normalizedFormat = "YYYY-MM-DD HH:mm:ss Z",
-            autoDate = moment(timestamp); 
+            autoDate = moment(timestamp);
 
         // some dates require custom date formatting
         // check if first date is vaild
@@ -157,12 +157,12 @@
         } else {
             var customDate = moment(timestamp, normalizedFormat);
             if(customDate.isValid()) {
-                return customDate.format(dateDisplayFormat); 
+                return customDate.format(dateDisplayFormat);
             } else {
                 return;
             }
         }
-        
+
     }
 
     // Data that's shared between the two Spice.add calls.
@@ -188,5 +188,5 @@
                 }
             }
         };
-    };   
+    };
 }(this));
