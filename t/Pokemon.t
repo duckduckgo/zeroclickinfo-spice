@@ -19,7 +19,14 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Pokemon::Data'
     ),
+    'bulbasaur pokemon' => test_spice(
+        '/js/spice/pokemon/data/bulbasaur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Pokemon::Data'
+    ),
     'bulbasaur pokemon stats' => undef,
+    'pokemon movie release date' => undef,
+    'how to catch every pokemon', => undef
 );
 
 done_testing;
