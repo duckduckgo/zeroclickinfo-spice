@@ -15,7 +15,7 @@ triggers startend => 'twitch streams';
 
 #Make call to twitch api
 spice to => 'https://api.twitch.tv/kraken/search/streams?&q=$1&client_id={{ENV{DDG_SPICE_TWITCHTV_APIKEY}}}&callback={{callback}}';
-spice is_cached => 0;
+spice proxy_cache_valid => "418 1d";
 
 handle remainder => sub {
     return $_ if $_;
