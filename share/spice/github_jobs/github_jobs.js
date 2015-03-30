@@ -34,6 +34,7 @@
                         location: item.location,
                         description: $('<div/>').html(DDG.strip_html(item.description)).text(),
                         url: item.url,
+                        type: item.type,
                         created_at: moment(item.created_at).fromNow()
                     }
                 },
@@ -45,6 +46,7 @@
                     variants: {
                         tile: 'basic1',
                         tileFooter: '2line',
+                        tileSnippet: 'large'
                     },
                     detail: false,
                     item_detail: false
@@ -52,14 +54,4 @@
             });
         });
     };
-
-    Handlebars.registerHelper("GitHubJobs_formatDate", function(created_at) {
-        var date = new Date(created_at);
-        var months = ["January", "February", "March", "April", "May", "June", "July",
-            "August", "September", "October", "November", "December"
-        ];
-        var month = months[date.getUTCMonth()];
-
-        return month + " " + date.getUTCDate() + ", " + date.getUTCFullYear();
-    });
 }(this));
