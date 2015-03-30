@@ -7,6 +7,7 @@ use URI::Escape;
 use DDG::Test::Location;
 use DDG::Test::Spice;
 use DDG::Request;
+use utf8;
 
 my $loc = test_location('de');
 
@@ -14,6 +15,33 @@ ddg_spice_test(
     ['DDG::Spice::Forecast'],
     DDG::Request->new(
         query_raw => 'weather',
+        location => $loc
+    ) => test_spice(
+        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
+        call_type => 'include',
+        caller => 'DDG::Spice::Forecast',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => '天気',
+        location => $loc
+    ) => test_spice(
+        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
+        call_type => 'include',
+        caller => 'DDG::Spice::Forecast',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => '天气',
+        location => $loc
+    ) => test_spice(
+        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
+        call_type => 'include',
+        caller => 'DDG::Spice::Forecast',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => '날씨',
         location => $loc
     ) => test_spice(
         "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",

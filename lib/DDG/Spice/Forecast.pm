@@ -3,6 +3,7 @@ package DDG::Spice::Forecast;
 use strict;
 use DDG::Spice;
 use Text::Trim;
+use utf8;
 
 name "Forecast";
 description "Weather forecast";
@@ -15,7 +16,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 # my @forecast_words = qw(weather);
 # my @triggers = (@forecast_words);
 # triggers startend => @triggers;
-triggers startend => "weather";
+triggers startend => "weather", "天気", "天气", "날씨";
 
 spice from => '([^/]*)/?([^/]*)';
 spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
