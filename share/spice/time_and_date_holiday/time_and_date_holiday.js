@@ -74,7 +74,8 @@
                     group: 'text',
                     detail: false,
                     variants: {
-                        tileTitle: '1line',
+                        tile: 'basic1',
+                        tileTitle: '2line'
                     },
                 }
             });
