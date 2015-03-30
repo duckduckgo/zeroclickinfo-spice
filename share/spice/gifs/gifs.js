@@ -10,11 +10,11 @@ function ddg_spice_gifs(res) {
         data: res.data,
 	normalize: function(item) {
 	    return {
-		h: item.images.fixed_height_still.url,
-		j: item.images.fixed_height.url,
-		u: item.url,
-		ih: item.images.fixed_height.height,
-		iw: item.images.fixed_height.width
+		thumbnail_url: item.images.fixed_height_still.url,
+		url: item.images.fixed_height.url,
+		ref_click_url: item.url,
+		full_height: item.images.fixed_height.height,
+		full_width: item.images.fixed_height.width
 	    };
 	},
         meta: {

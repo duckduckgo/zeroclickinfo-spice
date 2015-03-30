@@ -21,12 +21,12 @@
             },
             normalize: function(item) {
                 return {
-                    h: item.url_regular,
-                    j: item.url_real,
-                    u: "http://www.astrobin.com/" + item.id,
-                    ih: item.h,
-                    iw: item.w,
-                    i: item.title
+                    thumbnail_url: item.url_regular,
+                    url: item.url_real,
+                    ref_click_url: "http://www.astrobin.com/" + item.id,
+                    full_height: item.h,
+                    full_width: item.w,
+                    title: item.title
                 };
             },
             view: 'Images'
