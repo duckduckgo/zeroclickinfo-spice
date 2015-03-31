@@ -11,7 +11,9 @@ topics "special_interest";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TwitchStreams/TwitchStreams.pm";
 attribution github => ["https://github.com/dwaligon", "Jason O'Donnell"];
 
-triggers startend => 'twitch streams';
+triggers startend => ('twitch streams',
+		              'streams twitch',
+		              'twitchtv streams');
 
 #Make call to twitch api
 spice to => 'https://api.twitch.tv/kraken/search/streams?&q=$1&client_id={{ENV{DDG_SPICE_TWITCHTV_APIKEY}}}&callback={{callback}}';
