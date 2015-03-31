@@ -2,6 +2,7 @@ package DDG::Spice::Time;
 use DDG::Spice;
 
 use strict;
+use Text::Trim;
 use YAML::XS qw( Load );
 
 primary_example_queries "time in Melbourne", "time for Australia";
@@ -28,15 +29,14 @@ handle query_lc => sub {
 
     return unless $q =~ m/^(what'?s?|is|the|current|local|\s)*time(?:is|it|\s)*(?:\b$place_connector\b)\s+(?<loc>[^\?]+)[\?]?$/;
     $q = $+{loc};
-    $q =~ s/(^\s+|\s+$)//g;
+    trim($q);
     $q =~ s/,//g;
-    return unless $q;
 
-    if (my $caps = $capitals->{$q}) {
-        # These are internally sorted by population, so assume they want the big one for now.
-        $q = string_for_search($caps->[0]);
-        return $q;
-    }
+    return unless (my $caps = $capitals->{$q});
+
+    # These are internally sorted by population, so assume they want the big one for now.
+    $q = string_for_search($caps->[0]);
+    return $q;
 };
 
 sub string_for_search {
