@@ -20,7 +20,7 @@ function ddg_spice_images(apiResult) {
         },
 
         relevancy: {
-            dup: 'url'
+            dup: 'image'
         }
     });
 
