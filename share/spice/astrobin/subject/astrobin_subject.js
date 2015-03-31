@@ -21,11 +21,11 @@
             },
             normalize: function(item) {
                 return {
-                    thumbnail_url: item.url_regular,
-                    url: item.url_real,
-                    ref_click_url: "http://www.astrobin.com/" + item.id,
-                    full_height: item.h,
-                    full_width: item.w,
+                    thumbnail: item.url_regular,
+                    image: item.url_real,
+                    url: "http://www.astrobin.com/" + item.id,
+                    height: item.h,
+                    width: item.w,
                     title: item.title
                 };
             },
