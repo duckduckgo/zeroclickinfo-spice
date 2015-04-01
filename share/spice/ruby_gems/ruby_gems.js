@@ -26,7 +26,7 @@
             templates:{
                 group: 'text',
                 detail: false,
-		        item_detail: false,
+                item_detail: false,
                 variants: {
                     tile: 'basic1',
                     tileTitle: '1line',
