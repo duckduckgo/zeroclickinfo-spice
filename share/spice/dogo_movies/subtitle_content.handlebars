@@ -1,5 +1,3 @@
-<img src="//cdn.dogomedia.com/assets/dogomovies-6959aaba3ab072822498c8e557a0c19a.png" alt="DOGOmovies"/>
-<br/>
 {{{starRating ratings.score}}}<span class="dogo-badge dogo-badge-info">{{ratings.count}} ratings</span>
 <span class="dogo-badge dogo-badge-success">{{comments_count}} reviews</span>
 <br/>
@@ -11,6 +9,6 @@
     <span class="detail__separator"> | </span>
     {{/and}}
     {{#if mpaa}}
-    <img class="mpaa-rating mpaa-{{mpaa}}" src="//cdn.dogomedia.com/assets/movies/mpaa-ratings/mpaa-{{mpaa}}.png" alt="Rated {{mpaaText}}" title="Rated {{mpaaText}}"/>
+    <span>{{mpaaText}}</span>
     {{/if}}
 </span>

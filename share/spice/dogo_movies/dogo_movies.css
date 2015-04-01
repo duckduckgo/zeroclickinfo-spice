@@ -116,30 +116,3 @@
 .zci--dogo_movies .dogo-badge-warning {
     background-color: #f89406;
 }
-
-.zci--dogo_movies .mpaa-rating {
-    height: 13px;
-    border-radius: 3px;
-    position:relative;
-    top:3px;
-}
-
-.zci--dogo_movies .mpaa-g {
-    border: 2px solid #0c9346;
-}
-
-.zci--dogo_movies .mpaa-pg {
-    border: 2px solid #f0592c;
-}
-
-.zci--dogo_movies .mpaa-pg-13 {
-    border: 2px solid #632b8c;
-}
-
-.zci--dogo_movies .mpaa-r {
-    border: 2px solid #eb1c24;
-}
-
-.zci--dogo_movies .mpaa-nc-17 {
-    border: 2px solid #0f74b8;
-}
