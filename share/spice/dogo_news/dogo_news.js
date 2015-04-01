@@ -42,7 +42,7 @@
                 options: {
                     variant: 'poster',
                     buy: Spice.dogo_news.buy,
-                    subtitle_content: Spice.dogo_news.subtitle_content,
+                    subtitle_content: Spice.dogo_news.subtitle_content
                 }
             }
         });

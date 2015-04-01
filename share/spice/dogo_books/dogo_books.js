@@ -29,7 +29,7 @@
                     img_m: thumb,
                     heading: item.name,
                     rating: item.ratings.score,
-                    ratingText: item.comments_count + ' reviews',
+                    ratingText: item.ratings.count,
                     reviewCount: item.comments_count,
                     url: item.url,
                     abstract: item.summary
@@ -41,13 +41,9 @@
                     variant: 'poster',
                     buy: Spice.dogo_books.buy,
                     subtitle_content: Spice.dogo_books.subtitle_content,
+                    rating: true
                 }
             }
         });
-        
-        // Hide the bottom text so that the poster occupies the whole tile.
-        if(typeof Spice.getDOM('dogo_books') !== 'undefined') {
-            Spice.getDOM('dogo_books').find('.tile__body').addClass('is-hidden');
-        }
     };
 }(this));
