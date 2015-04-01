@@ -12,7 +12,7 @@ category "entertainment";
 attribution twitter => ['http://twitter.com/dogobooks','DOGObooks'],
             github  => ['https://github.com/dogomedia','DOGO Media, Inc.'];
 
-triggers query_lc => qr/(dogo|kid|child|children)/;
+triggers any => "dogo", "kids", "kid", "child", "children";
 
 spice to => 'http://api.dogomedia.com/api/v2/books/search.json?query=$1&api_key={{ENV{DDG_SPICE_DOGO_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
