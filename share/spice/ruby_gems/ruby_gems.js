@@ -54,7 +54,8 @@
                     url: item.project_uri,
                     description: item.info,
                     licenses: licenses.join(', '),
-                    downloads: item.downloads
+                    // turns 11872454 to 11,872,454
+                    downloads: item.downloads.toLocaleString()
                 }
             }
         });
