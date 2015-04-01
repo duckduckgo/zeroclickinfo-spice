@@ -45,8 +45,6 @@ ddg_spice_test(
     'local time for kingston'                  => test_spice(@kingston_town),
     'local time of kingston'                   => test_spice(@kingston_town),
     # Intentionally ignored
-    'curent time in kingston'  => undef,
-    'current local time'       => undef,
     'time and space museum'    => undef,
     'time complexity of qsort' => undef,
     'running time of titanic'  => undef,
