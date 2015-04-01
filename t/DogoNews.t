@@ -8,82 +8,82 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::DogoNews )],
     'dogonews' => test_spice(
-        '/js/spice/dogo_news/latest',
+        '/js/spice/dogo_news/dogonews',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
     'dogo news' => test_spice(
-        '/js/spice/dogo_news/latest',
+        '/js/spice/dogo_news/dogo%20news',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
     'kids news' => test_spice(
-        '/js/spice/dogo_news/news',
+        '/js/spice/dogo_news/kids%20news',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
     'kids newspaper' => test_spice(
-        '/js/spice/dogo_news/newspaper',
+        '/js/spice/dogo_news/kids%20newspaper',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
-    'science articles' => test_spice(
-        '/js/spice/dogo_news/science',
+    'science kids news articles' => test_spice(
+        '/js/spice/dogo_news/science%20kids%20news%20articles',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
     'kids current events' => test_spice(
-        '/js/spice/dogo_news/current%20events',
+        '/js/spice/dogo_news/kids%20current%20events',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
-    'current event' => test_spice(
-        '/js/spice/dogo_news/latest',
+    'kids current event' => test_spice(
+        '/js/spice/dogo_news/kids%20current%20event',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
-    'current events' => test_spice(
-        '/js/spice/dogo_news/latest',
+    'kids current events' => test_spice(
+        '/js/spice/dogo_news/kids%20current%20events',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
     'obama news for kids' => test_spice(
-        '/js/spice/dogo_news/obama%20for%20kids',
+        '/js/spice/dogo_news/obama%20news%20for%20kids',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
-    'science for kids' => test_spice(
-        '/js/spice/dogo_news/science',
+    'science news for kids' => test_spice(
+        '/js/spice/dogo_news/science%20news%20for%20kids',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
-    'science for children' => test_spice(
-        '/js/spice/dogo_news/science',
+    'science news for children' => test_spice(
+        '/js/spice/dogo_news/science%20news%20for%20children',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
-    'science for students' => test_spice(
-        '/js/spice/dogo_news/science',
+    'science news for students' => test_spice(
+        '/js/spice/dogo_news/science%20news%20for%20students',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
-    'kids science' => test_spice(
-        '/js/spice/dogo_news/science',
+    'kids science news' => test_spice(
+        '/js/spice/dogo_news/kids%20science%20news',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
-    'childrens science' => test_spice(
-        '/js/spice/dogo_news/science',
+    'childrens science news' => test_spice(
+        '/js/spice/dogo_news/childrens%20science%20news',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
-    'children\'s science' => test_spice(
-        '/js/spice/dogo_news/science',
+    'children\'s science news' => test_spice(
+        '/js/spice/dogo_news/children%27s%20science%20news',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     ),
-    'students science' => test_spice(
-        '/js/spice/dogo_news/science',
+    'students science news' => test_spice(
+        '/js/spice/dogo_news/students%20science%20news',
         call_type => 'include',
         caller => 'DDG::Spice::DogoNews'
     )

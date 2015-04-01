@@ -13,24 +13,14 @@ attribution twitter => ['http://twitter.com/dogonews','dogonews'],
             facebook => ['https://www.facebook.com/pages/DOGONews/132351663495902', 'DOGOnews'],            
             github  => ['https://github.com/dogomedia','DOGO Media, Inc.'];
 
-triggers any => "dogonews", "dogo news", "news", "newspaper", "current event", "current events", "article", "articles";
-triggers start => "kids", "children's", "childrens", "student's", "students";
-triggers end => "for kids", "for children", "for students";
+# triggers any => "dogo", "kids", "kid", "children", "child", "students", "student";
+triggers query_lc => qr/(dogo|kid|child|children|student)/;
 
 spice to => 'http://api.dogomedia.com/api/v2/news/search.json?query=$1&api_key={{ENV{DDG_SPICE_DOGO_NEWS_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
-handle remainder => sub {
-    return $_ if $_ =~ /(kid|children|student)/i;
-    
-    # Handles queries like 'science for kids', 'social studies for students'
-    # Handles queries like 'kids science', 'student's social studies'
-    return $_ if $_ =~ /(science|social studies)/i;     
-    
-    # Handles queries like 'kids news', 'kids current events'
-    return $_ if $_ =~ /(news|current event|article)/i; 
-    
-    return "latest" if $_ eq '';
+handle query_lc => sub {
+    return $_ if $_ =~ /(news|newspaper|current event)/i;
     return;
 };
 

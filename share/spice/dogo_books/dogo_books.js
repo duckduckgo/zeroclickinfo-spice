@@ -44,5 +44,10 @@
                 }
             }
         });
+        
+        // Hide the bottom text so that the poster occupies the whole tile.
+        if(typeof Spice.getDOM('dogo_books') !== 'undefined') {
+            Spice.getDOM('dogo_books').find('.tile__body').addClass('is-hidden');
+        }
     };
 }(this));
