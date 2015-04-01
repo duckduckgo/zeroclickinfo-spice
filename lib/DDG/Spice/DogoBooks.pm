@@ -14,7 +14,7 @@ attribution twitter => ['http://twitter.com/dogobooks','DOGObooks'],
 
 triggers query_lc => qr/(dogo|kid|child|children)/;
 
-spice to => 'http://api.dogomedia.com/api/v2/books/search.json?query=$1&api_key={{ENV{DDG_SPICE_DOGO_BOOKS_APIKEY}}}';
+spice to => 'http://api.dogomedia.com/api/v2/books/search.json?query=$1&api_key={{ENV{DDG_SPICE_DOGO_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
 handle query_lc => sub {
