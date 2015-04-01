@@ -32,7 +32,7 @@
                     ratingText: item.comments_count + ' reviews',
                     reviewCount: item.comments_count,
                     url: item.url,
-                    abstract: Handlebars.helpers.ellipsis(item.summary, 200)
+                    abstract: item.summary
                 };
             },
             templates: {

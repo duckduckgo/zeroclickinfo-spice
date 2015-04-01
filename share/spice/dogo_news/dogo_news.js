@@ -32,7 +32,7 @@
                     rating: 'Unrated',
                     ratingText: item.comments_count + ' comments',
                     url: item.url,
-                    abstract: Handlebars.helpers.ellipsis(item.summary, 200)
+                    abstract: item.summary
                 };
             },
             templates: {
