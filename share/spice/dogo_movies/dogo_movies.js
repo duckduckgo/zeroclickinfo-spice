@@ -44,6 +44,11 @@
                 }
             }
         });
+        
+        // Hide the bottom text so that the poster occupies the whole tile.
+        if(typeof Spice.getDOM('dogo_movies') !== 'undefined') {
+            Spice.getDOM('dogo_movies').find('.tile__body').addClass('is-hidden');
+        }
     };
     
     // Convert minutes to hr. min. format.

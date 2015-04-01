@@ -11,14 +11,7 @@
 .tile--dogo_books .tile__media__img {
     min-width: 100%;
     height: 100%;
-    text-indent: -9999px;
-    background-color: #f7f7f7;
-    position: absolute;
-    margin: auto;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: 0;
+    margin-top: 0;
 }
 
 .zci--dogo_books .tile__body {

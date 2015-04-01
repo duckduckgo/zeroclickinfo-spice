@@ -12,22 +12,14 @@ category "entertainment";
 attribution twitter => ['http://twitter.com/dogomovies','DOGOmovies'],
             github  => ['https://github.com/dogomedia','DOGO Media, Inc.'];
 
-triggers any => "dogomovies", "dogo movies", "movie", "movies", "film", "films", "dvd", "dvds", "trailer", "trailers";
+# triggers any => "dogo", "kids", "kid", "children", "child";
+triggers query_lc => qr/(dogo|kid|child|children)/;
 
 spice to => 'http://api.dogomedia.com/api/v2/movies/search.json?query=$1&api_key={{ENV{DDG_SPICE_DOGO_MOVIES_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
-handle remainder => sub {
-    # Handles queries like 'kids movies', 'movies for children'
-    return $_ if $_ =~ /(kid|children)/i;
-    
-    # Handles queries like 'harry potter movie reviews', 'lorax movie ratings'
-    return $_ if $_ =~ /(review|rating)/i; 
-    
-    # Handles queries like 'dogomovies', 'dogo movies'
-    return "popular" if $_ eq '';
-    
-    return $_ if $_;
+handle query_lc => sub {
+    return $_ if $_ =~ /(movie|film|dvd|trailer)/i;
     return;
 };
 
