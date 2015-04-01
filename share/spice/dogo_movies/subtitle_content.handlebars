@@ -1,5 +1,6 @@
-{{{starRating ratings.score}}}<span class="dogo-badge dogo-badge-info">{{ratings.count}} ratings</span>
-<span class="dogo-badge dogo-badge-success">{{comments_count}} reviews</span>
+{{{starRating ratings.score}}} {{ratings.count}} ratings
+<span class="detail__separator"> | </span>
+{{comments_count}} reviews
 <br/>
 <span class="movie--runtime">
     {{#if runtime}}
