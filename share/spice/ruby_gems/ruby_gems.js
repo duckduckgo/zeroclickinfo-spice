@@ -1,7 +1,7 @@
-(function(env) {    
+(function(env) {
+    "use strict";
     env.ddg_spice_ruby_gems = function(api_result) {
-        "use strict";
-        
+
         if (!api_result || api_result.length === 0) {
             return Spice.failed("ruby_gems");
         }
@@ -26,13 +26,35 @@
             templates:{
                 group: 'text',
                 detail: false,
-		item_detail: false
+		        item_detail: false,
+                variants: {
+                    tile: 'basic1',
+                    tileTitle: '1line',
+                    tileFooter: '2line',
+                    tileSnippet: 'large'
+                },
+                options: {
+                    footer: Spice.ruby_gems.footer
+                }
             },
             normalize : function(item){
+                var licenses = [];
+
+                if (item.licenses) {
+                    var keys = Object.keys(item.licenses);
+
+                    for (var i = 0; i < keys.length; i++) {
+                        licenses.push(item.licenses[keys[i]]);
+                    };
+                }
+
                 return{
-                    title: item.name,
+                    title: item.name + ' ' + item.version,
+                    subtitle: item.authors,
                     url: item.project_uri,
-                    description: item.info
+                    description: item.info,
+                    licenses: licenses.join(', '),
+                    downloads: item.downloads
                 }
             }
         });
