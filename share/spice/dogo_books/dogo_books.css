@@ -2,34 +2,25 @@
     width: 12em;
 }
 
+.zci--dogo_books .tile__media__img {
+    min-width: 100%;
+    height: 100%;
+    margin-top: 0;
+    text-indent: -9999px;
+    background-color: #f7f7f7;
+    position: absolute;
+    margin: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
 @media only screen and (min-width: 83.6em) {
     .zci--dogo_books .tileview--grid .tile--dogo_books {
         width: 11.98%;
     }  
 } 
-
-.tile--dogo_books .tile__media__img {
-    min-width: 100%;
-    height: 100%;
-    margin-top: 0;
-}
-
-.zci--dogo_books .tile__body {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    background: linear-gradient(rgba(0,0,0, 0),rgba(0,0,0, 0.7),rgba(0,0,0, 0.8));
-    -ms-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000,endColorstr=#CC000000);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000,endColorstr=#CC000000);
-    zoom: 1;
-    text-shadow: 1px 1px 1px #000;
-}
-
-.zci--dogo_books .tile__title {
-    color:white;
-    margin-bottom: 0;
-    margin-top: 0.7em;
-}
 
 .zci--dogo_books .tile__media {
     height:0;
@@ -87,12 +78,6 @@
     max-width: 100%;
 }
 
-.zci--dogo_books .btn.btn--primary {
-    background:#f7a000;
-    color:white;
-    border-bottom:none;
-}
-
 .is-mobile .zci--dogo_books .btn.btn--primary {
     position: absolute;
     bottom: 1em;
@@ -100,34 +85,4 @@
 
 .is-mobile .zci.is-active {
     padding-bottom: 0em;
-}
-
-.zci--dogo_books .dogo-badge {
-    padding-left: 9px;
-    padding-right: 9px;
-    -webkit-border-radius: 9px;
-    -moz-border-radius: 9px;
-    border-radius: 9px;
-}
-
-.zci--dogo_books .dogo-badge {
-    display: inline-block;
-    font-weight: bold;
-    color: #fff;
-    vertical-align: baseline;
-    white-space: nowrap;
-    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
-    background-color: #999;
-}
-
-.zci--dogo_books .dogo-badge-info {
-    background-color: #3a87ad;
-}
-
-.zci--dogo_books .dogo-badge-success {
-    background-color: #468847;
-}
-
-.zci--dogo_books .dogo-badge-warning {
-    background-color: #f89406;
 }
