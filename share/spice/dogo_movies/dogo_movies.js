@@ -11,6 +11,16 @@
             source = $(script).attr("src"),
             query = decodeURIComponent(source.match(/dogo_movies\/([^\/]+)/)[1]);
 
+        function minToMinHrs(runtime) {
+            var hours = '',
+                minutes = runtime;
+            if (runtime >= 60) {
+                hours = Math.floor(runtime / 60) + ' hr. ';
+                minutes = (runtime % 60);
+            }
+            return hours + (minutes > 0 ? minutes + ' min.' : '');
+        }
+        
         Spice.add({
             id: 'dogo_movies',
             name: 'Kids Movies',
@@ -32,7 +42,8 @@
                     ratingText: item.comments_count + ' reviews',
                     reviewCount: item.comments_count,
                     url: item.url,
-                    abstract: item.summary
+                    abstract: item.summary,
+                    runtime: minToMinHrs(item.runtime || 0)
                 };
             },
             templates: {
@@ -50,16 +61,4 @@
             Spice.getDOM('dogo_movies').find('.tile__body').addClass('is-hidden');
         }
     };
-    
-    // Convert minutes to hr. min. format.
-    // e.g. {{dogo_movies_convert_minutes_to_hr_min 90}} will return 1 hr. 30 min.
-    Handlebars.registerHelper("dogo_movies_convert_minutes_to_hr_min", function(runtime) {
-        var hours = '',
-            minutes = runtime;
-        if (runtime >= 60) {
-            hours = Math.floor(runtime / 60) + ' hr. ';
-            minutes = (runtime % 60);
-        }
-        return hours + (minutes > 0 ? minutes + ' min.' : '');
-    });
 }(this));
