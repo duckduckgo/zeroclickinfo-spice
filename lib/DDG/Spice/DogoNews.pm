@@ -15,7 +15,7 @@ attribution twitter => ['http://twitter.com/dogonews','dogonews'],
 
 triggers query_lc => qr/(dogo|kid|child|children|student)/;
 
-spice to => 'http://api.dogomedia.com/api/v2/news/search.json?query=$1&api_key={{ENV{DDG_SPICE_DOGO_NEWS_APIKEY}}}';
+spice to => 'http://api.dogomedia.com/api/v2/news/search.json?query=$1&api_key={{ENV{DDG_SPICE_DOGO_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
 handle query_lc => sub {
