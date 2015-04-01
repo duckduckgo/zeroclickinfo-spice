@@ -12,7 +12,6 @@ category "entertainment";
 attribution twitter => ['http://twitter.com/dogomovies','DOGOmovies'],
             github  => ['https://github.com/dogomedia','DOGO Media, Inc.'];
 
-# triggers any => "dogo", "kids", "kid", "children", "child";
 triggers query_lc => qr/(dogo|kid|child|children)/;
 
 spice to => 'http://api.dogomedia.com/api/v2/movies/search.json?query=$1&api_key={{ENV{DDG_SPICE_DOGO_MOVIES_APIKEY}}}';
