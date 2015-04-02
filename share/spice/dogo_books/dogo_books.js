@@ -38,9 +38,11 @@
             templates: {
                 group: 'media',
                 options: {
-                    variant: 'poster',
                     buy: Spice.dogo_books.buy,
                     rating: true
+                },
+                variants: {
+                    tile: 'poster'
                 }
             }
         });
