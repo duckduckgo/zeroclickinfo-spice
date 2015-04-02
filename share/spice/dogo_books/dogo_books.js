@@ -29,7 +29,7 @@
                     img_m: thumb,
                     heading: item.name,
                     rating: item.ratings.score,
-                    ratingText: item.ratings.count,
+                    ratingText: item.comments_count,
                     reviewCount: item.comments_count,
                     url: item.url,
                     abstract: item.summary
