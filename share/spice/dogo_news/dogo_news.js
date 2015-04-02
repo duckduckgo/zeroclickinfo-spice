@@ -11,40 +11,30 @@
             source = $(script).attr("src"),
             query = decodeURIComponent(source.match(/dogo_news\/([^\/]+)/)[1]);
     
-        Spice.add({
-            id: 'dogo_news',
-            name: 'Kids News',
-            data: api_result.results,
-            meta: {
-                sourceName: 'DOGOnews',
-                sourceUrl: 'http://www.dogonews.com/search?query=' + encodeURIComponent(query) + '&ref=ddg',
-                itemType: 'kids news articles'
-            },
-            normalize: function(item) {
-                var thumb = item.hi_res_thumb || item.thumb;
-                return {
-                    title: item.name,
-                    author: item.author,
-                    image: thumb,
-                    img: thumb,
-                    img_m: thumb,
-                    heading: item.name,
-                    rating: 'Unrated',
-                    ratingText: item.comments_count + ' comments',
-                    url: item.url,
-                    abstract: item.summary
-                };
-            },
-            templates: {
-                group: 'media',
-                detail: 'products_detail',
-                item_detail: 'products_item_detail',
-                options: {
-                    variant: 'poster',
-                    buy: Spice.dogo_news.buy,
-                    subtitle_content: Spice.dogo_news.subtitle_content
+        DDG.require('moment.js', function(){
+            Spice.add({
+                id: 'dogo_news',
+                name: 'Kids News',
+                data: api_result.results,
+                meta: {
+                    sourceName: 'DOGOnews',
+                    sourceUrl: 'http://www.dogonews.com/search?query=' + encodeURIComponent(query) + '&ref=ddg',
+                    itemType: 'kids news articles'
+                },
+                normalize: function(item) {
+                    var thumb = item.hi_res_thumb || item.thumb;
+                    return {
+                        title: item.name,
+                        source: item.author,
+                        url: item.url,
+                        excerpt: item.summary,
+                        relative_time: moment(item.published_at).fromNow()
+                    };
+                },
+                templates:{
+                    item: 'news_item'
                 }
-            }
+            });
         });
     };
 }(this));
