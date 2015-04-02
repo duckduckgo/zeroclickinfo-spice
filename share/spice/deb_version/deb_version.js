@@ -38,7 +38,6 @@
                 group: 'text',
                 options: {
                     content: 'record',
-                    rowHighlight: true,
                     moreAt: true,
                 }
             }
