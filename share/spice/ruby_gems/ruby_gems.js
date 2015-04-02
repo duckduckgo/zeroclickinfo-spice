@@ -11,6 +11,10 @@
         var source = $(script).attr("src");
         var query = source.match(/ruby_gems\/([^\/]*)/)[1];
 
+        api_result.sort(function(a, b) {
+            return a.downloads > b.downloads ? -1 : 1;
+        });
+
         // Display the instant answer.
         Spice.add({
             id: "ruby_gems",
