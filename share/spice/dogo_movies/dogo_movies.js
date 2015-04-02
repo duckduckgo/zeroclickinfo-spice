@@ -49,10 +49,12 @@
             templates: {
                 group: 'media',
                 options: {
-                    variant: 'poster',
                     buy: Spice.dogo_movies.buy,
                     subtitle_content: Spice.dogo_movies.subtitle_content,
                     rating: true
+                },
+                variants: {
+                    tile: 'poster'
                 }
             }
         });
