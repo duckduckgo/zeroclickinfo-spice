@@ -1,0 +1,14 @@
+.tile--ruby_gems .tile__title {
+  /* pull title up a bit */
+  margin-top: -0.2em
+}
+
+.tile--ruby_gems .tile__sub {
+  /* push desc down a bit */
+  margin-bottom: 1em;
+}
+
+.tile--ruby_gems .has-foot .tile__content--lg {
+  /* bring footer up a bit */
+  height: 6.4em;
+}
