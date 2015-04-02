@@ -40,7 +40,6 @@
                 options: {
                     variant: 'poster',
                     buy: Spice.dogo_books.buy,
-                    subtitle_content: Spice.dogo_books.subtitle_content,
                     rating: true
                 }
             }
