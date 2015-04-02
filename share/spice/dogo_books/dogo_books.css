@@ -2,6 +2,83 @@
     width: 12em;
 }
 
+/* Begin tile width override - We need to match .tile--c--n styling.  */
+.zci--dogo_books .tileview--grid .tile--dogo_books {
+    width: 15.65%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+}
+
+@media only screen and (max-width: 60em) {
+    .zci--dogo_books .tileview--grid .tile--dogo_books {
+        width: 19%;
+    }
+}
+
+@media only screen and (max-width: 44em) {
+    .zci--dogo_books .tileview--grid .tile--dogo_books {
+        width: 24%;
+    }
+}
+
+@media only screen and (max-width: 37.4em) {
+    .zci--dogo_books .tileview--grid .tile--dogo_books {
+        width: 32.3%;
+    }
+}
+
+@media only screen and (max-width: 29.5em) {
+    .zci--dogo_books .tileview--grid .tile--dogo_books {
+        width: 48%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+}
+
+@media only screen and (min-width: 68.4em) {
+    .zci--dogo_books .tileview--grid .tile--dogo_books {
+        margin-left: 0.25%;
+        margin-right: 0.25%;
+        width: 13.75%;
+    }
+}
+
+@media only screen and (min-width: 76em) {
+    .zci--dogo_books .tileview--grid .tile--dogo_books {
+        margin-left: 0.25%;
+        margin-right: 0.25%;
+        width: 13.75%;
+    }
+}
+
+@media only screen and (min-width: 83.6em) {
+    .zci--dogo_books .tileview--grid .tile--dogo_books {
+        width: 11.98%;
+    }  
+}
+
+@media only screen and (min-width: 100em) {
+    .zci--dogo_books .tileview--grid .tile--dogo_books {
+        width: 11.98%;
+    }
+}
+
+@media only screen and (min-width: 110em) {
+    .zci--dogo_books .tileview--grid .tile--dogo_books {
+        width: 9.49%;
+    }
+}
+
+@media only screen and (min-width: 125em) {
+    .zci--dogo_books .tileview--grid .tile--dogo_books {
+        margin-left: 0.125%;
+        margin-right: 0.125%;
+        width: 8.825%;
+    }
+}
+/* End tile width override - We need to match .tile--c--n styling.  */
+
+/* Stretch tile images to fill tile */
 .zci--dogo_books .tile__media__img {
     min-width: 100%;
     height: 100%;
@@ -16,73 +93,27 @@
     top: 0;
 }
 
-@media only screen and (min-width: 83.6em) {
-    .zci--dogo_books .tileview--grid .tile--dogo_books {
-        width: 11.98%;
-    }  
-} 
-
+/* Stretch tile images to fill tile */
 .zci--dogo_books .tile__media {
     height:0;
     padding-bottom:148.333%;
-}
-
-.zci--dogo_books h5.detail__title.detail__tile--pr {
-    padding-bottom: 0;
-}
-
-.zci--dogo_books .detail__subtitle {
-    margin-top: 0;
-    padding-top: 0;
-    padding-bottom: 1.5em;
-}
-
-.is-mobile .zci--dogo_books .detail__subtitle {
-    position: relative;
 }
 
 .zci--dogo_books p.detail__desc {
     padding-bottom: 1.65em;
 }
 
-.is-mobile .zci--dogo_books p.detail__desc {
-    padding-bottom: 5em;    
-}
-
-.zci--dogo_books .detail__subtitle sup {
-    font-size: 0.5em;
-}
-
 .zci--dogo_books .detail .detail__media--pr {
     max-width: 180px;
 }
 
-.zci--dogo_books .detail__media--pr--s .detail__media__img {
-    max-height: 180px;
-}
-
-.is-mobile .detail__media--pr--s {
-    overflow: visible;
-}
-
-.is-mobile .detail__body--pr--s--sec {
-    margin-top: 1.5em;
-}
-
-.is-mobile .detail__body--pr--s--pri {
-    min-height: 165px;
-    padding-bottom: 0em
-}
-
+/* Center media thumbnail in mobile detail view */
 .is-mobile .zci--dogo_books .detail .detail__media--pr {
     max-width: 100%;
 }
 
+/* Position mobile button at bottom of screen */
 .is-mobile .zci--dogo_books .btn.btn--primary {
     position: absolute;
     bottom: 1em;
-}
-
-.is-mobile .zci.is-active {
-    padding-bottom: 0em;
 }
