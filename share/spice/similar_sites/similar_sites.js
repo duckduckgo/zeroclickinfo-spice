@@ -1,4 +1,5 @@
 (function(env) {
+    'use strict';
 
     env.ddg_spice_similar_sites = function(api_result) {
 
@@ -58,18 +59,20 @@
             },
 
             onShow: function() {
-                var $zci = $(".zci--similar_sites"),
-                    $icon = $zci.find(".chomp--link__icn"),
-                    $more = $zci.find(".chomp--link__mr"),
-                    $less = $zci.find(".chomp--link__ls");
+                var $dom = Spice.getDOM('similar_sites');
+                if ($dom && $dom.length) {
+                    var $more = $dom.find('.chomp--link__mr'),
+                        $less = $dom.find('.chomp--link__ls'),
+                        $hidden = $dom.find('.hidden'),
+                        $show_more = $dom.find('.show_more');
 
-                $("#show_more").click(function() {
-                    $more.toggle();
-                    $less.toggle();
-                    $("#hidden").toggle();
-
-                    $icon.toggleClass("expand");
-                });
+                    $show_more.click(function() {
+                        $more.toggle();
+                        $less.toggle();
+                        $hidden.toggle();
+                        $show_more.toggleClass('is-expanded');
+                    });
+                }
             }
         });
     };
