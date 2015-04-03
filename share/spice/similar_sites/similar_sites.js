@@ -61,14 +61,10 @@
             onShow: function() {
                 var $dom = Spice.getDOM('similar_sites');
                 if ($dom && $dom.length) {
-                    var $more = $dom.find('.chomp--link__mr'),
-                        $less = $dom.find('.chomp--link__ls'),
-                        $hidden = $dom.find('.hidden'),
+                    var $hidden = $dom.find('.is-hidden'),
                         $show_more = $dom.find('.show_more');
 
                     $show_more.click(function() {
-                        $more.toggle();
-                        $less.toggle();
                         $hidden.toggle();
                         $show_more.toggleClass('is-expanded');
                     });
