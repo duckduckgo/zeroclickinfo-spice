@@ -128,6 +128,7 @@ handle query_lc => sub {
         }
 
         if ($cardinal ne '') {
+            $amount =~ s/\,//g;
             switch($cardinal) {
                 case 'hundred'  { $amount *= 100 }
                 case 'thousand' { $amount *= 1000 }

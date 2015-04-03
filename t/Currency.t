@@ -65,6 +65,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    'convert 1,021 hundred gbp to cny' => test_spice(
+        '/js/spice/currency/102100/gbp/cny',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     # Queries with no space between the number and the currency.
     '100cad' => test_spice(
         '/js/spice/currency/100/cad/usd',
