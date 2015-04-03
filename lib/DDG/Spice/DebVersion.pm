@@ -6,15 +6,15 @@ use DDG::Spice;
 name "Debian Versions";
 source "Debian Sources";
 icon_url "https://sources.debian.net/static/favicon.ico";
-description "Get the version of a package in various debian repositories"
+description "Get the version of a package in various debian repositories";
 primary_example_queries "debian version emacs24", "ruby debian versions";
 secondary_example_queries "deb ver emacs24";
 category "software";
 topics "computing", "sysadmin", "programming";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/DebVersion.pm"
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/DebVersion.pm";
 
 attribution github => ['https://github.com/iambibhas', 'Bibhas'],
-            twitter => 'bibhasdn';
+            twitter => ['https://twitter.com/bibhasdn', 'Bibhas D'];
 
 triggers startend => "debian version", "debian versions", "deb ver", "debian ver";
 
