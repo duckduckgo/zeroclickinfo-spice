@@ -6,7 +6,6 @@ use DDG::Spice;
 with 'DDG::SpiceRole::NumberStyler';
 
 use Text::Trim;
-use Switch;
 
 primary_example_queries "convert 499 usd to cad";
 secondary_example_queries "cad to usd", "cny?";
@@ -129,13 +128,12 @@ handle query_lc => sub {
 
         if ($cardinal ne '') {
             $amount =~ s/\,//g;
-            switch($cardinal) {
-                case 'hundred'  { $amount *= 100 }
-                case 'thousand' { $amount *= 1000 }
-                case 'million'  { $amount *= 1000000 }
-                case 'billion'  { $amount *= 1000000000 }
-                case 'trillion' { $amount *= 1000000000000 }
-            }
+
+            if ($cardinal eq 'hundred')  { $amount *= 100 }
+            elsif ($cardinal eq 'thousand') { $amount *= 1000 }
+            elsif ($cardinal eq 'million')  { $amount *= 1000000 }
+            elsif ($cardinal eq 'billion')  { $amount *= 1000000000 }
+            elsif ($cardinal eq 'trillion') { $amount *= 1000000000000 }
         }
 
         # If two amounts are available, exit early. It's ambiguous.
