@@ -11,10 +11,6 @@
         var source = $(script).attr("src");
         var query = source.match(/ruby_gems\/([^\/]*)/)[1];
 
-        api_result.sort(function(a, b) {
-            return a.downloads > b.downloads ? -1 : 1;
-        });
-
         // Display the instant answer.
         Spice.add({
             id: "ruby_gems",
@@ -41,6 +37,12 @@
                     footer: Spice.ruby_gems.footer
                 }
             },
+            sort_fields: {
+                downloads: function(a, b) {
+                    return a.downloads > b.downloads ? -1 : 1;
+                }
+            },
+            sort_default: 'downloads',
             normalize : function(item){
                 var licenses = [];
 
@@ -59,7 +61,7 @@
                     description: item.info,
                     licenses: licenses.join(', '),
                     // turns 11872454 to 11,872,454
-                    downloads: item.downloads.toLocaleString()
+                    download_count: item.downloads.toLocaleString()
                 }
             }
         });
