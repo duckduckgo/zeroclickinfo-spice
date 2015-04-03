@@ -39,7 +39,8 @@
             "Target Ticket": 1,
             "Hulu": 1,
             "Crackle": 1,
-            "Flixster": 1
+            "Flixster": 1,
+            "Netflix": 1
         };
         
         var purchase_providers = {
