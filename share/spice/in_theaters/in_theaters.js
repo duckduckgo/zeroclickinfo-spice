@@ -4,6 +4,14 @@
     // A change in the Rotten Tomatoes API returns images that end in _tmb.
     // This changes this to _det.
     function toDetail(img) {
+        if(/resizing\.flixster\.com/.test(img)) {
+            // Everything before the size of the image can be removed and it would still work.
+            img = img.replace(/.+\/\d+x\d+\/(.+)/, "http://$1");
+            // Better use the _det size (which is smaller) instead of the _ori size.
+            return img.replace(/_ori/, "_det");
+        }
+        
+        // Otherwise, use the old string replacement strategy.
         return img.replace(/tmb\.(jpg|png)/, "det.$1");
     }
     
@@ -80,10 +88,12 @@
             templates: {
                 group: 'media',
                 options: {
-                    variant: 'poster',
                     subtitle_content: Spice.in_theaters.subtitle_content,
                     rating: false,
                     buy: Spice.in_theaters.buy
+                },
+                variants: {
+                    tile: 'poster'
                 }
             }
         });

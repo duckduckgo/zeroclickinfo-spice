@@ -1,11 +1,11 @@
-
 package DDG::Spice::SoundCloud;
 
+use strict;
 use DDG::Spice;
 
 description "Displays audio from SoundCloud";
 name "SoundCloud";
-primary_example_queries "soundcloud ray bradbury";
+primary_example_queries "soundcloud MGMT";
 secondary_example_queries "sc the new yorker";
 topics "entertainment", "music";
 category "entertainment";

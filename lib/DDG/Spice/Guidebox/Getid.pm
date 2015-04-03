@@ -1,5 +1,6 @@
 package DDG::Spice::Guidebox::Getid;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "guidebox Castle";
@@ -21,7 +22,11 @@ spice to => 'http://api-public.guidebox.com/v1.3/json/{{ENV{DDG_SPICE_GUIDEBOX_A
 spice wrap_jsonp_callback => 1;
 
 my %skip = map { $_ => 0 } (
-    'watchmen'
+    'watchmen',
+    'movie',
+    'movies',
+    'series',
+    'shows'
 );
 
 handle remainder => sub {

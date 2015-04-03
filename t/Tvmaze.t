@@ -96,12 +96,14 @@ ddg_spice_test(
     'last episode game of thrones'          => $previousepisode,
     'last game of thrones episode'          => $previousepisode,
     'latest game of thrones episode'        => $previousepisode,
+    'recent game of thrones episode'        => $previousepisode,
     
     # with extra text
     'when was the last game of thrones episode?'        => $previousepisode,
     'when did the previous game of thrones episode air' => $previousepisode,
     'when was the latest episode for game of thrones'   => $previousepisode,
     'what is the last airdate from game of thrones'     => $previousepisode,
+    'what is the most recent game of thrones episode'   => $previousepisode,
     
     # non matches
     'game of thrones'               => undef,
@@ -112,6 +114,7 @@ ddg_spice_test(
     'episode previous'              => undef,
     'last episode'                  => undef,
     'latest episode'                => undef,
+    'recent episode'                => undef,
     'episode latest'                => undef,
     'episode in game of thrones'    => undef,
 );

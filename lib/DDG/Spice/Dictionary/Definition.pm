@@ -1,5 +1,6 @@
 package DDG::Spice::Dictionary::Definition;
 
+use strict;
 use DDG::Spice;
 
 description "Get the definition of a word";

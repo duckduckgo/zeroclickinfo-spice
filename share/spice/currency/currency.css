@@ -38,7 +38,7 @@
     width: 36px;
     height: 36px;
     position: absolute;
-    top: 10%;
+    top: 15.5px;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -245,6 +245,7 @@
     padding-top: 1.5em;
     padding-bottom: 1.5em;
     color: inherit;
+    text-decoration: none;
 }
 
 .is-mobile .zci--currency .zci__metabar__more-at.custom {

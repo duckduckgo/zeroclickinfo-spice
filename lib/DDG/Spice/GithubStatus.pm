@@ -1,6 +1,7 @@
 package DDG::Spice::GithubStatus;
 # ABSTRACT: Search for the current status of GitHub.
 
+use strict;
 use DDG::Spice;
 use Text::Trim;
 

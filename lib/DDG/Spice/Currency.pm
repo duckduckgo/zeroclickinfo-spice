@@ -1,6 +1,7 @@
 package DDG::Spice::Currency;
 # ABSTRACT: Currency Convertor provided by XE.com
 
+use strict;
 use DDG::Spice;
 with 'DDG::SpiceRole::NumberStyler';
 

@@ -71,6 +71,9 @@
                     isDeparted: false
                 };
 
+            var hours = Math.floor(flight[i].ScheduledBlockTime / 60);
+            var minutes = flight[i].ScheduledBlockTime % 60;
+
             results.push({
                 flight: flight[i],
                 airlineName: flight[i].Airline.Name,
@@ -80,7 +83,8 @@
                 departureDate: departureDate,
                 arrivalDate: arrivalDate,
                 scheduledDepartureDate: scheduledDepartureDate,
-                scheduledArrivalDate: scheduledArrivalDate
+                scheduledArrivalDate: scheduledArrivalDate,
+                scheduledFlightDuration: hours + "h " + minutes + "m"
             });
         }
 
@@ -121,8 +125,10 @@
                 detail: false,
                 moreAt: true,
                 options: {
-                    content: Spice.airlines.content,
-                    variant: 'xwide'
+                    content: Spice.airlines.content
+                },
+                variants: {
+                    tile: 'xwide'
                 }
             },
         });

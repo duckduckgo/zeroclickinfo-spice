@@ -1,5 +1,6 @@
 package DDG::Spice::Flights::Route;
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "Jetblue Boston to Los Angeles", "Jetblue BOS to LAX";

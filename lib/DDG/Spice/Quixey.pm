@@ -1,8 +1,9 @@
 package DDG::Spice::Quixey;
 
+use strict;
 use DDG::Spice;
 use JSON;
-use String::Trim;
+use Text::Trim;
 use List::Uniq ':all';
 
 primary_example_queries "flight tracking app", "quixey angry birds";

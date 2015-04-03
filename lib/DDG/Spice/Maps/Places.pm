@@ -1,5 +1,6 @@
 package DDG::Spice::Maps::Places;
 
+use strict;
 use DDG::Spice;
 
 spice to => 'https://duckduckgo.com/local.js?q=$1&cb={{callback}}';
@@ -9,10 +10,11 @@ spice proxy_cache_valid => "418 1d";
 spice is_cached => 0;
 
 triggers startend => (
-    'near',
     'local',
+    'near',
     'near me',
     'around',
+    'around me',
     'here',
     'locally',
     'nearby',

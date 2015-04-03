@@ -1,6 +1,7 @@
 package DDG::Spice::SeatGeek::EventsByVenue;
 # ABSTRACT: Returns upcoming concerts at a venue
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "live shows at cafe oto", "upcoming concerts at shea stadium";

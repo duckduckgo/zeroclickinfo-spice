@@ -1,5 +1,6 @@
 package DDG::Spice::Maps::Maps;
 
+use strict;
 use DDG::Spice;
 
 spice to => 'http://open.mapquestapi.com/nominatim/v1/search?format=json&json_callback={{callback}}&addressdetails=1&polygon=1&bounded=0&q=$1';

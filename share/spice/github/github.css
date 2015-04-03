@@ -2,19 +2,6 @@
     margin-top: -5px;
 }
 
-.tile--github .tile__title__sub {
+.tile--github .tile__sub {
     text-transform: none;
-    color: #999;
-}
-
-.tile--github .tile__body {
-    height: 14em;
-}
-
-.tile--github .tile__content {
-    height: 6.4em;
-}
-
-.is-mobile .tile--github .tile__content {
-    height: 7em;
 }

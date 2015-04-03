@@ -1,6 +1,7 @@
 package DDG::Spice::Lastfm::ArtistTracks;
 # ABSTRACT: Get the tracks of a musician.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "songs by she & him";

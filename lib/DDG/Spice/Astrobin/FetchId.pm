@@ -1,6 +1,7 @@
 package DDG::Spice::Astrobin::FetchId;
 # ABSTRACT: Fetch the Astrophoto data
 
+use strict;
 use DDG::Spice;
 
 attribution github => ["https://github.com/killerfish", "Usman Raza"],

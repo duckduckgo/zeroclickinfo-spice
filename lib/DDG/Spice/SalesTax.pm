@@ -1,6 +1,7 @@
 package DDG::Spice::SalesTax;
 #ABSTRACT: Returns the sales tax for any state (not including territories) in the United States. 
 
+use strict;
 use DDG::Spice;
 use Locale::SubCountry;
 use YAML::XS qw( Load );

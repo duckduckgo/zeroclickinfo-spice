@@ -2,6 +2,7 @@ package DDG::Spice::UV;
 # Use the web service provided by EPA to display the UV Index for locations in the US.
 # The web service is described here: http://www.epa.gov/enviro/facts/services.html#uvindex
 
+use strict;
 use DDG::Spice;
 
 spice is_cached => 1;

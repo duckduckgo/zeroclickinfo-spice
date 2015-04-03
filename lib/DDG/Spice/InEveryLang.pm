@@ -1,6 +1,7 @@
 package DDG::Spice::InEveryLang;
 # ABSTRACT: Returns code examples for popular coding puzzles
 
+use strict;
 use DDG::Spice;
 use JSON;
 

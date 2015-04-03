@@ -131,8 +131,6 @@
             searchTerm: searchTerm,
             itemType: 'Recipes',
             detailBg: 'image',
-            detailClass: 'detail--i',
-
             // TODO: the following metadata will be injected by spice
             sourceIconUrl: DDG.get_asset_path('recipes','yummly.com.ico'), // temp fix for pb
             sourceUrl: moreUrl,
