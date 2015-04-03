@@ -39,21 +39,19 @@
             model: 'Audio',
             normalize: function(o) {
 
-                var image = o.artwork_url || o.user.avatar_url,
-                    usingWaveformImage = 0;
+                var image = o.artwork_url || o.user.avatar_url;
 
                 // Check if it's using the default avatar, if
-                // so switch to waveform and set the flag
+                // so switch set image to null - it will be
+                // replaced with DDG's default icon
                 if (/default_avatar_large/.test(image)) {
-                    image = o.waveform_url;
-                    usingWaveformImage = 1;
+                    image = null;
                 } else {
                     // Get the larger image for our IA.
                     image = image.replace(/large\.jpg/, "t200x200.jpg");
+                    image = DDG.toHTTP(image);
                 }
                 
-                image = image.replace(/^https/, "http");
-
                 // skip items that can't be streamed or explicit id's we
                 // want to skip for adult content:
                 if (!o.stream_url || skip_ids[o.id]) {
@@ -64,7 +62,6 @@
 
                 return {
                     image: image,
-                    usingWaveformImage: usingWaveformImage,
                     hearts: o.favoritings_count || 0,
                     duration: o.duration,
                     title: o.title,
