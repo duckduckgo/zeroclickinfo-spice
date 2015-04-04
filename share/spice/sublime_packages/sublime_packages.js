@@ -32,7 +32,8 @@
                             title: item.name,
                             subtitle: item.highlighted_authors,
                             last_modified: moment(item.last_modified).fromNow(),
-                            description: item.highlighted_description
+                            description: item.highlighted_description,
+                            url: "https://packagecontrol.io/packages/" + item.name
                         };
                     },
                     sort_fields: {
