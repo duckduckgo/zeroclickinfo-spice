@@ -16,8 +16,8 @@ triggers startend => ('twitch streams',
    		      'twitch.tv streams',
               	      'twitch tv streams',
               	      'twitchtv streams',
-                      'twitchtv streaming',
-                      'twitch streaming');
+                     'twitchtv streaming',
+                     'twitch streaming');
 
 #Make call to twitch api
 spice to => 'https://api.twitch.tv/kraken/search/streams?&q=$1&client_id={{ENV{DDG_SPICE_TWITCHTV_APIKEY}}}&callback={{callback}}';
