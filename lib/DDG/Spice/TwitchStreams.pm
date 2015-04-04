@@ -12,10 +12,12 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["https://github.com/dwaligon", "Jason O'Donnell"];
 
 triggers startend => ('twitch streams',
-	              'streams twitch',
-		      'twitchtv streams',
-              	      'twitchtv streaming',
-              	      'twitch streaming');
+		      'streams twitch',
+   		      'twitch.tv streams',
+              	      'twitch tv streams',
+              	      'twitchtv streams',
+                      'twitchtv streaming',
+                      'twitch streaming');
 
 #Make call to twitch api
 spice to => 'https://api.twitch.tv/kraken/search/streams?&q=$1&client_id={{ENV{DDG_SPICE_TWITCHTV_APIKEY}}}&callback={{callback}}';
