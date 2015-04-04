@@ -1,9 +1,9 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_transit_switzerland = function(api_result){
+    env.ddg_spice_transit_switzerland = function(api_result) {
 
-        if (api_result.error || !api_result.to || !api_result.from || !api_result.connections) {
-            return Spice.failed('transit_switzerland');
+        if (!api_result || api_result.error || !api_result.to || !api_result.from || !api_result.connections) {
+            return Spice.failed('switzerland');
         }
         
         var to = api_result.to.name || '',
