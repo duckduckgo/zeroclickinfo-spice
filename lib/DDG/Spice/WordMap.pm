@@ -11,7 +11,6 @@ primary_example_queries "similar to sound", "words like sound";
 category 	"reference";
 topics 		"words_and_games", "everyday";
 code_url 	"https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/WordMap.pm";
-# Current icon should be change with new one at https://www.twinword.com/favicon.ico
 icon_url 	"/i/www.twinword.com.ico";
 attribution web 	=> ['https://www.twinword.com','Twinword Inc.'],
             twitter => ['https://twitter.com/twinwordinc', 'Twinword Inc.'],
