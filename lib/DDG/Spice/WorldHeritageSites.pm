@@ -14,8 +14,9 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github  => ["marianosimone", "Mariano Simone"];
 
 triggers startend => (
+    'heritage sites',
     'unesco sites',
-    'unesco heritage sites',
+    'unesco world heritage sites',
     'unesco world heritage',
     'world heritage',
     'world heritage sites'
