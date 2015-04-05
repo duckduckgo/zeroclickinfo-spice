@@ -11,9 +11,8 @@
             name: 'Answer',
             data: api_result,
             meta: {
-                sourceUrl: 'http://www.wordelephant.com/?mailLink=' + encodeURIComponent(api_result.encrypt_entry) + '&from=ddg',
+                sourceUrl: 'https://www.twinword.com',
                 sourceName: 'Twinword',
-                /* Current icon should be change with new one at https://www.twinword.com/favicon.ico */
                 sourceIconUrl: 'http://icons.duckduckgo.com/ip/www.twinword.com.ico'
             },
             normalize: function(item) {
