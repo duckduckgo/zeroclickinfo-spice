@@ -11,39 +11,40 @@ primary_example_queries "similar to sound", "words like sound";
 category 	"reference";
 topics 		"words_and_games", "everyday";
 code_url 	"https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/WordMap.pm";
+# Current icon should be change with new one at https://www.twinword.com/favicon.ico
 icon_url 	"/i/www.twinword.com.ico";
-attribution web 	=> ['http://twinword.com','Twinword Inc.'],
-            twitter => ['http://twitter.com/levelpump', 'Twinword Inc.'],
+attribution web 	=> ['https://www.twinword.com','Twinword Inc.'],
+            twitter => ['https://twitter.com/twinwordinc', 'Twinword Inc.'],
             email 	=> ['feedback@twinword.com','Twinword Inc.'];
 
-spice to => 'http://duckduckgo.twinword.com/api/v2/context/user/duckduckgo/?entry=$1&api_key={{ENV{DDG_SPICE_WORDMAP_APIKEY}}}';
+spice to => 'https://www.twinword.com/api/v2/context/user/duckduckgo/?entry=$1&api_key={{ENV{DDG_SPICE_WORDMAP_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
 triggers startend => (
-	"association:", 
-	"evocation", 
-	"evocation:", 
-	"related words", 
-	"related word", 
-	"word association", 
+	"association:",
+	"evocation",
+	"evocation:",
+	"related words",
+	"related word",
+	"word association",
 	"expand:",
-	"context:",	 	
-	"expand word", 
-	"extend word", 
-	"word cloud", 
-	"word map", 
-	"word cluster", 
+	"context:",
+	"expand word",
+	"extend word",
+	"word cloud",
+	"word map",
+	"word cluster",
 	"word graph",
 	"twinword",
 	"levelpump"
 );
 
 triggers start => (
-	"similar to", 
-	"relate to", 
-	"related to", 
-	"words like", 
-	"word like", 
+	"similar to",
+	"relate to",
+	"related to",
+	"words like",
+	"word like",
 	"words related to",
 	"words similar to",
 	"more words like"
