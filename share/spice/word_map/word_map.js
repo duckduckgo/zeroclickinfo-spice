@@ -11,7 +11,7 @@
             name: 'Answer',
             data: api_result,
             meta: {
-                sourceUrl: 'http://www.wordelephant/?mailLink=' + encodeURIComponent(api_result.encrypt_entry) + '&from=ddg',
+                sourceUrl: 'http://www.wordelephant.com/?mailLink=' + encodeURIComponent(api_result.encrypt_entry) + '&from=ddg',
                 sourceName: 'Twinword',
                 /* Current icon should be change with new one at https://www.twinword.com/favicon.ico */
                 sourceIconUrl: 'http://icons.duckduckgo.com/ip/www.twinword.com.ico'
