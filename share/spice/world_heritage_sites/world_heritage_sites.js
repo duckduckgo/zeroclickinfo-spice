@@ -11,30 +11,37 @@ function spice_params() {
         if (api_result.QUERYRESULT.DATA.length == 0) {
             return false;
         }
+
+        function normalize(query_result) {
+            var columns = query_result.COLUMNS;
+            var added = [];  // need to keep track, as the API returns the same entry multiple times when it has multiple locations
+            var sites = [];
+            $(query_result.DATA).each(function(i, row) {
+                var site = {};
+                $(row).each(function(i, value){
+                    site[columns[i]] = value;
+                });
+                if (!(site.ID_NO in added)) {
+                    added[site.ID_NO] = true;
+                    sites.push(site);
+                }
+            });
+            sites = sites.sort(function(a, b) {
+                return a.NAME.localeCompare(b.NAME);
+            });
+            return {'sites': sites};
+        }
+
+        var params = spice_params();
         Spice.add({
             id: "world_heritage_sites",
-            name: "World Heritage Sites",
+            name: "World Heritage Sites in " + params,
             data: api_result.QUERYRESULT,
             meta: {
                 sourceName: "World Heritage Convention",
-                sourceUrl: 'http://whc.unesco.org/?cid=31&l=en&search_by_country=' + spice_params()
+                sourceUrl: 'http://whc.unesco.org/?cid=31&l=en&search=' + params
             },
-            normalize: function(query_result) {
-                var columns = query_result.COLUMNS;
-                var added = [];  // need to keep track, as the API returns some duplicate entries :(
-                var sites = [];
-                $(query_result.DATA).each(function(i, row) {
-                    var site = {};
-                    $(row).each(function(i, value){
-                        site[columns[i]] = value;
-                    });
-                    if (!(site.ID_NO in added)) {
-                        added[site.ID_NO] = true;
-                        sites.push(site);
-                    }
-                });
-                return {'sites': sites};
-            },
+            normalize: normalize,
             templates: {
                 group: 'base',
                 options:{
