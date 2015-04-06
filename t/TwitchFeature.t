@@ -32,6 +32,12 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::TwitchFeatured',
         proxy_cache_valid => "418 1d"
+    ),  
+    'twitch featured insert random stuff' => test_spice(
+        '/js/spice/twitch_featured/',
+        call_type => 'include',
+        caller => 'DDG::Spice::TwitchFeatured',
+        proxy_cache_valid => "418 1d"
     ),    
     'about twitch' => undef,
 );
