@@ -34,7 +34,7 @@ ddg_spice_test(
         proxy_cache_valid => "418 1d"
     ),  
     'twitch featured insert random stuff' => undef, 
-    'what is twitch feature' => undef,
+    'what is twitch featured' => undef,
     'about twitch' => undef,
 );
 
