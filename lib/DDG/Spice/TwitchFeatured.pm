@@ -21,8 +21,7 @@ spice to => 'https://api.twitch.tv/kraken/streams/featured?&client_id={{ENV{DDG_
 spice proxy_cache_valid => "418 1d";
 
 handle remainder => sub {
-    return '' if $_ eq '';
-    return;
+    return '';
 };
 
 1;
