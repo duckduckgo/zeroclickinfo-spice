@@ -16,6 +16,19 @@
                         sourceName: "packagecontrol.io",
                         sourceUrl: 'http://packagecontrol.io' + api_result.name
                     },
+                    normalize: function(item) {
+                        // Skip returning items with no description
+                        if (item.highlighted_description == "No description provided") {
+                            return null;
+                        }
+                        return {
+                            title: item.name,
+                            subtitle: item.highlighted_authors,
+                            last_modified: moment(item.last_modified).fromNow(),
+                            description: item.highlighted_description,
+                            url: "https://packagecontrol.io/packages/" + item.name
+                        };
+                    },
                     templates: {
                         group: 'text',
                         detail: false,
@@ -27,15 +40,7 @@
                             tile: 'basic4'
                         }
                     },
-                    normalize: function(item) {
-                        return {
-                            title: item.name,
-                            subtitle: item.highlighted_authors,
-                            last_modified: moment(item.last_modified).fromNow(),
-                            description: item.highlighted_description,
-                            url: "https://packagecontrol.io/packages/" + item.name
-                        };
-                    },
+                    // Sort by number of unique installs
                     sort_fields: {
                         unique_installs: function(a, b) {
                             var x = a.unique_installs;
