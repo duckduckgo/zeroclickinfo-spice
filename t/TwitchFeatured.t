@@ -39,7 +39,6 @@ ddg_spice_test(
         caller => 'DDG::Spice::TwitchFeatured',
         proxy_cache_valid => "418 1d"
     ), 
-    'what is twitch featured' => undef,
     'about twitch' => undef,
 );
 
