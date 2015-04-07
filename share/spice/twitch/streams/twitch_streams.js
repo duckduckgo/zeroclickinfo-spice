@@ -2,14 +2,14 @@
     "use strict";
     env.ddg_spice_twitch_streams = function(api_result){
 
-        if (!api_result || !api_result.streams || api_result.streams.length === 0 ||api_result.error) {
+        if (!api_result || !api_result.streams || api_result.streams.length === 0 || api_result.error) {
             return Spice.failed('twitch_streams');
         }
         
         //Get query, split into an array on space, append query to the end for moreat
-        var script = $('[src*="/js/spice/twitch_streams/"]')[0],
+        var script = $('[src*="/js/spice/twitch/streams/"]')[0],
             source = $(script).attr("src"),
-            query = source.match(/twitch_streams\/([^\/]+)/)[1],
+            query = source.match(/twitch\/streams\/([^\/]+)/)[1],
             decodedQuery = decodeURIComponent(query),
             moreAt = decodedQuery.replace(/ /g,"+");
         
