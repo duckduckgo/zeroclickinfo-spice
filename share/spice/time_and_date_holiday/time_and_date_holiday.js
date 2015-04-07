@@ -49,35 +49,37 @@
                 }
             });
         } else {
-            Spice.add({
-                id: 'time_and_date_holiday',
-                name: 'Holidays',
-                data: api_result.h,
-                normalize: function(item) {
-                    if (item.d.length <= 0) {
-                        return Spice.failed('time_and_date_holiday');
-                    }
-                    var date = item.d[0];
+            DDG.require('moment.js', function() {
+                Spice.add({
+                    id: 'time_and_date_holiday',
+                    name: 'Holidays',
+                    data: api_result.h,
+                    normalize: function(item) {
+                        if (item.d.length <= 0) {
+                            return Spice.failed('time_and_date_holiday');
+                        }
+                        var date = item.d[0];
 
-                    return {
-                        title: date,
-                        subtitle: item.n,
-                        description: item.a,
-                        url: url + item.u,
-                    };
-                },
-                meta: {
-                    sourceName: 'timeanddate.com',
-                    sourceUrl: source
-                },
-                templates: {
-                    group: 'text',
-                    detail: false,
-                    variants: {
-                        tile: 'basic1',
-                        tileTitle: '2line'
+                        return {
+                            title: moment(date).format('dddd, MMM D, YYYY'),
+                            subtitle: item.n,
+                            description: item.a,
+                            url: url + item.u,
+                        };
                     },
-                }
+                    meta: {
+                        sourceName: 'timeanddate.com',
+                        sourceUrl: source
+                    },
+                    templates: {
+                        group: 'text',
+                        detail: false,
+                        variants: {
+                            tile: 'basic1',
+                            tileTitle: '2line'
+                        },
+                    }
+                });
             });
         }
 	};
