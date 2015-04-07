@@ -23,7 +23,7 @@
         _factorialCache: [],
         factorial: function(n) {
             // TOREVISIT - from http://stackoverflow.com/a/3959275/1139682
-            if (n == 0 || n == 1)
+            if (n === 0 || n === 1)
                 return 1;
             if (MathHelper._factorialCache[n] > 0)
                 return MathHelper._factorialCache[n];
@@ -188,12 +188,14 @@
      * @param {String?} initialFormStr Formula string
      */
     function Formula(initialFormStr) {
-        this.storage = ['0'];
+        this.storage = [''];
         this.cursor = [0];
-        this.calculated = false;
+        this.isCalculated = false;
 
-        if (typeof initialStr !== 'undefined') {
-            this.handleString(''+initialStr);
+        if (typeof initialFormStr !== 'undefined') {
+            this.handleString(''+initialFormStr);
+        } else {
+            this.handleString('0');
         }
     }
 
@@ -285,7 +287,7 @@
         //             go forwards once
         // else
         //     newFragment          
-        var lastFragment = this.getField(pos);
+        var lastFragment = this.getField(posCtx);
         if (jQuery.isArray(lastFragment)) {
             var lastFieldIndex = lastFragment.length - 1;
             var lastField = lastFragment[lastFieldIndex];
@@ -359,7 +361,7 @@
         }
     };
 
-    Formula.prototype.canReplaceableField = function(val, toBeReplacedByType) {
+    Formula.prototype.canReplaceField = function(val, toBeReplacedByType) {
         if (jQuery.isArray(val)) {
             return false; // addNew
         } else if (isNumber(val) || !val.indexOf('CONST_')) {
@@ -367,13 +369,13 @@
         } else { // OP, FN
             return false;
         }
-    }
+    };
 
     Formula.prototype.getLastReplaceableFieldPos = function(toBeReplacedByType) {
         var lastField = this.getField(this.cursor);
         if (lastField !== '') {
             return (
-                this.canReplaceableField(lastField, toBeReplacedByType) ?
+                this.canReplaceField(lastField, toBeReplacedByType) ?
                 this.cursor :
                 false
             );
@@ -382,7 +384,7 @@
             if (prevCursor !== false) {
                 var prevFieldVal = this.getField(prevCursor);
                 return (
-                    this.canReplaceableField(prevFieldVal, toBeReplacedByType) ?
+                    this.canReplaceField(prevFieldVal, toBeReplacedByType) ?
                     prevCursor :
                     false
                 );
@@ -504,7 +506,7 @@
         clog('[fragmentRemove] after:', this.storage);
 
         this.moveCursorTo(this.getPreviousFieldPosWhole());
-    }
+    };
 
     /**
      * Remove the ending fragment from the formula storage
@@ -512,18 +514,15 @@
     Formula.prototype.fragmentRemoveEnding = function() {
 
         //endingFragment
-    }
+    };
 
     ////////////////////
     // INPUT HANDLERS
     Formula.prototype.handleString = function(str) {
-        //this.storage[this.storage.length - 1]
         var _str = '' + str;
-
         for (var i = 0; i < _str.length; ++i) {
             this.handleChr(_str[i], true);
         }
-        this.render();
     };
 
     Formula.prototype.handleChr = function(chr, skipRender) {
@@ -578,6 +577,11 @@
      *    *** UNDER CONSTRUCTION ***
      */
     Formula.prototype.handleBackspace = function() {
+        if (this.isCalculated) {
+            this.reset();
+            return;
+        }
+
         var curField = this.getActiveField();
         clog('[Formula.handleBackspace] curField:', curField);
         if (curField.length > 0 && isNumber(curField)) {
@@ -646,7 +650,7 @@
     Formula.prototype.calculateOperations = function(_frag) {
         clog('[calculateOperations]:', _frag);
         var frag = [].concat(_frag);
-        jQuery.each(OPS, function(opName, opDef) {
+        jQuery.each(OPS, function(opName) {
             var opPosition = frag.indexOf(opName);
             while (opPosition !== -1) {
                 clog('FOUND OP:', opPosition, opName, 'opFrag:', frag[opPosition]);
@@ -667,7 +671,7 @@
             return frag;
         }
         return frag[0];
-    }
+    };
 
     Formula.prototype.calculateFragment = function(frag) {
         clog('[calculateFragment]', frag);
@@ -687,13 +691,12 @@
         } else {
 
         }
-    }
+    };
 
     Formula.prototype.calculateResult = function(_arr, _path) {
         var arr = _arr || [].concat(this.storage);
         var path = _path || [];
         var type = jQuery.type(arr);
-        var result = 0;
 
         // arr should be an array
         var flatArr = [];
@@ -714,17 +717,17 @@
         flatArr = this.calculateOperations(flatArr);
         // TEMP FIX: For push
         if (jQuery.isArray(flatArr)) {
-            for (var i = 0; i < flatArr.length; i++) {
+            for (i = 0; i < flatArr.length; i++) {
                 if (typeof flatArr[i] !== 'undefined') {
                     return flatArr[i];
                 }
-            };
+            }
         }
         return flatArr;
     };
 
     Formula.prototype.calculate = function() {
-        this.calculated = true;
+        this.isCalculated = true;
         var html = this.toHtml();
         var result = this.calculateResult();
         clog('[calculate] result:', result);
@@ -733,7 +736,9 @@
 
         calc.history.add(html, result);
         // Prepare for next calculation
+        console.log('next formula:', ''+result);
         calc.formula = new Formula(''+result);
+        calc.formula.isCalculated = true;
 
         // Shhhh... ;)
         if (result === 42) {
@@ -806,16 +811,18 @@
         return '<span>'+flatArr.join(' ')+'</span>';
     };
 
-    Formula.prototype.render = function(val) {
+    Formula.prototype.render = function() {
+        this.isCalculated = false;
         calc._cache.inputField.innerHTML = this.toHtml();
     };
 
     Formula.prototype.reset = function() {
         calc._cache.$formulaMinor.html('');
         calc._cache.inputField.innerHTML = '0';
-        this.storage = [''];
+        this.storage = ['0'];
         this.cursor = [0];
-    }
+        this.render();
+    };
 
     // Calc engine
     var calc = {
@@ -890,6 +897,21 @@
          * Bind events for full-input mode using an input trap
          */
         bindTrapKeyEvents: function bindTrapKeyEvents() {
+            calc._cache.$inputTrap.keydown(function(e) {
+                clog('[inputTrap.keydown] e', e);
+                if (e.which === K.BACKSPACE) {
+                    if (e.shiftKey) {
+                        calc.process.clearFull();
+                    } else {
+                        calc.process.backspace();
+                    }
+                    Utils.cancelEvent(e);
+                    return false;
+                } else {
+                    e.stopPropagation();
+                }
+                e.stopImmediatePropagation();
+            });
             calc._cache.$inputTrap.keypress(function(e) {
                 clog('[inputTrap.keypress] e', e);
                 // process key
@@ -899,24 +921,10 @@
             });
             calc._cache.$inputTrap.keyup(function(e) {
                 clog('[inputTrap.keyup] e', e);
-                if (e.which === K.ESC) { // Escape btn
+                if (e.which === K.ESC) {
                     e.target.blur();
                 }
                 Utils.cancelEvent(e);
-            });
-            calc._cache.$inputTrap.keydown(function(e) {
-                clog('[inputTrap.keydown] e', e);
-                if (e.which === K.BACKSPACE) {
-                    if (e.shiftKey) {
-                        calc.process.clearFull();
-                    } else {
-                        calc.process.backspace();
-                    }
-                    return false;
-                } else {
-                    e.stopPropagation();
-                }
-                e.stopImmediatePropagation();
             });
         },
 
@@ -1067,7 +1075,7 @@
                 // decimal dots?
                 for (var i = 0; i < formulaStr.length; i++) {
                     calc.process.chr(formulaStr[i]);
-                };
+                }
             },
             cmd: function(cmd) {
                 var type = cmd.split('_', 1)[0];
@@ -1098,9 +1106,11 @@
             // Low level
             key: function (key) {
                 calc.ui.focusInput();
-                if (key === K.ENTER) {
-                    calc.process.cmd('META_PROCEED');
-                    return;
+                switch (key) {
+                case K.ENTER:
+                    return calc.process.cmd('META_PROCEED');
+                case K.BACKSPACE:
+                    return calc.process.cmd('META_CLEAR');
                 }
                 var chr = String.fromCharCode(key || 0);
                 calc.process.chr(chr, key);
@@ -1123,7 +1133,7 @@
 
     // Used for testing
     if (typeof env.jasmine !== 'undefined') {
-        env.calcIa = {
+        env.zciCalc = {
             Formula: Formula,
             calc: calc
         };
@@ -1132,10 +1142,6 @@
     // Spice
     env.ddg_spice_calculator = function(){
         clog('[calc] Spice inited. Query:', DDG.get_query());
-        // Validate the response
-        // if (!api_result || api_result.error) {
-        //     return Spice.failed('calculator');
-        // }
 
         // Render the response
         Spice.add({
