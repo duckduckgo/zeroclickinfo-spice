@@ -14,6 +14,7 @@ topics "computing","entertainment","food_and_drink","music","science","special_i
 triggers startend => 'events near me';
                                                                                                                                                                                                                                   
 spice to => 'https://api.getevents.co/ddg?lat=$1&lng=$2&timezone=$3' ;
+
 # Extract the geo location from the result returned by the handler: two real numbers seperated by '/' and after them a time zone also seperated by a '/'.
 spice from => '([^/]+)/([^/]+)/(.*)';
 spice wrap_jsonp_callback => 1;
