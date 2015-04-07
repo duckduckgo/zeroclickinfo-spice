@@ -4,27 +4,18 @@ package DDG::Spice::Calculator;
 use strict;
 use DDG::Spice;
 
-# Caching - https://duck.co/duckduckhack/spice_advanced_backend#caching
-#spice is_cached => 1; 
-
-# Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name 'Calculator';
-#source ';
-#icon_url ';
 description 'Math calculations';
-primary_example_queries '5 + 5 =', 'calculate cos(45)';
-secondary_example_queries 'optional -- demonstrate any additional triggers';
-# Uncomment and complete: https://duck.co/duckduckhack/metadata#category
-# category ';
-# Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
-# topics ';
+primary_example_queries '5 + 5 =';
+category 'calculations';
+topics 'math', 'computing', 'geek';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Calculator.pm';
 attribution github  => ['https://github.com/duckduckgo', 'duckduckgo'];
-#attribution github => ['sevastos', 'Sev'],
-#            twitter => 'smas';
 
+spice call_type => 'self';
+
+# TODO Proper triggers plan
 # Triggers - https://duck.co/duckduckhack/spice_triggers
-# TODO more
 triggers query_nowhitespace => qr/(?:.+)\=\s*$/;
 # QUESTION: Can't have both regex and plain words triggers?
 # triggers start => ['calc', 'calculate'];
@@ -32,20 +23,13 @@ triggers query_nowhitespace => qr/(?:.+)\=\s*$/;
 
 my $calculate = sub {
 	#my $query = spacing($_, 1);
-
     return unless $_;    # Guard against 'no answer'
-
-    return $_;
+    return call;
 };
-
-# API endpoint - https://duck.co/duckduckhack/spice_attributes#spice-codetocode
-spice call_type => 'self';
 
 # Handle statement
 handle query_nowhitespace => $calculate;
 # handle remainder => $calculate;
-
-
 
 
 #separates symbols with a space
