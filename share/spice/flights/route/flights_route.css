@@ -1,5 +1,5 @@
 .tile--route  {
-    width: 30em;
+    width: 28em;
     padding: 1.44em;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .zci--route .tile__city {
-    width: 45%;
+    width: 44%;
 }
 
 .zci--route .tile__gate {
@@ -34,7 +34,7 @@
     width: 25%;
 }
 .zci--route .tile__terminal {
-    width: 17%;
+    width: 18%;
 }
 
 .zci--route .divider__inactive {
