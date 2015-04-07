@@ -1,5 +1,1 @@
-{{#if is_raining}}
-<div>It's raining in {{location}}.</div>
-{{else}}
-<div>It's not raining in {{location}}.</div>
-{{/if}}
+<div>It's{{#unless is_raining}} not{{/unless}} raining in {{location}}.</div>
