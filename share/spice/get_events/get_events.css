@@ -1,74 +1,57 @@
-.zci--get_events .tile--get_events {
-    height: 15.6em;
+.tileview__get_events .tile--get_events {
+    width: 14em;
+    height: 13em;
 }
 
-    .is-mobile  .zci--get_events .tile--get_events {
-        height: inherit;
-    }
-
-.zci--get_events .header_container {
-    height: 8em;
+.tile--get_events .tile_title--2 {
+    max-height: 3em;
+    height: 3em;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #333333;
 }
 
-/* IE causes one-line to break when word-break is set to something. */
-.zci--get_events .tile__body {
-    word-break: initial;
+.tile--get_events .tile__title--wrap {
+    display: inline-block;
+    width: 8.5em;
 }
 
-.zci--get_events .price {
-    font-weight: 600;
-}
-
-.zci--get_events .price,
-.zci--get_events .noprice {
-    margin-top: 1em;
-    height: 1.1em;
-    float: left;
-    font-size: 1.1em;
-}
-
-.zci--get_events .tile__body.has-foot {
-    padding: 1em;
-}
-
-.zci--get_events .header_container .tile__title {
-    height: 3.8em;
-    margin-bottom: 0;
-    /* Adding ellipsis on Webkit-based engines. */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    font-weight: 400;
-}
-
-.zci--get_events .date {
-    float: right;
-    border: 1px solid #ddd;
-    padding: 0.7em 0.9em;
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    -webkit-border-radius: 50%;
+.tile--get_events .tile__num--get_events {
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+    line-height: 1;
     text-align: center;
     font-size: 0.9em;
-    margin-top: -1.5em;
 }
 
-.zci--get_events .day {
+.tile--get_events .tile__num--get_events .number {
+    background-image: url("https://cloud.githubusercontent.com/assets/873785/7015929/e54cd9be-dca9-11e4-98cc-fe0984386a74.png");
+    background-repeat: no-repeat;
+    height: 30px;
+    background-position: center; 
+    padding-top: 0.65em;
+    line-height: 0.6;
+    font-weight: bold;
     font-size: 1.6em;
-    line-height: 0.8;
+    font-size: 13px;
+    color: #333333;
 }
 
-
-.zci--get_events .where {
-    font-size: 1.1em;
-    height: 1.4em;
+.tile--get_events__alt .content--lg {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #999999;
+    height: 4em;
+    overflow: hidden;
 }
 
-.zci--get_events .where.place {
-    width: 9.3em; 
+.tile--get_events__main .tile__foot {
+    white-space: normal;
 }
 
-    .is-mobile .zci--get_events .where.place {
-        width: 7em;
-    }
-
+.tile--get_events .tile__foot--4 {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #999999;
+}
