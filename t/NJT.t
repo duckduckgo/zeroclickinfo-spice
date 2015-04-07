@@ -9,7 +9,8 @@ my %queries = (
     'secaucus' => 'new york penn',
     'atlantic city' => 'pennsauken',
     'ny penn' => 'metropark',
-    'montclair state' => 'denville'
+    'montclair state' => 'denville',
+    'Highland Ave' => 'MURRAY HILL'
 );
 
 my %tests = map {(
