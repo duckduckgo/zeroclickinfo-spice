@@ -68,6 +68,7 @@
                         };
                     },
                     meta: {
+                        itemType: 'Holidays',
                         sourceName: 'timeanddate.com',
                         sourceUrl: source
                     },
