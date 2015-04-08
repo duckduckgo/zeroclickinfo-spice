@@ -19,7 +19,7 @@
             name: "Twitch Streams",
             data: api_result.streams,
             meta: {
-                sourceName: "twitch.tv",
+                sourceName: "Twitch",
                 sourceUrl: 'http://www.twitch.tv/search?query=' + moreAt,
                 itemType: "Twitch Streams"
             },
