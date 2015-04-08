@@ -2,13 +2,13 @@
     "use strict";
     env.ddg_spice_upc = function(api_result){
 
-        if (api_result.valid == 'false') {
+        if (!api_result || api_result.valid === 'false') {
             return Spice.failed('upc');
         }
 
         Spice.add({
             id: "upc",
-            name: "Universal Product Code (UPC)",
+            name: "Answer",
             data: api_result,
             meta: {
                 sourceName: "upcdatabase.org",
