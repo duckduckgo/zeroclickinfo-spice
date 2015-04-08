@@ -12,7 +12,7 @@
             name: "Twitch Featured Streams",
             data: api_result.featured,
             meta: {
-                sourceName: "twitch.tv",
+                sourceName: "Twitch",
                 sourceUrl: "http://www.twitch.tv/",
                 itemType: "Featured Streams"
             },
