@@ -15,27 +15,13 @@ attribution web => [ 'https://bibhas.in', 'Bibhas Debnath' ],
             github => [ 'https://github.com/iambibhas', 'Bibhas'],
             twitter => ['http://twitter.com/bibhasdn', 'Bibhas D'];
 
-spice to => 'http://beta.json-generator.com/api/json/get/GO60Xk7?callback={{callback}}';
+spice to => 'http://beta.json-generator.com/api/json/get/GO60Xk7?q=$1&callback={{callback}}';
 
-triggers any => "rain", "raining";
+triggers start => "is it raining", "will it rain";
+triggers any => "going to rain";
+triggers end => "raining here", "raining now", "raining today", "raining yet";
 
 spice proxy_cache_valid => '5m';
-
-my %rain = map { $_ => undef } (
-    'is it going to rain',
-    'going to rain',
-    'going to rain today',
-    'is it raining',
-    'is it raining here',
-    'is it raining now',
-    'is it going to rain here',
-    'is it raining today',
-    'is it going to rain today',
-    'going to rain today',
-    'is it raining yet',
-    'make it rain',
-    'let it rain'
-);
 
 handle query_lc => sub {
     my $query = $_;
@@ -59,14 +45,12 @@ handle query_lc => sub {
 
     my $location_str = join(',', @location);
 
-    if (exists $rain{$query}) {
-        return $location_str, {is_cached => 0};
-    } elsif ($query =~ /^(?:is[ ]it[ ])?
-                        (?:going[ ]to[ ])?
-                        rain(?:ing)?[ ]?
-                        (?:(?:here|now|yet)[ ]?)?
-                        (?:in[ ](.*?))?
-                        (?:[ ]today)?\??$/ix) {
+    if ($query =~ /^(?:is[ ]it[ ])?
+                    (?:going[ ]to[ ])?
+                    rain(?:ing)?[ ]?
+                    (?:(?:here|now|yet)[ ]?)?
+                    (?:in[ ](.+?))?
+                    (?:[ ]today)?\??$/ix) {
         return $1 if $1;
         return $location_str, {is_cached => 0};
     }
