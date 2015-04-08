@@ -14,7 +14,7 @@
                     meta: {
                         itemType: "Sublime Text Packages",
                         sourceName: "packagecontrol.io",
-                        sourceUrl: 'http://packagecontrol.io'
+                        sourceUrl: 'https://packagecontrol.io/search/' + api_result.terms
                     },
                     normalize: function(item) {
                         // Skip returning items with no description
