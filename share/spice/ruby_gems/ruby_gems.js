@@ -17,9 +17,9 @@
             name: "Software",
             data: api_result,
             meta: {
-                sourceUrl: 'http://rubygems.org/search?utf8=%E2%9C%93&query=' + encodeURIComponent(query),
+                sourceUrl: 'https://rubygems.org/search?utf8=✓&query=' + query,
                 sourceName: 'RubyGems',
-                sourceIconUrl: 'http://rubygems.org/favicon.ico',
+                sourceIconUrl: 'https://rubygems.org/favicon.ico',
                 total: api_result.length,
                 itemType: "gems",
             },
@@ -44,15 +44,7 @@
             },
             sort_default: 'downloads',
             normalize : function(item){
-                var licenses = [];
-
-                if (item.licenses) {
-                    var keys = Object.keys(item.licenses);
-
-                    for (var i = 0; i < keys.length; i++) {
-                        licenses.push(item.licenses[keys[i]]);
-                    };
-                }
+                var licenses = item.licenses || [];
 
                 return{
                     title: item.name + ' ' + item.version,
