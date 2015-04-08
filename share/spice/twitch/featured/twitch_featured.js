@@ -25,7 +25,7 @@
             },
             normalize: function(featuredStream) {
                 var title = "Untitled Broadcast";
-                if(item.stream.channel.status != null) {
+                if(featuredStream.stream.channel.status != null && featuredStream.stream.channel.display_name != null) {
                     title = featuredStream.stream.channel.display_name + ": " + featuredStream.stream.channel.status;
                 }
                 
