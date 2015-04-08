@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_sublime_packages = function(api_result){
 
-        if (!api_result || api_result.error || api_result.packages.length == 0) {
+        if (!api_result || api_result.packages.length === 0) {
             return Spice.failed('sublime_packages');
         }
 
@@ -14,7 +14,7 @@
                     meta: {
                         itemType: "Sublime Text Packages",
                         sourceName: "packagecontrol.io",
-                        sourceUrl: 'http://packagecontrol.io' + api_result.name
+                        sourceUrl: 'http://packagecontrol.io'
                     },
                     normalize: function(item) {
                         // Skip returning items with no description
