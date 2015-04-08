@@ -30,18 +30,18 @@
                 item: 'videos_item',
                 moreAt: true,
             },
-            normalize: function(stream) {
+            normalize: function(item) {
                 var title = "Untitled Broadcast";
-                if(stream.channel.status != null && stream.channel.display_name != null) {
-                    title = stream.channel.display_name + ": " + stream.channel.status;
+                if(item.channel.status != null && item.channel.display_name != null) {
+                    title = item.channel.display_name + ": " + item.channel.status;
                 }
                 
                 return {
-                    url: stream.channel.url,
-                    viewCount: stream.viewers,
-                    images: stream.preview,
+                    url: item.channel.url,
+                    viewCount: item.viewers,
+                    images: item.preview,
                     title: title,
-                    duration: stream.game
+                    duration: item.game
                 };
             }
         });
