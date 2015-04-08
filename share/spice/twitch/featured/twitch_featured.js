@@ -24,12 +24,10 @@
                 moreAt: true,
             },
             normalize: function(featuredStream) {
-                if(featuredStream.stream.channel.status == null){
-                    var title = "Untitled Broadcast";
-                } else {
-                    var title = featuredStream.stream.channel.status;
+                var title = "Untitled Broadcast";
+                if(item.stream.channel.status != null) {
+                    title = featuredStream.stream.channel.display_name + ": " + featuredStream.stream.channel.status;
                 }
-                var title = featuredStream.stream.channel.display_name + ": " + featuredStream.stream.channel.status;
                 
                 return {
                     url: featuredStream.stream.channel.url,
