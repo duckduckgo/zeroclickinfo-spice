@@ -53,7 +53,7 @@
                     description: item.info,
                     licenses: licenses.join(', '),
                     // turns 11872454 to 11,872,454
-                    download_count: item.downloads.toLocaleString()
+                    download_count: DDG.commifyNumber(item.downloads)
                 }
             }
         });
