@@ -14,7 +14,7 @@
             meta: {
                 sourceName: "twitch.tv",
                 sourceUrl: "http://www.twitch.tv/",
-                itemType: "Twitch Featured"
+                itemType: "Featured Streams"
             },
             templates: {
                 group: 'base',
@@ -23,18 +23,18 @@
                 item: 'videos_item',
                 moreAt: true,
             },
-            normalize: function(featuredStream) {
+            normalize: function(item) {
                 var title = "Untitled Broadcast";
-                if(featuredStream.stream.channel.status != null && featuredStream.stream.channel.display_name != null) {
-                    title = featuredStream.stream.channel.display_name + ": " + featuredStream.stream.channel.status;
+                if(item.stream.channel.status != null && item.stream.channel.display_name != null) {
+                    title = item.stream.channel.display_name + ": " + item.stream.channel.status;
                 }
                 
                 return {
-                    url: featuredStream.stream.channel.url,
-                    viewCount: featuredStream.stream.viewers,
-                    images: featuredStream.stream.preview,
+                    url: item.stream.channel.url,
+                    viewCount: item.stream.viewers,
+                    images: item.stream.preview,
                     title: title,
-                    duration: featuredStream.stream.game
+                    duration: item.stream.game
                 };
             }
         });
