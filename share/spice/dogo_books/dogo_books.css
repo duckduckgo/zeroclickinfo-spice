@@ -41,3 +41,19 @@
     position: absolute;
     bottom: 1em;
 }
+
+/* Hide the tile titles */
+.zci--dogo_books .tile__title--2,
+.use-opts .zci--dogo_books .tile__title--2 {
+    display:none;
+}
+
+/* Move stars to the left */
+.zci--dogo_books .tile--b--i .stars {
+    float: left;
+}
+
+/* Move review count to the right */
+.zci--dogo_books .tile--b--i .tile__source {
+    float: right;
+}
