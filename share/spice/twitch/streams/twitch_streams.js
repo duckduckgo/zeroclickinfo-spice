@@ -31,12 +31,10 @@
                 moreAt: true,
             },
             normalize: function(stream) {
-                if(stream.channel.status == null){
-                    var title = "Untitled Broadcast";
-                } else {
-                    var title = stream.channel.status;
+                var title = "Untitled Broadcast";
+                if(stream.channel.status != null && stream.channel.display_name != null) {
+                    title = stream.channel.display_name + ": " + stream.channel.status;
                 }
-                var title = stream.channel.display_name + ": " + stream.channel.status;
                 
                 return {
                     url: stream.channel.url,
