@@ -8,20 +8,23 @@
 	        url = 'http://www.timeanddate.com',
 			source = url + '/search/results.html?query=' + encodeURIComponent(query);
 
-        if (api_result.h.length == 1){
-            var holiday = api_result.h[0];
+        DDG.require('moment.js', function() {
+            var meta_obj = {
+                    itemType: "Holidays",
+                    sourceName: 'timeanddate.com',
+                },
+                template_obj,
+                normalize_fn,
+                data;
 
-            if (holiday.d.length <= 0) {
-                return Spice.failed('time_and_date_holiday');
-            }
+            if (api_result.h.length == 1){
+                data = api_result.h[0];
 
-            // selecting the first date only as it's the closest
+                if (data.d.length <= 0) {
+                    return Spice.failed('time_and_date_holiday');
+                }
 
-            Spice.add({
-                id: 'time_and_date_holiday',
-                name: 'Holidays',
-                data: holiday,
-                normalize: function(item) {
+                normalize_fn = function(item) {
                     var date = item.d[0];
                     var next_date = '';
 
@@ -35,53 +38,51 @@
                         description: item.a,
                         next_date: next_date
                     };
-                },
-                meta: {
-                    sourceName: 'timeanddate.com',
-                    sourceUrl: url + holiday.u
-                },
-                templates: {
+                };
+
+                meta_obj['sourceUrl'] = url + data.u;
+
+                template_obj = {
                     group: 'text',
                     options: {
                         content: Spice.time_and_date_holiday.singleday,
                         moreAt: true
                     }
-                }
-            });
-        } else {
-            DDG.require('moment.js', function() {
-                Spice.add({
-                    id: 'time_and_date_holiday',
-                    name: 'Holidays',
-                    data: api_result.h,
-                    normalize: function(item) {
-                        if (item.d.length <= 0) {
-                            return Spice.failed('time_and_date_holiday');
-                        }
-                        var date = item.d[0];
+                };
 
-                        return {
-                            title: moment(date).format('dddd, MMM D, YYYY'),
-                            subtitle: item.n,
-                            description: item.a,
-                            url: url + item.u,
-                        };
-                    },
-                    meta: {
-                        itemType: 'Holidays',
-                        sourceName: 'timeanddate.com',
-                        sourceUrl: source
-                    },
-                    templates: {
-                        group: 'text',
-                        detail: false,
-                        variants: {
-                            tile: 'basic1',
-                            tileTitle: '2line'
-                        },
+            } else {
+                data = api_result.h;
+                normalize_fn = function(item) {
+                    if (item.d.length <= 0) {
+                        return Spice.failed('time_and_date_holiday');
                     }
-                });
+                    var date = moment(item.d[0]).format('dddd, MMM D, YYYY');
+                    return {
+                        title: date,
+                        subtitle: item.n,
+                        description: item.a,
+                        url: url + item.u,
+                    };
+                };
+                meta_obj['sourceUrl'] = source;
+                template_obj = {
+                    group: 'text',
+                    detail: false,
+                    variants: {
+                        tile: 'basic1',
+                        tileTitle: '2line'
+                    }
+                };
+            }
+
+            Spice.add({
+                id: 'time_and_date_holiday',
+                name: 'Holidays',
+                data: data,
+                normalize: normalize_fn,
+                meta: meta_obj,
+                templates: template_obj
             });
-        }
+        });
 	};
 }(this));
