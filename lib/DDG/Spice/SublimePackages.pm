@@ -18,23 +18,15 @@ attribution github => ["MrChrisW", "Chris Wilson"],
 spice to => 'https://packagecontrol.io/search/$1.json';
 spice wrap_jsonp_callback => 1;
 
-my @triggers = ("sublimetext packages", "sublimetext package", "sublime text packages", "sublime text package", "sublime text");
-my $triggers = join '|', @triggers;
-
-triggers startend => @triggers;
+triggers startend => "sublimetext package", "sublimetext packages", "sublime text package", "sublime text packages", "sublime text";
 
 my $skip = join "|", share('skipwords.txt')->slurp(chomp => 1);
 
-handle query_lc => sub {
-	my $query = $_;
-	# If the trigger doesn't contain package(s) the trigger is "sublime text" 
-	if($query !~ m/packages?/i) {
-		# Do not trigger IA if query matches any words in skipwords.txt file
-		return if ($query =~ m/$skip/i)
-	}
-	s/$triggers//g; # Remove triggers
-	s/^\s+|\s+$//g; # Trim
-    return unless $_;   
+handle remainder => sub {
+    return unless $_; 
+    # Do not trigger IA if query matches any words in skipwords.txt file
+    return if  m/$skip/i;  
     return $_;
 };
+
 1;

@@ -55,8 +55,7 @@
                             { required: 'highlighted_authors' },
                             { required: 'last_modified' },
                             { required: 'highlighted_description' },
-                            { required: 'unique_installs' },
-                            { key: 'name' }
+                            { required: 'unique_installs' }
                         ]
                     },
                 });
