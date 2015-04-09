@@ -23,8 +23,8 @@
             meta: {
                 itemType: "Scores",
                 sourceName: 'Eaternet',
-                sourceUrl: 'https://eaternet.io/#stq=' + original_query(),
-                total: api_result.length,
+                sourceUrl: 'https://eaternet.io/#stq=' + original_query(api_result),
+                total: api_result.records.page.length,
             },
 
             templates: {
@@ -51,10 +51,8 @@
             return (!api_result || api_result.records.page.length === 0);
 	}
 
-	function original_query() {
-            var script = $('[src*="/js/spice/' + APP_ID + '/"]')[0];
-            var source = $(script).attr("src");
-            return source.match(/health_scores\/([^\/]*)/)[1];
+	function original_query(api_result) {
+	    return api_result.info.page.query;
 	}
 
 	function is_relevant(item) {
