@@ -18,7 +18,7 @@ attribution github => ["MrChrisW", "Chris Wilson"],
 spice to => 'https://packagecontrol.io/search/$1.json';
 spice wrap_jsonp_callback => 1;
 
-triggers startend => "sublimetext package", "sublime text package", "sublime text packages";
+triggers startend => "sublimetext package", "sublime text package", "sublime text packages", "sublime text";
 
 handle remainder => sub {
     return unless $_;   
