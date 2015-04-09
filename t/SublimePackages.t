@@ -19,7 +19,13 @@ ddg_spice_test(
     ),
     
     'about sublime text' => undef,
-    'sublimetext download' => undef
+    'sublimetext download' => undef,
+
+    # Skip word triggers
+    'sublime text download' => undef,
+    'sublime text purchase' => undef,
+    'sublime text buy' => undef,
+    'sublime text about' => undef
 );
 
 done_testing;
