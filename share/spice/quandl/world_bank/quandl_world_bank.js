@@ -63,16 +63,18 @@
         var value = recentValue;
         if (Math.abs(value) >= Math.pow(10,12)) {
             value = Math.round(value / Math.pow(10,10)) / Math.pow(10,2);
-            value = "$" + value + " trillion";
+            value = value + " trillion";
         } else if (Math.abs(value) >= Math.pow(10,9)) {
             value = Math.round(value / Math.pow(10,7)) / Math.pow(10,2);
-            value = "$" + value + " billion";
+            value = value + " billion";
         } else if (Math.abs(value) >= Math.pow(10,6)) {
             value = Math.round(value / Math.pow(10,4)) / Math.pow(10,2);
-            value = "$" + value + " million";
+            value = value + " million";
         } else if (Math.abs(value) >= Math.pow(10,3)) {
             value = Math.round(value / Math.pow(10,1)) / Math.pow(10,2);
-            value = "$" + value + " thousand";
+            value = value + " thousand";
+        } else {
+            value = Math.round(value * 100) / 100;
         }
         result.value = value;
         
