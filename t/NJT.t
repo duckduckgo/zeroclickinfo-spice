@@ -7,10 +7,9 @@ use DDG::Test::Spice;
 
 my %queries = (
     'secaucus' => 'new york penn',
-    'atlantic city' => 'pennsauken',
+    'SUMMIT' => 'BRICK CHURCH',
     'ny penn' => 'metropark',
-    'montclair state' => 'denville',
-    'Highland Ave' => 'MURRAY HILL'
+    'montclair state' => 'denville'
 );
 
 my %tests = map {(
