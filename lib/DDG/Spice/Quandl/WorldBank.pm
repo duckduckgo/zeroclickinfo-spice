@@ -43,6 +43,9 @@ spice proxy_cache_valid => "418 1d";
 
 handle sub {
 
+    # return if a year is specified
+    if ($_ =~ m/(1|2)\d\d\d/) {return;}
+
     my $query = lc $_;
     
     # find which primary trigger was used
