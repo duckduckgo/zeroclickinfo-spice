@@ -10,14 +10,10 @@
     
     env.ddg_spice_health_scores = function(api_result) {
 
+
         if (no_result(api_result)) {
             return Spice.failed("health_scores");
         }
-
-        // Get the original query.
-        var script = $('[src*="/js/spice/health_scores/"]')[0];
-        var source = $(script).attr("src");
-        var query = source.match(/health_scores\/([^\/]*)/)[1];
 
         // Display the instant answer.
         Spice.add({
@@ -28,7 +24,7 @@
             meta: {
                 itemType: "Scores",
                 sourceName: 'Eaternet',
-                sourceUrl: 'https://eaternet.io/#stq=' + query,
+                sourceUrl: 'https://eaternet.io/#stq=' + original_query(),
                 total: api_result.length,
             },
 
@@ -54,6 +50,12 @@
 
 	function no_result(api_result) {
             return (!api_result || api_result.records.page.length === 0);
+	}
+
+	function original_query() {
+            var script = $('[src*="/js/spice/health_scores/"]')[0];
+            var source = $(script).attr("src");
+            return source.match(/health_scores\/([^\/]*)/)[1];
 	}
 
 	function is_relevant(item) {
