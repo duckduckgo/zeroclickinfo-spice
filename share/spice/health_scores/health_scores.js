@@ -21,7 +21,7 @@
             data: api_result.records.page,
 
             meta: {
-                itemType: "Scores",
+                itemType: "Inspection Scores",
                 sourceName: 'Eaternet',
                 sourceUrl: 'https://eaternet.io/#stq=' + original_query(api_result),
                 total: api_result.records.page.length,
@@ -35,9 +35,6 @@
 
                 options: {
                     footer: Spice.health_scores.footer
-                },
-                variants: {
-		    tileTitle: "2line-small",
                 },
             },
 
@@ -64,7 +61,7 @@
             return {
 		url: item.url,
 		title: info.name,
-		subtitle: info.address_line_1,
+		subtitle: info.address_line_1 + ", " + info.address_line_2,
 		description: info.score,
 		violation_count: info.violation_count,
             }
