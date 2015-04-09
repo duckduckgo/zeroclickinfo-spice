@@ -48,7 +48,7 @@
 
                 return{
                     title: item.name + ' ' + item.version,
-                    subtitle: item.authors,
+                    subtitle: item.authors || " ",
                     url: item.project_uri,
                     description: item.info,
                     licenses: licenses.join(', '),
