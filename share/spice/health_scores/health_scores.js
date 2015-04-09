@@ -10,7 +10,7 @@
     
     env.ddg_spice_health_scores = function(api_result) {
 
-        if (!api_result || api_result.length === 0) {
+        if (!api_result || api_result.records.page.length === 0) {
             return Spice.failed("health_scores");
         }
 
