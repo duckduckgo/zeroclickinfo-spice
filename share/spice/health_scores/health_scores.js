@@ -6,18 +6,17 @@
     // job of filtering out hits which don't match for
     // [business name|category] [location].
     var RELEVANCE_THRESHOLD = 0.06;
-
+    var APP_ID = "health_scores";
     
     env.ddg_spice_health_scores = function(api_result) {
-
-
+		
         if (no_result(api_result)) {
-            return Spice.failed("health_scores");
+            return Spice.failed(APP_ID);
         }
 
         // Display the instant answer.
         Spice.add({
-            id: "health_scores",
+            id: APP_ID,
             name: "Scores",
             data: api_result.records.page,
 
@@ -53,7 +52,7 @@
 	}
 
 	function original_query() {
-            var script = $('[src*="/js/spice/health_scores/"]')[0];
+            var script = $('[src*="/js/spice/' + APP_ID + '/"]')[0];
             var source = $(script).attr("src");
             return source.match(/health_scores\/([^\/]*)/)[1];
 	}
