@@ -27,8 +27,8 @@ Locale::Country::add_country_alias('Russian Federation'   => 'Russia');
 Locale::Country::rename_country('ae' => 'The United Arab Emirates');
 Locale::Country::rename_country('do' => 'The Dominican Republic');
 Locale::Country::rename_country('gb' => 'The United Kingdom');
-Locale::Country::rename_country('kr' => "The Republic of Korea");                    
-Locale::Country::rename_country('kp' => "The Democratic People's Republic of Korea"); 
+Locale::Country::rename_country('kr' => "The Republic of Korea");
+Locale::Country::rename_country('kp' => "The Democratic People's Republic of Korea");
 Locale::Country::rename_country('ky' => 'The Cayman Islands');
 Locale::Country::rename_country('mp' => 'The Northern Mariana Islands');
 Locale::Country::rename_country('nl' => 'The Netherlands');
@@ -54,28 +54,28 @@ handle query_lc => sub {
         $countryName = $1 if $1;
         $countryName = $2 if $2;
 
-        # Return alpha-3 country code 
+        # Return alpha-3 country code
         $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3);
-        
+
         if($countryCode) {
             $countryName = code2country(country2code($countryName, LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
         } else {
             $countryName = code2country(country2code(code2country($countryName, LOCALE_CODE_ALPHA_3), LOCALE_CODE_ALPHA_2), LOCALE_CODE_ALPHA_2);
             $countryCode = country2code($countryName, LOCALE_CODE_ALPHA_3);
         }
-      
+
         return unless defined $countryName;
-        
+
         # Check if the country string has a comma, split the string and only include the first element
         if (index($countryName, ',') != -1) {
             ($countryName) = split(',', $countryName);
         }
-         
+
         # Ensure variables are defined before returning a result
         return unless (defined $countryCode and defined $countryName);
         return uc $countryCode, $countryName;
     }
     return;
-    
+
 };
 1;

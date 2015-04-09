@@ -1,4 +1,5 @@
 package DDG::Spice::Quandl::Fundamentals;
+# ABSTRACT: Basic stock ticker through Quandl
 
 use DDG::Spice;
 use Text::Trim;
@@ -15,9 +16,9 @@ topics "economy_and_finance";
 category "finance";
 attribution web => ["https://www.quandl.com", "Quandl"],
             twitter => "quandl";
-            
+
 # hash associating triggers with indicator codes
-my $trigger_hash = Load(scalar share('fundamentals_triggers.yml')->slurp); 
+my $trigger_hash = Load(scalar share('fundamentals_triggers.yml')->slurp);
 
 # triggers sorted by length so more specific is used first
 my @trigger_keys = sort { length $b <=> length $a } keys($trigger_hash);
@@ -41,7 +42,7 @@ handle sub {
     # split query phrase by spaces
     my @words = split / /, lc $_;
     my $wordsSize = scalar @words;
-    
+
     # exit if query is less than two words
     if ($wordsSize < 2) {return;}
 
@@ -55,11 +56,11 @@ handle sub {
 
     # exit if we do not have a valid ticker
     return unless $ticker;
-    
-    
+
+
     # only return if we found a ticker in the search query
     my $query = lc $_;
-    
+
     # iterate through trigger phrases
     for my $trigger (@trigger_keys) {
         # return if the trigger phrase is in the query

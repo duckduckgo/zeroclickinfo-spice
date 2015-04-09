@@ -1,4 +1,5 @@
 package DDG::Spice::Editor;
+# ABSTRACT: Editor with syntax highlighting
 
 use strict;
 use utf8;

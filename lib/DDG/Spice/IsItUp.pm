@@ -1,4 +1,5 @@
 package DDG::Spice::IsItUp;
+# ABSTRACT: Checks if a website is up
 
 use strict;
 use DDG::Spice;

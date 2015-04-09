@@ -1,4 +1,5 @@
 package DDG::Spice::DebVersion;
+# ABSTRACT: Get the version numbers for debian packages
 
 use Text::Trim;
 use DDG::Spice;
