@@ -14,7 +14,7 @@ source "Olam - http://olam.in";
 icon_url "http://olam.in/favicon.ico";
 description "Find meaning of words in Malayalam(ML) - An Indian Language";
 primary_example_queries "search in malayalam";
-secondary_example_queries "malayalam meaning of go";
+#secondary_example_queries "malayalam meaning of go";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#category
 category "language";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
