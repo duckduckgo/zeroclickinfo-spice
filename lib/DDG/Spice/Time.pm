@@ -1,7 +1,8 @@
 package DDG::Spice::Time;
-use DDG::Spice;
+# ABSTRACT: Time zone converter
 
 use strict;
+use DDG::Spice;
 use Text::Trim;
 use YAML::XS qw( Load );
 

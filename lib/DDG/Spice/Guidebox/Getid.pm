@@ -1,4 +1,5 @@
 package DDG::Spice::Guidebox::Getid;
+# ABSTRACT: Search for full free episodes of TV shows
 
 use strict;
 use DDG::Spice;
@@ -33,7 +34,7 @@ handle remainder => sub {
         my $show = '';
 
         if ($_ =~ qr/^([\w\s]+)\s*?(?:episodes?)? online$/ ){
-            $show = $1; 
+            $show = $1;
         } elsif ($_ =~ qr/^episodes? of ([\w\s]+)\s*?(?:\s*online)?$/){
             $show = $1;
         } elsif ($_ =~ qr/^([\w\s]+)\s*?episodes?$/){

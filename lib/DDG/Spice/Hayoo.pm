@@ -1,4 +1,5 @@
 package DDG::Spice::Hayoo;
+# ABSTRACT: Spice to search Haskell APIs
 
 use DDG::Spice;
 

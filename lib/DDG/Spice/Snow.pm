@@ -1,4 +1,5 @@
 package DDG::Spice::Snow;
+# ABSTRACT: Shows weather conditions for cities
 
 use strict;
 use DDG::Spice;
