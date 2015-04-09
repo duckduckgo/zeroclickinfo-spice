@@ -10,7 +10,7 @@
     
     env.ddg_spice_health_scores = function(api_result) {
 
-        if (!api_result || api_result.records.page.length === 0) {
+        if (no_result(api_result)) {
             return Spice.failed("health_scores");
         }
 
@@ -51,6 +51,10 @@
             },
 
         });
+
+	function no_result(api_result) {
+            return (!api_result || api_result.records.page.length === 0);
+	}
 
 	function is_relevant(item) {
 	    return item._score >= RELEVANCE_THRESHOLD;
