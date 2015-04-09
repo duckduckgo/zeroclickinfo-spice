@@ -48,7 +48,16 @@
                             return ((x < y) ? 1 : ((x > y) ? -1 : 0));
                         }
                     },
-                    sort_default: 'unique_installs'
+                    sort_default: 'unique_installs',
+                    relevancy: {
+                        primary: [
+                            { required: 'name' },
+                            { required: 'highlighted_authors' },
+                            { required: 'last_modified' },
+                            { required: 'highlighted_description' },
+                            { required: 'unique_installs' }
+                        ]
+                    },
                 });
             });
         };
