@@ -1,23 +1,29 @@
-.tileview__get_events .tile--get_events {
+.tile--get_events {
     width: 14em;
-    height: 13em;
+    height: 13.3em;
 }
 
-.tile--get_events .tile_title--2 {
-    max-height: 3em;
-    height: 3em;
-    font-size: 16px;
+.tile--get_events .tile__body.has-foot--4 {
+    padding-bottom: 0;
+}
+
+.tile--get_events .tile_title--3 {
+    height: auto;
+    font-size: 1.27em;
     line-height: 1.2;
-    color: #333333;
+}
+
+.tile--get_events .tile__sub {
+    margin-bottom: 0;
 }
 
 .tile--get_events .tile__title--wrap {
     display: inline-block;
-    width: 8.5em;
+    width: 9em;
 }
 
 .tile--get_events .tile__num--get_events {
-    display: inline-block;
+    display: none;
     width: 3em;
     height: 3em;
     line-height: 1;
@@ -25,21 +31,23 @@
     font-size: 0.9em;
 }
 
+.is-expanded .tile--get_events .tile__num--get_events {
+    display: block;
+}
+
 .tile--get_events .tile__num--get_events .number {
-    background-image: url("https://cloud.githubusercontent.com/assets/873785/7015929/e54cd9be-dca9-11e4-98cc-fe0984386a74.png");
+    background-image: url("map-pin.svg");
     background-repeat: no-repeat;
-    height: 30px;
-    background-position: center; 
+    height: 2.4em;
+    background-position: center;
     padding-top: 0.65em;
-    line-height: 0.6;
     font-weight: bold;
     font-size: 1.6em;
-    font-size: 13px;
-    color: #333333;
+    font-size: 1.038em;
 }
 
 .tile--get_events__alt .content--lg {
-    font-size: 13px;
+    font-size: 1.038em;
     line-height: 1.4;
     color: #999999;
     height: 4em;
@@ -54,4 +62,6 @@
     font-size: 13px;
     line-height: 1.4;
     color: #999999;
+    max-height: 6.6em;
+    height: auto;
 }

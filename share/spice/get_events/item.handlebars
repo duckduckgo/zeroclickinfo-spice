@@ -3,12 +3,17 @@
     <div class="tile--f__main tile--get_events__main">
         <div class="tile__body has-foot--4">
             <div class="tile__title--wrap">
-                <h5 class="tile__title with-sub tile__title--2">{{name}}</h5>
+                <h5 class="tile__title with-sub tile__title--3">{{name}}</h5>
                 <span class="tile__sub">
+                {{#with start_end}}
                     {{start}}
-                    {{~#and start end}}
+                    {{~#and start hours~}}
+                    , {{hours.start}}-{{hours.end}}
+                    {{/and}}
+                    {{~#and start end~}}
                     - {{end}}
-                    {{/and~}}
+                    {{/and}}
+                {{/with}}
                 </span>
             </div>
             <div class="tile__num--get_events pull-right">
@@ -19,12 +24,17 @@
         </div>
 
         <div class="tile__foot tile__foot--4">
-            <a class="tile__address">
-                <div>{{venue.name}}</div>
-                {{~#each address_lines~}}
-                    <div>{{.}}</div>
-                {{/each}}
-            </a>
+        {{#with venue}}
+            <div>{{name}}</div>
+            <div>{{street}}</div>
+            <div>
+            {{#with address}}
+                {{#if city}}{{city}}{{/if}}
+                {{~#and city zip~}}, {{/and}}
+                {{#if zip}}{{zip}}{{/if}}
+            {{/with}}
+            </div>
+        {{/with}}
         </div>
     </div>
 
@@ -44,9 +54,7 @@
 
             {{#and url meta.sourceName}}
                 <div class="tile__foot">
-                    
                     {{{moreAt url meta.formattedSourceName dynamicMoreAtText=5}}}
-                    
                 </div>
             {{/and}}
         </div>
