@@ -1,0 +1,20 @@
+{
+    "gdp": {
+        "display_name": "Gross Domestic Product",
+        "indicator_id": "NY.GDP.MKTP.CD",
+        "display_url": "http://data.worldbank.org/indicator/NY.GDP.MKTP.CD",
+        "source_type": "WORLD_BANK_INDICATOR"
+    },
+    "per_capita_income": {
+        "display_name": "Per Capita Income",
+        "indicator_id": "NY.GNP.PCAP.PP.CD",
+        "display_url": "http://data.worldbank.org/indicator/NY.GNP.PCAP.PP.CD",
+        "source_type": "WORLD_BANK_INDICATOR"
+    },
+    "growth_rate": {
+        "display_name": "Annual Growth Rate",
+        "indicator_id": "NY.GDP.MKTP.KD.ZG",
+        "display_url": "http://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG",
+        "source_type": "WORLD_BANK_INDICATOR"
+    }
+}

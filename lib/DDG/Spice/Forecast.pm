@@ -1,4 +1,5 @@
 package DDG::Spice::Forecast;
+# ABSTRACT: Weather forecasts
 
 use strict;
 use DDG::Spice;
@@ -30,7 +31,7 @@ spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=
 #     'aluminum', 'nickel', 'cobalt', 'molybdenum', 'polypropylene', 'ethanol'
 # );
 # my @sports_words = map { ($_, $_ . ' game', $_ . ' match') } qw(football golf soccer tennis basketball hockey nba ncaa nfl nhl cricket);
-# 
+#
 # my $skip_words = join('|', @bbc_words, @finance_words, @commodities_words, @sports_words, @weather_synonyms);
 # my $forecasts = join('|', @forecast_words);
 # my $skip_forecasts_re = qr/(?:\b(?:$skip_words)\s+(?:$forecasts)\b)|(?:\b(?:$forecasts)\s+(?:$skip_words)\b)/;

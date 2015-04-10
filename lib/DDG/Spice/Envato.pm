@@ -1,4 +1,5 @@
 package DDG::Spice::Envato;
+# ABSTRACT: Envato marketplace search
 
 use strict;
 use DDG::Spice;
@@ -18,7 +19,7 @@ code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 category 'programming';
 topics qw(programming geek web_design music);
 
-attribution github => ['https://github.com/mobily','Marcin Dziewulski'], 
+attribution github => ['https://github.com/mobily','Marcin Dziewulski'],
             twitter => ['http://twitter.com/marcinmobily', 'Marcin Dziewulski'],
             web => ['http://www.mobily.pl', 'Marcin Dziewulski'];
 
@@ -32,7 +33,7 @@ handle query_lc => sub {
     if ($platform){
         # remove trigger name, remove or/and words, remove everything that is not a space or a word character
         s/[^\s\w]|$platform|\s+and|\s+or|or\s+|and\s+//g;
-        
+
         # trim a query
         s/^\s+|\s+$//g;
 
@@ -42,7 +43,7 @@ handle query_lc => sub {
         return $platform, $_;
     }
 
-    return 
+    return
 };
 
 1;

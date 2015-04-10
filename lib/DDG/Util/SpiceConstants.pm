@@ -1,4 +1,5 @@
 package DDG::Util::SpiceConstants;
+# ABSTRACT: Constants for spices
 
 use strict;
 use warnings;

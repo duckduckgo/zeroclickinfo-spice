@@ -1,4 +1,5 @@
 package DDG::Spice::Maps::Maps;
+# ABSTRACT: Map of current cocation
 
 use strict;
 use DDG::Spice;
