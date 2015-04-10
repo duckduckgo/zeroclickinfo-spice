@@ -36,7 +36,7 @@ triggers startend => "tor node",
                      "onion bridge", "onion bridge status", "onion bridge node", "onion bridge node status";
 
 spice is_cached           => 0;
-spice from                => '^([^/]+)/([0-9]+)$';
+spice from                => '([^/]+)/([0-9]+)';
 spice to                  => 'https://onionoo.torproject.org/details?search=$1&limit=$2&order=-consensus_weight';
 spice wrap_jsonp_callback => 1;
 

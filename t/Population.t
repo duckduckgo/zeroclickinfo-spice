@@ -16,7 +16,7 @@ ddg_spice_test(
     'population mexico' => test_spice(
         '/js/spice/population/MEX/Mexico',
         call_type => 'include',
-        caller => 'DDG::Spice::Population'   
+        caller => 'DDG::Spice::Population'
     ),
     'what is the population of china' => test_spice(
         '/js/spice/population/CHN/China',

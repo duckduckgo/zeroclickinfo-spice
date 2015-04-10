@@ -1,4 +1,5 @@
 package DDG::Spice::GameInfo;
+# ABSTRACT: Information about video games
 
 use strict;
 use DDG::Spice;

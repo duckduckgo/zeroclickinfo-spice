@@ -1,7 +1,12 @@
 package DDG::Spice::Aur;
+<<<<<<< HEAD
 # ABSTRACT: Write an abstract here
 # Start at https://duck.co/duckduckhack/spice_overview if you are new
 # to instant answer development
+=======
+# ABSTRACT: Archlinux user repository package look-up
+
+>>>>>>> 835cce5ed4e4f434f377467d5f24a639d45ab4dc
 use strict;
 use DDG::Spice;
 

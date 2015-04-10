@@ -33,7 +33,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Editor',
     ),
     'editor' => undef,
-    'editor ruby' => undef,    
+    'editor ruby' => undef,
 );
 
 done_testing;
