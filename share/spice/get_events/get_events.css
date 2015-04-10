@@ -1,25 +1,26 @@
 .tile--get_events {
     width: 14em;
-    height: 13.3em;
+    height: 14em;
 }
 
 .tile--get_events .tile__body.has-foot--4 {
     padding-bottom: 0;
 }
 
-.tile--get_events .tile_title--3 {
+.tile--get_events .tile__title--3 {
     height: auto;
     font-size: 1.27em;
     line-height: 1.2;
-}
-
-.tile--get_events .tile__sub {
-    margin-bottom: 0;
+    font-weight: bold;
 }
 
 .tile--get_events .tile__title--wrap {
     display: inline-block;
     width: 9em;
+}
+
+.tile--get_events .tile__sub {
+    margin-bottom: 0;
 }
 
 .tile--get_events .tile__num--get_events {
@@ -29,10 +30,24 @@
     line-height: 1;
     text-align: center;
     font-size: 0.9em;
+    color: #333;
 }
 
 .is-expanded .tile--get_events .tile__num--get_events {
     display: block;
+}
+
+.tile--get_events__main .tile__foot {
+    white-space: normal;
+}
+
+.tile--get_events .tile__foot--4 {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #999;
+    max-height: 6.6em;
+    height: auto;
+    margin-bottom: 1em;
 }
 
 .tile--get_events .tile__num--get_events .number {
@@ -46,22 +61,10 @@
     font-size: 1.038em;
 }
 
-.tile--get_events__alt .content--lg {
+.tile--get_events__alt .has-foot .tile__content--lg {
     font-size: 1.038em;
     line-height: 1.4;
-    color: #999999;
-    height: 4em;
+    color: #999;
+    height: 7em;
     overflow: hidden;
-}
-
-.tile--get_events__main .tile__foot {
-    white-space: normal;
-}
-
-.tile--get_events .tile__foot--4 {
-    font-size: 13px;
-    line-height: 1.4;
-    color: #999999;
-    max-height: 6.6em;
-    height: auto;
 }
