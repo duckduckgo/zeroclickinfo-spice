@@ -16,7 +16,7 @@
         Spice.add({
             minItemsForModeSwitch: 3,
             id: "twitch_streams",
-            name: "Twitch Streams",
+            name: "Gaming",
             data: api_result.streams,
             meta: {
                 sourceName: "Twitch",
