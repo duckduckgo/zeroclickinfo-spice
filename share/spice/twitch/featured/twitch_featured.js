@@ -25,16 +25,18 @@
             },
             normalize: function(item) {
                 var title = "Untitled Broadcast";
-                if(item.stream.channel.status != null && item.stream.channel.display_name != null) {
-                    title = item.stream.channel.display_name + ": " + item.stream.channel.status;
+                if(DDG.getProperty(item, 'stream.channel.status')){
+                    var display_name = DDG.getProperty(item, 'stream.channel.display_name');
+                    var status = DDG.getProperty(item,'stream.channel.status');
+                    title = display_name + ": " + status;
                 }
                 
                 return {
-                    url: item.stream.channel.url,
-                    viewCount: item.stream.viewers,
-                    images: item.stream.preview,
+                    url: DDG.getProperty(item, 'stream.channel.url'),
+                    viewCount: DDG.getProperty(item, 'stream.viewers'),
+                    images: DDG.getProperty(item, 'stream.preview'),
                     title: title,
-                    duration: item.stream.game
+                    duration: DDG.getProperty(item, 'stream.game')
                 };
             }
         });
