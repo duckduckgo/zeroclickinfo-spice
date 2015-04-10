@@ -14,7 +14,11 @@
         jobs['description'] = query.replace(re, "$1");
         jobs['location'] = query.replace(re, "$2");
 
-        var sourceUrl = 'https://jobs.github.com/positions?description=' + encodeURIComponent(jobs['description']) + "&location=" + encodeURIComponent(jobs['location']);
+        var sourceUrl = 'https://jobs.github.com/positions?description=' + jobs['description'] + "&location=" + jobs['location'];
+        var classes = {
+            'Part Time': 'github_jobs__part_time',
+            'Contract': 'github_jobs__contract'
+        }
 
         DDG.require('moment.js', function() {
             Spice.add({
@@ -28,6 +32,7 @@
                     itemType: 'Jobs'
                 },
                 normalize: function(item) {
+                    var created_at = moment(item.created_at);
                     return {
                         title: item.title,
                         subtitle: item.company,
@@ -35,7 +40,8 @@
                         description: $('<div/>').html(DDG.strip_html(item.description)).text(),
                         url: item.url,
                         type: item.type,
-                        created_at: moment(item.created_at).fromNow()
+                        status_class: item.type === 'Full Time' ? '' : classes[item.type],
+                        created_at: (created_at.diff(moment(), 'days') >= -3) ? 'NEW' : created_at.format('MMM D')
                     }
                 },
                 templates: {
@@ -44,9 +50,9 @@
                         footer: Spice.github_jobs.footer
                     },
                     variants: {
-                        tile: 'basic1',
                         tileFooter: '2line',
-                        tileSnippet: 'large'
+                        tileSnippet: 'large',
+                        tileTitle: '2line',
                     },
                     detail: false,
                     item_detail: false

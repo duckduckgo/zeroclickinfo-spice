@@ -1,0 +1,23 @@
+.tile--github_jobs .github_jobs__badge {
+    background-color: #60AE50;
+    height: 8px;
+    border-radius: 8px;
+    padding: 0px 4px;
+    display: inline-block;
+    margin: 0 3px 0 0;
+}
+
+.tile--github_jobs .github_jobs__part_time {
+    background-color: #eea43e;
+}
+
+.tile--github_jobs .github_jobs__contract {
+    background-color: #3174E5;
+}
+
+.tile__meta__type {
+    float: left;
+}
+.tile__meta__recent {
+    float: right;
+}
