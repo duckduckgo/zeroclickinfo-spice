@@ -23,7 +23,7 @@
                 normalize: function(item){
 
                     // exclude events that have already ended
-                    if ( moment(item.end_date).isBefore(Date.now()) ){
+                    if ( moment(item.end_date).isBefore($.now()) ){
                         return null;
                     }
 

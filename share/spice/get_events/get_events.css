@@ -51,7 +51,7 @@
 }
 
 .tile--get_events .tile__num--get_events .number {
-    background-image: url("map-pin.svg");
+    background-image: url("map-pin.png");
     background-repeat: no-repeat;
     height: 2.4em;
     background-position: center;
@@ -59,6 +59,10 @@
     font-weight: bold;
     font-size: 1.6em;
     font-size: 1.038em;
+}
+
+.svg .tile--get_events .tile__num--get_events .number {
+    background-image: url("map-pin.svg");
 }
 
 .tile--get_events__alt .has-foot .tile__content--lg {
