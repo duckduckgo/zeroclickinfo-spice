@@ -1,4 +1,5 @@
 package DDG::Spice::HackerNews;
+# ABSTRACT: Search for Hacker News
 
 use strict;
 use DDG::Spice;

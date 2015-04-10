@@ -1,4 +1,5 @@
 package DDG::Spice::Airlines;
+# ABSTRACT: Information about airplane flights
 
 use strict;
 use DDG::Spice;
