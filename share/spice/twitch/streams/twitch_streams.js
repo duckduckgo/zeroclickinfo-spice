@@ -32,16 +32,18 @@
             },
             normalize: function(item) {
                 var title = "Untitled Broadcast";
-                if(item.channel.status != null && item.channel.display_name != null) {
-                    title = item.channel.display_name + ": " + item.channel.status;
+                if(DDG.getProperty(item, 'channel.status')){
+                    var display_name = DDG.getProperty(item, 'channel.display_name');
+                    var status = DDG.getProperty(item,'channel.status');
+                    title = display_name + ": " + status;
                 }
                 
                 return {
-                    url: item.channel.url,
-                    viewCount: item.viewers,
-                    images: item.preview,
+                    url: DDG.getProperty(item, 'channel.url'),
+                    viewCount: DDG.getProperty(item, 'viewers'),
+                    images: DDG.getProperty(item, 'preview'),
                     title: title,
-                    duration: item.game
+                    duration: DDG.getProperty(item, 'game')
                 };
             }
         });
