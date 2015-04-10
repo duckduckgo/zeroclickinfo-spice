@@ -12,9 +12,9 @@
             name: "Twitch Featured Streams",
             data: api_result.featured,
             meta: {
-                sourceName: "twitch.tv",
+                sourceName: "Twitch",
                 sourceUrl: "http://www.twitch.tv/",
-                itemType: "Twitch Featured"
+                itemType: "Featured Streams"
             },
             templates: {
                 group: 'base',
@@ -23,20 +23,20 @@
                 item: 'videos_item',
                 moreAt: true,
             },
-            normalize: function(featuredStream) {
-                if(featuredStream.stream.channel.status == null){
-                    var title = "Untitled Broadcast";
-                } else {
-                    var title = featuredStream.stream.channel.status;
+            normalize: function(item) {
+                var title = "Untitled Broadcast";
+                if(DDG.getProperty(item, 'stream.channel.status')){
+                    var display_name = DDG.getProperty(item, 'stream.channel.display_name');
+                    var status = DDG.getProperty(item,'stream.channel.status');
+                    title = display_name + ": " + status;
                 }
-                var title = featuredStream.stream.channel.display_name + ": " + featuredStream.stream.channel.status;
                 
                 return {
-                    url: featuredStream.stream.channel.url,
-                    viewCount: featuredStream.stream.viewers,
-                    images: featuredStream.stream.preview,
+                    url: DDG.getProperty(item, 'stream.channel.url'),
+                    viewCount: DDG.getProperty(item, 'stream.viewers'),
+                    images: DDG.getProperty(item, 'stream.preview'),
                     title: title,
-                    duration: featuredStream.stream.game
+                    duration: DDG.getProperty(item, 'stream.game')
                 };
             }
         });

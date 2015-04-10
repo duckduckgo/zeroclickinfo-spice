@@ -18,9 +18,14 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["https://github.com/dwaligon", "Jason O'Donnell"];
 
 triggers startend => ('twitch streams',
+<<<<<<< HEAD
 <<<<<<< HEAD:lib/DDG/Spice/Twitch/Streams.pm
 		              'streams twitch',
    		              'twitch.tv streams',
+=======
+		      'streams twitch',
+   		      'twitch.tv streams',
+>>>>>>> origin/master
               	      'twitchtv streams',
 =======
                       'streams twitch',
