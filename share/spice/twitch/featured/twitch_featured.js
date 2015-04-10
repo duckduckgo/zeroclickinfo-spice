@@ -9,7 +9,7 @@
         Spice.add({
             minItemsForModeSwitch: 3,
             id: "twitch_featured",
-            name: "Twitch Featured Streams",
+            name: "Gaming",
             data: api_result.featured,
             meta: {
                 sourceName: "Twitch",
