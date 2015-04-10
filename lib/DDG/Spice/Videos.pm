@@ -1,4 +1,5 @@
 package DDG::Spice::Videos;
+# ABSTRACT: Video search
 
 use strict;
 use DDG::Spice;

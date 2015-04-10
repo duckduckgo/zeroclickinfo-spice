@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
 
-    var ID = 'pokemon',
+    var ID = 'pokemon_data',
         INFOBOX_PROPS = ['hp', 'attack', 'defense', 'height', 'weight', 'speed'],
         DESCRIPTION_ENDPOINT = '/js/spice/pokemon/description/{id}',
         POKEAPI_SPRITE_URL = 'http://pokeapi.co/media/img/{id}.png';

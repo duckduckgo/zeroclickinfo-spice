@@ -1,4 +1,5 @@
 package DDG::Spice::Nutrition;
+# ABSTRACT: Nutrition information
 
 use strict;
 use DDG::Spice;
@@ -27,7 +28,7 @@ spice wrap_jsonp_callback => 1;
 handle query_lc => sub {
     # check for queries like "how many calories are in a cucumber"
     if (/^$question_regex$attribute_regex\s?(?:are |contained |is )?(?:there )?(?:in )?(?:a |an )?(.+?)(?:\?)?$/) {
-		return $1 if $1;
+        return $1 if $1;
     }
 
     # for queries like "cucumber calories" or "tofu how much protein"
