@@ -1,4 +1,5 @@
 package DDG::Spice::Betterific;
+# ABSTRACT: Crowd-sourced innovation ideas
 
 use strict;
 use DDG::Spice;
@@ -21,11 +22,11 @@ spice to => 'http://betterific.com/api/search/all?q=$1&page=1&per_page=2';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-  # If the query isn't blank, then use it for the API query.
-  return $_ if length($_) > 0;
+    # If the query isn't blank, then use it for the API query.
+    return $_ if length($_) > 0;
 
-	return '' if $_ eq '';
-	return;
+    return '' if $_ eq '';
+    return;
 };
 
 1;

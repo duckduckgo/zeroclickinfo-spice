@@ -70,37 +70,37 @@ sub getCode {
 # - Checking if the input number is valid.
 sub checkCurrencyCode {
     my($amount, $from, $to) = @_;
-    
+
     # Check if it's a valid number.
     # If it isn't, return early.
     my $styler = number_style_for($amount);
     return unless $styler;
-    
+
     # Choose the default currency.
     # If the user types in 10 usd, it should default to eur.
     # If the user types in 10 eur, it should default to usd.
-    # my $default_to = getCode($from) eq "usd" ? "eur" : "usd"; 
-    
+    # my $default_to = getCode($from) eq "usd" ? "eur" : "usd";
+
     my $normalized_number = $styler->for_computation($amount);
-    
+
     # There are cases where people type in "2016 euro" or "1999 php", so we don't want to trigger on those queries.
     if($normalized_number >= 1900 && $normalized_number < 2100 && (length($from) == 0 || length($to) == 0)) {
         return;
     }
-    
+
     $from = getCode($from) || '';
     $to = getCode($to) || '';
-    
+
     # Return early if we get a query like "usd to usd".
     if($from eq $to) {
         return;
     }
-    
+
     # Return early if we don't get a currency to convert from.
     if($from eq '') {
         return;
     }
-    
+
     # If we don't get a currency to convert to, e.g., the user types in "usd"
     # we set them to be the same thing. This will trigger our tile view.
     if($to eq '') {
@@ -113,7 +113,7 @@ sub checkCurrencyCode {
             $to = $from eq 'usd' ? 'eur' : 'usd';
         }
     }
-    
+
     return $normalized_number, $from, $to;
 }
 
@@ -140,7 +140,7 @@ handle query_lc => sub {
             return checkCurrencyCode(1, $from, $to);
         }
     }
-    
+
     return;
 };
 
