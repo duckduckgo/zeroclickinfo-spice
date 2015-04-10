@@ -1,0 +1,26 @@
+.zci--coderwall .zci__content {
+    margin-top: 0.25em;
+}
+
+.zci--coderwall .coderwall--basic a,
+.zci--coderwall .coderwall--more {
+    color: #888;
+}
+
+.zci--coderwall .zcm__sep {
+    margin 0 0.3em;
+}
+
+.zci--coderwall .coderwall--badges {
+    margin-top: .5em;
+}
+
+.zci--coderwall .coderwall--badge {
+    margin-right: 1em;
+}
+
+.zci--coderwall .coderwall--image {
+    vertical-align:middle;
+    width:32px;
+    height:32px;
+}

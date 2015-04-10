@@ -1,0 +1,24 @@
+<div class="coderwall--basic">
+    <div class="coderwall--misc">
+        <div>{{name}}</div>
+        <div class="coderwall--more">
+            {{#if accounts.github}}
+                <span class="github--user">
+                    <a href="{{accounts.github.url}}">{{accounts.github.name}}</a>
+                </span>
+                <span class="zcm__sep"></span>
+            {{/if}}
+            {{location}}
+        </div>
+    </div>
+{{#if badges}}
+    <div class="coderwall--badges">
+        {{#each badges}}
+            <span class="coderwall--badge" title="{{description}}">
+                <img class="coderwall--image" src="{{imageProxy badge}}">
+                {{name}}
+            </span>
+        {{/each}}
+    </div>
+{{/if}}
+</div>
