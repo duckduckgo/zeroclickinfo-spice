@@ -8,7 +8,7 @@ install:
   - npm install -g uglify-js handlebars
   - cpanm --notest --quiet Dist::Zilla
   - dzil authordeps | grep -ve '^\W' | xargs -n 5 -P 10 cpanm --notest --quiet --mirror http://www.cpan.org/ --mirror http://duckpan.org
-  - dzil listdeps | grep -ve '^\W' | cpanm --notest --quiet
+  - dzil listdeps | grep -ve '^\W' | cpanm --notest --quiet --mirror http://www.cpan.org/ --mirror http://duckpan.org
   - cpanm --quiet --notest App::DuckPAN autodie
   - duckpan DDG
 language: perl
