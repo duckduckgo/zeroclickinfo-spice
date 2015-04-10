@@ -40,7 +40,7 @@ my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is
 my $number_re = number_style_regex();
 
 # This regexp is responsible for actually processing the query and capturing the important parts.
-my $guard = qr/^$question_prefix($number_re*k?)\s?(hundred|thousand|million|billion|trillion)?\s?($currency_qr)(?:s)?(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?(?:s)?\??$/i;
+my $guard = qr/^$question_prefix($number_re*)\s?(hundred|thousand|k|million|m|billion|b|trillion)?\s?($currency_qr)(?:s)?(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?(?:s)?\??$/i;
 
 triggers query_lc => qr/$currency_qr/;
 
@@ -121,19 +121,17 @@ handle query_lc => sub {
     if(/$guard/) {
         my ($amount, $cardinal, $from, $alt_amount, $to) = ($1, $2 || '', $3, $4, $5 || '');
 
-        if ($amount =~ m/k$/) {
-            $amount =~ s/(\,|k)//g;
-            $amount *= 1000;
-        }
+        my $styler = number_style_for($amount);
+        return unless $styler;
 
         if ($cardinal ne '') {
-            $amount =~ s/\,//g;
+            $amount = $styler->for_computation($amount);
 
             if ($cardinal eq 'hundred')  { $amount *= 100 }
-            elsif ($cardinal eq 'thousand') { $amount *= 1000 }
-            elsif ($cardinal eq 'million')  { $amount *= 1000000 }
-            elsif ($cardinal eq 'billion')  { $amount *= 1000000000 }
-            elsif ($cardinal eq 'trillion') { $amount *= 1000000000000 }
+            elsif ($cardinal =~ /(thousand|k)/i) { $amount *= 1000 }
+            elsif ($cardinal =~ /(million|m)/i)  { $amount *= 1000000 }
+            elsif ($cardinal =~ /(billion|b)/i)  { $amount *= 1000000000 }
+            elsif ($cardinal =~ /(trillion|t)/i) { $amount *= 1000000000000 }
         }
 
         # If two amounts are available, exit early. It's ambiguous.

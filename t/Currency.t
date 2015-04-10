@@ -28,6 +28,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    'convert 4.000.000k euro to usd' => test_spice(
+        '/js/spice/currency/4000000000/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
     'euro cny' => test_spice(
         '/js/spice/currency/1/eur/cny',
         call_type => 'include',
