@@ -19,7 +19,7 @@
             name: "Twitch Streams",
             data: api_result.streams,
             meta: {
-                sourceName: "twitch.tv",
+                sourceName: "Twitch",
                 sourceUrl: 'http://www.twitch.tv/search?query=' + moreAt,
                 itemType: "Twitch Streams"
             },
@@ -30,20 +30,20 @@
                 item: 'videos_item',
                 moreAt: true,
             },
-            normalize: function(stream) {
-                if(stream.channel.status == null){
-                    var title = "Untitled Broadcast";
-                } else {
-                    var title = stream.channel.status;
+            normalize: function(item) {
+                var title = "Untitled Broadcast";
+                if(DDG.getProperty(item, 'channel.status')){
+                    var display_name = DDG.getProperty(item, 'channel.display_name');
+                    var status = DDG.getProperty(item,'channel.status');
+                    title = display_name + ": " + status;
                 }
-                var title = stream.channel.display_name + ": " + stream.channel.status;
                 
                 return {
-                    url: stream.channel.url,
-                    viewCount: stream.viewers,
-                    images: stream.preview,
+                    url: DDG.getProperty(item, 'channel.url'),
+                    viewCount: DDG.getProperty(item, 'viewers'),
+                    images: DDG.getProperty(item, 'preview'),
                     title: title,
-                    duration: stream.game
+                    duration: DDG.getProperty(item, 'game')
                 };
             }
         });
