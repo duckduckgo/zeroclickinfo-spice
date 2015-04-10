@@ -1,4 +1,10 @@
+<<<<<<< HEAD:lib/DDG/Spice/Twitch/Streams.pm
 package DDG::Spice::Twitch::Streams;
+=======
+package DDG::Spice::TwitchStreams;
+# ABSTRACT: Search for gaming videos
+
+>>>>>>> a19f5a064da6861a1d5167f42e90c935c70d53af:lib/DDG/Spice/TwitchStreams.pm
 use strict;
 use DDG::Spice;
 
@@ -12,9 +18,16 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["https://github.com/dwaligon", "Jason O'Donnell"];
 
 triggers startend => ('twitch streams',
+<<<<<<< HEAD:lib/DDG/Spice/Twitch/Streams.pm
 		              'streams twitch',
    		              'twitch.tv streams',
               	      'twitchtv streams',
+=======
+                      'streams twitch',
+                      'twitch.tv streams',
+                      #'twitch tv streams',
+                      'twitchtv streams',
+>>>>>>> a19f5a064da6861a1d5167f42e90c935c70d53af:lib/DDG/Spice/TwitchStreams.pm
                       'twitchtv streaming',
                       'twitch streaming');
 

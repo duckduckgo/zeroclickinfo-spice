@@ -4,8 +4,8 @@ package DDG::Spice::BitcoinTransaction;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "0e40627940d835d7154dcce33d6755f7ec40c7cc9e88d86291a971567bcd7ea7", 
-                        "b1956e97661f91ab020f97dff96b8043602dcbdc23d0825f790b521221bef1f5", 
+primary_example_queries "0e40627940d835d7154dcce33d6755f7ec40c7cc9e88d86291a971567bcd7ea7",
+                        "b1956e97661f91ab020f97dff96b8043602dcbdc23d0825f790b521221bef1f5",
                         "b6f952bcb5e0f2da3726f7ecc1101afcc18248229ea57abcca7e2542f323ae7d";
 
 description "Display information about a Bitcoin Transaction";
@@ -20,7 +20,7 @@ attribution github => ['https://github.com/biteasy','biteasy.com'],
             email => ['support@biteasy.com','biteasy.com'],
             twitter => ["biteasy", 'biteasy.com'],
             web => ['https://biteasy.com','biteasy.com'];
-            
+
 triggers query_raw => qr/^(?:bitcoin transaction|btc transaction)?\s*([a-fA-F0-9]{64})$/;
 # This regular expression parses a valid bitcoin block
 

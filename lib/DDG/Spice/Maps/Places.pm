@@ -1,4 +1,5 @@
 package DDG::Spice::Maps::Places;
+# ABSTRACT: Nearby museums, restaurants, ...
 
 use strict;
 use DDG::Spice;

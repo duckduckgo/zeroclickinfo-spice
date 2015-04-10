@@ -7,7 +7,7 @@ use Test::More;
 use DDG::Test::Spice;
 
 ddg_spice_test(
-	[ qw(DDG::Spice::MetaCPAN) ],
+    [ qw(DDG::Spice::MetaCPAN) ],
     create_tests('App::DuckPAN'    => '/js/spice/meta_cpan/App%3A%3ADuckPAN'   ),
     create_tests('App-DuckPAN'     => '/js/spice/meta_cpan/App%3A%3ADuckPAN'   ),
     create_tests('WWW::DuckDuckGo' => '/js/spice/meta_cpan/WWW%3A%3ADuckDuckGo'),
