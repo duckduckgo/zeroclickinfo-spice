@@ -5,8 +5,6 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
-spice is_cached => 1;
-
 ddg_spice_test(
     [qw( DDG::Spice::MalayalamDictionary::EaswareApps)],
     # At a minimum, be sure to include tests for all:
