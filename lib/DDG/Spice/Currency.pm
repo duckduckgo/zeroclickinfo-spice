@@ -38,9 +38,10 @@ my $into_qr = qr/\s(?:en|in|to|in ?to|to)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
 my $number_re = number_style_regex();
+my $cardinal_re = join('|', qw(hundred thousand k million m billion b trillion));
 
 # This regexp is responsible for actually processing the query and capturing the important parts.
-my $guard = qr/^$question_prefix($number_re*)\s?(hundred|thousand|k|million|m|billion|b|trillion)?\s?($currency_qr)(?:s)?(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?(?:s)?\??$/i;
+my $guard = qr/^$question_prefix($number_re*)\s?($cardinal_re)?\s?($currency_qr)(?:s)?(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?(?:s)?\??$/i;
 
 triggers query_lc => qr/$currency_qr/;
 
