@@ -13,7 +13,7 @@ attribution twitter => ['http://twitter.com/dogonews','dogonews'],
             facebook => ['https://www.facebook.com/pages/DOGONews/132351663495902', 'DOGOnews'],            
             github  => ['https://github.com/dogomedia','DOGO Media, Inc.'];
 
-triggers any => "dogonews", "dogo news", "dogo", "kids", "kid", "child", "children", "student", "students";
+triggers any => "dogonews", "dogo news", "dogo", "kids", "kid", "child", "children", "childrens", "children's", "student", "students";
 
 spice to => 'http://api.dogomedia.com/api/v2/news/search.json?query=$1&api_key={{ENV{DDG_SPICE_DOGO_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
