@@ -34,6 +34,8 @@
             return Spice.failed('sun_rise_set');
         }
 
+        var img_ext = Modernizr.svg ? 'svg' : 'png';
+
         Spice.add({
             id: "sun_rise_set",
             name: "Sunrise/Sunset",
@@ -42,8 +44,8 @@
                 country: location.geo.country.name,
                 sunrise_time: sunrise_time + ' AM',
                 sunset_time: sunset_time + ' PM',
-                sunrise_image: DDG.get_asset_path('sun_rise_set', 'sunrise.svg'),
-                sunset_image: DDG.get_asset_path('sun_rise_set', 'sunset.svg'),
+                sunrise_image: DDG.get_asset_path('sun_rise_set', ['sunrise', img_ext].join('.')),
+                sunset_image: DDG.get_asset_path('sun_rise_set', ['sunset', img_ext].join('.')),
             },
             meta: {
                 sourceName: "timeanddate.com",
