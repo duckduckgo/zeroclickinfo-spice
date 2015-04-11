@@ -126,7 +126,6 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-    # Numbers with commas in them.
     'convert 2 million cad into usd' => test_spice(
         '/js/spice/currency/2000000/cad/usd',
         call_type => 'include',
