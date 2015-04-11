@@ -28,6 +28,7 @@
                         source: item.author,
                         url: item.url,
                         excerpt: item.summary,
+                        image: thumb,
                         relative_time: moment(item.published_at).fromNow()
                     };
                 },
