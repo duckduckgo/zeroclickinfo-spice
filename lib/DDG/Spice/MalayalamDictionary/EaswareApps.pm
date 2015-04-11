@@ -6,7 +6,7 @@ package DDG::Spice::MalayalamDictionary::EaswareApps;
 use DDG::Spice;
 
 # Caching - https://duck.co/duckduckhack/spice_advanced_backend#caching
-spice is_cached => 1; 
+spice is_cached => 1;
 
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name "Malayalam Dictionary";
