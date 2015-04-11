@@ -19,27 +19,6 @@ attribution github   => ["https://github.com/gregoriomartinez", "GregorioMartine
             web      => ["http://www.gmartinez.com", "Gregorio Martinez"];
 
 
-# Country alias
-Locale::Country::add_country_alias("Lao People's Democratic Republic"  => "Laos");
-Locale::Country::add_country_alias('Russian Federation'   => 'Russia');
-
-# Country rename
-Locale::Country::rename_country('ae' => 'The United Arab Emirates');
-Locale::Country::rename_country('do' => 'The Dominican Republic');
-Locale::Country::rename_country('gb' => 'The United Kingdom');
-Locale::Country::rename_country('kr' => "The Republic of Korea");
-Locale::Country::rename_country('kp' => "The Democratic People's Republic of Korea");
-Locale::Country::rename_country('ky' => 'The Cayman Islands');
-Locale::Country::rename_country('mp' => 'The Northern Mariana Islands');
-Locale::Country::rename_country('nl' => 'The Netherlands');
-Locale::Country::rename_country('ph' => 'The Philippines');
-Locale::Country::rename_country('ru' => 'Russia');
-Locale::Country::rename_country('tw' => 'Taiwan');
-Locale::Country::rename_country('us' => 'The United States');
-Locale::Country::rename_country('va' => 'The Holy See (Vatican City State)');
-Locale::Country::rename_country('vg' => 'The British Virgin Islands');
-Locale::Country::rename_country('vi' => 'The US Virgin Islands');
-
 triggers any => "population", "pop";
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
