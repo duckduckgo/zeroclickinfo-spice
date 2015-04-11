@@ -30,7 +30,7 @@
     margin: 0 0.5em;
     font-size: 1.2em;
     position: relative;
-    top: -3px;
+    padding-top: 15px;
 }
 
 .zci--sun_rise_set .sun_rise_set--setbox,
