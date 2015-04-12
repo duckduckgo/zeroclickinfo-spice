@@ -46,16 +46,6 @@
         "xrp": true
     }
     
-    // Cryptocurrencies we have flags for at 3x.
-    var crypto_flags_96 = {
-        "btc": true,
-        "doge": true,
-        "drk": true,
-        "generic": true,
-        "ltc": true,
-        "xrp": true
-    }
-    
     // Some naming exceptions. For example, "gbp" doesn't map to the "gb" asset.
     // We need this hash so that we know that "gbp" will get the "uk" asset.
     var currency2country_translate = {
@@ -164,8 +154,7 @@
             // Most cryptocurrencies will not have flags associated with countries
             // They will need to have their own flag provided for them.
             if(!(symbol in currency2country)) {
-                // Use a separate map for 96px flags
-                if ((DDG.is3x && !(symbol in crypto_flags_96)) || (!(DDG.is3x) && !(symbol in crypto_flags))) {
+                if (!(symbol in crypto_flags)) {
                     // if we don't have a specific flag, return the generic png.
                     symbol = "generic";
                 }
