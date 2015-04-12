@@ -18,7 +18,7 @@
                 record_data: {
                     "Current Balance": formatNxt(api_result.balanceNQT),
                     "Forged Balance": formatNxt(api_result.forgedBalanceNQT),
-                    "Assets Owned": api_result.assetBalances.length
+                    "Assets Owned": api_result.assetBalances ? api_result.assetBalances.length : "0"
                 }
             },
             meta: {
