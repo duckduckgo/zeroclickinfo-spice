@@ -53,6 +53,7 @@
 .zci--route .tile__date {
     float: right;
     text-align: right;
+    padding-top: 3px;
 }
 
 .zci--route .tile__ok {
@@ -61,4 +62,8 @@
 
 .zci--route .tile__not {
     color: #de5833;
+}
+
+.zci--route .tile__datetime {
+    color: #888;
 }
