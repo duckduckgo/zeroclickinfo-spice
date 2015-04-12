@@ -19,11 +19,31 @@
     
     // Cryptocurrencies that we have flags for.
     var crypto_flags = {
+        "aur": true,
+        "blk": true,
         "btc": true,
+        "bts": true,
+        "dgb": true,
         "doge": true,
+        "doged": true,
         "drk": true,
+        "ftc": true,
+        "ifc": true,
         "ltc": true,
-        "xrp": true
+        "mec": true,
+        "mst": true,
+        "myr": true,
+        "nmc": true,
+        "nvc": true,
+        "nxt": true,
+        "pot": true,
+        "ppc": true,
+        "qrk": true,
+        "ripple": true,
+        "utc": true,
+        "wdc": true,
+        "xpm": true,
+        "xpy": true
     }
     
     // Some naming exceptions. For example, "gbp" doesn't map to the "gb" asset.
