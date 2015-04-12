@@ -30,10 +30,12 @@ handle query => sub {
         $country = $loc->country_code;
     }
     my $spice_location = $loc->city . ', ' . $loc->region_name;
-    if (/(?:\s*(?:i\s+|we\s+)?(?:need|want|wanna|deserve|seek|get|find)\s+(?:a\s+|an?\s+)?)?(?:(.+)\s+)?(?:jobs?|work|employment|internship)(?:\s+(?:in|near|around\s+)?\s*(.+))?$/i) {
+    
+    if (/(?:\s*(?:i\s+|we\s+)?(?:need|want|wanna|deserve|seek|get|find)\s+(?:a\s+|an?\s+)?)?(?:(?<query>.+)\s+)?(?:jobs?|work|employment|internship)(?:\s+(?:in|near|around\s+)?\s*(?<location>.+))?$/i) {
         if ($1 || $2) {
-            my $query = $1 || ' ';
-            my $location = $2 || $spice_location || ' ';
+            #my $query = $1 || ' ';
+            my $query = $+{query} || ' ';
+            my $location = $+{location} || $spice_location || ' ';
             return $query, $location, $country;
         }
     }
