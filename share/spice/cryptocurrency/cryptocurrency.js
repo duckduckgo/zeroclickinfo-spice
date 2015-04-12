@@ -39,11 +39,21 @@
         "pot": true,
         "ppc": true,
         "qrk": true,
-        "ripple": true,
         "utc": true,
         "wdc": true,
         "xpm": true,
-        "xpy": true
+        "xpy": true,
+        "xrp": true
+    }
+    
+    // Cryptocurrencies we have flags for at 3x.
+    var crypto_flags_96 = {
+        "btc": true,
+        "doge": true,
+        "drk": true,
+        "generic": true,
+        "ltc": true,
+        "xrp": true
     }
     
     // Some naming exceptions. For example, "gbp" doesn't map to the "gb" asset.
@@ -154,7 +164,8 @@
             // Most cryptocurrencies will not have flags associated with countries
             // They will need to have their own flag provided for them.
             if(!(symbol in currency2country)) {
-                if (!(symbol in crypto_flags)) {
+                // Use a separate map for 96px flags
+                if ((DDG.is3x && !(symbol in crypto_flags_96)) || (!(DDG.is3x) && !(symbol in crypto_flags))) {
                     // if we don't have a specific flag, return the generic png.
                     symbol = "generic";
                 }
