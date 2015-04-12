@@ -1,5 +1,7 @@
 package DDG::Spice::Aur;
+# ABSTRACT: Archlinux user repository package look-up
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "aur powermate";

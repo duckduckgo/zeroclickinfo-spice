@@ -1,6 +1,7 @@
 package DDG::Spice::InEveryLang;
 # ABSTRACT: Returns code examples for popular coding puzzles
 
+use strict;
 use DDG::Spice;
 use JSON;
 
@@ -32,9 +33,8 @@ attribution github  => ['https://github.com/josephwegner', 'josephwegner'],
 
 triggers startend => "fizz buzz", "fizzbuzz", "quine", "fibonacci sequence", "binary search";
 
-spice to => 'http://www.ineverylang.com/$1.json';
-spice from => '(^[^\/]+)';
-spice wrap_jsonp_callback => 1;
+spice to => 'http://www.ineverylang.com/ddg-$1.json';
+spice from => '(.*)/(.*)';
 
 handle query_lc => sub {
     $_ =~ m/(fizz ?buzz)|(quine)|(fibonacci sequence)|(binary search)/;
@@ -80,7 +80,7 @@ handle query_lc => sub {
     } else {
         return;
     }
-    
+
 
 };
 

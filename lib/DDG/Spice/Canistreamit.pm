@@ -1,5 +1,7 @@
 package DDG::Spice::Canistreamit;
+# ABSTRACT: Stream provider movie search
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "watch pirates of the caribbean";
@@ -25,7 +27,7 @@ handle remainder => sub {
 
     if ($remainder =~ /episodes?/){
         return;
-    } else { 
+    } else {
         $remainder =~ s/\?//;
         $remainder =~ s/ online//i;
 

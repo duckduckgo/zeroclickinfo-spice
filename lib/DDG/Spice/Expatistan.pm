@@ -1,5 +1,7 @@
 package DDG::Spice::Expatistan;
+# ABSTRACT: Compare cities based on cost of living
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "cost of living in Philadelphia";

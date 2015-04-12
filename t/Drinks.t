@@ -25,7 +25,7 @@ ddg_spice_test(
         caller    => 'DDG::Spice::Drinks',
     ),
     'ice tea drink ingredients' => test_spice(
-	'/js/spice/drinks/ice%20tea',
+        '/js/spice/drinks/ice%20tea',
         caller    => 'DDG::Spice::Drinks',
     ),
     'how to make a rails4 backend' => undef,

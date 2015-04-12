@@ -1,5 +1,7 @@
 package DDG::Spice::Dictionary::Hyphenation;
+# ABSTRACT: Get hyphenation of a word
 
+use strict;
 use DDG::Spice;
 
 attribution web => ['http://duckduckgo.com', 'DuckDuckGo'],
