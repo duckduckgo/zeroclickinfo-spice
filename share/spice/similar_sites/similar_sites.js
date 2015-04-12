@@ -1,4 +1,5 @@
 (function(env) {
+    'use strict';
 
     env.ddg_spice_similar_sites = function(api_result) {
 
@@ -6,7 +7,7 @@
                 source = $(script).attr("src"),
                 query = source.match(/similar_sites\/([^\/]+)/)[1];
 
-        if(!api_result || api_result.num === 0) {
+        if(!api_result || api_result.num === 0 || api_result.status !== 'ok') {
             return Spice.failed('similar_sites');
         }
 
@@ -26,6 +27,22 @@
                 more_at: query
             },
 
+            normalize: function (data) {
+                var sites = [];
+
+                for (var i = 0; i < data.num; i++) {
+                    var url = data.results['r' + i];
+                    sites.push({
+                        url: url,
+                        name: url.replace(/^https?:\/\/(www\.)?|\/+$/g, "")
+                    });
+                };
+
+                return {
+                    sites: sites
+                }
+            },
+
             meta: {
                 total: num,
                 sourceName: 'SimilarSites',
@@ -42,54 +59,18 @@
             },
 
             onShow: function() {
-                var toggle = false;
-                var $icon = $(".zci--similar_sites .chomp--link__icn");
-                $icon.attr('data-content', "+");
-                
-                var $more = $(".zci--similar_sites .chomp--link__mr");
-                var $less = $(".zci--similar_sites .chomp--link__ls");
-                
-                $("#show_more").click(function() {
-                    $more.toggle();
-                    $less.toggle();
-                    $("#hidden").toggle();
+                var $dom = Spice.getDOM('similar_sites');
+                if ($dom && $dom.length) {
+                    var $hidden = $dom.find('.is-hidden'),
+                        $show_more = $dom.find('.show_more');
 
-                    if(toggle) {
-                        $icon.attr('data-content', "+");
-                        toggle = false;
-                    } else {
-                        $icon.attr('data-content', "-");
-                        toggle = true;
-                    }
-                });
+                    $show_more.click(function() {
+                        $hidden.toggle();
+                        $show_more.toggleClass('is-expanded');
+                    });
+                }
             }
         });
     };
 
-    Handlebars.registerHelper('similar_sites_list', function(items, from, to) {
-        var out = "";
-        var link;
-
-        if (to === 0)
-            to = Object.keys(items).length - 2;
-
-        for(var i = from; i < to; i++) {
-            link = items["r" + i].replace("http://", "")
-                                 .replace("https://", "");
-            if (link.slice(-1) == '/') {
-                link = link.slice(0, -1);
-                link = link.replace('www.', '');
-            }
-
-            out += "<div>"
-                +  "<img src='https://icons.duckduckgo.com/ip/" + link + ".ico'"
-                +  " width='16px' height='16px' />"
-                +  "<a class='tx-clr--dk' href='" 
-                +       items["r" + i] + "'>" + link 
-                +  "</a>"
-                +  "</div>"
-        }
-
-        return out;
-    });
 })(this);

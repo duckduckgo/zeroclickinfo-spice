@@ -102,7 +102,7 @@ ddg_spice_test(
     # leading and trailing spaces should be allowed
     '    how to buy duckduckgo.com      ' => expected_output_for('duckduckgo.com'),
 
-    # a trailing question mark should be allowed    
+    # a trailing question mark should be allowed
     'is duckduckgo.com available?' => expected_output_for('duckduckgo.com'),
 
     # whois keywords after a url should trigger

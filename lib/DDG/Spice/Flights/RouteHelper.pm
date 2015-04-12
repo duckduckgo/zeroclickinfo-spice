@@ -1,4 +1,5 @@
 package DDG::Spice::Flights::RouteHelper;
+# ABSTRACT: Helper spice for loading  routes from JS in the Flights spice
 
 use strict;
 use DDG::Spice;
