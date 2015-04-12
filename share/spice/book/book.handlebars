@@ -1,6 +1,8 @@
 <div class="zci--book">
     <div class="rating-wrap">
+        {{#if image_url}}
         <img src="{{ imageProxy image_url }}">
+        {{/if}}
         {{#if rating}}
             <span class="rating">{{rating}}%</span>
         {{/if}}   
