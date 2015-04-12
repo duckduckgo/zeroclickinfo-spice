@@ -13,7 +13,7 @@ attribution github => ['https://github.com/bsstoner','bsstoner'];
 
 triggers startend => "gif", "gifs", "giphy";
 
-spice to => 'http://api.giphy.com/v1/gifs/search?q=$1&api_key=dc6zaTOxFJmzC';
+spice to => 'http://api.giphy.com/v1/gifs/search?q=$1&api_key={{ENV{DDG_SPICE_GIPHY_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
