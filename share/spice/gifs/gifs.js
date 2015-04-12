@@ -1,31 +1,42 @@
-function ddg_spice_gifs(res) {
-    if(!res || !res.data || !res.data.length){ return; }
+(function(env){
+    "use strict";
 
-    var searchTerm = DDG.get_query().replace(/gifs?/i,'').trim();
+    env.ddg_spice_gifs = function (api_result) {
 
-    Spice.add({
-        id: 'gifs',
-        name: 'Gifs',
+        if (!api_result || !api_result.data || !api_result.data.length){
+            return Spice.failed("gifs");
+        }
 
-        data: res.data,
-        normalize: function(item) {
-            return {
-                thumbnail: item.images.fixed_height_still.url,
-                image: item.images.fixed_height.url,
-                url: item.url,
-                height: item.images.fixed_height.height,
-                width: item.images.fixed_height.width
-            };
-        },
-        meta: {
-            sourceName: 'Giphy',
-            sourceUrl: 'http://giphy.com/search/' + encodeURIComponent(searchTerm),
-            sourceIcon: true,
-            count: res.pagination.count,
-            total: res.pagination.total_count,
-            itemType: 'Gifs'
-        },
+        var searchTerm = DDG.get_query().replace(/gifs?/i,'').trim();
 
-        view: 'Images'
-    });
-} 
+        Spice.add({
+            id: 'gifs',
+            name: 'Gifs',
+            data: api_result.data,
+            view: 'Images',
+            meta: {
+                sourceName: 'Giphy',
+                sourceUrl: 'http://giphy.com/search/' + encodeURIComponent(searchTerm),
+                count: api_result.pagination.count,
+                total: api_result.pagination.total_count,
+                itemType: 'Gifs'
+            },
+            normalize: function(item) {
+                if (item.rating !== "g") {
+                    return null;
+                }
+                return {
+                    thumbnail: item.images.fixed_height_still.url,
+                    image: item.images.fixed_height.url,
+                    url: item.url,
+                    height: item.images.fixed_height.height,
+                    width: item.images.fixed_height.width
+                };
+            },
+            templates: {
+                item: 'images_item',
+                detail: 'images_detail'
+            }
+        });
+    };
+})(this);
