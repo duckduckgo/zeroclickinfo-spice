@@ -1,4 +1,9 @@
-.status__badge {
+
+.list__item {
+  
+}
+
+.category__badge {
     height: 12px;
     border-radius: 6px;
     padding: 0px 6px;
@@ -6,31 +11,44 @@
     margin-right: 5px;
 }
 
-.status__badge.good {
+.category__badge.good {
     background-color: #5B9E4D;
 }
 
-.status__badge.moderate {
+.category__badge.moderate {
     background-color: #F1A031;
 }
 
-.status__badge.usg {
+.category__badge.usg {
     background-color: #E37151;
 }
 
-.status__badge.unhealty {
+.category__badge.unhealty {
     background-color: #BD4B2B;
 }
 
-.status__badge.very_unhealthy {
+.category__badge.very_unhealthy {
     background-color: #5D4C8B;
 }
 
-.status__badge.hazardous {
+.category__badge.hazardous {
     background-color: #413561;
+}
+
+.category__name {
+
+}
+
+.meas__value {
+  /*font-weight: bold;*/
+}
+
+.meas__date {
+  font-size: x-small;
 }
 
 a.help__link {
   color: #413561;
   text-decoration: none;
+  font-weight: bold;
  }
