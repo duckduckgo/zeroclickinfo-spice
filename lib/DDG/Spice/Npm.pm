@@ -1,6 +1,7 @@
 package DDG::Spice::Npm;
 # ABSTRACT: Returns package information from npm package manager's registry.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "npm underscore";
@@ -19,8 +20,8 @@ spice to => 'http://registry.npmjs.org/$1/latest';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-	return lc $_ if $_;
-	return;
+    return lc $_ if $_;
+    return;
 };
 
 1;

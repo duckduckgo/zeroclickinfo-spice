@@ -13,30 +13,21 @@ my @kingston_town = (
     caller    => 'DDG::Spice::Time'
 );
 
+my @phoenixville = (
+    '/js/spice/time/phoenixville%20united%20states',
+    call_type => 'include',
+    caller    => 'DDG::Spice::Time'
+);
+
 ddg_spice_test(
     [qw( DDG::Spice::Time)],
     # Primary examples
-    'time in Melbourne' => test_spice(
-        '/js/spice/time/melbourne',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Time'
-    ),
     'time for Australia' => test_spice(
         '/js/spice/time/canberra%20australia',
         call_type => 'include',
         caller    => 'DDG::Spice::Time'
     ),
     # Secondary examples
-    'what time is it in Melbourne' => test_spice(
-        '/js/spice/time/melbourne',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Time'
-    ),
-    'what is the time in Birmingham' => test_spice(
-        '/js/spice/time/birmingham',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Time'
-    ),
     # Additional queries
     'time in Canada' => test_spice(
         '/js/spice/time/ottawa%20canada',
@@ -45,11 +36,6 @@ ddg_spice_test(
     ),
     'time in London' => test_spice(
         '/js/spice/time/london%20united%20kingdom',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Time'
-    ),
-    'time at the Vatican' => test_spice(
-        '/js/spice/time/the%20vatican',
         call_type => 'include',
         caller    => 'DDG::Spice::Time'
     ),
@@ -64,12 +50,15 @@ ddg_spice_test(
     'whats the current local time in kingston' => test_spice(@kingston_town),
     'local time for kingston'                  => test_spice(@kingston_town),
     'local time of kingston'                   => test_spice(@kingston_town),
+
+    'time'                                     => test_spice(@phoenixville),
+    'current time'                             => test_spice(@phoenixville),
+    'current local time'                       => test_spice(@phoenixville),
     # Intentionally ignored
-    'curent time in kingston'  => undef,
-    'current local time'       => undef,
     'time and space museum'    => undef,
     'time complexity of qsort' => undef,
     'running time of titanic'  => undef,
+    'time in Toronto'          => undef, # This will still show a result in production, but the triggering is handled internally
 );
 
 done_testing;

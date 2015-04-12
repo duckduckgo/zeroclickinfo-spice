@@ -1,6 +1,7 @@
 package DDG::Spice::Gravatar;
 # ABSTRACT: Shows gravatar of a given e-mail.
 
+use strict;
 use DDG::Spice;
 use Digest::MD5 qw(md5_hex);
 

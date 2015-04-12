@@ -1,5 +1,7 @@
 package DDG::Spice::Editor;
+# ABSTRACT: Editor with syntax highlighting
 
+use strict;
 use utf8;
 use DDG::Spice;
 use URI::Escape;

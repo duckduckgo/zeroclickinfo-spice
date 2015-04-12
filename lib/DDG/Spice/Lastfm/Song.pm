@@ -1,6 +1,7 @@
 package DDG::Spice::Lastfm::Song;
 # ABSTRACT: Display song info.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "Payphone song by Maroon 5";
@@ -34,7 +35,7 @@ handle matches => sub {
     if($1 && $2) {
         return $1, $2;
     } elsif($3 && $4) {
-    	return $3, $4;
+        return $3, $4;
     }
     return;
 };

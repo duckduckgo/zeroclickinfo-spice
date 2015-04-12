@@ -1,6 +1,7 @@
 package DDG::Spice::Thesaurus;
 # ABSTRACT: Give the synonym, antonym, similar and related words of the query.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "synonyms for person", "thesaurus awesome";

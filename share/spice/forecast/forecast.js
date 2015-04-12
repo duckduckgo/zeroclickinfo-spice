@@ -227,7 +227,7 @@ function ddg_spice_forecast(r) {
     }
 
     if(alert_message)
-      return '<a href="'+alert_message.uri+'" class="fe_alert" target="_blank"><span class="fe_icon--flag">&#9873;</span> '+alert_message.title+'</a>';
+      return '<a href="'+alert_message.uri+'" class="fe_alert  tx-clr--red" target="_blank"><span class="ddgsi fe_icon--alert">!</span>'+alert_message.title+'</a>';
   }
   
   // Go!

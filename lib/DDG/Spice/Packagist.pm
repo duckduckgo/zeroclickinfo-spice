@@ -1,6 +1,7 @@
 package DDG::Spice::Packagist;
 # ABSTRACT: Returns package information from packagist package manager's registry
 
+use strict;
 use DDG::Spice;
 
 spice is_cached => 1;
@@ -28,7 +29,7 @@ spice wrap_jsonp_callback => 1;
 handle remainder => sub {
 
     return $_ if length $_;
-	
+
     return;
 };
 

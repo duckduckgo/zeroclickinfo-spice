@@ -1,5 +1,7 @@
 package DDG::Spice::Maps::Chains;
+# ABSTRACT: Nearby subsidiaries of chains
 
+use strict;
 use DDG::Spice;
 
 spice to => 'https://duckduckgo.com/local.js?q=$1&cb={{callback}}';

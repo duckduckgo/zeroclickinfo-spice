@@ -3,12 +3,20 @@
     <div class="tile__week">{{departing.weekday}}</div>
     <div class="tile__day">{{departing.day}}</div>
   </div>
-  <h5 class="tile__location">
-    {{departing.airport.AirportCode}} to {{arriving.airport.AirportCode}}
+  <h5 class="tile__flightID">
+    {{airlineName}} {{flightNumber}}
   </h5>
+  <div class="tile__airports">
+    {{departing.airport.AirportCode}} to {{arriving.airport.AirportCode}}
+  </div>
   <div>
     <span class="tile__status">
-      {{{status flight departureDate arrivalDate}}}
+      {{{airline_status flight departureDate arrivalDate}}}
+    </span>
+  </div>
+  <div>
+    <span class="tile__schedule">
+      Estimated Duration: {{{scheduledFlightDuration}}}
     </span>
   </div>
 </div>

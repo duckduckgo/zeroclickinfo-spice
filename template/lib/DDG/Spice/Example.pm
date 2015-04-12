@@ -5,7 +5,8 @@ package DDG::Spice::<: $ia_package_name :>;
 
 use DDG::Spice;
 
-spice is_cached => 1;
+# Caching - https://duck.co/duckduckhack/spice_advanced_backend#caching
+spice is_cached => 1; 
 
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name "<: $ia_name_separated :>";
@@ -22,7 +23,10 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["GitHubAccount", "Friendly Name"],
             twitter => "twitterhandle";
 
-# Triggers
+# API endpoint - https://duck.co/duckduckhack/spice_attributes#spice-codetocode
+spice to => 'http://example.com/search/$1';
+
+# Triggers - https://duck.co/duckduckhack/spice_triggers
 triggers any => "triggerWord", "trigger phrase";
 
 # Handle statement

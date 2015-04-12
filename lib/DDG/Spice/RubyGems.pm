@@ -1,5 +1,7 @@
 package DDG::Spice::RubyGems;
+# ABSTRACT: Search for RubyGems
 
+use strict;
 use DDG::Spice;
 
 name 'RubyGems';

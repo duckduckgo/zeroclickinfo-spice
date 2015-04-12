@@ -14,7 +14,7 @@
             name: 'Answer',
             data: result,
             meta: {
-                sourceName: 'Bible.org',
+                sourceName: 'Bible',
                 sourceUrl: 'http://bible.org/',
                 sourceIconUrl: 'http://bible.org/sites/bible.org/files/borg6_favicon.ico'
             },

@@ -1,8 +1,9 @@
 package DDG::Spice::Images;
+# ABSTRACT: Untriggered Spice for images
 
+use strict;
 use DDG::Spice;
-
-use String::Trim;
+use Text::Trim;
 
 primary_example_queries "tilt shift images";
 secondary_example_queries "thailand beach images";
