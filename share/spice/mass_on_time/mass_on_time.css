@@ -8,13 +8,29 @@
     padding-top: 2.6em;
 }
 
-.tileview__mass-local .tile--loc {
-    width: 17em;
-    height: 12em;
+.is-active .zci-mass_on_time .tile--f__alt .tile__body {
+    padding-top: 0.6em;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
 }
 
-.zci-mass_on_time h6.tile__title {
-    font-size: 1.6em;
+.tile--mass-loc {
+    width: 16em;
+    height: 12em;
+    margin: 0 0.25em 0em 0.25em;
+}
+
+.zci-mass_on_time h6.tile__title--3 {
+    height: auto;
+    font-size: 1.27em;
+    line-height: 1.2;
+    font-weight: bold;
+    width: 9em;
+}
+
+.zci-mass_on_time .tile__title--wrap {
+    display: inline-block;
+    width: 9em;
 }
 
 .zci-mass_on_time .head--title p {
@@ -27,9 +43,23 @@
 
 .zci-mass_on_time .tile--f__main .tile__foot {
     white-space: normal;
-    padding: 2.8em 0.5em;
-    vertical-align: bottom;
-    bottom: 0;
+}
+
+.zci-mass_on_time .tile--f__alt .tile__head, .zci-mass_on_time .tile--f__alt .tile__body {
+    padding: 1em 1em;
+}
+
+.zci-mass_on_time .tile--f__alt .tile__foot {
+    white-space: normal;
+}
+
+.zci-mass_on_time .tile__foot--4 {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #999;
+    max-height: 6.6em;
+    height: auto;
+    margin-bottom: 1em;
 }
 
 .zci-mass_on_time .tile--f__main .tile__foot span {
@@ -40,30 +70,35 @@
     white-space: nowrap;
 }
 
+.zci-mass_on_time .tile--f__alt .tile__foot span {
+    display: block;
+}
+
+.zci-mass_on_time .tile--f__alt .tile__foot-line {
+    white-space: nowrap;
+}
+
 .zci-mass_on_time .head--title {
     float: left;
     width: 11em;
 }
 
 .zci-mass_on_time .head--num {
-    border: 1px solid #ddd;
-    
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    text-align: center;
-    font-size: 0.9em;
-
-    float: right;
-
-    width: 3em;
-    height: 3em;
-    line-height: 1;
+    background-image: url("map-pin.png");
+    background-repeat: no-repeat;
+    height: 2.4em;
+    width: 2.5em;
+    background-position: center;
+    padding-top: 0.65em;
+    font-weight: bold;
+    font-size: 1.6em;
+    font-size: 1.038em;
 }
 
 .zci-mass_on_time .head--num .number {
-    padding-top: 0.65em;
-    line-height: 0.6;
-    font-size: 1.6em;
+    text-align: center;
+} 
+
+svg .zci-mass_on_time .head--num .number {
+    background-image: url("map-pin.svg");
 }

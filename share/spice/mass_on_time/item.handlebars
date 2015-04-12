@@ -1,20 +1,20 @@
-<div class="tile  tile--f  tile--loc  zci-mass_on_time">
+<div class="tile  tile--f  tile--mass-loc  zci-mass_on_time">
 
     <!-- Front of tile -->
     <div class="tile--f__main  tile--loc__main">
         <div class="tile__head">
-            <div class="head--title">
-                <h6 class="tile__title">{{ellipsis name 33}}</h6>
-                <p>{{diocesename}}</p>
+            <div class="head--title tile__title--wrap">
+                <h6 class="tile__title with-sub tile__title--3">{{ellipsis name 41}}</h6>
+                <span class="tile__sub">{{diocesename}}</span>
             </div>
-            <div class="head--num">
+            <div class="head--num pull-right">
                 <div class="number">{{num}}</div> 
             </div>      
         </div>
         <div class="head--clear"></div>
 
-        <div class="tile__body"></div>
-        <div class="tile__foot">
+        <div class="tile__body has_foot--4"></div>
+        <div class="tile__foot tile__foot--4">
             {{#if phone}}
                 <span class="tile__foot-line">{{ellipsis phone}}</span>
             {{/if}}
@@ -27,10 +27,10 @@
 
     <!-- Back of tile -->
     <div class="tile--f__alt  tile--loc__alt">
-        <div class="tile__body  {{#and url meta.sourceName}}has-foot{{/and}}">
+        <div class="tile__body  {{#and url meta.sourceName}}has-foot--4{{/and}}">
 
-            <h6 class="tile__title">
-                <a href="{{url}}" title="{{name}}">{{ellipsis name 33}}</a>
+            <h6 class="tile__title tile__title--3">
+                <a href="{{url}}" title="{{name}}">{{ellipsis name 41}}</a>
             </h6>
 
             {{#if address_lines}}
@@ -41,7 +41,7 @@
                 </a>
             {{else}}
                 {{#if address}}
-                    <span class="tile__address">{{ellipsis address 65}}</span>
+                    <span>{{ellipsis address 65}}</span>
                 {{/if}}
             {{/if}}
 
@@ -49,11 +49,11 @@
                 <a class="tile__phone" href="tel:{{phone}}">{{phone}}</a>
             {{/if}}
 
-            {{#and url meta.sourceName}}
-                <div class="tile__foot">
-                    {{{moreAt url meta.sourceName dynamicMoreAtText=5}}}
-                </div>
-            {{/and}}
+            <div class="tile__foot tile__foot--4">
+                {{#and url meta.sourceName}}
+                   {{{moreAt url meta.sourceName dynamicMoreAtText=5}}}
+                {{/and}}
+            </div>
         </div>
     </div>
 </div>
