@@ -1,4 +1,5 @@
 package DDG::Spice::Plos;
+# ABSTRACT: Search for scientific articles on PLOS ONE
 
 use strict;
 use DDG::Spice;
@@ -13,10 +14,10 @@ topics 'science';
 icon_url 'http://www.plosone.org/images/favicon.ico';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Plos.pm';
 attribution twitter => ['nelas','Bruno C. Vellutini'],
-			github => ['nelas', 'Bruno C. Vellutini'],
-			web => ['http://organelas.com/','Bruno C. Vellutini'],
-			github => ['laouji', 'Crimson Thompson'],
-			twitter => ['laouji','Crimson Thompson'];
+            github => ['nelas', 'Bruno C. Vellutini'],
+            web => ['http://organelas.com/','Bruno C. Vellutini'],
+            github => ['laouji', 'Crimson Thompson'],
+            twitter => ['laouji','Crimson Thompson'];
 
 triggers startend => 'plos', 'plos one', 'plosone', 'public library of science', 'plos journal', 'plos publications';
 

@@ -1,4 +1,5 @@
 package DDG::Spice::AlternativeTo;
+# ABSTRACT: Alternative software for some other software
 
 use strict;
 use DDG::Spice;

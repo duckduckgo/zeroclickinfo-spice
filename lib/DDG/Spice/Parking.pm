@@ -24,7 +24,7 @@ spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => '200 304 30m';
 spice from => '(.+?)/(.+)';
 
-handle remainder => sub {      
+handle remainder => sub {
     return unless $_;    # Guard against "no answer"
 
     # Remove nouns of types of parking spaces.

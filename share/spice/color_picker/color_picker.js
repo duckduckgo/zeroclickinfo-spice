@@ -35,6 +35,7 @@
                 saturation_value_path: DDG.get_asset_path('color_picker', 'saturation_value_gradient.png'),
                 hue_path: DDG.get_asset_path('color_picker', 'hue_gradient.png')
             },
+            signal: 'high',
             meta: {},
             templates: {
                 detail: Spice.color_picker.content,
