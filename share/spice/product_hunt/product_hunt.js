@@ -16,6 +16,12 @@
             }
             return 'producthunt.com';
         }
+        
+        var skip = [
+            "product",
+            "hunt",
+            "producthunt"
+        ];
 
         Spice.add({
             id: 'producthunt',
@@ -52,6 +58,12 @@
                 },
                 detail: false,
                 item_detail: false
+            },
+            relevancy: {
+                skip_words : skip,
+                primary: [
+                    { key: 'name' }
+                ]
             }
         });
     };
