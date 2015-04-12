@@ -104,7 +104,7 @@
 
                 return {
                     title: header,
-                    image: item.to_read_or_not,
+                    image_url: item.to_read_or_not,
                     description: item.critic_review.snippet.replace(/\.\s\.\s\./g, "..."),
                     url: item.detail_link,
                     source: item.critic_review.source,
@@ -115,8 +115,9 @@
             },
 
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
+                    moreAt: true,
                     description: true,
                     content: Spice.book.book
                 }

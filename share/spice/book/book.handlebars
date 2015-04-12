@@ -1,10 +1,18 @@
 <div class="zci--book">
-    <div class="subtitle">by {{author}}
-    {{#if rating}}
-        <span class="rating">{{rating}}%</span></div>
-    {{/if}}
+    <div class="rating-wrap">
+        <img src="{{ imageProxy image_url }}">
+        {{#if rating}}
+            <span class="rating">{{rating}}%</span>
+        {{/if}}   
+    </div>
+    
+    <h1 class="c-text__title">
+        <a href="{{ url }}">{{ title }}</a>
+    </h1>
+    
+    <div class="subtitle">by {{author}}</div>
     <div class="clear"></div>
-    <div>
+    <div class="c-text__body">
         <div class="description">{{{ellipsis description 170}}}</div>
         <div class="source">
             <a href="{{sourceLink}}"><i>-{{source}}</i></a>
