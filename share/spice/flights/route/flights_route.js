@@ -224,6 +224,13 @@
                                 isDeparted: false
                             };
 
+                        var is_on_time = this.onTime(flight[i], departureDate, arrivalDate);
+                        if (is_on_time.length != 2) {
+                            return Spice.failed('route');
+                        }
+
+                        var status = is_on_time[0];
+
                         results.push({
                             flight: flight[i],
                             airlineName: dictFlightStats[carrierCodes[carriersIndex].fsCode].name,
@@ -234,9 +241,10 @@
                             departureDate: departureDate,
                             arrivalDate: arrivalDate,
                             scheduledDepartureDate: scheduledDepartureDate,
-                            scheduledArrivalDate: scheduledArrivalDate
+                            scheduledArrivalDate: scheduledArrivalDate,
+                            status: status,
+                            is_on_time: is_on_time[1],
                         });
-
                         break;
                     }
                 }
@@ -246,63 +254,76 @@
                 return Spice.failed('route');
             }
 
-            Spice.add({
-                data: results,
-                id: "route",
-                name: "Route",
-                meta: {
-                    minItemsForModeSwitch: 3,
-                    sourceName: 'FlightStats',
-                    sourceUrl: "http://www.flightstats.com/go/FlightStatus/flightStatusByRoute.do?"
-                        + "departure=" + this.sourceCity
-                        + "&arrival=" + this.destinationCity,
-                    itemType: results.length === 1 ? "flight" : "flights by departure time"
-                },
-                normalize: function(item) {
-
-                    return {
-                        url: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?"
-                            + "airlineCode=" + item.airlineCode
-                            + "&flightNumber=" + item.flightNumber
-                            + "&departureDate="
-                            + item.departureDate.getFullYear() + "-"
-                            + (item.departureDate.getMonth() + 1) + "-"
-                            + item.departureDate.getDate()
-                    }
-                },
-                sort_fields: {
-                    departureDate: function(a, b) {
-                        a = +new Date(a.departureDate);
-                        b = +new Date(b.departureDate);
-                        return ((a < b) ? -1 : (a > b ? 1 : 0));
-                    }
-                },
-                sort_default: 'departureDate',
-                templates: {
-                    group: 'base',
-                    detail: false,
-                    options: {
-                        content: Spice.flights_route.content
+            DDG.require('moment.js', function() {
+                Spice.add({
+                    data: results,
+                    id: "route",
+                    name: "Route",
+                    meta: {
+                        minItemsForModeSwitch: 3,
+                        sourceName: 'FlightStats',
+                        sourceUrl: "http://www.flightstats.com/go/FlightStatus/flightStatusByRoute.do?"
+                            + "departure=" + this.sourceCity
+                            + "&arrival=" + this.destinationCity,
+                        itemType: 'flights'
                     },
-                    variants: {
-                        tile: 'xwide'
-                    }
-                },
+                    normalize: function(item) {
+                        var status_text,
+                            arrival_datetime;
+
+                        if (!item.is_on_time) {
+                            status_text = 'Supposed to arrive';
+                            arrival_datetime = moment(item.scheduledArrivalDate);
+                        } else {
+                            if (moment(item.arrivalDate).isBefore(moment())) {
+                                status_text = 'Arrived';
+                                arrival_datetime = moment(item.arrivalDate);
+                            } else {
+                                status_text = 'Arrives';
+                                arrival_datetime = moment(item.scheduledArrivalDate);
+                            }
+                        }
+                        var scheduled_arrival = moment(item.scheduledArrivalDate),
+                            scheduled_depart = moment(item.scheduledDepartureDate);
+
+                        var same_date = (scheduled_arrival.date() === scheduled_depart.date());
+
+                        return {
+                            url: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?"
+                                + "airlineCode=" + item.airlineCode
+                                + "&flightNumber=" + item.flightNumber
+                                + "&departureDate="
+                                + item.departureDate.getFullYear() + "-"
+                                + (item.departureDate.getMonth() + 1) + "-"
+                                + item.departureDate.getDate(),
+                            datetime: arrival_datetime.fromNow(),
+                            status_text: status_text,
+                            scheduled_arrival: same_date ? scheduled_arrival.format('LT') : scheduled_arrival.format('LT (MMM DD)'),
+                            scheduled_depart: same_date ? scheduled_depart.format('LT') : scheduled_depart.format('LT (MMM DD)'),
+                            has_landed: (item.status == 'Landed')
+                        }
+                    },
+                    sort_fields: {
+                        departureDate: function(a, b) {
+                            a = +new Date(a.departureDate);
+                            b = +new Date(b.departureDate);
+                            return ((a < b) ? -1 : (a > b ? 1 : 0));
+                        }
+                    },
+                    sort_default: 'departureDate',
+                    templates: {
+                        group: 'base',
+                        detail: false,
+                        options: {
+                            content: Spice.flights_route.content
+                        },
+                        variants: {
+                            tile: 'xwide'
+                        }
+                    },
+                });
             });
         },
-
-
-        // Compute the difference between now and the time of departure or arrival.
-        relativeTime: function relativeTime(date, airportOffset) {
-            // This is the time of departure or arrival (not sure why we're getting the difference).
-            date = date.getTime() - (date.getTimezoneOffset() * this.MILLIS_PER_MIN);
-
-            // This is the current time at the airport (in milliseconds).
-            var now = new Date().getTime() + (airportOffset * this.MILLIS_PER_HOUR);
-
-            return date - now;
-        },
-
 
         // Check if the airplane is on-time or delayed.
         onTime: function onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
@@ -328,45 +349,5 @@
 
     // this helper function queries individual source and destination airport pairs
     ddg_spice_flights_route_helper = ddg_spice_flights.route_helper.bind(ddg_spice_flights);
-
-
-    // Add the date and time or departure or arrival.
-    Spice.registerHelper("airline_time", function(isDeparture, arrivalDate, departureDate) {
-        var dateObject = new Date(arrivalDate);
-        if(isDeparture) {
-            dateObject = new Date(departureDate);
-        }
-
-        var hours = dateObject.getHours(),
-            minutes = dateObject.getMinutes(),
-            date = dateObject.toDateString();
-
-        date = date.substring(0, date.lastIndexOf(" "));
-
-        // AM or PM?
-        var suffix = (hours >= 12) ? "PM" : "AM";
-
-        // Convert to 12-hour time.
-        if(hours > 12) {
-            hours -= 12;
-        } else if(hours === 0) {
-            hours = 12;
-        }
-
-        // Add leading zeroes.
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-
-        if ((arrivalDate.getDate() != departureDate.getDate()) && (!isDeparture)) {
-            return hours + ":" + minutes + " " + suffix + " (" + ddg_spice_flights.MONTH[dateObject.getMonth()] + " " + dateObject.getDate() + ")";
-        } else
-            return hours + ":" + minutes + " " + suffix;
-    });
-
-
-    Spice.registerHelper("airline_status", function(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
-        var result = ddg_spice_flights.onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival),
-            ok_class = result[1] ? "tile__ok" : "tile__not";
-        return '<div class="' + ok_class + '">' + result[0] + '</div>';
-    });
 
 }(this))
