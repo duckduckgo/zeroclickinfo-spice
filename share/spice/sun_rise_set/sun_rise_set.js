@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_sun_rise_set = function(api_result){
 
-        if (api_result.info == 'No matches' || api_result.locations.length == 0) {
+        if (!api_result || api_result.info === 'No matches' || api_result.locations.length == 0) {
             return Spice.failed('sun_rise_set');
         }
 
