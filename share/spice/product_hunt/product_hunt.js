@@ -42,6 +42,7 @@
                 return {
                     id: item.objectId,
                     title: item.name,
+                    subtitle: item.author.name,
                     url: item.url,
                     description: item.tagline,
                     votes: item.vote_count || 0,
@@ -57,7 +58,9 @@
                     footer: Spice.product_hunt.footer
                 },
                 variants: {
-                    tileTitle: '2line-small',
+                    tile: 'basic1',
+                    tileTitle: '2line',
+                    tileSnippet: 'large',
                     tileFooter: '2line'
                 },
                 detail: false,
