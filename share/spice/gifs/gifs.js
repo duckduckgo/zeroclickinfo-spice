@@ -30,7 +30,8 @@
                     image: item.images.fixed_height.url,
                     url: item.url,
                     height: item.images.fixed_height.height,
-                    width: item.images.fixed_height.width
+                    width: item.images.fixed_height.width,
+                    title: item.caption || null
                 };
             },
             templates: {
