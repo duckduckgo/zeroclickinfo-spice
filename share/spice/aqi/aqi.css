@@ -1,6 +1,6 @@
 
 .list__item {
-  
+  display: table-row;
 }
 
 .category__badge {
@@ -36,19 +36,24 @@
 }
 
 .category__name {
-
+  margin: 1em;
 }
 
 .meas__value {
   /*font-weight: bold;*/
+  display: table-cell;
+  width: 1em;
 }
 
 .meas__date {
   font-size: x-small;
+  display: table-cell;
 }
 
 a.help__link {
   color: #413561;
   text-decoration: none;
   font-weight: bold;
+  display: table-cell;
+  width: 4em;
  }
