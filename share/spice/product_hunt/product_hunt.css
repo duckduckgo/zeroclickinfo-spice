@@ -20,7 +20,11 @@
     margin-bottom: 10px;
 }
 
-.is-mobile .tile--producthunt .tile__content {
+.tile--producthunt .tile__title {
+    height: 1em;
+}
+
+.is-mobile .tile__content {
     height: 4.6em;
 }
 
