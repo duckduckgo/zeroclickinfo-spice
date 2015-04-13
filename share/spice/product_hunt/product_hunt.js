@@ -6,7 +6,7 @@
             return Spice.failed('producthunt');
         }
 
-        var qUrl = encodeURIComponent(api_result.query),
+        var query = encodeURIComponent(api_result.query),
             domainRegex = new RegExp(/:\/\/(www\.)?([^\/]+)\/?/);
 
         function getDomain(url) {
@@ -32,9 +32,13 @@
                 itemType: 'Products',
                 sourceName: 'ProductHunt',
                 sourceIcon: true,
-                sourceUrl:  'http://www.producthunt.com/#!/s/posts/' + qUrl
+                sourceUrl:  'http://www.producthunt.com/#!/s/posts/' + query
             },
             normalize: function(item) {
+                // Check relevancy of item name against query
+                if(!DDG.stringsRelevant(query, item.name, skip)) {
+                    return null;
+                }
                 return {
                     id: item.objectId,
                     title: item.name,
@@ -58,12 +62,6 @@
                 },
                 detail: false,
                 item_detail: false
-            },
-            relevancy: {
-                skip_words : skip,
-                primary: [
-                    { key: 'name' }
-                ]
             }
         });
     };
