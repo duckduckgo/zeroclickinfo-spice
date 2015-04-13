@@ -57,7 +57,7 @@
         var percentChange = 10000 * ((recentValue - previousValue) / Math.abs(previousValue));
         percentChange = Math.round(percentChange);
         percentChange /= 100;
-        result.change_percent = percentChange;
+        result.change_percent = Math.abs(percentChange);
           
         // setting style based on change
         if (percentChange > 0) result.changeDirection = 'up';
