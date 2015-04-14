@@ -1,4 +1,4 @@
-package DDG::Spice::TimeAndDateHoliday;
+package DDG::Spice::Holiday;
 # ABSTRACT: Query timeanddate.com for a holiday
 
 use DDG::Spice;
@@ -10,7 +10,7 @@ description "Search for holidays";
 primary_example_queries "when is halloween", "when is constitution day in kazakhstan";
 category "dates";
 topics "everyday";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TimeAndDateHoliday.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Holiday.pm";
 
 attribution github => ['https://github.com/iambibhas', 'Bibhas'],
             twitter => ['https://twitter.com/bibhasdn', 'Bibhas D'];
@@ -42,6 +42,8 @@ handle remainder => sub {
     # Kill eventual slashes to avoid misbehaviour of the `spice from'
     # regular expression.
     $q =~ s/\///g;
+    $q =~ s/\s*[\d]{4}\s*//g;
+
     $c =~ s/\///g;
 
     return $c, $q;
