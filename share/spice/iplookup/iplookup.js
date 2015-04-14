@@ -19,7 +19,7 @@
             title_info = api_result.ddg.famlist[0],
             subtitle_info = "Owner: " + api_result.ddg.shortwho + location;
 
-        var blacklists = DDG.getProperty(api_result.ddg,'blacklists'),
+        var blacklists = api_result.ddg.blacklists,
             contentData = null;
 
         if(typeof blacklists !== "undefined" && blacklists.length > 0) {
