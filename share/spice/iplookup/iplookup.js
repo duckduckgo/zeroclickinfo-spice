@@ -30,7 +30,7 @@
             templates: {
                 group: 'text',
                 options: {
-                    content: api_result.ddg.blacklists.length ? Spice.iplookup.content : null,
+                    content: (DDG.getProperty(api_result.ddg,'blacklists').length) ? Spice.iplookup.content : null,
                     moreAt: true
                 }
             },
