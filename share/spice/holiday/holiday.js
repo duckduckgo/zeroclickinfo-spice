@@ -71,7 +71,7 @@
 
                     return {
                         title: moment(date.d).format('dddd, MMM D, YYYY'),
-                        subtitle: item.n,
+                        subtitle: subtitle,
                         description: item.a,
                         url: url + item.u,
                     };
