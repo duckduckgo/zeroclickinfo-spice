@@ -18,7 +18,14 @@
         var location = api_result.ddg.shortloc ? " ("+api_result.ddg.shortloc+")" : "",
             title_info = api_result.ddg.famlist[0],
             subtitle_info = "Owner: " + api_result.ddg.shortwho + location;
-        
+
+        var blacklists = DDG.getProperty(api_result.ddg,'blacklists'),
+            contentData = null;
+
+        if(typeof blacklists !== "undefined" && blacklists.length > 0) {
+            contentData = Spice.iplookup.content;
+        }
+
         Spice.add({
             id: "iplookup",
             name: "Answer",
@@ -30,7 +37,7 @@
             templates: {
                 group: 'text',
                 options: {
-                    content: (DDG.getProperty(api_result.ddg,'blacklists').length) ? Spice.iplookup.content : null,
+                    content: contentData,
                     moreAt: true
                 }
             },
