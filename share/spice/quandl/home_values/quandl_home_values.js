@@ -62,7 +62,7 @@
         // setting style based on change
         if (percentChange > 0) result.changeDirection = 'up';
         if (percentChange < 0) result.changeDirection = 'down';
-        if (percentChange == 0) result.changeDirection = 'same';
+        if (percentChange == 0) result.changeDirection = 'up';
 
         // the most recent fundamental value
         var value = recentValue;
