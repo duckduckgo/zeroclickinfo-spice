@@ -36,6 +36,7 @@ ddg_spice_test(
     'twitch featured insert random stuff' => undef, 
     'what is twitch featured' => undef, 
     'about twitch' => undef,
+    'testing twitch' => undef,
 );
 
 done_testing;

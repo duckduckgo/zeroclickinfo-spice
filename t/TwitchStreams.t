@@ -106,7 +106,6 @@ ddg_spice_test(
         proxy_cache_valid => "418 1d"
     ),
     'twitch.tv streaming world of warcraft' => test_spice(
-<<<<<<< HEAD
         '/js/spice/twitch/streams/world%20of%20warcraft',
         call_type => 'include',
         caller => 'DDG::Spice::Twitch::Streams',
@@ -114,39 +113,6 @@ ddg_spice_test(
     ),
     'about twitch' => undef, 
     'twitch streams' => undef, 
-=======
-        '/js/spice/twitch_streams/world%20of%20warcraft',
-        call_type => 'include',
-        caller => 'DDG::Spice::TwitchStreams',
-        proxy_cache_valid => "418 1d"
-    ),
-#    'twitch.tv streaming monstercat' => test_spice(
-#        '/js/spice/twitch_streams/monstercat',
-#        call_type => 'include',
-#        caller => 'DDG::Spice::TwitchStreams',
-#        proxy_cache_valid => "418 1d"
-#    ),
-#    'twitch tv streaming dota 2' => test_spice(
-#        '/js/spice/twitch_streams/dota%202',
-#        call_type => 'include',
-#        caller => 'DDG::Spice::TwitchStreams',
-#        proxy_cache_valid => "418 1d"
-#    ),
-#    'twitch tv streaming world of warcraft' => test_spice(
-#        '/js/spice/twitch_streams/world%20of%20warcraft',
-#        call_type => 'include',
-#        caller => 'DDG::Spice::TwitchStreams',
-#        proxy_cache_valid => "418 1d"
-#    ),
-#    'twitch tv streaming monstercat' => test_spice(
-#        '/js/spice/twitch_streams/monstercat',
-#        call_type => 'include',
-#        caller => 'DDG::Spice::TwitchStreams',
-#        proxy_cache_valid => "418 1d"
-#    ),
-    'about twitch' => undef,
-    'twitch streams' => undef,
->>>>>>> a19f5a064da6861a1d5167f42e90c935c70d53af
 );
 
 done_testing;
