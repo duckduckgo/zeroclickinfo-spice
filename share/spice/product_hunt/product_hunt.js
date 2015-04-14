@@ -58,7 +58,6 @@
                     footer: Spice.product_hunt.footer
                 },
                 variants: {
-                    tile: 'basic1',
                     tileTitle: '2line',
                     tileSnippet: 'large',
                     tileFooter: '2line'
