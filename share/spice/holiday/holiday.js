@@ -40,6 +40,7 @@
                     return {
                         title: date.d,
                         subtitle: subtitle,
+                        name: item.n,
                         description: item.a,
                         next_date: next_date.d
                     };
@@ -72,6 +73,7 @@
                     return {
                         title: moment(date.d).format('dddd, MMM D, YYYY'),
                         subtitle: subtitle,
+                        name: item.n,
                         description: item.a,
                         url: url + item.u,
                     };
