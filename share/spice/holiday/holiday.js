@@ -34,7 +34,7 @@
                     }
 
                     if (date.s !== null) {
-                        subtitle += ', Observed in ' + DDG.strip_html(date.s);
+                        subtitle += ', observed in ' + DDG.strip_html(date.s) + '.';
                     }
 
                     return {
@@ -42,7 +42,8 @@
                         subtitle: subtitle,
                         name: item.n,
                         description: item.a,
-                        next_date: next_date.d
+                        next_date: next_date.d,
+                        next_date_states: DDG.strip_html(next_date.s)
                     };
                 };
 
@@ -67,7 +68,7 @@
                         subtitle = item.n;
 
                     if (date.s !== null) {
-                        subtitle += ', Observed in ' + DDG.strip_html(date.s);
+                        subtitle += ', observed in ' + DDG.strip_html(date.s) + '.';
                     }
 
                     return {
