@@ -89,7 +89,6 @@ handle sub {
     my $trigger = $1;
     return $indicator_type . "_" . $trigger_hash->{$trigger} . "_" . $region;
     
-    return;
 };
 
 1;
