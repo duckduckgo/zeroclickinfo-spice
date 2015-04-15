@@ -7,7 +7,7 @@
             return Spice.failed("gifs");
         }
 
-        var searchTerm = DDG.get_query().replace(/gifs?/i,'').trim();
+        var searchTerm = DDG.get_query().replace(/gifs?|giphy/ig,'').trim();
 
         Spice.add({
             id: 'gifs',
