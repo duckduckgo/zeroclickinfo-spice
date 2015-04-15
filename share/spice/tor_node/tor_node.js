@@ -54,13 +54,20 @@
             nodes: nodes,
             meta: {
                 sourceName: "Tor Atlas",
-                sourceUrl: "https://atlas.torproject.org/#search/" + query
+                sourceUrl: "https://atlas.torproject.org/#search/" + query,
+                itemType: "Nodes"
             },
             templates: {
                 options:{
                     moreAt: true
                 }
-            }
+            },
+            sort_fields: {
+                'uptime' : function (a,b) {
+                    return moment(a.last_restarted).isBefore(b.last_restarted) ? -1 : 1;
+                }
+            },
+            sort_default: 'uptime'
         };
 
         DDG.require('moment.js', function(){
@@ -87,10 +94,12 @@
 
             // Template choice depends on the number of nodes
             if (nodes.length === 1) {
-                singleNode(spice)
+                singleNode(spice);
             } else {
                 multipleNodes(spice);
             }
+
+//             console.log(spice);
 
             Spice.add(spice);
         });
@@ -132,8 +141,8 @@
         if (node.dir_address) {
             node.addrs.push(node.dir_address);
         }
-        node.addrs = $.unique($.map(node.addrs, stripPort));
-        addField("IPs", node.addrs.join(", "));
+        var ip_key = node.addrs.length > 1 ? "IPs" : "IP";
+        addField(ip_key, node.addrs.join(", "));
 
         // Handle the node's uptime history.
         addField("First Seen", moment(node.first_seen).format('MMM DD, YYYY'));
@@ -141,7 +150,7 @@
 
         // Handle the node's bandwidth.
         if (node.bandwidth) {
-            addField("Advertised Bandwidth", node.bandwidth);
+            addField("Bandwidth", node.bandwidth);
         }
 
         // Handle the node's bandwidth.
@@ -151,15 +160,13 @@
 
         // Configure the template.
         base.templates = {
-            group: "text",
+            group: "list",
             options: {
-                content: "record",
-                keySpacing: true
-            },
-            meta: {
-                sourceUrl: node.url
+                content: "record"
             }
         };
+
+        base.meta.sourceUrl = node.url;
 
         return base;
     }
@@ -176,6 +183,11 @@
             variants: {
                 tileTitle: '1line-large',
                 tileSnippet: 'small'
+            },
+            elClass: {
+                tileSubtitle: 'tx-clr--grey tx--14',
+                tileSnippet: 'tx-clr--slate-light tx--14',
+                tileFoot: 'tx--14'
             }
         };
 
@@ -201,7 +213,7 @@
     }
 
     function stripPort(addr) {
-        return addr.replace(/:[0-9]+$/, "");
+        return addr.replace(/:\[0-9]+$/, "").replace(/^\[|\]$/g, "");
     }
 
     function getCountryCode(cc) {
