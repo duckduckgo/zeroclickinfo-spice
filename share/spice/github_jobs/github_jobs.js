@@ -14,36 +14,50 @@
         jobs['description'] = query.replace(re, "$1");
         jobs['location'] = query.replace(re, "$2");
 
-        var sourceUrl = 'https://jobs.github.com/positions?description=' + encodeURIComponent(jobs['description']) + "&location=" + encodeURIComponent(jobs['location']);
+        var sourceUrl = 'https://jobs.github.com/positions?description=' + jobs['description'] + "&location=" + jobs['location'];
+        var classes = {
+            'Part Time': 'github_jobs__part_time',
+            'Contract': 'github_jobs__contract'
+        }
 
-        Spice.add({
-            id: 'github_jobs',
-            name: 'Jobs',
-            data: api_result,
-            meta: {
-                sourceUrl: sourceUrl,
-                sourceName: 'GitHub',
-                sourceIcon: true,
-                itemType: 'Jobs'
-            },
-            templates: {
-                group: 'base',
-                options: {
-                    content: Spice.github_jobs.content
+        DDG.require('moment.js', function() {
+            Spice.add({
+                id: 'github_jobs',
+                name: 'Jobs',
+                data: api_result,
+                meta: {
+                    sourceUrl: sourceUrl,
+                    sourceName: 'GitHub',
+                    sourceIcon: true,
+                    itemType: 'Jobs'
                 },
-                detail: false,
-                item_detail: false
-            }
+                normalize: function(item) {
+                    var created_at = moment(item.created_at);
+                    return {
+                        title: item.title,
+                        subtitle: item.company,
+                        location: item.location,
+                        description: $('<div/>').html(DDG.strip_html(item.description)).text(),
+                        url: item.url,
+                        type: item.type,
+                        status_class: item.type === 'Full Time' ? '' : classes[item.type],
+                        created_at: (created_at.diff(moment(), 'days') >= -3) ? 'NEW' : created_at.format('MMM D')
+                    }
+                },
+                templates: {
+                    group: 'text',
+                    options: {
+                        footer: Spice.github_jobs.footer
+                    },
+                    variants: {
+                        tileFooter: '2line',
+                        tileSnippet: 'large',
+                        tileTitle: '2line',
+                    },
+                    detail: false,
+                    item_detail: false
+                }
+            });
         });
     };
-
-    Handlebars.registerHelper("GitHubJobs_formatDate", function(created_at) {
-        var date = new Date(created_at);
-        var months = ["January", "February", "March", "April", "May", "June", "July",
-            "August", "September", "October", "November", "December"
-        ];
-        var month = months[date.getUTCMonth()];
-
-        return month + " " + date.getUTCDate() + ", " + date.getUTCFullYear();
-    });
 }(this));
