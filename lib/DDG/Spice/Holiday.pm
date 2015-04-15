@@ -39,11 +39,11 @@ handle remainder => sub {
         ($q, $c) = ($_, 'us');
     }
 
+    return if $q =~ m/[\d]{4}/;
+
     # Kill eventual slashes to avoid misbehaviour of the `spice from'
     # regular expression.
     $q =~ s/\///g;
-    $q =~ s/\s*[\d]{4}\s*//g;
-
     $c =~ s/\///g;
 
     return $c, $q;
