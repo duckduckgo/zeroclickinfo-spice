@@ -1,9 +1,9 @@
 {{#if running}}
-    <span class="online">&#x25B2; {{uptime}}</span>
+    <span class="online pull-left tx-clr--green">&#x25B2; {{uptime}}</span>
 {{else}}
-    <span class="offline">&#x25BC; {{downtime}}</span>
+    <span class="offline pull-left tx-clr--red">&#x25BC; {{downtime}}</span>
 {{/if}}
 
 {{#if bandwidth}}
-    <span class="bandwidth">{{bandwidth}}</span>
+    <span class="bandwidth pull-right tx-clr--grey">{{bandwidth}}</span>
 {{/if}}

@@ -15,18 +15,3 @@
   background-color: transparent;
   padding: 0;
 }
-
-.tile--tor_node .online {
-  color: #589e4d;
-  float: left;
-}
-
-.tile--tor_node .offline {
-  color: #de5833;
-  float: left;
-}
-
-.tile--tor_node .bandwidth {
-  float: right;
-  color: #999;
-}
