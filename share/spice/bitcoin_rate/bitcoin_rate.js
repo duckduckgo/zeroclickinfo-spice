@@ -17,9 +17,9 @@
     }
 
     function getQueryParams() {
-        var script = $('[src*="/js/spice/bitcoin/"]')[0],
+        var script = $('[src*="/js/spice/bitcoin_rate/"]')[0],
             source = $(script).attr("src"),
-            query = source.match(/bitcoin\/([^\/]*)/)[1];
+            query = source.match(/bitcoin_rate\/([^\/]*)/)[1];
 
         query = $.trim(decodeURIComponent(query));
         if (!query) {
@@ -29,14 +29,14 @@
         return query.split(/\s+/g);
     }
 
-    env.ddg_spice_bitcoin = function(api_result) {
+    env.ddg_spice_bitcoin_rate = function(api_result) {
         var DEFAULT_CURRENCY = "USD",
             params = getQueryParams(),
             prices = null,
             currency = null;
 
         if(!api_result) {
-            return Spice.failed('bitcoin');
+            return Spice.failed('bitcoin_rate');
         }
         
         if (params.length == 0) {
@@ -44,14 +44,14 @@
             prices = api_result[currency];
         } else if (params.length > 1) {
             // Just allow the currency as a parameter
-            return Spice.failed('bitcoin');
+            return Spice.failed('bitcoin_rate');
         } else {
             currency = $.trim(params[0].toUpperCase());
             prices = api_result[currency];
 
             if (!prices) {
                 // Is not a valid currency
-                return Spice.failed('bitcoin');
+                return Spice.failed('bitcoin_rate');
             }
         }
 
@@ -66,7 +66,7 @@
         };
 
         Spice.add({
-            id: "bitcoin",
+            id: "bitcoin_rate",
             name: 'Answer',
             signal: 'high',
             data: {
@@ -81,7 +81,7 @@
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.bitcoin.content,
+                    content: Spice.bitcoin_rate.content,
                     moreAt: true
                 }
             }

@@ -1,8 +1,8 @@
-.zci--bitcoin .bitcoin {
+.zci--bitcoin_rate .bitcoin_rate {
     padding-bottom: 0;
 }
 
-.zci--bitcoin .bitcoin__blk {
+.zci--bitcoin_rate .bitcoin_rate__blk {
     vertical-align: top;
     padding: 1em 7%;
     margin: 0;
@@ -11,54 +11,54 @@
     border-radius: 3px;
 	line-height: 50px;
 }
-.zci--bitcoin .bitcoin__title,
-.zci--bitcoin .bitcoin__price  {
+.zci--bitcoin_rate .bitcoin_rate__title,
+.zci--bitcoin_rate .bitcoin_rate__price  {
 	vertical-align: middle;
 	display: inline-block;
 }
 
-.zci--bitcoin .bitcoin__title {
+.zci--bitcoin_rate .bitcoin_rate__title {
 	font-size: 15px;
 }
 
-.zci--bitcoin .bitcoin__price {
+.zci--bitcoin_rate .bitcoin_rate__price {
     font-size: 35px;
     float: right;
 }
 
 
 @media screen and (max-width: 680px) {
-	.zci--bitcoin .bitcoin {
+	.zci--bitcoin_rate .bitcoin_rate {
 		margin-left: -0.5em;
 		margin-right: 0;
 	}
-	.zci--bitcoin .bitcoin__wdt {
+	.zci--bitcoin_rate .bitcoin_rate__wdt {
 		padding-left: 0.5em;
 	}
-	.zci--bitcoin .bitcoin__blk {
+	.zci--bitcoin_rate .bitcoin_rate__blk {
 		line-height: 24px;
 	}
-	.zci--bitcoin .bitcoin__price {
+	.zci--bitcoin_rate .bitcoin_rate__price {
 	font-size: 24px;
     }
 }
 @media screen and (max-width: 460px) {
-	.zci--bitcoin .bitcoin__blk {
+	.zci--bitcoin_rate .bitcoin_rate__blk {
 		line-height: 1;
 	}
-	.zci--bitcoin .bitcoin__price {
+	.zci--bitcoin_rate .bitcoin_rate__price {
 		float: none;
 		display: block;
 		text-align: left;
 	}
-	.zci--bitcoin .bitcoin__title {
+	.zci--bitcoin_rate .bitcoin_rate__title {
 		top: 0;
 		display: block;
 		font-size: 13px;
     }
 }
 @media screen and (max-width: 380px) {
-	.zci--bitcoin .bitcoin__price {
+	.zci--bitcoin_rate .bitcoin_rate__price {
 		font-size: 21px;
 	}
 }

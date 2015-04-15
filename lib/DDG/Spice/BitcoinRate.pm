@@ -1,4 +1,4 @@
-package DDG::Spice::Bitcoin;
+package DDG::Spice::BitcoinRate;
 # ABSTRACT: Bitcoin exchange rates
 
 use strict;
@@ -8,9 +8,9 @@ use DDG::Spice;
 primary_example_queries "bitcoin";
 secondary_example_queries "bitcoin eur", "bitcoin cny";
 description "Get Bitcoin Exchange Rate";
-name "Bitcoin";
+name "BitcoinRate";
 source "http://blockchain.info";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Bitcoin.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BitcoinRate.pm";
 topics "economy_and_finance";
 category "conversions";
 
