@@ -81,7 +81,7 @@
                     s:  "seconds",
                     m:  "1 minute",
                     mm: "%d minutes",
-                    h:  "an hour",
+                    h:  "1 hour",
                     hh: "%d hours",
                     d:  "1 day",
                     dd: "%d days",
