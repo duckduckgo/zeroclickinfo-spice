@@ -1,12 +1,11 @@
 package DDG::Spice::SunRiseSet;
-# ABSTRACT: Returns package information from npm package manager's registry.
 
 use DDG::Spice;
 use YAML::XS qw( Load );
 use Text::Trim;
 
 primary_example_queries "sunset Oslo", "sunrise Oslo";
-secondary_example_queries "Oslp sunset time", "Oslo sunrise time";
+secondary_example_queries "Oslo sunset time", "Oslo sunrise time";
 description "Provides the sunrise/sunset time of country, city or state searched";
 name "SunRiseSet";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SunRiseSet.pm";
