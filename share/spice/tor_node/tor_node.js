@@ -99,8 +99,6 @@
                 multipleNodes(spice);
             }
 
-//             console.log(spice);
-
             Spice.add(spice);
         });
     };
