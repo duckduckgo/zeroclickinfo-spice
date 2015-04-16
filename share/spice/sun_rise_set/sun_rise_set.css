@@ -26,9 +26,9 @@
 	padding-right: 2px;
 }
 
-.zci--sun_rise_set .sun_rise_set--times {
-    margin: 0 0.5em;
-    font-size: 1.2em;
+.zci--sun_rise_set .sun_rise_set--time {
+    margin: 0px 0.4em;
+    font-size: 1.7em;
     position: relative;
     padding-top: 15px;
 }
