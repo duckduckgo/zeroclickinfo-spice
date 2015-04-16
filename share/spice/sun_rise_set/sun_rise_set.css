@@ -1,0 +1,50 @@
+.zci--sun_rise_set .sun_rise_set--header {
+    margin-bottom: 0.25em;
+    margin-top: 0.25em;
+}
+
+.zci--sun_rise_set .ddgsi {
+	position: relative;
+	top: 2px;
+}
+
+.zci--sun_rise_set .sun_rise_set--row span {
+	vertical-align: middle;
+}
+
+.zci--sun_rise_set .ddgsi {
+	margin-right: 0.5em;
+}
+
+.zci--sun_rise_set .sun_rise_set--timeboxes {
+    display: inline-block;
+    height: 30px;
+}
+
+.zci--sun_rise_set .sun_rise_set--border-right {
+	border-right: 1px solid #ccc;
+	padding-right: 2px;
+}
+
+.zci--sun_rise_set .sun_rise_set--time {
+    margin: 0px 0.4em;
+    font-size: 1.7em;
+    position: relative;
+    padding-top: 15px;
+}
+
+.zci--sun_rise_set .sun_rise_set--setbox,
+.zci--sun_rise_set .sun_rise_set--risebox {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+}
+
+.zci--sun_rise_set .sun_rise_set--setbox {
+	padding-left: 0.5em;
+}
+
+.zci--sun_rise_set .sun_rise_set--risebox {
+	padding: 0;
+	margin-left: -3px;
+}
