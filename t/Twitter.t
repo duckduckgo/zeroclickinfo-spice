@@ -18,7 +18,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Twitter',
     ),
-    
+
     'twitter ecounysis' => test_spice(
         '/js/spice/twitter/ecounysis',
         call_type => 'include',
@@ -30,7 +30,7 @@ ddg_spice_test(
     'twitter company' => undef,
     'about twitter' => undef,
     'twitter apis' => undef,
-    'twitter developers' => undef,   
+    'twitter developers' => undef,
     'twitter users' => undef,
     'twitter search' => undef
 );

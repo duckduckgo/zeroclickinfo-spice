@@ -1,0 +1,406 @@
+aruba:	ABW
+abw:	ABW
+afghanistan:	AFG
+afg:	AFG
+angola:	AGO
+ago:	AGO
+albania:	ALB
+alb:	ALB
+netherlands antilles:	ANT
+ant:	ANT
+argentina:	ARG
+arg:	ARG
+armenia:	ARM
+arm:	ARM
+american samoa:	ASM
+asm:	ASM
+antigua:	ATG
+barbuda:	ATG
+atg:	ATG
+australia:	AUS
+aus:	AUS
+austria:	AUT
+aut:	AUT
+azerbaijan:	AZE
+aze:	AZE
+burundi:	BDI
+bdi:	BDI
+belgium:	BEL
+bel:	BEL
+benin:	BEN
+ben:	BEN
+burkina faso:	BFA
+bfa:	BFA
+bangladesh:	BGD
+bgd:	BGD
+bulgaria:	BGR
+bgr:	BGR
+kingdom of bahrain:	BHR
+bahrain:	BHR
+the bahams:	BHS
+bahams:	BHS
+bhs:	BHS
+herzegovina:	BIH
+bosnia:	BIH
+bih:	BIH
+belarus:	BLR
+blr:	BLR
+belize:	BLZ
+blz:	BLZ
+bermuda:	BMU
+bmu:	BMU
+bolivia:	BOL
+bol:	BOL
+brazil:	BRA
+bra:	BRA
+barbados:	BRB
+brb:	BRB
+brunei darussalam:	BRN
+brn:	BRN
+bhutan:	BTN
+btn:	BTN
+botswana:	BWA
+bwa:	BWA
+central african rep.:	CAF
+central african republic:	CAF
+caf:	CAF
+canada:	CAN
+can:	CAN
+switzerland:	CHE
+che:	CHE
+chile:	CHL
+chl:	CHL
+china:	CHN
+chn:	CHN
+cameroon:	CMR
+cmr:	CMR
+colombia:	COL
+col:	COL
+comoros:	COM
+com:	COM
+cape verde:	CPV
+cpv:	CPV
+costa rica:	CRI
+cri:	CRI
+cuba:	CUB
+cub:	CUB
+cyprus:	CYP
+cyp:	CYP
+czech republic:	CZE
+cze:	CZE
+germany:	DEU
+deu:	DEU
+djibouti:	DJI
+dji:	DJI
+dominica:	DMA
+dma:	DMA
+denmark:	DNK
+dnk:	DNK
+dominican republic:	DOM
+dom:	DOM
+algeria:	DZA
+dza:	DZA
+ecuador:	ECU
+ecu:	ECU
+egypt:	EGY
+egy:	EGY
+eritrea:	ERI
+eri:	ERI
+spain:	ESP
+esp:	ESP
+estonia:	EST
+est:	EST
+ethiopia:	ETH
+eth:	ETH
+finland:	FIN
+fin:	FIN
+fiji:	FJI
+fji:	FJI
+france:	FRA
+fra:	FRA
+faeroe islands:	FRO
+fro:	FRO
+gabon:	GAB
+gab:	GAB
+united kingdom:	GBR
+gbr:	GBR
+georgia:	GEO
+geo:	GEO
+ghana:	GHA
+gha:	GHA
+gibraltar:	GIB
+gib:	GIB
+guinea-bissau:	GIN
+gin:	GIN
+guadeloupe:	GLP
+glp:	GLP
+the gambia:	GMB
+gambia:	GMB
+gmb:	GMB
+guinea:	GNB
+gnb:	GNB
+equatorial guinea:	GNQ
+gnq:	GNQ
+greece:	GRC
+grc:	GRC
+grenada:	GRD
+grd:	GRD
+greenland:	GRL
+grl:	GRL
+guatemala:	GTM
+gtm:	GTM
+french guiena:	GUF
+guf:	GUF
+guam:	GUM
+gum:	GUM
+guyana:	GUY
+guy:	GUY
+hong kong:	HKG
+hkg:	HKG
+honduras:	HND
+hnd:	HND
+croatia:	HRV
+hrv:	HRV
+haiti:	HTI
+hti:	HTI
+hungary:	HUN
+hun:	HUN
+indonesia:	IDN
+idn:	IDN
+india:	IND
+ind:	IND
+ireland:	IRL
+irl:	IRL
+iran:	IRN
+irn:	IRN
+iraq:	IRQ
+irq:	IRQ
+iceland:	ISL
+isl:	ISL
+israel:	ISR
+isr:	ISR
+italy:	ITA
+ita:	ITA
+jamaica:	JAM
+jam:	JAM
+jordan:	JOR
+jor:	JOR
+japan:	JPN
+jpn:	JPN
+kazakhstan:	KAZ
+kaz:	KAZ
+kenya:	KEN
+ken:	KEN
+kyrgyz republic:	KGZ
+kyrgyz:	KGZ
+kgz:	KGZ
+cambodia:	KHM
+khm:	KHM
+kiribati:	KIR
+kir:	KIR
+korea:	KOR
+kor:	KOR
+kuwait:	KWT
+kwt:	KWT
+lao republic:	LAO
+lao:	LAO
+lebanon:	LBN
+lbn:	LBN
+liberia:	LBR
+lbr:	LBR
+libya:	LBY
+lby:	LBY
+sri lanka:	LKA
+lka:	LKA
+lesotho:	LSO
+lso:	LSO
+lithuania:	LTU
+ltu:	LTU
+luxembourg:	LUX
+lux:	LUX
+latvia:	LVA
+lva:	LVA
+macao:	MAC
+mac:	MAC
+morocco:	MAR
+mar:	MAR
+moldova:	MDA
+mda:	MDA
+madagascar:	MDG
+mdg:	MDG
+maldives:	MDV
+mdv:	MDV
+mexico:	MEX
+mex:	MEX
+fyr macedonia:	MKD
+macedonia:	MKD
+mkd:	MKD
+mali:	MLI
+mli:	MLI
+malta:	MLT
+mlt:	MLT
+myanmar:	MMR
+mmr:	MMR
+mongolia:	MNG
+mng:	MNG
+mozambique:	MOZ
+moz:	MOZ
+mauritania:	MRT
+mrt:	MRT
+martinique:	MTQ
+mtq:	MTQ
+mauritius:	MUS
+mus:	MUS
+malawi:	MWI
+mwi:	MWI
+malaysia:	MYS
+mys:	MYS
+namibia:	NAM
+nam:	NAM
+nauru:	NAU
+nau:	NAU
+new caledonia:	NCL
+ncl:	NCL
+niger:	NER
+ner:	NER
+nigeria:	NGA
+nga:	NGA
+nicaragua:	NIC
+nic:	NIC
+netherlands:	NLD
+nld:	NLD
+norway:	NOR
+nor:	NOR
+nepal:	NPL
+npl:	NPL
+new zealand:	NZL
+nzl:	NZL
+oman:	OMN
+omn:	OMN
+pakistan:	PAK
+pak:	PAK
+panama:	PAN
+pan:	PAN
+peru:	PER
+per:	PER
+philippines:	PHL
+phl:	PHL
+palau:	PLW
+plw:	PLW
+papua new guinea:	PNG
+png:	PNG
+poland:	POL
+pol:	POL
+north korea:	PRK
+prk:	PRK
+portugal:	PRT
+prt:	PRT
+paraguay:	PRY
+pry:	PRY
+french polynesia:	PYF
+pyf:	PYF
+qatar:	QAT
+qat:	QAT
+réunion:	REU
+reu:	REU
+romania:	ROM
+rom:	ROM
+russia:	RUS
+rus:	RUS
+rwanda:	RWA
+rwa:	RWA
+saudi arabia:	SAU
+sau:	SAU
+sudan:	SDN
+sdn:	SDN
+senegal:	SEN
+sen:	SEN
+montenegro:	SER
+serbia:	SER
+ser:	SER
+singapore:	SIN
+sin:	SIN
+solomon islands:	SLB
+slb:	SLB
+sierra leone:	SLE
+sle:	SLE
+el salvador:	SLV
+slv:	SLV
+somalia:	SOM
+som:	SOM
+suriname:	SUR
+sur:	SUR
+slovak republic:	SVK
+slovak:	SVK
+svk:	SVK
+slovenia:	SVN
+svn:	SVN
+sweden:	SWE
+swe:	SWE
+swaziland:	SWZ
+swz:	SWZ
+seychelles:	SYC
+syc:	SYC
+syrian arab republic:	SYR
+syr:	SYR
+chad:	TCD
+tcd:	TCD
+togo:	TGO
+tgo:	TGO
+thailand:	THA
+tha:	THA
+tajikistan:	TJK
+tjk:	TJK
+turkmenistan:	TKM
+tkm:	TKM
+tonga:	TON
+ton:	TON
+tobago:	TTO
+trinidad:	TTO
+tto:	TTO
+tunisia:	TUN
+tun:	TUN
+turkey:	TUR
+tur:	TUR
+tanzania:	TZA
+tza:	TZA
+united arab emirates:	UAE
+uae:	UAE
+uganda:	UGA
+uga:	UGA
+ukraine:	UKR
+ukr:	UKR
+uruguay:	URY
+ury:	URY
+united states:	USA
+us:	USA
+usa:	USA
+uzbekistan:	UZB
+uzb:	UZB
+bolivarian republic of venezuela:	VEN
+venezuela:	VEN
+ven:	VEN
+vietnam:	VNM
+vnm:	VNM
+vanuatu:	VUT
+vut:	VUT
+gaza strip:	WBG
+west bank:	WBG
+wbg:	WBG
+world:	WLD
+earth:	WLD
+global:	WLD
+wld:	WLD
+samoa:	WSM
+wsm:	WSM
+republic of yemen:	YEM
+yemen:	YEM
+yem:	YEM
+yugoslavia:	YUG
+yug:	YUG
+south africa:	ZAF
+zaf:	ZAF
+zambia:	ZMB
+zmb:	ZMB
+zwe:	ZWE
+zimbabwe:	ZWE
