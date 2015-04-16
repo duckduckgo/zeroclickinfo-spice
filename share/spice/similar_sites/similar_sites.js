@@ -1,4 +1,5 @@
 (function(env) {
+    'use strict';
 
     env.ddg_spice_similar_sites = function(api_result) {
 
@@ -10,66 +11,34 @@
             return Spice.failed('similar_sites');
         }
 
-        var num = api_result.num;
-        var show_more = true;
-        if (num < 5)
-            show_more = false;
-
         Spice.add({
             id: 'similar_sites',
             name: 'Similar Sites',
-
-            data: {
-                results: api_result,
-                num: num,
-                show_more: show_more,
-                more_at: query
-            },
-
+            data: api_result,
             normalize: function (data) {
                 var sites = [];
 
                 for (var i = 0; i < data.num; i++) {
-                    var url = data.results['r' + i];
+                    var url = data['r' + i];
                     sites.push({
                         url: url,
                         name: url.replace(/^https?:\/\/(www\.)?|\/+$/g, "")
                     });
-                };
+                }
 
                 return {
-                    sites: sites
-                }
+                    list: sites
+                };
             },
-
             meta: {
-                total: num,
                 sourceName: 'SimilarSites',
                 sourceUrl: 'http://www.similarsites.com/site/' + query,
-                sourceIcon: true,
-                itemType: 'Similar Sites'
             },
-
             templates: {
-                group: 'base',
+                group: 'list',
                 options: {
-                    content: Spice.similar_sites.content
+                    list_content: Spice.similar_sites.list_content
                 }
-            },
-
-            onShow: function() {
-                var $zci = $(".zci--similar_sites"),
-                    $icon = $zci.find(".chomp--link__icn"),
-                    $more = $zci.find(".chomp--link__mr"),
-                    $less = $zci.find(".chomp--link__ls");
-
-                $("#show_more").click(function() {
-                    $more.toggle();
-                    $less.toggle();
-                    $("#hidden").toggle();
-
-                    $icon.toggleClass("expand");
-                });
             }
         });
     };

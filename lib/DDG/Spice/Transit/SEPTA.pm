@@ -1,4 +1,5 @@
 package DDG::Spice::Transit::SEPTA;
+# ABSTRACT: Information on next trains on SEPTA (Pennsylvania)
 
 use strict;
 use DDG::Spice;
@@ -72,7 +73,7 @@ handle remainder => sub {
     my $curr = normalize_stop($1);
     my $tofrom = $2;
     my $dest = normalize_stop($3);
-    
+
     if ($curr && $dest) {
         #put the stops in the right order (for queries like "septa paoli from strafford")
         return ($tofrom eq 'to' ? ($curr, $dest) : ($dest, $curr));

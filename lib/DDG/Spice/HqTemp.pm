@@ -1,4 +1,5 @@
 package DDG::Spice::HqTemp;
+# ABSTRACT: Defunct Spice
 
 use strict;
 use DDG::Spice;

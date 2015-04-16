@@ -1,4 +1,5 @@
 package DDG::Spice::GoWatchIt;
+# ABSTRACT: Stream provides for movies and shows
 
 use strict;
 use DDG::Spice;

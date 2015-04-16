@@ -1,4 +1,5 @@
 package DDG::Spice::Maps::Chains;
+# ABSTRACT: Nearby subsidiaries of chains
 
 use strict;
 use DDG::Spice;

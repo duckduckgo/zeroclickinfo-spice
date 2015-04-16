@@ -1,0 +1,57 @@
+.tileview__get_events .tile--get_events {
+    width: 14em;
+    height: 13em;
+}
+
+.tile--get_events .tile_title--2 {
+    max-height: 3em;
+    height: 3em;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #333333;
+}
+
+.tile--get_events .tile__title--wrap {
+    display: inline-block;
+    width: 8.5em;
+}
+
+.tile--get_events .tile__num--get_events {
+    display: inline-block;
+    width: 3em;
+    height: 3em;
+    line-height: 1;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.tile--get_events .tile__num--get_events .number {
+    background-image: url("https://cloud.githubusercontent.com/assets/873785/7015929/e54cd9be-dca9-11e4-98cc-fe0984386a74.png");
+    background-repeat: no-repeat;
+    height: 30px;
+    background-position: center; 
+    padding-top: 0.65em;
+    line-height: 0.6;
+    font-weight: bold;
+    font-size: 1.6em;
+    font-size: 13px;
+    color: #333333;
+}
+
+.tile--get_events__alt .content--lg {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #999999;
+    height: 4em;
+    overflow: hidden;
+}
+
+.tile--get_events__main .tile__foot {
+    white-space: normal;
+}
+
+.tile--get_events .tile__foot--4 {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #999999;
+}
