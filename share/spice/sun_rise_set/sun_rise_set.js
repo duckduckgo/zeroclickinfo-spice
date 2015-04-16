@@ -39,7 +39,7 @@
         DDG.require('moment.js', function() {
             Spice.add({
                 id: "sun_rise_set",
-                name: "Sunrise/Sunset",
+                name: "Answer",
                 data: {
                     location: location.geo.name,
                     country: location.geo.country.name,
