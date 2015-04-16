@@ -36,33 +36,31 @@
 
         var img_ext = Modernizr.svg ? 'svg' : 'png';
 
-        Spice.add({
-            id: "sun_rise_set",
-            name: "Sunrise/Sunset",
-            data: {
-                location: location.geo.name,
-                country: location.geo.country.name,
-                sunrise_time: sunrise_time + ' AM',
-                sunset_time: sunset_time + ' PM',
-                sunrise_image: DDG.get_asset_path('sun_rise_set', ['sunrise', img_ext].join('.')),
-                sunset_image: DDG.get_asset_path('sun_rise_set', ['sunset', img_ext].join('.')),
-            },
-            meta: {
-                sourceName: "timeanddate.com",
-                sourceUrl: 'http://www.timeanddate.com/worldclock/results.html?query=' + location.geo.name
-            },
-            normalize: function(item) {
-                return {
-                    title: item.location,
-                };
-            },
-            templates: {
-                group: 'text',
-                options:{
-                    content: Spice.sun_rise_set.content,
-                    moreAt: true
+        DDG.require('moment.js', function() {
+            Spice.add({
+                id: "sun_rise_set",
+                name: "Sunrise/Sunset",
+                data: {
+                    location: location.geo.name,
+                    country: location.geo.country.name,
+                    current_date: moment().format('DD MMM YYYY'),
+                    sunrise_time: sunrise_time + ' AM',
+                    sunset_time: sunset_time + ' PM',
+                    sunrise_image: DDG.get_asset_path('sun_rise_set', ['sunrise', img_ext].join('.')),
+                    sunset_image: DDG.get_asset_path('sun_rise_set', ['sunset', img_ext].join('.')),
+                },
+                meta: {
+                    sourceName: "timeanddate.com",
+                    sourceUrl: 'http://www.timeanddate.com/worldclock/results.html?query=' + location.geo.name
+                },
+                templates: {
+                    group: 'text',
+                    options:{
+                        content: Spice.sun_rise_set.content,
+                        moreAt: true
+                    }
                 }
-            }
+            });
         });
     };
 }(this));
