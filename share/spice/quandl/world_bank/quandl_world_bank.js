@@ -1,32 +1,32 @@
 /**
 * Created with DuckDuckHack.
 * User: brianrisk
-* Date: 2015-02-17
-* Time: 04:46 PM
+* Date: 2015-02-12
+* Time: 04:37 PM
 * To change this template use Tools | Templates.
 */
 
 
 (function (env) {
     'use strict';
-    env.ddg_spice_quandl_home_values = function(api_result){
+    env.ddg_spice_quandl_world_bank = function(api_result){
 
         if (!api_result) {
-            return Spice.failed('quandl_home_values');
+            return Spice.failed('quandl_world_bank');
         }
 
         var result = api_result;
         
         // we need two data points to get percent change
         if (result.data.length < 2) {
-            return Spice.failed('quandl_home_values');
+            return Spice.failed('quandl_world_bank');
         }
 
         // url to the data set page
         result.url = 'https://quandl.com/' + result.source_code + "/" + result.code;
 
         // add title tag for link:
-        result.urlTitle = 'View more home values data at Quandl';
+        result.urlTitle = 'View more World Bank data at Quandl';
         
         var recentValue = result.data[0][1];
         var previousValue = result.data[1][1];
@@ -45,13 +45,8 @@
         result.to_date = toDateString;
         
         // splitting title into header and subheader
-        var dashIndex = result.name.indexOf("-");
-        var headerFirst =result.name.substring(0,dashIndex).trim();
-        var headerSecond = result.name.substring(dashIndex + 1, result.name.length).trim();
-        var re = new RegExp(',', 'g');
-        headerSecond = headerSecond.replace(re, ', ');
-        result.header = headerSecond;
-        result.subheader = headerFirst;
+        result.header = result.name;
+        result.subheader = 'Data';
         
         // getting rounded percentage
         var percentChange = 10000 * ((recentValue - previousValue) / Math.abs(previousValue));
@@ -68,33 +63,35 @@
         var value = recentValue;
         if (Math.abs(value) >= Math.pow(10,12)) {
             value = Math.round(value / Math.pow(10,10)) / Math.pow(10,2);
-            value = "$" + value + " trillion";
+            value = value + " trillion";
         } else if (Math.abs(value) >= Math.pow(10,9)) {
             value = Math.round(value / Math.pow(10,7)) / Math.pow(10,2);
-            value = "$" + value + " billion";
+            value = value + " billion";
         } else if (Math.abs(value) >= Math.pow(10,6)) {
             value = Math.round(value / Math.pow(10,4)) / Math.pow(10,2);
-            value = "$" + value + " million";
+            value = value + " million";
         } else if (Math.abs(value) >= Math.pow(10,3)) {
             value = Math.round(value / Math.pow(10,1)) / Math.pow(10,2);
-            value = "$" + value + " thousand";
+            value = value + " thousand";
+        } else {
+            value = Math.round(value * 100) / 100;
         }
         result.value = value;
         
 
         Spice.add({
-            id: 'quandl_home_values',
-            name: 'Home Values',
+            id: 'quandl_world_bank',
+            name: 'World Bank',
             data: result,
             meta: {
                 sourceName: 'Quandl',
                 sourceUrl: result.url,
-                sourceIconUrl:  DDG.get_asset_path('quandl/home_values','quandl32x32.png')
+                sourceIconUrl:  DDG.get_asset_path('quandl/world_bank','quandl32x32.png')
             },
             templates: {
                 group: 'base',
                 options: {
-                    content: Spice.quandl_home_values.content,
+                    content: Spice.quandl_world_bank.content,
                     moreAt: true
                 }
             }

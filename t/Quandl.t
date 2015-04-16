@@ -44,26 +44,74 @@ ddg_spice_test(
 
 
 ddg_spice_test(
-    [qw( DDG::Spice::Quandl::HomeValues )],
-
-    # primary example
+	[qw( DDG::Spice::Quandl::HomeValues )],
+    
+    # primary zip example
     '11235 homes' => test_spice(
-        '/js/spice/quandl/home_values/ZIP_ALLHOMES_11235',
-        call_type => 'include',
-        caller => 'DDG::Spice::Quandl::HomeValues',
-    ),
-
-    # secondary example
+		'/js/spice/quandl/home_values/ZIP_ALLHOMES_11235',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::HomeValues',
+	),
+    
+    # secondary zip example
     'expensive homes 11235' => test_spice(
-        '/js/spice/quandl/home_values/ZIP_TOPTIER_11235',
-        call_type => 'include',
-        caller => 'DDG::Spice::Quandl::HomeValues',
-    ),
-
+		'/js/spice/quandl/home_values/ZIP_TOPTIER_11235',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::HomeValues',
+	),
+    
+    # metro example, is not caught by 'new york' trigger
+    'new york city homes' => test_spice(
+		'/js/spice/quandl/home_values/METRO_ALLHOMES_NEWYORKNY',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::HomeValues',
+	),
+    
+    # state example
+    'new york homes' => test_spice(
+		'/js/spice/quandl/home_values/STATE_ALLHOMES_NEWYORK',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::HomeValues',
+	),
+    
+    
     # No results for a single region alone
-    '27510' => undef,
-
+	'27510' => undef,
+    'new york' => undef,
+    'raleigh' => undef,
+    
     # No results for a single trigger alone
     'homes' => undef,
 );
+
+
+ddg_spice_test(
+	[qw( DDG::Spice::Quandl::WorldBank )],
+    
+    'world population' => test_spice(
+		'/js/spice/quandl/world_bank/WLD_SP_POP_TOTL',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::WorldBank',
+	),
+    
+    'population world' => test_spice(
+		'/js/spice/quandl/world_bank/WLD_SP_POP_TOTL',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::WorldBank',
+	),
+    
+    'world female population' => test_spice(
+		'/js/spice/quandl/world_bank/WLD_SP_POP_TOTL_FE_ZS',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::WorldBank',
+	),
+   
+    # No results for a single region alone
+	'world' => undef,
+    'us' => undef,
+    
+    'population' => undef, 
+);
+
+
 done_testing;
