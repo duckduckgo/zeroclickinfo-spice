@@ -11,7 +11,7 @@
             name: 'Answer',
             data: api_result,
             meta: {
-                sourceUrl: 'https://www.twinword.com',
+                sourceUrl: 'https://www.twinword.com/?moreLink=' + encodeURIComponent(api_result.encrypt_entry),
                 sourceName: 'Twinword',
                 sourceIconUrl: 'http://icons.duckduckgo.com/ip/www.twinword.com.ico'
             },
