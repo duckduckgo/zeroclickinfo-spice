@@ -1,6 +1,6 @@
 (function(env) {
     "use strict";
-    
+
     env.ddg_spice_indeed_jobs = function(api_result) {
         if (api_result.error || !api_result.results.length) {
             return Spice.failed('indeed_jobs');
@@ -11,7 +11,7 @@
             re = /^http:\/\/([a-z.]+)\//,
             rematch = api_result.results[0].url.match(re),
             www_domain = rematch ? rematch[0] : "http://www.indeed.com/";
-        
+
         Spice.add({
             id: "indeed_jobs",
             name: "Jobs",
@@ -21,6 +21,11 @@
                 sourceUrl: www_domain + 'jobs?q=' + encodeURIComponent(q) + '&l=' + encodeURIComponent(loc)
             },
             normalize: function(item) {
+                // ensure job is relevant to query
+                if (q.length && !DDG.stringsRelevant(item.jobtitle, q)){
+                    return null;
+                }
+
                 return {
                     url: item.url,
                     title: item.jobtitle,
