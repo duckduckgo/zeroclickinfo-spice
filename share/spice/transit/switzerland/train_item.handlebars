@@ -11,5 +11,7 @@
 </div>
 <div class="switzerland__status">
     <div class="one-line">{{status}}</div>
-    <div class="one-line">Platform {{platform}}</div>
+    {{#if platform}}
+        <div class="one-line">Platform {{platform}}</div>
+    {{/if}}
 </div>
