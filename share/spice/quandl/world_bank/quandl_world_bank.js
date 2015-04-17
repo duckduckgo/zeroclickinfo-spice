@@ -16,7 +16,7 @@
         }
 
         var result = api_result;
-        
+
         // we need two data points to get percent change
         if (result.data.length < 2) {
             return Spice.failed('quandl_world_bank');
@@ -27,33 +27,33 @@
 
         // add title tag for link:
         result.urlTitle = 'View more World Bank data at Quandl';
-        
+
         var recentValue = result.data[0][1];
         var previousValue = result.data[1][1];
-        
+
         // month array to make string version of date
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-		
-        // adding in the previous date point date	
+
+        // adding in the previous date point date
         var fromDate = new Date(result.data[1][0]);
         var fromDateString = months[fromDate.getUTCMonth()] + " " + fromDate.getUTCDate() + ", " + fromDate.getFullYear();
         result.from_date = fromDateString;
-        
+
         // reformatting the current data point date (to_date)
         var toDate = new Date(result.to_date);
         var toDateString = months[toDate.getUTCMonth()] + " " + toDate.getUTCDate() + ", " + toDate.getFullYear();
         result.to_date = toDateString;
-        
+
         // splitting title into header and subheader
         result.header = result.name;
         result.subheader = 'Data';
-        
+
         // getting rounded percentage
         var percentChange = 10000 * ((recentValue - previousValue) / Math.abs(previousValue));
         percentChange = Math.round(percentChange);
         percentChange /= 100;
         result.change_percent = Math.abs(percentChange);
-          
+
         // setting style based on change
         if (percentChange > 0) result.changeDirection = 'up';
         if (percentChange < 0) result.changeDirection = 'down';
@@ -77,11 +77,11 @@
             value = Math.round(value * 100) / 100;
         }
         result.value = value;
-        
+
 
         Spice.add({
             id: 'quandl_world_bank',
-            name: 'World Bank',
+            name: 'Geography',
             data: result,
             meta: {
                 sourceName: 'Quandl',
