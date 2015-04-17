@@ -1,39 +1,8 @@
-.zci--book .tile--book {
-    width: 25em;
-}
-
-.zci--book .zci__header {
-    width: 20.5em;
-}
-
-.zci--book .tile__title {
-    text-overflow: clip !important;
-}
-
-.zci--book .description {
-    font-weight: 400;
-    color: #333;
-}
-
 .zci--book .source a, .zci--book .sources_recommending a {
     color: #999;
 }
 
-.zci--book .zci__content {
-    margin-top: -0.5em;
-}
-
-.zci--book .subtitle {
-    padding-left: 0.1em;
-    margin-bottom: 0.6em;
-    color: #888;
-}
-
-.zci--book .zci__header {
-    color: #333;
-}
-
-.zci--book .recommended_by, .zci--book .rating {
+.zci--book .recommended_by, .zci--book .rating-wrap  {
     font-weight: 600;
 }
 
@@ -41,70 +10,12 @@
     margin-top: 0.85em;
 }
 
-.zci--book .recommend_line {
-    height: 1.2em;
-    overflow-y: hidden;
-}
-
-.zci--book .chomp {
-    max-height: 9em;
-    overflow: visible;
-}
-
-
-.zci--book .clear {
-    clear: both;
-}
-
-.zci--book .zci__img-wrap + .zci__body--info, .zci--book .zci__more-at--info {
-    padding-bottom: 0.35em;
-}
-
-.zci--book .sources_recommending:last-child .conj {
-    display: none;
-}
-
-
-@media only screen and (max-width : 480px) {
-    .zci--book .zci__header {
-        width: 10.25em;
-    }
-    
-    .zci--book .description {
-        max-height: 4em;
-        overflow: hidden;
-    }
-}
-
-@media only screen and (max-width : 325px) {
-    .zci--book .sources_recommending:nth-child(3) .conj {
-        display: none;
-    }
-}
-
-
-.is-mobile .zci--book .zci__header {
-    width: 10.25em;
-    line-height: 1.15;
-}
-
-
-.is-mobile .zci--book .subtitle {
-    line-height: 2em;
-}
-
-.is-mobile .zci--book .description {
-    max-height: 4em;
-    overflow: hidden;
+.zci--book .subtitle {
+    margin-top: 15px;
 }
 
 .zci--book .rating-wrap {
-    float: right;
+    padding-right: 10px;
     font-size: 2em;
-    margin-top: 0.35em;
+    float: right;
 }
-
-.zci--book .rating {
-    color: #0099CB;
-}
-

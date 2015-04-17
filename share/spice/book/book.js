@@ -103,9 +103,8 @@
                 item.critic_review = item.critic_reviews[Math.floor(Math.random() * item.critic_reviews.length)];
 
                 return {
-                    title: header,
                     image_url: item.to_read_or_not,
-                    description: item.critic_review.snippet.replace(/\.\s\.\s\./g, "..."),
+                    description: item.critic_review.snippet,
                     url: item.detail_link,
                     source: item.critic_review.source,
                     sourceLink: item.critic_review.review_link,
@@ -115,11 +114,11 @@
             },
 
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
                     moreAt: true,
-                    description: true,
-                    content: Spice.book.book
+                    content: Spice.book.content,
+                    subtitle_content: Spice.book.subtitle
                 }
             }
 
