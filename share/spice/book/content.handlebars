@@ -1,0 +1,16 @@
+{{{ellipsis description 170}}}
+
+<div>
+    <a class="tx-clr--grey" href="{{sourceLink}}">
+        <i>-{{source}}</i>
+    </a>
+</div>
+
+<div class="recommend_line">
+    <span class="recommended_by">Recommended by: </span>
+    {{#each recommendedBy}}
+        <a class="tx-clr--grey" href="{{this.link}}">
+            {{this.recommendedSource}}<span class="conj">,</span>
+        </a>
+    {{/each}}
+</div>
