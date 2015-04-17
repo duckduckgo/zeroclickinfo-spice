@@ -1,7 +1,3 @@
-.zci--book .source a, .zci--book .sources_recommending a {
-    color: #999;
-}
-
 .zci--book .recommended_by, .zci--book .rating-wrap  {
     font-weight: 600;
 }
