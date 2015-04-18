@@ -53,18 +53,6 @@
                     item.review_count = item.unrated_review_count;
                 }
 
-                // Get only the year of release date for header
-                item.release_year = (item.release_date || "").match(/^\d{4}/);
-
-                // Filter critic reviews that have really short critic reviews.
-                var critic_reviews = [];
-                for(var i = 0; i < item.critic_reviews.length; i++) {
-                    if(item.critic_reviews[i].snippet.length > 10) {
-                        critic_reviews.push(item.critic_reviews[i]);
-                    }
-                }
-                item.critic_reviews = critic_reviews;
-
                 // This function adds a colon before the subtitle.
                 // It doesn't add a colon if the subtitle begins with anything other
                 // than letters or numbers, e.g., a parenthesis.
