@@ -3,15 +3,11 @@
     env.ddg_spice_book = function(api_result) {
 
         // Return if no book is returned
-        if(!api_result || api_result.error) {
+        if(!api_result || api_result.total_results === 0) {
             return Spice.failed('book');
         }
 
         // Get the query without the trigger words.
-        // We do this because it's a bit easier to do than
-        // just passing a skip array to DDG.isRelevant or DDG.stringsRelevant.
-        // For example, we can't just skip the word book by passing ["book"]
-        // because some book titles have the word book in them such as "the graveyard book".
         var script = $('[src*="/js/spice/book/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/book\/([^\/]+)/)[1],
@@ -29,67 +25,51 @@
             normalize: function(item) {
                 var title = item.title || "",
                     sub_title = item.sub_title || "",
-                    author = item.author || "";
-
+                    author = item.author || "",
+                    recommendedBy = [],
+                    critic_reviews = [];
+           
                 // Check relevancy of the item.
                 // 1. Check if we have reviews (rated or unrated is fine).
                 // 2. Check if the title + sub_title is relevant to the query.
                 // 3. Check if the title is relevant to the query.
                 // 4. Check if the title + author is relevant to the query.
                 // 5. Check if the title + sub_title + author is relevant to the query.
-                if(!((item.review_count || item.unrated_review_count) &&
+                if(!((item.review_count || item.total_results) &&
                     (DDG.stringsRelevant(title + " " + sub_title, decoded_query, [], 3) ||
                         DDG.stringsRelevant(title, decoded_query, [], 3) ||
                         DDG.stringsRelevant(title + " " + author, decoded_query, [], 3) ||
                         DDG.stringsRelevant(title + " " + sub_title + " " + author, decoded_query, [], 3)))) {
-                    return null;
+                    return Spice.failed('book');
                 }
 
-                // If the item that we got doesn't have the critic_reviews array,
-                // we copy over the unrated_reviews. This makes it easier to use the templates because 
-                // we're only using one variable.
-                if(item.review_count === 0) {
-                    item.critic_reviews = item.unrated_critic_reviews;
-                    item.review_count = item.unrated_review_count;
+                // Add subtile next to title
+                // Add colon if the subtitle does not begin with parenthesis
+                if (item.sub_title) { 
+                   item.title += sub_title.match(/^[a-z0-9]/i) ? ": " + item.sub_title : " " + item.sub_title;
                 }
-
-                // This function adds a colon before the subtitle.
-                // It doesn't add a colon if the subtitle begins with anything other
-                // than letters or numbers, e.g., a parenthesis.
-                var formatSub = function(sub_title) {
-                    if(sub_title && sub_title.length > 0) {
-                        if(sub_title.match(/^[a-z0-9]/i)) {
-                            return ": " + sub_title;
-                        }
-                        return " " + sub_title;
+                 
+                for(var i = 0; i < item.critic_reviews.length; i++) {
+                    // Get critics which recommend the book
+                    // We only want positive reviews    
+                    if (item.critic_reviews[i].pos_or_neg == "Positive") {
+                       recommendedBy.push(item.critic_reviews[i]);
                     }
-                    return "";
-                };
-
-                // Get three critics which recommend the book
-                var recommendedBy = [];
-                for(var key in item.critic_reviews) {
-                    if(item.critic_reviews[key].pos_or_neg == "Positive" && recommendedBy.length < 3) {
-                        recommendedBy.push({
-                            'recommendedSource' : item.critic_reviews[key].source,
-                            'link' : item.critic_reviews[key].review_link
-                        });
-                    }
-                    else if (recommendedBy.length >= 3) {
-                        break;
+                    
+                    // Filter critic reviews that are really short
+                    if(item.critic_reviews[i].snippet.length > 52) {
+                       critic_reviews.push(item.critic_reviews[i]);
                     }
                 }
 
-                var header = item.title = item.title + formatSub(item.sub_title);
-                header = Handlebars.helpers.condense(header, {
-                    hash: {
-                        maxlen: 38
-                    }
-                });
-
+                // Shuffle the array
+                // Ensure we only use 3 sources
+                recommendedBy.sort(function(){return (4*Math.random()>2)?1:-1});
+                if (recommendedBy.length > 3) recommendedBy.length = 3;
+                
                 // Pick a random critic review out of all the reviews returned
-                item.critic_review = item.critic_reviews[Math.floor(Math.random() * item.critic_reviews.length)];
-
+                item.critic_review = critic_reviews[Math.floor(Math.random() * critic_reviews.length)];
+                
                 return {
                     image_url: item.to_read_or_not,
                     description: item.critic_review.snippet,
