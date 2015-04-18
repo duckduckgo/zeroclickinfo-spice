@@ -12,24 +12,24 @@
         // just passing a skip array to DDG.isRelevant or DDG.stringsRelevant.
         // For example, we can't just skip the word book by passing ["book"]
         // because some book titles have the word book in them such as "the graveyard book".
-        var script = $('[src*="/js/spice/book/"]')[0];
-        var source = $(script).attr("src");
-        var query = source.match(/book\/([^\/]+)/)[1];
-        var decoded_query = decodeURIComponent(query);
+        var script = $('[src*="/js/spice/book/"]')[0],
+            source = $(script).attr("src"),
+            query = source.match(/book\/([^\/]+)/)[1],
+            decoded_query = decodeURIComponent(query);
 
         Spice.add({
             id: 'book',
             name: 'Books',
             data: api_result.books,
             meta: {
-                sourceName: "iDreamBooks", // More at ...
+                sourceName: "iDreamBooks",
                 sourceUrl: api_result.books[0].detail_link
             },
 
             normalize: function(item) {
-                var title = item.title || "";
-                var sub_title = item.sub_title || "";
-                var author = item.author || "";
+                var title = item.title || "",
+                    sub_title = item.sub_title || "",
+                    author = item.author || "";
 
                 // Check relevancy of the item.
                 // 1. Check if we have reviews (rated or unrated is fine).
