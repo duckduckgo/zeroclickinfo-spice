@@ -9,11 +9,7 @@
 <div class="recommend_line">
     <span class="recommended_by">Recommended by: </span>
     <span class="tx-clr--grey">
-        {{#concat recommendedBy sep="," conj="and"}}
-           <a class="tx-clr--grey" href="{{this.link}}">
-                {{this.recommendedSource}}
-           </a>
-        {{/concat}}
+        {{#concat recommendedBy sep="," conj=" and "}}<a class="tx-clr--grey" href="{{this.link}}">{{this.recommendedSource}}</a>{{/concat}}
     </span>
 </div>
 
