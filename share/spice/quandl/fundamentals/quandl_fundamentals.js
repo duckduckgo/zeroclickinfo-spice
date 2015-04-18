@@ -77,16 +77,13 @@
                     sourceIconUrl:  DDG.get_asset_path('quandl/fundamentals','quandl32x32.png')
                 },
                 normalize: function(item) {
-                    var to_date = moment(item.to_date).format('MMM DD, YYYY');
-                    var from_date = moment(item.data[1][0]).format('MMM DD, YYYY');
                     return {
-                        title: item.header,
-                        url: item.url,
-                        subtitle: item.subheader + ' as of ' + to_date
-                    }
+                        to_date: moment(item.to_date).format('MMM DD, YYYY'),
+                        from_date: moment(item.data[1][0]).format('MMM DD, YYYY')
+                    };
                 },
                 templates: {
-                    group: 'text',
+                    group: 'base',
                     options: {
                         content: Spice.quandl_fundamentals.content,
                         moreAt: true
