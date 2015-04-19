@@ -4,8 +4,8 @@
     <div class="tile--f__main  tile--loc__main">
         <div class="tile__head">
             <div class="head--title tile__title--wrap">
-                <h6 class="tile__title with-sub tile__title--3">{{ellipsis name 41}}</h6>
-                <span class="tile__sub">{{diocesename}}</span>
+                <h6 class="tile__title with-sub tile__title--1">{{ellipsis name 41}}</h6>
+                <span class="tile__sub tx--13 tx-clr--grey">{{diocesename}}</span>
             </div>
             <div class="head--num pull-right">
                 <div class="number">{{num}}</div> 
@@ -27,29 +27,29 @@
 
     <!-- Back of tile -->
     <div class="tile--f__alt  tile--loc__alt">
-        <div class="tile__body  {{#and url meta.sourceName}}has-foot--4{{/and}}">
+        <div class="tile__body  {{#and url meta.sourceName}}has-foot{{/and}}">
 
-            <h6 class="tile__title tile__title--3">
+            <h6 class="tile__title tile__title--1">
                 <a href="{{url}}" title="{{name}}">{{ellipsis name 41}}</a>
             </h6>
 
             {{#if address_lines}}
-                <a class="tile__address" href="{{directions}}">
+                <a class="tile__address tx--13" href="{{directions}}">
                     {{#each address_lines}}
                         {{.}}<br />
                     {{/each}}
                 </a>
             {{else}}
                 {{#if address}}
-                    <span>{{ellipsis address 65}}</span>
+                    <span class="tile__address tx--13">{{ellipsis address 65}}</span>
                 {{/if}}
             {{/if}}
 
             {{#if phone}}
-                <a class="tile__phone" href="tel:{{phone}}">{{phone}}</a>
+                <a class="tile__phone tx--13 tx-clr--slate-light" href="tel:{{phone}}">{{phone}}</a>
             {{/if}}
 
-            <div class="tile__foot tile__foot--4">
+            <div class="tile__foot">
                 {{#and url meta.sourceName}}
                    {{{moreAt url meta.sourceName dynamicMoreAtText=5}}}
                 {{/and}}
