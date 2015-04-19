@@ -8,12 +8,6 @@
     padding-top: 2.6em;
 }
 
-.is-active .zci-mass_on_time .tile--f__alt .tile__body {
-    padding-top: 0.6em;
-    padding-left: 0.6em;
-    padding-right: 0.6em;
-}
-
 .tile--mass-loc {
     width: 16em;
     height: 12em;
@@ -33,10 +27,6 @@
     width: 9em;
 }
 
-.zci-mass_on_time .head--title p {
-    font-size: 1.1em;
-}
-
 .zci-mass_on_time .tile--f__main .tile__head, .zci-mass_on_time .tile--f__main .tile__body {
     padding: 1em 1em;
 }
@@ -54,9 +44,7 @@
 }
 
 .zci-mass_on_time .tile__foot--4 {
-    font-size: 13px;
     line-height: 1.4;
-    color: #999;
     max-height: 6.6em;
     height: auto;
     margin-bottom: 1em;
@@ -84,6 +72,11 @@
 }
 
 .zci-mass_on_time .head--num {
+    display: none;
+}
+
+.is-expanded .zci-mass_on_time .head--num {
+    display: block;
     background-image: url("map-pin.png");
     background-repeat: no-repeat;
     height: 2.4em;
