@@ -2,6 +2,7 @@ package DDG::Spice::SimilarSites;
 # ABSTRACT: Find sites that are similar to a given site
 
 use DDG::Spice;
+use Text::Trim;
 
 primary_example_queries "similar sites to facebook.com", "similar to youtube.com";
 secondary_example_queries "sites like twitter.com", "pages like github.com";
@@ -15,17 +16,20 @@ topics "everyday", "special_interest";
 attribution github => ['https://github.com/Adman', 'Adman'],
             twitter => ['http://twitter.com/adman_X', 'adman_X'];
 
-triggers startend => "similar sites", "similar sites to", "similar web to", "sites like", "websites like", "webs like", "pages like";
+triggers start => ["sites like", "site like", "websites like", "website like", "webs like", "pages like"];
+
+triggers any => ["similar sites", "similar web", "websites similar", "website similar", "similar websites", "similar website"];
 
 spice to => 'http://www.similarsitesearch.com/api/similar/$1';
 
 spice wrap_jsonp_callback => 1;
 
-handle remainder => sub {
-    s/^https?:\/\///;
-
+handle remainder_lc => sub {
+    $_ =~ s/(to|like|\s)*//g;
+    $_ =~ s/^https?:\/\///;
     # remove whitespace
-    s/^\s+|\s+$//g;
+    trim($_);
+
     return $_ if $_;
 };
 
