@@ -80,14 +80,8 @@
                 sourceUrl: result.url,
                 sourceIconUrl:  DDG.get_asset_path('quandl/fundamentals','quandl32x32.png')
             },
-            normalize: function(item) {
-                return {
-                    title: item.header,
-                    subtitle: item.subheader + " as of " + item.to_date
-                };
-            },
             templates: {
-                group: 'text',
+                group: 'base',
                 options: {
                     content: Spice.quandl_fundamentals.content,
                     moreAt: true
