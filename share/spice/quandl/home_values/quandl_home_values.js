@@ -1,12 +1,3 @@
-/**
-* Created with DuckDuckHack.
-* User: brianrisk
-* Date: 2015-02-17
-* Time: 04:46 PM
-* To change this template use Tools | Templates.
-*/
-
-
 (function (env) {
     'use strict';
     env.ddg_spice_quandl_home_values = function(api_result){
