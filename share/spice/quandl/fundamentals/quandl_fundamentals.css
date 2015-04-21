@@ -1,35 +1,36 @@
-#quandl  h1.quandl-header {
+.zci--quandl_fundamentals .zci__header {
     font-size: 1.4em;
     line-height: 1.2em;
     font-weight: 400;
     margin-bottom: .5em;
 }
 
-#quandl  .quandl-date {
+.zci--quandl_fundamentals .zci__subheader {
     font-weight: 300;
-    padding-left: 0;
     font-size: .95em;
-    text-transform: none;
 }
 
-#quandl  .quandl-values {
+.zci--quandl_fundamentals .values {
     font-size: 1.5em;
     display: inline-block;
 }
 
-#quandl  .quandl-value {
+.zci--quandl_fundamentals .value {
     font-weight: 600;
 }
-#quandl  .quandl-percent {
+
+.zci--quandl_fundamentals .change-up .percent {
+    color: #60ae50;
     font-weight: 300;
 }
 
-#quandl  .quandl-change-up .quandl-percent{
-    color: #60ae50;
+.zci--quandl_fundamentals .change-down .percent {
+    color: #c9481c;
+    font-weight: 300;
 }
     
 /* green arrow up */
-#quandl  .quandl-change-up .quandl-percent:before {
+.zci--quandl_fundamentals .change-up .percent:before {
     content: '';
     border: 3px solid transparent;
     border-bottom-color: #60ae50;
@@ -42,13 +43,9 @@
     position: relative;
     top: -5px;
 }
-#quandl  .quandl-change-down .quandl-percent,
-#quandl  .quandl-change-down {
-    color: #c9481c;
-}
     
 /* red arrow down */
-#quandl  .quandl-change-down .quandl-percent:before {
+.zci--quandl_fundamentals .change-down .percent:before {
     content: '';
     border: 3px solid transparent;
     border-top-color: #c9481c;
@@ -59,10 +56,3 @@
     margin-right: .25em;
     display: inline-block;
 }
-
-#quandl  .quandl-from_date {
-    display: inline-block;
-}
-
-
-
