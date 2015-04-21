@@ -16,7 +16,7 @@ ddg_spice_test(
         query_raw => 'weather',
         location => $loc
     ) => test_spice(
-        "/js/spice/forecast/" . uri_escape_utf8(${\$loc->loc_str}) . "/current",
+        "/js/spice/forecast/M%C3%B6nchengladbach%20Nordrhein-Westfalen%20Germany/current",
         call_type => 'include',
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
