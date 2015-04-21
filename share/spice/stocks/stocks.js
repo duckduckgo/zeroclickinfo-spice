@@ -20,7 +20,7 @@
                 },
                 normalize: function(data){
                     var change = data.ChangeFromPreviousClose.toString(),
-                        percentChange = data.PercentChangeFromPreviousClose.toString(),
+                        percentChange = data.PercentChangeFromPreviousClose.toFixed(2).toString(),
                         changeDir;
                     moment().utcOffset(data.UTCOffset);
 
