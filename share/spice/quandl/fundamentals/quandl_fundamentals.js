@@ -34,8 +34,8 @@
         
         // splitting title into header and subheader
         var nameSplit = api_result.name.split('-');
-        api_result.header = nameSplit.shift().trim();
-        api_result.subheader = nameSplit.join('-').trim();
+            api_result.header = nameSplit.shift().trim();
+            api_result.subheader = nameSplit.join('-').trim();
         
         // getting rounded percentage
         var percentChange = 10000 * ((recentValue - previousValue) / Math.abs(previousValue));
