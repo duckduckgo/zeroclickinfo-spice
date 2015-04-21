@@ -31,8 +31,8 @@
                 normalize: function(item){
                     console.log(item);
                     return {
-                        arrival_time: moment(item.to.arrival).zone(item.to.arrival).format('LT'),
-                        departure_time: moment(item.from.departure).zone(item.from.departure).format('LT'),
+                        arrival_time: moment(item.to.arrival).utcOffset(item.to.arrival).format('LT'),
+                        departure_time: moment(item.from.departure).utcOffset(item.from.departure).format('LT'),
                         name: item.sections[0].journey.name,
                         platform: item.from.platform,
                         status: (item.from.delay) ? 'Delayed' : 'On time',
