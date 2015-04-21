@@ -6,14 +6,17 @@
             return Spice.failed('stocks');
         }
 
+        var url = "http://www.nasdaq.com/symbol/" + api_result.Security.Symbol + "/real-time";
+
         DDG.require('moment.js', function(){
             Spice.add({
                 id: 'stocks',
                 name: 'Stock',
                 data: api_result,
                 meta: {
-                    sourceName: 'Xignite',
-                    sourceUrl: "http://www.nasdaq.com/symbol/" + api_result.Security.Symbol + "/real-time"
+                    sourceName: 'NASDAQ',
+                    sourceUrl: url,
+                    attributionText: "Xignite"
                 },
                 normalize: function(data){
                     var change = data.ChangeFromPreviousClose.toString(),
@@ -31,7 +34,8 @@
                     }
 
                     return {
-                        urlTitle: 'View more ' + data.name + ' stock data at NASDAQ',
+                        url: url,
+                        urlTitle: 'View more ' + data.Security.Name + ' stock data at NASDAQ',
                         quoteChangeDir: changeDir,
                         change: change.replace(/^[+|-]/,''),
                         change_percent: percentChange.replace(/^[+|-]/,''),
@@ -43,7 +47,7 @@
                     group: 'base',
                     options: {
                         content: Spice.stocks.content,
-                        moreAt: true
+                        moreAt: false
                     }
                 }
             });
