@@ -1,18 +1,10 @@
-.zci--quandl_fundamentals .zci__header {
-    font-size: 1.4em;
-    line-height: 1.2em;
-    font-weight: 400;
+.zci--quandl_fundamentals h3 {
     margin-bottom: .5em;
+    font-weight: 400;
 }
 
-.zci--quandl_fundamentals .zci__subheader {
-    font-weight: 300;
-    font-size: .95em;
-}
-
-.zci--quandl_fundamentals .values {
-    font-size: 1.5em;
-    display: inline-block;
+.zci--quandl_fundamentals .c-base__content {
+    margin-top: 0em;
 }
 
 .zci--quandl_fundamentals .value {
