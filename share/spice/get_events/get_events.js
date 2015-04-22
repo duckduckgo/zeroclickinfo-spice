@@ -30,7 +30,7 @@
                     return {
                         url: buildUrl(item.id),
                         name: item.name,
-                        description: item.description,
+                        description: DDG.strip_html(item.description),
                         place: item.venue.name,
                         city: item.venue.city,
                         image: item.image_large_url,
