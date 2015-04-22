@@ -93,9 +93,7 @@
                 };
             },
             templates: {
-                group: 'media',
-                detail: 'products_detail',
-                item_detail: 'products_item_detail',
+                group: 'products_simple',
                 options: {
                     buy: Spice.bbc.buy,
                     subtitle_content: Spice.bbc.subtitle_content
