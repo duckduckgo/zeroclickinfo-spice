@@ -22,6 +22,7 @@ attribution web => ['https://cryptonator.com','cryptonator.com'],
 my @currTriggers;
 my @currencies = share('cryptocurrencylist.txt')->slurp;
 my %currHash = ();
+my $currDisplayName = '';
 
 foreach my $currency (@currencies){
     chomp($currency);
@@ -74,12 +75,15 @@ sub getCode {
             my @currValues = @{$currHash{$key}};
             foreach my $value (@currValues) {
                 if($input eq $value) {
+                    # Set the display name of the currency
+                    $currDisplayName = $currValues[1];
                     return $key;
                 }
             }
         }
     }
 }
+
 
 # This function is responsible for processing the input.
 sub checkCurrencyCode {
@@ -135,7 +139,8 @@ sub checkCurrencyCode {
             return;
         }
         $endpoint = 'secondaries';
-        $query = $normalized_number;
+        # API does not return the display name of the currency, so we must include it
+        $query = $normalized_number . $currDisplayName;
         $query2 = $from;
     }
     return $endpoint, $query, $query2;
