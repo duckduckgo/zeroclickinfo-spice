@@ -25,11 +25,10 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                     clearInterval(interval);
                     if (el.sheet) {
                         //already loaded, no need for 'load' event
-                        removeHiddenAttr();
-                    }
-                    else {
+                        showTimer();
+                    } else {
                         //not yet loaded, attach a 'load' event
-                        $(el).load(removeHiddenAttr);
+                        $(el).load(showTimer);
                     }
                 }
               
@@ -42,8 +41,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
       
         waitForCss();
         
-        function removeHiddenAttr() {
-            $('#timer_container').removeAttr('hidden');
+        function showTimer() {
+            $('#timer_container').removeClass('is-hidden');
         }
 
         function onShow() {
@@ -290,7 +289,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             }
         }
 
-        $('.timer__time-input').keyup(numericOnly).change(numericOnly).click(numericOnly);
+        $('.timer__time-input').keyup(numericOnly).change(numericOnly).change(inputKeyup).click(numericOnly);
     }
 }(this));
 

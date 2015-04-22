@@ -19,12 +19,11 @@
           }
         }
 
-        console.log(relevantDetails);
-
         Spice.add({
             id: "travis_status",
             name: "Status",
             data: relevantDetails,
+            signal: 'low',
             meta: {
                 sourceName: api_result.page.name,
                 sourceUrl: api_result.page.url,

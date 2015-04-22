@@ -1,26 +1,3 @@
-.tile--in_theaters {
-    width: 12em;
-}
-
-.tile--in_theaters .tile__media__img {
-    min-width: 100%;
-    height: 100%;
-    margin-top: 0;
-}
-
-.zci--in_theaters .one-line {
-    float: left;
-}
-
-.tile--in_theaters .tile__title {
-    height: 2.5em;
-}
-
-.tile--in_theaters .tile__source,
-.tile--in_theaters.highlight .tile__source {
-    color: #999;
-}
-
 .zci--in_theaters .tomato--icon {
     width: 16px;
     height: 16px;

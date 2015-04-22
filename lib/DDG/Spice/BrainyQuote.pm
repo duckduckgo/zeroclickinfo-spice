@@ -1,6 +1,7 @@
 package DDG::Spice::BrainyQuote;
 # ABSTRACT: Return famous quotations
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "John Kennedy quotes", "Brad Pitt quotations";
@@ -23,7 +24,7 @@ handle remainder => sub {
     # Convert queries such as J.R.R. Tolkien to J. R. R. Tolkien.
     # We're doing this because the first one is rejected by BrainyQuote.
     if(/^\w\.\w/) {
-	s/\./\. /g;
+        s/\./\. /g;
     }
 
     return $_ if $_;

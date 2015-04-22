@@ -1,5 +1,7 @@
 package DDG::Spice::Launchbug;
+# ABSTRACT: Bug search on launchpad
 
+use strict;
 use DDG::Spice;
 
 spice is_cached => 1;

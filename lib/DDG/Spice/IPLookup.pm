@@ -1,6 +1,7 @@
 package DDG::Spice::IPLookup;
 # ABSTRACT: Returns information about an IP address
 
+use strict;
 use DDG::Spice;
 use Regexp::IPv6 qw($IPv6_re);
 
@@ -11,7 +12,7 @@ category 'computing_tools';
 topics "sysadmin";
 
 attribution github => ['https://github.com/mintsoft', 'mintsoft'],
-            github => ['https://github.com/chrisjwilsoncom', 'chrisjwilsoncom'],
+            github => ['https://github.com/MrChrisW', 'Chris Wilson'],
                web => ['http://www.robtex.com/', 'robtex.com'];
 
 my $trig = qr#(?:ip lookup)|(?:iplookup)|(?:reverse (?:dns|ip)(?: lookup)?)|(?:dns)|(?:whois)#i;

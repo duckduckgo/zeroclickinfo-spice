@@ -1,5 +1,7 @@
 package DDG::Spice::Xkcd::Display;
+# ABSTRACT: Displays an xkcd comic
 
+use strict;
 use DDG::Spice;
 
 name "xkcd";
@@ -12,7 +14,8 @@ topics "entertainment", "geek", "special_interest";
 icon_url "/i/xkcd.com.ico";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Xkcd/Display.pm";
 attribution github => ["https://github.com/sdball", "Stephen Ball"],
-            twitter => ["https://twitter.com/StephenBallNC", "Stephen Ball"];
+            twitter => ["https://twitter.com/StephenBallNC", "Stephen Ball"],
+            github => ["https://github.com/andrey-p", "Andrey Pissantchev"];
 
 triggers startend => "xkcd";
 
@@ -21,13 +24,13 @@ spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
 
-	if ($_ =~ /^(\d+|r(?:andom)?)$/) {
-		return int rand 1122 if $1 =~ /r/;
-		return $1;
-	}
+    if ($_ =~ /^(\d+|r(?:andom)?)$/) {
+        return int rand 1122 if $1 =~ /r/;
+        return $1;
+    }
 
-	return '' if $_ eq '';
-	return;
+    return '' if $_ eq '';
+    return;
 };
 
 1;

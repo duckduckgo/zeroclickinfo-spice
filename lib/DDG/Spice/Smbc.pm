@@ -1,5 +1,7 @@
 package DDG::Spice::Smbc;
+# ABSTRACT: Gets the Saturday Morning Breakfast Cereal Comic
 
+use strict;
 use DDG::Spice;
 
 name 'smbc';

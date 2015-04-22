@@ -1,5 +1,7 @@
 package DDG::Spice::Dictionary::Audio;
+# ABSTRACT: Get audio file for pronounciation of a word
 
+use strict;
 use DDG::Spice;
 
 attribution web => ['http://duckduckgo.com', 'DuckDuckGo'],

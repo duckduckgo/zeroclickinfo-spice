@@ -1,6 +1,7 @@
 package DDG::Spice::BBC;
 # ABSTRACT: BBC programme schedule
 
+use strict;
 use DDG::Spice;
 use DateTime;
 
@@ -13,7 +14,8 @@ source "BBC";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BBC.pm";
 topics "everyday";
 category "entertainment";
-attribution github => ['https://github.com/tophattedcoder','Tom Bebbington'];
+attribution github => ['https://github.com/tophattedcoder','Tom Bebbington'],
+             email => ['tim@retout.co.uk','Tim Retout'];
 
 spice to => 'http://www.bbc.co.uk/$1/programmes/schedules/$2.json';
 
@@ -95,7 +97,7 @@ handle remainder => sub {
     return ('5livesportsextra', @date) if ($query =~ /bbc radio (5|five)( live)? extra/);
     return ('5live', @date) if ($query =~ /bbc radio (5|five)( live)?/);
     return ('radio4extra', @date) if ($query =~ /bbc radio (4|four) e?xtra/);
-    return ('radio4', @date) if ($query =~ /bbc radio (4|four)/);
+    return ('radio4', $2 ? 'lw' : 'fm', @date) if ($query =~ /bbc radio (4|four)( lw)?/);
     return ('radio3', @date) if ($query =~ /bbc radio (3|three)/);
     return ('radio2', @date) if ($query =~ /bbc radio (2|two)/);
     return ('1xtra', @date) if ($query =~ /bbc radio (1|one) e?xtra/);

@@ -7,13 +7,10 @@
             return Spice.failed('products');
         }
 
-        var items = api_result.results,
-            loadedRatingsData = false;
-
         Spice.add({
             id: 'products',
             name: 'Products',
-            data: items,
+            data: api_result.results,
             allowMultipleCalls: true,
             model: 'Product',
             meta: {
@@ -35,7 +32,7 @@
                 var arg = item.rating,
                     url = '/m.js?r=';
 
-                arg = arg.replace(/(?:.com.au|.com.br|.cn|.fr|.de|.in|.it|.co.jp|.mx|.es|.co.uk|.com|.ca?)/i, '');
+                arg = arg.replace(/(?:.com.au|.com.br|.cn|.fr|.de|.in|.it|.co.jp|.jp|.mx|.es|.co.uk|.com|.ca?)/i, '');
                 arg = arg.replace('http://www.amazon/reviews/iframe?', '');
 
                 $.getJSON(url + encodeURIComponent(arg), function(r) {

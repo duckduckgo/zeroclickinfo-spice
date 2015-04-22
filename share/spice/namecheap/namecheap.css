@@ -1,0 +1,14 @@
+@media (max-width: 600px) {
+    .zci--namecheap table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .zci--namecheap table td {
+        word-wrap: break-word;
+    }
+}
+
+.zci--namecheap .zci__more-at {
+    padding-top: 0.75em;
+}

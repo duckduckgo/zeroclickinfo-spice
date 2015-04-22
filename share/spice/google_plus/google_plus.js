@@ -18,14 +18,14 @@ function ddg_spice_google_plus (api_result) {
             group: 'products_simple',            
             item_detail: false,
             detail: false,
-            options: {
-                variant: 'narrow'
+            variants: {
+                tile: 'narrow'
             }
         },
         normalize : function(item) {
             var image = item.image.url.replace(/sz=50$/, "sz=100");
             return {
-                image : image.replace(/^https/, "http"),
+                image : DDG.toHTTP(image),
                 title: item.displayName
             };
         }

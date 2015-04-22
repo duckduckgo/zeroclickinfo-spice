@@ -1,6 +1,7 @@
 package DDG::Spice::Whois;
 # ABSTRACT: Returns an internet domain's availability and whois information.
 
+use strict;
 use DDG::Spice;
 use Domain::PublicSuffix;
 use Text::Trim;
@@ -17,7 +18,7 @@ code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 
 attribution twitter => ['bjennelle','Blake Jannelle'],
             github => ["b1ake", 'Blake Jennelle'],
-            github => ["chrisjwilsoncom", 'Chris Wilson']; 
+            github => ["MrChrisW", 'Chris Wilson'];
 
 triggers any => "whois", "lookup", "domain", "is domain", "available", "is available", "register", "owner", "owner of", "who owns", "buy", "how to buy";
 
@@ -28,15 +29,15 @@ handle remainder_lc => sub {
 
     my $domain;
     my $publicSuffix = Domain::PublicSuffix->new();
-    
+
     s/https?:\/\/|\?//g; # strip keywords and http(s) and question mark
     s/\:?[0-9]{1,4}?//g; # strip ports, such as :3000
 
-    if ( /\s/ ) { 
+    if ( /\s/ ) {
         s/\bis\b|\bfor\b//g # if space, strip additional words
     }
 
-    if(m/\//) { 
+    if(m/\//) {
         s|[^/]+$||; # if we have /about.html or other remove it
         s/\/$//g; # remove the left over slash
     }
