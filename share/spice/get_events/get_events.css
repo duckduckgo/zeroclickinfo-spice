@@ -34,7 +34,6 @@
     line-height: 1;
     text-align: center;
     font-size: 0.9em;
-    color: #333;
 }
 
 .is-expanded .tile--get_events .tile__num--get_events {
@@ -46,9 +45,7 @@
 }
 
 .tile--get_events .tile__foot--4 {
-    font-size: 13px;
     line-height: 1.4;
-    color: #999;
     max-height: 5.6em;
     height: auto;
     margin-bottom: 1em;
@@ -74,9 +71,7 @@
 }
 
 .tile--get_events__alt .has-foot .tile__content--lg {
-    font-size: 1.038em;
     line-height: 1.4;
-    color: #999;
     height: 7em;
     overflow: hidden;
 }
