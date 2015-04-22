@@ -16,8 +16,8 @@ spice to => 'https://api.data.gov/nasa/planetary/earth/imagery?api_key={{ENV{DDG
 spice wrap_jsonp_callback => 1;
 
 triggers query_lc => qr/^
-    (?:landsat|sat(?:ellite)?)\s*
-    (?:pic(?:ture)?s?|(?:img|image(?:ery)?)s?|photo(?:graph)?s?)?\s*
+    (?:landsat|(?:land )?sat(?:ellite)?)\s*
+    (?:pic(?:ture)?s?|(?:img|image(?:ry)?)s?|photo(?:graph)?s?)?\s*
     (-?\d+(?:\.\d+)?)
     \s*,?\s*
     (-?\d+(?:\.\d+)?)
