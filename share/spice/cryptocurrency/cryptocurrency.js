@@ -119,6 +119,7 @@
         } else if (typeof rows !== 'undefined') {
             // Get amount from original query
             var query = source.match(/\/secondaries\/(.+)\/(?:.*)/)[1],
+                displayName = capitalizeFirstLetter(query.match(/([^\d]+)/)[1]),
                 queryAmount = parseFloat(decodeURIComponent(query)),
                 // Prepare the first item box
                 givenCurrency = {
@@ -126,7 +127,7 @@
                     currency_primary: rows[0].currency_primary,
                     currency_secondary: rows[0].currency_primary,
                     convertedAmount: 1,
-                    currencyName: "Placeholder"
+                    currencyName: displayName
                 };
                 results.push(givenCurrency);
             // Add the remaining currencies
@@ -195,6 +196,10 @@
             return parseFloat(x);
         }
         
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        
         var templateObj = {
             detail: Spice.cryptocurrency.detail,
             detail_mobile: Spice.cryptocurrency.detail_mobile,
@@ -247,7 +252,7 @@
                     cryptonatorURL: "http://www.cryptonator.com/rates#" + item.currency_secondary,
                     fromFlag: currency_image(item.currency_primary),
                     toFlag: currency_image(item.currency_secondary),
-                    currencyName: "Placeholder",
+                    currencyName: item.currencyName,
                     liveUrl: "Placeholder",
                     cryptoTime: cryptoTime,
                     cryptoDate: cryptoDate

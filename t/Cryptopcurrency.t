@@ -8,12 +8,12 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [ 'DDG::Spice::Cryptocurrency' ],
     'lite coin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1/ltc',
+        '/js/spice/cryptocurrency/secondaries/1litecoin/ltc',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     '500 ftc' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/500/ftc',
+        '/js/spice/cryptocurrency/secondaries/500feathercoin/ftc',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
@@ -38,7 +38,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     '100,000 litecoin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/100000/ltc',
+        '/js/spice/cryptocurrency/secondaries/100000litecoin/ltc',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
@@ -48,7 +48,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     'convert litecoin' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1/ltc',
+        '/js/spice/cryptocurrency/secondaries/1litecoin/ltc',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
@@ -58,7 +58,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Cryptocurrency'
     ),
     'litecoin exchange rate' => test_spice(
-        '/js/spice/cryptocurrency/secondaries/1/ltc',
+        '/js/spice/cryptocurrency/secondaries/1litecoin/ltc',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency'
     ),
@@ -77,7 +77,6 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
-    
     # Plural names of coins
     'What is nxt in litecoins?' => test_spice(
         '/js/spice/cryptocurrency/ticker/nxt-ltc/1',
