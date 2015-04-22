@@ -25,15 +25,13 @@
 
         <div class="tile__foot tile__foot--4 tx--13 tx-clr--grey">
         {{#with venue}}
-            <div class="">{{name}}</div>
-            <div class="one-line">{{street}}</div>
-            <div>
+            {{#if name}}{{name}}<br/>{{/if}}
+            {{#if steet}}<span class="one-line">{{street}}</span><br/>{{/if}}
             {{#with address}}
                 {{#if city}}{{city}}{{/if}}
                 {{~#and city zip~}}, {{/and}}
                 {{#if zip}}{{zip}}{{/if}}
             {{/with}}
-            </div>
         {{/with}}
         </div>
     </div>
