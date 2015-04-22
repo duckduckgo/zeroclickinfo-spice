@@ -1,6 +1,7 @@
 package DDG::Spice::Lastfm::Album;
 # ABSTRACT: Display album info.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "American Idiot album by Green Day";

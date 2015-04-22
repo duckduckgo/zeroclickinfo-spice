@@ -1,6 +1,7 @@
 package DDG::Spice::Hackage::PackageDetails;
 # ABSTRACT: Search for information about Hackage packages
 
+use strict;
 use DDG::Spice;
 
 attribution github => ["https://github.com/nomeata", "Joachim Breitner"],

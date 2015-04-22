@@ -1,5 +1,7 @@
 package DDG::Spice::Drinks;
+# ABSTRACT: Drink mixing instructions
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "how to mix a tom collins";
@@ -26,20 +28,20 @@ handle query_lc => sub {
     # too ambiguous otherwise
     # e.g. "making a rails 4 backend"
     if (/^(?:how to make|making) an? (.+)/){
-    	$drink = $1;
+        $drink = $1;
         return unless $drink =~ /\bdrink\b/;
     } elsif (/^(?:how to mix|mixing) an? (.+)/){
-    	$drink = $1;
+        $drink = $1;
     } elsif (/^ingredients for an? (.+)|(.+) ingredients/){
-	$drink = $1||$2;
+    $drink = $1||$2;
     } elsif (/^(.+) drink$|^drink (.+)$/){
         $drink = $1;
     }
-    
+
     if ($drink){
-    	$drink =~ s/drink//g;
-    	$drink =~ s/^\s+|\s+$//g;
-	return $drink;
+        $drink =~ s/drink//g;
+        $drink =~ s/^\s+|\s+$//g;
+        return $drink;
     }
     return;
 };

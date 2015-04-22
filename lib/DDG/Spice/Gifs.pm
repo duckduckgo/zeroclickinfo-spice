@@ -1,5 +1,7 @@
 package DDG::Spice::Gifs;
+# ABSTRACT: Search for animated gifs
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "funny cat gifs";
