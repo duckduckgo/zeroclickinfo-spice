@@ -127,7 +127,8 @@
                     currency_primary: rows[0].currency_primary,
                     currency_secondary: rows[0].currency_primary,
                     convertedAmount: 1,
-                    currencyName: displayName
+                    currencyName: displayName,
+                    initial: true
                 };
                 results.push(givenCurrency);
             // Add the remaining currencies
@@ -252,7 +253,7 @@
                     cryptonatorURL: "http://www.cryptonator.com/rates#" + item.currency_secondary,
                     fromFlag: currency_image(item.currency_primary),
                     toFlag: currency_image(item.currency_secondary),
-                    currencyName: item.currencyName,
+                    cryptoCurrencyName: item.currencyName,
                     liveUrl: "Placeholder",
                     cryptoTime: cryptoTime,
                     cryptoDate: cryptoDate
