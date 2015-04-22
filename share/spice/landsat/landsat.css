@@ -1,0 +1,21 @@
+.zci--landsat .landsat--container {
+    margin-bottom: 0.5em;
+    max-width: 100%;
+    padding-right: 0.5em;
+}
+
+.zci--landsat .landsat--img {
+    display: block;
+    margin: 1em 0 0.5em;
+}
+
+.zci--landsat .landsat--date {
+    color: #888;
+    display: inline-block;
+    margin-right: 0.5em;
+}
+
+.zci--landsat {
+    font-size: 12px;
+    text-decoration: none;
+}
