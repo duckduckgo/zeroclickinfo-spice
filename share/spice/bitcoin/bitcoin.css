@@ -1,4 +1,4 @@
-/* start - bitcoin_address */
+/* bitcoin_address */
 .zci--bitcoin_address .zci__body .zci__more-at{
     padding-top: 1em;
 }
@@ -27,7 +27,7 @@
     text-overflow: ellipsis;
 }
 
-.zci--bitcoin_address .c-text__img-wrap{
+.zci--bitcoin_address .c-info__img-wrap {
     padding-top: 15px;
 }    
 
@@ -36,4 +36,11 @@
     display: none;
   }    
 }
-/* end - bitcoin_address */
+/* bitcoin_address */
+
+
+/* bitcoin_transaction */
+.zci--bitcoin_transaction .c-list {
+    max-width: 46em;
+}
+/* bitcoin_transaction */
