@@ -36,10 +36,7 @@
                         image: item.image_large_url,
                         start_end: getStartEnd(item.start_date,item.end_date),
                         lat: item.venue.lat,
-                        lon: item.venue.lng,
-                        meta: {
-                            sourceName: item.source_name
-                        }
+                        lon: item.venue.lng
                     };
                 },
                 templates: {
