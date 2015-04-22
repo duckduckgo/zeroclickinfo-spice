@@ -21,12 +21,23 @@
                 sourceUrl: 'http://www.reddit.com' + api_response.data.url,
                 sourceName: 'Reddit'
             },
+            normalize: function(item) {
+                return {
+                    title: "/r/" + item.title,
+                    subtitle: item.submit_link_label,
+                    record_data: {
+                        "Title": item.title,
+                        "Description": item.public_description,
+                        "Subscribers": item.subscribers.toLocaleString()
+                    }
+                };
+            },
             templates: {
-		group: 'base',
-		options: {
-                    content: Spice.reddit_sub_search.detail,
-		    moreAt: true
-		}
+                group: 'text',
+                options: {
+                    content: 'record',
+                    moreAt: true
+                }
             }   
         });
     }

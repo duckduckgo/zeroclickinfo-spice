@@ -25,6 +25,15 @@ my $trigger_hash = Load(scalar share('home_values_triggers.yml')->slurp);
 
 # triggers sorted by length so more specific is used first
 my @trigger_keys = sort { length $b <=> length $a } keys($trigger_hash);
+my $trigger_qr = join "|", @trigger_keys;
+
+# states and metro code mappings
+my $state_hash = Load(scalar share('states.yml')->slurp);
+my @state_keys = sort { length $b <=> length $a } keys($state_hash);
+my $state_qr = join "|", @state_keys;
+my $metro_hash = Load(scalar share('metro.yml')->slurp);
+my @metro_keys = sort { length $b <=> length $a } keys($metro_hash);
+my $metro_qr = join "|", @metro_keys;
 
 # defining our triggers
 triggers any => @trigger_keys;
@@ -39,12 +48,12 @@ spice proxy_cache_valid => "418 1d";
 
 handle sub {
 
-    # will hold region such as "27510", "Carrboro" etc
-    # NOTE: only zip codes supported for time being
+    my $query = lc $_;
+    
+    # will hold region such as "27510", "Carrboro", "North Carolina" etc
     my $region;
-
-    # will hold the type of region such as "ZIP", "CITY" etc
-    # NOTE: only zip codes supported for time being
+    
+    # will hold the type of region:  "ZIP", "METRO", STATE" 
     my $indicator_type;
 
     # checking for 5-digit zip codes
@@ -53,21 +62,33 @@ handle sub {
         $region = $1;
         $indicator_type = "ZIP";
     }
-
+    
+    # is it a metropolitan area?
+    if (! defined $region) {
+        $query =~ m/\b($metro_qr)\b/;
+        if (defined $1) {
+            $region = $metro_hash->{$1};
+            $indicator_type = "METRO";
+        }
+    }
+    
+    # is it a state?
+    if (! defined $region) {
+        $query =~ m/\b($state_qr)\b/;
+        if (defined $1) {
+            $region = $state_hash->{$1};
+            $indicator_type = "STATE";
+        }
+    }
+    
     # exit if no region defined
     return unless ($region);
-
-    # only return if we found a region in the search query
-    my $query = lc $_;
-    # iterate through trigger phrases in their file-order
-    for my $trigger (@trigger_keys) {
-        # return if the trigger phrase is in the query
-        if ( $query =~ /$trigger/ ) {
-            return $indicator_type . "_" . $trigger_hash->{$trigger} . "_" . $region;
-        }
-    };
-
-    return;
+    
+    # iterate through trigger phrases
+    return unless $query =~ m/\b($trigger_qr)\b/;
+    my $trigger = $1;
+    return $indicator_type . "_" . $trigger_hash->{$trigger} . "_" . $region;
+    
 };
 
 1;

@@ -19,6 +19,7 @@ attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
 
 spice to => 'https://duckduckgo.com/flights.js?airline=$1&flightno=$2&callback={{callback}}';
 spice from => '(.*?)/(.*)';
+spice proxy_cache_valid => '418 1d';
 
 triggers query_lc => qr/^(\d+)\s+(.*?)(?:[ ]air.*?)?$|^(.*?)(?:[ ]air.*?)?\s+(\d+)$/;
 
@@ -47,27 +48,26 @@ foreach my $line (@elements_lines) {
     $elements{$line[1]} = 1;
 }
 
+sub checkAirlines {
+    my ($airline, $flightno) = @_;
+
+    # Check if we found something and if it's not an element.
+    if($airline && !exists $elements{$airline}) {
+        return $airline, $flightno;
+    } else {
+        return;
+    }
+}
+
 handle query_lc => sub {
     my $query = $_;
 
-    sub checkAirlines {
-        my ($airline, $flightno, $original) = @_;
-
-        # Check if we found something and if it's not an element.
-        if($airline && !exists $elements{$airline}) {
-            return $airline, $flightno;
-        } else {
-            return;
-        }
-    }
-
     # 102 AA
-
     if($query =~ /^(\d+)\s*(.*?)(?:[ ]air.*?)?$/) {
-        return checkAirlines($airlines{$2}, $1, $2);
+        return checkAirlines($airlines{$2}, $1);
     # AA 102
     } elsif($query =~ /^(.*?)(?:[ ]air.*?)?\s*(\d+)$/) {
-        return checkAirlines($airlines{$1}, $2, $1);
+        return checkAirlines($airlines{$1}, $2);
     }
     return;
 };
