@@ -16,6 +16,10 @@
 
 .tile--get_events .tile__title--wrap {
     display: inline-block;
+    width: 100%;
+}
+
+.is-expanded .tile--get_events .tile__title--wrap {
     width: 9em;
 }
 
@@ -45,7 +49,7 @@
     font-size: 13px;
     line-height: 1.4;
     color: #999;
-    max-height: 6.6em;
+    max-height: 5.6em;
     height: auto;
     margin-bottom: 1em;
 }
@@ -63,6 +67,10 @@
 
 .svg .tile--get_events .tile__num--get_events .number {
     background-image: url("map-pin.svg");
+}
+
+.tile--get_events__alt .tile__title {
+    margin-bottom: 0.85em;
 }
 
 .tile--get_events__alt .has-foot .tile__content--lg {
