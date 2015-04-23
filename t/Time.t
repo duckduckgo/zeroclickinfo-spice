@@ -62,6 +62,7 @@ ddg_spice_test(
     'time and space museum'    => undef,
     'time complexity of qsort' => undef,
     'running time of titanic'  => undef,
+    'time in Toronto'          => undef, # This will still show a result in production, but the triggering is handled internally
 );
 
 done_testing;

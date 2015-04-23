@@ -1,7 +1,6 @@
 (function(env) {
-    "use strict";    
+    "use strict";
     env.ddg_spice_github = function(api_result) {
-        
 
         if (!api_result || !api_result.meta.status === 200) {
           return Spice.failed('github');
@@ -10,6 +9,7 @@
         var script = $('[src*="/js/spice/github/"]')[0],
                     source = $(script).attr("src"),
                     query = source.match(/github\/([^\/]+)/)[1];
+
         if (/language:".*?"/.test(unescape(query))) {
             var itemType = "Git Repositories (" + unescape(query).match(/language:"(.*?)"/)[1] + ")";
         } else {
@@ -26,67 +26,49 @@
         if (results.length > 30)
             results = results.splice(0,30);
 
-        Spice.add({
-            id: "github",
-            name: "Software",
-            data: results,
-            meta: {
-                itemType: itemType,
-                sourceUrl: 'http://www.github.com/search?q=' +  encodeURIComponent(query),
-                sourceName: 'GitHub'
-            },
-            templates: {
-                    group: 'text',
-                    detail: false,
-                    item_detail: false,
-                    options: {
-                        footer: Spice.github.footer
+        DDG.require("moment.js", function() {
+            Spice.add({
+                id: "github",
+                name: "Software",
+                data: results,
+                meta: {
+                    itemType: itemType,
+                    sourceUrl: 'https://www.github.com/search?q=' +  encodeURIComponent(query),
+                    sourceName: 'GitHub'
+                },
+                templates: {
+                        group: 'text',
+                        detail: false,
+                        item_detail: false,
+                        options: {
+                            footer: Spice.github.footer
+                        },
+                        variants: {
+                            tile: 'basic4'
+                        }
                     },
-                    variants: {
-                        tile: 'basic4'
+                normalize: function(item) {
+                    return {
+                        title: item.name,
+                        subtitle: item.owner.login + "/" + item.name,
+                        url: item.html_url,
+                        pushed_at: moment(item.pushed_at).fromNow()
+                    };
+                },
+                relevancy: {
+                    primary: [
+                        { key: 'description', match: /.+/, strict: false } // Reject things without a description.
+                    ]
+                },
+                sort_fields: {
+                    watchers: function(a, b) {
+                        var x = a.watchers;
+                        var y = b.watchers;
+                        return ((x < y) ? 1 : ((x > y) ? -1 : 0));
                     }
                 },
-            normalize: function(item) {
-                return {
-                    title: item.name,
-                    subtitle: item.owner.login + "/" + item.name,
-		    url: item.html_url
-                };
-            },
-            relevancy: {
-                primary: [
-                    { key: 'description', match: /.+/, strict: false } // Reject things without a description.
-                ]
-            },
-            sort_fields: {
-                watchers: function(a, b) {
-                    var x = a.watchers;
-                    var y = b.watchers;
-                    return ((x < y) ? 1 : ((x > y) ? -1 : 0));
-                }
-            },
-            sort_default: 'watchers'
+                sort_default: 'watchers'
+            });
         });
     }
 }(this));
-
-// Make sure we display only three items.
-Handlebars.registerHelper("GitHub_last_pushed", function(pushed_at) {
-    "use strict";
-
-    var last_pushed = Math.floor((new Date() - new Date(pushed_at)) / (1000*60*60*24));
-
-    var years_ago = Math.floor(last_pushed / 365);
-    if (years_ago >= 1) {
-        last_pushed = years_ago + " year" + (years_ago == 1 ? "" : "s") + " ago";
-    } else if (last_pushed == 0) {
-        last_pushed = "today";
-    } else if (last_pushed == 1) {
-        last_pushed = "yesterday";
-    } else {
-        last_pushed = last_pushed + " day" + (last_pushed == 1 ? "" : "s") + " ago";
-    }
-
-    return last_pushed;
-});
-

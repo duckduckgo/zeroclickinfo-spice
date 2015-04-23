@@ -33,18 +33,18 @@ my $keyword_guard = qr/game|instruction|stoves|warcraft|deck|forum|wiki|reddit/;
 
 # Handle statement
 handle remainder => sub {
-    
+
     # Guard against "no answer"
     return unless $_;
-    
+
     # Keyword Blacklist
     return if (/$keyword_guard/);
-    
+
     # Regex guard
     # Allows string similar to any Hearthstone card name: multiple words separated by spaces, commas or dashes.
     # The card name may also have dots, double dots, slashes or an exclamation mark (Those Blizzard devs).
     return $_ if (/^([a-z0-9':!\/,.-]+\s*)+$/i);
-    
+
     return;
 };
 

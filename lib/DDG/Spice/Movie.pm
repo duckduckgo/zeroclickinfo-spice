@@ -1,4 +1,5 @@
 package DDG::Spice::Movie;
+# ABSTRACT: Movie information from Rotten Tomatoes
 
 use strict;
 use DDG::Spice;
