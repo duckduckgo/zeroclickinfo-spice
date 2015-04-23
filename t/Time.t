@@ -55,6 +55,10 @@ ddg_spice_test(
     'current time'                             => test_spice(@phoenixville),
     'current local time'                       => test_spice(@phoenixville),
     # Intentionally ignored
+    'pdt time'                 => undef,
+    'testing time'             => undef,
+    'foobar time'              => undef,
+    'adhjasdhjkd hjkasdjasd ashjkas time'    => undef,
     'time and space museum'    => undef,
     'time complexity of qsort' => undef,
     'running time of titanic'  => undef,

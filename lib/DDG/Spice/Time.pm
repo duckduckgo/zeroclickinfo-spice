@@ -25,7 +25,7 @@ my $capitals = Load(scalar share("capitals.yml")->slurp);
 handle query_lc => sub {
     my $q = shift;
 
-    $q =~ m/(?<rest>what'?s?|is|the|current|local|\s)*time(?:is|it|in|of|for|at|\s)*(?<loc>[^\?]*)[\?]*$/;
+    return unless $q =~ m/^(?<rest>what'?s?|is|the|current|local|\s)*time(?:is|it|in|of|for|at|\s)*(?<loc>[^\?]*)[\?]*$/;
     my $rest = trim $+{rest};
     my $q_loc = trim $+{loc};
 
