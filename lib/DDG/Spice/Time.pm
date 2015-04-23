@@ -5,7 +5,6 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 use YAML::XS qw( Load );
-use Text::Trim;
 
 primary_example_queries "time in Melbourne", "time for Australia";
 secondary_example_queries "what time is it in Melbourne", "what is the time in Birmingham";
