@@ -80,7 +80,7 @@ handle query_lc => sub {
     } else {
         return;
     }
-    
+
 
 };
 

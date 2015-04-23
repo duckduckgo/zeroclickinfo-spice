@@ -1,4 +1,5 @@
 package DDG::Spice::SimilarSites;
+# ABSTRACT: Find sites that are similar to a given site
 
 use DDG::Spice;
 

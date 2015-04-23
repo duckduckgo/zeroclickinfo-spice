@@ -97,6 +97,7 @@
 
 #color_picker_container .sample {
     border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.15);
 }
 
 #color_picker_container #palette {

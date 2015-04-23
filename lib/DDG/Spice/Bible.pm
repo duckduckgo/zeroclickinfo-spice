@@ -1,4 +1,5 @@
 package DDG::Spice::Bible;
+# ABSTRACT: Bible citations
 
 use strict;
 use DDG::Spice;

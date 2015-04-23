@@ -1,7 +1,9 @@
 package DDG::Spice::Time;
-use DDG::Spice;
+# ABSTRACT: Time zone converter
 
 use strict;
+use DDG::Spice;
+use Text::Trim;
 use YAML::XS qw( Load );
 use Text::Trim;
 
@@ -34,13 +36,11 @@ handle query_lc => sub {
 
     $q_loc =~ s/,//g;
 
-    if (my $caps = $capitals->{$q_loc}) {
-        # These are internally sorted by population, so assume they want the big one for now.
-        $q_loc = string_for_search($caps->[0]);
-        return $q_loc;
-    }
+    return unless (my $caps = $capitals->{$q_loc});
 
-    return;
+    # These are internally sorted by population, so assume they want the big one for now.
+    $q_loc = string_for_search($caps->[0]);
+    return $q_loc;
 };
 
 sub string_for_search {

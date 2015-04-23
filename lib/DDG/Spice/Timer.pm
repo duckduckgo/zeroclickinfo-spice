@@ -1,4 +1,5 @@
 package DDG::Spice::Timer;
+# ABSTRACT: Shows a countdown timer
 
 use strict;
 use DDG::Spice;

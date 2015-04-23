@@ -1,4 +1,5 @@
 package DDG::Spice::MassOnTime;
+# ABSTRACT: Get times for masses for cities
 
 use strict;
 use DDG::Spice;
@@ -33,14 +34,14 @@ handle query_lc => sub {
     else {
         return;
     }
-    
+
     #MassOnTime API doesn't recognize 'church;, replace with 'parish'
     $event_type = "parish" if $event_type eq "church";
 
     #Handle blank addresses or 'me' using DDG location api
     if ($address =~ m/^(close|me|here|nearby)$/i or $address eq "" or not defined $address) {
         $address = lc(join(", ", $loc->city, $loc->region_name, $loc->country_name));
-        
+
         return $event_type, $address, 'current', {is_cached => 0};
     }
 
