@@ -8,19 +8,39 @@ use DDG::Test::Location;
 use DDG::Test::Spice;
 use DDG::Request;
 
-my $loc = test_location('de');
-
 ddg_spice_test(
     ['DDG::Spice::Forecast'],
+
     DDG::Request->new(
         query_raw => 'weather',
-        location => $loc
+        location => test_location('de'),
     ) => test_spice(
         "/js/spice/forecast/M%C3%B6nchengladbach%20Nordrhein-Westfalen%20Germany/current",
         call_type => 'include',
         caller => 'DDG::Spice::Forecast',
         is_cached => 0
     ),
+
+    DDG::Request->new(
+        query_raw => 'weather',
+        location => test_location('us'),
+    ) => test_spice(
+        "/js/spice/forecast/Phoenixville%20Pennsylvania%20United%20States/current",
+        call_type => 'include',
+        caller => 'DDG::Spice::Forecast',
+        is_cached => 0
+    ),
+
+    DDG::Request->new(
+        query_raw => 'weather',
+        location => test_location('my'),
+    ) => test_spice(
+        "/js/spice/forecast/Kuala%20Lumpur%20Kuala%20Lumpur%20Malaysia/current",
+        call_type => 'include',
+        caller => 'DDG::Spice::Forecast',
+        is_cached => 0
+    ),
+
     'temperature stockholm' => undef,
     'shipping forecast' => undef,
     'weather forecast bbc' => undef,
