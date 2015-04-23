@@ -1,19 +1,17 @@
 DDG.require('maps',function(){
-    ddg_spice_maps_maps = function(d) {
+    ddg_spice_maps_maps = function(response) {
         
-        if (!d || !d.length) { return Spice.failed('maps'); }
+        if (!response || !response.length) { return Spice.failed('maps'); }
 
-        console.log("RAW MAP OBJECT %o", d);
-
-        d = [d[0]]; // OSM sends back a bunch of places, just want the first one for now
+        // OSM sends back a bunch of places, just want the first one for now
+        response = [response[0]]; 
                                 
-        if (!DDG.isRelevant(d[0].display_name.toLowerCase())) { 
-            console.log("Maps failed relevancy", { log: "duckbar" });
+        if (!DDG.isRelevant(response[0].display_name.toLowerCase())) { 
             return Spice.failed('maps'); 
         } 
         
         Spice.add({
-            data: d,
+            data: response,
             id: "maps",
             name: "maps",
             model: "Place"
