@@ -88,13 +88,10 @@
                 };
             },
             templates: {
-                group: 'media',
+                group: 'movies',
                 options: {
                     subtitle_content: Spice.movie.subtitle_content,
                     buy: Spice.movie.buy
-                },
-                variants: {
-                    tile: 'poster'
                 }
             },
             relevancy: {
@@ -108,13 +105,6 @@
                 }]
             }
         });
-
-        // Make sure we hide the title and ratings.
-        // It looks nice to show only the poster of the movie.
-        var $dom = Spice.getDOM('movie')
-        if ($dom && $dom.length) {
-            $dom.find('.tile__body').hide();
-        }
     };
 
     // Convert minutes to hr. min. format.
