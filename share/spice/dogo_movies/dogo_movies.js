@@ -20,14 +20,14 @@
             }
             return hours + (minutes > 0 ? minutes + ' min.' : '');
         }
-        
+
         Spice.add({
             id: 'dogo_movies',
             name: 'Kids Movies',
             data: api_result.results,
             meta: {
                 sourceName: 'DOGOmovies',
-                sourceUrl: 'http://www.dogomovies.com/search?query=' + encodeURIComponent(query) + '&ref=ddg',
+                sourceUrl: 'http://www.dogomovies.com/search?query=' + encodeURIComponent(query),
                 itemType: 'kids movies'
             },
             normalize: function(item) {
@@ -47,15 +47,12 @@
                 };
             },
             templates: {
-                group: 'media',
+                group: 'movies',
                 options: {
                     buy: Spice.dogo_movies.buy,
                     subtitle_content: Spice.dogo_movies.subtitle_content,
                     rating: true
                 },
-                variants: {
-                    tile: 'poster'
-                }
             }
         });
     };
