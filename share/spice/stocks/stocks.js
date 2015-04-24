@@ -19,15 +19,14 @@
                     attributionText: "Xignite"
                 },
                 normalize: function(data){
-                    var change = data.ChangeFromPreviousClose.toString(),
-                        percentChange = data.PercentChangeFromPreviousClose.toFixed(2).toString(),
+                    var change = data.ChangeFromPreviousClose,
                         changeDir;
                     moment().utcOffset(data.UTCOffset);
 
                     // remove +/- from change attributes and add up/down class:
-                    if (change.charAt(0) === '+') {
+                    if (change > 0 ) {
                         changeDir = 'up';
-                    } else if(change.charAt(0) === '-') {
+                    } else if(change < 0) {
                         changeDir = 'down';
                     } else {
                         changeDir = 'same';
@@ -36,9 +35,10 @@
                     return {
                         url: url,
                         urlTitle: 'View more ' + data.Security.Name + ' stock data at NASDAQ',
+                        quote: data.Last.toFixed(2),
                         quoteChangeDir: changeDir,
-                        change: change.replace(/^[+|-]/,''),
-                        change_percent: percentChange.replace(/^[+|-]/,''),
+                        change: change.toFixed(2),
+                        change_percent: data.PercentChangeFromPreviousClose.toFixed(2),
                         date: moment(data.Date).format("MMM DD"),
                         time: moment(data.Time, "hh:mm:ss A").format("h:mm A")
                     };
