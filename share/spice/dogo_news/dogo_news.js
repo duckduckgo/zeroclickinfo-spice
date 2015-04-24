@@ -10,7 +10,7 @@
         var script = $('[src*="/js/spice/dogo_news/"]')[0],
             source = $(script).attr("src"),
             query = decodeURIComponent(source.match(/dogo_news\/([^\/]+)/)[1]);
-    
+
         DDG.require('moment.js', function(){
             Spice.add({
                 id: 'dogo_news',
@@ -18,7 +18,7 @@
                 data: api_result.results,
                 meta: {
                     sourceName: 'DOGOnews',
-                    sourceUrl: 'http://www.dogonews.com/search?query=' + encodeURIComponent(query) + '&ref=ddg',
+                    sourceUrl: 'http://www.dogonews.com/search?query=' + encodeURIComponent(query),
                     itemType: 'kids news articles'
                 },
                 normalize: function(item) {
