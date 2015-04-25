@@ -1,7 +1,10 @@
+<div class="tile--gfy_cat">
 <div>
-    <h4>Title: {{title}}</h4>
+    <h6>
+        {{title}}
+    </h6>
 </div>
-<div class="tile--gyf_cat tile--gyf_cat__main">
+<div class="tile--gfy_cat__section">
     <div>
         Views: {{views}}
     </div>
@@ -11,16 +14,14 @@
     <div>
         Author: {{author}}
     </div>
+    <div class="tile--gfy_cat__rating">
+        <div class="tile--gfy_cat__rating_text">
+            <small>
+                Rating
+            </small>
+        </div>
+        <div class="tile--gfy_cat__rating_background">
+            <table class="tile--gfy_cat__rating_likes" width="{{ratingPercent}}%"></table>
+        </div>
+    </div>
 </div>
-<div class="tile--gyf_cat">
-    <li>
-        <a class="c-base__link" href="{{mp4Url}}">Mp4 Url</a>
-    </li>
-    <li>
-        <a class="c-base__link" href="{{webmUrl}}">WebM Url</a>
-    </li>
-    <li>
-        <a class="c-base__link" href="{{gifUrl}}">Gif Url</a>
-    </li>
-</div>
-

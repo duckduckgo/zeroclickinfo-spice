@@ -11,18 +11,25 @@
         Spice.add({
             id: "gfy_cat",
             name: "Social",
-            data: api_result['gfyItem'],
+            data: api_result.gfyItem,
             meta: {
                 sourceName: "GfyCat",
                 sourceUrl: 'https://gfycat.com/' + link
             },
             normalize: function(item) {
-                if(item.title == null){
+                if(item.title === null){
                     item.title = "Untitled";
+                }
+                var totalRatings = parseInt(item.likes,10) + parseInt(item.dislikes,10);
+                if(totalRatings > 0){
+                    item.ratingPercent = item.likes / totalRatings * 100;
+                } else{
+                    item.ratingPercent = 0;
                 }
                 return {
                     name: item.gfyName,
-                    author: item.userName
+                    author: item.userName,
+                    defaultUrl: 'https://gfycat.com/' + link
                 };
             },
             templates: {
