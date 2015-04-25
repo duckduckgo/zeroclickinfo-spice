@@ -4,7 +4,7 @@
     <div class="tile--f__main  tile--loc__main">
         <div class="tile__head">
             <div class="head--title tile__title--wrap">
-                <h6 class="tile__title with-sub tile__title--1">{{ellipsis name 41}}</h6>
+                <h6 class="tile__title with-sub tile__title--2">{{ellipsis name 41}}</h6>
                 <span class="tile__sub tx--13 tx-clr--grey">{{diocesename}}</span>
             </div>
             <div class="head--num pull-right">
@@ -14,7 +14,7 @@
         <div class="head--clear"></div>
 
         <div class="tile__body has_foot--{{#if starttime}}3{{else}}2{{/if}}"></div>
-        <div class="tile__foot tile__foot--{{#if starttime}}3{{else}}2{{/if}}">
+        <div class="tile__foot tile__foot--{{#if starttime}}3{{else}}2{{/if}} tx-clr--grey">
             {{#if phone}}<span class="tile__foot-line">{{ellipsis phone}}</span>{{/if}}
             <span class="tile__foot-line">{{MassOnTime_format_eventtypeid eventtypeid}}</span>
             {{#if starttime}}<span class="tile__foot-line">{{MassOnTime_format_12h_start starttime}}</span>{{/if}}
