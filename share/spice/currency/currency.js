@@ -119,7 +119,7 @@
         }
         
        // Set favicon
-       var favicon = ((DDG.is3x || DDG.is2x) ? DDG.get_asset_path('currency',"assets/xe.png") : "http://www.xe.com/favicon.ico");
+       var icon = ((DDG.is3x || DDG.is2x) ? DDG.get_asset_path('currency',"assets/xe.png") : "http://www.xe.com/favicon.ico");
         
         Spice.add({
             id: 'currency',
@@ -150,7 +150,7 @@
                     liveUrl: liveUrl,
                     xeTime: xeTime,
                     xeDate: xeDate,
-                    favicon: favicon
+                    moreAtIcon: icon
                 };
             },
             templates: templateObj,
