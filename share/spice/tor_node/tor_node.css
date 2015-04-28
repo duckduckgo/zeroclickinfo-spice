@@ -3,12 +3,12 @@
 }
 
 .tile--tor_node .tile__content {
-    margin: 1.667em 0;
+    margin: 1.181em 0;
 }
 
 .tile--tor_node .tile__icon {
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: 100%;
   margin-top: 1px;
 
   /* remove bg-color and padding completely */
