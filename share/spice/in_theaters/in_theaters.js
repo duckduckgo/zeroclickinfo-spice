@@ -86,22 +86,14 @@
                 };
             },
             templates: {
-                group: 'media',
+                group: 'movies',
                 options: {
                     subtitle_content: Spice.in_theaters.subtitle_content,
                     rating: false,
                     buy: Spice.in_theaters.buy
-                },
-                variants: {
-                    tile: 'poster'
                 }
             }
         });
-
-        // Hide the bottom text so that the poster occupies the whole tile.
-        if(typeof Spice.getDOM('in_theaters') !== 'undefined') {
-            Spice.getDOM('in_theaters').find('.tile__body').addClass('is-hidden');
-        }
     }
     
     // Convert minutes to hr. min. format.
