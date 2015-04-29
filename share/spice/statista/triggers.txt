@@ -1,3 +1,2 @@
 statistics
-statistics about
-statistics for
+statistic

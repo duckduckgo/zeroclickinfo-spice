@@ -3,11 +3,10 @@
     
     function getImage(item, size) {    
         if (item.Premium == 1) {
-            return 'http://www.statista.com/graphic/teaser/100/1/270812/inflation-rate-in-brazil.jpg';
+            return 'https://d28wbuch0jlv7v.cloudfront.net/static/img/openGraph-Search.png';
         } else {
             return item.teaserImageUrls[size].src;
         }
-        
     }
     
     function getTitle(title) {
@@ -31,9 +30,8 @@
             normalize: function(item) {
                 return {
                     title: getTitle(item.title),
-                    //subtitle: 'sub:'+getTitle(item.title),
                     url: item.Link,
-                    description: item.subject /*item.description*/,
+                    description: item.subject,
                     icon: getImage(item, 2)
                 }  
             },
@@ -46,29 +44,6 @@
                     moreAt: true
                 }
             },
-            // Big Image
-            /*normalize: function(item) {
-                return {
-                    title: item.subject,
-                    link: item.Link,
-                    url: item.Link,
-                    heading: getTitle(item.title),
-                    description: item.description,
-                    abstract: DDG.strip_html(item.description),
-                    img: getImage(item, 2),
-                    image: getImage(item, 2)
-                }  
-            },
-            templates: {
-                item: 'basic_image_item',
-                detail: false,
-                item_detail: false,
-                
-                options: {
-                    content: Spice.statista.content,
-                    moreAt: true
-                }
-            },*/
         });
     };
 }(this));
