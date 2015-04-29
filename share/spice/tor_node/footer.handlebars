@@ -1,10 +1,9 @@
-<div class="one-line">
-  {{#if running}}
-  <span class="online">&#x25B2; {{uptime}}</span>
-  {{else}}
-  <span class="offline">&#x25BC; {{downtime}}</span>
-  {{/if}}
-  {{#if bandwidth}}
-  <span class="bandwidth">{{bandwidth}}</span>
-  {{/if}}
-</div>
+{{#if running}}
+    <span class="online pull-left tx-clr--green">&#x25B2; {{uptime}}</span>
+{{else}}
+    <span class="offline pull-left tx-clr--red">&#x25BC; {{downtime}}</span>
+{{/if}}
+
+{{#if bandwidth}}
+    <span class="bandwidth pull-right tx-clr--grey">{{bandwidth}}</span>
+{{/if}}

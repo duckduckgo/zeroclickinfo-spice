@@ -1,13 +1,13 @@
 #!/usr/bin/env perl
 use strict;
-use warnings; 
-use Test::More; 
+use warnings;
+use Test::More;
 use DDG::Test::Spice;
 # These two modules are only necessary when testing with the Location API.
 use DDG::Test::Location;
 use DDG::Request; ddg_spice_test(
     [qw( DDG::Spice::GetEvents )],
-    # This optional argument to ddg_goodie_test is a DDG::Request object. The object constructor takes two arguments of its own: the query (usually specified in the 
+    # This optional argument to ddg_goodie_test is a DDG::Request object. The object constructor takes two arguments of its own: the query (usually specified in the
     # test_zci), and a location object - created by test_location (with a country code).
     DDG::Request->new(
         query_raw => "events near me",
