@@ -11,7 +11,7 @@ category "facts";
 
 my $api_key = '5db81c2a174170dac75620a16f553dd9';
 my $limit = 10;
-my $lang = 'xx';
+my $lang = 2;
 my @triggers = share('triggers.txt')->slurp;
 
 triggers any => @triggers;
