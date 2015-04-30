@@ -6,11 +6,11 @@ use DDG::Spice;
 
 primary_example_queries "statistics about soccer";
 description "Shows example statistics";
-name "Statista.com";
+name "Statista";
 category "facts";
 
 my $api_key = '5db81c2a174170dac75620a16f553dd9';
-my $limit = 10;
+my $limit = 16;
 my $lang = 2;
 my @triggers = share('triggers.txt')->slurp;
 

@@ -1,11 +1,11 @@
 (function (env) {
     "use strict";
     
-    function getImage(item, size) {    
-        if (item.Premium == 1) {
-            return 'https://d28wbuch0jlv7v.cloudfront.net/static/img/openGraph-Search.png';
-        } else {
+    function getImage(item, size) {  
+        if (item.teaserImageUrls[size]) {
             return item.teaserImageUrls[size].src;
+        } else {
+            return 'https://da73v1deq9k1l.cloudfront.net/Statistic/table/table-100-1.png';
         }
     }
     
@@ -21,7 +21,7 @@
 
         Spice.add({
             id: "statista",
-            name: "Statista.com",
+            name: "Statista",
             data: api_result.data,
             meta: {
                 sourceName: "Statista.com",
@@ -32,7 +32,7 @@
                     title: getTitle(item.title),
                     url: item.Link,
                     description: item.subject,
-                    icon: getImage(item, 2)
+                    icon: getImage(item, 3)
                 }  
             },
             templates: {
