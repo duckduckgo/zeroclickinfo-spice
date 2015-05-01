@@ -1,6 +1,7 @@
 package DDG::Spice::BitcoinBalance;
 # ABSTRACT: Displays the balance of a Bitcoin address from the Chain.com API.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "17x23dNjXJLzGMev6R63uyRhMWP1VHawKc", "1Gn2dRFqouUHvuWPVhriCDtP3qVQc59WHy", "3QJmV3qfvL9SuYo34YihAf3sRCW3qSinyC";
@@ -16,7 +17,7 @@ attribution github => ['https://github.com/chain-engineering','chain.com'],
             email => ['hello@chain.com','chain.com'],
             twitter => ["chain", 'chain.com'],
             web => ['https://chain.com','chain.com'];
-            
+
 triggers query_raw => qr/^[13][1-9A-HJ-NP-Za-km-z]{26,33}$/;
 # This regular expression identifies the unique properties of a Bitcoin Address.
 

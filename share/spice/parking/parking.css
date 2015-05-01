@@ -1,0 +1,38 @@
+#zci-parking .tile--parking .tile__media__img {
+    margin-top: -20%;
+    min-width: 100%;
+}
+
+#zci-parking .tile__subtitle {
+    font-size: .95em;
+}
+
+#zci-parking .title--parking__distance{
+    float: left;
+}
+
+#zci-parking .title--parking__price{
+    float: right;
+}
+
+#zci-parking .tile__price{
+    color: #333;    
+}
+
+#zci-parking .tile--parking__foot{
+    color: #aaa;
+}
+
+#zci-parking .tile--parking__foot__back{
+    height: 2.7em;
+    text-align: center;
+}
+
+#zci-parking .reserve-btn--parking{
+    margin: 0;
+    left: 0;
+    padding: .1em 0;
+    font-size: .95em;    
+    border: 0;
+    width: 100%;
+}

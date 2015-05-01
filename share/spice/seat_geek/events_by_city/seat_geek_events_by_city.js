@@ -118,7 +118,7 @@
                         return how_many;
                     }
 
-                    return;
+                    return 0;
                 }
 
                 function getPrice(lowest, highest) {
@@ -130,12 +130,22 @@
 
                     return price;
                 }
+                
+                function getSubtitle(performers) {
+                    var num = getNumPerformers(performers),
+                        str = ' ';
+
+                    if (num > 0) {
+                        str = artistDisplayName + ' and '+ num + ' others';
+                    }
+                    return str;
+                }
 
                 return {
                     url: item.url,
                     price: getPrice(item.stats.lowest_price, item.stats.highest_price),
                     artist: artistDisplayName,
-                    num_performers: getNumPerformers(item.performers),
+                    subtitle: getSubtitle(item.performers),
                     title: item.short_title,
                     place: item.venue.name,
                     img: item.performers[0].images.small,
@@ -145,13 +155,17 @@
                 };
             },
             templates: {
-                group: 'products',
-                item: Spice.seat_geek_events_by_city.item,
+                group: 'text',
                 detail: false,
                 item_detail: false,
                 options: {
                     moreAt: true,
-                    rating: false
+                    rating: false,
+                    footer: Spice.seat_geek_events_by_city.footer
+                },
+                variants: {
+                    tileTitle: '3line-small',
+                    tileFooter: '4line'
                 }
             }
         });

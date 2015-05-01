@@ -1,5 +1,7 @@
 package DDG::Spice::Snow;
+# ABSTRACT: Shows weather conditions for cities
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "is it snowing?";

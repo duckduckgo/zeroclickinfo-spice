@@ -1,6 +1,7 @@
 package DDG::Spice::SeatGeek::EventsNearMe;
 # ABSTRACT: Returns upcoming concerts based on geolocation
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "live shows near me", "upcoming concerts in my area";
@@ -12,7 +13,7 @@ topics "entertainment", "music";
 attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
     github => ['https://github.com/andrey-p','Andrey Pissantchev'];
 
-triggers start => 
+triggers start =>
     'upcoming concert',
     'upcoming concerts',
     'concerts',
@@ -29,7 +30,7 @@ spice from => '([\-0-9.]+)/([\-0-9.]+)';
 
 handle remainder_lc => sub {
     # regex guard - remainder should always have "in my area" or "near me"
-    return if $_ !~ /(in my area|near me)$/;
+    return if $_ !~ /(in my area|near me|nearby)$/;
 
     # only make request if geolocation data's available
     if ($loc && $loc->latitude && $loc->longitude) {

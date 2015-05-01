@@ -1,0 +1,25 @@
+population:	SP_POP_TOTL
+population female:	SP_POP_TOTL_FE_ZS
+population is female:	SP_POP_TOTL_FE_ZS
+female population:	SP_POP_TOTL_FE_ZS
+gross external debt:	DT_DOD_DECT_CD_FD
+education expenditure :	NY_ADJ_AEDU_CD
+debt sector:	DP_DOD_DECT_CR_GG_CD
+gross national expenditure:	NE_DAB_TOTL_CN
+stocks traded:	CM_MKT_TRAD_CD
+urban population:	SP_URB_TOTL
+labor force:	SL_TLF_TOTL_IN
+food production:	AG_PRD_FOOD_XD
+telephone lines:	IT_MLT_MAIN
+national expenditure :	NE_DAB_TOTL_CN
+shipping connectivity:	IS_SHP_GCNW_XQ
+shipping connectivity index:	IS_SHP_GCNW_XQ
+shipping index: IS_SHP_GCNW_XQ
+droughts:	EN_CLC_MDAT_ZS
+floods: EN_CLC_MDAT_ZS
+extreme temperatures:	EN_CLC_MDAT_ZS
+price index:	FP_WPI_TOTL
+wholesale price index:	FP_WPI_TOTL
+rainfall: AG_LND_PRCP_MM
+avg rainfall: AG_LND_PRCP_MM
+average rainfall: AG_LND_PRCP_MM

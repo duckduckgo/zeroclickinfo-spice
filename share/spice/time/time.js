@@ -9,12 +9,16 @@
         var script = $('[src*="/js/spice/time/"]')[0],
             source = $(script).attr("src"),
             // Query is normalized as we'll normalize the generated strings.
-            query = decodeURIComponent(source.match(/time\/([^\/]+)/)[1]).toLowerCase(),
+            // if we have a comma separated query it is in the form:
+            // "town, state, country"  but state is optional
+            query = decodeURIComponent(source.match(/time\/([^\/]+)/)[1]).toLowerCase().split(','),
             chosen;
 
         for(var i = 0; i < api.locations.length; i++) {
-            if(DDG.stringsRelevant(query, api.locations[i].geo.name + " " + api.locations[i].geo.country.name) ||
-               DDG.stringsRelevant(query, api.locations[i].geo.name)) {
+            // query[0] = state
+            // query[len-1] = country
+            if(DDG.stringsRelevant(query[0], api.locations[i].geo.name) &&
+                    DDG.stringsRelevant(query[query.length-1], api.locations[i].geo.country.name)) {
                 chosen = api.locations[i];
                 break;
             }

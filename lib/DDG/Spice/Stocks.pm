@@ -1,5 +1,7 @@
 package DDG::Spice::Stocks;
+# ABSTRACT: Stock quote ticker
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "AAPL";

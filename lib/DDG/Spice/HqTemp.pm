@@ -1,5 +1,7 @@
 package DDG::Spice::HqTemp;
+# ABSTRACT: Defunct Spice
 
+use strict;
 use DDG::Spice;
 
 spice to => 'YOUR_URL_HERE';

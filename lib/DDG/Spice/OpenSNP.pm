@@ -1,5 +1,7 @@
 package DDG::Spice::OpenSNP;
+# ABSTRACT: Search for annotations to genotypes
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries 'rs7903146';

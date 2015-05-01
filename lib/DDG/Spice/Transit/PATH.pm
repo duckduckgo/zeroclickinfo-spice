@@ -1,5 +1,7 @@
 package DDG::Spice::Transit::PATH;
+# ABSTRACT: Information on next trains on PATH (New York + New Jersey)
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "next train from JSQ to WTC";

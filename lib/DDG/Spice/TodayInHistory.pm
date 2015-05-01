@@ -1,5 +1,7 @@
 package DDG::Spice::TodayInHistory;
+# ABSTRACT: Shows relevant historic events for the current day in previous years
 
+use strict;
 use DDG::Spice;
 
 name 'Today In History';
@@ -26,8 +28,8 @@ spice to => 'http://www.history.com/this-day-in-history/rss';
 spice wrap_string_callback => 1;
 
 handle remainder => sub {
-	return '' if $_ eq '';
-	return;
+    return '' if $_ eq '';
+    return;
 };
 
 1;

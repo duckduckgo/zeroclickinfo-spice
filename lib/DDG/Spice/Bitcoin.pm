@@ -1,5 +1,7 @@
 package DDG::Spice::Bitcoin;
+# ABSTRACT: Bitcoin exchange rates
 
+use strict;
 use utf8;
 use DDG::Spice;
 

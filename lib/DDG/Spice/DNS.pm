@@ -1,6 +1,7 @@
 package DDG::Spice::DNS;
 # ABSTRACT: Gets IP address of given domain name.
 
+use strict;
 use DDG::Spice;
 use Data::Validate::Domain qw(is_domain);
 
@@ -62,7 +63,7 @@ handle query_lc => sub {
     my $record = defined $2 ? $2 : 'any';
     return if not defined $2 and not defined $1
         and not (defined $3 and defined $4);
-	return uc $record, $_ if is_domain $_;
+    return uc $record, $_ if is_domain $_;
     return;
 };
 
