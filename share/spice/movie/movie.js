@@ -4,6 +4,14 @@
     // A change in the Rotten Tomatoes API returns images that end in _tmb.
     // This changes this to _det.
     function toDetail(img) {
+        if(/resizing\.flixster\.com/.test(img)) {
+            // Everything before the size of the image can be removed and it would still work.
+            img = img.replace(/.+\/\d+x\d+\/(.+)/, "http://$1");
+            // Better use the _det size (which is smaller) instead of the _ori size.
+            return img.replace(/_ori/, "_det");
+        }
+        
+        // Otherwise, use the old string replacement strategy.
         return img.replace(/tmb\.(jpg|png)/, "det.$1");
     }
 
@@ -76,13 +84,12 @@
                     img: image,
                     img_m: image,
                     url: item.links.alternate,
-                    is_retina: is_retina ? "is_retina" : "no_retina"
+                    is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
                 };
             },
             templates: {
-                group: 'media',
+                group: 'movies',
                 options: {
-                    variant: 'poster',
                     subtitle_content: Spice.movie.subtitle_content,
                     buy: Spice.movie.buy
                 }
@@ -98,13 +105,6 @@
                 }]
             }
         });
-
-        // Make sure we hide the title and ratings.
-        // It looks nice to show only the poster of the movie.
-        var $dom = Spice.getDOM('movie')
-        if ($dom && $dom.length) {
-            $dom.find('.tile__body').hide();
-        }
     };
 
     // Convert minutes to hr. min. format.

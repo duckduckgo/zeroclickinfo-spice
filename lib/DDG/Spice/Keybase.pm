@@ -1,6 +1,7 @@
 package DDG::Spice::Keybase;
 # ABSTRACT: Gets user public key from keybase.io
 
+use strict;
 use DDG::Spice;
 
 spice is_cached => 1;
@@ -15,8 +16,8 @@ description 'Shows user information from keybase.io.';
 category 'computing_tools';
 topics 'cryptography';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Keybase.pm';
-primary_example_queries 'keybase mwolny', 'keybase jeresig';
-secondary_example_queries 'keybase github:mwolny', 'keybase twitter:jeresig';
+primary_example_queries 'keybase chris', 'keybase jeresig';
+secondary_example_queries 'keybase github:maxtaco', 'keybase twitter:jeresig';
 
 triggers startend => 'keybase';
 

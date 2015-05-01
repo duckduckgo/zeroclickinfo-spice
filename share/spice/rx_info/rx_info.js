@@ -24,10 +24,28 @@
         if (!api_result || api_result.error || !api_result.replyStatus || !api_result.replyStatus.totalImageCount || api_result.replyStatus.totalImageCount < 1) {
             return Spice.failed('rx_info');
         }
+        
+        var script = $('[src*="/js/spice/rx_info/"]')[0],
+            source = $(script).attr("src"),
+            triggerWordMatch = parseInt(source.match(/rx_info\/[^\/]+\/(\d)/)[1]),
+            relCheck;
+        
 
+        // meta information
         var sourceName = "More at DailyMed",
-            sourceUrl  = "http://dailymed.nlm.nih.gov/";
-
+            sourceUrl  = "http://dailymed.nlm.nih.gov/",
+            skip_words = ['pill', 'rxinfo', 'capsule', 'tablet', 'softgel', 'caplets'];
+        
+        // perform relevancy checking if triggerWordMatch true
+        if(triggerWordMatch) {
+            relCheck = {
+                skip_words : skip_words,
+                primary: [
+                    { key: 'name' }, { key: 'ndc11' }
+                ]
+            };
+        }
+      
         Spice.add({
             id: "rx_info",
             name: "RxInfo",
@@ -67,7 +85,8 @@
                     inactive: inactive,
                     proxyImageUrl: "https://images.duckduckgo.com/iu/?u=" + encodeURIComponent(item.imageUrl) + "&f=1"
                 }
-            } 
+            },
+            relevancy: relCheck,
         });
     };
 }(this));

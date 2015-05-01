@@ -1,5 +1,7 @@
 package DDG::Spice::FlashVersion;
+# ABSTRACT: Shows installed flash version
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "flash version";

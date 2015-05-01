@@ -1,6 +1,7 @@
 package DDG::Spice::Astrobin::Subject;
 # ABSTRACT: Retrieve images based on subject.
 
+use strict;
 use DDG::Spice;
 
 name "Astrobin Subject";
@@ -23,5 +24,5 @@ handle remainder => sub {
         return if /(image|photo|picture)?s?\s*(of|of the)?\s*(day|today|daily)$/i;
         return $_ if $_;
         return;
-};	
+};
 1;

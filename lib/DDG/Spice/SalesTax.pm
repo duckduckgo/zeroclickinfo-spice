@@ -1,6 +1,7 @@
 package DDG::Spice::SalesTax;
-#ABSTRACT: Returns the sales tax for any state (not including territories) in the United States. 
+#ABSTRACT: Returns the sales tax for any state (not including territories) in the United States.
 
+use strict;
 use DDG::Spice;
 use Locale::SubCountry;
 use YAML::XS qw( Load );
@@ -26,7 +27,7 @@ spice wrap_jsonp_callback => 1;
 my $US = new Locale::SubCountry("US");
 
 #State to Zip Code
-my $zipcodes = Load(scalar share('zipcodes.yml')->slurp); 
+my $zipcodes = Load(scalar share('zipcodes.yml')->slurp);
 
 # Handle statement
 handle remainder_lc => sub {
@@ -38,7 +39,7 @@ handle remainder_lc => sub {
     if(m/\b(washington\s(dc|d\.c))\b/i) {
         $state = "Washington D.C";
     } else {
-        # $US->full_name returns the full state name based on the ISO3166 code 
+        # $US->full_name returns the full state name based on the ISO3166 code
         $state = $US->full_name($_); # Check for state using ISO code (PA)
         if($state eq "unknown") {
             $state = $US->full_name($US->code($_)); # If state is "unknown" search for code using full state name (Pennsylvania)
@@ -49,7 +50,7 @@ handle remainder_lc => sub {
 
     # error checking
     return if $state eq "unknown";
-    return unless (defined $state and defined $zip); 
+    return unless (defined $state and defined $zip);
     return $zip, $state; # return result
 };
 1;

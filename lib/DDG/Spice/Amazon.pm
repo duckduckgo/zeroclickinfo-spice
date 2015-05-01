@@ -1,5 +1,7 @@
 package DDG::Spice::Amazon;
+# ABSTRACT: Amazon product search
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "ipad 2", "men's watch";

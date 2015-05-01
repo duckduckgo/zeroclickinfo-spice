@@ -1,0 +1,10 @@
+<div>
+    The domain <a href="http://{{domainName}}">{{domainName}}</a>
+    {{#if domainAvailable}}
+        {{! The domain name can registered through Namecheap. }}
+         is available! <a href="https://www.namecheap.com/domains/registration/results.aspx?domain={{domainName}}">Register this domain at Namecheap</a>.
+    {{else}}
+        {{! The domain name can be obtained through DomainAgents. }}
+        is not available. <a href="https://domainagents.com/affiliate.php?domain={{domainName}}&code=nc">Make an offer to the owner at DomainAgents</a>.
+    {{/if}}
+</div>

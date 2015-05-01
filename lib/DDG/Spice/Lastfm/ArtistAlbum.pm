@@ -1,6 +1,7 @@
 package DDG::Spice::Lastfm::ArtistAlbum;
 # ABSTRACT: Get the albums of a musician.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "albums from Ben Folds";

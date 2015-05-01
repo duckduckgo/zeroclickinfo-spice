@@ -7,25 +7,17 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Guidebox::Getid )],
-    
-    # TV series    
-    'free episodes of NCIS' => test_spice(
+
+    'guidebox NCIS' => test_spice(
         '/js/spice/guidebox/getid/NCIS',
         call_type => 'include',
         caller => 'DDG::Spice::Guidebox::Getid'
     ),
 
-    'free episodes of Dexter' => test_spice(
-        '/js/spice/guidebox/getid/Dexter',
-        call_type => 'include',
-        caller => 'DDG::Spice::Guidebox::Getid'
-    ),
-
-    'recent episodes The Big Bang Theory' => test_spice(
-        '/js/spice/guidebox/getid/The%20Big%20Bang%20Theory',
-        call_type => 'include',
-        caller => 'DDG::Spice::Guidebox::Getid'
-    ),
+    'watch dexte' => undef,
+    'recent episodes The Big Bang Theory' => undef,
+    'watch movies' => undef,
+    'watch series' => undef,
 );
 
 done_testing;

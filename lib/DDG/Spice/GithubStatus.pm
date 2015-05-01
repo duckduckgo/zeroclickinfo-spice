@@ -1,6 +1,7 @@
 package DDG::Spice::GithubStatus;
 # ABSTRACT: Search for the current status of GitHub.
 
+use strict;
 use DDG::Spice;
 use Text::Trim;
 
@@ -23,7 +24,7 @@ handle query_lc => sub {
     return $_ if m/^github$/; # return if only github
     s/^github//g; # strip trigger
     $_ = trim($_); # trim
-    return $_ if m/^(system)?\s*status$/i; # match (system) status 
+    return $_ if m/^(system)?\s*status$/i; # match (system) status
     return;
 };
 

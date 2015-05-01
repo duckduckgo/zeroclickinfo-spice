@@ -38,7 +38,7 @@ ddg_spice_test(
     DDG::Request->new(
         query_raw => "uv",
         location => test_location("de")
-    ) => undef, 
+    ) => undef,
     DDG::Request->new(
         query_raw => "uv",
         location => test_location("us")

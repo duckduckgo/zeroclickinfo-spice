@@ -53,11 +53,13 @@
                     itemType: 'episodes of ' + metadata.res_title
                 },
                 templates: {
-                    group: 'media',
+                    group: 'products_simple',
                     options: {
-                        variant: "video",
                         price: true,
                         buy: Spice.guidebox_getid.buy
+                    },
+                    variants: {
+                        tile: "video"
                     }
                 },
                 normalize: function(item) {

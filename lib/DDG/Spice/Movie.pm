@@ -1,5 +1,7 @@
 package DDG::Spice::Movie;
+# ABSTRACT: Movie information from Rotten Tomatoes
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "the graduate rotten tomatoes";
@@ -16,22 +18,14 @@ attribution github => ['https://github.com/moollaza','Zaahir Moolla'],
 spice proxy_cache_valid => "200 7d";
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&q=$1&page_limit=50&page=1&callback={{callback}}';
 
-# It's important that 'movie info' precede 'movie' so that the handler
-# encounters it first and removes both words, rather than encountering 'movie'
-# first in the list, removing it, and leaving the word 'info.'
-
 # This spice will usually be triggered by deep triggers,
 # with a few extra triggers that deep might miss.
 my @triggers = ( 'rotten tomatoes', 'rotten');
 triggers startend => @triggers;
 
-handle query_lc => sub {
-    # spice triggers are called when a trigger is part of a hyphenated word
-    # i.e.: asus rt-66nu
-    # this makes sure that only space deliminated words fire this spice
-    my $input = $_;
-    map { return $input if $input =~ s/(^|\s)$_(\s|$)// and $input ne '' } @triggers;
-    return; 
+handle remainder => sub {
+    return unless $_;
+    return $_;
 };
 
 1;

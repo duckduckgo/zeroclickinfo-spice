@@ -43,20 +43,15 @@
                 };
             },
             templates: {
-                group: 'media',
+                group: 'movies',
                 detail: 'products_item_detail',
                 item: 'basic_image_item',
                 options: {
                     rating: false,
-                    variant: 'poster',
                     buy: Spice.kwixer.buy
                 }
             }
         });
-        
-        // We're going to use this to hide the title of the template.
-        // We want the poster to take up the whole tile.
-        Spice.getDOM('kwixer').find('.tile__body').hide();
     };
     
     // The separator that we get from the API is `;`, but it looks better with

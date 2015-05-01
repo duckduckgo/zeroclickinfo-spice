@@ -1,6 +1,7 @@
 package DDG::Spice::MinecraftStatus;
 # ABSTRACT: Returns the status of Minecraft
 
+use strict;
 use DDG::Spice;
 
 name 'Minecraft Status';
@@ -10,7 +11,7 @@ primary_example_queries 'is minecraft down', 'minecraft status';
 category 'special';
 topics 'words_and_games';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/MinecraftStatus.pm';
-attribution 
+attribution
     web     => ['https://thedestruc7i0n.ca', 'destruc7i0n'],
     twitter => ['https://www.twitter.com/TheDestruc7i0n','destruc7i0n'],
     github  => ['destruc7i0n', 'destruc7i0n'];

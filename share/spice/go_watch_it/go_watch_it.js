@@ -39,7 +39,8 @@
             "Target Ticket": 1,
             "Hulu": 1,
             "Crackle": 1,
-            "Flixster": 1
+            "Flixster": 1,
+            "Netflix": 1
         };
         
         var purchase_providers = {
@@ -51,9 +52,10 @@
             "Redbox": 1
         };
         
-        var append = ((DDG.is3x || DDG.is2x) ? "@2x.png" : ".png");
-        var path = "assets/";
-        var provider_icons = {
+        // For retina screen return optimized images @2x.png
+        var append = ((DDG.is3x || DDG.is2x) ? "@2x.png" : ".png"),
+            path = "assets/",
+            provider_icons = {
             1: {
                 dark: DDG.get_asset_path('go_watch_it', path + 'netflix'),
                 light: DDG.get_asset_path('go_watch_it', path + 'netflix')
@@ -169,6 +171,10 @@
                     return null;
                 }
                 
+                // Try to strip anything that comes before the price.
+                item.buy_line = item.buy_line.replace(/^[a-z ]+/i, "");
+                item.rent_line = item.rent_line.replace(/^[a-z ]+/i, "");
+
                 // If the provider is in this hash, it means that they provide 
                 // streaming if they don't buy or sell stuff.
                 if(item.provider_name in streaming_providers && 
@@ -189,6 +195,7 @@
                     item.format_line = "DVD / Blu-ray";
                 }
                 
+                // Only return a single Netflix item
                 if(item.provider_name === "Netflix") {
                     if(!foundNetflix) {
                         foundNetflix = true;
@@ -214,8 +221,10 @@
             templates: {
                 item: 'base_item',
                 options: {
-                    content: Spice.go_watch_it.content,
-                    variant: 'narrow'
+                    content: Spice.go_watch_it.content
+                },
+                variants: {
+                    tile: 'narrow'
                 }
             }
         });

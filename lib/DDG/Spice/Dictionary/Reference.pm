@@ -1,5 +1,7 @@
 package DDG::Spice::Dictionary::Reference;
+# ABSTRACT: Used to get the definition of the singular form for plural queries
 
+use strict;
 use DDG::Spice;
 
 attribution web => ['http://duckduckgo.com', 'DuckDuckGo'],

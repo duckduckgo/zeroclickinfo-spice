@@ -1,6 +1,7 @@
 package DDG::Spice::SeatGeek::EventsByCity;
 # ABSTRACT: Returns upcoming concerts in a city
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "live shows in london", "upcoming concerts in brisbane";
@@ -12,7 +13,7 @@ topics "entertainment", "music";
 attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
     github => ['https://github.com/andrey-p','Andrey Pissantchev'];
 
-triggers start => 
+triggers start =>
     'upcoming concert in',
     'upcoming concerts in',
     'concerts in',
