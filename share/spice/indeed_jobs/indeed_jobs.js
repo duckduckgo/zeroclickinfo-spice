@@ -2,7 +2,7 @@
     "use strict";
 
     env.ddg_spice_indeed_jobs = function(api_result) {
-        if (api_result.error || !api_result.results.length) {
+        if (!api_result || !api_result.totalResults || !api_result.results || !api_result.results.length) {
             return Spice.failed('indeed_jobs');
         }
 
