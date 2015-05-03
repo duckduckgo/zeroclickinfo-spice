@@ -3,8 +3,6 @@
 
     env.ddg_spice_code_search = function (api_result) {
 
-        console.log(api_result);
-
         if (!api_result || !api_result.results.length === 0) {
             return Spice.failed('code_search');
         }
@@ -21,7 +19,6 @@
                 $.each(api_result.results[0].lines, function(k, v){
                     lines.push(v);
                 });
-                console.log(lines.join('\n'));
 
                 return {
                     lines: lines.join('\n'),
@@ -45,8 +42,4 @@
             }
         });
     }
-
-    Spice.registerHelper("stripNewline", function(text){
-        return text.replace(/\r/g, "");
-    });
 }(this));
