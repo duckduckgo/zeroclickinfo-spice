@@ -5,6 +5,7 @@ use strict;
 use DDG::Spice;
 with 'DDG::SpiceRole::NumberStyler';
 use Text::Trim;
+use YAML::XS qw(LoadFile);
 
 primary_example_queries "convert 499 usd to cad";
 secondary_example_queries "cad to usd", "cny?";
@@ -24,15 +25,15 @@ my @currTriggers;
 my @currencies = share('currencyNames.txt')->slurp;
 my %currHash = ();
 
+# load decimal => unicode currency codes
+my $currencyCodes = LoadFile share("currencySymbols.yml");
+
 foreach my $currency (@currencies){
     chomp($currency);
     my @currency = split(/,/,$currency);
     push(@currTriggers, @currency);
     $currHash{$currency[0]} = \@currency;
 }
-
-# Define decimal unicode currency codes
-my %currencyCodes = (36=>"USD",76=>"ALL",101=>"ALL",107=>"ALL",1547=>"AFN",402=>"AWG",1084=>"AZN",1072=>"AZN",1085=>"AZN",112=>"BYR",46=>"BYR",66=>"BZD",90=>"BZD",98=>"BOB",75=>"BAM",77=>"BAM",80=>"BWP",1083=>"BGN",1074=>"BGN",82=>"BRL",6107=>"KHR",165=>"CNY",8353=>"CRC",107=>"HRK",110=>"HRK",8369=>"CUP",75=>"CZK",269=>"CZK",107=>"DKK",114=>"DKK",82=>"DOP",68=>"DOP",163=>"EGP",107=>"EEK",114=>"EEK",8364=>"EUR",163=>"FKP",162=>"GHC",163=>"GIP",81=>"GTQ",163=>"GGP",76=>"HNL",70=>"HUF",116=>"HUF",107=>"ISK",114=>"ISK",8377=>"INR",82=>"IDR",112=>"IDR",65020=>"IRR",163=>"IMP",8362=>"ILS",74=>"JMD",165=>"JPY",163=>"JEP",1083=>"KZT",1074=>"KZT",8361=>"KPW",8361=>"KRW",1083=>"KGS",1074=>"KGS",8365=>"LAK",76=>"LVL",115=>"LVL",163=>"LBP",76=>"LTL",116=>"LTL",1076=>"MKD",1077=>"MKD",1085=>"MKD",82=>"MYR",77=>"MYR",8360=>"MUR",8366=>"MNT",77=>"MZN",84=>"MZN",8360=>"NPR",402=>"ANG",67=>"NIO",8358=>"NGN",8361=>"KPW",107=>"NOK",114=>"NOK",65020=>"OMR",8360=>"PKR",66=>"PAB",47=>"PAB",46=>"PAB",71=>"PYG",115=>"PYG",83=>"PEN",47=>"PEN",46=>"PEN",8369=>"PHP",122=>"PLN",322=>"PLN",65020=>"QAR",108=>"RON",101=>"RON",105=>"RON",1088=>"RUB",1091=>"RUB",1073=>"RUB",163=>"SHP",65020=>"SAR",1044=>"RSD",1080=>"RSD",1085=>"RSD",46=>"RSD",8360=>"SCR",83=>"SOS",82=>"ZAR",8361=>"KRW",8360=>"LKR",107=>"SEK",114=>"SEK",67=>"CHF",72=>"CHF",70=>"CHF",163=>"SYP",78=>"TWD",84=>"TWD",3647=>"THB",84=>"TTD",84=>"TTD",8378=>"TRY",8356=>"TRL",8372=>"UAH",163=>"GBP",85=>"UYU",1083=>"UZS",1074=>"UZS",66=>"VEF",115=>"VEF",8363=>"VND",65020=>"YER",90=>"ZWD");
 
 # Define the regexes here.
 my $currency_qr = join('|', @currTriggers);
@@ -125,12 +126,13 @@ handle query_lc => sub {
                
         my ($fromSymbol, $amount, $cardinal, $from, $alt_amount, $to, $toSymbol) = ($1 || '', $2, $3 || '', $4 || '', $5 || '' , $6 || '', $7 || '');               
         
+        
         if ($from eq '' && $fromSymbol) {
-            $from = lc $currencyCodes{ord($fromSymbol)};
+            $from = $currencyCodes->{ord($fromSymbol)};
         }
         
         if ($to eq '' && $toSymbol) { 
-            $to = lc $currencyCodes{ord($toSymbol)};
+            $to = $currencyCodes->{ord($toSymbol)};
         }
 
         my $styler = number_style_for($amount);
