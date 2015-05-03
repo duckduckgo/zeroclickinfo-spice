@@ -3,24 +3,32 @@
 
     env.ddg_spice_code_search = function (api_result) {
 
+        console.log(api_result);
+
         if (!api_result || !api_result.results.length === 0) {
             return Spice.failed('code_search');
         }
 
         var query = encodeURIComponent(api_result.query);
 
-        var keys = [];
-
-        $.each(api_result.results[0].lines, function(k, v){
-            keys.push(k)
-        });
-
         Spice.add({
             id: 'code_search',
             name: "Software",
-            data: {
-                record_data: api_result.results[0].lines,
-                record_keys: keys
+            data: api_result.results[0],
+            normalize: function(item) {
+                var lines = [];
+
+                $.each(api_result.results[0].lines, function(k, v){
+                    lines.push(v);
+                });
+                console.log(lines.join('\n'));
+
+                return {
+                    lines: lines.join('\n'),
+                    title: item.name,
+                    file_location: [item.location, item.filename].join('/'),
+                    repo_url: item.repo
+                };
             },
             meta: {
                 sourceUrl: 'https://searchcode.com/?q=' + query + '&cs=true',
@@ -28,9 +36,10 @@
                 sourceName: 'searchcode'
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
-                    content: 'record',
+                    content: Spice.code_search.content,
+                    subtitle_content: Spice.code_search.subtitle,
                     moreAt: true
                 }
             }
