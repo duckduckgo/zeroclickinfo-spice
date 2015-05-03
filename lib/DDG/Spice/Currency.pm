@@ -21,7 +21,7 @@ attribution web => ['http://www.xe.com', 'xe.com'],
 
 # Get all the valid currencies from a text file.
 my @currTriggers;
-my @currencies = share('currencylist.txt')->slurp;
+my @currencies = share('currencyNames.txt')->slurp;
 my %currHash = ();
 
 foreach my $currency (@currencies){
