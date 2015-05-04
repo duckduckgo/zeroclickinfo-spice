@@ -271,10 +271,10 @@ function ddg_spice_forecast(r) {
         signal: "high",
 
         meta: {
-            heading: weatherData.header,
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
             sourceName: 'Forecast.io',
-            altMeta: altMeta,
+            primaryText: weatherData.header,
+            secondaryText: altMeta,
             variableTileWidth: true
         },
 
