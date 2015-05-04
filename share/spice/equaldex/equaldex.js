@@ -2,17 +2,20 @@
     "use strict";
     env.ddg_spice_equaldex = function(api_result){
 
-        if (!api_result) {
+        if (!api_result || api_result.error || !DDG.getProperty(api_result, 'regions.region')) {
             return Spice.failed('equaldex');
         }
+        
+        // Data is stored in region object
+        api_result = api_result.regions.region;
 
         Spice.add({
             id: "equaldex",
-            name: "Answer",
+            name: "Equaldex",
             data: api_result,
             meta: {
                 sourceName: "equaldex.com",
-                sourceUrl: 'http://equaldex.com/'
+                sourceUrl: api_result.url
             },
             templates: {
                 group: 'base',
