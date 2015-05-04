@@ -39,7 +39,7 @@ my @providers = (
 );
 my $providers_str = join('|', @providers);
 
-triggers query_lc => qr/(online|$providers_str)?(?:\s+)?(.*)(?:\s+)(courses? online|courses?|classe?s?|moocs?|$providers_str)$/;
+triggers query_lc => qr/(online|$providers_str)?(?:\s+)?(.*)(?:\s+)(courses? online|courses?|class(?:es)?|moocs?|$providers_str)$/;
 
 handle query_lc => sub {
     
@@ -54,7 +54,7 @@ handle query_lc => sub {
         return "provider", $remainder, $subject;
     }
     
-    if(defined($remainder) && $remainder =~ /(courses?|classe?s?)/ && $remainder !~ /(courses? online)/ && $subject !~ /online/) {
+    if(defined($remainder) && $remainder =~ /(courses?|class(es)?)/ && $remainder !~ /(courses? online)/ && $subject !~ /online/) {
         return if !defined($pre) || $pre !~ /online/;
     }
     if($subject) {

@@ -66,6 +66,7 @@ ddg_spice_test(
     'computer science courses' => undef,
     'harvard courses' => undef,
     'main course' => undef,
+    'online computer science classe' => undef,
     'online computer science' => undef
 );
 
