@@ -1,7 +1,7 @@
 (function(env) {
     "use strict"
-
-    env.ddg_spice_sound_cloud = function(api_result) {
+    
+    env.ddg_spice_sound_cloud = function(api_result, filter) {
 
         var SOUNDCLOUD_CLIENT_ID = 'df14a65559c0e555d9f9fd950c2d5b17',
             script = $('[src*="/js/spice/sound_cloud/"]')[0],
@@ -14,6 +14,10 @@
                 75349402: 1
             };
 
+        // Prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript.
+        // If cache was set to false, it would be calling /js/spice/dictionary/definition/hello?_=12345
+        // and that's something that we don't want.
+        $.ajaxSetup({ cache: true });
         
         if(!api_result){
             return Spice.failed("sound_cloud");
@@ -70,5 +74,16 @@
                 };
             }
         });
+        
+        if(!filter) {
+            $.getScript("/js/spice/sound_cloud_tags/cake/pop");
+        } else {
+          console.log("Filtering tags: ", api_result);  
+        }
     };
+    
+    env.ddg_spice_sound_cloud_tags = function(api_result) {
+        env.ddg_spice_sound_cloud(api_result, "tags");
+    };
+    
 }(this));
