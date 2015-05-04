@@ -2,6 +2,7 @@ package DDG::Spice::Equaldex;
 # ABSTRACT: LGBT Rights by region
 
 use DDG::Spice;
+use Locale::Country; 
 
 spice is_cached => 1;
 
@@ -10,7 +11,7 @@ source "equaldex";
 icon_url "/i/equaldex.com.ico";
 description "Show LGBT Rights by region";
 primary_example_queries "lgbt china";
-secondary_example_queries "lesbian rights cyprus", "gay rights cyprus", "bisexual rights cyprus", "transgender rights cyprus";
+secondary_example_queries "lesbian rights cyprus", "gay rights china", "bisexual rights australia", "transgender rights spain";
 category "location_aware";
 topics "special_interest";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Equaldex.pm";
@@ -19,12 +20,18 @@ attribution github => ["MrChrisW", "Chris Wilson"],
 
 spice to => 'http://equaldex.com/api/region?format=json&region=$1&callback={{callback}}';
 
-triggers startend => "lgbt", "lesbian rights cyprus", "gay rights", "bisexual rights", "transgender rights";
+triggers startend => "lgbt", "lesbian rights", "gay rights", "bisexual rights", "transgender rights";
 
 # Handle statement
 handle remainder => sub {
-    return unless $_;
-    return $_;
+    return unless $_; # guard - no remainder
+    
+    my $country = $_;
+
+    return $country if defined country2code($country); # return country name if valid 
+    return lc code2country($country) if defined code2country($country); # return country name from 2 letter code
+    
+    return;
 };
 
 1;
