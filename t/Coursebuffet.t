@@ -62,7 +62,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Coursebuffet'
     ),
-    'computer science class' => undef
+    'computer science class' => undef,
+    'computer science courses' => undef,
+    'harvard courses' => undef,
+    'main course' => undef,
+    'online computer science' => undef
 );
 
 done_testing;
