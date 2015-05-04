@@ -47,6 +47,21 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Coursebuffet'
     ),
+    'computer science classes online' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'computer science class online' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'computer science online classes' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science%20online',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
     'online computer science class' => test_spice(
         '/js/spice/coursebuffet/standard/courses/computer%20science',
         call_type => 'include',
