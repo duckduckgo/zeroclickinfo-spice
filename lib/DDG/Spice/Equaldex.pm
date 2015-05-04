@@ -1,5 +1,5 @@
 package DDG::Spice::Equaldex;
-# ABSTRACT: LGBT Rights by region
+# ABSTRACT: LGBT rights by region
 
 use DDG::Spice;
 use Locale::Country; 
@@ -9,7 +9,7 @@ spice is_cached => 1;
 name "Equaldex";
 source "equaldex";
 icon_url "/i/equaldex.com.ico";
-description "Show LGBT Rights by region";
+description "Show LGBT rights by region";
 primary_example_queries "lgbt china";
 secondary_example_queries "lesbian rights cyprus", "gay rights china", "bisexual rights australia", "transgender rights spain";
 category "location_aware";
@@ -20,7 +20,7 @@ attribution github => ["MrChrisW", "Chris Wilson"],
 
 spice to => 'http://equaldex.com/api/region?format=json&region=$1&callback={{callback}}';
 
-triggers startend => "lgbt", "lesbian rights", "gay rights", "bisexual rights", "transgender rights";
+triggers startend => "lgbt", "lgbt rights" , "lesbian rights", "gay rights", "bisexual rights", "transgender rights";
 
 # Handle statement
 handle remainder => sub {
