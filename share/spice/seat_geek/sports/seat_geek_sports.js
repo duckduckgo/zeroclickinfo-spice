@@ -120,8 +120,10 @@
                     place: item.venue.name,
                     city: item.venue.display_location,
                     month: getMonth(getDate(item.datetime_local)),
-                    day: getDay(getDate(item.datetime_local)),
-                    year: getYear(getDate(item.datetime_local))
+                    date: {
+                        day: getDay(getDate(item.datetime_local)),
+                        year: getYear(getDate(item.datetime_local))
+                    }
                 };
             },
             templates: {
