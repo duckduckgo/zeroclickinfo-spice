@@ -36,7 +36,9 @@
                 }
             },
             view: 'Audio',
-            model: 'Audio',
+            relevancy: {
+                dup: 'url'
+            },
             normalize: function(o) {
 
                 var image = o.artwork_url || o.user.avatar_url;
