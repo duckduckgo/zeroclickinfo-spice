@@ -54,15 +54,13 @@
     function checkFullDay(s, e) {
         var dates = getStartEnd(s, e);
         if ((dates.plain_start.format('H:mm')=='0:00') && (dates.plain_end.format('H:mm')=='23:59')) {
-            //console.log(dates.plain_start.format('H:mm'), dates.plain_end.format('H:mm'))
             return true;
         }
         return false;
     }
 
     function getStartEnd(s, e) {
-        //var start = moment(s)
-        var start = moment(new Date(s)).utc(),
+        var start = moment(s).utc(),
             dates = {
                 start: start.format('MMM D'),
                 end:   null,
@@ -71,8 +69,7 @@
             };
 
         if (e.length && moment(e).isAfter(start) ){
-            //var end = moment(e),
-            var end = moment(new Date(e)).utc(),
+            var end = moment(e).utc(),
                 diff = start.diff(end, 'days');
 
             // Check if event ends same day
