@@ -15,19 +15,20 @@
                 sourceName: 'NASA',
                 sourceIcon: true
             },
+            normalize: function(data){
+                return {
+                    title: data.id,
+                    subtitle: "Taken: " + data.date,
+                    image: data.url
+                };
+            },
             templates: {
-                group: 'base',
+                group: 'media',
                 options: {
-                    content: Spice.landsat.content,
                     moreAt: true
                 }
             }
         });
-        
-        if(is_mobile) {
-            document.getElementsByClassName("landsat--date")[0].style.display='none';
-        }
-        
     }
 
 }(this));

@@ -15,17 +15,27 @@ spice to => 'https://api.data.gov/nasa/planetary/earth/imagery?api_key={{ENV{DDG
 
 spice wrap_jsonp_callback => 1;
 
-triggers query_lc => qr/^
-    (?:landsat|(?:land )?sat(?:ellite)?)\s*
-    (?:pic(?:ture)?s?|(?:img|image(?:ry)?)s?|photo(?:graph)?s?)?\s*
-    (-?\d+(?:\.\d+)?)
-    \s*,?\s*
-    (-?\d+(?:\.\d+)?)
-$/x;
+my @satellite_names = qw/sat satellite land landsat/;
+my @image_names = qw/pic picture photo photograph img image imagery/;
+
+triggers any => ('landsat', map {
+    my $satellite_name = $_;
+    map {(
+        "$satellite_name $_",
+        "$satellite_name $_" . 's',
+        "$_ $satellite_name",
+        $_ . 's ' . $satellite_name
+    )} @image_names;
+} @satellite_names);
 
 spice from => '(.*)/(.*)';
 
 handle query_lc => sub {
+    m/
+     (-?\d+(?:\.\d+)?)
+     \s*,?\s*
+     (-?\d+(?:\.\d+)?)
+    /x;
     return $1, $2;
 };
 
