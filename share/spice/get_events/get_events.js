@@ -26,7 +26,6 @@
                     if ( moment(item.end_date).isBefore($.now()) ){
                         return null;
                     }
-
                     return {
                         url: buildUrl(item.id),
                         name: item.name,
@@ -34,6 +33,7 @@
                         place: item.venue.name,
                         city: item.venue.city,
                         image: item.image_large_url,
+                        is_full_day: checkFullDay(item.start_date,item.end_date), 
                         start_end: getStartEnd(item.start_date,item.end_date),
                         lat: item.venue.lat,
                         lon: item.venue.lng
@@ -50,17 +50,29 @@
     function buildUrl(id) {
         return 'https://getevents.co/events/preview/'+id;
     }
+        
+    function checkFullDay(s, e) {
+        var dates = getStartEnd(s, e);
+        if ((dates.plain_start.format('H:mm')=='0:00') && (dates.plain_end.format('H:mm')=='23:59')) {
+            //console.log(dates.plain_start.format('H:mm'), dates.plain_end.format('H:mm'))
+            return true;
+        }
+        return false;
+    }
 
     function getStartEnd(s, e) {
-        var start = moment(s),
+        //var start = moment(s)
+        var start = moment(new Date(s)).utc(),
             dates = {
                 start: start.format('MMM D'),
                 end:   null,
-                hours: null
+                hours: null,
+                plain_start: start
             };
 
         if (e.length && moment(e).isAfter(start) ){
-            var end = moment(e),
+            //var end = moment(e),
+            var end = moment(new Date(e)).utc(),
                 diff = start.diff(end, 'days');
 
             // Check if event ends same day
@@ -73,6 +85,7 @@
                     end: end.format('ha')
                 };
             }
+            dates.plain_end = end;
         }
 
         return dates;

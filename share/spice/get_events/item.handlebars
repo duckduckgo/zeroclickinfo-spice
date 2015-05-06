@@ -5,15 +5,19 @@
             <div class="tile__title--wrap">
                 <h5 class="tile__title with-sub tile__title--3">{{name}}</h5>
                 <span class="tile__sub tx--13 tx-clr--grey">
-                {{#with start_end}}
-                    {{start}}
-                    {{~#and start hours~}}
-                    , {{hours.start}}-{{hours.end}}
-                    {{/and}}
-                    {{~#and start end~}}
-                    - {{end}}
-                    {{/and}}
-                {{/with}}
+                  {{#unless is_full_day}}
+                    {{#with start_end}}
+                        {{start}}
+                        {{~#and start hours~}}
+                        , {{hours.start}}-{{hours.end}}
+                        {{/and}}
+                        {{~#and start end~}}
+                        - {{end}}
+                        {{/and}}
+                    {{/with}}
+                    {{else}}
+                        all day
+                  {{/unless}}
                 </span>
             </div>
             <div class="tile__num--get_events pull-right tx-clr--slate">
