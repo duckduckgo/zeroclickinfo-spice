@@ -9,16 +9,34 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::TLDs)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
+    
     '.us tld' => test_spice(
-        '/js/spice/tlds/query',
+        '/js/spice/tlds',
         call_type => 'include',
         caller => 'DDG::Spice::TLDs'
+        
+        
+        
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
+    
+    '.in tld' => test_spice(
+        '/js/spice/tlds',
+        call_type => 'include',
+        caller => 'DDG::Spice::TLDs'
+        
+        
+        
+    ),
+    
+    '.com tld' => test_spice(
+        '/js/spice/tlds',
+        call_type => 'include',
+        caller => 'DDG::Spice::TLDs'
+       
+        
+        
+    ),
+    
     '.iamanidiotweirdtld tld' => undef,
 );
 
