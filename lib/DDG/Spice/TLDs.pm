@@ -74,12 +74,7 @@ handle remainder => sub {
     my $domain = $+{domain};
 
     
-    return unless $domain =~ /^[^.]+\.@{[ DDG::Util::SpiceConstants::TLD_REGEX ]}$/;
-
-    # must be a valid domain
-    return unless is_domain($domain);
-
-    return $domain;
+    
 };
 
 1;
