@@ -22,9 +22,7 @@ spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
     # Remove logical operators from query since they're disregarded by the API.
-    $_ =~ s/and//ig;
-    $_ =~ s/or//ig;
-    $_ =~ s/not//ig;
+    s/and|or|not//ig;
 
     return $_ if $_;
     return;
