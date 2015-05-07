@@ -17,10 +17,8 @@ attribution web => ['http://www.medicosconsultants.com', 'Medicos Consultants, L
 triggers startend => 'pill', 'rxinfo', 'capsule', 'tablet', 'softgel', 'caplets';
 
 spice to => 'http://rximage.nlm.nih.gov/api/rximage/1/rxbase?resolution=300&includeIngredients=true&parse=$1';
-spice from => '(.*?)/(\d)';
-spice wrap_jsonp_callback => 1;
 
-my $triggerWords = join "|", share('triggerWords.txt')->slurp(chomp => 1);
+spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
     # Remove logical operators from query since they're disregarded by the API.
@@ -28,8 +26,7 @@ handle remainder => sub {
     $_ =~ s/or//ig;
     $_ =~ s/not//ig;
 
-    return unless $_;
-    return $_, (/$triggerWords/) ? "0" : "1"; # return 0 if match in triggerWords file found
+    return $_ if $_;
     return;
 };
 1;
