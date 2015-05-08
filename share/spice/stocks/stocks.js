@@ -2,45 +2,55 @@
     'use strict';
     env.ddg_spice_stocks = function(api_result){
 
-        if (!api_result || !api_result.length) {
+        if (!api_result || api_result.Outcome !== "Success") {
             return Spice.failed('stocks');
         }
 
-        var result = api_result[0];
+        var url = "http://www.nasdaq.com/symbol/" + api_result.Security.Symbol + "/real-time";
 
-        // url is path on their domain:
-        result.url = 'http://ycharts.com' + result.url;
+        DDG.require('moment.js', function(){
+            Spice.add({
+                id: 'stocks',
+                name: 'Stock',
+                data: api_result,
+                meta: {
+                    sourceName: 'NASDAQ',
+                    sourceUrl: url,
+                    attributionText: "Xignite"
+                },
+                normalize: function(data){
+                    var change = data.ChangeFromPreviousClose,
+                        changeDir;
+                    moment().utcOffset(data.UTCOffset);
 
-        // add title tag for link:
-        result.urlTitle = 'View more ' + result.name + ' stock data at YCharts';
+                    // remove +/- from change attributes and add up/down class:
+                    if (change > 0 ) {
+                        changeDir = 'up';
+                    } else if(change < 0) {
+                        changeDir = 'down';
+                    } else {
+                        changeDir = 'same';
+                    }
 
-        // remove +/- from change attributes and add up/down class:
-        if (result.change.charAt(0) === '+') {
-            result.quoteChangeDir = 'up';
-        } else if(result.change.charAt(0) === '-') {
-            result.quoteChangeDir = 'down';
-        } else {
-            result.quoteChangeDir = 'same';
-        }
-
-        result.change = result.change.replace(/^[+|-]/,'');
-        result.change_percent = result.change_percent.replace(/^[+|-]/,'');
-
-        Spice.add({
-            id: 'stocks',
-            name: 'Stock',
-            data: result,
-            meta: {
-                sourceName: 'YCharts',
-                sourceUrl: result.url
-            },
-            templates: {
-                group: 'base',
-                options: {
-                    content: Spice.stocks.content,
-                    moreAt: true
+                    return {
+                        url: url,
+                        urlTitle: 'View more ' + data.Security.Name + ' stock data at NASDAQ',
+                        quote: data.Last.toFixed(2),
+                        quoteChangeDir: changeDir,
+                        change: change.toFixed(2),
+                        change_percent: data.PercentChangeFromPreviousClose.toFixed(2),
+                        date: moment(data.Date).format("MMM DD"),
+                        time: moment(data.Time, "hh:mm:ss A").format("h:mm A")
+                    };
+                },
+                templates: {
+                    group: 'base',
+                    options: {
+                        content: Spice.stocks.content,
+                        moreAt: false
+                    }
                 }
-            }
+            });
         });
     };
 }(this));
