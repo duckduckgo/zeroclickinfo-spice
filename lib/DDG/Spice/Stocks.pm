@@ -4,11 +4,10 @@ package DDG::Spice::Stocks;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "AAPL";
+primary_example_queries "stock quote AAPL";
 description "Shows stock quote for a ticker";
 name "Stocks";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Stocks.pm";
-icon_url "/i/ycharts.com.ico";
 topics "economy_and_finance";
 category "finance";
 
@@ -17,7 +16,8 @@ category "finance";
 # unless I had at least some kind of trigger defined.
 triggers start => 'stock quote for', 'stock quote', 'stock price of', 'stock price';
 
-spice to => 'http://ycharts.com/quotes/$1';
+spice to => 'http://globalquotes.xignite.com/v3/xGlobalQuotes.json/GetGlobalDelayedQuote?_Token={{ENV{DDG_SPICE_XIGNITE_APIKEY}}}&IdentifierType=Symbol&Identifier=$1';
+
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
