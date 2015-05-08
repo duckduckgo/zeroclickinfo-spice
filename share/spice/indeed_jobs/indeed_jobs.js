@@ -21,11 +21,6 @@
                 sourceUrl: www_domain + 'jobs?q=' + encodeURIComponent(q) + '&l=' + encodeURIComponent(loc)
             },
             normalize: function(item) {
-                // ensure job is relevant to query
-                if (q.length && !DDG.stringsRelevant(item.jobtitle, q)){
-                    return null;
-                }
-
                 return {
                     url: item.url,
                     title: item.jobtitle,
