@@ -73,17 +73,20 @@
                 
                 // Modify the image from _tmb.jpg to _det.jpg
                 var image = toDetail(item.posters.detailed)
-                return {
-                    rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
-                    //image: image,
-                    icon_image: get_image(item.ratings.critics_rating),
-                    abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
-                    heading: item.title,
-                    //img: image,
-                    //img_m: image,
-                    url: item.links.alternate,
-                    is_retina: ((DDG.is3x || DDG.is2x) ? 'is_retina' : 'no_retina')
-                };
+                
+                if(item.alternate_ids && item.alternate_ids.imdb) {
+                    return {
+                        rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
+                        //image: image,
+                        icon_image: get_image(item.ratings.critics_rating),
+                        abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
+                        heading: item.title,
+                        //img: image,
+                        //img_m: image,
+                        url: item.links.alternate,
+                        is_retina: ((DDG.is3x || DDG.is2x) ? 'is_retina' : 'no_retina')
+                    };
+                }
             },
             templates: {
                 group: 'movies',
