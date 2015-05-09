@@ -8,7 +8,7 @@
         
         // Data is stored in region object
         api_result = api_result.regions.region;
-
+        
         Spice.add({
             id: "equaldex",
             name: "Equaldex",
@@ -17,11 +17,28 @@
                 sourceName: "equaldex.com",
                 sourceUrl: api_result.url
             },
+            normalize: function(item) {    
+               
+                var templateData = {
+                    title: api_result.name,
+                    subtitle: "LGBT Rights in " + api_result.name,
+                    record_data: {}
+                };
+                
+                for (var issueKey in  item.issues) {
+                    var issueLabel = DDG.getProperty(item.issues[issueKey], "label_short");
+                    var issueStatus = DDG.getProperty(item.issues[issueKey], "current_status.value_formatted");
+                    if(issueLabel && issueStatus && issueStatus !== "N/A") {
+                        templateData.record_data[issueLabel] = issueStatus;
+                    }
+                }
+                return templateData;
+            },
             templates: {
-                group: 'base',
+                group: 'list',
                 options: {
-                    content: Spice.equaldex.content,
-                    moreAt: true
+                    moreAt: true,
+                    content: 'record'
                 }
             }
         });
