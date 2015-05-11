@@ -101,7 +101,7 @@
                 
                 if(item.alternate_ids && item.alternate_ids.imdb) {
                     $.getJSON("/js/spice/movie_image/tt" + item.alternate_ids.imdb, function(data) {
-                        if(data && data.movie_results && data.movie_results.length > 0) {
+                        if(data && data.movie_results && data.movie_results.length > 0 && data.movie_results[0].poster_path) {
                             var image = "https://image.tmdb.org/t/p/w185" + data.movie_results[0].poster_path;
                             item.$html.find(".tile__media__img").attr("src", "https://images.duckduckgo.com/iu/?f=1&u=" + encodeURIComponent(image));
                             $.extend(item, {
