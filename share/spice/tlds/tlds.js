@@ -24,7 +24,7 @@
             data: data,
             meta: {
                 sourceName: 'Namecheap',
-                sourceUrl: "http://en.wikipedia.org/wiki/List_of_Internet_top-level_domains"
+                sourceUrl: "http://api.namecheap.com/xml.response"
             },
             normalize: function(item) {
                 return {

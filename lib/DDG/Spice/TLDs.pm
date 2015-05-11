@@ -43,7 +43,7 @@ source "Namecheap";
 icon_url "https://www.namecheap.com/favicon.ico";
 description "Returns the country or purpose of a top-level domain (TLD)";
 primary_example_queries ".us tld", ".com tld";
-
+secondary_example_queries ".us real tld";
 
  category "programming";
 
@@ -55,21 +55,20 @@ attribution github => ["javathunderman", "Thomas Denizou"],
 
 
 
-triggers startend => "tld";
+triggers startend => "tld", "real tld";
 
 my $domain_part_regex = qr|
-                          (?:http://)?       # HTTP protocol scheme part [optional]
-                          (?<domain> [^/]* ) # domain part
-                          (?:[^\s]*)         # any path part (e.g., /path/to/file)
+                          (?:http://)?       
+                          (?<domain> [^/]* ) 
+                          (?:[^\s]*)        
                           |x;
-#https://www.namecheap.com/support/api/methods/domains/get-tld-list.aspx
-# Handle statement
+
 handle remainder => sub {
     my ($remainder) = @_;
 
-    return unless $remainder;    # Guard against "no answer"
+    return unless $remainder;   
 
-    # get the domain part out
+    
     $remainder =~ $domain_part_regex;
     my $domain = $+{domain};
 
