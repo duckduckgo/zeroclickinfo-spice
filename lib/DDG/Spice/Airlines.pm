@@ -21,7 +21,8 @@ spice to => 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/
 spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';
 spice proxy_cache_valid => '418 1d';
 
-triggers query_lc => qr/^(\d+)\s+(.*?)(?:[ ]air.*?)?$|^(.*?)(?:[ ]air.*?)?\s+(\d+)$/;
+triggers query_lc => '///***never trigger***///';
+# triggers query_lc => qr/^(\d+)\s+(.*?)(?:[ ]air.*?)?$|^(.*?)(?:[ ]air.*?)?\s+(\d+)$/;
 
 # Get the list of airlines and strip out the words.
 my %airlines = ();
