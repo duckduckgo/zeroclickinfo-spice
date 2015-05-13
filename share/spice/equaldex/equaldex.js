@@ -20,8 +20,8 @@
             normalize: function(item) {    
                
                 var templateData = {
-                    title: api_result.name,
-                    subtitle: "LGBT Rights in " + api_result.name,
+                    title: "LGBT Rights",
+                    subtitle: api_result.name,
                     record_data: {}
                 };
                 
