@@ -162,6 +162,7 @@
                 options: {
                     moreAt: true,
                     rating: false,
+                    dateBadge: true,
                     footer: Spice.seat_geek_events_near_me.footer
                 },
                 variants: {

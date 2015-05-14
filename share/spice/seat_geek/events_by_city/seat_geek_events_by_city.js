@@ -163,6 +163,7 @@
                 options: {
                     moreAt: true,
                     rating: false,
+                    dateBadge: true,
                     footer: Spice.seat_geek_events_by_city.footer
                 },
                 variants: {

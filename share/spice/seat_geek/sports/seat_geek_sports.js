@@ -132,6 +132,7 @@
                 item_detail: false,
                 options: {
                     footer: Spice.seat_geek_sports.footer,
+                    dateBadge: true,
                     moreAt: true,
                     rating: false
                 },
