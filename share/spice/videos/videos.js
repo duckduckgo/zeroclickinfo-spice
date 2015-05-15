@@ -19,6 +19,11 @@ function ddg_spice_videos(apiResult) {
             searchTerm: apiResult.query
         },
 
+        templates: {
+            item: 'videos_item',
+            detail: 'videos_detail'
+        },
+
         relevancy: {
             dup: 'id'
         }
