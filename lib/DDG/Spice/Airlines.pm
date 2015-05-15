@@ -17,10 +17,12 @@ attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
             github => [ 'https://github.com/duckduckgo', 'DuckDuckGo'],
             twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
 
-spice to => 'https://duckduckgo.com/flights.js?airline=$1&flightno=$2&callback={{callback}}';
-spice from => '(.*?)/(.*)';
+spice to => 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/$1/$2/arr/$3/$4/$5?hourOfDay=$6&utc=true&appId={{ENV{DDG_SPICE_FLIGHTS_API_ID}}}&appKey={{ENV{DDG_SPICE_FLIGHTS_APIKEY}}}&callback={{callback}}';
+spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';
+spice proxy_cache_valid => '418 1d';
 
-triggers query_lc => qr/^(\d+)\s+(.*?)(?:[ ]air.*?)?$|^(.*?)(?:[ ]air.*?)?\s+(\d+)$/;
+triggers any => '///***never trigger***///';
+# triggers query_lc => qr/^(\d+)\s+(.*?)(?:[ ]air.*?)?$|^(.*?)(?:[ ]air.*?)?\s+(\d+)$/;
 
 # Get the list of airlines and strip out the words.
 my %airlines = ();
@@ -47,27 +49,37 @@ foreach my $line (@elements_lines) {
     $elements{$line[1]} = 1;
 }
 
+sub checkAirlines {
+    my ($airline, $flightno, $year, $month, $dayOfMonth, $hour) = @_;
+
+    # Check if we found something and if it's not an element.
+    if($airline && !exists $elements{$airline}) {
+        return $airline, $flightno, $year, $month, $dayOfMonth, $hour;
+    } else {
+        return;
+    }
+}
+
 handle query_lc => sub {
+
     my $query = $_;
 
-    sub checkAirlines {
-        my ($airline, $flightno, $original) = @_;
-
-        # Check if we found something and if it's not an element.
-        if($airline && !exists $elements{$airline}) {
-            return $airline, $flightno;
-        } else {
-            return;
-        }
-    }
+    # get the current time, minus six hours
+    # the API requires a date/time, and this allows us to search for all flights that 
+    # arrived six hours prior to the current time and flights that will arrive up to
+    # 18 hours ahead of the current time
+    my ($second, $minute, $hour, $dayOfMonth,
+        $month, $year, $dayOfWeek, $dayOfYear, $daylightSavings) = gmtime(time - 21600);
+                
+    $month += 1;
+    $year += 1900;
 
     # 102 AA
-
     if($query =~ /^(\d+)\s*(.*?)(?:[ ]air.*?)?$/) {
-        return checkAirlines($airlines{$2}, $1, $2);
+        return checkAirlines($airlines{$2}, $1, $year, $month, $dayOfMonth, $hour);
     # AA 102
     } elsif($query =~ /^(.*?)(?:[ ]air.*?)?\s*(\d+)$/) {
-        return checkAirlines($airlines{$1}, $2, $1);
+        return checkAirlines($airlines{$1}, $2, $year, $month, $dayOfMonth, $hour);
     }
     return;
 };

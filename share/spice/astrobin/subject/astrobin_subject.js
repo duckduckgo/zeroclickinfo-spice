@@ -29,7 +29,11 @@
                     title: item.title
                 };
             },
-            view: 'Images'
+            view: 'Images',
+            templates: {
+                item: 'images_item',
+                detail: 'images_detail'
+            }
         });
     };
 }(this));

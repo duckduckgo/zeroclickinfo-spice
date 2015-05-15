@@ -7,16 +7,11 @@
     {{airlineName}} {{flightNumber}}
   </h5>
   <div class="tile__airports">
-    {{departing.airport.AirportCode}} to {{arriving.airport.AirportCode}}
+    {{departing.airport}} to {{arriving.airport}}
   </div>
   <div>
     <span class="tile__status">
       {{{airline_status flight departureDate arrivalDate}}}
-    </span>
-  </div>
-  <div>
-    <span class="tile__schedule">
-      Estimated Duration: {{{scheduledFlightDuration}}}
     </span>
   </div>
 </div>
