@@ -26,6 +26,12 @@ function ddg_spice_gifs(res) {
             itemType: 'Gifs'
         },
 
-        view: 'Images'
+        view: 'Images',
+
+        templates: {
+            item: 'images_item',
+            detail: 'images_detail'
+        }
+
     });
 } 
