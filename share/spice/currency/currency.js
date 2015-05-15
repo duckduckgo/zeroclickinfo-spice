@@ -51,9 +51,9 @@
 
         // Check if there are any errors in the response.
         if(!api_result || !api_result.conversion || !api_result.topConversions || 
-           !api_result.conversion.length || api_result.conversion.length === 0 || 
+           !api_result.conversion || Object.keys(api_result.conversion).length === 0 || 
            !api_result.topConversions.length || api_result.topConversions.length === 0) {
-            Spice.failed('currency');
+            return Spice.failed('currency');
         }
         
         var results = [];
