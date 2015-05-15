@@ -7,7 +7,7 @@
 
     env.ddg_spice_nxt_account = function(api_result) {
 
-        if (!api_result || api_result.status == 'error') {
+        if (!api_result || api_result.status == 'error' || !api_result.accountRS) {
             return Spice.failed('nxt_account');
         }
 
