@@ -118,6 +118,9 @@
             templateObj.detail_mobile = false;
         }
         
+       // Set favicon
+       var icon = ((DDG.is3x || DDG.is2x) ? DDG.get_asset_path('currency',"assets/xe.png") : "http://www.xe.com/favicon.ico");
+        
         Spice.add({
             id: 'currency',
             name: 'Currency',
@@ -125,7 +128,6 @@
             meta: {
                 sourceUrl: "http://www.xe.com",
                 sourceName: "xe.com",
-                sourceIconUrl: "http://www.xe.com/favicon.ico",
                 itemType: "Conversions"
             },
             normalize: function(item) {
@@ -147,7 +149,8 @@
                     currencyName: item["to-currency-name"],
                     liveUrl: liveUrl,
                     xeTime: xeTime,
-                    xeDate: xeDate
+                    xeDate: xeDate,
+                    moreAtIcon: icon
                 };
             },
             templates: templateObj,
