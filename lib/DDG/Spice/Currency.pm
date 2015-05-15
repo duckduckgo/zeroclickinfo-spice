@@ -4,8 +4,8 @@ package DDG::Spice::Currency;
 use strict;
 use DDG::Spice;
 with 'DDG::SpiceRole::NumberStyler';
-
 use Text::Trim;
+use YAML::XS qw(LoadFile);
 
 primary_example_queries "convert 499 usd to cad";
 secondary_example_queries "cad to usd", "cny?";
@@ -22,8 +22,11 @@ attribution web => ['http://www.xe.com', 'xe.com'],
 
 # Get all the valid currencies from a text file.
 my @currTriggers;
-my @currencies = share('currencylist.txt')->slurp;
+my @currencies = share('currencyNames.txt')->slurp;
 my %currHash = ();
+
+# load decimal => unicode currency codes
+my $currencyCodes = LoadFile share("currencySymbols.yml");
 
 foreach my $currency (@currencies){
     chomp($currency);
@@ -40,10 +43,9 @@ my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is
 my $number_re = number_style_regex();
 my $cardinal_re = join('|', qw(hundred thousand k million m billion b trillion));
 
-# This regexp is responsible for actually processing the query and capturing the important parts.
-my $guard = qr/^$question_prefix($number_re*)\s?($cardinal_re)?\s?($currency_qr)(?:s)?(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?(?:s)?\??$/i;
+my $guard = qr/^$question_prefix(\p{Currency_Symbol})?($number_re*)\s?($cardinal_re)?\s?($currency_qr)?(?:s)?(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?(\p{Currency_Symbol})?(?:s)?\??$/i;
 
-triggers query_lc => qr/$currency_qr/;
+triggers query_lc => qr/\p{Currency_Symbol}|$currency_qr/;
 
 spice from => '([^/]+)/([^/]+)/([^/]+)';
 spice to => 'http://www.xe.com/tmi/xe-output.php?amount=$1&from=$2&to=$3&appid={{ENV{DDG_SPICE_CURRENCY_APIKEY}}}';
@@ -119,8 +121,19 @@ sub checkCurrencyCode {
 }
 
 handle query_lc => sub {
+
     if(/$guard/) {
-        my ($amount, $cardinal, $from, $alt_amount, $to) = ($1, $2 || '', $3, $4, $5 || '');
+               
+        my ($fromSymbol, $amount, $cardinal, $from, $alt_amount, $to, $toSymbol) = ($1 || '', $2, $3 || '', $4 || '', $5 || '' , $6 || '', $7 || '');               
+        
+        
+        if ($from eq '' && $fromSymbol) {
+            $from = $currencyCodes->{ord($fromSymbol)};
+        }
+        
+        if ($to eq '' && $toSymbol) { 
+            $to = $currencyCodes->{ord($toSymbol)};
+        }
 
         my $styler = number_style_for($amount);
         return unless $styler;
