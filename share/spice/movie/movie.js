@@ -75,17 +75,20 @@
             normalize: function(item) {
                 // Modify the image from _tmb.jpg to _det.jpg
                 var image = toDetail(item.posters.detailed);
-                return {
-                    rating: Math.max(item.ratings.critics_score / 20, 0),
-                    image: image,
-                    icon_image: get_image(item.ratings.critics_rating),
-                    abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
-                    heading: item.title,
-                    img: image,
-                    img_m: image,
-                    url: item.links.alternate,
-                    is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
-                };
+                
+                if(item.alternate_ids && item.alternate_ids.imdb) {
+                    return {
+                        rating: Math.max(item.ratings.critics_score / 20, 0),
+                        //image: image,
+                        icon_image: get_image(item.ratings.critics_rating),
+                        abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
+                        heading: item.title,
+                        //img: image,
+                        //img_m: image,
+                        url: item.links.alternate,
+                        is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
+                    };
+                }
             },
             templates: {
                 group: 'movies',
@@ -103,6 +106,23 @@
                     match: /\.jpg$/,
                     strict: false
                 }]
+            },
+            onItemShown: function(item) {
+                $.ajaxSetup({ cache: true });
+                
+                if(item.alternate_ids && item.alternate_ids.imdb) {
+                    $.getJSON("/js/spice/movie_image/tt" + item.alternate_ids.imdb, function(data) {
+                        if(data && data.movie_results && data.movie_results.length > 0 && data.movie_results[0].poster_path) {
+                            var image = "https://image.tmdb.org/t/p/w185" + data.movie_results[0].poster_path;
+                            item.$html.find(".tile__media__img").attr("src", "https://images.duckduckgo.com/iu/?f=1&u=" + encodeURIComponent(image));
+                            $.extend(item, {
+                                image: image,
+                                img: image,
+                                img_m: image
+                            });
+                        }
+                    });
+                }
             }
         });
     };
