@@ -9,16 +9,27 @@
         Spice.add({
             id: "indian_rail_pnr_status",
             name: "PNR Enquiry",
-            data: api_result,
+            data: {
+                record_data: {
+                    "PNR" : api_result.result.pnr,
+                    "Train Name" : api_result.result.name,
+                    "Current Status" : api_result.result.passengers[0].currentstatus,
+                    "From" : api_result.result.from,
+                    "To" : api_result.result.to,
+                    "Journey Date" : api_result.result.journey,
+                    "Class" : api_result.result.cls
+                }
+            },
             meta: {
                 sourceName: "erail.in",
                 sourceUrl: 'http://erail.in/indian-railway-pnr-status?pnr=' + api_result.result.pnr
             },
             templates: {
-                group: 'text',
+                group: 'base',
                 options:{
-                    content: Spice.indian_rail_pnr_status.content,
-                    moreAt: true
+                    content: 'record',
+                    moreAt: true,
+                    rowHighlight: true
                 }
             }
         });

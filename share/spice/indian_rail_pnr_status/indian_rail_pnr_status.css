@@ -1,0 +1,26 @@
+.zci--indian_rail_pnr_status .zci__body .zci__more-at{
+    padding-top: 1em;
+}
+.zci--indian_rail_pnr_status .record .record__cell__value {
+    max-width: 500px;
+    word-wrap: break-word;
+    padding: 0.4em;
+}
+
+.zci--indian_rail_pnr_status .record .record__cell__key {
+    padding: 0.4em;
+}
+
+.is-mobile .zci--indian_rail_pnr_status .record .record__cell__value {
+    max-width: 150px;
+}
+
+.zci--indian_rail_pnr_status .record .record__body{
+    width: 100%;
+}
+
+.is-mobile .zci--indian_rail_pnr_status .record .record__cell__key {
+    max-width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
