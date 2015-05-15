@@ -31,7 +31,8 @@
                     url: item.url,
                     height: item.images.fixed_height.height,
                     width: item.images.fixed_height.width,
-                    title: item.caption || null
+                    title: item.caption || null,
+                    image_mobile: item.images.fixed_height.url
                 };
             },
             templates: {
