@@ -149,7 +149,7 @@
                     place: item.venue.name,
                     img: item.performers[0].images.small,
                     city: item.venue.display_location,
-                    date: {
+                    dateBadge: {
                         month: getMonth(getDate(item.datetime_local)),
                         day: getDay(getDate(item.datetime_local))
                     }
@@ -162,7 +162,6 @@
                 options: {
                     moreAt: true,
                     rating: false,
-                    dateBadge: true,
                     footer: Spice.seat_geek_events_near_me.footer
                 },
                 variants: {

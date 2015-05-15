@@ -120,7 +120,7 @@
                     place: item.venue.name,
                     city: item.venue.display_location,
                     month: getMonth(getDate(item.datetime_local)),
-                    date: {
+                    dateBadge: {
                         day: getDay(getDate(item.datetime_local)),
                         year: getYear(getDate(item.datetime_local))
                     }
@@ -132,7 +132,6 @@
                 item_detail: false,
                 options: {
                     footer: Spice.seat_geek_sports.footer,
-                    dateBadge: true,
                     moreAt: true,
                     rating: false
                 },
