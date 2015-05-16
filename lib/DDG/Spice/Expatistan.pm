@@ -1,8 +1,11 @@
 package DDG::Spice::Expatistan;
+# ABSTRACT: Compare cities based on cost of living
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "cost of living in Philadelphia";
+secondary_example_queries "cost of living barcelona vs madrid";
 description "See and compare costs of living via Expatistan";
 name "Expatisan";
 icon_url "/i/www.expatistan.com.ico";

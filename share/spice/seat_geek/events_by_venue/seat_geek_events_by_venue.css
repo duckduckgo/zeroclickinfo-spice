@@ -1,0 +1,27 @@
+.zci--seat_geek_events_by_venue .price {
+    font-weight: 600;
+}
+
+.zci--seat_geek_events_by_venue .price,
+.zci--seat_geek_events_by_venue .noprice {
+    margin-top: 1.75em;
+    height: 1.1em;
+    float: left;
+}
+
+.zci--seat_geek_events_by_venue .seat_geek-artist {
+    font-size: 1.1em;
+}
+
+.zci--seat_geek_events_by_venue .where {
+    height: 1.4em;
+}
+
+.zci--seat_geek_events_by_venue .where.city,
+.zci--seat_geek_events_by_venue .where.place {
+    width: 9.3em;
+}
+
+    .is-mobile .zci--seat_geek_events_by_venue .where.city {
+        width: 7em;
+    }

@@ -36,32 +36,40 @@
         query = query.replace(/^\s*(\/?r\/\w+|reddit|subreddit\s*\w+)\s+/, "");
         header = query + ' ' + header;
 
-        Spice.add({
-            id: "reddit_search",
-            name: "Social",
-            data: results,
-            meta: {
-                itemType: "posts",
-                sourceUrl: "http://www.reddit.com/r/search/search?q=" + query,
-                sourceIcon: true,
-                sourceName: 'Reddit',
-            },
-	    normalize: function(item) {
-		var a = {
-		    url: "http://www.reddit.com" + item.data.permalink,
-		    title: item.data.title,
-		    subtitle: item.data.num_comments + " comments"
-		};
-		return a;
-	    },
-            templates: {
-                group: 'text',
-                options: {
-		    footer: Spice.reddit_search.footer
+        DDG.require('moment.js', function(){
+            Spice.add({
+                id: "reddit_search",
+                name: "Social",
+                data: results,
+                meta: {
+                    itemType: "posts",
+                    sourceUrl: "http://www.reddit.com/r/search/search?q=" + query,
+                    sourceIcon: true,
+                    sourceName: 'Reddit'
                 },
-		detail: false,
-		item_detail: false
-            }
+                normalize: function(item) {
+                    return {
+                        url: "http://www.reddit.com" + item.data.permalink,
+                        title: (item.data.title).replace(/&amp;/g, '&'),
+                        subTitle: moment(item.data.created * 1000).fromNow() + " on " + item.data.subreddit,
+                        iconArrow: {
+                            url: DDG.get_asset_path('reddit_search','arrow_up.png')
+                        }
+                    };
+                },
+                templates: {
+                    group: 'text',
+                    options: {
+                        footer: Spice.reddit_search.footer
+                    },
+                    variants: {
+                        tileTitle: "3line-small",
+                        tileFooter: "2line"
+                    },
+                    detail: false,
+                    item_detail: false
+                }
+            });
         });
     };
 }(this));

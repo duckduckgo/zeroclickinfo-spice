@@ -1,50 +1,44 @@
-function ddg_spice_zanran(api_result) {
+(function (env) {
     "use strict";
+    env.ddg_spice_zanran = function(api_result) {
 
-    if(!api_result || !api_result.results || api_result.results.length === 0) {
-        return;
-    }
-
-    var checkImage = function(image) {
-        if(image) {
-            return "/iu/?u=" + image;
+        if(!api_result || !api_result.results) {
+            return Spice.failed('zanran');
         }
-        return "";
+
+        Spice.add({
+            id: "zanran",
+            name: "Answer",
+            data: api_result.results,
+            signal: "medium",
+            meta: {
+                sourceName: "Zanran",
+                sourceUrl: api_result.more,
+                itemType: 'Documents'
+            },
+            normalize: function(item) {
+                if (!item.date || !item.short_title) {
+                     return;
+                }
+                return {
+                    description: item.short_title,
+                    url: item.final_url,
+                    icon: DDG.get_asset_path('zanran','pdf.ico'),
+                    title: item.site_name,
+                    date: item.date
+                };
+            },
+            templates: {
+                group: 'icon',
+                detail: false,
+                item_detail: false,
+                options: {
+                    footer: Spice.zanran.footer
+                },
+                variants: {
+                    tileSnippet: "large"
+                }
+            }
+        });
     };
-
-    Spice.add({
-        data             : api_result,
-        header1          : DDG.get_query() + " (Zanran)",
-        sourceUrl       : api_result.more,
-        sourceName      : 'Zanran',
-        templates: {
-            item: Spice.zanran.zanran,
-            detail: Spice.zanran.zanran
-        },
-        image_url        : checkImage(api_result.results[0].preview_image),
-        
-        
-    });
-
-    $("a.show-hide").click(function() {
-        var id = $(this).data("target");
-        $(id).toggle();
-    });
-
-    $("#zero_click_abstract").css({
-        "max-width" : "auto !important"
-    });
-
-    $("#zero_click_image img").css({
-      "max-width"  : "71px",
-      "max-height" : "100px", // A4 ratio
-      "border"     : "1px solid black"
-    });
-};
-
-Handlebars.registerHelper("preview_link", function() {
-    "use strict";
-
-    var s = this.preview_url;
-    return (s.indexOf("zanran")) ? this.preview_url : "http://zanran.com" + this.preview_url;
-});
+}(this));

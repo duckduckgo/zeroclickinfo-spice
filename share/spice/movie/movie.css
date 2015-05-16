@@ -1,26 +1,3 @@
-.tile--movie  {
-    width: 12em;
-}
-
-.tile--movie .tile__media__img {
-    min-width: 100%;
-    height: 100%;
-    margin-top: 0;
-}
-
-.zci--movie .one-line {
-    float: left;
-}
-
-.tile--movie .tile__title {
-    height: 2.5em;
-}
-
-.tile--movie .tile__source,
-.tile--movie:hover .tile__source {
-    color: #aaa;
-}
-
 .zci--movie .tomato--icon {
     width: 16px;
     height: 16px;
@@ -29,6 +6,88 @@
     background: transparent no-repeat;
 }
 
-.zci--movie .btn.btn--primary {
-    margin-top: 1em;
+.zci--movie h5.detail__title.detail__tile--pr {
+    padding-bottom: 0;
+}
+
+.zci--movie .detail__subtitle {
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 1.5em;
+}
+
+.is-mobile .zci--movie .detail__subtitle {
+    position: relative;
+}
+
+.zci--movie p.detail__desc {
+    padding-bottom: 1.65em;
+}
+
+.is-mobile .zci--movie p.detail__desc {
+    padding-bottom: 5em;    
+}
+
+.zci--movie .movie--runtime {
+    font-size: 0.9em;
+    position: relative;
+    top: 1.5em;
+}
+
+.is-mobile .zci--movie .movie--runtime {
+    top: 1em;
+}
+
+.zci--movie .movie--critics_score {
+    display: block;
+    font-size: 1.3em;
+}
+
+.zci--movie .movie--critics_score img {
+    margin-top: -0.1em;
+    margin-bottom: -0.3em;
+    height: 24px;
+    width: 24px;
+}
+
+.zci--movie .detail__subtitle sup {
+    font-size: 0.5em;
+}
+
+.zci--movie .copyright {
+    font-size: 0.9em;
+}
+
+.zci--movie .detail .detail__media--pr {
+    max-width: 180px;
+}
+
+.zci--movie .detail__media--pr--s .detail__media__img {
+    max-height: 180px;
+}
+
+.is-mobile .detail__media--pr--s {
+    overflow: visible;
+}
+
+.is-mobile .detail__body--pr--s--sec {
+    margin-top: 1.5em;
+}
+
+.is-mobile .detail__body--pr--s--pri {
+    min-height: 165px;
+    padding-bottom: 0em
+}
+
+.is-mobile .zci--movie .detail .detail__media--pr {
+    max-width: 100%;
+}
+
+.is-mobile .zci--movie .btn.btn--primary {
+    position: absolute;
+    bottom: 1em;
+}
+
+.is-mobile .zci.is-active {
+    padding-bottom: 0em;
 }

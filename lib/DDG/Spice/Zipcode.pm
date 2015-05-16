@@ -1,6 +1,7 @@
 package DDG::Spice::Zipcode;
 # ABSTRACT: return the location and approximate area of a postal code.
 
+use strict;
 use DDG::Spice;
 use URI::Escape;
 
@@ -15,7 +16,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 category "geography";
 topics "everyday", "geography", "travel";
 attribution github => ["https://github.com/almanackist", "Almanackist"],
-            twitter => ["https://twitter.com/cajoyce", "cajoyce"];
+            twitter => ["https://twitter.com/cajoyce", "Almanackist"];
 
 # Triggers
 my $zip_string = qr/(zip|post(al)?)\s*(code)?/;

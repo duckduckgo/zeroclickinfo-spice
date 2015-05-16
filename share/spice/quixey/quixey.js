@@ -90,8 +90,20 @@
                     return null;
                 }
 
-                // ignoring the case where rating_count is null
+                // relevancy pre-filter: remove GoogleTV Android packages 
+                // API doesn't differentiate between GoogleTV Android and Android packages
+                var reFilter = /Google\s?TV/i;
 
+                for (var i in item.editions) {
+                    var packageAppName = [DDG.getProperty(item, "editions." + [i] + ".custom.features.package_name"),              
+                                          DDG.getProperty(item, "editions." + [i] + ".name")].join(" ");
+
+                    if (packageAppName.match(reFilter)) {
+                        item.editions.splice(i,1);
+                   }
+                }
+
+                // ignoring the case where rating_count is null
                 var icon_url = make_icon_url(item), screenshot; 
 
                 if (!icon_url)
@@ -109,7 +121,7 @@
                 }
 
                 return {
-                    'img':           icon_url,
+                    'img':           DDG.toHTTPS(icon_url),
                     'title':         item.name,
                     'heading':       item.name,
                     'rating':        item.rating,
@@ -211,8 +223,10 @@
             templates: {
                 group: 'products',
                 options: {
-                    buy: Spice.quixey.buy,
-                    variant: 'narrow'
+                    buy: Spice.quixey.buy
+                },
+                variants: {
+                    tile: 'narrow'
                 }
             }
         });
@@ -298,10 +312,6 @@
         return range;
     };
 
-    Handlebars.registerHelper("Quixey_pricerange", function() {
-        return pricerange(this);
-    });
-
     // template helper to replace iphone and ipod icons with
     // smaller 'Apple' icons
     Handlebars.registerHelper("Quixey_platform_icon", function(icon_url) {
@@ -311,8 +321,7 @@
             return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
         }
 
-        // return "/iu/?u=" + icon_url + "&f=1";
-        return icon_url;
+        return "/iu/?u=" + icon_url + "&f=1";
     });
 
     // template helper that returns and unifies platform names

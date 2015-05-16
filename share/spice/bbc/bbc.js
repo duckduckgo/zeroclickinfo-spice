@@ -2,6 +2,11 @@
     "use strict";
 
     env.ddg_spice_bbc = function(api_result) {
+
+        if (!api_result) {
+            return Spice.failed('bbc');
+        }
+
         var query = DDG.get_query(),
             broadcasts = api_result.schedule.day.broadcasts,
             programmes = [],
@@ -18,6 +23,7 @@
             header_date,
             header_service_type,
             re = /today|tomorrow|yesterday|tonight|last/,
+            source_url,
             match;
 
         if (re.test(query)){
@@ -42,13 +48,34 @@
 
         header_service_type = api_result.schedule.service.type == "radio" ? "Radio" : "TV";
 
+        // Build a 'More at' link for this schedule - this can be the same
+        // as the JSON URL minus the extension, but given the information
+        // we have, it's easier to use a full date instead of 'today' etc.
+        source_url = 'http://www.bbc.co.uk/'
+            + api_result.schedule.service.key
+            + '/programmes/schedules';
+
+        if ("outlet" in api_result.schedule.service) {
+            source_url += '/' + api_result.schedule.service.outlet.key;
+        }
+
+        source_url += '/' + fulldate.getFullYear()
+            + '/' + ("0" + (fulldate.getMonth() + 1)).slice(-2)
+            + '/' + ("0" + fulldate.getDate()).slice(-2);
+
+        // Adding this URL fragment to schedules not in the past will take
+        // the user to the right part of the page.
+        if (!inPast) {
+            source_url += '#on-now';
+        }
+
         Spice.add({
             id: 'bbc',
-            name: 'TV',
+            name: header_service_type,
             data: programmes,
             meta: {
                 sourceName: 'BBC',
-                sourceUrl: 'http://www.bbc.co.uk',
+                sourceUrl: source_url,
                 itemType: 'Programmes'
             },
             normalize: function(item) {
@@ -66,13 +93,13 @@
                 };
             },
             templates: {
-                group: 'media',
-                detail: 'products_detail',
-                item_detail: 'products_item_detail',
+                group: 'products_simple',
                 options: {
-                    variant: "video",
                     buy: Spice.bbc.buy,
                     subtitle_content: Spice.bbc.subtitle_content
+                },
+                variants: {
+                    tile: "video"
                 }
             }
         });

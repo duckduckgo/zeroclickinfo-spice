@@ -1,7 +1,25 @@
-#shorten-url {
-	text-align: center;
+.zci--shorten input.tag {
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    line-height: 1.2;
+    border-radius: 3px;
+    color: #333;
+    font-size: 1.2em;
+    font-weight: 600;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 10px;
+    margin-left: -10px;
+    height: 28px;
+    width: 228px;
+    background-color: #e0e0e0;
+    border: 0 none;
 }
 
-div.clear {
-	clear: both;
+.zci--shorten .zci__subheader, .zci__header__sub {
+    margin-top: 2px;
+    color: #999;
 }

@@ -1,7 +1,7 @@
 package DDG::Spice::Forecast;
+# ABSTRACT: Weather forecasts
 
-use Data::Dumper;
-
+use strict;
 use DDG::Spice;
 use Text::Trim;
 
@@ -13,9 +13,7 @@ secondary_example_queries "weather 12180";
 topics "everyday", "travel";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Forecast.pm";
 
-
-my @triggers = ('forecast', 'forcast', 'weather', 'temp', 'temperature', 'meteo');
-triggers startend => @triggers;
+triggers start => "weather";
 
 spice from => '([^/]*)/?([^/]*)';
 spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
@@ -25,53 +23,26 @@ spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=
 spice is_cached => 1;
 spice proxy_cache_valid => "200 30m";
 
-my $no_location_qr = qr/fore?cast|report|meteo|weather|temp(?:erature)/;
-my $weather_qr = qr/(?:(?:weather|temp(?:erature|)|fore?cast|meteo)(?: fore?cast| report| today| tomm?orr?ow| this week| monday| tuesday|  wednesday| thursday| friday| saturday| sunday| lundi| mardi| mercredi| jeudi| vendredi| samedi| dimanche| demain|))+/;
+my @locs = qw (city region_name country_name );
 
-handle query_lc => sub {
-    my $location = '';
+handle remainder => sub {
 
-    # Capture user defined location if it exists.
-    if (/^(?:what(?:'s| is) the |)(?:(?:current|local) )?$weather_qr(?: in | for | at |)(.*)/) {
-        $location = $1 unless ($1 =~ $no_location_qr);
+    return if $_;
 
-    } elsif (/^(.*?)(?:(?:current|local) )?$weather_qr/) {
-        $location = $1 unless ($1 =~ $no_location_qr);
-    }
-
-    # 10/29/2013 russell double check for things we don't want
-    $location = trim $location if $location;
-    
-    # bbc
-    # shipping forecast, bbc forecast, bbc weather forecast etc.
-    return if /(shipping\s+fore?cast)|((weather|fore?cast)\sbbc$)|(^bbc\s.*(weather|fore?cast))|(\s+bbc\s+)/;
-
-    # has quotes
-    return if /(%22)|\"/;
-
-    # has financialish terms
-    return if /financ(e|ial)|market|bond|treasury|pension|fund|t-?bill|stock|government|strateg(y|ies)|analytics|market|fore?cast(ing|or|er)/;
-    return if /(gold|silver|oil|naturalgas|palladium|platinum|copper|lead|zinc|tin|aluminium|aluminum|nickel|cobalt|molybdenum|polypropylene|ethanol).*(fore?cast)/;
-
-    # sports
-    return if /football|golf|soccer|tennis|basketball|hockey|nba|ncaa|nfl|nhl/;
-
-    # has other terms
-    return if (/(^site\:)|http|(\.(org|com|net))|underground/);
-
-    # color temperature
-    if (/temp(era?ture)?/) {
-        return if /\bcolou?r\b|[0-9]+\s*[kK]/;
-    }
-
-    # Don't cache generic queries due to
-    # variations in the users location.
-    if ($location) {
-        return $location;
-    } else {
-        $location = $loc->loc_str;
-        return $location, 'current', {is_cached => 0};
-    }
+    my $loc_str = join " ", map { $loc->{$_} } @locs;
+    return $loc_str, 'current', {is_cached => 0};
 };
+
+# 2015.03.17 tommytommytommy:
+# This IA overtriggers because we don't have a way to check that
+# the string following "weather" is an actual location.
+# For now, limit this IA to only trigger when the query is "weather", and
+# only send the user's location string.
+#
+# If the user specifies a location, we will try to internally infer
+# that location and make the appropriate upstream request.
+# When we have implemented places detection, we can restore the relevancy and triggering
+# functionality for this module by removing the block above and uncommenting
+# all the relevant lines.
 
 1;

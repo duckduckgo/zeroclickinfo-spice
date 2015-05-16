@@ -1,5 +1,7 @@
 package DDG::Spice::Bible;
+# ABSTRACT: Bible citations
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "genesis 15:7";
@@ -12,7 +14,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "special_interest", "everyday";
 category "random";
 attribution github => ['https://github.com/hunterlang','Hunter Lang'],
-            web => 'http://hunterlang.com/';
+            web => ['http://hunterlang.com/', 'Hunter Lang'];
 
 my @triggers = share('triggers.txt')->slurp;
 triggers any => @triggers;

@@ -1,5 +1,7 @@
 package DDG::Spice::OpenSNP;
+# ABSTRACT: Search for annotations to genotypes
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries 'rs7903146';
@@ -9,7 +11,7 @@ code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics 'science';
 category 'reference';
 attribution github => ['https://github.com/drsnuggles','Philipp Bayer'],
-            twitter => ['https://twitter.com/PhilippBayer', 'PhilippBayer'];
+            twitter => ['https://twitter.com/PhilippBayer', 'Philipp Bayer'];
 
 spice to => 'https://opensnp.org/snps/json/annotation/$1.json';
 spice proxy_cache_valid  => "5m";

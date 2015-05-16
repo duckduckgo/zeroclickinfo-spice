@@ -1,5 +1,7 @@
 package DDG::Spice::RedditSubSearch;
+# ABSTRACT: Search for subreddits
 
+use strict;
 use DDG::Spice;
 
 name "SubReddit Search";
@@ -11,20 +13,17 @@ category "forums";
 topics "social";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RedditSubSearch.pm";
 icon_url "/i/www.reddit.com.ico";
-attribution twitter => ["https://twitter.com/mithrandiragain","mithrandiragain"],
+attribution twitter => ["https://twitter.com/mithrandiragain","Gary Herreman"],
             github => ["https://github.com/MithrandirAgain", "Gary Herreman"],
-            web => ['http://atomitware.tk/mith','MithrandirAgain'];
+            web => ['http://atomitware.tk/mith','Gary Herreman'];
 
-triggers query_lc => qr#^(?:subreddit|/?r/)\s*(\w+)$|^(\w+)\s+subreddit$#i;
+triggers startend => 'subreddit', 'r';
+
 spice to => 'http://www.reddit.com/r/$1/about.json?jsonp=ddg_spice_reddit';
 
-handle matches => sub {
-	if($1) {
-		return $1;
-	} elsif($2) {
-		return $2;
-	}
-    return;
+handle query_lc => sub {
+    return unless $_ =~ qr#^(?:subreddit|/?r/?)\s*(?<match>\w+)$|^(?<match>\w+)\s+subreddit$#i;
+    return $+{match};
 };
 
 1;

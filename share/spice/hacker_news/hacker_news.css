@@ -1,13 +1,3 @@
-.tile__stat {
-	display: block;
-}
-
-.tile__stat__num {
-	font-weight: 900;
-}
-
-.tile--hacker-news .tile__date {
-	color: #aaa;
-	padding-top: .75em;
-	padding-bottom: .75em;
+.tile--hacker_news .tile__body.has-foot {
+	height: 14em;
 }

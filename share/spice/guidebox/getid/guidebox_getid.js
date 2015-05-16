@@ -53,22 +53,31 @@
                     itemType: 'episodes of ' + metadata.res_title
                 },
                 templates: {
-                    group: 'media',
+                    group: 'products_simple',
                     options: {
-                        variant: "video",
                         price: true,
                         buy: Spice.guidebox_getid.buy
+                    },
+                    variants: {
+                        tile: "video"
                     }
                 },
-                normalize: function(item){
-                    var subtitle_tile = "Season "+ item.season_number+ ", #" + item.episode_number;
-                    var subtitle_detail = "(Season "+ item.season_number+ ", #" + item.episode_number+")";
+                normalize: function(item) {
+                    // We have to check if the required properties exist before we do anything.
+                    // Returning null skips the item and prevents it from getting displayed.
+                    if(!DDG.getProperty(item, 'episode_name') || !DDG.getProperty(item, 'season_number') || 
+                       !DDG.getProperty(item, 'overview')) {
+                        return null;
+                    }
 
-                    var abstract_length = (isMobile ? 175 : 500);
-                    var abstract = Handlebars.helpers.ellipsis(item.overview, abstract_length);
-
-                    var aired = "Originally aired "+ Handlebars.helpers.guideBox_getDate(item.first_aired)
-                                + " on "+ metadata.network;
+                    var network;
+                    metadata.network ? network = " on "+ metadata.network : network = "";
+                    
+                    var subtitle_tile = "Season "+ item.season_number+ ", #" + item.episode_number,
+                        subtitle_detail = "(Season "+ item.season_number+ ", #" + item.episode_number+")",
+                        abstract_length = (isMobile ? 175 : 200),
+                        abstract = Handlebars.helpers.ellipsis(item.overview, abstract_length),
+                        aired = "Originally aired "+ Handlebars.helpers.guideBox_getDate(item.first_aired) + network;
                     
                     return {
                         image: item.thumbnail_304x171,
@@ -81,13 +90,13 @@
                         price: aired
                     }
                 },
-                relevancy: {
-                    primary: [
-                        {required: 'episode_name'},
-                        {required: 'season_number'},
-                        {required: 'overview'}
-                    ]
-                }
+//                 relevancy: {
+//                     primary: [
+//                         {required: 'episode_name'},
+//                         {required: 'season_number'},
+//                         {required: 'overview'}
+//                     ]
+//                }
             });
         });
     }

@@ -1,4 +1,10 @@
-function ddg_spice_recipes(res) {
+(function(env) {
+    "use strict";
+    env.ddg_spice_recipes = function (res) {
+
+    if (!res) {
+        return Spice.failed('recipes');
+    }
 
     var query = DDG.get_query(),
         query_encoded = DDG.get_query_encoded();
@@ -18,7 +24,7 @@ function ddg_spice_recipes(res) {
             /* item */
 
             m.title = item.recipeName.replace(/ recipe/i,"");
-            m.url = "http://www.yummly.com/recipe/" + item.id;
+            m.url = "http://www.yummly.com/recipe/" + item.id + '?prm-v1';
 
             m.image = item.imageUrlsBySize['250'];
             m.ratingText = item.sourceDisplayName;
@@ -48,7 +54,7 @@ function ddg_spice_recipes(res) {
                     return {
                         name: ingredient,
                         displayName: displayName,
-                        url: '?q=' + refinedTerm.replace(/ /g,'+')
+                        url: '?q=' + encodeURIComponent(refinedTerm)
                     }
                 });
 
@@ -109,7 +115,7 @@ function ddg_spice_recipes(res) {
 
         searchContainedRecipe = !!(query_encoded.match(/recipe/i)),
         searchTerm = query.replace(/recipes|recipe/i,'').trim(),
-        moreUrl = res.attribution.url + '?q=' + searchTerm; // should replace trigger word or use the same logic that is used for the api call
+        moreUrl = res.attribution.url + '?q=' + searchTerm + '&prm-v1'; // should replace trigger word or use the same logic that is used for the api call
 
     Spice.add({
         id: 'recipes',
@@ -125,10 +131,8 @@ function ddg_spice_recipes(res) {
             searchTerm: searchTerm,
             itemType: 'Recipes',
             detailBg: 'image',
-            detailClass: 'detail--i',
-
             // TODO: the following metadata will be injected by spice
-            sourceIconUrl: "https://" + window.location.hostname + '/' + DDG.get_asset_path('recipes','yummly.com.ico'), // temp fix for pb
+            sourceIconUrl: DDG.get_asset_path('recipes','yummly.com.ico'), // temp fix for pb
             sourceUrl: moreUrl,
             sourceName: 'Yummly'
         },
@@ -166,4 +170,5 @@ function ddg_spice_recipes(res) {
             }
         }
     });
-}
+};
+}(this));

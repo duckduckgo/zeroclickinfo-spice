@@ -35,6 +35,10 @@
             prices = null,
             currency = null;
 
+        if(!api_result) {
+            return Spice.failed('bitcoin');
+        }
+        
         if (params.length == 0) {
             currency = DEFAULT_CURRENCY;
             prices = api_result[currency];
@@ -64,6 +68,7 @@
         Spice.add({
             id: "bitcoin",
             name: 'Answer',
+            signal: 'high',
             data: {
                 buy: buy,
                 sell: sell
@@ -74,9 +79,10 @@
                 sourceIcon: true
             },
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
-                    content: Spice.bitcoin.content
+                    content: Spice.bitcoin.content,
+                    moreAt: true
                 }
             }
         });

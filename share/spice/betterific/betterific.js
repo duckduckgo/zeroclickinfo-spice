@@ -50,7 +50,7 @@
                 sourceName: 'betterific'
             },
             templates: {
-                group: 'info',
+                group: 'base',
                 options: {
                     content: Spice.betterific.content
                 }
@@ -64,7 +64,7 @@
  *     self.gsub(/[^a-z0-9\-\s]/i, '').squeeze(' ').gsub(/\s+/, '-')
  *   end
  */
-Handlebars.registerHelper('dashedS', function(s) {
+Handlebars.registerHelper('betterific_dashedS', function(s) {
     "use strict";
     return s.replace(/[^a-z0-9\-\s]/gi, '').replace(/\s+/g, '-');
 });

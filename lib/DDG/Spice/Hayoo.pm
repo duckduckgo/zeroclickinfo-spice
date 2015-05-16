@@ -1,8 +1,9 @@
 package DDG::Spice::Hayoo;
+# ABSTRACT: Spice to search Haskell APIs
 
 use DDG::Spice;
 
-primary_example_queries "hayoo Prelude.map";
+primary_example_queries "hayoo Prelude map";
 description "Search Haskell APIs";
 name "Hayoo";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Hayoo.pm";
@@ -13,7 +14,7 @@ attribution github => ['https://github.com/headprogrammingczar','headprogramming
 
 triggers start => "hayoo", "haskell api", "haskell";
 
-spice to => 'http://holumbus.fh-wedel.de/hayoo/hayoo.json?query=$1';
+spice to => 'http://hayoo.fh-wedel.de/json?query=$1';
 spice wrap_jsonp_callback => 1;
 
 spice proxy_cache_valid => "200 1d";

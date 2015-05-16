@@ -1,24 +1,3 @@
-..tile--reddit_search reddit__search--comments a {
-    color: #999;
-}
-
-.tile--reddit_search .tile__title {
-    margin-bottom: 0;
-}
-
-.tile--reddit_search .tile__body {
-    height: 10em;
-}
-
-.tile--reddit_search .tile__footer {
-    bottom: 0.5em;
-}
-
-.tile--reddit_search .tile__title__sub {
-    position: absolute;
-    bottom: 3.1em;
-}
-
-.tile--reddit_search .tile__content {
-    height: 3em;
+.tile--reddit_search .sub-title {
+    margin-bottom: 0.25em;
 }

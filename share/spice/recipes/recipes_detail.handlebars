@@ -17,6 +17,7 @@
                     <span class="detail__cooking-time"><span>Cooking </span>Time: {{.}} minutes</span>
                 {{/cookingTime}}
             </p>
+            <div class="detail__content--recipe">
             {{#if ingredientDetails}}
                 <div class="detail__ingredients">
                     Ingredients: 
@@ -34,18 +35,19 @@
                             <li>
                                 <a class="detail__flavors__name" href="{{url}}">{{name}}</a>
                                 <div class="detail__flavors__strength">
-                                    <span style="width:{{strength}}%;"></span>
+                                    <span class="bg-clr--red" style="width:{{strength}}%;"></span>
                                 </div>
                             </li>
                         {{/flavors}}
                     </ul>
                 </div>
             {{/if}}
+            </div>
             <a href="{{url}}" class="detail__links__btn  view-btn--recipes">
                 <img class="btn__icon" src="{{meta.sourceIconUrl}}" />
                 View Full Recipe
             </a>
-			{{{moreAt meta.sourceUrl meta.sourceName className="detail__more-at--recipes" iconUrl=meta.sourceIconUrl}}}
+            {{{moreAt meta.sourceUrl meta.sourceName className="detail__more-at--recipes" iconUrl=meta.sourceIconUrl}}}
         </div>
     </div>
 </div>

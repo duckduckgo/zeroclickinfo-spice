@@ -1,7 +1,7 @@
-{{#if status_code}}
-<h5><a href='http://{{this.domain}}'>{{this.domain}}</a> seems <b>up</b>.</h5>
-
-<p> It took us {{response_time}} seconds to get a <a href='/?q=http+{{response_code}}'>{{response_code}}</a> response from <a href='http://{{response_ip}}'>{{response_ip}}</a>.  </p>
+{{#if_value status_code 1}}
+    <h5 class="one-line"><a href='http://{{this.domain}}'>{{this.domain}}</a> seems up.</h5>
+    <p class="response_time"> It took us {{response_time}} seconds to get a <a href='/?q=http+{{response_code}}'>{{response_code}}</a> response from <a href='http://{{response_ip}}'>{{response_ip}}</a>.</p>
 {{else}}
-<p> <a href='http://{{this.domain}}'>{{this.domain}}</a> seems <b> down</b>. We did not get a response from it.  </p>
-{{/if}}
+    <h5 class="one-line"><a href='http://{{this.domain}}'>{{this.domain}}</a> seems down. </h5>
+    <p class="response_time"> We did not get a response from it.</p>
+{{/if_value}}

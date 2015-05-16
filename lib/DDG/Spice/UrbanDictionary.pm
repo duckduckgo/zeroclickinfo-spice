@@ -1,6 +1,7 @@
 package DDG::Spice::UrbanDictionary;
 # ABSTRACT: Give the Urban Dictionary definition of the search query.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "urban dictionary ROTFL";
@@ -12,7 +13,7 @@ source "UrbanDictionary";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/UrbanDictionary.pm";
 topics "geek";
 category "language";
-attribution github => ['https://github.com/FiloSottile','FiloSottile'],
+attribution github => ['https://github.com/FiloSottile','Filippo Valsorda'],
             web => ['http://pytux.it','Filippo Valsorda'],
             email => ['filippo.valsorda@gmail.com','Filippo Valsorda'];
 

@@ -1,35 +1,39 @@
 (function(env) {	
-	env.ddg_spice_hayoo = function(results) {
-	  "use strict";
-
-	  if (!(results && results.hits > 0)) {
-	    return;
-	  }
-
-	  var query = DDG.get_query().replace(/\s*hayoo\s*/i, '');
-
-	  Spice.add({
-	  	id: 'hayoo',
-	  	name: 'Software',
-	  	data: results.functions[0],
-	  	meta: {
-	  		itmeType: query + ' (Hayoo!)',
-		    sourceUrl: results.functions[0].uri,
-		    sourceName: 'Hackage'
-		},
-		templates: {
-		    group: 'base',
-		    options: {
-			content: Spice.hayoo.detail,
-			moreAt: true
-		    }
-	        }    
-	  });
-	}
+    env.ddg_spice_hayoo = function(api_result) {
+        "use strict";
+          
+        if (!api_result) {
+            Spice.failed("hayoo");
+        }
+    
+        var query = DDG.get_query().replace(/\s*hayoo\s*/i, '');
+	  
+        Spice.add({
+            id: 'hayoo',
+            name: 'Software',
+            data: api_result.result,
+            meta: {
+                itemType: "results",
+                sourceUrl: "http://hayoo.fh-wedel.de/?query=" + query,
+                sourceName: 'Hackage'
+            },
+            normalize: function(item) {
+                if (!item.resultPackage || !item.resultDescription) {
+                    return;
+                }
+                return {
+                    title: item.resultName + " (" + item.resultType + ")",
+                    subtitle: item.resultPackage,
+                    description: DDG.strip_html(item.resultDescription),
+                    url: item.resultUri
+                };
+            },
+            templates: {
+                group: 'text',
+                detail: false,
+                item_detail: false,
+            }    
+        });
+    }
 }(this));
 
-Handlebars.registerHelper("Hayoo_strip_anchor", function(text) {
-  "use strict";
-
-  return text.replace(/<\/?(a|code|strong)[^>]*>/g, "");
-});

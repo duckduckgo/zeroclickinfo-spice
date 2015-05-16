@@ -1,5 +1,10 @@
-{{#if ResourceDetails2}}
+{{#if ResourceYear}}
   <p>
+    <b>Released in:</b> {{ResourceYear}}
+  </p>
+{{/if}}
+{{#if ResourceDetails2}}
+  <p class="starring">
     <b>Starring:</b> {{{formatDetail ResourceDetails2}}}
   </p>
 {{/if}}

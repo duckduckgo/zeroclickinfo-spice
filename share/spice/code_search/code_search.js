@@ -3,7 +3,7 @@
 
     env.ddg_spice_code_search = function (api_result) {
 
-        if (!api_result.results.length === 0) {
+        if (!api_result || !api_result.results.length === 0) {
             return Spice.failed('code_search');
         }
 
@@ -23,7 +23,8 @@
                 record_keys: keys
             },
             meta: {
-                sourceUrl: 'http://searchco.de/?q=' + query + '&cs=true',
+                sourceUrl: 'https://searchcode.com/?q=' + query + '&cs=true',
+                sourceIconUrl: 'https://searchcode.com/static/favicon.ico',
                 sourceName: 'searchcode'
             },
             templates: {

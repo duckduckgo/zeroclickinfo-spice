@@ -11,22 +11,21 @@ ddg_spice_test(
         '/js/spice/bitcoin/',
         call_type => 'include',
         caller => 'DDG::Spice::Bitcoin',
-        
     ),
     'bit coin eur' => test_spice(
         '/js/spice/bitcoin/eur',
         call_type => 'include',
-        caller => 'DDG::Spice::Bitcoin',      
+        caller => 'DDG::Spice::Bitcoin',
     ),
     'bitcoin exchange sek' => test_spice(
         '/js/spice/bitcoin/sek',
         call_type => 'include',
-        caller => 'DDG::Spice::Bitcoin',      
+        caller => 'DDG::Spice::Bitcoin',
     ),
     'bit coin exchange pln' => test_spice(
         '/js/spice/bitcoin/pln',
         call_type => 'include',
-        caller => 'DDG::Spice::Bitcoin',      
+        caller => 'DDG::Spice::Bitcoin',
     ),
     'bitcoin eur' => test_spice(
         '/js/spice/bitcoin/eur',

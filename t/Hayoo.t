@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Hayoo )],
-    'hayoo Prelude.map' => test_spice(
-        '/js/spice/hayoo/Prelude.map',
+    'hayoo Prelude map' => test_spice(
+        '/js/spice/hayoo/Prelude%20map',
         call_type => 'include',
         caller => 'DDG::Spice::Hayoo'
     ),

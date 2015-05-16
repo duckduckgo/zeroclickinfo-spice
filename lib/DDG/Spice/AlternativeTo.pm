@@ -1,5 +1,7 @@
 package DDG::Spice::AlternativeTo;
+# ABSTRACT: Alternative software for some other software
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "alternative to notepad";
@@ -12,7 +14,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics  "everyday", "programming";
 category  "computing_tools";
 attribution github => ['https://github.com/Getty','Torsten Raudssus'],
-           twitter => ['https://twitter.com/raudssus','raudssus'];
+           twitter => ['https://twitter.com/raudssus','Torsten Raudssus'];
 
 triggers start => "free","opensource","commercial";
 triggers any => "alternative","alternatives","alternativeto";

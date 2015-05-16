@@ -1,6 +1,7 @@
 package DDG::Spice::Congress;
 # ABSTRACT: Return current Congress members for given state.
 
+use strict;
 use DDG::Spice;
 
 primary_example_queries "new york senators";
@@ -12,10 +13,12 @@ source "Sunlight Foundation";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Congress.pm";
 topics "special_interest", "trivia";
 category "facts";
-attribution web => ['http://kevinschaul.com','Kevin Schaul','http://www.transistor.io', 'Jason Dorweiler'],
-            email => ['kevin.schaul@gmail.com','Kevin Schaul','jason@transistor.io', 'Jason Dorweiler'];
+attribution web => ['http://kevinschaul.com','Kevin Schaul'],
+            email => ['kevin.schaul@gmail.com','Kevin Schaul'],
+            email => ['jason@transistor.io', 'Jason Dorweiler'],
+            web => ['www.transistor.io', 'Jason Dorweiler'];
 
-spice to => 'https://congress.api.sunlightfoundation.com/legislators?apikey={{ENV{DDG_SPICE_CONGRESS_APIKEY}}}&chamber=$1&state=$2&per_page=all';
+spice to => 'http://congress.api.sunlightfoundation.com/legislators?apikey={{ENV{DDG_SPICE_CONGRESS_APIKEY}}}&chamber=$1&state=$2&per_page=all';
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 

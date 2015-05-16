@@ -1,8 +1,17 @@
 package DDG::Spice::Images;
+# ABSTRACT: Untriggered Spice for images
 
+use strict;
 use DDG::Spice;
+use Text::Trim;
 
-use String::Trim;
+primary_example_queries "tilt shift images";
+secondary_example_queries "thailand beach images";
+description "Image search";
+topics "everyday";
+category "special";
+attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
+            twitter => ["https://twitter.com/duckduckgo", "DuckDuckGo"];
 
 spice to => 'https://duckduckgo.com/i.js?q=$1&o=json&cb={{callback}}';
 
