@@ -16,7 +16,7 @@ attribution github  => ['https://github.com/tombebbington', 'Tom Bebbington'],
 
 triggers startend => 'cargo';
 
-spice to => 'https://crates.io/api/v1/crates?q=$1';
+spice to => 'https://crates.io/api/v1/crates/$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
