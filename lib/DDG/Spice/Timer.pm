@@ -19,6 +19,7 @@ triggers start => ['time', 'timer for'];
 spice call_type => 'self';
 
 handle remainder => sub {
+	return if lc $req->query_raw eq 'time';
     return unless /^( ?([\d.]+ ?(m(in((ute)?s?)?)?|s(ec((ond)?s?)?)?|h(ours?)?|hr)|online) ?)+$/ || $_ eq '';
     return '';
 };
