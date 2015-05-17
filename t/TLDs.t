@@ -11,7 +11,7 @@ ddg_spice_test(
     [qw( DDG::Spice::TLDs)],
     
     '.us tld' => test_spice(
-        '/js/spice/tlds',
+        '/js/spice/tlds/.us',
         call_type => 'include',
         caller => 'DDG::Spice::TLDs'
         
@@ -20,7 +20,7 @@ ddg_spice_test(
     ),
     
     '.in tld' => test_spice(
-        '/js/spice/tlds',
+        '/js/spice/tlds/.in',
         call_type => 'include',
         caller => 'DDG::Spice::TLDs'
         
@@ -28,8 +28,8 @@ ddg_spice_test(
         
     ),
     
-    '.com tld' => test_spice(
-        '/js/spice/tlds',
+    '.photography tld' => test_spice(
+        '/js/spice/tlds/.photography',
         call_type => 'include',
         caller => 'DDG::Spice::TLDs'
        
@@ -37,7 +37,7 @@ ddg_spice_test(
         
     ),
     
-    '.iamanidiotweirdtld tld' => undef,
+    
 );
 
 done_testing;
