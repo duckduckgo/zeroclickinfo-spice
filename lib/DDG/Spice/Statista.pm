@@ -16,7 +16,7 @@ my @triggers = share('triggers.txt')->slurp;
 
 triggers any => @triggers;
 
-spice to => 'http://ec2-use-api-1397534038.us-east-1.elb.amazonaws.com/searchJson/apiKey/'.$api_key.'/q/$1/sort/0/lang/'.$lang.'/limit/'.$limit.'/datefrom/0/dateto/0';
+spice to => 'http://api.statista.com/searchJson/apiKey/'.$api_key.'/q/$1/sort/0/lang/'.$lang.'/limit/'.$limit.'/datefrom/0/dateto/0';
 
 spice wrap_jsonp_callback => 1;
 
