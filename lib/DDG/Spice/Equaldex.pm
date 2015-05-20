@@ -20,10 +20,12 @@ attribution github => ["MrChrisW", "Chris Wilson"],
 
 spice to => 'http://equaldex.com/api/region?format=json&region=$1&callback={{callback}}';
 
-triggers startend => "lgbt", "lgbt rights" , "lesbian rights", "gay rights", "bisexual rights", "transgender rights";
+my $triggerRe = qr/^(lgbt|lesbian|gay|bisexual|transgender)\s?(rights?|laws?)\s?(in)?/;
+triggers query_lc => $triggerRe;
 
 # Handle statement
-handle remainder => sub {
+handle query_lc => sub {
+    s/$triggerRe\s+//;
     return unless $_; # guard - no remainder
     
     my $country = $_;
