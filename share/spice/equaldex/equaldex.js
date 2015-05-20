@@ -11,7 +11,7 @@
         
         Spice.add({
             id: "equaldex",
-            name: "Equaldex",
+            name: "Answer",
             data: api_result,
             meta: {
                 sourceName: "equaldex.com",
