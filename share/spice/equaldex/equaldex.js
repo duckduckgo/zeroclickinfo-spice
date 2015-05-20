@@ -39,6 +39,11 @@
                 options: {
                     moreAt: true,
                     content: 'record'
+                },
+                relevancy: {
+                    primary: [
+                        { key: 'name' },
+                    ]
                 }
             }
         });
