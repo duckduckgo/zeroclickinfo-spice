@@ -9,7 +9,7 @@
         var script = $('[src*="/js/spice/seat_geek/events_by_city/"]')[0],
             source = $(script).attr("src"),
             citySlug = source.match(/events_by_city\/([^\/]*)/)[1],
-            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         Spice.add({
