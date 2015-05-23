@@ -18,7 +18,7 @@ my $namecheap_endpoint = 'http://api.namecheap.com/xml.response';
 # DDG_SPICE_NAMECHEAP_IP_ADDR  : Allowed end-User IP address
 my @query_list = (
     ApiUser    => '{{ENV{javathunderman}}}', # Username required to access the API
-    ApiKey     => '{{ENV{APIKEYHERE}}}',   # Password required used to access the API
+    ApiKey     => '{{ENV{bac485f35c51466caed5ff499e585528}}}',   # Password required used to access the API
     UserName   => '{{ENV{javathunderman}}}', # same as ApiUser
     Command    => 'namecheap.domains.gettldlist',               # API method
     ClientIp   => '0.0.0.0',  # End-user IP address
@@ -32,7 +32,7 @@ my $query_url = uri_escape("$namecheap_endpoint?") . join( uri_escape('&'), pair
         my $val = $b;
         "$param$val";
     } @query_list );
-spice to => "https://duckduckgo.com/x.js?u=" . $query_url;
+spice to => "https://salute-sunday.codio.io/x.js?u=" . $query_url;
 
 spice wrap_jsonp_callback => 1;
 
