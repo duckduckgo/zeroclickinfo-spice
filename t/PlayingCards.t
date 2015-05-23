@@ -21,7 +21,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::PlayingCards',
     ),
     
-    'deal 42' => test_spice(
+    'deal 42 playing cards' => test_spice(
         '/js/spice/playing_cards/42',
         call_type => 'include',
         caller => 'DDG::Spice::PlayingCards',
@@ -29,7 +29,8 @@ ddg_spice_test(
     
     'cheap deal' => undef,
     'deal or no deal' => undef,
-    'deal' => undef
+    'deal' => undef,
+    'deal 53 cards' => undef
 );
 
 # This function call is expected by Test::More. It makes sure the program
