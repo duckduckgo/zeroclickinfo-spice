@@ -26,10 +26,11 @@ spice to => 'http://deckofcardsapi.com/api/deck/new/draw/?count=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-    my $num = (split)[0];
-
-    if ($num && $num =~ qr/^\d+$/) {
-        return $num;
+    my $query = $_;
+    
+    if ($query && $query =~ m/(\d{1,2})(?:random )?(?:(?:playing )? cards)?/) {
+        my $num = (split)[0];
+        return $num if ($num >= 1 && $num <= 52);
     }
     
     return;
