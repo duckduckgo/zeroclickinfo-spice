@@ -13,16 +13,15 @@
                 sourceName: "DeckOfCards",
                 sourceUrl: 'http://deckofcardsapi.com'
             },
+            normalize: function(item) {
+                return {
+                    image: item.image
+                };
+            },
             templates: {
                 group: 'movies',
-                variants: {
-                    tile: 'poster'
-                },
-                options: {
-                    content: Spice.playing_cards.content,
-                    moreAt: true,
-                    rating: false
-                }
+                detail: false,
+                item_detail: false
             }
         });
      }
