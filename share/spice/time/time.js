@@ -26,7 +26,7 @@
 
         // If there isn't a place, return immediately.
         if(!chosen) {
-            return;
+            return Spice.failed('time');
         }
 
         var dateObj = DDG.getDateFromString(chosen.time.iso),
