@@ -6,9 +6,7 @@
 
 }
 
-.zci--brainy_quote .left__quote
-{
-    color: #d0d0d0;
+.zci--brainy_quote .left__quote {
     margin-top: -0.25em;
     margin-right: 0.1em;
     margin-left: -0.5em;
@@ -18,8 +16,7 @@
 }
 
 
-.zci--brainy_quote .right__quote
-{
+.zci--brainy_quote .right__quote {
     color: #d0d0d0;
     margin-top: -0.25em;
     margin-left: 0.1em;
@@ -27,7 +24,7 @@
     position: absolute;
 }
 
-.zci--briany_quote .subcontainer {
+.zci--brainy_quote .subcontainer {
     float: left;
     max-width: 80%;
 }
