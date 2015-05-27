@@ -20,8 +20,7 @@ function ddg_spice_videos(apiResult) {
         },
 
         templates: {
-            item: 'videos_item',
-            detail: 'videos_detail'
+            group: 'videos'
         },
 
         relevancy: {
