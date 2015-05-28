@@ -36,8 +36,7 @@
                 options:{
                     moreAt: true,
                     content: 'record',
-                    item: 'basic_image_item',
-                    rowHighlight: true
+                    item: 'basic_image_item'
                 }
             }
         });
