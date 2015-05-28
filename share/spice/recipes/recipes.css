@@ -169,7 +169,7 @@
     border-radius: 2em;
 }
 
-.detail__links__btn.view-btn--recipes {
+.view-btn--recipes {
     margin-top: 1em;
 }
     .is-mobile .detail--recipes .view-btn--recipes {
