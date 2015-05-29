@@ -25,12 +25,13 @@ spice to => 'http://www.similarsitesearch.com/api/similar/$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder_lc => sub {
-    $_ =~ s/(to|like|\s)*//g;
+    $_ =~ s/(to|like|\s)*\s//g;
     $_ =~ s/^https?:\/\///;
     # remove whitespace
     trim($_);
 
     return $_ if $_;
+    return;
 };
 
 1;
