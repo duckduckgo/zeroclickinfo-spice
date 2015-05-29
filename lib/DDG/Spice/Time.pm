@@ -21,7 +21,7 @@ spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_A
 
 triggers any => "time";
 
-my $capitals = LoadFile(share("capitals.yml"));
+my $capitals = LoadFile(share('capitals.yml'));
 
 handle query_lc => sub {
     my $q = shift;
