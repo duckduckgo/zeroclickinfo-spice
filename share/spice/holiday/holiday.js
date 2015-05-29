@@ -20,31 +20,39 @@
             if (api_result.h.length == 1){
                 data = api_result.h[0];
 
+
+                for (var i = 0; i < data.o.length; i++) {
+                    if (moment(data.o[i].d) < moment()) {
+                        data.o.splice(i, 1);
+                    }
+                };
+
                 if (!data.o || data.o.length <= 0) {
                     return Spice.failed('holiday');
                 }
 
                 normalize_fn = function(item) {
                     var date = item.o[0],
-                        next_date,
+                        next_date = null,
                         subtitle = item.n;
-
-                    if (item.o.length > 1) {
-                        next_date = item.o[1];
-                    }
 
                     if (date.s !== null) {
                         subtitle += ', observed in ' + DDG.strip_html(date.s) + '.';
                     }
 
-                    return {
+                    var data = {
                         title: date.d,
                         subtitle: subtitle,
                         name: item.n,
                         description: item.a,
-                        next_date: next_date.d,
-                        next_date_states: DDG.strip_html(next_date.s)
                     };
+
+                    if (item.o.length > 1) {
+                        next_date = item.o[1];
+                        data['next_date'] = next_date.d;
+                        data['next_date_states'] = DDG.strip_html(next_date.s);
+                    }
+                    return data;
                 };
 
                 meta_obj['sourceUrl'] = url + data.u;
