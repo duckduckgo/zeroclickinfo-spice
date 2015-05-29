@@ -23,7 +23,7 @@
 }
 
 .zci--route .tile__city {
-    width: 44%;
+    width: 42%;
 }
 
 .zci--route .tile__gate {
@@ -34,7 +34,7 @@
     width: 25%;
 }
 .zci--route .tile__terminal {
-    width: 18%;
+    width: 20%;
 }
 
 .zci--route .divider__inactive {

@@ -24,10 +24,6 @@
             "NO": "Not Operational",
             "DN": "Data Needed"
         },
-        MONTH: [
-            "Jan.", "Feb.", "March", "April", "May", "June",
-            "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."
-        ],
 
 
         // this function parses the initial query and sends out additional queries
@@ -272,7 +268,7 @@
                             arrival_datetime;
 
                         if (!item.is_on_time) {
-                            status_text = 'Supposed to arrive';
+                            status_text = 'Scheduled';
                             arrival_datetime = moment(item.scheduledArrivalDate);
                         } else {
                             if (moment(item.arrivalDate).isBefore(moment())) {
