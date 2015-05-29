@@ -4,7 +4,7 @@ package DDG::Spice::Time;
 use strict;
 use DDG::Spice;
 use Text::Trim;
-use YAML::XS qw( Load );
+use YAML::XS 'LoadFile';
 
 primary_example_queries "time in Melbourne", "time for Australia";
 secondary_example_queries "what time is it in Melbourne", "what is the time in Birmingham";
@@ -21,7 +21,7 @@ spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_A
 
 triggers any => "time";
 
-my $capitals = Load(scalar share("capitals.yml")->slurp);
+my $capitals = LoadFile(share("capitals.yml"));
 
 handle query_lc => sub {
     my $q = shift;

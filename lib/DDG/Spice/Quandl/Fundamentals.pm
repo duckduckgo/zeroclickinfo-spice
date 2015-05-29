@@ -3,7 +3,7 @@ package DDG::Spice::Quandl::Fundamentals;
 
 use DDG::Spice;
 use Text::Trim;
-use YAML::XS qw( Load );
+use YAML::XS 'LoadFile';
 
 # meta data
 primary_example_queries "AAPL earnings";
@@ -18,7 +18,7 @@ attribution web => ["https://www.quandl.com", "Quandl"],
             twitter => "quandl";
 
 # hash associating triggers with indicator codes
-my $trigger_hash = Load(scalar share('fundamentals_triggers.yml')->slurp);
+my $trigger_hash = LoadFile(share('fundamentals_triggers.yml'));
 
 # triggers sorted by length so more specific is used first
 my @trigger_keys = sort { length $b <=> length $a } keys($trigger_hash);

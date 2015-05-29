@@ -3,7 +3,7 @@ package DDG::Spice::Quandl::HomeValues;
 
 use DDG::Spice;
 use Text::Trim;
-use YAML::XS qw( Load );
+use YAML::XS 'LoadFile';
 
 # meta data
 # Initially this is will work with zip codes, but will expand
@@ -21,17 +21,17 @@ attribution web => ["https://www.quandl.com", "Quandl"],
             twitter => "quandl";
 
 # hash associating triggers with indicator codes
-my $trigger_hash = Load(scalar share('home_values_triggers.yml')->slurp);
+my $trigger_hash = LoadFile(share('home_values_triggers.yml'));
 
 # triggers sorted by length so more specific is used first
 my @trigger_keys = sort { length $b <=> length $a } keys($trigger_hash);
 my $trigger_qr = join "|", @trigger_keys;
 
 # states and metro code mappings
-my $state_hash = Load(scalar share('states.yml')->slurp);
+my $state_hash = LoadFile(share('states.yml'));
 my @state_keys = sort { length $b <=> length $a } keys($state_hash);
 my $state_qr = join "|", @state_keys;
-my $metro_hash = Load(scalar share('metro.yml')->slurp);
+my $metro_hash = LoadFile(share('metro.yml'));
 my @metro_keys = sort { length $b <=> length $a } keys($metro_hash);
 my $metro_qr = join "|", @metro_keys;
 

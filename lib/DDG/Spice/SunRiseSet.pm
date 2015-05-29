@@ -1,7 +1,7 @@
 package DDG::Spice::SunRiseSet;
 
 use DDG::Spice;
-use YAML::XS qw( Load );
+use YAML::XS 'LoadFile';
 use Text::Trim;
 
 primary_example_queries "sunset Oslo", "sunrise Oslo";
@@ -21,7 +21,7 @@ spice proxy_cache_valid => "12h";
 
 triggers startend => "sunset", "sunrise";
 
-my $capitals = Load(scalar share("capitals.yml")->slurp);
+my $capitals = LoadFile(share('capitals.yml'));
 
 handle remainder_lc => sub {
     my $q = $_;
