@@ -21,6 +21,7 @@
                 normalize: function(data){
                     var change = data.ChangeFromPreviousClose,
                         changeDir;
+
                     moment().utcOffset(data.UTCOffset);
 
                     // remove +/- from change attributes and add up/down class:
@@ -40,7 +41,10 @@
                         change: change.toFixed(2),
                         change_percent: data.PercentChangeFromPreviousClose.toFixed(2),
                         date: moment(data.Date).format("MMM DD"),
-                        time: moment(data.Time, "hh:mm:ss A").format("h:mm A")
+                        time: moment(data.Time, "hh:mm:ss A").format("h:mm A"),
+                        // if last close date is today, or time is 4:00 PM then markets are closed
+                        // Note: API reports time is 4PM until 9AM following day
+                        marketClosed: (data.Date === data.PreviousCloseDate || data.Time === "4:00:00 PM")
                     };
                 },
                 templates: {
