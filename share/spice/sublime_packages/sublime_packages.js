@@ -38,6 +38,12 @@
                         },
                         variants: {
                             tile: 'basic4'
+                        },
+                        elClass: {
+                            tileTitle: "tx--17 tx-clr--slate",
+                            tileSubtitle: "tx--14 tx-clr--grey-light",
+                            snppet: "tx--14 tx-clr--slate-light",
+                            tileFooter: "tx--14 tx-clr--grey-light"
                         }
                     },
                     // Sort by number of unique installs
