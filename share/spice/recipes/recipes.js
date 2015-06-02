@@ -23,10 +23,10 @@
 
             /* item */
 
-            m.title = item.recipeName.replace(/ recipe/i,"");
+            m.title = m.heading = item.recipeName.replace(/ recipe/i,"");
             m.url = "http://www.yummly.com/recipe/" + item.id + '?prm-v1';
 
-            m.image = item.imageUrlsBySize['250'];
+            m.image = m.img = item.imageUrlsBySize['250'];
             m.ratingText = item.sourceDisplayName;
 
             /* detail */
@@ -161,12 +161,16 @@
         */
 
         templates: {
-            group: 'products_simple',
-            detail: Spice.recipes.recipes_detail,
-            item_detail: Spice.recipes.recipes_detail,
+            item: 'basic_image_item',
+            detail: 'products_detail',
+            item_detail: Spice.recipes.recipes_item_detail,
             options: {
                 brand: true,
-                rating: true
+                rating: true,
+                buy: Spice.recipes.recipes_view_full,
+                subtitle_content: Spice.recipes.recipes_subtitle,
+                description_content: Spice.recipes.recipes_ingredients,
+                full_content: Spice.recipes.recipes_flavors
             }
         }
     });

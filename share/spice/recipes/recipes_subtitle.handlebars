@@ -1,0 +1,10 @@
+{{sourceDisplayName}}
+{{{starRating rating}}}
+{{#cuisine}}
+	<span class="detail__separator"> | </span>
+	<span class="detail__cuisine">Cuisine: {{.}}</span>
+{{/cuisine}}
+{{#cookingTime}}
+	<span class="detail__separator"> | </span>
+	<span class="detail__cooking-time"><span>Cooking </span>Time: {{.}} minutes</span>
+{{/cookingTime}}
