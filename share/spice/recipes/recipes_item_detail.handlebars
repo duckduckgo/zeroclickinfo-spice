@@ -2,13 +2,13 @@
     <img src="{{imageProxy image}}" alt="{{recipeName}}" class="detail__media__img" />
 </div>
 <div class="detail__body  detail__body--recipe">
-    <div class="detail__body__content">
-        <h5 class="detail__title"><a href='{{url}}' title="{{title}}">{{recipeName}}</a></h5>
+    <div class="detail__body__content  recipe">
+        <h5 class="detail__title  recipe__title"><a href='{{url}}' title="{{title}}">{{recipeName}}</a></h5>
         <div class="detail__desc">
-            <p class="detail__source">
+            <p class="detail__source  recipe__subtitle">
                 {{{include 'DDH.recipes.recipes_subtitle'}}}
             </p>
-            <div class="detail__content--recipe">
+            <div class="recipe__content">
                 {{{include 'DDH.recipes.recipes_ingredients'}}}
                 {{{include 'DDH.recipes.recipes_flavors'}}}
             </div>

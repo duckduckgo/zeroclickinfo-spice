@@ -161,8 +161,7 @@
         */
 
         templates: {
-            item: 'basic_image_item',
-            detail: 'products_detail',
+            group: 'products_simple',
             item_detail: Spice.recipes.recipes_item_detail,
             options: {
                 brand: true,
