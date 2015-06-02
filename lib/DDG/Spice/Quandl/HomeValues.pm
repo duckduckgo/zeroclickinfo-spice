@@ -42,7 +42,7 @@ triggers any => @trigger_keys;
 # duckpan env set <name> <value>
 
 # set spice parameters
-spice to => 'https://quandl.com/api/v1/datasets/ZILLOW/$1.json?auth_token={{ENV{DDG_SPICE_QUANDL_APIKEY}}}&rows=2';
+spice to => 'https://quandl.com/api/v1/datasets/ZILL/$1.json?auth_token={{ENV{DDG_SPICE_QUANDL_APIKEY}}}&rows=2';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
@@ -53,14 +53,14 @@ handle sub {
     # will hold region such as "27510", "Carrboro", "North Carolina" etc
     my $region;
     
-    # will hold the type of region:  "ZIP", "METRO", STATE" 
+    # will hold the type of region:  "Z" (zip), "M" (metro), "S" (state) 
     my $indicator_type;
 
     # checking for 5-digit zip codes
     $_ =~ m/\b(\d{5})\b/;
     if ($1) {
         $region = $1;
-        $indicator_type = "ZIP";
+        $indicator_type = "Z";
     }
     
     # is it a metropolitan area?
@@ -68,7 +68,7 @@ handle sub {
         $query =~ m/\b($metro_qr)\b/;
         if (defined $1) {
             $region = $metro_hash->{$1};
-            $indicator_type = "METRO";
+            $indicator_type = "M";
         }
     }
     
@@ -77,7 +77,7 @@ handle sub {
         $query =~ m/\b($state_qr)\b/;
         if (defined $1) {
             $region = $state_hash->{$1};
-            $indicator_type = "STATE";
+            $indicator_type = "S";
         }
     }
     
@@ -87,7 +87,7 @@ handle sub {
     # iterate through trigger phrases
     return unless $query =~ m/\b($trigger_qr)\b/;
     my $trigger = $1;
-    return $indicator_type . "_" . $trigger_hash->{$trigger} . "_" . $region;
+    return $indicator_type . $region . "_" .  $trigger_hash->{$trigger};
     
 };
 
