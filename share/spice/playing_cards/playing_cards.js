@@ -11,15 +11,17 @@
             data: api_result.cards,
             meta: {
                 sourceName: "DeckOfCards",
-                sourceUrl: 'http://deckofcardsapi.com'
+                sourceUrl: 'http://deckofcardsapi.com',
+                itemType: 'Cards'
             },
             normalize: function(item) {
                 return {
-                    image: item.image
+                    image: item.image,
+                    img: item.image
                 };
             },
             templates: {
-                group: 'movies',
+                group: 'media',
                 detail: false,
                 item_detail: false
             }
