@@ -1,0 +1,10 @@
+{{#if ingredientDetails}}
+	<div class="detail__ingredients">
+		Ingredients: 
+		<ul>
+			{{#ingredientDetails}}
+				<li><a href="{{url}}">{{displayName}}</a></li>
+			{{/ingredientDetails}}
+		</ul>
+	</div>
+{{/if}}
