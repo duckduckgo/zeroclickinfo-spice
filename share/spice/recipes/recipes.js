@@ -169,8 +169,7 @@
                 rating: true,
                 buy: Spice.recipes.recipes_view_full,
                 subtitle_content: Spice.recipes.recipes_subtitle,
-                description_content: Spice.recipes.recipes_ingredients,
-                full_content: Spice.recipes.recipes_flavors
+                description_content: Spice.recipes.recipes_ingredients
             }
         }
     });
