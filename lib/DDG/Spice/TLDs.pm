@@ -17,9 +17,9 @@ my $namecheap_endpoint = 'http://api.namecheap.com/xml.response';
 # DDG_SPICE_NAMECHEAP_APIKEY   : Namecheap API key
 # DDG_SPICE_NAMECHEAP_IP_ADDR  : Allowed end-User IP address
 my @query_list = (
-    ApiUser    => '{{ENV{javathunderman}}}', # Username required to access the API
-    ApiKey     => '{{ENV{bac485f35c51466caed5ff499e585528}}}',   # Password required used to access the API
-    UserName   => '{{ENV{javathunderman}}}', # same as ApiUser
+    ApiUser    => 'javathunderman', # Username required to access the API
+    ApiKey     => 'bac485f35c51466caed5ff499e585528',   # Password required used to access the API
+    UserName   => 'javathunderman', # same as ApiUser
     Command    => 'namecheap.domains.gettldlist',               # API method
     ClientIp   => '0.0.0.0',  # End-user IP address
     DomainList => '$1',                                    # argument to method

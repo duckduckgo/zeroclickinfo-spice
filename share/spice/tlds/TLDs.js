@@ -4,19 +4,20 @@
         if(!api_result) {
             return Spice.failed('namecheap');
         }
-        var item = api_result.ApiResponse.CommandResponse.DomainCheckResult;
+        var item = api_result.ApiResponse.CommandResponse.gettldlist;
         if(!item) {
             return Spice.failed('namecheap');
         }
         /* extract data from JSON */
-        var available = item.Available;
-        var domainName = item.Domain;
-        if(!available || !domainName) {
+        
+        var tldName = item.tldName;
+        var tldType = item.tldType;
+        if(!available || !tldName) {
             return Spice.failed('namecheap');
         }
         var data = {
-            domainAvailable: available === "true",
-            domainName: domainName
+            tldType: tldType
+            tldName: tldName
         };
         Spice.add({
             id: 'namecheap',
@@ -28,7 +29,7 @@
             },
             normalize: function(item) {
                 return {
-                    title: item.domainName
+                    title: item.tldList
                 };
             },
             templates: {
