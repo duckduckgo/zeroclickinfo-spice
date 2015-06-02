@@ -6,13 +6,13 @@
         <h5 class="detail__title"><a href='{{url}}' title="{{title}}">{{recipeName}}</a></h5>
         <div class="detail__desc">
             <p class="detail__source">
-                {{{include meta.options.subtitle_content}}}
+                {{{include 'DDH.recipes.recipes_subtitle'}}}
             </p>
             <div class="detail__content--recipe">
-                {{{include meta.options.description_content}}}
-                {{{include meta.options.full_content}}}
+                {{{include 'DDH.recipes.recipes_ingredients'}}}
+                {{{include 'DDH.recipes.recipes_flavors'}}}
             </div>
-            {{{include meta.options.buy}}}
+            {{{include 'DDH.recipes.recipes_view_full'}}}
         </div>
     </div>
 </div>

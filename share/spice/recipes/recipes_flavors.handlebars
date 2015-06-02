@@ -1,14 +1,16 @@
 {{#if flavors}}
 	<div class="detail__flavors">
 		<ul>
-			{{#flavors}}
+			{{#each flavors}}
 				<li>
 					<a class="detail__flavors__name" href="{{url}}">{{name}}</a>
 					<div class="detail__flavors__strength">
 						<span class="bg-clr--red" style="width:{{strength}}%;"></span>
 					</div>
 				</li>
-			{{/flavors}}
+			{{/each}}
 		</ul>
 	</div>
+{{else}}
+	&nbsp;
 {{/if}}

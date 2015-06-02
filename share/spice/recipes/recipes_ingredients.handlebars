@@ -2,9 +2,11 @@
 	<div class="detail__ingredients">
 		Ingredients: 
 		<ul>
-			{{#ingredientDetails}}
+			{{#each ingredientDetails}}
 				<li><a href="{{url}}">{{displayName}}</a></li>
-			{{/ingredientDetails}}
+			{{/each}}
 		</ul>
 	</div>
+{{else}}
+	&nbsp;
 {{/if}}
