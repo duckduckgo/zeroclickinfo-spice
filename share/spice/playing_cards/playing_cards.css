@@ -1,7 +1,12 @@
 .zci--playing_cards .tile--playing_cards {
     width: auto;
     background-color: transparent;
+    outline-color: transparent;
     border: transparent;
+}
+
+.zci--playing_cards .tile {
+    outline: none;
 }
 
 .tile--playing_cards .tile__media {
