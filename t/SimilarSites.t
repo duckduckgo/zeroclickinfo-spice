@@ -39,6 +39,10 @@ ddg_spice_test(
         '/js/spice/similar_sites/like.com',
         caller => 'DDG::Spice::SimilarSites'
     ),
+    'similar to github.com' => test_spice(
+        '/js/spice/similar_sites/github.com',
+        caller => 'DDG::Spice::SimilarSites'
+    )
 );
 
 done_testing;

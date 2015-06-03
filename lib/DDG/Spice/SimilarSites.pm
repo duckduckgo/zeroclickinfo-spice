@@ -18,7 +18,8 @@ attribution github => ['https://github.com/Adman', 'Adman'],
 
 triggers start => ["sites like", "site like", "websites like", "website like", "webs like", "pages like"];
 
-triggers any => ["similar sites", "similar web", "websites similar", "website similar", "similar websites", "similar website"];
+triggers any => ["similar sites", "similar web", "websites similar",
+    "website similar", "similar websites", "similar website", "similar to"];
 
 spice to => 'http://www.similarsitesearch.com/api/similar/$1';
 
