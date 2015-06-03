@@ -12,9 +12,7 @@
         
         var tldName = item.tldName;
         var tldType = item.tldType;
-        if(!available || !tldName) {
-            return Spice.failed('namecheap');
-        }
+       
         var data = {
             tldType: tldType
             tldName: tldName
@@ -29,7 +27,8 @@
             },
             normalize: function(item) {
                 return {
-                    title: item.tldList
+                    title: item.tldName
+                    subtitle: item.tldType
                 };
             },
             templates: {
