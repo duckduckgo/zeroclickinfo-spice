@@ -1,4 +1,4 @@
-package DDG::Spice::SoundCloud;
+package DDG::Spice::SoundCloudResult;
 # ABSTRACT: Audio file search on SoundCloud
 
 use strict;
@@ -16,10 +16,9 @@ attribution web => ['http://jordanscales.com', 'Jordan Scales'],
             github => ['http://github.com/jdan', 'Jordan Scales'],
             twitter => ['http://twitter.com/jdan', 'Jordan Scales'];
 
-spice to => 'http://api.soundcloud.com/tracks.json?client_id={{ENV{DDG_SPICE_SOUNDCLOUD_APIKEY}}}&q=&limit=0&filter=streamable';
-spice wrap_jsonp_callback => 1;
+spice to => 'http://api.soundcloud.com/tracks.json?client_id={{ENV{DDG_SPICE_SOUNDCLOUD_APIKEY}}}&q=$1&limit=35&filter=streamable';
 
-triggers startend => "sc", "soundcloud", "sound cloud";
+triggers startend => "//***never trigger***//";
 
 handle remainder => sub {
     return if $_ eq '';
