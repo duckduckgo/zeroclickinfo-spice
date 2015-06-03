@@ -113,8 +113,6 @@
                     return price;
                 }
 
-                console.debug(getMonth(getDate(item.datetime_local)));
-
                 return {
                     url: item.url,
                     price: getPrice(item.stats.lowest_price, item.stats.highest_price),
