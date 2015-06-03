@@ -113,16 +113,18 @@
                     return price;
                 }
 
+                console.debug(getMonth(getDate(item.datetime_local)));
+
                 return {
                     url: item.url,
                     price: getPrice(item.stats.lowest_price, item.stats.highest_price),
                     title: title,
                     place: item.venue.name,
                     city: item.venue.display_location,
-                    month: getMonth(getDate(item.datetime_local)),
+                    year: getYear(getDate(item.datetime_local)),
                     dateBadge: {
                         day: getDay(getDate(item.datetime_local)),
-                        year: getYear(getDate(item.datetime_local))
+                        month: getMonth(getDate(item.datetime_local))
                     }
                 };
             },
