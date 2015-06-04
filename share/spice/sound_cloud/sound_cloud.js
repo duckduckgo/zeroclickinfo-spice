@@ -1,12 +1,16 @@
 (function(env) {
     "use strict"
 
-    env.ddg_spice_sound_cloud = function(api_result) {
+    env.ddg_spice_sound_cloud = function() {
         var script = $('[src*="/js/spice/sound_cloud/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/sound_cloud\/([^\/]*)/)[1];
         
-        $.getJSON("/js/spice/sound_cloud_result/" + query, function(api_result) {
+        query = decodeURIComponent(query);
+        query = query.replace(/sound ?cloud/, "");
+        
+        $.getJSON("/js/spice/sound_cloud_result/" + encodeURIComponent(query), function(api_result) {
+
             var SOUNDCLOUD_CLIENT_ID = 'df14a65559c0e555d9f9fd950c2d5b17',
             // Blacklist some adult results.
             skip_ids = {
@@ -39,6 +43,9 @@
                     dup: 'url'
                 },
                 normalize: function(o) {
+                    if(!o) {
+                        return null;                       
+                    }
 
                     var image = o.artwork_url || o.user.avatar_url;
 
