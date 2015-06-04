@@ -1,5 +1,5 @@
 package DDG::Spice::Time;
-# ABSTRACT: Time zone converter
+# ABSTRACT: Shows the current time for cities, states and countries
 
 use strict;
 use DDG::Spice;
@@ -32,7 +32,7 @@ handle query_lc => sub {
           | (?:what'?s?|is|the|current|local|\s)*time(?:is|it|in|of|for|at|\s)*  # english
         )(?<loc>[^\?]*)[\?]*$
     }x;
-    #return unless $q =~ m/^(?:what'?s?|is|the|current|local|\s)*time(?:is|it|in|of|for|at|\s)*(?<loc>[^\?]*)[\?]*$/;
+    
     my $q_loc = trim $+{loc};
 
     # if no location is given, current user location is returned
