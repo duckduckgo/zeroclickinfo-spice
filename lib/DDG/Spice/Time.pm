@@ -28,7 +28,7 @@ handle query_lc => sub {
 
     return unless $q =~ m{
         ^(?:
-            (?:was|ist|die|aktuelle|wieviel|welche|wie|\s)*(?:spät|uhrzeit|uhr|zeit)(?:hat|ist|es|in|auf|hier|gerade|\s)*  # german
+            (?:was|ist|die|aktuelle|wieviel|welche|wie|\s)*(?:spät|uhrzeit|uhr|zeit)(?:hat|ist|es|in|auf|hier|jetzt|gerade|aktuell|momentan|\s)*  # german
           | (?:what'?s?|is|the|current|local|\s)*time(?:is|it|in|of|for|at|\s)*  # english
         )(?<loc>[^\?]*)[\?]*$
     }x;

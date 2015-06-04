@@ -64,6 +64,7 @@ ddg_spice_test(
     'was ist die aktuelle zeit in kingston??'  => test_spice(@kingston_town),
     'welche uhrzeit hat es in kingston'        => test_spice(@kingston_town),
     'wie spät ist es gerade in kingston'       => test_spice(@kingston_town),
+    'wieviel uhr ist es momentan in kingston'  => test_spice(@kingston_town),
     
     # Intentionally ignored
     'pdt time'                 => undef,
