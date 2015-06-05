@@ -54,6 +54,18 @@ ddg_spice_test(
     'time'                                     => test_spice(@phoenixville),
     'current time'                             => test_spice(@phoenixville),
     'current local time'                       => test_spice(@phoenixville),
+    
+    # German queries
+    'uhrzeit in kingston'                      => test_spice(@kingston_town),
+    'aktuelle uhrzeit in kingston'             => test_spice(@kingston_town),
+    'wieviel uhr ist es in kingston?'          => test_spice(@kingston_town),
+    'wieviel uhr in kingston'                  => test_spice(@kingston_town),
+    'aktuelle zeit in kingston'                => test_spice(@kingston_town),
+    'was ist die aktuelle zeit in kingston??'  => test_spice(@kingston_town),
+    'welche uhrzeit hat es in kingston'        => test_spice(@kingston_town),
+    'wie spät ist es gerade in kingston'       => test_spice(@kingston_town),
+    'wieviel uhr ist es momentan in kingston'  => test_spice(@kingston_town),
+    
     # Intentionally ignored
     'pdt time'                 => undef,
     'testing time'             => undef,

@@ -1,5 +1,5 @@
 package DDG::Spice::Time;
-# ABSTRACT: Time zone converter
+# ABSTRACT: Shows the current time for cities, states and countries
 
 use strict;
 use DDG::Spice;
@@ -19,15 +19,20 @@ attribution github  => ['https://github.com/MrChrisW', 'Chris Wilson'];
 spice proxy_cache_valid => "418 1d";
 spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&out=js&callback={{callback}}&query=$1&time=1&tz=1&verbosetime=1';
 
-triggers any => "time";
+triggers any => ["time", "uhr", "zeit", "uhrzeit", "spät"];
 
 my $capitals = LoadFile(share('capitals.yml'));
 
 handle query_lc => sub {
     my $q = shift;
 
-    return unless $q =~ m/^(?<rest>what'?s?|is|the|current|local|\s)*time(?:is|it|in|of|for|at|\s)*(?<loc>[^\?]*)[\?]*$/;
-    my $rest = trim $+{rest};
+    return unless $q =~ m{
+        ^(?:
+            (?:was|ist|die|aktuelle|wieviel|welche|wie|\s)*(?:spät|uhrzeit|uhr|zeit)(?:hat|ist|es|in|auf|hier|jetzt|gerade|aktuell|momentan|\s)*  # german
+          | (?:what'?s?|is|the|current|local|\s)*time(?:is|it|in|of|for|at|\s)*  # english
+        )(?<loc>[^\?]*)[\?]*$
+    }x;
+    
     my $q_loc = trim $+{loc};
 
     # if no location is given, current user location is returned
