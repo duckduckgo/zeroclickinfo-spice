@@ -32,7 +32,7 @@ my $query_url = uri_escape("$namecheap_endpoint?") . join( uri_escape('&'), pair
         my $val = $b;
         "$param$val";
     } @query_list );
-spice to => "https://salute-sunday.codio.io/x.js?u=" . $query_url;
+spice to => "https://duckduckgo.com/x.js?u=" . $query_url;
 
 spice wrap_jsonp_callback => 1;
 
