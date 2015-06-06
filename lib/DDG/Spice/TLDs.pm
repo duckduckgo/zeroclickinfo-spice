@@ -60,19 +60,17 @@ triggers startend => "tld", "real tld";
 my $domain_part_regex = qr|
                           (?:http://)?       
                           (?<domain> [^/]* ) 
-                          (?:[^\s]*)        
+                          (?:[^\s])        
                           |x;
-
 handle remainder => sub {
-    my ($remainder) = @_;
-
-    return unless $remainder;   
-
-    
-    $remainder =~ $domain_part_regex;
+    my $remainder = lc $_;
+    return unless $remainder =~ m/(?:https?:\/\/)?(?<domain>[a-z]+)\.(\w+)/;
+     $remainder =~ $domain_part_regex;
     my $domain = $+{domain};
 
-    
+    return $domain;
+   
+}
     
 };
 

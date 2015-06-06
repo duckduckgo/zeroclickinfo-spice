@@ -14,7 +14,7 @@
         var tldType = item.tldType;
        
         var data = {
-            tldType: tldType
+            tldType: tldType,
             tldName: tldName
         };
         Spice.add({
@@ -27,7 +27,7 @@
             },
             normalize: function(item) {
                 return {
-                    title: item.tldName
+                    title: item.tldName,
                     subtitle: item.tldType
                 };
             },
