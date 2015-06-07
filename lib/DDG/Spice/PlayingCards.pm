@@ -24,6 +24,7 @@ triggers startend => 'deal';
 
 spice to => 'http://deckofcardsapi.com/api/deck/new/draw/?count=$1';
 spice wrap_jsonp_callback => 1;
+spice proxy_cache_valid => "418 1d";
 
 handle remainder => sub {
     my $query = $_;
