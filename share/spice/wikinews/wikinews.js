@@ -13,7 +13,7 @@
                 data: api_result.query.categorymembers,
                 meta: {
                     total: api_result.query.categorymembers.length,
-                    sourceName: 'Wikinews articles',
+                    sourceName: 'Wikinews',
                     sourceUrl: "https://en.wikinews.org/wiki/Main_Page",
                     itemType: "Latest Wikinews articles"
                 },
