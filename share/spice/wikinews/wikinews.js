@@ -35,7 +35,10 @@
                     detail: false,
                     item_detail: false,
                     variants: {
-                        tileTitle: "3line-small",
+                        tileTitle: "4line",
+                    },
+                    elClass: {
+                        tileTitle: 'tx--17'
                     }
                 }
             });
