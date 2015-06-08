@@ -1,3 +1,19 @@
+function MassOnTime_backup_link (parish_id) {
+    return "http://massontime.com/parish/" + parish_id;
+};
+
+function MassOnTime_format_parish_address (address, city, province) {
+    if (address && city && province) {
+        return address + ", " + city + ", " + province;
+    } else if (address && city) {
+        return address + ", " + city;
+    } else if (address) {
+        return address;
+    } else {
+        return "";
+    }
+};
+
 function ddg_spice_mass_on_time (api_result) {
 
     if (!api_result || api_result.error) {
@@ -54,35 +70,41 @@ function ddg_spice_mass_on_time (api_result) {
 
     if (results.length < 1) return;
 
-    Spice.add({
-        id: 'mass',
-        data: results,
-        name: "Parishes",
-        meta: {
-            itemType: generate_header(details),
-            sourceName: "Mass On Time",
-            sourceUrl: 'http://massontime.com/nearest/' + details.type +
-                               "/25?lat=" + details.location.lat + "&lng=" + details.location.lng
-        },
-        normalize: function(item) {
-            return {
-                title: item.churchname,
-                url: item.webaddress
-            };
-        },
-        templates: {
-            group: 'base',
-            options: {
-                content: pick_item_template(details)
+    DDG.require('maps', function() {
+        Spice.add({
+            id: 'mass',
+            data: results,
+            name: 'Parishes',
+            model: 'Place',
+            view: 'Places',
+            meta: {
+                itemType: generate_header(details),
+                sourceName: "Mass On Time",
+                sourceUrl: 'http://massontime.com/nearest/' + details.type +
+                                  "/25?lat=" + details.location.lat + "&lng=" + details.location.lng
             },
-        detail: false
-        }
+            normalize: function(item) {
+                return {
+                    id: item.church_id,
+                    name: item.churchname,
+                    url: item.webaddress ? item.webaddress : MassOnTime_backup_link(item.church_id),
+                    lon: item.lng,
+                    lat: item.lat,
+                    city: item.diocesename ? item.diocesename : item.city,
+                    address: MassOnTime_format_parish_address(item.address, item.city, item.province)
+                };
+            },
+            templates: {
+                group: 'places',
+                item: Spice.mass_on_time.item
+            }
+        });
     });
 }
 
-  /*
+/*
    ###  Handlebars Helpers ###
-   */
+*/
 
 //Event types are returns as integers. This converts them to their string reps.
 Handlebars.registerHelper("MassOnTime_format_eventtypeid", function (eventtypeid) {
@@ -96,22 +118,6 @@ Handlebars.registerHelper("MassOnTime_format_eventtypeid", function (eventtypeid
         8 : "Weekend Mass"
     };
     return event_type_name[eventtypeid] || "Service";
-});
-
-Handlebars.registerHelper("MassOnTime_backup_link", function (webaddress, parish_id) {
-    return "http://massontime.com/parish/" + parish_id;
-});
-
-Handlebars.registerHelper("MassOnTime_format_parish_address", function (address, city, province) {
-    if (address && city && province) {
-        return address + ", " + city + ", " + province;
-    } else if (address && city) {
-        return address + ", " + city;
-    } else if (address) {
-        return address;
-    } else {
-        return "";
-    }
 });
 
 Handlebars.registerHelper( "MassOnTime_format_12h_start", function (utc_starttime) {
