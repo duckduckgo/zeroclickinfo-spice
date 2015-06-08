@@ -40,7 +40,6 @@
                 detail: false,
                 item_detail: false,
                 options: {
-                    content: Spice.statista.content,
                     moreAt: true
                 }
             },

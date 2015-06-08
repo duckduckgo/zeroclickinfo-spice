@@ -12,11 +12,10 @@ category "facts";
 my $api_key = '5db81c2a174170dac75620a16f553dd9';
 my $limit = 16;
 my $lang = 2;
-my @triggers = share('triggers.txt')->slurp;
 
-triggers any => @triggers;
+triggers startend => "statistic", "statistics", "stats";
 
-spice to => 'http://api.statista.com/searchJson/apiKey/'.$api_key.'/q/$1/sort/0/lang/'.$lang.'/limit/'.$limit.'/datefrom/0/dateto/0';
+spice to => 'http://api.statista.com/searchJson/apiKey/{{ENV{DDG_SPICE_STATISTA_APIKEY}}}/q/$1/sort/0/lang/'.$lang.'/limit/'.$limit.'/datefrom/0/dateto/0';
 
 spice wrap_jsonp_callback => 1;
 
