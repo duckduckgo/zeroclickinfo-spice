@@ -34,6 +34,12 @@ ddg_spice_test(
         '/js/spice/holiday/United%20States/easter/2017',
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
+    ),
+    # user has to provide the whole year
+    'when is easter 17' => test_spice(
+        '/js/spice/holiday/United%20States/easter/2015',
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
     )
 );
 

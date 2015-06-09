@@ -42,10 +42,11 @@ handle remainder => sub {
 
     if ($q =~ /([\d]{4})/) {
         $y = $1;
-        $q =~ s/\ ?[\d]{4}//g;
     } else {
         $y = strftime "%Y", localtime;
     }
+
+    $q =~ s/\ *\d+\ *//g;
 
     # Kill eventual slashes to avoid misbehaviour of the `spice from'
     # regular expression.
