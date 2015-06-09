@@ -9,7 +9,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 category "entertainment";
 topics "computing","entertainment","food_and_drink","music","science","special_interest","travel";
 
-triggers startend => 'events near me';
+triggers startend => 'events near me', 'nearby events';
 spice to => 'https://api.getevents.co/ddg?lat=$1&lng=$2&timezone=$3' ;
 
 # Extract the geo location from the result returned by the handler: two real numbers seperated by '/' and after them a time zone also seperated by a '/'.

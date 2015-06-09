@@ -190,6 +190,12 @@
                     item.rent_line = "";
                 }
                 
+                // If the provider is "Netflix Mail" Change buy_line and format_line
+                if(item.provider_format_name === "Netflix Mail" && item.category !== "online") {
+                    item.buy_line = "Available for Rent";
+                    item.format_line = "Available on Blu-ray / DVD";
+                }
+                
                 // Change the format line to match the other tiles.
                 if(item.format_line === "DVD & Blu-ray") {
                     item.format_line = "DVD / Blu-ray";

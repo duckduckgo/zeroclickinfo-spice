@@ -12,13 +12,16 @@ function ddg_spice_forecast(r) {
   // We could actually use DDG.get_query() here, but we'd have
   // to strip all the unnecessary stuff that we don't need, and that
   // Forecast.pm already does for us.
+
+  /* 2015.03.17 relevancy and triggering functionality removed
+   * 
   var script = $('[src*="/js/spice/forecast/"]')[0];
   var source = $(script).attr('src');
   var matches = source.match(/forecast\/([^\/]+)\/?(.*)/);
-  var query = matches[1];
+  var query = decodeURIComponent(matches[1]);
   var current_location = matches[2];
-  query = decodeURIComponent(query);
-
+  */
+    
   // Pass flags['ddg-location'] to DDG.stringsRelevant to check
   // if the result is relevant to our query.
   /*var relevant_location = DDG.stringsRelevant(r.flags['ddg-location'].toLowerCase(), query, undefined, 2);
@@ -52,19 +55,6 @@ function ddg_spice_forecast(r) {
   if (Modernizr.svg == true && (DDG.is2x || DDG.is3x)) {
     iconFiletype = 'svg';
   }
-
-  // Skycons (static version of these: http://darkskyapp.github.io/skycons/)
-  // var set_skycons = function(elem_id, type) {
-  //   var $elem = $('#'+elem_id),
-  //       $img = $('<img />').attr('id', $elem.attr('id'))
-  //                          .attr('class', $elem.attr('class'))
-  //                          .attr('src', '/iu/?u=http://forecastsite.s3.amazonaws.com/skycons/'+type+'.gif') // DDG
-  //                          .css({
-  //                             'width': $elem.width(),
-  //                             'height': $elem.height()
-  //                           })
-  //   $elem.replaceWith($img)
-  // };
 
   var availableIcons = [
     'rain', 'snow', 'sleet', 'wind', 'fog', 'cloudy', 'partly-cloudy-day',
@@ -265,16 +255,13 @@ function ddg_spice_forecast(r) {
     Spice.add({
         id: 'forecast',
         name: 'Weather',
-
         data: spiceData,
-
         signal: "high",
-
         meta: {
-            heading: weatherData.header,
             sourceUrl: 'http://forecast.io/#/f/'+r.latitude+','+r.longitude,
             sourceName: 'Forecast.io',
-            altMeta: altMeta,
+            primaryText: weatherData.header,
+            secondaryText: altMeta,
             variableTileWidth: true
         },
 
@@ -302,7 +289,6 @@ function ddg_spice_forecast(r) {
       'mph-km/h': 1.609,
       'km/h-mph': 0.6214
     };
-
     return val * conversionFactors[from + '-' + to];
   }
 

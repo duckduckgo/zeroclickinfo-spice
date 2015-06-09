@@ -12,16 +12,19 @@ function ddg_spice_images(apiResult) {
 
         data: apiResult.results,
 
-        model: 'Image',
-
         meta: {
             next: apiResult.next,
             searchTerm: apiResult.query
         },
 
+        templates: {
+            group: 'images'
+        },
+
         relevancy: {
             dup: 'image'
         }
+
     });
 
 }
