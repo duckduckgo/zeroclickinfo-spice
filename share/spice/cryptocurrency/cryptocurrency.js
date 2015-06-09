@@ -99,6 +99,7 @@
             source = $(script).attr("src");
         
         if (typeof ticker !== 'undefined') {
+            
             // Get amount from original query
             var query = source.match(/\/ticker\/(?:.*)\/(.+)/)[1],
                 queryAmount = parseFloat(decodeURIComponent(query)),
@@ -117,6 +118,7 @@
                 cryptoTime = timestr[1].match(/\d{2}\:\d{2}\b/);
                 
         } else if (typeof rows !== 'undefined') {
+            
             // Get amount from original query
             var query = source.match(/\/secondaries\/(.+)\/(?:.*)/)[1],
                 displayName = capitalizeFirstLetter(query.match(/([^\d]+)/)[1]),
@@ -131,6 +133,7 @@
                     initial: true
                 };
                 results.push(givenCurrency);
+            
             // Add the remaining currencies
             for (var i = 0; i < rows.length; i++) {
                 var base = rows[i].currency_primary,
@@ -140,6 +143,7 @@
                     rows[i].rate = "1 " + base + " = " + formatNumber(price, target, 8) + " " + target;
                 results.push(rows[i]);
             }
+            
             // Format Time and Date
             timestamp = rows[0].created,
                 timestr = timestamp.split(/\s+/),
@@ -152,15 +156,23 @@
         
         // Get the flag image.
         function currency_image(symbol) {
+            
             symbol = symbol.toLowerCase();
+            
             // Most cryptocurrencies will not have flags associated with countries
             // They will need to have their own flag provided for them.
             if(!(symbol in currency2country)) {
+                
                 if (!(symbol in crypto_flags)) {
                     // if we don't have a specific flag, return the generic png.
                     symbol = "generic";
                 }
-                return DDG.get_asset_path('cryptocurrency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.png');
+                
+                var img_path = Modernizr.svg ? 'assets/svg/' + symbol.toUpperCase() + '.svg' : 'assets/png/32/' + symbol + '.png';
+                
+                /* TODO Determine if we're using 64px, 96px PNGs. If not remove this */
+                /*return DDG.get_asset_path('cryptocurrency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.' + img_ext);*/
+                return DDG.get_asset_path('cryptocurrency', img_path);
             }
             
             symbol = symbol.slice(0, 2);
@@ -171,8 +183,10 @@
         // Add commas to the numbers for display and formats decimals.
         function formatNumber(x, currency, limit) {
             var traditionalCurrencies = ['','cny','eur','gbp','hkd','jpy','nzd','pln','rur','sgd','usd'];
+            
             // Check if the number has a decimal point.
             if(decimalPlaces(x) > 0) {
+                
                 // Traditional currencies print two decimal places, cryptocurrencies up to 8.
                 if (traditionalCurrencies.indexOf(currency.toLowerCase()) > -1) {
                     x = formatDecimal(x, 2);
@@ -187,12 +201,14 @@
         function formatDecimal(x, limit) {
             var leadingZerosRegex = /(?:\.)([0]*)(?:[1-9])/g;
             var leadingZeros = leadingZerosRegex.exec(x.toString())[1].length;
+            
             // If there are more leading zeros in the decimal than the limit, then increase the limit to the first non-zero number
             if (leadingZeros >= limit) {
                 x = x.toFixed(leadingZeros + 1);
             } else {
                 x = x.toFixed(limit);
             }
+            
             // Removes trailing 0s.
             return parseFloat(x);
         }
