@@ -22,7 +22,7 @@
 
 
                 for (var i = 0; i < data.o.length; i++) {
-                    if (moment(data.o[i].d) < moment()) {
+                    if (moment(new Date(data.o[i].d)) < moment()) {
                         data.o.splice(i, 1);
                     }
                 };
@@ -68,8 +68,14 @@
             } else {
                 data = api_result.h;
                 normalize_fn = function(item) {
+                    for (var i = 0; i < item.o.length; i++) {
+                        if (moment(new Date(item.o[i].d)) < moment()) {
+                            item.o.splice(i, 1);
+                        }
+                    };
+
                     if (item.o.length <= 0) {
-                        return Spice.failed('holiday');
+                        return;
                     }
 
                     var date = item.o[0],
