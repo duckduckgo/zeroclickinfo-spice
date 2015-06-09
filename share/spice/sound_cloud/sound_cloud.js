@@ -1,20 +1,21 @@
 (function(env) {
     "use strict"
 
-    env.ddg_spice_sound_cloud = function(api_result) {
-
+    var query = DDG.get_query();
+    query = query.replace(/sound ?cloud/, "");
+    
+    env.ddg_spice_sound_cloud = function() {        
+        $.getJSON("/js/spice/sound_cloud_result/" + encodeURIComponent(query), sound_cloud);
+    }
+    
+    function sound_cloud(api_result) {
         var SOUNDCLOUD_CLIENT_ID = 'df14a65559c0e555d9f9fd950c2d5b17',
-            script = $('[src*="/js/spice/sound_cloud/"]')[0],
-            source = $(script).attr("src"),
-            query = source.match(/sound_cloud\/([^\/]*)/)[1],
-
             // Blacklist some adult results.
             skip_ids = {
                 80320921: 1, 
                 75349402: 1
             };
 
-        
         if(!api_result){
             return Spice.failed("sound_cloud");
         }
@@ -36,8 +37,13 @@
                 }
             },
             view: 'Audio',
-            model: 'Audio',
+            relevancy: {
+                dup: 'url'
+            },
             normalize: function(o) {
+                if(!o) {
+                    return null;                       
+                }
 
                 var image = o.artwork_url || o.user.avatar_url;
 
@@ -51,7 +57,7 @@
                     image = image.replace(/large\.jpg/, "t200x200.jpg");
                     image = DDG.toHTTP(image);
                 }
-                
+
                 // skip items that can't be streamed or explicit id's we
                 // want to skip for adult content:
                 if (!o.stream_url || skip_ids[o.id]) {
@@ -71,4 +77,6 @@
             }
         });
     };
+    
+    ddg_spice_sound_cloud();
 }(this));
