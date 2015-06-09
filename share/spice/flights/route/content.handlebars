@@ -12,7 +12,7 @@
     </span> - {{status_text}} {{datetime}}
   </div>
 </div>
-<hr class="divider__active">
+<hr class="divider__active {{#if is_on_time}}divider__ok{{else}}divider__not{{/if}}">
 <div class="tile__departure">
   <div class="thirty tile__city">
       <div class="tx-clr--lt">DEPARTURE</div>

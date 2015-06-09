@@ -45,10 +45,19 @@
 }
 .zci--route .divider__active {
     background-color: #e4e4e4;
-    height: 1px;
+    height: 2px;
     border: 0;
     margin: 1.2em 0;
 }
+
+.zci--route .divider__ok {
+    background-color: #5b9e4d;
+}
+
+.zci--route .divider__not {
+    background-color: #de5833;
+}
+
 
 .zci--route .tile__date {
     float: right;
