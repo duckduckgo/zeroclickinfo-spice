@@ -25,7 +25,33 @@
                     title: item.name,
                     url: item.url,
                     file_location: [item.location, item.filename].join('/'),
-                    repo_url: item.repo
+                    repo_url: item.repo,
+                    infoboxData: [
+                        {
+                            heading: 'More Info:',
+                        },
+                        {
+                            label: 'Repository',
+                            value: item.name,
+                            url: item.repo
+                        },
+                        {
+                            label: 'File Name',
+                            value: item.filename
+                        },
+                        {
+                            label: 'Language',
+                            value: item.language
+                        },
+                        {
+                            label: 'Number of Lines',
+                            value: item.linescount
+                        },
+                        {
+                            label: 'File Location',
+                            value: [item.location, item.filename].join('/')
+                        }
+                    ]
                 };
             },
             meta: {
@@ -34,10 +60,9 @@
                 sourceName: 'searchcode'
             },
             templates: {
-                group: 'text',
+                group: 'info',
                 options: {
                     content: Spice.code_search.content,
-                    subtitle_content: Spice.code_search.subtitle,
                     moreAt: true
                 }
             }
