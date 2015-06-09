@@ -2,6 +2,7 @@ package DDG::Spice::Holiday;
 # ABSTRACT: Query timeanddate.com for a holiday
 
 use DDG::Spice;
+use POSIX qw(strftime);
 
 name "Time and Date holiday search";
 source "timeanddate.com";
@@ -17,13 +18,13 @@ attribution github => ['https://github.com/iambibhas', 'Bibhas'],
 
 triggers start => 'when is';
 
-spice from => '([^/]+)/([^/]+)';
-spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$1&q=$2&callback={{callback}}';
+spice from => '([^/]+)/([^/]+)/([^/]+)';
+spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$1&q=$2&y=$3&callback={{callback}}';
 
 handle remainder => sub {
     return unless ($_);
 
-    my ($q, $c);
+    my ($q, $c, $y);
 
     # Did the user query for holidays in a specific country?
     if (/\s+in\s+(.*)$/p) {
@@ -39,14 +40,19 @@ handle remainder => sub {
         ($q, $c) = ($_, 'us');
     }
 
-    return if $q =~ m/[\d]{4}/;
+    if ($q =~ /([\d]{4})/) {
+        $y = $1;
+        $q =~ s/\ ?[\d]{4}//g;
+    } else {
+        $y = strftime "%Y", localtime;
+    }
 
     # Kill eventual slashes to avoid misbehaviour of the `spice from'
     # regular expression.
     $q =~ s/\///g;
     $c =~ s/\///g;
 
-    return $c, $q;
+    return $c, $q, $y;
 };
 
 
