@@ -20,7 +20,6 @@
     env.ddg_spice_editor = function() {
 
         DDG.require("/js/ace/ace.js", function() {
-            console.log("AJAX Fired!");
             Spice.add({
                 id: 'editor',
                 name: 'Editor',
@@ -41,8 +40,6 @@
                 // The `ace` object looks for an element that has ID of `ace-editor`.
                 // The `onShow` function triggers when the element is already on the page.
                 onShow: function() {
-
-                    console.log("OnShow Fired!");
 
                     var editor_id = "ace-editor";
                     var editor = ace.edit(editor_id);
