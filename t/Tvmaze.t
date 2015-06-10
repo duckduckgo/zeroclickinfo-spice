@@ -27,22 +27,22 @@ my $previousepisode = test_spice(
 
 ddg_spice_test(
     [qw( DDG::Spice::Tvmaze::Show)],
-    
+
     # core queries
     'game of thrones tv'            => $show,
     'game of thrones tv show'       => $show,
     'game of thrones show'          => $show,
     'game of thrones tv series'     => $show,
     'game of thrones series'        => $show,
-    
+
     'tv show game of thrones'       => $show,
     'tv game of thrones'            => $show,
     'tv series game of thrones'     => $show,
     'series game of thrones'        => $show,
-    
+
     # non matches
     'show game of thrones'  => undef,
-    
+
     'tv show'               => undef,
     'tv'                    => undef,
     'show'                  => undef,
@@ -52,7 +52,7 @@ ddg_spice_test(
 
 ddg_spice_test(
     [qw( DDG::Spice::Tvmaze::Nextepisode)],
-    
+
     # core queries
     'game of thrones next episode'          => $nextepisode,
     'game of thrones next airdate'          => $nextepisode,
@@ -63,13 +63,13 @@ ddg_spice_test(
     'upcoming episode game of thrones'      => $nextepisode,
     'next game of thrones episode'          => $nextepisode,
     'upcoming game of thrones episode'      => $nextepisode,
-    
+
     # with extra text
     'when is the next game of thrones episode?'         => $nextepisode,
     'when does the next game of thrones episode air'    => $nextepisode,
     'when is the next episode for game of thrones'      => $nextepisode,
     'what is the next airdate from game of thrones'     => $nextepisode,
-    
+
     # non matches
     'game of thrones'               => undef,
     'episode'                       => undef,
@@ -84,7 +84,7 @@ ddg_spice_test(
 
 ddg_spice_test(
     [qw( DDG::Spice::Tvmaze::Previousepisode)],
-    
+
     # core queries
     'game of thrones previous episode'      => $previousepisode,
     'game of thrones last episode'          => $previousepisode,
@@ -97,14 +97,14 @@ ddg_spice_test(
     'last game of thrones episode'          => $previousepisode,
     'latest game of thrones episode'        => $previousepisode,
     'recent game of thrones episode'        => $previousepisode,
-    
+
     # with extra text
     'when was the last game of thrones episode?'        => $previousepisode,
     'when did the previous game of thrones episode air' => $previousepisode,
     'when was the latest episode for game of thrones'   => $previousepisode,
     'what is the last airdate from game of thrones'     => $previousepisode,
     'what is the most recent game of thrones episode'   => $previousepisode,
-    
+
     # non matches
     'game of thrones'               => undef,
     'episode'                       => undef,

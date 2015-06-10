@@ -1,0 +1,16 @@
+{{#if flavors}}
+	<div class="recipe__flavors">
+		<ul>
+			{{#each flavors}}
+				<li>
+					<a class="recipe__flavors__name" href="{{url}}">{{name}}</a>
+					<div class="recipe__flavors__strength">
+						<span class="bg-clr--red" style="width:{{strength}}%;"></span>
+					</div>
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+{{else}}
+	&nbsp;
+{{/if}}

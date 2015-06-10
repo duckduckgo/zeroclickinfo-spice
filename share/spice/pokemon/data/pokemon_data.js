@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
 
-    var ID = 'pokemon',
+    var ID = 'pokemon_data',
         INFOBOX_PROPS = ['hp', 'attack', 'defense', 'height', 'weight', 'speed'],
         DESCRIPTION_ENDPOINT = '/js/spice/pokemon/description/{id}',
         POKEAPI_SPRITE_URL = 'http://pokeapi.co/media/img/{id}.png';
@@ -30,7 +30,7 @@
                     infoboxData: getInfoboxData.call(item),
                     subtitle: (function(evolutions) {
                         if( evolutions.length > 0 ) {
-                            var html = 'Evolves into: <a href="?q={name}+pokemon">{name}</a>';
+                            var html = 'Evolves into: <a href="?q={name}+pokemon&ia=pokedex">{name}</a>';
 
                             return new Handlebars.SafeString(html.replace(/{name}/g, evolutions[0].to));
                         }

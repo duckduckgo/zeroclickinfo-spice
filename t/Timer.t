@@ -7,7 +7,7 @@ use Test::More;
 use DDG::Test::Spice;
 
 my @test_args = (
-    '', 
+    '',
     call_type => 'self',
     caller => 'DDG::Spice::Timer'
 );
@@ -28,9 +28,13 @@ ddg_spice_test(
     'time 2 minutes' => test_spice(@test_args),
     '3.5 minute timer' => test_spice(@test_args),
     'alarm 30 minutes' => test_spice(@test_args),
+    'timer for 15 mins' => test_spice(@test_args),
+    'timer for 77 mins 13 secs' => test_spice(@test_args),
     'blahblah timer' => undef,
     'wwdc 2015 countdown' => undef,
-    'timer 5 hellos' => undef
+    'timer 5 hellos' => undef,
+    'time' => undef,
+    'Time::Piece' => undef
 );
 
 done_testing;

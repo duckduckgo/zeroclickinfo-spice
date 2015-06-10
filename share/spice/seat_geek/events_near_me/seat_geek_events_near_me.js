@@ -6,7 +6,7 @@
             return Spice.failed('seat_geek_events_near_me');
         }
 
-        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 
@@ -149,8 +149,10 @@
                     place: item.venue.name,
                     img: item.performers[0].images.small,
                     city: item.venue.display_location,
-                    month: getMonth(getDate(item.datetime_local)),
-                    day: getDay(getDate(item.datetime_local))
+                    dateBadge: {
+                        month: getMonth(getDate(item.datetime_local)),
+                        day: getDay(getDate(item.datetime_local))
+                    }
                 };
             },
             templates: {

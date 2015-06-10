@@ -1,4 +1,5 @@
 package DDG::Spice::Tvmaze::Show;
+# ABSTRACT: Information about TV series
 
 use strict;
 use DDG::Spice;
