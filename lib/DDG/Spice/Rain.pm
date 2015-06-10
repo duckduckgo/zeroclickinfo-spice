@@ -15,7 +15,7 @@ attribution web => [ 'https://bibhas.in', 'Bibhas Debnath' ],
             github => [ 'https://github.com/iambibhas', 'Bibhas'],
             twitter => ['http://twitter.com/bibhasdn', 'Bibhas D'];
 
-spice to => 'http://beta.json-generator.com/api/json/get/GO60Xk7?q=$1&callback={{callback}}';
+spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
 
 triggers start => "is it raining", "will it rain";
 triggers any => "going to rain";
