@@ -6,10 +6,10 @@ use DDG::Spice;
 
 primary_example_queries "is it snowing?";
 secondary_example_queries "is it snowing in New York City?";
-description "Check weather conditions at your location";
+description "Check if it is snowing at your location";
 name "Snow";
 icon_url "/icon16.png";
-source "Is it snowing yet?";
+source "isitsnowingyet.org";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Snow.pm";
 topics "everyday";
 category "facts";
