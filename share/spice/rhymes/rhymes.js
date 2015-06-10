@@ -21,13 +21,13 @@ function ddg_spice_rhymes (api_result) {
     }
 
     if(words.length === 0) {
-        return;
+        return Spice.failed('rhymes');
     }
 
     var title = DDG.capitalize(query.toLowerCase());
     Spice.add({
-        data: { 
-            words: words, 
+        data: {
+            words: words,
             query: title
         },
         id: "rhymes",
