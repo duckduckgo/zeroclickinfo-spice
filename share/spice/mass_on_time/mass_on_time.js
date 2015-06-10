@@ -72,7 +72,7 @@
 
         //Return if service couldn't find the address given
         if (details.location.lat === 0 && details.location.lng === 0) {
-            return;
+            return Spice.failed('mass_on_time');
         }
 
         //Filter results with no address
@@ -81,14 +81,14 @@
             var result = api_result.results[i];
 
             // Check if it's the current location. If it is, don't check the relevancy.
-            if (result.address !== null && result.address !== "" && 
+            if (result.address !== null && result.address !== "" &&
                 (/current$/.test(source) || DDG.stringsRelevant(details.address, result.city))) {
                 results.unshift(result);
             }
         }
 
         if (results.length < 1) {
-            return;
+            return Spice.failed('mass_on_time');
         }
 
         DDG.require('maps', function() {
