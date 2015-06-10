@@ -35,6 +35,7 @@
                 saturation_value_path: DDG.get_asset_path('color_picker', 'saturation_value_gradient.png'),
                 hue_path: DDG.get_asset_path('color_picker', 'hue_gradient.png')
             },
+            signal: 'high',
             meta: {},
             templates: {
                 detail: Spice.color_picker.content,
@@ -177,7 +178,7 @@
             magenta = to_bounded_number(magenta, 0, 100);
             yellow = to_bounded_number(yellow, 0, 100);
             black = to_bounded_number(black, 0, 100);
-            
+
             update_all_from_cmyk(cyan, magenta, yellow, black);
         }
 
@@ -447,11 +448,11 @@
             var red_proportion = red / 255,
                 green_proportion = green / 255,
                 blue_proportion = blue / 255,
-            
+
                 min = Math.min(red_proportion, Math.min(green_proportion, blue_proportion)),
                 max = Math.max(red_proportion, Math.max(green_proportion, blue_proportion)),
                 delta = max - min,
-            
+
                 hue = 0,
                 saturation = (max > 0) ? Math.round(((max - min) * 100) / max) : 0,
                 value = Math.round(max * 100);
@@ -470,7 +471,7 @@
                 }
             }
             if (hue < 0) hue += 360;
-            
+
             var hsv = {
                 hue: hue,
                 saturation: saturation,
@@ -484,12 +485,12 @@
             var red_proportion = red / 255,
                 green_proportion = green / 255,
                 blue_proportion = blue / 255,
-            
+
                 black = 1 - Math.max(red_proportion, Math.max(green_proportion, blue_proportion)),
                 cyan = (black < 1) ? ((1 - red_proportion - black) / (1 - black)) : 0,
                 magenta = (black < 1) ? ((1 - green_proportion - black) / (1 - black)) : 0,
                 yellow = (black < 1) ? ((1 - blue_proportion - black) / (1 - black)) : 0,
-            
+
                 cmyk= {
                     black: (100 * black).toFixed(0),
                     cyan: (100 * cyan).toFixed(0),
@@ -499,7 +500,7 @@
 
             return cmyk;
         }
-    
+
         function convert_rgb_to_hex(red, green, blue){
             var red_string = red.toString(16),
                 green_string = green.toString(16),
@@ -511,7 +512,7 @@
                 green_string = '0' + green_string;
             if (blue_string.length < 2)
                 blue_string = '0' + blue_string;
-            
+
             return '#' + red_string + green_string + blue_string;
         }
 
@@ -554,7 +555,7 @@
 
             return rgb;
         }
-    
+
         //Generates a a color to use when the IA is first loaded. It first checks the query to find
         //  a specified color. If no color was specified, one is randomly generated.
         function get_initial_color(query) {
@@ -611,8 +612,12 @@
                         black = to_bounded_number(cmyk_nums[3], 0, 100),
                         colors = get_all_colors_from_cmyk(cyan, magenta, yellow, black);
                     return colors;
-                case possible_color_query.lastIndexOf('#', 0) === 0:
-                    var hex = possible_color_query.substring(1);
+                default:
+                    var hex = possible_color_query;
+                    if (hex.lastIndexOf('#', 0) === 0){
+                        hex = hex.substring(1);
+                    }
+
                     if (/^[0-9a-f]+$/i.test(hex)) {
                         if (hex.length === 3)
                             hex = hex.charAt(0) + hex.charAt(0) + hex.charAt(1) + hex.charAt(1) + hex.charAt(2) + hex.charAt(2);
@@ -622,9 +627,6 @@
                             return colors;
                         }
                     }
-                    break;
-                default:
-                    return null;
             }
 
             return null;

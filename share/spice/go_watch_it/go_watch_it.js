@@ -39,7 +39,8 @@
             "Target Ticket": 1,
             "Hulu": 1,
             "Crackle": 1,
-            "Flixster": 1
+            "Flixster": 1,
+            "Netflix": 1
         };
         
         var purchase_providers = {
@@ -187,6 +188,12 @@
                    item.buy_line === "") {
                     item.buy_line = "Available for Purchase";
                     item.rent_line = "";
+                }
+                
+                // If the provider is "Netflix Mail" Change buy_line and format_line
+                if(item.provider_format_name === "Netflix Mail" && item.category !== "online") {
+                    item.buy_line = "Available for Rent";
+                    item.format_line = "Available on Blu-ray / DVD";
                 }
                 
                 // Change the format line to match the other tiles.

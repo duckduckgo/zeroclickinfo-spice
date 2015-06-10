@@ -12,14 +12,14 @@
     env.ddg_spice_quandl_home_values = function(api_result){
 
         if (!api_result) {
-            return Spice.failed('quandl_home_values: no results');
+            return Spice.failed('quandl_home_values');
         }
 
         var result = api_result;
         
         // we need two data points to get percent change
         if (result.data.length < 2) {
-            return Spice.failed('quandl_home_values: not enough data points');
+            return Spice.failed('quandl_home_values');
         }
 
         // url to the data set page
@@ -57,12 +57,12 @@
         var percentChange = 10000 * ((recentValue - previousValue) / Math.abs(previousValue));
         percentChange = Math.round(percentChange);
         percentChange /= 100;
-        result.change_percent = percentChange;
+        result.change_percent = Math.abs(percentChange);
           
         // setting style based on change
         if (percentChange > 0) result.changeDirection = 'up';
         if (percentChange < 0) result.changeDirection = 'down';
-        if (percentChange == 0) result.changeDirection = 'same';
+        if (percentChange == 0) result.changeDirection = 'up';
 
         // the most recent fundamental value
         var value = recentValue;

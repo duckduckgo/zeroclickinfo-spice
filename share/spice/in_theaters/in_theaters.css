@@ -1,26 +1,3 @@
-.tile--in_theaters {
-    width: 12em;
-}
-
-.tile--in_theaters .tile__media__img {
-    min-width: 100%;
-    height: 100%;
-    margin-top: 0;
-}
-
-.zci--in_theaters .one-line {
-    float: left;
-}
-
-.tile--in_theaters .tile__title {
-    height: 2.5em;
-}
-
-.tile--in_theaters .tile__source,
-.tile--in_theaters.highlight .tile__source {
-    color: #999;
-}
-
 .zci--in_theaters .tomato--icon {
     width: 16px;
     height: 16px;
@@ -29,44 +6,46 @@
     background: transparent no-repeat;
 }
 
-.zci--in_theaters h5.detail__title.detail__tile--pr {
+.zci--in_theaters .detail__title {
     padding-bottom: 0;
 }
 
 .zci--in_theaters .detail__subtitle {
     margin-top: 0;
     padding-top: 0;
-    padding-bottom: 1.5em;
 }
 
-    .is-mobile .zci--in_theaters .detail__subtitle {
-        padding-bottom: 0.5em;
-    }
+.is-mobile .zci--in_theaters .detail__subtitle {
+    position: relative;
+}
 
 .zci--in_theaters p.detail__desc {
     padding-bottom: 1.65em;
 }
 
-    .is-mobile .zci--in_theaters p.detail__desc {
-        padding-bottom: 0.2em;
-    }
-
-.zci--in_theaters .in_theaters--runtime {
-    font-size: 0.9em;
-    position: relative;
-    top: 1.5em;
+.is-mobile .zci--in_theaters p.detail__desc {
+    padding-bottom: 5em;    
 }
 
-    .is-mobile .zci--in_theaters .in_theaters--runtime {
-        top: 1em;
-    }
+.zci--in_theaters .movie--runtime {
+    display: block;
+	font-size: 0.9em;
+	padding-top: 1.5em;
+}
+	.zci--in_theaters .c-product__subtitle .movie--runtime {
+		padding-top: 0.5em;
+	}
 
-.zci--in_theaters .in_theaters--critics_score {
+.is-mobile .zci--in_theaters .movie--runtime {
+    top: 1em;
+}
+
+.zci--in_theaters .movie--critics_score {
     display: block;
     font-size: 1.3em;
 }
 
-.zci--in_theaters .in_theaters--critics_score img {
+.zci--in_theaters .movie--critics_score img {
     margin-top: -0.1em;
     margin-bottom: -0.3em;
     height: 24px;
@@ -81,19 +60,33 @@
     font-size: 0.9em;
 }
 
-.zci--in_theaters .detail__media.detail__media--pr {
-    max-width: 180px;
-}
-
-.zci--in_theaters .detail__media--pr--s .detail__media__img {
+.zci--in_theaters .c-product__media,
+.zci--in_theaters .c-product__media__img {
     max-height: 180px;
 }
 
-.is-mobile .zci--in_theaters .btn.btn--primary {
+.is-mobile .zci--in_theaters .c-product__media {
+    overflow: visible;
+}
+
+.is-mobile .zci--in_theaters .c-product__body--sec {
+    margin-top: 1.5em;
+}
+
+.is-mobile .zci--in_theaters .c-product__body--pri {
+    min-height: 180px;
+    padding-bottom: 0;
+}
+
+.is-mobile .zci--in_theaters .detail__media--pr {
+    max-width: 100%;
+}
+
+.is-mobile .zci--in_theaters .detail .movie__btn {
     position: absolute;
     bottom: 1em;
 }
 
-.is-mobile .zci--in_theaters .detail .detail__media--pr {
-    max-width: 100%;
+.is-mobile .zci--in_theaters.zci--type--tiles.is-active {
+    padding-bottom: 0;
 }

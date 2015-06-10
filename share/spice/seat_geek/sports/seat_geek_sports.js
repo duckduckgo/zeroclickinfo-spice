@@ -9,7 +9,7 @@
         var query = DDG.get_query();
         var clean_query = $.trim(query.replace(/((upcoming\s)?(match(es)?))|(events?)|(schedule)|(sports)|(tickets)|(games)/, '').toLowerCase());
 
-        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
         Spice.add({
             id: "seat_geek_sports",
@@ -28,10 +28,9 @@
                 // if it doesn't, and it's not even relevant to the event title,
                 // check relevancy on the taxonomies. If this fails too, return null
                 var relevant = false;
-                var performer;
+                var performer = item.performers[0];
                 var both_performers = [];
                 var title;
-                var logo;
                 for(var i = 0; i < item.performers.length; i++) {
                     if(DDG.stringsRelevant(item.performers[i].name.toLowerCase(), clean_query, [], 3, true) || DDG.stringsRelevant(item.performers[i].short_name.toLowerCase(), clean_query, [], 3, true)) {
                         relevant = true;
@@ -60,7 +59,6 @@
                     }
                 } else {
                     title = performer.name;
-                    logo = getLogo(title, item.taxonomies);
                 }
 
                 function getDate(date) {
@@ -121,9 +119,11 @@
                     title: title,
                     place: item.venue.name,
                     city: item.venue.display_location,
-                    month: getMonth(getDate(item.datetime_local)),
-                    day: getDay(getDate(item.datetime_local)),
-                    year: getYear(getDate(item.datetime_local))
+                    year: getYear(getDate(item.datetime_local)),
+                    dateBadge: {
+                        day: getDay(getDate(item.datetime_local)),
+                        month: getMonth(getDate(item.datetime_local))
+                    }
                 };
             },
             templates: {

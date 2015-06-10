@@ -13,6 +13,12 @@ my @kingston_town = (
     caller    => 'DDG::Spice::Time'
 );
 
+my @phoenixville = (
+    '/js/spice/time/phoenixville%20united%20states',
+    call_type => 'include',
+    caller    => 'DDG::Spice::Time'
+);
+
 ddg_spice_test(
     [qw( DDG::Spice::Time)],
     # Primary examples
@@ -44,12 +50,19 @@ ddg_spice_test(
     'whats the current local time in kingston' => test_spice(@kingston_town),
     'local time for kingston'                  => test_spice(@kingston_town),
     'local time of kingston'                   => test_spice(@kingston_town),
+
+    'time'                                     => test_spice(@phoenixville),
+    'current time'                             => test_spice(@phoenixville),
+    'current local time'                       => test_spice(@phoenixville),
     # Intentionally ignored
-    'curent time in kingston'  => undef,
-    'current local time'       => undef,
+    'pdt time'                 => undef,
+    'testing time'             => undef,
+    'foobar time'              => undef,
+    'adhjasdhjkd hjkasdjasd ashjkas time'    => undef,
     'time and space museum'    => undef,
     'time complexity of qsort' => undef,
     'running time of titanic'  => undef,
+    'time in Toronto'          => undef, # This will still show a result in production, but the triggering is handled internally
 );
 
 done_testing;

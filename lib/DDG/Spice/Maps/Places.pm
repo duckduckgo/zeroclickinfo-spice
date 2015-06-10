@@ -1,4 +1,5 @@
 package DDG::Spice::Maps::Places;
+# ABSTRACT: Nearby museums, restaurants, ...
 
 use strict;
 use DDG::Spice;
@@ -29,7 +30,7 @@ triggers startend => (
     'restaurants',
 );
 
-my %skip_remainders = map {$_ => 0} ('current');
+my %skip_remainders = map {$_ => 0} ('current', 'time');
 
 handle remainder => sub {
     return $_ if $_ && !exists($skip_remainders{$_});
