@@ -6,22 +6,20 @@ use Test::More;
 use DDG::Test::Spice;
 use POSIX qw(strftime);
 
-my $y = strftime "%Y", localtime;
-
 ddg_spice_test(
     [qw(DDG::Spice::Holiday)],
     'when is christmas' => test_spice(
-        "/js/spice/holiday/United%20States/christmas/$y",
+        "/js/spice/holiday/United%20States/christmas/%20",
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
     'when is easter in austria' => test_spice(
-        "/js/spice/holiday/austria/easter/$y",
+        "/js/spice/holiday/austria/easter/%20",
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
     'when is presidents day in us' => test_spice(
-        "/js/spice/holiday/us/presidents%20day/$y",
+        "/js/spice/holiday/us/presidents%20day/%20",
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
@@ -35,9 +33,15 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
+    # can query past events
+    'when was easter 2015' => test_spice(
+        '/js/spice/holiday/United%20States/easter/2015',
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
     # user has to provide the whole year
     'when is easter 17' => test_spice(
-        '/js/spice/holiday/United%20States/easter/2015',
+        '/js/spice/holiday/United%20States/easter/%20',
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     )

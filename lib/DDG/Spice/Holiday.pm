@@ -2,7 +2,6 @@ package DDG::Spice::Holiday;
 # ABSTRACT: Query timeanddate.com for a holiday
 
 use DDG::Spice;
-use POSIX qw(strftime);
 
 name "Time and Date holiday search";
 source "timeanddate.com";
@@ -16,7 +15,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ['https://github.com/iambibhas', 'Bibhas'],
             twitter => ['https://twitter.com/bibhasdn', 'Bibhas D'];
 
-triggers start => 'when is';
+triggers start => 'when is', 'when was';
 
 spice from => '([^/]+)/([^/]+)/([^/]+)';
 spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$1&q=$2&y=$3&callback={{callback}}';
@@ -43,7 +42,7 @@ handle remainder => sub {
     if ($q =~ /([\d]{4})/) {
         $y = $1;
     } else {
-        $y = strftime "%Y", localtime;
+        $y = " ";
     }
 
     $q =~ s/\ *\d+\ *//g;
