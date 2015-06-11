@@ -13,6 +13,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
+    'what day is christmas' => test_spice(
+        "/js/spice/holiday/United%20States/christmas/%20",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
     'when is easter in austria' => test_spice(
         "/js/spice/holiday/austria/easter/%20",
         call_type => 'include',
@@ -34,7 +39,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Holiday'
     ),
     # can query past events
-    'when was easter 2015' => test_spice(
+    'when was easter' => test_spice(
         '/js/spice/holiday/United%20States/easter/2015',
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
