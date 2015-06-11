@@ -9,7 +9,6 @@ description "Shows example statistics";
 name "Statista";
 category "facts";
 
-my $api_key = '5db81c2a174170dac75620a16f553dd9';
 my $limit = 16;
 my $lang = 2;
 
