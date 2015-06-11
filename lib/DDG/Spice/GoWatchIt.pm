@@ -22,7 +22,7 @@ my @killwords = ('movie', 'show', 'tv', 'online', 'stream');
 
 my $killwords = join '|', @killwords;
 
-triggers startend => @triggers;
+triggers startend => @killwords;
 
 spice to => 'http://gowatchit.com/api/v3/search?term=$1&full_meta=true&api_key={{ENV{DDG_SPICE_GOWATCHIT_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
