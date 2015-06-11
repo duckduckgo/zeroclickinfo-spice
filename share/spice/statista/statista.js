@@ -5,7 +5,7 @@
         if (item.teaserImageUrls[size]) {
             return item.teaserImageUrls[size].src;
         } else {
-            return 'https://da73v1deq9k1l.cloudfront.net/Statistic/table/table-100-1.png';
+            return 'https://static1.statista.com/Statistic/table/table-100-1.png';
         }
     }
     
