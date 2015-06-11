@@ -94,7 +94,7 @@
         DDG.require('maps', function() {
         DDG.require('moment.js', function() {
             Spice.add({
-                id: 'mass',
+                id: 'mass_on_time',
                 data: results,
                 name: 'Parishes',
                 model: 'Place',
