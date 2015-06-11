@@ -15,7 +15,7 @@ topics "everyday", "special_interest";
 attribution github => ['https://github.com/Adman', 'Adman'],
             twitter => ['http://twitter.com/adman_X', 'adman_X'];
 
-triggers startend => "similar sites", "similar sites to", "similar web to", "sites like", "websites like", "webs like", "pages like";
+triggers startend => "similar sites", "similar sites to", "similar web to", "sites like", "sites similar to", "sites similar", "websites like", "webs like", "pages like";
 
 spice to => 'http://www.similarsitesearch.com/api/similar/$1';
 
