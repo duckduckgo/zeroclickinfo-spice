@@ -31,6 +31,10 @@ handle remainder_lc => sub {
     # remove whitespace
     trim($_);
 
+    if (index($_, '.') == -1) {
+        $_ .= '.com';
+    }
+
     return $_ if $_;
     return;
 };

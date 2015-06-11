@@ -15,6 +15,16 @@ ddg_spice_test(
         '/js/spice/similar_sites/facebook.com',
         caller => 'DDG::Spice::SimilarSites'
     ),
+    # should assume .com if no tld is present
+    'websites similar to facebook' => test_spice(
+        '/js/spice/similar_sites/facebook.com',
+        caller => 'DDG::Spice::SimilarSites'
+    ),
+    # ignore all the spaces
+    'similar websites to duck duck go' => test_spice(
+        '/js/spice/similar_sites/duckduckgo.com',
+        caller => 'DDG::Spice::SimilarSites'
+    ),
     'similar websites to https://www.facebook.com' => test_spice(
         '/js/spice/similar_sites/www.facebook.com',
         caller => 'DDG::Spice::SimilarSites'
