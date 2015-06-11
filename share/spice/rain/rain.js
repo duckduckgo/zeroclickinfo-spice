@@ -30,12 +30,10 @@
                 options: {
                     content: Spice.rain.content,
                     moreAt: true,
-                    moreText: [
-                        {
+                    moreText: {
                             href: "/?ia=weather&q=weather+" + api_result.flags['ddg-location'],
                             text: "Weather Forecast for " + api_result.flags['ddg-location'],
-                        },
-                    ]
+                    }
                 }
             }
         });
