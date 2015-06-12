@@ -25,10 +25,15 @@
                 itemType: 'Anime'
             },
             normalize: function(item) {
+                var cover_image = '';
+                if (item.cover_image) {
+                    cover_image = item.cover_image.replace('https', 'http');
+                }
+
                 return {
-                    img: item.cover_image,
-                    image: item.cover_image,
-                    img_m: item.cover_image,
+                    img: cover_image,
+                    image: cover_image,
+                    img_m: cover_image,
                     heading: item.title,
                     title: item.title,
                     abstract: item.synopsis.split(' ').slice(0,49).join(' ') + '...',
@@ -41,7 +46,7 @@
                 group: 'movies',
                 options: {
                     subtitle_content: Spice.anime.subtitle_content,
-                    rating: false,
+                    rating: true,
                     buy: Spice.anime.buy
                 },
                 variants: {
