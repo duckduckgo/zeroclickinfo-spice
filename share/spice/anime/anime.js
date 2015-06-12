@@ -12,8 +12,6 @@
         query = source.match(/anime\/([^\/]+)/)[1],
         decodedQuery = decodeURIComponent(query);
 
-        console.log(api_result);
-
         Spice.add({
             id: 'anime',
             name: 'Anime',
@@ -48,13 +46,6 @@
                     subtitle_content: Spice.anime.subtitle_content,
                     rating: true,
                     buy: Spice.anime.buy
-                },
-                variants: {
-                    productSub: 'noMax'
-                },
-                elClass: {
-                    tileMediaImg: 'js-movie-img',
-                    productMediaImg: 'js-movie-img'
                 }
             }
         });
