@@ -25,7 +25,7 @@
             normalize: function(item) {
                 var cover_image = '';
                 if (item.cover_image) {
-                    cover_image = item.cover_image.replace('https', 'http');
+                    cover_image = DDG.toHTTP(item.cover_image);
                 }
 
                 return {
