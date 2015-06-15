@@ -1,747 +1,763 @@
-abbeville:	ABBEVILLELA
-aberdeen:	ABERDEENWA
-abilene:	ABILENETX
-ada:	ADAOK
-adrian:	ADRIANMI
-akron:	AKRONOH
-alamogordo:	ALAMOGORDONM
-albemarle:	ALBEMARLENC
-albert lea:	ALBERTLEAMN
-albertville:	ALBERTVILLEAL
-albuquerque:	ALBUQUERQUENM
-alexander city:	ALEXANDERCITYAL
-alice:	ALICETX
-allegan:	ALLEGANMI
-allentown:	ALLENTOWNPA
-alma:	ALMAMI
-alpena:	ALPENAMI
-altoona:	ALTOONAPA
-altus:	ALTUSOK
-amarillo:	AMARILLOTX
-americus:	AMERICUSGA
-ames:	AMESIA
-amsterdam:	AMSTERDAMNY
-anchorage:	ANCHORAGEAK
-andrews:	ANDREWSTX
-angola:	ANGOLAIN
-ann arbor:	ANNARBORMI
-anniston:	ANNISTONAL
-appleton:	APPLETONWI
-arcadia:	ARCADIAFL
-ardmore:	ARDMOREOK
-arkadelphia:	ARKADELPHIAAR
-asheville:	ASHEVILLENC
-ashland:	ASHLANDOH
-ashtabula:	ASHTABULAOH
-astoria:	ASTORIAOR
-atlanta:	ATLANTAGA
-atlantic city:	ATLANTICCITYNJ
-bainbridge:	BAINBRIDGEGA
-bakersfield:	BAKERSFIELDCA
-baltimore:	BALTIMOREMD
-bangor:	BANGORME
-baraboo:	BARABOOWI
-barre:	BARREVT
-bartlesville:	BARTLESVILLEOK
-bastrop:	BASTROPLA
-batavia:	BATAVIANY
-batesville:	BATESVILLEAR
-baton rouge:	BATONROUGELA
-battle creek:	BATTLECREEKMI
-beatrice:	BEATRICENE
-beaumont:	BEAUMONTTX
-beaver dam:	BEAVERDAMWI
-beckley:	BECKLEYWV
-bedford:	BEDFORDIN
-beeville:	BEEVILLETX
-bellefontaine:	BELLEFONTAINEOH
-bellingham:	BELLINGHAMWA
-bemidji:	BEMIDJIMN
-bend:	BENDOR
-bennington:	BENNINGTONVT
-berlin:	BERLINNH
-big rapids:	BIGRAPIDSMI
-big spring:	BIGSPRINGTX
-billings:	BILLINGSMT
-binghamton:	BINGHAMTONNY
-birmingham:	BIRMINGHAMAL
-bishop:	BISHOPCA
-bismarck:	BISMARCKND
-blackfoot:	BLACKFOOTID
-blacksburg:	BLACKSBURGVA
-bloomsburg:	BLOOMSBURGPA
-bluefield:	BLUEFIELDWV
-blytheville:	BLYTHEVILLEAR
-bogalusa:	BOGALUSALA
-boise city:	BOISECITYID
-bonham:	BONHAMTX
-borger:	BORGERTX
-boston:	BOSTONMA
-boulder:	BOULDERCO
-bowling green:	BOWLINGGREENKY
-bozeman:	BOZEMANMT
-bradford:	BRADFORDPA
-brainerd:	BRAINERDMN
-branson:	BRANSONMO
-bremerton:	BREMERTONWA
-brenham:	BRENHAMTX
-brevard:	BREVARDNC
-brigham city:	BRIGHAMCITYUT
-brookhaven:	BROOKHAVENMS
-brownwood:	BROWNWOODTX
-brunswick:	BRUNSWICKGA
-bucyrus:	BUCYRUSOH
-buffalo:	BUFFALONY
-burley:	BURLEYID
-butte:	BUTTEMT
-cadillac:	CADILLACMI
-calhoun:	CALHOUNGA
-camden:	CAMDENAR
-campbellsville:	CAMPBELLSVILLEKY
-canon city:	CANONCITYCO
-cape cod:	CAPECODMA
-cape girardeau:	CAPEGIRARDEAUIL
-carbondale:	CARBONDALEIL
-carlsbad:	CARLSBADNM
-carson city:	CARSONCITYNV
-casper:	CASPERWY
-cedar city:	CEDARCITYUT
-cedar rapids:	CEDARRAPIDSIA
-cedartown:	CEDARTOWNGA
-celina:	CELINAOH
-central city:	CENTRALCITYKY
-chambersburg:	CHAMBERSBURGPA
-champaign-urbana:	CHAMPAIGNURBANAIL
-charlotte:	CHARLOTTENC
-charlottesville:	CHARLOTTESVILLEVA
-chattanooga:	CHATTANOOGATN
-chester:	CHESTERSC
-cheyenne:	CHEYENNEWY
-chicago:	CHICAGOIL
-chico:	CHICOCA
-chillicothe:	CHILLICOTHEOH
-cincinnati:	CINCINNATIOH
-city of the dalles:	CITYOFTHEDALLESOR
-claremont:	CLAREMONTNH
-clarksburg:	CLARKSBURGWV
-clarksdale:	CLARKSDALEMS
-clarksville:	CLARKSVILLETN
-clearlake:	CLEARLAKECA
-clewiston:	CLEWISTONFL
-clinton:	CLINTONIA
-clovis:	CLOVISNM
-coeur d'alene:	COEURDALENEID
-coffeyville:	COFFEYVILLEKS
-coldwater:	COLDWATERMI
-college station:	COLLEGESTATIONTX
-colorado springs:	COLORADOSPRINGSCO
-concord:	CONCORDNH
-connersville:	CONNERSVILLEIN
-cookeville:	COOKEVILLETN
-coos bay:	COOSBAYOR
-corbin:	CORBINKY
-cordele:	CORDELEGA
-corinth:	CORINTHMS
-cornelia:	CORNELIAGA
-corning:	CORNINGNY
-corpus christi:	CORPUSCHRISTITX
-corsicana:	CORSICANATX
-cortland:	CORTLANDNY
-corvallis:	CORVALLISOR
-coshocton:	COSHOCTONOH
-crawfordsville:	CRAWFORDSVILLEIN
-crescent city:	CRESCENTCITYCA
-crossville:	CROSSVILLETN
-crowley:	CROWLEYLA
-cullman:	CULLMANAL
-culpeper:	CULPEPERVA
-cumberland:	CUMBERLANDMD
-dallas-fort worth:	DALLASFORTWORTHTX
-dalton:	DALTONGA
-daphne:	DAPHNEAL
-davenport:	DAVENPORTIL
-dayton:	DAYTONOH
-daytona beach:	DAYTONABEACHFL
-de ridder:	DERIDDERLA
-defiance:	DEFIANCEOH
-del rio:	DELRIOTX
-deming:	DEMINGNM
-denver:	DENVERCO
-des moines:	DESMOINESIA
-destin:	DESTINFL
-detroit:	DETROITMI
-dickinson:	DICKINSONND
-dillon:	DILLONSC
-dixon:	DIXONIL
-dodge city:	DODGECITYKS
-dothan:	DOTHANAL
-douglas:	DOUGLASGA
-dover:	DOVERDE
-dubois:	DUBOISPA
-dubuque:	DUBUQUEIA
-duluth:	DULUTHMN
-dumas:	DUMASTX
-duncan:	DUNCANOK
-dunn:	DUNNNC
-durango:	DURANGOCO
-durant:	DURANTOK
-durham:	DURHAMNC
-dyersburg:	DYERSBURGTN
-eagle pass:	EAGLEPASSTX
-east liverpool:	EASTLIVERPOOLOH
-east stroudsburg:	EASTSTROUDSBURGPA
-easton:	EASTONMD
-eau claire:	EAUCLAIREWI
-edwards:	EDWARDSCO
-effingham:	EFFINGHAMIL
-el campo:	ELCAMPOTX
-el centro:	ELCENTROCA
-el dorado:	ELDORADOAR
-el paso:	ELPASOTX
-elizabeth city:	ELIZABETHCITYNC
-elizabethtown:	ELIZABETHTOWNKY
-elk city:	ELKCITYOK
-elkhart:	ELKHARTIN
-elko:	ELKONV
-ellensburg:	ELLENSBURGWA
-elmira:	ELMIRANY
-emporia:	EMPORIAKS
-enid:	ENIDOK
-enterprise:	ENTERPRISEAL
-erie:	ERIEPA
-escanaba:	ESCANABAMI
-espanola:	ESPANOLANM
-eufaula:	EUFAULAAL
-eugene:	EUGENEOR
-eureka:	EUREKACA
-evanston:	EVANSTONWY
-evansville:	EVANSVILLEIN
-fairbanks:	FAIRBANKSAK
-fallon:	FALLONNV
-fargo:	FARGOND
-faribault:	FARIBAULTMN
-fergus falls:	FERGUSFALLSMN
-fernley:	FERNLEYNV
-findlay:	FINDLAYOH
-fitzgerald:	FITZGERALDGA
-flagstaff:	FLAGSTAFFAZ
-flint:	FLINTMI
-fond du lac:	FONDDULACWI
-forest city:	FORESTCITYNC
-forrest city:	FORRESTCITYAR
-fort collins:	FORTCOLLINSCO
-fort dodge:	FORTDODGEIA
-fort leonard wood:	FORTLEONARDWOODMO
-fort madison:	FORTMADISONIA
-fort morgan:	FORTMORGANCO
-fort myers:	FORTMYERSFL
-fort payne:	FORTPAYNEAL
-fort polk south:	FORTPOLKSOUTHLA
-fort smith:	FORTSMITHAR
-fort valley:	FORTVALLEYGA
-fort wayne:	FORTWAYNEIN
-fredericksburg:	FREDERICKSBURGTX
-freeport:	FREEPORTIL
-fresno:	FRESNOCA
-gadsden:	GADSDENAL
-gaffney:	GAFFNEYSC
-galesburg:	GALESBURGIL
-gallup:	GALLUPNM
-garden city:	GARDENCITYKS
-gardnerville ranchos:	GARDNERVILLERANCHOSNV
-georgetown:	GEORGETOWNSC
-gettysburg:	GETTYSBURGPA
-gillette:	GILLETTEWY
-glasgow:	GLASGOWKY
-glenn falls:	GLENNFALLSNY
-gloversville:	GLOVERSVILLENY
-goldsboro:	GOLDSBORONC
-granbury:	GRANBURYTX
-grand forks:	GRANDFORKSND
-grand island:	GRANDISLANDNE
-grand junction:	GRANDJUNCTIONCO
-grand rapids:	GRANDRAPIDSMI
-grants pass:	GRANTSPASSOR
-great bend:	GREATBENDKS
-great falls:	GREATFALLSMT
-greeley:	GREELEYCO
-green bay:	GREENBAYWI
-greeneville:	GREENEVILLETN
-greensboro:	GREENSBORONC
-greensburg:	GREENSBURGIN
-grenada:	GRENADAMS
-gulfport:	GULFPORTMS
-guymon:	GUYMONOK
-hagerstown:	HAGERSTOWNWV
-hammond:	HAMMONDLA
-hanford:	HANFORDCA
-harriman:	HARRIMANTN
-harrison:	HARRISONAR
-harrisonburg:	HARRISONBURGVA
-hartford:	HARTFORDCT
-hastings:	HASTINGSNE
-hattiesburg:	HATTIESBURGMS
-havre:	HAVREMT
-hays:	HAYSKS
-heber:	HEBERUT
-henderson:	HENDERSONNC
-hereford:	HEREFORDTX
-hickory:	HICKORYNC
-hilo:	HILOHI
-hilton head island:	HILTONHEADISLANDSC
-hinesville:	HINESVILLEGA
-hobbs:	HOBBSNM
-holland:	HOLLANDMI
-homosassa springs:	HOMOSASSASPRINGSFL
-honolulu:	HONOLULUHI
-hood river:	HOODRIVEROR
-hot springs:	HOTSPRINGSAR
-houghton:	HOUGHTONMI
-houma:	HOUMALA
-houston:	HOUSTONTX
-hudson:	HUDSONNY
-humboldt:	HUMBOLDTTN
-huntingdon:	HUNTINGDONPA
-idaho falls:	IDAHOFALLSID
-indianapolis:	INDIANAPOLISIN
-indianola:	INDIANOLAMS
-iowa city:	IOWACITYIA
-iron mountain:	IRONMOUNTAINMI
-ithaca:	ITHACANY
-janesville:	JANESVILLEWI
-jasper:	JASPERIN
-jefferson city:	JEFFERSONCITYMO
-jennings:	JENNINGSLA
-jesup:	JESUPGA
-johnson city:	JOHNSONCITYTN
-johnstown:	JOHNSTOWNPA
-jonesboro:	JONESBOROAR
-joplin:	JOPLINMO
-juneau:	JUNEAUAK
-kahului:	KAHULUIHI
-kalamazoo:	KALAMAZOOMI
-kalispell:	KALISPELLMT
-kankakee:	KANKAKEEIL
-kansas city:	KANSASCITYMO
-kapaa:	KAPAAHI
-kearney:	KEARNEYNE
-keene:	KEENENH
-kendallville:	KENDALLVILLEIN
-kennett:	KENNETTMO
-kennewick:	KENNEWICKWA
-kerrville:	KERRVILLETX
-ketchikan:	KETCHIKANAK
-key west:	KEYWESTFL
-kill devil hills:	KILLDEVILHILLSNC
-killeen:	KILLEENTX
-kingsport:	KINGSPORTTN
-kingston:	KINGSTONNY
-kingsville:	KINGSVILLETX
-kinston:	KINSTONNC
-kirksville:	KIRKSVILLEMO
-klamath falls:	KLAMATHFALLSOR
-knoxville:	KNOXVILLETN
-kodiak:	KODIAKAK
-kokomo:	KOKOMOIN
-la crosse:	LACROSSEWI
-la follette:	LAFOLLETTETN
-la grande:	LAGRANDEOR
-laconia:	LACONIANH
-lagrange:	LAGRANGEGA
-lake charles:	LAKECHARLESLA
-lake city:	LAKECITYFL
-lake havasu city:	LAKEHAVASUCITYAZ
-lakeland:	LAKELANDFL
-lamesa:	LAMESATX
-lansing:	LANSINGMI
-laramie:	LARAMIEWY
-laredo:	LAREDOTX
-las cruces:	LASCRUCESNM
-las vegas:	LASVEGASNV
-laurel:	LAURELMS
-laurinburg:	LAURINBURGNC
-lawrence:	LAWRENCEKS
-lawrenceburg:	LAWRENCEBURGTN
-lawton:	LAWTONOK
-levelland:	LEVELLANDTX
-lewistown:	LEWISTOWNPA
-lexington park:	LEXINGTONPARKMD
-lincolnton:	LINCOLNTONNC
-little rock:	LITTLEROCKAR
-lock haven:	LOCKHAVENPA
-logan:	LOGANID
-logansport:	LOGANSPORTIN
-los alamos:	LOSALAMOSNM
-los angeles:	LOSANGELESCA
-louisville-jefferson county:	LOUISVILLEJEFFERSONCOUNTYKY
-lubbock:	LUBBOCKTX
-lufkin:	LUFKINTX
-lumberton:	LUMBERTONNC
-lynchburg:	LYNCHBURGVA
-macomb:	MACOMBIL
-macon:	MACONGA
-madera:	MADERACA
-madisonville:	MADISONVILLEKY
-malone:	MALONENY
-manchester:	MANCHESTERNH
-manhattan:	MANHATTANKS
-manitowoc:	MANITOWOCWI
-mankato:	MANKATOMN
-mansfield:	MANSFIELDOH
-marinette:	MARINETTEWI
-marquette:	MARQUETTEMI
-marshalltown:	MARSHALLTOWNIA
-marshfield:	MARSHFIELDWI
-martinsville:	MARTINSVILLEVA
-mason city:	MASONCITYIA
-maysville:	MAYSVILLEKY
-mcalester:	MCALESTEROK
-mcallen:	MCALLENTX
-mccomb:	MCCOMBMS
-mcminnville:	MCMINNVILLETN
-mcpherson:	MCPHERSONKS
-meadville:	MEADVILLEPA
-medford:	MEDFORDOR
-melbourne:	MELBOURNEFL
-memphis:	MEMPHISTN
-menomonie:	MENOMONIEWI
-merced:	MERCEDCA
-meridian:	MERIDIANMS
-merrill:	MERRILLWI
-mexico:	MEXICOMO
-miami:	MIAMIOK
-miami-fort lauderdale:	MIAMIFORTLAUDERDALEFL
-michigan city:	MICHIGANCITYIN
-middlesborough:	MIDDLESBOROUGHKY
-milledgeville:	MILLEDGEVILLEGA
-milwaukee:	MILWAUKEEWI
-minden:	MINDENLA
-mineral wells:	MINERALWELLSTX
-minneapolis-st paul:	MINNEAPOLISSTPAULMN
-minot:	MINOTND
-missoula:	MISSOULAMT
-mitchell:	MITCHELLSD
-moberly:	MOBERLYMO
-mobile:	MOBILEAL
-modesto:	MODESTOCA
-montgomery:	MONTGOMERYAL
-montrose:	MONTROSECO
-morehead city:	MOREHEADCITYNC
-morgan city:	MORGANCITYLA
-morgantown:	MORGANTOWNWV
-morristown:	MORRISTOWNTN
-moses lake:	MOSESLAKEWA
-moultrie:	MOULTRIEGA
-mount airy:	MOUNTAIRYNC
-mount sterling:	MOUNTSTERLINGKY
-muncie:	MUNCIEIN
-murray:	MURRAYKY
-muscatine:	MUSCATINEIA
-muskegon:	MUSKEGONMI
-muskogee:	MUSKOGEEOK
-myrtle beach:	MYRTLEBEACHSC
-nacogdoches:	NACOGDOCHESTX
-napa:	NAPACA
-nashville:	NASHVILLETN
-natchez:	NATCHEZMS
-natchitoches:	NATCHITOCHESLA
-new bern:	NEWBERNNC
-new haven:	NEWHAVENCT
-new iberia:	NEWIBERIALA
-new london:	NEWLONDONCT
-new orleans:	NEWORLEANSLA
-new philadelphia:	NEWPHILADELPHIAOH
-new ulm:	NEWULMMN
-new york city:	NEWYORKNY
-nyc:	NEWYORKNY
-newberry:	NEWBERRYSC
-newport:	NEWPORTTN
-newton:	NEWTONIA
-niles:	NILESMI
-nogales:	NOGALESAZ
-norfolk:	NORFOLKNE
-north platte:	NORTHPLATTENE
-north vernon:	NORTHVERNONIN
-north wilkesboro:	NORTHWILKESBORONC
-norwalk:	NORWALKOH
-oak harbor:	OAKHARBORWA
-oak hill:	OAKHILLWV
-ocala:	OCALAFL
-ocean city:	OCEANCITYNJ
-ocean pines:	OCEANPINESMD
-odessa:	ODESSATX
-ogden:	OGDENUT
-ogdensburg:	OGDENSBURGNY
-oil city:	OILCITYPA
-okeechobee:	OKEECHOBEEFL
-oklahoma city:	OKLAHOMACITYOK
-olean:	OLEANNY
-olympia:	OLYMPIAWA
-omaha:	OMAHANE
-oneonta:	ONEONTANY
-ontario:	ONTARIOOR
-opelousas:	OPELOUSASLA
-orangeburg:	ORANGEBURGSC
-orlando:	ORLANDOFL
-oshkosh:	OSHKOSHWI
-oskaloosa:	OSKALOOSAIA
-ottawa:	OTTAWAIL
-ottumwa:	OTTUMWAIA
-owatonna:	OWATONNAMN
-owensboro:	OWENSBOROKY
-owosso:	OWOSSOMI
-oxford:	OXFORDMS
-paducah:	PADUCAHKY
-pahrump:	PAHRUMPNV
-palatka:	PALATKAFL
-palestine:	PALESTINETX
-palm coast:	PALMCOASTFL
-pampa:	PAMPATX
-panama city:	PANAMACITYFL
-paragould:	PARAGOULDAR
-parkersburg:	PARKERSBURGWV
-parsons:	PARSONSKS
-pascagoula:	PASCAGOULAMS
-payson:	PAYSONAZ
-pecos:	PECOSTX
-pella:	PELLAIA
-pendleton:	PENDLETONOR
-pensacola:	PENSACOLAFL
-peoria:	PEORIAIL
-philadelphia:	PHILADELPHIAPA
-phoenix:	PHOENIXAZ
-phoenix lake:	PHOENIXLAKECA
-picayune:	PICAYUNEMS
-pierre:	PIERRESD
-pierre part:	PIERREPARTLA
-pine bluff:	PINEBLUFFAR
-pittsburg:	PITTSBURGKS
-pittsburgh:	PITTSBURGHPA
-pittsfield:	PITTSFIELDMA
-plainview:	PLAINVIEWTX
-platteville:	PLATTEVILLEWI
-plattsburgh:	PLATTSBURGHNY
-plymouth:	PLYMOUTHIN
-pocatello:	POCATELLOID
-point pleasant:	POINTPLEASANTWV
-ponca city:	PONCACITYOK
-pontiac:	PONTIACIL
-port angeles:	PORTANGELESWA
-port st. lucie:	PORTSTLUCIEFL
-portales:	PORTALESNM
-portsmouth:	PORTSMOUTHOH
-pottsville:	POTTSVILLEPA
-poughkeepsie:	POUGHKEEPSIENY
-prescott:	PRESCOTTAZ
-prineville:	PRINEVILLEOR
-providence:	PROVIDENCERI
-provo:	PROVOUT
-pullman:	PULLMANWA
-punta gorda:	PUNTAGORDAFL
-quincy:	QUINCYIL
-racine:	RACINEWI
-raleigh:	RALEIGHNC
-raymondville:	RAYMONDVILLETX
-reading:	READINGPA
-red bluff:	REDBLUFFCA
-red wing:	REDWINGMN
-redding:	REDDINGCA
-reno:	RENONV
-rexburg:	REXBURGID
-rio grande city:	RIOGRANDECITYTX
-riverside:	RIVERSIDECA
-riverton:	RIVERTONWY
-roanoke:	ROANOKEVA
-roanoke rapids:	ROANOKERAPIDSNC
-rochelle:	ROCHELLEIL
-rock springs:	ROCKSPRINGSWY
-rockford:	ROCKFORDIL
-rockingham:	ROCKINGHAMNC
-rockland:	ROCKLANDME
-rocky mount:	ROCKYMOUNTNC
-rolla:	ROLLAMO
-rome:	ROMEGA
-roseburg:	ROSEBURGOR
-roswell:	ROSWELLNM
-ruidoso:	RUIDOSONM
-russellville:	RUSSELLVILLEAR
-ruston:	RUSTONLA
-rutland:	RUTLANDVT
-sacramento:	SACRAMENTOCA
-safford:	SAFFORDAZ
-saginaw:	SAGINAWMI
-salem:	SALEMOR
-salina:	SALINAKS
-salinas:	SALINASCA
-salt lake city:	SALTLAKECITYUT
-san angelo:	SANANGELOTX
-san antonio:	SANANTONIOTX
-san diego:	SANDIEGOCA
-san francisco:	SANFRANCISCOCA
-san jose:	SANJOSECA
-san luis obispo:	SANLUISOBISPOCA
-sandusky:	SANDUSKYOH
-sanford:	SANFORDNC
-santa barbara:	SANTABARBARACA
-santa cruz:	SANTACRUZCA
-santa fe:	SANTAFENM
-santa rosa:	SANTAROSACA
-sarasota:	SARASOTAFL
-sault ste. marie:	SAULTSTEMARIEMI
-savannah:	SAVANNAHGA
-sayre:	SAYREPA
-scottsbluff:	SCOTTSBLUFFNE
-scottsboro:	SCOTTSBOROAL
-scottsburg:	SCOTTSBURGIN
-scranton:	SCRANTONPA
-seaford:	SEAFORDDE
-searcy:	SEARCYAR
-seattle:	SEATTLEWA
-sebring:	SEBRINGFL
-sedalia:	SEDALIAMO
-selinsgrove:	SELINSGROVEPA
-selma:	SELMAAL
-seneca:	SENECASC
-seneca falls:	SENECAFALLSNY
-sevierville:	SEVIERVILLETN
-seymour:	SEYMOURIN
-shawnee:	SHAWNEEOK
-sheboygan:	SHEBOYGANWI
-shelby:	SHELBYNC
-shelbyville:	SHELBYVILLETN
-shelton:	SHELTONWA
-sheridan:	SHERIDANWY
-sherman:	SHERMANTX
-show low:	SHOWLOWAZ
-shreveport:	SHREVEPORTLA
-sidney:	SIDNEYOH
-sierra vista:	SIERRAVISTAAZ
-sikeston:	SIKESTONMO
-silver city:	SILVERCITYNM
-silverthorne:	SILVERTHORNECO
-sioux city:	SIOUXCITYIA
-sioux falls:	SIOUXFALLSSD
-snyder:	SNYDERTX
-south bend:	SOUTHBENDIN
-southern pines:	SOUTHERNPINESNC
-spartanburg:	SPARTANBURGSC
-spearfish:	SPEARFISHSD
-spencer:	SPENCERIA
-spirit lake:	SPIRITLAKEIA
-spokane:	SPOKANEWA
-st. cloud:	STCLOUDMN
-st. george:	STGEORGEUT
-st. joseph:	STJOSEPHMO
-st. louis:	STLOUISMO
-stamford:	STAMFORDCT
-starkville:	STARKVILLEMS
-state college:	STATECOLLEGEPA
-statesboro:	STATESBOROGA
-statesville:	STATESVILLENC
-staunton:	STAUNTONVA
-stephenville:	STEPHENVILLETX
-stevens point:	STEVENSPOINTWI
-stillwater:	STILLWATEROK
-stockton:	STOCKTONCA
-storm lake:	STORMLAKEIA
-sturgis:	STURGISMI
-sulphur springs:	SULPHURSPRINGSTX
-summerville:	SUMMERVILLEGA
-sumter:	SUMTERSC
-sunbury:	SUNBURYPA
-susanville:	SUSANVILLECA
-sweetwater:	SWEETWATERTX
-syracuse:	SYRACUSENY
-tahlequah:	TAHLEQUAHOK
-talladega:	TALLADEGAAL
-tallahassee:	TALLAHASSEEFL
-tallulah:	TALLULAHLA
-tampa:	TAMPAFL
-taos:	TAOSNM
-taylorville:	TAYLORVILLEIL
-terre haute:	TERREHAUTEIN
-texarkana:	TEXARKANATX
-the villages:	THEVILLAGESFL
-thomaston:	THOMASTONGA
-tiffin:	TIFFINOH
-tifton:	TIFTONGA
-toccoa:	TOCCOAGA
-toledo:	TOLEDOOH
-topeka:	TOPEKAKS
-torrington:	TORRINGTONCT
-traverse city:	TRAVERSECITYMI
-trenton:	TRENTONNJ
-troy:	TROYAL
-truckee:	TRUCKEECA
-tucson:	TUCSONAZ
-tullahoma:	TULLAHOMATN
-tulsa:	TULSAOK
-tupelo:	TUPELOMS
-tuscaloosa:	TUSCALOOSAAL
-tuskegee:	TUSKEGEEAL
-twin falls:	TWINFALLSID
-tyler:	TYLERTX
-ukiah:	UKIAHCA
-union:	UNIONSC
-union city:	UNIONCITYTN
-urbana:	URBANAOH
-utica:	UTICANY
-uvalde:	UVALDETX
-valdosta:	VALDOSTAGA
-vallejo:	VALLEJOCA
-valley:	VALLEYAL
-van wert:	VANWERTOH
-ventura:	VENTURACA
-vernal:	VERNALUT
-vernon:	VERNONTX
-vero beach:	VEROBEACHFL
-vicksburg:	VICKSBURGMS
-victoria:	VICTORIATX
-vidalia:	VIDALIAGA
-vincennes:	VINCENNESIN
-vineland:	VINELANDNJ
-virginia beach:	VIRGINIABEACHVA
-visalia:	VISALIACA
-wabash:	WABASHIN
-waco:	WACOTX
-wahpeton:	WAHPETONND
-walla walla:	WALLAWALLAWA
-walterboro:	WALTERBOROSC
-wapakoneta:	WAPAKONETAOH
-warner robins:	WARNERROBINSGA
-warren:	WARRENPA
-warrensburg:	WARRENSBURGMO
-warsaw:	WARSAWIN
-washington court house:	WASHINGTONCOURTHOUSEOH
-waterloo:	WATERLOOIA
-wauchula:	WAUCHULAFL
-wausau:	WAUSAUWI
-waycross:	WAYCROSSGA
-weirton:	WEIRTONOH
-wenatchee:	WENATCHEEWA
-west plains:	WESTPLAINSMO
-west point:	WESTPOINTMS
-wheeling:	WHEELINGOH
-whitewater:	WHITEWATERWI
-wichita:	WICHITAKS
-wichita falls:	WICHITAFALLSTX
-williamsport:	WILLIAMSPORTPA
-willimantic:	WILLIMANTICCT
-williston:	WILLISTONND
-willmar:	WILLMARMN
-wilson:	WILSONNC
-winchester:	WINCHESTERVA
-winfield:	WINFIELDKS
-winona:	WINONAMN
-winston-salem:	WINSTONSALEMNC
-woodward:	WOODWARDOK
-wooster:	WOOSTEROH
-worcester:	WORCESTERMA
-worthington:	WORTHINGTONMN
-yakima:	YAKIMAWA
-yankton:	YANKTONSD
-yazoo city:	YAZOOCITYMS
-youngstown:	YOUNGSTOWNOH
-yuba city:	YUBACITYCA
-yuma:	YUMAAZ
-zanesville:	ZANESVILLEOH
+abbeville:	00706
+aberdeen:	00384
+abilene:	00232
+ada:	00786
+adrian:	00331
+akron:	00073
+alamogordo:	00558
+albemarle:	00414
+albert lea:	00825
+albertville:	00343
+albuquerque:	00058
+alexander city:	00716
+alice:	00768
+allegan:	00308
+allentown:	00065
+alma:	00761
+alpena:	00828
+altoona:	00290
+altus:	00842
+amarillo:	00180
+americus:	00783
+ames:	00666
+amsterdam:	00726
+anchorage:	00530
+andrews:	00889
+angola:	00504
+ann arbor:	00143
+anniston:	00649
+appleton:	00187
+arcadia:	00502
+ardmore:	00708
+arkadelphia:	00858
+asheville:	00116
+ashland:	00902
+ashtabula:	00327
+astoria:	00494
+atchison:	00931
+atlanta:	00010
+atlantic city:	00163
+bainbridge:	00594
+bakersfield:	00063
+baltimore:	00021
+bangor:	00627
+baraboo:	00408
+barre:	00559
+bartlesville:	00723
+bastrop:	00610
+batavia:	00417
+batesville:	00795
+baton rouge:	00066
+battle creek:	00276
+beatrice:	00865
+beaumont:	00130
+beaver dam:	00351
+beckley:	00672
+bedford:	00462
+beeville:	00512
+bellefontaine:	00464
+bellingham:	00200
+bemidji:	00751
+bend:	00244
+bennington:	00606
+berlin:	00484
+big rapids:	00470
+big spring:	00608
+billings:	00243
+binghamton:	00177
+birmingham:	00050
+bishop:	00527
+bismarck:	00312
+blackfoot:	00744
+blacksburg:	00625
+bloomsburg:	00356
+bluefield:	00655
+blytheville:	00737
+bogalusa:	00614
+boise city:	00086
+bonham:	00546
+borger:	00866
+boston:	00011
+boulder:	00157
+bowling green:	00642
+bozeman:	00538
+bradford:	00757
+brainerd:	00664
+branson:	00897
+bremerton:	00178
+brenham:	00505
+brevard:	00507
+brigham city:	00727
+brookhaven:	00609
+brownwood:	00781
+brunswick:	00306
+bucyrus:	00756
+buffalo:	00048
+burley:	00758
+butte:	00807
+cadillac:	00732
+calhoun:	00431
+camden:	00571
+campbellsville:	00585
+canon city:	00460
+cape cod:	00190
+cape girardeau:	00662
+carbondale:	00702
+carlsbad:	00711
+carson city:	00430
+casper:	00379
+cedar city:	00739
+cedar rapids:	00172
+cedartown:	00476
+celina:	00479
+central city:	00822
+chambersburg:	00257
+champaign-urbana:	00185
+charlotte:	00034
+charlottesville:	00621
+chattanooga:	00097
+chester:	00810
+cheyenne:	00346
+chicago:	00004
+chico:	00188
+chillicothe:	00673
+cincinnati:	00028
+city of the dalles:	00522
+claremont:	00468
+clarksburg:	00550
+clarksdale:	00846
+clarksville:	00165
+clearlake:	00402
+clewiston:	00485
+clinton:	00729
+clovis:	00903
+coeur d'alene:	00634
+coffeyville:	00803
+coldwater:	00746
+college station:	00186
+colorado springs:	00083
+concord:	00261
+connersville:	00533
+cookeville:	00319
+coos bay:	00405
+corbin:	00582
+cordele:	00856
+corinth:	00791
+cornelia:	00469
+corning:	00333
+corpus christi:	00113
+corsicana:	00578
+cortland:	00451
+corvallis:	00355
+coshocton:	00496
+country:	00933
+crawfordsville:	00491
+crescent city:	00573
+crossville:	00542
+crowley:	00697
+cullman:	00364
+culpeper:	00461
+cumberland:	00322
+dallas-fort worth:	00005
+dalton:	00265
+daphne:	00215
+davenport:	00131
+dayton:	00062
+daytona beach:	00102
+de ridder:	00607
+defiance:	00778
+del rio:	00730
+deming:	00851
+denver:	00022
+des moines:	00088
+destin:	00216
+detroit:	00013
+dickinson:	00915
+dillon:	00816
+dixon:	00909
+dodge city:	00809
+dothan:	00262
+douglas:	00445
+dover:	00234
+dublin:	00422
+dubois:	00360
+dubuque:	00341
+duluth:	00162
+dumas:	00870
+duncan:	00749
+dunn:	00303
+durango:	00442
+durant:	00762
+durham:	00101
+dyersburg:	00490
+eagle pass:	00434
+east liverpool:	00313
+east stroudsburg:	00226
+easton:	00492
+eau claire:	00237
+edwards:	00420
+effingham:	00805
+el campo:	00564
+el centro:	00222
+el dorado:	00765
+el paso:	00067
+elizabeth city:	00403
+elizabethtown:	00648
+elk city:	00868
+elkhart:	00204
+elko:	00724
+ellensburg:	00478
+elmira:	00350
+emporia:	00797
+enid:	00701
+enterprise:	00330
+erie:	00161
+escanaba:	00790
+espanola:	00922
+eufaula:	00926
+eugene:	00140
+eureka:	00279
+evanston:	00930
+evansville:	00139
+fairbanks:	00537
+fallon:	00523
+fargo:	00195
+faribault:	00693
+fergus falls:	00707
+fernley:	00439
+findlay:	00675
+fitzgerald:	00839
+flagstaff:	00280
+flint:	00114
+fond du lac:	00325
+forest city:	00541
+forrest city:	00835
+fort collins:	00153
+fort dodge:	00782
+fort leonard wood:	00718
+fort madison:	00759
+fort morgan:	00518
+fort myers:	00085
+fort payne:	00679
+fort polk south:	00562
+fort smith:	00155
+fort valley:	00520
+fort wayne:	00120
+fredericksburg:	00853
+freeport:	00904
+fresno:	00056
+gadsden:	00321
+gaffney:	00429
+galesburg:	00388
+gallup:	00677
+garden city:	00793
+gardnerville ranchos:	00458
+georgetown:	00415
+gettysburg:	00328
+gillette:	00740
+glasgow:	00602
+glens falls:	00288
+gloversville:	00427
+goldsboro:	00645
+granbury:	00418
+grand forks:	00532
+grand island:	00385
+grand junction:	00260
+grand rapids:	00070
+grants:	00838
+grants pass:	00358
+great bend:	00837
+great falls:	00362
+greeley:	00175
+green bay:	00150
+greeneville:	00394
+greensboro:	00072
+greensburg:	00521
+grenada:	00598
+gulfport:	00619
+guymon:	00877
+hagerstown:	00168
+hammond:	00535
+hanford:	00251
+harriman:	00435
+harrison:	00747
+harrisonburg:	00644
+hartford:	00046
+hastings:	00615
+hattiesburg:	00264
+havre:	00887
+hays:	00834
+heber:	00575
+henderson:	00745
+hereford:	00882
+hickory:	00137
+hilo:	00213
+hilton head island:	00212
+hinesville:	00370
+hobbs:	00690
+holland:	00170
+homosassa springs:	00266
+honolulu:	00054
+hood river:	00526
+hope:	00820
+hot springs:	00663
+houghton:	00780
+houma:	00196
+houston:	00007
+hudson:	00694
+humboldt:	00448
+huntingdon:	00742
+idaho falls:	00286
+indiana:	00551
+indianapolis:	00035
+indianola:	00927
+iowa city:	00252
+iron mountain:	00826
+ithaca:	00326
+janesville:	00238
+jasper:	00433
+jefferson city:	00629
+jennings:	00821
+jesup:	00572
+johnson city:	00203
+johnstown:	00894
+jonesboro:	00647
+joplin:	00221
+juneau:	00514
+kahului:	00248
+kalamazoo:	00145
+kalispell:	00592
+kankakee:	00305
+kansas city:	00030
+kapaa:	00397
+kearney:	00920
+keene:	00373
+kendallville:	00454
+kennett:	00818
+kennewick:	00174
+kerrville:	00728
+key west:	00383
+kill devil hills:	00808
+killeen:	00125
+kingsport:	00148
+kingston:	00214
+kingsville:	00814
+kinston:	00703
+kirksville:	00912
+klamath falls:	00400
+knoxville:	00076
+kodiak:	00612
+kokomo:	00336
+la crosse:	00282
+la follette:	00480
+la grande:	00849
+laconia:	00416
+lagrange:	00398
+lake charles:	00534
+lake city:	00396
+lake havasu city:	00201
+lakeland:	00087
+lamesa:	00890
+lansing:	00107
+laramie:	00799
+laredo:	00179
+las cruces:	00194
+laurel:	00553
+laurinburg:	00568
+lawrence:	00310
+lawrenceburg:	00474
+lawton:	00294
+levelland:	00860
+lewistown:	00735
+lexington park:	00320
+liberal:	00859
+lima:	00318
+lincolnton:	00369
+little rock:	00075
+lock haven:	00775
+logan:	00643
+logansport:	00486
+london:	00704
+los alamos:	00884
+los angeles:	00003
+louisville-jefferson county:	00043
+lubbock:	00159
+lufkin:	00552
+lumberton:	00636
+lynchburg:	00618
+macomb:	00910
+macon:	00184
+madera:	00256
+madisonville:	00734
+magnolia:	00854
+malone:	00440
+manchester:	00127
+manhattan:	00639
+manitowoc:	00361
+mankato:	00661
+mansfield:	00292
+marinette:	00401
+marquette:	00684
+marshalltown:	00769
+marshfield:	00380
+martin:	00500
+martinsville:	00683
+mason city:	00719
+mayfield:	00908
+maysville:	00824
+mcalester:	00743
+mcallen:	00069
+mccomb:	00712
+mcminnville:	00483
+mcpherson:	00829
+meadville:	00667
+medford:	00198
+melbourne:	00095
+memphis:	00042
+menomonie:	00753
+merced:	00173
+meridian:	00549
+merrill:	00832
+mexico:	00850
+miami:	00911
+miami-fort lauderdale:	00009
+michigan city:	00653
+middlesborough:	00833
+milledgeville:	00600
+milwaukee:	00040
+minden:	00766
+mineral wells:	00574
+minneapolis-st paul:	00017
+minot:	00391
+missoula:	00311
+mitchell:	00862
+moberly:	00584
+mobile:	00123
+modesto:	00100
+montgomery:	00133
+montrose:	00477
+morehead city:	00399
+morgan city:	00709
+morgantown:	00287
+morristown:	00273
+moscow:	00787
+moses lake:	00349
+moultrie:	00563
+mount airy:	00676
+mount sterling:	00752
+msa:	00934
+muncie:	00591
+murray:	00788
+muscatine:	00601
+muskegon:	00225
+muskogee:	00386
+myrtle beach:	00617
+nacogdoches:	00691
+napa:	00274
+naples:	00146
+nashville:	00039
+natchez:	00561
+natchitoches:	00603
+new bern:	00640
+new haven:	00061
+new iberia:	00556
+new london:	00164
+new orleans:	00047
+new philadelphia:	00344
+new ulm:	00847
+new york city:	00002
+nyc:	00002
+newberry:	00605
+newport:	00498
+newton:	00792
+niles:	00247
+nogales:	00455
+norfolk:	00452
+north platte:	00785
+north vernon:	00517
+north wilkesboro:	00682
+norwalk:	00419
+oak harbor:	00368
+oak hill:	00741
+ocala:	00144
+ocean city:	00337
+ocean pines:	00441
+odessa:	00635
+ogden:	00094
+ogdensburg:	00307
+oil city:	00432
+okeechobee:	00482
+oklahoma city:	00045
+olean:	00365
+olympia:	00176
+omaha:	00060
+oneonta:	00407
+ontario:	00710
+opelousas:	00599
+orangeburg:	00345
+orlando:	00027
+oshkosh:	00230
+oskaloosa:	00864
+ottawa:	00626
+ottumwa:	00801
+owatonna:	00796
+owensboro:	00652
+owosso:	00387
+oxford:	00456
+paducah:	00659
+pahrump:	00467
+palatka:	00381
+palestine:	00597
+palm coast:	00339
+pampa:	00855
+panama city:	00228
+paragould:	00473
+parkersburg:	00236
+parsons:	00871
+pascagoula:	00235
+payson:	00436
+pecos:	00891
+pella:	00924
+pendleton:	00354
+pensacola:	00109
+peoria:	00132
+peru:	00495
+philadelphia:	00006
+phoenix:	00015
+phoenix lake:	00428
+picayune:	00426
+pierre:	00918
+pierre part:	00857
+pine bluff:	00657
+pittsburg:	00777
+pittsburgh:	00023
+pittsfield:	00895
+plainview:	00581
+platteville:	00721
+plattsburgh:	00359
+plymouth:	00457
+pocatello:	00665
+point pleasant:	00901
+ponca city:	00736
+pontiac:	00779
+port angeles:	00678
+port st. lucie:	00117
+portales:	00919
+portsmouth:	00367
+pottsville:	00258
+poughkeepsie:	00079
+prescott:	00192
+price:	00873
+prineville:	00587
+providence:	00038
+provo:	00098
+pueblo:	00242
+pullman:	00750
+punta gorda:	00240
+quincy:	00674
+racine:	00206
+raleigh:	00049
+rapid city:	00641
+raymondville:	00867
+reading:	00124
+red bluff:	00404
+red wing:	00738
+redding:	00219
+reno:	00115
+rexburg:	00725
+rio grande city:	00699
+riverside:	00014
+riverton:	00923
+roanoke:	00149
+roanoke rapids:	00869
+rochelle:	00713
+rock springs:	00755
+rockford:	00141
+rockingham:	00906
+rockland:	00772
+rocky mount:	00253
+rolla:	00748
+rome:	00338
+roseburg:	00315
+roswell:	00687
+ruidoso:	00879
+russellville:	00669
+ruston:	00406
+rutland:	00409
+sacramento:	00025
+safford:	00465
+saginaw:	00202
+salem:	00129
+salina:	00698
+salinas:	00121
+salt lake city:	00051
+san angelo:	00536
+san antonio:	00026
+san diego:	00018
+san francisco:	00012
+san jose:	00032
+san luis obispo:	00167
+sandusky:	00374
+sanford:	00423
+santa barbara:	00118
+santa cruz:	00171
+santa fe:	00263
+santa rosa:	00103
+sarasota:	00074
+sault ste. marie:	00604
+savannah:	00142
+sayre:	00696
+scottsbluff:	00784
+scottsboro:	00714
+scottsburg:	00524
+scranton:	00091
+seaford:	00622
+searcy:	00375
+seattle:	00016
+sebring:	00334
+sedalia:	00907
+selinsgrove:	00773
+selma:	00754
+seneca:	00382
+seneca falls:	00499
+sevierville:	00348
+seymour:	00471
+shawnee:	00392
+sheboygan:	00301
+shelby:	00660
+shelbyville:	00466
+shelton:	00413
+sheridan:	00913
+sherman:	00295
+show low:	00317
+shreveport:	00128
+sidney:	00450
+sierra vista:	00285
+silver city:	00516
+silverthorne:	00914
+sioux city:	00631
+sioux falls:	00620
+snyder:	00885
+south bend:	00147
+southern pines:	00352
+spartanburg:	00160
+spearfish:	00916
+spencer:	00528
+spirit lake:	00886
+spokane:	00106
+st. cloud:	00623
+st. george:	00271
+st. joseph:	00638
+st. louis:	00019
+stamford:	00057
+starkville:	00905
+state college:	00249
+statesboro:	00389
+statesville:	00241
+staunton:	00650
+stephenville:	00565
+stevens point:	00898
+stillwater:	00540
+stockton:	00078
+storm lake:	00880
+sturgis:	00410
+sulphur springs:	00569
+summerville:	00595
+sumter:	00316
+sunbury:	00340
+susanville:	00501
+sweetwater:	00888
+syracuse:	00081
+tahlequah:	00459
+talladega:	00671
+tallahassee:	00134
+tallulah:	00893
+tampa:	00020
+taos:	00811
+taylorville:	00804
+terre haute:	00224
+texarkana:	00277
+the villages:	00342
+thomaston:	00840
+tiffin:	00424
+tifton:	00543
+toccoa:	00589
+toledo:	00082
+topeka:	00183
+torrington:	00209
+traverse city:	00632
+trenton:	00135
+troy:	00812
+truckee:	00335
+tucson:	00053
+tullahoma:	00329
+tulsa:	00055
+tupelo:	00275
+tuscaloosa:	00189
+tuskegee:	00872
+twin falls:	00332
+tyler:	00548
+ukiah:	00353
+union:	00929
+union city:	00488
+united states:	00001
+urbana:	00481
+utica:	00154
+uvalde:	00843
+valdosta:	00268
+vallejo:	00122
+valley:	00806
+van wert:	00831
+ventura:	00064
+vernal:	00813
+vernon:	00892
+vero beach:	00272
+vicksburg:	00613
+victoria:	00577
+vidalia:	00567
+vincennes:	00489
+vineland:	00246
+virginia beach:	00037
+visalia:	00110
+wabash:	00508
+waco:	00182
+walla walla:	00421
+walterboro:	00487
+wapakoneta:	00463
+warner robins:	00267
+warren:	00580
+warrensburg:	00717
+warsaw:	00372
+washington court house:	00830
+waterloo:	00229
+wauchula:	00519
+wausau:	00281
+waycross:	00560
+weirton:	00293
+wenatchee:	00309
+west plains:	00770
+west point:	00878
+wheeling:	00259
+whitewater:	00324
+wichita:	00590
+wichita falls:	00576
+williamsport:	00651
+willimantic:	00296
+williston:	00917
+willmar:	00763
+wilson:	00555
+winchester:	00289
+winfield:	00798
+winona:	00720
+winston-salem:	00104
+woodward:	00881
+wooster:	00304
+worcester:	00068
+worthington:	00874
+yakima:	00181
+yankton:	00863
+yazoo city:	00836
+youngstown:	00090
+yuba city:	00231
+yuma:	00205
+zanesville:	00668

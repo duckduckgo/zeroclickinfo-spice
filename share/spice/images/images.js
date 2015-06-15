@@ -18,8 +18,7 @@ function ddg_spice_images(apiResult) {
         },
 
         templates: {
-            item: 'images_item',
-            detail: 'images_detail'
+            group: 'images'
         },
 
         relevancy: {

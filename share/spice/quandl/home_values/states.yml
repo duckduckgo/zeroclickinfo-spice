@@ -1,102 +1,101 @@
-alabama:	ALABAMA
-al:	ALABAMA
-alaska:	ALASKA
-ak:	ALASKA
-arizona:	ARIZONA
-az:	ARIZONA
-arkansas:	ARKANSAS
-ar:	ARKANSAS
-california:	CALIFORNIA
-ca:	CALIFORNIA
-colorado:	COLORADO
-co:	COLORADO
-connecticut:	CONNECTICUT
-ct:	CONNECTICUT
-delaware:	DELAWARE
-de:	DELAWARE
-district of columbia:	DISTRICTOFCOLUMBIA
-dc:	DISTRICTOFCOLUMBIA
-florida:	FLORIDA
-fl:	FLORIDA
-georgia:	GEORGIA
-ga:	GEORGIA
-hawaii:	HAWAII
-hi:	HAWAII
-idaho:	IDAHO
-id:	IDAHO
-illinois:	ILLINOIS
-il:	ILLINOIS
-indiana:	INDIANA
-in:	INDIANA
-iowa:	IOWA
-ia:	IOWA
-kansas:	KANSAS
-ks:	KANSAS
-kentucky:	KENTUCKY
-ky:	KENTUCKY
-louisiana:	LOUISIANA
-la:	LOUISIANA
-maine:	MAINE
-me:	MAINE
-maryland:	MARYLAND
-md:	MARYLAND
-massachusetts:	MASSACHUSETTS
-ma:	MASSACHUSETTS
-michigan:	MICHIGAN
-mi:	MICHIGAN
-minnesota:	MINNESOTA
-mn:	MINNESOTA
-mississippi:	MISSISSIPPI
-ms:	MISSISSIPPI
-missouri:	MISSOURI
-mo:	MISSOURI
-montana:	MONTANA
-mt:	MONTANA
-nebraska:	NEBRASKA
-ne:	NEBRASKA
-nevada:	NEVADA
-nv:	NEVADA
-new hampshire:	NEWHAMPSHIRE
-nh:	NEWHAMPSHIRE
-new jersey:	NEWJERSEY
-nj:	NEWJERSEY
-new mexico:	NEWMEXICO
-nm:	NEWMEXICO
-new york:	NEWYORK
-ny:	NEWYORK
-north carolina:	NORTHCAROLINA
-nc:	NORTHCAROLINA
-north dakota:	NORTHDAKOTA
-nd:	NORTHDAKOTA
-ohio:	OHIO
-oh:	OHIO
-oklahoma:	OKLAHOMA
-ok:	OKLAHOMA
-oregon:	OREGON
-or:	OREGON
-pennsylvania:	PENNSYLVANIA
-pa:	PENNSYLVANIA
-rhode island:	RHODEISLAND
-ri:	RHODEISLAND
-south carolina:	SOUTHCAROLINA
-sc:	SOUTHCAROLINA
-south dakota:	SOUTHDAKOTA
-sd:	SOUTHDAKOTA
-tennessee:	TENNESSEE
-tn:	TENNESSEE
-texas:	TEXAS
-tx:	TEXAS
-utah:	UTAH
-ut:	UTAH
-vermont:	VERMONT
-vt:	VERMONT
-virginia:	VIRGINIA
-va:	VIRGINIA
-washington:	WASHINGTON
-wa:	WASHINGTON
-west virginia:	WESTVIRGINIA
-wv:	WESTVIRGINIA
-wisconsin:	WISCONSIN
-wi:	WISCONSIN
-wyoming:	WYOMING
-wy:	WYOMING
+california:	00001
+ca:	00001
+texas:	00002
+tx:	00002
+new york:	00003
+ny:	00003
+florida:	00004
+fl:	00004
+illinois:	00005
+il:	00005
+pennsylvania:	00006
+pa:	00006
+ohio:	00007
+oh:	00007
+michigan:	00008
+mi:	00008
+georgia:	00009
+ga:	00009
+north carolina:	00010
+nc:	00010
+new jersey:	00011
+nj:	00011
+virginia:	00012
+va:	00012
+washington:	00013
+wa:	00013
+massachusetts:	00014
+ma:	00014
+indiana:	00015
+in:	00015
+arizona:	00016
+az:	00016
+tennessee:	00017
+tn:	00017
+missouri:	00018
+mo:	00018
+maryland:	00019
+md:	00019
+wisconsin:	00020
+wi:	00020
+minnesota:	00021
+mn:	00021
+colorado:	00022
+co:	00022
+alabama:	00023
+al:	00023
+south carolina:	00024
+sc:	00024
+louisiana:	00025
+la:	00025
+kentucky:	00026
+ky:	00026
+oregon:	00027
+or:	00027
+oklahoma:	00028
+ok:	00028
+connecticut:	00029
+ct:	00029
+iowa:	00030
+ia:	00030
+mississippi:	00031
+ms:	00031
+arkansas:	00032
+ar:	00032
+utah:	00033
+ut:	00033
+nevada:	00034
+nv:	00034
+new mexico:	00035
+nm:	00035
+west virginia:	00036
+wv:	00036
+nebraska:	00037
+nb:	00037
+idaho:	00038
+id:	00038
+hawaii:	00039
+hi:	00039
+new hampshire:	00040
+nh:	00040
+rhode island:	00041
+ri:	00041
+montana:	00042
+mt:	00042
+delaware:	00043
+de:	00043
+south dakota:	00044
+sd:	00044
+alaska:	00045
+north dakota:	00046
+nd:	00046
+vermont:	00047
+vt:	00047
+district of columbia:	00048
+dc:	00048
+kansas:	00049
+ks:	00049
+wyoming:	00050
+wy:	00050
+maine:	00051
+me:	00051

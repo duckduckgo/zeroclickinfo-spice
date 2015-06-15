@@ -24,10 +24,9 @@
                 itemType: "Twitch Streams"
             },
             templates: {
-                group: 'base',
+                group: 'videos',
                 detail: false,
                 item_detail: false,
-                item: 'videos_item',
                 moreAt: true,
             },
             normalize: function(item) {
