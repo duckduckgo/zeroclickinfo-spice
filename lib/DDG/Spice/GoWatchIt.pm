@@ -17,7 +17,7 @@ attribution github  => ['https://github.com/plexusent', 'GoWatchIt.com'],
             web     => ['http://gowatchit.com'],
             twitter => ['gowatchit', 'GoWatchIt.com'];
 
-my @triggers = ('watch', 'stream', 'watch online', 'on demand', 'watch now', 'stream online', 'buy movie', 'rent movie');
+my @triggers = ('watch', 'stream', 'watch online', 'on demand', 'watch now', 'stream online', 'buy movie', 'rent movie','movie');
 my @killwords = ('movie', 'show', 'tv', 'online', 'stream');
 
 my $killwords = join '|', @killwords;
