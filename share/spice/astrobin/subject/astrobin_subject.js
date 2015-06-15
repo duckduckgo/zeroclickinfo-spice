@@ -31,8 +31,7 @@
             },
             view: 'Images',
             templates: {
-                item: 'images_item',
-                detail: 'images_detail'
+                group: 'images'
             }
         });
     };

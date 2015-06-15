@@ -9,7 +9,7 @@
         var query = DDG.get_query();
         var clean_query = $.trim(query.replace(/((upcoming\s)?(match(es)?))|(events?)|(schedule)|(sports)|(tickets)|(games)/, '').toLowerCase());
 
-        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
         Spice.add({
             id: "seat_geek_sports",
@@ -119,10 +119,10 @@
                     title: title,
                     place: item.venue.name,
                     city: item.venue.display_location,
-                    month: getMonth(getDate(item.datetime_local)),
+                    year: getYear(getDate(item.datetime_local)),
                     dateBadge: {
                         day: getDay(getDate(item.datetime_local)),
-                        year: getYear(getDate(item.datetime_local))
+                        month: getMonth(getDate(item.datetime_local))
                     }
                 };
             },

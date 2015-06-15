@@ -20,7 +20,9 @@
                 },
                 normalize: function(data){
                     var change = data.ChangeFromPreviousClose,
+                        dateObj = new Date(data.Date), // use Date constructor to handle non-standard date format: mm/dd/yy
                         changeDir;
+
                     moment().utcOffset(data.UTCOffset);
 
                     // remove +/- from change attributes and add up/down class:
@@ -39,8 +41,11 @@
                         quoteChangeDir: changeDir,
                         change: change.toFixed(2),
                         change_percent: data.PercentChangeFromPreviousClose.toFixed(2),
-                        date: moment(data.Date).format("MMM DD"),
-                        time: moment(data.Time, "hh:mm:ss A").format("h:mm A")
+                        date: moment(dateObj).format("MMM DD"),
+                        time: moment(data.Time, "hh:mm:ss A").format("h:mm A"),
+                        // if last close date is today, or time is 4:00 PM then markets are closed
+                        // Note: API reports time is 4PM until 9AM following day
+                        marketClosed: (data.Date === data.PreviousCloseDate || data.Time === "4:00:00 PM")
                     };
                 },
                 templates: {

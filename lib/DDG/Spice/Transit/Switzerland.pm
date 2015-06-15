@@ -4,7 +4,7 @@ package DDG::Spice::Transit::Switzerland;
 use strict;
 use utf8;
 use DDG::Spice;
-use YAML::XS qw(Load);
+use YAML::XS 'LoadFile';
 
 primary_example_queries "next train to geneva from paris";
 secondary_example_queries "train times zurich airport to basel";
@@ -27,7 +27,7 @@ triggers startend => "next train", "train times", "train schedule";
 
 #load a list of stops so we don't trigger this if we don't get train stops
 #(the triggers are similar to SEPTA's)
-my $stops = Load(scalar share('stops.yml')->slurp);
+my $stops = LoadFile(share('stops.yml'));
 
 handle remainder => sub {
     return unless /(?:from |to )?(.+) (to|from) (.+)/;

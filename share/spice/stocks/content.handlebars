@@ -7,6 +7,10 @@
     <span class="stocks__symbol">{{Security.Symbol}}</span>
     <span>as of {{date}} {{time}}</span>
     <span title="Eastern Time Zone"> ET</span>
+    {{#if marketClosed}}
+        <span class="zcm__sep"></span>
+        <span>Markets are closed</span>
+    {{/if}}
 </div>
 <div class="stocks__quotes  stocks__quote-{{quoteChangeDir}}">
     <span class="stocks__quote text--primary">{{quote}}</span>
