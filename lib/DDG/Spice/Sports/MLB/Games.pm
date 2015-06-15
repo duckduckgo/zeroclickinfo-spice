@@ -9,17 +9,18 @@ secondary_example_queries "red sox yankees";
 description "MLB games boxscores search.";
 name "MLB Games";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Sports/MLB/Games.pm";
-topics "sports", "everyday", "entertainment";
+topics "everyday", "entertainment";
 category "entertainment";
 attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
             twitter => ["https://twitter.com/duckduckgo", "DuckDuckGo"];
 
-spice to => '';
+spice to => 'https://duckduckgo.com';
 
 triggers start => '///***never trigger***///';
 
 handle remainder => sub {
-    return $_ if $_ && !exists $skip{lc $_};
+    return $_;
+#    return $_ if $_ && !exists $skip{lc $_};
     return;
 };
 
