@@ -14,7 +14,7 @@ category "entertainment";
 attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
             twitter => ["https://twitter.com/duckduckgo", "DuckDuckGo"];
 
-spice to => 'https://duckduckgo.com';
+spice to => 'https://duckduckgo.com/sports.js?q=$1&callback={{callback}}';
 
 triggers start => '///***never trigger***///';
 
