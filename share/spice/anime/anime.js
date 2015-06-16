@@ -34,10 +34,9 @@
                     img_m: cover_image,
                     heading: item.title,
                     title: item.title,
-                    abstract: item.synopsis.split(' ').slice(0,49).join(' ') + '...',
+                    abstract: item.synopsis,
                     rating: item.community_rating,
-                    url: item.url,
-                    is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
+                    url: item.url
                 };
             },
             templates: {
