@@ -13,7 +13,7 @@
 
         Spice.add({
             id: "seat_geek_sports",
-            name: "Sports",
+            name: "Tickets",
             data: api_result.events,
             meta: {
                 searchTerm: clean_query,
