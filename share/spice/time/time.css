@@ -26,16 +26,19 @@
 }
 
 .dark-header .zci--time .time {
-       color: #e6e6e6;
+    color: #e6e6e6;
 }
 
 @media (max-width: 406px) {
-  .zci--time .time_date {
-      border-left: none;
-      padding-left: 0;
-      margin-top: 0;
-      margin-bottom: 1em;
-  }
+    .zci--time .time_date {
+        border-left: none;
+        padding-left: 0;
+        margin-top: 0;
+        margin-bottom: 1em;
+    }
+    .zci--time .time {
+        float: none;
+    }
 }
 
 .is-mobile .zci--time .time_date {
@@ -44,7 +47,7 @@
 }
 
 @media (max-width: 244px) {
-  .zci--time .time {
-     font-size: 50px;
-  }
+    .zci--time .time {
+       font-size: 50px;
+    }
 }
