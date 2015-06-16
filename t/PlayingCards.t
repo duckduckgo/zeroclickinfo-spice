@@ -27,6 +27,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::PlayingCards',
     ),
     
+    'draw 10 cards' => test_spice(
+        '/js/spice/playing_cards/10',
+        call_type => 'include',
+        caller => 'DDG::Spice::PlayingCards',
+    ),
+    
     'cheap deal' => undef,
     'deal or no deal' => undef,
     'deal' => undef,
