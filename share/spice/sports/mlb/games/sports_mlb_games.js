@@ -16,11 +16,12 @@
 
                 data: apiResult.data.games,
 
-                model: 'MLBGame',
-                from: 'mlb_games',
+                model: apiResult.model,
+                from: apiResult.from,
                 signal: apiResult.signal,
 
                 noDetail: true,
+                itemsExpand: true,
                 expandItems: true,
                 mostRelevant: apiResult.data.most_relevant_game_id,
 
@@ -37,25 +38,20 @@
                 },
 
                 templates: {
-                    item: 'mlb_score_item'
+                    item: apiResult.templates.item
                 },
                 
                 normalize: function(attrs) {
                     attrs.canExpand = false;
                     
                     // Game Finished/In-Progress
-                    if (attrs.pitchers || (attrs.score && attrs.score.pitch_count) || attrs.status === "complete") {
+                    if (attrs.has_started) {
                         attrs.canExpand = true;
                         
-                        var inning = -1,
-                            placeholderStr = '&nbsp;';
+                        var inning = attrs.score.away.innings.length-1 || -1,
+                            placeholderStr = (attrs.has_ended) ? '<span class="tx-clr--grey-light">&bull;</span>' : '&nbsp;';
                         
-                        // finished games
-                        if (attrs.status === "closed" || attrs.status === "complete") {
-                            placeholderStr = '<span class="tx-clr--grey-light">&bull;</span>';
-                            inning = attrs.score.away.innings.length-1;
-                            attrs.complete = true;
-                        } else {
+                        if (attrs.score.pitch_count) {
                             inning = attrs.score.pitch_count.inning-1;
                             
                             // always display placeholders up to 9 innings
