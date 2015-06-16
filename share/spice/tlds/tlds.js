@@ -23,7 +23,7 @@
             data: data,
             meta: {
                 sourceName: 'Namecheap',
-                sourceUrl: "http://api.namecheap.com/xml.response"
+                sourceUrl: "http://namecheap.com"
             },
             normalize: function(item) {
                 return {
@@ -34,7 +34,7 @@
             templates: {
                 group: 'text',
                 options: {
-                    content: Spice.namecheap.namecheap,
+                    
                     moreAt: true
                 }
             }
