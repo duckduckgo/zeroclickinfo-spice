@@ -14,9 +14,7 @@ ddg_spice_test(
         '/js/spice/tlds/.us',
         call_type => 'include',
         caller => 'DDG::Spice::Tlds'
-        
-        
-        
+     
     ),
     
     '.in tld' => test_spice(
@@ -24,16 +22,12 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Tlds'
         
-        
-        
     ),
     
     '.photography tld' => test_spice(
         '/js/spice/tlds/.photography',
         call_type => 'include',
         caller => 'DDG::Spice::Tlds'
-       
-        
         
     ),
     
