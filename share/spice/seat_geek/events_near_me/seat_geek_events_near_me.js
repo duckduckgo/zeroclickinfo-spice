@@ -12,7 +12,7 @@
 
         Spice.add({
             id: "seat_geek_events_near_me",
-            name: "Concerts",
+            name: "Tickets",
             data: api_result.events,
             meta: {
                 sourceName: "SeatGeek",
