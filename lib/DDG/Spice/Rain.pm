@@ -17,9 +17,8 @@ attribution web => [ 'https://bibhas.in', 'Bibhas Debnath' ],
 
 spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
 
-triggers start => "is it raining", "will it rain";
-triggers any => "going to rain";
-triggers end => "raining here", "raining now", "raining today", "raining yet";
+triggers start => "is it raining";
+triggers end => "raining here", "raining now", "raining yet";
 
 spice proxy_cache_valid => '5m';
 
@@ -46,7 +45,6 @@ handle query_lc => sub {
     my $location_str = join(',', @location);
 
     if ($query =~ /^(?:is[ ]it[ ])?
-                    (?:going[ ]to[ ])?
                     rain(?:ing)?[ ]?
                     (?:(?:here|now|yet)[ ]?)?
                     (?:in[ ](.+?))?
