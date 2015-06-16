@@ -20,7 +20,7 @@ attribution web     => ['https://kbhat95.github.io', 'Kishor Bhat'],
 
 
 
-triggers startend => 'deal';
+triggers startend => 'deal', 'draw';
 
 spice to => 'http://deckofcardsapi.com/api/deck/new/draw/?count=$1';
 spice wrap_jsonp_callback => 1;
