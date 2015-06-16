@@ -61,11 +61,11 @@
                     });
                 }
 
-                if (Object.keys(item.dependencies).length > 0) {
-                    var dependencies = $.map(item.dependencies, function(val, key) {
-                        return key + " (" + val + ")";
-                    }).join(", ");
+                var dependencies = $.map(item.dependencies, function(val, key) {
+                    return key + " (" + val + ")";
+                }).join(", ");
 
+                if (dependencies !== "") {
                     boxData.push({
                         label: "Dependencies",
                         value: dependencies
