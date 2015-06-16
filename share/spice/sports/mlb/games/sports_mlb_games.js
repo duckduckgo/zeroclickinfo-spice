@@ -14,7 +14,7 @@
 
                 allowMultipleCalls: true,
 
-                data: apiResult.data.games,
+                data: gameData(apiResult.data),
 
                 model: apiResult.model,
                 from: apiResult.from,
@@ -84,6 +84,33 @@
                 }
             });
         });
+        
+        var gameData = function(data) {
+            if (!DDG.device.isMobile || !data.most_relevant_game_id) {
+                return data.games; 
+            } else if (DDG.device.isMobile && data.most_relevant_game_id) {
+                var foundRelevant = false,
+                    games = [],
+                    i = 0;
+                // for historical games on the first call, 
+                // only add the most relevant game and one previous
+                // (if available)
+                for (; i < data.games.length; i++) {
+                    if (data.games[i].id === data.most_relevant_game_id) {
+                        if (!DDG.device.isMobileLandscape() && data.games[i-1]) { games.push(data.games[i-1]); }
+                        games.push(data.games[i]);
+                        foundRelevant = true;
+                    } else {
+                        if (foundRelevant) {
+                            games.push(data.games[i]);
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+                return games;
+            }
+        }
     }
 
 }(this));
