@@ -21,7 +21,7 @@
         }
 
         Spice.add({
-            id: 'soundcloud',
+            id: 'sound_cloud',
             name: 'Audio',
             data: api_result,
             meta: {
