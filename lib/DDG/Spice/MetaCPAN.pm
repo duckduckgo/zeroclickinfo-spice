@@ -13,7 +13,8 @@ topics "programming", "sysadmin";
 category "programming";
 attribution github  => ['https://github.com/ghedo', 'Alessandro Ghedini'],
             web => ['http://ghedini.me', 'Alessandro Ghedini'],
-            github  => ['https://github.com/dsteinbrunner', 'David Steinbrunner'];
+            github  => ['https://github.com/dsteinbrunner', 'David Steinbrunner'],
+            github  => ['https://github.com/digital-carver', 'SundaraRaman R'];
 
 spice to   => 'http://api.metacpan.org/v0/module/$1?callback={{callback}}';
 
