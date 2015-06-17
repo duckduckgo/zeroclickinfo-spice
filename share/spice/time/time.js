@@ -1,8 +1,8 @@
 (function(env) {
     "use strict";
-    env.ddg_spice_time = function(api) {
+    env.ddg_spice_time = function(api_response) {
 
-        if (!api || api.info == "No matches") {
+        if (!api_response || api_response.info == "No matches") {
             return Spice.failed('time');
         }
 
@@ -44,34 +44,41 @@
             }
         }
 
-        var dateTime = {
-            time: toPrettyTime(dateObj),
-            dayName: days[dateObj.getDay()],
-            day: dateObj.getDate(),
-            monthName: months[dateObj.getMonth()],
-            year: dateObj.getFullYear(),
-            placeName: chosen.geo.state ? (chosen.geo.name + ", " + chosen.geo.state) : chosen.geo.name,
-            offset: chosen.time.timezone.offset.replace(/0|:/g, ""),
-            zone: chosen.time.timezone.zonename,
-            country: chosen.geo.country.name
+        if (!chosen) {
+            return Spice.failed('time');
         }
 
-        Spice.add({
-            id: "time",
-            name: "Time",
-            data: dateTime,
-            signal: 'high',
-            meta: {
-                sourceName: "timeanddate.com",
-                sourceUrl: 'http://www.timeanddate.com/worldclock/city.html?n=' + chosen.id
-            },
-            templates: {
-                group: 'base',
-                options: {
-                    content: Spice.time.content,
-                    moreAt: true
+        DDG.require('moment.js', function(){
+            Spice.add({
+                id: "time",
+                name: "Time",
+                data: chosen,
+                signal: 'high',
+                meta: {
+                    sourceName: "timeanddate.com",
+                    sourceUrl: 'http://www.timeanddate.com/worldclock/city.html?n=' + chosen.id
+                },
+                normalize: function(chosen){
+                    var _time = moment(chosen.time.iso);
+                    _time.utcOffset(chosen.time.iso);
+
+                    return {
+                        time: _time.format("h:mm A"),
+                        day: _time.format("dddd"),
+                        date: _time.format("MMMM, DD YYYY"),
+                        placeName: chosen.geo.state ? (chosen.geo.name + ", " + chosen.geo.state) : chosen.geo.name,
+                        zone: chosen.time.timezone.zonename,
+                        country: chosen.geo.country.name
+                    };
+                },
+                templates: {
+                    group: 'base',
+                    options: {
+                        content: Spice.time.content,
+                        moreAt: true
+                    }
                 }
-            }
+            });
         });
     };
 }(this));
