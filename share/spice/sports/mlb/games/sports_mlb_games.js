@@ -28,13 +28,13 @@
                     sourceIcon: false,
                     sourceUrl: "http://www.bleacherreport.com/",
                     sourceName: 'Bleacher Report',
-                    secondaryText: (!is_mobile) ? '<span class="tx-clr--grey-dark">Data from SportsData</span>' : false,
+                    secondaryText: '<span class="tx-clr--grey-dark">Data from SportsData</span>',
                     hideModeSwitch: true,
                     selectedItem: apiResult.data.most_relevant_game_id,
                     scrollToSelectedItem: true,
                     itemsHighlight: false,
                     itemsExpand: true,
-                    itemType: "Games"
+                    itemType: l("Games")
                 },
 
                 templates: {
@@ -43,6 +43,7 @@
                 
                 normalize: function(attrs) {
                     attrs.canExpand = false;
+                    attrs.relativeDay = getRelativeday(attrs.start_time);
                     
                     // Game Finished/In-Progress
                     if (attrs.has_started) {
@@ -112,7 +113,34 @@
                 }
                 return games;
             }
-        }
+        },
+        
+        getRelativeday = function(dateStr) {
+            var today = moment(),
+                date = moment(DDG.getDateFromString(dateStr)),
+                diff = today.diff(date, 'days'),
+                dayDiff = today.weekday() - date.weekday();
+            
+            if (diff > -2 && diff < 7) {
+                switch(dayDiff) {
+                    case 0:
+                        return l("Today");
+                        break;
+                    case -1:
+                    case 6:
+                        return l("Tomorrow");
+                        break;
+                    case 1:
+                        return l("Yesterday");
+                        break;
+                    default:
+                        return false;
+                        break;
+                }
+            }
+            
+            return false;
+        };
     }
 
 }(this));
