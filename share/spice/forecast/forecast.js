@@ -262,7 +262,8 @@ function ddg_spice_forecast(r) {
             sourceName: 'Forecast.io',
             primaryText: weatherData.header,
             secondaryText: altMeta,
-            variableTileWidth: true
+
+            itemsWidthVaries: true
         },
 
         templates: {
