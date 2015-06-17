@@ -61,15 +61,17 @@
                     });
                 }
 
-                var dependencies = $.map(item.dependencies, function(val, key) {
-                    return key + " (" + val + ")";
-                }).join(", ");
-
-                if (dependencies !== "") {
-                    boxData.push({
-                        label: "Dependencies",
-                        value: dependencies
+                if (item.dependencies) {
+                    var dependencies = $.map(item.dependencies, function(val, key) {
+                        return key + " (" + val + ")";
                     });
+
+                    if (dependencies.length + 0) {
+                        boxData.push({
+                            label: "Dependencies",
+                            value: dependencies.join(", ")
+                        });
+                    }
                 }
 
                 return {
