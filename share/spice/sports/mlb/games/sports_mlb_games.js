@@ -21,9 +21,6 @@
                 signal: apiResult.signal,
 
                 noDetail: true,
-                itemsExpand: true,
-                expandItems: true,
-                mostRelevant: apiResult.data.most_relevant_game_id,
 
                 meta: {
                     idField: 'id',
@@ -33,7 +30,10 @@
                     sourceName: 'Bleacher Report',
                     secondaryText: (!is_mobile) ? '<span class="tx-clr--grey-dark">Data from SportsData</span>' : false,
                     hideModeSwitch: true,
-                    variableTileWidth: true,
+                    selectedItem: apiResult.data.most_relevant_game_id,
+                    scrollToSelectedItem: true,
+                    itemsHighlight: false,
+                    itemsExpand: true,
                     itemType: "Games"
                 },
 
@@ -97,8 +97,10 @@
                 // (if available)
                 for (; i < data.games.length; i++) {
                     if (data.games[i].id === data.most_relevant_game_id) {
-                        if (!DDG.device.isMobileLandscape() && data.games[i-1]) { games.push(data.games[i-1]); }
+                        // most relevant first
                         games.push(data.games[i]);
+                        // one historical game if the layout allows for it
+                        if (!DDG.device.isMobileLandscape() && data.games[i-1]) { games.push(data.games[i-1]); }
                         foundRelevant = true;
                     } else {
                         if (foundRelevant) {
