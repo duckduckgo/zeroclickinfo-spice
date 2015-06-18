@@ -1,15 +1,11 @@
 (function(env) {
     "use strict";
-
     env.ddg_spice_gravatar = function(api_result) {
 
-        // Check for errors.
-        if (!api_result || !api_result.entry || api_result.entry.length === 0) {
+        if(!api_result || !api_result.entry || api_result.entry.length === 0) {
             return Spice.failed('gravatar');
         }
 
-
-        // Display the spice plugin.
         Spice.add({
             data: api_result,
             id: "gravatar",
@@ -35,7 +31,7 @@
                     }
                     return entry.displayName;
                 }
-
+                // Get current location
                 function getCurrentLocation(entry) {
                     if (entry.currentLocation) {
                         return entry.currentLocation;
@@ -43,7 +39,7 @@
                         return "No Location Specified";
                     }
                 }
-
+                // Get array of social media accounts
                 function getAccounts(entry) {
                     var accounts = [];
                     if (entry.accounts) {
@@ -69,7 +65,14 @@
             },
 
             templates: {
-                group: 'icon'
+                group: 'icon',
+                options: {
+                    moreAt: true
+                },
+                variants: {
+                    iconTitle: 'large',
+                    iconImage: 'large'
+                }
             }
         });
     };
