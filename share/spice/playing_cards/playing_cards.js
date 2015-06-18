@@ -7,7 +7,7 @@
 
         Spice.add({
             id: "playing_cards",
-            name: "Deck of Cards",
+            name: "Answer",
             data: api_result.cards,
             meta: {
                 sourceName: "DeckOfCards",
