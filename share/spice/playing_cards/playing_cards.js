@@ -4,7 +4,7 @@
         if(api_result.error || !api_result.cards) {
             return Spice.failed('playing_cards');
         }
-        
+
         Spice.add({
             id: "playing_cards",
             name: "Deck of Cards",
@@ -21,7 +21,7 @@
                 };
             },
             templates: {
-                group: 'media',
+                group: 'movies',
                 detail: false,
                 item_detail: false
             }
