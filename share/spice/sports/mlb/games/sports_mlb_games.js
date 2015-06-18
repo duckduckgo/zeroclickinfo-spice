@@ -19,8 +19,6 @@
                 from: apiResult.from,
                 signal: apiResult.signal,
 
-                noDetail: true,
-
                 meta: {
                     idField: 'id',
                     showMoreAt: true,
@@ -42,7 +40,7 @@
                 
                 normalize: function(attrs) {
                     attrs.canExpand = false;
-                    attrs.relativeDay = getRelativeday(attrs.start_time);
+                    attrs.relativeDay = getRelativeDay(attrs.start_time);
                     
                     // Game Finished/In-Progress
                     if (attrs.has_started) {
@@ -51,6 +49,7 @@
                         var inning = attrs.score.away.innings.length-1 || -1,
                             placeholderStr = (attrs.has_ended) ? '<span class="tx-clr--grey-light">&bull;</span>' : '&nbsp;';
                         
+                        // pitch_count contains the current game status
                         if (attrs.score.pitch_count) {
                             inning = attrs.score.pitch_count.inning-1;
                             
@@ -86,6 +85,10 @@
         });
         
         var gameData = function(data) {
+            // We do a minor transform on the data to ensure that the 
+            // 'most relevant' game appears first.  This is unnecessary
+            // in a desktop environment, or perhaps in a multiple-call
+            // scenario where there isn't a 'more relevant' game.
             if (!DDG.device.isMobile || !data.most_relevant_game_id) {
                 return data.games; 
             } else if (DDG.device.isMobile && data.most_relevant_game_id) {
@@ -114,7 +117,20 @@
             }
         },
         
-        getRelativeday = function(dateStr) {
+        getRelativeDay = function(dateStr) {
+            // moment.js returns 'rounded-down' date diffs
+            // based on hours, making it useless for 
+            // directly determining relative calendar days.  
+            //
+            // Thus, this function just uses the diff to determine
+            // if the game is within the same week, and determines
+            // today/tomorrow/yesterday based on the day of the week.
+            //
+            // This gets around the sticky end-of-month issues that
+            // so many relative date functions encounter. :)
+            
+            // Weekdays are integers representing Sunday (0) 
+            // through Saturday (6).
             var today = moment(),
                 date = moment(DDG.getDateFromString(dateStr)),
                 diff = today.diff(date, 'days'),
@@ -126,7 +142,8 @@
                         return l("Today");
                         break;
                     case -1:
-                    case 6:
+                    // fall through
+                    case 6: // Saturday (6) - Sunday (0)
                         return l("Tomorrow");
                         break;
                     case 1:
