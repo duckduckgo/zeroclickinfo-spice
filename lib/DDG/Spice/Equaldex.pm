@@ -20,19 +20,15 @@ attribution github => ["MrChrisW", "Chris Wilson"],
 
 spice to => 'http://equaldex.com/api/region?format=json&region=$1&callback={{callback}}';
 
-my $triggerRe = qr/^(lgbt|lesbian|gay|bisexual|transgender)\s?(rights?|laws?)\s?(in)?/;
-triggers query_lc => $triggerRe;
+triggers startend => "lgbt", "lesbian", "gay", "bisexual", "transgender";
+my $guardRe = qr/(rights?|laws?) (in)?\s?/;
 
-# Handle statement
-handle query_lc => sub {
-    s/$triggerRe\s+//;
-    return unless $_; # guard - no remainder
-    
-    my $country = $_;
-
-    return $country if defined country2code($country); # return country name if valid 
-    return lc code2country($country) if defined code2country($country); # return country name from 2 letter code
-    
+handle remainder => sub {
+    if(m/$guardRe/) {
+        my $country = $';
+        return $country if defined country2code($country); # return country name if valid 
+        return lc code2country($country) if defined code2country($country); # return country name from 2 letter code
+    }
     return;
 };
 
