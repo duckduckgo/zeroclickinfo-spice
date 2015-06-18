@@ -6,7 +6,7 @@ use DDG::Spice;
 
 primary_example_queries '@duckduckgo';
 secondary_example_queries "twitter yegg";
-description "Shows a user's latest tweet.";
+description "Shows a user's Twitter profile.";
 name "Twitter";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Twitter.pm";
 topics "everyday", "social";
