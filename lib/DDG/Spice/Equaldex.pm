@@ -26,8 +26,10 @@ my $guardRe = qr/(rights?|laws?) (in)?\s?/;
 handle remainder => sub {
     if(m/$guardRe/) {
         my $country = $';
-        return $country if defined country2code($country); # return country name if valid 
-        return lc code2country($country) if defined code2country($country); # return country name from 2 letter code
+        # Workaround for Locale::Country returning ISO 3166-1 alpha-2 code when using country2code("us(a)")
+        $country = "United States" if $country =~ /\busa?\b/; 
+        return $country if defined country2code($country); # Return country name if valid
+        return lc code2country($country) if defined code2country($country); # Return country name from ISO 3166-1 alpha-2 code
     }
     return;
 };

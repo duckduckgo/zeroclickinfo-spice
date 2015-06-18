@@ -23,7 +23,7 @@ ddg_spice_test(
     ),
     
     'transgender rights usa' => test_spice(
-        '/js/spice/equaldex/usa',
+        '/js/spice/equaldex/United%20States',
         call_type => 'include',
         caller => 'DDG::Spice::Equaldex'
     ),
