@@ -1,15 +1,15 @@
 (function (env) {
     "use strict";
 
-    env.ddg_spice_get_events_nearby = function(api_result){
+    env.ddg_spice_get_events = function(api_result){
         if (api_result.error) {
-            return Spice.failed('get_events_nearby');
+            return Spice.failed('get_events');
         }
 
         DDG.require('maps', function(){
         DDG.require('moment.js', function(){
             Spice.add({
-                id: "get_events_nearby",
+                id: "get_events",
                 name: "Local Events",
                 model: "Place",
                 view: "Places",
@@ -41,7 +41,7 @@
                 },
                 templates: {
                     group: 'places',
-                    item: Spice.get_events_nearby.item
+                    item: Spice.get_events.item
                 }
             });
         });
