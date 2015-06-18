@@ -16,7 +16,6 @@
 
                 data: gameData(apiResult.data),
 
-                model: apiResult.model,
                 from: apiResult.from,
                 signal: apiResult.signal,
 
@@ -38,7 +37,7 @@
                 },
 
                 templates: {
-                    item: apiResult.templates.item
+                    item: 'mlb_score_item'
                 },
                 
                 normalize: function(attrs) {
