@@ -23,7 +23,7 @@ ddg_spice_test(
     ),
     
     'transgender rights usa' => test_spice(
-        '/js/spice/equaldex/United%20States',
+        '/js/spice/equaldex/united%20states',
         call_type => 'include',
         caller => 'DDG::Spice::Equaldex'
     ),
@@ -60,6 +60,24 @@ ddg_spice_test(
     
     'lgbt laws spain' => test_spice(
         '/js/spice/equaldex/spain',
+        call_type => 'include',
+        caller => 'DDG::Spice::Equaldex'
+    ),
+    
+    'lgbt laws in png' => test_spice(
+        '/js/spice/equaldex/papua%20new%20guinea',
+        call_type => 'include',
+        caller => 'DDG::Spice::Equaldex'
+    ),
+    
+    'gay laws can' => test_spice(
+        '/js/spice/equaldex/canada',
+        call_type => 'include',
+        caller => 'DDG::Spice::Equaldex'
+    ),
+    
+    'lgbt laws mx' => test_spice(
+        '/js/spice/equaldex/mexico',
         call_type => 'include',
         caller => 'DDG::Spice::Equaldex'
     ),
