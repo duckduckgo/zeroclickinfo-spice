@@ -28,8 +28,16 @@ handle remainder => sub {
         my $country = $';
         # Workaround for Locale::Country returning ISO 3166-1 alpha-2 code when using country2code("us(a)")
         $country = "United States" if $country =~ /\busa?\b/; 
-        return $country if defined country2code($country); # Return country name if valid
-        return lc code2country($country) if defined code2country($country); # Return country name from ISO 3166-1 alpha-2 code
+        # Return full country name if valid
+        return $country if defined country2code($country); 
+        # Return country name from ISO 3166-1 alpha-2 code
+        if(code2country($country, LOCALE_CODE_ALPHA_2)) {
+            return code2country($country, LOCALE_CODE_ALPHA_2);
+        }
+        # Return country name from ISO 3166-1 alpha-3 code
+        if(code2country($country, LOCALE_CODE_ALPHA_3)) {
+            return code2country($country, LOCALE_CODE_ALPHA_3);
+        }
     }
     return;
 };
