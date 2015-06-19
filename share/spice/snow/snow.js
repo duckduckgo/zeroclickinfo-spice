@@ -53,7 +53,7 @@ function nrio (api_result) {
     
     var $dom = Spice.getDOM('snow');
     $dom.css({
-        background: '#D0D0D0',
+        background: '#0C0F2B',
         color: '#fff'
     });
 
