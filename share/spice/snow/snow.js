@@ -45,11 +45,18 @@ function nrio (api_result) {
                 content: Spice.snow.content,
                 moreAt: true
             }
+        },
+        onShow: function(){
+         // add the snowflakes, if it's snowing
+         if(!api_result.is_snowing) { return; }
+            else{
+                makeItSnow();
+            }
         }
     });
 
-    // add the snowflakes, if it's snowing
-    if(!api_result.is_snowing) { return; }
+    
+    
     
     var $dom = Spice.getDOM('snow');
     $dom.css({
@@ -152,5 +159,7 @@ function makeItSnow() {
 
   masthead.appendChild(canvas);
 }
- makeItSnow();
+
+
+ 
 };
