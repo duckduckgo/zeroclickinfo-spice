@@ -21,7 +21,7 @@ function nrio (api_result) {
         api_result.is_snowing = true;
     }
 
-    if(!api_result.answer && api_result.answer.match(/yes/i)) {
+    if(api_result.answer && api_result.answer.match(/yes/i)) {
         api_result.is_snowing = true;
     }
 
@@ -49,7 +49,7 @@ function nrio (api_result) {
     });
 
     // add the snowflakes, if it's snowing
-    if(api_result.is_snowing) { return; }
+    if(!api_result.is_snowing) { return; }
     
     var $dom = Spice.getDOM('snow');
     $dom.css({
