@@ -21,7 +21,7 @@ function nrio (api_result) {
         api_result.is_snowing = true;
     }
 
-    if(api_result.answer && api_result.answer.match(/yes/i)) {
+    if(!api_result.answer && api_result.answer.match(/yes/i)) {
         api_result.is_snowing = true;
     }
 
@@ -57,33 +57,29 @@ function nrio (api_result) {
         color: '#fff'
     });
 
-  function makeItSnow() {
-  // Will it be a storm or peaceful?
-  var COUNT = 300;
+function makeItSnow() {
 
-  // Get our cotaniner
-  var snowContainer = document.querySelector('.zci-wrap');
-  
-        
-
-  // Create the canvas element
+  var COUNT = 700;
+  var masthead = document.querySelector('.zci.zci--snow');
   var canvas = document.createElement('canvas');
   var ctx = canvas.getContext('2d');
-
-  // Get the size of the container, that's why we defined the height in the HTML
-  var width = snowContainer.clientWidth;
-  var height = snowContainer.clientHeight;
+  var width = masthead.clientWidth;
+  var height = masthead.clientHeight;
   var i = 0;
   var active = false;
 
   function onResize() {
-    width = snowContainer.clientWidth;
-    height = snowContainer.clientHeight;
+    width = masthead.clientWidth;
+    height = masthead.clientHeight;
     canvas.width = width;
     canvas.height = height;
     ctx.fillStyle = '#FFF';
 
-    requestAnimFrame(update);
+    var wasActive = active;
+    active = width > 600;
+
+    if (!wasActive && active)
+      requestAnimFrame(update);
   }
 
   var Snowflake = function () {
@@ -95,19 +91,13 @@ function nrio (api_result) {
 
     this.reset();
   }
-  
-  // You can set up the 
+
   Snowflake.prototype.reset = function() {
     this.x = Math.random() * width;
     this.y = Math.random() * -height;
-    
-    // More speed? Change this
     this.vy = 1 + Math.random() * 3;
     this.vx = 0.5 - Math.random();
-
-    // Bigger snow?
     this.r = 1 + Math.random() * 2;
-
     this.o = 0.5 + Math.random() * 0.5;
   }
 
@@ -124,6 +114,9 @@ function nrio (api_result) {
   function update() {
 
     ctx.clearRect(0, 0, width, height);
+
+    if (!active)
+      return;
 
     for (i = 0; i < COUNT; i++) {
       snowflake = snowflakes[i];
@@ -157,7 +150,7 @@ function nrio (api_result) {
   onResize();
   window.addEventListener('resize', onResize, false);
 
-  snowContainer.appendChild(canvas);
-    }
+  masthead.appendChild(canvas);
+}
  makeItSnow();
 };
