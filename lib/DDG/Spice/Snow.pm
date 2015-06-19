@@ -17,7 +17,7 @@ attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
             github => [ 'https://github.com/duckduckgo', 'DuckDuckGo'],
             twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
 
-spice to => 'https://duckduckgo.com/js/spice/snow/$1';
+spice to => 'http://isitsnowingyet.org/api/check/$1/key/{{ENV{DDG_SPICE_SNOW_APIKEY}}}';
 
 triggers any => "snow", "snowing";
 
