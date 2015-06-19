@@ -10,6 +10,7 @@
             Spice.add({
                 id: "wikinews",
                 name: "Wikinews",
+                signal: "high",
                 data: api_result.query.categorymembers,
                 meta: {
                     total: api_result.query.categorymembers.length,
