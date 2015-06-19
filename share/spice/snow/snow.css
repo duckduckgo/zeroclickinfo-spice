@@ -1,13 +1,9 @@
-.zci-wrap{
-    height: 150px;
-}
 .zci.zci--snow.is-active {
     
     margin-top: 0px;
     overflow: hidden;
     padding-top: 20px;
     padding-bottom: 20px;
-    height: 150px;
 }
 
 .zci--snow h3 {
@@ -15,7 +11,7 @@
     font-weight: 900;
 }
 
-.zci--snow .zci__header {
+.zci--snow.zci__header {
     color: #inherit;
     height: 150px;
 }
