@@ -28,12 +28,13 @@
                         source: item.author,
                         url: item.url,
                         excerpt: item.summary,
+                        description: item.summary,
                         image: thumb,
                         relative_time: moment(item.published_at).fromNow()
                     };
                 },
                 templates:{
-                    item: 'news_item'
+                    group: 'media'
                 }
             });
         });
