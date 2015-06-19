@@ -8,7 +8,7 @@
 
 .zci--similar_sites .c-list__items,
 .zci--similar_sites .c-list__item {
-    border-color: transparent;
+    border: none;
 }
 
 .zci--similar_sites .c-list__item a {
