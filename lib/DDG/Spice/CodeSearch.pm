@@ -4,7 +4,7 @@ package DDG::Spice::CodeSearch;
 use strict;
 use DDG::Spice;
 
-triggers startend => "code", "example", "examples";
+triggers startend => "code", "example";
 
 spice to => 'https://searchcode.com/api/jsonp_codesearch_I/?q=$1&callback={{callback}}';
 
