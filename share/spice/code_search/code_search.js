@@ -22,7 +22,8 @@
 
                 return {
                     lines: lines.join('\n'),
-                    title: item.name,
+                    title: item.filename,
+                    subtitle: item.language + ' Example from ' + item.name,
                     url: item.url,
                     file_location: [item.location, item.filename].join('/'),
                     repo_url: item.repo
@@ -37,7 +38,6 @@
                 group: 'text',
                 options: {
                     content: Spice.code_search.content,
-                    subtitle_content: Spice.code_search.subtitle,
                     moreAt: true
                 }
             }
