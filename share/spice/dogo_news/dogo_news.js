@@ -34,7 +34,10 @@
                     };
                 },
                 templates:{
-                    group: 'media'
+                    group: 'media',
+                    options: {
+                        footer: Spice.dogo_news.footer
+                    }
                 }
             });
         });
