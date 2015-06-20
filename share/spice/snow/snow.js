@@ -48,7 +48,9 @@ function nrio (api_result) {
         },
         onShow: function(){
          // add the snowflakes, if it's snowing
-         if(!api_result.is_snowing) { return; }
+         if(!api_result.is_snowing){
+             return; 
+             }
             else{
                 makeItSnow();
             }
