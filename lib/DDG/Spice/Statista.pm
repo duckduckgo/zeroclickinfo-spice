@@ -18,8 +18,13 @@ spice to => 'http://api.statista.com/searchJson/apiKey/{{ENV{DDG_SPICE_STATISTA_
 
 spice wrap_jsonp_callback => 1;
 
-handle remainder => sub {
-    return $_ if $_;
+handle query_lc => sub {
+    if(m{stat(istic)?s? (on|of|for|about) (.+)}) {
+        return $3;
+    }
+    if(m{(.+) stat(istic)?s?$}) {
+        return $1;
+    }
     return;
 };
 
