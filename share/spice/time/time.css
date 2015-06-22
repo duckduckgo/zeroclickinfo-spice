@@ -11,6 +11,14 @@
     font-weight: 300;
 }
 
+.zci--time .c-base__links {
+    margin-top: 0.25em;
+}
+
+.is-mobile .zci--time .c-base__links {
+    margin-top: 0.75em;
+}
+
 @media (max-width: 244px) {
     .zci--time .time {
         font-size: 2.75em;
