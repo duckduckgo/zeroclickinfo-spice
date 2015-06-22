@@ -102,7 +102,7 @@
 
             // If this is a code-shared flight, we may not have the right
             // airline name/code information...try to find a better match
-            if (airlineCode !== queryCarrier) {
+            if (airlineCode !== queryCarrier && flight[i].codeshares) {
 
                 for (var j = 0; j < flight[i].codeshares.length; j++) {
 
