@@ -209,6 +209,18 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    '1000000₫ to €' => test_spice(
+        '/js/spice/currency/1000000/vnd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'convert 123$ to inr' => test_spice(
+        '/js/spice/currency/123/usd/inr',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
 
     # Numbers with with ambiguous formatting.
