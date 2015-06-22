@@ -25,7 +25,7 @@
                     var thumb = item.hi_res_thumb || item.thumb;
                     return {
                         title: item.name,
-                        source: item.author,
+                        source: Handlebars.helpers.ellipsis(item.author, 14),
                         url: item.url,
                         excerpt: item.summary,
                         description: item.summary,
@@ -37,6 +37,9 @@
                     group: 'media',
                     options: {
                         footer: Spice.dogo_news.footer
+                    },
+                    variants: {
+                        tileSnippet: "large"
                     }
                 }
             });
