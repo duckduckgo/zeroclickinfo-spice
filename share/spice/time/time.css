@@ -1,7 +1,6 @@
 .zci--time .time {
     display: inline-block;
     font-size: 3.75em;
-    padding-right: 10px;
     padding-right: 0.4em;
     font-weight: 300;
 }
@@ -10,7 +9,6 @@
     display: inline-block;
     line-height: 1.25;
     font-weight: 300;
-    font-size: 1.25em;
 }
 
 @media (max-width: 244px) {
