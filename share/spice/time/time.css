@@ -1,7 +1,8 @@
 .zci--time .time {
     display: inline-block;
     font-size: 3.75em;
-    padding-right: 0.4em;
+    line-height: 1;
+    padding:.2em 0.4em 0.2em 0;
     font-weight: 300;
 }
 
@@ -15,8 +16,10 @@
     margin-top: 0.25em;
 }
 
-.is-mobile .zci--time .c-base__links {
-    margin-top: 0.75em;
+@media (max-width: 345px) {
+    .is-mobile .zci--time .c-base__links {
+        margin-top: 0.75em;
+    }
 }
 
 @media (max-width: 244px) {
