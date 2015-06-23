@@ -36,12 +36,12 @@
         //Convert 24 hour time to 12 hour time
         function toPrettyTime(date) {
             var hours = date.getHours(),
-                minutes = date.getMinutes()
+                minutes = date.getMinutes();
             return {
                 hours: (hours % 12) || 12,
                 minutes: minutes < 10 ? '0' + minutes : minutes,
                 amPM: hours >= 12 ? "PM" : "AM"
-            }
+            };
         }
 
         var dateTime = {
@@ -54,7 +54,7 @@
             offset: chosen.time.timezone.offset.replace(/0|:/g, ""),
             zone: chosen.time.timezone.zonename,
             country: chosen.geo.country.name
-        }
+        };
 
         Spice.add({
             id: "time",
