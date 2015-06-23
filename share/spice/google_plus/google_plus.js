@@ -18,16 +18,16 @@
             normalize : function(item) {
                 var image = item.image.url.replace(/sz=50$/, "sz=100");
                 return {
-                    img: DDG.toHTTP(image),
-                    heading: item.displayName
+                    image: DDG.toHTTP(image),
+                    title: item.displayName
                 };
             },
             templates: {
-                group: 'products',
+                group: 'media',
                 item_detail: false,
                 detail: false,
                 options: {
-                    rating: false
+                    moreAt: true
                 },
                 variants: {
                     tile: 'narrow'
