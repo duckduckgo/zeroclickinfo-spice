@@ -20,7 +20,7 @@
                     sourceName: 'DOGOnews',
                     sourceUrl: 'http://www.dogonews.com/search?query=' + encodeURIComponent(query),
                     itemType: 'kids news articles',
-                    snippetChars: 200
+                    snippetChars: 110
                 },
                 normalize: function(item) {
                     var thumb = item.hi_res_thumb || item.thumb;
