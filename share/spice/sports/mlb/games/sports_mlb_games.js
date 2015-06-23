@@ -12,8 +12,6 @@
                 id: 'mlb_games',
                 name: 'MLB Games',
 
-                allowMultipleCalls: true,
-
                 data: gameData(apiResult.data),
 
                 from: apiResult.from,
