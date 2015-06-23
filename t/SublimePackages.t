@@ -12,8 +12,15 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::SublimePackages'
     ),
+    
     'sublime text package php' => test_spice(
         '/js/spice/sublime_packages/php',
+        call_type => 'include',
+        caller => 'DDG::Spice::SublimePackages'
+    ),
+    
+    'sublime text package for json' => test_spice(
+        '/js/spice/sublime_packages/json',
         call_type => 'include',
         caller => 'DDG::Spice::SublimePackages'
     ),
