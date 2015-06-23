@@ -3,11 +3,11 @@
     env.ddg_spice_google_plus = function(api_result){
 
         if(!api_result || !api_result.items || api_result.items.length === 0) {
-            return Spice.failed("googleplus");
+            return Spice.failed("google_plus");
         }
 
         Spice.add({
-            id: 'googleplus',
+            id: 'google_plus',
             name: 'Social',
             data: api_result.items,
             meta: {
