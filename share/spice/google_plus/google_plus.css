@@ -1,19 +1,12 @@
-.tile--googleplus .tile__media {
-    height: 12em;
+.tile--google_plus .tile__media {
+    height: 10em;
 }
 
-.tile--googleplus  .tile__media__img {
-    margin-top: 1.6em;
+.tile--google_plus  .tile__media__img {
+    margin-top: 1.4em;
     border-radius: 100%;
 }
 
-.tile--googleplus  .tile__title--pr {
+.tile--google_plus  .tile__title {
     text-align: center;
-    font-size: 1.4em;
-    font-weight: 400;
-    height: 2.5em;
-}
-
-.tile--googleplus .tile--pr__sub {
-    display: none;
 }
