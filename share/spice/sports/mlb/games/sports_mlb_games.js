@@ -35,7 +35,13 @@
                 },
 
                 templates: {
-                    item: 'mlb_score_item'
+                    item: 'base_expanding_item',
+                    options: {
+                        content: Spice.sports_mlb_games.mlb_score
+                    },
+                    elClass: {
+                        tileExpand: "c-score__foot-icon"
+                    }
                 },
                 
                 normalize: function(attrs) {
@@ -47,7 +53,16 @@
                         attrs.canExpand = true;
                         
                         var inning = attrs.score.away.innings.length-1 || -1,
-                            placeholderStr = (attrs.has_ended) ? '<span class="tx-clr--grey-light">&bull;</span>' : '&nbsp;';
+                            placeholderStr = '&nbsp;';
+                            
+                        if (attrs.has_ended) {
+                            placeholderStr = '<span class="tx-clr--grey-light">&bull;</span>';
+                            attrs.textTotal = l("Final");
+                            attrs.textGameOver = l("Game ended");
+                        } else {
+                            attrs.textTotal = l("Score");
+                            attrs.textLastUpdate = l("Last updated %s", Handlebars.helpers.momentTime(attrs.updated));
+                        }
                         
                         // pitch_count contains the current game status
                         if (attrs.score.pitch_count) {
