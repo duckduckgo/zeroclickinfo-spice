@@ -25,7 +25,8 @@ my $skip = join "|", share('skipwords.txt')->slurp(chomp => 1);
 handle remainder => sub {
     return unless $_; 
     # Do not trigger IA if query matches any words in skipwords.txt file
-    return if  m/$skip/i;  
+    return if  m/$skip/i;
+     s/\b(for)\s+?\b//g; #skip common words
     return $_;
 };
 
