@@ -35,8 +35,6 @@
                 function getCurrentLocation(entry) {
                     if (entry.currentLocation) {
                         return entry.currentLocation;
-                    } else {
-                        return "No Location Specified";
                     }
                 }
                 // Get array of social media accounts
@@ -49,8 +47,6 @@
                                 href: this.url
                             });
                         });
-                    } else {
-                        accounts = ["Additional Information Unavailable"];
                     }
                     return accounts;
                 }
