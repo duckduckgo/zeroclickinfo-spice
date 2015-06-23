@@ -16,7 +16,12 @@
                 meta: {
                     sourceName: 'NASDAQ',
                     sourceUrl: url,
-                    attributionText: "Xignite"
+                    options: {
+                        moreText: { 
+                            href: 'https://xignite.com', 
+                            text: 'Xignite' 
+                        }
+                    }
                 },
                 normalize: function(data){
                     var change = data.ChangeFromPreviousClose,
@@ -52,7 +57,7 @@
                     group: 'base',
                     options: {
                         content: Spice.stocks.content,
-                        moreAt: false
+                        moreAt: true,
                     }
                 }
             });
