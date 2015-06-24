@@ -19,7 +19,7 @@
                     options: {
                         moreText: { 
                             href: 'https://xignite.com', 
-                            text: 'Xignite' 
+                            text: 'Data by Xignite' 
                         }
                     }
                 },
