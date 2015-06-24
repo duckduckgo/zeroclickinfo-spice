@@ -116,6 +116,8 @@
                         // most relevant first
                         games.push(data.games[i]);
                         // one historical game if the layout allows for it
+                        // limiting to portrait view as there's more vertical space
+                        // landscape mode should be more concise
                         if (!DDG.device.isMobileLandscape() && data.games[i-1]) { games.push(data.games[i-1]); }
                         foundRelevant = true;
                     } else {
