@@ -21,7 +21,7 @@
                     idField: 'id',
                     showMoreAt: true,
                     sourceIcon: false,
-                    sourceUrl: "http://www.bleacherreport.com/",
+                    sourceUrl: "http://www.bleacherreport.com/mlb",
                     sourceName: 'Bleacher Report',
                     secondaryText: '<span class="tx-clr--grey-dark">Data from SportsData</span>',
                     hideModeSwitch: true,
