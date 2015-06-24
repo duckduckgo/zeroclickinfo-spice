@@ -26,6 +26,10 @@ handle remainder => sub {
     if(/^\w\.\w/) {
         s/\./\. /g;
     }
+    
+    # Hacky fix to avoid triggering on 'stock quote'
+    # 'stock quote' is handled by the Stocks IA
+    s/stock//g;
 
     return $_ if $_;
     return;
