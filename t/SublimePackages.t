@@ -25,6 +25,30 @@ ddg_spice_test(
         caller => 'DDG::Spice::SublimePackages'
     ),
     
+    'sublimetext package html linux' => test_spice(
+        '/js/spice/sublime_packages/html%20%3Alinux',
+        call_type => 'include',
+        caller => 'DDG::Spice::SublimePackages'
+    ),
+    
+    'sublimetext package javascript mac os x' => test_spice(
+        '/js/spice/sublime_packages/javascript%20%3Aosx',
+        call_type => 'include',
+        caller => 'DDG::Spice::SublimePackages'
+    ),
+    
+    'sublimetext package text version 2' => test_spice(
+        '/js/spice/sublime_packages/text%20%3Ast2',
+        call_type => 'include',
+        caller => 'DDG::Spice::SublimePackages'
+    ),
+    
+    'sublimetext package text version 3' => test_spice(
+        '/js/spice/sublime_packages/text%20%3Ast3',
+        call_type => 'include',
+        caller => 'DDG::Spice::SublimePackages'
+    ),
+    
     'about sublime text' => undef,
     'sublimetext download' => undef,
 
