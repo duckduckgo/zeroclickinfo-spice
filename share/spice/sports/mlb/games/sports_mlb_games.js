@@ -133,44 +133,20 @@
         },
         
         getRelativeDay = function(dateStr) {
-            // moment.js returns 'rounded-down' date diffs
-            // based on hours, making it useless for 
-            // directly determining relative calendar days.  
-            //
-            // Thus, this function just uses the diff to determine
-            // if the game is within the same week, and determines
-            // today/tomorrow/yesterday based on the day of the week.
-            //
-            // This gets around the sticky end-of-month issues that
-            // so many relative date functions encounter. :)
-            
-            // Weekdays are integers representing Sunday (0) 
-            // through Saturday (6).
             var today = moment(),
-                date = moment(DDG.getDateFromString(dateStr)),
-                diff = today.diff(date, 'days'),
-                dayDiff = today.weekday() - date.weekday();
-            
-            if (diff > -2 && diff < 7) {
-                switch(dayDiff) {
-                    case 0:
-                        return l("Today");
-                        break;
-                    case -1:
-                    // fall through
-                    case 6: // Saturday (6) - Sunday (0)
-                        return l("Tomorrow");
-                        break;
-                    case 1:
-                        return l("Yesterday");
-                        break;
-                    default:
-                        return false;
-                        break;
-                }
+                date = moment.utc(dateStr, "YYYY-MM-DD HH:mm:ss").local(),
+                tomorrow = moment().add(1, 'd'),
+                yesterday = moment().subtract(1, 'd');
+
+            if (date.isSame(today, 'd')) { 
+                return l("Today");
+            } else if (date.isSame(yesterday, 'd')) {
+                return l("Yesterday");
+            } else if (date.isSame(tomorrow, 'd')) {
+                return l("Tomorrow");
+            } else {
+                return false;
             }
-            
-            return false;
         };
     }
 
