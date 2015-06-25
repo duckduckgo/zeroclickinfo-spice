@@ -24,12 +24,12 @@ my $skip = join "|", share('skipwords.txt')->slurp(chomp => 1);
 handle remainder => sub {
     return unless $_; 
     # OS search filters
-    s/linux/:linux/g; 
-    s/windows/:win/g;
-    s/mac\s?os\s?x|os\s?x/:osx/g;
+    s/\blinux\b/:linux/g; 
+    s/\bwindows\b|\bwin\b/:win/g;
+    s/\bmac\s?os\s?x\b|\bos\s?x\b/:osx/g;
     # Version search filters
-    s/version 2/:st2/g;
-    s/version 3/:st3/g;
+    s/v?(ersion )?2/:st2/g;
+    s/v?(ersion )?3/:st3/g;
     # Do not trigger IA if query matches any words in skipwords.txt file
     return if  m/$skip/i;
     s/\b(for)\s+?\b//g; #skip common words

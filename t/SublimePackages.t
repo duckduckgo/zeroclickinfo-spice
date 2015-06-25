@@ -7,13 +7,15 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::SublimePackages )],
+    
+    # Basic tests
     'sublimetext package code' => test_spice(
         '/js/spice/sublime_packages/code',
         call_type => 'include',
         caller => 'DDG::Spice::SublimePackages'
     ),
     
-    'sublime text package php' => test_spice(
+    'sublime text php' => test_spice(
         '/js/spice/sublime_packages/php',
         call_type => 'include',
         caller => 'DDG::Spice::SublimePackages'
@@ -25,6 +27,8 @@ ddg_spice_test(
         caller => 'DDG::Spice::SublimePackages'
     ),
     
+    
+    # Operating system filtering tests
     'sublimetext package html linux' => test_spice(
         '/js/spice/sublime_packages/html%20%3Alinux',
         call_type => 'include',
@@ -37,6 +41,20 @@ ddg_spice_test(
         caller => 'DDG::Spice::SublimePackages'
     ),
     
+    'sublimetext package auto osx' => test_spice(
+        '/js/spice/sublime_packages/auto%20%3Aosx',
+        call_type => 'include',
+        caller => 'DDG::Spice::SublimePackages'
+    ),
+    
+    'sublime text package javascript win' => test_spice(
+        '/js/spice/sublime_packages/javascript%20%3Awin',
+        call_type => 'include',
+        caller => 'DDG::Spice::SublimePackages'
+    ),
+    
+    
+    # Version filtering tests
     'sublimetext package text version 2' => test_spice(
         '/js/spice/sublime_packages/text%20%3Ast2',
         call_type => 'include',
@@ -45,6 +63,18 @@ ddg_spice_test(
     
     'sublimetext package text version 3' => test_spice(
         '/js/spice/sublime_packages/text%20%3Ast3',
+        call_type => 'include',
+        caller => 'DDG::Spice::SublimePackages'
+    ),
+    
+    'sublime text 2 yml' => test_spice(
+        '/js/spice/sublime_packages/%3Ast2%20yml',
+        call_type => 'include',
+        caller => 'DDG::Spice::SublimePackages'
+    ),
+    
+    'sublime text v3 yml' => test_spice(
+        '/js/spice/sublime_packages/%3Ast3%20yml',
         call_type => 'include',
         caller => 'DDG::Spice::SublimePackages'
     ),
