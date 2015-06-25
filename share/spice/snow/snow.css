@@ -1,4 +1,4 @@
-.zci.zci--snow.is-active{
+.zci--snow{
     
     margin-top: 0px;
     overflow: hidden;
@@ -6,7 +6,7 @@
     padding-bottom: 20px;
     background: #D0D0D0;
 }
-.dark-header .zci.zci--snow.is-active{
+.dark-header .zci--snow{
     
     margin-top: 0px;
     overflow: hidden;
