@@ -21,7 +21,8 @@ ddg_spice_test(
         caller => 'DDG::Spice::BrainyQuote',
     ),
 
-    'stock quote' => undef,
+    'microsoft stock quote' => undef,
+    'stock quote duckduckgo' => undef,
     'quote' => undef
 );
 
