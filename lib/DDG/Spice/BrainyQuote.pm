@@ -27,9 +27,10 @@ handle remainder => sub {
         s/\./\. /g;
     }
     
-    # Hacky fix to avoid triggering on 'stock quote'
-    # 'stock quote' is handled by the Stocks IA
-    s/stock//g;
+    # Avoid triggering on 'stock' quotes; these are handled by Stocks IA
+    if ($req->query_lc =~ m/stock quote/) {
+       return;
+    }
 
     return $_ if $_;
     return;
