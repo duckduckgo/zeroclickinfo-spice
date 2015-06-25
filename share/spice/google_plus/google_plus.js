@@ -31,6 +31,9 @@
                 },
                 variants: {
                     tile: 'narrow'
+                },
+                elClass: {
+                    tileTitle: "tx--17"
                 }
             }
         });
