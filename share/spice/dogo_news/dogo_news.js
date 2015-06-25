@@ -11,6 +11,10 @@
             source = $(script).attr("src"),
             query = decodeURIComponent(source.match(/dogo_news\/([^\/]+)/)[1]);
 
+        var getFirstNameLastInitial = function(name) {
+            return name.replace(/(.* )([A-Z])[^ ]+$/, '$1 $2.');
+        };
+        
         DDG.require('moment.js', function(){
             Spice.add({
                 id: 'dogo_news',
@@ -26,7 +30,7 @@
                     var thumb = item.hi_res_thumb || item.thumb;
                     return {
                         title: item.name,
-                        source: Handlebars.helpers.ellipsis(item.author, 14),
+                        source: Handlebars.helpers.ellipsis(getFirstNameLastInitial(item.author), 15),
                         url: item.url,
                         excerpt: item.summary,
                         description: item.summary,
@@ -36,6 +40,8 @@
                 },
                 templates:{
                     group: 'media',
+                    detail: false,
+                    item_detail: false,
                     options: {
                         footer: Spice.dogo_news.footer
                     },
