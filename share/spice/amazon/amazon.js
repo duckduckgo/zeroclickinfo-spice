@@ -1,9 +1,8 @@
 (function(env) {
     "use strict";
-
     env.ddg_spice_amazon = function(api_result) {
 
-        if (!api_result || !api_result.results || !api_result.results.length || api_result.results.length == 0) {
+        if (!api_result || !api_result.results || !api_result.results.length) {
             return Spice.failed('products');
         }
 
@@ -18,7 +17,7 @@
                 sourceUrl: api_result.more_at,
                 sourceIcon: true,
                 next: api_result.next,
-                rerenderOnChange: [
+                rerender: [
                     'reviewCount'
                 ]
             },
