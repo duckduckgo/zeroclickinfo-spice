@@ -1,0 +1,121 @@
+<div class="c-score  c-score--mlb  {{#if score.away.innings}}has-score{{else}}no-score{{/if}}">
+	<div class="c-score__head">
+		<div class="c-score__head__date">
+			{{#if has_interesting_status}}
+				<span class="c-score__status">{{status}}</span>
+			{{else}}
+				{{#if score.pitch_count}}
+					<span class="c-score__clock"><span class="c-score__clock__icon ddgsi-t-{{#if score.pitch_count.half_over}}down{{else}}up{{/if}}"></span>{{ordinal score.pitch_count.inning}}</span>
+				{{else}}
+					{{#if relativeDay}}
+						<span class="tx-clr--slate">{{relativeDay}}</span>
+					{{else}}
+						{{momentDate start_time}}
+					{{/if}}
+				{{/if}}
+			{{/if}}
+		</div>
+		{{#if has_started}}
+			<div class="c-score__sequence  c-score__opt">
+			{{#each score.away.innings}}
+				<div class="c-score__item  c-score__item--{{type}}">{{number}}</div>
+			{{/each}}
+			</div>
+			<div class="c-score__totals">
+				<div class="c-score__head__total">{{textTotal}}</div>
+				<div class="c-score__opt">
+					<div class="c-score__item  c-score__item--inning">H</div>
+					<div class="c-score__item  c-score__item--inning">E</div>
+				</div>
+			</div>
+		{{else}}
+			<div class="c-score__head__time">{{momentTime start_time}}</div>
+		{{/if}}
+	</div>
+	<div class="c-score__line  c-score__line--vs1">
+		<div class="c-score__line__name">
+			{{#with away_team}}
+			<div class="c-score__team">
+				<div class="c-score__team__logo">
+					<img class="c-score__team__img  js-lazysvg" src="" data-src="{{image}}">
+				</div>
+				<div class="c-score__team__name">
+					<span class="c-score__team__market">{{location}}</span>
+					<span class="c-score__team__nick">{{name}}</span>
+				</div>
+				<div class="c-score__team__short">{{short_name}}</div>
+			</div>
+			{{/with}}
+		</div>
+		{{#if has_started}}
+			{{#with score.away}}
+			<div class="c-score__sequence  c-score__opt">
+			{{#each innings}}
+				<div class="c-score__item  c-score__item--{{type}}"><span class="{{#if current}}c-score__is-current{{/if}}">{{{runs}}}</span></div>
+			{{/each}}
+			</div>
+			<div class="c-score__totals">
+				<div class="c-score__line__total">{{runs}}{{#if winner}}<span class="c-score__win-marker"></span>{{/if}}</div>
+				<div class="c-score__opt">
+					<div class="c-score__item  c-score__item--inning">{{hits}}</div>
+					<div class="c-score__item  c-score__item--inning">{{errors}}</div>
+				</div>
+			</div>
+			{{/with}}
+		{{/if}}
+	</div>
+	<div class="c-score__line  c-score__line--vs2" data-vs="@">
+		<div class="c-score__line__name">
+			{{#with home_team}}
+			<div class="c-score__team">
+				<div class="c-score__team__logo">
+					<img class="c-score__team__img  js-lazysvg" src="" data-src="{{image}}">
+					
+				</div>
+				<div class="c-score__team__name">
+					<span class="c-score__team__market">{{location}}</span>
+					<span class="c-score__team__nick">{{name}}</span>
+				</div>
+				<div class="c-score__team__short">{{short_name}}</div>
+			</div>
+			{{/with}}
+		</div>
+		{{#if has_started}}
+			{{#with score.home}}
+			<div class="c-score__sequence  c-score__opt">
+			{{#each innings}}
+				<div class="c-score__item  c-score__item--{{type}}"><span class="{{#if current}}c-score__is-current{{/if}}">{{{runs}}}</span></div>
+			{{/each}}
+			</div>
+			<div class="c-score__totals">
+				<div class="c-score__line__total">{{runs}}{{#if winner}}<span class="c-score__win-marker"></span>{{/if}}</div>
+				<div class="c-score__opt">
+					<div class="c-score__item  c-score__item--inning">{{hits}}</div>
+					<div class="c-score__item  c-score__item--inning">{{errors}}</div>
+				</div>
+			</div>
+			{{/with}}
+		{{/if}}
+	</div>
+	<div class="c-score__foot">
+		<div class="c-score__foot__main">
+			<div class="c-score__venue">@ {{venue.market}}<span class="c-score__venue__name"> - {{venue.name}}</span></div>
+			<div class="c-score__foot__more  c-score__opt">
+			{{#if has_ended}}
+				{{#if pitchers}}
+				{{#with pitchers}}
+				<span class="c-score__win-loss">
+					<span class="c-score__foot__info">W: {{win.last_name}} ({{win.win}}-{{win.loss}})</span>
+					<span class="c-score__foot__info">L: {{loss.last_name}} ({{loss.win}}-{{loss.loss}})</span>
+				</span>
+				{{/with}}
+				{{else}}
+					<span class="c-score__foot__info">{{textGameOver}}</span>
+				{{/if}}
+			{{else}}
+				{{#and updated has_started}}<span class="c-score__foot__info">{{textLastUpdate}}</span>{{/and}}
+			{{/if}}
+			</div>
+		</div>
+	</div>
+</div>

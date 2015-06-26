@@ -43,7 +43,7 @@ my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is
 my $number_re = number_style_regex();
 my $cardinal_re = join('|', qw(hundred thousand k million m billion b trillion));
 
-my $guard = qr/^$question_prefix(\p{Currency_Symbol})?($number_re*)\s?($cardinal_re)?\s?($currency_qr)?(?:s)?(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?(\p{Currency_Symbol})?(?:s)?\??$/i;
+my $guard = qr/^$question_prefix(\p{Currency_Symbol})?($number_re*)(\p{Currency_Symbol})?\s?($cardinal_re)?\s?($currency_qr)?(?:s)?(?:$into_qr|$vs_qr|\s)?($number_re*)\s?($currency_qr)?(\p{Currency_Symbol})?(?:s)?\??$/i;
 
 triggers query_lc => qr/\p{Currency_Symbol}|$currency_qr/;
 
@@ -124,7 +124,7 @@ handle query_lc => sub {
 
     if(/$guard/) {
                
-        my ($fromSymbol, $amount, $cardinal, $from, $alt_amount, $to, $toSymbol) = ($1 || '', $2, $3 || '', $4 || '', $5 || '' , $6 || '', $7 || '');               
+        my ($fromSymbol, $amount, $cardinal, $from, $alt_amount, $to, $toSymbol) = ($1 || $3 || '', $2, $4 || '', $5 || '', $6 || '' , $7 || '', $8 || '');               
         
         
         if ($from eq '' && $fromSymbol) {
