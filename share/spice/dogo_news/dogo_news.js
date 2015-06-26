@@ -46,7 +46,9 @@
                         footer: Spice.dogo_news.footer
                     },
                     variants: {
-                        tileSnippet: "large",
+                        tileSnippet: "large"
+                    },
+                    elClass: {
                         tileFoot: "tx-clr--grey-light"
                     }
                 }
