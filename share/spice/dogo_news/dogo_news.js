@@ -46,7 +46,8 @@
                         footer: Spice.dogo_news.footer
                     },
                     variants: {
-                        tileSnippet: "large"
+                        tileSnippet: "large",
+                        tileFoot: "tx-clr--grey-light"
                     }
                 }
             });
