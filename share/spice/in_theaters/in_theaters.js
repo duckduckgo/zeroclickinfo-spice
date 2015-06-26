@@ -55,7 +55,10 @@
                 sourceName: 'Rotten Tomatoes',
                 sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
                 total: api_result.movies,
-                itemType: 'Movies'
+                itemType: 'Movies',
+                rerender: [
+                    'image'
+                ]
             },
             normalize: function(item) {
                 if (filter_rating && item.mpaa_rating.toLowerCase() !== filter_rating) {
@@ -104,22 +107,24 @@
                 }
             },
             onItemShown: function(item) {
+                var model = item.model,
+                    id = model.alternate_ids && model.alternate_ids.imdb;
+
+                if (!id) { return; }
+
                 $.ajaxSetup({ cache: true });
-                
-                if(item && item.alternate_ids && item.alternate_ids.imdb) {
-                    $.getJSON("/js/spice/movie_image/tt" + item.alternate_ids.imdb, function(data) {
-                        if(data && data.movie_results && data.movie_results.length > 0 && data.movie_results[0].poster_path) {
-                            var image = "https://image.tmdb.org/t/p/w185" + data.movie_results[0].poster_path,
-                                $html = (item.$html) ? item.$html : DDG.duckbar.tabs[item.parentId].view.$el;
-                                
-                            $html.find(".js-movie-img").attr("src", "https://images.duckduckgo.com/iu/?f=1&u=" + encodeURIComponent(image));
-                            $.extend(item, {
-                                image: image,
-                                img: image,
-                                img_m: image
-                            });
-                        }
-                    });
+
+                $.getJSON("/js/spice/movie_image/tt" + id, function(data) {
+                    var path = data && data.movie_results && data.movie_results.length && data.movie_results[0].poster_path,
+                        image = path && "https://image.tmdb.org/t/p/w185" + path;
+
+                    if (image) {
+                        model.set({
+                            img: image,
+                            img_m: image,
+                            image: image
+                        });
+                    }
                 }
             }
         });
