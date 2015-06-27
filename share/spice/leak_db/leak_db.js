@@ -24,7 +24,7 @@
                 sourceName: 'Abusix'
             },
             templates: {
-                group: 'base',
+                group: 'list',
                 options:{
                     content: 'record',
                     moreAt: true,
