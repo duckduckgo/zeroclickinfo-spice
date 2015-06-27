@@ -23,6 +23,11 @@
                 sourceUrl: 'http://leakdb.abusix.com/?q='+ encodeURIComponent(query),
                 sourceName: 'Abusix'
             },
+            normalize: function(item) {
+                return {
+                    title: 'hashes for "' + api_result.query + '"'
+                };
+            },
             templates: {
                 group: 'list',
                 options:{
