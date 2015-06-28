@@ -9,7 +9,7 @@ primary_example_queries "events in chicago","what to do in chicago","things to d
 secondary_example_queries "chicago events","chicago things to do";
 
 description "Upcoming events from GetEvents";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GetEvents1.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GetEvents.pm";
 category "entertainment";
 topics "computing","entertainment","food_and_drink","music","science","special_interest","travel";
 
