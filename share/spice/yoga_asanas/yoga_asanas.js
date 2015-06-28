@@ -1,6 +1,6 @@
 function ddg_spice_yoga_asanas(apiResult) {
 
-    if (!apiResult || !apiResult.response.result["numFound"]) {
+    if (!apiResult || !apiResult.response.result.numFound) {
         return Spice.failed('yoga_asanas');
     }
 
