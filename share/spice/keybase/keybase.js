@@ -18,6 +18,23 @@
             return Spice.failed('keybase');
         }
 
+        // Retrieve 64-bit version of fingerprint
+        function keybase_key_fingerprint(fingerprint) {
+            var output = '';
+
+            if (fingerprint.length != 40 || !fingerprint) {
+                return output;
+            }
+
+            var pos = fingerprint.length - 16;
+
+            for (pos; pos < fingerprint.length; pos += 4) {
+                output += fingerprint.substring(pos, pos + 4).toUpperCase() + ' ';
+            }
+
+            return output;
+        }
+
         Spice.add({
             id: 'keybase',
             name: 'Keybase',
@@ -26,32 +43,29 @@
                 sourceName: 'keybase.io',
                 sourceUrl: 'https://keybase.io/' + user.basics.username
             },
+            normalize: function(item) {
+                return {
+                    image: item.pictures.primary.url,
+                    title: item.profile.full_name,
+                    subtitle: item.profile.location,
+                    altSubtitle: [{
+                        text: keybase_key_fingerprint(item.public_keys.primary.key_fingerprint),
+                        href: 'https://keybase.io/' + item.basics.username + '/key.asc'
+                    }],
+                    description: item.profile.bio
+                }
+            },
             templates: {
-                group: 'base',
+                group: 'icon',
                 options: {
-                    content: Spice.keybase.content,
                     moreAt: true
+                },
+                variants: {
+                    iconTitle: 'large',
+                    iconImage: 'large'
                 }
             },
             signal: 'high'
         });
     };
 }(this));
-
-Handlebars.registerHelper('keybase_key_fingerprint', function(fingerprint) {
-    'use strict';
-
-    var output = '';
-
-    if (fingerprint.length != 40 || !fingerprint) {
-        return output;
-    }
-
-    var pos = fingerprint.length - 16;
-
-    for (pos; pos < fingerprint.length; pos += 4) {
-        output += fingerprint.substring(pos, pos + 4).toUpperCase() + ' ';
-    }
-
-    return output;
-});
