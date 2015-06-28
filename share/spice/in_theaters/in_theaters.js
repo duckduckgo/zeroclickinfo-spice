@@ -33,13 +33,15 @@
         var mod_api_result = [];
         var filter_rating;
         var query_array = DDG.get_query().toLowerCase().split(" ");
-        var ratings = ["r","pg-13","pg","g","pg13","unrated"];
+        var ratings = ["r","pg-13","pg","g","pg13","kids","unrated"];
 
         // Check whether our query contains any rating
         $.each(ratings, function(index, value) {
             if(($.inArray(value, query_array)) !== -1) {
                 if(value === "pg13") {
                     filter_rating = "pg-13";
+                } else if (value === "kids") {
+                    filter_rating = "g";
                 } else {
                     filter_rating = value;
                 }
