@@ -16,7 +16,9 @@
                         {{/and}}
                     {{/with}}
                     {{else}}
-                        all day
+                      {{#with start_end}}
+                        {{start}}, all day
+                      {{/with}}
                   {{/unless}}
                 </span>
             </div>
