@@ -12,7 +12,7 @@ ddg_spice_test(
     # At a minimum, be sure to include tests for all:
     # - primary_example_queries
     # - secondary_example_queries
-    'example query' => test_spice(
+    'crunchbase duckduckgo' => test_spice(
         '/js/spice/crunchbase/query',
         call_type => 'include',
         caller => 'DDG::Spice::Crunchbase'
