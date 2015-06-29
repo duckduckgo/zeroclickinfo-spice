@@ -54,6 +54,8 @@
 
 .zci--people_in_space .image-under {
     position: absolute;
+        width: 100%;
+    height: 100%;
 }
 
 .zci--people_in_space .image-over {
@@ -61,6 +63,8 @@
     z-index: 5;
     top: 86px;
     left: 95px;
+    width: 100%;
+    height: 100%;
 }
 
 /* detail pane */
