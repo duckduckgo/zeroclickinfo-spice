@@ -35,7 +35,7 @@
                 return {
                     url: "https://admin.fedoraproject.org/pkgdb/package/" + item.name,
                     title: item.name,
-                    altSubtitle: item.description ? item.summary : "",
+                    subtitle: item.description ? item.summary : null,
                     description: item.description || item.summary
                 };
             }
