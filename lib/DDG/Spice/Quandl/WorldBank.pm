@@ -2,7 +2,7 @@ package DDG::Spice::Quandl::WorldBank;
 
 use DDG::Spice;
 use Text::Trim;
-use YAML::XS qw( Load );
+use YAML::XS 'LoadFile';
 
 # meta data
 primary_example_queries "world population";
@@ -17,14 +17,14 @@ attribution web => ["https://www.quandl.com", "Quandl"],
             twitter => "quandl";
             
 # hash associating triggers with indicator codes
-my $primary_hash = Load(scalar share('world_bank_primary.yml')->slurp); 
+my $primary_hash = LoadFile(share('world_bank_primary.yml')); 
 
 # triggers sorted by length so more specific is used first
 my @primary_keys = sort { length $b <=> length $a } keys($primary_hash);
 my $primary_qr = join "|", @primary_keys;
 
 # hash associating secondary triggers with their codes
-my $secondary_hash = Load(scalar share('world_bank_secondary.yml')->slurp);
+my $secondary_hash = LoadFile(share('world_bank_secondary.yml'));
 
 # array of secondary triggers
 my @secondary_keys = keys($secondary_hash);
@@ -34,7 +34,7 @@ my $secondary_qr = join "|", @secondary_keys;
 triggers any => @primary_keys;
 
 # set spice parameters
-spice to => 'http://quandl.com/api/v1/datasets/WORLDBANK/$1.json?auth_token={{ENV{DDG_SPICE_QUANDL_APIKEY}}}&rows=2';
+spice to => 'https://quandl.com/api/v1/datasets/WORLDBANK/$1.json?auth_token={{ENV{DDG_SPICE_QUANDL_APIKEY}}}&rows=2';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 

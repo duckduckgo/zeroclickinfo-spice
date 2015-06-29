@@ -14,7 +14,6 @@
             name: 'Books',
             data: items[0],
             allowMultipleCalls: true,
-            model: 'Product',
             meta: {
                 itemType: 'Products',
                 sourceName: 'Amazon',
@@ -27,6 +26,9 @@
                 options: {
                     buy: 'products_amazon_buy'
                 }
+            },
+            relevancy: {
+                dup: ['ASIN','img_m','img']
             },
             onItemShown: function(item) {
                 if (item.loadedRatings) { return; }

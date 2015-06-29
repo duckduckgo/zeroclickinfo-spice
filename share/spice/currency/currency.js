@@ -51,9 +51,9 @@
 
         // Check if there are any errors in the response.
         if(!api_result || !api_result.conversion || !api_result.topConversions || 
-           !api_result.conversion.length || api_result.conversion.length === 0 || 
+           !api_result.conversion || Object.keys(api_result.conversion).length === 0 || 
            !api_result.topConversions.length || api_result.topConversions.length === 0) {
-            Spice.failed('currency');
+            return Spice.failed('currency');
         }
         
         var results = [];
@@ -118,6 +118,9 @@
             templateObj.detail_mobile = false;
         }
         
+       // Set favicon
+       var icon = ((DDG.is3x || DDG.is2x) ? DDG.get_asset_path('currency',"assets/xe.png") : "http://www.xe.com/favicon.ico");
+        
         Spice.add({
             id: 'currency',
             name: 'Currency',
@@ -125,7 +128,6 @@
             meta: {
                 sourceUrl: "http://www.xe.com",
                 sourceName: "xe.com",
-                sourceIconUrl: "http://www.xe.com/favicon.ico",
                 itemType: "Conversions"
             },
             normalize: function(item) {
@@ -147,7 +149,8 @@
                     currencyName: item["to-currency-name"],
                     liveUrl: liveUrl,
                     xeTime: xeTime,
-                    xeDate: xeDate
+                    xeDate: xeDate,
+                    moreAtIcon: icon
                 };
             },
             templates: templateObj,
