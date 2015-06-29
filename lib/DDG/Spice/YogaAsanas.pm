@@ -13,12 +13,12 @@ triggers query_lc => qr{
 	(?:\w+pitham\b)|
 	(?:samasthitih?)|
 	(?:stplutih??)|
-	(?:yoga\s+(?:postures?|poses?))|
+	(?:postures?|poses?)|
 	(?:sun\s+salutation)|
 	(?:surya\s+namaskara)|
 	(?:(?:ashtanga|yoga)\s+(primary|intermediate|advanced)\s+series)|
 	(?:yoga[\s-]+ch?ikitsa)|
-	(?:(?:standing|finishing)\s+(?:sequence|poses))|
+	(?:(?:standing|finishing)\s+(?:sequence|poses?|postures?))|
 	(?:nadi[\s-]+sh?odhana)|
 	(?:sthira[\s-]+bhaga)
 }xi;
