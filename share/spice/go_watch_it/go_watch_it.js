@@ -189,7 +189,12 @@
                     item.buy_line = "Available for Purchase";
                     item.rent_line = "";
                 }
-                
+
+                // Fandango has its own suggested line
+                if(item.provider_name === "Fandango") {
+                    item.buy_line = item.suggested_line;
+                }
+
                 // If the provider is "Netflix Mail" Change buy_line and format_line
                 if(item.provider_format_name === "Netflix Mail" && item.category !== "online") {
                     item.buy_line = "Available for Rent";
