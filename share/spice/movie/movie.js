@@ -118,18 +118,16 @@
                 }]
             },
             onItemShown: function(item) {
-                var model = item.model;
-
-                if (!model.alternate_ids || !model.alternate_ids.imdb) { return; }
+                if (!item.alternate_ids || !item.alternate_ids.imdb) { return; }
 
                 $.ajaxSetup({ cache: true });
 
-                $.getJSON("/js/spice/movie_image/tt" + model.alternate_ids.imdb, function(data) {
+                $.getJSON("/js/spice/movie_image/tt" + item.alternate_ids.imdb, function(data) {
                     var path = data && data.movie_results && data.movie_results.length && data.movie_results[0].poster_path,
                         image = path && "https://image.tmdb.org/t/p/w185" + path;
 
                     if (image) {
-                        model.set({
+                        item.set({
                             img: image,
                             img_m: image,
                             image: image

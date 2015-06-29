@@ -107,8 +107,7 @@
                 }
             },
             onItemShown: function(item) {
-                var model = item.model,
-                    id = model.alternate_ids && model.alternate_ids.imdb;
+                var id = item.alternate_ids && item.alternate_ids.imdb;
 
                 if (!id) { return; }
 
@@ -119,13 +118,13 @@
                         image = path && "https://image.tmdb.org/t/p/w185" + path;
 
                     if (image) {
-                        model.set({
+                        item.set({
                             img: image,
                             img_m: image,
                             image: image
                         });
                     }
-                }
+                });
             }
         });
     }
