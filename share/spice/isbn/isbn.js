@@ -6,6 +6,8 @@
             return Spice.failed('isbn');
         }
 
+        var loaded = {};
+
         Spice.add({
             id: 'isbn',
             name: 'Books',
@@ -31,23 +33,22 @@
                 dup: ['ASIN','img_m','img']
             },
             onItemShown: function(item) {
-                var model = item.model,
-                    arg = model.rating,
+                var arg = item.rating,
                     url = '/m.js?r=';
 
-                if (model.requestedRatings) { return; }
+                if (loaded[item.id]) { return; }
 
                 arg = arg.replace(/(?:.com.au|.com.br|.cn|.fr|.de|.in|.it|.co.jp|.mx|.es|.co.uk|.com|.ca?)/i, '');
                 arg = arg.replace('http://www.amazon/reviews/iframe?', '');
 
                 $.getJSON(url + encodeURIComponent(arg), function(r) {
                     if (r.stars.match(/stars-(\d)-(\d)/)) {
-                        model.set({ rating: RegExp.$1 + "." + RegExp.$2 });
+                        item.set({ rating: RegExp.$1 + "." + RegExp.$2 });
                     }
-                    model.set({ reviewCount:  r.reviews });
+                    item.set({ reviewCount:  r.reviews });
                 });
 
-                model.set({ requestedRatings: true });
+                loaded[item.id] = 1;
             }
         });
     };
