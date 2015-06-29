@@ -16,12 +16,12 @@
 .zci--people_in_space .name {
     font-size: 1.277em;
     line-height: 1.2;
+    display: block;
 }
 
 .zci--people_in_space .info {
 	text-align: center;
     position: inherit;
-    display: table-cell; 
     vertical-align: middle;
     height: 55px;
     bottom: 0px;
