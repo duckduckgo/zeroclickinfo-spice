@@ -21,7 +21,7 @@
                     idField: 'id',
                     showMoreAt: true,
                     sourceIcon: false,
-                    sourceUrl: "http://www.bleacherreport.com/mlb",
+                    sourceUrl:  apiResult.url || "http://www.bleacherreport.com/mlb",
                     sourceName: 'Bleacher Report',
                     secondaryText: '<span class="tx-clr--grey-dark">Data from Sportradar</span>',
                     hideModeSwitch: true,
