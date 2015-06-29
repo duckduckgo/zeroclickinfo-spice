@@ -1,20 +1,19 @@
 package DDG::Spice::Gifs;
-# ABSTRACT: Search for animated gifs
+# ABSTRACT: Search for gifs
 
 use strict;
 use DDG::Spice;
 
-primary_example_queries "funny cat gifs";
-description "Animated Gifs";
 name "Gifs";
+description "Animated Gifs";
+primary_example_queries "funny cat gifs";
 source "Giphy";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Gifs.pm";
 attribution github => ['https://github.com/bsstoner','bsstoner'];
 
-triggers any => "gifs", "gif", "giphy";
+triggers startend => "gif", "gifs", "giphy";
 
-# TODO: this is their beta/trial key, need to contact them if we want to srsly use:
-spice to => 'http://api.giphy.com/v1/gifs/search?q=$1&api_key=dc6zaTOxFJmzC';
+spice to => 'http://api.giphy.com/v1/gifs/search?q=$1&api_key={{ENV{DDG_SPICE_GIPHY_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
