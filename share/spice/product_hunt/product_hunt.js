@@ -42,7 +42,7 @@
                 return {
                     id: item.objectId,
                     title: item.name,
-                    subtitle: item.author.name,
+                    altSubtitle: item.author.name,
                     url: item.url,
                     description: item.tagline,
                     votes: item.vote_count || 0,
