@@ -16,7 +16,7 @@ function ddg_spice_yoga_asanas(apiResult) {
 			return {
 				image: meta.img,
 				title: a.title,
-				subtitle: a.paragraph,
+				altSubtitle: a.paragraph,
 				meta: {
 					srcName: meta.srcName,
 					srcUrl: meta.srcUrl,
@@ -26,7 +26,7 @@ function ddg_spice_yoga_asanas(apiResult) {
 		},
 
 		templates: {
-			group: 'media',
+			group: 'media'
 		},
 
 	});
