@@ -6,6 +6,8 @@
             return Spice.failed('products');
         }
 
+        var loaded = {};
+
         Spice.add({
             id: 'products',
             name: 'Products',
@@ -34,7 +36,7 @@
                 var arg = item.rating,
                     url = '/m.js?r=';
 
-                if (item.requestedRatings) { return; }
+                if (loaded[item.id]) { return; }
 
                 arg = arg.replace(/(?:.com.au|.com.br|.cn|.fr|.de|.in|.it|.co.jp|.jp|.mx|.es|.co.uk|.com|.ca?)/i, '');
                 arg = arg.replace('http://www.amazon/reviews/iframe?', '');
@@ -46,7 +48,7 @@
                     item.set({ reviewCount:  r.reviews });
                 });
 
-                item.requestedRatings = true;
+                loaded[item.id] = 1;
             }
         });
     }
