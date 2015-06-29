@@ -59,7 +59,7 @@
                 },
                 variants: {
                     tileTitle: '2line',
-                    tileSnippet: 'large',
+                    tileSnippet: 'small',
                     tileFooter: '2line'
                 },
                 detail: false,
