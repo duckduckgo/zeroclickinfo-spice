@@ -23,7 +23,7 @@
                     sourceIcon: false,
                     sourceUrl: "http://www.bleacherreport.com/mlb",
                     sourceName: 'Bleacher Report',
-                    secondaryText: '<span class="tx-clr--grey-dark">Data from SportsData</span>',
+                    secondaryText: '<span class="tx-clr--grey-dark">Data from Sportradar</span>',
                     hideModeSwitch: true,
                     selectedItem: apiResult.data.most_relevant_game_id,
                     scrollToSelectedItem: true,
