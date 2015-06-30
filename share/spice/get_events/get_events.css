@@ -2,36 +2,3 @@
     width: 14em;
     height: 14em;
 }
-
-.tile--get_events .tile__body.has-foot--4 {
-    padding-bottom: 0;
-}
-
-.tile--get_events .tile__sub {
-    margin-bottom: 0;
-}
-
-.tile--get_events .tile__foot {
-    white-space: normal;
-    height: auto;
-}
-
-.tile--get_events__main .tile__foot--4 {
-    line-height: 1.4;
-    max-height: 5.6em;
-    margin-bottom: 1em;
-}
-
-.tile--get_events__alt .tile__title {
-    margin-bottom: 0.65em;
-}
-
-.tile--get_events__alt .has-foot .tile__content--lg {
-    line-height: 1.4;
-    height: 7em;
-    overflow: hidden;
-}
-
-.tile--get_events__alt .tile__foot {
-    margin-bottom: 1.2em;
-}

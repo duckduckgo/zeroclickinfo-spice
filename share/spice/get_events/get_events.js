@@ -38,7 +38,7 @@
                             footer_content: Spice.get_events.foot_front,
                             
                             footLines: '4',
-                            titleClass: 'tile__title--3',
+                            titleClass: 'tile__title--3 tx--bold',
                             altSubClass: 'tx--13 tx-clr--grey'
                         },
                         data_back: {
@@ -48,7 +48,7 @@
                             
                             footer_content: Spice.get_events.foot_back,
                             
-                            titleClass: 'tile__title--1'
+                            titleClass: 'tile__title--1 tx--bold'
                         },
                         city: item.venue.city,
                         place: item.venue.name,
