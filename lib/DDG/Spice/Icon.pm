@@ -31,7 +31,7 @@ triggers startend => "icon", "icons", "free icon", "icon free",
 
 # Handle statement
 handle query_lc => sub {
-    $_ =~ s/\s?icon\s?//g;
+    $_ =~ s/\s?icons?\s?//g;
     my $premium = 'all';
 
     if (index($_, 'free') != -1) {
