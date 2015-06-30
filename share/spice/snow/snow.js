@@ -44,7 +44,7 @@ function nrio (api_result) {
             options: {
                 content: Spice.snow.content,
                 moreAt: true
-            }            
+            }
         },
        onShow: function(){
            // add the snowflakes, if it's snowing
@@ -56,11 +56,7 @@ function nrio (api_result) {
            }
        }
     });
- 
-    var $dom = Spice.getDOM('snow');
-    $dom.css({
-        color: '#fff'
-    });
+    
 // Thanks to Ricard Torres[http://php.quicoto.com/snow-html-canvas/]
 function makeItSnow() {
     var COUNT = 700;
