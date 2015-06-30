@@ -1,0 +1,92 @@
+(function (env) {
+    "use strict";
+    env.ddg_spice_icon = function(api_result){
+
+        // Validate the response (customize for your Spice)
+        if (!api_result || api_result.error || api_result.icons.length == 0) {
+            return Spice.failed('icon');
+        }
+
+        var script = $('[src*="/js/spice/icon/"]')[0],
+            source = $(script).attr("src"),
+            query = source.match(/icon\/([^\/]+)/)[1],
+            decodedQuery = decodeURIComponent(query);
+
+        // Render the response
+        Spice.add({
+            id: "icon",
+
+            // Customize these properties
+            name: "Icon",
+            data: api_result.icons,
+            meta: {
+                itemType: 'Icons',
+                searchTerm: decodedQuery,
+                sourceName: "iconfinder.com",
+                sourceUrl: 'https://www.iconfinder.com/search/?q=' + decodedQuery
+            },
+            normalize: function(item) {
+                if (item.raster_sizes.length == 0) {
+                    return Spice.failed('icon');
+                }
+
+                var styles = [];
+                for (var i = 0; i < item.styles.length; i++) {
+                    styles.push(item.styles[i].name);
+                };
+
+                var categories = [];
+                for (var i = 0; i < item.categories.length; i++) {
+                    categories.push(item.categories[i].name);
+                };
+
+                var title = DDG.capitalize(item.tags[0]);
+                var tags = item.tags.join(', ');
+
+                return {
+                    icon: get_image(item.raster_sizes, 64),
+                    img_m: get_image(item.raster_sizes, 512),
+                    title: title,
+                    heading: title,
+                    subtitle: item.is_premium ? 'Premium' : 'Free',
+                    tags: tags,
+                    styles: styles.join(', '),
+                    categories: categories.join(', '),
+                    description: 'Tags: ' + tags,
+                    url: 'https://www.iconfinder.com/icons/' + item.icon_id,
+                }
+            },
+            templates: {
+                group: 'icon',
+                options: {
+                    subtitle_content: Spice.icon.subtitle,
+                    buy: Spice.icon.buy,
+                    moreAt: true,
+                    rating: false,
+                },
+                variants: {
+                    tileSnippet: 'small',
+                    tileTitle: '1line'
+                }
+            }
+        });
+    };
+
+    env.get_image = function(raster_sizes, size) {
+        var thumbnail_url = '';
+
+        for (var i = 0; i < raster_sizes.length; i++) {
+            // find the icon with size 128px and return the first preview url
+            if (raster_sizes[i].size == size) {
+                thumbnail_url = raster_sizes[i].formats[0].preview_url;
+            }
+        };
+
+        // if no icon found for 128px, return the largest
+        if (thumbnail_url === '') {
+            thumbnail_url = raster_sizes[raster_sizes.length - 1].formats[0].preview_url;
+        }
+
+        return DDG.toHTTP(thumbnail_url);
+    };
+}(this));
