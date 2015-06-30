@@ -26,7 +26,9 @@
             }
         }
 
-        // converts "1.2.3" to 123
+        // converts "1.2.3" to 1230
+        // converts "0.0.1" to 10
+        // helps in comparing version strings in different format.
         function versionInt(v) {
             if (v == undefined) {
                 return -1;
@@ -34,6 +36,9 @@
             while(v.indexOf(".") != -1) {
                 v = v.replace(".","");
             }
+            // Assuming semantic version groups do not exceed 4
+            toAppend = 4 - v.length;
+            v = v + Array(toAppend + 1).join("0");
             return parseInt(v);
         }
 
