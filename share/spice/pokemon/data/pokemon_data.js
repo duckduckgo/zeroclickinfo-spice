@@ -13,26 +13,39 @@
             return Spice.failed('pokemon');
         }
 
+        var bulbapedia_url = 'http://bulbapedia.bulbagarden.net/wiki/' + api_result.name;
+
         Spice.add({
             id: ID,
             name: 'Pokedex',
             data: api_result,
             meta: {
-                sourceName: 'pokeapi.co',
-                sourceUrl: 'http://pokeapi.co/',
-                sourceIconUrl: 'http://pokeapi.co/static/favicon.ico'
+                sourceName: 'Bulbapedia',
+                sourceUrl: bulbapedia_url,
+                sourceIconUrl: 'http://bulbapedia.bulbagarden.net/favicon.ico'
             },
             normalize: function(item) {
                 return {
+                    url: bulbapedia_url,
                     title: item.name,
                     image: getSprite.call(item),
                     imageIsLogo: true,
                     infoboxData: getInfoboxData.call(item),
                     subtitle: (function(evolutions) {
                         if( evolutions.length > 0 ) {
-                            var html = 'Evolves into: <a href="?q={name}+pokemon&ia=pokedex">{name}</a>';
+                            var html = 'Evolves into <b><a href="?q={name}+pokemon&ia=pokedex">{name}</a></b>';
 
-                            return new Handlebars.SafeString(html.replace(/{name}/g, evolutions[0].to));
+                            if (evolutions[0].level) {
+                                html += ' at level {evolve_level}'
+                            } else if (evolutions[0].method == 'trade') {
+                                html += ' when traded'
+                            } else if (evolutions[0].method == 'stone') {
+                                html += ' using a stone'
+                            }
+
+                            return new Handlebars.SafeString(
+                                html.replace(/{name}/g, evolutions[0].to).replace(/{evolve_level}/g, evolutions[0].level)
+                            );
                         }
                     }(item.evolutions))
                 };
@@ -48,12 +61,21 @@
                 group: 'info',
                 options: {
                     content: Spice.pokemon_data.content,
-                    moreAt: true
+                    moreText: [
+                        {
+                            href: 'http://www.pokemon.com/us/pokedex/' + api_result.name,
+                            text: 'More at Pokemon.com'
+                        },
+                        {
+                            href: 'http://pokeapi.co',
+                            text: 'Data by Pokéapi'
+                        }
+                    ]
                 }
             }
         });
     };
-    
+
     /**
      * Chooses a random pokemon's description from the available sets
      * and then calls the Pokemon::Description endpoint to fetch its full text
@@ -107,7 +129,7 @@
                 value: getCollectionNames.call(this, 'egg_groups').join(', ')
             });
         }
-        
+
         for( var prop in this ) {
             if( INFOBOX_PROPS.indexOf(prop) !== -1 && parseInt(this[prop], 10) ) {
                 infoboxData.push({
