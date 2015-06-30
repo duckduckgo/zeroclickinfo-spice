@@ -47,6 +47,7 @@
                 return {
                     image: item.pictures.primary.url,
                     title: item.profile.full_name,
+                    url: 'https://keybase.io/' + item.basics.username,
                     subtitle: item.profile.location,
                     altSubtitle: [{
                         text: keybase_key_fingerprint(item.public_keys.primary.key_fingerprint),
