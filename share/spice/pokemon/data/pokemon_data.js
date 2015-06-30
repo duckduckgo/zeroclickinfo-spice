@@ -69,7 +69,7 @@
                     moreText: [
                         {
                             href: 'http://www.pokemon.com/us/pokedex/' + api_result.name,
-                            text: 'More at Pokemon.com'
+                            text: 'Pokemon.com'
                         },
                         {
                             href: 'http://pokeapi.co',
