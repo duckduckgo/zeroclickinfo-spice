@@ -33,19 +33,24 @@
                     infoboxData: getInfoboxData.call(item),
                     subtitle: (function(evolutions) {
                         if( evolutions.length > 0 ) {
-                            var html = 'Evolves into <b><a href="?q={name}+pokemon&ia=pokedex">{name}</a></b>';
+                            var html = 'Evolves into ';
+                            var evolution_htmls = [];
 
-                            if (evolutions[0].level) {
-                                html += ' at level {evolve_level}'
-                            } else if (evolutions[0].method == 'trade') {
-                                html += ' when traded'
-                            } else if (evolutions[0].method == 'stone') {
-                                html += ' using a stone'
-                            }
+                            for (var i = 0; i < evolutions.length; i++) {
+                                var temp_html = '<b><a href="?q={name}+pokemon&ia=pokedex">{name}</a></b>';
 
-                            return new Handlebars.SafeString(
-                                html.replace(/{name}/g, evolutions[0].to).replace(/{evolve_level}/g, evolutions[0].level)
-                            );
+                                if (evolutions[i].level) {
+                                    temp_html += ' (at level {evolve_level})'
+                                } else if (evolutions[i].method == 'trade') {
+                                    temp_html += ' (when traded)'
+                                } else if (evolutions[i].method == 'stone') {
+                                    temp_html += ' (using a stone)'
+                                }
+
+                                evolution_htmls.push(temp_html.replace(/{name}/g, evolutions[i].to).replace(/{evolve_level}/g, evolutions[i].level));
+                            };
+
+                            return new Handlebars.SafeString(html + evolution_htmls.join(', '));
                         }
                     }(item.evolutions))
                 };
