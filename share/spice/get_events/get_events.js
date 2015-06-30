@@ -29,7 +29,7 @@
                     }
                     return {
                         data_front: {
-                            pin: item.num,
+                            showPin: true,
                             title: item.name,
                             venue: item.venue,
                             image: item.image_large_url,
@@ -38,7 +38,7 @@
                             footer_content: Spice.get_events.foot_front,
                             
                             footLines: '4',
-                            titleClass: 'tile__title--3 tx--bold',
+                            titleClass: 'tile__title--3 tx--16 tx--bold',
                             altSubClass: 'tx--13 tx-clr--grey'
                         },
                         data_back: {
@@ -48,7 +48,7 @@
                             
                             footer_content: Spice.get_events.foot_back,
                             
-                            titleClass: 'tile__title--1 tx--bold'
+                            titleClass: 'tile__title--1 tx--16 tx--bold'
                         },
                         city: item.venue.city,
                         place: item.venue.name,
