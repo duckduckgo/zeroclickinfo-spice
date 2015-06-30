@@ -26,7 +26,8 @@
             },
             normalize: function(item) {
                 return {
-                    title: 'hashes for "' + api_result.query + '"'
+                    title: 'LeakDB Hashes',
+                    subtitle: 'Plaintext Key: ' + api_result.query
                 };
             },
             templates: {
