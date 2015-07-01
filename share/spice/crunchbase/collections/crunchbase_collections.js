@@ -1,8 +1,9 @@
 (function (env) {
     "use strict";
     env.ddg_spice_crunchbase_collections = function(api_result){
+	console.log(api_result);
         // Validate the response
-        if (!api_result || api_result.error) {
+        if (!api_result || api_result.error || api_result.data.items.length === 0) {
             return Spice.failed('crunchbase');
         }
 
