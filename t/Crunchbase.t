@@ -8,18 +8,19 @@ use DDG::Test::Spice;
 spice is_cached => 1;
 
 ddg_spice_test(
-    [qw( DDG::Spice::Crunchbase)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
+    [qw( DDG::Spice::Crunchbase::Collections)],
+    # primary_example_query
     'crunchbase duckduckgo' => test_spice(
-        '/js/spice/crunchbase/query',
+        '/js/spice/crunchbase/collections/duckduckgo',
         call_type => 'include',
-        caller => 'DDG::Spice::Crunchbase'
+        caller => 'DDG::Spice::Crunchbase::Collections'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    # failed query
+    'crunchbase yellowbrickroad' => => test_spice(
+        '/js/spice/crunchbase/collections/yellowbrickroad',
+        call_type => 'include',
+        caller => 'DDG::Spice::Crunchbase::Collections'
+    ),
 );
 
 done_testing;
