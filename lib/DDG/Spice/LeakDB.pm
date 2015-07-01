@@ -23,9 +23,8 @@ spice to => 'http://api.leakdb.abusix.com/?j=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub{
-    s/^(hashme|leakdb)\s+|\s+(hashme|leakdb)$//g;
-    return $_ if $_ ne '';
-    return;
+    return if $_ eq '';
+    return $_;
 };
 
 1;
