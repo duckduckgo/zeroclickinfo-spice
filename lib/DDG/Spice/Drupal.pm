@@ -7,7 +7,7 @@ use DDG::Spice;
 spice is_cached => 1; 
 
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
-name "Software";
+name "Drupal";
 source "https://drupal.org/";
 icon_url "/i/drupal.org.ico";
 description "Get project information from drupal.org";
