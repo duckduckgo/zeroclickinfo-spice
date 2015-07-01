@@ -3,7 +3,7 @@
     env.ddg_spice_icon = function(api_result){
 
         // Validate the response (customize for your Spice)
-        if (!api_result || api_result.error || api_result.icons.length == 0) {
+        if (!api_result || api_result.error || !api_result.icons || api_result.icons.length == 0) {
             return Spice.failed('icon');
         }
 
@@ -22,11 +22,11 @@
             meta: {
                 itemType: 'Icons',
                 searchTerm: decodedQuery,
-                sourceName: "iconfinder.com",
+                sourceName: "Iconfinder",
                 sourceUrl: 'https://www.iconfinder.com/search/?q=' + decodedQuery
             },
             normalize: function(item) {
-                if (item.raster_sizes.length == 0) {
+                if (!item.raster_sizes || item.raster_sizes.length == 0) {
                     return Spice.failed('icon');
                 }
 
@@ -82,13 +82,13 @@
         var thumbnail_url = '';
 
         for (var i = 0; i < raster_sizes.length; i++) {
-            // find the icon with size 128px and return the first preview url
+            // find the icon with given size and return the first preview url
             if (raster_sizes[i].size == size) {
                 thumbnail_url = raster_sizes[i].formats[0].preview_url;
             }
         };
 
-        // if no icon found for 128px, return the largest
+        // if no icon found for given size, return the largest
         if (thumbnail_url === '') {
             thumbnail_url = raster_sizes[raster_sizes.length - 1].formats[0].preview_url;
         }

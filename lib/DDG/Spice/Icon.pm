@@ -22,8 +22,9 @@ spice wrap_jsonp_callback => 1;
 
 spice from => '(.+)/(.+)';
 
-triggers startend => "icon", "icons", "free icon", "icon free", "icons free",
-                     "premium icon", "icon premium", "icons premium";
+triggers startend => "icon", "icons",
+                     "free icon", "free icons", "icon free", "icons free",
+                     "premium icon", "premium icons", "icon premium", "icons premium";
 
 handle query_lc => sub {
     $_ =~ s/\s?icons?\s?//g;
