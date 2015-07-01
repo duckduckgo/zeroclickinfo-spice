@@ -1,18 +1,18 @@
 package DDG::Spice::Crunchbase::Collections;
-# ABSTRACT: Write an abstract here
-# Start at https://duck.co/duckduckhack/spice_overview if you are new
-# to instant answer development
-
+# Queries the Crunchbase organizations API on crunchbase trigger
 use DDG::Spice;
 
-#Attribution
-primary_example_queries "crunchbase organization duckduckgo", "crunchbase people gabe weinberg", "crunchbase product duckduckgo";
+# Metadata
+primary_example_queries "crunchbase duckduckgo", "crunchbase uber";
 description "Search the Crunchbase database for organizations, people, and products";
 name "Crunchbase";
 source "http://www.crunchbase.com";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Crunchbase/Collections.pm";
+icon_url "https://www.crunchbase.com/favicon.ico";
 category "reference";
 topics "economy_and_finance";
+
+# Attribution 
 attribution github => ["https://github.com/rubinovitz", "rubinovitz"],
             twitter => ["https://twitter.com/rubinovitz", "rubinovitz"];
 
