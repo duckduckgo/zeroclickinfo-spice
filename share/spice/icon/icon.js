@@ -38,8 +38,15 @@
                     return val.name;
                 });
 
-                var title = DDG.capitalize(item.tags[0]);
-                var tags = item.tags.join(', ');
+                var title = DDG.capitalize(item.tags[0]),
+                    tags = item.tags.join(', '),
+                    price = 0,
+                    currency = 'USD';
+
+                if (item.is_premium) {
+                    price = item.prices[0].price;
+                    currency = item.prices[0].currency;
+                }
 
                 return {
                     icon: get_image(item.raster_sizes, 64),
@@ -52,6 +59,7 @@
                     categories: categories.join(', '),
                     description: 'Tags: ' + tags,
                     url: 'https://www.iconfinder.com/icons/' + item.icon_id,
+                    price: currency + ' ' + price,
                 }
             },
             templates: {
