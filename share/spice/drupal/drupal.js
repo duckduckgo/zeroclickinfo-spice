@@ -3,13 +3,13 @@
     env.ddg_spice_drupal = function(api_result){
 
         // Validate the response
-        if (!api_result || api_result.list === "") {
-            return Spice.failed('drupal');
+        if (!api_result || api_result.list.length === 0) {
+            return Spice.failed('drupal_search');
         }
 
         // Render the response
         Spice.add({
-            id: "drupal",
+            id: "drupal_search",
             name: "Software",
             data: api_result.list[0],
             meta: {
@@ -40,10 +40,10 @@
                     });
                 }
 
-                if (item.field_download_count) {
+                if (item.field_download_count !== null) {
                     boxData.push({
                         label: "Downloads",
-                        value: item.field_download_count
+                        value: DDG.commifyNumber(item.field_download_count)
                     });
                 }
 
@@ -53,11 +53,13 @@
                         value: item.language 
                     });
                 }
-
+                
+                var regex = /(<p>)(.*)(<\/p>)/m;
+                
                 if (item.body.summary) {
-                    var subtitleData = $(item.body.summary).siblings('p:first-of-type').text();
+                    var subtitleData = DDG.strip_html(item.body.summary.match(regex)[0]);
                 } else {
-                    var subtitleData = $(item.body.value).siblings('p:first-of-type').text();
+                    var subtitleData = DDG.strip_html(item.body.value.match(regex)[0]);
                 }
 
                 return {
