@@ -1,4 +1,4 @@
-package DDG::Spice::Crunchbase;
+package DDG::Spice::Crunchbase::Collections;
 # ABSTRACT: Write an abstract here
 # Start at https://duck.co/duckduckhack/spice_overview if you are new
 # to instant answer development
@@ -10,7 +10,7 @@ primary_example_queries "crunchbase organization duckduckgo", "crunchbase people
 description "Search the Crunchbase database for organizations, people, and products";
 name "Crunchbase";
 source "http://www.crunchbase.com";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Crunchbase.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Crunchbase/Collections.pm";
 category "reference";
 topics "economy_and_finance";
 attribution github => ["https://github.com/rubinovitz", "rubinovitz"],
