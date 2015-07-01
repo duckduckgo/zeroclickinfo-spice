@@ -12,7 +12,6 @@
                         query : api_result.type + ' hash';
 
         api_result.hashes = api_result.hashes[0];
-        delete api_result.hashes.plaintext;
 
         Spice.add({
             id: 'leak_db',
@@ -27,7 +26,7 @@
             normalize: function(item) {
                 return {
                     title: 'LeakDB Hashes',
-                    subtitle: 'Plaintext Key: ' + api_result.query
+                    subtitle: 'Key: ' + api_result.query
                 };
             },
             templates: {
