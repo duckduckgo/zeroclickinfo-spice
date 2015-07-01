@@ -59,7 +59,7 @@
                     categories: categories.join(', '),
                     description: 'Tags: ' + tags,
                     url: 'https://www.iconfinder.com/icons/' + item.icon_id,
-                    price: currency + ' ' + price,
+                    price: item.is_premium ? currency + ' ' + price : null,
                 }
             },
             templates: {
