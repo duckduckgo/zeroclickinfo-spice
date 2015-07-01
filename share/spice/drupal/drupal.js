@@ -3,7 +3,7 @@
     env.ddg_spice_drupal = function(api_result){
 
         // Validate the response
-        if (!api_result || api_result.list == "") {
+        if (!api_result || api_result.list === "") {
             return Spice.failed('drupal');
         }
 
@@ -47,21 +47,10 @@
                     });
                 }
 
-                if (item.language != "und") {
+                if (item.language !== "und") {
                     boxData.push({
                         label: "Language",
                         value: item.language 
-                    });
-                }
-
-                if (item.dependencies) {      
-                    var dependencies = $.map(item.dependencies, function(val, key) {
-                        return key + " (" + val + ")";
-                    }).join(", ");
-
-                    boxData.push({
-                        label: "Dependencies",
-                        value: dependencies
                     });
                 }
 
@@ -74,7 +63,7 @@
                 return {
                     title: item.title + " (" + item.type.substring(8) + ")",
                     subtitle: subtitleData,
-                    infoboxData: boxData,
+                    infoboxData: boxData
                 }  
 
             },
