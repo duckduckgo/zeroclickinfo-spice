@@ -12,14 +12,26 @@ ddg_spice_test(
     # At a minimum, be sure to include tests for all:
     # - primary_example_queries
     # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/drupal/query',
+    'drupal token' => test_spice(
+        '/js/spice/drupal/token',
         call_type => 'include',
         caller => 'DDG::Spice::Drupal'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    'Drupal tOKen' => test_spice(
+        '/js/spice/drupal/tOKen',
+        call_type => 'include',
+        caller => 'DDG::Spice::Drupal'
+    ),
+    'drupal ctools' => test_spice(
+        '/js/spice/drupal/ctools',
+        call_type => 'include',
+        caller => 'DDG::Spice::Drupal'
+    ),
+    'DRUPAL CTOOLS' => test_spice(
+        '/js/spice/drupal/CTOOLS',
+        call_type => 'include',
+        caller => 'DDG::Spice::Drupal'
+    )
 );
 
 done_testing;
