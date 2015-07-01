@@ -10,7 +10,7 @@ source "IconFinder";
 icon_url "https://api.iconfinder.com/favicon.ico";
 description "Find icons for the given term";
 primary_example_queries "female icon", "dog icons";
-secondary_example_queries "female free icon", "female premium icon";
+secondary_example_queries "free baby icons", "premium female icons";
 category "reference";
 topics "web_design";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Icon.pm";
@@ -22,8 +22,8 @@ spice wrap_jsonp_callback => 1;
 
 spice from => '(.+)/(.+)';
 
-triggers startend => "icon", "icons", "free icon", "icon free",
-                     "premium icon", "icon premium";
+triggers startend => "icon", "icons", "free icon", "icon free", "icons free",
+                     "premium icon", "icon premium", "icons premium";
 
 handle query_lc => sub {
     $_ =~ s/\s?icons?\s?//g;

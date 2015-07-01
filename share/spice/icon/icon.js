@@ -30,15 +30,13 @@
                     return Spice.failed('icon');
                 }
 
-                var styles = [];
-                for (var i = 0; i < item.styles.length; i++) {
-                    styles.push(item.styles[i].name);
-                };
+                var styles = $.map(item.styles, function(val, i) {
+                    return val.name;
+                });
 
-                var categories = [];
-                for (var i = 0; i < item.categories.length; i++) {
-                    categories.push(item.categories[i].name);
-                };
+                var categories = $.map(item.categories, function(val, i) {
+                    return val.name;
+                });
 
                 var title = DDG.capitalize(item.tags[0]);
                 var tags = item.tags.join(', ');
