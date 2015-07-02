@@ -54,7 +54,7 @@
                 return {
                     image: api_result.entry[0].thumbnailUrl + ".png",
                     title: getName(api_result.entry[0]),
-                    subtitle: getCurrentLocation(api_result.entry[0]),
+                    subtitle: [api_result.entry[0].preferredUsername, getCurrentLocation(api_result.entry[0])],
                     altSubtitle: getAccounts(api_result.entry[0]),
                     description: api_result.entry[0].aboutMe
                 };
