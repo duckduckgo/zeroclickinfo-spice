@@ -66,8 +66,8 @@
                     moreAt: true
                 },
                 variants: {
-                    iconTitle: 'large',
-                    iconImage: 'large'
+                    iconTitle: 'medium',
+                    iconImage: 'medium'
                 }
             }
         });
