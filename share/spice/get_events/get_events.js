@@ -38,7 +38,7 @@
                             footer_content: Spice.get_events.foot_front,
                             
                             footLines: '4',
-                            titleClass: 'tile__title--3 tx--16 tx--bold',
+                            titleClass: 'tile__title--3 tx--16 tx--bold mg--none',
                             altSubClass: 'tx--13 tx-clr--grey'
                         },
                         data_back: {
