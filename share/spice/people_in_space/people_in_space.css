@@ -22,10 +22,11 @@
 .zci--people_in_space .info {
 	text-align: center;
     position: inherit;
+    display:table-cell;
     vertical-align: middle;
     height: 55px;
     bottom: 0px;
-    width: 100%;
+    width: 150px;
 }
 
 .zci--people_in_space .days {
