@@ -10,15 +10,16 @@
         DDG.require('moment.js', function(){
             Spice.add({
                 id: "get_events",
-                name: "Local Events",
+                name: "Events",
                 model: "Place",
                 view: "Places",
+                signal: "high",
                 data: api_result.events,
                 meta: {
                     sourceName: "GetEvents",
                     sourceUrl: 'http://getevents.co',
-                    itemType: "Upcoming Local Events",
-                    formattedSourceName: 'More on GetEvents',
+                    itemType: "Upcoming Events",
+                    formattedSourceName: 'More at GetEvents',
                     snippetChars: 110
                 },
                 normalize: function(item){
