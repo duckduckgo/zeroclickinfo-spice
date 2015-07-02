@@ -17,16 +17,20 @@ function ddg_spice_yoga_asanas(apiResult) {
 				image: meta.img,
 				title: a.title,
 				altSubtitle: a.paragraph,
-				meta: {
-					srcName: meta.srcName,
-					srcUrl: meta.srcUrl,
-					srcIcon: meta.favicon
-				}
+				srcName: meta.srcName,
+				srcUrl: meta.srcUrl,
+				srcIcon: meta.favicon
 			};
 		},
 
 		templates: {
-			group: 'media'
+			group: 'media',
+			item_detail: false,
+			detail: false,
+			options: {
+				moreAt: false,
+				footer: Spice.yoga_asanas.footer
+			}
 		},
 
 	});
