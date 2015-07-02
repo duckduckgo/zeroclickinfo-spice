@@ -13,6 +13,7 @@
                 name: "Events",
                 model: "Place",
                 view: "Places",
+                signal: "high",
                 data: api_result.events,
                 meta: {
                     sourceName: "GetEvents",
