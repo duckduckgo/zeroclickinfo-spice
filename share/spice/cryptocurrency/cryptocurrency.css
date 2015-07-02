@@ -88,10 +88,6 @@
     display: inline-block;
 }
 
-    .ie8 .zci--cryptocurrency-result {
-        margin: 0.75em 3.5em 0.5em 0em;
-    }
-
 .zci--cryptocurrency-group {
     white-space: nowrap;
     display: inline-block;
@@ -196,8 +192,7 @@
 
 .zci--cryptocurrency-equal {
     font-size: 2em;
-    margin-left: 1.5em;
-    margin-right: 0.5em;
+    margin: 0 0.5em;
 }
     .ie8 .zci--cryptocurrency-equal {
         margin-right: 0.5em;
