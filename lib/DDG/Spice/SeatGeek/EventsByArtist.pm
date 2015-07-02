@@ -22,7 +22,7 @@ triggers startend =>
     'live',
     'live show',
     'live shows',
-    'gigs'
+    'gigs',
     'tickets';
 
 spice proxy_cache_valid => "200 304 12h";
