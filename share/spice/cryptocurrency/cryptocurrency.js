@@ -162,7 +162,7 @@
                     symbol = "generic";
                 }
 
-                var img_path = Modernizr.svg ? 'assets/svg/' + symbol.toUpperCase() + '.svg' : 'assets/png/32/' + symbol + '.png';
+                var img_path = Modernizr.svg ? 'assets/svg/' + symbol.toUpperCase() + '.svg' : 'assets/png/32/' + symbol.toUpperCase() + '.png';
 
                 /* TODO Determine if we're using 64px, 96px PNGs. If not remove this */
                 /*return DDG.get_asset_path('cryptocurrency', 'assets/' + (DDG.is3x ? '96' : DDG.is2x ? '64' : '32') + '/' + symbol + '.' + img_ext);*/
