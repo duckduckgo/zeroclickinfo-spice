@@ -50,12 +50,13 @@
     height: 32px;
     width: 32px;
 	border-radius: 100%;
+    background-color: #fff;
 }
 
 .zci--people_in_space .image-under {
     position: absolute;
-        width: 100%;
-    height: 100%;
+    /*width: 100%;*/
+    /*height: 100%;*/
 }
 
 .zci--people_in_space .image-over {
@@ -63,40 +64,6 @@
     z-index: 5;
     top: 86px;
     left: 95px;
-    width: 100%;
-    height: 100%;
-}
-
-/* detail pane */
-.zci--people_in_space .detail__body .right {
-    margin-left: 2em
-}
-
-.zci--people_in_space .details {
-    line-height: 1.3em;
-    width: 50em;
-}
-
-.zci--people_in_space .detail__body ul {
-    float:left;
-}
-
-.zci--people_in_space .callout {
-    clear: left;
-    margin-top: 0.5em;
-    line-height: 1.3em;
-}
-
-.zci--people_in_space .detail__media__img {
-    max-height: 100%;
-    max-width: 100%;
-}
-
-.zci--people_in_space .detail__media {
-    max-width: 230px;
-    height: 285px;
-}
-
-.zci--people_in_space .detail__media {
-    padding-left: 0px;
+    /*width: 100%;*/
+    /*height: 100%;*/
 }

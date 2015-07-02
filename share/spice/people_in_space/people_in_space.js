@@ -30,7 +30,6 @@
                     },
                     templates: {
                         item: 'base_item',
-                        item_detail: Spice.people_in_space.detail,
                         options: {
                             content: Spice.people_in_space.content,
                         }
