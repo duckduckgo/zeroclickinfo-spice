@@ -1,6 +1,6 @@
 (function(env){
   "use strict";
-  env_ddg_spice_forecast = function(api_result){
+  env.ddg_spice_forecast = function(api_result){
 
     // Exit if we've got a bad forecast
     if(!api_result || !api_result.hourly || !api_result.hourly.data || !api_result.daily || !api_result.daily.data || !api_result.flags['ddg-location']) {
