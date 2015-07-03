@@ -18,7 +18,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["https://github.com/killerfish", "Usman Raza"],
             twitter => ["https://twitter.com/f1shie", "Usman Raza"];
 
-spice to => 'http://en.wikipedia.org/w/api.php?action=query&titles=$1&prop=revisions&rvlimit=1&rvprop=content&format=json&continue=&redirects&callback={{callback}}';
+spice to => 'https://en.wikipedia.org/w/api.php?action=query&titles=$1&prop=revisions&rvlimit=1&rvprop=content&format=json&continue=&redirects&callback={{callback}}';
 
 triggers startend => "today in history";
 triggers start => "historical events on", "this day in history";
