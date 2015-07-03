@@ -6,8 +6,6 @@
             return Spice.failed('isbn');
         }
 
-        var loaded = {};
-
         Spice.add({
             id: 'isbn',
             name: 'Books',
@@ -36,7 +34,7 @@
                 var arg = item.rating,
                     url = '/m.js?r=';
 
-                if (loaded[item.id]) { return; }
+                if (item.loadedReviews) { return; }
 
                 arg = arg.replace(/(?:.com.au|.com.br|.cn|.fr|.de|.in|.it|.co.jp|.mx|.es|.co.uk|.com|.ca?)/i, '');
                 arg = arg.replace('http://www.amazon/reviews/iframe?', '');
@@ -48,7 +46,7 @@
                     item.set({ reviewCount:  r.reviews });
                 });
 
-                loaded[item.id] = 1;
+                item.loadedReviews = 1;
             }
         });
     };
