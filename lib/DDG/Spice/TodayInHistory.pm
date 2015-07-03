@@ -44,6 +44,6 @@ handle remainder => sub {
     my $parser = DateTime::Format::Natural->new;
     my $date = $parser->parse_datetime($dateString);
     return unless ($parser->success);
-    return $date->day."_".$date->month;
+    return $date->day."_".$date->month_name;
 };
 1;

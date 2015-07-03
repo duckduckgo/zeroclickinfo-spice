@@ -34,31 +34,31 @@ ddg_spice_test(
         caller    => 'DDG::Spice::TodayInHistory',
     ),
     'historical events on june 22' => test_spice(
-        "/js/spice/today_in_history/22_6",
+        "/js/spice/today_in_history/22_June",
         caller    => 'DDG::Spice::TodayInHistory',
     ),
     'historical events on june 22nd' => test_spice(
-        "/js/spice/today_in_history/22_6",
+        "/js/spice/today_in_history/22_June",
         caller    => 'DDG::Spice::TodayInHistory',
     ),
     'historical events on june 22nd 2015' => test_spice(
-        "/js/spice/today_in_history/22_6",
+        "/js/spice/today_in_history/22_June",
         caller    => 'DDG::Spice::TodayInHistory',
     ),
     'historical events on 22 june' => test_spice(
-        "/js/spice/today_in_history/22_6",
+        "/js/spice/today_in_history/22_June",
         caller    => 'DDG::Spice::TodayInHistory',
     ),
     'historical events on June 22, 2000' => test_spice(
-        "/js/spice/today_in_history/22_6",
+        "/js/spice/today_in_history/22_June",
         caller    => 'DDG::Spice::TodayInHistory',
     ),
     'historical events on Jun 22' => test_spice(
-        "/js/spice/today_in_history/22_6",
+        "/js/spice/today_in_history/22_June",
         caller    => 'DDG::Spice::TodayInHistory',
     ),
     'historical events on 22/06/2015' => test_spice(
-        "/js/spice/today_in_history/22_6",
+        "/js/spice/today_in_history/22_June",
         caller    => 'DDG::Spice::TodayInHistory',
     ),
     'historical events on word' => undef,
