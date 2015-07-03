@@ -8,9 +8,9 @@
 
         // Extract our query
         var script = $('[src*="/js/spice/today_in_history/"]')[0],
-        source = $(script).attr('src'),
-        ourquery = source.match(/today_in_history\/([^\/]+)/)[1];
-        ourquery = ourquery.replace("_", " ");
+            source = $(script).attr('src'),
+            ourquery = source.match(/today_in_history\/([^\/]+)/)[1];
+            ourquery = ourquery.replace("_", " ");
 
         // Extract data
         var item;
@@ -37,15 +37,14 @@
 
         // Organize data in array
         var temp,
-            array = [],
-            temp_string,
-            toggle = 0;
+            data = [],
+            temp_string;
 
         for (var i = 0; i < events.length; i++) {
             temp = events[i].split(" &ndash; ");
             temp_string = (temp.slice(1)).join(" ");
             if (temp_string.length > 0) {
-                array.push({
+                data.push({
                     wikiYear: temp[0].replace(/\*/,""),
                     wikiText: temp_string, ttype: "event"}
                 );
@@ -55,7 +54,7 @@
         Spice.add({
             id: "today_in_history",
             name: "Today in History",
-            data: array,
+            data: data,
             meta: {
                 itemType: "historical events for " + ourquery,
                 sourceUrl: 'http://en.wikipedia.org/wiki/'+ ourquery,
@@ -69,7 +68,7 @@
                     plaintext = $("<p>" + html + "</p>").text();
 
                 return {
-                    canExpand: plaintext.length > 180 && !is_mobile,
+                    canExpand: plaintext.length > 150 && !is_mobile,
                     text: html,
                     year: wiki_to_html(item.wikiYear)
                 };
