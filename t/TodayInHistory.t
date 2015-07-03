@@ -18,8 +18,8 @@ my $month = $t->month_name;
 my $query = $day."_".$month;
 
 my $req  = DDG::Request->new( 
-    query_raw => "today in history", 
-    location => $loc 
+    query_raw => "today in history",
+    location => $loc
 );
 
 ddg_spice_test(
@@ -31,6 +31,34 @@ ddg_spice_test(
     ),
     'this day in history' => test_spice(
         "/js/spice/today_in_history/$query",
+        caller    => 'DDG::Spice::TodayInHistory',
+    ),
+    'historical events on june 22' => test_spice(
+        "/js/spice/today_in_history/22_6",
+        caller    => 'DDG::Spice::TodayInHistory',
+    ),
+    'historical events on june 22nd' => test_spice(
+        "/js/spice/today_in_history/22_6",
+        caller    => 'DDG::Spice::TodayInHistory',
+    ),
+    'historical events on june 22nd 2015' => test_spice(
+        "/js/spice/today_in_history/22_6",
+        caller    => 'DDG::Spice::TodayInHistory',
+    ),
+    'historical events on 22 june' => test_spice(
+        "/js/spice/today_in_history/22_6",
+        caller    => 'DDG::Spice::TodayInHistory',
+    ),
+    'historical events on June 22, 2000' => test_spice(
+        "/js/spice/today_in_history/22_6",
+        caller    => 'DDG::Spice::TodayInHistory',
+    ),
+    'historical events on Jun 22' => test_spice(
+        "/js/spice/today_in_history/22_6",
+        caller    => 'DDG::Spice::TodayInHistory',
+    ),
+    'historical events on 22/06/2015' => test_spice(
+        "/js/spice/today_in_history/22_6",
         caller    => 'DDG::Spice::TodayInHistory',
     ),
 );
