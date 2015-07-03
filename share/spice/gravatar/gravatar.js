@@ -40,6 +40,7 @@
                 // Get array of social media accounts
                 function getAccounts(entry) {
                     var accounts = [];
+                    var maxAccounts = 4;
                     if (entry.accounts) {
                         $.each(entry.accounts, function() {
                             accounts.push({
@@ -48,7 +49,17 @@
                             });
                         });
                     }
-                    return accounts;
+
+                    if (accounts.length < maxAccounts + 1) {
+                        return accounts;
+                    } else {
+                        accounts.length = maxAccounts;
+                        accounts.push({
+                            text: (entry.accounts.length - maxAccounts) + " more",
+                            href: entry.profileUrl
+                        });
+                        return accounts;
+                    }
                 }
 
                 return {
