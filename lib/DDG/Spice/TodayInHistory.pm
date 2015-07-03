@@ -25,18 +25,24 @@ triggers start => "historical events on", "this day in history";
 
 handle remainder => sub {
 
+    my $dateString = shift;
     my $dt = DateTime->now;
 
     # no date specified
     # use today's date
-    unless ($_){
+    unless ($dateString){
         $dt->set_time_zone($loc->time_zone);
         return $dt->mday."_".$dt->month_name;
     }
 
-    my $parser = DateTime::Format::Natural->new;
-    my $date = $parser->parse_datetime($_);
+    # ensure we have a day and month
+    # jan 20
+    # 01/20/15
+    # 2015-20-01
+    return unless split (/[-\/. ]/, $dateString) > 1;
 
+    my $parser = DateTime::Format::Natural->new;
+    my $date = $parser->parse_datetime($dateString);
     return unless ($parser->success);
     return $date->day."_".$date->month;
 };
