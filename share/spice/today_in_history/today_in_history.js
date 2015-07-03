@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_today_in_history = function(api_response) {
 
-        if (!api_response) {
+        if (!api_response || !api_response.query) {
             return Spice.failed('today_in_history');
         }
 
@@ -53,7 +53,7 @@
 
         Spice.add({
             id: "today_in_history",
-            name: "Today in History",
+            name: "Answer",
             data: data,
             meta: {
                 itemType: "historical events for " + ourquery,
