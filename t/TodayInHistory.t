@@ -61,6 +61,10 @@ ddg_spice_test(
         "/js/spice/today_in_history/22_6",
         caller    => 'DDG::Spice::TodayInHistory',
     ),
+    'historical events on word' => undef,
+    'historical events on 22'   => undef,
+    'historical events on june' => undef,
+    'historical events on 2014' => undef,
 );
 
 done_testing;
