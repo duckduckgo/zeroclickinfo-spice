@@ -28,25 +28,24 @@ my %days = ('1'=>'31','2'=>'29','3'=>'31','4'=>'30','5'=>'31','6'=>'30','7'=>'31
 
 # functions:
 # check and process if we got 2 parameters (month and day)
-sub readParameters {	
+sub readParams {
 	# read parameters - do not trigger if invalid parameters are found (delimiters: - / . ' ')
   	my ($parameter1, $parameter2) = split (/[-\/. ]/, $_[0]);
   	if ($parameter2) {
 		my $value;
-    		# e.g. "historical events on June 12"
-    		return $value if (($value = readparams($parameter1, $parameter2)) ne 'fail');
-    		# e.g. "historical events on 16 Sep"
-    		return $value if (($value = readparams($parameter2, $parameter1)) ne 'fail');
-   	} 
+            # e.g. "historical events on June 12"
+            return $value if (($value = validateParams($parameter1, $parameter2)) ne 'fail');
+            # e.g. "historical events on 16 Sep"
+            return $value if (($value = validateParams($parameter2, $parameter1)) ne 'fail');
+   	}
   	# no parameter - use today date
    	else {
    		return useToday();
   	}
-  	return;
 }
 
 # validate parameters and return day_month on success
-sub readparams {
+sub validateParams {
 	my $givenDay, my $givenMonth, my $month, my $evalfail;
   	# month name as full name (April), in abbreviated form (Apr) or as 2 digit (04) 
   	my @monthPatterns = ('%B', '%b', '%m');
@@ -56,7 +55,7 @@ sub readparams {
       			$givenDay = 0;
       			$month = $validDate->mon;
       			$givenMonth = $validDate->fullmonth;
-		})	
+		})
   	}
 	return 'fail' if(!$evalfail);
 	return 'fail' if($_[1] =~ m/\D+/);
@@ -71,15 +70,15 @@ sub readparams {
 
 # use today's date if no parameter passed
 sub useToday {
-        my $t = DateTime->now;
-        $t->set_time_zone($loc->time_zone);
+    my $t = DateTime->now;
+    $t->set_time_zone($loc->time_zone);
 	return $t->mday."_".$t->month_name;
 }
 
 handle remainder => sub {
 	# check current date in users timezone
-  	if (my $var = readParameters($_)) {
-		return $var;
+  	if (my $date = readParams($_)) {
+		return $date;
 	}
 	return;
 };
