@@ -12,8 +12,17 @@
         // Grab the matching search terms and figure out the season
         var script = $('[src*="/js/spice/seasons/"]')[0];
         var source = $(script).attr("src");
-        var query = source.match(/seasons\/[0-9]{4}\/[a-zA-Z]{2}\/([a-z]+)/)[1];
-        var season = $.inArray(query, [ "spring", "summer", "autumn", "winter" ]);
+        var query = source.match(/seasons\/[0-9]{4}\/[a-zA-Z]{2}\/([a-z]+)\/([a-z]+)/);
+
+        var season_q = query[1];
+        var hemisphere_q = query[2];
+
+        var seasons = [ "spring", "summer", "autumn", "winter" ];
+        if (hemisphere_q == 'south') {
+          seasons = [ "autumn", "winter", "spring", "summer" ];
+        }
+
+        var season = $.inArray(season_q, seasons);
 
         // Somehow we got an unknown season, bail out
         if (season < 0) {
@@ -27,7 +36,7 @@
         var result = {
           date: date,
           location: event.country.name,
-          season: DDG.capitalize(query)
+          season: DDG.capitalize(season_q)
         };
 
         DDG.require("moment.js", function() {
