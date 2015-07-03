@@ -5,50 +5,53 @@
         if (!api_response) {
             return Spice.failed('today_in_history');
         }
-    
-        // Extract our query	
+
+        // Extract our query
         var script = $('[src*="/js/spice/today_in_history/"]')[0],
         source = $(script).attr('src'),
         ourquery = source.match(/today_in_history\/([^\/]+)/)[1];
-        ourquery = ourquery.replace("_", " ");    
-    
+        ourquery = ourquery.replace("_", " ");
+
         // Extract data
-        var item
+        var item;
         for (var key in api_response.query.pages) {
             if (api_response.query.pages[key].hasOwnProperty("revisions"))
                 item = api_response.query.pages[key].revisions[0]["*"];
         }
 
-        if(!item) {
+        if (!item) {
             return Spice.failed('today_in_history');
         }
 
-        // Extract the data we want to organize    	
-        var temp_a = item.split("==Events==");
-        var temp_b = temp_a[1].split("==Births==");
-        var temp_c = temp_b[1].split("==Deaths==");
-        var temp_d = temp_c[1].split("==Holidays and observances==");
-        
+        // Extract the data we want to organize
+        var temp_a = item.split("==Events=="),
+            temp_b = temp_a[1].split("==Births=="),
+            temp_c = temp_b[1].split("==Deaths=="),
+            temp_d = temp_c[1].split("==Holidays and observances==");
+
         var events = $.trim(temp_b[0]).split("\n");
-      
+
         // We will use these when we get the filters
         // var births = $.trim(temp_c[0]).replace(/\<\!--(.|\n)*/,"").split("\n");
         // var deaths = $.trim(temp_d[0]).replace(/\<\!--(.|\n)*/,"").split("\n");
-    
 
         // Organize data in array
-        var temp;
-        var array = [];
-        var temp_string;
-        var toggle = 0;
+        var temp,
+            array = [],
+            temp_string,
+            toggle = 0;
+
         for (var i = 0; i < events.length; i++) {
             temp = events[i].split(" &ndash; ");
             temp_string = (temp.slice(1)).join(" ");
             if (temp_string.length > 0) {
-                array.push( {year: temp[0].replace(/\*/,""), str: temp_string, ttype: "event"});
+                array.push({
+                    wikiYear: temp[0].replace(/\*/,""),
+                    wikiText: temp_string, ttype: "event"}
+                );
             }
         }
-        
+
         Spice.add({
             id: "today_in_history",
             name: "Today in History",
@@ -57,60 +60,45 @@
                 itemType: "historical events for " + ourquery,
                 sourceUrl: 'http://en.wikipedia.org/wiki/'+ ourquery,
                 sourceName: 'Wikipedia',
-                minItemsForModeSwitch: '9999',
+                hideModeSwitch: true,
+                itemsExpand: true,
+                itemsHighlight: false
+            },
+            normalize: function(item){
+                var html = wiki_to_html(item.wikiText),
+                    plaintext = $("<p>" + html + "</p>").text();
+
+                return {
+                    canExpand: plaintext.length > 180 && !is_mobile,
+                    text: html,
+                    year: wiki_to_html(item.wikiYear)
+                };
             },
             templates: {
-                group: 'base',
-                detail: false,
-                item_detail: false,
+                item: 'base_expanding_item',
                 options: {
                     content: Spice.today_in_history.content
                 }
-            },
-            onShow: function() {
-                // Toggle for tile
-                if (toggle == 0) {
-                    toggle = 1; 
-                    var selector = Spice.getDOM("today_in_history").find(".string.t-m");
-                    selector.each(function() {
-                        if ($(this)[0].scrollHeight > $(this).innerHeight()) {
-                            $(this).parent().children(".year").append('<div id="circ" class="circle circle_p ddgsi ddgsi-plus"></div>').click(function() {
-                                var text = $(this).parent().children("#event");
-                                $(this).children("#circ").toggleClass('special');
-                                var pxi = $(this).parent().children("#today_in_history_event")[0].scrollHeight /  $(this).parent().children("#today_in_history_event").innerHeight();
-                                if($(this).children("#circ").hasClass('special')) {
-                                    $(this).parent().parent().css( "width", (pxi * 15) + "em");
-                                }
-                                else {
-                                    $(this).parent().parent().css( "width", "15em" );
-                                }
-                            });
-                        }
-
-                    });
-                }    
-             // Deferred this part till we get filters done
-             // Spice.getDOM("today_in_history").find(".zci__metabar__primary-text.js-metabar-primary").append('<div class="filters">Events <span style="font-size:0.8em">▼</span>  |</div><span class="filters">| Oldest First <span style="font-size:0.8em;">▼</span>  |</span><span class="filters">All Time Periods <span style="font-size:0.8em;">▼</span></span>');
             }
         });
-    }
-    
+    };
 
-    Handlebars.registerHelper('wiki_text_to_html', function(string, num) {
-        return new Handlebars.SafeString(string
+
+    function wiki_to_html (string) {
+        return string
             .replace(/\*?\s*(\S*)\[\[(.*?)\]\]([\w\'\"]*)/g, function (m, prefix, l, postfix) { // internal link or image
-                var parsed_value = l.split(/\|/);
-                var link = parsed_value.shift();
-                var text = parsed_value.length ? parsed_value : link;
-                
+                var parsed_value = l.split(/\|/),
+                    link = parsed_value.shift(),
+                    text = parsed_value.length ? parsed_value : link;
+
                 if (prefix) {
-                   text = prefix + text; 
+                   text = prefix + text;
                 }
 
                 if (postfix) {
-                   text = text + postfix; 
+                   text = text + postfix;
                 }
-                
+
                 return ' <a class="tx-clr--dk" href="' + link + '">' + text + '</a>';
             })
 
@@ -123,19 +111,17 @@
                 {
                     return " " + parsed_value[1] + " " + parsed_value[2];
                 }
-                
+
                 if (parsed_value.length == 4) {
                     parsed_value.splice(-1,1);
                 }
 
-                if (parsed_value.length == 2)
-                {
+                if (parsed_value.length == 2) {
                     link = parsed_value.join("_");
                     text = parsed_value.join(" ");
                 }
 
-                if (parsed_value.length == 3)
-                {
+                if (parsed_value.length == 3) {
                     parsed_value[2] = "(" + parsed_value[2] + ")";
                     link = parsed_value.join("_");
                     parsed_value.splice(-1,1);
@@ -144,15 +130,13 @@
 
                 return ' <a class="tx-clr--dk" href="' + link + '">' + text + '</a>';
             })
-        
+
             .replace(/'''(.*?)'''/g, function (m, l) {
                 return '<strong>' + l + '</strong>';
             })
-    
+
             .replace(/''(.*?)''/g, function (m, l) {
                 return '<em>' + l + '</em>';
-            })
-        ); 
-    });
-
+            });
+    }
 } (this));
