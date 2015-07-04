@@ -19,7 +19,7 @@
             // Render the response
             Spice.add({
                 id: "crunchbase",
-		name: "Crunchbase Organization",
+		name: "Answer",
 		data: response.data,
 		meta: {
                     sourceName: "Crunchbase",
