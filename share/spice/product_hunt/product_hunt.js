@@ -6,7 +6,7 @@
             return Spice.failed('producthunt');
         }
 
-        var qUrl = encodeURIComponent(api_result.query),
+        var query = encodeURIComponent(api_result.query),
             domainRegex = new RegExp(/:\/\/(www\.)?([^\/]+)\/?/);
 
         function getDomain(url) {
@@ -16,6 +16,12 @@
             }
             return 'producthunt.com';
         }
+        
+        var skip = [
+            "product",
+            "hunt",
+            "producthunt"
+        ];
 
         Spice.add({
             id: 'producthunt',
@@ -26,12 +32,17 @@
                 itemType: 'Products',
                 sourceName: 'ProductHunt',
                 sourceIcon: true,
-                sourceUrl:  'http://www.producthunt.com/#!/s/posts/' + qUrl
+                sourceUrl:  'http://www.producthunt.com/#!/s/posts/' + query
             },
             normalize: function(item) {
+                // Check relevancy of item name against query
+                if(!DDG.stringsRelevant(query, item.name, skip)) {
+                    return null;
+                }
                 return {
                     id: item.objectId,
                     title: item.name,
+                    altSubtitle: item.author.name,
                     url: item.url,
                     description: item.tagline,
                     votes: item.vote_count || 0,
@@ -47,7 +58,8 @@
                     footer: Spice.product_hunt.footer
                 },
                 variants: {
-                    tileTitle: '2line-small',
+                    tileTitle: '2line',
+                    tileSnippet: 'small',
                     tileFooter: '2line'
                 },
                 detail: false,
