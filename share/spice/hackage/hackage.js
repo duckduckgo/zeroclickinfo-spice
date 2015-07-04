@@ -68,18 +68,26 @@
             templates: {
                 group: 'text',
                 detail: false,
-                item_detail: false
+                item_detail: false,
+                variants: {
+                    tileTitle: "2line",
+                    tileSnippet: "large"
+                }
             },
 
             normalize : function(item) {
                 var v = version(item.docs);
+                var description = docString(item.docs);
+                if (description == "") {
+                    return;
+                }
                 var info = {
                     title: item.self,
-                    description: docString(item.docs),
+                    description: description,
                     url: item.location
                 };
                 if (v) {
-                    info.subtitle = "Version: " + v;
+                    info.altSubtitle = "Version: " + v;
                 }
                 return info;
             },
