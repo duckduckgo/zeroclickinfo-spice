@@ -18,7 +18,7 @@ attribution github => ["https://github.com/rubinovitz", "rubinovitz"],
 
 # Triggers
 triggers startend => 'crunchbase';
-spice to => 'http://api.crunchbase.com/v/2/organizations?user_key={{ENV{DDG_SPICE_CRUNCHBASE_APIKEY}}}&query=$1';
+spice to => 'https://api.crunchbase.com/v/2/organizations?user_key={{ENV{DDG_SPICE_CRUNCHBASE_APIKEY}}}&query=$1';
 spice wrap_jsonp_callback => 1;
 
 # Handle statement

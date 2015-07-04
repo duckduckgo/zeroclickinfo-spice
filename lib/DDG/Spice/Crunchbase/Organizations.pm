@@ -9,7 +9,7 @@ use strict;
 
 # Triggers
 triggers startend => '///***never trigger***///';
-spice to => 'http://api.crunchbase.com/v/2/organization/$1?user_key={{ENV{DDG_SPICE_CRUNCHBASE_APIKEY}}}';
+spice to => 'https://api.crunchbase.com/v/2/organization/$1?user_key={{ENV{DDG_SPICE_CRUNCHBASE_APIKEY}}}';
 
 # Handle statement
 handle query_lc => sub {
