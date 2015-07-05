@@ -47,9 +47,10 @@
 				url: wwwPathPrefix + permalink,
 				title: item.title
 			    };
-			    // add  primary image if exists
-			    if (item.relationships.primary_image.items.length > 0) {
-			       spiceData.image = imagePathPrefix + item.relationships.primary_image.items[0].path;
+                            var imageArray = DDG.getProperty(item, 'relationships.primary_image.items');
+			    // add primary image if both path components exist
+			    if (imagePathPrefix && imageArray.length > 0) {
+			       spiceData.image = imagePathPrefix + imageArray[0].path;
 			    }
 			    // return spice data
 			    return spiceData; 
