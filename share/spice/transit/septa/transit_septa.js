@@ -23,6 +23,7 @@
             data: api_result,
             signal: 'high',
             meta: {
+                primaryText: from + " to " + to,
                 sourceName: 'SEPTA',
                 sourceUrl: 'http://www.septa.org/schedules/rail/index.html',
                 sourceIconUrl: 'http://septa.org/site/images/favicon.ico'
