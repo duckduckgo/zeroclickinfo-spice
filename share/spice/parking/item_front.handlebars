@@ -1,0 +1,18 @@
+<div class="tile__media">
+    {{#if image}}
+        <div class="tile__media__wrapper">
+            <img src="" data-src="{{imageProxy image}}" alt="{{title}}" class="tile__media__img  js-lazyload" />
+        </div>
+    {{else}}
+        <span class="ddgsi tile__media__no-img">@</span>
+    {{/if}}
+</div>
+<div class="tile__num">{{num}}</div>
+<div class="tile__body">
+    <h6 class="tile__title">{{ellipsis name 33}}</h6>
+    <div class="tile__subtitle">{{ellipsis subtitle 16}}</div>
+    <div class="tile__foot tile--parking__foot tx-clr--grey-light">
+        <div class="title--parking__distance  pull-left">{{distance}}</div>
+        <div class="title--parking__price  pull-right">{{price}}</div>
+    </div>
+</div>
