@@ -14,7 +14,7 @@
             name: "Swiss Trains",
             data: api_result.connections,
             meta: {
-                heading: from + " to " + to,
+                primaryText: from + " to " + to,
                 sourceName: "transport.opendata.ch",
                 sourceUrl: 'http://transport.opendata.ch/examples/connections.php?from=' + from + '&to=' + to
             },
