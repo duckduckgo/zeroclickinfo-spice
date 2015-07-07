@@ -20,7 +20,7 @@
 }
 
 .zci--people_in_space .info {
-	text-align: center;
+    text-align: center;
     position: inherit;
     display:table-cell;
     vertical-align: middle;
@@ -37,8 +37,8 @@
 }
 
 .zci--people_in_space .tile__body {
-	padding: 0;
-	padding-top: 0;
+    padding: 0;
+    padding-top: 0;
 }
 
 .zci--people_in_space .image-under img {
@@ -53,6 +53,7 @@
     width: 100%;
     height: 100%;
 }
+
 
 .zci--people_in_space .image-under {
     position: absolute;
