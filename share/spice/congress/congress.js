@@ -70,7 +70,7 @@
             },
             sort_default: 'district',
             templates: {
-                group: 'products',
+                group: 'media',
                 options: {
                     buy: Spice.congress.buy,
                     rating: false,
@@ -78,7 +78,11 @@
                     brand: false
                 },
                 variants: {
-                    tile: 'narrow'
+                    tile: 'narrow',
+                    tileTitle: '1line'
+                },
+                elClass: {
+                    tileTitle: 'tx--15'
                 }
             }
         });
