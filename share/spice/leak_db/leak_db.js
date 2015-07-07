@@ -33,8 +33,7 @@
                 group: 'list',
                 options:{
                     content: 'record',
-                    moreAt: true,
-                    rowHighlight: true
+                    moreAt: true
                 }
             }
         });
