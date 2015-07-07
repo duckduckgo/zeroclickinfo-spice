@@ -20,7 +20,7 @@
 }
 
 .zci--people_in_space .info {
-	text-align: center;
+    text-align: center;
     position: inherit;
     display:table-cell;
     vertical-align: middle;
@@ -37,30 +37,35 @@
 }
 
 .zci--people_in_space .tile__body {
-	padding: 0;
-	padding-top: 0;
+    padding: 0;
+    padding-top: 0;
 }
 
 .zci--people_in_space .image-under img {
-   	height: 130px;
-    width: 100px;
+    width: 100%;
+    height: 100%;
 }
 
 .zci--people_in_space .image-over img {
     border: 3px solid #fff;
-    height: 32px;
-    width: 32px;
-	border-radius: 100%;
+    border-radius: 100%;
     background-color: #fff;
+    width: 100%;
+    height: 100%;
 }
+
 
 .zci--people_in_space .image-under {
     position: absolute;
+    height: 130px;
+    width: 100px;
 }
 
 .zci--people_in_space .image-over {
     position: absolute;
-    z-index: 5;
+    height: 32px;
+    width: 32px;
+    z-index: 1000;
     top: 86px;
     left: 95px;
 }
