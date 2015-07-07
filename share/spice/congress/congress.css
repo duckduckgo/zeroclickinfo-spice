@@ -10,3 +10,7 @@
 .tile--congress .tile__body {
 	height:5em;
 }
+
+.tile--congress .tile__media {
+    height:13em;
+}
