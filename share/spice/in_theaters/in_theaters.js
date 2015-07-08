@@ -33,13 +33,15 @@
         var mod_api_result = [];
         var filter_rating;
         var query_array = DDG.get_query().toLowerCase().split(" ");
-        var ratings = ["r","pg-13","pg","g","pg13","unrated"];
+        var ratings = ["r","pg-13","pg","g","pg13","kids","unrated"];
 
         // Check whether our query contains any rating
         $.each(ratings, function(index, value) {
             if(($.inArray(value, query_array)) !== -1) {
                 if(value === "pg13") {
                     filter_rating = "pg-13";
+                } else if (value === "kids") {
+                    filter_rating = "g";
                 } else {
                     filter_rating = value;
                 }
@@ -55,7 +57,10 @@
                 sourceName: 'Rotten Tomatoes',
                 sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
                 total: api_result.movies,
-                itemType: 'Movies'
+                itemType: 'Movies',
+                rerender: [
+                    'image'
+                ]
             },
             normalize: function(item) {
                 if (filter_rating && item.mpaa_rating.toLowerCase() !== filter_rating) {
@@ -104,23 +109,24 @@
                 }
             },
             onItemShown: function(item) {
+                var id = item.alternate_ids && item.alternate_ids.imdb;
+
+                if (!id) { return; }
+
                 $.ajaxSetup({ cache: true });
-                
-                if(item && item.alternate_ids && item.alternate_ids.imdb) {
-                    $.getJSON("/js/spice/movie_image/tt" + item.alternate_ids.imdb, function(data) {
-                        if(data && data.movie_results && data.movie_results.length > 0 && data.movie_results[0].poster_path) {
-                            var image = "https://image.tmdb.org/t/p/w185" + data.movie_results[0].poster_path,
-                                $html = (item.$html) ? item.$html : DDG.duckbar.tabs[item.parentId].view.$el;
-                                
-                            $html.find(".js-movie-img").attr("src", "https://images.duckduckgo.com/iu/?f=1&u=" + encodeURIComponent(image));
-                            $.extend(item, {
-                                image: image,
-                                img: image,
-                                img_m: image
-                            });
-                        }
-                    });
-                }
+
+                $.getJSON("/js/spice/movie_image/tt" + id, function(data) {
+                    var path = data && data.movie_results && data.movie_results.length && data.movie_results[0].poster_path,
+                        image = path && "https://image.tmdb.org/t/p/w185" + path;
+
+                    if (image) {
+                        item.set({
+                            img: image,
+                            img_m: image,
+                            image: image
+                        });
+                    }
+                });
             }
         });
     }
