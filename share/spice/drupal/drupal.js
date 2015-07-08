@@ -19,21 +19,21 @@
             normalize: function(item) {
                 var boxData = [{heading: 'Project Information:'}];
 
-                if (item.field_project_homepage.url) {
+                if (DDG.getProperty(item, 'field_project_homepage.url') !== undefined) {
                     boxData.push({
                         label: "Homepage",
                         value: item.field_project_homepage.url
                     });
                 }
 
-                if (item.field_project_documentation.url) {
+                if (DDG.getProperty(item, 'field_project_documentation.url') !== undefined) {
                     boxData.push({
                         label: "Documentation",
                         value: item.field_project_documentation.url
                     });
                 }
 
-                if (item.field_project_license.url) {
+                if (DDG.getProperty(item, 'field_project_license.url') !== undefined) {
                     boxData.push({
                         label: "License",
                         value: item.field_project_license.url
