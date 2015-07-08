@@ -19,7 +19,7 @@ ddg_spice_test(
     ),
     # Try to include some examples of queries on which it might
     # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    'custom line yacht maluhea', 'private yacht maluhea' => undef,
 );
 
 done_testing;
