@@ -13,6 +13,6 @@ language: perl
 perl:
   - '5.16'
 script:
-  - cpanm --quite --notest --mirror http://duckpan.org DDG::SpiceBundle::OpenSourceDuckDuckGo
+  - cpanm --quiet --notest --mirror http://duckpan.org DDG::SpiceBundle::OpenSourceDuckDuckGo
   - prove -l 2> /dev/null
   - dzil smoke --release --author
