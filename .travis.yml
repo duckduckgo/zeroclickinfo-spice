@@ -13,4 +13,5 @@ language: perl
 perl:
   - '5.16'
 script:
+  - prove -l
   - dzil smoke --release --author
