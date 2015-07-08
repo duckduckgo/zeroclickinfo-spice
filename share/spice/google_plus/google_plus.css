@@ -9,5 +9,8 @@
 
 .tile--google_plus  .tile__title {
     text-align: center;
+    vertical-align: middle;
     font-weight: 400;
+    display: table-cell;
+    width: 150px;
 }
