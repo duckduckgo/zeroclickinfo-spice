@@ -17,7 +17,8 @@ category "geography";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
 topics "geography";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GetGPSCoordinates.pm";
-attribution github => ["codemodedev", "Anthony DiSante"];
+attribution github => ["codemodedev", "Anthony DiSante"],
+            email => ['codes@anthonydisante.com', "Anthony DiSante"];
 
 spice to =>'https://en.wikipedia.org/w/api.php?action=query&titles=$1&prop=revisions&rvprop=content&format=json&callback={{callback}}';
 

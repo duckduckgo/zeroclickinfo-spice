@@ -29,8 +29,9 @@ ddg_spice_test(
     ),
     # Try to include some examples of queries on which it might
     # appear that your answer will trigger, but does not.
-    'buy a gps' => undef,
+    #'gps for sale' => undef,
     'gps coordinate conversion' => undef,
+    'gps coordinate software' => undef
 );
 
 done_testing;
