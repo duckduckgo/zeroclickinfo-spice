@@ -1,0 +1,49 @@
+<!-- Div for the yacht specifications -->
+<div class='thumb'>
+    
+    <div class='image'>
+        <img src='{{profile_photo}}' class='profile_photo' width=300px height=225px>
+    </div>
+    <div class='info'>
+       <h5>{{name}}</h5>
+        <table>
+            <tr>
+                <td>Length:</td>
+                <td>{{length}}m</td>
+            </tr>
+            <tr>
+                <td>Beam:</td>
+                <td>{{beam}}m</td>
+            </tr>
+            <tr>
+                <td>Yard:</td>
+                <td>{{yard}}</td>
+            </tr>
+            <tr>
+                <td>Year built:</td>
+                <td>{{year}}</td>
+            </tr>
+            <tr>
+                <td>Max speed:</td>
+                <td>{{Mspeed}} knots</td>
+            </tr>
+        </table>                    
+    </div>
+</div>
+<!-- CSS for display -->
+<style>
+    .thumb div {
+    display:inline-block;
+    vertical-align:top;
+    }
+    .info table {
+    width:200px;
+    margin-left:10px;
+    }
+    h5 {
+    margin-left:70px;
+    }
+    table tr td {
+    padding-top:10px;
+    }
+</style>
