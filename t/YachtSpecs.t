@@ -13,7 +13,7 @@ ddg_spice_test(
     # - primary_example_queries
     # - secondary_example_queries
     'yacht maluhea' => test_spice(
-        '/js/spice/yacht_specs/query',
+        '/js/spice/yacht_specs/maluhea',
         call_type => 'include',
         caller => 'DDG::Spice::YachtSpecs'
     ),

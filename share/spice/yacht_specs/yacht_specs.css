@@ -1,0 +1,21 @@
+/*
+    Document   : zeroclickinfo-spice/share/spice/yacht_specs/yacht_specs.css
+    Created on : 2015-07-09 10:31 AM
+    Author     : elephantRunAway
+    Description:Modification of the display of results for yacht related queries.
+*/
+
+    .thumb div {
+    display:inline-block;
+    vertical-align:top;
+    }
+    .info table {
+    width:200px;
+    margin-left:10px;
+    }
+    h5 {
+    margin-left:70px;
+    }
+    table tr td {
+    padding-top:10px;
+    }
