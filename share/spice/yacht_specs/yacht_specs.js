@@ -15,13 +15,26 @@
             name: "Yacht Info",
             data: api_result,
             meta: {
-                sourceName: "Yachtharbour.com",
+                sourceName: "YachtHarbour",
                 sourceUrl: 'http://yachtharbour.com' + api_result.link
             },
+              normalize: function(data) {
+                return {
+                  image: data.result_photo,
+                  title: data.name,
+                  subtitle: "Built by " + data.yard,
+                    record_data: {
+                        "Length": data.length + "m",
+                        "Beam": data.beam + "m",
+                        "Year Built": data.year,
+                        "Max Speed": data.Mspeed + " knots"
+                       }
+                };
+              },
             templates: {
                 group: 'info',
                 options: {
-                    content: Spice.yacht_specs.content,
+                    content: 'record',
                     moreAt: true
                 }
             }
