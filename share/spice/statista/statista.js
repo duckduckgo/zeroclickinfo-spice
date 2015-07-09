@@ -4,13 +4,21 @@
     function getImage(item, size) {  
         if (item.teaserImageUrls[size]) {
             return item.teaserImageUrls[size].src;
-        } else {
+        } else if (size == 3) {
             return 'https://static1.statista.com/Statistic/table/table-100-1.png';
         }
     }
     
     function getTitle(title) {
         return title.replace(/\ \|\ .+?$/, "");
+    }
+    
+    function getAbstract(item) {
+        var abstract = item.description;
+        if (item.Premium == 1) {
+            abstract = abstract + '\n (paid content)';
+        }
+        return abstract;
     }
     
     env.ddg_spice_statista = function(api_result){
@@ -31,16 +39,23 @@
                 return {
                     title: getTitle(item.title),
                     url: item.Link,
-                    description: item.subject,
-                    icon: getImage(item, 3)
+                    description: item.subject ,
+                    icon: getImage(item, 3),
+                    img_m: getImage(item, 1),
+                    heading: item.subject,
+                    abstract: getAbstract(item)
                 }  
             },
             templates: {
                 group: 'icon',
-                detail: false,
-                item_detail: false,
+                item_detail: 'products_item_detail',
+	            wrap_detail: 'base_detail',
+                
                 options: {
-                    moreAt: true
+                    moreAt: true,
+                    rating: false,
+                    price: false,
+                    brand: false
                 }
             },
         });
