@@ -24,7 +24,7 @@
 }
 .tile--congress .tile__media__img {
     margin-top: 1.4em;
-    width: 130px;
-    height: 130px;
+    max-width: 100%;
+    height: 140px;
     border-radius: 100%;
 }

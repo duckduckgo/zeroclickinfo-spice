@@ -79,7 +79,6 @@
                 },
                 variants: {
                     tile: 'narrow',
-                    tileTitle: '1line'
                 },
                 elClass: {
                     tileTitle: 'tx--15'
