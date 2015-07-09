@@ -8,6 +8,7 @@
         }
 
         DDG.require('mathquill', function (){
+            console.log(api_result);
             Spice.add({
                 id: "symbolab",
                 name: "Calculator",
@@ -18,7 +19,9 @@
                 },
                 normalize: function (data) {
                     return {
-                        latex: data.presentation
+                        title: "Solution for: " + data.problem,
+                        latex: decodeURIComponent(data.presentationLatex),
+                        rendered: false
                     };
                 },
                 templates: {
@@ -26,6 +29,14 @@
                     options: {
                         content: Spice.symbolab.content
                     }
+                },
+                onItemShown: function(item) {
+                    if (item.rendered) {
+                        return;
+                    }
+                    var container = Spice.getDOM('symbolab');
+                    $(container).find(".mathquill-embedded-latex").mathquill();
+                    item.set({rendered: true});
                 }
             });
         });
