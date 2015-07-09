@@ -12,5 +12,19 @@
 }
 
 .tile--congress .tile__media {
-    height:13em;
+    height: 13em;
+}
+
+.tile--congress .tile__title {
+    vertical-align: middle;
+    font-weight: 400;
+    display: table-cell;
+    width: 150px;
+    text-align: center;
+}
+.tile--congress .tile__media__img {
+    margin-top: 1.4em;
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
 }
