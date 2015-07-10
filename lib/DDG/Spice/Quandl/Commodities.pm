@@ -27,7 +27,7 @@ my $primary_qr = join "|", @primary_keys;
 my $secondary_hash = LoadFile(share('commodities_secondary.yml'));
 
 # array of secondary triggers
-my @secondary_keys = keys($secondary_hash);
+my @secondary_keys = sort { length $b <=> length $a } keys($secondary_hash);
 my $secondary_qr = join "|", @secondary_keys;
 
 # defining our triggers
@@ -37,24 +37,25 @@ triggers any => @primary_keys;
 # duckpan env set <name> <value>
 
 # set spice parameters
-spice to => 'https://www.quandl.com/api/v1/datasets/$1.json?auth_token={{ENV{DDG_SPICE_QUANDL_APIKEY}}}&rows=2';
+spice from => '(.+)-(.+)';
+spice to => 'https://www.quandl.com/api/v1/datasets/$1/$2.json?auth_token={{ENV{DDG_SPICE_QUANDL_APIKEY}}}&rows=2';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
 handle sub {
     
-    return 'OFDP/ALUMINIUM';
+ 
     # exit if a year is specified
-    #if ($_ =~ m/(1|2)\d\d\d/) {return;}
+    if ($_ =~ m/(1|2)\d\d\d/) {return;}
 
-    #my $query = lc $_;
+    my $query = lc $_;
     
     # find which secondary trigger was used
-    #return unless $query =~ m/\b($secondary_qr)\b/;
-    #my $secondary = $1;
+    return unless $query =~ m/\b($secondary_qr)\b/;
+    my $secondary = $1;
     
     # returning {secondary}_{primary}
-    #return $secondary_hash->{$secondary};
+    return $secondary_hash->{$secondary};
     
 };
 
