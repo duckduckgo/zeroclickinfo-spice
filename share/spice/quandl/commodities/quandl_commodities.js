@@ -26,10 +26,54 @@
         
         // setting title and units based on database/dataset string
         result.header = "Price of ";
-        if (quandlCode === "OFDP/ALUMINIUM") {
-           result.header += "Aluminum";
-           result.units = "$USD/Tonne"
+        if (quandlCode === "OFDP/ALUMINIUM_21") {
+            result.header += "Aluminum";
+            result.units = "$USD/tonne";
         }
+		if (quandlCode === "OFDP/ALUMINIUMALLOY_11") {
+            result.header += "Aluminum Alloy";
+            result.units = "$USD/tonne";
+		}
+		if (quandlCode === "DOE/COAL") {
+            result.header += "Coal";
+            result.units = "$USD/short ton";
+		}
+		if (quandlCode === "OFDP/COPPER") {
+            result.header += "Copper";
+            result.units = "$USD/tonne";
+		}
+		if (quandlCode === "DOE/RWTC") {
+            result.header += "Crude Oil";
+            result.units = "$USD/barrel";
+		}
+		if (quandlCode === "DOE/EER_EPMRR_PF4_Y05LA_DPG") {
+            result.header += "Gasoline Spot";
+            result.units = "$USD/gallon";
+		}
+		if (quandlCode === "BUNDESBANK/BBK01_WT5511") {
+            result.header += "Gold";
+            result.units = "$USD/troy oz.";
+		}
+		if (quandlCode === "ODA/PNGASUS_USD") {
+            result.header += "Natural Gas";
+            result.units = "$USD/MMBtu";
+		}
+		if (quandlCode === "LPPM/PALL") {
+            result.header += "Palladium";
+            result.units = "$USD/troy oz.";
+		}
+		if (quandlCode === "LPPM/PLAT") {
+            result.header += "Platinum";
+            result.units = "$USD/troy oz.";
+		}
+		if (quandlCode === "LBMA/SILVER") {
+            result.header += "Silver";
+            result.units = "$USD/troy oz.";
+		}
+		if (quandlCode === "JOHNMATT/IRID") {
+            result.header += "Iridium";
+            result.units = "$USD/troy oz.";
+		}
 
         // url to the data set page
         result.url = 'https://quandl.com/' + result.source_code + "/" + result.code;
@@ -67,26 +111,9 @@
         if (percentChange < 0) result.changeDirection = 'down';
         if (percentChange == 0) result.changeDirection = 'up';
 
-        // the most recent fundamental value
-        var value = recentValue;
-        if (Math.abs(value) >= Math.pow(10,12)) {
-            value = Math.round(value / Math.pow(10,10)) / Math.pow(10,2);
-            value = value + " trillion";
-        } else if (Math.abs(value) >= Math.pow(10,9)) {
-            value = Math.round(value / Math.pow(10,7)) / Math.pow(10,2);
-            value = value + " billion";
-        } else if (Math.abs(value) >= Math.pow(10,6)) {
-            value = Math.round(value / Math.pow(10,4)) / Math.pow(10,2);
-            value = value + " million";
-        } else if (Math.abs(value) >= Math.pow(10,3)) {
-            value = Math.round(value / Math.pow(10,1)) / Math.pow(10,2);
-            value = value + " thousand";
-        } else {
-            value = Math.round(value * 100) / 100;
-        }
-        result.value = value;
-
-
+        // displayed value is the most recent value
+        result.value = recentValue;
+      
         Spice.add({
             id: 'quandl_commodities',
             name: 'Commodities',
