@@ -14,7 +14,8 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::YachtSpecs'
     ),
-    'custom line yacht maluhea', 'private yacht maluhea' => undef,
+    'custom line yacht maluhea' => undef,
+'private yacht maluhea' => undef
 );
 
 done_testing;
