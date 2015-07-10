@@ -113,5 +113,24 @@ ddg_spice_test(
     'population' => undef, 
 );
 
+ddg_spice_test(
+	[qw( DDG::Spice::Quandl::Commodities )],
+    
+    'aluminum alloy prices' => test_spice(
+		'/js/spice/quandl/commodities/OFDP-ALUMINIUMALLOY_11',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::Commodities',
+	),
+    
+    'aluminum prices' => test_spice(
+		'/js/spice/quandl/commodities/OFDP-ALUMINIUM_21',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::Commodities',
+	),
+    
+    'aluminum' => undef,
+    'price' => undef,
+);
+
 
 done_testing;
