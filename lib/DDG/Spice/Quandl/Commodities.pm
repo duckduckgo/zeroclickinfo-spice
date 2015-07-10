@@ -42,9 +42,20 @@ spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
 handle sub {
-
     
-    return "OFDP/ALUMINIUM";
+    return 'OFDP/ALUMINIUM';
+    # exit if a year is specified
+    #if ($_ =~ m/(1|2)\d\d\d/) {return;}
+
+    #my $query = lc $_;
+    
+    # find which secondary trigger was used
+    #return unless $query =~ m/\b($secondary_qr)\b/;
+    #my $secondary = $1;
+    
+    # returning {secondary}_{primary}
+    #return $secondary_hash->{$secondary};
+    
 };
 
 1;
