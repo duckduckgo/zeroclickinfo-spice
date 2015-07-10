@@ -3,7 +3,7 @@
 }
 
 .tile--google_plus  .tile__media__img {
-    margin-top: 1.4em;
+    margin-top: 20px;
     border-radius: 100%;
 }
 
@@ -13,4 +13,8 @@
     font-weight: 400;
     display: table-cell;
     width: 150px;
+}
+
+.tile--google_plus .tile__body {
+    padding-bottom: 20px;
 }
