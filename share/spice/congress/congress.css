@@ -12,7 +12,10 @@
 }
 
 .tile--congress .tile__media {
-    height: 13em;
+    margin-top: 1.4em;
+    height: 110px;
+    width: 110px;
+    border-radius: 100%;
 }
 
 .tile--congress .tile__title {
@@ -21,10 +24,4 @@
     display: table-cell;
     width: 150px;
     text-align: center;
-}
-.tile--congress .tile__media__img {
-    margin-top: 1.4em;
-    max-width: 100%;
-    height: 140px;
-    border-radius: 100%;
 }
