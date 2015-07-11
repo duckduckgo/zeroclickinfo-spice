@@ -11,7 +11,7 @@ package DDG::Spice::Meetup;
 # # # # # # # # # #
 # # # # # # # # # #
 # # # # # # # # # #
-# # # # # # # # # # TODO: set personal API key on the server
+# # # # # # # # # # TODO: set personal API key on the server DDG_SPICE_MEETUP_APIKEY
 # # # # # # # # # # # # # https://duck.co/duckduckhack/spice_advanced_backend#caching-api-responses
 use DDG::Spice;
 
@@ -30,7 +30,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["alohaas", "Olivia Haas"],
             twitter => "livhaas";
 
-spice to => 'https://api.meetup.com/find/groups?key=4837c555040336dd126065745b75&group_urlname=$1&order=members';
+spice to => 'https://api.meetup.com/2/groups?&member_id=75679802&key=74496f8077213e205e167fe5082d19&zip=$1&radius=25.0&page=10&callback={{callback}}';
 triggers any => "meetup", "meetup.com", "meetups", "meetup groups";
 
 handle remainder => sub {
