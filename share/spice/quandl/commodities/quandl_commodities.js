@@ -24,56 +24,59 @@
         
         var quandlCode = result.source_code + "/" + result.code;
         
-        // setting title and units based on database/dataset string
-        result.header = "Price of ";
-        if (quandlCode === "OFDP/ALUMINIUM_21") {
-            result.header += "Aluminum";
-            result.units = "$USD/tonne";
-        }
-		if (quandlCode === "OFDP/ALUMINIUMALLOY_11") {
-            result.header += "Aluminum Alloy";
-            result.units = "$USD/tonne";
-		}
-		if (quandlCode === "DOE/COAL") {
-            result.header += "Coal";
-            result.units = "$USD/short ton";
-		}
-		if (quandlCode === "OFDP/COPPER") {
-            result.header += "Copper";
-            result.units = "$USD/tonne";
-		}
-		if (quandlCode === "DOE/RWTC") {
-            result.header += "Crude Oil";
-            result.units = "$USD/barrel";
-		}
-		if (quandlCode === "DOE/EER_EPMRR_PF4_Y05LA_DPG") {
-            result.header += "Gasoline Spot";
-            result.units = "$USD/gallon";
-		}
-		if (quandlCode === "BUNDESBANK/BBK01_WT5511") {
-            result.header += "Gold";
-            result.units = "$USD/troy oz.";
-		}
-		if (quandlCode === "ODA/PNGASUS_USD") {
-            result.header += "Natural Gas";
-            result.units = "$USD/MMBtu";
-		}
-		if (quandlCode === "LPPM/PALL") {
-            result.header += "Palladium";
-            result.units = "$USD/troy oz.";
-		}
-		if (quandlCode === "LPPM/PLAT") {
-            result.header += "Platinum";
-            result.units = "$USD/troy oz.";
-		}
-		if (quandlCode === "LBMA/SILVER") {
-            result.header += "Silver";
-            result.units = "$USD/troy oz.";
-		}
-		if (quandlCode === "JOHNMATT/IRID") {
-            result.header += "Iridium";
-            result.units = "$USD/troy oz.";
-		}
+        var commodities = {
+            "OFDP/ALUMINIUM_21": {
+                header: "Aluminium",
+                units: "$USD/tonne",
+            },
+            "OFDP/ALUMINIUMALLOY_11": {
+                header: "Aluminium Alloy",
+                units: "$USD/tonne",
+            },
+            "DOE/COAL": {
+                header: "Cloal",
+                units: "$USD/short ton",
+            },
+            "OFDP/COPPER": {
+                header: "Copper",
+                units: "$USD/tonne",
+            },
+            "DOE/RWTC": {
+                header: "Crude Oil",
+                units: "$USD/barrel",
+            },
+            "DOE/EER_EPMRR_PF4_Y05LA_DPG": {
+                header: "Gasoline Spot",
+                units: "$USD/gallon",
+            },
+            "BUNDESBANK/BBK01_WT5511": {
+                header: "Gold",
+                units: "$USD/troy oz.",
+            },
+            "ODA/PNGASUS_USD": {
+                header: "Natural Gas",
+                units: "$USD/MMBtu",
+            },
+            "LPPM/PALL": {
+                header: "Palladium",
+                units: "$USD/troy oz.",
+            },
+            "LPPM/PLAT": {
+                header: "Platinum",
+                units: "$USD/troy oz.",
+            },
+            "LBMA/SILVER": {
+                header: "Silver",
+                units: "$USD/troy oz.",
+            },
+            "JOHNMATT/IRID": {
+                header: "Iridium",
+                units: "$USD/troy oz.",
+            },
+        };
+
+        result.header = "Price of " + commodities[quandlCode].header;
+        result.units = commodities[quandlCode].units;
 
         // url to the data set page
         result.url = 'https://quandl.com/' + result.source_code + "/" + result.code;
@@ -83,19 +86,6 @@
 
         var recentValue = result.data[0][1];
         var previousValue = result.data[1][1];
-
-        // month array to make string version of date
-        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-        // adding in the previous date point date
-        var fromDate = new Date(result.data[1][0]);
-        var fromDateString = months[fromDate.getUTCMonth()] + " " + fromDate.getUTCDate() + ", " + fromDate.getFullYear();
-        result.from_date = fromDateString;
-
-        // reformatting the current data point date (to_date)
-        var toDate = new Date(result.to_date);
-        var toDateString = months[toDate.getUTCMonth()] + " " + toDate.getUTCDate() + ", " + toDate.getFullYear();
-        result.to_date = toDateString;
 
         // splitting title into header and subheader
         result.subheader = 'Prices';
@@ -113,23 +103,30 @@
 
         // displayed value is the most recent value
         result.value = recentValue;
-      
-        Spice.add({
-            id: 'quandl_commodities',
-            name: 'Commodities',
-            data: result,
-            meta: {
-                sourceName: 'Quandl',
-                sourceUrl: result.url,
-                sourceIconUrl:  DDG.get_asset_path('quandl/commodities','quandl32x32.png')
-            },
-            templates: {
-                group: 'base',
-                options: {
-                    content: Spice.quandl_commodities.content,
-                    moreAt: true
+        
+        DDG.require('moment.js', function() {
+            Spice.add({
+                id: 'quandl_commodities',
+                name: 'Commodities',
+                data: result,
+                meta: {
+                    sourceName: 'Quandl',
+                    sourceUrl: result.url,
+                    sourceIconUrl:  DDG.get_asset_path('quandl/commodities','quandl32x32.png')
+                },
+                templates: {
+                    group: 'base',
+                    options: {
+                        content: Spice.quandl_commodities.content,
+                        moreAt: true
+                    }
+                },
+                normalize: function(data) {
+                    return {
+                      to_date: moment(data.to_date).format('MMMM Do YYYY')
+                    }
                 }
-            }
+            });
         });
     };
 }(this));
