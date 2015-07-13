@@ -2,7 +2,7 @@
     'use strict';
     env.ddg_spice_product_hunt = function(api_result){
 
-        if (!api_result || !api_result.hits || !(api_result.hits.length > 0)) {
+        if (!(api_result && api_result.hits && api_result.hits.length > 0)) {
             return Spice.failed('producthunt');
         }
 
@@ -27,7 +27,7 @@
                 itemType: 'Products',
                 sourceName: 'ProductHunt',
                 sourceIcon: true,
-                sourceUrl:  'http://www.producthunt.com/#!/s/posts/' + qUrl
+                sourceUrl:  'https://www.producthunt.com/#!/s/posts/' + qUrl
             },
             normalize: function(item) {
                 return {
@@ -40,7 +40,7 @@
                     commentsUrl: 'https://www.producthunt.com/posts/' + item.slug,
                     domainName: getDomain(item.url),
                     iconArrowUrl: DDG.get_asset_path('product_hunt','arrow_up.png'),
-                }
+                };
             },
             templates: {
                 group: 'text',
