@@ -7,7 +7,8 @@
         }
 
         var qUrl = encodeURIComponent(api_result.query),
-            domainRegex = new RegExp(/:\/\/(www\.)?([^\/]+)\/?/);
+            domainRegex = new RegExp(/:\/\/(www\.)?([^\/]+)\/?/),
+            baseUrl = "https://producthunt.com";
 
         function getDomain(url) {
             var match = domainRegex.exec(url);
@@ -32,7 +33,7 @@
                 return {
                     id: item.objectId,
                     title: item.name,
-                    url: item.url,
+                    url: baseUrl + item.url,
                     description: item.tagline,
                     votes: item.vote_count || 0,
                     comments: item.comment_count || 0,
