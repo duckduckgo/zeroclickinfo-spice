@@ -19,6 +19,10 @@ ddg_spice_test(
         '/js/spice/similar_sites/twitter.com',
         caller => 'DDG::Spice::SimilarSites'
     ),
+    'similar site facebook.com' => test_spice(
+        '/js/spice/similar_sites/facebook.com',
+        caller => 'DDG::Spice::SimilarSites'
+    )
 );
 
 done_testing;
