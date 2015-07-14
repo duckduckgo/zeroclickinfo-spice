@@ -71,12 +71,8 @@
             sort_default: 'district',
             templates: {
                 group: 'media',
-                options: {
-                    buy: Spice.congress.buy,
-                    rating: false,
-                    price: false,
-                    brand: false
-                },
+                item_detail: false,
+                detail: false,
                 variants: {
                     tile: 'narrow',
                 },
