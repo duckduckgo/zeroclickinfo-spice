@@ -1,3 +1,4 @@
+# news sites
 engadget: http://www.engadget.com/rss.xml
 huffington: http://www.huffingtonpost.com/feeds/original_posts/index.xml
 msnbc: http://rss.msnbc.msn.com/id/3032091/device/rss/rss.xml
@@ -6,3 +7,20 @@ the times: http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
 new york times: http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml
 bbc: http://feeds.bbci.co.uk/news/rss.xml
 boingboing: http://boingboing.net/feed
+538: http://fivethirtyeight.com/features/feed/
+fivethirtyeight: http://fivethirtyeight.com/features/feed/
+
+# companies
+microsoft: http://blogs.microsoft.com/feed/
+apple: https://www.apple.com/main/rss/hotnews/hotnews.rss
+google: http://googleblog.blogspot.com/atom.xml
+wal-mart: http://corporate.walmart.com/_news_/rss/blog-posts
+walmart: http://corporate.walmart.com/_news_/rss/blog-posts
+samsung: http://feeds.feedburner.com/SamsungVillage
+toyota: http://blog.toyota.co.uk/feed
+coke: http://www.coca-colacompany.com/feeds/articles
+coca-cola: http://www.coca-colacompany.com/feeds/articles
+mcdonalds: http://www.aboutmcdonalds.com/rss/mcd/rss_amazing_stories.xml
+
+# people
+nate silver: http://fivethirtyeight.com/contributors/nate-silver/feed/
