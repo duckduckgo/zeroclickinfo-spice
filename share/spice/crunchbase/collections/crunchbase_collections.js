@@ -27,17 +27,21 @@
             },
             normalize: function(item){
                 var properties = DDG.getProperty(item, 'properties');
-                // make sure org properties and image url exist before rendering
-                if (properties && properties.profile_image_url){
+                if (properties){
 			return { 
-			    path:item.path,
-			    image:properties.profile_image_url,
+			    path: item.path,
+			    image: properties.profile_image_url,
 			    title: properties.name,
 			    url: wwwPathPrefix + properties.web_path,
 			    description: properties.short_description
-                        };
+			};
                 }
-             },			
+             },
+             relevancy: {
+                 primary: [
+                    { required: 'properties.profile_image_url' } // only render results with prof img
+                 ]
+             },
              templates: {
                  group: 'info',
                  options: {
