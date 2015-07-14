@@ -70,8 +70,10 @@
                 detail: false,
                 item_detail: false,
                 variants: {
-                    tileTitle: "2line",
-                    tileSnippet: "large"
+                    tileTitle: "2line"
+                },
+                elClass: {
+                    tileSnippet: "tile__content--m"
                 }
             },
 
