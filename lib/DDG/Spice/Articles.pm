@@ -28,7 +28,7 @@ my @site_keys = sort { length $b <=> length $a } keys($site_hash);
 my $site_qr = join "|", @site_keys;
 
 # defining our triggers
-triggers any => @site_keys;
+triggers start => @site_keys;
 
 # set spice parameters
 spice to => 'https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=$1&num=10';
