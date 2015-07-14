@@ -18,11 +18,11 @@
 
         Spice.add({
             id: 'articles',
-            name: 'Articles',
+            name: 'Articles By',
             data: articles,
             meta: {
                 count: articles.length,
-                itemType: 'Articles'
+                itemType: 'Articles By'
             },
             templates: {
                 group: 'text',
