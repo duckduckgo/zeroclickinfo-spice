@@ -5,7 +5,7 @@
         var query = DDG.get_query()
         .replace(/^(what|rhymes?( with| for)?) |\?/gi, "");
 
-        if (!api_result.length) {
+        if (!(api_result && api_result.length)) {
             return Spice.failed('rhymes');
         }
 
