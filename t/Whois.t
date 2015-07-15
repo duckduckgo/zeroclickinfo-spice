@@ -117,6 +117,9 @@ ddg_spice_test(
     'duckduckgo.com who owns' => expected_output_for('duckduckgo.com'),
     'duckduckgo.com buy' => expected_output_for('duckduckgo.com'),
     'duckduckgo.com how to buy' => expected_output_for('duckduckgo.com'),
+    
+    # domain containing a number should trigger
+    'whois duckduckgo99.com' => expected_output_for('duckduckgo99.com'),
 
     # whois keywords without a url should not trigger
     'whois' => undef,
