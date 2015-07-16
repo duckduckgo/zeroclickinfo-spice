@@ -10,5 +10,8 @@ boingboing: http://boingboing.net/feed
 538: http://fivethirtyeight.com/features/feed/
 fivethirtyeight: http://fivethirtyeight.com/features/feed/
 
+# other
+clickhole: http://www.clickhole.com/feeds/rss
+
 # people
 nate silver: http://fivethirtyeight.com/contributors/nate-silver/feed/
