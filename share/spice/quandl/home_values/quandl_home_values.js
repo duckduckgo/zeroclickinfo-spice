@@ -17,6 +17,10 @@
 
         var result = api_result;
         
+        if (result.data == null) {
+            return Spice.failed('quandl_home_values');
+        }
+        
         // we need two data points to get percent change
         if (result.data.length < 2) {
             return Spice.failed('quandl_home_values');
