@@ -7,6 +7,10 @@
         }
 
         var result = api_result;
+        
+        if (result.data == null) {
+            return Spice.failed('quandl_world_bank');
+        }
 
         // we need two data points to get percent change
         if (result.data.length < 2) {
