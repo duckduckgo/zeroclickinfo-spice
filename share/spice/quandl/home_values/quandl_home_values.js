@@ -1,7 +1,19 @@
 (function (env) {
     'use strict';
     env.ddg_spice_quandl_home_values = function(api_result){
-        if (!api_result || api_result.data.length < 2 ) {
+
+        if (!api_result) {
+            return Spice.failed('quandl_home_values');
+        }
+
+        var result = api_result;
+        
+        if (result.data == null) {
+            return Spice.failed('quandl_home_values');
+        }
+        
+        // we need two data points to get percent change
+        if (result.data.length < 2) {
             return Spice.failed('quandl_home_values');
         }
 
