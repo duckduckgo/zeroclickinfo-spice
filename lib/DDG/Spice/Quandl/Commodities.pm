@@ -21,7 +21,6 @@ my $primary_hash = LoadFile(share('commodities_primary.yml'));
 
 # triggers sorted by length so more specific is used first
 my @primary_keys = sort { length $b <=> length $a } keys($primary_hash);
-my $primary_qr = join "|", @primary_keys;
 
 # hash associating secondary triggers with their codes
 my $secondary_hash = LoadFile(share('commodities_secondary.yml'));
