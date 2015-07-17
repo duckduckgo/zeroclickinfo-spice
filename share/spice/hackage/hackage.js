@@ -63,7 +63,8 @@
             data: results,
             meta: {
                 sourceName: "Hackage",
-                sourceUrl: "https://hackage.haskell.org/packages/search?terms=" + query
+                sourceUrl: "https://hackage.haskell.org/packages/search?terms=" + query,
+                snippetChars: 85
             },
             templates: {
                 group: 'text',
@@ -71,9 +72,6 @@
                 item_detail: false,
                 variants: {
                     tileTitle: "2line"
-                },
-                elClass: {
-                    tileSnippet: "tile__content--m"
                 }
             },
 
