@@ -30,7 +30,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["alohaas", "Olivia Haas"],
             twitter => "livhaas";
 
-spice to => 'https://api.meetup.com/2/groups?&member_id=75679802&key=74496f8077213e205e167fe5082d19&zip=$1&radius=25.0&page=10&callback={{callback}}';
+spice to => 'https://api.meetup.com/2/groups?&key=74496f8077213e205e167fe5082d19&zip=$1&radius=50.0&page=20&order=members&callback={{callback}}';
 triggers any => "meetup", "meetup.com", "meetups", "meetup groups";
 
 handle remainder => sub {
