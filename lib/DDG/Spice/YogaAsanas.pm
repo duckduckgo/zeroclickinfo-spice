@@ -4,7 +4,7 @@ package DDG::Spice::YogaAsanas;
 use strict;
 use DDG::Spice;
 
-spice to => 'http://jason.duckduckgo.com:8000/solr/staging/select?version=2.2&defType=edismax&qt=dismax&q=$1 source_match:yoga_asanas_api&fq=&wt=json&start=0&rows=75&json.wrf={{callback}}';
+spice to => 'http://jason.duckduckgo.com:8000/solr/staging/select?version=2.2&defType=edismax&qt=dismax&q=$1 source_match:yoga_asanas_api&fq=&wt=json&start=0&rows=75&sort=p_count+asc&json.wrf={{callback}}';
 
 triggers query_lc => qr{
 	(?:\w+asanas?\b)|
