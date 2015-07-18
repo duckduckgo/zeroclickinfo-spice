@@ -3,9 +3,9 @@ package DDG::Spice::Hackage;
 
 use DDG::Spice;
 
-triggers startend => 'hask';
+triggers startend => 'haskell', 'hoogle', 'hackage';
 
-spice to => 'http://www.haskell.org/hoogle/?mode=json&hoogle=$1';
+spice to => 'https://www.haskell.org/hoogle/?mode=json&hoogle=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {

@@ -33,37 +33,34 @@
             if (v == undefined) {
                 return -1;
             }
-            while(v.indexOf(".") != -1) {
-                v = v.replace(".","");
-            }
+            v = v.replace(/\./g,"")
             // Assuming semantic version groups do not exceed 4
-            toAppend = 4 - v.length;
+            var toAppend = 4 - v.length;
             v = v + Array(toAppend + 1).join("0");
             return parseInt(v);
         }
 
 
-        // limit display results to 30
+        if(!api_result || api_result.results.length == 0) {
+            return Spice.failed('hackage');
+        }
         var results = api_result.results;
         if (results.length > 30)
             results = results.splice(0,30);
+
 
         // Get the original query
         var script = $('[src*="/js/spice/hackage/"]')[0];
         var source = $(script).attr("src");
         var query = source.match(/hackage\/([^\/]*)/)[1];
 
-        if (api_result.error) {
-            return Spice.failed('hackage');
-        }
-
         Spice.add({
             id: "hackage",
-            name: "Hackage",
+            name: "Hoogle",
             data: results,
             meta: {
-                sourceName: "Hackage",
-                sourceUrl: "https://hackage.haskell.org/packages/search?terms=" + query,
+                sourceName: "Hoogle",
+                sourceUrl: "https://www.haskell.org/hoogle/?hoogle=" + query,
                 snippetChars: 85
             },
             templates: {
