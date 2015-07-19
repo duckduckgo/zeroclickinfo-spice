@@ -1,23 +1,34 @@
-.tileview__get_events .tile--get_events {
+.tile--get_events {
     width: 14em;
-    height: 13em;
+    height: 14em;
 }
 
-.tile--get_events .tile_title--2 {
-    max-height: 3em;
-    height: 3em;
-    font-size: 16px;
+.tile--get_events .tile__body.has-foot--4 {
+    padding-bottom: 0;
+}
+
+.tile--get_events .tile__title--3 {
+    height: auto;
+    font-size: 1.27em;
     line-height: 1.2;
-    color: #333333;
+    font-weight: bold;
 }
 
 .tile--get_events .tile__title--wrap {
     display: inline-block;
-    width: 8.5em;
+    width: 100%;
+}
+
+.is-expanded .tile--get_events .tile__title--wrap {
+    width: 9em;
+}
+
+.tile--get_events .tile__sub {
+    margin-bottom: 0;
 }
 
 .tile--get_events .tile__num--get_events {
-    display: inline-block;
+    display: none;
     width: 3em;
     height: 3em;
     line-height: 1;
@@ -25,33 +36,46 @@
     font-size: 0.9em;
 }
 
-.tile--get_events .tile__num--get_events .number {
-    background-image: url("https://cloud.githubusercontent.com/assets/873785/7015929/e54cd9be-dca9-11e4-98cc-fe0984386a74.png");
-    background-repeat: no-repeat;
-    height: 30px;
-    background-position: center; 
-    padding-top: 0.65em;
-    line-height: 0.6;
-    font-weight: bold;
-    font-size: 1.6em;
-    font-size: 13px;
-    color: #333333;
+.is-expanded .tile--get_events .tile__num--get_events {
+    display: block;
 }
 
-.tile--get_events__alt .content--lg {
-    font-size: 13px;
+.tile--get_events .tile__foot {
+    white-space: normal;
+    height: auto;
+}
+
+.tile--get_events__main .tile__foot--4 {
     line-height: 1.4;
-    color: #999999;
-    height: 4em;
+    max-height: 5.6em;
+    margin-bottom: 1em;
+}
+
+.tile--get_events .tile__num--get_events .number {
+    background-image: url("map-pin.png");
+    background-repeat: no-repeat;
+    height: 2.4em;
+    background-position: center;
+    padding-top: 0.65em;
+    font-weight: bold;
+    font-size: 1.6em;
+    font-size: 1.038em;
+}
+
+.svg .tile--get_events .tile__num--get_events .number {
+    background-image: url("map-pin.svg");
+}
+
+.tile--get_events__alt .tile__title {
+    margin-bottom: 0.65em;
+}
+
+.tile--get_events__alt .has-foot .tile__content--lg {
+    line-height: 1.4;
+    height: 7em;
     overflow: hidden;
 }
 
-.tile--get_events__main .tile__foot {
-    white-space: normal;
-}
-
-.tile--get_events .tile__foot--4 {
-    font-size: 13px;
-    line-height: 1.4;
-    color: #999999;
+.tile--get_events__alt .tile__foot {
+    margin-bottom: 1.2em;
 }

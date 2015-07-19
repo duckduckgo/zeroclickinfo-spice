@@ -1,0 +1,59 @@
+.zci--dogo_books .tile--dogo_books  {
+    width: 12em;
+}
+
+/* Stretch tile images to fill tile */
+.zci--dogo_books .tile__media__img {
+    min-width: 100%;
+    height: 100%;
+    margin-top: 0;
+    text-indent: -9999px;
+    background-color: #f7f7f7;
+    position: absolute;
+    margin: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
+/* Stretch tile images to fill tile */
+.zci--dogo_books .tile__media {
+    height:0;
+    padding-bottom:148.333%;
+}
+
+.zci--dogo_books p.detail__desc {
+    padding-bottom: 1.65em;
+}
+
+.zci--dogo_books .detail .detail__media--pr {
+    max-width: 180px;
+}
+
+/* Center media thumbnail in mobile detail view */
+.is-mobile .zci--dogo_books .detail .detail__media--pr {
+    max-width: 100%;
+}
+
+/* Position mobile button at bottom of screen */
+.is-mobile .zci--dogo_books .btn.btn--primary {
+    position: absolute;
+    bottom: 1em;
+}
+
+/* Hide the tile titles */
+.zci--dogo_books .tile__title--2,
+.use-opts .zci--dogo_books .tile__title--2 {
+    display:none;
+}
+
+/* Move stars to the left */
+.zci--dogo_books .tile--b--i .stars {
+    float: left;
+}
+
+/* Move review count to the right */
+.zci--dogo_books .tile--b--i .tile__source {
+    float: right;
+}

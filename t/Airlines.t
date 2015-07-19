@@ -5,6 +5,9 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
+use_ok('DDG::Spice::Airlines');
+
+if (0) {
 ddg_spice_test(
     [qw( DDG::Spice::Airlines )],
     'aa 102' => test_spice(
@@ -26,6 +29,7 @@ ddg_spice_test(
         caller    => 'DDG::Spice::Airlines',
     ),
 );
+}
 
 done_testing;
 

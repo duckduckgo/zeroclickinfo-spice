@@ -13,6 +13,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::Maps::Places',
     is_cached => 0,
     ),
+    'local time' => undef,
 );
 
 done_testing;

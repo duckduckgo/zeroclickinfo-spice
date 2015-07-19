@@ -16,6 +16,7 @@ ddg_spice_test(
     'color picker' => test_spice(@test_args),
     'colour picker' => test_spice(@test_args),
     'color picker #aaa' => test_spice(@test_args),
+    'color picker aaa111' => test_spice(@test_args),
     'color picker #aaa111' => test_spice(@test_args),
     'color picker rgb(192, 168, 1)' => test_spice(@test_args),
     'color picker hsv(270, 65%, 80%)' => test_spice(@test_args),

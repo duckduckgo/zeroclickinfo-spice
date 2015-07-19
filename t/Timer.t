@@ -32,7 +32,9 @@ ddg_spice_test(
     'timer for 77 mins 13 secs' => test_spice(@test_args),
     'blahblah timer' => undef,
     'wwdc 2015 countdown' => undef,
-    'timer 5 hellos' => undef
+    'timer 5 hellos' => undef,
+    'time' => undef,
+    'Time::Piece' => undef
 );
 
 done_testing;

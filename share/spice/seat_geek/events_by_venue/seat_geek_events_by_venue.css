@@ -9,34 +9,6 @@
     float: left;
 }
 
-.zci--seat_geek_events_by_venue .date {
-    border: 1px solid #ddd;
-    
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    text-align: center;
-    font-size: 0.9em;
-    padding: 0;
-    
-    position: absolute;
-    bottom: 1em;
-    right: 0;
-    
-    width: 4em;
-    height: 4em;
-    line-height: 1;
-}
-    .zci--seat_geek_events_by_venue .month {
-        padding-top: 1em;
-    }
-
-    .zci--seat_geek_events_by_venue .day {
-        font-size: 1.6em;
-        line-height: 0.8;
-    }
-
 .zci--seat_geek_events_by_venue .seat_geek-artist {
     font-size: 1.1em;
 }

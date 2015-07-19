@@ -73,35 +73,56 @@
                 
                 // Modify the image from _tmb.jpg to _det.jpg
                 var image = toDetail(item.posters.detailed)
-                return {
-                    rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
-                    image: image,
-                    icon_image: get_image(item.ratings.critics_rating),
-                    abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
-                    heading: item.title,
-                    img: image,
-                    img_m: image,
-                    url: item.links.alternate,
-                    is_retina: ((DDG.is3x || DDG.is2x) ? 'is_retina' : 'no_retina')
-                };
+                
+                if(item.alternate_ids && item.alternate_ids.imdb) {
+                    return {
+                        rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
+                        //image: image,
+                        icon_image: get_image(item.ratings.critics_rating),
+                        abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
+                        heading: item.title,
+                        img: image,
+                        //img_m: image,
+                        url: item.links.alternate,
+                        is_retina: ((DDG.is3x || DDG.is2x) ? 'is_retina' : 'no_retina')
+                    };
+                }
             },
             templates: {
-                group: 'media',
+                group: 'movies',
                 options: {
                     subtitle_content: Spice.in_theaters.subtitle_content,
                     rating: false,
                     buy: Spice.in_theaters.buy
                 },
                 variants: {
-                    tile: 'poster'
+                    productSub: 'noMax'
+                },
+                elClass: {
+                    tileMediaImg: 'js-movie-img',
+                    productMediaImg: 'js-movie-img'
+                }
+            },
+            onItemShown: function(item) {
+                $.ajaxSetup({ cache: true });
+                
+                if(item && item.alternate_ids && item.alternate_ids.imdb) {
+                    $.getJSON("/js/spice/movie_image/tt" + item.alternate_ids.imdb, function(data) {
+                        if(data && data.movie_results && data.movie_results.length > 0 && data.movie_results[0].poster_path) {
+                            var image = "https://image.tmdb.org/t/p/w185" + data.movie_results[0].poster_path,
+                                $html = (item.$html) ? item.$html : DDG.duckbar.tabs[item.parentId].view.$el;
+                                
+                            $html.find(".js-movie-img").attr("src", "https://images.duckduckgo.com/iu/?f=1&u=" + encodeURIComponent(image));
+                            $.extend(item, {
+                                image: image,
+                                img: image,
+                                img_m: image
+                            });
+                        }
+                    });
                 }
             }
         });
-
-        // Hide the bottom text so that the poster occupies the whole tile.
-        if(typeof Spice.getDOM('in_theaters') !== 'undefined') {
-            Spice.getDOM('in_theaters').find('.tile__body').addClass('is-hidden');
-        }
     }
     
     // Convert minutes to hr. min. format.

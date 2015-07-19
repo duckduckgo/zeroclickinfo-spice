@@ -1,7 +1,9 @@
 .zci.zci--snow.is-active {
+    
     margin-top: 0px;
     overflow: hidden;
-    padding: 20px 0 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .zci--snow h3 {
