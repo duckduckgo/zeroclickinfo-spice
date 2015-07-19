@@ -49,15 +49,49 @@
 
     env.ddg_spice_airlines = function(api_result) {
 
-        // store the user's airline and city search information
-        var queriedAirlines =  null,
-            sourceCity = null,
-            destinationCity = null;
-
         // Check if we have anything returned.
         if (!api_result || !api_result.flightStatuses || !api_result.appendix || !api_result.appendix.airlines) {
             return;
         }
+
+        // determine the original date that we made an upstream request for
+        var script = $('[src*="/js/spice/airlines/"]')[0],
+            source = $(script).attr("src");
+        var decodedSource = decodeURIComponent(source);
+        var callParameters = decodedSource.split('/');
+        var apiRequestDayOfMonth = callParameters[8];
+        var apiRequestHour = callParameters[9];
+
+        // determine the date of the API response
+        var apiResponseDate = new Date(Date.UTC(api_result.request.date.year,
+                                       api_result.request.date.month-1,
+                                       api_result.request.date.day,
+                                       apiRequestHour, 0, 0));
+
+        // if this response is for the same day, we need to also get
+        // the next day's worth of arrivals
+        if (apiRequestDayOfMonth == apiResponseDate.getUTCDate()) {
+
+            // increment the request by one day in milliseconds
+            var apiRequestDate = new Date(apiResponseDate.getTime() + 24 * 60 * 60 * 1000);
+
+            // prevent AJAX from appending a timestamp to the URL
+            $.ajaxSetup({ cache: true });
+
+            // make upstream call
+            $.getScript("/js/spice/airlines/"
+                    + callParameters[4] + "/"
+                    + callParameters[5] + "/"
+                    + apiRequestDate.getUTCFullYear() + "/"
+                    + (apiRequestDate.getUTCMonth()+1) + "/"
+                    + apiRequestDate.getUTCDate() + "/"
+                    + callParameters[9]);
+        }
+
+        env.ddg_spice_airlines.display(api_result);
+    },
+
+    env.ddg_spice_airlines.display = function(api_result) {
 
         // Extract carrier information from query
         var script = $('[src*="/js/spice/airlines/"]')[0],
@@ -176,6 +210,9 @@
                     isDeparted: false
                 };
 
+            if (!flight[i].operationalTimes.actualGateArrival 
+                    || (Date.now() - Date(flight[i].operationalTimes.actualGateArrival.dateUTC) < 3 * 60 * 60 * 1000)) {
+
             results.push({
                 flight: flight[i],
                 airlineName: airlineName,
@@ -188,7 +225,7 @@
                 scheduledDepartureDate: scheduledDepartureDate,
                 scheduledArrivalDate: scheduledArrivalDate
             });
-
+            }
         }
 
         if (results.length === 0) {
@@ -233,6 +270,7 @@
                     tile: 'xwide'
                 }
             },
+            allowMultipleCalls: true
         });
     }
     
