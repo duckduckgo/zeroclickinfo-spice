@@ -60,8 +60,8 @@
         var callParameters = decodeURIComponent(source).split('/');
         
         // determine the original date that we made an upstream request
-        var apiRequestDayOfMonth = callParameters[8];
-        var apiRequestHour = callParameters[9];
+        var originalRequestDayOfMonth = callParameters[8];
+        var originalRequestHour = callParameters[9];
 
         // for every API request, we make an additional request to 
         // grab results for late-night arrivals from the night before and 
@@ -71,16 +71,16 @@
         var apiResponseDate = new Date(Date.UTC(api_result.request.date.year,
                                        api_result.request.date.month-1,
                                        api_result.request.date.day,
-                                       apiRequestHour, 0, 0));
+                                       originalRequestHour, 0, 0));
 
         // if this response is for the original same-day request...
-        if (apiRequestDayOfMonth == apiResponseDate.getUTCDate()) {
+        if (originalRequestDayOfMonth == apiResponseDate.getUTCDate()) {
 
             var apiRequestDate;
 
             //  and the current hour is before 4AM, get the previous day's flights as well
             //  (so we can show arrivals for late-night flights)
-            if (apiRequestHour < 4) {
+            if (originalRequestHour < 4) {
                 apiRequestDate = new Date(apiResponseDate.getTime() - 24 * 60 * 60 * 1000);    
 
             // otherwise, get the next day's flights so that we have at least
@@ -99,7 +99,7 @@
                     + apiRequestDate.getUTCFullYear() + "/"
                     + (apiRequestDate.getUTCMonth()+1) + "/"
                     + apiRequestDate.getUTCDate() + "/"
-                    + apiRequestHour);
+                    + originalRequestHour);
         }
 
         env.ddg_spice_airlines.display(api_result);
