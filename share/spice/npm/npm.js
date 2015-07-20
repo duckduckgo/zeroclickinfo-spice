@@ -66,7 +66,7 @@
                         return key + " (" + val + ")";
                     });
 
-                    if (dependencies.length + 0) {
+                    if (dependencies.length > 0) {
                         boxData.push({
                             label: "Dependencies",
                             value: dependencies.join(", ")
