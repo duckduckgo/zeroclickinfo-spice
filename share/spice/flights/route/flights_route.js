@@ -225,7 +225,6 @@
                 data: results,
                 id: "route",
                 name: "Route",
-                allowMultipleCalls: true,
                 meta: {
                     minItemsForModeSwitch: 3,
                     sourceName: 'FlightStats',
