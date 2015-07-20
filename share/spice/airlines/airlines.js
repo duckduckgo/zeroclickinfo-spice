@@ -78,9 +78,9 @@
 
             var apiRequestDate;
 
-            //  and the current hour is before 4AM, get the previous day's flights as well
+            //  and the current hour is before 3AM, get the previous day's flights as well
             //  (so we can show arrivals for late-night flights)
-            if (originalRequestHour < 4) {
+            if (originalRequestHour < 3) {
                 apiRequestDate = new Date(apiResponseDate.getTime() - 24 * 60 * 60 * 1000);    
 
             // otherwise, get the next day's flights so that we have at least
