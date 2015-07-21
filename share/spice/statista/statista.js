@@ -22,7 +22,7 @@
     function formatDate(date) {
         var matches = date.match(/(\d+)\.(\d+)\.(\d+)/);
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        return months[parseInt(matches[2])] + ' ' + matches[3];
+        return months[(parseInt(matches[2])-1)] + ' ' + matches[3];
     }
     
     function getPremiumClass(item) {
