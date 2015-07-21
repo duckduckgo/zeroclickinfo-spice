@@ -38,7 +38,7 @@
                 units: "$USD/tonne",
             },
             "DOE/COAL": {
-                header: "Cloal",
+                header: "Coal",
                 units: "$USD/short ton",
             },
             "OFDP/COPPER": {
