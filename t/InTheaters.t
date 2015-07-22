@@ -43,6 +43,11 @@ ddg_spice_test(
         caller    => 'DDG::Spice::InTheaters',
         is_cached => 0,
     ),
+    'kids movies in theaters' => test_spice(
+        "/js/spice/in_theaters/in_theaters/US",
+        caller    => 'DDG::Spice::InTheaters',
+        is_cached => 0,
+    ),
 );
 
 done_testing;

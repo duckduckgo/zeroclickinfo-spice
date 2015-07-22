@@ -8,24 +8,10 @@
     padding-bottom: 0;
 }
 
-.zci--is_it_up h5,
-.zci--is_it_up h5 a{
-    color: #333;
-}
-
-.zci--is_it_up .response_time a {
-    color: #666;
-}
-
 .zci--is_it_up .response_time a,
 .zci--is_it_up .response_time {
     padding-top: 0;
     margin-top: 0;
-}
-
-.zci--is_it_up .response_time,
-.zci--is_it_up a.zci__more-at {
-    color: #999;
 }
 
 .zci--is_it_up .response_time {

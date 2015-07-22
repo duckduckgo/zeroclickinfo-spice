@@ -16,7 +16,7 @@
             },
             normalize: function(item) {
                 var boxData = [{heading: 'Package Information:'}];
-                
+
                 if (item.author) {
                     boxData.push({
                         label: "Author",
@@ -27,10 +27,11 @@
                 if (item.homepage) {
                     boxData.push({
                         label: "Project Homepage",
-                        value: item.homepage
+                        value: item.homepage,
+                        url: item.homepage
                     });
                 }
-                
+
                 if (item.license) {
                     boxData.push({
                         label: "License",
@@ -44,37 +45,40 @@
                         value: item.repository.url
                     });
                 }
-                
+
                 if (item.engines) {
                     boxData.push({
                         label: "Engines",
                         value: item.engines.node
                     });
                 }
-                
+
                 if (item.dist) {
                     boxData.push({
                         label: "Source",
-                        value: item.dist.tarball
+                        value: item.dist.tarball,
+                        url: item.dist.tarball
                     });
                 }
 
-                if (item.dependencies) {      
+                if (item.dependencies) {
                     var dependencies = $.map(item.dependencies, function(val, key) {
                         return key + " (" + val + ")";
-                    }).join(", ");
-
-                    boxData.push({
-                        label: "Dependencies",
-                        value: dependencies
                     });
+
+                    if (dependencies.length > 0) {
+                        boxData.push({
+                            label: "Dependencies",
+                            value: dependencies.join(", ")
+                        });
+                    }
                 }
- 
+
                 return {
                     title: item.name + " " + item.version,
                     subtitle: item.description,
                     infoboxData: boxData,
-                }  
+                }
             },
 
             templates: {

@@ -93,7 +93,14 @@
             normalize: normalize,            
             templates: {
                 group: 'places',
-                item: Spice.parking.item
+                item: 'base_flipping_item',
+                variants: {
+                    tile: 'local'
+                },
+                options: {
+                    front_content: Spice.parking.item_front,
+                    back_content: Spice.parking.item_back
+                }
             }
         });});
     };

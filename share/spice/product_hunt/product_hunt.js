@@ -2,12 +2,13 @@
     'use strict';
     env.ddg_spice_product_hunt = function(api_result){
 
-        if (!api_result || !api_result.hits || !(api_result.hits.length > 0)) {
+        if (!(api_result && api_result.hits && api_result.hits.length > 0)) {
             return Spice.failed('producthunt');
         }
 
         var query = encodeURIComponent(api_result.query),
             domainRegex = new RegExp(/:\/\/(www\.)?([^\/]+)\/?/);
+            baseUrl = "https://producthunt.com";
 
         function getDomain(url) {
             var match = domainRegex.exec(url);
@@ -43,14 +44,14 @@
                     id: item.objectId,
                     title: item.name,
                     altSubtitle: item.author.name,
-                    url: item.url,
+                    url: baseUrl + item.url,
                     description: item.tagline,
                     votes: item.vote_count || 0,
                     comments: item.comment_count || 0,
                     commentsUrl: 'https://www.producthunt.com/posts/' + item.slug,
                     domainName: getDomain(item.url),
                     iconArrowUrl: DDG.get_asset_path('product_hunt','arrow_up.png'),
-                }
+                };
             },
             templates: {
                 group: 'text',
