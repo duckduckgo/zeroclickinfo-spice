@@ -115,6 +115,10 @@
 
       // console.log(queryStr);
 
+      // prevent jQuery from appending the query string "?_={timestamp}" on script URLs when using .getScript()
+      // (source: airlines.js and elsewhere)
+      $.ajaxSetup({ cache: true });
+      
       // first async load just math.min.js so that we fail-fast on queries that
       // passed the initial regex guard into this function but cannot be parsed
       $.getScript(DDG.get_asset_path('graphical_calculator', 'math.min.js'))
@@ -128,7 +132,7 @@
           // math.parse() will throw on failure
           parseStr = math.parse(queryStr).toString().replace(/\s*;\s*/, "; "); // remove possible embedded returns inserted by .parse()
 
-          // now asnyc load the rest, but proceed only when both are successfully loaded
+          // success; now asnyc load the rest, but proceed only when both are successfully loaded
           // for idiom, see: http://www.bennadel.com/blog/2124-using-deferred-objects-as-an-asynchronous-script-loader-in-jquery-1-5.htm
           $.when(
 
