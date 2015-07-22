@@ -41,7 +41,7 @@ spice call_type => 'self';  # see also 'handle' function below
 # trigger on a literal 'x' either as a character-token in-itself, or flanked by valid math.js operators;
 # this list is not exhaustive, but it covers many common syntax cases. Secondary validation is done on the backend:
 #
-#    ^ beginning or line, | or
+#    ^ beginning of line, | or
 #       \s whitespace
 #       + plus
 #       - minus, unary negative
@@ -50,13 +50,15 @@ spice call_type => 'self';  # see also 'handle' function below
 #       ^ power (exponentiation)
 #       % mod
 #       ? : conditional
-#       , parameter separator, (e.g., pow(2,3))
+#       , parameter separator, (e.g., pow(x,x))
+#       ; compound statement
 #       0-9 numeral for implicit multiplcation (e.g., 2x == 2*x)
-#       ! factorial # currenlty a parsing bug prevents us from accepting this
 #    $ or end of line
 #
+#       ! factorial # not supported
+#
 
-my $regex = qr/(^\s*y\s*=)|(^\s*f\(x\)\s*=)|((^|[\s(+\-*\/^%?:,!0-9])x([\s)+\-*\/^%?:,!0-9]|$))/;
+my $regex = qr/(^\s*y\s*=)|(^\s*f\(x\)\s*=)|((^|[\s(+\-*\/^%?:,;0-9])x([\s)+\-*\/^%?:,;0-9]|$))/;
 triggers query_lc => $regex;
 
 my $handler = sub {  # cannot use 'remainder' with regex triggers

@@ -1,21 +1,19 @@
 /*
-  FunctionPlot does not namespace its classes, so as
-  an MVP we are very light on CSS manipulation to help
-  avoid unintended consequences.
+  A few basics
 */
 
-#zci-graphical-calculator svg.function-plot {
+.zci--graphical_calculator .graphical-calculator--display svg.function-plot {
   background-color: #f7f7f7;  /* $silver-light from DDG palette */
 }
 
-#zci-graphical-calculator g.axis text {
+.zci--graphical_calculator .graphical-calculator--display g.axis text {
      font: 1.4em sans-serif;
 }
 
-#zci-graphical-calculator g.inner-tip text {
+.zci--graphical_calculator .graphical-calculator--display g.inner-tip text {
      font-size: 1.5em;
 }
 
-#zci-graphical-calculator text.title {
+.zci--graphical_calculator .graphical-calculator--display text.title {
   font-size: 2em;
 }

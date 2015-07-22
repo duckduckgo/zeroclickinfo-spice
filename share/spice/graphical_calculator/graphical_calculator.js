@@ -2,143 +2,166 @@
 
   "use strict";
 
-  /*
-    $.getScript("http://localhost:5000/share/spice/graphical_calculator/js/d3/3.5.6/d3.js")
-      .done(function (script, textStatus) {
-        console.log("loaded d3.js: " + textStatus);
-      })
-      .fail(function (jqxhr, settings, exception) {
-        console.log("Failed to load d3.js");
-      });
+  var functionPlotOptions = {
 
-    $.getScript("http://localhost:5000/share/spice/graphical_calculator/js/mathjs/1.7.0/math.min.js")
-      .done(function (script, textStatus) {
-        console.log("loaded math.min.js: " + textStatus);
-      })
-      .fail(function (jqxhr, settings, exception) {
-        console.log("Failed to load math.min.js");
-      });
-      
-      $.getScript("http://localhost:5000/share/spice/graphical_calculator/js/function-plot.min.js")
-      .done(function (script, textStatus) {
-        console.log("loaded bundle.js: " + textStatus);
-      })
-      .fail(function (jqxhr, settings, exception) {
-        console.log("Failed to load bundle.js");
-      });
-  */
+    options: {
+      title: "",
+      target: '.graphical-calculator--display',
+      tip: { // cross-hairs
+        xLine: true,
+        yLine: true,
+        renderer: function (x, y, index) {
+          return "(" + x.toFixed(2) + ", " + y.toFixed(2) + ")";
+        }
+      },
+      data: [{
+        fn: ""
+                }],
+      xDomain: [],
+      yDomain: [],
+      xLabel: "X axis",
+      yLabel: "Y axis",
+    },
 
-  env.ddg_spice_graphical_calculator = function () {
+    getOptions: function () {
+      return this.options;
+    },
 
-    var functionPlot;
+    setOptions: function (queryStr, parseStr) {
 
-    // attempt to evaluate the input so that we fail early if it is invalid
-    // (input can be complex, so it is not as simple as using regex filter);
-    // validation is done here so that we may return a Spice.failed() before
-    // .onShow: would be attempted. This should give the user a clean UI experience.
-    
-    // one could fail-fast on math.min.js:math.parse(rawQuery) prior to async dynamic
-    // loading of d3.js and functional-plot.min.js depending on how one prioritizes
-    // bandwidth pressure on false positives (e.g., foo(x)) vs. response time on true positives.
-    
-    try {
-
-      var rawQuery, parseStr, titleStr, xDomain, yDomain, MAX_TITLE_LEN = 40;
-
-      // strip leading '=', 'y = ', or 'f(x) = ' if present;
-      // also, if the words 'graph' or 'plot' appear anywhere, strip
-      rawQuery = DDG.get_query().toLowerCase()
-        .replace(/graph|plot/gi,'') // should be first; note, this greedily matches strings, not just tokens
-        .replace(/^\s*=/, '')
-        .replace(/^\s*y\s*=/, '')
-        .replace(/^\s*f\(x\)\s*=/,'');
-
-      // console.log(rawQuery);
-
-      // parsing will handle cases such as implicit multiplication ("2x" -> "2 * x"),
-      // which must be done before the equation string is passed to FunctionPlot
-      parseStr = math.parse(rawQuery).toString().replace(/\s*;\s*/,"; "); // remove possible embedded returns
+      var MAX_TITLE_LEN = 40;
 
       // clean up the title a little
-      titleStr = parseStr.replace(/\s+\^\s+/g,'^')
-                .replace(/x\s+\/\s+([0-9]+)/,'x/$1');
-      
+      var titleStr = parseStr.replace(/\s+\^\s+/g, '^')
+        .replace(/x\s+\/\s+([0-9]+)/, 'x/$1');
+
       // expressions such as "a = 4; x + a" are valid;
       // in these cases we will not enhance the title with 'y = '
-      if (!/[=;]/.test(rawQuery)) {
+      if (!/[=;]/.test(queryStr)) {
         titleStr = 'y = ' + titleStr;
       }
 
       // trim the title if it is "too long"
       if (titleStr.length > MAX_TITLE_LEN - 4) {
-        titleStr = titleStr.substr(0, MAX_TITLE_LEN-4) + " ...";
+        titleStr = this.m.titleStr.substr(0, MAX_TITLE_LEN - 4) + " ...";
       }
 
-      // need to calc the domain to center the graph;
+      // need to calc the range (yDomain) to center the graph;
       // FunctionPlot defaults are static at:
       //  xDomain: [ -5, 5 ],
       //  yDomain: [-5, 5 ]
 
-      xDomain = [-5, 5];
-      var y0 = math.eval(parseStr.split(";"), {
+      var xDomain = [-5, 5];
+      var y0 = math.eval(parseStr.split(";"), { // support compound statements
         x: 0
       });
-      y0 = y0[y0.length-1]; // take the last statement value
-      
+      y0 = y0[y0.length - 1]; // the last statement value is what will be plotted
+
       // catch corner cases such as 1/x eval at x=0
-      yDomain = isFinite(y0) ? [y0 - 5, y0 + 5] : [-5,5];
-      
-      // attempt to plot the function;
-      // save the instance for .onShow:
-      functionPlot = function () {
+      var yDomain = isFinite(y0) ? [y0 - 5, y0 + 5] : [-5, 5];
 
-        // the Function Plot JS library uses the global var functionPlot
-        window.functionPlot({
-          title: titleStr,
-          target: '#zci-graphical-calculator',
-          tip: {  // cross-hairs
-            xLine: true,
-            yLine: true,
-            renderer: function (x, y, index) {
-              return "(" + x.toFixed(2) + ", " + y.toFixed(2) + ")";
-            }
-          },
-          data: [{
-            fn: parseStr
-                }],
-          xDomain: xDomain,
-          yDomain: yDomain,
-          xLabel: "X axis",
-          yLabel: "Y axis",
-        });
+      this.options.title = titleStr;
+      this.options.data[0].fn = parseStr;
+      this.options.xDomain = xDomain;
+      this.options.yDomain = yDomain;
 
+      return this; // for chaining
+    }
+
+  };
+
+  var spiceOptions = {
+
+    getOptions: function () {
+
+      return {
+
+        id: "graphical_calculator",
+        name: "Graphical Calculator",
+        data: {
+          input: "not used"
+        },
+        meta: {
+          sourceName: "Function Plot",
+          sourceUrl: 'http://maurizzzio.github.io/function-plot/'
+        },
+        templates: {
+          group: 'base',
+          options: {
+            content: Spice.graphical_calculator.graphical_calculator,
+            moreAt: true
+          }
+        },
+        onShow: window.functionPlot
       };
+    }
+
+  };
+
+  env.ddg_spice_graphical_calculator = function () {
+
+    try {
+
+      var queryStr, parseStr;
+
+      // strip leading '=', 'y = ', or 'f(x) = ' if present;
+      // also, if the words 'graph' or 'plot' appear anywhere, strip
+      queryStr = DDG.get_query().toLowerCase()
+        .replace(/graph|plot/g, '') // should be first; note, this greedily matches strings, not just tokens
+        .replace(/\s+/, ' ')
+        .replace(/^ *= */, '')
+        .replace(/^ *y *= */, '')
+        .replace(/^ *f *\( *x *\) *= */, '');
+
+      // console.log(queryStr);
+
+      // first async load just math.min.js so that we fail-fast on queries that
+      // passed the initial regex guard into this function but cannot be parsed
+      $.getScript(DDG.get_asset_path('graphical_calculator', 'math.min.js'))
+        .fail(function (jqxhr, settings, exception) {
+          throw exception + ": failed to load math.min.js";
+        })
+        .done(function (script, textStatus) {
+
+          // parsing will handle cases such as implicit multiplication ("2x" -> "2 * x"),
+          // which must be done before the equation string is passed to FunctionPlot
+          // math.parse() will throw on failure
+          parseStr = math.parse(queryStr).toString().replace(/\s*;\s*/, "; "); // remove possible embedded returns inserted by .parse()
+
+          // now asnyc load the rest, but proceed only when both are successfully loaded
+          // for idiom, see: http://www.bennadel.com/blog/2124-using-deferred-objects-as-an-asynchronous-script-loader-in-jquery-1-5.htm
+          $.when(
+
+            $.getScript(DDG.get_asset_path('graphical_calculator', 'd3.min.js'))
+            .fail(function (jqxhr, settings, exception) {
+              throw exception + ": failed to load d3.min.js";
+            }),
+
+            $.getScript(DDG.get_asset_path('graphical_calculator', 'function-plot.min.js'))
+            .fail(function (jqxhr, settings, exception) {
+              throw exception + ": failed to load function-plot.min.js";
+            }),
+
+            $.Deferred(
+              function (deferred) {
+                $(deferred.resolve);
+              })
+
+          ).done(function () {
+
+            // we're loaded; set Spice
+            Spice.add(spiceOptions.getOptions());
+
+            // set and exec the plot
+            window.functionPlot(functionPlotOptions.setOptions(queryStr, parseStr).getOptions());
+
+          });
+        });
       
     } catch (err) {
       return Spice.failed('graphical_calculator');
     };
-    
-    // Render the response
-    Spice.add({
 
-      id: "graphical_calculator",
-      name: "Graphical Calculator",
-      data: {
-        input: "not used"
-      },
-      meta: {
-        sourceName: "Function Plot",
-        sourceUrl: 'http://maurizzzio.github.io/function-plot/'
-      },
-      templates: {
-        group: 'base',
-        options: {
-          content: Spice.graphical_calculator.graphical_calculator,
-          moreAt: true
-        }
-      },
-      onShow: functionPlot
-
-    });
   };
+
 }(this));

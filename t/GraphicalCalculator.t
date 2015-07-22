@@ -49,17 +49,18 @@ my @shouldTriggerButFailToParseQ = (
 # note: these work using a simple math.eval() at http://mathjs.org/examples/browser/plot.html,
 # but do not work on a local install (independent of DDG). Need to contact the author.
 my @shouldPassButWillFailQ = (
-    "x!",
-    "x^2 - 2",
-    "x^2 - x",
-    "x^0.5",
-    "pow(x,0.5)",
-    "x^x",  # fails online also
-    "x * pi",
-    "x + e",
+    "x!",       # does not recognize factorial
+    "x^2 - 2",  # parses as x^(2-2) because of Javascript precedence on ^ as a bitwise operator
+    "x^2 - x",  # parses as x^(2-x)
+    "pow(x,0.5)",   # as of 1.3.0, does not recognize non-integer powers
+    "x^0.5",,   # fails because of both parsing on '^' and non-integer power
+    "x^x",      # fails online also
+    "x * pi",   # fails to parse 'pi' as the constant 'pi'
+    "x + e",    # fails to parse 'e' as the constant 'e'
     "x + exp(e)",
-    "gamma(x)",
-    "cube(2x)"
+    "gamma(x)", # not recognized; incorrect interval sampling and smoothing online
+    "cube(2x)", # a math.js function not recognized by function-plot
+    "ln(x)"     # does not recognize ln(); uses log(x,b) as base b, with shorthand log(x) as base 'e' and log10(x) as base 10
 );
 
  
