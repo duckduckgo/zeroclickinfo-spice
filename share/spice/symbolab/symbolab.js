@@ -19,8 +19,8 @@
                 },
                 normalize: function (data) {
                     return {
-                        title: "Solution for: " + data.problem,
-                        latex: decodeURIComponent(data.presentationLatex),
+                        //title: "Solution for: " + data.problemLatex,
+                        latex: data.presentationLatex,
                         rendered: false
                     };
                 },
