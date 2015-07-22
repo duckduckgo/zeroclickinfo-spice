@@ -125,6 +125,7 @@
             id: 'currency',
             name: 'Currency',
             data: results,
+            signal: 'high',
             meta: {
                 sourceUrl: "http://www.xe.com",
                 sourceName: "xe.com",

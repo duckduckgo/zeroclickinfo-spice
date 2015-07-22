@@ -15,7 +15,7 @@
 				{{/if}}
 			{{/if}}
 		</div>
-		{{#if has_started}}
+		{{~#if has_started~}}
 			<div class="c-score__sequence  c-score__opt">
 			{{#each score.away.innings}}
 				<div class="c-score__item  c-score__item--{{type}}">{{number}}</div>
@@ -30,11 +30,11 @@
 			</div>
 		{{else}}
 			<div class="c-score__head__time">{{momentTime start_time}}</div>
-		{{/if}}
+		{{~/if~}}
 	</div>
 	<div class="c-score__line  c-score__line--vs1">
 		<div class="c-score__line__name">
-			{{#with away_team}}
+			{{~#with away_team~}}
 			<div class="c-score__team">
 				<div class="c-score__team__logo">
 					<img class="c-score__team__img  js-lazysvg" src="" data-src="{{image}}">
@@ -45,10 +45,10 @@
 				</div>
 				<div class="c-score__team__short">{{short_name}}</div>
 			</div>
-			{{/with}}
+			{{~/with~}}
 		</div>
-		{{#if has_started}}
-			{{#with score.away}}
+		{{~#if has_started~}}
+			{{~#with score.away~}}
 			<div class="c-score__sequence  c-score__opt">
 			{{#each innings}}
 				<div class="c-score__item  c-score__item--{{type}}"><span class="{{#if current}}c-score__is-current{{/if}}">{{{runs}}}</span></div>
@@ -61,8 +61,8 @@
 					<div class="c-score__item  c-score__item--inning">{{errors}}</div>
 				</div>
 			</div>
-			{{/with}}
-		{{/if}}
+			{{~/with~}}
+		{{~/if~}}
 	</div>
 	<div class="c-score__line  c-score__line--vs2" data-vs="@">
 		<div class="c-score__line__name">
@@ -80,8 +80,8 @@
 			</div>
 			{{/with}}
 		</div>
-		{{#if has_started}}
-			{{#with score.home}}
+		{{~#if has_started~}}
+			{{~#with score.home~}}
 			<div class="c-score__sequence  c-score__opt">
 			{{#each innings}}
 				<div class="c-score__item  c-score__item--{{type}}"><span class="{{#if current}}c-score__is-current{{/if}}">{{{runs}}}</span></div>
@@ -94,8 +94,8 @@
 					<div class="c-score__item  c-score__item--inning">{{errors}}</div>
 				</div>
 			</div>
-			{{/with}}
-		{{/if}}
+			{{~/with~}}
+		{{~/if~}}
 	</div>
 	<div class="c-score__foot">
 		<div class="c-score__foot__main">

@@ -64,12 +64,9 @@ handle query_lc => sub {
 
     my $query = $_;
 
-    # get the current time, minus six hours
-    # the API requires a date/time, and this allows us to search for all flights that 
-    # arrived six hours prior to the current time and flights that will arrive up to
-    # 18 hours ahead of the current time
+    # get the current time
     my ($second, $minute, $hour, $dayOfMonth,
-        $month, $year, $dayOfWeek, $dayOfYear, $daylightSavings) = gmtime(time - 21600);
+        $month, $year, $dayOfWeek, $dayOfYear, $daylightSavings) = gmtime(time);
                 
     $month += 1;
     $year += 1900;

@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_gravatar = function(api_result) {
 
-        if(!api_result || !api_result.entry || api_result.entry.length === 0) {
+        if (!(api_result && api_result.entry && api_result.entry[0].id && api_result.entry[0].preferredUsername)) {
             return Spice.failed('gravatar');
         }
 
@@ -18,7 +18,7 @@
             },
 
             normalize: function() {
-                // Get the name of the user.
+                // Get the proper name of the user
                 function getName(entry) {
                     if (!entry.name || !entry.displayName) {
                         var splitted = api_result.entry[0].profileUrl.split("/");
@@ -35,8 +35,17 @@
                 function getCurrentLocation(entry) {
                     if (entry.currentLocation) {
                         return entry.currentLocation;
+                    } else {
+                        return "No location specified";
                     }
                 }
+                // Get preferred username in profile
+                function getUsername(entry) {
+                    if (entry.preferredUsername) {
+                        return entry.preferredUsername;
+                    }
+                }
+
                 // Get array of social media accounts
                 function getAccounts(entry) {
                     var accounts = [];
@@ -65,7 +74,7 @@
                 return {
                     image: api_result.entry[0].thumbnailUrl + ".png",
                     title: getName(api_result.entry[0]),
-                    subtitle: [api_result.entry[0].preferredUsername, getCurrentLocation(api_result.entry[0])],
+                    subtitle: [getUsername(api_result.entry[0]), getCurrentLocation(api_result.entry[0])],
                     altSubtitle: getAccounts(api_result.entry[0]),
                     description: api_result.entry[0].aboutMe
                 };
