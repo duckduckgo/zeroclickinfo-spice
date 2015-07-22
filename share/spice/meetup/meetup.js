@@ -1,15 +1,10 @@
 (function (env) {
     "use strict";
     env.ddg_spice_meetup = function(api_result){
-        // TODO get city name from search query for itemType
-        // var searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim();
-        var searchTerm = DDG.get_query();
 
-        if (!api_result || api_result.error) {
+        if (!api_result || api_result.error || !api_result.results) {
             return Spice.failed('meetup');
         }
-
-        console.log(api_result.results);
 
         Spice.add({
           id: "meetup",
@@ -18,29 +13,20 @@
 
           meta: {
               count: api_result.results.length,
-              searchTerm: searchTerm,
               itemType: 'meetups',
-
-              // primaryText: 'Primary Text',
-              // secondaryText: '',
-
-
               sourceName: "Meetup.com",
               sourceUrl: 'http://www.meetup.com/'
           },
 
           templates: {
             group: 'text',
-
-            // detail: false,
-
             options: {
               moreAt: true
             }
 
           },
           normalize: function(item) {
-
+            // not sure if we want to include a photo
             // var meetupIcon = !item.group_photo ? '' : item.group_photo.photo_link;
             var meetupDescription = DDG.strip_html(item.description).substring(0,500) + '...';
 

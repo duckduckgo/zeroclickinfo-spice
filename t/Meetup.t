@@ -4,22 +4,34 @@ use strict;
 use warnings;
 use Test::More;
 use DDG::Test::Spice;
-
-spice is_cached => 1;
+use DDG::Test::Location;
+use DDG::Request;
 
 ddg_spice_test(
     [qw( DDG::Spice::Meetup)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/meetup/query',
+
+    DDG::Request->new(
+        query_raw => 'meetup groups in Phoenixville',
+        location => test_location('us'),
+    ) => test_spice(
+        "/js/spice/meetup/Phoenixville/US/PA",
         call_type => 'include',
-        caller => 'DDG::Spice::Meetup'
+        caller => 'DDG::Spice::Meetup',
+        is_cached => 0
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    DDG::Request->new(
+        query_raw => 'meetup groups near me',
+        location => test_location('us'),
+    ) => test_spice(
+        "/js/spice/meetup/Phoenixville/US/PA",
+        call_type => 'include',
+        caller => 'DDG::Spice::Meetup',
+        is_cached => 0
+    ),
+
+    'meet group' => undef,
+    'meetups about cats' => undef,
+    'meetups for kids' => undef,
 );
 
 done_testing;
