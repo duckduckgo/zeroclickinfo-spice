@@ -14,7 +14,7 @@ spice is_cached => 1;
 name "Meetup";
 source "Meetup";
 icon_url "https://icons.duckduckgo.com/ip2/www.meetup.com.ico";
-description "Show for a given city";
+description "Show meetups for a given city";
 primary_example_queries "meetups in philadelphia";
 secondary_example_queries "meetup groups near me";
 category "random";
