@@ -1,10 +1,6 @@
 function ddg_spice_yoga_asanas(apiResult) {
     var numFound,
         docs,
-        i,
-        seen = {},
-        d,
-        seen_key,
         asanas = {};
 
     if (!apiResult || !apiResult.response.numFound) {
