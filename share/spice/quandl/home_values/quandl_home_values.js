@@ -1,68 +1,51 @@
-/**
-* Created with DuckDuckHack.
-* User: brianrisk
-* Date: 2015-02-17
-* Time: 04:46 PM
-* To change this template use Tools | Templates.
-*/
-
-
 (function (env) {
     'use strict';
     env.ddg_spice_quandl_home_values = function(api_result){
-
-        if (!api_result) {
-            return Spice.failed('quandl_home_values');
-        }
-
-        var result = api_result;
-        
-        // we need two data points to get percent change
-        if (result.data.length < 2) {
+        if (!api_result || api_result.data.length < 2 ) {
             return Spice.failed('quandl_home_values');
         }
 
         // url to the data set page
-        result.url = 'https://quandl.com/' + result.source_code + "/" + result.code;
-
         // add title tag for link:
-        result.urlTitle = 'View more home values data at Quandl';
+        // get recent and previous data values
+        var url = 'https://quandl.com/' + api_result.source_code + "/" + api_result.code,
+            urlTitle = 'View more home values data at Quandl',
+            recentValue = DDG.getProperty(api_result.data,'0.1'),
+            previousValue = DDG.getProperty(api_result.data,'1.1');
         
-        var recentValue = result.data[0][1];
-        var previousValue = result.data[1][1];
+        // check we have both data values
+        if (!recentValue || !previousValue) {
+           return Spice.failed('quandl_home_values');
+        }
         
         // month array to make string version of date
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 		
         // adding in the previous date point date	
-        var fromDate = new Date(result.data[1][0]);
+        var fromDate = new Date(api_result.data[1][0]);
         var fromDateString = months[fromDate.getUTCMonth()] + " " + fromDate.getUTCDate() + ", " + fromDate.getFullYear();
-        result.from_date = fromDateString;
+        api_result.from_date = fromDateString;
         
         // reformatting the current data point date (to_date)
-        var toDate = new Date(result.to_date);
+        var toDate = new Date(api_result.to_date);
         var toDateString = months[toDate.getUTCMonth()] + " " + toDate.getUTCDate() + ", " + toDate.getFullYear();
-        result.to_date = toDateString;
+        api_result.to_date = toDateString;
         
         // splitting title into header and subheader
-        var dashIndex = result.name.indexOf("-");
-        var headerFirst =result.name.substring(0,dashIndex).trim();
-        var headerSecond = result.name.substring(dashIndex + 1, result.name.length).trim();
-        var re = new RegExp(',', 'g');
-        headerSecond = headerSecond.replace(re, ', ');
-        result.header = headerSecond;
-        result.subheader = headerFirst;
+        var nameSplit = api_result.name.split('-');
         
+        api_result.subheader = nameSplit.shift().trim();
+        api_result.header = nameSplit.join('-').trim().replace(/,/g, ', ');
+
         // getting rounded percentage
         var percentChange = 10000 * ((recentValue - previousValue) / Math.abs(previousValue));
         percentChange = Math.round(percentChange);
         percentChange /= 100;
-        result.change_percent = Math.abs(percentChange);
+        api_result.change_percent = Math.abs(percentChange);
           
         // setting style based on change
-        if (percentChange > 0) result.changeDirection = 'up';
-        if (percentChange < 0) result.changeDirection = 'down';
-        if (percentChange == 0) result.changeDirection = 'up';
+        if (percentChange > 0 || percentChange === 0) api_result.changeDirection = 'up';
+        if (percentChange < 0) api_result.changeDirection = 'down';
 
         // the most recent fundamental value
         var value = recentValue;
@@ -79,16 +62,16 @@
             value = Math.round(value / Math.pow(10,1)) / Math.pow(10,2);
             value = "$" + value + " thousand";
         }
-        result.value = value;
         
-
+        api_result.value = value;
+       
         Spice.add({
             id: 'quandl_home_values',
             name: 'Home Values',
-            data: result,
+            data: api_result,
             meta: {
                 sourceName: 'Quandl',
-                sourceUrl: result.url,
+                sourceUrl: api_result.url,
                 sourceIconUrl:  DDG.get_asset_path('quandl/home_values','quandl32x32.png')
             },
             templates: {
