@@ -54,7 +54,6 @@
 .zci--currency .tile--s img {
     height: 32px;
     vertical-align: top;
-    z-index: 2;
     position: relative;
 }
 
