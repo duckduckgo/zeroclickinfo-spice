@@ -28,11 +28,8 @@ handle query  => sub {
 	my $q = $_;
 
 	# This makes sure "a" or "b", if specified, is associated with
-	# surya namaskara/sun salutation
-	if(/(?:s[uū]rya[\s-]+namask[aā]ra)|(?:sun\s+salutation)/){
-		$q = "\"$q\"~5";
-	}
-	return $q;
+	# with either the practice or the posture, but not both 
+	return "\"$q\"~10";
 };
 
 1;
