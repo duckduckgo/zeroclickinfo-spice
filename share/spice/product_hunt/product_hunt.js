@@ -1,45 +1,41 @@
 (function (env) {
     'use strict';
+
+    var domainRegex = new RegExp(/:\/\/(www\.)?([^\/]+)\/?/);
+
+    function getDomain(url) {
+        var match = domainRegex.exec(url);
+        if (match && match[2]) {
+            return match[2];
+        }
+        return 'producthunt.com';
+    }
+
     env.ddg_spice_product_hunt = function(api_result){
 
         if (!(api_result && api_result.hits && api_result.hits.length > 0)) {
-            return Spice.failed('producthunt');
+            return Spice.failed('product_hunt');
         }
 
         var query = encodeURIComponent(api_result.query),
-            domainRegex = new RegExp(/:\/\/(www\.)?([^\/]+)\/?/);
-            baseUrl = "https://producthunt.com";
-
-        function getDomain(url) {
-            var match = domainRegex.exec(url);
-            if (match && match[2]) {
-                return match[2];
-            }
-            return 'producthunt.com';
-        }
-        
-        var skip = [
-            "product",
-            "hunt",
-            "producthunt"
-        ];
+            baseUrl = "https://producthunt.com",
+            skip = [
+                "product",
+                "hunt",
+                "producthunt"
+            ];
 
         Spice.add({
-            id: 'producthunt',
-            name: 'ProductHunt',
+            id: 'product_hunt',
+            name: 'Products',
             data: api_result.hits,
             meta: {
                 searchTerm: 'Product' + (api_result.nbHits === 1 ? '' : 's'),
                 itemType: 'Products',
                 sourceName: 'ProductHunt',
-                sourceIcon: true,
-                sourceUrl:  'http://www.producthunt.com/#!/s/posts/' + query
+                sourceUrl:  'https://www.producthunt.com/#!/s/posts/' + query
             },
             normalize: function(item) {
-                // Check relevancy of item name against query
-                if(!DDG.stringsRelevant(query, item.name, skip)) {
-                    return null;
-                }
                 return {
                     id: item.objectId,
                     title: item.name,
@@ -65,6 +61,11 @@
                 },
                 detail: false,
                 item_detail: false
+            },
+            relevancy: {
+                primary: [{
+                    key: "name"
+                }]
             }
         });
     };
