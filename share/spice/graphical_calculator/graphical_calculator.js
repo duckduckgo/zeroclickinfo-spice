@@ -115,8 +115,8 @@
 
       // console.log(queryStr);
 
-      // prevent jQuery from appending the query string "?_={timestamp}" on script URLs when using .getScript()
-      // (source: airlines.js and elsewhere)
+      // prevent jQuery from appending the query string "?_={timestamp}" on URLs when using .getScript()
+      // (source: http://api.jquery.com/jQuery.getScript/; IA airlines.js, etc.)
       $.ajaxSetup({ cache: true });
       
       // first async load just math.min.js so that we fail-fast on queries that

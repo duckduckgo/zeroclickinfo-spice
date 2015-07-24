@@ -32,7 +32,12 @@ my @shouldPassQ = (
     "abs( exp(2x) * sqrt(x^3) / log(x) )",
     "= a = 4; x + a",           # compound statement w/ semantically distinct '='
     "men = 42; X-men",          # valid "plot" of X-men
-    "x < 0 ? sin(x) : cos(x)"   # conditionals
+    "x < 0 ? sin(x) : cos(x)",   # conditionals
+    "x^2 - 2",  # fixed
+    "x^2 - x",  # fixed
+    "pow(x,0.5)",   # fixed
+    "x^0.5",   # fixed
+    "cos(x) + sin(x/2)" # fixed
 );
 
 my @shouldFailToTriggerQ = (
@@ -50,17 +55,13 @@ my @shouldTriggerButFailToParseQ = (
 # but do not work on a local install (independent of DDG). Need to contact the author.
 my @shouldPassButWillFailQ = (
     "x!",       # does not recognize factorial
-    "x^2 - 2",  # parses as x^(2-2) because of Javascript precedence on ^ as a bitwise operator
-    "x^2 - x",  # parses as x^(2-x)
-    "pow(x,0.5)",   # as of 1.3.0, does not recognize non-integer powers
-    "x^0.5",,   # fails because of both parsing on '^' and non-integer power
+    "gamma(x)", # not recognized; incorrect interval sampling and smoothing online
     "x^x",      # fails online also
-    "x * pi",   # fails to parse 'pi' as the constant 'pi'
+    "x * pi",   # fails to parse 'pi' as the constant 'pi' (known LC/UC issue)
     "x + e",    # fails to parse 'e' as the constant 'e'
     "x + exp(e)",
-    "gamma(x)", # not recognized; incorrect interval sampling and smoothing online
     "cube(2x)", # a math.js function not recognized by function-plot
-    "ln(x)"     # does not recognize ln(); uses log(x,b) as base b, with shorthand log(x) as base 'e' and log10(x) as base 10
+    "ln(x)"     # math.js parsing; recognized by function-plot
 );
 
  
@@ -85,13 +86,12 @@ ddg_spice_test(
         $_ => test_spice(
 
             # not correct?: either all pass or all fail
-            # urlEncode $_ ?
 
             #'/js/spice/graphical_calculator/?q=' . $_ . '&ia=graphicalcalculator',    # always fails
             '/js/spice/graphical_calculator/',             # always passes
             call_type => 'self',
             caller => 'DDG::Spice::GraphicalCalculator'
-        ) } ( @shouldPassQ, @shouldTriggerButFailToParseQ, @shouldPassButWillFailQ )
+        ) } ( @shouldPassQ, @shouldTriggerButFailToParseQ )
 );
  
 done_testing;
