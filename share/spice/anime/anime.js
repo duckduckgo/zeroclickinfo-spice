@@ -8,9 +8,9 @@
         }
 
         var script = $('[src*="/js/spice/anime/"]')[0],
-        source = $(script).attr("src"),
-        query = source.match(/anime\/([^\/]+)/)[1],
-        decodedQuery = decodeURIComponent(query);
+            source = $(script).attr("src"),
+            query = source.match(/anime\/([^\/]+)/)[1],
+            decodedQuery = decodeURIComponent(query);
 
         Spice.add({
             id: 'anime',
@@ -21,6 +21,15 @@
                 sourceUrl: "https://hummingbird.me/search?query=" + query,
                 sourceIconUrl: DDG.get_asset_path('anime','hummingbird.png'),
                 itemType: 'Anime'
+            },
+            relevancy: {
+                skip_words: ['anime', 'hummingbird'],
+                primary: [
+                    { required: 'cover_image' },
+                    { key: 'synopsis' },
+                    { key: 'alternate_title' },
+                    { key: 'title' },
+                ]
             },
             normalize: function(item) {
                 var cover_image = '';
