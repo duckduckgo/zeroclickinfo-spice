@@ -24,7 +24,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Anime'
     ),
-    'good anime to watch' => undef
+    'good anime to watch' => undef,
+    'anime eyes' => undef,
+    'anime wallpapers' => undef,
+    'anime couples' => undef,
+    'anime cosplay' => undef
 );
 
 done_testing;
