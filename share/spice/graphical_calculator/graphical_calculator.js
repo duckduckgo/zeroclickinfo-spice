@@ -43,7 +43,7 @@
 
       // trim the title if it is "too long"
       if (titleStr.length > MAX_TITLE_LEN - 4) {
-        titleStr = this.m.titleStr.substr(0, MAX_TITLE_LEN - 4) + " ...";
+        titleStr = titleStr.substr(0, MAX_TITLE_LEN - 4) + " ...";
       }
 
       // need to calc the range (yDomain) to center the graph;

@@ -61,7 +61,8 @@ my @shouldPassButWillFailQ = (
     "x + e",    # fails to parse 'e' as the constant 'e'
     "x + exp(e)",
     "cube(2x)", # a math.js function not recognized by function-plot
-    "ln(x)"     # math.js parsing; recognized by function-plot
+    "ln(x)",    # math.js parsing; recognized by function-plot
+    "sin(x) + cos(x) + x + x + x + x + x + x" # "long" statement; passes title ellipsis trimming but fails plot line for x < 0
 );
 
  
