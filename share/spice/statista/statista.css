@@ -1,0 +1,15 @@
+.tile--statista .statista__badge {
+    height: 10px;
+    border-radius: 5px;
+    padding: 0 5px;
+    display: inline-block;
+}
+
+.tile--statista .statista__premium {
+    background-color: #f1a031;
+}
+
+.tile--statista .statista__free {
+    background-color: #589e4d;
+}
+
