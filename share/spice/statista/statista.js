@@ -3,11 +3,7 @@
     
     function getImage(item, size, blank) {  
         if (item.teaserImageUrls[size]) {
-            var img = item.teaserImageUrls[size].src;
-            if (blank == 1 && img.search("blank") == -1) {
-                img = img + '?blank=blank';
-            }
-            return img;
+            return item.teaserImageUrls[size].src + '?blank=blank';
         } else if (size == 1) {
             return 'http://statistacloudfront.s3.amazonaws.com/Statistic/table/table-355-1.png';
         } else if (size == 2) {
@@ -41,6 +37,14 @@
         }
     }
     
+    function getPremiumCssClass(item) {
+        if (item.Premium == 1) {
+            return 'premium';
+        } else {
+            return 'free';
+        }
+    }
+    
     env.ddg_spice_statista = function(api_result){
 
         if (!api_result || api_result.error) {
@@ -66,6 +70,7 @@
                     abstract: item.description,
                     footerdate: formatDate(item.date),
                     footerpremiumclass: getPremiumClass(item),
+                    footerpremiumcssclass: getPremiumCssClass(item),
                     footerpremiumtext: getPremiumText(item)
                     
                 }  

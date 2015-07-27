@@ -10,7 +10,7 @@ name "Statista";
 category "facts";
 
 my $limit = 16;
-my $lang = 2;
+my $lang = "en";
 
 triggers startend => "statistic", "statistics", "stats";
 
