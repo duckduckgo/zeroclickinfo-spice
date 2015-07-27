@@ -2,8 +2,12 @@
     "use strict";
     
     function getImage(item, size, blank) {  
-        if (item.teaserImageUrls[size]) {
-            return item.teaserImageUrls[size].src + '?blank=blank';
+       if (item.teaserImageUrls[size]) {
+            var img = item.teaserImageUrls[size].src;
+            if (blank == 1) {
+                img = img + '?blank=blank';
+            }
+            return img;
         } else if (size == 1) {
             return 'http://statistacloudfront.s3.amazonaws.com/Statistic/table/table-355-1.png';
         } else if (size == 2) {
@@ -19,14 +23,6 @@
         var matches = date.match(/(\d+)\.(\d+)\.(\d+)/);
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         return months[(parseInt(matches[2])-1)] + ' ' + matches[3];
-    }
-    
-    function getPremiumClass(item) {
-        if (item.Premium == 1) {
-            return 'tx-clr--gold';
-        } else {
-            return 'tx-clr--green';
-        }
     }
     
     function getPremiumText(item) {
@@ -69,7 +65,6 @@
                     heading: item.subject,
                     abstract: item.description,
                     footerdate: formatDate(item.date),
-                    footerpremiumclass: getPremiumClass(item),
                     footerpremiumcssclass: getPremiumCssClass(item),
                     footerpremiumtext: getPremiumText(item)
                     
