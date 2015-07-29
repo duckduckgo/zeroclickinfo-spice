@@ -6,16 +6,18 @@
             return Spice.failed('launchpad_project');
         }
         
+        //display "Launchpad Porject" if there is only one project returned
         if (api_result.total_size === 1) {
-            var itemType = "Launchpad Package";
+            var itemType = "Launchpad Project";
         }
         else {
-            var itemType = "Launchpad Packages";
+            var itemType = "Launchpad Projects";
         }
         
         var query = DDG.get_query();
-        query = query.replace(/launchpad ?project/, "");
-        query = query.replace(/lp ?project/, "");
+        //strips out triggers and trailing whitespace from query
+        query = query.replace(/launchpad ?project /, "");
+        query = query.replace(/lp ?project /, "");
         
         DDG.require('moment.js', function() {
             Spice.add({
@@ -25,13 +27,14 @@
                 meta: {
                     itemType: itemType,
                     sourceName: "Launchpad",
-                    sourceUrl: 'https://launchpad.net/+search?field.text=' + query,
+                    sourceUrl: 'https://launchpad.net/+search?field.text=' + query
                 },
                 templates: {
                     group: 'text',
                     detail: false,
                     item_detail: false,
                     options: {
+                        footer: Spice.launchpad_project.footer,
                         moreAt: true
                     },
                     variants: {
@@ -42,7 +45,8 @@
                     return {
                         title: item.name,
                         description: item.summary,
-                        url: item.web_link
+                        url: item.web_link,
+                        owner: item.owner_link.replace("https://api.launchpad.net/devel/~", "")
                     };
                 }
             });
