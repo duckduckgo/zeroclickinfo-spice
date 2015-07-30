@@ -5,8 +5,6 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
-spice is_cached => 1;
-
 ddg_spice_test(
     [qw( DDG::Spice::LaunchpadProject)],
     'launchpad project bookworm' => test_spice(
@@ -19,8 +17,9 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::LaunchpadProject'
     ),
+    
     'launchpad bookworm' => undef,
-    'lp elementary' => undef
+    'lp bug' => undef
 );
 
 done_testing;
