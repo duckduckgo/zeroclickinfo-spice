@@ -2,7 +2,10 @@
 	<div class="c-score__head">
 		<div class="c-score__head__date">
 			{{#if is_playing}}
-				<span class="c-score__clock">Q{{quarter}} {{clock}}</span>
+				<span class="c-score__clock"><b>Q{{quarter}} {{clock}}</b></span>
+				{{#with possession}}
+					<span class="pull-right">{{ordinal down}} & {{yfd}}, {{side}} {{yard_line}}</span>
+				{{/with}}
 			{{else}}
 				{{#if relativeDay}}
 					<span class="tx-clr--slate">{{relativeDay}}</span>
