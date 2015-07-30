@@ -34,8 +34,7 @@
                     detail: false,
                     item_detail: false,
                     options: {
-                        footer: Spice.launchpad_project.footer,
-                        moreAt: true
+                        footer: Spice.launchpad_project.footer
                     },
                     variants: {
                         tile: 'basic4'
@@ -46,6 +45,7 @@
                         title: item.name,
                         description: item.summary,
                         url: item.web_link,
+                        //gets the owner from the html address of the owner link
                         owner: item.owner_link.replace("https://api.launchpad.net/devel/~", "")
                     };
                 }
