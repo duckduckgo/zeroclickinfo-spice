@@ -7,7 +7,6 @@
         }
         
         Spice.add({
-            minItemsForModeSwitch: 3,
             id: "twitch_featured",
             name: "Gaming",
             data: api_result.featured,
