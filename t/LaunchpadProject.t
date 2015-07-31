@@ -8,12 +8,12 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::LaunchpadProject)],
     'launchpad project bookworm' => test_spice(
-        '/js/spice/launchpad_project/query',
+        '/js/spice/launchpad_project/bookworm',
         call_type => 'include',
         caller => 'DDG::Spice::LaunchpadProject'
     ),
     'lp project elementary' => test_spice(
-        '/js/spice/launchpad_project/query',
+        '/js/spice/launchpad_project/elementary',
         call_type => 'include',
         caller => 'DDG::Spice::LaunchpadProject'
     ),
