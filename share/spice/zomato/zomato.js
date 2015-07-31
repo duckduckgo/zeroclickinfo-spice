@@ -15,7 +15,7 @@
             estd = '';
 
         // Render the response
-         console.log(api_result);
+        // console.log(api_result);
         //DDG.require('maps', function(){
             //DDG.require('moment.js', function(){
             //console.log(api_result);
