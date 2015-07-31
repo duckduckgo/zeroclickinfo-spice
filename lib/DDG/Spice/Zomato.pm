@@ -26,7 +26,7 @@ attribution github => ["Zomato", "Zomato"],
             facebook => "zomato",
             web => ["https://www.zomato.com","Zomato.com"];
 
-spice to => 'http://dheerajavvari.zdev.net/duckduckgo_api.php?loc=$1&callback={{callback}}';
+spice to => 'http://dheerajavvari.zdev.net/duckduckgo_api.php?q=$1&callback={{callback}}';
 
 spice wrap_jsonp_callback => 1;
 
