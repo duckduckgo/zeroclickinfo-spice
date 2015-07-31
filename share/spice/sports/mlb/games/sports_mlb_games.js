@@ -9,7 +9,7 @@
             return Spice.failed('mlb_games');
         }
         
-        DDG.require('sportsGames', function(){
+        DDG.require('sports', function(){
             Games = env.ddg_spice_sports_games;
                 
             Games.init(MLBInit);
