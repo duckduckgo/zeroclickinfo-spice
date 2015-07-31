@@ -15,7 +15,7 @@
             estd = '';
 
         // Render the response
-        // console.log(api_result);
+         console.log(api_result);
         //DDG.require('maps', function(){
             //DDG.require('moment.js', function(){
             //console.log(api_result);
@@ -66,7 +66,7 @@
                         loc_link_str = '<a href="https://maps.google.com/q='+res.subzone_name + ', ' + res.city+'">'+res.subzone_name + ', ' + res.city+'</a>';
                         address_link_str = '<a href="https://maps.google.com/q='+res.address+'">'+res.address+'</a>';
                         
-                        if(typeof(res.all_timings) != 'undefined' && res.all_timings.length) {
+                        if(res.all_timings && res.all_timings.length) {
                             hours = {
                                         "Mon": res.all_timings[0].time,
                                         "Tue": res.all_timings[1].time,
