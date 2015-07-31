@@ -3,6 +3,8 @@
     
     var DATE_FORMAT = "YYYY-MM-DD HH:mm:ss";
     
+    env.ddg_spice_sports = {};
+    
     env.ddg_spice_sports_games = {
     
         META: {
@@ -82,7 +84,6 @@
                 return false;
             }
         }
-    
-    }
+    };
 
 }(this));
