@@ -4,7 +4,7 @@ package DDG::Spice::CheatSheets;
 use DDG::Spice;
 use DDP;
 
-spice to => 'http://jason.duckduckgo.com:8000/solr/staging/select?version=2.2&defType=edismax&qt=dismax&q=$1 source_match:cheat_sheets_api&fq=&wt=json&start=0&rows=2&json.wrf={{callback}}';
+spice to => 'http://jason.duckduckgo.com:8000/solr/staging/select?version=2.2&defType=edismax&qt=dismax&q=$1 source_match:cheat_sheet_api&fq=&wt=json&start=0&rows=2&json.wrf={{callback}}';
 
 triggers query => qr{^.+$};
 
