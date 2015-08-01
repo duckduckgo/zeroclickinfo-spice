@@ -26,13 +26,16 @@
                     view: "Places",
                     signal: "high",
                     data: api_result.restaurants,
+                    allowMultipleCalls: true,
                     meta: {
                         sourceName: "Zomato",
-                        sourceUrl: 'http://www.zomato.com/'+api_result.city_url+'restaurants',
+                        sourceUrl: api_result.more_at,
                         snippetChars: 110,
                         sourceIcon: true,
+                        sourceIconurl: 'https://www.zomato.com/images/logo/zomato_favicon3.png',
                         itemType: 'Places',
-                        searchTerm: query_orig
+                        searchTerm: query_orig,
+                        next: api_result.next
                     },
                     templates: {
                         group: 'places',
@@ -41,7 +44,7 @@
                             //front_content: Spice.zomato.z_front,
                             //back_content: Spice.zomato.z_back
                             //subheader: Spice.zomato.subheader,
-                            moreAt: true,
+                            moreAt: true
                         }
                     },
                     relevancy: {
@@ -81,25 +84,25 @@
                         // For places_item
                         data = {
                             id: res.id,
-                            name: res.display_name,
+                            name: res.name,
                             url: res.url,
-                            image: res.image_150_150,
-                            boosted: res.has_featured_image_v3,
-                            price: res.price_range,
-                            reviews: res.votes,
-                            rating: res.rating_aggregate,
+                            image: res.thumb,
+                            boosted: res.boosted,
+                            price: res.price,
+                            reviews: res.reviews,
+                            rating: res.rating,
                             //address_lines: res.location.address.split(","),
                             address: res.address,
-                            phone: res.mobile_phone_display,
-                            closed: !res.is_open_now,
-                            neighbourhood: res.subzone_name,
+                            phone: res.phone,
+                            closed: !res.closed,
+                            neighbourhood: res.neighbourhood,
                             city: res.city,
-                            returned_categories: res.cuisines,
+                            returned_categories: res.returned_categories,
                             hours: hours,
                             engine: "Zomato",
                             coordinates: {
-                                longitude: res.lat,
-                                latitude: res.lon
+                                longitude: res.coordinates.longitude,
+                                latitude: res.coordinates.latitude
                             }
                         };
                         
