@@ -26,7 +26,7 @@
                     view: "Places",
                     signal: "high",
                     data: api_result.restaurants,
-                    allowMultipleCalls: true,
+                    allowMultipleCalls: (api_result.next)?true:false,
                     meta: {
                         sourceName: "Zomato",
                         sourceUrl: api_result.more_at,
