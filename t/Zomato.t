@@ -10,12 +10,12 @@ spice is_cached => 0;
 ddg_spice_test(
     [qw( DDG::Spice::Zomato)],
     'restaurants in gurgaon' => test_spice(
-        '/gurgaon',
+        '/js/spice/zomato/gurgaon/40.1246/-75.5385/en_US/0',
         call_type => 'include',
         caller => 'DDG::Spice::Zomato'
     ),
     'restaurants in bangalore' => test_spice(
-        '/bangalore',
+        '/js/spice/zomato/bangalore/40.1246/-75.5385/en_US/0',
         call_type => 'include',
         caller => 'DDG::Spice::Zomato'
     ),
