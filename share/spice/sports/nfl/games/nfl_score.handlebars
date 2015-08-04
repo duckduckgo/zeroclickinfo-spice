@@ -10,26 +10,26 @@
 				{{#if relativeDay}}
 					<span class="tx-clr--slate">{{relativeDay}}</span>
 				{{else}}
-					{{momentDate scheduled}}
+					{{momentDate start_time}}
 				{{/if}}
 			{{/if}}
 		</div>
 		{{~#if has_started~}}
 			<div class="c-score__sequence  c-score__opt">
-			{{#each home_team.scoring}}
+			{{#each score.home.scoring}}
 				<div class="c-score__item  c-score__item--quarter">{{quarter}}</div>
 			{{/each}}
 			</div>
 			<div class="c-score__totals">
 				<div class="c-score__head__total">{{textTotal}}</div>
-				{{#unless completed}}
+				{{#unless has_ended}}
 				<div class="c-score__opt">
 					<div class="c-score__item">T/O</div>
 				</div>
 				{{/unless}}
 			</div>
 		{{else}}
-			<div class="c-score__head__time">{{momentTime scheduled}}</div>
+			<div class="c-score__head__time">{{momentTime start_time}}</div>
 		{{~/if~}}
 	</div>
 	<div class="c-score__line  c-score__line--vs1">
@@ -40,15 +40,15 @@
 					<img class="c-score__team__img  js-lazysvg" src="" data-src="{{image}}">
 				</div>
 				<div class="c-score__team__name">
-					<span class="c-score__team__market">{{market}}</span>
+					<span class="c-score__team__market">{{location}}</span>
 					<span class="c-score__team__nick">{{name}}</span>
 				</div>
-				<div class="c-score__team__short">{{id}}</div>
+				<div class="c-score__team__short">{{short_name}}</div>
 			</div>
 			{{~/with~}}
 		</div>
 		{{~#if has_started~}}
-			{{~#with away_team~}}
+			{{~#with score.away~}}
 			<div class="c-score__sequence  c-score__opt">
 			{{#each scoring}}
 				<div class="c-score__item  c-score__item--quarter">{{points}}</div>
@@ -56,7 +56,7 @@
 			</div>
 			<div class="c-score__totals">
 				<div class="c-score__line__total">{{points}}{{#if winner}}<span class="c-score__win-marker"></span>{{/if}}</div>
-				{{#unless ../completed}}
+				{{#unless ../../has_ended}}
 				<div class="c-score__opt">
 					<div class="c-score__item">{{remaining_timeouts}}</div>
 				</div>
@@ -74,15 +74,15 @@
 					
 				</div>
 				<div class="c-score__team__name">
-					<span class="c-score__team__market">{{market}}</span>
+					<span class="c-score__team__market">{{location}}</span>
 					<span class="c-score__team__nick">{{name}}</span>
 				</div>
-				<div class="c-score__team__short">{{id}}</div>
+				<div class="c-score__team__short">{{short_name}}</div>
 			</div>
 			{{/with}}
 		</div>
 		{{~#if has_started~}}
-			{{~#with home_team~}}
+			{{~#with score.home~}}
 			<div class="c-score__sequence  c-score__opt">
 			{{#each scoring}}
 				<div class="c-score__item  c-score__item--quarter">{{{points}}}</div>
@@ -90,7 +90,7 @@
 			</div>
 			<div class="c-score__totals">
 				<div class="c-score__line__total">{{points}}{{#if winner}}<span class="c-score__win-marker"></span>{{/if}}</div>
-				{{#unless ../completed}}
+				{{#unless ../../has_ended}}
 				<div class="c-score__opt">
 					<div class="c-score__item">{{remaining_timeouts}}</div>
 				</div>
@@ -101,10 +101,10 @@
 	</div>
 	<div class="c-score__foot">
 		<div class="c-score__foot__main">
-			<div class="c-score__venue">@ {{home_team.market}}</div>
+			<div class="c-score__venue">@ {{venue.city}}<span class="c-score__venue__name"> - {{venue.name}}</span></div>
 			<div class="c-score__foot__more  c-score__opt">
-			{{#if has_started}}
-				{{#unless completed}}<span class="c-score__foot__info">{{textLastUpdate}}</span>{{/unless}}
+			{{#if is_playing}}
+				<span class="c-score__foot__info">{{textLastUpdate}}</span>
 			{{/if}}
 			</div>
 		</div>

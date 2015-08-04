@@ -45,17 +45,15 @@
                 attrs.relativeDay = Games.getRelativeDay(attrs.scheduled);
                 
                 // Game Finished/In-Progress
-                if (attrs.last_event) {
-                    attrs.has_started = true;
+                if (attrs.has_started) {
                     attrs.canExpand = true;
                         
-                    if (attrs.completed) {
+                    if (attrs.has_ended) {
                         attrs.textTotal = l("Final");
-                        attrs.textGameOver = l("Game ended");
                     } else {
                         attrs.is_playing = true;
                         attrs.textTotal = l("Score");
-                        attrs.textLastUpdate = l("As of %s", Handlebars.helpers.momentTime(attrs.last_event.updated));
+                        attrs.textLastUpdate = l("As of %s", Handlebars.helpers.momentTime(attrs.updated));
                     }
                 }
                 
