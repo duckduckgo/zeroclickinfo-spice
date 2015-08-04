@@ -14,10 +14,10 @@ spice wrap_jsonp_callback => 1;
 
 triggers startend => "calculate", "solve", "compute";
 handle remainder => sub {
-    if ($_ eq "") {
-        return;
+    if ($_ =~ /[\^\*\=\+\-\/\\]/ or $_ =~ /(sin|cos|tan|cot|csc|sec|ln|log|sqrt|integral)/i) {
+        return $_;
     }
-    return $_;
+    return;
 };
 
 1;

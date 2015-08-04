@@ -21,12 +21,8 @@ ddg_spice_test(
         caller => 'DDG::Spice::Symbolab',
         is_cashed => 1
     ), 
-    #'calculate' => test_spice(
-    #    '/js/spice/symbolab/',
-    #    call_type => 'include',
-    #    caller => 'DDG::Spice::Symbolab',
-    #    is_cashed => 1
-    #), 
+    'calculate' => undef,
+    'calculate mortgae' => undef
 );
 
 done_testing;
