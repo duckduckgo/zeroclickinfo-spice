@@ -14,20 +14,25 @@
                 name: "Calculator",
                 data: api_result.solution,
                 meta: {
-                    sourceName: "Symbolab",
+                    sourceName: "Symbolab.com",
                     sourceUrl: api_result.solution.url
+                    
                 },
                 normalize: function (data) {
                     return {
-                        //title: "Solution for: " + data.problemLatex,
-                        latex: data.presentationLatex,
+                        title: "Solution for: " + data.originalQuery,
+                        latex: data.solutionLatex,
                         rendered: false
                     };
                 },
                 templates: {
                     group: 'text',
                     options: {
-                        content: Spice.symbolab.content
+                        content: Spice.symbolab.content,
+                        moreText: {
+                            text: "Step by step solution ",
+                            href: api_result.solution.url
+                        }
                     }
                 },
                 onItemShown: function(item) {
