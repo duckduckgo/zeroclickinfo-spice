@@ -26,12 +26,14 @@ attribution github => ["Zomato", "Zomato"],
             facebook => "zomato",
             web => ["https://www.zomato.com","Zomato.com"];
 
-spice to => 'http://dheerajavvari.zdev.net/duckduckgo_api.php?q=$1&callback={{callback}}';
+spice to => 'http://dheerajavvari.zdev.net/duckduckgo_api.php?q=$1&lat=$2&lon=$3&lang_code=$4&rtl=$5&callback={{callback}}';
+
+spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)';
 
 spice wrap_jsonp_callback => 1;
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers start => "restaurants in", "places to eat in","restaurants at", "places to eat at";
+triggers start => "restaurants in", "restaurants at", "restaurants near", "restaurants nearby", "places to eat in", "places to eat at", "places to eat near", "places to eat nearby";
 triggers end => "restaurants","food palces","food courts";
 
 # Handle statement
@@ -45,7 +47,16 @@ handle remainder => sub {
     my $query = lc $_;
     $query =~ s/\?//;
     
-    return $query if $query;
+   # my $type;
+   # if ($query =~ /in|at|near|nearby|near by/) {
+   #     $type = "one";
+   # } elseif ($query =~ /me|my location/) {
+   #     $type = "two";
+   # } else {
+   #     return;
+   # }
+    
+    return ($query, $loc->latitude, $loc->longitude, $lang->locale, $lang->rtl) if (length $query >= 2);
     return;
 };
 

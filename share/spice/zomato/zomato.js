@@ -26,7 +26,7 @@
                     view: "Places",
                     signal: "high",
                     data: api_result.restaurants,
-                    allowMultipleCalls: (api_result.next)?true:false,
+                    //allowMultipleCalls: (api_result.next)?true:false,
                     meta: {
                         sourceName: "Zomato",
                         sourceUrl: api_result.more_at,
@@ -35,7 +35,7 @@
                         sourceIconurl: 'https://www.zomato.com/images/logo/zomato_favicon3.png',
                         itemType: 'Places',
                         searchTerm: query_orig,
-                        next: api_result.next
+                        //next: api_result.next
                     },
                     templates: {
                         group: 'places',
