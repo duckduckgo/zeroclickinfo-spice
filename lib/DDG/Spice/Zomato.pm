@@ -6,19 +6,13 @@ package DDG::Spice::Zomato;
 use strict;
 use DDG::Spice;
 
-# Caching - https://duck.co/duckduckhack/spice_advanced_backend#caching-api-responses
-spice is_cached => 0;
-
-# Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
-name "Zomato";
+name "Restaurants Search";
 source "Zomato";
 icon_url "https://www.zomato.com/images/logo/zomato_favicon3.png";
 description "Suggest restaurants or places to eat in and around a locality";
-primary_example_queries "restaurants in", "places to eat in","food places in";
-secondary_example_queries "restaurants nearby","nearby places to eat","food places nearby";
-# Uncomment and complete: https://duck.co/duckduckhack/metadata#category
+primary_example_queries "restaurants in gurgaon", "restaurants in bangalore";
+secondary_example_queries "restaurants nearby gurgaon","places to eat in gurgaon","food places in gurgaon";
 category "food";
-# Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
 topics "food_and_drink","entertainment","social";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Zomato.pm";
 attribution github => ["Zomato", "Zomato"],
@@ -26,23 +20,18 @@ attribution github => ["Zomato", "Zomato"],
             facebook => "zomato",
             web => ["https://www.zomato.com","Zomato.com"];
 
+
+spice is_cached => 0;
 spice to => 'http://dheerajavvari.zdev.net/duckduckgo_api.php?q=$1&lat=$2&lon=$3&lang_code=$4&rtl=$5&callback={{callback}}';
-
 spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)';
-
 spice wrap_jsonp_callback => 1;
 
-# Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers start => "restaurants in", "restaurants at", "restaurants near", "restaurants nearby", "places to eat in", "places to eat at", "places to eat near", "places to eat nearby";
+
+triggers start => "restaurants in", "restaurants at", "restaurants near", "restaurants nearby", "places to eat in", "places to eat at", "places to eat near", "places to eat nearby", "food places in", "food places at", "food places near", "food places nearby";
 triggers end => "restaurants","food palces","food courts";
 
-# Handle statement
+
 handle remainder => sub {
-
-    # optional - regex guard
-    # return unless qr/^\w+/;
-
-   # return unless $_;    # Guard against "no answer"
 
     my $query = lc $_;
     $query =~ s/\?//;
