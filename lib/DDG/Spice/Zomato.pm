@@ -18,7 +18,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["Zomato", "Zomato"],
             twitter => "Zomato",
             facebook => "zomato",
-            web => ["https://www.zomato.com","Zomato.com"];
+            web => ["https://www.zomato.com","Zomato"];
 
 
 spice is_cached => 0;
