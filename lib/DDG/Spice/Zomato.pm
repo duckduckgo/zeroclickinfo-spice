@@ -22,14 +22,16 @@ attribution github => ["Zomato", "Zomato"],
 
 
 spice is_cached => 0;
-spice to => 'http://dheerajavvari.zdev.net/duckduckgo/ddg_api?api_key={{ENV{DDG_SPICE_ZOMATO_APIKEY}}}&q=$1&lat=$2&lon=$3&lang_code=$4&rtl=$5';
-spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)';
+spice to => 'http://dheerajavvari.zdev.net/duckduckgo/ddg_api?api_key={{ENV{DDG_SPICE_ZOMATO_APIKEY}}}&q=$1&full_query=$6&lat=$2&lon=$3&lang_code=$4&rtl=$5';
+spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)';
 spice wrap_jsonp_callback => 1;
 
 my $trigger_string = qr/(restaurants|places to eat|food places?)\s+(in|at|near by|nearby|near)/;
 triggers query_lc => qr/($trigger_string)/;
 
 handle query_lc => sub {
+
+    my $full_query = $_;
 
     # Check for and remove trigger words
     s/\s*$trigger_string\s*//g;
@@ -50,7 +52,7 @@ handle query_lc => sub {
     my $rtl = '';
     if (defined $lang->locale) {$locale = $lang->locale};
     if (defined $lang->rtl) {$rtl = $lang->rtl};
-    return ($query, $loc->latitude, $loc->longitude, $locale, $rtl) if (length $query >= 2);
+    return ($query, $loc->latitude, $loc->longitude, $locale, $rtl, $full_query) if (length $query >= 2);
     return;
 };
 
