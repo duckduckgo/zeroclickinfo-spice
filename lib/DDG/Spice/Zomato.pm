@@ -22,9 +22,9 @@ attribution github => ["Zomato", "Zomato"],
 
 
 spice is_cached => 0;
-spice to => 'http://dheerajavvari.zdev.net/duckduckgo_api.php?q=$1&lat=$2&lon=$3&lang_code=$4&rtl=$5&callback={{callback}}';
+spice to => 'http://dheerajavvari.zdev.net/duckduckgo_api.php?api_key={{ENV(DDG_SPICE_ZOMATO_APIKEY)}}&q=$1&lat=$2&lon=$3&lang_code=$4&rtl=$5';
 spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)';
-spice wrap_jsonp_callback => 1;
+#spice wrap_jsonp_callback => 1;
 
 
 triggers start => "restaurants in", "restaurants at", "restaurants near", "restaurants nearby", "places to eat in", "places to eat at", "places to eat near", "places to eat nearby", "food places in", "food places at", "food places near", "food places nearby";
