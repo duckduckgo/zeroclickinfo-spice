@@ -54,6 +54,14 @@
                         attrs.is_playing = true;
                         attrs.textTotal = l("Score");
                         attrs.textLastUpdate = l("As of %s", Handlebars.helpers.momentTime(attrs.updated));
+                        
+                        // set possession on the relevant team object
+                        if (attrs.score.possession.team === attrs.home_team.api_id) {
+                            attrs.home_team.has_ball = true;
+                        } else {
+                            attrs.away_team.has_ball = true;
+                        }
+                        
                     }
                 }
                 
