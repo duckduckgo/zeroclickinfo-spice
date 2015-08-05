@@ -26,6 +26,8 @@
                 tileExpand: "c-score__foot-icon"
             }
         },
+
+        PLACEHOLDER: '<span class="tx-clr--grey-light">&bull;</span>',
         
         init: function(callback) {
             DDG.require('moment.js', function() {
@@ -83,6 +85,22 @@
             } else {
                 return false;
             }
+        },
+        
+        // fills the scoring sequence with placeholder data
+        // so that we always display a minimum of 4 quarters, etc
+        fillBoxscore: function(score, ops) {
+            if (!score || !ops) { return; }
+            
+            for(var i=ops.current; i < ops.min; i++) {
+                // create placeholder score object
+                score.home[ops.name][i] =
+                score.away[ops.name][i] = $.extend({}, ops.obj);
+
+                score.home[ops.name][i][ops.counter] = i + 1;
+            }
+            
+            return score;
         }
     };
 

@@ -52,7 +52,7 @@
                         placeholderStr = '&nbsp;';
                         
                     if (attrs.has_ended) {
-                        placeholderStr = '<span class="tx-clr--grey-light">&bull;</span>';
+                        placeholderStr = Games.PLACEHOLDER;
                         attrs.textTotal = l("Final");
                         attrs.textGameOver = l("Game ended");
                     } else {
@@ -62,19 +62,21 @@
                     
                     // pitch_count contains the current game status
                     if (attrs.score.pitch_count) {
-                        inning = attrs.score.pitch_count.inning-1;
                         
                         // always display placeholders up to 9 innings
-                        for(var i=inning+1; i < 9; i++) {
-                            attrs.score.home.innings[i] = 
-                            attrs.score.away.innings[i] = { 
-                                runs: "", 
-                                number: i+1, 
-                                sequence: i+1, 
-                                type: "inning" 
-                            };
-                        }
-                        
+                        attrs.score = Games.fillBoxscore(attrs.score, {
+                            current: attrs.score.pitch_count.inning,
+                            counter: "number",
+                            name: "innings",
+                            min: 9,
+                            obj: {
+                                runs: "",
+                                type: "inning"
+                           }
+                        }); 
+
+                        inning = attrs.score.pitch_count.inning-1;
+
                         // mark current inning
                         if (attrs.score.pitch_count.inning_half === "B") {
                             attrs.score.home.innings[inning].current = true;
