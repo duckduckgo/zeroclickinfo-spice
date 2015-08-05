@@ -22,7 +22,7 @@ attribution github => ["Zomato", "Zomato"],
 
 
 spice is_cached => 0;
-spice to => 'http://dheerajavvari.zdev.net/duckduckgo/ddg_api?api_key={{ENV{DDG_SPICE_ZOMATO_APIKEY}}}&q=$1&full_query=$6&lat=$2&lon=$3&lang_code=$4&rtl=$5';
+spice to => 'https://www.zomato.com/duckduckgo/ddg_api?api_key={{ENV{DDG_SPICE_ZOMATO_APIKEY}}}&q=$1&full_query=$6&lat=$2&lon=$3&lang_code=$4&rtl=$5';
 spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)';
 spice wrap_jsonp_callback => 1;
 
