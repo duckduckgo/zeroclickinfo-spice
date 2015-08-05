@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
     var query_orig = DDG.get_query();
-    $.getJSON('http://dheerajavvari.zdev.net/duckduckgo/track?value='+encodeURIComponent(query_orig));
+    $.getJSON('http://dheerajavvari.zdev.net/duckduckgo/ddg_track?value='+encodeURIComponent(query_orig));
     env.ddg_spice_zomato = function(api_result){
         if (!api_result || api_result.error) {
             return Spice.failed('zomato');
