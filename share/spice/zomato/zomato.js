@@ -3,7 +3,6 @@
     var query_orig = DDG.get_query();
     //$.getJSON('http://dheerajavvari.zdev.net/duckduckgo/ddg_track?value='+encodeURIComponent(query_orig));
     env.ddg_spice_zomato = function(api_result){
-        console.log(api_result);
         if (!api_result || api_result.error) {
             return Spice.failed('zomato');
         }
@@ -34,7 +33,6 @@
                 dup: 'url'
             },
             normalize: function(res) {
-                console.log(res);
                 if(!res) {
                     return null;
                 }
