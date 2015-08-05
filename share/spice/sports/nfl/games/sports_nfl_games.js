@@ -54,7 +54,17 @@
                         attrs.is_playing = true;
                         attrs.textTotal = l("Score");
                         attrs.textLastUpdate = l("As of %s", Handlebars.helpers.momentTime(attrs.updated));
-                        
+
+                        attrs.score = Games.fillBoxscore(attrs.score, {
+                            current: attrs.score.quarter,
+                            counter: "quarter",
+                            name: "scoring",
+                            min: 4,
+                            obj: {
+                                points: Games.PLACEHOLDER
+                            }
+                        });
+
                         // set possession on the relevant team object
                         if (attrs.score.possession.team === attrs.home_team.api_id) {
                             attrs.home_team.has_ball = true;
