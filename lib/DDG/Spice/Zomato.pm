@@ -27,7 +27,7 @@ spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)';
 spice wrap_jsonp_callback => 1;
 
 my $trigger_string = qr/(restaurants|places to eat|food places?)\s+(in|at|near by|nearby|near)/;
-triggers query_lc => qr/($trigger_string)/;
+triggers start => qr/($trigger_string)/;
 
 handle query_lc => sub {
 
