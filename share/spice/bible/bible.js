@@ -29,11 +29,16 @@
             normalize: function(item){
                 // text come with a link at the end that needs to be removed
                 var text = $('<span />').html(item.text).text(),
-                    text = DDG.strip_html(text).replace('©NET', '').replace('“', '').replace('”', '');
+                    subtitle = (item.title) ? $('<span />').html(item.title).text() : '',
+                    text = DDG.strip_html(text).replace('©NET', '').replace(/(“|”)/g, '').replace('[[EMPTY]]', '').replace(/^\s+|\s+$/g, '');
+
+                if (!text) {
+                    return Spice.failed('bible');
+                }
 
                 return {
                     title: item.bookname + ' ' + item.chapter + ':' + item.verse,
-                    subtitle: (item.title) ? item.title : '',
+                    subtitle: subtitle,
                     text: text
                 };
             }
