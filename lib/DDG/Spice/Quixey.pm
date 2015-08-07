@@ -1,4 +1,5 @@
 package DDG::Spice::Quixey;
+# ABSTRACT: Search for apps for mobile devices
 
 use strict;
 use DDG::Spice;

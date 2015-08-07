@@ -36,7 +36,7 @@
                 };
             },
             templates: {
-                group: "media",
+                group: "products_simple",
                 item_detail: false,
                 detail: false,
                 options: {

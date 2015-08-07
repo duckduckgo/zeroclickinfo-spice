@@ -1,9 +1,10 @@
 package DDG::Spice::Time;
-use DDG::Spice;
+# ABSTRACT: Time zone converter
 
 use strict;
+use DDG::Spice;
 use Text::Trim;
-use YAML::XS qw( Load );
+use YAML::XS 'LoadFile';
 
 primary_example_queries "time in Melbourne", "time for Australia";
 secondary_example_queries "what time is it in Melbourne", "what is the time in Birmingham";
@@ -20,23 +21,25 @@ spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_A
 
 triggers any => "time";
 
-my $capitals = Load(scalar share("capitals.yml")->slurp);
-
-my $place_connector = join '|', qw(in of for at);
+my $capitals = LoadFile(share('capitals.yml'));
 
 handle query_lc => sub {
     my $q = shift;
 
-    return unless $q =~ m/^(what'?s?|is|the|current|local|\s)*time(?:is|it|\s)*(?:\b$place_connector\b)\s+(?<loc>[^\?]+)[\?]?$/;
-    $q = $+{loc};
-    trim($q);
-    $q =~ s/,//g;
+    return unless $q =~ m/^(?<rest>what'?s?|is|the|current|local|\s)*time(?:is|it|in|of|for|at|\s)*(?<loc>[^\?]*)[\?]*$/;
+    my $rest = trim $+{rest};
+    my $q_loc = trim $+{loc};
 
-    return unless (my $caps = $capitals->{$q});
+    # if no location is given, current user location is returned
+    return join ' ', (lc $loc->city, lc $loc->country_name) unless $q_loc;
+
+    $q_loc =~ s/,//g;
+
+    return unless (my $caps = $capitals->{$q_loc});
 
     # These are internally sorted by population, so assume they want the big one for now.
-    $q = string_for_search($caps->[0]);
-    return $q;
+    $q_loc = string_for_search($caps->[0]);
+    return $q_loc;
 };
 
 sub string_for_search {

@@ -1,0 +1,4050 @@
+---
+abu dhabi:
+- &1
+  area_code: ''
+  city: Abu Dhabi
+  continent_code: AS
+  country_code: AE
+  country_code3: ARE
+  country_name: United Arab Emirates
+  latitude: '24.46667'
+  longitude: '54.36667'
+  metro_code: ''
+  population: '603492'
+  postal_code: ''
+  region: '01'
+  region_name: Abu Dhabi
+  timezone: Asia/Dubai
+abuja:
+- &2
+  area_code: ''
+  city: Abuja
+  continent_code: AF
+  country_code: NG
+  country_code3: NGA
+  country_name: Nigeria
+  latitude: '9.05785'
+  longitude: '7.49508'
+  metro_code: ''
+  population: '590400'
+  postal_code: ''
+  region: '11'
+  region_name: Abuja Federal Capital Territory
+  timezone: Africa/Lagos
+accra:
+- &3
+  area_code: ''
+  city: Accra
+  continent_code: AF
+  country_code: GH
+  country_code3: GHA
+  country_name: Ghana
+  latitude: '5.55602'
+  longitude: '-0.1969'
+  metro_code: ''
+  population: '1963264'
+  postal_code: ''
+  region: '01'
+  region_name: Greater Accra
+  timezone: Africa/Accra
+adamstown:
+- &4
+  area_code: ''
+  city: Adamstown
+  continent_code: OC
+  country_code: PN
+  country_code3: PCN
+  country_name: Pitcairn
+  latitude: '-25.06597'
+  longitude: '-130.10147'
+  metro_code: ''
+  population: '46'
+  postal_code: ''
+  region: ''
+  region_name: ~
+  timezone: Pacific/Pitcairn
+addis ababa:
+- &5
+  area_code: ''
+  city: Addis Ababa
+  continent_code: AF
+  country_code: ET
+  country_code3: ETH
+  country_name: Ethiopia
+  latitude: '9.02497'
+  longitude: '38.74689'
+  metro_code: ''
+  population: '2757729'
+  postal_code: ''
+  region: '44'
+  region_name: Adis Abeba
+  timezone: Africa/Addis_Ababa
+afghanistan:
+- &6
+  area_code: ''
+  city: Kabul
+  continent_code: AS
+  country_code: AF
+  country_code3: AFG
+  country_name: Afghanistan
+  latitude: '34.52813'
+  longitude: '69.17233'
+  metro_code: ''
+  population: '3043532'
+  postal_code: ''
+  region: '13'
+  region_name: Kabul
+  timezone: Asia/Kabul
+aland islands:
+- &7
+  area_code: ''
+  city: Mariehamn
+  continent_code: EU
+  country_code: AX
+  country_code3: ALA
+  country_name: Aland Islands
+  latitude: '60.09726'
+  longitude: '19.93481'
+  metro_code: ''
+  population: '10682'
+  postal_code: ''
+  region: '211'
+  region_name: Mariehamns stad
+  timezone: Europe/Mariehamn
+albania:
+- &8
+  area_code: ''
+  city: Tirana
+  continent_code: EU
+  country_code: AL
+  country_code3: ALB
+  country_name: Albania
+  latitude: '41.3275'
+  longitude: '19.81889'
+  metro_code: ''
+  population: '374801'
+  postal_code: ''
+  region: '50'
+  region_name: Tirane
+  timezone: Europe/Tirane
+algeria:
+- &9
+  area_code: ''
+  city: Algiers
+  continent_code: AF
+  country_code: DZ
+  country_code3: DZA
+  country_name: Algeria
+  latitude: '36.7525'
+  longitude: '3.04197'
+  metro_code: ''
+  population: '1977663'
+  postal_code: ''
+  region: '01'
+  region_name: Alger
+  timezone: Africa/Algiers
+algiers:
+- *9
+alofi:
+- &10
+  area_code: ''
+  city: Alofi
+  continent_code: OC
+  country_code: NU
+  country_code3: NIU
+  country_name: Niue
+  latitude: '-19.05952'
+  longitude: '-169.91867'
+  metro_code: ''
+  population: '624'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: Pacific/Niue
+american samoa:
+- &11
+  area_code: ''
+  city: Pago Pago
+  continent_code: OC
+  country_code: AS
+  country_code3: ASM
+  country_name: American Samoa
+  latitude: '-14.27806'
+  longitude: '-170.7025'
+  metro_code: ''
+  population: '11500'
+  postal_code: ''
+  region: '010'
+  region_name: Eastern District
+  timezone: Pacific/Pago_Pago
+amman:
+- &12
+  area_code: ''
+  city: Amman
+  continent_code: AS
+  country_code: JO
+  country_code3: JOR
+  country_name: Jordan
+  latitude: '31.95522'
+  longitude: '35.94503'
+  metro_code: ''
+  population: '1275857'
+  postal_code: ''
+  region: '16'
+  region_name: Amman
+  timezone: Asia/Amman
+amsterdam:
+- &13
+  area_code: ''
+  city: Amsterdam
+  continent_code: EU
+  country_code: NL
+  country_code3: NLD
+  country_name: Netherlands
+  latitude: '52.37403'
+  longitude: '4.88969'
+  metro_code: ''
+  population: '741636'
+  postal_code: '1000'
+  region: '07'
+  region_name: North Holland
+  timezone: Europe/Amsterdam
+andorra:
+- &14
+  area_code: ''
+  city: Andorra la Vella
+  continent_code: EU
+  country_code: AD
+  country_code3: AND
+  country_name: Andorra
+  latitude: '42.50779'
+  longitude: '1.52109'
+  metro_code: ''
+  population: '20430'
+  postal_code: ''
+  region: '07'
+  region_name: Andorra la Vella
+  timezone: Europe/Andorra
+andorra la vella:
+- *14
+angola:
+- &15
+  area_code: ''
+  city: Luanda
+  continent_code: AF
+  country_code: AO
+  country_code3: AGO
+  country_name: Angola
+  latitude: '-8.83682'
+  longitude: '13.23432'
+  metro_code: ''
+  population: '2776168'
+  postal_code: ''
+  region: '20'
+  region_name: Luanda
+  timezone: Africa/Luanda
+anguilla:
+- &16
+  area_code: ''
+  city: The Valley
+  continent_code: NA
+  country_code: AI
+  country_code3: AIA
+  country_name: Anguilla
+  latitude: '18.21704'
+  longitude: '-63.05783'
+  metro_code: ''
+  population: '2035'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: America/Anguilla
+ankara:
+- &17
+  area_code: ''
+  city: Ankara
+  continent_code: AS
+  country_code: TR
+  country_code3: TUR
+  country_name: Turkey
+  latitude: '39.91987'
+  longitude: '32.85427'
+  metro_code: ''
+  population: '3517182'
+  postal_code: ''
+  region: '68'
+  region_name: Ankara
+  timezone: Europe/Istanbul
+antananarivo:
+- &18
+  area_code: ''
+  city: Antananarivo
+  continent_code: AF
+  country_code: MG
+  country_code3: MDG
+  country_name: Madagascar
+  latitude: '-18.91368'
+  longitude: '47.53613'
+  metro_code: ''
+  population: '1391433'
+  postal_code: ''
+  region: '7670856'
+  region_name: Analamanga
+  timezone: Indian/Antananarivo
+apia:
+- &19
+  area_code: ''
+  city: Apia
+  continent_code: OC
+  country_code: WS
+  country_code3: WSM
+  country_name: Samoa
+  latitude: '-13.83333'
+  longitude: '-171.76666'
+  metro_code: ''
+  population: '40407'
+  postal_code: ''
+  region: '10'
+  region_name: Tuamasaga
+  timezone: Pacific/Apia
+argentina:
+- &20
+  area_code: ''
+  city: Buenos Aires
+  continent_code: SA
+  country_code: AR
+  country_code3: ARG
+  country_name: Argentina
+  latitude: '-34.61315'
+  longitude: '-58.37723'
+  metro_code: ''
+  population: '13076300'
+  postal_code: ''
+  region: '07'
+  region_name: Buenos Aires F.D.
+  timezone: America/Argentina/Buenos_Aires
+armenia:
+- &21
+  area_code: ''
+  city: Yerevan
+  continent_code: AS
+  country_code: AM
+  country_code3: ARM
+  country_name: Armenia
+  latitude: '40.18111'
+  longitude: '44.51361'
+  metro_code: ''
+  population: '1093485'
+  postal_code: ''
+  region: '11'
+  region_name: Yerevan
+  timezone: Asia/Yerevan
+aruba:
+- &22
+  area_code: ''
+  city: Oranjestad
+  continent_code: NA
+  country_code: AW
+  country_code3: ABW
+  country_name: Aruba
+  latitude: '12.52398'
+  longitude: '-70.02703'
+  metro_code: ''
+  population: '29998'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: America/Aruba
+ashgabat:
+- &23
+  area_code: ''
+  city: Ashgabat
+  continent_code: AS
+  country_code: TM
+  country_code3: TKM
+  country_name: Turkmenistan
+  latitude: '37.95'
+  longitude: '58.38333'
+  metro_code: ''
+  population: '727700'
+  postal_code: ''
+  region: '01'
+  region_name: Ahal
+  timezone: Asia/Ashgabat
+asmara:
+- &24
+  area_code: ''
+  city: Asmara
+  continent_code: AF
+  country_code: ER
+  country_code3: ERI
+  country_name: Eritrea
+  latitude: '15.33805'
+  longitude: '38.93184'
+  metro_code: ''
+  population: '563930'
+  postal_code: ''
+  region: '05'
+  region_name: Maekel Region
+  timezone: Africa/Asmara
+astana:
+- &25
+  area_code: ''
+  city: Astana
+  continent_code: AS
+  country_code: KZ
+  country_code3: KAZ
+  country_name: Kazakhstan
+  latitude: '51.1801'
+  longitude: '71.44598'
+  metro_code: ''
+  population: '345604'
+  postal_code: ''
+  region: '05'
+  region_name: Astana Qalasy
+  timezone: Asia/Almaty
+asuncion:
+- &26
+  area_code: ''
+  city: Asuncion
+  continent_code: SA
+  country_code: PY
+  country_code3: PRY
+  country_name: Paraguay
+  latitude: '-25.30066'
+  longitude: '-57.63591'
+  metro_code: ''
+  population: '1482200'
+  postal_code: ''
+  region: '22'
+  region_name: Asuncion
+  timezone: America/Asuncion
+athens:
+- &27
+  area_code: ''
+  city: Athens
+  continent_code: EU
+  country_code: GR
+  country_code3: GRC
+  country_name: Greece
+  latitude: '37.97945'
+  longitude: '23.71622'
+  metro_code: ''
+  population: '664046'
+  postal_code: ''
+  region: ESYE31
+  region_name: Attica
+  timezone: Europe/Athens
+australia:
+- &28
+  area_code: ''
+  city: Canberra
+  continent_code: OC
+  country_code: AU
+  country_code3: AUS
+  country_name: Australia
+  latitude: '-35.28346'
+  longitude: '149.12807'
+  metro_code: ''
+  population: '367752'
+  postal_code: ''
+  region: '01'
+  region_name: Australian Capital Territory
+  timezone: Australia/Sydney
+austria:
+- &29
+  area_code: ''
+  city: Vienna
+  continent_code: EU
+  country_code: AT
+  country_code3: AUT
+  country_name: Austria
+  latitude: '48.20849'
+  longitude: '16.37208'
+  metro_code: ''
+  population: '1691468'
+  postal_code: ''
+  region: '09'
+  region_name: Vienna
+  timezone: Europe/Vienna
+avarua:
+- &30
+  area_code: ''
+  city: Avarua
+  continent_code: OC
+  country_code: CK
+  country_code3: COK
+  country_name: Cook Islands
+  latitude: '-21.20778'
+  longitude: '-159.775'
+  metro_code: ''
+  population: '13373'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: Pacific/Rarotonga
+azerbaijan:
+- &31
+  area_code: ''
+  city: Baku
+  continent_code: AS
+  country_code: AZ
+  country_code3: AZE
+  country_name: Azerbaijan
+  latitude: '40.37767'
+  longitude: '49.89201'
+  metro_code: ''
+  population: '1116513'
+  postal_code: ''
+  region: '09'
+  region_name: Baki
+  timezone: Asia/Baku
+baghdad:
+- &32
+  area_code: ''
+  city: Baghdad
+  continent_code: AS
+  country_code: IQ
+  country_code3: IRQ
+  country_name: Iraq
+  latitude: '33.34058'
+  longitude: '44.40088'
+  metro_code: ''
+  population: '5672513'
+  postal_code: ''
+  region: '07'
+  region_name: Mayorality of Baghdad
+  timezone: Asia/Baghdad
+bahamas:
+- &33
+  area_code: ''
+  city: Nassau
+  continent_code: NA
+  country_code: BS
+  country_code3: BHS
+  country_name: Bahamas
+  latitude: '25.05823'
+  longitude: '-77.34306'
+  metro_code: ''
+  population: '227940'
+  postal_code: ''
+  region: '23'
+  region_name: New Providence
+  timezone: America/Nassau
+bahrain:
+- &34
+  area_code: ''
+  city: Manama
+  continent_code: AS
+  country_code: BH
+  country_code3: BHR
+  country_name: Bahrain
+  latitude: '26.21536'
+  longitude: '50.5832'
+  metro_code: ''
+  population: '147074'
+  postal_code: ''
+  region: '16'
+  region_name: Manama
+  timezone: Asia/Bahrain
+baku:
+- *31
+bamako:
+- &35
+  area_code: ''
+  city: Bamako
+  continent_code: AF
+  country_code: ML
+  country_code3: MLI
+  country_name: Mali
+  latitude: '12.65'
+  longitude: '-8'
+  metro_code: ''
+  population: '1297281'
+  postal_code: ''
+  region: '01'
+  region_name: Bamako
+  timezone: Africa/Bamako
+bandar seri begawan:
+- &36
+  area_code: ''
+  city: Bandar Seri Begawan
+  continent_code: AS
+  country_code: BN
+  country_code3: BRN
+  country_name: Brunei
+  latitude: '4.94029'
+  longitude: '114.94806'
+  metro_code: ''
+  population: '64409'
+  postal_code: ''
+  region: '02'
+  region_name: Brunei and Muara
+  timezone: Asia/Brunei
+bangkok:
+- &37
+  area_code: ''
+  city: Bangkok
+  continent_code: AS
+  country_code: TH
+  country_code3: THA
+  country_name: Thailand
+  latitude: '13.75398'
+  longitude: '100.50144'
+  metro_code: ''
+  population: '5104476'
+  postal_code: ''
+  region: '40'
+  region_name: Bangkok
+  timezone: Asia/Bangkok
+bangladesh:
+- &38
+  area_code: ''
+  city: Dhaka
+  continent_code: AS
+  country_code: BD
+  country_code3: BGD
+  country_name: Bangladesh
+  latitude: '23.7104'
+  longitude: '90.40744'
+  metro_code: ''
+  population: '10356500'
+  postal_code: ''
+  region: '81'
+  region_name: Dhaka
+  timezone: Asia/Dhaka
+bangui:
+- &39
+  area_code: ''
+  city: Bangui
+  continent_code: AF
+  country_code: CF
+  country_code3: CAF
+  country_name: Central African Republic
+  latitude: '4.36122'
+  longitude: '18.55496'
+  metro_code: ''
+  population: '542393'
+  postal_code: ''
+  region: '18'
+  region_name: Bangui
+  timezone: Africa/Bangui
+banjul:
+- &40
+  area_code: ''
+  city: Banjul
+  continent_code: AF
+  country_code: GM
+  country_code3: GMB
+  country_name: Gambia
+  latitude: '13.45274'
+  longitude: '-16.57803'
+  metro_code: ''
+  population: '34589'
+  postal_code: ''
+  region: '01'
+  region_name: Banjul
+  timezone: Africa/Banjul
+barbados:
+- &41
+  area_code: ''
+  city: Bridgetown
+  continent_code: NA
+  country_code: BB
+  country_code3: BRB
+  country_name: Barbados
+  latitude: '13.1'
+  longitude: '-59.61667'
+  metro_code: ''
+  population: '98511'
+  postal_code: ''
+  region: '08'
+  region_name: Saint Michael
+  timezone: America/Barbados
+basse-terre:
+- &42
+  area_code: ''
+  city: Basse-Terre
+  continent_code: NA
+  country_code: GP
+  country_code3: GLP
+  country_name: Guadeloupe
+  latitude: '15.99854'
+  longitude: '-61.72548'
+  metro_code: ''
+  population: '11472'
+  postal_code: 97023 CEDEX
+  region: GP
+  region_name: Guadeloupe
+  timezone: America/Guadeloupe
+basseterre:
+- &43
+  area_code: ''
+  city: Basseterre
+  continent_code: NA
+  country_code: KN
+  country_code3: KNA
+  country_name: Saint Kitts and Nevis
+  latitude: '17.29484'
+  longitude: '-62.7261'
+  metro_code: ''
+  population: '12920'
+  postal_code: ''
+  region: '03'
+  region_name: Saint George Basseterre
+  timezone: America/St_Kitts
+beijing:
+- &44
+  area_code: ''
+  city: Beijing
+  continent_code: AS
+  country_code: CN
+  country_code3: CHN
+  country_name: China
+  latitude: '39.9075'
+  longitude: '116.39723'
+  metro_code: ''
+  population: '11716620'
+  postal_code: ''
+  region: '22'
+  region_name: Beijing
+  timezone: Asia/Shanghai
+beirut:
+- &45
+  area_code: ''
+  city: Beirut
+  continent_code: AS
+  country_code: LB
+  country_code3: LBN
+  country_name: Lebanon
+  latitude: '33.88894'
+  longitude: '35.49442'
+  metro_code: ''
+  population: '1916100'
+  postal_code: ''
+  region: '04'
+  region_name: Beyrouth
+  timezone: Asia/Beirut
+belarus:
+- &46
+  area_code: ''
+  city: Minsk
+  continent_code: EU
+  country_code: BY
+  country_code3: BLR
+  country_name: Belarus
+  latitude: '53.9'
+  longitude: '27.56667'
+  metro_code: ''
+  population: '1742124'
+  postal_code: ''
+  region: '04'
+  region_name: Minsk
+  timezone: Europe/Minsk
+belgium:
+- &47
+  area_code: ''
+  city: Brussels
+  continent_code: EU
+  country_code: BE
+  country_code3: BEL
+  country_name: Belgium
+  latitude: '50.85045'
+  longitude: '4.34878'
+  metro_code: ''
+  population: '1019022'
+  postal_code: ''
+  region: BRU
+  region_name: Brussels Capital
+  timezone: Europe/Brussels
+belgrade:
+- &48
+  area_code: ''
+  city: Belgrade
+  continent_code: EU
+  country_code: RS
+  country_code3: SRB
+  country_name: Serbia
+  latitude: '44.80401'
+  longitude: '20.46513'
+  metro_code: ''
+  population: '1273651'
+  postal_code: ''
+  region: SE
+  region_name: Central Serbia
+  timezone: Europe/Belgrade
+belize:
+- &49
+  area_code: ''
+  city: Belmopan
+  continent_code: NA
+  country_code: BZ
+  country_code3: BLZ
+  country_name: Belize
+  latitude: '17.25'
+  longitude: '-88.76667'
+  metro_code: ''
+  population: '13381'
+  postal_code: ''
+  region: '02'
+  region_name: Cayo
+  timezone: America/Belize
+belmopan:
+- *49
+benin:
+- &50
+  area_code: ''
+  city: Porto-Novo
+  continent_code: AF
+  country_code: BJ
+  country_code3: BEN
+  country_name: Benin
+  latitude: '6.49646'
+  longitude: '2.60359'
+  metro_code: ''
+  population: '234168'
+  postal_code: ''
+  region: '16'
+  region_name: Queme
+  timezone: Africa/Porto-Novo
+berlin:
+- &51
+  area_code: ''
+  city: Berlin
+  continent_code: EU
+  country_code: DE
+  country_code3: DEU
+  country_name: Germany
+  latitude: '52.52437'
+  longitude: '13.41053'
+  metro_code: ''
+  population: '3426354'
+  postal_code: ''
+  region: '16'
+  region_name: Berlin
+  timezone: Europe/Berlin
+bermuda:
+- &52
+  area_code: ''
+  city: Hamilton
+  continent_code: NA
+  country_code: BM
+  country_code3: BMU
+  country_name: Bermuda
+  latitude: '32.2949'
+  longitude: '-64.78303'
+  metro_code: ''
+  population: '902'
+  postal_code: ''
+  region: '03'
+  region_name: Hamilton city
+  timezone: Atlantic/Bermuda
+bhutan:
+- &53
+  area_code: ''
+  city: Thimphu
+  continent_code: AS
+  country_code: BT
+  country_code3: BTN
+  country_name: Bhutan
+  latitude: '27.46609'
+  longitude: '89.64191'
+  metro_code: ''
+  population: '98676'
+  postal_code: ''
+  region: '20'
+  region_name: Thimphu
+  timezone: Asia/Thimphu
+bishkek:
+- &54
+  area_code: ''
+  city: Bishkek
+  continent_code: AS
+  country_code: KG
+  country_code3: KGZ
+  country_name: Kyrgyzstan
+  latitude: '42.87'
+  longitude: '74.59'
+  metro_code: ''
+  population: '900000'
+  postal_code: ''
+  region: '02'
+  region_name: Chuy
+  timezone: Asia/Bishkek
+bissau:
+- &55
+  area_code: ''
+  city: Bissau
+  continent_code: AF
+  country_code: GW
+  country_code3: GNB
+  country_name: Guinea-Bissau
+  latitude: '11.86357'
+  longitude: '-15.59767'
+  metro_code: ''
+  population: '388028'
+  postal_code: ''
+  region: '11'
+  region_name: Bissau
+  timezone: Africa/Bissau
+bogota:
+- &56
+  area_code: ''
+  city: Bogota
+  continent_code: SA
+  country_code: CO
+  country_code3: COL
+  country_name: Colombia
+  latitude: '4.60971'
+  longitude: '-74.08175'
+  metro_code: ''
+  population: '7674366'
+  postal_code: ''
+  region: '34'
+  region_name: Bogota D.C.
+  timezone: America/Bogota
+bolivia:
+- &57
+  area_code: ''
+  city: Sucre
+  continent_code: SA
+  country_code: BO
+  country_code3: BOL
+  country_name: Bolivia
+  latitude: '-19.03332'
+  longitude: '-65.26274'
+  metro_code: ''
+  population: '224838'
+  postal_code: ''
+  region: '01'
+  region_name: Chuquisaca
+  timezone: America/La_Paz
+bosnia and herzegovina:
+- &58
+  area_code: ''
+  city: Sarajevo
+  continent_code: EU
+  country_code: BA
+  country_code3: BIH
+  country_name: Bosnia and Herzegovina
+  latitude: '43.84864'
+  longitude: '18.35644'
+  metro_code: ''
+  population: '696731'
+  postal_code: ''
+  region: '01'
+  region_name: Federation of Bosnia and Herzegovina
+  timezone: Europe/Sarajevo
+botswana:
+- &59
+  area_code: ''
+  city: Gaborone
+  continent_code: AF
+  country_code: BW
+  country_code3: BWA
+  country_name: Botswana
+  latitude: '-24.65451'
+  longitude: '25.90859'
+  metro_code: ''
+  population: '208411'
+  postal_code: ''
+  region: '09'
+  region_name: South East
+  timezone: Africa/Gaborone
+brasilia:
+- &60
+  area_code: ''
+  city: Brasilia
+  continent_code: SA
+  country_code: BR
+  country_code3: BRA
+  country_name: Brazil
+  latitude: '-15.77972'
+  longitude: '-47.92972'
+  metro_code: ''
+  population: '2207718'
+  postal_code: 70000-000
+  region: '07'
+  region_name: Federal
+  timezone: America/Sao_Paulo
+bratislava:
+- &61
+  area_code: ''
+  city: Bratislava
+  continent_code: EU
+  country_code: SK
+  country_code3: SVK
+  country_name: Slovakia
+  latitude: '48.14816'
+  longitude: '17.10674'
+  metro_code: ''
+  population: '423737'
+  postal_code: ''
+  region: '02'
+  region_name: Bratislavsky
+  timezone: Europe/Bratislava
+brazil:
+- *60
+brazzaville:
+- &62
+  area_code: ''
+  city: Brazzaville
+  continent_code: AF
+  country_code: CG
+  country_code3: COG
+  country_name: Republic of the Congo
+  latitude: '-4.26613'
+  longitude: '15.28318'
+  metro_code: ''
+  population: '1284609'
+  postal_code: ''
+  region: '12'
+  region_name: Brazzaville
+  timezone: Africa/Brazzaville
+bridgetown:
+- *41
+british virgin islands:
+- &63
+  area_code: ''
+  city: Road Town
+  continent_code: NA
+  country_code: VG
+  country_code3: VGB
+  country_name: British Virgin Islands
+  latitude: '18.42693'
+  longitude: '-64.62079'
+  metro_code: ''
+  population: '8449'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: America/Tortola
+brunei:
+- *36
+brussels:
+- *47
+bucharest:
+- &64
+  area_code: ''
+  city: Bucharest
+  continent_code: EU
+  country_code: RO
+  country_code3: ROU
+  country_name: Romania
+  latitude: '44.43225'
+  longitude: '26.10626'
+  metro_code: ''
+  population: '1877155'
+  postal_code: ''
+  region: '10'
+  region_name: Bucuresti
+  timezone: Europe/Bucharest
+budapest:
+- &65
+  area_code: ''
+  city: Budapest
+  continent_code: EU
+  country_code: HU
+  country_code3: HUN
+  country_name: Hungary
+  latitude: '47.49801'
+  longitude: '19.03991'
+  metro_code: ''
+  population: '1741041'
+  postal_code: ''
+  region: '05'
+  region_name: Budapest
+  timezone: Europe/Budapest
+buenos aires:
+- *20
+bujumbura:
+- &66
+  area_code: ''
+  city: Bujumbura
+  continent_code: AF
+  country_code: BI
+  country_code3: BDI
+  country_name: Burundi
+  latitude: '-3.3822'
+  longitude: '29.3644'
+  metro_code: ''
+  population: '331700'
+  postal_code: ''
+  region: '24'
+  region_name: Bujumbura Mairie
+  timezone: Africa/Bujumbura
+bulgaria:
+- &67
+  area_code: ''
+  city: Sofia
+  continent_code: EU
+  country_code: BG
+  country_code3: BGR
+  country_name: Bulgaria
+  latitude: '42.69751'
+  longitude: '23.32415'
+  metro_code: ''
+  population: '1152556'
+  postal_code: ''
+  region: '42'
+  region_name: Sofia-Capital
+  timezone: Europe/Sofia
+burkina faso:
+- &68
+  area_code: ''
+  city: Ouagadougou
+  continent_code: AF
+  country_code: BF
+  country_code3: BFA
+  country_name: Burkina Faso
+  latitude: '12.36566'
+  longitude: '-1.53388'
+  metro_code: ''
+  population: '1086505'
+  postal_code: ''
+  region: '03'
+  region_name: Centre
+  timezone: Africa/Ouagadougou
+burundi:
+- *66
+cairo:
+- &69
+  area_code: ''
+  city: Cairo
+  continent_code: AF
+  country_code: EG
+  country_code3: EGY
+  country_name: Egypt
+  latitude: '30.06263'
+  longitude: '31.24967'
+  metro_code: ''
+  population: '7734614'
+  postal_code: ''
+  region: '11'
+  region_name: Al Qahirah
+  timezone: Africa/Cairo
+cambodia:
+- &70
+  area_code: ''
+  city: Phnom Penh
+  continent_code: AS
+  country_code: KH
+  country_code3: KHM
+  country_name: Cambodia
+  latitude: '11.56245'
+  longitude: '104.91601'
+  metro_code: ''
+  population: '1573544'
+  postal_code: ''
+  region: '22'
+  region_name: Phnom Penh
+  timezone: Asia/Phnom_Penh
+cameroon:
+- &71
+  area_code: ''
+  city: Yaounde
+  continent_code: AF
+  country_code: CM
+  country_code3: CMR
+  country_name: Cameroon
+  latitude: '3.86667'
+  longitude: '11.51667'
+  metro_code: ''
+  population: '1299369'
+  postal_code: ''
+  region: '11'
+  region_name: Centre
+  timezone: Africa/Douala
+canada:
+- &72
+  area_code: ''
+  city: Ottawa
+  continent_code: NA
+  country_code: CA
+  country_code3: CAN
+  country_name: Canada
+  latitude: '45.41117'
+  longitude: '-75.69812'
+  metro_code: ''
+  population: '812129'
+  postal_code: ''
+  region: '08'
+  region_name: Ontario
+  timezone: America/Toronto
+canberra:
+- *28
+cape verde:
+- &73
+  area_code: ''
+  city: Praia
+  continent_code: AF
+  country_code: CV
+  country_code3: CPV
+  country_name: Cape Verde
+  latitude: '14.93152'
+  longitude: '-23.51254'
+  metro_code: ''
+  population: '113364'
+  postal_code: ''
+  region: '14'
+  region_name: Praia
+  timezone: Atlantic/Cape_Verde
+caracas:
+- &74
+  area_code: ''
+  city: Caracas
+  continent_code: SA
+  country_code: VE
+  country_code3: VEN
+  country_name: Venezuela
+  latitude: '10.48801'
+  longitude: '-66.87919'
+  metro_code: ''
+  population: '3000000'
+  postal_code: ''
+  region: '25'
+  region_name: Capital
+  timezone: America/Caracas
+castries:
+- &75
+  area_code: ''
+  city: Castries
+  continent_code: NA
+  country_code: LC
+  country_code3: LCA
+  country_name: Saint Lucia
+  latitude: '13.9957'
+  longitude: '-61.00614'
+  metro_code: ''
+  population: '20000'
+  postal_code: ''
+  region: '03'
+  region_name: Castries Quarter
+  timezone: America/St_Lucia
+cayenne:
+- &76
+  area_code: ''
+  city: Cayenne
+  continent_code: SA
+  country_code: GF
+  country_code3: GUF
+  country_name: French Guiana
+  latitude: '4.93333'
+  longitude: '-52.33333'
+  metro_code: ''
+  population: '61550'
+  postal_code: '97300'
+  region: GF
+  region_name: Guyane
+  timezone: America/Cayenne
+cayman islands:
+- &77
+  area_code: ''
+  city: George Town
+  continent_code: NA
+  country_code: KY
+  country_code3: CYM
+  country_name: Cayman Islands
+  latitude: '19.2866'
+  longitude: '-81.37436'
+  metro_code: ''
+  population: '29370'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: America/Cayman
+central african republic:
+- *39
+chad:
+- &78
+  area_code: ''
+  city: N'Djamena
+  continent_code: AF
+  country_code: TD
+  country_code3: TCD
+  country_name: Chad
+  latitude: '12.10672'
+  longitude: '15.0444'
+  metro_code: ''
+  population: '721081'
+  postal_code: ''
+  region: '15'
+  region_name: Chari-Baguirmi
+  timezone: Africa/Ndjamena
+charlotte amalie:
+- &79
+  area_code: ''
+  city: Charlotte Amalie
+  continent_code: NA
+  country_code: VI
+  country_code3: VIR
+  country_name: U.S. Virgin Islands
+  latitude: '18.3419'
+  longitude: '-64.9307'
+  metro_code: ''
+  population: '20000'
+  postal_code: ''
+  region: '030'
+  region_name: Saint Thomas Island
+  timezone: America/St_Thomas
+chile:
+- &80
+  area_code: ''
+  city: Santiago
+  continent_code: SA
+  country_code: CL
+  country_code3: CHL
+  country_name: Chile
+  latitude: '-33.45694'
+  longitude: '-70.64827'
+  metro_code: ''
+  population: '4837295'
+  postal_code: ''
+  region: '12'
+  region_name: Santiago Metropolitan
+  timezone: America/Santiago
+china:
+- *44
+chisinau:
+- &81
+  area_code: ''
+  city: Chisinau
+  continent_code: EU
+  country_code: MD
+  country_code3: MDA
+  country_name: Moldova
+  latitude: '47.00556'
+  longitude: '28.8575'
+  metro_code: ''
+  population: '635994'
+  postal_code: ''
+  region: '57'
+  region_name: Chisinau
+  timezone: Europe/Chisinau
+christmas island:
+- &82
+  area_code: ''
+  city: Flying Fish Cove
+  continent_code: AS
+  country_code: CX
+  country_code3: CXR
+  country_name: Christmas Island
+  latitude: '-10.42172'
+  longitude: '105.67912'
+  metro_code: ''
+  population: '500'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: Indian/Christmas
+cockburn town:
+- &83
+  area_code: ''
+  city: Cockburn Town
+  continent_code: NA
+  country_code: TC
+  country_code3: TCA
+  country_name: Turks and Caicos Islands
+  latitude: '21.46122'
+  longitude: '-71.14188'
+  metro_code: ''
+  population: '3720'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: America/Grand_Turk
+cocos islands:
+- &84
+  area_code: ''
+  city: West Island
+  continent_code: AS
+  country_code: CC
+  country_code3: CCK
+  country_name: Cocos Islands
+  latitude: '-12.15681'
+  longitude: '96.82251'
+  metro_code: ''
+  population: '120'
+  postal_code: ''
+  region: ''
+  region_name: ~
+  timezone: Indian/Cocos
+colombia:
+- *56
+colombo:
+- &85
+  area_code: ''
+  city: Colombo
+  continent_code: AS
+  country_code: LK
+  country_code3: LKA
+  country_name: Sri Lanka
+  latitude: '6.93194'
+  longitude: '79.84778'
+  metro_code: ''
+  population: '648034'
+  postal_code: ''
+  region: '36'
+  region_name: Western
+  timezone: Asia/Colombo
+comoros:
+- &86
+  area_code: ''
+  city: Moroni
+  continent_code: AF
+  country_code: KM
+  country_code3: COM
+  country_name: Comoros
+  latitude: '-11.70216'
+  longitude: '43.25506'
+  metro_code: ''
+  population: '42872'
+  postal_code: ''
+  region: '02'
+  region_name: Grande Comore
+  timezone: Indian/Comoro
+conakry:
+- &87
+  area_code: ''
+  city: Conakry
+  continent_code: AF
+  country_code: GN
+  country_code3: GIN
+  country_name: Guinea
+  latitude: '9.53795'
+  longitude: '-13.67729'
+  metro_code: ''
+  population: '1767200'
+  postal_code: ''
+  region: '04'
+  region_name: Conakry
+  timezone: Africa/Conakry
+cook islands:
+- *30
+copenhagen:
+- &88
+  area_code: ''
+  city: Copenhagen
+  continent_code: EU
+  country_code: DK
+  country_code3: DNK
+  country_name: Denmark
+  latitude: '55.67594'
+  longitude: '12.56553'
+  metro_code: ''
+  population: '1153615'
+  postal_code: ''
+  region: '17'
+  region_name: Capital Region
+  timezone: Europe/Copenhagen
+costa rica:
+- &89
+  area_code: ''
+  city: San Jose
+  continent_code: NA
+  country_code: CR
+  country_code3: CRI
+  country_name: Costa Rica
+  latitude: '9.93333'
+  longitude: '-84.08333'
+  metro_code: ''
+  population: 335007
+  postal_code: ''
+  region: '08'
+  region_name: San Jose
+  timezone: America/Costa_Rica
+croatia:
+- &90
+  area_code: ''
+  city: Zagreb
+  continent_code: EU
+  country_code: HR
+  country_code3: HRV
+  country_name: Croatia
+  latitude: '45.81444'
+  longitude: '15.97798'
+  metro_code: ''
+  population: '698966'
+  postal_code: ''
+  region: '21'
+  region_name: Grad Zagreb
+  timezone: Europe/Zagreb
+cuba:
+- &91
+  area_code: ''
+  city: Havana
+  continent_code: NA
+  country_code: CU
+  country_code3: CUB
+  country_name: Cuba
+  latitude: '23.13302'
+  longitude: '-82.38304'
+  metro_code: ''
+  population: '2163824'
+  postal_code: ''
+  region: '02'
+  region_name: La Habana
+  timezone: America/Havana
+cyprus:
+- &92
+  area_code: ''
+  city: Nicosia
+  continent_code: EU
+  country_code: CY
+  country_code3: CYP
+  country_name: Cyprus
+  latitude: '35.16667'
+  longitude: '33.36667'
+  metro_code: ''
+  population: '200452'
+  postal_code: ''
+  region: '04'
+  region_name: Lefkosia
+  timezone: Asia/Nicosia
+czech republic:
+- &93
+  area_code: ''
+  city: Prague
+  continent_code: EU
+  country_code: CZ
+  country_code3: CZE
+  country_name: Czech Republic
+  latitude: '50.08804'
+  longitude: '14.42076'
+  metro_code: ''
+  population: '1165581'
+  postal_code: ''
+  region: '52'
+  region_name: Praha
+  timezone: Europe/Prague
+dakar:
+- &94
+  area_code: ''
+  city: Dakar
+  continent_code: AF
+  country_code: SN
+  country_code3: SEN
+  country_name: Senegal
+  latitude: '14.6937'
+  longitude: '-17.44406'
+  metro_code: ''
+  population: '2476400'
+  postal_code: ''
+  region: '01'
+  region_name: Dakar
+  timezone: Africa/Dakar
+damascus:
+- &95
+  area_code: ''
+  city: Damascus
+  continent_code: AS
+  country_code: SY
+  country_code3: SYR
+  country_name: Syria
+  latitude: '33.5102'
+  longitude: '36.29128'
+  metro_code: ''
+  population: '1569394'
+  postal_code: ''
+  region: '13'
+  region_name: Dimashq
+  timezone: Asia/Damascus
+democratic republic of the congo:
+- &96
+  area_code: ''
+  city: Kinshasa
+  continent_code: AF
+  country_code: CD
+  country_code3: COD
+  country_name: Democratic Republic of the Congo
+  latitude: '-4.32758'
+  longitude: '15.31357'
+  metro_code: ''
+  population: '7785965'
+  postal_code: ''
+  region: '06'
+  region_name: Kinshasa
+  timezone: Africa/Kinshasa
+denmark:
+- *88
+dhaka:
+- *38
+dili:
+- &97
+  area_code: ''
+  city: Dili
+  continent_code: OC
+  country_code: TL
+  country_code3: TLS
+  country_name: East Timor
+  latitude: '-8.55861'
+  longitude: '125.57361'
+  metro_code: ''
+  population: '150000'
+  postal_code: ''
+  region: DI
+  region_name: Dili
+  timezone: Asia/Dili
+djibouti:
+- area_code: ''
+  city: Djibouti
+  continent_code: AF
+  country_code: DJ
+  country_code3: DJI
+  country_name: Djibouti
+  latitude: '11.58901'
+  longitude: '43.14503'
+  metro_code: ''
+  population: '623891'
+  postal_code: ''
+  region: '07'
+  region_name: Djibouti
+  timezone: Africa/Djibouti
+dodoma:
+- &98
+  area_code: ''
+  city: Dodoma
+  continent_code: AF
+  country_code: TZ
+  country_code3: TZA
+  country_name: Tanzania
+  latitude: '-6.17221'
+  longitude: '35.73947'
+  metro_code: ''
+  population: '180541'
+  postal_code: ''
+  region: '03'
+  region_name: Dodoma
+  timezone: Africa/Dar_es_Salaam
+doha:
+- &99
+  area_code: ''
+  city: Doha
+  continent_code: AS
+  country_code: QA
+  country_code3: QAT
+  country_name: Qatar
+  latitude: '25.27932'
+  longitude: '51.52245'
+  metro_code: ''
+  population: '344939'
+  postal_code: ''
+  region: '01'
+  region_name: Ad Dawhah
+  timezone: Asia/Qatar
+dominica:
+- &100
+  area_code: ''
+  city: Roseau
+  continent_code: NA
+  country_code: DM
+  country_code3: DMA
+  country_name: Dominica
+  latitude: '15.30174'
+  longitude: '-61.38808'
+  metro_code: ''
+  population: '16571'
+  postal_code: ''
+  region: '04'
+  region_name: Saint George
+  timezone: America/Dominica
+dominican republic:
+- &101
+  area_code: ''
+  city: Santo Domingo
+  continent_code: NA
+  country_code: DO
+  country_code3: DOM
+  country_name: Dominican Republic
+  latitude: '18.50012'
+  longitude: '-69.98857'
+  metro_code: ''
+  population: '2201941'
+  postal_code: ''
+  region: '34'
+  region_name: Nacional
+  timezone: America/Santo_Domingo
+dublin:
+- &102
+  area_code: ''
+  city: Dublin
+  continent_code: EU
+  country_code: IE
+  country_code3: IRL
+  country_name: Ireland
+  latitude: '53.33306'
+  longitude: '-6.24889'
+  metro_code: ''
+  population: '1024027'
+  postal_code: ''
+  region: L
+  region_name: Leinster
+  timezone: Europe/Dublin
+dushanbe:
+- &103
+  area_code: ''
+  city: Dushanbe
+  continent_code: AS
+  country_code: TJ
+  country_code3: TJK
+  country_name: Tajikistan
+  latitude: '38.53575'
+  longitude: '68.77905'
+  metro_code: ''
+  population: '679400'
+  postal_code: ''
+  region: '7280679'
+  region_name: Dushanbe
+  timezone: Asia/Dushanbe
+east jerusalem:
+- &104
+  area_code: ''
+  city: East Jerusalem
+  continent_code: AS
+  country_code: PS
+  country_code3: PSE
+  country_name: Palestinian Territory
+  latitude: '31.78336'
+  longitude: '35.23388'
+  metro_code: ''
+  population: '428304'
+  postal_code: ''
+  region: WE
+  region_name: West Bank
+  timezone: Asia/Hebron
+east timor:
+- *97
+ecuador:
+- &105
+  area_code: ''
+  city: Quito
+  continent_code: SA
+  country_code: EC
+  country_code3: ECU
+  country_name: Ecuador
+  latitude: '-0.22985'
+  longitude: '-78.52495'
+  metro_code: ''
+  population: '1399814'
+  postal_code: ''
+  region: '18'
+  region_name: Pichincha
+  timezone: America/Guayaquil
+egypt:
+- *69
+el salvador:
+- &106
+  area_code: ''
+  city: San Salvador
+  continent_code: NA
+  country_code: SV
+  country_code3: SLV
+  country_name: El Salvador
+  latitude: '13.68935'
+  longitude: '-89.18718'
+  metro_code: ''
+  population: '525990'
+  postal_code: ''
+  region: '10'
+  region_name: San Salvador
+  timezone: America/El_Salvador
+equatorial guinea:
+- &107
+  area_code: ''
+  city: Malabo
+  continent_code: AF
+  country_code: GQ
+  country_code3: GNQ
+  country_name: Equatorial Guinea
+  latitude: '3.75'
+  longitude: '8.78333'
+  metro_code: ''
+  population: '155963'
+  postal_code: ''
+  region: '04'
+  region_name: Bioko Norte
+  timezone: Africa/Malabo
+eritrea:
+- *24
+estonia:
+- &108
+  area_code: ''
+  city: Tallinn
+  continent_code: EU
+  country_code: EE
+  country_code3: EST
+  country_name: Estonia
+  latitude: '59.43696'
+  longitude: '24.75353'
+  metro_code: ''
+  population: '394024'
+  postal_code: ''
+  region: '01'
+  region_name: Harju
+  timezone: Europe/Tallinn
+ethiopia:
+- *5
+falkland islands:
+- &109
+  area_code: ''
+  city: Stanley
+  continent_code: SA
+  country_code: FK
+  country_code3: FLK
+  country_name: Falkland Islands
+  latitude: '-51.7'
+  longitude: '-57.85'
+  metro_code: ''
+  population: '2213'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: Atlantic/Stanley
+faroe islands:
+- &110
+  area_code: ''
+  city: Torshavn
+  continent_code: EU
+  country_code: FO
+  country_code3: FRO
+  country_name: Faroe Islands
+  latitude: '62.00973'
+  longitude: '-6.77164'
+  metro_code: ''
+  population: '13200'
+  postal_code: ''
+  region: ST
+  region_name: Streymoy
+  timezone: Atlantic/Faroe
+fiji:
+- &111
+  area_code: ''
+  city: Suva
+  continent_code: OC
+  country_code: FJ
+  country_code3: FJI
+  country_name: Fiji
+  latitude: '-18.14161'
+  longitude: '178.44149'
+  metro_code: ''
+  population: '77366'
+  postal_code: ''
+  region: '01'
+  region_name: Central
+  timezone: Pacific/Fiji
+finland:
+- &112
+  area_code: ''
+  city: Helsinki
+  continent_code: EU
+  country_code: FI
+  country_code3: FIN
+  country_name: Finland
+  latitude: '60.16952'
+  longitude: '24.93545'
+  metro_code: ''
+  population: '558457'
+  postal_code: ''
+  region: '01'
+  region_name: Uusimaa
+  timezone: Europe/Helsinki
+flying fish cove:
+- *82
+fort-de-france:
+- &113
+  area_code: ''
+  city: Fort-de-France
+  continent_code: NA
+  country_code: MQ
+  country_code3: MTQ
+  country_name: Martinique
+  latitude: '14.60892'
+  longitude: '-61.07334'
+  metro_code: ''
+  population: '89995'
+  postal_code: '97200'
+  region: MQ
+  region_name: Martinique
+  timezone: America/Martinique
+france:
+- &114
+  area_code: ''
+  city: Paris
+  continent_code: EU
+  country_code: FR
+  country_code3: FRA
+  country_name: France
+  latitude: '48.85341'
+  longitude: '2.3488'
+  metro_code: ''
+  population: '2138551'
+  postal_code: ''
+  region: A8
+  region_name: Ile-de-France
+  timezone: Europe/Paris
+freetown:
+- &115
+  area_code: ''
+  city: Freetown
+  continent_code: AF
+  country_code: SL
+  country_code3: SLE
+  country_name: Sierra Leone
+  latitude: '8.484'
+  longitude: '-13.22994'
+  metro_code: ''
+  population: 802639
+  postal_code: ''
+  region: '04'
+  region_name: Western Area
+  timezone: Africa/Freetown
+french guiana:
+- *76
+french polynesia:
+- &116
+  area_code: ''
+  city: Papeete
+  continent_code: OC
+  country_code: PF
+  country_code3: PYF
+  country_name: French Polynesia
+  latitude: '-17.53733'
+  longitude: '-149.5665'
+  metro_code: ''
+  population: '26357'
+  postal_code: ''
+  region: '01'
+  region_name: Iles du Vent
+  timezone: Pacific/Tahiti
+french southern territories:
+- &117
+  area_code: ''
+  city: Port-aux-Francais
+  continent_code: AN
+  country_code: TF
+  country_code3: ATF
+  country_name: French Southern Territories
+  latitude: '-49.35'
+  longitude: '70.21667'
+  metro_code: ''
+  population: '45'
+  postal_code: ''
+  region: '03'
+  region_name: Kerguelen
+  timezone: Indian/Kerguelen
+funafuti:
+- &118
+  area_code: ''
+  city: Funafuti
+  continent_code: OC
+  country_code: TV
+  country_code3: TUV
+  country_name: Tuvalu
+  latitude: '-8.52425'
+  longitude: '179.19417'
+  metro_code: ''
+  population: '4492'
+  postal_code: ''
+  region: FUN
+  region_name: Funafuti
+  timezone: Pacific/Funafuti
+gabon:
+- &119
+  area_code: ''
+  city: Libreville
+  continent_code: AF
+  country_code: GA
+  country_code3: GAB
+  country_name: Gabon
+  latitude: '0.39241'
+  longitude: '9.45356'
+  metro_code: ''
+  population: '578156'
+  postal_code: ''
+  region: '01'
+  region_name: Estuaire
+  timezone: Africa/Libreville
+gaborone:
+- *59
+gambia:
+- *40
+george town:
+- *77
+georgetown:
+- &120
+  area_code: ''
+  city: Georgetown
+  continent_code: SA
+  country_code: GY
+  country_code3: GUY
+  country_name: Guyana
+  latitude: '6.80448'
+  longitude: '-58.15527'
+  metro_code: ''
+  population: '235017'
+  postal_code: ''
+  region: '12'
+  region_name: Demerara-Mahaica
+  timezone: America/Guyana
+georgia:
+- &121
+  area_code: ''
+  city: Tbilisi
+  continent_code: AS
+  country_code: GE
+  country_code3: GEO
+  country_name: Georgia
+  latitude: '41.69411'
+  longitude: '44.83368'
+  metro_code: ''
+  population: '1049498'
+  postal_code: ''
+  region: '51'
+  region_name: T'bilisi
+  timezone: Asia/Tbilisi
+germany:
+- *51
+ghana:
+- *3
+gibraltar:
+- area_code: ''
+  city: Gibraltar
+  continent_code: EU
+  country_code: GI
+  country_code3: GIB
+  country_name: Gibraltar
+  latitude: '36.14474'
+  longitude: '-5.35257'
+  metro_code: ''
+  population: '26544'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: Europe/Gibraltar
+greece:
+- *27
+greenland:
+- &122
+  area_code: ''
+  city: Nuuk
+  continent_code: NA
+  country_code: GL
+  country_code3: GRL
+  country_name: Greenland
+  latitude: '64.18347'
+  longitude: '-51.72157'
+  metro_code: ''
+  population: '14798'
+  postal_code: ''
+  region: '07'
+  region_name: Sermersooq
+  timezone: America/Godthab
+grytviken:
+- &123
+  area_code: ''
+  city: Grytviken
+  continent_code: AN
+  country_code: GS
+  country_code3: SGS
+  country_name: South Georgia and the South Sandwich Islands
+  latitude: '-54.28111'
+  longitude: '-36.5092'
+  metro_code: ''
+  population: '2'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: Atlantic/South_Georgia
+guadeloupe:
+- *42
+guam:
+- &124
+  area_code: ''
+  city: Hagatna
+  continent_code: OC
+  country_code: GU
+  country_code3: GUM
+  country_name: Guam
+  latitude: '13.47567'
+  longitude: '144.74886'
+  metro_code: ''
+  population: '1051'
+  postal_code: ''
+  region: AN
+  region_name: Hagatna
+  timezone: Pacific/Guam
+guatemala:
+- &125
+  area_code: ''
+  city: Guatemala City
+  continent_code: NA
+  country_code: GT
+  country_code3: GTM
+  country_name: Guatemala
+  latitude: '14.64072'
+  longitude: '-90.51327'
+  metro_code: ''
+  population: '994938'
+  postal_code: ''
+  region: '07'
+  region_name: Guatemala
+  timezone: America/Guatemala
+guatemala city:
+- *125
+guinea:
+- *87
+guinea-bissau:
+- *55
+gustavia:
+- &126
+  area_code: ''
+  city: Gustavia
+  continent_code: NA
+  country_code: BL
+  country_code3: BLM
+  country_name: Saint Barthelemy
+  latitude: '17.89618'
+  longitude: '-62.84978'
+  metro_code: ''
+  population: '5988'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: America/St_Barthelemy
+guyana:
+- *120
+hagatna:
+- *124
+haiti:
+- &127
+  area_code: ''
+  city: Port-au-Prince
+  continent_code: NA
+  country_code: HT
+  country_code3: HTI
+  country_name: Haiti
+  latitude: '18.53917'
+  longitude: '-72.335'
+  metro_code: ''
+  population: '1234742'
+  postal_code: ''
+  region: '11'
+  region_name: Ouest
+  timezone: America/Port-au-Prince
+hamilton:
+- *52
+hanoi:
+- &128
+  area_code: ''
+  city: Hanoi
+  continent_code: AS
+  country_code: VN
+  country_code3: VNM
+  country_name: Vietnam
+  latitude: '21.0245'
+  longitude: '105.84117'
+  metro_code: ''
+  population: '1431270'
+  postal_code: ''
+  region: '44'
+  region_name: Ha Noi
+  timezone: Asia/Ho_Chi_Minh
+harare:
+- &129
+  area_code: ''
+  city: Harare
+  continent_code: AF
+  country_code: ZW
+  country_code3: ZWE
+  country_name: Zimbabwe
+  latitude: '-17.82772'
+  longitude: '31.05337'
+  metro_code: ''
+  population: '1542813'
+  postal_code: ''
+  region: '10'
+  region_name: Harare
+  timezone: Africa/Harare
+havana:
+- *91
+helsinki:
+- *112
+honduras:
+- &130
+  area_code: ''
+  city: Tegucigalpa
+  continent_code: NA
+  country_code: HN
+  country_code3: HND
+  country_name: Honduras
+  latitude: '14.0818'
+  longitude: '-87.20681'
+  metro_code: ''
+  population: '850848'
+  postal_code: ''
+  region: '08'
+  region_name: Francisco Morazan
+  timezone: America/Tegucigalpa
+hong kong:
+- area_code: ''
+  city: Hong Kong
+  continent_code: AS
+  country_code: HK
+  country_code3: HKG
+  country_name: Hong Kong
+  latitude: '22.28552'
+  longitude: '114.15769'
+  metro_code: ''
+  population: '7012738'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: Asia/Hong_Kong
+honiara:
+- &131
+  area_code: ''
+  city: Honiara
+  continent_code: OC
+  country_code: SB
+  country_code3: SLB
+  country_name: Solomon Islands
+  latitude: '-9.43333'
+  longitude: '159.95'
+  metro_code: ''
+  population: '56298'
+  postal_code: ''
+  region: '06'
+  region_name: Guadalcanal
+  timezone: Pacific/Guadalcanal
+hungary:
+- *65
+iceland:
+- &132
+  area_code: ''
+  city: Reykjavik
+  continent_code: EU
+  country_code: IS
+  country_code3: ISL
+  country_name: Iceland
+  latitude: '64.13548'
+  longitude: '-21.89541'
+  metro_code: ''
+  population: '118918'
+  postal_code: ''
+  region: '39'
+  region_name: Capital Region
+  timezone: Atlantic/Reykjavik
+india:
+- &133
+  area_code: ''
+  city: New Delhi
+  continent_code: AS
+  country_code: IN
+  country_code3: IND
+  country_name: India
+  latitude: '28.63576'
+  longitude: '77.22445'
+  metro_code: ''
+  population: '317797'
+  postal_code: ''
+  region: '07'
+  region_name: NCT
+  timezone: Asia/Kolkata
+indonesia:
+- &134
+  area_code: ''
+  city: Jakarta
+  continent_code: AS
+  country_code: ID
+  country_code3: IDN
+  country_name: Indonesia
+  latitude: '-6.21462'
+  longitude: '106.84513'
+  metro_code: ''
+  population: '8540121'
+  postal_code: ''
+  region: '04'
+  region_name: Jakarta Raya
+  timezone: Asia/Jakarta
+iran:
+- &135
+  area_code: ''
+  city: Tehran
+  continent_code: AS
+  country_code: IR
+  country_code3: IRN
+  country_name: Iran
+  latitude: '35.69439'
+  longitude: '51.42151'
+  metro_code: ''
+  population: '7153309'
+  postal_code: ''
+  region: '26'
+  region_name: Tehran
+  timezone: Asia/Tehran
+iraq:
+- *32
+ireland:
+- *102
+islamabad:
+- &136
+  area_code: ''
+  city: Islamabad
+  continent_code: AS
+  country_code: PK
+  country_code3: PAK
+  country_name: Pakistan
+  latitude: '33.72148'
+  longitude: '73.04329'
+  metro_code: ''
+  population: '601600'
+  postal_code: ''
+  region: '08'
+  region_name: Islamabad
+  timezone: Asia/Karachi
+israel:
+- &137
+  area_code: ''
+  city: Jerusalem
+  continent_code: AS
+  country_code: IL
+  country_code3: ISR
+  country_name: Israel
+  latitude: '31.76904'
+  longitude: '35.21633'
+  metro_code: ''
+  population: '801000'
+  postal_code: ''
+  region: '06'
+  region_name: Jerusalem
+  timezone: Asia/Jerusalem
+italy:
+- &138
+  area_code: ''
+  city: Rome
+  continent_code: EU
+  country_code: IT
+  country_code3: ITA
+  country_name: Italy
+  latitude: '41.89193'
+  longitude: '12.51133'
+  metro_code: ''
+  population: '2318895'
+  postal_code: ''
+  region: '07'
+  region_name: Latium
+  timezone: Europe/Rome
+ivory coast:
+- &139
+  area_code: ''
+  city: Yamoussoukro
+  continent_code: AF
+  country_code: CI
+  country_code3: CIV
+  country_name: Ivory Coast
+  latitude: '6.82055'
+  longitude: '-5.27674'
+  metro_code: ''
+  population: '194530'
+  postal_code: ''
+  region: '81'
+  region_name: Lacs
+  timezone: Africa/Abidjan
+jakarta:
+- *134
+jamaica:
+- &140
+  area_code: ''
+  city: Kingston
+  continent_code: NA
+  country_code: JM
+  country_code3: JAM
+  country_name: Jamaica
+  latitude: '17.99702'
+  longitude: '-76.79358'
+  metro_code: ''
+  population: 937700
+  postal_code: ''
+  region: '17'
+  region_name: Kingston
+  timezone: America/Jamaica
+jamestown:
+- &141
+  area_code: ''
+  city: Jamestown
+  continent_code: AF
+  country_code: SH
+  country_code3: SHN
+  country_name: Saint Helena
+  latitude: '-15.93872'
+  longitude: '-5.71675'
+  metro_code: ''
+  population: '637'
+  postal_code: ''
+  region: '02'
+  region_name: Saint Helena
+  timezone: Atlantic/St_Helena
+japan:
+- &142
+  area_code: ''
+  city: Tokyo
+  continent_code: AS
+  country_code: JP
+  country_code3: JPN
+  country_name: Japan
+  latitude: '35.6895'
+  longitude: '139.69171'
+  metro_code: ''
+  population: '8336599'
+  postal_code: ''
+  region: '40'
+  region_name: Tokyo
+  timezone: Asia/Tokyo
+jersey:
+- &143
+  area_code: ''
+  city: Saint Helier
+  continent_code: EU
+  country_code: JE
+  country_code3: JEY
+  country_name: Jersey
+  latitude: '49.18804'
+  longitude: '-2.10491'
+  metro_code: ''
+  population: '28000'
+  postal_code: ''
+  region: '3237864'
+  region_name: St Helier
+  timezone: Europe/Jersey
+jerusalem:
+- *137
+jordan:
+- *12
+juba:
+- &144
+  area_code: ''
+  city: Juba
+  continent_code: AF
+  country_code: SS
+  country_code3: SSD
+  country_name: South Sudan
+  latitude: '4.85165'
+  longitude: '31.58247'
+  metro_code: ''
+  population: '300000'
+  postal_code: ''
+  region: '01'
+  region_name: Central Equatoria
+  timezone: Africa/Juba
+kabul:
+- *6
+kampala:
+- &145
+  area_code: ''
+  city: Kampala
+  continent_code: AF
+  country_code: UG
+  country_code3: UGA
+  country_name: Uganda
+  latitude: '0.31628'
+  longitude: '32.58219'
+  metro_code: ''
+  population: '1353189'
+  postal_code: ''
+  region: C
+  region_name: Central Region
+  timezone: Africa/Kampala
+kathmandu:
+- &146
+  area_code: ''
+  city: Kathmandu
+  continent_code: AS
+  country_code: NP
+  country_code3: NPL
+  country_name: Nepal
+  latitude: '27.70169'
+  longitude: '85.3206'
+  metro_code: ''
+  population: '1442271'
+  postal_code: ''
+  region: CR
+  region_name: Central Region
+  timezone: Asia/Kathmandu
+kazakhstan:
+- *25
+kenya:
+- &147
+  area_code: ''
+  city: Nairobi
+  continent_code: AF
+  country_code: KE
+  country_code3: KEN
+  country_name: Kenya
+  latitude: '-1.28333'
+  longitude: '36.81667'
+  metro_code: ''
+  population: '2750547'
+  postal_code: ''
+  region: '05'
+  region_name: Nairobi Area
+  timezone: Africa/Nairobi
+khartoum:
+- &148
+  area_code: ''
+  city: Khartoum
+  continent_code: AF
+  country_code: SD
+  country_code3: SDN
+  country_name: Sudan
+  latitude: '15.55177'
+  longitude: '32.53241'
+  metro_code: ''
+  population: '1974647'
+  postal_code: ''
+  region: '29'
+  region_name: Khartoum
+  timezone: Africa/Khartoum
+kiev:
+- &149
+  area_code: ''
+  city: Kiev
+  continent_code: EU
+  country_code: UA
+  country_code3: UKR
+  country_name: Ukraine
+  latitude: '50.45466'
+  longitude: '30.5238'
+  metro_code: ''
+  population: '2797553'
+  postal_code: ''
+  region: '12'
+  region_name: Kyiv City
+  timezone: Europe/Kiev
+kigali:
+- &150
+  area_code: ''
+  city: Kigali
+  continent_code: AF
+  country_code: RW
+  country_code3: RWA
+  country_name: Rwanda
+  latitude: '-1.94995'
+  longitude: '30.05885'
+  metro_code: ''
+  population: '745261'
+  postal_code: ''
+  region: '12'
+  region_name: Kigali
+  timezone: Africa/Kigali
+kingston:
+- *140
+- &151
+  area_code: ''
+  city: Kingston
+  continent_code: OC
+  country_code: NF
+  country_code3: NFK
+  country_name: Norfolk Island
+  latitude: '-29.05459'
+  longitude: '167.96628'
+  metro_code: ''
+  population: 880
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: Pacific/Norfolk
+kingstown:
+- &152
+  area_code: ''
+  city: Kingstown
+  continent_code: NA
+  country_code: VC
+  country_code3: VCT
+  country_name: Saint Vincent and the Grenadines
+  latitude: '13.15872'
+  longitude: '-61.22475'
+  metro_code: ''
+  population: '24518'
+  postal_code: ''
+  region: '04'
+  region_name: Saint George
+  timezone: America/St_Vincent
+kinshasa:
+- *96
+kiribati:
+- &153
+  area_code: ''
+  city: Tarawa
+  continent_code: OC
+  country_code: KI
+  country_code3: KIR
+  country_name: Kiribati
+  latitude: '1.3278'
+  longitude: '172.97696'
+  metro_code: ''
+  population: '40311'
+  postal_code: ''
+  region: '01'
+  region_name: Gilbert Islands
+  timezone: Pacific/Tarawa
+kosovo:
+- &154
+  area_code: ''
+  city: Pristina
+  continent_code: EU
+  country_code: XK
+  country_code3: XKX
+  country_name: Kosovo
+  latitude: '42.67272'
+  longitude: '21.16688'
+  metro_code: ''
+  population: '550000'
+  postal_code: ''
+  region: '20'
+  region_name: Komuna e Prishtines
+  timezone: Europe/Belgrade
+kuala lumpur:
+- &155
+  area_code: ''
+  city: Kuala Lumpur
+  continent_code: AS
+  country_code: MY
+  country_code3: MYS
+  country_name: Malaysia
+  latitude: '3.1412'
+  longitude: '101.68653'
+  metro_code: ''
+  population: '1453975'
+  postal_code: ''
+  region: '14'
+  region_name: Kuala Lumpur
+  timezone: Asia/Kuala_Lumpur
+kuwait:
+- &156
+  area_code: ''
+  city: Kuwait City
+  continent_code: AS
+  country_code: KW
+  country_code3: KWT
+  country_name: Kuwait
+  latitude: '29.36972'
+  longitude: '47.97833'
+  metro_code: ''
+  population: '60064'
+  postal_code: ''
+  region: '02'
+  region_name: Al Asimah
+  timezone: Asia/Kuwait
+kuwait city:
+- *156
+kyrgyzstan:
+- *54
+laos:
+- &157
+  area_code: ''
+  city: Vientiane
+  continent_code: AS
+  country_code: LA
+  country_code3: LAO
+  country_name: Laos
+  latitude: '17.96667'
+  longitude: '102.6'
+  metro_code: ''
+  population: '196731'
+  postal_code: ''
+  region: '24'
+  region_name: Vientiane
+  timezone: Asia/Vientiane
+latvia:
+- &158
+  area_code: ''
+  city: Riga
+  continent_code: EU
+  country_code: LV
+  country_code3: LVA
+  country_name: Latvia
+  latitude: '56.946'
+  longitude: '24.10589'
+  metro_code: ''
+  population: '742572'
+  postal_code: ''
+  region: '25'
+  region_name: Riga
+  timezone: Europe/Riga
+lebanon:
+- *45
+lesotho:
+- &159
+  area_code: ''
+  city: Maseru
+  continent_code: AF
+  country_code: LS
+  country_code3: LSO
+  country_name: Lesotho
+  latitude: '-29.31667'
+  longitude: '27.48333'
+  metro_code: ''
+  population: '118355'
+  postal_code: ''
+  region: '14'
+  region_name: Maseru
+  timezone: Africa/Maseru
+liberia:
+- &160
+  area_code: ''
+  city: Monrovia
+  continent_code: AF
+  country_code: LR
+  country_code3: LBR
+  country_name: Liberia
+  latitude: '6.30054'
+  longitude: '-10.7969'
+  metro_code: ''
+  population: '939524'
+  postal_code: ''
+  region: '14'
+  region_name: Montserrado
+  timezone: Africa/Monrovia
+libreville:
+- *119
+liechtenstein:
+- &161
+  area_code: ''
+  city: Vaduz
+  continent_code: EU
+  country_code: LI
+  country_code3: LIE
+  country_name: Liechtenstein
+  latitude: '47.14151'
+  longitude: '9.52154'
+  metro_code: ''
+  population: '5197'
+  postal_code: ''
+  region: '11'
+  region_name: Vaduz
+  timezone: Europe/Vaduz
+lilongwe:
+- &162
+  area_code: ''
+  city: Lilongwe
+  continent_code: AF
+  country_code: MW
+  country_code3: MWI
+  country_name: Malawi
+  latitude: '-13.96692'
+  longitude: '33.78725'
+  metro_code: ''
+  population: '646750'
+  postal_code: ''
+  region: C
+  region_name: Central Region
+  timezone: Africa/Blantyre
+lima:
+- &163
+  area_code: ''
+  city: Lima
+  continent_code: SA
+  country_code: PE
+  country_code3: PER
+  country_name: Peru
+  latitude: '-12.04318'
+  longitude: '-77.02824'
+  metro_code: ''
+  population: '7737002'
+  postal_code: ''
+  region: LMA
+  region_name: Lima
+  timezone: America/Lima
+lisbon:
+- &164
+  area_code: ''
+  city: Lisbon
+  continent_code: EU
+  country_code: PT
+  country_code3: PRT
+  country_name: Portugal
+  latitude: '38.71667'
+  longitude: '-9.13333'
+  metro_code: ''
+  population: '517802'
+  postal_code: ''
+  region: '14'
+  region_name: Lisbon
+  timezone: Europe/Lisbon
+lithuania:
+- &165
+  area_code: ''
+  city: Vilnius
+  continent_code: EU
+  country_code: LT
+  country_code3: LTU
+  country_name: Lithuania
+  latitude: '54.68916'
+  longitude: '25.2798'
+  metro_code: ''
+  population: '542366'
+  postal_code: ''
+  region: '65'
+  region_name: Vilnius County
+  timezone: Europe/Vilnius
+ljubljana:
+- &166
+  area_code: ''
+  city: Ljubljana
+  continent_code: EU
+  country_code: SI
+  country_code3: SVN
+  country_name: Slovenia
+  latitude: '46.05108'
+  longitude: '14.50513'
+  metro_code: ''
+  population: '272220'
+  postal_code: ''
+  region: '61'
+  region_name: Ljubljana
+  timezone: Europe/Ljubljana
+lome:
+- &167
+  area_code: ''
+  city: Lome
+  continent_code: AF
+  country_code: TG
+  country_code3: TGO
+  country_name: Togo
+  latitude: '6.13748'
+  longitude: '1.21227'
+  metro_code: ''
+  population: '749700'
+  postal_code: ''
+  region: '24'
+  region_name: Maritime
+  timezone: Africa/Lome
+london:
+- &168
+  area_code: ''
+  city: London
+  continent_code: EU
+  country_code: GB
+  country_code3: GBR
+  country_name: United Kingdom
+  latitude: '51.50853'
+  longitude: '-0.12574'
+  metro_code: ''
+  population: '7556900'
+  postal_code: EC1A
+  region: ENG
+  region_name: England
+  timezone: Europe/London
+longyearbyen:
+- &169
+  area_code: ''
+  city: Longyearbyen
+  continent_code: EU
+  country_code: SJ
+  country_code3: SJM
+  country_name: Svalbard and Jan Mayen
+  latitude: '78.22334'
+  longitude: '15.64689'
+  metro_code: ''
+  population: '2060'
+  postal_code: '9170'
+  region: '21'
+  region_name: Svalbard
+  timezone: Arctic/Longyearbyen
+luanda:
+- *15
+lusaka:
+- &170
+  area_code: ''
+  city: Lusaka
+  continent_code: AF
+  country_code: ZM
+  country_code3: ZMB
+  country_name: Zambia
+  latitude: '-15.40669'
+  longitude: '28.28713'
+  metro_code: ''
+  population: '1267440'
+  postal_code: ''
+  region: '09'
+  region_name: Lusaka
+  timezone: Africa/Lusaka
+luxembourg:
+- area_code: ''
+  city: Luxembourg
+  continent_code: EU
+  country_code: LU
+  country_code3: LUX
+  country_name: Luxembourg
+  latitude: '49.61167'
+  longitude: '6.13'
+  metro_code: ''
+  population: '76684'
+  postal_code: ''
+  region: '03'
+  region_name: Luxembourg
+  timezone: Europe/Luxembourg
+macedonia:
+- &171
+  area_code: ''
+  city: Skopje
+  continent_code: EU
+  country_code: MK
+  country_code3: MKD
+  country_name: Macedonia
+  latitude: '41.99646'
+  longitude: '21.43141'
+  metro_code: ''
+  population: '474889'
+  postal_code: ''
+  region: '41'
+  region_name: Karpos
+  timezone: Europe/Skopje
+madagascar:
+- *18
+madrid:
+- &172
+  area_code: ''
+  city: Madrid
+  continent_code: EU
+  country_code: ES
+  country_code3: ESP
+  country_name: Spain
+  latitude: '40.4165'
+  longitude: '-3.70256'
+  metro_code: ''
+  population: '3255944'
+  postal_code: ''
+  region: '29'
+  region_name: Madrid
+  timezone: Europe/Madrid
+majuro:
+- &173
+  area_code: ''
+  city: Majuro
+  continent_code: OC
+  country_code: MH
+  country_code3: MHL
+  country_name: Marshall Islands
+  latitude: '7.08971'
+  longitude: '171.38027'
+  metro_code: ''
+  population: '25400'
+  postal_code: ''
+  region: '190'
+  region_name: Majuro Atoll
+  timezone: Pacific/Majuro
+malabo:
+- *107
+malawi:
+- *162
+malaysia:
+- *155
+maldives:
+- &174
+  area_code: ''
+  city: Male
+  continent_code: AS
+  country_code: MV
+  country_code3: MDV
+  country_name: Maldives
+  latitude: '4.1748'
+  longitude: '73.50888'
+  metro_code: ''
+  population: '103693'
+  postal_code: ''
+  region: '40'
+  region_name: Maale
+  timezone: Indian/Maldives
+male:
+- *174
+mali:
+- *35
+malta:
+- &175
+  area_code: ''
+  city: Valletta
+  continent_code: EU
+  country_code: MT
+  country_code3: MLT
+  country_name: Malta
+  latitude: '35.89972'
+  longitude: '14.51472'
+  metro_code: ''
+  population: '6794'
+  postal_code: ''
+  region: '60'
+  region_name: Il-Belt Valletta
+  timezone: Europe/Malta
+mamoudzou:
+- &176
+  area_code: ''
+  city: Mamoudzou
+  continent_code: AF
+  country_code: YT
+  country_code3: MYT
+  country_name: Mayotte
+  latitude: '-12.78234'
+  longitude: '45.22878'
+  metro_code: ''
+  population: '54831'
+  postal_code: '97600'
+  region: '97611'
+  region_name: Mamoudzou
+  timezone: Indian/Mayotte
+managua:
+- &177
+  area_code: ''
+  city: Managua
+  continent_code: NA
+  country_code: NI
+  country_code3: NIC
+  country_name: Nicaragua
+  latitude: '12.13282'
+  longitude: '-86.2504'
+  metro_code: ''
+  population: '973087'
+  postal_code: ''
+  region: '10'
+  region_name: Managua
+  timezone: America/Managua
+manama:
+- *34
+manila:
+- &178
+  area_code: ''
+  city: Manila
+  continent_code: AS
+  country_code: PH
+  country_code3: PHL
+  country_name: Philippines
+  latitude: '14.6042'
+  longitude: '120.9822'
+  metro_code: ''
+  population: '10444527'
+  postal_code: ''
+  region: NCR
+  region_name: Metro Manila
+  timezone: Asia/Manila
+maputo:
+- &179
+  area_code: ''
+  city: Maputo
+  continent_code: AF
+  country_code: MZ
+  country_code3: MOZ
+  country_name: Mozambique
+  latitude: '-25.96553'
+  longitude: '32.58322'
+  metro_code: ''
+  population: '1191613'
+  postal_code: ''
+  region: '11'
+  region_name: Maputo City
+  timezone: Africa/Maputo
+mariehamn:
+- *7
+marigot:
+- &180
+  area_code: ''
+  city: Marigot
+  continent_code: NA
+  country_code: MF
+  country_code3: MAF
+  country_name: Saint Martin
+  latitude: '18.06667'
+  longitude: '-63.08333'
+  metro_code: ''
+  population: '5700'
+  postal_code: ''
+  region: '00'
+  region_name: ~
+  timezone: America/Marigot
+marshall islands:
+- *173
+martinique:
+- *113
+maseru:
+- *159
+mauritania:
+- &181
+  area_code: ''
+  city: Nouakchott
+  continent_code: AF
+  country_code: MR
+  country_code3: MRT
+  country_name: Mauritania
+  latitude: '18.08581'
+  longitude: '-15.9785'
+  metro_code: ''
+  population: '661400'
+  postal_code: ''
+  region: NKC
+  region_name: Nouakchott
+  timezone: Africa/Nouakchott
+mauritius:
+- &182
+  area_code: ''
+  city: Port Louis
+  continent_code: AF
+  country_code: MU
+  country_code3: MUS
+  country_name: Mauritius
+  latitude: '-20.16194'
+  longitude: '57.49889'
+  metro_code: ''
+  population: '155226'
+  postal_code: ''
+  region: '18'
+  region_name: Port Louis
+  timezone: Indian/Mauritius
+mayotte:
+- *176
+mbabane:
+- &183
+  area_code: ''
+  city: Mbabane
+  continent_code: AF
+  country_code: SZ
+  country_code3: SWZ
+  country_name: Swaziland
+  latitude: '-26.31667'
+  longitude: '31.13333'
+  metro_code: ''
+  population: '76218'
+  postal_code: ''
+  region: '01'
+  region_name: Hhohho
+  timezone: Africa/Mbabane
+melekeok:
+- &184
+  area_code: ''
+  city: Melekeok
+  continent_code: OC
+  country_code: PW
+  country_code3: PLW
+  country_name: Palau
+  latitude: '7.50043'
+  longitude: '134.62355'
+  metro_code: ''
+  population: '0'
+  postal_code: ''
+  region: '07'
+  region_name: Melekeok
+  timezone: Pacific/Palau
+mexico:
+- &185
+  area_code: ''
+  city: Mexico City
+  continent_code: NA
+  country_code: MX
+  country_code3: MEX
+  country_name: Mexico
+  latitude: '19.42847'
+  longitude: '-99.12766'
+  metro_code: ''
+  population: '12294193'
+  postal_code: ''
+  region: '09'
+  region_name: Mexico City
+  timezone: America/Mexico_City
+mexico city:
+- *185
+minsk:
+- *46
+mogadishu:
+- &186
+  area_code: ''
+  city: Mogadishu
+  continent_code: AF
+  country_code: SO
+  country_code3: SOM
+  country_name: Somalia
+  latitude: '2.03711'
+  longitude: '45.34375'
+  metro_code: ''
+  population: '2587183'
+  postal_code: ''
+  region: '02'
+  region_name: Banaadir
+  timezone: Africa/Mogadishu
+moldova:
+- *81
+monaco:
+- area_code: ''
+  city: Monaco
+  continent_code: EU
+  country_code: MC
+  country_code3: MCO
+  country_name: Monaco
+  latitude: '43.73333'
+  longitude: '7.41667'
+  metro_code: ''
+  population: '32965'
+  postal_code: ''
+  region: '00'
+  region_name: Commune de Monaco
+  timezone: Europe/Monaco
+monrovia:
+- *160
+montenegro:
+- &187
+  area_code: ''
+  city: Podgorica
+  continent_code: EU
+  country_code: ME
+  country_code3: MNE
+  country_name: Montenegro
+  latitude: '42.44111'
+  longitude: '19.26361'
+  metro_code: ''
+  population: '136473'
+  postal_code: ''
+  region: '16'
+  region_name: Podgorica
+  timezone: Europe/Podgorica
+montevideo:
+- &188
+  area_code: ''
+  city: Montevideo
+  continent_code: SA
+  country_code: UY
+  country_code3: URY
+  country_name: Uruguay
+  latitude: '-34.90328'
+  longitude: '-56.18816'
+  metro_code: ''
+  population: '1270737'
+  postal_code: ''
+  region: '10'
+  region_name: Montevideo
+  timezone: America/Montevideo
+montserrat:
+- &189
+  area_code: ''
+  city: Plymouth
+  continent_code: NA
+  country_code: MS
+  country_code3: MSR
+  country_name: Montserrat
+  latitude: '16.70555'
+  longitude: '-62.21292'
+  metro_code: ''
+  population: '0'
+  postal_code: ''
+  region: '01'
+  region_name: Saint Anthony
+  timezone: America/Montserrat
+morocco:
+- &190
+  area_code: ''
+  city: Rabat
+  continent_code: AF
+  country_code: MA
+  country_code3: MAR
+  country_name: Morocco
+  latitude: '34.01325'
+  longitude: '-6.83255'
+  metro_code: ''
+  population: '1655753'
+  postal_code: ''
+  region: '49'
+  region_name: Rabat-Sale-Zemmour-Zaer
+  timezone: Africa/Casablanca
+moroni:
+- *86
+moscow:
+- &191
+  area_code: ''
+  city: Moscow
+  continent_code: EU
+  country_code: RU
+  country_code3: RUS
+  country_name: Russia
+  latitude: '55.75222'
+  longitude: '37.61556'
+  metro_code: ''
+  population: '10381222'
+  postal_code: ''
+  region: '48'
+  region_name: Moscow
+  timezone: Europe/Moscow
+mozambique:
+- *179
+muscat:
+- &192
+  area_code: ''
+  city: Muscat
+  continent_code: AS
+  country_code: OM
+  country_code3: OMN
+  country_name: Oman
+  latitude: '23.61387'
+  longitude: '58.5922'
+  metro_code: ''
+  population: '797000'
+  postal_code: ''
+  region: '06'
+  region_name: Masqat
+  timezone: Asia/Muscat
+myanmar:
+- &193
+  area_code: ''
+  city: Nay Pyi Taw
+  continent_code: AS
+  country_code: MM
+  country_code3: MMR
+  country_name: Myanmar
+  latitude: '19.745'
+  longitude: '96.12972'
+  metro_code: ''
+  population: '925000'
+  postal_code: ''
+  region: '08'
+  region_name: Mandalay
+  timezone: Asia/Rangoon
+n'djamena:
+- *78
+nairobi:
+- *147
+namibia:
+- &194
+  area_code: ''
+  city: Windhoek
+  continent_code: AF
+  country_code: NA
+  country_code3: NAM
+  country_name: Namibia
+  latitude: '-22.55941'
+  longitude: '17.08323'
+  metro_code: ''
+  population: '268132'
+  postal_code: ''
+  region: '21'
+  region_name: Khomas
+  timezone: Africa/Windhoek
+nassau:
+- *33
+nauru:
+- &195
+  area_code: ''
+  city: Yaren
+  continent_code: OC
+  country_code: NR
+  country_code3: NRU
+  country_name: Nauru
+  latitude: '-0.55085'
+  longitude: '166.9252'
+  metro_code: ''
+  population: '1100'
+  postal_code: ''
+  region: '14'
+  region_name: Yaren
+  timezone: Pacific/Nauru
+nay pyi taw:
+- *193
+nepal:
+- *146
+netherlands:
+- *13
+new caledonia:
+- &196
+  area_code: ''
+  city: Noumea
+  continent_code: OC
+  country_code: NC
+  country_code3: NCL
+  country_name: New Caledonia
+  latitude: '-22.27631'
+  longitude: '166.4572'
+  metro_code: ''
+  population: '93060'
+  postal_code: ''
+  region: '02'
+  region_name: South Province
+  timezone: Pacific/Noumea
+new delhi:
+- *133
+new zealand:
+- &197
+  area_code: ''
+  city: Wellington
+  continent_code: OC
+  country_code: NZ
+  country_code3: NZL
+  country_name: New Zealand
+  latitude: '-41.28664'
+  longitude: '174.77557'
+  metro_code: ''
+  population: '381900'
+  postal_code: ''
+  region: G2
+  region_name: Wellington
+  timezone: Pacific/Auckland
+niamey:
+- &198
+  area_code: ''
+  city: Niamey
+  continent_code: AF
+  country_code: NE
+  country_code3: NER
+  country_name: Niger
+  latitude: '13.51366'
+  longitude: '2.1098'
+  metro_code: ''
+  population: '774235'
+  postal_code: ''
+  region: '08'
+  region_name: Niamey
+  timezone: Africa/Niamey
+nicaragua:
+- *177
+nicosia:
+- *92
+niger:
+- *198
+nigeria:
+- *2
+niue:
+- *10
+norfolk island:
+- *151
+north korea:
+- &199
+  area_code: ''
+  city: Pyongyang
+  continent_code: AS
+  country_code: KP
+  country_code3: PRK
+  country_name: North Korea
+  latitude: '39.03385'
+  longitude: '125.75432'
+  metro_code: ''
+  population: '3222000'
+  postal_code: ''
+  region: '12'
+  region_name: Pyongyang
+  timezone: Asia/Pyongyang
+northern mariana islands:
+- &200
+  area_code: ''
+  city: Saipan
+  continent_code: OC
+  country_code: MP
+  country_code3: MNP
+  country_name: Northern Mariana Islands
+  latitude: '15.21233'
+  longitude: '145.7545'
+  metro_code: ''
+  population: '48220'
+  postal_code: ''
+  region: '110'
+  region_name: Saipan
+  timezone: Pacific/Saipan
+norway:
+- &201
+  area_code: ''
+  city: Oslo
+  continent_code: EU
+  country_code: NO
+  country_code3: NOR
+  country_name: Norway
+  latitude: '59.91273'
+  longitude: '10.74609'
+  metro_code: ''
+  population: '580000'
+  postal_code: ''
+  region: '12'
+  region_name: Oslo
+  timezone: Europe/Oslo
+nouakchott:
+- *181
+noumea:
+- *196
+nuku'alofa:
+- &202
+  area_code: ''
+  city: Nuku'alofa
+  continent_code: OC
+  country_code: TO
+  country_code3: TON
+  country_name: Tonga
+  latitude: '-21.13938'
+  longitude: '-175.2018'
+  metro_code: ''
+  population: '22400'
+  postal_code: ''
+  region: '02'
+  region_name: Tongatapu
+  timezone: Pacific/Tongatapu
+nuuk:
+- *122
+oman:
+- *192
+oranjestad:
+- *22
+oslo:
+- *201
+ottawa:
+- *72
+ouagadougou:
+- *68
+pago pago:
+- *11
+pakistan:
+- *136
+palau:
+- *184
+palestinian territory:
+- *104
+papeete:
+- *116
+papua new guinea:
+- &203
+  area_code: ''
+  city: Port Moresby
+  continent_code: OC
+  country_code: PG
+  country_code3: PNG
+  country_name: Papua New Guinea
+  latitude: '-9.44314'
+  longitude: '147.17972'
+  metro_code: ''
+  population: '283733'
+  postal_code: ''
+  region: '20'
+  region_name: National Capital
+  timezone: Pacific/Port_Moresby
+paraguay:
+- *26
+paramaribo:
+- &204
+  area_code: ''
+  city: Paramaribo
+  continent_code: SA
+  country_code: SR
+  country_code3: SUR
+  country_name: Suriname
+  latitude: '5.86638'
+  longitude: '-55.16682'
+  metro_code: ''
+  population: '223757'
+  postal_code: ''
+  region: '16'
+  region_name: Paramaribo
+  timezone: America/Paramaribo
+paris:
+- *114
+peru:
+- *163
+philippines:
+- *178
+philipsburg:
+- &205
+  area_code: ''
+  city: Philipsburg
+  continent_code: NA
+  country_code: SX
+  country_code3: SXM
+  country_name: Sint Maarten
+  latitude: '18.026'
+  longitude: '-63.04582'
+  metro_code: ''
+  population: '1400'
+  postal_code: ''
+  region: ''
+  region_name: ~
+  timezone: America/Lower_Princes
+phnom penh:
+- *70
+pitcairn:
+- *4
+plymouth:
+- *189
+podgorica:
+- *187
+poland:
+- &206
+  area_code: ''
+  city: Warsaw
+  continent_code: EU
+  country_code: PL
+  country_code3: POL
+  country_name: Poland
+  latitude: '52.22977'
+  longitude: '21.01178'
+  metro_code: ''
+  population: '1702139'
+  postal_code: ''
+  region: '78'
+  region_name: Masovian Voivodeship
+  timezone: Europe/Warsaw
+port louis:
+- *182
+port moresby:
+- *203
+port-au-prince:
+- *127
+port-aux-francais:
+- *117
+porto-novo:
+- *50
+portugal:
+- *164
+prague:
+- *93
+praia:
+- *73
+pretoria:
+- &207
+  area_code: ''
+  city: Pretoria
+  continent_code: AF
+  country_code: ZA
+  country_code3: ZAF
+  country_name: South Africa
+  latitude: '-25.74486'
+  longitude: '28.18783'
+  metro_code: ''
+  population: '1619438'
+  postal_code: ''
+  region: '06'
+  region_name: Gauteng
+  timezone: Africa/Johannesburg
+pristina:
+- *154
+puerto rico:
+- &208
+  area_code: ''
+  city: San Juan
+  continent_code: NA
+  country_code: PR
+  country_code3: PRI
+  country_name: Puerto Rico
+  latitude: '18.46633'
+  longitude: '-66.10572'
+  metro_code: ''
+  population: '418140'
+  postal_code: ''
+  region: '127'
+  region_name: San Juan
+  timezone: America/Puerto_Rico
+pyongyang:
+- *199
+qatar:
+- *99
+quito:
+- *105
+rabat:
+- *190
+republic of the congo:
+- *62
+reunion:
+- &209
+  area_code: ''
+  city: Saint-Denis
+  continent_code: AF
+  country_code: RE
+  country_code3: REU
+  country_name: Reunion
+  latitude: '-20.88231'
+  longitude: '55.4504'
+  metro_code: ''
+  population: '137195'
+  postal_code: '97400'
+  region: RE
+  region_name: Reunion
+  timezone: Indian/Reunion
+reykjavik:
+- *132
+riga:
+- *158
+riyadh:
+- &210
+  area_code: ''
+  city: Riyadh
+  continent_code: AS
+  country_code: SA
+  country_code3: SAU
+  country_name: Saudi Arabia
+  latitude: '24.68773'
+  longitude: '46.72185'
+  metro_code: ''
+  population: '4205961'
+  postal_code: ''
+  region: '10'
+  region_name: Ar Riyad
+  timezone: Asia/Riyadh
+road town:
+- *63
+romania:
+- *64
+rome:
+- *138
+roseau:
+- *100
+russia:
+- *191
+rwanda:
+- *150
+saint barthelemy:
+- *126
+saint helena:
+- *141
+saint helier:
+- *143
+saint kitts and nevis:
+- *43
+saint lucia:
+- *75
+saint martin:
+- *180
+saint pierre and miquelon:
+- &211
+  area_code: ''
+  city: Saint-Pierre
+  continent_code: NA
+  country_code: PM
+  country_code3: SPM
+  country_name: Saint Pierre and Miquelon
+  latitude: '46.77914'
+  longitude: '-56.1773'
+  metro_code: ''
+  population: '6200'
+  postal_code: '97500'
+  region: '97502'
+  region_name: Saint-Pierre
+  timezone: America/Miquelon
+saint vincent and the grenadines:
+- *152
+saint-denis:
+- *209
+saint-pierre:
+- *211
+saipan:
+- *200
+samoa:
+- *19
+san jose:
+- *89
+san juan:
+- *208
+san marino:
+- area_code: ''
+  city: San Marino
+  continent_code: EU
+  country_code: SM
+  country_code3: SMR
+  country_name: San Marino
+  latitude: '43.93667'
+  longitude: '12.44639'
+  metro_code: ''
+  population: '4500'
+  postal_code: ''
+  region: '07'
+  region_name: San Marino
+  timezone: Europe/San_Marino
+san salvador:
+- *106
+sanaa:
+- &212
+  area_code: ''
+  city: Sanaa
+  continent_code: AS
+  country_code: YE
+  country_code3: YEM
+  country_name: Yemen
+  latitude: '15.35472'
+  longitude: '44.20667'
+  metro_code: ''
+  population: '1937451'
+  postal_code: ''
+  region: '16'
+  region_name: Sanaa
+  timezone: Asia/Aden
+santiago:
+- *80
+santo domingo:
+- *101
+sao tome:
+- &213
+  area_code: ''
+  city: Sao Tome
+  continent_code: AF
+  country_code: ST
+  country_code3: STP
+  country_name: Sao Tome and Principe
+  latitude: '0.33654'
+  longitude: '6.72732'
+  metro_code: ''
+  population: '53300'
+  postal_code: ''
+  region: '02'
+  region_name: Sao Tome Island
+  timezone: Africa/Sao_Tome
+sao tome and principe:
+- *213
+sarajevo:
+- *58
+saudi arabia:
+- *210
+senegal:
+- *94
+seoul:
+- &214
+  area_code: ''
+  city: Seoul
+  continent_code: AS
+  country_code: KR
+  country_code3: KOR
+  country_name: South Korea
+  latitude: '37.566'
+  longitude: '126.9784'
+  metro_code: ''
+  population: '10349312'
+  postal_code: ''
+  region: '11'
+  region_name: Seoul
+  timezone: Asia/Seoul
+serbia:
+- *48
+seychelles:
+- &215
+  area_code: ''
+  city: Victoria
+  continent_code: AF
+  country_code: SC
+  country_code3: SYC
+  country_name: Seychelles
+  latitude: '-4.61667'
+  longitude: '55.45'
+  metro_code: ''
+  population: '22881'
+  postal_code: ''
+  region: '26'
+  region_name: English River
+  timezone: Indian/Mahe
+sierra leone:
+- *115
+sint maarten:
+- *205
+skopje:
+- *171
+slovakia:
+- *61
+slovenia:
+- *166
+sofia:
+- *67
+solomon islands:
+- *131
+somalia:
+- *186
+south africa:
+- *207
+south georgia and the south sandwich islands:
+- *123
+south korea:
+- *214
+south sudan:
+- *144
+spain:
+- *172
+sri lanka:
+- *85
+stanley:
+- *109
+stockholm:
+- &216
+  area_code: ''
+  city: Stockholm
+  continent_code: EU
+  country_code: SE
+  country_code3: SWE
+  country_name: Sweden
+  latitude: '59.33258'
+  longitude: '18.0649'
+  metro_code: ''
+  population: '1253309'
+  postal_code: ''
+  region: '26'
+  region_name: Stockholm
+  timezone: Europe/Stockholm
+sucre:
+- *57
+sudan:
+- *148
+suriname:
+- *204
+suva:
+- *111
+svalbard and jan mayen:
+- *169
+swaziland:
+- *183
+sweden:
+- *216
+syria:
+- *95
+taipei:
+- &217
+  area_code: ''
+  city: Taipei
+  continent_code: AS
+  country_code: TW
+  country_code3: TWN
+  country_name: Taiwan
+  latitude: '25.04776'
+  longitude: '121.53185'
+  metro_code: ''
+  population: '7871900'
+  postal_code: ''
+  region: '03'
+  region_name: Taipei
+  timezone: Asia/Taipei
+taiwan:
+- *217
+tajikistan:
+- *103
+tallinn:
+- *108
+tanzania:
+- *98
+tarawa:
+- *153
+tashkent:
+- &218
+  area_code: ''
+  city: Tashkent
+  continent_code: AS
+  country_code: UZ
+  country_code3: UZB
+  country_name: Uzbekistan
+  latitude: '41.26465'
+  longitude: '69.21627'
+  metro_code: ''
+  population: '1978028'
+  postal_code: ''
+  region: '13'
+  region_name: Toshkent Shahri
+  timezone: Asia/Tashkent
+tbilisi:
+- *121
+tegucigalpa:
+- *130
+tehran:
+- *135
+thailand:
+- *37
+the valley:
+- *16
+thimphu:
+- *53
+tirana:
+- *8
+togo:
+- *167
+tokyo:
+- *142
+tonga:
+- *202
+torshavn:
+- *110
+tunis:
+- &219
+  area_code: ''
+  city: Tunis
+  continent_code: AF
+  country_code: TN
+  country_code3: TUN
+  country_name: Tunisia
+  latitude: '36.81897'
+  longitude: '10.16579'
+  metro_code: ''
+  population: '693210'
+  postal_code: ''
+  region: '36'
+  region_name: Tunis
+  timezone: Africa/Tunis
+tunisia:
+- *219
+turkey:
+- *17
+turkmenistan:
+- *23
+turks and caicos islands:
+- *83
+tuvalu:
+- *118
+u.s. virgin islands:
+- *79
+uganda:
+- *145
+ukraine:
+- *149
+united arab emirates:
+- *1
+united kingdom:
+- *168
+uruguay:
+- *188
+uzbekistan:
+- *218
+vaduz:
+- *161
+valletta:
+- *175
+vatican:
+- &220
+  area_code: ''
+  city: Vatican City
+  continent_code: EU
+  country_code: VA
+  country_code3: VAT
+  country_name: Vatican
+  latitude: '41.90236'
+  longitude: '12.45332'
+  metro_code: ''
+  population: '829'
+  postal_code: ''
+  region: ''
+  region_name: ~
+  timezone: Europe/Vatican
+vatican city:
+- *220
+venezuela:
+- *74
+victoria:
+- *215
+vienna:
+- *29
+vientiane:
+- *157
+vietnam:
+- *128
+vilnius:
+- *165
+warsaw:
+- *206
+wellington:
+- *197
+west island:
+- *84
+windhoek:
+- *194
+yamoussoukro:
+- *139
+yaounde:
+- *71
+yaren:
+- *195
+yemen:
+- *212
+yerevan:
+- *21
+zagreb:
+- *90
+zambia:
+- *170
+zimbabwe:
+- *129

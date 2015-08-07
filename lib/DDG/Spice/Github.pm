@@ -49,7 +49,7 @@ handle query_lc => sub {
         # passed to the api like on the web form interface.
         return "${query} language:\"${l}\"" unless /^jobs\b|\bjobs$|^status\b|\bstatus$/;
     } else {
-	    return $query;
+        return $query;
     }
 
     return;

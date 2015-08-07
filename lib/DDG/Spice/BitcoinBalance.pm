@@ -17,7 +17,7 @@ attribution github => ['https://github.com/chain-engineering','chain.com'],
             email => ['hello@chain.com','chain.com'],
             twitter => ["chain", 'chain.com'],
             web => ['https://chain.com','chain.com'];
-            
+
 triggers query_raw => qr/^[13][1-9A-HJ-NP-Za-km-z]{26,33}$/;
 # This regular expression identifies the unique properties of a Bitcoin Address.
 

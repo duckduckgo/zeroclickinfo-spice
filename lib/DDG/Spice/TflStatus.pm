@@ -33,7 +33,7 @@ handle remainder => sub {
     elsif (lc($_) =~ /waterloo.*?/) {
         return "waterloo-city";
     }
-    
+
     return $_;
 };
 
