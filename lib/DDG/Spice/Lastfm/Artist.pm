@@ -26,6 +26,10 @@ triggers any => 'similar', 'band', 'bands', 'musician', 'musicians', 'artist', '
 handle query_lc => sub {
     my $synonyms = "bands?|musicians?|players?|artists?|performers?|singers?|rappers?|djs?|vocalists?|songsters?";
 
+    #Ignore Queries like "apple watch bands"
+    if(m{watch\ bands?}) {
+        return;
+    }
     #Queries like "bands similar to incubus" or "artists similar ben folds"
     if(m{(?:$synonyms)\s+similar\s+(?:to\s+)?(\S+(?:\s+\S+)*)}) {
         return $1, 'similar';
