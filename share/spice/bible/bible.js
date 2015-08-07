@@ -30,7 +30,7 @@
                 // text come with a link at the end that needs to be removed
                 var text = $('<span />').html(item.text).text(),
                     subtitle = (item.title) ? $('<span />').html(item.title).text() : '',
-                    text = DDG.strip_html(text).replace('©NET', '').replace(/(“|”)/g, '').replace('[[EMPTY]]', '').replace(/^\s+|\s+$/g, '');
+                    text = $.trim(DDG.strip_html(text).replace('©NET', '').replace(/(“|”)/g, '').replace('[[EMPTY]]', ''));
 
                 if (!text) {
                     return Spice.failed('bible');
