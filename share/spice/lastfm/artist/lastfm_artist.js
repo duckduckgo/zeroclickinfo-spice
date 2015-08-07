@@ -19,6 +19,11 @@
                     title: item.name
                 };
             },
+            relevancy: {
+                primary: [
+                    { required: 'bio.summary' },
+                ]
+            },
             templates: {
                 group: 'info',
                 options: {
