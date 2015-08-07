@@ -1,5 +1,5 @@
 package DDG::Spice::Mtg;
-# mtg <card name> Returns infos on the Magic The Gathering Card
+# ABSTRACT: Information on 'Magic The Gathering' cards
 
 use strict;
 use DDG::Spice;

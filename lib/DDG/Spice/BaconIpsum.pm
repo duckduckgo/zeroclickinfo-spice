@@ -1,5 +1,5 @@
 package DDG::Spice::BaconIpsum;
-# This Spice returns a number of BaconIpsum paragraphs
+# ABSTRACT: Generator of BaconIpsum paragraphs
 
 use strict;
 use DDG::Spice;

@@ -1,4 +1,5 @@
 package DDG::Spice::Amazon;
+# ABSTRACT: Amazon product search
 
 use strict;
 use DDG::Spice;

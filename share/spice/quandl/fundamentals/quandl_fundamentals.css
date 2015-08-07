@@ -1,10 +1,3 @@
-/*
-    Document   : 
-    Created on : 2015-02-12 08:21 PM
-    Author     : brianrisk
-    Description: styles based on the 'Stocks' spice for visual consistency
-*/
-
 #quandl  h1.quandl-header {
     font-size: 1.4em;
     line-height: 1.2em;
@@ -70,6 +63,3 @@
 #quandl  .quandl-from_date {
     display: inline-block;
 }
-
-
-

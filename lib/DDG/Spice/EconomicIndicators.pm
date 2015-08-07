@@ -1,5 +1,5 @@
 package DDG::Spice::EconomicIndicators;
-# ABSTRACT: 
+# ABSTRACT:
 # Instant answer for economic indicators for different countries
 # The indicators considered are
 #   a) Gross Domestic Product
@@ -9,7 +9,7 @@ package DDG::Spice::EconomicIndicators;
 
 use DDG::Spice;
 use Time::Piece;
-use Locale::Country; 
+use Locale::Country;
 use JSON;
 
 spice is_cached => 1;
@@ -84,7 +84,7 @@ handle query_clean => sub {
     #return placeholder for the api
     return uc($country_code)."/indicators/".$indicator_id;
 
-    
+
 };
 
 1;

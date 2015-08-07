@@ -1,4 +1,5 @@
 package DDG::Spice::Images;
+# ABSTRACT: Untriggered Spice for images
 
 use strict;
 use DDG::Spice;

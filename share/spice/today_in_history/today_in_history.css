@@ -1,0 +1,59 @@
+.zci--today_in_history .tile--e {
+    padding: 1em;
+}
+
+.zci-today_in_history .tile__body {
+    height: 12em;
+}
+
+.zci--today_in_history .tih__year {
+    margin-bottom: 2em;
+    font-size: 1.5em;
+}
+
+.zci--today_in_history .tile__expand-icon {
+    padding-right: 1.25em;
+    line-height: 45px;
+    height: 45px;
+    display: block;
+}
+
+.zci--today_in_history .tih__year--text {
+    float: left;
+}
+
+.zci--today_in_history .text {
+    clear: both;
+    overflow: hidden;
+    height: 8.4em;
+    line-height: 1.2em;
+    color: #999;
+    font-size: 1.1em;
+}
+
+.zci--today_in_history .tih__text,
+.zci--today_in_history .tih__text--can-expand {
+        width: 12em;
+}
+
+.zci--today_in_history .tih__text--full {
+    max-width: 20em;
+    width: auto;
+}
+
+.zci--today_in_history .tih__text--can-expand,
+.zci--today_in_history .is-selected .tih__text--full {
+    display: block;
+}
+
+.zci--today_in_history .is-selected .tih__text--can-expand,
+.zci--today_in_history .tih__text--full {
+    display: none;
+}
+
+.is-mobile .zci--today_in_history .tih__text,
+.is-mobile .zci--today_in_history .tih__text--can-expand,
+.is-mobile .zci--today_in_history .tih__text--full {
+    width: auto;
+    height: auto
+}

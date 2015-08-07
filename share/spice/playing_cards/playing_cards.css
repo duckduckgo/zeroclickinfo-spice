@@ -1,0 +1,10 @@
+.zci--playing_cards .tile--playing_cards {
+    width: 9em;
+    background-color: transparent;
+    outline-color: transparent;
+    border: transparent;
+}
+
+.zci--playing_cards .tile {
+    outline: none;
+}

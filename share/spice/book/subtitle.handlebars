@@ -1,0 +1,12 @@
+<div class="rating-wrap tx-clr--blue">
+    {{#if image_url}}
+        <img src="{{ imageProxy image_url }}">
+    {{/if}}
+    {{#if rating}} 
+        {{rating}}% 
+    {{/if}}   
+</div>
+
+<div class="subtitle tx-clr--grey-dark">
+    by {{author}}
+</div>

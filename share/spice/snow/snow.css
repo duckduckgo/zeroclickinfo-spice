@@ -1,14 +1,19 @@
-.zci.zci--snow.is-active {
+.zci.zci--snow {
     margin-top: 0px;
     overflow: hidden;
-    padding: 20px 0 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.dark-header .zci.zci--snow {
+    margin-top: 0px;
+    overflow: hidden;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #292929;
 }
 
 .zci--snow h3 {
     font-size: 2em;
     font-weight: 900;
-}
-
-.zci--snow .zci__header {
-    color: inherit;
 }

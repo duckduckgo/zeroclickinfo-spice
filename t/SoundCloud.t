@@ -8,18 +8,19 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::SoundCloud )],
     'soundcloud ray bradbury' => test_spice(
-        '/js/spice/sound_cloud/ray%20bradbury',
-        call_type => 'include',
+        'ray bradbury',
+        call_type => 'self',
         caller => 'DDG::Spice::SoundCloud',
     ),
     'sc kavinsky' => test_spice(
-        '/js/spice/sound_cloud/kavinsky',
-        call_type => 'include',
+        'kavinsky',
+        call_type => 'self',
         caller => 'DDG::Spice::SoundCloud',
     ),
     'sc the new yorker' => test_spice(
-        '/js/spice/sound_cloud/the%20new%20yorker',
+        'the new yorker',
         caller    => 'DDG::Spice::SoundCloud',
+        call_type => 'self',
     ),
 );
 
