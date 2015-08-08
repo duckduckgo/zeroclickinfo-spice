@@ -18,7 +18,7 @@ primary_example_queries "clojure doseq", "clojure core.zip/rights" ;
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#category
 category "programming";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
-topics "programmaing","computing"
+topics "programming","computing";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/ClojureApiDocumentationFromGrimoire.pm";
 attribution github => ["turbopape", "Rafik Naccache"],
             twitter => "turbopape";
