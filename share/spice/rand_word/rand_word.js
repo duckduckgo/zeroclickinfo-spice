@@ -10,7 +10,6 @@
             id: "rand_word",
             data: {
                 words: api_result,
-                title: DDG.get_query()
             },
             name: "Answer",
             meta: {
