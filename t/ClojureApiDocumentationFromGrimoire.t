@@ -19,10 +19,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::ClojureApiDocumentationFromGrimoire'
     ),
-    "clojure" => undef,
-    "clojure function" => undef,
-    "clojure examples" => undef,
-    "clojure book" => undef
+
 );
 
 done_testing;
