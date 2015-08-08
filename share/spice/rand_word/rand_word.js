@@ -2,13 +2,16 @@
     "use strict";
     env.ddg_spice_rand_word = function(api_result) {
 
-        if (!api_result || !api_result.word) {
+        if (!api_result || api_result.length == 0) {
             return Spice.failed('rand_word');
         }
 
         Spice.add({
-    	    id: "rand_word",
-            data: api_result,
+            id: "rand_word",
+            data: {
+                words: api_result,
+                title: DDG.get_query()
+            },
             name: "Answer",
             meta: {
                 sourceUrl: 'http://wordnik.com',
@@ -16,10 +19,10 @@
                 sourceIcon: true
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
                     content: Spice.rand_word.content,
-		    moreAt: true
+                    moreAt: true
                 }
             }
         });

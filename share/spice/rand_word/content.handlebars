@@ -1,1 +1,3 @@
-<a href="http://wordnik.com/words/{{word}}">{{word}}</a>
+{{#concat words sep=","}}
+    <a href="http://wordnik.com/words/{{word}}">{{word}}</a>
+{{/concat}}
