@@ -1,7 +1,5 @@
-package DDG::Spice::IndegoBikeshareLocations;
-# ABSTRACT: Write an abstract here
-# Start at https://duck.co/duckduckhack/spice_overview if you are new
-# to instant answer development
+package DDG::Spice::PHLBikeshare;
+
 
 use strict;
 use DDG::Spice;
