@@ -1,4 +1,4 @@
-package DDG::Spice::PHLBikeshare;
+package DDG::Spice::IndegoBikeshareLocations;
 
 
 use strict;

@@ -5,21 +5,17 @@ use warnings;
 use Test::More;
 use DDG::Test::Spice;
 
-spice is_cached => 1;
-
 ddg_spice_test(
-    [qw( DDG::Spice::IndegoBikeshareLocations)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/indego_bikeshare_locations/query',
+    [qw( DDG::Spice::IndegoBikeshareLocations )],
+    'indego bikeshare philly' => test_spice(
+        '/js/spice/indego_bikeshare_locations/indego_bikeshare_locations',
         call_type => 'include',
-        caller => 'DDG::Spice::IndegoBikeshareLocations'
+        caller => 'DDG::Spice::IndegoBikeshareLocations',
+    is_cached => 1,
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+  
+    'indego' => undef,
+    'indego washington' => undef,
 );
 
 done_testing;
