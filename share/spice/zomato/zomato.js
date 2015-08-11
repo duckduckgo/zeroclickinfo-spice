@@ -1,12 +1,12 @@
 (function (env) {
     "use strict";
     var query_orig = DDG.get_query();
-    //$.getJSON('http://dheerajavvari.zdev.net/duckduckgo/ddg_track?value='+encodeURIComponent(query_orig));
+    //$.getJSON('https://www.zomato.com/duckduckgo/ddg_track?value='+encodeURIComponent(query_orig));
     env.ddg_spice_zomato = function(api_result){
         if (!api_result || api_result.error) {
             return Spice.failed('zomato');
         }
-        var hours, data;
+        //console.log(api_result);
         Spice.add({
             id: "zomato",
             name: "Places",
@@ -32,47 +32,49 @@
             relevancy: {
                 dup: 'url'
             },
-            normalize: function(res) {
-                if(!res) {
+            /*
+            sort_fields: {
+                name: function(a,b) {
+                    return a.name < b.name ? -1 : 1;
+                },
+                rating: function(a,b) {
+                    return a.rating < b.rating ? -1 : 1;
+                },
+                price: function(a,b) {
+                    return a.price < b.price ? -1 : 1;
+                },
+                reviews: function(a,b) {
+                    return a.reviews < b.reviews ? -1 : 1;
+                }
+            },
+            */
+            normalize: function(zres) {
+                if(!zres) {
                     return null;
                 }
-                if(res.all_timings && res.all_timings.length) {
-                    hours = {
-                        "Mon": res.all_timings[0].time,
-                        "Tue": res.all_timings[1].time,
-                        "Wed": res.all_timings[2].time,
-                        "Thu": res.all_timings[3].time,
-                        "Fri": res.all_timings[4].time,
-                        "Sat": res.all_timings[5].time,
-                        "Sun": res.all_timings[6].time
-                    };
-                }
-                
-                // For places_item
-                data = {
-                    id: res.id,
-                    name: res.name,
-                    url: res.url,
-                    image: res.thumb,
-                    boosted: res.boosted,
-                    price: res.price,
-                    reviews: res.reviews,
-                    rating: res.rating,
-                    address: res.address,
-                    phone: res.phone,
-                    closed: !res.closed,
-                    neighbourhood: res.neighbourhood,
-                    city: res.city,
-                    returned_categories: res.returned_categories,
-                    hours: hours,
-                    engine: "Zomato",
-                    coordinates: {
-                        longitude: res.coordinates.longitude,
-                        latitude: res.coordinates.latitude
-                    }
-                };
+                //console.log(zres);
+                var data = zres;
+                data.hours = zres.hours || null;
+                data.engine = "Zomato";
                 return data;
             }
+            /*,
+            onItemSelect: function(item){
+                console.log('hi1');
+                console.log(item);
+                $.getJSON('https://www.zomato.com/duckduckgo/ddg_track');
+            },
+            onItemShown: function(item){
+                console.log('hi');
+                console.log(item);
+                $.getJSON('https://www.zomato.com/duckduckgo/ddg_track');
+            }
+            */
         });
+        /*
+        $('#zci-zomato .tile--loc__more').each(function(ele){
+            $(ele).html('<img class="tile--loc__more__icon" src="/assets/icon_favicon_placeholder.v104.png"> More at Zomato');
+        });
+        */
     };
 }(this));
