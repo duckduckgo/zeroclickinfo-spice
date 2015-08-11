@@ -33,13 +33,15 @@
         var mod_api_result = [];
         var filter_rating;
         var query_array = DDG.get_query().toLowerCase().split(" ");
-        var ratings = ["r","pg-13","pg","g","pg13","unrated"];
+        var ratings = ["r","pg-13","pg","g","pg13","kids","unrated"];
 
         // Check whether our query contains any rating
         $.each(ratings, function(index, value) {
             if(($.inArray(value, query_array)) !== -1) {
                 if(value === "pg13") {
                     filter_rating = "pg-13";
+                } else if (value === "kids") {
+                    filter_rating = "g";
                 } else {
                     filter_rating = value;
                 }
@@ -55,7 +57,10 @@
                 sourceName: 'Rotten Tomatoes',
                 sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
                 total: api_result.movies,
-                itemType: 'Movies'
+                itemType: 'Movies',
+                rerender: [
+                    'image'
+                ]
             },
             normalize: function(item) {
                 if (filter_rating && item.mpaa_rating.toLowerCase() !== filter_rating) {
@@ -73,17 +78,20 @@
                 
                 // Modify the image from _tmb.jpg to _det.jpg
                 var image = toDetail(item.posters.detailed)
-                return {
-                    rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
-                    image: image,
-                    icon_image: get_image(item.ratings.critics_rating),
-                    abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
-                    heading: item.title,
-                    img: image,
-                    img_m: image,
-                    url: item.links.alternate,
-                    is_retina: ((DDG.is3x || DDG.is2x) ? 'is_retina' : 'no_retina')
-                };
+                
+                if(item.alternate_ids && item.alternate_ids.imdb) {
+                    return {
+                        rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
+                        //image: image,
+                        icon_image: get_image(item.ratings.critics_rating),
+                        abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
+                        heading: item.title,
+                        img: image,
+                        //img_m: image,
+                        url: item.links.alternate,
+                        is_retina: ((DDG.is3x || DDG.is2x) ? 'is_retina' : 'no_retina')
+                    };
+                }
             },
             templates: {
                 group: 'movies',
@@ -91,7 +99,34 @@
                     subtitle_content: Spice.in_theaters.subtitle_content,
                     rating: false,
                     buy: Spice.in_theaters.buy
+                },
+                variants: {
+                    productSub: 'noMax'
+                },
+                elClass: {
+                    tileMediaImg: 'js-movie-img',
+                    productMediaImg: 'js-movie-img'
                 }
+            },
+            onItemShown: function(item) {
+                var id = item.alternate_ids && item.alternate_ids.imdb;
+
+                if (!id) { return; }
+
+                $.ajaxSetup({ cache: true });
+
+                $.getJSON("/js/spice/movie_image/tt" + id, function(data) {
+                    var path = data && data.movie_results && data.movie_results.length && data.movie_results[0].poster_path,
+                        image = path && "https://image.tmdb.org/t/p/w185" + path;
+
+                    if (image) {
+                        item.set({
+                            img: image,
+                            img_m: image,
+                            image: image
+                        });
+                    }
+                });
             }
         });
     }

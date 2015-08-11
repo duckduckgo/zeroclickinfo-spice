@@ -25,13 +25,17 @@
                 item_detail: false,
                 options: {
                     footer: Spice.fedora_project_package_db.footer
+                },
+                variants: {
+                    tileTitle: '1line',
+                    tileSnippet: 'large',
                 }
             },
             normalize: function (item) {
                 return {
                     url: "https://admin.fedoraproject.org/pkgdb/package/" + item.name,
                     title: item.name,
-                    subtitle: item.description ? item.summary : "",
+                    altSubtitle: item.description ? item.summary : null,
                     description: item.description || item.summary
                 };
             }

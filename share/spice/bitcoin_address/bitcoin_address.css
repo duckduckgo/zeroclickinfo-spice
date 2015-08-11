@@ -27,8 +27,7 @@
 }
 
 @media screen and (max-width: 700px) {
-  .zci--bitcoin_address .zci__img-wrap{
+  .zci--bitcoin_address .c-info__img-wrap{
     display: none;
-  }    
+  }
 }
-

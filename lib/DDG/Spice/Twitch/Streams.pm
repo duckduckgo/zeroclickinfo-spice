@@ -1,5 +1,6 @@
 package DDG::Spice::Twitch::Streams;
 # ABSTRACT: Search for gaming videos
+
 use strict;
 use DDG::Spice;
 
