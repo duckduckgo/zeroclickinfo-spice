@@ -52,6 +52,7 @@ function versionInt(v) {
             meta: {
                 sourceName: "Hoogle",
                 sourceUrl: "https://www.haskell.org/hoogle/?hoogle=" + query,
+                snippetChars: 170
             },
             templates: {
                 group: 'text',
@@ -59,7 +60,7 @@ function versionInt(v) {
                 item_detail: false,
                 variants: {
                     tileTitle: "2line",
-                    tileSnippet: "small"
+                    tileSnippet: "large"
                 }
             },
 
