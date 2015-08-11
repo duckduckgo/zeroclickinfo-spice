@@ -1,4 +1,6 @@
 package DDG::Spice::Twitch::Featured;
+#ABSTRACT: Get Twitch Featured streams info
+
 use strict;
 use DDG::Spice;
 

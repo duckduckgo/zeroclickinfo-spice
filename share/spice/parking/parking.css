@@ -7,24 +7,9 @@
     font-size: .95em;
 }
 
-#zci-parking .title--parking__distance{
-    float: left;
-}
-
-#zci-parking .title--parking__price{
-    float: right;
-}
-
-#zci-parking .tile__price{
-    color: #333;    
-}
-
-#zci-parking .tile--parking__foot{
-    color: #aaa;
-}
-
 #zci-parking .tile--parking__foot__back{
-    height: 2.7em;
+    height: 2.2em;
+    max-height: none;
     text-align: center;
 }
 

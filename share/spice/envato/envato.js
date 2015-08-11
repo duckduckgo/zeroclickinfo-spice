@@ -79,7 +79,7 @@
                 }
             }
 
-            spice.view = spice.model = 'Audio'
+            spice.view = 'Audio'
         }
 
         Handlebars.registerHelper('formatSales', function(sales){

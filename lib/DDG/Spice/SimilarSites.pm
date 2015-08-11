@@ -16,7 +16,7 @@ topics "everyday", "special_interest";
 attribution github => ['https://github.com/Adman', 'Adman'],
             twitter => ['http://twitter.com/adman_X', 'adman_X'];
 
-triggers start => ["sites like", "site like", "websites like", "website like", "webs like", "pages like"];
+triggers start => ["sites like", "similar sites to", "site like", "websites like", "website like", "webs like", "pages like"];
 
 triggers any => ["similar sites", "similar web", "websites similar",
     "website similar", "similar websites", "similar website", "similar to"];

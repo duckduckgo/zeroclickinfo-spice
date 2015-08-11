@@ -1,0 +1,59 @@
+
+.list__item {
+  display: table-row;
+}
+
+.category__badge {
+    height: 12px;
+    border-radius: 6px;
+    padding: 0px 6px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.category__badge.good {
+    background-color: #5B9E4D;
+}
+
+.category__badge.moderate {
+    background-color: #F1A031;
+}
+
+.category__badge.usg {
+    background-color: #E37151;
+}
+
+.category__badge.unhealty {
+    background-color: #BD4B2B;
+}
+
+.category__badge.very_unhealthy {
+    background-color: #5D4C8B;
+}
+
+.category__badge.hazardous {
+    background-color: #413561;
+}
+
+.category__name {
+  margin: 1em;
+}
+
+.meas__value {
+  /*font-weight: bold;*/
+  display: table-cell;
+  width: 1em;
+}
+
+.meas__date {
+  font-size: x-small;
+  display: table-cell;
+}
+
+a.help__link {
+  color: #413561;
+  text-decoration: none;
+  font-weight: bold;
+  display: table-cell;
+  width: 4em;
+ }

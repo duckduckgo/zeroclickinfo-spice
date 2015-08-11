@@ -1,7 +1,89 @@
-.zci--mass .mass--address {
-    color: #999;
+.is-active .zci-mass_on_time .tile--f__main .tile__body {
+    padding-top: 0.6em;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
 }
 
-.zci--mass .tile--mass {
-    height: 11em;
+.is-expanded .zci-mass_on_time .tile--f__main .tile__body {
+    padding-top: 2.6em;
+}
+
+.tile--mass-loc {
+    width: 16em;
+    height: 12em;
+    margin: 0 0.25em 0em 0.25em;
+}
+
+.zci-mass_on_time .tile--f__main .tile__head, .zci-mass_on_time .tile--f__main .tile__body {
+    padding: 1em 1em;
+}
+
+.zci-mass_on_time .tile--f__main .tile__foot {
+    white-space: normal;
+}
+
+.zci-mass_on_time .tile--f__alt .tile__head, .zci-mass_on_time .tile--f__alt .tile__body {
+    padding: 1em 1em;
+}
+
+.zci-mass_on_time h6.tile__title--2 {
+    white-space: normal;
+    height: 100%;
+}
+
+.zci-mass_on_time .tile--f__alt .tile__foot {
+    white-space: normal;
+}
+
+.zci-mass_on_time .tile__foot--4 {
+    line-height: 1.4;
+    max-height: 6.6em;
+    height: auto;
+    margin-bottom: 1em;
+}
+
+.zci-mass_on_time .tile--f__main .tile__foot span {
+    display: block;
+}
+
+.zci-mass_on_time .tile--f__main .tile__foot-line {
+    white-space: nowrap;
+}
+
+.zci-mass_on_time .tile--f__alt .tile__foot span {
+    display: block;
+}
+
+.zci-mass_on_time .tile--f__alt .tile__foot-line {
+    white-space: nowrap;
+}
+
+.zci-mass_on_time .head--title {
+    float: left;
+    width: 11em;
+}
+
+.zci-mass_on_time .head--num {
+    display: none;
+}
+
+.is-expanded .zci-mass_on_time .head--num {
+    display: block;
+    background-image: url("map-pin.png");
+    background-repeat: no-repeat;
+    height: 2.4em;
+    width: 2.5em;
+    background-position: center;
+    padding-top: 0.65em;
+    font-weight: bold;
+    font-size: 1.6em;
+    font-size: 1.038em;
+}
+
+.zci-mass_on_time .head--num .number {
+    text-align: center;
+} 
+
+svg .zci-mass_on_time .head--num .number {
+    background-image: url("map-pin.svg");
 }
