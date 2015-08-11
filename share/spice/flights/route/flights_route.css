@@ -76,3 +76,7 @@
 .zci--route .tile__datetime {
     color: #888;
 }
+
+.zci--route .has_landed {
+    background-color: #F7F7F7;
+}

@@ -317,6 +317,9 @@
                             tile: 'xwide'
                         }
                     },
+                    onShow: function(item) {
+                        $('.tile__landed').parents('.tile__body').addClass('has_landed');
+                    }
                 });
             });
         },
