@@ -1,12 +1,14 @@
 (function (env) {
-	"use strict";
-	env.ddg_spice_holiday = function(api_result) {
-	    if(!api_result || !api_result.h || api_result.h.length === 0) {
-			return Spice.failed('holiday');
-	    }
-	    var query = DDG.get_query(),
-	        url = 'http://www.timeanddate.com',
-			source = url + '/search/results.html?query=' + encodeURIComponent(query);
+    "use strict";
+    env.ddg_spice_holiday = function(api_result) {
+        if(!api_result || !api_result.h || api_result.h.length === 0) {
+            return Spice.failed('holiday');
+        }
+        var script = $('[src*="/js/spice/holiday/"]')[0],
+            source = $(script).attr("src"),
+            query = source.match(/holiday\/([^\/]+)\/([^\/]+)/)[2],
+            url = 'http://www.timeanddate.com',
+            source = url + '/search/results.html?query=' + query;
 
         DDG.require('moment.js', function() {
             var meta_obj = {
@@ -17,8 +19,29 @@
                 normalize_fn,
                 data;
 
-            if (api_result.h.length == 1){
-                data = api_result.h[0];
+            var events = api_result.h;
+
+            // Filtering events
+            // for "christmas" only show "Christmas Day" etc
+            // add more to the list as needed
+            var single_days = {
+                'christmas': 'Christmas Day',
+                'easter': 'Easter Sunday'
+            };
+            var days = Object.keys(single_days);
+            events = events.filter(function(item) {
+                for (var i = 0; i < days.length; i++) {
+                    if (query === days[i] && item.n !== single_days[days[i]]) {
+                        return false;
+                    }
+                };
+                return true;
+            })
+
+            if (events.length == 0) {
+                return Spice.failed('holiday');
+            } else if (events.length == 1){
+                data = events[0];
 
                 if (!data.o || data.o.length <= 0) {
                     return Spice.failed('holiday');
@@ -59,7 +82,7 @@
                 };
 
             } else {
-                data = api_result.h;
+                data = events;
                 normalize_fn = function(item) {
                     var date = item.o[0],
                         subtitle = item.n;
@@ -96,5 +119,5 @@
                 templates: template_obj
             });
         });
-	};
+    };
 }(this));
