@@ -7,8 +7,8 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::IndegoBikeshareLocations )],
-    'indego bikeshare' => test_spice(
-        '/js/spice/indego_bikeshare_locations/',
+    'philly bikeshare' => test_spice(
+        '/js/spice/indego_bikeshare_locations',
         call_type => 'include',
         caller => 'DDG::Spice::IndegoBikeshareLocations',
     is_cached => 1,
