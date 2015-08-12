@@ -13,6 +13,13 @@ ddg_spice_test(
         caller => 'DDG::Spice::IndegoBikeshareLocations',
     is_cached => 1,
     ),
+    
+      'philly bikeshare' => test_spice(
+        '/js/spice/indego_bikeshare_locations/philly',
+        call_type => 'include',
+        caller => 'DDG::Spice::IndegoBikeshareLocations',
+    is_cached => 1,
+    ),
   
     'indego' => undef,
     'indego washington' => undef,
