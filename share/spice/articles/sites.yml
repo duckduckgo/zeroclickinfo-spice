@@ -9,9 +9,18 @@ bbc: http://feeds.bbci.co.uk/news/rss.xml
 boingboing: http://boingboing.net/feed
 538: http://fivethirtyeight.com/features/feed/
 fivethirtyeight: http://fivethirtyeight.com/features/feed/
+fox news: http://feeds.feedburner.com/foxnews/latest
 
 # other
 clickhole: http://www.clickhole.com/feeds/rss
 
 # people
 nate silver: http://fivethirtyeight.com/contributors/nate-silver/feed/
+
+# missing kids
+missing kids nc: http://www.missingkids.com/missingkids/servlet/XmlServlet?act=rss&LanguageCountry=en_US&orgPrefix=NCMC&state=NC
+
+xvideos: http://www.xvideos.com/rss/rss.xml
+youporn: http://www.youporn.com/rss
+pornhub: http://www.pornhub.com/rss
+redtube: http://feeds.feedburner.com/redtube/videos
