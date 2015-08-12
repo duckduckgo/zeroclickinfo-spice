@@ -28,6 +28,14 @@ triggers startend => (
 
     'restaurant',
     'restaurants',
+    'stores',
+    'apartments',
+    'veterinarians',
+    'dermatologist',
+    'dermatologists',
+    'liquor store',
+    'cab service',
+    'hair salons',
 );
 
 my %skip_remainders = map {$_ => 0} ('current', 'time');
