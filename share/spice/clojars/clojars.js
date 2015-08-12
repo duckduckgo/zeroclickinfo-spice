@@ -1,6 +1,6 @@
 (function(env) {
     "use strict";
-    env.ddg_spice_clojure_packages_from_clojars = function(api_result) {
+    env.ddg_spice_clojars = function(api_result) {
 
         // Validate the response (customize for your Spice)
         var search_terms = DDG.get_query().split(" ");
@@ -12,17 +12,19 @@
         var clojar_artifact = search_terms.filter(keep_it);
 
         if (!api_result || api_result.error) {
-            return Spice.failed('clojure_packages_from_clojars');
+            return Spice.failed('clojars');
         }
 
         // Render the response
+    
         Spice.add({
-            id: "clojure_packages_from_clojars",
+            id: "clojars",
             // Customize these properties
-            name: "\"" + clojar_artifact + "\"" + ' on Clojars',
+            name: 'On Clojars',
             data: api_result.results,
 
             meta: {
+                search_term:clojar_artifact,
                 sourceName: "clojars.org",
                 sourceUrl: 'https://clojars.org/search?q=' + clojar_artifact
             },
@@ -32,17 +34,14 @@
                 item_detail: false,
 
                 variants: {
-                    tileTitle: 'basic4',
-                    detail: 'light'
+                    tileTitle: 'basic4'                  
                 }
             },
             normalize: function(item) {
                 return {
                     title: item.group_name + "/" + item.jar_name,
                     subtitle: item.version,
-                    description: item.description,
                     url: "https://clojars.org/" + item.group_name + "/" + item.jar_name
-
                 };
             }
 

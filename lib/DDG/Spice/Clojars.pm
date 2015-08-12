@@ -1,4 +1,4 @@
-package DDG::Spice::ClojurePackagesFromClojars;
+package DDG::Spice::Clojars;
 # ABSTRACT: This spide searches for an artifact on Clojars.
 
 
@@ -8,7 +8,7 @@ use DDG::Spice;
 spice is_cached => 1;
 
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
-name "ClojurePackagesFromClojars";
+name "Clojars";
 source "clojars.org";
 icon_url "https://clojars.org/favicon.ico";
 description "This spice accesses clojars.org, the clojure libraries reposisitory, to search for a clojure artifact";

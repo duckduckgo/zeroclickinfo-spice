@@ -13,24 +13,24 @@ ddg_spice_test(
     # - primary_example_queries
     # - secondary_example_queries
     'clojure instaparse' => test_spice(
-        '/js/spice/clojure_packages_from_clojars/instaparse',
+        '/js/spice/clojars/instaparse',
         call_type => 'include',
-        caller => 'DDG::Spice::ClojurePackagesFromClojars'
+        caller => 'DDG::Spice::Clojars'
     ),
     'clojure lib instaparse' => test_spice(
-    '/js/spice/clojure_packages_from_clojars/instaparse',
+    '/js/spice/clojars/instaparse',
      call_type => 'include',
-     caller => 'DDG::Spice::ClojurePackagesFromClojars'
+     caller => 'DDG::Spice::Clojars'
     ),
     'clojure library instaparse' => test_spice(
-    '/js/spice/clojure_packages_from_clojars/instaparse',
+    '/js/spice/clojars/instaparse',
      call_type => 'include',
-     caller => 'DDG::Spice::ClojurePackagesFromClojars'
+     caller => 'DDG::Spice::Clojars'
     ),
     'clojars instaparse' => test_spice(
-    '/js/spice/clojure_packages_from_clojars/instaparse',
+    '/js/spice/clojars/instaparse',
      call_type => 'include',
-     caller => 'DDG::Spice::ClojurePackagesFromClojars'
+     caller => 'DDG::Spice::Clojars'
     )
     # Try to include some examples of queries on which it might
     # appear that your answer will trigger, but does not.
