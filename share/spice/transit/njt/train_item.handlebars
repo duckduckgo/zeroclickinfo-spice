@@ -1,4 +1,4 @@
-<div class="njt__time">{{departure_time}}</div>
+<div class="njt__time text--primary">{{departure_time}}</div>
 <div class="njt__details">
     {{#if cancelled}}N/A{{else}}Arrives {{arrival_time}}{{/if}}<br/>
     {{line}}<br/>
@@ -10,7 +10,7 @@
     <div class="njt__sep-line"></div>
 </div>
 <div class="njt__status">
-    <div class="one-line {{#if bold_status_text}}njt__bold-status{{/if}}">{{status}}</div>
+    <div class="one-line text--secondary {{#if bold_status_text}}njt__bold-status{{/if}}">{{status}}</div>
     {{#if track}}
         <div class="one-line">Track {{track}}</div>
     {{else}}

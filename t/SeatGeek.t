@@ -59,6 +59,10 @@ ddg_spice_test(
         '/js/spice/seat_geek/events_by_artist/beastie-boys',
         caller => 'DDG::Spice::SeatGeek::EventsByArtist',
     ),
+    'upcoming beastie boys tickets' => test_spice(
+        '/js/spice/seat_geek/events_by_artist/beastie-boys',
+        caller => 'DDG::Spice::SeatGeek::EventsByArtist',
+    ),
 );
 
 ddg_spice_test(
@@ -122,6 +126,15 @@ ddg_spice_test(
     ),
     DDG::Request->new(
         query_raw => "upcoming concerts in my area",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/seat_geek/events_near_me/51.2000/6.4333',
+        call_type => 'include',
+        caller => 'DDG::Spice::SeatGeek::EventsNearMe',
+        is_cached => 0
+    ),
+    DDG::Request->new(
+        query_raw => "concerts nearby",
         location => test_location("de")
     ) => test_spice(
         '/js/spice/seat_geek/events_near_me/51.2000/6.4333',

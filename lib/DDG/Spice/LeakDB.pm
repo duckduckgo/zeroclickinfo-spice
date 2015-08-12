@@ -1,4 +1,5 @@
 package DDG::Spice::LeakDB;
+# ABSTRACT: Plaintext of hashes, and hashes of plaintexts
 
 use strict;
 use DDG::Spice;
@@ -13,18 +14,17 @@ topics 'geek', 'sysadmin', 'cryptography';
 icon_url 'https://leakdb.abusix.com/images/favicon.ico';
 code_url 'https://github.com/brutalhonesty/zeroclickinfo-spice/blob/master/lib/DDG/Spice/HashMe.pm';
 attribution github => ['https://github.com/brutalhonesty', 'Adam Schodde'],
-	twitter => ['https://twitter.com/listeninme', 'Adam Schodde'],
-	email => ['sparky1010[at]gmail.com', 'Adam Schodde'];
+    twitter => ['https://twitter.com/listeninme', 'Adam Schodde'],
+    email => ['sparky1010[at]gmail.com', 'Adam Schodde'];
 status 'enabled';
 
 triggers startend => 'hashme', 'leakdb';
 spice to => 'http://api.leakdb.abusix.com/?j=$1';
 spice wrap_jsonp_callback => 1;
 
-handle remainder_lc => sub{
-    s/^(hashme|leakdb)\s+|\s+(hashme|leakdb)$//g;
-	return $_ if $_ ne '';
-	return;
+handle remainder => sub{
+    return if $_ eq '';
+    return $_;
 };
 
 1;

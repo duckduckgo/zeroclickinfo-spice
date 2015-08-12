@@ -1,90 +1,87 @@
-function ddg_spice_octopart (api_result) {
+(function (env) {
     "use strict";
 
-    if(!api_result || !api_result.results || api_result.results.length === 0) {
-        return Spice.failed('octopart');
+    // iterate over each distributors
+    // to get matching large and medium size images
+    function get_images(imagesets) {
+        var images = {};
+
+        $.each(imagesets, function(){
+            if (!is_mobile && this.large_image && this.medium_image){
+                images.large  = DDG.toHTTP(this.large_image.url);
+                images.medium = DDG.toHTTP(this.medium_image.url);
+                return false;
+
+            // fallback in case we never find a large image
+            // or on mobile device
+            } else if (this.medium_image){
+                images.medium = DDG.toHTTP(this.medium_image.url);
+                images.large = images.medium;
+
+            // worst case
+            } else if (this.small_image){
+                images.medium = DDG.toHTTP(this.small_image.url);
+                images.large = images.medium;
+            }
+        });
+        return images;
     }
 
-    // var results = [],
-    //     isRelevant,
-    //     skip_words = [
-    //         "datasheet",
-    //         "specs",
-    //         "octopart"
-    //     ];
+    env.ddg_spice_octopart = function (api_result) {
 
-    // for(var i = 0; i < api_result.results.length; i += 1) {
-    //     var iter = api_result.results[i];
-
-    //     // Checks both the MPN and the manufacturer if the query is somehow relevant.
-    //     isRelevant = DDG.isRelevant(iter.item.mpn, skip_words, 4, true) || 
-    //         DDG.isRelevant(iter.item.manufacturer.displayname, skip_words, 4, true);
-
-    //     // Check if we have images.
-    //     if(iter.item.images.length > 0 && isRelevant) {
-    //         results.push(iter);
-    //     // If an image doesn't exist, add a different image.
-    //     } else if(isRelevant) {
-    //         iter.item.images.push({
-    //             url_90px: "http://n1.octostatic.com/o3web/detail/images/camera-icon.png"
-    //         });
-    //         results.push(iter);
-    //     }
-    // }
-
-    // if(results.length === 0) {
-    //     return;
-    // }
-
-    var isMobile = $('.is-mobile').length;
-
-    Spice.add({
-        id: 'octopart',
-        name: 'Parts',
-        data: api_result.results,
-        signal: 'high',
- 
-        meta: {
-            itemType: 'Parts',
-            sourceName: 'Octopart',
-			sourceUrl : 'http://octopart.com/partsearch#search/requestData&q=' + api_result.request.q
-        },
-        normalize: function(item) {
-            var img = DDG.getProperty(item, "item.images.0.url_90px");
-            var desc_length = 60;
-            var description = (isMobile ? 
-                Handlebars.helpers.ellipsis(DDG.strip_html(item.item.short_description), desc_length) :
-                DDG.strip_html(item.item.short_description));
-
-            return {
-                brand: item.item.manufacturer.displayname,
-                price: item.item.avg_price[1] + ' ' + item.item.avg_price[0].toFixed(2),
-                img: img,
-                img_m: img,
-				url: item.item.detail_url,
-                title: DDG.strip_html(item.item.mpn).toUpperCase(),
-                heading: DDG.strip_html(item.item.mpn).toUpperCase(),
-                description: description,
-                datasheet: item.item.datasheets[0].url
-            };
-        },
-
-        templates: {
-            group: 'products',
-            options: {
-                rating: false,
-                buy: Spice.octopart.buy
-            },
-            variants: {
-                detail: 'light'
-            }
+        if(!api_result || !api_result.results || api_result.results.length === 0) {
+            return Spice.failed('octopart');
         }
-        
-    });
-};
 
-// Handlebars.registerHelper("toFixed", function(number) {
-//     "use strict";
+        Spice.add({
+            id: 'octopart',
+            name: 'Parts',
+            data: api_result.results,
+            signal: 'high',
+            meta: {
+                itemType: 'Parts',
+                sourceName: 'Octopart',
+                sourceUrl : 'http://octopart.com/search?q=' + api_result.request.q
+            },
+            normalize: function(item) {
 
-//     return number.toFixed(2);
-// });
+                item = item.item; // our item object is wrapped in an "item" property
+
+                var images = get_images(item.imagesets);
+
+                return {
+                    brand: item.brand.name,
+                    price: item.avg_price_v2[1] + ' $' + item.avg_price_v2[0].toFixed(2),
+                    img: images.medium,
+                    img_m: images.large,
+                    url: item.octopart_url,
+                    title: item.mpn,
+                    heading: item.mpn,
+                    abstract: item.short_description,
+                    datasheet: item.datasheets[0].url,
+                    market_status: item.market_status_v2.replace(/^\w+: /, '') // strip out "GOOD: " from market_status
+                };
+            },
+            templates: {
+                group: 'products',
+                options: {
+                    rating: false,
+                    subtitle_content: Spice.octopart.content,
+                    buy: Spice.octopart.buy
+                },
+                variants: {
+                    detail: 'light'
+                }
+            },
+            relevancy: {
+                primary: [
+                    { required: 'item.short_description' },
+                    { required: 'item.octopart_url' },
+                    { required: 'item.datasheets' },
+                    { required: 'item.imagesets' },
+                    { required: 'item.avg_price_v2' },
+                ],
+            }
+        });
+    };
+})(this);

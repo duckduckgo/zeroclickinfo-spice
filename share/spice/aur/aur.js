@@ -1,22 +1,46 @@
-function ddg_spice_aur(response) {
+(function (env) {
     "use strict";
+    env.ddg_spice_aur = function(api_result){
 
-    if (response.type === 'error' || !response.results || response.results.length === 0) {
-        return Spice.failed('aur');
-    }
+        // Validate the response (customize for your Spice)
+        if (!api_result || api_result.error) {
+            return Spice.failed('aur');
+        }
 
-    var query = DDG.get_query().replace(/(aur|archlinux package|arch package|arch linux package)/, "");
+        // Render the response
+        Spice.add({
+            id: "aur",
 
-    Spice.add({
-        data             : response.results,
-        // header1          : response.results[0].Name + " (AUR)",
-        sourceUrl       : 'https://aur.archlinux.org/packages/?O=0&K=' + query,
-        sourceName      : 'ArchLinux User Repository',
-        name: 'Software',
-        id       : 'aur',
-        templates : {
-            item: Spice.aur.aur // will use this also for a single item
-        },
-        
-    });
-}
+            // Customize these properties
+            name: "Software",
+            data: api_result.results,
+            meta: {
+                sourceName: "aur.archlinux.org",
+                sourceUrl: 'http://aur.archlinux.org/rpc.php?type=search&arg=' + api_result.name
+            },
+            normalize: function(item) {
+                return {
+                    url: "https://aur.archlinux.org/packages/" + item.Name + "/",
+                    title: item.Name,
+                    description: item.Description,
+                    subtitle: "Version: " + item.Version,
+                    iconArrow: {
+                            url: DDG.get_asset_path('aur','arrow_up.png')
+                    }
+                };          
+            },
+  
+            templates: {
+                group: 'text',
+                options: {
+                    footer: Spice.aur.footer,
+                },
+                variants: {
+                    tile: 'basic4'
+                },
+                detail: false,
+                item_detail: false
+            }
+        });
+    };
+}(this));

@@ -90,8 +90,20 @@
                     return null;
                 }
 
-                // ignoring the case where rating_count is null
+                // relevancy pre-filter: remove GoogleTV Android packages 
+                // API doesn't differentiate between GoogleTV Android and Android packages
+                var reFilter = /Google\s?TV/i;
 
+                for (var i in item.editions) {
+                    var packageAppName = [DDG.getProperty(item, "editions." + [i] + ".custom.features.package_name"),              
+                                          DDG.getProperty(item, "editions." + [i] + ".name")].join(" ");
+
+                    if (packageAppName.match(reFilter)) {
+                        item.editions.splice(i,1);
+                   }
+                }
+
+                // ignoring the case where rating_count is null
                 var icon_url = make_icon_url(item), screenshot; 
 
                 if (!icon_url)
@@ -108,15 +120,8 @@
                     item.boost = true;
                 }
 
-                // This converts URLs that start with HTTP to HTTPS.
-                // We need to use this for the images because they currently redirect two
-                // times. Jumping straight to HTTPS would reduce that to one.
-                function toHTTPS(url) {
-                    return url.replace(/^http:/, "https:");
-                }
-                
                 return {
-                    'img':           toHTTPS(icon_url),
+                    'img':           DDG.toHTTPS(icon_url),
                     'title':         item.name,
                     'heading':       item.name,
                     'rating':        item.rating,

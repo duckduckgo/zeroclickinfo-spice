@@ -66,7 +66,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     var current_lap = current_time - last_lap;
     $split_list.prepend('<tr><td class="lap-num">' + lap_num + '</td><td class="lap-time lap-total">' +
       $total_time.html() + '</td><td class="lap-time">' + formatTime(current_lap) + '</td></tr>');
-    $split_list.removeClass('hidden');
+    $split_list.removeClass('is-hidden');
     last_lap = current_time;
     lap_num++;
     return current_time;
@@ -112,7 +112,7 @@ function ddg_spice_stopwatch(api_result) { //api_result should be removed in pro
     $('.stopwatch__btn.stop').removeClass('stop').addClass('start').html('START');
     $(this).prop('disabled', true);
     $lap_btn.prop('disabled', true);
-    $split_list.addClass('hidden');
+    $split_list.addClass('is-hidden');
   });
 
   //add a split (the time that was on the watch) and lap (time between laps)

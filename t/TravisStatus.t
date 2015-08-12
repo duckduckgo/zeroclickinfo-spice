@@ -41,7 +41,7 @@ ddg_spice_test(
         '/js/spice/travis_status/travisci',
         call_type => 'include',
         caller => 'DDG::Spice::TravisStatus'
-    ),   
+    ),
     'travis ci' => test_spice(
         '/js/spice/travis_status/travis%20ci',
         call_type => 'include',

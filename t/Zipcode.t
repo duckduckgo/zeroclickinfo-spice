@@ -7,7 +7,7 @@ use DDG::Test::Spice;
 
 # PASSING TESTS
 my %q = (
-  
+
   # Without Country
   '19201'               => ['19201', 'ZZ'],
   "19301"               => ["19301", "ZZ"],

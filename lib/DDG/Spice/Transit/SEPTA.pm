@@ -1,8 +1,9 @@
 package DDG::Spice::Transit::SEPTA;
+# ABSTRACT: Information on next trains on SEPTA (Pennsylvania)
 
 use strict;
 use DDG::Spice;
-use YAML qw ( Load );
+use YAML 'LoadFile';
 
 primary_example_queries "next train from Villanova to Paoli";
 secondary_example_queries "train times to paoli from Villanova";
@@ -25,13 +26,13 @@ spice proxy_cache_valid => "418 1d";
 
 triggers any => "next train", "train times", "train schedule", "septa";
 
-my %stops = yaml_to_stops(scalar share('stops.yml')->slurp);
+my %stops = yaml_to_stops(share('stops.yml'));
 
 #add the canonical names to the arrays in the stop hash
 sub yaml_to_stops {
     my $yaml = shift;
 
-    my %hash = %{Load($yaml)};
+    my %hash = %{LoadFile($yaml)};
     foreach my $key (keys %hash) {
         if (my $value = $hash{$key}) {
             #there are other aliases, add the canonical name to that array
@@ -72,7 +73,7 @@ handle remainder => sub {
     my $curr = normalize_stop($1);
     my $tofrom = $2;
     my $dest = normalize_stop($3);
-    
+
     if ($curr && $dest) {
         #put the stops in the right order (for queries like "septa paoli from strafford")
         return ($tofrom eq 'to' ? ($curr, $dest) : ($dest, $curr));

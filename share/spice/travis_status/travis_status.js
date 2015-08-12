@@ -19,8 +19,6 @@
           }
         }
 
-        console.log(relevantDetails);
-
         Spice.add({
             id: "travis_status",
             name: "Status",

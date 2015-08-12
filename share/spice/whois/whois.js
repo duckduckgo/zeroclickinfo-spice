@@ -2,34 +2,36 @@
     "use strict";
     env.ddg_spice_whois = function(api_result){
 
-    if (!api_result || api_result.error || !api_result.WhoisRecord) {
-        return Spice.failed('whois');
+        if (!api_result || api_result.error || !api_result.WhoisRecord) {
+            return Spice.failed('whois');
+        }
+
+        DDG.require('moment.js', function(){
+            // get the search query
+            var script = $('[src*="/js/spice/whois/"]')[0],
+                source = $(script).attr("src"),
+                query = source.replace('/js/spice/whois/','')
+
+            // all the data is stored in WhoisRecord
+            api_result = api_result.WhoisRecord;
+
+            // fail if the domain name the api returns does not match the searched domain
+            if(api_result.domainName != query) {
+                return Spice.failed('whois');
+            }
+
+            // decide which template to show show_available or show_whois
+            (is_domain_available(api_result)) ? show_available(api_result) : show_whois(api_result);
+        });
     }
 
-    // get the search query
-    var script = $('[src*="/js/spice/whois/"]')[0],
-        source = $(script).attr("src"),
-        query = source.replace('/js/spice/whois/','')
-
-    // all the data is stored in WhoisRecord
-    api_result = api_result.WhoisRecord;
-
-    // fail if the domain name the api returns does not match the searched domain
-    if(api_result.domainName != query) {
-        return Spice.failed('whois');
-    }
-    
-    // decide which template to show show_available or show_whois
-    (is_domain_available(api_result)) ? show_available(api_result) : show_whois(api_result);  
-}
-
- // show message saying that the domain is available.
+    // show message saying that the domain is available.
     function show_available(api_result) {
         var shared_spice_data = get_shared_spice_data(api_result),
         templateData = {
             'domainRegistrars': {
                 "Domainr": "https://domainr.com/",
-                "NameCheap": "https://www.namecheap.com/domains/registration/results.aspx?domain=", 
+                "NameCheap": "https://www.namecheap.com/domains/registration/results.aspx?domain=",
                 "101domain": "https://www.101domain.com/domain-availability-search.htm?q="
                 },
             'domainName': api_result.domainName
@@ -44,7 +46,12 @@
         var shared_spice_data = get_shared_spice_data(api_result),
             nameServers,
             nsObj,
-            normalized
+            normalized;
+
+        // date formatting for moment.js
+        // normalized dates require dateUTCParse custom format
+        var dateOutputFormat = "MMM DD, YYYY",
+            dateUTCParse = "YYYY-MM-DD HH:mm:ss Z";
 
         // store the domain's various contacts in an array.
         // we'll iterate through this array in order, using
@@ -66,11 +73,13 @@
         }
 
         // check we have 2 nameserver hostnames
-        if(nsObj && nsObj.hostNames[0] && nsObj.hostNames[1]) {
-            var nameServers = [nsObj.hostNames[0].toLowerCase(),nsObj.hostNames[1].toLowerCase()].join(' ');
+        if(nsObj.hostNames) {
+            if(nsObj.hostNames.length >= 2) {
+                var nameServers = [nsObj.hostNames[0].toLowerCase(),nsObj.hostNames[1].toLowerCase()].join(' ');
+            }
         }
 
-        // find updatedDate and expiresDate in registryData 
+        // find updatedDate and expiresDate in registryData
         if(!api_result.updatedDate && !api_result.expiresDate) {
             if(api_result.registryData.updatedDateNormalized && api_result.registryData.expiresDateNormalized) {
                 api_result.updatedDate = api_result.registryData.updatedDateNormalized;
@@ -82,7 +91,7 @@
         normalized = {
             'title': api_result.domainName,
             'Registered to': get_first_by_key(contacts, 'name'),
-            'Email': get_first_by_key(contacts, 'email'),           
+            'Email': get_first_by_key(contacts, 'email'),
             'Last Updated': prettifyTimestamp(api_result.updatedDate),
             'Expires On': prettifyTimestamp(api_result.expiresDate),
             'Registrar': api_result.registrarName,
@@ -113,18 +122,6 @@
         return api_result.dataError && api_result.dataError === 'MISSING_WHOIS_DATA';
     }
 
-    //Converts timestamp into local time using getDateFromString
-    function prettifyTimestamp(timestamp) {
-        if(!timestamp) { return; }
-        var dateObj = DDG.getDateFromString(timestamp),
-            monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            day = dateObj.getDate(),
-            month = monthArr[dateObj.getMonth()+1],
-            year = dateObj.getFullYear();
-        if(day<10) {day='0'+day};
-        return month + " " + day + ", " + year;
-    }
-
     // Searches an array of objects for the first value
     // at the specified key.
     function get_first_by_key(arr, key) {
@@ -139,6 +136,33 @@
             }
         });
         return first;
+    }
+
+    //Converts timestamp into local time using moment.js
+    function prettifyTimestamp(timestamp) {
+        if(!timestamp) { return; }
+
+        // dateDisplayFormat = Nov 21, 2022
+        // normalizedFormat matches = 0000-00-00 00:00:00 TZ
+        var dateDisplayFormat = "MMM DD, YYYY",
+            normalizedFormat = "YYYY-MM-DD HH:mm:ss Z",
+            autoDate = moment(timestamp);
+
+        // some dates require custom date formatting
+        // check if first date is vaild
+        // if not format date using normalizedFormat
+        // if no vaild date is found return
+        if(autoDate.isValid()) {
+            return autoDate.format(dateDisplayFormat);
+        } else {
+            var customDate = moment(timestamp, normalizedFormat);
+            if(customDate.isValid()) {
+                return customDate.format(dateDisplayFormat);
+            } else {
+                return;
+            }
+        }
+
     }
 
     // Data that's shared between the two Spice.add calls.
@@ -158,11 +182,11 @@
                 };
             },
             templates: {
-                group: 'text',
+                group: 'list',
                 options:{
                     moreAt: true
                 }
             }
         };
-    };   
+    };
 }(this));

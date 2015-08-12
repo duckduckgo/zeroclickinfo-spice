@@ -1,0 +1,8 @@
+.zci--pokemon .pokemon__description {
+    margin-bottom: 10px;
+}
+
+.zci--pokemon .zci__header__sub {
+    display: block;
+    padding-left: 0;
+}

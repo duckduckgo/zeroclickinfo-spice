@@ -1,4 +1,5 @@
 package DDG::Spice::Songkick::Artists;
+# ABSTRACT: Get similar artists for artist id of Songkick
 
 use strict;
 use warnings;

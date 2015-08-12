@@ -70,31 +70,41 @@
             meta: {
                 sourceName: 'Rotten Tomatoes',
                 sourceUrl: 'https://www.rottentomatoes.com/search/?search=' + query,
-                itemType: 'Movies'
+                itemType: 'Movies',
+                rerender: [
+                    'image'
+                ]
             },
             normalize: function(item) {
                 // Modify the image from _tmb.jpg to _det.jpg
                 var image = toDetail(item.posters.detailed);
-                return {
-                    rating: Math.max(item.ratings.critics_score / 20, 0),
-                    image: image,
-                    icon_image: get_image(item.ratings.critics_rating),
-                    abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
-                    heading: item.title,
-                    img: image,
-                    img_m: image,
-                    url: item.links.alternate,
-                    is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
-                };
+                
+                if(item.alternate_ids && item.alternate_ids.imdb) {
+                    return {
+                        rating: Math.max(item.ratings.critics_score / 20, 0),
+                        //image: image,
+                        icon_image: get_image(item.ratings.critics_rating),
+                        abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
+                        heading: item.title,
+                        img: image,
+                        //img_m: image,
+                        url: item.links.alternate,
+                        is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
+                    };
+                }
             },
             templates: {
-                group: 'media',
+                group: 'movies',
                 options: {
                     subtitle_content: Spice.movie.subtitle_content,
                     buy: Spice.movie.buy
                 },
                 variants: {
-                    tile: 'poster'
+                    productSub: 'noMax'
+                },
+                elClass: {
+                    tileMediaImg: 'js-movie-img',
+                    productMediaImg: 'js-movie-img'
                 }
             },
             relevancy: {
@@ -106,15 +116,26 @@
                     match: /\.jpg$/,
                     strict: false
                 }]
+            },
+            onItemShown: function(item) {
+                if (!item.alternate_ids || !item.alternate_ids.imdb) { return; }
+
+                $.ajaxSetup({ cache: true });
+
+                $.getJSON("/js/spice/movie_image/tt" + item.alternate_ids.imdb, function(data) {
+                    var path = data && data.movie_results && data.movie_results.length && data.movie_results[0].poster_path,
+                        image = path && "https://image.tmdb.org/t/p/w185" + path;
+
+                    if (image) {
+                        item.set({
+                            img: image,
+                            img_m: image,
+                            image: image
+                        });
+                    }
+                });
             }
         });
-
-        // Make sure we hide the title and ratings.
-        // It looks nice to show only the poster of the movie.
-        var $dom = Spice.getDOM('movie')
-        if ($dom && $dom.length) {
-            $dom.find('.tile__body').hide();
-        }
     };
 
     // Convert minutes to hr. min. format.

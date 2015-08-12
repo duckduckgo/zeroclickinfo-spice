@@ -1,4 +1,5 @@
 package DDG::Spice::Octopart;
+# ABSTRACT: Search for electronic parts
 
 use strict;
 use DDG::Spice;
@@ -15,7 +16,7 @@ attribution github  => ['https://github.com/bnewbold', 'bnewbold'];
 
 triggers any => "datasheet", "specs", "octopart";
 
-spice to => 'http://octopart.com/api/v2/parts/search?apikey={{ENV{DDG_SPICE_OCTOPART_APIKEY}}}&limit=12&optimize.hide_offers=1&optimize.hide_specs=1&q=$1&callback={{callback}}';
+spice to => 'http://octopart.com/api/v3/parts/search?apikey={{ENV{DDG_SPICE_OCTOPART_APIKEY}}}&limit=12&q=$1&include[]=datasheets&include[]=avg_price_v2&include[]=market_status_v2&include[]=imagesets&include[]=short_description&callback={{callback}}';
 
 handle remainder => sub {
     return $_ if $_;
