@@ -1,5 +1,6 @@
-function ddg_spice_maven(api_result) {
-    "use strict";
+(function(env){
+  "use strict";
+  env.ddg_spice_maven = function(api_result){
 
     if (!api_result || api_result.responseHeader.status || api_result.response.numFound == 0) {
         return Spice.failed('maven');
@@ -19,7 +20,7 @@ function ddg_spice_maven(api_result) {
             return {
                 title: searchQuery,
                 subtitle: "Maven Central Repository"
-            }  
+            }
         },
         templates: {
             group: 'text',
@@ -29,4 +30,5 @@ function ddg_spice_maven(api_result) {
             }
         }
     });
-}
+  };
+}(this));

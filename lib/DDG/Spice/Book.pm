@@ -1,4 +1,5 @@
 package DDG::Spice::Book;
+# ABSTRACT: Book reviews
 
 use strict;
 use DDG::Spice;

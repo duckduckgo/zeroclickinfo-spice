@@ -15,7 +15,7 @@ attribution web => 'chrisharrill.com',
             twitter => 'mattr555',
             github => ['https://github.com/mattr555/', 'Matt Ramina'];
 
-triggers start => ['color picker', 'colour picker'];
+triggers start => ['color picker', 'colour picker', 'colorpicker', 'colourpicker'];
 
 spice call_type => 'self';
 

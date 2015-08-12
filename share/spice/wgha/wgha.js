@@ -26,7 +26,11 @@
                 detail: false,
                 item_detail: false,
                 options: {
-                    footer: Spice.wgha.footer
+                    footer: Spice.wgha.footer,
+                },
+                variants: {
+                    tileTitle: "3line-small",
+                    tileFooter: "3line"
                 },
             },
         }

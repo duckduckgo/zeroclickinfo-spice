@@ -20,7 +20,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Parking'
     ),
-    
+
     DDG::Request->new(
         query_raw =>  'parking 21230',
         location => test_location('au')
@@ -29,7 +29,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Parking'
     ),
-    
+
     DDG::Request->new(
         query_raw =>  'baltimore, md parking',
         location => test_location('us')
@@ -38,7 +38,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Parking'
     ),
-    
+
     DDG::Request->new(
         query_raw =>  'parking near radio city music hall ',
         location => test_location('us')
@@ -47,7 +47,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Parking'
     ),
-    
+
     # Confirm whitespace is handeled correctly
     DDG::Request->new(
         query_raw =>  'parking  near  radio city music hall ',
@@ -57,7 +57,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Parking'
     ),
-    
+
     DDG::Request->new(
         query_raw =>  'where to park near fenway park',
         location => test_location('us')
@@ -66,7 +66,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Parking'
     ),
-    
+
     DDG::Request->new(
         query_raw =>  'parking panda washington dc',
         location => test_location('us')
@@ -75,7 +75,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Parking'
     ),
-    
+
     DDG::Request->new(
         query_raw =>  'parking lots near nyc upper west side',
         location => test_location('us')
@@ -84,7 +84,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Parking'
     ),
-    
+
     DDG::Request->new(
         query_raw =>  'parking lots nyc upper west side',
         location => test_location('us')
@@ -93,7 +93,7 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Parking'
     ),
-    
+
     # don't search for parking near 'panda' or 'lots'
     'parking panda !' => undef,
     'parking panda' => undef,

@@ -1,4 +1,5 @@
 package DDG::Spice::Expatistan;
+# ABSTRACT: Compare cities based on cost of living
 
 use strict;
 use DDG::Spice;
