@@ -49,15 +49,63 @@
 
     env.ddg_spice_airlines = function(api_result) {
 
-        // store the user's airline and city search information
-        var queriedAirlines =  null,
-            sourceCity = null,
-            destinationCity = null;
-
-        // Check if we have anything returned.
+        // Check if FlightStats returned anything
         if (!api_result || !api_result.flightStatuses || !api_result.appendix || !api_result.appendix.airlines) {
             return;
         }
+
+        // extract parameters from the Flightstats request
+        var script = $('[src*="/js/spice/airlines/"]')[0];
+        var source = $(script).attr("src");
+        var callParameters = decodeURIComponent(source).split('/');
+        
+        // determine the original date that we made an upstream request
+        var originalRequestDayOfMonth = callParameters[8];
+        var originalRequestHour = callParameters[9];
+
+        // for every API request, we make an additional request to 
+        // grab results for late-night arrivals from the night before and 
+        // red eyes for the next day (relative to UTC)
+        //
+        // more broadly, this allows us to grab a larger window of flights
+        var apiResponseDate = new Date(Date.UTC(api_result.request.date.year,
+                                       api_result.request.date.month-1,
+                                       api_result.request.date.day,
+                                       originalRequestHour, 0, 0));
+
+        // if this response is for the original same-day request...
+        if (originalRequestDayOfMonth == apiResponseDate.getUTCDate()) {
+
+            var apiRequestDate;
+
+            //  and the current hour is before 3AM, get the previous day's flights as well
+            //  (so we can show arrivals for late-night flights)
+            if (originalRequestHour < 3) {
+                apiRequestDate = new Date(apiResponseDate.getTime() - 24 * 60 * 60 * 1000);    
+
+            // otherwise, get the next day's flights so that we have at least
+            // 24 hours worth of flights even as the current day approaches an end
+            } else {
+                apiRequestDate = new Date(apiResponseDate.getTime() + 24 * 60 * 60 * 1000);
+            }
+            
+            // prevent AJAX from appending a timestamp to the URL
+            $.ajaxSetup({ cache: true });
+
+            // make an additional upstream call 
+            $.getScript("/js/spice/airlines/"
+                    + callParameters[4] + "/"
+                    + callParameters[5] + "/"
+                    + apiRequestDate.getUTCFullYear() + "/"
+                    + (apiRequestDate.getUTCMonth()+1) + "/"
+                    + apiRequestDate.getUTCDate() + "/"
+                    + originalRequestHour);
+        }
+
+        env.ddg_spice_airlines.display(api_result);
+    },
+
+    env.ddg_spice_airlines.display = function(api_result) {
 
         // Extract carrier information from query
         var script = $('[src*="/js/spice/airlines/"]')[0],
@@ -95,6 +143,26 @@
 
         // package up the flights into the result array
         for (var i = 0; i < flight.length; i++) {
+
+            // if this flight arrived more than 3 hours ago, do not add it
+            if (flight[i].operationalTimes.actualGateArrival) {
+
+                var arrivalTime = new Date(flight[i].operationalTimes.actualGateArrival.dateUtc);
+
+                if (Date.now() - arrivalTime.getTime() > 3 * 60 * 60 * 1000) {
+                    continue;
+                }
+            }
+
+            // if this flight is departing more than 24 hours into the future, do not add it
+            if (flight[i].operationalTimes.scheduledGateDeparture) {
+
+                var departureTime = new Date(flight[i].operationalTimes.scheduledGateDeparture.dateUtc);
+                
+                if (departureTime.getTime() - Date.now() > 24 * 60 * 60 * 1000) {
+                    continue;
+                }
+            }
 
             var airlineName = dictFlightStats[flight[i].carrierFsCode].name;
             var airlineCode = flight[i].carrierFsCode;
@@ -188,7 +256,6 @@
                 scheduledDepartureDate: scheduledDepartureDate,
                 scheduledArrivalDate: scheduledArrivalDate
             });
-
         }
 
         if (results.length === 0) {
@@ -233,6 +300,7 @@
                     tile: 'xwide'
                 }
             },
+            allowMultipleCalls: true
         });
     }
     

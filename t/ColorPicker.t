@@ -15,6 +15,8 @@ ddg_spice_test(
     [qw( DDG::Spice::ColorPicker )],
     'color picker' => test_spice(@test_args),
     'colour picker' => test_spice(@test_args),
+    'colorpicker' => test_spice(@test_args),
+    'colourpicker' => test_spice(@test_args),
     'color picker #aaa' => test_spice(@test_args),
     'color picker aaa111' => test_spice(@test_args),
     'color picker #aaa111' => test_spice(@test_args),
