@@ -24,7 +24,7 @@
                 data_back: {
                     title: item.name,
                     altSubtitle: subtitle,
-                    footer_content: Spice.indegobikesharelocations.foot_back,
+                    footer_content: Spice.indego_bikeshare_locations.foot_back,
                     lastCommunication: moment(new Date(item.lastCommunicationTime)).fromNow()
 
                 }
