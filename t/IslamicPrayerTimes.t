@@ -22,6 +22,11 @@ my $query = $timestamp . '/' . $latitude . '/' . $longitude . '/America%2FNew_Yo
 
 ddg_spice_test(
     [qw( DDG::Spice::IslamicPrayerTimes)],
+    'salat times' => test_spice(
+        "/js/spice/islamic_prayer_times/$query",
+        call_type => 'include',
+        caller => 'DDG::Spice::IslamicPrayerTimes'
+    ),
     'namaz times' => test_spice(
         "/js/spice/islamic_prayer_times/$query",
         call_type => 'include',
@@ -34,7 +39,8 @@ ddg_spice_test(
     ),
     'fethiye islamic prayer times' => undef,
     'namaz times in istanbul' => undef,
-    'islamic prayer times canakkale' => undef
+    'islamic prayer times canakkale' => undef,
+    'salat times today' => undef
 );
 
 done_testing;
