@@ -7,25 +7,25 @@
         }
 
         function normalize(item) {
-            if (item.features.properties.kioskPublicStatus != 'Active') {
+            if (item.properties.kioskPublicStatus != 'Active') {
                 return null;
             }
-            var subtitle = item.features.properties.bikesAvailable + ' bike' + (item.features.properties.bikesAvailable  == 1 ? '' : 's') + ' | ' + item.features.docksAvailable + ' dock' + (item.features.docksAvailable == 1 ? '' : 's');
+            var subtitle = item.properties.bikesAvailable + ' bike' + (item.properties.bikesAvailable  == 1 ? '' : 's') + ' | ' + item.docksAvailable + ' dock' + (item.docksAvailable == 1 ? '' : 's');
             return {
-                id: item.features.properties.kioskId,
-                name: item.features.properties.name,
-                lat: (item.features.geometry.coordinates[0]).toString(),
-                lon: (item.features.geometry.coordinates[1]).toString(),
+                id: item.properties.kioskId,
+                name: item.properties.name,
+                lat: (item.geometry.coordinates[0]).toString(),
+                lon: (item.geometry.coordinates[1]).toString(),
                 url: 'https://www.rideindego.com/stations/',
                 data_front: {
-                    title: item.features.name,
+                    title: item.name,
                     altSubtitle: subtitle,
                 },
                 data_back: {
-                    title: item.features.name,
+                    title: item.name,
                     altSubtitle: subtitle,
                     footer_content: Spice.indegobikesharelocations.foot_back,
-                    lastCommunication: moment(new Date(item.features.lastCommunicationTime)).fromNow()
+                    lastCommunication: moment(new Date(item.lastCommunicationTime)).fromNow()
 
                 }
             };
