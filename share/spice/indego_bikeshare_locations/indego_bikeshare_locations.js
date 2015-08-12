@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
 
-    env.ddg_spice_indegobikesharelocations = function(api_result) {
+    env.ddg_spice_indego_bikeshare_locations = function(api_result) {
         if (!api_result || !api_result.features) {
             return Spice.failed('indegobikesharelocations');
         }

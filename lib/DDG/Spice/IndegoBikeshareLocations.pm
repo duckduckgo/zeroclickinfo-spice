@@ -18,7 +18,7 @@ code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => 'AcriCAA',
             web  => ['http://www.coreyacri.com',  'Corey Acri'];
 
-triggers any => 'philly bikeshare', 'indego philadelphia', 'bikeshare', 'bike share', 'go indego'. 'indego philly';
+triggers any => 'indego', 'indego bikeshare', 'philly bikeshare', 'indego philadelphia', 'bikeshare', 'bike share', 'go indego'. 'indego philly';
 
 spice to => 'https://api.phila.gov/bike-share-stations/v1';
 spice wrap_jsonp_callback => 1;
