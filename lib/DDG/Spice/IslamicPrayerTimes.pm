@@ -11,7 +11,7 @@ spice proxy_cache_valid => "200 8h";
 
 name "IslamicPrayerTimes";
 description "Islamic prayer times for the current day and location";
-primary_example_queries "islamic prayer times", "namaz times";
+primary_example_queries "islamic prayer times", "namaz times", "salat times";
 category "time_sensitive";
 topics "special_interest", "everyday";
 
@@ -24,7 +24,7 @@ spice to => 'http://api.aladhan.com/timings/$1?latitude=$2&longitude=$3&timezone
 spice from => "(.*)/(.*)/(.*)/(.*)";
 spice wrap_jsonp_callback => 1;
 
-triggers start => 'islamic prayer times', 'namaz times';
+triggers start => 'islamic prayer times', 'namaz times', 'salat times';
 
 # Handle statement
 handle remainder => sub {
