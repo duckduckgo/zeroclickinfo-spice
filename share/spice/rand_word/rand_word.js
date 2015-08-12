@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_rand_word = function(api_result) {
 
-        if (!api_result || api_result.length == 0) {
+        if (!api_result || api_result.length === 0) {
             return Spice.failed('rand_word');
         }
 

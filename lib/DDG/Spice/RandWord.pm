@@ -30,6 +30,10 @@ handle remainder => sub {
         # Quesries like "random word 5-10"
         $minlen = $1;
         $maxlen = $2;
+
+        if ($minlen > $maxlen) {
+            ($minlen, $maxlen) = ($maxlen, $minlen)
+        }
     } elsif ($_ =~ /^\d+$/) {
         # Queries like "5 random words"
         $limit = $_;
