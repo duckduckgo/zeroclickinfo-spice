@@ -47,7 +47,7 @@ function versionInt(v) {
         var query = source.match(/hackage\/([^\/]*)/)[1];
         Spice.add({
             id: "hackage",
-            name: "Hoogle",
+            name: "Software",
             data: results,
             meta: {
                 sourceName: "Hoogle",
