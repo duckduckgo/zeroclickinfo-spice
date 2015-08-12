@@ -159,7 +159,10 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 this.$secondInput.val(padZeros(time.seconds, 2));
             }
         } else {
-            this.setStartingTime(0);
+            // default to 1 min
+            this.setStartingTime(60);
+            this.$minuteInput.val("01");
+            this.$secondInput.val("00");
         }
 
         // prefill name with value
