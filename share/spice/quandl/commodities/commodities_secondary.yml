@@ -1,0 +1,53 @@
+# source: 
+# description: 
+# TRIGGER: 
+
+# source: Open Financial Data Project
+# description: Historical cash aluminium alloy price; Prices are given in $USD/Tonne.
+aluminum alloy: OFDP-ALUMINIUMALLOY_11
+
+# source: Open Financial Data Project
+# description: Historical cash aluminium price; Prices are given in $USD/Tonne.
+aluminum: OFDP-ALUMINIUM_21
+
+# source: US Department of Energy
+# description: Average weekly spot price in various US regions (dollars per short ton).
+coal: DOE-COAL
+
+# source: Open Financial Data Project
+# description: Historical cash copper price; Prices are given in $USD/Tonne.
+copper: OFDP-COPPER
+
+# source: US Department of Energy
+# description: Cushing, OK WTI Spot Price FOB (Dollars per Barrel) 
+crude oil:	DOE-RWTC
+
+# source: US Department of Energy
+# description: Los Angeles Reformulated RBOB Regular Gasoline Spot Price (Dollars per Gallon) 
+gasoline spot: DOE-EER_EPMRR_PF4_Y05LA_DPG
+
+# source: Deutsche Bundesbank Data Repository
+# description: Units:USD, Multiplier:one
+gold: BUNDESBANK-BBK01_WT5511
+
+# source: IMF Cross Country Macroeconomic Statistics
+# description: Natural Gas spot price at the Henry Hub terminal in Louisiana, US$ per Million Metric British Thermal Unit
+natural gas: ODA-PNGASUS_USD
+
+# source: London Platinum & Palladium Market
+# description: The Fixing price represents the matching of orders from customers throughout the world. 
+palladium: LPPM-PALL
+
+# source: London Platinum & Palladium Market
+# description: The Fixing price represents the matching of orders from customers throughout the world. 
+platinum: LPPM-PLAT
+
+# source: London Bullion Market Association
+# description: Silver Price: London Fixing. London Bullion Market Association (LBMA). Fixing levels are set per troy ounce.
+silver: LBMA-SILVER
+
+## NOTE: this data set seems to have many null values
+# source: Johnson Matthey
+# description: US$ per troy oz.
+# iridium: JOHNMATT-IRID
+
