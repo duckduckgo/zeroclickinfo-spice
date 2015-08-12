@@ -24,10 +24,12 @@ spice to => 'http://api.aladhan.com/timings/$1?latitude=$2&longitude=$3&timezone
 spice from => "(.*)/(.*)/(.*)/(.*)";
 spice wrap_jsonp_callback => 1;
 
-triggers any => 'islamic prayer times', 'namaz times';
+triggers start => 'islamic prayer times', 'namaz times';
 
 # Handle statement
 handle remainder => sub {
+    # return if there are words after the triggers
+    return unless $_ eq '';
     # return if location can't be retrieved
     return unless $loc && $loc->latitude && $loc->longitude && $loc->time_zone;
 
