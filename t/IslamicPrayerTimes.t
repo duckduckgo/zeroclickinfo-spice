@@ -3,11 +3,11 @@
 use strict;
 use warnings;
 
+use DateTime;
+use Date::Parse;
 use Test::More;
 use DDG::Test::Spice;
 use DDG::Test::Location;
-use DateTime;
-use Date::Parse;
 
 spice is_cached => 1;
 
