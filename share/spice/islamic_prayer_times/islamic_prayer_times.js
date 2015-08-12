@@ -13,12 +13,12 @@
                 for(var property in timings) {
                     if(timings.hasOwnProperty(property)) {
                         var time = timings[property].split(':');
-                        today.hour(time[0]);
-                        today.minute(time[1]);
+                        today.hour(time[0]).minute(time[1]);
                         if(today.diff(moment.unix(timestamp)) > 0) {
-                            var min = {};
-                            min.diff = today.from(moment.unix(timestamp));
-                            min.title = property;
+                            var min = {
+                                diff: today.from(moment.unix(timestamp)),
+                                title: property
+                            };
                             return min;
                         }
                     }
@@ -64,6 +64,5 @@
             });
 
         });
-
     };
 }(this));
