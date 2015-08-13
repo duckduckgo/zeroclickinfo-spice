@@ -47,9 +47,12 @@
                 // Game Finished/In-Progress
                 if (attrs.has_started) {
                     attrs.canExpand = true;
-                        
+
+                     // Game is Finished
                     if (attrs.has_ended) {
                         attrs.textTotal = l("Final");
+
+                    // Game is in-progress
                     } else {
                         attrs.is_playing = true;
                         attrs.textTotal = l("Score");
@@ -71,10 +74,18 @@
                         } else {
                             attrs.away_team.has_ball = true;
                         }
-                        
                     }
+
+                    // halftime/OT check
+                    if (attrs.score.quarter == "2" && attrs.score.clock == ":00") {
+                        attrs.has_interesting_status = true;
+                        attrs.status = l("Halftime");
+                    } else if (attrs.score.quarter == "5") {
+                        attrs.score.home.scoring[4].quarter = "OT";
+                    }
+
                 }
-                
+              
                 return attrs;
             };
     }
