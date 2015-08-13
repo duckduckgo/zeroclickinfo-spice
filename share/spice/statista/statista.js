@@ -20,9 +20,10 @@
     }
     
     function formatDate(date) {
-        var matches = date.match(/(\d+)\.(\d+)\.(\d+)/);
-        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        return months[(parseInt(matches[2])-1)] + ' ' + matches[3];
+        moment.locale('de');
+        var tstamp = moment(date, "DD.MM.YYYY");
+        moment.locale('en');
+        return moment(tstamp).format('MMM YYYY');
     }
     
     function getPremiumText(item) {
@@ -47,42 +48,44 @@
             return Spice.failed('statista');
         }
 
-        Spice.add({
-            id: "statista",
-            name: "Statista",
-            data: api_result.data,
-            meta: {
-                sourceName: "Statista.com",
-                sourceUrl: 'http://www.statista.com/search/?q='+api_result.q
-            },
-            normalize: function(item) {
-                return {
-                    title: getTitle(item.title),
-                    url: item.Link,
-                    description: item.subject ,
-                    image: getImage(item, 1, 1),
-                    img_m: getImage(item, 1, 0),
-                    heading: item.subject,
-                    abstract: item.description,
-                    footerdate: formatDate(item.date),
-                    footerpremiumcssclass: getPremiumCssClass(item),
-                    footerpremiumtext: getPremiumText(item)
-                    
-                }  
-            },
-            templates: {
-                group: 'media',
-                item_detail: 'products_item_detail',
-	            wrap_detail: 'base_detail',
-                
-                options: {
-                    moreAt: true,
-                    rating: false,
-                    price: false,
-                    brand: false,
-                    footer: Spice.statista.footer
-                }
-            },
+        DDG.require('moment.js', function(){ 
+            Spice.add({
+                id: "statista",
+                name: "Statistics",
+                data: api_result.data,
+                meta: {
+                    sourceName: "Statista",
+                    sourceUrl: 'https://www.statista.com/search/?q='+api_result.q
+                },
+                normalize: function(item) {
+                    return {
+                        title: getTitle(item.title),
+                        url: item.Link,
+                        description: item.subject ,
+                        image: getImage(item, 1, 1),
+                        img_m: getImage(item, 1, 0),
+                        heading: item.subject,
+                        abstract: item.description,
+                        footerdate: formatDate(item.date, moment),
+                        footerpremiumcssclass: getPremiumCssClass(item),
+                        footerpremiumtext: getPremiumText(item)
+
+                    }  
+                },
+                templates: {
+                    group: 'media',
+                    item_detail: 'products_item_detail',
+                    wrap_detail: 'base_detail',
+
+                    options: {
+                        moreAt: true,
+                        rating: false,
+                        price: false,
+                        brand: false,
+                        footer: Spice.statista.footer
+                    }
+                },
+            });
         });
     };
 }(this));

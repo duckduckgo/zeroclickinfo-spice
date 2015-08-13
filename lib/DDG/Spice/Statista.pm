@@ -14,7 +14,7 @@ my $lang = "en";
 
 triggers startend => "statistic", "statistics", "stats";
 
-spice to => 'http://api.statista.com/searchJson/apiKey/{{ENV{DDG_SPICE_STATISTA_APIKEY}}}/q/$1/sort/0/lang/'.$lang.'/limit/'.$limit.'/datefrom/0/dateto/0';
+spice to => 'https://api.statista.com/searchJson/apiKey/{{ENV{DDG_SPICE_STATISTA_APIKEY}}}/q/$1/sort/0/lang/'.$lang.'/limit/'.$limit.'/datefrom/0/dateto/0';
 
 spice wrap_jsonp_callback => 1;
 
