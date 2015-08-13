@@ -297,7 +297,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             this.$progressRotFill.css("transform", "rotate(" + angle + "deg)");
         },
         renderTime: function () {
-            var time = getHrsMinsSecs(this.timeLeftMs / 1000);
+            var time = getHrsMinsSecs(Math.ceil(this.timeLeftMs / 1000));
 
             // update text timer
             this.$hoursMinutesDisplay.html(padZeros(time.hours, 2) + ":" + padZeros(time.minutes, 2));
