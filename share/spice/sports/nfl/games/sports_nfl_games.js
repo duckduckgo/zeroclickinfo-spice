@@ -42,7 +42,7 @@
         
             NFLGameData = function(attrs) {
                 attrs.canExpand = false;
-                attrs.relativeDay = Games.getRelativeDay(attrs.scheduled);
+                attrs.relativeDay = Games.getRelativeDay(attrs.start_time);
                 
                 // Game Finished/In-Progress
                 if (attrs.has_started) {
