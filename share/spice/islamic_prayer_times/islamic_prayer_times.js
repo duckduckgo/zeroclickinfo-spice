@@ -1,6 +1,6 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_islamic_prayer_times = function(api_result){
+    env.ddg_spice_islamic_prayer_times = function(api_result) {
 
         if (!api_result || api_result.error || api_result.status_code === 0 || !api_result.items) {
             return Spice.failed('islamic_prayer_times');
@@ -52,20 +52,22 @@
                     sourceUrl: api_result.link
                 },
                 normalize: function(data) {
+                    console.log(data);
                     // if isha, which is the last prayer in the day, is past, then get results for tomorrow
                     var index = moment().diff(moment(data.items[0].isha, 'hh:mm A')) > 0 ? 1 : 0;
                     return {
                         title: data.title,
                         datum: moment(data.items[index].date_for, 'YYYY-MM-DD').format('LL'),
                         infoboxData: getInfoboxData(data.items[index]),
-                        closest: getClosest(data.items[index], index)
+                        closest: getClosest(data.items[index], index),
+                        qibla: data.qibla_direction
                     };
                 },
                 templates: {
                     group: 'info',
                     options: {
                         content: Spice.islamic_prayer_times.islamic_prayer_times,
-                        moreAt: true
+                        moreAt: false
                     }
                 }
             });
