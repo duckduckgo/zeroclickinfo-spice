@@ -3,44 +3,38 @@
 use strict;
 use warnings;
 
-use DateTime;
-use Date::Parse;
 use Test::More;
 use DDG::Test::Spice;
 use DDG::Test::Location;
-
-spice is_cached => 1;
-
-my $loc  = test_location("us");
-my $latitude = $loc->latitude;
-my $longitude = $loc->longitude;
-my $timezone = $loc->time_zone;
-my $datetime = DateTime->now;
-$datetime->set_time_zone($timezone);
-my $timestamp = str2time($datetime);
-my $query = $timestamp . '/' . $latitude . '/' . $longitude . '/America%2FNew_York';
+use DDG::Request;
 
 ddg_spice_test(
     [qw( DDG::Spice::IslamicPrayerTimes)],
-    'salat times' => test_spice(
-        "/js/spice/islamic_prayer_times/$query",
+    DDG::Request->new(
+        query_raw => "salat times",
+        location => test_location("us")
+    ) => test_spice(
+        "/js/spice/islamic_prayer_times/Phoenixville%2CPennsylvania%2CUnited%20States",
         call_type => 'include',
         caller => 'DDG::Spice::IslamicPrayerTimes'
     ),
-    'namaz times' => test_spice(
-        "/js/spice/islamic_prayer_times/$query",
+    'fethiye namaz times' => test_spice(
+        "/js/spice/islamic_prayer_times/fethiye",
         call_type => 'include',
         caller => 'DDG::Spice::IslamicPrayerTimes'
     ),
-    'islamic prayer times' => test_spice(
-        "/js/spice/islamic_prayer_times/$query",
+    'salat times for dc' => test_spice(
+        "/js/spice/islamic_prayer_times/dc",
         call_type => 'include',
         caller => 'DDG::Spice::IslamicPrayerTimes'
     ),
-    'fethiye islamic prayer times' => undef,
-    'namaz times in istanbul' => undef,
-    'islamic prayer times canakkale' => undef,
-    'salat times today' => undef
+    'islamic prayer times in new york usa' => test_spice(
+        "/js/spice/islamic_prayer_times/new%20york%20usa",
+        call_type => 'include',
+        caller => 'DDG::Spice::IslamicPrayerTimes'
+    ),
+    'prayer times' => undef,
+    'namaz time' => undef
 );
 
 done_testing;

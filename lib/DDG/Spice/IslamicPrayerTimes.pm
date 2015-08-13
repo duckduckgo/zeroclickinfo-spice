@@ -1,17 +1,16 @@
 package DDG::Spice::IslamicPrayerTimes;
-# ABSTRACT: Shows Islamic prayer times according to user's current location and time
+# ABSTRACT: Shows Islamic prayer times according to given or user's current location and time
 
 use strict;
-use DateTime;
-use Date::Parse;
 use DDG::Spice;
+use Text::Trim;
 
 spice is_cached => 1;
 spice proxy_cache_valid => "200 8h";
 
 name "IslamicPrayerTimes";
-description "Islamic prayer times for the current day and location";
-primary_example_queries "islamic prayer times", "namaz times", "salat times";
+description "Islamic prayer times for the current day and given location";
+primary_example_queries "islamic prayer times", "fethiye namaz times", "salat times in dc", "namaz times for san marino";
 category "time_sensitive";
 topics "special_interest", "everyday";
 
@@ -20,29 +19,35 @@ attribution github  => ["https://github.com/ozdemirburak", "Burak Özdemir"],
             twitter => ["https://twitter.com/ozdemirbur", "Burak Özdemir"],
             web     => ["http://burakozdemir.co.uk", "Burak Özdemir"];
 
-spice to => 'http://api.aladhan.com/timings/$1?latitude=$2&longitude=$3&timezonestring=$4';
-spice from => "(.*)/(.*)/(.*)/(.*)";
+spice to => 'http://muslimsalat.com/$1.json?key={{ENV{DDG_SPICE_MUSLIMSALAT_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
-triggers start => 'islamic prayer times', 'namaz times', 'salat times';
+triggers startend => 'islamic prayer times', 'namaz times', 'salat times';
 
 # Handle statement
 handle remainder => sub {
-    # return if there are words after the triggers
-    return unless $_ eq '';
-    # return if location can't be retrieved
-    return unless $loc && $loc->latitude && $loc->longitude && $loc->time_zone;
-
-    # variables needed for api call
-    my $latitude = $loc->latitude;
-    my $longitude = $loc->longitude;
-    my $timezone = $loc->time_zone;
-    # set the timestamp according to user's location
-    my $datetime = DateTime->now;
-    $datetime->set_time_zone($timezone);
-    my $timestamp = str2time($datetime);
-
-    return $timestamp, $latitude, $longitude, $timezone;
+    # set properties according to user's current location if there are no words but only triggers
+    if ($_ eq '') {
+        # return if location can't be retrieved
+        return unless $loc and $loc->city;
+        # return joined, city, region and country names
+        my @location = ();
+        push(@location, $loc->city);
+        if ($loc->region_name) {
+           push(@location, $loc->region_name);
+        }
+        if ($loc->country_name) {
+           push(@location, $loc->country_name);
+        }
+        return join(',', @location);
+    }
+    # get city, state or country from the query
+    my $city = $_;
+    my @conjunctions = ("in", "of", "for", "at", "by", "near");
+    my ($rx) = map qr/(?:$_)/, join "|", map qr/\b\Q$_\E\b/, @conjunctions;
+    # remove conjunctions from string
+    $city =~ s/$rx//g;
+    return trim($city);
 };
 
 1;

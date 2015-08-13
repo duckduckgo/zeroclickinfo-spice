@@ -2,22 +2,25 @@
     "use strict";
     env.ddg_spice_islamic_prayer_times = function(api_result){
 
-        if (!api_result || api_result.error || api_result.code != 200 || !api_result.data) {
+        if (!api_result || api_result.error || api_result.status_code === 0 || !api_result.items) {
             return Spice.failed('islamic_prayer_times');
         }
 
         DDG.require('moment.js', function() {
 
-            function getClosest(timings, timestamp) {
+            function capitalize(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+
+            function getClosest(timings) {
                 var today = moment();
-                for(var property in timings) {
-                    if(timings.hasOwnProperty(property)) {
-                        var time = timings[property].split(':');
-                        today.hour(time[0]).minute(time[1]);
-                        if(today.diff(moment.unix(timestamp)) > 0) {
+                for (var property in timings) {
+                    if (timings.hasOwnProperty(property)) {
+                        var time = moment(timings[property], 'hh:mm A');
+                        if (today.diff(time) < 0) {
                             var min = {
-                                diff: today.from(moment.unix(timestamp)),
-                                title: property
+                                diff: time.from(today),
+                                title: capitalize(property)
                             };
                             return min;
                         }
@@ -28,10 +31,11 @@
 
             function getInfoboxData(timings) {
                 var infoboxData = [];
-                for(var property in timings) {
-                    if(timings.hasOwnProperty(property)) {
+                if ('date_for' in timings) delete timings.date_for; // remove the unnecessary one
+                for (var property in timings) {
+                    if (timings.hasOwnProperty(property)) {
                         infoboxData.push({
-                            label: property,
+                            label: capitalize(property),
                             value: timings[property]
                         });
                     }
@@ -42,23 +46,24 @@
             Spice.add({
                 id: "islamic_prayer_times",
                 name: "Islamic Prayer Times",
-                data: api_result.data,
+                data: api_result,
                 meta: {
-                    sourceName: "Aladhan",
-                    sourceUrl: "aladhan.com"
+                    sourceName: "Muslim Salat",
+                    sourceUrl: api_result.link
                 },
-                normalize: function(item) {
+                normalize: function(data) {
                     return {
-                        title: moment(item.date.readable).format('LL'),
-                        infoboxData: getInfoboxData(item.timings),
-                        closest: getClosest(item.timings, item.date.timestamp)
+                        title: data.title,
+                        datum: moment(data.items[0].date_for, 'YYYY-MM-DD').format('LL'),
+                        infoboxData: getInfoboxData(data.items[0]),
+                        closest: getClosest(data.items[0])
                     };
                 },
                 templates: {
                     group: 'info',
                     options: {
                         content: Spice.islamic_prayer_times.islamic_prayer_times,
-                        moreAt: false
+                        moreAt: true
                     }
                 }
             });
