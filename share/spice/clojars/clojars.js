@@ -1,15 +1,16 @@
 (function(env) {
     "use strict";
+    var search_terms = DDG.get_query().split(" ");
+
+    function keep_it(candidate) {
+        return DDG.isRelevant(candidate, ['clojure', 'clojars', 'lib', 'library','pacakge'], 1, 0);
+    }
+
+        var clojar_artifact = search_terms.filter(keep_it);
     env.ddg_spice_clojars = function(api_result) {
 
         // Validate the response (customize for your Spice)
-        var search_terms = DDG.get_query().split(" ");
-
-        function keep_it(candidate) {
-            return DDG.isRelevant(candidate, ['clojure', 'clojars', 'lib', 'library'], 1, 0);
-        }
-
-        var clojar_artifact = search_terms.filter(keep_it);
+      
 
         if (!api_result || api_result.error) {
             return Spice.failed('clojars');
@@ -20,7 +21,7 @@
         Spice.add({
             id: "clojars",
             // Customize these properties
-            name: 'On Clojars',
+            name: 'Packages',
             data: api_result.results,
 
             meta: {
@@ -34,7 +35,7 @@
                 item_detail: false,
 
                 variants: {
-                    tileTitle: 'basic4'                  
+                    tile: 'basic4'                  
                 }
             },
             normalize: function(item) {

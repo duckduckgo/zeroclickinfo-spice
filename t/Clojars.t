@@ -9,9 +9,6 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::Clojars)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
     'clojure instaparse' => test_spice(
         '/js/spice/clojars/instaparse',
         call_type => 'include',
@@ -31,10 +28,17 @@ ddg_spice_test(
     '/js/spice/clojars/instaparse',
      call_type => 'include',
      caller => 'DDG::Spice::Clojars'
+    ),
+    'clojure package instaparse' => test_spice(
+    '/js/spice/clojars/instaparse',
+     call_type => 'include',
+     caller => 'DDG::Spice::Clojars'
+    ),
+    'clojure lib cascalog incanter' => test_spice(
+    '/js/spice/clojars/cascalog%22-%22incanter',
+     call_type => 'include',
+     caller => 'DDG::Spice::Clojars'
     )
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-  
 );
 
 done_testing;
