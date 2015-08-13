@@ -57,7 +57,7 @@
                         attrs.textGameOver = l("Game ended");
                     } else {
                         attrs.textTotal = l("Score");
-                        attrs.textLastUpdate = l("Last updated %s", Handlebars.helpers.momentTime(attrs.updated));
+                        attrs.textLastUpdate = Games.getLastUpdate(attrs.updated);
                     }
                     
                     // pitch_count contains the current game status

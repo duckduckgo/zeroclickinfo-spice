@@ -101,6 +101,19 @@
             }
             
             return score;
+        },
+
+        // returns text with the last updated timestamp if the data
+        // is potentially stale 
+        getLastUpdate: function(dateStr) {
+            var now = moment(),
+                time = moment.utc(dateStr, DATE_FORMAT).local();
+
+            if (now.diff(time, 'minutes') > 15) {
+                return l("Last updated %s", Handlebars.helpers.momentTime(dateStr));
+            } else {
+                return false;
+            }
         }
     };
 

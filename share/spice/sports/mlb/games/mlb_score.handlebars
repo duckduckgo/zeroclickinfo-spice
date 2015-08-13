@@ -113,7 +113,13 @@
 					<span class="c-score__foot__info">{{textGameOver}}</span>
 				{{/if}}
 			{{else}}
-				{{#and updated has_started}}<span class="c-score__foot__info">{{textLastUpdate}}</span>{{/and}}
+				{{#if has_started}}
+					{{#if textLastUpdate}}
+						<span class="c-score__foot__info">{{textLastUpdate}}</span>
+					{{else}}
+						{{{include 'DDH.sports_mlb_games.pitch_count'}}}
+					{{/if}}
+				{{/if}}
 			{{/if}}
 			</div>
 		</div>
