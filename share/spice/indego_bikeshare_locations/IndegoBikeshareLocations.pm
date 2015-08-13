@@ -16,14 +16,14 @@ code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => 'AcriCAA',
             web  => ['http://www.coreyacri.com',  'Corey Acri'];
 
-triggers any => 'philly bikeshare', 'indego philadelphia', 'bikeshare', 'bike share', 'go indego';
+triggers any => 'indego', 'bikeshare', 'bike share', 'go indego';
 
 spice to => 'https://api.phila.gov/bike-share-stations/v1';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => '200 304 15m';
 
 handle remainder => sub {
-    $loc->city.' '.$_ =~ /(phl|philadelphia|philly)/i;
+    $loc->city.' '.$_ =~ /(philadelphia|philly|phl)/i;
     return unless $1;
     return $1;
 };

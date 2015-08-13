@@ -10,19 +10,19 @@
             if (item.properties.kioskPublicStatus != 'Active') {
                 return null;
             }
-            var subtitle = item.properties.bikesAvailable + ' bike' + (item.properties.bikesAvailable  == 1 ? '' : 's') + ' | ' + item.docksAvailable + ' dock' + (item.docksAvailable == 1 ? '' : 's');
+            var subtitle = item.properties.bikesAvailable + ' bike' + (item.properties.bikesAvailable  == 1 ? '' : 's') + ' | ' + item.properties.docksAvailable + ' dock' + (item.properties.docksAvailable == 1 ? '' : 's') ;
             return {
                 id: item.properties.kioskId,
                 name: item.properties.name,
-                lat: (item.geometry.coordinates[0]).toString(),
-                lon: (item.geometry.coordinates[1]).toString(),
+                lat: (item.geometry.coordinates[1]).toString(),
+                lon: (item.geometry.coordinates[0]).toString(),
                 url: 'https://www.rideindego.com/stations/',
                 data_front: {
-                    title: item.name,
+                    title: item.properties.name,
                     altSubtitle: subtitle,
                 },
                 data_back: {
-                    title: item.name,
+                    title: item.properties.name,
                     altSubtitle: subtitle,
                     footer_content: Spice.indego_bikeshare_locations.foot_back,
                     lastCommunication: moment(new Date(item.lastCommunicationTime)).fromNow()
@@ -35,13 +35,14 @@
         DDG.require('maps', function() {
             Spice.add({
                 id: 'IndegoBikeSharePHL',
-                name: 'Indego Bike Share PHL',
+                name: 'Indego Bike Share',
                 meta: {
                     type: 'Indego Bike Share Locations',
                     sourceName: 'Ride Indego',
                     sourceUrl: 'http://www.rideindego.com/stations/',
                     itemType: 'station map'
                 },
+             
                 model: 'Place',
                 view: 'Places',
                 templates: {
