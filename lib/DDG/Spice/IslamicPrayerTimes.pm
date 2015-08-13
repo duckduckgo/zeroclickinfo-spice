@@ -19,7 +19,7 @@ attribution github  => ["https://github.com/ozdemirburak", "Burak Özdemir"],
             twitter => ["https://twitter.com/ozdemirbur", "Burak Özdemir"],
             web     => ["http://burakozdemir.co.uk", "Burak Özdemir"];
 
-spice to => 'http://muslimsalat.com/$1.json?key={{ENV{DDG_SPICE_MUSLIMSALAT_APIKEY}}}';
+spice to => 'http://muslimsalat.com/$1/weekly.json?key={{ENV{DDG_SPICE_MUSLIMSALAT_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
 triggers startend => 'islamic prayer times', 'namaz times', 'salat times';

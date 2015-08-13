@@ -12,11 +12,11 @@
                 return string.charAt(0).toUpperCase() + string.slice(1);
             }
 
-            function getClosest(timings) {
+            function getClosest(timings, index) {
                 var today = moment();
                 for (var property in timings) {
                     if (timings.hasOwnProperty(property)) {
-                        var time = moment(timings[property], 'hh:mm A');
+                        var time = moment(timings[property], 'hh:mm A').add('days', index);
                         if (today.diff(time) < 0) {
                             var min = {
                                 diff: time.from(today),
@@ -52,11 +52,13 @@
                     sourceUrl: api_result.link
                 },
                 normalize: function(data) {
+                    // if isha, which is the last prayer in the day, is past, then get results for tomorrow
+                    var index = moment().diff(moment(data.items[0].isha, 'hh:mm A')) > 0 ? 1 : 0;
                     return {
                         title: data.title,
-                        datum: moment(data.items[0].date_for, 'YYYY-MM-DD').format('LL'),
-                        infoboxData: getInfoboxData(data.items[0]),
-                        closest: getClosest(data.items[0])
+                        datum: moment(data.items[index].date_for, 'YYYY-MM-DD').format('LL'),
+                        infoboxData: getInfoboxData(data.items[index]),
+                        closest: getClosest(data.items[index], index)
                     };
                 },
                 templates: {
