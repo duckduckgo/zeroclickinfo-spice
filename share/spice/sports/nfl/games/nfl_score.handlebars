@@ -40,13 +40,7 @@
 		<div class="c-score__line__name">
 			{{~#with away_team~}}
 			<div class="c-score__team {{#if has_ball}}has-status{{/if}}">
-				<div class="c-score__team__logo">
-					<img class="c-score__team__img  js-lazysvg" src="" data-src="{{image}}">
-				</div>
-				<div class="c-score__team__name">
-					<span class="c-score__team__market">{{location}}</span>
-					<span class="c-score__team__nick">{{name}}</span>
-				</div>
+				{{{include 'DDH.sports.team_name'}}}
 				{{#if has_ball}}
 					<span class="c-score__team__status ddgsi-football" title="{{status_title}}"></span>
 				{{/if}}
@@ -75,14 +69,7 @@
 		<div class="c-score__line__name">
 			{{#with home_team}}
 			<div class="c-score__team {{#if has_ball}}has-status{{/if}}">
-				<div class="c-score__team__logo">
-					<img class="c-score__team__img  js-lazysvg" src="" data-src="{{image}}">
-					
-				</div>
-				<div class="c-score__team__name">
-					<span class="c-score__team__market">{{location}}</span>
-					<span class="c-score__team__nick">{{name}}</span>
-				</div>
+				{{{include 'DDH.sports.team_name'}}}
 				{{#if has_ball}}
 					<span class="c-score__team__status ddgsi-football" title="{{status_title}}"></span>
 				{{/if}}
