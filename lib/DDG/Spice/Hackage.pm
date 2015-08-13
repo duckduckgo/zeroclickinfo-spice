@@ -9,7 +9,10 @@ spice to => 'https://www.haskell.org/hoogle/?mode=json&hoogle=$1&count=30';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-    return $_ if $_;
+    if ($_) {
+        $_ =~ s/\s?packages?\s?//g;
+        return $_;
+    }
     return;
 };
 
