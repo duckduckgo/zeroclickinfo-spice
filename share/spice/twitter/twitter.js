@@ -35,7 +35,7 @@
                 sourceName: "Twitter",
             },
             normalize: function(item) {
-                var subtitle = ["@" + item.user, ];
+                var subtitle = ["@" + item.user];
                 if (item.location) {
                     subtitle.push(item.location);
                 }
