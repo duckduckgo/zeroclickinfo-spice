@@ -36,14 +36,7 @@
 		<div class="c-score__line__name">
 			{{~#with away_team~}}
 			<div class="c-score__team">
-				<div class="c-score__team__logo">
-					<img class="c-score__team__img  js-lazysvg" src="" data-src="{{image}}">
-				</div>
-				<div class="c-score__team__name">
-					<span class="c-score__team__market">{{location}}</span>
-					<span class="c-score__team__nick">{{name}}</span>
-				</div>
-				<div class="c-score__team__short">{{short_name}}</div>
+				{{{include 'DDH.sports.team_name'}}}
 			</div>
 			{{~/with~}}
 		</div>
@@ -68,15 +61,7 @@
 		<div class="c-score__line__name">
 			{{#with home_team}}
 			<div class="c-score__team">
-				<div class="c-score__team__logo">
-					<img class="c-score__team__img  js-lazysvg" src="" data-src="{{image}}">
-					
-				</div>
-				<div class="c-score__team__name">
-					<span class="c-score__team__market">{{location}}</span>
-					<span class="c-score__team__nick">{{name}}</span>
-				</div>
-				<div class="c-score__team__short">{{short_name}}</div>
+				{{{include 'DDH.sports.team_name'}}}
 			</div>
 			{{/with}}
 		</div>
