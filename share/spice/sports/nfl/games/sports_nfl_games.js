@@ -1,7 +1,16 @@
 (function (env) {
     "use strict";
     
-    var Games;
+    var Games,
+        OPS = {
+            _checkClock: true,
+            _setOT: true,
+            currentName: "quarter",
+            counter: "quarter",
+            name: "scoring",
+            half: 2,
+            min: 4
+        };
     
     env.ddg_spice_sports_nfl_games = function(apiResult) {
 
@@ -42,7 +51,7 @@
         
             NFLGameData = function(attrs) {
                 // default normalize first
-                attrs = Games.normalize(attrs);
+                attrs = Games.normalize(attrs, OPS);
 
                 // Game Finished/In-Progress
                 if (attrs.has_started) {
@@ -50,15 +59,11 @@
                     // Game is in-progress
                     if (!attrs.has_ended) {
 
-                        attrs.score = Games.fillBoxscore(attrs.score, {
-                            current: attrs.score.quarter,
-                            counter: "quarter",
-                            name: "scoring",
-                            min: 4,
+                        attrs.score = Games.fillBoxscore(attrs.score, $.extend(OPS, {
                             obj: {
                                 points: Games.PLACEHOLDER
                             }
-                        });
+                        }));
 
                         // set possession on the relevant team object
                         if (attrs.score.possession.team === attrs.home_team.api_id) {
@@ -67,15 +72,6 @@
                             attrs.away_team.has_ball = true;
                         }
                     }
-
-                    // halftime/OT check
-                    if (attrs.score.quarter == "2" && attrs.score.clock == ":00") {
-                        attrs.has_interesting_status = true;
-                        attrs.status = l("Halftime");
-                    } else if (attrs.score.quarter == "5") {
-                        attrs.score.home.scoring[4].quarter = "OT";
-                    }
-
                 }
               
                 return attrs;

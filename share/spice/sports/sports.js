@@ -50,10 +50,13 @@
          * that all sports will end up doing
          *
          * @param {Object} attrs
+         * @param {Object} ops
          *
          * returns {Object} attrs
          */
-        normalize: function(attrs) {
+        normalize: function(attrs, ops) {
+            ops = ops || {};
+
             attrs.canExpand = false;
             attrs.relativeDay = this.getRelativeDay(attrs.start_time);
 
@@ -75,6 +78,17 @@
                         attrs.textTotal = l("Score");
                         attrs.textLastUpdate = this.getLastUpdate(attrs.updated);
                     }
+
+                    // set overtime labels (if necessary)
+                    if (ops._setOT) {
+                        attrs.score = this.setOvertime(attrs.score, ops);
+                    }
+
+                     // check for the ends of quarters
+                    if (ops._checkClock) {
+                        attrs = this.getClockStatus(attrs, ops);
+                    }
+
                 }
             }
             
@@ -164,7 +178,9 @@
          * @param {Object} ops - loop parameters
          * 
          * Sub-parameters for ops:
-         * @param {string} ops.current - currently active scoring sequence
+         * @param {string} [ops.current] - currently active scoring sequence
+         * @param {string} [ops.currentName] - parameter name for currently active scoring sequence
+         * - One of 'current' or 'currentName' is required
          * @param {string} ops.name - name of the scoring sequence object (e.g. 'innings', 'scoring')
          * @param {string} ops.counter - name of the counting parameter that the template uses
          * @param {number} ops.min - minimum number of scoring periods
@@ -174,8 +190,10 @@
          */
         fillBoxscore: function(score, ops) {
             if (!score || !ops) { return; }
-            
-            for(var i=ops.current; i < ops.min; i++) {
+
+            var i = ops.current || score[ops.currentName];
+
+            for(; i < ops.min; i++) {
                 // create placeholder score object
                 score.home[ops.name][i] =
                 score.away[ops.name][i] = $.extend({}, ops.obj);
@@ -218,24 +236,30 @@
          * @param {Object} ops - other parameters
          *
          * Sub-parameters for ops:
-         * @param {string} ops.current - currently active scoring sequence
+         * @param {string} [ops.current] - currently active scoring sequence
+         * @param {string} [ops.currentName] - parameter name for currently active scoring sequence
+         * - One of 'current' or 'currentName' is required
+         *
          * @param {number} [ops.half] - label as 'Halftime' instead of 'End of...' if matches
          * @param {string} [ops.end=:00] - clock reading at the end of a scoring sequence
          * @param {string} [ops.clock=attrs.score.clock] - alternate clock parameter
          */
         getClockStatus: function(attrs, ops) {
-            if (!attrs || !ops || !ops.current) { return attrs; }
+            if (!attrs || !ops || (!ops.current && !ops.currentName)) { return attrs; }
 
             var clock = ops.clock || attrs.score.clock,
-                end = ops.end || ':00';
+                end = ops.end || ':00',
+                current;
 
             if (clock === end) {
                 attrs.has_interesting_status = true; // show the status label in the template
 
-                if (ops.half && ops.current === ops.half) {
+                current = ops.current || attrs.score[ops.currentName];
+
+                if (ops.half && current === ops.half) {
                     attrs.status = l("Halftime");
                 } else {
-                    attrs.status = l("End of %s", DDG.getOrdinal(ops.current));
+                    attrs.status = l("End of %s", DDG.getOrdinal(current));
                 }
             }
 
@@ -254,11 +278,20 @@
          *
          * Sub-parameters for ops:
          * @param {string} ops.counter - name of the counting parameter
+         * @param {string} [ops.parent=home] - name of the scoring sequence parent
          * @param {string} ops.name - name of the scoring sequence object (e.g. 'innings', 'scoring')
-         * @param {number} ops.max - maximum number of scoring periods before labelling overtime
+         * @param {number} ops.min - minimum number of scoring periods before labelling overtime
          */
         setOvertime: function(score, ops) {
-            
+            if (!score || !ops || !ops.counter || !ops.name || !ops.min) { return score; }
+
+            var parent = ops.parent || 'home', // should contain 'ops.counter' label used in template
+                i = ops.min;
+
+            for(; i < score[parent][ops.name].length; i++) {
+                score[parent][ops.name][i][ops.counter] = 'OT';
+            }
+
             return score;
         }
     };
