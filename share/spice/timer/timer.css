@@ -70,10 +70,6 @@
     border-color: #eee;
 }
 
-.zci--timer .timer_container.status_stopped .play_pause .progress {
-    border-color: #de5a2a;
-}
-
 .zci--timer .play_pause .fill {
     display: none;
     top: -4px;
@@ -100,6 +96,11 @@
     border: 4px solid #4ab857;
     box-sizing: border-box;
     border-radius: 50%;
+}
+
+.zci--timer .status_stopped .play_pause .fill,
+.zci--timer .status_stopped .play_pause .rotated_fill {
+    display: block;
 }
 
 .zci--timer .play_pause .rotated_fill {
@@ -135,7 +136,7 @@
 }
 
 .zci--timer .timer_container.status_stopped .play_pause a {
-    color: #de5a2a;
+    color: #4ab857;
 }
 
 /* button look for different timer statuses */
@@ -152,7 +153,7 @@
 }
 
 .zci--timer .status_stopped .play_pause a:after {
-    content: "\00d7"; /* same as &times; */
+    content: "\2713"; /* check */
     position: relative;
     right: 1px;
     bottom: 1px;
