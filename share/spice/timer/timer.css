@@ -30,21 +30,20 @@
     display: block;
     width: 140px;
     height: 140px;
-    border: none;
 }
 
 .zci--timer a#add_timer_btn {
-    width: 70%;
-    height: 70%;
-    border-radius: 50%;
-    border: 4px solid #dedede;
+    width: 100%;
     text-decoration: none;
     display: block;
-    margin: 10% 0 0 10%;
     text-align: center;
     font-size: 4em;
-    line-height: 2em;
+    line-height: 2.85em;
     cursor: pointer;
+}
+
+.zci--timer a#add_timer_btn:hover {
+    color: #333;
 }
 
 /* PLAY/PAUSE BTN */
