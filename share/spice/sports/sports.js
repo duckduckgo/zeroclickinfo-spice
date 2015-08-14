@@ -205,6 +205,61 @@
             } else {
                 return false;
             }
+        },
+
+        /**
+         * change status based on clock
+         *
+         * Determines whether to display some text
+         * instead of the standard game timer,
+         * depending on what the clock is reading.
+         *
+         * @param {Object} attrs - game data object
+         * @param {Object} ops - other parameters
+         *
+         * Sub-parameters for ops:
+         * @param {string} ops.current - currently active scoring sequence
+         * @param {number} [ops.half] - label as 'Halftime' instead of 'End of...' if matches
+         * @param {string} [ops.end=:00] - clock reading at the end of a scoring sequence
+         * @param {string} [ops.clock=attrs.score.clock] - alternate clock parameter
+         */
+        getClockStatus: function(attrs, ops) {
+            if (!attrs || !ops || !ops.current) { return attrs; }
+
+            var clock = ops.clock || attrs.score.clock,
+                end = ops.end || ':00';
+
+            if (clock === end) {
+                attrs.has_interesting_status = true; // show the status label in the template
+
+                if (ops.half && ops.current === ops.half) {
+                    attrs.status = l("Halftime");
+                } else {
+                    attrs.status = l("End of %s", DDG.getOrdinal(ops.current));
+                }
+            }
+
+            return attrs;
+        },
+
+        /**
+         * set overtime labels
+         *
+         * changes the labels for any scoring periods
+         *  beyond the 'maximum' to 'OT'
+         * (e.g. 5th quarter -> OT)
+         *
+         * @param {Object} score - boxscore object
+         * @param {Object} ops - loop parameters
+         *
+         * Sub-parameters for ops:
+         * @param {string} ops.counter - name of the counting parameter
+         * @param {string} ops.name - name of the scoring sequence object (e.g. 'innings', 'scoring')
+         * @param {number} ops.max - maximum number of scoring periods before labelling overtime
+         */
+        setOvertime: function(score, ops) {
+            
+            return score;
         }
     };
 
