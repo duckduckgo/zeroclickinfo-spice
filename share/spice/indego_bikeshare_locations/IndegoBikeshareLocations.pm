@@ -1,6 +1,5 @@
 package DDG::Spice::IndegoBikeshareLocations;
 
-
 use strict;
 use DDG::Spice;
 
@@ -16,14 +15,14 @@ code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => 'AcriCAA',
             web  => ['http://www.coreyacri.com',  'Corey Acri'];
 
-triggers any => 'philly bikeshare', 'indego', 'bikeshare', 'bike share', 'ride indego', 'philadelphia bikeshare';
+triggers any => 'indego', 'bikeshare', 'bike share', 'ride indego';
 
 spice to => 'https://api.phila.gov/bike-share-stations/v1';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => '200 304 15m';
 
 handle remainder => sub {
-    $loc->city.' '.$_ =~ /(philadelphia|phl)/i;
+    $loc->city.' '.$_ =~ /(philadelphia|phl|philly)/i;
     return unless $1;
     return $1;
 
