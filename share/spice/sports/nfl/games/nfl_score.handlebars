@@ -5,9 +5,9 @@
 				<span class="c-score__status">{{status}}</span>
 			{{else}}
 				{{#if is_playing}}
-					<span class="c-score__clock"><b>Q{{score.quarter}} {{score.clock}}</b></span>
+					<span class="c-score__clock pull-left"><b>Q{{score.quarter}} {{score.clock}}</b></span>
 					{{#with score.possession}}
-						<span class="pull-right">{{ordinal down}} & {{yfd}}, {{side}} {{yard_line}}</span>
+						<span class="pull-right">{{#if down}}{{ordinal down}} & {{yfd}},{{/if}} {{side}} {{yard_line}}</span>
 					{{/with}}
 				{{else}}
 					{{#if relativeDay}}
