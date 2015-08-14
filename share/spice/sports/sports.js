@@ -28,13 +28,23 @@
         },
 
         PLACEHOLDER: '<span class="tx-clr--grey-light">&bull;</span>',
-        
+
+        ////////////////////
+        // initialize boxscore answer
+        //
+        // called from the individual sports functions to ensure
+        //  any relevant/required libraries are loaded (e.g. moment)
         init: function(callback) {
             DDG.require('moment.js', function() {
                 callback();
             });
         },
-    
+
+        ////////////////////
+        // change data.games
+        //
+        // manipulates the game data to ensure that the most
+        // relevant games are displayed in certain scenarios
         transformGameData: function(data) {
             // We do a minor transform on the data to ensure that the 
             // 'most relevant' game appears first.  This is unnecessary
@@ -69,7 +79,12 @@
                 return games;
             }
         },
-        
+
+        ////////////////////
+        // get relativeDay
+        //
+        // use moment.js to determine if the game's
+        // start time is 'today', 'tomorrow', or 'yesterday'
         getRelativeDay: function(dateStr) {
             var today = moment(),
                 date = moment.utc(dateStr, DATE_FORMAT).local(),
@@ -87,6 +102,9 @@
             }
         },
         
+        ////////////////////
+        // modify score.home && score.away
+        //
         // fills the scoring sequence with placeholder data
         // so that we always display a minimum of 4 quarters, etc
         fillBoxscore: function(score, ops) {
@@ -103,6 +121,9 @@
             return score;
         },
 
+        ////////////////////
+        // get textLastUpdate
+        //
         // returns text with the last updated timestamp if the data
         // is potentially stale 
         getLastUpdate: function(dateStr) {
