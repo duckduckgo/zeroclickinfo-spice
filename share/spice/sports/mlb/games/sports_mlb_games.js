@@ -41,23 +41,16 @@
             },
         
             MLBGameData = function(attrs) {
-                attrs.canExpand = false;
-                attrs.relativeDay = Games.getRelativeDay(attrs.start_time);
+                attrs = Games.normalize(attrs);
                 
                 // Game Finished/In-Progress
                 if (attrs.has_started) {
-                    attrs.canExpand = true;
-                    
                     var inning = attrs.score.away.innings.length-1 || -1,
                         placeholderStr = '&nbsp;';
                         
                     if (attrs.has_ended) {
                         placeholderStr = Games.PLACEHOLDER;
-                        attrs.textTotal = l("Final");
                         attrs.textGameOver = l("Game ended");
-                    } else {
-                        attrs.textTotal = l("Score");
-                        attrs.textLastUpdate = Games.getLastUpdate(attrs.updated);
                     }
                     
                     // pitch_count contains the current game status

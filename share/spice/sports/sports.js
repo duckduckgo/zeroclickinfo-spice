@@ -41,6 +41,39 @@
         },
 
         ////////////////////
+        // set attrs
+        //
+        // handles some of the default normalizing steps
+        // that all sports will end up doing
+        normalize: function(attrs) {
+            attrs.canExpand = false;
+            attrs.relativeDay = this.getRelativeDay(attrs.start_time);
+
+            // Game Finished/In-Progress
+            if (attrs.has_started) {
+                attrs.canExpand = true;
+            
+                // Game is Finished/In-Progress
+                if (attrs.has_started) {
+                    attrs.canExpand = true;
+
+                     // Game is Finished
+                    if (attrs.has_ended) {
+                        attrs.textTotal = l("Final");
+
+                    // Game is in-progress
+                    } else {
+                        attrs.is_playing = true;
+                        attrs.textTotal = l("Score");
+                        attrs.textLastUpdate = this.getLastUpdate(attrs.updated);
+                    }
+                }
+            }
+            
+            return attrs;
+        },
+
+        ////////////////////
         // change data.games
         //
         // manipulates the game data to ensure that the most
