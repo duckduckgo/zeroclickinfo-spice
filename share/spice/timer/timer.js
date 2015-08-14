@@ -223,7 +223,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             if (this.$element.hasClass("status_running")) {
                 this.pause();
             } else if (this.$element.hasClass("status_stopped")) {
-                this.destroy();
+                this.reset();
             } else {
                 this.start();
             }
@@ -325,12 +325,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         },
         handleResetClick: function (e) {
             e.preventDefault();
-
-            // reset starting time from the original input
-            this.getStartingTimeFromInput();
-
-            // remove any styling based on timer state
-            this.$element.removeClass("status_running status_paused half_complete");
+            this.reset();
         },
         handleAddMinuteClick: function (e) {
             e.preventDefault();
@@ -352,6 +347,15 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             e.preventDefault();
 
             this.destroy();
+        },
+        reset: function () {
+            // reset starting time from the original input
+            this.getStartingTimeFromInput();
+
+            this.halfComplete = false;
+
+            // remove any styling based on timer state
+            this.$element.removeClass("status_running status_paused status_stopped half_complete");
         },
         pause: function () {
             this.running = false;
