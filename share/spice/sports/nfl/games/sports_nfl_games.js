@@ -41,22 +41,14 @@
             },
         
             NFLGameData = function(attrs) {
-                attrs.canExpand = false;
-                attrs.relativeDay = Games.getRelativeDay(attrs.start_time);
-                
+                // default normalize first
+                attrs = Games.normalize(attrs);
+
                 // Game Finished/In-Progress
                 if (attrs.has_started) {
-                    attrs.canExpand = true;
-
-                     // Game is Finished
-                    if (attrs.has_ended) {
-                        attrs.textTotal = l("Final");
 
                     // Game is in-progress
-                    } else {
-                        attrs.is_playing = true;
-                        attrs.textTotal = l("Score");
-                        attrs.textLastUpdate = l("As of %s", Handlebars.helpers.momentTime(attrs.updated));
+                    if (!attrs.has_ended) {
 
                         attrs.score = Games.fillBoxscore(attrs.score, {
                             current: attrs.score.quarter,
