@@ -6,7 +6,6 @@ use DDG::Spice;
 use Text::Trim;
 
 spice is_cached => 1;
-spice proxy_cache_valid => "200 8h";
 
 name "IslamicPrayerTimes";
 description "Islamic prayer times for the current day and given location";
