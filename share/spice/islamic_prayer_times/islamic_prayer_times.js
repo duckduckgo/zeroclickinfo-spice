@@ -12,14 +12,29 @@
                 return string.charAt(0).toUpperCase() + string.slice(1);
             }
 
-            function getClosest(timings, index) {
-                var today = moment();
+            function setDst(time, dst) {
+                return dst === 1 ? time.add(dst, 'hours') : time;
+            }
+
+            function tz(time, offset) {
+                var clone = time.clone();
+                clone.utcOffset(offset);
+                clone.add(time.utcOffset() - clone.utcOffset(), 'minutes');
+                return clone;
+            }
+
+            function getClosest(timings, offset, local) {
+                var date = local.format('YYYY-MM-DD');
+                if ('date_for' in timings) {
+                    date = tz(moment.utc(timings.date_for + ' ' + offset, 'YYYY-MM-DD Z'), offset).format('YYYY-MM-DD');
+                    delete timings.date_for;
+                }
                 for (var property in timings) {
                     if (timings.hasOwnProperty(property)) {
-                        var time = moment(timings[property], 'hh:mm A').add('days', index);
-                        if (today.diff(time) < 0) {
+                        var time = tz(moment.utc(date + ' ' + timings[property] + ' ' + offset, 'YYYY-MM-DD hh:mm a Z'), offset);
+                        if (local.diff(time) < 0) {
                             var min = {
-                                diff: time.from(today),
+                                diff: time.from(local),
                                 title: capitalize(property)
                             };
                             return min;
@@ -31,9 +46,8 @@
 
             function getInfoboxData(timings) {
                 var infoboxData = [];
-                if ('date_for' in timings) delete timings.date_for; // remove the unnecessary one
                 for (var property in timings) {
-                    if (timings.hasOwnProperty(property)) {
+                    if (timings.hasOwnProperty(property) && property !== "date_for") {
                         infoboxData.push({
                             label: capitalize(property),
                             value: timings[property]
@@ -52,14 +66,16 @@
                     sourceUrl: api_result.link
                 },
                 normalize: function(data) {
-                    console.log(data);
-                    // if isha, which is the last prayer in the day, is past, then get results for tomorrow
-                    var index = moment().diff(moment(data.items[0].isha, 'hh:mm A')) > 0 ? 1 : 0;
+                    var offset = parseInt(data.timezone),
+                        dst    = parseInt(data.daylight),
+                        local  = setDst(moment().utcOffset(offset), dst),
+                        isha   = tz(moment.utc(data.items[0].date_for + ' ' + data.items[0].isha + ' ' + offset, 'YYYY-MM-DD hh:mm a Z'), offset),
+                        index  = local.diff(isha) > 0 ? 1 : 0; // if isha, which is the last prayer in the day, is past, then get the results for tomorrow
                     return {
                         title: data.title,
-                        datum: moment(data.items[index].date_for, 'YYYY-MM-DD').format('LL'),
+                        datum: local.format('LLLL'),
                         infoboxData: getInfoboxData(data.items[index]),
-                        closest: getClosest(data.items[index], index),
+                        closest: getClosest(data.items[index], offset, local),
                         qibla: data.qibla_direction
                     };
                 },
