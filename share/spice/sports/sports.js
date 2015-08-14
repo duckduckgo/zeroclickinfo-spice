@@ -29,22 +29,30 @@
 
         PLACEHOLDER: '<span class="tx-clr--grey-light">&bull;</span>',
 
-        ////////////////////
-        // initialize boxscore answer
-        //
-        // called from the individual sports functions to ensure
-        //  any relevant/required libraries are loaded (e.g. moment)
+        /**
+         * initialize boxscore answer
+         *
+         * called from the individual sports functions to ensure
+         *  any relevant/required libraries are loaded (e.g. moment)
+         *
+         * @param {function} callback - Required callback function
+         */
         init: function(callback) {
             DDG.require('moment.js', function() {
                 callback();
             });
         },
 
-        ////////////////////
-        // set attrs
-        //
-        // handles some of the default normalizing steps
-        // that all sports will end up doing
+        /**
+         * set attrs
+         *
+         * handles some of the default normalizing steps
+         * that all sports will end up doing
+         *
+         * @param {Object} attrs
+         *
+         * returns {Object} attrs
+         */
         normalize: function(attrs) {
             attrs.canExpand = false;
             attrs.relativeDay = this.getRelativeDay(attrs.start_time);
@@ -73,11 +81,17 @@
             return attrs;
         },
 
-        ////////////////////
-        // change data.games
-        //
-        // manipulates the game data to ensure that the most
-        // relevant games are displayed in certain scenarios
+        /**
+         * change data.games
+         *
+         * manipulates the game data to ensure that the most
+         * relevant games are displayed in certain scenarios
+         *
+         * @param {Object} data - the full data response from the server
+         * @param {string} [data.most_relevant_game_id] - determines the most important game to show
+         *
+         * returns data.games
+         */
         transformGameData: function(data) {
             // We do a minor transform on the data to ensure that the 
             // 'most relevant' game appears first.  This is unnecessary
@@ -113,11 +127,16 @@
             }
         },
 
-        ////////////////////
-        // get relativeDay
-        //
-        // use moment.js to determine if the game's
-        // start time is 'today', 'tomorrow', or 'yesterday'
+        /**
+         * get relativeDay
+         *
+         * use moment.js to determine if the game's
+         * start time is 'today', 'tomorrow', or 'yesterday'
+         *
+         * @param {string} datrStr - expected format in DATE_FORMAT var
+         *
+         * returns a localized string
+         */
         getRelativeDay: function(dateStr) {
             var today = moment(),
                 date = moment.utc(dateStr, DATE_FORMAT).local(),
@@ -135,11 +154,24 @@
             }
         },
         
-        ////////////////////
-        // modify score.home && score.away
-        //
-        // fills the scoring sequence with placeholder data
-        // so that we always display a minimum of 4 quarters, etc
+        /**
+         * modify score.home && score.away
+         *
+         * fills the scoring sequence with placeholder data
+         * so that we always display a minimum of 4 quarters, etc
+         *
+         * @param {Object} score - boxscore object
+         * @param {Object} ops - loop parameters
+         * 
+         * Sub-parameters for ops:
+         * @param {string} ops.current - currently active scoring sequence
+         * @param {string} ops.name - name of the scoring sequence object (e.g. 'innings', 'scoring')
+         * @param {string} ops.counter - name of the counting parameter that the template uses
+         * @param {number} ops.min - minimum number of scoring periods
+         * @param {Object} [ops.obj] - dummy object for empty scoring fields (i.e. placeholder content)
+         *
+         * returns the modified boxscore
+         */
         fillBoxscore: function(score, ops) {
             if (!score || !ops) { return; }
             
@@ -154,11 +186,16 @@
             return score;
         },
 
-        ////////////////////
-        // get textLastUpdate
-        //
-        // returns text with the last updated timestamp if the data
-        // is potentially stale 
+        /**
+         * get textLastUpdate
+         *
+         * returns text with the last updated timestamp if the data
+         * is potentially stale 
+         *
+         * @param {string} dateStr
+         *
+         * returns a localized text string including the local time of the last update
+         */
         getLastUpdate: function(dateStr) {
             var now = moment(),
                 time = moment.utc(dateStr, DATE_FORMAT).local();
