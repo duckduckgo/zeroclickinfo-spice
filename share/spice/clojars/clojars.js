@@ -35,7 +35,8 @@
                 item_detail: false,
 
                 variants: {
-                    tile: 'basic4'                  
+                    tile: '2line',
+                    tileSnippet: 'small'
                 }
             },
             normalize: function(item) {
