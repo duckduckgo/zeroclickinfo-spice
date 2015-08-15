@@ -77,16 +77,17 @@
                         attrs.is_playing = true;
                         attrs.textTotal = l("Score");
                         attrs.textLastUpdate = this.getLastUpdate(attrs.updated);
+
+                        // check for the ends of quarters
+                        if (ops._checkClock) {
+                            attrs = this.getClockStatus(attrs, ops);
+                        }
+
                     }
 
                     // set overtime labels (if necessary)
                     if (ops._setOT) {
                         attrs.score = this.setOvertime(attrs.score, ops);
-                    }
-
-                     // check for the ends of quarters
-                    if (ops._checkClock) {
-                        attrs = this.getClockStatus(attrs, ops);
                     }
 
                 }
