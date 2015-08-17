@@ -12,7 +12,9 @@ secondary_example_queries 'philly bikeshare';
 category 'geography';
 topics 'everyday', 'travel', 'entertainment', 'geography';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/PHLBikeshare/IndegoBikeshareLocations.pm';
-attribution github => 'AcriCAA',
+attribution github => 'marianosimone',
+            github => 'AcriCAA', 
+            web => ['http://www.marianosimone.com',  'Mariano Simone'],
             web  => ['http://www.coreyacri.com',  'Corey Acri'];
 
 triggers any => 'indego', 'bikeshare', 'bike share', 'ride indego';
