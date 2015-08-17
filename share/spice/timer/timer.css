@@ -170,21 +170,10 @@
     margin-top: 2.5em;
 }
 
-.zci--timer .name_display,
 .zci--timer .name_input {
     font-size: 1.1em;
     font-weight: bold;
-}
-
-.zci--timer .name_display {
-    /* shown later on */
-    display: none;
-    margin-bottom: 1.45em;
-    padding: 0.55em 0 0 0.4em;
-    text-overflow: ellipsis;
-    overflow: hidden;
     width: 9em;
-    white-space: nowrap;
 }
 
 .zci--timer .time_display {
@@ -204,10 +193,6 @@
     color: #999;
     position: relative;
     bottom: 0.7em;
-}
-
-.zci--timer .name_input {
-    width: 9em;
 }
 
 .zci--timer .time_input input {

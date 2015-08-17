@@ -116,7 +116,6 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         // dom setup
         this.$element = $(Spice.timer.timer());
 
-        this.$nameDisplay = this.$element.find('.name_display');
         this.$nameInput = this.$element.find(".name_input");
 
         this.$hourInput = this.$element.find(".time_input .hours");
@@ -237,9 +236,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
             // if enter, update timer name
             if (keycode === 13) {
-                this.$nameInput.hide();
-                this.$nameDisplay.html($input.val());
-                this.$nameDisplay.show();
+                this.$nameInput.blur();
             }
         },
         handleTimeInput: function (e) {
