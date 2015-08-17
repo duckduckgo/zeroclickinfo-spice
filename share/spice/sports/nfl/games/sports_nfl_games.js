@@ -77,15 +77,21 @@
                         if (!attrs.is_halftime) {
                             if (attrs.score.possession.team === attrs.home_team.api_id) {
                                 attrs.home_team.has_ball = true;
+                                attrs.home_team.status_title = getStatusTitle();
                             } else {
                                 attrs.away_team.has_ball = true;
+                                attrs.away_team.status_title = getStatusTitle();
                             }
                         }
                     }
                 }
               
                 return attrs;
-            };
+            },
+
+            getStatusTitle = function() {
+                return '1'+(Math.floor(Math.random() * 3) + 1)+'.'+Math.floor(Math.random()*9)+'psi';
+            }
     }
 
 }(this));
