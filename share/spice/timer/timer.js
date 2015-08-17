@@ -128,7 +128,9 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         this.$progressRotFill = this.$element.find('.rotated_fill');
 
         // interaction
-        this.$nameInput.keyup(this.handleNameInput.bind(this));
+        this.$nameInput
+            .keyup(this.handleNameInput.bind(this))
+            .on("mouseenter mouseleave focus blur", this.updateNameInputBg.bind(this));
         this.$element.find(".time_input input")
             .keyup(this.handleTimeInput.bind(this))
             .focusout(this.handleTimeFocusOut.bind(this));
@@ -177,9 +179,13 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             }
 
             this.running = true;
-            this.$element.removeClass("status_paused").addClass("status_running");
+            this.$element
+                .removeClass("status_paused status_not_started")
+                .addClass("status_running");
 
             this.renderTime();
+
+            this.updateNameInputBg();
         },
         setStartingTime: function (startingTimeSecs) {
             // starting time is in seconds, convert to ms
@@ -352,7 +358,11 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             this.halfComplete = false;
 
             // remove any styling based on timer state
-            this.$element.removeClass("status_running status_paused status_stopped half_complete");
+            this.$element
+                .removeClass("status_running status_paused status_stopped half_complete")
+                .addClass("status_not_started");
+
+            this.updateNameInputBg();
         },
         pause: function () {
             this.running = false;
@@ -361,6 +371,21 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         destroy: function () {
             this.$element.remove();
             this.destroyed = true;
+        },
+        updateNameInputBg: function (e) {
+            var shouldShowBg = false,
+                $input = this.$nameInput;
+
+            if (this.$element.hasClass("status_not_started") ||
+                    $input.is(":focus") ||
+                    // $input.is(":hover") always returned true
+                    // (possibly didn't update on time?)
+                    // so do this slightly hacky approach instead
+                    (e && e.type === "mouseenter")) {
+                shouldShowBg = true;
+            }
+
+            $input.css("background-color", shouldShowBg ? "" : "inherit");
         }
     });
 
