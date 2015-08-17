@@ -16,6 +16,7 @@ ddg_spice_test(
         '/js/spice/rand_word/5-10',
         caller    => 'DDG::Spice::RandWord',
     ),
+    'random word blah blah' => undef
 );
 
 done_testing;
