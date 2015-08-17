@@ -1,22 +1,5 @@
 <div class="c-score  c-score--nfl  {{#if has_started}}has-score{{else}}no-score{{/if}} {{#if is_playing}}in-progress{{/if}}">
-	<div class="c-score__head">
-		{{{include 'DDH.sports.score_head'}}}
-		{{~#if has_started~}}
-			<div class="c-score__sequence  c-score__opt">
-			{{#each score.home.scoring}}
-				<div class="c-score__item  c-score__item--quarter">{{quarter}}</div>
-			{{/each}}
-			</div>
-			<div class="c-score__totals">
-				<div class="c-score__head__total">{{textTotal}}</div>
-				{{#unless has_ended}}
-				<div class="c-score__opt  c-score__opt--min-xs">
-					<div class="c-score__item">T/O</div>
-				</div>
-				{{/unless}}
-			</div>
-		{{~/if~}}
-	</div>
+	{{{include 'DDH.sports.score_head' sequence=score.home.scoring}}}
 	<div class="c-score__line  c-score__line--vs1">
 		<div class="c-score__line__name">
 			{{~#with away_team~}}

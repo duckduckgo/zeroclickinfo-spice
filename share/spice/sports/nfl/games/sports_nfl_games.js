@@ -4,7 +4,9 @@
     var Games,
         OPS = {
             _checkClock: true,
+            _fixCount: true,
             _setOT: true,
+            sequenceType: "quarter",
             currentName: "quarter",
             counter: "quarter",
             name: "scoring",
@@ -42,7 +44,8 @@
                     templates: $.extend(Games.TEMPLATES, {
                         options: {
                             content: Spice.sports_nfl_games.nfl_score,
-                            in_progress: Spice.sports_nfl_games.head_in_progress
+                            in_progress: Spice.sports_nfl_games.head_in_progress,
+                            head_totals: Spice.sports_nfl_games.head_totals
                         }
                     }),
                     
