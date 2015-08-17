@@ -1,24 +1,6 @@
 <div class="c-score  c-score--nfl  {{#if has_started}}has-score{{else}}no-score{{/if}} {{#if is_playing}}in-progress{{/if}}">
 	<div class="c-score__head">
-		{{#unless has_started}}<div class="c-score__head__time">{{momentTime start_time}}</div>{{/unless}}
-		<div class="c-score__head__date">
-			{{#if has_interesting_status}}
-				<span class="c-score__status">{{status}}</span>
-			{{else}}
-				{{#if is_playing}}
-					<span class="c-score__clock pull-left"><b>Q{{score.quarter}} {{score.clock}}</b></span>
-					{{#with score.possession}}
-						<span class="pull-right">{{#if down}}{{ordinal down}} & {{yfd}},{{/if}} {{side}} {{yard_line}}</span>
-					{{/with}}
-				{{else}}
-					{{#if relativeDay}}
-						<span class="tx-clr--slate">{{relativeDay}}</span>
-					{{else}}
-						{{momentDate start_time}}
-					{{/if}}
-				{{/if}}
-			{{/if}}
-		</div>
+		{{{include 'DDH.sports.score_head'}}}
 		{{~#if has_started~}}
 			<div class="c-score__sequence  c-score__opt">
 			{{#each score.home.scoring}}

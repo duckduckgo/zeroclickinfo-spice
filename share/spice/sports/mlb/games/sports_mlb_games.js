@@ -32,7 +32,8 @@
 
                     templates: $.extend(Games.TEMPLATES, {
                         options: {
-                            content: Spice.sports_mlb_games.mlb_score
+                            content: Spice.sports_mlb_games.mlb_score,
+                            in_progress: Spice.sports_mlb_games.head_in_progress
                         }
                     }),
                     
