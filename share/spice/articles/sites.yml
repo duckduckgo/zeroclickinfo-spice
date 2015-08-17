@@ -10,6 +10,11 @@ boingboing: http://boingboing.net/feed
 538: http://fivethirtyeight.com/features/feed/
 fivethirtyeight: http://fivethirtyeight.com/features/feed/
 fox news: http://feeds.feedburner.com/foxnews/latest
+google news: http://news.google.com/news?cf=all&hl=en&pz=1&ned=us&topic=h&num=10&output=rss
+hacker news: https://news.ycombinator.com/rss
+cbc: http://www.cbc.ca/cmlink/1.394
+rt: http://www.rt.com/rss/news/
+sky news: http://feeds.skynews.com/feeds/rss/home.xml
 
 # other
 clickhole: http://www.clickhole.com/feeds/rss
@@ -17,10 +22,6 @@ clickhole: http://www.clickhole.com/feeds/rss
 # people
 nate silver: http://fivethirtyeight.com/contributors/nate-silver/feed/
 
+# EXPERIMENTAL
 # missing kids
 missing kids nc: http://www.missingkids.com/missingkids/servlet/XmlServlet?act=rss&LanguageCountry=en_US&orgPrefix=NCMC&state=NC
-
-xvideos: http://www.xvideos.com/rss/rss.xml
-youporn: http://www.youporn.com/rss
-pornhub: http://www.pornhub.com/rss
-redtube: http://feeds.feedburner.com/redtube/videos
