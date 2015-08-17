@@ -1,5 +1,6 @@
 <div class="c-score  c-score--nfl  {{#if has_started}}has-score{{else}}no-score{{/if}} {{#if is_playing}}in-progress{{/if}}">
 	<div class="c-score__head">
+		{{#unless has_started}}<div class="c-score__head__time">{{momentTime start_time}}</div>{{/unless}}
 		<div class="c-score__head__date">
 			{{#if has_interesting_status}}
 				<span class="c-score__status">{{status}}</span>
@@ -32,8 +33,6 @@
 				</div>
 				{{/unless}}
 			</div>
-		{{else}}
-			<div class="c-score__head__time">{{momentTime start_time}}</div>
 		{{~/if~}}
 	</div>
 	<div class="c-score__line  c-score__line--vs1">
