@@ -74,10 +74,12 @@
                         }));
 
                         // set possession on the relevant team object
-                        if (!attrs.is_halftime && attrs.score.possession.team === attrs.home_team.api_id) {
-                            attrs.home_team.has_ball = true;
-                        } else {
-                            attrs.away_team.has_ball = true;
+                        if (!attrs.is_halftime) {
+                            if (attrs.score.possession.team === attrs.home_team.api_id) {
+                                attrs.home_team.has_ball = true;
+                            } else {
+                                attrs.away_team.has_ball = true;
+                            }
                         }
                     }
                 }
