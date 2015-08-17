@@ -76,7 +76,7 @@
                     } else {
                         attrs.is_playing = true;
                         attrs.textTotal = l("Score");
-                        attrs.textLastUpdate = this.getLastUpdate(attrs.updated);
+                        attrs.textLastUpdate = this.getLastUpdate(attrs.updated, ops.updatedTimeout);
 
                         // check for the ends of quarters
                         if (ops._checkClock) {
@@ -209,17 +209,23 @@
          * get textLastUpdate
          *
          * returns text with the last updated timestamp if the data
-         * is potentially stale 
+         * is potentially stale
+         *
+         * works on a timer by passing 'updatedTimeout' parameter
+         * to the 'normalize' function in the 'ops' object
          *
          * @param {string} dateStr
+         * @param {number} timeout - timeout to display 'last updated' in minutes as an integer
          *
          * returns a localized text string including the local time of the last update
          */
-        getLastUpdate: function(dateStr) {
+        getLastUpdate: function(dateStr, timeout) {
             var now = moment(),
                 time = moment.utc(dateStr, DATE_FORMAT).local();
 
-            if (now.diff(time, 'minutes') > 15) {
+            if (!timeout) {
+                return l("As of %s", Handlebars.helpers.momentTime(dateStr));
+            } else if (now.diff(time, 'minutes') > timeout) {
                 return l("Last updated %s", Handlebars.helpers.momentTime(dateStr));
             } else {
                 return false;

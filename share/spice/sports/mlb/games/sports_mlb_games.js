@@ -41,7 +41,9 @@
             },
         
             MLBGameData = function(attrs) {
-                attrs = Games.normalize(attrs);
+                attrs = Games.normalize(attrs, {
+                    updatedTimeout: 15
+                });
                 
                 // Game Finished/In-Progress
                 if (attrs.has_started) {
