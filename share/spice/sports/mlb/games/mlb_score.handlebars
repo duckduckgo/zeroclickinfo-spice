@@ -1,5 +1,6 @@
 <div class="c-score  c-score--mlb  {{#if score.away.innings}}has-score{{else}}no-score{{/if}}">
 	<div class="c-score__head">
+		{{#unless has_started}}<div class="c-score__head__time">{{momentTime start_time}}</div>{{/unless}}
 		<div class="c-score__head__date">
 			{{#if has_interesting_status}}
 				<span class="c-score__status">{{status}}</span>
@@ -28,8 +29,6 @@
 					<div class="c-score__item  c-score__item--inning">E</div>
 				</div>
 			</div>
-		{{else}}
-			<div class="c-score__head__time">{{momentTime start_time}}</div>
 		{{~/if~}}
 	</div>
 	<div class="c-score__line  c-score__line--vs1">
