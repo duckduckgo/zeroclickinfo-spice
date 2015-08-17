@@ -303,3 +303,35 @@
 .zci--timer .status_stopped .time_display {
     display: block;
 }
+
+/* CHANGES FOR MOBILE */
+
+.is-mobile .zci--timer.is-active,
+.is-mobile .zci--timer .cw {
+    padding: 0;
+}
+
+.is-mobile .zci--timer .zci__body {
+    padding: 10px;
+    margin: 0;
+}
+
+.is-mobile .zci--timer .timer_container,
+.is-mobile .zci--timer #add_timer_container {
+    width: 100%;
+    margin: 0 0 10px 0;
+}
+
+.is-mobile .zci--timer .play_pause {
+    max-width: 138px;
+}
+
+.is-mobile .zci--timer #add_timer_container {
+    height: 45px;
+    margin-bottom: 0;
+}
+
+.is-mobile .zci--timer #add_timer_btn {
+    font-size: 1.1em;
+    font-weight: 600;
+}

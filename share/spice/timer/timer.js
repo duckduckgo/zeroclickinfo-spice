@@ -446,7 +446,9 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             id: 'timer',
             name: 'Timer',
             signal: 'high',
-            data: {},
+            data: {
+                isMobile: DDG.device.isMobile
+            },
             meta: {
                 sourceName: 'Timer',
                 itemType: 'timer'
