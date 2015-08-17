@@ -291,6 +291,7 @@
 
                 if (ops.half && ops.current === ops.half) {
                     attrs.status = l("Halftime");
+                    attrs.is_halftime = true;
                 } else {
                     attrs.status = l("End of %s", DDG.getOrdinal(ops.current));
                 }
