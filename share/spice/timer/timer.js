@@ -43,6 +43,12 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             val,
             unit;
 
+        // for queries where time is specified like 2:30 or 1:20:30
+        // transform it into a value like 1h 20min 30sec so we can parse it
+        if (q.indexOf(":") > -1) {
+            q = q.replace(/(?:(\d{1,2}):)?(\d{1,2}):(\d{2})/, "$1h $2min $3sec");
+        }
+
         while (true) {
             match = regex.exec(q);
             if (match) {
