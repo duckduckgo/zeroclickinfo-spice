@@ -63,6 +63,10 @@
                     // Game is in-progress
                     if (!attrs.has_ended) {
 
+                        // set the active quarter label (if necessary)
+                        attrs.score.textCurrent = attrs.score.textCurrent || 'Q'+attrs.score[OPS.counter];
+
+                        // fill boxscore with placeholder data
                         attrs.score = Games.fillBoxscore(attrs.score, $.extend(OPS, {
                             obj: {
                                 points: Games.PLACEHOLDER
