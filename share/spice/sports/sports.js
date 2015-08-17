@@ -1,7 +1,8 @@
 (function (env) {
     "use strict";
     
-    var DATE_FORMAT = "YYYY-MM-DD HH:mm:ss";
+    var DATE_FORMAT = "YYYY-MM-DD HH:mm:ss",
+        SCORING_COUNTER = "number";
     
     env.ddg_spice_sports = {};
     
@@ -85,6 +86,11 @@
 
                     }
 
+                    // use standard fields for scoring sequences
+                    if (ops._fixCount) {
+                        attrs.score = this.normalizeSequence(attrs.score, ops);
+                    }
+
                     // set overtime labels (if necessary)
                     if (ops._setOT) {
                         attrs.score = this.setOvertime(attrs.score, ops);
@@ -94,6 +100,33 @@
             }
             
             return attrs;
+        },
+
+        /**
+         * loop through each scoring field
+         * set predictable field names
+         * for shared templates to utilize
+         *
+         * @param {Object} score
+         * @param {Object} ops
+
+         * @param {string} [ops.parent=home] - name of the scoring sequence parent
+         * @param {string} ops.name - name of the scoring sequence object (e.g. 'innings', 'scoring')
+         * @param {string} ops.counter - name of the counting parameter that exists in the data
+         * @param {string} ops.sequenceType - applied directly in the template for variant styling (e.g. narrow innnings)
+         */
+        normalizeSequence: function(score, ops) {
+            var parent = ops.parent || 'home', // should contain 'ops.counter' label used in template
+                i = 0;
+
+            for(; i < score[parent][ops.name].length; i++) {
+
+                score[parent][ops.name][i].type = ops.sequenceType;
+
+                score[parent][ops.name][i][SCORING_COUNTER] = score[parent][ops.name][i][ops.counter];
+            }
+
+            return score;
         },
 
         /**
@@ -183,7 +216,6 @@
          * @param {string} [ops.currentName] - parameter name for currently active scoring sequence
          * - One of 'current' or 'currentName' is required
          * @param {string} ops.name - name of the scoring sequence object (e.g. 'innings', 'scoring')
-         * @param {string} ops.counter - name of the counting parameter that the template uses
          * @param {number} ops.min - minimum number of scoring periods
          * @param {Object} [ops.obj] - dummy object for empty scoring fields (i.e. placeholder content)
          *
@@ -199,7 +231,7 @@
                 score.home[ops.name][i] =
                 score.away[ops.name][i] = $.extend({}, ops.obj);
 
-                score.home[ops.name][i][ops.counter] = i + 1;
+                score.home[ops.name][i][SCORING_COUNTER] = i + 1;
             }
             
             return score;
@@ -284,19 +316,18 @@
          * @param {Object} ops - loop parameters
          *
          * Sub-parameters for ops:
-         * @param {string} ops.counter - name of the counting parameter
          * @param {string} [ops.parent=home] - name of the scoring sequence parent
          * @param {string} ops.name - name of the scoring sequence object (e.g. 'innings', 'scoring')
          * @param {number} ops.min - minimum number of scoring periods before labelling overtime
          */
         setOvertime: function(score, ops) {
-            if (!score || !ops || !ops.counter || !ops.name || !ops.min) { return score; }
+            if (!score || !ops || !ops.name || !ops.min) { return score; }
 
             var parent = ops.parent || 'home', // should contain 'ops.counter' label used in template
                 i = ops.min;
 
             for(; i < score[parent][ops.name].length; i++) {
-                score[parent][ops.name][i][ops.counter] = 'OT';
+                score[parent][ops.name][i][SCORING_COUNTER] = 'OT';
             }
 
             return score;
