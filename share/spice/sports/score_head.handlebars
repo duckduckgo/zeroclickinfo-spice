@@ -4,7 +4,11 @@
 		<span class="c-score__status">{{status}}</span>
 	{{else}}
 		{{#if is_playing}}
-			{{{include meta.options.in_progress}}}
+			{{#if meta.options.in_progress}}
+				{{{include meta.options.in_progress}}}
+			{{else}}
+				<span class="c-score__clock">{{clock}}</span>
+			{{/if}}
 		{{else}}
 			{{#if relativeDay}}
 				<span class="tx-clr--slate">{{relativeDay}}</span>
