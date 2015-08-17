@@ -33,9 +33,6 @@ my $secondary_qr = join "|", @secondary_keys;
 # defining our triggers
 triggers any => @primary_keys;
 
-# to set an environmental variable:
-# duckpan env set <name> <value>
-
 # set spice parameters
 spice to => 'https://www.quandl.com/api/v1/datasets/WORLDBANK/$1.json?auth_token={{ENV{DDG_SPICE_QUANDL_APIKEY}}}&rows=2';
 spice wrap_jsonp_callback => 1;

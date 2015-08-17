@@ -35,10 +35,15 @@
                 sourceName: "Twitter",
             },
             normalize: function(item) {
+                var subtitle = ["@" + item.user];
+                if (item.location) {
+                    subtitle.push(item.location);
+                }
+
                 return {
                     image: bigger_picture(item.profile_image),
                     title: item.name,
-                    subtitle: ["@" + item.user, item.location],
+                    subtitle: subtitle,
                     altSubtitle: getURL(item),
                     description: item.description
                 };

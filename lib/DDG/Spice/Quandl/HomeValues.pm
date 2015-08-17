@@ -8,7 +8,7 @@ use YAML::XS 'LoadFile';
 # meta data
 # Initially this is will work with zip codes, but will expand
 # to other region identifiers
-#
+
 primary_example_queries "27514 home values";
 secondary_example_queries "one bedroom houses 27514";
 description "Home values for a given region";
@@ -37,9 +37,6 @@ my $metro_qr = join "|", @metro_keys;
 
 # defining our triggers
 triggers any => @trigger_keys;
-
-# to set an environmental variable:
-# duckpan env set <name> <value>
 
 # set spice parameters
 spice to => 'https://www.quandl.com/api/v1/datasets/ZILL/$1.json?auth_token={{ENV{DDG_SPICE_QUANDL_APIKEY}}}&rows=2';

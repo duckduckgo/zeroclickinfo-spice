@@ -14,7 +14,6 @@
             moreAt = decodedQuery.replace(/ /g,"+");
         
         Spice.add({
-            minItemsForModeSwitch: 3,
             id: "twitch_streams",
             name: "Gaming",
             data: api_result.streams,
