@@ -73,7 +73,20 @@ ddg_spice_test(
 		call_type => 'include',
 		caller => 'DDG::Spice::Quandl::HomeValues',
 	),
+
+    # make sure "in" does not trigger "Indiana"
+    'home values in new york' => test_spice(
+		'/js/spice/quandl/home_values/S00003_A',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::HomeValues',
+	),
     
+    # make sure "indiana" still triggers
+    'home values in indiana' => test_spice(
+		'/js/spice/quandl/home_values/S00015_A',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::HomeValues',
+	),
     
     # No results for a single region alone
 	'27510' => undef,
