@@ -29,7 +29,7 @@
         var NFLInit = function () {
                 Spice.add({
                     id: 'nfl_games',
-                    name: 'NFL Games',
+                    name: 'NFL',
 
                     data: Games.transformGameData(apiResult.data),
 
