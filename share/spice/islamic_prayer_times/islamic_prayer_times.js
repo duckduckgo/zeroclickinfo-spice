@@ -8,10 +8,6 @@
 
         DDG.require('moment.js', function() {
 
-            function capitalize(string) {
-                return string.charAt(0).toUpperCase() + string.slice(1);
-            }
-
             function setDst(time, dst) {
                 return dst === 1 ? time.add(dst, 'hours') : time;
             }
@@ -35,7 +31,7 @@
                         if (local.diff(time) < 0) {
                             var min = {
                                 diff: time.from(local),
-                                title: capitalize(property)
+                                title: DDG.capitalize(property)
                             };
                             return min;
                         }
@@ -49,7 +45,7 @@
                 for (var property in timings) {
                     if (timings.hasOwnProperty(property) && property !== "date_for") {
                         infoboxData.push({
-                            label: capitalize(property),
+                            label: DDG.capitalize(property),
                             value: timings[property]
                         });
                     }
