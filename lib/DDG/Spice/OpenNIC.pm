@@ -20,8 +20,8 @@ attribution github  => ["cylgom", "cylgom"], # it's me
             twitter => "cylgom";
             
 # OpenNIC API endpoint
-    # We prepare a 'spice from' with the place for 4 arguments
-spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)|)|)|)';
+# We prepare a 'spice from' with the place for 4 arguments
+spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)|)|)';
 spice to => 'https://api.opennicproject.org/geoip/?json&lat=$1&lon=$2&ipv=$3&res=$4&ip=$5';
 spice wrap_jsonp_callback => 1;
 
@@ -37,28 +37,41 @@ handle remainder => sub {
     my $number;
 
     # ip version
-    if    ($_ =~ /ipv?4/) { $ipv='4'; }   # user asked ipv4 (or ip4)
-    elsif ($_ =~ /ipv?6/) { $ipv='6'; }   # user asked ipv6 (or ip6)
-    else                  { $ipv="all"; } # user didn't ask => collect both
+    # user asked ipv4 (or ip4)
+    if ($_ =~ /ipv?4/) {
+    $ipv='4';
+    }
+    # user asked ipv6 (or ip6)
+    elsif ($_ =~ /ipv?6/) {
+    $ipv='6';
+    }
+    # user didn't ask => collect both
+    else {
+    $ipv="all";
+    }
 
     # target ip for detection :
-        # user-forced (ipv4 regex from stackoverflow, id : 53497)
+    # user-forced (ipv4 regex from stackoverflow, id : 53497)
     if ($_ =~ /(((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/){ 
         $ip=$1;
-        $lat = '0'; # Unused parameters are set to 0, not left null or undeclared
-        $lon = '0'; # (they will be overlaoded by the ip in the API )
+        # Unused parameters are set to 0, not left null or undeclared
+        # (they will be overlaoded by the ip in the API )
+        $lat = '0';
+        $lon = '0';
     }
-        # user-position
+    # user-position
     else {
-        $ip= '';                # <=  The unused parameter is set null to avoid overloading the coordinates.
-        $lat = $loc->latitude;  #   | It doesn't have any side effect on other arguments as "ip" is the last one.
+        # The unused parameter is set null to avoid overloading the coordinates.
+        # It doesn't have any side effect on other arguments as "ip" is the last one.
+        $ip= '';                
+        $lat = $loc->latitude;
         $lon = $loc->longitude;
     }
     
     # Number of DNS to print
-        # user-defined, with a maximum of 40.
+    # user-defined, with a maximum of 40.
     if ($_ =~ /(?:^| )(\d{1,2})(?:$| )/ && $1>0 && $1<=40) { $number= $1; }
-        # default
+    # default
     else                                           { $number='4'; }
 
     #       $1    $2    $3     $4     $5

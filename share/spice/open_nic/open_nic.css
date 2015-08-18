@@ -1,15 +1,3 @@
-/*
-    Document   : zeroclickinfo-spice/share/spice/open_nic/open_nic.css
-    Created on : 2015-08-17 04:49 PM
-    Author     : cylgom
-    Description:
-    Arranges the list to look more like a table
-*/
-
-root {
-    display: block;
-}
-
 /* main formatting */
 .zci--open_nic .opennic__list {
     height:30px;
