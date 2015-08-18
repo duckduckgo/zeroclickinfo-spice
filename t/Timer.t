@@ -34,7 +34,8 @@ ddg_spice_test(
     'wwdc 2015 countdown' => undef,
     'timer 5 hellos' => undef,
     'time' => undef,
-    'Time::Piece' => undef
+    'Time::Piece' => undef,
+    'five-alarm' => undef
 );
 
 done_testing;
