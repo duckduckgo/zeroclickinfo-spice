@@ -11,11 +11,11 @@ root {
 }
 
 /* main formatting */
-.opennic__list {
+.zci--open_nic .opennic__list {
     height:30px;
 }
 
-.opennic__subblocks {
+.zci--open_nic .opennic__subblocks {
     float:left;
     height:inherit;
     line-height:30px;
@@ -24,22 +24,22 @@ root {
 }
 
 /* cell-specific */
-.opennic__ip {
+.zci--open_nic .opennic__ip {
     font-size:16px;
     margin-right:10px;
     width:350px;
 }
 
-.opennic__km {
+.zci--open_nic .opennic__km {
     width:70px;
     line-height:16px;
 }
 
-.opennic__stat {
+.zci--open_nic .opennic__stat {
     width:107px;
 }
 
-.opennic__loc {
+.zci--open_nic .opennic__loc {
     width:60px;
     margin-right:0px;
 }
