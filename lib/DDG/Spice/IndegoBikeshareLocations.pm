@@ -11,13 +11,14 @@ primary_example_queries 'indego philadelphia', 'bikeshare philadelphia';
 secondary_example_queries 'philly bikeshare';
 category 'geography';
 topics 'everyday', 'travel', 'entertainment', 'geography';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/PHLBikeshare/IndegoBikeshareLocations.pm';
+code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/IndegoBikeshareLocations.pm';
 attribution github => 'marianosimone',
             github => 'AcriCAA', 
             web => ['http://www.marianosimone.com',  'Mariano Simone'],
-            web  => ['http://www.coreyacri.com',  'Corey Acri'];
+            web  => ['http://www.coreyacri.com',  'Corey Acri'],
+            web => ['https://codeforphilly.org/', "Built at Code for Philly"];
 
-triggers any => 'indego', 'bikeshare', 'bike share', 'ride indego';
+triggers any => 'indego', 'bikeshare', 'bike share', 'ride indego', 'share bike';
 
 spice to => 'https://api.phila.gov/bike-share-stations/v1';
 spice wrap_jsonp_callback => 1;
