@@ -15,31 +15,30 @@ ddg_spice_test(
         caller => 'DDG::Spice::Clojars'
     ),
     'clojure lib instaparse' => test_spice(
-    '/js/spice/clojars/instaparse',
-     call_type => 'include',
-     caller => 'DDG::Spice::Clojars'
+        '/js/spice/clojars/instaparse',
+        call_type => 'include',
+        caller => 'DDG::Spice::Clojars'
     ),
     'clojure library instaparse' => test_spice(
-    '/js/spice/clojars/instaparse',
-     call_type => 'include',
-     caller => 'DDG::Spice::Clojars'
+        '/js/spice/clojars/instaparse',
+        call_type => 'include',
+        caller => 'DDG::Spice::Clojars'
     ),
     'clojars instaparse' => test_spice(
-    '/js/spice/clojars/instaparse',
-     call_type => 'include',
-     caller => 'DDG::Spice::Clojars'
+        '/js/spice/clojars/instaparse',
+        call_type => 'include',
+        caller => 'DDG::Spice::Clojars'
     ),
     'clojure package instaparse' => test_spice(
-    '/js/spice/clojars/instaparse',
-     call_type => 'include',
-     caller => 'DDG::Spice::Clojars'
+        '/js/spice/clojars/instaparse',
+        call_type => 'include',
+        caller => 'DDG::Spice::Clojars'
     ),
     'clojure lib cascalog incanter' => test_spice(
-    '/js/spice/clojars/cascalog%22-%22incanter',
-     call_type => 'include',
-     caller => 'DDG::Spice::Clojars'
+        '/js/spice/clojars/cascalog%22-%22incanter',
+        call_type => 'include',
+        caller => 'DDG::Spice::Clojars'
     )
 );
 
 done_testing;
-
