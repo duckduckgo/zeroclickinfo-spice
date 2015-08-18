@@ -12,7 +12,7 @@
         // Validate the response (customize for your Spice)
       
 
-        if (!api_result || api_result.error) {
+        if (!api_result || !api_result.count) {
             return Spice.failed('clojars');
         }
 
@@ -21,7 +21,7 @@
         Spice.add({
             id: "clojars",
             // Customize these properties
-            name: 'Packages',
+            name: 'Software',
             data: api_result.results,
 
             meta: {
@@ -40,13 +40,15 @@
                 }
             },
             normalize: function(item) {
-                return {
-                    title: item.group_name + "/" + item.jar_name,
-                    subtitle: item.version,
-                    url: "https://clojars.org/" + item.group_name + "/" + item.jar_name
-                };
+                if (item.group_name && item.jar_name && item.version){
+                    return {
+                        title: item.group_name + "/" + item.jar_name,
+                        subtitle: item.version,
+                        url: "https://clojars.org/" + item.group_name + "/" + item.jar_name
+                    };
+                } 
+                return;  
             }
-
         });
     };
 }(this));

@@ -10,7 +10,7 @@ name "Clojars";
 source "clojars.org";
 icon_url "https://clojars.org/favicon.ico";
 description "This spice accesses clojars.org, the clojure libraries reposisitory, to search for a clojure artifact";
-primary_example_queries "clojure some-lib", "clojars some-lib","clojure lib some-lib","clojure library some-lib";
+primary_example_queries "clojure incanter", "clojars incanter","clojure cascalog incanter","clojure library incanter";
 secondary_example_queries "";
 
 category "programming";
