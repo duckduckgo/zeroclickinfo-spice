@@ -18,10 +18,10 @@
     padding-top: 16px;
 }
 
-.tile__foot {
-  padding-bottom: 1em;
+.tile--statista .tile__foot {
+    padding-bottom: 1em;
 }
 
-.tile__body.has-foot {
-  padding-bottom: 2.8em;
+.tile--statista .tile__body.has-foot {
+    padding-bottom: 2.8em;
 } 
