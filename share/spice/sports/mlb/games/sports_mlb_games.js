@@ -18,7 +18,7 @@
         var MLBInit = function () {
                 Spice.add({
                     id: 'mlb_games',
-                    name: 'MLB Games',
+                    name: 'MLB',
 
                     data: Games.transformGameData(apiResult.data),
 
