@@ -2,7 +2,18 @@
     'use strict';
     env.ddg_spice_quandl_fundamentals = function(api_result){
 
-        if (!api_result || api_result.data.length < 2 ) {
+        if (!api_result) {
+            return Spice.failed('quandl_fundamentals');
+        }
+
+        var result = api_result;
+        
+        if (result.data == null) {
+            return Spice.failed('quandl_fundamentals');
+        }
+        
+        // we need two data points to get percent change
+        if (result.data.length < 2) {
             return Spice.failed('quandl_fundamentals');
         }
 
