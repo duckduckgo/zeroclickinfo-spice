@@ -43,3 +43,22 @@ root {
     width:60px;
     margin-right:0px;
 }
+
+/* removes columns depending on the screen's size */
+@media only screen and (max-width: 705px) {
+    .zci--open_nic .opennic__loc {
+        display:none;
+    }
+}
+
+@media only screen and (max-width: 645px) {
+    .zci--open_nic .opennic__stat {
+        display:none;
+    }
+}
+
+@media only screen and (max-width: 492px) {
+    .zci--open_nic .opennic__km {
+        display:none;
+    }
+}
