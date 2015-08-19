@@ -85,7 +85,12 @@
                         }
                     }
                 }
-              
+
+                // week inidcator
+                if (attrs.season_week && attrs.season_part && attrs.season_part === "regular season") {
+                    attrs.textPreDate = 'Wk ' + attrs.season_week;
+                }
+
                 return attrs;
             },
 

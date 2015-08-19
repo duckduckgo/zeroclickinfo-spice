@@ -11,6 +11,10 @@
 					<span class="c-score__clock">{{clock}}</span>
 				{{/if}}
 			{{else}}
+				{{#if textPreDate}}
+					{{textPreDate}}
+					<span class="sep--small"></span>
+				{{/if}}
 				{{#if relativeDay}}
 					<span class="tx-clr--slate">{{relativeDay}}</span>
 				{{else}}
