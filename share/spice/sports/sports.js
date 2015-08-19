@@ -228,7 +228,9 @@
             for(var i = ops.current; i < ops.min; i++) {
                 // create placeholder score object
                 score.home[ops.name][i] =
-                score.away[ops.name][i] = $.extend({}, ops.obj);
+                score.away[ops.name][i] = $.extend({
+                    type: ops.sequenceType
+                }, ops.obj);
 
                 score.home[ops.name][i][SCORING_COUNTER] = i + 1;
             }
