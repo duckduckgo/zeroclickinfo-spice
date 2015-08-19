@@ -68,7 +68,7 @@
                 data: api_result,
                 meta: {
                     sourceName: "Muslim Salat",
-                    sourceUrl: api_result.link
+                    sourceUrl: DDG.toHTTPS(api_result.link)
                 },
                 normalize: function(data) {
                     var offset  = parseInt(data.timezone),
