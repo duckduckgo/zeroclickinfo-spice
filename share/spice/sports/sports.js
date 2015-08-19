@@ -64,7 +64,7 @@
             // Game Finished/In-Progress
             if (attrs.has_started) {
                 // set current now so that subroutines don't have to check each time
-                ops.current = ops.current || attrs.score[ops.currentName] || '';
+                attrs.score.current = ops.current || attrs.score[ops.currentName] || '';
 
                 attrs.canExpand = true;
 
@@ -215,7 +215,7 @@
          * @param {Object} ops - loop parameters
          * 
          * Sub-parameters for ops:
-         * @param {string} ops.current - currently active scoring sequence
+         * @param {number} score.current - currently active scoring sequence
          * @param {string} ops.name - name of the scoring sequence object (e.g. 'innings', 'scoring')
          * @param {number} ops.min - minimum number of scoring periods
          * @param {Object} [ops.obj] - dummy object for empty scoring fields (i.e. placeholder content)
@@ -225,7 +225,7 @@
         fillBoxscore: function(score, ops) {
             if (!score || !ops) { return; }
 
-            for(var i = ops.current; i < ops.min; i++) {
+            for(var i = score.current; i < ops.min; i++) {
                 // create placeholder score object
                 score.home[ops.name][i] =
                 score.away[ops.name][i] = $.extend({
@@ -276,14 +276,14 @@
          * @param {Object} ops - other parameters
          *
          * Sub-parameters for ops:
-         * @param {string} ops.current - currently active scoring sequence
+         * @param {number} attrs.score.current - currently active scoring sequence
          *
          * @param {number} [ops.half] - label as 'Halftime' instead of 'End of...' if matches
          * @param {string} [ops.end=:00] - clock reading at the end of a scoring sequence
          * @param {string} [ops.clock=attrs.score.clock] - alternate clock parameter
          */
         getClockStatus: function(attrs, ops) {
-            if (!attrs || !ops || !ops.current) { return attrs; }
+            if (!attrs || !ops || !attrs.score || !attrs.score.current) { return attrs; }
 
             var clock = ops.clock || attrs.score.clock,
                 end = ops.end || ':00';
@@ -291,11 +291,11 @@
             if (clock === end) {
                 attrs.has_interesting_status = true; // show the status label in the template
 
-                if (ops.half && ops.current === ops.half) {
+                if (ops.half && attrs.score.current === ops.half) {
                     attrs.status = l("Halftime");
                     attrs.is_halftime = true;
                 } else {
-                    attrs.status = l("End of %s", DDG.getOrdinal(ops.current));
+                    attrs.status = l("End of %s", DDG.getOrdinal(attrs.score.current));
                 }
             }
 
@@ -313,8 +313,8 @@
          * @param {Object} ops - loop parameters
          *
          * Sub-parameters for ops:
+         * @param {number} score.current - currently active scoring sequence
          * @param {string} [ops.parent=home] - name of the scoring sequence parent
-         * @param {string} ops.current - currently active scoring sequence
          * @param {string} ops.name - name of the scoring sequence object (e.g. 'innings', 'scoring')
          * @param {number} ops.min - minimum number of scoring periods before labelling overtime
          */
@@ -328,7 +328,7 @@
                 score[parent][ops.name][i][SCORING_COUNTER] = 'OT';
             }
 
-            if (ops.current > ops.min) {
+            if (score.current > ops.min) {
                 score.textCurrent = 'OT'
             }
 
