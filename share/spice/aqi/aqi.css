@@ -9,6 +9,8 @@
     padding: 0px 6px;
     display: inline-block;
     margin-right: 5px;
+    top: 1px;
+    position: relative;
 }
 
 .category__badge.good {
