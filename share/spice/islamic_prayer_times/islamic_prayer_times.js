@@ -30,6 +30,7 @@
                         var time = tz(moment.utc(date + ' ' + timings[property] + ' ' + offset, 'YYYY-MM-DD hh:mm a Z'), offset);
                         if (local.diff(time) < 0) {
                             var min = {
+                                time: time,
                                 diff: time.from(local),
                                 title: DDG.capitalize(property)
                             };
@@ -40,17 +41,21 @@
                 return false;
             }
 
-            function getInfoboxData(timings) {
-                var infoboxData = [];
+            function getList(timings) {
+                var list = [];
                 for (var property in timings) {
                     if (timings.hasOwnProperty(property) && property !== "date_for") {
-                        infoboxData.push({
-                            label: DDG.capitalize(property),
-                            value: timings[property]
+                        list.push({
+                            prayer: DDG.capitalize(property),
+                            timing: timings[property].toUpperCase()
                         });
                     }
                 }
-                return infoboxData;
+                return list;
+            }
+
+            function setFormat(closest, index) {
+                return index === 0 ? closest.format('h:mm A') : closest.format('h:mm A, MMM D ') + '(Tomorrow)';
             }
 
             Spice.add({
@@ -62,24 +67,23 @@
                     sourceUrl: api_result.link
                 },
                 normalize: function(data) {
-                    var offset = parseInt(data.timezone),
-                        dst    = parseInt(data.daylight),
-                        local  = setDst(moment().utcOffset(offset), dst),
-                        isha   = tz(moment.utc(data.items[0].date_for + ' ' + data.items[0].isha + ' ' + offset, 'YYYY-MM-DD hh:mm a Z'), offset),
-                        index  = local.diff(isha) > 0 ? 1 : 0; // if isha, which is the last prayer in the day, is past, then get the results for tomorrow
+                    var offset  = parseInt(data.timezone),
+                        dst     = parseInt(data.daylight),
+                        local   = setDst(moment().utcOffset(offset), dst),
+                        isha    = tz(moment.utc(data.items[0].date_for + ' ' + data.items[0].isha + ' ' + offset, 'YYYY-MM-DD hh:mm a Z'), offset),
+                        index   = local.diff(isha) > 0 ? 1 : 0, // if isha, which is the last prayer in the day, is past, then get the results for tomorrow
+                        closest = getClosest(data.items[index], offset, local);
                     return {
-                        title: data.title,
-                        datum: local.format('LLLL'),
-                        infoboxData: getInfoboxData(data.items[index]),
-                        closest: getClosest(data.items[index], offset, local),
-                        qibla: data.qibla_direction
+                        title: 'Next prayer: ' + closest.title + ' at ' +  setFormat(closest.time, index),
+                        subtitle: data.title,
+                        list: getList(data.items[index])
                     };
                 },
                 templates: {
-                    group: 'info',
+                    group: 'list',
                     options: {
-                        content: Spice.islamic_prayer_times.islamic_prayer_times,
-                        moreAt: false
+                        list_content: Spice.islamic_prayer_times.content,
+                        moreAt: true
                     }
                 }
             });
