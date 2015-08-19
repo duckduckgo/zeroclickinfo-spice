@@ -1,5 +1,60 @@
 (function (env) {
     "use strict";
+
+    function setDst(time, dst) {
+        return dst === 1 ? time.add(dst, 'hours') : time;
+    }
+
+    function tz(time, offset) {
+        var clone = time.clone();
+        clone.utcOffset(offset);
+        clone.add(time.utcOffset() - clone.utcOffset(), 'minutes');
+        return clone;
+    }
+
+    function getClosest(timings, offset, local) {
+        var date = local.format('YYYY-MM-DD');
+        if ('date_for' in timings) {
+            date = tz(moment.utc(timings.date_for + ' ' + offset, 'YYYY-MM-DD Z'), offset).format('YYYY-MM-DD');
+            delete timings.date_for;
+        }
+        for (var property in timings) {
+            if (timings.hasOwnProperty(property)) {
+                var time = tz(moment.utc(date + ' ' + timings[property] + ' ' + offset, 'YYYY-MM-DD hh:mm a Z'), offset);
+                if (local.diff(time) < 0) {
+                    var min = {
+                        time: time,
+                        diff: time.from(local),
+                        title: DDG.capitalize(property)
+                    };
+                    return min;
+                }
+            }
+        }
+        return false;
+    }
+
+    function getList(timings) {
+        var list = [];
+        for (var property in timings) {
+            if (timings.hasOwnProperty(property) && property !== "date_for") {
+                list[DDG.capitalize(property)] = timings[property].toUpperCase();
+            }
+        }
+        return list;
+    }
+
+    function setFormat(closest, index) {
+        return index === 0 ? closest.format('h:mm A') : closest.format('h:mm A, MMM D ') + '(Tomorrow)';
+    }
+
+    function setAddress(title, country_code, country, state) {
+        if (title !== "") {
+            return country_code === "US" ? title.substr(0, title.lastIndexOf(",")) : title;
+        }
+        return state !== "" ? state + ', ' + country : country;
+    }
+
     env.ddg_spice_islamic_prayer_times = function(api_result) {
 
         if (!api_result || api_result.error || api_result.status_code === 0 || !api_result.items) {
@@ -7,60 +62,6 @@
         }
 
         DDG.require('moment.js', function() {
-
-            function setDst(time, dst) {
-                return dst === 1 ? time.add(dst, 'hours') : time;
-            }
-
-            function tz(time, offset) {
-                var clone = time.clone();
-                clone.utcOffset(offset);
-                clone.add(time.utcOffset() - clone.utcOffset(), 'minutes');
-                return clone;
-            }
-
-            function getClosest(timings, offset, local) {
-                var date = local.format('YYYY-MM-DD');
-                if ('date_for' in timings) {
-                    date = tz(moment.utc(timings.date_for + ' ' + offset, 'YYYY-MM-DD Z'), offset).format('YYYY-MM-DD');
-                    delete timings.date_for;
-                }
-                for (var property in timings) {
-                    if (timings.hasOwnProperty(property)) {
-                        var time = tz(moment.utc(date + ' ' + timings[property] + ' ' + offset, 'YYYY-MM-DD hh:mm a Z'), offset);
-                        if (local.diff(time) < 0) {
-                            var min = {
-                                time: time,
-                                diff: time.from(local),
-                                title: DDG.capitalize(property)
-                            };
-                            return min;
-                        }
-                    }
-                }
-                return false;
-            }
-
-            function getList(timings) {
-                var list = [];
-                for (var property in timings) {
-                    if (timings.hasOwnProperty(property) && property !== "date_for") {
-                        list[DDG.capitalize(property)] = timings[property].toUpperCase();
-                    }
-                }
-                return list;
-            }
-
-            function setFormat(closest, index) {
-                return index === 0 ? closest.format('h:mm A') : closest.format('h:mm A, MMM D ') + '(Tomorrow)';
-            }
-
-            function setAddress(title, country_code, country, state) {
-                if (title !== "") {
-                    return country_code === "US" ? title.substr(0, title.lastIndexOf(",")) : title;
-                }
-                return state !== "" ? state + ', ' + country : country;
-            }
 
             Spice.add({
                 id: "islamic_prayer_times",
