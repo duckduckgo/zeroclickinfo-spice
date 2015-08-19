@@ -47,7 +47,7 @@ var ddg_spice_dictionary = {
         var q = DDG.get_query();
 
         Spice.add({
-            id: 'definition',
+            id: 'dictionary_definition',
             name: 'Definition',
 
             data: {
