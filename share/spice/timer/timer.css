@@ -19,6 +19,11 @@
     display: block;
 }
 
+.zci--timer .tile {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .zci--timer .play_pause,
 .zci--timer .timer_container,
 .zci--timer #add_timer_container,
@@ -30,6 +35,8 @@
     display: block;
     width: 140px;
     height: 140px;
+    border: none;
+    background-color: #e0e0e0;
 }
 
 .zci--timer a#add_timer_btn {
@@ -329,9 +336,13 @@
 .is-mobile .zci--timer #add_timer_container {
     height: 45px;
     margin-bottom: 0;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 0.25em;
 }
 
 .is-mobile .zci--timer #add_timer_btn {
     font-size: 1.1em;
     font-weight: 600;
+    line-height: 43px;
 }
