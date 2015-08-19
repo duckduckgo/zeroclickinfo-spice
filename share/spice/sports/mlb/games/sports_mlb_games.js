@@ -1,7 +1,13 @@
 (function (env) {
     "use strict";
     
-    var Games;
+    var Games,
+        OPS = {
+            sequenceType: "inning",
+            counter: "number",
+            name: "innings",
+            min: 9
+        };
 
     env.ddg_spice_sports_mlb_games = function(apiResult) {
 
@@ -61,16 +67,12 @@
                     if (attrs.score.pitch_count) {
                         
                         // always display placeholders up to 9 innings
-                        attrs.score = Games.fillBoxscore(attrs.score, {
+                        attrs.score = Games.fillBoxscore(attrs.score, $.extend(OPS, {
                             current: attrs.score.pitch_count.inning,
-                            counter: "number",
-                            name: "innings",
-                            min: 9,
                             obj: {
-                                runs: "",
-                                type: "inning"
-                           }
-                        }); 
+                                runs: ""
+                            }
+                        })); 
 
                         inning = attrs.score.pitch_count.inning-1;
 
