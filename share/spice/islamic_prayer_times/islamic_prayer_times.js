@@ -79,7 +79,7 @@
                         closest = getClosest(data.items[index], offset, local);
                     return {
                         title: closest.title + ' at ' +  setFormat(closest.time, index),
-                        subtitle: 'Next prayer time at: ' + setAddress(data.title, data.country_code, data.country, data.state),
+                        subtitle: 'Next prayer time at ' + setAddress(data.title, data.country_code, data.country, data.state),
                         record_data: getList(data.items[index])
                     };
                 },
