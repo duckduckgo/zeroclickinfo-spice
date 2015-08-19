@@ -1,7 +1,7 @@
 (function(env){
   "use strict";
   env.ddg_spice_aqi = function(api_result) {
-    if (api_result.error || !api_result) {
+    if (!api_result || api_result.length === 0) {
       return Spice.failed('aqi');
     }
 
