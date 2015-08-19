@@ -45,10 +45,7 @@
                 var list = [];
                 for (var property in timings) {
                     if (timings.hasOwnProperty(property) && property !== "date_for") {
-                        list.push({
-                            prayer: DDG.capitalize(property),
-                            timing: timings[property].toUpperCase()
-                        });
+                        list[DDG.capitalize(property)] = timings[property].toUpperCase();
                     }
                 }
                 return list;
@@ -56,6 +53,13 @@
 
             function setFormat(closest, index) {
                 return index === 0 ? closest.format('h:mm A') : closest.format('h:mm A, MMM D ') + '(Tomorrow)';
+            }
+
+            function setAddress(title, country_code, country, state) {
+                if (title !== "") {
+                    return country_code === "US" ? title.substr(0, title.lastIndexOf(",")) : title;
+                }
+                return state !== "" ? state + ', ' + country : country;
             }
 
             Spice.add({
@@ -74,15 +78,15 @@
                         index   = local.diff(isha) > 0 ? 1 : 0, // if isha, which is the last prayer in the day, is past, then get the results for tomorrow
                         closest = getClosest(data.items[index], offset, local);
                     return {
-                        title: 'Next prayer: ' + closest.title + ' at ' +  setFormat(closest.time, index),
-                        subtitle: data.title,
-                        list: getList(data.items[index])
+                        title: closest.title + ' at ' +  setFormat(closest.time, index),
+                        subtitle: 'Next prayer time at: ' + setAddress(data.title, data.country_code, data.country, data.state),
+                        record_data: getList(data.items[index])
                     };
                 },
                 templates: {
                     group: 'list',
                     options: {
-                        list_content: Spice.islamic_prayer_times.content,
+                        content: 'record',
                         moreAt: true
                     }
                 }
