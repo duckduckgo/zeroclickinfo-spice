@@ -239,13 +239,13 @@
 .zci--timer .corner_btn.add_minute {
     display: none;
     bottom: 10px;
-    border: 1px solid #ddd;
     border-radius: 50%;
     width: 2em;
     height: 2em;
     box-sizing: border-box;
     text-align: center;
     line-height: 2em;
+    padding-top: 0.1em;
     /* bump slightly to the left as the 1 is bigger than the +
      * so it seems off-center */
     padding-right: 0.1em;
