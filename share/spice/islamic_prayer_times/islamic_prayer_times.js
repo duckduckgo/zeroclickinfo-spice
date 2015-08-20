@@ -40,7 +40,12 @@
         var list = [];
         for (var property in timings) {
             if (timings.hasOwnProperty(property) && property !== "date_for") {
-                list[DDG.capitalize(property)] = timings[property].toUpperCase();
+                // Some prayer times can't be calculated because of the BIGINT maximum value is exceeded within the API,
+                // times should be checked whether they are valid or not
+                var valid_formats = ["h:mm A", "h:mm a"];
+                if (moment(timings[property], valid_formats, true).isValid()) {
+                    list[DDG.capitalize(property)] = timings[property].toUpperCase();
+                }
             }
         }
         return list;
@@ -50,11 +55,13 @@
         return index === 0 ? closest.format('h:mm A') : closest.format('h:mm A, MMM D ') + '(Tomorrow)';
     }
 
-    function setAddress(title, country_code, country, state) {
-        if (title !== "") {
-            return country_code === "US" ? title.substr(0, title.lastIndexOf(",")) : title;
+    function setAddress(title, country_code, country, state, city, address) {
+        var location = city !== "" ? city + ", " : "";
+        if (country_code === "US") {
+            location += state;
+            return location;
         }
-        return state !== "" ? state + ', ' + country : country;
+        return address !== "" ? address : (location !== "" ? location + country : (title !== "" ? title : (state !== "" ? state + ", " : "") + country));
     }
 
     env.ddg_spice_islamic_prayer_times = function(api_result) {
@@ -82,7 +89,7 @@
                         closest = getClosest(data.items[index], offset, local);
                     return {
                         title: closest.title + ' at ' +  setFormat(closest.time, index),
-                        subtitle: 'Next prayer time at ' + setAddress(data.title, data.country_code, data.country, data.state),
+                        subtitle: 'Next prayer time at ' + setAddress(data.title, data.country_code, data.country, data.state, data.city, data.address),
                         record_data: getList(data.items[index])
                     };
                 },
