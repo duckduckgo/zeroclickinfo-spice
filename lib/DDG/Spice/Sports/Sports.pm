@@ -1,4 +1,4 @@
-package DDG::Spice::Sports::Sports;
+package DDG::Spice::Sports;
 # ABSTRACT: Sports Library
 
 use strict;
