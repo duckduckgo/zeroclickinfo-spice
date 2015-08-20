@@ -1,15 +1,17 @@
 (function (env) {
     "use strict";
 
+    // As we are using UTC that does not change with the change of seasons,
+    // we need to check DST as local time or civil time may change if a time zone jurisdiction observes daylight saving time or summer time
     function setDst(time, dst) {
         return dst === 1 ? time.add(dst, 'hours') : time;
     }
 
+    // Timezones can't be changed directly within the core moment.js library
+    // However, we can change timezones using the UTC offsets as the API provides it.
     function tz(time, offset) {
         var clone = time.clone();
-        clone.utcOffset(offset);
-        clone.add(time.utcOffset() - clone.utcOffset(), 'minutes');
-        return clone;
+        return clone.utcOffset(offset).add(time.utcOffset() - clone.utcOffset(), 'minutes');
     }
 
     function getClosest(timings, offset, local) {
