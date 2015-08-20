@@ -87,10 +87,12 @@ function ddg_spice_cheat_sheets(apiResult) {
 
     var wasShown = false; // keep track whether onShow was run yet
 
+	var meta = JSON.parse(apiResult.response.docs[0].meta);
+
     Spice.add({
         id: "cheat_sheets",
         name: "Cheat Sheet",
-        data: JSON.parse(apiResult.response.docs[0].paragraph),
+        data: meta.cs,
         templates: {
             group: "base",
             item: null,
