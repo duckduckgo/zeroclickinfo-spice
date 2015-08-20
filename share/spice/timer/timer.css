@@ -1,7 +1,17 @@
 /* GENERAL */
 
+.zci.zci--timer.is-active {
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+
+.zci--timer .tile {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
 .zci--timer .cw {
-    max-width: 90em;
+    max-width: 100%;
 }
 
 .zci--timer .zci__main {
@@ -17,11 +27,6 @@
     width: 305px;
     height: 140px;
     display: block;
-}
-
-.zci--timer .tile {
-    margin-top: 0;
-    margin-bottom: 0;
 }
 
 .zci--timer .play_pause,
