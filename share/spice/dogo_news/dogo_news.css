@@ -1,3 +1,18 @@
 .zci--dogo_news .tile--dogo_news .tile__foot {
     padding-bottom: 0.2em;
 }
+
+#zci-dogo_news .tile__title
+{
+    margin-bottom: 0.5em;
+}
+
+#zci-dogo_news .tile--dogo_news
+{
+    margin-bottom: 0.8em;
+}
+
+#zci-dogo_news .has-foot .tile__content--lg
+{
+    height: 6.2em;
+}
