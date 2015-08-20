@@ -7,20 +7,6 @@ function ddg_spice_cheat_sheets(apiResult) {
         return Spice.failed("cheat_sheets");
     }
 
-    Spice.add({
-        id: "cheat_sheets",
-        name: "Cheat Sheet",
-        data: JSON.parse(apiResult.response.docs[0].paragraph),
-        templates: {
-            group: "base",
-            item: null,
-            options: {
-                content: Spice.cheat_sheets.detail,
-                moreAt: 0
-            }
-        }
-    });
-
     Spice.registerHelper('cheatsheets_ordered', function(sections, section_order, template_type, options) {
         var result = "";
         var template = {
@@ -101,7 +87,18 @@ function ddg_spice_cheat_sheets(apiResult) {
 
     var wasShown = false; // keep track whether onShow was run yet
 
-    return {
+    Spice.add({
+        id: "cheat_sheets",
+        name: "Cheat Sheet",
+        data: JSON.parse(apiResult.response.docs[0].paragraph),
+        templates: {
+            group: "base",
+            item: null,
+            options: {
+                content: Spice.cheat_sheets.detail,
+                moreAt: 0
+            }
+        },
         onShow: function() {
             // make sure this function is only run once, the first time
             // the IA is shown otherwise things will get initialized more than once
@@ -165,5 +162,6 @@ function ddg_spice_cheat_sheets(apiResult) {
                 $more_btn.click(showMoreLess);
             });
          }
-    };
+
+    });
 }
