@@ -79,20 +79,22 @@
 
         if (api_result.error || goodStories < 3) {
             Spice.failed('news');
-        }
 
-        Spice.add({
-            id: 'news',
-            name: 'News',
-            data: goodStories,
-            meta: {
-                count: goodStories.length,
-                searchTerm: searchTerm,
-                itemType: 'News articles'
-            },
-            templates: {
-                item: 'news_item'
-            }
-        });
+        } else {
+
+            Spice.add({
+                id: 'news',
+                name: 'News',
+                data: goodStories,
+                meta: {
+                    count: goodStories.length,
+                    searchTerm: searchTerm,
+                    itemType: 'News articles'
+                },
+                templates: {
+                    item: 'news_item'
+                }
+            });
+        }
     }
 }(this));
