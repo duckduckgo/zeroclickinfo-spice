@@ -139,6 +139,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             .on("mouseenter mouseleave focus blur", this.updateNameInputBg.bind(this));
         this.$element.find(".time_input input")
             .keyup(this.handleTimeInput.bind(this))
+            .focus(this.handleTimeFocus.bind(this))
+            .mouseup(this.handleTimeMouseUp.bind(this))
             .focusout(this.handleTimeFocusOut.bind(this));
         this.$element.find('.corner_btn.reset').click(this.handleResetClick.bind(this));
         this.$element.find('.play_pause a').click(this.handleStartStopClick.bind(this));
@@ -268,6 +270,14 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             if (keycode === 13) {
                 this.start();
             }
+        },
+        handleTimeFocus: function (e) {
+            // select all input when you click
+            e.currentTarget.setSelectionRange(0, 2);
+        },
+        handleTimeMouseUp: function (e) {
+            // makes sure the above works
+            return false;
         },
         handleTimeFocusOut: function (e) {
             var $input = $(e.currentTarget),
