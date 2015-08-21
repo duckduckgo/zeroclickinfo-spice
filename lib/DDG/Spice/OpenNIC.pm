@@ -10,7 +10,7 @@ source "OpenNIC API";
 description "Search for OpenNIC DNS using some criteras";
 primary_example_queries "opennic", "neutral dns" , "censor-free dns";
 secondary_example_queries "opennic 42.42.42.42", "opennic ipv6", "opennic ipv6 42.42.42.42";
-category "cheat_sheets";
+category "programming";
 topics "sysadmin";
 
 # Code info
@@ -55,17 +55,20 @@ handle remainder => sub {
     if ($_ =~ /(((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/){ 
         $ip=$1;
         # Unused parameters are set to 0, not left null or undeclared
-        # (they will be overlaoded by the ip in the API )
+        # (they will be overloaded by the ip in the API )
         $lat = '0';
         $lon = '0';
     }
-    # user-position
-    else {
+    # user-position (do not trigger the IA if we can't determine the user's position)
+    elsif( exists($loc->{latitude}) && exists($loc->{longitude}) ){
         # The unused parameter is set null to avoid overloading the coordinates.
         # It doesn't have any side effect on other arguments as "ip" is the last one.
         $ip= '';                
         $lat = $loc->latitude;
         $lon = $loc->longitude;
+    }
+    else{
+        return;
     }
     
     # Number of DNS to print
