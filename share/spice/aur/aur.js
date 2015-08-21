@@ -21,7 +21,7 @@
             data: api_result.results,
             meta: {
                 sourceName: "aur.archlinux.org",
-                sourceUrl: 'https://aur.archlinux.org/packages/?O=0&SeB=nd&K=' + query
+                sourceUrl: 'https://aur.archlinux.org/packages/?K=' + query
             },
             normalize: function(item) {
                 return {
