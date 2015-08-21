@@ -65,10 +65,10 @@
                     
                     // pitch_count contains the current game status
                     if (attrs.score.pitch_count) {
-                        
+                        attrs.score.current = attrs.score.pitch_count.inning;
+
                         // always display placeholders up to 9 innings
                         attrs.score = Games.fillBoxscore(attrs.score, $.extend(OPS, {
-                            current: attrs.score.pitch_count.inning,
                             obj: {
                                 runs: ""
                             }

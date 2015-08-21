@@ -64,7 +64,7 @@
             // Game Finished/In-Progress
             if (attrs.has_started) {
                 // set current now so that subroutines don't have to check each time
-                attrs.score.current = ops.current || attrs.score[ops.currentName] || '';
+                attrs.score.current = attrs.score.current || attrs.score[ops.currentName] || 0;
 
                 attrs.canExpand = true;
 
