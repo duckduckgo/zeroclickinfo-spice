@@ -77,7 +77,7 @@
 
         var searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim();
 
-        if (api_result.error || goodStories >= 3) {
+        if (api_result.error || goodStories < 3) {
             Spice.failed('news');
         }
 
