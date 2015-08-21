@@ -3,6 +3,11 @@ package DDG::Spice::Speedtest;
 # Start at https://duck.co/duckduckhack/spice_overview if you are new
 # to instant answer development
 
+# Image generate with ImageMagick
+# 1) Generate an random background : convert -size 1024x768 xc:green -random-threshold 1x99% background.ppm
+# 2) Create the final image : convert background.ppm -fill white -draw "scale 4,4 gravity center text 0,0 '$I'" -quality 98 image.jpg
+
+
 use DDG::Spice;
 
 # Caching - https://duck.co/duckduckhack/spice_advanced_backend#caching-api-responses

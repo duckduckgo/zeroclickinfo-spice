@@ -5,7 +5,7 @@
         var $spice;
         var state = {
             speed: 0
-        }
+        };
 
         // Validate the response (customize for your Spice)
         if (!api_result || api_result.error || !api_result.url) {
@@ -28,12 +28,12 @@
             $spice.html(html);
         }
 
-        //JUST AN EXAMPLE, PLEASE USE YOUR OWN PICTURE!
         var imageAddr = api_result.url;
         var downloadSize = 4995374; //bytes
 
         var startTime, endTime;
         var download = new Image();
+
         download.onload = function () {
             endTime = (new Date()).getTime();
             showResults();
@@ -45,11 +45,16 @@
 
         startTime = (new Date()).getTime();
         var cacheBuster = "?" + startTime;
-        download.src = imageAddr + cacheBuster;
+        //download.src = imageAddr + cacheBuster;
+        download.src = imageAddr;
 
         function showResults() {
             var duration = (endTime - startTime) / 1000;
             var bitsLoaded = downloadSize * 8;
+
+            /**
+             * convertion
+             */
             var speedBps = (bitsLoaded / duration).toFixed(2);
             var speedKbps = (speedBps / 1024).toFixed(2);
             var speedMbps = (speedKbps / 1024).toFixed(2);
@@ -128,16 +133,14 @@
                     content: Spice.speedtest.content,
                     moreAt: false
                 }
-            }
+            },
+            onShow: startLoader // Start loading animation on Spice show
         });
 
         /**
          * Directly get the Jquery dom element
          */
         var $spice = Spice.getDOM('speedtest');
-
-        // Start loading animation
-        startLoader();
 
     };
 }(this));
