@@ -290,6 +290,7 @@
 /* paused */
 
 .zci--timer .status_paused .corner_btn.reset,
+.zci--timer .status_stopped .corner_btn.reset,
 .zci--timer .status_paused .corner_btn.add_minute {
     display: inline;
 }
