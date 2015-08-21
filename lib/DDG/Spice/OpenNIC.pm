@@ -60,7 +60,7 @@ handle remainder => sub {
         $lon = '0';
     }
     # user-position (do not trigger the IA if we can't determine the user's position)
-    elsif( exists($loc->{latitude}) && exists($loc->{longitude}) ){
+    elsif( defined($loc) ){
         # The unused parameter is set null to avoid overloading the coordinates.
         # It doesn't have any side effect on other arguments as "ip" is the last one.
         $ip= '';                
