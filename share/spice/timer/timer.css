@@ -213,6 +213,11 @@
     text-align: center;
 }
 
+/* IE is the only browser that doesn't show a grey placeholder */
+.zci--timer .time_input input:-ms-input-placeholder {
+    color: grey;
+}
+
 .zci--timer .name_input,
 .zci--timer .time_input input {
     font-size: 1.1em;
