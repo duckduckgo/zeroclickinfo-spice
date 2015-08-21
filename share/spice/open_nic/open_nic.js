@@ -8,13 +8,13 @@
 
         Spice.add({
             id: "open_nic",
-            name: "OpenNIC DNS",
+            name: "DNS",
             data: {
                 list: api_result
             },
             meta: {
                 sourceName: "OpenNIC",
-                sourceUrl: 'https://www.opennicproject.org'
+                sourceUrl: 'https://api.opennicproject.org/geoip/'
             },
             templates: {
                 group: 'list',
