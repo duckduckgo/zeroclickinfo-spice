@@ -22,7 +22,11 @@ ddg_spice_test(
         is_cashed => 1
     ), 
     'calculate' => undef,
+<<<<<<< HEAD
     'calculate mortgae' => undef
+=======
+    'calculate mortgage' => undef
+>>>>>>> bc9b5fb51184d2cda3454510b6906e841cf4ff34
 );
 
 done_testing;
