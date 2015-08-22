@@ -8,7 +8,6 @@
         }
 
         DDG.require('mathquill', function (){
-            console.log(api_result);
             Spice.add({
                 id: "symbolab",
                 name: "Calculator",
@@ -16,21 +15,21 @@
                 meta: {
                     sourceName: "Symbolab.com",
                     sourceUrl: api_result.solution.url
-                    
                 },
                 normalize: function (data) {
                     return {
-                        title: "Solution for: " + data.originalQuery,
-                        latex: data.solutionLatex,
+                        latex: data.originalQuery.replace(/ /g, "\\text{ }"),
+                        solution: data.solutionLatex.replace(/^=/, "").replace(/,/, ",\\text{ }"),
                         rendered: false
                     };
                 },
                 templates: {
                     group: 'text',
                     options: {
-                        content: Spice.symbolab.content,
+                        title_content: Spice.symbolab.title_content,
+                        subtitle_content: Spice.symbolab.subtitle_content,
                         moreText: {
-                            text: "Step by step solution ",
+                            text: "Step by step solution",
                             href: api_result.solution.url
                         }
                     }
