@@ -82,7 +82,7 @@
         var searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim();
 
         if (goodStories < 3) {
-            Spice.failed('news');
+            return Spice.failed('news');
 
         } else {
 
