@@ -44,6 +44,6 @@
         }
 
         songs.splice(3);
-        $(".detail__songs").html("Top Tracks: " + songs.join(", "));
+        $(".js-lastfm-detail-songs").html("Top Tracks: " + songs.join(", "));
     };
 }(this));
