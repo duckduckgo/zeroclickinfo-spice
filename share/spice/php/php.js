@@ -3,7 +3,6 @@
 
     env.ddg_spice_php = function(api_result) {
 
-        // Validate the response (customize for your Spice)
         if (!api_result || api_result.errorCode != 200) {
             return Spice.failed('php');
         }
