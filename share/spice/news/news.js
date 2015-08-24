@@ -2,6 +2,11 @@
     "use strict";
     env.ddg_spice_news = function (api_result) {
 
+        if (!api_result) {
+            Spice.failed('news');
+            return;
+        }
+
         // Words that we have to skip in DDG.isRelevant.
         var skip = [
             "news",
@@ -77,7 +82,7 @@
 
         var searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim();
 
-        if (api_result.error || goodStories < 3) {
+        if (goodStories < 3) {
             Spice.failed('news');
 
         } else {
