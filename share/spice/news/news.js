@@ -3,8 +3,7 @@
     env.ddg_spice_news = function (api_result) {
 
         if (!api_result) {
-            Spice.failed('news');
-            return;
+            return Spice.failed('news');
         }
 
         // Words that we have to skip in DDG.isRelevant.
