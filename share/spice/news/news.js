@@ -2,6 +2,10 @@
     "use strict";
     env.ddg_spice_news = function (api_result) {
 
+        if (!api_result) {
+            return Spice.failed('news');
+        }
+
         // Words that we have to skip in DDG.isRelevant.
         var skip = [
             "news",
@@ -77,22 +81,24 @@
 
         var searchTerm = DDG.get_query().replace(/(?: news|news ?)/i, '').trim();
 
-        if (api_result.error || goodStories >= 3) {
-            Spice.failed('news');
-        }
+        if (goodStories < 3) {
+            return Spice.failed('news');
 
-        Spice.add({
-            id: 'news',
-            name: 'News',
-            data: goodStories,
-            meta: {
-                count: goodStories.length,
-                searchTerm: searchTerm,
-                itemType: 'News articles'
-            },
-            templates: {
-                item: 'news_item'
-            }
-        });
+        } else {
+
+            Spice.add({
+                id: 'news',
+                name: 'News',
+                data: goodStories,
+                meta: {
+                    count: goodStories.length,
+                    searchTerm: searchTerm,
+                    itemType: 'News articles'
+                },
+                templates: {
+                    item: 'news_item'
+                }
+            });
+        }
     }
 }(this));
