@@ -27,6 +27,23 @@
 
         DDG.require('moment.js', function() {
             DDG.require('maps', function() {
+                moment.locale('en', {
+                    relativeTime : {
+                        past:   "%s ago",
+                        s:    "a sec",
+                        ss:   "%d sec",
+                        m:    "a min",
+                        mm:   "%d min",
+                        h:    "an hour",
+                        hh:   "%d hours",
+                        d:    "a day",
+                        dd:   "%d days",
+                        M:    "a month",
+                        MM:   "%d months",
+                        y:    "a year",
+                        yy:   "%d years"
+                    }
+                });
                 Spice.add({
                     id: 'citi_bike_nyc',
                     name: 'Citi Bike NYC',
