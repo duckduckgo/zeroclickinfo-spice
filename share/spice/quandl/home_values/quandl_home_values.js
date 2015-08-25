@@ -13,6 +13,9 @@
             recentValue = DDG.getProperty(api_result.data,'0.1'),
             previousValue = DDG.getProperty(api_result.data,'1.1');
         
+        // data title link
+        api_result.url = url;
+        
         // check we have both data values
         if (!recentValue || !previousValue) {
            return Spice.failed('quandl_home_values');
