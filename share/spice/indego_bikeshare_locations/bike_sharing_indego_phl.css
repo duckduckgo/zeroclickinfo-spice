@@ -1,0 +1,32 @@
+.tile--indego_phl {
+    text-align: center;
+    height: 12em;
+}
+
+.tile--indego_phl .zci__header {
+    height: 2.5em;
+}
+
+.tile--indego_phl .side_by_side {
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.tile--indego_phl .side_by_side .left {
+    float: left;
+    border-right: 1px solid #E5E5E5;
+}
+
+.is-mobile .tile--indego_phl .side_by_side .left {
+    width: 50%;
+}
+
+.tile--citi_indego_phl .side_by_side .right {
+    float: right;
+}
+
+.is-mobile .tile--indego_phl .side_by_side .right {
+    width: 50%;
+}

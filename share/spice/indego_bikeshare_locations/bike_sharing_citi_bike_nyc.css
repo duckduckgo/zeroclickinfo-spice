@@ -1,0 +1,32 @@
+.tile--citi_bike_nyc {
+    text-align: center;
+    height: 12em;
+}
+
+.tile--citi_bike_nyc .zci__header {
+    height: 2.5em;
+}
+
+.tile--citi_bike_nyc .side_by_side {
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.tile--citi_bike_nyc .side_by_side .left {
+    float: left;
+    border-right: 1px solid #E5E5E5;
+}
+
+.is-mobile .tile--citi_bike_nyc .side_by_side .left {
+    width: 50%;
+}
+
+.tile--citi_bike_nyc .side_by_side .right {
+    float: right;
+}
+
+.is-mobile .tile--citi_bike_nyc .side_by_side .right {
+    width: 50%;
+}
