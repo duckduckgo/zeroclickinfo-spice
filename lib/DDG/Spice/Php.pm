@@ -10,16 +10,20 @@ spice is_cached => 1;
 
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name "Php";
-source "";
+source "Php.net documentation";
 description "PHP search";
+topics "sysadmin", "programming";
+category "programming";
 primary_example_queries "php session_start", "php cwd";
 secondary_example_queries "php curl";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#category
 # category "";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
 # topics "";
+icon_url "http://php.net/favicon.ico";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Php.pm";
-attribution github => ["xtuc", "Sven SAULEAU"];
+attribution github => ["xtuc", "Sven SAULEAU"],
+            web => ['http://www.xtuc.fr'];
 
 # API endpoint - https://duck.co/duckduckhack/spice_attributes#spice-codetocode
 spice wrap_jsonp_callback => 1;
