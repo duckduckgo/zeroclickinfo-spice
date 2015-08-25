@@ -14,7 +14,7 @@
             },
             meta: {
                 sourceName: "OpenNIC",
-                sourceUrl: 'https://api.opennicproject.org/geoip/'
+                sourceUrl: 'https://www.opennicproject.org'
             },
             templates: {
                 group: 'list',
