@@ -1,11 +1,8 @@
 // DDH.cheat_sheets = DDH.cheat_sheets || {};
 
 // DDH.cheat_sheets.build = function(ops) {
-
-function ddg_spice_cheat_sheets(apiResult) {
-    if (!apiResult || apiResult.response.numFound !== 1) {
-        return Spice.failed("cheat_sheets");
-    }
+(function (env) {
+    "use strict";
 
     Spice.registerHelper('cheatsheets_ordered', function(sections, section_order, template_type, options) {
         var result = "";
@@ -85,85 +82,92 @@ function ddg_spice_cheat_sheets(apiResult) {
         return new Handlebars.SafeString(out);
     });
 
-    var wasShown = false; // keep track whether onShow was run yet
-
-	var meta = JSON.parse(apiResult.response.docs[0].meta);
-
-    Spice.add({
-        id: "cheat_sheets",
-        name: "Cheat Sheet",
-        data: meta.cs,
-        templates: {
-            group: "base",
-            item: null,
-            options: {
-                content: Spice.cheat_sheets.detail,
-                moreAt: 0
-            }
-        },
-        onShow: function() {
-            // make sure this function is only run once, the first time
-            // the IA is shown otherwise things will get initialized more than once
-            if (wasShown) { return; }
-
-            // set the flag to true so it doesn't get run again:
-            wasShown = true;
-
-            var $dom = $("#zci-cheat_sheets"),
-                $container = $dom.find(".cheatsheet__container"),
-                $detail    = $dom.find(".zci__main--detail"),
-                $section   = $dom.find(".cheatsheet__section"),
-                $hideRow   = $section.find("tbody tr:nth-child(n+4), ul li:nth-child(n+4)"),
-                $showhide  = $container.find(".cheatsheet__section.showhide"),
-                $more_btn  = $dom.find(".chomp--link"),
-                isExpanded = false,
-                loadedMasonry = false,
-                masonryOps = {
-                    itemSelector: '.cheatsheet__section',
-                    columnWidth: 295,
-                    gutter: 30,
-                    isFitWidth: true
-                },
-                showMoreLess = function() {
-
-                    // keep track of whether it's expanded or not:
-                    isExpanded = !isExpanded;
-
-                    // update the querystring param so the state
-                    // persists across page refreshes or if the link
-                    // is shared to someone else:
-                    if (isExpanded) {
-                        DDG.history.set({ iax: 1 });
-                    } else {
-                        DDG.history.clear('iax');
-                    }
-
-                    $dom.toggleClass("has-chomp-expanded");
-                    $detail.toggleClass("c-base");
-                    $container.toggleClass("compressed");
-                    $showhide.toggleClass("is-hidden");
-                    $hideRow.toggleClass("is-hidden");
-
-                    if (window.Masonry) {
-                        $container.masonry(masonryOps);
-                    }
-                };
-
-            // Removes all tr's after the 3rd before masonry fires
-            if ($container.hasClass("compressed")) {
-              $hideRow.toggleClass("is-hidden");
-            }
-            // if iax=1 is in the querystring, expand
-            // the cheatsheet automatically when the IA is shown:
-            if (DDG.history.get('iax')) {
-                showMoreLess();
-            }
-
-            DDG.require('masonry.js', function(){
-                $container.masonry(masonryOps);
-                $more_btn.click(showMoreLess);
-            });
-         }
-
-    });
-}
+    env.ddg_spice_cheat_sheets = function(apiResult) {
+        if (!apiResult || apiResult.response.numFound !== 1) {
+            return Spice.failed("cheat_sheets");
+        }
+    
+    
+        var wasShown = false; // keep track whether onShow was run yet
+    
+        var meta = JSON.parse(apiResult.response.docs[0].meta);
+    
+        Spice.add({
+            id: "cheat_sheets",
+            name: "Cheat Sheet",
+            data: meta.cs,
+            templates: {
+                group: "base",
+                item: null,
+                options: {
+                    content: Spice.cheat_sheets.detail,
+                    moreAt: 0
+                }
+            },
+            onShow: function() {
+                // make sure this function is only run once, the first time
+                // the IA is shown otherwise things will get initialized more than once
+                if (wasShown) { return; }
+    
+                // set the flag to true so it doesn't get run again:
+                wasShown = true;
+    
+                var $dom = $("#zci-cheat_sheets"),
+                    $container = $dom.find(".cheatsheet__container"),
+                    $detail    = $dom.find(".zci__main--detail"),
+                    $section   = $dom.find(".cheatsheet__section"),
+                    $hideRow   = $section.find("tbody tr:nth-child(n+4), ul li:nth-child(n+4)"),
+                    $showhide  = $container.find(".cheatsheet__section.showhide"),
+                    $more_btn  = $dom.find(".chomp--link"),
+                    isExpanded = false,
+                    loadedMasonry = false,
+                    masonryOps = {
+                        itemSelector: '.cheatsheet__section',
+                        columnWidth: 295,
+                        gutter: 30,
+                        isFitWidth: true
+                    },
+                    showMoreLess = function() {
+    
+                        // keep track of whether it's expanded or not:
+                        isExpanded = !isExpanded;
+    
+                        // update the querystring param so the state
+                        // persists across page refreshes or if the link
+                        // is shared to someone else:
+                        if (isExpanded) {
+                            DDG.history.set({ iax: 1 });
+                        } else {
+                            DDG.history.clear('iax');
+                        }
+    
+                        $dom.toggleClass("has-chomp-expanded");
+                        $detail.toggleClass("c-base");
+                        $container.toggleClass("compressed");
+                        $showhide.toggleClass("is-hidden");
+                        $hideRow.toggleClass("is-hidden");
+    
+                        if (window.Masonry) {
+                            $container.masonry(masonryOps);
+                        }
+                    };
+    
+                // Removes all tr's after the 3rd before masonry fires
+                if ($container.hasClass("compressed")) {
+                  $hideRow.toggleClass("is-hidden");
+                }
+                // if iax=1 is in the querystring, expand
+                // the cheatsheet automatically when the IA is shown:
+                if (DDG.history.get('iax')) {
+                    showMoreLess();
+                }
+    
+                DDG.require('masonry.js', function(){
+                    $container.masonry(masonryOps);
+                    $more_btn.click(showMoreLess);
+                });
+             }
+    
+        });
+    }
+}(this));

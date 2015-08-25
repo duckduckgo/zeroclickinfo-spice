@@ -23,7 +23,7 @@ triggers startend => (
 
 #handle query_lc => sub {
 handle remainder => sub {
-	return $_;
+	return qq{"$_"~3};
 };
 
 1;
