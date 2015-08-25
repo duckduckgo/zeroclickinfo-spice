@@ -27,7 +27,7 @@ attribution github => ["xtuc", "Sven SAULEAU"],
 
 # API endpoint - https://duck.co/duckduckhack/spice_attributes#spice-codetocode
 spice wrap_jsonp_callback => 1;
-spice to => 'http://localhost:8000/v1.0/search/$1?callback={{callback}}';
+spice to => 'http://ddg-api.xtuc.net/v1.0/search/$1?callback={{callback}}';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
 triggers startend => "php", "php.net";
