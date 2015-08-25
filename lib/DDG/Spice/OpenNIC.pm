@@ -39,15 +39,15 @@ handle remainder => sub {
     # ip version
     # user asked ipv4 (or ip4)
     if ($_ =~ /ipv?4/) {
-    $ipv='4';
+        $ipv='4';
     }
     # user asked ipv6 (or ip6)
     elsif ($_ =~ /ipv?6/) {
-    $ipv='6';
+        $ipv='6';
     }
     # user didn't ask => collect both
     else {
-    $ipv="all";
+        $ipv="all";
     }
 
     # target ip for detection :
@@ -60,7 +60,7 @@ handle remainder => sub {
         $lon = '0';
     }
     # user-position (do not trigger the IA if we can't determine the user's position)
-    elsif( defined($loc) ){
+    elsif( defined($loc) && exists($loc->{latitude}) && exists($loc->{longitude}) ){
         # The unused parameter is set null to avoid overloading the coordinates.
         # It doesn't have any side effect on other arguments as "ip" is the last one.
         $ip= '';                
@@ -73,10 +73,12 @@ handle remainder => sub {
     
     # Number of DNS to print
     # user-defined, with a maximum of 40.
-    if ($_ =~ /(?:^| )(\d{1,2})(?:$| )/ && $1>0 && $1<=40) { $number= $1; }
-    # default
-    else                                           { $number='4'; }
-
+    if ($_ =~ /(?:^| )(\d{1,2})(?:$| )/ && $1>0 && $1<=40) {
+        $number= $1;
+    } else {
+        $number='4';
+    }
+    
     #       $1    $2    $3     $4     $5
     return $lat, $lon, $ipv, $number, $ip;
 };
