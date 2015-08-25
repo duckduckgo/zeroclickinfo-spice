@@ -4,88 +4,89 @@
 (function (env) {
     "use strict";
 
-    Spice.registerHelper('cheatsheets_ordered', function(sections, section_order, template_type, options) {
-        var result = "";
-        var template = {
-          type: template_type,
-          path: template_type ? 'DDH.cheat_sheets.' + template_type : 'DDH.cheat_sheets.keyboard'
-        };
-
-        $.each(section_order, function(i, section) {
-           if (sections[section]){
-
-               var showhide = true;
-
-               if (i === 0 ){
-                   showhide = false;
-               } else if ( i === 1 && !is_mobile ){
-                   showhide = false;
-               }
-
-               result += options.fn({ name: section, items: sections[section], template: template, showhide: showhide });
-            }
-        });
-        return result;
-    });
-
-    var re_brackets    = /(?:\[|\{|\}|\])/,      // search for [, {, }, or }
-        re_whitespace  = /\s+/,                  // search for spaces
-        re_codeblock   = /<code>(.+?)<\/code>/g; // search for <code></code>
-
-    Spice.registerHelper('cheatsheets_codeblock', function(string, className, options) {
-
-        var out;
-        var codeClass = typeof className === "string" ? className : "bg-clr--white";
-        
-        // replace escaped slashes and brackets
-        string = string.replace(/\\\\/, "<bks>")
-                .replace(/\\\[/g, "<lbr>")
-                .replace(/\\\{/g, "<lcbr>")
-                .replace(/\\\]/g, "<rbr>")
-                .replace(/\\\}/g, "<rcbr>");
-
-        // no spaces
-        // OR
-        // spaces and no un-escaped brackets
-        // e.g "?()", ":sp filename"
-        //  --> wrap whole sting in <code></code>
-        if ( !re_whitespace.test(string) || !re_brackets.test(string) ){
-            out = "<code class='"+codeClass+"'>" + string + "</code>";
-
-        // spaces
-        // AND
-        // un-escaped brackets
-        // e.g "[Ctrl] [B]"
-        //  --> replace [] & {} with <code></code>
-        } else {
-
-            // replace unescaped brackets
-            out = string
-                .replace(/\[|\{/g, "<code class='"+codeClass+"'>")
-                .replace(/\]|\}/g, "</code>");
-        }
-
-        out = out
-                // re-replace escaped slash
-                .replace(/<bks>/g,  "\\")
-                // re-replace escaped brackets
-                .replace(/<lbr>/g,  "[")
-                .replace(/<lcbr>/g, "{")
-                .replace(/<rbr>/g,  "]")
-                .replace(/<rcbr>/g, "}");
-
-        out = out.replace(re_codeblock, function esc_codeblock (match, p1, offset, string, codeClass){
-            var escaped = Handlebars.Utils.escapeExpression(p1);
-            return "<code class='"+codeClass+">" + escaped + "</code>";
-        });
-
-        return new Handlebars.SafeString(out);
-    });
 
     env.ddg_spice_cheat_sheets = function(apiResult) {
         if (!apiResult || apiResult.response.numFound !== 1) {
             return Spice.failed("cheat_sheets");
         }
+
+        Spice.registerHelper('cheatsheets_ordered', function(sections, section_order, template_type, options) {
+            var result = "";
+            var template = {
+              type: template_type,
+              path: template_type ? 'DDH.cheat_sheets.' + template_type : 'DDH.cheat_sheets.keyboard'
+            };
+    
+            $.each(section_order, function(i, section) {
+               if (sections[section]){
+    
+                   var showhide = true;
+    
+                   if (i === 0 ){
+                       showhide = false;
+                   } else if ( i === 1 && !is_mobile ){
+                       showhide = false;
+                   }
+    
+                   result += options.fn({ name: section, items: sections[section], template: template, showhide: showhide });
+                }
+            });
+            return result;
+        });
+    
+        var re_brackets    = /(?:\[|\{|\}|\])/,      // search for [, {, }, or }
+            re_whitespace  = /\s+/,                  // search for spaces
+            re_codeblock   = /<code>(.+?)<\/code>/g; // search for <code></code>
+    
+        Spice.registerHelper('cheatsheets_codeblock', function(string, className, options) {
+    
+            var out;
+            var codeClass = typeof className === "string" ? className : "bg-clr--white";
+            
+            // replace escaped slashes and brackets
+            string = string.replace(/\\\\/, "<bks>")
+                    .replace(/\\\[/g, "<lbr>")
+                    .replace(/\\\{/g, "<lcbr>")
+                    .replace(/\\\]/g, "<rbr>")
+                    .replace(/\\\}/g, "<rcbr>");
+    
+            // no spaces
+            // OR
+            // spaces and no un-escaped brackets
+            // e.g "?()", ":sp filename"
+            //  --> wrap whole sting in <code></code>
+            if ( !re_whitespace.test(string) || !re_brackets.test(string) ){
+                out = "<code class='"+codeClass+"'>" + string + "</code>";
+    
+            // spaces
+            // AND
+            // un-escaped brackets
+            // e.g "[Ctrl] [B]"
+            //  --> replace [] & {} with <code></code>
+            } else {
+    
+                // replace unescaped brackets
+                out = string
+                    .replace(/\[|\{/g, "<code class='"+codeClass+"'>")
+                    .replace(/\]|\}/g, "</code>");
+            }
+    
+            out = out
+                    // re-replace escaped slash
+                    .replace(/<bks>/g,  "\\")
+                    // re-replace escaped brackets
+                    .replace(/<lbr>/g,  "[")
+                    .replace(/<lcbr>/g, "{")
+                    .replace(/<rbr>/g,  "]")
+                    .replace(/<rcbr>/g, "}");
+    
+            out = out.replace(re_codeblock, function esc_codeblock (match, p1, offset, string, codeClass){
+                var escaped = Handlebars.Utils.escapeExpression(p1);
+                return "<code class='"+codeClass+">" + escaped + "</code>";
+            });
+    
+            return new Handlebars.SafeString(out);
+        });
     
     
         var wasShown = false; // keep track whether onShow was run yet
