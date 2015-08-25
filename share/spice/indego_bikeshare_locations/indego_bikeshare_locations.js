@@ -1,22 +1,12 @@
 (function(env) {
     "use strict";
 
-    var references = {
-       philadelphia: {
-            lat: 39.9452735, 
-            lon: -75.1485887      
-           
-           }
-    };
-
     env.ddg_spice_indego_bikeshare_locations = function(api_result) {
         if (!api_result || !api_result.features) {
             return Spice.failed('indego_bikeshare_locations');
         }
 
-       // var script = $('[src*="/js/spice/indego_bikeshare_locations/indego_bikeshare_locations/"]')[0],
-         //   source = $(script).attr("src"),
-        //    query = source.match(/indego_bikeshare_locations\/([^\/]+)/)[1];
+   
 
         DDG.require('moment.js', function() {
             DDG.require('maps', function() {
@@ -73,7 +63,6 @@
                             name: item.properties.name,            
                             lat: (item.geometry.coordinates[1]).toString(),
                             lon: (item.geometry.coordinates[0]).toString(),    
-                          //  distanceToReference: pointOfReference ? L.latLng(item.latitude, item.longitude).distanceTo(pointOfReference) : item.properties.kioskId,
                             title: item.properties.name,
                             docksAvailable: item.properties.docksAvailable,
                             bikesAvailable:item.properties.bikesAvailable,
