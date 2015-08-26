@@ -35,7 +35,7 @@
                         type: 'Indego Bike Share Philadelphia',
                         sourceName: 'Ride Indego',
                         sourceUrl: 'http://www.rideindego.com/stations/',
-                        itemType: 'station map'
+                        itemType: 'Bike Stations'
                     },
                     model: 'Place',
                     view: 'Places',
