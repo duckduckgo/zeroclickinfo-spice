@@ -31,7 +31,7 @@
         return date - now;
     }
 
-    // Check if the airplane is on-time or delayed.
+    // Check if the airplane is on-time or delayed. Returns ["stringStatus", boolIsOnTime]
     function onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
 
         var deltaDepart = new Date(departureDate) - scheduledDeparture,
@@ -44,7 +44,12 @@
                 return ["On Time", true];
             }
         }
-        return [STATUS[flight.status], true];
+        if (flight.status === "L") {
+        	// still reflect on time / late for landed flights, but just based on arrival
+        	return [STATUS[flight.status], MILLIS_PER_MIN * 5 >= deltaArrive];
+        }
+        // all remaining status are canceled, diverted, non-operational, unknown, redirected, etc... return false to reflect not on time
+        return [STATUS[flight.status], false];
     }
 
     env.ddg_spice_airlines = function(api_result) {
