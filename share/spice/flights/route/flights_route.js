@@ -279,7 +279,7 @@
         },
     
     
-        // Check if the airplane is on-time or delayed.
+        // Check if the airplane is on-time or delayed. Returns ["stringStatus", boolIsOnTime]
         onTime: function onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
     
             var deltaDepart = new Date(departureDate) - scheduledDeparture,
@@ -292,7 +292,12 @@
                     return ["On Time", true];
                 }
             }
-            return [this.STATUS[flight.status], true];
+            if (flight.status === "L") {
+                // still reflect on time / late for landed flights, but just based on arrival
+                return [this.STATUS[flight.status], this.MILLIS_PER_MIN * 5 >= deltaArrive];
+            }
+            // all remaining status are canceled, diverted, non-operational, unknown, redirected, etc... return false to reflect not on time
+            return [this.STATUS[flight.status], false];
         }
     }
 
