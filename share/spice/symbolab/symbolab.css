@@ -2,3 +2,7 @@
     overflow: visible;
     margin: 0.8em 0;
 }
+
+.zci--symbolab sup{
+    top: 0em;
+}

@@ -1,5 +1,11 @@
 (function (env) {
     "use strict";
+    
+    function containsLatexChars(str){
+        console.log(str);
+        return /[\^\\\_]/.test(str);
+    }
+    
     env.ddg_spice_symbolab = function (api_result) {
 
         // Validate the response (customize for your Spice)
@@ -18,16 +24,16 @@
                 },
                 normalize: function (data) {
                     return {
-                        latex: data.originalQuery.replace(/ /g, "\\text{ }"),
-                        solution: data.solutionLatex.replace(/^=/, "").replace(/,/, ",\\text{ }"),
+                        latex: data.problemLatex,
+                        solution: data.solutionLatex,
                         rendered: false
                     };
                 },
                 templates: {
                     group: 'text',
                     options: {
-                        title_content: Spice.symbolab.title_content,
-                        subtitle_content: Spice.symbolab.subtitle_content,
+                        title_content: containsLatexChars(api_result.solution.solutionLatex) ? Spice.symbolab.title_content : Spice.symbolab.title_content_nolatex,
+                        subtitle_content: containsLatexChars(api_result.solution.problemLatex) ? Spice.symbolab.subtitle_content : Spice.symbolab.subtitle_content_nolatex,
                         moreText: {
                             text: "Step by step solution",
                             href: api_result.solution.url
