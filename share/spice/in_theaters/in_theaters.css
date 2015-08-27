@@ -78,10 +78,6 @@
     padding-bottom: 0;
 }
 
-.is-mobile .zci--in_theaters .detail__media--pr {
-    max-width: 100%;
-}
-
 .is-mobile .zci--in_theaters .detail .movie__btn {
     position: absolute;
     bottom: 1em;

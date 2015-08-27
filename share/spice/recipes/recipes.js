@@ -166,6 +166,7 @@
             options: {
                 brand: true,
                 rating: true,
+                detailMediaWidth: 350,
                 buy: Spice.recipes.recipes_view_full,
                 subtitle_content: Spice.recipes.recipes_subtitle,
                 description_content: Spice.recipes.recipes_ingredients

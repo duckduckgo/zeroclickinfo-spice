@@ -27,21 +27,6 @@
     padding-bottom: 1.65em;
 }
 
-.zci--dogo_movies .detail .detail__media--pr {
-    max-width: 180px;
-}
-
-/* Center media thumbnail in mobile detail view */
-.is-mobile .zci--dogo_movies .detail .detail__media--pr {
-    max-width: 100%;
-}
-
-/* Position mobile button at bottom of screen */
-.is-mobile .zci--dogo_movies .btn.btn--primary {
-    position: absolute;
-    bottom: 1em;
-}
-
 /* Slightly decrease font size for movie runtime and mpaa rating */
 .zci--dogo_movies span.movie--runtime {
   font-size: 0.9em;

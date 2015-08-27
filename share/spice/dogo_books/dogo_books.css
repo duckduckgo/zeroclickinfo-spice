@@ -27,15 +27,6 @@
     padding-bottom: 1.65em;
 }
 
-.zci--dogo_books .detail .detail__media--pr {
-    max-width: 180px;
-}
-
-/* Center media thumbnail in mobile detail view */
-.is-mobile .zci--dogo_books .detail .detail__media--pr {
-    max-width: 100%;
-}
-
 /* Position mobile button at bottom of screen */
 .is-mobile .zci--dogo_books .btn.btn--primary {
     position: absolute;

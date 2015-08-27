@@ -39,6 +39,7 @@
                 group: 'movies',
                 options: {
                     buy: Spice.dogo_books.buy,
+                    detailMediaWidth: 180,
                     rating: true
                 }
             }

@@ -15,89 +15,8 @@
     color: #999;
 }
 
-.detail__media.detail__media--recipe {
-    width: 30%;
-    text-align: center;
-}
-    .is-mobile .detail--recipes .detail__media.detail__media--recipe {
-        margin-left: 0.5em;
-        line-height: initial;
-        width: 8.65em;
-        max-height: 8.65em;
-        float: right;
-        top: 2em;
-    }
-    .is-mobile .detail--recipes .detail__media__img {
-        position: static;
-    }
-    .is-mobile .detail--recipes .detail__body.detail__body--recipe {
-        position: static;
-        overflow: visible;
-        display: block;
-        padding-top: 32px;
-        padding-left: 0;
-    }
-
-    .is-mobile .detail--recipes .recipe__content {
-        position: absolute;
-        left: 1.1em;
-        right: 1em;
-        top: 15em;
-        bottom: 4em;
-        overflow: auto;
-    }
-
-    .is-mobile .detail--recipes .detail__body__content {
-        padding-right: 0;
-        display: inherit;
-    }
-
-.tileview--grid .detail__media--recipe {
-    text-align: center;
-}
-
-.is-mobile .detail--recipes {
-    background-color: #f2f2f2;
-}
-
-.detail__body--recipe .recipe__title {
+.detail--recipes .recipe__title {
     padding: 0;
-}
-    .is-mobile .detail--recipes  .recipe__title {
-        margin-bottom: 0.1em;
-        min-height: 2.7em;
-        max-height: 4.8em;
-        overflow: hidden;
-        /* Experimental Line-Clamping, don't try this at home */
-        text-overflow: ellipsis;
-        text-overflow: -o-ellipsis-lastline;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-    }
-
-.detail__body--recipe .recipe__subtitle {
-    padding-bottom: 1em;
-}
-    .is-mobile .detail--recipes .recipe__subtitle {
-        max-height: 5em;
-        padding-bottom: 0;
-        overflow: hidden;
-    }
-
-.detail--recipes .recipe__subtitle .stars {
-    margin-right: 0;
-}
-    .is-mobile .detail--recipes .stars {
-        display: block;
-    }
-    
-    .is-mobile .detail--recipes .sep {
-        display: none;
-    }
-
-.detail--recipes .stars--unrated .star {
-    color: #d0d0d0;
 }
 
 .recipe__cuisine {
@@ -169,14 +88,6 @@
 .view-btn--recipes {
     margin-top: 1em;
 }
-    .is-mobile .detail--recipes .view-btn--recipes {
-        padding-right: 1.5em;
-        padding-left: 1.5em;
-        position: absolute;
-        bottom: 1.5em;
-        margin-bottom: 0;
-        left: 1em;
-    }
         .is-mobile .detail--recipes .view-btn--recipes .btn__icon {
             display: none;
         }
