@@ -2,7 +2,6 @@
     "use strict";
     
     function containsLatexChars(str){
-        console.log(str);
         return /[\^\\\_]/.test(str);
     }
     
