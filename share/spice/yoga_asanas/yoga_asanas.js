@@ -7,15 +7,19 @@
             return Spice.failed('yoga_asanas');
         }
 
-        var docs = api_result.response.docs,
-            first = JSON.parse(docs[0].meta).order,
-            last = JSON.parse(docs[docs.length - 1].meta).order,
+        var parse_meta = function(d){
+                d.meta = JSON.parse(d.meta);
+                return d;
+            },
+            docs = api_result.response.docs.map(parse_meta),
+            first = docs[0].meta.order,
+            last = docs[docs.length - 1].meta.order,
             asanas = {
                 id: 'yoga_asanas',
                 name: 'Yoga Asanas',
                 data: docs,
                 normalize: function(item){
-                    var meta = JSON.parse(item.meta);
+                    var meta = item.meta;
                     // if not deleted will break "More at" links
                     delete item.meta;
 
