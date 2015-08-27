@@ -24,16 +24,18 @@
                 },
                 normalize: function (data) {
                     return {
-                        latex: data.problemLatex,
+                        problem: data.problemLatex,
+                        problemHasLatex: containsLatexChars(data.problemLatex),
                         solution: data.solutionLatex,
+                        solutionHasLatex: containsLatexChars(data.solutionLatex),
                         rendered: false
                     };
                 },
                 templates: {
                     group: 'text',
                     options: {
-                        title_content: containsLatexChars(api_result.solution.solutionLatex) ? Spice.symbolab.title_content : Spice.symbolab.title_content_nolatex,
-                        subtitle_content: containsLatexChars(api_result.solution.problemLatex) ? Spice.symbolab.subtitle_content : Spice.symbolab.subtitle_content_nolatex,
+                        title_content: Spice.symbolab.title_content,
+                        subtitle_content: Spice.symbolab.subtitle_content,
                         moreText: {
                             text: "Step by step solution",
                             href: api_result.solution.url
