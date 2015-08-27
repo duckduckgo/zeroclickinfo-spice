@@ -2,7 +2,18 @@
     'use strict';
     env.ddg_spice_quandl_fundamentals = function(api_result){
 
-        if (!api_result || api_result.data.length < 2 ) {
+        if (!api_result) {
+            return Spice.failed('quandl_fundamentals');
+        }
+
+        var result = api_result;
+        
+        if (result.data == null) {
+            return Spice.failed('quandl_fundamentals');
+        }
+        
+        // we need two data points to get percent change
+        if (result.data.length < 2) {
             return Spice.failed('quandl_fundamentals');
         }
 
@@ -13,6 +24,9 @@
             urlTitle = 'View more fundamentals data at Quandl',
             recentValue = DDG.getProperty(api_result.data,'0.1'),
             previousValue = DDG.getProperty(api_result.data,'1.1');
+        
+        // data title link
+        api_result.url = url;
         
         // check we have both data values
         if (!recentValue || !previousValue) {

@@ -2,6 +2,8 @@
     "use strict";
 
     env.ddg_spice_lastfm_artist_all = function(api_result) {
+        if (!api_result || !api_result.artist || !api_result.artist.url) { return; }
+
         Spice.add({
             id: 'lastfm_artist',
             name: 'Music',
@@ -33,6 +35,8 @@
     };
 
     env.ddg_spice_lastfm_artist_tracks = function(api_result) {
+        if (!api_result || !api_result.toptracks || !api_result.toptracks.track) { return; }
+
         var songs = [];
         // TODO: Use a template for this
         for(var i = 0; i < api_result.toptracks.track.length; i++) {
@@ -40,6 +44,6 @@
         }
 
         songs.splice(3);
-        $(".detail__songs").html("Top Tracks: " + songs.join(", "));
+        $(".js-lastfm-detail-songs").html("Top Tracks: " + songs.join(", "));
     };
 }(this));

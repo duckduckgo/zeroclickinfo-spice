@@ -30,6 +30,8 @@ ddg_spice_test(
     'alarm 30 minutes' => test_spice(@test_args),
     'timer for 15 mins' => test_spice(@test_args),
     'timer for 77 mins 13 secs' => test_spice(@test_args),
+    'timer 2:30' => test_spice(@test_args),
+    'timer 1:20:30' => test_spice(@test_args),
     'blahblah timer' => undef,
     'wwdc 2015 countdown' => undef,
     'timer 5 hellos' => undef,

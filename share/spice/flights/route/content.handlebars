@@ -1,7 +1,4 @@
-{{#if has_landed}}
-<div class="tile__landed" style="display: none"></div>
-{{/if}}
-<div class="tile__heading">
+<div class="tile__heading {{#if has_landed}}tile__landed{{/if}}">
   <div class="tile__date text--secondary">
     <div class="tile__week">{{airlineName}} {{flightNumber}}</div>
     <div class="tile__day">{{departing.departureDateF}}</div>
@@ -9,10 +6,10 @@
   <div class="tile__flightID text--primary">
     {{departing.airport.fs}} to {{arriving.airport.fs}}
   </div>
-  <div class="tx-clr--dk2">
-    <span class="tile__status {{#if is_on_time}}tile__ok{{else}}tile__not{{/if}}">
-      {{status}}
-    </span> - {{status_text}} {{datetime}}
+  <div>
+    <span class="tile__status">
+      {{{airline_status flight departureDate arrivalDate scheduledDepartureDate scheduledArrivalDate}}}
+    </span>
   </div>
 </div>
 <hr class="divider__active {{#if is_on_time}}divider__ok{{else}}divider__not{{/if}}">
