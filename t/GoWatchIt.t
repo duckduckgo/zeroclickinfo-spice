@@ -78,8 +78,15 @@ ddg_spice_test(
         caller => 'DDG::Spice::GoWatchIt'
     ),
 
-    'pocket watch' => undef,
     'apple watch' => undef,
+    # but match watch apple
+    'watch apple' => test_spice(
+        '/js/spice/go_watch_it/apple',
+        call_type => 'include',
+        caller => 'DDG::Spice::GoWatchIt'
+    ),
+
+    'pocket watch' => undef,
     'watch tower' => undef
 );
 
