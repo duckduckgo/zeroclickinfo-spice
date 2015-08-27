@@ -6,10 +6,10 @@
   <div class="tile__flightID text--primary">
     {{departing.airport.fs}} to {{arriving.airport.fs}}
   </div>
-  <div>
-    <span class="tile__status">
-      {{{airline_status flight departureDate arrivalDate scheduledDepartureDate scheduledArrivalDate}}}
-    </span>
+  <div class="tx-clr--dk2">
+    <span class="tile__status {{#if is_on_time}}tile__ok{{else}}tile__not{{/if}}">
+      {{status}}
+    </span> - {{status_text}} {{datetime}}
   </div>
 </div>
 <hr class="divider__active {{#if is_on_time}}divider__ok{{else}}divider__not{{/if}}">
