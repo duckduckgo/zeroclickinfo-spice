@@ -420,7 +420,7 @@
         data.svg = shape.svg;
         pairs = shape.pairs;
         parameter = shape.getParameter(query);
-        if(isNumber(parameter)) //force array
+        if(DDG.isNumber(parameter)) //force array
             parameter = [parameter];
 
         //loop through all formulas of this shape
