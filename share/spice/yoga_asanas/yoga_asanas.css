@@ -1,15 +1,15 @@
 .zci--yoga_asanas img {
-	max-width: none;
+    max-width: none;
 }
 
 .zci--yoga_asanas .tile__media__img {
-	height: 125%;
-	position: absolute;
-	bottom: -10px;
-	left: 50%;
-	transform: translate(-50%,0);
+    height: 125%;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translate(-50%,0);
 }
 
 .zci--yoga_asanas .tile__media {
-	height: 14em;
+    height: 14em;
 }
