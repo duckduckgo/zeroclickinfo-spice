@@ -220,7 +220,7 @@
                                 isDeparted: false
                             };
 
-                        var is_on_time = this.onTime(flight[i], departureDate, arrivalDate);
+                        var is_on_time = this.onTime(flight[i], departureDate, arrivalDate, scheduledDepartureDate, scheduledArrivalDate);
                         if (is_on_time.length != 2) {
                             return Spice.failed('route');
                         }
