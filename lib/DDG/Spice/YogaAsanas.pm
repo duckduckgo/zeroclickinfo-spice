@@ -25,11 +25,9 @@ triggers query_lc => qr{
 }x;
 
 handle query  => sub {
-	my $q = $_;
-
 	# This makes sure "a" or "b", if specified, and the other query words
 	# are associated with with either a practice or a posture, but not both
-	return "\"$q\"~10";
+	return qq{"$_"~10} if $_;
 };
 
 1;
