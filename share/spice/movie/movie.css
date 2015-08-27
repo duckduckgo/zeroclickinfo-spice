@@ -6,24 +6,24 @@
     background: transparent no-repeat;
 }
 
-.zci--movie .detail__title {
+.zci--movie .c-detail__title {
     padding-bottom: 0;
 }
 
-.zci--movie .detail__subtitle {
+.zci--movie .c-detail__subtitle {
     margin-top: 0;
     padding-top: 0;
 }
 
-.is-mobile .zci--movie .detail__subtitle {
+.is-mobile .zci--movie .c-detail__subtitle {
     position: relative;
 }
 
-.zci--movie p.detail__desc {
+.zci--movie .c-detail__desc {
     padding-bottom: 1.65em;
 }
 
-.is-mobile .zci--movie p.detail__desc {
+.is-mobile .zci--movie .c-detail__desc {
     padding-bottom: 5em;    
 }
 
@@ -52,7 +52,7 @@
     width: 24px;
 }
 
-.zci--movie .detail__subtitle sup {
+.zci--movie .c-detail__subtitle sup {
     font-size: 0.5em;
 }
 

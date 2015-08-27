@@ -24,9 +24,10 @@
 .zci--stocks .stocks__change-pct {
     font-weight: 300;
 }
-.zci--stocks .stocks__change-sep.detail__sep {
+.zci--stocks .stocks__change-sep.sep {
     margin: 0;
     height: .78em;
+    top: -0.025em;
 }
 .zci--stocks .stocks__quote-up .stocks__change,
 .zci--stocks .stocks__quote-up .stocks__change-pct {

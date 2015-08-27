@@ -6,24 +6,24 @@
     background: transparent no-repeat;
 }
 
-.zci--in_theaters .detail__title {
+.zci--in_theaters .c-detail__title {
     padding-bottom: 0;
 }
 
-.zci--in_theaters .detail__subtitle {
+.zci--in_theaters .c-detail__subtitle {
     margin-top: 0;
     padding-top: 0;
 }
 
-.is-mobile .zci--in_theaters .detail__subtitle {
+.is-mobile .zci--in_theaters .c-detail__subtitle {
     position: relative;
 }
 
-.zci--in_theaters p.detail__desc {
+.zci--in_theaters .c-detail__desc {
     padding-bottom: 1.65em;
 }
 
-.is-mobile .zci--in_theaters p.detail__desc {
+.is-mobile .zci--in_theaters .c-detail__desc {
     padding-bottom: 5em;    
 }
 
@@ -52,7 +52,7 @@
     width: 24px;
 }
 
-.zci--in_theaters .detail__subtitle sup {
+.zci--in_theaters .c-detail__subtitle sup {
     font-size: 0.5em;
 }
 
