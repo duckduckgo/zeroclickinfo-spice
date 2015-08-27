@@ -7,11 +7,10 @@
             return Spice.failed('yoga_asanas');
         }
 
-        var parse_meta = function(d){
+            var docs = api_result.response.docs.map(function(d){
                 d.meta = JSON.parse(d.meta);
                 return d;
-            },
-            docs = api_result.response.docs.map(parse_meta),
+            }),
             first = docs[0].meta.order,
             last = docs[docs.length - 1].meta.order,
             asanas = {
