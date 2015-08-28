@@ -26,19 +26,11 @@
     .is-mobile .detail--recipes .recipe__cooking-time {
         display: block;
     }
-        .is-mobile .detail--recipes .recipe__cooking-time span {
-            /* hide 'Cooking' text */
-            display: none;
-        }
 
 .recipe__ingredients {
     padding-top: 0.25em;
     padding-bottom: 0.25em;
 }
-    .is-mobile .detail--recipes .recipe__ingredients {
-        padding-top: 1em;
-        clear: both;
-    }
 
 .recipe__ingredients ul {
     display: inline;
@@ -85,13 +77,6 @@
     border-radius: 2em;
 }
 
-.view-btn--recipes {
-    margin-top: 1em;
-}
-        .is-mobile .detail--recipes .view-btn--recipes .btn__icon {
-            display: none;
-        }
-
 /* single item detail */
 
 .zci--recipes .c-product__subtitle .stars { top: -2px; }
@@ -107,4 +92,8 @@
         display: none;
     }
 
+}
+
+.zci--recipes .view-btn--recipes {
+	font-size: 0.9em;
 }
