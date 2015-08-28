@@ -15,19 +15,11 @@
     padding-top: 0;
 }
 
-.is-mobile .zci--in_theaters .c-detail__subtitle {
-    position: relative;
-}
-
 .zci--in_theaters .c-detail__desc {
     padding-bottom: 1.65em;
 }
 
-.is-mobile .zci--in_theaters .c-detail__desc {
-    padding-bottom: 5em;    
-}
-
-.zci--in_theaters .movie--runtime {
+.zci--in_theaters .in_theaters--runtime {
     display: block;
 	font-size: 0.9em;
 	padding-top: 1.5em;
@@ -36,16 +28,12 @@
 		padding-top: 0.5em;
 	}
 
-.is-mobile .zci--in_theaters .movie--runtime {
-    top: 1em;
-}
-
-.zci--in_theaters .movie--critics_score {
+.zci--in_theaters .in_theaters--critics_score {
     display: block;
     font-size: 1.3em;
 }
 
-.zci--in_theaters .movie--critics_score img {
+.zci--in_theaters .in_theaters--critics_score img {
     margin-top: -0.1em;
     margin-bottom: -0.3em;
     height: 24px;
@@ -76,11 +64,6 @@
 .is-mobile .zci--in_theaters .c-product__body--pri {
     min-height: 180px;
     padding-bottom: 0;
-}
-
-.is-mobile .zci--in_theaters .detail .movie__btn {
-    position: absolute;
-    bottom: 1em;
 }
 
 .is-mobile .zci--in_theaters.zci--type--tiles.is-active {

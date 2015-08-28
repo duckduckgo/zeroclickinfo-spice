@@ -15,16 +15,8 @@
     padding-top: 0;
 }
 
-.is-mobile .zci--movie .c-detail__subtitle {
-    position: relative;
-}
-
 .zci--movie .c-detail__desc {
     padding-bottom: 1.65em;
-}
-
-.is-mobile .zci--movie .c-detail__desc {
-    padding-bottom: 5em;    
 }
 
 .zci--movie .movie--runtime {
@@ -35,10 +27,6 @@
 	.zci--movie .c-product__subtitle .movie--runtime {
 		padding-top: 0.5em;
 	}
-
-.is-mobile .zci--movie .movie--runtime {
-    top: 1em;
-}
 
 .zci--movie .movie--critics_score {
     display: block;
@@ -76,11 +64,6 @@
 .is-mobile .zci--movie .c-product__body--pri {
     min-height: 180px;
     padding-bottom: 0;
-}
-
-.is-mobile .zci--movie .detail .movie__btn {
-    position: absolute;
-    bottom: 1em;
 }
 
 .is-mobile .zci--movie.zci--type--tiles.is-active {
