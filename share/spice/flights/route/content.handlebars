@@ -11,7 +11,7 @@
   </div>
   <div>
     <span class="tile__status">
-      {{{airline_status flight departureDate arrivalDate scheduledDepartureDate scheduledArrivalDate}}}
+      <span class="{{#if isOnTime}}tile__ok{{else}}tile__not{{/if}}">{{status}}</span>
     </span>
   </div>
 </div>

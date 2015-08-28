@@ -199,6 +199,9 @@
                                 isDeparted: false
                             };
 
+                        // Status
+                        var status = this.onTime(flight[i], departureDate, arrivalDate, scheduledDepartureDate, scheduledArrivalDate);
+
                         results.push({
                             flight: flight[i],
                             airlineName: dictFlightStats[carrierCodes[carriersIndex].fsCode].name,
@@ -209,7 +212,9 @@
                             departureDate: departureDate,
                             arrivalDate: arrivalDate,
                             scheduledDepartureDate: scheduledDepartureDate,
-                            scheduledArrivalDate: scheduledArrivalDate
+                            scheduledArrivalDate: scheduledArrivalDate,
+                            status: status[0],
+                            isOnTime: status[1]
                         });
 
                         break;
@@ -279,7 +284,7 @@
         },
     
     
-        // Check if the airplane is on-time or delayed.
+        // Check if the airplane is on-time or delayed. Returns ["stringStatus", boolIsOnTime]
         onTime: function onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
     
             var deltaDepart = new Date(departureDate) - scheduledDeparture,
@@ -292,7 +297,12 @@
                     return ["On Time", true];
                 }
             }
-            return [this.STATUS[flight.status], true];
+            if (flight.status === "L") {
+                // still reflect on time / late for landed flights, but just based on arrival
+                return [this.STATUS[flight.status], this.MILLIS_PER_MIN * 5 >= deltaArrive];
+            }
+            // all remaining status are canceled, diverted, non-operational, unknown, redirected, etc... return false to reflect not on time
+            return [this.STATUS[flight.status], false];
         }
     }
 
@@ -336,12 +346,4 @@
         } else
             return hours + ":" + minutes + " " + suffix;
     });
-
-
-    Spice.registerHelper("airline_status", function(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
-        var result = ddg_spice_flights.onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival),
-            ok_class = result[1] ? "tile__ok" : "tile__not";
-        return '<div class="' + ok_class + '">' + result[0] + '</div>';
-    });
-    
 }(this))
