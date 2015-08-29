@@ -1,16 +1,16 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_polls = function(api_result){
+    env.ddg_spice_political_polls = function(api_result){
 
         // Validate the response (customize for your Spice)
         if (!api_result || api_result.error) {
-            return Spice.failed('polls');
+            return Spice.failed('political_polls');
         }
         
         var results = api_result;
 
         if (!results) {
-            return Spice.failed('polls');
+            return Spice.failed('political_polls');
         }
         
         if(results.length > 50){
@@ -34,7 +34,7 @@
                 options: {
                     detail: false,
                     item_detail: false,
-                    footer: Spice.polls.footer,
+                    footer: Spice.political_polls.footer,
                 }
             },
             normalize: function(item) {
