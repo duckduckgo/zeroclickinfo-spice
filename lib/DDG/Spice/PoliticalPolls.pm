@@ -17,7 +17,7 @@ secondary_example_queries "election polls";
 category "reference";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#topics
 topics "special_interest";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Polls.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/PoliticalPolls.pm";
 attribution github => ["alexander95015", "Alexander"],
             facebook => "alexander95015",
             twitter => "alexander95015";
