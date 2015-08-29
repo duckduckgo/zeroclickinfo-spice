@@ -36,8 +36,6 @@ handle remainder => sub {
     # optional - regex guard
     # return unless qr/^\w+/;
 
-    return unless $_;    # Guard against "no answer"
-
     return $_;
 };
 

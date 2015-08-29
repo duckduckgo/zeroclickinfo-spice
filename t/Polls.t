@@ -4,23 +4,26 @@ use strict;
 use warnings;
 use Test::More;
 use DDG::Test::Spice;
+use URI::Encode;
 
-spice is_cached => 1;
+my $uri = URI::Encode->new({encode_reserved => 0});
 
 ddg_spice_test(
-    [qw( DDG::Spice::Polls)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/polls/query',
+    [qw( DDG::Spice::Polls )],
+    # Good examples
+    'election polls' => test_spice(
+        '/js/spice/polls/election',
         call_type => 'include',
         caller => 'DDG::Spice::Polls'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    'us polls' => test_spice(
+        '/js/spice/polls/us',
+        call_type => 'include',
+        caller => 'DDG::Spice::Polls'
+    ),
+    # Empty remainder
+    'voting' => undef,
+    'election' => undef
 );
 
 done_testing;
-
