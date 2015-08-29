@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use Test::More;
 use DDG::Test::Spice;
+use utf8;
 
 ddg_spice_test(
     [
@@ -54,6 +55,12 @@ ddg_spice_test(
     ),
     '499 us dollar to euro' => test_spice(
         '/js/spice/currency/499/usd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '499 nis to euro' => test_spice(
+        '/js/spice/currency/499/ils/eur',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
         is_cached => 0
@@ -172,6 +179,50 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+
+    # Using currency symbols
+    '$2 to £' => test_spice(
+        '/js/spice/currency/2/usd/gbp',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
+
+   '$45 to ؋' => test_spice(
+        '/js/spice/currency/45/usd/afn',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
+    '$100 to aud' => test_spice(
+        '/js/spice/currency/100/usd/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
+    '500 usd to ¥' => test_spice(
+        '/js/spice/currency/500/usd/jpy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '1000000₫ to €' => test_spice(
+        '/js/spice/currency/1000000/vnd/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'convert 123$ to inr' => test_spice(
+        '/js/spice/currency/123/usd/inr',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
+
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
     # Other types of conversion

@@ -14,7 +14,6 @@
             moreAt = decodedQuery.replace(/ /g,"+");
         
         Spice.add({
-            minItemsForModeSwitch: 3,
             id: "twitch_streams",
             name: "Gaming",
             data: api_result.streams,
@@ -24,10 +23,9 @@
                 itemType: "Twitch Streams"
             },
             templates: {
-                group: 'base',
+                group: 'videos',
                 detail: false,
                 item_detail: false,
-                item: 'videos_item',
                 moreAt: true,
             },
             normalize: function(item) {

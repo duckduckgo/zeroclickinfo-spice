@@ -1,26 +1,3 @@
-.tile--movie  {
-    width: 12em;
-}
-
-.tile--movie .tile__media__img {
-    min-width: 100%;
-    height: 100%;
-    margin-top: 0;
-}
-
-.zci--movie .one-line {
-    float: left;
-}
-
-.tile--movie .tile__title {
-    height: 2.5em;
-}
-
-.tile--movie .tile__source,
-.tile--movie:hover .tile__source {
-    color: #aaa;
-}
-
 .zci--movie .tomato--icon {
     width: 16px;
     height: 16px;
@@ -29,33 +6,35 @@
     background: transparent no-repeat;
 }
 
-.zci--movie h5.detail__title.detail__tile--pr {
+.zci--movie .c-detail__title {
     padding-bottom: 0;
 }
 
-.zci--movie .detail__subtitle {
+.zci--movie .c-detail__subtitle {
     margin-top: 0;
     padding-top: 0;
-    padding-bottom: 1.5em;
 }
 
-.is-mobile .zci--movie .detail__subtitle {
+.is-mobile .zci--movie .c-detail__subtitle {
     position: relative;
 }
 
-.zci--movie p.detail__desc {
+.zci--movie .c-detail__desc {
     padding-bottom: 1.65em;
 }
 
-.is-mobile .zci--movie p.detail__desc {
+.is-mobile .zci--movie .c-detail__desc {
     padding-bottom: 5em;    
 }
 
 .zci--movie .movie--runtime {
-    font-size: 0.9em;
-    position: relative;
-    top: 1.5em;
+    display: block;
+	font-size: 0.9em;
+	padding-top: 1.5em;
 }
+	.zci--movie .c-product__subtitle .movie--runtime {
+		padding-top: 0.5em;
+	}
 
 .is-mobile .zci--movie .movie--runtime {
     top: 1em;
@@ -73,7 +52,7 @@
     width: 24px;
 }
 
-.zci--movie .detail__subtitle sup {
+.zci--movie .c-detail__subtitle sup {
     font-size: 0.5em;
 }
 
@@ -81,36 +60,33 @@
     font-size: 0.9em;
 }
 
-.zci--movie .detail .detail__media--pr {
-    max-width: 180px;
-}
-
-.zci--movie .detail__media--pr--s .detail__media__img {
+.zci--movie .c-product__media,
+.zci--movie .c-product__media__img {
     max-height: 180px;
 }
 
-.is-mobile .detail__media--pr--s {
+.is-mobile .zci--movie .c-product__media {
     overflow: visible;
 }
 
-.is-mobile .detail__body--pr--s--sec {
+.is-mobile .zci--movie .c-product__body--sec {
     margin-top: 1.5em;
 }
 
-.is-mobile .detail__body--pr--s--pri {
-    min-height: 165px;
-    padding-bottom: 0em
+.is-mobile .zci--movie .c-product__body--pri {
+    min-height: 180px;
+    padding-bottom: 0;
 }
 
-.is-mobile .zci--movie .detail .detail__media--pr {
+.is-mobile .zci--movie .detail__media--pr {
     max-width: 100%;
 }
 
-.is-mobile .zci--movie .btn.btn--primary {
+.is-mobile .zci--movie .detail .movie__btn {
     position: absolute;
     bottom: 1em;
 }
 
-.is-mobile .zci.is-active {
-    padding-bottom: 0em;
+.is-mobile .zci--movie.zci--type--tiles.is-active {
+    padding-bottom: 0;
 }

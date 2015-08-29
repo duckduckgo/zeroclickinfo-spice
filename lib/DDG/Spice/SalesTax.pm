@@ -4,7 +4,7 @@ package DDG::Spice::SalesTax;
 use strict;
 use DDG::Spice;
 use Locale::SubCountry;
-use YAML::XS qw( Load );
+use YAML::XS 'LoadFile';
 
 name "SalesTax";
 source "http://taxratesapi.avalara.com/";
@@ -27,7 +27,7 @@ spice wrap_jsonp_callback => 1;
 my $US = new Locale::SubCountry("US");
 
 #State to Zip Code
-my $zipcodes = Load(scalar share('zipcodes.yml')->slurp);
+my $zipcodes = LoadFile(share('zipcodes.yml'));
 
 # Handle statement
 handle remainder_lc => sub {
