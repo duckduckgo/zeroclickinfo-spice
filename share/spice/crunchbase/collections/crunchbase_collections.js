@@ -32,7 +32,7 @@
         // Render the response
         Spice.add({
             id: 'crunchbase',
-	    name: 'Answer',
+	        name: 'Answer',
             data: items, // crunchbase api v3 returns 10 per page by default
             meta: {
                 sourceName: 'Crunchbase',
@@ -41,13 +41,13 @@
             normalize: function(item){
                 var properties = DDG.getProperty(item, 'properties');
                 if (properties){
-			return { 
-			    path: item.path,
-			    image: properties.profile_image_url,
-			    title: properties.name,
-			    url: wwwPathPrefix + properties.web_path,
-			    description: properties.short_description
-			};
+                    return { 
+                        path: item.path,
+                        image: properties.profile_image_url,
+                        title: properties.name,
+                        url: wwwPathPrefix + properties.web_path,
+                        description: properties.short_description
+                    };
                 }
              },
              relevancy: {
