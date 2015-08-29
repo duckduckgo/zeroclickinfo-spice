@@ -1,4 +1,4 @@
-package DDG::Spice::Polls;
+package DDG::Spice::PoliticalPolls;
 # ABSTRACT: Election and political polls from HuffPost Pollster
 
 use DDG::Spice;
@@ -7,7 +7,7 @@ use DDG::Spice;
 spice is_cached => 1;
 
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
-name "Polls";
+name "Political Polls";
 source "HuffPost Pollster";
 icon_url "http://elections.huffingtonpost.com/favicon.ico";
 description "Provides polling data from the United States.";
