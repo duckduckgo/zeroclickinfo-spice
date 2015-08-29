@@ -6,15 +6,28 @@
             return Spice.failed('crunchbase');
         }
 
+        // return items with query in name
+        function filterVerbatim(item){
+            return item.properties.name.toLowerCase().indexOf(query) !== -1;
+        }
+
         var data = api_result.data, // get org data
 	    items = data.items; // get all orgs
 
-	var metadata = api_result.metadata; // get metadata for base urls
-	// get base urls if metdata exists
-	if (metadata){
+        
+        var reCompany = /crunchbase (.*)/; // all words proceeding crunchbase
+        var query = DDG.get_query().match(reCompany)[1]; // get org query
+        var verbatimMatches = items.filter(filterVerbatim); // filter by query
+        
+        if (verbatimMatches){ // if matches by query 
+            var items = verbatimMatches; // limit items to those matches
+        }
+
+	    var metadata = api_result.metadata; // get metadata for base urls
+        if (metadata){  // get base urls if metdata exists
             var wwwPathPrefix = metadata.www_path_prefix,
                 imagePathPrefix = metadata.image_path_prefix;
-	}
+        }
 
         // Render the response
         Spice.add({
