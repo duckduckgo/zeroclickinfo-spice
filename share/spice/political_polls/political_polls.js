@@ -39,7 +39,7 @@
                         if(estimate.party !== null){
                             itemDescription += (" (" + estimate.party.toUpperCase() + ")");
                         }
-                        itemDescription += (" - " + estimate.value + "%");
+                        itemDescription += (" at " + estimate.value + "%");
                         if(k < item.estimates.length - 1 && k < 2){
                             itemDescription += ", ";
                         }
