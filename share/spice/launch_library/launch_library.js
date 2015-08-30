@@ -12,7 +12,7 @@
                 Spice.add({
                     id: "launch_library",
 
-                    name: "Upcoming Space Launches",
+                    name: "Answer",
                     data: api_result.launches,
                     meta: {
                         itemType: (api_result.number === 1 ? "Upcoming Launch" : "Upcoming Launches"),
@@ -46,7 +46,7 @@
             // If there aren't any launches scheduled, render the Instant Answer with a default message
             Spice.add({
                 id: "launch_library",
-                name: "Upcoming Space Launches",
+                name: "Answer",
                 data: api_result,
                 meta: {
                     sourceName: "LaunchLibrary.net",

@@ -16,6 +16,9 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["globalspin", "Chris Radcliff"],
             twitter => "chris_radcliff";
 
+# Version 1.1 of the API allows GET requests. 
+# Parameters are included in the URL path; "/next/5" shows the next 5 launches
+# See launchlibrary.net for the API reference.
 spice to => 'http://launchlibrary.net/1.1/launch/next/5';
 spice wrap_jsonp_callback => 1;
 
