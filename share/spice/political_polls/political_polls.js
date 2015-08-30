@@ -32,12 +32,26 @@
                     }
                 },
                 normalize: function(item) {
-                        return {
-                            title: item.title,
-                            subtitle: item.poll_count + " polls",
-                            url: item.url,
-                            updateTime: moment(item.last_updated).fromNow()
-                        };
+                    var itemDescription = "";
+                    for(var k = 0; (k < item.estimates.length && k < 3); k++){ //show max 3
+                        var estimate = item.estimates[k];
+                        itemDescription += estimate.choice;
+                        if(estimate.party !== null){
+                            itemDescription += (" (" + estimate.party.toUpperCase() + ")");
+                        }
+                        itemDescription += (" - " + estimate.value + "%");
+                        if(k < item.estimates.length - 1 && k < 2){
+                            itemDescription += ", ";
+                        }
+                    }
+                     return {
+                         title: item.title,
+                         subtitle: item.poll_count + " polls",
+                         url: item.url,
+                         description: itemDescription,
+                         updateTime: moment(item.last_updated).fromNow()
+                     };
+                        
                     },
                 sort_fields: {
                         last_updated: function(a, b) {
