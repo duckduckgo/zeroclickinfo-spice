@@ -8,22 +8,20 @@
         }
         
         if(api_result.length > 50){
-            results = results.splice(50);
+            api_result = api_result.splice(50);
         }
 
         // Render the response
         DDG.require("moment.js", function() {
             Spice.add({
-                id: "polls",
+                id: "political_polls",
 
                 // Customize these properties
                 name: "Polls",
-                allowMultipleCalls: true;
                 data: api_result,
                 meta: {
                     sourceName: "HuffPost Pollster",
                     sourceUrl: 'http://elections.huffingtonpost.com/pollster',
-                    next: api_result.next,
                 },
                 templates: {
                     group: 'text',
