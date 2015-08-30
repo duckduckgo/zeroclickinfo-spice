@@ -56,10 +56,10 @@
                  ]
              },
              templates: {
-                 group: 'info',
-                 options: {
-                     rating: false
-                 }
+                group: 'info',
+                options: {
+                    rating: false
+                }
             }
         });
     };
