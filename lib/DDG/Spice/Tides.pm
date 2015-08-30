@@ -17,8 +17,7 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["mattr555", "Matt Ramina"],
             twitter => "mattr555";
 
-spice to => 'http://api.wunderground.com/api/{{ENV{DDG_SPICE_WUNDERGROUND_APIKEY}}}/tide/q/$1.json';
-spice wrap_jsonp_callback => 1;
+spice to => 'http://api.wunderground.com/api/{{ENV{DDG_SPICE_WUNDERGROUND_APIKEY}}}/tide/q/$1.json?callback={{callback}}';
 
 triggers any => "tide", "tides";
 
@@ -26,8 +25,11 @@ handle remainder => sub {
     s/(when is|high|low|\?|\s)//g;
     return unless $_ eq '' || m/^\d{5}$/;
 
-    return join(',', $loc->latitude, $loc->longitude) if $_ eq '';
-    return $_;
+    if ($loc || $_){
+        return join(',', $loc->latitude, $loc->longitude) if $_ eq '';
+        return $_;
+    }
+    return;
 };
 
 1;

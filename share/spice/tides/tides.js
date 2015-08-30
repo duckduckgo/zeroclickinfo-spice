@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
     env.ddg_spice_tides = function(api_result){
-        if (!api_result || !api_result.tide) {
+        if (!api_result || api_result.error || !api_result.tide) {
             return Spice.failed('tides');
         }
 
@@ -18,7 +18,7 @@
         var tide_display = {};
         $.each(tides, function(i, v){
             //time: type and height
-            var time = moment({y: v.date.year, M: v.date.mon, d: v.date.mday, h: v.date.hour, m: v.date.min}).format('ddd h:mm A');
+            var time = moment({y: v.date.year, M: v.date.mon - 1, d: v.date.mday, h: v.date.hour, m: v.date.min}).format('ddd h:mm A');
             tide_display[time] = v.data.type + ', ' + v.data.height;
         })
 
@@ -26,8 +26,8 @@
             id: "tides",
             name: "Tides",
             data: {
-                title: 'Tides at ' + api_result.tide.tideInfo[0].tideSite,
-                subtitle: rising ? 'Currently rising' : 'Currently receding',
+                title: rising ? 'Currently rising' : 'Currently receding',
+                subtitle: 'Tides at ' + api_result.tide.tideInfo[0].tideSite,
                 record_data: tide_display
             },
             meta: {
