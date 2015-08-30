@@ -10,10 +10,8 @@
         function filterVerbatim(item){
             return item.properties.name.toLowerCase().indexOf(query) !== -1;
         }
-
         var data = api_result.data, // get org data
 	    items = data.items; // get all orgs
-
         
         var reCompany = /crunchbase (.*)/; // all words proceeding crunchbase
         var query = DDG.get_query().match(reCompany)[1]; // get org query
@@ -44,7 +42,9 @@
                     return { 
                         path: item.path,
                         image: properties.profile_image_url,
+                        img_m: properties.profile_image_url,
                         title: properties.name,
+                        heading: properties.name,
                         url: wwwPathPrefix + properties.web_path,
                         description: properties.short_description
                     };
