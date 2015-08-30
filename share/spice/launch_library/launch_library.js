@@ -38,7 +38,8 @@
                         }
                     },
                     variants: {
-                        tileTitle: '2line'
+                        tileTitle: '2line',
+                        tileSnippet: 'large'
                     }
                 });
             });
