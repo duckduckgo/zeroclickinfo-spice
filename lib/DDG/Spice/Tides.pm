@@ -25,7 +25,7 @@ handle remainder => sub {
     s/(when is|high|low|\?|\s)//g;
     return unless $_ eq '' || m/^\d{5}$/;
 
-    if ($loc || $_){
+    if ((defined $loc && defined $loc->latitude && defined $loc->longitude) || $_){
         return join(',', $loc->latitude, $loc->longitude) if $_ eq '';
         return $_;
     }
