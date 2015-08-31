@@ -29,7 +29,30 @@
                 sourceName: 'SoundCloud',
                 sourceUrl: 'https://soundcloud.com/search?q=' + query,
                 sourceIcon: true,
-                itemType: 'Tracks'
+                itemType: 'Tracks',
+                requery: "/js/spice/sound_cloud_result/" + encodeURIComponent(query) + "/" + Spice.getParams(),
+                parameters: [
+                    {
+                        id: "bpm",
+                        type: "dropdown",
+                        options: [
+                            { value: "", description: "bpm" },
+                            { value: "bpm[from]=&bpm[to]=100", description: "0 - 100" },
+                            { value: "bpm[from]=100&bpm[to]=200", description: "100 - 200" },
+                            { value: "bpm[from]=200&bpm[to]=300", description: "200 - 300" },
+                            { value: "bpm[from]=300&bpm[to]=", description: "300+" }
+                        ]
+                    },
+                    {
+                        name: "license",
+                        type: "dropdown",
+                        options: [
+                            { value: "", description: "license" },
+                            { value: "license=no-rights-reserved", description: "No rights reserved" },
+                            { value: "license=all-rights-reserved", description: "All rights reserved" }
+                        ]
+                    }
+                ]
             },
             templates: {
                 item_custom: 'audio_item',
