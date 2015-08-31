@@ -5,6 +5,8 @@ DDG.require('maps',function(){
 
         // OSM sends back a bunch of places, just want the first one for now
         response = response.features[0]; 
+
+        response.address=response.place_name;
                                 
         if (response.relevance < 0.9) { 
             return Spice.failed('maps'); 
