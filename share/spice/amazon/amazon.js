@@ -24,6 +24,7 @@
             templates: {
                 group: 'products',
                 options: {
+                    detailLight: true,
                     buy: 'products_amazon_buy'
                 }
             },
