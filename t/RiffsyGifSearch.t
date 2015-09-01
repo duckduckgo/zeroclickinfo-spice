@@ -9,17 +9,21 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::RiffsyGifSearch)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/riffsy_gif_search/query',
+    'dog gif' => test_spice(
+        '/js/spice/riffsy_gif_search/dog',
         call_type => 'include',
         caller => 'DDG::Spice::RiffsyGifSearch'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    'dog riffs' => test_spice(
+        '/js/spice/riffsy_gif_search/dog',
+        call_type => 'include',
+        caller => 'DDG::Spice::RiffsyGifSearch'
+    ),
+    'riffsy lol' => test_spice(
+        '/js/spice/riffsy_gif_search/lol',
+        call_type => 'include',
+        caller => 'DDG::Spice::RiffsyGifSearch'
+    ),
 );
 
 done_testing;
