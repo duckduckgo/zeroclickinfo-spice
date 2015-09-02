@@ -407,6 +407,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
     env.ddg_spice_timer = function(api_result) {
         var timers = [],
+            timerInterval,
             $addTimerBtn;
 
         function addTimer() {
@@ -429,7 +430,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             }
 
             // every 100 ms, update timers
-            setInterval(function () {
+            timerInterval = setInterval(function () {
                 var timeDifference = new Date().getTime() - lastUpdate;
 
                 // update all timers
@@ -458,6 +459,11 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             });
         }
 
+        function onHide() {
+            $addTimerBtn.off("click");
+            clearInterval(timerInterval);
+        }
+
         Spice.add({
             id: 'timer',
             name: 'Timer',
@@ -476,7 +482,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
             //wait for the spice to load before displaying things
             //this makes sure the divs display at the right time so the layout doesn't break
-            onShow: onShow
+            onShow: onShow,
+            onHide: onHide
         });
         
 
