@@ -25,13 +25,13 @@
             // for "christmas" only show "Christmas Day" etc
             // add more to the list as needed
             var single_days = {
-                'christmas': 'Christmas Day',
-                'easter': 'Easter Sunday'
+                'christmas': ['Christmas Day'],
+                'easter': ['Easter Sunday', 'Easter Day']
             };
             var days = Object.keys(single_days);
             events = events.filter(function(item) {
                 for (var i = 0; i < days.length; i++) {
-                    if (query === days[i] && item.n !== single_days[days[i]]) {
+                    if (query === days[i] && single_days[days[i]].indexOf(item.n) === -1) {
                         return false;
                     }
                 };
