@@ -26,7 +26,7 @@
                     return null;
                 }
                 return {
-                    thumbnail: item.images.fixed_height_still.url,
+                    thumbnail: item.images.fixed_height.url,
                     image: item.images.fixed_height.url,
                     url: item.url,
                     height: item.images.fixed_height.height,
