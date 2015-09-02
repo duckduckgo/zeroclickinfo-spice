@@ -53,7 +53,8 @@
                 options: {
                     subtitle_content: Spice.anime.subtitle_content,
                     rating: true,
-                    buy: Spice.anime.buy
+                    buy: Spice.anime.buy,
+                    hideReviewText: true
                 }
             }
         });

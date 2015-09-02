@@ -15,7 +15,7 @@ attribution github => ['https://github.com/iambibhas','Bibhas'],
            twitter => ['https://twitter.com/bibhasdn','Bibhas D'];
 
 spice proxy_cache_valid => "200 30d";
-spice to => 'https://hummingbird.me/api/v1/search/anime?query=$1';
+spice to => 'http://hummingbird.me/api/v1/search/anime?query=$1';
 
 triggers startend => 'anime', 'hummingbird';
 spice wrap_jsonp_callback => 1;
