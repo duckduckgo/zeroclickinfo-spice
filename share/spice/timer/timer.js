@@ -406,16 +406,27 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
     });
 
     env.ddg_spice_timer = function(api_result) {
+        var timers = [],
+            $addTimerBtn;
+
+        function addTimer() {
+            var timer = new Timer(timers.length + 1);
+            timer.$element.insertBefore($addTimerBtn.parent());
+            timers.push(timer);
+        }
         
         function onShow() {
             var lastUpdate = new Date().getTime(),
                 enteredTime = parseQueryForTime(),
                 $dom = Spice.getDOM("timer"),
-                $addTimerBtn = $dom.find("#add_timer_btn"),
-                oldTitle = document.title,
-                // start with one timer initially
-                firstTimer = new Timer(1, enteredTime),
-                timers = [firstTimer];
+                oldTitle = document.title;
+
+            $addTimerBtn = $dom.find("#add_timer_btn");
+
+            // have at least one timer when the IA is displayed
+            if (timers.length === 0) {
+                addTimer();
+            }
 
             // every 100 ms, update timers
             setInterval(function () {
@@ -439,16 +450,11 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 lastUpdate = new Date().getTime();
             }, 100);
 
-            // insert first timer before the add button
-            firstTimer.$element.insertBefore($addTimerBtn.parent());
-
             $addTimerBtn.click(function (e) {
                 e.preventDefault();
 
                 // create new timer and insert it before the add button
-                var timer = new Timer(timers.length + 1);
-                timer.$element.insertBefore($addTimerBtn.parent());
-                timers.push(timer);
+                addTimer();
             });
         }
 
