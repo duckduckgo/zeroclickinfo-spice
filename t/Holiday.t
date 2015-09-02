@@ -13,6 +13,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
+    'when is pi day' => test_spice(
+        "/js/spice/holiday/United%20States/pi%20day/%20",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
     'what day is christmas' => test_spice(
         "/js/spice/holiday/United%20States/christmas/%20",
         call_type => 'include',
@@ -24,7 +29,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Holiday'
     ),
     'when is presidents day in us' => test_spice(
-        "/js/spice/holiday/us/presidents%20day/%20",
+        "/js/spice/holiday/United%20States/presidents%20day/%20",
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
+    'when is dussehra in india' => test_spice(
+        "/js/spice/holiday/india/dussehra/%20",
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
@@ -49,7 +59,20 @@ ddg_spice_test(
         '/js/spice/holiday/United%20States/easter/%20',
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
-    )
+    ),
+    'when is father\'s day 2015 in the usa' => test_spice(
+        '/js/spice/holiday/United%20States/father%27s%20day/2015',
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
+    'when is father\'s day 2015 in the us' => test_spice(
+        '/js/spice/holiday/United%20States/father%27s%20day/2015',
+        call_type => 'include',
+        caller => 'DDG::Spice::Holiday'
+    ),
+
+    'when is day' => undef,
+    'when is a day' => undef
 );
 
 done_testing;
