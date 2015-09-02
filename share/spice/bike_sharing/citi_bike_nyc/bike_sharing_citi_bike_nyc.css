@@ -4,10 +4,6 @@
 
 .tile--citi_bike_nyc {
     text-align: center;
-    height: 12em;
-}
-
-.tile--citi_bike_nyc {
     width: 13em;
     height: 13em;
 }
@@ -17,7 +13,7 @@
 }
 
 .tile--citi_bike_nyc p.tx-clr--dk.tx--14 {
-  padding-top: 0;
+    padding-top: 0;
 }
 
 .tile--citi_bike_nyc p.tx-clr--dk.tx--25 {
