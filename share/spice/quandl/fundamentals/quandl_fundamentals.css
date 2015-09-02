@@ -27,7 +27,7 @@
 #quandl  .quandl-change-up .quandl-percent{
     color: #60ae50;
 }
-    
+
 /* green arrow up */
 #quandl  .quandl-change-up .quandl-percent:before {
     content: '';
@@ -46,7 +46,7 @@
 #quandl  .quandl-change-down {
     color: #c9481c;
 }
-    
+
 /* red arrow down */
 #quandl  .quandl-change-down .quandl-percent:before {
     content: '';
