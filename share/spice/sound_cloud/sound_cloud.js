@@ -30,7 +30,7 @@
                 sourceUrl: 'https://soundcloud.com/search?q=' + query,
                 sourceIcon: true,
                 itemType: 'Tracks',
-                requery: "/js/spice/sound_cloud_result/" + encodeURIComponent(query) + "/" + Spice.getParams(),
+                requery: "/js/spice/sound_cloud_result/" + encodeURIComponent(query) + "/",
                 parameters: [
                     {
                         id: "bpm",
@@ -44,7 +44,7 @@
                         ]
                     },
                     {
-                        name: "license",
+                        id: "license",
                         type: "dropdown",
                         options: [
                             { value: "", description: "license" },
