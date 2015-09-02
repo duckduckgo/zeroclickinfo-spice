@@ -7,7 +7,7 @@ use DDG::Spice;
 name "Random Word";
 description "Generates a random word";
 source "WordNik";
-primary_example_queries "random word", "random word 5-10";
+primary_example_queries "random word", "5 random words 5-10";
 category "random";
 topics "words_and_games", "everyday";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RandWord.pm";
@@ -21,27 +21,31 @@ spice proxy_cache_valid => "418 1d";
 
 triggers any => "random word", "random words";
 
-handle remainder => sub {
+handle query_lc => sub {
     my $minlen = 1;
     my $maxlen = 100;
-    my $limit = 1;
+    my $limit = 10;
 
-    if ($_ =~ /^([0-9]+)\-([0-9]+)$/) {
-        # Quesries like "random word 5-10"
-        $minlen = $1;
-        $maxlen = $2;
+    if ($_ =~ m/(?<limit>\d+)? ?random word(s)? ?((?<min>\d+)\-(?<max>\d+))?$/) {
+        if (!$1 && !$2) {
+            # 'random word'
+            $limit = 1;
+        } elsif ($1) {
+            # '15 random words'
+            $limit = $1
+        }
+
+        $minlen = $+{min} if $+{min};
+        $maxlen = $+{max} if $+{max};
 
         if ($minlen > $maxlen) {
             ($minlen, $maxlen) = ($maxlen, $minlen)
         }
-    } elsif ($_ =~ /^\d+$/) {
-        # Queries like "5 random words"
-        $limit = $_;
-    } elsif ($_ ne '') {
-        # Queries like "random word blah blah"
-        return;
+
+        return join('-', $minlen, $maxlen, $limit);
     }
-    return join('-', $minlen, $maxlen, $limit);
+
+    return;
 };
 
 1;
