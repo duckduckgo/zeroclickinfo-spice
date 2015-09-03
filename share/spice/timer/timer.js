@@ -8,8 +8,10 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
     'use strict';
 
     var MAX_TIME = 359999, // => 99 hrs 59 mins 59 secs
+        SOUND_NAME = "alarm-sound",
         soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
-        Timer;
+        Timer,
+        cachedPlayer;
 
     // helper methods
 
@@ -73,14 +75,35 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         return (time <= MAX_TIME) ? time : MAX_TIME;
     }
 
+    function loop() {
+        cachedPlayer.play(SOUND_NAME, soundUrl, {
+            autoPlay: true,
+            onfinish: loop
+        });
+    }
+
+    function stopLoop() {
+        cachedPlayer.stop(SOUND_NAME);
+    }
+
     //play the alarm sound
-    function playLoopingSound() {
-        function requirePlayer(player) {
-            player.play('alarm-sound', soundUrl, {
-                autoPlay: true
+    function playAlarm() {
+        // if we haven't required player before, grab it
+        // and try starting the alarm
+        if (!cachedPlayer) {
+            DDG.require('audio', function (player) {
+                cachedPlayer = player;
+
+                playAlarm();
             });
+
+            return;
         }
-        DDG.require('audio', requirePlayer);
+
+        // start looping sound - single click anywhere on the screen will
+        // stop looping
+        loop();
+        $(document).one("click", stopLoop);
     }
 
     // shake it like a timer that's just finished
@@ -334,7 +357,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             // handle running out of time
             if (this.timeLeftMs <= 0) {
                 this.timeLeftMs = 0;
-                playLoopingSound();
+                playAlarm();
                 shakeElement(this.$element);
                 this.$element.removeClass("status_running").addClass("status_stopped");
                 this.running = false;
