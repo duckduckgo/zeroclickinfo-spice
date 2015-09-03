@@ -19,7 +19,7 @@ attribution github  => ['https://github.com/plexusent', 'GoWatchIt.com'],
 
 my @triggers = ('watch', 'stream', 'watch online', 'on demand', 'watch now', 'stream online', 'buy movie', 'rent movie','movie');
 my @ignorewords = ('movie', 'show', 'tv', 'online', 'stream');
-my @stopwords = ('apple watch', 'pocket watch', 'night watch', 'watch tower');
+my @stopwords = ('apple watch', 'pocket watch', 'night watch', 'watch tower', "stop watch");
 
 my $ignorewords = join '|', @ignorewords;
 
@@ -31,7 +31,8 @@ spice wrap_jsonp_callback => 1;
 handle remainder_lc => sub {
 
   return unless $_; # Guard against "no answer"
-  return if ($req->query_lc ~~ @stopwords); # Guard against stop words "apple watch"
+  return if grep {$req->query_lc eq $_} @stopwords;
+
 
   $_ =~ s/\b$ignorewords\b//g; # remove ignorewords
   return trim($_); # trim spaces and return
