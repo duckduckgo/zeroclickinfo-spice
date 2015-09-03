@@ -93,10 +93,27 @@
                 meta: {
                     count: goodStories.length,
                     searchTerm: searchTerm,
-                    itemType: 'News articles'
+                    itemType: 'News articles',
+                    rerender: [
+                        'image'
+                    ]
                 },
                 templates: {
                     item: 'news_item'
+                },
+                onItemShown: function(item) {
+                    if (!item.fetch_image || item.image) { return; }
+
+                    // set it to zero so we don't try to fetch more than once:
+                    item.fetch_image = 0;
+
+                    // try to fetch the image and set it on the model
+                    // which will trigger the tile to re-render with the image:
+                    $.getJSON('/f.js?o=json&i=1&u=' + item.url, function(meta) {
+                        if (meta && meta.image) {
+                           item.set('image', meta.image); 
+                        }
+                    });
                 }
             });
         }
