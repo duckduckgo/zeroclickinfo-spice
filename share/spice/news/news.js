@@ -102,10 +102,10 @@
                     item: 'news_item'
                 },
                 onItemShown: function(item) {
-                    if (!item.fetch_image || item.image) { return; }
+                    if (!item.fetch_image || item.image || item.fetched_image) { return; }
 
-                    // set it to zero so we don't try to fetch more than once:
-                    item.fetch_image = 0;
+                    // set flag so we don't try to fetch more than once:
+                    item.fetched_image = 1;
 
                     // try to fetch the image and set it on the model
                     // which will trigger the tile to re-render with the image:
