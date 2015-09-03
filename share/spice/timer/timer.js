@@ -410,8 +410,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             timerInterval,
             $addTimerBtn;
 
-        function addTimer() {
-            var timer = new Timer(timers.length + 1);
+        function addTimer(startingTime) {
+            var timer = new Timer(timers.length + 1, startingTime);
             timer.$element.insertBefore($addTimerBtn.parent());
             timers.push(timer);
         }
@@ -426,7 +426,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
             // have at least one timer when the IA is displayed
             if (timers.length === 0) {
-                addTimer();
+                addTimer(enteredTime);
             }
 
             // every 100 ms, update timers
