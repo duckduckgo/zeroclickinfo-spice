@@ -31,7 +31,8 @@ spice wrap_jsonp_callback => 1;
 handle remainder_lc => sub {
 
   return unless $_; # Guard against "no answer"
-  return if ($req->query_lc ~~ @stopwords); # Guard against stop words "apple watch"
+  return if grep {$req->query_lc eq $_} @stopwords;
+
 
   $_ =~ s/\b$ignorewords\b//g; # remove ignorewords
   return trim($_); # trim spaces and return
