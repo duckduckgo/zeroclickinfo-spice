@@ -10,6 +10,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
     var MAX_TIME = 359999, // => 99 hrs 59 mins 59 secs
         SOUND_NAME = "alarm-sound",
         soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
+        soundIsPlaying = false,
         Timer,
         cachedPlayer;
 
@@ -83,6 +84,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
     }
 
     function stopLoop() {
+        soundIsPlaying = false;
         cachedPlayer.stop(SOUND_NAME);
     }
 
@@ -100,9 +102,18 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             return;
         }
 
+        // if a sound is already playing, stop for a moment
+        // and then start again
+        if (soundIsPlaying) {
+            stopLoop();
+            setTimeout(playAlarm, 500);
+            return;
+        }
+
         // start looping sound - single click anywhere on the screen will
         // stop looping
         loop();
+        soundIsPlaying = true;
         $(document).one("click", stopLoop);
     }
 
