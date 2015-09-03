@@ -19,7 +19,7 @@ attribution github  => ['https://github.com/plexusent', 'GoWatchIt.com'],
 
 my @triggers = ('watch', 'stream', 'watch online', 'on demand', 'watch now', 'stream online', 'buy movie', 'rent movie','movie');
 my @ignorewords = ('movie', 'show', 'tv', 'online', 'stream');
-my @stopwords = ('apple watch', 'pocket watch', 'night watch', 'watch tower');
+my @stopwords = ('apple watch', 'pocket watch', 'night watch', 'watch tower', "stop watch");
 
 my $ignorewords = join '|', @ignorewords;
 
