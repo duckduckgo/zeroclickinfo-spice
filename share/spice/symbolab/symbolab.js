@@ -6,7 +6,6 @@
     }
     
     env.ddg_spice_symbolab = function (api_result) {
-
         // Validate the response (customize for your Spice)
         if (!api_result || !api_result.solution) {
             return Spice.failed('symbolab');
