@@ -12,25 +12,25 @@
             DDG.require('maps', function() {
              moment.locale('en', {
                     relativeTime : {
-                        past:   "%s ago",
-                        s:    "a sec",
+                        past: "%s ago",
+                        s:    "1 sec",
                         ss:   "%d sec",
-                        m:    "a min",
+                        m:    "1 min",
                         mm:   "%d min",
-                        h:    "an hour",
+                        h:    "1 hour",
                         hh:   "%d hours",
-                        d:    "a day",
+                        d:    "1 day",
                         dd:   "%d days",
-                        M:    "a month",
+                        M:    "1 month",
                         MM:   "%d months",
-                        y:    "a year",
+                        y:    "1 year",
                         yy:   "%d years"
                     }
                 });    
             
                 Spice.add({
                     id: 'indego_bikeshare_locations',
-                    name: 'Indego Bike Share',
+                    name: 'Bike Sharing',
                     meta: {
                         type: 'Indego Bike Share Philadelphia',
                         sourceName: 'Ride Indego',
