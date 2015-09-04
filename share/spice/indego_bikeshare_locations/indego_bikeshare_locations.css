@@ -1,4 +1,4 @@
-.mapview-marker__icn.ddgsi-circle {
+.zci--indego_bikeshare_locations .mapview-marker__icn.ddgsi-circle {
   font-size: 6px;
 }
 
@@ -32,7 +32,7 @@
     width: 50%;
 }
 
-.tile--citi_indego_bikeshare_locations .side_by_side .right {
+.tile--indego_bikeshare_locations .side_by_side .right {
     float: right;
 }
 
