@@ -87,7 +87,7 @@
                         title: item.stationName,
                         availableDocks: item.availableDocks,
                         availableBikes: item.availableBikes,
-                        lastCommunication: moment(new Date(item.lastCommunicationTime)).fromNow()
+                        lastCommunication: moment(new Date(item.lastCommunicationTime.replace(/\-/g,'/') + " EDT")).fromNow()
                     };
                 }
             });
