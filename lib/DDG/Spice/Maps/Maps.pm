@@ -5,7 +5,7 @@ use strict;
 use DDG::Spice;
 
 spice to => 'http://api.mapbox.com/v4/geocode/mapbox.places/$1.json?access_token={{ENV{DDG_SPICE_MAPBOX_KEY}}}';
-spice is_cached => 0;
+spice is_cached => 1;
 spice proxy_cache_valid => "418 1d";
 spice wrap_jsonp_callback => 1; 
 
