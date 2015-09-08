@@ -9,7 +9,7 @@ spice is_cached => 1;
 name "Launch Library";
 source "LaunchLibrary.net";
 description "List upcoming rocket launches and where to watch them online";
-primary_example_queries "upcoming rocket launches", "next space launch", "watch a rocket launch", "rocket launch schedule";
+primary_example_queries "upcoming rocket launches", "next space launch", "watch a rocket launch";
 secondary_example_queries "upcoming rocket webcast", "next space webcast", "watch a space launch webcast";
 category "reference";
 topics "geek", "science";
@@ -26,7 +26,7 @@ spice wrap_jsonp_callback => 1;
 triggers any => "rocket launches", "rocket launch", "space launches", "space launch";
 
 handle query_lc => sub {
-    return unless $_ =~ /^(watch|upcoming|next)*\s?(a)*\s*(space|rocket)\s?launch(es)*\s?(schedule|webcast)*$/;
+    return unless $_ =~ /^(watch|upcoming|next)+\s?(a)*\s*(space|rocket)\s?launch(es)*\s?(schedule|webcast)*$/;
 };
 
 1;
