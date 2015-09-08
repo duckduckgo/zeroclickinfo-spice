@@ -27,6 +27,7 @@ triggers any => "rocket launches", "rocket launch", "space launches", "space lau
 
 handle query_lc => sub {
     return unless $_ =~ /^(watch|upcoming|next)+\s?(a)*\s*(space|rocket)\s?launch(es)*\s?(schedule|webcast)*$/;
+    return 1;
 };
 
 1;
