@@ -29,7 +29,7 @@
                     buy: 'products_amazon_buy'
                 },
                 variants: {
-                    bgColor: 'blueLight'
+                    mobileMore: 'primary'
                 }
             },
             relevancy: {
