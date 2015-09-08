@@ -27,12 +27,6 @@ ddg_spice_test(
         caller => 'DDG::Spice::LaunchLibrary',
         is_cached => 1
     ),
-    'rocket launch schedule' => test_spice(
-        '/js/spice/launch_library/1',
-        call_type => 'include',
-        caller => 'DDG::Spice::LaunchLibrary',
-        is_cached => 1
-    ),
     'next space launch webcast' => test_spice(
         '/js/spice/launch_library/1',
         call_type => 'include',
@@ -45,6 +39,7 @@ ddg_spice_test(
     'rocket launcher' => undef,
     'product launch webcast' => undef,
     'launch webcast' => undef,
+    'rocket launch' => undef,
 );
 
 done_testing;
