@@ -169,7 +169,7 @@
                 mobileMore: true,
                 detailDark: true,
                 detailMediaWidth: 350,
-                mobileDetailBodyHeight: 140,
+                mobileDetailBodyHeight: 150,
                 buy: Spice.recipes.recipes_more,
                 subtitle_content: Spice.recipes.recipes_subtitle,
                 description_content: Spice.recipes.recipes_ingredients
