@@ -68,7 +68,6 @@
                             title: item.properties.name,
                             docksAvailable: item.properties.docksAvailable,
                             bikesAvailable:item.properties.bikesAvailable,
-                            lastCommunication: moment(new Date(item.lastCommunicationTime)).fromNow()
                         };
                     }
                 });

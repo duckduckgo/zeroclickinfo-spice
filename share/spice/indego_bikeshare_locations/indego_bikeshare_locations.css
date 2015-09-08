@@ -3,29 +3,40 @@
 }
 
 .tile--indego_bikeshare_locations.tile--c--n {
-  width: 13em;
-  height: 13em;
-}
-
-.tile--indego_bikeshare_locations {
     text-align: center;
-    height: 12em;
+    width: 13em;
+    height: 13em;
 }
 
 .tile--indego_bikeshare_locations .zci__header {
     height: 2.5em;
 }
 
+.tile--indego_bikeshare_locations p.tx-clr--dk.tx--14 {
+    padding-top: 0;
+}
+
+.tile--indego_bikeshare_locations p.tx-clr--dk.tx--25 {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 1.1;
+}
+
+.tile--indego_bikeshare_locations div.tile__content.side_by_side {
+    margin-top: 18px;
+}
+
 .tile--indego_bikeshare_locations .side_by_side {
-    overflow: auto;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
 }
 
+
 .tile--indego_bikeshare_locations .side_by_side .left {
     float: left;
     border-right: 1px solid #E5E5E5;
+    padding-right: 7px;
 }
 
 .is-mobile .tile--indego_bikeshare_locations .side_by_side .left {
@@ -34,30 +45,9 @@
 
 .tile--indego_bikeshare_locations .side_by_side .right {
     float: right;
+    padding-left: 7px;
 }
 
 .is-mobile .tile--indego_bikeshare_locations .side_by_side .right {
     width: 50%;
-}
-
-p.tx-clr--dk.tx--14 {
-  padding-top: 0;
-}
-
-p.tx-clr--dk.tx--25 {
-  padding-top: 0;
-  padding-bottom: 0;
-  line-height: 1.1;
-}
-
-div.tile__content.side_by_side {
-  margin-top: 18px;
-}
-
-.tile--indego_bikeshare_locations .side_by_side .left {
-  padding-right: 7px;
-}
-
-.tile--indego_bikeshare_locations .side_by_side .right {
-  padding-left: 7px;
 }
