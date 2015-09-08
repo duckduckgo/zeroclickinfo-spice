@@ -55,6 +55,7 @@
             story.title = story.title.replace(/<b>|<\/b>|:/g, "");
             if (DDG.isRelevant(story.title, skip)) {
                 setSourceOnStory(story);
+                story.sortableDate = parseInt(story.date || 0);
                 goodStories.push(story);
             }
 
@@ -97,7 +98,13 @@
                 },
                 templates: {
                     item: 'news_item'
-                }
+                },
+                sort_fields: {
+                    date: function(a, b) {
+                        return b.sortableDate - a.sortableDate;
+                    }
+                },
+                sort_default: 'date'
             });
         }
     }
