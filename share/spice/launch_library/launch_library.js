@@ -35,11 +35,11 @@
                         options: {
                             footer: Spice.launch_library.footer,
                             moreAt: true
+                        },
+                        variants: {
+                            tileTitle: '2line',
+                            tileSnippet: 'large'
                         }
-                    },
-                    variants: {
-                        tileTitle: '2line',
-                        tileSnippet: 'large'
                     }
                 });
             });
