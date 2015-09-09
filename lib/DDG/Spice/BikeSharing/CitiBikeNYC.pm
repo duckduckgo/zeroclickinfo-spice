@@ -22,8 +22,8 @@ spice wrap_jsonp_callback => 1;
 spice is_cached => 0;
 spice proxy_cache_valid => '200 304 15m';
 
-my @places = "ny", "new york", "nyc", "new york city", "brooklyn", "manhattan", "queens";
-my $placeRe = join "|", @places;
+my @places = ("new york city", "new york", "nyc", "ny", "brooklyn", "manhattan", "queens");
+my $place_re = join "|", @places;
 
 handle remainder => sub {
     my $place = $_ || undef;
@@ -32,8 +32,8 @@ handle remainder => sub {
         $place = $loc->city if $loc && $loc->city;
     }
 
-    return unless $place && $place =~ /($placeRe)/;
-    return 1;
+    return unless $place && $place =~ m/\b($place_re)\b/;
+    return $1;
 };
 
 1;
