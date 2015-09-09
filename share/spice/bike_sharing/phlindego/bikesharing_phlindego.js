@@ -1,7 +1,7 @@
 (function(env) {
     "use strict";
 
-    env.ddg_spice_bikesharing_phlindego = function(api_result) {
+    env.ddg_spice_bike_sharing_phlindego = function(api_result) {
         if (!api_result || !api_result.features) {
             return Spice.failed('bikesharing_phlindego');
         }
@@ -29,7 +29,7 @@
                 });    
             
                 Spice.add({
-                    id: 'bikesharing_phlindego',
+                    id: 'phlindego',
                     name: 'Bike Sharing',
                     meta: {
                         type: 'Indego Bike Share Philadelphia',
