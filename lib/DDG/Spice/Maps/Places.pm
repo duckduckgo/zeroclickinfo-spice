@@ -32,7 +32,7 @@ triggers startend => (
 
 my %skip_remainders = map {$_ => 0} ('current', 'time');
 
-handle remainder => sub {
+handle query_lc => sub {
     return $_ if $_ && !exists($skip_remainders{$_});
     return;
 };
