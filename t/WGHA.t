@@ -30,7 +30,7 @@ ddg_spice_test(
         query_raw => "ausgehen in berlin",
         location => test_location("de")
     ) => test_spice(
-        '/js/spice/wgha/ausgehen%20in%berlin',
+        '/js/spice/wgha/ausgehen%20in%20berlin',
         call_type => 'include',
         caller => 'DDG::Spice::WGHA',
     ),
@@ -38,7 +38,7 @@ ddg_spice_test(
         query_raw => "tanzen in darmstadt",
         location => test_location("de")
     ) => test_spice(
-        '/js/spice/wgha/tanzen%20in%darmstadt',
+        '/js/spice/wgha/tanzen%20in%20darmstadt',
         call_type => 'include',
         caller => 'DDG::Spice::WGHA',
     ),
