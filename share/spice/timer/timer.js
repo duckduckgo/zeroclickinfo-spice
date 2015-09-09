@@ -11,6 +11,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         SOUND_NAME = "alarm-sound",
         soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
         soundIsPlaying = false,
+        $lastTimerToFinish,
         Timer,
         cachedPlayer;
 
@@ -77,6 +78,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
     }
 
     function loop() {
+        shakeElement($lastTimerToFinish);
         cachedPlayer.play(SOUND_NAME, soundUrl, {
             autoPlay: true,
             onfinish: loop
@@ -88,15 +90,14 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         cachedPlayer.stop(SOUND_NAME);
     }
 
-    //play the alarm sound
-    function playAlarm() {
+    function playAlarmAndShakeTimer() {
         // if we haven't required player before, grab it
         // and try starting the alarm
         if (!cachedPlayer) {
             DDG.require('audio', function (player) {
                 cachedPlayer = player;
 
-                playAlarm();
+                playAlarmAndShakeTimer();
             });
 
             return;
@@ -368,8 +369,8 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             // handle running out of time
             if (this.timeLeftMs <= 0) {
                 this.timeLeftMs = 0;
-                playAlarm();
-                shakeElement(this.$element);
+                $lastTimerToFinish = this.$element;
+                playAlarmAndShakeTimer();
                 this.$element.removeClass("status_running").addClass("status_stopped");
                 this.running = false;
             }
