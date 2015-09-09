@@ -44,7 +44,7 @@
                     templates: {
                         item: 'base_item',
                         options: {
-                            content: Spice.bikesharing.content
+                            content: Spice.bikesharing_phlindego.content
                         },
                         variants: {
                             tile: 'narrow'
