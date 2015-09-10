@@ -1,14 +1,12 @@
-(function(env) {
+(function (env) {
     "use strict";
+    env.ddg_spice_bike_sharing_indego_phl = function(api_result){
 
-    env.ddg_spice_bike_sharing_phlindego = function(api_result) {
         if (!api_result || !api_result.features) {
-            return Spice.failed('bikesharing_phlindego');
+            return Spice.failed('bike_sharing_indego_phl');
         }
 
-   
-
-        DDG.require('moment.js', function() {
+  DDG.require('moment.js', function() {
             DDG.require('maps', function() {
              moment.locale('en', {
                     relativeTime : {
@@ -29,7 +27,7 @@
                 });    
             
                 Spice.add({
-                    id: 'phlindego',
+                    id: 'indego_phl',
                     name: 'Bike Sharing',
                     meta: {
                         type: 'Indego Bike Share Philadelphia',
@@ -44,7 +42,7 @@
                     templates: {
                         item: 'base_item',
                         options: {
-                            content: Spice.bikesharing_phlindego.content
+                            content: Spice.bike_sharing_indego_phl.content
                         },
                         variants: {
                             tile: 'narrow'
