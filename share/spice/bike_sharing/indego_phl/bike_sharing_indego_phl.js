@@ -1,10 +1,10 @@
 (function (env) {
     "use strict";
-   
+
     env.ddg_spice_bike_sharing_indego_phl = function(api_result){
 
         if (!api_result || !api_result.features) {
-            return Spice.failed('indego_phl');
+            return Spice.failed('bike_sharing_indego_phl');
         }
 
         DDG.require('moment.js', function() {
@@ -25,13 +25,12 @@
                           y:    "1 year",
                           yy:   "%d years"
                       }
-                  });    
+                  });
 
                   Spice.add({
-                      id: 'indego_phl',
+                      id: 'bike_sharing_indego_phl',
                       name: 'Bike Sharing',
                       meta: {
-                          type: 'Indego Bike Share Philadelphia',
                           sourceName: 'Ride Indego',
                           sourceUrl: 'http://www.rideindego.com/stations/',
                           itemType: 'Bike Stations',
@@ -61,9 +60,9 @@
                               return null;
                           }
                           return {
-                              name: item.properties.name,            
+                              name: item.properties.name,
                               lat: (item.geometry.coordinates[1]).toString(),
-                              lon: (item.geometry.coordinates[0]).toString(),    
+                              lon: (item.geometry.coordinates[0]).toString(),
                               title: item.properties.name,
                               docksAvailable: item.properties.docksAvailable,
                               bikesAvailable:item.properties.bikesAvailable,
