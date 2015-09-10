@@ -12,7 +12,7 @@ category 'geography';
 topics 'everyday', 'travel', 'entertainment', 'geography';
 code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BikeSharing/IndegoPHL.pm';
 attribution github => 'marianosimone',
-            github => 'AcriCAA', 
+            github => 'AcriCAA',
             web => ['http://www.marianosimone.com',  'Mariano Simone'],
             web  => ['http://www.coreyacri.com',  'Corey Acri'],
             web => ['https://codeforphilly.org/', "Built at Code for Philly"];
