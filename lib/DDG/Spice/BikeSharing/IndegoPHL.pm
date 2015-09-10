@@ -21,13 +21,20 @@ triggers any => 'indego', 'bikeshare', 'bike share', 'ride indego', 'share bike'
 
 spice to => 'https://api.phila.gov/bike-share-stations/v1';
 spice wrap_jsonp_callback => 1;
-spice is_cached => 0;
+spice proxy_cache_valid => '200 304 15m';
+
+my @places = ("philadelphia", "phl", "philly");
+my $place_re = join "|", @places;
 
 handle remainder_lc => sub {
-    $loc->city.' '.$_ =~ /(philadelphia|phl|philly)/i;
-    return unless $1;
-    return $1;
+    my $place = $_ || undef;
 
+    unless ($place) {
+        $place = $loc->city if $loc && $loc->city;
+    }
+
+    return unless $place && $place =~ m/\b(?:$place_re)\b/;
+    return '';
 };
 
 1;
