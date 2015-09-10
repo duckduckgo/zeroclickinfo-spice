@@ -7,7 +7,9 @@
     }
 
     var query = DDG.get_query(),
-        query_encoded = DDG.get_query_encoded();
+        query_encoded = DDG.get_query_encoded(),
+
+        largeImageSize = DDG.is3x ? '1140' : DDG.is2x ? '760' : '380';
 
     // delete for spice
     // if(!res.matches || !res.matches.length){ return; }
@@ -26,7 +28,8 @@
             m.title = m.heading = item.recipeName.replace(/ recipe/i,"");
             m.url = "http://www.yummly.com/recipe/" + item.id + '?prm-v1';
 
-            m.image = m.img = item.imageUrlsBySize['250'];
+            m.image = item.imageUrlsBySize['250'];
+            m.largeImage = m.image.replace(/=s250-c$/, '=s'+largeImageSize+'-c');
             m.ratingText = item.sourceDisplayName;
 
             /* detail */
@@ -163,13 +166,14 @@
         templates: {
             group: 'products_simple',
             item_detail: Spice.recipes.recipes_item_detail,
+            item_detail_media: 'detail_pane_media',
             options: {
                 brand: true,
                 rating: true,
                 mobileMore: true,
                 detailDark: true,
-                detailMediaWidth: 350,
-                mobileDetailBodyHeight: 150,
+                detailMediaWidth: 600,
+                mobileDetailBodyHeight: 170,
                 buy: Spice.recipes.recipes_more,
                 subtitle_content: Spice.recipes.recipes_subtitle,
                 description_content: Spice.recipes.recipes_ingredients
