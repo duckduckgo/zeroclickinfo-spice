@@ -1,5 +1,4 @@
-package DDG::Spice::BikeSharing::PHLIndego;
-
+package DDG::Spice::BikeSharing::IndegoPHL;
 use strict;
 use DDG::Spice;
 
@@ -11,7 +10,7 @@ primary_example_queries 'indego philadelphia', 'bikeshare philadelphia';
 secondary_example_queries 'philly bikeshare';
 category 'geography';
 topics 'everyday', 'travel', 'entertainment', 'geography';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BikeSharing/PHLIndego.pm';
+code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BikeSharing/IndegoPHL.pm';
 attribution github => 'marianosimone',
             github => 'AcriCAA', 
             web => ['http://www.marianosimone.com',  'Mariano Simone'],

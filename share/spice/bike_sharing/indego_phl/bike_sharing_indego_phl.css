@@ -1,0 +1,53 @@
+.zci--indego_phl .mapview-marker__icn.ddgsi-circle {
+  font-size: 6px;
+}
+
+.tile--indego_phl.tile--c--n {
+    text-align: center;
+    width: 13em;
+    height: 13em;
+}
+
+.tile--indego_phl .zci__header {
+    height: 2.5em;
+}
+
+.tile--indego_phl p.tx-clr--dk.tx--14 {
+    padding-top: 0;
+}
+
+.tile--indego_phl p.tx-clr--dk.tx--25 {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 1.1;
+}
+
+.tile--indego_phl div.tile__content.side_by_side {
+    margin-top: 18px;
+}
+
+.tile--indego_phl .side_by_side {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+
+.tile--indego_phl .side_by_side .left {
+    float: left;
+    border-right: 1px solid #E5E5E5;
+    padding-right: 7px;
+}
+
+.is-mobile .tile--indego_phl .side_by_side .left {
+    width: 50%;
+}
+
+.tile--indego_phl .side_by_side .right {
+    float: right;
+    padding-left: 7px;
+}
+
+.is-mobile .tile--indego_phl .side_by_side .right {
+    width: 50%;
+}
