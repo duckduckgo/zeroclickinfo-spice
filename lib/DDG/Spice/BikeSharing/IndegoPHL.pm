@@ -21,7 +21,7 @@ triggers any => 'indego', 'bikeshare', 'bike share', 'ride indego', 'share bike'
 
 spice to => 'https://api.phila.gov/bike-share-stations/v1';
 spice wrap_jsonp_callback => 1;
-spice proxy_cache_valid => '200 304 15m';
+spice is_cached => 0;
 
 handle remainder_lc => sub {
     $loc->city.' '.$_ =~ /(philadelphia|phl|philly)/i;
