@@ -37,7 +37,7 @@ handle query_lc => sub {
     foreach my $qw (split(/\s/, $query)) {
         return if exists($skip_remainders{$qw});
     }
-    return $_ if $query;
+    return $query if $query;
 };
 
 1;
