@@ -29,7 +29,7 @@
                     buy: 'products_amazon_buy'
                 },
                 variants: {
-                    mobileMore: 'primary'
+                    button: 'primary'
                 }
             },
             relevancy: {

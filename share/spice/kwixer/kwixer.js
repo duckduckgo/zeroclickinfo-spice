@@ -38,6 +38,7 @@
                     img_m: item.ResourceImageUrl,
                     title: item.ResourceTitle,
                     heading: item.ResourceTitle,
+                    subtitle: item.ResourceYear,
                     ratingText: item.ResourceYear,
                     url: "https://kwixer.com/#/watching/movie/" + item.ResourceId
                 };

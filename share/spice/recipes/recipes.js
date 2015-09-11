@@ -179,7 +179,7 @@
                 description_content: Spice.recipes.recipes_ingredients
             },
             variants: {
-                mobileMore: 'critical'
+                button: 'critical'
             }
         }
     });
