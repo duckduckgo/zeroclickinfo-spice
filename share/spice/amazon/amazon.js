@@ -24,12 +24,8 @@
             templates: {
                 group: 'products',
                 options: {
-                    mobileMore: true,
                     detailLight: true,
                     buy: 'products_amazon_buy'
-                },
-                variants: {
-                    button: 'primary'
                 }
             },
             relevancy: {
