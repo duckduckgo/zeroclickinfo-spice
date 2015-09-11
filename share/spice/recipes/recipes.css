@@ -27,6 +27,13 @@
         display: block;
     }
 
+.recipe__content {
+	margin-top: 0.5em;
+}
+    .is-mobile .recipe__content {
+        margin-top: 1em;
+    }
+
 .recipe__ingredients {
     padding-top: 0.25em;
     padding-bottom: 0.25em;
@@ -50,23 +57,29 @@
 }
 
 .recipe__flavors {
-    width: 70%;
+    display: block;
 }
+    .recipe__flavors li {
+        display: block;
+        position: relative;
+        padding-left: 4em;
+    }
+
     .is-mobile .detail--recipes .recipe__flavors {
-        width: 100%;
         padding-top: 0.5em;
     }
 
 .recipe__flavors__name {
-    display: inline-block;
-    width: 9%;
-    min-width: 4em;
+    position: absolute;
     text-align: left;
+    display: block;
+    width: 4em;
+    left: 0;
+    top: 0;
 }
 
 .recipe__flavors__strength {
-    display: inline-block;
-    width: 40%;
+    display: block;
 }
 
 /* background color applied via template to this element */
