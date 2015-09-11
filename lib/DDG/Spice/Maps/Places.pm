@@ -33,8 +33,11 @@ triggers startend => (
 my %skip_remainders = map {$_ => 0} ('current', 'time');
 
 handle query_lc => sub {
-    return $_ if $_ && !exists($skip_remainders{$_});
-    return;
+    my $query = $_;
+    foreach my $qw (split(/\s/, $query)) {
+        return if exists($skip_remainders{$qw});
+    }
+    return $_ if $query;
 };
 
 1;
