@@ -19,6 +19,30 @@ ddg_spice_test(
         caller => 'DDG::Spice::WGHA',
     ),
     DDG::Request->new(
+        query_raw => "party in frankfurt",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/wgha/party%20in%20frankfurt',
+        call_type => 'include',
+        caller => 'DDG::Spice::WGHA',
+    ),
+    DDG::Request->new(
+        query_raw => "ausgehen in berlin",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/wgha/ausgehen%20in%20berlin',
+        call_type => 'include',
+        caller => 'DDG::Spice::WGHA',
+    ),
+    DDG::Request->new(
+        query_raw => "tanzen in darmstadt",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/wgha/tanzen%20in%20darmstadt',
+        call_type => 'include',
+        caller => 'DDG::Spice::WGHA',
+    ),
+    DDG::Request->new(
         query_raw => "was geht in berlin",
         location => test_location("de")
     ) => test_spice(
