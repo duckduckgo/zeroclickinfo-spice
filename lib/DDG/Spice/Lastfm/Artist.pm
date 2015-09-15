@@ -19,24 +19,19 @@ attribution github => ['https://github.com/jagtalon','Jag Talon'],
 spice to => 'http://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&artist=$1&autocorrect=1&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}_$2';
 spice from => '(?:([^/]*)/([^/]*)|)';
 
-triggers any => 'similar', 'band', 'bands', 'musician', 'musicians', 'artist', 'artists', 'performer', 'performers', 'singer', 'singers', 'rapper', 'dj', 'rappers', 'vocalist', 'vocalists', 'djs', 'songster', 'songsters';
+triggers any => 'band', 'bands', 'musician', 'musicians', 'artist', 'artists', 'performer', 'performers', 'singer', 'singers', 'rapper', 'dj', 'rappers', 'vocalist', 'vocalists', 'djs', 'songster', 'songsters';
 
 
 
 handle query_lc => sub {
     my $synonyms = "bands?|musicians?|players?|artists?|performers?|singers?|rappers?|djs?|vocalists?|songsters?";
 
-    #Queries like "bands similar to incubus" or "artists similar ben folds"
-    if(m{(?:$synonyms)\s+similar\s+(?:to\s+)?(\S+(?:\s+\S+)*)}) {
-        return $1, 'similar';
-    }
-    #Queries like "similar bands to incubus" or "similar artists ben folds"
-    if(m{similar\s+(?:$synonyms)\s+(?:to\s+)?(\S+(?:\s+\S+)*)}) {
-        return $1, 'similar';
-    }
-    #Queries like "30 seconds to mars similar bands" or "ben folds similar musicians"
-    if(m{(\S+(?:\s+\S+)*)\s+similar\s+(?:$synonyms)}) {
-        return $1, 'similar';
+    # ignoring queries that has 'similar' in them
+    return if $_ =~ m/\bsimilar\b/;
+
+    #Ignore Queries like "apple watch bands"
+    if(m{watch\ bands?}) {
+        return;
     }
     #Queries like "weezer band"
     if(m{(\S+(?:\s+\S+)*)\s+(?:$synonyms)$}) {
