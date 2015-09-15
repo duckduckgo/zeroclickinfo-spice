@@ -16,7 +16,7 @@
                     data: api_result.launches,
                     meta: {
                         itemType: (api_result.number === 1 ? "Upcoming Launch" : "Upcoming Launches"),
-                        sourceName: "LaunchLibrary.net",
+                        sourceName: "Launch Library",
                         sourceUrl: 'http://launchlibrary.net/'
                     },
                     normalize: function(item) {
