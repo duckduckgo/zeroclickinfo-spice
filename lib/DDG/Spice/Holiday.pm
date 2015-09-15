@@ -2,10 +2,7 @@ package DDG::Spice::Holiday;
 # ABSTRACT: Query timeanddate.com for a holiday
 
 use DDG::Spice;
-use Locale::Country;
 use POSIX qw(strftime);
-
-Locale::Country::alias_code('usa' => 'us');
 
 name "Time and Date holiday search";
 source "timeanddate.com";
@@ -40,11 +37,7 @@ handle query_lc => sub {
 
         # For cases like "in the usa"
         $c =~ s/\ ?\bthe\b\ ?//g;
-        if (code2country($c)) {
-            $c = code2country($c)
-        }
-        # because the country name for 'us' is 'the united states'
-        $c =~ s/\ ?\bthe\b\ ?//g;
+        $c =~ s/\b(us|usa|america|murica)\b/United States/g;
     } elsif ($loc && $loc->country_name) {
         # No - check the country the user is currently in.
         ($q, $c) = ($_, $loc->country_name);
