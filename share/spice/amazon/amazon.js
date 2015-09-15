@@ -25,11 +25,17 @@
                 group: 'products',
                 options: {
                     detailLight: true,
-                    buy: 'products_amazon_buy'
+                    buy: 'products_amazon_buy',
+                    badge: 'products_amazon_badge'
                 }
             },
             relevancy: {
                 dup: ['ASIN','img_m','img']
+            },
+            normalize: function(item) {
+                item.showBadge = item.is_prime;
+
+                return item;
             },
             onItemShown: function(item) {
                 var arg = item.rating,
