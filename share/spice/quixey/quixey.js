@@ -1,5 +1,5 @@
 (function(env) {
-    var quixey_image_domain = "d1z22zla46lb9g.cloudfront.net";
+    "use strict";
 
     // spice callback function
     env.ddg_spice_quixey = function(api_result) {
@@ -95,24 +95,25 @@
                 var reFilter = /Google\s?TV/i;
 
                 for (var i in item.editions) {
-                    var packageAppName = [DDG.getProperty(item, "editions." + [i] + ".custom.features.package_name"),              
-                                          DDG.getProperty(item, "editions." + [i] + ".name")].join(" ");
+                    var packageAppName = [
+                        DDG.getProperty(item, "editions." + [i] + ".custom.features.package_name"),
+                        DDG.getProperty(item, "editions." + [i] + ".name")
+                    ].join(" ");
 
                     if (packageAppName.match(reFilter)) {
                         item.editions.splice(i,1);
                    }
                 }
 
-                // ignoring the case where rating_count is null
-                var icon_url = make_icon_url(item), screenshot; 
-
-                if (!icon_url)
+                var icon_url = make_icon_url(item);
+                if (!icon_url){
                     return null;
+                }
 
-                screenshot = DDG.getProperty(item, 'editions.0.screenshots.0.image_url');
-
-                if (!screenshot)
+                var screenshot = DDG.getProperty(item, 'editions.0.screenshots.0.image_url');
+                if (!screenshot){
                     return null;
+                }
 
                 if (item.name && item.name.toLowerCase() === qLower) {
                     item.exactMatch = true;
@@ -121,20 +122,18 @@
                 }
 
                 return {
-                    'img':           DDG.toHTTPS(icon_url),
-                    'title':         item.name,
-                    'heading':       item.name,
-                    'rating':        item.rating,
-                    'reviewCount':   DDG.getProperty(item, "editions.0.custom.features.allversions_rating_count") || DDG.getProperty(item, "editions.0.custom.features.rating_count"),
-                    'url_review':    item.dir_url,
-                    'price':         pricerange(item),
-                    'abstract':      item.short_desc || "",
-                    'brand':         (item.developer && item.developer.name) || "",
-                    'products_buy':  Spice.quixey.quixey_buy,
-
-                    // this should be the array of screenshots with captions
-                    // and check for the existence of them
-                    'img_m': quixey_image(screenshot)
+                    img:           DDG.toHTTPS(icon_url),
+                    img_m:         screenshot,
+                    title:         item.name,
+                    heading:       item.name,
+                    rating:        item.rating,
+                    reviewCount:   DDG.getProperty(item, "editions.0.custom.features.allversions_rating_count") ||
+                                        DDG.getProperty(item, "editions.0.custom.features.rating_count"),
+                    url_review:    item.dir_url,
+                    price:         pricerange(item),
+                    abstract:      item.short_desc || null,
+                    brand:         (item.developer && item.developer.name) || null,
+                    products_buy:  Spice.apps.quixey_buy,
                 };
             },
 
@@ -223,7 +222,7 @@
             templates: {
                 group: 'products',
                 options: {
-                    buy: Spice.quixey.buy
+                    buy: Spice.apps.buy
                 },
                 variants: {
                     tile: 'narrow'
@@ -244,50 +243,42 @@
         return "$" + (p/100).toFixed(2).toString();
     }
 
-    // template helper for price formatting
-    // {{price x}}
-    Handlebars.registerHelper("Quixey_qprice", function(obj) {
-        "use strict";
-
-        return qprice(obj);
-    });
-
-
-    var quixey_image = function(image_url) {
-        return "http://" + quixey_image_domain + image_url.match(/\/image\/.+/)[0];
-    }
-
-    var make_icon_url = function(item) {
-        var domain = quixey_image_domain,
-            icon_url = item.icon_url;
+    function make_icon_url(item) {
+        var icon_url = item.icon_url || null;
 
         if (!icon_url) {
-            // console.warn("quixey: icon_url is null for %o", item);
-            if (item.editions && item.editions[0].icon_url)
-                icon_url = item.editions[0].icon_url;
-            else
-                return null;
+            console.warn("quixey: icon_url is null for %o", item);
+            if (item.editions){
+                $.each(item.editions, function(index, edition) {
+                    if (edition.icon_url){
+                        icon_url = item.editions.icon_url;
+                        return false
+                    }
+                });
+            }
         }
+        return icon_url;
 
-        // Get the image server that the icon_url in platforms is pointing to.
-        // It's not ideal, but the link to the app's image still has to redirect
-        // and it redirects to HTTPS. What we want is an HTTP link (for speed).
-        if (item.platforms && item.platforms.length > 0 && item.platforms[0].icon_url) {
-            domain = item.platforms[0].icon_url.match(/https?:\/\/([^\/]+)/)[1];
-        }
+        // // Get the image server that the icon_url in platforms is pointing to.
+        // // It's not ideal, but the link to the app's image still has to redirect
+        // // and it redirects to HTTPS. What we want is an HTTP link (for speed).
+        // if (item.platforms && item.platforms.length > 0 && item.platforms[0].icon_url) {
+        //     domain = item.platforms[0].icon_url.match(/https?:\/\/([^\/]+)/)[1];
+        // }
 
-        // Replace the domain in our icon_url to the one that we got from
-        // the platforms array.
-        // return "/iu/?u=http://" + domain + item.icon_url.match(/\/image\/.+/)[0] + "&f=1";
-        return "http://" + domain + icon_url.match(/\/image\/.+/)[0];
+        // // Replace the domain in our icon_url to the one that we got from
+        // // the platforms array.
+        // // return "/iu/?u=http://" + domain + item.icon_url.match(/\/image\/.+/)[0] + "&f=1";
+        // return "http://" + domain + icon_url.match(/\/image\/.+/)[0];
     };
 
 
     // template helper to format a price range
-    var pricerange = function(item) {
+    function pricerange(item) {
 
-        if (!item || !item.editions)
+        if (!item || !item.editions) {
             return "";
+        }
 
         var low  = item.editions[0].cents;
         var high = item.editions[0].cents;
@@ -312,11 +303,15 @@
         return range;
     };
 
+    // template helper for price formatting
+    // {{price x}}
+    Handlebars.registerHelper("Quixey_qprice", function(obj) {
+        return qprice(obj);
+    });
+
     // template helper to replace iphone and ipod icons with
     // smaller 'Apple' icons
     Handlebars.registerHelper("Quixey_platform_icon", function(icon_url) {
-        "use strict";
-
         if (this.id === 2004 || this.id === 2015) {
             return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
         }
@@ -326,8 +321,6 @@
 
     // template helper that returns and unifies platform names
     Handlebars.registerHelper("Quixey_platform_name", function() {
-        "use strict";
-
         var name;
         var platforms = this.platforms;
 
@@ -335,11 +328,10 @@
 
         if (platforms.length > 1) {
             switch (platforms[0].name) {
-                case "iPhone" :
-                case "iPad" :
+                case "iPhone":
+                case "iPad":
                     name = "iOS";
                     break;
-
                 case "Blackberry":
                 case "Blackberry 10":
                     name = "Blackberry";
