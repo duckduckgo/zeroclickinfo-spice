@@ -1,14 +1,13 @@
 (function(env) {
     "use strict";
 
-    // spice callback function
     env.ddg_spice_quixey = function(api_result) {
 
         if (!(api_result && api_result.results && api_result.results.length)) {
-            return Spice.failed('apps');
+            return Spice.failed('Apps');
         }
 
-        var qLower = api_result.q.toLowerCase();
+       var qLower = api_result.q.toLowerCase(),
             categories = [
                 "action",
                 "adventure",
@@ -66,12 +65,8 @@
         Spice.add({
             id: 'apps',
             name: 'Apps',
-
             data: api_result.results,
-
             meta: {
-                // count is now computed by Spice
-                // count: relevants.length,
                 total: api_result.results.length,
                 itemType: 'Apps',
                 sourceName: 'Quixey',
@@ -90,7 +85,7 @@
                     return null;
                 }
 
-                // relevancy pre-filter: remove GoogleTV Android packages 
+                // relevancy pre-filter: remove GoogleTV Android packages
                 // API doesn't differentiate between GoogleTV Android and Android packages
                 var reFilter = /Google\s?TV/i;
 
@@ -211,7 +206,7 @@
                 // 'name':
                 // 'price':
             },
-            
+
             // default sorting- how the data will be initially arranged.
             // depends on the type of search. here only a 'category' search will
             // perform a default initial sort.
@@ -234,7 +229,6 @@
     // format a price
     // p is expected to be a number
     function qprice(p) {
-        "use strict";
 
         if (p == 0) {    // == type coercion is ok here
             return "FREE";
