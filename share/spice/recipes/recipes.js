@@ -170,16 +170,12 @@
             options: {
                 brand: true,
                 rating: true,
-                mobileMore: true,
                 detailDark: true,
                 detailMediaWidth: 600,
                 detailMediaShape: 'short',
                 buy: Spice.recipes.recipes_more,
                 subtitle_content: Spice.recipes.recipes_subtitle,
                 description_content: Spice.recipes.recipes_ingredients
-            },
-            variants: {
-                button: 'critical'
             }
         }
     });
