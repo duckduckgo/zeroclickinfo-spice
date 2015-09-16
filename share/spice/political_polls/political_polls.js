@@ -25,10 +25,13 @@
                 },
                 templates: {
                     group: 'text',
+                    detail: false,
+                    item_detail: false,
                     options: {
-                        detail: false,
-                        item_detail: false,
                         footer: Spice.political_polls.footer,
+                    },
+                    variants: {
+                        tileSnippet: "large"
                     }
                 },
                 normalize: function(item) {
