@@ -45,6 +45,7 @@
                     title: item.name,
                     subtitle: subtitle,
                     altSubtitle: getURL(item),
+                    url: "https://twitter.com/" + item.user,
                     description: item.description
                 };
             },
