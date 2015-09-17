@@ -55,6 +55,7 @@
             story.title = story.title.replace(/<b>|<\/b>|:/g, "");
             if (DDG.isRelevant(story.title, skip)) {
                 setSourceOnStory(story);
+                story.sortableDate = parseInt(story.date || 0);
                 goodStories.push(story);
             }
 
@@ -83,39 +84,43 @@
 
         if (goodStories < 3) {
             return Spice.failed('news');
-
-        } else {
-
-            Spice.add({
-                id: 'news',
-                name: 'News',
-                data: goodStories,
-                meta: {
-                    count: goodStories.length,
-                    searchTerm: searchTerm,
-                    itemType: 'News articles',
-                    rerender: [
-                        'image'
-                    ]
-                },
-                templates: {
-                    item: 'news_item'
-                },
-                onItemShown: function(item) {
-                    if (!item.fetch_image || item.image || item.fetched_image) { return; }
-
-                    // set flag so we don't try to fetch more than once:
-                    item.fetched_image = 1;
-
-                    // try to fetch the image and set it on the model
-                    // which will trigger the tile to re-render with the image:
-                    $.getJSON('/f.js?o=json&i=1&u=' + item.url, function(meta) {
-                        if (meta && meta.image) {
-                           item.set('image', meta.image); 
-                        }
-                    });
-                }
-            });
         }
+
+        Spice.add({
+            id: 'news',
+            name: 'News',
+            data: goodStories,
+            meta: {
+                count: goodStories.length,
+                searchTerm: searchTerm,
+                itemType: 'News articles',
+                rerender: [
+                    'image'
+                ]
+            },
+            templates: {
+                item: 'news_item'
+            },
+            onItemShown: function(item) {
+                if (!item.fetch_image || item.image || item.fetched_image) { return; }
+
+                // set flag so we don't try to fetch more than once:
+                item.fetched_image = 1;
+
+                // try to fetch the image and set it on the model
+                // which will trigger the tile to re-render with the image:
+                $.getJSON('/f.js?o=json&i=1&u=' + item.url, function(meta) {
+                    if (meta && meta.image) {
+                       item.set('image', meta.image); 
+                    }
+                });
+            },
+            sort_fields: {
+                date: function(a, b) {
+                    return b.sortableDate - a.sortableDate;
+                }
+            },
+            sort_default: 'date'
+        });
     }
 }(this));
