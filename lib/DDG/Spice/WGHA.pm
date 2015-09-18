@@ -20,7 +20,7 @@ my @triggers = ("was geht", "wasgeht", "aus gehen", "ausgehen", "nachtleben", "p
 triggers any => @triggers;
 
 spice to => 'http://ddg.wasgehtheuteab.de/duckduckgo/events.json?q=$1&callback={{callback}}&api_key={{ENV{DDG_SPICE_WGHA_APIKEY}}}';
-spice proxy_cache_valid => "200 60m";
+spice proxy_cache_valid => "200 5m";
 
 handle query_lc => sub {
   return $_ if $loc->country_code eq 'DE';
