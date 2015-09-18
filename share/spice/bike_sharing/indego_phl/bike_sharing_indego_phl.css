@@ -4,8 +4,8 @@
 
 .tile--bike_sharing_indego_phl.tile--c--n {
     text-align: center;
-    width: 13em;
-    height: 13em;
+    width: 11.5em;
+    height: 11.5em;
 }
 
 .tile--bike_sharing_indego_phl .zci__header {
@@ -20,6 +20,10 @@
     padding-top: 0;
     padding-bottom: 0;
     line-height: 1.1;
+}
+
+.tile--bike_sharing_indego_phl .tile__foot {
+    max-height: none;
 }
 
 .tile--bike_sharing_indego_phl div.tile__content.side_by_side {
