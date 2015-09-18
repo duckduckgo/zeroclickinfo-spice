@@ -3,13 +3,14 @@ package DDG::Spice::Drinks;
 
 use strict;
 use DDG::Spice;
+use Text::Trim;
 
 spice is_cached => 1;
 
 name "Drinks";
 description "Bartending info";
-primary_example_queries "how to mix a mojito";
-secondary_example_queries "mixing 007", "how to make a 1.21 gigawatts";
+primary_example_queries "how to make a mojito";
+secondary_example_queries "what ingredients are being used within gin fizz", "long island cocktail";
 
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Drinks.pm";
 attribution github  => ["https://github.com/mutilator", "mutilator"],
@@ -20,34 +21,17 @@ attribution github  => ["https://github.com/mutilator", "mutilator"],
 spice to => 'http://www.thecocktaildb.com/api/json/v1/1/search.php?s=$1';
 spice wrap_jsonp_callback => 1;
 
-triggers any => "mix", "make";
-triggers startend => "drink", "ingredients", "mixing", "making";
+my %drinks = map { trim($_) => 0 } share('drinks.txt')->slurp;
+triggers any => ('cocktail', 'drink', keys(%drinks));
 
 # Handle statement
 handle query_lc => sub {
-
-    my $drink;
-
-    # enforce "drink" to be in queries with
-    # "make" or "making"
-    # too ambiguous otherwise
-    # e.g. "making a rails 4 backend"
-    if (/^(?:how to make|making) an? (.+)/) {
-        $drink = $1;
-        return unless $drink =~ /\bdrink\b/;
-    } elsif (/^(?:how to mix|mixing) an? (.+)/) {
-        $drink = $1;
-    } elsif (/^ingredients for an? (.+)|(.+) ingredients/) {
-        $drink = $1||$2;
-    } elsif (/^(.+) drink$|^drink (.+)$/) {
-        $drink = $1;
-    }
-
-    if ($drink) {
-        $drink =~ s/drink//g;
-        $drink =~ s/^\s+|\s+$//g;
-        return $drink;
-    }
+    my $query = $_;
+    my @stop_words = ("a", "an", "are", "being", "cocktail", "drink", "for", "how", "in", "ingredient", "ingredients", "is", "make", "making", "mix", "mixing", "needed", "of", "that", "to", "used", "what", "within");
+    my ($rx) = map qr/(?:$_)/, join "|", map qr/\b\Q$_\E\b/, @stop_words;
+    $query =~ s/$rx//g;
+    my $drink = trim($query);
+    return $drink if $drink ne "";
     return;
 };
 

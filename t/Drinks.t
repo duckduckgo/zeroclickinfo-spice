@@ -16,20 +16,19 @@ ddg_spice_test(
         '/js/spice/drinks/mojito',
         caller    => 'DDG::Spice::Drinks',
     ),
-    'mixing a 007' => test_spice(
-        '/js/spice/drinks/007',
+    'mixing a irish spring' => test_spice(
+        '/js/spice/drinks/irish%20spring',
         caller    => 'DDG::Spice::Drinks',
     ),
-    'how to make a 1.21 gigawatts drink' => test_spice(
-        '/js/spice/drinks/1.21%20gigawatts',
+    'ingredients of margarita' => test_spice(
+        '/js/spice/drinks/margarita',
         caller    => 'DDG::Spice::Drinks',
     ),
-    'ice tea drink ingredients' => test_spice(
-        '/js/spice/drinks/ice%20tea',
+    'red eye cocktail' => test_spice(
+        '/js/spice/drinks/red%20eye',
         caller    => 'DDG::Spice::Drinks',
     ),
-    'how to make a rails4 backend' => undef,
-    'making a pizza' => undef,
+    'drinking cocktails' => undef
 );
 
 done_testing;
