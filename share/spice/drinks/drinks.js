@@ -6,9 +6,11 @@
             heading: 'Ingredients:'
         }];
         for (var i = 1; i <= 15; i++) {
-            infoboxData.push({
-                label: item["strMeasure" + i] + "" + item["strIngredient" + i]
-            });
+            if(item["strIngredient" + i] !== "") {
+                infoboxData.push({
+                    label: item["strMeasure" + i] + "" + item["strIngredient" + i]
+                });
+            }
         }
         return infoboxData;
     }
