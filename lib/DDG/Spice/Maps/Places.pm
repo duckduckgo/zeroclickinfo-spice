@@ -9,6 +9,7 @@ spice to => 'https://duckduckgo.com/local.js?q=$1&cb={{callback}}';
 # no caching.
 spice proxy_cache_valid => "418 1d";
 spice is_cached => 0;
+spice uses_browser_location => 1;
 
 triggers startend => (
     'local',
