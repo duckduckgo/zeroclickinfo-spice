@@ -20,7 +20,7 @@
             },
             name: "Answer",
             meta: {
-                sourceUrl: 'http://wordnik.com',
+                sourceUrl: 'https://wordnik.com/randoml',
                 sourceName: 'Wordnik',
                 sourceIcon: true
             },
