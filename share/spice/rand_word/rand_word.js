@@ -6,10 +6,17 @@
             return Spice.failed('rand_word');
         }
 
+        // dividing the whole array into an array of 4 elements each
+        var list_of_list = [];
+        while (api_result.length > 0) {
+            list_of_list.push(api_result.splice(0, 4));
+        }
+
         Spice.add({
             id: "rand_word",
             data: {
-                words: api_result,
+                title: 'Random Words',
+                list: list_of_list
             },
             name: "Answer",
             meta: {
@@ -18,9 +25,9 @@
                 sourceIcon: true
             },
             templates: {
-                group: 'text',
+                group: 'list',
                 options: {
-                    content: Spice.rand_word.content,
+                    list_content: Spice.rand_word.content,
                     moreAt: true
                 }
             }
