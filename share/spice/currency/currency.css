@@ -120,10 +120,6 @@
     display: inline-block;
 }
 
-    .ie8 .zci--currency-ratesinfo {
-        margin-left: 2em;
-    }
-
 .zci--currency-result img {
     height: 32px;
     margin-top: 1em;
@@ -187,10 +183,6 @@
     font-size: 2em;
     margin: 0 0.5em;
 }
-    .ie8 .zci--currency-equal {
-        margin-right: 0.5em;
-        margin-left: 1.5em;
-    }
 
     .is-mobile .zci--currency-equal .horizontal {
         border-bottom: 1px solid rgba(150,150,150,0.25);
