@@ -20,9 +20,9 @@ attribution github  => ["cylgom", "cylgom"], # it's me
             twitter => "cylgom";
             
 # OpenNIC API endpoint
-# We prepare a 'spice from' with the place for 4 arguments
-spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)|)|)';
-spice to => 'https://api.opennicproject.org/geoip/?json&lat=$1&lon=$2&ipv=$3&res=$4&ip=$5';
+# We prepare a 'spice from' with the place for 3 arguments
+spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)|)';
+spice to => 'https://api.opennicproject.org/geoip/?json&lat=$1&lon=$2&ipv=$3&res=4&ip=$4';
 spice wrap_jsonp_callback => 1;
 
 # Triggers
@@ -71,16 +71,8 @@ handle remainder => sub {
         return;
     }
     
-    # Number of DNS to print
-    # user-defined, with a maximum of 40.
-    if ($_ =~ /(?:^| )(\d{1,2})(?:$| )/ && $1>0 && $1<=40) {
-        $number= $1;
-    } else {
-        $number='4';
-    }
-    
-    #       $1    $2    $3     $4     $5
-    return $lat, $lon, $ipv, $number, $ip;
+    #      $1    $2    $3    $4
+    return $lat, $lon, $ipv, $ip;
 };
 
 1;
