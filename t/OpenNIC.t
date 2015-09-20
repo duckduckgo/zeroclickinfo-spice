@@ -48,6 +48,16 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::OpenNIC'
     ),
+        # ipv4 addresses only
+    DDG::Request->new(
+        query_raw => "opennic ipv4",
+        location => test_location("us")
+    ) => test_spice(
+        '/js/spice/open_nic/40.1246/-75.5385/4/',
+        call_type => 'include',
+        caller => 'DDG::Spice::OpenNIC'
+    ),
+    
         # ipv6 addresses only
     DDG::Request->new(
         query_raw => "opennic ipv6",

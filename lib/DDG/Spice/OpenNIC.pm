@@ -34,7 +34,6 @@ handle remainder => sub {
     my $ip;
     my $lat;
     my $lon;
-    my $number;
 
     # ip version
     # user asked ipv4 (or ip4)
