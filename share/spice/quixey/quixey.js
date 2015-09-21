@@ -116,7 +116,7 @@
                     item.boost = true;
                 }
 
-                var features = DDG.getProperty(item, "editions.0.custom.features");
+                var features = DDG.getProperty(item, "editions.0.custom.features") || {};
 
                 return {
                     img:           DDG.toHTTPS(icon_url),
