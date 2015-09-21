@@ -4,7 +4,7 @@
     env.ddg_spice_quixey = function(api_result) {
 
         if (!(api_result && api_result.results && api_result.results.length)) {
-            return Spice.failed('Apps');
+            return Spice.failed('apps');
         }
 
        var qLower = api_result.q.toLowerCase(),
@@ -128,7 +128,6 @@
                     price:         pricerange(item),
                     abstract:      item.short_desc || null,
                     brand:         (item.developer && item.developer.name) || null,
-                    products_buy:  Spice.apps.quixey_buy,
                 };
             },
 
@@ -217,7 +216,7 @@
             templates: {
                 group: 'products',
                 options: {
-                    buy: Spice.apps.buy
+                    buy: Spice.quixey.buy
                 },
                 variants: {
                     tile: 'narrow'
