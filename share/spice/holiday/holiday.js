@@ -6,7 +6,10 @@
         }
         var script = $('[src*="/js/spice/holiday/"]')[0],
             source = $(script).attr("src"),
-            query = source.match(/holiday\/([^\/]+)\/([^\/]+)/)[2],
+            query_matches = source.match(/holiday\/([^\/]+)\/([^\/]+)\/(\d*)/),
+            year = query_matches[3],
+            query = query_matches[2],
+            country = query_matches[1],
             url = 'http://www.timeanddate.com',
             source = url + '/search/results.html?query=' + query;
 
@@ -39,7 +42,11 @@
             })
 
             if (events.length == 0) {
-                return Spice.failed('holiday');
+                if (country !== 'United%20States') {
+                    $.getScript('/js/spice/holiday/United%20States/' + year);
+                } else {
+                    return Spice.failed('holiday');
+                }
             } else if (events.length == 1){
                 data = events[0];
 
