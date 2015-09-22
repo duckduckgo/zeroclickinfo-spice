@@ -11,7 +11,8 @@ ddg_spice_test(
         '/js/spice/maps/places/nearest%20primos',
         call_type => 'include',
         caller => 'DDG::Spice::Maps::Places',
-    is_cached => 0,
+        is_cached => 0,
+        uses_browser_location => 1,
     ),
     'local time' => undef,
 );
