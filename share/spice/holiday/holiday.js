@@ -63,11 +63,6 @@
                         description: item.a,
                     };
 
-                    if (item.o.length > 1) {
-                        next_date = item.o[1];
-                        data['next_date'] = next_date.d;
-                        data['next_date_states'] = DDG.strip_html(next_date.s);
-                    }
                     return data;
                 };
 
@@ -76,7 +71,6 @@
                 template_obj = {
                     group: 'text',
                     options: {
-                        content: Spice.holiday.singleday,
                         moreAt: true
                     }
                 };
