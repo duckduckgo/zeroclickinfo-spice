@@ -39,7 +39,9 @@
                         });
                     }
                 });
-                subtitles.push(item.location);
+                if (item.title) {
+                  subtitles.push(item.title);
+                }
                 return {
                     // some thumbnail URIs are relative to coderwall.com
                     image: /^\//.test(item.thumbnail)
@@ -47,6 +49,7 @@
                         : item.thumbnail,
                     title: item.name,
                     subtitle: subtitles,
+                    altSubtitle: item.location,
                     description: item.about
                 };
             },
