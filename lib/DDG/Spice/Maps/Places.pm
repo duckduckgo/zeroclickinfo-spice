@@ -5,7 +5,7 @@ use strict;
 use DDG::Spice;
 
 spice to => 'https://duckduckgo.com/local.js?q=$1&cb={{callback}}';
-
+spice latlon_to => 'https://duckduckgo.com/local.js?q=$1&latlon=$lat,$lon&cb={{callback}}';
 # no caching.
 spice proxy_cache_valid => "418 1d";
 spice is_cached => 0;
