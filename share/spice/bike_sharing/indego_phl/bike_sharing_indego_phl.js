@@ -7,8 +7,7 @@
             return Spice.failed('bike_sharing_indego_phl');
         }
 
-        DDG.require('moment.js', function() {
-            DDG.require('maps', function() {
+        DDG.require(['moment.js', 'maps'], function() {
                 moment.locale('en', {
                     relativeTime: {
                         past: "%s ago",
@@ -69,7 +68,6 @@
                         };
                     }
                 });
-            });
         });
     }
 }(this));

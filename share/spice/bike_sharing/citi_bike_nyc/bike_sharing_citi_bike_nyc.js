@@ -25,8 +25,7 @@
             source = $(script).attr("src"),
             query = source.match(/citi_bike_nyc\/([^\/]+)/)[1];
 
-        DDG.require('moment.js', function() {
-        DDG.require('maps', function() {
+        DDG.require(['moment.js', 'maps'], function() {
             moment.locale('en', {
                 relativeTime : {
                     past: "%s ago",
@@ -90,7 +89,6 @@
                         lastCommunication: moment(new Date(item.lastCommunicationTime)).fromNow()
                     };
                 }
-            });
             });
         });
     }

@@ -20,7 +20,7 @@
             return Spice.failed('nfl_games');
         }
         
-        DDG.require('sports', function(){
+        DDG.require(['moment.js', 'sports'], function(){
             Games = env.ddg_spice_sports_games;
             
             Games.init(NFLInit);
