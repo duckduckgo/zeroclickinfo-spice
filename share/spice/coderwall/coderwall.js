@@ -43,10 +43,13 @@
                   subtitles.push(item.title);
                 }
                 return {
+                    // Remove image for now
+                    // cropped photos look bad
+
                     // some thumbnail URIs are relative to coderwall.com
-                    image: /^\//.test(item.thumbnail)
-                        ? 'https://coderwall.com/' + item.thumbnail
-                        : item.thumbnail,
+                    // image: /^\//.test(item.thumbnail)
+                    //     ? 'https://coderwall.com/' + item.thumbnail
+                    //     : item.thumbnail,
                     title: item.name,
                     subtitle: subtitles,
                     altSubtitle: item.location,
@@ -55,10 +58,7 @@
             },
 
             templates: {
-                group: 'icon',
-                variants: {
-                    iconImage: 'large'
-                }
+                group: 'text'
             }
         });
     };
