@@ -49,7 +49,7 @@
             templates: {
                 group: 'text',
                 options: {
-                    content: Spice.npm.content,
+                    content: Spice.homebrew.content,
                     moreAt: true
                 }
             }
