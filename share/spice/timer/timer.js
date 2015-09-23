@@ -107,7 +107,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         // and then start again
         if (soundIsPlaying) {
             stopLoop();
-            setTimeout(playAlarm, 500);
+            setTimeout(playAlarmAndShakeTimer, 500);
             return;
         }
 
