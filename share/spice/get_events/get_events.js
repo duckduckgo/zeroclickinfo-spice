@@ -6,8 +6,7 @@
             return Spice.failed('get_events');
         }
 
-        DDG.require('maps', function(){
-        DDG.require('moment.js', function(){
+        DDG.require(['maps', 'moment.js'], function(){
             Spice.add({
                 id: "get_events",
                 name: "Events",
@@ -68,7 +67,6 @@
                     }
                 }
             });
-        });
         });
 
     function buildUrl(id) {

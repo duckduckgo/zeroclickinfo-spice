@@ -91,8 +91,7 @@
             return Spice.failed('mass_on_time');
         }
 
-        DDG.require('maps', function() {
-        DDG.require('moment.js', function() {
+        DDG.require(['maps', 'moment.js'], function() {
             Spice.add({
                 id: 'mass_on_time',
                 data: results,
@@ -123,7 +122,6 @@
                     item: Spice.mass_on_time.item
                 }
             });
-        });
         });
     };
 }(this));
