@@ -171,8 +171,10 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         // interaction
         this.$nameInput
             .keyup(this.handleNameInput.bind(this))
+            .keydown(this.handleKeyDown.bind(this))
             .on("mouseenter mouseleave focus blur", this.updateNameInputBg.bind(this));
         this.$element.find(".time_input input")
+            .keydown(this.handleKeyDown.bind(this))
             .keyup(this.handleTimeInput.bind(this))
             .focus(this.handleTimeFocus.bind(this))
             .mouseup(this.handleTimeMouseUp.bind(this))
@@ -287,6 +289,11 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             if (keycode === 13) {
                 this.$nameInput.blur();
             }
+        },
+        handleKeyDown: function (e) {
+            // make sure other bindings don't affect the inputs
+            // e.g. left and right switching tabs
+            e.stopPropagation();
         },
         handleTimeInput: function (e) {
             //make sure the bang dropdown doesn't trigger
