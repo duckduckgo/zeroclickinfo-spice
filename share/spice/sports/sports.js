@@ -31,20 +31,6 @@
         PLACEHOLDER: '<span class="tx-clr--grey-light">&bull;</span>',
 
         /**
-         * initialize boxscore answer
-         *
-         * called from the individual sports functions to ensure
-         *  any relevant/required libraries are loaded (e.g. moment)
-         *
-         * @param {function} callback - Required callback function
-         */
-        init: function(callback) {
-            DDG.require('moment.js', function() {
-                callback();
-            });
-        },
-
-        /**
          * set attrs
          *
          * handles some of the default normalizing steps
