@@ -62,7 +62,6 @@ alamo splash
 alaska cocktail
 albysjn
 alexander
-alexander
 alexander original
 alexanders big brother
 alexanders sister
@@ -72,7 +71,6 @@ algae
 algonquin
 alice cocktail
 alice in wonderland
-alien secretion
 alien secretion
 alien urine sample
 all american
@@ -91,7 +89,6 @@ amaretto rose
 amaretto shake
 amaretto sour
 amaretto stinger
-amaretto stone sour
 amaretto stone sour
 amaretto sunrise
 amaretto sunset
@@ -117,7 +114,6 @@ angelica liqueur
 anglers cocktail
 ankle breaker
 ante
-antifreeze
 antifreeze
 antoine special
 apello
@@ -185,7 +181,6 @@ baby guinness
 bacardi cocktail
 bacardi gold  cola
 backdraft
-bahama mama
 bahama mama
 bahama mama sunrise
 bahama todd
@@ -309,7 +304,6 @@ black orchid
 black pagoda
 black river
 black russian
-black russian
 black stripe cold
 black swedish virgin
 black velvet
@@ -390,7 +384,6 @@ bourble
 bourbon and branch
 bourbon and sprite
 bourbon black hawk
-bourbon black hawk
 bourbon cobbler
 bourbon cooler
 bourbon county cowboy
@@ -398,7 +391,6 @@ bourbon daisy
 bourbon fix
 bourbon flip
 bourbon highball
-bourbon milk punch
 bourbon milk punch
 bourbon sling
 bourbon sour
@@ -408,13 +400,11 @@ brain fart
 brain hemmorage
 brain hemorage
 brain tumor
-brain tumor
 brainstorm
 brainteaser
 brandied egg sour
 brandied madeira
 brandon and wills coke float
-brandy alexander
 brandy alexander
 brandy alexandra
 brandy and soda
@@ -455,7 +445,6 @@ bronx silver cocktail
 bronx terrace cocktail
 brown bomber
 brown cocktail
-brown cow
 brown cow
 brown cow from hell
 brown pelican
@@ -612,7 +601,6 @@ chocolate covered banana
 chocolate covered cherry
 chocolate drink
 chocolate martini
-chocolate martini
 chocolate milk
 chocolate mint rum
 chocolate monk
@@ -704,7 +692,6 @@ cossack charge
 cough medicine
 country club cooler
 cowboy cocksucker
-cowboy cocksucker
 cowboy roy
 crack juice
 crack pipe
@@ -721,7 +708,6 @@ crazy cow
 cream cordial
 cream fizz
 cream soda
-creamsicle
 creamsicle
 creamsicle dream
 creamy orange
@@ -740,7 +726,6 @@ crocodile
 crystal slipper cocktail
 cuba libra
 cuba libre
-cucaracha
 cucaracha
 culdesac
 cumulus
@@ -777,7 +762,6 @@ deauville cocktail
 deep dark secret
 delilah
 delmonico
-delmonico
 demon drop
 dempsey cocktail
 dephaekt
@@ -788,7 +772,6 @@ desert water
 detroit red wing
 devils cocktail
 devils piss
-dewdriver
 dewdriver
 dewing the captain
 dewrunrum
@@ -854,7 +837,6 @@ dublin doubler
 dubonnet cocktail
 dubonnet fizz
 duchess
-duck fart
 duck fart
 duck shit inn
 ducks ass
@@ -962,7 +944,6 @@ fire engine
 fire engine with alarm
 fire in heaven
 fireball
-fireball
 fireball shooter
 firehammer
 firemans sour
@@ -972,7 +953,6 @@ five dollar shake
 fjellbekk mountain stream
 flaming d
 flaming dr
-flaming dr pepper
 flaming dr pepper
 flaming dr pepper alternative
 flaming dragon
@@ -1043,7 +1023,6 @@ frozen margarita
 frozen matador
 frozen mint daiquiri
 frozen mudslide
-frozen mudslide
 frozen pineapple daiquiri
 frozen rum runner
 fruit and sherbet punch
@@ -1083,7 +1062,6 @@ gagliardo
 galapagos
 galliano
 galliano hotshot
-galliano hotshot
 gangbuster punch
 ganggreen
 gareth glowworm
@@ -1103,7 +1081,6 @@ gg
 gibson
 gideons green dinosaur
 gilroy cocktail
-gimlet
 gimlet
 gin and bitter lemon
 gin and it
@@ -1173,7 +1150,6 @@ golden sunrise
 good morning
 good morning to you my love
 goombay smash
-goombay smash
 gorilla
 gorilla fart
 gorilla milk
@@ -1200,7 +1176,6 @@ grapefruit teaser
 grapple
 grass skirt
 grasshopper
-grateful dead
 grateful dead
 graveyard
 graveyard light
@@ -1327,7 +1302,6 @@ horses neck
 horsleys honor
 hot afternoon
 hot apple pie
-hot apple pie
 hot buttered cranberry punch
 hot buttered rum batter
 hot chocolate
@@ -1336,7 +1310,6 @@ hot cider
 hot creamy bush
 hot damn
 hot devilish daiquiri
-hot dick
 hot dick
 hot gold
 hot lemonade
@@ -1366,7 +1339,6 @@ ice bear
 ice palace
 ice pick
 icecream flip
-iceberg in radioactive water
 iceberg in radioactive water
 iced coffee
 iced coffee fillip
@@ -1401,7 +1373,6 @@ ishav
 island girl
 italian delight
 italian heather
-italian ice
 italian ice
 italian sombrero
 izayoi
@@ -1443,7 +1414,6 @@ jedi mind trick
 jello shots
 jelloshot supreme
 jelly bean
-jelly bean
 jellyfish
 jens mountain gin
 jennys concoction
@@ -1483,7 +1453,6 @@ joytotheworld
 jtdelight
 judgette cocktail
 juicy lucy
-juicy lucy
 juicy tiger
 jungle juice
 juniata juice
@@ -1497,7 +1466,6 @@ kahlua fudge shake
 kalimocho
 kamakazie
 kamel drivare
-kamikaze
 kamikaze
 kamikaze version
 kanaan
@@ -1517,7 +1485,6 @@ key largo kooler
 kiba
 kill me now
 kill the cold smoothie
-killer koolaid
 killer koolaid
 killer koolaid rhode island
 killer koolade
@@ -1646,7 +1613,6 @@ loudmouth
 love for toby
 love juice lj
 love potion
-love potion
 loveme tender
 lube job
 lucky driver
@@ -1663,7 +1629,6 @@ ma wee hen
 macbeths dream
 machine
 mad cow
-mad scientist
 mad scientist
 madras
 maestro
@@ -1699,7 +1664,6 @@ manila fizz
 mansion margarita
 mardee mine
 margaret in the marketplace
-margarita
 margarita
 maria theresa
 marias delight
@@ -1791,7 +1755,6 @@ modern cocktail
 modified duck fart
 mogul masher
 moilanen
-mojito
 mojito
 moment brutale
 monalisa
@@ -1892,7 +1855,6 @@ null  void punch
 nuthugger
 nuts and berries
 nutty irishman
-nutty irishman
 nutty irishman without milk
 nutty russian
 nystedt
@@ -1937,7 +1899,6 @@ orange whip
 orangeade
 oreo mudslide
 orgasm
-orgasm
 orgasm a la denmark
 orgeat lemonade
 oriental cocktail
@@ -1962,7 +1923,6 @@ palm beach cocktail
 palmer cocktail
 palmetto cocktail
 pamela
-pan galactic gargle blaster
 pan galactic gargle blaster
 panama deluxe
 panther
@@ -2044,19 +2004,16 @@ pink cream fizz
 pink elephant ears
 pink elephants on parade
 pink gin
-pink gin
 pink lady
 pink lemonade
 pink panther
 pink panther shake
-pink panty pulldowns
 pink panty pulldowns
 pink penocha
 pink police
 pink poontang
 pink pussycat
 pink pysch
-pink squirrel
 pink squirrel
 pinky
 pinky colinky dinky
@@ -2123,7 +2080,6 @@ pure ecstacy
 pure pleasure
 pure white evil
 purple cow
-purple cow
 purple crayon
 purple devil
 purple elastic thunder fuck
@@ -2136,7 +2092,6 @@ purple hooter shooter
 purple jesus
 purple margarita
 purple mask
-purple motherfucker
 purple motherfucker
 purple pancho
 purple plague
@@ -2196,7 +2151,6 @@ red raider
 red royal
 red ruby
 red snapper
-red snapper
 red square
 red tequila
 red wine punch
@@ -2241,7 +2195,6 @@ rooster piss
 root beer
 root beer barrel
 root beer fizz
-root beer float
 root beer float
 root canal
 rootbeer floatie
@@ -2301,7 +2254,6 @@ russian cocktail
 russian funk
 russian quallude
 russian qualude
-russian qualude
 russian roulette
 russian sarin
 russian tea
@@ -2314,7 +2266,6 @@ sake bomb
 saketini
 salem witch
 salisbury special
-salty dog
 salty dog
 sammensurium mix up
 san diego seabreeze
@@ -2350,7 +2301,6 @@ schnider
 schwartzy
 scooby snack
 scooter
-scope
 scope
 scorpion
 scotch and water
@@ -2398,9 +2348,7 @@ serpentine
 seven and seven
 seventh heaven cocktail
 sevilla cocktail
-sevilla cocktail
 sex on acid
-sex on the beach
 sex on the beach
 sex on the pool table
 sex under the bleachers with a ku cheerleader
@@ -2461,7 +2409,6 @@ sjarsk
 skaneifier
 skinny dip
 skip and go naked
-skip and go naked
 skull
 sky pilot
 skydiver
@@ -2491,7 +2438,6 @@ slow painful movement
 slow screw
 sly goes to havana
 small bomb
-small bomb
 smart christine
 smarty
 smashing pumpkin
@@ -2505,7 +2451,6 @@ smooth dog
 smooth operator
 smooth pink lemonade
 smooth sailin
-smurf
 smurf
 smurf fart
 smurfotonic
@@ -2522,7 +2467,6 @@ sneaky pete
 snitchees cider
 snow blinder
 snow white
-snowball
 snowball
 snowshoe
 snyder
@@ -2541,7 +2485,6 @@ south of the border
 south side
 southampton slam
 southern belle
-southern blues
 southern blues
 southern bride
 southern chase
@@ -2797,7 +2740,6 @@ thirdrail cocktail
 three miller cocktail
 three stages of friendship
 three wise men
-three wise men
 three wise men on a farm
 three wise men vodka
 threelegged monkey
@@ -2881,7 +2823,6 @@ union jack cocktail
 unknown warrior
 urban violence
 urine
-urine sample
 urine sample
 utar
 vaina
@@ -3001,7 +2942,6 @@ wiggle worm
 wild ass indian
 wild peppertini
 wild sex
-wild thing
 wild thing
 wild wild west
 will rogers
