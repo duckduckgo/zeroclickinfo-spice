@@ -24,11 +24,11 @@ spice wrap_jsonp_callback => 1;
 triggers any => ('cocktail', 'drink', 'ingredient', 'ingredients', 'make', 'making', 'mix', 'mixing', 'recipe');
 
 my %drinks = map { trim($_) => 0 } share('drinks.txt')->slurp;
-my @stop_words = ("a", "an", "are", "being", "for", "how", "in", "ingredient", "ingredients", "is", "needed", "of", "that", "to", "used", "what", "within");
+my @stop_words = ("a", "an", "are", "being", "for", "how", "in", "is", "needed", "of", "that", "to", "used", "what", "within");
 my ($rx) = map qr/(?:$_)/, join "|", map qr/\b\Q$_\E\b/, @stop_words;
 
 # Handle statement
-handle remainder => sub {
+handle remainder_lc => sub {
     $_ =~ s/$rx//g;
     my $drink = trim($_);
     if (exists($drinks{$drink})) {
