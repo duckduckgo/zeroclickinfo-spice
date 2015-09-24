@@ -1,6 +1,6 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_npm = function(api_result){
+    env.ddg_spice_homebrew = function(api_result){
 
         if (!api_result || api_result.error) {
             return Spice.failed('homebrew');
@@ -12,7 +12,7 @@
             data: api_result,
             meta: {
                 sourceName: "Homebrew Formulas",
-                sourceUrl: 'http://brewformulas.org/' + api_result.name
+                sourceUrl: 'http://brewformulas.org/' + api_result.formula
             },
             normalize: function(item) {
                 var boxData = [{heading: 'Formula Information:'}];
@@ -42,7 +42,7 @@
                 return {
                     title: item.formula,
                     subtitle: item.description,
-                    infoboxData: boxData,
+                    infoboxData: boxData
                 }
             },
 
