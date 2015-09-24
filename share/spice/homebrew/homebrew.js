@@ -32,6 +32,25 @@
                     })
                 }
 
+
+                if (item.dependencies) {
+                    if (item.dependencies.length > 0) {
+                        boxData.push({
+                            label: "Dependencies",
+                            value: item.dependencies.join(", ").toLowerCase()
+                        });
+                    }
+                }
+
+                if (item.dependents) {
+                    if (item.dependents.length > 0) {
+                        boxData.push({
+                            label: "Dependents formula",
+                            value: item.dependents.join(", ").toLowerCase()
+                        });
+                    }
+                }
+
                 if (item.reference) {
                     boxData.push({
                         label: "Reference",
