@@ -45,7 +45,7 @@
                 if (item.dependents) {
                     if (item.dependents.length > 0) {
                         boxData.push({
-                            label: "Dependents formula",
+                            label: "Dependents",
                             value: item.dependents.join(", ").toLowerCase()
                         });
                     }
