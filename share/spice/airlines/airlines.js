@@ -272,7 +272,7 @@
                 sourceUrl: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?"
                     + "airlineCode=" + results[0].airlineCode 
                     + "&flightNumber=" + results[0].flightNumber,
-                itemType: results.length === 1 ? "flight" : "flights by departure time" 
+                itemType: results.length === 1 ? "Flight" : "Flights" 
             },
             normalize: function(item) {
 
