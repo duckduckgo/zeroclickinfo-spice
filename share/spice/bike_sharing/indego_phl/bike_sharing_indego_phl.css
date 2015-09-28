@@ -1,6 +1,10 @@
 /* Resize map-pin icon */
 .zci--bike_sharing_indego_phl .mapview-marker__icn.ddgsi-circle {
-  font-size: 6px;
+	font-size: 6px;
+}
+
+.tile--bike_sharing_indego_phl .tile__title {
+	font-weight: bold;
 }
 
 .tile--bike_sharing_indego_phl.tile--c--n {
@@ -21,11 +25,11 @@
 
 .tile--bike_sharing_indego_phl .side_by_side .left {
     border-right: 1px solid #E5E5E5;
-    padding-right: 7px;
+    padding-right: 10px;
 }
 
 .tile--bike_sharing_indego_phl .side_by_side .right {
-    padding-left: 7px;
+    padding-left: 10px;
 }
 
 .is-mobile .tile--bike_sharing_indego_phl .side_by_side div {
