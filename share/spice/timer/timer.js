@@ -11,6 +11,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         SOUND_NAME = "alarm-sound",
         soundUrl = DDG.get_asset_path('timer', 'alarm.mp3'),
         soundIsPlaying = false,
+        hasShown = false,
         $lastTimerToFinish,
         Timer,
         cachedPlayer;
@@ -459,6 +460,13 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
         }
         
         function onShow() {
+            // make sure this runs only once
+            if (hasShown) {
+                return;
+            }
+
+            hasShown = true;
+
             var lastUpdate = new Date().getTime(),
                 enteredTime = parseQueryForTime(),
                 $dom = Spice.getDOM("timer"),
@@ -501,11 +509,6 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             });
         }
 
-        function onHide() {
-            $addTimerBtn.off("click");
-            clearInterval(timerInterval);
-        }
-
         Spice.add({
             id: 'timer',
             name: 'Timer',
@@ -524,8 +527,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
 
             //wait for the spice to load before displaying things
             //this makes sure the divs display at the right time so the layout doesn't break
-            onShow: onShow,
-            onHide: onHide
+            onShow: onShow
         });
         
 
