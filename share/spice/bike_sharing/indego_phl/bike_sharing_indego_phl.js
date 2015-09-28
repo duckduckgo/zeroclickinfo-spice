@@ -61,7 +61,8 @@
                             footer: Spice.bike_sharing_indego_phl.footer
                         },
                         variants: {
-                            tile: 'narrow'
+                            tile: 'narrow',
+                            tileTitle: "3line"
                         }
                     },
                     sort_fields: {
