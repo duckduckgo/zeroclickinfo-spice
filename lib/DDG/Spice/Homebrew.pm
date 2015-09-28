@@ -22,6 +22,7 @@ triggers startend => 'brew', 'homebrew';
 triggers start => 'brew install';
 
 spice to => 'http://brewformulas.org/$1.json';
+spice proxy_cache_valid => '200 30d';
 spice wrap_jsonp_callback => 1;
 
 
