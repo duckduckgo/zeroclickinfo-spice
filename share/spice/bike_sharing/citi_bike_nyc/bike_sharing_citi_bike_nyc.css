@@ -36,7 +36,7 @@
 .tile--citi_bike_nyc .side_by_side .left {
     float: left;
     border-right: 1px solid #E5E5E5;
-    padding-right: 7px;
+    padding-right: 10px;
 }
 
 .is-mobile .tile--citi_bike_nyc .side_by_side .left {
@@ -45,7 +45,7 @@
 
 .tile--citi_bike_nyc .side_by_side .right {
     float: right;
-    padding-left: 7px;
+    padding-left: 10px;
 }
 
 .is-mobile .tile--citi_bike_nyc .side_by_side .right {
