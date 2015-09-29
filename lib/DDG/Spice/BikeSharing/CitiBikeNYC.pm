@@ -15,7 +15,7 @@ code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => 'marianosimone',
             web  => ['http://www.marianosimone.com',  'Mariano Simone'];
 
-triggers any => 'citibike', 'citi bike', 'bike sharing', 'bike share';
+triggers any => 'citibike', 'citi bike', 'bike sharing', 'bike share', 'bikeshare';
 
 spice to => 'https://www.citibikenyc.com/stations/json';
 spice wrap_jsonp_callback => 1;
