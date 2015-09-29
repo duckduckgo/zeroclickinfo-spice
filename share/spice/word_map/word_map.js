@@ -1,4 +1,4 @@
-(function(env){    
+(function(env){
     env.ddg_spice_word_map = function(api_result) {
         "use strict";
 
@@ -11,9 +11,9 @@
             name: 'Answer',
             data: api_result,
             meta: {
-                sourceUrl: 'http://levelpump.com/graph-dictionary.php?mailLink=' + encodeURIComponent(api_result.encrypt_entry) + '&from=ddg',
-                sourceName: 'Levelpump',
-                sourceIconUrl: 'http://icons.duckduckgo.com/ip/www.levelpump.com.ico'
+                sourceUrl: 'https://www.twinword.com/?moreLink=' + encodeURIComponent(api_result.encrypt_entry),
+                sourceName: 'Twinword',
+                sourceIconUrl: 'http://icons.duckduckgo.com/ip/www.twinword.com.ico'
             },
             normalize: function(item) {
                 return {

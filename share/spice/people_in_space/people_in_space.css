@@ -1,15 +1,70 @@
-.tile--people_in_space .tile__icon {
-    width: 20px;
-    height: 20px;
-    padding: 6px;
-    border-radius: 2px;
-    background-color: #e8e8e8;
+/* tiles */
+.zci--people_in_space .tile__media {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    margin-bottom: 0.5em;
 }
 
-.tile--people_in_space .tile__body {
-    height: 10em;
+.zci--people_in_space .tile--people_in_space {
+    height: 210px;
+    margin-bottom: 10px;
+    width: 150px;
+    padding: 20px;
 }
 
-.zci--people_in_space .text--primary {
-    font-size: 1.5em;
+.zci--people_in_space .name {
+    font-size: 1.277em;
+    line-height: 1.2;
+    display: block;
+}
+
+.zci--people_in_space .info {
+    text-align: center;
+    position: inherit;
+    display:table-cell;
+    vertical-align: middle;
+    height: 65px;
+    bottom: 0px;
+    width: 150px;
+}
+
+.zci--people_in_space .days {
+    text-align: center;
+    display:inline-block;
+    clear: left;
+    margin-top: 3px;
+}
+
+.zci--people_in_space .tile__body {
+    padding: 0;
+    padding-top: 0;
+}
+
+.zci--people_in_space .image-under img {
+    width: 100%;
+    height: 100%;
+}
+
+.zci--people_in_space .image-over img {
+    border: 3px solid #fff;
+    border-radius: 100%;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+}
+
+
+.zci--people_in_space .image-under {
+    position: absolute;
+    height: 130px;
+    width: 100px;
+}
+
+.zci--people_in_space .image-over {
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    top: 86px;
+    left: 95px;
 }

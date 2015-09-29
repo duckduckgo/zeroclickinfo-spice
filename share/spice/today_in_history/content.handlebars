@@ -1,0 +1,10 @@
+<div class="tih__year">
+    <div class="tih__year--text text--primary">{{{year}}}</div>
+</div>
+
+{{#if canExpand}}
+    <div class="js-ellipsis text tih__text--can-expand">{{{text}}}</div>
+    <div class="text tih__text--full">{{{text}}}</div>
+{{else}}
+    <div class="text tih__text">{{{text}}}</div>
+{{/if}}

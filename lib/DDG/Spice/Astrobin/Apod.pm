@@ -24,5 +24,5 @@ spice wrap_jsonp_callback => 1;
 handle remainder => sub {
         return '' if /^((image|photo|picture)s?)?\s*(of|of the)?\s*(day|today|daily)$/i;
         return;
-};	
+};
 1;

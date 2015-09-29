@@ -50,7 +50,8 @@ handle remainder => sub {
     }
     $query =~ s/\s*(tomorrow(\s(night|evening))?|in a day|in 1 day|yesterday(\s(night|evening))?|a day ago|1 day ago|last night|today|tonight)\s*//;
 
-    my $dt = DateTime->now->set_time_zone( $loc->time_zone );
+    return unless $loc && $loc->time_zone ne "";
+    my $dt = DateTime->now( time_zone => $loc->time_zone );
     $dt->add( days => 1 ) if $day eq "tomorrow";
     $dt->subtract( days => 1 ) if $day eq "yesterday";
 

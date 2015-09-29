@@ -3,24 +3,31 @@
 
     env.ddg_spice_code_search = function (api_result) {
 
-        if (!api_result || !api_result.results.length === 0) {
+        if (!api_result || api_result.results.length === 0) {
             return Spice.failed('code_search');
         }
 
         var query = encodeURIComponent(api_result.query);
 
-        var keys = [];
-
-        $.each(api_result.results[0].lines, function(k, v){
-            keys.push(k)
-        });
-
         Spice.add({
             id: 'code_search',
             name: "Software",
-            data: {
-                record_data: api_result.results[0].lines,
-                record_keys: keys
+            data: api_result.results[0],
+            normalize: function(item) {
+                var lines = [];
+
+                $.each(api_result.results[0].lines, function(k, v){
+                    lines.push(v);
+                });
+
+                return {
+                    lines: lines.join('\n'),
+                    title: item.filename,
+                    subtitle: item.language + ' Example from ' + item.name,
+                    url: item.url,
+                    file_location: [item.location, item.filename].join('/'),
+                    repo_url: item.repo
+                };
             },
             meta: {
                 sourceUrl: 'https://searchcode.com/?q=' + query + '&cs=true',
@@ -28,16 +35,12 @@
                 sourceName: 'searchcode'
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
-                    content: 'record',
+                    content: Spice.code_search.content,
                     moreAt: true
                 }
             }
         });
     }
-
-    Spice.registerHelper("stripNewline", function(text){
-        return text.replace(/\r/g, "");
-    });
 }(this));

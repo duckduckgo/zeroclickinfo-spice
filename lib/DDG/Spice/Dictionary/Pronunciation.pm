@@ -1,4 +1,5 @@
 package DDG::Spice::Dictionary::Pronunciation;
+# ABSTRACT: Get pronounciation information of a word
 
 use strict;
 use DDG::Spice;

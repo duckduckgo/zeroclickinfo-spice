@@ -5,8 +5,10 @@
         if (!(api_result && api_result.author && api_result.version)) {
             return Spice.failed('meta_cpan');
         }
+        var script = $('[src*="/js/spice/meta_cpan/"]')[0];
+        var source = $(script).attr("src");
+        var query = decodeURIComponent(source.match(/meta_cpan\/([^\/]+)/)[1]);
 
-        var query = DDG.get_query().replace(/\s*(metacpan|meta cpan|cpanm?)\s*/i, '').replace(/-/g, '::');
         var link = "search?q=" + encodeURIComponent(query);
         if (api_result.module && api_result.module.length > 0 && api_result.module[0].associated_pod) {
             link = "module/" + api_result.module[0].associated_pod;
