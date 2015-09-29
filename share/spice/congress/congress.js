@@ -70,15 +70,14 @@
             },
             sort_default: 'district',
             templates: {
-                group: 'products',
-                options: {
-                    buy: Spice.congress.buy,
-                    rating: false,
-                    price: false,
-                    brand: false
-                },
+                group: 'media',
+                item_detail: false,
+                detail: false,
                 variants: {
-                    tile: 'narrow'
+                    tile: 'narrow',
+                },
+                elClass: {
+                    tileTitle: 'tx--15'
                 }
             }
         });

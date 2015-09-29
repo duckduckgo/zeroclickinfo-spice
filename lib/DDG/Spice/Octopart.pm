@@ -1,4 +1,5 @@
 package DDG::Spice::Octopart;
+# ABSTRACT: Search for electronic parts
 
 use strict;
 use DDG::Spice;

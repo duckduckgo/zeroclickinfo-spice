@@ -1,4 +1,5 @@
 package DDG::Spice::Transit::NJT;
+# ABSTRACT: Information on next trains on New Jersey Transit
 
 use strict;
 use DDG::Spice;

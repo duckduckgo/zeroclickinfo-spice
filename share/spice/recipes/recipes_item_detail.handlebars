@@ -1,0 +1,20 @@
+<div class="detail__inner">
+    <div class="detail__media  detail__media--recipe">
+        <img src="{{imageProxy image}}" alt="{{recipeName}}" class="detail__media__img" />
+    </div>
+    <div class="detail__body  detail__body--recipe">
+        <div class="detail__body__content  recipe  c-detail">
+            <h5 class="c-detail__title  recipe__title"><a href='{{url}}' title="{{title}}">{{recipeName}}</a></h5>
+            <div class="c-detail__desc">
+                <p class="c-detail__source  recipe__subtitle">
+                    {{{include 'DDH.recipes.recipes_subtitle'}}}
+                </p>
+                <div class="recipe__content">
+                    {{{include 'DDH.recipes.recipes_ingredients'}}}
+                    {{{include 'DDH.recipes.recipes_flavors'}}}
+                </div>
+                {{{include 'DDH.recipes.recipes_view_full'}}}
+            </div>
+        </div>
+    </div>
+</div>

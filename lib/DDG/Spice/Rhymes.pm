@@ -1,4 +1,5 @@
 package DDG::Spice::Rhymes;
+# ABSTRACT: Searches for rhyming words
 
 use strict;
 use DDG::Spice;

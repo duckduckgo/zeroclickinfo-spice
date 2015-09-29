@@ -36,7 +36,7 @@ ddg_spice_test(
     'code puzzles' => undef,
     'c# katas' => undef,
     'Hello in C' => undef
-    
+
 );
 
 done_testing;

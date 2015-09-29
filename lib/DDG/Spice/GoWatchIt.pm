@@ -1,4 +1,5 @@
 package DDG::Spice::GoWatchIt;
+# ABSTRACT: Stream provides for movies and shows
 
 use strict;
 use DDG::Spice;
@@ -16,10 +17,11 @@ attribution github  => ['https://github.com/plexusent', 'GoWatchIt.com'],
             web     => ['http://gowatchit.com'],
             twitter => ['gowatchit', 'GoWatchIt.com'];
 
-my @triggers = ('watch', 'stream', 'watch online', 'on demand', 'watch now', 'stream online', 'buy movie', 'rent movie');
-my @killwords = ('movie', 'show', 'tv', 'online', 'stream');
+my @triggers = ('watch', 'stream', 'watch online', 'on demand', 'watch now', 'stream online', 'buy movie', 'rent movie','movie');
+my @ignorewords = ('movie', 'show', 'tv', 'online', 'stream');
+my @stopwords = ('apple watch', 'pocket watch', 'night watch', 'watch tower', "stop watch");
 
-my $killwords = join '|', @killwords;
+my $ignorewords = join '|', @ignorewords;
 
 triggers startend => @triggers;
 
@@ -29,9 +31,11 @@ spice wrap_jsonp_callback => 1;
 handle remainder_lc => sub {
 
   return unless $_; # Guard against "no answer"
-  $_ =~ s/$killwords//g; # remove killwords
-  return trim($_); # trim spaces and return
+  return if grep {$req->query_lc eq $_} @stopwords;
 
+
+  $_ =~ s/\b$ignorewords\b//g; # remove ignorewords
+  return trim($_); # trim spaces and return
 };
 
 1;

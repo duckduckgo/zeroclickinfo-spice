@@ -25,6 +25,14 @@
 	opacity: 0.81;
 }
 	.dark-header .fe_icon--alt { display: block; }
+	
+.fe_icon--alert {
+	font-size: 16px;
+	margin-top: -1px;
+	margin-right: 0.5em;
+	display: inline-block;
+	vertical-align: middle;
+}
 
 /* Other Styling */
 .fe_currently,

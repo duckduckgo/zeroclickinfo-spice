@@ -1,4 +1,5 @@
 package DDG::Spice::Maps::Places;
+# ABSTRACT: Nearby museums, restaurants, ...
 
 use strict;
 use DDG::Spice;
@@ -9,31 +10,18 @@ spice to => 'https://duckduckgo.com/local.js?q=$1&cb={{callback}}';
 spice proxy_cache_valid => "418 1d";
 spice is_cached => 0;
 
-triggers startend => (
-    'local',
-    'near',
-    'near me',
-    'around',
-    'around me',
-    'here',
-    'locally',
-    'nearby',
-    'close',
-    'closest',
-    'nearest',
+my $chains_re = share('chains_re')->slurp;
+my $places_re = qr/(local|near|near me|around|around me|here|locally|nearby|close|closest|nearest|locations?|restaurants?)/;
+triggers query_lc => qr/(^$chains_re$|^$places_re|$places_re$)/s;
 
-    'locations',
-    'location',
+my %skip_remainders = map {$_ => 0} ('current', 'time');
 
-    'restaurant',
-    'restaurants',
-);
-
-my %skip_remainders = map {$_ => 0} ('current');
-
-handle remainder => sub {
-    return $_ if $_ && !exists($skip_remainders{$_});
-    return;
+handle query_lc => sub {
+    my $query = $_;
+    foreach my $qw (split(/\s/, $query)) {
+        return if exists($skip_remainders{$qw});
+    }
+    return $query if $query;
 };
 
 1;

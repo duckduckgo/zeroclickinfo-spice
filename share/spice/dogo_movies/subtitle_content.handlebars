@@ -1,0 +1,11 @@
+<span class="movie--runtime">
+    {{#if runtime}}
+    <span>Run Time: {{runtime}}</span>
+    {{/if}}
+    {{#and runtime mpaa}}
+    <span class="sep"></span>
+    {{/and}}
+    {{#if mpaa}}
+    <span>{{mpaaText}}</span>
+    {{/if}}
+</span>

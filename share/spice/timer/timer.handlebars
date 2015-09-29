@@ -1,20 +1,32 @@
-<div id='timer_container' hidden>
-	<div class='spice-pane' id='timer_input'>
-		<input type='text' placeholder='mm' id='minute_input' class='timer__time-input' pattern='[0-9]*' maxlength='3'>:<input type='text' placeholder='ss' id='second_input' class='timer__time-input' pattern='[0-9]*' maxlength='2'>
-	</div>
-	<div class='spice-pane' id='timer_display'>
-		<span class='time' id='timer'>00:00</span>
-	</div>
-	<div class='spice-pane spice-pane-right' id='timer_buttons'>
-		<div class='btn-wrapper'>
-			<button class='timer__btn timer__start' id='startstop_btn' disabled>START</button>
-			<button class='timer__btn' id='reset_btn' disabled>RESET</button>
-		</div>
-	</div>
-	<div class='timer__done-modal' id='done_modal'>
-		<div>
-			<h2>Time's Up!</h2>
-			<button id='done_ok_btn'>OK</button>
-		</div>
-	</div>
+<div class="timer_container tile status_not_started">
+    <div class="tx-clr--slate play_pause">
+        <a href=""></a>
+        <div class="progress">
+            <div class="fill">
+                <span class="rotated_fill"></span>
+                <span class="first_half_fill"></span>
+            </div>
+        </div>
+    </div>
+    <div class="display_container">
+        <div class="name">
+            <input type="text" class="bg-clr--silver tx-clr--slate name_input" value="Timer 1"/>
+        </div>
+        <div class="time">
+            <div class="time_display">
+                <span class="tx-clr--slate hours_minutes">00:00</span>
+                <span class="seconds">00</span>
+            </div>
+            <div class="time_input">
+                <input type="tel" pattern="\d*" maxlength="2" class="bg-clr--silver tx-clr--slate hours" placeholder="HH">
+                <span class="separator">:</span>
+                <input type="tel" pattern="\d*" maxlength="2" class="bg-clr--silver tx-clr--slate minutes" placeholder="MM">
+                <span class="separator">:</span>
+                <input type="tel" pattern="\d*" maxlength="2" class="bg-clr--silver tx-clr--slate seconds" placeholder="SS">
+            </div>
+        </div>
+    </div>
+    <a href="" class="corner_btn reset">RESET</a>
+    <a href="" class="corner_btn add_minute bg-clr--silver">+1</a>
+    <a href="" class="corner_btn close">&times;</a>
 </div>

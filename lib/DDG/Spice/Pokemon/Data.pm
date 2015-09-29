@@ -17,14 +17,15 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 attribution github => ["AkA84"];
 
 # Triggers
-triggers startend => "pokemon";
+triggers startend => "pokemon", "pokedex";
+triggers end => "evolution";
 
 spice to => 'http://pokeapi.co/api/v1/pokemon/$1/';
 spice wrap_jsonp_callback => 1;
 
 # Handle statement
 handle remainder => sub {
-    return lc $_ if $_;
+    return lc $_ unless !$_ or $_ =~ /\s/;
     return;
 };
 

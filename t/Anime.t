@@ -9,16 +9,26 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::Anime)],
-    'anime pokemon' => test_spice(
-        '/js/spice/anime/pokemon',
+    'naruto anime' => test_spice(
+        '/js/spice/anime/naruto',
+        call_type => 'include',
+        caller => 'DDG::Spice::Anime'
+    ),
+    'naruto hummingbird' => test_spice(
+        '/js/spice/anime/naruto',
         call_type => 'include',
         caller => 'DDG::Spice::Anime'
     ),
     'anime Medabots' => test_spice(
-        '/js/spice/anime/medabots',
+        '/js/spice/anime/Medabots',
         call_type => 'include',
         caller => 'DDG::Spice::Anime'
-    )
+    ),
+    'good anime to watch' => undef,
+    'anime eyes' => undef,
+    'anime wallpapers' => undef,
+    'anime couples' => undef,
+    'anime cosplay' => undef
 );
 
 done_testing;

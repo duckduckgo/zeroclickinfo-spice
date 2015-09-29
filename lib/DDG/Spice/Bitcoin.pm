@@ -1,6 +1,5 @@
 package DDG::Spice::Bitcoin;
 # ABSTRACT: Display bitcoin address balance, transaction or block information
-
 use strict;
 use DDG::Spice;
 

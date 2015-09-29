@@ -64,8 +64,30 @@ ddg_spice_test(
         '/js/spice/go_watch_it/' . $uri->encode('world war z'),
         call_type => 'include',
         caller => 'DDG::Spice::GoWatchIt'
-    )
+    ),
 
+    'movie world war z' => test_spice(
+        '/js/spice/go_watch_it/' . $uri->encode('world war z'),
+        call_type => 'include',
+        caller => 'DDG::Spice::GoWatchIt'
+    ),
+
+    'world war z movie' => test_spice(
+        '/js/spice/go_watch_it/' . $uri->encode('world war z'),
+        call_type => 'include',
+        caller => 'DDG::Spice::GoWatchIt'
+    ),
+
+    'apple watch' => undef,
+    # but match watch apple
+    'watch apple' => test_spice(
+        '/js/spice/go_watch_it/apple',
+        call_type => 'include',
+        caller => 'DDG::Spice::GoWatchIt'
+    ),
+
+    'pocket watch' => undef,
+    'watch tower' => undef
 );
 
 done_testing;

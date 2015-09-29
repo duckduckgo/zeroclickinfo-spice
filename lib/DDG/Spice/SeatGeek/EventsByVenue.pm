@@ -13,7 +13,7 @@ topics "entertainment", "music";
 attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
     github => ['https://github.com/andrey-p','Andrey Pissantchev'];
 
-triggers start => 
+triggers start =>
     'upcoming concert at',
     'upcoming concerts at',
     'concerts at',

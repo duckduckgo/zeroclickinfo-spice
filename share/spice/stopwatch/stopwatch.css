@@ -103,10 +103,6 @@
 }
 
 /*split table*/
-.zci--stopwatch .hidden {
-    display: none;
-}
-
 .zci--stopwatch table {
     width: 100%;
     border-collapse: collapse;

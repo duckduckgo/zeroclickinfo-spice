@@ -102,7 +102,7 @@ ddg_spice_test(
     # leading and trailing spaces should be allowed
     '    how to buy duckduckgo.com      ' => expected_output_for('duckduckgo.com'),
 
-    # a trailing question mark should be allowed    
+    # a trailing question mark should be allowed
     'is duckduckgo.com available?' => expected_output_for('duckduckgo.com'),
 
     # whois keywords after a url should trigger
@@ -117,6 +117,9 @@ ddg_spice_test(
     'duckduckgo.com who owns' => expected_output_for('duckduckgo.com'),
     'duckduckgo.com buy' => expected_output_for('duckduckgo.com'),
     'duckduckgo.com how to buy' => expected_output_for('duckduckgo.com'),
+    
+    # domain containing a number should trigger
+    'whois duckduckgo99.com' => expected_output_for('duckduckgo99.com'),
 
     # whois keywords without a url should not trigger
     'whois' => undef,
