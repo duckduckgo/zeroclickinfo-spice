@@ -25,6 +25,7 @@
                 group: 'products',
                 options: {
                     detailLight: true,
+                    detailMediaShape: 'square',
                     buy: 'products_amazon_buy',
                     badge: 'products_amazon_badge'
                 }
