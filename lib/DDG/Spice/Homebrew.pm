@@ -8,7 +8,7 @@ primary_example_queries "brew wget", "brew install wget";
 secondary_example_queries "homebrew wget", "wget homebrew", "wget brew";
 description "Homebrew formulas information";
 name "Homebrew";
-code_url "https://github.com/duckduckgo/zeroclickinfo-fathead/tree/master/share/fathead/homebrew";
+code_url "https://github.com/Retrobottega/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Homebrew.pm";
 icon_url "/i/brewformulas.org.ico";
 topics "computing", "geek", "sysadmin";
 category "software";
