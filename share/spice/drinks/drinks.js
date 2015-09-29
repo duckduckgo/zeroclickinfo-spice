@@ -17,7 +17,7 @@
 
     env.ddg_spice_drinks = function(api_result){
 
-        if (!api_result || api_result.error) {
+        if (!api_result || api_result.error || !api_result.drinks || api_result.drinks.length === 0) {
             return Spice.failed('drinks');
         }
 
