@@ -12,6 +12,16 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Npm',
     ),
+    'nodejs underscore' => test_spice(
+        '/js/spice/npm/underscore',
+        call_type => 'include',
+        caller => 'DDG::Spice::Npm',
+    ),
+    'npm install underscore' => test_spice(
+        '/js/spice/npm/underscore',
+        call_type => 'include',
+        caller => 'DDG::Spice::Npm',
+    ),
 );
 
 done_testing;

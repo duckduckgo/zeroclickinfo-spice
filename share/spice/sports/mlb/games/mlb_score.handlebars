@@ -1,0 +1,80 @@
+<div class="c-score  c-score--mlb  {{#if score.away.innings}}has-score{{else}}no-score{{/if}}">
+	{{{include 'DDH.sports.score_head' sequence=score.home.innings}}}
+	<div class="c-score__line  c-score__line--vs1">
+		<div class="c-score__line__name">
+			{{~#with away_team~}}
+			<div class="c-score__team">
+				{{{include 'DDH.sports.team_name'}}}
+			</div>
+			{{~/with~}}
+		</div>
+		{{~#if has_started~}}
+			{{~#with score.away~}}
+			<div class="c-score__sequence  c-score__opt">
+			{{#each innings}}
+				<div class="c-score__item  c-score__item--{{type}}"><span class="{{#if current}}c-score__is-current{{/if}}">{{{runs}}}</span></div>
+			{{/each}}
+			</div>
+			<div class="c-score__totals">
+				<div class="c-score__line__total">{{runs}}{{#if winner}}<span class="c-score__win-marker"></span>{{/if}}</div>
+				<div class="c-score__opt">
+					<div class="c-score__item  c-score__item--inning">{{hits}}</div>
+					<div class="c-score__item  c-score__item--inning">{{errors}}</div>
+				</div>
+			</div>
+			{{~/with~}}
+		{{~/if~}}
+	</div>
+	<div class="c-score__line  c-score__line--vs2" data-vs="@">
+		<div class="c-score__line__name">
+			{{#with home_team}}
+			<div class="c-score__team">
+				{{{include 'DDH.sports.team_name'}}}
+			</div>
+			{{/with}}
+		</div>
+		{{~#if has_started~}}
+			{{~#with score.home~}}
+			<div class="c-score__sequence  c-score__opt">
+			{{#each innings}}
+				<div class="c-score__item  c-score__item--{{type}}"><span class="{{#if current}}c-score__is-current{{/if}}">{{{runs}}}</span></div>
+			{{/each}}
+			</div>
+			<div class="c-score__totals">
+				<div class="c-score__line__total">{{runs}}{{#if winner}}<span class="c-score__win-marker"></span>{{/if}}</div>
+				<div class="c-score__opt">
+					<div class="c-score__item  c-score__item--inning">{{hits}}</div>
+					<div class="c-score__item  c-score__item--inning">{{errors}}</div>
+				</div>
+			</div>
+			{{~/with~}}
+		{{~/if~}}
+	</div>
+	<div class="c-score__foot">
+		<div class="c-score__foot__main">
+			<div class="c-score__venue">@ {{venue.market}}<span class="c-score__venue__name"> - {{venue.name}}</span></div>
+			<div class="c-score__foot__more  c-score__opt">
+			{{#if has_ended}}
+				{{#if pitchers}}
+				{{#with pitchers}}
+				<span class="c-score__win-loss">
+					<span class="c-score__foot__info">W: {{win.last_name}} ({{win.win}}-{{win.loss}})</span>
+					<span class="c-score__foot__info">L: {{loss.last_name}} ({{loss.win}}-{{loss.loss}})</span>
+				</span>
+				{{/with}}
+				{{else}}
+					<span class="c-score__foot__info">{{textGameOver}}</span>
+				{{/if}}
+			{{else}}
+				{{#if has_started}}
+					{{#if textLastUpdate}}
+						<span class="c-score__foot__info">{{textLastUpdate}}</span>
+					{{else}}
+						{{{include 'DDH.sports_mlb_games.pitch_count'}}}
+					{{/if}}
+				{{/if}}
+			{{/if}}
+			</div>
+		</div>
+	</div>
+</div>

@@ -6,6 +6,11 @@
         if (!api_result || api_result.error) {
             return Spice.failed('aur');
         }
+        
+        // Get search query
+        var script = $('[src*="/js/spice/aur/"]')[0],
+            source = $(script).attr("src"),
+            query = decodeURIComponent(source.match(/aur\/([^\/]+)/)[1]);
 
         // Render the response
         Spice.add({
@@ -16,7 +21,7 @@
             data: api_result.results,
             meta: {
                 sourceName: "aur.archlinux.org",
-                sourceUrl: 'http://aur.archlinux.org/rpc.php?type=search&arg=' + api_result.name
+                sourceUrl: 'https://aur.archlinux.org/packages/?K=' + query
             },
             normalize: function(item) {
                 return {

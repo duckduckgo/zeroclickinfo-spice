@@ -48,32 +48,45 @@ ddg_spice_test(
     
     # primary zip example
     '11235 homes' => test_spice(
-		'/js/spice/quandl/home_values/ZIP_ALLHOMES_11235',
+		'/js/spice/quandl/home_values/Z11235_A',
 		call_type => 'include',
 		caller => 'DDG::Spice::Quandl::HomeValues',
 	),
     
     # secondary zip example
     'expensive homes 11235' => test_spice(
-		'/js/spice/quandl/home_values/ZIP_TOPTIER_11235',
+		'/js/spice/quandl/home_values/Z11235_TT',
 		call_type => 'include',
 		caller => 'DDG::Spice::Quandl::HomeValues',
 	),
     
     # metro example, is not caught by 'new york' trigger
     'new york city homes' => test_spice(
-		'/js/spice/quandl/home_values/METRO_ALLHOMES_NEWYORKNY',
+		'/js/spice/quandl/home_values/M00002_A',
 		call_type => 'include',
 		caller => 'DDG::Spice::Quandl::HomeValues',
 	),
     
     # state example
     'new york homes' => test_spice(
-		'/js/spice/quandl/home_values/STATE_ALLHOMES_NEWYORK',
+		'/js/spice/quandl/home_values/S00003_A',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::HomeValues',
+	),
+
+    # make sure "in" does not trigger "Indiana"
+    'home values in new york' => test_spice(
+		'/js/spice/quandl/home_values/S00003_A',
 		call_type => 'include',
 		caller => 'DDG::Spice::Quandl::HomeValues',
 	),
     
+    # make sure "indiana" still triggers
+    'home values in indiana' => test_spice(
+		'/js/spice/quandl/home_values/S00015_A',
+		call_type => 'include',
+		caller => 'DDG::Spice::Quandl::HomeValues',
+	),
     
     # No results for a single region alone
 	'27510' => undef,

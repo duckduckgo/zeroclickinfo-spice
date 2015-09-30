@@ -14,8 +14,7 @@
                 name: 'Envato Marketplace',
                 data: api.search,
                 normalize: function(item){
-                    var info = item.item_info, 
-                        sales_count = 'sale'+(+info.sales == 1 ? '' : 's');
+                    var info = item.item_info;
 
                     return {
                         url: item.url,
@@ -24,7 +23,7 @@
                         brand: info.user,
                         img: info.thumbnail,
                         heading: item.description,
-                        reviewCount: info.sales+' '+sales_count
+                        reviewCount: DDG.abbrevNumber(info.sales)
                     }
                 },
                 templates: {
@@ -79,12 +78,8 @@
                 }
             }
 
-            spice.view = spice.model = 'Audio'
+            spice.view = 'Audio'
         }
-
-        Handlebars.registerHelper('formatSales', function(sales){
-            return sales+' sale'+(+sales == 1 ? '' : 's');
-        });
 
         Spice.add(spice);
     }

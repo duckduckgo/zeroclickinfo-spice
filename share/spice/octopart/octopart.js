@@ -47,7 +47,8 @@
 
                 item = item.item; // our item object is wrapped in an "item" property
 
-                var images = get_images(item.imagesets);
+                var images = get_images(item.imagesets),
+                    datasheet = item.datasheets && item.datasheets[0];
 
                 return {
                     brand: item.brand.name,
@@ -58,7 +59,7 @@
                     title: item.mpn,
                     heading: item.mpn,
                     abstract: item.short_description,
-                    datasheet: item.datasheets[0].url,
+                    datasheet: datasheet && datasheet.url,
                     market_status: item.market_status_v2.replace(/^\w+: /, '') // strip out "GOOD: " from market_status
                 };
             },
