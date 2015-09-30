@@ -9,12 +9,12 @@
         var script = $('[src*="/js/spice/seat_geek/events_by_venue/"]')[0],
             source = $(script).attr("src"),
             venueSlug = source.match(/events_by_venue\/([^\/]*)/)[1],
-            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
         Spice.add({
             id: "seat_geek_events_by_venue",
-            name: "Concerts",
+            name: "Tickets",
             data: api_result.events,
             meta: {
                 sourceName: "SeatGeek",
@@ -150,8 +150,10 @@
                     place: item.venue.name,
                     img: item.performers[0].images.small,
                     city: item.venue.display_location,
-                    month: getMonth(getDate(item.datetime_local)),
-                    day: getDay(getDate(item.datetime_local))
+                    dateBadge: {
+                        month: getMonth(getDate(item.datetime_local)),
+                        day: getDay(getDate(item.datetime_local))
+                    }
                 };
             },
             templates: {

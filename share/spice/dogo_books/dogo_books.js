@@ -17,11 +17,11 @@
             data: api_result.results,
             meta: {
                 sourceName: 'DOGObooks',
-                sourceUrl: 'http://www.dogobooks.com/search?query=' + encodeURIComponent(query) + '&ref=ddg',
+                sourceUrl: 'http://www.dogobooks.com/search?query=' + encodeURIComponent(query),
                 itemType: 'kids books'
             },
             normalize: function(item) {
-                var thumb = item.hi_res_thumb || item.thumb;                
+                var thumb = item.hi_res_thumb || item.thumb;
                 return {
                     title: item.name,
                     image: thumb,
@@ -36,13 +36,10 @@
                 };
             },
             templates: {
-                group: 'media',
+                group: 'movies',
                 options: {
                     buy: Spice.dogo_books.buy,
                     rating: true
-                },
-                variants: {
-                    tile: 'poster'
                 }
             }
         });

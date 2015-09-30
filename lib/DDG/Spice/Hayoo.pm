@@ -12,7 +12,7 @@ topics "programming", "sysadmin";
 category "programming";
 attribution github => ['https://github.com/headprogrammingczar','headprogrammingczar'];
 
-triggers start => "hayoo", "haskell api", "haskell";
+triggers start => "hayoo", "hayoo api";
 
 spice to => 'http://hayoo.fh-wedel.de/json?query=$1';
 spice wrap_jsonp_callback => 1;

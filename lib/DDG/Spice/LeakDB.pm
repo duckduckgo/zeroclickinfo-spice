@@ -22,10 +22,9 @@ triggers startend => 'hashme', 'leakdb';
 spice to => 'http://api.leakdb.abusix.com/?j=$1';
 spice wrap_jsonp_callback => 1;
 
-handle remainder_lc => sub{
-    s/^(hashme|leakdb)\s+|\s+(hashme|leakdb)$//g;
-    return $_ if $_ ne '';
-    return;
+handle remainder => sub{
+    return if $_ eq '';
+    return $_;
 };
 
 1;

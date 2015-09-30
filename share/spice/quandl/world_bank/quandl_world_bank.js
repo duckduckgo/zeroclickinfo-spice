@@ -1,12 +1,3 @@
-/**
-* Created with DuckDuckHack.
-* User: brianrisk
-* Date: 2015-02-12
-* Time: 04:37 PM
-* To change this template use Tools | Templates.
-*/
-
-
 (function (env) {
     'use strict';
     env.ddg_spice_quandl_world_bank = function(api_result){
@@ -16,6 +7,10 @@
         }
 
         var result = api_result;
+        
+        if (result.data == null) {
+            return Spice.failed('quandl_world_bank');
+        }
 
         // we need two data points to get percent change
         if (result.data.length < 2) {

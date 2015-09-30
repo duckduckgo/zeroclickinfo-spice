@@ -18,27 +18,15 @@ attribution github  => ['parker', 'Parker'],
             twitter => ['ourmaninjapan', 'Daniel Davis'],
             web     => ['http://daniemon.com/', 'Daniel Davis'];
 
-triggers any => "job", "jobs";
+triggers any => "///***never trigger***///";
 
 spice to => 'http://api.indeed.com/ads/apisearch?publisher={{ENV{DDG_SPICE_INDEED_APIKEY}}}&v=2&useragent=DuckDuckGo&userip=1.2.3.4&q=$1&l=$2&co=$3&sort=date&format=json&callback={{callback}}';
 spice from => '([^/]+)/(.*?)/([^/]*)';
 spice proxy_cache_valid   => "418 1d";
 
 handle query => sub {
-    my $country = 'US';
-    if($loc->country_code) {
-        $country = $loc->country_code;
-    }
-    my $spice_location = $loc->city . ', ' . $loc->region_name;
-    
-    if (/(?:\s*(?:i\s+|we\s+)?(?:need|want|wanna|deserve|seek|get|find)\s+(?:a\s+|an?\s+)?)?(?:(?<query>.+)\s+)?(?:jobs?|work|employment|internship)(?:\s+(?:in|near|around\s+)?\s*(?<location>.+))?$/i) {
-        if ($1 || $2) {
-            my $query = $+{query} || ' ';
-            my $location = $+{location} || $spice_location || ' ';
-            return $query, $location, $country;
-        }
-    }
-	return;
+    return $_ if $_;
+    return;
 };
 
 1;
