@@ -1,0 +1,37 @@
+/* Resize map-pin icon */
+.zci--bay_area_bike_share_ca .mapview-marker__icn.ddgsi-circle {
+    font-size: 6px;
+}
+
+.tile--bay_area_bike_share_ca.tile--c--n {
+    text-align: center;
+    height: 11.5em;
+    width: 11.5em;
+}
+
+.tile--bay_area_bike_share_ca .tile__title {
+    font-weight: bold;
+}
+
+.tile--bay_area_bike_share_ca p.tx-clr--dk.tx--25 {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 1.1;
+}
+
+.tile--bay_area_bike_share_ca .tile__foot {
+    max-height: none;
+}
+
+.tile--bay_area_bike_share_ca .side_by_side .left {
+    border-right: 1px solid #E5E5E5;
+    padding-right: 10px;
+}
+
+.tile--bay_area_bike_share_ca .side_by_side .right {
+    padding-left: 10px;
+}
+
+.is-mobile .tile--bay_area_bike_share_ca .side_by_side div {
+    width: 50%;
+}
