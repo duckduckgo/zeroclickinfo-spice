@@ -8,7 +8,7 @@ use YAML::XS 'LoadFile';
 primary_example_queries "engadget";
 secondary_example_queries "nyt";
 description "Shows latest articles for popular news sites with Atom/RSS feeds";
-name "Articles By";
+name "Articles";
 code_url "https://github.com/brianrisk/zeroclickinfo-spice/lib/DDG/Articles.pm";
 topics "economy_and_finance";
 category "facts";
