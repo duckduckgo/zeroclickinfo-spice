@@ -58,7 +58,7 @@
             },
 
             templates: {
-                group: 'text'
+                group: 'icon'
             }
         });
     };
