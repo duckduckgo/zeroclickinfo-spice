@@ -51,7 +51,7 @@ Please place an 'X' where appropriate.
 [] Verified that instant answer adheres to code styleguide (https://duck.co/duckduckhack/code_styleguide)
 [] Tested cross-browser compatibility
 
-    Please let us know which browsers/devices you've tested on:
+ Please let us know which browsers/devices you've tested on:
     - Windows 8
         [] Google Chrome
         [] Firefox
@@ -67,6 +67,7 @@ Please place an 'X' where appropriate.
         [] IE 10
 
     - Windows XP
+        [] IE 7
         [] IE 8
 
     - Mac OSX
