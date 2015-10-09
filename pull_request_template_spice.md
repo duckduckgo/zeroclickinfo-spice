@@ -52,43 +52,55 @@ Please place an 'X' where appropriate.
 [] Tested cross-browser compatibility
 
  Please let us know which browsers/devices you've tested on:
+    - Windows 10
+        - [] Google Chrome
+        - [] Firefox
+        - [] Opera
+        - [] IE 11
+        - [] Microsoft edge
+        
     - Windows 8
-        [] Google Chrome
-        [] Firefox
-        [] Opera
-        [] IE 10
+        - [] Google Chrome
+        - [] Firefox
+        - [] Opera
+        - [] IE 10
 
     - Windows 7
-        [] Google Chrome
-        [] Firefox
-        [] Opera
-        [] IE 8
-        [] IE 9
-        [] IE 10
+        - [] Google Chrome
+        - [] Firefox
+        - [] Opera
+        - [] IE 8
+        - [] IE 9
+        - [] IE 10
 
     - Windows XP
-        [] IE 7
-        [] IE 8
+        - [] IE 7
+        - [] IE 8
 
+    - Linux
+        - [] Google Chrome
+        - [] Firefox
+        
     - Mac OSX
-        [] Google Chrome
-        [] Firefox
-        [] Opera
-        [] Safari
+        - [] Google Chrome
+        - [] Firefox
+        - [] Opera
+        - [] Safari
 
     - iOS (iPhone)
-        [] Safari Mobile
-        [] Google Chrome
-        [] Opera
+        - [] Safari Mobile
+        - [] Google Chrome
+        - [] Opera
 
     - iOS (iPad)
-        [] Safari Mobile
-        [] Google Chrome
-        [] Opera
+        - [] Safari Mobile
+        - [] Google Chrome
+        - [] Opera
 
     - Android
-        [] Firefox
-        [] Native Browser
-        [] Google Chrome
-        [] Opera
+        - [] Firefox
+        - [] Native Browser
+        - [] Google Chrome
+        - [] Opera
+
 ```
