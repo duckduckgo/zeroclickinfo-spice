@@ -7,9 +7,6 @@
             return Spice.failed('political_polls');
         }
         
-        if(api_result.length > 50){
-            api_result = api_result.splice(50);
-        }
 
         // Render the response
         DDG.require("moment.js", function() {

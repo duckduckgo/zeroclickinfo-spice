@@ -25,7 +25,7 @@ attribution github => ["alexander95015", "Alexander"],
 spice wrap_jsonp_callback => 1;
 
 # API endpoint - https://duck.co/duckduckhack/spice_attributes#spice-codetocode
-spice to => 'http://elections.huffingtonpost.com/pollster/api/charts.json';
+spice to => 'http://elections.huffingtonpost.com/pollster/api/charts.json?state=US';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
 triggers startend => "poll", "polls";
