@@ -127,10 +127,6 @@
     display: inline-block;
 }
 
-    .ie8 .zci--cryptocurrency-ratesinfo {
-        margin-left: 2em;
-    }
-
 .zci--cryptocurrency-result img {
     height: 32px;
     margin-top: 1em;
@@ -194,10 +190,6 @@
     font-size: 2em;
     margin: 0 0.5em;
 }
-    .ie8 .zci--cryptocurrency-equal {
-        margin-right: 0.5em;
-        margin-left: 1.5em;
-    }
 
     .is-mobile .zci--cryptocurrency-equal .horizontal {
         border-bottom: 1px solid #dfdfdf;

@@ -2,30 +2,46 @@
     "use strict";
 
     var references = {
-        manhattan: {
-            lat: 40.7590615,
-            lon: -73.969231
+        'san francisco': {
+            lat: 37.7577,
+            lon: -122.4376
         },
-        brooklyn: {
-            lat: 40.645244,
-            lon: -73.9449975
+        'redwood city': {
+            lat: 37.5081359,
+            lon: -122.2139269
         },
-        queens: {
-            lat: 40.651018,
-            lon: -73.87119
+        'palo alto': {
+            lat: 37.42565,
+            lon: -122.13535
+        },
+        'mountain view': {
+            lat: 37.4133235,
+            lon: -122.081267
+        },
+        'san jose': {
+            lat: 37.2970155,
+            lon: -121.817413
         }
     };
 
-    env.ddg_spice_bike_sharing_citi_bike_nyc = function(api_result) {
+    references['sf'] = references['sfo'] = references['san francisco'];
+    references['redwood'] = references['redwood city'];
+
+    env.ddg_spice_bike_sharing_bay_area_bike_share_ca = function(api_result) {
         if (!api_result || !api_result.stationBeanList) {
-            return Spice.failed('citi_bike_nyc');
+            return Spice.failed('bay_area_bike_share_ca');
         }
 
-        var script = $('[src*="/js/spice/bike_sharing/citi_bike_nyc/"]')[0],
+        var script = $('[src*="/js/spice/bike_sharing/bay_area_bike_share_ca/"]')[0],
             source = $(script).attr("src"),
-            query = source.match(/citi_bike_nyc\/([^\/]+)/)[1];
+            query = source.match(/bay_area_bike_share_ca\/([^\/]+)/)[1];
 
-        DDG.require(['moment.js', 'maps'], function() {
+        if (query) {
+            query = decodeURIComponent(query);
+        }
+
+        DDG.require('moment.js', function() {
+        DDG.require('maps', function() {
             moment.locale('en', {
                 relativeTime : {
                     past: "%s ago",
@@ -44,11 +60,11 @@
                 }
             });
             Spice.add({
-                id: 'citi_bike_nyc',
+                id: 'bay_area_bike_share_ca',
                 name: 'Bike Sharing',
                 meta: {
-                    sourceName: 'Citi Bike NYC',
-                    sourceUrl: 'https://www.citibikenyc.com/stations',
+                    sourceName: 'Bay Area Bike Share',
+                    sourceUrl: 'http://www.bayareabikeshare.com/stations',
                     itemType: 'Bike Stations',
                     pinIcon: 'ddgsi-circle',
                     pinIconSelected: 'ddgsi-star'
@@ -56,12 +72,15 @@
                 model: 'Place',
                 view: 'Places',
                 templates: {
-                    item: 'base_item',
+                    group: 'text',
+                    detail: false,
+                    item_detail: false,
                     options: {
-                        content: Spice.bike_sharing_citi_bike_nyc.content
+                        footer: Spice.bike_sharing_bay_area_bike_share_ca.footer
                     },
                     variants: {
-                        tile: 'narrow'
+                        tile: 'narrow',
+                        tileTitle: "3line"
                     }
                 },
                 sort_fields: {
@@ -85,10 +104,10 @@
                         distanceToReference: pointOfReference ? L.latLng(item.latitude, item.longitude).distanceTo(pointOfReference) : item.id,
                         title: item.stationName,
                         availableDocks: item.availableDocks,
-                        availableBikes: item.availableBikes,
-                        lastCommunication: moment(new Date(item.lastCommunicationTime)).fromNow()
+                        availableBikes: item.availableBikes
                     };
                 }
+            });
             });
         });
     }
