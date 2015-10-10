@@ -24,10 +24,7 @@ spice proxy_cache_valid => "200 5m";
 
 handle query_lc => sub {
   $a = $_ . ' ' . $loc->city;
-  if ($a =~ /aschaffenburg|augsburg|berlin|berlin-biesdorf|berlin-friedrichshain|berlin-karow|berlin-köpenick|berlin-lichtenberg|berlin-marzahn|berlin-mitte|berlin-oberschöneweide|berlin-pankow|berlin-treptow|bremen|cologne|darmstadt|dieburg|dortmund|dreieich|dresden|dresden-altstadt|dresden-neustadt|düsseldorf|essen|ffm|frankfurt|frankfurt am main|freiburg|freiburg im breisgau|friedrichshain|griesheim|halle|hamburg|hamburg-eimsbüttel|hamburg-mitte|hannover|hanover|heidelberg|kassel|koeln|germany|kreuzberg|köln|leipzig|leipzig-connewitz|leipzig-leutzsch|leipzig-plagwitz|leipzig-stötteritz|mainz|mannheim|munich|mühlheim|münchen|münchen|germany|münster|neu isenburg|nuremberg|nürnberg|offenbach|prenzlauer berg|sankt pauli|sersheim|stuttgart|wiesbaden/) {
-    return $a;
-  }
-  return;
+  return $a;
 };
 
 1;
