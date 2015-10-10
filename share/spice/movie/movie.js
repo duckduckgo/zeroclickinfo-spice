@@ -1,20 +1,6 @@
 (function(env) {
     "use strict";
 
-    // A change in the Rotten Tomatoes API returns images that end in _tmb.
-    // This changes this to _det.
-    function toDetail(img) {
-        if(/resizing\.flixster\.com/.test(img)) {
-            // Everything before the size of the image can be removed and it would still work.
-            img = img.replace(/.+\/\d+x\d+\/(.+)/, "http://$1");
-            // Better use the _det size (which is smaller) instead of the _ori size.
-            return img.replace(/_ori/, "_det");
-        }
-        
-        // Otherwise, use the old string replacement strategy.
-        return img.replace(/tmb\.(jpg|png)/, "det.$1");
-    }
-
     function get_image(critics_rating) {
         if (!critics_rating) {
             return;
@@ -76,18 +62,14 @@
                 ]
             },
             normalize: function(item) {
-                // Modify the image from _tmb.jpg to _det.jpg
-                var image = toDetail(item.posters.detailed);
-                
                 if(item.alternate_ids && item.alternate_ids.imdb) {
                     return {
                         rating: Math.max(item.ratings.critics_score / 20, 0),
-                        //image: image,
                         icon_image: get_image(item.ratings.critics_rating),
                         abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
                         heading: item.title,
-                        img: image,
-                        //img_m: image,
+                        fallback_image: item.posters.detailed,
+                        image: null,
                         url: item.links.alternate,
                         is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
                     };
@@ -126,13 +108,15 @@
                     var path = data && data.movie_results && data.movie_results.length && data.movie_results[0].poster_path,
                         image = path && "https://image.tmdb.org/t/p/w185" + path;
 
-                    if (image) {
-                        item.set({
-                            img: image,
-                            img_m: image,
-                            image: image
-                        });
-                    }
+                    item.set({
+                        // fallback to lo-res:
+                        image: image || item.fallback_image,
+
+                        // don't fallback in detail pane because
+                        // it looks silly with the tiny image:
+                        img: image,
+                        img_m: image
+                    });
                 });
             }
         });
