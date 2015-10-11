@@ -15,7 +15,7 @@ ddg_spice_test(
     'cocoapods test' => test_spice(
         '/js/spice/cocoapods/test',
         call_type => 'include',
-        caller => 'DDG::Spice:Cocoapods'
+        caller => 'DDG::Spice::Cocoapods'
     ),
    
     # Try to include some examples of queries on which it might
