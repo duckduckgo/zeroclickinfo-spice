@@ -5,7 +5,7 @@ package DDG::Spice::Cocoapods;
 
 use DDG::Spice;
 
-spice is_cached => 0;
+spice is_cached => 1;
 
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name "Cocoapods";
