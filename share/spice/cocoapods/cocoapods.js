@@ -21,7 +21,7 @@
             meta: {
                 sourceName: "CocoaPods",
                 sourceUrl: 'https://cocoapods.org/?q=' + encodeURIComponent(query),
-                sourceIconUrl: 'https://cocoapods.org/favicons/favicon.ico',
+                sourceIconUrl: 'http://cocoapods.org/favicons/favicon.ico',
                 total: api_result.length
             },
             

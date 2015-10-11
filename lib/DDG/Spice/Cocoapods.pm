@@ -10,7 +10,7 @@ spice is_cached => 1;
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name "Cocoapods";
 source "https://cocoapods.org";
-icon_url "/favicons/favicon.ico";
+icon_url "https://cocoapods.org/favicons/favicon.ico";
 description "Search Pod Info from Cocoapods";
 primary_example_queries "cocoapods AFNetworking", "cocoapods SVProgressHUD";
 secondary_example_queries "cocoapods AFNetworking for ios";
