@@ -19,6 +19,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::BikeSharing::CitiBikeNYC',
     is_cached => 0,
     ),
+    'bikeshare queens' => test_spice(
+        '/js/spice/bike_sharing/citi_bike_nyc/queens',
+        call_type => 'include',
+        caller => 'DDG::Spice::BikeSharing::CitiBikeNYC',
+    is_cached => 0,
+    ),
     'citibike' => undef,
     'citibike washington' => undef,
 );

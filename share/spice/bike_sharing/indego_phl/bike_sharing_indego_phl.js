@@ -7,8 +7,7 @@
             return Spice.failed('bike_sharing_indego_phl');
         }
 
-        DDG.require('moment.js', function() {
-            DDG.require('maps', function() {
+        DDG.require(['moment.js', 'maps'], function() {
                 moment.locale('en', {
                     relativeTime: {
                         past: "%s ago",
@@ -37,15 +36,35 @@
                         pinIcon: 'ddgsi-circle',
                         pinIconSelected: 'ddgsi-star'
                     },
+                    data: api_result.features,
+                    normalize: function(item) {
+                        if (item.geometry.length < 2 || item.geometry.length > 2 || item.properties.kioskPublicStatus !== 'Active') {
+                            return null;
+                        }
+                        return {
+                            title: item.properties.name,
+                            name: item.properties.name,
+                            lat: (item.geometry.coordinates[1]).toString(),
+                            lon: (item.geometry.coordinates[0]).toString(),
+                            docksAvailable: item.properties.docksAvailable,
+                            bikesAvailable: item.properties.bikesAvailable
+                        };
+                    },
                     model: 'Place',
                     view: 'Places',
                     templates: {
-                        item: 'base_item',
+                        group: "text",
+                        detail: false,
+                        item_detail: false,
                         options: {
-                            content: Spice.bike_sharing_indego_phl.content
+                            footer: Spice.bike_sharing_indego_phl.footer
                         },
                         variants: {
-                            tile: 'narrow'
+                            tile: 'narrow',
+                            tileTitle: "3line"
+                        },
+                        elClass: {
+                            tileTitle: "tx--14"
                         }
                     },
                     sort_fields: {
@@ -53,23 +72,8 @@
                             return a.distanceToReference - b.distanceToReference;
                         }
                     },
-                    sort_default: 'distance',
-                    data: api_result.features,
-                    normalize: function(item) {
-                        if (item.geometry.length < 2 || item.geometry.length > 2 || item.properties.kioskPublicStatus !== 'Active') {
-                            return null;
-                        }
-                        return {
-                            name: item.properties.name,
-                            lat: (item.geometry.coordinates[1]).toString(),
-                            lon: (item.geometry.coordinates[0]).toString(),
-                            title: item.properties.name,
-                            docksAvailable: item.properties.docksAvailable,
-                            bikesAvailable: item.properties.bikesAvailable,
-                        };
-                    }
+                    sort_default: 'distance'
                 });
-            });
         });
     }
 }(this));
