@@ -45,7 +45,7 @@
             },
          
             normalize: function(item) {
-                var items = 0;
+                var items = 0; //Declaring a public variable and initalizing to zero.
                 items = item.item; // our item object is wrapped in an "item" property
 
                 var images = get_images(items.imagesets),
