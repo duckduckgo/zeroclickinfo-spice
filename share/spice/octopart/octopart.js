@@ -45,23 +45,26 @@
             },
          
             normalize: function(item) {
-                var items = 0; //Declaring a public variable and initalizing to zero.
-                items = item.item; // our item object is wrapped in an "item" property
-
-                var images = get_images(items.imagesets),
-                    datasheet = items.datasheets && items.datasheets[0];
+               
+                 var item = item.item;
+                 
+                 if (!item.avg_price_v2[0]){
+                     return null;
+                 }
+                var images = get_images(item.imagesets),
+                    datasheet = item.datasheets && item.datasheets[0];
 
                 return {
-                    brand: items.brand.name,
-                    price: items.avg_price_v2[1] + ' $' + items.avg_price_v2[0],
+                    brand: item.brand.name,
+                    price: item.avg_price_v2[1] + ' $' + item.avg_price_v2[0],
                     img: images.medium,
                     img_m: images.large,
-                    url: items.octopart_url,
-                    title: items.mpn,
-                    heading: items.mpn,
-                    abstract: items.short_description,
+                    url: item.octopart_url,
+                    title: item.mpn,
+                    heading: item.mpn,
+                    abstract: item.short_description,
                     datasheet: datasheet && datasheet.url,
-                    market_status: items.market_status_v2.replace(/^\w+: /, '') // strip out "GOOD: " from market_status
+                    market_status: item.market_status_v2.replace(/^\w+: /, '') // strip out "GOOD: " from market_status
                 };
             },
             templates: {
