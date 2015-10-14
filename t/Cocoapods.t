@@ -9,11 +9,24 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::Cocoapods)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
+   
     'cocoapods test' => test_spice(
         '/js/spice/cocoapods/test',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cocoapods'
+    ),
+    'cocoapods afnetworking' => test_spice(
+        '/js/spice/cocoapods/afnetworking',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cocoapods'
+    ),
+    'cocoapods SVProgressHUD' => test_spice(
+        '/js/spice/cocoapods/svprogresshud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cocoapods'
+    ),
+    'cocoapods AFNetworking for ios' => test_spice(
+        '/js/spice/cocoapods/afnetworking%20for%20ios',
         call_type => 'include',
         caller => 'DDG::Spice::Cocoapods'
     ),
