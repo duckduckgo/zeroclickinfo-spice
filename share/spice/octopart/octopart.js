@@ -46,11 +46,10 @@
          
             normalize: function(item) {
                
-                var item = item.item; 
+                var item = item.item;  // our item object is wrapped in an "item" property
                 var images = get_images(item.imagesets),
                     datasheet = item.datasheets && item.datasheets[0];
-                  console.log(item);
-                 
+                                 
                 if(!item.avg_price_v2[0]) {
                     return null;
                   }
