@@ -4,7 +4,7 @@ package DDG::Spice::Airlines;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "AA 102";
+primary_example_queries "AA 103";
 secondary_example_queries "Delta 3684";
 description "Flight information";
 name "Flight Info";
