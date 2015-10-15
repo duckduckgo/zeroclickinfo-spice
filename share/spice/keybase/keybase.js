@@ -44,15 +44,25 @@
                 sourceUrl: 'https://keybase.io/' + user.basics.username
             },
             normalize: function(item) {
+                var userAccounts = [];
+                userAccounts.push({
+                        text: keybase_key_fingerprint(item.public_keys.primary.key_fingerprint),
+                        href: 'https://keybase.io/' + item.basics.username + '/key.asc'});
+                var accountGroup = item.proofs_summary.all;
+                var accountName;
+                for( accountName in accountGroup ) {
+                    userAccounts.push({
+                        text: accountGroup[accountName].presentation_group,
+                        href: accountGroup[accountName].service_url
+                    });
+                }
+                
                 return {
                     image: item.pictures.primary.url,
                     title: item.profile.full_name,
                     url: 'https://keybase.io/' + item.basics.username,
                     subtitle: item.profile.location,
-                    altSubtitle: [{
-                        text: keybase_key_fingerprint(item.public_keys.primary.key_fingerprint),
-                        href: 'https://keybase.io/' + item.basics.username + '/key.asc'
-                    }],
+                    altSubtitle: userAccounts,
                     description: item.profile.bio
                 }
             },
