@@ -45,6 +45,7 @@
                 group: 'movies',
                 options: {
                     rating: false,
+                    hideDescLandscape: false,
                     abstract_content: Spice.kwixer.abstract,
                     buy: Spice.kwixer.buy
                 }
