@@ -1,15 +1,4 @@
-{{#if ratings.critics_rating}}
-  <span class="copyright">
-      Rotten Tomatoes<sup>&#169;</sup> Score
-  </span>
-
-  <span class="movie--critics_score">
-      <img src="{{icon_image}}" class="{{is_retina}}">
-      {{ratings.critics_score}}% {{ratings.critics_rating}}
-  </span>
-{{/if}}
-
-<span class="movie--runtime">
+<div class="movie__runtime">
   {{#if runtime}}
     <span>Run Time: {{movie_time runtime}}</span>
   {{/if}}
@@ -19,4 +8,19 @@
   {{#if mpaa_rating}}
     <span>{{mpaa_rating}}</span>
   {{/if}}
-</span>
+</div>
+
+{{#if ratings.critics_rating}}
+<div class="movie__rating">
+  <span class="movie__rating__score">
+      <img src="{{icon_image}}" class="{{is_retina}}">
+      {{ratings.critics_score}}% {{ratings.critics_rating}}
+  </span>
+  <span class="hide--mob">
+      <span class="sep"></span>
+      <span class="movie__rating__copyright">
+          Rotten Tomatoes<sup>&#169;</sup> Score
+      </span>
+  </span>
+</div>
+{{/if}}

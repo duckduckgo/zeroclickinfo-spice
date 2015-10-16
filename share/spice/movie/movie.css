@@ -6,66 +6,11 @@
     background: transparent no-repeat;
 }
 
-.zci--movie .c-detail__title {
-    padding-bottom: 0;
-}
-
-.zci--movie .c-detail__subtitle {
-    margin-top: 0;
-    padding-top: 0;
-}
-
-.zci--movie .c-detail__desc {
-    padding-bottom: 1.65em;
-}
-
-.zci--movie .movie--runtime {
-    display: block;
-	font-size: 0.9em;
-	padding-top: 1.5em;
-}
-	.zci--movie .c-product__subtitle .movie--runtime {
-		padding-top: 0.5em;
-	}
-
-.zci--movie .movie--critics_score {
-    display: block;
-    font-size: 1.3em;
-}
-
-.zci--movie .movie--critics_score img {
-    margin-top: -0.1em;
-    margin-bottom: -0.3em;
-    height: 24px;
-    width: 24px;
-}
-
 .zci--movie .c-detail__subtitle sup {
     font-size: 0.5em;
-}
-
-.zci--movie .copyright {
-    font-size: 0.9em;
 }
 
 .zci--movie .c-product__media,
 .zci--movie .c-product__media__img {
     max-height: 180px;
-}
-
-.is-mobile .zci--movie .c-product__media {
-    overflow: visible;
-}
-
-.is-mobile .zci--movie .c-product__body--sec {
-    margin-top: 1.5em;
-}
-
-.is-mobile .zci--movie .c-product__body--pri {
-    min-height: 180px;
-    padding-bottom: 0;
-}
-
-.is-mobile .zci--movie.zci--type--tiles.is-active {
-    padding-bottom: 0;
 }
