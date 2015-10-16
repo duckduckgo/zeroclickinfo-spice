@@ -78,16 +78,25 @@
     top: 0;
 }
 
-.recipe__flavors__strength {
-    display: block;
-}
-
-/* background color applied via template to this element */
+.recipe__flavors__strength,
 .recipe__flavors__strength span {
     display: inline-block;
     height: 0.4em;
     vertical-align: middle;
     border-radius: 2em;
+}
+
+.recipe__flavors__strength {
+    background-color: rgba(150,150,150,0.1);
+    position: relative;
+    width: 100%;
+}
+
+/* background color applied via template to this element */
+.recipe__flavors__strength span {
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 /* single item detail */
