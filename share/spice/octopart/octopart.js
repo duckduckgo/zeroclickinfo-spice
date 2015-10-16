@@ -46,14 +46,13 @@
          
             normalize: function(item) {
                
-                var item = item.item;  // our item object is wrapped in an "item" property
+                    item = item.item;  // our item object is wrapped in an "item" property
                 var images = get_images(item.imagesets),
                     datasheet = item.datasheets && item.datasheets[0];
                                  
                 if(!item.avg_price_v2[0]) {
                     return null;
-                  }
-                else {
+                 }
                 return {
                  
                     brand: item.brand.name,
@@ -68,7 +67,6 @@
                     market_status: item.market_status_v2.replace(/^\w+: /, '') // strip out "GOOD: " from market_status
                                     
                   };
-              }
             },
             templates: {
                 group: 'products',
