@@ -46,7 +46,7 @@
          
             normalize: function(item) {
                
-                    item = item.item;  // our item object is wrapped in an "item" property
+                      item = item.item;  // our item object is wrapped in an "item" property
                 var images = get_images(item.imagesets),
                     datasheet = item.datasheets && item.datasheets[0];
                                  
