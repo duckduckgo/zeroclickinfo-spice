@@ -50,6 +50,7 @@
             },
             templates: {
                 group: 'movies',
+                item_detail: 'products_item_detail',
                 options: {
                     subtitle_content: Spice.anime.subtitle_content,
                     rating: true,
