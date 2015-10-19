@@ -24,10 +24,11 @@
             
             normalize: function(item) {
                 return {
-                    title: item.id + ' ' + item.version,
-                    subtitle: item.platforms.join(', ').toUpperCase(),
+                    title: item.id,
+                    subtitle: item.version,
                     url: item.link,
-                    description: item.summary
+                    description: item.summary,
+                    platforms: item.platforms.join(', ').toUpperCase()
                 }  
             },
             
