@@ -45,7 +45,7 @@
             name: "Answer",
             data: api_result,
             meta: {
-                itemType: api_result.q + ' (Betterific)',
+                itemType: 'Betterific',
                 sourceUrl: encodeURI('http://betterific.com/search/' + api_result.q),
                 sourceName: 'betterific'
             },

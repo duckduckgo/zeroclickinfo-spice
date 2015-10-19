@@ -16,7 +16,7 @@
                     total: api_result.query.categorymembers.length,
                     sourceName: 'Wikinews',
                     sourceUrl: "https://en.wikinews.org/wiki/Main_Page",
-                    itemType: "Latest Wikinews articles"
+                    itemType: "Latest Wikinews Articles"
                 },
                 normalize: function(item) {
                     var timestamp = new Date(item.timestamp).getTime();
