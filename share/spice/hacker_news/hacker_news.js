@@ -21,7 +21,7 @@
                     sourceName: 'HN Search',
                     sourceUrl: sourceUrl,
                     total: api_result.hits,
-                    itemType: (api_result.hits.length === 1) ? 'Hacker News submission' : 'Hacker News submissions',
+                    itemType: (api_result.hits.length === 1) ? 'Hacker News Submission' : 'Hacker News Submissions',
                     searchTerm: decodeURIComponent(query)
                 },
                 normalize: function(item) {
