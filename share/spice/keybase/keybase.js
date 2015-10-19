@@ -48,14 +48,13 @@
                 userAccounts.push({
                         text: keybase_key_fingerprint(item.public_keys.primary.key_fingerprint),
                         href: 'https://keybase.io/' + item.basics.username + '/key.asc'});
-                var accountGroup = item.proofs_summary.all;
-                var accountName;
-                for( accountName in accountGroup ) {
+               
+                $.each(item.proofs_summary.all, function(index, account){
                     userAccounts.push({
-                        text: accountGroup[accountName].presentation_group,
-                        href: accountGroup[accountName].service_url
+                        text: account.presentation_group,
+                        href: account.service_url
                     });
-                }
+                });
                 
                 return {
                     image: item.pictures.primary.url,
