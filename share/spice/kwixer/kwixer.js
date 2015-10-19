@@ -37,7 +37,8 @@
                     image: item.ResourceImageUrl,
                     title: item.ResourceTitle,
                     heading: item.ResourceTitle,
-                    subtitle: item.ResourceYear,
+                    altSubtitle: item.ResourceYear,
+                    description: item.ResourceTitle,
                     url: "https://kwixer.com/#/watching/movie/" + item.ResourceId
                 };
             },
@@ -46,8 +47,8 @@
                 options: {
                     rating: false,
                     hideDescLandscape: false,
-                    abstract_content: Spice.kwixer.abstract,
-                    buy: Spice.kwixer.buy
+                    description_content: Spice.kwixer.table,
+                    callout: Spice.kwixer.callout
                 }
             }
         });
