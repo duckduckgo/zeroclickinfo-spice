@@ -23,7 +23,7 @@
             name: 'ProductHunt',
             data: api_result.hits,
             meta: {
-                searchTerm: 'Product' + (api_result.nbHits === 1 ? '' : 's'),
+                searchTerm: api_result.query,
                 itemType: 'Products',
                 sourceName: 'ProductHunt',
                 sourceIcon: true,

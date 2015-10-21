@@ -39,7 +39,7 @@
             data: api_result.results,
             signal: 'high',
             meta: {
-                itemType: 'Parts',
+                itemType: 'Showing ' + api_result.results.length + ' Parts',
                 sourceName: 'Octopart',
                 sourceUrl : 'http://octopart.com/search?q=' + api_result.request.q
             },

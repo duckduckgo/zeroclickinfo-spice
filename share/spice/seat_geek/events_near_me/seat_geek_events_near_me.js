@@ -19,7 +19,7 @@
                 // just looking for "concerts" seems to return results near you
                 sourceUrl: "https://seatgeek.com/search?search=concert",
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
-                itemType: "Upcoming Concerts"
+                primaryText: "Upcoming Concerts Nearby"
             },
             normalize: function(item) {
                 var artistName = item.performers[0].short_name,

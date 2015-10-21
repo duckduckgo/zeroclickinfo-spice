@@ -22,7 +22,8 @@
                 sourceName: "SeatGeek",
                 sourceUrl: "https://seatgeek.com/search?search=" + artistSlug.replace(/-/g, "+"),
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
-                itemType: "Upcoming Concerts"
+                itemType: "Upcoming Concerts",
+                searchTerm: artistSlug.replace(/-/g,' ')
             },
             normalize: function(item) {
                 var artistDisplayName = capitalizedAcronym(artistSlug),

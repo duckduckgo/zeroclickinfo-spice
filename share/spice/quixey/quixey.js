@@ -67,9 +67,9 @@
             name: 'Apps',
             data: api_result.results,
             meta: {
-                total: api_result.results.length,
                 itemType: 'Apps',
                 sourceName: 'Quixey',
+                searchTerm: api_result.q,
                 sourceUrl: 'https://www.quixey.com/search?q=' + encodeURIComponent(qLower),
                 sourceLogo: {
                     url: DDG.get_asset_path('quixey','quixey_logo.png'),
