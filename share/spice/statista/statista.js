@@ -1,6 +1,12 @@
 (function (env) {
     "use strict";
-    
+
+     // Get original query.
+    var script = $('[src*="/js/spice/statista/"]')[0],
+        source = $(script).attr("src"),
+        query = decodeURIComponent(source.match(/statista\/([^\/]+)/)[1]);
+
+   
     function getImage(item, size, blank) {  
        if (item.teaserImageUrls[size]) {
             var img = item.teaserImageUrls[size].src;
@@ -54,6 +60,7 @@
                 name: "Statistics",
                 data: api_result.data,
                 meta: {
+                    searchTerm: query,
                     sourceName: "Statista",
                     sourceUrl: 'https://www.statista.com/search/?q='+api_result.q
                 },

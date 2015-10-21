@@ -2,6 +2,11 @@
     "use strict";
     env.ddg_spice_sublime_packages = function(api_result){
 
+        // Get original query.
+        var script = $('[src*="/js/spice/sublime_packages/"]')[0],
+            source = $(script).attr("src"),
+            query = decodeURIComponent(source.match(/sublime_packages\/([^\/]+)/)[1]);
+
         if (!api_result || api_result.packages.length === 0) {
             return Spice.failed('sublime_packages');
         }
@@ -13,6 +18,7 @@
                     data: api_result.packages,
                     meta: {
                         itemType: "Sublime Text Packages",
+                        searchTerm: query,
                         sourceName: "packagecontrol.io",
                         sourceUrl: 'https://packagecontrol.io/search/' + api_result.terms
                     },

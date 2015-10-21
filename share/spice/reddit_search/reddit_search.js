@@ -42,7 +42,8 @@
                 name: "Social",
                 data: results,
                 meta: {
-                    itemType: "Reddit Posts",
+                    itemType: "Posts",
+                    searchTerm: query,
                     sourceUrl: "http://www.reddit.com/r/search/search?q=" + query,
                     sourceIcon: true,
                     sourceName: 'Reddit'

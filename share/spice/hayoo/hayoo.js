@@ -13,7 +13,7 @@
             name: 'Software',
             data: api_result.result,
             meta: {
-                itemType: "Results",
+                searchTerm: query,
                 sourceUrl: "http://hayoo.fh-wedel.de/?query=" + query,
                 sourceName: 'Hackage'
             },

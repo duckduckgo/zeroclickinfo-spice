@@ -16,6 +16,7 @@
             name: "Software",
             data: api_result.packages,
             meta: {
+                searchTerm: query,
                 sourceName: "Fedora Project",
                 sourceUrl: 'https://admin.fedoraproject.org/pkgdb/packages/' + query + '/'
             },
