@@ -16,7 +16,7 @@
                     name: "Answer",
                     data: api_result.people,
                     meta: {
-                        primaryText: api_result.number + (api_result.number === 1 ? "Person" : "People") + ' in Space',
+                        primaryText: api_result.number + (api_result.number === 1 ? " Person" : " People") + ' in Space',
                         sourceName: "People in Space",
                         sourceUrl: "http://www.howmanypeopleareinspacerightnow.com/"
                     },

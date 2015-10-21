@@ -20,8 +20,7 @@
                 sourceName: "SeatGeek",
                 sourceUrl: "https://seatgeek.com/search?search=concerts+" + venueSlug.replace(/-/g, "+"),
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
-                itemType: "Upcoming Concerts",
-                searchTerm: venueSlug.replace(/-/g,' ')
+                primaryText: "Upcoming Concerts at " + venueSlug.replace(/-/g,' ')
             },
             normalize: function(item) {
                 var artistName = item.performers[0].short_name,

@@ -50,7 +50,7 @@
             name: "Software",
             data: results,
             meta: {
-                searchTmer: query,
+                searchTerm: query,
                 sourceName: "Hoogle",
                 sourceUrl: "https://www.haskell.org/hoogle/?hoogle=" + query,
                 snippetChars: 170
