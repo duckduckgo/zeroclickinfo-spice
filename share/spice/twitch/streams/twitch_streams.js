@@ -21,7 +21,7 @@
                 sourceName: "Twitch",
                 sourceUrl: 'http://www.twitch.tv/search?query=' + moreAt,
                 itemType: "Results",
-                searchTerm: query
+                searchTerm: decodedQuery
             },
             templates: {
                 group: 'videos',
