@@ -13,7 +13,7 @@
             meta: {
                 sourceName: "Twitch",
                 sourceUrl: "http://www.twitch.tv/",
-                itemType: "Featured Streams"
+                primaryText: "Twitch Featured Streams"
             },
             templates: {
                 group: 'videos',

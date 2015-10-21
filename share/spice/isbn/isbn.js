@@ -11,7 +11,7 @@
             name: 'Books',
             data: api_result.results,
             meta: {
-                itemType: 'Amazon Matches',
+                itemType: 'Amazon Results',
                 sourceName: 'Amazon',
                 sourceUrl: api_result.more_at,
                 sourceIcon: true,
