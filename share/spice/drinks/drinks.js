@@ -26,7 +26,7 @@
         Spice.add({
             id: 'drinks',
             data: drink,
-            name: "Drinks",
+            name: "Recipes",
             meta: {
                 sourceUrl:  "http://www.thecocktaildb.com/drink.php?c=" + drink.idDrink,
                 sourceName: 'TheCocktailDB'
