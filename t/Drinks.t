@@ -28,6 +28,14 @@ ddg_spice_test(
         '/js/spice/drinks/red%20eye',
         caller    => 'DDG::Spice::Drinks',
     ),
+    'mix a grand-ma in a wheelchair' => test_spice(
+        '/js/spice/drinks/grand-ma%20in%20a%20wheelchair',
+        caller    => 'DDG::Spice::Drinks',
+    ),
+    'recipe of bit of russiaan honey' => test_spice(
+        '/js/spice/drinks/bit%20of%20russiaan%20honey',
+        caller    => 'DDG::Spice::Drinks',
+    ),
     'drinking cocktails' => undef,
     'how to make money' => undef,
     'how to mix songs' => undef,
