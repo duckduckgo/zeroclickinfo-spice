@@ -1,4 +1,4 @@
-package DDG::Spice::Bike_racks;
+package DDG::Spice::BikeRacks;
 # ABSTRACT: Write an abstract here
 # Start at https://duck.co/duckduckhack/spice_overview if you are new
 # to instant answer development
@@ -8,7 +8,7 @@ use DDG::Spice;
 name 'Philadelphia Bike Rack Locations';
 source 'Bike Racks MOTU';
 icon_url 'https://www.opendataphilly.org/dataset/bike-rack-locations-in-philadelphia';
-description 'Search  Bike Rack in Philadelphia';
+description 'Search Bike Rack locations in Philadelphia';
 primary_example_queries 'bike racks philadelphia', 'bike racks philly';
 secondary_example_queries 'philly bike rack';
 category 'geography';
