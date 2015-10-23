@@ -87,19 +87,20 @@
                         ratingText: duration_text,
                         image: image(item),
                         img: image(item),
-                        img_m: image(item),
-                        heading: item.programme.display_titles.title,
-                        rating: "Unrated",
                         duration: duration(item),
                         url: programme_url(item),
-                        abstract: item.programme.short_synopsis
+                        subtitle: duration(item),
+                        description: item.programme.short_synopsis
                     };
                 },
                 templates: {
-                    group: 'products_simple',
+                    group: 'media',
+                    item: 'basic_image_item',
                     options: {
-                        buy: Spice.bbc.buy,
-                        subtitle_content: Spice.bbc.subtitle_content
+                        callout: Spice.bbc.callout,
+                        subtitle_content: Spice.bbc.subtitle_content,
+                        detailMediaShape: '16x9',
+                        detailDark: 'true'
                     },
                     variants: {
                         tile: "video"
