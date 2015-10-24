@@ -19,40 +19,45 @@
         return concatted;
     }
 
+    // Use matchedTerms object to build secondaryText string
+    function buildSecondaryText(matchedTerms) {
+        var secondaryText = "";
+
+        // Loop through matchedTerms object for terms and values
+        for (var key in matchedTerms) {
+           if (matchedTerms.hasOwnProperty(key)) {
+              secondaryText += key + "=" + matchedTerms[key] + ", ";
+           }
+        }
+
+        // If terms were found, make secondaryText human readable
+        if (secondaryText.length > 0) {
+            secondaryText = "Matched: " + secondaryText.substr(0, secondaryText.length - 2) + ".";
+        }
+
+        return secondaryText;
+    }
+
     env.ddg_spice_rx_info = function(api_result){
 
         if (!api_result || api_result.error || !api_result.replyStatus || !api_result.replyStatus.totalImageCount || api_result.replyStatus.totalImageCount < 1) {
             return Spice.failed('rx_info');
         }
         
-        var script = $('[src*="/js/spice/rx_info/"]')[0],
-            source = $(script).attr("src"),
-            triggerWordMatch = parseInt(source.match(/rx_info\/[^\/]+\/(\d)/)[1]),
-            relCheck;
-        
+        var sourceName = "DailyMed",
+            sourceUrl = "http://dailymed.nlm.nih.gov/",
+            itemType = "pills",
+            secondaryText = buildSecondaryText(api_result.replyStatus.matchedTerms);
 
-        // meta information
-        var sourceName = "More at DailyMed",
-            sourceUrl  = "http://dailymed.nlm.nih.gov/",
-            skip_words = ['pill', 'rxinfo', 'capsule', 'tablet', 'softgel', 'caplets'];
-        
-        // perform relevancy checking if triggerWordMatch true
-        if(triggerWordMatch) {
-            relCheck = {
-                skip_words : skip_words,
-                primary: [
-                    { key: 'name' }, { key: 'ndc11' }
-                ]
-            };
-        }
-      
         Spice.add({
             id: "rx_info",
             name: "RxInfo",
             data: api_result.nlmRxImages,
             meta: {
+                itemType: itemType,
                 sourceName: sourceName,
-                sourceUrl:  sourceUrl
+                sourceUrl:  sourceUrl,
+                secondaryText: secondaryText
             },
             templates: {
                 group: 'products_simple',
@@ -88,8 +93,7 @@
                     inactive: inactive,
                     url: item.splSetId ? 'https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=' + item.splSetId : ''
                 }
-            },
-            relevancy: relCheck,
+            }
         });
     };
 }(this));
