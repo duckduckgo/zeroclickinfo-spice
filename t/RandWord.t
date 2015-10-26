@@ -33,6 +33,11 @@ ddg_spice_test(
         '/js/spice/rand_word/7-13-5',
         caller    => 'DDG::Spice::RandWord',
     ),
+    # Test max word limit
+    '600 random words' => test_spice(
+        '/js/spice/rand_word/1-100-500',
+        caller    => 'DDG::Spice::RandWord',
+    ),
     'random word blah blah' => undef
 );
 
