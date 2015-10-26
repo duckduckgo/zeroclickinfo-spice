@@ -30,7 +30,7 @@ my ($rx) = map qr/(?:$_)/, join "|", map qr/\b\Q$_\E\b/, @stop_words;
 # Handle statement
 handle remainder_lc => sub {
     $_ =~ s/$rx//g;
-    $_ =~ s/^\s*(a|an|in|of)//g;
+    $_ =~ s/\b(a|an|in|of)\b//;
     trim $_;
     if (exists ($drinks{$_})) {
         return $_;

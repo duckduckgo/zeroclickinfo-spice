@@ -36,6 +36,10 @@ ddg_spice_test(
         '/js/spice/drinks/bit%20of%20russiaan%20honey',
         caller    => 'DDG::Spice::Drinks',
     ),
+    'how to mix abilene' => test_spice(
+        '/js/spice/drinks/abilene',
+        caller    => 'DDG::Spice::Drinks',
+    ),
     'drinking cocktails' => undef,
     'how to make money' => undef,
     'how to mix songs' => undef,
