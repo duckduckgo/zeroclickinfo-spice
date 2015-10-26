@@ -3,6 +3,7 @@ package DDG::Spice::RandWord;
 
 use strict;
 use DDG::Spice;
+use List::Util 'min';
 
 name "Random Word";
 description "Generates a random word";
@@ -25,6 +26,7 @@ handle query_lc => sub {
     my $minlen = 1;
     my $maxlen = 100;
     my $limit = 10;
+    my $maxLimit = 500;
 
     if ($_ =~ m/(?<limit>\d+)? ?random word(s)? ?((?<min>\d+)\-(?<max>\d+))?$/) {
         if (!$1 && !$2) {
@@ -32,7 +34,7 @@ handle query_lc => sub {
             $limit = 1;
         } elsif ($1) {
             # '15 random words'
-            $limit = $1
+            $limit = min($1, $maxLimit);
         }
 
         $minlen = $+{min} if $+{min};
