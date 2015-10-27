@@ -18,6 +18,7 @@
                 },
                 normalize: function(item){
                     return {
+                        subtitle: true,
                         release_date: moment(item.release).format('MMMM YYYY'),
                         img: item.cover.thumb2x.url,
                         img_m: item.cover.thumb2x.url,
@@ -33,6 +34,7 @@
                     options:{
                         rating: false,
                         moreAt: true,
+                        detailMediaShape: 'square',
                         subtitle_content: Spice.newint.content,
                         buy: Spice.newint.buy
                     }
