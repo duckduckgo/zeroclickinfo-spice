@@ -23,10 +23,6 @@
     padding-bottom:148.333%;
 }
 
-.zci--dogo_movies .c-detail__desc {
-    padding-bottom: 1.65em;
-}
-
 /* Slightly decrease font size for movie runtime and mpaa rating */
 .zci--dogo_movies span.movie--runtime {
   font-size: 0.9em;
