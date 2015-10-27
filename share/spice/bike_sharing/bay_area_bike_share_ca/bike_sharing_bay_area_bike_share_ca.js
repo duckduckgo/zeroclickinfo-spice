@@ -81,6 +81,9 @@
                     variants: {
                         tile: 'narrow',
                         tileTitle: "3line"
+                    },
+                    elClass: {
+                        tileTitle: "tx--14"
                     }
                 },
                 sort_fields: {

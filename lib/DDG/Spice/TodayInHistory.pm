@@ -31,6 +31,7 @@ handle remainder => sub {
     # no date specified
     # use today's date
     unless ($dateString){
+        return unless $loc && $loc->time_zone;
         $dt->set_time_zone($loc->time_zone);
         return $dt->mday."_".$dt->month_name;
     }
