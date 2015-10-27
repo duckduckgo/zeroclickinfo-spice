@@ -93,7 +93,7 @@
             meta: {
                 count: goodStories.length,
                 searchTerm: searchTerm,
-                itemType: 'Recent News',
+                itemType: 'News Articles',
                 rerender: [
                     'image'
                 ]
