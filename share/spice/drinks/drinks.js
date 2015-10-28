@@ -35,6 +35,7 @@
                 return {
                     description: item.strInstructions,
                     title: item.strDrink,
+                    image: item.strDrinkThumb || null,
                     infoboxData: getInfoBoxData(item)
                 };
             },
