@@ -18,7 +18,7 @@ attribution github  => ["https://github.com/mutilator", "mutilator"],
             twitter => ["https://twitter.com/ozdemirbur", "Burak Özdemir"],
             web     => ["http://burakozdemir.co.uk", "Burak Özdemir"];
 
-spice to => 'http://www.thecocktaildb.com/api/json/v1/1/search.php?s=$1';
+spice to => 'http://www.thecocktaildb.com/api/json/v1/{{ENV{DDG_SPICE_COCKTAILDB_APIKEY}}}/search.php?s=$1';
 spice wrap_jsonp_callback => 1;
 
 triggers any => ('cocktail', 'drink', 'ingredient', 'ingredients', 'make', 'making', 'mix', 'mixing', 'recipe');
