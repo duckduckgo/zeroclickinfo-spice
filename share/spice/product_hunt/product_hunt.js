@@ -24,7 +24,6 @@
             data: api_result.hits,
             meta: {
                 searchTerm: api_result.query,
-                itemType: 'Products',
                 sourceName: 'ProductHunt',
                 sourceIcon: true,
                 sourceUrl:  'https://www.producthunt.com/#!/s/posts/' + qUrl
