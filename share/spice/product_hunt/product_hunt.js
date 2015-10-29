@@ -23,8 +23,7 @@
             name: 'ProductHunt',
             data: api_result.hits,
             meta: {
-                searchTerm: 'Product' + (api_result.nbHits === 1 ? '' : 's'),
-                itemType: 'Products',
+                searchTerm: api_result.query,
                 sourceName: 'ProductHunt',
                 sourceIcon: true,
                 sourceUrl:  'https://www.producthunt.com/#!/s/posts/' + qUrl
