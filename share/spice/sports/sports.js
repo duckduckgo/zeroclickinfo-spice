@@ -140,17 +140,13 @@
                 var foundRelevant = false,
                     games = [],
                     i = 0;
-                // for historical games on the first call, 
-                // only add the most relevant game and one previous
+                // for historical games on the first call,
+                // only add the most relevant game
                 // (if available)
                 for (; i < data.games.length; i++) {
                     if (data.games[i].id === data.most_relevant_game_id) {
                         // most relevant first
                         games.push(data.games[i]);
-                        // one historical game if the layout allows for it
-                        // limiting to portrait view as there's more vertical space
-                        // landscape mode should be more concise
-                        if (!DDG.device.isMobileLandscape() && data.games[i-1]) { games.push(data.games[i-1]); }
                         foundRelevant = true;
                     } else {
                         if (foundRelevant) {
