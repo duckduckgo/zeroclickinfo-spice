@@ -1,5 +1,20 @@
 .tile--route  {
-    width: 37em;
+    width: 28em;
+    padding: 1.44em;
+}
+
+.zci--route .inactive  {
+    background-color: #f7f7f7;
+}
+
+.zci--route .text--primary {
+    line-height: 1.3em;
+    font-size: 1.28em;
+}
+
+.zci--route .text--secondary {
+    line-height: 1.3em;
+    font-size: 1.04em;
 }
 
 .zci--route .tile__schedule {
@@ -7,55 +22,61 @@
     font-size: 12px;
 }
 
-.zci--route .tile__time {
-    font-size: 2em;
+.zci--route .tile__city {
+    width: 42%;
 }
 
-.zci--route .tile__heading {
-    margin-bottom: 1em;
+.zci--route .tile__gate {
+    width: 13%;
 }
 
-.zci--route .tile__flightID {
-    font-size: 2em;
-    padding-bottom: 0;
-    padding-top: 0;
+.zci--route .tile__scheduled {
+    width: 25%;
+}
+.zci--route .tile__terminal {
+    width: 20%;
 }
 
-.zci--route .tile__airports {
-    font-size: 1.5em;
-    padding-bottom: 0;
-    padding-top: 0;
-    margin-top: -0.2em;
+.zci--route .divider__inactive {
+    background-color: #e4e4e4;
+    height: 1px;
+    border: 0;
+    margin: 1.2em 0;
+}
+.zci--route .divider__active {
+    background-color: #e4e4e4;
+    height: 2px;
+    border: 0;
+    margin: 1.2em 0;
+}
+
+.zci--route .divider__ok {
+    background-color: #5b9e4d;
+}
+
+.zci--route .divider__not {
+    background-color: #de5833;
+}
+
+
+.zci--route .tile__date {
+    float: right;
+    text-align: right;
+    padding-top: 3px;
 }
 
 .zci--route .tile__ok {
-    color: #60AB5D;
+    color: #5b9e4d;
 }
 
 .zci--route .tile__not {
-    color: #C14316;
+    color: #de5833;
 }
 
-.zci--route .tile__date {
-    color: #B3B3B3;
-    float: right;
-    text-align: center;
-    font-weight: 600;
+.zci--route .tile__datetime {
+    color: #888;
 }
 
-.zci--route .tile__week {
-    font-size: 12px;
-}
-
-.zci--route .tile__day {
-    line-height: 12px;
-    font-size: 1.5em;
-}
-
-.zci--route .na {
-    color: #999;
-}
-
-.is-mobile .tile--route {
-    width: 100%;
+.zci--route .has_landed {
+    background-color: #F7F7F7;
 }
