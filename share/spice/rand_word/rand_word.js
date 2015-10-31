@@ -12,7 +12,13 @@
             list_of_list.push(api_result.splice(0, 4));
         }
         
-        var title = (api_result.length === 1 ? 'Random Word' : 'Random Words');
+        var title = 'Random Words';
+        var group = 'list';
+        
+        if ( api_result.length === 1 ) {
+            title = 'Random Word';
+            group ='text';
+        }
         
         Spice.add({
             id: "rand_word",
@@ -27,7 +33,7 @@
                 sourceIcon: true
             },
             templates: {
-                group: 'list',
+                group: group,
                 options: {
                     list_content: Spice.rand_word.content,
                     moreAt: true
