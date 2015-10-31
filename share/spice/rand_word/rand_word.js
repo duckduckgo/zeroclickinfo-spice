@@ -11,11 +11,13 @@
         while (api_result.length > 0) {
             list_of_list.push(api_result.splice(0, 4));
         }
-
+        
+        var title = (api_result.length === 1 ? 'Random Word' : 'Random Words');
+        
         Spice.add({
             id: "rand_word",
             data: {
-                title: 'Random Words',
+                title: title,
                 list: list_of_list
             },
             name: "Answer",
