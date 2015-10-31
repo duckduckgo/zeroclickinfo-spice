@@ -187,7 +187,27 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
-
+    
+    '€ 20 to $' => test_spice(
+        '/js/spice/currency/20/eur/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    
+    '$ 321 into yen' => test_spice(
+        '/js/spice/currency/321/usd/jpy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    
+    '321 $ to yen' => test_spice(
+        '/js/spice/currency/321/usd/jpy',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
    '$45 to ؋' => test_spice(
         '/js/spice/currency/45/usd/afn',

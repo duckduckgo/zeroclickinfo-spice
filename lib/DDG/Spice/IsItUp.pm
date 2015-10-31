@@ -17,7 +17,7 @@ attribution github => ['https://github.com/mrshu','mrshu'];
 
 triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([0-9a-z\-]+(?:\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:up|down|working|online|status)\?*$/i;
 
-spice to => 'http://isitup.org/$1.json?callback={{callback}}';
+spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 
 spice proxy_cache_valid => "418 1d";
 

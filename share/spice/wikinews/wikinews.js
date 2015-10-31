@@ -13,10 +13,9 @@
                 signal: "high",
                 data: api_result.query.categorymembers,
                 meta: {
-                    total: api_result.query.categorymembers.length,
                     sourceName: 'Wikinews',
                     sourceUrl: "https://en.wikinews.org/wiki/Main_Page",
-                    itemType: "Latest Wikinews articles"
+                    primaryText: "Latest Wikinews Articles"
                 },
                 normalize: function(item) {
                     var timestamp = new Date(item.timestamp).getTime();
