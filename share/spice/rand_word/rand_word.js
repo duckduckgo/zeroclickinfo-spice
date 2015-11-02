@@ -11,19 +11,11 @@
         while (api_result.length > 0) {
             list_of_list.push(api_result.splice(0, 4));
         }
-        
-        var title = 'Random Words';
-        var group = 'list';
-        
-        if ( api_result.length === 1 ) {
-            title = 'Random Word';
-            group ='text';
-        }
-        
+
         Spice.add({
             id: "rand_word",
             data: {
-                title: title,
+                title: ( list_of_list.length ==1 ) ? 'Random Word' : 'Random Words',
                 list: list_of_list
             },
             name: "Answer",
@@ -33,7 +25,7 @@
                 sourceIcon: true
             },
             templates: {
-                group: group,
+                group: 'list',
                 options: {
                     list_content: Spice.rand_word.content,
                     moreAt: true
