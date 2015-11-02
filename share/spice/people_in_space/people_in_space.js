@@ -14,6 +14,7 @@
                 Spice.add({
                     id: "people_in_space",
                     name: "Answer",
+                    signal: "high",
                     data: api_result.people,
                     meta: {
                         primaryText: api_result.number + (api_result.number === 1 ? " Person" : " People") + ' in Space',
@@ -41,6 +42,7 @@
             Spice.add({
                 id: "people_in_space",
                 name: "Answer",
+                signal: "high",
                 data: api_result,
                 meta: {
                     sourceName: "People in Space",
