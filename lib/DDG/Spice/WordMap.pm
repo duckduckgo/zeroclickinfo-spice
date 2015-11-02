@@ -41,8 +41,6 @@ triggers startend => (
 triggers start => (
     "another words for",
     "another word for",
-    "synonyms for",
-    "synonym for",
     "similar to",
     "relate to",
     "related to",
