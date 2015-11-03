@@ -5,6 +5,8 @@
         if (!api_result || api_result.length === 0) {
             return Spice.failed('rand_word');
         }
+        
+        var first = api_result[0];
 
         // dividing the whole array into an array of 4 elements each
         var list_of_list = [];
@@ -34,7 +36,11 @@
         };
         
         if ( list_of_list.length == 1 ) {
-            spiceObj.data = list_of_list[0];
+            spiceObj.data = {
+                title: "Random Word",
+                word: first.word
+            };
+            
             spiceObj.templates = {
                 group: 'text',
                 options: {
