@@ -5,7 +5,8 @@
             return Spice.failed('pubmed');
         }
         api_result = api_result.esearchresult.idlist;
-        var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&rettype=abstract&id=';
+//        var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&rettype=abstract&id=';
+        var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&rettype=abstract&retmax=2&id=';
         $.ajax({
             url: url + api_result.join(),
             async: false,
@@ -25,21 +26,41 @@
             data: api_result,
             meta: {
                 sourceName: "Pubmed",
-                sourceUrl: 'http://www.ncbi.nlm.nih.gov/pubmed'
+                sourceUrl: 'http://www.ncbi.nlm.nih.gov/pubmed',
+                rerender: [ 'description' ]
             },
             normalize: function(item) {
                 var boxData = [{heading: 'Pubmed ID'}];
                 if (item) {
                     boxData.push({
-                        label: "ID",
+                        label: "Title",
                         value: item.title,
                     });
+//                    boxData.push({
+//                        label: "Abstract",
+//                        value: "",
+//                    });
                 }
+
                 return {
-                    title: "PubMed ID:" + item.title,
-                    subtitle: item.title,
+                    description: '',
                     infoboxData: boxData,
                 }
+            },
+            onItemShown: function(item) {
+                var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=text&rettype=abstract&id='+item.uid;
+                if (item.loadedAbstract) { return; }
+
+                $.ajax({
+                    url: url,
+                    dataType: 'text',
+                    success: function(r) {
+                        item.set('description', r);
+                        console.log(item.description);
+                    }
+                });
+
+                item.loadedAbstract = 1;
             },
             templates: {
                 group: 'text'
