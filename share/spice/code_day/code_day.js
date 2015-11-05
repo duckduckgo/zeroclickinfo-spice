@@ -1,15 +1,13 @@
 (function (env) {
     "use strict";
-
     env.ddg_spice_code_day = function(api_result){
         if (!api_result || api_result.length === 0) {
-            return Spice.failed('code_day');
+            return;
         }
 
         DDG.require(['maps', 'moment.js'], function(){
             Spice.add({
                 id: "code_day",
-
                 name: "Events",
                 data: api_result,
                 model: "Place",
@@ -47,7 +45,7 @@
                 meta: {
                     sourceName: "CodeDay.org",
                     sourceUrl: 'https://codeday.org/',
-                    primaryText: "CodeDay events near you"
+                    primaryText: "Matching CodeDay events"
                 },
                 templates: {
                     group: 'places',

@@ -24,7 +24,8 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::CodeDay'
     ),
-
+    
+    # Should these be implemented later?
     'hs programming event' => undef,
     'day of code' => undef,
     'code-day' => undef,
