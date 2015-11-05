@@ -35,8 +35,8 @@
                         value: item.title,
                     });
                 }
+                var authors = [];
                 if (item.authors) {
-                    var authors = [];
                     for (var i in item.authors) {
                         authors.push(item.authors[i].name);
                     }
@@ -59,6 +59,8 @@
                 }
 
                 return {
+                    title: item.title,
+                    subtitle: authors.join(),
                     description: '',
                     infoboxData: boxData,
                 }
