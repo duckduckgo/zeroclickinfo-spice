@@ -6,7 +6,7 @@
         }
         api_result = api_result.esearchresult.idlist;
 //        var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&rettype=abstract&id=';
-        var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&rettype=abstract&retmax=2&id=';
+        var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&rettype=abstract&retmax=1&id=';
         $.ajax({
             url: url + api_result.join(),
             async: false,
@@ -18,28 +18,44 @@
                 api_result = articles;
             }
         });    
-
-
         Spice.add({
             id: "pubmed",
             name: "Pubmed",
             data: api_result,
             meta: {
                 sourceName: "Pubmed",
-                sourceUrl: 'http://www.ncbi.nlm.nih.gov/pubmed',
+                sourceUrl: 'http://www.ncbi.nlm.nih.gov/pubmed/',
                 rerender: [ 'description' ]
             },
             normalize: function(item) {
-                var boxData = [{heading: 'Pubmed ID'}];
-                if (item) {
+                var boxData = [{heading: 'Article'}];
+                if (item.title) {
                     boxData.push({
                         label: "Title",
                         value: item.title,
                     });
-//                    boxData.push({
-//                        label: "Abstract",
-//                        value: "",
-//                    });
+                }
+                if (item.authors) {
+                    var authors = [];
+                    for (var i in item.authors) {
+                        authors.push(item.authors[i].name);
+                    }
+                    boxData.push({
+                        label: "Authors",
+                        value: authors.join(),
+                    });
+                }
+                if (item.pubdate) {
+                    boxData.push({
+                        label: "Date",
+                        value: item.pubdate,
+                    });
+                }
+                if (item.source) {
+                    boxData.push ({
+                        label: "Source",
+                        value: item.source,
+                    });
                 }
 
                 return {
@@ -56,7 +72,6 @@
                     dataType: 'text',
                     success: function(r) {
                         item.set('description', r);
-                        console.log(item.description);
                     }
                 });
 
