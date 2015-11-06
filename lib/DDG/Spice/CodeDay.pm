@@ -32,6 +32,8 @@ my @triggers = ('when((\'|)s| is) (codeday|code day)', 'where((\'|)s| is) codeda
 handle query_lc => sub {
     my $query = $_;
     
+    s/\?//gi;
+    
     if((lc $_ eq "codeday") || (index(lc $_, "near me") != -1)){
         return unless $loc->latitude && $loc->longitude && ($loc->country_code eq "US");
         return "nearby", " ", $loc->latitude, $loc->longitude;
