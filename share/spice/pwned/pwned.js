@@ -11,7 +11,7 @@
             data: api_result,
             meta: {
                 sourceName: "Have I Been Pwned",
-                sourceUrl: 'https://haveibeenpwned.com/api/v2/breachedaccount/'
+                sourceUrl: 'https://haveibeenpwned.com/'
             },
             normalize: function(item) {
 
@@ -39,9 +39,16 @@
                             value: item.Domain
                         });
                     }
+                    if (item.DataClasses) {
+                        boxData.push({
+                            label: "Exposed Information: ",
+                            value: item.DataClasses.join(", ")
+                        });
+                    }
                     return {
                         title: item.Name,
-                        subtitle: item.Description,
+                        description: DDG.strip_html(item.Description),
+                        subtitle: item.DataClasses.join(", "),
                         infoboxData: boxData,
                     }
                 }
