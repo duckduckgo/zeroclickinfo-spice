@@ -5,8 +5,7 @@
             return Spice.failed('pubmed');
         }
         api_result = api_result.esearchresult.idlist;
-//        var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&rettype=abstract&id=';
-        var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&rettype=abstract&retmax=1&id=';
+        var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&rettype=abstract&retmax=10&id=';
         $.ajax({
             url: url + api_result.join(),
             async: false,
