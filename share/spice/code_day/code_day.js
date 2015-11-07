@@ -23,14 +23,18 @@
                         data_front: {
                             showPin: true,
                             title: "CodeDay " + event.name,
-                            altSubtitle: startDate.format("MMMM Do") + " - " + endDate.format("Do") + ", noon - noon",
+                            altSubtitle: startDate.format("MMM Do") + " - " + endDate.format("Do") + ", noon - noon",
                             titleClass: 'tile__title--3 tx--16 tx--bold mg--none',
-                            altSubClass: 'tx--13 tx-clr--grey'
+                            altSubClass: 'tx--13 tx-clr--grey',
+                            city: venue.address.city,
+                            state: venue.address.state,
+                            
+                            footer_content: Spice.code_day.footer_front
                         },
                         data_back: {
                             title: "CodeDay " + event.name,
                             url: event.current_event.urls.home,
-                            description: venue.address.city + ", " + venue.address.state,
+                            description: venue.address.line_1 + "; " + venue.address.city + ", " + venue.address.state,
                             
                             footer_content: Spice.code_day.footer_back,
 
@@ -38,6 +42,7 @@
                         },
                         address: venue.address.line_1,
                         city: venue.address.city,
+                        state: venue.address.state,
                         lat: parseFloat(event.location.lat),
                         lon: parseFloat(event.location.lng)
                     };

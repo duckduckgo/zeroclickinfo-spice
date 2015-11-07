@@ -29,7 +29,7 @@ triggers any => "codeday", "code day"; # yes, some people spell it like "code da
 my $pattern = '';
 my @triggers = ('when((\'|)s| is) (codeday|code day)', 'where((\'|)s| is) codeday', 'what((\'|)s| is) (codeday|code day)', '(codeday|code day)');
 
-handle query_lc => sub {
+handle query => sub {
     my $query = $_;
     
     s/\?//gi;
