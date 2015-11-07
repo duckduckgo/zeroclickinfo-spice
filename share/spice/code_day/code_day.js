@@ -16,7 +16,8 @@
                     if(!event.current_event) return null;
                     var venue = event.current_event.venue,
                         startDate = moment(event.current_event.starts_at * 1000), // convert from unix epoch
-                        endDate = moment(event.current_event.ends_at * 1000);
+                        endDate = moment(event.current_event.ends_at * 1000),
+                        currentEvent = event.current_event;
                     
                     return {
                         id: event.id,
@@ -28,12 +29,13 @@
                             altSubClass: 'tx--13 tx-clr--grey',
                             city: venue.address.city,
                             state: venue.address.state,
+                            subtitle: currentEvent.registration_info.max + " tickets remaining",
                             
                             footer_content: Spice.code_day.footer_front
                         },
                         data_back: {
                             title: "CodeDay " + event.name,
-                            url: event.current_event.urls.home,
+                            url: currentEvent.urls.home,
                             description: venue.address.line_1 + "; " + venue.address.city + ", " + venue.address.state,
                             
                             footer_content: Spice.code_day.footer_back,
