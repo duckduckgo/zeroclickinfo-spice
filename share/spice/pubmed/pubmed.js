@@ -56,30 +56,37 @@
                         value: item.source,
                     });
                 }
-
+                var tmp_url = 'http://www.ncbi.nlm.nih.gov/pubmed/' + item.uid;
                 return {
+                    hrefTitle: item.title,
                     title: item.title,
-                    subtitle: authors.join(),
+                    href: tmp_url,
+                    url: tmp_url,
+                    subtitle: authors.join(", "),
                     description: '',
                     infoboxData: boxData,
                 }
             },
             onItemShown: function(item) {
-                var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=text&rettype=abstract&id='+item.uid;
+                var url = 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&rettype=abstract&id='+item.uid;
                 if (item.loadedAbstract) { return; }
 
                 $.ajax({
                     url: url,
-                    dataType: 'text',
+                    dataType: 'xml',
                     success: function(r) {
-                        item.set('description', r);
+                        var abstract_text = r.getElementsByTagName('AbstractText')[0].firstChild.data;
+                        item.set('description', abstract_text);
                     }
                 });
 
                 item.loadedAbstract = 1;
             },
             templates: {
-                group: 'text'
+                group: 'text',
+                options: {
+                    moreAt: true
+                }
             }
         });
     };
