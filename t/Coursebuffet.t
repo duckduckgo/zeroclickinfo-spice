@@ -27,6 +27,21 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Coursebuffet'
     ),
+    'online computer science course' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'online computer science courses' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'learn computer science online' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
     'udacity computer science' => test_spice(
         '/js/spice/coursebuffet/provider/udacity/computer%20science',
         call_type => 'include',
