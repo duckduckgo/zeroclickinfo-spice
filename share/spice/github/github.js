@@ -33,7 +33,7 @@
                 data: results,
                 meta: {
                     itemType: itemType,
-                    searchTerm: query,
+                    searchTerm: unescape(query),
                     sourceUrl: 'https://www.github.com/search?q=' +  encodeURIComponent(query),
                     sourceName: 'GitHub'
                 },
