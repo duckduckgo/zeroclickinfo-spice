@@ -31,7 +31,7 @@ my $site_qr = join "|", @site_keys;
 triggers start => @site_keys;
 
 # set spice parameters
-spice to => 'https://ajax.googleapis.com/ajax/services/feed/load?v=2.0&q=$1&num=10';
+spice to => 'https://duckduckgo.com/x.js?u=$1';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 

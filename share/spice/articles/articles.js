@@ -10,19 +10,22 @@
             Spice.failed('articles');
         }
         
-        var articles = api_result.responseData.feed.entries;
+        var articles = api_result.rss.channel.item;
         
         if (articles.length == 0) {
             Spice.failed('articles');
         }
+        if (articles.length > 20) {
+            articles = articles.slice(0,20);
+        }
 
         Spice.add({
             id: 'articles',
-            name: 'Articles By',
+            name: 'Articles',
             data: articles,
             meta: {
                 count: articles.length,
-                itemType: 'Articles By'
+                itemType: 'Articles'
             },
             templates: {
                 group: 'text',
@@ -30,14 +33,23 @@
                 item_detail: false,
             },
             normalize: function(item) {
+                var description = '';
+                if (typeof item.description !== 'undefined') {
+                    description = item.description.text;
+                    description = description.replace(/(<([^>]+)>)/ig,"");
+                    description = description.replace(/&quot;/ig,"\"");
+                    description = description.replace(/&#039;/ig,"'");
+                    
+                }
                 return {
-                    title: item.name,
-                    subtitle: item.publishedDate,
-                    url: item.link,
-                    description: item.contentSnippet
+                    title: item.title.text,
+                    subtitle: item.pubDate.text,
+                    url: item.link.text,
+                    description: description
                 };
             },
         });
+
     }
 }(this));
 
