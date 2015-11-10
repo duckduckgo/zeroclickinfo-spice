@@ -7,16 +7,6 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Coursebuffet )],
-    'computer science online course' => test_spice(
-        '/js/spice/coursebuffet/standard/courses/computer%20science',
-        call_type => 'include',
-        caller => 'DDG::Spice::Coursebuffet'
-    ),
-    'computer science online courses' => test_spice(
-        '/js/spice/coursebuffet/standard/courses/computer%20science',
-        call_type => 'include',
-        caller => 'DDG::Spice::Coursebuffet'
-    ),
     'computer science course online' => test_spice(
         '/js/spice/coursebuffet/standard/courses/computer%20science',
         call_type => 'include',
@@ -27,13 +17,72 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Coursebuffet'
     ),
-    'udacity computer science' => test_spice(
+    'computer science online course' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science%20online',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'computer science online courses' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science%20online',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'online computer science course' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'online computer science courses' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'computer science moocs' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'online computer science classes' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'computer science classes online' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'computer science class online' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'computer science online classes' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science%20online',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'online computer science class' => test_spice(
+        '/js/spice/coursebuffet/standard/courses/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'computer science coursera' => test_spice(
+        '/js/spice/coursebuffet/provider/coursera/computer%20science',
+        call_type => 'include',
+        caller => 'DDG::Spice::Coursebuffet'
+    ),
+    'udacity computer science courses' => test_spice(
         '/js/spice/coursebuffet/provider/udacity/computer%20science',
         call_type => 'include',
         caller => 'DDG::Spice::Coursebuffet'
     ),
-    'computer science harvard course' => undef,
-    'main course' => undef
+    'computer science class' => undef,
+    'computer science courses' => undef,
+    'harvard courses' => undef,
+    'main course' => undef,
+    'online computer science classe' => undef,
+    'online computer science' => undef
 );
 
 done_testing;

@@ -39,17 +39,26 @@ my @providers = (
 );
 my $providers_str = join('|', @providers);
 
-triggers any => 'online course', 'online courses', 'course online', 'courses online', @providers;
+triggers query_lc => qr/(online|$providers_str)?(?:\s+)?(.*)(?:\s+)(courses? online|class(?:es)? online|courses?|class(?:es)?|moocs?|$providers_str)$/;
 
 handle query_lc => sub {
-    # MOOC provider specific search returns courses for the specified provider
-    if (/($providers_str)/) {
-        return "provider", $1, trim("$` $'");
+    
+    my $pre = $1;
+    my $subject = $2;
+    my $remainder = $3;
+    
+    if (defined($pre) && $pre =~ /($providers_str)/) {
+        return "provider", $pre, $subject;
     }
-
-    # Generic course search
-    if (/\bonline courses?\b/ || /\bcourses? online\b/) {
-        return "standard", "courses", trim("$` $'");
+    if (defined($remainder) && $remainder =~ /($providers_str)/) {
+        return "provider", $remainder, $subject;
+    }
+    
+    if(defined($remainder) && $remainder =~ /(courses?|class(es)?)/ && $remainder !~ /(courses? online|class(?:es)? online)/ && $subject !~ /online/) {
+        return if !defined($pre) || $pre !~ /online/;
+    }
+    if($subject) {
+        return "standard", "courses", $subject;
     }
 
     return;
