@@ -5,7 +5,6 @@
 .zci--seat_geek_events_by_artist .price,
 .zci--seat_geek_events_by_artist .noprice {
     margin-top: 1.75em;
-    height: 1.1em;
     float: left;
 }
 
@@ -22,6 +21,6 @@
     width: 9.3em;
 }
 
-    .is-mobile .zci--seat_geek_events_by_artist .where.city {
-        width: 7em;
-    }
+.is-mobile .zci--seat_geek_events_by_artist .where.city {
+    width: 7em;
+}
