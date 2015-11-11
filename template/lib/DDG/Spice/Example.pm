@@ -12,7 +12,7 @@ spice is_cached => 1;
 spice to => 'http://example.com/search/$1';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers any => "triggerWord", "trigger phrase";
+triggers any => 'triggerWord', 'trigger phrase';
 
 # Handle statement
 handle remainder => sub {
