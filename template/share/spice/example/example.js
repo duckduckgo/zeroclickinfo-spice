@@ -18,6 +18,14 @@
                 sourceName: "Example.com",
                 sourceUrl: 'http://example.com/url/to/details/' + api_result.name
             },
+            normalize: function(item) {
+                return {
+                    // customize as needed for your chosen template
+                    title: api_result.title,
+                    subtitle: api_result.subtitle,
+                    image: api_result.icon
+                };
+            },
             templates: {
                 group: 'your-template-group',
                 options: {
