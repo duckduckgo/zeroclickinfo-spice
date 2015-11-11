@@ -4,18 +4,6 @@ package DDG::Spice::Seasons;
 use DDG::Spice;
 use Locale::Country qw/country2code/;
 
-name "Seasons";
-description "Provides dates for the start of given seasons, solstices, equinoctes";
-primary_example_queries "first day of spring", "summer solstice";
-secondary_example_queries "first day of fall";
-category "dates";
-topics "everyday", "trivia";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Seasons.pm";
-icon_url "/i/timeanddate.com.ico";
-attribution web => ["http://oyam.ca", "Mayo Jordanov"],
-            github => ["mayo", "Mayo Jordanov"],
-            twitter => "oyam";
-
 my @seasons = qw(spring summer autumn winter fall vernal autumnal march june september december);
 my $seasons_qr = join "|", @seasons;
 

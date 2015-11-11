@@ -3,18 +3,6 @@ package DDG::Spice::BikeSharing::BayAreaBikeShareCA;
 use strict;
 use DDG::Spice;
 
-name 'Bay Area Bike ShareCA';
-source 'Bay Area Bike Share CA';
-icon_url 'http://www.bayareabikeshare.com/assets/images/bayarea/icons/favicon.ico';
-description 'Search Bay Area Bike Share stations in the Bay Area, CA';
-primary_example_queries 'bike share bay area', 'bike share san francisco';
-secondary_example_queries 'bike share stations near san jose';
-category 'geography';
-topics 'everyday', 'travel', 'entertainment', 'geography';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BikeSharing/BayAreaBikeShareCA.pm';
-attribution github => 'marianosimone',
-            web  => ['http://www.marianosimone.com',  'Mariano Simone'];
-
 triggers any => 'bike sharing', 'bike share', 'bikeshare';
 
 spice to => 'http://www.bayareabikeshare.com/stations/json';

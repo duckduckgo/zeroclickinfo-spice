@@ -4,17 +4,6 @@ package DDG::Spice::Lastfm::Song;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "Payphone song by Maroon 5";
-description "Song information";
-name "LastFM Song";
-icon_url "/i/www.last.fm.ico";
-source "Last.fm";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/Song.pm";
-topics "entertainment", "music";
-category "entertainment";
-attribution github => ['https://github.com/jagtalon','Jag Talon'],
-           twitter => ['http://twitter.com/juantalon','Jag Talon'];
-
 spice to => 'http://ws.audioscrobbler.com/2.0/?format=json&method=track.getinfo&track=$1&artist=$2&autocorrect=1&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}';
 spice from => '(?:([^/]*)/([^/]*)|)';
 

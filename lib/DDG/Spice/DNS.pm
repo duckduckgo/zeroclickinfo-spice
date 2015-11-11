@@ -9,13 +9,6 @@ spice to => 'http://pro.viewdns.info/dnsrecord/?domain=$2&recordtype=$1&apikey={
 
 spice wrap_jsonp_callback => 1;
 
-primary_example_queries 'MX records duckduckgo.com';
-primary_example_queries 'dns records duckduckgo.com';
-description 'IP address of domain';
-name 'DNS';
-attribution github => ['https://www.github.com/OndroNR', 'Ondrej Galbavy'],
-            twitter => ['https://www.twitter.com/OndroNR', 'Ondrej Galbavy'];
-
 triggers any => 'dns', 'record', 'records', 'dig', 'nslookup';
 
 spice from => '(.*)/(.*)';

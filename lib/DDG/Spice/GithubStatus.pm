@@ -5,15 +5,6 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-primary_example_queries "github status";
-description "Github status";
-name "Github Status";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GithubStatus.pm";
-topics "computing", "programming";
-category "programming";
-attribution github => ['https://github.com/Feral2k','Logan Garcia'],
-            email => ['logangarcia@openmailbox.org','Logan Garcia'];
-
 triggers startend => 'github';
 
 spice to => 'https://status.github.com/api/last-message.json?callback={{callback}}';

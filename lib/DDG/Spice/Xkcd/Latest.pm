@@ -5,9 +5,6 @@ package DDG::Spice::Xkcd::Latest;
 use strict;
 use DDG::Spice;
 
-attribution twitter => ['https://twitter.com/mattr555', 'Matt Ramina'],
-            github => ['https://github.com/mattr555', 'Matt Ramina'];
-
 spice to => 'http://xkcd.com/info.0.json';
 triggers startend => "///***never trigger***///";
 

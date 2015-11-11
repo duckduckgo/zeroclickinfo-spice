@@ -5,11 +5,6 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-primary_example_queries 'tofu ginger recipe';
-description 'Search for recipes';
-name 'Recipes';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Recipes.pm';
-
 # removing line breaks from ingredients.txt file:
 my %ingredients = map { trim($_) => 0 } share('ingredients.txt')->slurp;
 

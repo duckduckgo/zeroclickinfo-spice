@@ -4,20 +4,7 @@ use DDG::Spice;
 
 ## Basic info
 triggers startend => "wikinews";
-description "Wikinews";
-name "Wikinews";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Wikinews.pm";
-topics "everyday", "social";
-category "time_sensitive";
 
-## Me!
-attribution
-    github => "iambibhas",
-    twitter => "bibhasdn",
-    web => "https://bibhas.in";
-
-## Source, set as valid for 1 hour
-source "Wikinews";
 spice is_cached => 1;
 spice proxy_cache_valid => "5m";
 

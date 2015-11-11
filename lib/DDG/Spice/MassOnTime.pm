@@ -4,16 +4,6 @@ package DDG::Spice::MassOnTime;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "Catholic masses near Pittsburgh", "Catholic adoration in Washington DC";
-secondary_example_queries "Catholic masses near me", "catholic churches nearby";
-description "Search for Catholic Religious Events";
-name "MassOnTime";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/MassOnTime.pm";
-icon_url "http://massontime.com/favicon.ico";
-topics "special_interest";
-category "reference";
-attribution github => ['https://github.com/astine','astine'];
-
 triggers any => "catholic";
 
 spice is_cached => 1;
