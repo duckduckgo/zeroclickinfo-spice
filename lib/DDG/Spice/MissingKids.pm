@@ -18,8 +18,7 @@ attribution github => ['https://github.com/brianrisk','Brian Risk'],
             twitter => "brianrisk";
 
 # defining our triggers                                                                                                                               
-my @triggers = ('missing child', 'missing kid');
-triggers start => @triggers;
+triggers query_lc => qr/missing (?:kids?|child(ren)?)/;
 
 # set spice parameters
 spice to => 'https://duckduckgo.com/x.js?u=http://www.missingkids.com/missingkids/servlet/XmlServlet?act=rss&LanguageCountry=en_US&orgPrefix=NCMC&state=$1';
