@@ -17,7 +17,7 @@ triggers any => "triggerWord", "trigger phrase";
 # Handle statement
 handle remainder => sub {
 
-	# Query is in $_...if you need to do something with it before returning
+    # Query is in $_...if you need to do something with it before returning
     return $_;
 };
 
