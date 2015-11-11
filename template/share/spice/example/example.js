@@ -23,7 +23,7 @@
                     // customize as needed for your chosen template
                     title: api_result.title,
                     subtitle: api_result.subtitle,
-                    image: api_result.icon,
+                    image: api_result.icon
                 };
             ,
             templates: {
