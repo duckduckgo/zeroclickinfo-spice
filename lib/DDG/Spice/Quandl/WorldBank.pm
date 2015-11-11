@@ -4,18 +4,6 @@ use DDG::Spice;
 use Text::Trim;
 use YAML::XS 'LoadFile';
 
-# meta data
-primary_example_queries "world population";
-secondary_example_queries "flooding in the US";
-description "Returns data collected by the World Bank";
-name "World Bank";
-code_url "https://github.com/brianrisk/zeroclickinfo-spice";
-icon_url "https://www.quandl.com/favicon.ico";
-topics "economy_and_finance", "geography", "social";
-category "facts";
-attribution web => ["https://www.quandl.com", "Quandl"],
-            twitter => "quandl";
-            
 # hash associating triggers with indicator codes
 my $primary_hash = LoadFile(share('world_bank_primary.yml')); 
 

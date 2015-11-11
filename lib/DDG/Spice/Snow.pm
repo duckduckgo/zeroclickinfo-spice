@@ -4,19 +4,6 @@ package DDG::Spice::Snow;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "is it snowing?";
-secondary_example_queries "is it snowing in New York City?";
-description "Check if it is snowing at your location";
-name "Snow";
-icon_url "/icon16.png";
-source "isitsnowingyet.org";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Snow.pm";
-topics "everyday";
-category "facts";
-attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
-            github => [ 'https://github.com/duckduckgo', 'DuckDuckGo'],
-            twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
-
 spice to => 'http://isitsnowingyet.org/api/check/$1/key/{{ENV{DDG_SPICE_SNOW_APIKEY}}}';
 
 triggers any => "snow", "snowing";

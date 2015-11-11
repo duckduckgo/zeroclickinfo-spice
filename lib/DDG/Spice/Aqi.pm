@@ -3,16 +3,6 @@ package DDG::Spice::Aqi;
 
 use DDG::Spice;
 
-name "AQI";
-description "Get current air quality indices";
-source "AirNow";
-primary_example_queries "aqi 10001";
-category "physical_properties";
-topics "geography", "science", "everyday";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Aqi.pm";
-attribution github => ["https://github.com/schluchc", "Christian Schluchter"],
-            twitter => ["https://twitter.com/CSchluchter", "CSchluchter"];
-
 triggers startend => "aqi", "air quality", "air quality index", "air pollution";
 
 spice to => 'http://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=$1&API_KEY={{ENV{DDG_SPICE_AQI_APIKEY}}}';

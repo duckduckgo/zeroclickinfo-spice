@@ -4,15 +4,6 @@ package DDG::Spice::Twitch::Featured;
 use strict;
 use DDG::Spice;
 
-name "Featured";
-source "http://www.twitch.tv";
-description "Get Twitch Featured streams info";
-primary_example_queries "twitch featured";
-category "special";
-topics "special_interest";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Twitch/Featured/Featured.pm";
-attribution github => ["https://github.com/dwaligon", "Jason O'Donnell"];
-
 triggers start => ('twitch featured',
                    'twitchtv featured',
                    'featured twitch',

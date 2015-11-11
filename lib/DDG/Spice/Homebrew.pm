@@ -4,20 +4,6 @@ package DDG::Spice::Homebrew;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "brew wget", "brew install wget";
-secondary_example_queries "homebrew wget", "wget homebrew", "wget brew";
-description "Homebrew formulas information";
-name "Homebrew";
-code_url "https://github.com/Retrobottega/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Homebrew.pm";
-icon_url "/i/brewformulas.org.ico";
-topics "computing", "geek", "sysadmin";
-category "software";
-
-attribution email   => ['contact@sgentile.it', 'Salvatore Gentile'],
-            github  => ['https://github.com/SalGnt', 'SalGnt'],
-            twitter => '_sgentile',
-            web     => ['http://sgentile.it', 'Salvatore Gentile'];
-
 triggers startend => 'brew', 'homebrew';
 triggers start => 'brew install';
 

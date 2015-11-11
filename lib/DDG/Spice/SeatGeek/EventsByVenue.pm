@@ -4,15 +4,6 @@ package DDG::Spice::SeatGeek::EventsByVenue;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "live shows at cafe oto", "upcoming concerts at shea stadium";
-description "Upcoming concerts from SeatGeek";
-name "SeatGeek Events By Venue";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SeatGeek/EventsByVenue.pm";
-category "entertainment";
-topics "entertainment", "music";
-attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
-    github => ['https://github.com/andrey-p','Andrey Pissantchev'];
-
 triggers start =>
     'upcoming concert at',
     'upcoming concerts at',

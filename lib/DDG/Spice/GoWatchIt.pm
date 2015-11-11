@@ -5,18 +5,6 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-primary_example_queries "watch boyhood";
-secondary_example_queries "incredible hulk on demand";
-name "GoWatchIt Search";
-source "GoWatchIt.com";
-description "Find out where to watch your favorite movies and shows!";
-category "entertainment";
-topics "entertainment";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GoWatchIt.pm";
-attribution github  => ['https://github.com/plexusent', 'GoWatchIt.com'],
-            web     => ['http://gowatchit.com'],
-            twitter => ['gowatchit', 'GoWatchIt.com'];
-
 my @triggers = ('watch', 'stream', 'watch online', 'on demand', 'watch now', 'stream online', 'buy movie', 'rent movie','movie');
 my @ignorewords = ('movie', 'show', 'tv', 'online', 'stream');
 my @stopwords = ('apple watch', 'pocket watch', 'night watch', 'watch tower', "stop watch");

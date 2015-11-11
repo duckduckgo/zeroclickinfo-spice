@@ -4,17 +4,6 @@ package DDG::Spice::Flights::Route;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "Jetblue Boston to Los Angeles", "Jetblue BOS to LAX";
-secondary_example_queries "Newark to Paris United";
-description "Flight information using source and destination cities";
-name "Flight Info";
-source "flightstats";
-icon_url "/ip2/www.flightstats.com.ico";
-topics "economy_and_finance", "travel", "everyday";
-category "time_sensitive";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/lib/DDG/Spice/Flights/Route.pm";
-attribution github => ["https://github.com/tommytommytommy", 'tommytommytommy'];
-
 # cache responses for 5 minutes
 spice proxy_cache_valid => "200 304 5m";
 

@@ -5,16 +5,6 @@ use strict;
 use DDG::Spice;
 use DDG::Util::SpiceConstants;
 
-primary_example_queries "is duckduckgo.com up";
-secondary_example_queries "is reddit.com working?";
-description "Shows a website's status";
-name "IsItUp";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/IsItUp.pm";
-icon_url "/i/isitup.org.ico";
-topics "geek", "sysadmin";
-category "computing_tools";
-attribution github => ['https://github.com/mrshu','mrshu'];
-
 triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([0-9a-z\-]+(?:\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:up|down|working|online|status)\?*$/i;
 
 spice to => 'https://isitup.org/$1.json?callback={{callback}}';

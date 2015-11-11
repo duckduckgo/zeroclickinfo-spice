@@ -4,20 +4,6 @@ package DDG::Spice::BitcoinBalance;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "17x23dNjXJLzGMev6R63uyRhMWP1VHawKc", "1Gn2dRFqouUHvuWPVhriCDtP3qVQc59WHy", "3QJmV3qfvL9SuYo34YihAf3sRCW3qSinyC";
-description "Display the balance of a Bitcoin address";
-name "Bitcoin Address Balance";
-source "http://chain.com";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BitcoinBalance.pm";
-topics "economy_and_finance";
-category "finance";
-icon_url "https://chain.com/chain32x32.ico";
-
-attribution github => ['https://github.com/chain-engineering','chain.com'],
-            email => ['hello@chain.com','chain.com'],
-            twitter => ["chain", 'chain.com'],
-            web => ['https://chain.com','chain.com'];
-
 triggers query_raw => qr/^[13][1-9A-HJ-NP-Za-km-z]{26,33}$/;
 # This regular expression identifies the unique properties of a Bitcoin Address.
 

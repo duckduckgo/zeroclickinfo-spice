@@ -4,21 +4,6 @@ package DDG::Spice::OpenNIC;
 use DDG::Spice;
 spice is_cached => 1;
 
-# Metadata
-name "OpenNIC";
-source "OpenNIC API";
-description "Search for OpenNIC DNS using some criteras";
-primary_example_queries "opennic", "neutral dns" , "censor-free dns";
-secondary_example_queries "opennic 42.42.42.42", "opennic ipv6", "opennic ipv6 42.42.42.42";
-category "programming";
-topics "sysadmin";
-
-# Code info
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/OpenNIC.pm";
-attribution github  => ["cylgom", "cylgom"], # it's me
-            web     => ['http://cylgom.net', 'cylgom'],
-            twitter => "cylgom";
-            
 # OpenNIC API endpoint
 # We prepare a 'spice from' with the place for 5 arguments
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)|)|)';

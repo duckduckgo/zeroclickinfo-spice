@@ -4,15 +4,6 @@ package DDG::Spice::PeopleInSpace;
 use strict;
 use DDG::Spice;
 
-name "People in Space";
-source "www.howmanypeopleareinspacerightnow.com";
-description "Number of humans currently in space";
-primary_example_queries "people in space", "number of humans in orbit right now";
-category "facts";
-topics "science", "geek", "trivia";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/PeopleInSpace.pm";
-attribution github  => ["elebow", "Eddie Lebow"];
-
 triggers any => "people in space", "people are in space", "people who are in space",
     "people in orbit", "people are in orbit", "people who are in orbit",
     "humans in space", "humans are in space", "humans who are in space",

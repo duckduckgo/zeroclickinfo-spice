@@ -4,8 +4,6 @@ package DDG::Spice::Flights::RouteHelper;
 use strict;
 use DDG::Spice;
 
-attribution github => ["https://github.com/tommytommytommy", 'tommytommytommy'];
-
 # cache responses for 5 minutes
 spice proxy_cache_valid => "200 304 5m";
 

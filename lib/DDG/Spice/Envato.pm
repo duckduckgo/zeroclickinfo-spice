@@ -9,20 +9,6 @@ triggers any => @triggers;
 
 my $triggers = join '|', @triggers;
 
-primary_example_queries 'themeforest responsive portfolio';
-secondary_example_queries 'audiojungle happy electronic';
-
-name 'Envato';
-description 'Search the Envato marketplace';
-source 'Envato';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Envato.pm';
-category 'programming';
-topics qw(programming geek web_design music);
-
-attribution github => ['https://github.com/mobily','Marcin Dziewulski'],
-            twitter => ['http://twitter.com/marcinmobily', 'Marcin Dziewulski'],
-            web => ['http://www.mobily.pl', 'Marcin Dziewulski'];
-
 spice wrap_jsonp_callback => 1;
 spice from => '([^\/]+)/([^\/]+)';
 spice to => 'http://marketplace.envato.com/api/edge/search:$1,,$2.json';

@@ -4,19 +4,6 @@ package DDG::Spice::Canistreamit;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "watch pirates of the caribbean";
-secondary_example_queries "Can I stream The Dark Knight";
-description "Find out how to watch movies";
-name "CanIStream.It";
-icon_url "/i/www.canistream.it.ico";
-source "CanIStream.It";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Canistreamit.pm";
-topics "entertainment";
-category "entertainment";
-attribution github => ['https://github.com/CanIStreamIt','CanIStream.it'],
-            twitter => ['https://twitter.com/CanIStreamIt','CanIStream.it'],
-            email => ['canistreamit@gmail.com','CanIStream.it'];
-
 spice to => 'http://www.canistream.it/ddg/query/$1?callback={{callback}}';
 
 triggers any => "stream", "watch", "streaming";

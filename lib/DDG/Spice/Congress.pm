@@ -4,20 +4,6 @@ package DDG::Spice::Congress;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "new york senators";
-secondary_example_queries "florida representatives", "house california";
-description "Shows congress by state";
-name "Congress";
-icon_url "/i/topics.nytimes.com.ico";
-source "Sunlight Foundation";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Congress.pm";
-topics "special_interest", "trivia";
-category "facts";
-attribution web => ['http://kevinschaul.com','Kevin Schaul'],
-            email => ['kevin.schaul@gmail.com','Kevin Schaul'],
-            email => ['jason@transistor.io', 'Jason Dorweiler'],
-            web => ['www.transistor.io', 'Jason Dorweiler'];
-
 spice to => 'http://congress.api.sunlightfoundation.com/legislators?apikey={{ENV{DDG_SPICE_CONGRESS_APIKEY}}}&chamber=$1&state=$2&per_page=all';
 
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';

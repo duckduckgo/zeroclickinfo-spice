@@ -3,20 +3,6 @@ package DDG::Spice::NxtAccount;
 
 use DDG::Spice;
 
-primary_example_queries "NXT-XXXX-XXXX-XXXX-XXXXX", 
-                        "NXT-AR77-SW4Y-M3VA-DUSTY", 
-                        "NXT-W6CT-NPDH-AAQW-HWCHA";
-
-description "Display information about an Nxt Account";
-name "Nxt Account Info";
-source "https://wallet.mynxt.info/api/0.1/";
-code_url "https://github.com/toenu23/zeroclickinfo-spice/blob/master/lib/DDG/Spice/NxtAccount.pm";
-topics "economy_and_finance";
-category "finance";
-icon_url "https://duckduckgo.com/i/wallet.mynxt.info.ico";
-
-attribution github => ['https://github.com/toenu23','toenu'];
-            
 triggers query_lc => qr/^nxt-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{5}$/;
 # This regular expression parses a valid Nxt Account
 
