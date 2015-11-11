@@ -1,15 +1,13 @@
 package DDG::Spice::MissingKids;
 
 use DDG::Spice;
-use Text::Trim;
-use YAML::XS 'LoadFile';
 
 # meta data                                                                                                                                           
 primary_example_queries "missing kids";
 secondary_example_queries "missing children";
 description "Shows missing children from your state if you are located in the US.";
 name "Missing Kids";
-code_url "https://duckduckgo.com";
+code_url "https://github.com/brianrisk";
 topics "social";
 category "location_aware";
 attribution github => ['https://github.com/brianrisk','Brian Risk'],
