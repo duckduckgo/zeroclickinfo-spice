@@ -51,7 +51,7 @@
                     description: description,
                     image: item.enclosure.url
                 };
-            },
+            }
         });
 
     }
