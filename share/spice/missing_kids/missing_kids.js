@@ -35,14 +35,21 @@
             templates: {
                 group: 'media',
                 detail: false,
-                item_detail: false
+                item_detail: false,
+                options: {
+                    footer: Spice.missing_kids.footer
+                }
             },
             normalize: function(item) {
                 var title = item.title.text.replace(/.*\:/,"").replace(/\(.+\)/, "");
                 title = capitalizeWords(title);
                 
-                var description = '';
-                var subtitle = '';
+                var description = '',
+                    subtitle = '',
+                    age = '',
+                    missingFrom = '',
+                    phone = '';
+                
                 if (typeof item.description !== 'undefined') {
                     description = item.description.text;
                     description = DDG.strip_html(description);
@@ -51,10 +58,14 @@
                     // removing PERSON'S NAME, 
                     description = description.replace(/^.+?,/,"");
                     
-                    
                     subtitle = description.replace(/Age Now: \d+\,/, "").replace(/Missing From [^\.]+\./, "").replace(/ANYONE.*/, "");
                     description = description.replace(/\bANYONE.+\)/,"Contact: ");
                     description = description.replace(/, Missing\: \d\d\/\d\d\/\d\d\d\d/,"");
+                    
+                    var chunks = description.split(".");
+                    age = chunks[0];
+                    missingFrom = chunks[1];
+                    phone = chunks[2];
                     console.log(description);
                 }
                 var image = item.enclosure.url;
@@ -62,11 +73,12 @@
                 return {
                     title: title,
                     url: item.link.text,
-                    description: description,
+                    description: null,
                     subtitle: subtitle,
                     image: image,
-                    age: "12",
-                    from: "Melboune, FL"
+                    age: age,
+                    location: missingFrom,
+                    phone: phone
                 };
             }
         });
