@@ -1,7 +1,6 @@
 ---
 sudo: false
 before_install:
-  - wget -O /dev/null https://ddg-community.s3.amazonaws.com/metadata/repo_all.json.bz2
   - export HARNESS_OPTIONS=j10:c HARNESS_TIMER=1
   - git config --global user.name "Dist Zilla Plugin TravisCI"
   - git config --global user.email $HOSTNAME":not-for-mail@travis-ci.org"
