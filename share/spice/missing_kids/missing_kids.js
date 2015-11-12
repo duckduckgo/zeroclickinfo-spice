@@ -23,7 +23,6 @@
                 sourceName: 'National Center for Missing & Exploited Children',
                 sourceUrl: 'http://www.missingkids.com',
                 count: articles.length,
-                itemType: 'Missing Kids'
             },
             templates: {
                 group: 'media',
