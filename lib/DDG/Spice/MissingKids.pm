@@ -24,11 +24,12 @@ spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
 handle sub {
+    return unless defined $loc->country_code 
+        && $loc->country_code eq 'US'
+        && defined $loc->region;
+        
     # return two-letter state
-    if ($loc->country_code eq 'US' && $loc->region) {
-    	return $loc->region;
-    }
-    return;
+    return $loc->region;
 };
 
 1;

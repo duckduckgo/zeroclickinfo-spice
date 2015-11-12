@@ -39,6 +39,8 @@
                     description = DDG.strip_html(description);
                     description = description.replace(/&quot;/ig,"\"");
                     description = description.replace(/&#039;/ig,"'");
+                    // removing PERSON'S NAME, 
+                    description = description.replace(/^.+?,/,"");
                 }
                 return {
                     title: title,
