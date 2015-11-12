@@ -26,12 +26,9 @@
                 itemType: 'Missing Kids'
             },
             templates: {
-                item: 'basic_image_item',
+                group: 'media',
                 detail: false,
-                options: {
-                    rating: false,
-                    content: true,
-                },
+                item_detail: false
             },
             normalize: function(item) {
                 var title = item.title.text;
