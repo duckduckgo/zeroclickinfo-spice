@@ -40,7 +40,7 @@
                 var description = '';
                 if (typeof item.description !== 'undefined') {
                     description = item.description.text;
-                    description = description.replace(/(<([^>]+)>)/ig,"");
+                    description = DDG.strip_html(description);
                     description = description.replace(/&quot;/ig,"\"");
                     description = description.replace(/&#039;/ig,"'");
                 }
