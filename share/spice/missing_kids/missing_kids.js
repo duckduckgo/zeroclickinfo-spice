@@ -37,7 +37,6 @@
                 var title = item.title.text;
                 // removing "Missing: ";
                 title = title.replace(/.*\:/,"");
-                title = title.replace(/.*\:/,"");
                 var description = '';
                 if (typeof item.description !== 'undefined') {
                     description = item.description.text;
