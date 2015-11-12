@@ -42,6 +42,7 @@
                 title = capitalizeWords(title);
                 
                 var description = '';
+                var subtitle = '';
                 if (typeof item.description !== 'undefined') {
                     description = item.description.text;
                     description = DDG.strip_html(description);
@@ -49,7 +50,12 @@
                     description = description.replace(/&#039;/ig,"'");
                     // removing PERSON'S NAME, 
                     description = description.replace(/^.+?,/,"");
-                    description = description.replace(/\bANYONE.+$/,"");
+                    
+                    
+                    subtitle = description.replace(/Age Now: \d+\,/, "").replace(/Missing From [^\.]+\./, "").replace(/ANYONE.*/, "");
+                    description = description.replace(/\bANYONE.+\)/,"Contact: ");
+                    description = description.replace(/, Missing\: \d\d\/\d\d\/\d\d\d\d/,"");
+                    console.log(description);
                 }
                 var image = item.enclosure.url;
                 image = image.replace("t.jpg", ".jpg");
@@ -57,7 +63,7 @@
                     title: title,
                     url: item.link.text,
                     description: description,
-                    //altSubtitle: 'testing',
+                    subtitle: subtitle,
                     image: image,
                     age: "12",
                     from: "Melboune, FL"
