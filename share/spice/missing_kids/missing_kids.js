@@ -1,5 +1,12 @@
 (function (env) {
     "use strict";
+    
+    function capitalizeWords(str) {
+        return str.toLowerCase().replace( /\b\w/g, function (m) {
+            return m.toUpperCase();
+        });
+    }
+    
     env.ddg_spice_missing_kids = function (api_result) {
         
         if (!api_result || api_result.error) {
@@ -23,7 +30,7 @@
                 primaryText: 'Missing children in ' + decodedQuery,
                 sourceName: 'National Center for Missing & Exploited Children',
                 sourceUrl: 'http://www.missingkids.com',
-                count: articles.length,
+                count: articles.length
             },
             templates: {
                 group: 'media',
@@ -31,9 +38,9 @@
                 item_detail: false
             },
             normalize: function(item) {
-                var title = item.title.text;
-                // removing "Missing: ";
-                title = title.replace(/.*\:/,"");
+                var title = item.title.text.replace(/.*\:/,"").replace(/\(.+\)/, "");
+                title = capitalizeWords(title);
+                
                 var description = '';
                 if (typeof item.description !== 'undefined') {
                     description = item.description.text;
@@ -42,12 +49,18 @@
                     description = description.replace(/&#039;/ig,"'");
                     // removing PERSON'S NAME, 
                     description = description.replace(/^.+?,/,"");
+                    description = description.replace(/\bANYONE.+$/,"");
                 }
+                var image = item.enclosure.url;
+                image = image.replace("t.jpg", ".jpg");
                 return {
                     title: title,
                     url: item.link.text,
                     description: description,
-                    image: item.enclosure.url
+                    //altSubtitle: 'testing',
+                    image: image,
+                    age: "12",
+                    from: "Melboune, FL"
                 };
             }
         });
