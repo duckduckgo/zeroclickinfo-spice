@@ -2,8 +2,9 @@
     "use strict";
     env.ddg_spice_missing_kids = function (api_result) {
         
-        if (!api_result) Spice.failed('missing_kids');
-        if (api_result.error) Spice.failed('missing_kids');
+        if (!api_result || api_result.error) {
+            Spice.failed('missing_kids');
+        }
         
         var articles = api_result.rss.channel.item;
         if (articles.length == 0) Spice.failed('missing_kids');
