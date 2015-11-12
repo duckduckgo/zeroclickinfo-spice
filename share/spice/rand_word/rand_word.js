@@ -35,7 +35,7 @@
             }
         };
         
-        if ( list_of_list.length == 1 ) {
+        if ( list_of_list[0].length == 1 ) {
             spiceObj.data = {
                 title: "Random Word",
                 word: first.word
