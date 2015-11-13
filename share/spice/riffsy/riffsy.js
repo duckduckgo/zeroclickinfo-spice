@@ -64,23 +64,31 @@
                         _gif = _gifs[_src],
                         $loading = $(this).find(".tile__img--loader");
 
-
                     $img.load(function() {
-                        if ($(this).hasClass("gif")){
+                        // Make sure we only apply `loaded` class after image loads
+                        // when src is set to gif
+                        // This prevents adding `loaded` when static image initially loads in tile
+                        if (!$img.hasClass("loaded") && $img.attr("src") === _gif){
                             $loading.hide();
+                            $img.addClass("loaded");
+                            $img.removeClass("loading");
                         }
                     });
 
-                    // add callback to tile becase
+                    // add callback to tile because
                     // existing hover callback (for image details) was causing problems
                     $(this).hover(
                         function(){
-                            $loading.show();
+                            if (!$img.hasClass("loaded")){
+                                $loading.show();
+                                $img.addClass("loading");
+                            }
                             $img.attr("src", _gif);
-                            $img.addClass("gif");
                         }, function(){
-                            $img.removeClass("gif");
-                            $loading.hide();
+                            if (!$img.hasClass("loaded")){
+                                $img.removeClass("loading");
+                                $loading.hide();
+                            }
                             $img.attr("src", _src);
                         }
                     );
