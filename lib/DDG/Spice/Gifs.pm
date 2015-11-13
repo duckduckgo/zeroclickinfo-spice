@@ -3,6 +3,7 @@ package DDG::Spice::Gifs;
 
 use strict;
 use DDG::Spice;
+use Text::Trim;
 
 name "Gifs";
 description "Animated Gifs";
@@ -17,7 +18,8 @@ spice to => 'http://api.giphy.com/v1/gifs/search?q=$1&api_key={{ENV{DDG_SPICE_GI
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-	s/\bgif\b/;
+    s/\bgifs?\b//;
+    trim;
     return $_ if $_;
     return;
 };
