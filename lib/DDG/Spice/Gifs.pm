@@ -17,7 +17,7 @@ spice to => 'http://api.giphy.com/v1/gifs/search?q=$1&api_key={{ENV{DDG_SPICE_GI
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-	s/\bgif\b/;
+    s/\bgif\b//;
     return $_ if $_;
     return;
 };
