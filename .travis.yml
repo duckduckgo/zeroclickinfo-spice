@@ -1,5 +1,11 @@
 ---
 sudo: false
+cache:
+  directories:
+    - $HOME/.cpanm
+    - $HOME/.nvm
+    - $HOME/perl5/perlbrew/perls/5.16/lib
+    - /var/tmp
 before_install:
   - export HARNESS_OPTIONS=j10:c HARNESS_TIMER=1
   - git config --global user.name "Dist Zilla Plugin TravisCI"
