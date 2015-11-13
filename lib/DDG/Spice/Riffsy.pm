@@ -1,4 +1,5 @@
 package DDG::Spice::Riffsy;
+
 # ABSTRACT: Search Riffsy (http://www.riffsy.com) for animated GIFs.
 use DDG::Spice;
 use utf8;
