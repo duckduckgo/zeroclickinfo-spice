@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 
+use open ':std', ':encoding(UTF-8)'; #prevent wide character warns
 use strict;
 use warnings;
 use Test::More;
