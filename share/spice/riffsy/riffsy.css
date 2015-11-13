@@ -1,7 +1,50 @@
-.zci--riffsy .tile__img--loading {
+/*.zci--riffsy .tile__img--loader {
+display: block;
+position: absolute;
+bottom: 0;
+right: 0;
+z-index: 100;
+}*/
+
+.zci--riffsy .tile__img--loader {
 	display: block;
+	width: 64px;
+	height: 40px;
 	position: absolute;
 	bottom: 0;
 	right: 0;
 	z-index: 100;
+
+	-moz-transform: scale(0.5, 0.5);
+	-ms-transform: scale(0.5, 0.5);
+	-webkit-transform: scale(0.5, 0.5);
+	transform: scale(0.5, 0.5);
+	-moz-animation: loader-animate 0.5s steps(16) infinite;
+	-webkit-animation: loader-animate 0.5s steps(16) infinite;
+	animation: loader-animate 0.5s steps(16) infinite;
+}
+
+@-moz-keyframes loader-animate {
+	0%, from {
+		background-position: 1024px;
+	}
+	100%, to {
+		background-position: 0px;
+	}
+}
+@-webkit-keyframes loader-animate {
+	0%, from {
+		background-position: 1024px;
+	}
+	100%, to {
+		background-position: 0px;
+	}
+}
+@keyframes loader-animate {
+	0%, from {
+		background-position: 1024px;
+	}
+	100%, to {
+		background-position: 0px;
+	}
 }

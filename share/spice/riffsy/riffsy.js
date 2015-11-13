@@ -47,29 +47,22 @@
                 // hide info overlay for gifs
                 $dom.find(".tile--img__details").hide();
 
+                var loadingImg = DDG.get_asset_path("riffsy", "loading.png");
+
                 // create loading gif image
-                var $loading = $("<img />")
-                    .attr("src", DDG.get_asset_path("riffsy", "loading.gif"))
-                    .addClass("tile__img--loading");
+                var $loading = $("<div />")
+                    .css("background-image", "url("+loadingImg+")")
+                    .css("background-position", "left center")
+                    .addClass("tile__img--loader");
 
                 // inject our loading gif
                 $loading.insertBefore(".tile--img__media__i").hide();
-
-                // ensure we show/hide loading gif
-                // $img.one("load", function() {
-                //     $(this).closest(".tile__img--loading").hide();
-                // }).each(function() {
-                //     if (this.complete) {
-                //         console.log("YOLO");
-                //         $(this).load();
-                //     }
-                // });
 
                 $dom.find(".tile--img").each(function(){
                     var $img = $(this).find("img.tile--img__img"),
                         _src = $img.data("src"),
                         _gif = _gifs[_src],
-                        $loading = $(this).find(".tile__img--loading");
+                        $loading = $(this).find(".tile__img--loader");
 
 
                     $img.load(function() {
