@@ -84,6 +84,9 @@
             },
             templates: {
                 group: 'text',
+                variants: {
+                    tileSnippet: "large"
+                },
                 options: {
                     moreAt: true
                 }
