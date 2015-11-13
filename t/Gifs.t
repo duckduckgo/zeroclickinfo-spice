@@ -12,6 +12,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Gifs'
     ),
+    'giphy cat gifs' => test_spice(
+        '/js/spice/gifs/cat',
+        call_type => 'include',
+        caller => 'DDG::Spice::Gifs'
+    ),
 );
 
 done_testing;
