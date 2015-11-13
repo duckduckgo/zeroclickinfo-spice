@@ -7,7 +7,7 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Gifs)],
-    'cat gifs' => test_spice(
+    'giphy cat' => test_spice(
         '/js/spice/gifs/cat',
         call_type => 'include',
         caller => 'DDG::Spice::Gifs'
@@ -15,4 +15,3 @@ ddg_spice_test(
 );
 
 done_testing;
-

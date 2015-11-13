@@ -11,12 +11,13 @@ source "Giphy";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Gifs.pm";
 attribution github => ['https://github.com/bsstoner','bsstoner'];
 
-triggers startend => "gif", "gifs", "giphy";
+triggers startend => "giphy", "giphy";
 
 spice to => 'http://api.giphy.com/v1/gifs/search?q=$1&api_key={{ENV{DDG_SPICE_GIPHY_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
+	s/\bgif\b/;
     return $_ if $_;
     return;
 };
