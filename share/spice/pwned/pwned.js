@@ -5,62 +5,58 @@
             return Spice.failed('pwned');
         }
 
-        Spice.add({
-            id: "pwned",
-            name: "Pwned",
-            data: api_result,
-            meta: {
-                sourceName: "Have I Been Pwned",
-                sourceUrl: 'https://haveibeenpwned.com/'
-            },
-            normalize: function(item) {
+        var query = DDG.get_query(),
+            re    = /\b([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,})\b/i, //capture email from query
+            email = re.exec(query)[1];
 
-                if (item.fallback) {
-                    return {
-                        title: item.fallback,
+		DDG.require("moment.js", function(){
+	        Spice.add({
+	            id: "pwned",
+	            name: "Pwned",
+	            data: api_result,
+	            meta: {
+	                sourceName: "Have I Been Pwned",
+	                sourceUrl: 'https://haveibeenpwned.com/account/' + email,
+                    primaryText: email + " is compromised:",
+                    snippetChars: 170
+	            },
+	            normalize: function(item) {
+
+	                if (item.fallback) {
+	                    return {
+	                        title: item.fallback
+	                    };
+	                } else {
+	                    return {
+	                        title: item.Name,
+							altSubtitle: item.Domain,
+							date: moment(item.BreachDate).format("MMM DD, YYYY"),
+	                        description: DDG.strip_html(item.Description).replace(/&quot;/g, "\"")
+	                    };
+	                }
+	            },
+	            templates: {
+	                group: 'icon',
+					item_detail: false,
+					detail: false,
+					variants: {
+                        tileTitle: "1line-large",
+                        tileSnippet: "large"
+					},
+                    options: {
+                        footer: Spice.pwned.footer
                     }
-                } else {
-                    var boxData = [{heading: 'Account Information:'}];
-                    if (item.Title) {
-                        boxData.push({
-                            label: "Title",
-                            value: item.Title
-                        });
-                    }
-                    if (item.Name) {
-                        boxData.push({
-                            label: "Name",
-                            value: item.Name,
-                        });
-                    }
-                    if (item.Domain) {
-                        boxData.push({
-                            label: "Domain",
-                            value: item.Domain
-                        });
-                    }
-                    if (item.DataClasses) {
-                        boxData.push({
-                            label: "Exposed Information: ",
-                            value: item.DataClasses.join(", ")
-                        });
-                    }
-                    return {
-                        title: item.Name,
-                        description: DDG.strip_html(item.Description),
-                        subtitle: item.DataClasses.join(", "),
-                        infoboxData: boxData,
-                    }
-                }
-            },
-            templates: {
-                group: 'text'
-            }
-        });
+	            },
+			    relevancy: {
+			        type: api_result.fallback ? null : "primary", // detect when api returned error
+			        primary: [
+			            {required: 'Title'},
+			            {required: 'Name'},
+			            {required: 'Domain'},
+			            {required: 'DataClasses'}
+			        ]
+			    }
+        	});
+		});
     };
 }(this));
-
-
-
-
-
