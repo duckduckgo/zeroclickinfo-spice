@@ -8,7 +8,7 @@
 
         var _shown = false,
             _gifs = {};
-        
+
         Spice.add({
             id: ianame,
             name: 'GIFs',
@@ -41,17 +41,54 @@
             },
             onShow: function() {
                 if (_shown) return;
-                $(".zci--"+ianame).find(".tile--img").each(function(){
+
+                var $dom = $(".zci--"+ianame);
+
+                // hide info overlay for gifs
+                $dom.find(".tile--img__details").hide();
+
+                var loadingImg = DDG.get_asset_path("riffsy", "loading.png");
+
+                // create loading gif image
+                var $loading = $("<div />")
+                    .css("background-image", "url("+loadingImg+")")
+                    .css("background-position", "left center")
+                    .addClass("tile__img--loader");
+
+                // inject our loading gif
+                $loading.insertBefore(".tile--img__media__i").hide();
+
+                $dom.find(".tile--img").each(function(){
                     var $img = $(this).find("img.tile--img__img"),
                         _src = $img.data("src"),
-                        _gif = _gifs[_src];
+                        _gif = _gifs[_src],
+                        $loading = $(this).find(".tile__img--loader");
 
-                    // add callback to tile becase
+                    $img.load(function() {
+                        // Make sure we only apply `loaded` class after image loads
+                        // when src is set to gif
+                        // This prevents adding `loaded` when static image initially loads in tile
+                        if (!$img.hasClass("loaded") && $img.attr("src") === _gif){
+                            $loading.hide();
+                            $img.addClass("loaded");
+                            $img.removeClass("loading");
+                        }
+                    });
+
+                    // add callback to tile because
                     // existing hover callback (for image details) was causing problems
                     $(this).hover(
                         function(){
+                            if (!$img.hasClass("loaded")){
+                                $loading.show();
+                                $img.addClass("loading");
+                            }
                             $img.attr("src", _gif);
                         }, function(){
+                            if (!$img.hasClass("loaded")){
+                                $img.removeClass("loading");
+                                $loading.hide();
+                            }
                             $img.attr("src", _src);
                         }
                     );

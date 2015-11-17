@@ -1,4 +1,5 @@
 #!/usr/bin/env perl
+use open ':std', ':encoding(UTF-8)'; #prevent wide character warns
 use utf8;
 use strict;
 use warnings;
