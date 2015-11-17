@@ -3,8 +3,8 @@
     width: 64px;
     height: 40px;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -3px;
+    right: -8px;
     z-index: 100;
     background-color: rgba(0,0,0,0.5);
     border-radius: 3px;
