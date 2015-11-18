@@ -18,8 +18,10 @@
             id: "meta_cpan",
             name: "Software",
             data: {
+                title: api_result.name,
+                subtitle: api_result.abstract,
                 record_data: api_result,
-                record_keys: ['abstract','author','version','description']
+                record_keys: ['author','version','description']
             },
             meta: {
                 sourceName: "MetaCPAN",
@@ -29,9 +31,9 @@
                 group: 'list',
                 options: {
                     content: 'record',
-		    moreAt: true
+                    moreAt: true
                 }
             }
         });
-    }
+    };
 }(this));
