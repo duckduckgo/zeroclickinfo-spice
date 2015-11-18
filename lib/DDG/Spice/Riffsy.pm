@@ -17,7 +17,7 @@ code_url "https://github.com/bryanhart/zeroclickinfo-spice/blob/master/lib/DDG/S
 attribution web => ["http://www.riffsy.com","Riffsy"],
             twitter => "riffsyapp";
 
-spice to => 'http://api1.riffsy.com/v1/search?tag=$1&key={{ENV{DDG_SPICE_RIFFSY_APIKEY}}}&safesearch=strict&searchtype=ddg';
+spice to => 'http://api1.riffsy.com/v1/search?tag=$1&key={{ENV{DDG_SPICE_RIFFSY_APIKEY}}}&safesearch=strict&searchtype=ddg&limit=50';
 spice wrap_jsonp_callback => 1;
 
 triggers query_lc => qr/^\X$|^(\X+|[\w\s]+?) gifs?$/;
