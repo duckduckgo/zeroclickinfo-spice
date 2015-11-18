@@ -5,6 +5,8 @@
         if (!api_result || api_result.length === 0) {
             return Spice.failed('rand_word');
         }
+        
+        var first = api_result[0];
 
         // dividing the whole array into an array of 4 elements each
         var list_of_list = [];
@@ -12,7 +14,7 @@
             list_of_list.push(api_result.splice(0, 4));
         }
 
-        Spice.add({
+        var spiceObj =  {
             id: "rand_word",
             data: {
                 title: 'Random Words',
@@ -31,6 +33,24 @@
                     moreAt: true
                 }
             }
-        });
+        };
+        
+        if ( list_of_list[0].length == 1 ) {
+            spiceObj.data = {
+                title: "Random Word",
+                word: first.word
+            };
+            
+            spiceObj.templates = {
+                group: 'text',
+                options: {
+                    content: Spice.rand_word.single_word,
+                    moreAt: true
+                }
+            };
+        }
+        
+        Spice.add( spiceObj );
+        
     }
 }(this));
