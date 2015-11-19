@@ -272,7 +272,7 @@
     Spice.registerHelper("gwi_fallbackText", function(options) {
        var message_map = {
            'rent': 'Available for Rent',
-           'subscription': 'Available in Subscription'
+           'subscription': 'Available with Subscription'
        };
        var message = "Available";
         
