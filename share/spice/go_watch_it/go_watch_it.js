@@ -311,9 +311,9 @@
     });
     
     Spice.registerHelper("gwi_buyOrRent", function (buy_line, rent_line, options) {
-        if (buy_line && buy_line !== "") {
+        if (buy_line && buy_line !== "" && !/\$0\.00/.test(buy_line)) {
             this.line = buy_line;
-        } else if(rent_line) {
+        } else if(rent_line && !!/\$0\.00/.test(rent_line)) {
             this.line = rent_line;    
         } else {
             return options.inverse(this);
@@ -324,7 +324,7 @@
 
     // Check to see if both buy_line and rent_line are present.
     Spice.registerHelper("gwi_ifHasBothBuyAndRent", function (buy_line, rent_line, options) {
-        if (buy_line && buy_line !== "" && rent_line && rent_line !== "") {
+        if (buy_line && buy_line !== "" && rent_line && rent_line !== "" && !/\$0\.00/.test(buy_line) && !/\$0\.00/.test(rent_line)) {
             return options.fn(this);
         } else {
             return options.inverse(this);
