@@ -270,20 +270,17 @@
 
     // Display something even if we don't have any price
     Spice.registerHelper("gwi_fallbackText", function(options) {
-       var message_map = {
-           'rent': 'Available for Rent',
-           'subscription': 'Available with Subscription'
-       };
        var message = "Available";
         
        if(this.categories) {
            this.categories.forEach(function(elem) {
-               for(var category in message_map) {
-                  var re = new RegExp(category);
-                  if(re.test(elem)) {
-                      message = message_map[category];
-                  }
-               };
+                if(/rent/.test(elem)) {
+                    message = 'Available for Rent';
+                }
+               
+               if(/subscription/) {
+                   message = 'Available with Subscription';
+               }
            });
        }
         
