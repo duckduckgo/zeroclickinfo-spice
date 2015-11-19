@@ -268,12 +268,57 @@
             }
         };
 
+    // Display something even if we don't have any price
+    Spice.registerHelper("gwi_fallbackText", function(options) {
+       var message_map = {
+           'rent': 'Available for Rent',
+           'subscription': 'Available in Subscription'
+       };
+       var message = "Available";
+        
+       if(this.categories) {
+           this.categories.forEach(function(elem) {
+               for(var category in message_map) {
+                  var re = new RegExp(category);
+                  if(re.test(elem)) {
+                      message = message_map[category];
+                  }
+               };
+           });
+       }
+        
+        return message;
+    });
+    
+    // Display the footer properly and show something if all fails.
+    Spice.registerHelper('gwi_footer', function(format_line) {
+        if(!format_line) {
+            var quality = [];
+            for(var format in this.formats) {
+                if(quality.indexOf(this.formats[format].quality) === -1) {
+                    quality.push(this.formats[format].quality);
+                }
+            }
+            
+            if(quality.length > 0) {
+                format_line = "Available in " + quality.join(" / ");
+            } else {
+                format_line = "Available";
+            }
+        }
+        
+        return format_line;
+    });
+    
     Spice.registerHelper("gwi_buyOrRent", function (buy_line, rent_line, options) {
         if (buy_line && buy_line !== "") {
             this.line = buy_line;
-            return options.fn(this);
+        } else if(rent_line) {
+            this.line = rent_line;    
+        } else {
+            return options.inverse(this);
         }
-        this.line = rent_line;
+        
         return options.fn(this);
     });
 

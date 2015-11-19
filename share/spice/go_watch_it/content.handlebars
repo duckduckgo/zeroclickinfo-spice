@@ -25,11 +25,15 @@
             <div class="single">
                 <span class="price gwi-price--subscription tx-clr--dk">{{buy_line}}</span>
             </div>
-        {{/gwi_ifHasPrice}}        
+        {{/gwi_ifHasPrice}}    
+    {{else}}
+        <div class="single">
+            <span class="price gwi-price--subscription tx-clr--dk">{{gwi_fallbackText}}</span>
+        </div>
     {{/gwi_buyOrRent}}
   {{/gwi_ifHasBothBuyAndRent}}
 </div>
 
 <div class="{{gwi_footerClass buy_line rent_line}} tx-clr--lt one-line">
-  {{format_line}}
+  {{gwi_footer format_line}}
 </div>
