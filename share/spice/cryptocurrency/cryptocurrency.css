@@ -60,7 +60,7 @@
 }
 
 .is-mobile .zci--cryptocurrency .tile--s img {
-        border: 0.2em solid rgba(50,50,50, .2);
+        border: solid rgba(50,50,50, .2);
         border-radius: 50%;
 }
 
