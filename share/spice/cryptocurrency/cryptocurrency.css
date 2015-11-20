@@ -51,17 +51,18 @@
     display: none;
 }
 
-.zci--cryptocurrency .tile--s img {
-    height: 32px;
-    vertical-align: top;
-    z-index: 2;
-    position: relative;
+.zci--cryptocurrency .currency--disc {
+     line-height: 32px;
+     height: 32px;
+     vertical-align: top;
+     position: relative;
+     width: 32px;
 }
 
-    .is-mobile .zci--cryptocurrency .tile--s img {
-        border: 0.2em solid rgba(50,50,50, .2);
+.is-mobile .zci--cryptocurrency .tile--s img {
+        border: solid rgba(50,50,50, .2);
         border-radius: 50%;
-    }
+}
 
 .zci--cryptocurrency .tile--s .cryptocurrency--symbol {
     margin-top: 0.6em;
