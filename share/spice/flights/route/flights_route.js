@@ -287,7 +287,6 @@
                         var progress_percent = 100;
                         var time_total = item.scheduledArrivalDate.getTime() - item.scheduledDepartureDate.getTime();
                         var time_remaining = item.scheduledArrivalDate.getTime() - (new Date()).getTime();
-                        console.log(item.scheduledArrivalDate.getTime());
                         if (status_text !== 'Arrived') {
                             progress_percent = 100 * (time_total - time_remaining) / time_total;
                         }
