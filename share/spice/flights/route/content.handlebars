@@ -9,45 +9,44 @@
   <div class="tx-clr--dk2">
     <span class="tile__status {{#if is_on_time}}tile__ok{{else}}tile__not{{/if}}">
       {{status}}
-    </span> - {{status_text}} {{datetime}}
+    </span> &ndash; {{status_text}} {{datetime}}
   </div>
 </div>
-<hr class="divider__active {{#if is_on_time}}divider__ok{{else}}divider__not{{/if}}">
+
+<div class="progress__bar">
+	<div class="progress__complete {{#if is_on_time}}ok{{else}}not{{/if}}" style="width: {{progress_percent}}%;"></div>
+	<div class="dot {{#if is_on_time}}ok{{else}}not{{/if}}" style="left: {{progress_percent}}%;"></div>
+</div>
+
 <div class="tile__departure">
-  <div class="thirty tile__city">
-      <div class="tx-clr--lt">DEPARTURE</div>
-      <div class="text--primary">{{departing.location}}</div>
-  </div>
-  <div class="thirty tile__scheduled">
-      <div class="tx-clr--lt">SCHEDULED</div>
-      <div class="text--primary">{{scheduled_depart}}</div>
-  </div>
-  <div class="ten tile__gate">
-      <div class="tx-clr--lt">GATE</div>
-      <div class="text--primary">{{departing.gate}}</div>
-  </div>
-  <div class="twenty tile__terminal">
-      <div class="tx-clr--lt">TERMINAL</div>
-      <div class="text--primary">{{departing.terminal}}</div>
-  </div>
+	<table>
+	<tr class="tx-clr--lt">
+		<td>DEPARTURE</td>
+		<td>SCHEDULED</td>
+		<td>GATE</td>
+		<td>TERMINAL</td>
+	</tr>
+	<tr class="text--primary">
+		<td>{{departing.location}}</td>
+		<td>{{scheduled_depart}}</td>
+		<td>{{departing.gate}}</td>
+		<td>{{departing.terminal}}</td>
+	</tr>
+	<tr>
+		<td colspan="4"><hr class="divider"></td>
+	</tr>
+	<tr class="tx-clr--lt">
+		<td>DEPARTURE</td>
+		<td>SCHEDULED</td>
+		<td>GATE</td>
+		<td>TERMINAL</td>
+	</tr>
+	<tr class="text--primary">
+		<td>{{arriving.location}}</td>
+		<td>{{scheduled_arrival}}</td>
+		<td>{{arriving.gate}}</td>
+		<td>{{arriving.terminal}}</td>
+	</tr>
+	</table>
 </div>
-<div class="clearfix"></div>
-<hr class="divider__inactive">
-<div class="tile__arrival">
-  <div class="thirty tile__city">
-      <div class="tx-clr--lt">DEPARTURE</div>
-      <div class="text--primary">{{arriving.location}}</div>
-  </div>
-  <div class="thirty tile__scheduled">
-      <div class="tx-clr--lt">SCHEDULED</div>
-      <div class="text--primary">{{scheduled_arrival}}</div>
-  </div>
-  <div class="ten tile__gate">
-      <div class="tx-clr--lt">GATE</div>
-      <div class="text--primary">{{arriving.gate}}</div>
-  </div>
-  <div class="twenty tile__terminal">
-      <div class="tx-clr--lt">TERMINAL</div>
-      <div class="text--primary">{{arriving.terminal}}</div>
-  </div>
-</div>
+

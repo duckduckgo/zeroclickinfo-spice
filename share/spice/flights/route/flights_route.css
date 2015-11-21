@@ -1,10 +1,13 @@
 .tile--route  {
-    width: 28em;
     padding: 1.44em;
 }
 
 .zci--route .inactive  {
     background-color: #f7f7f7;
+}
+
+.zci--route .tx-clr--lt {
+/* 	line-height: 7px; */
 }
 
 .zci--route .text--primary {
@@ -22,42 +25,53 @@
     font-size: 12px;
 }
 
-.zci--route .tile__city {
-    width: 42%;
+.zci--route td {
+	padding: 0px 1em 0px 0px;
 }
 
-.zci--route .tile__gate {
-    width: 13%;
+.zci--route td:first-child {
+    padding-left: 0px;
 }
 
-.zci--route .tile__scheduled {
-    width: 25%;
-}
-.zci--route .tile__terminal {
-    width: 20%;
+.zci--route td:last-child {
+    padding-right: 0px;
 }
 
-.zci--route .divider__inactive {
+.zci--route .divider {
     background-color: #e4e4e4;
     height: 1px;
     border: 0;
     margin: 1.2em 0;
 }
-.zci--route .divider__active {
-    background-color: #e4e4e4;
-    height: 2px;
-    border: 0;
-    margin: 1.2em 0;
+
+.zci--route .dot {
+	border-radius: 50%;
+	width: 4px;
+	height: 4px;
+	border: solid 2px white;
+	display: inline-block;
+	position: relative;
+	top: -9px;
 }
 
-.zci--route .divider__ok {
+.zci--route .ok {
     background-color: #5b9e4d;
 }
 
-.zci--route .divider__not {
+.zci--route .not {
     background-color: #de5833;
 }
 
+.zci--route .progress__bar {
+	width: 100%;
+	height: 2px;
+	background-color: #e4e4e4;
+	margin: 1em 0px 1em 0px;
+}
+
+.zci--route .progress__complete {
+	height: 2px;
+}
 
 .zci--route .tile__date {
     float: right;
