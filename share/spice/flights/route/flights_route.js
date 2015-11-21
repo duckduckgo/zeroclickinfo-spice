@@ -283,6 +283,14 @@
                             scheduled_depart = moment(item.scheduledDepartureDate);
 
                         var same_date = (scheduled_arrival.date() === scheduled_depart.date());
+                        
+                        var progress_percent = 100;
+                        var time_total = item.scheduledArrivalDate.getTime() - item.scheduledDepartureDate.getTime();
+                        var time_remaining = item.scheduledArrivalDate.getTime() - (new Date()).getTime();
+                        console.log(item.scheduledArrivalDate.getTime());
+                        if (status_text !== 'Arrived') {
+                            progress_percent = 100 * (time_total - time_remaining) / time_total;
+                        }
 
                         return {
                             url: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?"
@@ -293,6 +301,7 @@
                                 + (item.departureDate.getMonth() + 1) + "-"
                                 + item.departureDate.getDate(),
                             datetime: arrival_datetime.fromNow(),
+                            progress_percent: progress_percent,
                             status_text: status_text,
                             scheduled_arrival: same_date ? scheduled_arrival.format('LT') : scheduled_arrival.format('LT (MMM DD)'),
                             scheduled_depart: same_date ? scheduled_depart.format('LT') : scheduled_depart.format('LT (MMM DD)'),
