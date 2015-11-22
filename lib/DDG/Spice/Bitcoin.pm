@@ -21,12 +21,11 @@ code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/
 topics "economy_and_finance";
 category "finance";
 icon_url "https://www.biteasy.com/favicon.ico";
-attribution github => ['https://github.com/biteasy','biteasy.com'],
+attribution github => ["MrChrisW", "Chris Wilson"],
+            github => ['https://github.com/biteasy','biteasy.com'],
             email => ['support@biteasy.com','biteasy.com'],
             twitter => ["biteasy", 'biteasy.com'],
-            web => ['https://biteasy.com','biteasy.com'],
-            github => ["MrChrisW", "Chris Wilson"],
-            web => ["http://chrisjwilson.com", "Chris Wilson"];
+            web => ['https://biteasy.com','biteasy.com'];
 
 my $addressTriggers = '^(?:bitcoin address|btc address)?\s*([13][1-9A-HJ-NP-Za-km-z]{26,33})$';
 my $txTriggers = '^(?:bitcoin transaction|btc transaction)?\s*([a-fA-F0-9]{64})$';
@@ -34,7 +33,7 @@ my $blockTriggers = '^(?:bitcoin block|btc block)?\s*(0{8}[a-fA-F0-9]{56})$';
 
 triggers query_raw => qr/$addressTriggers|$txTriggers|$blockTriggers/;
 
-spice to => 'https://api.biteasy.com/blockchain/v1/$1/$2?api_key={{ENV{DDG_SPICE_BITEASY_APIKEY}}}';
+spice to => 'https://api.biteasy.com/v2/btc/mainnet/$1/$2?api_key={{ENV{DDG_SPICE_BITEASY_APIKEY}}}';
 
 spice from => '(.*)/(.*)';
 
