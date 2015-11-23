@@ -23,6 +23,14 @@ triggers end => "evolution";
 spice to => 'http://pokeapi.co/api/v1/pokemon/$1/';
 spice wrap_jsonp_callback => 1;
 
+spice alt_to => {
+	description => {
+		is_cached => 1,
+		proxy_cache_valid => '200 30d',
+		to => 'http://pokeapi.co/api/v1/description/$1/'
+	}
+};
+
 # Handle statement
 handle remainder => sub {
     return lc $_ unless !$_ or $_ =~ /\s/;
