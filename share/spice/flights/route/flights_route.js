@@ -265,18 +265,23 @@
                     },
                     normalize: function(item) {
                         var status_text,
-                            arrival_datetime;
+                            display_datetime;
 
                         if (!item.is_on_time) {
                             status_text = 'Scheduled';
-                            arrival_datetime = moment(item.scheduledArrivalDate);
+                            display_datetime = moment(item.scheduledArrivalDate);
                         } else {
                             if (moment(item.arrivalDate).isBefore(moment())) {
                                 status_text = 'Arrived';
-                                arrival_datetime = moment(item.arrivalDate);
+                                display_datetime = moment(item.arrivalDate);
                             } else {
-                                status_text = 'Arrives';
-                                arrival_datetime = moment(item.scheduledArrivalDate);
+                                if (moment(item.scheduledDepartureDate).isAfter(moment())) {
+                                    status_text = 'Departs';
+                                    display_datetime = moment(item.scheduledDepartureDate);
+                                } else {
+                                    status_text = 'Arrives';
+                                    display_datetime = moment(item.scheduledArrivalDate);
+                                }
                             }
                         }
                         
@@ -301,7 +306,7 @@
                                 + item.departureDate.getFullYear() + "-"
                                 + (item.departureDate.getMonth() + 1) + "-"
                                 + item.departureDate.getDate(),
-                            datetime: arrival_datetime.fromNow(),
+                            datetime: display_datetime.fromNow(),
                             progress_percent: progress_percent,
                             status_text: status_text,
                             scheduled_arrival: same_date ? scheduled_arrival.format('LT') : scheduled_arrival.format('LT (MMM DD)'),
