@@ -18,14 +18,13 @@ attribution github => ['https://github.com/brianrisk','Brian Risk'],
             twitter => "brianrisk";
             
 # Note: adding sites to this spice is easy.
-# The fiel 'share/spice/articles/sites.yml' contains the list
+# The file 'share/spice/articles/sites.yml' contains the list
 # of trigger words (the names of the sites) and the location 
 # of their Atom/RSS feed.
 my $site_hash = LoadFile(share('sites.yml')); 
 
 # triggers sorted by length so more specific is used first
 my @site_keys = sort { length $b <=> length $a } keys($site_hash);
-my $site_qr = join "|", @site_keys;
 
 # defining our triggers
 triggers start => @site_keys;
@@ -39,12 +38,10 @@ handle sub {
 
     my $query = lc $_;
     
-    # find which blog name was used
-    return unless $query =~ m/\b($site_qr)\b/;
-    my $site = $1;
+    # want exact match to query; returning the URL of the Atom/RSS 
+    return $site_hash->{$query} if $site_hash->{$query};
     
-    # returning the URL of the Atom/RSS
-    return $site_hash->{$site};
+    return;
     
 };
 

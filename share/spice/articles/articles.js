@@ -1,4 +1,8 @@
-(function (env) {
+(
+
+
+
+function (env) {
     "use strict";
     env.ddg_spice_articles = function (api_result) {
         
@@ -36,10 +40,8 @@
                 var description = '';
                 if (typeof item.description !== 'undefined') {
                     description = item.description.text;
-                    description = description.replace(/(<([^>]+)>)/ig,"");
-                    description = description.replace(/&quot;/ig,"\"");
-                    description = description.replace(/&#039;/ig,"'");
-                    
+                    description = DDG.strip_html(description);
+                    description = decodeEntities(description);
                 }
                 return {
                     title: item.title.text,
@@ -51,5 +53,27 @@
         });
 
     }
+    
+    // Method found here to decode HTML entities:
+    // http://stackoverflow.com/questions/5796718/html-entity-decode
+    var decodeEntities = (function() {
+      // this prevents any overhead from creating the object each time
+      var element = document.createElement('div');
+
+      function decodeHTMLEntities (str) {
+        if(str && typeof str === 'string') {
+          // strip script/html tags
+          str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+          str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+          element.innerHTML = str;
+          str = element.textContent;
+          element.textContent = '';
+        }
+
+        return str;
+      }
+
+      return decodeHTMLEntities;
+    })();
 }(this));
 
