@@ -32,7 +32,7 @@ spice alt_to => {
 		to => 'http://api.wordnik.com/v4/word.json/$1/definitions?includeRelated=true&includeTags=true&limit=3&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}',
 		proxy_cache_valid => '200 30d'
 	}
-];
+};
 
 triggers startend => (
     "define",
