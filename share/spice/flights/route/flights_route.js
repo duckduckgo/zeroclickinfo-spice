@@ -279,7 +279,11 @@
                                     status_text = 'Departs';
                                     display_datetime = moment(item.scheduledDepartureDate);
                                 } else {
-                                    status_text = 'Arrives';
+                                    if (moment(item.scheduledArrivalDate).isBefore(moment())) {
+                                        status_text = 'Scheduled arrival';
+                                    } else {
+                                        status_text = 'Arrives';
+                                    }
                                     display_datetime = moment(item.scheduledArrivalDate);
                                 }
                             }
@@ -296,6 +300,7 @@
                         if (status_text !== 'Arrived') {
                             progress_percent = 100 * (time_total - time_remaining) / time_total;
                             if (progress_percent < 0) progress_percent = 0;
+                            if (progress_percent > 100) progress_percent = 100;
                         }
 
                         return {
