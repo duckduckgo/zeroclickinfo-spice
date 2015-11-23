@@ -239,7 +239,7 @@
                             scheduledDepartureDate: scheduledDepartureDate,
                             scheduledArrivalDate: scheduledArrivalDate,
                             status: status,
-                            is_on_time: is_on_time[1],
+                            is_on_time: is_on_time[1] ? 'ok' : 'not',
                         });
                         break;
                     }
@@ -279,6 +279,7 @@
                                 arrival_datetime = moment(item.scheduledArrivalDate);
                             }
                         }
+                        
                         var scheduled_arrival = moment(item.scheduledArrivalDate),
                             scheduled_depart = moment(item.scheduledDepartureDate);
 
@@ -289,6 +290,7 @@
                         var time_remaining = item.scheduledArrivalDate.getTime() - (new Date()).getTime();
                         if (status_text !== 'Arrived') {
                             progress_percent = 100 * (time_total - time_remaining) / time_total;
+                            if (progress_percent < 0) progress_percent = 0;
                         }
 
                         return {
@@ -304,7 +306,8 @@
                             status_text: status_text,
                             scheduled_arrival: same_date ? scheduled_arrival.format('LT') : scheduled_arrival.format('LT (MMM DD)'),
                             scheduled_depart: same_date ? scheduled_depart.format('LT') : scheduled_depart.format('LT (MMM DD)'),
-                            has_landed: (item.status == 'Landed')
+                            has_landed: (item.status == 'Landed'),
+                            has_arrived: status_text === 'Arrived'
                         }
                     },
                     sort_fields: {

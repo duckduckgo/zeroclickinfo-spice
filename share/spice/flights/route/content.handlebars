@@ -7,15 +7,19 @@
     {{departing.airport.fs}} to {{arriving.airport.fs}}
   </div>
   <div class="tx-clr--dk2">
-    <span class="tile__status {{#if is_on_time}}tile__ok{{else}}tile__not{{/if}}">
+    <span class="tile__status tile__{{is_on_time}}">
       {{status}}
     </span> &ndash; {{status_text}} {{datetime}}
   </div>
 </div>
 
 <div class="progress__bar">
-	<div class="progress__complete {{#if is_on_time}}ok{{else}}not{{/if}}" style="width: {{progress_percent}}%;"></div>
-	<div class="dot {{#if is_on_time}}ok{{else}}not{{/if}}" style="left: {{progress_percent}}%;"></div>
+	<div class="progress__complete {{is_on_time}}" style="width: {{progress_percent}}%;"></div>
+    {{#if has_arrived}}
+        <!-- progress dot not displayed -->
+    {{else}}
+	    <div class="dot {{is_on_time}}" style="left: {{progress_percent}}%;"></div>
+    {{/if}}
 </div>
 
 <div class="tile__departure">
