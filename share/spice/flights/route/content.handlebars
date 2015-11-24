@@ -1,4 +1,4 @@
-<div class="tile__heading {{#if has_landed}}tile__landed{{/if}}">
+<div class="tile__heading {{#if has_landed}}bg-clr--silver-light tile__landed{{/if}}">
   <div class="tile__date text--secondary">
     <div class="tile__week">{{airlineName}} {{flightNumber}}</div>
     <div class="tile__day">{{departing.departureDateF}}</div>
@@ -7,18 +7,18 @@
     {{departing.airport.fs}} to {{arriving.airport.fs}}
   </div>
   <div class="tx-clr--dk2">
-    <span class="tile__status tile__{{is_on_time}}">
+    <span class="tile__status tx-{{is_on_time}}">
       {{status}}
     </span> &ndash; {{status_text}} {{datetime}}
   </div>
 </div>
 
-<div class="progress__bar">
-	<div class="progress__complete {{is_on_time}}" style="width: {{progress_percent}}%;"></div>
+<div class="progress__bar bg-clr--platinum-light">
+	<div class="progress__complete bg-{{is_on_time}}" style="width: {{progress_percent}}%;"></div>
     {{#if has_arrived}}
         <!-- progress dot not displayed -->
     {{else}}
-	    <div class="dot {{is_on_time}}" style="left: {{progress_percent}}%;"></div>
+	    <div class="dot bg-{{is_on_time}} tx-clr--white" style="left: {{progress_percent}}%;"></div>
     {{/if}}
 </div>
 
@@ -37,7 +37,7 @@
 		<td>{{departing.terminal}}</td>
 	</tr>
 	<tr>
-		<td colspan="4"><hr class="divider"></td>
+		<td colspan="4"><hr class="divider bg-clr--platinum-light"></td>
 	</tr>
 	<tr class="tx-clr--lt">
 		<td>ARRIVAL</td>

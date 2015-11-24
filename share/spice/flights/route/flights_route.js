@@ -239,7 +239,7 @@
                             scheduledDepartureDate: scheduledDepartureDate,
                             scheduledArrivalDate: scheduledArrivalDate,
                             status: status,
-                            is_on_time: is_on_time[1] ? 'ok' : 'not',
+                            is_on_time: is_on_time[1] ? 'clr--green' : 'clr--red',
                         });
                         break;
                     }
@@ -340,7 +340,7 @@
                         }
                     },
                     onShow: function(item) {
-                        $('.tile__landed').parents('.tile__body').addClass('has_landed');
+                        $('.tile__landed').parents('.tile__body').addClass('bg-clr--silver-light');
                     }
                 });
             });
