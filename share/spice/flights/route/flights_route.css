@@ -38,7 +38,6 @@
 }
 
 .zci--route .divider {
-    background-color: #e4e4e4;
     height: 1px;
     border: 0;
     margin: 1.2em 0;
@@ -48,24 +47,15 @@
 	border-radius: 50%;
 	width: 4px;
 	height: 4px;
-	border: solid 2px white;
+	border: solid 2px;
 	display: inline-block;
 	position: relative;
 	top: -9px;
 }
 
-.zci--route .ok {
-    background-color: #5b9e4d;
-}
-
-.zci--route .not {
-    background-color: #de5833;
-}
-
 .zci--route .progress__bar {
 	width: 100%;
 	height: 2px;
-	background-color: #e4e4e4;
 	margin: 1em 0px 1em 0px;
 }
 
