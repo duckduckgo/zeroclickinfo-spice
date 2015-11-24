@@ -40,6 +40,7 @@
             signal: "high",
             data: api_result,
             meta: {
+                primaryText: api_result.number + (api_result.number == 1 ? " Person" : " People") + ' in Space',
                 sourceName: "People in Space",
                 sourceUrl: "http://www.howmanypeopleareinspacerightnow.com/"
             },
