@@ -25,6 +25,7 @@
             data: api_result.response.docs,
             meta: {
                 itemType: "Papers",
+                searchTerm: query,
                 sourceName: "PLOS",
                 sourceUrl: 'http://www.plosone.org/search/advanced?unformattedQuery=' + query
             }, 

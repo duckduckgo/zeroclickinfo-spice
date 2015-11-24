@@ -17,7 +17,7 @@
             name: "Social",
             data: api_response.data,
             meta: {
-                itemType: api_response.data.display_name + " (SubReddit)",
+                itemType: 'Posts',
                 sourceUrl: 'http://www.reddit.com' + api_response.data.url,
                 sourceName: 'Reddit'
             },

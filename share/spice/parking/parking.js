@@ -86,7 +86,7 @@
             data: api_result.data.locations.splice(0, 30), //take 30 items for now to speed up page load
             meta: {
                 type: 'Parking',
-                primaryText: 'Parking Near: ' + api_result.data.search.displayText,
+                primaryText: 'Parking Near ' + api_result.data.search.displayText,
                 sourceName: 'Parking Panda',
                 sourceUrl: 'https://www.parkingpanda.com/Search/?ref=duckduck&location=' + api_result.data.search.query
             },

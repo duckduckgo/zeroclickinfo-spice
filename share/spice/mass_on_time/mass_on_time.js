@@ -99,7 +99,7 @@
                 model: 'Place',
                 view: 'Places',
                 meta: {
-                    itemType: generate_header(details),
+                    primaryText: 'Showing ' + results.length + ' ' + generate_header(details),
                     sourceName: "Mass On Time",
                     sourceUrl: 'http://massontime.com/nearest/' + details.type +
                         "/25?lat=" +details.location.lat +
