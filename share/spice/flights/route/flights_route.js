@@ -121,6 +121,7 @@
 
             // array of flights
             var results = [];
+            var first_active_index = -1;
 
             // package up the flights into the result array
             for (var i = 0; i < flight.length; i++) {
@@ -241,6 +242,11 @@
                             status: status,
                             is_on_time: is_on_time[1] ? 'clr--green' : 'clr--red',
                         });
+                        
+                        if (status !== 'Landed' && first_active_index == -1) {
+                            first_active_index = results.length - 1;
+                        }
+                        
                         break;
                     }
                 }
@@ -261,7 +267,8 @@
                         sourceUrl: "http://www.flightstats.com/go/FlightStatus/flightStatusByRoute.do?"
                             + "departure=" + this.sourceCity
                             + "&arrival=" + this.destinationCity,
-                        itemType: 'flights'
+                        itemType: 'flights',
+                        selectedItem: first_active_index == -1 ? 0 : first_active_index
                     },
                     normalize: function(item) {
                         var status_text,
