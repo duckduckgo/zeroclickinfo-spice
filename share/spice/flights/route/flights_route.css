@@ -2,9 +2,9 @@
     padding: 1.44em;
 }
 
-.zci--route .inactive  {
+/* .zci--route .inactive  {
     background-color: #f7f7f7;
-}
+} */
 
 .zci--route .tx-clr--lt {
 /* 	line-height: 7px; */
@@ -81,6 +81,6 @@
     color: #888;
 }
 
-.zci--route .has_landed {
+/* .zci--route .has_landed {
     background-color: #F7F7F7;
-}
+} */
