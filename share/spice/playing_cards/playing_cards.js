@@ -12,7 +12,7 @@
             meta: {
                 sourceName: "DeckOfCards",
                 sourceUrl: 'http://deckofcardsapi.com',
-                itemType: 'Cards'
+                primaryText: 'Showing ' + api_result.cards.length + ' Cards'
             },
             normalize: function(item) {
                 return {
