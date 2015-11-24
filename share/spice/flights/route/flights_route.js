@@ -371,3 +371,4 @@
     ddg_spice_flights_route_helper = ddg_spice_flights.route_helper.bind(ddg_spice_flights);
 
 }(this))
+

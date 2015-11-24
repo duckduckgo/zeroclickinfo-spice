@@ -91,8 +91,7 @@
             return Spice.failed('mass_on_time');
         }
 
-        DDG.require('maps', function() {
-        DDG.require('moment.js', function() {
+        DDG.require(['maps', 'moment.js'], function() {
             Spice.add({
                 id: 'mass_on_time',
                 data: results,
@@ -100,7 +99,7 @@
                 model: 'Place',
                 view: 'Places',
                 meta: {
-                    itemType: generate_header(details),
+                    primaryText: 'Showing ' + results.length + ' ' + generate_header(details),
                     sourceName: "Mass On Time",
                     sourceUrl: 'http://massontime.com/nearest/' + details.type +
                         "/25?lat=" +details.location.lat +
@@ -123,7 +122,6 @@
                     item: Spice.mass_on_time.item
                 }
             });
-        });
         });
     };
 }(this));
