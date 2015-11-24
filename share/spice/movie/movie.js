@@ -54,9 +54,9 @@
             name: 'Movies',
             data: api_result.movies,
             meta: {
+                searchTerm: query,
                 sourceName: 'Rotten Tomatoes',
                 sourceUrl: 'https://www.rottentomatoes.com/search/?search=' + query,
-                itemType: 'Movies',
                 rerender: [
                     'image'
                 ]

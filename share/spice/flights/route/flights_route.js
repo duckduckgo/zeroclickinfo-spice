@@ -231,7 +231,7 @@
                     sourceUrl: "http://www.flightstats.com/go/FlightStatus/flightStatusByRoute.do?"
                         + "departure=" + this.sourceCity
                         + "&arrival=" + this.destinationCity,
-                    itemType: results.length === 1 ? "flight" : "flights by departure time" 
+                    primaryText: results.length === 1 ? "Flight Information" : "Flights by Departure Time" 
                 },
                 normalize: function(item) {
                 

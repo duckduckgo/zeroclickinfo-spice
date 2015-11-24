@@ -12,7 +12,7 @@
             data: api_result.results,
             allowMultipleCalls: true,
             meta: {
-                itemType: 'Products',
+                itemType: 'Amazon ' + l('Results'),
                 sourceName: 'Amazon',
                 sourceUrl: api_result.more_at,
                 sourceIcon: true,

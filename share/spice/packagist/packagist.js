@@ -21,8 +21,8 @@
                 sourceName: "Packagist",
                 sourceUrl: 'http://packagist.org/search?q=' + encodeURIComponent(query),
                 sourceIconUrl: 'http://packagist.org/favicon.ico',
-                total: api_result.total,
-                itemType: "packages"
+                searchTerm: query,
+                itemType: 'Packages'
             },
             templates:{
                 group: 'text',
