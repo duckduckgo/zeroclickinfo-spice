@@ -267,8 +267,8 @@
                         sourceUrl: "http://www.flightstats.com/go/FlightStatus/flightStatusByRoute.do?"
                             + "departure=" + this.sourceCity
                             + "&arrival=" + this.destinationCity,
-                        itemType: 'flights',
-                        selectedItem: first_active_index == -1 ? 0 : first_active_index
+                        itemType: 'flights'
+//                         selectedItem: first_active_index == -1 ? 0 : first_active_index
                     },
                     normalize: function(item) {
                         var status_text,
