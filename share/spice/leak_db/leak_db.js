@@ -12,7 +12,7 @@
                         query : api_result.type + ' hash';
 
         api_result.hashes = api_result.hashes[0];
-        
+
         Spice.add({
             id: 'leak_db',
             name: 'Leaks',
@@ -23,12 +23,17 @@
                 sourceUrl: 'http://leakdb.abusix.com/?q='+ encodeURIComponent(query),
                 sourceName: 'Abusix'
             },
+            normalize: function(item) {
+                return {
+                    title: 'LeakDB Hashes',
+                    subtitle: 'Key: ' + api_result.query
+                };
+            },
             templates: {
-                group: 'base',
+                group: 'list',
                 options:{
                     content: 'record',
-                    moreAt: true,
-                    rowHighlight: true
+                    moreAt: true
                 }
             }
         });

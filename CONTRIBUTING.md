@@ -1,81 +1,60 @@
-# Contributing to the **Spice** repository
+# Contribute to Spice Instant Answers
+
+There are several options for contributing Spice Instant Answers, explained below.
+
+You can always find the [Instant Answer Documentation here](https://duck.co/duckduckhack/ddh-intro). Also, if you have any questions at any point, feel free to ask on one of our community channels:
+
+- [DuckDuckHack mailing list](https://www.listbox.com/subscribe/?list_id=197814)
+- [Slack](https://duckduckhack.slack.com) - For access, please send an email to quackslack@duckduckgo.com
+- Do not hesitate to email us directly at open@duckduckgo.com.
+
+## New? Make Your First Contribution Today
+
+If this is your first time contributing to [DuckDuckHack](http://www.duckduckhack.com), you have two great ways to quickly make your first commit. Although this is the Spice repository, building a [Goodie](https://github.com/duckduckgo/zeroclickinfo-goodies) is a great introduction to creating Instant Answers.
+
+- **Make a [Goodie Cheat Sheet](https://duck.co/duckduckhack/goodie_cheat_sheets)**
+
+	Cheat sheets are a super-easy way to contribute to the live DuckDuckGo AnswerBar very quickly, by editing a single file. Cheat sheets can be about anything, from Emacs and Vim to Game of Thrones house names or wine pairings.
+
+- **Create a simple, complete "Hello World" Instant Answer with our [Quick Start Goodie Tutorial](https://duck.co/duckduckhack/goodie_quickstart)**
+
+	This short tutorial (using the [Goodie framework](https://github.com/duckduckgo/zeroclickinfo-goodies)) will lead you through all the parts of building a full-loop Instant Answer. This is a perfect place to start if you have an idea for an original Spice Instant Answer.
+
+## Create a New Instant Answer
+
+Once you're comfortable with the workflow and how Instant Answers work, we're excited to have you create your own original Instant Answer.
+
+**1. Choose an idea**
+
+Bring your own idea, or check out the ideas forum - especially [top voted answer ideas](https://duck.co/ideas/status/3?table_lnKRpLENwO2NUmZUyukQpw_sort=votes).
+
+**2. Plan your implementation**
+
+The first step is to research and plan your Instant Answer. Consider [the best way to implement](https://duck.co/duckduckhack/determine_your_instant_answer_type) your idea, and review the [docs and guidelines](https://duck.co/duckduckhack/ddh-intro) that apply.
+	
+**3. Involve us**
+
+Before you start coding, [let us know your plans](mailto:open@duckduckgo.com). By involving us early we can provide guidance and potentially save you a lot of time and effort. Email us at [open@duckduckgo.com](mailto:open@duckduckgo.com) with what idea you're working on and how you're thinking of going about it.
+
+In addition, we'll promptly set up a [central Instant Answer page](http://www.duck.co/ia) on the community platform so others can know you're working on it and how they can help you.
+
+## Improve an Existing Instant Answer
+
+Another great way to contribute is to improve an existing, live Instant Answer. It's a great way to get further acquainted with Instant Answers, as well as get implementation ideas. (Many contributors report completing their first fix within two hours of forking the repository!)
+
+**1. Choose a "low-hanging fruit"**
+
+We've made sure to identify these throughout our repositories for new contributors to work on.
+
+- [Goodie Low Hanging Fruit](https://github.com/duckduckgo/zeroclickinfo-goodies/issues?q=is%3Aopen+is%3Aissue+label%3A%22Low-Hanging+Fruit%22) ([Goodie docs](https://duck.co/duckduckhack/goodie_overview))
+- [Spice Low Hanging Fruit](https://github.com/duckduckgo/zeroclickinfo-spice/issues?q=is%3Aopen+is%3Aissue+label%3A%22Low-Hanging+Fruit%22) ([Spice docs](https://duck.co/duckduckhack/spice_overview))
+
+**2. Dive in**
+
+Go ahead and comment on any issues you're interested in helping with. Let us know what you're thinking and if you'd like any help or guidance. 
+	
+As always, feel free to [ask us anything](mailto:open@duckduckgo.com), and don't forget the handy [Instant Answer documentation](https://duck.co/duckduckhack/ddh-intro).
 
 
-At DuckDuckGo, we truly appreciate our community members taking the time to
-contribute to our open-source repositories. In an effort to ensure
-contributions are easy for you to make and for us to manage, we have written
-some guidelines that we ask our contributors to follow so that we can handle
-pull requests in a timely manner with as little friction as possible.
 
 
-## Getting Started
-
-Before you can do anything, you first need a [GitHub account](https://github.com/signup/free). This is required because we use GitHub to handle all incoming *Pull Requests* (code modifications) and *Issues* (bug reports) which cannot be made without a GitHub account.
-
-
-## Submitting a **Bug** or **Suggestion**
-
-- Firstly, please make sure the bug is related to the **Spice** repository. If this bug is about the DuckDuckGo API, or the relevancy of our search results, please visit our feedback page at <https://duckduckgo.com/feedback>. If you're unsure, its best to use the feedback page (your message will be passed along to the correct people).
-
-- Check the **Spice** [issues](https://github.com/duckduckgo/zeroclickinfo-spice/issues) to see if an issue already exists for the given bug or suggestion
-  - If one doesn't exist, create a GitHub issue in the **Spice** repository
-    - Clearly describe the bug/improvemnt, including steps to reproduce when it is a bug
-  - If one already exists, please add any additional comments you have regarding the matter
-
-If you're submitting a **pull request** (bugfix/addition):
-- Fork the **Spice** repository on GitHub
-
-
-## Making Changes
-
-- Before making any changes, refer to the [DuckDuckHack Styleguide](https://duck.co/duckduckhack/styleguide_overview) to ensure your changes are made in the correct fashion
-- Make sure your commits are of a reasonable size. They shouldn't be too big (or too small)
-- Make sure your commit messages effectively explain what changes have been made, and please identify which instant answer or file has been modified:
-
-  ```shell
-  CONTRIBUTING.md - Added the example commit message because it was missing
-  ```
-
-  is much better than:
-
-  ```shell
-  <bad_commit_example>
-  ```
-
-- Make sure you have added the necessary tests for your changes
-    - When modifying the triggers, update existing tests and add some new tests to show it works as expected
-    - When modifying the result, update existing tests accordingly
-- Run `dzil test` (executes all tests in t/) to ensure nothing else was accidentally broken
-- If your change affects an instant answer, remember to add yourself to the Metadata attribution list in the appropriate `.pm` file
-
-
-## Submitting Changes
-
-1. Commit your changes.
-
-  ```shell
-  git commit -a -m "My first instant answer that does X is ready to go!"
-  ```
-
-2. Get your commit history [how you like it](http://schacon.github.io/gitbook/4_interactive_rebasing.html).
-
-  ```shell
-  git rebase -i origin/master
-  ```
-
-  or
-
-  ```shell
-  git pull --rebase origin/master
-  ```
-
-3. Push your forked repository back to GitHub.
-
-  ```shell
-  git push
-  ```
-
-4. Add your info to the instant answer so we can give you credit for it on the [Goodies page](https://duckduckgo.com/goodies). You'll see your name or handle on the live site!
-Check out the [Metadata documentation](https://duck.co/duckduckhack/metadata) for detailed instructions on how to include your name and links.
-
-5. Go into GitHub and submit a [pull request!](http://help.github.com/send-pull-requests/) to the **Spice** repository, making sure to use the **Spice** repository's **[Pull Request Template](https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/pull_request_template_spice.md)**. This will let us know about your changes and start the conversation about integrating it into the live code.

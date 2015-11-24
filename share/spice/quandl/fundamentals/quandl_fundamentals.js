@@ -1,12 +1,3 @@
-/**
-* Created with DuckDuckHack.
-* User: brianrisk
-* Date: 2015-02-12
-* Time: 04:37 PM
-* To change this template use Tools | Templates.
-*/
-
-
 (function (env) {
     'use strict';
     env.ddg_spice_quandl_fundamentals = function(api_result){
@@ -15,52 +6,44 @@
             return Spice.failed('quandl_fundamentals');
         }
 
-        var result = api_result;
-        
-        // we need two data points to get percent change
-        if (result.data.length < 2) {
+        if (api_result.data == null) {
             return Spice.failed('quandl_fundamentals');
         }
 
-        // url to the data set page
-        result.url = 'https://quandl.com/' + result.source_code + "/" + result.code;
+        // we need two data points to get percent change
+        if (api_result.data.length < 2) {
+            return Spice.failed('quandl_fundamentals');
+        }
 
-        // add title tag for link:
-        result.urlTitle = 'View more fundamentals data at Quandl';
-        
-        var recentValue = result.data[0][1];
-        var previousValue = result.data[1][1];
-        
-        // month array to make string version of date
-        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-		
-        // adding in the previous date point date	
-        var fromDate = new Date(result.data[1][0]);
-        var fromDateString = months[fromDate.getUTCMonth()] + " " + fromDate.getUTCDate() + ", " + fromDate.getFullYear();
-        result.from_date = fromDateString;
-        
-        // reformatting the current data point date (to_date)
-        var toDate = new Date(result.to_date);
-        var toDateString = months[toDate.getUTCMonth()] + " " + toDate.getUTCDate() + ", " + toDate.getFullYear();
-        result.to_date = toDateString;
-        
+        // get recent and previous data values
+        var url = 'https://quandl.com/' + api_result.source_code + "/" + api_result.code,
+            urlTitle = 'View more fundamentals data at Quandl',
+            recentValue = DDG.getProperty(api_result.data,'0.1'),
+            previousValue = DDG.getProperty(api_result.data,'1.1');
+
+        // data title link
+        api_result.url = url;
+
+        // check we have both data values
+        if (!recentValue || !previousValue) {
+           return Spice.failed('quandl_fundamentals');
+        }
+
         // splitting title into header and subheader
-        var dashIndex = result.name.indexOf("-");
-        var headerFirst =result.name.substring(0,dashIndex).trim();
-        var headerSecond = result.name.substring(dashIndex + 1, result.name.length).trim();
-        result.header = headerFirst;
-        result.subheader = headerSecond;
-        
+        var nameSplit = api_result.name.split('-');
+            api_result.header = nameSplit.shift().trim();
+            api_result.subheader = nameSplit.join('-').trim();
+
         // getting rounded percentage
         var percentChange = 10000 * ((recentValue - previousValue) / Math.abs(previousValue));
         percentChange = Math.round(percentChange);
         percentChange /= 100;
-        result.change_percent = Math.abs(percentChange);
-          
+
+        api_result.change_percent = Math.abs(percentChange);
+
         // setting style based on change
-        if (percentChange > 0) result.changeDirection = 'up';
-        if (percentChange < 0) result.changeDirection = 'down';
-        if (percentChange == 0) result.changeDirection = 'up';
+        if (percentChange > 0 || percentChange === 0) api_result.changeDirection = 'up';
+        if (percentChange < 0) api_result.changeDirection = 'down';
 
         // the most recent fundamental value
         var value = recentValue;
@@ -77,25 +60,33 @@
             value = Math.round(value / Math.pow(10,1)) / Math.pow(10,2);
             value = "$" + value + " thousand";
         }
-        result.value = value;
-        
 
-        Spice.add({
-            id: 'quandl_fundamentals',
-            name: 'Fundamentals',
-            data: result,
-            meta: {
-                sourceName: 'Quandl',
-                sourceUrl: result.url,
-                sourceIconUrl:  DDG.get_asset_path('quandl/fundamentals','quandl32x32.png')
-            },
-            templates: {
-                group: 'base',
-                options: {
-                    content: Spice.quandl_fundamentals.content,
-                    moreAt: true
+        api_result.value = value;
+
+        DDG.require('moment.js', function() {
+            Spice.add({
+                id: 'quandl_fundamentals',
+                name: 'Fundamentals',
+                data: api_result,
+                meta: {
+                    sourceName: 'Quandl',
+                    sourceUrl: api_result.url,
+                    sourceIconUrl:  DDG.get_asset_path('quandl/fundamentals','quandl32x32.png')
+                },
+                normalize: function(item) {
+                    return {
+                        to_date: moment(item.to_date).format('MMM DD, YYYY'),
+                        from_date: moment(item.data[1][0]).format('MMM DD, YYYY')
+                    };
+                },
+                templates: {
+                    group: 'base',
+                    options: {
+                        content: Spice.quandl_fundamentals.content,
+                        moreAt: true
+                    }
                 }
-            }
+            });
         });
     };
 }(this));

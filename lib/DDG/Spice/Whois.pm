@@ -31,7 +31,7 @@ handle remainder_lc => sub {
     my $publicSuffix = Domain::PublicSuffix->new();
 
     s/https?:\/\/|\?//g; # strip keywords and http(s) and question mark
-    s/\:?[0-9]{1,4}?//g; # strip ports, such as :3000
+    s/\:\d{1,5}//g; # strip ports, such as :3000 - highest port number 65535
 
     if ( /\s/ ) {
         s/\bis\b|\bfor\b//g # if space, strip additional words

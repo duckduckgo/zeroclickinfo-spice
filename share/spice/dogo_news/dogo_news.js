@@ -11,6 +11,10 @@
             source = $(script).attr("src"),
             query = decodeURIComponent(source.match(/dogo_news\/([^\/]+)/)[1]);
 
+        var getFirstNameLastInitial = function(name) {
+            return name.replace(/(.* )([A-Z])[^ ]+$/, '$1 $2.');
+        };
+        
         DDG.require('moment.js', function(){
             Spice.add({
                 id: 'dogo_news',
@@ -19,21 +23,34 @@
                 meta: {
                     sourceName: 'DOGOnews',
                     sourceUrl: 'http://www.dogonews.com/search?query=' + encodeURIComponent(query),
-                    itemType: 'kids news articles'
+                    itemType: 'Kids News Articles',
+                    snippetChars: 110
                 },
                 normalize: function(item) {
                     var thumb = item.hi_res_thumb || item.thumb;
                     return {
                         title: item.name,
-                        source: item.author,
+                        source: Handlebars.helpers.ellipsis(getFirstNameLastInitial(item.author), 15),
                         url: item.url,
                         excerpt: item.summary,
+                        description: item.summary,
                         image: thumb,
                         relative_time: moment(item.published_at).fromNow()
                     };
                 },
                 templates:{
-                    item: 'news_item'
+                    group: 'media',
+                    detail: false,
+                    item_detail: false,
+                    options: {
+                        footer: Spice.dogo_news.footer
+                    },
+                    variants: {
+                        tileSnippet: "large"
+                    },
+                    elClass: {
+                        tileFoot: "tx-clr--grey-light"
+                    }
                 }
             });
         });

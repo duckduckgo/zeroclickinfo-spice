@@ -15,7 +15,6 @@
             name: "Astronomy",
             data: api_result.objects,
             meta: {
-                itemType: "Images",
                 sourceUrl: 'http://www.astrobin.com/search/?q=' + query + '&search_type=0&license=0&telescope_type=any&camera_type=any',
                 sourceName: 'AstroBin'
             },
@@ -31,8 +30,7 @@
             },
             view: 'Images',
             templates: {
-                item: 'images_item',
-                detail: 'images_detail'
+                group: 'images'
             }
         });
     };

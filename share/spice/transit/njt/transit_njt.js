@@ -13,7 +13,7 @@
             signal: 'high',
             data: api_result.routes,
             meta: {
-                heading: api_result.origin + " to " + api_result.destination,
+                primaryText: api_result.origin + " to " + api_result.destination,
                 sourceUrl: api_result.url,
                 sourceName: "NJ Transit"
             },
