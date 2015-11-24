@@ -294,13 +294,14 @@
 
                         var same_date = (scheduled_arrival.date() === scheduled_depart.date());
                         
+                        var progress_max = 98;
                         var progress_percent = 100;
                         var time_total = item.scheduledArrivalDate.getTime() - item.scheduledDepartureDate.getTime();
                         var time_remaining = item.scheduledArrivalDate.getTime() - (new Date()).getTime();
                         if (status_text !== 'Arrived') {
-                            progress_percent = 100 * (time_total - time_remaining) / time_total;
+                            progress_percent = progress_max * (time_total - time_remaining) / time_total;
                             if (progress_percent < 0) progress_percent = 0;
-                            if (progress_percent > 100) progress_percent = 100;
+                            if (progress_percent > progress_max) progress_percent = progress_max;
                         }
 
                         return {
