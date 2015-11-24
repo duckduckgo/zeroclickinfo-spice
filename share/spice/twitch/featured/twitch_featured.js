@@ -7,20 +7,18 @@
         }
         
         Spice.add({
-            minItemsForModeSwitch: 3,
             id: "twitch_featured",
             name: "Gaming",
             data: api_result.featured,
             meta: {
                 sourceName: "Twitch",
                 sourceUrl: "http://www.twitch.tv/",
-                itemType: "Featured Streams"
+                primaryText: "Twitch Featured Streams"
             },
             templates: {
-                group: 'base',
+                group: 'videos',
                 detail: false,
                 item_detail: false,
-                item: 'videos_item',
                 moreAt: true,
             },
             normalize: function(item) {

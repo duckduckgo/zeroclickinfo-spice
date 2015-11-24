@@ -25,7 +25,7 @@
             meta: {
                 sourceName: 'govtrack.us',
                 sourceUrl: "https://www.govtrack.us/congress/members/" + state_code,
-                itemType: itemType
+                primaryText: itemType
             },
             normalize: function(item) {
                 var image = "https://www.govtrack.us/data/photos/"+item.govtrack_id+"-200px.jpeg";
@@ -70,15 +70,14 @@
             },
             sort_default: 'district',
             templates: {
-                group: 'products',
-                options: {
-                    buy: Spice.congress.buy,
-                    rating: false,
-                    price: false,
-                    brand: false
-                },
+                group: 'media',
+                item_detail: false,
+                detail: false,
                 variants: {
-                    tile: 'narrow'
+                    tile: 'narrow',
+                },
+                elClass: {
+                    tileTitle: 'tx--15'
                 }
             }
         });

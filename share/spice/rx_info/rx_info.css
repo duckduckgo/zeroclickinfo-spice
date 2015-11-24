@@ -8,23 +8,23 @@
     text-align: center;
 }
 
-.detail__title--rx_info {
+.c-detail__title--rx_info {
     padding-bottom: 0;
 }
 
-.detail__labeler--rx_info {
+.c-detail__labeler--rx_info {
     color: #888888;
 }
 
-.detail__ingredients__title--rx_info {
+.c-detail__ingredients__title--rx_info {
     font-size: 1.15em;
 }
 
-.detail__ingredients__snippet--rx_info {
+.c-detail__ingredients__snippet--rx_info {
     color: #666666;
 }
 
-.detail__desc__attribution--rx_info {
+.c-detail__desc__attribution--rx_info {
     color: #999999;
     font-size: 12px;
 }

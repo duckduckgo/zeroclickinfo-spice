@@ -1,37 +1,47 @@
-function ddg_spice_drinks(api_result) {
+(function (env) {
     "use strict";
 
-    if(!api_result || api_result.length === 0 || !api_result[0].name) {
-        return Spice.failed('drinks');
-    }
-
-    Spice.add({
-        id: 'drinks',
-        data: api_result[0],
-        name: "Drinks",
-        meta: {
-            sourceUrl: api_result[0].url,
-            sourceName: 'Drink Project'
-        },
-        normalize: function(item) {
-            var infoboxData = [{
-                heading: 'Ingredients:'
-            }];
-
-            for (var key in item.ingredients) {
+    function getInfoBoxData(item) {
+        var infoboxData = [{
+            heading: 'Ingredients:'
+        }];
+        for (var i = 1; i <= 15; i++) {
+            if(item["strIngredient" + i] !== "") {
                 infoboxData.push({
-                    label: item.ingredients[key]
+                    label: item["strMeasure" + i] + "" + item["strIngredient" + i]
                 });
             }
-
-            return {
-                description: item.procedure,
-                title: item.name,
-                infoboxData: infoboxData
-            };
-        },
-        templates: {
-            group: 'info'
         }
-    });
-}
+        return infoboxData;
+    }
+
+    env.ddg_spice_drinks = function(api_result){
+
+        if (!api_result || api_result.error || !api_result.drinks || api_result.drinks.length === 0) {
+            return Spice.failed('drinks');
+        }
+
+        var drink = api_result.drinks[0];
+
+        Spice.add({
+            id: 'drinks',
+            data: drink,
+            name: "Recipes",
+            meta: {
+                sourceUrl:  "http://www.thecocktaildb.com/drink.php?c=" + drink.idDrink,
+                sourceName: 'TheCocktailDB'
+            },
+            normalize: function(item) {
+                return {
+                    description: item.strInstructions,
+                    title: item.strDrink,
+                    image: item.strDrinkThumb || null,
+                    infoboxData: getInfoBoxData(item)
+                };
+            },
+            templates: {
+                group: 'info'
+            }
+        });
+    };
+}(this));

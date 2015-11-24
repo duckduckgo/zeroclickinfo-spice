@@ -27,7 +27,6 @@
             data: api_result,
             signal: 'high',
             meta: {
-                itemType: "Astrophoto",
                 sourceName: "AstroBin",
                 sourceUrl: "http://www.astrobin.com/" + api_result.id
             },

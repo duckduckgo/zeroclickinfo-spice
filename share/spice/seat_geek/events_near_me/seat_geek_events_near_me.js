@@ -12,14 +12,14 @@
 
         Spice.add({
             id: "seat_geek_events_near_me",
-            name: "Concerts",
+            name: "Tickets",
             data: api_result.events,
             meta: {
                 sourceName: "SeatGeek",
                 // just looking for "concerts" seems to return results near you
                 sourceUrl: "https://seatgeek.com/search?search=concert",
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
-                itemType: "Upcoming Concerts"
+                primaryText: "Upcoming Concerts Nearby"
             },
             normalize: function(item) {
                 var artistName = item.performers[0].short_name,

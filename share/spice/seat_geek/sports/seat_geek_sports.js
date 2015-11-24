@@ -13,14 +13,14 @@
 
         Spice.add({
             id: "seat_geek_sports",
-            name: "Sports",
+            name: "Tickets",
             data: api_result.events,
             meta: {
                 searchTerm: clean_query,
                 sourceName: "SeatGeek",
                 sourceUrl: "https://seatgeek.com/search?search=" + clean_query,
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
-                itemType: "upcoming events"
+                itemType: "Upcoming Events"
             },
             normalize: function(item) {
                 // Check relevancy of the item.
@@ -119,10 +119,10 @@
                     title: title,
                     place: item.venue.name,
                     city: item.venue.display_location,
-                    month: getMonth(getDate(item.datetime_local)),
+                    year: getYear(getDate(item.datetime_local)),
                     dateBadge: {
                         day: getDay(getDate(item.datetime_local)),
-                        year: getYear(getDate(item.datetime_local))
+                        month: getMonth(getDate(item.datetime_local))
                     }
                 };
             },

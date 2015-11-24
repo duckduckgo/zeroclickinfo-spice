@@ -1,0 +1,53 @@
+.zci--citi_bike_nyc .mapview-marker__icn.ddgsi-circle {
+  font-size: 6px;
+}
+
+.tile--citi_bike_nyc.tile--c--n {
+    text-align: center;
+    width: 13em;
+    height: 13em;
+}
+
+.tile--citi_bike_nyc .zci__header {
+    height: 2.5em;
+}
+
+.tile--citi_bike_nyc p.tx-clr--dk.tx--14 {
+    padding-top: 0;
+}
+
+.tile--citi_bike_nyc p.tx-clr--dk.tx--25 {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 1.1;
+}
+
+.tile--citi_bike_nyc div.tile__content.side_by_side {
+    margin-top: 18px;
+}
+
+.tile--citi_bike_nyc .side_by_side {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+
+.tile--citi_bike_nyc .side_by_side .left {
+    float: left;
+    border-right: 1px solid #E5E5E5;
+    padding-right: 10px;
+}
+
+.is-mobile .tile--citi_bike_nyc .side_by_side .left {
+    width: 50%;
+}
+
+.tile--citi_bike_nyc .side_by_side .right {
+    float: right;
+    padding-left: 10px;
+}
+
+.is-mobile .tile--citi_bike_nyc .side_by_side .right {
+    width: 50%;
+}

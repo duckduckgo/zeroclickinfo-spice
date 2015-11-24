@@ -16,13 +16,14 @@
 
         Spice.add({
             id: "seat_geek_events_by_artist",
-            name: "Concerts",
+            name: "Tickets",
             data: api_result.events,
             meta: {
                 sourceName: "SeatGeek",
                 sourceUrl: "https://seatgeek.com/search?search=" + artistSlug.replace(/-/g, "+"),
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
-                itemType: "Upcoming Concerts"
+                itemType: "Upcoming Concerts",
+                searchTerm: artistSlug.replace(/-/g,' ')
             },
             normalize: function(item) {
                 var artistDisplayName = capitalizedAcronym(artistSlug),

@@ -14,20 +14,19 @@
             moreAt = decodedQuery.replace(/ /g,"+");
         
         Spice.add({
-            minItemsForModeSwitch: 3,
             id: "twitch_streams",
             name: "Gaming",
             data: api_result.streams,
             meta: {
                 sourceName: "Twitch",
                 sourceUrl: 'http://www.twitch.tv/search?query=' + moreAt,
-                itemType: "Twitch Streams"
+                itemType: "Results",
+                searchTerm: decodedQuery
             },
             templates: {
-                group: 'base',
+                group: 'videos',
                 detail: false,
                 item_detail: false,
-                item: 'videos_item',
                 moreAt: true,
             },
             normalize: function(item) {
