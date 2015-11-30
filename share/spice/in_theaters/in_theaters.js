@@ -43,7 +43,7 @@
                 sourceName: 'Rotten Tomatoes',
                 sourceUrl: 'http://www.rottentomatoes.com/movie/in-theaters/',
                 total: api_result.movies,
-                itemType: 'Movies',
+                primaryText: 'Now Playing in Theaters',
                 rerender: [
                     'image'
                 ]

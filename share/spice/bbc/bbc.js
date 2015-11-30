@@ -75,7 +75,7 @@
                 meta: {
                     sourceName: 'BBC',
                     sourceUrl: source_url,
-                    itemType: 'Programmes'
+                    primaryText: 'Upcoming Programmes on BBC'
                 },
                 normalize: function(item) {
                     var start_time = moment(item.start),

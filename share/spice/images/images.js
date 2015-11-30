@@ -12,8 +12,7 @@
             allowMultipleCalls: true,
             data: apiResult.results,
             meta: {
-                next: apiResult.next,
-                searchTerm: apiResult.query
+                next: apiResult.next
             },
             templates: {
                 group: 'images'

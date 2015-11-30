@@ -19,8 +19,7 @@
             meta: {
                 sourceName: 'Hummingbird',
                 sourceUrl: "https://hummingbird.me/search?query=" + query,
-                sourceIconUrl: DDG.get_asset_path('anime','hummingbird.png'),
-                itemType: 'Anime'
+                sourceIconUrl: DDG.get_asset_path('anime','hummingbird.png')
             },
             relevancy: {
                 skip_words: ['anime', 'hummingbird'],

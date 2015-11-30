@@ -1,4 +1,15 @@
-<div class="in_theaters__runtime">
+{{#if ratings.critics_rating}}
+  <span class="copyright">
+      Rotten Tomatoes<sup>&#169;</sup> Score
+  </span>
+
+  <span class="in_theaters--critics_score text--primary">
+      <img src="{{icon_image}}" class="{{is_retina}} tomato--icon">
+      {{ratings.critics_score}}% {{ratings.critics_rating}}
+  </span>
+{{/if}}
+
+<span class="in_theaters--runtime">
   {{#if runtime}}
     <span>Run Time: {{InTheaters_time runtime}}</span>
   {{/if}}
@@ -23,4 +34,3 @@
   </span>
 </div>
 {{/if}}
-

@@ -17,8 +17,7 @@
             data: api_result.results,
             meta: {
                 sourceName: 'DOGObooks',
-                sourceUrl: 'http://www.dogobooks.com/search?query=' + encodeURIComponent(query),
-                itemType: 'kids books'
+                sourceUrl: 'http://www.dogobooks.com/search?query=' + encodeURIComponent(query)
             },
             normalize: function(item) {
                 var thumb = item.hi_res_thumb || item.thumb;

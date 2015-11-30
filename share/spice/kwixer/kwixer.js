@@ -30,7 +30,7 @@
             meta: {
                 sourceName: 'Kwixer',
                 sourceUrl: "https://www.kwixer.com/#/public?query=" + DDG.get_query_encoded(),
-                itemType: "Movies"
+                primaryText: 'Showing ' + finalArray.length + ' Movies'
             },
             normalize: function(item) {
                 return {

@@ -10,13 +10,11 @@
             id: 'isbn',
             name: 'Books',
             data: api_result.results,
-            allowMultipleCalls: true,
             meta: {
-                itemType: 'Products',
+                itemType: 'Amazon Results',
                 sourceName: 'Amazon',
                 sourceUrl: api_result.more_at,
                 sourceIcon: true,
-                next: api_result.next,
                 rerender: [
                     'reviewCount'
                 ]

@@ -17,7 +17,7 @@
                 meta: {
                     sourceName: "GetEvents",
                     sourceUrl: 'http://getevents.co',
-                    itemType: "Upcoming Events",
+                    primaryText: "Upcoming Events",
                     formattedSourceName: 'More at GetEvents',
                     snippetChars: 110
                 },

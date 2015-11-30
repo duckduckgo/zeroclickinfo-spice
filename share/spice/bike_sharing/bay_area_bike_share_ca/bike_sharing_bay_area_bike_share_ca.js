@@ -65,7 +65,7 @@
                 meta: {
                     sourceName: 'Bay Area Bike Share',
                     sourceUrl: 'http://www.bayareabikeshare.com/stations',
-                    itemType: 'Bike Stations',
+                    primaryText: 'Showing ' + api_result.stationBeanList.length + ' Stations',
                     pinIcon: 'ddgsi-circle',
                     pinIconSelected: 'ddgsi-star'
                 },
@@ -81,6 +81,9 @@
                     variants: {
                         tile: 'narrow',
                         tileTitle: "3line"
+                    },
+                    elClass: {
+                        tileTitle: "tx--14"
                     }
                 },
                 sort_fields: {

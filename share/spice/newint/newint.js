@@ -12,7 +12,7 @@
                 name: "Magazines",
                 data: api_result,
                 meta: {
-                    itemType: "New Internationalist magazines",
+                    primaryText: "Showing " + api_result.length + " New Internationalist magazines",
                     sourceName: "New Internationalist",
                     sourceUrl: 'https://digital.newint.com.au/issues'
                 },
