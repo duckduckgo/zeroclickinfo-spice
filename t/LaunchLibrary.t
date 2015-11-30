@@ -15,6 +15,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::LaunchLibrary',
         is_cached => 1
     ),
+    'future rocket launches' => test_spice(
+        '/js/spice/launch_library/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::LaunchLibrary',
+        is_cached => 1
+    ),
     'next space launch' => test_spice(
         '/js/spice/launch_library/1',
         call_type => 'include',
