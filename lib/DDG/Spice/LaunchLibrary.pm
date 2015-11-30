@@ -26,7 +26,7 @@ spice wrap_jsonp_callback => 1;
 triggers any => "rocket launches", "rocket launch", "space launches", "space launch";
 
 handle query_lc => sub {
-    return unless $_ =~ /^(watch|upcoming|next)+\s?(a)*\s*(space|rocket)\s?launch(es)*\s?(schedule|webcast)*$/;
+    return unless $_ =~ /^(watch|upcoming|next|future)+\s?(a)*\s*(space|rocket)\s?launch(es)*\s?(schedule|webcast)*$/;
     return 1;
 };
 
