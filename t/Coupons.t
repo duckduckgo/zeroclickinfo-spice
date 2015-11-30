@@ -7,7 +7,7 @@ use DDG::Test::Spice;
 use DDG::Test::Location;
 use DDG::Request;
 
-spice is_cached => 1;
+spice is_cached => 0;
 
 ddg_spice_test(
     [qw( DDG::Spice::Coupons)],
