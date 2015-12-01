@@ -18,6 +18,7 @@ secondary_example_queries "gutschein h&m";
 
 # Caching - no. the api result is dependent on the locale and the caching is not.
 spice is_cached => 0;
+spice proxy_cache_valid => "200 2h"; # max 2 hours to keep the number of expired coupons as low as possible
 
 spice wrap_jsonp_callback => 1; # sparheld.de et al only support json and xml, so wrap in callback
 
