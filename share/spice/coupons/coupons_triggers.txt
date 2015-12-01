@@ -1,139 +1,139 @@
-gutschein
-gutschein code
-gutscheincode
-gutscheine
-aktions code
 aktionscode
-gutschein rabatt
-gutscheinnummer
-promotion nummer
-rabatt
-rabatt code
-rabattcode
-vorteilscode
-rabattnummer
-vorteilsnummer
-rabatt gutschein
-rabattgutschein
+aktions code
+alekoodi
+alennus
+alennuskoodi
+alennuskuponki
+alennuslahjakortti
+alennusnumero
+arvoseteli
 bon achat
 bon code
-bon reduction
-code avantage
-code fidelite
-code privilege
-code promo
-code reduction
-code remise
-coupon reduction
-code de réduction
 bon de reduction
 bon de réduction
-code de reduction
-code promotion
-code promotionnel
 bon de remise
-code reduc
+bono
+bono descuento
+bon promocyjny
+bon rabatowy
 bon reduc
-code réduction
+bon reduction
+bon towarowy
+buoni sconto
 buono
 buono acquisto
 buono d'acquisto
 buono sconto
+cheque descuento
+cheque regalo
+code avantage
+code de reduction
+code de réduction
+code fidelite
+code privilege
+code promo
+code promotion
+code promotionnel
+code reduc
+code reduction
+code réduction
+code remise
 codice buono
 codice buono sconto
 codice coupon
 codice promo
 codice promozionale
 codice promozione
+codice sconto
 codice vantaggio
 codice voucher
-coupon sconto
-buoni sconto
 codici sconto
-codice sconto
-bono
-bono descuento
-cheque regalo
 codigo descuento
 codigo privilegio
 codigo promocion
 codigo promocional
+coupon reduction
+coupon sconto
 cupon descuento
-descuento
-ganga
-rebaja
-vale
-vale compra
-vale descuento
-descuentos
 cupones descuento
-cheque descuento
-kody promocyjny
-kupon promocyjny
-numer oferty
-numer kuponu
-kupon rabatowy
-kupon
-kod rabatowy
-kod promocyjny
-kod oferty
-kod kuponu
-bon towarowy
-bon rabatowy
-bon promocyjny
-kody rabatowe
-kupony rabatowe
-kody promocyjne
-kod zniżkowy
-alennuskoodi
-alennuskuponki
-alennuslahjakortti
-alennusnumero
-arvoseteli
-etukoodi
-kampanjakoodi
-kampanjatunnus
-kuponki
-kuponkikoodi
-lahjakoodi
-lahjakortti
-promootiokoodi
-tarjouskoodi
-tarjousnumero
-tuotetunnus
-alekoodi
-alennus
+descuento
+descuentos
+erbjudande
 erbjudandekod
 erbjudanden
-erbjudande
+etukoodi
+fordelskode
+fordelskupon
 formanskod
+ganga
+gutschein
+gutscheincode
+gutschein code
+gutscheine
+gutscheinnummer
+gutschein rabatt
+kampagnekode
+kampagnekupon
+kampanjakoodi
+kampanjatunnus
 kampanjkod
+kodenummer
+kod kuponu
+kod oferty
+kod promocyjny
+kod rabatowy
+kody promocyjne
+kody promocyjny
+kody rabatowe
+kod zniżkowy
+kupon
+kupon
+kuponer
 kupong
 kupongkod
+kuponki
+kuponkikoodi
+kuponkode
+kuponkoder
+kupon promocyjny
+kupon rabatowy
+kupony rabatowe
+lahjakoodi
+lahjakortti
+numer kuponu
+numer oferty
 premiekod
-rabattkod
-rabattkoder
-rabattkupong
-vardekod
-vardekupong
+promootiokoodi
+promotion nummer
+promotionskode
+rabat
 rabatkode
 rabatkoder
 rabatkupon
 rabatkuponer
-rabat
+rabatmærke
+rabatt
+rabattcode
+rabatt code
 rabatter
-kuponkode
-kuponkoder
-kupon
-kuponer
+rabattgutschein
+rabatt gutschein
+rabattkod
+rabattkoder
+rabattkupong
+rabattnummer
+rebaja
+tarjouskoodi
+tarjousnumero
 tilbudskode
 tilbudskupon
-fordelskode
-fordelskupon
+tuotetunnus
 værdikode
 værdikupon
-kampagnekode
-kampagnekupon
-kodenummer
-rabatmærke
-promotionskode
+vale
+vale compra
+vale descuento
+vardekod
+vardekupong
+vorteilscode
+vorteilsnummer
