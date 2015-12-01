@@ -1,0 +1,32 @@
+.zci--dota2 .hero-image {
+    width: 210px;
+}
+
+.zci--dota2 .hero-info {
+    width: 400px;
+}
+
+.zci--dota2 .hero-stats {
+    padding-right: 10px;
+    padding-left: 5px;
+}
+
+.zci--dota2 .hero-stats-icon {
+    text-align: center;
+    width: 33px;
+}
+
+.zci--dota2 .hero-ability-icon {
+    width: 50px;
+}
+
+.zci--dota2 .item-info {
+    width: 525px;
+}
+
+.zci--dota2 .item-component {
+    padding-right: 5px;
+    text-align: center;
+    vertical-align: top;
+    width: 90px;
+}

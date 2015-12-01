@@ -1,0 +1,58 @@
+<div class="pull-left">
+    <img src="{{image}}" title="{{name}}"/>
+</div>
+<div class="pull-right item-info">
+    <h1 class="zci__header">
+        {{name}}
+    </h1>
+    <hr />
+    <div class="twenty text--secondary">
+        Cost
+    </div>
+    <div class="eighty">
+        <img src="{{assets.gold.img}}" title="{{assets.gold.title}}"/> {{cost}}
+    </div>
+    {{#if description}}
+        <div class="twenty text--secondary">
+            Description
+        </div>
+        <div class="eighty">
+            {{{description}}}<br />
+        </div>
+    {{/if}}
+    {{#if notes}}
+        <div class="twenty text--secondary">
+            Notes
+        </div>
+        <div class="eighty">
+            {{{notes}}}<br />
+        </div>
+    {{/if}}
+    {{#if attributes}}
+        <div class="twenty text--secondary">
+            Attribues
+        </div>
+        <div class="eighty">
+            {{{attributes}}}<br />
+        </div>
+    {{/if}}
+    {{#if components}}
+        <hr />
+        <div class="twenty text--secondary">
+            Recipe
+        </div>
+        <div class="eighty">
+            <table>
+                <tr>
+                    {{#each components}}
+                        <td class="item-component">
+                            <a href="/?q=dota2+{{searchTerms}}&ia=dota2">
+                                <img src="{{img}}" title="{{name}}"/>
+                            </a>
+                        </td>
+                    {{/each}}
+                </tr>
+            </table>
+        </div>
+    {{/if}}
+</div>
