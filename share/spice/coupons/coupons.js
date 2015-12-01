@@ -4,35 +4,43 @@
     var locales = {
         DE: {
             validUntil: 'Ablaufdatum: ',
-            unknown: 'unbekannt'
+            unknown: 'unbekannt',
+            outUrl: 'http://www.sparheld.de/gutscheine/'
         },
         FR: {
             validUntil: 'Valable jusqu\'au: ',
-            unknown: 'inconnue'
+            unknown: 'inconnue',
+            outUrl: 'http://www.reduc.fr/'
         },
         ES: {
             validUntil: 'Válido hasta: ',
-            unknown: 'desconocido'
+            unknown: 'desconocido',
+            outUrl: 'http://www.cupones.es/'
         },
         IT: {
             validUntil: 'Valido sino al: ',
-            unknown: 'sconosciuto'
+            unknown: 'sconosciuto',
+            outUrl: 'http://www.signorsconto.it/'
         },
         PL: {
             validUntil: 'Ważny do: ',
-            unknown: 'odwołania'
+            unknown: 'odwołania',
+            outUrl: 'http://www.mojekupony.pl/'
         },
         SV: {
             validUntil: 'Giltig t.o.m. ',
-            unknown: 'okänt'
+            unknown: 'okänt',
+            outUrl: 'http://www.rabattkalas.se/'
         },
         DA: {
             validUntil: 'Gyldig til: ',
-            unknown: 'ukendt'
+            unknown: 'ukendt',
+            outUrl: 'http://www.rabathelten.dk/'
         },
         FI: {
             validUntil: 'Voimassa: ',
-            unknown: 'tuntematon'
+            unknown: 'tuntematon',
+            outUrl: 'http://www.alennussankari.fi/'
         }
     };
     env.ddg_spice_coupons = function (api_result) {
@@ -64,7 +72,7 @@
                     return {
                         title: item.title,
                         description: item.date && item.date.expires ? locale_data.validUntil + moment(item.date.expires.timestamp * 1000).format('L') : locale_data.validUntil + locale_data.unknown,
-                        url: api_result.result.homeurl,
+                        url: locale_data.outUrl + '#show=' + item.id,
                         image: api_result.result.cdnurl + '/storage/shops/' + item.parent.alias + '.png'
                     };
                 },
