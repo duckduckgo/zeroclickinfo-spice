@@ -48,10 +48,16 @@
                 userAccounts.push({
                         text: keybase_key_fingerprint(item.public_keys.primary.key_fingerprint),
                         href: 'https://keybase.io/' + item.basics.username + '/key.asc'});
-               
-                $.each(item.proofs_summary.all, function(index, account){
+                
+                var filteredSummary = $.grep( item.proofs_summary.all , function( account, i ) {
+                  return account.presentation_group === 'github' || 
+                         account.presentation_group === 'reddit' || 
+                         account.presentation_group === 'twitter';
+                });
+   
+                $.each(filteredSummary, function(index, account){
                     userAccounts.push({
-                        text: account.presentation_group,
+                        text: DDG.capitalize(account.presentation_group),
                         href: account.service_url
                     });
                 });
