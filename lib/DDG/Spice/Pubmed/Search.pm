@@ -1,4 +1,4 @@
-package DDG::Spice::Pubmed;
+package DDG::Spice::Pubmed::Search;
 
 use strict;
 use DDG::Spice;
@@ -14,6 +14,7 @@ spice to => 'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed
 spice wrap_jsonp_callback => 1;
 
 handle remainder_lc => sub {
+    return unless $_;
     return $_;
 };
 
