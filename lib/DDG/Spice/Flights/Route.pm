@@ -22,7 +22,7 @@ spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';
 spice to => 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/route/status/$4/$5/arr/$6/$7/$8?hourOfDay=$9&utc=true&appId={{ENV{DDG_SPICE_FLIGHTS_API_ID}}}&appKey={{ENV{DDG_SPICE_FLIGHTS_APIKEY}}}&callback={{callback}}';
 
 spice alt_to => {
-	routehelper => {
+	route_helper => {
 		proxy_cache_valid => '200 304 5m',
 		to => 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/route/status/$1/$2/$3/$4/$5/$6/?hourOfDay=$7&utc=true&appId={{ENV{DDG_SPICE_FLIGHTS_API_ID}}}&appKey={{ENV{DDG_SPICE_FLIGHTS_APIKEY}}}&callback={{callback}}',
 		from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)/(.*)'

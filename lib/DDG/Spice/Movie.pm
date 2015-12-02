@@ -19,7 +19,7 @@ spice proxy_cache_valid => "200 7d";
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&q=$1&page_limit=50&page=1&callback={{callback}}';
 
 spice alt_to => {
-	movieimage => {
+	movie_image => {
 		to => 'https://api.themoviedb.org/3/find/$1?api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}&external_source=imdb_id',
 		# Uses $loc so needs to not cache back end.
 		is_cached => 0,
