@@ -115,6 +115,7 @@ rabatmærke
 rabatt
 rabattcode
 rabatt code
+rabatte
 rabatter
 rabattgutschein
 rabatt gutschein
