@@ -32,11 +32,10 @@
                 itemType: 'Tracks'
             },
             templates: {
-		item_custom: 'audio_item',
+                item_custom: 'audio_item',
                 options: {
                     footer: Spice.sound_cloud.footer
-                },
-		detail: Spice.sound_cloud.player
+                }
             },
             view: 'Audio',
             relevancy: {
