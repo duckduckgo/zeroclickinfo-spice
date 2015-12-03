@@ -26,5 +26,12 @@ ddg_spice_test(
     ),
 );
 
+alt_to_test('DDG::Spice::Dictionary::Definition', [qw(
+	audio
+	hyphenation
+	reference
+	pronunciation)]
+);
+
 done_testing;
 
