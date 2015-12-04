@@ -22,6 +22,12 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::SentimentAnalysis'
     ),
+    'sentiment of sometext here github.com/duckduckgo another text here' => test_spice(
+        '/js/spice/sentiment_analysis/github.com%2Fduckduckgo',
+        call_type => 'include',
+        caller => 'DDG::Spice::SentimentAnalysis'
+    ),
+    'sentiment of this is not a link, so it should not work (for now)' => undef,
     'sentiments' => undef,
     'SAS' => undef,
 );
