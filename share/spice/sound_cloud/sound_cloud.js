@@ -69,7 +69,7 @@
 
                 return {
                     image: image,
-                    hearts: o.favoritings_count || 0,
+                    hearts: o.likes_count || 0,
                     duration: o.duration,
                     title: o.title,
                     url: o.permalink_url,
