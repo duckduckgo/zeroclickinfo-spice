@@ -24,4 +24,6 @@ ddg_spice_test(
     ),
 );
 
+alt_to_test('DDG::Spice::SoundCloud', ['sound_cloud_result']);
+
 done_testing;
