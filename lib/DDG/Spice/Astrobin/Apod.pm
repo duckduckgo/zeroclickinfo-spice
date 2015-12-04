@@ -22,7 +22,7 @@ spice proxy_cache_valid => "200 60m";
 spice wrap_jsonp_callback => 1;
 
 spice alt_to => {
-	fetchid => {
+	fetch_id => {
 		to => 'http://www.astrobin.com/api/v1/image/$1/?api_key={{ENV{DDG_SPICE_ASTROBIN_APIKEY}}}&api_secret={{ENV{DDG_SPICE_ASTROBIN_APISECRET}}}&format=json',
 		wrap_jsonp_callback => 1
 	}
