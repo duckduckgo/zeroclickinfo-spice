@@ -27,6 +27,7 @@
 
 .zci--route td {
 	padding: 0px 1em 0px 0px;
+    vertical-align: top;
 }
 
 .zci--route td:first-child {
