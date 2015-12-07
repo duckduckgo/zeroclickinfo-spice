@@ -20,7 +20,7 @@
                 data: responseData.jobs,
                 meta: {
                     sourceName: "Renego",
-                    sourceUrl: 'https://www.renego.de/?w=' + encodeURIComponent(queryParams.w) + '&l=' + encodeURIComponent(queryParams.l)
+                    sourceUrl: 'https://www.renego.de/?w=' + encodeURIComponent(queryParams.w) + '&l=' + encodeURIComponent(queryParams.l) + '&cid=duckduckgo&csid=label'
                 },
                 normalize: function(item) {
                     return {
