@@ -29,5 +29,7 @@ ddg_spice_test(
     'how to catch every pokemon', => undef
 );
 
+alt_to_test('DDG::Spice::Pokemon::Data', ['description']);
+
 done_testing;
 
