@@ -1,4 +1,4 @@
-package DDG::Spice::SentimentAnalysis;
+package DDG::Spice::SentimentAnalysis::Document;
 # ABSTRACT: Returns result of sentiment analysis over a text or online content
 
 use DDG::Spice;
@@ -6,7 +6,7 @@ use DDG::Spice;
 primary_example_queries "sentiment analysis https://duck.co/ideas/idea/6767/sentiment-analysis-of-text-and-external-sources-in";
 description "Returns sentiment analysis of text or online content";
 name "Sentiment Analysis";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SentimentAnalysis.pm";
+code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SentimentAnalysis/Document.pm";
 topics "computing";
 category "language";
 attribution github  => ['https://github.com/gpestana', 'gpestana'],
