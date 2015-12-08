@@ -344,6 +344,9 @@
                         },
                         variants: {
                             tile: 'xwide'
+                        },
+                        elClass: { 
+                            tile: 'whole--screen-s' 
                         }
                     },
                     onShow: function(item) {
