@@ -24,5 +24,7 @@ ddg_spice_test(
     ),
 );
 
+alt_to_test('DDG::Spice::Astrobin::Apod', ['fetch_id']);
+
 done_testing;
 
