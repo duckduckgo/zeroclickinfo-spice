@@ -8,7 +8,7 @@ use DDG::Test::Spice;
 ddg_spice_test(
     [qw( DDG::Spice::SoundCloud )],
     'soundcloud ray bradbury' => test_spice(
-        'ray bradbury',
+        'ray%20bradbury',
         call_type => 'self',
         caller => 'DDG::Spice::SoundCloud',
     ),
@@ -18,7 +18,7 @@ ddg_spice_test(
         caller => 'DDG::Spice::SoundCloud',
     ),
     'sc the new yorker' => test_spice(
-        'the new yorker',
+        'the%20new%20yorker',
         caller    => 'DDG::Spice::SoundCloud',
         call_type => 'self',
     ),
