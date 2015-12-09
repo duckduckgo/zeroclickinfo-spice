@@ -2,7 +2,7 @@
     "use strict"
 
     var query = DDG.get_query();
-    query = query.replace(/sound ?cloud/, "");
+    query = query.replace(/sound ?cloud/, "").replace(/\bsc\b/, ""); //replace trigger words from query
     
     env.ddg_spice_sound_cloud = function() {        
         $.getJSON("/js/spice/sound_cloud_result/" + encodeURIComponent(query), sound_cloud);
