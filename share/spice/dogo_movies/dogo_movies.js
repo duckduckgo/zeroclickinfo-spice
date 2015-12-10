@@ -27,8 +27,7 @@
             data: api_result.results,
             meta: {
                 sourceName: 'DOGOmovies',
-                sourceUrl: 'http://www.dogomovies.com/search?query=' + encodeURIComponent(query),
-                itemType: 'kids movies'
+                sourceUrl: 'http://www.dogomovies.com/search?query=' + encodeURIComponent(query)
             },
             normalize: function(item) {
                 var thumb = item.thumb;

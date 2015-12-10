@@ -1,0 +1,71 @@
+<div class="c-score  c-score--nfl  {{#if has_started}}has-score{{else}}no-score{{/if}} {{#if is_playing}}in-progress{{/if}}">
+	{{{include 'DDH.sports.score_head' sequence=score.home.scoring}}}
+	<div class="c-score__line  c-score__line--vs1">
+		<div class="c-score__line__name">
+			{{~#with away_team~}}
+			<div class="c-score__team {{#if has_ball}}has-status{{/if}}">
+				{{{include 'DDH.sports.team_name'}}}
+				{{#if has_ball}}
+					<span class="c-score__team__status ddgsi-football" title="{{status_title}}"></span>
+				{{/if}}
+			</div>
+			{{~/with~}}
+		</div>
+		{{~#if has_started~}}
+			{{~#with score.away~}}
+			<div class="c-score__sequence  c-score__opt">
+			{{#each scoring}}
+				<div class="c-score__item  c-score__item--quarter">{{{points}}}</div>
+			{{/each}}
+			</div>
+			<div class="c-score__totals">
+				<div class="c-score__line__total">{{points}}{{#if winner}}<span class="c-score__win-marker"></span>{{/if}}</div>
+				{{#unless ../../has_ended}}
+				<div class="c-score__opt  c-score__opt--min-xs">
+					<div class="c-score__item">{{remaining_timeouts}}</div>
+				</div>
+				{{/unless}}
+			</div>
+			{{~/with~}}
+		{{~/if~}}
+	</div>
+	<div class="c-score__line  c-score__line--vs2" data-vs="@">
+		<div class="c-score__line__name">
+			{{#with home_team}}
+			<div class="c-score__team {{#if has_ball}}has-status{{/if}}">
+				{{{include 'DDH.sports.team_name'}}}
+				{{#if has_ball}}
+					<span class="c-score__team__status ddgsi-football" title="{{status_title}}"></span>
+				{{/if}}
+			</div>
+			{{/with}}
+		</div>
+		{{~#if has_started~}}
+			{{~#with score.home~}}
+			<div class="c-score__sequence  c-score__opt">
+			{{#each scoring}}
+				<div class="c-score__item  c-score__item--quarter">{{{points}}}</div>
+			{{/each}}
+			</div>
+			<div class="c-score__totals">
+				<div class="c-score__line__total">{{points}}{{#if winner}}<span class="c-score__win-marker"></span>{{/if}}</div>
+				{{#unless ../../has_ended}}
+				<div class="c-score__opt  c-score__opt--min-xs">
+					<div class="c-score__item">{{remaining_timeouts}}</div>
+				</div>
+				{{/unless}}
+			</div>
+			{{~/with~}}
+		{{~/if~}}
+	</div>
+	<div class="c-score__foot">
+		<div class="c-score__foot__main">
+			<div class="c-score__venue">@ {{home_team.venue.city}}<span class="c-score__venue__name"> - {{home_team.venue.name}}</span></div>
+			<div class="c-score__foot__more  c-score__opt">
+			{{#if is_playing}}
+				<span class="c-score__foot__info">{{textLastUpdate}}</span>
+			{{/if}}
+			</div>
+		</div>
+	</div>
+</div>

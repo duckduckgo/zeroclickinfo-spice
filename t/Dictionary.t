@@ -23,7 +23,14 @@ ddg_spice_test(
         '/js/spice/dictionary/definition/define',
         call_type => 'include',
         caller => 'DDG::Spice::Dictionary::Definition'
-    ),
+    )
+);
+
+alt_to_test('DDG::Spice::Dictionary::Definition', [qw(
+	audio
+	hyphenation
+	reference
+	pronunciation)]
 );
 
 done_testing;

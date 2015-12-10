@@ -1,0 +1,41 @@
+<div class="c-score__head">
+	{{#unless has_started}}<div class="c-score__head__time">{{momentTime start_time}}</div>{{/unless}}
+	<div class="c-score__head__date">
+		{{#if has_interesting_status}}
+			<span class="c-score__status">{{status}}</span>
+		{{else}}
+			{{#if is_playing}}
+				{{#if meta.options.in_progress}}
+					{{{include meta.options.in_progress}}}
+				{{else}}
+					<span class="c-score__clock">{{clock}}</span>
+				{{/if}}
+			{{else}}
+				{{#if textPreDate}}
+					{{textPreDate}}
+					<span class="sep--small"></span>
+				{{/if}}
+				{{#if relativeDay}}
+					<span class="tx-clr--slate">{{relativeDay}}</span>
+				{{else}}
+					{{momentDate start_time}}
+				{{/if}}
+			{{/if}}
+		{{/if}}
+	</div>
+	{{~#if has_started~}}
+		{{~#if sequence~}}
+		<div class="c-score__sequence  c-score__opt">
+			{{#each sequence}}
+				<div class="c-score__item  c-score__item--{{type}}">{{number}}</div>
+			{{/each}}
+		</div>
+		{{~/if}}
+		<div class="c-score__totals">
+			<div class="c-score__head__total">{{textTotal}}</div>
+			{{~#if meta.options.head_totals~}}
+				{{{include meta.options.head_totals}}}
+			{{~/if~}}
+		</div>
+	{{~/if~}}
+</div>
