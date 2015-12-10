@@ -16,7 +16,7 @@
             // Render the response
             Spice.add({
                 id: "renego_job_search",
-                name: "Renego Job Search",
+                name: "Jobs",
                 data: responseData.jobs,
                 meta: {
                     sourceName: "Renego",
