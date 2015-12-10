@@ -26,7 +26,7 @@ handle remainder => sub {
     return unless $_  and $loc and $loc->country_code;
 
     # restrict to germany
-    if(($loc->country_code == 'DE')) {
+    if(($loc->country_code eq 'DE')) {
         if($loc->city) {
             # add city to search if present
             return $_, $loc->city;
