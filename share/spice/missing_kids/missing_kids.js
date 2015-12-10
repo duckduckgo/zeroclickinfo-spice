@@ -1,89 +1,111 @@
 (function (env) {
     "use strict";
-    
+
     function capitalizeWords(str) {
         return str.toLowerCase().replace( /\b\w/g, function (m) {
             return m.toUpperCase();
         });
     }
-    
+
+    // get name from "Missing: FIRST LAST (AA)."
+    var nameReg = /^\w+\: ([^\(]+) .+$/;
+    // get date from "Missing: ##/##/####."
+    var dateReg = /(\d{2}\/\d{2}\/\d{4})/;
+    // get location from "Missing from: <city>, <state>."
+    var locReg = /Missing From ([^\.]+?)\./;
+    // get state from "Age Now: ##,"
+    var ageReg = /Age Now: (\d+),/;
+    // get phone from "... #-###-###-####."
+    var phoneReg = /(\d-\d{3}-\d{3}-\d{4})/;
+
     env.ddg_spice_missing_kids = function (api_result) {
-        
+
         if (!api_result || api_result.error) {
             Spice.failed('missing_kids');
         }
-        
+
         var articles = api_result.rss.channel.item;
-        if (articles.length == 0) Spice.failed('missing_kids');
-        if (articles.length > 20) articles = articles.slice(0,20);
-        
+        if (articles.length === 0) {
+            Spice.failed('missing_kids');
+        }
+
+        if (articles.length > 20) {
+            articles = articles.slice(0,20);
+        }
+
         var script = $('[src*="/js/spice/missing_kids/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/missing_kids\/([^\/]+)/)[1],
             decodedQuery = decodeURIComponent(query);
 
-        Spice.add({
-            id: 'missing_kids',
-            name: 'Missing Kids',
-            data: articles,
-            meta: {
-                primaryText: 'Missing children in ' + decodedQuery,
-                sourceName: 'National Center for Missing & Exploited Children',
-                sourceUrl: 'http://www.missingkids.com',
-                count: articles.length
-            },
-            templates: {
-                group: 'media',
-                detail: false,
-                item_detail: false,
-                options: {
-                    footer: Spice.missing_kids.footer
+        DDG.require("moment.js", function(){
+
+            moment.locale('en', {
+                relativeTime : {
+                    future: "in %s",
+                    past:   "%s ago",
+                    s:  "seconds",
+                    m:  "1 minute",
+                    mm: "%d minutes",
+                    h:  "an hour",
+                    hh: "%d hours",
+                    d:  "1 day",
+                    dd: "%d days",
+                    M:  "1 month",
+                    MM: "%d months",
+                    y:  "1 year",
+                    yy: "%d years"
                 }
-            },
-            normalize: function(item) {
-                var title = item.title.text.replace(/.*\:/,"").replace(/\(.+\)/, "");
-                title = capitalizeWords(title);
-                
-                var description = '',
-                    subtitle = '',
-                    age = '',
-                    missingFrom = '',
-                    phone = '';
-                
-                if (typeof item.description !== 'undefined') {
-                    description = item.description.text;
-                    description = DDG.strip_html(description);
-                    description = description.replace(/&quot;/ig,"\"");
-                    description = description.replace(/&#039;/ig,"'");
-                    // removing PERSON'S NAME, 
-                    description = description.replace(/^.+?,/,"");
-                    
-                    subtitle = description.replace(/Age Now: \d+\,/, "").replace(/Missing From [^\.]+\./, "").replace(/ANYONE.*/, "");
-                    description = description.replace(/\bANYONE.+\)/,"Contact: ");
-                    description = description.replace(/, Missing\: \d\d\/\d\d\/\d\d\d\d/,"");
-                    
-                    var chunks = description.split(".");
-                    age = chunks[0];
-                    missingFrom = chunks[1];
-                    phone = chunks[2];
-                    console.log(description);
+            });
+
+            Spice.add({
+                id: 'missing_kids',
+                name: 'Missing Kids',
+                data: articles,
+                meta: {
+                    primaryText: 'Missing children in ' + decodedQuery,
+                    sourceName: 'National Center for Missing & Exploited Children',
+                    sourceUrl: 'http://www.missingkids.com',
+                    count: articles.length
+                },
+                templates: {
+                    group: 'media',
+                    detail: false,
+                    item_detail: false,
+                    options: {
+                        footer: Spice.missing_kids.footer
+                    }
+                },
+                normalize: function(item) {
+                    var title = nameReg.exec(item.title.text)[1];
+                    var description = DDG.strip_html(item.description.text)
+                        .replace(/&quot;/ig,"\"")
+                        .replace(/&#039;/ig,"'");
+
+                   // remove property so it's not used template
+                    delete item.description;
+
+                    var date = dateReg.exec(description)[1],
+                        length = moment(date).fromNow(true);
+
+                    date = moment(date).format("MMM Do, YYYY");
+
+                    return {
+                        title: capitalizeWords(title),
+                        subtitle: date + " (" + length + ")",
+                        url: item.link.text,
+                        image: item.enclosure.url.replace("t.jpg", ".jpg"),
+                        age: ageReg.exec(description)[1],
+                        location: locReg.exec(description)[1],
+                        phone: phoneReg.exec(description)[1]
+                    };
+                },
+                relevancy: {
+                    primary: [
+                        {required: 'description'},
+                    ]
                 }
-                var image = item.enclosure.url;
-                image = image.replace("t.jpg", ".jpg");
-                return {
-                    title: title,
-                    url: item.link.text,
-                    description: null,
-                    subtitle: subtitle,
-                    image: image,
-                    age: age,
-                    location: missingFrom,
-                    phone: phone
-                };
-            }
+            });
         });
-
-    }
+    };
 }(this));
-
-
