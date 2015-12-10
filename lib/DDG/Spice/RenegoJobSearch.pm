@@ -11,7 +11,7 @@ spice wrap_jsonp_callback => 1;
 spice to => 'https://services.renego.net/jobs/ws.php?action=getjobs&sid=3&partnerid=43&what=$1&signkey={{ENV{DDG_SPICE_RENEGO_APIKEY}}}&blocksize=10&orderby=1&radius=25&offset=0&where=$2&fields=inserted|title|description_short|host|url_its|inserted|job_company_name|location_name&rt=json';
 spice from => '(.*)/(.*)';
 
-triggers any => 'jobs', 'job';
+triggers any => 'jobs', 'job', 'jobsuche', 'stellenangebot', 'stellenangebote', 'stellenanzeige', 'stellenanzeigen', 'stellenmarkt', 'arbeit', 'karriere';
 
 primary_example_queries "manager job berlin";
 secondary_example_queries "manager jobs";
@@ -23,8 +23,17 @@ attribution github => ['https://github.com/mightycid','Sebastian Szeracki'];
 
 # Handle statement
 handle remainder => sub {
+    return unless $_  and $loc and $loc->country_code;
 
-    return $_, $loc->city if $_;
+    # restrict to germany
+    if(($loc->country_code == 'DE')) {
+        if($loc->city) {
+            # add city to search if present
+            return $_, $loc->city;
+        }
+        return $_;
+    }
+
     return;
 
 };
