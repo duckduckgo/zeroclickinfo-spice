@@ -58,8 +58,7 @@
                 },
                 relevancy: {
                     primary: [
-                        { key: 'description', match: /.+/, strict: false }, // Reject things without a description.
-                        { key: 'size', match: /^[1-9][0-9]*$/, strict: false }
+                        { key: 'description', match: /.+/, strict: false } // Reject things without a description.
                     ]
                 },
                 sort_fields: {
