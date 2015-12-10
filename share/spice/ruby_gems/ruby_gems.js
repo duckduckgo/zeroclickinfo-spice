@@ -21,7 +21,7 @@
                 sourceName: 'RubyGems',
                 sourceIconUrl: 'https://rubygems.org/favicon.ico',
                 total: api_result.length,
-                itemType: "gems",
+                itemType: "Ruby Gems",
             },
             templates:{
                 group: 'text',

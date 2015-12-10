@@ -1,7 +1,19 @@
 (function (env) {
     'use strict';
     env.ddg_spice_quandl_home_values = function(api_result){
-        if (!api_result || api_result.data.length < 2 ) {
+
+        if (!api_result) {
+            return Spice.failed('quandl_home_values');
+        }
+
+        var result = api_result;
+        
+        if (result.data == null) {
+            return Spice.failed('quandl_home_values');
+        }
+        
+        // we need two data points to get percent change
+        if (result.data.length < 2) {
             return Spice.failed('quandl_home_values');
         }
 
@@ -12,6 +24,9 @@
             urlTitle = 'View more home values data at Quandl',
             recentValue = DDG.getProperty(api_result.data,'0.1'),
             previousValue = DDG.getProperty(api_result.data,'1.1');
+        
+        // data title link
+        api_result.url = url;
         
         // check we have both data values
         if (!recentValue || !previousValue) {

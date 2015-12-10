@@ -23,7 +23,7 @@
                 meta: {
                     sourceName: 'DOGOnews',
                     sourceUrl: 'http://www.dogonews.com/search?query=' + encodeURIComponent(query),
-                    itemType: 'kids news articles',
+                    itemType: 'Kids News Articles',
                     snippetChars: 110
                 },
                 normalize: function(item) {

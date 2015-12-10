@@ -98,15 +98,15 @@
             script = $('[src*="/js/spice/cryptocurrency/"]')[0],
             source = $(script).attr("src");
 
-        if (typeof ticker !== 'undefined') {
+        if (ticker && ticker.base && ticker.target && ticker.price) {
 
             // Get amount from original query
             var query = source.match(/\/ticker\/(?:.*)\/(.+)/)[1],
                 queryAmount = parseFloat(decodeURIComponent(query)),
                 // Calculate price, rates, and amounts
-                base = api_result.ticker.base,
-                target = api_result.ticker.target,
-                price = parseFloat(api_result.ticker.price);
+                base = ticker.base,
+                target = ticker.target,
+                price = parseFloat(ticker.price);
 
             results = api_result;
             convertedAmount = queryAmount * price;
@@ -115,7 +115,7 @@
             // Format Time and Date
             timestamp = api_result.timestamp * 1000;
 
-        } else if (typeof rows !== 'undefined') {
+        } else if (rows && rows.length) {
 
             // Get amount from original query
             var query = source.match(/\/secondaries\/(.+)\/(?:.*)/)[1],

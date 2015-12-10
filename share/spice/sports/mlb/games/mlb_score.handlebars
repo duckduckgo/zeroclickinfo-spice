@@ -1,49 +1,10 @@
 <div class="c-score  c-score--mlb  {{#if score.away.innings}}has-score{{else}}no-score{{/if}}">
-	<div class="c-score__head">
-		<div class="c-score__head__date">
-			{{#if has_interesting_status}}
-				<span class="c-score__status">{{status}}</span>
-			{{else}}
-				{{#if score.pitch_count}}
-					<span class="c-score__clock"><span class="c-score__clock__icon ddgsi-t-{{#if score.pitch_count.half_over}}down{{else}}up{{/if}}"></span>{{ordinal score.pitch_count.inning}}</span>
-				{{else}}
-					{{#if relativeDay}}
-						<span class="tx-clr--slate">{{relativeDay}}</span>
-					{{else}}
-						{{momentDate start_time}}
-					{{/if}}
-				{{/if}}
-			{{/if}}
-		</div>
-		{{~#if has_started~}}
-			<div class="c-score__sequence  c-score__opt">
-			{{#each score.away.innings}}
-				<div class="c-score__item  c-score__item--{{type}}">{{number}}</div>
-			{{/each}}
-			</div>
-			<div class="c-score__totals">
-				<div class="c-score__head__total">{{textTotal}}</div>
-				<div class="c-score__opt">
-					<div class="c-score__item  c-score__item--inning">H</div>
-					<div class="c-score__item  c-score__item--inning">E</div>
-				</div>
-			</div>
-		{{else}}
-			<div class="c-score__head__time">{{momentTime start_time}}</div>
-		{{~/if~}}
-	</div>
+	{{{include 'DDH.sports.score_head' sequence=score.home.innings}}}
 	<div class="c-score__line  c-score__line--vs1">
 		<div class="c-score__line__name">
 			{{~#with away_team~}}
 			<div class="c-score__team">
-				<div class="c-score__team__logo">
-					<img class="c-score__team__img  js-lazysvg" src="" data-src="{{image}}">
-				</div>
-				<div class="c-score__team__name">
-					<span class="c-score__team__market">{{location}}</span>
-					<span class="c-score__team__nick">{{name}}</span>
-				</div>
-				<div class="c-score__team__short">{{short_name}}</div>
+				{{{include 'DDH.sports.team_name'}}}
 			</div>
 			{{~/with~}}
 		</div>
@@ -68,15 +29,7 @@
 		<div class="c-score__line__name">
 			{{#with home_team}}
 			<div class="c-score__team">
-				<div class="c-score__team__logo">
-					<img class="c-score__team__img  js-lazysvg" src="" data-src="{{image}}">
-					
-				</div>
-				<div class="c-score__team__name">
-					<span class="c-score__team__market">{{location}}</span>
-					<span class="c-score__team__nick">{{name}}</span>
-				</div>
-				<div class="c-score__team__short">{{short_name}}</div>
+				{{{include 'DDH.sports.team_name'}}}
 			</div>
 			{{/with}}
 		</div>
@@ -113,7 +66,13 @@
 					<span class="c-score__foot__info">{{textGameOver}}</span>
 				{{/if}}
 			{{else}}
-				{{#and updated has_started}}<span class="c-score__foot__info">{{textLastUpdate}}</span>{{/and}}
+				{{#if has_started}}
+					{{#if textLastUpdate}}
+						<span class="c-score__foot__info">{{textLastUpdate}}</span>
+					{{else}}
+						{{{include 'DDH.sports_mlb_games.pitch_count'}}}
+					{{/if}}
+				{{/if}}
 			{{/if}}
 			</div>
 		</div>

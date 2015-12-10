@@ -17,9 +17,8 @@
             meta: {
                 sourceName: 'Giphy',
                 sourceUrl: 'http://giphy.com/search/' + encodeURIComponent(searchTerm),
-                count: api_result.pagination.count,
-                total: api_result.pagination.total_count,
-                itemType: 'Gifs'
+                searchTerm: searchTerm,
+                itemType: 'Giphy ' + l('Results')
             },
             normalize: function(item) {
                 if (item.rating !== "g") {

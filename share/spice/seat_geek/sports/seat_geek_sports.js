@@ -20,7 +20,7 @@
                 sourceName: "SeatGeek",
                 sourceUrl: "https://seatgeek.com/search?search=" + clean_query,
                 sourceIconUrl: "https://seatgeek.com/favicon.ico",
-                itemType: "upcoming events"
+                itemType: "Upcoming Events"
             },
             normalize: function(item) {
                 // Check relevancy of the item.
