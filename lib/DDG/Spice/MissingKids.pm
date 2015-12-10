@@ -3,26 +3,9 @@ package DDG::Spice::MissingKids;
 use DDG::Spice;
 use Locale::SubCountry;
 
-# meta data
-primary_example_queries "missing kids";
-secondary_example_queries "missing children";
-description "Shows missing children from your state if you are located in the US.";
-name "Missing Kids";
-code_url "https://github.com/brianrisk";
-topics "social";
-category "location_aware";
-attribution github => ['https://github.com/brianrisk','Brian Risk'],
-            email => ['brian@geneffects.com','Brian Risk'],
-            web => ["https://www.geneffects.com", "Geneffects"],
-            twitter => "brianrisk";
-
-# defining our triggers
 triggers start => "missing kid", "missing kids", "missing child", "missing children";
 
-
-
-# Need to escape string passed to &u= param
-# except $1
+# Need to escape string passed to &u= param, except $1
 my $query_url = uri_esc("http://www.missingkids.com/missingkids/servlet/XmlServlet?act=rss&LanguageCountry=en_US&orgPrefix=NCMC&state=");
 
 spice to => 'https://duckduckgo.com/x.js?u=' . $query_url . '$1';
@@ -30,7 +13,6 @@ spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";
 
 #Create US SubCountry object
-
 my $US = new Locale::SubCountry("US");
 my %code_hash = $US->code_full_name_hash;
 
