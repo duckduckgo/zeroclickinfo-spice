@@ -17,6 +17,8 @@
     var ageReg = /Age Now: (\d+),/;
     // get phone from "... #-###-###-####."
     var phoneReg = /(\d-\d{3}-\d{3}-\d{4})/;
+    // get contact name from "Contact: ..."
+    var contactReg = /CONTACT: ([^\(\d]+)/;
 
     env.ddg_spice_missing_kids = function (api_result) {
 
@@ -90,6 +92,8 @@
 
                     date = moment(date).format("MMM Do, YYYY");
 
+                    var phone = phoneReg.exec(description);
+
                     return {
                         title: capitalizeWords(title),
                         subtitle: date + " (" + length + ")",
@@ -98,7 +102,7 @@
                         age: ageReg.exec(description)[1],
                         city: capitalizeWords( locReg.exec(description)[1] ),
                         state: locReg.exec(description)[2],
-                        phone: phoneReg.exec(description)[1]
+                        contact: phone ? phone[1] : contactReg.exec(description)[1].replace("Police Department", "PD")
                     };
                 },
                 relevancy: {
