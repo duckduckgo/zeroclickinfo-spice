@@ -8,7 +8,7 @@ spice is_cached => 1;
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => '200 1d';
 spice from => '(\w+)/(\w+)';
-spice to => 'https://keybase.io/_/api/1.0/user/lookup.json?fields=basics,public_keys,profile,pictures&$1=$2';
+spice to => 'https://keybase.io/_/api/1.0/user/lookup.json?fields=basics,proofs_summary,public_keys,profile,pictures&$1=$2';
 
 name 'Keybase';
 icon_url 'https://keybase.io/favicon.ico';
