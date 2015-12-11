@@ -12,7 +12,7 @@
     // get date from "Missing: ##/##/####."
     var dateReg = /(\d{2}\/\d{2}\/\d{4})/;
     // get location from "Missing from: <city>, <state>."
-    var locReg = /Missing From ([^\.]+?)\./;
+    var locReg = /Missing From ([^\,]+?)\,([^\.]+?)\./;
     // get state from "Age Now: ##,"
     var ageReg = /Age Now: (\d+),/;
     // get phone from "... #-###-###-####."
@@ -96,7 +96,8 @@
                         url: item.link.text,
                         image: item.enclosure.url.replace("t.jpg", ".jpg"),
                         age: ageReg.exec(description)[1],
-                        location: locReg.exec(description)[1],
+                        city: capitalizeWords( locReg.exec(description)[1] ),
+                        state: locReg.exec(description)[2],
                         phone: phoneReg.exec(description)[1]
                     };
                 },
