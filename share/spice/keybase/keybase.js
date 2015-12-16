@@ -44,15 +44,30 @@
                 sourceUrl: 'https://keybase.io/' + user.basics.username
             },
             normalize: function(item) {
+                var userAccounts = [];
+                userAccounts.push({
+                        text: keybase_key_fingerprint(item.public_keys.primary.key_fingerprint),
+                        href: 'https://keybase.io/' + item.basics.username + '/key.asc'});
+                
+                var filteredSummary = $.grep( item.proofs_summary.all , function( account, i ) {
+                  return account.presentation_group === 'github' || 
+                         account.presentation_group === 'reddit' || 
+                         account.presentation_group === 'twitter';
+                });
+   
+                $.each(filteredSummary, function(index, account){
+                    userAccounts.push({
+                        text: DDG.capitalize(account.presentation_group),
+                        href: account.service_url
+                    });
+                });
+                
                 return {
                     image: item.pictures.primary.url,
                     title: item.profile.full_name,
                     url: 'https://keybase.io/' + item.basics.username,
                     subtitle: item.profile.location,
-                    altSubtitle: [{
-                        text: keybase_key_fingerprint(item.public_keys.primary.key_fingerprint),
-                        href: 'https://keybase.io/' + item.basics.username + '/key.asc'
-                    }],
+                    altSubtitle: userAccounts,
                     description: item.profile.bio
                 }
             },

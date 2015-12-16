@@ -37,6 +37,8 @@ ddg_spice_test(
     ),
 );
 
+alt_to_test('DDG::Spice::Xkcd::Display', ['latest']);
+
 # This function call is expected by Test::More. It makes sure the program
 # doesn't exit before all the tests have been run.
 done_testing;

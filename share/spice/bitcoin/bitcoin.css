@@ -1,64 +1,46 @@
-.zci--bitcoin .bitcoin {
-    padding-bottom: 0;
+/* bitcoin_address */
+.zci--bitcoin_address .zci__body .zci__more-at{
+    padding-top: 1em;
+}
+.zci--bitcoin_address .record .record__cell__value {
+    word-wrap: break-word;
+    padding: 0.4em;
 }
 
-.zci--bitcoin .bitcoin__blk {
-    vertical-align: top;
-    padding: 1em 7%;
-    margin: 0;
-    background-color: #E9E9E9;
-    background-color: rgba(150,150,150,0.1);
-    border-radius: 3px;
-	line-height: 50px;
-}
-.zci--bitcoin .bitcoin__title,
-.zci--bitcoin .bitcoin__price  {
-	vertical-align: middle;
-	display: inline-block;
+.zci--bitcoin_address .record .record__cell__key {
+    padding: 0.4em;
+    width: 150px;
 }
 
-.zci--bitcoin .bitcoin__title {
-	font-size: 15px;
+.is-mobile .zci--bitcoin_address .record .record__cell__value {
+    max-width: 150px;
+    text-overflow: ellipsis;
 }
 
-.zci--bitcoin .bitcoin__price {
-    font-size: 35px;
-    float: right;
+.zci--bitcoin_address .record .record__body{
+    width: 100%;
 }
 
+.is-mobile .zci--bitcoin_address .record .record__cell__key {
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-@media screen and (max-width: 680px) {
-	.zci--bitcoin .bitcoin {
-		margin-left: -0.5em;
-		margin-right: 0;
-	}
-	.zci--bitcoin .bitcoin__wdt {
-		padding-left: 0.5em;
-	}
-	.zci--bitcoin .bitcoin__blk {
-		line-height: 24px;
-	}
-	.zci--bitcoin .bitcoin__price {
-	font-size: 24px;
-    }
+.zci--bitcoin_address .c-info__img-wrap {
+    padding-top: 15px;
+}    
+
+@media screen and (max-width: 700px) {
+  .zci--bitcoin_address .c-text__img-wrap{
+    display: none;
+  }    
 }
-@media screen and (max-width: 460px) {
-	.zci--bitcoin .bitcoin__blk {
-		line-height: 1;
-	}
-	.zci--bitcoin .bitcoin__price {
-		float: none;
-		display: block;
-		text-align: left;
-	}
-	.zci--bitcoin .bitcoin__title {
-		top: 0;
-		display: block;
-		font-size: 13px;
-    }
+/* bitcoin_address */
+
+
+/* bitcoin_transaction */
+.zci--bitcoin_transaction .c-list {
+    max-width: 46em;
 }
-@media screen and (max-width: 380px) {
-	.zci--bitcoin .bitcoin__price {
-		font-size: 21px;
-	}
-}
+/* bitcoin_transaction */
