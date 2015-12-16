@@ -24,15 +24,11 @@ If this is your first time contributing to [DuckDuckHack](http://www.duckduckhac
 
 Once you're comfortable with the workflow and how Instant Answers work, we're excited to have you create your own original Instant Answer.
 
-**1. Choose an idea**
-
-Bring your own idea, or check out the ideas forum - especially [top voted answer ideas](https://duck.co/ideas/status/3?table_lnKRpLENwO2NUmZUyukQpw_sort=votes).
-
-**2. Plan your implementation**
+**1. Plan your implementation**
 
 The first step is to research and plan your Instant Answer. Consider [the best way to implement](https://duck.co/duckduckhack/determine_your_instant_answer_type) your idea, and review the [docs and guidelines](https://duck.co/duckduckhack/ddh-intro) that apply.
 	
-**3. Involve us**
+**2. Involve us**
 
 Before you start coding, [let us know your plans](mailto:open@duckduckgo.com). By involving us early we can provide guidance and potentially save you a lot of time and effort. Email us at [open@duckduckgo.com](mailto:open@duckduckgo.com) with what idea you're working on and how you're thinking of going about it.
 
