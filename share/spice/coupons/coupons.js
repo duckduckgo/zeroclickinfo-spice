@@ -31,6 +31,12 @@
                     item_detail: false,
                     options: {
                         moreAt: true
+                    },
+                    elClass: {
+                        tileBody: "text-center"
+                    },
+                    variants: {
+                        tileTitle: "3line" // to allow for 3 line title
                     }
                 }
             });
