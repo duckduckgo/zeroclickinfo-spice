@@ -4,23 +4,23 @@
 */
 
 
-.tile--coupons  .tile__media {
+.zci--coupons .tile--coupons  .tile__media {
     width: auto;
     height: auto;
     padding: 24px;
 }
 
-.tile--coupons .tile__content {
+.zci--coupons .tile--coupons .tile__content {
     height: 2em;
 }
 
-.tile--coupons .tile__body {
+.zci--coupons .tile--coupons .tile__body {
     padding-top: 0px;
     padding-left: 24px;
     padding-right: 24px;
     padding-bottom: 24px;
 }
 
-.tile--coupons  .tile__content  .tile__content--sm {
+.zci--coupons .tile--coupons  .tile__content  .tile__content--sm {
     height: 2em;
 }
