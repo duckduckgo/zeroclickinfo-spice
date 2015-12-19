@@ -2,6 +2,11 @@
     "use strict";
     env.ddg_spice_sublime_packages = function(api_result){
 
+        // Get original query.
+        var script = $('[src*="/js/spice/sublime_packages/"]')[0],
+            source = $(script).attr("src"),
+            query = decodeURIComponent(source.match(/sublime_packages\/([^\/]+)/)[1]);
+
         if (!api_result || api_result.packages.length === 0) {
             return Spice.failed('sublime_packages');
         }
@@ -13,6 +18,7 @@
                     data: api_result.packages,
                     meta: {
                         itemType: "Sublime Text Packages",
+                        searchTerm: query,
                         sourceName: "packagecontrol.io",
                         sourceUrl: 'https://packagecontrol.io/search/' + api_result.terms
                     },
@@ -23,7 +29,7 @@
                         }
                         return {
                             title: item.name,
-                            subtitle: item.highlighted_authors,
+                            subtitle: "by " + item.highlighted_authors,
                             last_modified: moment(item.last_modified).fromNow(),
                             description: item.highlighted_description,
                             url: "https://packagecontrol.io/packages/" + item.name
@@ -38,6 +44,12 @@
                         },
                         variants: {
                             tile: 'basic4'
+                        },
+                        elClass: {
+                            tileTitle: "tx--17 tx-clr--slate",
+                            tileSubtitle: "tx--14 tx-clr--grey-light",
+                            tileSnippet: "tx--14 tx-clr--slate-light",
+                            tileFoot: "tx--14 tx-clr--grey-light"
                         }
                     },
                     // Sort by number of unique installs

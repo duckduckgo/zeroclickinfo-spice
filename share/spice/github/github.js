@@ -11,9 +11,9 @@
                     query = source.match(/github\/([^\/]+)/)[1];
 
         if (/language:".*?"/.test(unescape(query))) {
-            var itemType = "Git Repositories (" + unescape(query).match(/language:"(.*?)"/)[1] + ")";
+            var itemType = "Git Repos (" + unescape(query).match(/language:"(.*?)"/)[1] + ")";
         } else {
-            var itemType = "Git Repositories";
+            var itemType = "Git Repos";
         }
 
         var results = api_result.data.items;
@@ -33,6 +33,7 @@
                 data: results,
                 meta: {
                     itemType: itemType,
+                    searchTerm: unescape(query),
                     sourceUrl: 'https://www.github.com/search?q=' +  encodeURIComponent(query),
                     sourceName: 'GitHub'
                 },
@@ -48,6 +49,9 @@
                         }
                     },
                 normalize: function(item) {
+                    if (item.size === 0) {
+                        return;
+                    }
                     return {
                         title: item.name,
                         subtitle: item.owner.login + "/" + item.name,

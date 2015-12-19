@@ -8,15 +8,17 @@
         }
         
         DDG.require(['moment.js', 'sports'], function(){
-            var games = env.ddg_spice_sports_games;
+            var games = env.ddg_spice_sports_games,
+                data = games.transformGameData(apiResult.data);
 
             Spice.add({
                 id: 'nfl_games',
                 name: 'NFL',
-                data: games.transformGameData(apiResult.data),
+                data: data,
                 from: apiResult.from,
                 signal: apiResult.signal,
                 meta: $.extend(games.META, {
+                    primaryText: 'Showing ' + data.length + ' Games',
                     sourceUrl:  apiResult.url || "http://www.bleacherreport.com/nfl",
                     selectedItem: apiResult.data.most_relevant_game_id,
                 }),

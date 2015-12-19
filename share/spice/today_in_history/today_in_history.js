@@ -56,7 +56,7 @@
             name: "Answer",
             data: data,
             meta: {
-                itemType: "historical events for " + ourquery,
+                itemType: "Historical Events",
                 sourceUrl: 'http://en.wikipedia.org/wiki/'+ ourquery,
                 sourceName: 'Wikipedia',
                 hideModeSwitch: true,

@@ -25,7 +25,7 @@
             meta: {
                 sourceName: 'govtrack.us',
                 sourceUrl: "https://www.govtrack.us/congress/members/" + state_code,
-                itemType: itemType
+                primaryText: itemType
             },
             normalize: function(item) {
                 var image = "https://www.govtrack.us/data/photos/"+item.govtrack_id+"-200px.jpeg";

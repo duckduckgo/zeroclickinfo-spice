@@ -67,9 +67,9 @@
             name: 'Apps',
             data: api_result.results,
             meta: {
-                total: api_result.results.length,
                 itemType: 'Apps',
                 sourceName: 'Quixey',
+                searchTerm: api_result.q,
                 sourceUrl: 'https://www.quixey.com/search?q=' + encodeURIComponent(qLower),
                 sourceLogo: {
                     url: DDG.get_asset_path('quixey','quixey_logo.png'),
@@ -290,11 +290,22 @@
         return qprice(obj);
     });
 
-    // template helper to replace iphone and ipod icons with
-    // smaller 'Apple' icons
+    // template helper to replace iphone, ipod, and android icons with
+    // smaller 'Apple' and 'Android' icons
     Handlebars.registerHelper("Quixey_platform_icon", function(icon_url) {
+        // Apple IDs
         if (this.id === 2004 || this.id === 2015) {
-            return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
+            return "https://icons.duckduckgo.com/ip2/apple.com.ico";
+        }
+
+        // Android ID
+        if (this.id === 2005) {
+            return "https://icons.duckduckgo.com/ip2/developer.android.com.ico";
+        }
+
+        // Microsoft Windows ID
+        if (this.id === 8556073) {
+            return "https://icons.duckduckgo.com/ip2/blogs.windows.com.ico";
         }
 
         return "/iu/?u=" + icon_url + "&f=1";
