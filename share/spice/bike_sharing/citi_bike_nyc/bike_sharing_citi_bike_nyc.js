@@ -49,7 +49,7 @@
                 meta: {
                     sourceName: 'Citi Bike NYC',
                     sourceUrl: 'https://www.citibikenyc.com/stations',
-                    itemType: 'Bike Stations',
+                    primaryText: 'Showing ' + api_result.stationBeanList.length + ' Stations',
                     pinIcon: 'ddgsi-circle',
                     pinIconSelected: 'ddgsi-star'
                 },

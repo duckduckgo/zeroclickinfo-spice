@@ -32,7 +32,7 @@
                     meta: {
                         sourceName: 'Ride Indego',
                         sourceUrl: 'http://www.rideindego.com/stations/',
-                        itemType: 'Bike Stations',
+                        primaryText: 'Showing ' + api_result.features.length + ' Stations',
                         pinIcon: 'ddgsi-circle',
                         pinIconSelected: 'ddgsi-star'
                     },
