@@ -8,7 +8,7 @@
         }
 
         var query = DDG.get_query();
-        var sourceUrl = 'http://www.wasgehtheuteab.de';
+        var sourceUrl = 'https://www.wasgehtheuteab.de';
 
         Spice.add({
             id: 'wgha',
