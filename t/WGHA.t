@@ -45,24 +45,15 @@ ddg_spice_test(
     DDG::Request->new(
         query_raw => "was geht",
         location => test_location("de")
-    ) => => test_spice(
-        '/js/spice/wgha/was%20geht%20M%C3%B6nchengladbach',
-        caller    => 'DDG::Spice::WGHA',
-    ),
+    )  => undef,
       DDG::Request->new(
         query_raw => "was geht in berlin",
         location => test_location("us")
-    ) => test_spice(
-        '/js/spice/wgha/was%20geht%20in%20berlin%20Phoenixville',
-        caller    => 'DDG::Spice::WGHA',
-    ),
+    )  => undef,
        DDG::Request->new(
         query_raw => "was geht in potsdam",
         location => test_location("us")
-    ) => test_spice(
-        '/js/spice/wgha/was%20geht%20in%20potsdam%20Phoenixville',
-        caller    => 'DDG::Spice::WGHA',
-    ),
+    )  => undef
 );
 
 done_testing;
