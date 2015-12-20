@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
 
-    var codes = {"canada":"ca", "china":"cn", "denmark":"dk", "france":"fr", "germany":"de", "italy":"it", "japan":"jp", "kazakhstan":"kz", "netherlands":"nl", "russia":"ru", "spain":"sp", "sweden":"se", "uk":"uk", "usa":"us"};
+    var codes = {"canada":"ca", "china":"cn", "denmark":"dk", "england" : "uk", "france":"fr", "germany":"de", "italy":"it", "japan":"jp", "kazakhstan":"kz", "netherlands":"nl", "russia":"ru", "spain":"sp", "sweden":"se", "uk":"uk", "usa":"us"};
 
     function getObject(obj, number) {
         if (number > 0) {
