@@ -12,14 +12,14 @@
 
         Spice.add({
             id: 'wgha',
-            name: 'Events',
+            name: 'Party',
             data: api_result,
 
             meta: {
                 sourceUrl: sourceUrl,
                 sourceName: 'Was geht heute ab?',
                 sourceIcon: true,
-                itemType: 'Events'
+                itemType: 'Party'
             },
             templates: {
                 group: 'text',
