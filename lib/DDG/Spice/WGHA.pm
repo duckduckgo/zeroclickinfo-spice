@@ -7,7 +7,7 @@ use utf8;
 
 primary_example_queries "was geht in frankfurt";
 secondary_example_queries "wasgeht in berlin";
-description "Events in Germany";
+description "Find Party in Germany";
 name "WGHA Events";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/WGHA.pm";
 topics "entertainment", "special_interest";
