@@ -20,7 +20,6 @@ attribution github => 'marianosimone',
 triggers any => 'indego', 'bikeshare', 'bike share', 'ride indego', 'share bike';
 
 spice to => 'https://www.rideindego.com/stations/json/';
-
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => '200 304 15m';
 
