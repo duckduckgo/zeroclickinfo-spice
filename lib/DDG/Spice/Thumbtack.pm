@@ -3,9 +3,6 @@ package DDG::Spice::Thumbtack;
 
 use DDG::Spice;
 
-# Caching - https://duck.co/duckduckhack/spice_advanced_backend#caching-api-responses
-spice is_cached => 1;
-
 name "Thumbtack Search";
 source "Thumbtack";
 icon_url "https://www.thumbtack.com/favicon.ico";
@@ -16,14 +13,18 @@ topics "everyday";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Thumbtack.pm";
 attribution github => ["http://github.com/whalenrp", "whalenrp"];
 
+my @keywords = share('top_keywords.txt')->slurp;
+
 spice to => 'https://www.thumbtack.com/search/$1/?callback={{callback}}&state=$2&city=$3';
 spice from => '(.*)/(.*)/(.*)';
 
-triggers end => 'near me', 'around me', 'close by';
-triggers startend => 'nearby';
+triggers any => @keywords;
 
 # Handle statement
-handle remainder => sub {
+handle query_lc => sub {
+
+    # Match only queries with "local" qualifiers.
+    return unless $_ =~ m/^nearby|nearby$|near me$|around me$|close by$/;
 
     # Don't show results for users outside of the US or users without coordinates
     return unless $_
@@ -32,11 +33,10 @@ handle remainder => sub {
         && $loc->region
         && $loc->city;
 
-    # Remove symbols, convert spaces to hyphens, and convert to lowercase
-    s/[^a-zA-Z ]//g;
+    # Convert spaces to hyphens
     s/\ /-/g;
 
-    return lc $_, $loc->region, $loc->city;
+    return $_, $loc->region, $loc->city;
 };
 
 1;

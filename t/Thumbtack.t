@@ -12,28 +12,23 @@ spice is_cached => 1;
 ddg_spice_test(
     [qw( DDG::Spice::Thumbtack)],
 
-    'plumbers near me' => test_spice(
-        '/js/spice/thumbtack/plumbers/PA/Phoenixville',
+    'movers near me' => test_spice(
+        '/js/spice/thumbtack/movers-near-me/PA/Phoenixville',
         call_type => 'include',
         caller => 'DDG::Spice::Thumbtack'
     ),
     'electricians close by' => test_spice(
-        '/js/spice/thumbtack/electricians/PA/Phoenixville',
+        '/js/spice/thumbtack/electricians-close-by/PA/Phoenixville',
         call_type => 'include',
         caller => 'DDG::Spice::Thumbtack'
     ),
-    'nearby hOuSe CLEANERS' => test_spice(
-        '/js/spice/thumbtack/house-cleaners/PA/Phoenixville',
+    'nearby cOMPUTer repair' => test_spice(
+        '/js/spice/thumbtack/nearby-computer-repair/PA/Phoenixville',
         call_type => 'include',
         caller => 'DDG::Spice::Thumbtack'
     ),
-    'NEARBY hOuSe CLEANERS' => test_spice(
-        '/js/spice/thumbtack/house-cleaners/PA/Phoenixville',
-        call_type => 'include',
-        caller => 'DDG::Spice::Thumbtack'
-    ),
-    'Bouncy house rentals around me' => test_spice(
-        '/js/spice/thumbtack/bouncy-house-rentals/PA/Phoenixville',
+    'piano lessons around me' => test_spice(
+        '/js/spice/thumbtack/piano-lessons-around-me/PA/Phoenixville',
         call_type => 'include',
         caller => 'DDG::Spice::Thumbtack'
     ),
@@ -45,9 +40,9 @@ ddg_spice_test(
         location => test_location('de')
     ) => undef,
 
-    'house cleaners close to me' => undef,
+    'life coaches close to me' => undef,
     'San Francisco plumbers' => undef,
-    'hOuSe nearby CLEANERS' => undef
+    'computer nearby repair' => undef
 );
 
 done_testing;
