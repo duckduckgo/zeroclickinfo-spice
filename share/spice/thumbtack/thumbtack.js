@@ -5,7 +5,7 @@
         // Don't show anything if we weren't able to return 2 or more services.
         // In future iterations, we should support a different view in the case
         // of a single result.
-        if (!api_result || api_result.error || api_result.data.length < 2) {
+        if (!api_result || api_result.error) {
             return Spice.failed('thumbtack');
         }
 
@@ -20,17 +20,11 @@
                 view: 'Places',
                 normalize: function(item) {
 
-                    // Duckduckgo currently doesn't support caching https images,
-                    // so convert them to http for now until this is resolved.
-                    var img_url = item.image;
-                    if (img_url) {
-                        img_url = img_url.replace('https', 'http');
-                    }
                     return {
                         // Street-level Addresses are private to most professionals,
                         // so we instead show a description of the service.
                         address: item.description,
-                        image: img_url
+                        image: DDG.toHTTP(item.image)
                     };
                 },
                 meta: {
