@@ -36,11 +36,10 @@
                         tileBody: "text-center"
                     },
                     variants: {
-                        tileTitle: "3line" // to allow for 3 line title
+                        tileTitle: "3line-large"
                     }
                 }
             });
         });
     };
-}(this)
-        );
+}(this));
