@@ -18,8 +18,10 @@
                     sourceUrl: api_result.result.homeurl
                 },
                 normalize: function (item) {
+                    // remove brand name from end of title string
+                    var re = new RegExp(item.parent.title + "$", "i");
                     return {
-                        title: item.title,
+                        title: item.title.replace(re, ""),
                         description: item.parent.title,
                         url: item.url.coupon,
                         image: item.url.logo
