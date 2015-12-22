@@ -1,13 +1,7 @@
-/* 
-    Created on : Dec 17, 2015, 3:40:46 PM
-    Author     : ingo.wachsmuth@sparheld.de
-*/
-
-
-.zci--coupons .tile--coupons  .tile__media {
+.zci--coupons .tile--coupons .tile__media {
     width: auto;
-    height: auto;
-    padding: 24px;
+    height: 60px;
+    padding: 2em 2em 1.5em;
 }
 
 .zci--coupons .tile--coupons .tile__content {
@@ -15,12 +9,9 @@
 }
 
 .zci--coupons .tile--coupons .tile__body {
-    padding-top: 0px;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: 24px;
+    padding: 0 2em 2em;
 }
 
-.zci--coupons .tile--coupons  .tile__content  .tile__content--sm {
-    height: 2em;
+.zci--coupons .tile--coupons .tile__content .tile__content--sm {
+    height: auto;
 }
