@@ -6,9 +6,7 @@
 
 Instant Answers appear on DuckDuckGo.com above ads and organic links, on [millions of searches](https://duckduckgo.com/traffic.html). Instant Answers are created by an open source community of developers [around the world](http://duckduckgo.meetup.com/) like you. Welcome!
 
-You can find the [full documentation here](http://docs.duckduckhack.com).
-
-[![slack](http://docs.duckduckhack.com/assets/slack.png) Talk to us on Slack](mailto:QuackSlack@duckduckgo.com?subject=AddMe) or [email us](mailto:open@duckduckgo.com).
+You can find the [full documentation here](http://docs.duckduckhack.com). This is the repository for [one type of Instant Answers](http://docs.duckduckhack.com/welcome/determining-ia-type.html), called Spices.
 
 ## Create a New Instant Answer
 
