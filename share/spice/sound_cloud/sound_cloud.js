@@ -32,7 +32,7 @@
                 itemType: 'Tracks'
             },
             templates: {
-                item_custom: 'audio_item',
+                item: 'audio_item',
                 options: {
                     footer: Spice.sound_cloud.footer
                 }
