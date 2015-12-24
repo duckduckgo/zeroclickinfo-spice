@@ -12,9 +12,9 @@
             // Query is normalized as we'll normalize the generated strings.
             // if we have a comma separated query it is in the form:
             // "town, state, country"  but state is optional
-            query = decodeURIComponent(source.match(/time\/([^\/]+)/)[1]).toLowerCase().split(','),
+            query = decodeURIComponentSafe(source.match(/time\/([^\/]+)/)[1]).toLowerCase().split(','),
             isGeneric = /\/generic\//.test(source),
-            callParameters = decodeURIComponent(source).split('/'),
+            callParameters = decodeURIComponentSafe(source).split('/'),
             chosen;
 
         if (isGeneric && callParameters.length === 7) {
