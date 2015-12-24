@@ -2,7 +2,7 @@
 
 ![](http://docs.duckduckhack.com/assets/hack search engine.png)
 
-**Instant Answers are an opportunity for anyone to create their own results. **
+**Instant Answers are an opportunity for anyone to create their own search results.**
 
 Instant Answers appear on DuckDuckGo.com above ads and organic links, on [millions of searches](https://duckduckgo.com/traffic.html). Instant Answers are created by an open source community of developers [around the world](http://duckduckgo.meetup.com/) like you. Welcome!
 
@@ -72,4 +72,4 @@ Want help? Need to think out loud?
 
 We're a digital community, but real people - we frequently meet up to hack together. Check out our [global meetups](http://duckduckgo.meetup.com/).
 
-*P.S. Let us know if we can improve anything in these documents [by opening issues directly on Github](https://github.com/duckduckgo/duckduckgo-documentation).*
+You can find the [full documentation here](http://docs.duckduckhack.com).
