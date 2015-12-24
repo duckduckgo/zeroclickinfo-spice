@@ -85,17 +85,19 @@
             };
         }
 
+        // holds display location
+        var placeName = chosen.geo.state ? (chosen.geo.name + ", " + chosen.geo.state) : chosen.geo.name;
+        if (chosen.overridePlaceName) {
+            placeName = chosen.overridePlaceName;
+        }
+
         var dateTime = {
             time: toPrettyTime(dateObj),
             dayName: days[dateObj.getDay()],
             day: dateObj.getDate(),
             monthName: months[dateObj.getMonth()],
             year: dateObj.getFullYear(),
-            placeName: chosen.overridePlaceName ?
-                chosen.overridePlaceName :
-                chosen.geo.state ?
-                  (chosen.geo.name + ", " + chosen.geo.state) :
-                  chosen.geo.name,
+            placeName: placeName,
             offset: chosen.time.timezone.offset.replace(/0|:/g, ""),
             zone: chosen.time.timezone.zonename,
             country: chosen.geo.country.name
