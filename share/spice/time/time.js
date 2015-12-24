@@ -17,6 +17,32 @@
             callParameters = decodeURIComponentSafe(source).split('/'),
             chosen;
 
+        // Generic queries are when the user is looking
+        // for local time, but never specified a location
+        // in the query string. Since the API doesn't
+        // have full coverage, we use user TimeZone info
+        // like America/New_York to get time for places
+        // in the EST time zone. We then need to replace
+        // New York (the looked up time), with the users
+        // location.
+        //
+        // This information is passed through the DDH
+        // system through the API call URL using / as a
+        // delimeter.
+        // A generic time request from Phoenixville, PA
+        // looks like:
+        //
+        // /js/spice/time/America%20New%20York/generic/Phoenixville%2C%20Pennsylvania
+        //
+        // * We use America New York, to do a relevancy
+        // check on the data we get back from the API.
+        // * We use 'generic' as a means to know it's
+        // a generic time query like 'current time'.
+        // * We use Phoenixville, Pennsylvania, to make
+        // sure we show the user the location they are in
+        // That way people looking for the current time
+        // in Phoenxivilla, PA see Phoenixville PA instead
+        // of New York, NY.
         if (isGeneric && callParameters.length === 7) {
             var lookupLocation = callParameters[4],
             displayLocation = callParameters[6];
