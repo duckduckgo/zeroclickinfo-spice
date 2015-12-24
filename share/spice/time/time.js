@@ -6,21 +6,36 @@
             return Spice.failed('time');
         }
 
+
         var script = $('[src*="/js/spice/time/"]')[0],
             source = $(script).attr("src"),
             // Query is normalized as we'll normalize the generated strings.
             // if we have a comma separated query it is in the form:
             // "town, state, country"  but state is optional
             query = decodeURIComponent(source.match(/time\/([^\/]+)/)[1]).toLowerCase().split(','),
+            isGeneric = /\/generic\//.test(source),
+            callParameters = decodeURIComponent(source).split('/'),
             chosen;
 
-        for(var i = 0; i < api.locations.length; i++) {
-            // query[0] = state
-            // query[len-1] = country
-            if(DDG.stringsRelevant(query[0], api.locations[i].geo.name) &&
-                    DDG.stringsRelevant(query[query.length-1], api.locations[i].geo.country.name)) {
-                chosen = api.locations[i];
-                break;
+        if (isGeneric && callParameters.length === 7) {
+            var lookupLocation = callParameters[4],
+            displayLocation = callParameters[6];
+
+            if (api.locations.length && api.locations[0].geo) {
+                if (lookupLocation.indexOf(api.locations[0].geo.name) > -1) {
+                    chosen = api.locations[0];
+                    chosen.overridePlaceName = displayLocation;
+                }
+            }
+        } else {
+            for(var i = 0; i < api.locations.length; i++) {
+                // query[0] = state
+                // query[len-1] = country
+                if(DDG.stringsRelevant(query[0], api.locations[i].geo.name) &&
+                   DDG.stringsRelevant(query[query.length-1], api.locations[i].geo.country.name)) {
+                    chosen = api.locations[i];
+                    break;
+                }
             }
         }
 
@@ -50,7 +65,11 @@
             day: dateObj.getDate(),
             monthName: months[dateObj.getMonth()],
             year: dateObj.getFullYear(),
-            placeName: chosen.geo.state ? (chosen.geo.name + ", " + chosen.geo.state) : chosen.geo.name,
+            placeName: chosen.overridePlaceName ?
+                chosen.overridePlaceName :
+                chosen.geo.state ?
+                  (chosen.geo.name + ", " + chosen.geo.state) :
+                  chosen.geo.name,
             offset: chosen.time.timezone.offset.replace(/0|:/g, ""),
             zone: chosen.time.timezone.zonename,
             country: chosen.geo.country.name
