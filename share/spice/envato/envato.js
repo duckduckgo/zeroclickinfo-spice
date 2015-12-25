@@ -72,7 +72,7 @@
             }
 
             spice.templates = {
-                item_custom: 'audio_item',
+                item: 'audio_item',
                 options: {
                     footer: Spice.envato.audio
                 }
