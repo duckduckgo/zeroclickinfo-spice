@@ -31,7 +31,10 @@ handle query_lc => sub {
     my $q_loc = trim $+{loc};
 
     # if no location is given, current user location is returned
-    return join ' ', (lc $loc->city, lc $loc->country_name) unless $q_loc;
+    my $tz_string = $loc->time_zone;
+    $tz_string =~ s/[\/_]/ /g;
+    my $location = join(', ', ($loc->city, $loc->region_name));
+    return ($tz_string, 'generic', $location) unless $q_loc;
 
     $q_loc =~ s/,//g;
 
