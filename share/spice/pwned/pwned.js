@@ -7,7 +7,8 @@
 
         var query = DDG.get_query(),
             re    = /\b([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,})\b/i, //capture email from query
-            email = re.exec(query)[1];
+            email = re.exec(query)[1],
+            url   = 'https://haveibeenpwned.com/account/' + email;
 
 		DDG.require("moment.js", function(){
 	        Spice.add({
@@ -16,7 +17,7 @@
 	            data: api_result,
 	            meta: {
 	                sourceName: "Have I Been Pwned",
-	                sourceUrl: 'https://haveibeenpwned.com/account/' + email,
+	                sourceUrl: url,
                     primaryText: email + " is compromised:",
                     snippetChars: 170
 	            },
@@ -31,7 +32,8 @@
 	                        title: item.Name,
 							altSubtitle: item.Domain,
 							date: moment(item.BreachDate).format("MMM DD, YYYY"),
-	                        description: DDG.strip_html(item.Description).replace(/&quot;/g, "\"")
+	                        description: DDG.strip_html(item.Description).replace(/&quot;/g, "\""),
+                            url: url
 	                    };
 	                }
 	            },
