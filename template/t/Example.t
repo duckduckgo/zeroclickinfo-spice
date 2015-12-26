@@ -13,7 +13,7 @@ ddg_spice_test(
     # - primary_example_queries
     # - secondary_example_queries
     'example query' => test_spice(
-        '/js/spice/<: $lia_name :>/query',
+        '/js/spice/<: $ia_id :>/query',
         call_type => 'include',
         caller => 'DDG::Spice::<: $ia_package_name :>'
     ),
