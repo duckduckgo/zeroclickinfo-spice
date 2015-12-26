@@ -14,7 +14,7 @@ my @kingston_town = (
 );
 
 my @phoenixville = (
-    '/js/spice/time/phoenixville%20united%20states',
+    '/js/spice/time/America%20New%20York/generic/Phoenixville%2C%20Pennsylvania',
     call_type => 'include',
     caller    => 'DDG::Spice::Time'
 );

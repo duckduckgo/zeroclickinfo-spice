@@ -1,15 +1,15 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_<: $lia_name :> = function(api_result){
+    env.ddg_spice_<: $ia_id :> = function(api_result){
 
         // Validate the response (customize for your Spice)
         if (!api_result || api_result.error) {
-            return Spice.failed('<: $lia_name :>');
+            return Spice.failed('<: $ia_id :>');
         }
 
         // Render the response
         Spice.add({
-            id: "<: $lia_name :>",
+            id: "<: $ia_id :>",
 
             // Customize these properties
             name: "AnswerBar title",
@@ -29,7 +29,7 @@
             templates: {
                 group: 'your-template-group',
                 options: {
-                    content: Spice.<: $lia_name :>.content,
+                    content: Spice.<: $ia_id :>.content,
                     moreAt: true
                 }
             }
