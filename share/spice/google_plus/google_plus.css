@@ -19,7 +19,7 @@
     padding-bottom: 20px;
 }
 
-.tile--google_plus .tile__title__main
+.tile--google_plus .tile__title__main {
     max-height: 2.5em;
     overflow: hidden;
     display: block;
