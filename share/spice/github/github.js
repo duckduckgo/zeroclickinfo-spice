@@ -49,6 +49,9 @@
                         }
                     },
                 normalize: function(item) {
+                    if (item.size === 0) {
+                        return;
+                    }
                     return {
                         title: item.name,
                         subtitle: item.owner.login + "/" + item.name,

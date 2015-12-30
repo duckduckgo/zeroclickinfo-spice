@@ -6,9 +6,9 @@
         };
 
         // Get original query.
-        var script = $('[src*="/js/spice/movie/"]')[0],
+        var script = $('[src*="/js/spice/coursebuffet/"]')[0],
             source = $(script).attr("src"),
-            query = decodeURIComponent(source.match(/movie\/([^\/]+)/)[1]);
+            query = decodeURIComponent(source.match(/coursebuffet\/([^\/]+)/)[1]);
 
         Spice.add({
             id: 'coursebuffet',

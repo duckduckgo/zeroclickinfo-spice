@@ -29,7 +29,7 @@
                         }
                         return {
                             title: item.name,
-                            subtitle: item.highlighted_authors,
+                            subtitle: "by " + item.highlighted_authors,
                             last_modified: moment(item.last_modified).fromNow(),
                             description: item.highlighted_description,
                             url: "https://packagecontrol.io/packages/" + item.name
@@ -44,6 +44,12 @@
                         },
                         variants: {
                             tile: 'basic4'
+                        },
+                        elClass: {
+                            tileTitle: "tx--17 tx-clr--slate",
+                            tileSubtitle: "tx--14 tx-clr--grey-light",
+                            tileSnippet: "tx--14 tx-clr--slate-light",
+                            tileFoot: "tx--14 tx-clr--grey-light"
                         }
                     },
                     // Sort by number of unique installs

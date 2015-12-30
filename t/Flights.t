@@ -123,4 +123,6 @@ ddg_spice_test(
     'Boston Paris' => undef,
 );
 
+alt_to_test('DDG::Spice::Flights::Route', ['route_helper']);
+
 done_testing;
