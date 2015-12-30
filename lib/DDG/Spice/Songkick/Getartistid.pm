@@ -9,6 +9,12 @@ triggers start => "artists", "bands", "musicians";
 
 spice to => 'http://api.songkick.com/api/3.0/search/artists.json?apikey={{ENV{DDG_SPICE_SONGKICK_APIKEY}}}&per_page=1&query=$1&jsoncallback={{callback}}';
 
+spice alt_to => {
+	artists => {
+		to => 'http://api.songkick.com/api/3.0/artists/$1/similar_artists.json?apikey={{ENV{DDG_SPICE_SONGKICK_APIKEY}}}&per_page=10&jsoncallback={{callback}}'
+	}
+};
+
 handle remainder => sub {
     # If the query isn't blank, then use it for the API query.
     if (length($_) > 0) {

@@ -243,7 +243,7 @@
         },
 
         templates: {
-            item_custom: Spice.forecast.forecast_item,
+            item: Spice.forecast.forecast_item,
             detail_mobile: Spice.forecast.forecast_detail_mobile
         }
     });

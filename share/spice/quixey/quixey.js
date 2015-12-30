@@ -295,12 +295,17 @@
     Handlebars.registerHelper("Quixey_platform_icon", function(icon_url) {
         // Apple IDs
         if (this.id === 2004 || this.id === 2015) {
-            return "https://icons.duckduckgo.com/i/itunes.apple.com.ico";
+            return "https://icons.duckduckgo.com/ip2/apple.com.ico";
         }
 
         // Android ID
         if (this.id === 2005) {
-            return "https://icons.duckduckgo.com/ip2/www.android.com.ico";
+            return "https://icons.duckduckgo.com/ip2/developer.android.com.ico";
+        }
+
+        // Microsoft Windows ID
+        if (this.id === 8556073) {
+            return "https://icons.duckduckgo.com/ip2/blogs.windows.com.ico";
         }
 
         return "/iu/?u=" + icon_url + "&f=1";

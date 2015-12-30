@@ -75,37 +75,21 @@
                 }
 
                 // Try to strip anything that comes before the price.
-                item.buy_line = item.buy_line.replace(/^[a-z ]+/i, "");
-                item.rent_line = item.rent_line.replace(/^[a-z ]+/i, "");
-
-                // If the provider is in this hash, it means that they provide 
-                // streaming if they don't buy or sell stuff.
-                if (item.provider_name in streaming_providers && item.buy_line === "" && item.rent_line === "") {
-                    item.buy_line = "Available for Streaming";
-                }
-
-                // If the provider is in this hash, it means that they sell it 
-                // but they don't have the actual price to display.
-                if (item.provider_name in purchase_providers && item.buy_line === "") {
-                    item.buy_line = "Available for Purchase";
-                    item.rent_line = "";
-                }
-
-                // Fandango has its own suggested line
-                if (item.provider_name === "Fandango") {
-                    item.buy_line = item.suggested_line;
-                }
-
-                // If the provider is "Netflix Mail" Change buy_line and format_line
-                if (item.provider_format_name === "Netflix Mail" && item.category !== "online") {
-                    item.buy_line = "Available for Rent";
-                    item.format_line = "Available on Blu-ray / DVD";
+                if(/\$/.test(item.buy_line) || /\$/.test(item.rent_line)) {
+                    item.buy_line = item.buy_line.replace(/^[a-z ]+/i, "");
+                    item.rent_line = item.rent_line.replace(/^[a-z ]+/i, "");
                 }
 
                 // Change the format line to match the other tiles.
                 if (item.format_line === "DVD & Blu-ray") {
                     item.format_line = "DVD / Blu-ray";
                 }
+                
+                // If the provider is "Netflix Mail" Change buy_line and format_line
+                if (item.provider_format_name === "Netflix Mail" && item.category !== "online") {
+                    item.format_line = "Available on Blu-ray / DVD";
+                }
+
 
                 // Only return a single Netflix item
                 if (item.provider_name === "Netflix") {
@@ -268,29 +252,84 @@
             }
         };
 
-    Spice.registerHelper("gwi_buyOrRent", function (buy_line, rent_line, options) {
-        if (buy_line && buy_line !== "") {
-            this.line = buy_line;
-            return options.fn(this);
+    // Display something even if we don't have any price
+    Spice.registerHelper("gwi_fallbackText", function(options) {
+       var message = "Available";
+       var rent_re = /rent_own/;
+       var subscription_re = /subscription/;
+        
+       if(this.categories) {
+           this.categories.forEach(function(elem) {
+                if(rent_re.test(elem)) {
+                    message = 'Available for Purchase or Rent';
+                }
+               
+               if(subscription_re.test(elem)) {
+                   message = 'Available with Subscription';
+               }
+           });
+       }
+        
+        // If the provider is in this hash, it means that they sell it 
+        // but they don't have the actual price to display.
+        if (this.provider_name in purchase_providers && this.buy_line === "") {
+            message = "Available for Purchase";
         }
-        this.line = rent_line;
+        
+        // If the provider is "Netflix Mail" Change buy_line and format_line
+        if (this.provider_format_name === "Netflix Mail" && this.category !== "online") {
+            message = "Available for Rent";
+        }
+        
+        // Fandango has its own suggested line
+        if (this.provider_name === "Fandango") {
+            message = this.suggested_line;
+        }
+        
+        // If the provider is in this hash, it means that they provide 
+        // streaming if they don't buy or sell stuff.
+        if (this.provider_name in streaming_providers && this.buy_line === "" && this.rent_line === "") {
+            message = "Available for Streaming";
+        }
+
+        return message;
+    });
+    
+    // Display the footer properly and show something if all fails.
+    Spice.registerHelper('gwi_footer', function(format_line) {
+        if(!format_line) {
+            var quality = [];
+            for(var format in this.formats) {
+                if(quality.indexOf(this.formats[format].quality) === -1) {
+                    quality.push(this.formats[format].quality);
+                }
+            }
+            
+            if(quality.length > 0) {
+                format_line = "Available in " + quality.join(" / ");
+            } else {
+                format_line = "Available";
+            }
+        }
+        
+        return format_line;
+    });
+    
+    Spice.registerHelper("gwi_buyOrRent", function (buy_line, rent_line, options) {
+        if (buy_line && buy_line !== "" && !/\$0\.00/.test(buy_line) && /\$/.test(buy_line)) {
+            this.rent_line = "";
+        } else if(rent_line && rent_line !== "" && !/\$0\.00/.test(rent_line) && /\$/.test(rent_line) && /\$/.test(rent_line)) {
+            this.buy_line = "";    
+        } else {
+            return options.inverse(this);
+        }
+        
         return options.fn(this);
     });
 
     // Check to see if both buy_line and rent_line are present.
     Spice.registerHelper("gwi_ifHasBothBuyAndRent", function (buy_line, rent_line, options) {
-        if (buy_line && buy_line !== "" && rent_line && rent_line !== "") {
-            return options.fn(this);
-        } else {
-            return options.inverse(this);
-        }
-    });
-
-    // Check to see if the buy_line/rent_line includes a price.
-    // This is because some provider formats (like Netflix) have
-    // 'Included with Subscription' in their buy line.
-    Spice.registerHelper("gwi_ifHasPrice", function (line, options) {
-        if (line.split("$").length > 1) {
+        if (buy_line && buy_line !== "" && rent_line && rent_line !== "" && !/\$0\.00/.test(buy_line) && !/\$0\.00/.test(rent_line) && /\$/.test(buy_line) && /\$/.test(rent_line)) {
             return options.fn(this);
         } else {
             return options.inverse(this);
@@ -299,8 +338,11 @@
 
     // Grab dollar amount from 'Rent from $X.XX' string.
     Spice.registerHelper("gwi_price", function (line, options) {
-        var strings = line.split("$");
-        return "$" + strings[strings.length - 1];
+        if(/\$/.test(line)) {
+            var strings = line.split("$");
+            return "$" + strings[strings.length - 1];
+        }
+        return line;
     });
 
     // Get the class for the footer element based on whether or not both the buy_line

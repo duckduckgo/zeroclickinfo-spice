@@ -1,0 +1,44 @@
+.zci--riffsy .tile__img--loader {
+    display: block;
+    width: 64px;
+    height: 40px;
+    position: absolute;
+    top: -3px;
+    right: -8px;
+    z-index: 100;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 3px;
+
+    -moz-transform: scale(0.5, 0.5);
+    -ms-transform: scale(0.5, 0.5);
+    -webkit-transform: scale(0.5, 0.5);
+    transform: scale(0.5, 0.5);
+    -moz-animation: loaderAnimate 0.5s steps(16) infinite;
+    -webkit-animation: loaderAnimate 0.5s steps(16) infinite;
+    animation: loaderAnimate 0.5s steps(16) infinite;
+}
+
+@-moz-keyframes loaderAnimate {
+    0%, from {
+        background-position: 1024px;
+    }
+    100%, to {
+        background-position: 0px;
+    }
+}
+@-webkit-keyframes loaderAnimate {
+    0%, from {
+        background-position: 1024px;
+    }
+    100%, to {
+        background-position: 0px;
+    }
+}
+@keyframes loaderAnimate {
+    0%, from {
+        background-position: 1024px;
+    }
+    100%, to {
+        background-position: 0px;
+    }
+}

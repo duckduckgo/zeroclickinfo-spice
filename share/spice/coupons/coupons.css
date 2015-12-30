@@ -1,0 +1,17 @@
+.zci--coupons .tile--coupons .tile__media {
+    width: auto;
+    height: 60px;
+    padding: 2em 2em 1.5em;
+}
+
+.zci--coupons .tile--coupons .tile__content {
+    height: 2em;
+}
+
+.zci--coupons .tile--coupons .tile__body {
+    padding: 0 2em 2em;
+}
+
+.zci--coupons .tile--coupons .tile__content .tile__content--sm {
+    height: auto;
+}

@@ -1,9 +1,7 @@
 .zci--in_theaters .tomato--icon {
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    vertical-align: text-bottom;
-    background: transparent no-repeat;
+    padding: 4px;
+    position: relative;
+    top: 10px;
 }
 
 .zci--in_theaters .c-detail__title {
