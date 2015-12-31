@@ -42,7 +42,9 @@ ddg_spice_test(
     'timer.x' => undef,
     'countdown.x' => undef,
     'alarm.x' => undef,
-    'five-timer' => undef # issue 1937
+    'timer online for ' => undef,
+    'countdown.js 10 minutes' => undef,
+    'five-alarm' => undef # issue 1937
 );
 
 done_testing;
