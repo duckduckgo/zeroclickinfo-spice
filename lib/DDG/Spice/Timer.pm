@@ -25,7 +25,7 @@ handle remainder => sub {
 
     # check to make sure the query matches a trigger perfectly
     if($qry eq '' && in_array($raw, @triggers)) {
-        return $qry;
+        return '';
     }
 
     # makes sure trigger is wrapped with whitespace
@@ -36,11 +36,11 @@ handle remainder => sub {
     $raw =~ s/\s*(online )?($trgx)( online)?( for )?\s*//;
 
     if($raw eq '') {
-        return $raw;
+        return '';
     }elsif($raw =~ /^(\s?([\d.]+ ?(m(in((ute)?s?)?)?|s(ec((ond)?s?)?)?|h(ours?)?|hr))\s?)+$/) {
-        return $raw;
+        return '';
     }elsif($raw =~ /^( ?((\d{1,2}:)?\d{1,2}:\d{2}) ?)/) {
-        return $raw;
+        return '';
     }
 
     return;
