@@ -1,58 +1,60 @@
-<div class="pull-left">
-    <img src="{{image}}" title="{{name}}"/>
-</div>
-<div class="pull-right item-info">
-    <h1 class="zci__header">
-        {{name}}
-    </h1>
-    <hr class="divider" />
-    <div class="twenty text--secondary">
-        Cost
+<div class="gw">
+    <div class="g">
+        <img src="{{image}}" title="{{name}}"/>
     </div>
-    <div class="eighty">
-        <img src="{{assets.gold.img}}" title="{{assets.gold.title}}"/> {{cost}}
-    </div>
-    {{#if description}}
-        <div class="twenty text--secondary">
-            Description
-        </div>
-        <div class="eighty">
-            {{{description}}}<br />
-        </div>
-    {{/if}}
-    {{#if notes}}
-        <div class="twenty text--secondary">
-            Notes
-        </div>
-        <div class="eighty">
-            {{{notes}}}<br />
-        </div>
-    {{/if}}
-    {{#if attributes}}
-        <div class="twenty text--secondary">
-            Attribues
-        </div>
-        <div class="eighty">
-            {{{attributes}}}<br />
-        </div>
-    {{/if}}
-    {{#if components}}
+    <div class="g item-info">
+        <h1 class="zci__header">
+            {{name}}
+        </h1>
         <hr class="divider" />
         <div class="twenty text--secondary">
-            Recipe
+            Cost
         </div>
-        <div class="eighty">
-            <table>
-                <tr>
-                    {{#each components}}
-                        <td class="item-component">
-                            <a href="/?q=dota2+{{searchTerms}}&ia=dota2">
-                                <img src="{{img}}" title="{{name}}"/>
-                            </a>
-                        </td>
-                    {{/each}}
-                </tr>
-            </table>
+        <div class="eighty eighty--screen-s seventy--screen-xs">
+            <img src="{{assets.gold.img}}" title="{{assets.gold.title}}"/> {{cost}}
         </div>
-    {{/if}}
+        {{#if description}}
+            <div class="twenty text--secondary">
+                Description
+            </div>
+            <div class="eighty eighty--screen-s seventy--screen-xs">
+                {{{description}}}
+            </div>
+        {{/if}}
+        {{#if notes}}
+            <div class="twenty text--secondary">
+                Notes
+            </div>
+            <div class="eighty eighty--screen-s seventy--screen-xs">
+                {{{notes}}}
+            </div>
+        {{/if}}
+        {{#if attributes}}
+            <div class="twenty text--secondary">
+                Attributes
+            </div>
+            <div class="eighty eighty--screen-s seventy--screen-xs">
+                {{{attributes}}}
+            </div>
+        {{/if}}
+        {{#if components}}
+            <hr class="divider" />
+            <div class="twenty text--secondary">
+                Recipe
+            </div>
+            <div class="eighty eighty--screen-s seventy--screen-xs">
+                <table>
+                    <tr>
+                        {{#each components}}
+                            <td class="item-component">
+                                <a href="/?q=dota2+{{searchTerms}}&ia=dota2">
+                                    <img src="{{img}}" title="{{name}}"/>
+                                </a>
+                            </td>
+                        {{/each}}
+                    </tr>
+                </table>
+            </div>
+        {{/if}}
+    </div>
 </div>
