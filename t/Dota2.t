@@ -20,6 +20,8 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Dota2'
     ),
+    'dota2' => undef,
+    'foobar' => undef,
 );
 
 done_testing;

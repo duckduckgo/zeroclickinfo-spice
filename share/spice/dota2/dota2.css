@@ -30,3 +30,8 @@
     vertical-align: top;
     width: 90px;
 }
+
+.zci--dota2 .divider {
+    float: left;
+    width: 100%;
+}

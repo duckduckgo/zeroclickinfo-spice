@@ -88,17 +88,6 @@
         return abilities;
     }
 
-    function getHeroPrimaryAttribute(hero) {
-        switch (hero.pa) {
-            case 'int':
-                return 'Intelligence';
-            case 'str':
-                return 'Strength';
-            case 'agi':
-                return 'Agility';
-        }
-    }
-
     function getHeroDisplayAssets() {
         return {
             stats: {
@@ -131,12 +120,18 @@
     }
 
     function createHeroReturnObject(hero, result) {
+        var primaryAttributes = {
+            'int': 'Intelligence',
+            'str': 'Strength',
+            'agi': 'Agility'
+        };
+
         return {
             isHero: true,
             name: hero.dname,
             image: DDG.getImageProxyURL('http://cdn.dota2.com/apps/dota2/images/heroes/' + hero.heroKey + '_vert.jpg'),
             attackType: hero.dac,
-            primaryAttribute: getHeroPrimaryAttribute(hero),
+            primaryAttribute: primaryAttributes[hero.pa],
             int: hero.attribs.int.b + ' + ' + hero.attribs.int.g,
             agi: hero.attribs.agi.b + ' + ' + hero.attribs.agi.g,
             str: hero.attribs.str.b + ' + ' + hero.attribs.str.g,
@@ -155,7 +150,7 @@
             return Spice.failed('dota2');
         }
 
-        var searchTarget = DDG.get_query().replace("dota2", "").replace("dota 2", "").trim().toLowerCase();
+        var searchTarget = DDG.get_query().replace(/dota\s?2/, "").trim().toLowerCase();
         var returnData;
         var item = getItemFromData(api_result.itemdata, searchTarget);
         var sourceUrl;
