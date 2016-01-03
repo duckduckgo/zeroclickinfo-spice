@@ -148,6 +148,22 @@ ddg_spice_test(
     # Doesn't trigger with ficticious currencies
     '200 bitcoin waffles to litecoin' => undef,
     'what is 1 euro in crypto donuts' => undef,
+    
+    # Handling the query '1 <cryptocurrency>'. Doesn't trigger unless cryptocurrency is in the top 10 currencies or the cryptocurrency has 'coin' in the name.
+    # Should trigger because PPC is in the top 10
+    '1 ppc' => test_spice(
+        '/js/spice/cryptocurrency/secondaries/1peercoin/ppc',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
+    # Should not trigger because diode is not in the top 10 and name does not include coin
+    '1 diode' => undef,
+    # Triggers because 'coin' is included in the name
+    '1 apex coin' => test_spice(
+        '/js/spice/cryptocurrency/secondaries/1apex%20coin/apex',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
 );
 
 done_testing;
