@@ -1,5 +1,7 @@
 # Welcome to DuckDuckHack's Spice Instant Answers Repository
 
+[![Build Status](https://travis-ci.org/duckduckgo/zeroclickinfo-spice.png?branch=bttf)](https://travis-ci.org/duckduckgo/zeroclickinfo-spice)
+
 ![](http://docs.duckduckhack.com/assets/hack search engine.png)
 
 **Instant Answers are an opportunity for anyone to create their own search results.**
