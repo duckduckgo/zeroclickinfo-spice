@@ -3,7 +3,7 @@
     
     env.ddg_spice_flash_version = function() {
         
-        DDG.require('flash_detect.js', function(){
+        DDG.require('flashDetect', function(){
             
             if(!FlashDetect) {
                 return Spice.failed('flash_version');
