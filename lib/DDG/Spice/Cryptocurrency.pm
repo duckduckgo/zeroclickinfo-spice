@@ -49,6 +49,7 @@ my @excludedCurrencies = (
 );
 
 # Used to filter on queries of the form '1 <cryptocurrency>'
+# Top currencies from coinmarketcap.com/currencies/
 my @topCurrencies = (
     'btc',
     'xrp',
