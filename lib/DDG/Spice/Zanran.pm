@@ -23,7 +23,8 @@ my @triggers = share('triggers.txt')->slurp;
 triggers any => @triggers;
 
 handle query_lc => sub {
-  return $_ if $_;
+    $_ =~ s/"//g;
+    return $_ if $_;
 };
 
 1;
