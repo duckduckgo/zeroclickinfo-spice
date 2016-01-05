@@ -15,7 +15,7 @@ topics "economy_and_finance";
 category "facts";
 attribution github => ['https://github.com/hunterlang','Hunter Lang'];
 
-triggers any => "cost of living";
+triggers startend => "cost of living";
 
 spice to => 'https://www.expatistan.com/api/spice?q=$1&api_key={{ENV{DDG_SPICE_EXPATISTAN_APIKEY}}}';
 

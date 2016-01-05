@@ -43,7 +43,7 @@ ddg_spice_test(
         '/js/spice/expatistan/cost%20of%20living%20difference%20london%20paris',
         caller    => 'DDG::Spice::Expatistan',
     ),
-    'compare cost of living between london and paris' => test_spice(
+    'cost of living between london and paris' => test_spice(
         '/js/spice/expatistan/compare%20cost%20of%20living%20between%20london%20and%20paris',
         caller    => 'DDG::Spice::Expatistan',
     ),

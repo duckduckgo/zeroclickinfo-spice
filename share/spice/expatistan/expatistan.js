@@ -6,6 +6,7 @@
             return Spice.failed('expatistan');
         }
 
+        console.log(api_result);
         Spice.add({
             id: "expatistan",
             name: "Answer",
@@ -20,7 +21,8 @@
                 var city, cost, subtitle, title;
 
                 // Guard if abstract or source_url don't exist
-                if (!api_result.abstract || !api_result.source_url) {
+                // Check abstract for unrecognized location
+                if (!api_result.abstract || !api_result.source_url || api_result.abstract.match(/could not be recognized/)) {
                     return Spice.failed('expatistan');
                 }
 
