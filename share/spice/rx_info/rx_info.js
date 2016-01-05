@@ -27,7 +27,7 @@
         
         var script = $('[src*="/js/spice/rx_info/"]')[0],
             source = $(script).attr("src"),
-            query = decodeURIComponent(source.match(/rx_info\/([^\/]+)/)[1]);
+            query = decodeURIComponent(source.match(/rx_info\/([^\/]+)/)[1]),
             triggerWordMatch = parseInt(source.match(/rx_info\/[^\/]+\/(\d)/)[1]),
             relCheck;
         
