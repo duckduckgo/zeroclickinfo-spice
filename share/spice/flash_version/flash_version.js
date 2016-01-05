@@ -33,3 +33,5 @@
         });
     };
 }(this));
+
+ddg_spice_flash_version();
