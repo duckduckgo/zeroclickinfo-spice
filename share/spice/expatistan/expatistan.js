@@ -6,7 +6,6 @@
             return Spice.failed('expatistan');
         }
 
-        console.log(api_result);
         Spice.add({
             id: "expatistan",
             name: "Answer",
