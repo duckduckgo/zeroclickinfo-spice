@@ -12,7 +12,8 @@
                     launchdate: moment(item.launchdate).format("MMM DD, YYYY"),
                     icon: DDG.settings.region.getLargeIconURL(codes[item.country.toLowerCase()]),
                     twitter: item.twitter.replace(/https?:\/\/twitter.com\//,''),
-                    url: item.biolink
+                    url: item.biolink,
+                    biophoto: "http://res.cloudinary.com/duckduckgo/image/fetch/w_100,h_130,f_auto/" + item.biophoto
                 };
             };
             obj.templates.item = 'base_item';
