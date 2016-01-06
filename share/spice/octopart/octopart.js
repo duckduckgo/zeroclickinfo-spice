@@ -81,9 +81,9 @@
             },
             relevancy: {
                 skip_words:  [
-                        "datasheet",
-                        "specs",
-                        "octopart"
+                    "datasheet",
+                    "specs",
+                    "octopart"
                 ],
                 primary: [
                     { required: 'item.short_description' },
