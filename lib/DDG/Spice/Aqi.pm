@@ -20,9 +20,18 @@ spice to => 'http://www.airnowapi.org/aq/observation/zipCode/current/?format=app
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-     my $query = shift;
-     return unless $query =~ qr/^\d{5}$/; #check if the entire remainder string is a 5 digits number;
-     return $query; # we know it exists, it's a number and it has 5 digits;
+    my $query = shift;
+
+    if($query eq 'local') {
+        return unless ($loc && $loc->{postal_code});
+        $query = $loc->{postal_code};
+    }else{
+        #check if the entire remainder string is a 5 digits number;
+        return unless $query =~ qr/^\d{5}$/;
+    }
+
+    # we know it exists, it's a number and it has 5 digits;
+    return $query;
 };
 
 1;
