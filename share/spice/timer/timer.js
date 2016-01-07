@@ -461,7 +461,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             // specified a time.
             if (startingTime !== 0 && timers.length === 1) {
                 timer.start();
-			}
+            }
         }
 
         function onShow() {
