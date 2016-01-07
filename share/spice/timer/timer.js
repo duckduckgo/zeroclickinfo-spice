@@ -457,11 +457,13 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             var timer = new Timer(timers.length + 1, startingTime);
             timer.$element.insertBefore($addTimerBtn.parent());
             timers.push(timer);
-            // start first timer automatically
-            if (timers.length === 1)
+            // start first timer automatically, but only when the user
+            // specified a time.
+            if (startingTime !== 0 && timers.length === 1) {
                 timer.start();
+            }
         }
-        
+
         function onShow() {
             // make sure this runs only once
             if (hasShown) {
@@ -532,7 +534,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
             //this makes sure the divs display at the right time so the layout doesn't break
             onShow: onShow
         });
-        
+
 
     };
 }(this));
