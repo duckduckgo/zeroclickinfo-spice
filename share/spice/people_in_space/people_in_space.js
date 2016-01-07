@@ -21,7 +21,7 @@
             obj.onItemShown = function(item) {
                 // Get filename from biophoto image url. Replace file extention jpg to png
                 // Use DDG.get_asset_path to get full path to images under spice directory
-                var imageFilename = item.biophoto.replace(/^.*[\\\/]/, '').replace(/jpg/, 'png'),
+                var imageFilename = item.biophoto.replace(/^.*[\\\/]/, ''),
                     localImage = DDG.get_asset_path('people_in_space', "images/" + imageFilename)
                 
                 // Perform a HTTP GET request to retrieve local images using filename from API 
@@ -32,8 +32,8 @@
                 }).always(function(data, statusText, xhr) {
                     // Local image exists if the following is true
                     // HTTP status code is 200 (OK) 
-                    // Content-Type is "image/png"
-                    if(xhr.status === 200 &&  xhr.getResponseHeader('content-type') == "image/png") {
+                    // Content-Type is "image/jpeg"
+                    if(xhr.status === 200 &&  xhr.getResponseHeader('content-type') == "image/jpeg") {
                         item.set('image', localImage);  // set local image
                     } else {
                         item.set('image', item.biophoto);  // fallback to remote image (returned by API)
