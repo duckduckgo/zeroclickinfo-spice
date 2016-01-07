@@ -531,6 +531,7 @@ sxc,sexcoin,sex coin,
 sha,shacoin,sha coin,
 shade,shadecoin,shade coin,
 sdc,shadowcoin,shadow coin,
+sdc, shadowcash, shadow cash
 shi,shi,
 shibe,shibecoin,shibe coin,
 shld,shieldcoin,shield coin,
