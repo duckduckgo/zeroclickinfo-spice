@@ -7,19 +7,6 @@ with 'DDG::SpiceRole::NumberStyler';
 use Text::Trim;
 use YAML::XS qw(LoadFile);
 
-primary_example_queries "convert 499 usd to cad";
-secondary_example_queries "cad to usd", "cny?";
-description "Currency Convertor provided by XE.com";
-name "Currency";
-source "XE.com";
-icon_url "/i/xe.com.ico";
-code_url "https://github.com/XenonLab/blob/master/lib/DDG/Spice/Currency.pm";
-category "finance";
-topics "economy_and_finance", "geography", "travel", "everyday";
-attribution web => ['http://www.xe.com', 'xe.com'],
-            github => ['https://github.com/laouji','Crimson Thompson'],
-            twitter => ['https://twitter.com/laouji','Crimson Thompson'];
-
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @currencies = share('currencyNames.txt')->slurp;

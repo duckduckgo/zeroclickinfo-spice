@@ -4,18 +4,6 @@ package DDG::Spice::Lastfm::Artist;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "ben folds five artist";
-secondary_example_queries "kanye west rapper", "bands similar to incubus", "weezer band", "musicians similar to lady gaga";
-description "Musician information";
-name "LastFM Artist";
-icon_url "/i/www.last.fm.ico";
-source "Last.fm";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Lastfm/Artist.pm";
-topics "entertainment", "music";
-category "entertainment";
-attribution github => ['https://github.com/jagtalon','Jag Talon'],
-           twitter => ['http://twitter.com/juantalon','Jag Talon'];
-
 spice to => 'http://ws.audioscrobbler.com/2.0/?format=json&method=artist.getinfo&artist=$1&autocorrect=1&api_key={{ENV{DDG_SPICE_LASTFM_APIKEY}}}&callback={{callback}}_$2';
 spice from => '(?:([^/]*)/([^/]*)|)';
 

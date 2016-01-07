@@ -4,15 +4,6 @@ package DDG::Spice::GetEvents;
 use DDG::Spice;
 use Text::Trim;
 
-
-primary_example_queries "events in chicago","what to do in chicago, il","things to do in chicago, illinois","events near me";
-secondary_example_queries "chicago events","chicago things to do";
-
-description "Upcoming events from GetEvents";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/GetEvents.pm";
-category "entertainment";
-topics "computing","entertainment","food_and_drink","music","science","special_interest","travel";
-
 triggers startend => 'events near me','nearby events';
 triggers start =>'events in','what to do in','things to do in';
 triggers end => 'things to do','events';
@@ -20,12 +11,7 @@ triggers end => 'things to do','events';
 spice to => 'https://api.getevents.co/ddg?city=$1&country=$2';
 spice from => "(.+)/(.*)";
 
-
 spice wrap_jsonp_callback => 1;
-
-
-
-
 
 my $pattern = '';
 my @triggers = ('events in', 'what to do in', 'things to do in','things to do', 'events');
@@ -58,4 +44,3 @@ handle query_lc => sub {
 };
 
 1;
-

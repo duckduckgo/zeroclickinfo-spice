@@ -4,15 +4,6 @@ package DDG::Spice::Twitch::Streams;
 use strict;
 use DDG::Spice;
 
-name "Streams";
-source "http://www.twitch.tv";
-description "Get Twitch Stream info";
-primary_example_queries "twitch streams dota 2";
-category "special";
-topics "special_interest";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Twitch/Streams/Streams.pm";
-attribution github => ["https://github.com/dwaligon", "Jason O'Donnell"];
-
 triggers startend => ('twitch streams',
 		      'streams twitch',
    		      'twitch.tv streams',
