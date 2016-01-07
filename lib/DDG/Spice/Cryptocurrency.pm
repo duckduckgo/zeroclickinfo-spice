@@ -5,19 +5,6 @@ package DDG::Spice::Cryptocurrency;
 use DDG::Spice;
 with 'DDG::SpiceRole::NumberStyler';
 
-name "Cryptocurrency";
-source "cryptonator.com";
-icon_url "https://www.cryptonator.com/ui/img/favicon.png";
-description "Cryptocurrency converter and exchange rate lookup provided by cryptonator.com";
-primary_example_queries "convert ltc to btc", "50 ftc to btc";
-secondary_example_queries "50 ltc";
-category "conversions";
-topics "economy_and_finance";
-code_url "https://github.com/claytonspinner/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Cryptocurrency.pm";
-attribution web => ['https://cryptonator.com','cryptonator.com'],
-            github => ["https://github.com/claytonspinner", "Clayton Spinner"],
-            email => ["clayton.spinner\@gmail.com", "Clayton Spinner"];
-
 # Get all the valid currencies from a text file.
 my @currTriggers;
 my @currencies = share('cryptocurrencylist.txt')->slurp;

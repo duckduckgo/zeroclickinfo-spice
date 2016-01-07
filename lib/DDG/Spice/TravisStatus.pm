@@ -5,15 +5,6 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-primary_example_queries "travis status";
-description "Travis CI status";
-name "Travis Status";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TravisStatus.pm";
-topics "computing", "programming";
-category "programming";
-attribution github => ['https://github.com/josephwegner','Joe Wegner'],
-            twitter => ['https://www.twitter.com/Joe_Wegner','Joe_Wegner'];
-
 my @triggers = ('travisci', 'travis continuous integration', 'travis ci', 'travis');
 my $triggers = join '|', @triggers;
 triggers any => @triggers;

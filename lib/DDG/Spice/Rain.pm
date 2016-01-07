@@ -3,18 +3,6 @@ package DDG::Spice::Rain;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "is it raining?";
-secondary_example_queries "is it raining in New York City?";
-description "Check if it's raining";
-name "Rain";
-source "Forecast.io";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Rain.pm";
-topics "everyday";
-category "facts";
-attribution web => [ 'https://bibhas.in', 'Bibhas Debnath' ],
-            github => [ 'https://github.com/iambibhas', 'Bibhas'],
-            twitter => ['http://twitter.com/bibhasdn', 'Bibhas D'];
-
 spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
 
 triggers start => "is it raining";

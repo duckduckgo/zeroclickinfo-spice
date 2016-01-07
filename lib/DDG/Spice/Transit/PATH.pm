@@ -4,17 +4,6 @@ package DDG::Spice::Transit::PATH;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "next train from JSQ to WTC";
-secondary_example_queries "train times to hoboken from 33rd street";
-description "Lookup the next PATH train going your way";
-name "PATH";
-source "PATH";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/PATH.pm";
-topics "everyday";
-category "time_sensitive";
-attribution twitter => 'mattr555',
-            github => ['https://github.com/mattr555/', 'Matt Ramina'];
-
 spice to => 'http://njt-api.appspot.com/path/times/$1';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";

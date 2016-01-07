@@ -5,15 +5,6 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-primary_example_queries "github zeroclickinfo";
-description "Github info";
-name "Github";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Github.pm";
-topics "programming", "web_design";
-category "programming";
-attribution web => ['http://dylansserver.com','Dylan Lloyd'],
-            email => ['dylan@dylansserver.com','Dylan Lloyd'];
-
 triggers startend => "github";
 
 my @triggers = share("triggers.txt")->slurp;

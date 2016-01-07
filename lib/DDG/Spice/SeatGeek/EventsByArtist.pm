@@ -5,15 +5,6 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-primary_example_queries "live show weezer", "upcoming concerts bjork";
-description "Upcoming concerts from SeatGeek";
-name "SeatGeek Events By Artist";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SeatGeek/EventsByArtist.pm";
-category "entertainment";
-topics "entertainment", "music";
-attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
-    github => ['https://github.com/andrey-p','Andrey Pissantchev'];
-
 triggers startend =>
     'upcoming concert',
     'upcoming concerts',

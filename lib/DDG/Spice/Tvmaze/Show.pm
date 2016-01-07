@@ -8,16 +8,6 @@ use DDG::Spice;
 spice is_cached => 1;
 spice proxy_cache_valid => "200 301 302 404 1d";
 
-name "TVmaze";
-source "TVmaze";
-icon_url "/ip2/www.tvmaze.com.ico";
-description "Basic information about a TV show";
-primary_example_queries "homeland tv";
-category "entertainment";
-topics "entertainment";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Tvmaze/Show.pm";
-attribution github => ["https://github.com/tvdavid", "tvdavid"], twitter => "tvmaze";
-
 triggers startend => 'tv', 'tv show', 'tv series', 'series';
 triggers end => 'show';
 
