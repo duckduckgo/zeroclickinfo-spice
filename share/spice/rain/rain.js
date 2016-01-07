@@ -1,8 +1,6 @@
 (function(env) {
     "use strict";
     env.ddg_spice_rain = function(api_result) {
-        console.log(api_result);
-
         // Check for errors.
         if(!api_result || api_result.error || !api_result.currently || !api_result.flags['ddg-location']) {
             return Spice.failed('rain');
