@@ -39,6 +39,7 @@
         "pot": true,
         "ppc": true,
         "qrk": true,
+        "sdc": true,
         "utc": true,
         "wdc": true,
         "xpm": true,
