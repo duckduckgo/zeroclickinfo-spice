@@ -35,6 +35,7 @@
             },
             normalize: function(item) {
                 item.showBadge = item.is_prime;
+                item.image = item.img_m;
 
                 return item;
             },

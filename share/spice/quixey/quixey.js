@@ -119,8 +119,8 @@
                 var features = DDG.getProperty(item, "editions.0.custom.features") || {};
 
                 return {
-                    img:           DDG.toHTTPS(icon_url),
-                    img_m:         screenshot,
+                    image:         DDG.toHTTPS(icon_url),
+                    detail_image:  screenshot,
                     title:         item.name,
                     heading:       item.name,
                     rating:        features.rating_avg || item.rating,

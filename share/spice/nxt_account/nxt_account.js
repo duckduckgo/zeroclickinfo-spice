@@ -27,8 +27,7 @@
             },
             normalize: function(item) {
                 return {
-                    image: 'https://api.qrserver.com/v1/create-qr-code/?size=110x110&data='+api_result.accountRS,
-                    img_m: 'https://api.qrserver.com/v1/create-qr-code/?size=110x110&data='+api_result.accountRS
+                    image: 'https://api.qrserver.com/v1/create-qr-code/?size=110x110&data='+api_result.accountRS
                 };
             },
             templates: {

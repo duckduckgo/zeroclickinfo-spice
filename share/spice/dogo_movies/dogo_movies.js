@@ -34,8 +34,6 @@
                 return {
                     title: item.name,
                     image: thumb,
-                    img: thumb,
-                    img_m: thumb,
                     heading: item.name,
                     rating: item.ratings.score,
                     ratingText: item.comments_count,

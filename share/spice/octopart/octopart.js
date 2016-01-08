@@ -57,8 +57,8 @@
                  
                     brand: item.brand.name,
                     price: item.avg_price_v2[1] + ' $' + item.avg_price_v2[0].toFixed(2),
-                    img: images.medium,
-                    img_m: images.large,
+                    image: images.medium,
+                    detail_image: images.large,
                     url: item.octopart_url,
                     title: item.mpn,
                     heading: item.mpn,

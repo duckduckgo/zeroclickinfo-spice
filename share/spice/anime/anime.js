@@ -37,9 +37,7 @@
                 }
 
                 return {
-                    img: cover_image,
                     image: cover_image,
-                    img_m: cover_image,
                     heading: item.title,
                     title: item.title,
                     abstract: item.synopsis,

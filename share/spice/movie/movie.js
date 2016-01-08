@@ -113,10 +113,9 @@
                         // fallback to lo-res:
                         image: image || item.fallback_image,
 
-                        // don't fallback in detail pane because
-                        // it looks silly with the tiny image:
-                        img: image,
-                        img_m: image
+                        // don't fall back on detail pane because it looks silly
+                        // with the tiny image
+                        detail_image: image
                     });
                 });
             }

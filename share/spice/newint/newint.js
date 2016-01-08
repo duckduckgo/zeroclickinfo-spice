@@ -20,8 +20,7 @@
                     return {
                         subtitle: true,
                         release_date: moment(item.release).format('MMMM YYYY'),
-                        img: item.cover.thumb2x.url,
-                        img_m: item.cover.thumb2x.url,
+                        image: item.cover.thumb2x.url,
                         price: item.price ? item.price : "AUD$7.50",
                         heading: item.title,
                         editors_letter_html: DDG.strip_html(item.editors_letter_html),

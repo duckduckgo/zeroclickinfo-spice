@@ -45,8 +45,7 @@
                     };
                     spice.normalize = function(item) {
                         return {
-                            image: 'https://www.biteasy.com/blockchain/addresses/' + api_result.address + '/qrcode.jpeg',
-                            img_m: 'https://www.biteasy.com/blockchain/addresses/' + api_result.address + '/qrcode.jpeg'
+                            image: 'https://www.biteasy.com/blockchain/addresses/' + api_result.address + '/qrcode.jpeg'
                         };
                     };
                     spice.meta.sourceUrl = "https://www.biteasy.com/blockchain/addresses/" + api_result.address;

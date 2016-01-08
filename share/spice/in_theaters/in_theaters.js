@@ -109,8 +109,7 @@
 
                         // don't fall back on detail pane because it looks silly
                         // with the tiny image
-                        img: image,
-                        img_m: image
+                        detail_image: image
                     });
                 });
             }

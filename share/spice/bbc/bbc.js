@@ -100,8 +100,8 @@
                         rating: false,
                         buy: Spice.bbc.callout,
                         subtitle_content: Spice.bbc.subtitle_content,
-                        detailMediaShape: '16x9',
-                        detailDark: 'true'
+                        detailPaneMediaShape: '16x9',
+                        detailPaneDark: 'true'
                     },
                     variants: {
                         tile: "video"

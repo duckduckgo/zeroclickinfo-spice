@@ -28,6 +28,9 @@
             relevancy: {
                 dup: ['ASIN','img_m','img']
             },
+            normalize: function(item) {
+                item.image = item.img_m;
+            },
             onItemShown: function(item) {
                 var arg = item.rating,
                     url = '/m.js?r=';
