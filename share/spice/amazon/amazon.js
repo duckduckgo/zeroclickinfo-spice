@@ -51,7 +51,6 @@
                     if (r.stars.match(/stars-(\d)-(\d)/)) {
                         item.set({ rating:  RegExp.$1 + "." + RegExp.$2 });
                     }
-                    console.log("update reviewCount: ", item.id);
                     item.set({ reviewCount:  r.reviews });
                 });
 

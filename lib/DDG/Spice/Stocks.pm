@@ -4,13 +4,6 @@ package DDG::Spice::Stocks;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "stock quote AAPL";
-description "Shows stock quote for a ticker";
-name "Stocks";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Stocks.pm";
-topics "economy_and_finance";
-category "finance";
-
 # trigger is intentionally very specific, should trigger from internal view/deep triggers.
 # It's only here because I couldn't get the /js/stocks/ location to end up in generated nginx conf
 # unless I had at least some kind of trigger defined.

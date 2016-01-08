@@ -123,7 +123,7 @@
                     img_m:         screenshot,
                     title:         item.name,
                     heading:       item.name,
-                    rating:        item.rating,
+                    rating:        features.rating_avg || item.rating,
                     reviewCount:   features.allversions_rating_count || features.rating_count || null,
                     url_review:    item.dir_url,
                     price:         pricerange(item),

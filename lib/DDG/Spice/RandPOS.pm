@@ -4,17 +4,6 @@ package DDG::Spice::RandPOS;
 use DDG::Spice;
 use Text::Trim;
 
-name 'Random Part of Speech Words';
-source 'Wordnik';
-description 'Returns one or more random words in the specified part of speech.';
-primary_example_queries 'random noun','example adjectives','adverb example';
-category 'language';
-topics 'words_and_games','everyday';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RandPOS.pm';
-attribution github => ['https://github.com/SueSmith', 'SueSmith'],
-            web => ['http://benormal.info','Sue Smith'],
-            twitter => 'braindeadair';
-
 spice from => '([^/]+)/?(?:([^/]+)/?(?:([^/]+)|)|)';
 spice to => 'http://api.wordnik.com/v4/words.json/randomWords?includePartOfSpeech=$1&minCorpusCount=10000&limit=$2&api_key={{ENV{DDG_SPICE_WORDNIK_APIKEY}}}&callback={{callback}}';
 spice proxy_cache_valid => '418 1d';

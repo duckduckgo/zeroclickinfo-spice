@@ -7,17 +7,6 @@ use Text::Trim;
 
 spice is_cached => 1;
 
-name "IslamicPrayerTimes";
-description "Islamic prayer times for the current day and given location";
-primary_example_queries "islamic prayer times", "fethiye namaz times", "salat times in dc", "namaz times for san marino";
-category "time_sensitive";
-topics "special_interest", "everyday";
-
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/IslamicPrayerTimes.pm";
-attribution github  => ["https://github.com/ozdemirburak", "Burak Özdemir"],
-            twitter => ["https://twitter.com/ozdemirbur", "Burak Özdemir"],
-            web     => ["http://burakozdemir.co.uk", "Burak Özdemir"];
-
 spice to => 'http://muslimsalat.com/$1/weekly.json?key={{ENV{DDG_SPICE_MUSLIMSALAT_APIKEY}}}&callback={{callback}}';
 
 triggers startend => 'islamic prayer times', 'namaz times', 'salat times';

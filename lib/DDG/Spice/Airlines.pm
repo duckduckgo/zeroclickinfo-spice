@@ -4,19 +4,6 @@ package DDG::Spice::Airlines;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "AA 102";
-secondary_example_queries "Delta 3684";
-description "Flight information";
-name "Flight Info";
-icon_url "/i/flightstats.com.ico";
-source "FlightStats";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Airlines.pm";
-topics "economy_and_finance", "travel", "everyday";
-category "time_sensitive";
-attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
-            github => [ 'https://github.com/duckduckgo', 'DuckDuckGo'],
-            twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
-
 spice to => 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/$1/$2/arr/$3/$4/$5?hourOfDay=$6&utc=true&appId={{ENV{DDG_SPICE_FLIGHTS_API_ID}}}&appKey={{ENV{DDG_SPICE_FLIGHTS_APIKEY}}}&callback={{callback}}';
 spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';
 spice proxy_cache_valid => '418 1d';

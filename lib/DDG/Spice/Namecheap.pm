@@ -35,19 +35,6 @@ spice to => "https://duckduckgo.com/x.js?u=" . $query_url;
 
 spice wrap_jsonp_callback => 1;
 
-# Metadata for this spice
-name "Namecheap DNS";
-source "Namecheap";
-icon_url "https://www.namecheap.com/favicon.ico";
-description "Searches for DNS name availability";
-primary_example_queries "namecheap example.com", "namecheap ddg.gg";
-secondary_example_queries "namecheap http://example.com"; # a query that includes HTTP protocol scheme
-category "programming";
-topics 'computing', 'geek', 'programming', 'sysadmin';
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Namecheap.pm";
-attribution github => ["tejasmanohar", "Tejas Manohar"],
-            twitter => "tejasmanohar";
-
 # Triggers
 triggers startend => "namecheap";
 
