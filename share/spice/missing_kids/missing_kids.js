@@ -46,17 +46,17 @@
                 relativeTime : {
                     future: "in %s",
                     past:   "%s ago",
-                    s:  "seconds",
-                    m:  "1 minute",
-                    mm: "%d minutes",
-                    h:  "an hour",
-                    hh: "%d hours",
-                    d:  "1 day",
-                    dd: "%d days",
-                    M:  "1 month",
-                    MM: "%d months",
-                    y:  "1 year",
-                    yy: "%d years"
+                    s:  "s",
+                    m:  "1m",
+                    mm: "%dm",
+                    h:  "anh",
+                    hh: "%dh",
+                    d:  "1d",
+                    dd: "%dd",
+                    M:  "1mo",
+                    MM: "%dmo",
+                    y:  "1y",
+                    yy: "%dy"
                 }
             });
 
@@ -66,7 +66,7 @@
                 data: articles,
                 meta: {
                     primaryText: 'Missing children in ' + decodedQuery,
-                    sourceName: 'National Center for Missing & Exploited Children',
+                    sourceName: is_mobile ? 'NCEMC' : 'National Center for Missing & Exploited Children',
                     sourceUrl: 'http://www.missingkids.com',
                     count: articles.length
                 },
@@ -76,6 +76,9 @@
                     item_detail: false,
                     options: {
                         footer: Spice.missing_kids.footer
+                    },
+                    variants:{
+                        tileTitle: "1line"
                     }
                 },
                 normalize: function(item) {
