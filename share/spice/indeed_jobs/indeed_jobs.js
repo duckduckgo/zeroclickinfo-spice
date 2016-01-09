@@ -24,7 +24,7 @@
                 return {
                     url: item.url,
                     title: item.jobtitle,
-                    subtitle: item.company,
+                    subtitle: item.company || ' ', // has to translate to boolean(true)
                     description: DDG.strip_html(item.snippet)
                 };
             },
@@ -36,7 +36,8 @@
                     footer: Spice.indeed_jobs.footer
                 },
                 variants: {
-                    tileTitle: '2line',
+                    tile: 'wide',
+                    tileTitle: '1line',
                     tileSnippet: 'large',
                     tileFooter: '2line'
                 }
