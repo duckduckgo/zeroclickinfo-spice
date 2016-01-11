@@ -242,7 +242,27 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    
+    # Support slash format e.g AUD/USD
+    'aud/usd' => test_spice(
+        '/js/spice/currency/1/aud/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    'convert AUD/USD' => test_spice(
+        '/js/spice/currency/1/aud/usd',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
+    'convert 5 USD/AUD' => test_spice(
+        '/js/spice/currency/5/usd/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
 
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
