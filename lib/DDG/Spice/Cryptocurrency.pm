@@ -35,6 +35,21 @@ my @excludedCurrencies = (
     'usd'
 );
 
+# Used to filter on queries of the form '1 <cryptocurrency>'
+# Top currencies from coinmarketcap.com/currencies/
+my @topCurrencies = (
+    'btc',
+    'xrp',
+    'ltc',
+    'eth',
+    'dsh',
+    'doge',
+    'ppc',
+    'bts',
+    'str',
+    'nxt'
+);
+
 #Define regexes
 my $currency_qr = join('|', @currTriggers);
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
@@ -43,7 +58,7 @@ my $into_qr = qr/\s(?:en|in|to|in ?to|to|from)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $number_re = number_style_regex();
 
-my $guard = qr/^$question_prefix($number_re*?)\s?($currency_qr)(?:s)?(?:$into_qr|$vs_qr|$rate_qr|\s)?($number_re*?)\s?($currency_qr)?(?:s)?\??$/i;
+my $guard = qr/^$question_prefix($number_re*?\s+|)($currency_qr)(?:s)?(?:$into_qr|$vs_qr|$rate_qr|\s)?($number_re*?\s+|)($currency_qr)?(?:s)?\??$/i;
 
 # https://www.cryptonator.com/api/secondaries?primary=BTC
 # https://www.cryptonator.com/api/ticker/ltc-ftc
@@ -76,6 +91,7 @@ sub getCode {
 sub checkCurrencyCode {
     my($amount, $from, $to) = @_;
     my %excludedCurrencies = map { $_ => 1 } @excludedCurrencies;
+    my %topCurrencies = map { $_ => 1 } @topCurrencies;
     my $endpoint = '';
     my $query = '';
     my $query2 = '';
@@ -87,6 +103,13 @@ sub checkCurrencyCode {
     return unless $styler;
     
     my $normalized_number = $styler->for_computation($amount);
+    
+    # Handles queries of the form '1 <cryptocurrency>'
+    # Avoids triggering on common queries like '1 gig' or '1 electron'
+    # If the cryptocurrency is not in the top currencies list and the query does not include 'coin' then the spice is not triggered
+    if ($normalized_number == 1 && !exists($topCurrencies{getCode($from)}) && index($from, 'coin') == -1) {
+        return;
+    }
     
     # There are cases where people type in "2016 bitcoin", so we don't want to trigger on those queries.
     # The first cryptocoins appeared in 2008, so dates before that could be valid amounts.
