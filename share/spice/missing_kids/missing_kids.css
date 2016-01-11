@@ -19,3 +19,7 @@
 .tile--missing_kids .tile__foot {
     max-height: 4em;
 }
+
+.is-mobile .tile--missing_kids .tile__media {
+    height: 14em;
+}
