@@ -21,8 +21,11 @@
             obj.onItemShown = function(item) {
                 // Get filename from biophoto image url. Replace file extention jpg to png
                 // Use DDG.get_asset_path to get full path to images under spice directory
-                var imageFilename = item.biophoto.replace(/^.*[\\\/]/, ''),
-                    localImage = DDG.get_asset_path('people_in_space', "images/" + imageFilename)
+                var imageFilename = item.biophoto.replace(/^.*[\\\/]/, ''), 
+                    localImage = DDG.get_asset_path('people_in_space', "assets/" + imageFilename)
+                
+                // For retina screen return optimized images @2x.png
+                if (DDG.is3x || DDG.is2x) localImage = localImage.replace(/\.jpg/, '@2x.jpg')
                 
                 // Perform a HTTP GET request to retrieve local images using filename from API 
                 // This is used to determine if a local image exists 
