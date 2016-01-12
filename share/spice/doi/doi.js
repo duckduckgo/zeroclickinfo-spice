@@ -83,7 +83,3 @@ function ddg_spice_doi_bibtex(bibtex) {
     document.getElementById('bibtex').innerHTML = h(bibtex);
 
 }
-
-function h(txt) {
-    return txt.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
