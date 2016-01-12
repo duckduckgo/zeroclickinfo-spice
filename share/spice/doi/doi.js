@@ -17,7 +17,11 @@
             },
             normalize: function(item) {
                 return {
-                    title: api_result.title,
+                    title: item.title,
+                    subtitle: format_authors(item.author),
+                    record_data : {
+                        "DOI": item.DOI,
+                    }
                 };
             },
             templates: {
