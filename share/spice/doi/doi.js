@@ -7,24 +7,24 @@
         }
 
         // validity check
-        if (bib['DOI'] && bib['author'] && bib['title']) {
+        if (api_result.DOI && api_result.author && api_result.title) {
 
             items = new Array();
             items[0] = new Array();
-            items[0]['a'] = "by " + h(format_authors(bib['author']));
-            if (bib['issued'] && bib['issued']['raw']) {
-                items[0]['a'] += ", " + h(bib['issued']['raw']);
+            items[0].a = "by " + h(format_authors(api_result.author));
+            if (api_result.issued && api_result.issued.raw) {
+                items[0].a += ", " + h(api_result.issued.raw);
             }
-            items[0]['a'] += ", doi:" + h(bib['DOI']) + ". ";
-            items[0]['a'] += "<br />";
-            items[0]['a'] += "<pre style=\"display:none\" id=\"bibtex\"></pre>";
-            items[0]['a'] += "<a href=\"javascript:fetch_bibtex('" + h(bib['DOI']) + "');\")>BibTeX</a> &bull; ";
-            items[0]['h'] = h(bib['title']);
-            items[0]['s'] = "dx.doi.org";
-            if (bib['url']) {
-                items[0]['u'] = bib["URL"];
+            items[0].a += ", doi:" + h(api_result.DOI) + ". ";
+            items[0].a += "<br />";
+            items[0].a += "<pre style=\"display:none\" id=\"api_resulttex\"></pre>";
+            items[0].a += "<a href=\"javascript:fetch_api_resulttex('" + h(api_result.DOI) + "');\")>BibTeX</a> &bull; ";
+            items[0].h = h(api_result.title);
+            items[0].s = "dx.doi.org";
+            if (api_result.url) {
+                items[0].u = api_result["URL"];
             } else {
-                items[0]['u'] = "http://dx.doi.org/" + bib['DOI'];
+                items[0].u = "http://dx.doi.org/" + api_result.DOI;
             }
         }
         Spice.add({
@@ -53,24 +53,24 @@
 }(this));
 
 function format_author(author) {
-    if (author['family']) {
+    if (author.family) {
         var ret = "";
-        if (author['given']) {
-            ret += author['given'] + " ";
+        if (author.given) {
+            ret += author.given + " ";
         }
-        if (author['dropping-particle']) {
-            ret += author['dropping-particle'] + " ";
+        if (author.dropping-particle) {
+            ret += author.dropping-particle + " ";
         }
-        if (author['non-dropping-particle']) {
-            ret += author['non-dropping-particle'] + " ";
+        if (author.non-dropping-particle) {
+            ret += author.non-dropping-particle + " ";
         }
-        ret += author['family'];
-        if (author['suffix']) {
-            ret += " " + author['suffix'];
+        ret += author.family;
+        if (author.suffix) {
+            ret += " " + author.suffix;
         }
         return ret;
     } else {
-        return author['literal']
+        return author.literal
     }
 }
 
