@@ -5,7 +5,7 @@ use strict;
 use DDG::Spice;
 
 my $rating = '(?:g\s*|pg\s*|r\s*)?';
-triggers any => 'movie', 'movies', 'theaters', 'theatres', 'cinemas', 'cinema' ,'showing', 'something', 'watch', 'opening', 'see';
+triggers any => 'movie', 'movies', 'theaters', 'theatres', 'cinemas', 'showing', 'something', 'watch', 'opening', 'see';
 spice from => '(.*?)/(.*)';
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?country=$2&apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&callback={{callback}}&page_limit=30&limit=30';
 
