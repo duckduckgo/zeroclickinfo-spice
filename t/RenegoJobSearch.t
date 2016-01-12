@@ -11,6 +11,14 @@ use DDG::Request;
 ddg_spice_test(
     [qw(DDG::Spice::RenegoJobSearch)],
     DDG::Request->new(
+        query_raw => "manager berlin job",
+        location => test_location("de")
+    ) => test_spice(
+        '/js/spice/renego_job_search/manager%20berlin/M%C3%B6nchengladbach',
+        call_type => 'include',
+        caller => 'DDG::Spice::RenegoJobSearch'
+    ),
+    DDG::Request->new(
         query_raw => "manager berlin jobs",
         location => test_location("de")
     ) => test_spice(
