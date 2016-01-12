@@ -52,8 +52,6 @@
     };
 }(this));
 
-function ddg_spice_doi(bib) {
-
   function format_author(author) {
 	if (author['family']) {
 		var ret = "";
