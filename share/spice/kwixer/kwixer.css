@@ -1,5 +1,21 @@
-.zci--kwixer .btn.btn--primary {
-    margin-top: 1em;
+.kwixer-table {
+    display: block;
+}
+
+.kwixer-table__row {
+    position: relative;
+    padding-left: 5em;
+}
+
+.kwixer-table__title {
+    font-weight: normal;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.kwixer-table a {
+    color: inherit;
 }
 
 @media only screen
@@ -8,10 +24,5 @@ and (max-device-width: 400px) {
         max-height: 2.5em;
         overflow-y: hidden;
         text-overflow: ellipsis;
-    }
-
-    .zci--kwixer .detail--kwixer p {
-        padding-top: 0.2em;
-        padding-bottom: 0.2em;
     }
 }

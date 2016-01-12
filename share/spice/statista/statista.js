@@ -70,7 +70,7 @@
                         url: item.Link,
                         description: item.subject ,
                         image: getImage(item, 1, 1),
-                        img_m: getImage(item, 1, 0),
+                        detail_image: getImage(item, 1, 0),
                         heading: item.subject,
                         abstract: item.description,
                         footerdate: formatDate(item.date, moment),

@@ -24,6 +24,8 @@
             templates: {
                 group: 'products',
                 options: {
+                    detailLight: true,
+                    detailMediaShape: 'square',
                     buy: 'products_amazon_buy',
                     badge: 'products_amazon_badge'
                 }
@@ -33,6 +35,7 @@
             },
             normalize: function(item) {
                 item.showBadge = item.is_prime;
+                item.image = item.img_m;
 
                 return item;
             },

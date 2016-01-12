@@ -24,8 +24,6 @@
                 return {
                     title: item.name,
                     image: thumb,
-                    img: thumb,
-                    img_m: thumb,
                     heading: item.name,
                     rating: item.ratings.score,
                     ratingText: item.comments_count,
@@ -36,8 +34,10 @@
             },
             templates: {
                 group: 'movies',
+                item_detail: 'products_item_detail',
                 options: {
                     buy: Spice.dogo_books.buy,
+                    detailMediaWidth: 180,
                     rating: true
                 }
             }

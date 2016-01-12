@@ -37,9 +37,7 @@
                 }
 
                 return {
-                    img: cover_image,
                     image: cover_image,
-                    img_m: cover_image,
                     heading: item.title,
                     title: item.title,
                     abstract: item.synopsis,
@@ -49,6 +47,7 @@
             },
             templates: {
                 group: 'movies',
+                item_detail: 'products_item_detail',
                 options: {
                     subtitle_content: Spice.anime.subtitle_content,
                     rating: true,

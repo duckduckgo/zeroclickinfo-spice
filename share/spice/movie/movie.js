@@ -66,8 +66,9 @@
                     return {
                         rating: Math.max(item.ratings.critics_score / 20, 0),
                         icon_image: get_image(item.ratings.critics_rating),
-                        abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
+                        description: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
                         heading: item.title,
+                        subtitle: true,
                         fallback_image: item.posters.detailed,
                         image: null,
                         url: item.links.alternate,
@@ -79,7 +80,7 @@
                 group: 'movies',
                 options: {
                     subtitle_content: Spice.movie.subtitle_content,
-                    buy: Spice.movie.buy
+                    callout: Spice.movie.callout
                 },
                 variants: {
                     productSub: 'noMax'
@@ -112,10 +113,9 @@
                         // fallback to lo-res:
                         image: image || item.fallback_image,
 
-                        // don't fallback in detail pane because
-                        // it looks silly with the tiny image:
-                        img: image,
-                        img_m: image
+                        // don't fall back on detail pane because it looks silly
+                        // with the tiny image
+                        detail_image: image
                     });
                 });
             }

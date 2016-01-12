@@ -51,8 +51,6 @@
                 return {
                     url: "https://www.govtrack.us/congress/members/" + item.govtrack_id,
                     img: image,
-                    img_m: image,
-                    image: image,            
                     heading: name,
                     title: name,
                     party: party

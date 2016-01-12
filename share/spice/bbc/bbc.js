@@ -84,22 +84,24 @@
 
                     return {
                         title: item.programme.display_titles.title,
+                        heading: item.programme.display_titles.title,
                         ratingText: duration_text,
                         image: image(item),
                         img: image(item),
-                        img_m: image(item),
-                        heading: item.programme.display_titles.title,
-                        rating: "Unrated",
                         duration: duration(item),
                         url: programme_url(item),
+                        subtitle: duration(item),
                         abstract: item.programme.short_synopsis
                     };
                 },
                 templates: {
                     group: 'products_simple',
                     options: {
-                        buy: Spice.bbc.buy,
-                        subtitle_content: Spice.bbc.subtitle_content
+                        rating: false,
+                        buy: Spice.bbc.callout,
+                        subtitle_content: Spice.bbc.subtitle_content,
+                        detailPaneMediaShape: '16x9',
+                        detailPaneDark: 'true'
                     },
                     variants: {
                         tile: "video"

@@ -35,20 +35,20 @@
             normalize: function(item) {
                 return {
                     image: item.ResourceImageUrl,
-                    img_m: item.ResourceImageUrl,
                     title: item.ResourceTitle,
                     heading: item.ResourceTitle,
-                    ratingText: item.ResourceYear,
+                    altSubtitle: item.ResourceYear,
+                    description: item.ResourceTitle,
                     url: "https://kwixer.com/#/watching/movie/" + item.ResourceId
                 };
             },
             templates: {
                 group: 'movies',
-                detail: 'products_item_detail',
-                item: 'basic_image_item',
                 options: {
                     rating: false,
-                    buy: Spice.kwixer.buy
+                    hideDescLandscape: false,
+                    description_content: Spice.kwixer.table,
+                    callout: Spice.kwixer.callout
                 }
             }
         });

@@ -62,6 +62,7 @@
                 options: {
                     content: Spice.rx_info.rx_info,
                     description_content: Spice.rx_info.rx_info_description,
+                    detailMediaWidth: 350,
                     brand: false,
                     rating: false
                 }

@@ -66,8 +66,9 @@
                     return {
                         rating: item.ratings.critics_score >= 0 ? item.ratings.critics_score / 20 : 0,
                         icon_image: get_image(item.ratings.critics_rating),
-                        abstract: Handlebars.helpers.ellipsis(item.synopsis, 200),
+                        description: Handlebars.helpers.ellipsis(item.synopsis, 200),
                         heading: item.title,
+                        subtitle: true,
                         fallback_image: item.posters.detailed,
                         image: null,
                         url: item.links.alternate,
@@ -80,7 +81,7 @@
                 options: {
                     subtitle_content: Spice.in_theaters.subtitle_content,
                     rating: false,
-                    buy: Spice.in_theaters.buy
+                    callout: Spice.in_theaters.callout
                 },
                 variants: {
                     productSub: 'noMax'
@@ -108,8 +109,7 @@
 
                         // don't fall back on detail pane because it looks silly
                         // with the tiny image
-                        img: image,
-                        img_m: image
+                        detail_image: image
                     });
                 });
             }

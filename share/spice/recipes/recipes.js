@@ -7,7 +7,9 @@
     }
 
     var query = DDG.get_query(),
-        query_encoded = DDG.get_query_encoded();
+        query_encoded = DDG.get_query_encoded(),
+
+        largeImageSize = DDG.is3x ? '1140' : DDG.is2x ? '760' : '380';
 
     // delete for spice
     // if(!res.matches || !res.matches.length){ return; }
@@ -26,7 +28,9 @@
             m.title = m.heading = item.recipeName.replace(/ recipe/i,"");
             m.url = "http://www.yummly.com/recipe/" + item.id + '?prm-v1';
 
-            m.image = m.img = item.imageUrlsBySize['250'];
+            m.image = item.imageUrlsBySize['250'];
+            m.detail_image = m.image.replace(/=s250-c$/, '=s'+largeImageSize+'-c');
+
             m.ratingText = item.sourceDisplayName;
 
             /* detail */
@@ -126,11 +130,8 @@
         trump: searchContainedRecipe,   // XXX: signal?
 
         meta: {
-            // count: normalizedData.length,
-            total: res.totalMatchCount,
             searchTerm: searchTerm,
             itemType: 'Recipes',
-            detailBg: 'image',
             // TODO: the following metadata will be injected by spice
             sourceIconUrl: DDG.get_asset_path('recipes','yummly.com.ico'), // temp fix for pb
             sourceUrl: moreUrl,
@@ -162,11 +163,15 @@
 
         templates: {
             group: 'products_simple',
-            item_detail: Spice.recipes.recipes_item_detail,
+            detail_pane_content: Spice.recipes.recipes_item_detail,
+            detail_pane_media: 'detail_pane_media',
             options: {
                 brand: true,
                 rating: true,
-                buy: Spice.recipes.recipes_view_full,
+                detailPaneDark: true,
+                detailPaneMediaWidth: 600,
+                detailPaneMediaShape: 'square',
+                buy: Spice.recipes.recipes_more,
                 subtitle_content: Spice.recipes.recipes_subtitle,
                 description_content: Spice.recipes.recipes_ingredients
             }
