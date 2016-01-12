@@ -23,19 +23,13 @@ attribution github => ['https://github.com/mightycid','Sebastian Szeracki'];
 
 # Handle statement
 handle remainder => sub {
-    return unless $_  and $loc and $loc->country_code;
+    #restict to germany
+    return unless $_ and $loc and $loc->country_code and $loc->country_code eq 'DE'
 
-    # restrict to germany
-    if(($loc->country_code eq 'DE')) {
-        if($loc->city) {
-            # add city to search if present
-            return $_, $loc->city;
-        }
-        return $_;
-    }
+    #add city to search if defined
+    return $_, $loc->city if defined $loc->city;
 
-    return;
-
+    return $_;
 };
 
 1;
