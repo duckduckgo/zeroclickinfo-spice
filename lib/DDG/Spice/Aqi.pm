@@ -20,9 +20,15 @@ spice to => 'http://www.airnowapi.org/aq/observation/zipCode/current/?format=app
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-    my $query = shift;
+    my $query = lc(shift);
 
-    if($query eq 'local') {
+    if($query eq '' || $query eq 'local' || $query eq 'current') {
+
+        if($query eq '') {
+            # We don't want to trigger on empty strings with AQI as the
+            # trigger.
+            return if $req->{query_raw} =~ /\baqi\b/i;
+        }
 
         # Set $query to failed return value. This way we can keep `else`
         # statements limited.
