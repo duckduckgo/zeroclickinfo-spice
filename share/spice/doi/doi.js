@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_doi = function(api_result){
 
-        if (!api_result || api_result.error) {
+        if (!api_result || !api_result.DOI || !api_result.author || !api_result.title || api_result.error) {
             return Spice.failed('doi');
         }
 
