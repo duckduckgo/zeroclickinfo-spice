@@ -37,11 +37,11 @@ function format_author(author) {
         if (author.given) {
             ret += author.given + " ";
         }
-        if (author.dropping-particle) {
-            ret += author.dropping-particle + " ";
+        if (author['dropping-particle']) {
+            ret += author['dropping-particle'] + " ";
         }
-        if (author.non-dropping-particle) {
-            ret += author.non-dropping-particle + " ";
+        if (author['non-dropping-particle']) {
+            ret += author['non-dropping-particle'] + " ";
         }
         ret += author.family;
         if (author.suffix) {
