@@ -6,27 +6,6 @@
             return Spice.failed('doi');
         }
 
-        // validity check
-        if (api_result.DOI && api_result.author && api_result.title) {
-
-            items = new Array();
-            items[0] = new Array();
-            items[0].a = "by " + h(format_authors(api_result.author));
-            if (api_result.issued && api_result.issued.raw) {
-                items[0].a += ", " + h(api_result.issued.raw);
-            }
-            items[0].a += ", doi:" + h(api_result.DOI) + ". ";
-            items[0].a += "<br />";
-            items[0].a += "<pre style=\"display:none\" id=\"api_resulttex\"></pre>";
-            items[0].a += "<a href=\"javascript:fetch_api_resulttex('" + h(api_result.DOI) + "');\")>BibTeX</a> &bull; ";
-            items[0].h = h(api_result.title);
-            items[0].s = "dx.doi.org";
-            if (api_result.url) {
-                items[0].u = api_result["URL"];
-            } else {
-                items[0].u = "http://dx.doi.org/" + api_result.DOI;
-            }
-        }
         Spice.add({
             id: "doi",
 
