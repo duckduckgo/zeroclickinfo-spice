@@ -6,6 +6,28 @@
             return Spice.failed('doi');
         }
 
+  // validity check
+  if (bib['DOI'] && bib['author'] && bib['title']) {
+
+  	items = new Array();
+  	items[0] = new Array();
+	items[0]['a'] = "by " + h(format_authors(bib['author']));
+	if (bib['issued'] && bib['issued']['raw']) {
+		items[0]['a'] += ", " + h(bib['issued']['raw']);
+	}
+	items[0]['a'] += ", doi:" + h(bib['DOI']) + ". ";
+	items[0]['a'] += "<br />";
+	items[0]['a'] += "<pre style=\"display:none\" id=\"bibtex\"></pre>";
+	items[0]['a'] += "<a href=\"javascript:fetch_bibtex('" + h(bib['DOI']) + "');\")>BibTeX</a> &bull; ";
+	items[0]['h'] = h(bib['title']);
+	items[0]['s'] = "dx.doi.org";
+	if (bib['url']) {
+		items[0]['u'] = bib["URL"];
+	} else {
+		items[0]['u'] = "http://dx.doi.org/" + bib['DOI'];
+	}
+	nra(items);
+  }
         Spice.add({
             id: "doi",
 
@@ -72,29 +94,6 @@ function ddg_spice_doi(bib) {
   	return ret;
   }
 
-  // validity check
-  if (bib['DOI'] && bib['author'] && bib['title']) {
-
-  	items = new Array();
-  	items[0] = new Array();
-	items[0]['a'] = "by " + h(format_authors(bib['author']));
-	if (bib['issued'] && bib['issued']['raw']) {
-		items[0]['a'] += ", " + h(bib['issued']['raw']);
-	}
-	items[0]['a'] += ", doi:" + h(bib['DOI']) + ". ";
-	items[0]['a'] += "<br />";
-	items[0]['a'] += "<pre style=\"display:none\" id=\"bibtex\"></pre>";
-	items[0]['a'] += "<a href=\"javascript:fetch_bibtex('" + h(bib['DOI']) + "');\")>BibTeX</a> &bull; ";
-	items[0]['h'] = h(bib['title']);
-	items[0]['s'] = "dx.doi.org";
-	if (bib['url']) {
-		items[0]['u'] = bib["URL"];
-	} else {
-		items[0]['u'] = "http://dx.doi.org/" + bib['DOI'];
-	}
-	nra(items);
-  }
-}
 
 // This uses the dummy doi_bibtex spice to lookup the bibliography data in
 // bibtex format
