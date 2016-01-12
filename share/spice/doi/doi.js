@@ -26,7 +26,6 @@
 	} else {
 		items[0]['u'] = "http://dx.doi.org/" + bib['DOI'];
 	}
-	nra(items);
   }
         Spice.add({
             id: "doi",
