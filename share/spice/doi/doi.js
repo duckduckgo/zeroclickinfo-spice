@@ -1,3 +1,36 @@
+(function (env) {
+    "use strict";
+    env.ddg_spice_doi = function(api_result){
+
+        if (!api_result || api_result.error) {
+            return Spice.failed('doi');
+        }
+
+        Spice.add({
+            id: "doi",
+
+            name: "Reference", // Or Science?
+            data: api_result,
+            meta: {
+                sourceName: "dx.doi.org",
+                sourceUrl: api_result.URL
+            },
+            normalize: function(item) {
+                return {
+                    title: api_result.title,
+                };
+            },
+            templates: {
+                group: 'list_detail',
+                options: {
+                    content: 'record',
+                    moreAt: false
+                }
+            }
+        });
+    };
+}(this));
+
 function ddg_spice_doi(bib) {
 
   function format_author(author) {
