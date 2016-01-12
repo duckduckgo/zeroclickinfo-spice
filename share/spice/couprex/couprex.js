@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_couprex = function(api_result){
 
-        if (!api_result || api_result.error) {
+        if (!api_result || api_result.count === 0) {
             return Spice.failed('couprex');
         }
 
@@ -10,15 +10,17 @@
             source = $(script).attr("src"),
             query = decodeURIComponent(source.match(/couprex\/([^\/]+)/)[1]);
 
-        var numRe = /\d+/,
+
+        var numRe = /$\d+|\d+%|\bfree\b/,
             symbolRe = /[$%]/;
 
         function getNum(text){
+            var lcText = text.toLowerCase();
             var match = numRe.exec(text);
             if (!match) {
                 return null;
             }
-            return match[0].replace(symbolRe, "");
+            return match[0].replace(symbolRe, "").replace(/free/, "Free");
         }
 
         function getSymbol(text){
@@ -48,7 +50,8 @@
                         number: num,
                         symbol: getSymbol(item.title),
                         image: "http://logo.clearbit.com/" + company_url + "?size=40",
-                        description: DDG.strip_html(item.content)
+                        description: DDG.strip_html(item.content),
+                        brand: item.taxonomy_stores[0].title
                     };
                 },
                 templates: {
