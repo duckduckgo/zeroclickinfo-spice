@@ -25,9 +25,7 @@ spice accept_header => 'application/vnd.citationstyles.csl+json';
 spice is_cached => 1;
 
 handle matches => sub {
-    my ($uname) = @_;
-    return $uname if $uname;
-    return;
+    return $_[0];
 };
 
 
