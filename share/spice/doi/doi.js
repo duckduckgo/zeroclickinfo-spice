@@ -21,7 +21,7 @@
                 };
             },
             templates: {
-                group: 'list_detail',
+                group: 'list',
                 options: {
                     content: 'record',
                     moreAt: false
