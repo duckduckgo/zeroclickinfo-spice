@@ -98,7 +98,7 @@
             monthName: months[dateObj.getMonth()],
             year: dateObj.getFullYear(),
             placeName: placeName,
-            offset: chosen.time.timezone.offset.replace(/0|:/g, ""),
+            offset: chosen.time.timezone.offset,
             zone: chosen.time.timezone.zonename,
             country: chosen.geo.country.name
         };
