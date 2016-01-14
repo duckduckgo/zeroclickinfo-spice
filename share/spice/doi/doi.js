@@ -74,16 +74,3 @@ function format_authors(authors) {
     return ret;
 }
 
-
-// This uses the dummy doi_bibtex spice to lookup the bibliography data in
-// bibtex format
-function fetch_bibtex(doi) {
-    nrj("/js/spice/doi_bibtex/" + doi);
-}
-
-// And this is the return call, showing the bibtex display field.
-function ddg_spice_doi_bibtex(bibtex) {
-    document.getElementById('bibtex').style.display = 'block';
-    document.getElementById('bibtex').innerHTML = h(bibtex);
-
-}
