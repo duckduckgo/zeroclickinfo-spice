@@ -11,6 +11,7 @@
 
             name: "Reference", // Or Science?
             data: api_result,
+            signal: 'high',
             meta: {
                 sourceName: "dx.doi.org",
                 sourceUrl: api_result.URL
