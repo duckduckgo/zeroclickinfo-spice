@@ -11,10 +11,10 @@ spice wrap_jsonp_callback => 1;
 spice accept_header => 'application/vnd.citationstyles.csl+json';
 
 spice is_cached => 1;
+spice proxy_cache_valid => '200 7d';
 
 handle matches => sub {
     return $_[0];
 };
-
 
 1;
