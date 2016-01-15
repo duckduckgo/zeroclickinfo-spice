@@ -16,8 +16,8 @@
         
         DDG.require('moment.js', function() {
             Spice.add({
-                id: "grunt",
-                name: "Gulp Plugins",
+                id: "gulp",
+                name: "Software",
                 data: api_result.results,
                 meta: {
                     sourceName: 'Gulp',
@@ -31,8 +31,7 @@
                        !item.description.length || !item.rating.length || !item.modified.length) {
                         return;
                     }
-                    item.license = item.license || [];
-                    
+                    item.license = item.license || [];                    
                     
                     // Make sure that the query even exists in the name or description.
                     if(!query_re.test(item.name[0]) && !query_re.test(item.description[0]) && 
