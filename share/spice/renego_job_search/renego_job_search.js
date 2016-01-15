@@ -12,6 +12,18 @@
         var responseData = api_result.responseData;
         var queryParams = responseData.qparams;
 
+        var location = queryParams.l;
+        var radius = 0;
+        
+        var sourceUrl = "https://www.renego.de/?w=" + encodeURIComponent(queryParams.w);
+
+        if(location) {
+            sourceUrl += "&l=" + encodeURIComponent(location);
+            radius = 25;
+        }
+
+        sourceUrl += "&rd=" + radius + "&csid=label";
+
         DDG.require('moment.js', function(){
             // Render the response
             Spice.add({
@@ -20,7 +32,7 @@
                 data: responseData.jobs,
                 meta: {
                     sourceName: "Renego",
-                    sourceUrl: 'https://www.renego.de/?w=' + encodeURIComponent(queryParams.w) + '&l=' + encodeURIComponent(queryParams.l) + '&cid=duckduckgo&csid=label'
+                    sourceUrl: sourceUrl
                 },
                 normalize: function(item) {
                     return {
