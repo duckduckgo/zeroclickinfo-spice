@@ -10,7 +10,7 @@ triggers any => 'gulp plugin', 'gulp plugins', 'gulpjs', 'gulpjs plugin', 'gulpj
 
 handle remainder => sub {
     return $_ if length $_;
-    return $_;
+    return;
 };
 
 1;
