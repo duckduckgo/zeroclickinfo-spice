@@ -48,6 +48,21 @@ ddg_spice_test(
         caller    => 'DDG::Spice::InTheaters',
         is_cached => 0,
     ),
+    'currently in cinemas' => test_spice(
+        "/js/spice/in_theaters/in_theaters/US",
+        caller    => 'DDG::Spice::InTheaters',
+        is_cached => 0,
+    ),
+    'movies currently in cinemas' => test_spice(
+        "/js/spice/in_theaters/in_theaters/US",
+        caller    => 'DDG::Spice::InTheaters',
+        is_cached => 0,
+    ),
+    'movies in cinemas' => test_spice(
+        "/js/spice/in_theaters/in_theaters/US",
+        caller    => 'DDG::Spice::InTheaters',
+        is_cached => 0,
+    ),
 );
 
 done_testing;
