@@ -1,12 +1,16 @@
 (function (env) {
     "use strict";
     
-    // From http://stackoverflow.com/a/34064434/1546577
-    // This is used to decode entities that is often found in the descriptions.
-    function htmlDecode(input) {
-        var doc = new DOMParser().parseFromString(input, "text/html");
-        return doc.documentElement.textContent;
-    }
+    // From https://developer.mozilla.org/en-US/Add-ons/Code_snippets/HTML_to_DOM
+    // Used to decode entities.
+    var htmlDecode = (function() {
+        var doc = document.implementation.createHTMLDocument('div');
+        
+        return function(input) {
+            doc.documentElement.innerHTML = input;
+            return doc.body.textContent;
+        };
+    }());
     
     // Add a star beside the name if it's an official plugin.
     function officialPlugin(author) {
@@ -43,7 +47,7 @@
 
         Spice.add({
             id: "grunt",
-            name: "Grunt Plugins",
+            name: "Software",
             data: api_result.aaData,
             meta: {
                 sourceName: 'Grunt',
@@ -62,7 +66,7 @@
                 return {
                     // Remove the "grunt-" at the beginning of plugins.
                     // That's how they're displayed in http://gruntjs.com/plugins
-                    title: item.name.replace(grunt_re, '') +  ' ' + officialPlugin(item.a),
+                    title: officialPlugin(item.a) + ' ' + item.name.replace(grunt_re, ''),
                     subtitle: item.a || ' ',
                     description: htmlDecode(item.ds),
                     download_count: DDG.commifyNumber(item.dl),
@@ -74,10 +78,9 @@
                 detail: false,
                 item_detail: false,
                 variants: {
-                    tile: 'basic1',
                     tileTitle: '1line',
                     tileFooter: '2line',
-                    tileSnippet: 'large'
+                    tileSnippet: 'small'
                 },
                 options: {
                     content: Spice.grunt.content,
