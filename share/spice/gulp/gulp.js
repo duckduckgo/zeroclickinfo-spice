@@ -26,11 +26,6 @@
                     sourceUrl: 'http://gulpjs.com/plugins/'
                 },
                 normalize: function(item) {
-                    // Make sure we have everything we need.
-                    if(!item.name.length || !item.version.length || !item.keywords.length ||
-                       !item.description.length || !item.rating.length || !item.modified.length) {
-                        return;
-                    }
                     item.license = item.license || [];                    
                     
                     // Make sure that the query even exists in the name or description.
@@ -53,7 +48,6 @@
                     detail: false,
                     item_detail: false,
                     variants: {
-                        tile: 'basic1',
                         tileTitle: '1line',
                         tileFooter: '2line',
                         tileSnippet: 'large'
@@ -62,6 +56,15 @@
                         moreAt: true,
                         footer: Spice.gulp.footer
                     }
+                },
+                relevancy: {
+                    primary: [
+                        { required: 'name.length' },
+                        { required: 'version.length' },
+                        { required: 'keywords.length' },
+                        { required: 'description.length' },
+                        { required: 'modified.length' }
+                    ]
                 }
             });
         });
