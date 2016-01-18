@@ -1,27 +1,7 @@
-.tile--congress{
-	width: 10em;
-	height: 17em;
-}
-
-.tile--congress .tile__media--pr .tile__media__img {
-	max-height: 125%;
-}
-
-.tile--congress .tile__body {
-	height:5em;
-}
-
 .tile--congress .tile__media {
-    margin-top: 1.4em;
-    height: 110px;
-    width: 110px;
-    border-radius: 100%;
+    height: 14em;
 }
 
-.tile--congress .tile__title {
-    vertical-align: middle;
-    font-weight: 400;
-    display: table-cell;
-    width: 150px;
-    text-align: center;
+.tile--congress .tile__foot .tile__sub {
+    margin-bottom: 0;
 }

@@ -18,6 +18,8 @@
             itemType =  'U.S. ' + 'Senators from ' + state;
         }
 
+        console.log(api_result.results);
+        
         Spice.add({
             id: 'congress',
             name: 'Congress',
@@ -55,6 +57,7 @@
                     image: image,            
                     heading: name,
                     title: name,
+                    district: DDG.getOrdinal(item.district),
                     party: party
                 };
             },
@@ -63,8 +66,8 @@
                     if(chamber !== 'house') {
                         return;
                     }
-                    var x = a.district;
-                    var y = b.district;
+                    var x = Number.parseInt(a.district);
+                    var y = Number.parseInt(b.district);
                     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
                 }
             },
@@ -77,7 +80,10 @@
                     tile: 'narrow',
                 },
                 elClass: {
-                    tileTitle: 'tx--15'
+                    tileTitle: 'tx--14'
+                },
+                options: {
+                    footer: Spice.congress.footer
                 }
             }
         });
