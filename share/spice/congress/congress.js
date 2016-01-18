@@ -64,8 +64,8 @@
                     if(chamber !== 'house') {
                         return;
                     }
-                    var x = Number.parseInt(a.district);
-                    var y = Number.parseInt(b.district);
+                    var x = parseInt(a.district);
+                    var y = parseInt(b.district);
                     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
                 }
             },
@@ -78,7 +78,7 @@
                     tile: 'narrow',
                 },
                 elClass: {
-                    tileTitle: 'tx--14'
+                    tileTitle: 'tx--14' 
                 },
                 options: {
                     footer: Spice.congress.footer
