@@ -1,9 +1,9 @@
 (function (env) {
-    "use strict";
+    'use strict';
     env.ddg_spice_spotify = function(api_result){
 
         var query = DDG.get_query();
-        query = query.replace(/spotify/, ""); //replace trigger words from query
+        query = query.replace(/spotify/, ''); //replace trigger words from query
 
         // Validate the response (customize for your Spice)
         if (!api_result || api_result.tracks.items.length === 0) {
@@ -12,14 +12,14 @@
 
         // Render the response
         Spice.add({
-            id: "spotify",
+            id: 'spotify',
 
             // Customize these properties
-            name: "Spotify",
+            name: 'Spotify',
             data: api_result.tracks.items,
             meta: {
-                sourceName: "Spotify.com",
-                sourceUrl: 'https://api.spotify.com/v1/search?q=' + query.trim() + '&type=track',
+                sourceName: 'Spotify.com',
+                sourceUrl: 'https://play.spotify.com/search/' + query.trim(),
             },
             normalize: function(item) {
                 return {
