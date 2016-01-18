@@ -1,27 +1,19 @@
-.tile--congress{
-	width: 10em;
-	height: 17em;
+/* Increase padding-bottom half an em to add some space. */
+.tile--congress .tile__body.has-foot {
+    padding-bottom: 2.87em;
 }
 
-.tile--congress .tile__media--pr .tile__media__img {
-	max-height: 125%;
+.tile--congress .tile__foot {
+    padding-bottom: 1em;
 }
 
-.tile--congress .tile__body {
-	height:5em;
-}
-
+/* The images are a bit weird, so it's best to adjust the height of the 
+   tile to see more of the image. */
 .tile--congress .tile__media {
-    margin-top: 1.4em;
-    height: 110px;
-    width: 110px;
-    border-radius: 100%;
+    height: 40%;
 }
 
-.tile--congress .tile__title {
-    vertical-align: middle;
-    font-weight: 400;
-    display: table-cell;
-    width: 150px;
-    text-align: center;
+/* The .tile__sub have a margin-bottom, but that takes up too much space. */
+.tile--congress .tile__foot .tile__sub {
+    margin-bottom: 0;
 }

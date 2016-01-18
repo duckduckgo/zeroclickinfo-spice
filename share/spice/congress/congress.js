@@ -55,6 +55,7 @@
                     image: image,            
                     heading: name,
                     title: name,
+                    district: DDG.getOrdinal(item.district),
                     party: party
                 };
             },
@@ -63,8 +64,8 @@
                     if(chamber !== 'house') {
                         return;
                     }
-                    var x = a.district;
-                    var y = b.district;
+                    var x = parseInt(a.district);
+                    var y = parseInt(b.district);
                     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
                 }
             },
@@ -77,7 +78,10 @@
                     tile: 'narrow',
                 },
                 elClass: {
-                    tileTitle: 'tx--15'
+                    tileTitle: 'tx--14' 
+                },
+                options: {
+                    footer: Spice.congress.footer
                 }
             }
         });
