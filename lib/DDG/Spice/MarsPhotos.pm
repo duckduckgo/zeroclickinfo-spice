@@ -19,6 +19,17 @@ handle remainder => sub {
     # date needs to be yyyy-mm-dd
     my $date = $remainder;
     $date =~ s/$rover//;
+
+    # get yesterdays date
+    if(!$date){
+        my @parts = localtime(time);
+        my ($day, $month, $year) = @parts[3..5];
+        $year += 1900;
+        $month += 1;
+        $day -= 1;
+        $date = qq($year-$month-$day);
+    }
+    
     return $rover,$date;
 };
 

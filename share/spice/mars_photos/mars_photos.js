@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
     env.ddg_spice_mars_photos = function(api_result){
-        if (!api_result || api_result.error) {
+        if (!api_result || api_result.error || !api_result.photos || api_result.photos.length < 1) {
             return Spice.failed('mars_photos');
         }
 
@@ -10,8 +10,7 @@
             name: "Mars Photos",
             data: api_result.photos,
             meta: {
-                sourceName: "nasa.com",
-                sourceUrl: 'http://nasa.gov/url/to/details/' + api_result.name
+                sourceName: "NASA",
             },
             normalize: function(item) {
                 return {
