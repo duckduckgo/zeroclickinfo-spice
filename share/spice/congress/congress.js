@@ -18,8 +18,6 @@
             itemType =  'U.S. ' + 'Senators from ' + state;
         }
 
-        console.log(api_result.results);
-        
         Spice.add({
             id: 'congress',
             name: 'Congress',
