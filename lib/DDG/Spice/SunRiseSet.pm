@@ -9,6 +9,19 @@ spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "12h";
 
 triggers startend => "sunset", "sunrise";
+triggers start => 
+    "when is the sunrise",
+    "when is the sunset",
+    "when is sunrise",
+    "when is sunset",    
+    "when does the sun rise",
+    "when does the sun set",
+    "when does sun rise",
+    "when does sun set",
+    "when will the sun rise",
+    "when will the sun set",
+    "when will sun rise",
+    "when will sun set";
 
 my $capitals = LoadFile(share('capitals.yml'));
 
