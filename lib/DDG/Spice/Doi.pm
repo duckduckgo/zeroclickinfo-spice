@@ -11,15 +11,6 @@ spice wrap_jsonp_callback => 1;
 spice is_cached => 1;
 spice proxy_cache_valid => '200 7d';
 
-spice alt_to => {
-    doi_bibtex => {
-        to => 'http://dx.doi.org/$1',
-        accept_header => 'application/x-bibtex',
-        is_cached => 1,
-        proxy_cache_valid => '200 7d',
-    }
-};
-
 handle matches => sub {
     return $_[0];
 };
