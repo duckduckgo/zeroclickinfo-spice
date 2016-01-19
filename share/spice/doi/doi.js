@@ -20,7 +20,7 @@
                 return {
                     url: item.URL,
                     title: item.title,
-                    subtitle: sprintf( '%s, %s, DOI:%s', format_authors(item.author), item.issued.raw, item.DOI ),
+                    subtitle: sprintf( '%s, %s, DOI:%s', format_authors(item.author), item.issued.raw, item.DOI )
                 }
             },
             templates: {
@@ -29,7 +29,7 @@
                     moreAt: true,
                     moreText: {
                         href: "/js/spice/doi_bibtex/" + api_result.DOI,
-                        text: 'BibTeX',
+                        text: 'BibTeX'
                     }
                 }
             }
