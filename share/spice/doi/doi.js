@@ -35,44 +35,44 @@
             }
         });
     };
-}(this));
 
-function format_author(author) {
-    if (author.family) {
+    function format_author(author) {
+        if (author.family) {
+            var ret = "";
+            if (author.given) {
+                ret += author.given + " ";
+            }
+            if (author['dropping-particle']) {
+                ret += author['dropping-particle'] + " ";
+            }
+            if (author['non-dropping-particle']) {
+                ret += author['non-dropping-particle'] + " ";
+            }
+            ret += author.family;
+            if (author.suffix) {
+                ret += " " + author.suffix;
+            }
+            return ret;
+        } else {
+            return author.literal
+        }
+    }
+
+    function format_authors(authors) {
+        var i = 0;
         var ret = "";
-        if (author.given) {
-            ret += author.given + " ";
+        while (authors.length - i > 3) {
+            ret += format_author(authors[i]);
+            ret += ", ";
+            i++;
         }
-        if (author['dropping-particle']) {
-            ret += author['dropping-particle'] + " ";
+        while (authors.length - i > 1) {
+            ret += format_author(authors[i]);
+            ret += " and ";
+            i++;
         }
-        if (author['non-dropping-particle']) {
-            ret += author['non-dropping-particle'] + " ";
-        }
-        ret += author.family;
-        if (author.suffix) {
-            ret += " " + author.suffix;
-        }
+        ret += format_author(authors[i]);
         return ret;
-    } else {
-        return author.literal
     }
-}
 
-function format_authors(authors) {
-    var i = 0;
-    var ret = "";
-    while (authors.length - i > 3) {
-        ret += format_author(authors[i]);
-        ret += ", ";
-        i++;
-    }
-    while (authors.length - i > 1) {
-        ret += format_author(authors[i]);
-        ret += " and ";
-        i++;
-    }
-    ret += format_author(authors[i]);
-    return ret;
-}
-
+}(this));
