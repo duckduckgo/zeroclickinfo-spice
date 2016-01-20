@@ -16,6 +16,7 @@ spice to => 'http://couprex.com/?json=get_search_results&search=$1';
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
+    s/\bfree\b//;
     return $_ if $_;
     return;
 };

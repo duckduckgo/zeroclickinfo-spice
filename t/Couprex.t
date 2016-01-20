@@ -28,8 +28,8 @@ ddg_spice_test(
         caller => 'DDG::Spice::Couprex'
     ),
 
-    # TODO
-    # 'bad example query' => undef,
+    'coupons' => undef,
+    'free deals' => undef
 );
 
 done_testing;
