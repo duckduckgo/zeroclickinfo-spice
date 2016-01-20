@@ -5,7 +5,7 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-triggers start => "weather";
+triggers start => "weather","forecast";
 
 spice from => '([^/]*)/?([^/]*)';
 spice to => 'http://forecast.io/ddg?apikey={{ENV{DDG_SPICE_FORECAST_APIKEY}}}&q=$1&callback={{callback}}';
