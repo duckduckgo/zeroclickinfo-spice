@@ -9,18 +9,27 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::Couprex)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/couprex/query',
+
+    'electronics coupons' => test_spice(
+        '/js/spice/couprex/electronics',
         call_type => 'include',
         caller => 'DDG::Spice::Couprex'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+
+    'coupon codes for walgreens' => test_spice(
+        '/js/spice/couprex/walgreens',
+        call_type => 'include',
+        caller => 'DDG::Spice::Couprex'
+    ),
+
+    'coupon codes for walgreens' => test_spice(
+        '/js/spice/couprex/walgreens',
+        call_type => 'include',
+        caller => 'DDG::Spice::Couprex'
+    ),
+
+    # TODO
+    # 'bad example query' => undef,
 );
 
 done_testing;
-
