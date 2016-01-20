@@ -1,5 +1,15 @@
 (function (env) {
     "use strict";
+
+    // Decode entities
+    // Source: https://developer.mozilla.org/en-US/Add-ons/Code_snippets/HTML_to_DOM
+    var doc = document.implementation.createHTMLDocument('div');
+
+    function htmlDecode (input) {
+        doc.documentElement.innerHTML = input;
+        return doc.body.textContent;
+    }
+
     env.ddg_spice_couprex = function(api_result){
 
         if (!api_result || api_result.count === 0) {
@@ -10,25 +20,6 @@
             source = $(script).attr("src"),
             query = decodeURIComponent(source.match(/couprex\/([^\/]+)/)[1]);
 
-
-        var numRe = /$\d+|\d+%|\bfree\b/,
-            symbolRe = /[$%]/;
-
-        function getNum(text){
-            var lcText = text.toLowerCase();
-            var match = numRe.exec(text);
-            if (!match) {
-                return null;
-            }
-            return match[0].replace(symbolRe, "").replace(/free/, "Free");
-        }
-
-        function getSymbol(text){
-            var array = symbolRe.exec(text);
-            return array[0] || null;
-        }
-
-
         DDG.require('moment.js', function(){
             Spice.add({
                 id: "couprex",
@@ -36,31 +27,31 @@
                 data: api_result.posts,
                 meta: {
                     sourceName: "Couprex",
-                    sourceUrl: 'http://couprex.com/?s=' + query
+                    sourceUrl: "http://couprex.com/?s=" + query,
+                    snippetChars: 130
                 },
                 normalize: function(item) {
-                    var company_url = item.custom_fields.clpr_coupon_aff_url[0].replace(/(https?:\/\/)?www\./, "");
-
-                    var num = getNum(item.title);
-                    if (!num){
-                        return false;
-                    }
+                    var company_url = item.custom_fields.clpr_coupon_aff_url[0].replace(/(https?:\/\/)?www\./, ""),
+                        descriptionText = htmlDecode(item.content);
 
                     return {
-                        number: num,
-                        symbol: getSymbol(item.title),
-                        image: "http://logo.clearbit.com/" + company_url + "?size=40",
-                        description: DDG.strip_html(item.content),
-                        brand: item.taxonomy_stores[0].title
+                        title: htmlDecode(item.title),
+                        subtitle: item.taxonomy_stores[0].title,
+                        description: descriptionText,
+                        image: "http://logo.clearbit.com/" + company_url + "?size=100",
+                        url: item.url
                     };
                 },
                 templates: {
-                    group: 'base',
+                    group: 'media',
                     detail: false,
                     item_detail: false,
                     options: {
-                        moreAt: true,
-                        content: Spice.couprex.content
+                        moreAt: true
+                    },
+                    variants: {
+                        tileTitle: '3line-large',
+                        tileSnippet: 'large'
                     },
                     elClass: {
                         tileBody: "text-center"
