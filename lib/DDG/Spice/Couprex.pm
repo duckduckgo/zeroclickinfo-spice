@@ -1,8 +1,6 @@
 package DDG::Spice::Couprex;
 
-# ABSTRACT: Write an abstract here
-# Start at https://duck.co/duckduckhack/spice_overview if you are new
-# to instant answer development
+# ABSTRACT: Couprex coupon, discount and deal search
 
 use DDG::Spice;
 
