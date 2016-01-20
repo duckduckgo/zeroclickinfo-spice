@@ -19,10 +19,11 @@ spice to => 'http://example.com/search/$1';
 triggers any => 'triggerWord', 'trigger phrase';
 
 # Handle statement
-handle remainder => sub {
+handle <: $ia_handler :> => sub {
 
-    # Query is in $_...if you need to do something with it before returning
-    return $_;
+    # Query is in $_ or @_, depending on the handle you chose...if you
+    # need to do something with it before returning
+    return \<: $ia_handler_var :>_;
 };
 
 1;
