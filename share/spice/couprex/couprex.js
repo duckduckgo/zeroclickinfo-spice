@@ -26,7 +26,7 @@
                 name: "Coupons",
                 data: api_result.posts,
                 meta: {
-                    sourceName: "Couprex",
+                    sourceName: "CoupRex",
                     sourceUrl: "http://couprex.com/?s=" + query,
                     snippetChars: 130
                 },
@@ -50,8 +50,8 @@
                         moreAt: true
                     },
                     variants: {
-                        tileTitle: '3line-large',
-                        tileSnippet: 'large'
+                        tileTitle: '2line-large',
+                        tileSnippet: 'small'
                     },
                     elClass: {
                         tileBody: "text-center"
