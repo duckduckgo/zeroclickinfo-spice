@@ -1,36 +1,8 @@
-.zci--couprex .tile--couprex {
+/*.zci--couprex .tile--couprex {
 	height: 20em;
 	width: 15em;
-}
+}*/
 
-.zci--couprex .couprex__title {
-	padding: 0 .5em;
-}
-
-.zci--couprex .couprex__number {
-	font-size: 6em;
-	font-weight: bold;
-}
-
-.zci--couprex .couprex__symbol {
-	font-size: 2em;
-	top: 15px;
-	position: absolute;
-}
-
-.zci--couprex .couprex__description {
-	border-top: 1px solid #e1e1e1;
-	border-bottom: 1px solid #e1e1e1;
-	padding: 0.5em 0;
-	height: 4em;
-}
-
-.zci--couprex .couprex__description p {
-	display: table-cell;
-	vertical-align: middle;
-	height: 4em;
-}
-
-.zci--couprex .couprex__image {
+.zci--couprex .tile__media {
 	margin-top: 1.5em;
 }
