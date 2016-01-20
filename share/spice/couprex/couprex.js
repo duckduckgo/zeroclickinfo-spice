@@ -10,6 +10,8 @@
         return doc.body.textContent;
     }
 
+    var dealRe = /\bdeals?|promotions?\b/;
+
     env.ddg_spice_couprex = function(api_result){
 
         if (!api_result || api_result.count === 0) {
@@ -19,6 +21,8 @@
         var script = $('[src*="/js/spice/couprex/"]')[0],
             source = $(script).attr("src"),
             query = decodeURIComponent(source.match(/couprex\/([^\/]+)/)[1]);
+
+        var origQuery = DDG.get_query();
 
         DDG.require('moment.js', function(){
             Spice.add({
@@ -33,6 +37,10 @@
                 normalize: function(item) {
                     var company_url = item.custom_fields.clpr_coupon_aff_url[0].replace(/(https?:\/\/)?www\./, ""),
                         descriptionText = htmlDecode(item.content);
+
+                    if (!dealRe.test(origQuery) && item.taxonomy_coupon_type[0].slug === "promotion"){
+                        return false;
+                    }
 
                     return {
                         title: htmlDecode(item.title),
