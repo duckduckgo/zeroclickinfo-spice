@@ -78,7 +78,7 @@
                     moreAt: true,
                     content: Spice.people_in_space.content
                 }
-            },
+            }
         };
 
         DDG.require("moment.js", function() {
