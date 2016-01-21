@@ -16,7 +16,7 @@ spice wrap_jsonp_callback => 0; # only enable for non-JSONP APIs (i.e. no &callb
 spice to => 'http://example.com/search/$1';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers any => 'triggerWord', 'trigger phrase';
+triggers <: $ia_trigger :>;
 
 # Handle statement
 handle <: $ia_handler :> => sub {
