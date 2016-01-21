@@ -2,10 +2,7 @@
     "use strict";
     env.ddg_spice_thumbtack = function(api_result){
 
-        // Don't show anything if we weren't able to return 2 or more services.
-        // In future iterations, we should support a different view in the case
-        // of a single result.
-        if (!api_result || api_result.error) {
+        if (!api_result || api_result.error || !api_result.data || !api_result.data.length) {
             return Spice.failed('thumbtack');
         }
 
