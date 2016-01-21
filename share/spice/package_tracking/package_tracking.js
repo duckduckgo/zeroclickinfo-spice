@@ -1,41 +1,37 @@
 (function (env) {
     "use strict";
     env.ddg_spice_package_tracking = function(api_result){
-
-        // Validate the response (customize for your Spice)
         if (!api_result || api_result.error) {
             return Spice.failed('package_tracking');
         }
-
-        // Render the response
         Spice.add({
             id: "package_tracking",
-
-            // Customize these properties
             name: "Answer",
-            //data: api_result,
             data: {
-                title: api_result.c,  
-                image: DDG.get_asset_path('package_tracking', 'logos/' + api_result.c + '.png')
+                title: api_result.status_description,  
+                subtitle: api_result.location,
+                description: "Last update: " + DDG.getDateFromString(api_result.progress_at),
+                image: DDG.get_asset_path('package_tracking', 'logos/' + api_result.c + '.png'),
+                infoboxData: [
+                    {
+                        heading: "Info shipping"
+                    },
+                    {
+                        label: "Shipped at: ",
+                        value: DDG.getDateFromString(api_result.shipped_at)
+                    },
+                    {
+                        label: "Scheduled delivery at: ",
+                        value: DDG.getDateFromString(api_result.est_delivery_at)
+                    },
+                    {
+                        label: "Delivery at: ",
+                        value: DDG.getDateFromString(api_result.act_delivery_at)
+                    },
+                ]
             },
-            //meta: {
-               // #sourceName: "Example.com",
-               //sourceUrl: 'http://example.com/url/to/details/' + api_result.name
-            //},
-           // normalize: function(item) {
-           //     return {
-                    // customize as needed for your chosen template
-                    //title: api_result.title,
-                    //subtitle: api_result.subtitle,
-                   // image: api_result.icon
-           //     };
-           // },
             templates: {
                 group: 'info',
-               // options: {
-                    //content: Spice.package_tracking.content,
-                    //moreAt: true
-               // }
             }
         });
     };
