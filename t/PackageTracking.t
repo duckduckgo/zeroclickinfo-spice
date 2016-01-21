@@ -9,18 +9,11 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::PackageTracking)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/package_tracking/query',
+    'shipping status C11422907783469' => test_spice(
+        '/js/spice/package_tracking/C11422907783469',
         call_type => 'include',
         caller => 'DDG::Spice::PackageTracking'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
 );
 
 done_testing;
-
