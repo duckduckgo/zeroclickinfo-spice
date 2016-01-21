@@ -119,8 +119,7 @@
     }
 
     var build_daily = function(f) {
-      var dailyObj = [],
-          day_strs = [],
+      var dailyObj = [],          
           today = moment(),
           today_i = today.day(),
           month_i = today.month(),
