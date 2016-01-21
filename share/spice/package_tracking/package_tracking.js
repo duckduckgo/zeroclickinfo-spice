@@ -13,25 +13,29 @@
 
             // Customize these properties
             name: "Answer",
-            data: api_result,
+            //data: api_result,
+            data: {
+                title: api_result.c,  
+                image: DDG.get_asset_path('package_tracking', 'logos/' + api_result.c + '.png')
+            },
             //meta: {
                // #sourceName: "Example.com",
                //sourceUrl: 'http://example.com/url/to/details/' + api_result.name
             //},
-            normalize: function(item) {
-                return {
+           // normalize: function(item) {
+           //     return {
                     // customize as needed for your chosen template
                     //title: api_result.title,
                     //subtitle: api_result.subtitle,
                    // image: api_result.icon
-                };
-            },
+           //     };
+           // },
             templates: {
                 group: 'info',
-                options: {
-                    content: Spice.package_tracking.content,
-                    moreAt: true
-                }
+               // options: {
+                    //content: Spice.package_tracking.content,
+                    //moreAt: true
+               // }
             }
         });
     };
