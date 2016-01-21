@@ -1,29 +1,20 @@
 package DDG::Spice::PackageTracking;
 
-# ABSTRACT: Write an abstract here
-
-# Start at http://docs.duckduckhack.com/walkthroughs/forum-lookup.html if you are new
-# to instant answer development
-
 use DDG::Spice;
 
-# Caching - http://docs.duckduckhack.com/backend-reference/api-reference.html#caching
 spice is_cached => 1;
-spice proxy_cache_valid => "200 1d"; # defaults to this automatically
+spice proxy_cache_valid => "200 1d";
 
-spice wrap_jsonp_callback => 0; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
+spice wrap_jsonp_callback => 1;
 
-# API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
-spice to => 'http://example.com/search/$1';
+spice to => 'https://api.packagetrackr.com/ddg/v1/track/simple?n=$1&api_key={{ENV{DDG_SPICE_PACKAGETRACKR_API_KEY}}}';
 
-# Triggers - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#triggers
-triggers any => 'triggerWord', 'trigger phrase';
+triggers any => 'package';
 
-# Handle statement
 handle remainder => sub {
-
-    # Query is in $_...if you need to do something with it before returning
-    return $_;
+    return $_ if $_;
+    
+    return;
 };
 
 1;

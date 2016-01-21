@@ -12,22 +12,22 @@
             id: "package_tracking",
 
             // Customize these properties
-            name: "AnswerBar title",
+            name: "Answer",
             data: api_result,
-            meta: {
-                sourceName: "Example.com",
-                sourceUrl: 'http://example.com/url/to/details/' + api_result.name
-            },
+            //meta: {
+               // #sourceName: "Example.com",
+               //sourceUrl: 'http://example.com/url/to/details/' + api_result.name
+            //},
             normalize: function(item) {
                 return {
                     // customize as needed for your chosen template
-                    title: api_result.title,
-                    subtitle: api_result.subtitle,
-                    image: api_result.icon
+                    //title: api_result.title,
+                    //subtitle: api_result.subtitle,
+                   // image: api_result.icon
                 };
             },
             templates: {
-                group: 'your-template-group',
+                group: 'info',
                 options: {
                     content: Spice.package_tracking.content,
                     moreAt: true
