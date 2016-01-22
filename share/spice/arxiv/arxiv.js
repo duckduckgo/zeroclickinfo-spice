@@ -17,7 +17,10 @@
             },
             normalize: function(item) {
                 return {
-                    title: item.feed.entry.title.text,
+                    title: sprintf( "%s (%s)",
+                        item.feed.entry.title.text,
+                        item.feed.entry.published.text.replace( /^(\d{4}).*/, "$1" )
+                    ),
                     url: item.feed.entry.link[0].href,
                     subtitle: item.feed.entry.author.map( function(e) {
                         return e.name.text;
