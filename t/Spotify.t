@@ -12,24 +12,18 @@ spice is_cached => 0;
 ddg_spice_test(
     [qw( DDG::Spice::Spotify)],
     DDG::Request->new(
-        query_raw => 'spotify madonna',
+        query_raw => 'abba on spotify',
         location => test_location('de')
     ) => test_spice(
-        '/js/spice/spotify/madonna/DE',
+        '/js/spice/spotify/abba/DE',
         call_type => 'include',
         caller => 'DDG::Spice::Spotify',
     ),
-    'spotify madonna' => test_spice(
+    'madonna on spotify' => test_spice(
         '/js/spice/spotify/madonna/US',
         call_type => 'include',
         caller => 'DDG::Spice::Spotify'
     ),
-    'madonna spotify' => test_spice(
-        '/js/spice/spotify/madonna/US',
-        call_type => 'include',
-        caller => 'DDG::Spice::Spotify'
-    ),
-    'spotify.com' => undef,
     'spotify' => undef
 );
 
