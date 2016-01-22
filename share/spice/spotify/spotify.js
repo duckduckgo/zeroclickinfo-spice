@@ -25,7 +25,7 @@
                 return {
                     title: item.name,
                     image: item.album.images[1].url, /* ~300x300px */
-                    streamURL: item.preview_url,
+                    streamURL: '/audio?u=' + item.preview_url,
                     url: item.external_urls.spotify
                 };
             },
