@@ -26,7 +26,8 @@
                     title: item.name,
                     image: item.album.images[1].url, /* ~300x300px */
                     streamURL: '/audio?u=' + item.preview_url,
-                    url: item.external_urls.spotify
+                    url: item.external_urls.spotify,
+                    duration: 3000
                 };
             },
             templates: {
