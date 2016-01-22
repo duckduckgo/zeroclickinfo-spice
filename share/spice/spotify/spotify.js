@@ -18,7 +18,7 @@
             name: 'Spotify',
             data: api_result.tracks.items,
             meta: {
-                sourceName: 'Spotify.com',
+                sourceName: 'Spotify',
                 sourceUrl: 'https://play.spotify.com/search/' + query.trim(),
             },
             normalize: function(item) {
