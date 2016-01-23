@@ -2,35 +2,41 @@
     "use strict";
     env.ddg_spice_ufc = function(api_result){
 
-        // Validate the response (customize for your Spice)
-        if (!api_result || api_result.error) {
+        if (!api_result) {
             return Spice.failed('ufc');
         }
 
-        // Render the response
         Spice.add({
             id: "ufc",
-
-            // Customize these properties
-            name: "AnswerBar title",
-            data: api_result,
+            name: "UFC",
+            data: api_result.splice(0, 30),
             meta: {
-                sourceName: "Example.com",
-                sourceUrl: 'http://example.com/url/to/details/' + api_result.name
+                sourceName: "ufc.com",
+                sourceUrl: "ufc.com",
             },
             normalize: function(item) {
+                var sizedThumbnail = item.profile_image.replace(/w600-h600/,"w100-h100"), // resize image - url params
+                    fullName = [item.first_name, item.last_name].join(" "); // first + last name 
                 return {
-                    // customize as needed for your chosen template
-                    title: api_result.title,
-                    subtitle: api_result.subtitle,
-                    image: api_result.icon
+                    image: sizedThumbnail,
+                    title: fullName,
+                    url: item.link,
+                    wins: item.wins,
+                    losses: item.losses,
+                    draws: item.draws,
+                    nickname: item.nickname,
+                    weight_class: item.weight_class.replace(/_/,' ')
                 };
             },
             templates: {
-                group: 'your-template-group',
+                group: 'media',
+                detail: false,
+                item_detail: false,
                 options: {
-                    content: Spice.ufc.content,
-                    moreAt: true
+                        footer: Spice.ufc.footer
+                },
+                variants: {
+                    tileSnippet: "large"
                 }
             }
         });

@@ -9,17 +9,12 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::UFC)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/ufc/query',
+    'ufc fighters' => test_spice(
+        '/js/spice/ufc/',
         call_type => 'include',
         caller => 'DDG::Spice::UFC'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    'ufc live' => undef,
 );
 
 done_testing;
