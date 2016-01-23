@@ -21,9 +21,9 @@
             normalize: function(item) {
                 return {
                     // customize as needed for your chosen template
-                    title: api_result.title,
-                    subtitle: api_result.subtitle,
-                    image: api_result.icon
+                    title: item.title,
+                    subtitle: item.subtitle,
+                    image: item.icon
                 };
             },
             templates: {
