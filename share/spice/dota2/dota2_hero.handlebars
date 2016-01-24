@@ -1,36 +1,20 @@
-<div>
-    <div class="g hero-image">
-        <img src="{{image}}" title="{{name}}" />
+<div class="gw">
+    <div class="g third hero-image">
+        <img class="whole--screen-s" src="{{image}}" title="{{name}}" />
     </div>
-    <div class="g hero-info">
-        <h1 class="zci__header">
-            {{name}}
-        </h1>
-        <hr class="divider" />
-        <div class="twenty text--secondary">
-            Category
+    <div class="g twothirds hero-info">
+        <h1 class="zci__header tx--18 row row-first">{{name}}</h1>
+        <div class="row">
+            <span class="quarter text--secondary thirty--screen-s">Category</span>
+            <span class="threequarters text--primary seventy--screen-s">{{primaryAttribute}}</span>
+            <span class="quarter text--secondary thirty--screen-s">Attack</span>
+            <span class="threequarters text--primary seventy--screen-s">{{attackType}}</span>
+            <span class="quarter text--secondary thirty--screen-s">Roles</span>
+            <span class="threequarters text--primary seventy--screen-s">{{roles}}</span>
         </div>
-        <div class="eighty eighty--screen-s seventy--screen-xs">
-            {{primaryAttribute}}
-        </div>
-        <div class="twenty text--secondary">
-            Attack
-        </div>
-        <div class="eighty eighty--screen-s seventy--screen-xs">
-            {{attackType}}
-        </div>
-        <div class="twenty text--secondary">
-            Roles
-        </div>
-        <div class="eighty eighty--screen-s seventy--screen-xs">
-            {{roles}}
-        </div>
-        <hr class="divider" />
-        <div class="twenty text--secondary">
-            Stats
-        </div>
-        <div class="eighty eighty--screen-s seventy--screen-xs">
-            <table>
+        <div class="row">
+            <span class="quarter text--secondary thirty--screen-s">Stats</span>
+            <table class="threequarters seventy--screen-s">
                 <tr>
                     <td class="hero-stats-icon">
                         <img src="{{assets.stats.intelligence.image}}" title="{{assets.stats.intelligence.title}}" />
@@ -75,15 +59,13 @@
                 </tr>
             </table>
         </div>
-        <hr class="divider" />
-        <div class="twenty text--secondary">
-            Abilities
-        </div>
-        <div class="eighty eighty--screen-s seventy--screen-xs">
-            {{#each abilities}}
-                <img src="{{image}}" title="{{name}}" class="hero-ability-icon" />
-            {{/each}}
+        <div class="row row-last">
+            <span class="quarter text--secondary thirty--screen-s">Abilities</span>
+            <div class="threequarters seventy--screen-s">
+                {{#each abilities}}
+                    <img src="{{image}}" title="{{name}}" class="hero-ability-icon" />
+                {{/each}}
+            </div>
         </div>
     </div>
 </div>
-
