@@ -12,25 +12,30 @@ function ddg_spice_forvo (api_result) {
     var script = $('[src*="/js/spice/forvo/"]')[0];
     var source = $(script).attr("src");
     var query = source.match(/forvo\/([^\/]+)\/\w+/)[1];
-
+    
     // Display the Spice plug-in.
     Spice.add({
-        data             : api_result,
-        name             : "Pronunciation",
-        sourceUrl       : "http://www.forvo.com/search/" + query,
-        sourceName      : "Forvo",
-        id              : "forvo",
-        template_frame   : "list",
-        templates : {
-            items         : api_result.items, //list,
-            item: Spice.forvo.forvo,
-            show          : 3,
-            max           : 5,
-            type          : "ul",
-            use_alternate_template: false
+        id: "forvo",
+        name: "Pronunciation",
+        data: {
+            list: api_result.items
         },
-        
-        
+        meta:{
+            sourceName: "Forvo",
+            sourceUrl: "http://forvo.com/search/" + query,
+        },
+        templates: {
+            group: 'list',
+            options: {
+                list_content: Spice.forvo.forvo,
+                moreAt: true
+            }
+        },
+        normalize: function(item) {
+            return {
+                title: 'Pronunciations of ' + query,
+            };
+        },
     });
 
     // This gets called when the sound is finished playing
@@ -146,6 +151,7 @@ function ddg_spice_forvo (api_result) {
     // $(".spice2list_item").attr("class", "sm2_stopped");
     $(".spice2list_item").addClass("sm2_stopped");
     });
+    
 };
 
 
