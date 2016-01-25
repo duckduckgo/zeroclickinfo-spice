@@ -1,6 +1,7 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_board_game_geek = function(api_result){
+
+    env.ddg_spice_board_game_geek_search = function(api_result){
 
         // Validate the response (customize for your Spice)
         if (!api_result || api_result.error || !api_result.items || !api_result.items.item.length) {
@@ -28,10 +29,22 @@
             },
             normalize: function(item) {
                 return {
+                    bggId: item.id, // store id to use it in onItemShown
                     title: item.name.value,
                     subtitle: item.yearpublished && item.yearpublished.value,
                     url: "http://boardgamegeek.com/boardgame/" + item.id
                 };
+            },
+            onItemShown: function (item) {
+                if (item.loadedDetails) {
+                    return;
+                }
+
+                $.getScript("/js/spice/board_game_geek/get_details/" + item.bggId, function () {
+                    console.log(arguments);
+                })
+
+                item.loadedDetails = true;
             },
             templates: {
                 group: 'text',
