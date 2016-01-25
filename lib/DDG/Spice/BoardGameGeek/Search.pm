@@ -17,7 +17,6 @@ spice to => 'https://duckduckgo.com/x.js?u=' . $search_url . '$1';
 spice alt_to => {
     get_details => {
         to => 'https://duckduckgo.com/x.js?u=' . $detail_url . '$1',
-        wrap_jsonp_callback => 1,
         is_cached => 1,
         proxy_cache_valid => "200 14d"
     }
