@@ -7,7 +7,7 @@ use utf8;
 
 triggers any => "forvo", "pronounce", "pronunciation", "how to pronounce", "pronounciation of", "how do you say", "how do you pronounce", "how to say";
 
-spice to => 'http://apifree.forvo.com/key/{{ENV{DDG_SPICE_FORVO_APIKEY}}}/format/json/action/pronounced-words-search/search/$1/language/$2/callback/{{callback}}';
+spice to => 'http://apicorporate.forvo.com/key/{{ENV{DDG_SPICE_FORVO_APIKEY}}}/format/json/action/pronounced-words-search/search/$1/language/$2/callback/{{callback}}';
 spice from => '([^/]+)/([^/]+)';
 
 spice proxy_cache_valid   => "200 1h";
