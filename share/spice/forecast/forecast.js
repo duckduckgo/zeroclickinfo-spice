@@ -119,11 +119,8 @@
     }
 
     var build_daily = function(f) {
-      var dailyObj = [],          
+      var dailyObj = [],
           today = moment(),
-          today_i = today.day(),
-          month_i = today.month(),
-          date_i = today.date(),
           days = f.daily.data,
           num_days = Math.max(6, days.length),
           day,
@@ -151,8 +148,7 @@
         dailyObj[i] = days[i];
         day = days[i];
 
-        tmp_date = moment(today);
-        tmp_date.add(i, 'days');
+        tmp_date = moment(today).add(i, 'days');
         dailyObj[i].date = tmp_date.format("MMM D");        
         dailyObj[i].highTemp = Math.round(day.temperatureMax)+'&deg;';
         dailyObj[i].lowTemp = Math.round(day.temperatureMin)+'&deg;';
