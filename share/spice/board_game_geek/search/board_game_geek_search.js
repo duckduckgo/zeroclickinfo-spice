@@ -33,14 +33,13 @@
                 sourceName: "BoardGameGeek",
                 sourceUrl: "http://boardgamegeek.com/geeksearch.php?action=search&objecttype=boardgame&q=" + query,
                 sourceIcon: true,
-                rerender: ["img"]
+                rerender: ["img", "abstract", "rating", "reviewCount", "subtitle"]
             },
             normalize: function(item) {
                 return {
                     bggId: item.id, // store id to use it in onItemShown
-                    title: item.name.value,
+                    heading: item.name.value,
                     image: "",
-                    subtitle: item.yearpublished && item.yearpublished.value,
                     url: "http://boardgamegeek.com/boardgame/" + item.id,
                     url_review: "http://boardgamegeek.com/boardgame/" + item.id + "/reviews"
                 };
@@ -51,21 +50,69 @@
                 }
 
                 $.getJSON("/js/spice/board_game_geek/get_details/" + item.bggId, function (response) {
-                    var responseItem = response.items.item;
+                    var responseItem = response.items.item,
+                        rating = DDG.getProperty(responseItem, "statistics.ratings.average.value");
 
-                    item.set({ img: responseItem.thumbnail.text });
+                    // the BGG rating is out of 10 do this to get a five star rating
+                    if (rating) {
+                        rating /= 2;
+                    }
+
+                    var players = getRange(responseItem, "players"),
+                        playTime = getRange(responseItem, "playtime"),
+                        age = getRange(responseItem, "age"),
+                        subtitle;
+
+                    subtitle = players + " players, " + playTime + " minutes, " + age + " yrs";
+
+                    item.set({
+                        img: DDG.getProperty(responseItem, "image.text"),
+                        abstract: DDG.getProperty(responseItem, "description.text"),
+                        rating: rating,
+                        subtitle: subtitle,
+                        reviewCount: DDG.getProperty(responseItem, "statistics.ratings.usersrated.value")
+                    });
                 })
 
                 item.loadedDetails = true;
             },
             templates: {
                 group: 'products',
-                detail: null,
                 options: {
-                    price: false
+                    price: false,
+                    hideReviewText: true
                 }
             }
         });
     };
+
+    /**
+     * Possible values this returns are based on
+     * what the min/max values are, and whether they're defined:
+     *
+     * 15 (if min and max are the same)
+     * 5-15 (min and max)
+     * 5+ (min only)
+     * <5 (max only)
+     */
+    function getRange(responseItem, rangeName) {
+        var min = DDG.getProperty(responseItem, "min" + rangeName + ".value"),
+            max = DDG.getProperty(responseItem, "max" + rangeName + ".value"),
+            range = "";
+
+        if (min && max) {
+            if (min === max) {
+                range = min;
+            } else {
+                range = min + "-" + max;
+            }
+        } else if (min) {
+            range = min + "+";
+        } else if (max) {
+            range = "<" + max;
+        }
+
+        return range;
+    }
 
 }(this));
