@@ -11,11 +11,11 @@ spice wrap_jsonp_callback => 1;
 
 spice to => 'https://duckduckgo.com/x.js?u=http://export.arxiv.org/api/query?id_list=$1';
 
-triggers query_lc => qr/^arxiv[:\s]+?([^\s]+)/;
+triggers start => 'arxiv';
 
-handle matches => sub {
-    return $_[0] if $_[0];
-    return;
+handle query_lc => sub {
+    return unless m/^arxiv[:\s]+?([^\s]+)/;
+    return $1;
 };
 
 1;
