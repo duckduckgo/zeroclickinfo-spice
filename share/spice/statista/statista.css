@@ -6,14 +6,6 @@
     margin-right: .25em;
 }
 
-.tile--statista .statista__premium {
-    background-color: #f1a031;
-}
-
-.tile--statista .statista__free {
-    background-color: #589e4d;
-}
-
 .tile--statista .statista__footer {
     padding-top: 16px;
 }
@@ -24,4 +16,4 @@
 
 .tile--statista .tile__body.has-foot {
     padding-bottom: 2.8em;
-} 
+}
