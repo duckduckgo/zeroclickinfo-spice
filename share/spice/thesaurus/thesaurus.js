@@ -2,83 +2,90 @@
     env.ddg_spice_thesaurus = function(api_result) {
         "use strict";
 
-        if (!api_result){
+        if (!api_result || api_result.error) {
             return Spice.failed("thesaurus");
         }
 
-        // Get the query and the mode (trigger words)
-        // The mode tells us what to return
-        // e.g. you want the antonym but not the synonym
-        var script = $('[src*="/js/spice/thesaurus/"]')[0],
-            source = $(script).attr("src"),
-            match  = source.match(/\/js\/spice\/thesaurus\/([^\/]+)\/([^\/]+)/),
-            query  = match[1],
-            mode   = match[2];
+        // Retrieve the word we did a lookup on
+        var script = $('[src*="/js/spice/thesaurus/"]')[0];
+        var source = $(script).attr("src");
+        var query = source.match(/thesaurus\/([^\/]+)/)[1];
+        query = decodeURIComponent(query);
+        
+        // Search the results for the word type (noun, adjective etc) with the most entries
+        var wordTypeWithMostEntries;
+        var largestWordTypeEntryTotal = 0;
+        
+        Object.keys(api_result).forEach(function(wordType) { // wordType = ajective, noun etc...
+            var wordTypeEntryTotal = 0;
 
-        var shorthand = {
-            "synonyms"  : "syn",
-            "synonym"   : "syn",
-            "antonyms"  : "ant",
-            "antonym"   : "ant",
-            "related"   : "rel",
-            "similar"   : "sim",
-            "thesaurus" : "syn"
-        };
+            Object.keys(api_result[wordType]).forEach(function(relationshipType) { // relationshipType = synonym, antonym etc...
+                wordTypeEntryTotal += Object.keys(api_result[wordType][relationshipType]).length;
+            });
 
-        var headers = {
-            "syn" : "Synonyms of ",
-            "ant" : "Antonyms of ",
-            "rel" : "Related to ",
-            "sim" : "Similar to "
-        };
-
-        // Check if the mode exists.
-        var how_many = 0;
-        for(var i in api_result) {
-            if(api_result.hasOwnProperty(i) && (shorthand[mode] in api_result[i])) {
-                how_many += 1;
+            if (wordTypeEntryTotal > largestWordTypeEntryTotal) {
+                largestWordTypeEntryTotal = wordTypeEntryTotal;
+                wordTypeWithMostEntries = wordType;
             }
-        }
-        if(how_many === 0) {
-            return Spice.failed('thesaurus');
+        });
+        
+        if (!wordTypeWithMostEntries) {
+            return Spice.failed("thesaurus");    
         }
 
-        api_result.mode = shorthand[mode];
-
-        // Create the plugin.
         Spice.add({
             id: 'thesaurus',
             name: 'Thesaurus',
-            data:  api_result,
-            normalize: function(item){
-                var res = {
-                    headerText: headers[item.mode] || 'Thesaurus: ',
-                    query: query,
-                    results: []
-                };
-
-                for(var parts_of_speech in item) {
-                    if(item.hasOwnProperty(parts_of_speech) && item[parts_of_speech][item.mode]) {
-                        res.results.push({
-                            heading : parts_of_speech.charAt(0).toUpperCase() + parts_of_speech.slice(1),
-                            words   : item[parts_of_speech][item.mode].splice(0, 10).join(", ")
-                        });
-                    }
+            data:  api_result[wordTypeWithMostEntries],
+            templates: {
+                group: 'list',
+                options:{
+                    content: 'record', 
+                    rowHighlight : true,
+                    moreAt: true
                 }
-
-                return res;
             },
+            
             meta: {
                 sourceName:  'Big Huge Thesaurus',
                 sourceUrl:  'http://words.bighugelabs.com/' + query,
             },
-            templates: {
-                group: 'text',
-                options: {
-                    content: Spice.thesaurus.content,
-                    title_content: Spice.thesaurus.title_content,
-                    moreAt: true
+            
+            normalize: function(item) {
+                var RELATIONSHIP_TYPE = {
+                    SYNONYMS : "syn",
+                    SIMILAR  : "sim",                    
+                    RELATED  : "rel",
+                    ANTONYMS : "ant"
+                };
+                
+                var result = {
+                    title: query,
+                    subtitle: wordTypeWithMostEntries,                    
+                    record_data : {}
+                };
+
+                // Display any synonyms if present
+                if(item.hasOwnProperty(RELATIONSHIP_TYPE.SYNONYMS)) {                    
+                    result.record_data["Synonyms"] = item[RELATIONSHIP_TYPE.SYNONYMS].join(', ');                    
                 }
+                
+                // Display any similar words if present
+                if(item.hasOwnProperty(RELATIONSHIP_TYPE.SIMILAR)) {                    
+                    result.record_data["Similar"] = item[RELATIONSHIP_TYPE.SIMILAR].join(', ');                    
+                }
+                
+                // Display any related words if present
+                if(item.hasOwnProperty(RELATIONSHIP_TYPE.RELATED)) {                    
+                    result.record_data["Related"] = item[RELATIONSHIP_TYPE.RELATED].join(', ');                    
+                }
+                
+                // Display any antonyms if present
+                if(item.hasOwnProperty(RELATIONSHIP_TYPE.ANTONYMS)) {                    
+                    result.record_data["Antonyms"] = item[RELATIONSHIP_TYPE.ANTONYMS].join(', ');                    
+                }
+             
+                return result;
             }
         });
     }
