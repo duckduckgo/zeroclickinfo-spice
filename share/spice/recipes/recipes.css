@@ -56,10 +56,6 @@
     text-align: center;
 }
 
-.is-mobile .detail--recipes {
-    background-color: #f2f2f2;
-}
-
 .detail__body--recipe .recipe__title {
     padding: 0;
 }
