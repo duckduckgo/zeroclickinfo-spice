@@ -1,5 +1,5 @@
 <span class="word"><a href="http://forvo.com/word/{{word}}/#{{standard_pronunciation.code}}">{{original}}</a></span>&nbsp;<span class="lang">[<abbr title="{{standard_pronunciation.langname}}">{{standard_pronunciation.code}}</abbr>]</span>
 <span class="sidenote">(
 {{forvo_sex standard_pronunciation.sex}} 
-{{#ifCond standard_pronunciation.sex '&&'  standard_pronunciation.country}},{{/ifCond}}
+{{#and standard_pronunciation.sex standard_pronunciation.country}},{{/and}}
 {{standard_pronunciation.country}})</span>
