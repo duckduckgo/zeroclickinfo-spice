@@ -2,6 +2,10 @@
 
 }
 
+.tile--magic_the_gathering {
+    height: 100%;
+}
+
 .tile--magic_the_gathering .tile__media__img {
     position: relative;
     top: -43%;
