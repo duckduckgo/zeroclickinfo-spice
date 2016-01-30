@@ -37,10 +37,10 @@
                 return {
                     title: item.name,
                     description: item.text ? item.text : "No descritpion",
-                    altSubtitle: item.types,
-                    //subtitle: item.editions[0].flavor,
+                    types: item.types,
+                    altSubtitle: item.editions[0].rarity,
                     url: item.editions[0].store_url,
-                    rarity: item.editions[0].rarity,
+                    rarity: item.power ? item.power + "/" + item.toughness : "-",
                     image: card_image,
                     infoboxData: infoboxData
                 };
