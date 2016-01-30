@@ -38,9 +38,9 @@
                     title: item.name,
                     description: item.text ? item.text : "No descritpion",
                     types: item.types,
-                    altSubtitle: item.editions[0].rarity,
+                    altSubtitle: item.subtypes ? item.subtypes : "-",
                     url: item.editions[0].store_url,
-                    rarity: item.power ? item.power + "/" + item.toughness : "-",
+                    rarity: item.power ? item.power + "/" + item.toughness : "- -",
                     image: card_image,
                     infoboxData: infoboxData
                 };
@@ -49,6 +49,7 @@
                 group: "media",
                 options: {
                     footer: Spice.magic_the_gathering.footer,
+                    content: Spice.magic_the_gathering.content,
                     aux: true,
                     moreAt: true
                 },
