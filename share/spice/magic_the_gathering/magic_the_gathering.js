@@ -16,6 +16,7 @@
                 sourceName: "Deckbrew.com",
                 sourceUrl: "http://deckbrew.com/api/",
                 count: api_result.length,
+                snippetChars: 120
             },
             normalize: function(item) {
                 if (item.name === DDG.get_query()){
@@ -35,9 +36,11 @@
                 ];
                 return {
                     title: item.name,
-                    description: item.text,
-                    subtitle: item.editions[0].flavor,
+                    description: item.text ? item.text : "No descritpion",
+                    altSubtitle: item.types,
+                    //subtitle: item.editions[0].flavor,
                     url: item.editions[0].store_url,
+                    rarity: item.editions[0].rarity,
                     image: card_image,
                     infoboxData: infoboxData
                 };
@@ -45,8 +48,15 @@
             templates: {
                 group: "media",
                 options: {
+                    footer: Spice.magic_the_gathering.footer,
                     aux: true,
                     moreAt: true
+                },
+                variants: {
+                    tileSnippet: "large"
+                },
+                elClass: {
+                    tileFoot: "tx-clr--grey-light"
                 }
             }
         });
