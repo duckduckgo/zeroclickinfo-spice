@@ -1,6 +1,6 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_<: $ia_id :> = function(api_result){
+    env.ddg_spice_<: $ia_id :> = function(api_result) {
 
         // Validate the response (customize for your Spice)
         if (!api_result || api_result.error) {
