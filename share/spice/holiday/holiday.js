@@ -1,9 +1,14 @@
 (function (env) {
     "use strict";
+
+    // No jQuery appending a timestamp when calling $.getScript().
+    $.ajaxSetup({ cache: true });
+
     env.ddg_spice_holiday = function(api_result) {
-        if(!api_result || !api_result.h || api_result.h.length === 0) {
+        if(!api_result || !api_result.h) {
             return Spice.failed('holiday');
         }
+
         var script = $('[src*="/js/spice/holiday/"]')[0],
             source = $(script).attr("src"),
             query_matches = source.match(/holiday\/([^\/]+)\/([^\/]+)\/(\d*)/),
@@ -12,6 +17,15 @@
             country = query_matches[1],
             url = 'http://www.timeanddate.com',
             source = url + '/search/results.html?query=' + query;
+
+        // Retry with US if nothing is returned.
+        if (api_result.h.length == 0) {
+            if (country !== 'United%20States') {
+                $.getScript('/js/spice/holiday/United%20States/' + query + '/' + year);
+            } else {
+                return Spice.failed('holiday');
+            }
+        }
 
         DDG.require('moment.js', function() {
             var meta_obj = {
@@ -41,13 +55,7 @@
                 return true;
             })
 
-            if (events.length == 0) {
-                if (country !== 'United%20States') {
-                    $.getScript('/js/spice/holiday/United%20States/' + year);
-                } else {
-                    return Spice.failed('holiday');
-                }
-            } else if (events.length == 1){
+            if (events.length == 1){
                 data = events[0];
 
                 if (!data.o || data.o.length <= 0) {
