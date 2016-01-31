@@ -50,7 +50,7 @@ ddg_spice_test(
     ),
     # can query past events
     'when was easter' => test_spice(
-        '/js/spice/holiday/United%20States/easter/2015',
+        '/js/spice/holiday/United%20States/easter/2016',
         call_type => 'include',
         caller => 'DDG::Spice::Holiday'
     ),
