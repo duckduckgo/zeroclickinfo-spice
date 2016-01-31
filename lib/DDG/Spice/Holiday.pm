@@ -67,6 +67,13 @@ handle query_lc => sub {
     $q =~ s/\///g;
     $c =~ s/\///g;
 
+    # Translate holidays that timeanddate.com doesn't understand.
+    my %fixups = (
+        "mardi gras" => "shrove tuesday",
+    );
+
+    map { $q =~ s/$_/$fixups{$_}/ } keys %fixups;
+
     return $c, $q, $y;
 };
 
