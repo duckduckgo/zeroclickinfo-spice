@@ -21,8 +21,7 @@ handle remainder_lc => sub {
     # Abort if we're left with more than one word to lookup
     return if ($query =~ /\s+/);
   
-    #return $query;
-    return $query, "todo-remove-this-var";
+    return $query;
 };
 
 1;

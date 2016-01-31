@@ -14,17 +14,17 @@
         
         // Search the results for the word type (noun, adjective etc) with the most entries
         var wordTypeWithMostEntries;
-        var largestWordTypeEntryTotal = 0;
-        
-        Object.keys(api_result).forEach(function(wordType) { // wordType = ajective, noun etc...
-            var wordTypeEntryTotal = 0;
+        var highestEntryCount = 0;
 
-            Object.keys(api_result[wordType]).forEach(function(relationshipType) { // relationshipType = synonym, antonym etc...
-                wordTypeEntryTotal += Object.keys(api_result[wordType][relationshipType]).length;
+        $.each(api_result, function(wordType, words) { // wordType = ajective, noun etc... 
+            var wordTypeEntryCount = 0;
+            
+            $.each(words, function(relationshipType) { // relationshipType = synonym, antonym etc...
+                wordTypeEntryCount += words[relationshipType].length;
             });
-
-            if (wordTypeEntryTotal > largestWordTypeEntryTotal) {
-                largestWordTypeEntryTotal = wordTypeEntryTotal;
+            
+            if (wordTypeEntryCount > highestEntryCount) {
+                highestEntryCount = wordTypeEntryCount;
                 wordTypeWithMostEntries = wordType;
             }
         });
@@ -40,18 +40,17 @@
             templates: {
                 group: 'list',
                 options:{
-                    content: 'record', 
-                    rowHighlight : true,
+                    content: 'record',
                     moreAt: true
                 }
             },
             
             meta: {
-                sourceName:  'Big Huge Thesaurus',
+                sourceName: 'Big Huge Thesaurus',
                 sourceUrl:  'http://words.bighugelabs.com/' + query,
             },
             
-            normalize: function(item) {
+            normalize: function(words) {
                 var RELATIONSHIP_TYPE = {
                     SYNONYMS : "syn",
                     SIMILAR  : "sim",                    
@@ -62,27 +61,32 @@
                 var result = {
                     title: query,
                     subtitle: wordTypeWithMostEntries,                    
+                    record_keys : [],
                     record_data : {}
                 };
-
+                
                 // Display any synonyms if present
-                if(item.hasOwnProperty(RELATIONSHIP_TYPE.SYNONYMS)) {                    
-                    result.record_data["Synonyms"] = item[RELATIONSHIP_TYPE.SYNONYMS].join(', ');                    
+                if (words.hasOwnProperty(RELATIONSHIP_TYPE.SYNONYMS)) {
+                    result.record_keys.push("Synonyms");
+                    result.record_data["Synonyms"] = words[RELATIONSHIP_TYPE.SYNONYMS].join(', ');
                 }
                 
                 // Display any similar words if present
-                if(item.hasOwnProperty(RELATIONSHIP_TYPE.SIMILAR)) {                    
-                    result.record_data["Similar"] = item[RELATIONSHIP_TYPE.SIMILAR].join(', ');                    
+                if (words.hasOwnProperty(RELATIONSHIP_TYPE.SIMILAR)) {
+                    result.record_keys.push("Similar");
+                    result.record_data["Similar"] = words[RELATIONSHIP_TYPE.SIMILAR].join(', ');
                 }
                 
                 // Display any related words if present
-                if(item.hasOwnProperty(RELATIONSHIP_TYPE.RELATED)) {                    
-                    result.record_data["Related"] = item[RELATIONSHIP_TYPE.RELATED].join(', ');                    
+                if (words.hasOwnProperty(RELATIONSHIP_TYPE.RELATED)) {
+                    result.record_keys.push("Related");
+                    result.record_data["Related"] = words[RELATIONSHIP_TYPE.RELATED].join(', ');                    
                 }
                 
                 // Display any antonyms if present
-                if(item.hasOwnProperty(RELATIONSHIP_TYPE.ANTONYMS)) {                    
-                    result.record_data["Antonyms"] = item[RELATIONSHIP_TYPE.ANTONYMS].join(', ');                    
+                if (words.hasOwnProperty(RELATIONSHIP_TYPE.ANTONYMS)) {
+                    result.record_keys.push("Antonyms");
+                    result.record_data["Antonyms"] = words[RELATIONSHIP_TYPE.ANTONYMS].join(', ');
                 }
              
                 return result;
