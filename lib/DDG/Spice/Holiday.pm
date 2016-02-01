@@ -18,16 +18,16 @@ attribution github => ['https://github.com/iambibhas', 'Bibhas'],
 
 triggers start => 'when is', 'when was', 'what day is', 'what day was';
 
-spice from => '([^/]+)/([^/]+)/([^/]+)';
-spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$1&q=$2&y=$3&callback={{callback}}';
+spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)';
+spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$2&q=$3&y=$4&callback={{callback}}';
 
 handle query_lc => sub {
     return unless ($_);
 
-    my ($tense, $q, $c, $y);
+    my ($t, $q, $c, $y);
 
     if ($_ =~ /\ ?(?:when|what day)\ ?(is|was)/g) {
-        $tense = $1;
+        $t = $1;
         $_ =~ s/\ ?(when|what day)\ ?(is|was)\ ?//g;
     }
 
@@ -54,10 +54,6 @@ handle query_lc => sub {
         $y = $1;
     } else {
         $y = " ";
-
-        if ($tense eq 'was') {
-            $y = strftime "%Y", localtime;
-        }
     }
 
     $q =~ s/\ *\d+\ *//g;
@@ -70,12 +66,12 @@ handle query_lc => sub {
     # Translate holidays that timeanddate.com doesn't understand.
     my %fixups = (
         "mardi gras" => "shrove tuesday",
+        "new years" => "new years day",
     );
 
     map { $q =~ s/$_/$fixups{$_}/ } keys %fixups;
 
-    return $c, $q, $y;
+    return $t, $c, $q, $y;
 };
-
 
 1;
