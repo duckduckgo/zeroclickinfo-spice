@@ -11,17 +11,18 @@
 
         var script = $('[src*="/js/spice/holiday/"]')[0],
             source = $(script).attr("src"),
-            query_matches = source.match(/holiday\/([^\/]+)\/([^\/]+)\/(\d*)/),
-            year = query_matches[3],
-            query = query_matches[2],
-            country = query_matches[1],
+            query_matches = source.match(/holiday\/([^\/]+)\/([^\/]+)\/([^\/]+)\/(\d*)/),
+            year = query_matches[4],
+            query = query_matches[3],
+            country = query_matches[2],
+            tense = query_matches[1],
             url = 'http://www.timeanddate.com',
             source = url + '/search/results.html?query=' + query;
 
         // Retry with US if nothing is returned.
         if (api_result.h.length == 0) {
             if (country !== 'United%20States') {
-                $.getScript('/js/spice/holiday/United%20States/' + query + '/' + year);
+                $.getScript('/js/spice/holiday/' + tense + '/United%20States/' + query + '/' + year);
             } else {
                 return Spice.failed('holiday');
             }
@@ -55,11 +56,21 @@
                 return true;
             })
 
-            if (events.length == 1){
+            if (events.length == 1) {
                 data = events[0];
 
                 if (!data.o || data.o.length <= 0) {
                     return Spice.failed('holiday');
+                }
+
+                // If the event date is past in the current year and past tense
+                // was used, requery for the previous year.  If the year is
+                // specified let that trump tense.
+                var event_date = moment(new Date(data.o[0].d));
+                var current_date = moment();
+                if ((tense === "was") && event_date.isAfter(current_date) && (year.length == 0)) {
+                    $.getScript('/js/spice/holiday/' + tense + '/' + country + '/' + query + '/' + event_date.subtract(1, 'year').format('YYYY'));
+                    return;
                 }
 
                 normalize_fn = function(item) {
@@ -101,7 +112,7 @@
                     }
 
                     return {
-                        title: moment(date.d).format('dddd, MMM D, YYYY'),
+                        title: moment(new Date(date.d)).format('dddd, MMM D, YYYY'),
                         subtitle: subtitle,
                         name: item.n,
                         description: item.a,
