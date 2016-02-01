@@ -1,0 +1,35 @@
+.zci--duck_say .duck_say__body {
+    font-family: Consolas, Menlo, Monaco, monospace;
+    margin: 1em 0;
+}
+.zci--duck_say .duck_say__pre {
+    white-space: pre;
+}
+.zci--duck_say .duck_say__bowtie {
+    color: rgb(70, 154, 40);
+}
+
+.zci--duck_say .duck_say--phone,
+.zci--duck_say .duck_say--tablet {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .zci--duck_say .duck_say--monitor {
+        display: none;
+    }
+    .zci--duck_say .duck_say--tablet {
+        display: block;
+    }
+}
+
+@media (max-width: 450px) {
+    .zci--duck_say .duck_say--tablet {
+        display: none;
+    }
+    .zci--duck_say .duck_say--phone {
+        display: block;
+    }
+}
+
+

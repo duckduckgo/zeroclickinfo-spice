@@ -1,0 +1,67 @@
+1 chronicles
+1 corinthians
+1 john
+1 kings
+1 peter
+1 samuel
+1 thessalonians
+1 timothy
+2 chronicles
+2 corinthians
+2 john
+2 kings
+2 peter
+2 samuel
+2 thessalonians
+2 timothy
+3 john
+acts
+amos
+bible
+colossians
+daniel
+deuteronomy
+ecclesiastes
+ephesians
+esther
+exodus
+ezekiel
+ezra
+galatians
+genesis
+habakkuk
+haggai
+hebrews
+hosea
+isaiah
+james
+jeremiah
+job
+joel
+john
+jonah
+joshua
+jude
+judges
+lamentations
+leviticus
+luke
+malachi
+mark
+matthew
+micah
+nahum
+nehemiah
+numbers
+obadiah
+philemon
+philippians
+proverbs
+psalm
+revelation
+romans
+ruth
+song of solomon
+titus
+zechariah
+zephaniah

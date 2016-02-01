@@ -1,0 +1,27 @@
+.zci--seat_geek_sports .price {
+    font-weight: 600;
+}
+
+.zci--seat_geek_sports .price,
+.zci--seat_geek_sports .noprice {
+    margin-top: 1.75em;
+    height: 1.1em;
+    float: left;
+}
+
+.zci--seat_geek_sports .seat_geek-sports {
+    font-size: 1.1em;
+}
+
+.zci--seat_geek_sports .where {
+    height: 1.4em;
+}
+
+.zci--seat_geek_sports .where.city,
+.zci--seat_geek_sports .where.place {
+    width: 9.3em;
+}
+
+    .is-mobile .zci--seat_geek_sports .where.city {
+        width: 7em;
+    }

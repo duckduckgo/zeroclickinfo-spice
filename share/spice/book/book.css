@@ -1,0 +1,17 @@
+.zci--book .recommended_by, .zci--book .rating-wrap {
+    font-weight: 600;
+}
+
+.zci--book .recommend_line {
+    margin-top: 0.85em;
+}
+
+.zci--book .subtitle {
+    margin-top: 15px;
+}
+
+.zci--book .rating-wrap {
+    padding-right: 10px;
+    font-size: 2em;
+    float: right;
+}

@@ -1,0 +1,40 @@
+apache
+apache2
+apple ios
+brainfuck
+clojure
+cobol
+emacs
+fossil
+ftp code
+git
+hello world
+hg
+hresult
+http code
+ios
+java
+jquery
+kernel error
+linux command
+linux kernel error
+mercurial
+mysql error
+mysql function
+nt status
+osx
+perl
+perl var
+perl5
+perl5 var
+php
+python
+smarty
+sql server
+sql server function
+svn
+underscore
+underscore.js
+vb6
+win32 error
+windows command;

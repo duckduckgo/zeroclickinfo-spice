@@ -1,0 +1,27 @@
+<h3 class="zci__header">
+  {{! checks if the status is either good, minor, or major }}
+  {{#TravisStatus_ifCond status "none"}}
+    The status of Travis CI is <span class="tcistatus--none">good</span>.
+  {{else}}
+    {{#TravisStatus_ifCond status "minor"}}
+      Travis CI is experiencing <span class="tcistatus--minor">{{status}}</span> issues.
+    {{else}}
+      Travis CI is experiencing <span class="tcistatus--major">{{status}}</span> issues.
+    {{/TravisStatus_ifCond}}
+  {{/TravisStatus_ifCond}}
+  {{#TravisStatus_ifNotEmpty description }}
+    <h6 class="zci__subheader">{{description}}</h6>
+  {{/TravisStatus_ifNotEmpty}}
+
+  <div class="tcistatus--incident-list">
+    {{#TravisStatus_iterateOver activeIncidents}}
+      <p class="tcistatus--incident">
+        <span class="tcistatus--incident-status tcistatus--incident-{{status}}">{{status}}</span>
+        <span>{{name}}</span>
+        {{#TravisStatus_ifNotEmpty incident_updates.0.body}}
+          <span class="tcistatus--incident-message">{{incident_updates.0.body}}</span>
+        {{/TravisStatus_ifNotEmpty}}
+      </p>
+    {{/TravisStatus_iterateOver}}
+  </div>
+</h3>

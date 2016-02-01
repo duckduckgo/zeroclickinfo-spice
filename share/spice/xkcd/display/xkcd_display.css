@@ -1,0 +1,29 @@
+.zci--xkcd .xkcd--container {
+    margin-bottom: 0.5em;
+    max-width: 100%;
+    padding-right: 0.5em;
+}
+
+.zci--xkcd .xkcd--img {
+    display: block;
+    margin: 1em 0 0.5em;
+}
+
+.zci--xkcd .xkcd--buttons {
+    display: inline-block;
+}
+
+.zci--xkcd .xkcd--buttons a:visited {
+    color: #4495d4;
+}
+
+.zci--xkcd .xkcd--date {
+    color: #888;
+    display: inline-block;
+    margin-right: 0.5em;
+}
+
+.zci--xkcd .xkcd--buttons .tile-nav--sm {
+    font-size: 12px;
+    text-decoration: none;
+}

@@ -1,0 +1,72 @@
+{
+  "languages": [
+    {
+      "language": "C#",
+      "triggers": ["c#", "c sharp", "csharp"]
+    },
+    {
+      "language": "C++",
+      "triggers": ["c++", "cpp"]
+    },
+    {
+      "language": "C",
+      "triggers": ["c"]
+    },
+    {
+      "language": "Erlang",
+      "triggers": ["erlang"]
+    },
+    {
+      "language": "Haskell",
+      "triggers": ["haskell"]
+    },
+    {
+      "language": "Java",
+      "triggers": ["java"]
+    },
+    {
+      "language": "Javascript",
+      "triggers": ["javascript"]
+    },
+    {
+      "language": "MATLAB",
+      "triggers": ["matlab"]
+    },
+    {
+      "language": "Objective-C",
+      "triggers": ["objc", "obj-c", "obc", "objective-c", "objectivec"]
+    },
+    {
+      "language": "Perl",
+      "triggers": ["perl"]
+    },
+    {
+      "language": "PHP",
+      "triggers": ["php"]
+    },
+    {
+      "language": "Python",
+      "triggers": ["python"]
+    },
+    {
+      "language": "R",
+      "triggers": ["r"]
+    },
+    {
+      "language": "Ruby",
+      "triggers": ["ruby"]
+    },
+    {
+      "language": "Go",
+      "triggers": ["go"]
+    },
+    {
+      "language": "Scala",
+      "triggers": ["scala"]
+    },
+    {
+      "language": "Swift",
+      "triggers": ["swift"]
+    }
+  ]
+}

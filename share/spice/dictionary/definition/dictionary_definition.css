@@ -1,0 +1,36 @@
+.zci--dictionary_definition ul {
+    margin-bottom: 0.25em;
+    display: table;
+}
+
+.zci--dictionary_definition ul li {
+    display: table-row;
+}
+
+.zci--dictionary_definition .zci__def__definition {
+    overflow: hidden;
+    display: table-cell;
+}
+
+.zci--dictionary_definition .zci__more-at {
+	display: inline-block;
+}
+
+.zci--dictionary_definition .zci__def__links {
+    padding-bottom: 0.37em;
+}
+
+.zci--dictionary_definition .zci__def__word {
+    font-weight: 600;
+}
+
+.zci__def__part-of-speech {
+    font-style: italic;
+    padding-right: 1em;
+    display: table-cell;
+    min-width: 1em;
+}
+
+.zci--dictionary_definition .play-btn__err{
+    margin-left: 0.75em;
+}

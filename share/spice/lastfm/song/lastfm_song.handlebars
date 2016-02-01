@@ -1,0 +1,16 @@
+<div>
+    {{#with track}}
+        <div>
+            <i>Artist: </i>
+            {{artist.name}}
+        </div>
+        <div>
+            <i>Album: </i>
+            {{album.title}}
+        </div>
+        <div>
+            <i>Listen: </i>
+            {{#listen artist.name album.title}}<a href="{{bang}}">{{title}}</a>{{/listen}}
+        </div>
+    {{/with}}
+</div>

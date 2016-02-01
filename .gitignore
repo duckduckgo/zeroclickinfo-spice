@@ -1,0 +1,9 @@
+DDG-*
+.build
+*.sw*
+*~
+*.bak
+*#
+.jshintrc
+.DS_Store
+share/spice/meta/metadata.json

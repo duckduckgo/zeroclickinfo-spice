@@ -1,0 +1,6 @@
+<span class="c-score__clock pull-left">
+	<b>{{score.textCurrent}} {{score.clock}}</b>
+</span>
+{{#with score.possession}}
+	<span class="c-score__state pull-right">{{#if down}}{{ordinal down}} & {{yfd}},{{/if}} {{side}} {{yard_line}}</span>
+{{/with}}

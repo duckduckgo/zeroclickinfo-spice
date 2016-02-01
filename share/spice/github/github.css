@@ -1,0 +1,7 @@
+.tile--github .star.starIcon {
+    margin-top: -5px;
+}
+
+.tile--github .tile__sub {
+    text-transform: none;
+}

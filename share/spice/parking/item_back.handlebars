@@ -1,0 +1,18 @@
+<div class="tile__body has-foot">
+    <h6 class="tile__title">
+        <a href="{{url}}" title="{{name}}">{{ellipsis displayName 33}}</a>
+    </h6>
+    {{#if price}}
+        <span class="tile__price tx-clr--slate">{{price}}</span>
+    {{/if}}
+    {{#if address_lines}}
+        <span class="tile__address">
+            {{#each address_lines}}
+                {{.}}<br />
+            {{/each}}
+        </span>
+    {{/if}}
+    <div class="tile__foot tile--parking__foot__back">
+        <a href="{{url}}" class="btn btn--primary btn--parking reserve-btn--parking">Reserve Parking</a>
+    </div>            
+</div>

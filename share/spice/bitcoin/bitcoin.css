@@ -1,0 +1,46 @@
+/* bitcoin_address */
+.zci--bitcoin_address .zci__body .zci__more-at{
+    padding-top: 1em;
+}
+.zci--bitcoin_address .record .record__cell__value {
+    word-wrap: break-word;
+    padding: 0.4em;
+}
+
+.zci--bitcoin_address .record .record__cell__key {
+    padding: 0.4em;
+    width: 150px;
+}
+
+.is-mobile .zci--bitcoin_address .record .record__cell__value {
+    max-width: 150px;
+    text-overflow: ellipsis;
+}
+
+.zci--bitcoin_address .record .record__body{
+    width: 100%;
+}
+
+.is-mobile .zci--bitcoin_address .record .record__cell__key {
+    width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.zci--bitcoin_address .c-info__img-wrap {
+    padding-top: 15px;
+}    
+
+@media screen and (max-width: 700px) {
+  .zci--bitcoin_address .c-text__img-wrap{
+    display: none;
+  }    
+}
+/* bitcoin_address */
+
+
+/* bitcoin_transaction */
+.zci--bitcoin_transaction .c-list {
+    max-width: 46em;
+}
+/* bitcoin_transaction */
