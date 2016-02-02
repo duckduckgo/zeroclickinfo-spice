@@ -10,6 +10,9 @@
         return doc.body.textContent;
     }
 
+    var imgType = (DDG.is_3x || DDG.is_2x) ? "@2x" : "",
+        fallback_image = DDG.get_asset_path("couprex", "coupon" + imgType + ".png");
+
     env.ddg_spice_couprex = function(api_result){
 
         if (!api_result || api_result.count === 0) {
@@ -28,9 +31,15 @@
                 meta: {
                     sourceName: "CoupRex",
                     sourceUrl: "http://couprex.com/?s=" + query,
-                    snippetChars: 130
+                    snippetChars: 130,
+                    rerender: ["image"]
                 },
                 normalize: function(item) {
+
+                    if (!(item.taxonomy_stores && item.taxonomy_stores.length)) {
+                        return null;
+                    }
+
                     var company_url = item.custom_fields.clpr_coupon_aff_url[0].replace(/(https?:\/\/)?www\./, ""),
                         descriptionText = htmlDecode(item.content);
 
@@ -57,13 +66,19 @@
                         tileBody: "text-center"
                     }
                 },
-
-                relevancy: {
-                    primary: [
-                        { required: "custom_fields.clpr_coupon_aff_url" },
-                        { required: "title" },
-                        { required: "content" }
-                    ]
+                onShow: function(){
+                    // workaround to set background image to fallback coupon logo
+                    // in case clearbit API returns nothing
+                    $(".tile--couprex .tile__media__img").each(function(){
+                        if ( $(this).height() !== 100 ) {
+                            $(this).css({
+                                'background-image': 'url(' + fallback_image + ')',
+                                'background-repeat': 'no-repeat',
+                                'background-position': '50% 0',
+                                'height': "100%"
+                            });
+                        }
+                    });
                 }
             });
         });
