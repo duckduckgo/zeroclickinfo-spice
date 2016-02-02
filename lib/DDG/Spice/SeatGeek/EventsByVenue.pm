@@ -15,7 +15,7 @@ triggers start =>
 
 spice proxy_cache_valid => "200 304 12h";
 
-spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=20&venue.slug=$1&callback={{callback}}';
+spice to => 'https://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=20&venue.slug=$1&callback={{callback}}';
 
 handle remainder_lc => sub {
     # Replaces spaces between words with dashes, because the API requires it
