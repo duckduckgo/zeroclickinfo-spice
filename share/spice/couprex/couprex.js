@@ -31,8 +31,7 @@
                 meta: {
                     sourceName: "CoupRex",
                     sourceUrl: "http://couprex.com/?s=" + query,
-                    snippetChars: 130,
-                    rerender: ["image"]
+                    snippetChars: 130
                 },
                 normalize: function(item) {
 
