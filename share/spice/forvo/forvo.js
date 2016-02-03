@@ -8,6 +8,7 @@
         
         if (api_result.attributes.total < 1) return;
         
+        var has_shown = 0;
         var script = $('[src*="/js/spice/forvo/"]')[0];
         var source = $(script).attr("src");
         var query = source.match(/forvo\/([^\/]+)\/\w+/)[1];
@@ -38,9 +39,9 @@
                 },
                 onShow: function () {
                     
-                    /*if (has_shown) {
+                    if (has_shown) {
                         return;
-                    }*/
+                    }
                     
                     $.each(api_result.items, function(index, obj) {
                         var self = obj,
