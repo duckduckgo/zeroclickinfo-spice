@@ -13,7 +13,11 @@ topics "everyday";
 code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Thumbtack.pm";
 attribution github => ["http://github.com/whalenrp", "whalenrp"];
 
+# Require the "thumbtack " modifier explicitly for now.
 my @keywords = share('top_keywords.txt')->slurp;
+for (my $i=0; $i < scalar @keywords; $i++) {
+    $keywords[$i] = "thumbtack " . $keywords[$i]
+}
 
 spice to => 'https://www.thumbtack.com/search/$1/?callback={{callback}}&state=$2&city=$3';
 spice from => '(.*)/(.*)/(.*)';
@@ -22,9 +26,6 @@ triggers any => @keywords;
 
 # Handle statement
 handle query_lc => sub {
-
-    # Match only queries with "local" qualifiers.
-    return unless $_ =~ m/^nearby|nearby$|near me$|around me$|close by$/;
 
     # Don't show results for users outside of the US or users without coordinates
     return unless $_
