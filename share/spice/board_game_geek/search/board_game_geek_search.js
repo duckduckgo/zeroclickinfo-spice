@@ -22,6 +22,25 @@
             items = [items];
         }
 
+        // in some cases BGG returns FAR TOO MANY results, including expansions
+        // this is especially a problem with games with fan expansions,
+        // e.g. Ticket To Ride has 100+ results
+        //
+        // to eliminate most of the expansions, we get the earliest result by year
+        // (using the numeric ID as a tiebreaker) and grab the first 25 entries only
+        items.sort(function (a, b) {
+            var aYear = Number(a.yearpublished && a.yearpublished.value) || 5000,
+                bYear = Number(b.yearpublished && b.yearpublished.value) || 5000;
+
+            if (aYear === bYear) {
+                return Number(a.id) < Number(b.id) ? -1 : 1;
+            } else {
+                return aYear < bYear ? -1 : 1;
+            }
+        });
+
+        items = items.slice(0, 25);
+
         // Render the response
         Spice.add({
             id: "board_game_geek",
