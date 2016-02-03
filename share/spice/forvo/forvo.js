@@ -36,6 +36,26 @@
                         title: 'Pronunciations of ' + query
                     };
                 },
+                onShow: function () {
+                    
+                    /*if (has_shown) {
+                        return;
+                    }*/
+                    
+                    $.each(api_result.items, function(index, obj) {
+                        var self = obj,
+                            id = self.id,
+                            url = self.standard_pronunciation.pathmp3,
+                            $el = $('.zci--forvo span.forvo--' + id);
+                        
+                        var playBtn = new DDG.Views.PlayButton({
+                            url: url,
+                            before: $el
+                        });
+                    });
+
+                    has_shown = 1;
+                }
             });
         });
     };
