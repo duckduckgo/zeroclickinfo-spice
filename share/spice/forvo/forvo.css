@@ -17,3 +17,11 @@
     position: absolute;
     float: right;
 }
+
+.zci--forvo .play-btn {
+    margin-right: 0.5em;
+}
+
+.zci--forvo .play-btn__icn {
+    font-size: 0.7em;
+}
