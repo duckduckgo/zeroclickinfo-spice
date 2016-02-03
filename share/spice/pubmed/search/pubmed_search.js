@@ -37,7 +37,7 @@
                 return {
                     title: item.title,
                     url: tmp_url,
-                    subtitle: authors.join(", "),
+                    subtitle: authors.join(", ") || ' ',
                     description: '',
                     tileTitle: "3line-small" 
                 }
@@ -47,9 +47,14 @@
                 if (item.loadedAbstract) { return; }
                 $.ajax({
                     url: url,
-                    dataType: 'xml',
+                    dataType: 'json',
                     success: function(r) {
-                        var abstract_text = r.getElementsByTagName('AbstractText')[0].firstChild.data;
+                        var abstract_text = '';
+                        if ( typeof r.PubmedArticleSet.PubmedArticle.MedlineCitation.Article.Abstract.AbstractText.text != 'undefined' ) {
+                            abstract_text = r.PubmedArticleSet.PubmedArticle.MedlineCitation.Article.Abstract.AbstractText.text;
+                        } else {
+                            abstract_text = 'No abstract available';
+                        }
                         item.set('description', abstract_text);
                     }
                 });
