@@ -84,7 +84,7 @@
                         year: eventDate.year(),
                         dateBadge: {
                             day: eventDate.date(),
-                            month: eventDate.format("MMM")
+                            month: eventDate.format("MMM").toUpperCase()
                         }
                     };
                 },
