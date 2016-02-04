@@ -2,6 +2,7 @@
     padding: 4px;
     position: relative;
     top: 10px;
+    max-width: 26px;
 }
 
 .zci--in_theaters .c-detail__title {
