@@ -97,7 +97,8 @@
                 options: {
                     price: false,
                     hideReviewText: true,
-                    subtitle_content: Spice.board_game_geek_search.subtitle
+                    subtitle_content: Spice.board_game_geek_search.subtitle,
+                    buy: Spice.board_game_geek_search.buy
                 }
             }
         });
