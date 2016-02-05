@@ -46,7 +46,7 @@
                         title: htmlDecode(item.title),
                         subtitle: item.taxonomy_stores[0].title,
                         description: descriptionText,
-                        image: "http://logo.clearbit.com/" + company_url + "?size=100",
+                        image: "http://logo.clearbit.com/" + company_url + "?size=80",
                         url: item.url
                     };
                 },
