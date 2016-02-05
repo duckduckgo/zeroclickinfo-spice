@@ -114,8 +114,8 @@
      * <5 (max only)
      */
     function getRange(responseItem, rangeName) {
-        var min = DDG.getProperty(responseItem, "min" + rangeName + ".value"),
-            max = DDG.getProperty(responseItem, "max" + rangeName + ".value"),
+        var min = Number(DDG.getProperty(responseItem, "min" + rangeName + ".value")),
+            max = Number(DDG.getProperty(responseItem, "max" + rangeName + ".value")),
             range = "";
 
         if (min && max) {
