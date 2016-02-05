@@ -52,13 +52,14 @@
                 sourceName: "BoardGameGeek",
                 sourceUrl: "http://boardgamegeek.com/geeksearch.php?action=search&objecttype=boardgame&q=" + query,
                 sourceIcon: true,
-                rerender: ["img", "abstract", "rating", "reviewCount", "subtitle"]
+                rerender: ["img", "img_m", "abstract", "rating", "reviewCount", "players", "playTime", "age"]
             },
             normalize: function(item) {
                 return {
                     bggId: item.id, // store id to use it in onItemShown
                     heading: item.name.value,
-                    image: "",
+                    img: "",
+                    img_m: "",
                     url: "http://boardgamegeek.com/boardgame/" + item.id,
                     url_review: "http://boardgamegeek.com/boardgame/" + item.id + "/reviews"
                 };
@@ -72,24 +73,20 @@
                     var responseItem = response.items.item,
                         rating = DDG.getProperty(responseItem, "statistics.ratings.average.value");
 
-                    // the BGG rating is out of 10 do this to get a five star rating
+                    // the BGG rating is out of 10 so divide to get a five star rating
                     if (rating) {
                         rating /= 2;
                     }
 
-                    var players = getRange(responseItem, "players"),
-                        playTime = getRange(responseItem, "playtime"),
-                        age = getRange(responseItem, "age"),
-                        subtitle;
-
-                    subtitle = players + " players, " + playTime + " minutes, " + age + " yrs";
-
                     item.set({
-                        img: DDG.getProperty(responseItem, "image.text"),
+                        img_m: DDG.getProperty(responseItem, "image.text"),
+                        img: DDG.getProperty(responseItem, "thumbnail.text"),
                         abstract: DDG.getProperty(responseItem, "description.text"),
                         rating: rating,
-                        subtitle: subtitle,
-                        reviewCount: DDG.getProperty(responseItem, "statistics.ratings.usersrated.value")
+                        reviewCount: DDG.getProperty(responseItem, "statistics.ratings.usersrated.value"),
+                        players: getRange(responseItem, "players"),
+                        playTime: getRange(responseItem, "playtime"),
+                        age: getRange(responseItem, "age")
                     });
                 })
 
@@ -99,7 +96,8 @@
                 group: 'products',
                 options: {
                     price: false,
-                    hideReviewText: true
+                    hideReviewText: true,
+                    subtitle_content: Spice.board_game_geek_search.subtitle
                 }
             }
         });
