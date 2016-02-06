@@ -30,8 +30,7 @@
                 data: api_result.posts,
                 meta: {
                     sourceName: "CoupRex",
-                    sourceUrl: "http://couprex.com/?s=" + query,
-                    snippetChars: 130
+                    sourceUrl: "http://couprex.com/?s=" + query
                 },
                 normalize: function(item) {
 
@@ -44,8 +43,8 @@
 
                     return {
                         title: htmlDecode(item.title),
-                        subtitle: item.taxonomy_stores[0].title,
-                        description: descriptionText,
+                        subtitle: descriptionText,
+                        company: item.taxonomy_stores[0].title,
                         image: "http://logo.clearbit.com/" + company_url + "?size=80",
                         url: item.url
                     };
@@ -55,11 +54,13 @@
                     detail: false,
                     item_detail: false,
                     options: {
+                        footer: Spice.couprex.footer,
                         moreAt: true
                     },
                     variants: {
                         tileTitle: '2line-large',
-                        tileSnippet: 'small'
+                        tileSubtitle: '2line',
+                        tile: 'narrow'
                     },
                     elClass: {
                         tileBody: "text-center"
@@ -74,7 +75,7 @@
                                 'background-image': 'url(' + fallback_image + ')',
                                 'background-repeat': 'no-repeat',
                                 'background-position': '50% 0',
-                                'height': "100%"
+                                'background-size': '80px'
                             });
                         }
                     });
