@@ -17,7 +17,7 @@ handle remainder => sub {
     }
     
     # Avoid triggering on 'stock' quotes; these are handled by Stocks IA
-    if ($req->query_lc =~ m/stock quote/ || $req->query_lc =~ m/quote of the day/) {
+    if ($req->query_lc =~ m/stock quote/ || $req->query_lc =~ m/quote of the day/ || $req->query_lc =~ m/quote for the day/ ) {
        return;
     }
 

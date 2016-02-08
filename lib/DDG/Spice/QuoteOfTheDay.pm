@@ -17,13 +17,13 @@ spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callb
 spice to => 'http://quotes.rest/qod.json';
 
 # Triggers - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#triggers
-triggers start => 'quote of the day';
+triggers start => 'quote of the day','quote for the day';
 
 # Handle statement
 handle remainder => sub {
 
     # Query is in $_...if you need to do something with it before returning
-    return $_;
+    return if $_;
 };
 
 1;
