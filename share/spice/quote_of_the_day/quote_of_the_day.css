@@ -5,7 +5,7 @@
 
 .brainy__quote {
     quotes: "“" "”";
-    font-size:14px;
+    font-size: 1.5em;
     font-weight: 300;
 }
 
@@ -29,7 +29,6 @@
     color: #999;
     float: left;
     margin-top: 5px;
-    margin-left: 1.75em;
 }
 
 .zci--brainy_quote .zci__content.chomp {
@@ -54,3 +53,4 @@
 .is-mobile .zci--brainy_quote .brainy__attribution {
     margin-left: 40px;
 }
+

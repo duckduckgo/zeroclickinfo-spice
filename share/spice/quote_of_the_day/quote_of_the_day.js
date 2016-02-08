@@ -16,7 +16,7 @@
             data: api_result,
             meta: {
                 sourceName: "They Said So",
-                sourceUrl: 'http://theysaidso.com'
+                sourceUrl: "https://theysaidso.com/quote/"+api_result.contents.quotes[0].id
             },
             normalize: function(item) {
                 return {
