@@ -22,7 +22,8 @@
                 return {
                     // customize as needed for your chosen template
                     quote : item.contents.quotes[0].quote,
-                    person: item.contents.quotes[0].author
+                    person: item.contents.quotes[0].author,
+                    len : parseInt(item.contents.quotes[0].length) + item.contents.quotes[0].author.length
                 };
             },
             templates: {
