@@ -8,7 +8,7 @@
             query = source.match(/expand_url\/([^\/]+)/)[1];
 
         // Check if there are any errors.
-        if (!api_response || api_response["long-url"] || api_response["long-url"] === query) {
+        if (!api_response || !api_response["long-url"] || api_response["long-url"] === query) {
             return Spice.failed('expand_url');
         }
 
