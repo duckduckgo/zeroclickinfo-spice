@@ -1,6 +1,6 @@
 package DDG::Spice::QuoteOfTheDay;
 
-# ABSTRACT: Write an abstract here
+# ABSTRACT: Displays the quote for the day using Quotes REST API by TheySaidSo
 
 # Start at http://docs.duckduckhack.com/walkthroughs/forum-lookup.html if you are new
 # to instant answer development
