@@ -18,7 +18,8 @@ handle remainder => sub {
     # the trigger is at the start or end of the string with white space
     # on either side of it. This prevents triggering on queries such as
     # "countdown.js", "timer.x", "five-alarm", etc
-    if($raw !~ /(^|\s)($trgx)(\s|$)/) {
+    # allow queries such as "start timer" and "begin timer"
+    if($raw !~ /(^|\s|begin|start)($trgx)(\s|$)/) {
         return;
     }
 
@@ -46,7 +47,7 @@ handle remainder => sub {
     # <specific time> online <trigger> ------- 10 minute online timer
     # <trigger> online <specific time> ------- timer online 10 minutes
     # <trigger> online for <specific time> --- timer online for 10 min
-    $raw =~ s/\s*(online )?($trgx)( online)?( for )?\s*//;
+    $raw =~ s/\s*(online\s|start\s|begin\s)?($trgx)(\sonline|\sstart|\sbegin)?( for )?\s*//;
 
     if($raw eq '') {
         return '';
