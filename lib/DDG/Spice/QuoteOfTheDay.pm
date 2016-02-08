@@ -9,7 +9,7 @@ use DDG::Spice;
 
 # Caching - http://docs.duckduckhack.com/backend-reference/api-reference.html#caching
 spice is_cached => 1;
-spice proxy_cache_valid => "200 1440m"; # defaults to this automatically
+spice proxy_cache_valid => "200 1d"; # defaults to this automatically
 
 spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
 
