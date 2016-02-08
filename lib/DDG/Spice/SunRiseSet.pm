@@ -28,15 +28,12 @@ my $capitals = LoadFile(share('capitals.yml'));
 handle remainder_lc => sub {
     my $q = $_;
 
-    if ($q ne '') {
-        $q =~ s/\b(what|is|today|time|in|at)+\b//g;
-        $q =~ s/(\,\s)+/ /g;
-        $q = trim $q;
-        $q = ($q eq '') ? lc $loc->city : $q;
-    } else {
-        $q = lc $loc->city;
-    }
-
+    $q =~ s/\b(what|is|today|time|in|at)+\b//g;
+    $q =~ s/(\,\s)+/ /g;
+    $q = trim $q;
+    
+    return unless $q;
+    
     if (my $caps = $capitals->{$q}) {
         # These are internally sorted by population,
         # so assume they want the big one for now.
