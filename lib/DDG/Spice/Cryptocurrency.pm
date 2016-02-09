@@ -66,7 +66,7 @@ my @topCurrencies = (
 #Define regexes
 my $currency_qr = join('|', @currTriggers);
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
-my $rate_qr = qr/\s(?:rate|exchange|exchange rate|conversion)/i;
+my $rate_qr = qr/\s(?:rate|exchange|exchange rate|conversion|price)/i;
 my $into_qr = qr/\s(?:en|in|to|in ?to|to|from)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $number_re = number_style_regex();
