@@ -17,7 +17,7 @@
             normalize: function(item) {
                 return {
                     emoji: item.emoji,
-                    name: item.name,
+                    title: item.name,
                     description: item.description,
                     image: item.image,
                     url: item.permalink
@@ -25,9 +25,9 @@
             },
             templates: {
                 group: 'info',
-                options: {
-                    content: Spice.emojipedia.content
-                }
+//                 options: {
+//                     content: Spice.emojipedia.content
+//                 }
             }
         });
     };

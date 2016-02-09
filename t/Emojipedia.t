@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use utf8;
 use Test::More;
 use DDG::Test::Spice;
 
@@ -9,17 +10,31 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::Emojipedia)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/emojipedia/query',
+    # Primary queries
+    '😂 emojipedia' => test_spice(
+        '/js/spice/emojipedia/%F0%9F%98%82',
         call_type => 'include',
         caller => 'DDG::Spice::Emojipedia'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    '😂 emoji' => test_spice(
+        '/js/spice/emojipedia/%F0%9F%98%82',
+        call_type => 'include',
+        caller => 'DDG::Spice::Emojipedia'
+    ),
+    '😂 meaning' => test_spice(
+        '/js/spice/emojipedia/%F0%9F%98%82',
+        call_type => 'include',
+        caller => 'DDG::Spice::Emojipedia'
+    ),
+    'emojipedia 😂' => test_spice(
+        '/js/spice/emojipedia/%F0%9F%98%82',
+        call_type => 'include',
+        caller => 'DDG::Spice::Emojipedia'
+    ),
+    # Non-emoji matches
+    'f emojipedia' => undef,
+    'f emoji' => undef,
+    'f meaning' => undef
 );
 
 done_testing;
