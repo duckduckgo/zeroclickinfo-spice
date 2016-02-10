@@ -11,7 +11,7 @@ ddg_spice_test(
     [qw( DDG::Spice::QuoteOfTheDay )],
 
     'quote for the day' => test_spice(
-        '/js/spice/quote_of_the_day',
+        '/js/spice/quote_of_the_day/',
         call_type => 'include',
         caller => 'DDG::Spice::QuoteOfTheDay',
     ),
