@@ -21,11 +21,8 @@ triggers start => 'la plagne', 'st anton', 'heavenly', 'chamonix', 'chimborazo';
 
 # Handle statement
 handle remainder => sub {
-    my $resort = $req->query_lc;
-    
-    # Trim off remainder if needed
-    $resort = substr $req->query_lc, 0, -(length($_) + 1) unless length($_) eq 0;
-    
+    my $resort = $req->matched_trigger;
+        
     # Replace spaces with dashes
     $resort =~ s/\s/-/g;
     return $resort
