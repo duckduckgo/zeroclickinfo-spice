@@ -38,8 +38,11 @@
                         return null;
                     }
 
-                    var company_url = item.custom_fields.clpr_coupon_aff_url[0].replace(/(https?:\/\/)?www\./, ""),
+                    var company_url = item.custom_fields.clpr_coupon_aff_url[0],
                         descriptionText = htmlDecode(item.content);
+
+                    // strip protocol, subdomain, and trailing slashes from domain for Clearbit API
+                    company_url = company_url.replace(/^(https?:\/\/)?(www\.)?/i, "").replace(/\/$/, "");
 
                     return {
                         title: htmlDecode(item.title),
@@ -67,17 +70,10 @@
                     }
                 },
                 onShow: function(){
-                    // workaround to set background image to fallback coupon logo
+                    // workaround to change src to fallback image
                     // in case clearbit API returns nothing
-                    $(".tile--couprex .tile__media__img").each(function(){
-                        if ( $(this).height() !== 100 ) {
-                            $(this).css({
-                                'background-image': 'url(' + fallback_image + ')',
-                                'background-repeat': 'no-repeat',
-                                'background-position': '50% 0',
-                                'background-size': '80px'
-                            });
-                        }
+                    $(".tile--couprex img.tile__media__img").on('error', function(){
+                        $(this).attr('src', fallback_image);
                     });
                 }
             });
