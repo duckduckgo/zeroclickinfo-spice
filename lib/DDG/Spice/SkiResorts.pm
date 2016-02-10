@@ -6,18 +6,20 @@ package DDG::Spice::SkiResorts;
 # to instant answer development
 
 use DDG::Spice;
+use JSON;
 
-# Caching - http://docs.duckduckhack.com/backend-reference/api-reference.html#caching
+# Configuration
 spice is_cached => 1;
 spice proxy_cache_valid => "200 1d"; # defaults to this automatically
-
 spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
 
-# API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
+# API endpoint
 spice to => 'http://www.piste.io/info/$1.json';
 
-# Triggers - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#triggers
-triggers start => 'la plagne', 'st anton', 'heavenly', 'chamonix', 'chimborazo';
+# Load in resort list for triggers
+my $resorts = share('resorts.json')->slurp;
+$resorts = decode_json($resorts);
+triggers start => $resorts;
 
 # Handle statement
 handle remainder => sub {
