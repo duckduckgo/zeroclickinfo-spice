@@ -21,17 +21,13 @@
             normalize: function(item) {
                 return {
                     // customize as needed for your chosen template
-                    title: "La Plagne",
-                    subtitle: "test",
+                    title: api_result.title,
+                    subtitle: "Ski resort in " + api_result.country,
                     image: 'http://www.piste.io/thumbs/' + api_result.name + '.jpg'
                 };
             },
             templates: {
-                group: 'info',
-                options: {
-                    title: 'Test',
-                    image: 'http://www.piste.io/thumbs/' + api_result.name + '.jpg'
-                }
+                group: 'info'
             }
         });
     };
