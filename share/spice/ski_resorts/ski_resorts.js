@@ -27,7 +27,7 @@
                 };
             },
             templates: {
-                group: 'icon',
+                group: 'info',
                 options: {
                     title: 'Test',
                     image: 'http://www.piste.io/thumbs/la-plagne.jpg'

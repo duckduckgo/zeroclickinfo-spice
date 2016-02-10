@@ -17,13 +17,15 @@ spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callb
 spice to => 'http://www.piste.io/dem/$1.geojson';
 
 # Triggers - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#triggers
-triggers any => 'la plagne', 'st anton', 'heavenly', 'chamonix';
+triggers start => 'la plagne', 'st anton', 'heavenly', 'chamonix', 'chimborazo';
 
 # Handle statement
 handle remainder => sub {
-
-    # Query is in $_...if you need to do something with it before returning
-    return 'chimborazo';
+    my $resort = $req->query_lc;
+    
+    # Trim off remainder if needed
+    $resort = substr $req->query_lc, 0, -(length($_) + 1) unless length($_) eq 0;
+    return $resort
 };
 
 1;
