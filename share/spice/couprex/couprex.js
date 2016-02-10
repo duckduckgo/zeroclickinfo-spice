@@ -38,8 +38,11 @@
                         return null;
                     }
 
-                    var company_url = item.custom_fields.clpr_coupon_aff_url[0].replace(/(https?:\/\/)?www\./, ""),
+                    var company_url = item.custom_fields.clpr_coupon_aff_url[0],
                         descriptionText = htmlDecode(item.content);
+
+                    // strip protocol, subdomain, and trailing slashes from domain for Clearbit API
+                    company_url = company_url.replace(/^(https?:\/\/)?(www\.)?/i, "").replace(/\/$/, "");
 
                     return {
                         title: htmlDecode(item.title),
