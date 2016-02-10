@@ -14,7 +14,7 @@ spice proxy_cache_valid => "200 1d"; # defaults to this automatically
 spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
 
 # API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
-spice to => 'http://www.piste.io/dem/$1.geojson';
+spice to => 'http://www.piste.io/info/$1.json';
 
 # Triggers - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#triggers
 triggers start => 'la plagne', 'st anton', 'heavenly', 'chamonix', 'chimborazo';

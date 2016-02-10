@@ -23,14 +23,14 @@
                     // customize as needed for your chosen template
                     title: "La Plagne",
                     subtitle: "test",
-                    image: 'http://www.piste.io/thumbs/la-plagne.jpg'
+                    image: 'http://www.piste.io/thumbs/' + api_result.name + '.jpg'
                 };
             },
             templates: {
                 group: 'info',
                 options: {
                     title: 'Test',
-                    image: 'http://www.piste.io/thumbs/la-plagne.jpg'
+                    image: 'http://www.piste.io/thumbs/' + api_result.name + '.jpg'
                 }
             }
         });
