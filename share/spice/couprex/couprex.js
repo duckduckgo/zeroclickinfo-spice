@@ -67,17 +67,10 @@
                     }
                 },
                 onShow: function(){
-                    // workaround to set background image to fallback coupon logo
+                    // workaround to change src to fallback image
                     // in case clearbit API returns nothing
-                    $(".tile--couprex .tile__media__img").each(function(){
-                        if ( $(this).height() !== 100 ) {
-                            $(this).css({
-                                'background-image': 'url(' + fallback_image + ')',
-                                'background-repeat': 'no-repeat',
-                                'background-position': '50% 0',
-                                'background-size': '80px'
-                            });
-                        }
+                    $(".tile--couprex img.tile__media__img").on('error', function(){
+                        $(this).attr('src', fallback_image);
                     });
                 }
             });
