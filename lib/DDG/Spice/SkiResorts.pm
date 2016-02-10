@@ -25,6 +25,9 @@ handle remainder => sub {
     
     # Trim off remainder if needed
     $resort = substr $req->query_lc, 0, -(length($_) + 1) unless length($_) eq 0;
+    
+    # Replace spaces with dashes
+    $resort =~ s/\s/-/g;
     return $resort
 };
 
