@@ -17,9 +17,10 @@ spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callb
 spice to => 'http://www.piste.io/info/$1.json';
 
 # Load in resort list for triggers
-my $resorts = share('resorts.json')->slurp;
-$resorts = decode_json($resorts);
-triggers start => $resorts;
+my $data = share('resorts.json')->slurp;
+my @resorts = @{decode_json($data)};
+@resorts = map { $_ =~s/-/ /g; $_; } @resorts; # Replace dashes with spaces
+triggers any => @resorts;
 
 # Handle statement
 handle remainder => sub {
