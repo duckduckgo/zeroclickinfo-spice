@@ -12,11 +12,32 @@ ddg_spice_test(
     # At a minimum, be sure to include tests for all:
     # - primary_example_queries
     # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/sales_tax_holiday/query',
+   'sales tax holiday for PA' => test_spice(
+        '/js/spice/sales_tax_holiday/PA',
         call_type => 'include',
-        caller => 'DDG::Spice::SalesTaxHoliday'
+        caller => 'DDG::Spice::SalesTaxHoliday',
     ),
+   'sales tax holiday for pennsylvania' => test_spice(
+        '/js/spice/sales_tax_holiday/PA',
+        call_type => 'include',
+        caller => 'DDG::Spice::SalesTaxHoliday',
+    ),
+   'sales tax holiday for Alabama' => test_spice(
+        '/js/spice/sales_tax_holiday/AL',
+        call_type => 'include',
+        caller => 'DDG::Spice::SalesTaxHoliday',
+    ),
+   'sales tax holiday for MO' => test_spice(
+        '/js/spice/sales_tax_holiday/MO',
+        call_type => 'include',
+        caller => 'DDG::Spice::SalesTaxHoliday',
+    ),
+   'sales tax holiday for MOO' => test_spice(
+        '/js/spice/sales_tax_holiday/',
+        call_type => 'include',
+        caller => 'DDG::Spice::SalesTaxHoliday',
+    ),
+
     # Try to include some examples of queries on which it might
     # appear that your answer will trigger, but does not.
     'bad example query' => undef,
