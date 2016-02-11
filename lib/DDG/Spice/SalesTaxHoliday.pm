@@ -15,7 +15,9 @@ handle remainder_lc => sub {
     my ($stateCode); #Define vars
     s/^what is (the)?//g; # strip common words
     return '' unless $_; # Guard against "no answer"
-
+    
+#   return $_ if $_ =~ /^[0-9]{5}$/; #Still thinking, whether to filter or not.
+    
     # Washington D.C is a district and is not supported by the SubCountry package.
     if(m/\b(washington\s(dc|d\.c))\b/i) {
        $stateCode = "DC";
