@@ -10,7 +10,7 @@
 
         // Display
         Spice.add({
-            id: "snapcx_sales_tax",
+            id: "sales_tax",
             name: "Finance",
             data: api_result.stateSalesTaxInfos,
             meta: {

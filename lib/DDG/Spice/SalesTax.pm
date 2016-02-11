@@ -6,7 +6,7 @@ use DDG::Spice;
 use Locale::SubCountry;
 #use YAML::XS 'LoadFile';
 
-triggers any => 'sales tax for', 'sales tax in';
+triggers any => 'sales tax for', 'sales tax in', 'sales tax';
 spice to => 'http://dev.snapcx.io:9100/taxv1/getStateTaxRate?request_id=DDG_Requestor&state=$1';
 spice wrap_jsonp_callback => 1;
 
