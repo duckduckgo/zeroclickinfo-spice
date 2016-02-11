@@ -1,8 +1,6 @@
 (function (env) {
     "use strict";
     env.ddg_spice_sales_tax = function(api_result){
-//         console.log("API Result Header.status is "+api_result.header.status);
-//         console.log("Total infos object are "+api_result.stateSalesTaxInfos.length);
         // Error checking
         if (!api_result || api_result.header.status !== "SUCCESS") {
             return Spice.failed('sales_tax2');
