@@ -1,38 +1,61 @@
 (function (env) {
-    "use strict";
-    env.ddg_spice_sales_tax_zip_code = function(api_result){
+   "use strict";
+   env.ddg_spice_sales_tax_zip_code = function(api_result){
+     console.log("API Result is "+api_result);     
+     // Error checking
+     if (!api_result 
+      || !api_result.header
+      || api_result.header.status !== "SUCCESS"
+      || !api_result.salesTaxInfo) {
+        if (api_result.header && api_result.header.errorMessage) {
+            return Spice.failed(api_result.header.errorMessage); 
+        }          
+        return Spice.failed('sales_tax_zip_code');
+      }
 
-        // Validate the response (customize for your Spice)
-        if (!api_result || api_result.error) {
-            return Spice.failed('sales_tax_zip_code');
-        }
-
-        // Render the response
+        // Display
         Spice.add({
             id: "sales_tax_zip_code",
-
-            // Customize these properties
-            name: "AnswerBar title",
-            data: api_result,
+            name: "Finance",
+            data: api_result.salesTaxInfo,
             meta: {
-                sourceName: "Example.com",
-                sourceUrl: 'http://example.com/url/to/details/' + api_result.name
+                //itemType: "Results",
+                //searchTerm: api_result.query,
+                sourceName: "snapCX.io",
+                sourceIcon: false,
+                sourceIconUrl: "http://snapcx.io/favicon.ico",
+                sourceUrl: "https://snapcx.io"
             },
             normalize: function(item) {
+                var titleResult, subtitleResult, description;
+                var totalTaxRate, stateTaxRate, countyTaxRate, cityTaxRate, messages;
+
+                totalTaxRate   = (item.totalTaxRate * 100).toFixed(2);
+                stateTaxRate   = (item.stateTaxRate * 100).toFixed(2);
+                countyTaxRate  = (item.countyTaxRate * 100).toFixed(2);
+                cityTaxRate    = (item.cityTaxRate * 100).toFixed(2);
+                messages       = item.messages;
+
+                titleResult = "Total tax is "+totalTaxRate+"%";
+                console.log("Title is "+titleResult);
+                if (totalTaxRate === 0.00) {
+                    subtitleResult = "No sales tax for this state";
+                } else {
+                    subtitleResult = "Total("+totalTaxRate+"%) = State("+stateTaxRate+"%) + County("+countyTaxRate+"%) + City("+cityTaxRate+"%)";
+                }
+
                 return {
-                    // customize as needed for your chosen template
-                    title: item.title,
-                    subtitle: item.subtitle,
-                    image: item.icon
+                    title: titleResult,
+                    subtitle: subtitleResult,
+                    description: messages                    
                 };
             },
             templates: {
-                group: 'your-template-group',
+                group: 'text',
                 options: {
-                    content: Spice.sales_tax_zip_code.content,
-                    moreAt: true
+                    moreAt: true                    
                 }
             }
         });
-    };
+    }
 }(this));
