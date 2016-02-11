@@ -1,29 +1,23 @@
 package DDG::Spice::SalesTaxZipCode;
+#ABSTRACT: Returns the sales tax for any US 5 digit zipcode. If query has 5 digit zipcode and other trigger word, then it will process.
 
-# ABSTRACT: Write an abstract here
-
-# Start at http://docs.duckduckhack.com/walkthroughs/forum-lookup.html if you are new
-# to instant answer development
-
+use strict;
 use DDG::Spice;
+use Locale::SubCountry;
 
-# Caching - http://docs.duckduckhack.com/backend-reference/api-reference.html#caching
+triggers any => 'sales tax for', 'sales tax in', 'sales tax';
+spice to => 'http://dev.snapcx.io:9100/taxv1/salesTaxInfo?request_id=DDG_Requestor&zipcode=$1';
+spice wrap_jsonp_callback => 1;
 spice is_cached => 1;
-spice proxy_cache_valid => "200 1d"; # defaults to this automatically
-
-spice wrap_jsonp_callback => 0; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
-
-# API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
-spice to => 'http://example.com/search/$1';
-
-# Triggers - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#triggers
-triggers any => 'triggerWord', 'trigger phrase';
+#my $zipCodeRegEX = "^[0-9]{5}$";
+#Create US SubCountry object
+my $US = new Locale::SubCountry("US");
 
 # Handle statement
-handle remainder => sub {
-
-    # Query is in $_...if you need to do something with it before returning
-    return $_;
+handle remainder_lc => sub {
+    my ($zipcode); #Define vars
+    s/^what is (the)?//g; # strip common words
+    return $_ if $_ =~ /^[0-9]{5}$/;
+    return;
 };
-
 1;
