@@ -18,6 +18,14 @@ handle remainder_lc => sub {
     my ($state, $stateCode); #Define vars
     s/^what is (the)?//g; # strip common words
     return '' unless $_; # Guard against "no answer"
+    if ($_ =~ /^[0-9]{5}$/){
+      return;
+    }
+
+    if ($_ =~ /((?i)holiday)/){
+      return;
+    }
+
 
     # Washington D.C is a district and is not supported by the SubCountry package.
     if(m/\b(washington\s(dc|d\.c))\b/i) {
