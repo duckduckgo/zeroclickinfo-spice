@@ -41,33 +41,34 @@
         if (!api_result || api_result.error) {
             return Spice.failed('ski_resorts');
         }
-        var issLatitude = (Math.round(api_result.location[1] * 100) / 100).toFixed(2);
-        var issLongitude = (Math.round(api_result.location[0] * 100) / 100).toFixed(2);
+
+        var lon = (Math.round(api_result.location[0] * 100) / 100).toFixed(2);
+        var lat = (Math.round(api_result.location[1] * 100) / 100).toFixed(2);
     
         DDG.require('maps', function() {
             Spice.add({
                 id: "isslocation",
-                name: "Map",
+                name: "Ski Resort",
                 model: 'Place',
  
                 view: 'Map',
                 data: [{
-                    url: "http://www.nasa.gov/mission_pages/station/main/index.html",
-                    display_name: "International Space Station",
-                    name: "International Space Station",
-                    lat: issLatitude,
-                    lon: issLongitude
+                    url: 'http://www.piste.io/' + api_result.name,
+                    display_name: api_result.title,
+                    name: api_result.title,
+                    lon: lon,
+                    lat: lat
                 }],
                 meta: {
                     zoomLevel: 6,
-                    sourceName: "open-notify.org",
-                    sourceUrl: 'http://open-notify.org'
+                    sourceName: "Piste.io",
+                    sourceUrl: 'http://www.piste.io/' + api_result.name
                 },
                 normalize: function(item) {
  
                     return {
-                        lat: issLatitude,
-                        lon: issLongitude
+                        lon: lon,
+                        lat: lat
                     };
                 }
             });
