@@ -1,5 +1,5 @@
 package DDG::Spice::SalesTaxHoliday;
-#ABSTRACT: Returns the sales tax for any state (not including territories) in the United States.
+#ABSTRACT: Returns the sales tax 'holiday' detailed information for any state in the United States.
 
 use strict;
 use DDG::Spice;
@@ -12,26 +12,23 @@ my $US = new Locale::SubCountry("US");
 
 # Handle statement
 handle remainder_lc => sub {
-    my ($state, $stateCode); #Define vars
+    my ($stateCode); #Define vars
     s/^what is (the)?//g; # strip common words
     return '' unless $_; # Guard against "no answer"
 
     # Washington D.C is a district and is not supported by the SubCountry package.
     if(m/\b(washington\s(dc|d\.c))\b/i) {
-       $state = "Washington D.C";
        $stateCode = "DC";
     } else {
         # $US->full_name returns the full state name based on the ISO3166 code
         $stateCode = $_;
-        $state = $US->full_name($_); # Check for state using ISO code (PA)
-        if($state eq "unknown") {
-            $state = $US->full_name($US->code($_)); # If state is "unknown" search for code using full state name (Pennsylvania)
+        if($US->full_name($_) eq "unknown") {
             $stateCode = $US->code($_);
         }
     }
     # error checking
-    return '' if $state eq "unknown";
-    return '' unless (defined $state and $stateCode);
+    return '' unless (defined $stateCode);
+    return '' if $stateCode eq "unknown";
     return uc $stateCode; # return result
 };
 1;
