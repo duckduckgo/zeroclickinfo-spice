@@ -1,7 +1,6 @@
 (function (env) {
    "use strict";
    env.ddg_spice_sales_tax_zip_code = function(api_result){
-     console.log("API Result is "+api_result);     
      // Error checking
      if (!api_result 
       || !api_result.header
