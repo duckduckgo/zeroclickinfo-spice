@@ -50,26 +50,25 @@
                 id: "isslocation",
                 name: "Ski Resort",
                 model: 'Place',
- 
                 view: 'Map',
+                templates: {
+                    item: 'places_item',
+                    detail: 'places_detail'
+                },
+                // Used to display pin
                 data: [{
-                    url: 'http://www.piste.io/' + api_result.name,
-                    display_name: api_result.title,
+                    id: 'uniqueid-1',
                     name: api_result.title,
+                    url: 'http://www.piste.io/' + api_result.name,
+                    image: 'http://www.piste.io/thumbs/' + api_result.name + '.jpg',
+                    address: 'Ski resort in ' + api_result.country,
                     lon: lon,
                     lat: lat
                 }],
                 meta: {
-                    zoomLevel: 6,
-                    sourceName: "Piste.io",
+                    zoomLevel: 8,
+                    sourceName: "Show piste map",
                     sourceUrl: 'http://www.piste.io/' + api_result.name
-                },
-                normalize: function(item) {
- 
-                    return {
-                        lon: lon,
-                        lat: lat
-                    };
                 }
             });
         });
