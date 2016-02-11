@@ -60,8 +60,8 @@
                     id: 'uniqueid-1',
                     name: api_result.title,
                     url: 'http://www.piste.io/' + api_result.name,
-                    image: 'http://www.piste.io/thumbs/' + api_result.name + '.jpg',
-                    address: 'Ski resort in ' + api_result.country,
+                    image: 'http://www.piste.io/preview/' + api_result.name + '.jpg',
+                    address: 'Ski resort in ' + api_result.countryName,
                     lon: lon,
                     lat: lat
                 }],
@@ -72,6 +72,5 @@
                 }
             });
         });
-        
     };
 }(this));
