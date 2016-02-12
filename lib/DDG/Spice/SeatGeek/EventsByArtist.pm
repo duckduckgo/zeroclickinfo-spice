@@ -5,15 +5,6 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-primary_example_queries "live show weezer", "upcoming concerts bjork";
-description "Upcoming concerts from SeatGeek";
-name "SeatGeek Events By Artist";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SeatGeek/EventsByArtist.pm";
-category "entertainment";
-topics "entertainment", "music";
-attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
-    github => ['https://github.com/andrey-p','Andrey Pissantchev'];
-
 triggers startend =>
     'upcoming concert',
     'upcoming concerts',
@@ -23,11 +14,13 @@ triggers startend =>
     'live show',
     'live shows',
     'gigs',
-    'tickets';
+    'tickets',
+    'event',
+    'events';
 
 spice proxy_cache_valid => "200 304 12h";
 
-spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=20&performers.slug=$1&callback={{callback}}';
+spice to => 'https://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=20&performers.slug=$1&callback={{callback}}';
 
 handle remainder_lc => sub {
     # in case we've matched for example "upcoming bjork concerts"

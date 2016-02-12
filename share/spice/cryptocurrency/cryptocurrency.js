@@ -39,6 +39,7 @@
         "pot": true,
         "ppc": true,
         "qrk": true,
+        "sdc": true,
         "utc": true,
         "wdc": true,
         "xpm": true,
@@ -96,13 +97,13 @@
             cryptoDate = "",
             cryptoTime = "",
             script = $('[src*="/js/spice/cryptocurrency/"]')[0],
-            source = $(script).attr("src");
+            source = decodeURIComponent($(script).attr("src"));
 
         if (ticker && ticker.base && ticker.target && ticker.price) {
 
             // Get amount from original query
             var query = source.match(/\/ticker\/(?:.*)\/(.+)/)[1],
-                queryAmount = parseFloat(decodeURIComponent(query)),
+                queryAmount = parseFloat(query),
                 // Calculate price, rates, and amounts
                 base = ticker.base,
                 target = ticker.target,
@@ -120,7 +121,7 @@
             // Get amount from original query
             var query = source.match(/\/secondaries\/(.+)\/(?:.*)/)[1],
                 displayName = capitalizeFirstLetter(query.match(/([^\d]+)/)[1]),
-                queryAmount = parseFloat(decodeURIComponent(query)),
+                queryAmount = parseFloat(query),
                 // Prepare the first item box
                 givenCurrency = {
                     created: rows[0].created,

@@ -7,17 +7,6 @@ use DDG::Spice;
 
 spice is_cached => 1;
 
-name "UV Index";
-source "EPA - United States Environmental Protection Agency";
-description "Display the UV Index for the user's location in the US";
-primary_example_queries "uv", "uv index";
-category "location_aware";
-topics "everyday", "travel", "geography";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/UV.pm";
-attribution github => ["https://github.com/Bjoern", "Bjoern Guenzel"],
-            twitter => ["https://twitter.com/fractality", "Bjoern Guenzel"],
-            web => ["http://blinker.net", "Bjoern's Blog"];
-
 # Triggers
 triggers startend => 'uv', 'uv index', 'current uv index';
 

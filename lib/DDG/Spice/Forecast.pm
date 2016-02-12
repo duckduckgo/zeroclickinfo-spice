@@ -5,14 +5,6 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-name "Forecast";
-description "Weather forecast";
-source "Forecast";
-primary_example_queries "weather";
-secondary_example_queries "weather 12180";
-topics "everyday", "travel";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Forecast.pm";
-
 triggers start => "weather";
 
 spice from => '([^/]*)/?([^/]*)';

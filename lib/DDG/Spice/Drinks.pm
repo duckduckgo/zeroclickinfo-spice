@@ -7,17 +7,6 @@ use Text::Trim;
 
 spice is_cached => 1;
 
-name "Drinks";
-description "Bartending info";
-primary_example_queries "how to make a mojito";
-secondary_example_queries "what ingredients are being used within gin fizz", "long island cocktail";
-
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Drinks.pm";
-attribution github  => ["https://github.com/mutilator", "mutilator"],
-            github  => ["https://github.com/ozdemirburak", "Burak Özdemir"],
-            twitter => ["https://twitter.com/ozdemirbur", "Burak Özdemir"],
-            web     => ["http://burakozdemir.co.uk", "Burak Özdemir"];
-
 spice to => 'http://www.thecocktaildb.com/api/json/v1/{{ENV{DDG_SPICE_COCKTAILDB_APIKEY}}}/search.php?s=$1';
 spice wrap_jsonp_callback => 1;
 

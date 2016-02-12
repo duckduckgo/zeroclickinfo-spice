@@ -5,20 +5,8 @@ use DDG::Spice;
 use Text::Trim;
 use YAML::XS 'LoadFile';
 
-# meta data
 # Initially this is will work with zip codes, but will expand
 # to other region identifiers
-
-primary_example_queries "27514 home values";
-secondary_example_queries "one bedroom houses 27514";
-description "Home values for a given region";
-name "Home Values";
-code_url "https://github.com/brianrisk/zeroclickinfo-spice";
-icon_url "https://www.quandl.com/favicon.ico";
-topics "economy_and_finance";
-category "finance";
-attribution web => ["https://www.quandl.com", "Quandl"],
-            twitter => "quandl";
 
 # hash associating triggers with indicator codes
 my $trigger_hash = LoadFile(share('home_values_triggers.yml'));

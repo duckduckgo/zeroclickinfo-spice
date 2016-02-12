@@ -4,17 +4,6 @@ package DDG::Spice::Videos;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "gopro videos";
-secondary_example_queries "jimmy fallon videos";
-description "Video search.";
-name "Video";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Video.pm";
-topics "everyday", "entertainment";
-category "entertainment";
-attribution github => ["https://github.com/duckduckgo/", "DuckDuckGo"],
-            twitter => ["https://twitter.com/duckduckgo", "DuckDuckGo"];
-
-
 spice to => 'https://duckduckgo.com/v.js?q=$1&n=20&callback={{callback}}';
 
 # 2014.05.07 (caine): moving to startend until

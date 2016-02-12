@@ -4,16 +4,6 @@ package DDG::Spice::SublimePackages;
 use strict;
 use DDG::Spice;
 
-name "SublimePackages";
-source "packagecontrol.io";
-icon_url "/i/packagecontrol.io.ico";
-description "Display Sublime Text packages";
-primary_example_queries "sublimetext package code", "sublime text package php";
-category "software";
-topics "programming", "computing";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SublimePackages.pm";
-attribution github => ["MrChrisW", "Chris Wilson"],
-            web => ["http://chrisjwilson.com", "Chris Wilson"];
 spice to => 'https://packagecontrol.io/search/$1.json';
 spice wrap_jsonp_callback => 1;
 
@@ -32,6 +22,8 @@ handle remainder => sub {
     s/v?(ersion )?3/:st3/g;
     # Do not trigger IA if query matches any words in skipwords.txt file
     return if  m/$skip/i;
+    # Do not trigger IA if query matches alternative/s 
+    return if  m/ ?alternatives? .*/i;
     s/\b(for)\s+?\b//g; #skip common words
     return $_;
 };

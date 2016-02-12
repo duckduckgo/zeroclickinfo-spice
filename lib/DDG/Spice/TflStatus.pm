@@ -4,16 +4,6 @@ package DDG::Spice::TflStatus;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "victoria line status";
-description "Shows the Transport for London line status";
-name "TflStatus";
-code_url "https://github.com/idlem1nd/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TflStatus.pm";
-icon_url "/favicon.ico";
-topics "travel";
-category "time_sensitive";
-attribution github  => ['https://github.com/idlem1nd', 'Tim Williams'],
-            twitter => ['https://twitter.com/tim_wllms', 'Tim Williams'];
-
 spice to => 'https://api.tfl.gov.uk/Line/$1/Status?app_id=4b57df3f&app_key={{ENV{DDG_SPICE_TFLSTATUS_APIKEY}}}';
 spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "418 1d";

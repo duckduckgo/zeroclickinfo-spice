@@ -4,18 +4,6 @@ package DDG::Spice::SearchCode;
 use strict;
 use DDG::Spice;
 
-name "SearchCode";
-description "search through APIs and open source repositories";
-source "Search[code]";
-primary_example_queries "underscore.js bind";
-secondary_example_queries "php print_r";
-category "reference";
-topics "programming";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SearchCode.pm";
-icon_url "/i/searchco.de.ico";
-attribution twitter => ["https://twitter.com/boyter", "Ben Boyter"],
-            github => ["https://github.com/boyter", "Ben Boyter"];
-
 # known bad queries
 my %skip_queries = map { $_ => undef } (
     'sql server with',

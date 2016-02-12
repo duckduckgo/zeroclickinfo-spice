@@ -7,19 +7,6 @@ use DDG::Spice;
 use URI::Escape;
 use Encode;
 
-primary_example_queries "python syntax highlighter";
-secondary_example_queries "python scratchpad", "javascript syntax highlighter";
-description "Show a text editor with sintax highlighting";
-name "Editor";
-source "http://ace.c9.io/";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Editor.pm";
-topics "programming";
-category "software";
-
-attribution github => ['https://github.com/jmg','Juan Manuel García'],
-            email => ['jmg.utn@gmail.com','Juan Manuel García'];
-
-
 triggers startend => 'web editor', 'online editor', 'syntax highlighter', 'syntax highlighting', 'code viewer', 'scratchpad', 'scratch pad';
 spice call_type => 'self';
 
