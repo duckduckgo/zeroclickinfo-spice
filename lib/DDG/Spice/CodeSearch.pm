@@ -8,17 +8,6 @@ triggers startend => "code", "example";
 
 spice to => 'https://searchcode.com/api/jsonp_codesearch_I/?q=$1&callback={{callback}}';
 
-primary_example_queries "javascript console.log example";
-description "Code search";
-name "CodeSearch";
-icon_url "/i/searchco.de.ico";
-source "search[code]";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/CodeSearch.pm";
-topics "sysadmin", "programming";
-category "programming";
-attribution github => ['https://github.com/boyter','Ben Boyter'],
-           twitter => ['http://twitter.com/boyter','Ben Boyter'];
-
 my $languages = join "|", share('languages.txt')->slurp;
 
 handle remainder => sub {

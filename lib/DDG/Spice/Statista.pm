@@ -4,11 +4,6 @@ package DDG::Spice::Statista;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "statistics about soccer";
-description "Shows example statistics";
-name "Statista";
-category "facts";
-
 my $limit = 16;
 my $lang = "en";
 

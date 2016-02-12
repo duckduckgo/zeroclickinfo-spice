@@ -4,19 +4,8 @@ package DDG::Spice::InTheaters;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "movies";
-secondary_example_queries "movies in theaters", "currently in theaters", "i want to watch a movie";
-description "Current movies from Rotten Tomatoes";
-name "InTheaters";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/InTheaters.pm";
-icon_url "/i/www.rottentomatoes.com.ico";
-topics "entertainment";
-category "entertainment";
-attribution github => ['https://github.com/jagtalon','jagtalon'],
-            twitter => ['http://twitter.com/juantalon','jagtalon'];
-
 my $rating = '(?:g\s*|pg\s*|r\s*)?';
-triggers any => 'movie', 'movies', 'theaters', 'theatres', 'showing', 'something', 'watch', 'opening', 'see';
+triggers any => 'movie', 'movies', 'theaters', 'theatres', 'cinemas', 'showing', 'something', 'watch', 'opening', 'see';
 spice from => '(.*?)/(.*)';
 spice to => 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/$1.json?country=$2&apikey={{ENV{DDG_SPICE_ROTTEN_APIKEY}}}&callback={{callback}}&page_limit=30&limit=30';
 
@@ -93,6 +82,7 @@ my %movies = (
     'pg13 movies' => 1,
     'unrated movies' => 1,
     'movies in theaters' => 1,
+    'movies in cinemas' => 1,
     'r movies in theaters' => 1,
     'pg movies in theaters' => 1,
     'pg-13 movies in theaters' => 1,
@@ -102,8 +92,10 @@ my %movies = (
     'unrated movies in theaters' => 1,
     'movies currently in theaters' => 1,
     'movies currently in theatres' => 1,
+    'movies currently in cinemas' => 1,
     'currently in theaters' => 1,
     'currently in theatres' => 1,
+    'currently in cinemas' => 1,
     );
 
 handle query_lc => sub {

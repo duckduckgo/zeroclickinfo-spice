@@ -6,18 +6,6 @@ use utf8;
 use DDG::Spice;
 use YAML::XS 'LoadFile';
 
-primary_example_queries "next train to geneva from paris";
-secondary_example_queries "train times zurich airport to basel";
-description "Lookup the next Swiss train going your way";
-name "Swiss trains";
-source "http://transport.opendata.ch/";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Transit/Switzerland.pm";
-topics "everyday";
-category "time_sensitive";
-attribution twitter => ['ourmaninjapan', 'Daniel Davis'],
-            github  => ['tagawa', 'Daniel Davis'],
-            web     => ['http://daniemon.com/', 'Daniel Davis'];
-
 spice to => 'http://transport.opendata.ch/v1/connections?from=$1&to=$2';
 spice from => '(.*)/(.*)';
 spice wrap_jsonp_callback => 1;

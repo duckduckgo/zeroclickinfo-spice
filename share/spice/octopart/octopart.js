@@ -80,12 +80,18 @@
                 }
             },
             relevancy: {
+                skip_words:  [
+                    "datasheet",
+                    "specs",
+                    "octopart"
+                ],
                 primary: [
                     { required: 'item.short_description' },
                     { required: 'item.octopart_url' },
                     { required: 'item.datasheets' },
                     { required: 'item.imagesets' },
                     { required: 'item.avg_price_v2' },
+                    { key: 'item.mpn' }, //check item title for relevancy
                 ],
             }
         });

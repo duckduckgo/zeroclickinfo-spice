@@ -1,0 +1,35 @@
+.zci--couprex .tile--c--n {
+    width: 14em;
+    height: 19.5em;
+}
+
+.zci--couprex .tile__media {
+    margin: 1.5em;
+    padding: 0;
+    width: auto;
+    height: 80px;
+}
+
+.zci--couprex .tile__media__img {
+    height: 80px;
+}
+
+.zci--couprex .tile--c--n .tile__body {
+    margin: 1.5em;
+    padding: 0;
+}
+
+.zci--couprex .tile--c--n .tile__title {
+    height: auto;
+    max-height: 2.5em;
+}
+
+.zci--couprex .tile--c--n .tile__sub {
+    margin-bottom: 0;
+}
+
+.zci--couprex .tile--c--n .tile__foot {
+    margin: 1.5em;
+    padding: 0;
+    padding-top: 1.5em;
+}

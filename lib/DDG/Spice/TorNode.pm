@@ -8,24 +8,6 @@ my $node_ip  = "198.96.155.3";
 my $node_fp1 = "BCEDF6C193AA687AE471B8A22EBF6BC57C2D285E";
 my $node_fp2 = "3E0908F131AC417C48DDD835D78FB6887F4CD126";
 
-name "Tor Node";
-description "Shows information about a Tor node";
-primary_example_queries "tor node 198.96.155.3",
-                        "tor bridge BCEDF6C193AA687AE471B8A22EBF6BC57C2D285E",
-                        "tor bridge node 3E0908F131AC417C48DDD835D78FB6887F4CD126",
-                        "tor exit 198.96.155.3",
-                        "tor exit node BCEDF6C193AA687AE471B8A22EBF6BC57C2D285E",
-                        "tor relay 3E0908F131AC417C48DDD835D78FB6887F4CD126",
-                        "tor relay node 198.96.155.3",
-secondary_example_queries "onion node 198.96",
-                          "onion relay gurgle";
-category "computing_tools";
-topics "sysadmin";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TorNode.pm";
-attribution web => ["http://mogigoma.com/", "Mak Kolybabi"],
-            github => ["https://github.com/mogigoma", "Mogigoma"],
-            twitter => ["https://twitter.com/mogigoma", "Mogigoma"];
-
 triggers startend => "tor node",
                      "tor exit", "tor exit status", "tor exit node", "tor exit node status",
                      "tor relay", "tor relay status", "tor relay node", "tor relay node status",

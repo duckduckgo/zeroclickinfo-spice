@@ -5,18 +5,6 @@ use strict;
 use DDG::Spice;
 use DateTime;
 
-primary_example_queries "what's on bbc";
-secondary_example_queries "what's on bbc three", "bbc two schedule yesterday";
-description "Find out what's on a BBC show";
-name "BBC";
-icon_url "/i/bbc.co.uk.ico";
-source "BBC";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/BBC.pm";
-topics "everyday";
-category "entertainment";
-attribution github => ['https://github.com/tophattedcoder','Tom Bebbington'],
-             email => ['tim@retout.co.uk','Tim Retout'];
-
 spice to => 'http://www.bbc.co.uk/$1/programmes/schedules/$2.json';
 
 spice from => '([^/]+)/([^/]+(/[^/]+)*)';

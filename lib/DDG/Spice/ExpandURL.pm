@@ -4,17 +4,6 @@ package DDG::Spice::ExpandURL;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "http://bit.ly/a", "expand bit.ly/lolcatz";
-description "Expand shortened URLs using LongURL.org";
-name "ExpandURL";
-icon_url "/i/longurl.org.ico";
-source "LongURL";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/ExpandURL.pm";
-topics "social";
-category "computing_tools";
-attribution github => ['https://github.com/adman','Adman'],
-           twitter => ['http://twitter.com/adman_X','Adman'];
-
 triggers start => "http", "https", "expand", "expandurl", "unshorten";
 
 spice to => 'http://api.longurl.org/v2/expand?url=$1&format=json&callback={{callback}}';
