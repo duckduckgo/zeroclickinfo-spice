@@ -10,8 +10,10 @@
          || !api_result.taxHolidays
          || (typeof api_result.taxHolidays === 'undefined')
          || api_result.taxHolidays.length < 1) {
-            isError = true;
-            if (api_result.header && api_result.header.errorMessage) {
+            if(api_result.header.errorMessage 
+            && api_result.header.errorCode 
+            && api_result.header.errorCode === 'NOT_FOUND') {
+                isError = true;
                 errorMessage = api_result.header.errorMessage;
             } else {         
               return Spice.failed('sales_tax_holiday');
@@ -19,12 +21,13 @@
         }
 
         // Display
+      DDG.require("moment.js", function(){
         Spice.add({
-            id: "snapcx_sales_tax_holiday",
-            name: "Finance",
+            id: "sales_tax_holiday",
+            name: "Answer",
             data: isError? {"errorMessage" : errorMessage} : api_result.taxHolidays,
             meta: {
-                sourceName: "snapCX.io",
+                sourceName: "snapCX",
                 sourceIcon: false,
                 sourceIconUrl: "http://snapcx.io/favicon.ico",
                 sourceUrl: "https://snapcx.io"
@@ -39,7 +42,11 @@
 
                 if (item.dates && !(typeof item.dates === 'undefined')) {
                   var dates = item.dates;
-                  var subtitleResult = "Dates: "+dates;
+                  var subtitleResult = "";
+                  for (var dt = 0; dt < dates.length; dt++) {
+                      if (dt > 0) subtitleResult += ", ";
+                      subtitleResult += moment(dates[dt]).format("MMM DD, YYYY"); 
+                  }  
                 }
                                 
                 if (item.taxHolidayItems && !(typeof item.taxHolidayItems === 'undefined')) {
@@ -64,7 +71,8 @@
                 options: {
                     moreAt: true
                 }
-            }
-        });
+            } //end of 'templates block
+        }); //end of Spice.add(..)
+      }); //end of moment.js dependency
     }
 }(this));
