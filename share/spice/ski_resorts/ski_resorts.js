@@ -12,7 +12,7 @@
     
         DDG.require('maps', function() {
             Spice.add({
-                id: "isslocation",
+                id: api_result.name,
                 name: "Ski Resort",
                 model: 'Place',
                 view: 'Map',
@@ -21,7 +21,7 @@
                     detail: 'places_detail'
                 },
                 data: [{
-                    id: 'uniqueid-1',
+                    id: api_result.name,
                     name: api_result.title,
                     url: 'http://www.piste.io/' + api_result.name,
                     image: 'http://www.piste.io/preview/' + api_result.name + '.jpg',
