@@ -9,21 +9,31 @@ spice wrap_jsonp_callback => 1;
 spice proxy_cache_valid => "12h";
 
 triggers startend => "sunset", "sunrise";
+triggers start => 
+    "when is the sunrise",
+    "when is the sunset",
+    "when is sunrise",
+    "when is sunset",    
+    "when does the sun rise",
+    "when does the sun set",
+    "when does sun rise",
+    "when does sun set",
+    "when will the sun rise",
+    "when will the sun set",
+    "when will sun rise",
+    "when will sun set";
 
 my $capitals = LoadFile(share('capitals.yml'));
 
 handle remainder_lc => sub {
     my $q = $_;
 
-    if ($q ne '') {
-        $q =~ s/\b(what|is|today|time|in|at)+\b//g;
-        $q =~ s/(\,\s)+/ /g;
-        $q = trim $q;
-        $q = ($q eq '') ? lc $loc->city : $q;
-    } else {
-        $q = lc $loc->city;
-    }
-
+    $q =~ s/\b(what|is|today|time|in|at)+\b//g;
+    $q =~ s/(\,\s)+/ /g;
+    $q = trim $q;
+    
+    return unless $q;
+    
     if (my $caps = $capitals->{$q}) {
         # These are internally sorted by population,
         # so assume they want the big one for now.

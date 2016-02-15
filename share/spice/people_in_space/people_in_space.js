@@ -1,6 +1,6 @@
 (function (env) {
     "use strict";
-
+    
     var codes = {"canada":"ca", "china":"cn", "denmark":"dk", "england" : "uk", "france":"fr", "germany":"de", "italy":"it", "japan":"jp", "kazakhstan":"kz", "netherlands":"nl", "russia":"ru", "spain":"sp", "sweden":"se", "uk":"uk", "usa":"us"};
 
     function getObject(obj, number) {
@@ -17,6 +17,32 @@
             };
             obj.templates.item = 'base_item';
             obj.meta.itemType = number === 1 ? "Person in Space" : "People in Space";
+            
+            obj.onItemShown = function(item) {
+                // Get filename from biophoto image url. Replace file extention jpg to png
+                // Use DDG.get_asset_path to get full path to images under spice directory
+                var imageFilename = item.biophoto.replace(/^.*[\\\/]/, ''), 
+                    localImage = DDG.get_asset_path('people_in_space', "assets/" + imageFilename)
+                
+                // For retina screen return optimized images @2x.png
+                if (DDG.is3x || DDG.is2x) localImage = localImage.replace(/\.jpg/, '@2x.jpg')
+                
+                // Perform a HTTP GET request to retrieve local images using filename from API 
+                // This is used to determine if a local image exists 
+                $.ajax({
+                    url  : localImage,
+                    type : 'get',
+                }).always(function(data, statusText, xhr) {
+                    // Local image exists if the following is true
+                    // HTTP status code is 200 (OK) 
+                    // Content-Type is "image/jpeg"
+                    if(xhr.status === 200 &&  xhr.getResponseHeader('content-type') == "image/jpeg") {
+                        item.set('image', localImage);  // set local image
+                    } else {
+                        item.set('image', item.biophoto);  // fallback to remote image (returned by API)
+                    }
+                });
+            }
         } else {
             obj.normalize = function(item) {
                 return {
@@ -42,7 +68,10 @@
             meta: {
                 primaryText: api_result.number + (api_result.number == 1 ? " Person" : " People") + ' in Space',
                 sourceName: "People in Space",
-                sourceUrl: "http://www.howmanypeopleareinspacerightnow.com/"
+                sourceUrl: "http://www.howmanypeopleareinspacerightnow.com/",
+                rerender: [
+                    'image' // rerender images, required when using item.set in onItemShown
+                ]
             },
             templates: {
                 options: {
