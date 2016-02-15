@@ -1,5 +1,5 @@
-<span class="word forvo--{{id}}"><a href="http://forvo.com/word/{{word}}/#{{standard_pronunciation.code}}">{{original}}</a></span>&nbsp;<span class="lang">[<abbr title="{{standard_pronunciation.langname}}">{{standard_pronunciation.code}}</abbr>]</span>
-<span class="sidenote">(
+<span class="word text--primary forvo--{{id}}">{{original}}</span>&nbsp;<span class="lang">[<abbr title="{{standard_pronunciation.langname}}">{{standard_pronunciation.code}}</abbr>]</span>
+<span class="sidenote text--secondary">
 {{forvo_sex standard_pronunciation.sex}} 
 {{#and standard_pronunciation.sex standard_pronunciation.country}},{{/and}}
-{{standard_pronunciation.country}})</span>
+{{standard_pronunciation.country}} <img class="disc__img" src="{{forvo_icon standard_pronunciation.country_code}}" alt="Flag of {{standard_pronunciation.country}}"></span>
