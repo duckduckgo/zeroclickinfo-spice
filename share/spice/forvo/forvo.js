@@ -71,3 +71,10 @@ Handlebars.registerHelper("forvo_sex", function(sex) {
 
     return "Female";
 });
+
+Handlebars.registerHelper("forvo_icon", function(code) {
+    if (code !== undefined){
+        var code = code.toLowerCase();
+    }
+    return DDG.settings.region.getSmallIconURL(code);
+});

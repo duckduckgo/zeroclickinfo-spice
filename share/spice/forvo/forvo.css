@@ -4,13 +4,11 @@
 
 .zci--forvo .lang {
     font-size: 75%;
-    opacity: .75;
 }
 
 .zci--forvo .sidenote {
     float: right;
     font-size: 85%;
-    opacity: .75;
 }
 
 .zci--forvo .attribution-wrap--top {
@@ -24,4 +22,5 @@
 
 .zci--forvo .play-btn__icn {
     font-size: 0.7em;
+    margin-left: 0;
 }
