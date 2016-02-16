@@ -16,14 +16,15 @@ spice wrap_jsonp_callback => 0; # only enable for non-JSONP APIs (i.e. no &callb
 # API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
 spice to => 'http://example.com/search/$1';
 
-# Triggers - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#triggers
-triggers any => 'triggerWord', 'trigger phrase';
+# Triggers - https://duck.co/duckduckhack/spice_triggers
+triggers <: $ia_trigger :>;
 
 # Handle statement
-handle remainder => sub {
+handle <: $ia_handler :> => sub {
 
-    # Query is in $_...if you need to do something with it before returning
-    return $_;
+    # Query is in $_ or @_, depending on the handle you chose...if you
+    # need to do something with it before returning
+    return \<: $ia_handler_var :>_;
 };
 
 1;
