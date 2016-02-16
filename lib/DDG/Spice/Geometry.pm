@@ -3,7 +3,7 @@ package DDG::Spice::Geometry;
 
 use DDG::Spice;
 
-triggers startend => 'geometry', 'formula', 'calc', 'area of', 'perimeter of';
+triggers startend => 'geometry', 'formulas', 'volume', 'area', 'perimeter', 'surface', 'circumference', 'diagonal';
 
 spice call_type => 'self';
 
