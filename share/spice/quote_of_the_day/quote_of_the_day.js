@@ -8,7 +8,7 @@
 
         Spice.add({
             id: "quote_of_the_day",
-
+            signal:"high",
             name: "Quote of the Day",
             data: api_result,
             meta: {
