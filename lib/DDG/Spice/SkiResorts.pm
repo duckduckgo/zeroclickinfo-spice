@@ -28,18 +28,16 @@ triggers startend => "ski", "skiing", "ski conditions at", "snowboarding", "map"
 # Handle statement
 handle remainder => sub {
     # Find first matching resort
-    my $resort;
+    my $resort = '';
     foreach my $i (0..$#resorts) {
         next if $_ !~ /$resorts[$i]/;
         $resort = $resorts[$i];
+        $resort =~ s/\s/-/g; # Replace spaces with dashes
         last; # Have match, exit
     }
     
     # If we have a match trigger, otherwise discard (by not returning)
-    if ($resort) {
-      $resort =~ s/\s/-/g; # Replace spaces with dashes
-      return $resort;
-    }  
+    return unless $resort;
 };
 
 1;
