@@ -4,6 +4,7 @@
         // Error checking
         var errorMessage = "UNKNOWN ERROR";
         var isError = false;
+        var isMultipleResults = false;
         if (!api_result 
          || (typeof api_result.header === 'undefined')
          || api_result.header.status !== "SUCCESS" 
@@ -20,6 +21,9 @@
             }
         }
 
+        if (api_result.taxHolidays.length > 1) {
+            isMultipleResults = true;
+        }
         // Display
       DDG.require("moment.js", function(){
         Spice.add({
@@ -35,7 +39,10 @@
             normalize: function(item) {
                 var stateName   = item.stateName;
                 if (!isError) {
-                   var titleResult = stateName+" - "+"Sales Tax Holidays";
+                   var titleResult = stateName;
+                   if (!isMultipleResults) {
+                       titleResult += " - "+"Sales Tax Holidays";
+                   } 
                 } else {
                    var titleResult = item.errorMessage;
                 }
