@@ -21,22 +21,20 @@ my $data = share('resorts.json')->slurp;
 my @resorts = @{decode_json($data)};
 @resorts = map { $_ =~s/-/ /g; $_; } @resorts; # Replace dashes with spaces
 
-# Define triggers
+# Define triggers (will only trigger in conjustion with resort name, e.g. Ski Heavenly)
 triggers startend => "ski", "skiing", "ski conditions at", "snowboarding", "map", "piste map", "resort map";
-#triggers start => "ski conditions at";
 
 # Handle statement
 handle remainder => sub {
     # Find first matching resort
     my $resort = '';
     foreach my $i (0..$#resorts) {
-        next if $_ !~ /$resorts[$i]/;
+        next if $_ !~ /$resorts[$i]/i;
         $resort = $resorts[$i];
         $resort =~ s/\s/-/g; # Replace spaces with dashes
         last; # Have match, exit
     }
     
-    # If we have a match trigger, otherwise discard (by not returning)
     return unless $resort;
 };
 
