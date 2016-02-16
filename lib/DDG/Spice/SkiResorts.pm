@@ -20,15 +20,26 @@ spice to => 'http://www.piste.io/info/$1.json';
 my $data = share('resorts.json')->slurp;
 my @resorts = @{decode_json($data)};
 @resorts = map { $_ =~s/-/ /g; $_; } @resorts; # Replace dashes with spaces
-triggers any => @resorts;
+
+# Define triggers
+triggers startend => "ski", "skiing", "ski conditions at", "snowboarding", "map", "piste map", "resort map";
+#triggers start => "ski conditions at";
 
 # Handle statement
 handle remainder => sub {
-    my $resort = $req->matched_trigger;
-        
-    # Replace spaces with dashes
-    $resort =~ s/\s/-/g;
-    return $resort
+    # Find first matching resort
+    my $resort;
+    foreach my $i (0..$#resorts) {
+        next if $_ !~ /$resorts[$i]/;
+        $resort = $resorts[$i];
+        last; # Have match, exit
+    }
+    
+    # If we have a match trigger, otherwise discard (by not returning)
+    if ($resort) {
+      $resort =~ s/\s/-/g; # Replace spaces with dashes
+      return $resort;
+    }  
 };
 
 1;
