@@ -1,14 +1,8 @@
-(function (env) {
+(function(env) {
     "use strict";
 
-     // Get original query.
-    var script = $('[src*="/js/spice/statista/"]')[0],
-        source = $(script).attr("src"),
-        query = decodeURIComponent(source.match(/statista\/([^\/]+)/)[1]);
-
-   
-    function getImage(item, size, blank) {  
-       if (item.teaserImageUrls[size]) {
+    function getImage(item, size, blank) {
+        if (item.teaserImageUrls[size]) {
             var img = item.teaserImageUrls[size].src;
             if (blank == 1) {
                 img = img + '?blank=blank';
@@ -20,41 +14,30 @@
             return 'https://static1.statista.com/Statistic/table/table-100-1.png';
         }
     }
-    
+
     function getTitle(title) {
         return title.replace(/\ \|\ .+?$/, "");
     }
-    
+
     function formatDate(date) {
         moment.locale('de');
         var tstamp = moment(date, "DD.MM.YYYY");
         moment.locale('en');
         return moment(tstamp).format('MMM YYYY');
     }
-    
-    function getPremiumText(item) {
-        if (item.Premium == 1) {
-            return 'Premium';
-        } else {
-            return 'Free';
-        }
-    }
-    
-    function getPremiumCssClass(item) {
-        if (item.Premium == 1) {
-            return 'premium';
-        } else {
-            return 'free';
-        }
-    }
-    
-    env.ddg_spice_statista = function(api_result){
+
+    env.ddg_spice_statista = function(api_result) {
 
         if (!api_result || api_result.error) {
             return Spice.failed('statista');
         }
 
-        DDG.require('moment.js', function(){ 
+        // Get original query.
+        var script = $('[src*="/js/spice/statista/"]')[0],
+            source = $(script).attr("src"),
+            query = decodeURIComponent(source.match(/statista\/([^\/]+)/)[1]);
+
+        DDG.require('moment.js', function() {
             Spice.add({
                 id: "statista",
                 name: "Statistics",
@@ -62,22 +45,19 @@
                 meta: {
                     searchTerm: query,
                     sourceName: "Statista",
-                    sourceUrl: 'https://www.statista.com/search/?q='+api_result.q
+                    sourceUrl: 'https://www.statista.com/search/?q=' + api_result.q
                 },
                 normalize: function(item) {
                     return {
                         title: getTitle(item.title),
                         url: item.Link,
-                        description: item.subject ,
+                        description: item.subject,
                         image: getImage(item, 1, 1),
                         img_m: getImage(item, 1, 0),
                         heading: item.subject,
                         abstract: item.description,
-                        footerdate: formatDate(item.date, moment),
-                        footerpremiumcssclass: getPremiumCssClass(item),
-                        footerpremiumtext: getPremiumText(item)
-
-                    }  
+                        footerdate: formatDate(item.date, moment)
+                    }
                 },
                 templates: {
                     group: 'media',
