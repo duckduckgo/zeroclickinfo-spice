@@ -92,6 +92,13 @@
             color: "#4495D4"
         }
     };
+    
+    function isGeneric(query){
+        for(var key in formulas)
+            if(query.match(key))
+                return false;
+        return true;
+    }
 
     var shapes = {
         square: {
@@ -451,9 +458,8 @@
                 break;
             }
         }
-        //fails if the search string asks for a formula that does not belong to the shape,
-        //unless the query is triggered by the generic keywords 'geometry' and 'formulas'
-        if(found_formula == false && !(query.match("geometry") || query.match("formulas"))){
+        //if the query is not generic fails if search string asks for a formula that does not belong to the shape
+        if(found_formula == false && isGeneric(query) == false){
             Spice.failed("geometry");
             return;
         }
