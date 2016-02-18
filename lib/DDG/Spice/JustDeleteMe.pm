@@ -15,6 +15,7 @@ my @all = (@my, @acc, @on);
 triggers any => @all;
 
 handle remainder => sub {
+    $_ =~ s/,//ig;
     return unless $_;
 };
 
