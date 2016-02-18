@@ -9,9 +9,8 @@
         var script = $('[src*="/js/spice/just_delete_me/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/just_delete_me\/([^\/]+)/)[1],
-            decodedQuery = decodeURIComponent(query).split(" ")[0].toLowerCase(),
-            query_regexp = new RegExp(".*" + decodedQuery + ".*", 'i');
-        
+            decodedQuery = decodeURIComponent(query).split(" ")[0].toLowerCase()
+
         Spice.add({
             id: "just_delete_me",
             name: "Answer",
@@ -21,10 +20,16 @@
             },
             data: api_result,
             normalize: function(item) {
-                if (!item.domains) item.domains = [];
+                item.domains =  !item.domains ? [] : typeof(item.domains) === "string" ? [item.domains] : item.domains;
+                if (!item.name.contains(decodedQuery) &&
+                    !item.domains.some(function(domain) {return domain.contains(decodedQuery);}))
+                    return null;
+
+                item.exactMatch = (item.name && item.name.toLowerCase() === decodedQuery);
+                item.boost = (item.domains.some(function(domain) {return domain === decodedQuery}));
+
                 return {
                     delete_url: item.url,
-                    domain: item.domains.join(),
                     title: "Delete your account on " + item.name,
                     url: "http://justdelete.me/#" + decodedQuery,
                     subtitle: "Difficulty: " + DDG.capitalize(item.difficulty),
@@ -32,16 +37,12 @@
                 };
             },
             relevancy: {
-                primary: [
-                    {required: 'name'},
-                    {key: 'name', match: query_regexp },
-                    {key: 'domain' } // Never relevant.
-                ]
+                dup: 'name'
             },
             templates: {
                 detail: 'basic_info_detail',
                 item: 'text_item',
-                item_detail: false,
+                item_detail: false, // for some reason still showing
                 options: {
                     footer: Spice.just_delete_me.jdm_footer,
                     content: Spice.just_delete_me.jdm_item_detail,
