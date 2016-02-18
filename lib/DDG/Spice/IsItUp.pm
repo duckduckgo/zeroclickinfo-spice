@@ -5,7 +5,7 @@ use strict;
 use DDG::Spice;
 use DDG::Util::SpiceConstants;
 
-triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([0-9a-z\-]+(?:\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:up|down|working|online|status)\?*$/i;
+triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([0-9a-z\-]+(?:\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:working|online|status)\?*$/i;
 
 spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 
