@@ -19,7 +19,7 @@
                     sourceName: "Have I Been Pwned",
                     sourceUrl: url,
                     primaryText: email + " is compromised:",
-                    snippetChars: 170
+                    snippetChars: 140
                 },
                 normalize: function(item) {
 
