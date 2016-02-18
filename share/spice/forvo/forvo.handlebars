@@ -1,5 +1,10 @@
-<span class="word text--primary forvo--{{id}}">{{original}}</span>&nbsp;<span class="lang">[<abbr title="{{standard_pronunciation.langname}}">{{standard_pronunciation.code}}</abbr>]</span>
+{{{include 'play_button' url=standard_pronunciation.pathmp3}}}
+<span class="word text--primary">{{original}}</span>
+<span class="lang">
+    [<abbr title="{{standard_pronunciation.langname}}">{{standard_pronunciation.code}}</abbr>]
+</span>
 <span class="sidenote text--secondary">
-{{forvo_sex standard_pronunciation.sex}} 
-{{#and standard_pronunciation.sex standard_pronunciation.country}},{{/and}}
-{{standard_pronunciation.country}} <img class="disc__img" src="{{forvo_icon standard_pronunciation.country_code}}" alt="Flag of {{standard_pronunciation.country}}"></span>
+    {{forvo_sex standard_pronunciation.sex}}
+    {{#and standard_pronunciation.sex standard_pronunciation.country}},{{/and}}
+    {{standard_pronunciation.country}} <img class="disc__img" src="{{forvo_icon standard_pronunciation.country_code}}" alt="Flag of {{standard_pronunciation.country}}">
+</span>
