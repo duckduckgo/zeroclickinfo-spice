@@ -46,16 +46,22 @@
             data: short_list,
             normalize: function(item) {
                 return {
+                    delete_url: item.url,
                     title: "Delete your account on " + item.name,
-                    url: item.url,
+                    url: "http://justdelete.me/#" + decodedQuery,
                     subtitle: "Difficulty: " + DDG.capitalize(item.difficulty),
-                    description: item.notes,
+                    description: item.notes
                 };
             },
             templates: {
-                item: 'text_item',
                 detail: 'basic_info_detail',
+                item: 'text_item',
+                item_detail: false,
+                variant: {
+                    tileSnippet: 'small'
+                },
                 options: {
+                    footer: Spice.just_delete_me.jdm_footer,
                     content: Spice.just_delete_me.jdm_item_detail,
                     moreAt: true,
                     aux: false
