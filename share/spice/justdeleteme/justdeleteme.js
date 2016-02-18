@@ -52,13 +52,14 @@
                     title: "Delete your account on " + item.name,
                     url: item.url,
                     subtitle: "Difficulty: " + DDG.capitalize(item.difficulty),
-                    description: item.notes
+                    description: item.notes,
                 };
             },
             templates: {
                 item: 'text_item',
                 detail: 'basic_info_detail',
                 options: {
+		            content: Spice.justdeleteme.jdm_item_detail,
                     moreAt: true,
                     aux: false
                 }
