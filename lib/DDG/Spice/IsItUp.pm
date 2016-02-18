@@ -5,7 +5,7 @@ use strict;
 use DDG::Spice;
 use DDG::Util::SpiceConstants;
 
-triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([0-9a-z\-]+(?:\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:working|online|status)\?*$/i;
+triggers query_lc => qr/^((?:is\s|))(?:https?:\/\/)?([0-9a-z\-]+(?:\.[0-9a-z\-]+)*?)(?:(\.[a-z]{2,4})|)\s(?:up|down|working|online|status)\?*$/i;
 
 spice to => 'https://isitup.org/$1.json?callback={{callback}}';
 
@@ -27,6 +27,7 @@ handle matches => sub {
         return $_[1] if $_[1] =~ $regex_ipv4;
         # append .com only if "is" is in the query and there's no other domain given
         if ($_[0]) {
+            return if length($_[1]) < 5;
             return $_[1] . '.com';
         }
         # otherwise just return without '.com' -- stops false positives from showing zci
@@ -41,4 +42,3 @@ handle matches => sub {
 };
 
 1;
-

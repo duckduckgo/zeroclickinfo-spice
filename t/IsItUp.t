@@ -38,6 +38,10 @@ ddg_spice_test(
     # currently support unicode or ssl
     'is føtex.dk up?' => undef,
     'is https://føtex.dk up?' => undef,
+    'is it up?' => undef,
+    'is it down' => undef,
+    'is site up' => undef,
+    'is site down?' => undef,
     'is reddit.com working?' => test_spice(
         '/js/spice/is_it_up/reddit.com',
         caller    => 'DDG::Spice::IsItUp',
