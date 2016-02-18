@@ -4,7 +4,7 @@ package DDG::Spice::RedditSubSearch;
 use strict;
 use DDG::Spice;
 
-triggers startend => 'subreddit', 'r';
+triggers startend => 'subreddit', '/r/';
 
 spice to => 'http://www.reddit.com/r/$1/about.json?jsonp=ddg_spice_reddit';
 
