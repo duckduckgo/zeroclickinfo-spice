@@ -44,8 +44,8 @@
                 item: 'text_item',
                 item_detail: false, // for some reason still showing
                 options: {
-                    footer: Spice.just_delete_me.jdm_footer,
-                    content: Spice.just_delete_me.jdm_item_detail,
+                    footer: Spice.just_delete_me.footer,
+                    content: Spice.just_delete_me.content,
                     moreAt: true,
                     aux: false
                 }
