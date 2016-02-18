@@ -7,10 +7,12 @@ spice is_cached => 1;
 spice wrap_jsonp_callback => 1;
 spice to => 'https://raw.githubusercontent.com/rmlewisuk/justdelete.me/master/sites.json';
 
-triggers start => "justdelete", 
-                  "delete account", "delete account on", "delete my", "delete my account", "delete my account on", 
-                  "cancel account", "cancel account on", "cancel my", "cancel my account", "cancel my account on", 
-                  "remove account", "remove account on", "remove my", "remove my account", "remove my account on"; 
+my @tr = qw (delete cancel remove);
+my @my = map {"$_ my"} @tr;
+my @acc = map { "$_ account" } (@tr, @my);
+my @on = map {"$_ on"} @acc;
+my @all = (@my, @acc, @on);
+triggers any => @all;
 
 handle remainder => sub {
     return unless $_;
