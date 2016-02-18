@@ -9,27 +9,24 @@
         var script = $('[src*="/js/spice/justdeleteme/"]')[0],
         source = $(script).attr("src"),
         query = source.match(/justdeleteme\/([^\/]+)/)[1],
-        decodedQuery = decodeURIComponent(query).toLowerCase();
-        console.log("decodedQuery: " + decodedQuery);
-
+        decodedQuery = decodeURIComponent(query).split(" ")[0].toLowerCase();
+//         console.log("decodedQuery: " + decodedQuery);
+        
         var isRelevantName = function(item) {
             if (!item.name)
                 return false;
-            if (!decodedQuery.includes("justin") && item.name.toLowerCase().includes("justin"))
-                return false;
-            if (DDG.isRelevant(item.name))
-                return true;        
+			if (item.name.toLowerCase().contains(decodedQuery))
+                return true;   
             return false;
-        }
+        };
         var isRelevantDomain = function(item) {
-            for (var domain in item.domains) {
-                if (!decodedQuery.includes("justin") && domain.toLowerCase().includes("justin"))
-                    continue;
-                if (DDG.isRelevant(domain))
+            if (!item.domains)
+                return false;
+            for (var i = 0; i<item.domains.length; i++)
+                if (item.domains[i].toLowerCase().contains(decodedQuery))
                     return true;
-            }            
             return false;
-        }
+        };
         
         var short_list = api_result.filter(isRelevantName);
          if (short_list.length < 1) {            
@@ -38,6 +35,7 @@
         if (short_list.length < 1) {
             return Spice.failed('justdeleteme');
         }
+        
         // Render the response
         Spice.add({
             id: "justdeleteme",
@@ -50,7 +48,7 @@
             },
             data: short_list,
             normalize: function(item) {
-                return {                    
+                return {
                     title: "Delete your account on " + item.name,
                     url: item.url,
                     subtitle: "Difficulty: " + DDG.capitalize(item.difficulty),
