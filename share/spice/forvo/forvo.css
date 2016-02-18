@@ -1,5 +1,6 @@
 .zci--forvo .word {
     font-weight: bold;
+    cursor: pointer;
 }
 
 .zci--forvo .lang {
@@ -23,4 +24,8 @@
 .zci--forvo .play-btn__icn {
     font-size: 0.7em;
     margin-left: 0;
+}
+
+.zci--forvo .disc__img {
+    max-height: 1.8em;
 }
