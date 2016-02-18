@@ -1,6 +1,6 @@
-package DDG::Spice::Justdeleteme;
+package DDG::Spice::JustDeleteMe;
 
-# ABSTRACT: Search JusteDelte.Me for the provider
+# ABSTRACT: Search JustDelete.Me for the provider
 
 # Start at http://docs.duckduckhack.com/walkthroughs/forum-lookup.html if you are new
 # to instant answer development

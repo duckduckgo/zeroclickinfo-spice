@@ -1,14 +1,14 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_justdeleteme = function(api_result) {
+    env.ddg_spice_just_delete_me = function(api_result) {
         if (!api_result || api_result.length < 1) {
-            return Spice.failed('justdeleteme');
+            return Spice.failed('just_delete_me');
         }
 
         // get the remainder
-        var script = $('[src*="/js/spice/justdeleteme/"]')[0],
+        var script = $('[src*="/js/spice/just_delete_me/"]')[0],
             source = $(script).attr("src"),
-            query = source.match(/justdeleteme\/([^\/]+)/)[1],
+            query = source.match(/just_delete_me\/([^\/]+)/)[1],
             decodedQuery = decodeURIComponent(query).split(" ")[0].toLowerCase();
         //         console.log("decodedQuery: " + decodedQuery);
 
@@ -33,11 +33,11 @@
             var short_list = api_result.filter(isRelevantDomain);
         }
         if (short_list.length < 1) {
-            return Spice.failed('justdeleteme');
+            return Spice.failed('just_delete_me');
         }
 
         Spice.add({
-            id: "justdeleteme",
+            id: "just_delete_me",
             name: "Answer",
             meta: {
                 sourceName: 'Just Delete Me',
@@ -56,7 +56,7 @@
                 item: 'text_item',
                 detail: 'basic_info_detail',
                 options: {
-                    content: Spice.justdeleteme.jdm_item_detail,
+                    content: Spice.just_delete_me.jdm_item_detail,
                     moreAt: true,
                     aux: false
                 }
