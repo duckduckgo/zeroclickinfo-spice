@@ -15,7 +15,7 @@
                     }),
             api_result = exact ? [exact] : api_result.filter(function (item) {
                         item.domains =  !item.domains ? [] : typeof(item.domains) === "string" ? [item.domains] : item.domains;
-                        if (item.name.contains(decodedQuery) || item.domains.some(function(domain) {return domain.contains(decodedQuery);}))
+                        if (item.name.toLowerCase().contains(decodedQuery) || item.domains.some(function(domain) {return domain.toLowerCase().contains(decodedQuery);}))
                             return true;
                         });
 
