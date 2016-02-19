@@ -12,14 +12,15 @@
       data: api_result.jobs,
       meta: {
         sourceName: 'Jr.DevJobs',
-        sourceUrl: api_result.query_url
+        sourceUrl: api_result.query_url,
+        total: api_result.total_results
       },
       normalize: function(item) {
         return {
-          url: item.url,
           title: item.position,
           subtitle: item.company_name,
           description: item.snippet
+          url: item.url,
         };
       },
       templates: {
