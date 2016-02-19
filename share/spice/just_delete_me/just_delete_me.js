@@ -20,12 +20,11 @@
                         });
 
         Spice.add({
-            id: "just_delete_me",
+            id: "JustDeleteMe",
             name: "Answer",
             meta: {
                 sourceName: 'Just Delete Me',
-                sourceUrl: "http://justdelete.me/#" + decodedQuery,
-                exactFound: exact
+                sourceUrl: "http://justdelete.me/#" + decodedQuery
             },
             data: api_result,
             normalize: function(item) {
@@ -46,9 +45,7 @@
                     footer: Spice.just_delete_me.footer,
                     content: Spice.just_delete_me.content,
                     moreAt: true,
-                    aux: false,
-                    rating: false,
-                    ratingText: false
+                    aux: false
                 },
                 variants: {
                     tile: 'wide',
