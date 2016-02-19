@@ -9,17 +9,36 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::JustDeleteMe)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
-    'example query' => test_spice(
-        '/js/spice/just_delete_me/query',
+    'delete my facebook account' => test_spice(
+        '/js/spice/just_delete_me/facebook',
         call_type => 'include',
         caller => 'DDG::Spice::JustDeleteMe'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'bad example query' => undef,
+    'remove facebook account' => test_spice(
+        '/js/spice/just_delete_me/facebook',
+        call_type => 'include',
+        caller => 'DDG::Spice::JustDeleteMe'
+    ),
+    'cancel account on facebook' => test_spice(
+        '/js/spice/just_delete_me/facebook',
+        call_type => 'include',
+        caller => 'DDG::Spice::JustDeleteMe'
+    ),
+    'beam.pro delete account' => test_spice(
+        '/js/spice/just_delete_me/beam.pro',
+        call_type => 'include',
+        caller => 'DDG::Spice::JustDeleteMe'
+    ),
+    'cancel cloud account' => test_spice(
+        '/js/spice/just_delete_me/cloud',
+        call_type => 'include',
+        caller => 'DDG::Spice::JustDeleteMe'
+    ),
+    'cancel cloud account!' => test_spice(
+        '/js/spice/just_delete_me/cloud',
+        call_type => 'include',
+        caller => 'DDG::Spice::JustDeleteMe'
+    )
 );
 
 done_testing;
