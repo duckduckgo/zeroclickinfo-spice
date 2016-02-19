@@ -3,13 +3,18 @@ package DDG::Spice::JrDevJobs;
 
 use DDG::Spice;
 
-triggers any => 'junior developer jobs', 'jobs for jr developer', 'entry level software jobs';
+triggers start => qw(junior jr jr.);
+triggers end => qw(developer jobs dev);
 
 spice to => 'https://www.jrdevjobs.com/jobs.json?query=$1';
 spice is_cached => 1;
 spice wrap_jsonp_callback => 1;
 
-handle query => sub {
+handle remainder => sub {
+   s/(jobs)//;
+   s/(job)//;
+   s/(developer)//;
+
     return $_ if $_;
     return;
 };
