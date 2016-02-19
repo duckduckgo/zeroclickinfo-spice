@@ -29,16 +29,16 @@ sub validate {
     my @required;
     # strip triggers and preds
     for (my $i = 0; $i<scalar(@trigs); $i++) {
-        @qparts = grep(!/^($trigs[$i])$/i, @qparts);
+        @qparts = grep(!/^($trigs[$i]\W*)$/i, @qparts);
     }
     # check for required words
     for (my $i = 0; $i<scalar(@req); $i++) {
-        @required = (@required, grep(/^($req[$i])$/i, @qparts));
+        @required = (@required, grep(/^($req[$i]\W*)$/i, @qparts));
     }
     #strip required words and return rest as string
     if (scalar(@required) > 0) {
         for (my $i = 0; $i<scalar(@req); $i++) {
-            @qparts = grep(!/^($req[$i])$/i, @qparts);
+            @qparts = grep(!/^($req[$i]\W*)$/i, @qparts);
         }
         return join(" ", @qparts);
     }
