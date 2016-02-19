@@ -4,18 +4,20 @@
         if (!api_result || api_result.length < 1) {
             return Spice.failed('just_delete_me');
         }
-        // get the remainder
         var script = $('[src*="/js/spice/just_delete_me/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/just_delete_me\/([^\/]+)/)[1],
             decodedQuery = decodeURIComponent(query).split(" ")[0].toLowerCase(),
-            exact = api_result.find(function(item) {return item.name.toLowerCase() === decodedQuery}) ||
-                    api_result.find(function(item) {
-                        return item.domains && ((typeof(item.domains) === "string" && item.domains.toLowerCase() === decodedQuery) ||
-                                                 typeof(item.domains) === "object" && item.domains.some(function(domain) {return domain.toLowerCase() === decodedQuery}) )
+            exact = api_result.find(function(item) { return item.name.toLowerCase() === decodedQuery}) ||
+                    api_result.find(function(item) { return item.domains &&
+                        ((typeof(item.domains) === "string" && item.domains.toLowerCase() === decodedQuery) ||
+                         typeof(item.domains) === "object" && item.domains.some(function(domain) {return domain.toLowerCase() === decodedQuery}) )
                     }),
-            exactFound = exact ? true : false,
-            api_result = exactFound ? [exact] : api_result;
+            api_result = exact ? [exact] : api_result.filter(function (item) {
+                        item.domains =  !item.domains ? [] : typeof(item.domains) === "string" ? [item.domains] : item.domains;
+                        if (item.name.contains(decodedQuery) || item.domains.some(function(domain) {return domain.contains(decodedQuery);}))
+                            return true;
+                        });
 
         Spice.add({
             id: "just_delete_me",
@@ -27,14 +29,6 @@
             },
             data: api_result,
             normalize: function(item) {
-                item.domains =  !item.domains ? [] : typeof(item.domains) === "string" ? [item.domains] : item.domains;
-                if (!item.name.contains(decodedQuery) &&
-                    !item.domains.some(function(domain) {return domain.contains(decodedQuery);}))
-                    return null;
-
-                item.exactMatch = (item.name && item.name.toLowerCase() === decodedQuery);
-                item.boost = (item.domains.some(function(domain) {return domain === decodedQuery}));
-
                 return {
                     delete_url: item.url,
                     title: "Delete your account on " + item.name,
@@ -62,7 +56,7 @@
                     tileSnippet: 'large',
                     tileFooter: '1line'
                 },
-                detail: exactFound ? 'basic_info_detail' : false,
+                detail: api_result.length === 1 ? 'basic_info_detail' : false,
                 item_detail: false
             }
         });
