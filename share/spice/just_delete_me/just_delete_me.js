@@ -30,7 +30,7 @@
             normalize: function(item) {
                 return {
                     delete_url: item.url,
-                    title: "Delete your account on " + item.name,
+                    title: item.name,
                     url: "http://justdelete.me/#" + decodedQuery,
                     subtitle: "Difficulty: " + DDG.capitalize(item.difficulty),
                     description: item.notes
@@ -48,9 +48,7 @@
                     aux: false
                 },
                 variants: {
-                    tile: 'wide',
-                    tileTitle: '2line-small',
-                    tileSnippet: 'large',
+                    tileTitle: '1line-large',
                     tileFooter: '2line'
                 },
                 detail: api_result.length === 1 ? 'basic_info_detail' : false,
