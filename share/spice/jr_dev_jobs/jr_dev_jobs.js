@@ -12,15 +12,18 @@
       data: api_result.jobs,
       meta: {
         sourceName: 'Jr.DevJobs',
-        sourceUrl: api_result.query_url,
-        total: api_result.total_results
+        sourceUrl: 'https://www.jrdevjobs.com/jobs?query=' + api_result.query,
+        total: api_result.total_results,
+        searchTerm: api_result.query,
+        itemType: 'Jobs',
+        sourceIconUrl: 'https://s3-us-west-2.amazonaws.com/jrdevsimages/jr-dev-jobs-logo-circle.png'
       },
       normalize: function(item) {
         return {
           title: item.position,
           subtitle: item.company_name,
-          description: item.snippet
-          url: item.url,
+          description: item.snippet,
+          url: item.url
         };
       },
       templates: {
