@@ -3,7 +3,7 @@ package DDG::Spice::JrDevJobs;
 
 use DDG::Spice;
 
-trigger any => 'junior developer jobs', 'jobs for jr developer', 'entry level software jobs';
+triggers any => 'junior developer jobs', 'jobs for jr developer', 'entry level software jobs';
 
 spice to => 'https://www.jrdevjobs.com/jobs.json?query=$1';
 spice is_cached => 1;
