@@ -42,13 +42,18 @@
             templates: {
                 detail: 'basic_info_detail',
                 item: 'text_item',
-                item_detail: false, // for some reason still showing
                 options: {
                     footer: Spice.just_delete_me.footer,
                     content: Spice.just_delete_me.content,
                     moreAt: true,
                     aux: false
-                }
+                },
+                variants: {
+                    tileTitle: '2line-small',
+                    tileSnippet: 'large',
+                    tileFooter: '1line'
+                },
+                item_detail: false // for some reason still showing
             }
         });
     };
