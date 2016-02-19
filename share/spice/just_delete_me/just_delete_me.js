@@ -54,7 +54,7 @@
                     tile: 'wide',
                     tileTitle: '2line-small',
                     tileSnippet: 'large',
-                    tileFooter: '1line'
+                    tileFooter: '2line'
                 },
                 detail: api_result.length === 1 ? 'basic_info_detail' : false,
                 item_detail: false
