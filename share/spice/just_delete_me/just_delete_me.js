@@ -4,7 +4,6 @@
         if (!api_result || api_result.length < 1) {
             return Spice.failed('just_delete_me');
         }
-
         // get the remainder
         var script = $('[src*="/js/spice/just_delete_me/"]')[0],
             source = $(script).attr("src"),
@@ -40,20 +39,24 @@
                 dup: 'name'
             },
             templates: {
-                detail: 'basic_info_detail',
-                item: 'text_item',
+//                 detail: 'basic_info_detail',
+//                 item: 'text_item',
+                group: 'text',
                 options: {
                     footer: Spice.just_delete_me.footer,
                     content: Spice.just_delete_me.content,
                     moreAt: true,
-                    aux: false
+                    aux: false,
+                    rating: false,
+                    ratingText: false
                 },
                 variants: {
                     tileTitle: '2line-small',
                     tileSnippet: 'large',
                     tileFooter: '1line'
                 },
-                item_detail: false // for some reason still showing
+//                 detail: false,
+                item_detail: false // is there a way to disable item_detail without disabling detail?
             }
         });
     };
