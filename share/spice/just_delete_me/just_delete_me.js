@@ -8,14 +8,22 @@
         var script = $('[src*="/js/spice/just_delete_me/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/just_delete_me\/([^\/]+)/)[1],
-            decodedQuery = decodeURIComponent(query).split(" ")[0].toLowerCase()
+            decodedQuery = decodeURIComponent(query).split(" ")[0].toLowerCase(),
+            exact = api_result.find(function(item) {return item.name.toLowerCase() === decodedQuery}) ||
+                    api_result.find(function(item) {
+                        return item.domains && ((typeof(item.domains) === "string" && item.domains.toLowerCase() === decodedQuery) ||
+                                                 typeof(item.domains) === "object" && item.domains.some(function(domain) {return domain.toLowerCase() === decodedQuery}) )
+                    }),
+            exactFound = exact ? true : false,
+            api_result = exactFound ? [exact] : api_result;
 
         Spice.add({
             id: "just_delete_me",
             name: "Answer",
             meta: {
                 sourceName: 'Just Delete Me',
-                sourceUrl: "http://justdelete.me/#" + decodedQuery
+                sourceUrl: "http://justdelete.me/#" + decodedQuery,
+                exactFound: exact
             },
             data: api_result,
             normalize: function(item) {
@@ -39,8 +47,6 @@
                 dup: 'name'
             },
             templates: {
-//                 detail: 'basic_info_detail',
-//                 item: 'text_item',
                 group: 'text',
                 options: {
                     footer: Spice.just_delete_me.footer,
@@ -51,12 +57,13 @@
                     ratingText: false
                 },
                 variants: {
+                    tile: 'wide',
                     tileTitle: '2line-small',
                     tileSnippet: 'large',
                     tileFooter: '1line'
                 },
-//                 detail: false,
-                item_detail: false // is there a way to disable item_detail without disabling detail?
+                detail: exactFound ? 'basic_info_detail' : false,
+                item_detail: false
             }
         });
     };
