@@ -7,8 +7,13 @@
         var script = $('[src*="/js/spice/just_delete_me/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/just_delete_me\/([^\/]+)/)[1],
-            decodedQuery = decodeURIComponent(query).split(" ")[0].toLowerCase(),
-            exact = api_result.find(function(item) { return item.name.toLowerCase() === decodedQuery}) ||
+            decodedQuery = decodeURIComponent(query).split(" ")[0].toLowerCase();
+
+        if (!decodedQuery || decodedQuery.length < 4) {
+            return Spice.failed('just_delete_me');
+        }
+
+        var exact = api_result.find(function(item) { return item.name.toLowerCase() === decodedQuery}) ||
                     api_result.find(function(item) { return item.domains &&
                         ((typeof(item.domains) === "string" && item.domains.toLowerCase() === decodedQuery) ||
                          typeof(item.domains) === "object" && item.domains.some(function(domain) {return domain.toLowerCase() === decodedQuery}) )
