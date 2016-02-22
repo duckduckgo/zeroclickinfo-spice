@@ -76,7 +76,14 @@ ddg_spice_test(
         '/js/spice/geometry/',
         call_type => 'self',
         caller => 'DDG::Spice::Geometry'
-    )
+    ),
+    
+    #tests that do not trigger the spice
+    'rectangle area formula' => undef,
+    'formula for area of a sphere' => undef,
+    'sphere equations' => undef,
+    'the geometry of a square' => undef,
+    'rectangle formulas a=5 b=6' => undef
 );
 
 done_testing;
