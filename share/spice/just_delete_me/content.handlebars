@@ -1,0 +1,15 @@
+{{#if notes}}
+  <p>
+    {{notes}}
+  </p>
+{{/if}}
+{{#if delete_url}}
+  <p>
+    <b>URL:</b> <a href='{{delete_url}}'>{{delete_url}}</a>
+  </p>
+{{/if}}
+{{#if email}}
+  <p>
+    <b>Email:</b> <a href='mailto:{{email}}'>{{email}}</a>
+  </p>
+{{/if}}
