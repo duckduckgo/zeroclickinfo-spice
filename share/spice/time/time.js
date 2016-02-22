@@ -80,9 +80,9 @@
             }
 
             var dateTime = {
-                time: dateObj.format("LT"),
+                time: dateObj.format("h:mm A"),
                 dayName: dateObj.format("dddd"),
-                day: dateObj.format("d"),
+                day: dateObj.format("D"),
                 monthName: dateObj.format("MMMM"),
                 year: dateObj.format("YYYY"),
                 placeName: placeName,
