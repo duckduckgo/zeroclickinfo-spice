@@ -30,7 +30,7 @@
                     var thumb = item.hi_res_thumb || item.thumb;
                     return {
                         title: item.name,
-                        source: Handlebars.helpers.ellipsis(getFirstNameLastInitial(item.author), 15),
+                        source: Handlebars.helpers.ellipsis(getFirstNameLastInitial(item.author), 10),
                         url: item.url,
                         excerpt: item.summary,
                         description: item.summary,
