@@ -19,6 +19,9 @@
                             return true;
                         });
 
+        if (!api_result || api_result.length < 1) {
+            return Spice.failed('just_delete_me');
+        }
         Spice.add({
             id: "JustDeleteMe",
             name: "Answer",
