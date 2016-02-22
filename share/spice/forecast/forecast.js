@@ -244,7 +244,6 @@
               detail_mobile: Spice.forecast.forecast_detail_mobile
           }
       });
-    });
 
     //convert temperature to specified unit
     var convertTemp = function(unit, d){
@@ -350,6 +349,7 @@
         // update the setting so we remember this choice going forward:
         DDG.settings.set('kaj', uom === 'C' ? 'm' : 'u', { saveToCloud: true });
     });
+  });
   };
 
 }(this));
