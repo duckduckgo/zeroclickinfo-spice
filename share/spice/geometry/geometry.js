@@ -94,9 +94,11 @@
     };
     
     function isGeneric(query){
-        for(var key in formulas)
-            if(query.match(key))
+        for(var key in formulas){
+            if(query.match(key)){
                 return false;
+            }
+        }
         return true;
     }
 
@@ -459,10 +461,8 @@
             }
         }
         //if the query is not generic fails if search string asks for a formula that does not belong to the shape
-        if(found_formula == false && isGeneric(query) == false){
-            Spice.failed("geometry");
-            return;
-        }
+        if(found_formula == false && isGeneric(query) == false)
+            return Spice.failed("geometry");
         
         //if parameter(s) is / are defined print their values
         if(parameter !== null){
