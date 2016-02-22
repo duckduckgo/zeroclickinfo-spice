@@ -9,7 +9,7 @@ spice to => 'https://raw.githubusercontent.com/rmlewisuk/justdelete.me/master/si
 
 my $MIN_QUERY_LENGTH = 4;
 my @tr = qw (delete cancel remove);
-my @pred = qw (my on);
+my @pred = qw (my on how to howto);
 my @req = qw (account accounts);
 triggers any => @tr;
 
