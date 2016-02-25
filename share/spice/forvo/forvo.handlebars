@@ -1,8 +1,12 @@
 {{{include 'play_button' url=standard_pronunciation.pathmp3}}}
-<span class="word text--primary">{{original}}</span>
-<span class="lang">
-    [<abbr title="{{standard_pronunciation.langname}}">{{standard_pronunciation.code}}</abbr>]
-</span>
+<div class="word-wrap">
+    <span class="word text--primary">
+        {{original}}
+        <span class="lang">
+            [<abbr title="{{standard_pronunciation.langname}}">{{standard_pronunciation.code}}</abbr>]
+        </span>
+    </span>
+</div>
 <span class="sidenote text--secondary">
     {{forvo_sex standard_pronunciation.sex}}
     {{#and standard_pronunciation.sex standard_pronunciation.country}},{{/and}}
