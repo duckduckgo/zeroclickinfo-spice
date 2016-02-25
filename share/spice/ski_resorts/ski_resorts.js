@@ -19,22 +19,32 @@
                 },
                 data: api_result,
                 normalize: function(data){
+                    // Display number of runs and highest point
+                    var resortInfo = [];
+                    var difficulties = ['novice', 'easy', 'intermediate', 'advanced', 'expert'];
+                    difficulties.forEach( function ( difficulty ) {
+                        var count = data.difficulties[difficulty];
+                        if ( count ) {
+                            resortInfo.push( count + " " + difficulty + " run" + ( count > 1 ? "s" : "" ) );
+                        }
+                    } );
+                    if ( data.highest_point ) {
+                        resortInfo.push( "Highest point: " + 
+                                         data.highest_point.name + 
+                                         " (" + data.highest_point.ele +"m)" );
+                    }
+                    
                     return {
                         id: data.name,
-                        name: data.title,
+                        name: data.title + ' - ski resort in ' + data.countryName,
                         url: 'http://www.piste.io/' + data.name,
                         image: 'http://www.piste.io/preview/' + data.name + '.jpg',
                         ratingImageURL: 'http://www.piste.io/favicon.ico',
-                        // Not clear why `address` is needed, as we use `address_lines` below
-                        // but without it no address is displayed
-                        address: 'Ski resort in ' + data.countryName,
-                        address_lines: [
-                            'Ski resort in ' + data.countryName,
-                            '32 novice runs',
-                            '16 intermediate runs',
-                            '8 expert runs'
-                        ],
-                        city: 'New York City',
+                        // It seems `address` is needed, for the template 
+                        // to render `address_lines`. The text is then made
+                        // into a link to Bing maps, with the `address` value
+                        address: data.title + ' ski resort',
+                        address_lines: resortInfo,
                         lon: (Math.round(data.location[0] * 100) / 100).toFixed(2),
                         lat: (Math.round(data.location[1] * 100) / 100).toFixed(2)
                     }
