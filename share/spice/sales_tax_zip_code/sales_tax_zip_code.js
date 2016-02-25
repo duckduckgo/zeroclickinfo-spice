@@ -33,6 +33,7 @@
                 messages       = item.messages;
 
                 titleResult = totalTaxRate+"%";
+                
                 if (totalTaxRate === 0.00) {
                     subtitleResult = "No sales tax in "+item.state;
                 } else {
