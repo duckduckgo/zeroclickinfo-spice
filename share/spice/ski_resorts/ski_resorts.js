@@ -26,7 +26,14 @@
                     url: 'http://www.piste.io/' + api_result.name,
                     image: 'http://www.piste.io/preview/' + api_result.name + '.jpg',
                     ratingImageURL: 'http://www.piste.io/favicon.ico',
-                    address: 'Ski resort in ' + api_result.countryName,
+                    address_lines: [
+                        'Ski resort in ' + api_result.countryName,
+                        '32 novice runs',
+                        '16 intermediate runs',
+                        '8 expert runs'
+                    ],
+                    city: 'New York City',
+
                     lon: lon,
                     lat: lat
                 }],
