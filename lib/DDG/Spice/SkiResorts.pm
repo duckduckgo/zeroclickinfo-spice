@@ -35,7 +35,7 @@ handle remainder_lc => sub {
         last; # Have match, exit
     }
     
-    return unless $resort;
+    return $resort unless $resort;
 };
 
 1;
