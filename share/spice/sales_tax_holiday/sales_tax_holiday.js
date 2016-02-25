@@ -77,7 +77,10 @@
                 group: 'text',
                 options: {
                     moreAt: true
-                }
+                },
+                variants: {
+                  tileSnippet: 'large'
+                }            
             } //end of 'templates block
         }); //end of Spice.add(..)
       }); //end of moment.js dependency
