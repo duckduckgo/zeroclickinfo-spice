@@ -25,11 +25,11 @@ my @resorts = @{decode_json($data)};
 triggers startend => "ski", "skiing", "ski conditions at", "snowboarding", "map", "piste map", "resort map";
 
 # Handle statement
-handle remainder => sub {
+handle remainder_lc => sub {
     # Find first matching resort
     my $resort = '';
     foreach my $i (0..$#resorts) {
-        next if $_ !~ /$resorts[$i]/i;
+        next if $_ !~ /$resorts[$i]/;
         $resort = $resorts[$i];
         $resort =~ s/\s/-/g; # Replace spaces with dashes
         last; # Have match, exit
