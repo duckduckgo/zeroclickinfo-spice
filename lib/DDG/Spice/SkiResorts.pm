@@ -22,7 +22,7 @@ my @resorts = @{decode_json($data)};
 @resorts = map { $_ =~s/-/ /g; $_; } @resorts; # Replace dashes with spaces
 
 # Define triggers (will only trigger in conjustion with resort name, e.g. Ski Heavenly)
-triggers startend => "ski", "skiing", "ski conditions at", "snowboarding", "map", "piste map", "resort map";
+triggers startend => "ski", "skiing", "snowboarding", "map", "piste map", "resort map";
 
 # Handle statement
 handle remainder_lc => sub {
