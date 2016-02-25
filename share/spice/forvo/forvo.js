@@ -36,7 +36,7 @@
         DDG.require('audio', function(){
             Spice.add({
                 id: "forvo",
-                name: "Pronunciation",
+                name: "Answer",
                 data: {
                     list: api_result.items
                 },
