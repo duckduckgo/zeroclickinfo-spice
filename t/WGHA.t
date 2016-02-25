@@ -14,7 +14,7 @@ ddg_spice_test(
         query_raw => "was geht heute ab in frankfurt",
         location => test_location("de")
     ) => test_spice(
-        '/js/spice/wgha/was%20geht%20heute%20ab%20in%20frankfurt',
+        '/js/spice/wgha/was%20geht%20heute%20ab%20in%20frankfurt%20M%C3%B6nchengladbach',
         call_type => 'include',
         caller => 'DDG::Spice::WGHA',
     ),
@@ -22,7 +22,7 @@ ddg_spice_test(
         query_raw => "party in frankfurt",
         location => test_location("de")
     ) => test_spice(
-        '/js/spice/wgha/party%20in%20frankfurt',
+        '/js/spice/wgha/party%20in%20frankfurt%20M%C3%B6nchengladbach',
         call_type => 'include',
         caller => 'DDG::Spice::WGHA',
     ),
@@ -30,7 +30,7 @@ ddg_spice_test(
         query_raw => "ausgehen in berlin",
         location => test_location("de")
     ) => test_spice(
-        '/js/spice/wgha/ausgehen%20in%20berlin',
+        '/js/spice/wgha/ausgehen%20in%20berlin%20M%C3%B6nchengladbach',
         call_type => 'include',
         caller => 'DDG::Spice::WGHA',
     ),
@@ -38,28 +38,22 @@ ddg_spice_test(
         query_raw => "tanzen in darmstadt",
         location => test_location("de")
     ) => test_spice(
-        '/js/spice/wgha/tanzen%20in%20darmstadt',
+        '/js/spice/wgha/tanzen%20in%20darmstadt%20M%C3%B6nchengladbach',
         call_type => 'include',
         caller => 'DDG::Spice::WGHA',
     ),
     DDG::Request->new(
-        query_raw => "was geht in berlin",
+        query_raw => "was geht",
         location => test_location("de")
-    ) => test_spice(
-        '/js/spice/wgha/was%20geht%20in%20berlin',
-        caller    => 'DDG::Spice::WGHA',
-    ),
+    )  => undef,
       DDG::Request->new(
         query_raw => "was geht in berlin",
         location => test_location("us")
-    ) => test_spice(
-        '/js/spice/wgha/was%20geht%20in%20berlin',
-        caller    => 'DDG::Spice::WGHA',
-    ),
+    )  => undef,
        DDG::Request->new(
         query_raw => "was geht in potsdam",
         location => test_location("us")
-    ) => undef
+    )  => undef
 );
 
 done_testing;
