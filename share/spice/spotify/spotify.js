@@ -3,7 +3,7 @@
     env.ddg_spice_spotify = function(api_result){
 
         var query = DDG.get_query();
-        query = query.replace(/spotify/, ''); //replace trigger words from query
+        query = query.replace(/on spotify/, ''); //replace trigger words from query
 
         // Validate the response (customize for your Spice)
         if (!api_result || api_result.tracks.items.length === 0) {
