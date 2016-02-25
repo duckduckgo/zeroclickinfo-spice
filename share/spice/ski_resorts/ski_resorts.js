@@ -14,8 +14,8 @@
                 model: 'Place',
                 view: 'Map',
                 templates: {
-                    item: 'places_item',
-                    detail: 'places_detail'
+                    group: 'places',
+                    item: false
                 },
                 data: api_result,
                 normalize: function(data){
@@ -25,7 +25,9 @@
                         url: 'http://www.piste.io/' + data.name,
                         image: 'http://www.piste.io/preview/' + data.name + '.jpg',
                         ratingImageURL: 'http://www.piste.io/favicon.ico',
-                        //address: 'Hi there', 
+                        // Not clear why `address` is needed, as we use `address_lines` below
+                        // but without it no address is displayed
+                        address: 'Ski resort in ' + data.countryName,
                         address_lines: [
                             'Ski resort in ' + data.countryName,
                             '32 novice runs',
@@ -33,7 +35,6 @@
                             '8 expert runs'
                         ],
                         city: 'New York City',
-
                         lon: (Math.round(data.location[0] * 100) / 100).toFixed(2),
                         lat: (Math.round(data.location[1] * 100) / 100).toFixed(2)
                     }
