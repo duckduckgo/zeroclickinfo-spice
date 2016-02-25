@@ -30,17 +30,13 @@
                 var totalTaxRate, stateTaxRate, countyTaxRate, cityTaxRate, messages;
 
                 totalTaxRate   = (item.totalTaxRate * 100).toFixed(2);
-                stateTaxRate   = (item.stateTaxRate * 100).toFixed(2);
-                countyTaxRate  = (item.countyTaxRate * 100).toFixed(2);
-                cityTaxRate    = (item.cityTaxRate * 100).toFixed(2);
                 messages       = item.messages;
 
-                titleResult = "Total tax is "+totalTaxRate+"%";
-                console.log("Title is "+titleResult);
+                titleResult = totalTaxRate+"%";
                 if (totalTaxRate === 0.00) {
-                    subtitleResult = "No sales tax for this state";
+                    subtitleResult = "No sales tax in "+item.state;
                 } else {
-                    subtitleResult = "Total("+totalTaxRate+"%) = State("+stateTaxRate+"%) + County("+countyTaxRate+"%) + City("+cityTaxRate+"%)";
+                    subtitleResult = "Sales Tax - "+item.city+", "+item.state;
                 }
 
                 return {
