@@ -13,7 +13,8 @@
 
     Handlebars.registerHelper("forvo_icon", function(code) {
         if (code !== undefined){
-            var code = code.toLowerCase();
+            // lowercase and fix for UK flag
+            var code = code.toLowerCase().replace("gb", "uk");
         }
         return DDG.settings.region.getSmallIconURL(code);
     });
