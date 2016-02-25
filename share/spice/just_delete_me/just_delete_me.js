@@ -13,12 +13,13 @@
             return Spice.failed('just_delete_me');
         }
 
-        var exact = api_result.find(function(item) { return item.name.toLowerCase() === decodedQuery}) ||
-                    api_result.find(function(item) { return item.domains &&
+        var exact = api_result.filter(function(item) { return item.name.toLowerCase() === decodedQuery}),
+            exact = exact.length > 0 ? [exact[0]] : 
+                    api_result.filter(function(item) { return item.domains &&
                         ((typeof(item.domains) === "string" && item.domains.toLowerCase() === decodedQuery) ||
                          typeof(item.domains) === "object" && item.domains.some(function(domain) {return domain.toLowerCase() === decodedQuery}) )
                     }),
-            api_result = exact ? [exact] : api_result.filter(function (item) {
+            api_result = exact.length > 0 ? [exact[0]] : api_result.filter(function (item) {
                         item.domains =  !item.domains ? [] : typeof(item.domains) === "string" ? [item.domains] : item.domains;
                         if (item.name.toLowerCase().includes(decodedQuery) || item.domains.some(function(domain) {return domain.toLowerCase().includes(decodedQuery);}))
                             return true;
@@ -57,7 +58,8 @@
                 },
                 variants: {
                     tileTitle: '1line-large',
-                    tileFooter: '2line'
+                    tileFooter: '2line',
+                    tileSnippet: 'large'
                 },
                 detail: api_result.length === 1 ? 'basic_info_detail' : false,
                 item_detail: false
