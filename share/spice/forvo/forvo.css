@@ -19,6 +19,7 @@
 
 .zci--forvo .play-btn {
     margin-right: 0.5em;
+    vertical-align: top;
 }
 
 .zci--forvo .play-btn__icn {
@@ -27,5 +28,15 @@
 }
 
 .zci--forvo .disc__img {
-    max-height: 1.8em;
+    max-height: 1.6em;
+    margin-left: 0.5em;
+}
+
+.zci--forvo .word-wrap {
+    display: inline-block;
+    max-width: 50%;
+}
+
+.is-mobile .zci--forvo .word-wrap {
+    max-width: 50%;
 }
