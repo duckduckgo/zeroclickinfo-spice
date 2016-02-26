@@ -1,9 +1,9 @@
-.quote__of__the__day--container {
+.zci--quote_of_the_day--container {
     overflow: hidden;
     margin-left: -2.8em;
 }
 
-.quote__of__the__day {
+.zci--quote_of_the_day {
     quotes: "“" "”";
     font-size: 1.5em;
     font-weight: 300;
@@ -16,7 +16,7 @@
     padding-left: 2.8em;
 }
 
-.quote__of__the__day:before {
+.zci--quote_of_the_day:before {
     color: #D4D4D4;
     content: open-quote;
     float: left;
@@ -25,7 +25,7 @@
     margin-right: 0.1em;
 }
 
-.quote__attribution {
+.zci--quote_of_the_day--attribution {
     color: #999;
     float: left;
     margin-top: 5px;
@@ -40,7 +40,7 @@
     padding-left: 0.25em;
 }
 
-.is-mobile .quote__of__the__day--container {
+.is-mobile .zci--quote_of_the_day--container {
     margin-left: 0px;
     margin-bottom: 0.5em;
 }
@@ -50,7 +50,7 @@
 
 }
 
-.is-mobile .zci--quote_of_the_day .quote__attribution {
+.is-mobile .zci--quote_of_the_day .zci--quote_of_the_day--attribution {
     margin-left: 40px;
 }
 
