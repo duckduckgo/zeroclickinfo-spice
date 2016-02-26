@@ -42,9 +42,7 @@
                         descriptionText = htmlDecode(item.content);
 
                     // strip protocol, subdomain, and trailing slashes from domain for Clearbit API
-                    console.log(company_url);
                     company_url = company_url.replace(/^(https?:\/\/)?(www\.)?/i, "").replace(/\/.+$/, "");
-                    console.log(company_url);
 
                     return {
                         title: htmlDecode(item.title),
