@@ -1,56 +1,55 @@
-<div class="tile__heading {{#if has_landed}}bg-clr--silver-light tile__landed{{/if}}">
-  <div class="tile__date text--secondary">
+<div class="tile__heading {{#if has_landed}}tile__landed{{/if}} {{#if is_cancelled}}tile__cancelled{{/if}}">
+  <div class="tile__date text--secondary tx--13">
     <div class="tile__week">{{airlineName}} {{flightNumber}}</div>
     <div class="tile__day">{{departing.departureDateF}}</div>
   </div>
-  <div class="tile__flightID text--primary">
+  <div class="tile__flightID text--primary tx--16">
     {{departing.airport.fs}} to {{arriving.airport.fs}}
   </div>
   <div class="tx-clr--dk2">
-    <span class="tile__status tx-{{is_on_time}}">
+    <span class="tile__status tx-{{statusColor}}">
       {{status}}
-    </span> &ndash; {{status_text}} {{datetime}}
+  </span> {{#unless is_cancelled}}&ndash; {{status_text}} {{datetime}}{{#if delay_time}} (+{{delay_time}}){{/if}}{{/unless}}
   </div>
 </div>
 
 <div class="progress__bar bg-clr--platinum-light">
-	<div class="progress__complete bg-{{is_on_time}}" style="width: {{progress_percent}}%;"></div>
+	<div class="progress__complete bg-{{statusColor}}" style="width: {{progress_percent}}%;"></div>
     {{#if has_arrived}}
         <!-- progress dot not displayed -->
     {{else}}
-	    <div class="dot bg-{{is_on_time}} tx-clr--white" style="left: {{progress_percent}}%;"></div>
+	    <div class="dot bg-{{statusColor}} tx-clr--white" style="left: {{progress_percent}}%;"></div>
     {{/if}}
 </div>
 
 <div class="tile__departure">
 	<table class="whole">
-	<tr class="tx-clr--lt">
-		<td>DEPARTURE</td>
-		<td>SCHEDULED</td>
-		<td>GATE</td>
-		<td>TERMINAL</td>
-	</tr>
-	<tr class="text--primary">
-		<td>{{departing.location}}</td>
-		<td>{{scheduled_depart}}</td>
-		<td>{{departing.gate}}</td>
-		<td>{{departing.terminal}}</td>
-	</tr>
-	<tr>
-		<td colspan="4"><hr class="divider bg-clr--platinum-light"></td>
-	</tr>
-	<tr class="tx-clr--lt">
-		<td>ARRIVAL</td>
-		<td>SCHEDULED</td>
-		<td>GATE</td>
-		<td>TERMINAL</td>
-	</tr>
-	<tr class="text--primary">
-		<td>{{arriving.location}}</td>
-		<td>{{scheduled_arrival}}</td>
-		<td>{{arriving.gate}}</td>
-		<td>{{arriving.terminal}}</td>
-	</tr>
+    	<tr class="tx-clr--lt">
+    		<td>DEPARTURE</td>
+    		<td>SCHEDULED</td>
+    		<td>GATE</td>
+    		<td>TERMINAL</td>
+    	</tr>
+    	<tr class="text--primary tx--16">
+    		<td>{{departing.location}}</td>
+    		<td {{#if delay_time}}class="tx--clr-red"{{/if}}>{{scheduled_depart}}</td>
+    		<td>{{departing.gate}}</td>
+    		<td>{{departing.terminal}}</td>
+    	</tr>
+    	<tr>
+    		<td colspan="4"><hr class="divider bg-clr--platinum-light"></td>
+    	</tr>
+    	<tr class="tx-clr--lt">
+    		<td>ARRIVAL</td>
+    		<td>SCHEDULED</td>
+    		<td>GATE</td>
+    		<td>TERMINAL</td>
+    	</tr>
+    	<tr class="text--primary tx--16">
+    		<td>{{arriving.location}}</td>
+    		<td {{#if delay_time}}class="tx--clr-red"{{/if}}>{{scheduled_arrival}}</td>
+    		<td>{{arriving.gate}}</td>
+    		<td>{{arriving.terminal}}</td>
+    	</tr>
 	</table>
 </div>
-
