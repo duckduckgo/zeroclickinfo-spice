@@ -16,7 +16,8 @@ triggers start => 'quote of the day','quote for the day';
 handle remainder => sub {
 
     # Query is in $_...if you need to do something with it before returning
-    return if $_;
+    return if $_; # bail out because there is a remainder
+    return '';    #return an empty string to make API call
 };
 
 1;
