@@ -1,37 +1,44 @@
 (function (env) {
     'use strict';
+
+    var domainRegex = new RegExp(/:\/\/(www\.)?([^\/]+)\/?/);
+
+    function getDomain(url) {
+        var match = domainRegex.exec(url);
+        if (match && match[2]) {
+            return match[2];
+        }
+        return 'producthunt.com';
+    }
+
     env.ddg_spice_product_hunt = function(api_result){
 
         if (!(api_result && api_result.hits && api_result.hits.length > 0)) {
-            return Spice.failed('producthunt');
+            return Spice.failed('product_hunt');
         }
 
-        var qUrl = encodeURIComponent(api_result.query),
-            domainRegex = new RegExp(/:\/\/(www\.)?([^\/]+)\/?/),
-            baseUrl = "https://producthunt.com";
-
-        function getDomain(url) {
-            var match = domainRegex.exec(url);
-            if (match && match[2]) {
-                return match[2];
-            }
-            return 'producthunt.com';
-        }
+        var query = encodeURIComponent(api_result.query),
+            baseUrl = "https://producthunt.com",
+            skip = [
+                "product",
+                "hunt",
+                "producthunt"
+            ];
 
         Spice.add({
-            id: 'producthunt',
-            name: 'ProductHunt',
+            id: 'product_hunt',
+            name: 'Products',
             data: api_result.hits,
             meta: {
                 searchTerm: api_result.query,
                 sourceName: 'ProductHunt',
-                sourceIcon: true,
-                sourceUrl:  'https://www.producthunt.com/#!/s/posts/' + qUrl
+                sourceUrl:  'https://www.producthunt.com/#!/s/posts/' + query
             },
             normalize: function(item) {
                 return {
                     id: item.objectId,
                     title: item.name,
+                    altSubtitle: item.author.name,
                     url: baseUrl + item.url,
                     description: item.tagline,
                     votes: item.vote_count || 0,
@@ -47,11 +54,17 @@
                     footer: Spice.product_hunt.footer
                 },
                 variants: {
-                    tileTitle: '2line-small',
+                    tileTitle: '2line',
+                    tileSnippet: 'small',
                     tileFooter: '2line'
                 },
                 detail: false,
                 item_detail: false
+            },
+            relevancy: {
+                primary: [{
+                    key: "name"
+                }]
             }
         });
     };
