@@ -25,7 +25,6 @@ handle query_lc => sub {
     my @words = split(/\s/, $_);
 
     foreach my $word (@words) {
-        print "$word\n";
         exists $ingredients{$word} ? $ingredient_count++ : $non_ingredient_count++;
     };
 
