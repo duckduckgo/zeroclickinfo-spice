@@ -7,7 +7,7 @@ use Text::Trim;
 use YAML::XS 'LoadFile';
 
 spice proxy_cache_valid => "418 1d";
-spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&out=js&callback={{callback}}&query=$1&time=1&tz=1&verbosetime=1';
+spice to => 'http://api.xmltime.com/timeservice?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&out=js&callback={{callback}}&query=$1&time=1&tz=1&verbosetime=1&version=1';
 
 triggers any => "time";
 
