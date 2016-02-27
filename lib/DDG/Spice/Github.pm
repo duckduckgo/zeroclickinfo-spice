@@ -18,7 +18,7 @@ spice to => 'https://api.github.com/search/repositories?q=$1&sort=stars&callback
 spice proxy_cache_valid => '200 30d';
 
 handle query_lc => sub {
-    s/^github\s+|\s+github$//;
+    s/^github\s*|\s+github$//;
     if ($_ eq "" || m/\bjobs\b|\bstatus\b/) {
         return;
     }
