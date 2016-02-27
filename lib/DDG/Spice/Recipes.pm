@@ -19,6 +19,9 @@ handle query_lc => sub {
     my $ingredient_count = 0;
     if ($_ =~ s/ ?recipes? ?//g) {
         $ingredient_count++;
+        if ($_ eq '') {
+            return " ";
+        }
     }
 
     my $non_ingredient_count = 0;
