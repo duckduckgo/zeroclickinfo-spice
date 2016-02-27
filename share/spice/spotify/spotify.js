@@ -24,6 +24,7 @@
             normalize: function(item) {
                 return {
                     title: item.name,
+                    album: item.album.name,
                     image: item.album.images[1].url, /* ~300x300px */
                     streamURL: '/audio?u=' + item.preview_url,
                     url: item.external_urls.spotify,
@@ -32,7 +33,10 @@
             },
             templates: {
                 item: 'audio_item',
-                detail: false
+                detail: false,
+                options: {
+                    footer: Spice.spotify.footer
+                }
             }
         });
     };
