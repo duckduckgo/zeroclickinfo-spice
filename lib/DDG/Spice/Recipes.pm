@@ -16,15 +16,16 @@ spice to => 'http://api.yummly.com/v1/api/recipes?q=$1&requirePictures=true&maxR
 handle query_lc => sub {
     return if grep {$req->query_lc eq $_} @stopwords;
 
-    if ($_ =~ s/recipes?//g) {
-        return trim($_);
+    my $ingredient_count = 0;
+    if ($_ =~ s/ ?recipes? ?//g) {
+        $ingredient_count++;
     }
 
-    my $ingredient_count = 0;
     my $non_ingredient_count = 0;
     my @words = split(/\s/, $_);
 
     foreach my $word (@words) {
+        print "$word\n";
         exists $ingredients{$word} ? $ingredient_count++ : $non_ingredient_count++;
     };
 
