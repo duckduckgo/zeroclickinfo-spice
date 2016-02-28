@@ -17,6 +17,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Kwixer'
     ),
+    'movies tom cruise' => test_spice(
+        '/js/spice/kwixer/movies%20tom%20cruise',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
     'movies with tom cruise' => test_spice(
         '/js/spice/kwixer/movies%20with%20tom%20cruise',
         call_type => 'include',
