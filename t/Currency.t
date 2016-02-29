@@ -107,7 +107,7 @@ ddg_spice_test(
         is_cached => 0
     ),
     # Query with everything smushed together, with k for thousand.
-    '2kcadusd' => test_spice(
+    '2k cadusd' => test_spice(
         '/js/spice/currency/2000/cad/usd',
         call_type => 'include',
         caller => 'DDG::Spice::Currency',
@@ -271,6 +271,17 @@ ddg_spice_test(
     # Ambiguous queries.
     '100cny 40usd' => undef,
     '10 euro to 10 jpy' => undef,
+    '1mars' => undef,
+    '1baud' => undef,
+    'mars' => undef,
+    'kaud' => undef,
+    'baud' => undef,
+    
+    'k aud' => undef,
+    'm aud' => undef,
+    'b aud' => undef,
+    't aud' => undef,
+    
     # Things that should probably work but it doesn't at the moment.
     'cny jpy 400' => undef,
     '499 cny = ? usd' => undef,
