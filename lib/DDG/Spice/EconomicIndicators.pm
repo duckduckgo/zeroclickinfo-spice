@@ -1,5 +1,5 @@
 package DDG::Spice::EconomicIndicators;
-# ABSTRACT: 
+# ABSTRACT:
 # Instant answer for economic indicators for different countries
 # The indicators considered are
 #   a) Gross Domestic Product
@@ -9,20 +9,10 @@ package DDG::Spice::EconomicIndicators;
 
 use DDG::Spice;
 use Time::Piece;
-use Locale::Country; 
+use Locale::Country;
 use JSON;
 
 spice is_cached => 1;
-
-# Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
-name "EconomicIndicators";
-source "http://data.worldbank.org";
-description "Gives information about economic indicators of a country( Gross Domestic Product, Per Capita Income, Growth Rate)";
-primary_example_queries "gdp of india", "china per capita income","india growth rate";
-category "finance";
-topics "economy_and_finance";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/EconomicIndicators.pm";
-attribution github => ["gauravtiwari5050", "Gaurav Tiwari"];
 
 # Triggers
 triggers any => "gdp", "gross domestic product","growth rate","per capita income";
@@ -84,7 +74,7 @@ handle query_clean => sub {
     #return placeholder for the api
     return uc($country_code)."/indicators/".$indicator_id;
 
-    
+
 };
 
 1;

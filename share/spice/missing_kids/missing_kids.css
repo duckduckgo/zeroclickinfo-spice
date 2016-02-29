@@ -1,0 +1,25 @@
+.zci--missing_kids .tile--missing_kids {
+    width: 15em;
+}
+
+.tile--missing_kids .tile__title {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    height: 1.1em;
+}
+
+.tile--missing_kids .tile__media {
+    height: 17em;
+}
+
+.tile--missing_kids .tile__body {
+    height: 9em;
+}
+
+.tile--missing_kids .tile__foot {
+    max-height: 4em;
+}
+
+.is-mobile .tile--missing_kids .tile__media {
+    height: 14em;
+}

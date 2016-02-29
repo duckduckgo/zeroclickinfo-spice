@@ -4,13 +4,19 @@
         if (api_result == null || api_result["error"]) {
             return Spice.failed('coursebuffet');
         };
-        
+
+        // Get original query.
+        var script = $('[src*="/js/spice/coursebuffet/"]')[0],
+            source = $(script).attr("src"),
+            query = decodeURIComponent(source.match(/coursebuffet\/([^\/]+)/)[1]);
+
         Spice.add({
             id: 'coursebuffet',
             name: 'Online Courses',
             data: api_result["courses"],
             meta: {
                 itemType: "Courses",
+                searchTerm: query,
                 sourceName: "CourseBuffet",
                 sourceUrl: "https://www.coursebuffet.com"+api_result["more_link"]
             },
@@ -36,7 +42,7 @@
                 };
             },
             templates: {
-                group: "media",
+                group: "products_simple",
                 item_detail: false,
                 detail: false,
                 options: {

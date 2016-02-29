@@ -1,34 +1,39 @@
 package DDG::Spice::TodayInHistory;
+# ABSTRACT: Shows relevant historic events for the current day in previous years
 
 use strict;
 use DDG::Spice;
+use DateTime;
+use Date::Parse;
+use DateTime::Format::Natural;
 
-name 'Today In History';
-description 'this day in history';
-source 'History.com';
-primary_example_queries 'today in history';
-secondary_example_queries 'this day in history';
-category 'facts';
-topics 'everyday', 'special_interest';
-icon_url 'http://www.history.com/favicon.ico';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/TodayInHistory.pm';
-attribution web => [ 'https://www.duckduckgo.com', 'DuckDuckGo' ],
-            github => [ 'https://github.com/duckduckgo', 'duckduckgo'],
-            twitter => ['http://twitter.com/duckduckgo', 'duckduckgo'];
+spice to => 'https://en.wikipedia.org/w/api.php?action=query&titles=$1&prop=revisions&rvlimit=1&rvprop=content&format=json&redirects&callback={{callback}}';
 
-triggers startend => (
-    'today in history',
-    'todays in history',
-    'this day in history',
-);
-
-spice to => 'http://www.history.com/this-day-in-history/rss';
-
-spice wrap_string_callback => 1;
+triggers startend => "today in history";
+triggers start => "historical events on", "this day in history";
 
 handle remainder => sub {
-	return '' if $_ eq '';
-	return;
-};
 
+    my $dateString = shift;
+    my $dt = DateTime->now;
+
+    # no date specified
+    # use today's date
+    unless ($dateString){
+        return unless $loc && $loc->time_zone;
+        $dt->set_time_zone($loc->time_zone);
+        return $dt->mday."_".$dt->month_name;
+    }
+
+    # ensure we have a day and month
+    # jan 20
+    # 01/20/15
+    # 2015-20-01
+    return unless split (/[-\/. ]/, $dateString) > 1;
+
+    my $parser = DateTime::Format::Natural->new;
+    my $date = $parser->parse_datetime($dateString);
+    return unless ($parser->success);
+    return $date->day."_".$date->month_name;
+};
 1;

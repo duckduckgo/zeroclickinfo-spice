@@ -1,27 +1,26 @@
-function ddg_spice_images(apiResult) {
+(function(env){
+    "use strict";
+    env.ddg_spice_images = function(apiResult) {
 
-    if (!apiResult || !apiResult.results || !apiResult.results.length) {
-        return Spice.failed('images');
-    }
-
-    Spice.add({
-        id: 'images',
-        name: 'Images',
-
-        allowMultipleCalls: true,
-
-        data: apiResult.results,
-
-        model: 'Image',
-
-        meta: {
-            next: apiResult.next,
-            searchTerm: apiResult.query
-        },
-
-        relevancy: {
-            dup: 'j'
+        if (!apiResult || !apiResult.results || !apiResult.results.length) {
+            return Spice.failed('images');
         }
-    });
 
-}
+        Spice.add({
+            id: 'images',
+            name: 'Images',
+            allowMultipleCalls: true,
+            data: apiResult.results,
+            meta: {
+                next: apiResult.next
+            },
+            templates: {
+                group: 'images'
+            },
+            relevancy: {
+                dup: 'image'
+            }
+        });
+
+    }
+}(this));

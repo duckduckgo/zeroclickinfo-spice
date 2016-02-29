@@ -1,20 +1,6 @@
 (function(env) {
     "use strict";
 
-    // A change in the Rotten Tomatoes API returns images that end in _tmb.
-    // This changes this to _det.
-    function toDetail(img) {
-        if(/resizing\.flixster\.com/.test(img)) {
-            // Everything before the size of the image can be removed and it would still work.
-            img = img.replace(/.+\/\d+x\d+\/(.+)/, "http://$1");
-            // Better use the _det size (which is smaller) instead of the _ori size.
-            return img.replace(/_ori/, "_det");
-        }
-        
-        // Otherwise, use the old string replacement strategy.
-        return img.replace(/tmb\.(jpg|png)/, "det.$1");
-    }
-
     function get_image(critics_rating) {
         if (!critics_rating) {
             return;
@@ -68,33 +54,39 @@
             name: 'Movies',
             data: api_result.movies,
             meta: {
+                searchTerm: query,
                 sourceName: 'Rotten Tomatoes',
                 sourceUrl: 'https://www.rottentomatoes.com/search/?search=' + query,
-                itemType: 'Movies'
+                rerender: [
+                    'image'
+                ]
             },
             normalize: function(item) {
-                // Modify the image from _tmb.jpg to _det.jpg
-                var image = toDetail(item.posters.detailed);
-                return {
-                    rating: Math.max(item.ratings.critics_score / 20, 0),
-                    image: image,
-                    icon_image: get_image(item.ratings.critics_rating),
-                    abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
-                    heading: item.title,
-                    img: image,
-                    img_m: image,
-                    url: item.links.alternate,
-                    is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
-                };
+                if(item.alternate_ids && item.alternate_ids.imdb) {
+                    return {
+                        rating: Math.max(item.ratings.critics_score / 20, 0),
+                        icon_image: get_image(item.ratings.critics_rating),
+                        abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
+                        heading: item.title,
+                        fallback_image: item.posters.detailed,
+                        image: null,
+                        url: item.links.alternate,
+                        is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
+                    };
+                }
             },
             templates: {
-                group: 'media',
+                group: 'movies',
                 options: {
                     subtitle_content: Spice.movie.subtitle_content,
                     buy: Spice.movie.buy
                 },
                 variants: {
-                    tile: 'poster'
+                    productSub: 'noMax'
+                },
+                elClass: {
+                    tileMediaImg: 'js-movie-img',
+                    productMediaImg: 'js-movie-img'
                 }
             },
             relevancy: {
@@ -106,15 +98,28 @@
                     match: /\.jpg$/,
                     strict: false
                 }]
+            },
+            onItemShown: function(item) {
+                if (!item.alternate_ids || !item.alternate_ids.imdb) { return; }
+
+                $.ajaxSetup({ cache: true });
+
+                $.getJSON("/js/spice/movie_image/tt" + item.alternate_ids.imdb, function(data) {
+                    var path = data && data.movie_results && data.movie_results.length && data.movie_results[0].poster_path,
+                        image = path && "https://image.tmdb.org/t/p/w185" + path;
+
+                    item.set({
+                        // fallback to lo-res:
+                        image: image || item.fallback_image,
+
+                        // don't fallback in detail pane because
+                        // it looks silly with the tiny image:
+                        img: image,
+                        img_m: image
+                    });
+                });
             }
         });
-
-        // Make sure we hide the title and ratings.
-        // It looks nice to show only the poster of the movie.
-        var $dom = Spice.getDOM('movie')
-        if ($dom && $dom.length) {
-            $dom.find('.tile__body').hide();
-        }
     };
 
     // Convert minutes to hr. min. format.

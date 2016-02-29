@@ -7,30 +7,43 @@ use DDG::Test::Spice;
 
 ddg_spice_test(
     [qw( DDG::Spice::Drinks )],
-    'how to make a white russian drink' => test_spice(
+    'how to make a white russian' => test_spice(
         '/js/spice/drinks/white%20russian',
         call_type => 'include',
         caller => 'DDG::Spice::Drinks'
     ),
-    'how to mix a tom collins' => test_spice(
-        '/js/spice/drinks/tom%20collins',
+    'how to mix a mojito' => test_spice(
+        '/js/spice/drinks/mojito',
         caller    => 'DDG::Spice::Drinks',
     ),
-    'mixing a 007' => test_spice(
-        '/js/spice/drinks/007',
+    'mixing a irish spring' => test_spice(
+        '/js/spice/drinks/irish%20spring',
         caller    => 'DDG::Spice::Drinks',
     ),
-    'how to make a 1.21 gigawatts drink' => test_spice(
-        '/js/spice/drinks/1.21%20gigawatts',
+    'ingredients of margarita' => test_spice(
+        '/js/spice/drinks/margarita',
         caller    => 'DDG::Spice::Drinks',
     ),
-    'ice tea drink ingredients' => test_spice(
-	'/js/spice/drinks/ice%20tea',
+    'red eye cocktail' => test_spice(
+        '/js/spice/drinks/red%20eye',
         caller    => 'DDG::Spice::Drinks',
     ),
-    'how to make a rails4 backend' => undef,
-    'making a pizza' => undef,
+    'mix a grand-ma in a wheelchair' => test_spice(
+        '/js/spice/drinks/grand-ma%20in%20a%20wheelchair',
+        caller    => 'DDG::Spice::Drinks',
+    ),
+    'recipe of bit of russiaan honey' => test_spice(
+        '/js/spice/drinks/bit%20of%20russiaan%20honey',
+        caller    => 'DDG::Spice::Drinks',
+    ),
+    'how to mix abilene' => test_spice(
+        '/js/spice/drinks/abilene',
+        caller    => 'DDG::Spice::Drinks',
+    ),
+    'drinking cocktails' => undef,
+    'how to make money' => undef,
+    'how to mix songs' => undef,
+    'what ingredients are in chocolate' => undef
 );
 
 done_testing;
-

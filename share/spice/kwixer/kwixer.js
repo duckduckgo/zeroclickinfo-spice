@@ -30,7 +30,7 @@
             meta: {
                 sourceName: 'Kwixer',
                 sourceUrl: "https://www.kwixer.com/#/public?query=" + DDG.get_query_encoded(),
-                itemType: "Movies"
+                primaryText: 'Showing ' + finalArray.length + ' Movies'
             },
             normalize: function(item) {
                 return {
@@ -43,22 +43,15 @@
                 };
             },
             templates: {
-                group: 'media',
+                group: 'movies',
                 detail: 'products_item_detail',
                 item: 'basic_image_item',
                 options: {
                     rating: false,
                     buy: Spice.kwixer.buy
-                },
-                variants: {
-                    tile: 'poster'
                 }
             }
         });
-        
-        // We're going to use this to hide the title of the template.
-        // We want the poster to take up the whole tile.
-        Spice.getDOM('kwixer').find('.tile__body').hide();
     };
     
     // The separator that we get from the API is `;`, but it looks better with

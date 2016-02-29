@@ -73,7 +73,7 @@
         }
 
         // check we have 2 nameserver hostnames
-        if(nsObj.hostNames) {
+        if(nsObj && nsObj.hostNames) {
             if(nsObj.hostNames.length >= 2) {
                 var nameServers = [nsObj.hostNames[0].toLowerCase(),nsObj.hostNames[1].toLowerCase()].join(' ');
             }

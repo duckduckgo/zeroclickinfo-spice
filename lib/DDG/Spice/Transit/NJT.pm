@@ -1,18 +1,8 @@
 package DDG::Spice::Transit::NJT;
+# ABSTRACT: Information on next trains on New Jersey Transit
 
 use strict;
 use DDG::Spice;
-
-primary_example_queries "next train from Metropark to New York Penn";
-secondary_example_queries "train times to Trenton from Secaucus";
-description "Lookup the next NJ Transit train going your way";
-name "NJT";
-source "NJT";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Transit/NJT.pm";
-topics "everyday";
-category "time_sensitive";
-attribution twitter => 'mattr555',
-            github => ['https://github.com/mattr555/', 'Matt Ramina'];
 
 spice to => 'http://njt-api.appspot.com/njt/times/$1';
 spice wrap_jsonp_callback => 1;

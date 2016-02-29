@@ -27,8 +27,14 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Github'
     ),
-    
-    'github status' => undef
+    'github @duckduckgo' => test_spice(
+        '/js/spice/github/%40duckduckgo',
+        call_type => 'include',
+        caller => 'DDG::Spice::Github'
+    ),
+    'github status' => undef,
+    'github' => undef,
+    'github ' => undef
 );
 
 done_testing;

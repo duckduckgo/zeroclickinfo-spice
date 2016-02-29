@@ -1,30 +1,18 @@
 package DDG::Spice::Aur;
+# ABSTRACT: Archlinux user repository package look-up
 
 use strict;
 use DDG::Spice;
+spice is_cached => 1;
 
-primary_example_queries "aur powermate";
-secondary_example_queries "archlinux package 9base-git";
-description "Lookup packages from the Archlinux user repository";
-name "AUR";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Aur.pm";
-topics "programming";
-category "programming";
-attribution twitter => ['https://twitter.com/crazedpsyc', 'crazedpsyc'],
-            cpan => ['CRZEDPSYC', 'crazedpsyc'];
-
-spice to => 'https://aur.archlinux.org/rpc.php?type=search&arg=$1&callback={{callback}}';
+spice to => 'https://aur.archlinux.org/rpc.php?type=search&arg=$1';
+spice wrap_jsonp_callback => 1;
 
 triggers any => "aur", "archlinux package", "arch package", "arch linux package";
 
 handle remainder => sub {
     my $remainder = $_;
-
-    return unless $remainder;
-
     $remainder =~ s/^for\s//;
-    return $remainder;
+    return unless $remainder;
 };
-
 1;
-

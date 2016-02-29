@@ -5,16 +5,6 @@ use strict;
 use DDG::Spice;
 use Regexp::IPv6 qw($IPv6_re);
 
-primary_example_queries "reverse dns 8.8.8.8";
-description "Shows reverse DNS information about an IP";
-name "IPLookup";
-category 'computing_tools';
-topics "sysadmin";
-
-attribution github => ['https://github.com/mintsoft', 'mintsoft'],
-            github => ['https://github.com/MrChrisW', 'Chris Wilson'],
-               web => ['http://www.robtex.com/', 'robtex.com'];
-
 my $trig = qr#(?:ip lookup)|(?:iplookup)|(?:reverse (?:dns|ip)(?: lookup)?)|(?:dns)|(?:whois)#i;
 my $IPv4_re = qr/(?:[0-9]{1,3}\.){3}(?:[0-9]{1,3})/;
 my $priv_guard = qr/(^127\.0\.0\.1)|(^10\.)|(^172\.1[6-9]\.)|(^172\.2[0-9]\.)|(^172\.3[0-1]\.)|(^192\.168\.)|(^::1$|^fc|^fd)/;

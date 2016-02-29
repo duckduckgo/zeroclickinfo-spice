@@ -1,22 +1,11 @@
 package DDG::Spice::Quixey;
+# ABSTRACT: Search for apps for mobile devices
 
 use strict;
 use DDG::Spice;
 use JSON;
 use Text::Trim;
 use List::Uniq ':all';
-
-primary_example_queries "flight tracking app", "quixey angry birds";
-secondary_example_queries "free calculator app", "tiny piano for iphone";
-description "Search for mobile apps";
-name "Quixey App Search";
-source "Quixey";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Quixey.pm";
-icon_url "/i/www.quixey.com.ico";
-category "entertainment";
-topics "everyday", "special_interest";
-attribution github => ['https://github.com/duckduckgo', 'DuckDuckGo'],
-            twitter => ['http://twitter.com/duckduckgo', 'DuckDuckGo'];
 
 # Variable Definitions
 my %custom_ids = (2005 => 75675980, 2004 => 78989893);

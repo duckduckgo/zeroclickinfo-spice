@@ -1,50 +1,29 @@
-.zci--time p {
-    margin-top: 0;
-    padding-top: 0;
-}
-
 .zci--time .time {
-    font-size: 54px;
-    color: #333;
-    padding-right: 10px;
-    float: left;
-    padding-right: 0.5em;
+    display: inline-block;
+    font-size: 3.75em;
+    line-height: 1;
+    padding:.2em 0.4em 0.2em 0;
     font-weight: 300;
 }
 
-.zci--time .time_date {
-    margin-top: 8px;
-    color: #888;
-    border-left: solid 1px #d0d0d0;
-    float: left;
-    font-weight: 300;
-    font-size: 1.25em;
-    margin-top: 0.85em;
-    padding-left: 1.4em;
-    height: 2.2em;
+.zci--time .time__date {
+    display: inline-block;
     line-height: 1.25;
+    font-weight: 300;
 }
 
-.dark-header .zci--time .time {
-       color: #e6e6e6;
+.zci--time .c-base__links {
+    margin-top: 0.25em;
 }
 
-@media (max-width: 406px) {
-  .zci--time .time_date {
-      border-left: none;
-      padding-left: 0;
-      margin-top: 0;
-      margin-bottom: 1em;
-  }
-}
-
-.is-mobile .zci--time .time_date {
-    border-left: none;
-    padding-left: 0;
+@media (max-width: 345px) {
+    .is-mobile .zci--time .c-base__links {
+        margin-top: 0.75em;
+    }
 }
 
 @media (max-width: 244px) {
-  .zci--time .time {
-     font-size: 50px;
-  }
+    .zci--time .time {
+        font-size: 2.75em;
+    }
 }

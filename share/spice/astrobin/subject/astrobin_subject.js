@@ -15,21 +15,23 @@
             name: "Astronomy",
             data: api_result.objects,
             meta: {
-                itemType: "Images",
                 sourceUrl: 'http://www.astrobin.com/search/?q=' + query + '&search_type=0&license=0&telescope_type=any&camera_type=any',
                 sourceName: 'AstroBin'
             },
             normalize: function(item) {
                 return {
-                    h: item.url_regular,
-                    j: item.url_real,
-                    u: "http://www.astrobin.com/" + item.id,
-                    ih: item.h,
-                    iw: item.w,
-                    i: item.title
+                    thumbnail: item.url_regular,
+                    image: item.url_real,
+                    url: "http://www.astrobin.com/" + item.id,
+                    height: item.h,
+                    width: item.w,
+                    title: item.title
                 };
             },
-            view: 'Images'
+            view: 'Images',
+            templates: {
+                group: 'images'
+            }
         });
     };
 }(this));

@@ -1,18 +1,8 @@
 package DDG::Spice::Nutrition;
+# ABSTRACT: Nutrition information
 
 use strict;
 use DDG::Spice;
-
-primary_example_queries "calories in a banana";
-secondary_example_queries "strawberry calories", "tofu how much protein";
-description "Shows nutrition information for food items";
-name "Nutrition";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Nutrition.pm";
-icon_url "/i/nutritionix.com.ico";
-topics "food_and_drink";
-category "food";
-
-attribution github => ['https://github.com/andrey-p','Andrey Pissantchev'];
 
 my $attribute_regex = qr/(?^:(?^:(?:c(?:a(?:l(?:ories(?: from fat)?|cium|s)|rb(?:ohydrate)?s)|holesterol)|p(?:olyunsaturated fat|rotein)|trans(?: fat(?:ty acid)?|-fat)|s(?:aturated fat|odium|ugar)|monounsaturated fat|dietary fiber|f(?:iber|at)|vitamin [ac]|kcals|iron)))/;
 my $question_regex = qr/(?:how|what)?\s?(?:'s |is |are |many |much )?(?:the |there )?(?:total |amount of |number of )?/;
@@ -27,7 +17,7 @@ spice wrap_jsonp_callback => 1;
 handle query_lc => sub {
     # check for queries like "how many calories are in a cucumber"
     if (/^$question_regex$attribute_regex\s?(?:are |contained |is )?(?:there )?(?:in )?(?:a |an )?(.+?)(?:\?)?$/) {
-		return $1 if $1;
+        return $1 if $1;
     }
 
     # for queries like "cucumber calories" or "tofu how much protein"

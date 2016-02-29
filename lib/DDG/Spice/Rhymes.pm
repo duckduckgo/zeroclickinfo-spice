@@ -1,19 +1,8 @@
 package DDG::Spice::Rhymes;
+# ABSTRACT: Searches for rhyming words
 
 use strict;
 use DDG::Spice;
-
-name "Rhymes";
-description "find rhyming words";
-source "RhymeBrain";
-primary_example_queries "what rhymes with duck";
-secondary_example_queries "go rhymes with", "words that rhyme with smile";
-category "language";
-topics "everyday", "music", "words_and_games";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Rhymes.pm";
-icon_url "/i/rhymebrain.com.ico";
-attribution web => ['http://dylansserver.com','Dylan Lloyd'],
-            email => ['dylan@dylansserver.com','Dylan Lloyd'];
 
 triggers any => "rhyme", "rhymes";
 

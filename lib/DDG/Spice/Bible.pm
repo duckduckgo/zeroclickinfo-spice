@@ -1,19 +1,8 @@
 package DDG::Spice::Bible;
+# ABSTRACT: Bible citations
 
 use strict;
 use DDG::Spice;
-
-primary_example_queries "genesis 15:7";
-secondary_example_queries "bible genesis 26:4";
-description "Bible verses";
-name "Bible";
-icon_url "/i/blueletterbible.org.ico";
-source "Blue Letter Bible";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Bible.pm";
-topics "special_interest", "everyday";
-category "random";
-attribution github => ['https://github.com/hunterlang','Hunter Lang'],
-            web => ['http://hunterlang.com/', 'Hunter Lang'];
 
 my @triggers = share('triggers.txt')->slurp;
 triggers any => @triggers;

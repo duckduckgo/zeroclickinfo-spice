@@ -1,3 +1,7 @@
+.tile--c--n.tile--go_watch_it {
+    width: 13em;
+}
+
 .tile.tile--b.tile--c--n.tile--go_watch_it {
     height: 15em;
 }
@@ -47,7 +51,7 @@
 
 .tile--go_watch_it .tile__body .gwi-footer {
     text-align: center;
-    margin-top: 0.5em;
+    margin-top: 1em;
 }
 
 .tile--go_watch_it .tile__body span.price.gwi-price--subscription {

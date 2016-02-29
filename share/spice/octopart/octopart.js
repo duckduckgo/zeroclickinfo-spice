@@ -39,17 +39,22 @@
             data: api_result.results,
             signal: 'high',
             meta: {
-                itemType: 'Parts',
+                primaryText: 'Showing ' + api_result.results.length + ' Parts',
                 sourceName: 'Octopart',
                 sourceUrl : 'http://octopart.com/search?q=' + api_result.request.q
             },
+         
             normalize: function(item) {
-
-                item = item.item; // our item object is wrapped in an "item" property
-
-                var images = get_images(item.imagesets);
-
+               
+                item = item.item;  // our item object is wrapped in an "item" property
+                var images = get_images(item.imagesets),
+                    datasheet = item.datasheets && item.datasheets[0];
+                                 
+                if(!item.avg_price_v2.length > 0) {
+                    return null;
+                 }
                 return {
+                 
                     brand: item.brand.name,
                     price: item.avg_price_v2[1] + ' $' + item.avg_price_v2[0].toFixed(2),
                     img: images.medium,
@@ -58,9 +63,10 @@
                     title: item.mpn,
                     heading: item.mpn,
                     abstract: item.short_description,
-                    datasheet: item.datasheets[0].url,
+                    datasheet: datasheet && datasheet.url,
                     market_status: item.market_status_v2.replace(/^\w+: /, '') // strip out "GOOD: " from market_status
-                };
+                                    
+                  };
             },
             templates: {
                 group: 'products',
@@ -74,12 +80,18 @@
                 }
             },
             relevancy: {
+                skip_words:  [
+                    "datasheet",
+                    "specs",
+                    "octopart"
+                ],
                 primary: [
                     { required: 'item.short_description' },
                     { required: 'item.octopart_url' },
                     { required: 'item.datasheets' },
                     { required: 'item.imagesets' },
                     { required: 'item.avg_price_v2' },
+                    { key: 'item.mpn' }, //check item title for relevancy
                 ],
             }
         });

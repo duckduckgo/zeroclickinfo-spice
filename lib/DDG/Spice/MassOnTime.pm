@@ -1,17 +1,8 @@
 package DDG::Spice::MassOnTime;
+# ABSTRACT: Get times for masses for cities
 
 use strict;
 use DDG::Spice;
-
-primary_example_queries "Catholic masses near Pittsburgh", "Catholic adoration in Washington DC";
-secondary_example_queries "Catholic masses near me", "catholic churches nearby";
-description "Search for Catholic Religious Events";
-name "MassOnTime";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/MassOnTime.pm";
-icon_url "http://massontime.com/favicon.ico";
-topics "special_interest";
-category "reference";
-attribution github => ['https://github.com/astine','astine'];
 
 triggers any => "catholic";
 
@@ -33,14 +24,14 @@ handle query_lc => sub {
     else {
         return;
     }
-    
+
     #MassOnTime API doesn't recognize 'church;, replace with 'parish'
     $event_type = "parish" if $event_type eq "church";
 
     #Handle blank addresses or 'me' using DDG location api
     if ($address =~ m/^(close|me|here|nearby)$/i or $address eq "" or not defined $address) {
         $address = lc(join(", ", $loc->city, $loc->region_name, $loc->country_name));
-        
+
         return $event_type, $address, 'current', {is_cached => 0};
     }
 

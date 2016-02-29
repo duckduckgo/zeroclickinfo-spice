@@ -44,26 +44,40 @@
             return Spice.failed('rx_info');
         }
         
+<<<<<<< HEAD
         var sourceName = "DailyMed",
             sourceUrl = "http://dailymed.nlm.nih.gov/",
             itemType = "pills",
             secondaryText = buildSecondaryText(api_result.replyStatus.matchedTerms);
+=======
+        var script = $('[src*="/js/spice/rx_info/"]')[0],
+            source = $(script).attr("src"),
+            query = decodeURIComponent(source.match(/rx_info\/([^\/]+)/)[1]),
+            triggerWordMatch = parseInt(source.match(/rx_info\/[^\/]+\/(\d)/)[1]),
+            relCheck;
+        
+>>>>>>> upstream/master
 
         Spice.add({
             id: "rx_info",
             name: "RxInfo",
             data: api_result.nlmRxImages,
             meta: {
+<<<<<<< HEAD
                 itemType: itemType,
+=======
+                searchTerm: query,
+>>>>>>> upstream/master
                 sourceName: sourceName,
                 sourceUrl:  sourceUrl,
                 secondaryText: secondaryText
             },
             templates: {
                 group: 'products_simple',
-                detail: Spice.rx_info.rx_info,
-                item_detail: Spice.rx_info.rx_info,
+                item_detail: 'base_item_detail',
                 options: {
+                    content: Spice.rx_info.rx_info,
+                    description_content: Spice.rx_info.rx_info_description,
                     brand: false,
                     rating: false
                 }
@@ -82,13 +96,15 @@
 
                 return {
                     image: item.imageUrl,
+                    imageAlt: "Image for NDC: " + item.ndc11,
                     abstract: item.ndc11,
                     heading: heading,
                     title: heading,
+                    subtitle: item.labeler,
                     ratingText: item.ndc11,
                     active: active,
                     inactive: inactive,
-                    proxyImageUrl: "https://images.duckduckgo.com/iu/?u=" + encodeURIComponent(item.imageUrl) + "&f=1"
+                    url: item.splSetId ? 'https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=' + item.splSetId : ''
                 }
             }
         });

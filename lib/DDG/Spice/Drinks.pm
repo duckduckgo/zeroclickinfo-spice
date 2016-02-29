@@ -1,46 +1,28 @@
 package DDG::Spice::Drinks;
+# ABSTRACT: Drink mixing instructions
 
 use strict;
 use DDG::Spice;
+use Text::Trim;
 
-primary_example_queries "how to mix a tom collins";
-secondary_example_queries "mixing 007", "how to make a 1.21 gigawatts";
-description "Bartending info";
-name "Drinks";
-source "Drink Project";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Drinks.pm";
-topics "food_and_drink";
-category "entertainment";
-attribution github => ['https://github.com/mutilator','mutilator'];
+spice is_cached => 1;
 
-triggers any => "mix", "make";
-triggers startend => "drink", "ingredients", "mixing", "making";
+spice to => 'http://www.thecocktaildb.com/api/json/v1/{{ENV{DDG_SPICE_COCKTAILDB_APIKEY}}}/search.php?s=$1';
+spice wrap_jsonp_callback => 1;
 
-spice to => 'http://drinkproject.com/api/?type=json&name=$1&callback={{callback}}';
+triggers any => ('cocktail', 'drink', 'ingredient', 'ingredients', 'make', 'making', 'mix', 'mixing', 'recipe');
 
-handle query_lc => sub {
+my %drinks = map { trim($_) => 0 } share('drinks.txt')->slurp;
+my @stop_words = ("are", "being", "for", "how", "is", "needed", "that", "to", "used", "what", "within");
+my ($rx) = map qr/(?:$_)/, join "|", map qr/\b\Q$_\E\b/, @stop_words;
 
-    my $drink;
-
-    # enforce "drink" to be in queries with
-    # "make" or "making"
-    # too ambiguous otherwise
-    # e.g. "making a rails 4 backend"
-    if (/^(?:how to make|making) an? (.+)/){
-    	$drink = $1;
-        return unless $drink =~ /\bdrink\b/;
-    } elsif (/^(?:how to mix|mixing) an? (.+)/){
-    	$drink = $1;
-    } elsif (/^ingredients for an? (.+)|(.+) ingredients/){
-	$drink = $1||$2;
-    } elsif (/^(.+) drink$|^drink (.+)$/){
-        $drink = $1;
-    }
-    
-    if ($drink){
-    	$drink =~ s/drink//g;
-    	$drink =~ s/^\s+|\s+$//g;
-	return $drink;
+# Handle statement
+handle remainder_lc => sub {
+    $_ =~ s/$rx//g;
+    $_ =~ s/\b(a|an|in|of)\b//;
+    trim $_;
+    if (exists ($drinks{$_})) {
+        return $_;
     }
     return;
 };

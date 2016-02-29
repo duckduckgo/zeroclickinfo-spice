@@ -16,12 +16,24 @@ ddg_spice_test(
         '/js/spice/reddit_sub_search/pizza',
         caller    => 'DDG::Spice::RedditSubSearch',
     ),
+    'pizza subreddit' => test_spice(
+        '/js/spice/reddit_sub_search/pizza',
+        caller    => 'DDG::Spice::RedditSubSearch',
+    ),
     '/r/games' => test_spice(
         '/js/spice/reddit_sub_search/games',
         caller    => 'DDG::Spice::RedditSubSearch',
     ),
-    'r/accounting' => test_spice(
+    '/r/accounting' => test_spice(
         '/js/spice/reddit_sub_search/accounting',
+        caller    => 'DDG::Spice::RedditSubSearch',
+    ),
+    'r regex' => undef,
+    'r/regex' => undef,
+    'r/ regex' => undef,
+    '/r regex' => undef,
+    '/r/ regex' => test_spice(
+        '/js/spice/reddit_sub_search/regex',
         caller    => 'DDG::Spice::RedditSubSearch',
     ),
 );

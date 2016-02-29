@@ -27,5 +27,7 @@ ddg_spice_test(
     ),
 );
 
+alt_to_test('DDG::Spice::Movie', ['movie_image']);
+
 done_testing;
 

@@ -1,33 +1,28 @@
 package DDG::Spice::WGHA;
 # ABSTRACT: Search for events on was geht heute ab.de.
+
 use strict;
 use DDG::Spice;
 use utf8;
 
-primary_example_queries "was geht in frankfurt";
-secondary_example_queries "wasgeht in berlin";
-description "Events in Germany";
-name "WGHA Events";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/WGHA.pm";
-topics "entertainment", "special_interest";
-category  "entertainment";
-attribution web =>   ['http://www.wasgehtheuteab.de','Samuel Goebert'],
-            email => ['http://www.wasgehtheuteab.de','Samuel Goebert'];
-
-my @triggers = ("was geht", "wasgeht", "aus gehen", "ausgehen", "nachtleben" );
+my @triggers = ("was geht", "wasgeht", "aus gehen", "ausgehen", "nachtleben", "party", "parties", "partys", "feiern", "abfeiern", "weg gehen","weggehen", "tanz", "tanzen", "veranstaltung", "veranstaltungen", "fest", "disko", "disco" );
+my $cities = "Aschaffenburg|Augsburg|Berlin|Berlin-Biesdorf|Berlin-Friedrichshain|Berlin-Karow|Berlin-Köpenick|Berlin-Lichtenberg|Berlin-Marzahn|Berlin-Mitte|Berlin-Oberschöneweide|Berlin-Pankow|Berlin-Treptow|Bremen|Cologne|Darmstadt|Dieburg|Dortmund|Dreieich|Dresden|Dresden-Altstadt|Dresden-Neustadt|Düsseldorf|Essen|FFM|Frankfurt|Frankfurt am Main|Freiburg|Freiburg im Breisgau|Friedrichshain|Griesheim|Halle|Hamburg|Hamburg-Eimsbüttel|Hamburg-Mitte|Hannover|Hanover|Heidelberg|Kassel|Koeln|Germany|Kreuzberg|Köln|Leipzig|Leipzig-Connewitz|Leipzig-Leutzsch|Leipzig-Plagwitz|Leipzig-Stötteritz|Mainz|Mannheim|Munich|Mühlheim|München|München|Germany|Münster|Neu Isenburg|Neukölln|Nuremberg|Nürnberg|Offenbach|Prenzlauer Berg|Sankt Pauli|Schöneberg|Sersheim|Stuttgart|Wiesbaden";
 
 triggers any => @triggers;
 
 spice to => 'http://ddg.wasgehtheuteab.de/duckduckgo/events.json?q=$1&callback={{callback}}&api_key={{ENV{DDG_SPICE_WGHA_APIKEY}}}';
-spice proxy_cache_valid => "200 60m";
+spice proxy_cache_valid => "200 5m";
 
 handle query_lc => sub {
-  return $_ if $loc->country_code eq 'DE';
+  return if $loc->country_code ne 'DE';
 
-  if ($_ =~ /berlin|darmstadt|dresden|düsseldorf|duesseldorf|frankfurt|freiburg|hamburg|hannover|kassel|köln|koeln|leipzig|mainz|mannheim|münchen|muenchen|stuttgart/) {
-    return $_;
-  }
-  return;
+  my $q = $_ . ' ' . $loc->city; # attach city of query origin to query
+
+  if ($q =~ /$cities/i) {
+   return $q;
+ }
+
+ return;
 };
 
 1;

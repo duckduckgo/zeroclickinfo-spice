@@ -1,17 +1,8 @@
 package DDG::Spice::Octopart;
+# ABSTRACT: Search for electronic parts
 
 use strict;
 use DDG::Spice;
-
-primary_example_queries "atmega datasheet";
-secondary_example_queries "ne555 specs";
-description "Searches parts from Octopart.";
-name "Octopart";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Octopart.pm";
-icon_url "/i/octopart.com.ico";
-topics "special_interest", "geek";
-category "special";
-attribution github  => ['https://github.com/bnewbold', 'bnewbold'];
 
 triggers any => "datasheet", "specs", "octopart";
 
