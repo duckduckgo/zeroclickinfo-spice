@@ -44,30 +44,17 @@
             return Spice.failed('rx_info');
         }
         
-<<<<<<< HEAD
         var sourceName = "DailyMed",
             sourceUrl = "http://dailymed.nlm.nih.gov/",
             itemType = "pills",
             secondaryText = buildSecondaryText(api_result.replyStatus.matchedTerms);
-=======
-        var script = $('[src*="/js/spice/rx_info/"]')[0],
-            source = $(script).attr("src"),
-            query = decodeURIComponent(source.match(/rx_info\/([^\/]+)/)[1]),
-            triggerWordMatch = parseInt(source.match(/rx_info\/[^\/]+\/(\d)/)[1]),
-            relCheck;
-        
->>>>>>> upstream/master
 
         Spice.add({
             id: "rx_info",
             name: "RxInfo",
             data: api_result.nlmRxImages,
             meta: {
-<<<<<<< HEAD
                 itemType: itemType,
-=======
-                searchTerm: query,
->>>>>>> upstream/master
                 sourceName: sourceName,
                 sourceUrl:  sourceUrl,
                 secondaryText: secondaryText
