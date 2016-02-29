@@ -29,7 +29,7 @@
             return Spice.failed('just_delete_me');
         }
         Spice.add({
-            id: "JustDeleteMe",
+            id: "just_delete_me",
             name: "Answer",
             meta: {
                 sourceName: 'Just Delete Me',
