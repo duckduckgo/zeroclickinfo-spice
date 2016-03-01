@@ -112,6 +112,7 @@ ddg_spice_test(
     'national park holidays'                => undef,    
     'riverbank holidays'                    => undef,
     'confederal holidays'                   => undef,
+    'public holidays are great'             => undef,
 );
 
 done_testing;
