@@ -5,7 +5,6 @@ package DDG::Spice::PublicHolidays;
 use strict;
 use DDG::Spice;
 use Locale::Country;
-use Text::Trim;
 
 spice is_cached => 1;
 spice proxy_cache_valid => "200 30d";
