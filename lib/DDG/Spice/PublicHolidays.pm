@@ -11,7 +11,7 @@ spice proxy_cache_valid => "200 30d";
 spice wrap_jsonp_callback => 0;
 
 spice from => "(.+)/(.+)";
-spice to => 'https://api.xmltime.com/holidays?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&version=2&callback={{callback}}&types=federal&country=$1&year=$2';
+spice to => 'https://api.xmltime.com/holidays?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&version=2&callback={{callback}}&types=federal%2Cfederallocal&country=$1&year=$2';
 
 my @triggers  = ('public holidays', 'national holidays', 'bank holidays', 'federal holidays');
 my $triggers  = join('|', @triggers);
