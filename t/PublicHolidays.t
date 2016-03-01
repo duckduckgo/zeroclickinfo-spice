@@ -108,6 +108,7 @@ ddg_spice_test(
     'uk public holiday 2016'                => undef,    
     'yuk public holidays 2016'              => undef,    
     'uk usa public holidays 2016'           => undef,    
+    'uk public holidays 2016 2017'          => undef,    
     'national park holidays'                => undef,    
     'riverbank holidays'                    => undef,
     'confederal holidays'                   => undef,
