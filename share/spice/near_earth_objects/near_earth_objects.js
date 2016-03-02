@@ -38,7 +38,7 @@
                     url: item.nasa_jpl_url,
                     title: item.name,
                     altSubtitle: 'SPK-ID: ' + item.neo_reference_id,
-                    subtitle: 'Approach date: ' + item.close_approach_data.close_approach_date,
+                    subtitle: 'Approach date: ' + item.close_approach_data[0].close_approach_date,
                     description: 'Has a diameter of up to ' + maxSizeMeters + ' meters (' + maxSizeFeet + ' feet) and will miss earth by ' + distKm + ' km (' + distMiles + ' miles).',
                 };
             },
