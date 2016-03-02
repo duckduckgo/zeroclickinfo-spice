@@ -15,6 +15,7 @@
         }
         
         // Render the response
+        var result_text = (neo_list.length === 1) ? ' near earth object (asteroid)' : ' near earth objects (asteroids)';
         Spice.add({
             id: "near_earth_objects",
             name: "Answer",
@@ -23,7 +24,7 @@
             meta: {
                 sourceName: 'NASA',
                 sourceUrl: 'http://neo.jpl.nasa.gov/',
-                itemType: (neo_list.length === 1) ? 'near earth object (asteroid)' : 'near earth objects (asteroids)'
+                primaryText: 'Showing ' + neo_list.length + result_text
             },
             
             normalize: function(item) {
