@@ -19,6 +19,6 @@ install:
   - dzil listdeps | grep -ve '^\W' | cpanm --notest --quiet --mirror http://www.cpan.org/ --mirror http://duckpan.org
 language: perl
 perl:
-  - '5.16'
+  - 5.16
 script:
-  - dzil smoke --release --author
+  - prove -lr -j1 t
