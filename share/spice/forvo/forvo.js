@@ -3,8 +3,6 @@
 
     // The sex (returned as either "m" or "f") should be expanded.
     Handlebars.registerHelper("forvo_sex", function(sex) {
-        "use strict";
-
         if(sex === "m")
             return "Male";
 
@@ -14,7 +12,7 @@
     Handlebars.registerHelper("forvo_icon", function(code) {
         if (code !== undefined){
             // lowercase and fix for UK flag
-            var code = code.toLowerCase().replace("gb", "uk");
+            code = code.toLowerCase().replace("gb", "uk");
         }
         return DDG.settings.region.getSmallIconURL(code);
     });
@@ -26,6 +24,12 @@
         }
 
         if (api_result.attributes.total < 1) return;
+
+        // Proxy audio urls
+        $.each(api_result.items, function(k, v){
+            var pathmp3 = this.standard_pronunciation.pathmp3;
+            this.standard_pronunciation.proxied_pathmp3 = "/audio/?u=" + encodeURIComponent(pathmp3);
+        });
 
         var has_shown = 0;
         var script = $('[src*="/js/spice/forvo/"]')[0];
