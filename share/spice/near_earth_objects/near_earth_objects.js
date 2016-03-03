@@ -13,6 +13,10 @@
                 neo_list = neo_list.concat(api_result.near_earth_objects[obj]);
             }
         }
+        // Sort array in order of approach date
+        neo_list.sort(function(a, b) {
+            return parseInt(a.close_approach_data[0].epoch_date_close_approach) - parseInt(b.close_approach_data[0].epoch_date_close_approach);
+        });
         
         // Render the response
         var result_text = (neo_list.length === 1) ? ' near earth object (asteroid)' : ' near earth objects (asteroids)';
