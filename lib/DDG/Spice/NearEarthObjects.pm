@@ -10,7 +10,18 @@ spice wrap_jsonp_callback => 1;
 
 spice to => 'https://api.nasa.gov/neo/rest/v1/feed?format=JSON&api_key={{ENV{DDG_SPICE_NASA_APIKEY}}}';
 
-my @triggers = ('near earth object', 'near earth objects', 'near earth asteroid', 'near earth asteroids', 'near-earth object', 'near-earth objects', 'near-earth asteroid', 'near-earth asteroids', 'close asteroid', 'close asteroids');
+my @triggers = (
+    'near earth object',
+    'near earth objects',
+    'near earth asteroid',
+    'near earth asteroids',
+    'near-earth object',
+    'near-earth objects',
+    'near-earth asteroid',
+    'near-earth asteroids',
+    'close asteroid',
+    'close asteroids'
+);
 triggers startend => @triggers;
 
 handle remainder => sub {
