@@ -19,7 +19,7 @@
         }
 
         Spice.add({
-            id: 'producthunt',
+            id: 'product_hunt',
             name: 'ProductHunt',
             data: api_result.hits,
             meta: {
