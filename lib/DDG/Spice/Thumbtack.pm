@@ -3,16 +3,6 @@ package DDG::Spice::Thumbtack;
 
 use DDG::Spice;
 
-name "Thumbtack Search";
-source "Thumbtack";
-icon_url "https://www.thumbtack.com/favicon.ico";
-description "Shows a list of service providers";
-primary_example_queries "plumbers near me", "electricians close by";
-category "location_aware";
-topics "everyday";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Thumbtack.pm";
-attribution github => ["http://github.com/whalenrp", "whalenrp"];
-
 # Require the "thumbtack " modifier explicitly for now.
 my @keywords = share('top_keywords.txt')->slurp;
 for (my $i=0; $i < scalar @keywords; $i++) {
