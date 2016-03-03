@@ -51,7 +51,7 @@
                 },
                 meta: {
                     zoomLevel: 8,
-                    sourceName: "Show piste map",
+                    sourceName: "Explore 3D map",
                     sourceUrl: 'http://www.piste.io/' + api_result.name
                 }
             });
