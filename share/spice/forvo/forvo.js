@@ -28,7 +28,7 @@
         // Proxy audio urls
         $.each(api_result.items, function(k, v){
             var pathmp3 = this.standard_pronunciation.pathmp3;
-            this.standard_pronunciation.proxied_pathmp3 = "/audio/?u=" + encodeURIComponent(pathmp3);
+            this.standard_pronunciation.proxied_pathmp3 = "/audio/?u=" + pathmp3;
         });
 
         var has_shown = 0;
