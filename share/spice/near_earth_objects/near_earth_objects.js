@@ -24,7 +24,8 @@
             meta: {
                 sourceName: 'NASA',
                 sourceUrl: 'http://neo.jpl.nasa.gov/',
-                primaryText: 'Showing ' + neo_list.length + result_text
+                primaryText: 'Showing ' + neo_list.length + result_text,
+                signal: 'high'
             },
             
             normalize: function(item) {
