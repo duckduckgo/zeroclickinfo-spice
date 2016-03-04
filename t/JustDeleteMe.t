@@ -38,7 +38,10 @@ ddg_spice_test(
         '/js/spice/just_delete_me/cloud',
         call_type => 'include',
         caller => 'DDG::Spice::JustDeleteMe'
-    )
+    ),
+    'facebook account' => undef,   # does not contain any of the triggers
+    'delete facebook' => undef,   # does not contain any of the required words
+    'delete fac account' => undef # keyword shorter than 4 characters
 );
 
 done_testing;
