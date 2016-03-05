@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_public_holidays = function(api_result) {
 
-        if ( !api_result || api_result.error || api_result.errors || !api_result.holidays || api_result.holidays.length === 0) {
+        if (!api_result || api_result.error || api_result.errors || !api_result.holidays || api_result.holidays.length === 0) {
             return Spice.failed('public_holidays');
         }
 
@@ -11,7 +11,7 @@
         var year = decodeURIComponent(source.match(/public_holidays\/[a-z]{2}\/([0-9]{4})\/[^\/]+/)[1]);
         var country = decodeURIComponent(source.match(/public_holidays\/[a-z]{2}\/[0-9]{4}\/([^\/]+)/)[1]);        
         
-        if ( !year || !country ) {
+        if (!year || !country) {
             return Spice.failed('public_holidays');                
         }
         

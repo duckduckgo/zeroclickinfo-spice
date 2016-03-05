@@ -10,7 +10,7 @@ spice is_cached => 1;
 spice proxy_cache_valid => "200 30d";
 spice wrap_jsonp_callback => 0;
 
-spice from => "(.+)/(.+)";
+spice from => "(.+)\/(.+)\/.+";
 spice to => 'https://api.xmltime.com/holidays?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&version=2&callback={{callback}}&types=federal%2Cfederallocal&country=$1&year=$2';
 
 my @triggers  = ('public holidays', 'national holidays', 'bank holidays', 'federal holidays');
@@ -41,27 +41,27 @@ handle query_lc => sub {
     $query =~ s/$triggers//;
     
     $query =~ s/$in(?<year>$year)//;
-    if ( $+{year} ) {
+    if ($+{year}) {
         $chosenYear = $+{year};
     } else {
         $chosenYear = $defaultYear;
     }
     
     $query =~ s/$inThe(?<country>$country)//;
-    if ( $+{country} ) {
+    if ($+{country}) {
         $chosenCountry = $+{country};
     } else {
         $chosenCountry = $defaultCountry;
     }
    
-    # Nothing should be left in the query by now, if there is bailout   
-    return unless($query =~ /^\s*$/);
+    # If there's anything left in the query we can't be sure its relevant
+    return unless ($query =~ /^\s*$/);
     
     # These are the min/max years available from the API (as of Feb 2016, API version 2)
-    return unless($chosenYear >= 1600 && $chosenYear <= 2400);
+    return unless ($chosenYear >= 1600 && $chosenYear <= 2400);
     
     my $chosenCountryCode = country2code($chosenCountry);
-    return unless($chosenCountryCode);    
+    return unless ($chosenCountryCode);    
     
     return $chosenCountryCode, $chosenYear, code2country($chosenCountryCode);
 };
