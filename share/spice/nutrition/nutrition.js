@@ -2,7 +2,7 @@
     'use strict';
     env.ddg_spice_nutrition = function(api_result) {
 
-        if (!api_result || !api_result.hits || !api_result.hits.length) {
+        if (!api_result || !api_result.hits || !api_result.hits.length || api_result.max_score < 1) {
             return Spice.failed('nutrition');
         }
 
