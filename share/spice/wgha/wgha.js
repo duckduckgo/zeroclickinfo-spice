@@ -8,18 +8,18 @@
         }
 
         var query = DDG.get_query();
-        var sourceUrl = 'http://www.wasgehtheuteab.de';
+        var sourceUrl = 'https://www.wasgehtheuteab.de';
 
         Spice.add({
             id: 'wgha',
-            name: 'Events',
+            name: 'Party',
             data: api_result,
 
             meta: {
                 sourceUrl: sourceUrl,
                 sourceName: 'Was geht heute ab?',
                 sourceIcon: true,
-                itemType: 'Events'
+                itemType: 'Party'
             },
             templates: {
                 group: 'text',
