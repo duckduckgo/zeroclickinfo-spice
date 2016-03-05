@@ -14,37 +14,44 @@
         if (!year || !country) {
             return Spice.failed('public_holidays');                
         }
-        
+
         DDG.require('moment.js', function() {
+            var data = {
+                title: "Public Holidays " + year, 
+                subtitle: country,
+                holidays: []
+            };
+            
+            $.each(api_result.holidays, function(index, holiday) {
+                // Some holidays only apply to certain provinces
+                var provinces = [];
+                if (holiday.states) {                    
+                    for (var i=0; i<holiday.states.length; ++i) {
+                        provinces.push(holiday.states[i].name);
+                    }
+                }
+                
+                data.holidays.push({
+                    name:  holiday.name,
+                    date:  moment(holiday.date.iso).format('ddd Do MMM'),
+                    notes: provinces.join(", ")
+                });
+            });
+            
             Spice.add({
                 id: "public_holidays",            
-                name: "Answer",            
-                data: api_result,
+                name: "Answer",
+                data: data,
 
                 meta: {
                     sourceName: "timeanddate.com",
                     sourceUrl: 'http://www.timeanddate.com/holidays/'
                 },
 
-                normalize: function(data) {                
-                    var result = {
-                        title: "Public Holidays " + year,
-                        subtitle: country,
-                        record_data: {}
-                    };
-
-                    $.each(data.holidays, function() {                        
-                        var label = moment(this.date.iso).format('ddd Do MMM');
-                        result.record_data[label] = this.name;                     
-                    });
-
-                    return result;
-                },
-
                 templates: {
                     group: 'list',
                     options: {
-                        content: 'record',
+                        content: DDH.public_holidays.record,
                         moreAt: true
                     }
                 }
