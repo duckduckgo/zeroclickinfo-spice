@@ -15,7 +15,7 @@
         }
         
         // Render the response
-        var result_text = (neo_list.length === 1) ? ' near earth object (asteroid)' : ' near earth objects (asteroids)';
+        var result_text = (neo_list.length === 1) ? ' near-Earth object (asteroid)' : ' near-Earth objects (asteroids)';
         Spice.add({
             id: "near_earth_objects",
             name: "Answer",
@@ -50,7 +50,7 @@
                     title: item.name,
                     altSubtitle: 'SPK-ID: ' + item.neo_reference_id,
                     subtitle: 'Approach date: ' + item.close_approach_data[0].close_approach_date,
-                    description: 'Has a diameter of up to ' + maxSizeMeters + ' meters (' + maxSizeFeet + ' feet) and will miss earth by ' + distKm + ' km (' + distMiles + ' miles).',
+                    description: 'Has a diameter of up to ' + maxSizeMeters + ' meters (' + maxSizeFeet + ' feet) and will miss Earth by ' + distKm + ' km (' + distMiles + ' miles).',
                 };
             },
             

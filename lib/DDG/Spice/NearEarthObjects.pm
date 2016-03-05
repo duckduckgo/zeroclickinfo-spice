@@ -1,5 +1,5 @@
 package DDG::Spice::NearEarthObjects;
-# ABSTRACT: Shows details of objects (asteroids) that come close to earth — within several million miles.
+# ABSTRACT: Shows details of objects (asteroids) that come close to Earth — within several million miles.
 
 use strict;
 use DDG::Spice;
