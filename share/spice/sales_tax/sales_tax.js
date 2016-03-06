@@ -48,8 +48,11 @@
                 options: {
                     moreAt: true                    
                 },
-                detail: false,
-                item_detail: false
+                 variants: {
+                  tileSnippet: 'large'
+                }   
+                //detail: false,
+                //item_detail: false
             }
         });
     }
