@@ -3,19 +3,15 @@
     env.ddg_spice_spotify = function(api_result){
 
         var query = DDG.get_query();
-        query = query.replace(/on spotify/, ''); //replace trigger words from query
+        query = query.replace(/on spotify/, '');
 
-        // Validate the response (customize for your Spice)
         if (!api_result || api_result.tracks.items.length === 0) {
             return Spice.failed('spotify');
         }
 
-        // Render the response
         Spice.add({
             id: 'spotify',
-
-            // Customize these properties
-            name: 'Spotify',
+            name: 'Audio',
             data: api_result.tracks.items,
             meta: {
                 sourceName: 'Spotify',
