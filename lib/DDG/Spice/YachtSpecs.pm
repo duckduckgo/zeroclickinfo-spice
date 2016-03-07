@@ -19,7 +19,7 @@ attribution web => ["http://YachtHarbour.com"],
             twitter => "yachtharbour";
 
 #Connection to API
-spice to => 'http://yachtharbour.com/tools/api.php?name=$1';
+spice to => 'https://yachtharbour.com/tools/api.php?name=$1';
 spice wrap_jsonp_callback => 1;
 
 #Triggers
