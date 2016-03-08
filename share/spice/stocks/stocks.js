@@ -13,6 +13,7 @@
                 id: 'stocks',
                 name: 'Stock',
                 data: api_result,
+                signal: (DDG.get_query().search('stock')) ? 'low' : 'high', 
                 meta: {
                     sourceName: 'NASDAQ',
                     sourceUrl: url
