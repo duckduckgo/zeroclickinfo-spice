@@ -22,7 +22,7 @@
                 if (item.name === DDG.get_query()){
                     item.exactMatch = true;
 
-                } 
+                }
                 var card_image = DDG.toHTTP(item.editions[0].image_url);
                 var infoboxData = [
                     { heading: "Card Details" },
@@ -36,11 +36,11 @@
                 ];
                 return {
                     title: item.name,
-                    description: item.text ? item.text : "No descritpion",
+                    description: item.text ? item.text : "No description",
                     types: item.types,
-                    altSubtitle: item.subtypes ? item.subtypes : "-",
+                    altSubtitle: item.subtypes ? item.subtypes : " ",
                     url: item.editions[0].store_url,
-                    rarity: item.power ? item.power + "/" + item.toughness : "- -",
+                    rarity: item.power ? item.power + "/" + item.toughness : null,
                     image: card_image,
                     infoboxData: infoboxData
                 };
@@ -54,7 +54,8 @@
                     moreAt: true
                 },
                 variants: {
-                    tileSnippet: "large"
+                    tileSnippet: "large",
+                    tileTitle: "1line-large"
                 },
                 elClass: {
                     tileFoot: "tx-clr--grey-light"
@@ -62,20 +63,4 @@
             }
         });
     };
-    function pushArrayData(arr) {
-        
-    }
-    //function getInfoBoxData(item) {
-      //  var infoboxData = [{
-        //    heading: 'Card Details:'
-       // }];
-       // for (var i = 1; i <= 15; i++) {
-       //     if(item["strIngredient" + i] !== "") {
-       //         infoboxData.push({
-       //             label: item["strMeasure" + i] + "" + item["strIngredient" + i]
-       //         });
-       //     }
-      //  }
-      // return infoboxData;
-   // }
 }(this));
