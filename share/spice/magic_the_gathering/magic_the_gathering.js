@@ -9,7 +9,7 @@
         // Render the response
         Spice.add({
             id: "magic_the_gathering",
-            name: "Cards",
+            name: "Games",
             data: api_result,
             meta: {
                 itemType: "Cards",
