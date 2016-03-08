@@ -38,6 +38,9 @@
                 });
             });
             
+            // holiday.urlid is of the form "<country>/<holiday>"
+            var countryUrlId = api_result.holidays[0].urlid.match(/(.+)\/.*/)[1];            
+            
             Spice.add({
                 id: "public_holidays",            
                 name: "Answer",
@@ -45,7 +48,7 @@
 
                 meta: {
                     sourceName: "timeanddate.com",
-                    sourceUrl: 'http://www.timeanddate.com/holidays/'
+                    sourceUrl: 'http://www.timeanddate.com/holidays/' + countryUrlId + "/" + year
                 },
 
                 templates: {
