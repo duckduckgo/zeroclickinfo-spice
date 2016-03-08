@@ -3,15 +3,6 @@ package DDG::Spice::Etsy;
 
 use DDG::Spice;
 
-name "Etsy Search";
-source "Etsy";
-icon_url "https://www.etsy.com/favicon.ico";
-description "Shows a list of etsy products";
-primary_example_queries "etsy rustic chairs", "etsy curtains";
-topics "everyday";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Etsy.pm";
-attribution github => ["http://github.com/whalenrp", "whalenrp"];
-
 spice wrap_jsonp_callback => 1;
 spice is_cached => 1;
 spice proxy_cache_valid => "200 1d";
