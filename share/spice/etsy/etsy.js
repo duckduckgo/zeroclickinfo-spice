@@ -1,17 +1,18 @@
 (function (env) {
     "use strict";
+
+    var getPrice = function(currencyCode, price) {
+        if (currencyCode == "USD") {
+            return "$" + price;
+        } else {
+            return price + " " + currencyCode;
+        }
+    }
+
     env.ddg_spice_etsy = function(api_result) {
 
         if (!api_result || api_result.results.length == 0) {
             return Spice.failed('etsy');
-        }
-
-        function getPrice(currencyCode, price) {
-            if (currencyCode == "USD") {
-                return "$" + price;
-            } else {
-                return price + " " + currencyCode;
-            }
         }
 
         var endpoint = (
@@ -46,7 +47,6 @@
                     rating: feedback_info.score / 20.0,
                     reviewCount: feedback_info.count,
                     url_review: reviewUrl,
-                    subtitle_content: "test",
                 };
             },
             templates: {
