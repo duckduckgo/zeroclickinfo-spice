@@ -8,13 +8,16 @@ use Locale::SubCountry;
 triggers any => 'sales tax for', 'sales tax in', 'sales tax';
 spice to => 'http://dev.snapcx.io:9100/taxv1/getStateTaxRate?request_id=DDG_Requestor&state=$1';
 spice wrap_jsonp_callback => 1;
-spice is_cached => 1;
+spice is_cached => 0;
 
 #Create US SubCountry object
 my $US = new Locale::SubCountry("US");
 
 # Handle statement
 handle remainder_lc => sub {
+
+    return unless $loc && $loc->{country_code} eq 'US'; 
+
     my ($state, $stateCode); #Define vars
     s/^what is (the)?//g; # strip common words
     return '' unless $_; # Guard against "no answer"
