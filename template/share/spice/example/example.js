@@ -1,6 +1,6 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_<: $ia_id :> = function(api_result){
+    env.ddg_spice_<: $ia_id :> = function(api_result) {
 
         // Validate the response (customize for your Spice)
         if (!api_result || api_result.error) {
@@ -21,9 +21,9 @@
             normalize: function(item) {
                 return {
                     // customize as needed for your chosen template
-                    title: api_result.title,
-                    subtitle: api_result.subtitle,
-                    image: api_result.icon
+                    title: item.title,
+                    subtitle: item.subtitle,
+                    image: item.icon
                 };
             },
             templates: {

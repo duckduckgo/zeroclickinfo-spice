@@ -14,11 +14,13 @@ triggers startend =>
     'live show',
     'live shows',
     'gigs',
-    'tickets';
+    'tickets',
+    'event',
+    'events';
 
 spice proxy_cache_valid => "200 304 12h";
 
-spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=20&performers.slug=$1&callback={{callback}}';
+spice to => 'https://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=20&performers.slug=$1&callback={{callback}}';
 
 handle remainder_lc => sub {
     # in case we've matched for example "upcoming bjork concerts"

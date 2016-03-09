@@ -10,7 +10,7 @@ my $seasons_qr = join "|", @seasons;
 triggers any => @seasons;
 
 spice from => "(.+)/(.+)/.*";
-spice to => 'https://api.xmltime.com/holidays?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&callback={{callback}}&country=$2&year=$1&types=seasons';
+spice to => 'https://api.xmltime.com/holidays?accesskey={{ENV{DDG_SPICE_TIME_AND_DATE_ACCESSKEY}}}&secretkey={{ENV{DDG_SPICE_TIME_AND_DATE_SECRETKEY}}}&callback={{callback}}&country=$2&year=$1&types=seasons&version=1';
 
 spice proxy_cache_valid => "200 30d";
 spice is_cached => 1;
