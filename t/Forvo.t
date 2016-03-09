@@ -28,6 +28,10 @@ ddg_spice_test(
         '/js/spice/forvo/bye/empty',
         caller    => 'DDG::Spice::Forvo',
     ),
+    'how do i say bough' => test_spice(
+        '/js/spice/forvo/bough/empty',
+        caller    => 'DDG::Spice::Forvo',
+    )
 );
 
 done_testing;
