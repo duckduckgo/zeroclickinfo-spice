@@ -1,0 +1,11 @@
+<div class="record  {{#if meta.options.keySpacing}}record--keyspacing{{/if}}  {{#if meta.options.rowHighlight}}record--highlight{{/if}}">
+    <table class="record__body">
+        {{#each holidays}}
+            <tr class="record__row  {{#if ../meta.options.rowHighlight}}record__row--highlight{{/if}}">
+                <td class="record__cell  record__cell--key">{{date}}</td>                
+                <td class="record__cell  record__cell--key">{{name}}</td>                
+                <td class="record__cell  record__cell--key">{{notes}}</td>                
+            </tr>
+        {{/each}}
+    </table>
+</div>
