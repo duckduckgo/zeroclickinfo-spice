@@ -59,6 +59,7 @@
                 detail: false,
                 item_detail: false,
                 variants: {
+                    tileTitle: "1line",
                     tileSubtitle: "1line"
                 }
             }
