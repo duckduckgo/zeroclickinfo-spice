@@ -7,6 +7,8 @@ use JSON;
 use Text::Trim;
 use List::Uniq ':all';
 
+spice wrap_jsonp_callback => 1;
+
 # Variable Definitions
 my %custom_ids = (2005 => 75675980, 2004 => 78989893);
 
@@ -39,7 +41,7 @@ triggers any => @triggers;
 
 spice from => '([^/]+)/([^/]+)/?([^/]+)?/?([^/]+)?';
 
-spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_secret={{ENV{DDG_SPICE_QUIXEY_APIKEY}}}&q=$1&platform_ids=$2&max_cents=$3&custom_id=$4&limit=50&skip=0&format=json&callback={{callback}}';
+spice to => 'https://api.quixey.com/1.0/search?partner_id=2073823582&partner_secret={{ENV{DDG_SPICE_QUIXEY_APIKEY}}}&q=$1&platform_ids=$2&max_cents=$3&custom_id=$4&limit=50&skip=0&format=json';
 
 spice proxy_ssl_session_reuse => "off";
 
