@@ -13,14 +13,6 @@ spice from => '(.*)/(.*)';
 
 triggers any => 'jobs', 'job', 'jobsuche', 'stellenangebot', 'stellenangebote', 'stellenanzeige', 'stellenanzeigen', 'stellenmarkt', 'arbeit', 'karriere';
 
-primary_example_queries "manager job berlin";
-secondary_example_queries "manager jobs";
-description "Renego Job Search";
-name "RenegoJobSearch";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/RenegoJobSearch.pm";
-topics "special_interest";
-attribution github => ['https://github.com/mightycid','Sebastian Szeracki'];
-
 # Handle statement
 handle remainder => sub {
     #restict to germany
