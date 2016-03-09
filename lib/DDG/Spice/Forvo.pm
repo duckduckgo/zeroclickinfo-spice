@@ -5,7 +5,7 @@ use strict;
 use DDG::Spice;
 use utf8;
 
-triggers any => "pronounce", "pronunciation", "how to pronounce", "pronunciation of", "pronounciation of", "how do you say", "how do you pronounce", "how to say";
+triggers any => "pronounce", "pronunciation", "how to pronounce", "pronunciation of", "pronounciation of", "how do you say", "how do you pronounce", "how to say", "how do i say", "how do i pronounce";
 
 spice to => 'http://apicorporate.forvo.com/key/{{ENV{DDG_SPICE_FORVO_APIKEY}}}/format/json/action/pronounced-words-search/search/$1/language/$2/callback/{{callback}}';
 spice from => '([^/]+)/([^/]+)';
