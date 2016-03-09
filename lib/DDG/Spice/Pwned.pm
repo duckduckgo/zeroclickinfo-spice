@@ -3,10 +3,6 @@ package DDG::Spice::Pwned;
 use strict;
 use DDG::Spice;
 
-primary_example_queries 'pwned test@gmail.com';
-description 'Search for pwned email addresses';
-name 'Pwned';
-
 triggers startend => ('pwned', 'have i been pwned');
 
 spice to => 'https://haveibeenpwned.com/api/v2/breachedaccount/$1';
