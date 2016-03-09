@@ -3,7 +3,7 @@
     env.ddg_spice_sales_tax = function(api_result){
         // Error checking
         if (!api_result || api_result.header.status !== "SUCCESS") {
-            return Spice.failed('sales_tax2');
+            return Spice.failed('sales_tax');
         }
 
         // Display
@@ -14,10 +14,10 @@
             meta: {
                 //itemType: "Results",
                 //searchTerm: api_result.query,
-                sourceName: "snapCX.io",
-                sourceIcon: false,
-                sourceIconUrl: "http://snapcx.io/favicon.ico",
-                sourceUrl: "https://snapcx.io"
+                sourceName: "Wikipedia",
+                //sourceIcon: false,
+                //sourceIconUrl: "http://snapcx.io/favicon.ico",
+                sourceUrl: "https://en.wikipedia.org/wiki/Sales_taxes_in_the_United_States#By_jurisdiction"
             },
             normalize: function(item) {
                 var stateName, titleResult, subtitleResult, minTaxRate, maxTaxRate, noTaxState;
@@ -26,8 +26,8 @@
                 minTaxRate  = (item.minimumTaxRate * 100).toFixed(2) +"%";
                 maxTaxRate  = (item.maximumTaxRate * 100).toFixed(2) +"%";
                 noTaxState  = item.noTaxState;
-                titleResult = stateName+" - "+"Sales Tax";
-                console.log("Title is "+titleResult);
+                titleResult = stateName;
+                //console.log("Title is "+titleResult);
 
                 if (noTaxState === false) {
                     if (minTaxRate === maxTaxRate) {
@@ -36,7 +36,7 @@
                         subtitleResult = "Sale Tax ranges from "+minTaxRate+" to "+maxTaxRate;
                     }
                 } else {
-                    subtitleResult = "No sales tax for this state";
+                    subtitleResult = "No sales tax";
                 }
                 return {
                     title: titleResult,
@@ -46,10 +46,15 @@
             templates: {
                 group: 'text',
                 options: {
-                    moreAt: true                    
+                    moreAt: true,
+                    moreText: { 
+                      href: 'https://snapcx.io/salesTax', 
+                      text: 'Data by snapCX' 
+                    }
+
                 },
                  variants: {
-                  tileSnippet: 'large'
+                  tileSnippet: 'small'
                 }   
                 //detail: false,
                 //item_detail: false
