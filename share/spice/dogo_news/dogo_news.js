@@ -24,13 +24,13 @@
                     sourceName: 'DOGOnews',
                     sourceUrl: 'http://www.dogonews.com/search?query=' + encodeURIComponent(query),
                     itemType: 'Kids News Articles',
-                    snippetChars: 110
+                    snippetChars: 150
                 },
                 normalize: function(item) {
                     var thumb = item.hi_res_thumb || item.thumb;
                     return {
                         title: item.name,
-                        source: Handlebars.helpers.ellipsis(getFirstNameLastInitial(item.author), 15),
+                        source: Handlebars.helpers.ellipsis(getFirstNameLastInitial(item.author), 10),
                         url: item.url,
                         excerpt: item.summary,
                         description: item.summary,
