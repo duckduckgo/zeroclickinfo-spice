@@ -44,6 +44,7 @@
             Spice.add({
                 id: "public_holidays",            
                 name: "Answer",
+                signal: "high",
                 data: data,
 
                 meta: {
