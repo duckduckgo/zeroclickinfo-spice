@@ -263,6 +263,27 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    
+    'gold prices' => test_spice(
+        '/js/spice/currency/1/xau/xau',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
+    'gold prices today' => test_spice(
+        '/js/spice/currency/1/xau/xau',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),  
+    
+    '1 oz gold in usd' => test_spice(
+        '/js/spice/currency/1/xau/xau',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),      
 
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
