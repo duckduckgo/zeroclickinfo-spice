@@ -156,7 +156,7 @@ vuv,ni-vanuatu vatu,vanuatu vatu,
 wst,samoan tala,samoa tala,
 xaf,central african cfa franc beac,re africaine cfa franc beac,
 xag,silver ounce,silver,
-xau,gold ounce,gold,
+xau,gold ounce,gold,1 oz gold in usd,gold price,gold prices today,gold price per ounce,1oz gold,1oz gold in usd
 xbt,bitcoin,btc,bitcoins
 xcd,east caribbean dollar,east caribbean dollar,
 xdr,imf special drawing rights,international monetary fund special drawing rights,
