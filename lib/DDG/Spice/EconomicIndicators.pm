@@ -10,7 +10,7 @@ package DDG::Spice::EconomicIndicators;
 use DDG::Spice;
 use Time::Piece;
 use Locale::Country;
-use JSON;
+use JSON::MaybeXS;
 
 spice is_cached => 1;
 
