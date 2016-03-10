@@ -263,6 +263,21 @@ ddg_spice_test(
         caller => 'DDG::Spice::Currency',
         is_cached => 0
     ),
+    
+    # Requirement for space between unit and currency
+    '5m usd to aud' => test_spice(
+        '/js/spice/currency/5000000/usd/aud',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+    '1k ars to eur' => test_spice(
+        '/js/spice/currency/1000/ars/eur',
+        call_type => 'include',
+        caller => 'DDG::Spice::Currency',
+        is_cached => 0
+    ),
+
 
     # Numbers with with ambiguous formatting.
     'convert 2,000.1.9 cad into usd' => undef,
