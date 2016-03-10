@@ -28,7 +28,7 @@ my $into_qr = qr/\s(?:en|in|to|in ?to|to)\s/i;
 my $vs_qr = qr/\sv(?:ersu|)s\.?\s/i;
 my $question_prefix = qr/(?:convert|what (?:is|are|does)|how (?:much|many) (?:is|are))?\s?/;
 my $number_re = number_style_regex();
-my $cardinal_re = join(' |', qw(hundred thousand k million m billion b trillion));
+my $cardinal_re = join(' |', qw(hundred thousand k million m billion b trillion)).' ';
 
 
 my $guard = qr/^$question_prefix(\p{Currency_Symbol})?\s?($number_re*)\s?(\p{Currency_Symbol})?\s?($cardinal_re)?\s?($currency_qr)?(?:s)?(?:$into_qr|$vs_qr|\/|\s)?($number_re*)\s?($currency_qr)?(\p{Currency_Symbol})?(?:s)?\??$/i;
