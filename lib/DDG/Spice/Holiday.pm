@@ -1,20 +1,9 @@
 package DDG::Spice::Holiday;
+
 # ABSTRACT: Query timeanddate.com for a holiday
 
 use DDG::Spice;
 use POSIX qw(strftime);
-
-name "Time and Date holiday search";
-source "timeanddate.com";
-icon_url "/i/www.timeanddate.com.ico";
-description "Search for holidays";
-primary_example_queries "when is halloween", "when is constitution day in kazakhstan";
-category "dates";
-topics "everyday";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Holiday.pm";
-
-attribution github => ['https://github.com/iambibhas', 'Bibhas'],
-            twitter => ['https://twitter.com/bibhasdn', 'Bibhas D'];
 
 triggers start => 'when is', 'when was', 'what day is', 'what day was';
 
