@@ -6,7 +6,7 @@ use DDG::Spice;
 
 triggers startend => 'pill', 'rxinfo', 'capsule', 'tablet', 'softgel', 'caplets';
 
-spice to => 'http://rximage.nlm.nih.gov/api/rximage/1/rxbase?resolution=300&includeIngredients=true&parse=$1';
+spice to => 'https://rximage.nlm.nih.gov/api/rximage/1/rxnav?resolution=300&includeIngredients=true&parse=$1';
 
 spice wrap_jsonp_callback => 1;
 

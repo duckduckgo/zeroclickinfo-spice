@@ -43,9 +43,15 @@
         if (!api_result || api_result.error || !api_result.replyStatus || !api_result.replyStatus.totalImageCount || api_result.replyStatus.totalImageCount < 1) {
             return Spice.failed('rx_info');
         }
-        
-        var sourceName = "DailyMed",
-            sourceUrl = "http://dailymed.nlm.nih.gov/",
+
+        // Get original query.
+        var script = $('[src*="/js/spice/rx_info/"]')[0],
+            source = $(script).attr("src"),
+            query = decodeURIComponent(source.match(/rx_info\/([^\/]+)/)[1]);
+
+        // Meta information.
+        var sourceName = "PharmakonAlpha",
+            sourceUrl = "http://www.pharmakonalpha.com/results?parse=" + query,
             itemType = "pills",
             secondaryText = buildSecondaryText(api_result.replyStatus.matchedTerms);
 
@@ -60,14 +66,12 @@
                 secondaryText: secondaryText
             },
             templates: {
-                group: 'products_simple',
-                item_detail: 'base_item_detail',
+                group: 'media',
+                detail: false,
+                item_detail: false,
                 options: {
-                    content: Spice.rx_info.rx_info,
-                    description_content: Spice.rx_info.rx_info_description,
-                    brand: false,
-                    rating: false
-                }
+                    footer: Spice.rx_info.footer
+                },
             },
             normalize: function(item) {
                 var heading  = item.ndc11,
@@ -82,16 +86,10 @@
                 }
 
                 return {
-                    image: item.imageUrl,
-                    imageAlt: "Image for NDC: " + item.ndc11,
-                    abstract: item.ndc11,
-                    heading: heading,
                     title: heading,
-                    subtitle: item.labeler,
-                    ratingText: item.ndc11,
-                    active: active,
-                    inactive: inactive,
-                    url: item.splSetId ? 'https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=' + item.splSetId : ''
+                    altSubtitle: item.name ? item.ndc11 : '',
+                    image: item.imageUrl,
+                    url: item.id ? "http://www.pharmakonalpha.com/monograph/" + item.id + "?parse=" + query : ''
                 }
             }
         });
