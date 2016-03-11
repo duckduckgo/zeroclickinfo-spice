@@ -20,7 +20,12 @@ my @triggers = (
     'near-earth asteroid',
     'near-earth asteroids',
     'close asteroid',
-    'close asteroids'
+    'close asteroids',
+    'asteroid near earth',
+    'asteroids near earth',
+    'asteroid close to earth',
+    'asteroids close to earth',
+    'asteroid near miss'
 );
 triggers startend => @triggers;
 
