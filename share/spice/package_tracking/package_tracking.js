@@ -1,6 +1,6 @@
 (function (env) {
     "use strict";
-    env.ddg_spice_package_tracking = function(api_result){ 
+    env.ddg_spice_package_tracking = function(api_result){
         if (!api_result || api_result.error) {
             return Spice.failed('package_tracking');
         }
