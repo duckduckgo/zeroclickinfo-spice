@@ -19,6 +19,8 @@
         
         DDG.require('moment.js', function(){
             var spice = {
+                id: "bitcoin",
+                name: "Answer",
                 data: api_result,
                 meta: {
                     sourceName: "Biteasy"
@@ -32,8 +34,6 @@
 
             switch (query) {
                 case "addresses":
-                    spice.id = "bitcoin_address";
-                    spice.name = "Bitcoin Address";
                     spice.templates.group = "info";
                     spice.data = {
                         "record_data": {
@@ -51,10 +51,8 @@
                     };
                     spice.meta.sourceUrl = "https://www.biteasy.com/blockchain/addresses/" + api_result.address;
                     break;
-                    
+
                 case "transactions":
-                    spice.id = "bitcoin_transaction";
-                    spice.name = "Bitcoin Transaction";
                     spice.templates.group = "list";
                     spice.data = {
                         "record_data": {
@@ -69,13 +67,11 @@
                             "BTC Transacted": formatBtc(api_result.transacted_value)
                         }
                     };
-                    
+
                     spice.meta.sourceUrl = "https://www.biteasy.com/blockchain/transactions/" + api_result.address;
                     break;
 
                 case "blocks":
-                    spice.id = "bitcoin_block";
-                    spice.name = "Bitcoin Block";
                     spice.templates.group = "list";
                     var genesisHash = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f";
                     spice.data = {
