@@ -1,22 +1,23 @@
 (function (env) {
     "use strict";
-        
+
     env.ddg_spice_bitcoin = function(api_result) {
-        
+
         if (!api_result || api_result.status !== 200) {
             return Spice.failed('bitcoin');
         }
-        
-        
+
+
         var script = $('[src*="/js/spice/bitcoin/"]')[0],
             source = $(script).attr("src"),
-            query = decodeURIComponent(source.match(/bitcoin\/([a-z]{0,12})/)[1]),
-            api_result = api_result.data;
+            query = decodeURIComponent(source.match(/bitcoin\/([a-z]{0,12})/)[1]);
+
+        api_result = api_result.data;
 
         var formatBtc = function(amount) {
-            return (amount / 100000000.0) + " BTC"
+            return (amount / 100000000.0) + " BTC";
         };
-        
+
         DDG.require('moment.js', function(){
             var spice = {
                 id: "bitcoin",
