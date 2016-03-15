@@ -52,9 +52,18 @@
                     if (query === days[i] && single_days[days[i]].indexOf(item.n) === -1) {
                         return false;
                     }
-                };
-                return true;
-            })
+                }
+                // Check holiday name for relevancy, ignoring "day" and non-alpha characters (e.g. [.-'])
+                if (DDG.stringsRelevant(DDG.strip_non_alpha(item.n), DDG.strip_non_alpha(query), ['day'], 2)){
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+
+            if (events.length === 0) {
+                return Spice.failed('holiday');
+            }
 
             if (events.length == 1) {
                 data = events[0];
