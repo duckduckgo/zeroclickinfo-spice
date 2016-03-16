@@ -93,11 +93,12 @@
                 skip_words: ['movie', 'info', 'film', 'rt', 'rotten', 'tomatoes', 'rating', 'ratings', 'rotten'],
                 primary: [{
                     key: 'title'
-                }, {
-                    key: 'posters.detailed',
-                    match: /\.jpg$/,
-                    strict: false
-                }]
+                }//, {
+                 //   key: 'posters.detailed',
+                 //   match: /\.jpg$/,
+                 //   strict: false
+                 //}
+                ]
             },
             onItemShown: function(item) {
                 if (!item.alternate_ids || !item.alternate_ids.imdb) { return; }
