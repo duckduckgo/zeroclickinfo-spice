@@ -140,7 +140,7 @@
 
             Spice.add({
                 id: 'holiday',
-                name: 'Holidays',
+                name: 'Answer',
                 data: data,
                 normalize: normalize_fn,
                 meta: meta_obj,
