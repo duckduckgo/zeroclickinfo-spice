@@ -12,7 +12,7 @@ spice wrap_jsonp_callback => 1;
 
 # Metadata.  See https://duck.co/duckduckhack/metadata for help in filling out this section.
 name "Cve_summary";
-source "https://cve.mitre.org";
+source "http://cve.circl.lu";
 #icon_url "";
 description "Displays a short summary of a Common Vulnerabilities and Exposures (CVE).";
 primary_example_queries "CVE-2016-0815";
@@ -26,7 +26,7 @@ attribution github => ["GitHubAccount", "MoriTanosuke"],
             twitter => "carsten_r";
 
 # Triggers
-triggers any => "cve", "CVE";
+triggers any => "cve";
 
 # Handle statement
 handle remainder => sub {
