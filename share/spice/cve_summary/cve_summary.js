@@ -6,6 +6,8 @@
         if (api_result.error) {
             return Spice.failed('cve_summary');
         }
+        
+        console.log(api_result);
 
         // Render the response
         Spice.add({
@@ -21,7 +23,7 @@
             templates: {
                 group: 'text',
                 options: {
-                    content: Spice.cve_summary.content,
+                    content: Spice.CveSummary.content,
                     moreAt: true
                 }
             },
