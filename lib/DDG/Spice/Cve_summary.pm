@@ -15,7 +15,7 @@ name "Cve_summary";
 source "http://cve.circl.lu";
 #icon_url "";
 description "Displays a short summary of a Common Vulnerabilities and Exposures (CVE).";
-primary_example_queries "CVE-2016-0815";
+primary_example_queries "cve CVE-2016-0815";
 #secondary_example_queries "optional -- demonstrate any additional triggers";
 # Uncomment and complete: https://duck.co/duckduckhack/metadata#category
 category "reference";
