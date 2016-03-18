@@ -10,11 +10,11 @@ spice wrap_jsonp_callback => 1;
 triggers start => "cve";
 
 handle query_lc => sub {
-    return unless qr/^cve-\d{4}-\d+/;
+    return unless $_ =~ qr/^cve-\d{4}-\d+/s; # match specific CVE pattern
 
     return unless $_;    # Guard against "no answer"
 
-    return $_;
+    return uc $_;
 };
 
 1;

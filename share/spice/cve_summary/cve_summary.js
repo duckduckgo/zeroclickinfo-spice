@@ -2,6 +2,11 @@
     "use strict";
     env.ddg_spice_cve_summary = function(api_result){
 
+        // fail the spice if the API does not return a result
+        if(api_result == undefined) {
+            return Spice.failed('cve_summary');
+        }
+
         // Validate the response (customize for your Spice)
         if (api_result.error) {
             return Spice.failed('cve_summary');
