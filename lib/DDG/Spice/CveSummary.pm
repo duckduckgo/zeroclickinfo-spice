@@ -4,7 +4,7 @@ package DDG::Spice::CveSummary;
 use DDG::Spice;
 
 spice is_cached => 1;
-spice to => 'http://cve.circl.lu/api/cve/$1';
+spice to => 'https://cve.circl.lu/api/cve/$1';
 spice wrap_jsonp_callback => 1;
 
 triggers start => "cve";
