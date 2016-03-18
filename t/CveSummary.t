@@ -9,22 +9,22 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::CveSummary )],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
-    # - secondary_example_queries
+    # Test uppercase
     'CVE-2010-3333' => test_spice(
-        '/js/spice/cve_summary/cve-2010-3333',
+        '/js/spice/cve_summary/CVE-2010-3333',
         call_type => 'include',
         caller => 'DDG::Spice::CveSummary'
     ),
+    # Test lowercase
     'cve-2010-3333' => test_spice(
-        '/js/spice/cve_summary/cve-2010-3333',
+        '/js/spice/cve_summary/CVE-2010-3333',
         call_type => 'include',
         caller => 'DDG::Spice::CveSummary'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
+    # broken queries that should not trigger
     'cve1234-5678' => undef,
+    'cve 1234-5678' => undef,
+    'cve cve-1234-5678' => undef
 );
 
 done_testing;
