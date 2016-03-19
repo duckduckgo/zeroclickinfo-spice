@@ -23,19 +23,43 @@
             };
             
             $.each(api_result.holidays, function(index, holiday) {
-                // Some holidays only apply to certain provinces
-                var provinces = [];
-                if (holiday.states) {                    
+                // Get the list of states this holiday applies to
+                var states = [];
+                if (holiday.states) {
                     for (var i=0; i<holiday.states.length; ++i) {
-                        provinces.push(holiday.states[i].name);
+                        states.push(holiday.states[i].name);
+                    }
+                }
+                                
+                // Some holidays are returned multiple times by the API with a differing set of states
+                var knownHoliday = null;
+                for (var i=0; i<data.holidays.length; ++i) {
+                    if (holiday.id === data.holidays[i].id &&
+                        holiday.date.iso === data.holidays[i].date &&
+                        holiday.name === data.holidays[i].name) {                        
+                        knownHoliday = data.holidays[i];
+                        break;
                     }
                 }
                 
-                data.holidays.push({
-                    name:  holiday.name,
-                    date:  moment(holiday.date.iso).format('ddd Do MMM'),
-                    notes: provinces.join(", ")
-                });
+                // Extend the list of states if there's already an entry for this holiday, otherwise create a new one
+                if (knownHoliday) {                    
+                    knownHoliday.states = knownHoliday.states.concat(states);                           
+                } else {
+                    data.holidays.push({
+                        id:     holiday.id,
+                        name:   holiday.name,
+                        date:   holiday.date.iso,                        
+                        states: states
+                    }); 
+                }
+            });
+            
+            // Convert the data collected into a human readable format before displaying
+            $.each(data.holidays, function(index, holiday) {
+                holiday.states.sort();
+                holiday.states = holiday.states.join(", ");    
+                holiday.date = moment(holiday.date).format('ddd Do MMM');
             });
             
             // holiday.urlid is of the form "<country>/<holiday>"
