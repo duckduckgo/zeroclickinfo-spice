@@ -48,7 +48,8 @@
                 },
                 variants: {
                     tileTitle: '2line-small',
-                    tileFooter: '2line'
+                    tileFooter: '2line',
+                    tileSnippet: 'small'
                 },
                 detail: false,
                 item_detail: false
