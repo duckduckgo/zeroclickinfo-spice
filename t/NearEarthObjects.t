@@ -19,7 +19,8 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::NearEarthObjects'
     ),
-    'asteroids game' => undef,
+    'what are near earth objects' => undef,
+    'asteroids game' => undef
 );
 
 done_testing;
