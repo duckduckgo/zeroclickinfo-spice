@@ -71,7 +71,7 @@
         }
         
         DDG.require('moment.js', function(){
-            var dateObj = moment.parseZone(chosen.time.iso, moment.ISO_8601);
+            var dateObj = moment(chosen.time.iso);
             
             // holds display location
             var placeName = chosen.geo.state ? (chosen.geo.name + ", " + chosen.geo.state) : chosen.geo.name;
