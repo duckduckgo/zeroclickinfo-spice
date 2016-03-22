@@ -95,6 +95,10 @@
                     yy: "%dy"
                 }
             });
+            
+            // Fine-grained relative thresolds for humanize times
+            moment.relativeTimeThreshold('m', 59);
+            moment.relativeTimeThreshold('h', 23);
 
             // Create dictionaries to convert FlightStat codes to ICAO codes/airline names
             var dictFlightStats = {};
@@ -232,7 +236,7 @@
                             delay_time: status[2]
                         });
 
-                        if (first_active_index == -1 && !(status === 'Landed' || status === 'Cancelled')) {
+                        if (first_active_index == -1 && !(status[0] === 'Landed' || status[0] === 'Cancelled')) {
                             first_active_index = results.length - 1;
                         }
 
@@ -257,14 +261,17 @@
                         "&arrival=" + destinationCity,
                     itemType: 'flights',
                     disableMobileGrid: true,
-                    selectedItem: first_active_index == -1 ? 0 : first_active_index
+                    selectedItem: first_active_index == -1 ? 0 : first_active_index,
+                    scrollToSelectedItem: true
                 },
                 normalize: function(item) {
                     var status_text,
                         display_datetime,
                         delay_time;
                    
-                    if (moment(item.arrivalDate).isBefore(moment().utc())) {
+                    if (item.status === 'Cancelled'){
+                        status_text = 'Cancelled';                       
+                    } else if (moment(item.arrivalDate).isBefore(moment().utc())) {
                         status_text = 'Arrived';
                         display_datetime = moment(item.arrivalDate);
                     } else {
@@ -273,8 +280,7 @@
                             display_datetime = moment(item.departureDate);
                         } else {
                             status_text = 'Arrives';
-                            display_datetime = moment(item.arrivalDate);
-                            console.log(new Date(item.arrivalDate).toString());
+                            display_datetime = moment(item.arrivalDate);                           
                         }
                     }
 
@@ -287,7 +293,7 @@
                         time_total = moment(item.arrivalDate).diff(item.departureDate),
                         time_remaining = moment(item.arrivalDate).diff(moment().utc());
 
-                     if (status_text !== 'Arrived') {
+                    if (status_text !== 'Arrived' && status_text !== 'Cancelled') {
                         progress_percent = progress_max * (time_total - time_remaining) / time_total;
                         if (progress_percent < 0) progress_percent = 0;
                         if (progress_percent > progress_max) progress_percent = progress_max;
@@ -298,7 +304,7 @@
                         day = moment(item.departureDate).date();
                     
                     return {
-                        datetime: display_datetime.fromNow(),
+                        datetime: display_datetime ? display_datetime.fromNow() : "",
                         delay_time: delay_time,
                         progress_percent: progress_percent,
                         status_text: status_text,
@@ -306,7 +312,7 @@
                         scheduled_depart: same_date ? scheduled_depart.format('LT') : scheduled_depart.format('LT (MMM DD)'),
                         has_landed: item.status === 'Landed',
                         is_cancelled: item.status === 'Cancelled',
-                        has_arrived: status_text === 'Arrived',
+                        has_arrived: status_text === 'Arrived' || status_text === 'Cancelled',
                         url: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?" +
                             "airlineCode=" + item.airlineCode +
                             "&flightNumber=" + item.flightNumber +
@@ -336,8 +342,7 @@
                 },
                 onShow: function(item) {
                     // Give landed flights a grey background
-                    $('.tile__landed').parents('.tile__body').addClass('bg-clr--silver-light');
-                    $('.tile__cancelled').parents('.tile__body').addClass('bg-clr--silver-light');
+                    $('.tile__landed, .tile__cancelled').parents('.tile__body').addClass('bg-clr--silver-light');                    
                 }
             });
         });
@@ -364,9 +369,8 @@
 
             // Flight in-progress
             case "A":
-                if (flight.delays) {
-                    // Sometimes the 'arrivalRunwayDelayMinutes' property doesn't appear in this particulas case
-                    delayTime = formatDelayTime(DDG.getProperty(flight.delays, "arrivalRunwayDelayMinutes") || DDG.getProperty(flight.delays, "arrivalGateDelayMinutes"));
+                if (flight.delays) {                    
+                    delayTime = formatDelayTime(DDG.getProperty(flight.delays, "arrivalGateDelayMinutes") || DDG.getProperty(flight.delays, "departureGateDelayMinutes"));
                     status = ["Delayed", false, delayTime];
                 } else {
                     status = ["On Time", true, delayTime];
@@ -376,7 +380,7 @@
             // Flight scheduled
             case "S":
                 if (flight.delays) {
-                    delayTime = formatDelayTime(DDG.getProperty(flight.delays, "arrivalGateDelayMinutes"));
+                    delayTime = formatDelayTime(DDG.getProperty(flight.delays, "departureGateDelayMinutes"));
                     status = ["Delayed", false, delayTime];
                 } else {
                     status = ["On Time", true, delayTime];
