@@ -1,19 +1,7 @@
 package DDG::Spice::ExpandURL;
-# ABSTRACT: Gives expanded url of the query
 
 use strict;
 use DDG::Spice;
-
-primary_example_queries "http://bit.ly/a", "untiny bit.ly/lolcatz";
-description "Expand shortened URLs using Untiny.me";
-name "ExpandURL";
-icon_url "/i/untiny.me.ico";
-source "Untiny";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/ExpandURL.pm";
-topics "social";
-category "computing_tools";
-attribution github => ['https://github.com/mrchrisw','Chris'],
-            github => ['https://github.com/adman','Adman'];
 
 triggers start => "http", "https", "expand", "expandurl", "unshorten", "untiny";
 
