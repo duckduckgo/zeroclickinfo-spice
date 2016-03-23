@@ -9,16 +9,14 @@ spice is_cached => 0;
 spice proxy_cache_valid => "418 1d";
 spice wrap_jsonp_callback => 1;
 
-my %generic_map_queries = map {$_ => 0} ('map', 'maps', 'current location');
+triggers startend => "map", "maps", "current location", "directions to";
 
-triggers any => keys(%generic_map_queries);
-
-handle query_lc => sub {
-    # force generic
-    return if !exists($generic_map_queries{$_});
+handle remainder => sub {
+    return $_ if $_;
 
     my $location = $loc->loc_str;
     return $location if $location;
+
     return;
 };
 
