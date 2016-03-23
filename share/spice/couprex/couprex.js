@@ -1,15 +1,6 @@
 (function (env) {
     "use strict";
 
-    // Decode entities
-    // Source: https://developer.mozilla.org/en-US/Add-ons/Code_snippets/HTML_to_DOM
-    var doc = document.implementation.createHTMLDocument('div');
-
-    function htmlDecode (input) {
-        doc.documentElement.innerHTML = input;
-        return doc.body.textContent;
-    }
-
     var imgType = (DDG.is_3x || DDG.is_2x) ? "@2x" : "",
         fallback_image = DDG.get_asset_path("couprex", "coupon" + imgType + ".png");
 
@@ -39,13 +30,13 @@
                     }
 
                     var company_url = item.custom_fields.clpr_coupon_aff_url[0],
-                        descriptionText = htmlDecode(item.content);
+                        descriptionText = DDG.unescape(item.content);
 
                     // strip protocol, subdomain, and trailing slashes from domain for Clearbit API
                     company_url = company_url.replace(/^(https?:\/\/)?(www\.)?/i, "").replace(/\/.*$/, "");
 
                     return {
-                        title: htmlDecode(item.title),
+                        title: DDG.unescape(item.title),
                         subtitle: descriptionText,
                         company: item.taxonomy_stores[0].title,
                         image: "http://logo.clearbit.com/" + company_url + "?size=80",
