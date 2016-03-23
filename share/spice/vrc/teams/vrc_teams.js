@@ -53,6 +53,7 @@
                 l.push({label: 'Programming', value: best_programming});
             }
 
+            console.log(l);
             return l.length ? l : undefined;
         }
 
@@ -69,7 +70,8 @@
             data: team,
             meta: {
                 sourceName: "VexDB.io",
-                sourceUrl: 'http://vexdb.io/teams/view/' + team.number
+                sourceUrl: 'http://vexdb.io/teams/view/' + team.number,
+                rerender: ['infoboxData']
             },
             normalize: function(item) {
                 return {
