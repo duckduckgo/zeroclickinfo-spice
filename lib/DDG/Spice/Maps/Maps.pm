@@ -11,14 +11,16 @@ spice wrap_jsonp_callback => 1;
 
 my %generic_map_queries = map {$_ => 0} ('map', 'maps', 'current location');
 
-triggers any => keys(%generic_map_queries);
+triggers startend => "map", "maps", "current location", "directions to ";
 
-handle query_lc => sub {
-    # force generic
-    return if !exists($generic_map_queries{$_});
+handle remainder => sub {
+    if ($_) {
+        return $_;
+    }
 
     my $location = $loc->loc_str;
     return $location if $location;
+
     return;
 };
 
