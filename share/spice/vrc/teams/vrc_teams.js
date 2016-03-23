@@ -63,41 +63,41 @@
 
         var team = team_data.result[0], ranking_data, skills_data;
 
-        //the api splits the data up into multiple endpoints, fire them simultaneously
-        $.when(
-            $.getJSON('/js/spice/vrc/rankings/' + team.number, function(res){
-                ranking_data = res;
-            }),
-            $.getJSON('/js/spice/vrc/skills/' + team.number, function(res){
-                skills_data = res;
-            })
-        ).then(function(){
-            Spice.add({
-                id: "vrc_teams",
-                name: "VRC Team",
-                data: team,
-                meta: {
-                    sourceName: "VexDB.io",
-                    sourceUrl: 'http://vexdb.io/teams/view/' + team.number
-                },
-                normalize: function(item) {
-                    return {
-                        title: item.team_name,
-                        subtitle: item.program + ' Team ' + item.number + ' — ' + item.organisation,
-                        description: description(item),
-                        infoboxData: infobox(ranking_data, skills_data)
-                    };
-                },
-                templates: {
-                    group: 'info',
-                    options: {
-                        moreAt: true
-                    }
+        Spice.add({
+            id: "vrc_teams",
+            name: "VRC Team",
+            data: team,
+            meta: {
+                sourceName: "VexDB.io",
+                sourceUrl: 'http://vexdb.io/teams/view/' + team.number
+            },
+            normalize: function(item) {
+                return {
+                    title: item.team_name,
+                    subtitle: item.program + ' Team ' + item.number + ' — ' + item.organisation,
+                    description: description(item)
+                    //infoboxData: infobox(ranking_data, skills_data)
+                };
+            },
+            templates: {
+                group: 'info',
+                options: {
+                    moreAt: true
                 }
-            });
-        }, function(){
-            //one of these requests failed
-            Spice.failed('vrc_teams');
+            },
+            onItemShown: function(item){
+                //the api splits the data up into multiple endpoints, fire them simultaneously
+                $.when(
+                    $.getJSON('/js/spice/vrc/rankings/' + team.number, function(res){
+                        ranking_data = res;
+                    }),
+                    $.getJSON('/js/spice/vrc/skills/' + team.number, function(res){
+                        skills_data = res;
+                    })
+                ).then(function(){
+                    item.set({infoboxData: infobox(ranking_data, skills_data)});
+                });
+            }
         });
     };
 }(this));
