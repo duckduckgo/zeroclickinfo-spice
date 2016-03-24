@@ -9,7 +9,7 @@ spice is_cached => 0;
 spice proxy_cache_valid => "418 1d";
 spice wrap_jsonp_callback => 1;
 
-triggers startend => "map", "maps", "current location", "directions to";
+triggers startend => "map of", "map", "maps", "current location", "directions to";
 
 handle remainder => sub {
     return $_ if $_;
