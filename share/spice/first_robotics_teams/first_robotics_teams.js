@@ -3,7 +3,7 @@
     env.ddg_spice_first_robotics_teams = function(api_result) {
 
         // Validate the response (customize for your Spice)
-        if (!api_result || api_result.error) {
+        if (!api_result || api_result.error || api_result.length === 0) {
             return Spice.failed('first_robotics_teams');
         }
 
@@ -12,11 +12,11 @@
             id: "first_robotics_teams",
 
             // Customize these properties
-            name: "AnswerBar title",
+            name: "Reference",
             data: api_result,
             meta: {
-                sourceName: "Example.com",
-                sourceUrl: 'http://example.com/url/to/details/' + api_result.name
+                sourceName: "The Blue Alliance",
+                sourceUrl: 'https://www.thebluealliance.com/team/' + api_result[team_number]
             },
             normalize: function(item) {
                 return {
@@ -27,7 +27,7 @@
                 };
             },
             templates: {
-                group: 'your-template-group',
+                group: 'list',
                 options: {
                     content: Spice.first_robotics_teams.content,
                     moreAt: true
