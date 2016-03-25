@@ -5,6 +5,7 @@ package DDG::Spice::Metar;
 # It recognizes the query "metar ICAO" and "ICAO metar". 
 
 use DDG::Spice;
+use Geo::ICAO qw{ :airport };
 
 spice to => 'http://avwx.rest/api/metar.php?station=$1&format=JSON';
 spice proxy_cache_valid => "418 1d"; # Do not cache responses.
@@ -14,9 +15,9 @@ triggers startend => 'metar';
 
 handle words => sub {
     return if (scalar(@_) != 2); # Not enough parameters or too many.
-    return $_[0] if (length($_[0]) == 4);
-    return $_[1] if (length($_[1]) == 4);
-    return; # There is no potential ICAO code in the query.
+    return $_[0] if ((length($_[0]) == 4) and defined(code2airport(uc($_[0]))));
+    return $_[1] if ((length($_[1]) == 4) and defined(code2airport(uc($_[1]))));
+    return; # There is no ICAO code in the query.
 };
 
 1;
