@@ -205,6 +205,12 @@
     }
 }
 
+@media only screen and (max-width: 600px) {
+    .flag_img {
+        width: 40px;
+    }
+}
+
 /* Mobile view */
 
 .is-mobile .tile--s {
