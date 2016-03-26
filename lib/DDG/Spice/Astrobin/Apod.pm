@@ -4,7 +4,7 @@ package DDG::Spice::Astrobin::Apod;
 use strict;
 use DDG::Spice;
 
-triggers start => "astronomy", "astrophoto";
+triggers start => "astronomy", "astrophoto", "apod";
 
 spice to => 'http://www.astrobin.com/api/v1/imageoftheday/?limit=1&api_key={{ENV{DDG_SPICE_ASTROBIN_APIKEY}}}&api_secret={{ENV{DDG_SPICE_ASTROBIN_APISECRET}}}&format=json$1';
 spice proxy_cache_valid => "200 60m";
