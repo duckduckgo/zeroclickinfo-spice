@@ -43,9 +43,7 @@
                   subtitles.push(item.title);
                 }
                 return {
-                    // Remove image for now
-                    // cropped photos look bad
-                    // image: item.avatar.url,
+                    image: item.avatar.url,
                     title: item.name,
                     subtitle: subtitles,
                     altSubtitle: item.location,
@@ -54,8 +52,35 @@
             },
 
             templates: {
-                group: 'icon'
+                group: 'icon',
+                variants: {
+                    iconImage: 'large'
+                },
+                options: {
+                    chompContents: true,
+                    content: DDH.coderwall.content
+                }
             }
         });
+
     };
+
+    Handlebars.registerHelper("parseMD", function(content){
+        var contentArr = [];
+        var linkExp = /\[([a-z0-9]+)\]\(([a-z0-9\.\:\/\$-_\+\!\*',]+)\)+/gi;
+        if (!content) return;
+        else content.split(/\n+/).forEach(function(line) {
+            // exclude lines that are only whitespace characters
+            if (/[a-z0-9]/.test(line)) {
+                line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')   // bold
+                  .replace(/(?:_(.+?)_|\*(.+?)\*)/g, '<em>$1$2</em>')          // italicize
+                  .replace(/`(.+?)`/g, '<code>$1</code>')                      // monospace
+                  .replace(/~~(.+?)~~/g, '<del>$1</del>')                      // strikethrough
+                  .replace(linkExp, '<a href="$2" class="tx-clr--dk2">$1</a>');// create links
+                contentArr.push(line);
+            }
+        });
+        return contentArr.join('<br>'); //add linebreaks
+    });
+
 }(this));
