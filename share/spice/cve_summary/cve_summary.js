@@ -3,7 +3,7 @@
     env.ddg_spice_cve_summary = function(api_result){
 
         // fail the spice if the API does not return a result
-        if(api_result == undefined) {
+        if(api_result == undefined || api_result.id == undefined) {
             return Spice.failed('cve_summary');
         }
 
