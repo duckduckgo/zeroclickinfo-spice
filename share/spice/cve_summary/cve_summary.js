@@ -33,6 +33,7 @@
             normalize: function(item) {
                 return {
                     title: api_result.id,
+                    subtitle: "Published " + api_result.Published,
                     description: api_result.summary
                 };
             }
