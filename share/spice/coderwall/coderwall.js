@@ -72,11 +72,11 @@
         else content.split(/\n+/).forEach(function(line) {
             // exclude lines that are only whitespace characters
             if (/[a-z0-9]/.test(line)) {
-                line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')   // bold
-                  .replace(/(?:_(.+?)_|\*(.+?)\*)/g, '<em>$1$2</em>')          // italicize
-                  .replace(/`(.+?)`/g, '<code>$1</code>')                      // monospace
-                  .replace(/~~(.+?)~~/g, '<del>$1</del>')                      // strikethrough
-                  .replace(linkExp, '<a href="$2" class="tx-clr--dk2">$1</a>');// create links
+                line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') // bold
+                  .replace(/(?:_(.+?)_|\*(.+?)\*)/g, '<em>$1$2</em>') // italicize
+                  .replace(/`(.+?)`/g, '<code>$1</code>') // monospace
+                  .replace(/~~(.+?)~~/g, '<del>$1</del>') // strikethrough
+                  .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="tx-clr--dk2">$1</a>'); // create links
                 contentArr.push(line);
             }
         });
