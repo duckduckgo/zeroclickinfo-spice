@@ -27,7 +27,7 @@
                     twitter: '@{{}}'
                 };
                 var subtitles = [];
-                $.each(item.accounts, function(service, name) {
+                $.each(item, function(service, name) {
                     // Check that we have a profile url template and
                     // coderwall actually provided a name instead null
                     if (account_url[service] && name) {
@@ -45,11 +45,7 @@
                 return {
                     // Remove image for now
                     // cropped photos look bad
-
-                    // some thumbnail URIs are relative to coderwall.com
-                    // image: /^\//.test(item.thumbnail)
-                    //     ? 'https://coderwall.com/' + item.thumbnail
-                    //     : item.thumbnail,
+                    // image: item.avatar.url,
                     title: item.name,
                     subtitle: subtitles,
                     altSubtitle: item.location,
