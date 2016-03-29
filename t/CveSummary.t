@@ -24,7 +24,8 @@ ddg_spice_test(
     # broken queries that should not trigger
     'cve1234-5678' => undef,
     'cve 1234-5678' => undef,
-    'cve cve-1234-5678' => undef
+    'cve cve-1234-5678' => undef,
+    'CVE-2009-355' => undef
 );
 
 done_testing;
