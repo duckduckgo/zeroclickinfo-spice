@@ -65,7 +65,6 @@
 
     Handlebars.registerHelper("parseMD", function(content){
         var contentArr = [];
-        var linkExp = /\[([a-z0-9]+)\]\(([a-z0-9\.\:\/\$-_\+\!\*',]+)\)+/gi;
         if (!content) return;
         else content.split(/\n+/).forEach(function(line) {
             // exclude lines that are only whitespace characters
