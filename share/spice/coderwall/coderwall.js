@@ -57,12 +57,10 @@
                     iconImage: 'large'
                 },
                 options: {
-                    chompContents: true,
                     content: DDH.coderwall.content
                 }
             }
         });
-
     };
 
     Handlebars.registerHelper("parseMD", function(content){
