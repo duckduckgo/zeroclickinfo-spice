@@ -9,21 +9,27 @@
 
         // Render the response
         Spice.add({
-            id: "first_robotics_teams",
+            id: 'first_robotics_teams',
 
             // Customize these properties
-            name: "Reference",
+            name: 'Reference',
             data: api_result,
             meta: {
-                sourceName: "The Blue Alliance",
-                sourceUrl: 'https://www.thebluealliance.com/team/' + api_result[team_number]
+                sourceName: 'The Blue Alliance',
+                sourceUrl: 'https://www.thebluealliance.com/team/' + api_result.team_number,
             },
             normalize: function(item) {
                 return {
                     // customize as needed for your chosen template
-                    title: item.title,
-                    subtitle: item.subtitle,
-                    image: item.icon
+                    title: 'FIRST Robotics Team' + api_result.team_number.,
+                    subtitle: api_result.nickname,
+                    content: 'record',
+                    record_data: {
+                        'Full name': api_result.name,
+                        'Location': api_result.location,
+                        'Rookie Year': api_result.rookie_year,
+                        'Motto': api_result.motto
+                    }
                 };
             },
             templates: {
@@ -31,6 +37,9 @@
                 options: {
                     content: Spice.first_robotics_teams.content,
                     moreAt: true
+                    moreText: {
+                        href: api_result.website
+                    }
                 }
             }
         });

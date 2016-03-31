@@ -14,7 +14,8 @@ spice to => 'https://www.thebluealliance.com/api/v2/team/frc$1?X-TBA-App-Id=frc8
 triggers any => 'frc team', 'first robotics team';
 
 handle remainder => sub {
-    return unless qr/\d;
+    return $_ if $_;
+    return;
 };
 
 1;
