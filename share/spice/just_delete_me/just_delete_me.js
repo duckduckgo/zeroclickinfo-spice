@@ -28,6 +28,7 @@
         if (!api_result || api_result.length < 1) {
             return Spice.failed('just_delete_me');
         }
+        console.log(api_result);
         Spice.add({
             id: "just_delete_me",
             name: "Answer",
@@ -40,9 +41,12 @@
                 return {
                     delete_url: item.url,
                     title: item.name,
-                    url: "http://justdelete.me/#" + decodedQuery,
+                    url: item.url.length > 0 ? item.url : "http://justdelete.me/#" + decodedQuery,
                     subtitle: "Difficulty: " + DDG.capitalize(item.difficulty),
-                    description: item.notes
+                    description: item.notes ? item.notes : 
+                                 item.email ? "Send an email to the provided address to delete your account." :
+                                 item.url   ? "Click to delete your account." : 
+                                 "No instructins provided."
                 };
             },
             relevancy: {
@@ -58,7 +62,7 @@
                 },
                 variants: {
                     tileTitle: '1line-large',
-                    tileFooter: '2line',
+                    tileFooter: '1line',
                     tileSnippet: 'large'
                 },
                 detail: api_result.length === 1 ? 'basic_info_detail' : false,
