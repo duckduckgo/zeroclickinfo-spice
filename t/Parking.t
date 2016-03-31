@@ -25,7 +25,7 @@ ddg_spice_test(
         query_raw =>  'parking 21230',
         location => test_location('au')
     ) => test_spice(
-        '/js/spice/parking/21230',
+        '/js/spice/parking/21230/Australia%2FAdelaide',
         call_type => 'include',
         caller => 'DDG::Spice::Parking'
     ),
@@ -101,4 +101,3 @@ ddg_spice_test(
 );
 
 done_testing;
-
