@@ -63,21 +63,26 @@
         });
     };
 
-    Handlebars.registerHelper("parseMD", function(content){
-        var contentArr = [];
-        if (!content) return;
-        else content.split(/\n+/).forEach(function(line) {
-            // exclude lines that are only whitespace characters
-            if (/[a-z0-9]/.test(line)) {
-                line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') // bold
-                  .replace(/(?:_(.+?)_|\*(.+?)\*)/g, '<em>$1$2</em>') // italicize
-                  .replace(/`(.+?)`/g, '<code>$1</code>') // monospace
-                  .replace(/~~(.+?)~~/g, '<del>$1</del>') // strikethrough
-                  .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="tx-clr--dk2">$1</a>'); // create links
-                contentArr.push(line);
-            }
-        });
-        var result = contentArr.join('<br>'); //add linebreaks
-        return new Handlebars.SafeString(result);
+    Handlebars.registerHelper("parseMD", function(value){
+        var result = [];
+        if (!value) return;
+        else {
+            // no cross site scripting
+            value = Handlebars.Utils.escapeExpression(value);
+            value.split(/\n+/).forEach(function(line) {
+                // exclude lines that are only whitespace characters
+                if (/[a-z0-9]/.test(line)) {
+                    line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') // bold
+                      .replace(/(?:_(.+?)_|\*(.+?)\*)/g, '<em>$1$2</em>') // italicize
+                      .replace(/`(.+?)`/g, '<code>$1</code>') // monospace
+                      .replace(/~~(.+?)~~/g, '<del>$1</del>') // strikethrough
+                      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="tx-clr--dk2">$1</a>'); // create links
+                    result.push(line);
+                }
+            });
+            result = result.join('<br>'); //add linebreaks
+            return new Handlebars.SafeString(result);
+        }
     });
+
 }(this));
