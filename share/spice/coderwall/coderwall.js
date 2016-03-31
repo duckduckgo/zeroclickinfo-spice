@@ -77,7 +77,7 @@
                 contentArr.push(line);
             }
         });
-        return contentArr.join('<br>'); //add linebreaks
+        var result = contentArr.join('<br>'); //add linebreaks
+        return new Handlebars.SafeString(result);
     });
-
 }(this));
