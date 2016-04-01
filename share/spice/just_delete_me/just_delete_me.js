@@ -12,23 +12,39 @@
         if (!decodedQuery || decodedQuery.length < 4) {
             return Spice.failed('just_delete_me');
         }
-
-        var exact = api_result.filter(function(item) { return item.name.toLowerCase() === decodedQuery}),
-            exact = exact.length > 0 ? [exact[0]] : 
-                    api_result.filter(function(item) { return item.domains &&
-                        ((typeof(item.domains) === "string" && item.domains.toLowerCase() === decodedQuery) ||
-                         typeof(item.domains) === "object" && item.domains.some(function(domain) {return domain.toLowerCase() === decodedQuery}) )
-                    }),
-            api_result = exact.length > 0 ? [exact[0]] : api_result.filter(function (item) {
-                        item.domains =  !item.domains ? [] : typeof(item.domains) === "string" ? [item.domains] : item.domains;
-                        if (item.name.toLowerCase().includes(decodedQuery) || item.domains.some(function(domain) {return domain.toLowerCase().includes(decodedQuery);}))
-                            return true;
-                        });
-
+        var matchPartial = function(item) {
+            return (item.name.toLowerCase().includes(this) || item.domains.some(domain => domain.includes(this)));
+        }
+        function normalizeDomains(api_result) {
+            for (var i=0;i<api_result.length; i++) {
+                if (!api_result[i].domains)
+                    api_result[i].domains = [];
+                else if (typeof(api_result[i].domains) === "string")
+                    api_result[i].domains = [api_result[i].domains];
+                for (var j=0; j<api_result[i].domains.length; j++) {
+                    api_result[i].domains[j] = api_result[i].domains[j].toLowerCase();
+                }
+            }
+        }
+        function filterResults(api_result) {
+            var results = api_result.filter(item => item.name.toLowerCase() === decodedQuery); // check for exact match by name
+            if (results > 0)
+                results = [results[0]]; // take only first exact match
+            else {
+                results = api_result.filter(item => item.domains.indexOf(decodedQuery) != -1); // check for exact domain match
+            }
+            if (results > 0)
+                results = [results[0]]; // take only first exact match
+            else {
+                results = api_result.filter(matchPartial, decodedQuery); // match partial names and partial domains
+            }
+            return results;
+        }
+        normalizeDomains(api_result);
+        api_result = filterResults(api_result);
         if (!api_result || api_result.length < 1) {
             return Spice.failed('just_delete_me');
         }
-        console.log(api_result);
         Spice.add({
             id: "just_delete_me",
             name: "Answer",
