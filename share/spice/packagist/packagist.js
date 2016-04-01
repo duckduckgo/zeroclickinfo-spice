@@ -23,7 +23,7 @@
                 sourceUrl: 'http://packagist.org/search?q=' + encodedQuery,
                 sourceIconUrl: 'http://packagist.org/favicon.ico',
                 searchTerm: query,
-                itemType: 'Packages'
+                itemType: 'PHP Packages'
             },
             templates:{
                 group: 'text',
@@ -31,6 +31,9 @@
 		        item_detail: false,
                 options: {
                     footer: Spice.packagist.footer
+                },
+                variants: {
+                    tile: 'basic1'
                 }
             },
             normalize: function(item) {
