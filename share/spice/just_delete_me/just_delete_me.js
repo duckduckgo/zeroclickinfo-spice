@@ -57,11 +57,11 @@
                 return {
                     delete_url: item.url,
                     title: item.name,
-                    url: item.url ? item.url : "http://justdelete.me/#" + decodedQuery,
+                    url: "http://justdelete.me/#" + item.name,
                     subtitle: "Difficulty: " + DDG.capitalize(item.difficulty),
-                    description: item.notes ? item.notes : 
-                                 item.email ? "Send an email to the provided address to delete your account." :
-                                 item.url   ? "Click to delete your account." : 
+                    description: item.notes  ? item.notes :
+                                 item.email  ? "Send an email to the provided address to delete your account." :
+                                 item.url    ? "Follow the provided link to delete your account." :
                                  "No instructions provided."
                 };
             },
