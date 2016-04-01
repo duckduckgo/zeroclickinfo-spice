@@ -57,7 +57,7 @@
                 return {
                     delete_url: item.url,
                     title: item.name,
-                    url: item.url.length > 0 ? item.url : "http://justdelete.me/#" + decodedQuery,
+                    url: item.url ? item.url : "http://justdelete.me/#" + decodedQuery,
                     subtitle: "Difficulty: " + DDG.capitalize(item.difficulty),
                     description: item.notes ? item.notes : 
                                  item.email ? "Send an email to the provided address to delete your account." :
