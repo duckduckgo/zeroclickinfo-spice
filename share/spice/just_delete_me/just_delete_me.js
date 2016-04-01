@@ -62,7 +62,7 @@
                     description: item.notes ? item.notes : 
                                  item.email ? "Send an email to the provided address to delete your account." :
                                  item.url   ? "Click to delete your account." : 
-                                 "No instructins provided."
+                                 "No instructions provided."
                 };
             },
             relevancy: {
