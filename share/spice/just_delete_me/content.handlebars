@@ -5,6 +5,11 @@
 {{/if}}
 {{#if email}}
   <p>
-    <a href='mailto:{{email}}'>Email Support</a>
+    <a href='mailto:{{email}}'>Send Email</a>
+  </p>
+{{/if}}
+{{#if delete_url}}
+  <p>
+    URL: <a href='{{delete_url}}'>{{delete_url}}</a>
   </p>
 {{/if}}
