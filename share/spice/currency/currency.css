@@ -205,10 +205,8 @@
     }
 }
 
-@media only screen and (max-width: 600px) {
-    .flag_img {
-        width: 30px;
-    }
+.is-mobile .flag-img {
+    width: 30px;
 }
 
 /* Mobile view */
