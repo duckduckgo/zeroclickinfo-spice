@@ -17,13 +17,36 @@
             normalize: function(item) {
                 return {
                     title: item["Station"], 
-                    subtitle: item["Time"],
-                    description: item["Raw-Report"]
+                    description: item["Raw-Report"],
+                    infoboxData: [
+                        {label: "Time of Observation", 
+                         value: formatDate(item["Time"])},
+                        {label: "Wind", 
+                         value: item["Translations"]["Wind"]},
+                        {label: "Visibility", 
+                         value: item["Translations"]["Visibility"]},
+                        {label: "Clouds", 
+                         value: item["Translations"]["Clouds"]},
+                        {label: "Temperature", 
+                        value: item["Translations"]["Temperature"]},
+                        {label: "Dew Point", 
+                        value: item["Translations"]["Dewpoint"]},
+                        {label: "Altimeter", 
+                         value: item["Translations"]["Altimeter"]},
+                        {label: "Flight Rules", 
+                         value: item["Flight-Rules"]}
+                    ]
                 };
             },
             templates: {
-                group: 'text'
+                group: 'info'
             }
         });
+        
+        function formatDate(t) {
+            return ("Day " + t.substring(0, 2) + " at " 
+                    + t.substring(2,4) + ':' + t.substring(4,6)
+                    + " GMT-0");
+        }
     };
 }(this));
