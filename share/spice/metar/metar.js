@@ -20,16 +20,7 @@
                 if (item["Info"]["Name"] != "") // Name is empty for some places.
                     airport_desc.unshift(item["Info"]["Name"]);
                 
-                return {
-                    title: item["Station"], 
-                    subtitle: [airport_desc.join(", "), 
-                               ["Elevation:", 
-                                item["Info"]["Elevation"], 
-                                item["Units"]["Altitude"]
-                                ].join(" ")
-                              ],
-                    description: item["Raw-Report"],
-                    infoboxData: [
+                var interpreted_data = [
                         {label: "Time of Observation", 
                          value: formatDate(item["Time"])},
                         {label: "Wind", 
@@ -46,7 +37,23 @@
                          value: item["Translations"]["Altimeter"]},
                         {label: "Flight Rules", 
                          value: item["Flight-Rules"]}
-                    ]
+                    ];
+                
+                if (item["Translations"]["Other"] != "") {
+                    interpreted_data.push({label: "Other Remarks", 
+                                          value: item["Translations"]["Other"]});
+                }
+                
+                return {
+                    title: item["Station"], 
+                    subtitle: [airport_desc.join(", "), 
+                               ["Elevation:", 
+                                item["Info"]["Elevation"], 
+                                item["Units"]["Altitude"]
+                                ].join(" ")
+                              ],
+                    description: item["Raw-Report"],
+                    infoboxData: interpreted_data
                 };
             },
             templates: {
@@ -57,7 +64,7 @@
         function formatDate(t) {
             return ("Day " + t.substring(0, 2) + " at " 
                     + t.substring(2,4) + ':' + t.substring(4,6)
-                    + " GMT-0");
+                    + " GMT");
         }
     };
 }(this));
