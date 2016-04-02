@@ -15,8 +15,19 @@
                 sourceUrl: "http://avwx.rest"
             },
             normalize: function(item) {
+                var airport_desc = [item["Info"]["City"], 
+                                    item["Info"]["Country"]];
+                if (item["Info"]["Name"] != "") // Name is empty for some places.
+                    airport_desc.unshift(item["Info"]["Name"]);
+                
                 return {
                     title: item["Station"], 
+                    subtitle: [airport_desc.join(", "), 
+                               ["Elevation:", 
+                                item["Info"]["Elevation"], 
+                                item["Units"]["Altitude"]
+                                ].join(" ")
+                              ],
                     description: item["Raw-Report"],
                     infoboxData: [
                         {label: "Time of Observation", 
