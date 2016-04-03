@@ -10,7 +10,7 @@
             from = api_result.from.name || '';
         
         Spice.add({
-            id: "switzerland",
+            id: "transit_switzerland",
             name: "Swiss Trains",
             data: api_result.connections,
             meta: {

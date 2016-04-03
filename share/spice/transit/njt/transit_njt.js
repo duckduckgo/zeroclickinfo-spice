@@ -8,7 +8,7 @@
         var now = timeInMins(api_result.now);
 
         Spice.add({
-            id: 'njt',
+            id: 'transit_njt',
             name: 'NJ Transit',
             signal: 'high',
             data: api_result.routes,
