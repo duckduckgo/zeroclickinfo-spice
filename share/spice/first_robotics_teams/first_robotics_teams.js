@@ -2,18 +2,28 @@
     "use strict";
     env.ddg_spice_first_robotics_teams = function(api_result) {
 
-        if (!api_result || api_result.error || api_result.length === 0) {
+        if (!api_result || api_result.error || api_result.length === 0 || !api_result.name) {
             return Spice.failed('first_robotics_teams');
         }
-            
-        //var teamNumber = api_result.team_number;
-        if (api_result.motto === null) {api_result.motto = 'none';}
-        else {api_result.motto = '\"'+api_result.motto+'\"'}
+        
+        // Fix the displaying of "null" for teams with no motto
+        if (api_result.motto === null) {api_result.motto = 'No motto';}
+        
+        // Remove the space for a website if one isn't provided
+        var template_options = {
+            content: 'record',
+            moreAt: true
+        };
+        if (api_result.website && api_result.website != null) {
+            template_options.moreText = {
+                text: 'Team website',
+                href: api_result.website
+            };
+        }
         
         Spice.add({
             id: 'first_robotics_teams',
             name: 'Reference',
-
             data: {
                 title: 'FIRST Robotics Competition Team ' + api_result.team_number,
                 subtitle: api_result.nickname,
@@ -26,21 +36,11 @@
             },
             meta: {
                 sourceName: 'The Blue Alliance',
-                sourceUrl: 'https://www.thebluealliance.com/team/' + api_result.team_number,
+                sourceUrl: 'https://www.thebluealliance.com/team/' + api_result.team_number
             },
-
             templates: {
                 group: 'list',
-                options: {
-                    content: 'record',
-                    moreAt: true,
-                  
-                    // Refer to the team's website
-                    moreText: {
-                        text: 'Team website',
-                        href: api_result.website
-                    }
-                }
+                options: template_options
             }
         });
     };
