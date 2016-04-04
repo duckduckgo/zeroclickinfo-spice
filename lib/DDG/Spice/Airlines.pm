@@ -6,10 +6,10 @@ use DDG::Spice;
 
 spice to => 'https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/flight/status/$1/$2/arr/$3/$4/$5?hourOfDay=$6&utc=true&appId={{ENV{DDG_SPICE_FLIGHTS_API_ID}}}&appKey={{ENV{DDG_SPICE_FLIGHTS_APIKEY}}}&callback={{callback}}';
 spice from => '(.*)/(.*)/(.*)/(.*)/(.*)/(.*)';
-#pice proxy_cache_valid => '418 1d';
+spice proxy_cache_valid => '418 1d';
 
 triggers any => '///***never trigger***///';
-#triggers query_lc => qr/^(\d+)\s+(.*?)(?:[ ]air.*?)?$|^(.*?)(?:[ ]air.*?)?\s+(\d+)$/;
+# triggers query_lc => qr/^(\d+)\s+(.*?)(?:[ ]air.*?)?$|^(.*?)(?:[ ]air.*?)?\s+(\d+)$/;
 
 # Get the list of airlines and strip out the words.
 my %airlines = ();

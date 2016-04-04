@@ -173,8 +173,6 @@ handle query_lc => sub {
 
     # clean up input; strip periods and common words,
     # replace all other non-letters with a space, strip trailing spaces
-    # strip 'fligh(s) from' to allow a wider range of queries
-    s/\b(flight(?:s)?|from)\b//g;
     s/\b(airport|national|international|intl|regional)\b//g;    
     s/\.//g;
     s/[^a-z]+/ /g;
@@ -184,6 +182,9 @@ handle query_lc => sub {
     my @query = split(/\s+to\s+/, $_);
     return if scalar(@query) != 2;
 
+    # strip 'fligh(s) from' to allow more flexible queries
+    $query[0] =~ s/\b(flight(?:s)?|from)\b//g;
+    
     # get the current time, minus six hours
     my ($second, $minute, $hour, $dayOfMonth,
         $month, $year, $dayOfWeek, $dayOfYear, $daylightSavings) = gmtime(time - 21600);
