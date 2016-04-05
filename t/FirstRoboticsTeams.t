@@ -12,7 +12,27 @@ ddg_spice_test(
     # At a minimum, be sure to include tests for all:
     # - primary_example_queries
     # - secondary_example_queries
-    'example query' => test_spice(
+    'frc team 885' => test_spice(
+        '/js/spice/first_robotics_teams/query',
+        call_type => 'include',
+        caller => 'DDG::Spice::FirstRoboticsTeams'
+    ),
+    'first robotics team 1519' => test_spice(
+        '/js/spice/first_robotics_teams/query',
+        call_type => 'include',
+        caller => 'DDG::Spice::FirstRoboticsTeams'
+    ),
+    'where is frc team 811 based' => test_spice(
+        '/js/spice/first_robotics_teams/query',
+        call_type => 'include',
+        caller => 'DDG::Spice::FirstRoboticsTeams'
+    ),
+    'first robotics competition team 2342' => test_spice(
+        '/js/spice/first_robotics_teams/query',
+        call_type => 'include',
+        caller => 'DDG::Spice::FirstRoboticsTeams'
+    ),
+    'frc2333' => test_spice(
         '/js/spice/first_robotics_teams/query',
         call_type => 'include',
         caller => 'DDG::Spice::FirstRoboticsTeams'
