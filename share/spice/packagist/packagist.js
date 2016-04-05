@@ -33,7 +33,7 @@
                     footer: Spice.packagist.footer
                 },
                 variants: {
-                    tile: 'basic1'
+                    tileSnippet: 'large'
                 }
             },
             normalize: function(item) {
