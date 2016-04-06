@@ -31,28 +31,30 @@
                     for (var i = 0; i < response.Schedule.Match.length; i++) {
                         var match = response.Schedule.Match[i];
                         var matchDetails = {
+                            matchid: match.matchid,
                             mtype: match.mtype.toUpperCase(),
                             matchNo: match.MatchNo,
                             Venue: match.Venue,
                             date: moment(match.StartDate).format('ddd, Do MMM'),
                             startTime: moment(match.StartDate).format('LT'),
+                            startDate: Date.parse(moment(match.StartDate).format("YYYY-MM-DD")),
                             matchTimeSpan: match.MatchTimeSpan,
                             teams: match.Team
                         };
                         if (!matches[moment(match.StartDate).format('LL')]) {
-                            matches[moment(match.StartDate).format('LL')]=[]
+                            matches[moment(match.StartDate).format('LL')] = []
                         }
                         matches[moment(match.StartDate).format('LL')].push(matchDetails);
                     }
-                    var matchList=[];
-                    for(var date in matches){
+                    var matchList = [];
+                    for (var date in matches) {
                         matchList.push(matches[date]);
                     }
-                    matchList.sort(function (a,b) {
-                        return a-b;
+                    matchList.sort(function (a, b) {
+                        return a[0].startDate - b[0].startDate;
                     });
-                    data.matches=matchList;
-                    return data;
+                    data.matches = matchList;
+                    return setDefault(data);
                 },
                 templates: {
                     group: 'text',
@@ -63,9 +65,35 @@
                 }
             });
         });
-        Handlebars.registerHelper('fullName', function (person) {
-            //alert();
-            //return person.firstName + " " + highlightJavascript(person);
-        });
+        function setDefault(data) {
+            var today = Date.parse(new Date());
+            var diff = Math.abs(data.matches[0][0].startDate - today);
+            var index = 0;
+            for (var i = 1; i < data.matches.length; i++) {
+                if (diff > Math.abs(data.matches[i][0].startDate - today)) {
+                    index = i;
+                }
+            }
+            //TODO: check for proper active class addition
+            data.matches[index][0].active="active";
+            return data;
+        }
+    };
+    env.show = function (id) {
+        console.log(id);
+        var contentEls = document.getElementsByClassName('zci-cricket-content');
+        for (var i = 0; i < contentEls.length; i++) {
+            //contentEls[i].classList.remove("zci-cricket-active");
+            contentEls[i].classList.add("zci-cricket-inactive");
+            if (contentEls[i].classList.contains(id)) {
+                contentEls[i].classList.remove("zci-cricket-inactive");
+            }
+        }
+        var listEls = document.querySelectorAll('.zci-cricket-list li');
+
+        for (var i = 0; i < listEls.length; i++) {
+            listEls[i].classList.remove("active");
+        }
+        document.getElementById(id).classList.add('active');
     };
 }(this));

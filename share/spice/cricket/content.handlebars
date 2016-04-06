@@ -4,32 +4,27 @@
     <ul class="zci-cricket-list">
         {{#matches}}
             {{#each this}}
-                <li>
+                <li id="{{matchid}}" onClick="show({{matchid}});" class="{{active}}">
                     {{date}}
                 </li>
             {{/each}}
         {{/matches}}
-        {{fullName 'a'}}
     </ul>
     <div>
         {{#matches}}
-            <table class="zci-cricket-content">
                 {{#each this}}
-                    <tr>
-                        <table class="zci-cricket-content">
+                        <table class="zci-cricket-content {{matchid}} zci-cricket-inactive">
                             <tr>
                                 <td>{{mtype}}</td>
                                 <td>
-                                    {{#this.teams}}
-                                        <span class="zci-cricket-team-name">{{this.Team}}</span>
-                                    {{/this.teams}}
+                                        <span class="zci-cricket-team-name">{{this.teams.0.Team}}</span>
+                                        <span class="zci-cricket-team-name">vs</span>
+                                        <span class="zci-cricket-team-name">{{this.teams.1.Team}}</span>
                                 </td>
                                 <td>{{this.startTime}}</td>
                             </tr>
                         </table>
-                    </tr>
                 {{/each}}
-            </table>
         {{/matches}}
     </div>
     <div class="footer">
