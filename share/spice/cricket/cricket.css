@@ -68,3 +68,13 @@
   left: 0;
   transform: rotate(45deg);
 }
+.zci-cricket-content{
+  width:100%;
+  table-layout: fixed;
+}
+.zci-cricket-content tr td{
+  text-align: center;
+}
+.zci-cricket-team-name{
+ display:block;
+}
