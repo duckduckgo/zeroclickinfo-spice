@@ -58,7 +58,6 @@
                         creation_date = m_date.format("MMM D, YYYY");
                     
                     var meta_copy = item.meta;
-                    console.log(meta_copy);
                     delete item.meta;
                     
                     if(meta_copy.perl_module == 'DDG::Goodie::CheatSheets'){
@@ -68,7 +67,8 @@
                    
                     var url = "/?q=" + encodeURIComponent(meta_copy.example_query);
                     meta_copy.ia_tab ? url = url + "&ia=" + meta_copy.ia_tab : url = url + "&ia=answer";
-                    
+                    item.install_status = item.install_status || "success";
+
                     return {
                         title: meta_copy.name,
                         url: url,
@@ -79,7 +79,7 @@
                         icon: item.img || "https://avatars.githubusercontent.com/u/0?v=3",
                         pr: item.pr,
                         ia_meta: meta_copy,
-                        install_status: item.install_status || "Installed",
+                        install_status: item.install_status,
                         install_class: item.install_status === "success" ? "tx-clr--green" : "tx-clr--red-light"
                     };
                 }
