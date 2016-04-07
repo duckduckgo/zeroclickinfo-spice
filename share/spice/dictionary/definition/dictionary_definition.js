@@ -184,10 +184,14 @@ var ddg_spice_dictionary = {
         // Audio URL should go to DDG's proxy server for privacy reasons.
         url = '/audio/?u=' + url;
 
-        this.playBtn = new DDG.Views.PlayButton({
-            url: url,
-            after: this.$el.find('.zci__def__pronunciation')
-        });
+        var pronunciationEl = this.$el.find('.zci__def__pronunciation');
+
+        if (pronunciationEl.siblings('[data-url="' + url + '"]').length == 0) {
+            this.playBtn = new DDG.Views.PlayButton({
+                url: url,
+                after: pronunciationEl
+            });
+        }
     }
 }
 
