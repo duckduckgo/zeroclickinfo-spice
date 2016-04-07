@@ -52,7 +52,7 @@
                     }
                 },
                 normalize: function(item) {
-                    var new_date = new Date(item.date),
+                    var new_date = new Date(item.date+" EDT"),
                         m_date = moment(new_date),
                         rel_date = m_date.fromNow(),
                         creation_date = m_date.format("MMM D, YYYY");
