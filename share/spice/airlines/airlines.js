@@ -33,7 +33,7 @@
         $.ajaxSetup({ cache: true });
 
         // Check if FlightStats returned anything
-        if (!api_result || !api_result.flightStatuses || !api_result.appendix || !api_result.appendix.airlines) {
+        if (!api_result || !api_result.flightStatuses || !api_result.appendix || !api_result.appendix.airlines || !api_result.appendix.airports) {
             return Spice.failed('airlines');
         }
 
@@ -361,7 +361,7 @@
                     tile: 'whole--screen-s'
                 }
             },
-            onShow: function(item) {
+            onItemShown: function(item) {
                 // Give landed flights a grey background
                 $('.tile__landed, .tile__cancelled').parents('.tile__body').addClass('bg-clr--silver-light');                    
             },
