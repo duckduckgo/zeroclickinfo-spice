@@ -37,21 +37,11 @@
                     return {
                       'record_data': resortInfo
                     }
-                    
-                    
-//                     return {
-//                         id: data.name,
-//                         name: data.title + ' - ski resort in ' + data.countryName,
-//                         url: 'http://www.piste.io/' + data.name,
-//                         image: 'http://www.piste.io/preview/' + data.name + '.jpg',
-//                         ratingImageURL: 'http://www.piste.io/favicon.ico',
-//                         // It seems `address` is needed, for the template 
-//                         // to render `address_lines`. The text is then made
-//                         // into a link to Bing maps, with the `address` value
-//                         address: data.title + ' ski resort',
-//                         address_lines: resortInfo
-//                     }
-                }
+                },
+                meta: {
+                  sourceName: 'Piste.io',
+                  sourceUrl: 'http://www.piste.io/' + api_result.name
+                },
             });
 
     };
