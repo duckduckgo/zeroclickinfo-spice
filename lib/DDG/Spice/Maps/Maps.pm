@@ -13,7 +13,8 @@ spice wrap_jsonp_callback => 1;
 
 my @startend_triggers = ("map of", "map", "maps", "current location");
 my $startend_joined = join "|", @startend_triggers;
-my $startend_qr = qr/^$startend_joined|$startend_joined$/;
+my $start_qr = qr/^($startend_joined)/;
+my $end_qr = qr/($startend_joined)$/;
 
 my @all_triggers = @startend_triggers;
 push @all_triggers, "directions";
@@ -28,9 +29,10 @@ triggers any => @all_triggers;
 
 handle query_lc => sub {
     # handle maps/locations queries
-    if ($_ =~ $startend_qr) {
+    if ($_ =~ $start_qr or $_ =~ $end_qr) {
         # replace trigger words
-        $_ =~ s/$startend_qr//g;
+        $_ =~ s/$start_qr//g;
+        $_ =~ s/$end_qr//g;
         $_ = trim ($_);
 
         return $_ if $_;
