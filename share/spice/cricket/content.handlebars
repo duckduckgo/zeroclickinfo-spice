@@ -1,35 +1,20 @@
 <div class="card">
-    <h3>{{name}}</h3>
-    <h6>{{description}}</h6>
-    <ul class="zci-cricket-list">
-        {{#matches}}
-            {{#each this}}
-                <li id="{{matchid}}" onClick="show({{matchid}});" class="{{active}}">
-                    {{date}}
-                </li>
-            {{/each}}
-        {{/matches}}
-    </ul>
-    <div>
-        {{#matches}}
-                {{#each this}}
-                        <table class="zci-cricket-content {{matchid}} zci-cricket-inactive">
-                            <tr>
-                                <td>{{mtype}}</td>
-                                <td>
-                                        <span class="zci-cricket-team-name">{{this.teams.0.Team}}</span>
-                                        <span class="zci-cricket-team-name">vs</span>
-                                        <span class="zci-cricket-team-name">{{this.teams.1.Team}}</span>
-                                </td>
-                                <td>{{this.startTime}}</td>
-                            </tr>
-                        </table>
-                {{/each}}
-        {{/matches}}
+    <div class="zci-cricket-score-head">
+        <span class="zci-cricket-score-head-date" style="float: left;">{{date}}</span>
+        <span style="float: right;">{{startTime}}</span>
     </div>
-    <div class="footer">
-        <a id="prev" href="#" ripple="" ripple-color="#666666" class="chevron">
-        </a>
-        <a id="next" href="#" ripple="" ripple-color="#666666" class="chevron"></a>
+    <div class="zci-cricket-content {{matchid}}">
+        <span>{{mtype}}</span>
+        <span class="zci-cricket-team">
+                <span>
+                    <img class="zci-cricket-team-logo" src="share/spice/cricket/img.png" alt="team logo">
+                    <span class="zci-cricket-team-name">{{this.teams.0.Team}}</span>
+                </span>
+                <span>
+                    <img class="zci-cricket-team-logo" src="share/spice/cricket/img.png" alt="team logo">
+                    <span class="zci-cricket-team-name">{{this.teams.1.Team}}</span>
+                </span>
+        </span>
+        <span>{{this.startTime}}</span>
     </div>
 </div>
