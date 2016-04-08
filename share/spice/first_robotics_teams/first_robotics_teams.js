@@ -14,6 +14,7 @@
             content: 'record',
             moreAt: true
         };
+        
         if (api_result.website && api_result.website != null) {
             template_options.moreText = {
                 text: 'Team website',
