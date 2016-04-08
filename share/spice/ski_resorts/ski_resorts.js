@@ -21,7 +21,9 @@
                 data: api_result,
                 normalize: function(data){
                     // Display number of runs and highest point
-                    var resortInfo = {};
+                    var resortInfo = {
+                        Country: data.countryName
+                    };
                     var difficulties = ['novice', 'easy', 'intermediate', 'advanced', 'expert'];
                     difficulties.forEach( function ( difficulty ) {
                         var count = data.difficulties[difficulty];
