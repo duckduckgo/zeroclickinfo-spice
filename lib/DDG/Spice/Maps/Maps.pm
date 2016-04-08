@@ -22,7 +22,7 @@ push @all_triggers, "directions";
 # - "directions to florida" (matches "florida")
 # - "driving directions to 10 canal street new york" (matches "10 canal street new york")
 # - "directions from leeds to skipton uk" (matches "skipton uk")
-my $directions_qr = qr/^(\w+ )?directions.*\bto\b/;
+my $directions_qr = qr/^(\w+\s)?directions.*\bto\b/;
 
 triggers any => @all_triggers;
 
