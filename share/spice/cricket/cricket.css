@@ -14,6 +14,7 @@
     color: #888;
     padding: 20px;
     border-top: 2px solid #F7F7F7;
+    border-bottom: 2px solid #F7F7F7;
 }
 
 .zci-cricket-content span {
@@ -39,9 +40,9 @@
     display: block;
 }
 
-/*.zci-cricket-inactive {*/
-/*display: none;*/
-/*}*/
+.zci-cricket-inactive {
+    display: none;
+}
 
 .zci-cricket-active {
     display: block;
@@ -70,4 +71,10 @@
 
 .zci-cricket-team-name {
     /*float: left;*/
+}
+
+.zci-cricket-match {
+    color: #888;
+    padding: 20px;
+    border-bottom: 2px solid #F7F7F7;
 }

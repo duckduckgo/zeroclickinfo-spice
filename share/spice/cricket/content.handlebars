@@ -1,9 +1,10 @@
 <div class="card">
     <div class="zci-cricket-score-head">
         <span class="zci-cricket-score-head-date" style="float: left;">{{date}}</span>
-        <span style="float: right;">{{startTime}}</span>
+        <span style="float: right; text-transform: capitalize;">{{matchNo}}</span>
+        <!--<span style="float: right;">{{startTime}}</span>-->
     </div>
-    <div class="zci-cricket-content {{matchid}}">
+    <div class="zci-cricket-content {{matchid}}" onclick="show({{matchid}});">
         <span>{{mtype}}</span>
         <span class="zci-cricket-team">
                 <span>
@@ -16,5 +17,9 @@
                 </span>
         </span>
         <span>{{this.startTime}}</span>
+    </div>
+    <div class="zci-cricket-match zci-cricket-inactive" id="{{matchid}}">
+        <div>{{relativeTime}}</div>
+        <div>{{venue}}</div>
     </div>
 </div>
