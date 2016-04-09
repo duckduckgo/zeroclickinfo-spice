@@ -1,25 +1,66 @@
 <div class="card">
     <div class="zci-cricket-score-head">
         <span class="zci-cricket-score-head-date" style="float: left;">{{date}}</span>
-        <span style="float: right; text-transform: capitalize;">{{matchNo}}</span>
-        <!--<span style="float: right;">{{startTime}}</span>-->
+        {{#if stage}}
+            <span style="float: right; text-transform: capitalize;">{{matchNo}}</span>
+        {{else}}
+            <span style="float: right;">{{startTime}}</span>
+        {{/if}}
     </div>
     <div class="zci-cricket-content {{matchid}}" onclick="show({{matchid}});">
         <span>{{mtype}}</span>
         <span class="zci-cricket-team">
                 <span>
-                    <img class="zci-cricket-team-logo" src="share/spice/cricket/img.png" alt="team logo">
+                    {{#if this.teams.0.logo}}
+                        <img class="zci-cricket-team-logo" src="{{this.teams.0.logo}}"
+                             alt="team logo">
+                    {{/if}}
                     <span class="zci-cricket-team-name">{{this.teams.0.Team}}</span>
                 </span>
                 <span>
-                    <img class="zci-cricket-team-logo" src="share/spice/cricket/img.png" alt="team logo">
+                    {{#if this.teams.1.logo}}
+
+                        <img class="zci-cricket-team-logo" src="{{this.teams.1.logo}}"
+                             alt="team logo">
+                    {{/if}}
                     <span class="zci-cricket-team-name">{{this.teams.1.Team}}</span>
                 </span>
         </span>
-        <span>{{this.startTime}}</span>
+        {{#if winner}}
+            <span>{{winner}} {{by}} {{how}}</span>
+        {{else}}
+            <span>{{this.startTime}}</span>
+        {{/if}}
     </div>
-    <div class="zci-cricket-match zci-cricket-inactive" id="{{matchid}}">
+    <span id="show" class="chevron" onclick="show({{matchid}});"></span>
+    <span id="hide" class="chevron zci-cricket-inactive" onclick="show({{matchid}});"></span>
+    <div class="zci-cricket-match zci-cricket-inactive" id="{{matchid}}" onclick="show({{matchid}});">
         <div>{{relativeTime}}</div>
         <div>{{venue}}</div>
+        <div class="zci-cricket-team-expanded">
+            <div>
+                {{#if this.teams.0.logo}}
+                    <img class="zci-cricket-team-expanded-logo"
+                         src="{{this.teams.0.logo}}"
+                         alt="team logo">
+                {{/if}}
+                <span class="">{{this.teams.0.Team}}</span>
+            </div>
+            <div>
+                {{#if this.teams.1.logo}}
+                    <img class="zci-cricket-team-expanded-logo"
+                         src="{{this.teams.1.logo}}"
+                         alt="team logo">
+                {{/if}}
+                <span class="">{{this.teams.1.Team}}</span>
+            </div>
+        </div>
+        <div class="zci-cricket-team-expanded">
+            <div>
+                {{#if winner}}
+                    <span class="">{{winner}} {{matchwon}} {{won}} by {{by}}</span>
+                {{/if}}
+            </div>
+        </div>
     </div>
 </div>

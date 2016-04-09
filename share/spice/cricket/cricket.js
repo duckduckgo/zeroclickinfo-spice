@@ -18,14 +18,14 @@
                     //TODO: update display
                     primaryText: "<span style='color:deepskyblue;'>" + data.SeriesName + ", Schedule & Score</span>",
                     idField: "matchid",
-                    selectedItem: getSelected(data),
+                    selectedItem: getSelected(data.Schedule.Match),
                     scrollToSelectedItem: true,
-                    itemType: l("Games"),
-                    itemsHighlight: false,
+                    itemsHighlight: true,
                     itemsExpand: true,
                     secondaryText: '<span class="tx-clr--grey-dark">YQL</span>',
-                    sourceName: "developer.yahoo.com",
-                    sourceUrl: 'http://example.com/url/to/details/' + api_result.name
+                    rerender: ["teams.0", "teams.1"],//TODO: need a better way
+                    //sourceName: "developer.yahoo.com",
+                    //sourceUrl: 'http://example.com/url/to/details/' + api_result.name
                 },
                 normalize: function (item) {
                     return {
@@ -33,13 +33,14 @@
                         mtype: item.mtype.toUpperCase(),
                         matchNo: item.MatchNo,
                         venue: item.Venue.content,
-                        date: moment(item.StartDate).format('ddd, Do MMM'),
-                        relativeTime: moment(item.StartDate).calendar(),
-                        startTime: moment(item.StartDate).format('LT'),
-                        startDate: Date.parse(moment(item.StartDate).format("YYYY-MM-DD")),
+                        date: moment.utc(item.StartDate).local().format('ddd, Do MMM'),
+                        relativeTime: moment.utc(item.StartDate).local().calendar(),
+                        startTime: moment.utc(item.StartDate).local().format('LT'),
+                        startDate: Date.parse(moment.utc(item.StartDate).local().format("YYYY-MM-DD")),
                         matchTimeSpan: item.MatchTimeSpan,
                         teams: item.Team,
-                        result:item.Result,
+                        result: item.Result,
+                        winner: getWinner(item),
                     };
                 },
                 templates: {
@@ -51,29 +52,77 @@
                         content: Spice.cricket.content,
                         footer: Spice.cricket.content,
                         in_progress: Spice.cricket.content,
-                        moreAt: true
+                        moreAt: false
                     }
+                },
+                onItemShown: function (item) {
+                    item.teams.map(function (team, i) {
+                        $.ajax({
+                            url: DDG.get_asset_path('cricket', "assets/" + team.teamid + ".png"),
+                            type: 'get',
+                        }).always(function (data, statusText, xhr) {
+                            // Check if team logo exists
+                            if (xhr.status === 200 && xhr.getResponseHeader('content-type') == "image/png") {
+                                team.logo = DDG.get_asset_path('cricket', "assets/" + team.teamid + ".png");
+                                //TODO: need a better way
+                                item.set("teams." + i, item.teams);
+                            } else {
+                            }
+                        });
+                        return team;
+                    });
+
                 }
+
             });
         });
         //TODO: return latest match id
-        function getSelected(data) {
-            return 193870;
-        }
-
-        function setDefault(data) {
-            var today = Date.parse(new Date());
-            var diff = Math.abs(data.matches[0][0].startDate - today);
+        function getSelected(matches) {
+            var today = new Date(new Date().toUTCString());
+            var diff = Math.abs(new Date(new Date(matches[0].StartDate).toUTCString()) - today);
             var index = 0;
-            for (var i = 1; i < data.matches.length; i++) {
-                if (diff > Math.abs(data.matches[i][0].startDate - today)) {
+            for (var i = 1; i < matches.length; i++) {
+                if (diff > Math.abs(new Date(new Date(matches[i].StartDate).toUTCString()) - today)) {
                     index = i;
                 }
             }
+            fetchScore(matches[index].matchid);
+            return matches[index].matchid;
+        }
+
+        //TODO: return result
+        function getWinner(match) {
+            if (match.result) {
+                var winner = match.Result.Team.filter(function (team) {
+                    return team.matchwon === "yes";
+                });
+                if (winner.length) {
+                    return match.Team.filter(function (team) {
+                        return team.id === winner.id;
+                    }).Team;
+                }
+            }
+            return "Mumbai";
+        }
+
+        function fetchScore(matchid) {
+            var interval = setInterval(function () {
+                $.ajax({
+                    url: 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20cricket.scorecard.live&format=json&env=store%3A%2F%2F0TxIGQMQbObzvU4Apia0V0&callback=',
+                    type: 'get',
+                }).always(function (data, statusText, xhr) {
+                    console.log(data);
+                    if (xhr.status === 200 && xhr.getResponseHeader('content-type') == "application/json; charset=UTF-8") {
+                    } else {
+                        clearInterval(interval);
+                    }
+                });
+            }, 5000);
         }
     };
     env.show = function (id) {
-        console.log(id);
-        var listEls = document.getElementById(id + "").classList.toggle("zci-cricket-inactive");
+        document.getElementById(id + "").classList.toggle("zci-cricket-inactive");
+        document.getElementById("show").classList.toggle("zci-cricket-inactive");
+        document.getElementById("hide").classList.toggle("zci-cricket-inactive");
     };
 }(this));
