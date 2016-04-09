@@ -154,15 +154,34 @@
         var returnData;
         var item = getItemFromData(api_result.itemdata, searchTarget);
         var sourceUrl;
+        var template;
         if (typeof item !== 'undefined') {
             returnData = createItemReturnObject(item, api_result);
             sourceUrl = 'https://www.dota2.com/items/';
+            template = {
+                group: 'base',
+                options: {
+                    content: Spice.dota2.dota2_item
+                }
+            };
         } else {
             var hero = getHeroFromData(api_result.herodata, searchTarget);
             if (typeof hero !== 'undefined') {
                 returnData = createHeroReturnObject(hero, api_result);
             }
             sourceUrl = 'https://www.dota2.com/hero/' + hero.dname.replace(" ", "_");
+            template = {
+                group: 'base',
+                detail: false,
+                'item-detail': false,
+                variants: {
+                    tile: 'xwide'
+                },
+                options: {
+                    content: Spice.dota2.dota2_hero,
+                    moreAt: true
+                }
+            };
         }
 
         Spice.add({
@@ -173,13 +192,7 @@
                 sourceName: "dota2.com",
                 sourceUrl: sourceUrl
             },
-            templates: {
-                group: 'base',
-                options:{
-                    content: Spice.dota2.content,
-                    moreAt: true
-                }
-            }
+            templates: template
         });
     };
 }(this));
