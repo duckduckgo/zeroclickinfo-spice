@@ -53,8 +53,6 @@
                     },
                     options: {
                         content: Spice.cricket.content,
-                        footer: Spice.cricket.content,
-                        in_progress: Spice.cricket.content,
                         moreAt: false
                     }
                 },
