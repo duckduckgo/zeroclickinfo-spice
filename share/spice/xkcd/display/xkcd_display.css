@@ -27,3 +27,9 @@
     font-size: 12px;
     text-decoration: none;
 }
+
+.zci--xkcd .xkcd--number {
+    color: #888;
+    font-size: 0.45cm;
+    padding-left: 0.5em;
+}
