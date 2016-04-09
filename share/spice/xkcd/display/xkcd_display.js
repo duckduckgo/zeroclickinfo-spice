@@ -19,6 +19,9 @@
             
             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             api_result.month = months[parseInt(api_result.month)-1];
+            
+            // Get a random, valid XKCD comic
+            api_result.random_xkcd_number = Math.floor(Math.random() * data.num) + 1;
     
             Spice.add({
                 id: 'xkcd',
