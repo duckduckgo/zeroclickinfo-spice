@@ -15,7 +15,10 @@
                         <img class="zci-cricket-team-logo" src="{{this.teams.0.logo}}"
                              alt="team logo">
                     {{/if}}
-                    <span class="zci-cricket-team-name">{{this.teams.0.Team}}</span>
+                    <span class="zci-cricket-team-name">
+                        {{this.teams.0.Team}}
+                        <span class="score-{{this.teams.0.teamid}}"></span>
+                    </span>
                 </span>
                 <span>
                     {{#if this.teams.1.logo}}
@@ -23,13 +26,16 @@
                         <img class="zci-cricket-team-logo" src="{{this.teams.1.logo}}"
                              alt="team logo">
                     {{/if}}
-                    <span class="zci-cricket-team-name">{{this.teams.1.Team}}</span>
+                    <span class="zci-cricket-team-name">
+                        {{this.teams.1.Team}}
+                        <span class="score-{{this.teams.1.teamid}}"></span>
+                    </span>
                 </span>
         </span>
-        {{#if winner}}
-            <span>{{winner}} {{by}} {{how}}</span>
+        {{#if winnersn}}
+            <span>{{winnersn}} by {{result.by}} {{result.how}}</span>
         {{else}}
-            <span>{{this.startTime}}</span>
+            <span class="live-status-{{matchid}}">{{this.startTime}}</span>
         {{/if}}
     </div>
     <span id="show" class="chevron" onclick="show({{matchid}});"></span>
@@ -44,7 +50,9 @@
                          src="{{this.teams.0.logo}}"
                          alt="team logo">
                 {{/if}}
-                <span class="">{{this.teams.0.Team}}</span>
+                <span class="">
+                    {{this.teams.0.Team}}
+                </span>
             </div>
             <div>
                 {{#if this.teams.1.logo}}
@@ -52,15 +60,25 @@
                          src="{{this.teams.1.logo}}"
                          alt="team logo">
                 {{/if}}
-                <span class="">{{this.teams.1.Team}}</span>
+                <span class="">
+                    {{this.teams.1.Team}}
+                </span>
             </div>
         </div>
         <div class="zci-cricket-team-expanded">
             <div>
-                {{#if winner}}
-                    <span class="">{{winner}} {{matchwon}} {{won}} by {{by}}</span>
-                {{/if}}
+                <span class="score-{{this.teams.0.teamid}}">{{this.teams.0.score}}</span>
+            </div>
+            <div>
+                <span class="score-{{this.teams.1.teamid}}">{{this.teams.1.score}}</span>
             </div>
         </div>
+        {{#if winnerln}}
+            <div class="zci-cricket-match-result">
+                <div>
+                    <span>{{winnerln}} won by {{result.by}} {{result.how}}</span>
+                </div>
+            </div>
+        {{/if}}
     </div>
 </div>

@@ -1,13 +1,14 @@
 (function (env) {
     "use strict";
+    var SCORECARD_ENDPOINT = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20cricket.scorecard%20where%20match_id%3D{$1}&format=json&env=store%3A%2F%2F0TxIGQMQbObzvU4Apia0V0&callback=',
+        LIVE_SCORECARD_ENDPOINT = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20cricket.scorecard.live&format=json&env=store%3A%2F%2F0TxIGQMQbObzvU4Apia0V0&callback=';
     env.ddg_spice_cricket = function (api_result) {
-
         // Validate the response (customize for your Spice)
-        if (!api_result || api_result.error) {
+        if (!api_result || api_result.error || !api_result.query.results) {
             return Spice.failed('cricket');
         }
         //TODO:select latest series
-        var data = api_result.query.results.Series[0];
+        var data = api_result.query.results.Series.constructor === Array ? api_result.query.results.Series[0] : api_result.query.results.Series;
         DDG.require("moment.js", function () {
             // Render the response
             Spice.add({
@@ -22,12 +23,13 @@
                     scrollToSelectedItem: true,
                     itemsHighlight: true,
                     itemsExpand: true,
-                    secondaryText: '<span class="tx-clr--grey-dark">YQL</span>',
+                    //secondaryText: '<span class="tx-clr--grey-dark">YQL</span>',
                     rerender: ["teams.0", "teams.1"],//TODO: need a better way
                     //sourceName: "developer.yahoo.com",
                     //sourceUrl: 'http://example.com/url/to/details/' + api_result.name
                 },
                 normalize: function (item) {
+                    var winner = getWinner(item);
                     return {
                         matchid: item.matchid,
                         mtype: item.mtype.toUpperCase(),
@@ -40,7 +42,8 @@
                         matchTimeSpan: item.MatchTimeSpan,
                         teams: item.Team,
                         result: item.Result,
-                        winner: getWinner(item),
+                        winnersn: winner && winner.split(" ").length > 1 ? winner.match(/\b(\w)/g).join('') : winner,
+                        winnerln: winner,
                     };
                 },
                 templates: {
@@ -71,7 +74,7 @@
                         });
                         return team;
                     });
-
+                    fetchScore(item.matchid)
                 }
 
             });
@@ -86,38 +89,70 @@
                     index = i;
                 }
             }
-            fetchScore(matches[index].matchid);
+            fetchLiveScore(0);
             return matches[index].matchid;
         }
 
         //TODO: return result
         function getWinner(match) {
-            if (match.result) {
+            if (match.Result) {
                 var winner = match.Result.Team.filter(function (team) {
                     return team.matchwon === "yes";
                 });
                 if (winner.length) {
                     return match.Team.filter(function (team) {
-                        return team.id === winner.id;
-                    }).Team;
+                        return team.teamid === winner[0].id;
+                    })[0].Team;
                 }
             }
-            return "Mumbai";
+            return "";
+        }
+
+        function fetchLiveScore(time) {
+            return setTimeout(function () {
+                return $.getJSON(LIVE_SCORECARD_ENDPOINT).always(function (data, statusText, xhr) {
+                    var results = data.query.results;
+                    if (results && results.Scorecard.past_ings) {
+                        results.Scorecard.past_ings.map(function (inning) {
+                            var run = inning.s.a.r,
+                                over = inning.s.a.o,
+                                runrate = inning.s.a.rr,
+                                wicket = inning.s.a.w,
+                                teamid = inning.s.a.i;
+                            $('.score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
+                            if (data.query.results.Scorecard.ms === "Play in progress") {
+                                $('.live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">live</span>');
+                            }
+                        });
+                    }
+                    if (xhr.status === 200 && results && results.Scorecard.ms !== "Match Ended") {
+                        fetchLiveScore(5000);
+                    }
+                });
+
+            }, time);
         }
 
         function fetchScore(matchid) {
-            var interval = setInterval(function () {
-                $.ajax({
-                    url: 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20cricket.scorecard.live&format=json&env=store%3A%2F%2F0TxIGQMQbObzvU4Apia0V0&callback=',
-                    type: 'get',
-                }).always(function (data, statusText, xhr) {
-                    console.log(data);
-                    if (xhr.status === 200 && xhr.getResponseHeader('content-type') == "application/json; charset=UTF-8") {
-                    } else {
-                        clearInterval(interval);
+            return $.getJSON(SCORECARD_ENDPOINT.replace("{$1}", matchid)).always(function (data, statusText, xhr) {
+                var results = data.query.results;
+                if (results && results.Scorecard.past_ings) {
+                    results.Scorecard.past_ings.map(function (inning) {
+                        var run = inning.s.a.r,
+                            over = inning.s.a.o,
+                            runrate = inning.s.a.rr,
+                            wicket = inning.s.a.w,
+                            teamid = inning.s.a.i;
+                        $('.score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
+                        if (data.query.results.Scorecard.ms === "Play in progress") {
+                            $('.live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">live</span>');
+                        }
+                    });
+                    if (xhr.status === 200 && results.Scorecard.ms !== "Match Ended") {
+                        fetchLiveScore(5000);
                     }
-                });
-            }, 5000);
+                }
+            });
         }
     };
     env.show = function (id) {
