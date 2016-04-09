@@ -154,8 +154,8 @@
         }
     };
     env.show = function (id) {
-        document.getElementById(id + "").classList.toggle("zci-cricket-inactive");
-        document.getElementById("show").classList.toggle("zci-cricket-inactive");
-        document.getElementById("hide").classList.toggle("zci-cricket-inactive");
+        $("#" + id).toggleClass("zci-cricket-inactive");
+        $("#show").toggleClass("zci-cricket-inactive");
+        $("#hide").toggleClass("zci-cricket-inactive");
     };
 }(this));
