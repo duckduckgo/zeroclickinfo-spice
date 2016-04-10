@@ -84,6 +84,7 @@
             var index = 0;
             for (var i = 1; i < matches.length; i++) {
                 if (diff > Math.abs(new Date(new Date(matches[i].StartDate).toUTCString()) - today)) {
+                    diff = Math.abs(new Date(new Date(matches[i].StartDate).toUTCString()) - today);
                     index = i;
                 }
             }
@@ -109,21 +110,21 @@
         function fetchLiveScore(time) {
             return setTimeout(function () {
                 return $.getJSON(LIVE_SCORECARD_ENDPOINT).always(function (data, statusText, xhr) {
-                    var results = data.query.results;
-                    if (results && results.Scorecard.past_ings) {
-                        results.Scorecard.past_ings.map(function (inning) {
+                    if (data.query && data.query.results && data.query.results.Scorecard && data.query.results.Scorecard.past_ings) {
+                        var results = data.query.results.Scorecard.past_ings.constructor === Array ? data.query.results.Scorecard.past_ings : [data.query.results.Scorecard.past_ings];
+                        results.map(function (inning) {
                             var run = inning.s.a.r,
                                 over = inning.s.a.o,
                                 runrate = inning.s.a.rr,
                                 wicket = inning.s.a.w,
                                 teamid = inning.s.a.i;
                             $('.score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
-                            if (data.query.results.Scorecard.ms === "Play in progress") {
-                                $('.live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">live</span>');
+                            if (data.query.results.Scorecard.ms) {
+                                $('.live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">' + data.query.results.Scorecard.ms + '</span>');
                             }
                         });
                     }
-                    if (xhr.status === 200 && results && results.Scorecard.ms !== "Match Ended") {
+                    if (xhr.status === 200 && data.query.results && data.query.results.Scorecard.ms !== "Match Ended") {
                         fetchLiveScore(5000);
                     }
                 });
@@ -133,16 +134,16 @@
 
         function fetchScore(matchid) {
             return $.getJSON(SCORECARD_ENDPOINT.replace("{$1}", matchid)).always(function (data, statusText, xhr) {
-                var results = data.query.results;
-                if (results && results.Scorecard.past_ings) {
-                    results.Scorecard.past_ings.map(function (inning) {
+                if (data.query && data.query.results && data.query.results.Scorecard && data.query.results.past_ings) {
+                    var results = data.query.results.past_ings.constructor === Array ? data.query.results.past_ings : [data.query.results.past_ings];
+                    results.map(function (inning) {
                         var run = inning.s.a.r,
                             over = inning.s.a.o,
                             runrate = inning.s.a.rr,
                             wicket = inning.s.a.w,
                             teamid = inning.s.a.i;
                         $('.score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
-                        if (data.query.results.Scorecard.ms === "Play in progress") {
+                        if (data.query.results.Scorecard.ms === "Play in Progress") {
                             $('.live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">live</span>');
                         }
                     });
@@ -154,7 +155,7 @@
         }
     };
     env.show = function (id) {
-        $("#" + id).toggleClass("zci-cricket-inactive");
+        $("#" + id + " .zci-cricket-match").toggleClass("zci-cricket-inactive");
         $("#show").toggleClass("zci-cricket-inactive");
         $("#hide").toggleClass("zci-cricket-inactive");
     };

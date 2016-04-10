@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" id="{{matchid}}">
     <div class="zci-cricket-score-head">
         <span class="zci-cricket-score-head-date" style="float: left;">{{date}}</span>
         {{#if stage}}
@@ -40,7 +40,7 @@
     </div>
     <span id="show" class="chevron" onclick="show({{matchid}});"></span>
     <span id="hide" class="chevron zci-cricket-inactive" onclick="show({{matchid}});"></span>
-    <div class="zci-cricket-match zci-cricket-inactive" id="{{matchid}}" onclick="show({{matchid}});">
+    <div class="zci-cricket-match zci-cricket-inactive" onclick="show({{matchid}});">
         <div>{{relativeTime}}</div>
         <div>{{venue}}</div>
         <div class="zci-cricket-team-expanded">
