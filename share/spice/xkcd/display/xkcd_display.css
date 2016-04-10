@@ -9,10 +9,6 @@
     margin: 1em 0 0.5em;
 }
 
-.zci--xkcd .xkcd--buttons {
-    display: inline-block;
-}
-
 .zci--xkcd .xkcd--buttons a:visited {
     color: #4495d4;
 }

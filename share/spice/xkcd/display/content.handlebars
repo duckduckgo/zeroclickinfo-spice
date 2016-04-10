@@ -1,7 +1,7 @@
 <div class="xkcd--container">
   <div style="" class="xkcd--information">
-    <h3 class="zci__header">{{title}}{{#if num}}<span class="xkcd--number">#{{num}}</span>{{/if}}</h3>
-    <h4 class="zci__subheader xkcd--date">{{month}} {{day}}, {{year}}</h4>
+    <h3 class="zci__header">{{title}}</h3>
+    <h4 class="zci__subheader xkcd--date">{{#if num}}#{{num}} created on {{/if}}{{month}} {{day}}, {{year}}</h4>
     <div class="xkcd--buttons">
       {{#xkcd_previousNum num}}
       <a href="/?q=xkcd+{{num}}">Previous</a>
