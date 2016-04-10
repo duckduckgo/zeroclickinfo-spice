@@ -6,9 +6,6 @@
             return Spice.failed('first_robotics_teams');
         }
         
-        // Fix the displaying of "null" for teams with no motto
-        if (api_result.motto === null) {api_result.motto = 'No motto';}
-        
         // Remove the space for a website if one isn't provided
         var template_options = {
             content: 'record',
@@ -22,18 +19,24 @@
             };
         }
         
+        // Same for the motto
+        var team_data = {
+            'Full name': api_result.name,
+            'Location': api_result.location,
+            'Rookie Year': api_result.rookie_year
+        };
+        
+        if (api_result.motto && api_result.motto != null) {
+            team_data['Motto'] = api_result.motto;
+        }
+        
         Spice.add({
             id: 'first_robotics_teams',
             name: 'Reference',
             data: {
                 title: 'FIRST Robotics Competition Team ' + api_result.team_number,
                 subtitle: api_result.nickname,
-                record_data: {
-                    'Full name': api_result.name,
-                    'Location': api_result.location,
-                    'Rookie Year': api_result.rookie_year,
-                    'Motto': api_result.motto
-                }
+                record_data: team_data
             },
             meta: {
                 sourceName: 'The Blue Alliance',
