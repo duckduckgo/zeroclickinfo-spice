@@ -1,18 +1,25 @@
 # Contributing an Instant Answer to DuckDuckGo.com
 
-## Learn How to Build Spice Instant Answers
+## Learn to Make New Instant Answers
 
-Learn to make an Instant Answer by starting with our walkthrough: **[Build an API-based lookup](http://docs.duckduckhack.com/walkthroughs/forum-lookup.html)**
+Learn to make an Instant Answer by starting with our walkthroughs:
+
+- Learn how to build a [convenient calculation tool](http://docs.duckduckhack.com/walkthroughs/calculation.html)
+- Learn how to turn an [external API into delightful search results](http://docs.duckduckhack.com/walkthroughs/forum-lookup.html)
+- Create a [cheat sheet for a favorite topic](http://docs.duckduckhack.com/walkthroughs/programming-syntax.html)
+
+*UPDATE: We're aiming to have multiple Instant Answers for every programming language and framework. Jump in and help us [fill in the blanks](https://github.com/duckduckgo/duckduckgo/wiki/Programming-IA-Coverage).*
 
 You can find the full [DuckDuckHack documentation here](http://docs.duckduckhack.com).
 
 ## Improve a Live Instant Answer
 
-We welcome new contributors to dive in and improve live Instant Answers. It's a great, hands-on way to learn how things work. Start by [setting up your development environment](http://docs.duckduckhack.com/welcome/setup-dev-environment.html).
+We welcome new contributors to dive in and improve live Instant Answers. It's a great, hands-on way to learn how things work:
 
-Have a [favorite Instant Answer](http://duck.co/ia) that you want to make even better? Feel free to dive in and make changes.
-
-You can see all "low-hanging fruit" issues neatly organized in one place on our [Live Issues Page](https://duck.co/ia/dev/issues?tag=lowhangingfruit), or get an overview of all [Instant Answers in development](https://duck.co/ia/dev/pipeline).
+- Have a [favorite Instant Answer](http://duck.co/ia) that you want to make even better? Feel free to dive in and make changes.
+- Help other DuckDuckHackers with their [Instant Answers in development](https://duck.co/ia/dev/pipeline)
+- Suggest improvements & file bugs for [live Instant Answers](https://duck.co/ia) through the, "Create Issue" button on each IA page
+- Tackle some of the "low-hanging fruit" and, "high priority" issues on our [Live Issues Page](https://duck.co/ia/dev/issues?tag=lowhangingfruit)
 
 ## Go Live on DuckDuckGo.com
 
