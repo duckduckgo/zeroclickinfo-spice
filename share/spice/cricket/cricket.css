@@ -121,14 +121,14 @@
     float: right;
 }
 
-#hide:before {
+.zci--cricket .card .hide:before {
     left: 0.25em;
     transform: rotate(-45deg);
     margin-top: -10px;
     margin-right: 15px;
 }
 
-#show:before {
+.zci--cricket .card .show:before {
     left: 0;
     transform: rotate(130deg);
     margin-top: -15px;

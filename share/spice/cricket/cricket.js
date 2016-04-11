@@ -156,7 +156,7 @@
     };
     env.show = function (id) {
         $("#" + id + " .zci-cricket-match").toggleClass("zci-cricket-inactive");
-        $("#show").toggleClass("zci-cricket-inactive");
-        $("#hide").toggleClass("zci-cricket-inactive");
+        $("#" + id + ".show").toggleClass("zci-cricket-inactive");
+        $("#" + id + ".hide").toggleClass("zci-cricket-inactive");
     };
 }(this));

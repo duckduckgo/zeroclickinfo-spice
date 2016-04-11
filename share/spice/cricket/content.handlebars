@@ -38,8 +38,8 @@
             <span class="live-status-{{matchid}}">{{this.startTime}}</span>
         {{/if}}
     </div>
-    <span id="show" class="chevron" onclick="show({{matchid}});"></span>
-    <span id="hide" class="chevron zci-cricket-inactive" onclick="show({{matchid}});"></span>
+    <span class="chevron show" onclick="show({{matchid}});"></span>
+    <span class="chevron zci-cricket-inactive hide" onclick="show({{matchid}});"></span>
     <div class="zci-cricket-match zci-cricket-inactive" onclick="show({{matchid}});">
         <div>{{relativeTime}}</div>
         <div>{{venue}}</div>
