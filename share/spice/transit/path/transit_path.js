@@ -6,7 +6,7 @@
         }
 
         Spice.add({
-            id: 'path',
+            id: 'transit_path',
             name: 'PATH',
             signal: 'high',
             data: api_result.routes,
