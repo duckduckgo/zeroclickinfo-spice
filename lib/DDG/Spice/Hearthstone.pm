@@ -7,18 +7,6 @@ use DDG::Spice;
 spice is_cached => 1;
 spice proxy_cache_valid => "200 4d";
 
-# Metadata
-name "Hearthstone Card Search";
-source "Bytevortex (Gamepedia Proxy)";
-icon_url "http://eu.battle.net/hearthstone/static/images/icons/favicon.ico";
-description "Get a preview of any Hearthstone card.";
-primary_example_queries "hearthstone leeroy jenkins", "hearthstone leeroy", "leeroy hearthstone", "hearthstone mirror";
-category "entertainment";
-topics "gaming";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Hearthstone.pm";
-attribution github => ["https://github.com/Akryum", "Akryum"],
-            twitter => "Akryum";
-
 # Triggers
 triggers startend => "hearthstone";
 

@@ -23,7 +23,8 @@
                 sourceName: 'Bootic',
                 sourceUrl: 'http://www.bootic.com/?q=' + query,
                 sourceIcon: true,
-                itemType: api_result.input_query
+                itemType: 'Bootic ' + l('Results'),
+                searchTerm: api_result.input_query
             },
             normalize: function(o) {
                 var picture = o.pictures[0];

@@ -6,18 +6,6 @@ use DDG::Spice;
 use Locale::SubCountry;
 use YAML::XS 'LoadFile';
 
-name "SalesTax";
-source "http://taxratesapi.avalara.com/";
-description 'Returns the sales tax of the specified state or territory in the United States';
-primary_example_queries 'Sales tax for pennsylvania', 'Sales tax pa';
-secondary_example_queries 'what is sales tax for mississippi';
-topics 'special_interest', 'geography', 'travel';
-category 'random';
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SalesTax.pm";
-attribution github => ["MrChrisW", "Chris Wilson"],
-            web =>    ["http://chrisjwilson.com", "Chris Wilson"],
-            github => ['https://github.com/javathunderman', 'Thomas Denizou'];
-
 triggers any => 'sales tax for', 'sales tax', 'sales tax in';
 spice from => '(.*)/(.*)';
 spice to => 'https://taxrates.api.avalara.com/postal?country=usa&postal=$1&apikey={{ENV{DDG_SPICE_SALESTAX_APIKEY}}}';

@@ -32,7 +32,7 @@
         // Render the response
         Spice.add({
             id: "hearthstone",
-            name: "Hearthstone",
+            name: "Gaming",
             data: api_result,
             meta: {
                 sourceName: "Hearthstone Gamepedia Wiki",

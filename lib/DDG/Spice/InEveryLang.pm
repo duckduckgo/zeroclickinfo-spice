@@ -3,7 +3,7 @@ package DDG::Spice::InEveryLang;
 
 use strict;
 use DDG::Spice;
-use JSON;
+use JSON::MaybeXS;
 
 my $json = JSON->new;
 my $languages_raw = share('languages.json')->slurp;
@@ -20,16 +20,6 @@ for( @{$languages->{languages}} ) {
 
 my $language_finder = join("|", @language_regexps);
 $language_finder =~ s/\+/\\+/g;
-
-primary_example_queries "Fizz Buzz in C";
-description "Shows a code puzzle example";
-name "InEveryLang";
-source "ineverylang.com";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/InEveryLang.pm";
-topics "programming";
-category "programming";
-attribution github  => ['https://github.com/josephwegner', 'josephwegner'],
-            twitter => ['https://www.twitter.com/Joe_Wegner', 'josephwegner'];
 
 triggers startend => "fizz buzz", "fizzbuzz", "quine", "fibonacci sequence", "binary search";
 

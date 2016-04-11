@@ -12,7 +12,7 @@
             data: api_result.results,
             allowMultipleCalls: true,
             meta: {
-                itemType: 'Products',
+                itemType: 'Amazon ' + l('Results'),
                 sourceName: 'Amazon',
                 sourceUrl: api_result.more_at,
                 sourceIcon: true,
@@ -24,11 +24,17 @@
             templates: {
                 group: 'products',
                 options: {
-                    buy: 'products_amazon_buy'
+                    buy: 'products_amazon_buy',
+                    badge: 'products_amazon_badge'
                 }
             },
             relevancy: {
                 dup: ['ASIN','img_m','img']
+            },
+            normalize: function(item) {
+                item.showBadge = item.is_prime;
+
+                return item;
             },
             onItemShown: function(item) {
                 var arg = item.rating,
@@ -40,10 +46,11 @@
                 arg = arg.replace('http://www.amazon/reviews/iframe?', '');
 
                 $.getJSON(url + encodeURIComponent(arg), function(r) {
-                    if (r.stars.match(/stars-(\d)-(\d)/)) {
+                    if (!r) { return; }
+
+                    if (r.stars && r.stars.match(/stars-(\d)-(\d)/)) {
                         item.set({ rating:  RegExp.$1 + "." + RegExp.$2 });
                     }
-                    console.log("update reviewCount: ", item.id);
                     item.set({ reviewCount:  r.reviews });
                 });
 

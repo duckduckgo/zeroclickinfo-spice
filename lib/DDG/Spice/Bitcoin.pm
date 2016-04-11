@@ -1,31 +1,30 @@
 package DDG::Spice::Bitcoin;
-# ABSTRACT: Bitcoin exchange rates
-
+# ABSTRACT: Display bitcoin address balance, transaction or block information
 use strict;
-use utf8;
 use DDG::Spice;
 
-primary_example_queries "bitcoin";
-secondary_example_queries "bitcoin eur", "bitcoin cny";
-description "Get Bitcoin Exchange Rate";
-name "Bitcoin";
-source "http://blockchain.info";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Bitcoin.pm";
-topics "economy_and_finance";
-category "conversions";
+my $addressTriggers = '^(?:bitcoin address|btc address)?\s*([13][1-9A-HJ-NP-Za-km-z]{26,33})$';
+my $txTriggers = '^(?:bitcoin transaction|btc transaction)?\s*([a-fA-F0-9]{64})$';
+my $blockTriggers = '^(?:bitcoin block|btc block)?\s*(0{8}[a-fA-F0-9]{56})$';
 
-attribution github => ['https://github.com/jmg','Juan Manuel García'],
-            email => ['jmg.utn@gmail.com','Juan Manuel García'];
+triggers query_raw => qr/$addressTriggers|$txTriggers|$blockTriggers/;
 
-spice to => 'https://blockchain.info/ticker';
+spice to => 'https://api.biteasy.com/v2/btc/mainnet/$1/$2?api_key={{ENV{DDG_SPICE_BITEASY_APIKEY}}}';
+
+spice from => '(.*)/(.*)';
+
 spice wrap_jsonp_callback => 1;
+
 spice proxy_cache_valid => "418 1d";
 
-triggers start => "bitcoin exchange in", "bitcoin in", "btc to";
-triggers startend => "bitcoin", "bit coin", "bitcoin exchange", "bit coin exchange", "bitcoin exchange rate", "bit coin exchange rate", "btc", "bitcoin price";
-
-handle remainder => sub {
-    return $_;
+handle query_raw => sub { 
+    return unless $_;
+    #remove trigger words
+    s/(b[a-z]{0,7})\s(transaction|block|address)\s+|//g; 
+    # switch api endpoints based on query
+    return "addresses", $_ if m/$addressTriggers/; 
+    return "blocks", $_ if m/$blockTriggers/;
+    return "transactions", $_ if m/$txTriggers/;
 };
 
 1;

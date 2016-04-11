@@ -4,15 +4,6 @@ package DDG::Spice::SeatGeek::EventsNearMe;
 use strict;
 use DDG::Spice;
 
-primary_example_queries "live shows near me", "upcoming concerts in my area";
-description "Upcoming concerts from SeatGeek";
-name "SeatGeek Events By Geolocation";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/SeatGeek/EventsNearMe.pm";
-category "entertainment";
-topics "entertainment", "music";
-attribution github => ['https://github.com/MariagraziaAlastra','MariagraziaAlastra'],
-    github => ['https://github.com/andrey-p','Andrey Pissantchev'];
-
 triggers start =>
     'upcoming concert',
     'upcoming concerts',
@@ -25,7 +16,7 @@ triggers start =>
 spice proxy_cache_valid => "418 1d";
 spice is_cached => 0;
 
-spice to => 'http://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=20&lat=$1&lon=$2&range=50mi&&callback={{callback}}';
+spice to => 'https://api.seatgeek.com/2/events?taxonomies.name=concert&per_page=20&lat=$1&lon=$2&range=50mi&&callback={{callback}}';
 spice from => '([\-0-9.]+)/([\-0-9.]+)';
 
 handle remainder_lc => sub {

@@ -6,20 +6,8 @@ use DDG::Spice;
 
 spice is_cached => 1; 
 
-#General attributes for meta data
-name "YachtSpecs";
-source "http://yachtharbour.com";
-icon_url "http://yachtharbour.com/favicon.ico";
-description "Gives out yacht specifications and photo";
-primary_example_queries "yacht azzam", "lady moura yacht";
-category "facts";
-topics "special_interest","travel","trivia";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/YachtSpecs.pm";
-attribution web => ["http://YachtHarbour.com"],
-            twitter => "yachtharbour";
-
 #Connection to API
-spice to => 'http://yachtharbour.com/tools/api.php?name=$1';
+spice to => 'https://yachtharbour.com/tools/api.php?name=$1';
 spice wrap_jsonp_callback => 1;
 
 #Triggers

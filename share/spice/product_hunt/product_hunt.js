@@ -19,12 +19,11 @@
         }
 
         Spice.add({
-            id: 'producthunt',
+            id: 'product_hunt',
             name: 'ProductHunt',
             data: api_result.hits,
             meta: {
-                searchTerm: 'Product' + (api_result.nbHits === 1 ? '' : 's'),
-                itemType: 'Products',
+                searchTerm: api_result.query,
                 sourceName: 'ProductHunt',
                 sourceIcon: true,
                 sourceUrl:  'https://www.producthunt.com/#!/s/posts/' + qUrl
@@ -49,7 +48,8 @@
                 },
                 variants: {
                     tileTitle: '2line-small',
-                    tileFooter: '2line'
+                    tileFooter: '2line',
+                    tileSnippet: 'small'
                 },
                 detail: false,
                 item_detail: false

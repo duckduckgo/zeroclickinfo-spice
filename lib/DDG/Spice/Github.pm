@@ -5,15 +5,6 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-primary_example_queries "github zeroclickinfo";
-description "Github info";
-name "Github";
-code_url "https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Github.pm";
-topics "programming", "web_design";
-category "programming";
-attribution web => ['http://dylansserver.com','Dylan Lloyd'],
-            email => ['dylan@dylansserver.com','Dylan Lloyd'];
-
 triggers startend => "github";
 
 my @triggers = share("triggers.txt")->slurp;
@@ -27,7 +18,7 @@ spice to => 'https://api.github.com/search/repositories?q=$1&sort=stars&callback
 spice proxy_cache_valid => '200 30d';
 
 handle query_lc => sub {
-    s/^github\s+|\s+github$//;
+    s/^github\s*|\s+github$//;
     if ($_ eq "" || m/\bjobs\b|\bstatus\b/) {
         return;
     }

@@ -1,0 +1,19 @@
+.tile--statista .statista__badge {
+    height: 10px;
+    border-radius: 5px;
+    padding: 0 5px;
+    display: inline-block;
+    margin-right: .25em;
+}
+
+.tile--statista .statista__footer {
+    padding-top: 16px;
+}
+
+.tile--statista .tile__foot {
+    padding-bottom: 1em;
+}
+
+.tile--statista .tile__body.has-foot {
+    padding-bottom: 2.8em;
+}

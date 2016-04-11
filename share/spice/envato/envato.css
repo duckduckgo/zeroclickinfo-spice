@@ -48,9 +48,8 @@
 }
 
 .zci--envato .review-count {
-    margin-left: .4em;
     position: relative;
-    bottom: 1px;
+    margin-left: .4em;
 }
 
 .zci--envato .stars {
@@ -133,14 +132,6 @@
 }
 
 @media screen and (max-width: 480px) {
-    .zci--envato .tileview--grid .tile-wrap .tile .review-count {
-        position: absolute;
-        bottom: 1.8em;
-        left: 0;
-        margin: 0;
-        line-height: 1;
-    }
-
     .zci--envato .tile-wrap .tile__title {
         text-overflow: ellipsis;
         white-space: nowrap;

@@ -6,20 +6,6 @@ use DDG::Spice;
 use Domain::PublicSuffix;
 use Text::Trim;
 
-# Metadata for this spice
-name 'Whois';
-source 'Whois API';
-description 'Whois info and registration links for web domains';
-primary_example_queries 'whois duckduckgo.com', 'whois http://duckduckgo.com';
-secondary_example_queries 'domain duckduckgo.com', 'who owns duckduckgo.com', 'duckduckgo.com available';
-category 'programming';
-topics 'computing', 'geek', 'programming', 'sysadmin';
-code_url 'https://github.com/duckduckgo/zeroclickinfo-spice/blob/master/lib/DDG/Spice/Whois.pm';
-
-attribution twitter => ['bjennelle','Blake Jannelle'],
-            github => ["b1ake", 'Blake Jennelle'],
-            github => ["MrChrisW", 'Chris Wilson'];
-
 triggers any => "whois", "lookup", "domain", "is domain", "available", "is available", "register", "owner", "owner of", "who owns", "buy", "how to buy";
 
 # API call details for Whois API (http://www.whoisxmlapi.com/)

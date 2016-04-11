@@ -29,7 +29,7 @@ ddg_spice_test(
     # --- these queries should trigger the IA
 
     # standard query
-    'Cathay Pacific Los Angeles to Hong Kong     Airport' => test_spice(
+    'Cathay Pacific Los Angeles to Hong Kong Airport' => test_spice(
         "/js/spice/flights/route/CPA/LAX/HKG/LAX/HKG/$year/$month/$dayOfMonth/$hour/los%2Bangeles/hong%2Bkong",
         call_type => 'include',
         caller => 'DDG::Spice::Flights::Route',
@@ -122,5 +122,7 @@ ddg_spice_test(
     'Jetblue' => undef,
     'Boston Paris' => undef,
 );
+
+alt_to_test('DDG::Spice::Flights::Route', ['route_helper']);
 
 done_testing;

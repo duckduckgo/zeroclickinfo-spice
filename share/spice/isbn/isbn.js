@@ -10,13 +10,11 @@
             id: 'isbn',
             name: 'Books',
             data: api_result.results,
-            allowMultipleCalls: true,
             meta: {
-                itemType: 'Products',
+                itemType: 'Amazon Results',
                 sourceName: 'Amazon',
                 sourceUrl: api_result.more_at,
                 sourceIcon: true,
-                next: api_result.next,
                 rerender: [
                     'reviewCount'
                 ]
@@ -40,7 +38,9 @@
                 arg = arg.replace('http://www.amazon/reviews/iframe?', '');
 
                 $.getJSON(url + encodeURIComponent(arg), function(r) {
-                    if (r.stars.match(/stars-(\d)-(\d)/)) {
+                    if (!r) { return; }
+
+                    if (r.stars && r.stars.match(/stars-(\d)-(\d)/)) {
                         item.set({ rating: RegExp.$1 + "." + RegExp.$2 });
                     }
                     item.set({ reviewCount:  r.reviews });
