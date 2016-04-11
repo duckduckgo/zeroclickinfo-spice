@@ -1,20 +1,20 @@
-.zci--path .tile--path {
+.zci--transit_path .tile--transit_path {
     text-align: center;
     width: 13em;
 }
 
 @media screen and (max-device-width: 640px) and (orientation: portrait){
-	.is-mobile .zci--path .tile--path {
+	.is-mobile .zci--transit_path .tile--transit_path {
 	    width: 48%;
 	}
 }
 
-.tile--path .path__time {
+.tile--transit_path .transit_path__time {
     font-size: 2.3em;
     font-weight: 300;
 }
 
-.tile--path .path__details {
+.tile--transit_path .transit_path__details {
     margin-top: 5px;
     margin-bottom: 5px;
 }
