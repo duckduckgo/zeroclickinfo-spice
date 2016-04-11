@@ -160,7 +160,11 @@
             sourceUrl = 'https://www.dota2.com/items/';
             template = {
                 group: 'base',
-                item: false,
+                detail: false,
+                item_detail: false,
+                variants: {
+                    tile: 'xwide'
+                },
                 options: {
                     content: Spice.dota2.dota2_item
                 }
