@@ -1,0 +1,16 @@
+{{#if components}}
+Components<br />
+<div>
+    <table>
+        <tr>
+            {{#each components}}
+            <td class="item-component">
+                <a href="/?q=dota2+{{searchTerms}}&ia=dota2">
+                    <img src="{{img}}" title="{{name}}"/>
+                </a>
+            </td>
+            {{/each}}
+        </tr>
+    </table>
+</div>
+{{/if}}

@@ -15,6 +15,18 @@
         return item;
     }
 
+    function getItemDescription(item) {
+        return DDG.strip_html(item.desc);
+    }
+
+    function getItemAttributes(item) {
+        return DDG.strip_html(item.attrib);
+    }
+
+    function getItemNotes(item) {
+        return DDG.strip_html(item.notes);
+    }
+
     function getItemComponents(item, fullResult) {
         var components = [];
         if (item.components) {
@@ -30,26 +42,43 @@
         return components;
     }
 
-    function getItemDisplayAssets() {
-        return {
-            gold: {
-                image: DDG.getImageProxyURL('http://cdn.dota2.com/apps/dota2/images/tooltips/gold.png'),
-                title: 'Gold'
-            }
-        }
-    }
-
     function createItemReturnObject(item, result) {
+        var infoboxData = [
+            {
+                label: 'Cost',
+                value: item.cost
+            }
+        ];
+
+        if (item.desc) {
+            infoboxData.push({
+                label: 'Description',
+                value: getItemDescription(item)
+            });
+        }
+
+        if (item.attrib) {
+            infoboxData.push({
+                label: 'Attributes',
+                value: getItemAttributes(item)
+            });
+        }
+
+        if (item.notes) {
+            infoboxData.push({
+                label: 'Notes',
+                value: getItemNotes(item)
+            });
+        }
+
         return {
             isItem: true,
-            name: item.dname,
-            description: item.desc,
-            cost: item.cost,
-            notes: item.notes,
-            attributes: item.attrib,
-            components: getItemComponents(item, result),
+            url: '#',
             image: DDG.getImageProxyURL('http://cdn.dota2.com/apps/dota2/images/items/' + item.img),
-            assets: getItemDisplayAssets()
+            title: item.dname,
+            infoboxData: infoboxData,
+            components: getItemComponents(item, result),
+
         };
     }
 
@@ -159,14 +188,9 @@
             returnData = createItemReturnObject(item, api_result);
             sourceUrl = 'https://www.dota2.com/items/';
             template = {
-                group: 'base',
-                detail: false,
-                item_detail: false,
-                variants: {
-                    tile: 'xwide'
-                },
+                group: 'info',
                 options: {
-                    content: Spice.dota2.dota2_item
+                    content: Spice.dota2.dota2_item_components
                 }
             };
         } else {
