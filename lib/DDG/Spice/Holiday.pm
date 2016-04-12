@@ -2,65 +2,74 @@ package DDG::Spice::Holiday;
 
 # ABSTRACT: Query timeanddate.com for a holiday
 
+use strict;
 use DDG::Spice;
-use POSIX qw(strftime);
+use Locale::Country;
 
-triggers start => 'when is', 'when was', 'what day is', 'what day was';
+spice is_cached => 1;
+spice proxy_cache_valid => "200 30d";
+spice wrap_jsonp_callback => 0;
 
 spice from => '([^/]+)/([^/]+)/([^/]+)/([^/]+)';
 spice to => 'http://www.timeanddate.com/scripts/ddg.php?m=whenis&c=$2&q=$3&y=$4&callback={{callback}}';
 
-handle query_lc => sub {
-    return unless ($_);
+my @triggers  = ('when is', 'when was', 'what day is', 'what day was');
+my $countries = join('|', share("countries.txt")->slurp(chomp => 1));
 
-    my ($t, $q, $c, $y);
+triggers start => @triggers;
 
-    if ($_ =~ /\ ?(?:when|what day)\ ?(is|was)/g) {
-        $t = $1;
-        $_ =~ s/\ ?(when|what day)\ ?(is|was)\ ?//g;
-    }
-
-    if (/\s+in\s+(.*)$/p) {
-        # Did the user query for holidays in a specific country?
-        ($q, $c) = (${^PREMATCH}, $1);
-
-        # For cases like "in the usa"
-        $c =~ s/\ ?\bthe\b\ ?//g;
-        $c =~ s/\b(us|usa|america|murica)\b/United States/g;
-    } elsif ($loc && $loc->country_name) {
-        # No - check the country the user is currently in.
-        ($q, $c) = ($_, $loc->country_name);
+handle remainder_lc => sub {    
+	my $query = $_;
+	return unless $query;
+	
+	# Current year and users location are the defaults unless otherwise specified by the query
+    my $defaultYear = (localtime(time))[5] + 1900;
+    my $defaultCountry = $loc->country_name;
+	
+    # Regexes to match components of queries relevant to this IA
+    my $country  = qr/$countries/;
+    my $year     = qr/[1-9]{1}[0-9]{3}/;
+    
+	# Regexes to ignore optional words that can precede the year or country name
+    my $in       = qr/(?:in )?/;
+    my $inThe    = qr/(?:in the |in )?/;
+	
+	my $chosenYear;
+    my $chosenCountry;
+	my $chosenHoliday;
+		
+	$query =~ s/$in(?<year>$year)//;
+    if ($+{year}) {
+        $chosenYear = $+{year};
     } else {
-        # Fallback to US if no country can be determined, that's the
-        # country that has best holiday coverage.
-        ($q, $c) = ($_, 'us');
+        $chosenYear = $defaultYear;
     }
-
-    # Block queries like "a day"
-    return if $q =~ /^[a-z1-9]?\ ?day$/;
-
-    if ($q =~ /([\d]{4})/) {
-        $y = $1;
+	
+	$query =~ s/$inThe(?<country>$country)//;
+    if ($+{country}) {
+        $chosenCountry = $+{country};
     } else {
-        $y = " ";
+        $chosenCountry = $defaultCountry;
     }
-
-    $q =~ s/\ *\d+\ *//g;
-
-    # Kill eventual slashes to avoid misbehaviour of the `spice from'
-    # regular expression.
-    $q =~ s/\///g;
-    $c =~ s/\///g;
-
-    # Translate holidays that timeanddate.com doesn't understand.
-    my %fixups = (
-        "mardi gras" => "shrove tuesday",
-        "new years" => "new years day",
-    );
-
-    map { $q =~ s/$_/$fixups{$_}/ } keys %fixups;
-
-    return $t, $c, $q, $y;
+    
+    # ***todo*** dynamically load a holidays file based on 'country2code($chosenCountry)'
+    my $holidays = join('|', share("gb.txt")->slurp(chomp => 1));
+    
+    $query =~ s/(?<holiday>$holidays)//;
+	if ($+{holiday}) {
+        $chosenHoliday = $+{holiday};
+    } else {
+        return; # Unknown holiday
+    }
+	
+	# If there's anything left in the query we can't be sure its relevant
+    return unless ($query =~ /^\s*$/);
+	
+	# These are the min/max years available from the API (as of Feb 2016, API version 2)
+    return unless ($chosenYear >= 1600 && $chosenYear <= 2400);
+	
+    # ***todo*** remove hardcoded 'is' later
+	return "is", $chosenCountry, $chosenHoliday, $chosenYear; 
 };
 
 1;
