@@ -118,9 +118,9 @@
                                 runrate = inning.s.a.rr,
                                 wicket = inning.s.a.w,
                                 teamid = inning.s.a.i;
-                            $('.score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
+                            $('#' + data.query.results.Scorecard.mid + ' .score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
                             if (data.query.results.Scorecard.ms) {
-                                $('.live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">' + data.query.results.Scorecard.ms + '</span>');
+                                $('#' + data.query.results.Scorecard.mid + ' .live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">' + data.query.results.Scorecard.ms + '</span>');
                             }
                         });
                     }
@@ -134,22 +134,19 @@
 
         function fetchScore(matchid) {
             return $.getJSON(SCORECARD_ENDPOINT.replace("{$1}", matchid)).always(function (data, statusText, xhr) {
-                if (data.query && data.query.results && data.query.results.Scorecard && data.query.results.past_ings) {
-                    var results = data.query.results.past_ings.constructor === Array ? data.query.results.past_ings : [data.query.results.past_ings];
+                if (data.query && data.query.results && data.query.results.Scorecard && data.query.results.Scorecard.past_ings) {
+                    var results = data.query.results.Scorecard.past_ings.constructor === Array ? data.query.results.Scorecard.past_ings : [data.query.results.Scorecard.past_ings];
                     results.map(function (inning) {
                         var run = inning.s.a.r,
                             over = inning.s.a.o,
                             runrate = inning.s.a.rr,
                             wicket = inning.s.a.w,
                             teamid = inning.s.a.i;
-                        $('.score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
+                        $('#' + data.query.results.Scorecard.mid + ' .score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
                         if (data.query.results.Scorecard.ms === "Play in Progress") {
-                            $('.live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">live</span>');
+                            $('#' + data.query.results.Scorecard.mid + ' .live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">live</span>');
                         }
                     });
-                    if (xhr.status === 200 && results.Scorecard.ms !== "Match Ended") {
-                        fetchLiveScore(5000);
-                    }
                 }
             });
         }
