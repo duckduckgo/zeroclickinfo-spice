@@ -38,6 +38,7 @@
                 var shop = item.Shop;
                 var reviewUrl = "https://www.etsy.com/shop/" + shop.shop_name + "/reviews";
                 return {
+                    url: item.url,
                     img: image.url_170x135,
                     img_m: image.url_570xN,
                     heading: item.title,

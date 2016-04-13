@@ -9,7 +9,7 @@ spice proxy_cache_valid => "200 1d";
 
 my $images_projection = join(',', qw(url_170x135 url_570xN));
 my $shop_projection = join(',', qw(shop_name title));
-my $fields = join(',', qw(title currency_code price));
+my $fields = join(',', qw(title currency_code price url));
 my $includes = join(',', (
     "Images($images_projection):1",
     "User(feedback_info)/FeedbackInfo",
