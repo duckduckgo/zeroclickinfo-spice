@@ -16,6 +16,8 @@ my $startend_joined = join "|", @startend_triggers;
 my $start_qr = qr/^($startend_joined)/;
 my $end_qr = qr/($startend_joined)$/;
 
+my $skip_words_qr = qr/google|yahoo|bing|mapquest|fallout|time zone|editor|world|star|search/i;
+
 my @all_triggers = @startend_triggers;
 push @all_triggers, "directions";
 
@@ -28,6 +30,8 @@ my $directions_qr = qr/^(\w+\s)?directions.*\bto\b/;
 triggers any => @all_triggers;
 
 handle query_lc => sub {
+    return if $query_lc =~ $skip_words_qr;
+
     # handle maps/locations queries
     if ($_ =~ $start_qr or $_ =~ $end_qr) {
         # replace trigger words
