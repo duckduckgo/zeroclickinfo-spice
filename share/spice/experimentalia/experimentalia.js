@@ -52,8 +52,7 @@
                     }
                 },
                 normalize: function(item) {
-                    var new_date = new Date(item.date),
-                        m_date = moment(new_date),
+                    var m_date = moment(item.utc_date),
                         rel_date = m_date.fromNow(),
                         creation_date = m_date.format("MMM D, YYYY");
                     
