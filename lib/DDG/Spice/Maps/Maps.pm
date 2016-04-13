@@ -30,16 +30,17 @@ my $directions_qr = qr/^(\w+\s)?directions.*\bto\b/;
 triggers any => @all_triggers;
 
 handle query_lc => sub {
+    my $query_lc = $_;
     return if $query_lc =~ $skip_words_qr;
 
     # handle maps/locations queries
-    if ($_ =~ $start_qr or $_ =~ $end_qr) {
+    if ($query_lc =~ $start_qr or $query_lc =~ $end_qr) {
         # replace trigger words
-        $_ =~ s/$start_qr//g;
-        $_ =~ s/$end_qr//g;
-        $_ = trim ($_);
+        $query_lc =~ s/$start_qr//g;
+        $query_lc =~ s/$end_qr//g;
+        $query_lc = trim ($query_lc);
 
-        return $_ if $_;
+        return $query_lc if $query_lc;
 
         # if there's no remainder, show the user's location
         my $location = $loc->loc_str;
@@ -47,14 +48,14 @@ handle query_lc => sub {
     }
 
     # directions queries
-    if ($_ =~ $directions_qr) {
-        $_ =~ s/$directions_qr//g;
-        $_ = trim ($_);
+    if ($query_lc =~ $directions_qr) {
+        $query_lc =~ s/$directions_qr//g;
+        $query_lc = trim ($query_lc);
 
         # there's a lot of queries like "directions from one place to another"
-        return if $_ eq "another";
+        return if $query_lc eq "another";
 
-        return $_ if $_;
+        return $query_lc if $query_lc;
     }
 
     return;
