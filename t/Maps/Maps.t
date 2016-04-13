@@ -55,6 +55,7 @@ ddg_spice_test(
     'js map array' => undef,
     'google directions' => undef,
     'driving directions from one place to another' => undef,
+    'bing map' => undef,
 );
 
 done_testing;
