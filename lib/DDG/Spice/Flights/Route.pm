@@ -175,7 +175,7 @@ handle query_lc => sub {
     # replace all other non-letters with a space, strip trailing spaces
     s/\b(airport|national|international|intl|regional)\b//g;    
     s/\.//g;
-    s/[^a-z]+/ /g;
+    s/\b[^a-z]+\b/ /g;
     s/\s+$//g;    
 
     # query must be in the form [airline][city][to][city] or [city][to][city][airline]
