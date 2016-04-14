@@ -37,10 +37,8 @@ triggers start => (
     "more words like"
 );
 
-my $regex = qr/^similar to (\w+)$/;
-triggers query_raw => $regex;
-
 handle remainder => sub {
+    return unless /^(.*) (like|to) (\w+)$/
     return lc $_ if $_;
     return;
 };
