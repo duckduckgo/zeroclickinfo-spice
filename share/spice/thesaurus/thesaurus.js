@@ -59,8 +59,8 @@
                 };
                 
                 var result = {
-                    title: query,
-                    subtitle: wordTypeWithMostEntries,                    
+                    title: DDG.capitalize(query),
+                    subtitle: DDG.capitalize(wordTypeWithMostEntries),
                     record_keys : [],
                     record_data : {}
                 };
