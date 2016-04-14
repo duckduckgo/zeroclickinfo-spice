@@ -42,3 +42,8 @@
 .zci--dota2 .hero-ability-icon {
     width: 2.5em;
 }
+
+.zci--dota2 .item-component-icon {
+    width: 3.5em;
+    margin-right: 0.25em;
+}
