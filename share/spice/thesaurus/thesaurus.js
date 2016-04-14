@@ -38,7 +38,7 @@
             name: 'Thesaurus',
             data:  api_result[wordTypeWithMostEntries],
             templates: {
-                group: 'list',
+                group: 'text',
                 options:{
                     content: 'record',
                     moreAt: true
