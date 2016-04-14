@@ -20,7 +20,12 @@
     }
 
     function getItemAttributes(item) {
-        return DDG.strip_html(item.attrib);
+        var attributes = [];
+        $.each(item.attrib.split("<br />"), function(index, value) {
+            attributes.push(DDG.strip_html(value));
+        });
+
+        return attributes;
     }
 
     function getItemNotes(item) {
@@ -50,24 +55,17 @@
             }
         ];
 
-        if (item.desc) {
-            infoboxData.push({
-                label: 'Description',
-                value: getItemDescription(item)
-            });
-        }
-
         if (item.attrib) {
             infoboxData.push({
                 label: 'Attributes',
-                value: getItemAttributes(item)
-            });
-        }
-
-        if (item.notes) {
-            infoboxData.push({
-                label: 'Notes',
-                value: getItemNotes(item)
+                value: ''
+            })
+            var infoboxAttribs = [];
+            $.each(getItemAttributes(item), function(index, value) {
+                infoboxData.push({
+                    label: value,
+                    value: ''
+                })
             });
         }
 
@@ -76,6 +74,7 @@
             url: '#',
             image: DDG.getImageProxyURL('http://cdn.dota2.com/apps/dota2/images/items/' + item.img),
             title: item.dname,
+            description: getItemDescription(item),
             infoboxData: infoboxData,
             components: getItemComponents(item, result),
 
