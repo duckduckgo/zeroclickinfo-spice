@@ -38,7 +38,7 @@ triggers start => (
 );
 
 handle remainder => sub {
-    return unless /^(.*) (like|to) (\w+)$/
+    return unless /^(.*) (like|to) (\w+)$/;
     return lc $_ if $_;
     return;
 };
