@@ -8,7 +8,7 @@
         
         Spice.add({
             id: "piratetalk",
-            name: "Talk like a Pirate!",
+            name: "Answer",
             data: {
                 title:api_result.translation,
             },
