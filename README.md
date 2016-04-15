@@ -4,9 +4,9 @@
 
 ![](http://docs.duckduckhack.com/assets/hack search engine.png)
 
-**We're a community of people creating our own search results, using existing APIs, external data sets, or just plain code.**
+**We're a community dedicated to making delightful search results for everyone. We do this using existing APIs, external data sets, or just some well-placed code.**
 
-*Instant Answers* appear on DuckDuckGo.com above ads and organic links, on [millions of searches](https://duckduckgo.com/traffic.html). Instant Answers are created by an open source community of developers [around the world](http://duckduckgo.meetup.com/) like you. Welcome!
+*Instant Answers* appear on DuckDuckGo.com above ads and organic links, on [millions of searches](https://duckduckgo.com/traffic.html). Instant Answers are created by an open source community of developers [around the world](http://duckduckgo.meetup.com/) like yourself. Welcome!
 
 *You can find the [full documentation here](http://docs.duckduckhack.com).*
 
@@ -18,7 +18,7 @@ The best way to learn about Instant Answers is to dive in with a walkthrough:
 - Learn how to turn an [external API into delightful search results](http://docs.duckduckhack.com/walkthroughs/forum-lookup.html)
 - Create a [cheat sheet for a favorite topic](http://docs.duckduckhack.com/walkthroughs/programming-syntax.html)
 
-We also welcome new contributors to start by fixing existing Instant Answers:
+We also welcome new contributors to learn by improving existing Instant Answers:
 
 - Tackle some of the "low-hanging fruit" and, "high priority" issues on our [Live Issues Page](https://duck.co/ia/dev/issues?tag=lowhangingfruit)
 - Help other DuckDuckHackers with their [Instant Answers in development](https://duck.co/ia/dev/pipeline)
