@@ -12,10 +12,11 @@ spice wrap_jsonp_callback => 1;
 
 triggers query_lc => qr/^(?<match>\X)$|^(\X+|[\w\s]+?) gifs?$/;
 
+my @emojis = map { chomp $_; $_ } share('emoji_sources.txt')->slurp;
+my $emoji_regex = join '|', @emojis;
+
 handle query_lc => sub {
     return if !$_ || $_ =~ /^[a-zA-Z0-9]$/;
-    my @emojis = map { chomp $_; $_ } share('emoji_sources.txt')->slurp;
-    my $emoji_regex = join '|', @emojis;
     return if defined $+{match} && $+{match} !~ qr#$emoji_regex#i;
     return $_;
 };
