@@ -79,6 +79,8 @@
                         subtitles.push({ href: "/?q=xkcd+"+(item.num+1), text: "Next" });
                     }
                     
+                    subtitles.push({ href: "/?q=xkcd+"+item.random_xkcd_number, text: "Random" });
+                    
                     subtitles.push({ href: "http://www.explainxkcd.com/wiki/index.php/"+item.num, text: "Explain it!" });
                     
                     return {
