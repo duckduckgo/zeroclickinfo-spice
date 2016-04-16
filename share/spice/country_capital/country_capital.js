@@ -27,7 +27,7 @@
                 sourceUrl: 'https://en.wikipedia.org/w/index.php?search=' + api_result.capital
             },
             templates: {
-                group: 'base',
+                group: 'text',
                 options: {
                     content: Spice.country_capital.content,
                     moreAt: true

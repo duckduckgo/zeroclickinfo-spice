@@ -17,7 +17,7 @@ spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callb
 spice to => 'http://countryapi.herokuapp.com/capital/$1';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers any => 'country capital', 'what is the capital of', 'capital of', 'capital';
+triggers startend  => 'country capital', 'what is the capital of', 'capital of', 'capital';
 
 # Handle statement
 handle remainder => sub {
