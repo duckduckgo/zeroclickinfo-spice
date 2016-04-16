@@ -1,0 +1,14 @@
+.zci__body h3 {
+    font-size: 2.0em;
+    font-weight: 400;
+    color: #3f3f3f;
+    quotes: "“" "”";
+}
+.zci__body h3:before {
+    color: #3f3f3f;
+    content: open-quote;
+    float: left;
+    font-size: 3.0em;
+    margin-top: -0.25em;
+    margin-right: 0.1em;
+}

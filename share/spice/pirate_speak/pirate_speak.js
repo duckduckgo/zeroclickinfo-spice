@@ -20,6 +20,10 @@
             
             templates: {
                 group: 'text',
+                options: {
+                    pirate_speak: Spice.pirate_speak.pirate_speak,
+                    moreAt: true
+                }
             }
         });
     };
