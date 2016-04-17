@@ -14,7 +14,7 @@ spice proxy_cache_valid => "200 1d"; # defaults to this automatically
 spice wrap_jsonp_callback => 1; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
 
 # API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
-spice to => 'http://countryapi.herokuapp.com/capital/$1';
+spice to => 'http://countryinfo-countryfact.rhcloud.com/capital/$1';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
 triggers startend  => 'country capital', 'what is the capital of', 'capital of', 'capital';
