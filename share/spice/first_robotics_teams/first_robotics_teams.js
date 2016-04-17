@@ -19,6 +19,10 @@
             };
         }
         
+        function getLastCompeted(api_result.team_number) {
+            
+        }
+        
         Spice.add({
             id: 'first_robotics_teams',
             name: 'Reference',
