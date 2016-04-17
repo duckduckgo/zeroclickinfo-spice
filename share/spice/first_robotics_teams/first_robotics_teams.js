@@ -11,7 +11,7 @@
             content: 'record',
             moreAt: true
         };
-        
+
         if (api_result.website && api_result.website != null) {
             template_options.moreText = {
                 text: 'Team website',
@@ -19,28 +19,31 @@
             };
         }
         
-        // Same for the motto
-        var team_data = {
-            'Full name': api_result.name,
-            'Location': api_result.location,
-            'Rookie Year': api_result.rookie_year
-        };
-        
-        if (api_result.motto && api_result.motto != null) {
-            team_data['Motto'] = api_result.motto;
-        }
-        
         Spice.add({
             id: 'first_robotics_teams',
             name: 'Reference',
-            data: {
-                title: 'FIRST Robotics Competition Team ' + api_result.team_number,
-                subtitle: api_result.nickname,
-                record_data: team_data
-            },
+            data: api_result,
             meta: {
                 sourceName: 'The Blue Alliance',
                 sourceUrl: 'https://www.thebluealliance.com/team/' + api_result.team_number
+            },
+            normalize: function(item) {
+                var team_data = {
+                    'Full name': item.name,
+                    'Location': item.location,
+                    'Rookie Year': item.rookie_year
+                };
+                
+                // Remove space for motto if none is provided
+                if (item.motto && item.motto != null) {
+                    team_data['Motto'] = item.motto;
+                }
+                
+                return {
+                    title: 'FIRST Robotics Competition Team ' + item.team_number,
+                    subtitle: item.nickname,
+                    record_data: team_data
+                };
             },
             templates: {
                 group: 'list',
