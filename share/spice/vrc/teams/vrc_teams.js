@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
     env.ddg_spice_vrc_teams = function(team_data) {
-        if (!team_data || team_data.status !== 1 || team_data.size === 0 || team_data.result[0].is_registered === "0") {
+        if (!team_data || team_data.status !== 1 || team_data.size === 0) {
             return Spice.failed('vrc_teams');
         }
 
