@@ -1,5 +1,11 @@
 (function (env) {
+    
     "use strict";
+    // Prevent jQuery from appending timestamp to URL
+    $.ajaxSetup({ cache: true });
+    
+    env.ddg_spice_first_robotics_teams_years_competed
+    
     env.ddg_spice_first_robotics_teams = function(api_result) {
 
         if (!api_result || api_result.error || api_result.length === 0 || !api_result.name) {
