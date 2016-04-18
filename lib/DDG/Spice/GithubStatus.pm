@@ -5,7 +5,12 @@ use strict;
 use DDG::Spice;
 use Text::Trim;
 
-triggers startend => 'github';
+triggers start => "github status", "github system status";
+
+handle remainder => sub {
+    return if $_; #
+    return '';
+};
 
 spice to => 'https://status.github.com/api/last-message.json?callback={{callback}}';
 spice proxy_cache_valid => "418 1d";
