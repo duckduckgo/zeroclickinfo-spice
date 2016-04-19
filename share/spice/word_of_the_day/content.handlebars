@@ -1,0 +1,15 @@
+<h3>
+    <span class="zci__def__word text--primary">{{word}}</span>
+</h3>
+
+<ul>
+{{#definitions}}
+    <li>
+        <div class="zci__def__part-of-speech">{{Dictionary_formatPartOfSpeech partOfSpeech}}</div>
+        <div class="zci__def__definition">{{{Dictionary_formatDefinition text}}}</div>
+    </li>
+{{/definitions}}
+</ul>
+<div class="zci__def__links">
+    {{{moreAt meta.sourceUrl meta.sourceName}}}
+</div>

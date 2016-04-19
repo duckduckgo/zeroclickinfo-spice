@@ -29,7 +29,9 @@ ddg_spice_test(
     ),
 
     'coupons' => undef,
-    'free deals' => undef
+    'free deals' => undef,
+    'retailmenot coupons' => undef,
+    'amazon discount' => undef
 );
 
 done_testing;

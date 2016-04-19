@@ -3,7 +3,7 @@ package DDG::Spice::InEveryLang;
 
 use strict;
 use DDG::Spice;
-use JSON;
+use JSON::MaybeXS;
 
 my $json = JSON->new;
 my $languages_raw = share('languages.json')->slurp;
