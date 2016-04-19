@@ -1,23 +1,23 @@
-.zci--septa .tile--septa {
+.zci--transit_septa .tile--transit_septa {
     text-align: center;
     width: 13em;
 }
 
-.tile--septa .septa__time {
+.tile--transit_septa .transit_septa__time {
     font-size: 2.3em;
     font-weight: 300;
 }
 
-.tile--septa .septa__details {
+.tile--transit_septa .transit_septa__details {
     margin-top: 5px;
     margin-bottom: 10px;
 }
 
-.tile--septa .septa__status-sep {
+.tile--transit_septa .transit_septa__status-sep {
     height: 12px;
 }
 
-.tile--septa .septa__sep-line {
+.tile--transit_septa .transit_septa__sep-line {
     background-color: #e1e1e1;
     height: 1px;
     width: 30px;
@@ -27,12 +27,12 @@
     display: inline-block;
 }
 
-.tile--septa .septa__status {
+.tile--transit_septa .transit_septa__status {
     margin-top: 10px;
     margin-bottom: 2px;
 }
 
-.tile--septa .septa__badge {
+.tile--transit_septa .transit_septa__badge {
     background-color: #60AE50;
     height: 12px;
     border-radius: 6px;
@@ -40,21 +40,21 @@
     display: inline-block;
 }
 
-.tile--septa .septa__delayed {
+.tile--transit_septa .transit_septa__delayed {
     background-color: #eea43e;
 }
 
-.tile--septa .septa__cancelled {
+.tile--transit_septa .transit_septa__cancelled {
     background-color: #e34c2d;
 }
 
-.tile--septa .septa__cancelled-tile {
+.tile--transit_septa .transit_septa__cancelled-tile {
     background-color: #fafafa;
     border-color: #fafafa;
 }
 
-.tile--septa .septa__cancelled-tile .septa__time,
-.tile--septa .septa__cancelled-tile .septa__details,
-.tile--septa .septa__cancelled-tile .septa__status {
+.tile--transit_septa .transit_septa__cancelled-tile .transit_septa__time,
+.tile--transit_septa .transit_septa__cancelled-tile .transit_septa__details,
+.tile--transit_septa .transit_septa__cancelled-tile .transit_septa__status {
     color: #bbb;
 }

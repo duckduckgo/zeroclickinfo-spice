@@ -1,27 +1,27 @@
-.zci--njt .tile--njt {
+.zci--transit_njt .tile--transit_njt {
     text-align: center;
     width: 13em;
 }
 
-.is-mobile .zci--njt .tile--njt {
+.is-mobile .zci--transit_njt .tile--transit_njt {
     width: 12.25em;
 }
 
-.tile--njt .njt__time {
+.tile--transit_njt .transit_njt__time {
     font-size: 2.3em;
     font-weight: 300;
 }
 
-.tile--njt .njt__details {
+.tile--transit_njt .transit_njt__details {
     margin-top: 5px;
     margin-bottom: 10px;
 }
 
-.tile--njt .njt__status-sep {
+.tile--transit_njt .transit_njt__status-sep {
     height: 12px;
 }
 
-.tile--njt .njt__sep-line {
+.tile--transit_njt .transit_njt__sep-line {
     background-color: #e1e1e1;
     height: 1px;
     width: 30px;
@@ -31,12 +31,12 @@
     display: inline-block;
 }
 
-.tile--njt .njt__status {
+.tile--transit_njt .transit_njt__status {
     margin-top: 10px;
     margin-bottom: 2px;
 }
 
-.tile--njt .njt__badge {
+.tile--transit_njt .transit_njt__badge {
     background-color: #e0e0e0;
     height: 12px;
     border-radius: 6px;
@@ -44,33 +44,33 @@
     display: inline-block;
 }
 
-.tile--njt .njt__delayed {
+.tile--transit_njt .transit_njt__delayed {
     background-color: #eea43e;
 }
 
-.tile--njt .njt__boarding {
+.tile--transit_njt .transit_njt__boarding {
     background-color: #60ae50;
 }
 
-.tile--njt .njt__cancelled {
+.tile--transit_njt .transit_njt__cancelled {
     background-color: #e34c2d;
 }
 
-.tile--njt .njt__cancelled-tile {
+.tile--transit_njt .transit_njt__cancelled-tile {
     background-color: #fafafa;
     border-color: #fafafa;
 }
 
-.tile--njt .njt__bold-status {
+.tile--transit_njt .transit_njt__bold-status {
     font-weight: bold;
 }
 
-.tile--njt .njt__cancelled-tile .njt__time,
-.tile--njt .njt__cancelled-tile .njt__details,
-.tile--njt .njt__cancelled-tile .njt__status {
+.tile--transit_njt .transit_njt__cancelled-tile .transit_njt__time,
+.tile--transit_njt .transit_njt__cancelled-tile .transit_njt__details,
+.tile--transit_njt .transit_njt__cancelled-tile .transit_njt__status {
     color: #bbb;
 }
 
-.tile--njt .njt__no-track {
+.tile--transit_njt .transit_njt__no-track {
     color: #aaa;
 }

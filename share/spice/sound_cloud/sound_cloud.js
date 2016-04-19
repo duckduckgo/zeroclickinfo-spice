@@ -24,7 +24,7 @@
             id: 'sound_cloud',
             name: 'Audio',
             data: api_result,
-            signal: 'high',
+            signal: 'medium',
             meta: {
                 sourceName: 'SoundCloud',
                 sourceUrl: 'https://soundcloud.com/search?q=' + query,
