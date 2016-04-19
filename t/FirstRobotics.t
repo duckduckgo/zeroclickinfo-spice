@@ -9,16 +9,16 @@ spice is_cached => 1;
 
 sub build_structured_answer {
     my $name = shift;
-    my $url = '/js/spice/first_robotics_teams/' . $name;
+    my $url = '/js/spice/first_robotics/team_info/' . $name;
     return $url,
         call_type => 'include',
-        caller => 'DDG::Spice::FirstRoboticsTeams'
+        caller => 'DDG::Spice::FirstRobotics::TeamInfo'
 }
 
 sub build_test { test_spice(build_structured_answer(@_)) }
 
 ddg_spice_test(
-    [qw( DDG::Spice::FirstRoboticsTeams)],
+    [qw( DDG::Spice::FirstRobotics::TeamInfo )],
 
     'frc team 885'                                  => build_test('885'),
     '800 frc team'                                  => build_test('800'),

@@ -1,4 +1,4 @@
-package DDG::Spice::FirstRoboticsTeams;
+package DDG::Spice::FirstRobotics::TeamInfo;
 
 # ABSTRACT: Get info on teams in the FIRST Robotics Competition
 
@@ -18,7 +18,7 @@ spice alt_to => {
         proxy_cache_valid => "200 1d",
         to => 'https://www.thebluealliance.com/api/v2/team/frc$1/years_participated?X-TBA-App-Id=duckduckgo:search-engine:1'
     }
-}
+};
 
 triggers any => 'frc', 'frc team', 'first robotics team', 'first robotics competition';
 
