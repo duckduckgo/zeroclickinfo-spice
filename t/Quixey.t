@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Test::More;
 use DDG::Test::Spice;
-use JSON;
+use JSON::MaybeXS;
 use URI::Escape;
 
 # PASSING TESTS

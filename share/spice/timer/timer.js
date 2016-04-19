@@ -510,7 +510,7 @@ License: CC BY-NC 3.0 http://creativecommons.org/licenses/by-nc/3.0/
                 e.preventDefault();
 
                 // create new timer and insert it before the add button
-                addTimer();
+                addTimer(0);
             });
         }
 

@@ -3,7 +3,7 @@ package DDG::Spice::Transit::SEPTA;
 
 use strict;
 use DDG::Spice;
-use YAML 'LoadFile';
+use YAML::XS 'LoadFile';
 
 spice to => 'http://www3.septa.org/hackathon/NextToArrive/$1/$2/5/';
 spice from => '(.*)/(.*)';
