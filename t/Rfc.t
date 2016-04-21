@@ -19,7 +19,7 @@ ddg_spice_test(
     ),
     # Try to include some examples of queries on which it might
     # appear that your answer will trigger, but does not.
-    'rfc kljfasdf2ldfsaj' => test_spce(
+    'rfc kljfasdf2ldfsaj' => test_spice(
         '/js/spice/rfc/kljfasdf2ldfsaj',
         call_type => 'include',
         caller => 'DDG::Spice::Rfc'
