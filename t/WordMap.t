@@ -20,6 +20,7 @@ ddg_spice_test(
         '/js/spice/word_map/sound',
         caller    => 'DDG::Spice::WordMap',
     ),
+    'similar to multi word query' => undef,
 );
 
 done_testing;
