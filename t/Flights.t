@@ -106,6 +106,12 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Flights::Route'
     ),
+    
+    'Jetblue flights from JFK to Boston' => test_spice(
+        "/js/spice/flights/route/JBU/JFK/BOS/JFK/BOS/$year/$month/$dayOfMonth/$hour/jfk/boston",
+        call_type => 'include',
+        caller => 'DDG::Spice::Flights::Route',
+    ),
 
     # --- these queries should not trigger the IA
 
