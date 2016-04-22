@@ -128,7 +128,7 @@ ddg_spice_test(
     # Things that should probably work but it doesn't at the moment.
     'ppc ftc 400' => undef,
     '499 nmc = ? usd' => undef,
-    
+    '500 etherium in btc' => undef, 
     'convert religion' => undef,
     'what is a cow' => undef,
     'usda loans' => undef,
