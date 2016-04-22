@@ -9,7 +9,7 @@
         // Display
         Spice.add({
             id: "sales_tax",
-            name: "Finance",
+            name: "Answer",
             data: api_result.stateSalesTaxInfos,
             meta: {
                 //itemType: "Results",

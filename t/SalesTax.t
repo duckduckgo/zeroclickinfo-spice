@@ -37,15 +37,8 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::SalesTax',
     ),
-    'sales tax in japan' => test_spice(
-        '/js/spice/sales_tax/',
-        call_type => 'include',
-        caller => 'DDG::Spice::SalesTax',
-    ),
-    'what is the sales tax in china' => test_spice(
-        '/js/spice/sales_tax/',
-        call_type => 'include',
-        caller => 'DDG::Spice::SalesTax',
-    )
-);    
+   'sales tax in japan' => undef,
+   'what is the sales tax in china' => undef,
+   'sales tax in connecticut what is' => undef
+  );    
 done_testing;
