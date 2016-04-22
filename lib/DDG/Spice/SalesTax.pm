@@ -16,7 +16,7 @@ my $US = new Locale::SubCountry("US");
 # Handle statement
 handle remainder_lc => sub {
 
-    return unless $loc && $loc->{country_code} eq 'US'; 
+    return unless $loc && $loc->{country_code} eq 'US';
 
     my ($state, $stateCode); #Define vars
     s/^what is (the)?//g; # strip common words
