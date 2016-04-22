@@ -6,15 +6,15 @@
   <div class="tile__flightID text--primary tx--16">
     {{departing.airport.fs}} to {{arriving.airport.fs}}
   </div>
-  <div class="tx-clr--dk2">
+  <div class="tx-clr--dk2 tx--13">
     <span class="tile__status tx-{{statusColor}}">
       {{status}}
-  </span> {{#unless is_cancelled}}&ndash; {{status_text}} {{datetime}}{{#if delay_time}} (+{{delay_time}}){{/if}}{{/unless}}
+    </span> {{#unless is_cancelled}}&ndash; {{status_text}} {{datetime}}{{#if delay_time}} (+{{delay_time}}){{/if}}{{/unless}}
   </div>
 </div>
 
 <div class="progress__bar bg-clr--platinum-light">
-	<div class="progress__complete bg-{{statusColor}}" style="width: {{progress_percent}}%;"></div>
+	<div class="progress__complete bg-{{statusColor}}" style="width: {{scheduled_progress_percent}}%;"></div>
     {{#if has_arrived}}
         <!-- progress dot not displayed -->
     {{else}}
