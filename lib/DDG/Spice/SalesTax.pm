@@ -20,8 +20,8 @@ handle remainder_lc => sub {
 
     my ($state, $stateCode); #Define vars
     s/^what is (the)?//g; # strip common words
-    return '' unless $_; # Guard against "no answer"
-    if ($_ =~ /^[0-9]{5}$/){
+    return unless $_; # Guard against "no answer"
+   if ($_ =~ /^[0-9]{5}$/){
       return;
     }
 
@@ -45,8 +45,8 @@ handle remainder_lc => sub {
     }
 
     # error checking
-    return '' if $state eq "unknown";
-    return '' unless (defined $state and $stateCode);
+    return if $state eq "unknown";
+    return unless (defined $state and $stateCode);
     return $stateCode; # return result
 };
 1;
