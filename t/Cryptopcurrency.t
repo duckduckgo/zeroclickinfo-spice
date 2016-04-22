@@ -83,12 +83,12 @@ ddg_spice_test(
         caller => 'DDG::Spice::Cryptocurrency',
     ),
     'etherium to jpy' => test_spice(
-        '/js/spice/cryptocurrency/ticker/etherium-jpy/1',
+        '/js/spice/cryptocurrency/ticker/eth-jpy/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
     'ethereum to ltc' => test_spice(
-        '/js/spice/cryptocurrency/ticker/ethereum-ltc/1',
+        '/js/spice/cryptocurrency/ticker/eth-ltc/1',
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
