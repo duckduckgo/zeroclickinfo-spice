@@ -12,11 +12,7 @@
             name: "Answer",
             data: api_result.stateSalesTaxInfos,
             meta: {
-                //itemType: "Results",
-                //searchTerm: api_result.query,
                 sourceName: "Wikipedia",
-                //sourceIcon: false,
-                //sourceIconUrl: "http://snapcx.io/favicon.ico",
                 sourceUrl: "https://en.wikipedia.org/wiki/Sales_taxes_in_the_United_States#By_jurisdiction"
             },
             normalize: function(item) {
@@ -27,7 +23,6 @@
                 maxTaxRate  = (item.maximumTaxRate * 100).toFixed(2) +"%";
                 noTaxState  = item.noTaxState;
                 titleResult = stateName;
-                //console.log("Title is "+titleResult);
 
                 if (noTaxState === false) {
                     if (minTaxRate === maxTaxRate) {
@@ -51,14 +46,11 @@
                       href: 'https://snapcx.io/salesTax', 
                       text: 'Data by snapCX' 
                     }
-
                 },
                  variants: {
                   tileSnippet: 'small'
                 }   
-                //detail: false,
-                //item_detail: false
-            }
+           }
         });
     }
 }(this));
