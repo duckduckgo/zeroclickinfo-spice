@@ -52,7 +52,8 @@
                   var subtitleResult = "";
                   for (var dt = 0; dt < dates.length; dt++) {
                       if (dt > 0) subtitleResult += ", ";
-                      subtitleResult += moment(dates[dt]).format("MMM DD, YYYY"); 
+                      //subtitleResult += moment(dates[dt]).format("MMM DD, YYYY"); 
+                      subtitleResult += moment(dates[dt]).format("DD MMM YYYY"); 
                   }  
                 }
                                 
