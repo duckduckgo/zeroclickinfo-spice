@@ -40,5 +40,5 @@ ddg_spice_test(
     'sales tax in japan'               => undef,
     'what is the sales tax in china'   => undef,
     'sales tax in connecticut what is' => undef
-  );    
+  );
 done_testing;

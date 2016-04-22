@@ -35,7 +35,7 @@
                 }
                 return {
                     title: titleResult,
-                    description: subtitleResult                    
+                    description: subtitleResult
                 };
             },
             templates: {
@@ -43,7 +43,7 @@
                 options: {
                     moreAt: true,
                     moreText: { 
-                      href: 'https://snapcx.io/salesTax', 
+                      href: 'https://snapcx.io/salesTax',
                       text: 'Data by snapCX' 
                     }
                 },
