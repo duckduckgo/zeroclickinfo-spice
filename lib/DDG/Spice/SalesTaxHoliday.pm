@@ -14,7 +14,7 @@ my $US = new Locale::SubCountry("US");
 handle remainder_lc => sub {
     my ($stateCode); #Define vars
     s/^what is (the)?//g; # strip common words
-    return '' unless $_; # Guard against "no answer"
+    return unless $_; # Guard against "no answer"
     
 #   return $_ if $_ =~ /^[0-9]{5}$/; #Still thinking, whether to filter or not.
     
@@ -29,8 +29,8 @@ handle remainder_lc => sub {
         }
     }
     # error checking
-    return '' unless (defined $stateCode);
-    return '' if $stateCode eq "unknown";
+    return unless (defined $stateCode);
+    return if $stateCode eq "unknown";
     return uc $stateCode; # return result
 };
 1;

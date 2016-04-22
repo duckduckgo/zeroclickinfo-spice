@@ -34,7 +34,7 @@
                 sourceName: "snapCX",
                 sourceIcon: false,
                 sourceIconUrl: "http://snapcx.io/favicon.ico",
-                sourceUrl: "https://snapcx.io"
+                sourceUrl: "https://snapcx.io/salesTax"
             },
             normalize: function(item) {
                 var stateName   = item.stateName;

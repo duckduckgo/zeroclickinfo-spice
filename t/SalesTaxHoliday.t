@@ -32,16 +32,12 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::SalesTaxHoliday',
     ),
-   'sales tax holiday for MOO' => test_spice(
-        '/js/spice/sales_tax_holiday/',
-        call_type => 'include',
-        caller => 'DDG::Spice::SalesTaxHoliday',
-    ),
-
     # Try to include some examples of queries on which it might
     # appear that your answer will trigger, but does not.
     'bad example query' => undef,
+   'sales tax holiday for MOO' => undef,
+   'holiday tax in NY' => undef,
+   'holiday sales tax in washingtondc' => undef,
+   'free sales tax in PA' => undef
 );
-
 done_testing;
-
