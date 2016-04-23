@@ -72,7 +72,9 @@ ddg_spice_test(
     ),
 
     'when is day' => undef,
-    'when is a day' => undef
+    'when is a day' => undef,
+    'when is california primary' => undef,
+    'when is the june primary' => undef
 );
 
 done_testing;
