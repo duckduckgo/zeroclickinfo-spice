@@ -98,7 +98,7 @@
             });
             
             if (is_mobile) {
-                $('.c-base__sub .sep').first().replaceWith("<br>");
+                $('.zci--xkcd .c-base__sub .sep').first().replaceWith("<br>");
             }
         });
         
