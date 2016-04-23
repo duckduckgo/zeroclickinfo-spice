@@ -1,0 +1,11 @@
+.zci--medium_article .inline{
+    display:inline-block;   
+}
+
+.zci--medium_article .metatext{
+    width: 80%;   
+}
+
+.tile--medium_article .tile__body.has-foot {
+	height: 14em;
+}
