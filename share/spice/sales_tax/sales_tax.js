@@ -22,20 +22,20 @@
                 minTaxRate  = (item.minimumTaxRate * 100).toFixed(2) +"%";
                 maxTaxRate  = (item.maximumTaxRate * 100).toFixed(2) +"%";
                 noTaxState  = item.noTaxState;
-                titleResult = stateName;
+                subtitleResult = stateName+" - Sales Tax";
 
                 if (noTaxState === false) {
                     if (minTaxRate === maxTaxRate) {
-                        subtitleResult = "Sales Tax is "+minTaxRate;
+                        titleResult = minTaxRate;
                     } else {
-                        subtitleResult = "Sale Tax ranges from "+minTaxRate+" to "+maxTaxRate;
+                        titleResult = minTaxRate+" to "+maxTaxRate;
                     }
                 } else {
-                    subtitleResult = "No sales tax";
+                    titleResult = "No sales tax";
                 }
                 return {
                     title: titleResult,
-                    description: subtitleResult
+                    subtitle: subtitleResult
                 };
             },
             templates: {

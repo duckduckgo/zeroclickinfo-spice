@@ -16,15 +16,18 @@ my $US = new Locale::SubCountry("US");
 # Handle statement
 handle remainder_lc => sub {
 
-    return unless $loc && $loc->{country_code} eq 'US';
+# No need to check loc, as this IA will run for users of USA only. I am still keeping commented out code as FYI.
+#    return unless $loc && $loc->{country_code} eq 'US';
 
     my ($state, $stateCode); #Define vars
     s/^what is (the)?//g; # strip common words
     return unless $_; # Guard against "no answer"
+    
+   # Guard against, to sending zipcodes as parameters. We have different IA. 
    if ($_ =~ /^[0-9]{5}$/){
       return;
     }
-
+    # Guard against, sales tax holiday. We have different IA.
     if ($_ =~ /((?i)holiday)/){
       return;
     }
