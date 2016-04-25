@@ -11,7 +11,7 @@ spice proxy_cache_valid => "200 1d";
 
 spice wrap_jsonp_callback => 1;
 
-spice to => 'http://api.emojipedia.org/emojis/$1?api_key={{ENV{DDG_SPICE_EMOJIPEDIA_APIKEY}}}&format=json';
+spice to => 'http://api.emojipedia.org/emojis/$1/?api_key={{ENV{DDG_SPICE_EMOJIPEDIA_APIKEY}}}&format=json';
 
 my $emoji_pattern = share("emoji_regex.txt")->slurp(iomode => '<:encoding(UTF-8)');
 my $trigger_regex = qr/^(?:${emoji_pattern}(?:\s+(emoji|emojipedia|meaning))?)|(?:emojipedia\s+${emoji_pattern})$/;
