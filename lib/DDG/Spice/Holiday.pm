@@ -38,6 +38,9 @@ handle query_lc => sub {
 
     # Block queries like "a day"
     return if $q =~ /^[a-z1-9]?\ ?day$/;
+    
+    # Block queries like "california primary"
+    return if $q =~ /primary/;
 
     if ($q =~ /([\d]{4})/) {
         $y = $1;
