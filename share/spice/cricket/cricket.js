@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
-    var SCORECARD_ENDPOINT = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20cricket.scorecard%20where%20match_id%3D{$1}&format=json&env=store%3A%2F%2F0TxIGQMQbObzvU4Apia0V0&callback=',
-        LIVE_SCORECARD_ENDPOINT = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20cricket.scorecard.live&format=json&env=store%3A%2F%2F0TxIGQMQbObzvU4Apia0V0&callback=';
+    var SCORECARD_ENDPOINT = '/js/spice/scorecard/',
+        LIVE_SCORECARD_ENDPOINT = '/js/spice/live/';
     env.ddg_spice_cricket = function (api_result) {
         // Validate the response (customize for your Spice)
         if (!api_result || api_result.error || !api_result.query.results) {
@@ -59,15 +59,18 @@
                 onItemShown: function (item) {
                     item.teams.map(function (team, i) {
                         $.ajax({
-                            url: DDG.get_asset_path('cricket', "assets/" + team.teamid + ".png"),
+                            url: DDG.get_asset_path('cricket', "assets/" + team.teamid + ".svg"),
                             type: 'get',
                         }).always(function (data, statusText, xhr) {
                             // Check if team logo exists
-                            if (xhr.status === 200 && xhr.getResponseHeader('content-type') == "image/png") {
-                                team.logo = DDG.get_asset_path('cricket', "assets/" + team.teamid + ".png");
+                            if (xhr.status === 200) {
+                                team.logo = DDG.get_asset_path('cricket', "assets/" + team.teamid + ".svg");
                                 //TODO: need a better way
                                 item.set("teams." + i, item.teams);
                             } else {
+                                team.logo = DDG.get_asset_path('cricket', "assets/" + team.teamid + ".png");
+                                //TODO: need a better way
+                                item.set("teams." + i, item.teams);
                             }
                         });
                         return team;
@@ -133,7 +136,7 @@
         }
 
         function fetchScore(matchid) {
-            return $.getJSON(SCORECARD_ENDPOINT.replace("{$1}", matchid)).always(function (data, statusText, xhr) {
+            return $.getJSON(SCORECARD_ENDPOINT + matchid).always(function (data, statusText, xhr) {
                 if (data.query && data.query.results && data.query.results.Scorecard && data.query.results.Scorecard.past_ings) {
                     var results = data.query.results.Scorecard.past_ings.constructor === Array ? data.query.results.Scorecard.past_ings : [data.query.results.Scorecard.past_ings];
                     results.map(function (inning) {
