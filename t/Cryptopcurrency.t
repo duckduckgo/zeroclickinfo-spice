@@ -92,6 +92,16 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Cryptocurrency',
     ),
+    'ethereum coin to ltc' => test_spice(
+        '/js/spice/cryptocurrency/ticker/eth-ltc/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
+    'etherium to ltc' => test_spice(
+        '/js/spice/cryptocurrency/ticker/eth-ltc/1',
+        call_type => 'include',
+        caller => 'DDG::Spice::Cryptocurrency',
+    ),
     # Plural names of coins
     'What is nxt in litecoins?' => test_spice(
         '/js/spice/cryptocurrency/ticker/nxt-ltc/1',
