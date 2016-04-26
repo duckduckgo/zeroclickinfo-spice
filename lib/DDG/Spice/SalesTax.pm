@@ -16,7 +16,7 @@ my $US = new Locale::SubCountry("US");
 # Handle statement
 handle remainder_lc => sub {
 
-# No need to check loc, as this IA will run for users of USA only. I am still keeping commented out code as FYI.
+# No need to check US country, as this IA will run for all international users. I am still keeping commented out code as FYI.
 #    return unless $loc && $loc->{country_code} eq 'US';
 
     my ($state, $stateCode); #Define vars
