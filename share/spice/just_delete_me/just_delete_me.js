@@ -13,7 +13,9 @@
             return Spice.failed('just_delete_me');
         }
         var matchPartial = function(item) {
-            return (item.name.toLowerCase().includes(this) || item.domains.some(domain => domain.includes(this)));
+            var that = this;
+            return (item.name.toLowerCase().includes(this) || 
+                    item.domains.some(function(domain) { return domain.includes(this); }, that));
         }
         function normalizeDomains(api_result) {
             for (var i=0;i<api_result.length; i++) {
@@ -27,11 +29,11 @@
             }
         }
         function filterResults(api_result) {
-            var results = api_result.filter(item => item.name.toLowerCase() === decodedQuery); // check for exact match by name
+            var results = api_result.filter(function(item) { return item.name.toLowerCase() === this;}, decodedQuery); // check for exact match by name
             if (results > 0)
                 results = [results[0]]; // take only first exact match
             else {
-                results = api_result.filter(item => item.domains.indexOf(decodedQuery) != -1); // check for exact domain match
+                results = api_result.filter(function(item) { return item.domains.indexOf(this) != -1; }, decodedQuery); // check for exact domain match
             }
             if (results > 0)
                 results = [results[0]]; // take only first exact match
