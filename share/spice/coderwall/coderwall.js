@@ -3,17 +3,17 @@
     env.ddg_spice_coderwall = function(api_result){
 
         // Check if API provided information
-        if ($.isEmptyObject(api_result.data)) {
+        if ($.isEmptyObject(api_result.user)) {
             return Spice.failed('coderwall');
         }
 
         Spice.add({
             id: "coderwall",
             name: "Social",
-            data: api_result.data,
+            data: api_result.user,
             meta: {
                 sourceName: "Coderwall",
-                sourceUrl: 'https://coderwall.com/' + api_result.data.username
+                sourceUrl: 'https://coderwall.com/' + api_result.user.username
             },
 
             normalize: function(item) {
@@ -43,7 +43,7 @@
                   subtitles.push(item.title);
                 }
                 return {
-                    image: item.avatar.url,
+                    image: item.thumbnail,
                     title: item.name,
                     subtitle: subtitles,
                     altSubtitle: item.location,
@@ -73,7 +73,7 @@
                 // exclude lines that are only whitespace characters
                 if (/[a-z0-9]/.test(line)) {
                     line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') // bold
-                      .replace(/(?:_(.+?)_|\*(.+?)\*)/g, '<em>$1$2</em>') // italicize
+                      .replace(/(_(.+?)_|\*(.+?)\*)/g, '<em>$1$2</em>') // italicize
                       .replace(/`(.+?)`/g, '<code>$1</code>') // monospace
                       .replace(/~~(.+?)~~/g, '<del>$1</del>') // strikethrough
                       .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="tx-clr--dk2">$1</a>'); // create links
