@@ -31,7 +31,7 @@
         function filterResults(api_result) {
             // check for exact match by name
             var results = api_result.filter(function (item) {
-                item.name.toLowerCase() === decodedQuery;
+                return item.name.toLowerCase() === decodedQuery;
             });
 
             if (results > 0)
@@ -39,7 +39,7 @@
             else {
                 // check for exact domain match
                 results = api_result.filter(function (item) {
-                    item.domains.indexOf(decodedQuery) != -1;
+                    return item.domains.indexOf(decodedQuery) !== -1;
                 });
             }
             if (results > 0)
