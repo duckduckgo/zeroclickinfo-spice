@@ -40,7 +40,7 @@
                     }
                 });
                 if (item.title) {
-                  subtitles.push(item.title);
+                    subtitles.push(item.title);
                 }
                 return {
                     image: item.thumbnail,
@@ -63,7 +63,7 @@
         });
     };
 
-    Handlebars.registerHelper("parseMD", function(value){
+    Spice.registerHelper("coderwall_parse_md", function(value){
         var result = [];
         if (!value) return;
         else {
@@ -73,10 +73,10 @@
                 // exclude lines that are only whitespace characters
                 if (/[a-z0-9]/.test(line)) {
                     line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') // bold
-                      .replace(/(_(.+?)_|\*(.+?)\*)/g, '<em>$1$2</em>') // italicize
-                      .replace(/`(.+?)`/g, '<code>$1</code>') // monospace
-                      .replace(/~~(.+?)~~/g, '<del>$1</del>') // strikethrough
-                      .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="tx-clr--dk2">$1</a>'); // create links
+                        .replace(/(?:_(.+?)_|\*(.+?)\*)/g, '<em>$1$2</em>') // italicize
+                        .replace(/`(.+?)`/g, '<code>$1</code>') // monospace
+                        .replace(/~~(.+?)~~/g, '<del>$1</del>') // strikethrough
+                        .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="tx-clr--dk2">$1</a>'); // create links
                     result.push(line);
                 }
             });
