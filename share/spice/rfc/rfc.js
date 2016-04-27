@@ -3,12 +3,12 @@
     env.ddg_spice_rfc = function(api_result) {
 
         if (!api_result || api_result.error || api_result.message == "no results.") {
-            return Spice.failed('rfc');
+            return Spice.failed('request_for_comments');
         }
 
         Spice.add({
             id: "rfc",
-            name: "Reference",
+            name: "Answer",
             data: api_result,
             meta: {
                 sourceName: "RFC Search"
