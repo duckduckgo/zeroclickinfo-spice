@@ -3,10 +3,11 @@
     var SCORECARD_ENDPOINT = '/js/spice/scorecard/',
         LIVE_SCORECARD_ENDPOINT = '/js/spice/live/';
     env.ddg_spice_cricket = function (api_result) {
-        // Validate the response (customize for your Spice)
+
         if (!api_result || api_result.error || !api_result.query.results) {
             return Spice.failed('cricket');
         }
+        var games = env.ddg_spice_sports_games;
         //TODO:select latest series
         var data = api_result.query.results.Series.constructor === Array ? api_result.query.results.Series[0] : api_result.query.results.Series;
         DDG.require("moment.js", function () {
@@ -17,7 +18,7 @@
                 data: data.Schedule.Match,
                 meta: {
                     //TODO: update display
-                    primaryText: "<span style='color:deepskyblue;'>" + data.SeriesName + ", Schedule & Score</span>",
+                    primaryText: "<span style='color: deepskyblue;'>" + data.SeriesName + ", Schedule & Score</span>",
                     idField: "matchid",
                     selectedItem: getSelected(data.Schedule.Match),
                     scrollToSelectedItem: true,
@@ -25,35 +26,41 @@
                     itemsExpand: true,
                     //secondaryText: '<span class="tx-clr--grey-dark">YQL</span>',
                     rerender: ["teams.0", "teams.1"],//TODO: need a better way
-                    //sourceName: "developer.yahoo.com",
-                    //sourceUrl: 'http://example.com/url/to/details/' + api_result.name
+                    sourceName: "Yahoo",
+                    sourceUrl: "https://cricket.yahoo.com/"
                 },
                 normalize: function (item) {
                     var winner = getWinner(item);
+                    var m_date = moment.utc(item.StartDate).local();
+                    var date = m_date.format('ddd, Do MMM'),
+                        relativeTime = m_date.calendar(),
+                        startTime = m_date.format('LT'),
+                        startDate = Date.parse(m_date.format("YYYY-MM-DD"));
                     return {
                         matchid: item.matchid,
                         mtype: item.mtype.toUpperCase(),
                         matchNo: item.MatchNo,
                         venue: item.Venue.content,
-                        date: moment.utc(item.StartDate).local().format('ddd, Do MMM'),
-                        relativeTime: moment.utc(item.StartDate).local().calendar(),
-                        startTime: moment.utc(item.StartDate).local().format('LT'),
-                        startDate: Date.parse(moment.utc(item.StartDate).local().format("YYYY-MM-DD")),
+                        date: relativeTime.match(/Yesterday|Today|Tomorrow/g) ? relativeTime : date,
+                        relativeTime: relativeTime,
+                        startTime: startTime,
+                        startDate: startDate,
                         matchTimeSpan: item.MatchTimeSpan,
-                        teams: item.Team,
+                        teams: winner,
                         result: item.Result,
-                        winnersn: winner && winner.split(" ").length > 1 ? winner.match(/\b(\w)/g).join('') : winner,
-                        winnerln: winner,
+                        winner: winner,
+                        winnersn: winner && winner.name && winner.name.split(" ").length > 1 ? winner.name.match(/\b(\w)/g).join('') : winner.name,
+                        winnerln: winner.name,
                     };
                 },
                 templates: {
                     item: "base_expanding_item",
                     elClass: {
-                        tileExpand: "zci-cricket-footer"
+                        tileExpand: "zci--cricket-footer"
                     },
                     options: {
                         content: Spice.cricket.content,
-                        moreAt: false
+                        moreAt: true
                     }
                 },
                 onItemShown: function (item) {
@@ -95,19 +102,22 @@
             return matches[index].matchid;
         }
 
-        //TODO: return result
+        //TODO: update winner, rename function
         function getWinner(match) {
             if (match.Result) {
                 var winner = match.Result.Team.filter(function (team) {
                     return team.matchwon === "yes";
                 });
                 if (winner.length) {
-                    return match.Team.filter(function (team) {
-                        return team.teamid === winner[0].id;
-                    })[0].Team;
+                    return match.Team.map(function (team) {
+                        if (team.teamid === winner[0].id) {
+                            team.winner = "winner";
+                        }
+                        return team;
+                    });
                 }
             }
-            return "";
+            return match.Team;
         }
 
         function fetchLiveScore(time) {
@@ -155,8 +165,6 @@
         }
     };
     env.show = function (id) {
-        $("#" + id + " .zci-cricket-match").toggleClass("zci-cricket-inactive");
-        $("#" + id + ".show").toggleClass("zci-cricket-inactive");
-        $("#" + id + ".hide").toggleClass("zci-cricket-inactive");
+        $("#" + id + " .zci--cricket-match").toggleClass("is-hidden");
     };
 }(this));
