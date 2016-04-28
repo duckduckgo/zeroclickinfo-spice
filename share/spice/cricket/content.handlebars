@@ -1,13 +1,17 @@
 <div class="card" id="{{matchid}}">
     {{{include 'DDH.cricket.score_head'}}}
-    <div class="zci--cricket-content {{matchid}}" onclick="show({{matchid}});">
-        <!--<span class="pull-left">{{mtype}}</span>-->
-        {{#each teams}}
-            <div class="zci--cricket-team">
-                {{{include 'DDH.cricket.team_name'}}}
-                {{{include 'DDH.cricket.match_details'}}}
-            </div>
-        {{/each}}
+    <div class="zci--cricket-content {{matchid}}">
+        <div class="pull-left mtype">{{mtype}}</div>
+        <div style="overflow: hidden;">
+            {{#each teams}}
+                <div class="zci--cricket-team">
+                    {{{include 'DDH.cricket.team_name'}}}
+                    {{#if ../hasEnded}}
+                        {{{include 'DDH.cricket.match_details'}}}
+                    {{/if}}
+                </div>
+            {{/each}}
+        </div>
     </div>
     <div class="c-score__foot">
         <div class="c-score__foot__main">
