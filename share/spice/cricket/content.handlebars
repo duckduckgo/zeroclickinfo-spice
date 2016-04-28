@@ -1,84 +1,27 @@
 <div class="card" id="{{matchid}}">
-    <div class="zci-cricket-score-head">
-        <span class="zci-cricket-score-head-date" style="float: left;">{{date}}</span>
-        {{#if stage}}
-            <span style="float: right; text-transform: capitalize;">{{matchNo}}</span>
-        {{else}}
-            <span style="float: right;">{{startTime}}</span>
-        {{/if}}
-    </div>
-    <div class="zci-cricket-content {{matchid}}" onclick="show({{matchid}});">
-        <span>{{mtype}}</span>
-        <span class="zci-cricket-team">
-                <span>
-                    {{#if this.teams.0.logo}}
-                        <img class="zci-cricket-team-logo" src="{{this.teams.0.logo}}"
-                             alt="team logo">
-                    {{/if}}
-                    <span class="zci-cricket-team-name">
-                        {{this.teams.0.Team}}
-                        <span class="score-{{this.teams.0.teamid}}"></span>
-                    </span>
-                </span>
-                <span>
-                    {{#if this.teams.1.logo}}
-
-                        <img class="zci-cricket-team-logo" src="{{this.teams.1.logo}}"
-                             alt="team logo">
-                    {{/if}}
-                    <span class="zci-cricket-team-name">
-                        {{this.teams.1.Team}}
-                        <span class="score-{{this.teams.1.teamid}}"></span>
-                    </span>
-                </span>
-        </span>
-        {{#if winnersn}}
-            <span>{{winnersn}} by {{result.by}} {{result.how}}</span>
-        {{else}}
-            <span class="live-status-{{matchid}}">{{this.startTime}}</span>
-        {{/if}}
-    </div>
-    <span class="chevron show" onclick="show({{matchid}});"></span>
-    <span class="chevron zci-cricket-inactive hide" onclick="show({{matchid}});"></span>
-    <div class="zci-cricket-match zci-cricket-inactive" onclick="show({{matchid}});">
-        <div>{{relativeTime}}</div>
-        <div>{{venue}}</div>
-        <div class="zci-cricket-team-expanded">
-            <div>
-                {{#if this.teams.0.logo}}
-                    <img class="zci-cricket-team-expanded-logo"
-                         src="{{this.teams.0.logo}}"
-                         alt="team logo">
-                {{/if}}
-                <span class="">
-                    {{this.teams.0.Team}}
-                </span>
+    {{{include 'DDH.cricket.score_head'}}}
+    <div class="zci--cricket-content {{matchid}}" onclick="show({{matchid}});">
+        <!--<span class="pull-left">{{mtype}}</span>-->
+        {{#each teams}}
+            <div class="zci--cricket-team">
+                {{{include 'DDH.cricket.team_name'}}}
+                {{{include 'DDH.cricket.match_details'}}}
             </div>
-            <div>
-                {{#if this.teams.1.logo}}
-                    <img class="zci-cricket-team-expanded-logo"
-                         src="{{this.teams.1.logo}}"
-                         alt="team logo">
+        {{/each}}
+    </div>
+    <div class="c-score__foot">
+        <div class="c-score__foot__main">
+            <div class="">@ {{venue}}
+                <span class="c-score__venue__name"> - {{startTime}}</span>
+            </div>
+            <div class="">{{startTime}}</div>
+            <div class="c-score__foot__more  c-score__opt">
+                {{#if is_playing}}
+                    <span class="c-score__foot__info">{{textLastUpdate}}</span>
                 {{/if}}
-                <span class="">
-                    {{this.teams.1.Team}}
-                </span>
             </div>
         </div>
-        <div class="zci-cricket-team-expanded">
-            <div>
-                <span class="score-{{this.teams.0.teamid}}">{{this.teams.0.score}}</span>
-            </div>
-            <div>
-                <span class="score-{{this.teams.1.teamid}}">{{this.teams.1.score}}</span>
-            </div>
-        </div>
-        {{#if winnerln}}
-            <div class="zci-cricket-match-result">
-                <div>
-                    <span>{{winnerln}} won by {{result.by}} {{result.how}}</span>
-                </div>
-            </div>
-        {{/if}}
     </div>
+    <!--{{{include 'DDH.cricket.match_details'}}}-->
 </div>
+<!--<span class="tile__expand-icon  ddgsi  c-score__foot-icon"></span>-->
