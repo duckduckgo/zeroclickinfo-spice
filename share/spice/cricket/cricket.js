@@ -7,7 +7,6 @@
         if (!api_result || api_result.error || !api_result.query.results) {
             return Spice.failed('cricket');
         }
-        var games = env.ddg_spice_sports_games;
         //TODO:select latest series
         var data = api_result.query.results.Series.constructor === Array ? api_result.query.results.Series[0] : api_result.query.results.Series;
         DDG.require("moment.js", function () {
@@ -30,7 +29,7 @@
                     sourceUrl: "https://cricket.yahoo.com/"
                 },
                 normalize: function (item) {
-                    var winner = getWinner(item);
+                    var teams = getTeams(item);
                     var m_date = moment.utc(item.StartDate).local();
                     var date = m_date.format('ddd, Do MMM'),
                         relativeTime = m_date.calendar(),
@@ -46,11 +45,12 @@
                         startTime: startTime,
                         startDate: startDate,
                         matchTimeSpan: item.MatchTimeSpan,
-                        teams: winner,
+                        teams: teams,
                         result: item.Result,
-                        winner: winner,
-                        winnersn: winner && winner.name && winner.name.split(" ").length > 1 ? winner.name.match(/\b(\w)/g).join('') : winner.name,
-                        winnerln: winner.name,
+                        winner: teams,
+                        winnersn: teams && teams.name && teams.name.split(" ").length > 1 ? teams.name.match(/\b(\w)/g).join('') : teams.name,
+                        winnerln: teams,
+                        hasEnded: item.status === "post" || relativeTime.match(/Today/g) ? true : false
                     };
                 },
                 templates: {
@@ -103,7 +103,7 @@
         }
 
         //TODO: update winner, rename function
-        function getWinner(match) {
+        function getTeams(match) {
             if (match.Result) {
                 var winner = match.Result.Team.filter(function (team) {
                     return team.matchwon === "yes";
@@ -163,8 +163,5 @@
                 }
             });
         }
-    };
-    env.show = function (id) {
-        $("#" + id + " .zci--cricket-match").toggleClass("is-hidden");
     };
 }(this));
