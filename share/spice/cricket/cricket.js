@@ -7,7 +7,7 @@
         if (!api_result || api_result.error || !api_result.query.results) {
             return Spice.failed('cricket');
         }
-        //TODO:select latest series
+        // select latest series
         var data = api_result.query.results.Series.constructor === Array ? api_result.query.results.Series[0] : api_result.query.results.Series;
         DDG.require("moment.js", function () {
             // Render the response
@@ -16,14 +16,12 @@
                 name: "Cricket",
                 data: data.Schedule.Match,
                 meta: {
-                    //TODO: update display
                     primaryText: "<span style='color: deepskyblue;'>" + data.SeriesName + ", Schedule & Score</span>",
                     idField: "matchid",
                     selectedItem: getSelected(data.Schedule.Match),
                     scrollToSelectedItem: true,
                     itemsHighlight: true,
                     itemsExpand: true,
-                    //secondaryText: '<span class="tx-clr--grey-dark">YQL</span>',
                     rerender: ["teams.0", "teams.1"],//TODO: need a better way
                     sourceName: "Yahoo",
                     sourceUrl: "https://cricket.yahoo.com/"

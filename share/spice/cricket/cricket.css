@@ -5,13 +5,6 @@
 }
 
 .zci--cricket-content {
-    color: #888;
-    /*display: inline-block;*/
-    width: 100%;
-    /*padding: 0 20px;*/
-    /*border-top: 1px solid #F7F7F7;*/
-    /*border-right: 1px solid #F7F7F7;*/
-    /*border-bottom: 2px solid #F7F7F7;*/
 }
 
 .zci--cricket-content .mtype {
@@ -24,20 +17,14 @@
     line-height: 123px;
     text-align: center;
     float: left;
-    /*overflow: hidden;*/
 }
 
 .zci--cricket-team {
-    /*display: inline-block;*/
     padding: 0 20px;
     height: 60px;
     line-height: 60px;
-    /*padding-right: 20px;*/
     border-top: 1px solid #F7F7F7;
     border-right: 1px solid #F7F7F7;
-    /*border-bottom: 2px solid #F7F7F7;*/
-    /*min-width: 200px;*/
-    /*overflow: hidden;*/
     display: table;
     width: 100%;
 }
@@ -49,7 +36,6 @@
 }
 
 .zci--cricket-team .score {
-    /*display: table-cell;*/
     width: 57%;
     margin: 0 auto;
     font: normal normal normal 14px/1 FontAwesome;
@@ -69,15 +55,7 @@
 }
 
 .zci--cricket-score-head {
-    color: #888;
-    padding: 20px;
-    padding-bottom: 40px;
-}
-
-.zci--cricket-score-content {
-    color: #888;
-    padding: 20px;
-    border-top: 2px solid #F7F7F7;
+    padding: 20px 20px 40px 20px;
 }
 
 .zci--cricket-team-logo {
@@ -89,10 +67,4 @@
 .zci--cricket-team-name {
     display: table-cell;
     min-width: 200px;
-}
-
-.zci--cricket-match {
-    color: #888;
-    padding: 20px;
-    border-bottom: 2px solid #F7F7F7;
 }
