@@ -7,10 +7,25 @@
 
 .zci--cricket-content {
     color: #888;
+    /*display: inline-block;*/
+    width: 100%;
     /*padding: 0 20px;*/
     /*border-top: 1px solid #F7F7F7;*/
     /*border-right: 1px solid #F7F7F7;*/
     /*border-bottom: 2px solid #F7F7F7;*/
+}
+
+.zci--cricket-content .mtype {
+    position: relative;
+    width: 60px;
+    left: 0px;
+    border-top: 1px solid #F7F7F7;
+    border-right: 1px solid #F7F7F7;
+    height: 123px;
+    line-height: 123px;
+    text-align: center;
+    float: left;
+    /*overflow: hidden;*/
 }
 
 .zci--cricket-team {
@@ -23,19 +38,37 @@
     border-right: 1px solid #F7F7F7;
     /*border-bottom: 2px solid #F7F7F7;*/
     /*min-width: 200px;*/
+    /*overflow: hidden;*/
+    display: table;
+    width: 100%;
+}
+
+.zci--cricket-team .match-details {
+    display: table-cell;
+    width: 150px;
+    border-left: 1px solid #F7F7F7;
 }
 
 .zci--cricket-team .score {
-    display: inline-block;
-    padding-left: 20px;
+    /*display: table-cell;*/
+    width: 57%;
+    margin: 0 auto;
+    font: normal normal normal 14px/1 FontAwesome;
+    text-align: center;
+}
+
+.zci--cricket-team .score.winner:after {
+    content: "\f091";
 }
 
 .zci--cricket-team .fa-trophy:before {
-    content: "\f091";
+    /*padding-right: 20px;*/
 }
-.zci--cricket-team .winner{
+
+.zci--cricket-team .winner {
     font-weight: bold;
 }
+
 .zci--cricket-team > span {
     display: block;
 }
@@ -101,9 +134,8 @@
 }
 
 .zci--cricket-team-name {
-    display: inline-block;
-    border-right: 1px solid #F7F7F7;
-    max-width: 250px;
+    display: table-cell;
+    min-width: 200px;
 }
 
 .zci--cricket-match {
