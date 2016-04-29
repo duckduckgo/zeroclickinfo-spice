@@ -10,8 +10,7 @@
         }
 
         var script = $('[src*="/js/spice/holiday/"]')[0],
-            source = $(script).attr("src"),
-            query_matches = source.match(/holiday\/([^\/]+)\/([^\/]+)\/([^\/]+)\/(\d*)/),
+            query_matches = $(script).attr("src").match(/holiday\/([^\/]+)\/([^\/]+)\/([^\/]+)\/(\d*)/),
             year = query_matches[4],
             query = query_matches[3],
             country = query_matches[2],
@@ -20,7 +19,7 @@
             source = url + '/search/results.html?query=' + query;
 
         // Retry with US if nothing is returned.
-        if (api_result.h.length == 0) {
+        if (api_result.h.length === 0) {
             if (country !== 'United%20States') {
                 $.getScript('/js/spice/holiday/' + tense + '/United%20States/' + query + '/' + year);
             } else {
@@ -43,8 +42,8 @@
             // for "christmas" only show "Christmas Day" etc
             // add more to the list as needed
             var single_days = {
-                'christmas': ['Christmas Day'],
-                'easter': ['Easter Sunday', 'Easter Day']
+                'christmas' : ['Christmas', 'Christmas Day'],
+                'easter'    : ['Easter Sunday', 'Easter Day']
             };
             var days = Object.keys(single_days);
             events = events.filter(function(item) {
@@ -52,11 +51,20 @@
                     if (query === days[i] && single_days[days[i]].indexOf(item.n) === -1) {
                         return false;
                     }
-                };
-                return true;
-            })
+                }
+                // Check holiday name for relevancy, ignoring "day" and non-alpha characters (e.g. [.-'])
+                if (DDG.stringsRelevant(DDG.strip_non_alpha(item.n), DDG.strip_non_alpha(query), ['day'], 2)){
+                    return true;
+                } else {
+                    return false;
+                }
+            });
 
-            if (events.length == 1) {
+            if (events.length === 0) {
+                return Spice.failed('holiday');
+            }
+
+            if (events.length === 1) {
                 data = events[0];
 
                 if (!data.o || data.o.length <= 0) {
@@ -68,7 +76,7 @@
                 // specified let that trump tense.
                 var event_date = moment(new Date(data.o[0].d));
                 var current_date = moment();
-                if ((tense === "was") && event_date.isAfter(current_date) && (year.length == 0)) {
+                if ((tense === "was") && event_date.isAfter(current_date) && (year.length === 0)) {
                     $.getScript('/js/spice/holiday/' + tense + '/' + country + '/' + query + '/' + event_date.subtract(1, 'year').format('YYYY'));
                     return;
                 }
@@ -92,7 +100,7 @@
                     return data;
                 };
 
-                meta_obj['sourceUrl'] = url + data.u;
+                meta_obj.sourceUrl = url + data.u;
 
                 template_obj = {
                     group: 'text',
@@ -119,7 +127,7 @@
                         url: url + item.u,
                     };
                 };
-                meta_obj['sourceUrl'] = source;
+                meta_obj.sourceUrl = source;
                 template_obj = {
                     group: 'text',
                     detail: false,
@@ -132,7 +140,7 @@
 
             Spice.add({
                 id: 'holiday',
-                name: 'Holidays',
+                name: 'Answer',
                 data: data,
                 normalize: normalize_fn,
                 meta: meta_obj,

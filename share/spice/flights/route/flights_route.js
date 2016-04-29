@@ -1,19 +1,22 @@
 (function(env) {
 
-    var ddg_spice_flights = {
+    "use strict";
 
-        path: "/js/spice/flights",
-        id: 'route',
+    var path = "/js/spice/flights",
+        id = 'route',
 
         // store the user's airline and city search information
-        queriedAirlines: null,
-        sourceCity: null,
-        destinationCity: null,
+        queriedAirlines = null,
+        sourceCity = null,
+        destinationCity = null,
 
+        // min number of minutes to be considered as 'delay'
+        MIN_DELAY_MINUTES= 5,
+        
         // define some static variables for callback and helpers
-        MILLIS_PER_MIN: 60000,
-        MILLIS_PER_HOUR: this.MILLIS_PER_MIN * 60,
-        STATUS: {
+        MILLIS_PER_MIN = 60000,
+        MILLIS_PER_HOUR = MILLIS_PER_MIN * 60,        
+        STATUS = {
             "S": "Scheduled",
             "A": "In the air",
             "U": "Unknown status",
@@ -23,92 +26,98 @@
             "C": "Cancelled",
             "NO": "Not Operational",
             "DN": "Data Needed"
-        },
-        MONTH: [
-        	"Jan.", "Feb.", "March", "April", "May", "June",
-        	"July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec." 
-        ],
+        };
 
 
-        // this function parses the initial query and sends out additional queries
-        // as necessary for cities with multiple airports
-        route: function(api_result) {
-            "use strict";
+    // this function parses the initial query and sends out additional queries
+    // as necessary for cities with multiple airports
+    env.ddg_spice_flights_route = function(api_result){
+        // prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript
+        $.ajaxSetup({ cache: true });
 
-            // prevent jQuery from appending "_={timestamp}" in our url when we use $.getScript
-            $.ajaxSetup({ cache: true });
+        // Get the original query to continue polling for other potential airports
+        // and for filtering results by airline
+        var script = $('[src*="/js/spice/flights/route/"]')[0],
+            source = $(script).attr("src"),
+            match  = source.match(/\/js\/spice\/flights\/route\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)/),
+            queriedSrcAirports = match[2].split('%2C'),
+            queriedDstAirports = match[3].split('%2C');
 
-            // Get the original query to continue polling for other potential airports
-            // and for filtering results by airline
-            var script = $('[src*="/js/spice/flights/route/"]')[0],
-                source = $(script).attr("src"),
-                match  = source.match(/\/js\/spice\/flights\/route\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)\/(.*)/),
-                queriedSrcAirports = match[2].split('%2C'),
-                queriedDstAirports = match[3].split('%2C');
+        queriedAirlines = match[1].split('%2C');
+        sourceCity = match[10].replace('%2B', "+");
+        destinationCity = match[11].replace('%2B', "+");
 
-            this.queriedAirlines = match[1].split('%2C');
-            this.sourceCity = match[10].replace('%2B', "+");
-            this.destinationCity = match[11].replace('%2B', "+");                       
+        // create all remaining source/destination pairs that have not yet been polled for
+        for (var srcCounter = 0; srcCounter < queriedSrcAirports.length; srcCounter++) {
 
-            // create all remaining source/destination pairs that have not yet been polled for
-            for (var srcCounter = 0; srcCounter < queriedSrcAirports.length; srcCounter++) {
-   
-                for (var dstCounter = 0; dstCounter < queriedDstAirports.length; dstCounter++) {
-                
-                    // skip the first pair because the initial spice-to already
-                    // obtained this result
-                    if (srcCounter === 0 && dstCounter === 0)
-                        continue;
-                    
-                    $.getScript(this.path + "/route_helper/"
-                                + queriedSrcAirports[srcCounter] + "/" 
-                                + queriedDstAirports[dstCounter] + "/arr/"
-                                + match[6] + "/" + match[7] + "/" + match[8] + 
-                                "/" + match[9]);    
-                }        
+            for (var dstCounter = 0; dstCounter < queriedDstAirports.length; dstCounter++) {
+
+                // skip the first pair because the initial spice-to already
+                // obtained this result
+                if (srcCounter === 0 && dstCounter === 0)
+                    continue;
+
+                $.getJSON(path +
+                    "/route_helper/" +
+                    queriedSrcAirports[srcCounter] + "/" +
+                    queriedDstAirports[dstCounter] + "/arr/" +
+                    match[6] + "/" + match[7] + "/" + match[8] +
+                    "/" + match[9], display);
             }
+        }
 
-            // Check if we have anything returned.
-            if (!api_result || !api_result.flightStatuses) {
-                return Spice.failed('route');
-            }
-        
-            this.display(api_result);
-        },
-    
-    
-        // this helper function allows us to query for multiple airports with the
-        // same city name; for example, New York maps to JFK and LGA
-        route_helper: function(api_result) {
-            "use strict";
-        
-            // Check if we have anything returned.
-            if (!api_result || !api_result.flightStatuses) {
-                return;
-            }
-        
-            this.display(api_result);
-        },  
-        
-        
-        // this function displays flight results; much of this code is copied from the
-        // "airlines" spice
-        display: function(api_result) {
-            
-            // Check if we have anything returned.
-            if (!api_result || !api_result.flightStatuses || !api_result.appendix.airlines) {
-                return;
-            }
-                        
-            // Create dictionaries to convert FlightStat codes to ICAO codes/airline names
-            var dictFlightStats = [];
-            $.each(api_result.appendix.airlines, function(index, value) {
-                    dictFlightStats[value.fs] = {
-                        "icao": value.icao,
-                        "name": value.name
-                    };                
+        display(api_result);
+    };
+
+
+    // this function displays flight results
+    function display (api_result) {
+
+        // Check if we have anything returned.
+        if (!api_result || !api_result.flightStatuses || !api_result.appendix.airlines) {
+            return Spice.failed('route');
+        }
+
+        DDG.require('moment.js', function() {
+
+            // setup Moment.js
+            moment.locale('en', {
+                relativeTime : {
+                    future: "in %s",
+                    past:   "%s ago",
+                    s:  "s",
+                    m:  "1m",
+                    mm: "%dm",
+                    h:  "1h",
+                    hh: "%dh",
+                    d:  "1d",
+                    dd: "%dd",
+                    M:  "1mo",
+                    MM: "%dmo",
+                    y:  "1y",
+                    yy: "%dy"
+                }
             });
-                
+            
+            // Fine-grained relative thresholds for humanize times
+            moment.relativeTimeThreshold('m', 59);
+            moment.relativeTimeThreshold('h', 23);
+
+            // Create dictionaries to convert FlightStat codes to ICAO codes/airline names
+            var dictFlightStats = {};
+            $.each(api_result.appendix.airlines, function(index, value) {
+                dictFlightStats[value.fs] = {
+                    "icao": value.icao,
+                    "name": value.name,
+                };
+            });
+
+            // Create dictionaries to convert FlightStat codes to ICAO codes/airline names
+            var dictAirportStats = {};
+            $.each(api_result.appendix.airports, function(index, value) {
+                dictAirportStats[value.fs] = value;
+            });
+
             // Check if flight is an array or not.
             var flight = [];
             if (!($.isArray(api_result.flightStatuses))) {
@@ -119,85 +128,95 @@
 
             // array of flights
             var results = [];
+            var first_active_index = -1;
 
             // package up the flights into the result array
             for (var i = 0; i < flight.length; i++) {
-                   
+
                 // compile all airline and codeshare codes for each returned flight
                 var carrierCodes = [{"fsCode": flight[i].carrierFsCode, "flightNumber": flight[i].flightNumber}];
-                
+
                 if (flight[i].codeshares) {
-                
+
                     $.each(flight[i].codeshares, function(codeShareIndex, flightCodeShare) {
                         carrierCodes.push(flightCodeShare);
                     });
-                
+
                 }
-            
+
                 // this loop iterates through all codeshared codes for the current flight result
                 // once we find a matching carrier code, we break out of this loop
                 for (var carriersIndex = 0; carriersIndex < carrierCodes.length; carriersIndex++) {
-                           
-                    if (this.queriedAirlines.indexOf(dictFlightStats[carrierCodes[carriersIndex].fsCode].icao) !== -1) {
+
+                    if (queriedAirlines.indexOf(dictFlightStats[carrierCodes[carriersIndex].fsCode].icao) !== -1) {
+
+                        var current = flight[i],
+                            opTime = current.operationalTimes;
 
                         var departureDate =
-                            (flight[i].operationalTimes.actualGateDeparture 
-                                && flight[i].operationalTimes.actualGateDeparture.dateLocal)
-                            || (flight[i].operationalTimes.estimatedGateDeparture
-                                && flight[i].operationalTimes.estimatedGateDeparture.dateLocal)
-                            || (flight[i].operationalTimes.scheduledGateDeparture
-                                && flight[i].operationalTimes.scheduledGateDeparture.dateLocal)
-                            || flight[i].operationalTimes.flightPlanPlannedDeparture.dateLocal;
+                            DDG.getProperty(opTime, "actualGateDeparture.dateUtc") ||
+                            DDG.getProperty(opTime, "estimatedGateDeparture.dateUtc") ||
+                            DDG.getProperty(opTime, "scheduledGateDeparture.dateUtc") ||
+                            DDG.getProperty(opTime, "flightPlanPlannedDeparture.dateUtc");
 
-                        departureDate = DDG.getDateFromString(departureDate.toString());
+                        console.log(moment(departureDate));
 
                         var arrivalDate =
-                            (flight[i].operationalTimes.actualGateArrival 
-                                && flight[i].operationalTimes.actualGateArrival.dateLocal)
-                            || (flight[i].operationalTimes.estimatedGateArrival
-                                && flight[i].operationalTimes.estimatedGateArrival.dateLocal)
-                            || (flight[i].operationalTimes.scheduledGateArrival
-                                && flight[i].operationalTimes.scheduledGateArrival.dateLocal)
-                            || flight[i].operationalTimes.flightPlanPlannedArrival.dateLocal;
-                    
-                        arrivalDate = DDG.getDateFromString(arrivalDate.toString());                    
+                            DDG.getProperty(opTime, 'actualGateArrival.dateUtc') ||
+                            DDG.getProperty(opTime, 'estimatedGateArrival.dateUtc') ||
+                            DDG.getProperty(opTime, 'scheduledGateArrival.dateUtc') ||
+                            DDG.getProperty(opTime, 'flightPlanPlannedArrival.dateUtc');
 
-                        var scheduledDepartureDate = 
-                            (flight[i].operationalTimes.scheduledGateDeparture 
-                                && flight[i].operationalTimes.scheduledGateDeparture.dateLocal)
-                            || flight[i].operationalTimes.flightPlanPlannedDeparture.dateLocal;
-                    
-                        scheduledDepartureDate = DDG.getDateFromString(scheduledDepartureDate.toString());
-                    
+                        var scheduledDepartureDate =
+                            DDG.getProperty(opTime, 'scheduledGateDeparture.dateUtc') ||
+                            DDG.getProperty(opTime, 'flightPlanPlannedDeparture.dateUtc');
+
                         var scheduledArrivalDate =
-                        (flight[i].operationalTimes.scheduledGateArrival 
-                            && flight[i].operationalTimes.scheduledGateArrival.dateLocal)
-                        || flight[i].operationalTimes.flightPlanPlannedArrival.dateLocal;
-                    
-                        scheduledArrivalDate = DDG.getDateFromString(scheduledArrivalDate.toString());
+                            DDG.getProperty(opTime, 'scheduledGateArrival.dateUtc') ||
+                            DDG.getProperty(opTime, 'flightPlanPlannedArrival.dateUtc');
 
-                        // Get the weekday and the day.
-                        var dateObject = new Date(departureDate);
-                        var date = dateObject.toDateString();
-                        date = date.split(" ");
+                        var scheduledDepartureDateLocal =
+                            DDG.getProperty(opTime, 'scheduledGateDeparture.dateLocal') ||
+                            DDG.getProperty(opTime, 'flightPlanPlannedDeparture.dateLocal');
+
+                        var scheduledArrivalDateLocal =
+                            DDG.getProperty(opTime, 'scheduledGateArrival.dateLocal') ||
+                            DDG.getProperty(opTime, 'flightPlanPlannedArrival.dateLocal');
+
+                        var departing_airport = dictAirportStats[current.departureAirportFsCode];
+                        var departing_location = [
+                            departing_airport.city,
+                            departing_airport.stateCode,
+                            departing_airport.countryCode
+                        ].filter(not_empty).join(', ');
+
+                        var arriving_airport = dictAirportStats[current.arrivalAirportFsCode];
+                        var arriving_location = [
+                            arriving_airport.city,
+                            arriving_airport.stateCode,
+                            arriving_airport.countryCode
+                        ].filter(not_empty).join(', ');
 
                         var departing = {
-                            airportTimezone: "0",
-                            airport: flight[i].departureAirportFsCode,
-                            terminal: (flight[i].airportResources && flight[i].airportResources.departureTerminal) || "<span class='na'>N/A</span>",
-                            gate: (flight[i].airportResources && flight[i].airportResources.departureGate) || "<span class='na'>N/A</span>",
-                            isDeparted: true,
-                            weekday: date[0].toUpperCase(),
-                            day: date[2]
+                                airportTimezone: "0",
+                                airport: departing_airport,
+                                location: departing_location,
+                                terminal: (current.airportResources && current.airportResources.departureTerminal) || "N/A",
+                                gate: (current.airportResources && current.airportResources.departureGate) || "N/A",
+                                isDeparted: true,
+                                departureDateF: moment(departureDate).format("ddd MMM, D"),
                             },
-                        
+
                             arriving = {
                                 airportTimezone: "0",
-                                airport: flight[i].arrivalAirportFsCode,
-                                terminal: (flight[i].airportResources && flight[i].airportResources.arrivalTerminal) || "<span class='na'>N/A</span>",
-                                gate: (flight[i].airportResources && flight[i].airportResources.arrivalGate) || "<span class='na'>N/A</span>",
+                                airport: arriving_airport,
+                                location: arriving_location,
+                                terminal: (current.airportResources && current.airportResources.arrivalTerminal) || "N/A",
+                                gate: (current.airportResources && current.airportResources.arrivalGate) || "N/A",
                                 isDeparted: false
                             };
+
+                        var status = getStatus(current);
 
                         results.push({
                             flight: flight[i],
@@ -209,12 +228,22 @@
                             departureDate: departureDate,
                             arrivalDate: arrivalDate,
                             scheduledDepartureDate: scheduledDepartureDate,
-                            scheduledArrivalDate: scheduledArrivalDate
+                            scheduledArrivalDate: scheduledArrivalDate,
+                            scheduledDepartureDateLocal: scheduledDepartureDateLocal,
+                            scheduledArrivalDateLocal: scheduledArrivalDateLocal,
+                            status: status[0],
+                            is_on_time: status[1],
+                            statusColor: getStatusColor(status[1]),
+                            delayTime: status[2]
                         });
 
+                        if (first_active_index == -1 && !(status[0] === 'Landed' || status[0] === 'Cancelled')) {
+                            first_active_index = results.length - 1;
+                        }
+
                         break;
-                    }        
-                }                   
+                    }
+                }
             }
 
             if (results.length === 0) {
@@ -228,27 +257,78 @@
                 meta: {
                     minItemsForModeSwitch: 3,
                     sourceName: 'FlightStats',
-                    sourceUrl: "http://www.flightstats.com/go/FlightStatus/flightStatusByRoute.do?"
-                        + "departure=" + this.sourceCity
-                        + "&arrival=" + this.destinationCity,
-                    primaryText: results.length === 1 ? "Flight Information" : "Flights by Departure Time" 
+                    sourceUrl: "http://www.flightstats.com/go/FlightStatus/flightStatusByRoute.do?" +
+                        "departure=" + sourceCity +
+                        "&arrival=" + destinationCity,
+                    itemType: 'flights',
+                    disableMobileGrid: true,
+                    selectedItem: first_active_index == -1 ? 0 : first_active_index,
+                    scrollToSelectedItem: true
                 },
                 normalize: function(item) {
-                
-                    return {
-                        url: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?"
-                            + "airlineCode=" + item.airlineCode 
-                            + "&flightNumber=" + item.flightNumber
-                            + "&departureDate=" 
-                            + item.departureDate.getFullYear() + "-"
-                            + (item.departureDate.getMonth() + 1) + "-"
-                            + item.departureDate.getDate()
+                    var status_text,
+                        display_datetime,
+                        delay_time = item.delayTime;
+                   
+                    if (item.status === 'Cancelled'){
+                        status_text = 'Cancelled';                       
+                    } else if (moment(item.arrivalDate).isBefore(moment().utc())) {
+                        status_text = 'Arrived';
+                        display_datetime = moment(item.arrivalDate);
+                    } else {
+                        if (moment(item.departureDate).isAfter(moment().utc())) {
+                            status_text = 'Departs';
+                            display_datetime = moment(item.departureDate);
+                        } else {
+                            status_text = 'Arrives';
+                            display_datetime = moment(item.arrivalDate);                           
+                        }
                     }
+
+                    var scheduled_arrival = moment(item.scheduledArrivalDateLocal),
+                        scheduled_depart = moment(item.scheduledDepartureDateLocal),
+                        same_date = scheduled_arrival.isSame(scheduled_depart, "day");
+
+                    var progress_max = 98,
+                        progress_percent = 100,
+                        scheduled_progress_percent = 100,
+                        time_total = moment(item.scheduledArrivalDate).diff(item.scheduledDepartureDate),
+                        time_remaining = moment(item.scheduledArrivalDate).diff(moment().utc());
+
+                    if (status_text !== 'Arrived' && status_text !== 'Cancelled') {
+                        scheduled_progress_percent = progress_max * (time_total - time_remaining) / time_total;                    
+                        if (delay_time) progress_percent = progress_max * (time_total - time_remaining - (delay_time * MILLIS_PER_MIN)) / time_total;
+                        if (scheduled_progress_percent < 0) scheduled_progress_percent = 0;
+                        if (scheduled_progress_percent > progress_max) scheduled_progress_percent = progress_max;
+                        if (progress_percent < 0) progress_percent = 0;
+                        if (progress_percent > scheduled_progress_percent) progress_percent = scheduled_progress_percent;
+                    }
+
+                    var year = moment(item.departureDate).year(),
+                        month = moment(item.departureDate).month() + 1,
+                        day = moment(item.departureDate).date();
+                    
+                    return {
+                        datetime: display_datetime ? display_datetime.fromNow() : "",
+                        delay_time: delay_time ? moment.duration(delay_time, "minutes").humanize() : delay_time,
+                        progress_percent: progress_percent,
+                        scheduled_progress_percent: scheduled_progress_percent,
+                        status_text: status_text,
+                        scheduled_arrival: same_date ? scheduled_arrival.format('LT') : scheduled_arrival.format('LT (MMM DD)'),
+                        scheduled_depart: same_date ? scheduled_depart.format('LT') : scheduled_depart.format('LT (MMM DD)'),
+                        has_landed: item.status === 'Landed',
+                        is_cancelled: item.status === 'Cancelled',
+                        has_arrived: status_text === 'Arrived' || status_text === 'Cancelled',
+                        url: "http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?" +
+                            "airlineCode=" + item.airlineCode +
+                            "&flightNumber=" + item.flightNumber +
+                            "&departureDate=" + year + "-" + month + "-" + day
+                    };
                 },
                 sort_fields: {
                     departureDate: function(a, b) {
-                        a = +new Date(a.departureDate);
-                        b = +new Date(b.departureDate);
+                        a = moment(a.departureDate);
+                        b = moment(b.departureDate);
                         return ((a < b) ? -1 : (a > b ? 1 : 0));
                     }
                 },
@@ -261,87 +341,73 @@
                     },
                     variants: {
                         tile: 'xwide'
+                    },
+                    elClass: {
+                        tile: 'whole--screen-s'
                     }
                 },
-            });
-        },
-    
-
-        // Compute the difference between now and the time of departure or arrival.
-        relativeTime: function relativeTime(date, airportOffset) {
-            // This is the time of departure or arrival (not sure why we're getting the difference).
-            date = date.getTime() - (date.getTimezoneOffset() * this.MILLIS_PER_MIN);
-
-            // This is the current time at the airport (in milliseconds).
-            var now = new Date().getTime() + (airportOffset * this.MILLIS_PER_HOUR);
-
-            return date - now;
-        },
-    
-    
-        // Check if the airplane is on-time or delayed.
-        onTime: function onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
-    
-            var deltaDepart = new Date(departureDate) - scheduledDeparture,
-                deltaArrive = new Date(arrivalDate) - scheduledArrival;
-
-            if (flight.status === "A" || flight.status === "S") {
-                if (this.MILLIS_PER_MIN * 5 < deltaDepart && this.MILLIS_PER_MIN * 5 < deltaArrive) {
-                    return ["Delayed", false];
-                } else {
-                    return ["On Time", true];
+                onShow: function(item) {
+                    // Give landed flights a grey background
+                    $('.tile__landed, .tile__cancelled').parents('.tile__body').addClass('bg-clr--silver-light');                    
                 }
-            }
-            return [this.STATUS[flight.status], true];
+            });
+        });
+    }
+    
+
+    // Check if the airplane is on-time or delayed.
+    function getStatus(flight) {
+        
+        function formatDelayTime(delayTime){                      
+            return (!delayTime || (delayTime < MIN_DELAY_MINUTES))? false : delayTime;
         }
+       
+        var status,
+            delayTime = false;
+
+        switch (flight.status) {
+
+            // Flight cancelled
+            case "C":
+                status = ["Cancelled", false, delayTime];
+                break;
+
+            // Flight in-progress
+            case "A":
+                delayTime = formatDelayTime(DDG.getProperty(flight.delays, "arrivalGateDelayMinutes")   || 
+                                            DDG.getProperty(flight.delays, "departureGateDelayMinutes") ||
+                                            DDG.getProperty(flight.delays, "arrivalRunwayDelayMinutes"));
+                if (delayTime) {                                        
+                    status = ["Delayed", false, delayTime];
+                } else {
+                    status = ["On Time", true, delayTime];
+                }
+                break;
+
+            // Flight scheduled
+            case "S":                
+                delayTime = formatDelayTime(DDG.getProperty(flight.delays, "departureGateDelayMinutes"));
+                if (delayTime) {                    
+                    status = ["Delayed", false, delayTime];
+                } else {
+                    status = ["On Time", true, delayTime];
+                }
+                break;
+
+            // Flight delayed, re-routed, status unknown, etc
+            default:
+                status = [STATUS[flight.status], true, delayTime];
+                break;
+        }
+
+        return status;
     }
 
-    //--- make the appropriate DDG spice functions globally available
+    function getStatusColor (onTime) {
+        return onTime ? 'clr--green' : 'clr--red';
+    }
 
-    // this is the primary function for user flight queries by route
-    ddg_spice_flights_route = ddg_spice_flights.route.bind(ddg_spice_flights);
-
-    // this helper function queries individual source and destination airport pairs
-    ddg_spice_flights_route_helper = ddg_spice_flights.route_helper.bind(ddg_spice_flights);
-
-
-    // Add the date and time or departure or arrival.
-    Spice.registerHelper("airline_time", function(isDeparture, arrivalDate, departureDate) {
-        var dateObject = new Date(arrivalDate);
-        if(isDeparture) {
-            dateObject = new Date(departureDate);
-        }
-
-        var hours = dateObject.getHours(),
-            minutes = dateObject.getMinutes(),
-            date = dateObject.toDateString();
-
-        date = date.substring(0, date.lastIndexOf(" "));
-
-        // AM or PM?
-        var suffix = (hours >= 12) ? "PM" : "AM";
-
-        // Convert to 12-hour time.
-        if(hours > 12) {
-            hours -= 12;
-        } else if(hours === 0) {
-            hours = 12;
-        }
-
-        // Add leading zeroes.
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-
-        if ((arrivalDate.getDate() != departureDate.getDate()) && (!isDeparture)) {
-            return hours + ":" + minutes + " " + suffix + " (" + ddg_spice_flights.MONTH[dateObject.getMonth()] + " " + dateObject.getDate() + ")";
-        } else
-            return hours + ":" + minutes + " " + suffix;
-    });
-
-
-    Spice.registerHelper("airline_status", function(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival) {
-        var result = ddg_spice_flights.onTime(flight, departureDate, arrivalDate, scheduledDeparture, scheduledArrival),
-            ok_class = result[1] ? "tile__ok" : "tile__not";
-        return '<div class="' + ok_class + '">' + result[0] + '</div>';
-    });
-    
-}(this))
+    function not_empty (value) {
+        return value !== undefined && value !== '';
+    }
+}(this));

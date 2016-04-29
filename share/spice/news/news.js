@@ -90,6 +90,7 @@
             id: 'news',
             name: 'News',
             data: goodStories,
+            ads: api_result.ads,
             meta: {
                 count: goodStories.length,
                 searchTerm: searchTerm,

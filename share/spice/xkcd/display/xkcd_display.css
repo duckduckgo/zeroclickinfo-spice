@@ -9,10 +9,6 @@
     margin: 1em 0 0.5em;
 }
 
-.zci--xkcd .xkcd--buttons {
-    display: inline-block;
-}
-
 .zci--xkcd .xkcd--buttons a:visited {
     color: #4495d4;
 }
@@ -26,4 +22,10 @@
 .zci--xkcd .xkcd--buttons .tile-nav--sm {
     font-size: 12px;
     text-decoration: none;
+}
+
+.zci--xkcd .xkcd--number {
+    color: #888;
+    font-size: 0.45cm;
+    padding-left: 0.5em;
 }
