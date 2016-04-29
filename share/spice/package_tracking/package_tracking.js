@@ -16,7 +16,7 @@
                     title: api_result.status_description,  
                     subtitle: api_result.location,
                     description: "Last update: " + DDG.getDateFromString(api_result.progress_at),
-                    image: DDG.get_asset_path('package_tracking', 'logos/' + logo + '.png'),
+                    image: DDG.get_asset_path('package_tracking', logo + '.png'),
                     infoboxData: [
                         {
                             heading: "Info shipping"
