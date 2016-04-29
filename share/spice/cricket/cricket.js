@@ -85,7 +85,7 @@
 
             });
         });
-        //TODO: return latest match id
+        // return latest match id
         function getSelected(matches) {
             var today = new Date(new Date().toUTCString());
             var diff = Math.abs(new Date(new Date(matches[0].StartDate).toUTCString()) - today);
@@ -100,7 +100,7 @@
             return matches[index].matchid;
         }
 
-        //TODO: update winner, rename function
+        // update winner
         function getTeams(match) {
             if (match.Result) {
                 var winner = match.Result.Team.filter(function (team) {
@@ -131,7 +131,7 @@
                                 teamid = inning.s.a.i;
                             $('#' + data.query.results.Scorecard.mid + ' .score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
                             if (data.query.results.Scorecard.ms) {
-                                $('#' + data.query.results.Scorecard.mid + ' .live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">' + data.query.results.Scorecard.ms + '</span>');
+                                $('.zci--cricket .live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">' + data.query.results.Scorecard.ms + '</span>');
                             }
                         });
                     }
@@ -155,7 +155,7 @@
                             teamid = inning.s.a.i;
                         $('#' + data.query.results.Scorecard.mid + ' .score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
                         if (data.query.results.Scorecard.ms === "Play in Progress") {
-                            $('#' + data.query.results.Scorecard.mid + ' .live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">live</span>');
+                            $('zci--cricket .live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">live</span>');
                         }
                     });
                 }
