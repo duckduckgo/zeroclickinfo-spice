@@ -68,3 +68,8 @@
     display: table-cell;
     min-width: 200px;
 }
+
+.zci--cricket .status{
+    position: absolute;
+    right: 0;
+}
