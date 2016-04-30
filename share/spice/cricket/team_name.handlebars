@@ -1,10 +1,10 @@
-<div class="zci--cricket-team-name">
+<div class="team-name-wrapper">
     {{#if logo}}
-        <div style="display: inline-block;height: 100%; vertical-align: middle;">
-            <a><img class="zci--cricket-team-logo" src="{{logo}}" alt="team logo"/></a>
+        <div class="logo-wrapper">
+            <img class="zci--cricket-team-logo" src="{{logo}}" alt="team logo"/>
         </div>
     {{/if}}
-    <div style="display: inline-block;" class="{{winner}}">
+    <div class="team-name {{winner}}">
         {{Team}}
     </div>
 </div>
