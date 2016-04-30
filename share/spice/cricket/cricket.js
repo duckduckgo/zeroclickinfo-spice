@@ -16,7 +16,7 @@
                 name: "Cricket",
                 data: data.Schedule.Match,
                 meta: {
-                    primaryText: "<span style='color: deepskyblue;'>" + data.SeriesName + ", Schedule & Score</span>",
+                    primaryText: "<span class='tx-clr--blue-dark'>" + data.SeriesName + ", Schedule & Score</span>",
                     idField: "matchid",
                     selectedItem: getSelected(data.Schedule.Match),
                     scrollToSelectedItem: true,
@@ -84,43 +84,66 @@
                 }
 
             });
-        });
-        // return latest match id
-        function getSelected(matches) {
-            var today = new Date(new Date().toUTCString());
-            var diff = Math.abs(new Date(new Date(matches[0].StartDate).toUTCString()) - today);
-            var index = 0;
-            for (var i = 1; i < matches.length; i++) {
-                if (diff > Math.abs(new Date(new Date(matches[i].StartDate).toUTCString()) - today)) {
-                    diff = Math.abs(new Date(new Date(matches[i].StartDate).toUTCString()) - today);
-                    index = i;
+            // return latest match id
+            function getSelected(matches) {
+                var today = new Date(new Date().toUTCString());
+                var diff = Math.abs(new Date(new Date(matches[0].StartDate).toUTCString()) - today);
+                var index = 0;
+                for (var i = 1; i < matches.length; i++) {
+                    if (diff > Math.abs(new Date(new Date(matches[i].StartDate).toUTCString()) - today)) {
+                        diff = Math.abs(new Date(new Date(matches[i].StartDate).toUTCString()) - today);
+                        index = i;
+                    }
                 }
+                fetchLiveScore(0);
+                return matches[index].matchid;
             }
-            fetchLiveScore(0);
-            return matches[index].matchid;
-        }
 
-        // update winner
-        function getTeams(match) {
-            if (match.Result) {
-                var winner = match.Result.Team.filter(function (team) {
-                    return team.matchwon === "yes";
-                });
-                if (winner.length) {
-                    return match.Team.map(function (team) {
-                        if (team.teamid === winner[0].id) {
-                            team.winner = "winner";
-                        }
-                        return team;
+            // update winner
+            function getTeams(match) {
+                if (match.Result) {
+                    var winner = match.Result.Team.filter(function (team) {
+                        return team.matchwon === "yes";
                     });
+                    if (winner.length) {
+                        return match.Team.map(function (team) {
+                            if (team.teamid === winner[0].id) {
+                                team.winner = "winner";
+                            }
+                            return team;
+                        });
+                    }
                 }
+                return match.Team;
             }
-            return match.Team;
-        }
 
-        function fetchLiveScore(time) {
-            return setTimeout(function () {
-                return $.getJSON(LIVE_SCORECARD_ENDPOINT).always(function (data, statusText, xhr) {
+            function fetchLiveScore(time) {
+                return setTimeout(function () {
+                    return $.getJSON(LIVE_SCORECARD_ENDPOINT).always(function (data, statusText, xhr) {
+                        if (data.query && data.query.results && data.query.results.Scorecard && data.query.results.Scorecard.past_ings) {
+                            var results = data.query.results.Scorecard.past_ings.constructor === Array ? data.query.results.Scorecard.past_ings : [data.query.results.Scorecard.past_ings];
+                            results.map(function (inning) {
+                                var run = inning.s.a.r,
+                                    over = inning.s.a.o,
+                                    runrate = inning.s.a.rr,
+                                    wicket = inning.s.a.w,
+                                    teamid = inning.s.a.i;
+                                $('#' + data.query.results.Scorecard.mid + ' .score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
+                                if (data.query.results.Scorecard.ms) {
+                                    $('.zci--cricket .live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">' + data.query.results.Scorecard.ms + '</span>');
+                                }
+                            });
+                        }
+                        if (xhr.status === 200 && data.query.results && data.query.results.Scorecard.ms !== "Match Ended") {
+                            fetchLiveScore(5000);
+                        }
+                    });
+
+                }, time);
+            }
+
+            function fetchScore(matchid) {
+                return $.getJSON(SCORECARD_ENDPOINT + matchid).always(function (data, statusText, xhr) {
                     if (data.query && data.query.results && data.query.results.Scorecard && data.query.results.Scorecard.past_ings) {
                         var results = data.query.results.Scorecard.past_ings.constructor === Array ? data.query.results.Scorecard.past_ings : [data.query.results.Scorecard.past_ings];
                         results.map(function (inning) {
@@ -130,36 +153,14 @@
                                 wicket = inning.s.a.w,
                                 teamid = inning.s.a.i;
                             $('#' + data.query.results.Scorecard.mid + ' .score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
-                            if (data.query.results.Scorecard.ms) {
-                                $('.zci--cricket .live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">' + data.query.results.Scorecard.ms + '</span>');
+                            if (data.query.results.Scorecard.ms === "Play in Progress") {
+                                $('zci--cricket .live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">live</span>');
                             }
                         });
                     }
-                    if (xhr.status === 200 && data.query.results && data.query.results.Scorecard.ms !== "Match Ended") {
-                        fetchLiveScore(5000);
-                    }
                 });
+            }
+        });
 
-            }, time);
-        }
-
-        function fetchScore(matchid) {
-            return $.getJSON(SCORECARD_ENDPOINT + matchid).always(function (data, statusText, xhr) {
-                if (data.query && data.query.results && data.query.results.Scorecard && data.query.results.Scorecard.past_ings) {
-                    var results = data.query.results.Scorecard.past_ings.constructor === Array ? data.query.results.Scorecard.past_ings : [data.query.results.Scorecard.past_ings];
-                    results.map(function (inning) {
-                        var run = inning.s.a.r,
-                            over = inning.s.a.o,
-                            runrate = inning.s.a.rr,
-                            wicket = inning.s.a.w,
-                            teamid = inning.s.a.i;
-                        $('#' + data.query.results.Scorecard.mid + ' .score-' + teamid).html(run + "/" + wicket + " (" + over + ")");
-                        if (data.query.results.Scorecard.ms === "Play in Progress") {
-                            $('zci--cricket .live-status-' + data.query.results.Scorecard.mid).html('<span style="color: #3d9400 !important;">live</span>');
-                        }
-                    });
-                }
-            });
-        }
     };
 }(this));
