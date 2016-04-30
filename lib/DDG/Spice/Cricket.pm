@@ -33,10 +33,10 @@ spice alt_to => {
 };
 
 # Triggers - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#triggers
-triggers query_lc => qr/cricket|ipl scores{0,1}|schedules{0,1}/;
+triggers any => ('cricket score', 'cricket scores', 'cricket schedule', 'cricket schedules');
 
 # Handle statement
-handle query_lc => sub {
+handle remainder => sub {
         return $_;
     };
 
