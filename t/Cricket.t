@@ -10,42 +10,27 @@ spice is_cached => 1;
 ddg_spice_test(
     [ qw( DDG::Spice::Cricket) ],
     'cricket score'     => test_spice(
-        '/js/spice/cricket/cricket%20score',
+        '/js/spice/cricket/',
         call_type => 'include',
         caller    => 'DDG::Spice::Cricket',
     ),
     'cricket schedule'  => test_spice(
-        '/js/spice/cricket/cricket%20schedule',
+        '/js/spice/cricket/',
         call_type => 'include',
         caller    => 'DDG::Spice::Cricket',
     ),
     'cricket scores'    => test_spice(
-        '/js/spice/cricket/cricket%20scores',
+        '/js/spice/cricket/',
         call_type => 'include',
         caller    => 'DDG::Spice::Cricket',
     ),
     'cricket schedules' => test_spice(
-        '/js/spice/cricket/cricket%20schedules',
+        '/js/spice/cricket/',
         call_type => 'include',
         caller    => 'DDG::Spice::Cricket',
     ),
-    'ipl schedule'      => test_spice(
-        '/js/spice/cricket/ipl%20schedule',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Cricket',
-    ),
-    'ipl score'         => test_spice(
-        '/js/spice/cricket/ipl%20score',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Cricket',
-    ),
-    'ipl schedules'     => test_spice(
-        '/js/spice/cricket/ipl%20schedules',
-        call_type => 'include',
-        caller    => 'DDG::Spice::Cricket',
-    ),
-    'ipl scores'        => test_spice(
-        '/js/spice/cricket/ipl%20scores',
+    'live cricket score' => test_spice(
+        '/js/spice/cricket/live',
         call_type => 'include',
         caller    => 'DDG::Spice::Cricket',
     ),
