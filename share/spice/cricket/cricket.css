@@ -4,9 +4,6 @@
     box-sizing: border-box;
 }
 
-.zci--cricket-content {
-}
-
 .zci--cricket-content .mtype {
     position: relative;
     width: 60px;
@@ -50,10 +47,6 @@
     font-weight: bold;
 }
 
-.zci--cricket-team > span {
-    display: block;
-}
-
 .zci--cricket-score-head {
     padding: 20px 20px 40px 20px;
 }
@@ -64,12 +57,22 @@
     width: 40px;
 }
 
-.zci--cricket-team-name {
+.zci--cricket .team-name-wrapper {
     display: table-cell;
     min-width: 200px;
 }
 
-.zci--cricket .status{
+.zci--cricket .team-name {
+    display: inline-block;
+}
+
+.zci--cricket .status {
     position: absolute;
     right: 0;
+}
+
+.zci--cricket .logo-wrapper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
 }
