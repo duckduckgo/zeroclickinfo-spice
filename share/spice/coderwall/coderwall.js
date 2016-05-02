@@ -65,16 +65,17 @@
 
     Spice.registerHelper("coderwall_parse_md", function(value){
         var result = [];
-        if (!value) return;
-        else {
+        if (!value) {
+            return;
+        } else {
             // no cross site scripting
             value = Handlebars.Utils.escapeExpression(value);
             value.split(/\n+/).forEach(function(line) {
                 // exclude lines that are only whitespace characters
-                if (/[a-z0-9]/.test(line)) {
-                    line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>') // bold
-                        .replace(/(?:_(.+?)_|\*(.+?)\*)/g, '<em>$1$2</em>') // italicize
-                        .replace(/`(.+?)`/g, '<code>$1</code>') // monospace
+                if (/[a-z0-9]/.test(line)) { // Github flavored MD
+                    line = line.replace(/(__(.+?)__|\*\*(.+?)\*\*)/g, '<strong>$2$3</strong>') // bold
+                        .replace(/(_(.+?)_|\*(.+?)\*)/g, '<em>$2$3</em>') // italicize
+                        .replace(/&#x60;(.+?)&#x60;/g, '<code>$1</code>') // monospace (unicode for ` grave accent)
                         .replace(/~~(.+?)~~/g, '<del>$1</del>') // strikethrough
                         .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="tx-clr--dk2">$1</a>'); // create links
                     result.push(line);
