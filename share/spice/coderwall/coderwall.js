@@ -86,4 +86,81 @@
         }
     });
 
+    Spice.registerHelper('coderwall_substr_html', function() {
+        var limit, string, html,
+            result = '',
+            context = arguments[0],
+            options = arguments[arguments.length - 1];
+
+        // use default limit if not provided
+        if (arguments.length === 2) {
+            limit = 300;
+        } else {
+            limit = arguments[1];
+        }
+        // render the string
+        string = options.fn(context);
+        html = $.parseHTML(string.trim());
+        // Takes an HTML node, and modifies its inner text
+        // Returns a string of the markup with modified text
+        // (unless nothing was returned)
+        function changeHtmlText(node, callback) {
+            var inner = '',
+                res = '';
+
+            if (node.nodeName === '#text') {
+                // change text content
+                res = callback(node.textContent);
+            } else if (node.nodeName === 'BR') {
+                // return break tags
+                res = node.outerHTML;
+            } else {
+                // walk through child html elements to get textNodes
+                $.each(node.childNodes, function( i, child) {
+                    inner += changeHtmlText(child, callback);
+                });
+            }
+            // replace html tags (if looped cb returned anything)
+            if (inner.length && node.nodeType === 1) {
+                node.innerHTML = inner;
+                res = node.outerHTML;
+            }
+            return res;
+        }
+        // trims text to specified limit,
+        // cutting the string at the last word
+        function trimToLimit(str) {
+            if (limit === 0) {
+                return '';
+            } else if (str.length <= limit) {
+                limit -= str.length;
+            } else {
+                // trim to closest word
+                // http://stackoverflow.com/questions/5454235/javascript-shorten-string-without-cutting-words
+                str = str.substr(0, limit);
+                str = str.substr(0, Math.min(str.length, str.lastIndexOf(' ')));
+                limit = 0;
+            }
+            return str;
+        }
+        // Put it all together:
+        // trim text for each node that was parsed from handlebars context
+        if (html) {
+            $.each( html, function(i,el) {
+                if ( limit > 0 ) {
+                    result  += changeHtmlText( el, trimToLimit );
+                }
+            });
+            // trim punctuation marks and add ellipsis
+            if (limit === 0) {
+                if (result.match(/[\.,:;\-—_!?\(\[\{]$/)) {
+                    result = result.substr(0, result.length-1);
+                }
+                result.trim();
+                result += '...';
+            }
+            return new Handlebars.SafeString(result);
+        }
+    });
+
 }(this));
