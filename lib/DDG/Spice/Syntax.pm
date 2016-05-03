@@ -14,17 +14,17 @@ spice proxy_cache_valid => "200 1d"; # defaults to this automatically
 spice wrap_jsonp_callback => 0; # only enable for non-JSONP APIs (i.e. no &callback= parameter)
 
 # API endpoint - http://docs.duckduckhack.com/walkthroughs/forum-lookup.html#api-endpoint
-spice to => 'https://syntaxdb.com/api/v1/concepts/search/$1';
+spice to => 'https://syntaxdb.com/api/v1/concepts/search?q=$1';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
-triggers any => 'syntax', 'syntaxdb';
+triggers any => 'syntax', 'syntaxdb', 'syntaxcenter';
 
 # Handle statement
-handle query_lc => sub {
+handle remainder => sub {
 
     # Query is in $_ or @_, depending on the handle you chose...if you
     # need to do something with it before returning
-    return \$_ if $_;
+    return $_;
 };
 
 1;
