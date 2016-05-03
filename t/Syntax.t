@@ -12,13 +12,13 @@ ddg_spice_test(
     # At a minimum, be sure to include tests for all:
     # - primary_example_queries
     'syntax java for loop' => test_spice(
-        '/js/spice/syntax/query',
+        '/js/spice/syntax/syntax java for loop',
         call_type => 'include',
         caller => 'DDG::Spice::Syntax'
     ),
-    # multiple queries
+    # multiple results
     'syntax for loop' => test_spice(
-        '/js/spice/syntax/query',
+        '/js/spice/syntax/syntax for loopy',
         call_type => 'include',
         caller => 'DDG::Spice::Syntax'
     ),
