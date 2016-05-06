@@ -1,10 +1,9 @@
 package DDG::Spice::JrDevJobs;
-# ABSTRACT: Search for Junior Developer Jobs.
+# ABSTRACT: Search for Junior Developer Jobs from JrDevJobs.com
 
 use DDG::Spice;
 
-triggers start => qw(junior jr jr.);
-triggers end => qw(developer jobs dev);
+triggers start => qw(jrdevjobs);
 
 spice to => 'https://www.jrdevjobs.com/jobs.json?query=$1';
 spice is_cached => 1;
@@ -20,4 +19,3 @@ handle remainder => sub {
 };
 
 1;
-
