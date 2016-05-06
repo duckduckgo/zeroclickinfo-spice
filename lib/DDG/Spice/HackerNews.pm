@@ -9,8 +9,9 @@ triggers startend => "hn", "hackernews", "hacker news", "news.yc", "news.ycombin
 spice to => 'https://hn.algolia.com/api/v1/search?query=$1&tags=story';
 spice wrap_jsonp_callback => 1;
 
-handle query => sub {
+handle remainder => sub {
     return $_ if $_;
     return;
 };
+
 1;
