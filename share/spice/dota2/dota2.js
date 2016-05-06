@@ -178,7 +178,7 @@
             return Spice.failed('dota2');
         }
 
-        var searchTarget = DDG.get_query().replace(/dota\s?2/, "").trim().toLowerCase();
+        var searchTarget = DDG.get_query().toLowerCase().replace(/dota\s?2/, "").trim();
         var returnData;
         var item = getItemFromData(api_result.itemdata, searchTarget);
         var sourceUrl;
