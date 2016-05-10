@@ -14,7 +14,7 @@ triggers query_lc => qr{
 	(?:\w+pitham\b)|
 	(?:samasthitih?)|
 	(?:tplutih?)|
-	(?:\b(?:\bpostures?|poses?)\b)|
+	(?:\b(?:postures?|poses?)\b)|
 	(?:sun\s+salutation)|
 	(?:s[uū]rya[\s-]+namask[aā]ra)|
 	(?:(?:ashtanga|yoga)\s+(primary|intermediate|advanced)\s+series)|
