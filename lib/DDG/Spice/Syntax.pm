@@ -2,9 +2,6 @@ package DDG::Spice::Syntax;
 
 # ABSTRACT: Look up syntax for a programming language
 
-# Start at http://docs.duckduckhack.com/walkthroughs/forum-lookup.html if you are new
-# to instant answer development
-
 use DDG::Spice;
 
 # Caching - http://docs.duckduckhack.com/backend-reference/api-reference.html#caching
