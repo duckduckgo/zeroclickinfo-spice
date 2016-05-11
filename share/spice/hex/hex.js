@@ -1,4 +1,4 @@
-/* globals Spice, DDG, moment */
+/* globals Spice, DDG, moment, Handlebars */
 (function(env) {
     'use strict';
 
@@ -24,21 +24,21 @@
 
                     if (Array.isArray(item.meta.maintainers) && item.meta.maintainers.length > 0) {
                         infoboxData.push({
-                            label: (item.meta.maintainers.length > 1) ? 'Maintainers' : 'Maintainer',
-                            value: item.meta.maintainers.join(', ')
+                            label: DDG.pluralize(item.meta.maintainers.length, 'Maintainer'),
+                            value: Handlebars.helpers.ellipsis(item.meta.maintainers.join(', '), 50)
                         });
                     }
 
                     if (Array.isArray(item.meta.contributors) && item.meta.contributors.length > 0) {
                         infoboxData.push({
-                            label: (item.meta.contributors.length > 1) ? 'Contributors' : 'Contributor',
-                            value: item.meta.contributors.join(', ')
+                            label: DDG.pluralize(item.meta.contributors.length, 'Contributor'),
+                            value: Handlebars.helpers.ellipsis(item.meta.contributors.join(', '), 50)
                         });
                     }
 
                     if (Array.isArray(item.meta.licenses) && item.meta.licenses.length > 0) {
                         infoboxData.push({
-                            label: (item.meta.licenses.length > 1) ? 'Licenses' : 'License',
+                            label: DDG.pluralize(item.meta.licenses.length, 'License'),
                             value: item.meta.licenses.join(', ')
                         });
                     }
@@ -64,13 +64,13 @@
                     item.numberOfLinks = Object.keys(item.meta.links).length;
 
                     if (item.numberOfLinks > 0) {
-                        item.linkLabel = (item.numberOfLinks > 1) ? 'links' : 'link';
+                        item.linkLabel = DDG.pluralize(item.numberOfLinks, 'link');
                     }
 
                     return {
                         title: item.name + ' ' + item.releases[0].version,
                         url: item.url,
-                        subtitle: item.meta.description,
+                        subtitle: Handlebars.helpers.ellipsis(item.meta.description, 50),
                         infoboxData: infoboxData
                     };
                 },
