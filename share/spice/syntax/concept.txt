@@ -10,8 +10,11 @@ text
 import
 package
 primitive
-data types
-type casting
+data
+types
+type
+casting
+typedef
 variable
 declaration
 constant
@@ -25,10 +28,12 @@ statement
 switch
 case
 ternary
-for loop
-for each
+loop
+for
+each
 while
-try catch
+try
+catch
 exception
 handling
 class
@@ -44,7 +49,8 @@ abstract
 anonymous
 lambda
 literal
-throw exception
+throw
+exception
 string
 length
 substring
