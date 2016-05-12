@@ -16,15 +16,20 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Syntax'
     ),
-    # multiple results
-    'syntax for loop' => test_spice(
-        '/js/spice/syntax/for%20loop',
+    # syntax trigger in the middle
+    'java syntax for each' => test_spice(
+        '/js/spice/syntax/java%20for%20each',
         call_type => 'include',
         caller => 'DDG::Spice::Syntax'
     ),
-    # Try to include some examples of queries on which it might
-    # appear that your answer will trigger, but does not.
-    'syntaxsomething' => undef,
+    # Concept without language
+    'syntax for loop' => undef,
+    # Language without concept should trigger nothing
+    'syntax java' => undef,
+    # Syntax by itself should trigger nothing
+    'syntax' => undef,
+    # Syntax with garbage should trigger nothing
+    'garbage syntax' => undef,
 );
 
 done_testing;
