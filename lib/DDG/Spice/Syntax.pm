@@ -15,13 +15,17 @@ spice to => 'https://syntaxdb.com/api/v1/concepts/search?q=$1';
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
 triggers any => 'syntax', 'syntaxdb', 'syntaxcenter';
+my $languages = join "|", share('languages.txt')->slurp;
+my $concepts = join "|", share('concept.txt')->slurp;
 
 # Handle statement
 handle remainder => sub {
-
-    # Query is in $_ or @_, depending on the handle you chose...if you
-    # need to do something with it before returning
-    return $_;
+    if ($_ =~ m/\b($languages)\b/x) {
+        if($_ =~ m/\b($concepts)\b/x) {
+            return $_;
+        }
+    }
+    return;
 };
 
 1;
