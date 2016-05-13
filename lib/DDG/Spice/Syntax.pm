@@ -12,13 +12,10 @@ spice to => 'https://syntaxdb.com/api/v1/concepts/search?q=$1';
 
 triggers any => 'syntax', 'syntaxdb', 'syntaxcenter';
 
-#my $languages = split "\n", map { quotemeta $_ } join "|", share('languages.txt')->slurp;
-#my $concepts = split "\n", map { quotemeta $_ } join "|", share('concept.txt')->slurp;
 my $languages = join "|", map { quotemeta $_ } split "\n" , share('languages.txt')->slurp ;
 my $concepts = join "|", map { quotemeta $_ } split "\n", share('concept.txt')->slurp;
 
 handle remainder => sub {
-    print $languages;
     if ($_ =~ /\b($languages)\b/ && $_ =~ /\b($concepts)\b/) {
             return $_;
     }
