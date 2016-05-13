@@ -13,7 +13,7 @@
             name: "Programming",
             data: api_result[0],
             meta: {
-                sourceName: "SyntaxDB.com",
+                sourceName: "SyntaxDB",
                 sourceUrl: 'https://syntaxdb.com/reference/search?search=' +  query,
                 sourceIconUrl: 'https://syntaxdb.com/images/favicon.ico'
             },

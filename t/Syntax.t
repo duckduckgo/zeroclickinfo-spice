@@ -9,8 +9,6 @@ spice is_cached => 1;
 
 ddg_spice_test(
     [qw( DDG::Spice::Syntax)],
-    # At a minimum, be sure to include tests for all:
-    # - primary_example_queries
     'syntax java for loop' => test_spice(
         '/js/spice/syntax/java%20for%20loop',
         call_type => 'include',
@@ -24,11 +22,11 @@ ddg_spice_test(
     ),
     # Concept without language
     'syntax for loop' => undef,
-    # Language without concept should trigger nothing
+    # Language without concept
     'syntax java' => undef,
-    # Syntax by itself should trigger nothing
+    # Syntax keyword by itself
     'syntax' => undef,
-    # Syntax with garbage should trigger nothing
+    # Syntax with garbage keywords
     'garbage syntax' => undef,
 );
 
