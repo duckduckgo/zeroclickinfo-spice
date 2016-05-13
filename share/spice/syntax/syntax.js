@@ -7,7 +7,7 @@
         var query = DDG.get_query().replace("syntax", '');
         Spice.add({
             id: "syntax",
-            name: "Programming",
+            name: "Answer",
             data: api_result[0],
             meta: {
                 sourceName: "SyntaxDB",
