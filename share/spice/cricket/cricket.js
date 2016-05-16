@@ -67,12 +67,13 @@
                             url: DDG.get_asset_path('cricket', "assets/" + team.teamid + ".svg"),
                             type: 'get',
                         }).always(function (data, statusText, xhr) {
-                            // Check if team logo exists
+                            // Check if svg logo exists
                             if (xhr.status === 200) {
                                 team.logo = DDG.get_asset_path('cricket', "assets/" + team.teamid + ".svg");
                                 //TODO: need a better way
                                 item.set("teams." + i, item.teams);
                             } else {
+                                // Fallback to png logo
                                 team.logo = DDG.get_asset_path('cricket', "assets/" + team.teamid + ".png");
                                 //TODO: need a better way
                                 item.set("teams." + i, item.teams);
