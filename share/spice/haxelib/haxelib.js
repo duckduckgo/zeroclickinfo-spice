@@ -25,7 +25,7 @@
                     });
                 }
 
-                if (item.homepage) {
+                if (item.website) {
                     boxData.push({
                         label: "Project Website",
                         value: item.website,
