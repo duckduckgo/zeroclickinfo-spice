@@ -1,4 +1,18 @@
-<span>{{name}}</span>
-<a href="http://some.url/profile/data1">
-   <img src="/iu/?u=Place a image url here">
-</a>
+<span class="additional_details">
+    <br/>
+    <br/>
+    {{#if yop}}
+        <span>Original Publication Year: {{yop}}</span>
+    {{/if}}
+
+    <br/>
+    {{#if reviews_count}}
+        <span>Total Goodreads reviews: {{reviews_count}} </span>
+    {{/if}}
+
+    <div class="frm__buttons">
+	    <a href="{{best_book.book}}"  class="btn btn--primary">GoodReads Reviews</a>
+        <a href="{{link_to_author}}" class="btn btn--secondary" >About {{author}} </a>
+    </div>
+
+</span>
