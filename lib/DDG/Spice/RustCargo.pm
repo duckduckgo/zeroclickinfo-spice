@@ -10,8 +10,7 @@ triggers startend => [
     'rust package', 
     'rust packages', 
     'rust cargo', 
-    'rust crate', 
-    'cargo crate'
+    'rust crate'
 ];
 
 spice to => 'https://crates.io/api/v1/crates/$1';
