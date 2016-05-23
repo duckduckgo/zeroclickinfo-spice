@@ -7,7 +7,7 @@
         }
         var crates = api_result.crates;
         
-        var query = DDG.get_query().replace(/(cargo|rust) (package|crate)(s)?/, "").trim();
+        var query = DDG.get_query().replace(/(cargo|rust) (package|crate|cargo)(s)?/, "").trim();
         
         DDG.require("moment.js", function() {
             Spice.add({
