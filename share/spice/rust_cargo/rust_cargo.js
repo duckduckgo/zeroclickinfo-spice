@@ -25,7 +25,8 @@
                         title: item.name + " " + item.max_version,
                         subtitle: "Last updated " + moment(item.updated_at).fromNow(),
                         description: item.description,
-                        url: "https://crates.io/crates/" + encodeURIComponent(item.id)
+                        url: "https://crates.io/crates/" + encodeURIComponent(item.id),
+                        abbrevDownloads: DDG.abbrevNumber(item.downloads)
                     }  
                 },
 
