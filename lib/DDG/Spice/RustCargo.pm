@@ -4,7 +4,14 @@ package DDG::Spice::RustCargo;
 use strict;
 use DDG::Spice;
 
-triggers startend => 'cargo package', 'cargo packages', 'rust package', 'rust packages', 'rust cargo';
+triggers startend => [
+    'cargo package', 
+    'cargo packages', 
+    'rust package', 
+    'rust packages', 
+    'rust cargo', 
+    'rust crate'
+];
 
 spice to => 'https://crates.io/api/v1/crates/$1';
 spice wrap_jsonp_callback => 1;
