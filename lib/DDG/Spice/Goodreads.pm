@@ -37,7 +37,7 @@ spice alt_to => {
 spice from => '([^-]+)-([^-]+)';
 
 # Triggers
-triggers any => "book", "books";
+triggers start => "book", "books";
 
 # Handle statement
 handle query_clean => sub {
