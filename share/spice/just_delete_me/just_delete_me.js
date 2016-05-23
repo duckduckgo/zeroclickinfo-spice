@@ -14,8 +14,8 @@
         }
         var matchPartial = function(item) {
             var that = this;
-            return (item.name.toLowerCase().includes(this) || 
-                    item.domains.some(function(domain) { return domain.includes(this); }, that));
+            return (item.name.toLowerCase().indexOf(this) != -1 ||
+                    item.domains.some(function(domain) { return domain.indexOf(this) != -1; }, that));
         }
         function normalizeDomains(api_result) {
             for (var i=0;i<api_result.length; i++) {
