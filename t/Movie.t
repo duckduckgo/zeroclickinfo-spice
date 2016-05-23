@@ -25,6 +25,30 @@ ddg_spice_test(
         '/js/spice/movie/indie%20game',
         caller    => 'DDG::Spice::Movie',
     ),
+    'cast three idiots' => test_spice(
+        '/js/spice/movie/three%20idiots',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'cast of avatar' => test_spice(
+        '/js/spice/movie/avatar',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'kung fu panda cast' => test_spice(
+        '/js/spice/movie/kung%20fu%20panda',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'casts three idiots' => test_spice(
+        '/js/spice/movie/three%20idiots',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'casts of avatar' => test_spice(
+        '/js/spice/movie/avatar',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'kung fu panda casts' => test_spice(
+        '/js/spice/movie/kung%20fu%20panda',
+        caller    => 'DDG::Spice::Movie',
+    ),
 );
 
 alt_to_test('DDG::Spice::Movie', ['movie_image']);

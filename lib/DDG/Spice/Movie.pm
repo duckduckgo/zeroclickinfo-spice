@@ -13,13 +13,21 @@ spice alt_to => {
 		# Uses $loc so needs to not cache back end.
 		is_cached => 0,
 		proxy_cache_valid => "200 30d"
+	},
+
+	cast_image => {
+		to => 'http://api.themoviedb.org/3/search/person?query=$1&api_key=570d34de8d158ef15a7b2a63f8e63c69',
+		# Uses $loc so needs to not cache back end.
+		is_cached => 0,
+		proxy_cache_valid => "200 30d"
 	}
 };
 
 # This spice will usually be triggered by deep triggers,
 # with a few extra triggers that deep might miss.
-my @triggers = ( 'rotten tomatoes', 'rotten');
+my @triggers = ( 'rotten tomatoes', 'rotten', 'cast', 'casts');
 triggers startend => @triggers;
+triggers start => 'cast of', 'casts of';
 
 handle remainder => sub {
     return unless $_;
