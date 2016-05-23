@@ -2,84 +2,52 @@
     "use strict";
     env.ddg_spice_rust_cargo = function(api_result){
 
-        if (!api_result || !api_result.crate) {
+        if (!api_result || !api_result.crates) {
             return Spice.failed('rust_cargo');
         }
-        var crate = api_result.crate;
+        var crates = api_result.crates;
         
-        Spice.add({
-            id: "rust_cargo",
-            name: "Software",
-            data: crate,
-            meta: {
-                sourceName: "Cargo",
-                sourceUrl: 'https://crates.io/crates/' + crate.name
-            },
-            normalize: function(item) {
-                var boxData = [{heading: 'Package Information:'}];
-                
-                if (item.max_version) {
-                    var value = item.max_version;
-                    if (api_result.versions[0].yanked) {
-                        value += " (yanked)";
+        var query = DDG.get_query().replace(/(cargo|rust) (package|crate|cargo)(s)?/, "").trim();
+        
+        DDG.require("moment.js", function() {
+            Spice.add({
+                id: "rust_cargo",
+                name: "Software",
+                data: crates,
+                meta: {
+                    itemType: "Cargo crates",
+                    searchTerm: query,
+                    sourceName: "Cargo",
+                    sourceUrl: 'https://crates.io/search?q=' + encodeURIComponent(query)
+                },
+                normalize: function(item) {
+                    return {
+                        title: item.name + " " + item.max_version,
+                        subtitle: "Last updated " + moment(item.updated_at).fromNow(),
+                        description: item.description,
+                        url: "https://crates.io/crates/" + encodeURIComponent(item.id),
+                        abbrevDownloads: DDG.abbrevNumber(item.downloads)
+                    }  
+                },
+
+                templates: {
+                    group: 'text',
+                    detail: false,
+                    item_detail: false,
+                    options: {
+                        footer: Spice.rust_cargo.footer
+                    },
+                    variants: {
+                        tile: 'basic4'
                     }
-                    boxData.push({
-                        label: "Latest Version",
-                        value: value
-                    });
-                }
-
-                if (item.homepage) {
-                    boxData.push({
-                        label: "Project Homepage",
-                        value: item.homepage
-                    });
-                }
-                
-                if (item.documentation) {
-                    boxData.push({
-                        label: "Documentation",
-                        value: item.documentation
-                    });
-                }
-                
-                if (item.license) {
-                    boxData.push({
-                        label: "License",
-                        value: item.license
-                    });
-                }
-
-                if (item.repository) {
-                    boxData.push({
-                        label: "Repository",
-                        value: item.repository
-                    });
-                }
-
-                if (item.keywords && item.keywords.length > 0) {      
-                    var keywords = item.keywords.join(", ");
-
-                    boxData.push({
-                        label: "Keywords",
-                        value: keywords
-                    });
-                }
- 
-                return {
-                    title: item.name + " " + item.max_version,
-                    subtitle: item.description,
-                    infoboxData: boxData,
-                }  
-            },
-
-            templates: {
-                group: 'text',
-                options: {
-                    content: Spice.rust_cargo.content,
-                    moreAt: true
-                }
-            }
+                },
+                sort_fields: {
+                    downloads: function(a, b) {
+                        return a.downloads > b.downloads ? -1 : 1;
+                    }
+                },
+                sort_default: 'downloads'
+            });
         });
     };
 }(this));
