@@ -16,7 +16,7 @@ spice alt_to => {
 	},
 
 	cast_image => {
-		to => 'http://api.themoviedb.org/3/search/person?query=$1&api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}',
+		to => 'https://api.themoviedb.org/3/search/person?query=$1&api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}',
 		# Uses $loc so needs to not cache back end.
 		is_cached => 0,
 		proxy_cache_valid => "200 30d"
