@@ -1,7 +1,7 @@
 (function (env) {
     "use strict";
 
-    function get_image(critics_rating) {
+    function getImage(critics_rating) {
         if (!critics_rating) {
             return;
         }
@@ -49,8 +49,8 @@
             } // return a single result if we have an exact match
         }
 
-        var is_cast_query = DDG.get_query().indexOf("cast") >= 0;
-        var data = is_cast_query ? get_casts(api_result.movies) : api_result.movies;
+        var isCastQuery = DDG.get_query().indexOf("cast") >= 0;
+        var data = isCastQuery ? getCasts(api_result.movies) : api_result.movies;
         Spice.add({
             id: 'movie',
             name: 'Movies',
@@ -64,7 +64,7 @@
                 ]
             },
             normalize: function (item) {
-                return is_cast_query ? normalize_cast(item) : normalize_movie(item);
+                return isCastQuery ? normalizeCast(item) : normalizeMovie(item);
             },
             templates: {
                 group: 'movies',
@@ -87,14 +87,14 @@
                 //}]
             },
             onItemShown: function (item) {
-                is_cast_query ? cast_picture(item) : movie_picture(item);
+                isCastQuery ? castPicture(item) : moviePicture(item);
             }
         });
-        function normalize_movie(item) {
+        function normalizeMovie(item) {
             if (item.alternate_ids && item.alternate_ids.imdb) {
                 return {
                     rating: Math.max(item.ratings.critics_score / 20, 0),
-                    icon_image: get_image(item.ratings.critics_rating),
+                    icon_image: getImage(item.ratings.critics_rating),
                     abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
                     heading: item.title,
                     fallback_image: item.posters.detailed,
@@ -105,7 +105,7 @@
             }
         }
 
-        function normalize_cast(item) {
+        function normalizeCast(item) {
             return {
                 name: item.name,
                 character: item.characters && item.characters.join(", "),
@@ -114,7 +114,7 @@
             }
         }
 
-        function movie_picture(item) {
+        function moviePicture(item) {
             if (!item.alternate_ids || !item.alternate_ids.imdb) {
                 return;
             }
@@ -137,7 +137,7 @@
             });
         }
 
-        function cast_picture(item) {
+        function castPicture(item) {
             $.ajaxSetup({cache: true});
 
             $.getJSON("/js/spice/cast_image/" + item.name, function (data) {
@@ -156,13 +156,13 @@
             });
         }
 
-        function get_casts(movies) {
+        function getCasts(movies) {
             var all_casts = [];
             var length = movies.length;
             for (var i = 0; i < length; i++) {
                 var movie_title = movies[i].title;
                 var casts = movies[i].abridged_cast.map(function (cast) {
-                    cast.movie = movie_title
+                    cast.movie = movie_title;
                     return cast;
                 });
                 all_casts = all_casts.concat(casts);
