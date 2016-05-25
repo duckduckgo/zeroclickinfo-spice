@@ -49,6 +49,46 @@ ddg_spice_test(
         '/js/spice/movie/kung%20fu%20panda',
         caller    => 'DDG::Spice::Movie',
     ),
+    'who stars in divergent' => test_spice(
+        '/js/spice/movie/divergent',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'who starred in insurgent' => test_spice(
+        '/js/spice/movie/insurgent',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'actor in independence day' => test_spice(
+        '/js/spice/movie/independence%20day',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'actors in independence day' => test_spice(
+        '/js/spice/movie/independence%20day',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'actress in deadpool' => test_spice(
+        '/js/spice/movie/deadpool',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'actresses in deadpool' => test_spice(
+        '/js/spice/movie/deadpool',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'the nice guys actor' => test_spice(
+        '/js/spice/movie/the%20nice%20guys',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'the nice guys actors' => test_spice(
+        '/js/spice/movie/the%20nice%20guys',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'the revenant actress' => test_spice(
+        '/js/spice/movie/the%20revenant',
+        caller    => 'DDG::Spice::Movie',
+    ),
+    'the revenant actresses' => test_spice(
+        '/js/spice/movie/the%20revenant',
+        caller    => 'DDG::Spice::Movie',
+    ),
 );
 
 alt_to_test('DDG::Spice::Movie', ['movie_image']);

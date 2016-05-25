@@ -25,9 +25,11 @@ spice alt_to => {
 
 # This spice will usually be triggered by deep triggers,
 # with a few extra triggers that deep might miss.
-my @triggers = ( 'rotten tomatoes', 'rotten', 'cast', 'casts');
+my @triggers = ( 'rotten tomatoes', 'rotten', 'cast', 'casts', 'actor', 'actors', 'actress', 'actresses');
+my @triggers_start = ( 'cast of', 'casts of', 'who stars in', 'who starred in', 'actor in', 'actors in', 'actress in', 'actresses in' );
+
 triggers startend => @triggers;
-triggers start => 'cast of', 'casts of';
+triggers start => @triggers_start;
 
 handle remainder => sub {
     return unless $_;
