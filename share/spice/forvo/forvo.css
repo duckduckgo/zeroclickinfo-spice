@@ -1,25 +1,36 @@
 .zci--forvo .word {
     font-weight: bold;
     cursor: pointer;
+    display:table-cell;
 }
 
 .zci--forvo .lang {
     font-size: 75%;
+    font-weight: bold;
 }
 
 .zci--forvo .sidenote {
     float: right;
     font-size: 85%;
+/*     display: inline-block;
+    vertical-align: middle; */
+    display:table-cell;
 }
 
 .zci--forvo .attribution-wrap--top {
     position: absolute;
     float: right;
+    
+    display:table-cell;
 }
 
 .zci--forvo .play-btn {
     margin-right: 0.5em;
     vertical-align: top;
+    
+    /* fix for sidenote not aligning with words for small displays 
+     * carolyz*/
+    display:table-cell;
 }
 
 .zci--forvo .play-btn__icn {
@@ -38,5 +49,5 @@
 }
 
 .is-mobile .zci--forvo .word-wrap {
-    max-width: 50%;
+    max-width: 40%;
 }
