@@ -12,8 +12,9 @@
 .zci--forvo .sidenote {
     float: right;
     font-size: 85%;
-/*     display: inline-block;
-    vertical-align: middle; */
+    
+    /* fix for sidenote not aligning with words for small displays 
+     * carolyz*/
     display:table-cell;
 }
 
