@@ -18,7 +18,7 @@ my $countries = join('|', share("countries.txt")->slurp(chomp => 1));
 
 triggers start => @triggers;
 
-handle remainder_lc => sub {    
+handle remainder_lc => sub {
 	my $query = $_;
 	return unless $query;
 	
@@ -51,10 +51,16 @@ handle remainder_lc => sub {
     } else {
         $chosenCountry = $defaultCountry;
     }
-    
-    # ***todo*** dynamically load a holidays file based on 'country2code($chosenCountry)'
-    my $holidays = join('|', share("gb.txt")->slurp(chomp => 1));
-    
+     
+    # Load the list of holidays for a given country
+    my $holidays;
+    my $holidayFile = country2code($chosenCountry) . ".txt";
+    if (-f "share/spice/holiday/" . $holidayFile) {    
+        $holidays = join('|', share($holidayFile)->slurp(chomp => 1));
+    } else {        
+        return; # Unknown country
+    }    
+
     $query =~ s/(?<holiday>$holidays)//;
 	if ($+{holiday}) {
         $chosenHoliday = $+{holiday};
