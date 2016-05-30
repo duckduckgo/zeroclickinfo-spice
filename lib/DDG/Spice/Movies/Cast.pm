@@ -2,16 +2,31 @@ package DDG::Spice::Movies::Cast;
 
 use DDG::Spice;
 
-spice to => 'https://api.themoviedb.org/3/search/person?query=$1&api_key={{ENV{DDG_SPICE_THE_MOVIE_DB_KEY}}}&callback={{callback}}';
+spice to => 'https://api.themoviedb.org/3/search/person?query=$1&api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}&callback={{callback}}';
 
 spice alt_to => {
     details => {
-        to => 'http://api.themoviedb.org/3/discover/movie?with_cast=$1&api_key={{ENV{DDG_SPICE_THE_MOVIE_DB_KEY}}}&sort_by=popularity.desc',
-        wrap_jsonp_callback => 1
+        to => 'http://api.themoviedb.org/3/discover/movie?with_cast=$1&api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}&sort_by=popularity.desc'
     }
 };
 
-my @triggers = share("triggers.txt")->slurp;
+my @nouns = (
+    "newest movies",
+    "newest movie",
+    "new films",
+    "new film",
+    "newest films",
+    "newest film",
+    "movie",
+    "movies",
+    "film",
+    "films",
+);
+my @triggers = ();
+foreach (@nouns) {
+    push @triggers, ($_ . " with", $_ . " starring", $_ . " featuring")
+}
+
 triggers start => @triggers;
 
 handle remainder => sub {
