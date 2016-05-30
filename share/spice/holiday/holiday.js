@@ -2,7 +2,7 @@
     "use strict";
     env.ddg_spice_holiday = function(api_result) {
         
-        if (!api_result || !api_result.h || api_result.h.length === 0 || api_result.h.length !== 1) {
+        if (!api_result || !api_result.h || api_result.h.length !== 1 || !api_result.h[0].o || api_result.h[0].o.length !== 1) {
             return Spice.failed('holiday');
         }
 
@@ -11,64 +11,50 @@
         var country = query_matches[1];
         var query = query_matches[2];
         var year = query_matches[3];
-        var url = 'http://www.timeanddate.com';
-        var source = url + '/search/results.html?query=' + query;
-
+        
         if (!year || !query || !country) {
             return Spice.failed('holiday');
         }
         
-        DDG.require('moment.js', function() {
-            var meta_obj = {
-                    itemType: "Holidays",
-                    sourceName: 'timeanddate.com',
-                },
-                template_obj,
-                normalize_fn,
-                data;
+        DDG.require('moment.js', function() {                                  
+            var holiday = api_result.h[0];
+            
+            // todo: only if user didn't explictly provide a year
+            // If the holiday being queried for has already past in the given year requery for the following year
+            //var eventDate = moment(new Date(data.o[0].d));
+            //var currentDate = moment();
+            //if (eventDate.isBefore(currentDate)) {
+            //    $.getScript('/js/spice/holiday/' + country + '/' + query + '/' + eventDate.add(1, 'years').format('YYYY'));
+            //    return;
+            //}
+            
+            var data = {
+                title: holiday.o[0].d,
+                subtitle: holiday.n,
+                name: holiday.n,
+                description: holiday.a 
+            };
 
-            var events = api_result.h;
-            data = events[0];
-
-            if (!data.o || data.o.length <= 0) {
-                 return Spice.failed('holiday');
+            if (holiday.o[0].s !== null) {
+                data.subtitle += ', observed in ' + DDG.strip_html(holiday.o[0].s) + '.';
             }
-
-            normalize_fn = function(item) {
-                var date = item.o[0],
-                    next_date = null,
-                    subtitle = item.n;
-                
-                if (date.s !== null) {
-                    subtitle += ', observed in ' + DDG.strip_html(date.s) + '.';
-                }
-                
-                var data = {
-                    title: date.d,
-                    subtitle: subtitle,
-                    name: item.n,
-                    description: item.a,
-                };
-                
-                return data;
-            };
-
-            meta_obj.sourceUrl = url + data.u;
-
-            template_obj = {
-                group: 'text',
-                options: {
-                    moreAt: true
-                }
-            };
             
             Spice.add({
                 id: 'holiday',
                 name: 'Answer',
                 data: data,
-                normalize: normalize_fn,
-                meta: {meta_obj},
-                templates: template_obj
+                
+                meta: {
+                    sourceName: 'timeanddate.com',
+                    sourceUrl: 'http://www.timeanddate.com' + holiday.u
+                },
+
+                templates: {
+                    group: 'text',
+                    options: {
+                        moreAt: true
+                    }
+                }
             });
         });
     };
