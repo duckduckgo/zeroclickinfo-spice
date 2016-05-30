@@ -8,7 +8,7 @@
         }
 
         
-        var script = $('[src*="/js/spice/book/"]')[0],
+        var script = $('[src*="/js/spice/new_york_times/"]')[0],
             source = $(script).attr("src"),
             query = source.match(/new_york_times\/([^\/]+)/)[1],
             decoded_query = decodeURIComponent(query);
