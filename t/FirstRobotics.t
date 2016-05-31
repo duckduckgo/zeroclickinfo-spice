@@ -30,7 +30,10 @@ ddg_spice_test(
 
     'first robotics team'                           => undef,
     'frc stock price'                               => undef,
-    'first robotics competition'                    => undef
+    'first robotics competition'                    => undef,
+    'top 5 frc teams'                               => undef,
+    '10 best frc teams'                             => undef,
+    '20 highest ranked frc teams'                   => undef
 );
 
 done_testing;
