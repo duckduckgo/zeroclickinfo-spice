@@ -18,6 +18,10 @@
                 sourceUrl: 'https://play.spotify.com/search/' + query.trim(),
             },
             normalize: function(item) {
+                if (!item.album.images.length) {
+                    return null;
+                }
+
                 return {
                     title: item.name,
                     album: item.album.name,

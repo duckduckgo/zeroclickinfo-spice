@@ -10,9 +10,12 @@
         sourceCity = null,
         destinationCity = null,
 
+        // min number of minutes to be considered as 'delay'
+        MIN_DELAY_MINUTES= 5,
+        
         // define some static variables for callback and helpers
         MILLIS_PER_MIN = 60000,
-        MILLIS_PER_HOUR = MILLIS_PER_MIN * 60,
+        MILLIS_PER_HOUR = MILLIS_PER_MIN * 60,        
         STATUS = {
             "S": "Scheduled",
             "A": "In the air",
@@ -96,7 +99,7 @@
                 }
             });
             
-            // Fine-grained relative thresolds for humanize times
+            // Fine-grained relative thresholds for humanize times
             moment.relativeTimeThreshold('m', 59);
             moment.relativeTimeThreshold('h', 23);
 
@@ -180,8 +183,6 @@
                             DDG.getProperty(opTime, 'scheduledGateArrival.dateLocal') ||
                             DDG.getProperty(opTime, 'flightPlanPlannedArrival.dateLocal');
 
-                        var estimatedGateDeparture = DDG.getProperty(opTime, 'estimatedGateDeparture.dateUtc');
-
                         var departing_airport = dictAirportStats[current.departureAirportFsCode];
                         var departing_location = [
                             departing_airport.city,
@@ -233,7 +234,7 @@
                             status: status[0],
                             is_on_time: status[1],
                             statusColor: getStatusColor(status[1]),
-                            delay_time: status[2]
+                            delayTime: status[2]
                         });
 
                         if (first_active_index == -1 && !(status[0] === 'Landed' || status[0] === 'Cancelled')) {
@@ -267,7 +268,7 @@
                 normalize: function(item) {
                     var status_text,
                         display_datetime,
-                        delay_time;
+                        delay_time = item.delayTime;
                    
                     if (item.status === 'Cancelled'){
                         status_text = 'Cancelled';                       
@@ -286,17 +287,21 @@
 
                     var scheduled_arrival = moment(item.scheduledArrivalDateLocal),
                         scheduled_depart = moment(item.scheduledDepartureDateLocal),
-                        same_date = scheduled_arrival.isSame(scheduled_depart);
+                        same_date = scheduled_arrival.isSame(scheduled_depart, "day");
 
                     var progress_max = 98,
                         progress_percent = 100,
-                        time_total = moment(item.arrivalDate).diff(item.departureDate),
-                        time_remaining = moment(item.arrivalDate).diff(moment().utc());
+                        scheduled_progress_percent = 100,
+                        time_total = moment(item.scheduledArrivalDate).diff(item.scheduledDepartureDate),
+                        time_remaining = moment(item.scheduledArrivalDate).diff(moment().utc());
 
                     if (status_text !== 'Arrived' && status_text !== 'Cancelled') {
-                        progress_percent = progress_max * (time_total - time_remaining) / time_total;
+                        scheduled_progress_percent = progress_max * (time_total - time_remaining) / time_total;                    
+                        if (delay_time) progress_percent = progress_max * (time_total - time_remaining - (delay_time * MILLIS_PER_MIN)) / time_total;
+                        if (scheduled_progress_percent < 0) scheduled_progress_percent = 0;
+                        if (scheduled_progress_percent > progress_max) scheduled_progress_percent = progress_max;
                         if (progress_percent < 0) progress_percent = 0;
-                        if (progress_percent > progress_max) progress_percent = progress_max;
+                        if (progress_percent > scheduled_progress_percent) progress_percent = scheduled_progress_percent;
                     }
 
                     var year = moment(item.departureDate).year(),
@@ -305,8 +310,9 @@
                     
                     return {
                         datetime: display_datetime ? display_datetime.fromNow() : "",
-                        delay_time: delay_time,
+                        delay_time: delay_time ? moment.duration(delay_time, "minutes").humanize() : delay_time,
                         progress_percent: progress_percent,
+                        scheduled_progress_percent: scheduled_progress_percent,
                         status_text: status_text,
                         scheduled_arrival: same_date ? scheduled_arrival.format('LT') : scheduled_arrival.format('LT (MMM DD)'),
                         scheduled_depart: same_date ? scheduled_depart.format('LT') : scheduled_depart.format('LT (MMM DD)'),
@@ -352,9 +358,8 @@
     // Check if the airplane is on-time or delayed.
     function getStatus(flight) {
         
-        function formatDelayTime(delayTime){
-            var delayDuration = moment.duration(delayTime, "minutes");
-            return delayDuration.humanize();
+        function formatDelayTime(delayTime){                      
+            return (!delayTime || (delayTime < MIN_DELAY_MINUTES))? false : delayTime;
         }
        
         var status,
@@ -369,8 +374,10 @@
 
             // Flight in-progress
             case "A":
-                if (flight.delays) {                    
-                    delayTime = formatDelayTime(DDG.getProperty(flight.delays, "arrivalGateDelayMinutes") || DDG.getProperty(flight.delays, "departureGateDelayMinutes"));
+                delayTime = formatDelayTime(DDG.getProperty(flight.delays, "arrivalGateDelayMinutes")   || 
+                                            DDG.getProperty(flight.delays, "departureGateDelayMinutes") ||
+                                            DDG.getProperty(flight.delays, "arrivalRunwayDelayMinutes"));
+                if (delayTime) {                                        
                     status = ["Delayed", false, delayTime];
                 } else {
                     status = ["On Time", true, delayTime];
@@ -378,9 +385,9 @@
                 break;
 
             // Flight scheduled
-            case "S":
-                if (flight.delays) {
-                    delayTime = formatDelayTime(DDG.getProperty(flight.delays, "departureGateDelayMinutes"));
+            case "S":                
+                delayTime = formatDelayTime(DDG.getProperty(flight.delays, "departureGateDelayMinutes"));
+                if (delayTime) {                    
                     status = ["Delayed", false, delayTime];
                 } else {
                     status = ["On Time", true, delayTime];

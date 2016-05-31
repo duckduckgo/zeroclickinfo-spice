@@ -1,10 +1,10 @@
-{{#if delete_url}}
-    <div class="one-line">
-         <a href='{{delete_url}}'>{{delete_url}}</a>
-     </div>
-{{/if}}
 {{#if email}}
-    <div class="one-line">
-        <a href='mailto:{{email}}'>{{email}}</a>
+    <div>
+        <a href='mailto:{{email}}'>Send Email</a>
+    </div>
+{{/if}}
+{{#if delete_url}}
+    <div>
+        <a href='{{delete_url}}'>Provided Link</a>
     </div>
 {{/if}}

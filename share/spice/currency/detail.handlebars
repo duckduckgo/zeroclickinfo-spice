@@ -6,7 +6,7 @@
             <div class="zci--currency-result" data-link="{{xeUrl}}">
                 <div class="zci--currency-group">
                     <section class="zci--currency-first-part">
-                        <img src="{{fromFlag}}" alt="Flag of {{fromCurrencySymbol}}">
+                        <img src="{{fromFlag}}" class="flag-img" alt="Flag of {{fromCurrencySymbol}}">
                         <span class="zci--currency-amount text--primary" data-original="{{from-amount}}" data-processed="{{amount}}">{{amount}}</span>
                         <span class="zci--currency-symbol">{{fromCurrencySymbol}}</span>
                     </section>
@@ -15,7 +15,7 @@
                 </div>
 
                 <section class="zci--currency-second-part">
-                    <img src="{{toFlag}}" class="flag" alt="Flag of {{toCurrencySymbol}}">
+                    <img src="{{toFlag}}" class="flag-img" alt="Flag of {{toCurrencySymbol}}">
                     <span class="zci--currency-amount text--primary" data-original="{{converted-amount}}" data-processed="{{convertedAmount}}">{{convertedAmount}}</span>
                     <span class="zci--currency-symbol">{{toCurrencySymbol}}</span>
                 </section>

@@ -19,33 +19,33 @@ my $countries = join('|', share("countries.txt")->slurp(chomp => 1));
 triggers start => @triggers;
 
 handle remainder_lc => sub {
-	my $query = $_;
-	return unless $query;
-	
-	# Current year and users location are the defaults unless otherwise specified by the query
+    my $query = $_;
+    return unless $query;
+
+    # Current year and users location are the defaults unless otherwise specified by the query
     my $defaultYear = (localtime(time))[5] + 1900;
     my $defaultCountry = $loc->country_name;
-	
+
     # Regexes to match components of queries relevant to this IA
     my $country  = qr/$countries/;
     my $year     = qr/[1-9]{1}[0-9]{3}/;
     
-	# Regexes to ignore optional words that can precede the year or country name
+    # Regexes to ignore optional words that can precede the year or country name
     my $in       = qr/(?:in )?/;
     my $inThe    = qr/(?:in the |in )?/;
-	
-	my $chosenYear;
+
+    my $chosenYear;
     my $chosenCountry;
-	my $chosenHoliday;
-		
-	$query =~ s/$in(?<year>$year)//;
+    my $chosenHoliday;
+
+    $query =~ s/$in(?<year>$year)//;
     if ($+{year}) {
         $chosenYear = $+{year};
     } else {
         $chosenYear = $defaultYear;
     }
-	
-	$query =~ s/$inThe(?<country>$country)//;
+
+    $query =~ s/$inThe(?<country>$country)//;
     if ($+{country}) {
         $chosenCountry = $+{country};
     } else {
@@ -62,19 +62,19 @@ handle remainder_lc => sub {
     }    
 
     $query =~ s/(?<holiday>$holidays)//;
-	if ($+{holiday}) {
+    if ($+{holiday}) {
         $chosenHoliday = $+{holiday};
     } else {
         return; # Unknown holiday
     }
-	
-	# If there's anything left in the query we can't be sure its relevant
+
+    # If there's anything left in the query we can't be sure its relevant
     return unless ($query =~ /^\s*$/);
-	
-	# These are the min/max years available from the API (as of Feb 2016, API version 2)
+    
+    # These are the min/max years available from the API (as of Feb 2016, API version 2)
     return unless ($chosenYear >= 1600 && $chosenYear <= 2400);
-	
-	return $chosenCountry, $chosenHoliday, $chosenYear; 
+    
+    return $chosenCountry, $chosenHoliday, $chosenYear; 
 };
 
 1;
