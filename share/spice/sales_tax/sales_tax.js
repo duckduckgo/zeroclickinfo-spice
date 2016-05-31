@@ -1,66 +1,38 @@
 (function (env) {
     "use strict";
     env.ddg_spice_sales_tax = function(api_result){
-
         // Error checking
-        if (!api_result || api_result.rates.length === 0) {
+        if (!api_result || api_result.header.status !== "SUCCESS") {
             return Spice.failed('sales_tax');
         }
-
-        // Query    ZIP   STATE
-        // Example: 06101/Connecticut
-        var script = $('[src*="/js/spice/sales_tax/"]')[0],
-            source = $(script).attr("src"),
-            query = source.match(/sales_tax\/([^\/]+)\/([^\/]+)/);
-
-        // Declare vars
-        var stateName = decodeURIComponent(query[2]),
-            apiObjectName,
-            taxRate,
-            titleResult,
-            subtitleResult,
-            statNameTmp
-
-        // The API can return multiple rate results
-        // Loop through results:
-        // If the state name returned matches that of the state searched use the rate value
-        for (var i = 0; i < api_result.rates.length; i++) {
-            //Lowercase state names
-            apiObjectName = api_result.rates[i].name.toLowerCase();
-            statNameTmp = stateName.toLowerCase();
-            
-            if(apiObjectName == statNameTmp) {
-               taxRate = api_result.rates[i].rate;
-            // workaround washington d.c = district of columbia
-            } else if(apiObjectName == "district of columbia" && statNameTmp == "washington d.c") {
-                taxRate = api_result.rates[i].rate;
-            }
-
-        }
-
-        // Fail if we have no rate (edge case)
-        if (taxRate === undefined) {
-            return Spice.failed('sales_tax');
-        }
-
-        // title and subtitle
-        titleResult = taxRate+"%";
-        subtitleResult = stateName+" - "+"State Tax"
-
-        // Fix for sourceUrl washington d.c => washington-dc
-        // clean stateName for use as sourceUrl
-        stateName = stateName.replace(/\./,"").replace(/\s/,"-").toLowerCase();
 
         // Display
         Spice.add({
             id: "sales_tax",
             name: "Answer",
-            data: titleResult,
+            data: api_result.stateSalesTaxInfos,
             meta: {
-                sourceName: "Avalara",
-                sourceUrl: 'http://www.taxrates.com/state-rates/' + stateName
+                sourceName: "Wikipedia",
+                sourceUrl: "https://en.wikipedia.org/wiki/Sales_taxes_in_the_United_States#By_jurisdiction"
             },
             normalize: function(item) {
+                var stateName, titleResult, subtitleResult, minTaxRate, maxTaxRate, noTaxState;
+
+                stateName   = item.stateName;
+                minTaxRate  = (item.minimumTaxRate * 100).toFixed(2) +"%";
+                maxTaxRate  = (item.maximumTaxRate * 100).toFixed(2) +"%";
+                noTaxState  = item.noTaxState;
+                subtitleResult = stateName+" - Sales Tax";
+
+                if (noTaxState === false) {
+                    if (minTaxRate === maxTaxRate) {
+                        titleResult = minTaxRate;
+                    } else {
+                        titleResult = minTaxRate+" to "+maxTaxRate;
+                    }
+                } else {
+                    titleResult = "No sales tax";
+                }
                 return {
                     title: titleResult,
                     subtitle: subtitleResult
@@ -69,9 +41,16 @@
             templates: {
                 group: 'text',
                 options: {
-                    moreAt: true
-                }
-            }
+                    moreAt: true,
+                    moreText: { 
+                      href: 'https://snapcx.io/salesTax',
+                      text: 'Data by snapCX' 
+                    }
+                },
+                 variants: {
+                  tileSnippet: 'small'
+                }   
+           }
         });
     }
 }(this));

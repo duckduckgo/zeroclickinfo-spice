@@ -38,6 +38,7 @@ triggers start => (
 );
 
 handle remainder => sub {
+    return unless /^(\w+)$/;
     return lc $_ if $_;
     return;
 };
