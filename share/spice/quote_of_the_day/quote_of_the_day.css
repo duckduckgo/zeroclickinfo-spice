@@ -53,3 +53,17 @@
 .is-mobile .zci--quote_of_the_day .zci-quote_of_the_day--attribution {
     margin-left: 40px;
 }
+
+@media only screen and (max-width: 634px) {
+    .zci-quote_of_the_day--attribution{
+        margin-left: 3em;
+    }
+
+    .zci-quote_of_the_day{
+	margin-left: 2em;
+     }
+
+    .zci-quote_of_the_day:before {
+        display:none;
+     }
+}
