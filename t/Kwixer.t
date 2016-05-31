@@ -17,6 +17,11 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::Kwixer'
     ),
+    'movies tom cruise' => test_spice(
+        '/js/spice/kwixer/movies%20tom%20cruise',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
     'movies with tom cruise' => test_spice(
         '/js/spice/kwixer/movies%20with%20tom%20cruise',
         call_type => 'include',
@@ -174,6 +179,66 @@ ddg_spice_test(
     ),
     'film director ron howard' => test_spice(
         '/js/spice/kwixer/film%20director%20ron%20howard',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise film' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20film',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise films' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20films',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise new film' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20new%20film',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise new films' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20new%20films',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise newest film' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20newest%20film',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise newest films' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20newest%20films',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise movie' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20movie',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise movies' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20movies',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise new movie' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20new%20movie',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise new movies' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20new%20movies',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise newest movie' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20newest%20movie',
+        call_type => 'include',
+        caller => 'DDG::Spice::Kwixer'
+    ),
+    'tom cruise newest movies' => test_spice(
+        '/js/spice/kwixer/tom%20cruise%20newest%20movies',
         call_type => 'include',
         caller => 'DDG::Spice::Kwixer'
     ),

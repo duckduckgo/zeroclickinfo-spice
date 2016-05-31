@@ -4,6 +4,7 @@
     // We attach this anonymous function to the global object `env`
     // so that it's accessible everywhere.
     env.ddg_spice_kwixer = function(api_result) {
+        
         // Check if there is anything in the `api_result` before doing anything.
         if(!api_result || !api_result.length === 0) {
             return Spice.failed('kwixer');
@@ -21,7 +22,7 @@
         if(finalArray.length === 0) {
             return Spice.failed('kwixer');
         }
-
+        
         // Display our Spice.
         Spice.add({
             id: 'kwixer',
@@ -41,7 +42,7 @@
                     ratingText: item.ResourceYear,
                     url: "https://kwixer.com/#/watching/movie/" + item.ResourceId
                 };
-            },
+            },            
             templates: {
                 group: 'movies',
                 detail: 'products_item_detail',
