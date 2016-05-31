@@ -4,7 +4,7 @@ package DDG::Spice::NewYorkTimes;
 use strict;
 use DDG::Spice;
 
-spice to => 'https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?api-key={{ENV{DDG_SPICE_NewYorkTimes_APIKEY}}}&title=$1';
+spice to => 'https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?api-key={{ENV{DDG_SPICE_NYTIMES_BOOKS_APIKEY}}}&title=$1';
 
 triggers startend => "new york times", "new york times best seller";
 
