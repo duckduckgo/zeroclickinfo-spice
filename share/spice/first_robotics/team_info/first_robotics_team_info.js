@@ -39,15 +39,20 @@
                         var team_data = {
                             'Full name': item.name,
                             'Location': item.location,
-                            'Rookie year': item.rookie_year
                         };
                         
-                        // Only show the last year competed if there is an array of years
+                        // Only show rookie year if it exists
+                        if (item.rookie_year && item.rookie_year != null) {
+                            team_data['Rookie year'] = item.rookie_year;
+                        }
+                        
+                        // Ditto for last year competed
                         if (data && data.length != 0 && !data.error) {
                             team_data['Last competed'] = data[data.length - 1];
                         }
 
-                        // Ditto for motto
+                        
+                        // And motto
                         if (item.motto && item.motto != null) {
                             team_data['Motto'] = item.motto;
                         }
