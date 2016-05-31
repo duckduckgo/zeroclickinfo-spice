@@ -9,7 +9,7 @@
         //Check if query is looking for reverse IP information fail if none is found.
         var query = DDG.get_query();
         if (query.match(/reverse|dns/)){
-            if(!api_result.ddg.famlist[0]) {
+            if(!api_result.ddg || !api_result.ddg.famlist || !api_result.ddg.famlist[0]) {
                 return Spice.failed('iplookup');
             }
         }
