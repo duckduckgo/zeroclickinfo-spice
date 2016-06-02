@@ -54,7 +54,7 @@ handle remainder_lc => sub {
      
     # Load the list of holidays for a given country
     my $holidays;
-    my $holidayFile = country2code($chosenCountry) . ".txt";
+    my $holidayFile = country2code($chosenCountry) . ".hols";
     if (-f "share/spice/holiday/" . $holidayFile) {    
         $holidays = join('|', share($holidayFile)->slurp(chomp => 1));
     } else {        
