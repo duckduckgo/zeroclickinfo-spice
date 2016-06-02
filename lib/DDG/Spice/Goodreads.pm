@@ -37,21 +37,22 @@ spice alt_to => {
 spice from => '([^-]+)-([^-]+)';
 
 # Triggers
-triggers start => "book", "books";
+triggers startend => "goodreads", "gr";
 
 # Handle statement
 handle query_clean => sub {
-    my $trigger_pattern = qr/(list )?(of )?books? ?(written )?(on|by|about) /i;
-    return unless $_ =~ $trigger_pattern;
+    my $book_pattern = qr/(list )?(of )?books? ?(written )?(on|by|about) /i;
+    my $goodreads_pattern = qr/(goodreads|gr)/i;
+    return unless $_ =~ $book_pattern;
     
     my $search_type =
           $_ =~ /by/i
           ? "authors"
           : "title";
-    $_ =~ s/$trigger_pattern//g;
+    $_ =~ s/$book_pattern//g;       # removing the book query pattern from query
+    $_ =~ s/$goodreads_pattern//g;  # removing the goodreads trigger pattern from query
     return "$search_type-$_" if $_;
 
     return;
 };
-
 1;
