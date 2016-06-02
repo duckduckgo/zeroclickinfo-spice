@@ -22,7 +22,7 @@
             data: api_result.GoodreadsResponse.search.results.work,
             meta: {
                 searchTerm: api_result.GoodreadsResponse.search.query.text,
-                itemType: 'Books',
+                itemType: 'Goodreads',
                 sourceUrl: "http://www.goodreads.com/",
                 sourceName: 'Goodreads',
                 rerender: [
@@ -39,16 +39,17 @@
                 return {
                     url: "https://www.goodreads.com/book/show/" + book.id.text,
                     title: book.title.text,
+                    heading: book.title.text,
                     image: book.image_url.text,
                     img_m: book.image_url.text,
                     rating: parseFloat(item.average_rating.text),
                     ratingText: item.average_rating.text,
                     brand: book.author.name.text,
-                    reviewCount: parseInt(item.ratings_count.text),
+                    reviewCount: parseInt(item.text_reviews_count.text),
                     yop: item.original_publication_year.text,
                     reviews_count: item.text_reviews_count.text,
                     author: book.author.name.text,
-                    link_to_author: "https://www.goodreads.com/author/show/" + book.author.name.text
+                    link_to_author: "https://www.goodreads.com/author/show/" + book.author.id.text
                 };
             },
 
@@ -62,16 +63,19 @@
 
                     item.set({
                         abstract: description && Handlebars.helpers.ellipsis(description.replace(/<\/?\w*>/gm, ''), 400),
-                        heading: book.title.text,
                         isbn: book.isbn && book.isbn.text,
-                        isbn13: book.isbn13 && book.isbn13.text
+                        isbn13: book.isbn13 && book.isbn13.text,
+                        num_pages: book.num_pages.text
                     });
 
-                    $.getJSON(book_image_uri + data.GoodreadsResponse.book.isbn13.text, function (image_object) {
-                        item.set({
-                            img_m: image_object.results[0].img_m
+                    if (book.isbn13 && book.isbn13.text) {
+                        $.getJSON(book_image_uri + book.isbn13.text, function (image_object) {
+                            item.set({
+                                img_m: image_object.results[0].img_m
+                            });
                         });
-                    });
+                    }
+
                 });
             },
 
