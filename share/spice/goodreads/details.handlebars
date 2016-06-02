@@ -1,18 +1,43 @@
 <span class="additional_details">
-    <br/>
-    <br/>
+
+<h6> More Info. </h6>
+
+<table class="record__body">
+    <tbody>
     {{#if yop}}
-        <span>Original Publication Year: {{yop}}</span>
+        <tr class="record__row">
+            <td class="record__cell  record__cell--key"> Original Publication Year </td>
+            <td class="record__cell  record__cell--value"> {{yop}} </td>
+        </tr>
     {{/if}}
 
-    <br/>
     {{#if reviews_count}}
-        <span>Total Goodreads reviews: {{reviews_count}} </span>
+        <tr class="record__row  ">
+            <td class="record__cell  record__cell--key"> Total GoodReads Reviews </td>
+            <td class="record__cell  record__cell--value">{{reviews_count}}</td>
+        </tr>
     {{/if}}
 
-    <div class="frm__buttons">
-      <a href="{{best_book.book}}"  class="btn btn--primary">GoodReads Reviews</a>
-      <a href="{{link_to_author}}" class="btn btn--secondary" >About {{author}} </a>
-    </div>
+    {{#if num_pages}}
+        <tr class="record__row  ">
+            <td class="record__cell  record__cell--key"> Number of Pages </td>
+            <td class="record__cell  record__cell--value">{{num_pages}}</td>
+        </tr>
+    {{/if}}
 
+    {{#if isbn13}}
+        <tr class="record__row  ">
+            <td class="record__cell  record__cell--key"> ISBN-13 </td>
+            <td class="record__cell  record__cell--value">{{isbn13}}</td>
+        </tr>
+    {{/if}}
+
+    </tbody>
+</table>
+
+<br/>
+    <div>
+        <span> <a href="{{best_book.book}}" class="btn btn--primary" > GoodReads Reviews </a>   </span>
+        <span> <a href="{{link_to_author}}" class="btn btn--secondary" > About {{author}} </a>  </span>
+    </div>
 </span>

@@ -1,0 +1,16 @@
+/*
+    Document   : zeroclickinfo-spice/share/spice/goodreads/goodreads.css
+    Created on : 2016-05-24 05:56 PM
+    Author     : iammrigank
+    Description:
+    Purpose of the stylesheet follows.
+    To change this template use Tools | Templates.
+*/
+
+.record__cell--key {
+    width: 13em !important;
+}
+
+.record__cell--value {
+    font-weight: bold;
+}
