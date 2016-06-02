@@ -1,6 +1,7 @@
 package DDG::Spice::JrDevJobs;
 # ABSTRACT: Search for Junior Developer Jobs from JrDevJobs.com
 
+use strict;
 use DDG::Spice;
 
 triggers startend => qw(jrdevjobs);
