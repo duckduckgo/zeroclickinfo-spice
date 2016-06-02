@@ -15,7 +15,7 @@ ddg_spice_test(
         is_cached => 1
     ),
     'web developer jrdevjobs' => test_spice(
-        '/js/spice/jr_dev_jobs/web%20',
+        '/js/spice/jr_dev_jobs/web',
         call_type => 'include',
         caller => 'DDG::Spice::JrDevJobs',
         is_cached => 1
