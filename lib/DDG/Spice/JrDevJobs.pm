@@ -10,8 +10,8 @@ spice is_cached => 1;
 spice wrap_jsonp_callback => 1;
 
 handle remainder => sub {
-   s/(jobs?|developer)//i;
-   s/(developer)//;
+    s/(jobs?|developer)//i;
+    s/(developer)//;
 
     return $_ if $_;
     return;
