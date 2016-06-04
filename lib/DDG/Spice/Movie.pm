@@ -10,15 +10,11 @@ spice to => 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey={{
 spice alt_to => {
 	movie_image => {
 		to => 'https://api.themoviedb.org/3/find/$1?api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}&external_source=imdb_id',
-		# Uses $loc so needs to not cache back end.
-		is_cached => 0,
 		proxy_cache_valid => "200 30d"
 	},
 
 	cast_image => {
 		to => 'https://api.themoviedb.org/3/search/person?query=$1&api_key={{ENV{DDG_SPICE_MOVIEDB_APIKEY}}}',
-		# Uses $loc so needs to not cache back end.
-		is_cached => 0,
 		proxy_cache_valid => "200 30d"
 	}
 };
