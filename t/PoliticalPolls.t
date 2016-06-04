@@ -16,12 +16,8 @@ ddg_spice_test(
         call_type => 'include',
         caller => 'DDG::Spice::PoliticalPolls'
     ),
-    'us polls' => test_spice(
-        '/js/spice/political_polls/us',
-        call_type => 'include',
-        caller => 'DDG::Spice::PoliticalPolls'
-    ),
     # Empty remainder
+    'us polls' => undef,
     'voting' => undef,
     'election' => undef
 );
