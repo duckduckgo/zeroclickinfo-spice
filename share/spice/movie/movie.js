@@ -30,8 +30,8 @@
     function normalizeCast(item) {
         return {
             title: item.name,
-            subtitle: item.characters && item.characters.join(", "),
-            heading: item.movie,
+            altSubtitle: item.characters && item.characters.join(", "),
+            subtitle: item.movie,
             image: null,
         }
     }
@@ -92,6 +92,38 @@
         return all_casts;
     }
 
+    function movieTemplate() {
+        return {
+            group: 'movies',
+            options: {
+                subtitle_content: Spice.movie.subtitle_content,
+                buy: Spice.movie.buy
+            },
+            variants: {
+                productSub: 'noMax'
+            },
+            elClass: {
+                tileMediaImg: 'js-movie-img',
+                productMediaImg: 'js-movie-img'
+            }
+        }
+    }
+
+    function castTemplate(query) {
+        return {
+            group: 'media',
+            detail: false,
+            item_detail: false,
+            options: {
+                moreAt: true,
+                moreText: {
+                    href: "https://www.themoviedb.org/search?query=" + query,
+                    text: "themoviedb.org"
+                }
+            }
+        }
+    }
+
     env.ddg_spice_movie = function (api_result) {
         if (!api_result || !api_result.movies || !api_result.movies.length) {
             return Spice.failed('movie');
@@ -146,20 +178,7 @@
             normalize: function (item) {
                 return isCastQuery ? normalizeCast(item) : normalizeMovie(item);
             },
-            templates: {
-                group: 'media',
-                options: {
-                    subtitle_content: Spice.movie.subtitle_content,
-                    buy: Spice.movie.buy
-                },
-                variants: {
-                    productSub: 'noMax'
-                },
-                elClass: {
-                    tileMediaImg: 'js-movie-img',
-                    productMediaImg: 'js-movie-img'
-                }
-            },
+            templates: isCastQuery ? castTemplate(query) : movieTemplate(),
             relevancy: {
                 skip_words: ['movie', 'info', 'film', 'rt', 'rotten', 'tomatoes', 'rating', 'ratings', 'rotten', 'cast', 'of'],
                 //primary: [{ // TODO: Need to fix this
