@@ -12,6 +12,86 @@
         return DDG.get_asset_path('in_theaters', critics_rating + ((DDG.is3x || DDG.is2x) ? '.retina.png' : '.png'));
     }
 
+    function normalizeMovie(item) {
+        if (item.alternate_ids && item.alternate_ids.imdb) {
+            return {
+                rating: Math.max(item.ratings.critics_score / 20, 0),
+                icon_image: getImage(item.ratings.critics_rating),
+                abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
+                heading: item.title,
+                fallback_image: item.posters.detailed,
+                image: null,
+                url: item.links.alternate,
+                is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
+            };
+        }
+    }
+
+    function normalizeCast(item) {
+        return {
+            title: item.name,
+            subtitle: item.characters && item.characters.join(", "),
+            heading: item.movie,
+            image: null,
+        }
+    }
+
+    function moviePicture(item) {
+        if (!item.alternate_ids || !item.alternate_ids.imdb) {
+            return;
+        }
+
+        $.ajaxSetup({cache: true});
+
+        $.getJSON("/js/spice/movie_image/tt" + item.alternate_ids.imdb, function (data) {
+            var path = data && data.movie_results && data.movie_results.length && data.movie_results[0].poster_path,
+                image = path && "https://image.tmdb.org/t/p/w185" + path;
+
+            item.set({
+                // fallback to lo-res:
+                image: image || item.fallback_image,
+
+                // don't fallback in detail pane because
+                // it looks silly with the tiny image:
+                img: image,
+                img_m: image
+            });
+        });
+    }
+
+    function castPicture(item) {
+        $.ajaxSetup({cache: true});
+
+        $.getJSON("/js/spice/cast_image/" + item.name, function (data) {
+            var path = data && data.results && data.results.length && data.results[0].profile_path,
+                image = path && "https://image.tmdb.org/t/p/w92/" + path;
+
+            item.set({
+                // fallback to lo-res:
+                image: image,
+
+                // don't fallback in detail pane because
+                // it looks silly with the tiny image:
+                img: image,
+                img_m: image
+            });
+        });
+    }
+
+    function casts(movies) {
+        var all_casts = [];
+        var length = movies.length;
+        for (var i = 0; i < length; i++) {
+            var movie_title = movies[i].title;
+            var casts = movies[i].abridged_cast.map(function (cast) {
+                cast.movie = movie_title;
+                return cast;
+            });
+            all_casts = all_casts.concat(casts);
+        }
+        return all_casts;
+    }
+
     env.ddg_spice_movie = function (api_result) {
         if (!api_result || !api_result.movies || !api_result.movies.length) {
             return Spice.failed('movie');
@@ -50,7 +130,7 @@
         }
 
         var isCastQuery = DDG.get_query().indexOf("cast") >= 0;
-        var data = isCastQuery ? getCasts(api_result.movies) : api_result.movies;
+        var data = isCastQuery ? casts(api_result.movies) : api_result.movies;
         Spice.add({
             id: 'movie',
             name: 'Movies',
@@ -67,7 +147,7 @@
                 return isCastQuery ? normalizeCast(item) : normalizeMovie(item);
             },
             templates: {
-                group: 'movies',
+                group: 'media',
                 options: {
                     subtitle_content: Spice.movie.subtitle_content,
                     buy: Spice.movie.buy
@@ -90,85 +170,6 @@
                 isCastQuery ? castPicture(item) : moviePicture(item);
             }
         });
-        function normalizeMovie(item) {
-            if (item.alternate_ids && item.alternate_ids.imdb) {
-                return {
-                    rating: Math.max(item.ratings.critics_score / 20, 0),
-                    icon_image: getImage(item.ratings.critics_rating),
-                    abstract: Handlebars.helpers.ellipsis(item.synopsis || item.critics_consensus, 200),
-                    heading: item.title,
-                    fallback_image: item.posters.detailed,
-                    image: null,
-                    url: item.links.alternate,
-                    is_retina: (DDG.is3x || DDG.is2x) ? "is_retina" : "no_retina"
-                };
-            }
-        }
-
-        function normalizeCast(item) {
-            return {
-                name: item.name,
-                character: item.characters && item.characters.join(", "),
-                heading: item.movie,
-                image: null,
-            }
-        }
-
-        function moviePicture(item) {
-            if (!item.alternate_ids || !item.alternate_ids.imdb) {
-                return;
-            }
-
-            $.ajaxSetup({cache: true});
-
-            $.getJSON("/js/spice/movie_image/tt" + item.alternate_ids.imdb, function (data) {
-                var path = data && data.movie_results && data.movie_results.length && data.movie_results[0].poster_path,
-                    image = path && "https://image.tmdb.org/t/p/w185" + path;
-
-                item.set({
-                    // fallback to lo-res:
-                    image: image || item.fallback_image,
-
-                    // don't fallback in detail pane because
-                    // it looks silly with the tiny image:
-                    img: image,
-                    img_m: image
-                });
-            });
-        }
-
-        function castPicture(item) {
-            $.ajaxSetup({cache: true});
-
-            $.getJSON("/js/spice/cast_image/" + item.name, function (data) {
-                var path = data && data.results && data.results.length && data.results[0].profile_path,
-                    image = path && "https://image.tmdb.org/t/p/w92/" + path;
-
-                item.set({
-                    // fallback to lo-res:
-                    image: image || item.fallback_image,
-
-                    // don't fallback in detail pane because
-                    // it looks silly with the tiny image:
-                    img: image,
-                    img_m: image
-                });
-            });
-        }
-
-        function getCasts(movies) {
-            var all_casts = [];
-            var length = movies.length;
-            for (var i = 0; i < length; i++) {
-                var movie_title = movies[i].title;
-                var casts = movies[i].abridged_cast.map(function (cast) {
-                    cast.movie = movie_title;
-                    return cast;
-                });
-                all_casts = all_casts.concat(casts);
-            }
-            return all_casts;
-        }
     };
 
     // Convert minutes to hr. min. format.
