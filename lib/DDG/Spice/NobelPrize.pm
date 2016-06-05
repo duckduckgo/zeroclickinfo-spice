@@ -13,31 +13,31 @@ spice proxy_cache_valid => "200 1d"; # defaults to this automatically
 
 spice wrap_jsonp_callback => 1;
 
-spice to => 'http://api.nobelprize.org/v1/prize.json?' 
-                . '&year=$1' 
-                . '&category=$2';
+spice to => 'http://api.nobelprize.org/v1/prize.json?&year=$1&category=$2';
 
+spice alt_to => {
+        nobel_winner_details => {
+                to => 'http://api.nobelprize.org/v1/laureate.json?&id=$1',
+        }
+};
 
 # Triggers - https://duck.co/duckduckhack/spice_triggers
 triggers startend => 'nobel';
 
-spice from => '([^-]+)-([^-]+)';
+spice from => '([^-]*)-([^-]*)';
 
-# Handle statement
-handle query_clean => sub {
-    
-    my $year_regex = qr/\b(\d{4})\b/;
-    my $category_regex = qr/\b(physics|chemistry|medicine|peace|literature|economics)\b/;
-    return unless ($_ =~ $year_regex || $_ =~ $category_regex);
-    
-    my $year = "";
-    my $category = "";
-    ($year)     =    ($_ =~ $year_regex)        if ($_ =~ $year_regex);
-    ($category) =    ($_ =~ $category_regex)    if ($_ =~ $category_regex);
+my $year_regex = qr/\b(?<year>\d{4})\b/;
+my $category_regex = qr/\b(?<category>physics|chemistry|medicine|peace|literature|economics)\b/;
 
-    return "$year-$category" if $_;
+handle remainder_lc => sub {
+
+    return unless $_;
     
-    return;
+    my $year = m/$year_regex/ ? $+{year} : "";
+    my $category = m/$category_regex/ ? $+{category} : "";
+    return unless ($year || $category);
+
+    return "$year-$category";
 };
 
 1;
