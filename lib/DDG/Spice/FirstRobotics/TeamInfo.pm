@@ -22,7 +22,7 @@ spice alt_to => {
 
 triggers any => 'frc', 'frc team', 'first robotics team', 'first robotics competition';
 
-handle remainder => sub {
+handle remainder_lc => sub {
 
     # only continue if the query contains digits
     return unless /\d+/;
